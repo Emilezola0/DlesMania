@@ -9,6 +9,7 @@ interface YTPlayer {
   playVideo(): void;
   pauseVideo(): void;
   seekTo(seconds: number, allowSeekAhead: boolean): void;
+  getDuration(): number;
   setVolume(v: number): void;
   destroy(): void;
 }
@@ -50,6 +51,7 @@ function loadYouTube(): Promise<YTNamespace> {
 
 interface Props {
   videoId: string;
+  /** Second the snippet starts at. When omitted it's picked from the middle of the clip. */
   start?: number;
   /** Index into SNIPPETS: grows with each wrong guess. */
   step: number;
@@ -61,10 +63,19 @@ interface Props {
 
 const PLAYING = 1;
 
-export function AudioClip({ videoId, start = 0, step, revealed, onUnavailable }: Props) {
+/** Intros are often silent or ambient, so default to ~40% in, leaving room for the longest snippet. */
+function autoStart(duration: number): number {
+  if (!duration || duration < 45) return 0;
+  return Math.floor(Math.min(duration * 0.4, duration - SNIPPETS[SNIPPETS.length - 1] - 5));
+}
+
+export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
+  /** Snippet length waiting for playback to actually begin (seeking can buffer). */
+  const pending = useRef<number | null>(null);
+  const [clipStart, setClipStart] = useState(start ?? 0);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -84,15 +95,20 @@ export function AudioClip({ videoId, start = 0, step, revealed, onUnavailable }:
           videoId,
           width: '100%',
           height: '100%',
-          playerVars: { controls: 0, disablekb: 1, modestbranding: 1, rel: 0, playsinline: 1, start, iv_load_policy: 3, fs: 0 },
+          playerVars: { controls: 0, disablekb: 1, modestbranding: 1, rel: 0, playsinline: 1, iv_load_policy: 3, fs: 0 },
           events: {
             onReady: () => {
-              player.current?.setVolume(80);
+              const p = player.current;
+              if (!p) return;
+              p.setVolume(80);
+              setClipStart(start ?? autoStart(p.getDuration()));
               setReady(true);
             },
             onError: () => onUnavailable(),
             onStateChange: (e) => {
-              if (e.data === PLAYING) setPlaying(true);
+              if (e.data !== PLAYING || pending.current === null) return;
+              startTimer(pending.current);
+              pending.current = null;
             },
           },
         });
@@ -108,24 +124,32 @@ export function AudioClip({ videoId, start = 0, step, revealed, onUnavailable }:
     // Created once per clip: `start` and `onUnavailable` don't change during a round.
   }, [videoId, revealed]);
 
-  const playSnippet = () => {
+  /** Counts the snippet from the moment audio is really playing, then pauses. */
+  function startTimer(len: number) {
     const p = player.current;
     if (!p) return;
-    sfx.click();
-    window.clearInterval(timer.current);
-    p.seekTo(start, true);
-    p.playVideo();
+    setPlaying(true);
     const t0 = performance.now();
-    setProgress(0);
     timer.current = window.setInterval(() => {
       const elapsed = (performance.now() - t0) / 1000;
-      setProgress(Math.min(elapsed, length));
-      if (elapsed >= length) {
+      setProgress(Math.min(elapsed, len));
+      if (elapsed >= len) {
         p.pauseVideo();
         setPlaying(false);
         window.clearInterval(timer.current);
       }
     }, 50);
+  }
+
+  const playSnippet = () => {
+    const p = player.current;
+    if (!p) return;
+    sfx.click();
+    window.clearInterval(timer.current);
+    setProgress(0);
+    pending.current = length;
+    p.seekTo(clipStart, true);
+    p.playVideo();
   };
 
   if (revealed) {
@@ -133,7 +157,7 @@ export function AudioClip({ videoId, start = 0, step, revealed, onUnavailable }:
       <div className="animate-pop mx-auto aspect-video w-full max-w-xl overflow-hidden rounded-xl bg-black shadow-2xl">
         <iframe
           className="size-full"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?start=${start}&rel=0`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?start=${clipStart}&rel=0`}
           title="Soundtrack clip"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen

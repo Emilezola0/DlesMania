@@ -23,14 +23,14 @@ Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a 
 |------|-----------|-------|
 | Classic attributes | `ClassicGame` | Green / yellow (partial) / red, ▲▼ for year |
 | Quote | `ClueGame` | Quote with progressive hints; albums reveal their **tracklist** instead |
-| Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets; video revealed at the end. Falls back to a text description |
+| Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets starting ~40% into the clip (or `audio.start`); video revealed at the end. Falls back to a text description |
 | Emoji | `ClueGame` | One more emoji per miss |
 | Pixelated | `ClueGame` + `PixelCanvas` | Real cover art (or a generated glyph cover), de-pixelates per miss |
 | Timeline | `TimelineGame` | Drag or arrows, 3 attempts |
 | Iconic item | `ClueGame` + `BlurImage` | Image blurs/desaturates, clearing per miss, plus description |
 | Location | `ClueGame` + `BlurImage` | Same, for settings and real places |
 | Credits | `ClueGame` | Credit lines revealed one by one |
-| Connections | `ConnectionsGame` | 4×4, Yellow→Purple difficulty, 4 mistakes, "One away…", per-category and single-universe grids |
+| Connections | `ConnectionsGame` | 4×4 picture tiles, Yellow→Purple difficulty, 4 mistakes, "One away…", per-category and single-universe grids |
 
 `GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`, toggle 🔊 in the header), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:
 
@@ -43,7 +43,7 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 ## Data
 
 - **Works**: `src/data/works/{games,anime,cinema,music}.json`, ~30 per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
-- **Connections**: `src/data/connections.ts` — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3.
+- **Connections**: `src/data/connections.json` — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3. A tile is a label or `{ "label", "src" }`; `images` sets the puzzle's default picture source (`wp`, `fandom:<wiki>`, `ddragon`). `node scripts/enrich-connections.mjs` resolves them and reports misses — a grid only shows pictures when all 16 tiles have one, since a lone text tile would give its group away.
 
 ### Scaling the dataset
 
@@ -61,7 +61,10 @@ node scripts/import.mjs file my-entries.json                              # hand
 node scripts/enrich-media.mjs                    # images from Wikipedia (batched, no key)
 YOUTUBE_API_KEY=... node scripts/enrich-media.mjs --no-images   # clip ids from audio.query
 
-# 4. Check
+# 4. Connections pictures (Wikipedia, Fandom wikis, League Data Dragon)
+node scripts/enrich-connections.mjs
+
+# 5. Check
 npm run data:validate
 ```
 

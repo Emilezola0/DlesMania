@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 // Resolves media for works:
-//   • cover / item / location images from their `wiki` article title (Wikipedia REST API, no key).
+//   • cover / item / location images from their `wiki` article title (MediaWiki API, batched, no key).
 //     Works without `cover.wiki` get one by searching Wikipedia for "<name> <year> <noun>".
 //   • YouTube clip ids for `audio.query` (YouTube Data API v3, needs YOUTUBE_API_KEY).
 //
 //   node scripts/enrich-media.mjs [--domain=anime] [--force] [--dry] [--no-images] [--no-youtube]
 //
 // Existing `image` / `youtubeId` values are kept unless --force is passed.
-import { DOMAINS, getJson, loadWorks, parseArgs, saveWorks, sleep } from './lib.mjs';
+import { DOMAINS, WIKIPEDIA_API, getJson, loadWorks, mediawikiGet, mediawikiImages, parseArgs, saveWorks, sleep } from './lib.mjs';
 
 const { flags } = parseArgs();
 const domains = flags.domain ? [flags.domain] : DOMAINS;
@@ -24,51 +24,8 @@ function sameSubject(requested, target) {
   return norm(requested.replace(/\(.*\)/, '')).split(' ').every((word) => compact.includes(word));
 }
 
-const WIKI_API = 'https://en.wikipedia.org/w/api.php';
-
-/** Wikimedia rate-limits aggressively: retry 429s, honouring Retry-After. */
-async function wikiGet(params) {
-  const url = `${WIKI_API}?${new URLSearchParams({ format: 'json', formatversion: '2', ...params })}`;
-  for (let attempt = 0; ; attempt++) {
-    try {
-      return await getJson(url);
-    } catch (e) {
-      if (!String(e.message).startsWith('429') || attempt >= 4) throw e;
-      const wait = 5000 * 2 ** attempt;
-      console.log(`  (rate-limited, retrying in ${wait / 1000}s)`);
-      await sleep(wait);
-    }
-  }
-}
-
-/**
- * Resolves many article titles at once (50 per request) to lead-image URLs.
- * Returns Map<requested title, { image, title }>; image is null for missing or disambiguation pages.
- * `pilicense=any` includes non-free images such as album covers and posters.
- */
-async function wikiImages(titles) {
-  const out = new Map();
-  const unique = [...new Set(titles)];
-  for (let i = 0; i < unique.length; i += 50) {
-    const batch = unique.slice(i, i + 50);
-    const d = await wikiGet({
-      action: 'query', prop: 'pageimages|pageprops', piprop: 'thumbnail', pithumbsize: String(IMAGE_WIDTH),
-      pilicense: 'any', ppprop: 'disambiguation', redirects: '1', titles: batch.join('|'),
-    });
-    // Follow normalisation ("a b" → "A b") then redirects to find each requested title's page.
-    const normalized = new Map((d.query.normalized ?? []).map((n) => [n.from, n.to]));
-    const redirects = new Map((d.query.redirects ?? []).map((r) => [r.from, r.to]));
-    const pages = new Map(d.query.pages.map((p) => [p.title, p]));
-    for (const requested of batch) {
-      const n = normalized.get(requested) ?? requested;
-      const p = pages.get(redirects.get(n) ?? n);
-      const image = !p || p.missing || p.pageprops?.disambiguation !== undefined ? null : p.thumbnail?.source?.split('?')[0] ?? null; // drop utm_* tracking params
-      out.set(requested, { image, title: p?.title ?? null });
-    }
-    await sleep(1000);
-  }
-  return out;
-}
+const wikiImages = (titles) => mediawikiImages(WIKIPEDIA_API, titles, IMAGE_WIDTH);
+const wikiGet = (params) => mediawikiGet(WIKIPEDIA_API, params);
 
 async function wikiSearch(query) {
   const d = await wikiGet({ action: 'query', list: 'search', srlimit: '1', srsearch: query });

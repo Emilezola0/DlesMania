@@ -45,7 +45,6 @@
     "audio": {
       "clue": "A gentle, lilting tune played on a clay wind instrument, used to call a loyal red-maned horse.",
       "query": "Ocarina of Time Epona's Song",
-      "start": 0,
       "youtubeId": "MBU2IJ1Mnjw"
     },
     "emoji": "🧝⏳🎶🗡️🐴",
@@ -113,7 +112,6 @@
     "audio": {
       "clue": "A bouncy, calypso-flavoured overworld melody that is among the most recognised tunes in gaming.",
       "query": "Super Mario Bros overworld theme NES",
-      "start": 0,
       "youtubeId": "iy3qq7zc4EY"
     },
     "emoji": "🍄👨‍🔧🐢🏰👸",
@@ -176,7 +174,6 @@
     "audio": {
       "clue": "Sparse, wistful ambient piano that drifts in while you stand alone in a blocky world at dawn.",
       "query": "C418 Sweden Minecraft",
-      "start": 0,
       "youtubeId": "aBkTkxKDduc"
     },
     "emoji": "⛏️🧱🧟💎🐷",
@@ -307,7 +304,6 @@
     "audio": {
       "clue": "Haunting folk vocals over pounding drums and hurdy-gurdy, sung in a Slavic-sounding tongue.",
       "query": "Witcher 3 The Fields of Ard Skellig",
-      "start": 10,
       "youtubeId": "NknjE2SBPxw"
     },
     "emoji": "🐺⚔️🧙‍♂️👧❄️",
@@ -370,7 +366,6 @@
     "audio": {
       "clue": "A melancholic, slow string-and-harp piece that plays at a crumbling shrine around a bonfire.",
       "query": "Dark Souls Firelink Shrine theme",
-      "start": 0,
       "youtubeId": "EL9dArwG5cE"
     },
     "emoji": "🔥🗡️💀☀️🔁",
@@ -433,7 +428,6 @@
     "audio": {
       "clue": "A cheerful end-credits song sung by the passive-aggressive AI who spent the game trying to kill you.",
       "query": "Portal Still Alive Jonathan Coulton",
-      "start": 8,
       "youtubeId": "RSsstXfcRWw"
     },
     "emoji": "🔵🟠🎂🤖🧪",
@@ -497,7 +491,6 @@
     "audio": {
       "clue": "An upbeat 8-bit march that plays as you leave your quiet hometown for the first time.",
       "query": "Pokemon Red Blue Route 1 theme",
-      "start": 0,
       "youtubeId": "u0G12EBW4KY"
     },
     "emoji": "🎒🔴⚪🐭⚡",
@@ -564,7 +557,6 @@
     "audio": {
       "clue": "A sparse, plaintive melody plucked on a small Andean string instrument, full of empty space.",
       "query": "The Last of Us main theme Santaolalla",
-      "start": 0,
       "youtubeId": "Pt1pOY3_W64"
     },
     "emoji": "🍄🧟👨👧🦒",
@@ -619,7 +611,6 @@
     "audio": {
       "clue": "A brisk 19th-century Russian folk song about a peddler, arranged as a chiptune that speeds up.",
       "query": "Tetris Game Boy Type A theme",
-      "start": 0,
       "youtubeId": "z3ZiVn5L9vM"
     },
     "emoji": "🟦🟨🟥⬇️🧱",
@@ -681,7 +672,6 @@
     "audio": {
       "clue": "A lonely, rain-soaked piano and string theme for a small town perched above a ruined kingdom.",
       "query": "Hollow Knight Dirtmouth Christopher Larkin",
-      "start": 0,
       "youtubeId": "9Vdv01LsnQM"
     },
     "emoji": "🐞🗡️🕳️🦋👑",
@@ -751,7 +741,6 @@
     "audio": {
       "clue": "A thunderous final-boss theme with a Latin choir chanting over driving orchestra and rock.",
       "query": "Final Fantasy VII One-Winged Angel original",
-      "start": 0,
       "youtubeId": "mYdf0yqK_Fc"
     },
     "emoji": "☄️🗡️🌸🏙️⚡",
@@ -885,7 +874,6 @@
     "audio": {
       "clue": "Each fighter has their own home-stage theme; the most famous plays at a Japanese castle at night.",
       "query": "Street Fighter II Ryu stage theme",
-      "start": 0,
       "youtubeId": "hO7JEqIPQv0"
     },
     "emoji": "🥋👊🔥🌍🏆",
@@ -954,7 +942,6 @@
     "audio": {
       "clue": "A thunderous male choir chants in a dragon tongue over pounding war drums.",
       "query": "Skyrim Dragonborn main theme",
-      "start": 0,
       "youtubeId": "UsnRQJxanVM"
     },
     "emoji": "🐉🏔️🛡️🏹🦵",
@@ -1021,7 +1008,6 @@
     "audio": {
       "clue": "A sweeping, militaristic orchestral main theme with a mournful string melody.",
       "query": "Metal Gear Solid main theme 1998",
-      "start": 0,
       "youtubeId": "o7slVN3z6g8"
     },
     "emoji": "🐍📦❗🪖☢️",
@@ -1086,7 +1072,6 @@
     "audio": {
       "clue": "Gregorian-style monk chanting gives way to driving strings and drums.",
       "query": "Halo theme Martin O'Donnell",
-      "start": 0,
       "youtubeId": "bwikj_lQLT0"
     },
     "emoji": "🪖💍👽🚀🔫",
@@ -1145,7 +1130,6 @@
     "audio": {
       "clue": "A chugging, heavy-metal MIDI guitar riff blasts as you enter the hangar of the first level.",
       "query": "Doom E1M1 At Doom's Gate",
-      "start": 0,
       "youtubeId": "BSsfjHCFosw"
     },
     "emoji": "👹🔫🪚🔥🪐",
@@ -1215,7 +1199,6 @@
     "audio": {
       "clue": "Sparse, scattered piano notes that drift in and out as you ride across an empty plain.",
       "query": "Breath of the Wild Hyrule Field day theme",
-      "start": 0,
       "youtubeId": "xGi23M_5lXg"
     },
     "emoji": "🧗🏔️🍎🐎🗺️",
@@ -1280,7 +1263,6 @@
     "audio": {
       "clue": "A jaunty, bouncing big-band tune for a grassy battlefield full of walking bombs.",
       "query": "Super Mario 64 Bob-omb Battlefield",
-      "start": 0,
       "youtubeId": "bmP3UHXYi28"
     },
     "emoji": "⭐🏰🖼️💣🐧",
@@ -1338,7 +1320,6 @@
     "audio": {
       "clue": "A bright, bouncy pop melody for a checkerboard hillside of loops and palm trees.",
       "query": "Sonic the Hedgehog Green Hill Zone",
-      "start": 0,
       "youtubeId": "G-i8HYi1QH0"
     },
     "emoji": "🦔💨💍🌴🤖",
@@ -1404,7 +1385,6 @@
     "audio": {
       "clue": "A short, chirpy start-up jingle, then a wailing siren and constant munching sounds.",
       "query": "Pac-Man arcade intro music",
-      "start": 0,
       "youtubeId": "rnf0q1zOTXs"
     },
     "emoji": "🟡👻🍒🌀🕹️",
@@ -1587,7 +1567,6 @@
     "audio": {
       "clue": "An epic orchestral login theme with brass fanfares, heard before every queue.",
       "query": "League of Legends original login theme",
-      "start": 0,
       "youtubeId": "8dnmCJbmfxY"
     },
     "emoji": "⚔️🏰🧙‍♀️🌿🐉",
@@ -1648,7 +1627,6 @@
     "audio": {
       "clue": "A breezy acoustic-guitar and flute tune for the first day of spring on the farm.",
       "query": "Stardew Valley Spring It's a Big World Outside",
-      "start": 0,
       "youtubeId": "FO9WXi9gxQg"
     },
     "emoji": "🌾🐔🎣🏡💕",
@@ -1711,7 +1689,6 @@
     "audio": {
       "clue": "A frantic, relentless chiptune boss theme that became a meme of its own.",
       "query": "Undertale Megalovania",
-      "start": 0,
       "youtubeId": "0FCvzsVlXpQ"
     },
     "emoji": "💀🐐🌼❤️🍝",
@@ -1770,7 +1747,6 @@
     "audio": {
       "clue": "Shimmering synth-piano and pulsing electronica as a girl climbs a mountain.",
       "query": "Celeste First Steps Lena Raine",
-      "start": 0,
       "youtubeId": "N8OHSXvneOE"
     },
     "emoji": "🏔️🍓🧗‍♀️💨😰",
@@ -1833,7 +1809,6 @@
     "audio": {
       "clue": "A melancholic solo violin piece, mixed with 1940s records crackling through a drowned city.",
       "query": "BioShock Welcome to Rapture Garry Schyman",
-      "start": 0,
       "youtubeId": "sEFIZh_Zscc"
     },
     "emoji": "🌊🏙️💉🤖👧",
@@ -1897,7 +1872,6 @@
     "audio": {
       "clue": "A towering choir and orchestra in the main theme of the Lands Between.",
       "query": "Elden Ring main theme",
-      "start": 0,
       "youtubeId": "ZfGqwHDK2Uw"
     },
     "emoji": "💍🌳🐴⚔️🌕",
@@ -1958,7 +1932,6 @@
     "audio": {
       "clue": "A noble brass-and-choir theme for a white-stone human capital.",
       "query": "World of Warcraft Stormwind theme",
-      "start": 0,
       "youtubeId": "roMWEeV2P4U"
     },
     "emoji": "🧌⚔️🐉🏰🌍",

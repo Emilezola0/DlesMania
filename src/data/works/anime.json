@@ -39,7 +39,6 @@
     "audio": {
       "clue": "A heavy, operatic rock opening with a pipe organ and a choir, sung by a visual-kei band.",
       "query": "Death Note opening The World Nightmare",
-      "start": 0,
       "youtubeId": "D7MMMNTQ7H0"
     },
     "emoji": "📓🍎✍️💀🕵️",
@@ -99,7 +98,6 @@
     "audio": {
       "clue": "A mournful shamisen-and-flute piece that plays whenever the lonely hero remembers his childhood.",
       "query": "Naruto Sadness and Sorrow",
-      "start": 0,
       "youtubeId": "wEWF2xh5E8s"
     },
     "emoji": "🍥🦊🍜🥷🍃",
@@ -159,7 +157,6 @@
     "audio": {
       "clue": "An upbeat, sing-along first opening about setting sail in search of the ultimate treasure.",
       "query": "One Piece opening 1 We Are",
-      "start": 0,
       "youtubeId": "YoeP9w5UIlg"
     },
     "emoji": "🏴‍☠️👒🍖🌊💰",
@@ -223,7 +220,6 @@
     "audio": {
       "clue": "A fast, dramatic J-pop opening whose title translates roughly to a cruel angel's thesis.",
       "query": "A Cruel Angel's Thesis Evangelion opening",
-      "start": 0,
       "youtubeId": "nU21rCWkuJw"
     },
     "emoji": "🤖👦😰✝️🌊",
@@ -283,7 +279,6 @@
     "audio": {
       "clue": "A tender piano waltz that opens as a girl rides a train across a flooded sea.",
       "query": "Spirited Away One Summer's Day Joe Hisaishi",
-      "start": 0,
       "youtubeId": "TK1Ij_-mank"
     },
     "emoji": "👧🐉🛁👻🐷",
@@ -348,7 +343,6 @@
     "audio": {
       "clue": "A martial, chanting opening with German-language shouts and a pounding choir.",
       "query": "Attack on Titan opening Guren no Yumiya",
-      "start": 0,
       "youtubeId": "8OkpRK2_gVs"
     },
     "emoji": "🧱👹⚔️🪽🩸",
@@ -411,7 +405,6 @@
     "audio": {
       "clue": "A soaring, guitar-driven opening with a nonsense-syllable title and an unforgettable chorus.",
       "query": "Dragon Ball Z Cha-La Head-Cha-La opening",
-      "start": 0,
       "youtubeId": "qQmTdijhjD4"
     },
     "emoji": "🐉🟠⭐💥👊",
@@ -471,7 +464,6 @@
     "audio": {
       "clue": "A frantic big-band jazz opening of blaring brass and bongos, with almost no lyrics.",
       "query": "Cowboy Bebop Tank! opening",
-      "start": 0,
       "youtubeId": "0hfOyOBHIq4"
     },
     "emoji": "🚀🤠🎷🐕🚬",
@@ -535,7 +527,6 @@
     "audio": {
       "clue": "An energetic J-rock first opening about wanting to try again, sung by a solo singer-songwriter.",
       "query": "Fullmetal Alchemist Brotherhood opening Again YUI",
-      "start": 0,
       "youtubeId": "FM3aJQzqV90"
     },
     "emoji": "⚗️🦾🛡️👬🔴",
@@ -597,7 +588,6 @@
     "audio": {
       "clue": "A cheerful, marching children's song about going for a walk in the countryside.",
       "query": "My Neighbor Totoro Hey Let's Go opening",
-      "start": 0,
       "youtubeId": "lOqfUXy9wpg"
     },
     "emoji": "🌳🐱🚌☔👧",
@@ -655,7 +645,6 @@
     "audio": {
       "clue": "A ferocious rock opening by a singer known as LiSA, whose title means \"red lotus\".",
       "query": "Demon Slayer opening Gurenge LiSA",
-      "start": 0,
       "youtubeId": "pmanD_s7G3U"
     },
     "emoji": "👹🗡️🌊📦🎋",
@@ -713,7 +702,6 @@
     "audio": {
       "clue": "A sweet, synth-pop opening about moonlight and a teenage crush.",
       "query": "Sailor Moon opening Moonlight Densetsu",
-      "start": 0,
       "youtubeId": "5g-8Eav6UdA"
     },
     "emoji": "🌙👧🐈‍⬛💫🎀",
@@ -767,7 +755,6 @@
     "audio": {
       "clue": "Percussive gamelan, rhythmic chanting and taiko drums as biker gangs race through a city.",
       "query": "Akira Kaneda theme Geinoh Yamashirogumi",
-      "start": 0,
       "youtubeId": "CAjtimRClYU"
     },
     "emoji": "🏍️🔴🧠💥🌆",
@@ -826,7 +813,6 @@
     "audio": {
       "clue": "A bright, catchy J-pop opening with the hook \"Departure!\".",
       "query": "Hunter x Hunter 2011 opening Departure",
-      "start": 0,
       "youtubeId": "faqmNf_fZlE"
     },
     "emoji": "🎣🧒⚡🃏🐜",
@@ -889,7 +875,6 @@
     "audio": {
       "clue": "A fast, jittery rock opening by a vocaloid-scene singer called Eve.",
       "query": "Jujutsu Kaisen opening Kaikai Kitan",
-      "start": 0,
       "youtubeId": "GwaRztMaoY0"
     },
     "emoji": "👆🧿🏫👹🤞",
@@ -954,7 +939,6 @@
     "audio": {
       "clue": "A driving rock first opening by Porno Graffitti.",
       "query": "My Hero Academia opening The Day",
-      "start": 0,
       "youtubeId": "gUCmjNHIrcU"
     },
     "emoji": "💪🦸👦💥🏫",
@@ -1131,7 +1115,6 @@
     "audio": {
       "clue": "A fist-pumping hard-rock opening by JAM Project.",
       "query": "One Punch Man opening The Hero",
-      "start": 0,
       "youtubeId": "atxYe-nOa9w"
     },
     "emoji": "👊🥚👨‍🦲🦸😐",
@@ -1195,7 +1178,6 @@
     "audio": {
       "clue": "A bombastic, operatic hard-rock first opening, sung with total sincerity.",
       "query": "JoJo opening Sono Chi no Sadame",
-      "start": 0,
       "youtubeId": "BW4H15rK6iI"
     },
     "emoji": "🕺🗿⭐🧛🌹",
@@ -1251,7 +1233,6 @@
     "audio": {
       "clue": "A chaotic, genre-hopping opening by Kenshi Yonezu, full of tempo shifts.",
       "query": "Chainsaw Man opening KICK BACK",
-      "start": 0,
       "youtubeId": "dFlDRhvM4L0"
     },
     "emoji": "🪚🐶😈🩸🍞",
@@ -1309,7 +1290,6 @@
     "audio": {
       "clue": "An upbeat rock song from a band that scored the whole film, as two strangers wake up in each other's lives.",
       "query": "Your Name Zenzenzense RADWIMPS",
-      "start": 0,
       "youtubeId": "nWrCkR-h_gs"
     },
     "emoji": "☄️🔄👫🏞️🧶",
@@ -1367,7 +1347,6 @@
     "audio": {
       "clue": "A haunting countertenor sings the title theme over solemn orchestra.",
       "query": "Princess Mononoke theme song",
-      "start": 0,
       "youtubeId": "nBADF1LdP3g"
     },
     "emoji": "🐺👸🦌🌲🔥",
@@ -1428,7 +1407,6 @@
     "audio": {
       "clue": "A soaring J-pop opening by LiSA.",
       "query": "Sword Art Online opening Crossing Field",
-      "start": 0,
       "youtubeId": "6Y1swEeFwYo"
     },
     "emoji": "🎮⚔️🏰💀🧑‍💻",
@@ -1533,7 +1511,6 @@
     "audio": {
       "clue": "Haunting Japanese folk-style choir chanting over taiko drums and bells.",
       "query": "Ghost in the Shell Making of Cyborg Kenji Kawai",
-      "start": 0,
       "youtubeId": "iTPNaUsjksM"
     },
     "emoji": "🤖🧠👩🌐🔫",
@@ -1594,7 +1571,6 @@
     "audio": {
       "clue": "A dreamy, ethereal opening by YOASOBI.",
       "query": "Frieren opening Yuusha YOASOBI",
-      "start": 0,
       "youtubeId": "OIBODIPC_8Y"
     },
     "emoji": "🧝‍♀️📦🌸⏳💐",
@@ -1657,7 +1633,6 @@
     "audio": {
       "clue": "A funky, horn-driven opening by Official Hige Dandism.",
       "query": "Spy x Family opening Mixed Nuts",
-      "start": 0,
       "youtubeId": "Wf8XuAoCjN8"
     },
     "emoji": "🕵️🔫🥜👧🐶",
@@ -1711,7 +1686,6 @@
     "audio": {
       "clue": "A punchy rock-rap opening by Orange Range.",
       "query": "Bleach opening Asterisk Orange Range",
-      "start": 0,
       "youtubeId": "wW9TwZdWpjw"
     },
     "emoji": "🗡️🍓👻💀🍊",
@@ -1774,7 +1748,6 @@
     "audio": {
       "clue": "An anthemic English opening promising to be the very best.",
       "query": "Pokemon theme song season 1",
-      "start": 0,
       "youtubeId": "6xKWiCMKKJg"
     },
     "emoji": "🧢🐭⚡🚀🎒",

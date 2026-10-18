@@ -76,13 +76,19 @@ export interface Work {
 /** Yellow (straightforward) → Purple (trickiest), as in NYT Connections. */
 export type ConnectionsLevel = 0 | 1 | 2 | 3;
 
+export interface ConnectionsTile {
+  label: string;
+  /** Resolved by scripts/enrich-connections.mjs. */
+  image?: string;
+}
+
 export interface ConnectionsPuzzle {
   id: string;
   /** Domain whose daily can use it; 'mixed' puzzles appear in free play only. */
   domain: Domain | 'mixed';
   /** Optional universe the whole grid is about, e.g. "Final Fantasy". */
   theme?: string;
-  groups: { label: string; level: ConnectionsLevel; items: [string, string, string, string] }[];
+  groups: { label: string; level: ConnectionsLevel; items: ConnectionsTile[] }[];
 }
 
 /** Everything needed to deterministically render one round. */

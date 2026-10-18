@@ -55,5 +55,26 @@ for (const domain of DOMAINS) {
   console.log(`${domain.padEnd(7)} ${String(works.length).padStart(3)} works | ${coverage.join(' ')} | ${images.join(' ')} | clips:${works.filter((w) => w.audio?.youtubeId).length}`);
 }
 
+// ---------------------------------------------------------------- Connections
+const puzzles = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'connections.json'), 'utf8'));
+const puzzleIds = new Set();
+let withImages = 0;
+for (const pz of puzzles) {
+  if (puzzleIds.has(pz.id)) fail(`connections/${pz.id}: duplicate id`);
+  puzzleIds.add(pz.id);
+  if (![...DOMAINS, 'mixed'].includes(pz.domain)) fail(`connections/${pz.id}: bad domain "${pz.domain}"`);
+  const levels = pz.groups.map((g) => g.level).sort().join();
+  if (pz.groups.length !== 4 || levels !== '0,1,2,3') fail(`connections/${pz.id}: needs 4 groups with levels 0-3 (got ${levels})`);
+  if (pz.groups.some((g) => g.items.length !== 4)) fail(`connections/${pz.id}: every group needs 4 tiles`);
+  const tiles = pz.groups.flatMap((g) => g.items.map((t) => (typeof t === 'string' ? { label: t } : t)));
+  const labels = tiles.map((t) => t.label.toLowerCase());
+  if (new Set(labels).size !== labels.length) fail(`connections/${pz.id}: duplicate tile label`);
+  const missing = tiles.filter((t) => !t.image).length;
+  if (missing === 0) withImages++;
+  else if (missing < tiles.length) warn(`connections/${pz.id}: ${missing} tile(s) without image — grid shows text only`);
+}
+const perDomain = [...DOMAINS, 'mixed'].map((d) => `${d}:${puzzles.filter((p) => p.domain === d).length}`).join(' ');
+console.log(`connections ${puzzles.length} puzzles (${perDomain}) | fully illustrated: ${withImages}`);
+
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

@@ -69,3 +69,59 @@ export async function getJson(url, init) {
   if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
   return res.json();
 }
+
+// ---------------------------------------------------------------- MediaWiki (Wikipedia, Fandom wikis)
+
+export const WIKIPEDIA_API = 'https://en.wikipedia.org/w/api.php';
+export const fandomApi = (wiki) => `https://${wiki}.fandom.com/api.php`;
+
+/** Wikimedia and Fandom rate-limit aggressively: retry 429s with exponential backoff. */
+export async function mediawikiGet(api, params) {
+  const url = `${api}?${new URLSearchParams({ format: 'json', formatversion: '2', ...params })}`;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await getJson(url);
+    } catch (e) {
+      if (!String(e.message).startsWith('429') || attempt >= 4) throw e;
+      const wait = 5000 * 2 ** attempt;
+      console.log(`  (rate-limited, retrying in ${wait / 1000}s)`);
+      await sleep(wait);
+    }
+  }
+}
+
+/** Drops analytics parameters (utm_*) but keeps functional ones such as Fandom's cache-buster. */
+function cleanUrl(url) {
+  const u = new URL(url);
+  for (const k of [...u.searchParams.keys()]) if (k.startsWith('utm_')) u.searchParams.delete(k);
+  return u.toString();
+}
+
+/**
+ * Resolves many page titles at once (50 per request) to lead-image URLs on any MediaWiki site.
+ * Returns Map<requested title, { image, title }>; image is null for missing or disambiguation pages.
+ * `pilicense=any` includes non-free images such as album covers and posters.
+ */
+export async function mediawikiImages(api, titles, size = 640) {
+  const out = new Map();
+  const unique = [...new Set(titles)];
+  for (let i = 0; i < unique.length; i += 50) {
+    const batch = unique.slice(i, i + 50);
+    const d = await mediawikiGet(api, {
+      action: 'query', prop: 'pageimages|pageprops', piprop: 'thumbnail', pithumbsize: String(size),
+      pilicense: 'any', ppprop: 'disambiguation', redirects: '1', titles: batch.join('|'),
+    });
+    // Follow normalisation ("a b" → "A b") then redirects to find each requested title's page.
+    const normalized = new Map((d.query?.normalized ?? []).map((n) => [n.from, n.to]));
+    const redirects = new Map((d.query?.redirects ?? []).map((r) => [r.from, r.to]));
+    const pages = new Map((d.query?.pages ?? []).map((p) => [p.title, p]));
+    for (const requested of batch) {
+      const n = normalized.get(requested) ?? requested;
+      const p = pages.get(redirects.get(n) ?? n);
+      const src = !p || p.missing || p.pageprops?.disambiguation !== undefined ? null : p.thumbnail?.source;
+      out.set(requested, { image: src ? cleanUrl(src) : null, title: p?.title ?? null });
+    }
+    await sleep(1000);
+  }
+  return out;
+}

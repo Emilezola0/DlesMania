@@ -1,13 +1,30 @@
-import type { Domain, GameType, Work } from '../types';
+import type { ConnectionsPuzzle, Domain, GameType, Work } from '../types';
+import rawPuzzles from './connections.json';
 import anime from './works/anime.json';
 import cinema from './works/cinema.json';
 import games from './works/games.json';
 import music from './works/music.json';
 
-export { connectionsPuzzles } from './connections';
 
 /** JSON shape is enforced by `npm run data:validate` (schema/work.schema.json). */
 export const WORKS = [...games, ...anime, ...cinema, ...music] as unknown as Work[];
+
+/**
+ * In connections.json a tile is either a plain label or `{ label, src?, image? }`
+ * (`src` only matters to the image script). The game always gets `{ label, image? }`.
+ */
+export const connectionsPuzzles: ConnectionsPuzzle[] = (rawPuzzles as unknown as (Omit<ConnectionsPuzzle, 'groups'> & {
+  groups: { label: string; level: ConnectionsPuzzle['groups'][number]['level']; items: (string | { label: string; image?: string })[] }[];
+})[]).map((p) => ({
+  id: p.id,
+  domain: p.domain,
+  theme: p.theme,
+  groups: p.groups.map((g) => ({
+    label: g.label,
+    level: g.level,
+    items: g.items.map((t) => (typeof t === 'string' ? { label: t } : { label: t.label, image: t.image })),
+  })),
+}));
 
 const BY_ID = new Map(WORKS.map((w) => [w.id, w]));
 

@@ -21,7 +21,10 @@ const groupOf = (tileId: string) => Number(tileId.split('-')[0]);
 export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
   const puzzle = connectionsPuzzles.find((p) => p.id === spec.puzzleId)!;
   const maxMistakes = GAME_META.connections.maxAttempts;
-  const label = (id: string) => puzzle.groups[groupOf(id)].items[Number(id.split('-')[1])];
+  const tile = (id: string) => puzzle.groups[groupOf(id)].items[Number(id.split('-')[1])];
+  // Pictures only when every tile has one: a lone text tile would give its group away.
+  const [brokenImage, setBrokenImage] = useState(false);
+  const withImages = !brokenImage && puzzle.groups.every((grp) => grp.items.every((t) => t.image));
 
   const allTiles = useMemo(() => puzzle.groups.flatMap((grp, gi) => grp.items.map((_, i) => `${gi}-${i}`)), [puzzle]);
   const [order, setOrder] = useState(() => shuffle(allTiles, mulberry32(spec.seed)));
@@ -106,29 +109,48 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
           const grp = puzzle.groups[gi];
           return (
             <div key={gi} className={`animate-pop rounded-xl px-4 py-3 text-center shadow-lg ${LEVEL_STYLE[grp.level].tile}`}>
+              {withImages && (
+                <div className="mb-2 flex justify-center gap-2">
+                  {grp.items.map((t) => (
+                    <img key={t.label} src={t.image} alt="" className="size-10 rounded-lg bg-white/30 object-cover shadow sm:size-12" />
+                  ))}
+                </div>
+              )}
               <p className="text-sm font-black uppercase tracking-wide">{grp.label}</p>
-              <p className="text-sm">{grp.items.join(', ')}</p>
+              <p className="text-sm">{grp.items.map((t) => t.label).join(', ')}</p>
             </div>
           );
         })}
 
-        <div key={shakeKey} className={`grid grid-cols-4 gap-2 ${shakeKey ? 'animate-shake' : ''}`}>
+        <div key={shakeKey} className={`mx-auto grid grid-cols-4 gap-2 ${withImages ? 'max-w-lg' : ''} ${shakeKey ? 'animate-shake' : ''}`}>
           {remaining.map((id) => {
             const on = selected.includes(id);
             const hopIndex = selected.indexOf(id);
+            const t = tile(id);
             return (
               <button
                 key={id}
                 type="button"
                 onClick={() => toggle(id)}
                 style={hopping && on ? { animationDelay: `${hopIndex * 90}ms` } : undefined}
-                className={`flex min-h-16 items-center justify-center rounded-xl px-1.5 py-2 text-center text-xs font-bold uppercase leading-tight transition-all duration-150 sm:min-h-20 sm:text-sm ${
+                className={`flex flex-col items-center justify-center gap-1.5 overflow-hidden rounded-xl text-center font-bold uppercase leading-tight transition-all duration-150 ${
+                  withImages ? 'p-1.5 pb-2 text-[10px] sm:text-xs' : 'min-h-16 px-1.5 py-2 text-xs sm:min-h-20 sm:text-sm'
+                } ${
                   on
                     ? '-translate-y-0.5 scale-[0.97] bg-zinc-100 text-zinc-900 shadow-lg shadow-indigo-500/20'
                     : 'bg-zinc-800 text-zinc-100 hover:-translate-y-0.5 hover:bg-zinc-700'
                 } ${hopping && on ? 'animate-lift' : ''}`}
               >
-                {label(id)}
+                {withImages && (
+                  <img
+                    src={t.image}
+                    alt=""
+                    draggable={false}
+                    onError={() => setBrokenImage(true)}
+                    className={`aspect-square w-full rounded-lg object-cover transition ${on ? 'ring-2 ring-indigo-500' : ''}`}
+                  />
+                )}
+                <span className="line-clamp-2">{t.label}</span>
               </button>
             );
           })}
