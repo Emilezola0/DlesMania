@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # If Pages is still set to "Deploy from a branch", GitHub's legacy deploy publishes
+  # the raw sources after ours; redeploy the built site once it finishes.
+  page_build:
   workflow_dispatch:
 
 permissions:
