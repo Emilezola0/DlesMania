@@ -1,42 +1,72 @@
 # Omnidle
 
-A daily pop-culture guessing platform across **Video Games, Anime, Cinema and Music** — ten mini-games a day, plus endless free play.
+A daily pop-culture guessing platform across **Video Games, Anime, Cinema and Music**: four independent daily challenges of ten mini-games each, plus endless free play.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # typecheck + production build
+npm run dev            # http://localhost:5173
+npm run build          # typecheck + production build
+npm run data:validate  # schema + coverage check for the dataset
 ```
 
-Stack: Vite · React 18 · TypeScript · Tailwind CSS v4 · Zustand (persisted to `localStorage`) · React Router (hash routing, so it deploys to any static host).
+Stack: Vite · React 18 · TypeScript · Tailwind CSS v4 · Zustand (persisted to `localStorage`) · React Router (hash routing) · canvas-confetti. Deployed to GitHub Pages by `.github/workflows/deploy.yml`.
 
-## How it works
+## Daily mode
 
-- **Daily mode** (`/daily`, `/daily/YYYY-MM-DD`): `buildDaily(date)` in `src/lib/rounds.ts` seeds a PRNG with the date, so every player gets the same 10 rounds. All 10 mechanics appear once per day, and domains rotate so each shows up at least twice. Past days since `EPOCH` (`src/lib/date.ts`) are playable from the archive.
-- **Free play** (`/play?domain=anime&type=emoji`): any domain × mini-game combination with data behind it.
-- **Progress**: each round is stored as a `RoundRecord` (`status`, `guesses`, `score`). Games are controlled components that rebuild their whole view from `guesses`, so a half-played round resumes exactly where you left it. Streaks count consecutive fully-completed days.
+Each category has its own challenge at `/daily/<games|anime|cinema|music>[/YYYY-MM-DD]`. `buildDaily(date, domain)` in `src/lib/rounds.ts` seeds a PRNG with a hash of `omnidle:<date>:<domain>`, so every player gets the same ten rounds — all ten mechanics, one each, with no repeated target. Works that have real media (cover, item/location image, YouTube clip) are drawn four times as often for the rounds that use them.
+
+Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a `RoundRecord` (`status`, `guesses`, `score`) and games rebuild their whole view from `guesses`, so half-played rounds resume exactly. Streaks are tracked per category, plus an overall streak (any category completed that day). The archive lists every past day per category since `EPOCH`.
 
 ## Mini-games
 
-| # | Game | Component | Scoring |
-|---|------|-----------|---------|
-| 1 | Classic attributes | `ClassicGame` | 10 tries, −10/try |
-| 2 | Quote | `ClueGame` | 6 tries, −15/try |
-| 3 | Soundtrack (text description) | `ClueGame` | 6 tries |
-| 4 | Emoji synopsis (reveals more per miss) | `ClueGame` | 6 tries |
-| 5 | Pixelated cover (canvas, de-pixelates per miss) | `ClueGame` + `PixelCanvas` | 6 tries |
-| 6 | Timeline (sort 4 by year) | `TimelineGame` | 3 tries: 100/60/30 |
-| 7 | Iconic item | `ClueGame` | 6 tries |
-| 8 | Location | `ClueGame` | 6 tries |
-| 9 | Credits / creator | `ClueGame` | 6 tries |
-| 10 | Connections (4×4 grid) | `ConnectionsGame` | 4 mistakes, −20/mistake |
+| Game | Component | Media |
+|------|-----------|-------|
+| Classic attributes | `ClassicGame` | Green / yellow (partial) / red, ▲▼ for year |
+| Quote | `ClueGame` | Quote with progressive hints; albums reveal their **tracklist** instead |
+| Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets; video revealed at the end. Falls back to a text description |
+| Emoji | `ClueGame` | One more emoji per miss |
+| Pixelated | `ClueGame` + `PixelCanvas` | Real cover art (or a generated glyph cover), de-pixelates per miss |
+| Timeline | `TimelineGame` | Drag or arrows, 3 attempts |
+| Iconic item | `ClueGame` + `BlurImage` | Image blurs/desaturates, clearing per miss, plus description |
+| Location | `ClueGame` + `BlurImage` | Same, for settings and real places |
+| Credits | `ClueGame` | Credit lines revealed one by one |
+| Connections | `ConnectionsGame` | 4×4, Yellow→Purple difficulty, 4 mistakes, "One away…", per-category and single-universe grids |
 
-Single-answer games share `ClueGame`: a type-specific clue, autocomplete restricted to the target's domain, and progressive hints (`src/lib/hints.ts`) after each wrong guess.
+`GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`, toggle 🔊 in the header), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:
 
-## Adding content
+```
+Omnidle Video Games 2026-10-18 — 820/1000 🔥3
+🟩🟩🟨🟥🟩
+🟩🟨🟩🟩🟥
+```
 
-- Works live in `src/data/{games,anime,cinema,music}.ts`. Optional fields (`quote`, `audio`, `emoji`, `item`, `location`, `visual`) decide which mini-games a work can appear in — `candidates()` in `src/data/index.ts` filters on them.
-- Connections puzzles live in `src/data/connections.ts`.
-- New mechanic: add the type to `GameType`, metadata in `src/games/meta.ts`, and map a component in `src/games/GameHost.tsx`.
+## Data
 
-The "Pixelated" game currently draws a generated cover (gradient + emoji) since the repo ships no artwork; swapping in real cover images only requires changing `PixelCanvas` to draw an `<img>`.
+- **Works**: `src/data/works/{games,anime,cinema,music}.json`, ~30 per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
+- **Connections**: `src/data/connections.ts` — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3.
+
+### Scaling the dataset
+
+```bash
+# 1. Import factual metadata (year, genres, studio, creator, characters, tracklist...)
+node scripts/import.mjs anilist "Mob Psycho 100" "Vinland Saga"          # no key
+node scripts/import.mjs musicbrainz "Random Access Memories"              # no key
+TMDB_API_KEY=... node scripts/import.mjs tmdb --list=films.txt            # one title per line
+IGDB_CLIENT_ID=... IGDB_TOKEN=... node scripts/import.mjs igdb "Hades"
+node scripts/import.mjs file my-entries.json                              # hand-written batch, any domain
+
+# 2. Write the creative clue fields by hand (emoji, quote, item, location, audio.clue + audio.query, visual)
+
+# 3. Resolve media
+node scripts/enrich-media.mjs                    # images from Wikipedia (batched, no key)
+YOUTUBE_API_KEY=... node scripts/enrich-media.mjs --no-images   # clip ids from audio.query
+
+# 4. Check
+npm run data:validate
+```
+
+`enrich-media` looks up `cover.wiki` / `item.wiki` / `location.wiki` with the MediaWiki API (50 titles per request) and rejects images when a title redirects to a different subject (e.g. "Hyrule" → the franchise page, whose image would give the answer away). Works without `cover.wiki` get one by search — check those. `--force` re-resolves everything; `--dry` writes nothing.
+
+### Media notice
+
+Cover art and many item images are hot-linked from Wikipedia/Wikimedia and are often non-free (used there under fair use). Clips are third-party YouTube uploads played through the official embed. That's fine for a personal fan project; for a public or commercial release, replace them with licensed assets (`image` accepts any URL) and verify each clip.

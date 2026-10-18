@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://omnidle.local/schema/work.schema.json",
+  "title": "Omnidle work",
+  "description": "One guessable work (game, anime, film or album). Files in src/data/works/*.json are arrays of these.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "domain", "year", "genres", "studio", "creator", "origin", "format", "credits"],
+  "definitions": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "stringList": { "type": "array", "items": { "$ref": "#/definitions/nonEmpty" } },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wiki": { "$ref": "#/definitions/nonEmpty", "description": "English Wikipedia article title; scripts/enrich-media.mjs resolves it to `image`." },
+        "image": { "type": "string", "format": "uri" }
+      }
+    },
+    "clue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description"],
+      "properties": {
+        "name": { "$ref": "#/definitions/nonEmpty" },
+        "description": { "$ref": "#/definitions/nonEmpty" },
+        "wiki": { "$ref": "#/definitions/nonEmpty" },
+        "image": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "properties": {
+    "id": { "type": "string", "pattern": "^[gacm]-[a-z0-9-]+$", "description": "Domain prefix (g/a/c/m) + slug." },
+    "name": { "$ref": "#/definitions/nonEmpty" },
+    "subtitle": { "$ref": "#/definitions/nonEmpty", "description": "Shown in autocomplete, e.g. the artist of an album." },
+    "aliases": { "$ref": "#/definitions/stringList" },
+    "domain": { "enum": ["games", "anime", "cinema", "music"] },
+    "year": { "type": "integer", "minimum": 1880, "maximum": 2100 },
+    "genres": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmpty" } },
+    "studio": { "$ref": "#/definitions/nonEmpty", "description": "Studio, developer, publisher or label." },
+    "creator": { "$ref": "#/definitions/nonEmpty", "description": "Director, lead designer, mangaka or artist." },
+    "origin": { "$ref": "#/definitions/nonEmpty" },
+    "format": { "$ref": "#/definitions/nonEmpty" },
+    "source": { "$ref": "#/definitions/nonEmpty", "description": "Anime: Manga, Original, Light Novel..." },
+    "platforms": { "$ref": "#/definitions/stringList", "description": "Games: PC, PlayStation, Xbox, Nintendo, Sega, Mobile, Arcade." },
+    "characters": { "$ref": "#/definitions/stringList" },
+    "themes": { "$ref": "#/definitions/stringList" },
+    "credits": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/nonEmpty" } },
+    "cover": { "$ref": "#/definitions/media" },
+    "quote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": { "text": { "$ref": "#/definitions/nonEmpty" }, "speaker": { "$ref": "#/definitions/nonEmpty" } }
+    },
+    "tracks": { "$ref": "#/definitions/stringList", "description": "Music: track titles, ordered from deep cut to biggest hit." },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clue"],
+      "properties": {
+        "clue": { "$ref": "#/definitions/nonEmpty" },
+        "youtubeId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{11}$" },
+        "start": { "type": "number", "minimum": 0 },
+        "query": { "$ref": "#/definitions/nonEmpty" }
+      }
+    },
+    "emoji": { "$ref": "#/definitions/nonEmpty" },
+    "item": { "$ref": "#/definitions/clue" },
+    "location": { "$ref": "#/definitions/clue" },
+    "visual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["icon", "colors"],
+      "properties": {
+        "icon": { "$ref": "#/definitions/nonEmpty" },
+        "colors": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } }
+      }
+    }
+  }
+}

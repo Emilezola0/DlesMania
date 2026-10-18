@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { DOMAINS } from '../data';
 import { EPOCH, dayNumber, fromKey, toKey, todayKey } from '../lib/date';
-import { summarizeDay, useProgress } from '../store/progress';
+import { isDomain } from '../lib/rounds';
+import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export default function Archive() {
   const days = useProgress((s) => s.days);
+  const [params, setParams] = useSearchParams();
+  const param = params.get('domain') ?? undefined;
+  const domain = isDomain(param) ? param : 'games';
+  const streak = computeStreak(days, domain);
   const today = todayKey();
   const [month, setMonth] = useState(() => {
     const d = fromKey(today);
@@ -29,7 +35,25 @@ export default function Archive() {
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
         <h1 className="text-3xl font-black tracking-tight">Archive</h1>
-        <p className="text-zinc-400">Missed a day? Every past challenge stays playable.</p>
+        <p className="text-zinc-400">Missed a day? Every past challenge stays playable, for each category.</p>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {DOMAINS.map((d) => (
+          <button
+            key={d.id}
+            type="button"
+            onClick={() => setParams({ domain: d.id }, { replace: true })}
+            className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
+              d.id === domain ? 'border-indigo-500 bg-indigo-500/20 text-white' : 'border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-600'
+            }`}
+          >
+            {d.icon} {d.label}
+          </button>
+        ))}
+        <span className="ml-auto self-center text-sm text-zinc-400">
+          🔥 {streak.current} current · best {streak.best}
+        </span>
       </div>
 
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
@@ -52,7 +76,7 @@ export default function Archive() {
           {cells.map((key, i) => {
             if (!key) return <span key={i} />;
             const playable = key >= EPOCH && key <= today;
-            const sum = summarizeDay(days[key]);
+            const sum = summarizeDay(days[dayKey(domain, key)]);
             const tone = sum.complete
               ? 'border-green-500/60 bg-green-500/20'
               : sum.finished > 0
@@ -69,7 +93,7 @@ export default function Archive() {
             return (
               <Link
                 key={key}
-                to={`/daily/${key}`}
+                to={`/daily/${domain}/${key}`}
                 className={`flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-zinc-500 ${tone} ${
                   key === today ? 'ring-2 ring-indigo-500' : ''
                 }`}

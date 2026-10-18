@@ -1,12 +1,13 @@
 import type { Domain, GameType, Work } from '../types';
-import { anime } from './anime';
-import { cinema } from './cinema';
-import { games } from './games';
-import { music } from './music';
+import anime from './works/anime.json';
+import cinema from './works/cinema.json';
+import games from './works/games.json';
+import music from './works/music.json';
 
 export { connectionsPuzzles } from './connections';
 
-export const WORKS: Work[] = [...games, ...anime, ...cinema, ...music];
+/** JSON shape is enforced by `npm run data:validate` (schema/work.schema.json). */
+export const WORKS = [...games, ...anime, ...cinema, ...music] as unknown as Work[];
 
 const BY_ID = new Map(WORKS.map((w) => [w.id, w]));
 
@@ -27,19 +28,19 @@ export function domainInfo(id: Domain) {
   return DOMAINS.find((d) => d.id === id)!;
 }
 
-/** Which Work field a single-target mini-game needs in order to be playable. */
-const REQUIRED_FIELD: Partial<Record<GameType, keyof Work>> = {
-  quote: 'quote',
-  audio: 'audio',
-  emoji: 'emoji',
-  visual: 'visual',
-  item: 'item',
-  location: 'location',
-  creator: 'credits',
-  classic: 'year',
+/** Whether a work has the content a single-target mini-game needs. */
+const HAS_CONTENT: Partial<Record<GameType, (w: Work) => boolean>> = {
+  // Albums have no dialogue: their "quote" round reveals track titles instead.
+  quote: (w) => !!w.quote || !!w.tracks?.length,
+  audio: (w) => !!w.audio,
+  emoji: (w) => !!w.emoji,
+  visual: (w) => !!w.cover?.image || !!w.visual,
+  item: (w) => !!w.item,
+  location: (w) => !!w.location,
+  creator: (w) => w.credits.length > 0,
 };
 
 export function candidates(type: GameType, domain?: Domain): Work[] {
-  const field = REQUIRED_FIELD[type];
-  return WORKS.filter((w) => (!domain || w.domain === domain) && (!field || w[field] !== undefined));
+  const has = HAS_CONTENT[type];
+  return WORKS.filter((w) => (!domain || w.domain === domain) && (!has || has(w)));
 }

@@ -1,0 +1,1797 @@
+[
+  {
+    "id": "a-deathnote",
+    "name": "Death Note",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Thriller",
+      "Supernatural"
+    ],
+    "studio": "Madhouse",
+    "creator": "Tsugumi Ohba",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Light Yagami",
+      "L",
+      "Ryuk",
+      "Misa Amane"
+    ],
+    "themes": [
+      "Justice",
+      "Cat and mouse"
+    ],
+    "credits": [
+      "Story: Tsugumi Ohba",
+      "Art: Takeshi Obata",
+      "Director: Tetsurō Araki"
+    ],
+    "cover": {
+      "wiki": "Death Note",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg"
+    },
+    "quote": {
+      "text": "I'll take a potato chip... and eat it!",
+      "speaker": "A high-school genius with a secret"
+    },
+    "audio": {
+      "clue": "A heavy, operatic rock opening with a pipe organ and a choir, sung by a visual-kei band.",
+      "query": "Death Note opening The World Nightmare",
+      "start": 0,
+      "youtubeId": "D7MMMNTQ7H0"
+    },
+    "emoji": "📓🍎✍️💀🕵️",
+    "item": {
+      "name": "A black notebook",
+      "description": "Write a name inside while picturing the face, and that person dies."
+    },
+    "location": {
+      "name": "Task Force headquarters",
+      "description": "A purpose-built high-rise packed with monitors, funded by a sweets-loving detective."
+    },
+    "visual": {
+      "icon": "🍎",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-naruto",
+    "name": "Naruto",
+    "domain": "anime",
+    "year": 2002,
+    "genres": [
+      "Action",
+      "Shōnen"
+    ],
+    "studio": "Pierrot",
+    "creator": "Masashi Kishimoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Naruto Uzumaki",
+      "Sasuke Uchiha",
+      "Kakashi Hatake"
+    ],
+    "themes": [
+      "Ninja",
+      "Rivalry",
+      "Loneliness"
+    ],
+    "credits": [
+      "Original manga: Masashi Kishimoto",
+      "Director: Hayato Date",
+      "Composer: Toshio Masuda"
+    ],
+    "cover": {
+      "wiki": "Naruto",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg"
+    },
+    "quote": {
+      "text": "Believe it!",
+      "speaker": "An orange-clad loudmouth (English dub catchphrase)"
+    },
+    "audio": {
+      "clue": "A mournful shamisen-and-flute piece that plays whenever the lonely hero remembers his childhood.",
+      "query": "Naruto Sadness and Sorrow",
+      "start": 0,
+      "youtubeId": "wEWF2xh5E8s"
+    },
+    "emoji": "🍥🦊🍜🥷🍃",
+    "item": {
+      "name": "Leaf forehead protector",
+      "description": "A metal plate on a cloth band, engraved with a leaf-spiral symbol."
+    },
+    "location": {
+      "name": "Hidden Leaf Village",
+      "description": "A forest village beneath a cliff carved with the faces of its leaders."
+    },
+    "visual": {
+      "icon": "🍥",
+      "colors": [
+        "#ea580c",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "a-onepiece",
+    "name": "One Piece",
+    "domain": "anime",
+    "year": 1999,
+    "genres": [
+      "Adventure",
+      "Shōnen"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Eiichiro Oda",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Monkey D. Luffy",
+      "Roronoa Zoro",
+      "Nami"
+    ],
+    "themes": [
+      "Pirates",
+      "Freedom",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Eiichiro Oda",
+      "Composers: Kohei Tanaka & Shiro Hamaguchi",
+      "Serialised in Weekly Shōnen Jump since 1997"
+    ],
+    "cover": {
+      "wiki": "One Piece",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg"
+    },
+    "quote": {
+      "text": "I'm gonna be King of the Pirates!",
+      "speaker": "A rubber-bodied captain"
+    },
+    "audio": {
+      "clue": "An upbeat, sing-along first opening about setting sail in search of the ultimate treasure.",
+      "query": "One Piece opening 1 We Are",
+      "start": 0,
+      "youtubeId": "YoeP9w5UIlg"
+    },
+    "emoji": "🏴‍☠️👒🍖🌊💰",
+    "item": {
+      "name": "Straw hat",
+      "description": "A simple hat with a red band, promised to be returned to a red-haired pirate."
+    },
+    "location": {
+      "name": "The Grand Line",
+      "description": "A dangerous sea route circling the world, guarded by calm belts full of sea kings."
+    },
+    "visual": {
+      "icon": "👒",
+      "colors": [
+        "#0369a1",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "a-eva",
+    "name": "Neon Genesis Evangelion",
+    "aliases": [
+      "evangelion",
+      "eva",
+      "nge"
+    ],
+    "domain": "anime",
+    "year": 1995,
+    "genres": [
+      "Mecha",
+      "Psychological"
+    ],
+    "studio": "Gainax",
+    "creator": "Hideaki Anno",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Shinji Ikari",
+      "Rei Ayanami",
+      "Asuka Langley Soryu"
+    ],
+    "themes": [
+      "Depression",
+      "Apocalypse"
+    ],
+    "credits": [
+      "Director: Hideaki Anno",
+      "Character design: Yoshiyuki Sadamoto",
+      "Composer: Shirō Sagisu"
+    ],
+    "cover": {
+      "wiki": "Neon Genesis Evangelion",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/72/Evangelion_retouched.png"
+    },
+    "quote": {
+      "text": "I mustn't run away.",
+      "speaker": "A reluctant 14-year-old pilot"
+    },
+    "audio": {
+      "clue": "A fast, dramatic J-pop opening whose title translates roughly to a cruel angel's thesis.",
+      "query": "A Cruel Angel's Thesis Evangelion opening",
+      "start": 0,
+      "youtubeId": "nU21rCWkuJw"
+    },
+    "emoji": "🤖👦😰✝️🌊",
+    "item": {
+      "name": "Lance of Longinus",
+      "description": "A colossal red, twin-pronged spear hurled into orbit."
+    },
+    "location": {
+      "name": "Tokyo-3",
+      "description": "A fortress city whose skyscrapers retract underground during attacks."
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#4c1d95",
+        "#84cc16"
+      ]
+    }
+  },
+  {
+    "id": "a-spiritedaway",
+    "name": "Spirited Away",
+    "domain": "anime",
+    "year": 2001,
+    "genres": [
+      "Fantasy",
+      "Family"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Chihiro",
+      "Haku",
+      "No-Face",
+      "Yubaba"
+    ],
+    "themes": [
+      "Spirits",
+      "Growing up"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi",
+      "Producer: Toshio Suzuki"
+    ],
+    "cover": {
+      "wiki": "Spirited Away",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png"
+    },
+    "quote": {
+      "text": "Once you've met someone, you never really forget them.",
+      "speaker": "A kindly old witch"
+    },
+    "audio": {
+      "clue": "A tender piano waltz that opens as a girl rides a train across a flooded sea.",
+      "query": "Spirited Away One Summer's Day Joe Hisaishi",
+      "start": 0,
+      "youtubeId": "TK1Ij_-mank"
+    },
+    "emoji": "👧🐉🛁👻🐷",
+    "item": {
+      "name": "A golden-coin offering",
+      "description": "Gold that a masked, silent spirit conjures from its hands for greedy workers."
+    },
+    "location": {
+      "name": "The spirit bathhouse",
+      "description": "A towering red bathhouse where gods come to wash, run by a big-headed witch."
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#7f1d1d",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "a-aot",
+    "name": "Attack on Titan",
+    "aliases": [
+      "shingeki no kyojin",
+      "snk",
+      "aot"
+    ],
+    "domain": "anime",
+    "year": 2013,
+    "genres": [
+      "Dark Fantasy",
+      "Action"
+    ],
+    "studio": "Wit Studio",
+    "creator": "Hajime Isayama",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Eren Yeager",
+      "Mikasa Ackerman",
+      "Levi"
+    ],
+    "themes": [
+      "War",
+      "Freedom",
+      "Giants"
+    ],
+    "credits": [
+      "Original manga: Hajime Isayama",
+      "Director: Tetsurō Araki",
+      "Composer: Hiroyuki Sawano"
+    ],
+    "cover": {
+      "wiki": "Attack on Titan",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg"
+    },
+    "quote": {
+      "text": "If you win, you live. If you lose, you die. If you don't fight, you can't win!",
+      "speaker": "A furious young recruit"
+    },
+    "audio": {
+      "clue": "A martial, chanting opening with German-language shouts and a pounding choir.",
+      "query": "Attack on Titan opening Guren no Yumiya",
+      "start": 0,
+      "youtubeId": "8OkpRK2_gVs"
+    },
+    "emoji": "🧱👹⚔️🪽🩸",
+    "item": {
+      "name": "Omni-directional mobility gear",
+      "description": "Gas-powered grappling hooks strapped to the hips, with twin blades."
+    },
+    "location": {
+      "name": "Wall Maria",
+      "description": "The outermost of three concentric 50-metre walls protecting humanity."
+    },
+    "visual": {
+      "icon": "🧱",
+      "colors": [
+        "#451a03",
+        "#a16207"
+      ]
+    }
+  },
+  {
+    "id": "a-dbz",
+    "name": "Dragon Ball Z",
+    "aliases": [
+      "dbz",
+      "dragon ball"
+    ],
+    "domain": "anime",
+    "year": 1989,
+    "genres": [
+      "Action",
+      "Shōnen"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Akira Toriyama",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Goku",
+      "Vegeta",
+      "Frieza",
+      "Gohan"
+    ],
+    "themes": [
+      "Martial arts",
+      "Power-ups"
+    ],
+    "credits": [
+      "Original manga: Akira Toriyama",
+      "Composer: Shunsuke Kikuchi",
+      "Opening singer: Hironobu Kageyama"
+    ],
+    "cover": {
+      "wiki": "Dragon Ball Z"
+    },
+    "quote": {
+      "text": "It's over 9000!",
+      "speaker": "A proud alien prince (English dub)"
+    },
+    "audio": {
+      "clue": "A soaring, guitar-driven opening with a nonsense-syllable title and an unforgettable chorus.",
+      "query": "Dragon Ball Z Cha-La Head-Cha-La opening",
+      "start": 0,
+      "youtubeId": "qQmTdijhjD4"
+    },
+    "emoji": "🐉🟠⭐💥👊",
+    "item": {
+      "name": "Senzu Bean",
+      "description": "A tiny bean that instantly heals all wounds and fills you up for ten days."
+    },
+    "location": {
+      "name": "Planet Namek",
+      "description": "A green-skied world with blue grass and three suns, home to a slug-like people."
+    },
+    "visual": {
+      "icon": "🟠",
+      "colors": [
+        "#ea580c",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "a-bebop",
+    "name": "Cowboy Bebop",
+    "domain": "anime",
+    "year": 1998,
+    "genres": [
+      "Space Western",
+      "Neo-noir"
+    ],
+    "studio": "Sunrise",
+    "creator": "Shinichirō Watanabe",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Spike Spiegel",
+      "Faye Valentine",
+      "Jet Black",
+      "Ein"
+    ],
+    "themes": [
+      "Bounty hunting",
+      "The past"
+    ],
+    "credits": [
+      "Director: Shinichirō Watanabe",
+      "Writer: Keiko Nobumoto",
+      "Composer: Yoko Kanno"
+    ],
+    "cover": {
+      "wiki": "Cowboy Bebop",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Cowboy_Bebop_key_visual.jpg"
+    },
+    "quote": {
+      "text": "See you, space cowboy...",
+      "speaker": "An end card after every episode"
+    },
+    "audio": {
+      "clue": "A frantic big-band jazz opening of blaring brass and bongos, with almost no lyrics.",
+      "query": "Cowboy Bebop Tank! opening",
+      "start": 0,
+      "youtubeId": "0hfOyOBHIq4"
+    },
+    "emoji": "🚀🤠🎷🐕🚬",
+    "item": {
+      "name": "Swordfish II",
+      "description": "A red mono-racer spacecraft flown by a lanky bounty hunter."
+    },
+    "location": {
+      "name": "The Bebop",
+      "description": "A converted fishing trawler drifting between Mars, Venus and Ganymede."
+    },
+    "visual": {
+      "icon": "🎷",
+      "colors": [
+        "#1e3a8a",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-fmab",
+    "name": "Fullmetal Alchemist: Brotherhood",
+    "aliases": [
+      "fullmetal alchemist",
+      "fma",
+      "fmab"
+    ],
+    "domain": "anime",
+    "year": 2009,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Bones",
+    "creator": "Hiromu Arakawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Edward Elric",
+      "Alphonse Elric",
+      "Roy Mustang"
+    ],
+    "themes": [
+      "Alchemy",
+      "Brotherhood",
+      "Sacrifice"
+    ],
+    "credits": [
+      "Original manga: Hiromu Arakawa",
+      "Director: Yasuhiro Irie",
+      "Composer: Akira Senju"
+    ],
+    "cover": {
+      "wiki": "Fullmetal Alchemist: Brotherhood"
+    },
+    "quote": {
+      "text": "A lesson without pain is meaningless.",
+      "speaker": "A short-tempered state alchemist"
+    },
+    "audio": {
+      "clue": "An energetic J-rock first opening about wanting to try again, sung by a solo singer-songwriter.",
+      "query": "Fullmetal Alchemist Brotherhood opening Again YUI",
+      "start": 0,
+      "youtubeId": "FM3aJQzqV90"
+    },
+    "emoji": "⚗️🦾🛡️👬🔴",
+    "item": {
+      "name": "Philosopher's Stone",
+      "description": "A blood-red stone that bypasses the law of equivalent exchange.",
+      "wiki": "Philosopher's stone",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Joseph_Wright_of_Derby_The_Alchemist.jpg/960px-Joseph_Wright_of_Derby_The_Alchemist.jpg"
+    },
+    "location": {
+      "name": "Amestris",
+      "description": "A militaristic country whose borders secretly trace a giant transmutation circle."
+    },
+    "visual": {
+      "icon": "⚗️",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-totoro",
+    "name": "My Neighbor Totoro",
+    "aliases": [
+      "totoro",
+      "tonari no totoro"
+    ],
+    "domain": "anime",
+    "year": 1988,
+    "genres": [
+      "Fantasy",
+      "Family"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Satsuki",
+      "Mei",
+      "Totoro",
+      "Catbus"
+    ],
+    "themes": [
+      "Childhood",
+      "Nature"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi",
+      "Released on a double bill with Grave of the Fireflies"
+    ],
+    "cover": {
+      "wiki": "My Neighbor Totoro",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/02/My_Neighbor_Totoro_-_Tonari_no_Totoro_%28Movie_Poster%29.jpg"
+    },
+    "audio": {
+      "clue": "A cheerful, marching children's song about going for a walk in the countryside.",
+      "query": "My Neighbor Totoro Hey Let's Go opening",
+      "start": 0,
+      "youtubeId": "lOqfUXy9wpg"
+    },
+    "emoji": "🌳🐱🚌☔👧",
+    "item": {
+      "name": "A black umbrella",
+      "description": "Lent at a rainy bus stop to a huge furry creature who loves the sound of raindrops."
+    },
+    "location": {
+      "name": "The great camphor tree",
+      "description": "An ancient tree beside a rural house, hiding a hollow full of forest spirits."
+    },
+    "visual": {
+      "icon": "🌳",
+      "colors": [
+        "#14532d",
+        "#64748b"
+      ]
+    }
+  },
+  {
+    "id": "a-demonslayer",
+    "name": "Demon Slayer",
+    "aliases": [
+      "kimetsu no yaiba"
+    ],
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Dark Fantasy",
+      "Action"
+    ],
+    "studio": "ufotable",
+    "creator": "Koyoharu Gotouge",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Tanjiro Kamado",
+      "Nezuko Kamado",
+      "Zenitsu Agatsuma"
+    ],
+    "themes": [
+      "Demons",
+      "Family"
+    ],
+    "credits": [
+      "Original manga: Koyoharu Gotouge",
+      "Director: Haruo Sotozaki",
+      "Composers: Yuki Kajiura & Go Shiina"
+    ],
+    "cover": {
+      "wiki": "Demon Slayer: Kimetsu no Yaiba",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/09/Demon_Slayer_-_Kimetsu_no_Yaiba%2C_volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A ferocious rock opening by a singer known as LiSA, whose title means \"red lotus\".",
+      "query": "Demon Slayer opening Gurenge LiSA",
+      "start": 0,
+      "youtubeId": "pmanD_s7G3U"
+    },
+    "emoji": "👹🗡️🌊📦🎋",
+    "item": {
+      "name": "A checkered green-and-black haori",
+      "description": "A boy's jacket — while his sister rides in a wooden box on his back."
+    },
+    "location": {
+      "name": "Mount Sagiri",
+      "description": "A misty mountain where a tengu-masked mentor trains swordsmen to cut a boulder."
+    },
+    "visual": {
+      "icon": "👹",
+      "colors": [
+        "#14532d",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-sailormoon",
+    "name": "Sailor Moon",
+    "domain": "anime",
+    "year": 1992,
+    "genres": [
+      "Magical Girl"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Naoko Takeuchi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Usagi Tsukino",
+      "Luna",
+      "Tuxedo Mask"
+    ],
+    "themes": [
+      "Magical girls",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Naoko Takeuchi",
+      "Director: Junichi Sato",
+      "Composer: Takanori Arisawa"
+    ],
+    "cover": {
+      "wiki": "Sailor Moon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/SMVolume1.jpg"
+    },
+    "quote": {
+      "text": "In the name of the Moon, I'll punish you!",
+      "speaker": "A clumsy schoolgirl with odango hair"
+    },
+    "audio": {
+      "clue": "A sweet, synth-pop opening about moonlight and a teenage crush.",
+      "query": "Sailor Moon opening Moonlight Densetsu",
+      "start": 0,
+      "youtubeId": "5g-8Eav6UdA"
+    },
+    "emoji": "🌙👧🐈‍⬛💫🎀",
+    "item": {
+      "name": "Transformation brooch",
+      "description": "A golden compact with a crescent, given by a talking black cat."
+    },
+    "location": {
+      "name": "Juban, Tokyo",
+      "description": "A real Minato ward neighbourhood where the heroines go to school."
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#1e1b4b",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "a-akira",
+    "name": "Akira",
+    "domain": "anime",
+    "year": 1988,
+    "genres": [
+      "Cyberpunk",
+      "Sci-Fi"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Katsuhiro Otomo",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Shotaro Kaneda",
+      "Tetsuo Shima"
+    ],
+    "themes": [
+      "Psychic powers",
+      "Biker gangs"
+    ],
+    "credits": [
+      "Writer & director: Katsuhiro Otomo",
+      "Music: Geinoh Yamashirogumi",
+      "Over 160,000 animation cels"
+    ],
+    "cover": {
+      "wiki": "Akira (1988 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/AKIRA_%281988_poster%29.jpg"
+    },
+    "audio": {
+      "clue": "Percussive gamelan, rhythmic chanting and taiko drums as biker gangs race through a city.",
+      "query": "Akira Kaneda theme Geinoh Yamashirogumi",
+      "start": 0,
+      "youtubeId": "CAjtimRClYU"
+    },
+    "emoji": "🏍️🔴🧠💥🌆",
+    "item": {
+      "name": "A red motorcycle",
+      "description": "A futuristic bike with a capsule on its seat, slid sideways in a famous pose."
+    },
+    "location": {
+      "name": "Neo-Tokyo",
+      "description": "A neon megacity rebuilt after a mysterious explosion destroyed the old capital."
+    },
+    "visual": {
+      "icon": "🏍️",
+      "colors": [
+        "#7f1d1d",
+        "#f43f5e"
+      ]
+    }
+  },
+  {
+    "id": "a-hxh",
+    "name": "Hunter x Hunter",
+    "aliases": [
+      "hxh"
+    ],
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Adventure",
+      "Shōnen"
+    ],
+    "studio": "Madhouse",
+    "creator": "Yoshihiro Togashi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Gon Freecss",
+      "Killua Zoldyck",
+      "Kurapika",
+      "Hisoka"
+    ],
+    "themes": [
+      "Friendship",
+      "Ambition"
+    ],
+    "credits": [
+      "Original manga: Yoshihiro Togashi",
+      "Director: Hiroshi Kōjina",
+      "Composer: Yoshihisa Hirano"
+    ],
+    "cover": {
+      "wiki": "Hunter × Hunter",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e8/Hunter_%C3%97_Hunter_vol._1.png"
+    },
+    "audio": {
+      "clue": "A bright, catchy J-pop opening with the hook \"Departure!\".",
+      "query": "Hunter x Hunter 2011 opening Departure",
+      "start": 0,
+      "youtubeId": "faqmNf_fZlE"
+    },
+    "emoji": "🎣🧒⚡🃏🐜",
+    "item": {
+      "name": "Hunter License",
+      "description": "A card that grants access to most of the world — and sells for a fortune."
+    },
+    "location": {
+      "name": "Heavens Arena",
+      "description": "A 251-floor fighting tower where you rise through the floors by winning."
+    },
+    "visual": {
+      "icon": "🎣",
+      "colors": [
+        "#14532d",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-jjk",
+    "name": "Jujutsu Kaisen",
+    "aliases": [
+      "jjk"
+    ],
+    "domain": "anime",
+    "year": 2020,
+    "genres": [
+      "Dark Fantasy",
+      "Action"
+    ],
+    "studio": "MAPPA",
+    "creator": "Gege Akutami",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yuji Itadori",
+      "Satoru Gojo",
+      "Megumi Fushiguro",
+      "Ryomen Sukuna"
+    ],
+    "themes": [
+      "Curses",
+      "Death"
+    ],
+    "credits": [
+      "Original manga: Gege Akutami",
+      "Director: Sunghoo Park",
+      "Composer: Hiroaki Tsutsumi"
+    ],
+    "cover": {
+      "wiki": "Jujutsu Kaisen",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg"
+    },
+    "quote": {
+      "text": "Throughout heaven and earth, I alone am the honored one.",
+      "speaker": "A blindfolded, white-haired teacher"
+    },
+    "audio": {
+      "clue": "A fast, jittery rock opening by a vocaloid-scene singer called Eve.",
+      "query": "Jujutsu Kaisen opening Kaikai Kitan",
+      "start": 0,
+      "youtubeId": "GwaRztMaoY0"
+    },
+    "emoji": "👆🧿🏫👹🤞",
+    "item": {
+      "name": "A cursed finger",
+      "description": "One of twenty fingers of a demon king; a high-schooler swallows one."
+    },
+    "location": {
+      "name": "Tokyo Jujutsu High",
+      "description": "A secret school disguised as a religious college, training sorcerers."
+    },
+    "visual": {
+      "icon": "🧿",
+      "colors": [
+        "#1e1b4b",
+        "#60a5fa"
+      ]
+    }
+  },
+  {
+    "id": "a-mha",
+    "name": "My Hero Academia",
+    "aliases": [
+      "boku no hero academia",
+      "mha",
+      "bnha"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Superhero",
+      "Shōnen"
+    ],
+    "studio": "Bones",
+    "creator": "Kōhei Horikoshi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Izuku Midoriya",
+      "All Might",
+      "Katsuki Bakugo",
+      "Shoto Todoroki"
+    ],
+    "themes": [
+      "Heroism",
+      "Inheritance"
+    ],
+    "credits": [
+      "Original manga: Kōhei Horikoshi",
+      "Director: Kenji Nagasaki",
+      "Composer: Yuki Hayashi"
+    ],
+    "cover": {
+      "wiki": "My Hero Academia",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Boku_no_Hero_Academia_Volume_1.png"
+    },
+    "quote": {
+      "text": "Plus Ultra!",
+      "speaker": "The motto of a hero school"
+    },
+    "audio": {
+      "clue": "A driving rock first opening by Porno Graffitti.",
+      "query": "My Hero Academia opening The Day",
+      "start": 0,
+      "youtubeId": "gUCmjNHIrcU"
+    },
+    "emoji": "💪🦸👦💥🏫",
+    "item": {
+      "name": "Hero analysis notebooks",
+      "description": "A powerless boy's notebooks, filled with notes on every pro hero's quirk."
+    },
+    "location": {
+      "name": "U.A. High School",
+      "description": "A glass-towered hero academy whose entrance exam involves smashing robots."
+    },
+    "visual": {
+      "icon": "💪",
+      "colors": [
+        "#14532d",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-steinsgate",
+    "name": "Steins;Gate",
+    "aliases": [
+      "steins gate"
+    ],
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "studio": "White Fox",
+    "creator": "Chiyomaru Shikura",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Visual Novel",
+    "characters": [
+      "Rintaro Okabe",
+      "Kurisu Makise",
+      "Mayuri Shiina"
+    ],
+    "themes": [
+      "Time travel",
+      "Causality"
+    ],
+    "credits": [
+      "Original visual novel: 5pb. & Nitroplus",
+      "Directors: Hiroshi Hamasaki & Takuya Satō",
+      "Executive producer: Chiyomaru Shikura"
+    ],
+    "cover": {
+      "wiki": "Steins;Gate (TV series)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ca/Steins%3BGate_anime_cover.png"
+    },
+    "quote": {
+      "text": "El Psy Kongroo.",
+      "speaker": "A self-proclaimed mad scientist, signing off a phone call"
+    },
+    "emoji": "📱🍌⏳🧪👨‍🔬",
+    "item": {
+      "name": "Phone Microwave (name subject to change)",
+      "description": "A gadget that turns bananas into green gel — and sends texts to the past."
+    },
+    "location": {
+      "name": "Akihabara",
+      "description": "Tokyo's electronics and otaku district, home to a cramped 'Future Gadget Laboratory'.",
+      "wiki": "Akihabara",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png"
+    },
+    "visual": {
+      "icon": "🍌",
+      "colors": [
+        "#14532d",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "a-codegeass",
+    "name": "Code Geass",
+    "aliases": [
+      "code geass lelouch of the rebellion"
+    ],
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Mecha",
+      "Thriller"
+    ],
+    "studio": "Sunrise",
+    "creator": "Gorō Taniguchi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Lelouch Lamperouge",
+      "Suzaku Kururugi",
+      "C.C."
+    ],
+    "themes": [
+      "Rebellion",
+      "Ends justify means"
+    ],
+    "credits": [
+      "Director: Gorō Taniguchi",
+      "Writer: Ichirō Ōkouchi",
+      "Character design: CLAMP"
+    ],
+    "cover": {
+      "wiki": "Code Geass",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Code_Geass_R1_box_set_cover.jpg"
+    },
+    "quote": {
+      "text": "All hail Lelouch!",
+      "speaker": "Crowds chanting for an emperor"
+    },
+    "emoji": "♟️👁️🍕🤖👑",
+    "item": {
+      "name": "A red bird-shaped sigil",
+      "description": "It appears in one eye and lets its bearer issue one absolute command per person."
+    },
+    "location": {
+      "name": "Area 11",
+      "description": "Japan, renamed after being conquered by a holy empire."
+    },
+    "visual": {
+      "icon": "♟️",
+      "colors": [
+        "#3b0764",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-onepunch",
+    "name": "One-Punch Man",
+    "aliases": [
+      "one punch man",
+      "opm"
+    ],
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "studio": "Madhouse",
+    "creator": "ONE",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Webcomic",
+    "characters": [
+      "Saitama",
+      "Genos",
+      "Speed-o'-Sound Sonic"
+    ],
+    "themes": [
+      "Boredom",
+      "Parody"
+    ],
+    "credits": [
+      "Original webcomic: ONE",
+      "Manga art: Yusuke Murata",
+      "Director: Shingo Natsume"
+    ],
+    "cover": {
+      "wiki": "One-Punch Man",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/OnePunchMan_manga_cover.png"
+    },
+    "quote": {
+      "text": "OK.",
+      "speaker": "A bald hero reacting to almost everything"
+    },
+    "audio": {
+      "clue": "A fist-pumping hard-rock opening by JAM Project.",
+      "query": "One Punch Man opening The Hero",
+      "start": 0,
+      "youtubeId": "atxYe-nOa9w"
+    },
+    "emoji": "👊🥚👨‍🦲🦸😐",
+    "item": {
+      "name": "A yellow jumpsuit and white cape",
+      "description": "The outfit of a hero who trained so hard he lost all his hair."
+    },
+    "location": {
+      "name": "City Z",
+      "description": "A ghost town on the edge of monster territory where a hero lives cheaply."
+    },
+    "visual": {
+      "icon": "👊",
+      "colors": [
+        "#facc15",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-jojo",
+    "name": "JoJo's Bizarre Adventure",
+    "aliases": [
+      "jojo",
+      "jjba"
+    ],
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "David Production",
+    "creator": "Hirohiko Araki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Jotaro Kujo",
+      "Dio Brando",
+      "Joseph Joestar",
+      "Josuke Higashikata"
+    ],
+    "themes": [
+      "Fate",
+      "Bloodlines"
+    ],
+    "credits": [
+      "Original manga: Hirohiko Araki",
+      "Directors: Naokatsu Tsuda & Kenichi Suzuki",
+      "Manga began in 1987"
+    ],
+    "cover": {
+      "wiki": "JoJo's Bizarre Adventure (TV series)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/6e/JoJo%27s_Bizarre_Adventure_logo.png"
+    },
+    "quote": {
+      "text": "Yare yare daze.",
+      "speaker": "A stoic student in a long school coat"
+    },
+    "audio": {
+      "clue": "A bombastic, operatic hard-rock first opening, sung with total sincerity.",
+      "query": "JoJo opening Sono Chi no Sadame",
+      "start": 0,
+      "youtubeId": "BW4H15rK6iI"
+    },
+    "emoji": "🕺🗿⭐🧛🌹",
+    "item": {
+      "name": "The Stone Mask",
+      "description": "An ancient Aztec-style mask that sprouts spikes and turns its wearer into a vampire."
+    },
+    "location": {
+      "name": "Morioh",
+      "description": "A quiet seaside Japanese town hiding a polite serial killer."
+    },
+    "visual": {
+      "icon": "🗿",
+      "colors": [
+        "#4c1d95",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-chainsawman",
+    "name": "Chainsaw Man",
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Dark Fantasy",
+      "Action"
+    ],
+    "studio": "MAPPA",
+    "creator": "Tatsuki Fujimoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Denji",
+      "Makima",
+      "Power",
+      "Aki Hayakawa"
+    ],
+    "themes": [
+      "Poverty",
+      "Desire"
+    ],
+    "credits": [
+      "Original manga: Tatsuki Fujimoto",
+      "Director: Ryū Nakayama",
+      "Composer: Kensuke Ushio"
+    ],
+    "cover": {
+      "wiki": "Chainsaw Man",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/24/Chainsawman.jpg"
+    },
+    "audio": {
+      "clue": "A chaotic, genre-hopping opening by Kenshi Yonezu, full of tempo shifts.",
+      "query": "Chainsaw Man opening KICK BACK",
+      "start": 0,
+      "youtubeId": "dFlDRhvM4L0"
+    },
+    "emoji": "🪚🐶😈🩸🍞",
+    "item": {
+      "name": "Pochita",
+      "description": "A small orange dog-like devil with a chainsaw sticking out of its head."
+    },
+    "location": {
+      "name": "Public Safety Devil Hunter HQ",
+      "description": "A Tokyo government division where devil hunters are paid by the job."
+    },
+    "visual": {
+      "icon": "🪚",
+      "colors": [
+        "#7c2d12",
+        "#fb923c"
+      ]
+    }
+  },
+  {
+    "id": "a-yourname",
+    "name": "Your Name",
+    "aliases": [
+      "kimi no na wa"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Romance",
+      "Fantasy"
+    ],
+    "studio": "CoMix Wave Films",
+    "creator": "Makoto Shinkai",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Taki Tachibana",
+      "Mitsuha Miyamizu"
+    ],
+    "themes": [
+      "Body swap",
+      "Fate",
+      "Memory"
+    ],
+    "credits": [
+      "Writer & director: Makoto Shinkai",
+      "Music: RADWIMPS",
+      "Character design: Masayoshi Tanaka"
+    ],
+    "cover": {
+      "wiki": "Your Name",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.png"
+    },
+    "audio": {
+      "clue": "An upbeat rock song from a band that scored the whole film, as two strangers wake up in each other's lives.",
+      "query": "Your Name Zenzenzense RADWIMPS",
+      "start": 0,
+      "youtubeId": "nWrCkR-h_gs"
+    },
+    "emoji": "☄️🔄👫🏞️🧶",
+    "item": {
+      "name": "A red braided cord",
+      "description": "A handmade kumihimo ribbon, passed between two people across time."
+    },
+    "location": {
+      "name": "Itomori",
+      "description": "A small mountain town beside a crater lake, under a comet's path."
+    },
+    "visual": {
+      "icon": "☄️",
+      "colors": [
+        "#1e3a8a",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "a-mononoke",
+    "name": "Princess Mononoke",
+    "aliases": [
+      "mononoke hime"
+    ],
+    "domain": "anime",
+    "year": 1997,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Ashitaka",
+      "San",
+      "Lady Eboshi"
+    ],
+    "themes": [
+      "Nature vs industry",
+      "Hatred"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi",
+      "English script: Neil Gaiman"
+    ],
+    "cover": {
+      "wiki": "Princess Mononoke",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/Princess_Mononoke_Japanese_poster.png"
+    },
+    "audio": {
+      "clue": "A haunting countertenor sings the title theme over solemn orchestra.",
+      "query": "Princess Mononoke theme song",
+      "start": 0,
+      "youtubeId": "nBADF1LdP3g"
+    },
+    "emoji": "🐺👸🦌🌲🔥",
+    "item": {
+      "name": "An iron ball",
+      "description": "Lodged in a boar god, it turned him into a rampaging demon."
+    },
+    "location": {
+      "name": "Irontown",
+      "description": "A fortified ironworks run by a woman who employs lepers and former brothel workers."
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#14532d",
+        "#991b1b"
+      ]
+    }
+  },
+  {
+    "id": "a-sao",
+    "name": "Sword Art Online",
+    "aliases": [
+      "sao"
+    ],
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Action",
+      "Isekai"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Reki Kawahara",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Kirito",
+      "Asuna"
+    ],
+    "themes": [
+      "Virtual reality",
+      "Trapped"
+    ],
+    "credits": [
+      "Original light novels: Reki Kawahara",
+      "Director: Tomohiko Itō",
+      "Composer: Yuki Kajiura"
+    ],
+    "cover": {
+      "wiki": "Sword Art Online",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Sword_Art_Online_light_novel_volume_1_cover.jpg"
+    },
+    "quote": {
+      "text": "This may be a game, but it isn't something you play.",
+      "speaker": "A game's creator"
+    },
+    "audio": {
+      "clue": "A soaring J-pop opening by LiSA.",
+      "query": "Sword Art Online opening Crossing Field",
+      "start": 0,
+      "youtubeId": "6Y1swEeFwYo"
+    },
+    "emoji": "🎮⚔️🏰💀🧑‍💻",
+    "item": {
+      "name": "NerveGear",
+      "description": "A helmet that fully immerses you in a virtual world — and can kill you."
+    },
+    "location": {
+      "name": "Aincrad",
+      "description": "A floating steel castle of 100 floors you must clear to log out."
+    },
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#0c4a6e",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "a-haikyu",
+    "name": "Haikyu!!",
+    "aliases": [
+      "haikyuu"
+    ],
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Sports"
+    ],
+    "studio": "Production I.G",
+    "creator": "Haruichi Furudate",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Shoyo Hinata",
+      "Tobio Kageyama"
+    ],
+    "themes": [
+      "Teamwork",
+      "Rivalry"
+    ],
+    "credits": [
+      "Original manga: Haruichi Furudate",
+      "Director: Susumu Mitsunaka",
+      "Composers: Yuki Hayashi & Asami Tachibana"
+    ],
+    "cover": {
+      "wiki": "Haikyu!!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Haiky%C5%AB_Volume_1.jpg"
+    },
+    "emoji": "🏐🐦‍⬛🦵🏫🔥",
+    "item": {
+      "name": "A volleyball",
+      "description": "Spiked by a short middle blocker who can jump impossibly high."
+    },
+    "location": {
+      "name": "Karasuno High School",
+      "description": "A fallen-from-glory school whose team is nicknamed after crows."
+    },
+    "visual": {
+      "icon": "🏐",
+      "colors": [
+        "#ea580c",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-gits",
+    "name": "Ghost in the Shell",
+    "domain": "anime",
+    "year": 1995,
+    "genres": [
+      "Cyberpunk",
+      "Sci-Fi"
+    ],
+    "studio": "Production I.G",
+    "creator": "Mamoru Oshii",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Motoko Kusanagi",
+      "Batou",
+      "The Puppet Master"
+    ],
+    "themes": [
+      "Identity",
+      "Transhumanism"
+    ],
+    "credits": [
+      "Director: Mamoru Oshii",
+      "Original manga: Masamune Shirow",
+      "Composer: Kenji Kawai"
+    ],
+    "cover": {
+      "wiki": "Ghost in the Shell (1995 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ca/Ghostintheshellposter.jpg"
+    },
+    "audio": {
+      "clue": "Haunting Japanese folk-style choir chanting over taiko drums and bells.",
+      "query": "Ghost in the Shell Making of Cyborg Kenji Kawai",
+      "start": 0,
+      "youtubeId": "iTPNaUsjksM"
+    },
+    "emoji": "🤖🧠👩🌐🔫",
+    "item": {
+      "name": "Thermoptic camouflage",
+      "description": "A suit that renders its wearer nearly invisible, shimmering like water."
+    },
+    "location": {
+      "name": "Newport City",
+      "description": "A rain-soaked, Hong Kong-inspired port metropolis full of canals and billboards."
+    },
+    "visual": {
+      "icon": "🧠",
+      "colors": [
+        "#022c22",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "a-frieren",
+    "name": "Frieren: Beyond Journey's End",
+    "aliases": [
+      "sousou no frieren",
+      "frieren"
+    ],
+    "domain": "anime",
+    "year": 2023,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Madhouse",
+    "creator": "Kanehito Yamada",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Frieren",
+      "Fern",
+      "Stark",
+      "Himmel"
+    ],
+    "themes": [
+      "Time",
+      "Grief",
+      "Memory"
+    ],
+    "credits": [
+      "Story: Kanehito Yamada",
+      "Art: Tsukasa Abe",
+      "Director: Keiichirō Saitō"
+    ],
+    "cover": {
+      "wiki": "Frieren",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Frieren_Beyond_Journey%27s_End.jpg"
+    },
+    "audio": {
+      "clue": "A dreamy, ethereal opening by YOASOBI.",
+      "query": "Frieren opening Yuusha YOASOBI",
+      "start": 0,
+      "youtubeId": "OIBODIPC_8Y"
+    },
+    "emoji": "🧝‍♀️📦🌸⏳💐",
+    "item": {
+      "name": "A mimic chest",
+      "description": "A treasure box that bites; an elf mage always checks — and always gets caught."
+    },
+    "location": {
+      "name": "The northern lands",
+      "description": "A journey towards Aureole, the place where souls are said to rest."
+    },
+    "visual": {
+      "icon": "🧝‍♀️",
+      "colors": [
+        "#e0f2fe",
+        "#86efac"
+      ]
+    }
+  },
+  {
+    "id": "a-spyfamily",
+    "name": "Spy x Family",
+    "aliases": [
+      "spy family"
+    ],
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Comedy",
+      "Action"
+    ],
+    "studio": "Wit Studio",
+    "creator": "Tatsuya Endo",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Loid Forger",
+      "Yor Forger",
+      "Anya Forger",
+      "Bond"
+    ],
+    "themes": [
+      "Found family",
+      "Cold war"
+    ],
+    "credits": [
+      "Original manga: Tatsuya Endo",
+      "Director: Kazuhiro Furuhashi",
+      "Co-produced with CloverWorks"
+    ],
+    "cover": {
+      "wiki": "Spy × Family",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Spy_Family_vol_1.jpg"
+    },
+    "quote": {
+      "text": "Waku waku!",
+      "speaker": "A telepathic little girl, excited"
+    },
+    "audio": {
+      "clue": "A funky, horn-driven opening by Official Hige Dandism.",
+      "query": "Spy x Family opening Mixed Nuts",
+      "start": 0,
+      "youtubeId": "Wf8XuAoCjN8"
+    },
+    "emoji": "🕵️🔫🥜👧🐶",
+    "item": {
+      "name": "Peanuts",
+      "description": "The favourite snack of a girl who can read minds."
+    },
+    "location": {
+      "name": "Berlint",
+      "description": "The capital of Ostania, a city divided by a cold war."
+    },
+    "visual": {
+      "icon": "🥜",
+      "colors": [
+        "#14532d",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "a-bleach",
+    "name": "Bleach",
+    "domain": "anime",
+    "year": 2004,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "Pierrot",
+    "creator": "Tite Kubo",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ichigo Kurosaki",
+      "Rukia Kuchiki",
+      "Sosuke Aizen"
+    ],
+    "themes": [
+      "Death gods",
+      "Protection"
+    ],
+    "credits": [
+      "Original manga: Tite Kubo",
+      "Director: Noriyuki Abe",
+      "Composer: Shirō Sagisu"
+    ],
+    "cover": {
+      "wiki": "Bleach (TV series)"
+    },
+    "audio": {
+      "clue": "A punchy rock-rap opening by Orange Range.",
+      "query": "Bleach opening Asterisk Orange Range",
+      "start": 0,
+      "youtubeId": "wW9TwZdWpjw"
+    },
+    "emoji": "🗡️🍓👻💀🍊",
+    "item": {
+      "name": "Zangetsu",
+      "description": "A cleaver-like zanpakutō as tall as the orange-haired teen who wields it."
+    },
+    "location": {
+      "name": "Soul Society",
+      "description": "The afterlife realm of the death gods, with a walled court at its centre."
+    },
+    "visual": {
+      "icon": "🍓",
+      "colors": [
+        "#0a0a0a",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "a-pokemon",
+    "name": "Pokémon",
+    "aliases": [
+      "pokemon anime",
+      "pokemon the series"
+    ],
+    "domain": "anime",
+    "year": 1997,
+    "genres": [
+      "Adventure"
+    ],
+    "studio": "OLM",
+    "creator": "Satoshi Tajiri",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Video Game",
+    "characters": [
+      "Ash Ketchum",
+      "Pikachu",
+      "Misty",
+      "Team Rocket"
+    ],
+    "themes": [
+      "Journeys",
+      "Friendship"
+    ],
+    "credits": [
+      "Original games: Satoshi Tajiri / Game Freak",
+      "Director: Kunihiko Yuyama",
+      "Composer: Shinji Miyazaki"
+    ],
+    "cover": {
+      "wiki": "Pokémon (TV series)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/960px-International_Pok%C3%A9mon_logo.svg.png"
+    },
+    "quote": {
+      "text": "Gotta catch 'em all!",
+      "speaker": "The English theme song"
+    },
+    "audio": {
+      "clue": "An anthemic English opening promising to be the very best.",
+      "query": "Pokemon theme song season 1",
+      "start": 0,
+      "youtubeId": "6xKWiCMKKJg"
+    },
+    "emoji": "🧢🐭⚡🚀🎒",
+    "item": {
+      "name": "A red-and-white cap",
+      "description": "Won in a contest by a boy from Pallet Town."
+    },
+    "location": {
+      "name": "Pallet Town",
+      "description": "A quiet hometown with a professor's laboratory on the hill."
+    },
+    "visual": {
+      "icon": "🧢",
+      "colors": [
+        "#dc2626",
+        "#facc15"
+      ]
+    }
+  }
+]

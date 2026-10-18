@@ -1,0 +1,1843 @@
+[
+  {
+    "id": "m-darkside",
+    "name": "The Dark Side of the Moon",
+    "subtitle": "Pink Floyd",
+    "aliases": [
+      "dark side of the moon",
+      "pink floyd"
+    ],
+    "domain": "music",
+    "year": 1973,
+    "genres": [
+      "Progressive Rock"
+    ],
+    "studio": "Harvest",
+    "creator": "Pink Floyd",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Time",
+      "Madness",
+      "Greed"
+    ],
+    "credits": [
+      "Artist: an English psychedelic band",
+      "Engineer: Alan Parsons",
+      "Cover design: Hipgnosis"
+    ],
+    "cover": {
+      "wiki": "The Dark Side of the Moon",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Dark_Side_of_the_Moon.png/960px-Dark_Side_of_the_Moon.png"
+    },
+    "tracks": [
+      "Us and Them",
+      "Breathe",
+      "Time",
+      "Money"
+    ],
+    "audio": {
+      "clue": "Opens with a heartbeat; later, cash registers and coins clatter in a looping 7/4 groove.",
+      "query": "Pink Floyd Money",
+      "start": 0,
+      "youtubeId": "-0kcet4aPpQ"
+    },
+    "emoji": "🌈🔺🌙💰⏰",
+    "item": {
+      "name": "A prism",
+      "description": "A white beam enters a triangle and leaves as a rainbow, on a black background."
+    },
+    "location": {
+      "name": "Abbey Road Studios",
+      "description": "The London studio where it was recorded across 1972 and 1973.",
+      "wiki": "Abbey Road Studios",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Abbey_Road_Studios_Logo.svg/960px-Abbey_Road_Studios_Logo.svg.png"
+    },
+    "visual": {
+      "icon": "🔺",
+      "colors": [
+        "#000000",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "m-thriller",
+    "name": "Thriller",
+    "subtitle": "Michael Jackson",
+    "domain": "music",
+    "year": 1982,
+    "genres": [
+      "Pop",
+      "R&B"
+    ],
+    "studio": "Epic",
+    "creator": "Michael Jackson",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Horror",
+      "Dance"
+    ],
+    "credits": [
+      "Artist: the King of Pop",
+      "Producer: Quincy Jones",
+      "Best-selling album of all time"
+    ],
+    "cover": {
+      "wiki": "Thriller (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
+    },
+    "tracks": [
+      "Wanna Be Startin' Somethin'",
+      "Beat It",
+      "Thriller",
+      "Billie Jean"
+    ],
+    "audio": {
+      "clue": "Creaking doors, howling wolves, and a horror-film legend delivering a spoken-word rap at the end of the title track.",
+      "query": "Michael Jackson Billie Jean audio",
+      "start": 0,
+      "youtubeId": "OZGtRvYF-A4"
+    },
+    "emoji": "🧟🕺🧤🌕🌃",
+    "item": {
+      "name": "A single sequined glove",
+      "description": "Worn on one hand only, made famous during a moonwalk on live TV."
+    },
+    "location": {
+      "name": "Westlake Recording Studios",
+      "description": "A Los Angeles studio where the album came together in 1982."
+    },
+    "visual": {
+      "icon": "🧤",
+      "colors": [
+        "#7f1d1d",
+        "#fafafa"
+      ]
+    }
+  },
+  {
+    "id": "m-abbeyroad",
+    "name": "Abbey Road",
+    "subtitle": "The Beatles",
+    "aliases": [
+      "beatles"
+    ],
+    "domain": "music",
+    "year": 1969,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "Apple",
+    "creator": "The Beatles",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Farewell",
+      "Medley"
+    ],
+    "credits": [
+      "Artist: a Liverpool four-piece",
+      "Producer: George Martin",
+      "Engineer: Geoff Emerick"
+    ],
+    "cover": {
+      "wiki": "Abbey Road",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/The_Beatles_Abbey_Road_album_cover.jpg/960px-The_Beatles_Abbey_Road_album_cover.jpg"
+    },
+    "tracks": [
+      "Octopus's Garden",
+      "Something",
+      "Here Comes the Sun",
+      "Come Together"
+    ],
+    "audio": {
+      "clue": "Side two flows into a long medley of short song fragments, ending with three alternating guitar solos.",
+      "query": "The Beatles Come Together remastered",
+      "start": 0,
+      "youtubeId": "oVW6wJ7MYDM"
+    },
+    "emoji": "🚶🚶🚶🚶🦓",
+    "item": {
+      "name": "A white Volkswagen Beetle",
+      "description": "Parked in the background of the cover; its number plate was later stolen repeatedly."
+    },
+    "location": {
+      "name": "A zebra crossing in St John's Wood",
+      "description": "A London crosswalk where four men walked in single file for the cover.",
+      "wiki": "Abbey Road",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/The_Beatles_Abbey_Road_album_cover.jpg/960px-The_Beatles_Abbey_Road_album_cover.jpg"
+    },
+    "visual": {
+      "icon": "🦓",
+      "colors": [
+        "#1e3a8a",
+        "#e5e7eb"
+      ]
+    }
+  },
+  {
+    "id": "m-nevermind",
+    "name": "Nevermind",
+    "subtitle": "Nirvana",
+    "aliases": [
+      "nirvana"
+    ],
+    "domain": "music",
+    "year": 1991,
+    "genres": [
+      "Grunge"
+    ],
+    "studio": "DGC",
+    "creator": "Nirvana",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Alienation",
+      "Grunge"
+    ],
+    "credits": [
+      "Artist: a Seattle-area power trio",
+      "Producer: Butch Vig",
+      "Mixer: Andy Wallace"
+    ],
+    "cover": {
+      "wiki": "Nevermind",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/NirvanaNevermindalbumcover.jpg"
+    },
+    "tracks": [
+      "In Bloom",
+      "Lithium",
+      "Come as You Are",
+      "Smells Like Teen Spirit"
+    ],
+    "audio": {
+      "clue": "A scratchy four-chord guitar riff, then the band crashes in — quiet verse, explosive chorus.",
+      "query": "Nirvana Smells Like Teen Spirit audio",
+      "start": 0,
+      "youtubeId": "JyGNABrosb8"
+    },
+    "emoji": "👶🏊💵🎣🎸",
+    "item": {
+      "name": "A dollar bill on a fishhook",
+      "description": "Dangled in front of a swimming baby on the cover."
+    },
+    "location": {
+      "name": "Sound City Studios",
+      "description": "A Van Nuys studio famous for its Neve console, where it was tracked in 1991.",
+      "wiki": "Sound City Studios",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Sound_City_Logo.jpg"
+    },
+    "visual": {
+      "icon": "👶",
+      "colors": [
+        "#0369a1",
+        "#7dd3fc"
+      ]
+    }
+  },
+  {
+    "id": "m-discovery",
+    "name": "Discovery",
+    "subtitle": "Daft Punk",
+    "aliases": [
+      "daft punk"
+    ],
+    "domain": "music",
+    "year": 2001,
+    "genres": [
+      "French House",
+      "Electronic"
+    ],
+    "studio": "Virgin",
+    "creator": "Daft Punk",
+    "origin": "France",
+    "format": "Studio Album",
+    "themes": [
+      "Nostalgia",
+      "Disco"
+    ],
+    "credits": [
+      "Artist: a helmeted Parisian duo",
+      "Featured vocalist: Romanthony",
+      "Companion anime produced with Leiji Matsumoto"
+    ],
+    "cover": {
+      "wiki": "Discovery (Daft Punk album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/DaftPunkDiscovery.jpg"
+    },
+    "tracks": [
+      "Aerodynamic",
+      "Digital Love",
+      "Harder, Better, Faster, Stronger",
+      "One More Time"
+    ],
+    "audio": {
+      "clue": "A filtered disco-brass loop and a heavily Auto-Tuned voice celebrating one more time.",
+      "query": "Daft Punk One More Time official audio",
+      "start": 0,
+      "youtubeId": "A2VpR8HahKc"
+    },
+    "emoji": "🤖🤖🎛️🪩🇫🇷",
+    "item": {
+      "name": "Robot helmets",
+      "description": "Two chrome-and-gold helmets that hid the artists' faces for decades."
+    },
+    "location": {
+      "name": "Interstella 5555",
+      "description": "The animated space-pop world built to accompany the album, track by track.",
+      "wiki": "Interstella 5555: The 5tory of the 5ecret 5tar 5ystem",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/95/Interstella5555.jpg"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#0f172a",
+        "#e879f9"
+      ]
+    }
+  },
+  {
+    "id": "m-rumours",
+    "name": "Rumours",
+    "subtitle": "Fleetwood Mac",
+    "aliases": [
+      "fleetwood mac"
+    ],
+    "domain": "music",
+    "year": 1977,
+    "genres": [
+      "Soft Rock"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Fleetwood Mac",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Break-ups",
+      "Tension"
+    ],
+    "credits": [
+      "Artist: a British-American band in the middle of two break-ups",
+      "Producers: the band with Ken Caillat & Richard Dashut",
+      "Grammy Album of the Year"
+    ],
+    "cover": {
+      "wiki": "Rumours (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG"
+    },
+    "tracks": [
+      "Don't Stop",
+      "The Chain",
+      "Go Your Own Way",
+      "Dreams"
+    ],
+    "audio": {
+      "clue": "A thumping solo bass line, later borrowed for decades of motor-racing broadcasts.",
+      "query": "Fleetwood Mac The Chain official audio",
+      "start": 180,
+      "youtubeId": "xwTPvcPYaOo"
+    },
+    "emoji": "💔🎸🥁🔗🌙",
+    "item": {
+      "name": "Wooden balls",
+      "description": "A pair dangling from the drummer's belt in the cover photo."
+    },
+    "location": {
+      "name": "The Record Plant, Sausalito",
+      "description": "A Bay Area studio where the band recorded amid relationship turmoil."
+    },
+    "visual": {
+      "icon": "🔗",
+      "colors": [
+        "#3f3f46",
+        "#e7e5e4"
+      ]
+    }
+  },
+  {
+    "id": "m-tpab",
+    "name": "To Pimp a Butterfly",
+    "subtitle": "Kendrick Lamar",
+    "aliases": [
+      "tpab",
+      "kendrick lamar"
+    ],
+    "domain": "music",
+    "year": 2015,
+    "genres": [
+      "Hip Hop",
+      "Jazz Rap"
+    ],
+    "studio": "Top Dawg Entertainment",
+    "creator": "Kendrick Lamar",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Race",
+      "Fame",
+      "Self-love"
+    ],
+    "credits": [
+      "Artist: a rapper from Compton",
+      "Collaborators: Thundercat, Kamasi Washington, Terrace Martin",
+      "Executive producer: Dr. Dre"
+    ],
+    "cover": {
+      "wiki": "To Pimp a Butterfly",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Kendrick_Lamar_-_To_Pimp_a_Butterfly.png"
+    },
+    "tracks": [
+      "These Walls",
+      "The Blacker the Berry",
+      "King Kunta",
+      "Alright"
+    ],
+    "audio": {
+      "clue": "Live jazz, P-funk bass and spoken-word poetry, closing with an imagined conversation with Tupac.",
+      "query": "Kendrick Lamar King Kunta audio",
+      "start": 0,
+      "youtubeId": "CqL0I0CcNuI"
+    },
+    "emoji": "🦋👑🏛️🎷📜",
+    "item": {
+      "name": "A black-and-white photo",
+      "description": "A crowd of young men celebrating on the White House lawn."
+    },
+    "location": {
+      "name": "Compton",
+      "description": "The artist's hometown, revisited and wrestled with throughout the record.",
+      "wiki": "Compton, California",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Compton_martin_luther_king_monument.jpg"
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#18181b",
+        "#a1a1aa"
+      ]
+    }
+  },
+  {
+    "id": "m-21",
+    "name": "21",
+    "subtitle": "Adele",
+    "aliases": [
+      "adele"
+    ],
+    "domain": "music",
+    "year": 2011,
+    "genres": [
+      "Pop",
+      "Soul"
+    ],
+    "studio": "XL Recordings",
+    "creator": "Adele",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Heartbreak"
+    ],
+    "credits": [
+      "Artist: a Tottenham-born singer",
+      "Producers: Paul Epworth, Rick Rubin, Dan Wilson",
+      "Named after the artist's age"
+    ],
+    "cover": {
+      "wiki": "21 (Adele album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/Adele_-_21.png"
+    },
+    "tracks": [
+      "Rumour Has It",
+      "Set Fire to the Rain",
+      "Someone Like You",
+      "Rolling in the Deep"
+    ],
+    "audio": {
+      "clue": "A stomping kick drum and an acoustic strum build into a gospel-tinged anthem of heartbreak.",
+      "query": "Adele Rolling in the Deep audio",
+      "start": 0,
+      "youtubeId": "bDtjO-R0QSo"
+    },
+    "emoji": "2️⃣1️⃣💔🎹🎤",
+    "item": {
+      "name": "A black-and-white portrait",
+      "description": "A close-up profile of the singer with her hand to her face."
+    },
+    "location": {
+      "name": "Malibu",
+      "description": "Where much of the record was cut at a famous producer's Shangri-La studio.",
+      "wiki": "Malibu, California",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/MalibuAir.jpg/960px-MalibuAir.jpg"
+    },
+    "visual": {
+      "icon": "🎤",
+      "colors": [
+        "#0a0a0a",
+        "#d4d4d8"
+      ]
+    }
+  },
+  {
+    "id": "m-anato",
+    "name": "A Night at the Opera",
+    "subtitle": "Queen",
+    "aliases": [
+      "queen"
+    ],
+    "domain": "music",
+    "year": 1975,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "EMI",
+    "creator": "Queen",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Theatrics",
+      "Opera"
+    ],
+    "credits": [
+      "Artist: a band fronted by a flamboyant Zanzibar-born singer",
+      "Producer: Roy Thomas Baker",
+      "Named after a Marx Brothers film"
+    ],
+    "cover": {
+      "wiki": "A Night at the Opera (Queen album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4d/Queen_A_Night_At_The_Opera.png"
+    },
+    "tracks": [
+      "Death on Two Legs",
+      "Love of My Life",
+      "You're My Best Friend",
+      "Bohemian Rhapsody"
+    ],
+    "audio": {
+      "clue": "A six-minute epic moving from ballad to mock-opera to head-banging hard rock, without a chorus.",
+      "query": "Queen Bohemian Rhapsody official",
+      "start": 0,
+      "youtubeId": "fJ9rUzIMcZQ"
+    },
+    "emoji": "🎭🌃👑🎤🎸",
+    "item": {
+      "name": "An ornate crest",
+      "description": "A royal-style emblem with zodiac creatures, designed by the lead singer."
+    },
+    "location": {
+      "name": "Rockfield Studios",
+      "description": "A Welsh farm studio where its most famous track was begun.",
+      "wiki": "Rockfield Studios",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rockfield_Studios%2C_Monmouthshire.jpg"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#f8fafc",
+        "#b45309"
+      ]
+    }
+  },
+  {
+    "id": "m-okcomputer",
+    "name": "OK Computer",
+    "subtitle": "Radiohead",
+    "aliases": [
+      "radiohead"
+    ],
+    "domain": "music",
+    "year": 1997,
+    "genres": [
+      "Alternative Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "Radiohead",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Technology",
+      "Alienation"
+    ],
+    "credits": [
+      "Artist: an Oxfordshire five-piece",
+      "Producer: Nigel Godrich",
+      "Artwork: Stanley Donwood"
+    ],
+    "cover": {
+      "wiki": "OK Computer",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Radioheadokcomputer.png"
+    },
+    "tracks": [
+      "Airbag",
+      "No Surprises",
+      "Karma Police",
+      "Paranoid Android"
+    ],
+    "audio": {
+      "clue": "A flat text-to-speech computer voice recites a list of self-improvement instructions.",
+      "query": "Radiohead Paranoid Android audio",
+      "start": 0,
+      "youtubeId": "Lt8AfIeJOxw"
+    },
+    "emoji": "💻🤖✈️🚗😟",
+    "item": {
+      "name": "Highway interchange collage",
+      "description": "A pale, scribbled cover image of motorways and pictograms."
+    },
+    "location": {
+      "name": "St Catherine's Court",
+      "description": "A 16th-century manor near Bath, owned by an actress, where it was recorded."
+    },
+    "visual": {
+      "icon": "💻",
+      "colors": [
+        "#0c4a6e",
+        "#f1f5f9"
+      ]
+    }
+  },
+  {
+    "id": "m-1989",
+    "name": "1989",
+    "subtitle": "Taylor Swift",
+    "aliases": [
+      "taylor swift"
+    ],
+    "domain": "music",
+    "year": 2014,
+    "genres": [
+      "Synth-pop",
+      "Pop"
+    ],
+    "studio": "Big Machine",
+    "creator": "Taylor Swift",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Fame",
+      "Romance"
+    ],
+    "credits": [
+      "Artist: a former country star going full pop",
+      "Producers: Max Martin & Shellback",
+      "Named after the artist's birth year"
+    ],
+    "cover": {
+      "wiki": "1989 (Taylor Swift album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Taylor_Swift_-_1989.png"
+    },
+    "tracks": [
+      "Style",
+      "Bad Blood",
+      "Blank Space",
+      "Shake It Off"
+    ],
+    "audio": {
+      "clue": "Glossy 80s synths and handclaps; the opener is a love letter to a big city.",
+      "query": "Taylor Swift Shake It Off audio",
+      "start": 0,
+      "youtubeId": "w9E7tRTkf5E"
+    },
+    "emoji": "📸🗽🕶️💋🕊️",
+    "item": {
+      "name": "A Polaroid",
+      "description": "The cover is an instant photo, cropped just below the eyes."
+    },
+    "location": {
+      "name": "New York City",
+      "description": "The artist's newly adopted home, welcomed in the very first track.",
+      "wiki": "New York City",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg"
+    },
+    "visual": {
+      "icon": "📸",
+      "colors": [
+        "#e0f2fe",
+        "#0ea5e9"
+      ]
+    }
+  },
+  {
+    "id": "m-lemonade",
+    "name": "Lemonade",
+    "subtitle": "Beyoncé",
+    "aliases": [
+      "beyonce"
+    ],
+    "domain": "music",
+    "year": 2016,
+    "genres": [
+      "R&B",
+      "Pop"
+    ],
+    "studio": "Parkwood",
+    "creator": "Beyoncé",
+    "origin": "USA",
+    "format": "Visual Album",
+    "themes": [
+      "Infidelity",
+      "Black womanhood"
+    ],
+    "credits": [
+      "Artist: a Houston-born superstar",
+      "Poetry: Warsan Shire",
+      "Premiered as an hour-long HBO film"
+    ],
+    "cover": {
+      "wiki": "Lemonade (Beyoncé album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/53/Beyonce_-_Lemonade_%28Official_Album_Cover%29.png"
+    },
+    "tracks": [
+      "Sorry",
+      "Freedom",
+      "Hold Up",
+      "Formation"
+    ],
+    "audio": {
+      "clue": "A track built on a reggae lilt where the singer smashes car windows while smiling.",
+      "query": "Beyonce Hold Up audio",
+      "start": 0,
+      "youtubeId": "RFCXVr4Kcxg"
+    },
+    "emoji": "🍋🏏🐝🌊🔥",
+    "item": {
+      "name": "A baseball bat",
+      "description": "Named \"Hot Sauce\", swung through a street of parked cars in a yellow dress."
+    },
+    "location": {
+      "name": "New Orleans",
+      "description": "Southern Gothic locations used throughout the accompanying film.",
+      "wiki": "New Orleans",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_%28cropped%29.jpg/960px-New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_%28cropped%29.jpg"
+    },
+    "visual": {
+      "icon": "🍋",
+      "colors": [
+        "#facc15",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "m-backinblack",
+    "name": "Back in Black",
+    "subtitle": "AC/DC",
+    "aliases": [
+      "ac dc",
+      "acdc"
+    ],
+    "domain": "music",
+    "year": 1980,
+    "genres": [
+      "Hard Rock"
+    ],
+    "studio": "Atlantic",
+    "creator": "AC/DC",
+    "origin": "Australia",
+    "format": "Studio Album",
+    "themes": [
+      "Tribute",
+      "Rock and roll"
+    ],
+    "credits": [
+      "Artist: a band with a guitarist in a schoolboy uniform",
+      "Producer: Robert John \"Mutt\" Lange",
+      "A tribute to their late singer"
+    ],
+    "cover": {
+      "wiki": "Back in Black",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/AC-DC_-_Back_In_Black_%28original_1980_album_cover_with_embossed_lettering%29.jpg/960px-AC-DC_-_Back_In_Black_%28original_1980_album_cover_with_embossed_lettering%29.jpg"
+    },
+    "tracks": [
+      "Shoot to Thrill",
+      "Hells Bells",
+      "You Shook Me All Night Long",
+      "Back in Black"
+    ],
+    "audio": {
+      "clue": "A slow, tolling church bell rings out before a menacing guitar riff creeps in.",
+      "query": "AC/DC Hells Bells audio",
+      "start": 0,
+      "youtubeId": "j-jBGJ-5XhQ"
+    },
+    "emoji": "🔔⚫🎸⚡🏫",
+    "item": {
+      "name": "A schoolboy uniform",
+      "description": "Shorts, tie and cap, worn by the lead guitarist on every stage."
+    },
+    "location": {
+      "name": "Compass Point Studios",
+      "description": "A Bahamas studio where the record was made during hurricane season."
+    },
+    "visual": {
+      "icon": "🔔",
+      "colors": [
+        "#0a0a0a",
+        "#71717a"
+      ]
+    }
+  },
+  {
+    "id": "m-exodus",
+    "name": "Exodus",
+    "subtitle": "Bob Marley & The Wailers",
+    "aliases": [
+      "bob marley"
+    ],
+    "domain": "music",
+    "year": 1977,
+    "genres": [
+      "Reggae"
+    ],
+    "studio": "Island",
+    "creator": "Bob Marley",
+    "origin": "Jamaica",
+    "format": "Studio Album",
+    "themes": [
+      "Faith",
+      "Exile",
+      "Love"
+    ],
+    "credits": [
+      "Artist: a Rastafarian icon and his band",
+      "Label boss: Chris Blackwell",
+      "Named Album of the Century by TIME"
+    ],
+    "cover": {
+      "wiki": "Exodus (Bob Marley and the Wailers album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/Bob_Marley_and_the_Wailers_-_Exodus.png"
+    },
+    "tracks": [
+      "Waiting in Vain",
+      "Exodus",
+      "Jamming",
+      "Three Little Birds"
+    ],
+    "audio": {
+      "clue": "One-drop rhythms and skanking guitar; one track features three little birds on a doorstep singing reassurance.",
+      "query": "Bob Marley Three Little Birds audio",
+      "start": 0,
+      "youtubeId": "NOyRsPDPfMM"
+    },
+    "emoji": "🇯🇲🦁🎸🌿🚶",
+    "item": {
+      "name": "Gold Amharic lettering",
+      "description": "Ethiopian script on a plain cover, honouring the artist's faith."
+    },
+    "location": {
+      "name": "London",
+      "description": "Where it was recorded in exile after an assassination attempt in Kingston.",
+      "wiki": "London",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg"
+    },
+    "visual": {
+      "icon": "🦁",
+      "colors": [
+        "#15803d",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "m-purplerain",
+    "name": "Purple Rain",
+    "subtitle": "Prince and the Revolution",
+    "aliases": [
+      "prince"
+    ],
+    "domain": "music",
+    "year": 1984,
+    "genres": [
+      "Pop",
+      "Funk Rock"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Prince",
+    "origin": "USA",
+    "format": "Soundtrack",
+    "themes": [
+      "Spirituality",
+      "Desire"
+    ],
+    "credits": [
+      "Artist: a Minneapolis multi-instrumentalist",
+      "Backing band: The Revolution",
+      "Soundtrack to his own film"
+    ],
+    "cover": {
+      "wiki": "Purple Rain (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9c/Princepurplerain.jpg"
+    },
+    "tracks": [
+      "I Would Die 4 U",
+      "Let's Go Crazy",
+      "Purple Rain",
+      "When Doves Cry"
+    ],
+    "audio": {
+      "clue": "A song with no bass line at all, opening on a screaming guitar solo and a drum machine.",
+      "query": "Prince When Doves Cry",
+      "start": 0,
+      "youtubeId": "UG3VcCAlUgE"
+    },
+    "emoji": "💜🌧️🏍️🕊️🎸",
+    "item": {
+      "name": "A purple motorcycle",
+      "description": "The artist straddles it in front of a flower-covered doorway on the cover."
+    },
+    "location": {
+      "name": "First Avenue",
+      "description": "A Minneapolis nightclub where the title track was recorded live.",
+      "wiki": "First Avenue (nightclub)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/FirstAvenue.jpg/960px-FirstAvenue.jpg"
+    },
+    "visual": {
+      "icon": "💜",
+      "colors": [
+        "#3b0764",
+        "#c084fc"
+      ]
+    }
+  },
+  {
+    "id": "m-zeppelin4",
+    "name": "Led Zeppelin IV",
+    "subtitle": "Led Zeppelin",
+    "aliases": [
+      "led zeppelin",
+      "zoso"
+    ],
+    "domain": "music",
+    "year": 1971,
+    "genres": [
+      "Hard Rock"
+    ],
+    "studio": "Atlantic",
+    "creator": "Led Zeppelin",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Mysticism",
+      "Folklore"
+    ],
+    "credits": [
+      "Artist: an English quartet with a famous blimp name",
+      "Producer: Jimmy Page",
+      "Untitled; often called by its four symbols"
+    ],
+    "cover": {
+      "wiki": "Led Zeppelin IV",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Zeppelin_IV.jpg/960px-Zeppelin_IV.jpg"
+    },
+    "tracks": [
+      "When the Levee Breaks",
+      "Rock and Roll",
+      "Black Dog",
+      "Stairway to Heaven"
+    ],
+    "audio": {
+      "clue": "A gentle recorder-and-acoustic-guitar ballad that builds over eight minutes into a roaring guitar solo.",
+      "query": "Led Zeppelin Stairway to Heaven remaster",
+      "start": 0,
+      "youtubeId": "X791IzOwt3Q"
+    },
+    "emoji": "🪜☁️👴🪵🎸",
+    "item": {
+      "name": "An old man carrying sticks",
+      "description": "A painting hung on a crumbling wall on the cover."
+    },
+    "location": {
+      "name": "Headley Grange",
+      "description": "A former poorhouse in Hampshire whose stairwell gave the album its giant drum sound.",
+      "wiki": "Headley Grange",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Headley_Grange_-_geograph.org.uk_-_29789.jpg"
+    },
+    "visual": {
+      "icon": "🪜",
+      "colors": [
+        "#44403c",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "m-illmatic",
+    "name": "Illmatic",
+    "subtitle": "Nas",
+    "aliases": [
+      "nas"
+    ],
+    "domain": "music",
+    "year": 1994,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Columbia",
+    "creator": "Nas",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Street life",
+      "Youth"
+    ],
+    "credits": [
+      "Artist: a 20-year-old rapper from Queens",
+      "Producers: DJ Premier, Pete Rock, Q-Tip, Large Professor",
+      "Only ten tracks long"
+    ],
+    "cover": {
+      "wiki": "Illmatic",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/27/IllmaticNas.jpg"
+    },
+    "tracks": [
+      "Memory Lane (Sittin' in da Park)",
+      "It Ain't Hard to Tell",
+      "The World Is Yours",
+      "N.Y. State of Mind"
+    ],
+    "audio": {
+      "clue": "A dusty jazz-piano loop under vivid, rapid-fire verses about the projects.",
+      "query": "Nas N.Y. State of Mind",
+      "start": 0,
+      "youtubeId": "hI8A14Qcv68"
+    },
+    "emoji": "🗽🎤🏙️👦📝",
+    "item": {
+      "name": "A childhood photo",
+      "description": "The artist as a boy, superimposed over a city block on the cover."
+    },
+    "location": {
+      "name": "Queensbridge Houses",
+      "description": "The largest public housing project in North America, in Queens.",
+      "wiki": "Queensbridge Houses",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Queensbridge_Houses.jpg/960px-Queensbridge_Houses.jpg"
+    },
+    "visual": {
+      "icon": "🎤",
+      "colors": [
+        "#1c1917",
+        "#a8a29e"
+      ]
+    }
+  },
+  {
+    "id": "m-borntorun",
+    "name": "Born to Run",
+    "subtitle": "Bruce Springsteen",
+    "aliases": [
+      "springsteen",
+      "the boss"
+    ],
+    "domain": "music",
+    "year": 1975,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "Columbia",
+    "creator": "Bruce Springsteen",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Escape",
+      "Youth",
+      "Cars"
+    ],
+    "credits": [
+      "Artist: a New Jersey singer called The Boss",
+      "Backing band: the E Street Band",
+      "Co-producer: Jon Landau"
+    ],
+    "cover": {
+      "wiki": "Born to Run",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Born_to_Run_%28Front_Cover%29.jpg"
+    },
+    "tracks": [
+      "Backstreets",
+      "Jungleland",
+      "Thunder Road",
+      "Born to Run"
+    ],
+    "audio": {
+      "clue": "A wall-of-sound rock anthem with glockenspiel and saxophone about getting out of town.",
+      "query": "Bruce Springsteen Born to Run",
+      "start": 0,
+      "youtubeId": "IxuThNgl3YA"
+    },
+    "emoji": "🚗🛣️🎷🎸🌃",
+    "item": {
+      "name": "A saxophonist's shoulder",
+      "description": "The singer leans on it on the gatefold cover."
+    },
+    "location": {
+      "name": "Asbury Park",
+      "description": "A Jersey Shore boardwalk town the artist made famous.",
+      "wiki": "Asbury Park, New Jersey",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Paramount_Theatre_Asbury_Park_Convention_Hall_NJ2.jpg/960px-Paramount_Theatre_Asbury_Park_Convention_Hall_NJ2.jpg"
+    },
+    "visual": {
+      "icon": "🎷",
+      "colors": [
+        "#0a0a0a",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "m-kindofblue",
+    "name": "Kind of Blue",
+    "subtitle": "Miles Davis",
+    "aliases": [
+      "miles davis"
+    ],
+    "domain": "music",
+    "year": 1959,
+    "genres": [
+      "Jazz"
+    ],
+    "studio": "Columbia",
+    "creator": "Miles Davis",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Modal jazz",
+      "Improvisation"
+    ],
+    "credits": [
+      "Artist: a trumpeter and bandleader",
+      "Sidemen: John Coltrane, Bill Evans, Cannonball Adderley",
+      "Best-selling jazz album ever"
+    ],
+    "cover": {
+      "wiki": "Kind of Blue",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/10/Miles_Davis_-_Kind_of_Blue_album_cover.jpg"
+    },
+    "tracks": [
+      "Flamenco Sketches",
+      "Blue in Green",
+      "Freddie Freeloader",
+      "So What"
+    ],
+    "audio": {
+      "clue": "A bass and piano trade a two-note call-and-response, answered by horns.",
+      "query": "Miles Davis So What",
+      "start": 0,
+      "youtubeId": "zqNTltOGh5c"
+    },
+    "emoji": "🎺💙🎷🎹🌙",
+    "item": {
+      "name": "A trumpet",
+      "description": "Played by the bandleader, photographed mid-solo on the cover."
+    },
+    "location": {
+      "name": "Columbia 30th Street Studio",
+      "description": "A converted church in Manhattan nicknamed 'The Church'.",
+      "wiki": "CBS 30th Street Studio"
+    },
+    "visual": {
+      "icon": "🎺",
+      "colors": [
+        "#0c4a6e",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "m-sgtpepper",
+    "name": "Sgt. Pepper's Lonely Hearts Club Band",
+    "subtitle": "The Beatles",
+    "aliases": [
+      "sgt pepper"
+    ],
+    "domain": "music",
+    "year": 1967,
+    "genres": [
+      "Psychedelic Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "The Beatles",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Psychedelia",
+      "Alter egos"
+    ],
+    "credits": [
+      "Artist: a Liverpool four-piece in military-style satin uniforms",
+      "Producer: George Martin",
+      "Cover by Peter Blake & Jann Haworth"
+    ],
+    "cover": {
+      "wiki": "Sgt. Pepper's Lonely Hearts Club Band",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Sgt._Pepper%27s_Lonely_Hearts_Club_Band_album_art.jpg/960px-Sgt._Pepper%27s_Lonely_Hearts_Club_Band_album_art.jpg"
+    },
+    "tracks": [
+      "When I'm Sixty-Four",
+      "Lucy in the Sky with Diamonds",
+      "With a Little Help from My Friends",
+      "A Day in the Life"
+    ],
+    "audio": {
+      "clue": "An orchestra rises in a chaotic glissando before a single crashing piano chord rings for 40 seconds.",
+      "query": "The Beatles A Day in the Life remastered",
+      "start": 0,
+      "youtubeId": "UYeV7jLBXvA"
+    },
+    "emoji": "🎖️🥁💐👥🌈",
+    "item": {
+      "name": "A bass drum",
+      "description": "Painted with the album's title, surrounded by a crowd of cut-out celebrities."
+    },
+    "visual": {
+      "icon": "🥁",
+      "colors": [
+        "#be185d",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "m-mbdtf",
+    "name": "My Beautiful Dark Twisted Fantasy",
+    "subtitle": "Kanye West",
+    "aliases": [
+      "mbdtf",
+      "kanye"
+    ],
+    "domain": "music",
+    "year": 2010,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Roc-A-Fella",
+    "creator": "Kanye West",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Excess",
+      "Fame",
+      "Self-destruction"
+    ],
+    "credits": [
+      "Artist: a Chicago producer-turned-rapper",
+      "Features: Nicki Minaj, Rick Ross, Bon Iver and more",
+      "Recorded in Hawaii"
+    ],
+    "cover": {
+      "wiki": "My Beautiful Dark Twisted Fantasy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f0/My_Beautiful_Dark_Twisted_Fantasy.jpg"
+    },
+    "tracks": [
+      "Monster",
+      "All of the Lights",
+      "Power",
+      "Runaway"
+    ],
+    "audio": {
+      "clue": "A single repeated piano note, alone, for a long moment before the beat drops.",
+      "query": "Kanye West Runaway",
+      "start": 0,
+      "youtubeId": "Bm5iA4Zupek"
+    },
+    "emoji": "👑🩰🎹🌹🔥",
+    "item": {
+      "name": "A painting by George Condo",
+      "description": "A controversial cover so explicit it was replaced by a ballerina."
+    },
+    "location": {
+      "name": "Oahu, Hawaii",
+      "description": "Where the artist holed up for months with collaborators to make the record.",
+      "wiki": "Oahu",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Oahu.jpg/960px-Oahu.jpg"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#7f1d1d",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "m-homogenic",
+    "name": "Homogenic",
+    "subtitle": "Björk",
+    "aliases": [
+      "bjork"
+    ],
+    "domain": "music",
+    "year": 1997,
+    "genres": [
+      "Electronic",
+      "Art Pop"
+    ],
+    "studio": "One Little Indian",
+    "creator": "Björk",
+    "origin": "Iceland",
+    "format": "Studio Album",
+    "themes": [
+      "Iceland",
+      "Emotion"
+    ],
+    "credits": [
+      "Artist: an Icelandic singer formerly of the Sugarcubes",
+      "Co-producers: Mark Bell & others",
+      "Strings: Icelandic String Octet"
+    ],
+    "cover": {
+      "wiki": "Homogenic",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Bj%C3%B6rk_-_Homogenic.png"
+    },
+    "tracks": [
+      "Hunter",
+      "Bachelorette",
+      "All Is Full of Love",
+      "Jóga"
+    ],
+    "audio": {
+      "clue": "Sweeping strings over glitchy beats that mimic volcanic rumbling.",
+      "query": "Bjork Joga",
+      "start": 0,
+      "youtubeId": "loB0kmz_0MM"
+    },
+    "emoji": "🇮🇸🌋🎻🤖💎",
+    "item": {
+      "name": "A pair of robots",
+      "description": "Kissing each other in the music video for a track on the album."
+    },
+    "location": {
+      "name": "Iceland",
+      "description": "The artist's homeland, whose landscapes inspired every sound.",
+      "wiki": "Iceland",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Iceland.svg/960px-Flag_of_Iceland.svg.png"
+    },
+    "visual": {
+      "icon": "🌋",
+      "colors": [
+        "#1e1b4b",
+        "#f0abfc"
+      ]
+    }
+  },
+  {
+    "id": "m-ziggy",
+    "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+    "subtitle": "David Bowie",
+    "aliases": [
+      "ziggy stardust",
+      "bowie"
+    ],
+    "domain": "music",
+    "year": 1972,
+    "genres": [
+      "Glam Rock"
+    ],
+    "studio": "RCA",
+    "creator": "David Bowie",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Alien rock star",
+      "End of the world"
+    ],
+    "credits": [
+      "Artist: a London chameleon of rock",
+      "Co-producer: Ken Scott",
+      "Guitarist: Mick Ronson"
+    ],
+    "cover": {
+      "wiki": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/01/ZiggyStardust.jpg"
+    },
+    "tracks": [
+      "Five Years",
+      "Suffragette City",
+      "Ziggy Stardust",
+      "Starman"
+    ],
+    "audio": {
+      "clue": "An acoustic-guitar ballad about a man in the sky who'd like to come and meet us.",
+      "query": "David Bowie Starman",
+      "start": 0,
+      "youtubeId": "t365MuktYQs"
+    },
+    "emoji": "⚡👨‍🎤🌟👽🎸",
+    "location": {
+      "name": "Heddon Street, London",
+      "description": "A small street off Regent Street where the cover photo was shot in the rain."
+    },
+    "visual": {
+      "icon": "🌟",
+      "colors": [
+        "#0f172a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-blonde",
+    "name": "Blonde",
+    "subtitle": "Frank Ocean",
+    "aliases": [
+      "blond",
+      "frank ocean"
+    ],
+    "domain": "music",
+    "year": 2016,
+    "genres": [
+      "R&B"
+    ],
+    "studio": "Boys Don't Cry",
+    "creator": "Frank Ocean",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Youth",
+      "Love",
+      "Memory"
+    ],
+    "credits": [
+      "Artist: a singer formerly of Odd Future",
+      "Contributors include Beyoncé, André 3000, Pharrell",
+      "Self-released"
+    ],
+    "cover": {
+      "wiki": "Blonde (Frank Ocean album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a0/Blonde_-_Frank_Ocean.jpeg"
+    },
+    "tracks": [
+      "Self Control",
+      "Ivy",
+      "Pink + White",
+      "Nights"
+    ],
+    "audio": {
+      "clue": "A song that splits exactly in half, switching beats at its midpoint.",
+      "query": "Frank Ocean Nights",
+      "start": 0,
+      "youtubeId": "r4l9bFqgMaQ"
+    },
+    "emoji": "💚🚗💇‍♂️🌴😢",
+    "item": {
+      "name": "Green-dyed hair",
+      "description": "The singer covers his face in the shower on the cover."
+    },
+    "visual": {
+      "icon": "💚",
+      "colors": [
+        "#14532d",
+        "#4ade80"
+      ]
+    }
+  },
+  {
+    "id": "m-backtoblack",
+    "name": "Back to Black",
+    "subtitle": "Amy Winehouse",
+    "aliases": [
+      "amy winehouse"
+    ],
+    "domain": "music",
+    "year": 2006,
+    "genres": [
+      "Soul"
+    ],
+    "studio": "Island",
+    "creator": "Amy Winehouse",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Addiction",
+      "Heartbreak"
+    ],
+    "credits": [
+      "Artist: a North London singer with a beehive",
+      "Producers: Mark Ronson & Salaam Remi",
+      "Backing band: the Dap-Kings"
+    ],
+    "cover": {
+      "wiki": "Back to Black",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Amy_Winehouse_-_Back_to_Black_%28album%29.png"
+    },
+    "tracks": [
+      "Tears Dry on Their Own",
+      "You Know I'm No Good",
+      "Back to Black",
+      "Rehab"
+    ],
+    "audio": {
+      "clue": "A 60s girl-group soul stomp with brassy horns, refusing to go to rehab.",
+      "query": "Amy Winehouse Rehab",
+      "start": 0,
+      "youtubeId": "KUmZp8pR1uc"
+    },
+    "emoji": "🖤🍷🐝💄🎷",
+    "item": {
+      "name": "A towering beehive hairdo",
+      "description": "The singer's trademark, paired with dramatic cat-eye liner."
+    },
+    "location": {
+      "name": "Camden Town",
+      "description": "The London neighbourhood forever associated with the singer.",
+      "wiki": "Camden Town",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Camden_Town_9.jpg/960px-Camden_Town_9.jpg"
+    },
+    "visual": {
+      "icon": "🖤",
+      "colors": [
+        "#0a0a0a",
+        "#fafafa"
+      ]
+    }
+  },
+  {
+    "id": "m-appetite",
+    "name": "Appetite for Destruction",
+    "subtitle": "Guns N' Roses",
+    "aliases": [
+      "guns n roses",
+      "gnr"
+    ],
+    "domain": "music",
+    "year": 1987,
+    "genres": [
+      "Hard Rock"
+    ],
+    "studio": "Geffen",
+    "creator": "Guns N' Roses",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Excess",
+      "Los Angeles"
+    ],
+    "credits": [
+      "Artist: an L.A. band named after two earlier bands",
+      "Producer: Mike Clink",
+      "Best-selling debut in US history"
+    ],
+    "cover": {
+      "wiki": "Appetite for Destruction",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/GunsnRosesAppetiteforDestructionalbumcover.jpg"
+    },
+    "tracks": [
+      "Nightrain",
+      "Paradise City",
+      "Welcome to the Jungle",
+      "Sweet Child o' Mine"
+    ],
+    "audio": {
+      "clue": "A twinkling, circular guitar riff born from a warm-up exercise.",
+      "query": "Guns N Roses Sweet Child O Mine",
+      "start": 0,
+      "youtubeId": "1w7OgIMMRc4"
+    },
+    "emoji": "🌹🔫💀✝️🌴",
+    "item": {
+      "name": "A cross with five skulls",
+      "description": "Each skull represents one band member on the reissued cover."
+    },
+    "location": {
+      "name": "Sunset Strip",
+      "description": "The L.A. stretch of clubs where the band cut its teeth.",
+      "wiki": "Sunset Strip",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Sunset_Tower%2C_8358_Sunset_Blvd._West_Hollywood_2383.jpg/960px-Sunset_Tower%2C_8358_Sunset_Blvd._West_Hollywood_2383.jpg"
+    },
+    "visual": {
+      "icon": "🌹",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-futurenostalgia",
+    "name": "Future Nostalgia",
+    "subtitle": "Dua Lipa",
+    "aliases": [
+      "dua lipa"
+    ],
+    "domain": "music",
+    "year": 2020,
+    "genres": [
+      "Disco",
+      "Pop"
+    ],
+    "studio": "Warner",
+    "creator": "Dua Lipa",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Disco revival",
+      "Confidence"
+    ],
+    "credits": [
+      "Artist: a London-born pop star of Kosovar-Albanian descent",
+      "Producers include Stuart Price & Koz",
+      "Grammy for Best Pop Vocal Album"
+    ],
+    "cover": {
+      "wiki": "Future Nostalgia",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f5/Dua_Lipa_-_Future_Nostalgia_%28Official_Album_Cover%29.png"
+    },
+    "tracks": [
+      "Break My Heart",
+      "Physical",
+      "Levitating",
+      "Don't Start Now"
+    ],
+    "audio": {
+      "clue": "A slinky disco bass line and cowbell telling an ex not to come around.",
+      "query": "Dua Lipa Don't Start Now",
+      "start": 0,
+      "youtubeId": "oygrmJFKYZY"
+    },
+    "emoji": "🪩🚗💃🌙✨",
+    "item": {
+      "name": "A pink vintage convertible",
+      "description": "The singer drives it on the retro cover."
+    },
+    "visual": {
+      "icon": "🪩",
+      "colors": [
+        "#be185d",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "m-afterhours",
+    "name": "After Hours",
+    "subtitle": "The Weeknd",
+    "aliases": [
+      "the weeknd",
+      "weeknd"
+    ],
+    "domain": "music",
+    "year": 2020,
+    "genres": [
+      "Synth-pop",
+      "R&B"
+    ],
+    "studio": "Republic",
+    "creator": "The Weeknd",
+    "origin": "Canada",
+    "format": "Studio Album",
+    "themes": [
+      "Hedonism",
+      "Regret"
+    ],
+    "credits": [
+      "Artist: a Toronto singer born Abel Tesfaye",
+      "Producers include Max Martin & Metro Boomin",
+      "Released under XO"
+    ],
+    "cover": {
+      "wiki": "After Hours (album)"
+    },
+    "tracks": [
+      "In Your Eyes",
+      "Heartless",
+      "Save Your Tears",
+      "Blinding Lights"
+    ],
+    "audio": {
+      "clue": "A pounding 80s synth riff and driving drum machine, made for night drives.",
+      "query": "The Weeknd Blinding Lights",
+      "start": 0,
+      "youtubeId": "4NRXx6U8ABQ"
+    },
+    "emoji": "🔴🩹🌃🎰🚗",
+    "item": {
+      "name": "A red suit and a bloody nose",
+      "description": "The character the singer played across the whole era."
+    },
+    "location": {
+      "name": "Las Vegas",
+      "description": "The neon city where the album's music videos spiral out of control.",
+      "wiki": "Las Vegas",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Center_Strip_Before_Sunrise.jpg/960px-Center_Strip_Before_Sunrise.jpg"
+    },
+    "visual": {
+      "icon": "🔴",
+      "colors": [
+        "#7f1d1d",
+        "#fb7185"
+      ]
+    }
+  },
+  {
+    "id": "m-hybridtheory",
+    "name": "Hybrid Theory",
+    "subtitle": "Linkin Park",
+    "aliases": [
+      "linkin park"
+    ],
+    "domain": "music",
+    "year": 2000,
+    "genres": [
+      "Nu Metal"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Linkin Park",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Frustration",
+      "Self-doubt"
+    ],
+    "credits": [
+      "Artist: a band from Agoura Hills, California",
+      "Producer: Don Gilmore",
+      "Best-selling debut of the 21st century"
+    ],
+    "cover": {
+      "wiki": "Hybrid Theory",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2a/Linkin_Park_Hybrid_Theory_Album_Cover.jpg"
+    },
+    "tracks": [
+      "Papercut",
+      "One Step Closer",
+      "Crawling",
+      "In the End"
+    ],
+    "audio": {
+      "clue": "A haunting piano riff, then rapped verses and a screamed chorus about trying so hard.",
+      "query": "Linkin Park In the End",
+      "start": 0,
+      "youtubeId": "eVTXPUF4Oz4"
+    },
+    "emoji": "🪖🦋🎸🎤💿",
+    "item": {
+      "name": "A winged soldier",
+      "description": "A sketched figure with dragonfly wings on the cover."
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#3f3f46",
+        "#e7e5e4"
+      ]
+    }
+  },
+  {
+    "id": "m-whatsgoingon",
+    "name": "What's Going On",
+    "subtitle": "Marvin Gaye",
+    "aliases": [
+      "marvin gaye"
+    ],
+    "domain": "music",
+    "year": 1971,
+    "genres": [
+      "Soul"
+    ],
+    "studio": "Tamla",
+    "creator": "Marvin Gaye",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "War",
+      "Ecology",
+      "Poverty"
+    ],
+    "credits": [
+      "Artist: a Motown singer taking creative control",
+      "Released on Motown's Tamla label",
+      "One continuous song cycle"
+    ],
+    "cover": {
+      "wiki": "What's Going On (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/84/MarvinGayeWhat%27sGoingOnalbumcover.jpg"
+    },
+    "tracks": [
+      "What's Happening Brother",
+      "Inner City Blues (Make Me Wanna Holler)",
+      "Mercy Mercy Me (The Ecology)",
+      "What's Going On"
+    ],
+    "audio": {
+      "clue": "Party chatter and a smooth alto sax open a gentle protest song.",
+      "query": "Marvin Gaye What's Going On",
+      "start": 0,
+      "youtubeId": "H-kA3UtBj4M"
+    },
+    "emoji": "☮️🌧️🎤🇺🇸🌍",
+    "location": {
+      "name": "Detroit",
+      "description": "Motor City, home of the label that didn't want to release it.",
+      "wiki": "Detroit",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Detroit_Skyline_from_Windsor_2025-09-01.jpg/960px-Detroit_Skyline_from_Windsor_2025-09-01.jpg"
+    },
+    "visual": {
+      "icon": "☮️",
+      "colors": [
+        "#0c4a6e",
+        "#bae6fd"
+      ]
+    }
+  },
+  {
+    "id": "m-unveranosinti",
+    "name": "Un Verano Sin Ti",
+    "subtitle": "Bad Bunny",
+    "aliases": [
+      "bad bunny"
+    ],
+    "domain": "music",
+    "year": 2022,
+    "genres": [
+      "Reggaeton",
+      "Latin Pop"
+    ],
+    "studio": "Rimas Entertainment",
+    "creator": "Bad Bunny",
+    "origin": "Puerto Rico",
+    "format": "Studio Album",
+    "themes": [
+      "Summer",
+      "Heartbreak",
+      "Puerto Rico"
+    ],
+    "credits": [
+      "Artist: a Puerto Rican trap and reggaeton superstar",
+      "Producers include Tainy & MAG",
+      "Most-streamed album on Spotify in 2022"
+    ],
+    "cover": {
+      "wiki": "Un Verano Sin Ti",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Bad_Bunny_-_Un_Verano_Sin_Ti.png"
+    },
+    "tracks": [
+      "Ojitos Lindos",
+      "Moscow Mule",
+      "Me Porto Bonito",
+      "Tití Me Preguntó"
+    ],
+    "audio": {
+      "clue": "A dembow beat with a playful hook about an aunt asking how many girlfriends you have.",
+      "query": "Bad Bunny Titi Me Pregunto",
+      "start": 0,
+      "youtubeId": "Cr8K88UcO0s"
+    },
+    "emoji": "🐰🏝️☀️💔🌴",
+    "item": {
+      "name": "A crying heart on a beach",
+      "description": "The album's cover: a red heart sitting alone in the sand."
+    },
+    "location": {
+      "name": "Puerto Rico",
+      "description": "The artist's island home, celebrated in the album's beach anthems.",
+      "wiki": "Puerto Rico",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_Puerto_Rico.svg/960px-Flag_of_Puerto_Rico.svg.png"
+    },
+    "visual": {
+      "icon": "🐰",
+      "colors": [
+        "#0ea5e9",
+        "#fde68a"
+      ]
+    }
+  }
+]

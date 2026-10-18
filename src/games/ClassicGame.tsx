@@ -16,7 +16,7 @@ interface Column {
 const COLUMNS: Record<Domain, Column[]> = {
   games: [
     { label: 'Genre', get: (w) => w.genres },
-    { label: 'Platform', get: (w) => w.format },
+    { label: 'Platforms', get: (w) => w.platforms ?? [w.format] },
     { label: 'Studio', get: (w) => w.studio },
     { label: 'Origin', get: (w) => w.origin },
     { label: 'Year', get: (w) => w.year },

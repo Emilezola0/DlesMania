@@ -1,10 +1,12 @@
-import { useMemo, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
+import { AudioClip, SNIPPETS } from '../components/AudioClip';
+import { BlurImage } from '../components/BlurImage';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
 import { candidates, domainInfo, getWork } from '../data';
 import { hintsFor } from '../lib/hints';
 import { scoreFor } from '../lib/scoring';
-import type { GameProps, GameType, Work } from '../types';
+import type { Clue as ClueRef, GameProps, GameType, Work } from '../types';
 import { GAME_META } from './meta';
 import { PixelCanvas } from './PixelCanvas';
 
@@ -12,28 +14,72 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-center text-xs uppercase tracking-widest text-zinc-500">{children}</p>;
 }
 
-/** The main clue for each text/visual single-answer mini-game. */
-function Clue({ type, w, wrong, done }: { type: GameType; w: Work; wrong: number; done: boolean }) {
+/** Image clue (item / location) with a text fallback when there's no picture or it fails to load. */
+function PictureClue({ label, clue, wrong, done }: { label: string; clue: ClueRef; wrong: number; done: boolean }) {
+  const [broken, setBroken] = useState(false);
+  const showImage = clue.image && !broken;
+  return (
+    <div className="space-y-4">
+      <Label>{label}</Label>
+      {showImage && <BlurImage src={clue.image!} alt={clue.name} step={wrong} revealed={done} onError={() => setBroken(true)} />}
+      <p className={`text-center leading-relaxed text-zinc-100 ${showImage ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl'}`}>{clue.description}</p>
+    </div>
+  );
+}
+
+interface ClueProps {
+  type: GameType;
+  w: Work;
+  wrong: number;
+  done: boolean;
+  clipOk: boolean;
+  onClipUnavailable: () => void;
+}
+
+/** The main clue for each single-answer mini-game. */
+function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
   switch (type) {
     case 'quote':
+      if (!w.quote && w.tracks) {
+        // Albums: reveal one more track title per miss.
+        const shown = done ? w.tracks.length : Math.min(w.tracks.length, 1 + wrong);
+        return (
+          <div className="space-y-3">
+            <Label>Tracklist</Label>
+            <ol className="mx-auto max-w-sm space-y-2">
+              {w.tracks.map((t, i) => (
+                <li key={t} className={`flex items-center gap-3 rounded-lg px-4 py-2.5 ${i < shown ? 'animate-pop bg-zinc-800' : 'bg-zinc-800/40'}`}>
+                  <span className="font-mono text-xs text-zinc-500">{String(i + 1).padStart(2, '0')}</span>
+                  <span className={i < shown ? 'font-semibold text-white' : 'select-none text-zinc-600 blur-[3px]'}>{i < shown ? t : '████████████'}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        );
+      }
       return (
-        <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-white sm:text-3xl">
-          “{w.quote!.text}”
-        </blockquote>
+        <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-white sm:text-3xl">“{w.quote!.text}”</blockquote>
       );
     case 'audio':
+      if (w.audio?.youtubeId && clipOk) {
+        return (
+          <AudioClip
+            videoId={w.audio.youtubeId}
+            start={w.audio.start}
+            step={Math.min(wrong, SNIPPETS.length - 1)}
+            revealed={done}
+            onUnavailable={onClipUnavailable}
+          />
+        );
+      }
       return (
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="flex h-12 items-end gap-1" aria-hidden>
             {Array.from({ length: 24 }, (_, i) => (
-              <span
-                key={i}
-                className="w-1.5 animate-pulse rounded-full bg-gradient-to-t from-indigo-500 to-pink-400"
-                style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${(i % 6) * 120}ms` }}
-              />
+              <span key={i} className="w-1.5 animate-eq rounded-full bg-gradient-to-t from-indigo-500 to-pink-400" style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${(i % 6) * 120}ms` }} />
             ))}
           </div>
-          <p className="text-lg leading-relaxed text-zinc-100 sm:text-xl">{w.audio}</p>
+          <p className="text-lg leading-relaxed text-zinc-100 sm:text-xl">{w.audio!.clue}</p>
         </div>
       );
     case 'emoji': {
@@ -53,21 +99,11 @@ function Clue({ type, w, wrong, done }: { type: GameType; w: Work; wrong: number
       );
     }
     case 'visual':
-      return <PixelCanvas icon={w.visual!.icon} colors={w.visual!.colors} step={done ? 99 : wrong} />;
+      return <PixelCanvas src={w.cover?.image} icon={w.visual?.icon ?? '❔'} colors={w.visual?.colors ?? ['#27272a', '#52525b']} step={done ? 99 : wrong} />;
     case 'item':
-      return (
-        <div className="space-y-2">
-          <Label>Iconic item</Label>
-          <p className="text-center text-xl leading-relaxed text-zinc-100 sm:text-2xl">{w.item!.description}</p>
-        </div>
-      );
+      return <PictureClue label="Iconic item" clue={w.item!} wrong={wrong} done={done} />;
     case 'location':
-      return (
-        <div className="space-y-2">
-          <Label>Setting</Label>
-          <p className="text-center text-xl leading-relaxed text-zinc-100 sm:text-2xl">{w.location!.description}</p>
-        </div>
-      );
+      return <PictureClue label="Setting" clue={w.location!} wrong={wrong} done={done} />;
     case 'creator':
       return (
         <div className="space-y-2">
@@ -84,8 +120,10 @@ function Clue({ type, w, wrong, done }: { type: GameType; w: Work; wrong: number
 export default function ClueGame({ spec, record, onChange }: GameProps) {
   const target = getWork(spec.targetId!);
   const meta = GAME_META[spec.type];
+  const [clipOk, setClipOk] = useState(true);
+  const hasClip = spec.type === 'audio' && !!target.audio?.youtubeId && clipOk;
   const pool = useMemo(() => candidates('classic', target.domain), [target.domain]);
-  const hints = useMemo(() => hintsFor(spec.type, target), [spec.type, target]);
+  const hints = useMemo(() => hintsFor(spec.type, target, { hasClip }), [spec.type, target, hasClip]);
   const wrong = record.guesses.filter((g) => g !== target.id);
   const done = record.status !== 'playing';
   const revealed = done ? hints.length : Math.min(wrong.length, hints.length);
@@ -103,19 +141,17 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
         Which <span className="font-semibold text-white">{domainInfo(target.domain).noun}</span> is this?
       </p>
 
-      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6 sm:p-10">
-        <Clue type={spec.type} w={target} wrong={wrong.length} done={done} />
+      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 sm:p-8">
+        <Clue type={spec.type} w={target} wrong={wrong.length} done={done} clipOk={clipOk} onClipUnavailable={() => setClipOk(false)} />
       </div>
 
-      {!done && (
-        <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(target.domain).label}…`} />
-      )}
+      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(target.domain).label}…`} />}
 
       <div className="flex justify-center gap-1.5" aria-label="Attempts">
         {Array.from({ length: meta.maxAttempts }, (_, i) => {
           const g = record.guesses[i];
           const cls = !g ? 'bg-zinc-800' : g === target.id ? 'bg-hit' : 'bg-miss';
-          return <span key={i} className={`h-2 w-8 rounded-full transition-colors ${cls}`} />;
+          return <span key={i} className={`h-2 w-8 rounded-full transition-colors duration-500 ${cls}`} />;
         })}
       </div>
 

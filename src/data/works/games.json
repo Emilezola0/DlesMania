@@ -1,0 +1,1981 @@
+[
+  {
+    "id": "g-ocarina",
+    "name": "The Legend of Zelda: Ocarina of Time",
+    "aliases": [
+      "ocarina of time",
+      "zelda oot",
+      "oot"
+    ],
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Nintendo",
+    "creator": "Shigeru Miyamoto",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Link",
+      "Princess Zelda",
+      "Ganondorf",
+      "Navi"
+    ],
+    "themes": [
+      "Time travel",
+      "Coming of age"
+    ],
+    "credits": [
+      "Directors: Eiji Aonuma, Yoichi Yamada & others",
+      "Producer: Shigeru Miyamoto",
+      "Composer: Koji Kondo"
+    ],
+    "cover": {
+      "wiki": "The Legend of Zelda: Ocarina of Time",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/57/The_Legend_of_Zelda_Ocarina_of_Time.jpg"
+    },
+    "quote": {
+      "text": "Hey! Listen!",
+      "speaker": "A tiny glowing fairy companion"
+    },
+    "audio": {
+      "clue": "A gentle, lilting tune played on a clay wind instrument, used to call a loyal red-maned horse.",
+      "query": "Ocarina of Time Epona's Song",
+      "start": 0,
+      "youtubeId": "MBU2IJ1Mnjw"
+    },
+    "emoji": "🧝⏳🎶🗡️🐴",
+    "item": {
+      "name": "The Master Sword",
+      "description": "A blade of evil's bane, resting in a pedestal inside the Temple of Time.",
+      "wiki": "Master Sword",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Master_Sword_Lead.png"
+    },
+    "location": {
+      "name": "Hyrule Field",
+      "description": "A vast grassy plain at the heart of the kingdom, connecting a ranch, a castle town and a volcano.",
+      "wiki": "Hyrule"
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#14532d",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "g-smb",
+    "name": "Super Mario Bros.",
+    "aliases": [
+      "mario bros",
+      "super mario"
+    ],
+    "domain": "games",
+    "year": 1985,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nintendo",
+    "creator": "Shigeru Miyamoto",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Luigi",
+      "Bowser",
+      "Princess Peach"
+    ],
+    "themes": [
+      "Rescue",
+      "Platforming"
+    ],
+    "credits": [
+      "Director: Shigeru Miyamoto",
+      "Co-designer: Takashi Tezuka",
+      "Composer: Koji Kondo"
+    ],
+    "cover": {
+      "wiki": "Super Mario Bros.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png"
+    },
+    "quote": {
+      "text": "Thank you! But our princess is in another castle!",
+      "speaker": "A mushroom retainer"
+    },
+    "audio": {
+      "clue": "A bouncy, calypso-flavoured overworld melody that is among the most recognised tunes in gaming.",
+      "query": "Super Mario Bros overworld theme NES",
+      "start": 0,
+      "youtubeId": "iy3qq7zc4EY"
+    },
+    "emoji": "🍄👨‍🔧🐢🏰👸",
+    "item": {
+      "name": "Super Mushroom",
+      "description": "A red-and-white capped fungus that makes the hero grow twice his size.",
+      "wiki": "Super Mushroom"
+    },
+    "location": {
+      "name": "World 1-1",
+      "description": "A blue sky, rolling green hills, floating brick blocks and green warp pipes, ending at a flagpole.",
+      "wiki": "Mushroom Kingdom"
+    },
+    "visual": {
+      "icon": "🍄",
+      "colors": [
+        "#1d4ed8",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "g-minecraft",
+    "name": "Minecraft",
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Sandbox",
+      "Survival"
+    ],
+    "studio": "Mojang",
+    "creator": "Markus Persson",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Steve",
+      "Creeper",
+      "Ender Dragon"
+    ],
+    "themes": [
+      "Crafting",
+      "Exploration",
+      "Survival"
+    ],
+    "credits": [
+      "Original creator: Markus \"Notch\" Persson",
+      "Lead designer: Jens Bergensten",
+      "Composer: C418"
+    ],
+    "cover": {
+      "wiki": "Minecraft"
+    },
+    "audio": {
+      "clue": "Sparse, wistful ambient piano that drifts in while you stand alone in a blocky world at dawn.",
+      "query": "C418 Sweden Minecraft",
+      "start": 0,
+      "youtubeId": "aBkTkxKDduc"
+    },
+    "emoji": "⛏️🧱🧟💎🐷",
+    "item": {
+      "name": "Diamond Pickaxe",
+      "description": "A cyan-tipped tool crafted from rare gems, needed to mine obsidian."
+    },
+    "location": {
+      "name": "The Nether",
+      "description": "A hellish dimension of lava seas and red rock, reached through a purple-swirling obsidian frame."
+    },
+    "visual": {
+      "icon": "⛏️",
+      "colors": [
+        "#365314",
+        "#78350f"
+      ]
+    }
+  },
+  {
+    "id": "g-hl2",
+    "name": "Half-Life 2",
+    "aliases": [
+      "half life 2",
+      "hl2"
+    ],
+    "domain": "games",
+    "year": 2004,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "Valve",
+    "creator": "Gabe Newell",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Gordon Freeman",
+      "Alyx Vance",
+      "G-Man"
+    ],
+    "themes": [
+      "Dystopia",
+      "Alien occupation"
+    ],
+    "credits": [
+      "Writer: Marc Laidlaw",
+      "Composer: Kelly Bailey",
+      "Engine: Source"
+    ],
+    "cover": {
+      "wiki": "Half-Life 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg"
+    },
+    "quote": {
+      "text": "Rise and shine, Mister Freeman. Rise and... shine.",
+      "speaker": "A mysterious man in a blue suit"
+    },
+    "emoji": "👓🔧🛸🏙️🧪",
+    "item": {
+      "name": "The Gravity Gun",
+      "description": "A device that grabs and launches objects — saw blades included.",
+      "wiki": "Gravity gun",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Gravity_gun.png"
+    },
+    "location": {
+      "name": "City 17",
+      "description": "An Eastern European city under alien occupation, dominated by a towering Citadel.",
+      "wiki": "City 17"
+    },
+    "visual": {
+      "icon": "🔧",
+      "colors": [
+        "#7c2d12",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-witcher3",
+    "name": "The Witcher 3: Wild Hunt",
+    "aliases": [
+      "witcher 3",
+      "the witcher 3"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "CD Projekt Red",
+    "creator": "Konrad Tomaszkiewicz",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Geralt of Rivia",
+      "Ciri",
+      "Yennefer"
+    ],
+    "themes": [
+      "Monster hunting",
+      "Found family"
+    ],
+    "credits": [
+      "Director: Konrad Tomaszkiewicz",
+      "Based on novels by Andrzej Sapkowski",
+      "Composer: Marcin Przybyłowicz"
+    ],
+    "cover": {
+      "wiki": "The Witcher 3: Wild Hunt",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg"
+    },
+    "quote": {
+      "text": "Wind's howling.",
+      "speaker": "A white-haired monster hunter"
+    },
+    "audio": {
+      "clue": "Haunting folk vocals over pounding drums and hurdy-gurdy, sung in a Slavic-sounding tongue.",
+      "query": "Witcher 3 The Fields of Ard Skellig",
+      "start": 10,
+      "youtubeId": "NknjE2SBPxw"
+    },
+    "emoji": "🐺⚔️🧙‍♂️👧❄️",
+    "item": {
+      "name": "Two swords: steel and silver",
+      "description": "One blade for humans, one for monsters — always carried on the back."
+    },
+    "location": {
+      "name": "Skellige",
+      "description": "A windswept archipelago of Norse-inspired clans, longships and stormy cliffs."
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#1e293b",
+        "#94a3b8"
+      ]
+    }
+  },
+  {
+    "id": "g-darksouls",
+    "name": "Dark Souls",
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Hidetaka Miyazaki",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Solaire of Astora",
+      "Gwyn"
+    ],
+    "themes": [
+      "Decay",
+      "Perseverance"
+    ],
+    "credits": [
+      "Director: Hidetaka Miyazaki",
+      "Composer: Motoi Sakuraba",
+      "Publisher: Namco Bandai Games"
+    ],
+    "cover": {
+      "wiki": "Dark Souls (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg"
+    },
+    "quote": {
+      "text": "Praise the Sun!",
+      "speaker": "A cheerful knight with a sun on his tabard"
+    },
+    "audio": {
+      "clue": "A melancholic, slow string-and-harp piece that plays at a crumbling shrine around a bonfire.",
+      "query": "Dark Souls Firelink Shrine theme",
+      "start": 0,
+      "youtubeId": "EL9dArwG5cE"
+    },
+    "emoji": "🔥🗡️💀☀️🔁",
+    "item": {
+      "name": "Estus Flask",
+      "description": "A green-glass bottle refilled with healing fire at every bonfire."
+    },
+    "location": {
+      "name": "Firelink Shrine",
+      "description": "A ruined hub with a bonfire, a crestfallen warrior and paths leading in every direction."
+    },
+    "visual": {
+      "icon": "🔥",
+      "colors": [
+        "#18181b",
+        "#ea580c"
+      ]
+    }
+  },
+  {
+    "id": "g-portal",
+    "name": "Portal",
+    "domain": "games",
+    "year": 2007,
+    "genres": [
+      "Puzzle",
+      "First-Person"
+    ],
+    "studio": "Valve",
+    "creator": "Kim Swift",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Chell",
+      "GLaDOS"
+    ],
+    "themes": [
+      "Science",
+      "Dark humour"
+    ],
+    "credits": [
+      "Project lead: Kim Swift",
+      "Writers: Erik Wolpaw & Chet Faliszek",
+      "End-credits song: Jonathan Coulton"
+    ],
+    "cover": {
+      "wiki": "Portal (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg"
+    },
+    "quote": {
+      "text": "The cake is a lie.",
+      "speaker": "Scrawled on a hidden wall"
+    },
+    "audio": {
+      "clue": "A cheerful end-credits song sung by the passive-aggressive AI who spent the game trying to kill you.",
+      "query": "Portal Still Alive Jonathan Coulton",
+      "start": 8,
+      "youtubeId": "RSsstXfcRWw"
+    },
+    "emoji": "🔵🟠🎂🤖🧪",
+    "item": {
+      "name": "Weighted Companion Cube",
+      "description": "A pink-hearted cube you must, tragically, incinerate.",
+      "wiki": "Weighted Companion Cube",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/34/Portal_Companion_Cube.png"
+    },
+    "location": {
+      "name": "Aperture Science Enrichment Center",
+      "description": "Sterile white test chambers watched over by a sardonic computer.",
+      "wiki": "Aperture Science"
+    },
+    "visual": {
+      "icon": "🎂",
+      "colors": [
+        "#0ea5e9",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-pokemon-rb",
+    "name": "Pokémon Red and Blue",
+    "aliases": [
+      "pokemon red",
+      "pokemon blue",
+      "pokemon red blue"
+    ],
+    "domain": "games",
+    "year": 1996,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Game Freak",
+    "creator": "Satoshi Tajiri",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Pikachu",
+      "Professor Oak",
+      "Blue"
+    ],
+    "themes": [
+      "Collecting",
+      "Friendship"
+    ],
+    "credits": [
+      "Director: Satoshi Tajiri",
+      "Composer: Junichi Masuda",
+      "Character design: Ken Sugimori"
+    ],
+    "cover": {
+      "wiki": "Pokémon Red, Blue, and Yellow",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Pok%C3%A9mon_Red_and_Blue_cover_art.webp"
+    },
+    "audio": {
+      "clue": "An upbeat 8-bit march that plays as you leave your quiet hometown for the first time.",
+      "query": "Pokemon Red Blue Route 1 theme",
+      "start": 0,
+      "youtubeId": "u0G12EBW4KY"
+    },
+    "emoji": "🎒🔴⚪🐭⚡",
+    "item": {
+      "name": "Poké Ball",
+      "description": "A red-and-white capsule that fits in your pocket — and holds a creature.",
+      "wiki": "Poké Ball"
+    },
+    "location": {
+      "name": "Kanto",
+      "description": "A region of eight gyms, from a tiny hometown called Pallet to the Indigo Plateau.",
+      "wiki": "Kanto (Pokémon)"
+    },
+    "visual": {
+      "icon": "⚡",
+      "colors": [
+        "#dc2626",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-tlou",
+    "name": "The Last of Us",
+    "aliases": [
+      "last of us",
+      "tlou"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Action-Adventure",
+      "Survival Horror"
+    ],
+    "studio": "Naughty Dog",
+    "creator": "Neil Druckmann",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Joel",
+      "Ellie",
+      "Tess"
+    ],
+    "themes": [
+      "Survival",
+      "Parenthood"
+    ],
+    "credits": [
+      "Creative director: Neil Druckmann",
+      "Game director: Bruce Straley",
+      "Composer: Gustavo Santaolalla"
+    ],
+    "cover": {
+      "wiki": "The Last of Us"
+    },
+    "quote": {
+      "text": "Endure and survive.",
+      "speaker": "A comic book a teenage girl reads"
+    },
+    "audio": {
+      "clue": "A sparse, plaintive melody plucked on a small Andean string instrument, full of empty space.",
+      "query": "The Last of Us main theme Santaolalla",
+      "start": 0,
+      "youtubeId": "Pt1pOY3_W64"
+    },
+    "emoji": "🍄🧟👨👧🦒",
+    "item": {
+      "name": "Firefly pendant",
+      "description": "A dog-tag stamped with a resistance group's insignia."
+    },
+    "location": {
+      "name": "Boston Quarantine Zone",
+      "description": "A walled, military-ruled city 20 years after a fungal outbreak."
+    },
+    "visual": {
+      "icon": "🦒",
+      "colors": [
+        "#14532d",
+        "#713f12"
+      ]
+    }
+  },
+  {
+    "id": "g-tetris",
+    "name": "Tetris",
+    "domain": "games",
+    "year": 1984,
+    "genres": [
+      "Puzzle"
+    ],
+    "studio": "Soviet Academy of Sciences",
+    "creator": "Alexey Pajitnov",
+    "origin": "Soviet Union",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "themes": [
+      "Puzzle",
+      "Speed"
+    ],
+    "credits": [
+      "Creator: Alexey Pajitnov",
+      "Developed on an Electronika 60",
+      "Famous handheld port bundled with the Game Boy"
+    ],
+    "cover": {
+      "wiki": "Tetris",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Tetris_logo_2019.svg/960px-Tetris_logo_2019.svg.png"
+    },
+    "audio": {
+      "clue": "A brisk 19th-century Russian folk song about a peddler, arranged as a chiptune that speeds up.",
+      "query": "Tetris Game Boy Type A theme",
+      "start": 0,
+      "youtubeId": "z3ZiVn5L9vM"
+    },
+    "emoji": "🟦🟨🟥⬇️🧱",
+    "item": {
+      "name": "The I-piece",
+      "description": "A long straight bar of four squares, prized for clearing four lines at once.",
+      "wiki": "Tetromino",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/960px-All_5_free_tetrominoes.svg.png"
+    },
+    "location": {
+      "name": "Saint Basil's Cathedral",
+      "description": "Onion-domed Moscow church that famously decorated many versions' backgrounds.",
+      "wiki": "Saint Basil's Cathedral",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Basil%27s_Cathedral_in_Moscow.jpg/960px-Saint_Basil%27s_Cathedral_in_Moscow.jpg"
+    },
+    "visual": {
+      "icon": "🟦",
+      "colors": [
+        "#312e81",
+        "#06b6d4"
+      ]
+    }
+  },
+  {
+    "id": "g-hollowknight",
+    "name": "Hollow Knight",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Metroidvania"
+    ],
+    "studio": "Team Cherry",
+    "creator": "Ari Gibson",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Knight",
+      "Hornet"
+    ],
+    "themes": [
+      "Isolation",
+      "Ruined kingdom"
+    ],
+    "credits": [
+      "Directors: Ari Gibson & William Pellen",
+      "Composer: Christopher Larkin",
+      "Funded via Kickstarter"
+    ],
+    "cover": {
+      "wiki": "Hollow Knight",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A lonely, rain-soaked piano and string theme for a small town perched above a ruined kingdom.",
+      "query": "Hollow Knight Dirtmouth Christopher Larkin",
+      "start": 0,
+      "youtubeId": "9Vdv01LsnQM"
+    },
+    "emoji": "🐞🗡️🕳️🦋👑",
+    "item": {
+      "name": "The Nail",
+      "description": "A small, blunt blade wielded by a tiny masked vessel."
+    },
+    "location": {
+      "name": "Hallownest",
+      "description": "A vast, ruined underground kingdom of insects beneath a sleepy town."
+    },
+    "visual": {
+      "icon": "🐞",
+      "colors": [
+        "#0f172a",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "g-ff7",
+    "name": "Final Fantasy VII",
+    "aliases": [
+      "ff7",
+      "ffvii",
+      "final fantasy 7"
+    ],
+    "domain": "games",
+    "year": 1997,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Square",
+    "creator": "Hironobu Sakaguchi",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Nintendo",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Cloud Strife",
+      "Aerith Gainsborough",
+      "Sephiroth",
+      "Tifa Lockhart"
+    ],
+    "themes": [
+      "Eco-terrorism",
+      "Identity"
+    ],
+    "credits": [
+      "Director: Yoshinori Kitase",
+      "Producer: Hironobu Sakaguchi",
+      "Composer: Nobuo Uematsu"
+    ],
+    "cover": {
+      "wiki": "Final Fantasy VII",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Final_Fantasy_VII_Box_Art.jpg"
+    },
+    "quote": {
+      "text": "Let's mosey.",
+      "speaker": "A spiky-haired ex-soldier"
+    },
+    "audio": {
+      "clue": "A thunderous final-boss theme with a Latin choir chanting over driving orchestra and rock.",
+      "query": "Final Fantasy VII One-Winged Angel original",
+      "start": 0,
+      "youtubeId": "mYdf0yqK_Fc"
+    },
+    "emoji": "☄️🗡️🌸🏙️⚡",
+    "item": {
+      "name": "Buster Sword",
+      "description": "An enormous broad blade, almost as tall as the hero carrying it.",
+      "wiki": "Buster Sword",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Busterswordvii.png"
+    },
+    "location": {
+      "name": "Midgar",
+      "description": "A plate-covered industrial metropolis powered by reactors draining the planet's life.",
+      "wiki": "Midgar",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/20/FFVIImidgar.jpg"
+    },
+    "visual": {
+      "icon": "☄️",
+      "colors": [
+        "#164e63",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "g-gtasa",
+    "name": "Grand Theft Auto: San Andreas",
+    "aliases": [
+      "gta san andreas",
+      "gta sa"
+    ],
+    "domain": "games",
+    "year": 2004,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Rockstar North",
+    "creator": "Leslie Benzies",
+    "origin": "United Kingdom",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Carl Johnson",
+      "Big Smoke",
+      "Sweet"
+    ],
+    "themes": [
+      "Gang life",
+      "1990s California"
+    ],
+    "credits": [
+      "Producer: Leslie Benzies",
+      "Writer: Dan Houser",
+      "Publisher: Rockstar Games"
+    ],
+    "cover": {
+      "wiki": "Grand Theft Auto: San Andreas",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg"
+    },
+    "quote": {
+      "text": "Ah shit, here we go again.",
+      "speaker": "A man returning home for his mother's funeral"
+    },
+    "emoji": "🌴🚲💚🔫🍗",
+    "item": {
+      "name": "A green Grove Street outfit",
+      "description": "The colour of the protagonist's home gang."
+    },
+    "location": {
+      "name": "Los Santos",
+      "description": "A sun-baked early-90s city parody of Los Angeles, home to Grove Street.",
+      "wiki": "Los Santos (Grand Theft Auto)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Grand_Theft_Auto_V_Los_Santos.webp"
+    },
+    "visual": {
+      "icon": "🌴",
+      "colors": [
+        "#166534",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-sf2",
+    "name": "Street Fighter II",
+    "aliases": [
+      "street fighter 2",
+      "sf2"
+    ],
+    "domain": "games",
+    "year": 1991,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "Capcom",
+    "creator": "Yoshiki Okamoto",
+    "origin": "Japan",
+    "format": "Arcade",
+    "platforms": [
+      "Arcade",
+      "Nintendo"
+    ],
+    "characters": [
+      "Ryu",
+      "Ken",
+      "Chun-Li",
+      "M. Bison"
+    ],
+    "themes": [
+      "Martial arts",
+      "World tournament"
+    ],
+    "credits": [
+      "Producer: Yoshiki Okamoto",
+      "Planners: Akira Nishitani & Akira Yasuda",
+      "Composer: Yoko Shimomura"
+    ],
+    "cover": {
+      "wiki": "Street Fighter II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/SF2_JPN_flyer.jpg"
+    },
+    "quote": {
+      "text": "Hadouken!",
+      "speaker": "A wandering karate fighter in a white gi"
+    },
+    "audio": {
+      "clue": "Each fighter has their own home-stage theme; the most famous plays at a Japanese castle at night.",
+      "query": "Street Fighter II Ryu stage theme",
+      "start": 0,
+      "youtubeId": "hO7JEqIPQv0"
+    },
+    "emoji": "🥋👊🔥🌍🏆",
+    "item": {
+      "name": "Red headband",
+      "description": "Tied around the brow of a stoic karate fighter who lives only for the next battle."
+    },
+    "location": {
+      "name": "Suzaku Castle",
+      "description": "A moonlit Japanese castle rooftop stage."
+    },
+    "visual": {
+      "icon": "🥋",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-skyrim",
+    "name": "The Elder Scrolls V: Skyrim",
+    "aliases": [
+      "skyrim",
+      "tes v"
+    ],
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Bethesda Game Studios",
+    "creator": "Todd Howard",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Dragonborn",
+      "Lydia",
+      "Alduin"
+    ],
+    "themes": [
+      "Dragons",
+      "Civil war",
+      "Prophecy"
+    ],
+    "credits": [
+      "Director: Todd Howard",
+      "Composer: Jeremy Soule",
+      "Publisher: Bethesda Softworks"
+    ],
+    "cover": {
+      "wiki": "The Elder Scrolls V: Skyrim",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png"
+    },
+    "quote": {
+      "text": "I used to be an adventurer like you, then I took an arrow in the knee.",
+      "speaker": "A town guard"
+    },
+    "audio": {
+      "clue": "A thunderous male choir chants in a dragon tongue over pounding war drums.",
+      "query": "Skyrim Dragonborn main theme",
+      "start": 0,
+      "youtubeId": "UsnRQJxanVM"
+    },
+    "emoji": "🐉🏔️🛡️🏹🦵",
+    "item": {
+      "name": "Sweetroll",
+      "description": "A frosted pastry that guards accuse you of having stolen."
+    },
+    "location": {
+      "name": "Whiterun",
+      "description": "A hilltop trading city with a great hall, surrounded by plains and giants' camps."
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#1e293b",
+        "#cbd5e1"
+      ]
+    }
+  },
+  {
+    "id": "g-mgs",
+    "name": "Metal Gear Solid",
+    "aliases": [
+      "mgs",
+      "metal gear"
+    ],
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Stealth",
+      "Action-Adventure"
+    ],
+    "studio": "Konami",
+    "creator": "Hideo Kojima",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Solid Snake",
+      "Revolver Ocelot",
+      "Psycho Mantis",
+      "Otacon"
+    ],
+    "themes": [
+      "Nuclear deterrence",
+      "Genetics"
+    ],
+    "credits": [
+      "Writer & director: Hideo Kojima",
+      "Character design: Yoji Shinkawa",
+      "Publisher: Konami"
+    ],
+    "cover": {
+      "wiki": "Metal Gear Solid (1998 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Metal_Gear_Solid_cover_art.png"
+    },
+    "quote": {
+      "text": "Snake? Snake?! SNAAAAAKE!",
+      "speaker": "A commander over the radio after you die"
+    },
+    "audio": {
+      "clue": "A sweeping, militaristic orchestral main theme with a mournful string melody.",
+      "query": "Metal Gear Solid main theme 1998",
+      "start": 0,
+      "youtubeId": "o7slVN3z6g8"
+    },
+    "emoji": "🐍📦❗🪖☢️",
+    "item": {
+      "name": "Cardboard box",
+      "description": "A humble hiding place a legendary soldier swears by."
+    },
+    "location": {
+      "name": "Shadow Moses Island",
+      "description": "A snowbound nuclear weapons disposal facility in the Alaskan Fox Archipelago."
+    },
+    "visual": {
+      "icon": "📦",
+      "colors": [
+        "#1c1917",
+        "#65a30d"
+      ]
+    }
+  },
+  {
+    "id": "g-halo",
+    "name": "Halo: Combat Evolved",
+    "aliases": [
+      "halo",
+      "halo ce"
+    ],
+    "domain": "games",
+    "year": 2001,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "Bungie",
+    "creator": "Jason Jones",
+    "origin": "USA",
+    "format": "Xbox",
+    "platforms": [
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "Master Chief",
+      "Cortana",
+      "The Arbiter"
+    ],
+    "themes": [
+      "Space war",
+      "Ancient relics"
+    ],
+    "credits": [
+      "Project lead: Jason Jones",
+      "Composers: Martin O'Donnell & Michael Salvatori",
+      "Publisher: Microsoft Game Studios"
+    ],
+    "cover": {
+      "wiki": "Halo: Combat Evolved",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/80/Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg"
+    },
+    "quote": {
+      "text": "Wake me... when you need me.",
+      "speaker": "A green-armoured super-soldier, going back into cryo-sleep"
+    },
+    "audio": {
+      "clue": "Gregorian-style monk chanting gives way to driving strings and drums.",
+      "query": "Halo theme Martin O'Donnell",
+      "start": 0,
+      "youtubeId": "bwikj_lQLT0"
+    },
+    "emoji": "🪖💍👽🚀🔫",
+    "item": {
+      "name": "Energy sword",
+      "description": "A glowing plasma blade with two forked prongs, wielded by alien Elites.",
+      "wiki": "Energy sword"
+    },
+    "location": {
+      "name": "The ring installation",
+      "description": "A colossal artificial ring-world, with sky arching overhead on both sides."
+    },
+    "visual": {
+      "icon": "💍",
+      "colors": [
+        "#14532d",
+        "#84cc16"
+      ]
+    }
+  },
+  {
+    "id": "g-doom",
+    "name": "Doom",
+    "domain": "games",
+    "year": 1993,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "id Software",
+    "creator": "John Romero",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Doomguy",
+      "Cyberdemon"
+    ],
+    "themes": [
+      "Demons",
+      "Hell on Mars"
+    ],
+    "credits": [
+      "Designers: John Romero, Sandy Petersen & Tom Hall",
+      "Engine programmer: John Carmack",
+      "Composer: Bobby Prince"
+    ],
+    "cover": {
+      "wiki": "Doom (1993 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A chugging, heavy-metal MIDI guitar riff blasts as you enter the hangar of the first level.",
+      "query": "Doom E1M1 At Doom's Gate",
+      "start": 0,
+      "youtubeId": "BSsfjHCFosw"
+    },
+    "emoji": "👹🔫🪚🔥🪐",
+    "item": {
+      "name": "BFG 9000",
+      "description": "An enormous green-plasma cannon whose name is an expletive acronym.",
+      "wiki": "BFG (weapon)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/BFG9000.png"
+    },
+    "location": {
+      "name": "Phobos",
+      "description": "A moon of Mars where a military base's teleporter experiments opened a gate to Hell.",
+      "wiki": "Phobos (moon)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/960px-Phobos_colour_2008.jpg"
+    },
+    "visual": {
+      "icon": "👹",
+      "colors": [
+        "#450a0a",
+        "#ea580c"
+      ]
+    }
+  },
+  {
+    "id": "g-botw",
+    "name": "The Legend of Zelda: Breath of the Wild",
+    "aliases": [
+      "botw",
+      "breath of the wild"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Nintendo",
+    "creator": "Hidetaka Fujibayashi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Link",
+      "Princess Zelda",
+      "Calamity Ganon"
+    ],
+    "themes": [
+      "Exploration",
+      "Ruin",
+      "Memory"
+    ],
+    "credits": [
+      "Director: Hidetaka Fujibayashi",
+      "Producer: Eiji Aonuma",
+      "Composer: Manaka Kataoka"
+    ],
+    "cover": {
+      "wiki": "The Legend of Zelda: Breath of the Wild",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
+    },
+    "quote": {
+      "text": "Open your eyes...",
+      "speaker": "A mysterious voice waking a hero from a 100-year sleep"
+    },
+    "audio": {
+      "clue": "Sparse, scattered piano notes that drift in and out as you ride across an empty plain.",
+      "query": "Breath of the Wild Hyrule Field day theme",
+      "start": 0,
+      "youtubeId": "xGi23M_5lXg"
+    },
+    "emoji": "🧗🏔️🍎🐎🗺️",
+    "item": {
+      "name": "Sheikah Slate",
+      "description": "An ancient tablet-like device that controls runes, bombs and magnets."
+    },
+    "location": {
+      "name": "The Great Plateau",
+      "description": "A walled-off highland with a ruined temple, where every adventure here begins."
+    },
+    "visual": {
+      "icon": "🏔️",
+      "colors": [
+        "#164e63",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "g-sm64",
+    "name": "Super Mario 64",
+    "aliases": [
+      "mario 64",
+      "sm64"
+    ],
+    "domain": "games",
+    "year": 1996,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nintendo",
+    "creator": "Shigeru Miyamoto",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Princess Peach",
+      "Bowser",
+      "Lakitu"
+    ],
+    "themes": [
+      "3D exploration",
+      "Collecting"
+    ],
+    "credits": [
+      "Director: Shigeru Miyamoto",
+      "Composer: Koji Kondo",
+      "Launch title for the Nintendo 64"
+    ],
+    "cover": {
+      "wiki": "Super Mario 64",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Super_Mario_64.png"
+    },
+    "quote": {
+      "text": "It's-a me, Mario!",
+      "speaker": "A plumber greeting you on the title screen"
+    },
+    "audio": {
+      "clue": "A jaunty, bouncing big-band tune for a grassy battlefield full of walking bombs.",
+      "query": "Super Mario 64 Bob-omb Battlefield",
+      "start": 0,
+      "youtubeId": "bmP3UHXYi28"
+    },
+    "emoji": "⭐🏰🖼️💣🐧",
+    "item": {
+      "name": "Power Star",
+      "description": "A golden star with eyes; you need 70 of them to reach the final fight."
+    },
+    "location": {
+      "name": "Princess Peach's Castle",
+      "description": "A castle whose paintings are portals into different worlds."
+    },
+    "visual": {
+      "icon": "⭐",
+      "colors": [
+        "#1d4ed8",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-sonic",
+    "name": "Sonic the Hedgehog",
+    "domain": "games",
+    "year": 1991,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Sega",
+    "creator": "Yuji Naka",
+    "origin": "Japan",
+    "format": "Sega",
+    "platforms": [
+      "Sega",
+      "PC",
+      "Mobile",
+      "Nintendo"
+    ],
+    "characters": [
+      "Sonic",
+      "Dr. Robotnik"
+    ],
+    "themes": [
+      "Speed",
+      "Ecology"
+    ],
+    "credits": [
+      "Programmer: Yuji Naka",
+      "Character designer: Naoto Ohshima",
+      "Composer: Masato Nakamura"
+    ],
+    "cover": {
+      "wiki": "Sonic the Hedgehog (1991 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Sonic_the_Hedgehog_1_Genesis_box_art.jpg"
+    },
+    "audio": {
+      "clue": "A bright, bouncy pop melody for a checkerboard hillside of loops and palm trees.",
+      "query": "Sonic the Hedgehog Green Hill Zone",
+      "start": 0,
+      "youtubeId": "G-i8HYi1QH0"
+    },
+    "emoji": "🦔💨💍🌴🤖",
+    "item": {
+      "name": "Gold rings",
+      "description": "Collect them for protection; get hit and they scatter everywhere."
+    },
+    "location": {
+      "name": "Green Hill Zone",
+      "description": "Checkerboard cliffs, loop-de-loops, waterfalls and palm trees.",
+      "wiki": "Green Hill Zone",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/SonicTheHedgehog1.png"
+    },
+    "visual": {
+      "icon": "🦔",
+      "colors": [
+        "#1d4ed8",
+        "#22c55e"
+      ]
+    }
+  },
+  {
+    "id": "g-pacman",
+    "name": "Pac-Man",
+    "domain": "games",
+    "year": 1980,
+    "genres": [
+      "Maze",
+      "Arcade"
+    ],
+    "studio": "Namco",
+    "creator": "Toru Iwatani",
+    "origin": "Japan",
+    "format": "Arcade",
+    "platforms": [
+      "Arcade",
+      "PC",
+      "Nintendo",
+      "Mobile",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Pac-Man",
+      "Blinky",
+      "Pinky",
+      "Inky",
+      "Clyde"
+    ],
+    "themes": [
+      "Chase",
+      "High score"
+    ],
+    "credits": [
+      "Designer: Toru Iwatani",
+      "Composer: Toshio Kai",
+      "Highest-grossing arcade game of all time"
+    ],
+    "cover": {
+      "wiki": "Pac-Man",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Pac_flyer.png"
+    },
+    "audio": {
+      "clue": "A short, chirpy start-up jingle, then a wailing siren and constant munching sounds.",
+      "query": "Pac-Man arcade intro music",
+      "start": 0,
+      "youtubeId": "rnf0q1zOTXs"
+    },
+    "emoji": "🟡👻🍒🌀🕹️",
+    "item": {
+      "name": "Power Pellet",
+      "description": "One of four big flashing dots that turns the hunters into the hunted."
+    },
+    "location": {
+      "name": "The maze",
+      "description": "A blue-walled labyrinth with a ghost pen in the middle and a tunnel at each side."
+    },
+    "visual": {
+      "icon": "🟡",
+      "colors": [
+        "#0a0a0a",
+        "#1d4ed8"
+      ]
+    }
+  },
+  {
+    "id": "g-re4",
+    "name": "Resident Evil 4",
+    "aliases": [
+      "re4",
+      "resident evil"
+    ],
+    "domain": "games",
+    "year": 2005,
+    "genres": [
+      "Survival Horror",
+      "Action"
+    ],
+    "studio": "Capcom",
+    "creator": "Shinji Mikami",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "Nintendo",
+      "PlayStation",
+      "PC",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Leon S. Kennedy",
+      "Ashley Graham",
+      "Ada Wong",
+      "The Merchant"
+    ],
+    "themes": [
+      "Parasites",
+      "Cult"
+    ],
+    "credits": [
+      "Director: Shinji Mikami",
+      "Producer: Hiroyuki Kobayashi",
+      "Publisher: Capcom"
+    ],
+    "cover": {
+      "wiki": "Resident Evil 4",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d9/Resi4-gc-cover.jpg"
+    },
+    "quote": {
+      "text": "Where's everyone going? Bingo?",
+      "speaker": "A rookie agent as villagers walk away at the sound of a bell"
+    },
+    "emoji": "🧟🌾🪚👱‍♀️🔫",
+    "item": {
+      "name": "Attaché case",
+      "description": "A briefcase whose grid inventory you rearrange like a puzzle; sold by a hooded trader."
+    },
+    "location": {
+      "name": "The village",
+      "description": "A rural Spanish hamlet whose pitchfork-wielding locals are not quite themselves."
+    },
+    "visual": {
+      "icon": "🪚",
+      "colors": [
+        "#422006",
+        "#a16207"
+      ]
+    }
+  },
+  {
+    "id": "g-amongus",
+    "name": "Among Us",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Social Deduction",
+      "Party"
+    ],
+    "studio": "Innersloth",
+    "creator": "Marcus Bromander",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Mobile",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Crewmates",
+      "The Impostor"
+    ],
+    "themes": [
+      "Deception",
+      "Teamwork"
+    ],
+    "credits": [
+      "Studio: Innersloth (Marcus Bromander, Forest Willard, Amy Liu)",
+      "Exploded in popularity in 2020",
+      "Built in Unity"
+    ],
+    "cover": {
+      "wiki": "Among Us",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_cover_art.jpg"
+    },
+    "emoji": "🚀🔪🧑‍🚀🗳️🤫",
+    "item": {
+      "name": "Emergency Meeting button",
+      "description": "A big red button at the centre of the cafeteria that calls everyone to vote."
+    },
+    "location": {
+      "name": "The Skeld",
+      "description": "A spaceship with an electrical room, reactors and vents perfect for sneaking."
+    },
+    "visual": {
+      "icon": "🧑‍🚀",
+      "colors": [
+        "#0f172a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-lol",
+    "name": "League of Legends",
+    "aliases": [
+      "lol",
+      "league"
+    ],
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "MOBA"
+    ],
+    "studio": "Riot Games",
+    "creator": "Brandon Beck",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Ahri",
+      "Jinx",
+      "Teemo",
+      "Yasuo"
+    ],
+    "themes": [
+      "Team strategy",
+      "Esports"
+    ],
+    "credits": [
+      "Founders: Brandon Beck & Marc Merrill",
+      "Original game designer: Steve Feak",
+      "Esports world championship every year"
+    ],
+    "cover": {
+      "wiki": "League of Legends",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/League_of_Legends_2019_vector.svg/960px-League_of_Legends_2019_vector.svg.png"
+    },
+    "quote": {
+      "text": "Welcome to Summoner's Rift!",
+      "speaker": "The announcer at the start of every match"
+    },
+    "audio": {
+      "clue": "An epic orchestral login theme with brass fanfares, heard before every queue.",
+      "query": "League of Legends original login theme",
+      "start": 0,
+      "youtubeId": "8dnmCJbmfxY"
+    },
+    "emoji": "⚔️🏰🧙‍♀️🌿🐉",
+    "item": {
+      "name": "Ward",
+      "description": "A small totem placed in bushes to grant vision of the map."
+    },
+    "location": {
+      "name": "Summoner's Rift",
+      "description": "A square map with three lanes, a jungle, a river and a Nexus at each corner."
+    },
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#0c4a6e",
+        "#ca8a04"
+      ]
+    }
+  },
+  {
+    "id": "g-stardew",
+    "name": "Stardew Valley",
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Farming Sim",
+      "RPG"
+    ],
+    "studio": "ConcernedApe",
+    "creator": "Eric Barone",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Abigail",
+      "Lewis",
+      "Krobus"
+    ],
+    "themes": [
+      "Rural life",
+      "Community"
+    ],
+    "credits": [
+      "Sole developer: Eric Barone",
+      "Originally published by Chucklefish",
+      "Inspired by Harvest Moon"
+    ],
+    "cover": {
+      "wiki": "Stardew Valley",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png"
+    },
+    "audio": {
+      "clue": "A breezy acoustic-guitar and flute tune for the first day of spring on the farm.",
+      "query": "Stardew Valley Spring It's a Big World Outside",
+      "start": 0,
+      "youtubeId": "FO9WXi9gxQg"
+    },
+    "emoji": "🌾🐔🎣🏡💕",
+    "item": {
+      "name": "Grandpa's letter",
+      "description": "An envelope to open only when the weight of the world bears down on you."
+    },
+    "location": {
+      "name": "Pelican Town",
+      "description": "A tiny village with a general store, a saloon and an abandoned community centre."
+    },
+    "visual": {
+      "icon": "🌾",
+      "colors": [
+        "#14532d",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-undertale",
+    "name": "Undertale",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Toby Fox",
+    "creator": "Toby Fox",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Nintendo",
+      "Xbox"
+    ],
+    "characters": [
+      "Sans",
+      "Papyrus",
+      "Toriel",
+      "Flowey"
+    ],
+    "themes": [
+      "Mercy",
+      "Choice"
+    ],
+    "credits": [
+      "Creator, writer & composer: Toby Fox",
+      "Artist: Temmie Chang",
+      "Kickstarter-funded"
+    ],
+    "cover": {
+      "wiki": "Undertale"
+    },
+    "quote": {
+      "text": "You're gonna have a bad time.",
+      "speaker": "A short skeleton in a blue hoodie"
+    },
+    "audio": {
+      "clue": "A frantic, relentless chiptune boss theme that became a meme of its own.",
+      "query": "Undertale Megalovania",
+      "start": 0,
+      "youtubeId": "0FCvzsVlXpQ"
+    },
+    "emoji": "💀🐐🌼❤️🍝",
+    "item": {
+      "name": "Butterscotch-cinnamon pie",
+      "description": "Baked by a goat-like guardian who wants you to stay safe."
+    },
+    "location": {
+      "name": "The Underground",
+      "description": "A realm beneath Mount Ebott, sealed by a magical barrier after a war."
+    },
+    "visual": {
+      "icon": "❤️",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-celeste",
+    "name": "Celeste",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Maddy Makes Games",
+    "creator": "Maddy Thorson",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Madeline",
+      "Badeline",
+      "Theo"
+    ],
+    "themes": [
+      "Anxiety",
+      "Self-acceptance"
+    ],
+    "credits": [
+      "Director: Maddy Thorson",
+      "Programmer: Noel Berry",
+      "Composer: Lena Raine"
+    ],
+    "cover": {
+      "wiki": "Celeste (video game)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/960px-Celeste_box_art_full.png"
+    },
+    "audio": {
+      "clue": "Shimmering synth-piano and pulsing electronica as a girl climbs a mountain.",
+      "query": "Celeste First Steps Lena Raine",
+      "start": 0,
+      "youtubeId": "N8OHSXvneOE"
+    },
+    "emoji": "🏔️🍓🧗‍♀️💨😰",
+    "item": {
+      "name": "Strawberries",
+      "description": "Optional collectibles; they \"don't do anything\" except prove your skill."
+    },
+    "location": {
+      "name": "Celeste Mountain",
+      "description": "A haunted mountain in British Columbia, with a ruined city and a hotel on the way up."
+    },
+    "visual": {
+      "icon": "🍓",
+      "colors": [
+        "#312e81",
+        "#f472b6"
+      ]
+    }
+  },
+  {
+    "id": "g-bioshock",
+    "name": "BioShock",
+    "domain": "games",
+    "year": 2007,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "2K Boston",
+    "creator": "Ken Levine",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Andrew Ryan",
+      "Atlas",
+      "Big Daddy",
+      "Little Sister"
+    ],
+    "themes": [
+      "Objectivism",
+      "Free will"
+    ],
+    "credits": [
+      "Creative director: Ken Levine",
+      "Composer: Garry Schyman",
+      "Studio also known as Irrational Games"
+    ],
+    "cover": {
+      "wiki": "BioShock",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/BioShock_cover.jpg"
+    },
+    "quote": {
+      "text": "Would you kindly?",
+      "speaker": "A friendly voice on your radio"
+    },
+    "audio": {
+      "clue": "A melancholic solo violin piece, mixed with 1940s records crackling through a drowned city.",
+      "query": "BioShock Welcome to Rapture Garry Schyman",
+      "start": 0,
+      "youtubeId": "sEFIZh_Zscc"
+    },
+    "emoji": "🌊🏙️💉🤖👧",
+    "item": {
+      "name": "Plasmid",
+      "description": "A glowing syringe that rewrites your genes to shoot lightning from your hand."
+    },
+    "location": {
+      "name": "Rapture",
+      "description": "An art-deco city at the bottom of the Atlantic, built to escape governments and gods."
+    },
+    "visual": {
+      "icon": "🌊",
+      "colors": [
+        "#042f2e",
+        "#d97706"
+      ]
+    }
+  },
+  {
+    "id": "g-eldenring",
+    "name": "Elden Ring",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Hidetaka Miyazaki",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Melina",
+      "Malenia",
+      "Ranni",
+      "Radahn"
+    ],
+    "themes": [
+      "Godhood",
+      "Shattering"
+    ],
+    "credits": [
+      "Director: Hidetaka Miyazaki",
+      "Worldbuilding: George R. R. Martin",
+      "Publisher: Bandai Namco"
+    ],
+    "cover": {
+      "wiki": "Elden Ring",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg"
+    },
+    "quote": {
+      "text": "Put these foolish ambitions to rest.",
+      "speaker": "A hooded, cane-wielding omen blocking a castle gate"
+    },
+    "audio": {
+      "clue": "A towering choir and orchestra in the main theme of the Lands Between.",
+      "query": "Elden Ring main theme",
+      "start": 0,
+      "youtubeId": "ZfGqwHDK2Uw"
+    },
+    "emoji": "💍🌳🐴⚔️🌕",
+    "item": {
+      "name": "Spectral Steed Whistle",
+      "description": "A ring that summons a horned spirit horse with a double jump."
+    },
+    "location": {
+      "name": "Limgrave",
+      "description": "Open fields beneath a golden tree, guarded by a knight on horseback right at the start."
+    },
+    "visual": {
+      "icon": "🌳",
+      "colors": [
+        "#422006",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-wow",
+    "name": "World of Warcraft",
+    "aliases": [
+      "wow",
+      "warcraft"
+    ],
+    "domain": "games",
+    "year": 2004,
+    "genres": [
+      "MMORPG"
+    ],
+    "studio": "Blizzard Entertainment",
+    "creator": "Rob Pardo",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Thrall",
+      "Jaina Proudmoore",
+      "Arthas",
+      "Sylvanas"
+    ],
+    "themes": [
+      "Horde vs Alliance",
+      "Questing"
+    ],
+    "credits": [
+      "Lead designer: Rob Pardo",
+      "Executive producer: Mike Morhaime",
+      "Composer: Jason Hayes"
+    ],
+    "cover": {
+      "wiki": "World of Warcraft",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/65/World_of_Warcraft.png"
+    },
+    "audio": {
+      "clue": "A noble brass-and-choir theme for a white-stone human capital.",
+      "query": "World of Warcraft Stormwind theme",
+      "start": 0,
+      "youtubeId": "roMWEeV2P4U"
+    },
+    "emoji": "🧌⚔️🐉🏰🌍",
+    "item": {
+      "name": "Hearthstone",
+      "description": "A blue engraved stone that teleports you back to your chosen inn."
+    },
+    "location": {
+      "name": "Stormwind City",
+      "description": "A walled human capital with a cathedral, canals and a giant gate of lion statues."
+    },
+    "visual": {
+      "icon": "🧌",
+      "colors": [
+        "#1e3a8a",
+        "#a16207"
+      ]
+    }
+  }
+]
