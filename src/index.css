@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-hit: #16a34a;
+  --color-near: #ca8a04;
+  --color-miss: #b91c1c;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgb(99 102 241 / 0.12), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgb(236 72 153 / 0.08), transparent 60%),
+    #09090b;
+}
+
+@keyframes flip-in {
+  from { transform: rotateX(90deg); opacity: 0; }
+  to { transform: rotateX(0); opacity: 1; }
+}
+@keyframes pop {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-flip { animation: flip-in 0.45s ease-out both; }
+.animate-pop { animation: pop 0.25s ease-out both; }
+.animate-shake { animation: shake 0.4s ease-in-out; }
