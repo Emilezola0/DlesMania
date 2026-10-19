@@ -1608,7 +1608,8 @@
       "Released under XO"
     ],
     "cover": {
-      "wiki": "After Hours (album)"
+      "wiki": "After Hours (The Weeknd album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png"
     },
     "tracks": [
       "In Your Eyes",
@@ -1807,6 +1808,1128 @@
       "colors": [
         "#0ea5e9",
         "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-ram",
+    "name": "Random Access Memories",
+    "subtitle": "Daft Punk",
+    "aliases": [
+      "ram"
+    ],
+    "domain": "music",
+    "year": 2013,
+    "genres": [
+      "Disco",
+      "Electronic"
+    ],
+    "studio": "Columbia",
+    "creator": "Daft Punk",
+    "origin": "France",
+    "format": "Studio Album",
+    "themes": [
+      "Live instruments",
+      "Nostalgia"
+    ],
+    "credits": [
+      "Artist: a helmeted Parisian duo",
+      "Guests: Nile Rodgers, Pharrell, Giorgio Moroder",
+      "Grammy Album of the Year"
+    ],
+    "cover": {
+      "wiki": "Random Access Memories",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/26/Daft_Punk_-_Random_Access_Memories.png"
+    },
+    "tracks": [
+      "Giorgio by Moroder",
+      "Instant Crush",
+      "Lose Yourself to Dance",
+      "Get Lucky"
+    ],
+    "audio": {
+      "clue": "A bright funk guitar riff by Nile Rodgers and a falsetto vocal from Pharrell.",
+      "query": "Daft Punk Get Lucky official audio",
+      "youtubeId": "5NV6Rdv1a3I"
+    },
+    "emoji": "🤖🪩🎸🌅✨",
+    "item": {
+      "name": "Two chrome helmets",
+      "description": "Split down the middle on a plain black cover."
+    },
+    "visual": {
+      "icon": "✨",
+      "colors": [
+        "#0a0a0a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-thewall",
+    "name": "The Wall",
+    "subtitle": "Pink Floyd",
+    "aliases": [
+      "pink floyd the wall"
+    ],
+    "domain": "music",
+    "year": 1979,
+    "genres": [
+      "Progressive Rock",
+      "Rock Opera"
+    ],
+    "studio": "Harvest",
+    "creator": "Pink Floyd",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Isolation",
+      "School",
+      "Fame"
+    ],
+    "credits": [
+      "Artist: an English psychedelic band",
+      "Concept by Roger Waters",
+      "Adapted into a 1982 film"
+    ],
+    "cover": {
+      "wiki": "The Wall",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/13/PinkFloydWallCoverOriginalNoText.jpg/960px-PinkFloydWallCoverOriginalNoText.jpg"
+    },
+    "tracks": [
+      "Hey You",
+      "Mother",
+      "Comfortably Numb",
+      "Another Brick in the Wall, Part 2"
+    ],
+    "audio": {
+      "clue": "A disco-beat protest song with a children's choir singing against school.",
+      "query": "Pink Floyd Another Brick in the Wall Part 2",
+      "youtubeId": "HrxX9TBj2zY"
+    },
+    "emoji": "🧱👨‍🏫🔨🎸🧒",
+    "item": {
+      "name": "A plain white brick wall",
+      "description": "The album's whole cover — no title, no photo."
+    },
+    "location": {
+      "name": "Earls Court",
+      "description": "A London arena where a giant wall was built — and torn down — on stage.",
+      "wiki": "Earls Court Exhibition Centre",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Earls_Court_Exhibition_Centre.jpg/960px-Earls_Court_Exhibition_Centre.jpg"
+    },
+    "visual": {
+      "icon": "🧱",
+      "colors": [
+        "#f5f5f4",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "m-hotelcalifornia",
+    "name": "Hotel California",
+    "subtitle": "Eagles",
+    "aliases": [
+      "eagles"
+    ],
+    "domain": "music",
+    "year": 1976,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "Asylum",
+    "creator": "Eagles",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Excess",
+      "The American Dream"
+    ],
+    "credits": [
+      "Artist: a Los Angeles band named after a bird",
+      "Producer: Bill Szymczyk",
+      "Guitarist Joe Walsh joined for it"
+    ],
+    "cover": {
+      "wiki": "Hotel California (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/49/Hotelcalifornia.jpg"
+    },
+    "tracks": [
+      "Victim of Love",
+      "Life in the Fast Lane",
+      "New Kid in Town",
+      "Hotel California"
+    ],
+    "audio": {
+      "clue": "A twelve-string intro and an epic dual-guitar solo about a hotel you can never leave.",
+      "query": "Eagles Hotel California",
+      "youtubeId": "09839DpTctU"
+    },
+    "emoji": "🏨🌴🎸🌅🕯️",
+    "item": {
+      "name": "A pink hotel at sunset",
+      "description": "Photographed from a cherry picker for the cover."
+    },
+    "location": {
+      "name": "Beverly Hills Hotel",
+      "description": "The pink Sunset Boulevard landmark pictured on the cover.",
+      "wiki": "Beverly Hills Hotel",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/The_Beverly_Hills_Hotel_%282013%29.jpg/960px-The_Beverly_Hills_Hotel_%282013%29.jpg"
+    },
+    "visual": {
+      "icon": "🏨",
+      "colors": [
+        "#78350f",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-blackalbum",
+    "name": "Metallica (The Black Album)",
+    "subtitle": "Metallica",
+    "aliases": [
+      "black album",
+      "metallica"
+    ],
+    "domain": "music",
+    "year": 1991,
+    "genres": [
+      "Heavy Metal"
+    ],
+    "studio": "Elektra",
+    "creator": "Metallica",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Nightmares",
+      "Isolation"
+    ],
+    "credits": [
+      "Artist: a Bay Area thrash band",
+      "Producer: Bob Rock",
+      "Self-titled; nicknamed for its cover"
+    ],
+    "cover": {
+      "wiki": "Metallica (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Metallica_-_Metallica_cover.jpg"
+    },
+    "tracks": [
+      "Sad but True",
+      "The Unforgiven",
+      "Nothing Else Matters",
+      "Enter Sandman"
+    ],
+    "audio": {
+      "clue": "A creeping, palm-muted riff that explodes into a lullaby about nightmares.",
+      "query": "Metallica Enter Sandman",
+      "youtubeId": "CD-E-LDc384"
+    },
+    "emoji": "⚫🐍🤘🎸🌙",
+    "item": {
+      "name": "A coiled snake",
+      "description": "Barely visible in dark grey on an all-black cover."
+    },
+    "visual": {
+      "icon": "🐍",
+      "colors": [
+        "#0a0a0a",
+        "#3f3f46"
+      ]
+    }
+  },
+  {
+    "id": "m-morningglory",
+    "name": "(What's the Story) Morning Glory?",
+    "subtitle": "Oasis",
+    "aliases": [
+      "morning glory",
+      "oasis"
+    ],
+    "domain": "music",
+    "year": 1995,
+    "genres": [
+      "Britpop"
+    ],
+    "studio": "Creation",
+    "creator": "Oasis",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Swagger",
+      "Hope"
+    ],
+    "credits": [
+      "Artist: a Manchester band led by two feuding brothers",
+      "Producer: Owen Morris",
+      "Won the 'Battle of Britpop'"
+    ],
+    "cover": {
+      "wiki": "(What's the Story) Morning Glory?",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b1/Oasis_-_%28What%27s_The_Story%29_Morning_Glory_album_cover.jpg"
+    },
+    "tracks": [
+      "Some Might Say",
+      "Champagne Supernova",
+      "Don't Look Back in Anger",
+      "Wonderwall"
+    ],
+    "audio": {
+      "clue": "A strummed acoustic guitar and cello, about someone who's going to be the one that saves me.",
+      "query": "Oasis Wonderwall",
+      "youtubeId": "bx1Bh8ZvH84"
+    },
+    "emoji": "🌅🎸🇬🇧👬🍺",
+    "item": {
+      "name": "Two men passing on a street",
+      "description": "Photographed at dawn on a Soho record-shop street for the cover."
+    },
+    "location": {
+      "name": "Berwick Street",
+      "description": "A Soho street of record shops, pictured at dawn on the cover.",
+      "wiki": "Berwick Street",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Berwick_Street%2C_Soho.JPG/960px-Berwick_Street%2C_Soho.JPG"
+    },
+    "visual": {
+      "icon": "🌅",
+      "colors": [
+        "#0c4a6e",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-am",
+    "name": "AM",
+    "subtitle": "Arctic Monkeys",
+    "aliases": [
+      "arctic monkeys"
+    ],
+    "domain": "music",
+    "year": 2013,
+    "genres": [
+      "Indie Rock"
+    ],
+    "studio": "Domino",
+    "creator": "Arctic Monkeys",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Late nights",
+      "Longing"
+    ],
+    "credits": [
+      "Artist: a Sheffield indie band",
+      "Producer: James Ford",
+      "Influenced by hip-hop beats"
+    ],
+    "cover": {
+      "wiki": "AM (Arctic Monkeys album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/04/Arctic_Monkeys_-_AM.png"
+    },
+    "tracks": [
+      "Arabella",
+      "R U Mine?",
+      "Why'd You Only Call Me When You're High?",
+      "Do I Wanna Know?"
+    ],
+    "audio": {
+      "clue": "A slow, stomping drum beat and a fuzzy riff, asking if the feeling flows both ways.",
+      "query": "Arctic Monkeys Do I Wanna Know",
+      "youtubeId": "bpOSxM0rNPM"
+    },
+    "emoji": "〰️🌙🎸📞🕶️",
+    "item": {
+      "name": "A sound wave",
+      "description": "A single white soundwave shape on a black cover."
+    },
+    "visual": {
+      "icon": "〰️",
+      "colors": [
+        "#0a0a0a",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "m-rushofblood",
+    "name": "A Rush of Blood to the Head",
+    "subtitle": "Coldplay",
+    "aliases": [
+      "coldplay"
+    ],
+    "domain": "music",
+    "year": 2002,
+    "genres": [
+      "Alternative Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "Coldplay",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Love",
+      "Regret"
+    ],
+    "credits": [
+      "Artist: a London band formed at university",
+      "Producer: Ken Nelson",
+      "Cover by Sølve Sundsbø"
+    ],
+    "cover": {
+      "wiki": "A Rush of Blood to the Head",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Coldplay_-_A_Rush_of_Blood_to_the_Head_Cover.png"
+    },
+    "tracks": [
+      "God Put a Smile upon Your Face",
+      "In My Place",
+      "The Scientist",
+      "Clocks"
+    ],
+    "audio": {
+      "clue": "A cascading, repeating piano arpeggio that never stops ticking.",
+      "query": "Coldplay Clocks",
+      "youtubeId": "d020hcWA_Wg"
+    },
+    "emoji": "🎹🗿🔬⏰💓",
+    "item": {
+      "name": "A fragmented 3D head",
+      "description": "A digitally sliced sculpture on a red-and-white cover."
+    },
+    "visual": {
+      "icon": "⏰",
+      "colors": [
+        "#7f1d1d",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "m-mmlp",
+    "name": "The Marshall Mathers LP",
+    "subtitle": "Eminem",
+    "aliases": [
+      "mmlp",
+      "eminem"
+    ],
+    "domain": "music",
+    "year": 2000,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Aftermath",
+    "creator": "Eminem",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Fame",
+      "Controversy"
+    ],
+    "credits": [
+      "Artist: a Detroit rapper with an alter ego",
+      "Producers: Dr. Dre & Mel-Man",
+      "Fastest-selling rap album at release"
+    ],
+    "cover": {
+      "wiki": "The Marshall Mathers LP",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ae/The_Marshall_Mathers_LP.jpg"
+    },
+    "tracks": [
+      "Criminal",
+      "The Way I Am",
+      "Stan",
+      "The Real Slim Shady"
+    ],
+    "audio": {
+      "clue": "A harpsichord-like beat and a bouncy hook asking the real one to please stand up.",
+      "query": "Eminem The Real Slim Shady",
+      "youtubeId": "eJO5HU_7_1w"
+    },
+    "emoji": "🎤🏚️👱‍♂️💊😈",
+    "item": {
+      "name": "A front porch",
+      "description": "The rapper crouches on the steps of his childhood home on the cover."
+    },
+    "location": {
+      "name": "Detroit",
+      "description": "The Motor City, where the rapper grew up on Dresden Street.",
+      "wiki": "Detroit",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Detroit_Skyline_from_Windsor_2025-09-01.jpg/960px-Detroit_Skyline_from_Windsor_2025-09-01.jpg"
+    },
+    "visual": {
+      "icon": "🎤",
+      "colors": [
+        "#1c1917",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "m-miseducation",
+    "name": "The Miseducation of Lauryn Hill",
+    "subtitle": "Lauryn Hill",
+    "aliases": [
+      "lauryn hill"
+    ],
+    "domain": "music",
+    "year": 1998,
+    "genres": [
+      "R&B",
+      "Hip Hop"
+    ],
+    "studio": "Ruffhouse",
+    "creator": "Lauryn Hill",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Love",
+      "Education",
+      "Faith"
+    ],
+    "credits": [
+      "Artist: a former member of the Fugees",
+      "Her only solo studio album",
+      "Grammy Album of the Year"
+    ],
+    "cover": {
+      "wiki": "The Miseducation of Lauryn Hill",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/99/The_Miseducation_of_Lauryn_Hill.png"
+    },
+    "tracks": [
+      "To Zion",
+      "Everything Is Everything",
+      "Ex-Factor",
+      "Doo Wop (That Thing)"
+    ],
+    "audio": {
+      "clue": "A doo-wop-flavoured hip-hop single warning about 'that thing'.",
+      "query": "Lauryn Hill Doo Wop That Thing",
+      "youtubeId": "T6QKqFPRZSA"
+    },
+    "emoji": "🎓🎤🏫🌹👩🏾",
+    "item": {
+      "name": "A face carved into a school desk",
+      "description": "The singer's portrait, etched into wood on the cover."
+    },
+    "visual": {
+      "icon": "🎓",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-wwafa",
+    "name": "When We All Fall Asleep, Where Do We Go?",
+    "subtitle": "Billie Eilish",
+    "aliases": [
+      "billie eilish",
+      "wwafawdwg"
+    ],
+    "domain": "music",
+    "year": 2019,
+    "genres": [
+      "Electropop"
+    ],
+    "studio": "Interscope",
+    "creator": "Billie Eilish",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Nightmares",
+      "Depression"
+    ],
+    "credits": [
+      "Artist: a Los Angeles teenager",
+      "Producer: her brother Finneas",
+      "Recorded in a bedroom"
+    ],
+    "cover": {
+      "wiki": "When We All Fall Asleep, Where Do We Go?",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/38/When_We_All_Fall_Asleep%2C_Where_Do_We_Go%3F.png"
+    },
+    "tracks": [
+      "When the Party's Over",
+      "Bury a Friend",
+      "You Should See Me in a Crown",
+      "Bad Guy"
+    ],
+    "audio": {
+      "clue": "A minimal, whispered track with a snapping bass line and a 'duh' hook.",
+      "query": "Billie Eilish bad guy",
+      "youtubeId": "DyDfgMOUjCI"
+    },
+    "emoji": "🛏️😈🕷️💚🌙",
+    "item": {
+      "name": "A bed",
+      "description": "The singer sits on its edge with white eyes and a creepy grin on the cover."
+    },
+    "visual": {
+      "icon": "🕷️",
+      "colors": [
+        "#0a0a0a",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "m-sour",
+    "name": "Sour",
+    "subtitle": "Olivia Rodrigo",
+    "aliases": [
+      "sour",
+      "olivia rodrigo"
+    ],
+    "domain": "music",
+    "year": 2021,
+    "genres": [
+      "Pop Rock"
+    ],
+    "studio": "Geffen",
+    "creator": "Olivia Rodrigo",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Heartbreak",
+      "Teenage angst"
+    ],
+    "credits": [
+      "Artist: a former Disney actress",
+      "Producer: Dan Nigro",
+      "Debut album"
+    ],
+    "cover": {
+      "wiki": "Sour (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b2/Olivia_Rodrigo_-_SOUR.png"
+    },
+    "tracks": [
+      "Deja Vu",
+      "Traitor",
+      "Good 4 U",
+      "Drivers License"
+    ],
+    "audio": {
+      "clue": "A lonely piano ballad about driving through the suburbs after getting a licence.",
+      "query": "Olivia Rodrigo drivers license",
+      "youtubeId": "ZmDBbnmKpqQ"
+    },
+    "emoji": "🍬🚗💔📝😤",
+    "item": {
+      "name": "Stickers on a tongue",
+      "description": "The singer sticks her tongue out, covered in stickers."
+    },
+    "visual": {
+      "icon": "🍬",
+      "colors": [
+        "#a855f7",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "m-divide",
+    "name": "÷ (Divide)",
+    "subtitle": "Ed Sheeran",
+    "aliases": [
+      "divide",
+      "ed sheeran"
+    ],
+    "domain": "music",
+    "year": 2017,
+    "genres": [
+      "Pop"
+    ],
+    "studio": "Asylum",
+    "creator": "Ed Sheeran",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Hometown",
+      "Love"
+    ],
+    "credits": [
+      "Artist: a ginger singer-songwriter from Suffolk",
+      "Third in a series of maths-symbol albums",
+      "Producers include Benny Blanco"
+    ],
+    "cover": {
+      "wiki": "÷ (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/45/Divide_cover.png"
+    },
+    "tracks": [
+      "Castle on the Hill",
+      "Galway Girl",
+      "Perfect",
+      "Shape of You"
+    ],
+    "audio": {
+      "clue": "A marimba-like plucked loop and a tropical beat about falling for someone's body.",
+      "query": "Ed Sheeran Shape of You",
+      "youtubeId": "JGwWNGJdvx8"
+    },
+    "emoji": "➗🎸🦰🏰💍",
+    "item": {
+      "name": "A division sign",
+      "description": "A big blue maths symbol on the cover."
+    },
+    "location": {
+      "name": "Framlingham Castle",
+      "description": "The Suffolk castle the singer remembers from his childhood.",
+      "wiki": "Framlingham Castle",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Franglingham_Castle_01.jpg/960px-Franglingham_Castle_01.jpg"
+    },
+    "visual": {
+      "icon": "➗",
+      "colors": [
+        "#0c4a6e",
+        "#7dd3fc"
+      ]
+    }
+  },
+  {
+    "id": "m-petsounds",
+    "name": "Pet Sounds",
+    "subtitle": "The Beach Boys",
+    "aliases": [
+      "beach boys"
+    ],
+    "domain": "music",
+    "year": 1966,
+    "genres": [
+      "Baroque Pop"
+    ],
+    "studio": "Capitol",
+    "creator": "The Beach Boys",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Innocence",
+      "Growing up"
+    ],
+    "credits": [
+      "Artist: a California surf-rock band",
+      "Producer & composer: Brian Wilson",
+      "Inspired Sgt. Pepper"
+    ],
+    "cover": {
+      "wiki": "Pet Sounds",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Pet_Sounds_%28color_corrected%29.jpg/960px-Pet_Sounds_%28color_corrected%29.jpg"
+    },
+    "tracks": [
+      "I Just Wasn't Made for These Times",
+      "Sloop John B",
+      "Wouldn't It Be Nice",
+      "God Only Knows"
+    ],
+    "audio": {
+      "clue": "French horn, sleigh bells and layered harmonies in a love song that admits God only knows.",
+      "query": "The Beach Boys God Only Knows",
+      "youtubeId": "NADx3-qRxek"
+    },
+    "emoji": "🐐🏄🎻🌊💒",
+    "item": {
+      "name": "Goats",
+      "description": "The band feeds them apples on the cover."
+    },
+    "location": {
+      "name": "San Diego Zoo",
+      "description": "Where the cover photo with the animals was taken.",
+      "wiki": "San Diego Zoo",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/San_Diego_Zoo_Entrance_.jpg/960px-San_Diego_Zoo_Entrance_.jpg"
+    },
+    "visual": {
+      "icon": "🐐",
+      "colors": [
+        "#166534",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-likeaprayer",
+    "name": "Like a Prayer",
+    "subtitle": "Madonna",
+    "aliases": [
+      "madonna"
+    ],
+    "domain": "music",
+    "year": 1989,
+    "genres": [
+      "Pop"
+    ],
+    "studio": "Sire",
+    "creator": "Madonna",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Faith",
+      "Family"
+    ],
+    "credits": [
+      "Artist: the Queen of Pop",
+      "Co-producers: Patrick Leonard & Stephen Bray",
+      "Its video caused a Pepsi scandal"
+    ],
+    "cover": {
+      "wiki": "Like a Prayer (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Madonna_-_Like_a_Prayer_album.png"
+    },
+    "tracks": [
+      "Cherish",
+      "Oh Father",
+      "Express Yourself",
+      "Like a Prayer"
+    ],
+    "audio": {
+      "clue": "A gospel choir lifts a pop song that compares love to prayer.",
+      "query": "Madonna Like a Prayer",
+      "youtubeId": "79fzeNUqQbQ"
+    },
+    "emoji": "✝️💃⛪🕯️👖",
+    "item": {
+      "name": "A pair of jeans",
+      "description": "A close-up of a denim waistband makes up the cover."
+    },
+    "visual": {
+      "icon": "✝️",
+      "colors": [
+        "#6b21a8",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "m-songsinthekey",
+    "name": "Songs in the Key of Life",
+    "subtitle": "Stevie Wonder",
+    "aliases": [
+      "stevie wonder"
+    ],
+    "domain": "music",
+    "year": 1976,
+    "genres": [
+      "Soul",
+      "Funk"
+    ],
+    "studio": "Tamla",
+    "creator": "Stevie Wonder",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Love",
+      "Social justice"
+    ],
+    "credits": [
+      "Artist: a Motown prodigy who signed at age 11",
+      "A double album with a bonus EP",
+      "Grammy Album of the Year"
+    ],
+    "cover": {
+      "wiki": "Songs in the Key of Life",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Stevie_Wonder_-_Songs_in_the_Key_of_Life_cover.png"
+    },
+    "tracks": [
+      "Pastime Paradise",
+      "I Wish",
+      "Isn't She Lovely",
+      "Sir Duke"
+    ],
+    "audio": {
+      "clue": "A horn-heavy celebration of Duke Ellington and the music of the big bands.",
+      "query": "Stevie Wonder Sir Duke official audio",
+      "youtubeId": "ETFvmkIA6S4"
+    },
+    "emoji": "🎹🕶️🎺👶🌈",
+    "item": {
+      "name": "A circular orange cover",
+      "description": "A swirl of concentric rings around the singer's portrait."
+    },
+    "visual": {
+      "icon": "🎹",
+      "colors": [
+        "#c2410c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-demondays",
+    "name": "Demon Days",
+    "subtitle": "Gorillaz",
+    "aliases": [
+      "gorillaz"
+    ],
+    "domain": "music",
+    "year": 2005,
+    "genres": [
+      "Alternative",
+      "Hip Hop"
+    ],
+    "studio": "Parlophone",
+    "creator": "Gorillaz",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "themes": [
+      "Apocalypse",
+      "Environment"
+    ],
+    "credits": [
+      "Artist: a virtual band of four cartoon members",
+      "Creators: Damon Albarn & Jamie Hewlett",
+      "Producer: Danger Mouse"
+    ],
+    "cover": {
+      "wiki": "Demon Days",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/df/Gorillaz_Demon_Days.PNG"
+    },
+    "tracks": [
+      "Kids with Guns",
+      "Dirty Harry",
+      "DARE",
+      "Feel Good Inc."
+    ],
+    "audio": {
+      "clue": "A wobbly bass line, a cackling laugh and a De La Soul verse on a floating windmill island.",
+      "query": "Gorillaz Feel Good Inc",
+      "youtubeId": "HyHNuVaZJ-k"
+    },
+    "emoji": "🐒🎸😈🌀🏝️",
+    "item": {
+      "name": "Four cartoon faces",
+      "description": "Grim grey portraits of a fictional band on the cover."
+    },
+    "visual": {
+      "icon": "🐒",
+      "colors": [
+        "#0a0a0a",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "m-thefame",
+    "name": "The Fame",
+    "subtitle": "Lady Gaga",
+    "aliases": [
+      "lady gaga",
+      "the fame monster"
+    ],
+    "domain": "music",
+    "year": 2008,
+    "genres": [
+      "Electropop"
+    ],
+    "studio": "Interscope",
+    "creator": "Lady Gaga",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Celebrity",
+      "Party"
+    ],
+    "credits": [
+      "Artist: a New York performance artist",
+      "Producer: RedOne",
+      "Re-released as The Fame Monster"
+    ],
+    "cover": {
+      "wiki": "The Fame",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/dd/Lady_Gaga_%E2%80%93_The_Fame_album_cover.png"
+    },
+    "tracks": [
+      "LoveGame",
+      "Paparazzi",
+      "Just Dance",
+      "Poker Face"
+    ],
+    "audio": {
+      "clue": "A robotic, stuttering hook about a face you can't read at the card table.",
+      "query": "Lady Gaga Poker Face",
+      "youtubeId": "bESGLojNYSo"
+    },
+    "emoji": "📸🃏💃🪩🕶️",
+    "item": {
+      "name": "Oversized sunglasses",
+      "description": "Worn in a glossy close-up on the cover."
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#0a0a0a",
+        "#e879f9"
+      ]
+    }
+  },
+  {
+    "id": "m-sos",
+    "name": "SOS",
+    "subtitle": "SZA",
+    "aliases": [
+      "sza"
+    ],
+    "domain": "music",
+    "year": 2022,
+    "genres": [
+      "R&B"
+    ],
+    "studio": "Top Dawg Entertainment",
+    "creator": "SZA",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Revenge",
+      "Insecurity"
+    ],
+    "credits": [
+      "Artist: a St. Louis-born, New Jersey-raised singer",
+      "Label: TDE / RCA",
+      "Her second studio album"
+    ],
+    "cover": {
+      "wiki": "SOS (SZA album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/SZA_-_S.O.S.png"
+    },
+    "tracks": [
+      "Nobody Gets Me",
+      "Good Days",
+      "Snooze",
+      "Kill Bill"
+    ],
+    "audio": {
+      "clue": "A breezy, sweet-sounding song where a heartbroken singer imagines killing her ex.",
+      "query": "SZA Kill Bill",
+      "youtubeId": "MSRcC626prw"
+    },
+    "emoji": "🆘🛟🌊🔪💔",
+    "item": {
+      "name": "A diving board in the ocean",
+      "description": "The singer sits alone on it, surrounded by open water."
+    },
+    "visual": {
+      "icon": "🛟",
+      "colors": [
+        "#0c4a6e",
+        "#bae6fd"
+      ]
+    }
+  },
+  {
+    "id": "m-highway61",
+    "name": "Highway 61 Revisited",
+    "subtitle": "Bob Dylan",
+    "aliases": [
+      "bob dylan"
+    ],
+    "domain": "music",
+    "year": 1965,
+    "genres": [
+      "Folk Rock"
+    ],
+    "studio": "Columbia",
+    "creator": "Bob Dylan",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Alienation",
+      "Americana"
+    ],
+    "credits": [
+      "Artist: a Minnesota folk singer who went electric",
+      "Producers: Bob Johnston & Tom Wilson",
+      "Nobel Prize-winning songwriter"
+    ],
+    "cover": {
+      "wiki": "Highway 61 Revisited",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Bob_Dylan_-_Highway_61_Revisited.jpg/960px-Bob_Dylan_-_Highway_61_Revisited.jpg"
+    },
+    "tracks": [
+      "Desolation Row",
+      "Ballad of a Thin Man",
+      "Highway 61 Revisited",
+      "Like a Rolling Stone"
+    ],
+    "audio": {
+      "clue": "A snare crack, a swirling organ and a six-minute sneer asking how it feels.",
+      "query": "Bob Dylan Like a Rolling Stone",
+      "youtubeId": "IwOfCgkyEj0"
+    },
+    "emoji": "🛣️🎸🎤🌀🔔",
+    "item": {
+      "name": "A Triumph motorcycle T-shirt",
+      "description": "Worn by the singer under a silk shirt on the cover."
+    },
+    "location": {
+      "name": "U.S. Route 61",
+      "description": "The 'Blues Highway' running down the Mississippi valley.",
+      "wiki": "U.S. Route 61",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/US_61.svg/960px-US_61.svg.png"
+    },
+    "visual": {
+      "icon": "🛣️",
+      "colors": [
+        "#1e3a8a",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "m-velvet",
+    "name": "The Velvet Underground & Nico",
+    "subtitle": "The Velvet Underground",
+    "aliases": [
+      "velvet underground"
+    ],
+    "domain": "music",
+    "year": 1967,
+    "genres": [
+      "Art Rock"
+    ],
+    "studio": "Verve",
+    "creator": "The Velvet Underground",
+    "origin": "USA",
+    "format": "Studio Album",
+    "themes": [
+      "Drugs",
+      "New York"
+    ],
+    "credits": [
+      "Artist: a New York band managed by Andy Warhol",
+      "Featuring German singer Nico",
+      "Sold few copies, inspired many bands"
+    ],
+    "cover": {
+      "wiki": "The Velvet Underground & Nico",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Velvet_Underground_and_Nico.jpg"
+    },
+    "tracks": [
+      "Venus in Furs",
+      "Heroin",
+      "Sunday Morning",
+      "I'm Waiting for the Man"
+    ],
+    "audio": {
+      "clue": "A gentle celesta and a sleepy voice drift through a Sunday morning.",
+      "query": "The Velvet Underground Sunday Morning",
+      "youtubeId": "Xhbyj8pqUao"
+    },
+    "emoji": "🍌🎨🎸🖤🌃",
+    "item": {
+      "name": "A banana",
+      "description": "A Warhol sticker that said 'peel slowly and see'."
+    },
+    "location": {
+      "name": "The Factory",
+      "description": "Andy Warhol's silver-walled Manhattan studio, where the band rehearsed.",
+      "wiki": "The Factory",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/158_Madison_Ave_Factory.jpg"
+    },
+    "visual": {
+      "icon": "🍌",
+      "colors": [
+        "#fde047",
+        "#f5f5f4"
       ]
     }
   }

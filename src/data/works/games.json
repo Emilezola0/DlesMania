@@ -548,7 +548,8 @@
       "Composer: Gustavo Santaolalla"
     ],
     "cover": {
-      "wiki": "The Last of Us"
+      "wiki": "The Last of Us (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg"
     },
     "quote": {
       "text": "Endure and survive.",
@@ -1948,6 +1949,1257 @@
       "colors": [
         "#1e3a8a",
         "#a16207"
+      ]
+    }
+  },
+  {
+    "id": "g-mk8",
+    "name": "Mario Kart 8 Deluxe",
+    "aliases": [
+      "mario kart",
+      "mk8"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Racing"
+    ],
+    "studio": "Nintendo",
+    "creator": "Kosuke Yabuki",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Luigi",
+      "Bowser",
+      "Peach"
+    ],
+    "themes": [
+      "Kart racing",
+      "Party"
+    ],
+    "credits": [
+      "Producer: Kosuke Yabuki",
+      "Original Wii U release: 2014",
+      "Best-selling Switch game"
+    ],
+    "cover": {
+      "wiki": "Mario Kart 8",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"
+    },
+    "audio": {
+      "clue": "A breezy jazz-funk racing theme with slap bass and live brass.",
+      "query": "Mario Kart 8 Deluxe main theme",
+      "youtubeId": "YWkbfwTN46Y"
+    },
+    "emoji": "🏎️🍌🐢💥🏁",
+    "item": {
+      "name": "Spiny Shell",
+      "description": "A blue winged shell that homes in on whoever is in first place."
+    },
+    "location": {
+      "name": "Rainbow Road",
+      "description": "A neon, railing-less track floating in space, famous for its falls."
+    },
+    "visual": {
+      "icon": "🏎️",
+      "colors": [
+        "#dc2626",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-acnh",
+    "name": "Animal Crossing: New Horizons",
+    "aliases": [
+      "animal crossing",
+      "acnh"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Life Sim"
+    ],
+    "studio": "Nintendo",
+    "creator": "Aya Kyogoku",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Tom Nook",
+      "Isabelle",
+      "K.K. Slider",
+      "Blathers"
+    ],
+    "themes": [
+      "Island life",
+      "Debt"
+    ],
+    "credits": [
+      "Director: Aya Kyogoku",
+      "Producer: Hisashi Nogami",
+      "Released during the 2020 lockdowns"
+    ],
+    "cover": {
+      "wiki": "Animal Crossing: New Horizons",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/Animal_Crossing_New_Horizons.jpg"
+    },
+    "audio": {
+      "clue": "A mellow, plucky hourly theme that changes with the in-game clock.",
+      "query": "Animal Crossing New Horizons 5PM",
+      "youtubeId": "dlU6OR-ub70"
+    },
+    "emoji": "🏝️🦝🍑🎣🏡",
+    "item": {
+      "name": "Nook Miles Ticket",
+      "description": "A plane ticket earned through daily tasks, good for a trip to a random island."
+    },
+    "location": {
+      "name": "A deserted island getaway",
+      "description": "An uninhabited island you develop, starting with a tent and a raccoon's tent office."
+    },
+    "visual": {
+      "icon": "🦝",
+      "colors": [
+        "#0d9488",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-overwatch",
+    "name": "Overwatch",
+    "aliases": [
+      "overwatch 2"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Hero Shooter"
+    ],
+    "studio": "Blizzard Entertainment",
+    "creator": "Jeff Kaplan",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Tracer",
+      "Winston",
+      "Mercy",
+      "Reaper"
+    ],
+    "themes": [
+      "Heroes",
+      "Teamwork"
+    ],
+    "credits": [
+      "Game director: Jeff Kaplan",
+      "Composer: Derek Duke",
+      "Replaced by a sequel in 2022"
+    ],
+    "cover": {
+      "wiki": "Overwatch (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Overwatch_cover_art.jpg"
+    },
+    "quote": {
+      "text": "Cheers, love! The cavalry's here!",
+      "speaker": "A time-jumping British pilot"
+    },
+    "audio": {
+      "clue": "A soaring, heroic orchestral main theme for a disbanded peacekeeping force.",
+      "query": "Overwatch main theme",
+      "youtubeId": "PDanWcodhOQ"
+    },
+    "emoji": "🦸‍♀️⏱️🦍🤖🔫",
+    "item": {
+      "name": "Chronal accelerator",
+      "description": "A glowing harness that keeps a pilot anchored in the present."
+    },
+    "location": {
+      "name": "Watchpoint: Gibraltar",
+      "description": "A cliffside base on the Rock of Gibraltar, with a rocket on the launch pad."
+    },
+    "visual": {
+      "icon": "⏱️",
+      "colors": [
+        "#ea580c",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "g-gtav",
+    "name": "Grand Theft Auto V",
+    "aliases": [
+      "gta 5",
+      "gta v"
+    ],
+    "domain": "games",
+    "year": 2013,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Rockstar North",
+    "creator": "Leslie Benzies",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "Michael De Santa",
+      "Franklin Clinton",
+      "Trevor Philips"
+    ],
+    "themes": [
+      "Heists",
+      "Satire"
+    ],
+    "credits": [
+      "Producer: Leslie Benzies",
+      "Writers: Dan Houser & Rupert Humphries",
+      "Fastest entertainment product to reach $1 billion"
+    ],
+    "cover": {
+      "wiki": "Grand Theft Auto V",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
+    },
+    "audio": {
+      "clue": "A laid-back, synth-heavy West Coast hip-hop beat over the loading screen.",
+      "query": "GTA V loading screen theme",
+      "youtubeId": "eBxF1ghnZE0"
+    },
+    "emoji": "🚗💰👨‍👦‍👦🏦🌴",
+    "item": {
+      "name": "A three-way character wheel",
+      "description": "Swap between a retired robber, a young hustler and an unhinged meth dealer."
+    },
+    "location": {
+      "name": "Mount Chiliad",
+      "description": "The tallest peak in the state, rumoured to hide a UFO and a jetpack."
+    },
+    "visual": {
+      "icon": "💰",
+      "colors": [
+        "#166534",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-rdr2",
+    "name": "Red Dead Redemption 2",
+    "aliases": [
+      "rdr2",
+      "red dead"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action-Adventure",
+      "Western"
+    ],
+    "studio": "Rockstar Studios",
+    "creator": "Dan Houser",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "Arthur Morgan",
+      "Dutch van der Linde",
+      "John Marston",
+      "Sadie Adler"
+    ],
+    "themes": [
+      "Loyalty",
+      "End of the frontier"
+    ],
+    "credits": [
+      "Writers: Dan Houser, Michael Unsworth & Rupert Humphries",
+      "Composer: Woody Jackson",
+      "Prequel to a 2010 game"
+    ],
+    "cover": {
+      "wiki": "Red Dead Redemption 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg"
+    },
+    "quote": {
+      "text": "I have a plan.",
+      "speaker": "A charismatic gang leader, yet again"
+    },
+    "audio": {
+      "clue": "A melancholic folk song that plays as a lone rider heads south into a new state.",
+      "query": "Red Dead Redemption 2 That's the Way It Is Daniel Lanois",
+      "youtubeId": "HjYLY3BGDY4"
+    },
+    "emoji": "🤠🐴🌄📓🔫",
+    "item": {
+      "name": "A sketchbook journal",
+      "description": "Filled with drawings of animals, places and fellow gang members."
+    },
+    "location": {
+      "name": "Valentine",
+      "description": "A muddy livestock town in the Heartlands, with a saloon fight waiting to happen."
+    },
+    "visual": {
+      "icon": "🤠",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-gow",
+    "name": "God of War",
+    "aliases": [
+      "god of war 2018",
+      "gow"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Santa Monica Studio",
+    "creator": "Cory Barlog",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Kratos",
+      "Atreus",
+      "Freya",
+      "Mímir"
+    ],
+    "themes": [
+      "Fatherhood",
+      "Norse myth"
+    ],
+    "credits": [
+      "Director: Cory Barlog",
+      "Composer: Bear McCreary",
+      "Shot as one continuous take"
+    ],
+    "cover": {
+      "wiki": "God of War (2018 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
+    },
+    "quote": {
+      "text": "Boy!",
+      "speaker": "A bearded warrior addressing his son"
+    },
+    "audio": {
+      "clue": "A thunderous Nordic choir and pounding drums over a deep, droning theme.",
+      "query": "God of War 2018 main theme Bear McCreary",
+      "youtubeId": "jpyVfd8TyoI"
+    },
+    "emoji": "🪓👨‍👦🐍🏔️❄️",
+    "item": {
+      "name": "Leviathan Axe",
+      "description": "A frost axe that flies back to its owner's hand when he calls it."
+    },
+    "location": {
+      "name": "Midgard",
+      "description": "A snowy realm of forests and a great lake, coiled around by a world serpent."
+    },
+    "visual": {
+      "icon": "🪓",
+      "colors": [
+        "#1e3a8a",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "g-uncharted2",
+    "name": "Uncharted 2: Among Thieves",
+    "aliases": [
+      "uncharted 2",
+      "uncharted"
+    ],
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Naughty Dog",
+    "creator": "Amy Hennig",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "Nathan Drake",
+      "Elena Fisher",
+      "Chloe Frazer",
+      "Sully"
+    ],
+    "themes": [
+      "Treasure hunting",
+      "Marco Polo"
+    ],
+    "credits": [
+      "Creative director: Amy Hennig",
+      "Game directors: Bruce Straley & Amy Hennig",
+      "Composer: Greg Edmonson"
+    ],
+    "cover": {
+      "wiki": "Uncharted 2: Among Thieves",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Uncharted_2_box_artwork.jpg"
+    },
+    "audio": {
+      "clue": "A swashbuckling orchestral theme for a wise-cracking treasure hunter.",
+      "query": "Uncharted 2 Nate's Theme 2.0",
+      "youtubeId": "To2nyZRpZ38"
+    },
+    "emoji": "🧗🚂🏔️💎🔫",
+    "item": {
+      "name": "The Cintamani Stone",
+      "description": "A legendary sapphire hidden in a lost Himalayan city."
+    },
+    "location": {
+      "name": "Shambhala",
+      "description": "A mythical city in the Himalayas, reached after a train fight in the snow."
+    },
+    "visual": {
+      "icon": "🧗",
+      "colors": [
+        "#7c2d12",
+        "#fdba74"
+      ]
+    }
+  },
+  {
+    "id": "g-me2",
+    "name": "Mass Effect 2",
+    "aliases": [
+      "mass effect"
+    ],
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "BioWare",
+    "creator": "Casey Hudson",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Commander Shepard",
+      "Garrus Vakarian",
+      "Tali'Zorah",
+      "The Illusive Man"
+    ],
+    "themes": [
+      "Suicide mission",
+      "Choices"
+    ],
+    "credits": [
+      "Project director: Casey Hudson",
+      "Lead writer: Mac Walters",
+      "Composer: Jack Wall"
+    ],
+    "cover": {
+      "wiki": "Mass Effect 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/MassEffect2_cover.PNG"
+    },
+    "quote": {
+      "text": "I'm Commander Shepard, and this is my favorite store on the Citadel.",
+      "speaker": "A space hero recording an advert"
+    },
+    "audio": {
+      "clue": "A pulsing 80s-style synth theme as a squad assembles for a suicide mission.",
+      "query": "Mass Effect 2 Suicide Mission",
+      "youtubeId": "eILrZivDaVA"
+    },
+    "emoji": "🚀👽🧑‍🚀💥🛸",
+    "item": {
+      "name": "The Normandy SR-2",
+      "description": "A stealth frigate rebuilt by a pro-human organisation after its predecessor was destroyed."
+    },
+    "location": {
+      "name": "The Citadel",
+      "description": "A colossal space station with five arms, the political heart of the galaxy."
+    },
+    "visual": {
+      "icon": "🛸",
+      "colors": [
+        "#0c4a6e",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-cyberpunk",
+    "name": "Cyberpunk 2077",
+    "aliases": [
+      "cyberpunk",
+      "cp2077"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "CD Projekt Red",
+    "creator": "Adam Badowski",
+    "origin": "Poland",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "V",
+      "Johnny Silverhand",
+      "Judy Alvarez",
+      "Panam Palmer"
+    ],
+    "themes": [
+      "Transhumanism",
+      "Corporations"
+    ],
+    "credits": [
+      "Game director: Adam Badowski",
+      "Based on a tabletop RPG by Mike Pondsmith",
+      "Featuring Keanu Reeves"
+    ],
+    "cover": {
+      "wiki": "Cyberpunk 2077",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
+    },
+    "quote": {
+      "text": "Wake up, Samurai. We have a city to burn.",
+      "speaker": "A rockerboy living in your head"
+    },
+    "audio": {
+      "clue": "An aggressive industrial-rock track as a mercenary rides through neon streets.",
+      "query": "Cyberpunk 2077 V main theme",
+      "youtubeId": "yvlP4KYW7BE"
+    },
+    "emoji": "🌃🤖🎸🔫🧠",
+    "item": {
+      "name": "The Relic",
+      "description": "A biochip that slowly overwrites its carrier with a dead rocker's mind."
+    },
+    "location": {
+      "name": "Night City",
+      "description": "A megacity on the California coast, ruled by corporations and gangs."
+    },
+    "visual": {
+      "icon": "🌃",
+      "colors": [
+        "#facc15",
+        "#0e7490"
+      ]
+    }
+  },
+  {
+    "id": "g-hades",
+    "name": "Hades",
+    "aliases": [
+      "hades game"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Roguelike",
+      "Action RPG"
+    ],
+    "studio": "Supergiant Games",
+    "creator": "Greg Kasavin",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Zagreus",
+      "Hades",
+      "Megaera",
+      "Cerberus"
+    ],
+    "themes": [
+      "Family",
+      "Escape"
+    ],
+    "credits": [
+      "Creative director: Greg Kasavin",
+      "Composer: Darren Korb",
+      "Art director: Jen Zee"
+    ],
+    "cover": {
+      "wiki": "Hades (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Driving metal guitar and bouzouki as a prince fights out of the underworld.",
+      "query": "Hades Out of Tartarus Darren Korb",
+      "youtubeId": "SqFaCDvHxU4"
+    },
+    "emoji": "🔥⚔️🐶💀🏛️",
+    "item": {
+      "name": "Stygian Blade",
+      "description": "The first infernal weapon, a sword from the underworld's armoury."
+    },
+    "location": {
+      "name": "The House of Hades",
+      "description": "A gloomy palace in the underworld with a lounge, a pet three-headed dog and a very strict father."
+    },
+    "visual": {
+      "icon": "🐶",
+      "colors": [
+        "#450a0a",
+        "#f87171"
+      ]
+    }
+  },
+  {
+    "id": "g-persona5",
+    "name": "Persona 5",
+    "aliases": [
+      "p5",
+      "persona 5 royal"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Atlus",
+    "creator": "Katsura Hashino",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Nintendo",
+      "Xbox"
+    ],
+    "characters": [
+      "Joker",
+      "Morgana",
+      "Ryuji Sakamoto",
+      "Ann Takamaki"
+    ],
+    "themes": [
+      "Rebellion",
+      "Phantom thieves"
+    ],
+    "credits": [
+      "Director: Katsura Hashino",
+      "Composer: Shoji Meguro",
+      "Character design: Shigenori Soejima"
+    ],
+    "cover": {
+      "wiki": "Persona 5",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b0/Persona_5_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A slick acid-jazz battle theme with funky bass and English vocals.",
+      "query": "Persona 5 Last Surprise",
+      "youtubeId": "ZNGqBDRJgvo"
+    },
+    "emoji": "🎭🐱☕🃏🌆",
+    "item": {
+      "name": "A calling card",
+      "description": "A red-and-black note warning a corrupt adult that their heart will be stolen."
+    },
+    "location": {
+      "name": "Café Leblanc",
+      "description": "A small Yongen-Jaya coffee shop where a transfer student sleeps in the attic."
+    },
+    "visual": {
+      "icon": "🎭",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-kh",
+    "name": "Kingdom Hearts",
+    "domain": "games",
+    "year": 2002,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "Square",
+    "creator": "Tetsuya Nomura",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Sora",
+      "Riku",
+      "Kairi",
+      "Donald Duck",
+      "Goofy"
+    ],
+    "themes": [
+      "Friendship",
+      "Light and darkness"
+    ],
+    "credits": [
+      "Director: Tetsuya Nomura",
+      "Composer: Yoko Shimomura",
+      "Co-produced with Disney"
+    ],
+    "cover": {
+      "wiki": "Kingdom Hearts (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/85/Kingdom_Hearts.jpg"
+    },
+    "audio": {
+      "clue": "A wistful pop ballad by Utada Hikaru plays over the opening on a beach.",
+      "query": "Kingdom Hearts Simple and Clean opening",
+      "youtubeId": "0nKizH5TV_g"
+    },
+    "emoji": "🗝️🐭🦆🏝️💖",
+    "item": {
+      "name": "Keyblade",
+      "description": "A giant key-shaped sword that can lock the hearts of worlds."
+    },
+    "location": {
+      "name": "Destiny Islands",
+      "description": "A small tropical island with a paopu tree, where three friends dream of other worlds."
+    },
+    "visual": {
+      "icon": "🗝️",
+      "colors": [
+        "#1e3a8a",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-splatoon",
+    "name": "Splatoon",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Third-Person Shooter"
+    ],
+    "studio": "Nintendo",
+    "creator": "Hisashi Nogami",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Inklings",
+      "Callie",
+      "Marie",
+      "Judd"
+    ],
+    "themes": [
+      "Turf war",
+      "Fashion"
+    ],
+    "credits": [
+      "Producer: Hisashi Nogami",
+      "Directors: Yusuke Amano & Tsubasa Sakaguchi",
+      "Original Wii U exclusive"
+    ],
+    "cover": {
+      "wiki": "Splatoon (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bb/Splatoon.jpg"
+    },
+    "audio": {
+      "clue": "Punchy, distorted squid-pop from a fictional in-game band.",
+      "query": "Splatoon Splattack!",
+      "youtubeId": "LBQmvJyIKTg"
+    },
+    "emoji": "🦑🔫🎨🟣🟢",
+    "item": {
+      "name": "Splattershot",
+      "description": "A paint-blasting starter rifle for kids who turn into squids."
+    },
+    "location": {
+      "name": "Inkopolis",
+      "description": "A trendy city plaza full of shops for kids who are part squid."
+    },
+    "visual": {
+      "icon": "🦑",
+      "colors": [
+        "#7c3aed",
+        "#84cc16"
+      ]
+    }
+  },
+  {
+    "id": "g-smash",
+    "name": "Super Smash Bros. Ultimate",
+    "aliases": [
+      "smash bros",
+      "smash ultimate",
+      "ssbu"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Fighting"
+    ],
+    "studio": "Bandai Namco Studios",
+    "creator": "Masahiro Sakurai",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Link",
+      "Pikachu",
+      "Kirby"
+    ],
+    "themes": [
+      "Crossover",
+      "Party fighter"
+    ],
+    "credits": [
+      "Director: Masahiro Sakurai",
+      "Co-developed with Sora Ltd.",
+      "Every past fighter returns"
+    ],
+    "cover": {
+      "wiki": "Super Smash Bros. Ultimate",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/50/Super_Smash_Bros._Ultimate.jpg"
+    },
+    "quote": {
+      "text": "Everyone is here!",
+      "speaker": "The marketing tagline"
+    },
+    "audio": {
+      "clue": "A choral, operatic main theme with Latin lyrics called 'Lifelight'.",
+      "query": "Super Smash Bros Ultimate Lifelight",
+      "youtubeId": "EhgDibw7vB4"
+    },
+    "emoji": "👊🌀🏆🎮⭐",
+    "item": {
+      "name": "Smash Ball",
+      "description": "A floating, glowing orb that unlocks a fighter's Final Smash."
+    },
+    "location": {
+      "name": "Final Destination",
+      "description": "A flat floating platform in space, with no items, no hazards, no excuses."
+    },
+    "visual": {
+      "icon": "🏆",
+      "colors": [
+        "#0a0a0a",
+        "#f59e0b"
+      ]
+    }
+  },
+  {
+    "id": "g-cs",
+    "name": "Counter-Strike",
+    "aliases": [
+      "cs",
+      "csgo",
+      "counter strike",
+      "cs2"
+    ],
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "Valve",
+    "creator": "Minh Le",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Terrorists",
+      "Counter-Terrorists"
+    ],
+    "themes": [
+      "Bomb defusal",
+      "Esports"
+    ],
+    "credits": [
+      "Original mod creators: Minh Le & Jess Cliffe",
+      "Built on the Half-Life engine",
+      "Publisher: Valve"
+    ],
+    "cover": {
+      "wiki": "Counter-Strike (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg"
+    },
+    "quote": {
+      "text": "Counter-Terrorists win.",
+      "speaker": "The round-end announcer"
+    },
+    "emoji": "💣🔫🧱🏜️🪖",
+    "item": {
+      "name": "C4 explosive",
+      "description": "Planted at site A or B; beep, beep, beep…"
+    },
+    "location": {
+      "name": "Dust II",
+      "description": "A sandy Middle-Eastern town map with long A, a mid doors and a tunnel to B."
+    },
+    "visual": {
+      "icon": "💣",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-ac2",
+    "name": "Assassin's Creed II",
+    "aliases": [
+      "assassins creed",
+      "ac2"
+    ],
+    "domain": "games",
+    "year": 2009,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Ubisoft Montreal",
+    "creator": "Patrice Désilets",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "Ezio Auditore",
+      "Leonardo da Vinci",
+      "Rodrigo Borgia"
+    ],
+    "themes": [
+      "Revenge",
+      "Renaissance"
+    ],
+    "credits": [
+      "Creative director: Patrice Désilets",
+      "Composer: Jesper Kyd",
+      "Publisher: Ubisoft"
+    ],
+    "cover": {
+      "wiki": "Assassin's Creed II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/77/Assassins_Creed_2_Box_Art.JPG"
+    },
+    "quote": {
+      "text": "Requiescat in pace.",
+      "speaker": "A hooded nobleman to his fallen targets"
+    },
+    "audio": {
+      "clue": "A mournful vocal and string theme dedicated to a murdered family.",
+      "query": "Ezio's Family Jesper Kyd",
+      "youtubeId": "FSVHx23ByhM"
+    },
+    "emoji": "🗡️🦅🏛️🇮🇹🧥",
+    "item": {
+      "name": "Hidden blade",
+      "description": "A blade concealed in a bracer, requiring a ring finger to be sacrificed — once."
+    },
+    "location": {
+      "name": "Renaissance Florence",
+      "description": "A city of Medici politics, a great cathedral dome and plenty of rooftops.",
+      "wiki": "Florence Cathedral",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Cattedrale_di_Santa_Maria_del_Fiore_%E2%80%93_Il_Duomo_di_Firenze.jpg/960px-Cattedrale_di_Santa_Maria_del_Fiore_%E2%80%93_Il_Duomo_di_Firenze.jpg"
+    },
+    "visual": {
+      "icon": "🦅",
+      "colors": [
+        "#7f1d1d",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "g-tsushima",
+    "name": "Ghost of Tsushima",
+    "aliases": [
+      "ghost of tsushima"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Sucker Punch Productions",
+    "creator": "Nate Fox",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Jin Sakai",
+      "Lord Shimura",
+      "Yuna",
+      "Khotun Khan"
+    ],
+    "themes": [
+      "Honour",
+      "Invasion"
+    ],
+    "credits": [
+      "Creative directors: Nate Fox & Jason Connell",
+      "Composers: Ilan Eshkeri & Shigeru Umebayashi",
+      "Inspired by Akira Kurosawa"
+    ],
+    "cover": {
+      "wiki": "Ghost of Tsushima",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg"
+    },
+    "audio": {
+      "clue": "A haunting shakuhachi flute and strings over a field of swaying grass.",
+      "query": "Ghost of Tsushima main theme",
+      "youtubeId": "ueRpihDmk8c"
+    },
+    "emoji": "⚔️🌸🍃🦊🏯",
+    "item": {
+      "name": "The guiding wind",
+      "description": "Swipe the controller and the breeze points the way — no waypoint needed."
+    },
+    "location": {
+      "name": "Tsushima Island",
+      "description": "A real island between Japan and Korea, invaded by the Mongols in 1274.",
+      "wiki": "Tsushima Island",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Tsushima_Island_ISS034.jpg/960px-Tsushima_Island_ISS034.jpg"
+    },
+    "visual": {
+      "icon": "🌸",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-chronotrigger",
+    "name": "Chrono Trigger",
+    "domain": "games",
+    "year": 1995,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Square",
+    "creator": "Hironobu Sakaguchi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo",
+      "PlayStation",
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "Crono",
+      "Marle",
+      "Lucca",
+      "Frog",
+      "Magus"
+    ],
+    "themes": [
+      "Time travel",
+      "Apocalypse"
+    ],
+    "credits": [
+      "'Dream Team': Hironobu Sakaguchi, Yuji Horii & Akira Toriyama",
+      "Composers: Yasunori Mitsuda & Nobuo Uematsu",
+      "Multiple endings"
+    ],
+    "cover": {
+      "wiki": "Chrono Trigger",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Chrono_Trigger.jpg"
+    },
+    "audio": {
+      "clue": "A bittersweet, sweeping melody named after the passing of time.",
+      "query": "Chrono Trigger Corridors of Time",
+      "youtubeId": "l7Hji0z9Rkw"
+    },
+    "emoji": "⏳🗡️🐸🌋🚀",
+    "item": {
+      "name": "The Epoch",
+      "description": "A winged time machine that can fly through eras."
+    },
+    "location": {
+      "name": "The Millennial Fair",
+      "description": "A festival in the year 1000 where a teleporter demo goes wrong."
+    },
+    "visual": {
+      "icon": "⏳",
+      "colors": [
+        "#1e3a8a",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-silenthill2",
+    "name": "Silent Hill 2",
+    "domain": "games",
+    "year": 2001,
+    "genres": [
+      "Survival Horror"
+    ],
+    "studio": "Konami",
+    "creator": "Masashi Tsuboyama",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "James Sunderland",
+      "Maria",
+      "Pyramid Head",
+      "Angela Orosco"
+    ],
+    "themes": [
+      "Guilt",
+      "Grief"
+    ],
+    "credits": [
+      "Director: Masashi Tsuboyama",
+      "Composer: Akira Yamaoka",
+      "Developed by Team Silent"
+    ],
+    "cover": {
+      "wiki": "Silent Hill 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/95/Silent_Hill_2.jpg"
+    },
+    "quote": {
+      "text": "In my restless dreams, I see that town.",
+      "speaker": "A letter from a wife who died three years ago"
+    },
+    "audio": {
+      "clue": "A sad, slow trip-hop guitar theme drenched in fog.",
+      "query": "Silent Hill 2 Theme of Laura",
+      "youtubeId": "td3P1-cfZ4E"
+    },
+    "emoji": "🌫️🔺🏚️✉️🔪",
+    "item": {
+      "name": "The Great Knife",
+      "description": "A huge blade dragged by an executioner with a triangular helmet."
+    },
+    "location": {
+      "name": "Toluca Lake",
+      "description": "A fog-covered lake town where a widower searches for his wife."
+    },
+    "visual": {
+      "icon": "🔺",
+      "colors": [
+        "#3f3f46",
+        "#a8a29e"
+      ]
+    }
+  },
+  {
+    "id": "g-kirby",
+    "name": "Kirby's Dream Land",
+    "aliases": [
+      "kirby"
+    ],
+    "domain": "games",
+    "year": 1992,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "HAL Laboratory",
+    "creator": "Masahiro Sakurai",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Kirby",
+      "King Dedede",
+      "Whispy Woods"
+    ],
+    "themes": [
+      "Food",
+      "Cuteness"
+    ],
+    "credits": [
+      "Creator & director: Masahiro Sakurai",
+      "Composer: Jun Ishikawa",
+      "Game Boy debut"
+    ],
+    "cover": {
+      "wiki": "Kirby's Dream Land",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Kirbys-dream-land-gameboy-boxart.png"
+    },
+    "audio": {
+      "clue": "A bright, bouncy Game Boy melody for a green, grassy first level.",
+      "query": "Kirby's Dream Land Green Greens",
+      "youtubeId": "twPSaCABakA"
+    },
+    "emoji": "🩷🌟🍰🎈👑",
+    "item": {
+      "name": "Warp Star",
+      "description": "A yellow star a pink puffball rides between levels."
+    },
+    "location": {
+      "name": "Dream Land",
+      "description": "A peaceful land whose food was stolen by a greedy penguin king."
+    },
+    "visual": {
+      "icon": "🩷",
+      "colors": [
+        "#f9a8d4",
+        "#fde047"
       ]
     }
   }

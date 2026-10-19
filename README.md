@@ -42,8 +42,8 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 
 ## Data
 
-- **Works**: `src/data/works/{games,anime,cinema,music}.json`, ~30 per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
-- **Connections**: `src/data/connections.json` — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3. A tile is a label or `{ "label", "src" }`; `images` sets the puzzle's default picture source (`wp`, `fandom:<wiki>`, `ddragon`). `node scripts/enrich-connections.mjs` resolves them and reports misses — a grid only shows pictures when all 16 tiles have one, since a lone text tile would give its group away.
+- **Works**: `src/data/works/{games,anime,cinema,music}.json`, ~50 per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
+- **Connections**: `src/data/connections.json` (10 per category + 7 mixed) — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3. A tile is a label or `{ "label", "src" }`; `images` sets the puzzle's default picture source (`wp`, `fandom:<wiki>`, `ddragon`). `node scripts/enrich-connections.mjs` resolves them and reports misses — a grid only shows pictures when all 16 tiles have one, since a lone text tile would give its group away.
 
 ### Scaling the dataset
 

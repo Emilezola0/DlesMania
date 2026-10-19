@@ -1811,5 +1811,1188 @@
         "#a8a29e"
       ]
     }
+  },
+  {
+    "id": "c-shawshank",
+    "name": "The Shawshank Redemption",
+    "aliases": [
+      "shawshank"
+    ],
+    "domain": "cinema",
+    "year": 1994,
+    "genres": [
+      "Drama"
+    ],
+    "studio": "Castle Rock Entertainment",
+    "creator": "Frank Darabont",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Andy Dufresne",
+      "Ellis 'Red' Redding",
+      "Warden Norton"
+    ],
+    "themes": [
+      "Hope",
+      "Friendship"
+    ],
+    "credits": [
+      "Writer & director: Frank Darabont",
+      "Based on a novella by Stephen King",
+      "Composer: Thomas Newman"
+    ],
+    "cover": {
+      "wiki": "The Shawshank Redemption",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg"
+    },
+    "quote": {
+      "text": "Get busy living, or get busy dying.",
+      "speaker": "A banker serving a life sentence"
+    },
+    "audio": {
+      "clue": "A slow, hopeful piano-and-strings theme as a man stands in the rain with arms raised.",
+      "query": "Shawshank Redemption End Title Thomas Newman",
+      "youtubeId": "Q2ctsooeJBU"
+    },
+    "emoji": "🔨🧱🖼️🌧️🏖️",
+    "item": {
+      "name": "A rock hammer",
+      "description": "A tiny tool hidden in a Bible, used for a very long project behind a poster."
+    },
+    "location": {
+      "name": "Zihuatanejo",
+      "description": "A Mexican beach town on the Pacific, a place with no memory.",
+      "wiki": "Zihuatanejo",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/ZihuaMontage.jpg/960px-ZihuaMontage.jpg"
+    },
+    "visual": {
+      "icon": "🔨",
+      "colors": [
+        "#1c1917",
+        "#78716c"
+      ]
+    }
+  },
+  {
+    "id": "c-fightclub",
+    "name": "Fight Club",
+    "domain": "cinema",
+    "year": 1999,
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "studio": "20th Century Fox",
+    "creator": "David Fincher",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "The Narrator",
+      "Tyler Durden",
+      "Marla Singer"
+    ],
+    "themes": [
+      "Consumerism",
+      "Identity"
+    ],
+    "credits": [
+      "Director: David Fincher",
+      "Based on the novel by Chuck Palahniuk",
+      "Score: The Dust Brothers"
+    ],
+    "cover": {
+      "wiki": "Fight Club",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Fight_Club_poster.jpg"
+    },
+    "quote": {
+      "text": "The first rule of Fight Club is: you do not talk about Fight Club.",
+      "speaker": "A soap salesman"
+    },
+    "audio": {
+      "clue": "A song about a mind going haywire plays as buildings collapse in the final shot.",
+      "query": "Pixies Where Is My Mind Fight Club",
+      "youtubeId": "FSCgfI3OG7s"
+    },
+    "emoji": "🥊🧼🏚️💥😶",
+    "item": {
+      "name": "A bar of pink soap",
+      "description": "Made from a surprising ingredient and sold back to department stores."
+    },
+    "location": {
+      "name": "Paper Street",
+      "description": "A decaying, leaky house in a deserted industrial neighbourhood."
+    },
+    "visual": {
+      "icon": "🧼",
+      "colors": [
+        "#831843",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "c-goodfellas",
+    "name": "Goodfellas",
+    "domain": "cinema",
+    "year": 1990,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Martin Scorsese",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Henry Hill",
+      "Jimmy Conway",
+      "Tommy DeVito",
+      "Karen Hill"
+    ],
+    "themes": [
+      "Mafia",
+      "Greed"
+    ],
+    "credits": [
+      "Director: Martin Scorsese",
+      "Co-writer: Nicholas Pileggi",
+      "Editor: Thelma Schoonmaker"
+    ],
+    "cover": {
+      "wiki": "Goodfellas",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Goodfellas.jpg"
+    },
+    "quote": {
+      "text": "As far back as I can remember, I always wanted to be a gangster.",
+      "speaker": "A narrator from Brooklyn"
+    },
+    "audio": {
+      "clue": "A one-shot walk through a kitchen into a nightclub, scored to a Crystals song.",
+      "query": "Then He Kissed Me The Crystals Goodfellas",
+      "youtubeId": "6FgM94-TT_c"
+    },
+    "emoji": "🍝🔫💵🚬🍷",
+    "item": {
+      "name": "A garlic razor blade",
+      "description": "Used in prison to slice garlic so thin it liquefies in the pan."
+    },
+    "location": {
+      "name": "The Copacabana",
+      "description": "A New York nightclub entered through the kitchen in a famous tracking shot.",
+      "wiki": "Copacabana (nightclub)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/CopacabanaLogo.png"
+    },
+    "visual": {
+      "icon": "🍝",
+      "colors": [
+        "#7f1d1d",
+        "#fcd34d"
+      ]
+    }
+  },
+  {
+    "id": "c-silencelambs",
+    "name": "The Silence of the Lambs",
+    "aliases": [
+      "silence of the lambs"
+    ],
+    "domain": "cinema",
+    "year": 1991,
+    "genres": [
+      "Thriller",
+      "Horror"
+    ],
+    "studio": "Orion Pictures",
+    "creator": "Jonathan Demme",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Clarice Starling",
+      "Hannibal Lecter",
+      "Buffalo Bill"
+    ],
+    "themes": [
+      "Manipulation",
+      "Serial killers"
+    ],
+    "credits": [
+      "Director: Jonathan Demme",
+      "Based on the novel by Thomas Harris",
+      "Won the 'Big Five' Academy Awards"
+    ],
+    "cover": {
+      "wiki": "The Silence of the Lambs (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/The_Silence_of_the_Lambs_poster.jpg"
+    },
+    "quote": {
+      "text": "Hello, Clarice.",
+      "speaker": "An imprisoned psychiatrist behind glass"
+    },
+    "audio": {
+      "clue": "A creeping, minor-key orchestral score as an FBI trainee walks into a basement asylum.",
+      "query": "Silence of the Lambs main title Howard Shore",
+      "youtubeId": "oyyIcbb7lOE"
+    },
+    "emoji": "🦋🍷🥩👮‍♀️🔦",
+    "item": {
+      "name": "A death's-head moth",
+      "description": "A moth with a skull pattern, found in a victim's throat."
+    },
+    "location": {
+      "name": "Baltimore State Hospital",
+      "description": "A maximum-security asylum where a cannibal waits in a glass cell."
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#3f3f46",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "c-2001",
+    "name": "2001: A Space Odyssey",
+    "aliases": [
+      "2001"
+    ],
+    "domain": "cinema",
+    "year": 1968,
+    "genres": [
+      "Sci-Fi"
+    ],
+    "studio": "Metro-Goldwyn-Mayer",
+    "creator": "Stanley Kubrick",
+    "origin": "United Kingdom",
+    "format": "Live-action",
+    "characters": [
+      "Dave Bowman",
+      "HAL 9000",
+      "Frank Poole"
+    ],
+    "themes": [
+      "Evolution",
+      "Artificial intelligence"
+    ],
+    "credits": [
+      "Director: Stanley Kubrick",
+      "Co-writer: Arthur C. Clarke",
+      "Special effects: Douglas Trumbull"
+    ],
+    "cover": {
+      "wiki": "2001: A Space Odyssey (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/2001_A_Space_Odyssey_%281968%29.png"
+    },
+    "quote": {
+      "text": "I'm sorry, Dave. I'm afraid I can't do that.",
+      "speaker": "A calm red camera eye"
+    },
+    "audio": {
+      "clue": "Three rising trumpet notes and pounding timpani as the sun rises over the Earth.",
+      "query": "Also sprach Zarathustra 2001 A Space Odyssey",
+      "youtubeId": "e-QFj59PON4"
+    },
+    "emoji": "🦴🚀🔴🌕👶",
+    "item": {
+      "name": "The monolith",
+      "description": "A perfectly smooth black slab that appears at turning points of evolution."
+    },
+    "location": {
+      "name": "Discovery One",
+      "description": "A long, spine-like spacecraft on its way to Jupiter."
+    },
+    "visual": {
+      "icon": "🔴",
+      "colors": [
+        "#020617",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "c-bladerunner",
+    "name": "Blade Runner",
+    "domain": "cinema",
+    "year": 1982,
+    "genres": [
+      "Sci-Fi",
+      "Neo-noir"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Ridley Scott",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Rick Deckard",
+      "Roy Batty",
+      "Rachael"
+    ],
+    "themes": [
+      "Humanity",
+      "Memory"
+    ],
+    "credits": [
+      "Director: Ridley Scott",
+      "Based on a novel by Philip K. Dick",
+      "Composer: Vangelis"
+    ],
+    "cover": {
+      "wiki": "Blade Runner",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Blade_Runner_%281982_poster%29.png"
+    },
+    "quote": {
+      "text": "All those moments will be lost in time, like tears in rain.",
+      "speaker": "A dying replicant"
+    },
+    "audio": {
+      "clue": "Brooding, sustained synthesizers over a smoggy future city.",
+      "query": "Blade Runner End Titles Vangelis",
+      "youtubeId": "OP63BRzKmB0"
+    },
+    "emoji": "🦄🌧️🔫🤖🏙️",
+    "item": {
+      "name": "An origami unicorn",
+      "description": "A tiny folded figure left on the floor by a colleague."
+    },
+    "location": {
+      "name": "Los Angeles, 2019",
+      "description": "A rain-soaked, neon-lit megacity of flying cars and giant ads."
+    },
+    "visual": {
+      "icon": "🦄",
+      "colors": [
+        "#0c4a6e",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "c-nemo",
+    "name": "Finding Nemo",
+    "domain": "cinema",
+    "year": 2003,
+    "genres": [
+      "Animation",
+      "Family"
+    ],
+    "studio": "Pixar",
+    "creator": "Andrew Stanton",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Marlin",
+      "Nemo",
+      "Dory",
+      "Crush"
+    ],
+    "themes": [
+      "Parenthood",
+      "Ocean"
+    ],
+    "credits": [
+      "Writer & director: Andrew Stanton",
+      "Co-director: Lee Unkrich",
+      "Composer: Thomas Newman"
+    ],
+    "cover": {
+      "wiki": "Finding Nemo",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg"
+    },
+    "quote": {
+      "text": "Just keep swimming.",
+      "speaker": "A blue tang with short-term memory loss"
+    },
+    "audio": {
+      "clue": "A shimmering, gentle orchestral theme over a coral reef.",
+      "query": "Finding Nemo Nemo Egg main title",
+      "youtubeId": "sKljOD5B71k"
+    },
+    "emoji": "🐠🐟🦈🐢🦷",
+    "item": {
+      "name": "A diving mask",
+      "description": "Lost by a dentist, with an address written on the strap."
+    },
+    "location": {
+      "name": "The Great Barrier Reef",
+      "description": "A colourful coral reef off Australia, home to a clownfish father and son.",
+      "wiki": "Great Barrier Reef",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/ISS-45_StoryOfWater%2C_Great_Barrier_Reef%2C_Australia.jpg/960px-ISS-45_StoryOfWater%2C_Great_Barrier_Reef%2C_Australia.jpg"
+    },
+    "visual": {
+      "icon": "🐠",
+      "colors": [
+        "#0ea5e9",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "c-frozen",
+    "name": "Frozen",
+    "domain": "cinema",
+    "year": 2013,
+    "genres": [
+      "Animation",
+      "Musical"
+    ],
+    "studio": "Walt Disney Animation Studios",
+    "creator": "Chris Buck",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Elsa",
+      "Anna",
+      "Olaf",
+      "Kristoff"
+    ],
+    "themes": [
+      "Sisterhood",
+      "Self-acceptance"
+    ],
+    "credits": [
+      "Directors: Chris Buck & Jennifer Lee",
+      "Songs: Kristen Anderson-Lopez & Robert Lopez",
+      "Inspired by Hans Christian Andersen"
+    ],
+    "cover": {
+      "wiki": "Frozen (2013 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Some people are worth melting for.",
+      "speaker": "A talking snowman"
+    },
+    "audio": {
+      "clue": "A powerhouse ballad about letting go, sung on a mountain as an ice palace rises.",
+      "query": "Frozen Let It Go Idina Menzel",
+      "youtubeId": "YVVTZgwYwVo"
+    },
+    "emoji": "❄️👸⛄🏰💙",
+    "item": {
+      "name": "A pair of gloves",
+      "description": "Worn by a queen to keep her icy powers hidden."
+    },
+    "location": {
+      "name": "Arendelle",
+      "description": "A Norwegian-inspired fjord kingdom plunged into eternal winter."
+    },
+    "visual": {
+      "icon": "❄️",
+      "colors": [
+        "#0c4a6e",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "c-shrek",
+    "name": "Shrek",
+    "domain": "cinema",
+    "year": 2001,
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "studio": "DreamWorks Animation",
+    "creator": "Andrew Adamson",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Shrek",
+      "Donkey",
+      "Princess Fiona",
+      "Lord Farquaad"
+    ],
+    "themes": [
+      "Fairy-tale parody",
+      "Inner beauty"
+    ],
+    "credits": [
+      "Directors: Andrew Adamson & Vicky Jenson",
+      "Based on a book by William Steig",
+      "First Best Animated Feature Oscar"
+    ],
+    "cover": {
+      "wiki": "Shrek",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg"
+    },
+    "quote": {
+      "text": "Ogres are like onions.",
+      "speaker": "A green swamp-dweller"
+    },
+    "audio": {
+      "clue": "A sunny pop-rock song by Smash Mouth opens the film in a swamp outhouse.",
+      "query": "Smash Mouth All Star Shrek",
+      "youtubeId": "P6antjcBFZ4"
+    },
+    "emoji": "🧅🐴🐉👸🟢",
+    "item": {
+      "name": "An onion",
+      "description": "Its layers explain the personality of a grumpy ogre."
+    },
+    "location": {
+      "name": "Duloc",
+      "description": "A theme-park-like kingdom ruled by a very short lord."
+    },
+    "visual": {
+      "icon": "🧅",
+      "colors": [
+        "#365314",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "c-hp1",
+    "name": "Harry Potter and the Philosopher's Stone",
+    "aliases": [
+      "harry potter",
+      "sorcerer's stone",
+      "harry potter and the sorcerer's stone"
+    ],
+    "domain": "cinema",
+    "year": 2001,
+    "genres": [
+      "Fantasy",
+      "Family"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Chris Columbus",
+    "origin": "United Kingdom",
+    "format": "Live-action",
+    "characters": [
+      "Harry Potter",
+      "Hermione Granger",
+      "Ron Weasley",
+      "Albus Dumbledore"
+    ],
+    "themes": [
+      "Magic school",
+      "Friendship"
+    ],
+    "credits": [
+      "Director: Chris Columbus",
+      "Based on the novel by J. K. Rowling",
+      "Composer: John Williams"
+    ],
+    "cover": {
+      "wiki": "Harry Potter and the Philosopher's Stone (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg"
+    },
+    "quote": {
+      "text": "You're a wizard, Harry.",
+      "speaker": "A giant groundskeeper"
+    },
+    "audio": {
+      "clue": "A twinkling celesta melody that floats like an owl at night.",
+      "query": "Hedwig's Theme John Williams",
+      "youtubeId": "qsCZP3wdF4w"
+    },
+    "emoji": "🧙‍♂️⚡🦉🧹🏰",
+    "item": {
+      "name": "The Sorting Hat",
+      "description": "A tattered talking hat that assigns first-years to their houses."
+    },
+    "location": {
+      "name": "Platform 9¾",
+      "description": "Reached by running at a brick wall at King's Cross station."
+    },
+    "visual": {
+      "icon": "⚡",
+      "colors": [
+        "#7f1d1d",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "c-pirates",
+    "name": "Pirates of the Caribbean: The Curse of the Black Pearl",
+    "aliases": [
+      "pirates of the caribbean",
+      "potc",
+      "black pearl"
+    ],
+    "domain": "cinema",
+    "year": 2003,
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "studio": "Walt Disney Pictures",
+    "creator": "Gore Verbinski",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Jack Sparrow",
+      "Will Turner",
+      "Elizabeth Swann",
+      "Captain Barbossa"
+    ],
+    "themes": [
+      "Curses",
+      "Freedom"
+    ],
+    "credits": [
+      "Director: Gore Verbinski",
+      "Producer: Jerry Bruckheimer",
+      "Composer: Klaus Badelt"
+    ],
+    "cover": {
+      "wiki": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/89/Pirates_of_the_Caribbean_-_The_Curse_of_the_Black_Pearl.png"
+    },
+    "quote": {
+      "text": "This is the day you will always remember as the day you almost caught Captain Jack Sparrow.",
+      "speaker": "A pirate escaping the navy"
+    },
+    "audio": {
+      "clue": "A galloping, brass-and-strings pirate anthem in 6/8 time.",
+      "query": "He's a Pirate Pirates of the Caribbean",
+      "youtubeId": "dFBBKfw59kA"
+    },
+    "emoji": "🏴‍☠️🪙💀🌊🦜",
+    "item": {
+      "name": "An Aztec gold medallion",
+      "description": "One of 882 cursed coins that turn pirates into skeletons by moonlight."
+    },
+    "location": {
+      "name": "Port Royal",
+      "description": "A British colonial port in Jamaica, attacked by a ghostly black-sailed ship."
+    },
+    "visual": {
+      "icon": "🏴‍☠️",
+      "colors": [
+        "#0c4a6e",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "c-topgun",
+    "name": "Top Gun",
+    "domain": "cinema",
+    "year": 1986,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "studio": "Paramount Pictures",
+    "creator": "Tony Scott",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Maverick",
+      "Goose",
+      "Iceman",
+      "Charlie"
+    ],
+    "themes": [
+      "Rivalry",
+      "Speed"
+    ],
+    "credits": [
+      "Director: Tony Scott",
+      "Producers: Don Simpson & Jerry Bruckheimer",
+      "Composer: Harold Faltermeyer"
+    ],
+    "cover": {
+      "wiki": "Top Gun",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Top_Gun_Movie.jpg"
+    },
+    "quote": {
+      "text": "I feel the need... the need for speed!",
+      "speaker": "Two hotshot naval aviators"
+    },
+    "audio": {
+      "clue": "A pounding synth-rock song by Kenny Loggins as fighter jets launch off a carrier.",
+      "query": "Kenny Loggins Danger Zone",
+      "youtubeId": "siwpn14IE7E"
+    },
+    "emoji": "✈️🕶️🏐🏍️🔥",
+    "item": {
+      "name": "Aviator sunglasses",
+      "description": "Worn by a reckless pilot riding a motorcycle beside the runway."
+    },
+    "location": {
+      "name": "NAS Miramar",
+      "description": "A naval air station near San Diego hosting an elite fighter-weapons school."
+    },
+    "visual": {
+      "icon": "✈️",
+      "colors": [
+        "#0c4a6e",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "c-rocky",
+    "name": "Rocky",
+    "domain": "cinema",
+    "year": 1976,
+    "genres": [
+      "Sports",
+      "Drama"
+    ],
+    "studio": "United Artists",
+    "creator": "John G. Avildsen",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Rocky Balboa",
+      "Adrian",
+      "Apollo Creed",
+      "Mickey"
+    ],
+    "themes": [
+      "Underdog",
+      "Determination"
+    ],
+    "credits": [
+      "Director: John G. Avildsen",
+      "Writer & star: Sylvester Stallone",
+      "Composer: Bill Conti"
+    ],
+    "cover": {
+      "wiki": "Rocky",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/18/Rocky_poster.jpg"
+    },
+    "quote": {
+      "text": "Yo, Adrian!",
+      "speaker": "A Philadelphia boxer"
+    },
+    "audio": {
+      "clue": "A triumphant trumpet fanfare as a boxer sprints up a flight of museum steps.",
+      "query": "Gonna Fly Now Rocky theme Bill Conti",
+      "youtubeId": "ioE_O7Lm0I4"
+    },
+    "emoji": "🥊🥚🏃🐢🏛️",
+    "item": {
+      "name": "Raw eggs in a glass",
+      "description": "Gulped down at dawn before a training run."
+    },
+    "location": {
+      "name": "The 'Rocky Steps'",
+      "description": "The 72 stone steps of the Philadelphia Museum of Art.",
+      "wiki": "Rocky Steps",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/21/Rocky_%281976%29_-_Rocky_Steps.ogv/500px--Rocky_%281976%29_-_Rocky_Steps.ogv.jpg"
+    },
+    "visual": {
+      "icon": "🥊",
+      "colors": [
+        "#7f1d1d",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "c-killbill",
+    "name": "Kill Bill: Volume 1",
+    "aliases": [
+      "kill bill"
+    ],
+    "domain": "cinema",
+    "year": 2003,
+    "genres": [
+      "Action",
+      "Martial Arts"
+    ],
+    "studio": "Miramax",
+    "creator": "Quentin Tarantino",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "The Bride",
+      "O-Ren Ishii",
+      "Bill",
+      "Gogo Yubari"
+    ],
+    "themes": [
+      "Revenge",
+      "Homage"
+    ],
+    "credits": [
+      "Writer & director: Quentin Tarantino",
+      "Fight choreography: Yuen Woo-ping",
+      "Music: RZA"
+    ],
+    "cover": {
+      "wiki": "Kill Bill: Volume 1",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/Kill_Bill_Volume_1.png"
+    },
+    "quote": {
+      "text": "Wiggle your big toe.",
+      "speaker": "A woman waking from a four-year coma"
+    },
+    "audio": {
+      "clue": "A menacing whistled tune as a one-eyed assassin walks down a hospital corridor.",
+      "query": "Twisted Nerve whistle Kill Bill",
+      "youtubeId": "3CamXKi002Q"
+    },
+    "emoji": "⚔️💛🏍️🩸🎌",
+    "item": {
+      "name": "A Hattori Hanzō sword",
+      "description": "Forged by a retired master who swore never to make another."
+    },
+    "location": {
+      "name": "The House of Blue Leaves",
+      "description": "A Tokyo restaurant where one woman fights eighty-eight gang members."
+    },
+    "visual": {
+      "icon": "💛",
+      "colors": [
+        "#facc15",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "c-endgame",
+    "name": "Avengers: Endgame",
+    "aliases": [
+      "endgame",
+      "avengers endgame"
+    ],
+    "domain": "cinema",
+    "year": 2019,
+    "genres": [
+      "Superhero",
+      "Action"
+    ],
+    "studio": "Marvel Studios",
+    "creator": "Anthony & Joe Russo",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Tony Stark",
+      "Steve Rogers",
+      "Thanos",
+      "Natasha Romanoff"
+    ],
+    "themes": [
+      "Sacrifice",
+      "Time heist"
+    ],
+    "credits": [
+      "Directors: Anthony & Joe Russo",
+      "Producer: Kevin Feige",
+      "Composer: Alan Silvestri"
+    ],
+    "cover": {
+      "wiki": "Avengers: Endgame",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg"
+    },
+    "quote": {
+      "text": "Avengers... assemble.",
+      "speaker": "A shield-bearing captain on a battlefield"
+    },
+    "audio": {
+      "clue": "The heroic brass theme of a superhero team swells as portals open.",
+      "query": "Avengers Endgame Portals Alan Silvestri",
+      "youtubeId": "F_mhWxOjxp4"
+    },
+    "emoji": "🧤💎🦸⏳🛡️",
+    "item": {
+      "name": "A nano gauntlet",
+      "description": "A metal glove built to hold six stones — and snap."
+    },
+    "location": {
+      "name": "The Avengers Compound",
+      "description": "A team headquarters in upstate New York, destroyed in a battle."
+    },
+    "visual": {
+      "icon": "🧤",
+      "colors": [
+        "#4c1d95",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "c-getout",
+    "name": "Get Out",
+    "domain": "cinema",
+    "year": 2017,
+    "genres": [
+      "Horror",
+      "Thriller"
+    ],
+    "studio": "Universal Pictures",
+    "creator": "Jordan Peele",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Chris Washington",
+      "Rose Armitage",
+      "Missy Armitage",
+      "Rod Williams"
+    ],
+    "themes": [
+      "Racism",
+      "Hypnosis"
+    ],
+    "credits": [
+      "Writer & director: Jordan Peele",
+      "Producer: Blumhouse",
+      "Oscar for Best Original Screenplay"
+    ],
+    "cover": {
+      "wiki": "Get Out",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Get_Out_poster.png"
+    },
+    "quote": {
+      "text": "Now you're in the Sunken Place.",
+      "speaker": "A hypnotherapist mother"
+    },
+    "audio": {
+      "clue": "A Swahili-language chanted opening song that sounds like a warning.",
+      "query": "Get Out Sikiliza Kwa Wahenga",
+      "youtubeId": "G0iH6DjsKMw"
+    },
+    "emoji": "☕🥄😱🦌📸",
+    "item": {
+      "name": "A teacup and silver spoon",
+      "description": "Stirred slowly, it sends a guest falling into darkness."
+    },
+    "location": {
+      "name": "The Armitage estate",
+      "description": "A secluded lake house where a girlfriend's family is a little too welcoming."
+    },
+    "visual": {
+      "icon": "☕",
+      "colors": [
+        "#0a0a0a",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "c-lalaland",
+    "name": "La La Land",
+    "domain": "cinema",
+    "year": 2016,
+    "genres": [
+      "Musical",
+      "Romance"
+    ],
+    "studio": "Lionsgate",
+    "creator": "Damien Chazelle",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Sebastian Wilder",
+      "Mia Dolan"
+    ],
+    "themes": [
+      "Dreams",
+      "Jazz",
+      "Los Angeles"
+    ],
+    "credits": [
+      "Writer & director: Damien Chazelle",
+      "Composer: Justin Hurwitz",
+      "Briefly announced as Best Picture"
+    ],
+    "cover": {
+      "wiki": "La La Land",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ab/La_La_Land_%28film%29.png"
+    },
+    "audio": {
+      "clue": "A wistful piano tune hummed on a pier at sunset, about a city of stars.",
+      "query": "City of Stars La La Land",
+      "youtubeId": "cZAw8qxn0ZE"
+    },
+    "emoji": "🎹💃🌃🎷⭐",
+    "item": {
+      "name": "A jazz club sign",
+      "description": "A dream club named 'Seb's', drawn on a napkin first."
+    },
+    "location": {
+      "name": "Griffith Observatory",
+      "description": "A hilltop observatory where two dreamers float among the stars.",
+      "wiki": "Griffith Observatory",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Griffith_observatory_2006.jpg/960px-Griffith_observatory_2006.jpg"
+    },
+    "visual": {
+      "icon": "🎹",
+      "colors": [
+        "#1e1b4b",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "c-truman",
+    "name": "The Truman Show",
+    "domain": "cinema",
+    "year": 1998,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "studio": "Paramount Pictures",
+    "creator": "Peter Weir",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Truman Burbank",
+      "Christof",
+      "Meryl",
+      "Marlon"
+    ],
+    "themes": [
+      "Reality TV",
+      "Freedom"
+    ],
+    "credits": [
+      "Director: Peter Weir",
+      "Writer: Andrew Niccol",
+      "Composers: Burkhard Dallwitz & Philip Glass"
+    ],
+    "cover": {
+      "wiki": "The Truman Show",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Trumanshow.jpg"
+    },
+    "quote": {
+      "text": "Good morning, and in case I don't see ya, good afternoon, good evening, and good night!",
+      "speaker": "A cheerful insurance salesman"
+    },
+    "emoji": "📺🏝️🎥⛵🚪",
+    "item": {
+      "name": "A falling studio light",
+      "description": "Labelled 'Sirius (9 Canis Major)', it drops from a clear blue sky."
+    },
+    "location": {
+      "name": "Seahaven Island",
+      "description": "A perfect seaside town that is actually a giant dome-shaped set."
+    },
+    "visual": {
+      "icon": "📺",
+      "colors": [
+        "#0ea5e9",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "c-homealone",
+    "name": "Home Alone",
+    "domain": "cinema",
+    "year": 1990,
+    "genres": [
+      "Comedy",
+      "Family"
+    ],
+    "studio": "20th Century Fox",
+    "creator": "Chris Columbus",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Kevin McCallister",
+      "Harry",
+      "Marv",
+      "Old Man Marley"
+    ],
+    "themes": [
+      "Christmas",
+      "Booby traps"
+    ],
+    "credits": [
+      "Director: Chris Columbus",
+      "Writer & producer: John Hughes",
+      "Composer: John Williams"
+    ],
+    "cover": {
+      "wiki": "Home Alone",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/76/Home_alone_poster.jpg"
+    },
+    "quote": {
+      "text": "Keep the change, ya filthy animal.",
+      "speaker": "A gangster in a black-and-white movie"
+    },
+    "audio": {
+      "clue": "A warm, bell-laden Christmas carol by John Williams, sung by a children's choir.",
+      "query": "Somewhere in My Memory Home Alone",
+      "youtubeId": "5kHH6LJpEbQ"
+    },
+    "emoji": "🏠🎄😱🕷️🧳",
+    "item": {
+      "name": "Paint cans on a rope",
+      "description": "Swung down a staircase at two burglars."
+    },
+    "location": {
+      "name": "A house in Winnetka",
+      "description": "A big brick home in a Chicago suburb, left with one child inside."
+    },
+    "visual": {
+      "icon": "🎄",
+      "colors": [
+        "#7f1d1d",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "c-eeaao",
+    "name": "Everything Everywhere All at Once",
+    "aliases": [
+      "eeaao"
+    ],
+    "domain": "cinema",
+    "year": 2022,
+    "genres": [
+      "Sci-Fi",
+      "Comedy"
+    ],
+    "studio": "A24",
+    "creator": "Daniel Kwan",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Evelyn Wang",
+      "Waymond Wang",
+      "Joy Wang",
+      "Jobu Tupaki"
+    ],
+    "themes": [
+      "Multiverse",
+      "Family",
+      "Nihilism"
+    ],
+    "credits": [
+      "Directors: Daniel Kwan & Daniel Scheinert",
+      "Score: Son Lux",
+      "Won seven Academy Awards"
+    ],
+    "cover": {
+      "wiki": "Everything Everywhere All at Once",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1e/Everything_Everywhere_All_at_Once.jpg"
+    },
+    "quote": {
+      "text": "Please, be kind.",
+      "speaker": "A gentle husband in a fanny pack"
+    },
+    "audio": {
+      "clue": "A swelling, emotional song by Son Lux, Mitski and David Byrne about this life.",
+      "query": "This Is a Life Son Lux Mitski David Byrne",
+      "youtubeId": "EzxsTXNmVm0"
+    },
+    "emoji": "🥯👀🌭🌌👩‍👧",
+    "item": {
+      "name": "An everything bagel",
+      "description": "A black bagel topped with everything — every hope, dream and old report card."
+    },
+    "location": {
+      "name": "The IRS building",
+      "description": "A tax office where a laundromat owner's audit spirals across universes."
+    },
+    "visual": {
+      "icon": "🥯",
+      "colors": [
+        "#0a0a0a",
+        "#a855f7"
+      ]
+    }
   }
 ]

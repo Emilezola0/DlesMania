@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { DOMAINS, domainInfo } from '../data';
+import { DOMAINS, connectionsPuzzles, domainInfo, getWork } from '../data';
 import { GameHost } from '../games/GameHost';
 import { GAME_META } from '../games/meta';
 import { dayNumber, formatLong, isPlayableDay, msUntilTomorrow, todayKey } from '../lib/date';
@@ -143,10 +143,28 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
   );
 }
 
+function specsValid(specs: RoundSpec[]): boolean {
+  try {
+    return specs.length === 10 && specs.every((s) => {
+      if (s.targetId) getWork(s.targetId);
+      s.workIds?.forEach(getWork);
+      return !s.puzzleId || connectionsPuzzles.some((p) => p.id === s.puzzleId);
+    });
+  } catch {
+    return false;
+  }
+}
+
 function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
   const navigate = useNavigate();
-  const specs = useMemo(() => buildDaily(date, domain), [date, domain]);
   const key = dayKey(domain, date);
+  const saved = useProgress((s) => s.specs[key]);
+  const saveSpecs = useProgress((s) => s.saveSpecs);
+  // Reuse the rounds this day was first played with; fall back if they reference removed data.
+  const specs = useMemo(() => (saved && specsValid(saved) ? saved : buildDaily(date, domain)), [saved, date, domain]);
+  useEffect(() => {
+    if (!saved || !specsValid(saved)) saveSpecs(domain, date, specs);
+  }, [saved, specs, domain, date, saveSpecs]);
   const rounds = useProgress((s) => s.days[key]) ?? {};
   const setRound = useProgress((s) => s.setRound);
   const info = domainInfo(domain);

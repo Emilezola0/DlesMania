@@ -112,7 +112,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
               {withImages && (
                 <div className="mb-2 flex justify-center gap-2">
                   {grp.items.map((t) => (
-                    <img key={t.label} src={t.image} alt="" className="size-10 rounded-lg bg-white/30 object-cover shadow sm:size-12" />
+                    <img key={t.label} src={t.image} alt="" className="size-10 rounded-lg bg-white/30 object-cover object-top shadow sm:size-12" />
                   ))}
                 </div>
               )}
@@ -147,7 +147,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
                     alt=""
                     draggable={false}
                     onError={() => setBrokenImage(true)}
-                    className={`aspect-square w-full rounded-lg object-cover transition ${on ? 'ring-2 ring-indigo-500' : ''}`}
+                    className={`aspect-square w-full rounded-lg object-cover object-top transition ${on ? 'ring-2 ring-indigo-500' : ''}`}
                   />
                 )}
                 <span className="line-clamp-2">{t.label}</span>

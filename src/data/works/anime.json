@@ -1681,7 +1681,8 @@
       "Composer: Shirō Sagisu"
     ],
     "cover": {
-      "wiki": "Bleach (TV series)"
+      "wiki": "Bleach (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/Bleach_%28manga%29_1.png"
     },
     "audio": {
       "clue": "A punchy rock-rap opening by Orange Range.",
@@ -1764,6 +1765,1144 @@
       "colors": [
         "#dc2626",
         "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-tokyoghoul",
+    "name": "Tokyo Ghoul",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Dark Fantasy",
+      "Horror"
+    ],
+    "studio": "Pierrot",
+    "creator": "Sui Ishida",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ken Kaneki",
+      "Touka Kirishima",
+      "Rize Kamishiro"
+    ],
+    "themes": [
+      "Identity",
+      "Monsters"
+    ],
+    "credits": [
+      "Original manga: Sui Ishida",
+      "Director: Shuhei Morita",
+      "Composer: Yutaka Yamada"
+    ],
+    "cover": {
+      "wiki": "Tokyo Ghoul",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Tokyo_Ghoul_volume_1_cover.jpg"
+    },
+    "quote": {
+      "text": "What's 1000 minus 7?",
+      "speaker": "A torturer to his prisoner"
+    },
+    "audio": {
+      "clue": "A frantic, falsetto-driven rock opening by TK of Ling Tosite Sigure.",
+      "query": "Tokyo Ghoul opening Unravel",
+      "youtubeId": "7aMOurgDB-o"
+    },
+    "emoji": "☕👁️🩸🎭🦷",
+    "item": {
+      "name": "An eyepatch mask",
+      "description": "A leather mask with a zipper mouth, covering one red eye."
+    },
+    "location": {
+      "name": "Anteiku",
+      "description": "A quiet café where ghouls gather peacefully over coffee."
+    },
+    "visual": {
+      "icon": "👁️",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-mob",
+    "name": "Mob Psycho 100",
+    "aliases": [
+      "mob psycho"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "studio": "Bones",
+    "creator": "ONE",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Webcomic",
+    "characters": [
+      "Shigeo Kageyama",
+      "Reigen Arataka",
+      "Dimple"
+    ],
+    "themes": [
+      "Self-worth",
+      "Psychic powers"
+    ],
+    "credits": [
+      "Original webcomic: ONE",
+      "Director: Yuzuru Tachikawa",
+      "Composer: Kenji Kawai"
+    ],
+    "cover": {
+      "wiki": "Mob Psycho 100",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Mob_Psycho_100_manga_vol_1.jpg"
+    },
+    "audio": {
+      "clue": "A wild, shouty chant-rock opening by MOB CHOIR counting up to 99.",
+      "query": "Mob Psycho 100 opening 99",
+      "youtubeId": "Bw-5Lka7gPE"
+    },
+    "emoji": "👦🔮💯🥦🏃",
+    "item": {
+      "name": "An emotion meter",
+      "description": "A percentage that climbs towards 100 until a quiet boy explodes."
+    },
+    "location": {
+      "name": "Spirits and Such Consultation Office",
+      "description": "A tiny exorcism business run by a fraud with a heart of gold."
+    },
+    "visual": {
+      "icon": "💯",
+      "colors": [
+        "#7c3aed",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-vinland",
+    "name": "Vinland Saga",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Historical",
+      "Action"
+    ],
+    "studio": "Wit Studio",
+    "creator": "Makoto Yukimura",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Thorfinn",
+      "Askeladd",
+      "Thors",
+      "Canute"
+    ],
+    "themes": [
+      "Revenge",
+      "Pacifism"
+    ],
+    "credits": [
+      "Original manga: Makoto Yukimura",
+      "Director: Shūhei Yabuta",
+      "Season 2 by MAPPA"
+    ],
+    "cover": {
+      "wiki": "Vinland Saga (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Vinland_Saga_volume_01_cover.jpg"
+    },
+    "quote": {
+      "text": "I have no enemies.",
+      "speaker": "A wise warrior, repeated by his son"
+    },
+    "audio": {
+      "clue": "A heavy, chanting rock opening by Survive Said the Prophet.",
+      "query": "Vinland Saga opening Mukanjyo",
+      "youtubeId": "l5wAdQ-UkWY"
+    },
+    "emoji": "⚔️⛵🌾👑🌊",
+    "item": {
+      "name": "Twin daggers",
+      "description": "Short blades a boy carries for years to avenge his father."
+    },
+    "location": {
+      "name": "Ketil's farm",
+      "description": "A Danish estate where a former warrior learns to grow wheat as a slave."
+    },
+    "visual": {
+      "icon": "⛵",
+      "colors": [
+        "#1e3a8a",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "a-violet",
+    "name": "Violet Evergarden",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Drama"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Kana Akatsuki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Violet Evergarden",
+      "Gilbert Bougainvillea",
+      "Claudia Hodgins"
+    ],
+    "themes": [
+      "Love",
+      "Grief",
+      "Letters"
+    ],
+    "credits": [
+      "Original light novel: Kana Akatsuki",
+      "Director: Taichi Ishidate",
+      "Composer: Evan Call"
+    ],
+    "cover": {
+      "wiki": "Violet Evergarden",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/be/Violet_Evergarden_light_novel_volume_1_cover.jpg"
+    },
+    "quote": {
+      "text": "I want to know what \"I love you\" means.",
+      "speaker": "A former child soldier"
+    },
+    "audio": {
+      "clue": "A delicate orchestral opening sung by TRUE.",
+      "query": "Violet Evergarden opening Sincerely",
+      "youtubeId": "ZAKuyZEyZjY"
+    },
+    "emoji": "✉️🦾💚🖋️😢",
+    "item": {
+      "name": "Mechanical prosthetic hands",
+      "description": "Silver arms that type letters for other people."
+    },
+    "location": {
+      "name": "CH Postal Company",
+      "description": "A postal service in Leiden that also employs Auto Memory Dolls."
+    },
+    "visual": {
+      "icon": "✉️",
+      "colors": [
+        "#1e3a8a",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-gurrenlagann",
+    "name": "Gurren Lagann",
+    "aliases": [
+      "tengen toppa gurren lagann",
+      "ttgl"
+    ],
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Mecha"
+    ],
+    "studio": "Gainax",
+    "creator": "Hiroyuki Imaishi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Simon",
+      "Kamina",
+      "Yoko Littner"
+    ],
+    "themes": [
+      "Spirals",
+      "Defiance"
+    ],
+    "credits": [
+      "Director: Hiroyuki Imaishi",
+      "Writer: Kazuki Nakashima",
+      "Composer: Taku Iwasaki"
+    ],
+    "cover": {
+      "wiki": "Gurren Lagann",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Gurren_Lagann_key_visual.jpg"
+    },
+    "quote": {
+      "text": "Who the hell do you think I am?!",
+      "speaker": "A shirtless rebel with sunglasses"
+    },
+    "audio": {
+      "clue": "A bombastic rap-and-orchestra battle theme called 'Libera Me From Hell'.",
+      "query": "Gurren Lagann Libera Me From Hell",
+      "youtubeId": "VT6LFOIofRE"
+    },
+    "emoji": "🔩🕶️🤖🌌💥",
+    "item": {
+      "name": "A core drill",
+      "description": "A tiny glowing drill that powers a giant robot — and pierces the heavens."
+    },
+    "location": {
+      "name": "Jeeha Village",
+      "description": "An underground village whose people have never seen the sky."
+    },
+    "visual": {
+      "icon": "🔩",
+      "colors": [
+        "#dc2626",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-trigun",
+    "name": "Trigun",
+    "domain": "anime",
+    "year": 1998,
+    "genres": [
+      "Space Western",
+      "Action"
+    ],
+    "studio": "Madhouse",
+    "creator": "Yasuhiro Nightow",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Vash the Stampede",
+      "Nicholas D. Wolfwood",
+      "Meryl Stryfe"
+    ],
+    "themes": [
+      "Pacifism",
+      "Bounty"
+    ],
+    "credits": [
+      "Original manga: Yasuhiro Nightow",
+      "Director: Satoshi Nishimura",
+      "Composer: Tsuneo Imahori"
+    ],
+    "cover": {
+      "wiki": "Trigun",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Trigun_01_%28Tokuma_Shoten%29.png"
+    },
+    "quote": {
+      "text": "Love and peace!",
+      "speaker": "A gunslinger with a $60 billion bounty"
+    },
+    "audio": {
+      "clue": "A twangy, surf-rock guitar opening called 'H.T.'",
+      "query": "Trigun opening H.T.",
+      "youtubeId": "4OxFSy8G5wk"
+    },
+    "emoji": "🔫🧥🍩🏜️☮️",
+    "item": {
+      "name": "A red coat and a silver revolver",
+      "description": "Worn by a donut-loving pacifist who never kills."
+    },
+    "location": {
+      "name": "Gunsmoke",
+      "description": "A desert planet with twin suns, where humanity's ships crash-landed."
+    },
+    "visual": {
+      "icon": "🧥",
+      "colors": [
+        "#b91c1c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-inuyasha",
+    "name": "Inuyasha",
+    "domain": "anime",
+    "year": 2000,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Sunrise",
+    "creator": "Rumiko Takahashi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Inuyasha",
+      "Kagome Higurashi",
+      "Sesshomaru",
+      "Naraku"
+    ],
+    "themes": [
+      "Time slip",
+      "Demons"
+    ],
+    "credits": [
+      "Original manga: Rumiko Takahashi",
+      "Director: Masashi Ikeda",
+      "Composer: Kaoru Wada"
+    ],
+    "cover": {
+      "wiki": "Inuyasha",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Inuyasha_1.png"
+    },
+    "quote": {
+      "text": "Sit, boy!",
+      "speaker": "A schoolgirl commanding a half-demon (English dub)"
+    },
+    "audio": {
+      "clue": "An upbeat J-pop first opening by the boy band V6, about wanting to change the world.",
+      "query": "Inuyasha opening 1 Change the World V6",
+      "youtubeId": "GtrJMZfFN50"
+    },
+    "emoji": "🐶👂🗡️💎⛩️",
+    "item": {
+      "name": "The Shikon Jewel",
+      "description": "A pink jewel that shatters into shards scattered across feudal Japan."
+    },
+    "location": {
+      "name": "The Bone-Eater's Well",
+      "description": "A dry well at a family shrine that leads 500 years into the past."
+    },
+    "visual": {
+      "icon": "👂",
+      "colors": [
+        "#991b1b",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "a-fairytail",
+    "name": "Fairy Tail",
+    "domain": "anime",
+    "year": 2009,
+    "genres": [
+      "Fantasy",
+      "Shōnen"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Hiro Mashima",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Natsu Dragneel",
+      "Lucy Heartfilia",
+      "Erza Scarlet",
+      "Happy"
+    ],
+    "themes": [
+      "Guild",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Hiro Mashima",
+      "Director: Shinji Ishihira",
+      "Composer: Yasuharu Takanashi"
+    ],
+    "cover": {
+      "wiki": "Fairy Tail",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/FairyTail-Volume_1_Cover.jpg"
+    },
+    "audio": {
+      "clue": "A Celtic-flavoured main theme of fiddle and bagpipes over rock drums.",
+      "query": "Fairy Tail main theme",
+      "youtubeId": "m6kb96YWXMA"
+    },
+    "emoji": "🧚🔥🐱🐉🍺",
+    "item": {
+      "name": "A guild mark",
+      "description": "A fairy emblem stamped on a member's skin."
+    },
+    "location": {
+      "name": "Magnolia",
+      "description": "A merchant town home to the rowdiest mage guild in Fiore."
+    },
+    "visual": {
+      "icon": "🧚",
+      "colors": [
+        "#b91c1c",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-rezero",
+    "name": "Re:Zero − Starting Life in Another World",
+    "aliases": [
+      "re zero",
+      "rezero"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Isekai",
+      "Psychological"
+    ],
+    "studio": "White Fox",
+    "creator": "Tappei Nagatsuki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Subaru Natsuki",
+      "Emilia",
+      "Rem",
+      "Ram"
+    ],
+    "themes": [
+      "Time loops",
+      "Trauma"
+    ],
+    "credits": [
+      "Original light novel: Tappei Nagatsuki",
+      "Director: Masaharu Watanabe",
+      "Composer: Kenichiro Suehiro"
+    ],
+    "cover": {
+      "wiki": "Re:Zero",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Re-Zero_kara_Hajimeru_Isekai_Seikatsu_light_novel_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A frantic rock opening by Konomi Suzuki.",
+      "query": "Re Zero opening Redo",
+      "youtubeId": "0Vwwr3VGsYg"
+    },
+    "emoji": "🔁💀🧝‍♀️👯🍎",
+    "item": {
+      "name": "A tracksuit",
+      "description": "The only clothes a shut-in teen has when he's summoned to another world."
+    },
+    "location": {
+      "name": "The Roswaal Mansion",
+      "description": "A clown-like lord's estate, served by twin demon maids."
+    },
+    "visual": {
+      "icon": "🔁",
+      "colors": [
+        "#1e3a8a",
+        "#e9d5ff"
+      ]
+    }
+  },
+  {
+    "id": "a-madeinabyss",
+    "name": "Made in Abyss",
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Kinema Citrus",
+    "creator": "Akihito Tsukushi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Riko",
+      "Reg",
+      "Nanachi",
+      "Bondrewd"
+    ],
+    "themes": [
+      "Descent",
+      "Curiosity"
+    ],
+    "credits": [
+      "Original manga: Akihito Tsukushi",
+      "Director: Masayuki Kojima",
+      "Composer: Kevin Penkin"
+    ],
+    "cover": {
+      "wiki": "Made in Abyss",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Made_in_Abyss_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "An ethereal, choral score by an Australian composer, as two kids peer into a giant pit.",
+      "query": "Made in Abyss Hanezeve Caradhina",
+      "youtubeId": "sFzDQ2OjFko"
+    },
+    "emoji": "🕳️🤖👧🔦🌋",
+    "item": {
+      "name": "Cave raider whistles",
+      "description": "Ranked whistles worn around the neck, from red to white."
+    },
+    "location": {
+      "name": "The Abyss",
+      "description": "A bottomless pit full of relics; coming back up gets deadlier the deeper you go."
+    },
+    "visual": {
+      "icon": "🕳️",
+      "colors": [
+        "#14532d",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-edgerunners",
+    "name": "Cyberpunk: Edgerunners",
+    "aliases": [
+      "edgerunners"
+    ],
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Cyberpunk",
+      "Action"
+    ],
+    "studio": "Studio Trigger",
+    "creator": "Hiroyuki Imaishi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Video Game",
+    "characters": [
+      "David Martinez",
+      "Lucy",
+      "Rebecca",
+      "Maine"
+    ],
+    "themes": [
+      "Ambition",
+      "Moon"
+    ],
+    "credits": [
+      "Director: Hiroyuki Imaishi",
+      "Based on CD Projekt Red's game",
+      "Composer: Akira Yamaoka"
+    ],
+    "cover": {
+      "wiki": "Cyberpunk: Edgerunners",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Cyberpunk_Edgerunners_poster.jpg"
+    },
+    "audio": {
+      "clue": "A slow, yearning synth-pop song by Rosa Walton about not wanting to go home alone.",
+      "query": "Cyberpunk Edgerunners I Really Want to Stay at Your House",
+      "youtubeId": "KvMY1uzSC1E"
+    },
+    "emoji": "🌙🦾💊🚀🌃",
+    "item": {
+      "name": "Sandevistan",
+      "description": "A spine implant that slows the world down for its user."
+    },
+    "location": {
+      "name": "Night City",
+      "description": "A neon megacity where a street kid dreams of reaching the Moon."
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#facc15",
+        "#ec4899"
+      ]
+    }
+  },
+  {
+    "id": "a-killlakill",
+    "name": "Kill la Kill",
+    "domain": "anime",
+    "year": 2013,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "studio": "Studio Trigger",
+    "creator": "Hiroyuki Imaishi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Ryuko Matoi",
+      "Satsuki Kiryuin",
+      "Mako Mankanshoku"
+    ],
+    "themes": [
+      "Clothing",
+      "Revenge"
+    ],
+    "credits": [
+      "Director: Hiroyuki Imaishi",
+      "Writer: Kazuki Nakashima",
+      "Composer: Hiroyuki Sawano"
+    ],
+    "cover": {
+      "wiki": "Kill la Kill",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Killlakillpromo.jpg"
+    },
+    "audio": {
+      "clue": "A heavy, bilingual rock theme announcing an iron-willed student council president.",
+      "query": "Kill la Kill Before My Body Is Dry",
+      "youtubeId": "1_PWdjym25g"
+    },
+    "emoji": "✂️👘🏫💪🔥",
+    "item": {
+      "name": "A Scissor Blade",
+      "description": "Half of a giant pair of red scissors, carried by a transfer student."
+    },
+    "location": {
+      "name": "Honnouji Academy",
+      "description": "A school ruled by a student council whose uniforms grant superpowers."
+    },
+    "visual": {
+      "icon": "✂️",
+      "colors": [
+        "#dc2626",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-toradora",
+    "name": "Toradora!",
+    "domain": "anime",
+    "year": 2008,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "studio": "J.C.Staff",
+    "creator": "Yuyuko Takemiya",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Ryuji Takasu",
+      "Taiga Aisaka",
+      "Minori Kushieda",
+      "Ami Kawashima"
+    ],
+    "themes": [
+      "First love",
+      "Christmas"
+    ],
+    "credits": [
+      "Original light novel: Yuyuko Takemiya",
+      "Director: Tatsuyuki Nagai",
+      "Composer: Yukari Hashimoto"
+    ],
+    "cover": {
+      "wiki": "Toradora!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Toradora%21_light_novel_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "An upbeat J-pop opening sung by the main cast.",
+      "query": "Toradora opening Pre-Parade",
+      "youtubeId": "ylPEBnmRRxQ"
+    },
+    "emoji": "🐯🐉🎄🏫💔",
+    "item": {
+      "name": "A wooden practice sword",
+      "description": "Swung by a tiny, furious girl nicknamed the Palmtop Tiger."
+    },
+    "location": {
+      "name": "Ohashi High School",
+      "description": "A school where a scary-looking boy and a tiny girl team up for love."
+    },
+    "visual": {
+      "icon": "🐯",
+      "colors": [
+        "#f97316",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-clannad",
+    "name": "Clannad",
+    "aliases": [
+      "clannad after story"
+    ],
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Jun Maeda",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Visual Novel",
+    "characters": [
+      "Tomoya Okazaki",
+      "Nagisa Furukawa",
+      "Ushio"
+    ],
+    "themes": [
+      "Family",
+      "Grief"
+    ],
+    "credits": [
+      "Original visual novel by Key: Jun Maeda",
+      "Director: Tatsuya Ishihara",
+      "Second season: After Story"
+    ],
+    "cover": {
+      "wiki": "Clannad (visual novel)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cb/Clannad_game_cover.jpg"
+    },
+    "audio": {
+      "clue": "A soft, lullaby-like ending about a big family of dumplings.",
+      "query": "Clannad Dango Daikazoku",
+      "youtubeId": "rFKKSQ8GgHk"
+    },
+    "emoji": "🍡🌸👨‍👧🏫😭",
+    "item": {
+      "name": "Dango",
+      "description": "Sweet rice dumplings that a shy girl sings about."
+    },
+    "location": {
+      "name": "A town on a hill",
+      "description": "A sleepy town where a delinquent meets a girl repeating her senior year."
+    },
+    "visual": {
+      "icon": "🍡",
+      "colors": [
+        "#fbcfe8",
+        "#a7f3d0"
+      ]
+    }
+  },
+  {
+    "id": "a-assclass",
+    "name": "Assassination Classroom",
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Comedy",
+      "Action"
+    ],
+    "studio": "Lerche",
+    "creator": "Yūsei Matsui",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Koro-sensei",
+      "Nagisa Shiota",
+      "Karma Akabane"
+    ],
+    "themes": [
+      "Teaching",
+      "Assassination"
+    ],
+    "credits": [
+      "Original manga: Yūsei Matsui",
+      "Director: Seiji Kishi",
+      "Composer: Naoki Sato"
+    ],
+    "cover": {
+      "wiki": "Assassination Classroom",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Assassination_Classroom_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A cheery opening sung by the class, built around a slogan of greeting.",
+      "query": "Assassination Classroom opening Seishun Satsubatsuron",
+      "youtubeId": "mQS_iWWp1sQ"
+    },
+    "emoji": "🐙🎓🔪🌙🟡",
+    "item": {
+      "name": "Anti-sensei knives",
+      "description": "Rubbery green blades that only harm one tentacled teacher."
+    },
+    "location": {
+      "name": "Class 3-E",
+      "description": "A ramshackle building on a mountain, home to the school's rejects."
+    },
+    "visual": {
+      "icon": "🐙",
+      "colors": [
+        "#facc15",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "a-fireflies",
+    "name": "Grave of the Fireflies",
+    "domain": "anime",
+    "year": 1988,
+    "genres": [
+      "War",
+      "Drama"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Isao Takahata",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Seita",
+      "Setsuko"
+    ],
+    "themes": [
+      "War",
+      "Siblings"
+    ],
+    "credits": [
+      "Writer & director: Isao Takahata",
+      "Based on a story by Akiyuki Nosaka",
+      "Composer: Michio Mamiya"
+    ],
+    "cover": {
+      "wiki": "Grave of the Fireflies",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grave_of_the_Fireflies_Japanese_poster.jpg"
+    },
+    "audio": {
+      "clue": "A Victorian parlour song plays on a gramophone over images of the evacuated wealthy.",
+      "query": "Grave of the Fireflies Home Sweet Home",
+      "youtubeId": "Y3xBLGrRSqk"
+    },
+    "emoji": "🔥🪲🍬👧😢",
+    "item": {
+      "name": "A tin of fruit drops",
+      "description": "A red candy tin a little girl treasures, later holding something sadder."
+    },
+    "location": {
+      "name": "Kobe, 1945",
+      "description": "A port city firebombed during the war, where two orphans try to survive."
+    },
+    "visual": {
+      "icon": "🍬",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-howl",
+    "name": "Howl's Moving Castle",
+    "domain": "anime",
+    "year": 2004,
+    "genres": [
+      "Fantasy",
+      "Romance"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Sophie Hatter",
+      "Howl",
+      "Calcifer",
+      "The Witch of the Waste"
+    ],
+    "themes": [
+      "Curses",
+      "War",
+      "Ageing"
+    ],
+    "credits": [
+      "Director: Hayao Miyazaki",
+      "Based on the novel by Diana Wynne Jones",
+      "Composer: Joe Hisaishi"
+    ],
+    "cover": {
+      "wiki": "Howl's Moving Castle (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a0/Howls-moving-castleposter.jpg"
+    },
+    "audio": {
+      "clue": "A swirling, melancholic waltz that carousels through the whole film.",
+      "query": "Howl's Moving Castle Merry-Go-Round of Life",
+      "youtubeId": "f7SS57LFPco"
+    },
+    "emoji": "🏰🔥👵🧙‍♂️🌸",
+    "item": {
+      "name": "Calcifer",
+      "description": "A wise-cracking fire demon who powers a walking house."
+    },
+    "location": {
+      "name": "A walking castle",
+      "description": "A clanking jumble of turrets on chicken legs, with a door that opens to four places."
+    },
+    "visual": {
+      "icon": "🔥",
+      "colors": [
+        "#1e3a8a",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "a-bocchi",
+    "name": "Bocchi the Rock!",
+    "aliases": [
+      "bocchi"
+    ],
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Music",
+      "Comedy"
+    ],
+    "studio": "CloverWorks",
+    "creator": "Aki Hamaji",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Hitori Gotoh",
+      "Nijika Ijichi",
+      "Ryo Yamada",
+      "Ikuyo Kita"
+    ],
+    "themes": [
+      "Social anxiety",
+      "Bands"
+    ],
+    "credits": [
+      "Original manga: Aki Hamaji",
+      "Director: Keiichirō Saitō",
+      "Fictional band: Kessoku Band"
+    ],
+    "cover": {
+      "wiki": "Bocchi the Rock!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Bocchi_The_Rock%21_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A breathless indie-rock opening performed by the fictional band.",
+      "query": "Bocchi the Rock opening Seishun Complex",
+      "youtubeId": "Yd8kUoB72xU"
+    },
+    "emoji": "🎸😰🌀🎤🩷",
+    "item": {
+      "name": "A pink tracksuit",
+      "description": "Worn by an anxious guitar prodigy who hides in a box."
+    },
+    "location": {
+      "name": "STARRY",
+      "description": "A small live house in Shimokitazawa where a band plays its first gigs."
+    },
+    "visual": {
+      "icon": "🎸",
+      "colors": [
+        "#f9a8d4",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "a-bluelock",
+    "name": "Blue Lock",
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Sports"
+    ],
+    "studio": "Eight Bit",
+    "creator": "Muneyuki Kaneshiro",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yoichi Isagi",
+      "Meguru Bachira",
+      "Rin Itoshi",
+      "Jinpachi Ego"
+    ],
+    "themes": [
+      "Egoism",
+      "Football"
+    ],
+    "credits": [
+      "Story: Muneyuki Kaneshiro",
+      "Art: Yusuke Nomura",
+      "Director: Tetsuaki Watanabe"
+    ],
+    "cover": {
+      "wiki": "Blue Lock",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Blue_Lock_manga_volume_1.png"
+    },
+    "audio": {
+      "clue": "A hard-hitting rock opening by UNISON SQUARE GARDEN.",
+      "query": "Blue Lock opening Chaos ga Kiwamaru",
+      "youtubeId": "5Iv3Fi8eb7w"
+    },
+    "emoji": "⚽🔒🔵👁️🏆",
+    "item": {
+      "name": "A football",
+      "description": "Fought over by 300 strikers locked in a facility to find the world's best."
+    },
+    "location": {
+      "name": "The Blue Lock facility",
+      "description": "A prison-like training complex designed to create an egoist striker."
+    },
+    "visual": {
+      "icon": "⚽",
+      "colors": [
+        "#1e3a8a",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-oshinoko",
+    "name": "Oshi no Ko",
+    "aliases": [
+      "my star",
+      "oshi no ko"
+    ],
+    "domain": "anime",
+    "year": 2023,
+    "genres": [
+      "Drama",
+      "Mystery"
+    ],
+    "studio": "Doga Kobo",
+    "creator": "Aka Akasaka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ai Hoshino",
+      "Aqua Hoshino",
+      "Ruby Hoshino",
+      "Kana Arima"
+    ],
+    "themes": [
+      "Fame",
+      "Revenge",
+      "Reincarnation"
+    ],
+    "credits": [
+      "Story: Aka Akasaka",
+      "Art: Mengo Yokoyari",
+      "Director: Daisuke Hiramaki"
+    ],
+    "cover": {
+      "wiki": "Oshi no Ko",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Oshi_no_Ko_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A hyper-fast, rap-sung J-pop opening by YOASOBI that topped charts worldwide.",
+      "query": "Oshi no Ko opening Idol YOASOBI",
+      "youtubeId": "ZRtdQ81jPUQ"
+    },
+    "emoji": "⭐👁️🎤🍓🔪",
+    "item": {
+      "name": "Star-shaped pupils",
+      "description": "A famous idol and her children all have a star in their eyes."
+    },
+    "location": {
+      "name": "Strawberry Productions",
+      "description": "A small talent agency in Tokyo managing a superstar idol."
+    },
+    "visual": {
+      "icon": "⭐",
+      "colors": [
+        "#ec4899",
+        "#7c3aed"
       ]
     }
   }
