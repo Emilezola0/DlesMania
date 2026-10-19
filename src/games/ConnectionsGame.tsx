@@ -9,10 +9,10 @@ import { GAME_META } from './meta';
 
 /** NYT-style difficulty ranks (yellow → green → blue → purple), as soft pastel plates. */
 export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string; name: string }> = {
-  0: { tile: 'bg-lv0 text-ink', emoji: '🟨', name: 'Straightforward' },
-  1: { tile: 'bg-lv1 text-ink', emoji: '🟩', name: 'Medium' },
-  2: { tile: 'bg-lv2 text-ink', emoji: '🟦', name: 'Hard' },
-  3: { tile: 'bg-lv3 text-ink', emoji: '🟪', name: 'Tricky' },
+  0: { tile: 'bg-lv0 text-on-pastel', emoji: '🟨', name: 'Straightforward' },
+  1: { tile: 'bg-lv1 text-on-pastel', emoji: '🟩', name: 'Medium' },
+  2: { tile: 'bg-lv2 text-on-pastel', emoji: '🟦', name: 'Hard' },
+  3: { tile: 'bg-lv3 text-on-pastel', emoji: '🟪', name: 'Tricky' },
 };
 
 /** Tile ids are "<group>-<index>", so the group of a tile is its prefix. */

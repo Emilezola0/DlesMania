@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { computeStreak, useProgress } from '../store/progress';
+import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
 import { GlyphSeal, Ornament } from './Glyph';
 
 const NAV = [
@@ -18,6 +19,46 @@ export function SpeakerIcon({ on }: { on: boolean }) {
   );
 }
 
+export function ThemeIcon({ theme }: { theme: ThemeChoice }) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {theme === 'light' && (
+        <>
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" />
+        </>
+      )}
+      {theme === 'dark' && <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z" />}
+      {theme === 'system' && (
+        <>
+          <circle cx="12" cy="12" r="8.5" />
+          <path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+const THEME_LABEL: Record<ThemeChoice, string> = { system: 'Theme: follows your system', light: 'Theme: light', dark: 'Theme: dark' };
+const THEME_COLOR = { light: '#efe6d2', dark: '#1b1924' };
+
+/** Mirrors the stored choice onto <html data-theme> (the inline script in index.html does it before first paint). */
+function useApplyTheme(theme: ThemeChoice) {
+  useEffect(() => {
+    const root = document.documentElement;
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const apply = () => {
+      if (theme === 'system') delete root.dataset.theme;
+      else root.dataset.theme = theme;
+      const dark = theme === 'dark' || (theme === 'system' && media.matches);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLOR[dark ? 'dark' : 'light']);
+    };
+    apply();
+    media.addEventListener('change', apply);
+    return () => media.removeEventListener('change', apply);
+  }, [theme]);
+}
+
 export function FlameIcon({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" width="16" height="16" className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -31,7 +72,10 @@ export function Layout() {
   const days = useProgress((s) => s.days);
   const sound = useProgress((s) => s.sound);
   const toggleSound = useProgress((s) => s.toggleSound);
+  const theme = useProgress((s) => s.theme);
+  const cycleTheme = useProgress((s) => s.cycleTheme);
   const { current } = computeStreak(days);
+  useApplyTheme(theme);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -39,7 +83,7 @@ export function Layout() {
         <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2.5 sm:gap-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
-            <span className="hidden font-display text-lg font-bold tracking-[0.18em] min-[420px]:inline">OMNIDLE</span>
+            <span className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
           </NavLink>
           <nav className="ml-auto flex items-center gap-0.5 text-sm sm:gap-1">
             {NAV.map((n) => (
@@ -64,6 +108,15 @@ export function Layout() {
             className="rounded-md p-1.5 text-ink-soft transition hover:bg-tile hover:text-ink"
           >
             <SpeakerIcon on={sound} />
+          </button>
+          <button
+            type="button"
+            onClick={cycleTheme}
+            title={`${THEME_LABEL[theme]} (click to change)`}
+            aria-label={THEME_LABEL[theme]}
+            className="rounded-md p-1.5 text-ink-soft transition hover:bg-tile hover:text-ink"
+          >
+            <ThemeIcon theme={theme} />
           </button>
           <span
             title="Days in a row with at least one category completed"

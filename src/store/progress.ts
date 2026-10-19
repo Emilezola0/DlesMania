@@ -6,6 +6,9 @@ import type { Domain, RoundRecord, RoundSpec } from '../types';
 
 type DayRounds = Record<number, RoundRecord>;
 
+/** 'system' follows the OS; the others force a theme. */
+export type ThemeChoice = 'system' | 'light' | 'dark';
+
 /** Storage key for one category's daily on one date, e.g. "anime:2026-10-18". */
 export const dayKey = (domain: Domain, date: string) => `${domain}:${date}`;
 
@@ -19,10 +22,12 @@ interface ProgressState {
   specs: Record<string, RoundSpec[]>;
   freePlay: { played: number; won: number; points: number };
   sound: boolean;
+  theme: ThemeChoice;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
   toggleSound: () => void;
+  cycleTheme: () => void;
   resetAll: () => void;
 }
 
@@ -33,6 +38,7 @@ export const useProgress = create<ProgressState>()(
       specs: {},
       freePlay: { played: 0, won: 0, points: 0 },
       sound: true,
+      theme: 'system',
       setRound: (domain, date, index, record) =>
         set((s) => {
           const key = dayKey(domain, date);
@@ -48,6 +54,7 @@ export const useProgress = create<ProgressState>()(
           },
         })),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
+      cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 } }),
     }),
     {

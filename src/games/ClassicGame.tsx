@@ -54,9 +54,9 @@ function compare(guess: string | string[] | number, target: string | string[] | 
 }
 
 const VERDICT_CLASS: Record<Verdict, string> = {
-  hit: 'bg-hit border-hit text-paper',
-  near: 'bg-near border-near text-ink',
-  miss: 'bg-miss border-miss text-paper',
+  hit: 'bg-hit border-hit text-on-strong',
+  near: 'bg-near border-near text-on-pastel',
+  miss: 'bg-miss border-miss text-on-strong',
 };
 
 export default function ClassicGame({ spec, record, onChange }: GameProps) {
