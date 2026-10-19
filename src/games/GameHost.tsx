@@ -41,7 +41,7 @@ export function GameHost({ spec, record, onChange }: GameProps) {
 
   return (
     <div className="animate-round-in">
-      <div className={`rounded-3xl transition-shadow duration-700 ${record.status === 'won' ? 'animate-glow' : ''}`}>
+      <div className={`rounded-xl transition-shadow duration-700 ${record.status === 'won' ? 'animate-glow' : ''}`}>
         <Game spec={spec} record={record} onChange={handleChange} />
       </div>
     </div>

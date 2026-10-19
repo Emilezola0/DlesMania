@@ -64,10 +64,10 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
           }
         }}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 py-3 text-base outline-none ring-indigo-500/50 transition placeholder:text-zinc-500 focus:border-indigo-500 focus:ring-4 disabled:opacity-50"
+        className="w-full rounded-xl border border-rule-strong bg-card/90 px-4 py-3 text-base outline-none ring-accent/30 transition placeholder:text-ink-faint focus:border-accent focus:ring-4 disabled:opacity-50"
       />
       {results.length > 0 && (
-        <ul className="animate-pop absolute z-20 mt-2 max-h-80 w-full overflow-auto rounded-xl border border-zinc-700 bg-zinc-900 shadow-2xl">
+        <ul className="animate-pop absolute z-20 mt-2 max-h-80 w-full overflow-auto rounded-xl border border-rule-strong bg-card shadow-2xl">
           {results.map((w, i) => (
             <li key={w.id}>
               <button
@@ -75,11 +75,11 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
                 onMouseEnter={() => setActive(i)}
                 onClick={() => submit(w)}
                 className={`flex w-full items-baseline justify-between gap-3 px-4 py-2.5 text-left ${
-                  i === active ? 'bg-indigo-600/30' : 'hover:bg-zinc-800'
+                  i === active ? 'bg-accent-soft' : 'hover:bg-tile'
                 }`}
               >
                 <span className="font-medium">{w.name}</span>
-                <span className="shrink-0 text-xs text-zinc-400">
+                <span className="shrink-0 text-xs text-ink-soft">
                   {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}
                 </span>
               </button>

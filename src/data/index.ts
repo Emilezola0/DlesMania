@@ -34,11 +34,15 @@ export function getWork(id: string): Work {
   return w;
 }
 
-export const DOMAINS: { id: Domain; label: string; noun: string; icon: string; accent: string }[] = [
-  { id: 'games', label: 'Video Games', noun: 'video game', icon: '🎮', accent: 'from-emerald-500 to-teal-500' },
-  { id: 'anime', label: 'Anime', noun: 'anime', icon: '🌸', accent: 'from-pink-500 to-rose-500' },
-  { id: 'cinema', label: 'Cinema', noun: 'movie', icon: '🎬', accent: 'from-amber-500 to-orange-500' },
-  { id: 'music', label: 'Music', noun: 'album', icon: '🎵', accent: 'from-violet-500 to-indigo-500' },
+/**
+ * `tone` / `fill` are literal Tailwind classes (so the compiler sees them): each category has
+ * one flat pastel colour, used for its glyph, rules and progress bars.
+ */
+export const DOMAINS: { id: Domain; label: string; noun: string; icon: string; tone: string; fill: string }[] = [
+  { id: 'games', label: 'Video Games', noun: 'video game', icon: '🎮', tone: 'text-accent', fill: 'bg-accent' },
+  { id: 'anime', label: 'Anime', noun: 'anime', icon: '🌸', tone: 'text-rose', fill: 'bg-rose' },
+  { id: 'cinema', label: 'Cinema', noun: 'movie', icon: '🎬', tone: 'text-ochre', fill: 'bg-ochre' },
+  { id: 'music', label: 'Music', noun: 'album', icon: '🎵', tone: 'text-plum', fill: 'bg-plum' },
 ];
 
 export function domainInfo(id: Domain) {

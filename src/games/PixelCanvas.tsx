@@ -71,7 +71,7 @@ export function PixelCanvas({ src, icon, colors, step }: Props) {
       ref={ref}
       width={SIZE}
       height={SIZE}
-      className="mx-auto aspect-square w-full max-w-72 rounded-xl shadow-2xl shadow-black/50 transition-transform duration-300"
+      className="mx-auto aspect-square w-full max-w-72 rounded-xl shadow-2xl shadow-ink/30 transition-transform duration-300"
       style={{ imageRendering: 'pixelated' }}
     />
   );

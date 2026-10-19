@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { FlameIcon } from '../components/Layout';
+import { Glyph } from '../components/Glyph';
 import { DOMAINS } from '../data';
 import { EPOCH, dayNumber, fromKey, toKey, todayKey } from '../lib/date';
 import { isDomain } from '../lib/rounds';
@@ -35,7 +37,7 @@ export default function Archive() {
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
         <h1 className="text-3xl font-black tracking-tight">Archive</h1>
-        <p className="text-zinc-400">Missed a day? Every past challenge stays playable, for each category.</p>
+        <p className="text-ink-soft">Missed a day? Every past challenge stays playable, for each category.</p>
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -44,32 +46,32 @@ export default function Archive() {
             key={d.id}
             type="button"
             onClick={() => setParams({ domain: d.id }, { replace: true })}
-            className={`rounded-xl border px-3 py-2 text-sm font-semibold transition ${
-              d.id === domain ? 'border-indigo-500 bg-indigo-500/20 text-white' : 'border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-600'
+            className={`inline-flex items-center gap-2 rounded-md border px-3 py-2 font-display text-sm font-semibold tracking-wider transition ${
+              d.id === domain ? 'border-ink bg-ink text-paper' : 'border-rule bg-card text-ink-soft hover:border-rule-strong'
             }`}
           >
-            {d.icon} {d.label}
+            <Glyph seed={d.id} size={18} className={d.id === domain ? '' : d.tone} /> {d.label}
           </button>
         ))}
-        <span className="ml-auto self-center text-sm text-zinc-400">
-          🔥 {streak.current} current · best {streak.best}
+        <span className="ml-auto self-center text-sm text-ink-soft">
+          <span className="inline-flex items-center gap-1 text-coral"><FlameIcon /> {streak.current}</span> current · best {streak.best}
         </span>
       </div>
 
-      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
+      <div className="page rounded-md p-5">
         <div className="mb-4 flex items-center justify-between">
-          <button type="button" disabled={!canPrev} onClick={() => shift(-1)} className="rounded-lg px-3 py-1.5 hover:bg-zinc-800 disabled:opacity-30">
+          <button type="button" disabled={!canPrev} onClick={() => shift(-1)} className="rounded-lg px-3 py-1.5 hover:bg-tile disabled:opacity-30">
             ←
           </button>
           <p className="font-bold">{month.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</p>
-          <button type="button" disabled={!canNext} onClick={() => shift(1)} className="rounded-lg px-3 py-1.5 hover:bg-zinc-800 disabled:opacity-30">
+          <button type="button" disabled={!canNext} onClick={() => shift(1)} className="rounded-lg px-3 py-1.5 hover:bg-tile disabled:opacity-30">
             →
           </button>
         </div>
 
         <div className="grid grid-cols-7 gap-2 text-center">
           {WEEKDAYS.map((w) => (
-            <span key={w} className="text-xs text-zinc-500">
+            <span key={w} className="text-xs text-ink-faint">
               {w}
             </span>
           ))}
@@ -78,14 +80,14 @@ export default function Archive() {
             const playable = key >= EPOCH && key <= today;
             const sum = summarizeDay(days[dayKey(domain, key)]);
             const tone = sum.complete
-              ? 'border-green-500/60 bg-green-500/20'
+              ? 'border-hit/70 bg-hit/20'
               : sum.finished > 0
-                ? 'border-amber-500/50 bg-amber-500/10'
-                : 'border-zinc-800 bg-zinc-900';
+                ? 'border-near/60 bg-near/15'
+                : 'border-rule bg-card';
             const dayLabel = fromKey(key).getDate();
             if (!playable) {
               return (
-                <span key={key} className="flex aspect-square items-center justify-center rounded-xl text-sm text-zinc-700">
+                <span key={key} className="flex aspect-square items-center justify-center rounded-xl text-sm text-ink-faint/50">
                   {dayLabel}
                 </span>
               );
@@ -94,21 +96,21 @@ export default function Archive() {
               <Link
                 key={key}
                 to={`/daily/${domain}/${key}`}
-                className={`flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-zinc-500 ${tone} ${
-                  key === today ? 'ring-2 ring-indigo-500' : ''
+                className={`flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-ink-faint ${tone} ${
+                  key === today ? 'ring-2 ring-accent' : ''
                 }`}
               >
                 <span className="font-bold">{dayLabel}</span>
-                <span className="text-[10px] text-zinc-400">{sum.finished ? `${sum.score}` : `#${dayNumber(key)}`}</span>
+                <span className="text-[10px] text-ink-soft">{sum.finished ? `${sum.score}` : `#${dayNumber(key)}`}</span>
               </Link>
             );
           })}
         </div>
 
-        <div className="mt-4 flex justify-center gap-4 text-xs text-zinc-400">
-          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-green-500/60" /> Completed</span>
-          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-amber-500/50" /> In progress</span>
-          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-zinc-700" /> Not started</span>
+        <div className="mt-4 flex justify-center gap-4 text-xs text-ink-soft">
+          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit/60" /> Completed</span>
+          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near/60" /> In progress</span>
+          <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-tile-strong" /> Not started</span>
         </div>
       </div>
     </div>

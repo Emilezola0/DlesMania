@@ -7,12 +7,12 @@ import { sfx } from '../lib/sfx';
 import type { ConnectionsLevel, GameProps } from '../types';
 import { GAME_META } from './meta';
 
-/** NYT-style difficulty colours: yellow → green → blue → purple. */
+/** NYT-style difficulty ranks (yellow → green → blue → purple), as soft pastel plates. */
 export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string; name: string }> = {
-  0: { tile: 'bg-yellow-300 text-yellow-950', emoji: '🟨', name: 'Straightforward' },
-  1: { tile: 'bg-emerald-400 text-emerald-950', emoji: '🟩', name: 'Medium' },
-  2: { tile: 'bg-sky-400 text-sky-950', emoji: '🟦', name: 'Hard' },
-  3: { tile: 'bg-violet-400 text-violet-950', emoji: '🟪', name: 'Tricky' },
+  0: { tile: 'bg-lv0 text-ink', emoji: '🟨', name: 'Straightforward' },
+  1: { tile: 'bg-lv1 text-ink', emoji: '🟩', name: 'Medium' },
+  2: { tile: 'bg-lv2 text-ink', emoji: '🟦', name: 'Hard' },
+  3: { tile: 'bg-lv3 text-ink', emoji: '🟪', name: 'Tricky' },
 };
 
 /** Tile ids are "<group>-<index>", so the group of a tile is its prefix. */
@@ -91,16 +91,16 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
   return (
     <div className="space-y-5">
       {puzzle.theme ? (
-        <p className="text-center text-zinc-300">
-          Every tile comes from <span className="font-semibold text-white">{puzzle.theme}</span>. Find four groups of four.
+        <p className="text-center text-ink-soft">
+          Every tile comes from <span className="font-semibold text-ink">{puzzle.theme}</span>. Find four groups of four.
         </p>
       ) : (
-        <p className="text-center text-zinc-300">Create four groups of four.</p>
+        <p className="text-center text-ink-soft">Create four groups of four.</p>
       )}
 
       <div className="relative space-y-2">
         {toast && (
-          <div className="animate-pop absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-zinc-900 shadow-lg">
+          <div className="animate-pop absolute -top-3 left-1/2 z-10 -translate-x-1/2 rounded-sm bg-ink px-4 py-1.5 font-display text-sm font-semibold tracking-wider text-paper shadow-lg">
             {toast}
           </div>
         )}
@@ -108,11 +108,11 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
         {revealedGroups.map((gi) => {
           const grp = puzzle.groups[gi];
           return (
-            <div key={gi} className={`animate-pop rounded-xl px-4 py-3 text-center shadow-lg ${LEVEL_STYLE[grp.level].tile}`}>
+            <div key={gi} className={`animate-pop rounded-md border border-ink/15 px-4 py-3 text-center ${LEVEL_STYLE[grp.level].tile}`}>
               {withImages && (
                 <div className="mb-2 flex justify-center gap-2">
                   {grp.items.map((t) => (
-                    <img key={t.label} src={t.image} alt="" className="size-10 rounded-lg bg-white/30 object-cover object-top shadow sm:size-12" />
+                    <img key={t.label} src={t.image} alt="" className="size-10 rounded-md border border-ink/20 bg-card/60 object-cover object-top sm:size-12" />
                   ))}
                 </div>
               )}
@@ -137,8 +137,8 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
                   withImages ? 'p-1.5 pb-2 text-[10px] sm:text-xs' : 'min-h-16 px-1.5 py-2 text-xs sm:min-h-20 sm:text-sm'
                 } ${
                   on
-                    ? '-translate-y-0.5 scale-[0.97] bg-zinc-100 text-zinc-900 shadow-lg shadow-indigo-500/20'
-                    : 'bg-zinc-800 text-zinc-100 hover:-translate-y-0.5 hover:bg-zinc-700'
+                    ? '-translate-y-0.5 scale-[0.97] bg-ink text-paper shadow-[3px_3px_0_var(--color-accent)]'
+                    : 'border border-rule bg-card text-ink hover:-translate-y-0.5 hover:bg-tile'
                 } ${hopping && on ? 'animate-lift' : ''}`}
               >
                 {withImages && (
@@ -147,7 +147,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
                     alt=""
                     draggable={false}
                     onError={() => setBrokenImage(true)}
-                    className={`aspect-square w-full rounded-lg object-cover object-top transition ${on ? 'ring-2 ring-indigo-500' : ''}`}
+                    className={`aspect-square w-full rounded-lg object-cover object-top transition ${on ? 'ring-2 ring-accent' : ''}`}
                   />
                 )}
                 <span className="line-clamp-2">{t.label}</span>
@@ -159,12 +159,12 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
 
       {!done && (
         <>
-          <div className="flex items-center justify-center gap-2 text-sm text-zinc-400">
+          <div className="flex items-center justify-center gap-2 text-sm text-ink-soft">
             Mistakes remaining:
             {Array.from({ length: maxMistakes }, (_, i) => (
               <span
                 key={i}
-                className={`size-3 rounded-full transition-all duration-300 ${i < maxMistakes - mistakes ? 'bg-zinc-300' : 'scale-50 bg-zinc-700'}`}
+                className={`size-3 rounded-full transition-all duration-300 ${i < maxMistakes - mistakes ? 'bg-ink-soft' : 'scale-50 bg-tile-strong'}`}
               />
             ))}
           </div>
@@ -175,23 +175,23 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
                 sfx.click();
                 setOrder((o) => shuffle(o, Math.random));
               }}
-              className="rounded-full border border-zinc-600 px-4 py-2 text-sm font-semibold hover:bg-zinc-800"
+              className="btn-paper rounded-md px-4 py-2 font-display text-xs font-semibold tracking-wider"
             >
               Shuffle
             </button>
-            <button type="button" onClick={() => setSelected([])} disabled={!selected.length} className="rounded-full border border-zinc-600 px-4 py-2 text-sm font-semibold hover:bg-zinc-800 disabled:opacity-40">
+            <button type="button" onClick={() => setSelected([])} disabled={!selected.length} className="btn-paper rounded-md px-4 py-2 font-display text-xs font-semibold tracking-wider">
               Deselect
             </button>
             <button
               type="button"
               onClick={submit}
               disabled={selected.length !== 4 || hopping}
-              className="rounded-full bg-indigo-600 px-5 py-2 text-sm font-semibold hover:bg-indigo-500 disabled:opacity-40"
+              className="btn-accent rounded-md px-5 py-2 font-display text-xs font-semibold tracking-wider"
             >
               Submit
             </button>
           </div>
-          <div className="flex flex-wrap justify-center gap-3 text-[11px] text-zinc-500">
+          <div className="flex flex-wrap justify-center gap-3 text-[11px] text-ink-faint">
             {([0, 1, 2, 3] as const).map((lv) => (
               <span key={lv} className="flex items-center gap-1">
                 <i className={`size-2.5 rounded-sm ${LEVEL_STYLE[lv].tile}`} /> {LEVEL_STYLE[lv].name}

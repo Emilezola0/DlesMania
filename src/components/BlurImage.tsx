@@ -24,8 +24,8 @@ export function BlurImage({ src, alt, step, revealed, onError }: Props) {
   const [blur, grey] = revealed ? [0, 0] : STEPS[Math.min(step, STEPS.length - 1)];
 
   return (
-    <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-xl bg-zinc-800">
-      {!loaded && <div className="absolute inset-0 animate-pulse bg-zinc-800" />}
+    <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-xl bg-tile">
+      {!loaded && <div className="absolute inset-0 animate-pulse bg-tile" />}
       <img
         src={src}
         alt={revealed ? alt : 'Mystery image'}
@@ -37,7 +37,7 @@ export function BlurImage({ src, alt, step, revealed, onError }: Props) {
         // Scale up while blurred so soft edges don't reveal the frame.
         style={{ filter: `blur(${blur}px) grayscale(${grey})`, transform: `scale(${1 + blur / 100})` }}
       />
-      {!revealed && <span className="absolute bottom-2 right-2 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-semibold text-zinc-300">Clears with each miss</span>}
+      {!revealed && <span className="absolute bottom-2 right-2 rounded-sm bg-ink/75 px-2 py-0.5 font-display text-[10px] font-semibold tracking-wider text-paper">Clears with each miss</span>}
     </div>
   );
 }

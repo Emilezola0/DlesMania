@@ -11,7 +11,7 @@ import { GAME_META } from './meta';
 import { PixelCanvas } from './PixelCanvas';
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-center text-xs uppercase tracking-widest text-zinc-500">{children}</p>;
+  return <p className="text-center text-xs font-display uppercase tracking-widest text-ink-faint">{children}</p>;
 }
 
 /** Image clue (item / location) with a text fallback when there's no picture or it fails to load. */
@@ -22,7 +22,7 @@ function PictureClue({ label, clue, wrong, done }: { label: string; clue: ClueRe
     <div className="space-y-4">
       <Label>{label}</Label>
       {showImage && <BlurImage src={clue.image!} alt={clue.name} step={wrong} revealed={done} onError={() => setBroken(true)} />}
-      <p className={`text-center leading-relaxed text-zinc-100 ${showImage ? 'text-base sm:text-lg' : 'text-xl sm:text-2xl'}`}>{clue.description}</p>
+      <p className={`text-center font-serif leading-relaxed text-ink ${showImage ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'}`}>{clue.description}</p>
     </div>
   );
 }
@@ -48,9 +48,9 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
             <Label>Tracklist</Label>
             <ol className="mx-auto max-w-sm space-y-2">
               {w.tracks.map((t, i) => (
-                <li key={t} className={`flex items-center gap-3 rounded-lg px-4 py-2.5 ${i < shown ? 'animate-pop bg-zinc-800' : 'bg-zinc-800/40'}`}>
-                  <span className="font-mono text-xs text-zinc-500">{String(i + 1).padStart(2, '0')}</span>
-                  <span className={i < shown ? 'font-semibold text-white' : 'select-none text-zinc-600 blur-[3px]'}>{i < shown ? t : '████████████'}</span>
+                <li key={t} className={`flex items-center gap-3 rounded-lg px-4 py-2.5 ${i < shown ? 'animate-pop bg-tile' : 'bg-tile/50'}`}>
+                  <span className="font-mono text-xs text-ink-faint">{String(i + 1).padStart(2, '0')}</span>
+                  <span className={i < shown ? 'font-semibold text-ink' : 'select-none text-ink-faint/70 blur-[3px]'}>{i < shown ? t : '████████████'}</span>
                 </li>
               ))}
             </ol>
@@ -58,7 +58,7 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
         );
       }
       return (
-        <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-white sm:text-3xl">“{w.quote!.text}”</blockquote>
+        <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-ink sm:text-3xl">“{w.quote!.text}”</blockquote>
       );
     case 'audio':
       if (w.audio?.youtubeId && clipOk) {
@@ -76,10 +76,10 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
         <div className="flex flex-col items-center gap-5 text-center">
           <div className="flex h-12 items-end gap-1" aria-hidden>
             {Array.from({ length: 24 }, (_, i) => (
-              <span key={i} className="w-1.5 animate-eq rounded-full bg-gradient-to-t from-indigo-500 to-pink-400" style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${(i % 6) * 120}ms` }} />
+              <span key={i} className="w-1.5 animate-eq rounded-full bg-accent" style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${(i % 6) * 120}ms` }} />
             ))}
           </div>
-          <p className="text-lg leading-relaxed text-zinc-100 sm:text-xl">{w.audio!.clue}</p>
+          <p className="font-serif text-xl leading-relaxed text-ink sm:text-2xl">{w.audio!.clue}</p>
         </div>
       );
     case 'emoji': {
@@ -92,7 +92,7 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
             i < shown ? (
               <span key={i} className="animate-pop">{g}</span>
             ) : (
-              <span key={i} className="flex size-14 items-center justify-center rounded-xl bg-zinc-800 text-2xl text-zinc-600 sm:size-16">?</span>
+              <span key={i} className="flex size-14 items-center justify-center rounded-xl bg-tile text-2xl text-ink-faint/70 sm:size-16">?</span>
             ),
           )}
         </div>
@@ -108,7 +108,7 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
       return (
         <div className="space-y-2">
           <Label>Credits</Label>
-          <p className="text-center text-2xl font-semibold text-zinc-100">{w.credits[0]}</p>
+          <p className="text-center font-serif text-3xl font-semibold text-ink">{w.credits[0]}</p>
         </div>
       );
     default:
@@ -137,11 +137,11 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
 
   return (
     <div className="space-y-6">
-      <p className="text-center text-zinc-300">
-        Which <span className="font-semibold text-white">{domainInfo(target.domain).noun}</span> is this?
+      <p className="text-center text-ink-soft">
+        Which <span className="font-semibold text-ink">{domainInfo(target.domain).noun}</span> is this?
       </p>
 
-      <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 sm:p-8">
+      <div className="page rounded-md p-5 sm:p-8">
         <Clue type={spec.type} w={target} wrong={wrong.length} done={done} clipOk={clipOk} onClipUnavailable={() => setClipOk(false)} />
       </div>
 
@@ -150,7 +150,7 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
       <div className="flex justify-center gap-1.5" aria-label="Attempts">
         {Array.from({ length: meta.maxAttempts }, (_, i) => {
           const g = record.guesses[i];
-          const cls = !g ? 'bg-zinc-800' : g === target.id ? 'bg-hit' : 'bg-miss';
+          const cls = !g ? 'bg-tile' : g === target.id ? 'bg-hit' : 'bg-miss';
           return <span key={i} className={`h-2 w-8 rounded-full transition-colors duration-500 ${cls}`} />;
         })}
       </div>
@@ -158,7 +158,7 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
       {revealed > 0 && (
         <ul className="space-y-2">
           {hints.slice(0, revealed).map((h) => (
-            <li key={h} className="animate-pop rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-100">
+            <li key={h} className="animate-pop rounded-lg border border-near/50 bg-near/15 px-4 py-2 text-sm text-ink">
               💡 {h}
             </li>
           ))}
@@ -168,7 +168,7 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
       {wrong.length > 0 && (
         <div className="flex flex-wrap justify-center gap-2">
           {wrong.map((id) => (
-            <span key={id} className="animate-shake rounded-lg bg-red-500/15 px-3 py-1 text-sm text-red-300 line-through">
+            <span key={id} className="animate-shake rounded-lg bg-miss/15 px-3 py-1 text-sm text-miss line-through">
               {getWork(id).name}
             </span>
           ))}

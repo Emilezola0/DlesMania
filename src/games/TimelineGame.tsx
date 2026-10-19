@@ -43,9 +43,9 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
 
   return (
     <div className="space-y-5">
-      <p className="text-center text-zinc-300">
-        Sort these {domainLabel} from <span className="font-semibold text-white">oldest</span> to{' '}
-        <span className="font-semibold text-white">newest</span>. Drag or use the arrows.
+      <p className="text-center text-ink-soft">
+        Sort these {domainLabel} from <span className="font-semibold text-ink">oldest</span> to{' '}
+        <span className="font-semibold text-ink">newest</span>. Drag or use the arrows.
       </p>
 
       <ol className="space-y-2">
@@ -54,7 +54,7 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
           // Feedback only applies while the order still matches the last submission.
           const judged = done || (last && last[i] === id);
           const ok = judged && correct[i] === id;
-          const tone = !judged ? 'border-zinc-700 bg-zinc-900' : ok ? 'border-green-500/60 bg-green-500/15' : 'border-red-500/50 bg-red-500/10';
+          const tone = !judged ? 'border-rule-strong bg-card' : ok ? 'border-hit/70 bg-hit/15' : 'border-miss/60 bg-miss/10';
           return (
             <li
               key={id}
@@ -67,22 +67,22 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
               }}
               className={`flex items-center gap-3 rounded-xl border p-3 transition ${tone} ${!done ? 'cursor-grab active:cursor-grabbing' : ''} ${dragging === i ? 'opacity-50' : ''}`}
             >
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-zinc-800 text-sm font-bold text-zinc-400">
+              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-tile text-sm font-bold text-ink-soft">
                 {i + 1}
               </span>
               <span className="text-2xl">{w.visual?.icon ?? '🎞️'}</span>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{w.name}</p>
-                <p className="text-xs text-zinc-400">{w.subtitle ?? w.studio}</p>
+                <p className="text-xs text-ink-soft">{w.subtitle ?? w.studio}</p>
               </div>
               {done ? (
-                <span className="font-mono text-lg font-bold text-zinc-200">{w.year}</span>
+                <span className="font-mono text-lg font-bold text-ink">{w.year}</span>
               ) : (
                 <div className="flex flex-col">
-                  <button type="button" aria-label="Move up" onClick={() => move(i, i - 1)} className="px-2 text-zinc-400 hover:text-white disabled:opacity-20" disabled={i === 0}>
+                  <button type="button" aria-label="Move up" onClick={() => move(i, i - 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === 0}>
                     ▲
                   </button>
-                  <button type="button" aria-label="Move down" onClick={() => move(i, i + 1)} className="px-2 text-zinc-400 hover:text-white disabled:opacity-20" disabled={i === shown.length - 1}>
+                  <button type="button" aria-label="Move down" onClick={() => move(i, i + 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === shown.length - 1}>
                     ▼
                   </button>
                 </div>
@@ -94,14 +94,14 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
 
       {!done && (
         <div className="flex items-center justify-between">
-          <span className="text-sm text-zinc-400">
+          <span className="text-sm text-ink-soft">
             Attempt {record.guesses.length + 1} / {max}
           </span>
           <button
             type="button"
             onClick={submit}
             disabled={last?.join() === order.join()}
-            className="rounded-xl bg-indigo-600 px-5 py-2.5 font-semibold transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-40"
+            className="btn-accent rounded-md px-5 py-2.5 font-display font-semibold tracking-wider"
           >
             Lock in order
           </button>

@@ -1,24 +1,109 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-hit: #16a34a;
-  --color-near: #ca8a04;
-  --color-miss: #b91c1c;
+  /* Typography: inscriptions (Cinzel), titles (Cormorant Garamond), body (Nunito Sans). */
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-display: "Cinzel", ui-serif, Georgia, serif;
+
+  /* An explorer's manual: parchment pages, sepia rules, plum-black ink. */
+  --color-paper: #efe6d2;
+  --color-card: #f7f0df;
+  --color-tile: #e7dcc3;
+  --color-tile-strong: #dccdae;
+  --color-rule: #cdbb96;
+  --color-rule-strong: #a8956e;
+  --color-ink: #2a2633;
+  --color-ink-strong: #15131b;
+  --color-ink-soft: #5b5466;
+  --color-ink-faint: #8a8172;
+
+  /* Flat pastel accents in the spirit of Chants of Sennaar. */
+  --color-accent: #2f7f7a;
+  --color-accent-strong: #246661;
+  --color-accent-soft: #d3e4dc;
+  --color-coral: #d8664c;
+  --color-ochre: #d9a441;
+  --color-plum: #6b5b8c;
+  --color-rose: #c8657a;
+
+  /* Feedback. */
+  --color-hit: #5f9a6a;
+  --color-near: #d9a441;
+  --color-miss: #c4553d;
+
+  /* Connections difficulty ranks (yellow → purple), softened. */
+  --color-lv0: #ecd27a;
+  --color-lv1: #a3c99d;
+  --color-lv2: #97bcdb;
+  --color-lv3: #bca6d8;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scrollbar-gutter: stable;
 }
 
 body {
   min-height: 100vh;
+  color: var(--color-ink);
+  /* Paper grain + a soft vignette, like a scanned manual page. */
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgb(99 102 241 / 0.12), transparent 60%),
-    radial-gradient(900px 500px at 110% 10%, rgb(236 72 153 / 0.08), transparent 60%),
-    #09090b;
+    radial-gradient(ellipse at center, transparent 55%, rgb(120 92 52 / 0.18) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.27  0 0 0 0 0.16  0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--color-paper);
 }
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Cormorant defaults to old-style figures; scores read better with lining numerals. */
+h1, h2, h3, .font-serif, .font-display {
+  font-variant-numeric: lining-nums;
+}
+
+::selection {
+  background: var(--color-accent-soft);
+}
+
+/* A manual page: double sepia rule with small diamond ornaments in the corners. */
+.page {
+  position: relative;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-rule);
+  box-shadow:
+    inset 0 0 0 4px var(--color-card),
+    inset 0 0 0 5px rgb(205 187 150 / 0.7),
+    0 1px 0 rgb(255 255 255 / 0.6),
+    0 10px 30px -18px rgb(80 60 30 / 0.45);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M5 0 10 5 5 10 0 5Z' fill='%23a8956e'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M5 0 10 5 5 10 0 5Z' fill='%23a8956e'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M5 0 10 5 5 10 0 5Z' fill='%23a8956e'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M5 0 10 5 5 10 0 5Z' fill='%23a8956e'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 0, 100% 0, 0 100%, 100% 100%;
+  background-size: 10px 10px;
+}
+
+/* Printed-stamp buttons: ink fill and an offset shadow that presses in. */
+.btn-ink,
+.btn-paper,
+.btn-accent {
+  border: 1.5px solid var(--color-ink);
+  box-shadow: 3px 3px 0 var(--color-ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+}
+.btn-ink { background: var(--color-ink); color: var(--color-paper); }
+.btn-ink:hover { background: var(--color-ink-strong); }
+.btn-paper { background: var(--color-card); color: var(--color-ink); }
+.btn-paper:hover { background: var(--color-tile); }
+.btn-accent { background: var(--color-accent); color: var(--color-paper); }
+.btn-accent:hover { background: var(--color-accent-strong); }
+.btn-ink:active, .btn-paper:active, .btn-accent:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--color-ink); }
+.btn-ink:disabled, .btn-paper:disabled, .btn-accent:disabled { opacity: 0.4; transform: none; box-shadow: 3px 3px 0 var(--color-ink); cursor: not-allowed; }
 
 @keyframes flip-in {
   from { transform: rotateX(90deg); opacity: 0; }
@@ -43,9 +128,9 @@ body {
   to { opacity: 1; transform: none; }
 }
 @keyframes glow {
-  0% { box-shadow: 0 0 0 0 rgb(34 197 94 / 0.55); }
-  60% { box-shadow: 0 0 0 18px rgb(34 197 94 / 0); }
-  100% { box-shadow: 0 0 0 0 rgb(34 197 94 / 0); }
+  0% { box-shadow: 0 0 0 0 rgb(95 154 106 / 0.55); }
+  60% { box-shadow: 0 0 0 18px rgb(95 154 106 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(95 154 106 / 0); }
 }
 @keyframes lift {
   0% { transform: translateY(0); }

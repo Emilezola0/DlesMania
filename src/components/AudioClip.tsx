@@ -172,12 +172,12 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Pro
       <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl opacity-0" aria-hidden>
         <div ref={host} className="size-full [&_iframe]:size-full" />
       </div>
-      <div className="relative flex flex-col items-center gap-5 rounded-xl bg-zinc-900 p-6">
+      <div className="relative flex flex-col items-center gap-5 rounded-md bg-tile/60 p-6">
         <div className="flex h-14 items-end gap-1" aria-hidden>
           {Array.from({ length: 28 }, (_, i) => (
             <span
               key={i}
-              className={`w-1.5 rounded-full bg-gradient-to-t from-indigo-500 to-pink-400 ${playing ? 'animate-eq' : 'opacity-40'}`}
+              className={`w-1.5 rounded-full bg-accent ${playing ? 'animate-eq' : 'opacity-40'}`}
               style={{ height: `${25 + ((i * 37) % 75)}%`, animationDelay: `${(i % 7) * 90}ms` }}
             />
           ))}
@@ -186,19 +186,19 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Pro
           type="button"
           onClick={playSnippet}
           disabled={!ready}
-          className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-zinc-900 shadow-lg transition hover:scale-105 active:scale-95 disabled:opacity-40"
+          className="btn-ink flex items-center gap-2 rounded-full px-6 py-3 font-display font-bold tracking-wider"
         >
           {ready ? (playing ? '↻ Replay' : '▶ Play') : 'Loading…'} {length}s
         </button>
         {/* Timeline of unlockable snippet lengths. */}
-        <div className="relative h-2 w-full overflow-hidden rounded-full bg-zinc-800">
-          <div className="absolute inset-y-0 left-0 bg-zinc-600" style={{ width: `${(length / max) * 100}%` }} />
-          <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-indigo-500 to-pink-500 transition-[width] duration-75" style={{ width: `${(progress / max) * 100}%` }} />
+        <div className="relative h-2 w-full overflow-hidden rounded-full bg-tile">
+          <div className="absolute inset-y-0 left-0 bg-rule-strong" style={{ width: `${(length / max) * 100}%` }} />
+          <div className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-75" style={{ width: `${(progress / max) * 100}%` }} />
           {SNIPPETS.map((s) => (
-            <span key={s} className="absolute inset-y-0 w-px bg-zinc-950" style={{ left: `${(s / max) * 100}%` }} />
+            <span key={s} className="absolute inset-y-0 w-px bg-paper" style={{ left: `${(s / max) * 100}%` }} />
           ))}
         </div>
-        <p className="text-xs text-zinc-500">Each wrong guess unlocks a longer snippet. The video is revealed at the end.</p>
+        <p className="text-xs text-ink-faint">Each wrong guess unlocks a longer snippet. The video is revealed at the end.</p>
       </div>
     </div>
   );

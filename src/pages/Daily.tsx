@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { DOMAINS, connectionsPuzzles, domainInfo, getWork } from '../data';
+import { FlameIcon } from '../components/Layout';
+import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
 import { GameHost } from '../games/GameHost';
 import { GAME_META } from '../games/meta';
 import { dayNumber, formatLong, isPlayableDay, msUntilTomorrow, todayKey } from '../lib/date';
@@ -11,6 +13,8 @@ import { sfx } from '../lib/sfx';
 import { roundEmoji, shareText } from '../lib/share';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
 function Countdown() {
   const [ms, setMs] = useState(msUntilTomorrow());
@@ -40,23 +44,32 @@ export function DailyCards() {
           <Link
             key={d.id}
             to={`/daily/${d.id}`}
-            className="group relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900 p-6 transition hover:-translate-y-1 hover:border-zinc-600"
+            className="page group rounded-md p-6 transition hover:-translate-y-1"
           >
-            <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${d.accent}`} />
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-4xl transition group-hover:scale-110">{d.icon}</p>
-                <p className="mt-3 text-xl font-bold">{d.label}</p>
-                <p className="text-sm text-zinc-500">{sum.complete ? '✓ Completed' : sum.finished ? `${sum.finished}/10 played` : 'Not started'}</p>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <GlyphSeal seed={d.id} size={52} tone={d.tone} className="transition-transform duration-500 group-hover:rotate-45" />
+                <div>
+                  <p className="font-serif text-2xl font-bold leading-tight">{d.label}</p>
+                  <p className="font-display text-[11px] tracking-[0.2em] text-ink-faint">
+                    {sum.complete ? 'COMPLETED' : sum.finished ? `${sum.finished} OF 10 PLAYED` : 'NOT STARTED'}
+                  </p>
+                </div>
               </div>
               <div className="text-right">
-                <p className="text-3xl font-black tabular-nums">{sum.score}</p>
-                <p className="text-xs text-zinc-500">/ {MAX_DAILY_SCORE}</p>
-                {streak > 0 && <p className="mt-2 text-sm font-bold text-orange-300">🔥 {streak}</p>}
+                <p className="font-serif text-4xl font-bold tabular-nums leading-none">{sum.score}</p>
+                <p className="text-xs text-ink-faint">/ {MAX_DAILY_SCORE}</p>
+                {streak > 0 && (
+                  <p className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-coral">
+                    <FlameIcon /> {streak}
+                  </p>
+                )}
               </div>
             </div>
-            <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-zinc-800">
-              <div className={`h-full rounded-full bg-gradient-to-r ${d.accent} transition-all`} style={{ width: `${sum.finished * 10}%` }} />
+            <div className="mt-5 flex gap-1">
+              {Array.from({ length: 10 }, (_, i) => (
+                <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors ${i < sum.finished ? d.fill : 'bg-tile-strong'}`} />
+              ))}
             </div>
           </Link>
         );
@@ -71,9 +84,9 @@ export function DailyHub() {
   return (
     <div className="space-y-8">
       <div>
-        <p className="text-sm text-zinc-500">{formatLong(today)}</p>
-        <h1 className="text-3xl font-black tracking-tight">Daily #{dayNumber(today)}</h1>
-        <p className="text-zinc-400">Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.</p>
+        <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
+        <h1 className="text-5xl font-bold">Daily №{dayNumber(today)}</h1>
+        <p className="font-serif text-lg italic text-ink-soft">Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.</p>
       </div>
       <DailyCards />
     </div>
@@ -101,41 +114,48 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
 
   return (
     <div className="animate-round-in mx-auto max-w-xl space-y-6 text-center">
-      <p className="text-sm uppercase tracking-[0.3em] text-zinc-500">{domainInfo(domain).label} complete</p>
-      <p className="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-7xl font-black text-transparent">{sum.score}</p>
-      <p className="text-zinc-400">
-        out of {MAX_DAILY_SCORE} · {sum.won}/10 rounds won{streak > 0 && <> · <span className="font-bold text-orange-300">🔥 {streak}-day streak</span></>}
+      <p className="text-sm font-display uppercase tracking-[0.3em] text-ink-faint">{domainInfo(domain).label} complete</p>
+      <GlyphSeal seed={domain} size={64} tone={domainInfo(domain).tone} className="mx-auto" />
+      <p className="font-serif text-8xl font-bold leading-none">{sum.score}</p>
+      <p className="text-ink-soft">
+        out of {MAX_DAILY_SCORE} · {sum.won}/10 rounds won
+        {streak > 0 && (
+          <span className="ml-2 inline-flex items-center gap-1 font-bold text-coral">
+            <FlameIcon /> {streak}-day streak
+          </span>
+        )}
       </p>
+      <Ornament />
       <div className="grid grid-cols-5 gap-2">
         {specs.map((s, i) => {
           const r = rounds[i];
           return (
-            <button key={i} type="button" onClick={() => onPick(i)} className="rounded-xl border border-zinc-800 bg-zinc-900 p-3 transition hover:-translate-y-0.5 hover:border-zinc-600">
-              <div className="text-2xl">{GAME_META[s.type].icon}</div>
-              <div className="mt-1 truncate text-xs text-zinc-400">{GAME_META[s.type].name}</div>
-              <div className="text-sm">{roundEmoji(r)} <span className={`font-bold ${r?.status === 'won' ? 'text-green-400' : 'text-red-400'}`}>{r?.score ?? 0}</span></div>
+            <button key={i} type="button" onClick={() => onPick(i)} className="page rounded-md p-3 transition hover:-translate-y-0.5">
+              <Glyph seed={s.type} size={26} className="mx-auto" />
+              <div className="mt-1 truncate text-xs text-ink-soft">{GAME_META[s.type].name}</div>
+              <div className="text-sm">{roundEmoji(r)} <span className={`font-bold ${r?.status === 'won' ? 'text-hit' : 'text-miss'}`}>{r?.score ?? 0}</span></div>
             </button>
           );
         })}
       </div>
-      <pre className="mx-auto w-fit whitespace-pre-wrap rounded-xl border border-zinc-800 bg-zinc-900/60 px-5 py-3 text-left text-sm leading-relaxed text-zinc-300">
+      <pre className="mx-auto w-fit whitespace-pre-wrap rounded-md border border-dashed border-rule-strong bg-card/70 px-5 py-3 text-left text-sm leading-relaxed text-ink-soft">
         {text.split('\n').slice(0, 3).join('\n')}
       </pre>
       <div className="flex flex-wrap justify-center gap-3">
-        <button type="button" onClick={share} className="rounded-xl bg-indigo-600 px-5 py-2.5 font-semibold transition hover:bg-indigo-500 active:scale-95">
+        <button type="button" onClick={share} className="btn-accent rounded-md px-5 py-2.5 font-semibold">
           {copied ? '✓ Copied!' : 'Share result'}
         </button>
         {others[0] && (
-          <Link to={`/daily/${others[0].id}${date === todayKey() ? '' : `/${date}`}`} className="rounded-xl border border-zinc-700 px-5 py-2.5 font-semibold hover:bg-zinc-800">
-            Next: {others[0].icon} {others[0].label}
+          <Link to={`/daily/${others[0].id}${date === todayKey() ? '' : `/${date}`}`} className="btn-paper inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-semibold">
+            Next: <Glyph seed={others[0].id} size={18} className={others[0].tone} /> {others[0].label}
           </Link>
         )}
-        <Link to={`/archive?domain=${domain}`} className="rounded-xl border border-zinc-700 px-5 py-2.5 font-semibold hover:bg-zinc-800">
+        <Link to={`/archive?domain=${domain}`} className="btn-paper rounded-md px-5 py-2.5 font-semibold">
           Past days
         </Link>
       </div>
       {date === todayKey() && (
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-ink-faint">
           Next challenge in <Countdown />
         </p>
       )}
@@ -206,11 +226,11 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="text-sm text-zinc-500">{formatLong(date)}</p>
-          <h1 className="text-3xl font-black tracking-tight">
-            <span className="mr-2">{info.icon}</span>
-            {info.label} <span className="text-zinc-500">#{dayNumber(date)}</span>
-            {date !== todayKey() && <span className="ml-2 align-middle text-sm font-semibold text-amber-400">archive</span>}
+          <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(date).toUpperCase()}</p>
+          <h1 className="flex flex-wrap items-center gap-3 text-4xl font-bold">
+            <GlyphSeal seed={domain} size={44} tone={info.tone} />
+            {info.label} <span className="text-ink-faint">№{dayNumber(date)}</span>
+            {date !== todayKey() && <span className="rounded-sm border border-coral/60 px-1.5 font-display text-[11px] tracking-widest text-coral">ARCHIVE</span>}
           </h1>
         </div>
         <div className="flex items-end gap-4">
@@ -218,19 +238,19 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
             aria-label="Category"
             value={domain}
             onChange={(e) => navigate(`/daily/${e.target.value}${date === todayKey() ? '' : `/${date}`}`)}
-            className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm"
+            className="rounded-md border border-rule-strong bg-card px-3 py-2 font-display text-sm tracking-wider"
           >
             {DOMAINS.map((d) => (
               <option key={d.id} value={d.id}>
-                {d.icon} {d.label}
+                {d.label}
               </option>
             ))}
           </select>
           <div className="text-right">
-            <p className="text-xs uppercase tracking-widest text-zinc-500">Score</p>
-            <p className="text-2xl font-black tabular-nums">
+            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">Score</p>
+            <p className="font-serif text-3xl font-bold tabular-nums">
               {sum.score}
-              <span className="text-base text-zinc-500"> / {MAX_DAILY_SCORE}</span>
+              <span className="text-base text-ink-faint"> / {MAX_DAILY_SCORE}</span>
             </p>
           </div>
         </div>
@@ -241,19 +261,19 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
           const r = rounds[i];
           const state = !r || r.status === 'playing' ? 'open' : r.status;
           const tone =
-            state === 'won' ? 'border-green-500/60 bg-green-500/15' : state === 'lost' ? 'border-red-500/50 bg-red-500/10' : 'border-zinc-800 bg-zinc-900';
+            state === 'won' ? 'border-hit/70 bg-hit/15' : state === 'lost' ? 'border-miss/60 bg-miss/10' : 'border-rule bg-card';
           return (
             <button
               key={i}
               type="button"
               onClick={() => goTo(i)}
               title={GAME_META[s.type].name}
-              className={`flex flex-col items-center rounded-xl border p-2 transition hover:-translate-y-0.5 hover:border-zinc-500 ${tone} ${
-                i === index ? 'ring-2 ring-indigo-500 ring-offset-2 ring-offset-zinc-950' : ''
+              className={`flex flex-col items-center gap-0.5 rounded-md border p-2 transition hover:-translate-y-0.5 hover:border-ink-faint ${tone} ${
+                i === index ? 'ring-2 ring-ink ring-offset-2 ring-offset-paper' : ''
               }`}
             >
-              <span className="text-xl">{GAME_META[s.type].icon}</span>
-              <span className="text-[10px] font-semibold text-zinc-400">{i + 1}</span>
+              <Glyph seed={s.type} size={22} />
+              <span className="font-display text-[10px] font-semibold text-ink-soft">{ROMAN[i]}</span>
             </button>
           );
         })}
@@ -262,11 +282,11 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
       {spec && record ? (
         <section key={`${key}-${index}`} className="mx-auto max-w-3xl space-y-6">
           <div>
-            <p className="text-xs uppercase tracking-widest text-zinc-500">Round {index + 1} of 10</p>
-            <h2 className="text-2xl font-bold">
-              {GAME_META[spec.type].icon} {GAME_META[spec.type].name}
+            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">Round {index + 1} of 10</p>
+            <h2 className="flex items-center gap-2 text-3xl font-bold">
+              <Glyph seed={spec.type} size={28} className={info.tone} /> {GAME_META[spec.type].name}
             </h2>
-            <p className="text-sm text-zinc-400">{GAME_META[spec.type].tagline}</p>
+            <p className="font-serif text-lg italic text-ink-soft">{GAME_META[spec.type].tagline}</p>
           </div>
 
           <GameHost spec={spec} record={record} onChange={onChange} />
@@ -276,7 +296,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
               <button
                 type="button"
                 onClick={() => goTo(nextOpen)}
-                className="animate-pop rounded-xl bg-white px-6 py-3 font-bold text-zinc-900 transition hover:scale-105 hover:bg-zinc-200 active:scale-95"
+                className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider"
               >
                 {nextOpen >= 0 ? 'Next round →' : 'See results →'}
               </button>

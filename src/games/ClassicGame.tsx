@@ -54,9 +54,9 @@ function compare(guess: string | string[] | number, target: string | string[] | 
 }
 
 const VERDICT_CLASS: Record<Verdict, string> = {
-  hit: 'bg-hit border-green-400/50',
-  near: 'bg-near border-yellow-300/50',
-  miss: 'bg-miss border-red-400/40',
+  hit: 'bg-hit border-hit text-paper',
+  near: 'bg-near border-near text-ink',
+  miss: 'bg-miss border-miss text-paper',
 };
 
 export default function ClassicGame({ spec, record, onChange }: GameProps) {
@@ -76,22 +76,22 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
 
   return (
     <div className="space-y-5">
-      <p className="text-center text-zinc-300">
-        Guess the mystery <span className="font-semibold text-white">{domainInfo(domain).noun}</span>. Each guess shows
+      <p className="text-center text-ink-soft">
+        Guess the mystery <span className="font-semibold text-ink">{domainInfo(domain).noun}</span>. Each guess shows
         how its attributes compare.
       </p>
 
       {!done && (
         <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(domain).label}…`} />
       )}
-      <p className="text-center text-xs text-zinc-500">
+      <p className="text-center text-xs text-ink-faint">
         {record.guesses.length} / {max} guesses
       </p>
 
       {record.guesses.length > 0 && (
         <div className="overflow-x-auto pb-2">
           <div className="min-w-[640px] space-y-2">
-            <div className="grid grid-cols-[1.4fr_repeat(5,1fr)] gap-2 px-1 text-xs uppercase tracking-wider text-zinc-500">
+            <div className="grid grid-cols-[1.4fr_repeat(5,1fr)] gap-2 px-1 text-xs uppercase tracking-wider text-ink-faint">
               <span>Title</span>
               {columns.map((c) => (
                 <span key={c.label} className="text-center">
@@ -103,7 +103,7 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
               const w = getWork(id);
               return (
                 <div key={id} className="grid grid-cols-[1.4fr_repeat(5,1fr)] gap-2">
-                  <div className="flex items-center rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm font-semibold">
+                  <div className="flex items-center rounded-lg border border-rule-strong bg-card px-3 py-2 text-sm font-semibold">
                     {w.name}
                   </div>
                   {columns.map((c, i) => {
@@ -114,7 +114,7 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
                       <div
                         key={c.label}
                         style={{ animationDelay: `${i * 90}ms` }}
-                        className={`animate-flip flex min-h-14 flex-col items-center justify-center rounded-lg border px-2 py-2 text-center text-xs font-semibold text-white ${VERDICT_CLASS[verdict]}`}
+                        className={`animate-flip flex min-h-14 flex-col items-center justify-center rounded-lg border px-2 py-2 text-center text-xs font-semibold ${VERDICT_CLASS[verdict]}`}
                       >
                         <span>{Array.isArray(g) ? g.join(', ') : g}</span>
                         {typeof g === 'number' && typeof t === 'number' && g !== t && (
@@ -130,7 +130,7 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
         </div>
       )}
 
-      <div className="flex flex-wrap justify-center gap-4 text-xs text-zinc-400">
+      <div className="flex flex-wrap justify-center gap-4 text-xs text-ink-soft">
         <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit" /> Exact</span>
         <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near" /> Partial</span>
         <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-miss" /> Wrong</span>
