@@ -23,6 +23,15 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
     [pool, exclude, query],
   );
 
+  // Years are a clue in most rounds (hints, Classic's Year column), so they're only shown
+  // to tell apart two entries with the same name.
+  const sharedNames = useMemo(() => {
+    const seen = new Set<string>();
+    const dupes = new Set<string>();
+    for (const w of pool) (seen.has(w.name) ? dupes : seen).add(w.name);
+    return dupes;
+  }, [pool]);
+
   const submit = (w: Work | undefined) => {
     if (!w) return;
     onGuess(w.id);
@@ -71,8 +80,7 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
               >
                 <span className="font-medium">{w.name}</span>
                 <span className="shrink-0 text-xs text-zinc-400">
-                  {w.subtitle ? `${w.subtitle} · ` : ''}
-                  {w.year}
+                  {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}
                 </span>
               </button>
             </li>
