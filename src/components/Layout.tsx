@@ -5,7 +5,8 @@ import { GlyphSeal, Ornament } from './Glyph';
 
 const NAV = [
   { to: '/daily', label: 'Daily' },
-  { to: '/play', label: 'Free Play' },
+  { to: '/play', label: 'Free Play', short: 'Play' },
+  { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/archive', label: 'Archive' },
 ];
 
@@ -91,12 +92,19 @@ export function Layout() {
                 key={n.to}
                 to={n.to}
                 className={({ isActive }) =>
-                  `whitespace-nowrap border-b-2 px-2.5 py-1.5 font-display text-[13px] font-semibold tracking-wider transition sm:px-3 ${
+                  `whitespace-nowrap border-b-2 px-1.5 py-1.5 font-display text-[13px] font-semibold tracking-wider transition min-[400px]:px-2.5 sm:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`
                 }
               >
-                {n.label}
+                {n.short ? (
+                  <>
+                    <span className="sm:hidden">{n.short}</span>
+                    <span className="hidden sm:inline">{n.label}</span>
+                  </>
+                ) : (
+                  n.label
+                )}
               </NavLink>
             ))}
           </nav>

@@ -238,6 +238,74 @@ h1, h2, h3, .font-serif, .font-display {
 .animate-lift { animation: lift 0.35s ease-out both; }
 .animate-eq { animation: eq 0.9s ease-in-out infinite; transform-origin: bottom; }
 
+/* ---------------------------------------------------------------- Boss Battle */
+@keyframes boss-card-in {
+  from { transform: translateY(40px) scale(0.85) rotate(-4deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.boss-card-in { animation: boss-card-in 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+
+/* Final Blow: the picture stutters like a failing projector. */
+@keyframes boss-flicker {
+  0%, 100% { opacity: 1; transform: scale(1.04); }
+  8% { opacity: 0.35; }
+  10% { opacity: 1; transform: scale(1.08) translateX(-2%); }
+  42% { opacity: 0.9; filter: hue-rotate(40deg) saturate(1.6); }
+  45% { opacity: 0.2; }
+  48% { opacity: 1; transform: scale(1.02) translateX(2%); }
+  76% { opacity: 0.6; }
+  79% { opacity: 1; }
+}
+.boss-flicker { animation: boss-flicker 1.3s steps(1, end) infinite; }
+
+@keyframes boss-glow {
+  0%, 100% { box-shadow: 0 0 18px 4px rgb(230 90 60 / 0.45), inset 0 0 0 2px rgb(230 120 60 / 0.5); }
+  50% { box-shadow: 0 0 38px 12px rgb(230 90 60 / 0.75), inset 0 0 0 2px rgb(250 180 80 / 0.8); }
+}
+.boss-glow { animation: boss-glow 0.9s ease-in-out infinite; transition: opacity 0.3s; }
+
+@keyframes boss-ember {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+.boss-ember {
+  background-image: repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.25) 0 8px, transparent 8px 20px);
+  animation: boss-ember 0.6s linear infinite;
+}
+
+/* The final phase keeps the arena trembling. */
+@keyframes boss-tremble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(0.6px, -0.6px); }
+  50% { transform: translate(-0.6px, 0.4px); }
+  75% { transform: translate(0.4px, 0.6px); }
+}
+.boss-arena-final { animation: boss-tremble 0.18s linear infinite; box-shadow: 0 0 0 2px rgb(230 90 60 / 0.35), 0 0 60px rgb(230 90 60 / 0.18); }
+
+@keyframes boss-recoil {
+  0% { transform: none; }
+  20% { transform: translateX(10px) rotate(8deg) scale(0.92); }
+  60% { transform: translateX(-4px) rotate(-3deg); }
+  100% { transform: none; }
+}
+.boss-recoil { animation: boss-recoil 0.5s ease-out; }
+@keyframes boss-hit-flash { from { opacity: 0.85; } to { opacity: 0; } }
+.boss-hit-flash { animation: boss-hit-flash 0.45s ease-out both; }
+.boss-segment-break { animation: boss-hit-flash 0.7s ease-out both; }
+
+@keyframes boss-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.boss-breathe { animation: boss-breathe 3.2s ease-in-out infinite; }
+
+@keyframes boss-phase-card {
+  0% { opacity: 0; transform: scale(1.25); letter-spacing: 0.6em; filter: blur(6px); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+.boss-phase-card { animation: boss-phase-card 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.boss-phase-title { text-shadow: 3px 3px 0 var(--stamp); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

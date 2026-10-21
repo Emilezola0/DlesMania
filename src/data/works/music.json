@@ -774,8 +774,7 @@
     "location": {
       "name": "Compass Point Studios",
       "description": "A Bahamas studio where the record was made during hurricane season.",
-      "src": "wp:Compass Point Studios",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Compas_Point_Studio_%2814949011761%29.jpg/960px-Compas_Point_Studio_%2814949011761%29.jpg"
+      "src": "none"
     },
     "visual": {
       "icon": "🔔",
@@ -1316,8 +1315,7 @@
     "location": {
       "name": "Iceland",
       "description": "The artist's homeland, whose landscapes inspired every sound.",
-      "src": "wp:Iceland",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Iceland.svg/960px-Flag_of_Iceland.svg.png"
+      "src": "none"
     },
     "visual": {
       "icon": "🌋",
@@ -1835,8 +1833,7 @@
     "location": {
       "name": "Puerto Rico",
       "description": "The artist's island home, celebrated in the album's beach anthems.",
-      "src": "wp:Puerto Rico",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_Puerto_Rico.svg/960px-Flag_of_Puerto_Rico.svg.png"
+      "src": "none"
     },
     "visual": {
       "icon": "🐰",
@@ -2911,8 +2908,7 @@
     "location": {
       "name": "U.S. Route 61",
       "description": "The 'Blues Highway' running down the Mississippi valley.",
-      "src": "wp:U.S. Route 61",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/US_61.svg/960px-US_61.svg.png"
+      "src": "none"
     },
     "visual": {
       "icon": "🛣️",
@@ -3343,8 +3339,7 @@
     "location": {
       "name": "Los Angeles",
       "description": "The West Coast city at the centre of the album's world.",
-      "src": "wp:Los Angeles",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg"
+      "src": "none"
     },
     "visual": {
       "icon": "🌴",
@@ -4060,8 +4055,7 @@
     "location": {
       "name": "Los Angeles",
       "description": "The city the title track picks apart.",
-      "src": "wp:Hollywood Sign",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg"
+      "src": "none"
     },
     "visual": {
       "icon": "🌶️",

@@ -127,3 +127,54 @@ export interface GameProps {
 }
 
 export const EMPTY_RECORD: RoundRecord = { status: 'playing', guesses: [], score: 0 };
+
+// ---------------------------------------------------------------- Boss Battle
+
+/** A picture card in a boss fight. `image` is resolved by scripts/enrich-bosses.mjs. */
+export interface BossCard {
+  label: string;
+  image?: string;
+  /** Other accepted spellings when the card has to be named (Final Blow). */
+  aliases?: string[];
+}
+
+/** Phase 1: "Name 5 champions from Demacia". */
+export interface BlitzPrompt {
+  prompt: string;
+  /** How many valid answers win the phase. */
+  count: number;
+  answers: { name: string; aliases: string[] }[];
+}
+
+export interface Boss {
+  id: string;
+  domain: Domain;
+  franchise: string;
+  aliases: string[];
+  boss: { name: string; title: string; image?: string; color: string };
+  lines: {
+    intro: string;
+    /** Said when phase 2 / phase 3 begins. */
+    phase2: string;
+    phase3: string;
+    /** Random reactions when the player lands a blow / takes damage. */
+    hit: string[];
+    hurt: string[];
+    win: string;
+    lose: string;
+  };
+  blitz: BlitzPrompt[];
+  /** Phase 2: cards that belong to the franchise, and look-alikes from elsewhere. */
+  radar: { members: BossCard[]; impostors: BossCard[] };
+  /** Phase 3: rare items and secondary characters to name under pressure. */
+  finale: BossCard[];
+}
+
+/** How a phase ended, reported by the phase component to the battle. */
+export interface PhaseResult {
+  won: boolean;
+  correct: number;
+  wrong: number;
+  /** Answers the player missed, shown on the phase transition. */
+  missed?: string[];
+}

@@ -6,6 +6,16 @@ import type { Domain, RoundRecord, RoundSpec } from '../types';
 
 type DayRounds = Record<number, RoundRecord>;
 
+/** Lifetime results against one boss. Times are in milliseconds, for victories only. */
+export interface BossRecord {
+  plays: number;
+  wins: number;
+  bestScore: number;
+  bestTime: number | null;
+}
+
+export const EMPTY_BOSS_RECORD: BossRecord = { plays: 0, wins: 0, bestScore: 0, bestTime: null };
+
 /** 'system' follows the OS; the others force a theme. */
 export type ThemeChoice = 'system' | 'light' | 'dark';
 
@@ -21,8 +31,11 @@ interface ProgressState {
    */
   specs: Record<string, RoundSpec[]>;
   freePlay: { played: number; won: number; points: number };
+  /** Boss id -> record. */
+  bosses: Record<string, BossRecord>;
   sound: boolean;
   theme: ThemeChoice;
+  recordBoss: (id: string, result: { won: boolean; score: number; time: number }) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
@@ -37,6 +50,7 @@ export const useProgress = create<ProgressState>()(
       days: {},
       specs: {},
       freePlay: { played: 0, won: 0, points: 0 },
+      bosses: {},
       sound: true,
       theme: 'system',
       setRound: (domain, date, index, record) =>
@@ -53,9 +67,24 @@ export const useProgress = create<ProgressState>()(
             points: s.freePlay.points + record.score,
           },
         })),
+      recordBoss: (id, { won, score, time }) =>
+        set((s) => {
+          const r = s.bosses[id] ?? EMPTY_BOSS_RECORD;
+          return {
+            bosses: {
+              ...s.bosses,
+              [id]: {
+                plays: r.plays + 1,
+                wins: r.wins + (won ? 1 : 0),
+                bestScore: Math.max(r.bestScore, score),
+                bestTime: won ? Math.min(r.bestTime ?? Infinity, time) : r.bestTime,
+              },
+            },
+          };
+        }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 } }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {} }),
     }),
     {
       name: 'omnidle-progress',

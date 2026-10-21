@@ -1,0 +1,128 @@
+import { useEffect, useRef, useState } from 'react';
+import { blitzSeconds, matchAnswer } from '../lib/boss';
+import { sfx } from '../lib/sfx';
+import type { BlitzPrompt, PhaseResult } from '../types';
+import { TimerBar } from './TimerBar';
+
+interface Props {
+  prompt: BlitzPrompt;
+  onEvent: (good: boolean) => void;
+  onDone: (result: PhaseResult) => void;
+}
+
+/** Phase I: name N things before the timer runs out. Answers are accepted as you type. */
+export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
+  const total = blitzSeconds(prompt) * 1000;
+  const [found, setFound] = useState<string[]>([]);
+  const [text, setText] = useState('');
+  const [note, setNote] = useState<{ text: string; good: boolean; key: number } | null>(null);
+  const [wrong, setWrong] = useState(0);
+  const [over, setOver] = useState(false);
+  const input = useRef<HTMLInputElement>(null);
+  const pending = useRef<number>();
+
+  useEffect(() => input.current?.focus({ preventScroll: true }), []);
+  useEffect(() => () => clearTimeout(pending.current), []);
+
+  const finish = (won: boolean, list = found) => {
+    if (over) return;
+    setOver(true);
+    clearTimeout(pending.current);
+    onDone({
+      won,
+      correct: list.length,
+      wrong,
+      missed: won ? undefined : prompt.answers.filter((a) => !list.includes(a.name)).slice(0, 6).map((a) => a.name),
+    });
+  };
+
+  const accept = (name: string) => {
+    const next = [...found, name];
+    setFound(next);
+    setText('');
+    setNote({ text: name, good: true, key: Date.now() });
+    sfx.correct();
+    onEvent(true);
+    if (next.length >= prompt.count) finish(true, next);
+  };
+
+  const tryText = (value: string, submitted: boolean) => {
+    clearTimeout(pending.current);
+    const m = matchAnswer(prompt, value, new Set(found));
+    if (m?.already) {
+      if (submitted) {
+        setNote({ text: `${m.name} — already named`, good: false, key: Date.now() });
+        setText('');
+      }
+      return;
+    }
+    if (m && (m.exact || submitted)) return accept(m.name);
+    // A shorter answer that's also the start of a longer one waits for a pause.
+    if (m) pending.current = window.setTimeout(() => accept(m.name), 900);
+    else if (submitted && value.trim()) {
+      setWrong((w) => w + 1);
+      setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
+      sfx.wrong();
+      onEvent(false);
+      setText('');
+    }
+  };
+
+  return (
+    <div className="space-y-5">
+      <div className="text-center">
+        <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">The guardian demands</p>
+        <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">{prompt.prompt}</h3>
+      </div>
+
+      <TimerBar total={total} running={!over} onExpire={() => finish(false)} />
+
+      <div className="flex justify-center gap-2" aria-label={`${found.length} of ${prompt.count} named`}>
+        {Array.from({ length: prompt.count }, (_, i) => (
+          <span
+            key={i}
+            className={`grid size-9 place-items-center rounded-full border-2 font-display text-sm font-bold transition ${
+              i < found.length ? 'animate-pop border-hit bg-hit text-on-strong' : 'border-rule-strong text-ink-faint'
+            }`}
+          >
+            {i < found.length ? '✓' : i + 1}
+          </span>
+        ))}
+      </div>
+
+      <input
+        ref={input}
+        value={text}
+        disabled={over}
+        onChange={(e) => {
+          setText(e.target.value);
+          tryText(e.target.value, false);
+        }}
+        onKeyDown={(e) => e.key === 'Enter' && tryText(text, true)}
+        placeholder="Type a name…"
+        autoComplete="off"
+        autoCapitalize="off"
+        spellCheck={false}
+        className="w-full rounded-xl border border-rule-strong bg-card/90 px-4 py-3 text-center text-lg outline-none ring-accent/30 transition placeholder:text-ink-faint focus:border-accent focus:ring-4 disabled:opacity-50"
+      />
+
+      <p className="h-6 text-center text-sm font-semibold" aria-live="polite">
+        {note && (
+          <span key={note.key} className={`animate-pop inline-block ${note.good ? 'text-hit' : 'text-coral'}`}>
+            {note.good ? `✓ ${note.text}` : note.text}
+          </span>
+        )}
+      </p>
+
+      {found.length > 0 && (
+        <ul className="flex flex-wrap justify-center gap-2">
+          {found.map((n) => (
+            <li key={n} className="animate-pop rounded-md border border-hit/50 bg-hit/10 px-2.5 py-1 text-sm font-semibold text-ink">
+              {n}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}

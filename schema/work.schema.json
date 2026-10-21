@@ -26,7 +26,7 @@
         "description": { "$ref": "#/definitions/nonEmpty" },
         "wiki": { "$ref": "#/definitions/nonEmpty" },
         "image": { "type": "string", "format": "uri" },
-        "src": { "$ref": "#/definitions/nonEmpty", "description": "fandom:<wiki>[:<Title>], wp:<Title> or a URL; resolved to `image` by scripts/enrich-media.mjs." },
+        "src": { "$ref": "#/definitions/nonEmpty", "description": "fandom:<wiki>[:<Title>], wp:<Title>, a URL, or \"none\" to keep the clue text-only; resolved to `image` by scripts/enrich-media.mjs." },
         "focus": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0, "maximum": 100 }, "description": "Location zoom focal point [x%, y%]." }
       }
     }

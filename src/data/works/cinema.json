@@ -1208,7 +1208,7 @@
     "item": {
       "name": "A cub held aloft",
       "description": "Presented to the animal kingdom by a baboon shaman.",
-      "image": "https://static.wikia.nocookie.net/disney/images/3/3a/Profile_-_Mowgli.jpeg/revision/latest/scale-to-width-down/473?cb=20210906112320"
+      "src": "none"
     },
     "location": {
       "name": "Pride Rock",
@@ -2557,8 +2557,7 @@
     "item": {
       "name": "An Aztec gold medallion",
       "description": "One of 882 cursed coins that turn pirates into skeletons by moonlight.",
-      "src": "fandom:pirates:Aztec Gold",
-      "image": "https://static.wikia.nocookie.net/pirates/images/6/69/COTBPILMCouldntResist.jpg/revision/latest/scale-to-width-down/640?cb=20130821211420"
+      "src": "none"
     },
     "location": {
       "name": "Port Royal",
@@ -4146,8 +4145,7 @@
     "location": {
       "name": "Montana",
       "description": "Where a giant shell-shaped craft hovers over a green valley.",
-      "src": "wp:Montana",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_Montana.svg/960px-Flag_of_Montana.svg.png"
+      "src": "none"
     },
     "visual": {
       "icon": "⭕",
@@ -4962,8 +4960,7 @@
     "location": {
       "name": "A music conservatory",
       "description": "A New York school whose top jazz band is run by a tyrant.",
-      "src": "wp:Juilliard School",
-      "image": "https://upload.wikimedia.org/wikipedia/en/f/f1/Seal_of_the_Juilliard_School.png"
+      "src": "none"
     },
     "visual": {
       "icon": "🥁",
@@ -5021,8 +5018,7 @@
     "location": {
       "name": "Harvard University",
       "description": "The campus where it all started in 2003.",
-      "src": "wp:Harvard University",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Harvard_University_coat_of_arms.svg/960px-Harvard_University_coat_of_arms.svg.png"
+      "src": "none"
     },
     "visual": {
       "icon": "👍",

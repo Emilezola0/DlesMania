@@ -17,6 +17,19 @@ const YT_KEY = process.env.YOUTUBE_API_KEY;
 const NOUN = { games: 'video game', anime: 'anime', cinema: 'film', music: 'album' };
 const IMAGE_WIDTH = 640;
 
+/**
+ * True when a page is exactly one of the work's listed characters and the clue isn't that character
+ * (Cappy or Calcifer are legitimately the "item"; a portrait of the hero for "a red scarf" is not).
+ */
+function isCharacterPage(title, work, clueName) {
+  const t = norm(title.replace(/\(.*\)|\/.*$/g, ''));
+  if (norm(clueName) === t) return false;
+  return (work.characters ?? []).some((c) => {
+    const n = norm(c);
+    return n && (t === n || t === n.split(' ')[0]);
+  });
+}
+
 /** True when a page *is* the work (same title, or a spin-off like "Toy Story: The Video Game"). */
 function isOwnPage(title, work) {
   const name = norm(work.name.replace(/\(.*\)/, ''));
@@ -97,10 +110,16 @@ for (const domain of domains) {
         const ref = w[key];
         if (!ref || (ref.image && !force)) continue;
         const spec = ref.src ?? (!ref.wiki && w.fandom ? `fandom:${w.fandom}` : null);
-        if (!spec) continue;
+        // src "none": reviewed and deliberately left without a picture (e.g. only signs or logos exist).
+        if (!spec || spec === 'none') continue;
         try {
           let { image, title } = await resolveImageSource(spec, ref.name);
           // A search that lands on the work's own page returns its box art or poster.
+          // Vague item names often land on a character's page: a portrait isn't an item, and gives too much away.
+          if (image && title && key === 'item' && isCharacterPage(title, w, ref.name)) {
+            console.log(`! ${w.id}.${key}: matched character page "${title}" — image rejected`);
+            image = null;
+          }
           if (image && title && isOwnPage(title, w)) {
             console.log(`! ${w.id}.${key}: matched the work's own page "${title}" — image rejected`);
             image = null;

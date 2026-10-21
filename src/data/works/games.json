@@ -462,8 +462,7 @@
     "location": {
       "name": "Aperture Science Enrichment Center",
       "description": "Sterile white test chambers watched over by a sardonic computer.",
-      "src": "fandom:half-life:Aperture Science Enrichment Center",
-      "image": "https://static.wikia.nocookie.net/half-life/images/e/e9/Aperture_Labs_entrance_end.svg/revision/latest?cb=20110316200442&path-prefix=en"
+      "src": "none"
     },
     "visual": {
       "icon": "🎂",

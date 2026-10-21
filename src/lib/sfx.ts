@@ -68,4 +68,31 @@ export const sfx = {
     play(
       [523.25, 659.25, 783.99, 1046.5, 1318.5].map((freq, i) => ({ freq, at: i * 0.08, dur: i === 4 ? 0.5 : 0.14, type: 'square' as const, gain: 0.05 })),
     ),
+  /** Boss Battle: a blow landed on the boss. */
+  hit: () =>
+    play([
+      { freq: 120, dur: 0.25, type: 'square', gain: 0.12, slide: 40 },
+      { freq: 900, dur: 0.08, type: 'sawtooth', gain: 0.05, slide: 300 },
+      { freq: 660, at: 0.12, dur: 0.18, type: 'triangle', gain: 0.08 },
+    ]),
+  /** Boss Battle: the boss strikes the player. */
+  hurt: () =>
+    play([
+      { freq: 90, dur: 0.4, type: 'sawtooth', gain: 0.12, slide: 45 },
+      { freq: 220, at: 0.05, dur: 0.3, type: 'square', gain: 0.05, slide: 70 },
+    ]),
+  /** A card sorted or flung away. */
+  whoosh: () => play([{ freq: 1400, dur: 0.12, type: 'triangle', gain: 0.035, slide: 380 }]),
+  /** Short tick for the last seconds of a timer. */
+  tick: () => play([{ freq: 1200, dur: 0.03, type: 'square', gain: 0.025 }]),
+  victory: () =>
+    play(
+      [392, 523.25, 659.25, 783.99, 659.25, 783.99, 1046.5].map((freq, i) => ({
+        freq,
+        at: i < 4 ? i * 0.11 : 0.44 + (i - 4) * 0.16,
+        dur: i === 6 ? 0.8 : 0.16,
+        type: 'square' as const,
+        gain: 0.05,
+      })),
+    ),
 };

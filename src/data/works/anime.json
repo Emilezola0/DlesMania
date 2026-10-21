@@ -245,8 +245,7 @@
     "location": {
       "name": "Tokyo-3",
       "description": "A fortress city whose skyscrapers retract underground during attacks.",
-      "src": "fandom:evangelion:Tokyo-3",
-      "image": "https://static.wikia.nocookie.net/evangelion/images/b/b3/TOKYO-III_Emblem_Rebuild.png/revision/latest/scale-to-width-down/640?cb=20260921040907"
+      "src": "none"
     },
     "visual": {
       "icon": "🤖",
@@ -302,8 +301,7 @@
     "emoji": "👧🐉🛁👻🐷",
     "item": {
       "name": "A golden-coin offering",
-      "description": "Gold that a masked, silent spirit conjures from its hands for greedy workers.",
-      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/9/9d/No-Face_infobox.png/revision/latest/scale-to-width-down/424?cb=20200908135515"
+      "description": "Gold that a masked, silent spirit conjures from its hands for greedy workers."
     },
     "location": {
       "name": "The spirit bathhouse",
@@ -811,8 +809,7 @@
     "emoji": "🏍️🔴🧠💥🌆",
     "item": {
       "name": "A red motorcycle",
-      "description": "A futuristic bike with a capsule on its seat, slid sideways in a famous pose.",
-      "image": "https://static.wikia.nocookie.net/akira/images/c/cf/Kaneda.webp/revision/latest/scale-to-width-down/640?cb=20260702224715"
+      "description": "A futuristic bike with a capsule on its seat, slid sideways in a famous pose."
     },
     "location": {
       "name": "Neo-Tokyo",
@@ -1269,8 +1266,7 @@
     "location": {
       "name": "Morioh",
       "description": "A quiet seaside Japanese town hiding a polite serial killer.",
-      "src": "fandom:jojo:Morioh",
-      "image": "https://static.wikia.nocookie.net/jjba/images/5/5d/Full_color_owl.png/revision/latest?cb=20170113014620"
+      "src": "none"
     },
     "visual": {
       "icon": "🗿",
@@ -1383,8 +1379,7 @@
     "emoji": "☄️🔄👫🏞️🧶",
     "item": {
       "name": "A red braided cord",
-      "description": "A handmade kumihimo ribbon, passed between two people across time.",
-      "image": "https://static.wikia.nocookie.net/kiminonawa/images/5/5d/Mitsuha_Miyamizu_2013.png/revision/latest/scale-to-width-down/640?cb=20181114193828"
+      "description": "A handmade kumihimo ribbon, passed between two people across time."
     },
     "location": {
       "name": "Itomori",
@@ -1808,8 +1803,7 @@
     "item": {
       "name": "Zangetsu",
       "description": "A cleaver-like zanpakutō as tall as the orange-haired teen who wields it.",
-      "src": "fandom:bleach:Zangetsu",
-      "image": "https://static.wikia.nocookie.net/bleach/images/4/41/NBFHIchigo_profile.png/revision/latest/scale-to-width-down/483?cb=20260410211133&path-prefix=en"
+      "src": "fandom:bleach:Zangetsu"
     },
     "location": {
       "name": "Soul Society",
@@ -1997,8 +1991,7 @@
     "emoji": "👦🔮💯🥦🏃",
     "item": {
       "name": "An emotion meter",
-      "description": "A percentage that climbs towards 100 until a quiet boy explodes.",
-      "image": "https://static.wikia.nocookie.net/mob-psycho-100/images/b/b7/Mob_Fullbody.png/revision/latest/scale-to-width-down/173?cb=20220513153327"
+      "description": "A percentage that climbs towards 100 until a quiet boy explodes."
     },
     "location": {
       "name": "Spirits and Such Consultation Office",
@@ -2958,8 +2951,7 @@
     "emoji": "🎸😰🌀🎤🩷",
     "item": {
       "name": "A pink tracksuit",
-      "description": "Worn by an anxious guitar prodigy who hides in a box.",
-      "image": "https://static.wikia.nocookie.net/bocchi-the-rock/images/6/63/Hitori_Gotoh.png/revision/latest/scale-to-width-down/640?cb=20251205100008"
+      "description": "Worn by an anxious guitar prodigy who hides in a box."
     },
     "location": {
       "name": "STARRY",
@@ -4545,8 +4537,7 @@
     "emoji": "💥🧙‍♀️💧🐸🍺",
     "item": {
       "name": "Megumin's staff",
-      "description": "A staff used to cast one huge explosion a day — then collapse.",
-      "image": "https://static.wikia.nocookie.net/konosuba/images/3/3f/Megumin-anime.png/revision/latest?cb=20180328143334"
+      "description": "A staff used to cast one huge explosion a day — then collapse."
     },
     "location": {
       "name": "Axel",

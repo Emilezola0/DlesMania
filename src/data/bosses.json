@@ -1,0 +1,2554 @@
+[
+  {
+    "id": "lol",
+    "domain": "games",
+    "franchise": "League of Legends",
+    "aliases": [
+      "lol",
+      "league"
+    ],
+    "images": "ddragon",
+    "boss": {
+      "name": "Baron Nashor",
+      "title": "Terror of the Rift",
+      "src": "fandom:leagueoflegends:Baron Nashor",
+      "color": "#7c3aed",
+      "image": "https://static.wikia.nocookie.net/leagueoflegends/images/1/15/Baron_Nashor_OriginalSkin.jpg/revision/latest/scale-to-width-down/400?cb=20231129013246",
+      "label": "Baron Nashor"
+    },
+    "lines": {
+      "intro": "Summoner... you dare enter my pit? Prove you know this Rift.",
+      "phase2": "Hmph. You know their names. But can you tell a champion from a fraud?",
+      "phase3": "Enough! Face the champions even veterans forget!",
+      "hit": [
+        "Rrraagh!",
+        "A lucky smite...",
+        "My armour cracks!"
+      ],
+      "hurt": [
+        "Your lane is lost.",
+        "Back to the fountain!",
+        "Is that all, summoner?"
+      ],
+      "win": "The Rift... is yours. For now.",
+      "lose": "Another summoner devoured."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 champions from Demacia",
+        "count": 5,
+        "answers": [
+          "Garen",
+          "Lux",
+          "Jarvan IV|J4|Jarvan",
+          "Fiora",
+          "Galio",
+          "Lucian",
+          "Poppy",
+          "Quinn",
+          "Shyvana",
+          "Sona",
+          "Vayne",
+          "Xin Zhao|Xin",
+          "Sylas",
+          "Kayle",
+          "Morgana"
+        ]
+      },
+      {
+        "prompt": "Name 5 champions from Noxus",
+        "count": 5,
+        "answers": [
+          "Darius",
+          "Draven",
+          "Katarina|Kat",
+          "Swain",
+          "Talon",
+          "Samira",
+          "Sion",
+          "Cassiopeia|Cass",
+          "Kled",
+          "Rell",
+          "Mordekaiser|Morde",
+          "Vladimir|Vlad",
+          "Riven",
+          "LeBlanc",
+          "Briar",
+          "Ambessa"
+        ]
+      },
+      {
+        "prompt": "Name 5 Yordles",
+        "count": 5,
+        "answers": [
+          "Teemo",
+          "Tristana|Trist",
+          "Lulu",
+          "Veigar",
+          "Heimerdinger|Heimer",
+          "Corki",
+          "Poppy",
+          "Rumble",
+          "Kennen",
+          "Ziggs",
+          "Gnar",
+          "Kled",
+          "Vex",
+          "Yuumi",
+          "Amumu"
+        ]
+      },
+      {
+        "prompt": "Name 4 champions from Ionia",
+        "count": 4,
+        "answers": [
+          "Ahri",
+          "Yasuo",
+          "Yone",
+          "Irelia",
+          "Karma",
+          "Master Yi|Yi",
+          "Shen",
+          "Zed",
+          "Akali",
+          "Kennen",
+          "Lee Sin|Lee",
+          "Jhin",
+          "Syndra",
+          "Xayah",
+          "Rakan",
+          "Wukong",
+          "Varus",
+          "Sett",
+          "Lillia",
+          "Kayn",
+          "Hwei",
+          "Ivern"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Ahri",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ahri.png"
+        },
+        {
+          "label": "Yasuo",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Yasuo.png"
+        },
+        {
+          "label": "Jinx",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Jinx.png"
+        },
+        {
+          "label": "Teemo",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Teemo.png"
+        },
+        {
+          "label": "Garen",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Garen.png"
+        },
+        {
+          "label": "Lux",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Lux.png"
+        },
+        {
+          "label": "Thresh",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Thresh.png"
+        },
+        {
+          "label": "Zed",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Zed.png"
+        },
+        {
+          "label": "Lee Sin",
+          "src": "ddragon:LeeSin",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/LeeSin.png"
+        },
+        {
+          "label": "Ezreal",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ezreal.png"
+        },
+        {
+          "label": "Darius",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Darius.png"
+        },
+        {
+          "label": "Annie",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Annie.png"
+        },
+        {
+          "label": "Miss Fortune",
+          "src": "ddragon:MissFortune",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/MissFortune.png"
+        },
+        {
+          "label": "Vi",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Vi.png"
+        },
+        {
+          "label": "Ekko",
+          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ekko.png"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Pudge",
+          "src": "fandom:dota2:Pudge",
+          "image": "https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c4/Pudge_mistletoe.jpeg/revision/latest/scale-to-width-down/400?cb=20120420225657"
+        },
+        {
+          "label": "Reyna",
+          "src": "fandom:valorant:Reyna",
+          "image": "https://static.wikia.nocookie.net/valorant/images/3/36/Reyna_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202820"
+        },
+        {
+          "label": "Axe",
+          "src": "fandom:dota2:Axe",
+          "image": "https://static.wikia.nocookie.net/dota2_gamepedia/images/c/c2/Dota_cartoon_art_Crystal_Maiden_Axe_Goodkind.jpg/revision/latest/scale-to-width-down/400?cb=20170924203532"
+        },
+        {
+          "label": "Lina",
+          "src": "fandom:dota2:Lina",
+          "image": "https://static.wikia.nocookie.net/dota2_gamepedia/images/9/91/Launch_banner_-_Lina.jpg/revision/latest/scale-to-width-down/225?cb=20110801130820"
+        },
+        {
+          "label": "Jett",
+          "src": "fandom:valorant:Jett",
+          "image": "https://static.wikia.nocookie.net/valorant/images/e/e3/Jett_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202742"
+        },
+        {
+          "label": "Sage",
+          "src": "fandom:valorant:Sage",
+          "image": "https://static.wikia.nocookie.net/valorant/images/7/7e/Sage_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20260317170220"
+        },
+        {
+          "label": "Tracer",
+          "src": "fandom:overwatch:Tracer",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Tracer.png/revision/latest/scale-to-width-down/140?cb=20241102134907"
+        },
+        {
+          "label": "Mercy",
+          "src": "fandom:overwatch:Mercy",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/170?cb=20241102143122"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Bard",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Bard.png"
+      },
+      {
+        "label": "Ivern",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ivern.png"
+      },
+      {
+        "label": "Kindred",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Kindred.png"
+      },
+      {
+        "label": "Aurelion Sol",
+        "src": "ddragon:AurelionSol",
+        "aliases": [
+          "asol"
+        ],
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/AurelionSol.png"
+      },
+      {
+        "label": "Taliyah",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Taliyah.png"
+      },
+      {
+        "label": "Bel'Veth",
+        "src": "ddragon:Belveth",
+        "aliases": [
+          "belveth"
+        ],
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Belveth.png"
+      },
+      {
+        "label": "Nunu & Willump",
+        "src": "ddragon:Nunu",
+        "aliases": [
+          "nunu",
+          "nunu and willump"
+        ],
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Nunu.png"
+      },
+      {
+        "label": "Fiddlesticks",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Fiddlesticks.png"
+      },
+      {
+        "label": "Zilean",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Zilean.png"
+      },
+      {
+        "label": "Skarner",
+        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Skarner.png"
+      }
+    ]
+  },
+  {
+    "id": "overwatch",
+    "domain": "games",
+    "franchise": "Overwatch",
+    "aliases": [
+      "ow",
+      "overwatch 2"
+    ],
+    "images": "fandom:overwatch",
+    "boss": {
+      "name": "Doomfist",
+      "title": "The Successor",
+      "src": "fandom:overwatch:Doomfist",
+      "color": "#f97316",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1e/OW2_Doomfist_render.png/revision/latest/scale-to-width-down/255?cb=20241102135923",
+      "label": "Doomfist"
+    },
+    "lines": {
+      "intro": "Overwatch is dead, hero. Show me what you remember of it.",
+      "phase2": "Names are easy. Spot the pretenders on my battlefield.",
+      "phase3": "Now — the agents even Winston forgets!",
+      "hit": [
+        "A worthy strike.",
+        "Impressive...",
+        "You hit harder than Reinhardt."
+      ],
+      "hurt": [
+        "Rising uppercut!",
+        "Weak!",
+        "The world needs a better hero."
+      ],
+      "win": "Perhaps... the world could use a hero like you.",
+      "lose": "As expected. The strong survive."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Damage heroes",
+        "count": 5,
+        "answers": [
+          "Tracer",
+          "Genji",
+          "Hanzo",
+          "Widowmaker|Widow",
+          "Reaper",
+          "Soldier: 76|Soldier 76|Soldier",
+          "Pharah",
+          "Junkrat",
+          "Mei",
+          "Cassidy|McCree",
+          "Ashe",
+          "Bastion",
+          "Echo",
+          "Sojourn",
+          "Sombra",
+          "Symmetra|Sym",
+          "Torbjörn|Torbjorn|Torb",
+          "Venture"
+        ]
+      },
+      {
+        "prompt": "Name 4 Support heroes",
+        "count": 4,
+        "answers": [
+          "Mercy",
+          "Ana",
+          "Lúcio|Lucio",
+          "Zenyatta|Zen",
+          "Moira",
+          "Baptiste|Bap",
+          "Brigitte|Brig",
+          "Kiriko",
+          "Lifeweaver",
+          "Illari",
+          "Juno"
+        ]
+      },
+      {
+        "prompt": "Name 4 Tank heroes",
+        "count": 4,
+        "answers": [
+          "Reinhardt|Rein",
+          "Winston",
+          "D.Va|Dva",
+          "Roadhog|Hog",
+          "Zarya",
+          "Orisa",
+          "Sigma",
+          "Wrecking Ball|Hammond|Ball",
+          "Junker Queen|JQ",
+          "Ramattra",
+          "Mauga",
+          "Doomfist",
+          "Hazard"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Tracer",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Tracer.png/revision/latest/scale-to-width-down/140?cb=20241102134907"
+        },
+        {
+          "label": "Mercy",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/170?cb=20241102143122"
+        },
+        {
+          "label": "Reinhardt",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Reinhardt.png/revision/latest/scale-to-width-down/310?cb=20220409014723"
+        },
+        {
+          "label": "Genji",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/17/OW2_Genji.png/revision/latest/scale-to-width-down/170?cb=20241102133634"
+        },
+        {
+          "label": "D.Va",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/394?cb=20241108201346"
+        },
+        {
+          "label": "Widowmaker",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/166?cb=20241108201530"
+        },
+        {
+          "label": "Winston",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/39/OW2_Winston.png/revision/latest/scale-to-width-down/263?cb=20241102142153"
+        },
+        {
+          "label": "Ana",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/OW2_Ana.png/revision/latest/scale-to-width-down/173?cb=20241102141052"
+        },
+        {
+          "label": "Lúcio",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_L%C3%BAcio.png/revision/latest/scale-to-width-down/158?cb=20241102140611"
+        },
+        {
+          "label": "Reaper",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/228?cb=20241108201455"
+        },
+        {
+          "label": "Kiriko",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/16/OW2_Kiriko.png/revision/latest/scale-to-width-down/143?cb=20241102132938"
+        },
+        {
+          "label": "Junkrat",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f2/OW2_Junkrat.png/revision/latest/scale-to-width-down/226?cb=20260214122743"
+        },
+        {
+          "label": "Mei",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Mei.png/revision/latest/scale-to-width-down/208?cb=20241102134134"
+        },
+        {
+          "label": "Zenyatta",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_Zenyatta.png/revision/latest/scale-to-width-down/348?cb=20260324055645"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Jett",
+          "src": "fandom:valorant:Jett",
+          "image": "https://static.wikia.nocookie.net/valorant/images/e/e3/Jett_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202742"
+        },
+        {
+          "label": "Phoenix",
+          "src": "fandom:valorant:Phoenix",
+          "image": "https://static.wikia.nocookie.net/valorant/images/9/90/Phoenix_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202811"
+        },
+        {
+          "label": "Sova",
+          "src": "fandom:valorant:Sova",
+          "image": "https://static.wikia.nocookie.net/valorant/images/c/c5/Sova_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202832"
+        },
+        {
+          "label": "Wraith",
+          "src": "fandom:apexlegends:Wraith",
+          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/0/00/Apex_Voidshifter_Wraith_Tier_1.png/revision/latest/scale-to-width-down/254?cb=20221207035721"
+        },
+        {
+          "label": "Bloodhound",
+          "src": "fandom:apexlegends:Bloodhound",
+          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/2/21/Apex_Hunter_Bloodhound_Tier_1.png/revision/latest/scale-to-width-down/254?cb=20220310114554"
+        },
+        {
+          "label": "Lifeline",
+          "src": "fandom:apexlegends:Lifeline",
+          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/9/93/Runaway_Hit_Lifeline.jpg/revision/latest/scale-to-width-down/254?cb=20240103034815"
+        },
+        {
+          "label": "Heavy",
+          "src": "fandom:teamfortress:Heavy",
+          "image": "https://static.wikia.nocookie.net/teamfortress/images/c/c5/H.W.G.png/revision/latest/scale-to-width-down/400?cb=20240804080157"
+        },
+        {
+          "label": "Scout",
+          "src": "fandom:teamfortress:Scout",
+          "image": "https://static.wikia.nocookie.net/teamfortress/images/4/48/Scout_Full_Body.png/revision/latest/scale-to-width-down/382?cb=20240804201309"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Lifeweaver",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Lifeweaver.png/revision/latest/scale-to-width-down/242?cb=20241123123936"
+      },
+      {
+        "label": "Ramattra",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/OW2_Ramattra.png/revision/latest/scale-to-width-down/198?cb=20260304093912"
+      },
+      {
+        "label": "Mauga",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/78/OW2_Mauga.png/revision/latest/scale-to-width-down/400?cb=20260304093509"
+      },
+      {
+        "label": "Venture",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Venture.png/revision/latest/scale-to-width-down/202?cb=20241102122834"
+      },
+      {
+        "label": "Illari",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2b/OW2_Illari.png/revision/latest/scale-to-width-down/222?cb=20260304090158"
+      },
+      {
+        "label": "Sojourn",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ae/OW2_Sojourn.png/revision/latest/scale-to-width-down/169?cb=20240928162620"
+      },
+      {
+        "label": "Echo",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bd/OW_Echo.png/revision/latest/scale-to-width-down/163?cb=20241102150435"
+      },
+      {
+        "label": "Baptiste",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/00/OW2_Baptiste.png/revision/latest/scale-to-width-down/209?cb=20241108201237"
+      },
+      {
+        "label": "Wrecking Ball",
+        "aliases": [
+          "hammond"
+        ],
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/03/OW2_Wrecking_Ball.png/revision/latest/scale-to-width-down/400?cb=20260304093441"
+      },
+      {
+        "label": "Torbjörn",
+        "aliases": [
+          "torbjorn",
+          "torb"
+        ],
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Torbj%C3%B6rn.png/revision/latest/scale-to-width-down/310?cb=20260321080029"
+      }
+    ]
+  },
+  {
+    "id": "minecraft",
+    "domain": "games",
+    "franchise": "Minecraft",
+    "aliases": [
+      "mc"
+    ],
+    "images": "fandom:minecraft",
+    "boss": {
+      "name": "Ender Dragon",
+      "title": "Guardian of the End",
+      "src": "fandom:minecraft:Ender Dragon",
+      "color": "#a855f7",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0a/Ender_Dragon.gif/revision/latest/scale-to-width-down/392?cb=20210107043116",
+      "label": "Ender Dragon"
+    },
+    "lines": {
+      "intro": "Little crafter... you came all this way to the End. Do you even know your world?",
+      "phase2": "Blocks and mobs, mobs and blocks. Which ones are really from your world?",
+      "phase3": "My crystals burn! Name the rarest creatures of the Overworld!",
+      "hit": [
+        "SKREEEE!",
+        "My crystals...!",
+        "You struck true."
+      ],
+      "hurt": [
+        "Back to spawn!",
+        "You fell into the void.",
+        "Creeper? Aw man."
+      ],
+      "win": "The End... is only the beginning.",
+      "lose": "You died. Respawn?"
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 hostile mobs",
+        "count": 5,
+        "answers": [
+          "Zombie",
+          "Skeleton",
+          "Creeper",
+          "Spider",
+          "Cave Spider",
+          "Witch",
+          "Slime",
+          "Phantom",
+          "Drowned",
+          "Husk",
+          "Stray",
+          "Blaze",
+          "Ghast",
+          "Wither Skeleton",
+          "Magma Cube",
+          "Pillager",
+          "Vindicator",
+          "Evoker",
+          "Ravager",
+          "Guardian",
+          "Elder Guardian",
+          "Shulker",
+          "Silverfish",
+          "Endermite",
+          "Vex",
+          "Hoglin",
+          "Piglin Brute",
+          "Warden",
+          "Breeze",
+          "Bogged",
+          "Creaking"
+        ]
+      },
+      {
+        "prompt": "Name 5 ores",
+        "count": 5,
+        "answers": [
+          "Coal Ore|Coal",
+          "Iron Ore|Iron",
+          "Gold Ore|Gold",
+          "Diamond Ore|Diamond",
+          "Emerald Ore|Emerald",
+          "Lapis Lazuli Ore|Lapis|Lapis Lazuli",
+          "Redstone Ore|Redstone",
+          "Copper Ore|Copper",
+          "Nether Quartz Ore|Quartz|Nether Quartz",
+          "Nether Gold Ore",
+          "Ancient Debris|Netherite"
+        ]
+      },
+      {
+        "prompt": "Name 5 biomes",
+        "count": 5,
+        "answers": [
+          "Plains",
+          "Forest",
+          "Desert",
+          "Jungle",
+          "Taiga",
+          "Savanna",
+          "Swamp",
+          "Badlands|Mesa",
+          "Mushroom Fields|Mushroom Island",
+          "Ocean",
+          "Snowy Plains|Tundra",
+          "Birch Forest",
+          "Dark Forest|Roofed Forest",
+          "Cherry Grove",
+          "Mangrove Swamp",
+          "Deep Dark",
+          "Lush Caves",
+          "Dripstone Caves",
+          "Beach",
+          "River",
+          "Meadow",
+          "Ice Spikes",
+          "Nether Wastes",
+          "Basalt Deltas",
+          "Crimson Forest",
+          "Warped Forest",
+          "Soul Sand Valley",
+          "The End|End"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Creeper",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5b/Creeper_JE2_BE1.png/revision/latest/scale-to-width-down/196?cb=20191229172043"
+        },
+        {
+          "label": "Enderman",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/28/Enderman.png/revision/latest/scale-to-width-down/400?cb=20240729214332"
+        },
+        {
+          "label": "Pig",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Pig_JE3_BE2.png/revision/latest/scale-to-width-down/400?cb=20251004183015"
+        },
+        {
+          "label": "Villager",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d8/Plains_Villager_Base.png/revision/latest/scale-to-width-down/199?cb=20260104164016"
+        },
+        {
+          "label": "Zombie",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/87/Zombie_JE3_BE2.png/revision/latest/scale-to-width-down/240?cb=20191227070025"
+        },
+        {
+          "label": "Skeleton",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/47/Skeleton_JE6_BE4.png/revision/latest/scale-to-width-down/216?cb=20210227130136"
+        },
+        {
+          "label": "Diamond",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ab/Diamond_JE3_BE3.png/revision/latest?cb=20230924193138"
+        },
+        {
+          "label": "Crafting Table",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b7/Crafting_Table_JE4_BE3.png/revision/latest?cb=20191229083528"
+        },
+        {
+          "label": "Torch",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Torch.gif/revision/latest?cb=20200111190834"
+        },
+        {
+          "label": "TNT",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/TNT_JE3_BE2.png/revision/latest?cb=20210110120939"
+        },
+        {
+          "label": "Ghast",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d5/Ghast_JE2_BE2.gif/revision/latest?cb=20201108222940"
+        },
+        {
+          "label": "Iron Golem",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Iron_Golem_JE2_BE2.png/revision/latest/scale-to-width-down/213?cb=20190605101959"
+        },
+        {
+          "label": "Axolotl",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/99/Lucy_Axolotl_JE2.png/revision/latest/scale-to-width-down/400?cb=20240729213943"
+        },
+        {
+          "label": "Bee",
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7c/Bee_types.gif/revision/latest?cb=20240729213952"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Eye of Cthulhu",
+          "src": "fandom:terraria:Eye of Cthulhu",
+          "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/9/9e/Eye_of_Cthulhu_second_form_cloud.png/revision/latest?cb=20200605223034"
+        },
+        {
+          "label": "Moon Lord",
+          "src": "fandom:terraria:Moon Lord",
+          "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/7/7f/Moon_Lord.png/revision/latest/scale-to-width-down/400?cb=20200805023430"
+        },
+        {
+          "label": "King Slime",
+          "src": "fandom:terraria:King Slime",
+          "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/9/93/King_Slime.gif/revision/latest?cb=20200523113558"
+        },
+        {
+          "label": "Kirby",
+          "src": "wp:Kirby (character)",
+          "image": "https://upload.wikimedia.org/wikipedia/en/4/4e/Kirby_Nintendo.png"
+        },
+        {
+          "label": "Korok",
+          "src": "fandom:zelda:Korok",
+          "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/c/cc/TWW_Koroks_Artwork.png/revision/latest/scale-to-width-down/306?cb=20201102145055"
+        },
+        {
+          "label": "Toad",
+          "src": "fandom:mario:Toad",
+          "image": "https://static.wikia.nocookie.net/mario/images/4/4d/SMG1%2BSMG2_Toad_Artwork.png/revision/latest/scale-to-width-down/293?cb=20251021045216"
+        },
+        {
+          "label": "Boo",
+          "src": "fandom:mario:Boo",
+          "image": "https://static.wikia.nocookie.net/mario/images/3/3f/MPS_Boo_Artwork.png/revision/latest/scale-to-width-down/400?cb=20230418174843"
+        },
+        {
+          "label": "Snorlax",
+          "src": "fandom:pokemon:Snorlax",
+          "image": "https://static.wikia.nocookie.net/pokemon/images/3/3f/0143Snorlax.png/revision/latest/scale-to-width-down/400?cb=20260203155155"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Wither",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3b/Wither_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729214341"
+      },
+      {
+        "label": "Warden",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Warden.gif/revision/latest/scale-to-width-down/250?cb=20220218034755"
+      },
+      {
+        "label": "Elder Guardian",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Elder_Guardian.gif/revision/latest?cb=20190925152022"
+      },
+      {
+        "label": "Shulker",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/06/Shulker.png/revision/latest/scale-to-width-down/258?cb=20200107095352"
+      },
+      {
+        "label": "Allay",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/45/Allay_JE2.gif/revision/latest?cb=20230325131818"
+      },
+      {
+        "label": "Sniffer",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ec/Sniffer_sniffsniff.gif/revision/latest/scale-to-width-down/400?cb=20240729213335"
+      },
+      {
+        "label": "Ravager",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a3/Ravager_JE1.png/revision/latest/scale-to-width-down/400?cb=20210120025723"
+      },
+      {
+        "label": "Piglin",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6c/Piglin.png/revision/latest/scale-to-width-down/260?cb=20220610025226"
+      },
+      {
+        "label": "Strider",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a6/Strider_JE2_BE2.gif/revision/latest?cb=20240729214354"
+      },
+      {
+        "label": "Mooshroom",
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1c/Red_Mooshroom_JE4.png/revision/latest/scale-to-width-down/292?cb=20240729214731"
+      }
+    ]
+  },
+  {
+    "id": "onepiece",
+    "domain": "anime",
+    "franchise": "One Piece",
+    "images": "fandom:onepiece",
+    "boss": {
+      "name": "Kaido",
+      "title": "King of the Beasts",
+      "src": "fandom:onepiece:Kaido",
+      "color": "#7c3aed",
+      "image": "https://static.wikia.nocookie.net/onepiece/images/2/2d/Kaidou_Anime_Infobox.png/revision/latest/scale-to-width-down/386?cb=20231102015517",
+      "label": "Kaido"
+    },
+    "lines": {
+      "intro": "Wororororo! A rookie wants to fight the strongest creature in the world? Show me your knowledge of the seas!",
+      "phase2": "Not bad! But can you tell a real pirate from a landlubber?",
+      "phase3": "Hah! Now face the true monsters of the Grand Line!",
+      "hit": [
+        "Wororo... that stung!",
+        "Haki?!",
+        "Interesting!"
+      ],
+      "hurt": [
+        "Thunder Bagua!",
+        "Weak!",
+        "Go back to East Blue!"
+      ],
+      "win": "Wororororo... the new era belongs to you.",
+      "lose": "Another rookie sinks to the bottom of the sea."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Straw Hat Pirates",
+        "count": 5,
+        "answers": [
+          "Monkey D. Luffy|Luffy",
+          "Roronoa Zoro|Zoro",
+          "Nami",
+          "Usopp",
+          "Sanji|Vinsmoke Sanji",
+          "Tony Tony Chopper|Chopper",
+          "Nico Robin|Robin",
+          "Franky",
+          "Brook",
+          "Jinbe|Jimbei|Jinbei"
+        ]
+      },
+      {
+        "prompt": "Name 4 Warlords of the Sea",
+        "count": 4,
+        "answers": [
+          "Dracule Mihawk|Mihawk",
+          "Crocodile",
+          "Donquixote Doflamingo|Doflamingo",
+          "Bartholomew Kuma|Kuma",
+          "Gecko Moria|Moria",
+          "Boa Hancock|Hancock",
+          "Jinbe|Jimbei|Jinbei",
+          "Marshall D. Teach|Blackbeard|Teach",
+          "Trafalgar Law|Law",
+          "Buggy",
+          "Edward Weevil|Weevil"
+        ]
+      },
+      {
+        "prompt": "Name 4 Emperors of the Sea, past or present",
+        "count": 4,
+        "answers": [
+          "Shanks",
+          "Kaido",
+          "Charlotte Linlin|Big Mom|Linlin",
+          "Marshall D. Teach|Blackbeard|Teach",
+          "Edward Newgate|Whitebeard|Newgate",
+          "Monkey D. Luffy|Luffy",
+          "Buggy"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Monkey D. Luffy",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
+        },
+        {
+          "label": "Roronoa Zoro",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/150?cb=20241029161719"
+        },
+        {
+          "label": "Nami",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/68/Nami_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/239?cb=20260315214841"
+        },
+        {
+          "label": "Sanji",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/b/b6/Sanji_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/133?cb=20240122012744"
+        },
+        {
+          "label": "Tony Tony Chopper",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/312?cb=20240720150824"
+        },
+        {
+          "label": "Usopp",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/3/35/Usopp_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/215?cb=20221127233827"
+        },
+        {
+          "label": "Shanks",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/66/Shanks_Anime_Infobox.png/revision/latest/scale-to-width-down/279?cb=20240829145447"
+        },
+        {
+          "label": "Portgas D. Ace",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/4/4f/Portgas_D._Ace_Anime_Infobox.png/revision/latest/scale-to-width-down/239?cb=20240629132600"
+        },
+        {
+          "label": "Buggy",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Buggy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/400?cb=20240813025900"
+        },
+        {
+          "label": "Nico Robin",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/b/bc/Nico_Robin_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/223?cb=20260913163501"
+        },
+        {
+          "label": "Brook",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/4/41/Brook_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/171?cb=20261011171752"
+        },
+        {
+          "label": "Franky",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/8/8c/Franky_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/400?cb=20241110020715"
+        },
+        {
+          "label": "Trafalgar D. Water Law",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/4/4d/Trafalgar_D._Water_Law_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/177?cb=20230124163510"
+        },
+        {
+          "label": "Boa Hancock",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/f/f0/Boa_Hancock_Anime_Infobox.png/revision/latest/scale-to-width-down/194?cb=20230126022456"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Naruto Uzumaki",
+          "src": "fandom:naruto:Naruto Uzumaki",
+          "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest/scale-to-width-down/400?cb=20251228135525"
+        },
+        {
+          "label": "Kakashi Hatake",
+          "src": "fandom:naruto:Kakashi Hatake",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest/scale-to-width-down/400?cb=20251019002845"
+        },
+        {
+          "label": "Ichigo Kurosaki",
+          "src": "fandom:bleach:Ichigo Kurosaki",
+          "image": "https://static.wikia.nocookie.net/bleach/images/4/41/NBFHIchigo_profile.png/revision/latest/scale-to-width-down/302?cb=20260410211133&path-prefix=en"
+        },
+        {
+          "label": "Natsu Dragneel",
+          "src": "fandom:fairytail:Natsu Dragneel",
+          "image": "https://static.wikia.nocookie.net/fairytail/images/c/ca/Natsu_X792.png/revision/latest/scale-to-width-down/400?cb=20181111122101"
+        },
+        {
+          "label": "Asta",
+          "src": "fandom:blackclover:Asta",
+          "image": "https://static.wikia.nocookie.net/blackclover/images/9/98/Asta_profile.png/revision/latest/scale-to-width-down/219?cb=20220731212646"
+        },
+        {
+          "label": "Goku",
+          "src": "fandom:dragonball:Goku",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/b/ba/Goku_anime_profile.png/revision/latest/scale-to-width-down/202?cb=20250723190513"
+        },
+        {
+          "label": "Gon Freecss",
+          "src": "fandom:hunterxhunter:Gon Freecss",
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3e/HxH2011_EP147_Gon_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230904181801"
+        },
+        {
+          "label": "Izuku Midoriya",
+          "src": "fandom:myheroacademia:Izuku Midoriya",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2b/Izuku_Midoriya_Costume_Databook.png/revision/latest/scale-to-width-down/254?cb=20250409215213"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Borsalino",
+        "aliases": [
+          "kizaru"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/1/14/Borsalino_Anime_Infobox.png/revision/latest/scale-to-width-down/198?cb=20190603023753"
+      },
+      {
+        "label": "Issho",
+        "aliases": [
+          "fujitora"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/e8/Issho_Anime_Infobox.png/revision/latest/scale-to-width-down/246?cb=20220718140829"
+      },
+      {
+        "label": "Marco",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4a/Polo_Marco_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/143?cb=20221010015200"
+      },
+      {
+        "label": "Crocodile",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/fd/Crocodile_Anime_Infobox.png/revision/latest/scale-to-width-down/318?cb=20230125235528"
+      },
+      {
+        "label": "Enel",
+        "aliases": [
+          "eneru"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/ad/Enel_Anime_Infobox.png/revision/latest/scale-to-width-down/400?cb=20230520213625"
+      },
+      {
+        "label": "Rob Lucci",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/d7/Rob_Lucci_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/215?cb=20230102052113"
+      },
+      {
+        "label": "Charlotte Katakuri",
+        "aliases": [
+          "katakuri"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/2/2e/Charlotte_Katakuri_Anime_Infobox.png/revision/latest/scale-to-width-down/267?cb=20230204155539"
+      },
+      {
+        "label": "Yamato",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bd/Yamato_Anime_Infobox.png/revision/latest/scale-to-width-down/269?cb=20260126165014"
+      },
+      {
+        "label": "Kuzan",
+        "aliases": [
+          "aokiji"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/d6/Kuzan_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/326?cb=20240811021341"
+      },
+      {
+        "label": "Dracule Mihawk",
+        "aliases": [
+          "mihawk"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bf/Dracule_Mihawk_Anime_Infobox.png/revision/latest/scale-to-width-down/257?cb=20151222105910"
+      }
+    ]
+  },
+  {
+    "id": "dbz",
+    "domain": "anime",
+    "franchise": "Dragon Ball Z",
+    "aliases": [
+      "dragon ball",
+      "dbz"
+    ],
+    "images": "fandom:dragonball",
+    "boss": {
+      "name": "Frieza",
+      "title": "Emperor of the Universe",
+      "src": "fandom:dragonball:Frieza",
+      "color": "#a855f7",
+      "image": "https://static.wikia.nocookie.net/dragonball/images/e/ee/DBS_Broly_Frieza_Render.png/revision/latest/scale-to-width-down/334?cb=20221019232854",
+      "label": "Frieza"
+    },
+    "lines": {
+      "intro": "Ohohoho... a monkey wants to fight the Emperor? Let's see what you know, little warrior.",
+      "phase2": "Hmm. Your power level is rising. Sort my soldiers from the pretenders!",
+      "phase3": "I'll show you my final form! Name my most obscure enemies!",
+      "hit": [
+        "You... insolent monkey!",
+        "Impossible!",
+        "Ngh!"
+      ],
+      "hurt": [
+        "Death Beam!",
+        "Ohohoho!",
+        "Pathetic!"
+      ],
+      "win": "Defeated... by a mere mortal?!",
+      "lose": "Your planet will make a lovely addition to my collection."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Z Fighters",
+        "count": 5,
+        "answers": [
+          "Goku|Son Goku|Kakarot",
+          "Vegeta",
+          "Gohan|Son Gohan",
+          "Piccolo",
+          "Krillin",
+          "Tien|Tien Shinhan|Tenshinhan",
+          "Yamcha",
+          "Chiaotzu|Chaozu",
+          "Goten|Son Goten",
+          "Trunks",
+          "Android 18|18",
+          "Videl",
+          "Master Roshi|Roshi"
+        ]
+      },
+      {
+        "prompt": "Name 4 members of the Ginyu Force",
+        "count": 4,
+        "answers": [
+          "Captain Ginyu|Ginyu",
+          "Jeice",
+          "Burter",
+          "Recoome",
+          "Guldo"
+        ]
+      },
+      {
+        "prompt": "Name 4 Androids",
+        "count": 4,
+        "answers": [
+          "Android 16|16",
+          "Android 17|17",
+          "Android 18|18",
+          "Android 19|19",
+          "Android 20|Dr. Gero|Gero|20",
+          "Cell",
+          "Android 13|13",
+          "Android 14|14",
+          "Android 15|15",
+          "Android 8|8"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Goku",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/b/ba/Goku_anime_profile.png/revision/latest/scale-to-width-down/202?cb=20250723190513"
+        },
+        {
+          "label": "Vegeta",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/9/94/Vegeta_anime_profile.png/revision/latest/scale-to-width-down/246?cb=20250723190507"
+        },
+        {
+          "label": "Gohan",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/3/3b/Gohan_anime_profile_3.png/revision/latest/scale-to-width-down/187?cb=20250617191059"
+        },
+        {
+          "label": "Piccolo",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/b/b7/Super_Hero_-_Piccolo_artwork_3.png/revision/latest/scale-to-width-down/275?cb=20250923210449"
+        },
+        {
+          "label": "Krillin",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/5/54/Krillin_DB_Episode_134.png/revision/latest/scale-to-width-down/270?cb=20241210001054"
+        },
+        {
+          "label": "Cell",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/2/27/Cell_%28DBZ_ep_177%29.png/revision/latest/scale-to-width-down/228?cb=20260801130819"
+        },
+        {
+          "label": "Majin Buu",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/4/4a/All_Majin_Buu_forms_%28Daiz4%29.jpg/revision/latest/scale-to-width-down/278?cb=20130605020823"
+        },
+        {
+          "label": "Trunks",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/d/d1/Super_Hero_-_Trunks_artwork.jpg/revision/latest/scale-to-width-down/120?cb=20250904060656"
+        },
+        {
+          "label": "Bulma",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/a/a6/Bulma_anime_profile.png/revision/latest/scale-to-width-down/137?cb=20250617190824"
+        },
+        {
+          "label": "Android 18",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/e/e6/Android_18_anime_profile.png/revision/latest/scale-to-width-down/160?cb=20250617190842"
+        },
+        {
+          "label": "Goten",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/c/c9/Super_Hero_-_Goten_artwork.jpg/revision/latest/scale-to-width-down/185?cb=20220920183551"
+        },
+        {
+          "label": "Master Roshi",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/5/5f/Master_roshi_enhanced.jpg/revision/latest/scale-to-width-down/297?cb=20210310020858"
+        },
+        {
+          "label": "Shenron",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/2/26/Shenron_DBZ_Episode_240.png/revision/latest/scale-to-width-down/260?cb=20210429121425"
+        },
+        {
+          "label": "Yamcha",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/5/59/Yamcha_DB_Episode_138.png/revision/latest/scale-to-width-down/171?cb=20250201193345"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Monkey D. Luffy",
+          "src": "fandom:onepiece:Monkey D. Luffy",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
+        },
+        {
+          "label": "Naruto Uzumaki",
+          "src": "fandom:naruto:Naruto Uzumaki",
+          "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest/scale-to-width-down/400?cb=20251228135525"
+        },
+        {
+          "label": "Saitama",
+          "src": "fandom:onepunchman:Saitama",
+          "image": "https://static.wikia.nocookie.net/onepunchman/images/f/ff/Saitama_Manga_Profile.png/revision/latest/scale-to-width-down/340?cb=20220825051134"
+        },
+        {
+          "label": "Ichigo Kurosaki",
+          "src": "fandom:bleach:Ichigo Kurosaki",
+          "image": "https://static.wikia.nocookie.net/bleach/images/4/41/NBFHIchigo_profile.png/revision/latest/scale-to-width-down/302?cb=20260410211133&path-prefix=en"
+        },
+        {
+          "label": "Yusuke Urameshi",
+          "src": "fandom:yuyuhakusho:Yusuke Urameshi",
+          "image": "https://static.wikia.nocookie.net/yuyuhakusho/images/d/da/Yusuke_OVA_2018.png/revision/latest/scale-to-width-down/400?cb=20230707054956"
+        },
+        {
+          "label": "Killua Zoldyck",
+          "src": "fandom:hunterxhunter:Killua Zoldyck",
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bd/HxH2011_EP147_Killua_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230904181904"
+        },
+        {
+          "label": "Jotaro Kujo",
+          "src": "fandom:jojo:Jotaro Kujo",
+          "image": "https://static.wikia.nocookie.net/jjba/images/0/01/JotaroProfile.png/revision/latest/scale-to-width-down/257?cb=20191125014406"
+        },
+        {
+          "label": "Tanjiro Kamado",
+          "src": "fandom:kimetsu-no-yaiba:Tanjiro Kamado",
+          "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/0/05/Tanjiro_anime_right_face.png/revision/latest/scale-to-width-down/229?cb=20241228000706"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Bardock",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/d/d5/Bardock_-_The_Father_of_Goku_-_Bardock_after_landing_on_Planet_Meat.png/revision/latest/scale-to-width-down/281?cb=20250121192318"
+      },
+      {
+        "label": "Raditz",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/8/86/Raditz_arrives_at_Kame_House.png/revision/latest/scale-to-width-down/196?cb=20260822192657"
+      },
+      {
+        "label": "Nappa",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/1/11/Nappa_DBZ_Episode_24.png/revision/latest/scale-to-width-down/288?cb=20211026042623"
+      },
+      {
+        "label": "Dabura",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/a/ab/Dabura_becoming_Supreme_Demon_King_after_usurping_Abura.png/revision/latest/scale-to-width-down/400?cb=20250124223335"
+      },
+      {
+        "label": "Zarbon",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/0/0f/Zarbon_DBZ_Ep_56_002.png/revision/latest/scale-to-width-down/191?cb=20180804213413"
+      },
+      {
+        "label": "Dodoria",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/f/fd/Dodoria_DBZ_Ep_49_002.png/revision/latest/scale-to-width-down/330?cb=20170827051359"
+      },
+      {
+        "label": "Mr. Satan",
+        "aliases": [
+          "hercule",
+          "mr satan"
+        ],
+        "image": "https://static.wikia.nocookie.net/dragonball/images/e/ef/Mr_Satan_at_the_Cell_Games.png/revision/latest/scale-to-width-down/268?cb=20260315145605"
+      },
+      {
+        "label": "King Kai",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/6/61/KingKaiNV.png/revision/latest/scale-to-width-down/400?cb=20200219185209"
+      },
+      {
+        "label": "Broly",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/c/cd/Broly_Infobox_image.png/revision/latest/scale-to-width-down/298?cb=20170525181624"
+      },
+      {
+        "label": "Babidi",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/5/5c/BabidiDBZ.png/revision/latest/scale-to-width-down/400?cb=20091210131219"
+      }
+    ]
+  },
+  {
+    "id": "naruto",
+    "domain": "anime",
+    "franchise": "Naruto",
+    "aliases": [
+      "naruto shippuden"
+    ],
+    "images": "fandom:naruto",
+    "boss": {
+      "name": "Madara Uchiha",
+      "title": "Ghost of the Uchiha",
+      "src": "fandom:naruto:Madara Uchiha",
+      "color": "#dc2626",
+      "image": "https://static.wikia.nocookie.net/naruto/images/0/06/Kid_Madara.png/revision/latest/scale-to-width-down/314?cb=20230320174531",
+      "label": "Madara Uchiha"
+    },
+    "lines": {
+      "intro": "So the Leaf sends a child. Show me how well you know this shinobi world.",
+      "phase2": "Hmph. Your eyes see names. Can they see through a disguise?",
+      "phase3": "Wake up to reality! Name the shinobi history forgot!",
+      "hit": [
+        "Interesting...",
+        "You can see my movements?",
+        "Not bad, for a Leaf ninja."
+      ],
+      "hurt": [
+        "Susanoo!",
+        "Too slow.",
+        "This world is hell."
+      ],
+      "win": "So this is... the power of the new generation.",
+      "lose": "Dance for me, child. Infinite Tsukuyomi."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Akatsuki members",
+        "count": 5,
+        "answers": [
+          "Itachi Uchiha|Itachi",
+          "Kisame Hoshigaki|Kisame",
+          "Deidara",
+          "Sasori",
+          "Hidan",
+          "Kakuzu",
+          "Pain|Nagato|Yahiko",
+          "Konan",
+          "Zetsu",
+          "Tobi|Obito|Obito Uchiha",
+          "Orochimaru"
+        ]
+      },
+      {
+        "prompt": "Name 4 Hokage",
+        "count": 4,
+        "answers": [
+          "Hashirama Senju|Hashirama",
+          "Tobirama Senju|Tobirama",
+          "Hiruzen Sarutobi|Hiruzen|Sarutobi",
+          "Minato Namikaze|Minato",
+          "Tsunade",
+          "Kakashi Hatake|Kakashi",
+          "Naruto Uzumaki|Naruto"
+        ]
+      },
+      {
+        "prompt": "Name 4 tailed beasts",
+        "count": 4,
+        "answers": [
+          "Shukaku|One-Tails",
+          "Matatabi|Two-Tails",
+          "Isobu|Three-Tails",
+          "Son Goku|Four-Tails",
+          "Kokuo|Five-Tails",
+          "Saiken|Six-Tails",
+          "Chomei|Chōmei|Seven-Tails",
+          "Gyuki|Gyūki|Eight-Tails",
+          "Kurama|Nine-Tails|Kyubi|Kyuubi"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Naruto Uzumaki",
+          "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest/scale-to-width-down/400?cb=20251228135525"
+        },
+        {
+          "label": "Sasuke Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest/scale-to-width-down/400?cb=20170716092103"
+        },
+        {
+          "label": "Sakura Haruno",
+          "image": "https://static.wikia.nocookie.net/naruto/images/6/64/Sakura_Part_1.png/revision/latest/scale-to-width-down/400?cb=20170726101444"
+        },
+        {
+          "label": "Kakashi Hatake",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest/scale-to-width-down/400?cb=20251019002845"
+        },
+        {
+          "label": "Itachi Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/e/e9/Itachi_Child_OL.png/revision/latest/scale-to-width-down/274?cb=20210415223303"
+        },
+        {
+          "label": "Gaara",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/20/Gaara_in_Part_I.png/revision/latest/scale-to-width-down/400?cb=20221010023824"
+        },
+        {
+          "label": "Hinata Hyūga",
+          "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Hinata.png/revision/latest/scale-to-width-down/400?cb=20141010104729"
+        },
+        {
+          "label": "Rock Lee",
+          "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest/scale-to-width-down/400?cb=20181229065526"
+        },
+        {
+          "label": "Jiraiya",
+          "image": "https://static.wikia.nocookie.net/naruto/images/1/1f/Jiraiya_Young.png/revision/latest/scale-to-width-down/318?cb=20260220182003"
+        },
+        {
+          "label": "Orochimaru",
+          "image": "https://static.wikia.nocookie.net/naruto/images/1/14/Orochimaru_Infobox.png/revision/latest/scale-to-width-down/400?cb=20150925223113"
+        },
+        {
+          "label": "Shikamaru Nara",
+          "image": "https://static.wikia.nocookie.net/naruto/images/4/44/Shikamaru_Part_I.png/revision/latest/scale-to-width-down/400?cb=20170419112314"
+        },
+        {
+          "label": "Neji Hyūga",
+          "image": "https://static.wikia.nocookie.net/naruto/images/7/7e/Neji_Part_I.png/revision/latest/scale-to-width-down/400?cb=20160118081119"
+        },
+        {
+          "label": "Kurama",
+          "image": "https://static.wikia.nocookie.net/naruto/images/7/7b/Kurama2.png/revision/latest/scale-to-width-down/400?cb=20140818171718"
+        },
+        {
+          "label": "Tsunade",
+          "image": "https://static.wikia.nocookie.net/naruto/images/6/62/Kid_Tsunade.png/revision/latest/scale-to-width-down/241?cb=20230407050656"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Rukia Kuchiki",
+          "src": "fandom:bleach:Rukia Kuchiki",
+          "image": "https://static.wikia.nocookie.net/bleach/images/2/23/NBFHRukia_profile.png/revision/latest/scale-to-width-down/400?cb=20230903201912&path-prefix=en"
+        },
+        {
+          "label": "Byakuya Kuchiki",
+          "src": "fandom:bleach:Byakuya Kuchiki",
+          "image": "https://static.wikia.nocookie.net/bleach/images/f/f2/686Byakuya_profile.png/revision/latest?cb=20200322080959&path-prefix=en"
+        },
+        {
+          "label": "Roronoa Zoro",
+          "src": "fandom:onepiece:Roronoa Zoro",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/150?cb=20241029161719"
+        },
+        {
+          "label": "Zenitsu Agatsuma",
+          "src": "fandom:kimetsu-no-yaiba:Zenitsu Agatsuma",
+          "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/4/4f/Zenitsu_anime_right_face.png/revision/latest/scale-to-width-down/238?cb=20241228000445"
+        },
+        {
+          "label": "Satoru Gojo",
+          "src": "fandom:jujutsu-kaisen:Satoru Gojo",
+          "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/e/ef/Satoru_Gojo_%28Anime_2%29.png/revision/latest/scale-to-width-down/122?cb=20250726003655"
+        },
+        {
+          "label": "Yuno",
+          "src": "fandom:blackclover:Yuno",
+          "image": "https://static.wikia.nocookie.net/blackclover/images/e/eb/Yuno_profile.png/revision/latest/scale-to-width-down/210?cb=20220731212525"
+        },
+        {
+          "label": "Erza Scarlet",
+          "src": "fandom:fairytail:Erza Scarlet",
+          "image": "https://static.wikia.nocookie.net/fairytail/images/c/c3/Erza%27s_picture.png/revision/latest/scale-to-width-down/400?cb=20190929085837"
+        },
+        {
+          "label": "Hisoka",
+          "src": "fandom:hunterxhunter:Hisoka Morow",
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/29/Hisoka_Morow_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190123172039"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Might Guy",
+        "aliases": [
+          "guy",
+          "might gai",
+          "gai"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/3/31/Might_Guy.png/revision/latest/scale-to-width-down/400?cb=20150401084456"
+      },
+      {
+        "label": "Killer B",
+        "aliases": [
+          "killer bee",
+          "bee"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/6/63/Killer_B.png/revision/latest/scale-to-width-down/400?cb=20180425141557"
+      },
+      {
+        "label": "Kabuto Yakushi",
+        "aliases": [
+          "kabuto"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/c/c9/Kabuto_Part_1.png/revision/latest/scale-to-width-down/400?cb=20170906101523"
+      },
+      {
+        "label": "Sasori",
+        "image": "https://static.wikia.nocookie.net/naruto/images/1/12/Sasori_UNSR.png/revision/latest/scale-to-width-down/155?cb=20160426003634"
+      },
+      {
+        "label": "Hidan",
+        "image": "https://static.wikia.nocookie.net/naruto/images/f/ff/NSUNRHidan.png/revision/latest/scale-to-width-down/270?cb=20160623115835"
+      },
+      {
+        "label": "Konan",
+        "image": "https://static.wikia.nocookie.net/naruto/images/3/36/Young_Konan_OL.png/revision/latest/scale-to-width-down/261?cb=20210414203307"
+      },
+      {
+        "label": "Jūgo",
+        "aliases": [
+          "jugo",
+          "juugo"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/4/42/Jugo.png/revision/latest/scale-to-width-down/400?cb=20150616195401"
+      },
+      {
+        "label": "Kimimaro",
+        "aliases": [
+          "kimimaro kaguya"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/c/c8/Kimimaro_infobox.png/revision/latest/scale-to-width-down/400?cb=20210929024649"
+      },
+      {
+        "label": "Haku",
+        "image": "https://static.wikia.nocookie.net/naruto/images/3/35/Haku%27s_shinobi_attire.png/revision/latest/scale-to-width-down/209?cb=20160610212143"
+      },
+      {
+        "label": "Zabuza Momochi",
+        "aliases": [
+          "zabuza"
+        ],
+        "image": "https://static.wikia.nocookie.net/naruto/images/a/a6/Zabuza_OL.png/revision/latest/scale-to-width-down/152?cb=20210426223426"
+      }
+    ]
+  },
+  {
+    "id": "starwars",
+    "domain": "cinema",
+    "franchise": "Star Wars",
+    "aliases": [
+      "sw"
+    ],
+    "images": "fandom:starwars",
+    "boss": {
+      "name": "Darth Vader",
+      "title": "Dark Lord of the Sith",
+      "src": "wp:Darth Vader",
+      "color": "#dc2626",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0b/Darth_Vader_in_The_Empire_Strikes_Back.jpg",
+      "label": "Darth Vader"
+    },
+    "lines": {
+      "intro": "I find your lack of knowledge... disturbing. Show me what you know of this galaxy.",
+      "phase2": "Impressive. Most impressive. But can you sense which ones do not belong?",
+      "phase3": "You underestimate the power of the Dark Side! Name the galaxy's forgotten faces!",
+      "hit": [
+        "The Force is strong with this one.",
+        "Hhhh... khhh...",
+        "Impossible."
+      ],
+      "hurt": [
+        "Don't make me destroy you.",
+        "*Force choke*",
+        "You have failed me."
+      ],
+      "win": "You were right about me... tell your friends.",
+      "lose": "Now, you will experience the full power of the Dark Side."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Jedi",
+        "count": 5,
+        "answers": [
+          "Luke Skywalker|Luke",
+          "Obi-Wan Kenobi|Obi-Wan|Ben Kenobi|Obi Wan",
+          "Yoda",
+          "Mace Windu|Windu",
+          "Qui-Gon Jinn|Qui-Gon|Qui Gon",
+          "Anakin Skywalker|Anakin",
+          "Ahsoka Tano|Ahsoka",
+          "Kit Fisto",
+          "Plo Koon",
+          "Ki-Adi-Mundi",
+          "Rey",
+          "Aayla Secura",
+          "Luminara Unduli",
+          "Shaak Ti",
+          "Kanan Jarrus|Kanan",
+          "Ezra Bridger|Ezra",
+          "Cal Kestis|Cal"
+        ]
+      },
+      {
+        "prompt": "Name 4 Sith Lords",
+        "count": 4,
+        "answers": [
+          "Darth Vader|Vader",
+          "Darth Sidious|Palpatine|Sidious|The Emperor|Emperor",
+          "Darth Maul|Maul",
+          "Count Dooku|Darth Tyranus|Dooku|Tyranus",
+          "Darth Plagueis|Plagueis",
+          "Darth Bane|Bane",
+          "Darth Revan|Revan",
+          "Darth Malak|Malak"
+        ]
+      },
+      {
+        "prompt": "Name 5 planets",
+        "count": 5,
+        "answers": [
+          "Tatooine",
+          "Hoth",
+          "Endor",
+          "Naboo",
+          "Coruscant",
+          "Dagobah",
+          "Alderaan",
+          "Bespin",
+          "Kashyyyk",
+          "Mustafar",
+          "Kamino",
+          "Geonosis",
+          "Jakku",
+          "Yavin 4|Yavin|Yavin IV",
+          "Mandalore",
+          "Scarif",
+          "Lothal",
+          "Exegol",
+          "Crait",
+          "Starkiller Base"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Yoda",
+          "image": "https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/scale-to-width-down/333?cb=20150206140125"
+        },
+        {
+          "label": "Chewbacca",
+          "image": "https://static.wikia.nocookie.net/starwars/images/2/25/Chewbacca-SWBC5cvr.png/revision/latest/scale-to-width-down/300?cb=20260426033709"
+        },
+        {
+          "label": "R2-D2",
+          "image": "https://static.wikia.nocookie.net/starwars/images/9/95/R2-D2-TROSOCE.png/revision/latest/scale-to-width-down/264?cb=20240104043013"
+        },
+        {
+          "label": "C-3PO",
+          "image": "https://static.wikia.nocookie.net/starwars/images/a/a2/C-3PO-TROSTGG.png/revision/latest/scale-to-width-down/300?cb=20230706042830"
+        },
+        {
+          "label": "Han Solo",
+          "image": "https://static.wikia.nocookie.net/starwars/images/e/e2/TFAHanSolo.png/revision/latest/scale-to-width-down/300?cb=20160208055002"
+        },
+        {
+          "label": "Leia Organa",
+          "image": "https://static.wikia.nocookie.net/starwars/images/f/f1/Leia_Organa_TROS.png/revision/latest/scale-to-width-down/300?cb=20200102034101"
+        },
+        {
+          "label": "Boba Fett",
+          "image": "https://static.wikia.nocookie.net/starwars/images/6/62/BobaFettHS-SWI213.png/revision/latest/scale-to-width-down/315?cb=20250317160100"
+        },
+        {
+          "label": "Stormtrooper",
+          "image": "https://static.wikia.nocookie.net/starwars/images/b/b9/Stormtrooper-ROOCE.png/revision/latest/scale-to-width-down/171?cb=20240106032223"
+        },
+        {
+          "label": "Grogu",
+          "image": "https://static.wikia.nocookie.net/starwars/images/0/06/Grogu-BoBFBox.png/revision/latest/scale-to-width-down/400?cb=20251105060853"
+        },
+        {
+          "label": "Darth Maul",
+          "image": "https://static.wikia.nocookie.net/starwars/images/8/89/MaulHS_SWI185.png/revision/latest/scale-to-width-down/300?cb=20181108061212"
+        },
+        {
+          "label": "BB-8",
+          "image": "https://static.wikia.nocookie.net/starwars/images/6/68/BB8-Fathead.png/revision/latest/scale-to-width-down/280?cb=20161108050455"
+        },
+        {
+          "label": "Lando Calrissian",
+          "image": "https://static.wikia.nocookie.net/starwars/images/2/29/LandoCalrissian-TROSOCE.png/revision/latest/scale-to-width-down/300?cb=20200101050952"
+        },
+        {
+          "label": "Jabba Desilijic Tiure",
+          "image": "https://static.wikia.nocookie.net/starwars/images/f/fe/Jabba_MMSWCA.png/revision/latest/scale-to-width-down/328?cb=20231031040818"
+        },
+        {
+          "label": "Millennium Falcon",
+          "image": "https://static.wikia.nocookie.net/starwars/images/5/52/Millennium_Falcon_Fathead_TROS.png/revision/latest/scale-to-width-down/400?cb=20221029015218"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Spock",
+          "src": "fandom:memory-alpha:Spock",
+          "image": "https://static.wikia.nocookie.net/memoryalpha/images/b/b1/Spock%2C_2387.jpg/revision/latest/scale-to-width-down/400?cb=20211211154448&path-prefix=en"
+        },
+        {
+          "label": "James T. Kirk",
+          "src": "fandom:memory-alpha:James T. Kirk",
+          "image": "https://static.wikia.nocookie.net/memoryalpha/images/e/e9/James_T._Kirk%2C_2269.jpg/revision/latest/scale-to-width-down/400?cb=20081108215708&path-prefix=en"
+        },
+        {
+          "label": "Paul Atreides",
+          "src": "fandom:dune:Paul Atreides",
+          "image": "https://static.wikia.nocookie.net/dune/images/d/dc/Frank-herberts-22dune22-22paul-muaddib-calling-his-first-sandworm22-by-john-schoenherr-1.jpg/revision/latest/scale-to-width-down/400?cb=20190804071135"
+        },
+        {
+          "label": "Master Chief",
+          "src": "fandom:halo:John-117",
+          "image": "https://static.wikia.nocookie.net/halo/images/8/84/InfiniteChiefTRANSPARENTholdingReachAR.png/revision/latest/scale-to-width-down/400?cb=20230220134648"
+        },
+        {
+          "label": "Garrus Vakarian",
+          "src": "fandom:masseffect:Garrus Vakarian",
+          "image": "https://static.wikia.nocookie.net/masseffect/images/9/9d/ME_garrus_charshot.png/revision/latest/scale-to-width-down/315?cb=20210620043621"
+        },
+        {
+          "label": "Gandalf",
+          "src": "fandom:lotr:Gandalf",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/264?cb=20230617183640"
+        },
+        {
+          "label": "Rocket Raccoon",
+          "src": "fandom:marvelcinematicuniverse:Rocket Raccoon",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/30/Rocket_Vol._3.jpg/revision/latest/scale-to-width-down/330?cb=20231114031203"
+        },
+        {
+          "label": "Neo",
+          "src": "fandom:matrix:Neo",
+          "image": "https://static.wikia.nocookie.net/matrix/images/3/32/Neo.jpg/revision/latest/scale-to-width-down/266?cb=20250617223852"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Gial Ackbar",
+        "aliases": [
+          "ackbar",
+          "admiral ackbar"
+        ],
+        "image": "https://static.wikia.nocookie.net/starwars/images/2/29/Admiral_Ackbar_RH.png/revision/latest/scale-to-width-down/301?cb=20221224032123"
+      },
+      {
+        "label": "Greedo",
+        "image": "https://static.wikia.nocookie.net/starwars/images/f/f9/Greedo-SWBC32.png/revision/latest/scale-to-width-down/300?cb=20231230042137"
+      },
+      {
+        "label": "Wicket W. Warrick",
+        "aliases": [
+          "wicket"
+        ],
+        "image": "https://static.wikia.nocookie.net/starwars/images/a/aa/Wicket-2024Base.png/revision/latest/scale-to-width-down/300?cb=20251026210916"
+      },
+      {
+        "label": "Jango Fett",
+        "image": "https://static.wikia.nocookie.net/starwars/images/a/ad/JangoFett-SWBC20.png/revision/latest/scale-to-width-down/300?cb=20231230051139"
+      },
+      {
+        "label": "Grievous",
+        "aliases": [
+          "general grievous"
+        ],
+        "image": "https://static.wikia.nocookie.net/starwars/images/4/45/GrievousStand-SWHC821.png/revision/latest/scale-to-width-down/300?cb=20241118020627"
+      },
+      {
+        "label": "Ki-Adi-Mundi",
+        "image": "https://static.wikia.nocookie.net/starwars/images/6/6d/KiAdiMundi-SWCT.png/revision/latest/scale-to-width-down/345?cb=20251125061737"
+      },
+      {
+        "label": "Nien Nunb",
+        "image": "https://static.wikia.nocookie.net/starwars/images/e/ec/NienNunbHeadshot-SWBC62-alpha.png/revision/latest/scale-to-width-down/349?cb=20240218060701"
+      },
+      {
+        "label": "Bossk",
+        "image": "https://static.wikia.nocookie.net/starwars/images/1/1d/Bossk.png/revision/latest/scale-to-width-down/360?cb=20130219044712"
+      },
+      {
+        "label": "Saw Gerrera",
+        "image": "https://static.wikia.nocookie.net/starwars/images/0/06/SawGerrera-Platinum2025.png/revision/latest/scale-to-width-down/300?cb=20251228041951"
+      },
+      {
+        "label": "Kylo Ren",
+        "aliases": [
+          "ben solo"
+        ],
+        "image": "https://static.wikia.nocookie.net/starwars/images/b/bc/KyloRenVFcover-TROS.png/revision/latest/scale-to-width-down/300?cb=20250126000852"
+      }
+    ]
+  },
+  {
+    "id": "harrypotter",
+    "domain": "cinema",
+    "franchise": "Harry Potter",
+    "aliases": [
+      "hp",
+      "wizarding world"
+    ],
+    "images": "fandom:harrypotter",
+    "boss": {
+      "name": "Lord Voldemort",
+      "title": "He Who Must Not Be Named",
+      "src": "fandom:harrypotter:Tom Riddle",
+      "color": "#16a34a",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/9/97/Voldemort_Headshot_DHF1.png/revision/latest/scale-to-width-down/300?cb=20161203031453",
+      "label": "Lord Voldemort"
+    },
+    "lines": {
+      "intro": "So... the famous visitor returns. Tell me, what do you truly know of magic?",
+      "phase2": "Clever. But even a Muggle can memorise names. Spot the frauds in my castle!",
+      "phase3": "There is no good and evil, only power! Name those the history books ignore!",
+      "hit": [
+        "Impossible!",
+        "You dare?!",
+        "Ssssss..."
+      ],
+      "hurt": [
+        "Crucio!",
+        "Avada Kedavra!",
+        "Kneel before me!"
+      ],
+      "win": "No... the Elder Wand... was never mine...",
+      "lose": "Harry Potter... the boy who lived... to fail."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Hogwarts teachers",
+        "count": 5,
+        "answers": [
+          "Albus Dumbledore|Dumbledore",
+          "Minerva McGonagall|McGonagall",
+          "Severus Snape|Snape",
+          "Filius Flitwick|Flitwick",
+          "Pomona Sprout|Sprout",
+          "Remus Lupin|Lupin",
+          "Gilderoy Lockhart|Lockhart",
+          "Quirinus Quirrell|Quirrell",
+          "Horace Slughorn|Slughorn",
+          "Sybill Trelawney|Trelawney",
+          "Rubeus Hagrid|Hagrid",
+          "Alastor Moody|Mad-Eye Moody|Moody|Mad-Eye",
+          "Dolores Umbridge|Umbridge",
+          "Cuthbert Binns|Binns",
+          "Rolanda Hooch|Madam Hooch|Hooch",
+          "Firenze",
+          "Aurora Sinistra|Sinistra",
+          "Charity Burbage|Burbage",
+          "Septima Vector|Vector",
+          "Wilhelmina Grubbly-Plank|Grubbly-Plank"
+        ]
+      },
+      {
+        "prompt": "Name 4 Weasleys",
+        "count": 4,
+        "answers": [
+          "Ron Weasley|Ron|Ronald",
+          "Ginny Weasley|Ginny|Ginevra",
+          "Fred Weasley|Fred",
+          "George Weasley|George",
+          "Percy Weasley|Percy",
+          "Bill Weasley|Bill",
+          "Charlie Weasley|Charlie",
+          "Arthur Weasley|Arthur",
+          "Molly Weasley|Molly"
+        ]
+      },
+      {
+        "prompt": "Name 5 spells",
+        "count": 5,
+        "answers": [
+          "Expelliarmus",
+          "Wingardium Leviosa",
+          "Expecto Patronum",
+          "Avada Kedavra",
+          "Crucio",
+          "Imperio",
+          "Stupefy",
+          "Lumos",
+          "Nox",
+          "Accio",
+          "Alohomora",
+          "Obliviate",
+          "Sectumsempra",
+          "Petrificus Totalus",
+          "Riddikulus",
+          "Protego",
+          "Reducto",
+          "Incendio",
+          "Aguamenti",
+          "Episkey",
+          "Reparo",
+          "Silencio",
+          "Levicorpus",
+          "Morsmordre",
+          "Confundo",
+          "Diffindo",
+          "Engorgio",
+          "Rictusempra",
+          "Tarantallegra"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Harry Potter",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/c/ce/Harry_Potter_DHF1.jpg/revision/latest/scale-to-width-down/300?cb=20140603201724"
+        },
+        {
+          "label": "Hermione Granger",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/3/34/Hermione_Granger.jpg/revision/latest/scale-to-width-down/300?cb=20251206062840"
+        },
+        {
+          "label": "Ronald Weasley",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/4/44/Ronald_Weasley_DHF1.jpg/revision/latest/scale-to-width-down/300?cb=20101104210200"
+        },
+        {
+          "label": "Albus Dumbledore",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/7/75/Albus_Dumbledore_%28HBPF_promo%29.jpg/revision/latest/scale-to-width-down/300?cb=20150822232849"
+        },
+        {
+          "label": "Rubeus Hagrid",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/f/fe/Rubeus_Hagrid.png/revision/latest/scale-to-width-down/300?cb=20221014184333"
+        },
+        {
+          "label": "Severus Snape",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/268?cb=20150307193047"
+        },
+        {
+          "label": "Dobby",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/8/82/Dobby.jpg/revision/latest/scale-to-width-down/358?cb=20230712061949"
+        },
+        {
+          "label": "Hedwig",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest/scale-to-width-down/329?cb=20161123234010"
+        },
+        {
+          "label": "Draco Malfoy",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/7/7e/Draco_Malfoy_TDH.png/revision/latest/scale-to-width-down/300?cb=20180116013508"
+        },
+        {
+          "label": "Sirius Black",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/bc/OOTP_promo_front_closeup_Sirius_Black.jpg/revision/latest/scale-to-width-down/268?cb=20150918055024"
+        },
+        {
+          "label": "Luna Lovegood",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/e/ed/Luna_Lovegood.jpg/revision/latest/scale-to-width-down/269?cb=20160902165706"
+        },
+        {
+          "label": "Neville Longbottom",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/ba/Neville_Longbottom_DHF2_promo_2.jpg/revision/latest/scale-to-width-down/300?cb=20230923173442"
+        },
+        {
+          "label": "Golden Snitch",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b9/Golden_Snitch..png/revision/latest/scale-to-width-down/400?cb=20161120075526"
+        },
+        {
+          "label": "Sorting Hat",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/6/62/Sorting_Hat.png/revision/latest/scale-to-width-down/400?cb=20161120072849"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Aslan",
+          "src": "fandom:narnia:Aslan",
+          "image": "https://static.wikia.nocookie.net/narnia/images/b/b8/061.JPG/revision/latest/scale-to-width-down/400?cb=20110512210031"
+        },
+        {
+          "label": "Percy Jackson",
+          "src": "fandom:riordan:Percy Jackson",
+          "image": "https://static.wikia.nocookie.net/olympians/images/1/10/Percy_Jackson.jpg/revision/latest/scale-to-width-down/238?cb=20180319172727"
+        },
+        {
+          "label": "Gandalf",
+          "src": "fandom:lotr:Gandalf",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/264?cb=20230617183640"
+        },
+        {
+          "label": "Frodo Baggins",
+          "src": "fandom:lotr:Frodo Baggins",
+          "image": "https://static.wikia.nocookie.net/lotr/images/3/32/Frodo_%28FotR%29.png/revision/latest/scale-to-width-down/400?cb=20221006065757"
+        },
+        {
+          "label": "Doctor Strange",
+          "src": "fandom:marvelcinematicuniverse:Doctor Strange",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/314?cb=20231021153337"
+        },
+        {
+          "label": "Howl",
+          "src": "fandom:ghibli:Howl",
+          "image": "https://static.wikia.nocookie.net/studio-ghibli/images/f/fe/Howl_Jenkins_Pendragon.jpg/revision/latest/scale-to-width-down/400?cb=20200423183516"
+        },
+        {
+          "label": "Maleficent",
+          "src": "fandom:disney:Maleficent",
+          "image": "https://static.wikia.nocookie.net/disney/images/0/05/Profile_-_Maleficent.jpeg/revision/latest/scale-to-width-down/315?cb=20250118085922"
+        },
+        {
+          "label": "Jafar",
+          "src": "fandom:disney:Jafar",
+          "image": "https://static.wikia.nocookie.net/disney/images/6/60/Profile_-_Jafar.jpeg/revision/latest/scale-to-width-down/400?cb=20190312023726"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Kreacher",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/d/d4/Kreacher_HPE.jpg/revision/latest/scale-to-width-down/337?cb=20100621114028"
+      },
+      {
+        "label": "Buckbeak",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c7/B3C14M1_cropped_Buckbeak_PM.png/revision/latest/scale-to-width-down/400?cb=20220516100927"
+      },
+      {
+        "label": "Nagini",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/7/70/Nagini_PM.png/revision/latest/scale-to-width-down/400?cb=20161124073206"
+      },
+      {
+        "label": "Fawkes",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Fawkes_WB_F2_FawkesCloseUpIllustration_Illust_100615_Port.jpg/revision/latest/scale-to-width-down/296?cb=20151218225509"
+      },
+      {
+        "label": "Griphook",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Griphook_TDH_SF.png/revision/latest/scale-to-width-down/310?cb=20161215062124"
+      },
+      {
+        "label": "Aragog",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/2/2c/Aragog_in_his_lair_COSF.jpg/revision/latest/scale-to-width-down/400?cb=20100611145604"
+      },
+      {
+        "label": "Peeves",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/0/01/Peeves_-_Bob_Venables_PM.gif/revision/latest/scale-to-width-down/257?cb=20171018234135"
+      },
+      {
+        "label": "Moaning Myrtle",
+        "aliases": [
+          "myrtle"
+        ],
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Myrtle_Warren_profile.png/revision/latest/scale-to-width-down/300?cb=20170113020338"
+      },
+      {
+        "label": "Grawp",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e6/Grawp.png/revision/latest/scale-to-width-down/221?cb=20170210040408"
+      },
+      {
+        "label": "Bellatrix Lestrange",
+        "aliases": [
+          "bellatrix"
+        ],
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/1/14/BellatrixLestrange.png/revision/latest/scale-to-width-down/236?cb=20171101034243"
+      }
+    ]
+  },
+  {
+    "id": "lotr",
+    "domain": "cinema",
+    "franchise": "The Lord of the Rings",
+    "aliases": [
+      "lotr",
+      "middle-earth",
+      "lord of the rings"
+    ],
+    "images": "fandom:lotr",
+    "boss": {
+      "name": "Sauron",
+      "title": "The Dark Lord",
+      "src": "fandom:lotr:Sauron",
+      "color": "#ea580c",
+      "image": "https://static.wikia.nocookie.net/lotr/images/9/90/Sauron-2.jpg/revision/latest?cb=20110508182634",
+      "label": "Sauron"
+    },
+    "lines": {
+      "intro": "You cannot hide. I see you. Tell me what you know of Middle-earth.",
+      "phase2": "The Eye sees all. Can you see which ones were never of Middle-earth?",
+      "phase3": "My armies march! Name those even the wise forget!",
+      "hit": [
+        "The Ring...!",
+        "No!",
+        "You cannot defeat me!"
+      ],
+      "hurt": [
+        "There is no life in the void.",
+        "The Eye sees you.",
+        "Kneel!"
+      ],
+      "win": "The Eye... closes.",
+      "lose": "One ring to rule them all."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 members of the Fellowship",
+        "count": 5,
+        "answers": [
+          "Frodo Baggins|Frodo",
+          "Samwise Gamgee|Sam|Samwise",
+          "Meriadoc Brandybuck|Merry",
+          "Peregrin Took|Pippin",
+          "Gandalf",
+          "Aragorn|Strider",
+          "Legolas",
+          "Gimli",
+          "Boromir"
+        ]
+      },
+      {
+        "prompt": "Name 4 races of Middle-earth",
+        "count": 4,
+        "answers": [
+          "Hobbits|Hobbit",
+          "Elves|Elf",
+          "Dwarves|Dwarf",
+          "Men|Man|Humans|Human",
+          "Orcs|Orc",
+          "Ents|Ent",
+          "Trolls|Troll",
+          "Wizards|Istari|Wizard",
+          "Uruk-hai|Uruk",
+          "Goblins|Goblin",
+          "Eagles|Eagle",
+          "Balrogs|Balrog",
+          "Nazgûl|Nazgul|Ringwraiths|Ringwraith"
+        ]
+      },
+      {
+        "prompt": "Name 5 places in Middle-earth",
+        "count": 5,
+        "answers": [
+          "The Shire|Shire",
+          "Rivendell",
+          "Mordor",
+          "Gondor",
+          "Rohan",
+          "Moria",
+          "Isengard",
+          "Lothlórien|Lothlorien|Lorien",
+          "Minas Tirith",
+          "Helm's Deep|Helms Deep",
+          "Bree",
+          "Mount Doom|Orodruin",
+          "Fangorn",
+          "Edoras",
+          "Osgiliath",
+          "Erebor|Lonely Mountain",
+          "Mirkwood",
+          "Hobbiton",
+          "Barad-dûr|Barad-dur",
+          "Minas Morgul"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Frodo Baggins",
+          "image": "https://static.wikia.nocookie.net/lotr/images/3/32/Frodo_%28FotR%29.png/revision/latest/scale-to-width-down/400?cb=20221006065757"
+        },
+        {
+          "label": "Gandalf",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/264?cb=20230617183640"
+        },
+        {
+          "label": "Gollum",
+          "image": "https://static.wikia.nocookie.net/lotr/images/7/7d/Gollum%2C_R_V.jpg/revision/latest/scale-to-width-down/240?cb=20230621011547"
+        },
+        {
+          "label": "Legolas",
+          "image": "https://static.wikia.nocookie.net/lotr/images/b/be/Legolas%2C_Giancola.jpg/revision/latest/scale-to-width-down/224?cb=20231003014314"
+        },
+        {
+          "label": "Aragorn",
+          "image": "https://static.wikia.nocookie.net/lotr/images/5/50/KipR_Aragorn.JPG/revision/latest/scale-to-width-down/283?cb=20230422203513"
+        },
+        {
+          "label": "Gimli",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/2e/Forty-Two.jpg/revision/latest/scale-to-width-down/400?cb=20230510233809"
+        },
+        {
+          "label": "Saruman",
+          "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Saruman_MattStewart.png/revision/latest/scale-to-width-down/313?cb=20230602171506"
+        },
+        {
+          "label": "Samwise Gamgee",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/20/Sam.jpg/revision/latest/scale-to-width-down/279?cb=20070623123241"
+        },
+        {
+          "label": "Galadriel",
+          "image": "https://static.wikia.nocookie.net/lotr/images/c/cb/Galadriel.jpg/revision/latest/scale-to-width-down/257?cb=20151015204512"
+        },
+        {
+          "label": "Treebeard",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/400?cb=20210117035345"
+        },
+        {
+          "label": "Bilbo Baggins",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/4b/Young_Bilbo_S_Morello.png/revision/latest/scale-to-width-down/297?cb=20240115164327"
+        },
+        {
+          "label": "Witch-king of Angmar",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/46/Melissa_Hitchcock_-_The_Black_Captain.webp/revision/latest/scale-to-width-down/280?cb=20241018153425"
+        },
+        {
+          "label": "Arwen",
+          "image": "https://static.wikia.nocookie.net/lotr/images/6/64/Arwen_-_The_Fellowship_Of_The_Ring.jpg/revision/latest/scale-to-width-down/258?cb=20210625164207"
+        },
+        {
+          "label": "Elrond",
+          "image": "https://static.wikia.nocookie.net/lotr/images/9/9f/Elrond_of_Rivendell.jpg/revision/latest/scale-to-width-down/257?cb=20230718101143"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Albus Dumbledore",
+          "src": "fandom:harrypotter:Albus Dumbledore",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/7/75/Albus_Dumbledore_%28HBPF_promo%29.jpg/revision/latest/scale-to-width-down/300?cb=20150822232849"
+        },
+        {
+          "label": "Jon Snow",
+          "src": "fandom:gameofthrones:Jon Snow",
+          "image": "https://static.wikia.nocookie.net/gameofthrones/images/d/d0/JonSnow8x06.PNG/revision/latest/scale-to-width-down/278?cb=20190714094440"
+        },
+        {
+          "label": "Daenerys Targaryen",
+          "src": "fandom:gameofthrones:Daenerys Targaryen",
+          "image": "https://static.wikia.nocookie.net/gameofthrones/images/4/4f/Daenerys_Season_8.jpg/revision/latest/scale-to-width-down/240?cb=20190415212013"
+        },
+        {
+          "label": "Geralt of Rivia",
+          "src": "fandom:witcher:Geralt of Rivia",
+          "image": "https://static.wikia.nocookie.net/witcher/images/5/51/Netflix_geralt_shirt.jpg/revision/latest/scale-to-width-down/328?cb=20191228182240"
+        },
+        {
+          "label": "Thrall",
+          "src": "fandom:wowpedia:Thrall",
+          "image": "https://static.wikia.nocookie.net/wowpedia/images/e/e1/Afterlives_-_Draka%27s_last_stand.png/revision/latest/scale-to-width-down/400?cb=20200903172330"
+        },
+        {
+          "label": "Aslan",
+          "src": "fandom:narnia:Aslan",
+          "image": "https://static.wikia.nocookie.net/narnia/images/b/b8/061.JPG/revision/latest/scale-to-width-down/400?cb=20110512210031"
+        },
+        {
+          "label": "Obi-Wan Kenobi",
+          "src": "fandom:starwars:Obi-Wan Kenobi",
+          "image": "https://static.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg/revision/latest/scale-to-width-down/300?cb=20111115052816"
+        },
+        {
+          "label": "Conan the Barbarian",
+          "src": "wp:Conan the Barbarian",
+          "image": "https://upload.wikimedia.org/wikipedia/en/7/7e/Conan9.png"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Tom Bombadil",
+        "image": "https://static.wikia.nocookie.net/lotr/images/c/c7/Tom_bombadil.jpg/revision/latest/scale-to-width-down/400?cb=20191015154251"
+      },
+      {
+        "label": "Radagast",
+        "image": "https://static.wikia.nocookie.net/lotr/images/d/de/Radagast_Fabio_Leone.png/revision/latest/scale-to-width-down/243?cb=20230802174640"
+      },
+      {
+        "label": "Gríma Wormtongue",
+        "aliases": [
+          "grima",
+          "wormtongue",
+          "grima wormtongue"
+        ],
+        "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Kuo-yang-grima-yang.jpg/revision/latest/scale-to-width-down/378?cb=20240117103439"
+      },
+      {
+        "label": "Éowyn",
+        "aliases": [
+          "eowyn"
+        ],
+        "image": "https://static.wikia.nocookie.net/lotr/images/2/27/%C3%89owyn%2C_Soni_A-Hender.jpg/revision/latest/scale-to-width-down/286?cb=20230909182119"
+      },
+      {
+        "label": "Faramir",
+        "image": "https://static.wikia.nocookie.net/lotr/images/2/29/Faramir_in_Ithilien%2C_Giancola.jpg/revision/latest/scale-to-width-down/222?cb=20231001014500"
+      },
+      {
+        "label": "Théoden",
+        "aliases": [
+          "theoden"
+        ],
+        "image": "https://static.wikia.nocookie.net/lotr/images/1/13/King_Theoden_1.jpg/revision/latest/scale-to-width-down/283?cb=20150313135224"
+      },
+      {
+        "label": "Shelob",
+        "image": "https://static.wikia.nocookie.net/lotr/images/1/15/JohnHoweShelob.jpg/revision/latest/scale-to-width-down/281?cb=20240229093018"
+      },
+      {
+        "label": "Balrog",
+        "aliases": [
+          "durin's bane"
+        ],
+        "image": "https://static.wikia.nocookie.net/lotr/images/8/8c/John_Howe_-_Balrog.jpg/revision/latest/scale-to-width-down/400?cb=20160126130109"
+      },
+      {
+        "label": "Smaug",
+        "image": "https://static.wikia.nocookie.net/lotr/images/1/1c/Smaug-Crop.JPG/revision/latest/scale-to-width-down/180?cb=20230421195036"
+      },
+      {
+        "label": "Thranduil",
+        "aliases": [
+          "elvenking"
+        ],
+        "image": "https://static.wikia.nocookie.net/lotr/images/0/0d/Thranduil_Mirkwood.png/revision/latest/scale-to-width-down/320?cb=20250408152800"
+      }
+    ]
+  },
+  {
+    "id": "mcu",
+    "domain": "cinema",
+    "franchise": "Marvel Cinematic Universe",
+    "aliases": [
+      "marvel",
+      "avengers",
+      "mcu"
+    ],
+    "images": "fandom:marvelcinematicuniverse",
+    "boss": {
+      "name": "Thanos",
+      "title": "The Mad Titan",
+      "src": "fandom:marvelcinematicuniverse:Thanos",
+      "color": "#7c3aed",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/27/Thanos_Infobox.png/revision/latest/scale-to-width-down/296?cb=20250119155740",
+      "label": "Thanos"
+    },
+    "lines": {
+      "intro": "You should have gone for the head. Let's see what you know of my universe.",
+      "phase2": "Dread it. Run from it. Can you still tell my heroes from impostors?",
+      "phase3": "I am inevitable! Name the faces even fans forget!",
+      "hit": [
+        "You... could not live with your own failure.",
+        "Hrnngh!",
+        "Impressive."
+      ],
+      "hurt": [
+        "*snap*",
+        "Perfectly balanced.",
+        "Reality is often disappointing."
+      ],
+      "win": "The hardest choices... require the strongest wills.",
+      "lose": "I am... inevitable."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Avengers",
+        "count": 5,
+        "answers": [
+          "Iron Man|Tony Stark",
+          "Captain America|Steve Rogers|Cap",
+          "Thor",
+          "Hulk|Bruce Banner",
+          "Black Widow|Natasha Romanoff|Natasha",
+          "Hawkeye|Clint Barton",
+          "Spider-Man|Peter Parker|Spiderman",
+          "Black Panther|T'Challa",
+          "Doctor Strange|Stephen Strange|Dr Strange",
+          "Scarlet Witch|Wanda Maximoff|Wanda",
+          "Vision",
+          "Falcon|Sam Wilson",
+          "War Machine|James Rhodes|Rhodey",
+          "Ant-Man|Scott Lang|Antman",
+          "Captain Marvel|Carol Danvers",
+          "Winter Soldier|Bucky Barnes|Bucky",
+          "Wasp|Hope van Dyne",
+          "Shuri",
+          "Quicksilver"
+        ]
+      },
+      {
+        "prompt": "Name all 6 Infinity Stones",
+        "count": 6,
+        "answers": [
+          "Space Stone|Space",
+          "Mind Stone|Mind",
+          "Reality Stone|Reality",
+          "Power Stone|Power",
+          "Time Stone|Time",
+          "Soul Stone|Soul"
+        ]
+      },
+      {
+        "prompt": "Name 4 Guardians of the Galaxy",
+        "count": 4,
+        "answers": [
+          "Star-Lord|Peter Quill|Starlord",
+          "Gamora",
+          "Drax|Drax the Destroyer",
+          "Rocket|Rocket Raccoon",
+          "Groot",
+          "Mantis",
+          "Nebula",
+          "Yondu",
+          "Kraglin",
+          "Cosmo"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Iron Man",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Iron_Man_Infobox.jpg/revision/latest/scale-to-width-down/258?cb=20240802142023"
+        },
+        {
+          "label": "Captain America",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Captain_America_Infobox.jpg/revision/latest/scale-to-width-down/281?cb=20250117164205"
+        },
+        {
+          "label": "Thor",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/2b/Thor_Infobox.jpg/revision/latest/scale-to-width-down/260?cb=20231021012616"
+        },
+        {
+          "label": "Hulk",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/29/Hulk_Infobox.jpg/revision/latest/scale-to-width-down/288?cb=20260925124237"
+        },
+        {
+          "label": "Black Widow",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/Yelena_Belova_Infobox.jpg/revision/latest/scale-to-width-down/305?cb=20261017030110"
+        },
+        {
+          "label": "Spider-Man",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Spider-Man_Infobox.jpg/revision/latest/scale-to-width-down/300?cb=20261016004855"
+        },
+        {
+          "label": "Groot",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/57/Groot_Infobox.png/revision/latest/scale-to-width-down/286?cb=20260126002142"
+        },
+        {
+          "label": "Loki",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b5/Loki_Infobox.png/revision/latest/scale-to-width-down/299?cb=20250203204518"
+        },
+        {
+          "label": "Black Panther",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/93/Black_Panther_Infobox.jpg/revision/latest/scale-to-width-down/282?cb=20261012121856"
+        },
+        {
+          "label": "Doctor Strange",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/314?cb=20231021153337"
+        },
+        {
+          "label": "Captain Marvel",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/3d/Captain_Marvel_Profile.png/revision/latest/scale-to-width-down/337?cb=20240120054800"
+        },
+        {
+          "label": "Ant-Man",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/46/Ant-Man_Infobox.png/revision/latest/scale-to-width-down/265?cb=20231021014114"
+        },
+        {
+          "label": "Scarlet Witch",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/60/Scarlet_Witch_Infobox.jpg/revision/latest/scale-to-width-down/313?cb=20250203231704"
+        },
+        {
+          "label": "Mjølnir",
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c9/Reformed_Mjolnir.png/revision/latest/scale-to-width-down/400?cb=20221026062139"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Batman",
+          "src": "fandom:dc:Batman",
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/c/c3/Batman_Silver_Age_003.jpg/revision/latest/scale-to-width-down/272?cb=20111022145049"
+        },
+        {
+          "label": "Superman",
+          "src": "fandom:dc:Superman",
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/d/dc/Justice_Society_Vol_3_10_Textless.jpg/revision/latest/scale-to-width-down/263?cb=20130109224641"
+        },
+        {
+          "label": "Wonder Woman",
+          "src": "fandom:dc:Wonder Woman",
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/b/bd/Wonder_Woman_Earth-Two_002.jpg/revision/latest/scale-to-width-down/400?cb=20221222001726"
+        },
+        {
+          "label": "The Flash",
+          "src": "fandom:dc:Flash",
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/c/cf/The_Flash_Vol_6_1_Textless_Mora_Variant.jpeg/revision/latest/scale-to-width-down/264?cb=20240501210019"
+        },
+        {
+          "label": "Aquaman",
+          "src": "fandom:dc:Aquaman",
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/4/4a/Batman_Superman_World%27s_Finest_Vol_1_26_Textless_Lee_Variant.jpg/revision/latest/scale-to-width-down/265?cb=20240417151448"
+        },
+        {
+          "label": "The Joker",
+          "src": "wp:Joker (character)",
+          "image": "https://upload.wikimedia.org/wikipedia/en/5/5f/Batman_Three_Jokers.jpg"
+        },
+        {
+          "label": "Hellboy",
+          "src": "wp:Hellboy",
+          "image": "https://upload.wikimedia.org/wikipedia/en/7/7f/Hellboy_The_Wolves_of_St_August.jpg"
+        },
+        {
+          "label": "Spawn",
+          "src": "wp:Spawn (character)",
+          "image": "https://upload.wikimedia.org/wikipedia/en/d/d9/Spawn_Classic.jpg"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Nick Fury",
+        "aliases": [
+          "fury"
+        ],
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/a3/Nick_Fury_Infobox.png/revision/latest/scale-to-width-down/314?cb=20240802141551"
+      },
+      {
+        "label": "Drax the Destroyer",
+        "aliases": [
+          "drax"
+        ],
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/cd/Drax_Vol._3.jpg/revision/latest/scale-to-width-down/244?cb=20231113213618"
+      },
+      {
+        "label": "Hela",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ae/Hela_Infobox.png/revision/latest/scale-to-width-down/271?cb=20231021034457"
+      },
+      {
+        "label": "Red Skull",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6d/Red_Skull_Infobox.png/revision/latest/scale-to-width-down/276?cb=20190808103105"
+      },
+      {
+        "label": "Yondu Udonta",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Yondu_Infobox.png/revision/latest/scale-to-width-down/290?cb=20250204003244"
+      },
+      {
+        "label": "Korg",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/80/Korg_-_Infobox.jpg/revision/latest/scale-to-width-down/306?cb=20231021012818"
+      },
+      {
+        "label": "Wong",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/00/Wong_in_She-Hulk.jpg/revision/latest/scale-to-width-down/252?cb=20240802144541"
+      },
+      {
+        "label": "Okoye",
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/25/Black_Panther_Wakanda_Forever_poster_024_Textless.jpg/revision/latest/scale-to-width-down/347?cb=20240802144734"
+      },
+      {
+        "label": "Ego",
+        "aliases": [
+          "ego the living planet"
+        ],
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/4c/Ego_Infobox.png/revision/latest/scale-to-width-down/271?cb=20231023230729"
+      },
+      {
+        "label": "Ronan",
+        "aliases": [
+          "ronan the accuser"
+        ],
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/0f/Ronan_the_Accuser_Infobox.jpg/revision/latest/scale-to-width-down/353?cb=20241127020215"
+      }
+    ]
+  }
+]

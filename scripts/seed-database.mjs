@@ -11,7 +11,7 @@
 //                audio.clue + audio.query, visual) are creative and written by hand.
 //   2. Wikis   — checks every `fandom` slug / `fandom:` source exists (renamed wikis show their new slug).
 //   3. Media   — covers, item and location images (Wikipedia + Fandom), YouTube clips with YOUTUBE_API_KEY.
-//   4. Puzzles — Connections tile images.
+//   4. Puzzles — Connections tile images, then Boss Battle portraits and cards.
 //   5. Check   — schema + per-mini-game coverage (scripts/validate-data.mjs).
 //
 // Flags: --force (re-resolve media), --no-media, --no-clips, --skip-wikis.
@@ -64,6 +64,7 @@ try {
     const mediaArgs = [flags.force && '--force', flags['no-clips'] && '--no-youtube'].filter(Boolean);
     run('enrich-media.mjs', mediaArgs);
     run('enrich-connections.mjs', flags.force ? ['--force'] : []);
+    run('enrich-bosses.mjs', flags.force ? ['--force'] : []);
   }
   run('validate-data.mjs');
 } catch (e) {

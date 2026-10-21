@@ -21,3 +21,27 @@ export function celebrateBig() {
   };
   frame();
 }
+
+/** Jolts an element (screen shake). `strength` is the peak offset in pixels. */
+export function shake(el: HTMLElement | null, strength = 8, duration = 420) {
+  if (!el || reducedMotion() || !el.animate) return;
+  const s = strength;
+  el.animate(
+    [
+      { transform: 'translate(0, 0)' },
+      { transform: `translate(${-s}px, ${s * 0.4}px) rotate(-0.4deg)` },
+      { transform: `translate(${s * 0.8}px, ${-s * 0.5}px) rotate(0.4deg)` },
+      { transform: `translate(${-s * 0.5}px, ${s * 0.3}px)` },
+      { transform: `translate(${s * 0.3}px, 0)` },
+      { transform: 'translate(0, 0)' },
+    ],
+    { duration, easing: 'ease-out' },
+  );
+}
+
+/** A full-screen-ish colour flash over `el` (hit = light, hurt = red). */
+export function flash(el: HTMLElement | null, color: string, duration = 380) {
+  if (!el || reducedMotion() || !el.animate) return;
+  el.style.background = color;
+  el.animate([{ opacity: 0.55 }, { opacity: 0 }], { duration, easing: 'ease-out' });
+}
