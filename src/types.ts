@@ -39,6 +39,8 @@ export interface Clue extends MediaRef {
 export interface Work {
   id: string;
   name: string;
+  /** French release title when it differs; accepted as an answer like `name`. */
+  nameFr?: string;
   /** Disambiguation shown in autocomplete (artist for albums, etc.). */
   subtitle?: string;
   aliases?: string[];

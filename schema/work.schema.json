@@ -34,6 +34,7 @@
   "properties": {
     "id": { "type": "string", "pattern": "^[gacm]-[a-z0-9-]+$", "description": "Domain prefix (g/a/c/m) + slug." },
     "name": { "$ref": "#/definitions/nonEmpty" },
+    "nameFr": { "$ref": "#/definitions/nonEmpty", "description": "French release title, when it differs. Accepted as an answer and shown in autocomplete." },
     "subtitle": { "$ref": "#/definitions/nonEmpty", "description": "Shown in autocomplete, e.g. the artist of an album." },
     "aliases": { "$ref": "#/definitions/stringList" },
     "domain": { "enum": ["games", "anime", "cinema", "music"] },

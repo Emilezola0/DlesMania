@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
+import { useUi } from '../store/ui';
 import { GlyphSeal, Ornament } from './Glyph';
+import { RulesModal } from './RulesModal';
 
 const NAV = [
   { to: '/daily', label: 'Daily' },
@@ -76,6 +78,8 @@ export function Layout() {
   const theme = useProgress((s) => s.theme);
   const cycleTheme = useProgress((s) => s.cycleTheme);
   const { current } = computeStreak(days);
+  const openRules = useUi((s) => s.openRules);
+  const onBoss = useLocation().pathname.startsWith('/boss');
   useApplyTheme(theme);
 
   return (
@@ -110,6 +114,15 @@ export function Layout() {
           </nav>
           <button
             type="button"
+            onClick={() => openRules(onBoss ? 'boss' : 'daily')}
+            title="How to play"
+            aria-label="How to play"
+            className="grid size-8 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink"
+          >
+            <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
+          </button>
+          <button
+            type="button"
             onClick={toggleSound}
             title={sound ? 'Mute sound effects' : 'Unmute sound effects'}
             aria-pressed={sound}
@@ -140,6 +153,7 @@ export function Layout() {
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
         <Outlet />
       </main>
+      <RulesModal />
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />

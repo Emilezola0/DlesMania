@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { RulesButton } from '../components/RulesModal';
 import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
 import { FlameIcon } from '../components/Layout';
 import { DOMAINS, WORKS } from '../data';
@@ -43,7 +44,11 @@ export default function Home() {
             <Link to="/play" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
               FREE PLAY
             </Link>
+            <Link to="/boss" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
+              BOSS BATTLE
+            </Link>
           </div>
+          <RulesButton tab="daily" label="How to play · Règles du jeu" />
           <div className="mt-4 grid w-full max-w-md grid-cols-3 divide-x divide-rule border-y border-rule py-3 text-center">
             <div>
               <p className="inline-flex items-center gap-1 font-serif text-3xl font-bold text-coral">

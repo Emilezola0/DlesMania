@@ -13,6 +13,7 @@ import { sfx } from '../lib/sfx';
 import { roundEmoji, shareText } from '../lib/share';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
+import { RulesButton } from '../components/RulesModal';
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
@@ -83,10 +84,13 @@ export function DailyHub() {
   const today = todayKey();
   return (
     <div className="space-y-8">
-      <div>
-        <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
-        <h1 className="text-5xl font-bold">Daily №{dayNumber(today)}</h1>
-        <p className="font-serif text-lg italic text-ink-soft">Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.</p>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
+          <h1 className="text-5xl font-bold">Daily №{dayNumber(today)}</h1>
+          <p className="font-serif text-lg italic text-ink-soft">Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.</p>
+        </div>
+        <RulesButton tab="daily" label="How to play" />
       </div>
       <DailyCards />
     </div>
@@ -235,6 +239,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
           </h1>
         </div>
         <div className="flex items-end gap-4">
+          <RulesButton tab="daily" />
           <select
             aria-label="Category"
             value={domain}

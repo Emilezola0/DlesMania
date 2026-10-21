@@ -306,6 +306,74 @@ h1, h2, h3, .font-serif, .font-display {
 .boss-phase-card { animation: boss-phase-card 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .boss-phase-title { text-shadow: 3px 3px 0 var(--stamp); }
 
+/* ---------------------------------------------------------------- Rules demos (components/RulesDemos.tsx) */
+/* Each demo loops every 4s; the steps are keyed to the same timeline. */
+@keyframes demo-type { 0%, 8% { width: 0; } 40%, 80% { width: 5ch; } 88%, 100% { width: 0; } }
+.demo-type { animation: demo-type 4s steps(5, end) infinite; width: 5ch; }
+@keyframes demo-caret { 50% { opacity: 0; } }
+.demo-caret { animation: demo-caret 0.7s steps(1) infinite; }
+@keyframes demo-pip { 0%, 42% { background: transparent; border-color: var(--color-rule-strong); transform: scale(1); } 46% { transform: scale(1.35); } 50%, 85% { background: var(--color-hit); border-color: var(--color-hit); transform: scale(1); } 90%, 100% { background: transparent; } }
+.demo-pip { animation: demo-pip 4s ease-out infinite; }
+@keyframes demo-accept { 0%, 42% { opacity: 0; transform: translateY(4px); } 48%, 82% { opacity: 1; transform: none; } 90%, 100% { opacity: 0; } }
+.demo-accept { animation: demo-accept 4s ease-out infinite; }
+
+@keyframes demo-card-a { 0%, 10% { transform: none; opacity: 1; } 35% { transform: translateX(110px) rotate(18deg); opacity: 0; } 36%, 90% { transform: translateY(20px) scale(0.85); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@keyframes demo-card-b { 0%, 38% { transform: translateY(20px) scale(0.85); opacity: 0; } 46%, 58% { transform: none; opacity: 1; } 82%, 100% { transform: translateX(-110px) rotate(-18deg); opacity: 0; } }
+.demo-card-a { animation: demo-card-a 4s ease-in-out infinite; }
+.demo-card-b { animation: demo-card-b 4s ease-in-out infinite; }
+@keyframes demo-zone-right { 0%, 15%, 40%, 100% { border-color: var(--color-rule); color: var(--color-ink-faint); } 22%, 34% { border-color: var(--color-hit); color: var(--color-hit); background: color-mix(in srgb, var(--color-hit) 12%, transparent); } }
+@keyframes demo-zone-left { 0%, 62%, 90%, 100% { border-color: var(--color-rule); color: var(--color-ink-faint); } 68%, 82% { border-color: var(--color-coral); color: var(--color-coral); background: color-mix(in srgb, var(--color-coral) 12%, transparent); } }
+.demo-zone-right { animation: demo-zone-right 4s ease-in-out infinite; }
+.demo-zone-left { animation: demo-zone-left 4s ease-in-out infinite; }
+
+@keyframes demo-spotlight {
+  0% { mask-position: 10% 10%; -webkit-mask-position: 10% 10%; }
+  25% { mask-position: 90% 30%; -webkit-mask-position: 90% 30%; }
+  50% { mask-position: 30% 90%; -webkit-mask-position: 30% 90%; }
+  75% { mask-position: 80% 80%; -webkit-mask-position: 80% 80%; }
+  100% { mask-position: 10% 10%; -webkit-mask-position: 10% 10%; }
+}
+.demo-spotlight {
+  -webkit-mask-image: radial-gradient(circle, #000 0 22%, transparent 34%);
+  mask-image: radial-gradient(circle, #000 0 22%, transparent 34%);
+  -webkit-mask-size: 200% 200%;
+  mask-size: 200% 200%;
+  animation: demo-spotlight 2.6s steps(4, jump-none) infinite, boss-flicker 1.3s steps(1, end) infinite;
+}
+@keyframes demo-burn { from { width: 100%; } to { width: 8%; } }
+.demo-burn { animation: demo-burn 4s linear infinite; }
+@keyframes demo-type-late { 0%, 20% { width: 0; } 60%, 88% { width: 7ch; } 92%, 100% { width: 0; } }
+.demo-type-late { animation: demo-type-late 4s steps(7, end) infinite; width: 7ch; }
+@keyframes demo-accept-late { 0%, 62% { opacity: 0; } 66%, 88% { opacity: 1; } 92%, 100% { opacity: 0; } }
+.demo-accept-late { animation: demo-accept-late 4s ease-out infinite; }
+
+@keyframes demo-flip { 0%, 10% { transform: rotateX(0); } 25%, 80% { transform: rotateX(180deg); } 95%, 100% { transform: rotateX(0); } }
+.demo-flip { animation: demo-flip 4s ease-in-out infinite; transform-style: preserve-3d; }
+
+/* Cover Puzzle: tap tile 1, tap tile 5 (they swap), then tap tile 9 twice (it turns). */
+@keyframes demo-tap {
+  0% { transform: translate(-37px, -37px) scale(1); opacity: 0; }
+  8% { opacity: 1; transform: translate(-37px, -37px) scale(1); }
+  12% { transform: translate(-37px, -37px) scale(0.7); }
+  16%, 22% { transform: translate(0, 0) scale(1); }
+  26% { transform: translate(0, 0) scale(0.7); }
+  45%, 52% { transform: translate(37px, 37px) scale(1); }
+  56% { transform: translate(37px, 37px) scale(0.7); }
+  60% { transform: translate(37px, 37px) scale(1); }
+  64% { transform: translate(37px, 37px) scale(0.7); opacity: 1; }
+  80%, 100% { transform: translate(37px, 37px) scale(1); opacity: 0; }
+}
+.demo-tap { left: 50%; top: 50%; margin: -10px 0 0 -10px; animation: demo-tap 4s ease-in-out infinite; pointer-events: none; }
+@keyframes demo-swap-a { 0%, 28% { transform: none; } 40%, 88% { transform: translate(calc(100% + 2px), calc(100% + 2px)); } 100% { transform: none; } }
+@keyframes demo-swap-b { 0%, 28% { transform: none; } 40%, 88% { transform: translate(calc(-100% - 2px), calc(-100% - 2px)); } 100% { transform: none; } }
+@keyframes demo-rotate { 0%, 64% { transform: rotate(90deg); } 74%, 88% { transform: rotate(0); } 100% { transform: rotate(90deg); } }
+.demo-swap-a { animation: demo-swap-a 4s ease-in-out infinite; }
+.demo-swap-b { animation: demo-swap-b 4s ease-in-out infinite; }
+.demo-rotate { animation: demo-rotate 4s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  /* Rules demos: show a still, readable frame instead. */
+  [class*='demo-'] { animation: none !important; }
+  .demo-card-b, .demo-tap { display: none; }
 }

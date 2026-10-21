@@ -5,6 +5,7 @@ import { FinalBlow } from '../boss/FinalBlow';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
 import { Glyph } from '../components/Glyph';
+import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
 import { getBoss } from '../data/bosses';
 import { PHASES, PLAYER_HEARTS, battleScore, drawBlitz, drawFinale, drawRadar, formatTime } from '../lib/boss';
@@ -12,6 +13,7 @@ import { celebrateBig, flash, shake } from '../lib/fx';
 import { pick } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { EMPTY_BOSS_RECORD, useProgress } from '../store/progress';
+import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
 
 /**
@@ -62,7 +64,10 @@ function BossBattle({ boss }: { boss: Boss }) {
     const blitz = drawBlitz(boss, rand, prevPrompt.current);
     prevPrompt.current = blitz.prompt;
     const finale = drawFinale(boss, rand);
-    const pool = [...new Set([...boss.finale, ...boss.radar.members].map((c) => c.label))].sort((a, b) => a.localeCompare(b));
+    const seen = new Set<string>();
+    const pool = [...boss.finale, ...boss.radar.members]
+      .filter((c) => !seen.has(c.label) && seen.add(c.label))
+      .sort((a, b) => a.label.localeCompare(b.label));
     return { blitz, radar: drawRadar(boss, rand), finale, pool };
   }, [boss, phase, attempt, run]);
 
@@ -144,7 +149,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   // Enter starts the next phase from the intro / phase card.
   useEffect(() => {
     if (stage !== 'intro' && stage !== 'card') return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Enter' && begin();
+    const onKey = (e: KeyboardEvent) => e.key === 'Enter' && !useUi.getState().rules && begin();
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
@@ -214,6 +219,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             <button type="button" onClick={begin} className="btn-accent w-full rounded-md py-3.5 font-display text-lg font-bold tracking-[0.2em]">
               FIGHT
             </button>
+            <RulesButton tab="boss" label="See the rules, with demos" />
           </div>
         )}
 
@@ -230,9 +236,12 @@ function BossBattle({ boss }: { boss: Boss }) {
             <h2 className="boss-phase-title font-display text-6xl font-bold tracking-[0.15em] sm:text-7xl">PHASE {info.roman}</h2>
             <p className="font-display text-xl font-semibold tracking-wider">{info.name}</p>
             <p className="mx-auto max-w-md text-sm text-ink-soft">{info.how}</p>
-            <button type="button" onClick={begin} className="btn-ink rounded-md px-8 py-3 font-display font-bold tracking-widest">
-              Ready
-            </button>
+            <div className="flex items-center justify-center gap-3">
+              <button type="button" onClick={begin} className="btn-ink rounded-md px-8 py-3 font-display font-bold tracking-widest">
+                Ready
+              </button>
+              <RulesButton tab="boss" />
+            </div>
           </div>
         )}
 

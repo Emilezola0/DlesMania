@@ -333,11 +333,11 @@
           "Tracer",
           "Genji",
           "Hanzo",
-          "Widowmaker|Widow",
-          "Reaper",
-          "Soldier: 76|Soldier 76|Soldier",
+          "Widowmaker|Widow|Fatale",
+          "Reaper|Faucheur",
+          "Soldier: 76|Soldier 76|Soldier|Soldat : 76|Soldat 76",
           "Pharah",
-          "Junkrat",
+          "Junkrat|Chacal",
           "Mei",
           "Cassidy|McCree",
           "Ashe",
@@ -354,7 +354,7 @@
         "prompt": "Name 4 Support heroes",
         "count": 4,
         "answers": [
-          "Mercy",
+          "Mercy|Ange",
           "Ana",
           "Lúcio|Lucio",
           "Zenyatta|Zen",
@@ -374,12 +374,12 @@
           "Reinhardt|Rein",
           "Winston",
           "D.Va|Dva",
-          "Roadhog|Hog",
+          "Roadhog|Hog|Chopper",
           "Zarya",
           "Orisa",
           "Sigma",
-          "Wrecking Ball|Hammond|Ball",
-          "Junker Queen|JQ",
+          "Wrecking Ball|Hammond|Ball|Bouldozer",
+          "Junker Queen|JQ|Reine des Junkers",
           "Ramattra",
           "Mauga",
           "Doomfist",
@@ -525,7 +525,8 @@
       {
         "label": "Wrecking Ball",
         "aliases": [
-          "hammond"
+          "hammond",
+          "Bouldozer"
         ],
         "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/03/OW2_Wrecking_Ball.png/revision/latest/scale-to-width-down/400?cb=20260304093441"
       },
@@ -533,7 +534,8 @@
         "label": "Torbjörn",
         "aliases": [
           "torbjorn",
-          "torb"
+          "torb",
+          "Torbjorn"
         ],
         "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Torbj%C3%B6rn.png/revision/latest/scale-to-width-down/310?cb=20260321080029"
       }
@@ -578,86 +580,86 @@
         "count": 5,
         "answers": [
           "Zombie",
-          "Skeleton",
+          "Skeleton|Squelette",
           "Creeper",
-          "Spider",
-          "Cave Spider",
-          "Witch",
+          "Spider|Araignée",
+          "Cave Spider|Araignée venimeuse",
+          "Witch|Sorcière",
           "Slime",
-          "Phantom",
-          "Drowned",
-          "Husk",
-          "Stray",
+          "Phantom|Fantôme",
+          "Drowned|Noyé",
+          "Husk|Zombie momifié|Momie",
+          "Stray|Vagabond",
           "Blaze",
           "Ghast",
-          "Wither Skeleton",
-          "Magma Cube",
-          "Pillager",
-          "Vindicator",
-          "Evoker",
-          "Ravager",
-          "Guardian",
-          "Elder Guardian",
+          "Wither Skeleton|Squelette wither",
+          "Magma Cube|Cube de magma",
+          "Pillager|Pillard",
+          "Vindicator|Vindicateur",
+          "Evoker|Évocateur",
+          "Ravager|Ravageur",
+          "Guardian|Gardien",
+          "Elder Guardian|Grand gardien",
           "Shulker",
-          "Silverfish",
+          "Silverfish|Poisson d'argent",
           "Endermite",
-          "Vex",
+          "Vex|Vexeur",
           "Hoglin",
-          "Piglin Brute",
-          "Warden",
+          "Piglin Brute|Piglin barbare",
+          "Warden|Gardien des profondeurs",
           "Breeze",
-          "Bogged",
-          "Creaking"
+          "Bogged|Embourbé",
+          "Creaking|Grinceur"
         ]
       },
       {
         "prompt": "Name 5 ores",
         "count": 5,
         "answers": [
-          "Coal Ore|Coal",
-          "Iron Ore|Iron",
-          "Gold Ore|Gold",
-          "Diamond Ore|Diamond",
-          "Emerald Ore|Emerald",
-          "Lapis Lazuli Ore|Lapis|Lapis Lazuli",
-          "Redstone Ore|Redstone",
-          "Copper Ore|Copper",
-          "Nether Quartz Ore|Quartz|Nether Quartz",
-          "Nether Gold Ore",
-          "Ancient Debris|Netherite"
+          "Coal Ore|Coal|Minerai de charbon|Charbon",
+          "Iron Ore|Iron|Minerai de fer|Fer|Lingot de fer",
+          "Gold Ore|Gold|Minerai d'or|Or|Lingot d'or",
+          "Diamond Ore|Diamond|Minerai de diamant|Diamant",
+          "Emerald Ore|Emerald|Minerai d'émeraude|Émeraude",
+          "Lapis Lazuli Ore|Lapis|Lapis Lazuli|Minerai de lapis-lazuli|Lapis-lazuli",
+          "Redstone Ore|Redstone|Minerai de redstone",
+          "Copper Ore|Copper|Minerai de cuivre|Cuivre",
+          "Nether Quartz Ore|Quartz|Nether Quartz|Minerai de quartz du Nether|Quartz du Nether",
+          "Nether Gold Ore|Minerai d'or du Nether",
+          "Ancient Debris|Netherite|Débris antiques"
         ]
       },
       {
         "prompt": "Name 5 biomes",
         "count": 5,
         "answers": [
-          "Plains",
-          "Forest",
-          "Desert",
+          "Plains|Plaines",
+          "Forest|Forêt",
+          "Desert|Désert",
           "Jungle",
-          "Taiga",
-          "Savanna",
-          "Swamp",
+          "Taiga|Taïga",
+          "Savanna|Savane",
+          "Swamp|Marais|Marécage",
           "Badlands|Mesa",
-          "Mushroom Fields|Mushroom Island",
-          "Ocean",
-          "Snowy Plains|Tundra",
-          "Birch Forest",
-          "Dark Forest|Roofed Forest",
-          "Cherry Grove",
-          "Mangrove Swamp",
-          "Deep Dark",
-          "Lush Caves",
-          "Dripstone Caves",
-          "Beach",
-          "River",
-          "Meadow",
-          "Ice Spikes",
-          "Nether Wastes",
-          "Basalt Deltas",
-          "Crimson Forest",
-          "Warped Forest",
-          "Soul Sand Valley",
+          "Mushroom Fields|Mushroom Island|Champs de champignons",
+          "Ocean|Océan",
+          "Snowy Plains|Tundra|Plaines enneigées|Toundra",
+          "Birch Forest|Forêt de bouleaux",
+          "Dark Forest|Roofed Forest|Forêt noire",
+          "Cherry Grove|Cerisaie",
+          "Mangrove Swamp|Marais de mangrove|Mangrove",
+          "Deep Dark|Abîmes",
+          "Lush Caves|Grottes luxuriantes",
+          "Dripstone Caves|Grottes de spéléothèmes",
+          "Beach|Plage",
+          "River|Rivière",
+          "Meadow|Prairie",
+          "Ice Spikes|Pics de glace",
+          "Nether Wastes|Désolation du Nether",
+          "Basalt Deltas|Deltas de basalte",
+          "Crimson Forest|Forêt carmin",
+          "Warped Forest|Forêt biscornue",
+          "Soul Sand Valley|Vallée des âmes",
           "The End|End"
         ]
       }
@@ -771,11 +773,17 @@
       },
       {
         "label": "Warden",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Warden.gif/revision/latest/scale-to-width-down/250?cb=20220218034755"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Warden.gif/revision/latest/scale-to-width-down/250?cb=20220218034755",
+        "aliases": [
+          "Gardien des profondeurs"
+        ]
       },
       {
         "label": "Elder Guardian",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Elder_Guardian.gif/revision/latest?cb=20190925152022"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Elder_Guardian.gif/revision/latest?cb=20190925152022",
+        "aliases": [
+          "Grand gardien"
+        ]
       },
       {
         "label": "Shulker",
@@ -787,11 +795,17 @@
       },
       {
         "label": "Sniffer",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ec/Sniffer_sniffsniff.gif/revision/latest/scale-to-width-down/400?cb=20240729213335"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ec/Sniffer_sniffsniff.gif/revision/latest/scale-to-width-down/400?cb=20240729213335",
+        "aliases": [
+          "Renifleur"
+        ]
       },
       {
         "label": "Ravager",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a3/Ravager_JE1.png/revision/latest/scale-to-width-down/400?cb=20210120025723"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a3/Ravager_JE1.png/revision/latest/scale-to-width-down/400?cb=20210120025723",
+        "aliases": [
+          "Ravageur"
+        ]
       },
       {
         "label": "Piglin",
@@ -799,11 +813,17 @@
       },
       {
         "label": "Strider",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a6/Strider_JE2_BE2.gif/revision/latest?cb=20240729214354"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a6/Strider_JE2_BE2.gif/revision/latest?cb=20240729214354",
+        "aliases": [
+          "Arpenteur"
+        ]
       },
       {
         "label": "Mooshroom",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1c/Red_Mooshroom_JE4.png/revision/latest/scale-to-width-down/292?cb=20240729214731"
+        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1c/Red_Mooshroom_JE4.png/revision/latest/scale-to-width-down/292?cb=20240729214731",
+        "aliases": [
+          "Champimeuh"
+        ]
       }
     ]
   },
@@ -842,7 +862,7 @@
         "prompt": "Name 5 Straw Hat Pirates",
         "count": 5,
         "answers": [
-          "Monkey D. Luffy|Luffy",
+          "Monkey D. Luffy|Luffy|Mugiwara|Chapeau de paille",
           "Roronoa Zoro|Zoro",
           "Nami",
           "Usopp",
@@ -858,14 +878,14 @@
         "prompt": "Name 4 Warlords of the Sea",
         "count": 4,
         "answers": [
-          "Dracule Mihawk|Mihawk",
+          "Dracule Mihawk|Mihawk|Œil de Faucon",
           "Crocodile",
           "Donquixote Doflamingo|Doflamingo",
           "Bartholomew Kuma|Kuma",
           "Gecko Moria|Moria",
           "Boa Hancock|Hancock",
           "Jinbe|Jimbei|Jinbei",
-          "Marshall D. Teach|Blackbeard|Teach",
+          "Marshall D. Teach|Blackbeard|Teach|Barbe Noire",
           "Trafalgar Law|Law",
           "Buggy",
           "Edward Weevil|Weevil"
@@ -875,12 +895,12 @@
         "prompt": "Name 4 Emperors of the Sea, past or present",
         "count": 4,
         "answers": [
-          "Shanks",
+          "Shanks|Shanks le Roux",
           "Kaido",
           "Charlotte Linlin|Big Mom|Linlin",
-          "Marshall D. Teach|Blackbeard|Teach",
-          "Edward Newgate|Whitebeard|Newgate",
-          "Monkey D. Luffy|Luffy",
+          "Marshall D. Teach|Blackbeard|Teach|Barbe Noire",
+          "Edward Newgate|Whitebeard|Newgate|Barbe Blanche",
+          "Monkey D. Luffy|Luffy|Mugiwara|Chapeau de paille",
           "Buggy"
         ]
       }
@@ -1042,7 +1062,8 @@
       {
         "label": "Dracule Mihawk",
         "aliases": [
-          "mihawk"
+          "mihawk",
+          "Œil de Faucon"
         ],
         "image": "https://static.wikia.nocookie.net/onepiece/images/b/bf/Dracule_Mihawk_Anime_Infobox.png/revision/latest/scale-to-width-down/257?cb=20151222105910"
       }
@@ -1054,7 +1075,8 @@
     "franchise": "Dragon Ball Z",
     "aliases": [
       "dragon ball",
-      "dbz"
+      "dbz",
+      "freezer"
     ],
     "images": "fandom:dragonball",
     "boss": {
@@ -1091,25 +1113,25 @@
           "Vegeta",
           "Gohan|Son Gohan",
           "Piccolo",
-          "Krillin",
-          "Tien|Tien Shinhan|Tenshinhan",
+          "Krillin|Krilin",
+          "Tien|Tien Shinhan|Tenshinhan|Ten Shin Han",
           "Yamcha",
           "Chiaotzu|Chaozu",
           "Goten|Son Goten",
           "Trunks",
-          "Android 18|18",
+          "Android 18|18|C-18|C18",
           "Videl",
-          "Master Roshi|Roshi"
+          "Master Roshi|Roshi|Tortue Géniale"
         ]
       },
       {
         "prompt": "Name 4 members of the Ginyu Force",
         "count": 4,
         "answers": [
-          "Captain Ginyu|Ginyu",
-          "Jeice",
-          "Burter",
-          "Recoome",
+          "Captain Ginyu|Ginyu|Capitaine Ginyu",
+          "Jeice|Jeece",
+          "Burter|Barta",
+          "Recoome|Recoom",
           "Guldo"
         ]
       },
@@ -1117,16 +1139,16 @@
         "prompt": "Name 4 Androids",
         "count": 4,
         "answers": [
-          "Android 16|16",
-          "Android 17|17",
-          "Android 18|18",
-          "Android 19|19",
-          "Android 20|Dr. Gero|Gero|20",
+          "Android 16|16|C-16|C16",
+          "Android 17|17|C-17|C17",
+          "Android 18|18|C-18|C18",
+          "Android 19|19|C-19|C19",
+          "Android 20|Dr. Gero|Gero|20|C-20|C20",
           "Cell",
-          "Android 13|13",
-          "Android 14|14",
-          "Android 15|15",
-          "Android 8|8"
+          "Android 13|13|C-13|C13",
+          "Android 14|14|C-14|C14",
+          "Android 15|15|C-15|C15",
+          "Android 8|8|C-8|C8"
         ]
       }
     ],
@@ -1261,13 +1283,18 @@
         "label": "Mr. Satan",
         "aliases": [
           "hercule",
-          "mr satan"
+          "mr satan",
+          "Hercule"
         ],
         "image": "https://static.wikia.nocookie.net/dragonball/images/e/ef/Mr_Satan_at_the_Cell_Games.png/revision/latest/scale-to-width-down/268?cb=20260315145605"
       },
       {
         "label": "King Kai",
-        "image": "https://static.wikia.nocookie.net/dragonball/images/6/61/KingKaiNV.png/revision/latest/scale-to-width-down/400?cb=20200219185209"
+        "image": "https://static.wikia.nocookie.net/dragonball/images/6/61/KingKaiNV.png/revision/latest/scale-to-width-down/400?cb=20200219185209",
+        "aliases": [
+          "Maître Kaio",
+          "Kaio"
+        ]
       },
       {
         "label": "Broly",
@@ -1347,15 +1374,15 @@
         "prompt": "Name 4 tailed beasts",
         "count": 4,
         "answers": [
-          "Shukaku|One-Tails",
-          "Matatabi|Two-Tails",
-          "Isobu|Three-Tails",
-          "Son Goku|Four-Tails",
-          "Kokuo|Five-Tails",
-          "Saiken|Six-Tails",
-          "Chomei|Chōmei|Seven-Tails",
-          "Gyuki|Gyūki|Eight-Tails",
-          "Kurama|Nine-Tails|Kyubi|Kyuubi"
+          "Shukaku|One-Tails|Ichibi",
+          "Matatabi|Two-Tails|Nibi",
+          "Isobu|Three-Tails|Sanbi",
+          "Son Goku|Four-Tails|Yonbi",
+          "Kokuo|Five-Tails|Gobi",
+          "Saiken|Six-Tails|Rokubi",
+          "Chomei|Chōmei|Seven-Tails|Nanabi",
+          "Gyuki|Gyūki|Eight-Tails|Hachibi",
+          "Kurama|Nine-Tails|Kyubi|Kyuubi|Kyûbi|Démon renard à neuf queues"
         ]
       }
     ],
@@ -1531,7 +1558,9 @@
     "domain": "cinema",
     "franchise": "Star Wars",
     "aliases": [
-      "sw"
+      "sw",
+      "dark vador",
+      "la guerre des etoiles"
     ],
     "images": "fandom:starwars",
     "boss": {
@@ -1587,14 +1616,14 @@
         "prompt": "Name 4 Sith Lords",
         "count": 4,
         "answers": [
-          "Darth Vader|Vader",
-          "Darth Sidious|Palpatine|Sidious|The Emperor|Emperor",
-          "Darth Maul|Maul",
-          "Count Dooku|Darth Tyranus|Dooku|Tyranus",
-          "Darth Plagueis|Plagueis",
-          "Darth Bane|Bane",
-          "Darth Revan|Revan",
-          "Darth Malak|Malak"
+          "Darth Vader|Vader|Dark Vador",
+          "Darth Sidious|Palpatine|Sidious|The Emperor|Emperor|Dark Sidious|Empereur",
+          "Darth Maul|Maul|Dark Maul",
+          "Count Dooku|Darth Tyranus|Dooku|Tyranus|Comte Dooku|Dark Tyranus",
+          "Darth Plagueis|Plagueis|Dark Plagueis",
+          "Darth Bane|Bane|Dark Bane",
+          "Darth Revan|Revan|Dark Revan",
+          "Darth Malak|Malak|Dark Malak"
         ]
       },
       {
@@ -1731,7 +1760,8 @@
         "label": "Gial Ackbar",
         "aliases": [
           "ackbar",
-          "admiral ackbar"
+          "admiral ackbar",
+          "Amiral Ackbar"
         ],
         "image": "https://static.wikia.nocookie.net/starwars/images/2/29/Admiral_Ackbar_RH.png/revision/latest/scale-to-width-down/301?cb=20221224032123"
       },
@@ -1742,7 +1772,8 @@
       {
         "label": "Wicket W. Warrick",
         "aliases": [
-          "wicket"
+          "wicket",
+          "Wicket"
         ],
         "image": "https://static.wikia.nocookie.net/starwars/images/a/aa/Wicket-2024Base.png/revision/latest/scale-to-width-down/300?cb=20251026210916"
       },
@@ -1753,7 +1784,8 @@
       {
         "label": "Grievous",
         "aliases": [
-          "general grievous"
+          "general grievous",
+          "Général Grievous"
         ],
         "image": "https://static.wikia.nocookie.net/starwars/images/4/45/GrievousStand-SWHC821.png/revision/latest/scale-to-width-down/300?cb=20241118020627"
       },
@@ -1823,24 +1855,24 @@
         "answers": [
           "Albus Dumbledore|Dumbledore",
           "Minerva McGonagall|McGonagall",
-          "Severus Snape|Snape",
+          "Severus Snape|Snape|Severus Rogue|Rogue",
           "Filius Flitwick|Flitwick",
-          "Pomona Sprout|Sprout",
+          "Pomona Sprout|Sprout|Pomona Chourave|Chourave",
           "Remus Lupin|Lupin",
           "Gilderoy Lockhart|Lockhart",
           "Quirinus Quirrell|Quirrell",
           "Horace Slughorn|Slughorn",
-          "Sybill Trelawney|Trelawney",
+          "Sybill Trelawney|Trelawney|Sibylle Trelawney",
           "Rubeus Hagrid|Hagrid",
-          "Alastor Moody|Mad-Eye Moody|Moody|Mad-Eye",
-          "Dolores Umbridge|Umbridge",
-          "Cuthbert Binns|Binns",
-          "Rolanda Hooch|Madam Hooch|Hooch",
+          "Alastor Moody|Mad-Eye Moody|Moody|Mad-Eye|Alastor Maugrey|Maugrey|Fol Œil",
+          "Dolores Umbridge|Umbridge|Dolores Ombrage|Ombrage",
+          "Cuthbert Binns|Binns|Professeur Binns",
+          "Rolanda Hooch|Madam Hooch|Hooch|Madame Bibine|Bibine",
           "Firenze",
           "Aurora Sinistra|Sinistra",
           "Charity Burbage|Burbage",
           "Septima Vector|Vector",
-          "Wilhelmina Grubbly-Plank|Grubbly-Plank"
+          "Wilhelmina Grubbly-Plank|Grubbly-Plank|Gobe-Planche"
         ]
       },
       {
@@ -1999,11 +2031,17 @@
     "finale": [
       {
         "label": "Kreacher",
-        "image": "https://static.wikia.nocookie.net/harrypotter/images/d/d4/Kreacher_HPE.jpg/revision/latest/scale-to-width-down/337?cb=20100621114028"
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/d/d4/Kreacher_HPE.jpg/revision/latest/scale-to-width-down/337?cb=20100621114028",
+        "aliases": [
+          "Kreattur"
+        ]
       },
       {
         "label": "Buckbeak",
-        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c7/B3C14M1_cropped_Buckbeak_PM.png/revision/latest/scale-to-width-down/400?cb=20220516100927"
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c7/B3C14M1_cropped_Buckbeak_PM.png/revision/latest/scale-to-width-down/400?cb=20220516100927",
+        "aliases": [
+          "Buck"
+        ]
       },
       {
         "label": "Nagini",
@@ -2011,11 +2049,17 @@
       },
       {
         "label": "Fawkes",
-        "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Fawkes_WB_F2_FawkesCloseUpIllustration_Illust_100615_Port.jpg/revision/latest/scale-to-width-down/296?cb=20151218225509"
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Fawkes_WB_F2_FawkesCloseUpIllustration_Illust_100615_Port.jpg/revision/latest/scale-to-width-down/296?cb=20151218225509",
+        "aliases": [
+          "Fumseck"
+        ]
       },
       {
         "label": "Griphook",
-        "image": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Griphook_TDH_SF.png/revision/latest/scale-to-width-down/310?cb=20161215062124"
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Griphook_TDH_SF.png/revision/latest/scale-to-width-down/310?cb=20161215062124",
+        "aliases": [
+          "Gripsec"
+        ]
       },
       {
         "label": "Aragog",
@@ -2028,13 +2072,17 @@
       {
         "label": "Moaning Myrtle",
         "aliases": [
-          "myrtle"
+          "myrtle",
+          "Mimi Geignarde"
         ],
         "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Myrtle_Warren_profile.png/revision/latest/scale-to-width-down/300?cb=20170113020338"
       },
       {
         "label": "Grawp",
-        "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e6/Grawp.png/revision/latest/scale-to-width-down/221?cb=20170210040408"
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e6/Grawp.png/revision/latest/scale-to-width-down/221?cb=20170210040408",
+        "aliases": [
+          "Graup"
+        ]
       },
       {
         "label": "Bellatrix Lestrange",
@@ -2052,7 +2100,8 @@
     "aliases": [
       "lotr",
       "middle-earth",
-      "lord of the rings"
+      "lord of the rings",
+      "le seigneur des anneaux"
     ],
     "images": "fandom:lotr",
     "boss": {
@@ -2085,12 +2134,12 @@
         "prompt": "Name 5 members of the Fellowship",
         "count": 5,
         "answers": [
-          "Frodo Baggins|Frodo",
-          "Samwise Gamgee|Sam|Samwise",
-          "Meriadoc Brandybuck|Merry",
-          "Peregrin Took|Pippin",
+          "Frodo Baggins|Frodo|Frodon Sacquet|Frodon",
+          "Samwise Gamgee|Sam|Samwise|Samsagace Gamegie|Samsagace",
+          "Meriadoc Brandybuck|Merry|Meriadoc Brandebouc",
+          "Peregrin Took|Pippin|Peregrin Touque",
           "Gandalf",
-          "Aragorn|Strider",
+          "Aragorn|Strider|Grands-Pas",
           "Legolas",
           "Gimli",
           "Boromir"
@@ -2101,26 +2150,26 @@
         "count": 4,
         "answers": [
           "Hobbits|Hobbit",
-          "Elves|Elf",
-          "Dwarves|Dwarf",
-          "Men|Man|Humans|Human",
-          "Orcs|Orc",
+          "Elves|Elf|Elfes|Elfe",
+          "Dwarves|Dwarf|Nains|Nain",
+          "Men|Man|Humans|Human|Hommes|Homme|Humains",
+          "Orcs|Orc|Orques|Orque",
           "Ents|Ent",
           "Trolls|Troll",
-          "Wizards|Istari|Wizard",
+          "Wizards|Istari|Wizard|Mages|Magiciens",
           "Uruk-hai|Uruk",
-          "Goblins|Goblin",
-          "Eagles|Eagle",
+          "Goblins|Goblin|Gobelins",
+          "Eagles|Eagle|Aigles",
           "Balrogs|Balrog",
-          "Nazgûl|Nazgul|Ringwraiths|Ringwraith"
+          "Nazgûl|Nazgul|Ringwraiths|Ringwraith|Spectres de l'Anneau|Cavaliers noirs"
         ]
       },
       {
         "prompt": "Name 5 places in Middle-earth",
         "count": 5,
         "answers": [
-          "The Shire|Shire",
-          "Rivendell",
+          "The Shire|Shire|La Comté|Comté",
+          "Rivendell|Fondcombe",
           "Mordor",
           "Gondor",
           "Rohan",
@@ -2128,15 +2177,15 @@
           "Isengard",
           "Lothlórien|Lothlorien|Lorien",
           "Minas Tirith",
-          "Helm's Deep|Helms Deep",
+          "Helm's Deep|Helms Deep|Gouffre de Helm",
           "Bree",
-          "Mount Doom|Orodruin",
-          "Fangorn",
+          "Mount Doom|Orodruin|Montagne du Destin",
+          "Fangorn|Forêt de Fangorn",
           "Edoras",
           "Osgiliath",
-          "Erebor|Lonely Mountain",
-          "Mirkwood",
-          "Hobbiton",
+          "Erebor|Lonely Mountain|Montagne Solitaire",
+          "Mirkwood|Forêt Noire|Grand Vert",
+          "Hobbiton|Hobbitebourg",
           "Barad-dûr|Barad-dur",
           "Minas Morgul"
         ]
@@ -2258,7 +2307,9 @@
         "aliases": [
           "grima",
           "wormtongue",
-          "grima wormtongue"
+          "grima wormtongue",
+          "Gríma Langue-de-Serpent",
+          "Langue-de-Serpent"
         ],
         "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Kuo-yang-grima-yang.jpg/revision/latest/scale-to-width-down/378?cb=20240117103439"
       },
@@ -2282,7 +2333,10 @@
       },
       {
         "label": "Shelob",
-        "image": "https://static.wikia.nocookie.net/lotr/images/1/15/JohnHoweShelob.jpg/revision/latest/scale-to-width-down/281?cb=20240229093018"
+        "image": "https://static.wikia.nocookie.net/lotr/images/1/15/JohnHoweShelob.jpg/revision/latest/scale-to-width-down/281?cb=20240229093018",
+        "aliases": [
+          "Arachne"
+        ]
       },
       {
         "label": "Balrog",
@@ -2348,19 +2402,19 @@
           "Captain America|Steve Rogers|Cap",
           "Thor",
           "Hulk|Bruce Banner",
-          "Black Widow|Natasha Romanoff|Natasha",
-          "Hawkeye|Clint Barton",
-          "Spider-Man|Peter Parker|Spiderman",
-          "Black Panther|T'Challa",
-          "Doctor Strange|Stephen Strange|Dr Strange",
-          "Scarlet Witch|Wanda Maximoff|Wanda",
+          "Black Widow|Natasha Romanoff|Natasha|Veuve Noire",
+          "Hawkeye|Clint Barton|Œil de Faucon",
+          "Spider-Man|Peter Parker|Spiderman|L'Homme-Araignée",
+          "Black Panther|T'Challa|Panthère Noire",
+          "Doctor Strange|Stephen Strange|Dr Strange|Docteur Strange",
+          "Scarlet Witch|Wanda Maximoff|Wanda|Sorcière Rouge|La Sorcière Rouge",
           "Vision",
-          "Falcon|Sam Wilson",
+          "Falcon|Sam Wilson|Le Faucon|Faucon",
           "War Machine|James Rhodes|Rhodey",
           "Ant-Man|Scott Lang|Antman",
           "Captain Marvel|Carol Danvers",
-          "Winter Soldier|Bucky Barnes|Bucky",
-          "Wasp|Hope van Dyne",
+          "Winter Soldier|Bucky Barnes|Bucky|Soldat de l'Hiver",
+          "Wasp|Hope van Dyne|La Guêpe|Guêpe",
           "Shuri",
           "Quicksilver"
         ]
@@ -2369,12 +2423,12 @@
         "prompt": "Name all 6 Infinity Stones",
         "count": 6,
         "answers": [
-          "Space Stone|Space",
-          "Mind Stone|Mind",
-          "Reality Stone|Reality",
-          "Power Stone|Power",
-          "Time Stone|Time",
-          "Soul Stone|Soul"
+          "Space Stone|Space|Pierre de l'Espace",
+          "Mind Stone|Mind|Pierre de l'Esprit",
+          "Reality Stone|Reality|Pierre de Réalité|Pierre de la Réalité",
+          "Power Stone|Power|Pierre de Pouvoir|Pierre du Pouvoir",
+          "Time Stone|Time|Pierre du Temps|Temps",
+          "Soul Stone|Soul|Pierre de l'Âme|Âme"
         ]
       },
       {
@@ -2383,7 +2437,7 @@
         "answers": [
           "Star-Lord|Peter Quill|Starlord",
           "Gamora",
-          "Drax|Drax the Destroyer",
+          "Drax|Drax the Destroyer|Drax le Destructeur",
           "Rocket|Rocket Raccoon",
           "Groot",
           "Mantis",
@@ -2507,7 +2561,8 @@
       {
         "label": "Drax the Destroyer",
         "aliases": [
-          "drax"
+          "drax",
+          "Drax le Destructeur"
         ],
         "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/cd/Drax_Vol._3.jpg/revision/latest/scale-to-width-down/244?cb=20231113213618"
       },
@@ -2517,7 +2572,10 @@
       },
       {
         "label": "Red Skull",
-        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6d/Red_Skull_Infobox.png/revision/latest/scale-to-width-down/276?cb=20190808103105"
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6d/Red_Skull_Infobox.png/revision/latest/scale-to-width-down/276?cb=20190808103105",
+        "aliases": [
+          "Crâne Rouge"
+        ]
       },
       {
         "label": "Yondu Udonta",
@@ -2545,7 +2603,8 @@
       {
         "label": "Ronan",
         "aliases": [
-          "ronan the accuser"
+          "ronan the accuser",
+          "Ronan l'Accusateur"
         ],
         "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/0f/Ronan_the_Accuser_Infobox.jpg/revision/latest/scale-to-width-down/353?cb=20241127020215"
       }

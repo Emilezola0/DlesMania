@@ -8,7 +8,7 @@ export const DOMAINS = ['games', 'anime', 'cinema', 'music'];
 export const PREFIX = { games: 'g', anime: 'a', cinema: 'c', music: 'm' };
 
 const FIELD_ORDER = [
-  'id', 'name', 'subtitle', 'aliases', 'domain', 'year', 'genres', 'studio', 'creator', 'origin', 'format', 'source',
+  'id', 'name', 'nameFr', 'subtitle', 'aliases', 'domain', 'year', 'genres', 'studio', 'creator', 'origin', 'format', 'source',
   'platforms', 'characters', 'themes', 'credits', 'fandom', 'cover', 'quote', 'tracks', 'audio', 'emoji', 'item', 'location', 'visual',
 ];
 

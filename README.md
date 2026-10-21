@@ -45,9 +45,13 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 - **Works**: `src/data/works/{games,anime,cinema,music}.json`, 100+ per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
 - **Connections**: `src/data/connections.json` (10 per category + 7 mixed) — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3. A tile is a label or `{ "label", "src" }`; `images` sets the puzzle's default picture source (`wp`, `fandom:<wiki>`, `ddragon`). `node scripts/enrich-connections.mjs` resolves them and reports misses — a grid only shows pictures when all 16 tiles have one, since a lone text tile would give its group away.
 
+- **Boss Battle**: `src/data/bosses.json` — one guardian per franchise with dialogue, Knowledge Blitz prompts (`"Name|alias|alias"` answers), Radar `members`/`impostors` and Final Blow cards. Cards use the same picture sources as Connections tiles; `node scripts/enrich-bosses.mjs` resolves them.
+- **French names**: works can carry `nameFr` (the French release title) and boss answers list French spellings as aliases. Both live in `scripts/data/` and are applied by `node scripts/add-french-titles.mjs`.
+- **Typed answers** go through [`src/utils/textMatcher.ts`](src/utils/textMatcher.ts): case, accents, ligatures and punctuation are ignored, and small typos pass (1 for 3–5 letters, 2 from 6, a swapped pair counts as one).
+
 ### Scaling the dataset
 
-`npm run data:seed` runs the whole pipeline (optional imports → wiki check → images → clips → Connections pictures → validation); see the header of `scripts/seed-database.mjs`. Step by step:
+`npm run data:seed` runs the whole pipeline (optional imports → French names → wiki check → images → clips → Connections and Boss pictures → validation); see the header of `scripts/seed-database.mjs`. Step by step:
 
 ```bash
 # 1. Import factual metadata (year, genres, studio, creator, characters, tracklist...)
@@ -63,8 +67,12 @@ node scripts/import.mjs file my-entries.json                              # hand
 node scripts/enrich-media.mjs                    # images from Wikipedia (batched, no key)
 YOUTUBE_API_KEY=... node scripts/enrich-media.mjs --no-images   # clip ids from audio.query
 
-# 4. Connections pictures (Wikipedia, Fandom wikis, League Data Dragon)
+# 4. Connections and Boss Battle pictures (Wikipedia, Fandom wikis, League Data Dragon)
 node scripts/enrich-connections.mjs
+node scripts/enrich-bosses.mjs
+
+# French titles and boss answer spellings (scripts/data/*.mjs)
+node scripts/add-french-titles.mjs
 
 # 5. Check
 npm run data:validate

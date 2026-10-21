@@ -475,6 +475,7 @@
   {
     "id": "g-pokemon-rb",
     "name": "Pokémon Red and Blue",
+    "nameFr": "Pokémon Rouge et Bleu",
     "aliases": [
       "pokemon red",
       "pokemon blue",
@@ -3763,6 +3764,7 @@
   {
     "id": "g-pokemon-gs",
     "name": "Pokémon Gold and Silver",
+    "nameFr": "Pokémon Or et Argent",
     "aliases": [
       "pokemon gold",
       "pokemon silver"
@@ -5669,6 +5671,7 @@
   {
     "id": "g-sims",
     "name": "The Sims",
+    "nameFr": "Les Sims",
     "aliases": [
       "sims"
     ],

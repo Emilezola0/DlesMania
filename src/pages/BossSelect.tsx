@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Glyph } from '../components/Glyph';
+import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
 import { BOSS_DOMAINS, BOSSES } from '../data/bosses';
 import { formatTime } from '../lib/boss';
-import { normalize } from '../lib/text';
+import { bestSearchScore } from '../utils/textMatcher';
 import { EMPTY_BOSS_RECORD, useProgress } from '../store/progress';
 import type { Domain } from '../types';
 
@@ -23,9 +24,8 @@ export default function BossSelect() {
 
   // A search looks across every domain, so a franchise is found even from the wrong tab.
   const list = useMemo(() => {
-    const q = normalize(query);
-    if (!q) return BOSSES.filter((b) => b.domain === domain);
-    return BOSSES.filter((b) => [b.franchise, b.boss.name, ...b.aliases].some((s) => normalize(s).includes(q)));
+    if (!query.trim()) return BOSSES.filter((b) => b.domain === domain);
+    return BOSSES.filter((b) => bestSearchScore(query, [b.franchise, b.boss.name, ...b.aliases]) !== null);
   }, [domain, query]);
 
   const totalWins = Object.values(records).filter((r) => r.wins > 0).length;
@@ -40,9 +40,12 @@ export default function BossSelect() {
             Choose a franchise and face its guardian. Each phase you win breaks a third of its life — each one you lose costs you a heart.
           </p>
         </div>
-        <span className="rounded-full border border-rule-strong px-3 py-1 font-display text-sm font-semibold tracking-wider text-ink-soft">
-          {totalWins}/{BOSSES.length} bosses defeated
-        </span>
+        <div className="flex items-center gap-2">
+          <RulesButton tab="boss" label="Rules" />
+          <span className="rounded-full border border-rule-strong px-3 py-1 font-display text-sm font-semibold tracking-wider text-ink-soft">
+            {totalWins}/{BOSSES.length} bosses defeated
+          </span>
+        </div>
       </div>
 
       <div className="page space-y-4 rounded-md p-5">

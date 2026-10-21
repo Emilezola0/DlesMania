@@ -258,6 +258,7 @@
   {
     "id": "a-spiritedaway",
     "name": "Spirited Away",
+    "nameFr": "Le Voyage de Chihiro",
     "domain": "anime",
     "year": 2001,
     "genres": [
@@ -320,6 +321,7 @@
   {
     "id": "a-aot",
     "name": "Attack on Titan",
+    "nameFr": "L'Attaque des Titans",
     "aliases": [
       "shingeki no kyojin",
       "snk",
@@ -588,6 +590,7 @@
   {
     "id": "a-totoro",
     "name": "My Neighbor Totoro",
+    "nameFr": "Mon voisin Totoro",
     "aliases": [
       "totoro",
       "tonari no totoro"
@@ -1398,6 +1401,7 @@
   {
     "id": "a-mononoke",
     "name": "Princess Mononoke",
+    "nameFr": "Princesse Mononoké",
     "aliases": [
       "mononoke hime"
     ],
@@ -2793,6 +2797,7 @@
   {
     "id": "a-fireflies",
     "name": "Grave of the Fireflies",
+    "nameFr": "Le Tombeau des lucioles",
     "domain": "anime",
     "year": 1988,
     "genres": [
@@ -2849,6 +2854,7 @@
   {
     "id": "a-howl",
     "name": "Howl's Moving Castle",
+    "nameFr": "Le Château ambulant",
     "domain": "anime",
     "year": 2004,
     "genres": [
@@ -3201,6 +3207,7 @@
   {
     "id": "a-yugioh",
     "name": "Yu-Gi-Oh! Duel Monsters",
+    "nameFr": "Yu-Gi-Oh!",
     "aliases": [
       "yugioh",
       "yu-gi-oh"
@@ -3440,6 +3447,7 @@
   {
     "id": "a-kenshin",
     "name": "Rurouni Kenshin",
+    "nameFr": "Kenshin le vagabond",
     "aliases": [
       "samurai x"
     ],
@@ -3968,6 +3976,7 @@
   {
     "id": "a-laputa",
     "name": "Castle in the Sky",
+    "nameFr": "Le Château dans le ciel",
     "aliases": [
       "laputa"
     ],
@@ -4028,6 +4037,7 @@
   {
     "id": "a-kiki",
     "name": "Kiki's Delivery Service",
+    "nameFr": "Kiki la petite sorcière",
     "domain": "anime",
     "year": 1989,
     "genres": [
@@ -4086,6 +4096,7 @@
   {
     "id": "a-nausicaa",
     "name": "Nausicaä of the Valley of the Wind",
+    "nameFr": "Nausicaä de la vallée du vent",
     "aliases": [
       "nausicaa"
     ],
@@ -4555,6 +4566,7 @@
   {
     "id": "a-slime",
     "name": "That Time I Got Reincarnated as a Slime",
+    "nameFr": "Moi, quand je me réincarne en Slime",
     "aliases": [
       "tensura",
       "slime isekai"
@@ -5079,6 +5091,7 @@
   {
     "id": "a-7ds",
     "name": "The Seven Deadly Sins",
+    "nameFr": "Seven Deadly Sins",
     "aliases": [
       "nanatsu no taizai"
     ],
@@ -5198,6 +5211,7 @@
   {
     "id": "a-kuroko",
     "name": "Kuroko's Basketball",
+    "nameFr": "Kuroko's Basket",
     "domain": "anime",
     "year": 2012,
     "genres": [
@@ -5373,6 +5387,7 @@
   {
     "id": "a-hokuto",
     "name": "Fist of the North Star",
+    "nameFr": "Ken le Survivant",
     "aliases": [
       "hokuto no ken"
     ],
@@ -5438,6 +5453,7 @@
   {
     "id": "a-cagliostro",
     "name": "Lupin III: The Castle of Cagliostro",
+    "nameFr": "Le Château de Cagliostro",
     "aliases": [
       "castle of cagliostro",
       "lupin iii"
@@ -5924,6 +5940,7 @@
   {
     "id": "a-dungeonmeshi",
     "name": "Delicious in Dungeon",
+    "nameFr": "Gloutons & Dragons",
     "aliases": [
       "dungeon meshi"
     ],

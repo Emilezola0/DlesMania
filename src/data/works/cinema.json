@@ -2,6 +2,7 @@
   {
     "id": "c-godfather",
     "name": "The Godfather",
+    "nameFr": "Le Parrain",
     "domain": "cinema",
     "year": 1972,
     "genres": [
@@ -62,6 +63,7 @@
   {
     "id": "c-starwars",
     "name": "Star Wars",
+    "nameFr": "La Guerre des étoiles",
     "aliases": [
       "a new hope",
       "star wars episode iv"
@@ -190,6 +192,7 @@
   {
     "id": "c-matrix",
     "name": "The Matrix",
+    "nameFr": "Matrix",
     "domain": "cinema",
     "year": 1999,
     "genres": [
@@ -368,6 +371,7 @@
   {
     "id": "c-bttf",
     "name": "Back to the Future",
+    "nameFr": "Retour vers le futur",
     "aliases": [
       "bttf"
     ],
@@ -433,6 +437,7 @@
   {
     "id": "c-jaws",
     "name": "Jaws",
+    "nameFr": "Les Dents de la mer",
     "domain": "cinema",
     "year": 1975,
     "genres": [
@@ -492,6 +497,7 @@
   {
     "id": "c-lotr",
     "name": "The Lord of the Rings: The Fellowship of the Ring",
+    "nameFr": "Le Seigneur des anneaux : La Communauté de l'anneau",
     "aliases": [
       "lord of the rings",
       "lotr",
@@ -618,6 +624,7 @@
   {
     "id": "c-shining",
     "name": "The Shining",
+    "nameFr": "Shining",
     "domain": "cinema",
     "year": 1980,
     "genres": [
@@ -737,6 +744,7 @@
   {
     "id": "c-amelie",
     "name": "Amélie",
+    "nameFr": "Le Fabuleux Destin d'Amélie Poulain",
     "aliases": [
       "amelie",
       "le fabuleux destin d amelie poulain"
@@ -857,6 +865,7 @@
   {
     "id": "c-darkknight",
     "name": "The Dark Knight",
+    "nameFr": "The Dark Knight : Le Chevalier noir",
     "domain": "cinema",
     "year": 2008,
     "genres": [
@@ -918,6 +927,7 @@
   {
     "id": "c-et",
     "name": "E.T. the Extra-Terrestrial",
+    "nameFr": "E.T. l'extra-terrestre",
     "aliases": [
       "et"
     ],
@@ -980,6 +990,7 @@
   {
     "id": "c-alien",
     "name": "Alien",
+    "nameFr": "Alien, le huitième passager",
     "domain": "cinema",
     "year": 1979,
     "genres": [
@@ -1037,6 +1048,7 @@
   {
     "id": "c-t2",
     "name": "Terminator 2: Judgment Day",
+    "nameFr": "Terminator 2 : Le Jugement dernier",
     "aliases": [
       "terminator 2",
       "t2"
@@ -1164,6 +1176,7 @@
   {
     "id": "c-lionking",
     "name": "The Lion King",
+    "nameFr": "Le Roi lion",
     "domain": "cinema",
     "year": 1994,
     "genres": [
@@ -1284,6 +1297,7 @@
   {
     "id": "c-wizardofoz",
     "name": "The Wizard of Oz",
+    "nameFr": "Le Magicien d'Oz",
     "domain": "cinema",
     "year": 1939,
     "genres": [
@@ -1340,6 +1354,7 @@
   {
     "id": "c-psycho",
     "name": "Psycho",
+    "nameFr": "Psychose",
     "domain": "cinema",
     "year": 1960,
     "genres": [
@@ -1399,6 +1414,7 @@
   {
     "id": "c-ghostbusters",
     "name": "Ghostbusters",
+    "nameFr": "SOS Fantômes",
     "domain": "cinema",
     "year": 1984,
     "genres": [
@@ -1462,6 +1478,7 @@
   {
     "id": "c-raiders",
     "name": "Raiders of the Lost Ark",
+    "nameFr": "Les Aventuriers de l'arche perdue",
     "aliases": [
       "indiana jones"
     ],
@@ -1526,6 +1543,7 @@
   {
     "id": "c-spiderverse",
     "name": "Spider-Man: Into the Spider-Verse",
+    "nameFr": "Spider-Man : New Generation",
     "aliases": [
       "into the spider verse",
       "spiderverse"
@@ -1834,6 +1852,7 @@
   {
     "id": "c-sevensamurai",
     "name": "Seven Samurai",
+    "nameFr": "Les Sept Samouraïs",
     "domain": "cinema",
     "year": 1954,
     "genres": [
@@ -1883,6 +1902,7 @@
   {
     "id": "c-shawshank",
     "name": "The Shawshank Redemption",
+    "nameFr": "Les Évadés",
     "aliases": [
       "shawshank"
     ],
@@ -2005,6 +2025,7 @@
   {
     "id": "c-goodfellas",
     "name": "Goodfellas",
+    "nameFr": "Les Affranchis",
     "domain": "cinema",
     "year": 1990,
     "genres": [
@@ -2066,6 +2087,7 @@
   {
     "id": "c-silencelambs",
     "name": "The Silence of the Lambs",
+    "nameFr": "Le Silence des agneaux",
     "aliases": [
       "silence of the lambs"
     ],
@@ -2128,6 +2150,7 @@
   {
     "id": "c-2001",
     "name": "2001: A Space Odyssey",
+    "nameFr": "2001 : L'Odyssée de l'espace",
     "aliases": [
       "2001"
     ],
@@ -2252,6 +2275,7 @@
   {
     "id": "c-nemo",
     "name": "Finding Nemo",
+    "nameFr": "Le Monde de Nemo",
     "domain": "cinema",
     "year": 2003,
     "genres": [
@@ -2315,6 +2339,7 @@
   {
     "id": "c-frozen",
     "name": "Frozen",
+    "nameFr": "La Reine des neiges",
     "domain": "cinema",
     "year": 2013,
     "genres": [
@@ -2441,6 +2466,7 @@
   {
     "id": "c-hp1",
     "name": "Harry Potter and the Philosopher's Stone",
+    "nameFr": "Harry Potter à l'école des sorciers",
     "aliases": [
       "harry potter",
       "sorcerer's stone",
@@ -2509,6 +2535,7 @@
   {
     "id": "c-pirates",
     "name": "Pirates of the Caribbean: The Curse of the Black Pearl",
+    "nameFr": "Pirates des Caraïbes : La Malédiction du Black Pearl",
     "aliases": [
       "pirates of the caribbean",
       "potc",
@@ -3002,6 +3029,7 @@
   {
     "id": "c-homealone",
     "name": "Home Alone",
+    "nameFr": "Maman, j'ai raté l'avion !",
     "domain": "cinema",
     "year": 1990,
     "genres": [
@@ -3126,6 +3154,7 @@
   {
     "id": "c-godfather2",
     "name": "The Godfather Part II",
+    "nameFr": "Le Parrain, 2e partie",
     "aliases": [
       "godfather 2"
     ],
@@ -3189,6 +3218,7 @@
   {
     "id": "c-schindler",
     "name": "Schindler's List",
+    "nameFr": "La Liste de Schindler",
     "domain": "cinema",
     "year": 1993,
     "genres": [
@@ -3250,6 +3280,7 @@
   {
     "id": "c-privateryan",
     "name": "Saving Private Ryan",
+    "nameFr": "Il faut sauver le soldat Ryan",
     "domain": "cinema",
     "year": 1998,
     "genres": [
@@ -3310,6 +3341,7 @@
   {
     "id": "c-rotk",
     "name": "The Lord of the Rings: The Return of the King",
+    "nameFr": "Le Seigneur des anneaux : Le Retour du roi",
     "aliases": [
       "return of the king",
       "rotk"
@@ -3374,6 +3406,7 @@
   {
     "id": "c-empire",
     "name": "The Empire Strikes Back",
+    "nameFr": "L'Empire contre-attaque",
     "aliases": [
       "empire strikes back",
       "star wars episode v"
@@ -3439,6 +3472,7 @@
   {
     "id": "c-azkaban",
     "name": "Harry Potter and the Prisoner of Azkaban",
+    "nameFr": "Harry Potter et le Prisonnier d'Azkaban",
     "aliases": [
       "prisoner of azkaban"
     ],
@@ -3502,6 +3536,7 @@
   {
     "id": "c-avengers",
     "name": "The Avengers",
+    "nameFr": "Avengers",
     "aliases": [
       "avengers assemble",
       "avengers 2012"
@@ -3688,6 +3723,7 @@
   {
     "id": "c-departed",
     "name": "The Departed",
+    "nameFr": "Les Infiltrés",
     "domain": "cinema",
     "year": 2006,
     "genres": [
@@ -4103,6 +4139,7 @@
   {
     "id": "c-arrival",
     "name": "Arrival",
+    "nameFr": "Premier Contact",
     "domain": "cinema",
     "year": 2016,
     "genres": [
@@ -4158,6 +4195,7 @@
   {
     "id": "c-up",
     "name": "Up",
+    "nameFr": "Là-haut",
     "domain": "cinema",
     "year": 2009,
     "genres": [
@@ -4394,6 +4432,7 @@
   {
     "id": "c-insideout",
     "name": "Inside Out",
+    "nameFr": "Vice-versa",
     "domain": "cinema",
     "year": 2015,
     "genres": [
@@ -4450,6 +4489,7 @@
   {
     "id": "c-incredibles",
     "name": "The Incredibles",
+    "nameFr": "Les Indestructibles",
     "domain": "cinema",
     "year": 2004,
     "genres": [
@@ -4511,6 +4551,7 @@
   {
     "id": "c-beautybeast",
     "name": "Beauty and the Beast",
+    "nameFr": "La Belle et la Bête",
     "domain": "cinema",
     "year": 1991,
     "genres": [
@@ -4631,6 +4672,7 @@
   {
     "id": "c-moana",
     "name": "Moana",
+    "nameFr": "Vaiana, la légende du bout du monde",
     "domain": "cinema",
     "year": 2016,
     "genres": [
@@ -4746,6 +4788,7 @@
   {
     "id": "c-httyd",
     "name": "How to Train Your Dragon",
+    "nameFr": "Dragons",
     "domain": "cinema",
     "year": 2010,
     "genres": [
@@ -4858,6 +4901,7 @@
   {
     "id": "c-panslabyrinth",
     "name": "Pan's Labyrinth",
+    "nameFr": "Le Labyrinthe de Pan",
     "domain": "cinema",
     "year": 2006,
     "genres": [
@@ -5031,6 +5075,7 @@
   {
     "id": "c-se7en",
     "name": "Se7en",
+    "nameFr": "Seven",
     "aliases": [
       "seven"
     ],
@@ -5094,6 +5139,7 @@
   {
     "id": "c-exorcist",
     "name": "The Exorcist",
+    "nameFr": "L'Exorciste",
     "domain": "cinema",
     "year": 1973,
     "genres": [
@@ -5153,6 +5199,7 @@
   {
     "id": "c-halloween",
     "name": "Halloween",
+    "nameFr": "La Nuit des masques",
     "domain": "cinema",
     "year": 1978,
     "genres": [
@@ -5209,6 +5256,7 @@
   {
     "id": "c-elmstreet",
     "name": "A Nightmare on Elm Street",
+    "nameFr": "Les Griffes de la nuit",
     "aliases": [
       "nightmare on elm street"
     ],
@@ -5333,6 +5381,7 @@
   {
     "id": "c-it",
     "name": "It",
+    "nameFr": "Ça",
     "aliases": [
       "it 2017"
     ],
@@ -5455,6 +5504,7 @@
   {
     "id": "c-crouchingtiger",
     "name": "Crouching Tiger, Hidden Dragon",
+    "nameFr": "Tigre et Dragon",
     "domain": "cinema",
     "year": 2000,
     "genres": [
@@ -5569,6 +5619,7 @@
   {
     "id": "c-traintobusan",
     "name": "Train to Busan",
+    "nameFr": "Dernier train pour Busan",
     "domain": "cinema",
     "year": 2016,
     "genres": [
@@ -5625,6 +5676,7 @@
   {
     "id": "c-cityofgod",
     "name": "City of God",
+    "nameFr": "La Cité de Dieu",
     "domain": "cinema",
     "year": 2002,
     "genres": [
@@ -5681,6 +5733,7 @@
   {
     "id": "c-intouchables",
     "name": "The Intouchables",
+    "nameFr": "Intouchables",
     "aliases": [
       "intouchables"
     ],
@@ -5739,6 +5792,7 @@
   {
     "id": "c-leon",
     "name": "Léon: The Professional",
+    "nameFr": "Léon",
     "aliases": [
       "leon",
       "the professional"
@@ -5803,6 +5857,7 @@
   {
     "id": "c-fifthelement",
     "name": "The Fifth Element",
+    "nameFr": "Le Cinquième Élément",
     "domain": "cinema",
     "year": 1997,
     "genres": [
@@ -5862,6 +5917,7 @@
   {
     "id": "c-diehard",
     "name": "Die Hard",
+    "nameFr": "Piège de cristal",
     "domain": "cinema",
     "year": 1988,
     "genres": [

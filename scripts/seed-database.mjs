@@ -9,6 +9,7 @@
 //   1. Import  — optional, `--import=<provider>:<file>` (anilist, musicbrainz, tmdb, igdb, file). Repeatable.
 //                Importers fill the factual fields; clue fields (emoji, quote/tracks, item, location,
 //                audio.clue + audio.query, visual) are creative and written by hand.
+//   1b. French — French titles and boss answer spellings from scripts/data/.
 //   2. Wikis   — checks every `fandom` slug / `fandom:` source exists (renamed wikis show their new slug).
 //   3. Media   — covers, item and location images (Wikipedia + Fandom), YouTube clips with YOUTUBE_API_KEY.
 //   4. Puzzles — Connections tile images, then Boss Battle portraits and cards.
@@ -59,6 +60,7 @@ try {
     const [provider, file] = spec.split(':');
     run('import.mjs', provider === 'file' ? ['file', file] : [provider, `--list=${file}`]);
   }
+  run('add-french-titles.mjs');
   if (!flags['skip-wikis']) await checkWikis();
   if (!flags['no-media']) {
     const mediaArgs = [flags.force && '--force', flags['no-clips'] && '--no-youtube'].filter(Boolean);

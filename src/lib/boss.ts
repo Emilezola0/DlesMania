@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { BlitzPrompt, Boss, BossCard } from '../types';
 import { pick, shuffle } from './rng';
-import { normalize } from './text';
+import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
 
 export const PHASES = [
   { name: 'Knowledge Blitz', roman: 'I', how: 'Type names before the timer runs out — each valid answer is accepted as you type.' },
@@ -44,26 +44,34 @@ export function drawFinale(boss: Boss, rand: () => number): BossCard[] {
   return shuffle(boss.finale, rand).slice(0, FINALE_TARGETS);
 }
 
-/** Every spelling of a name, normalised. */
-export const spellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(normalize).filter(Boolean);
+/** Every spelling of an answer (English, French, nicknames), compacted for exact comparison. */
+const compactSpellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(compactText).filter(Boolean);
 
 /**
  * Knowledge Blitz matching: the answer `text` names, if any.
- * `exact` is false when a longer answer still starts with the text ("son" vs "son goku"),
- * so the input waits for Enter or a pause before accepting it.
+ * While typing (`typos` false) only exact spellings count — accents, case and punctuation aside —
+ * so "kayl" never becomes Kayn on its way to Kayle. On Enter or after a pause, small typos are
+ * forgiven too (`typo` is then true on the result).
+ * `exact` is false when a longer answer still starts with the text ("ron" vs "ron weasley" is fine,
+ * but "android 1" could still become "android 16"), so the input waits before accepting it.
  */
-export function matchAnswer(prompt: BlitzPrompt, text: string, found: Set<string>) {
-  const q = normalize(text);
+export function matchAnswer(prompt: BlitzPrompt, text: string, found: Set<string>, typos = false) {
+  const q = compactText(text);
   if (!q) return null;
-  const hit = prompt.answers.find((a) => spellings(a.name, a.aliases).includes(q));
-  if (!hit) return null;
-  const ambiguous = prompt.answers.some(
-    (a) => a !== hit && !found.has(a.name) && spellings(a.name, a.aliases).some((s) => s.startsWith(`${q} `)),
-  );
-  return { name: hit.name, already: found.has(hit.name), exact: !ambiguous };
+  const hit = prompt.answers.find((a) => compactSpellings(a.name, a.aliases).includes(q));
+  if (hit) {
+    const ambiguous = prompt.answers.some(
+      (a) => a !== hit && !found.has(a.name) && compactSpellings(a.name, a.aliases).some((s) => s.length > q.length && s.startsWith(q)),
+    );
+    return { name: hit.name, already: found.has(hit.name), exact: !ambiguous, typo: false };
+  }
+  if (!typos) return null;
+  const best = findBestMatch(text, prompt.answers, (a) => [a.name, ...a.aliases]);
+  return best ? { name: best.item.name, already: found.has(best.item.name), exact: true, typo: true } : null;
 }
 
-export const namesCard = (card: BossCard, text: string) => spellings(card.label, card.aliases).includes(normalize(text));
+/** Final Blow: whether `text` names the card (any spelling, small typos forgiven). */
+export const namesCard = (card: BossCard, text: string) => isFuzzyMatch(text, [card.label, ...(card.aliases ?? [])]);
 
 export interface BattleStats {
   phasesCleared: number;

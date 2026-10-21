@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { RADAR_MAX_ERRORS, type RadarCard } from '../lib/boss';
 import { sfx } from '../lib/sfx';
+import { useUi } from '../store/ui';
 import type { PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
 
@@ -64,6 +65,7 @@ export function RadarDefense({ cards, franchise, onEvent, onDone }: Props) {
   decideRef.current = decide;
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (useUi.getState().rules) return;
       if (e.key === 'ArrowRight') decideRef.current(true);
       else if (e.key === 'ArrowLeft') decideRef.current(false);
       else return;

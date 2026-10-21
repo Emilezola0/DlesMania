@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FINALE_PENALTY_MS, FINALE_SECONDS, namesCard } from '../lib/boss';
 import { sfx } from '../lib/sfx';
-import { normalize } from '../lib/text';
+import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
 import type { BossCard, PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
 
 interface Props {
   targets: BossCard[];
-  /** Names offered as suggestions: the targets hidden among the franchise's other cards. */
-  pool: string[];
+  /** Suggestions: the targets hidden among the franchise's other cards (any spelling finds them). */
+  pool: BossCard[];
   onEvent: (good: boolean) => void;
   onDone: (result: PhaseResult) => void;
 }
@@ -52,11 +52,10 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
     return () => clearInterval(id);
   }, [index, over, total]);
 
-  const suggestions = useMemo(() => {
-    const q = normalize(text);
-    if (!q) return [];
-    return pool.filter((n) => normalize(n).includes(q)).slice(0, 6);
-  }, [pool, text]);
+  const suggestions = useMemo(
+    () => (text.trim() ? rankBySearch(text, pool, (c) => [c.label, ...(c.aliases ?? [])], 6).map((c) => c.label) : []),
+    [pool, text],
+  );
 
   const guess = (value: string) => {
     if (over || solved || !value.trim()) return;
@@ -138,7 +137,11 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
             } else if (e.key === 'ArrowUp') {
               e.preventDefault();
               setActive((a) => Math.max(a - 1, 0));
-            } else if (e.key === 'Enter') guess(suggestions[active] ?? text);
+            } else if (e.key === 'Enter') {
+              // What was typed wins when it already names the target (typos forgiven); otherwise the highlighted suggestion.
+              const typedHits = isFuzzyMatch(text, [target.label, ...(target.aliases ?? [])]);
+              guess(typedHits ? text : (suggestions[active] ?? text));
+            }
           }}
           placeholder="Name it — a wrong answer burns 2 seconds"
           autoComplete="off"

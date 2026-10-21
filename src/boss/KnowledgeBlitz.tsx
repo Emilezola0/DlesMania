@@ -36,11 +36,11 @@ export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
     });
   };
 
-  const accept = (name: string) => {
+  const accept = (name: string, typo = false) => {
     const next = [...found, name];
     setFound(next);
     setText('');
-    setNote({ text: name, good: true, key: Date.now() });
+    setNote({ text: typo ? `${name} (typo forgiven)` : name, good: true, key: Date.now() });
     sfx.correct();
     onEvent(true);
     if (next.length >= prompt.count) finish(true, next);
@@ -48,7 +48,8 @@ export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
 
   const tryText = (value: string, submitted: boolean) => {
     clearTimeout(pending.current);
-    const m = matchAnswer(prompt, value, new Set(found));
+    // Exact spellings are accepted as you type; typos only on Enter or after a pause.
+    const m = matchAnswer(prompt, value, new Set(found), submitted);
     if (m?.already) {
       if (submitted) {
         setNote({ text: `${m.name} — already named`, good: false, key: Date.now() });
@@ -56,10 +57,16 @@ export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
       }
       return;
     }
-    if (m && (m.exact || submitted)) return accept(m.name);
-    // A shorter answer that's also the start of a longer one waits for a pause.
-    if (m) pending.current = window.setTimeout(() => accept(m.name), 900);
-    else if (submitted && value.trim()) {
+    if (m && (m.exact || submitted)) return accept(m.name, m.typo);
+    if (!submitted) {
+      // A shorter answer that's also the start of a longer one, or a near miss, waits for a pause.
+      pending.current = window.setTimeout(() => {
+        const late = m ?? matchAnswer(prompt, value, new Set(found), true);
+        if (late && !late.already) accept(late.name, late.typo);
+      }, 900);
+      return;
+    }
+    if (value.trim()) {
       setWrong((w) => w + 1);
       setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
       sfx.wrong();

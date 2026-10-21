@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { matchesQuery } from '../lib/text';
+import { workNames } from '../lib/text';
+import { rankBySearch, searchScore } from '../utils/textMatcher';
 import type { Work } from '../types';
 
 interface Props {
@@ -19,7 +20,7 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
   useEffect(() => inputRef.current?.focus({ preventScroll: true }), []);
 
   const results = useMemo(
-    () => pool.filter((w) => !exclude.includes(w.id) && matchesQuery(w, query)).slice(0, 7),
+    () => rankBySearch(query, pool.filter((w) => !exclude.includes(w.id)), workNames),
     [pool, exclude, query],
   );
 
@@ -78,7 +79,13 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
                   i === active ? 'bg-accent-soft' : 'hover:bg-tile'
                 }`}
               >
-                <span className="font-medium">{w.name}</span>
+                <span className="font-medium">
+                  {w.name}
+                  {/* Show the French title when that's what the player typed. */}
+                  {w.nameFr && (searchScore(query, w.nameFr) ?? 9) < (searchScore(query, w.name) ?? 9) && (
+                    <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {w.nameFr}</span>
+                  )}
+                </span>
                 <span className="shrink-0 text-xs text-ink-soft">
                   {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}
                 </span>
