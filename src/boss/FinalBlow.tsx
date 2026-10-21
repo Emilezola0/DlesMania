@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { namesCard, type DifficultySpec } from '../lib/boss';
+import { escalated, finaleSeconds, namesCard, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
 import type { BossCard, PhaseResult } from '../types';
@@ -10,6 +10,8 @@ interface Props {
   /** Suggestions: the targets hidden among the franchise's other cards (any spelling finds them). */
   pool: BossCard[];
   difficulty: DifficultySpec;
+  /** Which loop of the phase (0 = first); Hard's second loop is escalated. */
+  loop: number;
   onEvent: (good: boolean) => void;
   onDone: (result: PhaseResult) => void;
 }
@@ -33,8 +35,9 @@ function useSpotlight(active: boolean, every: number) {
 }
 
 /** Phase III: name flickering, half-hidden faces before the timer burns out. */
-export function FinalBlow({ targets, pool, difficulty: d, onEvent, onDone }: Props) {
-  const total = d.finaleSeconds * 1000;
+export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone }: Props) {
+  const esc = escalated(d, loop) ? d.secondLoop!.finale : null;
+  const total = finaleSeconds(d, loop) * 1000;
   const look = LOOK[d.distortion];
   const [index, setIndex] = useState(0);
   const [text, setText] = useState('');
@@ -48,6 +51,28 @@ export function FinalBlow({ targets, pool, difficulty: d, onEvent, onDone }: Pro
   const input = useRef<HTMLInputElement>(null);
   const target = targets[index];
   const spot = useSpotlight(!over && !solved, look.every);
+  // Second loop: each face is zoomed in hard on its own spot.
+  const zoom = useMemo(
+    () => (esc ? targets.map(() => ({ scale: esc.zoom[0] + Math.random() * (esc.zoom[1] - esc.zoom[0]), x: 20 + Math.random() * 60, y: 10 + Math.random() * 50 })) : null),
+    [esc, targets],
+  );
+  // Bait: a wrong name flashes over the picture now and then.
+  const [ghost, setGhost] = useState<string | null>(null);
+  useEffect(() => {
+    if (!esc?.ghostNames || over || solved) return;
+    const others = pool.filter((c) => c.label !== targets[index]?.label);
+    let off = 0;
+    const id = window.setInterval(() => {
+      if (Math.random() >= esc.ghostNames || !others.length) return;
+      setGhost(others[Math.floor(Math.random() * others.length)].label);
+      off = window.setTimeout(() => setGhost(null), 320);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+      clearTimeout(off);
+      setGhost(null);
+    };
+  }, [esc, over, solved, pool, targets, index]);
 
   useEffect(() => targets.forEach((t) => t.image && (new Image().src = t.image)), [targets]);
   useEffect(() => input.current?.focus({ preventScroll: true }), [index]);
@@ -104,17 +129,25 @@ export function FinalBlow({ targets, pool, difficulty: d, onEvent, onDone }: Pro
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-coral">Final blow · {index + 1} / {targets.length}</p>
+        <p className="font-display text-xs uppercase tracking-[0.3em] text-coral">
+          Final blow · {index + 1} / {targets.length}
+          {esc && <span className="boss-secret-title ml-2 font-bold">· Escalation</span>}
+        </p>
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">Who — or what — is this?</h3>
       </div>
 
-      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
+      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} fakeDrops={esc?.fakeTimerDrops} />
 
       <div key={shakeKey} className={`relative mx-auto aspect-square w-full max-w-xs ${shakeKey ? 'animate-shake' : ''}`}>
         <div className={`boss-glow absolute -inset-2 rounded-lg ${solved ? 'opacity-0' : ''}`} aria-hidden />
         <div className="relative size-full overflow-hidden rounded-md border-2 border-coral/70 bg-[#141018]">
           {/* Medium/Hard: the picture also turns and shifts colour (Hard flips and inverts it too). */}
           <div className={`absolute inset-0 ${clear ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}>
+          <div
+            key={`zoom-${index}`}
+            className={`absolute inset-0 ${zoom && !clear ? 'boss-zoom-in' : ''}`}
+            style={zoom && !clear ? ({ '--zoom': zoom[index].scale, transformOrigin: `${zoom[index].x}% ${zoom[index].y}%`, animationDuration: `${total}ms` } as React.CSSProperties) : undefined}
+          >
           {target?.image && (
             <img
               key={target.label}
@@ -126,6 +159,12 @@ export function FinalBlow({ targets, pool, difficulty: d, onEvent, onDone }: Pro
             />
           )}
           </div>
+          </div>
+          {ghost && (
+            <span className="pointer-events-none absolute inset-0 grid place-items-center p-3 text-center font-display text-2xl font-bold text-white/85 [text-shadow:0_2px_8px_rgb(0_0_0/0.8)]" aria-hidden>
+              {ghost}?
+            </span>
+          )}
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">
               ✓ {solved}

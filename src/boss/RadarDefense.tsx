@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Glyph } from '../components/Glyph';
-import { radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
+import { escalated, radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { useUi } from '../store/ui';
 import type { PhaseResult } from '../types';
@@ -10,6 +10,8 @@ interface Props {
   cards: RadarCard[];
   franchise: string;
   difficulty: DifficultySpec;
+  /** Which loop of this phase (0 = first); Hard's second loop is the escalated one. */
+  loop: number;
   onEvent: (good: boolean) => void;
   onDone: (result: PhaseResult) => void;
 }
@@ -57,7 +59,7 @@ function Clutter({ seeds, fast }: { seeds: number[]; fast: boolean }) {
  * Medium/Hard disguise the cards (colour shifts, spin, fading, clutter); Hard also reverses the zones on
  * some cards, flashes decoy zones, penalises swipes made before a card has settled, and hides the seconds.
  */
-export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone }: Props) {
+export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, onDone }: Props) {
   const [index, setIndex] = useState(0);
   const [errors, setErrors] = useState(0);
   const [correct, setCorrect] = useState(0);
@@ -69,7 +71,8 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
   const start = useRef<number | null>(null);
   const appearedAt = useRef(performance.now());
   const card = cards[index];
-  const ms = radarCardMs(d, index);
+  const ms = radarCardMs(d, index, loop);
+  const esc = escalated(d, loop);
   const maxErrors = d.radarMaxErrors;
 
   // Preload the whole wave so cards never pop in late.
@@ -79,7 +82,8 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
   useEffect(() => {
     appearedAt.current = performance.now();
     const timers: number[] = [];
-    if (card?.fx?.reversed) {
+    // Real reversals and fake ones (escalated loop) show the same warning: read the zone labels.
+    if (card?.fx?.reversed || card?.fx?.fakeReversed) {
       setWarnReversed(true);
       timers.push(window.setTimeout(() => setWarnReversed(false), 700));
     }
@@ -161,6 +165,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
           Card {Math.min(index + 1, cards.length)} / {cards.length}
+          {esc && <span className="boss-secret-title ml-2 font-bold text-coral">· Escalation</span>}
         </p>
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">
           Does it belong to <span className="text-accent">{franchise}</span>?
@@ -210,12 +215,14 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
                 setDrag(0);
               }}
               className={`page flex cursor-grab touch-none select-none flex-col overflow-hidden rounded-md p-2 active:cursor-grabbing ${
-                fling ? '' : drag ? '' : 'boss-card-in'
+                fling ? '' : drag ? '' : fx?.lean ? 'boss-card-in boss-lean' : 'boss-card-in'
               }`}
               style={{
                 // Inline because `.page` sets position: relative, which would win over the `absolute` utility.
                 position: 'absolute',
                 inset: 0,
+                // Bait: the card drifts towards the wrong zone as it arrives.
+                ...(fx?.lean && !fling && !drag ? ({ '--lean': `${fx.lean}px` } as React.CSSProperties) : {}),
                 transform: fling
                   ? `translateX(${fling.zone === 'right' ? 160 : -160}%) rotate(${fling.zone === 'right' ? 24 : -24}deg)`
                   : `translateX(${drag}px) rotate(${drag / 18}deg)`,
@@ -234,10 +241,14 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
                       src={shown.image}
                       alt=""
                       draggable={false}
-                      className={`pointer-events-none size-full scale-110 object-cover object-top ${fx && !fling ? (d.distortion === 2 ? 'boss-fade-fast' : 'boss-fade') : ''}`}
+                      className={`pointer-events-none size-full object-cover object-top ${fx?.zoom && !fling ? 'boss-zoom' : 'scale-110'} ${fx && !fling ? (d.distortion === 2 ? 'boss-fade-fast' : 'boss-fade') : ''}`}
                       style={
                         fx && !fling
-                          ? { filter: `hue-rotate(${fx.hue}deg) saturate(${fx.saturate})${fx.invert ? ' invert(1)' : ''}` }
+                          ? ({
+                              filter: `hue-rotate(${fx.hue}deg) saturate(${fx.saturate})${fx.invert ? ' invert(1)' : ''}`,
+                              // Escalated loop: zoomed in hard on a random spot, pushing in further.
+                              ...(fx.zoom ? { '--zoom': fx.zoom.scale, transformOrigin: `${fx.zoom.x}% ${fx.zoom.y}%`, animationDuration: `${ms}ms, 0.8s` } : {}),
+                            } as React.CSSProperties)
                           : undefined
                       }
                     />
@@ -284,7 +295,8 @@ export function RadarDefense({ cards, franchise, difficulty: d, onEvent, onDone 
       </div>
       <p className="text-center text-xs text-ink-faint">
         Swipe the card, use the buttons, or press ← / →.
-        {d.distortion === 2 && ' Watch for reversed zones — and wait for each card to settle.'}
+        {d.distortion === 2 && !esc && ' Watch for reversed zones — and wait for each card to settle.'}
+        {esc && ' Escalation: trust only the zone labels — warnings, glows and drifting cards may lie.'}
       </p>
     </div>
   );

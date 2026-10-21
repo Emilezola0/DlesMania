@@ -25,6 +25,7 @@
     "distortion": 0,
     "parSeconds": 300,
     "scoreMultiplier": 1,
+    "secondLoop": null,
     "secret": null
   },
   "medium": {
@@ -53,6 +54,7 @@
     "distortion": 1,
     "parSeconds": 420,
     "scoreMultiplier": 1.6,
+    "secondLoop": null,
     "secret": null
   },
   "hard": {
@@ -81,6 +83,37 @@
     "distortion": 2,
     "parSeconds": 600,
     "scoreMultiplier": 2.5,
+    "secondLoop": {
+      "blitz": {
+        "countDelta": -1,
+        "secondsPer": 5,
+        "glitchMs": 700,
+        "wobble": true,
+        "fakeTimerDrops": 0.4
+      },
+      "radar": {
+        "cards": 10,
+        "impostors": 5,
+        "speed": 0.65,
+        "zoom": [
+          1.9,
+          2.9
+        ],
+        "fakeReversed": 0.3,
+        "decoyRate": 0.85,
+        "baitLean": 0.45
+      },
+      "finale": {
+        "targets": 3,
+        "seconds": 6,
+        "zoom": [
+          2.2,
+          3.0
+        ],
+        "ghostNames": 0.6,
+        "fakeTimerDrops": 0.35
+      }
+    },
     "secret": {
       "picksToWin": 6,
       "turnSeconds": 12,

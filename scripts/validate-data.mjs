@@ -78,6 +78,12 @@ for (const pz of puzzles) {
 const perDomain = [...DOMAINS, 'mixed'].map((d) => `${d}:${puzzles.filter((p) => p.domain === d).length}`).join(' ');
 console.log(`connections ${puzzles.length} puzzles (${perDomain}) | fully illustrated: ${withImages}`);
 
+// Grid size and mistakes (src/data/settings.json): 2-4 groups of 4 tiles.
+const settings = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'settings.json'), 'utf8'));
+const cs = settings.connections ?? {};
+if (![2, 3, 4].includes(cs.groups)) fail(`settings: connections.groups must be 2, 3 or 4 (got ${cs.groups})`);
+if (!(cs.maxMistakes >= 1)) fail('settings: connections.maxMistakes must be >= 1');
+
 // Themed banks (src/data/connection-themes.json): grids are drawn from these at play time by
 // src/lib/connections.ts, which also checks each grid has a single solution.
 const themes = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'connection-themes.json'), 'utf8'));
@@ -135,6 +141,17 @@ for (const id of ['easy', 'medium', 'hard']) {
   if (!Array.isArray(d.rounds) || d.rounds.length !== 3 || d.rounds.some((n) => !(n >= 1))) fail(`${at}: "rounds" needs three counts >= 1`);
   if (d.radarImpostors >= d.radarCards) fail(`${at}: more impostors than cards`);
   if (![0, 1, 2].includes(d.distortion)) fail(`${at}: "distortion" must be 0, 1 or 2`);
+  const sl = d.secondLoop;
+  if (sl) {
+    if (!sl.blitz || !sl.radar || !sl.finale) fail(`${at}: secondLoop needs blitz, radar and finale`);
+    else {
+      if (!(sl.blitz.secondsPer > 0)) fail(`${at}: secondLoop.blitz.secondsPer must be > 0`);
+      if (!(sl.radar.cards > sl.radar.impostors && sl.radar.impostors >= 1)) fail(`${at}: secondLoop.radar needs more cards than impostors`);
+      if (!(sl.radar.speed > 0 && sl.radar.speed <= 1)) fail(`${at}: secondLoop.radar.speed must be in (0, 1]`);
+      if (!(sl.finale.targets >= 1 && sl.finale.seconds > 0)) fail(`${at}: secondLoop.finale needs targets >= 1 and seconds > 0`);
+      for (const z of [sl.radar.zoom, sl.finale.zoom]) if (!Array.isArray(z) || z.length !== 2 || !(z[0] >= 1 && z[1] >= z[0])) fail(`${at}: secondLoop zoom must be [min, max] with 1 <= min <= max`);
+    }
+  }
   const sc = d.secret;
   if (sc) {
     if (!(sc.picksToWin >= 1)) fail(`${at}: secret.picksToWin must be >= 1`);

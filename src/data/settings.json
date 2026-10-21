@@ -1,0 +1,6 @@
+{
+  "connections": {
+    "groups": 3,
+    "maxMistakes": 4
+  }
+}

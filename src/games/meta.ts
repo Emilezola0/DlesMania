@@ -1,3 +1,4 @@
+import settings from '../data/settings.json';
 import type { GameType } from '../types';
 
 export interface GameMeta {
@@ -19,7 +20,7 @@ export const GAME_META: Record<GameType, GameMeta> = {
   item: { type: 'item', name: 'Iconic Item', icon: '🗡️', tagline: 'Whose weapon, gadget or symbol is this?', maxAttempts: 6 },
   location: { type: 'location', name: 'Location', icon: '🗺️', tagline: 'Name the work from one of its places', maxAttempts: 6 },
   tiles: { type: 'tiles', name: 'Cover Puzzle', icon: '🔳', tagline: 'Unscramble the cover, then name it', maxAttempts: 6 },
-  connections: { type: 'connections', name: 'Connections', icon: '🔗', tagline: 'Find four groups of four', maxAttempts: 4 },
+  connections: { type: 'connections', name: 'Connections', icon: '🔗', tagline: 'Sort the tiles into groups of four', maxAttempts: settings.connections.maxMistakes },
 };
 
 export const GAME_TYPES = Object.keys(GAME_META) as GameType[];

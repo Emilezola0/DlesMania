@@ -39,6 +39,8 @@ export interface DifficultySpec {
   radarMs: { start: number; step: number; min: number };
   /** Swipes in the first ms after a card appears count as mistakes ("too early"). */
   radarLockMs: number;
+  /** Hard: each phase's second loop is shorter but much nastier; null = loops are alike. */
+  secondLoop: SecondLoop | null;
   finaleTargets: number;
   finaleSeconds: number;
   finalePenaltyMs: number;
@@ -58,28 +60,84 @@ export const DIFFICULTIES = Object.fromEntries(
   Object.entries(difficultyData).map(([id, spec]) => [id, { ...spec, id }]),
 ) as unknown as Record<Difficulty, DifficultySpec>;
 
+/**
+ * Hard's second loops: every phase's second round is shorter but much harder, with visual
+ * obstacles and bait cues meant to trick the player's reactions.
+ */
+export interface SecondLoop {
+  blitz: BlitzEscalation;
+  radar: RadarEscalation;
+  finale: FinaleEscalation;
+}
+
+/** Knowledge Blitz: fewer answers but far less time, a glitching prompt, a wobbling board, and a timer bar that sometimes fakes running out. */
+export interface BlitzEscalation {
+  countDelta: number;
+  secondsPer: number;
+  /** How often (ms) two letters of the prompt swap for a moment; 0 = never. */
+  glitchMs: number;
+  wobble: boolean;
+  /** Chance, every couple of seconds, that the timer bar flashes near-empty for a moment (it isn't). */
+  fakeTimerDrops: number;
+}
+
+/** Final Blow: fewer faces but a much shorter clock, the picture zoomed in hard, wrong names flashed over it, and fake timer drops. */
+export interface FinaleEscalation {
+  targets: number;
+  seconds: number;
+  zoom: [number, number];
+  /** Chance, about once a second, that a wrong name flashes over the picture. */
+  ghostNames: number;
+  fakeTimerDrops: number;
+}
+
+/**
+ * The second Radar Defense loop on Hard: fewer cards, faster timers, and the picture zoomed in hard
+ * on a random spot. Bait cues try to pull the player the wrong way — a "zones reversed" banner
+ * when they aren't, a card that drifts towards the wrong zone, decoy glows on the wrong zone.
+ */
+export interface RadarEscalation {
+  cards: number;
+  impostors: number;
+  /** Multiplier on each card's time (0.65 = 35% less). */
+  speed: number;
+  /** Zoom range on the picture. */
+  zoom: [number, number];
+  /** Chances per card of each bait cue. */
+  fakeReversed: number;
+  decoyRate: number;
+  baitLean: number;
+}
+
 export const DIFFICULTY_IDS = Object.keys(DIFFICULTIES) as Difficulty[];
 
 /** Boss life: one segment per round across the three phases. */
 export const totalRounds = (d: DifficultySpec) => d.rounds.reduce((a, b) => a + b, 0);
 
-/** Radar per-card time for the i-th card. */
-export const radarCardMs = (d: DifficultySpec, i: number) => Math.max(d.radarMs.min, d.radarMs.start - i * d.radarMs.step);
+/** Whether this loop of a phase (0 = first) is an escalated one. */
+export const escalated = (d: DifficultySpec, loop: number) => loop > 0 && !!d.secondLoop;
+
+/** Radar per-card time for the i-th card of a loop. */
+export const radarCardMs = (d: DifficultySpec, i: number, loop = 0) =>
+  Math.round(Math.max(d.radarMs.min, d.radarMs.start - i * d.radarMs.step) * (escalated(d, loop) ? d.secondLoop!.radar.speed : 1));
 
 /**
  * One attempt's Knowledge Blitz: harder levels ask for more answers (never more than the list
  * can bear), and the number in the prompt follows ("Name 5" → "Name 7").
  */
-export function drawBlitz(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = []): BlitzPrompt {
+export function drawBlitz(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = [], loop = 0): BlitzPrompt {
   const fresh = boss.blitz.filter((p) => !avoid.includes(p.prompt));
   const base = pick(fresh.length ? fresh : boss.blitz, rand);
-  const count = Math.max(base.count, Math.min(base.count + d.blitzExtra, base.answers.length - 2));
+  const full = Math.max(base.count, Math.min(base.count + d.blitzExtra, base.answers.length - 2));
+  // Second loop: a shorter list (but never below 3 answers).
+  const count = escalated(d, loop) ? Math.max(3, Math.min(full, full + d.secondLoop!.blitz.countDelta)) : full;
   const prompt = count === base.count ? base.prompt : base.prompt.replace(/\b\d+\b/, String(count));
   return { ...base, prompt, count };
 }
 
 /** Seconds for a Knowledge Blitz prompt. */
-export const blitzSeconds = (p: BlitzPrompt, d: DifficultySpec) => p.count * d.blitzSecondsPer;
+export const blitzSeconds = (p: BlitzPrompt, d: DifficultySpec, loop = 0) =>
+  p.count * (escalated(d, loop) ? d.secondLoop!.blitz.secondsPer : d.blitzSecondsPer);
 
 /** How a Radar card is disguised (Medium and Hard). */
 export interface RadarFx {
@@ -95,6 +153,12 @@ export interface RadarFx {
   decoy: 'left' | 'right' | null;
   /** Seeds for the clutter glyphs drifting over the picture. */
   clutter: number[];
+  /** Escalated loop: zoom on a spot of the picture (scale, origin in %). */
+  zoom?: { scale: number; x: number; y: number };
+  /** Bait: a "zones reversed" warning on a card whose zones are normal. */
+  fakeReversed?: boolean;
+  /** Bait: the card drifts this many px (towards the wrong zone) as it appears. */
+  lean?: number;
 }
 
 export interface RadarCard extends BossCard {
@@ -117,24 +181,47 @@ function radarFx(level: 0 | 1 | 2, index: number, rand: () => number): RadarFx |
   };
 }
 
-export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number): RadarCard[] {
-  const members = shuffle(boss.radar.members, rand).slice(0, d.radarCards - d.radarImpostors);
-  const impostors = shuffle(boss.radar.impostors, rand).slice(0, d.radarImpostors);
+export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number, loop = 0): RadarCard[] {
+  const esc = escalated(d, loop) ? d.secondLoop!.radar : null;
+  const cards = esc?.cards ?? d.radarCards;
+  const impostorCount = esc?.impostors ?? d.radarImpostors;
+  const members = shuffle(boss.radar.members, rand).slice(0, cards - impostorCount);
+  const impostors = shuffle(boss.radar.impostors, rand).slice(0, impostorCount);
   // Never open on an impostor: the first card teaches the gesture.
   const [first, ...rest] = members;
   const order = [
     { ...first, belongs: true },
     ...shuffle([...rest.map((c) => ({ ...c, belongs: true })), ...impostors.map((c) => ({ ...c, belongs: false }))], rand),
   ];
-  return order.map((c, i) => ({ ...c, fx: radarFx(d.distortion, i, rand) }));
+  return order.map((c, i) => {
+    const fx = radarFx(d.distortion, i, rand);
+    if (!esc || !fx) return { ...c, fx };
+    // The wrong zone for this card: where a player fooled by the bait would send it.
+    const belongsSide = fx.reversed ? 'left' : 'right';
+    const wrongSide = c.belongs ? (belongsSide === 'left' ? 'right' : 'left') : belongsSide;
+    return {
+      ...c,
+      fx: {
+        ...fx,
+        zoom: { scale: esc.zoom[0] + rand() * (esc.zoom[1] - esc.zoom[0]), x: 15 + rand() * 70, y: 10 + rand() * 60 },
+        fakeReversed: !fx.reversed && i > 0 && rand() < esc.fakeReversed,
+        decoy: rand() < esc.decoyRate ? wrongSide : fx.decoy,
+        lean: rand() < esc.baitLean ? (wrongSide === 'right' ? 1 : -1) * (28 + rand() * 20) : 0,
+      },
+    };
+  });
 }
 
 /** Final Blow targets, avoiding faces already shown earlier in this fight where possible. */
-export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = []): BossCard[] {
+export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = [], loop = 0): BossCard[] {
+  const targets = escalated(d, loop) ? d.secondLoop!.finale.targets : d.finaleTargets;
   const fresh = boss.finale.filter((c) => !avoid.includes(c.label));
-  const pool = fresh.length >= d.finaleTargets ? fresh : boss.finale;
-  return shuffle(pool, rand).slice(0, d.finaleTargets);
+  const pool = fresh.length >= targets ? fresh : boss.finale;
+  return shuffle(pool, rand).slice(0, targets);
 }
+
+/** Final Blow seconds per face for a loop. */
+export const finaleSeconds = (d: DifficultySpec, loop = 0) => (escalated(d, loop) ? d.secondLoop!.finale.seconds : d.finaleSeconds);
 
 /**
  * Each exchange uses up two entities of one category (the boss's and the player's), so a category

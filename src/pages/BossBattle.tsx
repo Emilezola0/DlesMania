@@ -92,13 +92,13 @@ function BossBattle({ boss }: { boss: Boss }) {
   // Fresh content for every round and attempt.
   const content = useMemo(() => {
     const rand = Math.random;
-    const blitz = drawBlitz(boss, d, rand, usedPrompts.current);
-    const finale = drawFinale(boss, d, rand, usedFaces.current);
+    const blitz = drawBlitz(boss, d, rand, usedPrompts.current, round);
+    const finale = drawFinale(boss, d, rand, usedFaces.current, round);
     const seen = new Set<string>();
     const pool = [...boss.finale, ...boss.radar.members]
       .filter((c) => !seen.has(c.label) && seen.add(c.label))
       .sort((a, b) => a.label.localeCompare(b.label));
-    return { blitz, radar: drawRadar(boss, d, rand), finale, pool };
+    return { blitz, radar: drawRadar(boss, d, rand, round), finale, pool };
   }, [boss, d, phase, round, attempt, run]);
 
   // Small feedback inside a phase: a jolt on mistakes.
@@ -418,9 +418,9 @@ function BossBattle({ boss }: { boss: Boss }) {
 
         {stage === 'fight' && (
           <div key={`${run}-${phase}-${round}-${attempt}`} className="animate-round-in">
-            {phase === 0 && <KnowledgeBlitz prompt={content.blitz} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
-            {phase === 1 && <RadarDefense cards={content.radar} franchise={boss.franchise} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
-            {phase === 2 && <FinalBlow targets={content.finale} pool={content.pool} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
+            {phase === 0 && <KnowledgeBlitz prompt={content.blitz} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
+            {phase === 1 && <RadarDefense cards={content.radar} franchise={boss.franchise} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
+            {phase === 2 && <FinalBlow targets={content.finale} pool={content.pool} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
             {secretPhase && secret && (
               <NameChain
                 secret={secret}

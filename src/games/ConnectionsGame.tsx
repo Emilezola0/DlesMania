@@ -1,11 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Outcome } from '../components/Outcome';
-import { getPuzzle } from '../lib/connections';
+import { CONNECTIONS, fitPuzzle, getPuzzle } from '../lib/connections';
 import { mulberry32, shuffle } from '../lib/rng';
 import { scoreFor } from '../lib/scoring';
 import { sfx } from '../lib/sfx';
 import type { ConnectionsLevel, GameProps } from '../types';
-import { GAME_META } from './meta';
 
 /** NYT-style difficulty ranks (yellow → green → blue → purple), as soft pastel plates. */
 export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string; name: string }> = {
@@ -15,12 +14,16 @@ export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string
   3: { tile: 'bg-lv3 text-on-pastel', emoji: '🟪', name: 'Tricky' },
 };
 
+const COUNT_WORD: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four' };
+
 /** Tile ids are "<group>-<index>", so the group of a tile is its prefix. */
 const groupOf = (tileId: string) => Number(tileId.split('-')[0]);
 
 export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
-  const puzzle = getPuzzle(spec.puzzleId)!;
-  const maxMistakes = GAME_META.connections.maxAttempts;
+  const puzzle = useMemo(() => fitPuzzle(getPuzzle(spec.puzzleId)!, spec.seed), [spec.puzzleId, spec.seed]);
+  const maxMistakes = CONNECTIONS.maxMistakes;
+  const groupCount = puzzle.groups.length;
+  const size = CONNECTIONS.groupSize;
   const tile = (id: string) => puzzle.groups[groupOf(id)].items[Number(id.split('-')[1])];
   // Pictures only when every tile has one: a lone text tile would give its group away.
   const [brokenImage, setBrokenImage] = useState(false);
@@ -49,7 +52,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
 
   const toggle = (id: string) => {
     if (done || hopping) return;
-    if (!selected.includes(id) && selected.length >= 4) return;
+    if (!selected.includes(id) && selected.length >= size) return;
     sfx.select();
     setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
   };
@@ -66,7 +69,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
       const isCorrect = new Set(groups).size === 1;
       const newSolved = solved.length + (isCorrect ? 1 : 0);
       const newMistakes = mistakes + (isCorrect ? 0 : 1);
-      const won = newSolved === 4;
+      const won = newSolved === groupCount;
       const lost = newMistakes >= maxMistakes;
 
       if (isCorrect) {
@@ -85,17 +88,17 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
         guesses,
         score: won ? scoreFor('connections', guesses.length, newMistakes) : lost ? newSolved * 10 : 0,
       });
-    }, 4 * 90 + 250);
+    }, size * 90 + 250);
   };
 
   return (
     <div className="space-y-5">
       {puzzle.theme ? (
         <p className="text-center text-ink-soft">
-          Every tile comes from <span className="font-semibold text-ink">{puzzle.theme}</span>. Find four groups of four.
+          Every tile comes from <span className="font-semibold text-ink">{puzzle.theme}</span>. Find {COUNT_WORD[groupCount]} groups of four.
         </p>
       ) : (
-        <p className="text-center text-ink-soft">Create four groups of four.</p>
+        <p className="text-center text-ink-soft">Create {COUNT_WORD[groupCount]} groups of four.</p>
       )}
 
       <div className="relative space-y-2">
@@ -185,7 +188,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
             <button
               type="button"
               onClick={submit}
-              disabled={selected.length !== 4 || hopping}
+              disabled={selected.length !== size || hopping}
               className="btn-accent rounded-md px-5 py-2 font-display text-xs font-semibold tracking-wider"
             >
               Submit
@@ -201,7 +204,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
         </>
       )}
 
-      <Outcome record={record} answerLabel={done ? `${solved.length} / 4 groups found` : undefined} />
+      <Outcome record={record} answerLabel={done ? `${solved.length} / ${groupCount} groups found` : undefined} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { blitzSeconds, matchAnswer, type DifficultySpec } from '../lib/boss';
+import { blitzSeconds, escalated, matchAnswer, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import type { BlitzPrompt, PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
@@ -8,12 +8,41 @@ interface Props {
   prompt: BlitzPrompt;
   onEvent: (good: boolean) => void;
   difficulty: DifficultySpec;
+  /** Which loop of the phase (0 = first); Hard's second loop is escalated. */
+  loop: number;
   onDone: (result: PhaseResult) => void;
 }
 
 /** Phase I: name N things before the timer runs out. Answers are accepted as you type. */
-export function KnowledgeBlitz({ prompt, difficulty: d, onEvent, onDone }: Props) {
-  const total = blitzSeconds(prompt, d) * 1000;
+/** Text whose letters briefly swap places every `everyMs` (Hard's second loop). */
+function GlitchText({ text, everyMs }: { text: string; everyMs: number }) {
+  const [shown, setShown] = useState(text);
+  useEffect(() => {
+    setShown(text);
+    if (!everyMs) return;
+    let back = 0;
+    const id = window.setInterval(() => {
+      const letters = [...text];
+      const spots = letters.map((c, i) => (/\p{L}/u.test(c) ? i : -1)).filter((i) => i >= 0);
+      for (let k = 0; k < 3 && spots.length > 1; k++) {
+        const a = spots[Math.floor(Math.random() * spots.length)];
+        const b = spots[Math.floor(Math.random() * spots.length)];
+        [letters[a], letters[b]] = [letters[b], letters[a]];
+      }
+      setShown(letters.join(''));
+      back = window.setTimeout(() => setShown(text), 240);
+    }, everyMs);
+    return () => {
+      clearInterval(id);
+      clearTimeout(back);
+    };
+  }, [text, everyMs]);
+  return <>{shown}</>;
+}
+
+export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }: Props) {
+  const esc = escalated(d, loop) ? d.secondLoop!.blitz : null;
+  const total = blitzSeconds(prompt, d, loop) * 1000;
   // Hard: no list of what you've already named, and no seconds counter.
   const hidden = d.distortion === 2;
   const [found, setFound] = useState<string[]>([]);
@@ -79,13 +108,17 @@ export function KnowledgeBlitz({ prompt, difficulty: d, onEvent, onDone }: Props
   };
 
   return (
-    <div className="space-y-5">
+    <div className={`space-y-5 ${esc?.wobble ? 'boss-wobble' : ''}`}>
       <div className="text-center">
-        <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">The guardian demands</p>
-        <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">{prompt.prompt}</h3>
+        <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
+          The guardian demands{esc && <span className="boss-secret-title ml-2 font-bold text-coral">· Escalation</span>}
+        </p>
+        <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">
+          <GlitchText text={prompt.prompt} everyMs={esc?.glitchMs ?? 0} />
+        </h3>
       </div>
 
-      <TimerBar total={total} running={!over} onExpire={() => finish(false)} hideSeconds={hidden} />
+      <TimerBar total={total} running={!over} onExpire={() => finish(false)} hideSeconds={hidden} fakeDrops={esc?.fakeTimerDrops} />
 
       <div className="flex justify-center gap-2" aria-label={`${found.length} of ${prompt.count} named`}>
         {Array.from({ length: prompt.count }, (_, i) => (

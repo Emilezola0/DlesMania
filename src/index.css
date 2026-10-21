@@ -329,6 +329,19 @@ h1, h2, h3, .font-serif, .font-display {
 @keyframes boss-reversed { 0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; } 20%, 80% { transform: translate(-50%, 0) scale(1.05); opacity: 1; } 100% { transform: translate(-50%, -6px) scale(1); opacity: 0; } }
 .boss-reversed { animation: boss-reversed 0.7s ease-out both; }
 
+/* Hard's escalated Radar loop: zoomed-in pictures that push in further, and cards that drift as bait. */
+@keyframes boss-zoom { from { transform: scale(var(--zoom, 2)); } to { transform: scale(calc(var(--zoom, 2) * 1.35)); } }
+.boss-zoom { animation: boss-zoom 3s linear both, boss-fade 0.8s steps(3, end) infinite; }
+@keyframes boss-lean { 0% { translate: 0 0; } 35% { translate: var(--lean, 0) 0; rotate: calc(var(--lean, 0) / 6 * 1deg); } 70%, 100% { translate: 0 0; rotate: 0deg; } }
+.boss-lean { animation: boss-card-in 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2) both, boss-lean 1.4s ease-in-out 0.3s both; }
+
+/* Final Blow, second loop: pushes in on one spot of the face. */
+@keyframes boss-zoom-in { from { transform: scale(var(--zoom, 2)); } to { transform: scale(calc(var(--zoom, 2) * 1.25)); } }
+.boss-zoom-in { animation: boss-zoom-in 6s linear both; }
+/* Knowledge Blitz, second loop: the whole board sways and breathes. */
+@keyframes boss-wobble { 0%, 100% { transform: scale(1) rotate(0); } 25% { transform: scale(1.06) rotate(-1.2deg); } 50% { transform: scale(0.97) rotate(0.8deg); } 75% { transform: scale(1.08) rotate(1.4deg); } }
+.boss-wobble { animation: boss-wobble 2.4s ease-in-out infinite; }
+
 /* Final Blow: the picture turns and shifts colour (Hard also flips and inverts it). */
 @keyframes boss-turn { from { transform: rotate(0) scale(1.15); } to { transform: rotate(360deg) scale(1.15); } }
 .boss-turn { animation: boss-turn 9s linear infinite; }
