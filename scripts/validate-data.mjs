@@ -108,7 +108,8 @@ for (const th of themes) {
     if (catIds.has(c.id)) fail(`${at}/${c.id}: duplicate sub-category id`);
     catIds.add(c.id);
     if (![0, 1, 2, 3].includes(c.level)) fail(`${at}/${c.id}: level must be 0-3`);
-    if (new Set(c.items).size < (cs.themed?.groupSize ?? 4)) fail(`${at}/${c.id}: needs at least ${cs.themed?.groupSize ?? 4} distinct cards`);
+    if (new Set(c.items).size < 3) fail(`${at}/${c.id}: needs at least 3 distinct cards`);
+    // Smaller than the current group size: kept, but the generator skips it.
     for (const i of c.items) if (!labels.has(i)) fail(`${at}/${c.id}: "${i}" is not in cards`);
   }
   const used = new Set(th.categories.flatMap((c) => c.items));
@@ -166,7 +167,6 @@ for (const id of ['easy', 'medium', 'hard']) {
   if (sc) {
     if (!(sc.picksToWin >= 1)) fail(`${at}: secret.picksToWin must be >= 1`);
     if (!(sc.turnSeconds >= 0)) fail(`${at}: secret.turnSeconds must be >= 0`);
-    if (!(sc.historyShown >= 0)) fail(`${at}: secret.historyShown must be >= 0`);
   }
 }
 const bossIds = new Set();

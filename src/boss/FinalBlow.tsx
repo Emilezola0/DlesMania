@@ -51,8 +51,8 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const input = useRef<HTMLInputElement>(null);
   const target = targets[index];
   const spot = useSpotlight(!over && !solved, look.every);
-  // Second loop: each face gets a still distortion (zoom, colour shift, maybe turned) instead of
-  // the moving spotlight, turning and flicker.
+  // Second loop: each face also gets a still distortion (zoom, colour shift, maybe turned) on top of
+  // the first loop's spotlight, blur, turning and flicker.
   const still = useMemo(() => (esc ? targets.map(() => drawPictureFx(esc, Math.random)) : null), [esc, targets]);
 
   useEffect(() => targets.forEach((t) => t.image && (new Image().src = t.image)), [targets]);
@@ -103,8 +103,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   };
 
   const clear = solved || over;
-  // Still (second-loop) pictures are never blurred: zoom, colour and rotation are hard enough.
-  const blur = clear || still ? 0 : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
+  const blur = clear ? 0 : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
   const radius = clear ? 150 : look.radius[0] + elapsed * look.radius[1];
   const mask = `radial-gradient(circle at ${spot.x}% ${spot.y}%, #000 ${radius}%, transparent ${radius + 14}%)`;
 
@@ -124,21 +123,25 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
         <div className={`boss-glow absolute -inset-2 rounded-lg ${solved ? 'opacity-0' : ''}`} aria-hidden />
         <div className="relative size-full overflow-hidden rounded-md border-2 border-coral/70 bg-[#141018]">
           {/* Medium/Hard: the picture also turns and shifts colour (Hard flips and inverts it too). */}
-          <div className={`absolute inset-0 ${clear || still ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}>
+          <div className={`absolute inset-0 ${clear ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}
+            style={{ WebkitMaskImage: mask, maskImage: mask }}
+          >
+          {/* The spotlight sits on the frame, so a second-loop zoom never pushes it out of view. */}
+          {/* Second loop: the still zoom and turn sit on their own layer, so the flicker can still move the picture. */}
+          <div className="absolute inset-0" style={still && !clear ? { transform: pictureStyle(still[index]).transform, transformOrigin: pictureStyle(still[index]).transformOrigin } : undefined}>
           {target?.image && (
             <img
               key={target.label}
               src={target.image}
               alt=""
               draggable={false}
-              className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved || still ? '' : 'boss-flicker'}`}
-              style={
-                still && !clear
-                  ? pictureStyle(still[index])
-                  : { filter: `blur(${blur}px) contrast(1.1)`, WebkitMaskImage: mask, maskImage: mask }
-              }
+              className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved ? '' : 'boss-flicker'}`}
+              style={{
+                filter: `blur(${blur}px) contrast(1.1)${still && !clear ? ` ${pictureStyle(still[index]).filter}` : ''}`,
+              }}
             />
           )}
+          </div>
           </div>
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">

@@ -205,8 +205,6 @@ export interface SecretSettings {
   picksToWin: number;
   /** Seconds per answer; running out loses. */
   turnSeconds: number;
-  /** How many of the latest names stay on screen; older ones must be remembered. */
-  historyShown: number;
   /** Points added (before the multiplier) for winning it. */
   bonus: number;
 }

@@ -129,7 +129,6 @@
     "secret": {
       "picksToWin": 6,
       "turnSeconds": 12,
-      "historyShown": 3,
       "bonus": 2000
     }
   }

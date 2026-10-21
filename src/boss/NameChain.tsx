@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { SecretPhase } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { withArticle } from '../lib/text';
-import { findBestMatch, isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
+import { findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
 import type { BossCard } from '../types';
 import { TimerBar } from './TimerBar';
 
@@ -33,11 +33,6 @@ interface Entity {
 
 type Turn = 'boss' | 'answer' | 'ok' | 'over';
 
-interface Said {
-  who: 'boss' | 'you';
-  entity: Entity;
-}
-
 const spellings = (e: Entity) => [e.name, ...e.aliases];
 
 /**
@@ -46,15 +41,16 @@ const spellings = (e: Entity) => [e.name, ...e.aliases];
  * back. A wrong category, a repeat or running out of time loses on the spot; `picksToWin` good
  * answers win — and so does the boss running out of things to name.
  * Names the game doesn't know are rejected without penalty, so gaps in the data never cost a fight.
+ * There are no suggestions and no list of what was named: the player has to know the names and
+ * remember the chain. Only the reason for a loss is shown.
  */
 export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: Props) {
-  const { categories, picksToWin, turnSeconds, historyShown } = secret;
+  const { categories, picksToWin, turnSeconds } = secret;
   const all = useMemo<Entity[]>(
     () => categories.flatMap((c, cat) => c.entities.map((e) => ({ ...e, cat, key: `${cat}:${e.name}` }))),
     [categories],
   );
   const [used, setUsed] = useState<Set<string>>(new Set());
-  const [said, setSaid] = useState<Said[]>([]);
   const [call, setCall] = useState<Entity | null>(null);
   const [turn, setTurn] = useState<Turn>('boss');
   const [round, setRound] = useState(0);
@@ -62,7 +58,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   const [note, setNote] = useState<{ text: string; key: number } | null>(null);
   const [lost, setLost] = useState<string | null>(null);
   const [text, setText] = useState('');
-  const [active, setActive] = useState(0);
   const input = useRef<HTMLInputElement>(null);
   const timers = useRef<number[]>([]);
   const later = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
@@ -89,7 +84,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     const next = new Set(usedNow).add(pick.key);
     setUsed(next);
     setCall(pick);
-    setSaid((s) => [...s, { who: 'boss', entity: pick }]);
     setTurn('boss');
     sfx.select();
     later(700, () => {
@@ -114,7 +108,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   const answer = (e: Entity) => {
     if (turn !== 'answer' || !call) return;
     setText('');
-    setActive(0);
     setNote(null);
     if (used.has(e.key)) return lose(`${e.name} was already named`);
     if (e.cat !== call.cat) return lose(`${e.name} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`);
@@ -122,7 +115,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     const nextScore = score + 1;
     setUsed(next);
     setScore(nextScore);
-    setSaid((s) => [...s, { who: 'you', entity: e }]);
     sfx.correct();
     if (nextScore >= picksToWin) {
       sfx.streak();
@@ -133,19 +125,15 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     later(900, () => bossTurn(next, call.cat, nextScore));
   };
 
-  const suggestions = useMemo(() => (text.trim() ? rankBySearch(text, all, spellings, 6) : []), [all, text]);
-
   const submitText = () => {
-    // What was typed wins when it names something (typos forgiven); otherwise the highlighted suggestion.
-    const typed = findBestMatch(text, all, spellings)?.item ?? suggestions[active];
+    // Small typos are forgiven; anything else must be spelled out.
+    const typed = findBestMatch(text, all, spellings)?.item;
     if (typed) return answer(typed);
     setNote({ text: `“${text.trim()}” — ${bossName} doesn't know that one. Try another name.`, key: Date.now() });
     setText('');
   };
 
   const portrait = call && cards.find((c) => isFuzzyMatch(call.name, [c.label, ...(c.aliases ?? [])]))?.image;
-  const recent = said.slice(-historyShown);
-  const hiddenCount = said.length - recent.length;
 
   return (
     <div className="space-y-4">
@@ -185,23 +173,14 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
 
       {turnSeconds > 0 && <TimerBar total={turnSeconds * 1000} running={turn === 'answer'} resetKey={round} onExpire={() => lose("Time's up")} hideSeconds />}
 
-      <div className="relative">
+      <div>
         <input
           ref={input}
           value={text}
           disabled={turn !== 'answer'}
-          onChange={(e) => {
-            setText(e.target.value);
-            setActive(0);
-          }}
+          onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === 'ArrowDown') {
-              e.preventDefault();
-              setActive((a) => Math.min(a + 1, suggestions.length - 1));
-            } else if (e.key === 'ArrowUp') {
-              e.preventDefault();
-              setActive((a) => Math.max(a - 1, 0));
-            } else if (e.key === 'Enter' && text.trim()) submitText();
+            if (e.key === 'Enter' && text.trim()) submitText();
           }}
           placeholder={
             turn === 'answer' && call ? `Another ${categories[call.cat].label.toLowerCase()}…` : turn === 'boss' ? `${bossName} is thinking…` : ''
@@ -211,23 +190,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
           spellCheck={false}
           className="w-full rounded-xl border border-coral/60 bg-card/90 px-4 py-3 text-base outline-none ring-coral/30 transition placeholder:text-ink-faint focus:border-coral focus:ring-4 disabled:opacity-60"
         />
-        {/* Suggestions cover every category, used names included: knowing which fits is the game. */}
-        {suggestions.length > 0 && turn === 'answer' && (
-          <ul className="animate-pop absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-rule-strong bg-card shadow-2xl">
-            {suggestions.map((e, i) => (
-              <li key={e.key}>
-                <button
-                  type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => answer(e)}
-                  className={`w-full px-4 py-2.5 text-left font-medium ${i === active ? 'bg-accent-soft' : 'hover:bg-tile'}`}
-                >
-                  {e.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
 
       <p className="min-h-5 text-center text-sm font-semibold" aria-live="polite">
@@ -239,23 +201,6 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
           </span>
         )}
       </p>
-
-      {/* Only the latest names stay visible; the rest must be remembered. */}
-      <div className="space-y-1.5">
-        <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">
-          Named so far{hiddenCount > 0 ? ` · ${hiddenCount} more hidden — remember them` : ''}
-        </p>
-        <ul className="flex flex-wrap gap-1.5">
-          {recent.map((s) => (
-            <li
-              key={`${s.who}-${s.entity.key}`}
-              className={`rounded-md border px-2 py-1 text-xs font-semibold ${s.who === 'boss' ? 'border-coral/50 bg-coral/10' : 'border-hit/50 bg-hit/10'}`}
-            >
-              <span className="text-ink-faint">{s.who === 'boss' ? bossName.split(' ')[0] : 'You'}:</span> {s.entity.name}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }

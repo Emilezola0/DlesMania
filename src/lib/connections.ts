@@ -27,6 +27,7 @@ export const CONNECTIONS = {
     groups: Math.min(5, Math.max(2, settings.connections.themed.groups)),
     groupSize: Math.min(4, Math.max(3, settings.connections.themed.groupSize)),
     targetHerrings: settings.connections.themed.targetHerrings,
+    minHerrings: settings.connections.themed.minHerrings,
   },
 };
 
@@ -34,9 +35,8 @@ export const CONNECTIONS = {
  * Sub-category sets to try per grid, card draws to try per set, and how many red herrings to aim
  * for (CONNECTIONS.themed.targetHerrings). Sets are drawn first so every sub-category gets its turn.
  */
-const CATEGORY_SETS = 20;
-/** Fewest red herrings a grid should have; a set of sub-categories that can't reach it is swapped for another. */
-const MIN_HERRINGS = 2;
+const CATEGORY_SETS = 40;
+
 const DRAWS_PER_SET = 40;
 
 interface Draw {
@@ -92,14 +92,16 @@ function draw(categories: ThemeBank['categories'], rand: () => number): Draw | n
 /**
  * Builds the grid for a theme and seed: picks CONNECTIONS.themed.groups sub-categories, then tries card draws for them,
  * keeping only grids with a single solution and preferring the most red herrings (up to
- * CONNECTIONS.themed.targetHerrings), moving on to other sets of sub-categories while a grid has fewer than MIN_HERRINGS.
+ * CONNECTIONS.themed.targetHerrings), moving on to other sets of sub-categories while a grid has fewer than CONNECTIONS.themed.minHerrings.
  */
 export function generateThemePuzzle(bank: ThemeBank, seed: number): ConnectionsPuzzle | null {
   const rand = mulberry32(seed);
   let best: Draw | null = null;
-  // Move on to another set of sub-categories while the best grid so far has fewer than MIN_HERRINGS.
-  for (let set = 0; set < CATEGORY_SETS && !(best && best.herrings >= MIN_HERRINGS); set++) {
-    const categories = shuffle(bank.categories, rand).slice(0, CONNECTIONS.themed.groups);
+  // Move on to another set of sub-categories while the best grid so far has fewer than CONNECTIONS.themed.minHerrings.
+  for (let set = 0; set < CATEGORY_SETS && !(best && best.herrings >= CONNECTIONS.themed.minHerrings); set++) {
+    // Sub-categories smaller than a group (trios like the Legendary Sannin) sit out at this group size.
+    const usable = bank.categories.filter((c) => c.items.length >= CONNECTIONS.themed.groupSize);
+    const categories = shuffle(usable, rand).slice(0, CONNECTIONS.themed.groups);
     for (let i = 0; i < DRAWS_PER_SET; i++) {
       const d = draw(categories, rand);
       if (d && (!best || Math.min(d.herrings, CONNECTIONS.themed.targetHerrings) > Math.min(best.herrings, CONNECTIONS.themed.targetHerrings))) best = d;
