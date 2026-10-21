@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Outcome } from '../components/Outcome';
-import { connectionsPuzzles } from '../data';
+import { getPuzzle } from '../lib/connections';
 import { mulberry32, shuffle } from '../lib/rng';
 import { scoreFor } from '../lib/scoring';
 import { sfx } from '../lib/sfx';
@@ -19,7 +19,7 @@ export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string
 const groupOf = (tileId: string) => Number(tileId.split('-')[0]);
 
 export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
-  const puzzle = connectionsPuzzles.find((p) => p.id === spec.puzzleId)!;
+  const puzzle = getPuzzle(spec.puzzleId)!;
   const maxMistakes = GAME_META.connections.maxAttempts;
   const tile = (id: string) => puzzle.groups[groupOf(id)].items[Number(id.split('-')[1])];
   // Pictures only when every tile has one: a lone text tile would give its group away.

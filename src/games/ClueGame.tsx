@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { AudioClip, SNIPPETS } from '../components/AudioClip';
-import { BlurImage } from '../components/BlurImage';
+import { ObscuredImage } from '../components/ObscuredImage';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
 import { TilePuzzle } from '../components/TilePuzzle';
@@ -120,7 +120,7 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
         return (
           <div className="space-y-3">
             <Label>Iconic item</Label>
-            <BlurImage src={w.item.image} alt={w.item.name} step={wrong} revealed={done} onError={() => onBroken('item')} />
+            <ObscuredImage src={w.item.image} alt={w.item.name} step={wrong} revealed={done} seed={seed} onError={() => onBroken('item')} />
           </div>
         );
       }

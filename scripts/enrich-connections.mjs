@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Resolves tile images for src/data/connections.json.
+// Resolves tile images for src/data/connections.json (hand-made grids) and for the cards of
+// src/data/connection-themes.json (themed grids built from sub-categories at play time).
 //
-//   node scripts/enrich-connections.mjs [--puzzle=cg-lol] [--force] [--dry]
+//   node scripts/enrich-connections.mjs [--puzzle=cg-lol] [--theme=onepiece] [--force] [--dry]
 //
 // Each puzzle has a default `images` source; a tile can override it with `{ "label", "src" }`.
 // Sources:
@@ -18,8 +19,10 @@ import { ROOT, WIKIPEDIA_API, fandomApi, getJson, mediawikiImages, parseArgs } f
 
 const { flags } = parseArgs();
 const FILE = join(ROOT, 'src', 'data', 'connections.json');
+const THEMES_FILE = join(ROOT, 'src', 'data', 'connection-themes.json');
 const TILE_SIZE = 320;
 const puzzles = JSON.parse(readFileSync(FILE, 'utf8'));
+const themes = JSON.parse(readFileSync(THEMES_FILE, 'utf8'));
 
 /** Turns a tile into { source kind, site, title }. */
 function parseSource(tile, fallback) {
@@ -41,23 +44,28 @@ async function ddragonUrl(id) {
 }
 
 // Group every wiki lookup by API endpoint so each site gets batched requests.
+// A job is one tile slot: `list[i]` is the tile (a label or `{ label, src, image }`).
 const lookups = new Map(); // api -> Set<title>
 const jobs = [];
+const addJob = (list, i, fallback) => {
+  const t = toObject(list[i]);
+  if (t.image && !flags.force) return;
+  const source = parseSource(list[i], fallback);
+  jobs.push({ list, i, t, source });
+  if (source.kind === 'wp' || source.kind === 'fandom') {
+    const api = source.kind === 'wp' ? WIKIPEDIA_API : fandomApi(source.site);
+    if (!lookups.has(api)) lookups.set(api, new Set());
+    lookups.get(api).add(source.title);
+  }
+};
+const onlyThemes = !!flags.theme && !flags.puzzle;
 for (const pz of puzzles) {
-  if (flags.puzzle && pz.id !== flags.puzzle) continue;
-  pz.groups.forEach((g) =>
-    g.items.forEach((tile, i) => {
-      const t = toObject(tile);
-      if (t.image && !flags.force) return;
-      const source = parseSource(tile, pz.images ?? 'wp');
-      jobs.push({ pz, g, i, t, source });
-      if (source.kind === 'wp' || source.kind === 'fandom') {
-        const api = source.kind === 'wp' ? WIKIPEDIA_API : fandomApi(source.site);
-        if (!lookups.has(api)) lookups.set(api, new Set());
-        lookups.get(api).add(source.title);
-      }
-    }),
-  );
+  if (onlyThemes || (flags.puzzle && pz.id !== flags.puzzle)) continue;
+  pz.groups.forEach((g) => g.items.forEach((_, i) => addJob(g.items, i, pz.images ?? 'wp')));
+}
+for (const th of themes) {
+  if ((flags.puzzle && !flags.theme) || (flags.theme && th.id !== flags.theme)) continue;
+  th.cards.forEach((_, i) => addJob(th.cards, i, th.images ?? 'wp'));
 }
 
 const resolved = new Map(); // `${api}|${title}` -> image
@@ -70,7 +78,7 @@ for (const [api, titles] of lookups) {
   }
 }
 
-for (const { g, i, t, source } of jobs) {
+for (const { list, i, t, source } of jobs) {
   let image = null;
   if (source.kind === 'url') image = source.url;
   else if (source.kind === 'ddragon') image = await ddragonUrl(source.title);
@@ -78,7 +86,7 @@ for (const { g, i, t, source } of jobs) {
   if (image) t.image = image;
   else delete t.image;
   // Keep plain strings for tiles with nothing extra, so the file stays easy to edit.
-  g.items[i] = Object.keys(t).length === 1 ? t.label : t;
+  list[i] = Object.keys(t).length === 1 ? t.label : t;
 }
 
 console.log('\npuzzle        images  missing');
@@ -89,4 +97,14 @@ for (const pz of puzzles) {
   console.log(`${mark} ${pz.id.padEnd(12)} ${String(tiles.length - missing.length).padStart(2)}/16  ${missing.join(', ')}`);
 }
 
-if (!flags.dry) writeFileSync(FILE, JSON.stringify(puzzles, null, 2) + '\n');
+console.log('\ntheme         images  missing');
+for (const th of themes) {
+  const cards = th.cards.map(toObject);
+  const missing = cards.filter((c) => !c.image).map((c) => c.label);
+  console.log(`${missing.length ? ' ' : '✓'} ${th.id.padEnd(12)} ${String(cards.length - missing.length).padStart(3)}/${cards.length}  ${missing.join(', ')}`);
+}
+
+if (!flags.dry) {
+  writeFileSync(FILE, JSON.stringify(puzzles, null, 2) + '\n');
+  writeFileSync(THEMES_FILE, JSON.stringify(themes, null, 2) + '\n');
+}

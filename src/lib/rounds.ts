@@ -1,4 +1,5 @@
 import { candidates, connectionsPuzzles, DOMAINS } from '../data';
+import { THEME_PREFIX, themesFor } from './connections';
 import { GAME_TYPES } from '../games/meta';
 import type { Domain, GameType, RoundSpec, Work } from '../types';
 import { hashString, mulberry32, pick, shuffle } from './rng';
@@ -48,6 +49,12 @@ export function buildRound(
 ): RoundSpec | null {
   const seed = Math.floor(rand() * 2 ** 31);
   if (type === 'connections') {
+    // Six times in ten, a grid built from a theme's sub-categories; otherwise a hand-made one.
+    const themes = themesFor(domain);
+    if (themes.length && rand() < 0.6) {
+      const bank = pick(themes, rand);
+      return { type, domain: bank.domain, seed, puzzleId: `${THEME_PREFIX}${bank.id}:${Math.floor(rand() * 2 ** 31)}` };
+    }
     const p = pick(puzzlesFor(domain), rand);
     return { type, domain: p.domain, seed, puzzleId: p.id };
   }

@@ -78,6 +78,43 @@ for (const pz of puzzles) {
 const perDomain = [...DOMAINS, 'mixed'].map((d) => `${d}:${puzzles.filter((p) => p.domain === d).length}`).join(' ');
 console.log(`connections ${puzzles.length} puzzles (${perDomain}) | fully illustrated: ${withImages}`);
 
+// Themed banks (src/data/connection-themes.json): grids are drawn from these at play time by
+// src/lib/connections.ts, which also checks each grid has a single solution.
+const themes = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'connection-themes.json'), 'utf8'));
+const themeIds = new Set();
+let herringCards = 0;
+for (const th of themes) {
+  const at = `connection-themes/${th.id}`;
+  if (themeIds.has(th.id)) fail(`${at}: duplicate id`);
+  themeIds.add(th.id);
+  if (!DOMAINS.includes(th.domain)) fail(`${at}: bad domain "${th.domain}"`);
+  const cards = th.cards.map((c) => (typeof c === 'string' ? { label: c } : c));
+  const labels = new Set(cards.map((c) => c.label));
+  if (labels.size !== cards.length) fail(`${at}: duplicate card label`);
+  if (th.categories.length < 5) fail(`${at}: needs at least 5 sub-categories (has ${th.categories.length})`);
+  const catIds = new Set();
+  for (const c of th.categories) {
+    if (catIds.has(c.id)) fail(`${at}/${c.id}: duplicate sub-category id`);
+    catIds.add(c.id);
+    if (![0, 1, 2, 3].includes(c.level)) fail(`${at}/${c.id}: level must be 0-3`);
+    if (new Set(c.items).size < 4) fail(`${at}/${c.id}: needs at least 4 distinct cards`);
+    for (const i of c.items) if (!labels.has(i)) fail(`${at}/${c.id}: "${i}" is not in cards`);
+  }
+  const used = new Set(th.categories.flatMap((c) => c.items));
+  for (const l of labels) if (!used.has(l)) warn(`${at}: card "${l}" is in no sub-category`);
+  // Red herrings come from cards listed in several sub-categories.
+  herringCards += [...used].filter((l) => th.categories.filter((c) => c.items.includes(l)).length > 1).length;
+  const noImage = cards.filter((c) => !c.image).map((c) => c.label);
+  if (noImage.length) warn(`${at}: no image for ${noImage.join(', ')} — grids using them show text only`);
+  const byImage = new Map();
+  for (const c of cards.filter((c) => c.image)) {
+    const key = c.image.split('?')[0];
+    if (byImage.has(key)) warn(`${at}: "${c.label}" and "${byImage.get(key)}" share a picture`);
+    byImage.set(key, c.label);
+  }
+}
+console.log(`themes      ${themes.length} (${themes.reduce((n, t) => n + t.categories.length, 0)} sub-categories, ${herringCards} red-herring cards)`);
+
 // ---------------------------------------------------------------- Boss Battle
 // Minimums follow Hard in src/lib/boss.ts (16-card waves with 7 impostors, 5 faces twice), with room
 // left so retries and second rounds draw something new.

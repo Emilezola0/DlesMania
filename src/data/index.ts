@@ -1,4 +1,5 @@
 import type { ConnectionsPuzzle, Domain, GameType, Work } from '../types';
+import rawThemes from './connection-themes.json';
 import rawPuzzles from './connections.json';
 import anime from './works/anime.json';
 import cinema from './works/cinema.json';
@@ -25,6 +26,23 @@ export const connectionsPuzzles: ConnectionsPuzzle[] = (rawPuzzles as unknown as
     items: g.items.map((t) => (typeof t === 'string' ? { label: t } : { label: t.label, image: t.image })),
   })),
 }));
+
+/**
+ * Themed Connections banks (see src/lib/connections.ts). A card is a label, or
+ * `{ label, src?, image? }` once scripts/enrich-connections.mjs has resolved its picture.
+ */
+export interface ThemeBank {
+  id: string;
+  domain: Domain;
+  theme: string;
+  /** Default picture source for the cards (`fandom:<wiki>`, `wp`, `ddragon`). */
+  images: string;
+  cards: (string | { label: string; src?: string; image?: string })[];
+  /** Reusable sub-categories; `level` 0–3 is how hard the link is to spot. */
+  categories: { id: string; label: string; level: number; items: string[] }[];
+}
+
+export const connectionThemes = rawThemes as unknown as ThemeBank[];
 
 const BY_ID = new Map(WORKS.map((w) => [w.id, w]));
 

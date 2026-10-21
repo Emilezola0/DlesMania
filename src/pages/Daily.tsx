@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
-import { DOMAINS, connectionsPuzzles, domainInfo, getWork } from '../data';
+import { DOMAINS, domainInfo, getWork } from '../data';
+import { getPuzzle } from '../lib/connections';
 import { FlameIcon } from '../components/Layout';
 import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
 import { GameHost } from '../games/GameHost';
@@ -173,7 +174,7 @@ function specsValid(specs: RoundSpec[]): boolean {
       if (!GAME_TYPES.includes(s.type)) return false;
       if (s.targetId) getWork(s.targetId);
       s.workIds?.forEach(getWork);
-      return !s.puzzleId || connectionsPuzzles.some((p) => p.id === s.puzzleId);
+      return !s.puzzleId || !!getPuzzle(s.puzzleId);
     });
   } catch {
     return false;
