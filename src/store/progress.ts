@@ -59,13 +59,24 @@ export const useProgress = create<ProgressState>()(
     }),
     {
       name: 'omnidle-progress',
-      version: 3,
+      version: 4,
       // v1 had a single mixed daily keyed by date; its rounds don't map onto per-category dailies.
       migrate: (persisted, version) => {
         const s = persisted as Partial<ProgressState>;
         if (version < 2) return { ...s, days: {}, specs: {}, sound: true } as ProgressState;
         // v3 added round snapshots; days played before it simply get one on next open.
-        return { ...s, specs: s.specs ?? {} } as ProgressState;
+        const specs = { ...(s.specs ?? {}) };
+        const days = { ...(s.days ?? {}) };
+        if (version < 4) {
+          // v4 replaced the Credits mini-game with Cover Puzzle: regenerate days that contained it.
+          for (const [key, list] of Object.entries(specs)) {
+            if (list.some((r) => (r.type as string) === 'creator')) {
+              delete specs[key];
+              delete days[key];
+            }
+          }
+        }
+        return { ...s, specs, days } as ProgressState;
       },
     },
   ),

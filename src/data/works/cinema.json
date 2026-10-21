@@ -48,8 +48,8 @@
     "location": {
       "name": "Corleone, Sicily",
       "description": "A hilltop village the family is named after, where a son hides in exile.",
-      "wiki": "Corleone",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Corleone.jpg"
+      "src": "wp:Savoca",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Savoca_Castello_di_Pentefur.JPG/960px-Savoca_Castello_di_Pentefur.JPG"
     },
     "visual": {
       "icon": "🌹",
@@ -91,6 +91,7 @@
       "Composer: John Williams",
       "Visual effects: Industrial Light & Magic"
     ],
+    "fandom": "starwars",
     "cover": {
       "wiki": "Star Wars (film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg"
@@ -108,14 +109,14 @@
     "item": {
       "name": "Lightsaber",
       "description": "An elegant weapon for a more civilized age — a blade of pure light.",
-      "wiki": "Lightsaber",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Lightsaber_Skywalker.png/960px-Lightsaber_Skywalker.png"
+      "src": "fandom:starwars:Lightsaber",
+      "image": "https://static.wikia.nocookie.net/starwars/images/c/cc/Lightsabers-SWYBYNE.png/revision/latest/scale-to-width-down/640?cb=20240116010539"
     },
     "location": {
       "name": "Tatooine",
       "description": "A desert world with twin suns, moisture farms and a wretched hive of scum.",
-      "wiki": "Tatooine",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/Tatooine_%28fictional_desert_planet%29.jpg"
+      "src": "fandom:starwars:Tatooine",
+      "image": "https://static.wikia.nocookie.net/starwars/images/b/b0/Tatooine_TPM.png/revision/latest/scale-to-width-down/640?cb=20241209041104"
     },
     "visual": {
       "icon": "🌌",
@@ -152,6 +153,7 @@
       "Based on the novel by Michael Crichton",
       "Composer: John Williams"
     ],
+    "fandom": "jurassicpark",
     "cover": {
       "wiki": "Jurassic Park (film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e7/Jurassic_Park_poster.jpg"
@@ -168,12 +170,14 @@
     "emoji": "🦖🏝️🧬🚙🦟",
     "item": {
       "name": "Mosquito in amber",
-      "description": "A prehistoric insect trapped in resin, topping a walking cane."
+      "description": "A prehistoric insect trapped in resin, topping a walking cane.",
+      "image": "https://static.wikia.nocookie.net/jurassicpark/images/f/f0/Jurassic_World_03.png/revision/latest/scale-to-width-down/640?cb=20141125194711"
     },
     "location": {
       "name": "Isla Nublar",
       "description": "A jungle island off Costa Rica, fenced with high-voltage paddocks.",
-      "wiki": "Isla Nublar"
+      "src": "wp:Kualoa Ranch",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Kualoa_Ranch.jpg/960px-Kualoa_Ranch.jpg"
     },
     "visual": {
       "icon": "🦖",
@@ -211,6 +215,7 @@
       "Fight choreography: Yuen Woo-ping",
       "Composer: Don Davis"
     ],
+    "fandom": "matrix",
     "cover": {
       "wiki": "The Matrix",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/db/The_Matrix.png"
@@ -228,11 +233,14 @@
     "item": {
       "name": "A red pill and a blue pill",
       "description": "Take one and the story ends; take the other and see how deep the rabbit hole goes.",
-      "wiki": "Red pill and blue pill"
+      "src": "wp:Red pill and blue pill",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Red_and_blue_pill.jpg/960px-Red_and_blue_pill.jpg"
     },
     "location": {
       "name": "Zion",
-      "description": "The last human city, buried deep beneath the surface near the Earth's core."
+      "description": "The last human city, buried deep beneath the surface near the Earth's core.",
+      "src": "fandom:matrix:Zion",
+      "image": "https://static.wikia.nocookie.net/matrix/images/b/bc/2_ND.jpg/revision/latest?cb=20091018000943"
     },
     "visual": {
       "icon": "💊",
@@ -289,7 +297,7 @@
     "location": {
       "name": "North Atlantic, April 1912",
       "description": "Icy waters where an \"unsinkable\" liner meets an iceberg.",
-      "wiki": "RMS Titanic"
+      "src": "wp:Titanic"
     },
     "visual": {
       "icon": "🚢",
@@ -341,7 +349,9 @@
     "emoji": "💼🍔💉💃🔫",
     "item": {
       "name": "A glowing briefcase",
-      "description": "Its contents are never shown — only a golden light on the faces of those who open it."
+      "description": "Its contents are never shown — only a golden light on the faces of those who open it.",
+      "src": "wp:Briefcase",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Briefcase-photo.jpg/960px-Briefcase-photo.jpg"
     },
     "location": {
       "name": "Jack Rabbit Slim's",
@@ -385,6 +395,7 @@
       "Co-writer: Bob Gale",
       "Composer: Alan Silvestri"
     ],
+    "fandom": "backtothefuture",
     "cover": {
       "wiki": "Back to the Future",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg"
@@ -402,12 +413,14 @@
     "item": {
       "name": "Flux capacitor",
       "description": "A Y-shaped glowing device — \"what makes time travel possible\".",
-      "wiki": "DeLorean time machine",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/DeLorean_Replica_Kovacs_Time_Machine.png/960px-DeLorean_Replica_Kovacs_Time_Machine.png"
+      "src": "fandom:backtothefuture:Flux capacitor",
+      "image": "https://static.wikia.nocookie.net/bttf/images/6/64/Flux-Capacitor.jpg/revision/latest/scale-to-width-down/640?cb=20080602215902"
     },
     "location": {
       "name": "Hill Valley clock tower",
-      "description": "A courthouse clock stopped by lightning at 10:04 pm."
+      "description": "A courthouse clock stopped by lightning at 10:04 pm.",
+      "src": "fandom:backtothefuture:Hill Valley Courthouse",
+      "image": "https://static.wikia.nocookie.net/bttf/images/3/3f/Clocktower1885.PNG/revision/latest?cb=20070123053442"
     },
     "visual": {
       "icon": "⚡",
@@ -464,7 +477,9 @@
     },
     "location": {
       "name": "Amity Island",
-      "description": "A New England beach town that refuses to close its beaches for the 4th of July."
+      "description": "A New England beach town that refuses to close its beaches for the 4th of July.",
+      "src": "wp:Martha's Vineyard",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Marthasvineyard-Aquinnah-cliffs-summer.jpeg/960px-Marthasvineyard-Aquinnah-cliffs-summer.jpeg"
     },
     "visual": {
       "icon": "🦈",
@@ -507,6 +522,7 @@
       "Based on the novel by J. R. R. Tolkien",
       "Composer: Howard Shore"
     ],
+    "fandom": "lotr",
     "cover": {
       "wiki": "The Lord of the Rings: The Fellowship of the Ring",
       "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lord_Rings_Fellowship_Ring.jpg"
@@ -524,14 +540,14 @@
     "item": {
       "name": "The One Ring",
       "description": "A plain gold band with fiery script that appears only in flame.",
-      "wiki": "One Ring",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/One_Ring_Blender_Render.png/960px-One_Ring_Blender_Render.png"
+      "src": "fandom:lotr:One Ring",
+      "image": "https://static.wikia.nocookie.net/lotr/images/0/0d/The_One_Ring_on_a_map_of_Middle-earth.jpg/revision/latest/scale-to-width-down/640?cb=20200305221819"
     },
     "location": {
       "name": "The Shire",
       "description": "Rolling green hills with round doors set into them, far from any trouble.",
-      "wiki": "Shire (Middle-earth)",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Hobbit_holes_reflected_in_water.jpg/960px-Hobbit_holes_reflected_in_water.jpg"
+      "src": "wp:Hobbiton Movie Set",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Waterhouse_Lake_Front.jpg/960px-Waterhouse_Lake_Front.jpg"
     },
     "visual": {
       "icon": "💍",
@@ -641,12 +657,15 @@
     "emoji": "🏨🪓👧👧❄️",
     "item": {
       "name": "An axe",
-      "description": "Swung through a door by a caretaker driven mad by an isolated hotel."
+      "description": "Swung through a door by a caretaker driven mad by an isolated hotel.",
+      "src": "wp:Axe",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Felling_axe.jpg/960px-Felling_axe.jpg"
     },
     "location": {
       "name": "The Overlook Hotel",
       "description": "A snowbound mountain resort with a hedge maze and a forbidden Room 237.",
-      "wiki": "Overlook Hotel"
+      "src": "wp:Timberline Lodge",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Timlodge.jpg"
     },
     "visual": {
       "icon": "🪓",
@@ -699,7 +718,9 @@
     "emoji": "🪨🏠🍑🌧️🍜",
     "item": {
       "name": "A scholar's stone",
-      "description": "A decorative landscape rock, said to bring material wealth."
+      "description": "A decorative landscape rock, said to bring material wealth.",
+      "src": "wp:Scholar's rock",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Chinese_scholar%27s_rock_-_Gongshi.jpg/960px-Chinese_scholar%27s_rock_-_Gongshi.jpg"
     },
     "location": {
       "name": "The Park family house",
@@ -755,13 +776,15 @@
     "emoji": "🇫🇷👧📷🧸🍮",
     "item": {
       "name": "A travelling garden gnome",
-      "description": "A father's ornament that sends back photos from monuments around the world."
+      "description": "A father's ornament that sends back photos from monuments around the world.",
+      "src": "wp:Garden gnome",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/ML-W%C3%A4chter_%28cropped%29.JPG/960px-ML-W%C3%A4chter_%28cropped%29.JPG"
     },
     "location": {
       "name": "Café des Deux Moulins",
       "description": "A real Montmartre café where a shy waitress quietly meddles in others' lives.",
-      "wiki": "Café des 2 Moulins",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Cafe_des_2_Moulins%2C_Paris_24_August_2019.jpg/960px-Cafe_des_2_Moulins%2C_Paris_24_August_2019.jpg"
+      "src": "wp:Montmartre",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/960px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg"
     },
     "visual": {
       "icon": "🧸",
@@ -798,6 +821,7 @@
       "Songs & score: Randy Newman",
       "First fully computer-animated feature film"
     ],
+    "fandom": "pixar",
     "cover": {
       "wiki": "Toy Story",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg"
@@ -818,7 +842,9 @@
     },
     "location": {
       "name": "Pizza Planet",
-      "description": "A space-themed restaurant with a claw machine full of three-eyed aliens."
+      "description": "A space-themed restaurant with a claw machine full of three-eyed aliens.",
+      "src": "fandom:pixar:Pizza Planet",
+      "image": "https://static.wikia.nocookie.net/pixar/images/3/37/Pizzaplanetentrance.jpg/revision/latest/scale-to-width-down/640?cb=20111206224110"
     },
     "visual": {
       "icon": "🤠",
@@ -871,7 +897,9 @@
     "emoji": "🦇🃏🔥🚓💰",
     "item": {
       "name": "A Joker playing card",
-      "description": "Left at crime scenes as a calling card."
+      "description": "Left at crime scenes as a calling card.",
+      "src": "wp:Joker (playing card)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/The_Jolly_Nero.jpg/960px-The_Jolly_Nero.jpg"
     },
     "location": {
       "name": "Gotham City",
@@ -933,7 +961,9 @@
     "emoji": "👽🚲🌕☎️🍬",
     "item": {
       "name": "Reese's Pieces",
-      "description": "A trail of candy used to lure a shy creature into the house."
+      "description": "A trail of candy used to lure a shy creature into the house.",
+      "src": "wp:Reese's Pieces",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Reese%27s_Pieces%2C_Canada%2C_2026-02-27_03.jpg/960px-Reese%27s_Pieces%2C_Canada%2C_2026-02-27_03.jpg"
     },
     "location": {
       "name": "A suburban California cul-de-sac",
@@ -974,6 +1004,7 @@
       "Creature design: H. R. Giger",
       "Writer: Dan O'Bannon"
     ],
+    "fandom": "avp",
     "cover": {
       "wiki": "Alien (film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/Alien_movie_poster.jpg"
@@ -986,11 +1017,14 @@
     "item": {
       "name": "Facehugger",
       "description": "A spider-like creature that leaps out of an egg and clamps onto a face.",
-      "wiki": "Facehugger"
+      "src": "fandom:avp:Facehugger",
+      "image": "https://static.wikia.nocookie.net/avp/images/3/39/FacehuggerA11080.png/revision/latest/scale-to-width-down/640?cb=20161110195801"
     },
     "location": {
       "name": "The Nostromo",
-      "description": "A grimy commercial towing spaceship on its way back to Earth."
+      "description": "A grimy commercial towing spaceship on its way back to Earth.",
+      "src": "fandom:avp:USCSS Nostromo",
+      "image": "https://static.wikia.nocookie.net/avp/images/c/c5/Img4.jpg/revision/latest/scale-to-width-down/614?cb=20131021025529"
     },
     "visual": {
       "icon": "🥚",
@@ -1032,6 +1066,7 @@
       "Co-writer: William Wisher",
       "Composer: Brad Fiedel"
     ],
+    "fandom": "terminator",
     "cover": {
       "wiki": "Terminator 2: Judgment Day",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Terminator_2-Judgment_Day.png"
@@ -1048,11 +1083,13 @@
     "emoji": "🤖🕶️🏍️🔥👦",
     "item": {
       "name": "A liquid-metal arm",
-      "description": "It reshapes into blades and can copy anyone it touches."
+      "description": "It reshapes into blades and can copy anyone it touches.",
+      "image": "https://static.wikia.nocookie.net/terminator/images/8/8b/T-1000-robot.jpg/revision/latest?cb=20090516140551"
     },
     "location": {
       "name": "Cyberdyne Systems",
-      "description": "The tech company whose research will one day birth Skynet."
+      "description": "The tech company whose research will one day birth Skynet.",
+      "src": "fandom:terminator:Cyberdyne Systems"
     },
     "visual": {
       "icon": "🕶️",
@@ -1106,11 +1143,15 @@
     "emoji": "🏃🍫🪶🦐🏓",
     "item": {
       "name": "A box of chocolates",
-      "description": "Its contents, mama said, are something you never know in advance."
+      "description": "Its contents, mama said, are something you never know in advance.",
+      "src": "wp:Feather",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Types_de_plumes._-_Larousse_pour_tous%2C_-1907-1910-.jpg/960px-Types_de_plumes._-_Larousse_pour_tous%2C_-1907-1910-.jpg"
     },
     "location": {
       "name": "A bench in Savannah",
-      "description": "A bus stop in Georgia where a man tells strangers his life story."
+      "description": "A bus stop in Georgia where a man tells strangers his life story.",
+      "src": "wp:Chippewa Square",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Chippewa_Square_Savannah.JPG/960px-Chippewa_Square_Savannah.JPG"
     },
     "visual": {
       "icon": "🪶",
@@ -1149,6 +1190,7 @@
       "Score: Hans Zimmer",
       "Songs: Elton John & Tim Rice"
     ],
+    "fandom": "disney",
     "cover": {
       "wiki": "The Lion King",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg"
@@ -1165,11 +1207,14 @@
     "emoji": "🦁👑🌅🐗🐒",
     "item": {
       "name": "A cub held aloft",
-      "description": "Presented to the animal kingdom by a baboon shaman."
+      "description": "Presented to the animal kingdom by a baboon shaman.",
+      "image": "https://static.wikia.nocookie.net/disney/images/3/3a/Profile_-_Mowgli.jpeg/revision/latest/scale-to-width-down/473?cb=20210906112320"
     },
     "location": {
       "name": "Pride Rock",
-      "description": "A great rock outcrop from which a king surveys everything the light touches."
+      "description": "A great rock outcrop from which a king surveys everything the light touches.",
+      "src": "fandom:disney:Pride Rock",
+      "image": "https://static.wikia.nocookie.net/disney/images/e/e4/Roca_del_Rey.png/revision/latest/scale-to-width-down/640?cb=20150106003848"
     },
     "visual": {
       "icon": "🦁",
@@ -1206,6 +1251,7 @@
       "Composer: James Horner",
       "Highest-grossing film of all time"
     ],
+    "fandom": "james-camerons-avatar",
     "cover": {
       "wiki": "Avatar (2009 film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg"
@@ -1217,11 +1263,15 @@
     "emoji": "🌳🔵🪶🚁💎",
     "item": {
       "name": "Unobtanium",
-      "description": "A floating, ultra-valuable mineral that a mining company will kill for."
+      "description": "A floating, ultra-valuable mineral that a mining company will kill for.",
+      "src": "fandom:james-camerons-avatar:Unobtanium",
+      "image": "https://static.wikia.nocookie.net/jamescameronsavatar/images/f/fe/6a0120a5d82bb3970c0dg120a58203e2970b-pi_%282%29.jpg/revision/latest?cb=20100110072429"
     },
     "location": {
       "name": "Pandora",
-      "description": "A lush jungle moon with floating mountains and bioluminescent forests."
+      "description": "A lush jungle moon with floating mountains and bioluminescent forests.",
+      "src": "fandom:james-camerons-avatar:Pandora",
+      "image": "https://static.wikia.nocookie.net/jamescameronsavatar/images/b/b8/Pandora_From_Space.png/revision/latest?cb=20130915141442"
     },
     "visual": {
       "icon": "🔵",
@@ -1272,7 +1322,7 @@
     "item": {
       "name": "Ruby slippers",
       "description": "Sparkling red shoes that a witch wants back very badly.",
-      "wiki": "Ruby slippers",
+      "src": "wp:Ruby slippers",
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Ruby_slippers.JPG"
     },
     "location": {
@@ -1329,7 +1379,9 @@
     "emoji": "🚿🔪🏨👵🐦",
     "item": {
       "name": "A shower curtain",
-      "description": "Pulled back in the most famous scene of the film."
+      "description": "Pulled back in the most famous scene of the film.",
+      "src": "wp:Shower",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/IMG_Duschender.jpg/960px-IMG_Duschender.jpg"
     },
     "location": {
       "name": "The Bates Motel",
@@ -1372,6 +1424,7 @@
       "Writers: Dan Aykroyd & Harold Ramis",
       "Theme song: Ray Parker Jr."
     ],
+    "fandom": "ghostbusters",
     "cover": {
       "wiki": "Ghostbusters (1984 film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/2/2f/Ghostbusters_%281984%29_theatrical_poster.png"
@@ -1388,11 +1441,15 @@
     "emoji": "👻🚫🧪🚒🍡",
     "item": {
       "name": "Proton pack",
-      "description": "A nuclear-powered backpack that fires a stream to trap ghosts."
+      "description": "A nuclear-powered backpack that fires a stream to trap ghosts.",
+      "src": "fandom:ghostbusters:Proton Pack",
+      "image": "https://static.wikia.nocookie.net/ghostbusters/images/c/ce/ProtonPackBio.png/revision/latest?cb=20110114135108"
     },
     "location": {
       "name": "Firehouse, Hook & Ladder 8",
-      "description": "A decommissioned New York fire station turned into a ghost-catching HQ."
+      "description": "A decommissioned New York fire station turned into a ghost-catching HQ.",
+      "src": "wp:Hook & Ladder 8 Firehouse",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Ladder82026.jpg/960px-Ladder82026.jpg"
     },
     "visual": {
       "icon": "👻",
@@ -1432,6 +1489,7 @@
       "Story: George Lucas",
       "Composer: John Williams"
     ],
+    "fandom": "indianajones",
     "cover": {
       "wiki": "Raiders of the Lost Ark",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Raiders_of_the_Lost_Ark.jpg"
@@ -1449,12 +1507,13 @@
     "item": {
       "name": "The Ark of the Covenant",
       "description": "A golden chest that melts the faces of those who open it.",
-      "wiki": "Ark of the Covenant",
+      "src": "wp:Ark of the Covenant",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Tissot_Moses_and_Joshua_in_the_Tabernacle.jpg/960px-Tissot_Moses_and_Joshua_in_the_Tabernacle.jpg"
     },
     "location": {
       "name": "Tanis",
-      "description": "A lost Egyptian city, where a map room reveals the Well of Souls."
+      "description": "A lost Egyptian city, where a map room reveals the Well of Souls.",
+      "image": "https://static.wikia.nocookie.net/indianajones/images/2/29/Staff_of_Ra.jpg/revision/latest/scale-to-width-down/640?cb=20180908162050"
     },
     "visual": {
       "icon": "🤠",
@@ -1517,7 +1576,7 @@
     "location": {
       "name": "Brooklyn",
       "description": "A New York borough where a new spider-hero grows up.",
-      "wiki": "Brooklyn",
+      "src": "wp:Brooklyn",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Brooklyn_skyline.jpg/960px-Brooklyn_skyline.jpg"
     },
     "visual": {
@@ -1576,7 +1635,7 @@
     "location": {
       "name": "The Colosseum",
       "description": "Rome's great amphitheatre, where an emperor decides with a thumb.",
-      "wiki": "Colosseum",
+      "src": "wp:Colosseum",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/960px-Colosseo_2020.jpg"
     },
     "visual": {
@@ -1631,7 +1690,9 @@
     "emoji": "🚀🕳️⌚🌽📚",
     "item": {
       "name": "A wristwatch",
-      "description": "Its ticking second hand spells out a message in Morse code."
+      "description": "Its ticking second hand spells out a message in Morse code.",
+      "src": "wp:Wristwatch",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Rolex_Oyster_Perpetual_with_a_%22Jubliee%22_dial.jpg/960px-Rolex_Oyster_Perpetual_with_a_%22Jubliee%22_dial.jpg"
     },
     "location": {
       "name": "Miller's planet",
@@ -1735,6 +1796,7 @@
       "Composer: Junkie XL",
       "Won six Academy Awards"
     ],
+    "fandom": "madmax",
     "cover": {
       "wiki": "Mad Max: Fury Road",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Mad_Max_Fury_Road.jpg"
@@ -1751,11 +1813,15 @@
     "emoji": "🚚🔥🎸🏜️💧",
     "item": {
       "name": "The Doof Warrior's guitar",
-      "description": "A flame-throwing double-necked guitar played on a truck of speakers."
+      "description": "A flame-throwing double-necked guitar played on a truck of speakers.",
+      "src": "fandom:madmax:Doof Warrior",
+      "image": "https://static.wikia.nocookie.net/roadwarrior/images/8/87/2015_MMFR_COMA-DOOF.jpg/revision/latest/scale-to-width-down/640?cb=20240525153014"
     },
     "location": {
       "name": "The Citadel",
-      "description": "Rock towers in the desert, where a tyrant rations water to the masses."
+      "description": "Rock towers in the desert, where a tyrant rations water to the masses.",
+      "src": "wp:Namib Desert",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Namib_desert_MODIS.jpg/960px-Namib_desert_MODIS.jpg"
     },
     "visual": {
       "icon": "🎸",
@@ -1798,7 +1864,9 @@
     "emoji": "🗡️7️⃣🌾🌧️🏯",
     "item": {
       "name": "A banner of six circles and a triangle",
-      "description": "Sewn by a rowdy fighter to represent the group — and himself."
+      "description": "Sewn by a rowdy fighter to represent the group — and himself.",
+      "src": "wp:Katana",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Katana_-_Motoshige.JPG/960px-Katana_-_Motoshige.JPG"
     },
     "location": {
       "name": "A farming village",
@@ -1857,13 +1925,15 @@
     "emoji": "🔨🧱🖼️🌧️🏖️",
     "item": {
       "name": "A rock hammer",
-      "description": "A tiny tool hidden in a Bible, used for a very long project behind a poster."
+      "description": "A tiny tool hidden in a Bible, used for a very long project behind a poster.",
+      "src": "wp:Rock hammer",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Turonian_Jerusalem_Stone_031612.JPG/960px-Turonian_Jerusalem_Stone_031612.JPG"
     },
     "location": {
-      "name": "Zihuatanejo",
-      "description": "A Mexican beach town on the Pacific, a place with no memory.",
-      "wiki": "Zihuatanejo",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/ZihuaMontage.jpg/960px-ZihuaMontage.jpg"
+      "name": "Shawshank State Penitentiary",
+      "description": "A grim Gothic prison in Maine where a banker serves two life sentences.",
+      "src": "wp:Ohio State Reformatory",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Ohio_State_Reformatory_Mansfield_08.jpg/960px-Ohio_State_Reformatory_Mansfield_08.jpg"
     },
     "visual": {
       "icon": "🔨",
@@ -1916,7 +1986,9 @@
     "emoji": "🥊🧼🏚️💥😶",
     "item": {
       "name": "A bar of pink soap",
-      "description": "Made from a surprising ingredient and sold back to department stores."
+      "description": "Made from a surprising ingredient and sold back to department stores.",
+      "src": "wp:Soap",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Handmade_soap_cropped_and_simplified.jpg/960px-Handmade_soap_cropped_and_simplified.jpg"
     },
     "location": {
       "name": "Paper Street",
@@ -1974,13 +2046,14 @@
     "emoji": "🍝🔫💵🚬🍷",
     "item": {
       "name": "A garlic razor blade",
-      "description": "Used in prison to slice garlic so thin it liquefies in the pan."
+      "description": "Used in prison to slice garlic so thin it liquefies in the pan.",
+      "src": "wp:Garlic",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/39/Allium_sativum_Woodwill_1793.jpg"
     },
     "location": {
       "name": "The Copacabana",
       "description": "A New York nightclub entered through the kitchen in a famous tracking shot.",
-      "wiki": "Copacabana (nightclub)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/CopacabanaLogo.png"
+      "src": "wp:Copacabana (nightclub)"
     },
     "visual": {
       "icon": "🍝",
@@ -2036,7 +2109,9 @@
     "emoji": "🦋🍷🥩👮‍♀️🔦",
     "item": {
       "name": "A death's-head moth",
-      "description": "A moth with a skull pattern, found in a victim's throat."
+      "description": "A moth with a skull pattern, found in a victim's throat.",
+      "src": "wp:Acherontia",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Acherontia_lachesis_MHNT_Female_N%C3%AElg%C3%AEri_%28Tamil_Nadu%29_Dorsal.jpg/960px-Acherontia_lachesis_MHNT_Female_N%C3%AElg%C3%AEri_%28Tamil_Nadu%29_Dorsal.jpg"
     },
     "location": {
       "name": "Baltimore State Hospital",
@@ -2095,11 +2170,15 @@
     "emoji": "🦴🚀🔴🌕👶",
     "item": {
       "name": "The monolith",
-      "description": "A perfectly smooth black slab that appears at turning points of evolution."
+      "description": "A perfectly smooth black slab that appears at turning points of evolution.",
+      "src": "wp:Monolith (Space Odyssey)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/ENS_2001_Monolith_below.jpg/960px-ENS_2001_Monolith_below.jpg"
     },
     "location": {
       "name": "Discovery One",
-      "description": "A long, spine-like spacecraft on its way to Jupiter."
+      "description": "A long, spine-like spacecraft on its way to Jupiter.",
+      "src": "wp:Discovery One",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Discovery_One_from_trailer_of_2001_A_Space_Odyssey_%281968%29.png/960px-Discovery_One_from_trailer_of_2001_A_Space_Odyssey_%281968%29.png"
     },
     "visual": {
       "icon": "🔴",
@@ -2152,11 +2231,15 @@
     "emoji": "🦄🌧️🔫🤖🏙️",
     "item": {
       "name": "An origami unicorn",
-      "description": "A tiny folded figure left on the floor by a colleague."
+      "description": "A tiny folded figure left on the floor by a colleague.",
+      "src": "wp:Origami",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Cranes_made_by_Origami_paper.jpg/960px-Cranes_made_by_Origami_paper.jpg"
     },
     "location": {
-      "name": "Los Angeles, 2019",
-      "description": "A rain-soaked, neon-lit megacity of flying cars and giant ads."
+      "name": "The Bradbury Building",
+      "description": "A Victorian atrium of wrought-iron rails in Los Angeles, home to a lonely genetic designer.",
+      "src": "wp:Bradbury Building",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Bradbury_building_Los_Angeles_c2005_01383u_crop.jpg/960px-Bradbury_building_Los_Angeles_c2005_01383u_crop.jpg"
     },
     "visual": {
       "icon": "🦄",
@@ -2194,6 +2277,7 @@
       "Co-director: Lee Unkrich",
       "Composer: Thomas Newman"
     ],
+    "fandom": "pixar",
     "cover": {
       "wiki": "Finding Nemo",
       "image": "https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg"
@@ -2210,12 +2294,14 @@
     "emoji": "🐠🐟🦈🐢🦷",
     "item": {
       "name": "A diving mask",
-      "description": "Lost by a dentist, with an address written on the strap."
+      "description": "Lost by a dentist, with an address written on the strap.",
+      "src": "wp:Diving mask",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Tauchen1.jpg"
     },
     "location": {
       "name": "The Great Barrier Reef",
       "description": "A colourful coral reef off Australia, home to a clownfish father and son.",
-      "wiki": "Great Barrier Reef",
+      "src": "wp:Great Barrier Reef",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/ISS-45_StoryOfWater%2C_Great_Barrier_Reef%2C_Australia.jpg/960px-ISS-45_StoryOfWater%2C_Great_Barrier_Reef%2C_Australia.jpg"
     },
     "visual": {
@@ -2254,6 +2340,7 @@
       "Songs: Kristen Anderson-Lopez & Robert Lopez",
       "Inspired by Hans Christian Andersen"
     ],
+    "fandom": "disney",
     "cover": {
       "wiki": "Frozen (2013 film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg"
@@ -2270,11 +2357,15 @@
     "emoji": "❄️👸⛄🏰💙",
     "item": {
       "name": "A pair of gloves",
-      "description": "Worn by a queen to keep her icy powers hidden."
+      "description": "Worn by a queen to keep her icy powers hidden.",
+      "src": "wp:Glove",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Centre_de_Documentaci%C3%B3_Museu_T%C3%A8xtil_de_Terrassa-_Reserves-_Teixits-_Guants002.JPG/960px-Centre_de_Documentaci%C3%B3_Museu_T%C3%A8xtil_de_Terrassa-_Reserves-_Teixits-_Guants002.JPG"
     },
     "location": {
       "name": "Arendelle",
-      "description": "A Norwegian-inspired fjord kingdom plunged into eternal winter."
+      "description": "A Norwegian-inspired fjord kingdom plunged into eternal winter.",
+      "src": "fandom:disney:Arendelle",
+      "image": "https://static.wikia.nocookie.net/disney/images/a/af/Profile_-_Arendelle.jpg/revision/latest/scale-to-width-down/640?cb=20130926180835"
     },
     "visual": {
       "icon": "❄️",
@@ -2312,6 +2403,7 @@
       "Based on a book by William Steig",
       "First Best Animated Feature Oscar"
     ],
+    "fandom": "shrek",
     "cover": {
       "wiki": "Shrek",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Shrek_%282001_animated_feature_film%29.jpg"
@@ -2328,11 +2420,15 @@
     "emoji": "🧅🐴🐉👸🟢",
     "item": {
       "name": "An onion",
-      "description": "Its layers explain the personality of a grumpy ogre."
+      "description": "Its layers explain the personality of a grumpy ogre.",
+      "src": "wp:Onion",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Mixed_onions.jpg/960px-Mixed_onions.jpg"
     },
     "location": {
       "name": "Duloc",
-      "description": "A theme-park-like kingdom ruled by a very short lord."
+      "description": "A theme-park-like kingdom ruled by a very short lord.",
+      "src": "fandom:shrek:Duloc",
+      "image": "https://static.wikia.nocookie.net/shrek/images/a/a5/Essential_22.jpg/revision/latest/scale-to-width-down/640?cb=20200925220747"
     },
     "visual": {
       "icon": "🧅",
@@ -2375,6 +2471,7 @@
       "Based on the novel by J. K. Rowling",
       "Composer: John Williams"
     ],
+    "fandom": "harrypotter",
     "cover": {
       "wiki": "Harry Potter and the Philosopher's Stone (film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/7a/Harry_Potter_and_the_Philosopher%27s_Stone_banner.jpg"
@@ -2391,11 +2488,15 @@
     "emoji": "🧙‍♂️⚡🦉🧹🏰",
     "item": {
       "name": "The Sorting Hat",
-      "description": "A tattered talking hat that assigns first-years to their houses."
+      "description": "A tattered talking hat that assigns first-years to their houses.",
+      "src": "fandom:harrypotter:Sorting Hat",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/6/62/Sorting_Hat.png/revision/latest/scale-to-width-down/640?cb=20161120072849"
     },
     "location": {
       "name": "Platform 9¾",
-      "description": "Reached by running at a brick wall at King's Cross station."
+      "description": "Reached by running at a brick wall at King's Cross station.",
+      "src": "fandom:harrypotter:Platform Nine and Three-Quarters",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e3/B1C6M1_Platform_9%C2%BE.jpg/revision/latest/scale-to-width-down/640?cb=20200909151511"
     },
     "visual": {
       "icon": "⚡",
@@ -2438,6 +2539,7 @@
       "Producer: Jerry Bruckheimer",
       "Composer: Klaus Badelt"
     ],
+    "fandom": "pirates",
     "cover": {
       "wiki": "Pirates of the Caribbean: The Curse of the Black Pearl",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/89/Pirates_of_the_Caribbean_-_The_Curse_of_the_Black_Pearl.png"
@@ -2454,11 +2556,15 @@
     "emoji": "🏴‍☠️🪙💀🌊🦜",
     "item": {
       "name": "An Aztec gold medallion",
-      "description": "One of 882 cursed coins that turn pirates into skeletons by moonlight."
+      "description": "One of 882 cursed coins that turn pirates into skeletons by moonlight.",
+      "src": "fandom:pirates:Aztec Gold",
+      "image": "https://static.wikia.nocookie.net/pirates/images/6/69/COTBPILMCouldntResist.jpg/revision/latest/scale-to-width-down/640?cb=20130821211420"
     },
     "location": {
       "name": "Port Royal",
-      "description": "A British colonial port in Jamaica, attacked by a ghostly black-sailed ship."
+      "description": "A British colonial port in Jamaica, attacked by a ghostly black-sailed ship.",
+      "src": "fandom:pirates:Port Royal",
+      "image": "https://static.wikia.nocookie.net/pirates/images/c/cf/Port_Royal_whole.jpg/revision/latest/scale-to-width-down/640?cb=20111223025522"
     },
     "visual": {
       "icon": "🏴‍☠️",
@@ -2512,11 +2618,15 @@
     "emoji": "✈️🕶️🏐🏍️🔥",
     "item": {
       "name": "Aviator sunglasses",
-      "description": "Worn by a reckless pilot riding a motorcycle beside the runway."
+      "description": "Worn by a reckless pilot riding a motorcycle beside the runway.",
+      "src": "wp:Aviator sunglasses",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Face_detail%2C_Lt_Mike_Hunter_2_%28cropped%29.jpg/960px-Face_detail%2C_Lt_Mike_Hunter_2_%28cropped%29.jpg"
     },
     "location": {
       "name": "NAS Miramar",
-      "description": "A naval air station near San Diego hosting an elite fighter-weapons school."
+      "description": "A naval air station near San Diego hosting an elite fighter-weapons school.",
+      "src": "wp:Marine Corps Air Station Miramar",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/MiramarAbove.jpg/960px-MiramarAbove.jpg"
     },
     "visual": {
       "icon": "✈️",
@@ -2570,12 +2680,14 @@
     "emoji": "🥊🥚🏃🐢🏛️",
     "item": {
       "name": "Raw eggs in a glass",
-      "description": "Gulped down at dawn before a training run."
+      "description": "Gulped down at dawn before a training run.",
+      "src": "wp:Eggs as food",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Huevo_frito.jpg/960px-Huevo_frito.jpg"
     },
     "location": {
       "name": "The 'Rocky Steps'",
       "description": "The 72 stone steps of the Philadelphia Museum of Art.",
-      "wiki": "Rocky Steps",
+      "src": "wp:Rocky Steps",
       "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/21/Rocky_%281976%29_-_Rocky_Steps.ogv/500px--Rocky_%281976%29_-_Rocky_Steps.ogv.jpg"
     },
     "visual": {
@@ -2633,7 +2745,9 @@
     "emoji": "⚔️💛🏍️🩸🎌",
     "item": {
       "name": "A Hattori Hanzō sword",
-      "description": "Forged by a retired master who swore never to make another."
+      "description": "Forged by a retired master who swore never to make another.",
+      "src": "wp:Katana",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Katana_-_Motoshige.JPG/960px-Katana_-_Motoshige.JPG"
     },
     "location": {
       "name": "The House of Blue Leaves",
@@ -2679,6 +2793,7 @@
       "Producer: Kevin Feige",
       "Composer: Alan Silvestri"
     ],
+    "fandom": "marvelcinematicuniverse",
     "cover": {
       "wiki": "Avengers: Endgame",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg"
@@ -2695,11 +2810,15 @@
     "emoji": "🧤💎🦸⏳🛡️",
     "item": {
       "name": "A nano gauntlet",
-      "description": "A metal glove built to hold six stones — and snap."
+      "description": "A metal glove built to hold six stones — and snap.",
+      "src": "fandom:marvelcinematicuniverse:Nano Gauntlet",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ae/NanoGauntlet.png/revision/latest?cb=20190530213429"
     },
     "location": {
       "name": "The Avengers Compound",
-      "description": "A team headquarters in upstate New York, destroyed in a battle."
+      "description": "A team headquarters in upstate New York, destroyed in a battle.",
+      "src": "fandom:marvelcinematicuniverse:Avengers Compound",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/20/AvengersEndgame_06.png/revision/latest/scale-to-width-down/640?cb=20190326194352"
     },
     "visual": {
       "icon": "🧤",
@@ -2753,7 +2872,9 @@
     "emoji": "☕🥄😱🦌📸",
     "item": {
       "name": "A teacup and silver spoon",
-      "description": "Stirred slowly, it sends a guest falling into darkness."
+      "description": "Stirred slowly, it sends a guest falling into darkness.",
+      "src": "wp:Teacup",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Five_Piece_Tea_Service_with_Chrysanthemum_Design_LACMA_M.2006.132.10a-i.jpg/960px-Five_Piece_Tea_Service_with_Chrysanthemum_Design_LACMA_M.2006.132.10a-i.jpg"
     },
     "location": {
       "name": "The Armitage estate",
@@ -2811,7 +2932,7 @@
     "location": {
       "name": "Griffith Observatory",
       "description": "A hilltop observatory where two dreamers float among the stars.",
-      "wiki": "Griffith Observatory",
+      "src": "wp:Griffith Observatory",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Griffith_observatory_2006.jpg/960px-Griffith_observatory_2006.jpg"
     },
     "visual": {
@@ -2861,11 +2982,15 @@
     "emoji": "📺🏝️🎥⛵🚪",
     "item": {
       "name": "A falling studio light",
-      "description": "Labelled 'Sirius (9 Canis Major)', it drops from a clear blue sky."
+      "description": "Labelled 'Sirius (9 Canis Major)', it drops from a clear blue sky.",
+      "src": "wp:Stage lighting",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Classical_spectacular10.jpg/960px-Classical_spectacular10.jpg"
     },
     "location": {
       "name": "Seahaven Island",
-      "description": "A perfect seaside town that is actually a giant dome-shaped set."
+      "description": "A perfect seaside town that is actually a giant dome-shaped set.",
+      "src": "wp:Seaside, Florida",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Seaside%2C_Florida.jpg/960px-Seaside%2C_Florida.jpg"
     },
     "visual": {
       "icon": "📺",
@@ -2919,7 +3044,9 @@
     "emoji": "🏠🎄😱🕷️🧳",
     "item": {
       "name": "Paint cans on a rope",
-      "description": "Swung down a staircase at two burglars."
+      "description": "Swung down a staircase at two burglars.",
+      "src": "wp:Paint",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Multicolored_tempera_paints.jpg/960px-Multicolored_tempera_paints.jpg"
     },
     "location": {
       "name": "A house in Winnetka",
@@ -2981,7 +3108,9 @@
     "emoji": "🥯👀🌭🌌👩‍👧",
     "item": {
       "name": "An everything bagel",
-      "description": "A black bagel topped with everything — every hope, dream and old report card."
+      "description": "A black bagel topped with everything — every hope, dream and old report card.",
+      "src": "wp:Everything bagel",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/20090424_Bagels_001.JPG/960px-20090424_Bagels_001.JPG"
     },
     "location": {
       "name": "The IRS building",
@@ -2992,6 +3121,2995 @@
       "colors": [
         "#0a0a0a",
         "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "c-godfather2",
+    "name": "The Godfather Part II",
+    "aliases": [
+      "godfather 2"
+    ],
+    "domain": "cinema",
+    "year": 1974,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "studio": "Paramount Pictures",
+    "creator": "Francis Ford Coppola",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Michael Corleone",
+      "Young Vito Corleone",
+      "Hyman Roth"
+    ],
+    "themes": [
+      "Power",
+      "Family"
+    ],
+    "credits": [
+      "Director: Francis Ford Coppola",
+      "First sequel to win Best Picture"
+    ],
+    "cover": {
+      "wiki": "The Godfather Part II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Godfather_part_ii.jpg"
+    },
+    "quote": {
+      "text": "Keep your friends close, but your enemies closer.",
+      "speaker": "A don explaining his father's lesson"
+    },
+    "audio": {
+      "clue": "A sombre Sicilian waltz returns as a young immigrant arrives in New York.",
+      "query": "The Godfather Part II main title",
+      "youtubeId": "SshzG6rtP6A"
+    },
+    "emoji": "🗽🚢👦🔫🍊",
+    "item": {
+      "name": "An orange",
+      "description": "Fruit that keeps appearing just before something terrible happens.",
+      "src": "wp:Orange (fruit)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/960px-Oranges_-_whole-halved-segment.jpg"
+    },
+    "location": {
+      "name": "Ellis Island",
+      "description": "The New York immigration station where a nine-year-old is renamed by a clerk.",
+      "src": "wp:Ellis Island",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Aerial_view_of_Ellis_Island%2C_Jersey_City%2C_New_Jersey_LCCN2011635626_-_cropped_balance.jpg/960px-Aerial_view_of_Ellis_Island%2C_Jersey_City%2C_New_Jersey_LCCN2011635626_-_cropped_balance.jpg"
+    },
+    "visual": {
+      "icon": "🗽",
+      "colors": [
+        "#0a0a0a",
+        "#78350f"
+      ]
+    }
+  },
+  {
+    "id": "c-schindler",
+    "name": "Schindler's List",
+    "domain": "cinema",
+    "year": 1993,
+    "genres": [
+      "Historical",
+      "Drama"
+    ],
+    "studio": "Universal Pictures",
+    "creator": "Steven Spielberg",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Oskar Schindler",
+      "Itzhak Stern",
+      "Amon Göth"
+    ],
+    "themes": [
+      "Holocaust",
+      "Conscience"
+    ],
+    "credits": [
+      "Director: Steven Spielberg",
+      "Composer: John Williams",
+      "Violin solos by Itzhak Perlman"
+    ],
+    "cover": {
+      "wiki": "Schindler's List",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/38/Schindler%27s_List_movie.jpg"
+    },
+    "quote": {
+      "text": "Whoever saves one life saves the world entire.",
+      "speaker": "An inscription on a gold ring"
+    },
+    "audio": {
+      "clue": "A heartbreaking solo violin theme over black-and-white images.",
+      "query": "Schindler's List theme Itzhak Perlman",
+      "youtubeId": "cLgJQ8Zj3AA"
+    },
+    "emoji": "📜💍🧥🔴🏭",
+    "item": {
+      "name": "A typewriter",
+      "description": "Used to type a list of names that means life.",
+      "src": "wp:Typewriter",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/MEK_II-371.jpg/960px-MEK_II-371.jpg"
+    },
+    "location": {
+      "name": "Schindler's enamel factory",
+      "description": "A Kraków factory that sheltered Jewish workers.",
+      "src": "wp:Oskar Schindler's Enamel Factory",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Schindler%E2%80%99s_factory%2C_Krak%C3%B3w%2C_2011.jpg/960px-Schindler%E2%80%99s_factory%2C_Krak%C3%B3w%2C_2011.jpg"
+    },
+    "visual": {
+      "icon": "📜",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "c-privateryan",
+    "name": "Saving Private Ryan",
+    "domain": "cinema",
+    "year": 1998,
+    "genres": [
+      "War",
+      "Drama"
+    ],
+    "studio": "DreamWorks Pictures",
+    "creator": "Steven Spielberg",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Captain Miller",
+      "Private Ryan",
+      "Corporal Upham"
+    ],
+    "themes": [
+      "Sacrifice",
+      "D-Day"
+    ],
+    "credits": [
+      "Director: Steven Spielberg",
+      "Writer: Robert Rodat"
+    ],
+    "cover": {
+      "wiki": "Saving Private Ryan",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ac/Saving_Private_Ryan_poster.jpg"
+    },
+    "quote": {
+      "text": "Earn this.",
+      "speaker": "A dying captain on a bridge"
+    },
+    "audio": {
+      "clue": "A solemn brass hymn for the fallen, as a veteran kneels by a grave.",
+      "query": "Saving Private Ryan Hymn to the Fallen",
+      "youtubeId": "fvpQMTY8H9Y"
+    },
+    "emoji": "🪖🏖️🇺🇸🔫⛪",
+    "item": {
+      "name": "Dog tags",
+      "description": "Stamped metal tags collected from fallen soldiers.",
+      "src": "wp:Dog tag",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Dogtags.jpg/960px-Dogtags.jpg"
+    },
+    "location": {
+      "name": "Omaha Beach",
+      "description": "A Normandy beach landing filmed in one of the most intense opening sequences ever.",
+      "src": "wp:Omaha Beach",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Into_the_Jaws_of_Death_23-0455M_edit.jpg/960px-Into_the_Jaws_of_Death_23-0455M_edit.jpg"
+    },
+    "visual": {
+      "icon": "🪖",
+      "colors": [
+        "#365314",
+        "#a8a29e"
+      ]
+    }
+  },
+  {
+    "id": "c-rotk",
+    "name": "The Lord of the Rings: The Return of the King",
+    "aliases": [
+      "return of the king",
+      "rotk"
+    ],
+    "domain": "cinema",
+    "year": 2003,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "New Line Cinema",
+    "creator": "Peter Jackson",
+    "origin": "New Zealand",
+    "format": "Live-action",
+    "characters": [
+      "Frodo",
+      "Sam",
+      "Aragorn",
+      "Gollum"
+    ],
+    "themes": [
+      "Kingship",
+      "Endurance"
+    ],
+    "credits": [
+      "Director: Peter Jackson",
+      "Won all 11 Oscars it was nominated for"
+    ],
+    "fandom": "lotr",
+    "cover": {
+      "wiki": "The Lord of the Rings: The Return of the King",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Lord_Rings_Return_King.jpg"
+    },
+    "quote": {
+      "text": "I can't carry it for you, but I can carry you!",
+      "speaker": "A gardener on a volcano"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral theme as beacons are lit from mountaintop to mountaintop.",
+      "query": "Return of the King The Lighting of the Beacons",
+      "youtubeId": "jm0wz0ZlYqc"
+    },
+    "emoji": "👑🌋🕯️🐘🦅",
+    "item": {
+      "name": "Andúril",
+      "description": "The sword reforged from the shards of Narsil, returned to its heir.",
+      "image": "https://static.wikia.nocookie.net/lotr/images/1/10/Anduril2.png/revision/latest/scale-to-width-down/120?cb=20130120174607"
+    },
+    "location": {
+      "name": "Minas Tirith",
+      "description": "A white city of seven tiers carved into a mountain.",
+      "image": "https://static.wikia.nocookie.net/lotr/images/e/e4/Minas_Tirith.jpg/revision/latest/scale-to-width-down/640?cb=20141228214636"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#1c1917",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "c-empire",
+    "name": "The Empire Strikes Back",
+    "aliases": [
+      "empire strikes back",
+      "star wars episode v"
+    ],
+    "domain": "cinema",
+    "year": 1980,
+    "genres": [
+      "Sci-Fi",
+      "Space Opera"
+    ],
+    "studio": "Lucasfilm",
+    "creator": "Irvin Kershner",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Luke Skywalker",
+      "Darth Vader",
+      "Yoda",
+      "Han Solo"
+    ],
+    "themes": [
+      "Temptation",
+      "Revelation"
+    ],
+    "credits": [
+      "Director: Irvin Kershner",
+      "Story: George Lucas",
+      "Composer: John Williams"
+    ],
+    "fandom": "starwars",
+    "cover": {
+      "wiki": "The Empire Strikes Back",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg"
+    },
+    "quote": {
+      "text": "No, I am your father.",
+      "speaker": "A masked Sith lord on a gantry"
+    },
+    "audio": {
+      "clue": "A menacing military march for a galactic empire.",
+      "query": "The Imperial March John Williams",
+      "youtubeId": "vsMWVW4xtwI"
+    },
+    "emoji": "❄️🐾🤖🧊👋",
+    "item": {
+      "name": "Carbonite",
+      "description": "A smuggler frozen in a slab of grey metal, hands raised.",
+      "image": "https://static.wikia.nocookie.net/starwars/images/e/ef/HanCarbonite-BHUSC.png/revision/latest/scale-to-width-down/317?cb=20221205011717"
+    },
+    "location": {
+      "name": "Hoth",
+      "description": "An ice planet where rebels hide from walker attacks.",
+      "image": "https://static.wikia.nocookie.net/starwars/images/8/81/Hoth_AoRCR.png/revision/latest/scale-to-width-down/640?cb=20170222025915"
+    },
+    "visual": {
+      "icon": "❄️",
+      "colors": [
+        "#e0f2fe",
+        "#0f172a"
+      ]
+    }
+  },
+  {
+    "id": "c-azkaban",
+    "name": "Harry Potter and the Prisoner of Azkaban",
+    "aliases": [
+      "prisoner of azkaban"
+    ],
+    "domain": "cinema",
+    "year": 2004,
+    "genres": [
+      "Fantasy",
+      "Family"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Alfonso Cuarón",
+    "origin": "United Kingdom",
+    "format": "Live-action",
+    "characters": [
+      "Harry Potter",
+      "Sirius Black",
+      "Remus Lupin",
+      "Buckbeak"
+    ],
+    "themes": [
+      "Time travel",
+      "Fear"
+    ],
+    "credits": [
+      "Director: Alfonso Cuarón",
+      "Composer: John Williams"
+    ],
+    "fandom": "harrypotter",
+    "cover": {
+      "wiki": "Harry Potter and the Prisoner of Azkaban (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/18/Harry_Potter_and_the_Prisoner_of_Azkaban_film_poster.jpg"
+    },
+    "quote": {
+      "text": "I solemnly swear that I am up to no good.",
+      "speaker": "A boy activating a magical map"
+    },
+    "audio": {
+      "clue": "A medieval-flavoured choir sings a Shakespeare witches' chant.",
+      "query": "Prisoner of Azkaban Double Trouble",
+      "youtubeId": "X7YLpHFFW64"
+    },
+    "emoji": "⏳🐺🦅🗺️🐀",
+    "item": {
+      "name": "Time-Turner",
+      "description": "An hourglass pendant that sends its wearer back a few hours.",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a4/Time_Turner.png/revision/latest/scale-to-width-down/452?cb=20161126042527"
+    },
+    "location": {
+      "name": "Shrieking Shack",
+      "description": "The 'most haunted building in Britain', on the edge of a village.",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/9/9c/The_Shrieking_Shack_%28Concept_Artwork_for_the_HP3_movie_01%29.jpg/revision/latest/scale-to-width-down/640?cb=20161218211028"
+    },
+    "visual": {
+      "icon": "⏳",
+      "colors": [
+        "#1e3a8a",
+        "#94a3b8"
+      ]
+    }
+  },
+  {
+    "id": "c-avengers",
+    "name": "The Avengers",
+    "aliases": [
+      "avengers assemble",
+      "avengers 2012"
+    ],
+    "domain": "cinema",
+    "year": 2012,
+    "genres": [
+      "Superhero",
+      "Action"
+    ],
+    "studio": "Marvel Studios",
+    "creator": "Joss Whedon",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Iron Man",
+      "Captain America",
+      "Thor",
+      "Loki"
+    ],
+    "themes": [
+      "Team-up",
+      "Invasion"
+    ],
+    "credits": [
+      "Writer & director: Joss Whedon",
+      "Producer: Kevin Feige"
+    ],
+    "fandom": "marvelcinematicuniverse",
+    "cover": {
+      "wiki": "The Avengers (2012 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Avengers_%282012_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Puny god.",
+      "speaker": "A green giant after smashing an Asgardian"
+    },
+    "audio": {
+      "clue": "A heroic brass theme as the camera circles six heroes in a ruined New York street.",
+      "query": "The Avengers theme Alan Silvestri",
+      "youtubeId": "XNCQZ0wxphY"
+    },
+    "emoji": "🛡️🔨🦾🟢🏙️",
+    "item": {
+      "name": "Tesseract",
+      "description": "A glowing blue cube holding an infinite power source.",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/06/Avengers_Tesseract2012.png/revision/latest/scale-to-width-down/640?cb=20170220131242"
+    },
+    "location": {
+      "name": "Stark Tower",
+      "description": "A Manhattan skyscraper with a giant 'A' — after the battle.",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/0/09/Avengers_Tower_AoU_cropped.png/revision/latest/scale-to-width-down/452?cb=20201020101647"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#1e3a8a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "c-blackpanther",
+    "name": "Black Panther",
+    "domain": "cinema",
+    "year": 2018,
+    "genres": [
+      "Superhero",
+      "Action"
+    ],
+    "studio": "Marvel Studios",
+    "creator": "Ryan Coogler",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "T'Challa",
+      "Killmonger",
+      "Shuri",
+      "Okoye"
+    ],
+    "themes": [
+      "Heritage",
+      "Isolationism"
+    ],
+    "credits": [
+      "Director: Ryan Coogler",
+      "Composer: Ludwig Göransson",
+      "First superhero film nominated for Best Picture"
+    ],
+    "fandom": "marvelcinematicuniverse",
+    "cover": {
+      "wiki": "Black Panther (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Black_Panther_%28film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Wakanda forever!",
+      "speaker": "A king and his people, arms crossed"
+    },
+    "audio": {
+      "clue": "Talking drums and Senegalese vocals over a grand orchestra.",
+      "query": "Black Panther Wakanda Ludwig Goransson",
+      "youtubeId": "WMFAsidiQfc"
+    },
+    "emoji": "🐆👑💜🛡️🌍",
+    "item": {
+      "name": "Kimoyo Beads",
+      "description": "A bracelet of vibranium beads that work as a phone, a remote and a medic.",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/20F8F2AB-5DCA-4FD7-A5B9-AA5669D73B4D.jpeg/revision/latest/scale-to-width-down/640?cb=20180304232935"
+    },
+    "location": {
+      "name": "Golden City",
+      "description": "The hidden, high-tech capital of an African nation.",
+      "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/5/58/Golden_city_wakanda.png/revision/latest/scale-to-width-down/640?cb=20221112021631"
+    },
+    "visual": {
+      "icon": "🐆",
+      "colors": [
+        "#3b0764",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "c-joker",
+    "name": "Joker",
+    "domain": "cinema",
+    "year": 2019,
+    "genres": [
+      "Psychological",
+      "Crime"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Todd Phillips",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Arthur Fleck",
+      "Murray Franklin",
+      "Thomas Wayne"
+    ],
+    "themes": [
+      "Mental illness",
+      "Society"
+    ],
+    "credits": [
+      "Director: Todd Phillips",
+      "Composer: Hildur Guðnadóttir",
+      "Golden Lion at Venice"
+    ],
+    "cover": {
+      "wiki": "Joker (2019 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/Joker_%282019_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "You get what you deserve!",
+      "speaker": "A failed comedian on a talk show"
+    },
+    "audio": {
+      "clue": "A lone, groaning cello theme by Hildur Guðnadóttir.",
+      "query": "Joker Bathroom Dance Hildur Gudnadottir",
+      "youtubeId": "VdfgiEQeceM"
+    },
+    "emoji": "🤡🎭🪜🔫📺",
+    "item": {
+      "name": "Clown make-up",
+      "description": "Painted on before a dance down a staircase.",
+      "src": "wp:Clown",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Auguste_clown_reading_a_book_upside-down.jpg/960px-Auguste_clown_reading_a_book_upside-down.jpg"
+    },
+    "location": {
+      "name": "The Bronx stairs",
+      "description": "A long staircase in the Bronx made famous by a dance scene.",
+      "src": "wp:Joker Stairs",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Anderson_Avenue.jpg/960px-Anderson_Avenue.jpg"
+    },
+    "visual": {
+      "icon": "🤡",
+      "colors": [
+        "#7f1d1d",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "c-departed",
+    "name": "The Departed",
+    "domain": "cinema",
+    "year": 2006,
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Martin Scorsese",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Billy Costigan",
+      "Colin Sullivan",
+      "Frank Costello",
+      "Dignam"
+    ],
+    "themes": [
+      "Moles",
+      "Identity"
+    ],
+    "credits": [
+      "Director: Martin Scorsese",
+      "Remake of Infernal Affairs"
+    ],
+    "cover": {
+      "wiki": "The Departed",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/50/Departed234.jpg"
+    },
+    "audio": {
+      "clue": "A Celtic punk rock anthem with bagpipes and fast drums.",
+      "query": "Dropkick Murphys I'm Shipping Up to Boston",
+      "youtubeId": "x-64CaD8GXw"
+    },
+    "emoji": "🐀👮🍀🔫📞",
+    "item": {
+      "name": "A rat",
+      "description": "Seen on a balcony in the final shot — a not-so-subtle symbol.",
+      "src": "wp:Brown rat",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Brown_Rat_%28Rattus_norvegicus%29.jpg/960px-Brown_Rat_%28Rattus_norvegicus%29.jpg"
+    },
+    "location": {
+      "name": "Boston",
+      "description": "A city where a cop and a gangster each infiltrate the other's side.",
+      "src": "wp:Boston",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/ISH_WC_Boston4.jpg/960px-ISH_WC_Boston4.jpg"
+    },
+    "visual": {
+      "icon": "🐀",
+      "colors": [
+        "#0a0a0a",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "c-taxidriver",
+    "name": "Taxi Driver",
+    "domain": "cinema",
+    "year": 1976,
+    "genres": [
+      "Crime",
+      "Psychological"
+    ],
+    "studio": "Columbia Pictures",
+    "creator": "Martin Scorsese",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Travis Bickle",
+      "Iris",
+      "Betsy"
+    ],
+    "themes": [
+      "Loneliness",
+      "Urban decay"
+    ],
+    "credits": [
+      "Director: Martin Scorsese",
+      "Writer: Paul Schrader",
+      "Composer: Bernard Herrmann"
+    ],
+    "cover": {
+      "wiki": "Taxi Driver",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Taxi_Driver_%281976_film_poster%29.jpg"
+    },
+    "quote": {
+      "text": "You talkin' to me?",
+      "speaker": "A cab driver to his mirror"
+    },
+    "audio": {
+      "clue": "A smoky, late-night saxophone theme drifting over 1970s New York.",
+      "query": "Taxi Driver theme Bernard Herrmann",
+      "youtubeId": "Bx4aK-YsPeU"
+    },
+    "emoji": "🚕🌃🔫😠🪞",
+    "item": {
+      "name": "A mohawk",
+      "description": "The haircut a lonely veteran gets before his final act.",
+      "src": "wp:Mohawk hairstyle",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/21/Short_Mohawk.jpg"
+    },
+    "location": {
+      "name": "Times Square, 1970s",
+      "description": "A grimy, neon-lit New York of porn theatres and steam.",
+      "src": "wp:Times Square",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/New_york_times_square-terabass.jpg/960px-New_york_times_square-terabass.jpg"
+    },
+    "visual": {
+      "icon": "🚕",
+      "colors": [
+        "#facc15",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "c-nocountry",
+    "name": "No Country for Old Men",
+    "domain": "cinema",
+    "year": 2007,
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "studio": "Miramax",
+    "creator": "Joel & Ethan Coen",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Anton Chigurh",
+      "Llewelyn Moss",
+      "Sheriff Bell"
+    ],
+    "themes": [
+      "Fate",
+      "Violence"
+    ],
+    "credits": [
+      "Directors: Joel & Ethan Coen",
+      "Based on the novel by Cormac McCarthy"
+    ],
+    "cover": {
+      "wiki": "No Country for Old Men (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg"
+    },
+    "quote": {
+      "text": "What's the most you ever lost on a coin toss?",
+      "speaker": "A hitman with a bad haircut"
+    },
+    "emoji": "🪙💼🤠🔫🏜️",
+    "item": {
+      "name": "A captive bolt pistol",
+      "description": "A slaughterhouse tool carried with an air tank by a remorseless killer.",
+      "src": "wp:Captive bolt pistol",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/47/TED_Stunner_Captive_Bolt_Technology.jpg"
+    },
+    "location": {
+      "name": "West Texas",
+      "description": "A desolate border landscape where a hunter finds a satchel of money.",
+      "src": "wp:Big Bend National Park",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Canyon%2C_Rio_Grande%2C_Texas.jpeg/960px-Canyon%2C_Rio_Grande%2C_Texas.jpeg"
+    },
+    "visual": {
+      "icon": "🪙",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "c-lebowski",
+    "name": "The Big Lebowski",
+    "domain": "cinema",
+    "year": 1998,
+    "genres": [
+      "Comedy",
+      "Crime"
+    ],
+    "studio": "Gramercy Pictures",
+    "creator": "Joel & Ethan Coen",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "The Dude",
+      "Walter Sobchak",
+      "Donny",
+      "Maude"
+    ],
+    "themes": [
+      "Slacker",
+      "Mistaken identity"
+    ],
+    "credits": [
+      "Directors: Joel & Ethan Coen",
+      "Narrated by Sam Elliott"
+    ],
+    "cover": {
+      "wiki": "The Big Lebowski",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg"
+    },
+    "quote": {
+      "text": "The Dude abides.",
+      "speaker": "A laid-back bowler in a bathrobe"
+    },
+    "audio": {
+      "clue": "A country song about tumbling tumbleweeds over a rolling desert.",
+      "query": "Sons of the Pioneers Tumbling Tumbleweeds Big Lebowski",
+      "youtubeId": "Yjg8LL5iUrc"
+    },
+    "emoji": "🎳🥛🧔🛁🐕",
+    "item": {
+      "name": "A White Russian",
+      "description": "A creamy cocktail always in the hand of a man in a bathrobe.",
+      "src": "wp:White Russian (cocktail)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/48/White-Russian.jpg"
+    },
+    "location": {
+      "name": "A bowling alley",
+      "description": "A league lane where three friends spend most of their time.",
+      "src": "wp:Bowling alley",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/1892_Bowling_scene_-_Spalding%27s_Athletic_Library.jpg/960px-1892_Bowling_scene_-_Spalding%27s_Athletic_Library.jpg"
+    },
+    "visual": {
+      "icon": "🎳",
+      "colors": [
+        "#1e3a8a",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "c-oppenheimer",
+    "name": "Oppenheimer",
+    "domain": "cinema",
+    "year": 2023,
+    "genres": [
+      "Historical",
+      "Drama"
+    ],
+    "studio": "Universal Pictures",
+    "creator": "Christopher Nolan",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "J. Robert Oppenheimer",
+      "Lewis Strauss",
+      "General Groves",
+      "Kitty"
+    ],
+    "themes": [
+      "Guilt",
+      "The bomb"
+    ],
+    "credits": [
+      "Director: Christopher Nolan",
+      "Composer: Ludwig Göransson",
+      "Won Best Picture"
+    ],
+    "cover": {
+      "wiki": "Oppenheimer (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg"
+    },
+    "quote": {
+      "text": "Now I am become Death, the destroyer of worlds.",
+      "speaker": "A physicist quoting scripture"
+    },
+    "audio": {
+      "clue": "Frantic, spiralling violins that accelerate towards a test countdown.",
+      "query": "Oppenheimer Can You Hear The Music",
+      "youtubeId": "4JZ-o3iAJv4"
+    },
+    "emoji": "💥🎩⚛️🏜️🕰️",
+    "item": {
+      "name": "A pork-pie hat",
+      "description": "The signature hat of a physicist in the desert.",
+      "src": "wp:Pork pie hat",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Brown_Porkpie_Hat.JPG/960px-Brown_Porkpie_Hat.JPG"
+    },
+    "location": {
+      "name": "Los Alamos",
+      "description": "A secret laboratory town built on a New Mexico mesa.",
+      "src": "wp:Los Alamos National Laboratory",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Los_Alamos_aerial_view.jpeg/960px-Los_Alamos_aerial_view.jpeg"
+    },
+    "visual": {
+      "icon": "⚛️",
+      "colors": [
+        "#0a0a0a",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "c-memento",
+    "name": "Memento",
+    "domain": "cinema",
+    "year": 2000,
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ],
+    "studio": "Newmarket Films",
+    "creator": "Christopher Nolan",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Leonard Shelby",
+      "Natalie",
+      "Teddy"
+    ],
+    "themes": [
+      "Memory",
+      "Revenge"
+    ],
+    "credits": [
+      "Director: Christopher Nolan",
+      "Story by Jonathan Nolan"
+    ],
+    "cover": {
+      "wiki": "Memento (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c7/Memento_poster.jpg"
+    },
+    "quote": {
+      "text": "Remember Sammy Jankis.",
+      "speaker": "A tattoo on a man's hand"
+    },
+    "emoji": "📸🧠🔁✍️🚗",
+    "item": {
+      "name": "Tattoos",
+      "description": "Facts inked on his own body by a man who can't make new memories.",
+      "src": "wp:Tattoo",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Anchor_tattoo_and_sketch.jpg"
+    },
+    "location": {
+      "name": "A motel room",
+      "description": "A cheap motel where a man pieces together his wife's murder.",
+      "src": "wp:Motel",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/Bjerka_Motel_B.JPG/960px-Bjerka_Motel_B.JPG"
+    },
+    "visual": {
+      "icon": "📸",
+      "colors": [
+        "#0c4a6e",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "c-dune",
+    "name": "Dune",
+    "aliases": [
+      "dune part one"
+    ],
+    "domain": "cinema",
+    "year": 2021,
+    "genres": [
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "studio": "Legendary Pictures",
+    "creator": "Denis Villeneuve",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Paul Atreides",
+      "Lady Jessica",
+      "Duncan Idaho",
+      "Chani"
+    ],
+    "themes": [
+      "Prophecy",
+      "Ecology"
+    ],
+    "credits": [
+      "Director: Denis Villeneuve",
+      "Composer: Hans Zimmer",
+      "Based on the novel by Frank Herbert"
+    ],
+    "fandom": "dune",
+    "cover": {
+      "wiki": "Dune (2021 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Dune_%282021_film%29.jpg"
+    },
+    "quote": {
+      "text": "Fear is the mind-killer.",
+      "speaker": "A young heir reciting a litany with his hand in a box"
+    },
+    "audio": {
+      "clue": "A primal female vocal cry over thundering drums and desert drones.",
+      "query": "Dune Paul's Dream Hans Zimmer",
+      "youtubeId": "BdtiYwSP9ko"
+    },
+    "emoji": "🏜️🪱💧🗡️👁️",
+    "item": {
+      "name": "Crysknife",
+      "description": "A blade carved from a sandworm's tooth.",
+      "image": "https://static.wikia.nocookie.net/dune/images/c/c6/The_Illustrated_Dune_-_Shadout_Mapes_with_a_crysknife_%28art_by_John_Schoenherr%29.png/revision/latest/scale-to-width-down/416?cb=20250919120519"
+    },
+    "location": {
+      "name": "Arrakis",
+      "description": "A desert planet, the only source of a precious spice.",
+      "image": "https://static.wikia.nocookie.net/dune/images/8/82/Analog-DuneWorld-SchoenherrArrakis.png/revision/latest/scale-to-width-down/543?cb=20250113164613"
+    },
+    "visual": {
+      "icon": "🪱",
+      "colors": [
+        "#c2410c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "c-arrival",
+    "name": "Arrival",
+    "domain": "cinema",
+    "year": 2016,
+    "genres": [
+      "Sci-Fi",
+      "Drama"
+    ],
+    "studio": "Paramount Pictures",
+    "creator": "Denis Villeneuve",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Louise Banks",
+      "Ian Donnelly",
+      "Abbott and Costello"
+    ],
+    "themes": [
+      "Language",
+      "Time"
+    ],
+    "credits": [
+      "Director: Denis Villeneuve",
+      "Based on a story by Ted Chiang"
+    ],
+    "cover": {
+      "wiki": "Arrival (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A slow, devastating string piece by Max Richter over the opening.",
+      "query": "Arrival On the Nature of Daylight Max Richter",
+      "youtubeId": "EDMe_nUpzMM"
+    },
+    "emoji": "🛸🐙✍️⭕🕰️",
+    "item": {
+      "name": "A circular logogram",
+      "description": "Ink-ring writing sprayed by heptapod visitors.",
+      "src": "wp:Ensō",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Enso.jpg"
+    },
+    "location": {
+      "name": "Montana",
+      "description": "Where a giant shell-shaped craft hovers over a green valley.",
+      "src": "wp:Montana",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_Montana.svg/960px-Flag_of_Montana.svg.png"
+    },
+    "visual": {
+      "icon": "⭕",
+      "colors": [
+        "#1c1917",
+        "#a8a29e"
+      ]
+    }
+  },
+  {
+    "id": "c-up",
+    "name": "Up",
+    "domain": "cinema",
+    "year": 2009,
+    "genres": [
+      "Animation",
+      "Adventure"
+    ],
+    "studio": "Pixar",
+    "creator": "Pete Docter",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Carl Fredricksen",
+      "Russell",
+      "Dug",
+      "Kevin"
+    ],
+    "themes": [
+      "Grief",
+      "Adventure"
+    ],
+    "credits": [
+      "Director: Pete Docter",
+      "Composer: Michael Giacchino"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "Up (2009 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Up_%282009_film%29.jpg"
+    },
+    "quote": {
+      "text": "Adventure is out there!",
+      "speaker": "A young girl in an aviator's helmet"
+    },
+    "audio": {
+      "clue": "A tender waltz that grows and fades through a montage of a married life.",
+      "query": "Up Married Life Michael Giacchino",
+      "youtubeId": "2rn-vMbFglI"
+    },
+    "emoji": "🎈🏠👴🐕🦤",
+    "item": {
+      "name": "Balloons",
+      "description": "Thousands of them lift a house into the sky.",
+      "src": "wp:Balloon",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Congrats_bqt.jpg"
+    },
+    "location": {
+      "name": "Paradise Falls",
+      "description": "A waterfall atop a tepui in South America.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/3/3d/And_the_clouds_clear_to_reveal....png/revision/latest/scale-to-width-down/640?cb=20111112214336"
+    },
+    "visual": {
+      "icon": "🎈",
+      "colors": [
+        "#0ea5e9",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "c-walle",
+    "name": "WALL-E",
+    "domain": "cinema",
+    "year": 2008,
+    "genres": [
+      "Animation",
+      "Sci-Fi"
+    ],
+    "studio": "Pixar",
+    "creator": "Andrew Stanton",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "WALL-E",
+      "EVE",
+      "Captain McCrea",
+      "AUTO"
+    ],
+    "themes": [
+      "Consumerism",
+      "Love"
+    ],
+    "credits": [
+      "Director: Andrew Stanton",
+      "Composer: Thomas Newman",
+      "Sound design: Ben Burtt"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "WALL-E",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/WALL-E_poster.jpg"
+    },
+    "audio": {
+      "clue": "A 1960s showtune from a musical plays from an old VHS tape in a trash-covered world.",
+      "query": "WALL-E Put On Your Sunday Clothes",
+      "youtubeId": "ZdTx0IZUvgY"
+    },
+    "emoji": "🤖🌱🗑️🚀❤️",
+    "item": {
+      "name": "A seedling in a boot",
+      "description": "A tiny green plant found in a ruined Earth.",
+      "src": "wp:Seedling",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Monocot_vs_dicot_crop_Pengo.jpg"
+    },
+    "location": {
+      "name": "Axiom",
+      "description": "A luxury starliner where humans float around on hover chairs.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/d/d2/The_AXIOM_Hotel.jpg/revision/latest/scale-to-width-down/640?cb=20080706234044"
+    },
+    "visual": {
+      "icon": "🌱",
+      "colors": [
+        "#78350f",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "c-ratatouille",
+    "name": "Ratatouille",
+    "domain": "cinema",
+    "year": 2007,
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "studio": "Pixar",
+    "creator": "Brad Bird",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Remy",
+      "Linguini",
+      "Anton Ego",
+      "Colette"
+    ],
+    "themes": [
+      "Cooking",
+      "Anyone can cook"
+    ],
+    "credits": [
+      "Director: Brad Bird",
+      "Composer: Michael Giacchino"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "Ratatouille (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/50/RatatouillePoster.jpg"
+    },
+    "quote": {
+      "text": "Anyone can cook.",
+      "speaker": "A famous chef's motto"
+    },
+    "audio": {
+      "clue": "An accordion-laced French jazz tune that floats through a Paris kitchen.",
+      "query": "Ratatouille Le Festin Camille",
+      "youtubeId": "G3lSONLLx70"
+    },
+    "emoji": "🐀👨‍🍳🍲🗼🧀",
+    "item": {
+      "name": "A plate of ratatouille",
+      "description": "A peasant dish that sends a terrifying critic back to childhood.",
+      "src": "wp:Ratatouille"
+    },
+    "location": {
+      "name": "Gusteau's",
+      "description": "A once-famous Paris restaurant with a rat hiding under a chef's hat.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/9/92/Gusteau%27sConceptArt1.jpg/revision/latest?cb=20120720212412"
+    },
+    "visual": {
+      "icon": "🐀",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "c-coco",
+    "name": "Coco",
+    "domain": "cinema",
+    "year": 2017,
+    "genres": [
+      "Animation",
+      "Musical"
+    ],
+    "studio": "Pixar",
+    "creator": "Lee Unkrich",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Miguel",
+      "Héctor",
+      "Ernesto de la Cruz",
+      "Mamá Imelda"
+    ],
+    "themes": [
+      "Family",
+      "Memory"
+    ],
+    "credits": [
+      "Director: Lee Unkrich",
+      "Composer: Michael Giacchino"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "Coco (2017 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg"
+    },
+    "audio": {
+      "clue": "A tender lullaby on acoustic guitar, sung to a great-grandmother.",
+      "query": "Coco Remember Me lullaby",
+      "youtubeId": "KP_XkN2v7OM"
+    },
+    "emoji": "💀🎸🌼🐕🕯️",
+    "item": {
+      "name": "Marigold petals",
+      "description": "A bridge of orange flowers that the dead cross to visit the living.",
+      "src": "wp:Tagetes erecta",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Tagetes_x_erecta1.jpg"
+    },
+    "location": {
+      "name": "Land of the Dead",
+      "description": "A glowing, towering city of skeletons celebrating forever.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/7/78/Coco_land_of_the_dead.png/revision/latest/scale-to-width-down/640?cb=20180404015318"
+    },
+    "visual": {
+      "icon": "🎸",
+      "colors": [
+        "#7c3aed",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "c-insideout",
+    "name": "Inside Out",
+    "domain": "cinema",
+    "year": 2015,
+    "genres": [
+      "Animation",
+      "Comedy"
+    ],
+    "studio": "Pixar",
+    "creator": "Pete Docter",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Joy",
+      "Sadness",
+      "Anger",
+      "Bing Bong"
+    ],
+    "themes": [
+      "Emotions",
+      "Growing up"
+    ],
+    "credits": [
+      "Director: Pete Docter",
+      "Composer: Michael Giacchino"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "Inside Out (2015 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg"
+    },
+    "audio": {
+      "clue": "A delicate, shimmering piano theme as memories glow inside a girl's mind.",
+      "query": "Inside Out Bundle of Joy Michael Giacchino",
+      "youtubeId": "32lI1Z1MBx0"
+    },
+    "emoji": "😊😢😡🤢😱",
+    "item": {
+      "name": "Core memories",
+      "description": "Glowing orbs that power the islands of a girl's personality.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/a/ab/Inside-Out-Core-Memories-Intro.jpg/revision/latest/scale-to-width-down/640?cb=20150623030653"
+    },
+    "location": {
+      "name": "Headquarters",
+      "description": "The control room in an eleven-year-old's head.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/6/6a/Inside-Out-Control-Panel-topview.jpg/revision/latest?cb=20150623013330"
+    },
+    "visual": {
+      "icon": "😊",
+      "colors": [
+        "#facc15",
+        "#3b82f6"
+      ]
+    }
+  },
+  {
+    "id": "c-incredibles",
+    "name": "The Incredibles",
+    "domain": "cinema",
+    "year": 2004,
+    "genres": [
+      "Animation",
+      "Superhero"
+    ],
+    "studio": "Pixar",
+    "creator": "Brad Bird",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Mr. Incredible",
+      "Elastigirl",
+      "Edna Mode",
+      "Syndrome"
+    ],
+    "themes": [
+      "Family",
+      "Mediocrity"
+    ],
+    "credits": [
+      "Writer & director: Brad Bird",
+      "Composer: Michael Giacchino"
+    ],
+    "fandom": "pixar",
+    "cover": {
+      "wiki": "The Incredibles",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/27/The_Incredibles_%282004_animated_feature_film%29.jpg"
+    },
+    "quote": {
+      "text": "No capes!",
+      "speaker": "A tiny fashion designer"
+    },
+    "audio": {
+      "clue": "A brassy, 60s spy-jazz score full of big-band hits.",
+      "query": "The Incredibles soundtrack The Incredits Michael Giacchino",
+      "youtubeId": "voLQroAnoLI"
+    },
+    "emoji": "🦸‍♂️🦸‍♀️👶🧥🚫",
+    "item": {
+      "name": "A supersuit",
+      "description": "A red-and-black suit tailored by a designer who forbids capes.",
+      "src": "wp:Costume",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Samurai_actors.jpg/960px-Samurai_actors.jpg"
+    },
+    "location": {
+      "name": "Nomanisan Island",
+      "description": "A volcanic island hiding a villain's lair.",
+      "image": "https://static.wikia.nocookie.net/pixar/images/b/be/Nomanisan-Island.jpg/revision/latest?cb=20091117124415"
+    },
+    "visual": {
+      "icon": "🚫",
+      "colors": [
+        "#dc2626",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "c-beautybeast",
+    "name": "Beauty and the Beast",
+    "domain": "cinema",
+    "year": 1991,
+    "genres": [
+      "Animation",
+      "Musical"
+    ],
+    "studio": "Walt Disney Pictures",
+    "creator": "Gary Trousdale",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Belle",
+      "The Beast",
+      "Gaston",
+      "Lumière"
+    ],
+    "themes": [
+      "Inner beauty",
+      "Curses"
+    ],
+    "credits": [
+      "Directors: Gary Trousdale & Kirk Wise",
+      "Songs: Alan Menken & Howard Ashman"
+    ],
+    "fandom": "disney",
+    "cover": {
+      "wiki": "Beauty and the Beast (1991 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5e/Beauty_and_the_Beast_%281991_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Be our guest!",
+      "speaker": "A candlestick inviting a guest to dinner"
+    },
+    "audio": {
+      "clue": "A gentle ballad sung by a teapot as two dance in a golden ballroom.",
+      "query": "Beauty and the Beast Tale as Old as Time 1991",
+      "youtubeId": "90b2R6yzIzE"
+    },
+    "emoji": "🌹🏰🕯️🫖📚",
+    "item": {
+      "name": "Enchanted Rose",
+      "description": "A rose under a glass bell that drops a petal each year.",
+      "image": "https://static.wikia.nocookie.net/disney/images/f/fb/The_Enchanted_Rose.png/revision/latest/scale-to-width-down/640?cb=20260423221252"
+    },
+    "location": {
+      "name": "Beast's Castle",
+      "description": "A cursed castle whose servants became furniture.",
+      "image": "https://static.wikia.nocookie.net/disney/images/a/ad/Beast%27s_Castle.png/revision/latest/scale-to-width-down/370?cb=20260903130323"
+    },
+    "visual": {
+      "icon": "🌹",
+      "colors": [
+        "#facc15",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "c-aladdin",
+    "name": "Aladdin",
+    "domain": "cinema",
+    "year": 1992,
+    "genres": [
+      "Animation",
+      "Musical"
+    ],
+    "studio": "Walt Disney Pictures",
+    "creator": "Ron Clements",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Aladdin",
+      "Jasmine",
+      "Genie",
+      "Jafar"
+    ],
+    "themes": [
+      "Wishes",
+      "Freedom"
+    ],
+    "credits": [
+      "Directors: Ron Clements & John Musker",
+      "Genie voiced by Robin Williams"
+    ],
+    "fandom": "disney",
+    "cover": {
+      "wiki": "Aladdin (1992 Disney film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bd/Aladdin_%281992_Disney_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Phenomenal cosmic powers! Itty-bitty living space.",
+      "speaker": "A blue spirit in a lamp"
+    },
+    "audio": {
+      "clue": "A soaring duet sung on a flying carpet over the desert.",
+      "query": "Aladdin A Whole New World 1992",
+      "youtubeId": "X5DPErpL4xM"
+    },
+    "emoji": "🧞🪔🐒🧞‍♂️🕌",
+    "item": {
+      "name": "Magic lamp",
+      "description": "A brass oil lamp holding a wish-granting spirit.",
+      "image": "https://static.wikia.nocookie.net/disney/images/d/d2/Aladdin-disneyscreencaps.com-9865.jpg/revision/latest/scale-to-width-down/640?cb=20160414201642"
+    },
+    "location": {
+      "name": "Agrabah",
+      "description": "A desert city with a palace of white domes.",
+      "image": "https://static.wikia.nocookie.net/disney/images/1/14/Agrabah.png/revision/latest/scale-to-width-down/640?cb=20150423230146"
+    },
+    "visual": {
+      "icon": "🪔",
+      "colors": [
+        "#1e3a8a",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "c-moana",
+    "name": "Moana",
+    "domain": "cinema",
+    "year": 2016,
+    "genres": [
+      "Animation",
+      "Musical"
+    ],
+    "studio": "Walt Disney Pictures",
+    "creator": "Ron Clements",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Moana",
+      "Maui",
+      "Heihei",
+      "Gramma Tala"
+    ],
+    "themes": [
+      "Voyaging",
+      "Identity"
+    ],
+    "credits": [
+      "Directors: Ron Clements & John Musker",
+      "Songs: Lin-Manuel Miranda"
+    ],
+    "fandom": "disney",
+    "cover": {
+      "wiki": "Moana (2016 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/26/Moana_Teaser_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A Polynesian-flavoured anthem about how far the horizon calls.",
+      "query": "Moana How Far I'll Go",
+      "youtubeId": "cPAbx5kgCJo"
+    },
+    "emoji": "🌊🛶🐓🪝🌺",
+    "item": {
+      "name": "Heart of Te Fiti",
+      "description": "A small green spiral stone stolen from an island goddess.",
+      "image": "https://static.wikia.nocookie.net/disney/images/8/88/Moana-disneyscreencaps_com-10398.jpg/revision/latest/scale-to-width-down/640?cb=20170308192904"
+    },
+    "location": {
+      "name": "Motunui",
+      "description": "A Polynesian island whose chief forbids sailing past the reef.",
+      "image": "https://static.wikia.nocookie.net/disney/images/f/fd/Motunui_%28Moana_-_2016%29.png/revision/latest/scale-to-width-down/640?cb=20170226005355"
+    },
+    "visual": {
+      "icon": "🛶",
+      "colors": [
+        "#0e7490",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "c-kungfupanda",
+    "name": "Kung Fu Panda",
+    "domain": "cinema",
+    "year": 2008,
+    "genres": [
+      "Animation",
+      "Action"
+    ],
+    "studio": "DreamWorks Animation",
+    "creator": "John Stevenson",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Po",
+      "Master Shifu",
+      "Tigress",
+      "Tai Lung"
+    ],
+    "themes": [
+      "Destiny",
+      "Self-belief"
+    ],
+    "credits": [
+      "Directors: John Stevenson & Mark Osborne",
+      "Composers: Hans Zimmer & John Powell"
+    ],
+    "fandom": "kungfupanda",
+    "cover": {
+      "wiki": "Kung Fu Panda"
+    },
+    "quote": {
+      "text": "There is no secret ingredient.",
+      "speaker": "A noodle-shop goose"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral score with erhu and Chinese percussion.",
+      "query": "Kung Fu Panda Oogway Ascends",
+      "youtubeId": "tAVnGvRwXew"
+    },
+    "emoji": "🐼🥋🍜🐯🐢",
+    "item": {
+      "name": "Dragon Scroll",
+      "description": "A legendary scroll said to hold the secret of limitless power.",
+      "image": "https://static.wikia.nocookie.net/kungfupanda/images/8/84/Dragon-scroll.jpg/revision/latest?cb=20160620210456"
+    },
+    "location": {
+      "name": "Jade Palace",
+      "description": "A temple atop a thousand steps, home of the Furious Five.",
+      "image": "https://static.wikia.nocookie.net/kungfupanda/images/8/8c/JadePalaceDW.jpg/revision/latest/scale-to-width-down/640?cb=20150406233310"
+    },
+    "visual": {
+      "icon": "🐼",
+      "colors": [
+        "#b91c1c",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "c-httyd",
+    "name": "How to Train Your Dragon",
+    "domain": "cinema",
+    "year": 2010,
+    "genres": [
+      "Animation",
+      "Fantasy"
+    ],
+    "studio": "DreamWorks Animation",
+    "creator": "Chris Sanders",
+    "origin": "USA",
+    "format": "Animated",
+    "characters": [
+      "Hiccup",
+      "Toothless",
+      "Astrid",
+      "Stoick"
+    ],
+    "themes": [
+      "Friendship",
+      "Acceptance"
+    ],
+    "credits": [
+      "Directors: Chris Sanders & Dean DeBlois",
+      "Composer: John Powell"
+    ],
+    "fandom": "howtotrainyourdragon",
+    "cover": {
+      "wiki": "How to Train Your Dragon (2010 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/99/How_to_Train_Your_Dragon_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A soaring Celtic-flavoured orchestral flight over the sea with a dragon.",
+      "query": "How to Train Your Dragon Test Drive",
+      "youtubeId": "IpPIK4T068s"
+    },
+    "emoji": "🐉🦷🛡️🔥🐟",
+    "item": {
+      "name": "Prosthetic tail fin",
+      "description": "A red leather fin a boy builds for a wounded dragon.",
+      "image": "https://static.wikia.nocookie.net/howtotrainyourdragon/images/8/89/Dragons13.jpg/revision/latest/scale-to-width-down/640?cb=20140611164220"
+    },
+    "location": {
+      "name": "Berk",
+      "description": "A windswept Viking island plagued by dragon raids.",
+      "image": "https://static.wikia.nocookie.net/howtotrainyourdragon/images/8/8b/Isle-of-berk-gallery-6.png/revision/latest/scale-to-width-down/640?cb=20171105044629"
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#0f172a",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "c-budapest",
+    "name": "The Grand Budapest Hotel",
+    "domain": "cinema",
+    "year": 2014,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "studio": "Fox Searchlight",
+    "creator": "Wes Anderson",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "M. Gustave",
+      "Zero Moustafa",
+      "Madame D.",
+      "Dmitri"
+    ],
+    "themes": [
+      "Nostalgia",
+      "Friendship"
+    ],
+    "credits": [
+      "Writer & director: Wes Anderson",
+      "Composer: Alexandre Desplat"
+    ],
+    "cover": {
+      "wiki": "The Grand Budapest Hotel",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Grand_Budapest_Hotel.png"
+    },
+    "audio": {
+      "clue": "A plucky balalaika and zither score for a pink Alpine hotel.",
+      "query": "Grand Budapest Hotel Mr. Moustafa Alexandre Desplat",
+      "youtubeId": "duPMC7IEcFE"
+    },
+    "emoji": "🏨🎂🖼️🚂🎩",
+    "item": {
+      "name": "A pastry box",
+      "description": "A pink box of towering cream pastries from Mendl's.",
+      "src": "wp:Pastry box",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Pastry_assortment.jpg/960px-Pastry_assortment.jpg"
+    },
+    "location": {
+      "name": "A department store in Görlitz",
+      "description": "The real Art Nouveau building used for the hotel's lobby.",
+      "src": "wp:Görlitzer Warenhaus"
+    },
+    "visual": {
+      "icon": "🏨",
+      "colors": [
+        "#db2777",
+        "#fbcfe8"
+      ]
+    }
+  },
+  {
+    "id": "c-panslabyrinth",
+    "name": "Pan's Labyrinth",
+    "domain": "cinema",
+    "year": 2006,
+    "genres": [
+      "Fantasy",
+      "War"
+    ],
+    "studio": "Telecinco Cinema",
+    "creator": "Guillermo del Toro",
+    "origin": "Spain",
+    "format": "Live-action",
+    "characters": [
+      "Ofelia",
+      "Captain Vidal",
+      "The Faun",
+      "Pale Man"
+    ],
+    "themes": [
+      "Fascism",
+      "Fairy tales"
+    ],
+    "credits": [
+      "Writer & director: Guillermo del Toro",
+      "Composer: Javier Navarrete"
+    ],
+    "cover": {
+      "wiki": "Pan's Labyrinth",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Pan%27s_Labyrinth.jpg"
+    },
+    "audio": {
+      "clue": "A haunting lullaby hummed by a housekeeper to a sleeping girl.",
+      "query": "Pan's Labyrinth Long Long Time Ago lullaby",
+      "youtubeId": "19bBGxf5k6k"
+    },
+    "emoji": "👧🐐🗝️🍇👁️",
+    "item": {
+      "name": "A mandrake root",
+      "description": "A root shaped like a baby, fed milk under a sick woman's bed.",
+      "src": "wp:Mandragora officinarum",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Mandragora_officinarum_002.JPG/960px-Mandragora_officinarum_002.JPG"
+    },
+    "location": {
+      "name": "A stone labyrinth",
+      "description": "An overgrown maze in a forest near a military outpost, 1944 Spain.",
+      "src": "wp:Labyrinth",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/Knossos_silver_coin_400bc.jpg"
+    },
+    "visual": {
+      "icon": "🗝️",
+      "colors": [
+        "#14532d",
+        "#78350f"
+      ]
+    }
+  },
+  {
+    "id": "c-whiplash",
+    "name": "Whiplash",
+    "domain": "cinema",
+    "year": 2014,
+    "genres": [
+      "Drama",
+      "Music"
+    ],
+    "studio": "Sony Pictures Classics",
+    "creator": "Damien Chazelle",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Andrew Neiman",
+      "Terence Fletcher"
+    ],
+    "themes": [
+      "Obsession",
+      "Ambition"
+    ],
+    "credits": [
+      "Writer & director: Damien Chazelle",
+      "J. K. Simmons won an Oscar"
+    ],
+    "cover": {
+      "wiki": "Whiplash (2014 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/01/Whiplash_poster.jpg"
+    },
+    "quote": {
+      "text": "Not quite my tempo.",
+      "speaker": "A terrifying conductor"
+    },
+    "audio": {
+      "clue": "A breakneck big-band jazz standard with a ferocious drum solo.",
+      "query": "Whiplash Caravan final drum solo",
+      "youtubeId": "ZZY-Ytrw2co"
+    },
+    "emoji": "🥁🎺🩸😤🏆",
+    "item": {
+      "name": "A drum kit",
+      "description": "Bled on by a student desperate to become one of the greats.",
+      "src": "wp:Drum kit",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Drums_schematic.svg/960px-Drums_schematic.svg.png"
+    },
+    "location": {
+      "name": "A music conservatory",
+      "description": "A New York school whose top jazz band is run by a tyrant.",
+      "src": "wp:Juilliard School",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f1/Seal_of_the_Juilliard_School.png"
+    },
+    "visual": {
+      "icon": "🥁",
+      "colors": [
+        "#0a0a0a",
+        "#ca8a04"
+      ]
+    }
+  },
+  {
+    "id": "c-socialnetwork",
+    "name": "The Social Network",
+    "domain": "cinema",
+    "year": 2010,
+    "genres": [
+      "Drama"
+    ],
+    "studio": "Columbia Pictures",
+    "creator": "David Fincher",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Mark Zuckerberg",
+      "Eduardo Saverin",
+      "Sean Parker"
+    ],
+    "themes": [
+      "Ambition",
+      "Betrayal"
+    ],
+    "credits": [
+      "Director: David Fincher",
+      "Writer: Aaron Sorkin",
+      "Score: Trent Reznor & Atticus Ross"
+    ],
+    "cover": {
+      "wiki": "The Social Network"
+    },
+    "quote": {
+      "text": "A million dollars isn't cool. You know what's cool? A billion dollars.",
+      "speaker": "A Napster founder"
+    },
+    "audio": {
+      "clue": "A melancholy solo piano line over droning electronics, by Trent Reznor.",
+      "query": "The Social Network Hand Covers Bruise",
+      "youtubeId": "9SBNCYkSceU"
+    },
+    "emoji": "💻👨‍🎓👍⚖️💰",
+    "item": {
+      "name": "A laptop",
+      "description": "Used in a dorm room to code a website one drunk night.",
+      "src": "wp:Laptop",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Laptop_collage.jpg/960px-Laptop_collage.jpg"
+    },
+    "location": {
+      "name": "Harvard University",
+      "description": "The campus where it all started in 2003.",
+      "src": "wp:Harvard University",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Harvard_University_coat_of_arms.svg/960px-Harvard_University_coat_of_arms.svg.png"
+    },
+    "visual": {
+      "icon": "👍",
+      "colors": [
+        "#1e3a8a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "c-se7en",
+    "name": "Se7en",
+    "aliases": [
+      "seven"
+    ],
+    "domain": "cinema",
+    "year": 1995,
+    "genres": [
+      "Crime",
+      "Thriller"
+    ],
+    "studio": "New Line Cinema",
+    "creator": "David Fincher",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Detective Somerset",
+      "Detective Mills",
+      "John Doe"
+    ],
+    "themes": [
+      "Seven deadly sins",
+      "Apathy"
+    ],
+    "credits": [
+      "Director: David Fincher",
+      "Writer: Andrew Kevin Walker"
+    ],
+    "cover": {
+      "wiki": "Seven (1995 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/68/Seven_%28movie%29_poster.jpg"
+    },
+    "quote": {
+      "text": "What's in the box?!",
+      "speaker": "A young detective in a desert field"
+    },
+    "audio": {
+      "clue": "Nine Inch Nails' remix scratches over the jittery opening credits.",
+      "query": "Se7en opening credits Closer Nine Inch Nails",
+      "youtubeId": "FD7w2l88dl8"
+    },
+    "emoji": "7️⃣😈📦🌧️🔍",
+    "item": {
+      "name": "A cardboard box",
+      "description": "Delivered to a desert field at the end of a week of murders.",
+      "src": "wp:Cardboard box",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Box.agr.jpg/960px-Box.agr.jpg"
+    },
+    "location": {
+      "name": "A rain-soaked city",
+      "description": "An unnamed city where it never stops raining.",
+      "src": "wp:Rain",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Hard_rain_on_a_roof.jpg/960px-Hard_rain_on_a_roof.jpg"
+    },
+    "visual": {
+      "icon": "📦",
+      "colors": [
+        "#1c1917",
+        "#78716c"
+      ]
+    }
+  },
+  {
+    "id": "c-exorcist",
+    "name": "The Exorcist",
+    "domain": "cinema",
+    "year": 1973,
+    "genres": [
+      "Horror"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "William Friedkin",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Regan MacNeil",
+      "Father Karras",
+      "Father Merrin"
+    ],
+    "themes": [
+      "Faith",
+      "Possession"
+    ],
+    "credits": [
+      "Director: William Friedkin",
+      "Based on the novel by William Peter Blatty"
+    ],
+    "cover": {
+      "wiki": "The Exorcist",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Exorcist_ver2.jpg"
+    },
+    "quote": {
+      "text": "The power of Christ compels you!",
+      "speaker": "Two priests at a bedside"
+    },
+    "audio": {
+      "clue": "A chilling, looping piano and bell melody from a progressive rock album.",
+      "query": "Tubular Bells Exorcist theme",
+      "youtubeId": "FN6jIvKiYOs"
+    },
+    "emoji": "✝️😈🛏️🧊🌫️",
+    "item": {
+      "name": "A statue of Pazuzu",
+      "description": "An ancient demon figure dug up in Iraq.",
+      "src": "wp:Pazuzu",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/PazuzuDemonAssyria1stMillenniumBCE_no_CGI_dropshadow_-_gradient_based_on.jpg/960px-PazuzuDemonAssyria1stMillenniumBCE_no_CGI_dropshadow_-_gradient_based_on.jpg"
+    },
+    "location": {
+      "name": "The Exorcist steps",
+      "description": "A steep Georgetown staircase where a priest falls.",
+      "src": "wp:Exorcist steps",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Exorcist_Stairs.jpg"
+    },
+    "visual": {
+      "icon": "✝️",
+      "colors": [
+        "#0a0a0a",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "c-halloween",
+    "name": "Halloween",
+    "domain": "cinema",
+    "year": 1978,
+    "genres": [
+      "Horror",
+      "Slasher"
+    ],
+    "studio": "Compass International",
+    "creator": "John Carpenter",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Michael Myers",
+      "Laurie Strode",
+      "Dr. Loomis"
+    ],
+    "themes": [
+      "Babysitters",
+      "Evil"
+    ],
+    "credits": [
+      "Director & composer: John Carpenter",
+      "Co-writer: Debra Hill"
+    ],
+    "cover": {
+      "wiki": "Halloween (1978 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Halloween_%281978%29_theatrical_poster.jpg"
+    },
+    "audio": {
+      "clue": "A relentless 5/4 piano riff that became the sound of stalking.",
+      "query": "Halloween theme John Carpenter",
+      "youtubeId": "pT4FY3NrhGg"
+    },
+    "emoji": "🎃🔪👻🏠🌙",
+    "item": {
+      "name": "A jack-o'-lantern",
+      "description": "A carved pumpkin glowing on a suburban porch.",
+      "src": "wp:Jack-o'-lantern",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/53/Balle-%C3%A0-leunettes_10.jpg"
+    },
+    "location": {
+      "name": "Haddonfield",
+      "description": "A quiet Illinois suburb visited by an escaped killer.",
+      "src": "wp:South Pasadena, California",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/South_Pasadena_Middle_School_%2828_July_2009%29_%28cropped%29.jpg/960px-South_Pasadena_Middle_School_%2828_July_2009%29_%28cropped%29.jpg"
+    },
+    "visual": {
+      "icon": "🎃",
+      "colors": [
+        "#ea580c",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "c-elmstreet",
+    "name": "A Nightmare on Elm Street",
+    "aliases": [
+      "nightmare on elm street"
+    ],
+    "domain": "cinema",
+    "year": 1984,
+    "genres": [
+      "Horror",
+      "Slasher"
+    ],
+    "studio": "New Line Cinema",
+    "creator": "Wes Craven",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Freddy Krueger",
+      "Nancy Thompson",
+      "Glen Lantz"
+    ],
+    "themes": [
+      "Dreams",
+      "Sins of parents"
+    ],
+    "credits": [
+      "Writer & director: Wes Craven",
+      "Johnny Depp's film debut"
+    ],
+    "cover": {
+      "wiki": "A Nightmare on Elm Street",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fa/A_Nightmare_on_Elm_Street_%281984%29_theatrical_poster.jpg"
+    },
+    "quote": {
+      "text": "One, two, Freddy's coming for you.",
+      "speaker": "Children skipping rope"
+    },
+    "audio": {
+      "clue": "A creepy nursery rhyme sung by children skipping rope.",
+      "query": "Nightmare on Elm Street One Two Freddy's Coming for You",
+      "youtubeId": "1D7YMLtT0B4"
+    },
+    "emoji": "💤🔪🧤🔥🏚️",
+    "item": {
+      "name": "A striped sweater",
+      "description": "Red and green, worn by a burned killer in dreams.",
+      "src": "wp:Sweater",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Selburose-sweater.jpg/960px-Selburose-sweater.jpg"
+    },
+    "location": {
+      "name": "1428 Elm Street",
+      "description": "A suburban house in Springwood where teens are afraid to sleep.",
+      "src": "wp:Suburb",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Hempstead%2C_Manhasset%2C_and_Little_Neck_bays.jpg/960px-Hempstead%2C_Manhasset%2C_and_Little_Neck_bays.jpg"
+    },
+    "visual": {
+      "icon": "🧤",
+      "colors": [
+        "#7f1d1d",
+        "#166534"
+      ]
+    }
+  },
+  {
+    "id": "c-scream",
+    "name": "Scream",
+    "domain": "cinema",
+    "year": 1996,
+    "genres": [
+      "Horror",
+      "Slasher"
+    ],
+    "studio": "Dimension Films",
+    "creator": "Wes Craven",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Sidney Prescott",
+      "Ghostface",
+      "Dewey Riley",
+      "Gale Weathers"
+    ],
+    "themes": [
+      "Meta-horror",
+      "Rules"
+    ],
+    "credits": [
+      "Director: Wes Craven",
+      "Writer: Kevin Williamson"
+    ],
+    "cover": {
+      "wiki": "Scream (1996 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Scream_%281996_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "What's your favorite scary movie?",
+      "speaker": "A voice on the phone"
+    },
+    "audio": {
+      "clue": "A haunting choral cue as a killer's phone call turns deadly.",
+      "query": "Scream 1996 soundtrack Sidney's Lament Marco Beltrami",
+      "youtubeId": "nkGD_Oitbp4"
+    },
+    "emoji": "📞🔪👻🍿🏠",
+    "item": {
+      "name": "A cordless phone",
+      "description": "It rings, and a voice asks what your favourite horror movie is.",
+      "src": "wp:Cordless telephone",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Motorola_4050a-2.jpg"
+    },
+    "location": {
+      "name": "Woodsboro",
+      "description": "A small California town rocked by murders.",
+      "src": "wp:Tomales Bay",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Tomales_Bay_as_viewed_from_Tomales_Point_Trail_4.JPG/960px-Tomales_Bay_as_viewed_from_Tomales_Point_Trail_4.JPG"
+    },
+    "visual": {
+      "icon": "📞",
+      "colors": [
+        "#0a0a0a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "c-it",
+    "name": "It",
+    "aliases": [
+      "it 2017"
+    ],
+    "domain": "cinema",
+    "year": 2017,
+    "genres": [
+      "Horror"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Andy Muschietti",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Pennywise",
+      "Bill Denbrough",
+      "Beverly Marsh",
+      "Richie Tozier"
+    ],
+    "themes": [
+      "Childhood fear",
+      "Friendship"
+    ],
+    "credits": [
+      "Director: Andy Muschietti",
+      "Based on the novel by Stephen King"
+    ],
+    "cover": {
+      "wiki": "It (2017 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/It_%282017%29_poster.jpg"
+    },
+    "quote": {
+      "text": "We all float down here.",
+      "speaker": "A clown in a storm drain"
+    },
+    "audio": {
+      "clue": "A creepy children's choir hums over a rainy small-town street.",
+      "query": "It 2017 Every 27 Years Benjamin Wallfisch",
+      "youtubeId": "-0WINNA60JQ"
+    },
+    "emoji": "🎈🤡🛶🌧️🚲",
+    "item": {
+      "name": "A paper boat",
+      "description": "A wax-coated boat sailing down a rainy gutter.",
+      "src": "wp:Paper boat"
+    },
+    "location": {
+      "name": "Derry",
+      "description": "A small Maine town where children vanish every 27 years.",
+      "src": "wp:Port Hope, Ontario",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Downtown_Port_Hope%2C_May_27_2026_%2801%29.jpg/960px-Downtown_Port_Hope%2C_May_27_2026_%2801%29.jpg"
+    },
+    "visual": {
+      "icon": "🎈",
+      "colors": [
+        "#dc2626",
+        "#1c1917"
+      ]
+    }
+  },
+  {
+    "id": "c-godzilla",
+    "name": "Godzilla",
+    "aliases": [
+      "gojira"
+    ],
+    "domain": "cinema",
+    "year": 1954,
+    "genres": [
+      "Sci-Fi",
+      "Kaiju"
+    ],
+    "studio": "Toho",
+    "creator": "Ishirō Honda",
+    "origin": "Japan",
+    "format": "Live-action",
+    "characters": [
+      "Godzilla",
+      "Dr. Serizawa",
+      "Emiko"
+    ],
+    "themes": [
+      "Nuclear fear",
+      "Destruction"
+    ],
+    "credits": [
+      "Director: Ishirō Honda",
+      "Special effects: Eiji Tsuburaya",
+      "Composer: Akira Ifukube"
+    ],
+    "cover": {
+      "wiki": "Godzilla (1954 film)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Gojira_1954_Japanese_poster.jpg/960px-Gojira_1954_Japanese_poster.jpg"
+    },
+    "audio": {
+      "clue": "A thunderous, marching orchestral theme with a pounding three-note motif.",
+      "query": "Godzilla 1954 main theme Akira Ifukube",
+      "youtubeId": "En4aAGpVuYU"
+    },
+    "emoji": "🦖☢️🏙️🔥🇯🇵",
+    "item": {
+      "name": "The Oxygen Destroyer",
+      "description": "A scientist's terrifying invention, used only once.",
+      "src": "wp:Oxygen",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg/960px-Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg"
+    },
+    "location": {
+      "name": "Ginza",
+      "description": "A Tokyo district stomped flat by a giant reptile.",
+      "src": "wp:Ginza",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Ginza-WAKO_at_night.jpg/960px-Ginza-WAKO_at_night.jpg"
+    },
+    "visual": {
+      "icon": "🦖",
+      "colors": [
+        "#0a0a0a",
+        "#94a3b8"
+      ]
+    }
+  },
+  {
+    "id": "c-crouchingtiger",
+    "name": "Crouching Tiger, Hidden Dragon",
+    "domain": "cinema",
+    "year": 2000,
+    "genres": [
+      "Martial Arts",
+      "Romance"
+    ],
+    "studio": "Sony Pictures Classics",
+    "creator": "Ang Lee",
+    "origin": "Taiwan",
+    "format": "Live-action",
+    "characters": [
+      "Li Mu Bai",
+      "Yu Shu Lien",
+      "Jen Yu",
+      "Jade Fox"
+    ],
+    "themes": [
+      "Duty",
+      "Desire"
+    ],
+    "credits": [
+      "Director: Ang Lee",
+      "Composer: Tan Dun",
+      "Fight choreography: Yuen Woo-ping"
+    ],
+    "cover": {
+      "wiki": "Crouching Tiger, Hidden Dragon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/27/Crouching_Tiger%2C_Hidden_Dragon_%28Chinese_poster%29.png"
+    },
+    "audio": {
+      "clue": "A melancholy solo cello by Yo-Yo Ma over a duel in bamboo treetops.",
+      "query": "Crouching Tiger Hidden Dragon Yo-Yo Ma theme",
+      "youtubeId": "iTSaxmtCH8U"
+    },
+    "emoji": "🐯🐉🗡️🎋🏯",
+    "item": {
+      "name": "The Green Destiny",
+      "description": "A legendary jian sword stolen from a governor's house.",
+      "src": "wp:Jian",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Sword_with_Scabbard_MET_DP119025_brightened_2x3.jpg/960px-Sword_with_Scabbard_MET_DP119025_brightened_2x3.jpg"
+    },
+    "location": {
+      "name": "A bamboo forest",
+      "description": "Where two fighters duel balancing on the swaying treetops.",
+      "src": "wp:Anji County",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/2025-01-29_Jikangwu_Road%2C_Anji_%E6%B5%99%E6%B1%9F%E5%AE%89%E5%90%89%E4%B8%8A%E5%A2%85%E9%84%89%E5%90%89%E5%9D%91%E5%A1%A2%E8%B7%AF_03.jpg/960px-2025-01-29_Jikangwu_Road%2C_Anji_%E6%B5%99%E6%B1%9F%E5%AE%89%E5%90%89%E4%B8%8A%E5%A2%85%E9%84%89%E5%90%89%E5%9D%91%E5%A1%A2%E8%B7%AF_03.jpg"
+    },
+    "visual": {
+      "icon": "🎋",
+      "colors": [
+        "#14532d",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "c-oldboy",
+    "name": "Oldboy",
+    "domain": "cinema",
+    "year": 2003,
+    "genres": [
+      "Thriller",
+      "Mystery"
+    ],
+    "studio": "Show East",
+    "creator": "Park Chan-wook",
+    "origin": "South Korea",
+    "format": "Live-action",
+    "characters": [
+      "Oh Dae-su",
+      "Lee Woo-jin",
+      "Mi-do"
+    ],
+    "themes": [
+      "Revenge",
+      "Imprisonment"
+    ],
+    "credits": [
+      "Director: Park Chan-wook",
+      "Grand Prix at Cannes"
+    ],
+    "cover": {
+      "wiki": "Oldboy (2003 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Oldboykoreanposter.jpg"
+    },
+    "audio": {
+      "clue": "A melancholy waltz plays during a long corridor fight shot in one take.",
+      "query": "Oldboy The Last Waltz",
+      "youtubeId": "_DxjFs_dsR8"
+    },
+    "emoji": "🔨🐙🏢🍜🔒",
+    "item": {
+      "name": "A claw hammer",
+      "description": "Swung in a single-take hallway fight against dozens.",
+      "src": "wp:Claw hammer",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Melencolia_I_%28Durero%29_hammer_crop.jpg"
+    },
+    "location": {
+      "name": "A private prison",
+      "description": "A hotel-like room where a man is held for 15 years without explanation.",
+      "src": "wp:Prison cell",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Old_prison_cells_near_Mootwingee%2C_NSW._1976.jpg/960px-Old_prison_cells_near_Mootwingee%2C_NSW._1976.jpg"
+    },
+    "visual": {
+      "icon": "🔨",
+      "colors": [
+        "#14532d",
+        "#991b1b"
+      ]
+    }
+  },
+  {
+    "id": "c-traintobusan",
+    "name": "Train to Busan",
+    "domain": "cinema",
+    "year": 2016,
+    "genres": [
+      "Horror",
+      "Action"
+    ],
+    "studio": "Next Entertainment World",
+    "creator": "Yeon Sang-ho",
+    "origin": "South Korea",
+    "format": "Live-action",
+    "characters": [
+      "Seok-woo",
+      "Su-an",
+      "Sang-hwa"
+    ],
+    "themes": [
+      "Zombies",
+      "Selfishness"
+    ],
+    "credits": [
+      "Director: Yeon Sang-ho",
+      "Starring Gong Yoo"
+    ],
+    "cover": {
+      "wiki": "Train to Busan",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/95/Train_to_Busan.jpg"
+    },
+    "audio": {
+      "clue": "A child sings 'Aloha Oe' on a train platform as tension mounts.",
+      "query": "Train to Busan Aloha Oe",
+      "youtubeId": "1tBM_vLkl1g"
+    },
+    "emoji": "🚄🧟👧👊💔",
+    "item": {
+      "name": "A high-speed train",
+      "description": "A KTX bullet train from Seoul, overrun by the infected.",
+      "src": "wp:KTX-Sancheon",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/KTX-Sancheon.jpg/960px-KTX-Sancheon.jpg"
+    },
+    "location": {
+      "name": "Busan Station",
+      "description": "The southern terminus that promises safety.",
+      "src": "wp:Busan station",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/3/3e/Busan_Station.jpg/960px-Busan_Station.jpg"
+    },
+    "visual": {
+      "icon": "🚄",
+      "colors": [
+        "#0f172a",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "c-cityofgod",
+    "name": "City of God",
+    "domain": "cinema",
+    "year": 2002,
+    "genres": [
+      "Crime",
+      "Drama"
+    ],
+    "studio": "O2 Filmes",
+    "creator": "Fernando Meirelles",
+    "origin": "Brazil",
+    "format": "Live-action",
+    "characters": [
+      "Rocket",
+      "Li'l Zé",
+      "Benny"
+    ],
+    "themes": [
+      "Gangs",
+      "Photography"
+    ],
+    "credits": [
+      "Directors: Fernando Meirelles & Kátia Lund",
+      "Based on a novel by Paulo Lins"
+    ],
+    "cover": {
+      "wiki": "City of God (2002 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/10/CidadedeDeus.jpg"
+    },
+    "audio": {
+      "clue": "Samba and funk drums chase a runaway chicken through a favela.",
+      "query": "City of God soundtrack opening chicken chase",
+      "youtubeId": "ASPvpdaQpRQ"
+    },
+    "emoji": "📷🐔🔫🏘️🇧🇷",
+    "item": {
+      "name": "A camera",
+      "description": "A boy's ticket out of the favela as a photographer.",
+      "src": "wp:Camera",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/LEI0440_Leica_IIIf_chrom_-_Sn._580566_1951-52-M39_Blitzsynchron_front_view-6531_hf-.jpg/960px-LEI0440_Leica_IIIf_chrom_-_Sn._580566_1951-52-M39_Blitzsynchron_front_view-6531_hf-.jpg"
+    },
+    "location": {
+      "name": "Cidade de Deus",
+      "description": "A housing project in western Rio de Janeiro.",
+      "src": "wp:Cidade de Deus (Rio de Janeiro)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Cidade_de_Deus.JPG/960px-Cidade_de_Deus.JPG"
+    },
+    "visual": {
+      "icon": "📷",
+      "colors": [
+        "#c2410c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "c-intouchables",
+    "name": "The Intouchables",
+    "aliases": [
+      "intouchables"
+    ],
+    "domain": "cinema",
+    "year": 2011,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "studio": "Gaumont",
+    "creator": "Olivier Nakache & Éric Toledano",
+    "origin": "France",
+    "format": "Live-action",
+    "characters": [
+      "Philippe",
+      "Driss"
+    ],
+    "themes": [
+      "Friendship",
+      "Class"
+    ],
+    "credits": [
+      "Directors: Olivier Nakache & Éric Toledano",
+      "Composer: Ludovico Einaudi"
+    ],
+    "cover": {
+      "wiki": "The Intouchables",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/93/The_Intouchables.jpg"
+    },
+    "audio": {
+      "clue": "A meditative, repeating piano piece by Ludovico Einaudi.",
+      "query": "Intouchables Una Mattina Einaudi",
+      "youtubeId": "rq2EnikiWp8"
+    },
+    "emoji": "♿🎨🚗🎶🪂",
+    "item": {
+      "name": "A wheelchair",
+      "description": "Pushed far too fast by a carer from the banlieue.",
+      "src": "wp:Wheelchair",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/69/Man_in_wheelchair_with_AFO_braces_and_crutches_b.jpg"
+    },
+    "location": {
+      "name": "Paris",
+      "description": "A wealthy aristocrat's grand hôtel particulier in the capital.",
+      "src": "wp:Hôtel particulier",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f7/H%C3%B4tel_de_Soubise%2C_Paris_31_August_2009.jpg/960px-H%C3%B4tel_de_Soubise%2C_Paris_31_August_2009.jpg"
+    },
+    "visual": {
+      "icon": "♿",
+      "colors": [
+        "#0a0a0a",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "c-leon",
+    "name": "Léon: The Professional",
+    "aliases": [
+      "leon",
+      "the professional"
+    ],
+    "domain": "cinema",
+    "year": 1994,
+    "genres": [
+      "Action",
+      "Crime"
+    ],
+    "studio": "Gaumont",
+    "creator": "Luc Besson",
+    "origin": "France",
+    "format": "Live-action",
+    "characters": [
+      "Léon",
+      "Mathilda",
+      "Norman Stansfield"
+    ],
+    "themes": [
+      "Hitmen",
+      "Innocence"
+    ],
+    "credits": [
+      "Writer & director: Luc Besson",
+      "Composer: Éric Serra"
+    ],
+    "cover": {
+      "wiki": "Léon: The Professional",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Leon-poster.jpg"
+    },
+    "quote": {
+      "text": "Everyone!",
+      "speaker": "A corrupt DEA agent shouting for backup"
+    },
+    "audio": {
+      "clue": "Sting's mournful ballad about being a stranger plays over the ending.",
+      "query": "Shape of My Heart Sting Leon",
+      "youtubeId": "QK-Z1K67uaA"
+    },
+    "emoji": "🪴🕶️🔫👧🥛",
+    "item": {
+      "name": "A potted plant",
+      "description": "An aglaonema a lonely hitman waters every day — his only friend.",
+      "src": "wp:Aglaonema",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Aglaonema_commutatum2.jpg"
+    },
+    "location": {
+      "name": "Little Italy, New York",
+      "description": "A rundown apartment building where a girl knocks on the wrong door.",
+      "src": "wp:Little Italy, Manhattan",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Little_Italy_-_Manhattan_%2851624758690%29.jpg/960px-Little_Italy_-_Manhattan_%2851624758690%29.jpg"
+    },
+    "visual": {
+      "icon": "🪴",
+      "colors": [
+        "#14532d",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "c-fifthelement",
+    "name": "The Fifth Element",
+    "domain": "cinema",
+    "year": 1997,
+    "genres": [
+      "Sci-Fi",
+      "Action"
+    ],
+    "studio": "Gaumont",
+    "creator": "Luc Besson",
+    "origin": "France",
+    "format": "Live-action",
+    "characters": [
+      "Korben Dallas",
+      "Leeloo",
+      "Zorg",
+      "Ruby Rhod"
+    ],
+    "themes": [
+      "Love",
+      "Elements"
+    ],
+    "credits": [
+      "Director: Luc Besson",
+      "Costumes: Jean-Paul Gaultier"
+    ],
+    "cover": {
+      "wiki": "The Fifth Element",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/65/Fifth_element_poster_%281997%29.jpg"
+    },
+    "quote": {
+      "text": "Multipass!",
+      "speaker": "A newly made woman showing her ID"
+    },
+    "audio": {
+      "clue": "A blue alien diva sings an opera aria that turns into a techno track.",
+      "query": "Fifth Element Diva Dance",
+      "youtubeId": "XnTE2h0ZY74"
+    },
+    "emoji": "🔥💧🌍💨👩‍🦰",
+    "item": {
+      "name": "Elemental stones",
+      "description": "Four carved stones for earth, water, air and fire.",
+      "src": "wp:Classical element",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Leibniz_four_elements.jpg"
+    },
+    "location": {
+      "name": "Fhloston Paradise",
+      "description": "A luxury cruise liner in space where a diva performs."
+    },
+    "visual": {
+      "icon": "🔥",
+      "colors": [
+        "#ea580c",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "c-diehard",
+    "name": "Die Hard",
+    "domain": "cinema",
+    "year": 1988,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "studio": "20th Century Fox",
+    "creator": "John McTiernan",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "John McClane",
+      "Hans Gruber",
+      "Holly",
+      "Al Powell"
+    ],
+    "themes": [
+      "Hostages",
+      "Christmas"
+    ],
+    "credits": [
+      "Director: John McTiernan",
+      "Composer: Michael Kamen"
+    ],
+    "fandom": "diehard",
+    "cover": {
+      "wiki": "Die Hard",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ca/Die_Hard_%281988_film%29_poster.jpg"
+    },
+    "quote": {
+      "text": "Yippee-ki-yay!",
+      "speaker": "A barefoot NYPD cop"
+    },
+    "audio": {
+      "clue": "Beethoven's Ode to Joy is woven into the score as a vault opens.",
+      "query": "Die Hard vault Ode to Joy Michael Kamen",
+      "youtubeId": "jGs72rQVGic"
+    },
+    "emoji": "🏢🎄🔫🦶🚁",
+    "item": {
+      "name": "Beretta 92",
+      "description": "A cop's pistol taped to his back with Christmas tape.",
+      "src": "wp:Beretta 92",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/Interpolitex_2013_%28536-8%29.jpg/960px-Interpolitex_2013_%28536-8%29.jpg"
+    },
+    "location": {
+      "name": "Nakatomi Plaza",
+      "description": "A Los Angeles skyscraper taken hostage on Christmas Eve.",
+      "src": "wp:Fox Plaza"
+    },
+    "visual": {
+      "icon": "🏢",
+      "colors": [
+        "#0f172a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "c-mi",
+    "name": "Mission: Impossible",
+    "aliases": [
+      "mission impossible"
+    ],
+    "domain": "cinema",
+    "year": 1996,
+    "genres": [
+      "Action",
+      "Spy"
+    ],
+    "studio": "Paramount Pictures",
+    "creator": "Brian De Palma",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Ethan Hunt",
+      "Jim Phelps",
+      "Luther",
+      "Krieger"
+    ],
+    "themes": [
+      "Betrayal",
+      "Disguise"
+    ],
+    "credits": [
+      "Director: Brian De Palma",
+      "Producer & star: Tom Cruise",
+      "Composer: Danny Elfman"
+    ],
+    "cover": {
+      "wiki": "Mission: Impossible (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/MissionImpossiblePoster.jpg"
+    },
+    "quote": {
+      "text": "Your mission, should you choose to accept it...",
+      "speaker": "A self-destructing tape"
+    },
+    "audio": {
+      "clue": "A propulsive 5/4 spy theme with a burning fuse.",
+      "query": "Mission Impossible theme Lalo Schifrin",
+      "youtubeId": "pz7Y-0cY1zU"
+    },
+    "emoji": "🕵️💣🎭🪢🚄",
+    "item": {
+      "name": "A floppy disk",
+      "description": "Holds the NOC list of undercover agents.",
+      "src": "wp:Floppy disk",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Floppy_disk_2009_G1.jpg/960px-Floppy_disk_2009_G1.jpg"
+    },
+    "location": {
+      "name": "CIA headquarters",
+      "description": "A white vault in Langley entered by cables from the ceiling.",
+      "src": "wp:George Bush Center for Intelligence",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Aerial_view_of_CIA_headquarters%2C_Langley%2C_Virginia_14760v.jpg/960px-Aerial_view_of_CIA_headquarters%2C_Langley%2C_Virginia_14760v.jpg"
+    },
+    "visual": {
+      "icon": "🪢",
+      "colors": [
+        "#0a0a0a",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "c-casinoroyale",
+    "name": "Casino Royale",
+    "domain": "cinema",
+    "year": 2006,
+    "genres": [
+      "Action",
+      "Spy"
+    ],
+    "studio": "Eon Productions",
+    "creator": "Martin Campbell",
+    "origin": "United Kingdom",
+    "format": "Live-action",
+    "characters": [
+      "James Bond",
+      "Vesper Lynd",
+      "Le Chiffre",
+      "M"
+    ],
+    "themes": [
+      "Poker",
+      "Trust"
+    ],
+    "credits": [
+      "Director: Martin Campbell",
+      "Daniel Craig's first Bond film"
+    ],
+    "fandom": "jamesbond",
+    "cover": {
+      "wiki": "Casino Royale (2006 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/82/Casino_Royale_%282006_film_poster%29.jpg"
+    },
+    "quote": {
+      "text": "Shaken or stirred? — Do I look like I give a damn?",
+      "speaker": "A brand-new 007"
+    },
+    "audio": {
+      "clue": "A swaggering rock theme by Chris Cornell with brass stabs.",
+      "query": "You Know My Name Chris Cornell",
+      "youtubeId": "YnzgdBAKyJo"
+    },
+    "emoji": "🃏🍸🎰🔫💍",
+    "item": {
+      "name": "Aston Martin DBS",
+      "description": "A silver sports car flipped seven times in a row.",
+      "src": "wp:Aston Martin DBS V12",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Aston_Martin_DBS_-_Flickr_-_Alexandre_Pr%C3%A9vot_%2811%29_%28cropped%29.jpg/960px-Aston_Martin_DBS_-_Flickr_-_Alexandre_Pr%C3%A9vot_%2811%29_%28cropped%29.jpg"
+    },
+    "location": {
+      "name": "Lake Como",
+      "description": "A villa on an Italian lake where a spy recovers.",
+      "src": "wp:Villa del Balbianello",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Tremezzina_-_Villa_del_Balbianello_-_2024-09-08_16-26-39_007.jpg/960px-Tremezzina_-_Villa_del_Balbianello_-_2024-09-08_16-26-39_007.jpg"
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#0a0a0a",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "c-barbie",
+    "name": "Barbie",
+    "domain": "cinema",
+    "year": 2023,
+    "genres": [
+      "Comedy",
+      "Fantasy"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Greta Gerwig",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Barbie",
+      "Ken",
+      "Gloria",
+      "Ruth"
+    ],
+    "themes": [
+      "Identity",
+      "Patriarchy"
+    ],
+    "credits": [
+      "Director: Greta Gerwig",
+      "Co-writer: Noah Baumbach",
+      "Highest-grossing film of 2023"
+    ],
+    "cover": {
+      "wiki": "Barbie (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0b/Barbie_2023_poster.jpg"
+    },
+    "quote": {
+      "text": "I'm just Ken.",
+      "speaker": "A beach-obsessed boyfriend"
+    },
+    "audio": {
+      "clue": "A power-ballad about being 'just Ken', complete with a dance-off.",
+      "query": "I'm Just Ken Ryan Gosling",
+      "youtubeId": "fo6T5BwxFh0"
+    },
+    "emoji": "💖🏖️👠🚗🌍",
+    "item": {
+      "name": "A pink convertible",
+      "description": "A Corvette driven out of a dreamhouse town into the real world.",
+      "src": "wp:Chevrolet Corvette",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/2021_Chevrolet_Corvette_C8.jpg/960px-2021_Chevrolet_Corvette_C8.jpg"
+    },
+    "location": {
+      "name": "A dreamhouse soundstage",
+      "description": "Barbieland was built on huge stages in England.",
+      "src": "wp:Warner Bros. Studios, Leavesden",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Warner_Bros._Studios%2C_Leavesden%2C_September_2023.JPG/960px-Warner_Bros._Studios%2C_Leavesden%2C_September_2023.JPG"
+    },
+    "visual": {
+      "icon": "💖",
+      "colors": [
+        "#ec4899",
+        "#fbcfe8"
       ]
     }
   }

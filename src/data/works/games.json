@@ -34,6 +34,7 @@
       "Producer: Shigeru Miyamoto",
       "Composer: Koji Kondo"
     ],
+    "fandom": "zelda",
     "cover": {
       "wiki": "The Legend of Zelda: Ocarina of Time",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/57/The_Legend_of_Zelda_Ocarina_of_Time.jpg"
@@ -51,13 +52,14 @@
     "item": {
       "name": "The Master Sword",
       "description": "A blade of evil's bane, resting in a pedestal inside the Temple of Time.",
-      "wiki": "Master Sword",
-      "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Master_Sword_Lead.png"
+      "src": "fandom:zelda:Master Sword",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/0/0a/TotK_Decayed_Master_Sword_Artwork.png/revision/latest/scale-to-width-down/254?cb=20240224011642"
     },
     "location": {
       "name": "Hyrule Field",
       "description": "A vast grassy plain at the heart of the kingdom, connecting a ranch, a castle town and a volcano.",
-      "wiki": "Hyrule"
+      "src": "fandom:zelda:Hyrule Field",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/7/71/Hyrule_Field_OoT3D.jpg/revision/latest?cb=20110727020256"
     },
     "visual": {
       "icon": "🗡️",
@@ -101,6 +103,7 @@
       "Co-designer: Takashi Tezuka",
       "Composer: Koji Kondo"
     ],
+    "fandom": "mario",
     "cover": {
       "wiki": "Super Mario Bros.",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png"
@@ -118,12 +121,14 @@
     "item": {
       "name": "Super Mushroom",
       "description": "A red-and-white capped fungus that makes the hero grow twice his size.",
-      "wiki": "Super Mushroom"
+      "src": "fandom:mario:Super Mushroom",
+      "image": "https://static.wikia.nocookie.net/mario/images/a/a6/Super_Mushroom_Artwork_-_Super_Mario_3D_World.png/revision/latest/scale-to-width-down/640?cb=20190428173348"
     },
     "location": {
       "name": "World 1-1",
       "description": "A blue sky, rolling green hills, floating brick blocks and green warp pipes, ending at a flagpole.",
-      "wiki": "Mushroom Kingdom"
+      "src": "fandom:mario:World 1-1 (Super Mario Bros.)",
+      "image": "https://static.wikia.nocookie.net/mario/images/5/5d/SMB_World_1-1_NES.png/revision/latest/scale-to-width-down/640?cb=20260429212646"
     },
     "visual": {
       "icon": "🍄",
@@ -168,6 +173,7 @@
       "Lead designer: Jens Bergensten",
       "Composer: C418"
     ],
+    "fandom": "minecraft",
     "cover": {
       "wiki": "Minecraft"
     },
@@ -179,11 +185,15 @@
     "emoji": "⛏️🧱🧟💎🐷",
     "item": {
       "name": "Diamond Pickaxe",
-      "description": "A cyan-tipped tool crafted from rare gems, needed to mine obsidian."
+      "description": "A cyan-tipped tool crafted from rare gems, needed to mine obsidian.",
+      "src": "fandom:minecraft:Pickaxe",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d2/Wooden_Pickaxe_JE3_BE3.png/revision/latest?cb=20200226194132"
     },
     "location": {
       "name": "The Nether",
-      "description": "A hellish dimension of lava seas and red rock, reached through a purple-swirling obsidian frame."
+      "description": "A hellish dimension of lava seas and red rock, reached through a purple-swirling obsidian frame.",
+      "src": "fandom:minecraft:The Nether",
+      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ea/View_Fortress.png/revision/latest/scale-to-width-down/640?cb=20201108102914"
     },
     "visual": {
       "icon": "⛏️",
@@ -228,6 +238,7 @@
       "Composer: Kelly Bailey",
       "Engine: Source"
     ],
+    "fandom": "half-life",
     "cover": {
       "wiki": "Half-Life 2",
       "image": "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg"
@@ -240,13 +251,14 @@
     "item": {
       "name": "The Gravity Gun",
       "description": "A device that grabs and launches objects — saw blades included.",
-      "wiki": "Gravity gun",
-      "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Gravity_gun.png"
+      "src": "fandom:half-life:Zero Point Energy Field Manipulator",
+      "image": "https://static.wikia.nocookie.net/half-life/images/6/62/Gravity_Gun.jpg/revision/latest?cb=20090527025854&path-prefix=en"
     },
     "location": {
       "name": "City 17",
       "description": "An Eastern European city under alien occupation, dominated by a towering Citadel.",
-      "wiki": "City 17"
+      "src": "fandom:half-life:City 17",
+      "image": "https://static.wikia.nocookie.net/half-life/images/a/af/VISTA_4K.PNG/revision/latest/scale-to-width-down/640?cb=20191121211008&path-prefix=en"
     },
     "visual": {
       "icon": "🔧",
@@ -293,6 +305,7 @@
       "Based on novels by Andrzej Sapkowski",
       "Composer: Marcin Przybyłowicz"
     ],
+    "fandom": "witcher",
     "cover": {
       "wiki": "The Witcher 3: Wild Hunt",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg"
@@ -309,11 +322,15 @@
     "emoji": "🐺⚔️🧙‍♂️👧❄️",
     "item": {
       "name": "Two swords: steel and silver",
-      "description": "One blade for humans, one for monsters — always carried on the back."
+      "description": "One blade for humans, one for monsters — always carried on the back.",
+      "src": "fandom:witcher:Silver sword",
+      "image": "https://static.wikia.nocookie.net/witcher/images/a/a1/Witchers-silver-sword.jpg/revision/latest/scale-to-width-down/640?cb=20170903235031"
     },
     "location": {
       "name": "Skellige",
-      "description": "A windswept archipelago of Norse-inspired clans, longships and stormy cliffs."
+      "description": "A windswept archipelago of Norse-inspired clans, longships and stormy cliffs.",
+      "src": "fandom:witcher:Skellige",
+      "image": "https://static.wikia.nocookie.net/witcher/images/b/b6/Flag_Skellige_bloodred.svg/revision/latest/scale-to-width-down/640?cb=20191102200825"
     },
     "visual": {
       "icon": "🐺",
@@ -355,6 +372,7 @@
       "Composer: Motoi Sakuraba",
       "Publisher: Namco Bandai Games"
     ],
+    "fandom": "darksouls",
     "cover": {
       "wiki": "Dark Souls (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_Cover_Art.jpg"
@@ -371,11 +389,14 @@
     "emoji": "🔥🗡️💀☀️🔁",
     "item": {
       "name": "Estus Flask",
-      "description": "A green-glass bottle refilled with healing fire at every bonfire."
+      "description": "A green-glass bottle refilled with healing fire at every bonfire.",
+      "src": "fandom:darksouls:Estus Flask"
     },
     "location": {
       "name": "Firelink Shrine",
-      "description": "A ruined hub with a bonfire, a crestfallen warrior and paths leading in every direction."
+      "description": "A ruined hub with a bonfire, a crestfallen warrior and paths leading in every direction.",
+      "src": "fandom:darksouls:Firelink Shrine",
+      "image": "https://static.wikia.nocookie.net/darksouls/images/9/91/Firelink_Shrine_Statue_Goddess.png/revision/latest/scale-to-width-down/640?cb=20240114112010"
     },
     "visual": {
       "icon": "🔥",
@@ -417,6 +438,7 @@
       "Writers: Erik Wolpaw & Chet Faliszek",
       "End-credits song: Jonathan Coulton"
     ],
+    "fandom": "half-life",
     "cover": {
       "wiki": "Portal (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Portal_standalonebox.jpg"
@@ -434,13 +456,14 @@
     "item": {
       "name": "Weighted Companion Cube",
       "description": "A pink-hearted cube you must, tragically, incinerate.",
-      "wiki": "Weighted Companion Cube",
-      "image": "https://upload.wikimedia.org/wikipedia/en/3/34/Portal_Companion_Cube.png"
+      "src": "fandom:half-life:Weighted Companion Cube",
+      "image": "https://static.wikia.nocookie.net/half-life/images/3/30/Companion_Cube_p2.png/revision/latest/scale-to-width-down/640?cb=20240222044842&path-prefix=en"
     },
     "location": {
       "name": "Aperture Science Enrichment Center",
       "description": "Sterile white test chambers watched over by a sardonic computer.",
-      "wiki": "Aperture Science"
+      "src": "fandom:half-life:Aperture Science Enrichment Center",
+      "image": "https://static.wikia.nocookie.net/half-life/images/e/e9/Aperture_Labs_entrance_end.svg/revision/latest?cb=20110316200442&path-prefix=en"
     },
     "visual": {
       "icon": "🎂",
@@ -484,6 +507,7 @@
       "Composer: Junichi Masuda",
       "Character design: Ken Sugimori"
     ],
+    "fandom": "pokemon",
     "cover": {
       "wiki": "Pokémon Red, Blue, and Yellow",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Pok%C3%A9mon_Red_and_Blue_cover_art.webp"
@@ -497,12 +521,14 @@
     "item": {
       "name": "Poké Ball",
       "description": "A red-and-white capsule that fits in your pocket — and holds a creature.",
-      "wiki": "Poké Ball"
+      "src": "fandom:pokemon:Poké Ball",
+      "image": "https://static.wikia.nocookie.net/pokemon/images/b/b3/Pok%C3%A9_Balls_Dream_World_artwork.png/revision/latest?cb=20241006192952"
     },
     "location": {
       "name": "Kanto",
       "description": "A region of eight gyms, from a tiny hometown called Pallet to the Indigo Plateau.",
-      "wiki": "Kanto (Pokémon)"
+      "src": "fandom:pokemon:Kanto",
+      "image": "https://static.wikia.nocookie.net/pokemon/images/8/85/Kanto_Let%27s_Go%2C_Pikachu%21_and_Let%27s_Go%2C_Eevee%21.png/revision/latest/scale-to-width-down/640?cb=20200627084826"
     },
     "visual": {
       "icon": "⚡",
@@ -547,6 +573,7 @@
       "Game director: Bruce Straley",
       "Composer: Gustavo Santaolalla"
     ],
+    "fandom": "thelastofus",
     "cover": {
       "wiki": "The Last of Us (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg"
@@ -563,11 +590,14 @@
     "emoji": "🍄🧟👨👧🦒",
     "item": {
       "name": "Firefly pendant",
-      "description": "A dog-tag stamped with a resistance group's insignia."
+      "description": "A dog-tag stamped with a resistance group's insignia.",
+      "image": "https://static.wikia.nocookie.net/thelastofus/images/4/4f/Kazden_Risk_pendant_front.png/revision/latest/scale-to-width-down/640?cb=20230102212304"
     },
     "location": {
       "name": "Boston Quarantine Zone",
-      "description": "A walled, military-ruled city 20 years after a fungal outbreak."
+      "description": "A walled, military-ruled city 20 years after a fungal outbreak.",
+      "src": "fandom:thelastofus:Boston Quarantine Zone",
+      "image": "https://static.wikia.nocookie.net/thelastofus/images/1/1e/Checkpoint_5.jpg/revision/latest/scale-to-width-down/640?cb=20160419173648"
     },
     "visual": {
       "icon": "🦒",
@@ -605,6 +635,7 @@
       "Developed on an Electronika 60",
       "Famous handheld port bundled with the Game Boy"
     ],
+    "fandom": "tetris",
     "cover": {
       "wiki": "Tetris",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Tetris_logo_2019.svg/960px-Tetris_logo_2019.svg.png"
@@ -618,13 +649,13 @@
     "item": {
       "name": "The I-piece",
       "description": "A long straight bar of four squares, prized for clearing four lines at once.",
-      "wiki": "Tetromino",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/All_5_free_tetrominoes.svg/960px-All_5_free_tetrominoes.svg.png"
+      "src": "fandom:tetris:I-Tetromino",
+      "image": "https://static.wikia.nocookie.net/tetrisconcept/images/f/f5/PPT_Tee.png/revision/latest?cb=20210113121745"
     },
     "location": {
       "name": "Saint Basil's Cathedral",
       "description": "Onion-domed Moscow church that famously decorated many versions' backgrounds.",
-      "wiki": "Saint Basil's Cathedral",
+      "src": "wp:Saint Basil's Cathedral",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Basil%27s_Cathedral_in_Moscow.jpg/960px-Saint_Basil%27s_Cathedral_in_Moscow.jpg"
     },
     "visual": {
@@ -666,6 +697,7 @@
       "Composer: Christopher Larkin",
       "Funded via Kickstarter"
     ],
+    "fandom": "hollowknight",
     "cover": {
       "wiki": "Hollow Knight",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg"
@@ -678,11 +710,15 @@
     "emoji": "🐞🗡️🕳️🦋👑",
     "item": {
       "name": "The Nail",
-      "description": "A small, blunt blade wielded by a tiny masked vessel."
+      "description": "A small, blunt blade wielded by a tiny masked vessel.",
+      "src": "fandom:hollowknight:Nail",
+      "image": "https://static.wikia.nocookie.net/hollowknight/images/a/a2/Icon_HK_Dream_Nail.png/revision/latest?cb=20170512154716"
     },
     "location": {
       "name": "Hallownest",
-      "description": "A vast, ruined underground kingdom of insects beneath a sleepy town."
+      "description": "A vast, ruined underground kingdom of insects beneath a sleepy town.",
+      "src": "fandom:hollowknight:Hallownest",
+      "image": "https://static.wikia.nocookie.net/hollowknight/images/c/c4/Map_Artwork.jpg/revision/latest/scale-to-width-down/640?cb=20170404112913"
     },
     "visual": {
       "icon": "🐞",
@@ -731,6 +767,7 @@
       "Producer: Hironobu Sakaguchi",
       "Composer: Nobuo Uematsu"
     ],
+    "fandom": "finalfantasy",
     "cover": {
       "wiki": "Final Fantasy VII",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Final_Fantasy_VII_Box_Art.jpg"
@@ -748,14 +785,14 @@
     "item": {
       "name": "Buster Sword",
       "description": "An enormous broad blade, almost as tall as the hero carrying it.",
-      "wiki": "Buster Sword",
-      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Busterswordvii.png"
+      "src": "fandom:finalfantasy:Buster Sword",
+      "image": "https://static.wikia.nocookie.net/finalfantasy/images/4/47/Sld-1865-umezawa-s-jitte.png/revision/latest/scale-to-width-down/458?cb=20260906172232"
     },
     "location": {
       "name": "Midgar",
       "description": "A plate-covered industrial metropolis powered by reactors draining the planet's life.",
-      "wiki": "Midgar",
-      "image": "https://upload.wikimedia.org/wikipedia/en/2/20/FFVIImidgar.jpg"
+      "src": "fandom:finalfantasy:Midgar",
+      "image": "https://static.wikia.nocookie.net/finalfantasy/images/5/53/FFVIIR_Midgar.jpg/revision/latest/scale-to-width-down/640?cb=20200229064245"
     },
     "visual": {
       "icon": "☄️",
@@ -802,6 +839,7 @@
       "Writer: Dan Houser",
       "Publisher: Rockstar Games"
     ],
+    "fandom": "gta",
     "cover": {
       "wiki": "Grand Theft Auto: San Andreas",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg"
@@ -813,13 +851,15 @@
     "emoji": "🌴🚲💚🔫🍗",
     "item": {
       "name": "A green Grove Street outfit",
-      "description": "The colour of the protagonist's home gang."
+      "description": "The colour of the protagonist's home gang.",
+      "src": "fandom:gta:Grove Street Families",
+      "image": "https://static.wikia.nocookie.net/gtawiki/images/4/48/GroveStreetFamilies-GTASA.png/revision/latest/scale-to-width-down/640?cb=20241109215215"
     },
     "location": {
       "name": "Los Santos",
       "description": "A sun-baked early-90s city parody of Los Angeles, home to Grove Street.",
-      "wiki": "Los Santos (Grand Theft Auto)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Grand_Theft_Auto_V_Los_Santos.webp"
+      "src": "fandom:gta:Los Santos (3D Universe)",
+      "image": "https://static.wikia.nocookie.net/gtawiki/images/1/10/LosSantos-GTASA-MapFull-CityLimits.png/revision/latest/scale-to-width-down/640?cb=20220223065712"
     },
     "visual": {
       "icon": "🌴",
@@ -864,6 +904,7 @@
       "Planners: Akira Nishitani & Akira Yasuda",
       "Composer: Yoko Shimomura"
     ],
+    "fandom": "streetfighter",
     "cover": {
       "wiki": "Street Fighter II",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1d/SF2_JPN_flyer.jpg"
@@ -879,12 +920,16 @@
     },
     "emoji": "🥋👊🔥🌍🏆",
     "item": {
-      "name": "Red headband",
-      "description": "Tied around the brow of a stoic karate fighter who lives only for the next battle."
+      "name": "Hadoken",
+      "description": "A blue fireball launched with a quarter-circle motion and a shout.",
+      "src": "fandom:streetfighter:Hadoken",
+      "image": "https://static.wikia.nocookie.net/streetfighter/images/1/14/SF1-Hadoken.png/revision/latest/scale-to-width-down/640?cb=20200418223715"
     },
     "location": {
       "name": "Suzaku Castle",
-      "description": "A moonlit Japanese castle rooftop stage."
+      "description": "A moonlit Japanese castle rooftop stage.",
+      "src": "fandom:streetfighter:Suzaku Castle",
+      "image": "https://static.wikia.nocookie.net/streetfighter/images/8/82/SuzakuCastle.jpg/revision/latest/scale-to-width-down/640?cb=20191004232619"
     },
     "visual": {
       "icon": "🥋",
@@ -932,6 +977,7 @@
       "Composer: Jeremy Soule",
       "Publisher: Bethesda Softworks"
     ],
+    "fandom": "elderscrolls",
     "cover": {
       "wiki": "The Elder Scrolls V: Skyrim",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png"
@@ -948,11 +994,15 @@
     "emoji": "🐉🏔️🛡️🏹🦵",
     "item": {
       "name": "Sweetroll",
-      "description": "A frosted pastry that guards accuse you of having stolen."
+      "description": "A frosted pastry that guards accuse you of having stolen.",
+      "src": "fandom:elderscrolls:Sweet Roll (Skyrim)",
+      "image": "https://static.wikia.nocookie.net/elderscrolls/images/5/5c/SweetRoll.png/revision/latest?cb=20121009224850"
     },
     "location": {
       "name": "Whiterun",
-      "description": "A hilltop trading city with a great hall, surrounded by plains and giants' camps."
+      "description": "A hilltop trading city with a great hall, surrounded by plains and giants' camps.",
+      "src": "fandom:elderscrolls:Whiterun (Skyrim)",
+      "image": "https://static.wikia.nocookie.net/elderscrolls/images/2/21/Whiterun_Skyrim.png/revision/latest/scale-to-width-down/640?cb=20141014143530"
     },
     "visual": {
       "icon": "🐉",
@@ -998,6 +1048,7 @@
       "Character design: Yoji Shinkawa",
       "Publisher: Konami"
     ],
+    "fandom": "metalgear",
     "cover": {
       "wiki": "Metal Gear Solid (1998 video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Metal_Gear_Solid_cover_art.png"
@@ -1014,11 +1065,15 @@
     "emoji": "🐍📦❗🪖☢️",
     "item": {
       "name": "Cardboard box",
-      "description": "A humble hiding place a legendary soldier swears by."
+      "description": "A humble hiding place a legendary soldier swears by.",
+      "src": "fandom:metalgear:Cardboard box",
+      "image": "https://static.wikia.nocookie.net/metalgear/images/7/7c/THEBOX.jpg/revision/latest?cb=20050831142709"
     },
     "location": {
       "name": "Shadow Moses Island",
-      "description": "A snowbound nuclear weapons disposal facility in the Alaskan Fox Archipelago."
+      "description": "A snowbound nuclear weapons disposal facility in the Alaskan Fox Archipelago.",
+      "src": "fandom:metalgear:Shadow Moses Island",
+      "image": "https://static.wikia.nocookie.net/metalgear/images/c/ca/Shadow_Moses_Island_MGS1.png/revision/latest?cb=20120406161454"
     },
     "visual": {
       "icon": "📦",
@@ -1062,6 +1117,7 @@
       "Composers: Martin O'Donnell & Michael Salvatori",
       "Publisher: Microsoft Game Studios"
     ],
+    "fandom": "halo",
     "cover": {
       "wiki": "Halo: Combat Evolved",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/80/Halo_-_Combat_Evolved_%28XBox_version_-_box_art%29.jpg"
@@ -1079,11 +1135,13 @@
     "item": {
       "name": "Energy sword",
       "description": "A glowing plasma blade with two forked prongs, wielded by alien Elites.",
-      "wiki": "Energy sword"
+      "image": "https://static.wikia.nocookie.net/halo/images/f/f1/H5G_Render_Sword.png/revision/latest?cb=20160218140525"
     },
     "location": {
       "name": "The ring installation",
-      "description": "A colossal artificial ring-world, with sky arching overhead on both sides."
+      "description": "A colossal artificial ring-world, with sky arching overhead on both sides.",
+      "src": "fandom:halo:Installation 04",
+      "image": "https://static.wikia.nocookie.net/halo/images/2/28/Installation_04_Anniversary_1.jpg/revision/latest/scale-to-width-down/640?cb=20120504211407"
     },
     "visual": {
       "icon": "💍",
@@ -1124,6 +1182,7 @@
       "Engine programmer: John Carmack",
       "Composer: Bobby Prince"
     ],
+    "fandom": "doom",
     "cover": {
       "wiki": "Doom (1993 video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg"
@@ -1137,14 +1196,14 @@
     "item": {
       "name": "BFG 9000",
       "description": "An enormous green-plasma cannon whose name is an expletive acronym.",
-      "wiki": "BFG (weapon)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/BFG9000.png"
+      "src": "fandom:doom:BFG 9000",
+      "image": "https://static.wikia.nocookie.net/doom/images/d/de/BFG9000.png/revision/latest?cb=20080711083032"
     },
     "location": {
       "name": "Phobos",
       "description": "A moon of Mars where a military base's teleporter experiments opened a gate to Hell.",
-      "wiki": "Phobos (moon)",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/960px-Phobos_colour_2008.jpg"
+      "src": "fandom:doom:Phobos",
+      "image": "https://static.wikia.nocookie.net/doom/images/d/df/PhobosbaseSNESman.jpg/revision/latest/scale-to-width-down/640?cb=20160612185843"
     },
     "visual": {
       "icon": "👹",
@@ -1189,6 +1248,7 @@
       "Producer: Eiji Aonuma",
       "Composer: Manaka Kataoka"
     ],
+    "fandom": "zelda",
     "cover": {
       "wiki": "The Legend of Zelda: Breath of the Wild",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
@@ -1205,11 +1265,15 @@
     "emoji": "🧗🏔️🍎🐎🗺️",
     "item": {
       "name": "Sheikah Slate",
-      "description": "An ancient tablet-like device that controls runes, bombs and magnets."
+      "description": "An ancient tablet-like device that controls runes, bombs and magnets.",
+      "src": "fandom:zelda:Sheikah Slate",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/e/e7/BotW_Sheikah_Slate_Model.png/revision/latest?cb=20210101164500"
     },
     "location": {
       "name": "The Great Plateau",
-      "description": "A walled-off highland with a ruined temple, where every adventure here begins."
+      "description": "A walled-off highland with a ruined temple, where every adventure here begins.",
+      "src": "fandom:zelda:Great Plateau",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/f/fe/BotW_Great_Plateau_Map.png/revision/latest/scale-to-width-down/640?cb=20160616005457"
     },
     "visual": {
       "icon": "🏔️",
@@ -1253,6 +1317,7 @@
       "Composer: Koji Kondo",
       "Launch title for the Nintendo 64"
     ],
+    "fandom": "mario",
     "cover": {
       "wiki": "Super Mario 64",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Super_Mario_64.png"
@@ -1269,11 +1334,15 @@
     "emoji": "⭐🏰🖼️💣🐧",
     "item": {
       "name": "Power Star",
-      "description": "A golden star with eyes; you need 70 of them to reach the final fight."
+      "description": "A golden star with eyes; you need 70 of them to reach the final fight.",
+      "src": "fandom:mario:Power Star",
+      "image": "https://static.wikia.nocookie.net/mario/images/7/77/Power_Star_SMG.png/revision/latest?cb=20230528055846"
     },
     "location": {
       "name": "Princess Peach's Castle",
-      "description": "A castle whose paintings are portals into different worlds."
+      "description": "A castle whose paintings are portals into different worlds.",
+      "src": "fandom:mario:Peach's Castle",
+      "image": "https://static.wikia.nocookie.net/mario/images/e/e6/CastelloPeach.jpg/revision/latest/scale-to-width-down/640?cb=20240220211902"
     },
     "visual": {
       "icon": "⭐",
@@ -1314,6 +1383,7 @@
       "Character designer: Naoto Ohshima",
       "Composer: Masato Nakamura"
     ],
+    "fandom": "sonic",
     "cover": {
       "wiki": "Sonic the Hedgehog (1991 video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Sonic_the_Hedgehog_1_Genesis_box_art.jpg"
@@ -1326,13 +1396,15 @@
     "emoji": "🦔💨💍🌴🤖",
     "item": {
       "name": "Gold rings",
-      "description": "Collect them for protection; get hit and they scatter everywhere."
+      "description": "Collect them for protection; get hit and they scatter everywhere.",
+      "src": "fandom:sonic:Ring",
+      "image": "https://static.wikia.nocookie.net/sonic/images/1/16/SPrimeRing.png/revision/latest/scale-to-width-down/640?cb=20240322202724"
     },
     "location": {
       "name": "Green Hill Zone",
       "description": "Checkerboard cliffs, loop-de-loops, waterfalls and palm trees.",
-      "wiki": "Green Hill Zone",
-      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/SonicTheHedgehog1.png"
+      "src": "fandom:sonic:Green Hill Zone",
+      "image": "https://static.wikia.nocookie.net/sonic/images/3/3e/SXSLaunchTrailerGreenHill2.jpg/revision/latest/scale-to-width-down/640?cb=20241027002331"
     },
     "visual": {
       "icon": "🦔",
@@ -1379,6 +1451,7 @@
       "Composer: Toshio Kai",
       "Highest-grossing arcade game of all time"
     ],
+    "fandom": "pacman",
     "cover": {
       "wiki": "Pac-Man",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Pac_flyer.png"
@@ -1391,11 +1464,14 @@
     "emoji": "🟡👻🍒🌀🕹️",
     "item": {
       "name": "Power Pellet",
-      "description": "One of four big flashing dots that turns the hunters into the hunted."
+      "description": "One of four big flashing dots that turns the hunters into the hunted.",
+      "src": "fandom:pacman:Power Pellet",
+      "image": "https://static.wikia.nocookie.net/pacman/images/4/4c/Powerpelletpacmanwebsite.png/revision/latest/scale-to-width-down/640?cb=20231022153412"
     },
     "location": {
       "name": "The maze",
-      "description": "A blue-walled labyrinth with a ghost pen in the middle and a tunnel at each side."
+      "description": "A blue-walled labyrinth with a ghost pen in the middle and a tunnel at each side.",
+      "image": "https://static.wikia.nocookie.net/pacman/images/0/00/Pac-Man.png/revision/latest?cb=20131228020207"
     },
     "visual": {
       "icon": "🟡",
@@ -1444,6 +1520,7 @@
       "Producer: Hiroyuki Kobayashi",
       "Publisher: Capcom"
     ],
+    "fandom": "residentevil",
     "cover": {
       "wiki": "Resident Evil 4",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/d9/Resi4-gc-cover.jpg"
@@ -1455,11 +1532,15 @@
     "emoji": "🧟🌾🪚👱‍♀️🔫",
     "item": {
       "name": "Attaché case",
-      "description": "A briefcase whose grid inventory you rearrange like a puzzle; sold by a hooded trader."
+      "description": "A briefcase whose grid inventory you rearrange like a puzzle; sold by a hooded trader.",
+      "src": "fandom:residentevil:Attache case",
+      "image": "https://static.wikia.nocookie.net/residentevil/images/f/fa/RE4_Remake_Attach%C3%A9_Case_Gold_Icon.png/revision/latest?cb=20231105060229"
     },
     "location": {
       "name": "The village",
-      "description": "A rural Spanish hamlet whose pitchfork-wielding locals are not quite themselves."
+      "description": "A rural Spanish hamlet whose pitchfork-wielding locals are not quite themselves.",
+      "src": "fandom:residentevil:Pueblo",
+      "image": "https://static.wikia.nocookie.net/residentevil/images/e/e6/Pueblo.png/revision/latest?cb=20180310193607"
     },
     "visual": {
       "icon": "🪚",
@@ -1502,6 +1583,7 @@
       "Exploded in popularity in 2020",
       "Built in Unity"
     ],
+    "fandom": "among-us",
     "cover": {
       "wiki": "Among Us",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_cover_art.jpg"
@@ -1509,11 +1591,13 @@
     "emoji": "🚀🔪🧑‍🚀🗳️🤫",
     "item": {
       "name": "Emergency Meeting button",
-      "description": "A big red button at the centre of the cafeteria that calls everyone to vote."
+      "description": "A big red button at the centre of the cafeteria that calls everyone to vote.",
+      "image": "https://static.wikia.nocookie.net/among-us-wiki/images/8/87/Emergency_button.png/revision/latest?cb=20201029203416"
     },
     "location": {
       "name": "The Skeld",
-      "description": "A spaceship with an electrical room, reactors and vents perfect for sneaking."
+      "description": "A spaceship with an electrical room, reactors and vents perfect for sneaking.",
+      "image": "https://static.wikia.nocookie.net/among-us-wiki/images/3/35/The_Skeld_map.png/revision/latest/scale-to-width-down/640?cb=20201111005126"
     },
     "visual": {
       "icon": "🧑‍🚀",
@@ -1557,6 +1641,7 @@
       "Original game designer: Steve Feak",
       "Esports world championship every year"
     ],
+    "fandom": "leagueoflegends",
     "cover": {
       "wiki": "League of Legends",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/League_of_Legends_2019_vector.svg/960px-League_of_Legends_2019_vector.svg.png"
@@ -1573,11 +1658,15 @@
     "emoji": "⚔️🏰🧙‍♀️🌿🐉",
     "item": {
       "name": "Ward",
-      "description": "A small totem placed in bushes to grant vision of the map."
+      "description": "A small totem placed in bushes to grant vision of the map.",
+      "src": "fandom:leagueoflegends:Stealth Ward",
+      "image": "https://static.wikia.nocookie.net/leagueoflegends/images/2/2a/Totem_Ward_screenshot.png/revision/latest?cb=20210520070642"
     },
     "location": {
       "name": "Summoner's Rift",
-      "description": "A square map with three lanes, a jungle, a river and a Nexus at each corner."
+      "description": "A square map with three lanes, a jungle, a river and a Nexus at each corner.",
+      "src": "fandom:leagueoflegends:Summoner's Rift",
+      "image": "https://static.wikia.nocookie.net/leagueoflegends/images/d/d3/Summoners_Rift_Summoner_Platforms.jpg/revision/latest?cb=20140624075315"
     },
     "visual": {
       "icon": "⚔️",
@@ -1621,6 +1710,7 @@
       "Originally published by Chucklefish",
       "Inspired by Harvest Moon"
     ],
+    "fandom": "stardewvalley",
     "cover": {
       "wiki": "Stardew Valley",
       "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png"
@@ -1633,11 +1723,13 @@
     "emoji": "🌾🐔🎣🏡💕",
     "item": {
       "name": "Grandpa's letter",
-      "description": "An envelope to open only when the weight of the world bears down on you."
+      "description": "An envelope to open only when the weight of the world bears down on you.",
+      "image": "https://static.wikia.nocookie.net/stardewvalley/images/8/88/Grandpa.png/revision/latest?cb=20250111225130"
     },
     "location": {
       "name": "Pelican Town",
-      "description": "A tiny village with a general store, a saloon and an abandoned community centre."
+      "description": "A tiny village with a general store, a saloon and an abandoned community centre.",
+      "src": "fandom:stardewvalley:Pelican Town"
     },
     "visual": {
       "icon": "🌾",
@@ -1680,6 +1772,7 @@
       "Artist: Temmie Chang",
       "Kickstarter-funded"
     ],
+    "fandom": "undertale",
     "cover": {
       "wiki": "Undertale"
     },
@@ -1695,11 +1788,14 @@
     "emoji": "💀🐐🌼❤️🍝",
     "item": {
       "name": "Butterscotch-cinnamon pie",
-      "description": "Baked by a goat-like guardian who wants you to stay safe."
+      "description": "Baked by a goat-like guardian who wants you to stay safe.",
+      "src": "fandom:undertale:Butterscotch Pie"
     },
     "location": {
       "name": "The Underground",
-      "description": "A realm beneath Mount Ebott, sealed by a magical barrier after a war."
+      "description": "A realm beneath Mount Ebott, sealed by a magical barrier after a war.",
+      "src": "fandom:undertale:Underground",
+      "image": "https://static.wikia.nocookie.net/undertale/images/c/c8/Ruins_location_intro.png/revision/latest?cb=20160106000246"
     },
     "visual": {
       "icon": "❤️",
@@ -1741,6 +1837,7 @@
       "Programmer: Noel Berry",
       "Composer: Lena Raine"
     ],
+    "fandom": "celestegame",
     "cover": {
       "wiki": "Celeste (video game)",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Celeste_box_art_full.png/960px-Celeste_box_art_full.png"
@@ -1753,11 +1850,14 @@
     "emoji": "🏔️🍓🧗‍♀️💨😰",
     "item": {
       "name": "Strawberries",
-      "description": "Optional collectibles; they \"don't do anything\" except prove your skill."
+      "description": "Optional collectibles; they \"don't do anything\" except prove your skill.",
+      "src": "fandom:celestegame:Strawberry"
     },
     "location": {
       "name": "Celeste Mountain",
-      "description": "A haunted mountain in British Columbia, with a ruined city and a hotel on the way up."
+      "description": "A haunted mountain in British Columbia, with a ruined city and a hotel on the way up.",
+      "src": "fandom:celestegame:Celeste Mountain",
+      "image": "https://static.wikia.nocookie.net/celestegame/images/a/a7/Celia_granny.PNG/revision/latest/scale-to-width-down/640?cb=20190921024620"
     },
     "visual": {
       "icon": "🍓",
@@ -1799,6 +1899,7 @@
       "Composer: Garry Schyman",
       "Studio also known as Irrational Games"
     ],
+    "fandom": "bioshock",
     "cover": {
       "wiki": "BioShock",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/BioShock_cover.jpg"
@@ -1815,11 +1916,15 @@
     "emoji": "🌊🏙️💉🤖👧",
     "item": {
       "name": "Plasmid",
-      "description": "A glowing syringe that rewrites your genes to shoot lightning from your hand."
+      "description": "A glowing syringe that rewrites your genes to shoot lightning from your hand.",
+      "src": "fandom:bioshock:Plasmid",
+      "image": "https://static.wikia.nocookie.net/bioshock/images/4/49/Plasmid_Bottle_Concept_Art.jpg/revision/latest?cb=20160802152920"
     },
     "location": {
       "name": "Rapture",
-      "description": "An art-deco city at the bottom of the Atlantic, built to escape governments and gods."
+      "description": "An art-deco city at the bottom of the Atlantic, built to escape governments and gods.",
+      "src": "fandom:bioshock:Rapture",
+      "image": "https://static.wikia.nocookie.net/bioshock/images/4/47/Rapture_Map_BATE2.png/revision/latest/scale-to-width-down/640?cb=20140329171022"
     },
     "visual": {
       "icon": "🌊",
@@ -1862,6 +1967,7 @@
       "Worldbuilding: George R. R. Martin",
       "Publisher: Bandai Namco"
     ],
+    "fandom": "eldenring",
     "cover": {
       "wiki": "Elden Ring",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg"
@@ -1878,11 +1984,15 @@
     "emoji": "💍🌳🐴⚔️🌕",
     "item": {
       "name": "Spectral Steed Whistle",
-      "description": "A ring that summons a horned spirit horse with a double jump."
+      "description": "A ring that summons a horned spirit horse with a double jump.",
+      "src": "fandom:eldenring:Spectral Steed Whistle",
+      "image": "https://static.wikia.nocookie.net/eldenring/images/c/c0/ER_Icon_Tool_Spectral_Steed_Whistle.png/revision/latest/scale-to-width-down/640?cb=20220411012824"
     },
     "location": {
       "name": "Limgrave",
-      "description": "Open fields beneath a golden tree, guarded by a knight on horseback right at the start."
+      "description": "Open fields beneath a golden tree, guarded by a knight on horseback right at the start.",
+      "src": "fandom:eldenring:Limgrave",
+      "image": "https://static.wikia.nocookie.net/eldenring/images/3/38/ER_Limgrave_First_Step_Panorama.png/revision/latest/scale-to-width-down/640?cb=20230514131634"
     },
     "visual": {
       "icon": "🌳",
@@ -1926,6 +2036,7 @@
       "Executive producer: Mike Morhaime",
       "Composer: Jason Hayes"
     ],
+    "fandom": "wowpedia",
     "cover": {
       "wiki": "World of Warcraft",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/65/World_of_Warcraft.png"
@@ -1938,11 +2049,15 @@
     "emoji": "🧌⚔️🐉🏰🌍",
     "item": {
       "name": "Hearthstone",
-      "description": "A blue engraved stone that teleports you back to your chosen inn."
+      "description": "A blue engraved stone that teleports you back to your chosen inn.",
+      "src": "fandom:wowpedia:Hearthstone (item)",
+      "image": "https://static.wikia.nocookie.net/wowpedia/images/a/a7/BTNPebble-Reforged.png/revision/latest?cb=20210512144119"
     },
     "location": {
       "name": "Stormwind City",
-      "description": "A walled human capital with a cathedral, canals and a giant gate of lion statues."
+      "description": "A walled human capital with a cathedral, canals and a giant gate of lion statues.",
+      "src": "fandom:wowpedia:Stormwind City",
+      "image": "https://static.wikia.nocookie.net/wowpedia/images/c/cb/Stormwind_City_HS.jpg/revision/latest/scale-to-width-down/640?cb=20210807231808"
     },
     "visual": {
       "icon": "🧌",
@@ -1986,6 +2101,7 @@
       "Original Wii U release: 2014",
       "Best-selling Switch game"
     ],
+    "fandom": "mariokart",
     "cover": {
       "wiki": "Mario Kart 8",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/b5/MarioKart8Boxart.jpg"
@@ -1998,11 +2114,15 @@
     "emoji": "🏎️🍌🐢💥🏁",
     "item": {
       "name": "Spiny Shell",
-      "description": "A blue winged shell that homes in on whoever is in first place."
+      "description": "A blue winged shell that homes in on whoever is in first place.",
+      "src": "fandom:mariokart:Spiny Shell",
+      "image": "https://static.wikia.nocookie.net/mariokart/images/1/10/SpinyShellMK8.png/revision/latest/scale-to-width-down/640?cb=20140520034125"
     },
     "location": {
       "name": "Rainbow Road",
-      "description": "A neon, railing-less track floating in space, famous for its falls."
+      "description": "A neon, railing-less track floating in space, famous for its falls.",
+      "src": "fandom:mariokart:Rainbow Road",
+      "image": "https://static.wikia.nocookie.net/mariokart/images/9/9b/800px-MK8-RainbowRoad-overview.jpg/revision/latest/scale-to-width-down/640?cb=20150403062312"
     },
     "visual": {
       "icon": "🏎️",
@@ -2046,6 +2166,7 @@
       "Producer: Hisashi Nogami",
       "Released during the 2020 lockdowns"
     ],
+    "fandom": "animalcrossing",
     "cover": {
       "wiki": "Animal Crossing: New Horizons",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/Animal_Crossing_New_Horizons.jpg"
@@ -2058,11 +2179,14 @@
     "emoji": "🏝️🦝🍑🎣🏡",
     "item": {
       "name": "Nook Miles Ticket",
-      "description": "A plane ticket earned through daily tasks, good for a trip to a random island."
+      "description": "A plane ticket earned through daily tasks, good for a trip to a random island.",
+      "src": "fandom:animalcrossing:Nook Miles Ticket",
+      "image": "https://static.wikia.nocookie.net/animalcrossing/images/3/37/NH-Ticket_Menu.png/revision/latest/scale-to-width-down/640?cb=20200330224736"
     },
     "location": {
       "name": "A deserted island getaway",
-      "description": "An uninhabited island you develop, starting with a tent and a raccoon's tent office."
+      "description": "An uninhabited island you develop, starting with a tent and a raccoon's tent office.",
+      "image": "https://static.wikia.nocookie.net/animalcrossing/images/3/3b/NH_Deserted_Island_undeveloped.png/revision/latest?cb=20200329062029"
     },
     "visual": {
       "icon": "🦝",
@@ -2108,6 +2232,7 @@
       "Composer: Derek Duke",
       "Replaced by a sequel in 2022"
     ],
+    "fandom": "overwatch",
     "cover": {
       "wiki": "Overwatch (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Overwatch_cover_art.jpg"
@@ -2124,11 +2249,15 @@
     "emoji": "🦸‍♀️⏱️🦍🤖🔫",
     "item": {
       "name": "Chronal accelerator",
-      "description": "A glowing harness that keeps a pilot anchored in the present."
+      "description": "A glowing harness that keeps a pilot anchored in the present.",
+      "src": "fandom:overwatch:Chronal accelerator",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2a/Chronal_Accelerator.jpg/revision/latest/scale-to-width-down/640?cb=20150109221129"
     },
     "location": {
       "name": "Watchpoint: Gibraltar",
-      "description": "A cliffside base on the Rock of Gibraltar, with a rocket on the launch pad."
+      "description": "A cliffside base on the Rock of Gibraltar, with a rocket on the launch pad.",
+      "src": "fandom:overwatch:Watchpoint: Gibraltar",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8b/Gibraltar.jpg/revision/latest/scale-to-width-down/640?cb=20180520050120"
     },
     "visual": {
       "icon": "⏱️",
@@ -2174,6 +2303,7 @@
       "Writers: Dan Houser & Rupert Humphries",
       "Fastest entertainment product to reach $1 billion"
     ],
+    "fandom": "gta",
     "cover": {
       "wiki": "Grand Theft Auto V",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
@@ -2185,12 +2315,16 @@
     },
     "emoji": "🚗💰👨‍👦‍👦🏦🌴",
     "item": {
-      "name": "A three-way character wheel",
-      "description": "Swap between a retired robber, a young hustler and an unhinged meth dealer."
+      "name": "iFruit smartphone",
+      "description": "The in-game phone used to call contacts, take selfies and browse a parody internet.",
+      "src": "fandom:gta:iFruit",
+      "image": "https://static.wikia.nocookie.net/gtawiki/images/c/c7/IFruit9iX-GTAV.png/revision/latest/scale-to-width-down/640?cb=20150506122211"
     },
     "location": {
       "name": "Mount Chiliad",
-      "description": "The tallest peak in the state, rumoured to hide a UFO and a jetpack."
+      "description": "The tallest peak in the state, rumoured to hide a UFO and a jetpack.",
+      "src": "fandom:gta:Mount Chiliad",
+      "image": "https://static.wikia.nocookie.net/gtawiki/images/4/42/MountChiliad-IngameGPS-GTAV-Map.png/revision/latest/scale-to-width-down/640?cb=20200301225029"
     },
     "visual": {
       "icon": "💰",
@@ -2237,6 +2371,7 @@
       "Composer: Woody Jackson",
       "Prequel to a 2010 game"
     ],
+    "fandom": "reddead",
     "cover": {
       "wiki": "Red Dead Redemption 2",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg"
@@ -2253,11 +2388,14 @@
     "emoji": "🤠🐴🌄📓🔫",
     "item": {
       "name": "A sketchbook journal",
-      "description": "Filled with drawings of animals, places and fellow gang members."
+      "description": "Filled with drawings of animals, places and fellow gang members.",
+      "image": "https://static.wikia.nocookie.net/reddeadredemption/images/9/9d/Journalrdr2.png/revision/latest/scale-to-width-down/640?cb=20190628181724"
     },
     "location": {
       "name": "Valentine",
-      "description": "A muddy livestock town in the Heartlands, with a saloon fight waiting to happen."
+      "description": "A muddy livestock town in the Heartlands, with a saloon fight waiting to happen.",
+      "src": "fandom:reddead:Valentine",
+      "image": "https://static.wikia.nocookie.net/reddeadredemption/images/7/74/Valentineshot.jpg/revision/latest/scale-to-width-down/640?cb=20251210065651"
     },
     "visual": {
       "icon": "🤠",
@@ -2302,6 +2440,7 @@
       "Composer: Bear McCreary",
       "Shot as one continuous take"
     ],
+    "fandom": "godofwar",
     "cover": {
       "wiki": "God of War (2018 video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg"
@@ -2318,11 +2457,15 @@
     "emoji": "🪓👨‍👦🐍🏔️❄️",
     "item": {
       "name": "Leviathan Axe",
-      "description": "A frost axe that flies back to its owner's hand when he calls it."
+      "description": "A frost axe that flies back to its owner's hand when he calls it.",
+      "src": "fandom:godofwar:Leviathan Axe",
+      "image": "https://static.wikia.nocookie.net/godofwar/images/c/cc/3315204-5756977229-latest.png/revision/latest/scale-to-width-down/640?cb=20230113070756"
     },
     "location": {
       "name": "Midgard",
-      "description": "A snowy realm of forests and a great lake, coiled around by a world serpent."
+      "description": "A snowy realm of forests and a great lake, coiled around by a world serpent.",
+      "src": "fandom:godofwar:Midgard",
+      "image": "https://static.wikia.nocookie.net/godofwar/images/0/03/Midgard.png/revision/latest?cb=20180608142923"
     },
     "visual": {
       "icon": "🪓",
@@ -2366,6 +2509,7 @@
       "Game directors: Bruce Straley & Amy Hennig",
       "Composer: Greg Edmonson"
     ],
+    "fandom": "uncharted",
     "cover": {
       "wiki": "Uncharted 2: Among Thieves",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Uncharted_2_box_artwork.jpg"
@@ -2378,11 +2522,15 @@
     "emoji": "🧗🚂🏔️💎🔫",
     "item": {
       "name": "The Cintamani Stone",
-      "description": "A legendary sapphire hidden in a lost Himalayan city."
+      "description": "A legendary sapphire hidden in a lost Himalayan city.",
+      "src": "fandom:uncharted:Cintamani Stone",
+      "image": "https://static.wikia.nocookie.net/uncharted/images/a/a3/Drake%27s_journal_from_AT_screen_1.png/revision/latest/scale-to-width-down/640?cb=20260127062833"
     },
     "location": {
       "name": "Shambhala",
-      "description": "A mythical city in the Himalayas, reached after a train fight in the snow."
+      "description": "A mythical city in the Himalayas, reached after a train fight in the snow.",
+      "src": "fandom:uncharted:Shambhala",
+      "image": "https://static.wikia.nocookie.net/uncharted/images/6/6a/Shambhala.png/revision/latest/scale-to-width-down/640?cb=20260511021433"
     },
     "visual": {
       "icon": "🧗",
@@ -2427,6 +2575,7 @@
       "Lead writer: Mac Walters",
       "Composer: Jack Wall"
     ],
+    "fandom": "masseffect",
     "cover": {
       "wiki": "Mass Effect 2",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/05/MassEffect2_cover.PNG"
@@ -2443,11 +2592,15 @@
     "emoji": "🚀👽🧑‍🚀💥🛸",
     "item": {
       "name": "The Normandy SR-2",
-      "description": "A stealth frigate rebuilt by a pro-human organisation after its predecessor was destroyed."
+      "description": "A stealth frigate rebuilt by a pro-human organisation after its predecessor was destroyed.",
+      "src": "fandom:masseffect:Normandy SR-2",
+      "image": "https://static.wikia.nocookie.net/masseffect/images/1/11/Mass_Effect_Normandy_SR2.png/revision/latest/scale-to-width-down/640?cb=20091227112049"
     },
     "location": {
       "name": "The Citadel",
-      "description": "A colossal space station with five arms, the political heart of the galaxy."
+      "description": "A colossal space station with five arms, the political heart of the galaxy.",
+      "src": "fandom:masseffect:Citadel",
+      "image": "https://static.wikia.nocookie.net/masseffect/images/a/a9/Galaxy_Map_-_Citadel.png/revision/latest/scale-to-width-down/640?cb=20221208170749"
     },
     "visual": {
       "icon": "🛸",
@@ -2494,6 +2647,7 @@
       "Based on a tabletop RPG by Mike Pondsmith",
       "Featuring Keanu Reeves"
     ],
+    "fandom": "cyberpunk",
     "cover": {
       "wiki": "Cyberpunk 2077",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
@@ -2510,11 +2664,15 @@
     "emoji": "🌃🤖🎸🔫🧠",
     "item": {
       "name": "The Relic",
-      "description": "A biochip that slowly overwrites its carrier with a dead rocker's mind."
+      "description": "A biochip that slowly overwrites its carrier with a dead rocker's mind.",
+      "src": "fandom:cyberpunk:Relic",
+      "image": "https://static.wikia.nocookie.net/cyberpunk/images/5/5f/CP2077_Relic.png/revision/latest/scale-to-width-down/640?cb=20200627175318"
     },
     "location": {
       "name": "Night City",
-      "description": "A megacity on the California coast, ruled by corporations and gangs."
+      "description": "A megacity on the California coast, ruled by corporations and gangs.",
+      "src": "fandom:cyberpunk:Night City",
+      "image": "https://static.wikia.nocookie.net/cyberpunk/images/1/1c/NC-Profile-2077-Placeholder.jpg/revision/latest/scale-to-width-down/360?cb=20200501024902"
     },
     "visual": {
       "icon": "🌃",
@@ -2561,6 +2719,7 @@
       "Composer: Darren Korb",
       "Art director: Jen Zee"
     ],
+    "fandom": "hades",
     "cover": {
       "wiki": "Hades (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg"
@@ -2573,11 +2732,15 @@
     "emoji": "🔥⚔️🐶💀🏛️",
     "item": {
       "name": "Stygian Blade",
-      "description": "The first infernal weapon, a sword from the underworld's armoury."
+      "description": "The first infernal weapon, a sword from the underworld's armoury.",
+      "src": "fandom:hades:Stygian Blade",
+      "image": "https://static.wikia.nocookie.net/hades_gamepedia_en/images/c/cf/Zagreus_Aspect_Sword_02.png/revision/latest?cb=20210417071347"
     },
     "location": {
       "name": "The House of Hades",
-      "description": "A gloomy palace in the underworld with a lounge, a pet three-headed dog and a very strict father."
+      "description": "A gloomy palace in the underworld with a lounge, a pet three-headed dog and a very strict father.",
+      "src": "fandom:hades:House of Hades",
+      "image": "https://static.wikia.nocookie.net/hades_gamepedia_en/images/e/ed/FP_Achilles.png/revision/latest?cb=20200824034924"
     },
     "visual": {
       "icon": "🐶",
@@ -2624,6 +2787,7 @@
       "Composer: Shoji Meguro",
       "Character design: Shigenori Soejima"
     ],
+    "fandom": "megamitensei",
     "cover": {
       "wiki": "Persona 5",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/b0/Persona_5_cover_art.jpg"
@@ -2640,7 +2804,9 @@
     },
     "location": {
       "name": "Café Leblanc",
-      "description": "A small Yongen-Jaya coffee shop where a transfer student sleeps in the attic."
+      "description": "A small Yongen-Jaya coffee shop where a transfer student sleeps in the attic.",
+      "src": "fandom:megamitensei:Café Leblanc",
+      "image": "https://static.wikia.nocookie.net/megamitensei/images/1/12/P5_concept_art_of_Cafe_Le_Blanc%2C_01.png/revision/latest?cb=20170306130650"
     },
     "visual": {
       "icon": "🎭",
@@ -2684,6 +2850,7 @@
       "Composer: Yoko Shimomura",
       "Co-produced with Disney"
     ],
+    "fandom": "kingdomhearts",
     "cover": {
       "wiki": "Kingdom Hearts (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/85/Kingdom_Hearts.jpg"
@@ -2696,11 +2863,15 @@
     "emoji": "🗝️🐭🦆🏝️💖",
     "item": {
       "name": "Keyblade",
-      "description": "A giant key-shaped sword that can lock the hearts of worlds."
+      "description": "A giant key-shaped sword that can lock the hearts of worlds.",
+      "src": "fandom:kingdomhearts:Keyblade",
+      "image": "https://static.wikia.nocookie.net/kingdomhearts/images/f/f6/Kingdom_Key_KHIII.png/revision/latest/scale-to-width-down/640?cb=20190110160423"
     },
     "location": {
       "name": "Destiny Islands",
-      "description": "A small tropical island with a paopu tree, where three friends dream of other worlds."
+      "description": "A small tropical island with a paopu tree, where three friends dream of other worlds.",
+      "src": "fandom:kingdomhearts:Destiny Islands",
+      "image": "https://static.wikia.nocookie.net/kingdomhearts/images/1/1b/Destiny_Islands_KH.png/revision/latest?cb=20100604103154"
     },
     "visual": {
       "icon": "🗝️",
@@ -2740,6 +2911,7 @@
       "Directors: Yusuke Amano & Tsubasa Sakaguchi",
       "Original Wii U exclusive"
     ],
+    "fandom": "splatoon",
     "cover": {
       "wiki": "Splatoon (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/bb/Splatoon.jpg"
@@ -2752,11 +2924,15 @@
     "emoji": "🦑🔫🎨🟣🟢",
     "item": {
       "name": "Splattershot",
-      "description": "A paint-blasting starter rifle for kids who turn into squids."
+      "description": "A paint-blasting starter rifle for kids who turn into squids.",
+      "src": "fandom:splatoon:Splattershot",
+      "image": "https://static.wikia.nocookie.net/splatoon/images/b/bf/S3_Weapon_Main_Splattershot.png/revision/latest?cb=20221223194103"
     },
     "location": {
       "name": "Inkopolis",
-      "description": "A trendy city plaza full of shops for kids who are part squid."
+      "description": "A trendy city plaza full of shops for kids who are part squid.",
+      "src": "fandom:splatoon:Inkopolis",
+      "image": "https://static.wikia.nocookie.net/splatoon/images/d/de/Booyahbase2.png/revision/latest/scale-to-width-down/640?cb=20150507161146"
     },
     "visual": {
       "icon": "🦑",
@@ -2801,6 +2977,7 @@
       "Co-developed with Sora Ltd.",
       "Every past fighter returns"
     ],
+    "fandom": "supersmashbros",
     "cover": {
       "wiki": "Super Smash Bros. Ultimate",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/50/Super_Smash_Bros._Ultimate.jpg"
@@ -2817,11 +2994,15 @@
     "emoji": "👊🌀🏆🎮⭐",
     "item": {
       "name": "Smash Ball",
-      "description": "A floating, glowing orb that unlocks a fighter's Final Smash."
+      "description": "A floating, glowing orb that unlocks a fighter's Final Smash.",
+      "src": "fandom:supersmashbros:Smash Ball",
+      "image": "https://static.wikia.nocookie.net/ssb/images/f/f3/SmashBall.png/revision/latest?cb=20140328222600"
     },
     "location": {
       "name": "Final Destination",
-      "description": "A flat floating platform in space, with no items, no hazards, no excuses."
+      "description": "A flat floating platform in space, with no items, no hazards, no excuses.",
+      "src": "fandom:supersmashbros:Final Destination",
+      "image": "https://static.wikia.nocookie.net/ssb/images/c/c6/Final_Destination_SSB.png/revision/latest?cb=20181120080650"
     },
     "visual": {
       "icon": "🏆",
@@ -2867,6 +3048,7 @@
       "Built on the Half-Life engine",
       "Publisher: Valve"
     ],
+    "fandom": "counterstrike",
     "cover": {
       "wiki": "Counter-Strike (video game)",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg"
@@ -2878,11 +3060,15 @@
     "emoji": "💣🔫🧱🏜️🪖",
     "item": {
       "name": "C4 explosive",
-      "description": "Planted at site A or B; beep, beep, beep…"
+      "description": "Planted at site A or B; beep, beep, beep…",
+      "src": "fandom:counterstrike:C4 Explosive",
+      "image": "https://static.wikia.nocookie.net/cswikia/images/6/62/CS2_Weapon_c4.png/revision/latest?cb=20230928193441"
     },
     "location": {
       "name": "Dust II",
-      "description": "A sandy Middle-Eastern town map with long A, a mid doors and a tunnel to B."
+      "description": "A sandy Middle-Eastern town map with long A, a mid doors and a tunnel to B.",
+      "src": "fandom:counterstrike:Dust II",
+      "image": "https://static.wikia.nocookie.net/cswikia/images/1/16/Cs2_dust2.png/revision/latest/scale-to-width-down/640?cb=20230913150804"
     },
     "visual": {
       "icon": "💣",
@@ -2928,6 +3114,7 @@
       "Composer: Jesper Kyd",
       "Publisher: Ubisoft"
     ],
+    "fandom": "assassinscreed",
     "cover": {
       "wiki": "Assassin's Creed II",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/77/Assassins_Creed_2_Box_Art.JPG"
@@ -2944,12 +3131,14 @@
     "emoji": "🗡️🦅🏛️🇮🇹🧥",
     "item": {
       "name": "Hidden blade",
-      "description": "A blade concealed in a bracer, requiring a ring finger to be sacrificed — once."
+      "description": "A blade concealed in a bracer, requiring a ring finger to be sacrificed — once.",
+      "src": "fandom:assassinscreed:Hidden Blade",
+      "image": "https://static.wikia.nocookie.net/assassinscreed/images/e/e6/AC2_Hidden_Blade_Concept.jpg/revision/latest/scale-to-width-down/640?cb=20120517093506"
     },
     "location": {
       "name": "Renaissance Florence",
       "description": "A city of Medici politics, a great cathedral dome and plenty of rooftops.",
-      "wiki": "Florence Cathedral",
+      "src": "wp:Florence Cathedral",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Cattedrale_di_Santa_Maria_del_Fiore_%E2%80%93_Il_Duomo_di_Firenze.jpg/960px-Cattedrale_di_Santa_Maria_del_Fiore_%E2%80%93_Il_Duomo_di_Firenze.jpg"
     },
     "visual": {
@@ -2995,6 +3184,7 @@
       "Composers: Ilan Eshkeri & Shigeru Umebayashi",
       "Inspired by Akira Kurosawa"
     ],
+    "fandom": "ghostfranchise",
     "cover": {
       "wiki": "Ghost of Tsushima",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg"
@@ -3007,12 +3197,13 @@
     "emoji": "⚔️🌸🍃🦊🏯",
     "item": {
       "name": "The guiding wind",
-      "description": "Swipe the controller and the breeze points the way — no waypoint needed."
+      "description": "Swipe the controller and the breeze points the way — no waypoint needed.",
+      "image": "https://static.wikia.nocookie.net/ghostoftsushima/images/e/eb/Leaf_in_Guiding_Wind.png/revision/latest/scale-to-width-down/640?cb=20200608062739"
     },
     "location": {
       "name": "Tsushima Island",
       "description": "A real island between Japan and Korea, invaded by the Mongols in 1274.",
-      "wiki": "Tsushima Island",
+      "src": "wp:Tsushima Island",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Tsushima_Island_ISS034.jpg/960px-Tsushima_Island_ISS034.jpg"
     },
     "visual": {
@@ -3057,6 +3248,7 @@
       "Composers: Yasunori Mitsuda & Nobuo Uematsu",
       "Multiple endings"
     ],
+    "fandom": "chrono",
     "cover": {
       "wiki": "Chrono Trigger",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Chrono_Trigger.jpg"
@@ -3069,11 +3261,14 @@
     "emoji": "⏳🗡️🐸🌋🚀",
     "item": {
       "name": "The Epoch",
-      "description": "A winged time machine that can fly through eras."
+      "description": "A winged time machine that can fly through eras.",
+      "src": "fandom:chrono:Epoch",
+      "image": "https://static.wikia.nocookie.net/chrono/images/e/e3/Epoch_-_Winged.png/revision/latest?cb=20190125204222"
     },
     "location": {
       "name": "The Millennial Fair",
-      "description": "A festival in the year 1000 where a teleporter demo goes wrong."
+      "description": "A festival in the year 1000 where a teleporter demo goes wrong.",
+      "src": "fandom:chrono:Millennial Fair"
     },
     "visual": {
       "icon": "⏳",
@@ -3115,6 +3310,7 @@
       "Composer: Akira Yamaoka",
       "Developed by Team Silent"
     ],
+    "fandom": "silenthill",
     "cover": {
       "wiki": "Silent Hill 2",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/95/Silent_Hill_2.jpg"
@@ -3131,11 +3327,15 @@
     "emoji": "🌫️🔺🏚️✉️🔪",
     "item": {
       "name": "The Great Knife",
-      "description": "A huge blade dragged by an executioner with a triangular helmet."
+      "description": "A huge blade dragged by an executioner with a triangular helmet.",
+      "src": "fandom:silenthill:Great Knife",
+      "image": "https://static.wikia.nocookie.net/silent/images/5/51/Greatknifwe.jpg/revision/latest?cb=20120530234255"
     },
     "location": {
       "name": "Toluca Lake",
-      "description": "A fog-covered lake town where a widower searches for his wife."
+      "description": "A fog-covered lake town where a widower searches for his wife.",
+      "src": "fandom:silenthill:Toluca Lake",
+      "image": "https://static.wikia.nocookie.net/silent/images/9/99/Docks.jpg/revision/latest/scale-to-width-down/640?cb=20131003154824"
     },
     "visual": {
       "icon": "🔺",
@@ -3177,6 +3377,7 @@
       "Composer: Jun Ishikawa",
       "Game Boy debut"
     ],
+    "fandom": "kirby",
     "cover": {
       "wiki": "Kirby's Dream Land",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Kirbys-dream-land-gameboy-boxart.png"
@@ -3189,17 +3390,3121 @@
     "emoji": "🩷🌟🍰🎈👑",
     "item": {
       "name": "Warp Star",
-      "description": "A yellow star a pink puffball rides between levels."
+      "description": "A yellow star a pink puffball rides between levels.",
+      "src": "fandom:kirby:Warp Star",
+      "image": "https://static.wikia.nocookie.net/kirby/images/b/bd/KARs_Kirby_Warpstar_Artwork.png/revision/latest/scale-to-width-down/640?cb=20250402151715&path-prefix=en"
     },
     "location": {
       "name": "Dream Land",
-      "description": "A peaceful land whose food was stolen by a greedy penguin king."
+      "description": "A peaceful land whose food was stolen by a greedy penguin king.",
+      "src": "fandom:kirby:Dream Land",
+      "image": "https://static.wikia.nocookie.net/kirby/images/d/d8/KRtDLDX_Dream_Land.jpg/revision/latest/scale-to-width-down/640?cb=20230601110014&path-prefix=en"
     },
     "visual": {
       "icon": "🩷",
       "colors": [
         "#f9a8d4",
         "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-odyssey",
+    "name": "Super Mario Odyssey",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nintendo",
+    "creator": "Kenta Motokura",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Cappy",
+      "Pauline"
+    ],
+    "themes": [
+      "Globetrotting",
+      "Capture"
+    ],
+    "credits": [
+      "Director: Kenta Motokura",
+      "Composer: Naoto Kubo"
+    ],
+    "fandom": "mario",
+    "cover": {
+      "wiki": "Super Mario Odyssey",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg"
+    },
+    "audio": {
+      "clue": "A brassy big-band swing number sung by a former damsel at a city festival.",
+      "query": "Super Mario Odyssey Jump Up Super Star",
+      "youtubeId": "e9r5hx47kxM"
+    },
+    "emoji": "🎩🌆🦖🌍💍",
+    "item": {
+      "name": "Cappy",
+      "description": "A living hat that lets a plumber possess enemies and objects.",
+      "image": "https://static.wikia.nocookie.net/mario/images/5/53/SMO_Cappy_Artwork.png/revision/latest/scale-to-width-down/578?cb=20190730154312"
+    },
+    "location": {
+      "name": "New Donk City",
+      "description": "A skyscraper metropolis in the Metro Kingdom, hosting a festival.",
+      "image": "https://static.wikia.nocookie.net/mario/images/0/0d/New-Donk-City-Artwork.png/revision/latest/scale-to-width-down/640?cb=20251128234709"
+    },
+    "visual": {
+      "icon": "🎩",
+      "colors": [
+        "#b91c1c",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-smw",
+    "name": "Super Mario World",
+    "domain": "games",
+    "year": 1990,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nintendo",
+    "creator": "Takashi Tezuka",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Yoshi",
+      "Bowser"
+    ],
+    "themes": [
+      "Dinosaurs",
+      "Secrets"
+    ],
+    "credits": [
+      "Director: Takashi Tezuka",
+      "Composer: Koji Kondo"
+    ],
+    "fandom": "mario",
+    "cover": {
+      "wiki": "Super Mario World",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/Super_Mario_World_Coverart.png"
+    },
+    "audio": {
+      "clue": "A jaunty overworld melody with bongo beats that kick in when you ride a dinosaur.",
+      "query": "Super Mario World overworld theme",
+      "youtubeId": "tAaGKo4XVvM"
+    },
+    "emoji": "🦖🪶🏰🔑🗺️",
+    "item": {
+      "name": "Cape Feather",
+      "description": "A yellow feather that grants a cape for gliding and spinning.",
+      "image": "https://static.wikia.nocookie.net/mario/images/5/5b/Feather_MK8D.png/revision/latest/scale-to-width-down/640?cb=20190718013241"
+    },
+    "location": {
+      "name": "Dinosaur Land",
+      "description": "An island of dinosaurs and Koopa castles, launch title of the SNES.",
+      "image": "https://static.wikia.nocookie.net/mario/images/0/0c/SMW_Art_-_Dinosaur_Land.png/revision/latest/scale-to-width-down/640?cb=20260306014402"
+    },
+    "visual": {
+      "icon": "🦖",
+      "colors": [
+        "#16a34a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-alttp",
+    "name": "The Legend of Zelda: A Link to the Past",
+    "aliases": [
+      "link to the past",
+      "alttp"
+    ],
+    "domain": "games",
+    "year": 1991,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Nintendo",
+    "creator": "Takashi Tezuka",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Link",
+      "Princess Zelda",
+      "Agahnim",
+      "Ganon"
+    ],
+    "themes": [
+      "Parallel worlds"
+    ],
+    "credits": [
+      "Director: Takashi Tezuka",
+      "Composer: Koji Kondo"
+    ],
+    "fandom": "zelda",
+    "cover": {
+      "wiki": "The Legend of Zelda: A Link to the Past",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"
+    },
+    "audio": {
+      "clue": "A stately, sweeping overworld theme that turns ominous in a twisted mirror world.",
+      "query": "A Link to the Past Hyrule Field theme",
+      "youtubeId": "gFbOcwYIfJ4"
+    },
+    "emoji": "🗡️🌑🌕👢🏰",
+    "item": {
+      "name": "Pegasus Boots",
+      "description": "Boots that let the hero dash at high speed and ram into trees.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/0/0b/LANS_Pegasus_Boots_Model.png/revision/latest?cb=20200129022309"
+    },
+    "location": {
+      "name": "Dark World",
+      "description": "A corrupted mirror of the kingdom, ruled by an evil king.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/6/66/Darkworldalttp.png/revision/latest/scale-to-width-down/640?cb=20140430070509"
+    },
+    "visual": {
+      "icon": "👢",
+      "colors": [
+        "#14532d",
+        "#7c2d12"
+      ]
+    }
+  },
+  {
+    "id": "g-majorasmask",
+    "name": "The Legend of Zelda: Majora's Mask",
+    "aliases": [
+      "majoras mask",
+      "mm"
+    ],
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Nintendo",
+    "creator": "Eiji Aonuma",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Link",
+      "Skull Kid",
+      "Tatl"
+    ],
+    "themes": [
+      "Time loop",
+      "Grief"
+    ],
+    "credits": [
+      "Directors: Eiji Aonuma & Yoshiaki Koizumi",
+      "Made in about a year"
+    ],
+    "fandom": "zelda",
+    "cover": {
+      "wiki": "The Legend of Zelda: Majora's Mask",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/The_Legend_of_Zelda_-_Majora%27s_Mask_Box_Art.jpg"
+    },
+    "quote": {
+      "text": "You've met with a terrible fate, haven't you?",
+      "speaker": "A grinning mask salesman"
+    },
+    "audio": {
+      "clue": "A bustling, cheerful town theme that grows more frantic each day the moon falls closer.",
+      "query": "Majora's Mask Clock Town Day 1",
+      "youtubeId": "tWNBAW5reVs"
+    },
+    "emoji": "🎭🌕⏰🧝😱",
+    "item": {
+      "name": "Majora's Mask",
+      "description": "A heart-shaped mask with spikes and staring eyes, wielded by a mischievous imp."
+    },
+    "location": {
+      "name": "Clock Town",
+      "description": "A walled town around a giant clock tower, three days from a falling moon.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/a/ab/MM_Clock_Town_Artwork.png/revision/latest/scale-to-width-down/507?cb=20200211211452"
+    },
+    "visual": {
+      "icon": "🎭",
+      "colors": [
+        "#4c1d95",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-metroidprime",
+    "name": "Metroid Prime",
+    "domain": "games",
+    "year": 2002,
+    "genres": [
+      "Action-Adventure",
+      "First-Person"
+    ],
+    "studio": "Retro Studios",
+    "creator": "Mark Pacini",
+    "origin": "USA",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Samus Aran",
+      "Ridley",
+      "Meta Ridley"
+    ],
+    "themes": [
+      "Isolation",
+      "Exploration"
+    ],
+    "credits": [
+      "Director: Mark Pacini",
+      "Composer: Kenji Yamamoto"
+    ],
+    "fandom": "metroid",
+    "cover": {
+      "wiki": "Metroid Prime",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/MetroidPrimebox.jpg"
+    },
+    "audio": {
+      "clue": "A haunting choral and synth theme on a rain-soaked alien landing site.",
+      "query": "Metroid Prime Tallon Overworld theme",
+      "youtubeId": "zCUHaiptuXg"
+    },
+    "emoji": "👩‍🚀🪐🔫🧬🌧️",
+    "item": {
+      "name": "Varia Suit",
+      "description": "An orange armoured suit with bulbous shoulders that resists extreme heat."
+    },
+    "location": {
+      "name": "Tallon IV",
+      "description": "A rainy jungle planet scarred by a meteor and Chozo ruins.",
+      "image": "https://static.wikia.nocookie.net/metroid/images/6/63/Tallon_IV_Remastered.png/revision/latest/scale-to-width-down/640?cb=20230222165158"
+    },
+    "visual": {
+      "icon": "🪐",
+      "colors": [
+        "#7c2d12",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "g-dkc",
+    "name": "Donkey Kong Country",
+    "domain": "games",
+    "year": 1994,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Rare",
+    "creator": "Gregg Mayles",
+    "origin": "United Kingdom",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Donkey Kong",
+      "Diddy Kong",
+      "King K. Rool"
+    ],
+    "themes": [
+      "Bananas",
+      "Jungle"
+    ],
+    "credits": [
+      "Lead designer: Gregg Mayles",
+      "Composer: David Wise"
+    ],
+    "fandom": "donkeykong",
+    "cover": {
+      "wiki": "Donkey Kong Country",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1a/Donkey_Kong_Country_SNES_cover.png"
+    },
+    "audio": {
+      "clue": "A dreamy, ambient underwater theme of shimmering synth pads.",
+      "query": "Donkey Kong Country Aquatic Ambience",
+      "youtubeId": "-5rAjOjTGtc"
+    },
+    "emoji": "🦍🍌🛢️🐊🌴",
+    "item": {
+      "name": "DK Barrel",
+      "description": "A wooden barrel marked with two letters that frees a partner when broken.",
+      "image": "https://static.wikia.nocookie.net/donkeykong/images/4/44/DKbarrel2D.png/revision/latest?cb=20210531082925"
+    },
+    "location": {
+      "name": "Donkey Kong Island",
+      "description": "A jungle island shaped like an ape's head.",
+      "image": "https://static.wikia.nocookie.net/donkeykong/images/5/56/Donkey_Kong_Island_%28DKC%29.png/revision/latest?cb=20210415190830"
+    },
+    "visual": {
+      "icon": "🍌",
+      "colors": [
+        "#14532d",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-pokemon-gs",
+    "name": "Pokémon Gold and Silver",
+    "aliases": [
+      "pokemon gold",
+      "pokemon silver"
+    ],
+    "domain": "games",
+    "year": 1999,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Game Freak",
+    "creator": "Satoshi Tajiri",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Ethan",
+      "Lugia",
+      "Ho-Oh",
+      "Silver"
+    ],
+    "themes": [
+      "Day and night",
+      "Legends"
+    ],
+    "credits": [
+      "Director: Satoshi Tajiri",
+      "Composer: Junichi Masuda"
+    ],
+    "fandom": "pokemon",
+    "cover": {
+      "wiki": "Pokémon Gold and Silver",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Pok%C3%A9mon_box_art_-_Gold_Version.png"
+    },
+    "audio": {
+      "clue": "A breezy Game Boy Color melody for the first route outside a quiet town.",
+      "query": "Pokemon Gold Silver Route 29 theme",
+      "youtubeId": "G6boaYoGEY0"
+    },
+    "emoji": "🌈🪶🌙🔔🥚",
+    "item": {
+      "name": "Rainbow Wing",
+      "description": "A feather that shines in seven colours, linked to a legendary phoenix."
+    },
+    "location": {
+      "name": "Johto",
+      "description": "A region of ancient towers, west of the original games' region.",
+      "image": "https://static.wikia.nocookie.net/pokemon/images/f/fe/Johto_HGSS.png/revision/latest/scale-to-width-down/640?cb=20110213010249"
+    },
+    "visual": {
+      "icon": "🔔",
+      "colors": [
+        "#a16207",
+        "#94a3b8"
+      ]
+    }
+  },
+  {
+    "id": "g-ffx",
+    "name": "Final Fantasy X",
+    "aliases": [
+      "ffx",
+      "final fantasy 10"
+    ],
+    "domain": "games",
+    "year": 2001,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Square",
+    "creator": "Yoshinori Kitase",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Nintendo",
+      "Xbox"
+    ],
+    "characters": [
+      "Tidus",
+      "Yuna",
+      "Auron",
+      "Sin"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Religion"
+    ],
+    "credits": [
+      "Director: Motomu Toriyama",
+      "Composer: Nobuo Uematsu"
+    ],
+    "fandom": "finalfantasy",
+    "cover": {
+      "wiki": "Final Fantasy X",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Ffxboxart.jpg"
+    },
+    "quote": {
+      "text": "Listen to my story. This may be our last chance.",
+      "speaker": "A blitzball star by a campfire"
+    },
+    "audio": {
+      "clue": "A gentle piano melody plays as two lovers meet in a moonlit spring.",
+      "query": "Final Fantasy X To Zanarkand",
+      "youtubeId": "6fp81GzKarQ"
+    },
+    "emoji": "🏝️⚽🌊🙏🐋",
+    "item": {
+      "name": "Blitzball",
+      "description": "A ball for an underwater sport played inside a floating sphere of water."
+    },
+    "location": {
+      "name": "Zanarkand",
+      "description": "A neon dream city that a star athlete calls home — or so he thinks.",
+      "image": "https://static.wikia.nocookie.net/finalfantasy/images/c/c3/Zanarkand.jpg/revision/latest?cb=20060426164506"
+    },
+    "visual": {
+      "icon": "🌊",
+      "colors": [
+        "#0c4a6e",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-ff6",
+    "name": "Final Fantasy VI",
+    "aliases": [
+      "ffvi",
+      "final fantasy 3 us"
+    ],
+    "domain": "games",
+    "year": 1994,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Square",
+    "creator": "Yoshinori Kitase",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo",
+      "PlayStation",
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "Terra Branford",
+      "Kefka Palazzo",
+      "Celes Chere"
+    ],
+    "themes": [
+      "Empire",
+      "Hope"
+    ],
+    "credits": [
+      "Directors: Yoshinori Kitase & Hiroyuki Ito",
+      "Composer: Nobuo Uematsu"
+    ],
+    "fandom": "finalfantasy",
+    "cover": {
+      "wiki": "Final Fantasy VI",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Final_Fantasy_VI.jpg"
+    },
+    "audio": {
+      "clue": "A full mock opera performed in-game, with a soprano singing across 16-bit chiptunes.",
+      "query": "Final Fantasy VI Aria di Mezzo Carattere",
+      "youtubeId": "eGl4FqUeFS0"
+    },
+    "emoji": "🎭🤖❄️🃏💣",
+    "item": {
+      "name": "Magicite",
+      "description": "The crystallised remains of magical beings, granting their power.",
+      "image": "https://static.wikia.nocookie.net/finalfantasy/images/0/07/FF2_Magicite.png/revision/latest?cb=20090324172907"
+    },
+    "location": {
+      "name": "Narshe",
+      "description": "A snowy mining town where a frozen creature is unearthed.",
+      "image": "https://static.wikia.nocookie.net/finalfantasy/images/8/88/Narshe_from_FFVI_Pixel_Remaster.jpg/revision/latest/scale-to-width-down/640?cb=20220306223241"
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#1e1b4b",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "g-dq11",
+    "name": "Dragon Quest XI",
+    "aliases": [
+      "dragon quest 11",
+      "echoes of an elusive age"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Square Enix",
+    "creator": "Yuji Horii",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Nintendo",
+      "PC",
+      "Xbox"
+    ],
+    "characters": [
+      "The Luminary",
+      "Veronica",
+      "Erik"
+    ],
+    "themes": [
+      "Destiny",
+      "Light"
+    ],
+    "credits": [
+      "Creator: Yuji Horii",
+      "Character design: Akira Toriyama"
+    ],
+    "fandom": "dragonquest",
+    "cover": {
+      "wiki": "Dragon Quest XI",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Dragon_Quest_XI_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A triumphant orchestral overture that has opened the series since 1986.",
+      "query": "Dragon Quest XI overture",
+      "youtubeId": "waH3uNlwMo4"
+    },
+    "emoji": "🗡️🌳💧🐉👑",
+    "item": {
+      "name": "Sword of Light",
+      "description": "A legendary blade forged from the Luminary's destiny.",
+      "image": "https://static.wikia.nocookie.net/dragonquest/images/d/d0/DQXI_-_Sword_of_Light.png/revision/latest?cb=20240426182158"
+    },
+    "location": {
+      "name": "Erdrea",
+      "description": "A world built around a giant Tree of Life.",
+      "image": "https://static.wikia.nocookie.net/dragonquest/images/1/11/XI_Map.png/revision/latest/scale-to-width-down/640?cb=20200524144507"
+    },
+    "visual": {
+      "icon": "🌳",
+      "colors": [
+        "#1e3a8a",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-fnv",
+    "name": "Fallout: New Vegas",
+    "aliases": [
+      "new vegas",
+      "fnv"
+    ],
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Obsidian Entertainment",
+    "creator": "Josh Sawyer",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Courier",
+      "Mr. House",
+      "Caesar",
+      "Benny"
+    ],
+    "themes": [
+      "Factions",
+      "Wasteland"
+    ],
+    "credits": [
+      "Director: Josh Sawyer",
+      "Writer: Chris Avellone"
+    ],
+    "fandom": "fallout",
+    "cover": {
+      "wiki": "Fallout: New Vegas",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/43/Free_depiction_of_the_Fallout_New_Vegas_Xbox_360_box_art_%28cropped%29.png"
+    },
+    "quote": {
+      "text": "The game was rigged from the start.",
+      "speaker": "A man in a checkered suit, right before shooting you"
+    },
+    "audio": {
+      "clue": "Old 1940s crooner records play on the radio over a desert wasteland.",
+      "query": "Fallout New Vegas Blue Moon Frank Sinatra radio",
+      "youtubeId": "GD6PreqIz6o"
+    },
+    "emoji": "🎰🏜️☢️🤠🃏",
+    "item": {
+      "name": "Platinum Chip",
+      "description": "A small casino chip that secretly controls an army of robots.",
+      "image": "https://static.wikia.nocookie.net/fallout/images/6/62/Platinum_chip.png/revision/latest/scale-to-width-down/640?cb=20160121225122"
+    },
+    "location": {
+      "name": "The Strip",
+      "description": "A neon casino boulevard guarded by robots, in a post-nuclear Mojave.",
+      "image": "https://static.wikia.nocookie.net/fallout/images/3/35/New_Vegas_Strip_%28intro%29.jpg/revision/latest/scale-to-width-down/640?cb=20211107221513"
+    },
+    "visual": {
+      "icon": "🎰",
+      "colors": [
+        "#78350f",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-fallout3",
+    "name": "Fallout 3",
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Bethesda Game Studios",
+    "creator": "Todd Howard",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Lone Wanderer",
+      "James",
+      "Three Dog"
+    ],
+    "themes": [
+      "Post-apocalypse",
+      "Family"
+    ],
+    "credits": [
+      "Director: Todd Howard",
+      "Composer: Inon Zur"
+    ],
+    "fandom": "fallout",
+    "cover": {
+      "wiki": "Fallout 3",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/83/Fallout_3_cover_art.PNG"
+    },
+    "quote": {
+      "text": "War. War never changes.",
+      "speaker": "The narrator of every opening"
+    },
+    "audio": {
+      "clue": "A 1940s Ink Spots ballad crackles over an irradiated Washington.",
+      "query": "Fallout 3 I Don't Want to Set the World on Fire",
+      "youtubeId": "n9D6GNzpmkM"
+    },
+    "emoji": "☢️🏛️🧑‍🔬🐕💣",
+    "item": {
+      "name": "Pip-Boy 3000",
+      "description": "A chunky wrist computer with a green screen and a thumbs-up mascot."
+    },
+    "location": {
+      "name": "Megaton",
+      "description": "A scrap-metal town built around an undetonated atomic bomb.",
+      "image": "https://static.wikia.nocookie.net/fallout/images/1/1a/Megaton_exterior.png/revision/latest/scale-to-width-down/640?cb=20141028165538"
+    },
+    "visual": {
+      "icon": "☢️",
+      "colors": [
+        "#365314",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "g-diablo2",
+    "name": "Diablo II",
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "Action RPG",
+      "Hack and Slash"
+    ],
+    "studio": "Blizzard North",
+    "creator": "David Brevik",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Diablo",
+      "Deckard Cain",
+      "Baal"
+    ],
+    "themes": [
+      "Loot",
+      "Demons"
+    ],
+    "credits": [
+      "Director: David Brevik",
+      "Composer: Matt Uelmen"
+    ],
+    "fandom": "diablo",
+    "cover": {
+      "wiki": "Diablo II",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d5/Diablo_II_Coverart.png"
+    },
+    "quote": {
+      "text": "Stay a while and listen.",
+      "speaker": "An elderly scholar"
+    },
+    "audio": {
+      "clue": "A melancholic acoustic guitar theme for a ruined town.",
+      "query": "Diablo Tristram theme Matt Uelmen",
+      "youtubeId": "Q2evIg-aYw8"
+    },
+    "emoji": "😈🗡️💀🔥💎",
+    "item": {
+      "name": "Horadric Cube",
+      "description": "A mystical box that transmutes items into something new.",
+      "image": "https://static.wikia.nocookie.net/diablo/images/b/b2/Horadric_Cube2.png/revision/latest?cb=20150629101617"
+    },
+    "location": {
+      "name": "Tristram",
+      "description": "A haunted village above a cathedral, where the first descent began.",
+      "image": "https://static.wikia.nocookie.net/diablo/images/4/4a/Tristram_D3.jpg/revision/latest/scale-to-width-down/640?cb=20130723124545"
+    },
+    "visual": {
+      "icon": "😈",
+      "colors": [
+        "#450a0a",
+        "#f59e0b"
+      ]
+    }
+  },
+  {
+    "id": "g-starcraft",
+    "name": "StarCraft",
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Real-Time Strategy"
+    ],
+    "studio": "Blizzard Entertainment",
+    "creator": "Chris Metzen",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Jim Raynor",
+      "Sarah Kerrigan",
+      "Zeratul"
+    ],
+    "themes": [
+      "Three races",
+      "War"
+    ],
+    "credits": [
+      "Lead designer: Chris Metzen & James Phinney",
+      "Esports pioneer in South Korea"
+    ],
+    "fandom": "starcraft",
+    "cover": {
+      "wiki": "StarCraft (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/93/StarCraft_box_art.jpg"
+    },
+    "audio": {
+      "clue": "Heavy guitar riffs and synths for a human faction of space cowboys.",
+      "query": "StarCraft Terran theme 1",
+      "youtubeId": "mD4GbGmvNRc"
+    },
+    "emoji": "👽🪖🔮🚀🐛",
+    "item": {
+      "name": "Siege Tank",
+      "description": "A Terran tank that locks into place to fire long-range shells.",
+      "image": "https://static.wikia.nocookie.net/starcraft/images/0/0e/SiegeTank_SC2-WoL_Story1.jpg/revision/latest/scale-to-width-down/640?cb=20100820025434"
+    },
+    "location": {
+      "name": "Char",
+      "description": "A volcanic, ash-covered planet that becomes the Zerg homeworld.",
+      "image": "https://static.wikia.nocookie.net/starcraft/images/c/cb/Char_SC2_Art5.jpg/revision/latest/scale-to-width-down/640?cb=20100717011415"
+    },
+    "visual": {
+      "icon": "🐛",
+      "colors": [
+        "#0c4a6e",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "g-wc3",
+    "name": "Warcraft III: Reign of Chaos",
+    "aliases": [
+      "warcraft 3",
+      "wc3"
+    ],
+    "domain": "games",
+    "year": 2002,
+    "genres": [
+      "Real-Time Strategy"
+    ],
+    "studio": "Blizzard Entertainment",
+    "creator": "Rob Pardo",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "Arthas Menethil",
+      "Thrall",
+      "Illidan",
+      "Jaina Proudmoore"
+    ],
+    "themes": [
+      "Corruption",
+      "Betrayal"
+    ],
+    "credits": [
+      "Lead designer: Rob Pardo",
+      "Spawned Defense of the Ancients"
+    ],
+    "fandom": "wowpedia",
+    "cover": {
+      "wiki": "Warcraft III: Reign of Chaos",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/66/WarcraftIII.jpg"
+    },
+    "quote": {
+      "text": "Frostmourne hungers.",
+      "speaker": "A fallen prince"
+    },
+    "audio": {
+      "clue": "A noble, rousing human theme with brass and choir.",
+      "query": "Warcraft III Human theme 1",
+      "youtubeId": "_ndjcgfUbYg"
+    },
+    "emoji": "⚔️🧊👑💀🐺",
+    "item": {
+      "name": "Frostmourne",
+      "description": "A runeblade that steals the soul of whoever it slays — including its wielder's.",
+      "image": "https://static.wikia.nocookie.net/wowpedia/images/3/31/Frostmourne_ingame.jpg/revision/latest/scale-to-width-down/349?cb=20090124213205"
+    },
+    "location": {
+      "name": "Stratholme",
+      "description": "A plagued city purged by its own prince.",
+      "image": "https://static.wikia.nocookie.net/wowpedia/images/a/aa/WorldMap-CoTStratholme1.jpg/revision/latest/scale-to-width-down/640?cb=20220716224552"
+    },
+    "visual": {
+      "icon": "🧊",
+      "colors": [
+        "#0c4a6e",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "g-halflife",
+    "name": "Half-Life",
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "Valve",
+    "creator": "Gabe Newell",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "Gordon Freeman",
+      "G-Man",
+      "Barney Calhoun"
+    ],
+    "themes": [
+      "Experiment gone wrong",
+      "Aliens"
+    ],
+    "credits": [
+      "Writer: Marc Laidlaw",
+      "Built on a modified Quake engine"
+    ],
+    "fandom": "half-life",
+    "cover": {
+      "wiki": "Half-Life (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fa/Half-Life_Cover_Art.jpg"
+    },
+    "audio": {
+      "clue": "A tense, pulsing electronic track as a tram carries a scientist to work.",
+      "query": "Half-Life OST Valve Theme Kelly Bailey",
+      "youtubeId": "O4jY9Q7HGuo"
+    },
+    "emoji": "🧪🚋👓👽🔧",
+    "item": {
+      "name": "HEV Suit",
+      "description": "An orange hazard suit that talks to its wearer about morphine.",
+      "image": "https://static.wikia.nocookie.net/half-life/images/4/44/HEV_HL2.png/revision/latest/scale-to-width-down/640?cb=20230216025308&path-prefix=en"
+    },
+    "location": {
+      "name": "Black Mesa Research Facility",
+      "description": "An underground New Mexico research complex where a sample goes wrong."
+    },
+    "visual": {
+      "icon": "🧪",
+      "colors": [
+        "#c2410c",
+        "#1c1917"
+      ]
+    }
+  },
+  {
+    "id": "g-tf2",
+    "name": "Team Fortress 2",
+    "domain": "games",
+    "year": 2007,
+    "genres": [
+      "First-Person Shooter",
+      "Hero Shooter"
+    ],
+    "studio": "Valve",
+    "creator": "Robin Walker",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Heavy",
+      "Scout",
+      "Spy",
+      "Medic"
+    ],
+    "themes": [
+      "Classes",
+      "Hats"
+    ],
+    "credits": [
+      "Designers: Robin Walker & John Cook",
+      "Free-to-play since 2011"
+    ],
+    "fandom": "teamfortress",
+    "cover": {
+      "wiki": "Team Fortress 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5f/Tf2_standalonebox.jpg"
+    },
+    "quote": {
+      "text": "Sandvich make me strong!",
+      "speaker": "A huge Russian with a minigun"
+    },
+    "audio": {
+      "clue": "A jazzy 60s spy-movie theme with blaring horns.",
+      "query": "Team Fortress 2 main theme",
+      "youtubeId": "PDM2qukzKwg"
+    },
+    "emoji": "🥪🎩🔫🔴🔵",
+    "item": {
+      "name": "Sandvich",
+      "description": "A towering sandwich a heavy gunner treats like a weapon.",
+      "image": "https://static.wikia.nocookie.net/teamfortress/images/e/ea/Sandvich_.png/revision/latest/scale-to-width-down/640?cb=20250224172329"
+    },
+    "location": {
+      "name": "2Fort",
+      "description": "Two identical forts facing each other across a bridge and a moat.",
+      "image": "https://static.wikia.nocookie.net/teamfortress/images/d/de/2Fort_with_bridge_and_RED_Base_TF2.png/revision/latest/scale-to-width-down/640?cb=20130716011030"
+    },
+    "visual": {
+      "icon": "🥪",
+      "colors": [
+        "#b91c1c",
+        "#1d4ed8"
+      ]
+    }
+  },
+  {
+    "id": "g-l4d",
+    "name": "Left 4 Dead",
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "First-Person Shooter",
+      "Survival Horror"
+    ],
+    "studio": "Valve South",
+    "creator": "Mike Booth",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Xbox"
+    ],
+    "characters": [
+      "Bill",
+      "Zoey",
+      "Francis",
+      "Louis"
+    ],
+    "themes": [
+      "Co-op",
+      "Zombies"
+    ],
+    "credits": [
+      "Designer: Mike Booth",
+      "AI Director adapts every run"
+    ],
+    "fandom": "left4dead",
+    "cover": {
+      "wiki": "Left 4 Dead",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5b/Left4Dead_Windows_cover.jpg"
+    },
+    "emoji": "🧟🧟🧟🔫🚁",
+    "item": {
+      "name": "Pipe Bomb",
+      "description": "A beeping homemade explosive that lures the infected horde.",
+      "image": "https://static.wikia.nocookie.net/left4dead/images/9/96/Pipe_1.png/revision/latest/scale-to-width-down/273?cb=20240729101753"
+    },
+    "location": {
+      "name": "Mercy Hospital",
+      "description": "A hospital rooftop where survivors wait for a helicopter.",
+      "image": "https://static.wikia.nocookie.net/left4dead/images/1/18/Hospital.jpg/revision/latest?cb=20081201152637"
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#450a0a",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "g-gtavc",
+    "name": "Grand Theft Auto: Vice City",
+    "aliases": [
+      "vice city",
+      "gta vc"
+    ],
+    "domain": "games",
+    "year": 2002,
+    "genres": [
+      "Action-Adventure",
+      "Open World"
+    ],
+    "studio": "Rockstar North",
+    "creator": "Leslie Benzies",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Tommy Vercetti",
+      "Lance Vance",
+      "Ken Rosenberg"
+    ],
+    "themes": [
+      "1980s",
+      "Drug empire"
+    ],
+    "credits": [
+      "Producer: Leslie Benzies",
+      "Writer: Dan Houser"
+    ],
+    "fandom": "gta",
+    "cover": {
+      "wiki": "Grand Theft Auto: Vice City",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/Vice-city-cover.jpg"
+    },
+    "audio": {
+      "clue": "A neon 80s radio station spins synth-pop as you cruise a Miami parody.",
+      "query": "GTA Vice City Flash FM Billie Jean",
+      "youtubeId": "ZgWuzzyt7CU"
+    },
+    "emoji": "🌴🕶️🚤💵🌅",
+    "item": {
+      "name": "Vercetti Estate",
+      "description": "A mansion taken over after a gunfight on its staircase.",
+      "image": "https://static.wikia.nocookie.net/gtawiki/images/a/a3/VercettiEstate-GTAVC-Exterior-Front.png/revision/latest/scale-to-width-down/640?cb=20190219205404"
+    },
+    "location": {
+      "name": "Vice City",
+      "description": "A sun-soaked 1986 coastal city full of pastel suits and neon."
+    },
+    "visual": {
+      "icon": "🌴",
+      "colors": [
+        "#db2777",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "g-rdr",
+    "name": "Red Dead Redemption",
+    "aliases": [
+      "rdr",
+      "red dead 1"
+    ],
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Action-Adventure",
+      "Western"
+    ],
+    "studio": "Rockstar San Diego",
+    "creator": "Dan Houser",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "PC"
+    ],
+    "characters": [
+      "John Marston",
+      "Dutch van der Linde",
+      "Bonnie MacFarlane"
+    ],
+    "themes": [
+      "Redemption",
+      "Government"
+    ],
+    "credits": [
+      "Writers: Dan Houser & Michael Unsworth",
+      "Composers: Bill Elm & Woody Jackson"
+    ],
+    "fandom": "reddead",
+    "cover": {
+      "wiki": "Red Dead Redemption",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Red_Dead_Redemption.jpg"
+    },
+    "audio": {
+      "clue": "A song plays as a cowboy rides into Mexico for the first time, guitars swelling at the border.",
+      "query": "Red Dead Redemption Far Away Jose Gonzalez",
+      "youtubeId": "hRMtt8tES-U"
+    },
+    "emoji": "🤠🐎🌵🇲🇽🔫",
+    "item": {
+      "name": "Cattleman Revolver",
+      "description": "A classic six-shooter on a gunslinger's hip.",
+      "image": "https://static.wikia.nocookie.net/reddeadredemption/images/9/94/Cattleman-Revolver.png/revision/latest?cb=20100801123336"
+    },
+    "location": {
+      "name": "Blackwater",
+      "description": "A growing frontier town on the edge of civilisation.",
+      "image": "https://static.wikia.nocookie.net/reddeadredemption/images/c/c3/BlackwaterRdr2distantview.jpg/revision/latest/scale-to-width-down/640?cb=20250806173933"
+    },
+    "visual": {
+      "icon": "🌵",
+      "colors": [
+        "#7c2d12",
+        "#fdba74"
+      ]
+    }
+  },
+  {
+    "id": "g-bloodborne",
+    "name": "Bloodborne",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Hidetaka Miyazaki",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "The Hunter",
+      "Lady Maria",
+      "Gehrman"
+    ],
+    "themes": [
+      "Cosmic horror",
+      "Blood"
+    ],
+    "credits": [
+      "Director: Hidetaka Miyazaki",
+      "Publisher: Sony"
+    ],
+    "fandom": "bloodborne",
+    "cover": {
+      "wiki": "Bloodborne",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/68/Bloodborne_Cover_Wallpaper.jpg"
+    },
+    "quote": {
+      "text": "Fear the old blood.",
+      "speaker": "A dying Byrgenwerth scholar"
+    },
+    "audio": {
+      "clue": "A mournful violin and choir for a doll waiting in a dream.",
+      "query": "Bloodborne Hunter's Dream theme",
+      "youtubeId": "B4zcJwpc_9c"
+    },
+    "emoji": "🩸🌕🪚🏚️🦑",
+    "item": {
+      "name": "Saw Cleaver",
+      "description": "A serrated blade that unfolds into a long saw.",
+      "image": "https://static.wikia.nocookie.net/bloodborne/images/7/7f/Saw_Cleaver.jpg/revision/latest?cb=20170606124524"
+    },
+    "location": {
+      "name": "Yharnam",
+      "description": "A gothic city consumed by a beast plague on the night of the hunt.",
+      "image": "https://static.wikia.nocookie.net/bloodborne/images/9/9f/Bloodborne-screen-03-ps4-us-10jun14.jpg/revision/latest/scale-to-width-down/640?cb=20140612001434"
+    },
+    "visual": {
+      "icon": "🩸",
+      "colors": [
+        "#0a0a0a",
+        "#991b1b"
+      ]
+    }
+  },
+  {
+    "id": "g-sekiro",
+    "name": "Sekiro: Shadows Die Twice",
+    "aliases": [
+      "sekiro"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Action-Adventure",
+      "Soulslike"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Hidetaka Miyazaki",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Wolf",
+      "Kuro",
+      "Genichiro Ashina",
+      "Isshin"
+    ],
+    "themes": [
+      "Loyalty",
+      "Immortality"
+    ],
+    "credits": [
+      "Director: Hidetaka Miyazaki",
+      "Publisher: Activision"
+    ],
+    "fandom": "sekiro-shadows-die-twice",
+    "cover": {
+      "wiki": "Sekiro: Shadows Die Twice",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Sekiro_art.jpg"
+    },
+    "quote": {
+      "text": "Hesitation is defeat.",
+      "speaker": "A sword saint"
+    },
+    "audio": {
+      "clue": "Shakuhachi flute and taiko drums for a duel atop a burning castle.",
+      "query": "Sekiro Genichiro Way of Tomoe theme",
+      "youtubeId": "enL4x86nWgY"
+    },
+    "emoji": "🥷⚔️🦾🏯🔥",
+    "item": {
+      "name": "Shinobi Prosthetic",
+      "description": "A mechanical arm that hides a grappling hook, an axe and a firecracker.",
+      "image": "https://static.wikia.nocookie.net/shadowsdietwice/images/1/18/Mid-air_Prosthetic_Tool.png/revision/latest?cb=20190418192700"
+    },
+    "location": {
+      "name": "Ashina Castle",
+      "description": "A besieged Sengoku-era castle on a mountain.",
+      "image": "https://static.wikia.nocookie.net/shadowsdietwice/images/6/61/Kuro%27s_Room_01.png/revision/latest/scale-to-width-down/640?cb=20190424200903"
+    },
+    "visual": {
+      "icon": "🥷",
+      "colors": [
+        "#7f1d1d",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "g-ds3",
+    "name": "Dark Souls III",
+    "aliases": [
+      "ds3"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "FromSoftware",
+    "creator": "Hidetaka Miyazaki",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Ashen One",
+      "Soul of Cinder",
+      "Fire Keeper"
+    ],
+    "themes": [
+      "Ending of fire"
+    ],
+    "credits": [
+      "Director: Hidetaka Miyazaki",
+      "Composer: Yuka Kitamura"
+    ],
+    "fandom": "darksouls",
+    "cover": {
+      "wiki": "Dark Souls III",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bb/Dark_souls_3_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral boss theme with a solo piano melody hidden inside.",
+      "query": "Dark Souls 3 Soul of Cinder theme",
+      "youtubeId": "x0euNw-4YOo"
+    },
+    "emoji": "🔥⚔️👑🌑🦴",
+    "item": {
+      "name": "Coiled Sword",
+      "description": "A twisted sword thrust into a bonfire's ashes.",
+      "image": "https://static.wikia.nocookie.net/darksouls/images/9/9b/Coiled_Sword.png/revision/latest?cb=20160615014939"
+    },
+    "location": {
+      "name": "Lothric Castle",
+      "description": "A towering castle where the last prince refuses his duty.",
+      "image": "https://static.wikia.nocookie.net/darksouls/images/0/06/Lothric_Castle_-_01.png/revision/latest?cb=20160612082515"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-bg3",
+    "name": "Baldur's Gate 3",
+    "aliases": [
+      "bg3",
+      "baldurs gate"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Larian Studios",
+    "creator": "Swen Vincke",
+    "origin": "Belgium",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Astarion",
+      "Shadowheart",
+      "Karlach",
+      "Lae'zel"
+    ],
+    "themes": [
+      "Choice",
+      "Mind flayers"
+    ],
+    "credits": [
+      "Director: Swen Vincke",
+      "Composer: Borislav Slavov",
+      "Based on Dungeons & Dragons"
+    ],
+    "fandom": "baldursgate",
+    "cover": {
+      "wiki": "Baldur's Gate 3",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Baldur%27s_Gate_3_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A sorrowful vocal duet sung by a villain and her mother during a boss fight.",
+      "query": "Baldur's Gate 3 I Want to Live",
+      "youtubeId": "-5oVZjtm4YY"
+    },
+    "emoji": "🦑🧠🎲🧝🐻",
+    "item": {
+      "name": "Mind flayer tadpole",
+      "description": "A tiny parasite placed behind the eye that turns hosts into monsters.",
+      "image": "https://static.wikia.nocookie.net/baldursgategame/images/6/6c/UD_Mind_Flayer1.png/revision/latest/scale-to-width-down/640?cb=20231205131435"
+    },
+    "location": {
+      "name": "Baldur's Gate",
+      "description": "A great walled port city of the Sword Coast."
+    },
+    "visual": {
+      "icon": "🎲",
+      "colors": [
+        "#3b0764",
+        "#d97706"
+      ]
+    }
+  },
+  {
+    "id": "g-ori",
+    "name": "Ori and the Blind Forest",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Metroidvania"
+    ],
+    "studio": "Moon Studios",
+    "creator": "Thomas Mahler",
+    "origin": "Austria",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Ori",
+      "Naru",
+      "Kuro",
+      "Sein"
+    ],
+    "themes": [
+      "Loss",
+      "Nature"
+    ],
+    "credits": [
+      "Director: Thomas Mahler",
+      "Composer: Gareth Coker"
+    ],
+    "fandom": "oriandtheblindforest",
+    "cover": {
+      "wiki": "Ori and the Blind Forest",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b2/Ori_and_the_Blind_Forest_Logo.jpg"
+    },
+    "audio": {
+      "clue": "A delicate orchestral piece with flute and female vocals as a forest dies.",
+      "query": "Ori and the Blind Forest main theme",
+      "youtubeId": "PwT2Ceiyt0Q"
+    },
+    "emoji": "🌳✨🦉💙🌧️",
+    "item": {
+      "name": "Sein",
+      "description": "A floating spirit light that fires bolts for a small guardian.",
+      "image": "https://static.wikia.nocookie.net/oriandtheblindforest/images/e/e5/Seinpic.png/revision/latest?cb=20151117225249"
+    },
+    "location": {
+      "name": "Nibel",
+      "description": "A dying forest around a great Spirit Tree.",
+      "image": "https://static.wikia.nocookie.net/oriandtheblindforest/images/e/ef/Nibel.png/revision/latest/scale-to-width-down/640?cb=20150916021517"
+    },
+    "visual": {
+      "icon": "✨",
+      "colors": [
+        "#1e3a8a",
+        "#67e8f9"
+      ]
+    }
+  },
+  {
+    "id": "g-cuphead",
+    "name": "Cuphead",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Run and Gun"
+    ],
+    "studio": "Studio MDHR",
+    "creator": "Chad Moldenhauer",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "Nintendo",
+      "PlayStation"
+    ],
+    "characters": [
+      "Cuphead",
+      "Mugman",
+      "King Dice",
+      "The Devil"
+    ],
+    "themes": [
+      "Gambling debts",
+      "Rubber hose"
+    ],
+    "credits": [
+      "Directors: Chad & Jared Moldenhauer",
+      "Hand-drawn 1930s animation"
+    ],
+    "fandom": "cuphead",
+    "cover": {
+      "wiki": "Cuphead",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/eb/Cuphead_%28artwork%29.png"
+    },
+    "audio": {
+      "clue": "A frantic barbershop-quartet and big-band jazz intro, as if from a 1930s cartoon.",
+      "query": "Cuphead Don't Deal with the Devil",
+      "youtubeId": "D4Hr0L9PrAg"
+    },
+    "emoji": "☕🎲😈🎺🎞️",
+    "item": {
+      "name": "Soul Contract",
+      "description": "A deed for the soul of a boss, collected to pay off a debt to the Devil.",
+      "image": "https://static.wikia.nocookie.net/cuphead/images/b/b1/Cuphead_All_Bosses_On_Simple_Difficulty_%28Boss_Phases_Easier_And_Fewer%29/revision/latest?cb=20171128214102"
+    },
+    "location": {
+      "name": "Inkwell Isle",
+      "description": "A cartoon archipelago of casinos, carnivals and grumpy vegetables.",
+      "image": "https://static.wikia.nocookie.net/cuphead/images/0/07/Inkwell_Isle_1_Map_Full.png/revision/latest/scale-to-width-down/640?cb=20180326204409"
+    },
+    "visual": {
+      "icon": "☕",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-terraria",
+    "name": "Terraria",
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Sandbox",
+      "Action-Adventure"
+    ],
+    "studio": "Re-Logic",
+    "creator": "Andrew Spinks",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "The Guide",
+      "Eye of Cthulhu",
+      "Moon Lord"
+    ],
+    "themes": [
+      "Digging",
+      "Bosses"
+    ],
+    "credits": [
+      "Creator: Andrew Spinks",
+      "Composer: Scott Lloyd Shelly"
+    ],
+    "fandom": "terraria",
+    "cover": {
+      "wiki": "Terraria",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1a/Terraria_Steam_artwork.jpg"
+    },
+    "audio": {
+      "clue": "A cheerful chiptune melody for daytime in a 2D world of trees and slimes.",
+      "query": "Terraria Overworld Day theme",
+      "youtubeId": "Zmd43wV2Ko4"
+    },
+    "emoji": "⛏️🌳👁️🌙🗡️",
+    "item": {
+      "name": "Terra Blade",
+      "description": "A green sword that fires beams, forged from two legendary blades.",
+      "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/2/2f/Terra_Blade_%28demo%29.gif/revision/latest/scale-to-width-down/640?cb=20230408011009"
+    },
+    "location": {
+      "name": "The Corruption",
+      "description": "A purple, chasm-filled biome spreading through the world.",
+      "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/d/d5/Corruption_background_1.png/revision/latest/scale-to-width-down/640?cb=20200816172613"
+    },
+    "visual": {
+      "icon": "👁️",
+      "colors": [
+        "#166534",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "g-fortnite",
+    "name": "Fortnite",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Battle Royale"
+    ],
+    "studio": "Epic Games",
+    "creator": "Donald Mustard",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Jonesy",
+      "Peely",
+      "Raven"
+    ],
+    "themes": [
+      "Building",
+      "Live events"
+    ],
+    "credits": [
+      "Chief creative officer: Donald Mustard",
+      "Built in Unreal Engine"
+    ],
+    "fandom": "fortnite",
+    "cover": {
+      "wiki": "Fortnite"
+    },
+    "emoji": "🚌🪂🔨🌀💃",
+    "item": {
+      "name": "Battle Bus",
+      "description": "A flying blue bus held up by a hot-air balloon, from which everyone drops.",
+      "image": "https://static.wikia.nocookie.net/fortnite/images/d/d7/Battle_Bus_-_Vehicle_-_Fortnite.png/revision/latest/scale-to-width-down/640?cb=20210927140325"
+    },
+    "location": {
+      "name": "Tilted Towers",
+      "description": "A dense block of towers, the busiest landing spot on the island.",
+      "image": "https://static.wikia.nocookie.net/fortnite/images/d/d4/Tilted_Towers_%28The_Unvaulting_Event%29_-_Location_-_Fortnite_OG.png/revision/latest/scale-to-width-down/640?cb=20260616121532"
+    },
+    "visual": {
+      "icon": "🚌",
+      "colors": [
+        "#1d4ed8",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "g-valorant",
+    "name": "Valorant",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Tactical Shooter"
+    ],
+    "studio": "Riot Games",
+    "creator": "Joe Ziegler",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Jett",
+      "Phoenix",
+      "Sage",
+      "Sova"
+    ],
+    "themes": [
+      "Agents",
+      "Abilities"
+    ],
+    "credits": [
+      "Game director: Joe Ziegler",
+      "Free-to-play"
+    ],
+    "fandom": "valorant",
+    "cover": {
+      "wiki": "Valorant",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Valorant_logo_-_pink_color_version.svg/960px-Valorant_logo_-_pink_color_version.svg.png"
+    },
+    "emoji": "💣🔫⏱️🧊🔥",
+    "item": {
+      "name": "Spike",
+      "description": "A device attackers plant on a site and defenders must defuse.",
+      "image": "https://static.wikia.nocookie.net/valorant/images/d/de/Spike.png/revision/latest/scale-to-width-down/360?cb=20210826134702"
+    },
+    "location": {
+      "name": "Bind",
+      "description": "A Moroccan-style map with teleporters and no middle lane.",
+      "image": "https://static.wikia.nocookie.net/valorant/images/2/23/Loading_Screen_Bind.png/revision/latest/scale-to-width-down/640?cb=20200620202316"
+    },
+    "visual": {
+      "icon": "⏱️",
+      "colors": [
+        "#0f172a",
+        "#f43f5e"
+      ]
+    }
+  },
+  {
+    "id": "g-rocketleague",
+    "name": "Rocket League",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Sports"
+    ],
+    "studio": "Psyonix",
+    "creator": "Corey Davis",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "themes": [
+      "Car football",
+      "Aerials"
+    ],
+    "credits": [
+      "Studio: Psyonix",
+      "Sequel to Supersonic Acrobatic Rocket-Powered Battle-Cars"
+    ],
+    "fandom": "rocketleague",
+    "cover": {
+      "wiki": "Rocket League",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Rocket_League_coverart.jpg/960px-Rocket_League_coverart.jpg"
+    },
+    "emoji": "🚗⚽🚀🏟️💥",
+    "item": {
+      "name": "Octane",
+      "description": "The most popular car: a boxy, rocket-boosted dune buggy.",
+      "image": "https://static.wikia.nocookie.net/rocketleague/images/f/f1/Octane_body_icon.png/revision/latest?cb=20170526223331"
+    },
+    "location": {
+      "name": "DFH Stadium",
+      "description": "A floodlit arena with a giant ball and two glowing goals.",
+      "image": "https://static.wikia.nocookie.net/rocketleague/images/4/44/DFH_Stadium_arena_preview.png/revision/latest/scale-to-width-down/640?cb=20211022203949"
+    },
+    "visual": {
+      "icon": "⚽",
+      "colors": [
+        "#1d4ed8",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-arkhamcity",
+    "name": "Batman: Arkham City",
+    "aliases": [
+      "arkham city"
+    ],
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Rocksteady Studios",
+    "creator": "Sefton Hill",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC",
+      "Nintendo"
+    ],
+    "characters": [
+      "Batman",
+      "The Joker",
+      "Hugo Strange",
+      "Catwoman"
+    ],
+    "themes": [
+      "Prison city",
+      "Detective"
+    ],
+    "credits": [
+      "Director: Sefton Hill",
+      "Writer: Paul Dini"
+    ],
+    "fandom": "arkhamcity",
+    "cover": {
+      "wiki": "Batman: Arkham City",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/00/Batman_Arkham_City_Game_Cover.jpg"
+    },
+    "quote": {
+      "text": "Protocol 10 is about to begin.",
+      "speaker": "A scheming psychiatrist"
+    },
+    "audio": {
+      "clue": "A brooding choral main theme over a walled-off slum of Gotham.",
+      "query": "Batman Arkham City main theme",
+      "youtubeId": "SXKrsJZWqK0"
+    },
+    "emoji": "🦇🏙️🃏🧪🔒",
+    "item": {
+      "name": "Batclaw",
+      "description": "A grappling gadget that pulls enemies and grates towards the hero.",
+      "image": "https://static.wikia.nocookie.net/arkhamcity/images/6/6c/33UltraBatclaw.png/revision/latest?cb=20121220194140"
+    },
+    "location": {
+      "name": "Arkham City",
+      "description": "A section of Gotham walled off as a mega-prison."
+    },
+    "visual": {
+      "icon": "🦇",
+      "colors": [
+        "#0f172a",
+        "#64748b"
+      ]
+    }
+  },
+  {
+    "id": "g-horizon",
+    "name": "Horizon Zero Dawn",
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "Guerrilla Games",
+    "creator": "Mathijs de Jonge",
+    "origin": "Netherlands",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Aloy",
+      "Rost",
+      "Sylens"
+    ],
+    "themes": [
+      "Machines",
+      "Origins"
+    ],
+    "credits": [
+      "Game director: Mathijs de Jonge",
+      "Composer: Joris de Man"
+    ],
+    "fandom": "horizon",
+    "cover": {
+      "wiki": "Horizon Zero Dawn",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Horizon_Zero_Dawn_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A haunting vocal theme with tribal drums for a red-haired outcast.",
+      "query": "Horizon Zero Dawn Aloy's Theme",
+      "youtubeId": "_w9B7uwLZeI"
+    },
+    "emoji": "🏹🦖🤖👩‍🦰🏔️",
+    "item": {
+      "name": "Focus",
+      "description": "A small triangular device worn on the temple that scans the old world.",
+      "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/d/dc/Axle_%28HHG%29.png/revision/latest/scale-to-width-down/640?cb=20260205161709"
+    },
+    "location": {
+      "name": "Meridian",
+      "description": "A sun-worshipping capital built on a mesa.",
+      "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/c/c5/Meridian_%28HZDR%29.png/revision/latest/scale-to-width-down/640?cb=20250729135126"
+    },
+    "visual": {
+      "icon": "🏹",
+      "colors": [
+        "#7c2d12",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "g-deathstranding",
+    "name": "Death Stranding",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Action"
+    ],
+    "studio": "Kojima Productions",
+    "creator": "Hideo Kojima",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Sam Porter Bridges",
+      "BB",
+      "Higgs",
+      "Die-Hardman"
+    ],
+    "themes": [
+      "Connection",
+      "Delivery"
+    ],
+    "credits": [
+      "Director: Hideo Kojima",
+      "Starring Norman Reedus"
+    ],
+    "fandom": "deathstranding",
+    "cover": {
+      "wiki": "Death Stranding",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/22/Death_Stranding.jpg"
+    },
+    "audio": {
+      "clue": "An indie-folk song kicks in as a courier walks alone over green hills.",
+      "query": "Death Stranding Low Roar I'll Keep Coming",
+      "youtubeId": "KnrGMHhnqrw"
+    },
+    "emoji": "📦👶🥾🌧️🌈",
+    "item": {
+      "name": "BB pod",
+      "description": "A glass pod holding a baby who lets you sense the dead.",
+      "image": "https://static.wikia.nocookie.net/deathstranding/images/8/8e/2024-01-13_20-52-45.mp4.00_14_06_34.Still004.jpg/revision/latest/scale-to-width-down/640?cb=20240124232636"
+    },
+    "location": {
+      "name": "Capital Knot City",
+      "description": "A city in the ruined east of a fractured America."
+    },
+    "visual": {
+      "icon": "👶",
+      "colors": [
+        "#0f172a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-sotc",
+    "name": "Shadow of the Colossus",
+    "aliases": [
+      "sotc"
+    ],
+    "domain": "games",
+    "year": 2005,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Team Ico",
+    "creator": "Fumito Ueda",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "Wander",
+      "Agro",
+      "Mono",
+      "Dormin"
+    ],
+    "themes": [
+      "Sacrifice",
+      "Solitude"
+    ],
+    "credits": [
+      "Director: Fumito Ueda",
+      "Composer: Kow Otani"
+    ],
+    "fandom": "teamico",
+    "cover": {
+      "wiki": "Shadow of the Colossus",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Shadow_of_the_Colossus_%282005%29_cover.jpg"
+    },
+    "audio": {
+      "clue": "A heroic orchestral surge as a tiny swordsman climbs a giant.",
+      "query": "Shadow of the Colossus The Opened Way",
+      "youtubeId": "36M-NwEFSOc"
+    },
+    "emoji": "🗡️🐎🗿🏔️☀️",
+    "item": {
+      "name": "Ancient Sword",
+      "description": "A blade whose reflected light points to the next giant.",
+      "image": "https://static.wikia.nocookie.net/t__/images/f/fa/AncientSwordPS2.png/revision/latest?cb=20250814210306&path-prefix=teamico"
+    },
+    "location": {
+      "name": "The Forbidden Lands",
+      "description": "A vast, empty land of sixteen colossi and one temple."
+    },
+    "visual": {
+      "icon": "🗿",
+      "colors": [
+        "#78716c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-journey",
+    "name": "Journey",
+    "domain": "games",
+    "year": 2012,
+    "genres": [
+      "Adventure"
+    ],
+    "studio": "thatgamecompany",
+    "creator": "Jenova Chen",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Mobile"
+    ],
+    "characters": [
+      "The Traveler"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Companionship"
+    ],
+    "credits": [
+      "Director: Jenova Chen",
+      "Composer: Austin Wintory"
+    ],
+    "fandom": "journey",
+    "cover": {
+      "wiki": "Journey (2012 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/64/Journey_Title_Poster.png"
+    },
+    "audio": {
+      "clue": "A solo cello rises over desert sand as a robed figure slides down dunes.",
+      "query": "Journey Apotheosis Austin Wintory",
+      "youtubeId": "ypNgvc6c6Cc"
+    },
+    "emoji": "🏜️🧣⛰️✨🕊️",
+    "item": {
+      "name": "Scarf",
+      "description": "A glowing scarf that grows longer and lets you glide.",
+      "image": "https://static.wikia.nocookie.net/journey_gamepedia_en/images/9/91/ClothPlayerScarf.png/revision/latest/scale-to-width-down/160?cb=20220227222012"
+    },
+    "location": {
+      "name": "The Mountain",
+      "description": "A distant peak with a beam of light, visible from the desert.",
+      "image": "https://static.wikia.nocookie.net/journey_gamepedia_en/images/0/03/Snow_entrance_wood.png/revision/latest?cb=20190902214207"
+    },
+    "visual": {
+      "icon": "🧣",
+      "colors": [
+        "#c2410c",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-okami",
+    "name": "Ōkami",
+    "aliases": [
+      "okami"
+    ],
+    "domain": "games",
+    "year": 2006,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Clover Studio",
+    "creator": "Hideki Kamiya",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Nintendo",
+      "PC",
+      "Xbox"
+    ],
+    "characters": [
+      "Amaterasu",
+      "Issun",
+      "Orochi"
+    ],
+    "themes": [
+      "Shinto myth",
+      "Ink"
+    ],
+    "credits": [
+      "Director: Hideki Kamiya",
+      "Composer: Masami Ueda"
+    ],
+    "fandom": "okami",
+    "cover": {
+      "wiki": "Ōkami",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/be/OkamiNTSCcoverFinal.jpg"
+    },
+    "audio": {
+      "clue": "A traditional Japanese orchestral piece as a white wolf restores a cursed land.",
+      "query": "Okami The Sun Rises",
+      "youtubeId": "ya3yxTbkh5s"
+    },
+    "emoji": "🐺🖌️🌸☀️🐉",
+    "item": {
+      "name": "Celestial Brush",
+      "description": "A divine brush that paints suns, bombs and wind onto the world.",
+      "image": "https://static.wikia.nocookie.net/okami/images/3/3a/Celestial_Brush.jpg/revision/latest?cb=20090321225037"
+    },
+    "location": {
+      "name": "Kamiki Village",
+      "description": "A small village beneath a sacred cherry tree.",
+      "image": "https://static.wikia.nocookie.net/okami/images/4/48/Konohana_tree_Visual_Map.png/revision/latest/scale-to-width-down/640?cb=20260215065336"
+    },
+    "visual": {
+      "icon": "🖌️",
+      "colors": [
+        "#f5f5f4",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-mhw",
+    "name": "Monster Hunter: World",
+    "aliases": [
+      "mhw",
+      "monster hunter"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "Capcom",
+    "creator": "Yuya Tokuda",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "PC"
+    ],
+    "characters": [
+      "The Handler",
+      "Palico",
+      "Nergigante"
+    ],
+    "themes": [
+      "Hunting",
+      "Ecology"
+    ],
+    "credits": [
+      "Director: Yuya Tokuda",
+      "Producer: Ryozo Tsujimoto"
+    ],
+    "fandom": "monsterhunter",
+    "cover": {
+      "wiki": "Monster Hunter: World",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/Monster_Hunter_World_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A rousing brass fanfare that accompanies every quest departure.",
+      "query": "Monster Hunter World main theme Stars at Our Backs",
+      "youtubeId": "po_t8I9FC2Y"
+    },
+    "emoji": "🐉🗡️🐱🍖🌋",
+    "item": {
+      "name": "Great Sword",
+      "description": "A huge blade charged up for one devastating swing.",
+      "image": "https://static.wikia.nocookie.net/monsterhunter/images/4/4d/2ndGen-Great_Sword_Equipment_Render_001.png/revision/latest?cb=20140401070752"
+    },
+    "location": {
+      "name": "Ancient Forest",
+      "description": "A dense forest with a colossal tree at its centre.",
+      "image": "https://static.wikia.nocookie.net/monsterhunter/images/a/a1/MHW-Ancient_Forest_Artwork_001.jpg/revision/latest/scale-to-width-down/640?cb=20170613042445"
+    },
+    "visual": {
+      "icon": "🍖",
+      "colors": [
+        "#78350f",
+        "#84cc16"
+      ]
+    }
+  },
+  {
+    "id": "g-sims",
+    "name": "The Sims",
+    "aliases": [
+      "sims"
+    ],
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "Life Sim"
+    ],
+    "studio": "Maxis",
+    "creator": "Will Wright",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Bella Goth",
+      "Mortimer Goth"
+    ],
+    "themes": [
+      "Suburbia",
+      "Simulation"
+    ],
+    "credits": [
+      "Creator: Will Wright",
+      "Composer: Jerry Martin"
+    ],
+    "fandom": "sims",
+    "cover": {
+      "wiki": "The Sims (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/22/The_Sims_Coverart.png"
+    },
+    "audio": {
+      "clue": "A breezy, bossa-nova build-mode tune while you design a house.",
+      "query": "The Sims Build Mode music",
+      "youtubeId": "rAhwkPDYnUA"
+    },
+    "emoji": "💎🏠🛋️🔥🗣️",
+    "item": {
+      "name": "Plumbob",
+      "description": "A green diamond floating above every character's head.",
+      "image": "https://static.wikia.nocookie.net/sims/images/6/63/TheSims3PetsConsole_Karma_Plumbob.png/revision/latest/scale-to-width-down/640?cb=20251016222018"
+    },
+    "location": {
+      "name": "Pleasantview",
+      "description": "A sleepy suburban neighbourhood where the Goth family lives.",
+      "image": "https://static.wikia.nocookie.net/sims/images/d/d8/Pleasantview.jpg/revision/latest/scale-to-width-down/640?cb=20220726164116"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#15803d",
+        "#86efac"
+      ]
+    }
+  },
+  {
+    "id": "g-tombraider",
+    "name": "Tomb Raider",
+    "domain": "games",
+    "year": 1996,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Core Design",
+    "creator": "Toby Gard",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Sega"
+    ],
+    "characters": [
+      "Lara Croft",
+      "Jacqueline Natla",
+      "Larson"
+    ],
+    "themes": [
+      "Archaeology",
+      "Atlantis"
+    ],
+    "credits": [
+      "Creator: Toby Gard",
+      "Publisher: Eidos Interactive"
+    ],
+    "fandom": "tombraider",
+    "cover": {
+      "wiki": "Tomb Raider (1996 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/69/Tomb_Raider_%281996%29.png"
+    },
+    "audio": {
+      "clue": "A serene, wistful flute and strings title theme in an English manor.",
+      "query": "Tomb Raider 1996 main theme",
+      "youtubeId": "o8o_rmzGzP8"
+    },
+    "emoji": "👩🏻🔫🏛️🦖🗝️",
+    "item": {
+      "name": "Scion",
+      "description": "A golden Atlantean artefact split into three pieces.",
+      "image": "https://static.wikia.nocookie.net/laracroft/images/4/4c/Scion_of_Mu.png/revision/latest/scale-to-width-down/640?cb=20211228180856"
+    },
+    "location": {
+      "name": "St. Francis' Folly",
+      "description": "A vast vertical tomb in Greece with four god-themed rooms.",
+      "image": "https://static.wikia.nocookie.net/laracroft/images/6/6a/Saint_Francis_Folly.png/revision/latest/scale-to-width-down/640?cb=20250606161415"
+    },
+    "visual": {
+      "icon": "🏛️",
+      "colors": [
+        "#78350f",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "g-crash",
+    "name": "Crash Bandicoot",
+    "domain": "games",
+    "year": 1996,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Naughty Dog",
+    "creator": "Jason Rubin",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "Crash Bandicoot",
+      "Dr. Neo Cortex",
+      "Aku Aku",
+      "Coco"
+    ],
+    "themes": [
+      "Mad science",
+      "Crates"
+    ],
+    "credits": [
+      "Founders: Andy Gavin & Jason Rubin",
+      "Composer: Mark Mothersbaugh"
+    ],
+    "fandom": "crashbandicoot",
+    "cover": {
+      "wiki": "Crash Bandicoot (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/44/Crash_Bandicoot_Cover.png"
+    },
+    "audio": {
+      "clue": "Jaunty marimba and tribal drums for a jungle level.",
+      "query": "Crash Bandicoot N Sanity Beach theme",
+      "youtubeId": "TnPEh331aLE"
+    },
+    "emoji": "🦊📦🍎🌀🏝️",
+    "item": {
+      "name": "Aku Aku",
+      "description": "A floating tiki mask that protects a bandicoot from one hit.",
+      "image": "https://static.wikia.nocookie.net/crashban/images/5/5b/Crash1_Aku_Aku.png/revision/latest?cb=20250318004519"
+    },
+    "location": {
+      "name": "N. Sanity Island",
+      "description": "A jungle island off Australia, home to a mad scientist's lab.",
+      "image": "https://static.wikia.nocookie.net/crashban/images/5/5f/N._Sanity_Island_%28CB%29.png/revision/latest/scale-to-width-down/640?cb=20260309001038"
+    },
+    "visual": {
+      "icon": "📦",
+      "colors": [
+        "#c2410c",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "g-spyro",
+    "name": "Spyro the Dragon",
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Insomniac Games",
+    "creator": "Ted Price",
+    "origin": "USA",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "Spyro",
+      "Sparx",
+      "Gnasty Gnorc"
+    ],
+    "themes": [
+      "Freeing dragons",
+      "Gems"
+    ],
+    "credits": [
+      "Studio head: Ted Price",
+      "Composer: Stewart Copeland of The Police"
+    ],
+    "fandom": "spyro",
+    "cover": {
+      "wiki": "Spyro the Dragon (1998 video game)"
+    },
+    "audio": {
+      "clue": "Bright synth-rock drums by a famous rock drummer for a sunny homeworld.",
+      "query": "Spyro the Dragon Artisans theme",
+      "youtubeId": "fOlh2TpSkx4"
+    },
+    "emoji": "🐉💎🔥🧚🏰",
+    "item": {
+      "name": "Sparx",
+      "description": "A dragonfly companion whose colour shows your health.",
+      "image": "https://static.wikia.nocookie.net/spyro/images/6/64/Lib%C3%A9lula.jpg/revision/latest/scale-to-width-down/640?cb=20121227152602"
+    },
+    "location": {
+      "name": "Artisans",
+      "description": "A green homeworld of castles and windmills where dragons were turned to crystal.",
+      "image": "https://static.wikia.nocookie.net/spyro/images/b/b3/Artisans.png/revision/latest?cb=20130108055007"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#7c3aed",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-banjo",
+    "name": "Banjo-Kazooie",
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Rare",
+    "creator": "Gregg Mayles",
+    "origin": "United Kingdom",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo",
+      "Xbox"
+    ],
+    "characters": [
+      "Banjo",
+      "Kazooie",
+      "Gruntilda"
+    ],
+    "themes": [
+      "Rhymes",
+      "Collectathon"
+    ],
+    "credits": [
+      "Lead designer: Gregg Mayles",
+      "Composer: Grant Kirkhope"
+    ],
+    "fandom": "banjokazooie",
+    "cover": {
+      "wiki": "Banjo-Kazooie",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Banjo_Kazooie_logo.png"
+    },
+    "audio": {
+      "clue": "A bouncy, banjo-led tune whose instruments change seamlessly as you walk around.",
+      "query": "Banjo-Kazooie Spiral Mountain",
+      "youtubeId": "IlzflkN7g-U"
+    },
+    "emoji": "🐻🐦🧩🧙‍♀️🎶",
+    "item": {
+      "name": "Jiggy",
+      "description": "A golden jigsaw piece used to open new worlds.",
+      "image": "https://static.wikia.nocookie.net/banjokazooie/images/e/e0/Jiggy_HD.png/revision/latest/scale-to-width-down/640?cb=20220823221738"
+    },
+    "location": {
+      "name": "Spiral Mountain",
+      "description": "A small green mountain at the foot of a witch's lair.",
+      "image": "https://static.wikia.nocookie.net/banjokazooie/images/6/67/SpiralMountain.png/revision/latest/scale-to-width-down/640?cb=20220813211312"
+    },
+    "visual": {
+      "icon": "🐻",
+      "colors": [
+        "#78350f",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-goldeneye",
+    "name": "GoldenEye 007",
+    "aliases": [
+      "goldeneye"
+    ],
+    "domain": "games",
+    "year": 1997,
+    "genres": [
+      "First-Person Shooter"
+    ],
+    "studio": "Rare",
+    "creator": "Martin Hollis",
+    "origin": "United Kingdom",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "James Bond",
+      "Alec Trevelyan",
+      "Natalya"
+    ],
+    "themes": [
+      "Espionage",
+      "Split-screen"
+    ],
+    "credits": [
+      "Director: Martin Hollis",
+      "Composers: Graeme Norgate & Grant Kirkhope"
+    ],
+    "fandom": "jamesbond",
+    "cover": {
+      "wiki": "GoldenEye 007 (1997 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/13/GoldenEye_007_N64_cover.jpg"
+    },
+    "audio": {
+      "clue": "A sly, surf-guitar spy theme on a 64-bit console.",
+      "query": "GoldenEye 007 N64 Facility theme",
+      "youtubeId": "_oMCy3IZAQE"
+    },
+    "emoji": "🔫🕶️🛰️🇷🇺🍸",
+    "item": {
+      "name": "Klobb",
+      "description": "A notoriously weak submachine gun everyone avoids in multiplayer.",
+      "image": "https://static.wikia.nocookie.net/jamesbond/images/4/48/Skorpion_vz61.jpg/revision/latest?cb=20121225041016"
+    },
+    "location": {
+      "name": "Facility",
+      "description": "A Soviet chemical weapons plant with toilet stalls you never forget.",
+      "image": "https://static.wikia.nocookie.net/jamesbond/images/a/af/Sky_magnet_facility_%281%29.png/revision/latest?cb=20200209222935"
+    },
+    "visual": {
+      "icon": "🛰️",
+      "colors": [
+        "#0a0a0a",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-supermetroid",
+    "name": "Super Metroid",
+    "domain": "games",
+    "year": 1994,
+    "genres": [
+      "Metroidvania"
+    ],
+    "studio": "Nintendo",
+    "creator": "Yoshio Sakamoto",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Samus Aran",
+      "Ridley",
+      "Mother Brain"
+    ],
+    "themes": [
+      "Isolation",
+      "Exploration"
+    ],
+    "credits": [
+      "Director: Yoshio Sakamoto",
+      "Composer: Kenji Yamamoto"
+    ],
+    "fandom": "metroid",
+    "cover": {
+      "wiki": "Super Metroid",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e4/Smetroidbox.jpg"
+    },
+    "audio": {
+      "clue": "An eerie, ambient theme for the overgrown upper caverns of a pirate planet.",
+      "query": "Super Metroid Brinstar theme",
+      "youtubeId": "tVUYyVfydqY"
+    },
+    "emoji": "👩‍🚀🪐🧬👾🔋",
+    "item": {
+      "name": "Morph Ball",
+      "description": "A transformation that curls a bounty hunter into a rolling sphere.",
+      "image": "https://static.wikia.nocookie.net/metroid/images/b/b3/Morphball1.jpg/revision/latest/scale-to-width-down/640?cb=20100425081150"
+    },
+    "location": {
+      "name": "Zebes",
+      "description": "A planet of caverns, lava and space pirates.",
+      "image": "https://static.wikia.nocookie.net/metroid/images/5/54/MSR_Zebes.png/revision/latest/scale-to-width-down/640?cb=20170828001002"
+    },
+    "visual": {
+      "icon": "🔋",
+      "colors": [
+        "#4c1d95",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-megaman2",
+    "name": "Mega Man 2",
+    "domain": "games",
+    "year": 1988,
+    "genres": [
+      "Platformer",
+      "Action"
+    ],
+    "studio": "Capcom",
+    "creator": "Akira Kitamura",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "Mega Man",
+      "Dr. Wily",
+      "Dr. Light"
+    ],
+    "themes": [
+      "Robot masters",
+      "Weapons"
+    ],
+    "credits": [
+      "Director: Akira Kitamura",
+      "Composer: Takashi Tateishi"
+    ],
+    "fandom": "megaman",
+    "cover": {
+      "wiki": "Mega Man 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/be/Megaman2_box.jpg"
+    },
+    "audio": {
+      "clue": "A blazing, heroic chiptune for the villain's fortress — one of the most famous NES tracks.",
+      "query": "Mega Man 2 Dr. Wily Stage 1",
+      "youtubeId": "RHqPVcMBKlc"
+    },
+    "emoji": "🤖🔵🔫👨‍🔬🏰",
+    "item": {
+      "name": "Mega Buster",
+      "description": "An arm cannon that fires plasma pellets.",
+      "image": "https://static.wikia.nocookie.net/megaman/images/1/1a/MM8Shot.jpg/revision/latest?cb=20220303063646"
+    },
+    "location": {
+      "name": "Dr. Wily's Castle",
+      "description": "A skull-fronted fortress built by a mad roboticist.",
+      "image": "https://static.wikia.nocookie.net/megaman/images/7/72/WilyCastle5.png/revision/latest?cb=20180710195352"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#1d4ed8",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "g-sotn",
+    "name": "Castlevania: Symphony of the Night",
+    "aliases": [
+      "symphony of the night",
+      "sotn",
+      "castlevania"
+    ],
+    "domain": "games",
+    "year": 1997,
+    "genres": [
+      "Metroidvania"
+    ],
+    "studio": "Konami",
+    "creator": "Koji Igarashi",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Alucard",
+      "Richter Belmont",
+      "Dracula"
+    ],
+    "themes": [
+      "Vampires",
+      "Inverted castle"
+    ],
+    "credits": [
+      "Assistant director: Koji Igarashi",
+      "Composer: Michiru Yamane"
+    ],
+    "fandom": "castlevania",
+    "cover": {
+      "wiki": "Castlevania: Symphony of the Night",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cf/Castlevania_SOTN_PAL.jpg"
+    },
+    "quote": {
+      "text": "What is a man? A miserable little pile of secrets!",
+      "speaker": "A vampire lord"
+    },
+    "audio": {
+      "clue": "A gothic rock theme with harpsichord for a dhampir's first steps into the castle.",
+      "query": "Symphony of the Night Dracula's Castle",
+      "youtubeId": "dh1qqLbuBww"
+    },
+    "emoji": "🧛🏰🦇🗡️🙃",
+    "item": {
+      "name": "Crissaegrim",
+      "description": "A legendary sword that strikes many times in a single swing.",
+      "image": "https://static.wikia.nocookie.net/castlevania/images/2/28/Valmanway_Icon.png/revision/latest?cb=20150813224613"
+    },
+    "location": {
+      "name": "Dracula's Castle",
+      "description": "A gothic castle that can be turned upside down.",
+      "image": "https://static.wikia.nocookie.net/castlevania/images/6/62/Dracula%27s_Castle_-_Grimoire_of_Souls_-_01.jpg/revision/latest/scale-to-width-down/640?cb=20200314140615"
+    },
+    "visual": {
+      "icon": "🧛",
+      "colors": [
+        "#3b0764",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-pikmin",
+    "name": "Pikmin",
+    "domain": "games",
+    "year": 2001,
+    "genres": [
+      "Real-Time Strategy",
+      "Puzzle"
+    ],
+    "studio": "Nintendo",
+    "creator": "Shigeru Miyamoto",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Captain Olimar",
+      "Louie"
+    ],
+    "themes": [
+      "Survival",
+      "Tiny world"
+    ],
+    "credits": [
+      "Producer: Shigeru Miyamoto",
+      "Inspired by gardening"
+    ],
+    "fandom": "pikmin",
+    "cover": {
+      "wiki": "Pikmin (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/13/Pikmin_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A gentle, wandering tune as a tiny astronaut explores a sunny garden.",
+      "query": "Pikmin The Forest of Hope theme",
+      "youtubeId": "HoMx0BTPVgE"
+    },
+    "emoji": "🌱🔴🔵🟡🚀",
+    "item": {
+      "name": "Onion",
+      "description": "A ship-like pod that houses and produces plant creatures.",
+      "image": "https://static.wikia.nocookie.net/pikmin/images/1/1b/Yellow_Onion.png/revision/latest/scale-to-width-down/539?cb=20240318234424"
+    },
+    "location": {
+      "name": "The Impact Site",
+      "description": "The crash site of a tiny spaceship in a giant world.",
+      "image": "https://static.wikia.nocookie.net/pikmin/images/a/ad/01_Site_Impact_Site.png/revision/latest?cb=20140626010715"
+    },
+    "visual": {
+      "icon": "🌱",
+      "colors": [
+        "#16a34a",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "g-fe3h",
+    "name": "Fire Emblem: Three Houses",
+    "aliases": [
+      "three houses",
+      "fe3h"
+    ],
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "Tactical RPG"
+    ],
+    "studio": "Intelligent Systems",
+    "creator": "Toshiyuki Kusakihara",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Byleth",
+      "Edelgard",
+      "Dimitri",
+      "Claude"
+    ],
+    "themes": [
+      "War",
+      "Teaching"
+    ],
+    "credits": [
+      "Director: Toshiyuki Kusakihara",
+      "Co-developed with Koei Tecmo"
+    ],
+    "fandom": "fireemblem",
+    "cover": {
+      "wiki": "Fire Emblem: Three Houses",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Fire_Emblem_Three_Houses.jpg"
+    },
+    "audio": {
+      "clue": "A haunting vocal theme sung over a battlefield of former classmates.",
+      "query": "Fire Emblem Three Houses Edge of Dawn",
+      "youtubeId": "FSXuM2v0YLY"
+    },
+    "emoji": "🏫⚔️🦅🦁🦌",
+    "item": {
+      "name": "Sword of the Creator",
+      "description": "A whip-like segmented blade wielded by a mercenary-turned-professor.",
+      "image": "https://static.wikia.nocookie.net/fireemblem/images/5/5a/3H_Sword_of_the_Creator.png/revision/latest/scale-to-width-down/157?cb=20211024043629"
+    },
+    "location": {
+      "name": "Garreg Mach Monastery",
+      "description": "A monastery-academy that houses three noble houses.",
+      "image": "https://static.wikia.nocookie.net/fireemblem/images/e/ea/Concept_Artwork_Monastery.jpg/revision/latest/scale-to-width-down/640?cb=20190308181616"
+    },
+    "visual": {
+      "icon": "🦅",
+      "colors": [
+        "#7f1d1d",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "g-xenoblade",
+    "name": "Xenoblade Chronicles",
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Action RPG"
+    ],
+    "studio": "Monolith Soft",
+    "creator": "Tetsuya Takahashi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Shulk",
+      "Reyn",
+      "Fiora",
+      "Dunban"
+    ],
+    "themes": [
+      "Visions",
+      "Gods"
+    ],
+    "credits": [
+      "Director: Tetsuya Takahashi",
+      "Composer: Yasunori Mitsuda & others"
+    ],
+    "fandom": "xenoblade",
+    "cover": {
+      "wiki": "Xenoblade Chronicles (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d9/Xenoblade_box_artwork.png"
+    },
+    "quote": {
+      "text": "Now it's Reyn time!",
+      "speaker": "A loud, armoured best friend"
+    },
+    "audio": {
+      "clue": "A soaring guitar-and-strings field theme over a vast grassy plain.",
+      "query": "Xenoblade Chronicles Gaur Plain",
+      "youtubeId": "UDJtsfR51To"
+    },
+    "emoji": "🗡️👁️🤖🌍🔴",
+    "item": {
+      "name": "Monado",
+      "description": "A red glowing sword that shows its wielder visions of the future.",
+      "image": "https://static.wikia.nocookie.net/xenoblade/images/2/22/Monado.png/revision/latest/scale-to-width-down/148?cb=20170122212439"
+    },
+    "location": {
+      "name": "Bionis",
+      "description": "A world built on the body of a giant titan frozen in battle.",
+      "image": "https://static.wikia.nocookie.net/xenoblade/images/8/81/Bionis_art.jpg/revision/latest?cb=20120901150502"
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#b91c1c",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "g-genshin",
+    "name": "Genshin Impact",
+    "aliases": [
+      "genshin"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Action RPG",
+      "Open World"
+    ],
+    "studio": "miHoYo",
+    "creator": "Hugh Tsai",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "The Traveler",
+      "Paimon",
+      "Venti",
+      "Zhongli"
+    ],
+    "themes": [
+      "Elements",
+      "Gacha"
+    ],
+    "credits": [
+      "Studio: miHoYo",
+      "Composer: Yu-Peng Chen"
+    ],
+    "fandom": "genshin-impact",
+    "cover": {
+      "wiki": "Genshin Impact",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/5/5d/Genshin_Impact_logo.svg/960px-Genshin_Impact_logo.svg.png"
+    },
+    "audio": {
+      "clue": "A lilting orchestral theme for a windy city of bards.",
+      "query": "Genshin Impact Mondstadt theme",
+      "youtubeId": "U00146agWgg"
+    },
+    "emoji": "🌬️🗡️🧚‍♀️🏰🎲",
+    "item": {
+      "name": "Vision",
+      "description": "A gem granted by the gods that lets its owner wield an element.",
+      "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/08/Amber_Vision_In-Game.png/revision/latest/scale-to-width-down/639?cb=20230525104742"
+    },
+    "location": {
+      "name": "Mondstadt",
+      "description": "A city of wind and freedom on an island in a lake.",
+      "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b9/Mondstadt.png/revision/latest/scale-to-width-down/640?cb=20230818202148"
+    },
+    "visual": {
+      "icon": "🌬️",
+      "colors": [
+        "#0ea5e9",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-discoelysium",
+    "name": "Disco Elysium",
+    "domain": "games",
+    "year": 2019,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "ZA/UM",
+    "creator": "Robert Kurvitz",
+    "origin": "Estonia",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Harry Du Bois",
+      "Kim Kitsuragi"
+    ],
+    "themes": [
+      "Politics",
+      "Amnesia"
+    ],
+    "credits": [
+      "Lead writer & designer: Robert Kurvitz",
+      "Music: British Sea Power"
+    ],
+    "fandom": "discoelysium",
+    "cover": {
+      "wiki": "Disco Elysium",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Disco_Elysium_Poster.jpeg"
+    },
+    "audio": {
+      "clue": "A melancholic indie-rock score by a British band for a decaying harbour district.",
+      "query": "Disco Elysium Whirling in Rags 8am",
+      "youtubeId": "LeILSPhyExw"
+    },
+    "emoji": "🕺👔🍾🔦🧠",
+    "item": {
+      "name": "Horrific Necktie",
+      "description": "A loud, talking tie that urges its wearer on to bad decisions.",
+      "image": "https://static.wikia.nocookie.net/discoelysium_gamepedia_en/images/4/43/Neck_tie.png/revision/latest?cb=20191024110230"
+    },
+    "location": {
+      "name": "Martinaise",
+      "description": "A run-down harbour district of a post-revolutionary city.",
+      "image": "https://static.wikia.nocookie.net/discoelysium_gamepedia_en/images/7/72/WorldMap.png/revision/latest/scale-to-width-down/640?cb=20191030091741"
+    },
+    "visual": {
+      "icon": "👔",
+      "colors": [
+        "#7c2d12",
+        "#a3e635"
       ]
     }
   }

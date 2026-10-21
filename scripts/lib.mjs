@@ -9,7 +9,7 @@ export const PREFIX = { games: 'g', anime: 'a', cinema: 'c', music: 'm' };
 
 const FIELD_ORDER = [
   'id', 'name', 'subtitle', 'aliases', 'domain', 'year', 'genres', 'studio', 'creator', 'origin', 'format', 'source',
-  'platforms', 'characters', 'themes', 'credits', 'cover', 'quote', 'tracks', 'audio', 'emoji', 'item', 'location', 'visual',
+  'platforms', 'characters', 'themes', 'credits', 'fandom', 'cover', 'quote', 'tracks', 'audio', 'emoji', 'item', 'location', 'visual',
 ];
 
 export const worksPath = (domain) => join(ROOT, 'src', 'data', 'works', `${domain}.json`);
@@ -124,4 +124,52 @@ export async function mediawikiImages(api, titles, size = 640) {
     await sleep(1000);
   }
   return out;
+}
+
+/** Searches a MediaWiki site and returns the lead image of the best match: { image, title }. */
+export async function mediawikiSearchImage(api, query, size = 640) {
+  const d = await mediawikiGet(api, {
+    action: 'query', generator: 'search', gsrsearch: query, gsrlimit: '1', gsrnamespace: '0',
+    prop: 'pageimages', piprop: 'thumbnail', pithumbsize: String(size), pilicense: 'any',
+  });
+  const page = d.query?.pages?.[0];
+  return { image: page?.thumbnail?.source ? cleanUrl(page.thumbnail.source) : null, title: page?.title ?? null };
+}
+
+/**
+ * Resolves an image source spec:
+ *   https://…               used as is
+ *   wp:<Title>              Wikipedia lead image
+ *   fandom:<wiki>:<Title>   lead image of that page on <wiki>.fandom.com
+ *   fandom:<wiki>           searches <wiki>.fandom.com for `name`
+ */
+export async function resolveImageSource(spec, name, size = 640) {
+  if (/^https?:\/\//.test(spec)) return { image: spec, title: null };
+  const [kind, site, ...rest] = spec.split(':');
+  if (kind === 'wp') {
+    const title = [site, ...rest].join(':');
+    const r = (await mediawikiImages(WIKIPEDIA_API, [title], size)).get(title);
+    return r?.image ? r : mediawikiSearchImage(WIKIPEDIA_API, title, size);
+  }
+  if (kind === 'fandom') {
+    const title = rest.join(':');
+    if (title) {
+      const r = (await mediawikiImages(fandomApi(site), [title], size)).get(title);
+      // Page titles drift between wikis; fall back to searching for the title.
+      return r?.image ? r : mediawikiSearchImage(fandomApi(site), title, size);
+    }
+    return mediawikiSearchImage(fandomApi(site), name, size);
+  }
+  throw new Error(`Unknown image source "${spec}"`);
+}
+
+/**
+ * Clue images must not give the answer away: reject files that look like logos, box art, covers,
+ * posters or title cards, and anything identical to the work's own cover.
+ */
+// "cover" only at a word start or as "cover art", so "Discovery" doesn't match.
+const REVEALING = /logo|box[_ -]?art|boxart|(?:^|[^a-z])cover|cover[_ -]?art|poster|wordmark|title[_ -]?card|key[_ -]?art|promo/i;
+export function revealsAnswer(url, work) {
+  const file = decodeURIComponent(url.split('/images/')[1] ?? url.split('/').pop() ?? '');
+  return REVEALING.test(file) || (!!work.cover?.image && url.split('?')[0] === work.cover.image.split('?')[0]);
 }

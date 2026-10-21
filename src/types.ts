@@ -9,7 +9,7 @@ export type GameType =
   | 'timeline'
   | 'item'
   | 'location'
-  | 'creator'
+  | 'tiles'
   | 'connections';
 
 /** An image that can be blurred/pixelated. `image` is resolved from `wiki` by scripts/enrich-media.mjs. */
@@ -23,6 +23,13 @@ export interface MediaRef {
 export interface Clue extends MediaRef {
   name: string;
   description: string;
+  /** Where the Location round zooms in from, as [x%, y%] of the image (default: centre). */
+  focus?: [number, number];
+  /**
+   * Image source for scripts/enrich-media.mjs when `wiki` isn't enough:
+   * "fandom:<wiki>:<Title>", "fandom:<wiki>" (searches the work's wiki for `name`), "wp:<Title>" or a URL.
+   */
+  src?: string;
 }
 
 /**
@@ -51,8 +58,10 @@ export interface Work {
   platforms?: string[];
   characters?: string[];
   themes?: string[];
-  /** Credit lines revealed one by one in the Creator mini-game. */
+  /** Credit lines; the first is used as a hint. */
   credits: string[];
+  /** Fandom wiki slug for the work (e.g. "zelda"), used to find item and location images. */
+  fandom?: string;
   /** Cover art / poster, used by the Pixelated mini-game. */
   cover?: MediaRef;
   quote?: { text: string; speaker?: string };

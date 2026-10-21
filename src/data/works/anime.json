@@ -28,6 +28,7 @@
       "Art: Takeshi Obata",
       "Director: Tetsurō Araki"
     ],
+    "fandom": "deathnote",
     "cover": {
       "wiki": "Death Note",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg"
@@ -44,11 +45,13 @@
     "emoji": "📓🍎✍️💀🕵️",
     "item": {
       "name": "A black notebook",
-      "description": "Write a name inside while picturing the face, and that person dies."
+      "description": "Write a name inside while picturing the face, and that person dies.",
+      "src": "fandom:deathnote:Death Note (object)"
     },
     "location": {
       "name": "Task Force headquarters",
-      "description": "A purpose-built high-rise packed with monitors, funded by a sweets-loving detective."
+      "description": "A purpose-built high-rise packed with monitors, funded by a sweets-loving detective.",
+      "image": "https://static.wikia.nocookie.net/deathnote/images/d/df/Ep_18_task_force_hq.jpg/revision/latest/scale-to-width-down/640?cb=20190219173315"
     },
     "visual": {
       "icon": "🍎",
@@ -87,6 +90,7 @@
       "Director: Hayato Date",
       "Composer: Toshio Masuda"
     ],
+    "fandom": "naruto",
     "cover": {
       "wiki": "Naruto",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/94/NarutoCoverTankobon1.jpg"
@@ -103,11 +107,15 @@
     "emoji": "🍥🦊🍜🥷🍃",
     "item": {
       "name": "Leaf forehead protector",
-      "description": "A metal plate on a cloth band, engraved with a leaf-spiral symbol."
+      "description": "A metal plate on a cloth band, engraved with a leaf-spiral symbol.",
+      "src": "fandom:naruto:Forehead Protector",
+      "image": "https://static.wikia.nocookie.net/naruto/images/f/fc/Forehead_Protector.png/revision/latest/scale-to-width-down/640?cb=20160116193641"
     },
     "location": {
       "name": "Hidden Leaf Village",
-      "description": "A forest village beneath a cliff carved with the faces of its leaders."
+      "description": "A forest village beneath a cliff carved with the faces of its leaders.",
+      "src": "fandom:naruto:Konohagakure",
+      "image": "https://static.wikia.nocookie.net/naruto/images/3/34/Konohagakure.png/revision/latest/scale-to-width-down/640?cb=20160728115517"
     },
     "visual": {
       "icon": "🍥",
@@ -146,6 +154,7 @@
       "Composers: Kohei Tanaka & Shiro Hamaguchi",
       "Serialised in Weekly Shōnen Jump since 1997"
     ],
+    "fandom": "onepiece",
     "cover": {
       "wiki": "One Piece",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/90/One_Piece%2C_Volume_61_Cover_%28Japanese%29.jpg"
@@ -162,11 +171,14 @@
     "emoji": "🏴‍☠️👒🍖🌊💰",
     "item": {
       "name": "Straw hat",
-      "description": "A simple hat with a red band, promised to be returned to a red-haired pirate."
+      "description": "A simple hat with a red band, promised to be returned to a red-haired pirate.",
+      "image": "https://static.wikia.nocookie.net/onepiece/images/b/b2/Straw_Hat.png/revision/latest/scale-to-width-down/640?cb=20231119104349"
     },
     "location": {
       "name": "The Grand Line",
-      "description": "A dangerous sea route circling the world, guarded by calm belts full of sea kings."
+      "description": "A dangerous sea route circling the world, guarded by calm belts full of sea kings.",
+      "src": "fandom:onepiece:Grand Line",
+      "image": "https://static.wikia.nocookie.net/onepiece/images/4/41/Grand_Line_Infobox.png/revision/latest/scale-to-width-down/640?cb=20220803103019"
     },
     "visual": {
       "icon": "👒",
@@ -209,6 +221,7 @@
       "Character design: Yoshiyuki Sadamoto",
       "Composer: Shirō Sagisu"
     ],
+    "fandom": "evangelion",
     "cover": {
       "wiki": "Neon Genesis Evangelion",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/72/Evangelion_retouched.png"
@@ -225,11 +238,15 @@
     "emoji": "🤖👦😰✝️🌊",
     "item": {
       "name": "Lance of Longinus",
-      "description": "A colossal red, twin-pronged spear hurled into orbit."
+      "description": "A colossal red, twin-pronged spear hurled into orbit.",
+      "src": "fandom:evangelion:Lance of Longinus",
+      "image": "https://static.wikia.nocookie.net/evangelion/images/5/5d/Lance_of_Longinus.png/revision/latest/scale-to-width-down/640?cb=20120320234343"
     },
     "location": {
       "name": "Tokyo-3",
-      "description": "A fortress city whose skyscrapers retract underground during attacks."
+      "description": "A fortress city whose skyscrapers retract underground during attacks.",
+      "src": "fandom:evangelion:Tokyo-3",
+      "image": "https://static.wikia.nocookie.net/evangelion/images/b/b3/TOKYO-III_Emblem_Rebuild.png/revision/latest/scale-to-width-down/640?cb=20260921040907"
     },
     "visual": {
       "icon": "🤖",
@@ -268,6 +285,7 @@
       "Composer: Joe Hisaishi",
       "Producer: Toshio Suzuki"
     ],
+    "fandom": "ghibli",
     "cover": {
       "wiki": "Spirited Away",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/db/Spirited_Away_Japanese_poster.png"
@@ -284,11 +302,14 @@
     "emoji": "👧🐉🛁👻🐷",
     "item": {
       "name": "A golden-coin offering",
-      "description": "Gold that a masked, silent spirit conjures from its hands for greedy workers."
+      "description": "Gold that a masked, silent spirit conjures from its hands for greedy workers.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/9/9d/No-Face_infobox.png/revision/latest/scale-to-width-down/424?cb=20200908135515"
     },
     "location": {
       "name": "The spirit bathhouse",
-      "description": "A towering red bathhouse where gods come to wash, run by a big-headed witch."
+      "description": "A towering red bathhouse where gods come to wash, run by a big-headed witch.",
+      "src": "fandom:ghibli:Aburaya",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/8/80/Chihiro_sees_the_Bathhouse.png/revision/latest/scale-to-width-down/513?cb=20200914124155"
     },
     "visual": {
       "icon": "🐉",
@@ -332,6 +353,7 @@
       "Director: Tetsurō Araki",
       "Composer: Hiroyuki Sawano"
     ],
+    "fandom": "attackontitan",
     "cover": {
       "wiki": "Attack on Titan",
       "image": "https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg"
@@ -348,11 +370,15 @@
     "emoji": "🧱👹⚔️🪽🩸",
     "item": {
       "name": "Omni-directional mobility gear",
-      "description": "Gas-powered grappling hooks strapped to the hips, with twin blades."
+      "description": "Gas-powered grappling hooks strapped to the hips, with twin blades.",
+      "src": "fandom:attackontitan:Vertical Maneuvering Equipment",
+      "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/5/57/CPAI2.jpg/revision/latest/scale-to-width-down/417?cb=20190903200439"
     },
     "location": {
       "name": "Wall Maria",
-      "description": "The outermost of three concentric 50-metre walls protecting humanity."
+      "description": "The outermost of three concentric 50-metre walls protecting humanity.",
+      "src": "fandom:attackontitan:Wall Maria",
+      "image": "https://static.wikia.nocookie.net/shingekinokyojin/images/e/e2/The_Walls.png/revision/latest/scale-to-width-down/640?cb=20200308210427"
     },
     "visual": {
       "icon": "🧱",
@@ -395,6 +421,7 @@
       "Composer: Shunsuke Kikuchi",
       "Opening singer: Hironobu Kageyama"
     ],
+    "fandom": "dragonball",
     "cover": {
       "wiki": "Dragon Ball Z"
     },
@@ -410,11 +437,15 @@
     "emoji": "🐉🟠⭐💥👊",
     "item": {
       "name": "Senzu Bean",
-      "description": "A tiny bean that instantly heals all wounds and fills you up for ten days."
+      "description": "A tiny bean that instantly heals all wounds and fills you up for ten days.",
+      "src": "fandom:dragonball:Senzu Bean",
+      "image": "https://static.wikia.nocookie.net/dragonball/images/2/27/Krillin_holding_three_Senzu_Beans.png/revision/latest?cb=20091101165452"
     },
     "location": {
       "name": "Planet Namek",
-      "description": "A green-skied world with blue grass and three suns, home to a slug-like people."
+      "description": "A green-skied world with blue grass and three suns, home to a slug-like people.",
+      "src": "fandom:dragonball:Planet Namek",
+      "image": "https://static.wikia.nocookie.net/dragonball/images/4/43/NamekGreenPlanet.png/revision/latest?cb=20100731172310"
     },
     "visual": {
       "icon": "🟠",
@@ -453,6 +484,7 @@
       "Writer: Keiko Nobumoto",
       "Composer: Yoko Kanno"
     ],
+    "fandom": "cowboybebop",
     "cover": {
       "wiki": "Cowboy Bebop",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Cowboy_Bebop_key_visual.jpg"
@@ -469,11 +501,15 @@
     "emoji": "🚀🤠🎷🐕🚬",
     "item": {
       "name": "Swordfish II",
-      "description": "A red mono-racer spacecraft flown by a lanky bounty hunter."
+      "description": "A red mono-racer spacecraft flown by a lanky bounty hunter.",
+      "src": "fandom:cowboybebop:Swordfish II",
+      "image": "https://static.wikia.nocookie.net/cowboybebop/images/1/14/2_SwordfishBrake.png/revision/latest?cb=20090316154603"
     },
     "location": {
       "name": "The Bebop",
-      "description": "A converted fishing trawler drifting between Mars, Venus and Ganymede."
+      "description": "A converted fishing trawler drifting between Mars, Venus and Ganymede.",
+      "src": "fandom:cowboybebop:Bebop",
+      "image": "https://static.wikia.nocookie.net/cowboybebop/images/d/d1/Bebop_Exterior_Mars.png/revision/latest/scale-to-width-down/640?cb=20140403053529"
     },
     "visual": {
       "icon": "🎷",
@@ -517,6 +553,7 @@
       "Director: Yasuhiro Irie",
       "Composer: Akira Senju"
     ],
+    "fandom": "fma",
     "cover": {
       "wiki": "Fullmetal Alchemist: Brotherhood"
     },
@@ -533,12 +570,14 @@
     "item": {
       "name": "Philosopher's Stone",
       "description": "A blood-red stone that bypasses the law of equivalent exchange.",
-      "wiki": "Philosopher's stone",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Joseph_Wright_of_Derby_The_Alchemist.jpg/960px-Joseph_Wright_of_Derby_The_Alchemist.jpg"
+      "src": "fandom:fma:Philosopher's Stone",
+      "image": "https://static.wikia.nocookie.net/fma/images/b/be/Brotherhood30.jpg/revision/latest/scale-to-width-down/640?cb=20091101135736"
     },
     "location": {
       "name": "Amestris",
-      "description": "A militaristic country whose borders secretly trace a giant transmutation circle."
+      "description": "A militaristic country whose borders secretly trace a giant transmutation circle.",
+      "src": "fandom:fma:Amestris",
+      "image": "https://static.wikia.nocookie.net/fma/images/6/6a/Fic_ames.gif/revision/latest?cb=20140303222450"
     },
     "visual": {
       "icon": "⚗️",
@@ -581,6 +620,7 @@
       "Composer: Joe Hisaishi",
       "Released on a double bill with Grave of the Fireflies"
     ],
+    "fandom": "ghibli",
     "cover": {
       "wiki": "My Neighbor Totoro",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/02/My_Neighbor_Totoro_-_Tonari_no_Totoro_%28Movie_Poster%29.jpg"
@@ -592,12 +632,15 @@
     },
     "emoji": "🌳🐱🚌☔👧",
     "item": {
-      "name": "A black umbrella",
-      "description": "Lent at a rainy bus stop to a huge furry creature who loves the sound of raindrops."
+      "name": "The Catbus",
+      "description": "A grinning twelve-legged cat that is also a bus, with glowing eyes for headlights.",
+      "src": "fandom:ghibli:Catbus",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/3/30/Catbus.jpg/revision/latest?cb=20181024032653"
     },
     "location": {
       "name": "The great camphor tree",
-      "description": "An ancient tree beside a rural house, hiding a hollow full of forest spirits."
+      "description": "An ancient tree beside a rural house, hiding a hollow full of forest spirits.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c3/Camphor_Tree.jpg/revision/latest?cb=20181031011538"
     },
     "visual": {
       "icon": "🌳",
@@ -638,6 +681,7 @@
       "Director: Haruo Sotozaki",
       "Composers: Yuki Kajiura & Go Shiina"
     ],
+    "fandom": "kimetsu-no-yaiba",
     "cover": {
       "wiki": "Demon Slayer: Kimetsu no Yaiba",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/09/Demon_Slayer_-_Kimetsu_no_Yaiba%2C_volume_1.jpg"
@@ -650,11 +694,15 @@
     "emoji": "👹🗡️🌊📦🎋",
     "item": {
       "name": "A checkered green-and-black haori",
-      "description": "A boy's jacket — while his sister rides in a wooden box on his back."
+      "description": "A boy's jacket — while his sister rides in a wooden box on his back.",
+      "src": "fandom:kimetsu-no-yaiba:Nichirin Sword",
+      "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/3/3b/Tanjiro%27s_Nichirin_Blade_changes_color.gif/revision/latest?cb=20200523231651"
     },
     "location": {
       "name": "Mount Sagiri",
-      "description": "A misty mountain where a tengu-masked mentor trains swordsmen to cut a boulder."
+      "description": "A misty mountain where a tengu-masked mentor trains swordsmen to cut a boulder.",
+      "src": "fandom:kimetsu-no-yaiba:Mount Sagiri",
+      "image": "https://static.wikia.nocookie.net/kimetsu-no-yaiba/images/0/0f/Mount_Sagiri_Anime.png/revision/latest/scale-to-width-down/640?cb=20190720171310"
     },
     "visual": {
       "icon": "👹",
@@ -691,6 +739,7 @@
       "Director: Junichi Sato",
       "Composer: Takanori Arisawa"
     ],
+    "fandom": "sailormoon",
     "cover": {
       "wiki": "Sailor Moon",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/SMVolume1.jpg"
@@ -707,7 +756,8 @@
     "emoji": "🌙👧🐈‍⬛💫🎀",
     "item": {
       "name": "Transformation brooch",
-      "description": "A golden compact with a crescent, given by a talking black cat."
+      "description": "A golden compact with a crescent, given by a talking black cat.",
+      "image": "https://static.wikia.nocookie.net/sailormoon/images/7/78/Transformation_Brooch_in_the_Manga.jpg/revision/latest?cb=20120621140751"
     },
     "location": {
       "name": "Juban, Tokyo",
@@ -748,6 +798,7 @@
       "Music: Geinoh Yamashirogumi",
       "Over 160,000 animation cels"
     ],
+    "fandom": "akira",
     "cover": {
       "wiki": "Akira (1988 film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/AKIRA_%281988_poster%29.jpg"
@@ -760,11 +811,14 @@
     "emoji": "🏍️🔴🧠💥🌆",
     "item": {
       "name": "A red motorcycle",
-      "description": "A futuristic bike with a capsule on its seat, slid sideways in a famous pose."
+      "description": "A futuristic bike with a capsule on its seat, slid sideways in a famous pose.",
+      "image": "https://static.wikia.nocookie.net/akira/images/c/cf/Kaneda.webp/revision/latest/scale-to-width-down/640?cb=20260702224715"
     },
     "location": {
       "name": "Neo-Tokyo",
-      "description": "A neon megacity rebuilt after a mysterious explosion destroyed the old capital."
+      "description": "A neon megacity rebuilt after a mysterious explosion destroyed the old capital.",
+      "src": "fandom:akira:Neo-Tokyo",
+      "image": "https://static.wikia.nocookie.net/akira/images/d/d4/Akira-Neo-Tokyo-Real-Map-Comparison.png/revision/latest/scale-to-width-down/538?cb=20200104232608"
     },
     "visual": {
       "icon": "🏍️",
@@ -806,6 +860,7 @@
       "Director: Hiroshi Kōjina",
       "Composer: Yoshihisa Hirano"
     ],
+    "fandom": "hunterxhunter",
     "cover": {
       "wiki": "Hunter × Hunter",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e8/Hunter_%C3%97_Hunter_vol._1.png"
@@ -818,11 +873,15 @@
     "emoji": "🎣🧒⚡🃏🐜",
     "item": {
       "name": "Hunter License",
-      "description": "A card that grants access to most of the world — and sells for a fortune."
+      "description": "A card that grants access to most of the world — and sells for a fortune.",
+      "src": "fandom:hunterxhunter:Hunter License",
+      "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/99/Hunter_License_card.PNG/revision/latest/scale-to-width-down/640?cb=20230314043144"
     },
     "location": {
       "name": "Heavens Arena",
-      "description": "A 251-floor fighting tower where you rise through the floors by winning."
+      "description": "A 251-floor fighting tower where you rise through the floors by winning.",
+      "src": "fandom:hunterxhunter:Heavens Arena",
+      "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c9/Heavens_Arena_Full.png/revision/latest?cb=20120423234044"
     },
     "visual": {
       "icon": "🎣",
@@ -864,6 +923,7 @@
       "Director: Sunghoo Park",
       "Composer: Hiroaki Tsutsumi"
     ],
+    "fandom": "jujutsu-kaisen",
     "cover": {
       "wiki": "Jujutsu Kaisen",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg"
@@ -880,11 +940,14 @@
     "emoji": "👆🧿🏫👹🤞",
     "item": {
       "name": "A cursed finger",
-      "description": "One of twenty fingers of a demon king; a high-schooler swallows one."
+      "description": "One of twenty fingers of a demon king; a high-schooler swallows one.",
+      "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/c/cd/Sukuna%27s_fingers_%28Anime%29.png/revision/latest/scale-to-width-down/640?cb=20201010033406"
     },
     "location": {
       "name": "Tokyo Jujutsu High",
-      "description": "A secret school disguised as a religious college, training sorcerers."
+      "description": "A secret school disguised as a religious college, training sorcerers.",
+      "src": "fandom:jujutsu-kaisen:Tokyo Jujutsu High",
+      "image": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/d/d9/Tokyo_Metropolitan_Jujutsu_Technical_School_%28Anime%29.png/revision/latest/scale-to-width-down/640?cb=20201010033541"
     },
     "visual": {
       "icon": "🧿",
@@ -928,6 +991,7 @@
       "Director: Kenji Nagasaki",
       "Composer: Yuki Hayashi"
     ],
+    "fandom": "myheroacademia",
     "cover": {
       "wiki": "My Hero Academia",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Boku_no_Hero_Academia_Volume_1.png"
@@ -944,11 +1008,14 @@
     "emoji": "💪🦸👦💥🏫",
     "item": {
       "name": "Hero analysis notebooks",
-      "description": "A powerless boy's notebooks, filled with notes on every pro hero's quirk."
+      "description": "A powerless boy's notebooks, filled with notes on every pro hero's quirk.",
+      "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/11/Hero_notebook.png/revision/latest/scale-to-width-down/640?cb=20250608022812"
     },
     "location": {
       "name": "U.A. High School",
-      "description": "A glass-towered hero academy whose entrance exam involves smashing robots."
+      "description": "A glass-towered hero academy whose entrance exam involves smashing robots.",
+      "src": "fandom:myheroacademia:U.A. High School",
+      "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a7/U.A._Main_Building.png/revision/latest/scale-to-width-down/640?cb=20250618031358"
     },
     "visual": {
       "icon": "💪",
@@ -989,6 +1056,7 @@
       "Directors: Hiroshi Hamasaki & Takuya Satō",
       "Executive producer: Chiyomaru Shikura"
     ],
+    "fandom": "steins-gate",
     "cover": {
       "wiki": "Steins;Gate (TV series)",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/ca/Steins%3BGate_anime_cover.png"
@@ -1000,12 +1068,14 @@
     "emoji": "📱🍌⏳🧪👨‍🔬",
     "item": {
       "name": "Phone Microwave (name subject to change)",
-      "description": "A gadget that turns bananas into green gel — and sends texts to the past."
+      "description": "A gadget that turns bananas into green gel — and sends texts to the past.",
+      "src": "fandom:steins-gate:Phone Microwave (Name subject to change)",
+      "image": "https://static.wikia.nocookie.net/steins-gate/images/a/af/PhoneWave_Anime.png/revision/latest?cb=20210717031937"
     },
     "location": {
       "name": "Akihabara",
       "description": "Tokyo's electronics and otaku district, home to a cramped 'Future Gadget Laboratory'.",
-      "wiki": "Akihabara",
+      "src": "wp:Akihabara",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png/960px-Sotokanda%2C_Akihabara_Electric_Town_at_night_20231114.png"
     },
     "visual": {
@@ -1047,6 +1117,7 @@
       "Writer: Ichirō Ōkouchi",
       "Character design: CLAMP"
     ],
+    "fandom": "codegeass",
     "cover": {
       "wiki": "Code Geass",
       "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Code_Geass_R1_box_set_cover.jpg"
@@ -1058,11 +1129,14 @@
     "emoji": "♟️👁️🍕🤖👑",
     "item": {
       "name": "A red bird-shaped sigil",
-      "description": "It appears in one eye and lets its bearer issue one absolute command per person."
+      "description": "It appears in one eye and lets its bearer issue one absolute command per person.",
+      "image": "https://static.wikia.nocookie.net/codegeass/images/0/03/Codegeassr21504.jpg/revision/latest/scale-to-width-down/640?cb=20140311193114"
     },
     "location": {
       "name": "Area 11",
-      "description": "Japan, renamed after being conquered by a holy empire."
+      "description": "Japan, renamed after being conquered by a holy empire.",
+      "src": "fandom:codegeass:Area 11",
+      "image": "https://static.wikia.nocookie.net/codegeass/images/d/dd/Japan_flag.svg/revision/latest?cb=20260516084328"
     },
     "visual": {
       "icon": "♟️",
@@ -1104,6 +1178,7 @@
       "Manga art: Yusuke Murata",
       "Director: Shingo Natsume"
     ],
+    "fandom": "onepunchman",
     "cover": {
       "wiki": "One-Punch Man",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/OnePunchMan_manga_cover.png"
@@ -1120,11 +1195,14 @@
     "emoji": "👊🥚👨‍🦲🦸😐",
     "item": {
       "name": "A yellow jumpsuit and white cape",
-      "description": "The outfit of a hero who trained so hard he lost all his hair."
+      "description": "The outfit of a hero who trained so hard he lost all his hair.",
+      "image": "https://static.wikia.nocookie.net/onepunchman/images/3/30/Recevingherosuit.png/revision/latest/scale-to-width-down/640?cb=20151228175520"
     },
     "location": {
       "name": "City Z",
-      "description": "A ghost town on the edge of monster territory where a hero lives cheaply."
+      "description": "A ghost town on the edge of monster territory where a hero lives cheaply.",
+      "src": "fandom:onepunchman:Z-City",
+      "image": "https://static.wikia.nocookie.net/onepunchman/images/b/b8/Z-city_manga_colored.jpg/revision/latest/scale-to-width-down/640?cb=20191002005105"
     },
     "visual": {
       "icon": "👊",
@@ -1167,6 +1245,7 @@
       "Directors: Naokatsu Tsuda & Kenichi Suzuki",
       "Manga began in 1987"
     ],
+    "fandom": "jojo",
     "cover": {
       "wiki": "JoJo's Bizarre Adventure (TV series)",
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/6e/JoJo%27s_Bizarre_Adventure_logo.png"
@@ -1183,11 +1262,15 @@
     "emoji": "🕺🗿⭐🧛🌹",
     "item": {
       "name": "The Stone Mask",
-      "description": "An ancient Aztec-style mask that sprouts spikes and turns its wearer into a vampire."
+      "description": "An ancient Aztec-style mask that sprouts spikes and turns its wearer into a vampire.",
+      "src": "fandom:jojo:Stone Mask",
+      "image": "https://static.wikia.nocookie.net/jjba/images/e/ed/Stonemask.png/revision/latest?cb=20170124055218"
     },
     "location": {
       "name": "Morioh",
-      "description": "A quiet seaside Japanese town hiding a polite serial killer."
+      "description": "A quiet seaside Japanese town hiding a polite serial killer.",
+      "src": "fandom:jojo:Morioh",
+      "image": "https://static.wikia.nocookie.net/jjba/images/5/5d/Full_color_owl.png/revision/latest?cb=20170113014620"
     },
     "visual": {
       "icon": "🗿",
@@ -1226,6 +1309,7 @@
       "Director: Ryū Nakayama",
       "Composer: Kensuke Ushio"
     ],
+    "fandom": "chainsaw-man",
     "cover": {
       "wiki": "Chainsaw Man",
       "image": "https://upload.wikimedia.org/wikipedia/en/2/24/Chainsawman.jpg"
@@ -1238,11 +1322,14 @@
     "emoji": "🪚🐶😈🩸🍞",
     "item": {
       "name": "Pochita",
-      "description": "A small orange dog-like devil with a chainsaw sticking out of its head."
+      "description": "A small orange dog-like devil with a chainsaw sticking out of its head.",
+      "src": "fandom:chainsaw-man:Pochita",
+      "image": "https://static.wikia.nocookie.net/chainsaw-man/images/5/54/Pochita_anime_design.png/revision/latest?cb=20220919121110"
     },
     "location": {
       "name": "Public Safety Devil Hunter HQ",
-      "description": "A Tokyo government division where devil hunters are paid by the job."
+      "description": "A Tokyo government division where devil hunters are paid by the job.",
+      "image": "https://static.wikia.nocookie.net/chainsaw-man/images/7/7a/Devil_Hunter_Infobox.png/revision/latest/scale-to-width-down/430?cb=20230919211624"
     },
     "visual": {
       "icon": "🪚",
@@ -1283,6 +1370,7 @@
       "Music: RADWIMPS",
       "Character design: Masayoshi Tanaka"
     ],
+    "fandom": "kiminonawa",
     "cover": {
       "wiki": "Your Name",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.png"
@@ -1295,11 +1383,14 @@
     "emoji": "☄️🔄👫🏞️🧶",
     "item": {
       "name": "A red braided cord",
-      "description": "A handmade kumihimo ribbon, passed between two people across time."
+      "description": "A handmade kumihimo ribbon, passed between two people across time.",
+      "image": "https://static.wikia.nocookie.net/kiminonawa/images/5/5d/Mitsuha_Miyamizu_2013.png/revision/latest/scale-to-width-down/640?cb=20181114193828"
     },
     "location": {
       "name": "Itomori",
-      "description": "A small mountain town beside a crater lake, under a comet's path."
+      "description": "A small mountain town beside a crater lake, under a comet's path.",
+      "src": "fandom:kiminonawa:Itomori",
+      "image": "https://static.wikia.nocookie.net/kiminonawa/images/7/7f/Lake_Itomori_at_sunrise.png/revision/latest/scale-to-width-down/640?cb=20180724073018"
     },
     "visual": {
       "icon": "☄️",
@@ -1340,6 +1431,7 @@
       "Composer: Joe Hisaishi",
       "English script: Neil Gaiman"
     ],
+    "fandom": "ghibli",
     "cover": {
       "wiki": "Princess Mononoke",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/Princess_Mononoke_Japanese_poster.png"
@@ -1356,7 +1448,8 @@
     },
     "location": {
       "name": "Irontown",
-      "description": "A fortified ironworks run by a woman who employs lepers and former brothel workers."
+      "description": "A fortified ironworks run by a woman who employs lepers and former brothel workers.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/a/ac/Mononoke_-_Irontown.jpg/revision/latest?cb=20181023135811"
     },
     "visual": {
       "icon": "🐺",
@@ -1396,6 +1489,7 @@
       "Director: Tomohiko Itō",
       "Composer: Yuki Kajiura"
     ],
+    "fandom": "swordartonline",
     "cover": {
       "wiki": "Sword Art Online",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Sword_Art_Online_light_novel_volume_1_cover.jpg"
@@ -1412,11 +1506,15 @@
     "emoji": "🎮⚔️🏰💀🧑‍💻",
     "item": {
       "name": "NerveGear",
-      "description": "A helmet that fully immerses you in a virtual world — and can kill you."
+      "description": "A helmet that fully immerses you in a virtual world — and can kill you.",
+      "src": "fandom:swordartonline:NerveGear",
+      "image": "https://static.wikia.nocookie.net/swordartonline/images/b/b8/NerveGear.png/revision/latest/scale-to-width-down/640?cb=20140308065844"
     },
     "location": {
       "name": "Aincrad",
-      "description": "A floating steel castle of 100 floors you must clear to log out."
+      "description": "A floating steel castle of 100 floors you must clear to log out.",
+      "src": "fandom:swordartonline:Aincrad",
+      "image": "https://static.wikia.nocookie.net/swordartonline/images/b/b4/Aincrad.png/revision/latest/scale-to-width-down/446?cb=20120401174133"
     },
     "visual": {
       "icon": "⚔️",
@@ -1455,6 +1553,7 @@
       "Director: Susumu Mitsunaka",
       "Composers: Yuki Hayashi & Asami Tachibana"
     ],
+    "fandom": "haikyuu",
     "cover": {
       "wiki": "Haikyu!!",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Haiky%C5%AB_Volume_1.jpg"
@@ -1462,11 +1561,15 @@
     "emoji": "🏐🐦‍⬛🦵🏫🔥",
     "item": {
       "name": "A volleyball",
-      "description": "Spiked by a short middle blocker who can jump impossibly high."
+      "description": "Spiked by a short middle blocker who can jump impossibly high.",
+      "src": "wp:Volleyball (ball)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Mikasa_VLS300_official_beach_volleyball.jpg/960px-Mikasa_VLS300_official_beach_volleyball.jpg"
     },
     "location": {
       "name": "Karasuno High School",
-      "description": "A fallen-from-glory school whose team is nicknamed after crows."
+      "description": "A fallen-from-glory school whose team is nicknamed after crows.",
+      "src": "fandom:haikyuu:Karasuno High",
+      "image": "https://static.wikia.nocookie.net/haikyuu/images/a/a5/Karasuno_Team.png/revision/latest/scale-to-width-down/640?cb=20200102211723"
     },
     "visual": {
       "icon": "🏐",
@@ -1504,6 +1607,7 @@
       "Original manga: Masamune Shirow",
       "Composer: Kenji Kawai"
     ],
+    "fandom": "ghostintheshell",
     "cover": {
       "wiki": "Ghost in the Shell (1995 film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/ca/Ghostintheshellposter.jpg"
@@ -1516,11 +1620,13 @@
     "emoji": "🤖🧠👩🌐🔫",
     "item": {
       "name": "Thermoptic camouflage",
-      "description": "A suit that renders its wearer nearly invisible, shimmering like water."
+      "description": "A suit that renders its wearer nearly invisible, shimmering like water.",
+      "image": "https://static.wikia.nocookie.net/ghostintheshell/images/5/52/Thermoptic_camouflage_motoko.jpg/revision/latest?cb=20101019133259&path-prefix=en"
     },
     "location": {
       "name": "Newport City",
-      "description": "A rain-soaked, Hong Kong-inspired port metropolis full of canals and billboards."
+      "description": "A rain-soaked, Hong Kong-inspired port metropolis full of canals and billboards.",
+      "image": "https://static.wikia.nocookie.net/ghostintheshell/images/5/5a/New_Port_City.jpg/revision/latest/scale-to-width-down/640?cb=20200125024231&path-prefix=en"
     },
     "visual": {
       "icon": "🧠",
@@ -1564,6 +1670,7 @@
       "Art: Tsukasa Abe",
       "Director: Keiichirō Saitō"
     ],
+    "fandom": "frieren",
     "cover": {
       "wiki": "Frieren",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Frieren_Beyond_Journey%27s_End.jpg"
@@ -1576,11 +1683,13 @@
     "emoji": "🧝‍♀️📦🌸⏳💐",
     "item": {
       "name": "A mimic chest",
-      "description": "A treasure box that bites; an elf mage always checks — and always gets caught."
+      "description": "A treasure box that bites; an elf mage always checks — and always gets caught.",
+      "image": "https://static.wikia.nocookie.net/frieren/images/b/bd/Mimic_anime_profile.png/revision/latest?cb=20241220215737"
     },
     "location": {
       "name": "The northern lands",
-      "description": "A journey towards Aureole, the place where souls are said to rest."
+      "description": "A journey towards Aureole, the place where souls are said to rest.",
+      "image": "https://static.wikia.nocookie.net/frieren/images/c/c5/World_Map_%28Empire%29.png/revision/latest/scale-to-width-down/640?cb=20240306033538"
     },
     "visual": {
       "icon": "🧝‍♀️",
@@ -1622,6 +1731,7 @@
       "Director: Kazuhiro Furuhashi",
       "Co-produced with CloverWorks"
     ],
+    "fandom": "spy-x-family",
     "cover": {
       "wiki": "Spy × Family",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Spy_Family_vol_1.jpg"
@@ -1638,11 +1748,15 @@
     "emoji": "🕵️🔫🥜👧🐶",
     "item": {
       "name": "Peanuts",
-      "description": "The favourite snack of a girl who can read minds."
+      "description": "The favourite snack of a girl who can read minds.",
+      "src": "wp:Peanut",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/960px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg"
     },
     "location": {
       "name": "Berlint",
-      "description": "The capital of Ostania, a city divided by a cold war."
+      "description": "The capital of Ostania, a city divided by a cold war.",
+      "src": "fandom:spy-x-family:Berlint",
+      "image": "https://static.wikia.nocookie.net/spy-x-family9171/images/6/6a/Berlint_Anime.png/revision/latest/scale-to-width-down/640?cb=20240525222224"
     },
     "visual": {
       "icon": "🥜",
@@ -1680,6 +1794,7 @@
       "Director: Noriyuki Abe",
       "Composer: Shirō Sagisu"
     ],
+    "fandom": "bleach",
     "cover": {
       "wiki": "Bleach (manga)",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/Bleach_%28manga%29_1.png"
@@ -1692,11 +1807,15 @@
     "emoji": "🗡️🍓👻💀🍊",
     "item": {
       "name": "Zangetsu",
-      "description": "A cleaver-like zanpakutō as tall as the orange-haired teen who wields it."
+      "description": "A cleaver-like zanpakutō as tall as the orange-haired teen who wields it.",
+      "src": "fandom:bleach:Zangetsu",
+      "image": "https://static.wikia.nocookie.net/bleach/images/4/41/NBFHIchigo_profile.png/revision/latest/scale-to-width-down/483?cb=20260410211133&path-prefix=en"
     },
     "location": {
       "name": "Soul Society",
-      "description": "The afterlife realm of the death gods, with a walled court at its centre."
+      "description": "The afterlife realm of the death gods, with a walled court at its centre.",
+      "src": "fandom:bleach:Soul Society",
+      "image": "https://static.wikia.nocookie.net/bleach/images/c/c1/Ep380SeireiteiShakonmaku.png/revision/latest/scale-to-width-down/640?cb=20230808183515&path-prefix=en"
     },
     "visual": {
       "icon": "🍓",
@@ -1738,6 +1857,7 @@
       "Director: Kunihiko Yuyama",
       "Composer: Shinji Miyazaki"
     ],
+    "fandom": "pokemon",
     "cover": {
       "wiki": "Pokémon (TV series)",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/960px-International_Pok%C3%A9mon_logo.svg.png"
@@ -1754,11 +1874,14 @@
     "emoji": "🧢🐭⚡🚀🎒",
     "item": {
       "name": "A red-and-white cap",
-      "description": "Won in a contest by a boy from Pallet Town."
+      "description": "Won in a contest by a boy from Pallet Town.",
+      "image": "https://static.wikia.nocookie.net/pokemon/images/4/40/Red_Let%27s_Go%2C_Pikachu%21_and_Let%27s_Go%2C_Eevee%21.png/revision/latest/scale-to-width-down/367?cb=20220701232612"
     },
     "location": {
       "name": "Pallet Town",
-      "description": "A quiet hometown with a professor's laboratory on the hill."
+      "description": "A quiet hometown with a professor's laboratory on the hill.",
+      "src": "fandom:pokemon:Pallet Town",
+      "image": "https://static.wikia.nocookie.net/pokemon/images/7/7b/Pallet_Town_HGSS.png/revision/latest?cb=20100905200827"
     },
     "visual": {
       "icon": "🧢",
@@ -1796,6 +1919,7 @@
       "Director: Shuhei Morita",
       "Composer: Yutaka Yamada"
     ],
+    "fandom": "tokyoghoul",
     "cover": {
       "wiki": "Tokyo Ghoul",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e5/Tokyo_Ghoul_volume_1_cover.jpg"
@@ -1812,11 +1936,14 @@
     "emoji": "☕👁️🩸🎭🦷",
     "item": {
       "name": "An eyepatch mask",
-      "description": "A leather mask with a zipper mouth, covering one red eye."
+      "description": "A leather mask with a zipper mouth, covering one red eye.",
+      "image": "https://static.wikia.nocookie.net/tokyoghoul/images/c/c7/Kaneki%27s_Mask.png/revision/latest/scale-to-width-down/640?cb=20160519211510"
     },
     "location": {
       "name": "Anteiku",
-      "description": "A quiet café where ghouls gather peacefully over coffee."
+      "description": "A quiet café where ghouls gather peacefully over coffee.",
+      "src": "fandom:tokyoghoul:Anteiku",
+      "image": "https://static.wikia.nocookie.net/tokyoghoul/images/9/92/Anteiku_front_view.png/revision/latest/scale-to-width-down/414?cb=20160409163250"
     },
     "visual": {
       "icon": "👁️",
@@ -1857,6 +1984,7 @@
       "Director: Yuzuru Tachikawa",
       "Composer: Kenji Kawai"
     ],
+    "fandom": "mob-psycho-100",
     "cover": {
       "wiki": "Mob Psycho 100",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Mob_Psycho_100_manga_vol_1.jpg"
@@ -1869,11 +1997,13 @@
     "emoji": "👦🔮💯🥦🏃",
     "item": {
       "name": "An emotion meter",
-      "description": "A percentage that climbs towards 100 until a quiet boy explodes."
+      "description": "A percentage that climbs towards 100 until a quiet boy explodes.",
+      "image": "https://static.wikia.nocookie.net/mob-psycho-100/images/b/b7/Mob_Fullbody.png/revision/latest/scale-to-width-down/173?cb=20220513153327"
     },
     "location": {
       "name": "Spirits and Such Consultation Office",
-      "description": "A tiny exorcism business run by a fraud with a heart of gold."
+      "description": "A tiny exorcism business run by a fraud with a heart of gold.",
+      "image": "https://static.wikia.nocookie.net/mob-psycho-100/images/9/97/Spirits_and_Such_Consultation_Office.png/revision/latest/scale-to-width-down/640?cb=20220511153051"
     },
     "visual": {
       "icon": "💯",
@@ -1912,6 +2042,7 @@
       "Director: Shūhei Yabuta",
       "Season 2 by MAPPA"
     ],
+    "fandom": "vinlandsaga",
     "cover": {
       "wiki": "Vinland Saga (manga)",
       "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Vinland_Saga_volume_01_cover.jpg"
@@ -1928,11 +2059,13 @@
     "emoji": "⚔️⛵🌾👑🌊",
     "item": {
       "name": "Twin daggers",
-      "description": "Short blades a boy carries for years to avenge his father."
+      "description": "Short blades a boy carries for years to avenge his father.",
+      "image": "https://static.wikia.nocookie.net/vinlandsaga/images/9/94/Thorkell_profile_image.png/revision/latest/scale-to-width-down/640?cb=20190628183325"
     },
     "location": {
       "name": "Ketil's farm",
-      "description": "A Danish estate where a former warrior learns to grow wheat as a slave."
+      "description": "A Danish estate where a former warrior learns to grow wheat as a slave.",
+      "image": "https://static.wikia.nocookie.net/vinlandsaga/images/a/a7/Chapter_056.jpg/revision/latest/scale-to-width-down/436?cb=20140406090244"
     },
     "visual": {
       "icon": "⛵",
@@ -1970,6 +2103,7 @@
       "Director: Taichi Ishidate",
       "Composer: Evan Call"
     ],
+    "fandom": "violet-evergarden",
     "cover": {
       "wiki": "Violet Evergarden",
       "image": "https://upload.wikimedia.org/wikipedia/en/b/be/Violet_Evergarden_light_novel_volume_1_cover.jpg"
@@ -1990,7 +2124,8 @@
     },
     "location": {
       "name": "CH Postal Company",
-      "description": "A postal service in Leiden that also employs Auto Memory Dolls."
+      "description": "A postal service in Leiden that also employs Auto Memory Dolls.",
+      "image": "https://static.wikia.nocookie.net/violet-evergarden/images/d/d8/CHPC_First_floor.png/revision/latest/scale-to-width-down/640?cb=20180212141531"
     },
     "visual": {
       "icon": "✉️",
@@ -2031,6 +2166,7 @@
       "Writer: Kazuki Nakashima",
       "Composer: Taku Iwasaki"
     ],
+    "fandom": "gurrenlagann",
     "cover": {
       "wiki": "Gurren Lagann",
       "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Gurren_Lagann_key_visual.jpg"
@@ -2047,11 +2183,14 @@
     "emoji": "🔩🕶️🤖🌌💥",
     "item": {
       "name": "A core drill",
-      "description": "A tiny glowing drill that powers a giant robot — and pierces the heavens."
+      "description": "A tiny glowing drill that powers a giant robot — and pierces the heavens.",
+      "src": "fandom:gurrenlagann:Core Drill",
+      "image": "https://static.wikia.nocookie.net/gurennlagann/images/9/95/Core_Drill_Render_.webp/revision/latest?cb=20230904033651"
     },
     "location": {
       "name": "Jeeha Village",
-      "description": "An underground village whose people have never seen the sky."
+      "description": "An underground village whose people have never seen the sky.",
+      "image": "https://static.wikia.nocookie.net/gurennlagann/images/4/44/Jeeha_Village.jpg/revision/latest/scale-to-width-down/640?cb=20180311101218"
     },
     "visual": {
       "icon": "🔩",
@@ -2089,6 +2228,7 @@
       "Director: Satoshi Nishimura",
       "Composer: Tsuneo Imahori"
     ],
+    "fandom": "trigun",
     "cover": {
       "wiki": "Trigun",
       "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Trigun_01_%28Tokuma_Shoten%29.png"
@@ -2105,11 +2245,13 @@
     "emoji": "🔫🧥🍩🏜️☮️",
     "item": {
       "name": "A red coat and a silver revolver",
-      "description": "Worn by a donut-loving pacifist who never kills."
+      "description": "Worn by a donut-loving pacifist who never kills.",
+      "image": "https://static.wikia.nocookie.net/trigun/images/2/21/1342404982415.jpg/revision/latest/scale-to-width-down/640?cb=20120909234001"
     },
     "location": {
       "name": "Gunsmoke",
-      "description": "A desert planet with twin suns, where humanity's ships crash-landed."
+      "description": "A desert planet with twin suns, where humanity's ships crash-landed.",
+      "image": "https://static.wikia.nocookie.net/trigun/images/f/ff/Gunsmoke_War.png/revision/latest?cb=20140203040130"
     },
     "visual": {
       "icon": "🧥",
@@ -2148,6 +2290,7 @@
       "Director: Masashi Ikeda",
       "Composer: Kaoru Wada"
     ],
+    "fandom": "inuyasha",
     "cover": {
       "wiki": "Inuyasha",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/67/Inuyasha_1.png"
@@ -2164,11 +2307,15 @@
     "emoji": "🐶👂🗡️💎⛩️",
     "item": {
       "name": "The Shikon Jewel",
-      "description": "A pink jewel that shatters into shards scattered across feudal Japan."
+      "description": "A pink jewel that shatters into shards scattered across feudal Japan.",
+      "src": "fandom:inuyasha:Shikon Jewel",
+      "image": "https://static.wikia.nocookie.net/inuyasha/images/6/6a/Shikon_no_Tama.jpg/revision/latest/scale-to-width-down/640?cb=20120119150230"
     },
     "location": {
       "name": "The Bone-Eater's Well",
-      "description": "A dry well at a family shrine that leads 500 years into the past."
+      "description": "A dry well at a family shrine that leads 500 years into the past.",
+      "src": "fandom:inuyasha:Bone-Eater's Well",
+      "image": "https://static.wikia.nocookie.net/inuyasha/images/6/67/Bone-Eater%27s_Well.png/revision/latest?cb=20130321205643"
     },
     "visual": {
       "icon": "👂",
@@ -2207,6 +2354,7 @@
       "Director: Shinji Ishihira",
       "Composer: Yasuharu Takanashi"
     ],
+    "fandom": "fairytail",
     "cover": {
       "wiki": "Fairy Tail",
       "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/FairyTail-Volume_1_Cover.jpg"
@@ -2219,11 +2367,14 @@
     "emoji": "🧚🔥🐱🐉🍺",
     "item": {
       "name": "A guild mark",
-      "description": "A fairy emblem stamped on a member's skin."
+      "description": "A fairy emblem stamped on a member's skin.",
+      "image": "https://static.wikia.nocookie.net/fairytail/images/6/64/Guild_in_Lucy%27s_imagination.jpg/revision/latest/scale-to-width-down/629?cb=20100310130624"
     },
     "location": {
       "name": "Magnolia",
-      "description": "A merchant town home to the rowdiest mage guild in Fiore."
+      "description": "A merchant town home to the rowdiest mage guild in Fiore.",
+      "src": "fandom:fairytail:Magnolia Town",
+      "image": "https://static.wikia.nocookie.net/fairytail/images/9/9b/Magnolia_Town.jpg/revision/latest/scale-to-width-down/640?cb=20100810081706"
     },
     "visual": {
       "icon": "🧚",
@@ -2266,6 +2417,7 @@
       "Director: Masaharu Watanabe",
       "Composer: Kenichiro Suehiro"
     ],
+    "fandom": "rezero",
     "cover": {
       "wiki": "Re:Zero",
       "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Re-Zero_kara_Hajimeru_Isekai_Seikatsu_light_novel_volume_1_cover.jpg"
@@ -2278,11 +2430,14 @@
     "emoji": "🔁💀🧝‍♀️👯🍎",
     "item": {
       "name": "A tracksuit",
-      "description": "The only clothes a shut-in teen has when he's summoned to another world."
+      "description": "The only clothes a shut-in teen has when he's summoned to another world.",
+      "image": "https://static.wikia.nocookie.net/rezero/images/6/62/LiM_Alcor.png/revision/latest/scale-to-width-down/394?cb=20211028123727"
     },
     "location": {
       "name": "The Roswaal Mansion",
-      "description": "A clown-like lord's estate, served by twin demon maids."
+      "description": "A clown-like lord's estate, served by twin demon maids.",
+      "src": "fandom:rezero:Roswaal Mansion",
+      "image": "https://static.wikia.nocookie.net/rezero/images/a/ac/Roswaals_Mansion_HQ.jpg/revision/latest/scale-to-width-down/640?cb=20180209110347"
     },
     "visual": {
       "icon": "🔁",
@@ -2321,6 +2476,7 @@
       "Director: Masayuki Kojima",
       "Composer: Kevin Penkin"
     ],
+    "fandom": "madeinabyss",
     "cover": {
       "wiki": "Made in Abyss",
       "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Made_in_Abyss_volume_1_cover.jpg"
@@ -2333,11 +2489,15 @@
     "emoji": "🕳️🤖👧🔦🌋",
     "item": {
       "name": "Cave raider whistles",
-      "description": "Ranked whistles worn around the neck, from red to white."
+      "description": "Ranked whistles worn around the neck, from red to white.",
+      "src": "fandom:madeinabyss:Whistle",
+      "image": "https://static.wikia.nocookie.net/madeinabyss/images/f/fa/Whistles.png/revision/latest/scale-to-width-down/640?cb=20241010065401"
     },
     "location": {
       "name": "The Abyss",
-      "description": "A bottomless pit full of relics; coming back up gets deadlier the deeper you go."
+      "description": "A bottomless pit full of relics; coming back up gets deadlier the deeper you go.",
+      "src": "fandom:madeinabyss:Abyss",
+      "image": "https://static.wikia.nocookie.net/madeinabyss/images/e/e6/Abyss_Anime_Square.png/revision/latest/scale-to-width-down/640?cb=20250607055924"
     },
     "visual": {
       "icon": "🕳️",
@@ -2379,6 +2539,7 @@
       "Based on CD Projekt Red's game",
       "Composer: Akira Yamaoka"
     ],
+    "fandom": "cyberpunk",
     "cover": {
       "wiki": "Cyberpunk: Edgerunners",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a1/Cyberpunk_Edgerunners_poster.jpg"
@@ -2391,11 +2552,14 @@
     "emoji": "🌙🦾💊🚀🌃",
     "item": {
       "name": "Sandevistan",
-      "description": "A spine implant that slows the world down for its user."
+      "description": "A spine implant that slows the world down for its user.",
+      "src": "fandom:cyberpunk:Sandevistan",
+      "image": "https://static.wikia.nocookie.net/cyberpunk/images/a/af/Neuralport_%26_Sandevistan_CPEDGE.jpg/revision/latest/scale-to-width-down/640?cb=20230917180702"
     },
     "location": {
       "name": "Night City",
-      "description": "A neon megacity where a street kid dreams of reaching the Moon."
+      "description": "A neon megacity where a street kid dreams of reaching the Moon.",
+      "image": "https://static.wikia.nocookie.net/cyberpunk/images/1/15/NightCity_Profile_Image.jpg/revision/latest/scale-to-width-down/480?cb=20180521132804"
     },
     "visual": {
       "icon": "🌙",
@@ -2433,6 +2597,7 @@
       "Writer: Kazuki Nakashima",
       "Composer: Hiroyuki Sawano"
     ],
+    "fandom": "kill-la-kill",
     "cover": {
       "wiki": "Kill la Kill",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Killlakillpromo.jpg"
@@ -2445,11 +2610,15 @@
     "emoji": "✂️👘🏫💪🔥",
     "item": {
       "name": "A Scissor Blade",
-      "description": "Half of a giant pair of red scissors, carried by a transfer student."
+      "description": "Half of a giant pair of red scissors, carried by a transfer student.",
+      "src": "fandom:kill-la-kill:Scissor Blade",
+      "image": "https://static.wikia.nocookie.net/kill-la-kill/images/1/10/OP2_Rending_Scissors.png/revision/latest/scale-to-width-down/234?cb=20240202073111"
     },
     "location": {
       "name": "Honnouji Academy",
-      "description": "A school ruled by a student council whose uniforms grant superpowers."
+      "description": "A school ruled by a student council whose uniforms grant superpowers.",
+      "src": "fandom:kill-la-kill:Honnouji Academy",
+      "image": "https://static.wikia.nocookie.net/kill-la-kill/images/5/51/Honnouji_Salute.png/revision/latest?cb=20140414023505"
     },
     "visual": {
       "icon": "✂️",
@@ -2545,6 +2714,7 @@
       "Director: Tatsuya Ishihara",
       "Second season: After Story"
     ],
+    "fandom": "clannad",
     "cover": {
       "wiki": "Clannad (visual novel)",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/cb/Clannad_game_cover.jpg"
@@ -2557,11 +2727,13 @@
     "emoji": "🍡🌸👨‍👧🏫😭",
     "item": {
       "name": "Dango",
-      "description": "Sweet rice dumplings that a shy girl sings about."
+      "description": "Sweet rice dumplings that a shy girl sings about.",
+      "image": "https://static.wikia.nocookie.net/c__/images/f/f1/100_Dango.png/revision/latest/scale-to-width-down/640?cb=20100512020231&path-prefix=clannad"
     },
     "location": {
       "name": "A town on a hill",
-      "description": "A sleepy town where a delinquent meets a girl repeating her senior year."
+      "description": "A sleepy town where a delinquent meets a girl repeating her senior year.",
+      "image": "https://static.wikia.nocookie.net/c__/images/e/e2/On_the_Hillside_Path_Where_the_Cherry_Blossoms_Flutter_Shot.png/revision/latest/scale-to-width-down/640?cb=20250103195756&path-prefix=clannad"
     },
     "visual": {
       "icon": "🍡",
@@ -2652,6 +2824,7 @@
       "Based on a story by Akiyuki Nosaka",
       "Composer: Michio Mamiya"
     ],
+    "fandom": "ghibli",
     "cover": {
       "wiki": "Grave of the Fireflies",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grave_of_the_Fireflies_Japanese_poster.jpg"
@@ -2668,7 +2841,9 @@
     },
     "location": {
       "name": "Kobe, 1945",
-      "description": "A port city firebombed during the war, where two orphans try to survive."
+      "description": "A port city firebombed during the war, where two orphans try to survive.",
+      "src": "wp:Kobe",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/20190901_Kobe_harbor-1.jpg/960px-20190901_Kobe_harbor-1.jpg"
     },
     "visual": {
       "icon": "🍬",
@@ -2708,6 +2883,7 @@
       "Based on the novel by Diana Wynne Jones",
       "Composer: Joe Hisaishi"
     ],
+    "fandom": "ghibli",
     "cover": {
       "wiki": "Howl's Moving Castle (film)",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/a0/Howls-moving-castleposter.jpg"
@@ -2720,11 +2896,14 @@
     "emoji": "🏰🔥👵🧙‍♂️🌸",
     "item": {
       "name": "Calcifer",
-      "description": "A wise-cracking fire demon who powers a walking house."
+      "description": "A wise-cracking fire demon who powers a walking house.",
+      "src": "fandom:ghibli:Calcifer",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/2/2a/Calcifer.png/revision/latest?cb=20110705204516"
     },
     "location": {
       "name": "A walking castle",
-      "description": "A clanking jumble of turrets on chicken legs, with a door that opens to four places."
+      "description": "A clanking jumble of turrets on chicken legs, with a door that opens to four places.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/e/e6/Howls_Castle.jpg/revision/latest?cb=20181028002157"
     },
     "visual": {
       "icon": "🔥",
@@ -2766,6 +2945,7 @@
       "Director: Keiichirō Saitō",
       "Fictional band: Kessoku Band"
     ],
+    "fandom": "bocchi-the-rock",
     "cover": {
       "wiki": "Bocchi the Rock!",
       "image": "https://upload.wikimedia.org/wikipedia/en/0/08/Bocchi_The_Rock%21_volume_1_cover.jpg"
@@ -2778,11 +2958,13 @@
     "emoji": "🎸😰🌀🎤🩷",
     "item": {
       "name": "A pink tracksuit",
-      "description": "Worn by an anxious guitar prodigy who hides in a box."
+      "description": "Worn by an anxious guitar prodigy who hides in a box.",
+      "image": "https://static.wikia.nocookie.net/bocchi-the-rock/images/6/63/Hitori_Gotoh.png/revision/latest/scale-to-width-down/640?cb=20251205100008"
     },
     "location": {
       "name": "STARRY",
-      "description": "A small live house in Shimokitazawa where a band plays its first gigs."
+      "description": "A small live house in Shimokitazawa where a band plays its first gigs.",
+      "image": "https://static.wikia.nocookie.net/bocchi-the-rock/images/b/bb/Starrysignday.png/revision/latest/scale-to-width-down/640?cb=20221221094148"
     },
     "visual": {
       "icon": "🎸",
@@ -2820,6 +3002,7 @@
       "Art: Yusuke Nomura",
       "Director: Tetsuaki Watanabe"
     ],
+    "fandom": "bluelock",
     "cover": {
       "wiki": "Blue Lock",
       "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/Blue_Lock_manga_volume_1.png"
@@ -2832,7 +3015,9 @@
     "emoji": "⚽🔒🔵👁️🏆",
     "item": {
       "name": "A football",
-      "description": "Fought over by 300 strikers locked in a facility to find the world's best."
+      "description": "Fought over by 300 strikers locked in a facility to find the world's best.",
+      "src": "wp:Ball (association football)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Adidas_Trionda_ball.jpg/960px-Adidas_Trionda_ball.jpg"
     },
     "location": {
       "name": "The Blue Lock facility",
@@ -2880,6 +3065,7 @@
       "Art: Mengo Yokoyari",
       "Director: Daisuke Hiramaki"
     ],
+    "fandom": "oshinoko",
     "cover": {
       "wiki": "Oshi no Ko",
       "image": "https://upload.wikimedia.org/wikipedia/en/1/1c/Oshi_no_Ko_Volume_1.jpg"
@@ -2892,17 +3078,3095 @@
     "emoji": "⭐👁️🎤🍓🔪",
     "item": {
       "name": "Star-shaped pupils",
-      "description": "A famous idol and her children all have a star in their eyes."
+      "description": "A famous idol and her children all have a star in their eyes.",
+      "image": "https://static.wikia.nocookie.net/oshi_no_ko/images/9/93/Frill_Shiranui_Anime.png/revision/latest/scale-to-width-down/471?cb=20250622080245"
     },
     "location": {
       "name": "Strawberry Productions",
-      "description": "A small talent agency in Tokyo managing a superstar idol."
+      "description": "A small talent agency in Tokyo managing a superstar idol.",
+      "image": "https://static.wikia.nocookie.net/oshi_no_ko/images/8/83/Ichigo_Productions_Anime.png/revision/latest/scale-to-width-down/640?cb=20231011030858"
     },
     "visual": {
       "icon": "⭐",
       "colors": [
         "#ec4899",
         "#7c3aed"
+      ]
+    }
+  },
+  {
+    "id": "a-dragonball",
+    "name": "Dragon Ball",
+    "domain": "anime",
+    "year": 1986,
+    "genres": [
+      "Adventure",
+      "Shōnen"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Akira Toriyama",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Goku",
+      "Bulma",
+      "Master Roshi",
+      "Krillin"
+    ],
+    "themes": [
+      "Quest",
+      "Martial arts"
+    ],
+    "credits": [
+      "Original manga: Akira Toriyama",
+      "Director: Minoru Okazaki"
+    ],
+    "fandom": "dragonball",
+    "cover": {
+      "wiki": "Dragon Ball (TV series)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Dragon_Ball_anime_logo.png/960px-Dragon_Ball_anime_logo.png"
+    },
+    "audio": {
+      "clue": "A cheerful opening about mysterious adventures and gathering seven orbs.",
+      "query": "Dragon Ball opening Makafushigi Adventure",
+      "youtubeId": "FJqGirLjQn4"
+    },
+    "emoji": "🐒🐉⭐☁️👦",
+    "item": {
+      "name": "Power Pole",
+      "description": "A red staff that extends on command.",
+      "image": "https://static.wikia.nocookie.net/dragonball/images/2/23/Nyoibo.PNG/revision/latest?cb=20090512043230"
+    },
+    "location": {
+      "name": "Kame House",
+      "description": "A pink house on a tiny island, home of a turtle hermit.",
+      "image": "https://static.wikia.nocookie.net/dragonball/images/8/88/Kame_House_Episode_16.png/revision/latest/scale-to-width-down/379?cb=20250309145815"
+    },
+    "visual": {
+      "icon": "☁️",
+      "colors": [
+        "#ea580c",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-digimon",
+    "name": "Digimon Adventure",
+    "domain": "anime",
+    "year": 1999,
+    "genres": [
+      "Adventure"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Hiroyuki Kakudō",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Tai Kamiya",
+      "Agumon",
+      "Matt Ishida",
+      "Gabumon"
+    ],
+    "themes": [
+      "Digital monsters",
+      "Summer camp"
+    ],
+    "credits": [
+      "Director: Hiroyuki Kakudō",
+      "Character design: Katsuyoshi Nakatsuru"
+    ],
+    "fandom": "digimon",
+    "cover": {
+      "wiki": "Digimon Adventure"
+    },
+    "audio": {
+      "clue": "An energetic J-rock opening that kicks off a summer-camp adventure in another world.",
+      "query": "Digimon Adventure opening Butter-Fly",
+      "youtubeId": "jB7ecG_12x8"
+    },
+    "emoji": "🦖📱🏕️🌐💥",
+    "item": {
+      "name": "Digivice",
+      "description": "A small handheld device that lets digital partners evolve.",
+      "image": "https://static.wikia.nocookie.net/digimon/images/3/31/Digivice_%28Adventure%29_%28Tai%29_t.png/revision/latest?cb=20111230013552"
+    },
+    "location": {
+      "name": "File Island",
+      "description": "The first island of the Digital World, home to strange machines.",
+      "image": "https://static.wikia.nocookie.net/digimon/images/e/ec/File_Island_Bo-306_%28DM%29.jpg/revision/latest?cb=20140308190407"
+    },
+    "visual": {
+      "icon": "📱",
+      "colors": [
+        "#ea580c",
+        "#0ea5e9"
+      ]
+    }
+  },
+  {
+    "id": "a-yugioh",
+    "name": "Yu-Gi-Oh! Duel Monsters",
+    "aliases": [
+      "yugioh",
+      "yu-gi-oh"
+    ],
+    "domain": "anime",
+    "year": 2000,
+    "genres": [
+      "Adventure",
+      "Shōnen"
+    ],
+    "studio": "Studio Gallop",
+    "creator": "Kazuki Takahashi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yugi Muto",
+      "Seto Kaiba",
+      "Joey Wheeler"
+    ],
+    "themes": [
+      "Card games",
+      "Ancient Egypt"
+    ],
+    "credits": [
+      "Original manga: Kazuki Takahashi",
+      "Director: Kunihisa Sugishima"
+    ],
+    "fandom": "yugioh",
+    "cover": {
+      "wiki": "Yu-Gi-Oh! Duel Monsters",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Yu-Gi-Oh%21_DVD_vol_1.jpg"
+    },
+    "quote": {
+      "text": "It's time to duel!",
+      "speaker": "A boy with spiky tricolour hair"
+    },
+    "audio": {
+      "clue": "A dramatic opening for a tournament of card duels.",
+      "query": "Yu-Gi-Oh Duel Monsters opening theme",
+      "youtubeId": "WHUcHw7j2Mc"
+    },
+    "emoji": "🃏🔺👁️🐉🏆",
+    "item": {
+      "name": "Millennium Puzzle",
+      "description": "An inverted golden pyramid pendant holding a pharaoh's spirit.",
+      "image": "https://static.wikia.nocookie.net/yugioh/images/a/a6/MillenniumPuzzle.jpg/revision/latest?cb=20070805234053"
+    },
+    "location": {
+      "name": "Domino City",
+      "description": "A city whose card tournaments decide the fate of the world.",
+      "image": "https://static.wikia.nocookie.net/yugioh/images/5/58/NeoDominoSprawl.jpg/revision/latest/scale-to-width-down/640?cb=20080430193245"
+    },
+    "visual": {
+      "icon": "🔺",
+      "colors": [
+        "#4c1d95",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-gundam",
+    "name": "Mobile Suit Gundam",
+    "aliases": [
+      "gundam",
+      "mobile suit gundam 0079"
+    ],
+    "domain": "anime",
+    "year": 1979,
+    "genres": [
+      "Mecha",
+      "War"
+    ],
+    "studio": "Sunrise",
+    "creator": "Yoshiyuki Tomino",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Amuro Ray",
+      "Char Aznable",
+      "Bright Noa"
+    ],
+    "themes": [
+      "Space war",
+      "Newtypes"
+    ],
+    "credits": [
+      "Director: Yoshiyuki Tomino",
+      "Mecha design: Kunio Okawara"
+    ],
+    "fandom": "gundam",
+    "cover": {
+      "wiki": "Mobile Suit Gundam",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d5/MOBILESUITGUNDAMPoster.jpg"
+    },
+    "quote": {
+      "text": "Not even my father ever hit me!",
+      "speaker": "A teenage pilot, after being slapped"
+    },
+    "audio": {
+      "clue": "A heroic 70s anime opening urging a white robot to stand up.",
+      "query": "Mobile Suit Gundam opening Tobe Gundam",
+      "youtubeId": "Mpmr5UCkZvM"
+    },
+    "emoji": "🤖🚀🛰️⭐💥",
+    "item": {
+      "name": "RX-78-2 Gundam",
+      "description": "A white, blue and red humanoid war machine.",
+      "image": "https://static.wikia.nocookie.net/gundam/images/d/d9/RX-78-02_Origin.png/revision/latest/scale-to-width-down/387?cb=20250217195429"
+    },
+    "location": {
+      "name": "Side 7",
+      "description": "A space colony where a boy stumbles into the cockpit of a prototype.",
+      "image": "https://static.wikia.nocookie.net/gundam/images/4/49/Attack_on_Side_7_01_%28Gundam_Perfect_FIles%29.jpeg/revision/latest/scale-to-width-down/399?cb=20221129134407"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#1d4ed8",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-berserk",
+    "name": "Berserk",
+    "domain": "anime",
+    "year": 1997,
+    "genres": [
+      "Dark Fantasy"
+    ],
+    "studio": "OLM",
+    "creator": "Kentaro Miura",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Guts",
+      "Griffith",
+      "Casca"
+    ],
+    "themes": [
+      "Ambition",
+      "Betrayal"
+    ],
+    "credits": [
+      "Original manga: Kentaro Miura",
+      "Director: Naohito Takahashi",
+      "Music: Susumu Hirasawa"
+    ],
+    "fandom": "berserk",
+    "cover": {
+      "wiki": "Berserk (1997 TV series)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Berserk_%281997%29_logo.png"
+    },
+    "audio": {
+      "clue": "An eerie electronic track by Susumu Hirasawa that fans call the ultimate dark-fantasy anthem.",
+      "query": "Berserk Forces Susumu Hirasawa",
+      "youtubeId": "jwu6YmLEBj8"
+    },
+    "emoji": "🗡️🦅🌑🩸⚫",
+    "item": {
+      "name": "Dragon Slayer",
+      "description": "A sword far too big to be called a sword: a heap of raw iron.",
+      "image": "https://static.wikia.nocookie.net/berserk/images/c/c8/Manga_E1.png/revision/latest/scale-to-width-down/640?cb=20190501221451"
+    },
+    "location": {
+      "name": "Midland",
+      "description": "A medieval kingdom at war, where a mercenary band rises.",
+      "image": "https://static.wikia.nocookie.net/berserk/images/f/f1/Manga_E13_Midland_Flag.png/revision/latest?cb=20170610234226"
+    },
+    "visual": {
+      "icon": "🦅",
+      "colors": [
+        "#0a0a0a",
+        "#991b1b"
+      ]
+    }
+  },
+  {
+    "id": "a-champloo",
+    "name": "Samurai Champloo",
+    "domain": "anime",
+    "year": 2004,
+    "genres": [
+      "Action",
+      "Historical"
+    ],
+    "studio": "Manglobe",
+    "creator": "Shinichirō Watanabe",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Mugen",
+      "Jin",
+      "Fuu"
+    ],
+    "themes": [
+      "Hip-hop",
+      "Edo period"
+    ],
+    "credits": [
+      "Director: Shinichirō Watanabe",
+      "Music: Nujabes, Fat Jon, Force of Nature"
+    ],
+    "cover": {
+      "wiki": "Samurai Champloo",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Samurai_Champloo_key_art.jpg"
+    },
+    "audio": {
+      "clue": "Laid-back hip-hop beats and scratching over an Edo-period road trip.",
+      "query": "Samurai Champloo opening Battlecry Nujabes",
+      "youtubeId": "Eq6EYcpWB_c"
+    },
+    "emoji": "🗡️🌻🎧🍡🚶",
+    "item": {
+      "name": "A sunflower",
+      "description": "A girl hires two swordsmen to help her find the samurai who smells of these flowers."
+    },
+    "location": {
+      "name": "Nagasaki",
+      "description": "The port city at the end of a long journey across Japan.",
+      "src": "wp:Nagasaki",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/Nagasaki_City_View_from_Glover_Garden%2C_Nagasaki_2014.jpg/960px-Nagasaki_City_View_from_Glover_Garden%2C_Nagasaki_2014.jpg"
+    },
+    "visual": {
+      "icon": "🌻",
+      "colors": [
+        "#78350f",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-kenshin",
+    "name": "Rurouni Kenshin",
+    "aliases": [
+      "samurai x"
+    ],
+    "domain": "anime",
+    "year": 1996,
+    "genres": [
+      "Action",
+      "Historical"
+    ],
+    "studio": "Studio Gallop",
+    "creator": "Nobuhiro Watsuki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kenshin Himura",
+      "Kaoru Kamiya",
+      "Sanosuke"
+    ],
+    "themes": [
+      "Atonement",
+      "Meiji era"
+    ],
+    "credits": [
+      "Original manga: Nobuhiro Watsuki",
+      "Director: Kazuhiro Furuhashi"
+    ],
+    "fandom": "kenshin",
+    "cover": {
+      "wiki": "Rurouni Kenshin",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Rurouni_Kenshin_28.png"
+    },
+    "quote": {
+      "text": "Oro?",
+      "speaker": "A wandering swordsman with a cross-shaped scar"
+    },
+    "audio": {
+      "clue": "A breezy pop-rock first opening sung by Judy and Mary.",
+      "query": "Rurouni Kenshin opening Sobakasu",
+      "youtubeId": "YvvlGma6COM"
+    },
+    "emoji": "⚔️🌸🙇✝️🏯",
+    "item": {
+      "name": "Sakabatō",
+      "description": "A reverse-blade sword that cannot kill — on purpose.",
+      "image": "https://static.wikia.nocookie.net/kenshin/images/d/d6/004r.jpg/revision/latest/scale-to-width-down/640?cb=20130917155002"
+    },
+    "location": {
+      "name": "Kamiya Dojo",
+      "description": "A struggling sword school in Tokyo where a wanderer stays.",
+      "image": "https://static.wikia.nocookie.net/kenshin/images/8/87/RK21-12.png/revision/latest?cb=20230529151022"
+    },
+    "visual": {
+      "icon": "⚔️",
+      "colors": [
+        "#991b1b",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-yuyu",
+    "name": "Yu Yu Hakusho",
+    "domain": "anime",
+    "year": 1992,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "Pierrot",
+    "creator": "Yoshihiro Togashi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yusuke Urameshi",
+      "Kurama",
+      "Hiei",
+      "Kuwabara"
+    ],
+    "themes": [
+      "Spirit detective",
+      "Tournaments"
+    ],
+    "credits": [
+      "Original manga: Yoshihiro Togashi",
+      "Director: Noriyuki Abe"
+    ],
+    "fandom": "yuyuhakusho",
+    "cover": {
+      "wiki": "YuYu Hakusho",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/YuYu_Hakusho_1.png"
+    },
+    "audio": {
+      "clue": "A rousing rock opening about smiling bravely through the fight.",
+      "query": "Yu Yu Hakusho opening Hohoemi no Bakudan",
+      "youtubeId": "urZWmEgm72Q"
+    },
+    "emoji": "👊👻🦊🔥🏆",
+    "item": {
+      "name": "Spirit Gun",
+      "description": "A blast of spirit energy fired from the index finger.",
+      "image": "https://static.wikia.nocookie.net/yuyuhakusho/images/3/33/Yusuke_%282018_OVA%29_1.png/revision/latest/scale-to-width-down/640?cb=20240521202832"
+    },
+    "location": {
+      "name": "Spirit World",
+      "description": "The afterlife bureaucracy run by a toddler prince.",
+      "image": "https://static.wikia.nocookie.net/yuyuhakusho/images/5/57/Spirit_World_1_YYH.png/revision/latest/scale-to-width-down/640?cb=20230916011000"
+    },
+    "visual": {
+      "icon": "👻",
+      "colors": [
+        "#1d4ed8",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "a-slamdunk",
+    "name": "Slam Dunk",
+    "domain": "anime",
+    "year": 1993,
+    "genres": [
+      "Sports"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Takehiko Inoue",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Hanamichi Sakuragi",
+      "Kaede Rukawa",
+      "Haruko Akagi"
+    ],
+    "themes": [
+      "Basketball",
+      "Delinquents"
+    ],
+    "credits": [
+      "Original manga: Takehiko Inoue",
+      "Director: Nobutaka Nishizawa"
+    ],
+    "fandom": "slamdunk",
+    "cover": {
+      "wiki": "Slam Dunk (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f7/Slam_Dunk_%28manga%29_1.png"
+    },
+    "audio": {
+      "clue": "A 90s J-rock opening about not being able to stop loving you.",
+      "query": "Slam Dunk opening Kimi ga Suki da to Sakebitai",
+      "youtubeId": "m_QP5_rdH_g"
+    },
+    "emoji": "🏀🔴🦊🏫💪",
+    "item": {
+      "name": "A basketball",
+      "description": "Held by a red-haired delinquent who joins the team to impress a girl.",
+      "src": "wp:Basketball (ball)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png"
+    },
+    "location": {
+      "name": "Shohoku High School",
+      "description": "A Kanagawa school whose basketball team aims for the nationals.",
+      "image": "https://static.wikia.nocookie.net/slamdunk/images/b/b0/ShohokuHigh.png/revision/latest?cb=20141123102719"
+    },
+    "visual": {
+      "icon": "🏀",
+      "colors": [
+        "#b91c1c",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-psychopass",
+    "name": "Psycho-Pass",
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Sci-Fi",
+      "Thriller"
+    ],
+    "studio": "Production I.G",
+    "creator": "Gen Urobuchi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Akane Tsunemori",
+      "Shinya Kogami",
+      "Shogo Makishima"
+    ],
+    "themes": [
+      "Surveillance",
+      "Justice"
+    ],
+    "credits": [
+      "Writer: Gen Urobuchi",
+      "Director: Naoyoshi Shiotani"
+    ],
+    "fandom": "psychopass",
+    "cover": {
+      "wiki": "Psycho-Pass",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/88/Psycho-Pass_key_visual.png"
+    },
+    "audio": {
+      "clue": "An intense electronic rock opening by Ling Tosite Sigure.",
+      "query": "Psycho-Pass opening Abnormalize",
+      "youtubeId": "rxuR-52cyNw"
+    },
+    "emoji": "🔫🧠📊👁️🏙️",
+    "item": {
+      "name": "Dominator",
+      "description": "A gun that reads a target's crime coefficient before firing.",
+      "image": "https://static.wikia.nocookie.net/psychopass/images/a/a9/0101-15.png/revision/latest/scale-to-width-down/640?cb=20150108220340"
+    },
+    "location": {
+      "name": "Public Safety Bureau",
+      "description": "The police HQ of a city ruled by a psychological scanning system."
+    },
+    "visual": {
+      "icon": "🧠",
+      "colors": [
+        "#0f172a",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "a-drstone",
+    "name": "Dr. Stone",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Riichiro Inagaki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Senku Ishigami",
+      "Chrome",
+      "Tsukasa Shishio"
+    ],
+    "themes": [
+      "Science",
+      "Rebuilding civilisation"
+    ],
+    "credits": [
+      "Story: Riichiro Inagaki",
+      "Art: Boichi"
+    ],
+    "fandom": "dr-stone",
+    "cover": {
+      "wiki": "Dr. Stone",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/29/Doctor_stone.jpg"
+    },
+    "quote": {
+      "text": "This is exhilarating!",
+      "speaker": "A teenage genius in a world of stone"
+    },
+    "audio": {
+      "clue": "A punchy rock opening as a genius rebuilds civilisation from scratch.",
+      "query": "Dr Stone opening Good Morning World",
+      "youtubeId": "yQEUGxngQN4"
+    },
+    "emoji": "🗿🧪🔬🔥🌍",
+    "item": {
+      "name": "Revival Fluid",
+      "description": "A nitric-acid-and-alcohol mix that frees people from stone.",
+      "image": "https://static.wikia.nocookie.net/dr-stone/images/f/fb/Stone_Formula.png/revision/latest/scale-to-width-down/640?cb=20190712205930"
+    },
+    "location": {
+      "name": "Ishigami Village",
+      "description": "A primitive village descended from astronauts.",
+      "image": "https://static.wikia.nocookie.net/dr-stone/images/7/7b/Ishigami_Village_%28Anime%29.png/revision/latest/scale-to-width-down/640?cb=20201210102315"
+    },
+    "visual": {
+      "icon": "🧪",
+      "colors": [
+        "#14532d",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "a-promised",
+    "name": "The Promised Neverland",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Thriller",
+      "Dark Fantasy"
+    ],
+    "studio": "CloverWorks",
+    "creator": "Kaiu Shirai",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Emma",
+      "Norman",
+      "Ray",
+      "Isabella"
+    ],
+    "themes": [
+      "Escape",
+      "Orphanage"
+    ],
+    "credits": [
+      "Story: Kaiu Shirai",
+      "Art: Posuka Demizu"
+    ],
+    "fandom": "yakusokunoneverland",
+    "cover": {
+      "wiki": "The Promised Neverland",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/44/The_Promised_Neverland%2C_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A dark, tense rock opening by UVERworld.",
+      "query": "Promised Neverland opening Touch off",
+      "youtubeId": "yB2t5y7ujlg"
+    },
+    "emoji": "🏠👧🔢🌳👹",
+    "item": {
+      "name": "Tracking chip",
+      "description": "Hidden in the ear of every child, numbered on the neck.",
+      "image": "https://static.wikia.nocookie.net/yakusokunoneverland/images/e/e9/Transmitter.png/revision/latest?cb=20170729114831"
+    },
+    "location": {
+      "name": "Grace Field House",
+      "description": "A seemingly idyllic orphanage surrounded by a forest and a wall.",
+      "image": "https://static.wikia.nocookie.net/yakusokunoneverland/images/5/5f/Grace_Field_House.PNG/revision/latest?cb=20160910201508"
+    },
+    "visual": {
+      "icon": "🔢",
+      "colors": [
+        "#14532d",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-kaguya",
+    "name": "Kaguya-sama: Love Is War",
+    "aliases": [
+      "kaguya sama"
+    ],
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Romance",
+      "Comedy"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Aka Akasaka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kaguya Shinomiya",
+      "Miyuki Shirogane",
+      "Chika Fujiwara"
+    ],
+    "themes": [
+      "Pride",
+      "Mind games"
+    ],
+    "credits": [
+      "Original manga: Aka Akasaka",
+      "Director: Mamoru Hatakeyama"
+    ],
+    "cover": {
+      "wiki": "Kaguya-sama: Love Is War",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Kaguya-sama_-_Love_is_War%2C_volume_1.jpg"
+    },
+    "quote": {
+      "text": "How cute.",
+      "speaker": "A student-council vice-president with her nose in the air"
+    },
+    "audio": {
+      "clue": "A jazzy, bouncy opening by Masayuki Suzuki.",
+      "query": "Kaguya-sama opening Love Dramatic",
+      "youtubeId": "BC4zaaiXNMI"
+    },
+    "emoji": "❤️🧠🏫🎀♟️",
+    "item": {
+      "name": "Student council seal",
+      "description": "The official stamp of an elite academy's student council."
+    },
+    "location": {
+      "name": "Shuchiin Academy",
+      "description": "An elite academy whose council president and vice-president refuse to confess."
+    },
+    "visual": {
+      "icon": "♟️",
+      "colors": [
+        "#7f1d1d",
+        "#fbcfe8"
+      ]
+    }
+  },
+  {
+    "id": "a-yourlie",
+    "name": "Your Lie in April",
+    "aliases": [
+      "shigatsu wa kimi no uso"
+    ],
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Music"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Naoshi Arakawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kōsei Arima",
+      "Kaori Miyazono"
+    ],
+    "themes": [
+      "Grief",
+      "Music"
+    ],
+    "credits": [
+      "Original manga: Naoshi Arakawa",
+      "Director: Kyōhei Ishiguro"
+    ],
+    "fandom": "shigatsu-wa-kimi-no-uso",
+    "cover": {
+      "wiki": "Your Lie in April",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/de/Your_Lie_in_April_Manga_cover.png"
+    },
+    "audio": {
+      "clue": "A bright pop-rock opening under falling cherry blossoms.",
+      "query": "Your Lie in April opening Hikaru Nara",
+      "youtubeId": "fWRPihlt2ho"
+    },
+    "emoji": "🎹🎻🌸😢✉️",
+    "item": {
+      "name": "A violin",
+      "description": "Played freely, rule-breaking, by a girl who drags a pianist back to music.",
+      "src": "wp:Violin",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Violin_VL100.png"
+    },
+    "location": {
+      "name": "A concert hall",
+      "description": "A competition stage where a former prodigy freezes at the piano.",
+      "src": "wp:Concert hall",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Teatro_dal_Verme_Interior_Circa_1875.jpg"
+    },
+    "visual": {
+      "icon": "🎻",
+      "colors": [
+        "#fbcfe8",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-silentvoice",
+    "name": "A Silent Voice",
+    "aliases": [
+      "koe no katachi"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Drama"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Naoko Yamada",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Shoya Ishida",
+      "Shoko Nishimiya"
+    ],
+    "themes": [
+      "Bullying",
+      "Redemption"
+    ],
+    "credits": [
+      "Director: Naoko Yamada",
+      "Original manga: Yoshitoki Ōima"
+    ],
+    "fandom": "koenokatachi",
+    "cover": {
+      "wiki": "A Silent Voice (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/A_Silent_Voice_Film_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A gentle ambient piano score, with the Who's 'My Generation' at the start.",
+      "query": "A Silent Voice lit kensuke ushio",
+      "youtubeId": "S2jEBRVSo90"
+    },
+    "emoji": "🧏‍♀️📓🌉🎆🐟",
+    "item": {
+      "name": "A notebook",
+      "description": "Used to communicate by a deaf transfer student — and thrown into a fountain.",
+      "src": "wp:Notebook",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Notebooks.jpg/960px-Notebooks.jpg"
+    },
+    "location": {
+      "name": "Ōgaki",
+      "description": "A real city in Gifu whose bridges and river appear throughout.",
+      "src": "wp:Ōgaki",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/48/%E8%88%B9%E7%94%BA%E6%B8%AF%E8%B7%A1.jpg"
+    },
+    "visual": {
+      "icon": "📓",
+      "colors": [
+        "#38bdf8",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-laputa",
+    "name": "Castle in the Sky",
+    "aliases": [
+      "laputa"
+    ],
+    "domain": "anime",
+    "year": 1986,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Pazu",
+      "Sheeta",
+      "Muska",
+      "Dola"
+    ],
+    "themes": [
+      "Lost civilisation",
+      "Greed"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi"
+    ],
+    "fandom": "ghibli",
+    "cover": {
+      "wiki": "Castle in the Sky",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f5/Castle_in_the_Sky_%281986%29.png"
+    },
+    "audio": {
+      "clue": "A soaring, wistful theme as a girl drifts down from the sky holding a glowing stone.",
+      "query": "Castle in the Sky Carrying You",
+      "youtubeId": "Ld02uYVAW18"
+    },
+    "emoji": "🏰☁️💎🤖✈️",
+    "item": {
+      "name": "Aetherium crystal",
+      "description": "A glowing blue stone that lets its wearer float.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/4/40/Sheeta_and_necklace.jpg/revision/latest?cb=20170420203050"
+    },
+    "location": {
+      "name": "Laputa",
+      "description": "A floating castle hidden inside a storm, tended by gentle robots.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/e/e7/Laputa.png/revision/latest/scale-to-width-down/640?cb=20181216165211"
+    },
+    "visual": {
+      "icon": "☁️",
+      "colors": [
+        "#0ea5e9",
+        "#86efac"
+      ]
+    }
+  },
+  {
+    "id": "a-kiki",
+    "name": "Kiki's Delivery Service",
+    "domain": "anime",
+    "year": 1989,
+    "genres": [
+      "Fantasy",
+      "Family"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Kiki",
+      "Jiji",
+      "Tombo",
+      "Osono"
+    ],
+    "themes": [
+      "Independence",
+      "Burnout"
+    ],
+    "credits": [
+      "Director: Hayao Miyazaki",
+      "Based on a novel by Eiko Kadono"
+    ],
+    "fandom": "ghibli",
+    "cover": {
+      "wiki": "Kiki's Delivery Service",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/07/Kiki%27s_Delivery_Service_%28Movie%29.jpg"
+    },
+    "audio": {
+      "clue": "A breezy waltz as a young witch flies over a seaside town on her broom.",
+      "query": "Kiki's Delivery Service A Town with an Ocean View",
+      "youtubeId": "pR4iCWB-VVQ"
+    },
+    "emoji": "🧹🐈‍⬛🍞📦🌊",
+    "item": {
+      "name": "A broomstick",
+      "description": "Inherited from a mother, flown by a 13-year-old witch on her year away.",
+      "src": "wp:Broom",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/BroomsforSale.jpg"
+    },
+    "location": {
+      "name": "Koriko",
+      "description": "A seaside town with a clock tower, where a witch opens a delivery service.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/0/05/Koriko.jpg/revision/latest?cb=20180915233641"
+    },
+    "visual": {
+      "icon": "🧹",
+      "colors": [
+        "#1e3a8a",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "a-nausicaa",
+    "name": "Nausicaä of the Valley of the Wind",
+    "aliases": [
+      "nausicaa"
+    ],
+    "domain": "anime",
+    "year": 1984,
+    "genres": [
+      "Fantasy",
+      "Post-apocalyptic"
+    ],
+    "studio": "Topcraft",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Nausicaä",
+      "Lord Yupa",
+      "Kushana"
+    ],
+    "themes": [
+      "Ecology",
+      "War"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi"
+    ],
+    "fandom": "ghibli",
+    "cover": {
+      "wiki": "Nausicaä of the Valley of the Wind (film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/Nausicaaposter.jpg"
+    },
+    "audio": {
+      "clue": "A child's voice hums a melancholy lullaby over a toxic jungle.",
+      "query": "Nausicaa Requiem Lala-lala",
+      "youtubeId": "qx2b-nK_Q8o"
+    },
+    "emoji": "🪲🌬️🌳✈️👸",
+    "item": {
+      "name": "Mehve",
+      "description": "A small jet-powered glider ridden standing up."
+    },
+    "location": {
+      "name": "Valley of the Wind",
+      "description": "A small kingdom protected from a toxic jungle by sea winds."
+    },
+    "visual": {
+      "icon": "🪲",
+      "colors": [
+        "#0c4a6e",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-porcorosso",
+    "name": "Porco Rosso",
+    "domain": "anime",
+    "year": 1992,
+    "genres": [
+      "Adventure",
+      "Comedy"
+    ],
+    "studio": "Studio Ghibli",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Porco Rosso",
+      "Fio Piccolo",
+      "Gina",
+      "Curtis"
+    ],
+    "themes": [
+      "Aviation",
+      "Fascism"
+    ],
+    "credits": [
+      "Writer & director: Hayao Miyazaki",
+      "Composer: Joe Hisaishi"
+    ],
+    "fandom": "ghibli",
+    "cover": {
+      "wiki": "Porco Rosso",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/Porco_Rosso_%28Movie_Poster%29.jpg"
+    },
+    "quote": {
+      "text": "I'd rather be a pig than a fascist.",
+      "speaker": "A bounty hunter with a pig's face"
+    },
+    "audio": {
+      "clue": "A nostalgic, accordion-tinged waltz over the Adriatic in the 1920s.",
+      "query": "Porco Rosso The Bygone Days",
+      "youtubeId": "Htq2EUgcrKE"
+    },
+    "emoji": "🐷✈️🌊🍷🔴",
+    "item": {
+      "name": "Savoia S.21",
+      "description": "A red seaplane flown by a cursed WWI ace.",
+      "src": "wp:Savoia S.21",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/83/SIAI_S.21.jpg"
+    },
+    "location": {
+      "name": "Hotel Adriano",
+      "description": "An island hotel where sky pirates and aviators drink and listen to a singer.",
+      "image": "https://static.wikia.nocookie.net/studio-ghibli/images/4/47/Porco-rosso-hotel-adriano.jpg/revision/latest/scale-to-width-down/640?cb=20181209092258"
+    },
+    "visual": {
+      "icon": "🐷",
+      "colors": [
+        "#b91c1c",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-blackclover",
+    "name": "Black Clover",
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Fantasy",
+      "Shōnen"
+    ],
+    "studio": "Pierrot",
+    "creator": "Yūki Tabata",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Asta",
+      "Yuno",
+      "Yami Sukehiro",
+      "Noelle"
+    ],
+    "themes": [
+      "Rivalry",
+      "No magic"
+    ],
+    "credits": [
+      "Original manga: Yūki Tabata",
+      "Director: Tatsuya Yoshihara"
+    ],
+    "fandom": "blackclover",
+    "cover": {
+      "wiki": "Black Clover",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/69/Black_Clover%2C_volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A high-energy rock opening by Kankaku Piero.",
+      "query": "Black Clover opening Haruka Mirai",
+      "youtubeId": "uWPbjtsQjGc"
+    },
+    "emoji": "📕🍀🗡️🐂👑",
+    "item": {
+      "name": "Grimoire",
+      "description": "A magic book given at 15; a rare one bears a five-leaf clover.",
+      "image": "https://static.wikia.nocookie.net/blackclover/images/d/d5/Grimoire_Acceptance_Ceremony.png/revision/latest/scale-to-width-down/372?cb=20170407194441"
+    },
+    "location": {
+      "name": "Clover Kingdom",
+      "description": "A kingdom where status depends on magic power.",
+      "image": "https://static.wikia.nocookie.net/blackclover/images/8/8e/Clover_Kingdom_layout.png/revision/latest/scale-to-width-down/640?cb=20180604152547"
+    },
+    "visual": {
+      "icon": "🍀",
+      "colors": [
+        "#0a0a0a",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "a-hellsing",
+    "name": "Hellsing",
+    "aliases": [
+      "hellsing ultimate"
+    ],
+    "domain": "anime",
+    "year": 2001,
+    "genres": [
+      "Action",
+      "Horror"
+    ],
+    "studio": "Gonzo",
+    "creator": "Kouta Hirano",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Alucard",
+      "Seras Victoria",
+      "Integra Hellsing",
+      "The Major"
+    ],
+    "themes": [
+      "Vampires",
+      "War"
+    ],
+    "credits": [
+      "Original manga: Kouta Hirano",
+      "Director: Umanosuke Iida"
+    ],
+    "fandom": "hellsing",
+    "cover": {
+      "wiki": "Hellsing (TV series)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/02/Hellsing_1.png"
+    },
+    "audio": {
+      "clue": "A jazzy, smoky opening theme by Yasushi Ishii.",
+      "query": "Hellsing Logos Naki World",
+      "youtubeId": "9aZZje-RzF0"
+    },
+    "emoji": "🧛🔫🇬🇧✝️🩸",
+    "item": {
+      "name": "Jackal",
+      "description": "An enormous black pistol firing explosive silver rounds.",
+      "image": "https://static.wikia.nocookie.net/hellsing/images/f/ff/JackalOVA.png/revision/latest/scale-to-width-down/640?cb=20250403130243"
+    },
+    "location": {
+      "name": "Hellsing Manor",
+      "description": "A London estate of a secret order that hunts monsters.",
+      "image": "https://static.wikia.nocookie.net/hellsing/images/a/aa/Manor.png/revision/latest/scale-to-width-down/640?cb=20230313125508"
+    },
+    "visual": {
+      "icon": "🧛",
+      "colors": [
+        "#7f1d1d",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-monster",
+    "name": "Monster",
+    "domain": "anime",
+    "year": 2004,
+    "genres": [
+      "Thriller",
+      "Psychological"
+    ],
+    "studio": "Madhouse",
+    "creator": "Naoki Urasawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kenzo Tenma",
+      "Johan Liebert",
+      "Nina Fortner",
+      "Inspector Lunge"
+    ],
+    "themes": [
+      "Morality",
+      "Identity"
+    ],
+    "credits": [
+      "Original manga: Naoki Urasawa",
+      "Director: Masayuki Kojima"
+    ],
+    "fandom": "monster",
+    "cover": {
+      "wiki": "Monster (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/00/Monster_manga_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A haunting, gothic ending theme sung by David Sylvian.",
+      "query": "Monster anime ending For the Love of Life",
+      "youtubeId": "ruQsv709MA0"
+    },
+    "emoji": "🩺🔫🇩🇪👦👁️",
+    "item": {
+      "name": "A scalpel",
+      "description": "Held by a Japanese neurosurgeon who saved the wrong boy.",
+      "src": "wp:Scalpel",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/92/Various_scalpels.png"
+    },
+    "location": {
+      "name": "Kinderheim 511",
+      "description": "A sinister East German orphanage for experiments."
+    },
+    "visual": {
+      "icon": "🩺",
+      "colors": [
+        "#1c1917",
+        "#a8a29e"
+      ]
+    }
+  },
+  {
+    "id": "a-erased",
+    "name": "Erased",
+    "aliases": [
+      "boku dake ga inai machi"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Mystery",
+      "Thriller"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Kei Sanbe",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Satoru Fujinuma",
+      "Kayo Hinazuki"
+    ],
+    "themes": [
+      "Time travel",
+      "Serial killer"
+    ],
+    "credits": [
+      "Original manga: Kei Sanbe",
+      "Director: Tomohiko Itō"
+    ],
+    "fandom": "bokumachi",
+    "cover": {
+      "wiki": "Erased (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/60/Boku_Dake_ga_Inai_Machi_vol1.jpg"
+    },
+    "audio": {
+      "clue": "A frantic, rapping rock opening by Asian Kung-Fu Generation.",
+      "query": "Erased opening Re:Re:",
+      "youtubeId": "_v_Voe5KD1M"
+    },
+    "emoji": "⏪❄️👦🧣🔪",
+    "item": {
+      "name": "A red scarf",
+      "description": "Lent to a lonely girl in a snowy town in 1988.",
+      "src": "wp:Scarf",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/100%25_Kaschmir_Wolle_vonk_kaschmirprodukte.de.jpg"
+    },
+    "location": {
+      "name": "Ishikari",
+      "description": "A snowy Hokkaido town where a man wakes up as his 10-year-old self.",
+      "src": "wp:Ishikari, Hokkaido",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Ishikari_city_hall.JPG/960px-Ishikari_city_hall.JPG"
+    },
+    "visual": {
+      "icon": "⏪",
+      "colors": [
+        "#1e3a8a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-sololeveling",
+    "name": "Solo Leveling",
+    "domain": "anime",
+    "year": 2024,
+    "genres": [
+      "Action",
+      "Fantasy"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Chugong",
+    "origin": "South Korea",
+    "format": "TV Series",
+    "source": "Webcomic",
+    "characters": [
+      "Sung Jinwoo",
+      "Cha Hae-in",
+      "Igris"
+    ],
+    "themes": [
+      "Leveling up",
+      "Dungeons"
+    ],
+    "credits": [
+      "Original web novel: Chugong",
+      "Director: Shunsuke Nakashige"
+    ],
+    "fandom": "solo-leveling",
+    "cover": {
+      "wiki": "Solo Leveling",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6c/Solo_Leveling_Volume_1_Cover.jpg"
+    },
+    "audio": {
+      "clue": "A pounding rock opening by Hiroyuki Sawano's project featuring TOMORROW X TOGETHER.",
+      "query": "Solo Leveling opening LEveL",
+      "youtubeId": "0HwnlgjICx4"
+    },
+    "emoji": "🗡️🌑👤📈🚪",
+    "item": {
+      "name": "The System",
+      "description": "A floating blue status window only one hunter can see.",
+      "image": "https://static.wikia.nocookie.net/solo-leveling/images/9/95/System1.jpg/revision/latest/scale-to-width-down/446?cb=20210625162338"
+    },
+    "location": {
+      "name": "Double Dungeon",
+      "description": "A hidden dungeon behind a statue room, where a weak hunter nearly dies.",
+      "image": "https://static.wikia.nocookie.net/solo-leveling/images/1/1b/DoubleDungeon1.jpg/revision/latest/scale-to-width-down/462?cb=20210603185724"
+    },
+    "visual": {
+      "icon": "📈",
+      "colors": [
+        "#1e1b4b",
+        "#60a5fa"
+      ]
+    }
+  },
+  {
+    "id": "a-konosuba",
+    "name": "KonoSuba",
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Comedy",
+      "Isekai"
+    ],
+    "studio": "Studio Deen",
+    "creator": "Natsume Akatsuki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Kazuma Satō",
+      "Aqua",
+      "Megumin",
+      "Darkness"
+    ],
+    "themes": [
+      "Parody",
+      "Bad luck"
+    ],
+    "credits": [
+      "Original light novel: Natsume Akatsuki",
+      "Director: Takaomi Kanasaki"
+    ],
+    "fandom": "konosuba",
+    "cover": {
+      "wiki": "KonoSuba",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/Kono_Subarashii_Sekai_ni_Shukufuku_o%21_light_novel_volume_1_cover.jpg"
+    },
+    "quote": {
+      "text": "Explosion!",
+      "speaker": "A crimson demon girl who knows exactly one spell"
+    },
+    "audio": {
+      "clue": "A bouncy, upbeat opening for a dysfunctional party of adventurers.",
+      "query": "KonoSuba opening fantastic dreamer",
+      "youtubeId": "fpG3BPNQepY"
+    },
+    "emoji": "💥🧙‍♀️💧🐸🍺",
+    "item": {
+      "name": "Megumin's staff",
+      "description": "A staff used to cast one huge explosion a day — then collapse.",
+      "image": "https://static.wikia.nocookie.net/konosuba/images/3/3f/Megumin-anime.png/revision/latest?cb=20180328143334"
+    },
+    "location": {
+      "name": "Axel",
+      "description": "A starter town for beginner adventurers.",
+      "image": "https://static.wikia.nocookie.net/konosuba/images/5/5e/Axel.jpg/revision/latest/scale-to-width-down/640?cb=20170205003137"
+    },
+    "visual": {
+      "icon": "💥",
+      "colors": [
+        "#b91c1c",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-slime",
+    "name": "That Time I Got Reincarnated as a Slime",
+    "aliases": [
+      "tensura",
+      "slime isekai"
+    ],
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Fantasy",
+      "Isekai"
+    ],
+    "studio": "8bit",
+    "creator": "Fuse",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Rimuru Tempest",
+      "Veldora",
+      "Shion"
+    ],
+    "themes": [
+      "Nation-building",
+      "Monsters"
+    ],
+    "credits": [
+      "Original web novel: Fuse",
+      "Director: Yasuhito Kikuchi"
+    ],
+    "fandom": "tensura",
+    "cover": {
+      "wiki": "That Time I Got Reincarnated as a Slime",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/That_Time_I_Got_Reincarnated_as_a_Slime_light_novel_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A bright J-rock opening by TRUE.",
+      "query": "Tensura opening Nameless Story",
+      "youtubeId": "ZhvUomsfG8o"
+    },
+    "emoji": "💧🐉👹🏰🇯🇵",
+    "item": {
+      "name": "Great Sage",
+      "description": "A unique skill that analyses everything — and talks back.",
+      "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/8/89/Episode_35_-_Great_Sage.jpg/revision/latest/scale-to-width-down/640?cb=20260505020236"
+    },
+    "location": {
+      "name": "Jura Tempest Federation",
+      "description": "A monster nation founded by a blue slime.",
+      "image": "https://static.wikia.nocookie.net/tensei-shitara-slime-datta-ken/images/5/54/LN_13.5_02.jpg/revision/latest/scale-to-width-down/640?cb=20220712134029"
+    },
+    "visual": {
+      "icon": "💧",
+      "colors": [
+        "#38bdf8",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-overlord",
+    "name": "Overlord",
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Fantasy",
+      "Isekai"
+    ],
+    "studio": "Madhouse",
+    "creator": "Kugane Maruyama",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Ainz Ooal Gown",
+      "Albedo",
+      "Shalltear"
+    ],
+    "themes": [
+      "Villain protagonist",
+      "Trapped in a game"
+    ],
+    "credits": [
+      "Original light novel: Kugane Maruyama",
+      "Director: Naoyuki Itō"
+    ],
+    "fandom": "overlord",
+    "cover": {
+      "wiki": "Overlord (novel series)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/18/Overlord_novel.jpg"
+    },
+    "audio": {
+      "clue": "A heavy rock opening by OxT.",
+      "query": "Overlord opening Clattanoia",
+      "youtubeId": "v2NNIS9HYFA"
+    },
+    "emoji": "💀👑🏰🦇🎮",
+    "item": {
+      "name": "Staff of Ainz Ooal Gown",
+      "description": "A guild weapon of seven serpents holding seven gems.",
+      "image": "https://static.wikia.nocookie.net/overlord/images/1/1b/Browns%2Cdressed_as_Imperial_Guards..jpg/revision/latest?cb=20110430104727"
+    },
+    "location": {
+      "name": "Great Tomb of Nazarick",
+      "description": "An enormous underground tomb transported into a new world."
+    },
+    "visual": {
+      "icon": "💀",
+      "colors": [
+        "#1e1b4b",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "a-ngnl",
+    "name": "No Game No Life",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Fantasy",
+      "Isekai"
+    ],
+    "studio": "Madhouse",
+    "creator": "Yū Kamiya",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Sora",
+      "Shiro",
+      "Stephanie Dola"
+    ],
+    "themes": [
+      "Games",
+      "Siblings"
+    ],
+    "credits": [
+      "Original light novel: Yū Kamiya",
+      "Director: Atsuko Ishizuka"
+    ],
+    "cover": {
+      "wiki": "No Game No Life",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/No_Game_No_Life_light_novel_vol_1.jpg"
+    },
+    "quote": {
+      "text": "Blank never loses.",
+      "speaker": "A shut-in gamer siblings' team name"
+    },
+    "audio": {
+      "clue": "A fast, colourful opening by Konomi Suzuki.",
+      "query": "No Game No Life opening This Game",
+      "youtubeId": "6CBp4qylX6I"
+    },
+    "emoji": "🎲♟️👫🌍👑",
+    "item": {
+      "name": "A chess piece",
+      "description": "Games decide everything in this world, from borders to marriages.",
+      "src": "wp:Chess piece",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Chess_pieces_close_up.jpg/960px-Chess_pieces_close_up.jpg"
+    },
+    "location": {
+      "name": "Disboard",
+      "description": "A world where all conflict is settled by games."
+    },
+    "visual": {
+      "icon": "♟️",
+      "colors": [
+        "#0ea5e9",
+        "#f472b6"
+      ]
+    }
+  },
+  {
+    "id": "a-angelbeats",
+    "name": "Angel Beats!",
+    "domain": "anime",
+    "year": 2010,
+    "genres": [
+      "Drama",
+      "Comedy"
+    ],
+    "studio": "P.A. Works",
+    "creator": "Jun Maeda",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Yuzuru Otonashi",
+      "Yuri Nakamura",
+      "Kanade Tachibana"
+    ],
+    "themes": [
+      "Afterlife",
+      "Regret"
+    ],
+    "credits": [
+      "Creator & composer: Jun Maeda",
+      "Director: Seiji Kishi"
+    ],
+    "fandom": "angelbeats",
+    "cover": {
+      "wiki": "Angel Beats!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Angel_Beats%21_DVD_Complete_Collection_cover.jpg"
+    },
+    "audio": {
+      "clue": "An emotional rock opening by Lia.",
+      "query": "Angel Beats opening My Soul Your Beats",
+      "youtubeId": "Eksw56g-WBY"
+    },
+    "emoji": "👼🎸🏫💀🍜",
+    "item": {
+      "name": "Mapo tofu",
+      "description": "A school cafeteria's dangerously spicy speciality.",
+      "src": "wp:Mapo tofu",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Chen_Mapo_Tofu.jpg/960px-Chen_Mapo_Tofu.jpg"
+    },
+    "location": {
+      "name": "Afterlife School",
+      "description": "A school in the afterlife where students resist disappearing.",
+      "image": "https://static.wikia.nocookie.net/angelbeats/images/6/66/Untitled7.png/revision/latest/scale-to-width-down/640?cb=20110101063307"
+    },
+    "visual": {
+      "icon": "👼",
+      "colors": [
+        "#f8fafc",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-kon",
+    "name": "K-On!",
+    "domain": "anime",
+    "year": 2009,
+    "genres": [
+      "Music",
+      "Comedy"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Naoko Yamada",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yui Hirasawa",
+      "Mio Akiyama",
+      "Ritsu Tainaka",
+      "Mugi"
+    ],
+    "themes": [
+      "Friendship",
+      "School band"
+    ],
+    "credits": [
+      "Director: Naoko Yamada",
+      "Original manga: kakifly"
+    ],
+    "fandom": "k-on",
+    "cover": {
+      "wiki": "K-On!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/77/K-On%21_manga_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A sugary, upbeat pop-rock opening about a cute girls' band.",
+      "query": "K-On opening Cagayake Girls",
+      "youtubeId": "qN41mx4tA0I"
+    },
+    "emoji": "🎸🍰☕🥁🏫",
+    "item": {
+      "name": "Gitah",
+      "description": "A Gibson Les Paul guitar its clueless owner names like a pet.",
+      "src": "wp:Gibson Les Paul",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Full_front_R9_Les_Paul.jpg/960px-Full_front_R9_Les_Paul.jpg"
+    },
+    "location": {
+      "name": "Sakuragaoka High School",
+      "description": "A girls' school whose light music club does more tea than practice.",
+      "image": "https://static.wikia.nocookie.net/k-on/images/f/f6/Sakura_High_Front.png/revision/latest/scale-to-width-down/640?cb=20130609231450"
+    },
+    "visual": {
+      "icon": "🍰",
+      "colors": [
+        "#f9a8d4",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-hyouka",
+    "name": "Hyouka",
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Mystery",
+      "Slice of Life"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Honobu Yonezawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Novel",
+    "characters": [
+      "Hōtarō Oreki",
+      "Eru Chitanda",
+      "Satoshi Fukube"
+    ],
+    "themes": [
+      "Curiosity",
+      "Energy saving"
+    ],
+    "credits": [
+      "Original novels: Honobu Yonezawa",
+      "Director: Yasuhiro Takemoto"
+    ],
+    "fandom": "hyouka",
+    "cover": {
+      "wiki": "Hyouka",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/93/Hy%C5%8Dka_novel_cover.jpg"
+    },
+    "quote": {
+      "text": "I'm curious!",
+      "speaker": "A wealthy girl with huge eyes"
+    },
+    "audio": {
+      "clue": "A light, airy opening by ChouCho.",
+      "query": "Hyouka opening Yasashisa no Riyuu",
+      "youtubeId": "3tvOowLuKxs"
+    },
+    "emoji": "🔍🌸📚🏫🕰️",
+    "item": {
+      "name": "A club anthology",
+      "description": "A decades-old literary club anthology hiding a mystery.",
+      "src": "wp:Anthology"
+    },
+    "location": {
+      "name": "Takayama",
+      "description": "The real old town that inspired the anime's setting.",
+      "src": "wp:Takayama, Gifu",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Takayama%27s_Early_Winter_Welcome_%28NE%29.jpg/960px-Takayama%27s_Early_Winter_Welcome_%28NE%29.jpg"
+    },
+    "visual": {
+      "icon": "🔍",
+      "colors": [
+        "#f8fafc",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "a-gintama",
+    "name": "Gintama",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "studio": "Sunrise",
+    "creator": "Hideaki Sorachi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Gintoki Sakata",
+      "Shinpachi",
+      "Kagura",
+      "Sadaharu"
+    ],
+    "themes": [
+      "Parody",
+      "Samurai vs aliens"
+    ],
+    "credits": [
+      "Original manga: Hideaki Sorachi",
+      "Director: Shinji Takamatsu"
+    ],
+    "fandom": "gintama",
+    "cover": {
+      "wiki": "Gintama",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a9/Gintama_vol._01.png"
+    },
+    "audio": {
+      "clue": "An irreverent rock opening for a samurai who loves strawberry milk.",
+      "query": "Gintama opening Pray",
+      "youtubeId": "OQYcEEkG_V0"
+    },
+    "emoji": "🗡️👽🍓🥛🐶",
+    "item": {
+      "name": "Lake Tōya wooden sword",
+      "description": "A souvenir bokken that a lazy samurai uses in every fight.",
+      "image": "https://static.wikia.nocookie.net/gintama/images/6/62/Bokutou.jpg/revision/latest?cb=20100903033741"
+    },
+    "location": {
+      "name": "Yorozuya Gin-chan",
+      "description": "An odd-jobs shop above a bar in an alien-occupied Edo.",
+      "image": "https://static.wikia.nocookie.net/gintama/images/3/38/Yorozuya_Gin-chan.jpg/revision/latest?cb=20120417124612"
+    },
+    "visual": {
+      "icon": "🍓",
+      "colors": [
+        "#e5e7eb",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-souleater",
+    "name": "Soul Eater",
+    "domain": "anime",
+    "year": 2008,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "Bones",
+    "creator": "Atsushi Ōkubo",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Maka Albarn",
+      "Soul Evans",
+      "Black Star",
+      "Death the Kid"
+    ],
+    "themes": [
+      "Madness",
+      "Weapons and meisters"
+    ],
+    "credits": [
+      "Original manga: Atsushi Ōkubo",
+      "Director: Takuya Igarashi"
+    ],
+    "fandom": "souleater",
+    "cover": {
+      "wiki": "Soul Eater (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fe/Soul_Eater_manga_volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A frantic rock opening by T.M.Revolution.",
+      "query": "Soul Eater opening Resonance",
+      "youtubeId": "zzJ8U8OtEsE"
+    },
+    "emoji": "💀🌙🗡️🎹⭐",
+    "item": {
+      "name": "A scythe",
+      "description": "A boy who transforms into a weapon wielded by his partner.",
+      "src": "wp:Scythe",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Scythe_user.png/960px-Scythe_user.png"
+    },
+    "location": {
+      "name": "Death City",
+      "description": "A city in Nevada under a grinning sun and moon, home to a school for weapons.",
+      "image": "https://static.wikia.nocookie.net/souleater/images/4/4c/Soul_Eater_JOT_2_-_Death_City.png/revision/latest/scale-to-width-down/633?cb=20260127012635"
+    },
+    "visual": {
+      "icon": "🌙",
+      "colors": [
+        "#0a0a0a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-blueexorcist",
+    "name": "Blue Exorcist",
+    "aliases": [
+      "ao no exorcist"
+    ],
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Dark Fantasy",
+      "Action"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Kazue Kato",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Rin Okumura",
+      "Yukio Okumura",
+      "Mephisto Pheles"
+    ],
+    "themes": [
+      "Son of Satan",
+      "Exorcism"
+    ],
+    "credits": [
+      "Original manga: Kazue Kato",
+      "Director: Tensai Okamura"
+    ],
+    "fandom": "aonoexorcist",
+    "cover": {
+      "wiki": "Blue Exorcist",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/62/Blue_Exorcist_vol_1.png"
+    },
+    "audio": {
+      "clue": "An intense rock opening by UVERworld.",
+      "query": "Blue Exorcist opening Core Pride",
+      "youtubeId": "s99s4VCtCP8"
+    },
+    "emoji": "🔥😈⛪🗡️🔵",
+    "item": {
+      "name": "Kurikara",
+      "description": "A sword that seals a demon's blue flames.",
+      "image": "https://static.wikia.nocookie.net/aonoexorcist/images/7/79/Kurikara.png/revision/latest/scale-to-width-down/640?cb=20150407094456"
+    },
+    "location": {
+      "name": "True Cross Academy",
+      "description": "A towering academy town hiding an exorcist cram school.",
+      "image": "https://static.wikia.nocookie.net/aonoexorcist/images/4/43/Classroom.jpg/revision/latest?cb=20110502093249"
+    },
+    "visual": {
+      "icon": "🔵",
+      "colors": [
+        "#1e3a8a",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "a-7ds",
+    "name": "The Seven Deadly Sins",
+    "aliases": [
+      "nanatsu no taizai"
+    ],
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Fantasy",
+      "Action"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Nakaba Suzuki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Meliodas",
+      "Elizabeth",
+      "Ban",
+      "King"
+    ],
+    "themes": [
+      "Redemption",
+      "Knights"
+    ],
+    "credits": [
+      "Original manga: Nakaba Suzuki",
+      "Director: Tensai Okamura"
+    ],
+    "fandom": "nanatsu-no-taizai",
+    "cover": {
+      "wiki": "The Seven Deadly Sins (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/Nanatsu_no_Taizai_Volume_1.png"
+    },
+    "audio": {
+      "clue": "An adventurous rock opening by Ikimonogakari.",
+      "query": "Seven Deadly Sins opening Netsujou no Spectrum",
+      "youtubeId": "Oc9NgPgUO3E"
+    },
+    "emoji": "🐉🐻🐷🍺🗡️",
+    "item": {
+      "name": "Lostvayne",
+      "description": "A broken-bladed dragon-handle sword that creates clones.",
+      "image": "https://static.wikia.nocookie.net/nanatsu-no-taizai/images/2/29/Lostvayne_%284KOA_Anime%29.png/revision/latest/scale-to-width-down/640?cb=20241006213257"
+    },
+    "location": {
+      "name": "Boar Hat",
+      "description": "A travelling tavern on the back of a giant pig.",
+      "image": "https://static.wikia.nocookie.net/nanatsu-no-taizai/images/c/c1/Boar_Hat_Third_Design_%28Anime%29.png/revision/latest/scale-to-width-down/503?cb=20240211203646"
+    },
+    "visual": {
+      "icon": "🐷",
+      "colors": [
+        "#14532d",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-durarara",
+    "name": "Durarara!!",
+    "domain": "anime",
+    "year": 2010,
+    "genres": [
+      "Mystery",
+      "Action"
+    ],
+    "studio": "Brain's Base",
+    "creator": "Ryōgo Narita",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Celty Sturluson",
+      "Izaya Orihara",
+      "Shizuo Heiwajima",
+      "Mikado"
+    ],
+    "themes": [
+      "Urban legends",
+      "Gangs"
+    ],
+    "credits": [
+      "Original light novel: Ryōgo Narita",
+      "Director: Takahiro Omori"
+    ],
+    "fandom": "durarara",
+    "cover": {
+      "wiki": "Durarara!!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/50/Durarara%21%21_vol01_Cover.jpg"
+    },
+    "audio": {
+      "clue": "A cool, jazzy opening as an ensemble of strangers crosses Ikebukuro.",
+      "query": "Durarara opening Uragiri no Yuuyake",
+      "youtubeId": "OTXYhpXezQ8"
+    },
+    "emoji": "🏍️🐴👤📱🏙️",
+    "item": {
+      "name": "A vending machine",
+      "description": "Thrown across the street by a bartender in sunglasses.",
+      "src": "wp:Vending machine",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/CandiesVendingMachine1952.jpg"
+    },
+    "location": {
+      "name": "Ikebukuro",
+      "description": "A real Tokyo district where a headless rider roams.",
+      "src": "wp:Ikebukuro",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Sunshine_60_Observatory_%40_Sunshine_Building_%40_Ikebukuro_%2811547419543%29.jpg/960px-Sunshine_60_Observatory_%40_Sunshine_Building_%40_Ikebukuro_%2811547419543%29.jpg"
+    },
+    "visual": {
+      "icon": "🏍️",
+      "colors": [
+        "#facc15",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-kuroko",
+    "name": "Kuroko's Basketball",
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Sports"
+    ],
+    "studio": "Production I.G",
+    "creator": "Tadatoshi Fujimaki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Tetsuya Kuroko",
+      "Taiga Kagami",
+      "Seijūrō Akashi"
+    ],
+    "themes": [
+      "Teamwork",
+      "Prodigies"
+    ],
+    "credits": [
+      "Original manga: Tadatoshi Fujimaki",
+      "Director: Shunsuke Tada"
+    ],
+    "fandom": "kurokonobasuke",
+    "cover": {
+      "wiki": "Kuroko's Basketball",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/79/Kuroko_no_Basuke_Cover.jpg"
+    },
+    "audio": {
+      "clue": "A hard rock opening by Granrodeo.",
+      "query": "Kuroko no Basket opening Can Do",
+      "youtubeId": "5RVEM8-UKlg"
+    },
+    "emoji": "🏀👻🐯🌈🏫",
+    "item": {
+      "name": "Wristbands",
+      "description": "A phantom sixth man passes without anyone noticing him.",
+      "src": "wp:Wristband",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Nadal_Australian_Open_2009_5.jpg/960px-Nadal_Australian_Open_2009_5.jpg"
+    },
+    "location": {
+      "name": "Seirin High School",
+      "description": "A new school whose basketball team challenges the Generation of Miracles.",
+      "image": "https://static.wikia.nocookie.net/kurokonobasuke/images/4/45/Seirin_team.png/revision/latest/scale-to-width-down/640?cb=20130907202943"
+    },
+    "visual": {
+      "icon": "👻",
+      "colors": [
+        "#1d4ed8",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "a-yurionice",
+    "name": "Yuri on Ice",
+    "aliases": [
+      "yuri!!! on ice"
+    ],
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Sports",
+      "Romance"
+    ],
+    "studio": "MAPPA",
+    "creator": "Sayo Yamamoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Yuri Katsuki",
+      "Victor Nikiforov",
+      "Yuri Plisetsky"
+    ],
+    "themes": [
+      "Figure skating",
+      "Love"
+    ],
+    "credits": [
+      "Director: Sayo Yamamoto",
+      "Writer: Mitsurō Kubo"
+    ],
+    "fandom": "yurionice",
+    "cover": {
+      "wiki": "Yuri on Ice",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/82/Yuri_on_Ice_Key_Visual.jpg"
+    },
+    "audio": {
+      "clue": "A soaring, shimmering opening sung in English by Dean Fujioka.",
+      "query": "Yuri on Ice opening History Maker",
+      "youtubeId": "dSrrRaVyQHQ"
+    },
+    "emoji": "⛸️❄️🐩🍜🥇",
+    "item": {
+      "name": "Ice skates",
+      "description": "Laced by a Japanese skater coached by his idol.",
+      "src": "wp:Figure skate",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/33/Figure-skates-1.jpg"
+    },
+    "location": {
+      "name": "Hasetsu",
+      "description": "A seaside hot-spring town modelled on Karatsu.",
+      "src": "wp:Karatsu, Saga",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/70/Karatsu_Montage.jpg"
+    },
+    "visual": {
+      "icon": "⛸️",
+      "colors": [
+        "#0ea5e9",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-initiald",
+    "name": "Initial D",
+    "domain": "anime",
+    "year": 1998,
+    "genres": [
+      "Sports",
+      "Racing"
+    ],
+    "studio": "Pastel",
+    "creator": "Shuichi Shigeno",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Takumi Fujiwara",
+      "Ryosuke Takahashi",
+      "Bunta Fujiwara"
+    ],
+    "themes": [
+      "Street racing",
+      "Drifting"
+    ],
+    "credits": [
+      "Original manga: Shuichi Shigeno",
+      "Music: Eurobeat by Avex"
+    ],
+    "fandom": "initiald",
+    "cover": {
+      "wiki": "Initial D",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/InitialD_vol1_Cover.jpg"
+    },
+    "audio": {
+      "clue": "Hyperactive Eurobeat blares as a tofu-delivery car drifts down a mountain pass.",
+      "query": "Initial D Deja Vu Dave Rodgers",
+      "youtubeId": "tdeJiw6qMkA"
+    },
+    "emoji": "🚗💨🏔️🧈🥤",
+    "item": {
+      "name": "Toyota AE86",
+      "description": "A white-and-black hatchback with a tofu shop's name on the door.",
+      "src": "wp:Toyota AE86",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/1983_Toyota_Corolla_Levin.jpg/960px-1983_Toyota_Corolla_Levin.jpg"
+    },
+    "location": {
+      "name": "Mount Akina",
+      "description": "A mountain pass modelled on Mount Haruna, with five hairpins.",
+      "src": "wp:Mount Haruna",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Haruna-san.JPG"
+    },
+    "visual": {
+      "icon": "🚗",
+      "colors": [
+        "#f8fafc",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-hokuto",
+    "name": "Fist of the North Star",
+    "aliases": [
+      "hokuto no ken"
+    ],
+    "domain": "anime",
+    "year": 1984,
+    "genres": [
+      "Action",
+      "Post-apocalyptic"
+    ],
+    "studio": "Toei Animation",
+    "creator": "Buronson",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kenshiro",
+      "Raoh",
+      "Yuria"
+    ],
+    "themes": [
+      "Martial arts",
+      "Wasteland"
+    ],
+    "credits": [
+      "Story: Buronson",
+      "Art: Tetsuo Hara"
+    ],
+    "fandom": "hokuto-no-ken",
+    "cover": {
+      "wiki": "Fist of the North Star",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/Fist_of_the_North_Star_1.png"
+    },
+    "quote": {
+      "text": "You are already dead.",
+      "speaker": "A martial artist with seven scars"
+    },
+    "audio": {
+      "clue": "A fiery 80s rock opening by Crystal King.",
+      "query": "Fist of the North Star opening Ai wo Torimodose",
+      "youtubeId": "BbaaI5xf4y8"
+    },
+    "emoji": "👊💥☠️🏜️⭐",
+    "item": {
+      "name": "Seven scars",
+      "description": "Pressure-point scars arranged like the Big Dipper on a hero's chest.",
+      "src": "wp:Big Dipper",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Ursa_Major_constellation_detail_map.PNG"
+    },
+    "location": {
+      "name": "A nuclear wasteland",
+      "description": "A world laid waste by nuclear war, ruled by gangs.",
+      "src": "wp:Desert",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Rub_al_Khali_002.JPG/960px-Rub_al_Khali_002.JPG"
+    },
+    "visual": {
+      "icon": "👊",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-cagliostro",
+    "name": "Lupin III: The Castle of Cagliostro",
+    "aliases": [
+      "castle of cagliostro",
+      "lupin iii"
+    ],
+    "domain": "anime",
+    "year": 1979,
+    "genres": [
+      "Adventure",
+      "Comedy"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Hayao Miyazaki",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Manga",
+    "characters": [
+      "Arsène Lupin III",
+      "Clarisse",
+      "Inspector Zenigata",
+      "Jigen"
+    ],
+    "themes": [
+      "Heist",
+      "Counterfeiting"
+    ],
+    "credits": [
+      "Director: Hayao Miyazaki",
+      "Original manga: Monkey Punch",
+      "Composer: Yuji Ohno"
+    ],
+    "fandom": "lupin",
+    "cover": {
+      "wiki": "The Castle of Cagliostro",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4f/Castle_of_Cagliostro_poster.png"
+    },
+    "quote": {
+      "text": "He stole something quite precious. Your heart.",
+      "speaker": "An inspector, about a gentleman thief"
+    },
+    "audio": {
+      "clue": "A breezy jazz-funk theme for a gentleman thief.",
+      "query": "Castle of Cagliostro Fire Treasure",
+      "youtubeId": "E63eW8M_LvI"
+    },
+    "emoji": "🏰🚗💍💵🎩",
+    "item": {
+      "name": "Fiat 500",
+      "description": "A tiny yellow car driven up a cliff in a famous chase.",
+      "src": "wp:Fiat 500",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/1970_Fiat_500_L_--_2011_DC_1.jpg/960px-1970_Fiat_500_L_--_2011_DC_1.jpg"
+    },
+    "location": {
+      "name": "The Castle of Cagliostro",
+      "description": "A castle in a tiny European duchy hiding a counterfeiting operation.",
+      "image": "https://static.wikia.nocookie.net/lupin/images/7/71/The_Castle_of_Cagliostro.jpg/revision/latest/scale-to-width-down/453?cb=20250527072604"
+    },
+    "visual": {
+      "icon": "🚗",
+      "colors": [
+        "#16a34a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-lain",
+    "name": "Serial Experiments Lain",
+    "aliases": [
+      "lain"
+    ],
+    "domain": "anime",
+    "year": 1998,
+    "genres": [
+      "Psychological",
+      "Cyberpunk"
+    ],
+    "studio": "Triangle Staff",
+    "creator": "Chiaki J. Konaka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Lain Iwakura",
+      "Alice Mizuki",
+      "Eiri Masami"
+    ],
+    "themes": [
+      "Internet",
+      "Identity"
+    ],
+    "credits": [
+      "Writer: Chiaki J. Konaka",
+      "Character design: Yoshitoshi ABe"
+    ],
+    "fandom": "lain",
+    "cover": {
+      "wiki": "Serial Experiments Lain",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/Serial_Experiments_Lain_DVD_vol_1.jpg"
+    },
+    "quote": {
+      "text": "Present day. Present time.",
+      "speaker": "A voice at the start of every episode"
+    },
+    "audio": {
+      "clue": "A dreamy British rock song called 'Duvet' over power lines.",
+      "query": "Serial Experiments Lain opening Duvet Boa",
+      "youtubeId": "MM8RufZr5lw"
+    },
+    "emoji": "💻🧸⚡👧🌐",
+    "item": {
+      "name": "NAVI",
+      "description": "A home computer that a quiet girl keeps upgrading.",
+      "image": "https://static.wikia.nocookie.net/sel/images/4/44/NAVI.jpg/revision/latest/scale-to-width-down/640?cb=20100517102541"
+    },
+    "location": {
+      "name": "The Wired",
+      "description": "A global network where the line between online and real blurs.",
+      "image": "https://static.wikia.nocookie.net/sel/images/4/4c/Chisa_Yomoda_%286%29.png/revision/latest/scale-to-width-down/640?cb=20200811022404"
+    },
+    "visual": {
+      "icon": "💻",
+      "colors": [
+        "#0a0a0a",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "a-fatezero",
+    "name": "Fate/Zero",
+    "aliases": [
+      "fate zero"
+    ],
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Action",
+      "Fantasy"
+    ],
+    "studio": "ufotable",
+    "creator": "Gen Urobuchi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Kiritsugu Emiya",
+      "Saber",
+      "Gilgamesh",
+      "Iskandar"
+    ],
+    "themes": [
+      "Holy Grail War",
+      "Idealism"
+    ],
+    "credits": [
+      "Original novel: Gen Urobuchi",
+      "Director: Ei Aoki"
+    ],
+    "fandom": "typemoon",
+    "cover": {
+      "wiki": "Fate/Zero",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3e/FatezeroNovelCover.jpg"
+    },
+    "audio": {
+      "clue": "A hauntingly beautiful opening by LiSA.",
+      "query": "Fate Zero opening oath sign",
+      "youtubeId": "gCnCFtbY0ZI"
+    },
+    "emoji": "🏆⚔️👑🔥🏙️",
+    "item": {
+      "name": "Excalibur",
+      "description": "A sword of light wielded by a king from legend.",
+      "src": "wp:Excalibur",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Arthur-Pyle_Excalibur_the_Sword.JPG/960px-Arthur-Pyle_Excalibur_the_Sword.JPG"
+    },
+    "location": {
+      "name": "Fuyuki City",
+      "description": "A city split by a river where seven mages battle for a wish.",
+      "image": "https://static.wikia.nocookie.net/typemoon/images/a/a8/Fuyuki.png/revision/latest/scale-to-width-down/487?cb=20111010011339"
+    },
+    "visual": {
+      "icon": "🏆",
+      "colors": [
+        "#1e3a8a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-madoka",
+    "name": "Puella Magi Madoka Magica",
+    "aliases": [
+      "madoka magica"
+    ],
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Magical Girl",
+      "Psychological"
+    ],
+    "studio": "Shaft",
+    "creator": "Gen Urobuchi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Madoka Kaname",
+      "Homura Akemi",
+      "Kyubey"
+    ],
+    "themes": [
+      "Wishes",
+      "Despair"
+    ],
+    "credits": [
+      "Writer: Gen Urobuchi",
+      "Director: Akiyuki Shinbo",
+      "Composer: Yuki Kajiura"
+    ],
+    "fandom": "madoka",
+    "cover": {
+      "wiki": "Puella Magi Madoka Magica",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fc/MadokaBD.jpg"
+    },
+    "quote": {
+      "text": "Make a contract with me and become a magical girl!",
+      "speaker": "A small white cat-like creature"
+    },
+    "audio": {
+      "clue": "A sweet, sparkly pop opening that hides the show's true darkness.",
+      "query": "Madoka Magica opening Connect",
+      "youtubeId": "g1vw9ftAWSc"
+    },
+    "emoji": "🎀💎🐱🌀😱",
+    "item": {
+      "name": "Soul Gem",
+      "description": "An egg-shaped jewel that holds a magical girl's soul.",
+      "image": "https://static.wikia.nocookie.net/madoka/images/a/ac/PMMM01_Mami_needs_to_wrap_up_a_bit_of_work.jpg/revision/latest/scale-to-width-down/640?cb=20230226110548"
+    },
+    "location": {
+      "name": "Mitakihara",
+      "description": "A gleaming futuristic city where witches lurk in labyrinths.",
+      "image": "https://static.wikia.nocookie.net/madoka/images/9/9c/Connect41.jpg/revision/latest/scale-to-width-down/287?cb=20230331210311"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#f9a8d4",
+        "#4c1d95"
+      ]
+    }
+  },
+  {
+    "id": "a-dorohedoro",
+    "name": "Dorohedoro",
+    "domain": "anime",
+    "year": 2020,
+    "genres": [
+      "Dark Fantasy",
+      "Comedy"
+    ],
+    "studio": "MAPPA",
+    "creator": "Q Hayashida",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Caiman",
+      "Nikaido",
+      "En",
+      "Shin"
+    ],
+    "themes": [
+      "Sorcerers",
+      "Amnesia"
+    ],
+    "credits": [
+      "Original manga: Q Hayashida",
+      "Director: Yuichiro Hayashi"
+    ],
+    "fandom": "dorohedoro",
+    "cover": {
+      "wiki": "Dorohedoro",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b6/Dorohedoro_01.jpg"
+    },
+    "audio": {
+      "clue": "A chaotic, grimy punk opening by (K)NoW_NAME.",
+      "query": "Dorohedoro opening Welcome to Chaos",
+      "youtubeId": "iH_YJde1yps"
+    },
+    "emoji": "🦎🥟🍄😷🔪",
+    "item": {
+      "name": "Gyoza",
+      "description": "A favourite dish at a cosy restaurant called the Hungry Bug.",
+      "src": "wp:Jiaozi",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/%E5%8F%B0%E7%81%A3%E5%8D%97%E6%8A%95%E8%8D%89%E5%B1%AF%E6%B0%B4%E9%A4%83Nantou%2C_Taiwan_Caotun_dumplings.jpg"
+    },
+    "location": {
+      "name": "The Hole",
+      "description": "A filthy, rainy city used as a testing ground by sorcerers.",
+      "image": "https://static.wikia.nocookie.net/dorohedoro/images/b/bf/Hole-3.png/revision/latest/scale-to-width-down/640?cb=20260209215550"
+    },
+    "visual": {
+      "icon": "🦎",
+      "colors": [
+        "#14532d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-beastars",
+    "name": "Beastars",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Drama",
+      "Mystery"
+    ],
+    "studio": "Orange",
+    "creator": "Paru Itagaki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Legoshi",
+      "Haru",
+      "Louis"
+    ],
+    "themes": [
+      "Predator and prey",
+      "Instinct"
+    ],
+    "credits": [
+      "Original manga: Paru Itagaki",
+      "Director: Shinichi Matsumi"
+    ],
+    "fandom": "beastars",
+    "cover": {
+      "wiki": "Beastars",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/BEASTARS%2C_volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A jazzy, stop-motion opening by ALI.",
+      "query": "Beastars opening Wild Side",
+      "youtubeId": "bgo9dJB_icw"
+    },
+    "emoji": "🐺🐰🦌🎭🏫",
+    "item": {
+      "name": "A rabbit",
+      "description": "A carnivore falls for a small white herbivore.",
+      "src": "wp:Rabbit",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/960px-Oryctolagus_cuniculus_Rcdo.jpg"
+    },
+    "location": {
+      "name": "Cherryton Academy",
+      "description": "A boarding school where carnivores and herbivores coexist uneasily.",
+      "image": "https://static.wikia.nocookie.net/beastars-eng/images/9/99/Cherryton_Academy.jpeg/revision/latest/scale-to-width-down/640?cb=20200420224059"
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#1c1917",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "a-akamegakill",
+    "name": "Akame ga Kill!",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Action",
+      "Dark Fantasy"
+    ],
+    "studio": "White Fox",
+    "creator": "Takahiro",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Tatsumi",
+      "Akame",
+      "Esdeath",
+      "Leone"
+    ],
+    "themes": [
+      "Revolution",
+      "Assassins"
+    ],
+    "credits": [
+      "Story: Takahiro",
+      "Art: Tetsuya Tashiro"
+    ],
+    "fandom": "akamegakill",
+    "cover": {
+      "wiki": "Akame ga Kill!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/64/Akame_ga_Kill_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A dramatic rock opening by Sora Amamiya.",
+      "query": "Akame ga Kill opening Skyreach",
+      "youtubeId": "vqshxf8WiHE"
+    },
+    "emoji": "🗡️❤️👁️🏰⚰️",
+    "item": {
+      "name": "Murasame",
+      "description": "A cursed katana that kills with a single cut.",
+      "image": "https://static.wikia.nocookie.net/akamegakill/images/6/64/Akame_and_Murasame.jpg/revision/latest?cb=20140731220611"
+    },
+    "location": {
+      "name": "The Capital",
+      "description": "A rotten imperial capital targeted by an assassin group.",
+      "image": "https://static.wikia.nocookie.net/akamegakill/images/3/3b/The_Empire%27s_Map.png/revision/latest/scale-to-width-down/640?cb=20141230005933"
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#7f1d1d",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "a-lwa",
+    "name": "Little Witch Academia",
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Fantasy",
+      "Comedy"
+    ],
+    "studio": "Trigger",
+    "creator": "Yoh Yoshinari",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Atsuko Kagari",
+      "Diana Cavendish",
+      "Shiny Chariot"
+    ],
+    "themes": [
+      "Believing",
+      "Magic school"
+    ],
+    "credits": [
+      "Director: Yoh Yoshinari",
+      "Composer: Michiru Ōshima"
+    ],
+    "fandom": "little-witch-academia",
+    "cover": {
+      "wiki": "Little Witch Academia (TV series)"
+    },
+    "quote": {
+      "text": "A believing heart is your magic!",
+      "speaker": "A girl's idol, a stage witch"
+    },
+    "audio": {
+      "clue": "A bright, bubbly opening by YURiKA.",
+      "query": "Little Witch Academia opening Shiny Ray",
+      "youtubeId": "5mU66mU_Pw8"
+    },
+    "emoji": "🧙‍♀️✨🏰🧹🌟",
+    "item": {
+      "name": "Shiny Rod",
+      "description": "A star-tipped wand once wielded by a famous showbiz witch.",
+      "image": "https://static.wikia.nocookie.net/littlewitch/images/d/d1/Shiny_Rod_LWA_16.jpg/revision/latest/scale-to-width-down/640?cb=20250407171009"
+    },
+    "location": {
+      "name": "Luna Nova",
+      "description": "A prestigious magic academy for witches.",
+      "image": "https://static.wikia.nocookie.net/littlewitch/images/1/1b/Luna_Nova_Academy_LWA_OVA.jpg/revision/latest/scale-to-width-down/640?cb=20210508074411"
+    },
+    "visual": {
+      "icon": "✨",
+      "colors": [
+        "#4c1d95",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-dungeonmeshi",
+    "name": "Delicious in Dungeon",
+    "aliases": [
+      "dungeon meshi"
+    ],
+    "domain": "anime",
+    "year": 2024,
+    "genres": [
+      "Fantasy",
+      "Comedy"
+    ],
+    "studio": "Trigger",
+    "creator": "Ryoko Kui",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Laios",
+      "Marcille",
+      "Chilchuck",
+      "Senshi"
+    ],
+    "themes": [
+      "Cooking",
+      "Dungeon crawling"
+    ],
+    "credits": [
+      "Original manga: Ryoko Kui",
+      "Director: Yoshihiro Miyajima"
+    ],
+    "fandom": "delicious-in-dungeon",
+    "cover": {
+      "wiki": "Delicious in Dungeon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/93/Dungeon_Meshi_cover.jpeg"
+    },
+    "audio": {
+      "clue": "An upbeat, folky opening by BUMP OF CHICKEN.",
+      "query": "Delicious in Dungeon opening Sleepwalk",
+      "youtubeId": "NAc8LWXYgAs"
+    },
+    "emoji": "🍲🐉🍄🗡️🧝‍♀️",
+    "item": {
+      "name": "Walking Mushroom",
+      "description": "A monster that becomes a surprisingly tasty dish.",
+      "image": "https://static.wikia.nocookie.net/delicious-in-dungeon/images/5/54/Walking_Mushroom_%28Anime%29.png/revision/latest/scale-to-width-down/504?cb=20240108160156"
+    },
+    "location": {
+      "name": "The Dungeon",
+      "description": "A labyrinth beneath an island, where a red dragon swallowed a sister."
+    },
+    "visual": {
+      "icon": "🍲",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-ranma",
+    "name": "Ranma ½",
+    "aliases": [
+      "ranma 1/2"
+    ],
+    "domain": "anime",
+    "year": 1989,
+    "genres": [
+      "Comedy",
+      "Martial Arts"
+    ],
+    "studio": "Studio Deen",
+    "creator": "Rumiko Takahashi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ranma Saotome",
+      "Akane Tendo",
+      "Genma",
+      "Ryoga"
+    ],
+    "themes": [
+      "Curses",
+      "Gender swap"
+    ],
+    "credits": [
+      "Original manga: Rumiko Takahashi",
+      "Director: Tomomitsu Mochizuki"
+    ],
+    "fandom": "ranma",
+    "cover": {
+      "wiki": "Ranma ½",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/10/Ranma1_2volume1.jpg"
+    },
+    "audio": {
+      "clue": "A cheerful 80s pop opening full of brass.",
+      "query": "Ranma 1/2 opening Jajauma ni Sasenaide",
+      "youtubeId": "MGREcRw3Xw8"
+    },
+    "emoji": "💧♂️♀️🐼🥋",
+    "item": {
+      "name": "A kettle of hot water",
+      "description": "Pour it on a cursed martial artist and he changes back.",
+      "src": "wp:Kettle",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Bernadotte_Wasserkessel.jpg/960px-Bernadotte_Wasserkessel.jpg"
+    },
+    "location": {
+      "name": "Jusenkyo",
+      "description": "A Chinese training ground of cursed springs.",
+      "image": "https://static.wikia.nocookie.net/ranma/images/7/72/S05-12-The-Frogman%27s-Curse%21-Jusenkyo.jpg/revision/latest/scale-to-width-down/555?cb=20100728010452"
+    },
+    "visual": {
+      "icon": "🐼",
+      "colors": [
+        "#b91c1c",
+        "#1d4ed8"
+      ]
+    }
+  },
+  {
+    "id": "a-doraemon",
+    "name": "Doraemon",
+    "domain": "anime",
+    "year": 1979,
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "studio": "Shin-Ei Animation",
+    "creator": "Fujiko F. Fujio",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Doraemon",
+      "Nobita Nobi",
+      "Shizuka",
+      "Gian"
+    ],
+    "themes": [
+      "Gadgets",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Fujiko F. Fujio",
+      "Japan's anime ambassador"
+    ],
+    "fandom": "doraemon",
+    "cover": {
+      "wiki": "Doraemon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c8/Doraemon_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A sing-along children's theme listing gadgets from a magic pocket.",
+      "query": "Doraemon no Uta theme",
+      "youtubeId": "QnoQSHTdXYs"
+    },
+    "emoji": "🐱🔵🚪🍩🎒",
+    "item": {
+      "name": "Anywhere Door",
+      "description": "A pink door that opens wherever you want to go.",
+      "image": "https://static.wikia.nocookie.net/doraemon/images/6/6b/AnywhereDoor.png/revision/latest/scale-to-width-down/640?cb=20260616175309&path-prefix=en"
+    },
+    "location": {
+      "name": "Nobita's house",
+      "description": "A suburban Tokyo home where a robot cat lives in a closet.",
+      "image": "https://static.wikia.nocookie.net/doraemon/images/3/3e/Nobita_room.jpeg/revision/latest?cb=20220308101607&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🔵",
+      "colors": [
+        "#0ea5e9",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-conan",
+    "name": "Detective Conan",
+    "aliases": [
+      "case closed",
+      "meitantei conan"
+    ],
+    "domain": "anime",
+    "year": 1996,
+    "genres": [
+      "Mystery"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Gosho Aoyama",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Conan Edogawa",
+      "Ran Mouri",
+      "Kogoro Mouri",
+      "Kaito Kid"
+    ],
+    "themes": [
+      "Shrunken detective",
+      "Black Organization"
+    ],
+    "credits": [
+      "Original manga: Gosho Aoyama",
+      "Also known as Case Closed"
+    ],
+    "fandom": "detectiveconan",
+    "cover": {
+      "wiki": "Case Closed",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/3f/Case_Closed_Volume_36.png"
+    },
+    "quote": {
+      "text": "There is only one truth!",
+      "speaker": "A shrunken high-school detective"
+    },
+    "audio": {
+      "clue": "A jazzy, saxophone-led main theme for a boy detective.",
+      "query": "Detective Conan main theme",
+      "youtubeId": "7EYcOntuD7s"
+    },
+    "emoji": "🔍👓🎀💊🕴️",
+    "item": {
+      "name": "Voice-Changing Bowtie",
+      "description": "A red bowtie that imitates anyone's voice."
+    },
+    "location": {
+      "name": "Beika",
+      "description": "A Tokyo district with an absurd number of murders.",
+      "image": "https://static.wikia.nocookie.net/caseclosed/images/8/8a/Beika_Shrine.png/revision/latest/scale-to-width-down/640?cb=20261001111521"
+    },
+    "visual": {
+      "icon": "👓",
+      "colors": [
+        "#1d4ed8",
+        "#dc2626"
       ]
     }
   }

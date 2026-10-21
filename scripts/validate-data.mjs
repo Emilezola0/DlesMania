@@ -13,13 +13,15 @@ const validate = ajv.compile(schema);
 
 /** Minimum works per domain for each single-target mini-game, so dailies rarely repeat. */
 const MIN_PER_GAME = 8;
+// Mirrors HAS_CONTENT in src/data/index.ts: picture rounds only draw works that have the picture.
 const COVERAGE = {
   quote: (w) => w.quote || w.tracks?.length,
-  audio: (w) => w.audio,
+  audio: (w) => w.audio && (w.audio.youtubeId || w.cover?.image),
   emoji: (w) => w.emoji,
   visual: (w) => w.cover?.image || w.visual,
-  item: (w) => w.item,
-  location: (w) => w.location,
+  item: (w) => w.item?.image,
+  location: (w) => w.location?.image,
+  tiles: (w) => w.cover?.image,
 };
 
 let errors = 0;

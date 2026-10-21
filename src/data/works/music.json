@@ -44,13 +44,14 @@
     "emoji": "🌈🔺🌙💰⏰",
     "item": {
       "name": "A prism",
-      "description": "A white beam enters a triangle and leaves as a rainbow, on a black background."
+      "description": "A white beam enters a triangle and leaves as a rainbow, on a black background.",
+      "src": "wp:Prism (optics)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Dispersive_prism.png/960px-Dispersive_prism.png"
     },
     "location": {
       "name": "Abbey Road Studios",
       "description": "The London studio where it was recorded across 1972 and 1973.",
-      "wiki": "Abbey Road Studios",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Abbey_Road_Studios_Logo.svg/960px-Abbey_Road_Studios_Logo.svg.png"
+      "src": "wp:Abbey Road Studios"
     },
     "visual": {
       "icon": "🔺",
@@ -101,7 +102,9 @@
     "emoji": "🧟🕺🧤🌕🌃",
     "item": {
       "name": "A single sequined glove",
-      "description": "Worn on one hand only, made famous during a moonwalk on live TV."
+      "description": "Worn on one hand only, made famous during a moonwalk on live TV.",
+      "src": "wp:Glove",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Centre_de_Documentaci%C3%B3_Museu_T%C3%A8xtil_de_Terrassa-_Reserves-_Teixits-_Guants002.JPG/960px-Centre_de_Documentaci%C3%B3_Museu_T%C3%A8xtil_de_Terrassa-_Reserves-_Teixits-_Guants002.JPG"
     },
     "location": {
       "name": "Westlake Recording Studios",
@@ -158,13 +161,14 @@
     "emoji": "🚶🚶🚶🚶🦓",
     "item": {
       "name": "A white Volkswagen Beetle",
-      "description": "Parked in the background of the cover; its number plate was later stolen repeatedly."
+      "description": "Parked in the background of the cover; its number plate was later stolen repeatedly.",
+      "src": "wp:Volkswagen Beetle",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/VW_K%C3%A4fer_Baujahr_1966.jpg/960px-VW_K%C3%A4fer_Baujahr_1966.jpg"
     },
     "location": {
       "name": "A zebra crossing in St John's Wood",
       "description": "A London crosswalk where four men walked in single file for the cover.",
-      "wiki": "Abbey Road",
-      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/The_Beatles_Abbey_Road_album_cover.jpg/960px-The_Beatles_Abbey_Road_album_cover.jpg"
+      "src": "wp:Abbey Road"
     },
     "visual": {
       "icon": "🦓",
@@ -217,13 +221,14 @@
     "emoji": "👶🏊💵🎣🎸",
     "item": {
       "name": "A dollar bill on a fishhook",
-      "description": "Dangled in front of a swimming baby on the cover."
+      "description": "Dangled in front of a swimming baby on the cover.",
+      "src": "wp:Fish hook",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/37/Fish_hooks.jpg"
     },
     "location": {
       "name": "Sound City Studios",
       "description": "A Van Nuys studio famous for its Neve console, where it was tracked in 1991.",
-      "wiki": "Sound City Studios",
-      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Sound_City_Logo.jpg"
+      "src": "wp:Sound City Studios"
     },
     "visual": {
       "icon": "👶",
@@ -397,12 +402,14 @@
     "emoji": "🦋👑🏛️🎷📜",
     "item": {
       "name": "A black-and-white photo",
-      "description": "A crowd of young men celebrating on the White House lawn."
+      "description": "A crowd of young men celebrating on the White House lawn.",
+      "src": "wp:White House",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/White_House_north_and_south_sides.jpg/960px-White_House_north_and_south_sides.jpg"
     },
     "location": {
       "name": "Compton",
       "description": "The artist's hometown, revisited and wrestled with throughout the record.",
-      "wiki": "Compton, California",
+      "src": "wp:Compton, California",
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Compton_martin_luther_king_monument.jpg"
     },
     "visual": {
@@ -461,7 +468,7 @@
     "location": {
       "name": "Malibu",
       "description": "Where much of the record was cut at a famous producer's Shangri-La studio.",
-      "wiki": "Malibu, California",
+      "src": "wp:Malibu, California",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/MalibuAir.jpg/960px-MalibuAir.jpg"
     },
     "visual": {
@@ -520,7 +527,7 @@
     "location": {
       "name": "Rockfield Studios",
       "description": "A Welsh farm studio where its most famous track was begun.",
-      "wiki": "Rockfield Studios",
+      "src": "wp:Rockfield Studios",
       "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rockfield_Studios%2C_Monmouthshire.jpg"
     },
     "visual": {
@@ -574,11 +581,15 @@
     "emoji": "💻🤖✈️🚗😟",
     "item": {
       "name": "Highway interchange collage",
-      "description": "A pale, scribbled cover image of motorways and pictograms."
+      "description": "A pale, scribbled cover image of motorways and pictograms.",
+      "src": "wp:Interchange (road)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Lakalaivan_eritasoliittym%C3%A4_1.jpg/960px-Lakalaivan_eritasoliittym%C3%A4_1.jpg"
     },
     "location": {
       "name": "St Catherine's Court",
-      "description": "A 16th-century manor near Bath, owned by an actress, where it was recorded."
+      "description": "A 16th-century manor near Bath, owned by an actress, where it was recorded.",
+      "src": "wp:St Catherine's Court",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/1f/St_Catherines_Court1.jpg"
     },
     "visual": {
       "icon": "💻",
@@ -632,12 +643,14 @@
     "emoji": "📸🗽🕶️💋🕊️",
     "item": {
       "name": "A Polaroid",
-      "description": "The cover is an instant photo, cropped just below the eyes."
+      "description": "The cover is an instant photo, cropped just below the eyes.",
+      "src": "wp:Instant camera",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/0464_Fuji_Instax_210_Polaroid_600_Spirit_Fuji_Cheki_%287159344382%29.jpg/960px-0464_Fuji_Instax_210_Polaroid_600_Spirit_Fuji_Cheki_%287159344382%29.jpg"
     },
     "location": {
       "name": "New York City",
       "description": "The artist's newly adopted home, welcomed in the very first track.",
-      "wiki": "New York City",
+      "src": "wp:New York City",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg/960px-View_of_Empire_State_Building_from_Rockefeller_Center_New_York_City_dllu_%28cropped%29.jpg"
     },
     "visual": {
@@ -692,12 +705,14 @@
     "emoji": "🍋🏏🐝🌊🔥",
     "item": {
       "name": "A baseball bat",
-      "description": "Named \"Hot Sauce\", swung through a street of parked cars in a yellow dress."
+      "description": "Named \"Hot Sauce\", swung through a street of parked cars in a yellow dress.",
+      "src": "wp:Baseball bat",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Fourbats.jpg/960px-Fourbats.jpg"
     },
     "location": {
       "name": "New Orleans",
       "description": "Southern Gothic locations used throughout the accompanying film.",
-      "wiki": "New Orleans",
+      "src": "wp:New Orleans",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_%28cropped%29.jpg/960px-New_Orleans_from_the_Air_September_2019_-_Central_Business_District_Skyline_%28cropped%29.jpg"
     },
     "visual": {
@@ -752,11 +767,15 @@
     "emoji": "🔔⚫🎸⚡🏫",
     "item": {
       "name": "A schoolboy uniform",
-      "description": "Shorts, tie and cap, worn by the lead guitarist on every stage."
+      "description": "Shorts, tie and cap, worn by the lead guitarist on every stage.",
+      "src": "wp:School uniform",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Students_of_Nan_Hua_High_School%2C_Singapore%2C_in_the_school_hall_-_20060127.jpg/960px-Students_of_Nan_Hua_High_School%2C_Singapore%2C_in_the_school_hall_-_20060127.jpg"
     },
     "location": {
       "name": "Compass Point Studios",
-      "description": "A Bahamas studio where the record was made during hurricane season."
+      "description": "A Bahamas studio where the record was made during hurricane season.",
+      "src": "wp:Compass Point Studios",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Compas_Point_Studio_%2814949011761%29.jpg/960px-Compas_Point_Studio_%2814949011761%29.jpg"
     },
     "visual": {
       "icon": "🔔",
@@ -810,12 +829,14 @@
     "emoji": "🇯🇲🦁🎸🌿🚶",
     "item": {
       "name": "Gold Amharic lettering",
-      "description": "Ethiopian script on a plain cover, honouring the artist's faith."
+      "description": "Ethiopian script on a plain cover, honouring the artist's faith.",
+      "src": "wp:Ge'ez script",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Geez_script_sample.svg/960px-Geez_script_sample.svg.png"
     },
     "location": {
       "name": "London",
       "description": "Where it was recorded in exile after an assassination attempt in Kingston.",
-      "wiki": "London",
+      "src": "wp:London",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg"
     },
     "visual": {
@@ -870,12 +891,14 @@
     "emoji": "💜🌧️🏍️🕊️🎸",
     "item": {
       "name": "A purple motorcycle",
-      "description": "The artist straddles it in front of a flower-covered doorway on the cover."
+      "description": "The artist straddles it in front of a flower-covered doorway on the cover.",
+      "src": "wp:Motorcycle",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/50/Istockphoto-114285168-612x612.jpg"
     },
     "location": {
       "name": "First Avenue",
       "description": "A Minneapolis nightclub where the title track was recorded live.",
-      "wiki": "First Avenue (nightclub)",
+      "src": "wp:First Avenue (nightclub)",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/FirstAvenue.jpg/960px-FirstAvenue.jpg"
     },
     "visual": {
@@ -935,7 +958,7 @@
     "location": {
       "name": "Headley Grange",
       "description": "A former poorhouse in Hampshire whose stairwell gave the album its giant drum sound.",
-      "wiki": "Headley Grange",
+      "src": "wp:Headley Grange",
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Headley_Grange_-_geograph.org.uk_-_29789.jpg"
     },
     "visual": {
@@ -994,7 +1017,7 @@
     "location": {
       "name": "Queensbridge Houses",
       "description": "The largest public housing project in North America, in Queens.",
-      "wiki": "Queensbridge Houses",
+      "src": "wp:Queensbridge Houses",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Queensbridge_Houses.jpg/960px-Queensbridge_Houses.jpg"
     },
     "visual": {
@@ -1050,12 +1073,14 @@
     "emoji": "🚗🛣️🎷🎸🌃",
     "item": {
       "name": "A saxophonist's shoulder",
-      "description": "The singer leans on it on the gatefold cover."
+      "description": "The singer leans on it on the gatefold cover.",
+      "src": "wp:Saxophone",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Eight_saxophone_sizes_smaller.png/960px-Eight_saxophone_sizes_smaller.png"
     },
     "location": {
       "name": "Asbury Park",
       "description": "A Jersey Shore boardwalk town the artist made famous.",
-      "wiki": "Asbury Park, New Jersey",
+      "src": "wp:Asbury Park, New Jersey",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Paramount_Theatre_Asbury_Park_Convention_Hall_NJ2.jpg/960px-Paramount_Theatre_Asbury_Park_Convention_Hall_NJ2.jpg"
     },
     "visual": {
@@ -1109,7 +1134,9 @@
     "emoji": "🎺💙🎷🎹🌙",
     "item": {
       "name": "A trumpet",
-      "description": "Played by the bandleader, photographed mid-solo on the cover."
+      "description": "Played by the bandleader, photographed mid-solo on the cover.",
+      "src": "wp:Trumpet",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Yamaha_Trumpet_YTR-8335LA_crop.jpg/960px-Yamaha_Trumpet_YTR-8335LA_crop.jpg"
     },
     "location": {
       "name": "Columbia 30th Street Studio",
@@ -1167,7 +1194,9 @@
     "emoji": "🎖️🥁💐👥🌈",
     "item": {
       "name": "A bass drum",
-      "description": "Painted with the album's title, surrounded by a crowd of cut-out celebrities."
+      "description": "Painted with the album's title, surrounded by a crowd of cut-out celebrities.",
+      "src": "wp:Bass drum",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Gran_cassa.jpg/960px-Gran_cassa.jpg"
     },
     "visual": {
       "icon": "🥁",
@@ -1227,7 +1256,7 @@
     "location": {
       "name": "Oahu, Hawaii",
       "description": "Where the artist holed up for months with collaborators to make the record.",
-      "wiki": "Oahu",
+      "src": "wp:Oahu",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Oahu.jpg/960px-Oahu.jpg"
     },
     "visual": {
@@ -1287,7 +1316,7 @@
     "location": {
       "name": "Iceland",
       "description": "The artist's homeland, whose landscapes inspired every sound.",
-      "wiki": "Iceland",
+      "src": "wp:Iceland",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Iceland.svg/960px-Flag_of_Iceland.svg.png"
     },
     "visual": {
@@ -1342,7 +1371,9 @@
     "emoji": "⚡👨‍🎤🌟👽🎸",
     "location": {
       "name": "Heddon Street, London",
-      "description": "A small street off Regent Street where the cover photo was shot in the rain."
+      "description": "A small street off Regent Street where the cover photo was shot in the rain.",
+      "src": "wp:Heddon Street",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Regent_Street_2011-04-25.jpg/960px-Regent_Street_2011-04-25.jpg"
     },
     "visual": {
       "icon": "🌟",
@@ -1450,12 +1481,14 @@
     "emoji": "🖤🍷🐝💄🎷",
     "item": {
       "name": "A towering beehive hairdo",
-      "description": "The singer's trademark, paired with dramatic cat-eye liner."
+      "description": "The singer's trademark, paired with dramatic cat-eye liner.",
+      "src": "wp:Beehive (hairstyle)",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Natalie_Wood_1964.jpg"
     },
     "location": {
       "name": "Camden Town",
       "description": "The London neighbourhood forever associated with the singer.",
-      "wiki": "Camden Town",
+      "src": "wp:Camden Town",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Camden_Town_9.jpg/960px-Camden_Town_9.jpg"
     },
     "visual": {
@@ -1515,7 +1548,7 @@
     "location": {
       "name": "Sunset Strip",
       "description": "The L.A. stretch of clubs where the band cut its teeth.",
-      "wiki": "Sunset Strip",
+      "src": "wp:Sunset Strip",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Sunset_Tower%2C_8358_Sunset_Blvd._West_Hollywood_2383.jpg/960px-Sunset_Tower%2C_8358_Sunset_Blvd._West_Hollywood_2383.jpg"
     },
     "visual": {
@@ -1570,7 +1603,9 @@
     "emoji": "🪩🚗💃🌙✨",
     "item": {
       "name": "A pink vintage convertible",
-      "description": "The singer drives it on the retro cover."
+      "description": "The singer drives it on the retro cover.",
+      "src": "wp:Convertible",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Peugeot-204-cabriolet-de-1968-rouge-China-1135-villegiature-arriere.jpg/960px-Peugeot-204-cabriolet-de-1968-rouge-China-1135-villegiature-arriere.jpg"
     },
     "visual": {
       "icon": "🪩",
@@ -1630,7 +1665,7 @@
     "location": {
       "name": "Las Vegas",
       "description": "The neon city where the album's music videos spiral out of control.",
-      "wiki": "Las Vegas",
+      "src": "wp:Las Vegas",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Center_Strip_Before_Sunrise.jpg/960px-Center_Strip_Before_Sunrise.jpg"
     },
     "visual": {
@@ -1739,7 +1774,7 @@
     "location": {
       "name": "Detroit",
       "description": "Motor City, home of the label that didn't want to release it.",
-      "wiki": "Detroit",
+      "src": "wp:Detroit",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Detroit_Skyline_from_Windsor_2025-09-01.jpg/960px-Detroit_Skyline_from_Windsor_2025-09-01.jpg"
     },
     "visual": {
@@ -1800,7 +1835,7 @@
     "location": {
       "name": "Puerto Rico",
       "description": "The artist's island home, celebrated in the album's beach anthems.",
-      "wiki": "Puerto Rico",
+      "src": "wp:Puerto Rico",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Flag_of_Puerto_Rico.svg/960px-Flag_of_Puerto_Rico.svg.png"
     },
     "visual": {
@@ -1910,12 +1945,14 @@
     "emoji": "🧱👨‍🏫🔨🎸🧒",
     "item": {
       "name": "A plain white brick wall",
-      "description": "The album's whole cover — no title, no photo."
+      "description": "The album's whole cover — no title, no photo.",
+      "src": "wp:Brickwork",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Hampton_stacks.JPG"
     },
     "location": {
       "name": "Earls Court",
       "description": "A London arena where a giant wall was built — and torn down — on stage.",
-      "wiki": "Earls Court Exhibition Centre",
+      "src": "wp:Earls Court Exhibition Centre",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Earls_Court_Exhibition_Centre.jpg/960px-Earls_Court_Exhibition_Centre.jpg"
     },
     "visual": {
@@ -1974,7 +2011,7 @@
     "location": {
       "name": "Beverly Hills Hotel",
       "description": "The pink Sunset Boulevard landmark pictured on the cover.",
-      "wiki": "Beverly Hills Hotel",
+      "src": "wp:The Beverly Hills Hotel",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/The_Beverly_Hills_Hotel_%282013%29.jpg/960px-The_Beverly_Hills_Hotel_%282013%29.jpg"
     },
     "visual": {
@@ -2088,7 +2125,7 @@
     "location": {
       "name": "Berwick Street",
       "description": "A Soho street of record shops, pictured at dawn on the cover.",
-      "wiki": "Berwick Street",
+      "src": "wp:Berwick Street",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Berwick_Street%2C_Soho.JPG/960px-Berwick_Street%2C_Soho.JPG"
     },
     "visual": {
@@ -2142,7 +2179,9 @@
     "emoji": "〰️🌙🎸📞🕶️",
     "item": {
       "name": "A sound wave",
-      "description": "A single white soundwave shape on a black cover."
+      "description": "A single white soundwave shape on a black cover.",
+      "src": "wp:Waveform",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Waveforms.svg/960px-Waveforms.svg.png"
     },
     "visual": {
       "icon": "〰️",
@@ -2254,7 +2293,7 @@
     "location": {
       "name": "Detroit",
       "description": "The Motor City, where the rapper grew up on Dresden Street.",
-      "wiki": "Detroit",
+      "src": "wp:Detroit",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Detroit_Skyline_from_Windsor_2025-09-01.jpg/960px-Detroit_Skyline_from_Windsor_2025-09-01.jpg"
     },
     "visual": {
@@ -2418,7 +2457,9 @@
     "emoji": "🍬🚗💔📝😤",
     "item": {
       "name": "Stickers on a tongue",
-      "description": "The singer sticks her tongue out, covered in stickers."
+      "description": "The singer sticks her tongue out, covered in stickers.",
+      "src": "wp:Sticker",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Bananas_on_countertop.JPG/960px-Bananas_on_countertop.JPG"
     },
     "visual": {
       "icon": "🍬",
@@ -2472,12 +2513,13 @@
     "emoji": "➗🎸🦰🏰💍",
     "item": {
       "name": "A division sign",
-      "description": "A big blue maths symbol on the cover."
+      "description": "A big blue maths symbol on the cover.",
+      "src": "wp:Division sign"
     },
     "location": {
       "name": "Framlingham Castle",
       "description": "The Suffolk castle the singer remembers from his childhood.",
-      "wiki": "Framlingham Castle",
+      "src": "wp:Framlingham Castle",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Franglingham_Castle_01.jpg/960px-Franglingham_Castle_01.jpg"
     },
     "visual": {
@@ -2531,12 +2573,14 @@
     "emoji": "🐐🏄🎻🌊💒",
     "item": {
       "name": "Goats",
-      "description": "The band feeds them apples on the cover."
+      "description": "The band feeds them apples on the cover.",
+      "src": "wp:Goat",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Hausziege_04.jpg/960px-Hausziege_04.jpg"
     },
     "location": {
       "name": "San Diego Zoo",
       "description": "Where the cover photo with the animals was taken.",
-      "wiki": "San Diego Zoo",
+      "src": "wp:San Diego Zoo",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/San_Diego_Zoo_Entrance_.jpg/960px-San_Diego_Zoo_Entrance_.jpg"
     },
     "visual": {
@@ -2590,7 +2634,9 @@
     "emoji": "✝️💃⛪🕯️👖",
     "item": {
       "name": "A pair of jeans",
-      "description": "A close-up of a denim waistband makes up the cover."
+      "description": "A close-up of a denim waistband makes up the cover.",
+      "src": "wp:Jeans",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Jeans.jpg"
     },
     "visual": {
       "icon": "✝️",
@@ -2752,7 +2798,9 @@
     "emoji": "📸🃏💃🪩🕶️",
     "item": {
       "name": "Oversized sunglasses",
-      "description": "Worn in a glossy close-up on the cover."
+      "description": "Worn in a glossy close-up on the cover.",
+      "src": "wp:Sunglasses",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Allef_Vinicius_2016-10-20_%28Unsplash%29_%28cropped%29.jpg/960px-Allef_Vinicius_2016-10-20_%28Unsplash%29_%28cropped%29.jpg"
     },
     "visual": {
       "icon": "🃏",
@@ -2863,7 +2911,7 @@
     "location": {
       "name": "U.S. Route 61",
       "description": "The 'Blues Highway' running down the Mississippi valley.",
-      "wiki": "U.S. Route 61",
+      "src": "wp:U.S. Route 61",
       "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/US_61.svg/960px-US_61.svg.png"
     },
     "visual": {
@@ -2917,12 +2965,14 @@
     "emoji": "🍌🎨🎸🖤🌃",
     "item": {
       "name": "A banana",
-      "description": "A Warhol sticker that said 'peel slowly and see'."
+      "description": "A Warhol sticker that said 'peel slowly and see'.",
+      "src": "wp:Banana",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"
     },
     "location": {
       "name": "The Factory",
       "description": "Andy Warhol's silver-walled Manhattan studio, where the band rehearsed.",
-      "wiki": "The Factory",
+      "src": "wp:The Factory",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/60/158_Madison_Ave_Factory.jpg"
     },
     "visual": {
@@ -2930,6 +2980,2611 @@
       "colors": [
         "#fde047",
         "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "m-anti",
+    "name": "Anti",
+    "subtitle": "Rihanna",
+    "aliases": [
+      "rihanna"
+    ],
+    "domain": "music",
+    "year": 2016,
+    "genres": [
+      "R&B",
+      "Pop"
+    ],
+    "studio": "Roc Nation",
+    "creator": "Rihanna",
+    "origin": "Barbados",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Barbadian superstar's long-awaited eighth album"
+    ],
+    "cover": {
+      "wiki": "Anti (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/Rihanna_-_Anti.png"
+    },
+    "tracks": [
+      "Needed Me",
+      "Love on the Brain",
+      "Kiss It Better",
+      "Work"
+    ],
+    "audio": {
+      "clue": "A dancehall-tinged hit built on a repeated word, featuring Drake.",
+      "query": "Rihanna Work ft Drake",
+      "youtubeId": "HL1UzIK-flA"
+    },
+    "emoji": "👑🎈🖤🇧🇧💔",
+    "item": {
+      "name": "A crown",
+      "description": "Covering the eyes of a child holding a balloon on the cover.",
+      "src": "wp:Crown",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/64/Saint_Edward%27s_Crown.jpg"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#7f1d1d",
+        "#fca5a5"
+      ]
+    }
+  },
+  {
+    "id": "m-takecare",
+    "name": "Take Care",
+    "subtitle": "Drake",
+    "aliases": [
+      "drake"
+    ],
+    "domain": "music",
+    "year": 2011,
+    "genres": [
+      "Hip Hop",
+      "R&B"
+    ],
+    "studio": "Young Money",
+    "creator": "Drake",
+    "origin": "Canada",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Toronto rapper and former actor"
+    ],
+    "cover": {
+      "wiki": "Take Care (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg"
+    },
+    "tracks": [
+      "Marvins Room",
+      "The Motto",
+      "Headlines",
+      "Take Care"
+    ],
+    "audio": {
+      "clue": "A moody, Jamie xx-produced track sampling Gil Scott-Heron, featuring Rihanna.",
+      "query": "Drake Take Care ft Rihanna",
+      "youtubeId": "-zzP29emgpg"
+    },
+    "emoji": "🍷🦉🏆😔🍁",
+    "item": {
+      "name": "A golden chalice",
+      "description": "The rapper sits at a table with one on the cover.",
+      "src": "wp:Chalice",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/German_-_Chalice_with_Saints_and_Scenes_from_the_Life_of_Christ_-_Walters_44116.jpg/960px-German_-_Chalice_with_Saints_and_Scenes_from_the_Life_of_Christ_-_Walters_44116.jpg"
+    },
+    "location": {
+      "name": "Toronto",
+      "description": "The artist's hometown, nicknamed 'The 6'.",
+      "src": "wp:Toronto",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Toronto_Skyline_from_Snake_Island%2C_September_11_2026_%2801%29.jpg/960px-Toronto_Skyline_from_Snake_Island%2C_September_11_2026_%2801%29.jpg"
+    },
+    "visual": {
+      "icon": "🦉",
+      "colors": [
+        "#3f2a1c",
+        "#d4a373"
+      ]
+    }
+  },
+  {
+    "id": "m-graduation",
+    "name": "Graduation",
+    "subtitle": "Kanye West",
+    "aliases": [
+      "kanye west"
+    ],
+    "domain": "music",
+    "year": 2007,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Roc-A-Fella",
+    "creator": "Kanye West",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Chicago producer-turned-rapper"
+    ],
+    "cover": {
+      "wiki": "Graduation (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/70/Graduation_%28album%29.jpg"
+    },
+    "tracks": [
+      "Flashing Lights",
+      "Good Life",
+      "Homecoming",
+      "Stronger"
+    ],
+    "audio": {
+      "clue": "A rap hit built on a Daft Punk sample about what doesn't kill you.",
+      "query": "Kanye West Stronger",
+      "youtubeId": "PsO6ZnUZI0g"
+    },
+    "emoji": "🧸🎓🚀🌈✨",
+    "item": {
+      "name": "A teddy bear",
+      "description": "A cartoon bear blasted out of a college by cannon on the cover.",
+      "src": "wp:Teddy bear",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Teddy_bear_early_1900s_-_Smithsonian_Museum_of_Natural_History.jpg"
+    },
+    "location": {
+      "name": "Chicago",
+      "description": "The rapper's hometown, celebrated on 'Homecoming'.",
+      "src": "wp:Chicago",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Chicago_River_ferry_b.jpg/960px-Chicago_River_ferry_b.jpg"
+    },
+    "visual": {
+      "icon": "🧸",
+      "colors": [
+        "#a855f7",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "m-blueprint",
+    "name": "The Blueprint",
+    "subtitle": "Jay-Z",
+    "aliases": [
+      "jay-z"
+    ],
+    "domain": "music",
+    "year": 2001,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Roc-A-Fella",
+    "creator": "Jay-Z",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Brooklyn rapper-entrepreneur; producers include Kanye West"
+    ],
+    "cover": {
+      "wiki": "The Blueprint",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2c/The_Blueprint.png"
+    },
+    "tracks": [
+      "Song Cry",
+      "Takeover",
+      "Heart of the City",
+      "Izzo (H.O.V.A.)"
+    ],
+    "audio": {
+      "clue": "A soul-sample-driven hit that spells out the artist's nickname.",
+      "query": "Jay-Z Izzo H.O.V.A.",
+      "youtubeId": "GRKmpn3SBdw"
+    },
+    "emoji": "📐🎤🏙️💰🧢",
+    "item": {
+      "name": "A blueprint",
+      "description": "A technical drawing gives the album its name.",
+      "src": "wp:Blueprint",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/AcotacionTecnico.svg/960px-AcotacionTecnico.svg.png"
+    },
+    "location": {
+      "name": "Marcy Houses",
+      "description": "The Brooklyn housing project where the rapper grew up.",
+      "src": "wp:Marcy Houses",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Marcy_Houses_Park_Av_rainy_jeh.jpg/960px-Marcy_Houses_Park_Av_rainy_jeh.jpg"
+    },
+    "visual": {
+      "icon": "📐",
+      "colors": [
+        "#1e3a8a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-speakerboxxx",
+    "name": "Speakerboxxx/The Love Below",
+    "subtitle": "OutKast",
+    "aliases": [
+      "outkast"
+    ],
+    "domain": "music",
+    "year": 2003,
+    "genres": [
+      "Hip Hop",
+      "Funk"
+    ],
+    "studio": "LaFace",
+    "creator": "OutKast",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an Atlanta duo releasing two solo discs as one"
+    ],
+    "cover": {
+      "wiki": "Speakerboxxx/The Love Below",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/54/Speakerboxxx-The_Love_Below.png"
+    },
+    "tracks": [
+      "Roses",
+      "The Way You Move",
+      "Prototype",
+      "Hey Ya!"
+    ],
+    "audio": {
+      "clue": "A frantic acoustic-guitar pop song telling you to shake it like a Polaroid picture.",
+      "query": "OutKast Hey Ya",
+      "youtubeId": "PWgvGjAhvIw"
+    },
+    "emoji": "💿💿🎸💃📷",
+    "location": {
+      "name": "Atlanta",
+      "description": "The duo's hometown and the heart of Southern hip-hop.",
+      "src": "wp:Atlanta",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/A2ATL20250614-0721_%28cropped%29.jpg/960px-A2ATL20250614-0721_%28cropped%29.jpg"
+    },
+    "visual": {
+      "icon": "💿",
+      "colors": [
+        "#ec4899",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "m-readytodie",
+    "name": "Ready to Die",
+    "subtitle": "The Notorious B.I.G.",
+    "aliases": [
+      "the notorious b.i.g."
+    ],
+    "domain": "music",
+    "year": 1994,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Bad Boy",
+    "creator": "The Notorious B.I.G.",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Brooklyn rapper also known as Biggie Smalls"
+    ],
+    "cover": {
+      "wiki": "Ready to Die",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/97/Ready_To_Die.jpg"
+    },
+    "tracks": [
+      "Gimme the Loot",
+      "Big Poppa",
+      "One More Chance",
+      "Juicy"
+    ],
+    "audio": {
+      "clue": "A laid-back rags-to-riches anthem over a sample of 'Juicy Fruit'.",
+      "query": "Notorious BIG Juicy",
+      "youtubeId": "_JZom_gVfuw"
+    },
+    "emoji": "👶💀👑🍾🗽",
+    "item": {
+      "name": "A baby with an afro",
+      "description": "The infant on the album's cover.",
+      "src": "wp:Afro",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Back2Basics_%40_Hard_Rock_Cafe_080814_Photo_by_Jason_Melcher_IMG_3382_%2814847453616%29_%28cropped%29.jpg"
+    },
+    "location": {
+      "name": "Bedford–Stuyvesant",
+      "description": "The Brooklyn neighbourhood the rapper called home.",
+      "src": "wp:Bedford–Stuyvesant, Brooklyn",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Bedstuybrownstone1.jpg/960px-Bedstuybrownstone1.jpg"
+    },
+    "visual": {
+      "icon": "👶",
+      "colors": [
+        "#0a0a0a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-alleyez",
+    "name": "All Eyez on Me",
+    "subtitle": "2Pac",
+    "aliases": [
+      "2pac"
+    ],
+    "domain": "music",
+    "year": 1996,
+    "genres": [
+      "Hip Hop",
+      "G-funk"
+    ],
+    "studio": "Death Row",
+    "creator": "2Pac",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a West Coast rapper and actor; hip-hop's first double album"
+    ],
+    "cover": {
+      "wiki": "All Eyez on Me",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Alleyezonme.jpg"
+    },
+    "tracks": [
+      "Ambitionz az a Ridah",
+      "How Do U Want It",
+      "2 of Amerikaz Most Wanted",
+      "California Love"
+    ],
+    "audio": {
+      "clue": "A talk-box funk anthem celebrating a West Coast state, with Dr. Dre.",
+      "query": "2Pac California Love",
+      "youtubeId": "J7_bMdYfSws"
+    },
+    "emoji": "👁️👁️🌴🎤💿",
+    "location": {
+      "name": "Los Angeles",
+      "description": "The West Coast city at the centre of the album's world.",
+      "src": "wp:Los Angeles",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg"
+    },
+    "visual": {
+      "icon": "🌴",
+      "colors": [
+        "#0a0a0a",
+        "#ca8a04"
+      ]
+    }
+  },
+  {
+    "id": "m-chronic",
+    "name": "The Chronic",
+    "subtitle": "Dr. Dre",
+    "aliases": [
+      "dr. dre"
+    ],
+    "domain": "music",
+    "year": 1992,
+    "genres": [
+      "Hip Hop",
+      "G-funk"
+    ],
+    "studio": "Death Row",
+    "creator": "Dr. Dre",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an N.W.A founder; introduced Snoop Dogg"
+    ],
+    "cover": {
+      "wiki": "The Chronic",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/19/Dr.DreTheChronic.jpg"
+    },
+    "tracks": [
+      "Lil' Ghetto Boy",
+      "Let Me Ride",
+      "Dre Day",
+      "Nuthin' but a 'G' Thang"
+    ],
+    "audio": {
+      "clue": "A slow, synthesiser-whine G-funk groove with a young Snoop Dogg.",
+      "query": "Dr Dre Nuthin but a G Thang",
+      "youtubeId": "8GliyDgAGQI"
+    },
+    "emoji": "🌿🚗💨🎹🌴",
+    "location": {
+      "name": "Compton",
+      "description": "The city whose sound the record redefined.",
+      "src": "wp:Compton, California",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Compton_martin_luther_king_monument.jpg"
+    },
+    "visual": {
+      "icon": "🌿",
+      "colors": [
+        "#14532d",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "m-gkmc",
+    "name": "Good Kid, M.A.A.D City",
+    "subtitle": "Kendrick Lamar",
+    "aliases": [
+      "kendrick lamar"
+    ],
+    "domain": "music",
+    "year": 2012,
+    "genres": [
+      "Hip Hop"
+    ],
+    "studio": "Top Dawg Entertainment",
+    "creator": "Kendrick Lamar",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a rapper from Compton; billed as 'a short film'"
+    ],
+    "cover": {
+      "wiki": "Good Kid, M.A.A.D City",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg"
+    },
+    "tracks": [
+      "Poetic Justice",
+      "Money Trees",
+      "Swimming Pools (Drank)",
+      "Bitch, Don't Kill My Vibe"
+    ],
+    "audio": {
+      "clue": "A woozy beat warning about peer pressure and drinking.",
+      "query": "Kendrick Lamar Swimming Pools",
+      "youtubeId": "B5YNiCfWC3A"
+    },
+    "emoji": "👦🚐🏘️🍾🎞️",
+    "item": {
+      "name": "A minivan",
+      "description": "His mother's van, borrowed for a night that went wrong.",
+      "src": "wp:Minivan",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/2019_Chrysler_Pacifica_Touring_L%2C_front_7.4.19.jpg/960px-2019_Chrysler_Pacifica_Touring_L%2C_front_7.4.19.jpg"
+    },
+    "visual": {
+      "icon": "🚐",
+      "colors": [
+        "#78350f",
+        "#e7e5e4"
+      ]
+    }
+  },
+  {
+    "id": "m-astroworld",
+    "name": "Astroworld",
+    "subtitle": "Travis Scott",
+    "aliases": [
+      "travis scott"
+    ],
+    "domain": "music",
+    "year": 2018,
+    "genres": [
+      "Hip Hop",
+      "Trap"
+    ],
+    "studio": "Cactus Jack",
+    "creator": "Travis Scott",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Houston rapper; named after a closed theme park"
+    ],
+    "cover": {
+      "wiki": "Astroworld (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4b/Travis_Scott_-_Astroworld.png"
+    },
+    "tracks": [
+      "Stop Trying to Be God",
+      "Butterfly Effect",
+      "Stargazing",
+      "Sicko Mode"
+    ],
+    "audio": {
+      "clue": "A multi-part trap epic with beat switches and Drake.",
+      "query": "Travis Scott Sicko Mode",
+      "youtubeId": "6ONRf7h3Mdk"
+    },
+    "emoji": "🎢🎡🌵🔥🤘",
+    "item": {
+      "name": "A roller coaster",
+      "description": "A defunct theme park ride the album resurrects.",
+      "src": "wp:Roller coaster",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Luna_Park_Melbourne_scenic_railway.jpg/960px-Luna_Park_Melbourne_scenic_railway.jpg"
+    },
+    "location": {
+      "name": "Six Flags AstroWorld",
+      "description": "A Houston theme park demolished in 2005.",
+      "src": "wp:Six Flags AstroWorld",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Six_Flags_Astroworld_entrance_gate.jpg/960px-Six_Flags_Astroworld_entrance_gate.jpg"
+    },
+    "visual": {
+      "icon": "🎢",
+      "colors": [
+        "#7c2d12",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-igor",
+    "name": "Igor",
+    "subtitle": "Tyler, the Creator",
+    "aliases": [
+      "tyler, the creator"
+    ],
+    "domain": "music",
+    "year": 2019,
+    "genres": [
+      "Hip Hop",
+      "Neo-soul"
+    ],
+    "studio": "Columbia",
+    "creator": "Tyler, the Creator",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an Odd Future founder in a blond bob wig"
+    ],
+    "cover": {
+      "wiki": "Igor (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Igor_-_Tyler%2C_the_Creator.jpg"
+    },
+    "tracks": [
+      "Running Out of Time",
+      "New Magic Wand",
+      "A Boy Is a Gun",
+      "Earfquake"
+    ],
+    "audio": {
+      "clue": "A wobbly, synth-soul love song with a high-pitched chorus.",
+      "query": "Tyler the Creator Earfquake",
+      "youtubeId": "Aztdmq1tYY8"
+    },
+    "emoji": "👱🪄💔🎹🌸",
+    "item": {
+      "name": "A blond bob wig",
+      "description": "Worn on the cover by the artist's alter ego.",
+      "src": "wp:Wig",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Hime_cut.jpg"
+    },
+    "visual": {
+      "icon": "🪄",
+      "colors": [
+        "#f9a8d4",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "m-thankunext",
+    "name": "Thank U, Next",
+    "subtitle": "Ariana Grande",
+    "aliases": [
+      "ariana grande"
+    ],
+    "domain": "music",
+    "year": 2019,
+    "genres": [
+      "Pop",
+      "R&B"
+    ],
+    "studio": "Republic",
+    "creator": "Ariana Grande",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Boca Raton singer and former Nickelodeon star"
+    ],
+    "cover": {
+      "wiki": "Thank U, Next",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/dd/Thank_U%2C_Next_album_cover.png"
+    },
+    "tracks": [
+      "NASA",
+      "Break Up with Your Girlfriend, I'm Bored",
+      "7 Rings",
+      "Thank U, Next"
+    ],
+    "audio": {
+      "clue": "A breezy breakup anthem thanking each ex by name.",
+      "query": "Ariana Grande thank u next",
+      "youtubeId": "gl1aHhXnN1k"
+    },
+    "emoji": "💍💍🙏💔🎀",
+    "item": {
+      "name": "Seven rings",
+      "description": "Bought for friends after a bad day, in the album's biggest single.",
+      "src": "wp:Ring (jewellery)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg/960px-Roman_-_Crouching_Venus_-_Walters_421007_-_Three_Quarter.jpg"
+    },
+    "visual": {
+      "icon": "💍",
+      "colors": [
+        "#fbcfe8",
+        "#a855f7"
+      ]
+    }
+  },
+  {
+    "id": "m-folklore",
+    "name": "Folklore",
+    "subtitle": "Taylor Swift",
+    "aliases": [
+      "taylor swift"
+    ],
+    "domain": "music",
+    "year": 2020,
+    "genres": [
+      "Indie Folk",
+      "Pop"
+    ],
+    "studio": "Republic",
+    "creator": "Taylor Swift",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a pop superstar; made in lockdown with Aaron Dessner"
+    ],
+    "cover": {
+      "wiki": "Folklore (Taylor Swift album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Taylor_Swift_-_Folklore.png"
+    },
+    "tracks": [
+      "Exile",
+      "August",
+      "The 1",
+      "Cardigan"
+    ],
+    "audio": {
+      "clue": "A hushed piano ballad about an old cardigan under someone's bed.",
+      "query": "Taylor Swift cardigan",
+      "youtubeId": "K-a8s8OLBSE"
+    },
+    "emoji": "🌲🧥🌫️📖🕯️",
+    "item": {
+      "name": "A cardigan",
+      "description": "An old sweater worn as a symbol of being treasured.",
+      "src": "wp:Cardigan (sweater)",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/NMA.0038588%2C_Fashion_Photo_by_Erik_Holm%C3%A9n_1947.jpg/960px-NMA.0038588%2C_Fashion_Photo_by_Erik_Holm%C3%A9n_1947.jpg"
+    },
+    "visual": {
+      "icon": "🌲",
+      "colors": [
+        "#a8a29e",
+        "#f5f5f4"
+      ]
+    }
+  },
+  {
+    "id": "m-fineline",
+    "name": "Fine Line",
+    "subtitle": "Harry Styles",
+    "aliases": [
+      "harry styles"
+    ],
+    "domain": "music",
+    "year": 2019,
+    "genres": [
+      "Pop Rock"
+    ],
+    "studio": "Columbia",
+    "creator": "Harry Styles",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a former One Direction singer"
+    ],
+    "cover": {
+      "wiki": "Fine Line (album)"
+    },
+    "tracks": [
+      "Golden",
+      "Adore You",
+      "Falling",
+      "Watermelon Sugar"
+    ],
+    "audio": {
+      "clue": "A sunny, horn-laden summer single about a juicy fruit.",
+      "query": "Harry Styles Watermelon Sugar",
+      "youtubeId": "E07s5ZYygMg"
+    },
+    "emoji": "🍉🐟🌈🪩🌻",
+    "item": {
+      "name": "A fisheye lens",
+      "description": "Distorts the singer's pink-and-blue cover portrait.",
+      "src": "wp:Fisheye lens",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Fisheye-Nikkor_Auto_8mm_1-2.8.jpg/960px-Fisheye-Nikkor_Auto_8mm_1-2.8.jpg"
+    },
+    "visual": {
+      "icon": "🍉",
+      "colors": [
+        "#ec4899",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
+    "id": "m-parachutes",
+    "name": "Parachutes",
+    "subtitle": "Coldplay",
+    "aliases": [
+      "coldplay"
+    ],
+    "domain": "music",
+    "year": 2000,
+    "genres": [
+      "Alternative Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "Coldplay",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a London band formed at university; debut album"
+    ],
+    "cover": {
+      "wiki": "Parachutes (album)"
+    },
+    "tracks": [
+      "Shiver",
+      "Trouble",
+      "Don't Panic",
+      "Yellow"
+    ],
+    "audio": {
+      "clue": "A soaring, fuzzy guitar ballad about the stars shining for you.",
+      "query": "Coldplay Yellow",
+      "youtubeId": "yKNxeF4KMsY"
+    },
+    "emoji": "🌍🪂⭐💛🎸",
+    "item": {
+      "name": "A globe",
+      "description": "A small yellow desk globe sits alone on the cover.",
+      "src": "wp:Globe",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/The_Great_Globe%2C_Guyot_Hall%2C_Princeton_University.jpg/960px-The_Great_Globe%2C_Guyot_Hall%2C_Princeton_University.jpg"
+    },
+    "location": {
+      "name": "Rockfield Studios",
+      "description": "A Welsh farm studio where much of it was recorded.",
+      "src": "wp:Rockfield Studios",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rockfield_Studios%2C_Monmouthshire.jpg"
+    },
+    "visual": {
+      "icon": "🌍",
+      "colors": [
+        "#facc15",
+        "#78350f"
+      ]
+    }
+  },
+  {
+    "id": "m-parklife",
+    "name": "Parklife",
+    "subtitle": "Blur",
+    "aliases": [
+      "blur"
+    ],
+    "domain": "music",
+    "year": 1994,
+    "genres": [
+      "Britpop"
+    ],
+    "studio": "Food",
+    "creator": "Blur",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a London band; spoken word by actor Phil Daniels"
+    ],
+    "cover": {
+      "wiki": "Parklife",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7d/BlurParklife.jpg"
+    },
+    "tracks": [
+      "End of a Century",
+      "To the End",
+      "Girls & Boys",
+      "Parklife"
+    ],
+    "audio": {
+      "clue": "A cockney spoken-word verse about feeding pigeons, over chugging guitars.",
+      "query": "Blur Parklife",
+      "youtubeId": "YSuHrTfcikU"
+    },
+    "emoji": "🐕🏁🇬🇧🕺🍺",
+    "item": {
+      "name": "Racing greyhounds",
+      "description": "Dogs bursting from the traps on the cover.",
+      "src": "wp:Greyhound",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/GraceTheGreyhound.jpg/960px-GraceTheGreyhound.jpg"
+    },
+    "location": {
+      "name": "Walthamstow Stadium",
+      "description": "The London dog track pictured on the album's cover.",
+      "src": "wp:Walthamstow Stadium",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/59/Walthamstow_Stadium_-_geograph.org.uk_-_18081.jpg"
+    },
+    "visual": {
+      "icon": "🐕",
+      "colors": [
+        "#16a34a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-kida",
+    "name": "Kid A",
+    "subtitle": "Radiohead",
+    "aliases": [
+      "radiohead"
+    ],
+    "domain": "music",
+    "year": 2000,
+    "genres": [
+      "Electronic",
+      "Art Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "Radiohead",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an Oxfordshire band abandoning guitar rock"
+    ],
+    "cover": {
+      "wiki": "Kid A",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/02/Radioheadkida.png"
+    },
+    "tracks": [
+      "Kid A",
+      "The National Anthem",
+      "How to Disappear Completely",
+      "Everything in Its Right Place"
+    ],
+    "audio": {
+      "clue": "A Fender Rhodes-led opener with a chopped, warped vocal.",
+      "query": "Radiohead Everything In Its Right Place",
+      "youtubeId": "NUnXxh5U25Y"
+    },
+    "emoji": "🏔️🧊🐻🔴📻",
+    "item": {
+      "name": "An iceberg",
+      "description": "Jagged ice mountains on the cover, painted by Stanley Donwood.",
+      "src": "wp:Iceberg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Iceberg_in_the_Arctic_with_its_underside_exposed.jpg/960px-Iceberg_in_the_Arctic_with_its_underside_exposed.jpg"
+    },
+    "visual": {
+      "icon": "🏔️",
+      "colors": [
+        "#0c4a6e",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "m-isthisit",
+    "name": "Is This It",
+    "subtitle": "The Strokes",
+    "aliases": [
+      "the strokes"
+    ],
+    "domain": "music",
+    "year": 2001,
+    "genres": [
+      "Garage Rock",
+      "Indie Rock"
+    ],
+    "studio": "RCA",
+    "creator": "The Strokes",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a New York band leading the garage-rock revival"
+    ],
+    "cover": {
+      "wiki": "Is This It",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/09/The_Strokes_-_Is_This_It_cover.png"
+    },
+    "tracks": [
+      "Someday",
+      "Hard to Explain",
+      "Is This It",
+      "Last Nite"
+    ],
+    "audio": {
+      "clue": "Choppy, chugging guitars and a retro drum machine feel over a lazy vocal.",
+      "query": "The Strokes Last Nite",
+      "youtubeId": "TOypSnKFHrE"
+    },
+    "emoji": "🧤🍑🎸🌃🚬",
+    "location": {
+      "name": "Lower East Side",
+      "description": "The Manhattan neighbourhood where the band came up.",
+      "src": "wp:Lower East Side",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Orchard_St_looking_south_at_Rivington_St.jpg/960px-Orchard_St_looking_south_at_Rivington_St.jpg"
+    },
+    "visual": {
+      "icon": "🎸",
+      "colors": [
+        "#78350f",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-americanidiot",
+    "name": "American Idiot",
+    "subtitle": "Green Day",
+    "aliases": [
+      "green day"
+    ],
+    "domain": "music",
+    "year": 2004,
+    "genres": [
+      "Punk Rock"
+    ],
+    "studio": "Reprise",
+    "creator": "Green Day",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Bay Area pop-punk trio; a rock opera"
+    ],
+    "cover": {
+      "wiki": "American Idiot",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ed/Green_Day_-_American_Idiot_album_cover.png"
+    },
+    "tracks": [
+      "Jesus of Suburbia",
+      "Wake Me Up When September Ends",
+      "Holiday",
+      "Boulevard of Broken Dreams"
+    ],
+    "audio": {
+      "clue": "A brooding power ballad about walking alone down a lonely street.",
+      "query": "Green Day Boulevard of Broken Dreams",
+      "youtubeId": "Soa3gO7tL-c"
+    },
+    "emoji": "💣❤️🇺🇸🎸📺",
+    "item": {
+      "name": "A heart-shaped grenade",
+      "description": "Held in a bloody hand on the cover.",
+      "src": "wp:Hand grenade",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Victory_Show_Cosby_UK_06-09-2015_WW2_re-enactment_Trade_stalls_Militaria_personal_gear_replicas_reprod.originals_zaphad1_Flickr_CCBY2.0_Hand_grenades_etc_IMG_3865.jpg/960px-thumbnail.jpg"
+    },
+    "visual": {
+      "icon": "💣",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "m-blackparade",
+    "name": "The Black Parade",
+    "subtitle": "My Chemical Romance",
+    "aliases": [
+      "my chemical romance"
+    ],
+    "domain": "music",
+    "year": 2006,
+    "genres": [
+      "Emo",
+      "Alternative Rock"
+    ],
+    "studio": "Reprise",
+    "creator": "My Chemical Romance",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a New Jersey band; a concept album about death"
+    ],
+    "cover": {
+      "wiki": "The Black Parade",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ea/Blackparadecover.jpg"
+    },
+    "tracks": [
+      "Teenagers",
+      "Famous Last Words",
+      "I Don't Love You",
+      "Welcome to the Black Parade"
+    ],
+    "audio": {
+      "clue": "A single piano note G, then a marching anthem about a father's advice.",
+      "query": "My Chemical Romance Welcome to the Black Parade",
+      "youtubeId": "RRKJiM9Njr8"
+    },
+    "emoji": "🥁💀🎖️🖤🏥",
+    "item": {
+      "name": "A marching band",
+      "description": "A skeletal marching band leads a dying man away.",
+      "src": "wp:Marching band",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2b/TTUband.jpg"
+    },
+    "visual": {
+      "icon": "🎖️",
+      "colors": [
+        "#0a0a0a",
+        "#e5e7eb"
+      ]
+    }
+  },
+  {
+    "id": "m-californication",
+    "name": "Californication",
+    "subtitle": "Red Hot Chili Peppers",
+    "aliases": [
+      "red hot chili peppers"
+    ],
+    "domain": "music",
+    "year": 1999,
+    "genres": [
+      "Alternative Rock",
+      "Funk Rock"
+    ],
+    "studio": "Warner Bros.",
+    "creator": "Red Hot Chili Peppers",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an LA funk-rock band reunited with John Frusciante"
+    ],
+    "cover": {
+      "wiki": "Californication (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/df/RedHotChiliPeppersCalifornication.jpg"
+    },
+    "tracks": [
+      "Around the World",
+      "Otherside",
+      "Scar Tissue",
+      "Californication"
+    ],
+    "audio": {
+      "clue": "A dreamy, melancholy guitar ballad about Hollywood's dark side.",
+      "query": "Red Hot Chili Peppers Californication official music video",
+      "youtubeId": "YlUKcNNmywk"
+    },
+    "emoji": "🏊🌤️🌴🌶️🎸",
+    "item": {
+      "name": "A swimming pool",
+      "description": "Its water merges into the sky on the cover.",
+      "src": "wp:Swimming pool",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Backyardpool.jpg/960px-Backyardpool.jpg"
+    },
+    "location": {
+      "name": "Los Angeles",
+      "description": "The city the title track picks apart.",
+      "src": "wp:Hollywood Sign",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Hollywood_sign_%288485145044%29.jpg/960px-Hollywood_sign_%288485145044%29.jpg"
+    },
+    "visual": {
+      "icon": "🌶️",
+      "colors": [
+        "#0ea5e9",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "m-ten",
+    "name": "Ten",
+    "subtitle": "Pearl Jam",
+    "aliases": [
+      "pearl jam"
+    ],
+    "domain": "music",
+    "year": 1991,
+    "genres": [
+      "Grunge"
+    ],
+    "studio": "Epic",
+    "creator": "Pearl Jam",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Seattle band fronted by Eddie Vedder"
+    ],
+    "cover": {
+      "wiki": "Ten (Pearl Jam album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6f/Pearl_Jam_Ten_Alt_Cover.jpg"
+    },
+    "tracks": [
+      "Black",
+      "Jeremy",
+      "Even Flow",
+      "Alive"
+    ],
+    "audio": {
+      "clue": "A rolling guitar riff and a howled chorus about still being alive.",
+      "query": "Pearl Jam Alive",
+      "youtubeId": "qM0zINtulhM"
+    },
+    "emoji": "🙌🔟🎸🌲😔",
+    "location": {
+      "name": "Seattle",
+      "description": "The rainy city at the heart of the grunge scene.",
+      "src": "wp:Seattle",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Seattle_Center_as_night_falls.jpg/960px-Seattle_Center_as_night_falls.jpg"
+    },
+    "visual": {
+      "icon": "🙌",
+      "colors": [
+        "#7c2d12",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-joshuatree",
+    "name": "The Joshua Tree",
+    "subtitle": "U2",
+    "aliases": [
+      "u2"
+    ],
+    "domain": "music",
+    "year": 1987,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "Island",
+    "creator": "U2",
+    "origin": "Ireland",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Dublin band; producers Brian Eno & Daniel Lanois"
+    ],
+    "cover": {
+      "wiki": "The Joshua Tree",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/The_Joshua_Tree.png"
+    },
+    "tracks": [
+      "Bullet the Blue Sky",
+      "Where the Streets Have No Name",
+      "I Still Haven't Found What I'm Looking For",
+      "With or Without You"
+    ],
+    "audio": {
+      "clue": "A slow-building ballad with an infinite-sustain guitar and a desperate chorus.",
+      "query": "U2 With or Without You",
+      "youtubeId": "ujNeHIo7oTE"
+    },
+    "emoji": "🌵🏜️🎸🇮🇪🇺🇸",
+    "location": {
+      "name": "Zabriskie Point",
+      "description": "A Death Valley viewpoint where the band was photographed.",
+      "src": "wp:Zabriskie Point"
+    },
+    "visual": {
+      "icon": "🌵",
+      "colors": [
+        "#1c1917",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "m-revolver",
+    "name": "Revolver",
+    "subtitle": "The Beatles",
+    "aliases": [
+      "the beatles"
+    ],
+    "domain": "music",
+    "year": 1966,
+    "genres": [
+      "Rock",
+      "Psychedelic Rock"
+    ],
+    "studio": "Parlophone",
+    "creator": "The Beatles",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Liverpool four-piece; producer George Martin"
+    ],
+    "cover": {
+      "wiki": "Revolver (Beatles album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ec/Revolver_%28album_cover%29.jpg"
+    },
+    "tracks": [
+      "Taxman",
+      "Here, There and Everywhere",
+      "Yellow Submarine",
+      "Eleanor Rigby"
+    ],
+    "audio": {
+      "clue": "A string octet with no band at all, about lonely people.",
+      "query": "The Beatles Eleanor Rigby",
+      "youtubeId": "HuS5NuXRb5Y"
+    },
+    "emoji": "🎨🟡🚢🎻🌀",
+    "item": {
+      "name": "A submarine",
+      "description": "A yellow one, sung about by the drummer.",
+      "src": "wp:Submarine",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/US_Navy_040730-N-1234E-002_PCU_Virginia_%28SSN_774%29_returns_to_the_General_Dynamics_Electric_Boat_shipyard.jpg/960px-US_Navy_040730-N-1234E-002_PCU_Virginia_%28SSN_774%29_returns_to_the_General_Dynamics_Electric_Boat_shipyard.jpg"
+    },
+    "visual": {
+      "icon": "🟡",
+      "colors": [
+        "#f8fafc",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "m-paranoid",
+    "name": "Paranoid",
+    "subtitle": "Black Sabbath",
+    "aliases": [
+      "black sabbath"
+    ],
+    "domain": "music",
+    "year": 1970,
+    "genres": [
+      "Heavy Metal"
+    ],
+    "studio": "Vertigo",
+    "creator": "Black Sabbath",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Birmingham band credited with inventing heavy metal"
+    ],
+    "cover": {
+      "wiki": "Paranoid (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/64/Black_Sabbath_-_Paranoid.jpg"
+    },
+    "tracks": [
+      "Electric Funeral",
+      "Iron Man",
+      "War Pigs",
+      "Paranoid"
+    ],
+    "audio": {
+      "clue": "A slow, crushing riff with a robotic voice announcing a man made of iron.",
+      "query": "Black Sabbath Iron Man",
+      "youtubeId": "b3-QqGVt-tM"
+    },
+    "emoji": "🛡️⚔️🐷🦇🔩",
+    "item": {
+      "name": "A shield and a sword",
+      "description": "Carried by a pink-clad figure on the cover.",
+      "src": "wp:Shield",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/The_uncivilized_races_of_men_in_all_countries_of_the_world%3B_being_a_comprehensive_account_of_their_manners_and_customs%2C_and_of_their_physical%2C_social%2C_mental%2C_moral_and_religious_characteristics._By_%2814762645001%29.jpg/960px-thumbnail.jpg"
+    },
+    "location": {
+      "name": "Birmingham",
+      "description": "The industrial city that birthed heavy metal.",
+      "src": "wp:Birmingham",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Birmingham_Skyline_from_the_West.jpg/960px-Birmingham_Skyline_from_the_West.jpg"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#831843",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "m-numberofthebeast",
+    "name": "The Number of the Beast",
+    "subtitle": "Iron Maiden",
+    "aliases": [
+      "iron maiden"
+    ],
+    "domain": "music",
+    "year": 1982,
+    "genres": [
+      "Heavy Metal"
+    ],
+    "studio": "EMI",
+    "creator": "Iron Maiden",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a London band with mascot Eddie; first with singer Bruce Dickinson"
+    ],
+    "cover": {
+      "wiki": "The Number of the Beast (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/32/IronMaiden_NumberOfBeast.jpg"
+    },
+    "tracks": [
+      "Children of the Damned",
+      "Hallowed Be Thy Name",
+      "Run to the Hills",
+      "The Number of the Beast"
+    ],
+    "audio": {
+      "clue": "A galloping bass riff and an air-raid-siren vocal about a hill.",
+      "query": "Iron Maiden Run to the Hills",
+      "youtubeId": "86URGgqONvA"
+    },
+    "emoji": "6️⃣6️⃣6️⃣😈🧟",
+    "item": {
+      "name": "A puppet",
+      "description": "A zombie mascot controls the Devil like a marionette on the cover.",
+      "src": "wp:Marionette",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Marionette_-_in_Japan_-_2018_1_21.webm/960px--Marionette_-_in_Japan_-_2018_1_21.webm.jpg"
+    },
+    "visual": {
+      "icon": "😈",
+      "colors": [
+        "#7f1d1d",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-masterofpuppets",
+    "name": "Master of Puppets",
+    "subtitle": "Metallica",
+    "aliases": [
+      "metallica"
+    ],
+    "domain": "music",
+    "year": 1986,
+    "genres": [
+      "Thrash Metal"
+    ],
+    "studio": "Elektra",
+    "creator": "Metallica",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Bay Area thrash band; last album with Cliff Burton"
+    ],
+    "cover": {
+      "wiki": "Master of Puppets",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b2/Metallica_-_Master_of_Puppets_cover.jpg"
+    },
+    "tracks": [
+      "Welcome Home (Sanitarium)",
+      "Orion",
+      "Battery",
+      "Master of Puppets"
+    ],
+    "audio": {
+      "clue": "An eight-minute thrash epic with a clean, mournful guitar interlude.",
+      "query": "Metallica Master of Puppets",
+      "youtubeId": "E0ozmU9cJDg"
+    },
+    "emoji": "🎭🪦🪢🎸⚡",
+    "item": {
+      "name": "A marionette",
+      "description": "Strings run from a pair of hands to a field of graves on the cover.",
+      "src": "wp:Marionette",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Marionette_-_in_Japan_-_2018_1_21.webm/960px--Marionette_-_in_Japan_-_2018_1_21.webm.jpg"
+    },
+    "location": {
+      "name": "Copenhagen",
+      "description": "Where the band recorded at Sweet Silence Studios.",
+      "src": "wp:Copenhagen",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/2018_-_Christiansborg_from_the_Marble_Bridge.jpg/960px-2018_-_Christiansborg_from_the_Marble_Bridge.jpg"
+    },
+    "visual": {
+      "icon": "🪢",
+      "colors": [
+        "#1c1917",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "m-wywh",
+    "name": "Wish You Were Here",
+    "subtitle": "Pink Floyd",
+    "aliases": [
+      "pink floyd"
+    ],
+    "domain": "music",
+    "year": 1975,
+    "genres": [
+      "Progressive Rock"
+    ],
+    "studio": "Harvest",
+    "creator": "Pink Floyd",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: an English band; a tribute to founding member Syd Barrett"
+    ],
+    "cover": {
+      "wiki": "Wish You Were Here (Pink Floyd album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a4/Pink_Floyd%2C_Wish_You_Were_Here_%281975%29.png"
+    },
+    "tracks": [
+      "Have a Cigar",
+      "Welcome to the Machine",
+      "Shine On You Crazy Diamond",
+      "Wish You Were Here"
+    ],
+    "audio": {
+      "clue": "A twelve-string acoustic ballad that starts as if played through a radio.",
+      "query": "Pink Floyd Wish You Were Here",
+      "youtubeId": "IXdNnw99-Ic"
+    },
+    "emoji": "🤝🔥💎🏭📻",
+    "item": {
+      "name": "A handshake",
+      "description": "Two businessmen shake hands while one is on fire.",
+      "src": "wp:Handshake",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Hermandad_-_friendship.jpg/960px-Hermandad_-_friendship.jpg"
+    },
+    "location": {
+      "name": "Warner Bros. Studios Burbank",
+      "description": "The film lot where the burning-man cover was shot.",
+      "src": "wp:Warner Bros. Studios, Burbank",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Gate_4_Warner_Bros._Studios.jpg/960px-Gate_4_Warner_Bros._Studios.jpg"
+    },
+    "visual": {
+      "icon": "🤝",
+      "colors": [
+        "#ea580c",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "m-gybr",
+    "name": "Goodbye Yellow Brick Road",
+    "subtitle": "Elton John",
+    "aliases": [
+      "elton john"
+    ],
+    "domain": "music",
+    "year": 1973,
+    "genres": [
+      "Rock",
+      "Glam Rock"
+    ],
+    "studio": "DJM",
+    "creator": "Elton John",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a flamboyant pianist; lyrics by Bernie Taupin"
+    ],
+    "cover": {
+      "wiki": "Goodbye Yellow Brick Road",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Elton_John_-_Goodbye_Yellow_Brick_Road.jpg"
+    },
+    "tracks": [
+      "Saturday Night's Alright for Fighting",
+      "Bennie and the Jets",
+      "Candle in the Wind",
+      "Goodbye Yellow Brick Road"
+    ],
+    "audio": {
+      "clue": "A falsetto piano ballad leaving the bright lights behind.",
+      "query": "Elton John Goodbye Yellow Brick Road",
+      "youtubeId": "wy709iNG6i8"
+    },
+    "emoji": "🛤️🎹🕶️🕯️✨",
+    "item": {
+      "name": "A piano",
+      "description": "Played by a singer in platform boots and huge glasses.",
+      "src": "wp:Piano",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Steinway_Vienna_002.JPG/960px-Steinway_Vienna_002.JPG"
+    },
+    "location": {
+      "name": "Château d'Hérouville",
+      "description": "A French château studio where it was recorded.",
+      "src": "wp:Château d'Hérouville",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Ch%C3%A2teau_d%27H%C3%A9rouville.jpg"
+    },
+    "visual": {
+      "icon": "🎹",
+      "colors": [
+        "#facc15",
+        "#7c3aed"
+      ]
+    }
+  },
+  {
+    "id": "m-bad",
+    "name": "Bad",
+    "subtitle": "Michael Jackson",
+    "aliases": [
+      "michael jackson"
+    ],
+    "domain": "music",
+    "year": 1987,
+    "genres": [
+      "Pop",
+      "R&B"
+    ],
+    "studio": "Epic",
+    "creator": "Michael Jackson",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: the King of Pop; producer Quincy Jones"
+    ],
+    "cover": {
+      "wiki": "Bad (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Michael_Jackson_-_Bad.png"
+    },
+    "tracks": [
+      "Dirty Diana",
+      "Man in the Mirror",
+      "Smooth Criminal",
+      "Bad"
+    ],
+    "audio": {
+      "clue": "A jagged synth-funk groove and the question 'Annie, are you OK?'",
+      "query": "Michael Jackson Smooth Criminal",
+      "youtubeId": "h_D3VFfhvs4"
+    },
+    "emoji": "😠🕺🪞🧤🏙️",
+    "item": {
+      "name": "A mirror",
+      "description": "The singer starts with the man inside it.",
+      "src": "wp:Mirror",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/52/Mirror.jpg"
+    },
+    "visual": {
+      "icon": "🪞",
+      "colors": [
+        "#0a0a0a",
+        "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "m-arrival",
+    "name": "Arrival",
+    "subtitle": "ABBA",
+    "aliases": [
+      "abba"
+    ],
+    "domain": "music",
+    "year": 1976,
+    "genres": [
+      "Pop",
+      "Europop"
+    ],
+    "studio": "Polar",
+    "creator": "ABBA",
+    "origin": "Sweden",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Swedish quartet of two couples"
+    ],
+    "cover": {
+      "wiki": "Arrival (ABBA album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/71/ABBA_-_Arrival.png"
+    },
+    "tracks": [
+      "Money, Money, Money",
+      "Knowing Me, Knowing You",
+      "Fernando",
+      "Dancing Queen"
+    ],
+    "audio": {
+      "clue": "A shimmering piano glissando into a disco song about being only seventeen.",
+      "query": "ABBA Dancing Queen",
+      "youtubeId": "xFrGuyw1V8s"
+    },
+    "emoji": "🚁💃👑🇸🇪🪩",
+    "item": {
+      "name": "A helicopter",
+      "description": "The group sits inside one on the cover.",
+      "src": "wp:Helicopter",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/VH-SUF_Taking_Off.jpg/960px-VH-SUF_Taking_Off.jpg"
+    },
+    "location": {
+      "name": "Stockholm",
+      "description": "The band's home city.",
+      "src": "wp:Stockholm",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Royal_Dramatic_Theatre_Stockholm.jpg/960px-Royal_Dramatic_Theatre_Stockholm.jpg"
+    },
+    "visual": {
+      "icon": "🚁",
+      "colors": [
+        "#f8fafc",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "m-snf",
+    "name": "Saturday Night Fever",
+    "subtitle": "Bee Gees",
+    "aliases": [
+      "bee gees"
+    ],
+    "domain": "music",
+    "year": 1977,
+    "genres": [
+      "Disco",
+      "Soundtrack"
+    ],
+    "studio": "RSO",
+    "creator": "Bee Gees",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: three Gibb brothers; soundtrack to a John Travolta film"
+    ],
+    "cover": {
+      "wiki": "Saturday Night Fever (soundtrack)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0c/TheBeeGeesSaturdayNightFeveralbumcover.jpg"
+    },
+    "tracks": [
+      "Night Fever",
+      "How Deep Is Your Love",
+      "More Than a Woman",
+      "Stayin' Alive"
+    ],
+    "audio": {
+      "clue": "A falsetto disco hit at the tempo used to teach CPR.",
+      "query": "Bee Gees Stayin Alive",
+      "youtubeId": "fNFzfwLM72c"
+    },
+    "emoji": "🕺🪩👔🌃🎤",
+    "item": {
+      "name": "A disco ball",
+      "description": "Spins over a lit-up dancefloor in Brooklyn.",
+      "src": "wp:Disco ball",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Mirrored_Disco_Ball_with_Light_and_Motor.jpg/960px-Mirrored_Disco_Ball_with_Light_and_Motor.jpg"
+    },
+    "location": {
+      "name": "Bay Ridge",
+      "description": "The Brooklyn neighbourhood where the film is set.",
+      "src": "wp:Bay Ridge, Brooklyn",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Bay_Ridge_Parkway_Row_Houses.jpg/960px-Bay_Ridge_Parkway_Row_Houses.jpg"
+    },
+    "visual": {
+      "icon": "🪩",
+      "colors": [
+        "#7f1d1d",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "m-newsoftheworld",
+    "name": "News of the World",
+    "subtitle": "Queen",
+    "aliases": [
+      "queen"
+    ],
+    "domain": "music",
+    "year": 1977,
+    "genres": [
+      "Rock"
+    ],
+    "studio": "EMI",
+    "creator": "Queen",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a band fronted by Freddie Mercury"
+    ],
+    "cover": {
+      "wiki": "News of the World (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ea/Queen_News_Of_The_World.png"
+    },
+    "tracks": [
+      "Spread Your Wings",
+      "It's Late",
+      "We Are the Champions",
+      "We Will Rock You"
+    ],
+    "audio": {
+      "clue": "Stomp-stomp-clap, a cappella, before a single guitar solo.",
+      "query": "Queen We Will Rock You",
+      "youtubeId": "-tJYN-eG1zk"
+    },
+    "emoji": "🤖📰🏆👏👑",
+    "item": {
+      "name": "A giant robot",
+      "description": "It holds the band members' limp bodies on the cover.",
+      "src": "wp:Robot",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/HONDA_ASIMO.jpg"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#0a0a0a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "m-mezzanine",
+    "name": "Mezzanine",
+    "subtitle": "Massive Attack",
+    "aliases": [
+      "massive attack"
+    ],
+    "domain": "music",
+    "year": 1998,
+    "genres": [
+      "Trip Hop"
+    ],
+    "studio": "Virgin",
+    "creator": "Massive Attack",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Bristol collective; vocals by Elizabeth Fraser"
+    ],
+    "cover": {
+      "wiki": "Mezzanine (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Massive_Attack_-_Mezzanine.png"
+    },
+    "tracks": [
+      "Inertia Creeps",
+      "Risingson",
+      "Angel",
+      "Teardrop"
+    ],
+    "audio": {
+      "clue": "A heartbeat-like kick and a harpsichord, sung by Cocteau Twins' singer.",
+      "query": "Massive Attack Teardrop",
+      "youtubeId": "u7K72X4eo_s"
+    },
+    "emoji": "🪲🌧️🖤🎚️💧",
+    "item": {
+      "name": "A beetle",
+      "description": "A black stag beetle on the cover.",
+      "src": "wp:Stag beetle",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Golden_stag_beetle.jpg/960px-Golden_stag_beetle.jpg"
+    },
+    "location": {
+      "name": "Bristol",
+      "description": "The city where trip hop was born.",
+      "src": "wp:Bristol",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Clifton_Suspension_Bridge_and_the_Observatory_in_Bristol%2C_England.jpg/960px-Clifton_Suspension_Bridge_and_the_Observatory_in_Bristol%2C_England.jpg"
+    },
+    "visual": {
+      "icon": "🪲",
+      "colors": [
+        "#0a0a0a",
+        "#78716c"
+      ]
+    }
+  },
+  {
+    "id": "m-dummy",
+    "name": "Dummy",
+    "subtitle": "Portishead",
+    "aliases": [
+      "portishead"
+    ],
+    "domain": "music",
+    "year": 1994,
+    "genres": [
+      "Trip Hop"
+    ],
+    "studio": "Go! Beat",
+    "creator": "Portishead",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Bristol trio; singer Beth Gibbons"
+    ],
+    "cover": {
+      "wiki": "Dummy (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Portishead_-_Dummy.png"
+    },
+    "tracks": [
+      "Sour Times",
+      "Roads",
+      "Wandering Star",
+      "Glory Box"
+    ],
+    "audio": {
+      "clue": "A slinky, scratched loop and a smoky voice wanting to be a woman.",
+      "query": "Portishead Glory Box",
+      "youtubeId": "4qQyUi4zfDs"
+    },
+    "emoji": "🎞️🎙️🕵️‍♀️🌫️💔",
+    "item": {
+      "name": "A theremin",
+      "description": "Its eerie whine colours the band's spy-movie sound.",
+      "src": "wp:Theremin",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Etherwave_Theremin_Kit.jpg/960px-Etherwave_Theremin_Kit.jpg"
+    },
+    "visual": {
+      "icon": "🎙️",
+      "colors": [
+        "#0c4a6e",
+        "#e0f2fe"
+      ]
+    }
+  },
+  {
+    "id": "m-25",
+    "name": "25",
+    "subtitle": "Adele",
+    "aliases": [
+      "adele"
+    ],
+    "domain": "music",
+    "year": 2015,
+    "genres": [
+      "Pop",
+      "Soul"
+    ],
+    "studio": "XL Recordings",
+    "creator": "Adele",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Tottenham singer; named after her age"
+    ],
+    "cover": {
+      "wiki": "25 (Adele album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/96/Adele_-_25_%28Official_Album_Cover%29.png"
+    },
+    "tracks": [
+      "Water Under the Bridge",
+      "Send My Love (To Your New Lover)",
+      "When We Were Young",
+      "Hello"
+    ],
+    "audio": {
+      "clue": "A piano ballad opening with a single word into a phone.",
+      "query": "Adele Hello",
+      "youtubeId": "YQHsXMglC9A"
+    },
+    "emoji": "2️⃣5️⃣☎️🎹💔",
+    "item": {
+      "name": "A flip phone",
+      "description": "Used in the famous video for the lead single.",
+      "src": "wp:Flip phone",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/THinkPad345C.jpg/960px-THinkPad345C.jpg"
+    },
+    "visual": {
+      "icon": "☎️",
+      "colors": [
+        "#e5e7eb",
+        "#1c1917"
+      ]
+    }
+  },
+  {
+    "id": "m-borntodie",
+    "name": "Born to Die",
+    "subtitle": "Lana Del Rey",
+    "aliases": [
+      "lana del rey"
+    ],
+    "domain": "music",
+    "year": 2012,
+    "genres": [
+      "Baroque Pop"
+    ],
+    "studio": "Interscope",
+    "creator": "Lana Del Rey",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a New York singer with a cinematic, retro style"
+    ],
+    "cover": {
+      "wiki": "Born to Die (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/29/BornToDieAlbumCover.png"
+    },
+    "tracks": [
+      "National Anthem",
+      "Blue Jeans",
+      "Summertime Sadness",
+      "Video Games"
+    ],
+    "audio": {
+      "clue": "A slow, string-laden ballad about watching someone play video games.",
+      "query": "Lana Del Rey Video Games",
+      "youtubeId": "cE6wxDqdOV0"
+    },
+    "emoji": "🇺🇸🎮🌹🚗🍒",
+    "item": {
+      "name": "A flower crown",
+      "description": "A signature of the singer's vintage Americana look.",
+      "src": "wp:Flower crown",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0_%D1%81_%D0%B2%D0%B5%D0%BD%D0%BA%D0%BE%D0%BC.jpg/960px-%D0%94%D0%B5%D0%B2%D1%83%D1%88%D0%BA%D0%B0_%D1%81_%D0%B2%D0%B5%D0%BD%D0%BA%D0%BE%D0%BC.jpg"
+    },
+    "visual": {
+      "icon": "🎮",
+      "colors": [
+        "#1e3a8a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-melodrama",
+    "name": "Melodrama",
+    "subtitle": "Lorde",
+    "aliases": [
+      "lorde"
+    ],
+    "domain": "music",
+    "year": 2017,
+    "genres": [
+      "Electropop",
+      "Art Pop"
+    ],
+    "studio": "Universal",
+    "creator": "Lorde",
+    "origin": "New Zealand",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a New Zealand singer; co-producer Jack Antonoff"
+    ],
+    "cover": {
+      "wiki": "Melodrama (Lorde album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b2/Lorde_-_Melodrama.png"
+    },
+    "tracks": [
+      "Liability",
+      "Perfect Places",
+      "Supercut",
+      "Green Light"
+    ],
+    "audio": {
+      "clue": "A piano-house banger about waiting for a green light to move on.",
+      "query": "Lorde Green Light",
+      "youtubeId": "dMK_npDG12Q"
+    },
+    "emoji": "🟢🌃🎹🛏️💃",
+    "item": {
+      "name": "A traffic light",
+      "description": "Its green signal names the lead single.",
+      "src": "wp:Traffic light",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Modern_British_LED_Traffic_Light.jpg/960px-Modern_British_LED_Traffic_Light.jpg"
+    },
+    "location": {
+      "name": "Auckland",
+      "description": "The singer's home city.",
+      "src": "wp:Auckland",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Auckland_skyline_-_May_2024_%282%29.jpg/960px-Auckland_skyline_-_May_2024_%282%29.jpg"
+    },
+    "visual": {
+      "icon": "🟢",
+      "colors": [
+        "#1e3a8a",
+        "#f472b6"
+      ]
+    }
+  },
+  {
+    "id": "m-24kmagic",
+    "name": "24K Magic",
+    "subtitle": "Bruno Mars",
+    "aliases": [
+      "bruno mars"
+    ],
+    "domain": "music",
+    "year": 2016,
+    "genres": [
+      "Funk",
+      "R&B"
+    ],
+    "studio": "Atlantic",
+    "creator": "Bruno Mars",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Hawaii-born showman; a tribute to 80s and 90s R&B"
+    ],
+    "cover": {
+      "wiki": "24K Magic (album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2b/Bruno_Mars_-_24K_Magic_%28Official_Album_Cover%29.png"
+    },
+    "tracks": [
+      "Versace on the Floor",
+      "Chunky",
+      "That's What I Like",
+      "24K Magic"
+    ],
+    "audio": {
+      "clue": "A talk-box funk opener about wearing gold.",
+      "query": "Bruno Mars 24K Magic",
+      "youtubeId": "UqyT8IEBkvY"
+    },
+    "emoji": "💎🕺🎰🪩🎷",
+    "item": {
+      "name": "Gold",
+      "description": "24-karat, as in the title.",
+      "src": "wp:Gold",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/960px-Gold-crystals.jpg"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#ca8a04",
+        "#7c3aed"
+      ]
+    }
+  },
+  {
+    "id": "m-aretha",
+    "name": "I Never Loved a Man the Way I Love You",
+    "subtitle": "Aretha Franklin",
+    "aliases": [
+      "aretha franklin"
+    ],
+    "domain": "music",
+    "year": 1967,
+    "genres": [
+      "Soul"
+    ],
+    "studio": "Atlantic",
+    "creator": "Aretha Franklin",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: the Queen of Soul; producer Jerry Wexler"
+    ],
+    "cover": {
+      "wiki": "I Never Loved a Man the Way I Love You",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/15/Aretha_Franklin_%E2%80%93_I_Never_Loved_a_Man_the_Way_I_Love_You.jpg"
+    },
+    "tracks": [
+      "Do Right Woman, Do Right Man",
+      "Dr. Feelgood",
+      "I Never Loved a Man",
+      "Respect"
+    ],
+    "audio": {
+      "clue": "A horn-driven soul anthem that spells out its demand letter by letter.",
+      "query": "Aretha Franklin Respect",
+      "youtubeId": "A134hShx_gw"
+    },
+    "emoji": "👑🎹✊🎺💗",
+    "item": {
+      "name": "A piano",
+      "description": "The singer accompanied herself on it.",
+      "src": "wp:Grand piano",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Steinway_Vienna_002.JPG/960px-Steinway_Vienna_002.JPG"
+    },
+    "location": {
+      "name": "FAME Studios",
+      "description": "A Muscle Shoals studio where the session began.",
+      "src": "wp:FAME Studios",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/FAME_Recording_Studios_Muscle_Shoals.jpg/960px-FAME_Recording_Studios_Muscle_Shoals.jpg"
+    },
+    "visual": {
+      "icon": "✊",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-folsom",
+    "name": "At Folsom Prison",
+    "subtitle": "Johnny Cash",
+    "aliases": [
+      "johnny cash"
+    ],
+    "domain": "music",
+    "year": 1968,
+    "genres": [
+      "Country"
+    ],
+    "studio": "Columbia",
+    "creator": "Johnny Cash",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: the Man in Black; recorded live for inmates"
+    ],
+    "cover": {
+      "wiki": "At Folsom Prison",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Johnny_Cash_At_Folsom_Prison.jpg"
+    },
+    "tracks": [
+      "Cocaine Blues",
+      "Jackson",
+      "25 Minutes to Go",
+      "Folsom Prison Blues"
+    ],
+    "audio": {
+      "clue": "A live train-rhythm country song greeted by cheering prisoners.",
+      "query": "Johnny Cash Folsom Prison Blues live At Folsom Prison 1968 audio",
+      "youtubeId": "b3A4l-mmMhU"
+    },
+    "emoji": "🎸🖤🚂⛓️🎤",
+    "item": {
+      "name": "An acoustic guitar",
+      "description": "Played by a singer always dressed in black.",
+      "src": "wp:Acoustic guitar"
+    },
+    "location": {
+      "name": "Folsom State Prison",
+      "description": "A California prison where the album was recorded live.",
+      "src": "wp:Folsom State Prison",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/FolsomStatePrison_%28cropped%29.jpg/960px-FolsomStatePrison_%28cropped%29.jpg"
+    },
+    "visual": {
+      "icon": "⛓️",
+      "colors": [
+        "#0a0a0a",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "m-bridgeovertroubled",
+    "name": "Bridge over Troubled Water",
+    "subtitle": "Simon & Garfunkel",
+    "aliases": [
+      "simon & garfunkel"
+    ],
+    "domain": "music",
+    "year": 1970,
+    "genres": [
+      "Folk Rock"
+    ],
+    "studio": "Columbia",
+    "creator": "Simon & Garfunkel",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a New York folk duo's final album"
+    ],
+    "cover": {
+      "wiki": "Bridge over Troubled Water",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/41/Simon_and_Garfunkel%2C_Bridge_over_Troubled_Water_%281970%29.png"
+    },
+    "tracks": [
+      "The Boxer",
+      "Cecilia",
+      "El Condor Pasa",
+      "Bridge over Troubled Water"
+    ],
+    "audio": {
+      "clue": "A gospel-piano ballad that builds into a soaring, offering chorus.",
+      "query": "Simon and Garfunkel Bridge Over Troubled Water",
+      "youtubeId": "4G-YQA_bsOU"
+    },
+    "emoji": "🌉🌊🎸🎤🦅",
+    "item": {
+      "name": "A condor",
+      "description": "The Andean bird of a Peruvian melody on the album.",
+      "src": "wp:Andean condor",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/AndeanCondorMale.jpg/960px-AndeanCondorMale.jpg"
+    },
+    "visual": {
+      "icon": "🌉",
+      "colors": [
+        "#78350f",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "m-blue",
+    "name": "Blue",
+    "subtitle": "Joni Mitchell",
+    "aliases": [
+      "joni mitchell"
+    ],
+    "domain": "music",
+    "year": 1971,
+    "genres": [
+      "Folk"
+    ],
+    "studio": "Reprise",
+    "creator": "Joni Mitchell",
+    "origin": "Canada",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Canadian singer-songwriter of the Laurel Canyon scene"
+    ],
+    "cover": {
+      "wiki": "Blue (Joni Mitchell album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/Bluealbumcover.jpg"
+    },
+    "tracks": [
+      "Carey",
+      "River",
+      "California",
+      "A Case of You"
+    ],
+    "audio": {
+      "clue": "A sparse, confessional song played on an Appalachian dulcimer.",
+      "query": "Joni Mitchell A Case of You",
+      "youtubeId": "qAZp5JfDmz4"
+    },
+    "emoji": "💙🎸🌊🍷😢",
+    "item": {
+      "name": "A dulcimer",
+      "description": "A folk instrument heard throughout the album.",
+      "src": "wp:Appalachian dulcimer",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Dulcimer_%28UP%29.jpg/960px-Dulcimer_%28UP%29.jpg"
+    },
+    "location": {
+      "name": "Laurel Canyon",
+      "description": "The Los Angeles neighbourhood of a famous folk scene.",
+      "src": "wp:Laurel Canyon"
+    },
+    "visual": {
+      "icon": "💙",
+      "colors": [
+        "#1e3a8a",
+        "#93c5fd"
+      ]
+    }
+  },
+  {
+    "id": "m-tapestry",
+    "name": "Tapestry",
+    "subtitle": "Carole King",
+    "aliases": [
+      "carole king"
+    ],
+    "domain": "music",
+    "year": 1971,
+    "genres": [
+      "Soft Rock"
+    ],
+    "studio": "Ode",
+    "creator": "Carole King",
+    "origin": "USA",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Brill Building songwriter turned performer"
+    ],
+    "cover": {
+      "wiki": "Tapestry (Carole King album)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/52/Carole_King_-_Tapestry.jpg"
+    },
+    "tracks": [
+      "So Far Away",
+      "You've Got a Friend",
+      "It's Too Late",
+      "(You Make Me Feel Like) A Natural Woman"
+    ],
+    "audio": {
+      "clue": "A warm piano ballad about feeling like a natural woman.",
+      "query": "Carole King Natural Woman",
+      "youtubeId": "KQXY8zwQgmc"
+    },
+    "emoji": "🐈🪟🧵🎹☀️",
+    "item": {
+      "name": "A cat",
+      "description": "The singer's cat, Telemachus, sits beside her on the cover.",
+      "src": "wp:Cat",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Siam_lilacpoint.jpg/960px-Siam_lilacpoint.jpg"
+    },
+    "visual": {
+      "icon": "🐈",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "m-londoncalling",
+    "name": "London Calling",
+    "subtitle": "The Clash",
+    "aliases": [
+      "the clash"
+    ],
+    "domain": "music",
+    "year": 1979,
+    "genres": [
+      "Punk Rock"
+    ],
+    "studio": "CBS",
+    "creator": "The Clash",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a London punk band; producer Guy Stevens"
+    ],
+    "cover": {
+      "wiki": "London Calling",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/00/TheClashLondonCallingalbumcover.jpg"
+    },
+    "tracks": [
+      "Lost in the Supermarket",
+      "Train in Vain",
+      "Spanish Bombs",
+      "London Calling"
+    ],
+    "audio": {
+      "clue": "A marching punk anthem warning of an ice age and a meltdown.",
+      "query": "The Clash London Calling",
+      "youtubeId": "EfK-WX2pa8c"
+    },
+    "emoji": "🎸💥☎️🇬🇧🔤",
+    "item": {
+      "name": "A bass guitar",
+      "description": "Smashed against a stage in the famous cover photo.",
+      "src": "wp:Bass guitar",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Fender_Precision_Bass.jpg"
+    },
+    "location": {
+      "name": "Wessex Sound Studios",
+      "description": "A converted church hall in London where it was recorded.",
+      "src": "wp:Wessex Sound Studios"
+    },
+    "visual": {
+      "icon": "💥",
+      "colors": [
+        "#ec4899",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "m-bollocks",
+    "name": "Never Mind the Bollocks, Here's the Sex Pistols",
+    "subtitle": "Sex Pistols",
+    "aliases": [
+      "sex pistols"
+    ],
+    "domain": "music",
+    "year": 1977,
+    "genres": [
+      "Punk Rock"
+    ],
+    "studio": "Virgin",
+    "creator": "Sex Pistols",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a London punk band managed by Malcolm McLaren"
+    ],
+    "cover": {
+      "wiki": "Never Mind the Bollocks, Here's the Sex Pistols",
+      "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/4/4c/Never_Mind_the_Bollocks%2C_Here%27s_the_Sex_Pistols.png/960px-Never_Mind_the_Bollocks%2C_Here%27s_the_Sex_Pistols.png"
+    },
+    "tracks": [
+      "Pretty Vacant",
+      "Holidays in the Sun",
+      "Anarchy in the U.K.",
+      "God Save the Queen"
+    ],
+    "audio": {
+      "clue": "A sneering, buzzsaw punk attack on the monarchy.",
+      "query": "Sex Pistols God Save the Queen",
+      "youtubeId": "yqrAPOZxgzU"
+    },
+    "emoji": "🧷🇬🇧👑💢🎸",
+    "item": {
+      "name": "A safety pin",
+      "description": "A punk fashion staple, also stuck through the Queen's lip on a single.",
+      "src": "wp:Safety pin",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Safety_Pin.jpg/960px-Safety_Pin.jpg"
+    },
+    "visual": {
+      "icon": "🧷",
+      "colors": [
+        "#facc15",
+        "#ec4899"
+      ]
+    }
+  },
+  {
+    "id": "m-unknownpleasures",
+    "name": "Unknown Pleasures",
+    "subtitle": "Joy Division",
+    "aliases": [
+      "joy division"
+    ],
+    "domain": "music",
+    "year": 1979,
+    "genres": [
+      "Post-Punk"
+    ],
+    "studio": "Factory",
+    "creator": "Joy Division",
+    "origin": "United Kingdom",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Manchester band; producer Martin Hannett"
+    ],
+    "cover": {
+      "wiki": "Unknown Pleasures",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/UnknownPleasuresVinyl.jpg"
+    },
+    "tracks": [
+      "New Dawn Fades",
+      "Disorder",
+      "She's Lost Control",
+      "Shadowplay"
+    ],
+    "audio": {
+      "clue": "A cold, motorik drum beat and a baritone voice in a city of shadows.",
+      "query": "Joy Division Shadowplay",
+      "youtubeId": "L1cHSoARzS0"
+    },
+    "emoji": "〰️⚫🌌🎸🌧️",
+    "item": {
+      "name": "Radio waves from a pulsar",
+      "description": "Stacked lines from the first pulsar discovered, white on black.",
+      "src": "wp:PSR B1919+21",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Chart_Showing_Radio_Signal_of_First_Identified_Pulsar.jpg/960px-Chart_Showing_Radio_Signal_of_First_Identified_Pulsar.jpg"
+    },
+    "location": {
+      "name": "Manchester",
+      "description": "The rainy northern city that shaped the band.",
+      "src": "wp:Manchester",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Tower_Blocks_over_Knott_Mill%2C_geograph_6866152_by_David_Dixon.jpg/960px-Tower_Blocks_over_Knott_Mill%2C_geograph_6866152_by_David_Dixon.jpg"
+    },
+    "visual": {
+      "icon": "〰️",
+      "colors": [
+        "#0a0a0a",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "m-mots7",
+    "name": "Map of the Soul: 7",
+    "subtitle": "BTS",
+    "aliases": [
+      "bts"
+    ],
+    "domain": "music",
+    "year": 2020,
+    "genres": [
+      "K-pop"
+    ],
+    "studio": "Big Hit",
+    "creator": "BTS",
+    "origin": "South Korea",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a seven-member Seoul boy band"
+    ],
+    "cover": {
+      "wiki": "Map of the Soul: 7",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/21/BTS_-_Map_of_the_Soul_7.png"
+    },
+    "tracks": [
+      "Black Swan",
+      "Filter",
+      "Boy with Luv",
+      "ON"
+    ],
+    "audio": {
+      "clue": "A marching, drum-line-driven anthem about staying strong.",
+      "query": "BTS ON",
+      "youtubeId": "gwMa6gpoE9I"
+    },
+    "emoji": "7️⃣🗺️🦢💜🇰🇷",
+    "item": {
+      "name": "A black swan",
+      "description": "The bird of a contemplative single about losing passion.",
+      "src": "wp:Black swan",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Black_swan_%28Cygnus_atratus%29_Scottsdale.jpg/960px-Black_swan_%28Cygnus_atratus%29_Scottsdale.jpg"
+    },
+    "location": {
+      "name": "Seoul",
+      "description": "The group's home city.",
+      "src": "wp:Seoul",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg/960px-%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg"
+    },
+    "visual": {
+      "icon": "🦢",
+      "colors": [
+        "#4c1d95",
+        "#e9d5ff"
+      ]
+    }
+  },
+  {
+    "id": "m-racinecarree",
+    "name": "Racine carrée",
+    "subtitle": "Stromae",
+    "aliases": [
+      "stromae"
+    ],
+    "domain": "music",
+    "year": 2013,
+    "genres": [
+      "Electronic",
+      "Chanson"
+    ],
+    "studio": "Mosaert",
+    "creator": "Stromae",
+    "origin": "Belgium",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Belgian singer-producer of Rwandan heritage"
+    ],
+    "cover": {
+      "wiki": "Racine carrée",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/Racine_Carree_Stromae_Cover.jpg"
+    },
+    "tracks": [
+      "Tous les mêmes",
+      "Ta fête",
+      "Papaoutai",
+      "Formidable"
+    ],
+    "audio": {
+      "clue": "A danceable, afro-house beat over a song asking where dad is.",
+      "query": "Stromae Papaoutai",
+      "youtubeId": "oiKj0Z_Xnjc"
+    },
+    "emoji": "√🇧🇪🕺👨‍👦🍸",
+    "location": {
+      "name": "Brussels",
+      "description": "The singer's home city.",
+      "src": "wp:Brussels",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Grand_Place_Bruselas_2.jpg/960px-Grand_Place_Bruselas_2.jpg"
+    },
+    "visual": {
+      "icon": "√",
+      "colors": [
+        "#0a0a0a",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "m-elmalquerer",
+    "name": "El Mal Querer",
+    "subtitle": "Rosalía",
+    "aliases": [
+      "rosalía"
+    ],
+    "domain": "music",
+    "year": 2018,
+    "genres": [
+      "Flamenco",
+      "Pop"
+    ],
+    "studio": "Columbia",
+    "creator": "Rosalía",
+    "origin": "Spain",
+    "format": "Studio Album",
+    "credits": [
+      "Artist: a Catalan singer reinventing flamenco; producer El Guincho"
+    ],
+    "cover": {
+      "wiki": "El Mal Querer",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Rosal%C3%ADa_El_mal_querer.png"
+    },
+    "tracks": [
+      "Pienso en tu mirá",
+      "Di mi nombre",
+      "Bagdad",
+      "Malamente"
+    ],
+    "audio": {
+      "clue": "Handclaps, a trap beat and flamenco vocals over a motorbike's revving.",
+      "query": "Rosalia Malamente",
+      "youtubeId": "Rht7rBHuXW8"
+    },
+    "emoji": "💃🏍️🔪💔🇪🇸",
+    "item": {
+      "name": "Flamenco shoes",
+      "description": "Their stomps power the album's rhythm.",
+      "src": "wp:Flamenco",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Belen_maya.jpg"
+    },
+    "location": {
+      "name": "Barcelona",
+      "description": "The city where the singer trained in flamenco.",
+      "src": "wp:Barcelona",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Evening_light_over_Barcelona.jpg/960px-Evening_light_over_Barcelona.jpg"
+    },
+    "visual": {
+      "icon": "💃",
+      "colors": [
+        "#f8fafc",
+        "#dc2626"
       ]
     }
   }

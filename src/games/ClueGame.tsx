@@ -3,10 +3,12 @@ import { AudioClip, SNIPPETS } from '../components/AudioClip';
 import { BlurImage } from '../components/BlurImage';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
+import { TilePuzzle } from '../components/TilePuzzle';
+import { ZoomImage } from '../components/ZoomImage';
 import { candidates, domainInfo, getWork } from '../data';
 import { hintsFor } from '../lib/hints';
 import { scoreFor } from '../lib/scoring';
-import type { Clue as ClueRef, GameProps, GameType, Work } from '../types';
+import type { GameProps, GameType, Work } from '../types';
 import { GAME_META } from './meta';
 import { PixelCanvas } from './PixelCanvas';
 
@@ -14,30 +16,35 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-center text-xs font-display uppercase tracking-widest text-ink-faint">{children}</p>;
 }
 
-/** Image clue (item / location) with a text fallback when there's no picture or it fails to load. */
-function PictureClue({ label, clue, wrong, done }: { label: string; clue: ClueRef; wrong: number; done: boolean }) {
-  const [broken, setBroken] = useState(false);
-  const showImage = clue.image && !broken;
-  return (
-    <div className="space-y-4">
-      <Label>{label}</Label>
-      {showImage && <BlurImage src={clue.image!} alt={clue.name} step={wrong} revealed={done} onError={() => setBroken(true)} />}
-      <p className={`text-center font-serif leading-relaxed text-ink ${showImage ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'}`}>{clue.description}</p>
-    </div>
-  );
+function TextClue({ children }: { children: ReactNode }) {
+  return <p className="text-center font-serif text-2xl leading-relaxed text-ink sm:text-3xl">{children}</p>;
 }
 
 interface ClueProps {
   type: GameType;
   w: Work;
+  seed: number;
   wrong: number;
   done: boolean;
-  clipOk: boolean;
-  onClipUnavailable: () => void;
+  /** Which media failed to load or play this round; those rounds fall back gracefully. */
+  broken: Set<string>;
+  onBroken: (what: string) => void;
+}
+
+/** Which primary text clue (if any) is on screen, so the hints don't repeat it. */
+export function textClueShown(type: GameType, w: Work, broken: Set<string>): boolean {
+  if (type === 'item') return !w.item?.image || broken.has('item');
+  if (type === 'location') return !w.location?.image || broken.has('location');
+  if (type === 'audio') {
+    const clip = !!w.audio?.youtubeId && !broken.has('clip');
+    const coverZoom = !!w.cover?.image && !broken.has('cover');
+    return !clip && !coverZoom;
+  }
+  return false;
 }
 
 /** The main clue for each single-answer mini-game. */
-function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
+function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
   switch (type) {
     case 'quote':
       if (!w.quote && w.tracks) {
@@ -60,16 +67,20 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
       return (
         <blockquote className="text-center font-serif text-2xl italic leading-relaxed text-ink sm:text-3xl">“{w.quote!.text}”</blockquote>
       );
-    case 'audio':
-      if (w.audio?.youtubeId && clipOk) {
+
+    case 'audio': {
+      if (w.audio?.youtubeId && !broken.has('clip')) {
         return (
-          <AudioClip
-            videoId={w.audio.youtubeId}
-            start={w.audio.start}
-            step={Math.min(wrong, SNIPPETS.length - 1)}
-            revealed={done}
-            onUnavailable={onClipUnavailable}
-          />
+          <AudioClip videoId={w.audio.youtubeId} start={w.audio.start} step={Math.min(wrong, SNIPPETS.length - 1)} revealed={done} onUnavailable={() => onBroken('clip')} />
+        );
+      }
+      // No playable clip: a zoomed-in detail of the cover instead, then plain text as a last resort.
+      if (w.cover?.image && !broken.has('cover')) {
+        return (
+          <div className="space-y-3">
+            <Label>Zoomed-in detail</Label>
+            <ZoomImage src={w.cover.image} alt={w.name} step={wrong} revealed={done} focus={[50, 42]} onError={() => onBroken('cover')} />
+          </div>
         );
       }
       return (
@@ -79,9 +90,11 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
               <span key={i} className="w-1.5 animate-eq rounded-full bg-accent" style={{ height: `${20 + ((i * 37) % 80)}%`, animationDelay: `${(i % 6) * 120}ms` }} />
             ))}
           </div>
-          <p className="font-serif text-xl leading-relaxed text-ink sm:text-2xl">{w.audio!.clue}</p>
+          <TextClue>{w.audio!.clue}</TextClue>
         </div>
       );
+    }
+
     case 'emoji': {
       const glyphs = Array.from(new Intl.Segmenter().segment(w.emoji!), (s) => s.segment);
       // Start with two emojis and reveal one more per wrong guess.
@@ -98,32 +111,63 @@ function Clue({ type, w, wrong, done, clipOk, onClipUnavailable }: ClueProps) {
         </div>
       );
     }
+
     case 'visual':
       return <PixelCanvas src={w.cover?.image} icon={w.visual?.icon ?? '❔'} colors={w.visual?.colors ?? ['#27272a', '#52525b']} step={done ? 99 : wrong} />;
+
     case 'item':
-      return <PictureClue label="Iconic item" clue={w.item!} wrong={wrong} done={done} />;
-    case 'location':
-      return <PictureClue label="Setting" clue={w.location!} wrong={wrong} done={done} />;
-    case 'creator':
+      if (w.item?.image && !broken.has('item')) {
+        return (
+          <div className="space-y-3">
+            <Label>Iconic item</Label>
+            <BlurImage src={w.item.image} alt={w.item.name} step={wrong} revealed={done} onError={() => onBroken('item')} />
+          </div>
+        );
+      }
       return (
         <div className="space-y-2">
-          <Label>Credits</Label>
-          <p className="text-center font-serif text-3xl font-semibold text-ink">{w.credits[0]}</p>
+          <Label>Iconic item</Label>
+          <TextClue>{w.item!.description}</TextClue>
         </div>
       );
+
+    case 'location':
+      if (w.location?.image && !broken.has('location')) {
+        return (
+          <div className="space-y-3">
+            <Label>Where is this?</Label>
+            <ZoomImage src={w.location.image} alt={w.location.name} step={wrong} revealed={done} focus={w.location.focus} onError={() => onBroken('location')} />
+          </div>
+        );
+      }
+      return (
+        <div className="space-y-2">
+          <Label>Setting</Label>
+          <TextClue>{w.location!.description}</TextClue>
+        </div>
+      );
+
+    case 'tiles':
+      return (
+        <div className="space-y-3">
+          <Label>Restore the cover</Label>
+          <TilePuzzle src={w.cover!.image!} seed={seed} assists={wrong} revealed={done} onError={() => onBroken('cover')} />
+        </div>
+      );
+
     default:
       return null;
   }
 }
 
-/** Shared engine for the quote, soundtrack, emoji, pixelated, item, location and credits games. */
+/** Shared engine for the quote, soundtrack, emoji, pixelated, item, location and cover-puzzle games. */
 export default function ClueGame({ spec, record, onChange }: GameProps) {
   const target = getWork(spec.targetId!);
   const meta = GAME_META[spec.type];
-  const [clipOk, setClipOk] = useState(true);
-  const hasClip = spec.type === 'audio' && !!target.audio?.youtubeId && clipOk;
+  const [broken, setBroken] = useState<Set<string>>(new Set());
   const pool = useMemo(() => candidates('classic', target.domain), [target.domain]);
-  const hints = useMemo(() => hintsFor(spec.type, target, { hasClip }), [spec.type, target, hasClip]);
+  const textShown = textClueShown(spec.type, target, broken);
+  const hints = useMemo(() => hintsFor(spec.type, target, { textClueShown: textShown }), [spec.type, target, textShown]);
   const wrong = record.guesses.filter((g) => g !== target.id);
   const done = record.status !== 'playing';
   const revealed = done ? hints.length : Math.min(wrong.length, hints.length);
@@ -142,7 +186,15 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
       </p>
 
       <div className="page rounded-md p-5 sm:p-8">
-        <Clue type={spec.type} w={target} wrong={wrong.length} done={done} clipOk={clipOk} onClipUnavailable={() => setClipOk(false)} />
+        <Clue
+          type={spec.type}
+          w={target}
+          seed={spec.seed}
+          wrong={wrong.length}
+          done={done}
+          broken={broken}
+          onBroken={(what) => setBroken((b) => new Set(b).add(what))}
+        />
       </div>
 
       {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(target.domain).label}…`} />}

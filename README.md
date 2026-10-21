@@ -23,13 +23,13 @@ Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a 
 |------|-----------|-------|
 | Classic attributes | `ClassicGame` | Green / yellow (partial) / red, ▲▼ for year |
 | Quote | `ClueGame` | Quote with progressive hints; albums reveal their **tracklist** instead |
-| Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets starting ~40% into the clip (or `audio.start`); video revealed at the end. Falls back to a text description |
+| Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets starting ~40% into the clip (or `audio.start`); video revealed at the end. If a clip is missing or won't play, the round becomes a **zoomed-in cover detail** (`ZoomImage`), then text |
 | Emoji | `ClueGame` | One more emoji per miss |
 | Pixelated | `ClueGame` + `PixelCanvas` | Real cover art (or a generated glyph cover), de-pixelates per miss |
 | Timeline | `TimelineGame` | Drag or arrows, 3 attempts |
-| Iconic item | `ClueGame` + `BlurImage` | Image blurs/desaturates, clearing per miss, plus description |
-| Location | `ClueGame` + `BlurImage` | Same, for settings and real places |
-| Credits | `ClueGame` | Credit lines revealed one by one |
+| Iconic item | `ClueGame` + `BlurImage` | Picture of the item, blurred and desaturated, clearing per miss; the description becomes the first hint |
+| Location | `ClueGame` + `ZoomImage` | In-world screenshot or real filming/recording location, starting at ×3.2 on a focal point (`location.focus`) and zooming out per miss |
+| Cover Puzzle | `ClueGame` + `TilePuzzle` | The cover cut into a 3×3 grid, shuffled and rotated: tap two tiles to swap, tap one twice to rotate. Each miss snaps a tile home |
 | Connections | `ConnectionsGame` | 4×4 picture tiles, Yellow→Purple difficulty, 4 mistakes, "One away…", per-category and single-universe grids |
 
 `GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`, toggle 🔊 in the header), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:
@@ -42,10 +42,12 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 
 ## Data
 
-- **Works**: `src/data/works/{games,anime,cinema,music}.json`, ~50 per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
+- **Works**: `src/data/works/{games,anime,cinema,music}.json`, 100+ per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
 - **Connections**: `src/data/connections.json` (10 per category + 7 mixed) — `domain` decides which daily uses a puzzle (`mixed` = free play), `theme` marks single-universe grids, each group has a `level` 0–3. A tile is a label or `{ "label", "src" }`; `images` sets the puzzle's default picture source (`wp`, `fandom:<wiki>`, `ddragon`). `node scripts/enrich-connections.mjs` resolves them and reports misses — a grid only shows pictures when all 16 tiles have one, since a lone text tile would give its group away.
 
 ### Scaling the dataset
+
+`npm run data:seed` runs the whole pipeline (optional imports → wiki check → images → clips → Connections pictures → validation); see the header of `scripts/seed-database.mjs`. Step by step:
 
 ```bash
 # 1. Import factual metadata (year, genres, studio, creator, characters, tracklist...)
@@ -68,7 +70,7 @@ node scripts/enrich-connections.mjs
 npm run data:validate
 ```
 
-`enrich-media` looks up `cover.wiki` / `item.wiki` / `location.wiki` with the MediaWiki API (50 titles per request) and rejects images when a title redirects to a different subject (e.g. "Hyrule" → the franchise page, whose image would give the answer away). Works without `cover.wiki` get one by search — check those. `--force` re-resolves everything; `--dry` writes nothing.
+`enrich-media` looks up `cover.wiki` / `item.wiki` / `location.wiki` with the MediaWiki API (50 titles per request). Item and location clues can instead carry `src` (`fandom:<wiki>:<Title>`, `wp:<Title>` or a URL), or inherit the work's `fandom` wiki, which is then searched by the clue's `name`. Images whose file name looks like a logo, box art, cover or poster — or equal to the work's cover — are rejected so a clue never shows the title. It also and rejects images when a title redirects to a different subject (e.g. "Hyrule" → the franchise page, whose image would give the answer away). Works without `cover.wiki` get one by search — check those. `--force` re-resolves everything; `--dry` writes nothing.
 
 ### Media notice
 

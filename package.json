@@ -10,7 +10,8 @@
     "typecheck": "tsc -b",
     "data:validate": "node scripts/validate-data.mjs",
     "data:enrich": "node scripts/enrich-media.mjs",
-    "data:import": "node scripts/import.mjs"
+    "data:import": "node scripts/import.mjs",
+    "data:seed": "node scripts/seed-database.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",

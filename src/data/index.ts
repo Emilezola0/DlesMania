@@ -53,12 +53,14 @@ export function domainInfo(id: Domain) {
 const HAS_CONTENT: Partial<Record<GameType, (w: Work) => boolean>> = {
   // Albums have no dialogue: their "quote" round reveals track titles instead.
   quote: (w) => !!w.quote || !!w.tracks?.length,
-  audio: (w) => !!w.audio,
+  // Soundtrack falls back to a zoomed cover detail when a clip can't play.
+  audio: (w) => !!w.audio && (!!w.audio.youtubeId || !!w.cover?.image),
   emoji: (w) => !!w.emoji,
   visual: (w) => !!w.cover?.image || !!w.visual,
-  item: (w) => !!w.item,
-  location: (w) => !!w.location,
-  creator: (w) => w.credits.length > 0,
+  // Picture rounds only draw works that actually have the picture.
+  item: (w) => !!w.item?.image,
+  location: (w) => !!w.location?.image,
+  tiles: (w) => !!w.cover?.image,
 };
 
 export function candidates(type: GameType, domain?: Domain): Work[] {

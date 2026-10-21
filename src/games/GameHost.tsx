@@ -15,7 +15,7 @@ const COMPONENTS: Record<GameType, ComponentType<GameProps>> = {
   visual: ClueGame,
   item: ClueGame,
   location: ClueGame,
-  creator: ClueGame,
+  tiles: ClueGame,
   timeline: TimelineGame,
   connections: ConnectionsGame,
 };

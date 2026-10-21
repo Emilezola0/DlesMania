@@ -4,7 +4,7 @@ import { DOMAINS, connectionsPuzzles, domainInfo, getWork } from '../data';
 import { FlameIcon } from '../components/Layout';
 import { Glyph, GlyphSeal, Ornament } from '../components/Glyph';
 import { GameHost } from '../games/GameHost';
-import { GAME_META } from '../games/meta';
+import { GAME_META, GAME_TYPES } from '../games/meta';
 import { dayNumber, formatLong, isPlayableDay, msUntilTomorrow, todayKey } from '../lib/date';
 import { celebrateBig } from '../lib/fx';
 import { buildDaily, isDomain } from '../lib/rounds';
@@ -166,6 +166,7 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
 function specsValid(specs: RoundSpec[]): boolean {
   try {
     return specs.length === 10 && specs.every((s) => {
+      if (!GAME_TYPES.includes(s.type)) return false;
       if (s.targetId) getWork(s.targetId);
       s.workIds?.forEach(getWork);
       return !s.puzzleId || connectionsPuzzles.some((p) => p.id === s.puzzleId);

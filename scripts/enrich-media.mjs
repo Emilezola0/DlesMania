@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // Resolves media for works:
-//   • cover / item / location images from their `wiki` article title (MediaWiki API, batched, no key).
+//   • cover / item / location images from their `wiki` article title (MediaWiki API, batched, no key),
+//     or for item / location from `src` (fandom:<wiki>[:<Title>] | wp:<Title> | URL) or the work's `fandom` wiki.
 //     Works without `cover.wiki` get one by searching Wikipedia for "<name> <year> <noun>".
 //   • YouTube clip ids for `audio.query` (YouTube Data API v3, needs YOUTUBE_API_KEY).
 //
 //   node scripts/enrich-media.mjs [--domain=anime] [--force] [--dry] [--no-images] [--no-youtube]
 //
 // Existing `image` / `youtubeId` values are kept unless --force is passed.
-import { DOMAINS, WIKIPEDIA_API, getJson, loadWorks, mediawikiGet, mediawikiImages, parseArgs, saveWorks, sleep } from './lib.mjs';
+import { DOMAINS, WIKIPEDIA_API, getJson, loadWorks, mediawikiGet, mediawikiImages, parseArgs, resolveImageSource, revealsAnswer, saveWorks, sleep } from './lib.mjs';
 
 const { flags } = parseArgs();
 const domains = flags.domain ? [flags.domain] : DOMAINS;
@@ -15,6 +16,13 @@ const force = !!flags.force;
 const YT_KEY = process.env.YOUTUBE_API_KEY;
 const NOUN = { games: 'video game', anime: 'anime', cinema: 'film', music: 'album' };
 const IMAGE_WIDTH = 640;
+
+/** True when a page *is* the work (same title, or a spin-off like "Toy Story: The Video Game"). */
+function isOwnPage(title, work) {
+  const name = norm(work.name.replace(/\(.*\)/, ''));
+  if (!name) return false;
+  return norm(title.replace(/\(.*\)/, '')) === name || title.toLowerCase().startsWith(`${work.name.toLowerCase()}:`);
+}
 
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
@@ -55,7 +63,7 @@ for (const domain of domains) {
       }
     }
     const refs = works.flatMap((w) =>
-      ['cover', 'item', 'location'].map((key) => ({ w, key, ref: w[key] })).filter(({ ref }) => ref?.wiki && (force || !ref.image)),
+      ['cover', 'item', 'location'].map((key) => ({ w, key, ref: w[key] })).filter(({ ref }) => ref?.wiki && !ref.src && (force || !ref.image)),
     );
     const resolved = await wikiImages(refs.map((r) => r.ref.wiki));
     for (const { w, key, ref } of refs) {
@@ -66,6 +74,10 @@ for (const domain of domains) {
         console.log(`! ${w.id}.${key}: "${ref.wiki}" redirects to "${title}"${ok ? '' : ' — image rejected'}`);
         if (!ok) image = null;
       }
+      if (image && key !== 'cover' && revealsAnswer(image, w)) {
+        console.log(`! ${w.id}.${key}: image looks like a logo/cover — rejected`);
+        image = null;
+      }
       if (image) {
         ref.image = image;
         changed++;
@@ -74,6 +86,41 @@ for (const domain of domains) {
         // With --force, don't keep a stale image from an earlier (possibly wrong) lookup.
         delete ref.image;
         console.log(`✗ ${w.id}.${key}: no image for "${ref.wiki}"`);
+      }
+    }
+  }
+
+  // Item / location clues with an explicit `src`, or a work-level `fandom` wiki to search.
+  if (!flags['no-images']) {
+    for (const w of works) {
+      for (const key of ['item', 'location']) {
+        const ref = w[key];
+        if (!ref || (ref.image && !force)) continue;
+        const spec = ref.src ?? (!ref.wiki && w.fandom ? `fandom:${w.fandom}` : null);
+        if (!spec) continue;
+        try {
+          let { image, title } = await resolveImageSource(spec, ref.name);
+          // A search that lands on the work's own page returns its box art or poster.
+          if (image && title && isOwnPage(title, w)) {
+            console.log(`! ${w.id}.${key}: matched the work's own page "${title}" — image rejected`);
+            image = null;
+          }
+          if (image && revealsAnswer(image, w)) {
+            console.log(`! ${w.id}.${key}: "${title}" looks like a logo/cover — image rejected`);
+            image = null;
+          }
+          if (image) {
+            ref.image = image;
+            changed++;
+            console.log(`✓ ${w.id}.${key} ← ${title ?? spec}`);
+          } else {
+            delete ref.image;
+            console.log(`✗ ${w.id}.${key}: nothing for "${ref.name}" via ${spec}`);
+          }
+        } catch (e) {
+          console.log(`✗ ${w.id}.${key}: ${e.message}`);
+        }
+        await sleep(150);
       }
     }
   }
