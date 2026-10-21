@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { escalated, finaleSeconds, namesCard, type DifficultySpec } from '../lib/boss';
+import { drawPictureFx, escalated, finaleSeconds, namesCard, pictureStyle, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
 import type { BossCard, PhaseResult } from '../types';
@@ -51,28 +51,9 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const input = useRef<HTMLInputElement>(null);
   const target = targets[index];
   const spot = useSpotlight(!over && !solved, look.every);
-  // Second loop: each face is zoomed in hard on its own spot.
-  const zoom = useMemo(
-    () => (esc ? targets.map(() => ({ scale: esc.zoom[0] + Math.random() * (esc.zoom[1] - esc.zoom[0]), x: 20 + Math.random() * 60, y: 10 + Math.random() * 50 })) : null),
-    [esc, targets],
-  );
-  // Bait: a wrong name flashes over the picture now and then.
-  const [ghost, setGhost] = useState<string | null>(null);
-  useEffect(() => {
-    if (!esc?.ghostNames || over || solved) return;
-    const others = pool.filter((c) => c.label !== targets[index]?.label);
-    let off = 0;
-    const id = window.setInterval(() => {
-      if (Math.random() >= esc.ghostNames || !others.length) return;
-      setGhost(others[Math.floor(Math.random() * others.length)].label);
-      off = window.setTimeout(() => setGhost(null), 320);
-    }, 1000);
-    return () => {
-      clearInterval(id);
-      clearTimeout(off);
-      setGhost(null);
-    };
-  }, [esc, over, solved, pool, targets, index]);
+  // Second loop: each face gets a still distortion (zoom, colour shift, maybe upside down) instead of
+  // the moving spotlight, turning and flicker.
+  const still = useMemo(() => (esc ? targets.map(() => drawPictureFx(esc, Math.random)) : null), [esc, targets]);
 
   useEffect(() => targets.forEach((t) => t.image && (new Image().src = t.image)), [targets]);
   useEffect(() => input.current?.focus({ preventScroll: true }), [index]);
@@ -122,7 +103,8 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   };
 
   const clear = solved || over;
-  const blur = clear ? 0 : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
+  // Still (second-loop) pictures are already zoomed and flipped, so they get a lighter blur.
+  const blur = clear ? 0 : still ? Math.max(1, 8 - elapsed * 9) : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
   const radius = clear ? 150 : look.radius[0] + elapsed * look.radius[1];
   const mask = `radial-gradient(circle at ${spot.x}% ${spot.y}%, #000 ${radius}%, transparent ${radius + 14}%)`;
 
@@ -131,40 +113,33 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-coral">
           Final blow · {index + 1} / {targets.length}
-          {esc && <span className="boss-secret-title ml-2 font-bold">· Escalation</span>}
+          {esc && <span className="ml-2 font-bold">· Escalation</span>}
         </p>
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">Who — or what — is this?</h3>
       </div>
 
-      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} fakeDrops={esc?.fakeTimerDrops} />
+      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
 
       <div key={shakeKey} className={`relative mx-auto aspect-square w-full max-w-xs ${shakeKey ? 'animate-shake' : ''}`}>
         <div className={`boss-glow absolute -inset-2 rounded-lg ${solved ? 'opacity-0' : ''}`} aria-hidden />
         <div className="relative size-full overflow-hidden rounded-md border-2 border-coral/70 bg-[#141018]">
           {/* Medium/Hard: the picture also turns and shifts colour (Hard flips and inverts it too). */}
-          <div className={`absolute inset-0 ${clear ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}>
-          <div
-            key={`zoom-${index}`}
-            className={`absolute inset-0 ${zoom && !clear ? 'boss-zoom-in' : ''}`}
-            style={zoom && !clear ? ({ '--zoom': zoom[index].scale, transformOrigin: `${zoom[index].x}% ${zoom[index].y}%`, animationDuration: `${total}ms` } as React.CSSProperties) : undefined}
-          >
+          <div className={`absolute inset-0 ${clear || still ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}>
           {target?.image && (
             <img
               key={target.label}
               src={target.image}
               alt=""
               draggable={false}
-              className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved ? '' : 'boss-flicker'}`}
-              style={{ filter: `blur(${blur}px) contrast(1.1)`, WebkitMaskImage: mask, maskImage: mask }}
+              className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved || still ? '' : 'boss-flicker'}`}
+              style={
+                still && !clear
+                  ? { ...pictureStyle(still[index]), filter: `${pictureStyle(still[index]).filter} blur(${blur}px)` }
+                  : { filter: `blur(${blur}px) contrast(1.1)`, WebkitMaskImage: mask, maskImage: mask }
+              }
             />
           )}
           </div>
-          </div>
-          {ghost && (
-            <span className="pointer-events-none absolute inset-0 grid place-items-center p-3 text-center font-display text-2xl font-bold text-white/85 [text-shadow:0_2px_8px_rgb(0_0_0/0.8)]" aria-hidden>
-              {ghost}?
-            </span>
-          )}
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">
               ✓ {solved}

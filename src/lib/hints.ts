@@ -14,6 +14,7 @@ export function hintsFor(type: GameType, w: Work, opts: { textClueShown?: boolea
   if (type === 'quote' && w.quote?.speaker) hints.push(`Said by: ${w.quote.speaker}`);
   if (type === 'item' && w.item) hints.push(`The item: ${w.item.name}`);
   if (type === 'location' && w.location) hints.push(`The place: ${w.location.name}`);
+  if (type === 'voice' && w.voice) hints.push(`The voice of: ${w.voice.speaker}`);
 
   if (w.themes?.length) hints.push(`Themes: ${w.themes.join(', ')}`);
   hints.push(`Released in ${w.year}`);

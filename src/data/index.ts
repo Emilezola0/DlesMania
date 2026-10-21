@@ -73,6 +73,8 @@ const HAS_CONTENT: Partial<Record<GameType, (w: Work) => boolean>> = {
   quote: (w) => !!w.quote || !!w.tracks?.length,
   // Soundtrack falls back to a zoomed cover detail when a clip can't play.
   audio: (w) => !!w.audio && (!!w.audio.youtubeId || !!w.cover?.image),
+  // Only clips that were found: there is no text fallback for a voice.
+  voice: (w) => !!w.voice?.youtubeId,
   emoji: (w) => !!w.emoji,
   visual: (w) => !!w.cover?.image || !!w.visual,
   // Picture rounds only draw works that actually have the picture.

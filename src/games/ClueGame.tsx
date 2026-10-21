@@ -1,9 +1,8 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { AudioClip, SNIPPETS } from '../components/AudioClip';
+import { AudioClip, SNIPPETS, VOICE_SNIPPETS } from '../components/AudioClip';
 import { ObscuredImage } from '../components/ObscuredImage';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
-import { TilePuzzle } from '../components/TilePuzzle';
 import { ZoomImage } from '../components/ZoomImage';
 import { candidates, domainInfo, getWork } from '../data';
 import { hintsFor } from '../lib/hints';
@@ -95,6 +94,31 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
       );
     }
 
+    case 'voice': {
+      if (w.voice?.youtubeId && !broken.has('voice')) {
+        return (
+          <div className="space-y-3">
+            <Label>Listen to the voice</Label>
+            <AudioClip
+              videoId={w.voice.youtubeId}
+              start={w.voice.start ?? 0}
+              step={Math.min(wrong, VOICE_SNIPPETS.length - 1)}
+              lengths={VOICE_SNIPPETS}
+              revealed={done}
+              onUnavailable={() => onBroken('voice')}
+            />
+          </div>
+        );
+      }
+      // The clip went missing: fall back to the emoji synopsis rather than leave the round empty.
+      return (
+        <div className="space-y-3 text-center">
+          <Label>Voice clip unavailable — emoji clue instead</Label>
+          <p className="text-5xl tracking-widest">{w.emoji}</p>
+        </div>
+      );
+    }
+
     case 'emoji': {
       const glyphs = Array.from(new Intl.Segmenter().segment(w.emoji!), (s) => s.segment);
       // Start with two emojis and reveal one more per wrong guess.
@@ -119,14 +143,14 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
       if (w.item?.image && !broken.has('item')) {
         return (
           <div className="space-y-3">
-            <Label>Iconic item</Label>
+            <Label>Which work is this from?</Label>
             <ObscuredImage src={w.item.image} alt={w.item.name} step={wrong} revealed={done} seed={seed} onError={() => onBroken('item')} />
           </div>
         );
       }
       return (
         <div className="space-y-2">
-          <Label>Iconic item</Label>
+          <Label>Which work is this from?</Label>
           <TextClue>{w.item!.description}</TextClue>
         </div>
       );
@@ -147,20 +171,12 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
         </div>
       );
 
-    case 'tiles':
-      return (
-        <div className="space-y-3">
-          <Label>Restore the cover</Label>
-          <TilePuzzle src={w.cover!.image!} seed={seed} assists={wrong} revealed={done} onError={() => onBroken('cover')} />
-        </div>
-      );
-
     default:
       return null;
   }
 }
 
-/** Shared engine for the quote, soundtrack, emoji, pixelated, item, location and cover-puzzle games. */
+/** Shared engine for the quote, soundtrack, emoji, pixelated, image and location games. */
 export default function ClueGame({ spec, record, onChange }: GameProps) {
   const target = getWork(spec.targetId!);
   const meta = GAME_META[spec.type];

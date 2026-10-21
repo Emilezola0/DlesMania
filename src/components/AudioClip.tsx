@@ -3,6 +3,8 @@ import { sfx } from '../lib/sfx';
 
 /** Snippet length (seconds) unlocked by each wrong guess, Heardle-style. */
 export const SNIPPETS = [1, 2, 4, 7, 11, 16];
+/** Voice lines need a little longer to be heard at all. */
+export const VOICE_SNIPPETS = [2, 3, 5, 8, 12, 16];
 
 // Minimal slice of the YouTube IFrame API we use.
 interface YTPlayer {
@@ -53,8 +55,10 @@ interface Props {
   videoId: string;
   /** Second the snippet starts at. When omitted it's picked from the middle of the clip. */
   start?: number;
-  /** Index into SNIPPETS: grows with each wrong guess. */
+  /** Index into `lengths`: grows with each wrong guess. */
   step: number;
+  /** Snippet lengths in seconds, one per step (default SNIPPETS). */
+  lengths?: number[];
   /** Round over: show the real video with controls. */
   revealed: boolean;
   /** Called when the clip can't be played (removed, embedding disabled, blocked...). */
@@ -69,7 +73,7 @@ function autoStart(duration: number): number {
   return Math.floor(Math.min(duration * 0.4, duration - SNIPPETS[SNIPPETS.length - 1] - 5));
 }
 
-export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Props) {
+export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
@@ -79,8 +83,8 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Pro
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const length = SNIPPETS[Math.min(step, SNIPPETS.length - 1)];
-  const max = SNIPPETS[SNIPPETS.length - 1];
+  const length = lengths[Math.min(step, lengths.length - 1)];
+  const max = lengths[lengths.length - 1];
 
   useEffect(() => {
     if (revealed) return;
@@ -194,7 +198,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable }: Pro
         <div className="relative h-2 w-full overflow-hidden rounded-full bg-tile">
           <div className="absolute inset-y-0 left-0 bg-rule-strong" style={{ width: `${(length / max) * 100}%` }} />
           <div className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-75" style={{ width: `${(progress / max) * 100}%` }} />
-          {SNIPPETS.map((s) => (
+          {lengths.map((s) => (
             <span key={s} className="absolute inset-y-0 w-px bg-paper" style={{ left: `${(s / max) * 100}%` }} />
           ))}
         </div>

@@ -17,6 +17,7 @@ const MIN_PER_GAME = 8;
 const COVERAGE = {
   quote: (w) => w.quote || w.tracks?.length,
   audio: (w) => w.audio && (w.audio.youtubeId || w.cover?.image),
+  voice: (w) => w.voice?.youtubeId,
   emoji: (w) => w.emoji,
   visual: (w) => w.cover?.image || w.visual,
   item: (w) => w.item?.image,
@@ -46,7 +47,9 @@ for (const domain of DOMAINS) {
   const years = new Set(works.map((w) => w.year));
   if (years.size < 4) fail(`${domain}: need at least 4 distinct years for Timeline`);
 
+  // Voice lines only exist for anime and games.
   const coverage = Object.entries(COVERAGE)
+    .filter(([game]) => game !== 'voice' || domain === 'anime' || domain === 'games')
     .map(([game, has]) => [game, works.filter(has).length])
     .map(([game, n]) => {
       if (n === 0) fail(`${domain}: no works playable in "${game}"`);
@@ -83,6 +86,8 @@ const settings = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'settings.jso
 const cs = settings.connections ?? {};
 if (![2, 3, 4].includes(cs.groups)) fail(`settings: connections.groups must be 2, 3 or 4 (got ${cs.groups})`);
 if (!(cs.maxMistakes >= 1)) fail('settings: connections.maxMistakes must be >= 1');
+if (![2, 3, 4, 5].includes(cs.themed?.groups)) fail('settings: connections.themed.groups must be 2-5');
+if (![3, 4].includes(cs.themed?.groupSize)) fail('settings: connections.themed.groupSize must be 3 or 4');
 
 // Themed banks (src/data/connection-themes.json): grids are drawn from these at play time by
 // src/lib/connections.ts, which also checks each grid has a single solution.
@@ -103,7 +108,7 @@ for (const th of themes) {
     if (catIds.has(c.id)) fail(`${at}/${c.id}: duplicate sub-category id`);
     catIds.add(c.id);
     if (![0, 1, 2, 3].includes(c.level)) fail(`${at}/${c.id}: level must be 0-3`);
-    if (new Set(c.items).size < 4) fail(`${at}/${c.id}: needs at least 4 distinct cards`);
+    if (new Set(c.items).size < (cs.themed?.groupSize ?? 4)) fail(`${at}/${c.id}: needs at least ${cs.themed?.groupSize ?? 4} distinct cards`);
     for (const i of c.items) if (!labels.has(i)) fail(`${at}/${c.id}: "${i}" is not in cards`);
   }
   const used = new Set(th.categories.flatMap((c) => c.items));
@@ -149,7 +154,11 @@ for (const id of ['easy', 'medium', 'hard']) {
       if (!(sl.radar.cards > sl.radar.impostors && sl.radar.impostors >= 1)) fail(`${at}: secondLoop.radar needs more cards than impostors`);
       if (!(sl.radar.speed > 0 && sl.radar.speed <= 1)) fail(`${at}: secondLoop.radar.speed must be in (0, 1]`);
       if (!(sl.finale.targets >= 1 && sl.finale.seconds > 0)) fail(`${at}: secondLoop.finale needs targets >= 1 and seconds > 0`);
-      for (const z of [sl.radar.zoom, sl.finale.zoom]) if (!Array.isArray(z) || z.length !== 2 || !(z[0] >= 1 && z[1] >= z[0])) fail(`${at}: secondLoop zoom must be [min, max] with 1 <= min <= max`);
+      for (const p of [sl.radar, sl.finale]) {
+        if (!Array.isArray(p.zoom) || p.zoom.length !== 2 || !(p.zoom[0] >= 1 && p.zoom[1] >= p.zoom[0])) fail(`${at}: secondLoop zoom must be [min, max] with 1 <= min <= max`);
+        if (!Array.isArray(p.hue) || p.hue.length !== 2 || !(p.hue[1] >= p.hue[0])) fail(`${at}: secondLoop hue must be [min, max]`);
+        if (!(p.flip >= 0 && p.flip <= 1)) fail(`${at}: secondLoop flip must be a chance in [0, 1]`);
+      }
     }
   }
   const sc = d.secret;

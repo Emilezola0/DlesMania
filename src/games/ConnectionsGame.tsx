@@ -14,7 +14,7 @@ export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string
   3: { tile: 'bg-lv3 text-on-pastel', emoji: '🟪', name: 'Tricky' },
 };
 
-const COUNT_WORD: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four' };
+const COUNT_WORD: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four', 5: 'five' };
 
 /** Tile ids are "<group>-<index>", so the group of a tile is its prefix. */
 const groupOf = (tileId: string) => Number(tileId.split('-')[0]);
@@ -23,7 +23,8 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
   const puzzle = useMemo(() => fitPuzzle(getPuzzle(spec.puzzleId)!, spec.seed), [spec.puzzleId, spec.seed]);
   const maxMistakes = CONNECTIONS.maxMistakes;
   const groupCount = puzzle.groups.length;
-  const size = CONNECTIONS.groupSize;
+  // Hand-made grids use groups of 4, themed ones groups of 3 (settings.json).
+  const size = puzzle.groups[0]?.items.length ?? CONNECTIONS.groupSize;
   const tile = (id: string) => puzzle.groups[groupOf(id)].items[Number(id.split('-')[1])];
   // Pictures only when every tile has one: a lone text tile would give its group away.
   const [brokenImage, setBrokenImage] = useState(false);
@@ -95,10 +96,10 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
     <div className="space-y-5">
       {puzzle.theme ? (
         <p className="text-center text-ink-soft">
-          Every tile comes from <span className="font-semibold text-ink">{puzzle.theme}</span>. Find {COUNT_WORD[groupCount]} groups of four.
+          Every tile comes from <span className="font-semibold text-ink">{puzzle.theme}</span>. Find {COUNT_WORD[groupCount]} groups of {COUNT_WORD[size]}.
         </p>
       ) : (
-        <p className="text-center text-ink-soft">Create {COUNT_WORD[groupCount]} groups of four.</p>
+        <p className="text-center text-ink-soft">Create {COUNT_WORD[groupCount]} groups of {COUNT_WORD[size]}.</p>
       )}
 
       <div className="relative space-y-2">

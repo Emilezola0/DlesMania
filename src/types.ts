@@ -4,6 +4,7 @@ export type GameType =
   | 'classic'
   | 'quote'
   | 'audio'
+  | 'voice'
   | 'emoji'
   | 'visual'
   | 'timeline'
@@ -78,6 +79,8 @@ export interface Work {
     /** Search query used by scripts/enrich-media.mjs to find a clip. */
     query?: string;
   };
+  /** Voice game: a character's original voice acting — no openings, endings or soundtrack. */
+  voice?: { speaker: string; youtubeId?: string; start?: number; query?: string };
   emoji?: string;
   item?: Clue;
   location?: Clue;

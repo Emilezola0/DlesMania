@@ -42,6 +42,10 @@
       "query": "Death Note opening The World Nightmare",
       "youtubeId": "D7MMMNTQ7H0"
     },
+    "voice": {
+      "speaker": "Light Yagami",
+      "query": "Light Yagami voice japanese"
+    },
     "emoji": "📓🍎✍️💀🕵️",
     "item": {
       "name": "A black notebook",
@@ -103,6 +107,12 @@
       "clue": "A mournful shamisen-and-flute piece that plays whenever the lonely hero remembers his childhood.",
       "query": "Naruto Sadness and Sorrow",
       "youtubeId": "wEWF2xh5E8s"
+    },
+    "voice": {
+      "speaker": "Naruto Uzumaki",
+      "query": "Naruto Uzumaki Naruto japanese voice lines",
+      "youtubeId": "teymyGSxZBw",
+      "start": 2
     },
     "emoji": "🍥🦊🍜🥷🍃",
     "item": {
@@ -167,6 +177,12 @@
       "clue": "An upbeat, sing-along first opening about setting sail in search of the ultimate treasure.",
       "query": "One Piece opening 1 We Are",
       "youtubeId": "YoeP9w5UIlg"
+    },
+    "voice": {
+      "speaker": "Monkey D. Luffy",
+      "query": "Monkey D. Luffy One Piece japanese voice lines",
+      "youtubeId": "DuHHaa-20V4",
+      "start": 2
     },
     "emoji": "🏴‍☠️👒🍖🌊💰",
     "item": {
@@ -235,6 +251,10 @@
       "query": "A Cruel Angel's Thesis Evangelion opening",
       "youtubeId": "nU21rCWkuJw"
     },
+    "voice": {
+      "speaker": "Shinji Ikari",
+      "query": "Shinji Ikari voice japanese"
+    },
     "emoji": "🤖👦😰✝️🌊",
     "item": {
       "name": "Lance of Longinus",
@@ -298,6 +318,10 @@
       "clue": "A tender piano waltz that opens as a girl rides a train across a flooded sea.",
       "query": "Spirited Away One Summer's Day Joe Hisaishi",
       "youtubeId": "TK1Ij_-mank"
+    },
+    "voice": {
+      "speaker": "Chihiro",
+      "query": "Chihiro voice japanese"
     },
     "emoji": "👧🐉🛁👻🐷",
     "item": {
@@ -367,6 +391,12 @@
       "query": "Attack on Titan opening Guren no Yumiya",
       "youtubeId": "8OkpRK2_gVs"
     },
+    "voice": {
+      "speaker": "Eren Yeager",
+      "query": "Eren Yeager Attack on Titan japanese voice lines",
+      "youtubeId": "A0p-yvlWnAw",
+      "start": 2
+    },
     "emoji": "🧱👹⚔️🪽🩸",
     "item": {
       "name": "Omni-directional mobility gear",
@@ -434,6 +464,10 @@
       "query": "Dragon Ball Z Cha-La Head-Cha-La opening",
       "youtubeId": "qQmTdijhjD4"
     },
+    "voice": {
+      "speaker": "Goku",
+      "query": "Goku voice japanese"
+    },
     "emoji": "🐉🟠⭐💥👊",
     "item": {
       "name": "Senzu Bean",
@@ -497,6 +531,10 @@
       "clue": "A frantic big-band jazz opening of blaring brass and bongos, with almost no lyrics.",
       "query": "Cowboy Bebop Tank! opening",
       "youtubeId": "0hfOyOBHIq4"
+    },
+    "voice": {
+      "speaker": "Spike Spiegel",
+      "query": "Spike Spiegel voice japanese"
     },
     "emoji": "🚀🤠🎷🐕🚬",
     "item": {
@@ -566,6 +604,12 @@
       "query": "Fullmetal Alchemist Brotherhood opening Again YUI",
       "youtubeId": "FM3aJQzqV90"
     },
+    "voice": {
+      "speaker": "Edward Elric",
+      "query": "Edward Elric Fullmetal Alchemist: Brotherhood japanese voice lines",
+      "youtubeId": "Dah1Q_BQN24",
+      "start": 2
+    },
     "emoji": "⚗️🦾🛡️👬🔴",
     "item": {
       "name": "Philosopher's Stone",
@@ -631,6 +675,10 @@
       "query": "My Neighbor Totoro Hey Let's Go opening",
       "youtubeId": "lOqfUXy9wpg"
     },
+    "voice": {
+      "speaker": "Satsuki",
+      "query": "Satsuki voice japanese"
+    },
     "emoji": "🌳🐱🚌☔👧",
     "item": {
       "name": "The Catbus",
@@ -691,6 +739,12 @@
       "clue": "A ferocious rock opening by a singer known as LiSA, whose title means \"red lotus\".",
       "query": "Demon Slayer opening Gurenge LiSA",
       "youtubeId": "pmanD_s7G3U"
+    },
+    "voice": {
+      "speaker": "Tanjiro Kamado",
+      "query": "Tanjiro Kamado Demon Slayer japanese voice lines",
+      "youtubeId": "csoamosakYQ",
+      "start": 2
     },
     "emoji": "👹🗡️🌊📦🎋",
     "item": {
@@ -754,6 +808,10 @@
       "query": "Sailor Moon opening Moonlight Densetsu",
       "youtubeId": "5g-8Eav6UdA"
     },
+    "voice": {
+      "speaker": "Usagi Tsukino",
+      "query": "Usagi Tsukino voice japanese"
+    },
     "emoji": "🌙👧🐈‍⬛💫🎀",
     "item": {
       "name": "Transformation brooch",
@@ -808,6 +866,10 @@
       "clue": "Percussive gamelan, rhythmic chanting and taiko drums as biker gangs race through a city.",
       "query": "Akira Kaneda theme Geinoh Yamashirogumi",
       "youtubeId": "CAjtimRClYU"
+    },
+    "voice": {
+      "speaker": "Shotaro Kaneda",
+      "query": "Shotaro Kaneda voice japanese"
     },
     "emoji": "🏍️🔴🧠💥🌆",
     "item": {
@@ -869,6 +931,12 @@
       "clue": "A bright, catchy J-pop opening with the hook \"Departure!\".",
       "query": "Hunter x Hunter 2011 opening Departure",
       "youtubeId": "faqmNf_fZlE"
+    },
+    "voice": {
+      "speaker": "Gon Freecss",
+      "query": "Gon Freecss Hunter x Hunter japanese voice lines",
+      "youtubeId": "AOKtCliZnzs",
+      "start": 2
     },
     "emoji": "🎣🧒⚡🃏🐜",
     "item": {
@@ -936,6 +1004,12 @@
       "clue": "A fast, jittery rock opening by a vocaloid-scene singer called Eve.",
       "query": "Jujutsu Kaisen opening Kaikai Kitan",
       "youtubeId": "GwaRztMaoY0"
+    },
+    "voice": {
+      "speaker": "Yuji Itadori",
+      "query": "Yuji Itadori Jujutsu Kaisen japanese voice lines",
+      "youtubeId": "_XAu_aCzp9w",
+      "start": 2
     },
     "emoji": "👆🧿🏫👹🤞",
     "item": {
@@ -1005,6 +1079,12 @@
       "query": "My Hero Academia opening The Day",
       "youtubeId": "gUCmjNHIrcU"
     },
+    "voice": {
+      "speaker": "Izuku Midoriya",
+      "query": "Izuku Midoriya voice japanese",
+      "youtubeId": "GNbQffRLgkI",
+      "start": 2
+    },
     "emoji": "💪🦸👦💥🏫",
     "item": {
       "name": "Hero analysis notebooks",
@@ -1064,6 +1144,10 @@
     "quote": {
       "text": "El Psy Kongroo.",
       "speaker": "A self-proclaimed mad scientist, signing off a phone call"
+    },
+    "voice": {
+      "speaker": "Rintaro Okabe",
+      "query": "Rintaro Okabe voice japanese"
     },
     "emoji": "📱🍌⏳🧪👨‍🔬",
     "item": {
@@ -1125,6 +1209,10 @@
     "quote": {
       "text": "All hail Lelouch!",
       "speaker": "Crowds chanting for an emperor"
+    },
+    "voice": {
+      "speaker": "Lelouch Lamperouge",
+      "query": "Lelouch Lamperouge voice japanese"
     },
     "emoji": "♟️👁️🍕🤖👑",
     "item": {
@@ -1191,6 +1279,12 @@
       "clue": "A fist-pumping hard-rock opening by JAM Project.",
       "query": "One Punch Man opening The Hero",
       "youtubeId": "atxYe-nOa9w"
+    },
+    "voice": {
+      "speaker": "Saitama",
+      "query": "Saitama One-Punch Man japanese voice lines",
+      "youtubeId": "s-kFAR2rG-w",
+      "start": 2
     },
     "emoji": "👊🥚👨‍🦲🦸😐",
     "item": {
@@ -1259,6 +1353,12 @@
       "query": "JoJo opening Sono Chi no Sadame",
       "youtubeId": "BW4H15rK6iI"
     },
+    "voice": {
+      "speaker": "Jotaro Kujo",
+      "query": "Jotaro Kujo JoJo's Bizarre Adventure japanese voice lines",
+      "youtubeId": "fdpXi8q254M",
+      "start": 2
+    },
     "emoji": "🕺🗿⭐🧛🌹",
     "item": {
       "name": "The Stone Mask",
@@ -1317,6 +1417,12 @@
       "clue": "A chaotic, genre-hopping opening by Kenshi Yonezu, full of tempo shifts.",
       "query": "Chainsaw Man opening KICK BACK",
       "youtubeId": "dFlDRhvM4L0"
+    },
+    "voice": {
+      "speaker": "Denji",
+      "query": "Denji Chainsaw Man japanese voice lines",
+      "youtubeId": "bU5CZsIPTNw",
+      "start": 2
     },
     "emoji": "🪚🐶😈🩸🍞",
     "item": {
@@ -1379,6 +1485,10 @@
       "query": "Your Name Zenzenzense RADWIMPS",
       "youtubeId": "nWrCkR-h_gs"
     },
+    "voice": {
+      "speaker": "Taki Tachibana",
+      "query": "Taki Tachibana voice japanese"
+    },
     "emoji": "☄️🔄👫🏞️🧶",
     "item": {
       "name": "A red braided cord",
@@ -1439,6 +1549,10 @@
       "clue": "A haunting countertenor sings the title theme over solemn orchestra.",
       "query": "Princess Mononoke theme song",
       "youtubeId": "nBADF1LdP3g"
+    },
+    "voice": {
+      "speaker": "Ashitaka",
+      "query": "Ashitaka voice japanese"
     },
     "emoji": "🐺👸🦌🌲🔥",
     "item": {
@@ -1502,6 +1616,10 @@
       "query": "Sword Art Online opening Crossing Field",
       "youtubeId": "6Y1swEeFwYo"
     },
+    "voice": {
+      "speaker": "Kirito",
+      "query": "Kirito voice japanese"
+    },
     "emoji": "🎮⚔️🏰💀🧑‍💻",
     "item": {
       "name": "NerveGear",
@@ -1556,6 +1674,10 @@
     "cover": {
       "wiki": "Haikyu!!",
       "image": "https://upload.wikimedia.org/wikipedia/en/6/6b/Haiky%C5%AB_Volume_1.jpg"
+    },
+    "voice": {
+      "speaker": "Shoyo Hinata",
+      "query": "Shoyo Hinata voice japanese"
     },
     "emoji": "🏐🐦‍⬛🦵🏫🔥",
     "item": {
@@ -1615,6 +1737,10 @@
       "clue": "Haunting Japanese folk-style choir chanting over taiko drums and bells.",
       "query": "Ghost in the Shell Making of Cyborg Kenji Kawai",
       "youtubeId": "iTPNaUsjksM"
+    },
+    "voice": {
+      "speaker": "Motoko Kusanagi",
+      "query": "Motoko Kusanagi voice japanese"
     },
     "emoji": "🤖🧠👩🌐🔫",
     "item": {
@@ -1678,6 +1804,10 @@
       "clue": "A dreamy, ethereal opening by YOASOBI.",
       "query": "Frieren opening Yuusha YOASOBI",
       "youtubeId": "OIBODIPC_8Y"
+    },
+    "voice": {
+      "speaker": "Frieren",
+      "query": "Frieren voice japanese"
     },
     "emoji": "🧝‍♀️📦🌸⏳💐",
     "item": {
@@ -1744,6 +1874,10 @@
       "query": "Spy x Family opening Mixed Nuts",
       "youtubeId": "Wf8XuAoCjN8"
     },
+    "voice": {
+      "speaker": "Loid Forger",
+      "query": "Loid Forger voice japanese"
+    },
     "emoji": "🕵️🔫🥜👧🐶",
     "item": {
       "name": "Peanuts",
@@ -1802,6 +1936,12 @@
       "clue": "A punchy rock-rap opening by Orange Range.",
       "query": "Bleach opening Asterisk Orange Range",
       "youtubeId": "wW9TwZdWpjw"
+    },
+    "voice": {
+      "speaker": "Ichigo Kurosaki",
+      "query": "Ichigo Kurosaki Bleach japanese voice lines",
+      "youtubeId": "7PmfBW1wMY8",
+      "start": 2
     },
     "emoji": "🗡️🍓👻💀🍊",
     "item": {
@@ -1869,6 +2009,10 @@
       "query": "Pokemon theme song season 1",
       "youtubeId": "6xKWiCMKKJg"
     },
+    "voice": {
+      "speaker": "Ash Ketchum",
+      "query": "Ash Ketchum voice japanese"
+    },
     "emoji": "🧢🐭⚡🚀🎒",
     "item": {
       "name": "A red-and-white cap",
@@ -1931,6 +2075,10 @@
       "query": "Tokyo Ghoul opening Unravel",
       "youtubeId": "7aMOurgDB-o"
     },
+    "voice": {
+      "speaker": "Ken Kaneki",
+      "query": "Ken Kaneki voice japanese"
+    },
     "emoji": "☕👁️🩸🎭🦷",
     "item": {
       "name": "An eyepatch mask",
@@ -1991,6 +2139,10 @@
       "clue": "A wild, shouty chant-rock opening by MOB CHOIR counting up to 99.",
       "query": "Mob Psycho 100 opening 99",
       "youtubeId": "Bw-5Lka7gPE"
+    },
+    "voice": {
+      "speaker": "Shigeo Kageyama",
+      "query": "Shigeo Kageyama voice japanese"
     },
     "emoji": "👦🔮💯🥦🏃",
     "item": {
@@ -2053,6 +2205,12 @@
       "query": "Vinland Saga opening Mukanjyo",
       "youtubeId": "l5wAdQ-UkWY"
     },
+    "voice": {
+      "speaker": "Thorfinn",
+      "query": "Thorfinn Vinland Saga japanese voice lines",
+      "youtubeId": "PpVk3Pl_8ck",
+      "start": 2
+    },
     "emoji": "⚔️⛵🌾👑🌊",
     "item": {
       "name": "Twin daggers",
@@ -2113,6 +2271,10 @@
       "clue": "A delicate orchestral opening sung by TRUE.",
       "query": "Violet Evergarden opening Sincerely",
       "youtubeId": "ZAKuyZEyZjY"
+    },
+    "voice": {
+      "speaker": "Violet Evergarden",
+      "query": "Violet Evergarden voice japanese"
     },
     "emoji": "✉️🦾💚🖋️😢",
     "item": {
@@ -2177,6 +2339,10 @@
       "query": "Gurren Lagann Libera Me From Hell",
       "youtubeId": "VT6LFOIofRE"
     },
+    "voice": {
+      "speaker": "Simon",
+      "query": "Simon voice japanese"
+    },
     "emoji": "🔩🕶️🤖🌌💥",
     "item": {
       "name": "A core drill",
@@ -2238,6 +2404,10 @@
       "clue": "A twangy, surf-rock guitar opening called 'H.T.'",
       "query": "Trigun opening H.T.",
       "youtubeId": "4OxFSy8G5wk"
+    },
+    "voice": {
+      "speaker": "Vash the Stampede",
+      "query": "Vash the Stampede voice japanese"
     },
     "emoji": "🔫🧥🍩🏜️☮️",
     "item": {
@@ -2301,6 +2471,10 @@
       "query": "Inuyasha opening 1 Change the World V6",
       "youtubeId": "GtrJMZfFN50"
     },
+    "voice": {
+      "speaker": "Inuyasha",
+      "query": "Inuyasha voice japanese"
+    },
     "emoji": "🐶👂🗡️💎⛩️",
     "item": {
       "name": "The Shikon Jewel",
@@ -2360,6 +2534,10 @@
       "clue": "A Celtic-flavoured main theme of fiddle and bagpipes over rock drums.",
       "query": "Fairy Tail main theme",
       "youtubeId": "m6kb96YWXMA"
+    },
+    "voice": {
+      "speaker": "Natsu Dragneel",
+      "query": "Natsu Dragneel voice japanese"
     },
     "emoji": "🧚🔥🐱🐉🍺",
     "item": {
@@ -2424,6 +2602,12 @@
       "query": "Re Zero opening Redo",
       "youtubeId": "0Vwwr3VGsYg"
     },
+    "voice": {
+      "speaker": "Subaru Natsuki",
+      "query": "Subaru Natsuki Re:Zero − Starting Life in Another World japanese voice lines",
+      "youtubeId": "qq1HJtW3_Zs",
+      "start": 2
+    },
     "emoji": "🔁💀🧝‍♀️👯🍎",
     "item": {
       "name": "A tracksuit",
@@ -2482,6 +2666,10 @@
       "clue": "An ethereal, choral score by an Australian composer, as two kids peer into a giant pit.",
       "query": "Made in Abyss Hanezeve Caradhina",
       "youtubeId": "sFzDQ2OjFko"
+    },
+    "voice": {
+      "speaker": "Riko",
+      "query": "Riko voice japanese"
     },
     "emoji": "🕳️🤖👧🔦🌋",
     "item": {
@@ -2546,6 +2734,10 @@
       "query": "Cyberpunk Edgerunners I Really Want to Stay at Your House",
       "youtubeId": "KvMY1uzSC1E"
     },
+    "voice": {
+      "speaker": "David Martinez",
+      "query": "David Martinez voice japanese"
+    },
     "emoji": "🌙🦾💊🚀🌃",
     "item": {
       "name": "Sandevistan",
@@ -2603,6 +2795,10 @@
       "clue": "A heavy, bilingual rock theme announcing an iron-willed student council president.",
       "query": "Kill la Kill Before My Body Is Dry",
       "youtubeId": "1_PWdjym25g"
+    },
+    "voice": {
+      "speaker": "Ryuko Matoi",
+      "query": "Ryuko Matoi voice japanese"
     },
     "emoji": "✂️👘🏫💪🔥",
     "item": {
@@ -2663,6 +2859,10 @@
       "query": "Toradora opening Pre-Parade",
       "youtubeId": "ylPEBnmRRxQ"
     },
+    "voice": {
+      "speaker": "Ryuji Takasu",
+      "query": "Ryuji Takasu voice japanese"
+    },
     "emoji": "🐯🐉🎄🏫💔",
     "item": {
       "name": "A wooden practice sword",
@@ -2721,6 +2921,10 @@
       "query": "Clannad Dango Daikazoku",
       "youtubeId": "rFKKSQ8GgHk"
     },
+    "voice": {
+      "speaker": "Tomoya Okazaki",
+      "query": "Tomoya Okazaki voice japanese"
+    },
     "emoji": "🍡🌸👨‍👧🏫😭",
     "item": {
       "name": "Dango",
@@ -2777,6 +2981,10 @@
       "query": "Assassination Classroom opening Seishun Satsubatsuron",
       "youtubeId": "mQS_iWWp1sQ"
     },
+    "voice": {
+      "speaker": "Koro-sensei",
+      "query": "Koro-sensei Assassination Classroom japanese voice lines"
+    },
     "emoji": "🐙🎓🔪🌙🟡",
     "item": {
       "name": "Anti-sensei knives",
@@ -2831,6 +3039,10 @@
       "clue": "A Victorian parlour song plays on a gramophone over images of the evacuated wealthy.",
       "query": "Grave of the Fireflies Home Sweet Home",
       "youtubeId": "Y3xBLGrRSqk"
+    },
+    "voice": {
+      "speaker": "Seita",
+      "query": "Seita voice japanese"
     },
     "emoji": "🔥🪲🍬👧😢",
     "item": {
@@ -2891,6 +3103,10 @@
       "clue": "A swirling, melancholic waltz that carousels through the whole film.",
       "query": "Howl's Moving Castle Merry-Go-Round of Life",
       "youtubeId": "f7SS57LFPco"
+    },
+    "voice": {
+      "speaker": "Sophie Hatter",
+      "query": "Sophie Hatter voice japanese"
     },
     "emoji": "🏰🔥👵🧙‍♂️🌸",
     "item": {
@@ -2954,6 +3170,12 @@
       "query": "Bocchi the Rock opening Seishun Complex",
       "youtubeId": "Yd8kUoB72xU"
     },
+    "voice": {
+      "speaker": "Hitori Gotoh",
+      "query": "Hitori Gotoh Bocchi the Rock! japanese voice lines",
+      "youtubeId": "3IF4YEHGz3U",
+      "start": 2
+    },
     "emoji": "🎸😰🌀🎤🩷",
     "item": {
       "name": "A pink tracksuit",
@@ -3009,6 +3231,12 @@
       "clue": "A hard-hitting rock opening by UNISON SQUARE GARDEN.",
       "query": "Blue Lock opening Chaos ga Kiwamaru",
       "youtubeId": "5Iv3Fi8eb7w"
+    },
+    "voice": {
+      "speaker": "Yoichi Isagi",
+      "query": "Yoichi Isagi Blue Lock japanese voice lines",
+      "youtubeId": "7j3FBdmkC5A",
+      "start": 2
     },
     "emoji": "⚽🔒🔵👁️🏆",
     "item": {
@@ -3073,6 +3301,10 @@
       "query": "Oshi no Ko opening Idol YOASOBI",
       "youtubeId": "ZRtdQ81jPUQ"
     },
+    "voice": {
+      "speaker": "Ai Hoshino",
+      "query": "Ai Hoshino voice japanese"
+    },
     "emoji": "⭐👁️🎤🍓🔪",
     "item": {
       "name": "Star-shaped pupils",
@@ -3130,6 +3362,10 @@
       "query": "Dragon Ball opening Makafushigi Adventure",
       "youtubeId": "FJqGirLjQn4"
     },
+    "voice": {
+      "speaker": "Goku",
+      "query": "Goku voice japanese"
+    },
     "emoji": "🐒🐉⭐☁️👦",
     "item": {
       "name": "Power Pole",
@@ -3184,6 +3420,12 @@
       "clue": "An energetic J-rock opening that kicks off a summer-camp adventure in another world.",
       "query": "Digimon Adventure opening Butter-Fly",
       "youtubeId": "jB7ecG_12x8"
+    },
+    "voice": {
+      "speaker": "Tai Kamiya",
+      "query": "Tai Kamiya voice japanese",
+      "youtubeId": "UNrQOyjbno0",
+      "start": 2
     },
     "emoji": "🦖📱🏕️🌐💥",
     "item": {
@@ -3250,6 +3492,10 @@
       "query": "Yu-Gi-Oh Duel Monsters opening theme",
       "youtubeId": "WHUcHw7j2Mc"
     },
+    "voice": {
+      "speaker": "Yugi Muto",
+      "query": "Yugi Muto voice japanese"
+    },
     "emoji": "🃏🔺👁️🐉🏆",
     "item": {
       "name": "Millennium Puzzle",
@@ -3314,6 +3560,10 @@
       "query": "Mobile Suit Gundam opening Tobe Gundam",
       "youtubeId": "Mpmr5UCkZvM"
     },
+    "voice": {
+      "speaker": "Amuro Ray",
+      "query": "Amuro Ray voice japanese"
+    },
     "emoji": "🤖🚀🛰️⭐💥",
     "item": {
       "name": "RX-78-2 Gundam",
@@ -3370,6 +3620,12 @@
       "query": "Berserk Forces Susumu Hirasawa",
       "youtubeId": "jwu6YmLEBj8"
     },
+    "voice": {
+      "speaker": "Guts",
+      "query": "Guts Berserk japanese voice lines",
+      "youtubeId": "76mznY7kdfk",
+      "start": 2
+    },
     "emoji": "🗡️🦅🌑🩸⚫",
     "item": {
       "name": "Dragon Slayer",
@@ -3424,6 +3680,10 @@
       "clue": "Laid-back hip-hop beats and scratching over an Edo-period road trip.",
       "query": "Samurai Champloo opening Battlecry Nujabes",
       "youtubeId": "Eq6EYcpWB_c"
+    },
+    "voice": {
+      "speaker": "Mugen",
+      "query": "Mugen voice japanese"
     },
     "emoji": "🗡️🌻🎧🍡🚶",
     "item": {
@@ -3489,6 +3749,12 @@
       "query": "Rurouni Kenshin opening Sobakasu",
       "youtubeId": "YvvlGma6COM"
     },
+    "voice": {
+      "speaker": "Kenshin Himura",
+      "query": "Kenshin Himura voice japanese",
+      "youtubeId": "aKeDYSJvs1w",
+      "start": 2
+    },
     "emoji": "⚔️🌸🙇✝️🏯",
     "item": {
       "name": "Sakabatō",
@@ -3546,6 +3812,12 @@
       "query": "Yu Yu Hakusho opening Hohoemi no Bakudan",
       "youtubeId": "urZWmEgm72Q"
     },
+    "voice": {
+      "speaker": "Yusuke Urameshi",
+      "query": "Yusuke Urameshi voice japanese",
+      "youtubeId": "jL5zPEUG1-U",
+      "start": 2
+    },
     "emoji": "👊👻🦊🔥🏆",
     "item": {
       "name": "Spirit Gun",
@@ -3600,6 +3872,10 @@
       "clue": "A 90s J-rock opening about not being able to stop loving you.",
       "query": "Slam Dunk opening Kimi ga Suki da to Sakebitai",
       "youtubeId": "m_QP5_rdH_g"
+    },
+    "voice": {
+      "speaker": "Hanamichi Sakuragi",
+      "query": "Hanamichi Sakuragi voice japanese"
     },
     "emoji": "🏀🔴🦊🏫💪",
     "item": {
@@ -3657,6 +3933,10 @@
       "clue": "An intense electronic rock opening by Ling Tosite Sigure.",
       "query": "Psycho-Pass opening Abnormalize",
       "youtubeId": "rxuR-52cyNw"
+    },
+    "voice": {
+      "speaker": "Akane Tsunemori",
+      "query": "Akane Tsunemori voice japanese"
     },
     "emoji": "🔫🧠📊👁️🏙️",
     "item": {
@@ -3717,6 +3997,12 @@
       "query": "Dr Stone opening Good Morning World",
       "youtubeId": "yQEUGxngQN4"
     },
+    "voice": {
+      "speaker": "Senku Ishigami",
+      "query": "Senku Ishigami Dr. Stone japanese voice lines",
+      "youtubeId": "3-eEvIc9ZrA",
+      "start": 2
+    },
     "emoji": "🗿🧪🔬🔥🌍",
     "item": {
       "name": "Revival Fluid",
@@ -3773,6 +4059,12 @@
       "clue": "A dark, tense rock opening by UVERworld.",
       "query": "Promised Neverland opening Touch off",
       "youtubeId": "yB2t5y7ujlg"
+    },
+    "voice": {
+      "speaker": "Emma",
+      "query": "Emma The Promised Neverland japanese voice lines",
+      "youtubeId": "6kpxiSYI4sQ",
+      "start": 2
     },
     "emoji": "🏠👧🔢🌳👹",
     "item": {
@@ -3836,6 +4128,10 @@
       "query": "Kaguya-sama opening Love Dramatic",
       "youtubeId": "BC4zaaiXNMI"
     },
+    "voice": {
+      "speaker": "Kaguya Shinomiya",
+      "query": "Kaguya Shinomiya Kaguya-sama: Love Is War japanese voice lines"
+    },
     "emoji": "❤️🧠🏫🎀♟️",
     "item": {
       "name": "Student council seal",
@@ -3892,6 +4188,10 @@
       "clue": "A bright pop-rock opening under falling cherry blossoms.",
       "query": "Your Lie in April opening Hikaru Nara",
       "youtubeId": "fWRPihlt2ho"
+    },
+    "voice": {
+      "speaker": "Kōsei Arima",
+      "query": "Kōsei Arima voice japanese"
     },
     "emoji": "🎹🎻🌸😢✉️",
     "item": {
@@ -3951,6 +4251,10 @@
       "clue": "A gentle ambient piano score, with the Who's 'My Generation' at the start.",
       "query": "A Silent Voice lit kensuke ushio",
       "youtubeId": "S2jEBRVSo90"
+    },
+    "voice": {
+      "speaker": "Shoya Ishida",
+      "query": "Shoya Ishida voice japanese"
     },
     "emoji": "🧏‍♀️📓🌉🎆🐟",
     "item": {
@@ -4015,6 +4319,10 @@
       "query": "Castle in the Sky Carrying You",
       "youtubeId": "Ld02uYVAW18"
     },
+    "voice": {
+      "speaker": "Pazu",
+      "query": "Pazu voice japanese"
+    },
     "emoji": "🏰☁️💎🤖✈️",
     "item": {
       "name": "Aetherium crystal",
@@ -4072,6 +4380,10 @@
       "clue": "A breezy waltz as a young witch flies over a seaside town on her broom.",
       "query": "Kiki's Delivery Service A Town with an Ocean View",
       "youtubeId": "pR4iCWB-VVQ"
+    },
+    "voice": {
+      "speaker": "Kiki",
+      "query": "Kiki voice japanese"
     },
     "emoji": "🧹🐈‍⬛🍞📦🌊",
     "item": {
@@ -4134,6 +4446,10 @@
       "query": "Nausicaa Requiem Lala-lala",
       "youtubeId": "qx2b-nK_Q8o"
     },
+    "voice": {
+      "speaker": "Nausicaä",
+      "query": "Nausicaä voice japanese"
+    },
     "emoji": "🪲🌬️🌳✈️👸",
     "item": {
       "name": "Mehve",
@@ -4193,6 +4509,10 @@
       "query": "Porco Rosso The Bygone Days",
       "youtubeId": "Htq2EUgcrKE"
     },
+    "voice": {
+      "speaker": "Porco Rosso",
+      "query": "Porco Rosso voice japanese"
+    },
     "emoji": "🐷✈️🌊🍷🔴",
     "item": {
       "name": "Savoia S.21",
@@ -4250,6 +4570,12 @@
       "clue": "A high-energy rock opening by Kankaku Piero.",
       "query": "Black Clover opening Haruka Mirai",
       "youtubeId": "uWPbjtsQjGc"
+    },
+    "voice": {
+      "speaker": "Asta",
+      "query": "Asta Black Clover japanese voice lines",
+      "youtubeId": "eTkODjyO3MY",
+      "start": 2
     },
     "emoji": "📕🍀🗡️🐂👑",
     "item": {
@@ -4311,6 +4637,10 @@
       "query": "Hellsing Logos Naki World",
       "youtubeId": "9aZZje-RzF0"
     },
+    "voice": {
+      "speaker": "Alucard",
+      "query": "Alucard voice japanese"
+    },
     "emoji": "🧛🔫🇬🇧✝️🩸",
     "item": {
       "name": "Jackal",
@@ -4367,6 +4697,10 @@
       "clue": "A haunting, gothic ending theme sung by David Sylvian.",
       "query": "Monster anime ending For the Love of Life",
       "youtubeId": "ruQsv709MA0"
+    },
+    "voice": {
+      "speaker": "Kenzo Tenma",
+      "query": "Kenzo Tenma voice japanese"
     },
     "emoji": "🩺🔫🇩🇪👦👁️",
     "item": {
@@ -4426,6 +4760,10 @@
       "query": "Erased opening Re:Re:",
       "youtubeId": "_v_Voe5KD1M"
     },
+    "voice": {
+      "speaker": "Satoru Fujinuma",
+      "query": "Satoru Fujinuma voice japanese"
+    },
     "emoji": "⏪❄️👦🧣🔪",
     "item": {
       "name": "A red scarf",
@@ -4483,6 +4821,12 @@
       "clue": "A pounding rock opening by Hiroyuki Sawano's project featuring TOMORROW X TOGETHER.",
       "query": "Solo Leveling opening LEveL",
       "youtubeId": "0HwnlgjICx4"
+    },
+    "voice": {
+      "speaker": "Sung Jinwoo",
+      "query": "Sung Jinwoo Solo Leveling japanese voice lines",
+      "youtubeId": "5TM6qb1jS18",
+      "start": 2
     },
     "emoji": "🗡️🌑👤📈🚪",
     "item": {
@@ -4545,6 +4889,10 @@
       "query": "KonoSuba opening fantastic dreamer",
       "youtubeId": "fpG3BPNQepY"
     },
+    "voice": {
+      "speaker": "Kazuma Satō",
+      "query": "Kazuma Satō voice japanese"
+    },
     "emoji": "💥🧙‍♀️💧🐸🍺",
     "item": {
       "name": "Megumin's staff",
@@ -4605,6 +4953,10 @@
       "query": "Tensura opening Nameless Story",
       "youtubeId": "ZhvUomsfG8o"
     },
+    "voice": {
+      "speaker": "Rimuru Tempest",
+      "query": "Rimuru Tempest voice japanese"
+    },
     "emoji": "💧🐉👹🏰🇯🇵",
     "item": {
       "name": "Great Sage",
@@ -4660,6 +5012,10 @@
       "clue": "A heavy rock opening by OxT.",
       "query": "Overlord opening Clattanoia",
       "youtubeId": "v2NNIS9HYFA"
+    },
+    "voice": {
+      "speaker": "Ainz Ooal Gown",
+      "query": "Ainz Ooal Gown voice japanese"
     },
     "emoji": "💀👑🏰🦇🎮",
     "item": {
@@ -4719,6 +5075,10 @@
       "query": "No Game No Life opening This Game",
       "youtubeId": "6CBp4qylX6I"
     },
+    "voice": {
+      "speaker": "Sora",
+      "query": "Sora voice japanese"
+    },
     "emoji": "🎲♟️👫🌍👑",
     "item": {
       "name": "A chess piece",
@@ -4774,6 +5134,10 @@
       "clue": "An emotional rock opening by Lia.",
       "query": "Angel Beats opening My Soul Your Beats",
       "youtubeId": "Eksw56g-WBY"
+    },
+    "voice": {
+      "speaker": "Yuzuru Otonashi",
+      "query": "Yuzuru Otonashi voice japanese"
     },
     "emoji": "👼🎸🏫💀🍜",
     "item": {
@@ -4832,6 +5196,10 @@
       "clue": "A sugary, upbeat pop-rock opening about a cute girls' band.",
       "query": "K-On opening Cagayake Girls",
       "youtubeId": "qN41mx4tA0I"
+    },
+    "voice": {
+      "speaker": "Yui Hirasawa",
+      "query": "Yui Hirasawa voice japanese"
     },
     "emoji": "🎸🍰☕🥁🏫",
     "item": {
@@ -4894,6 +5262,10 @@
       "query": "Hyouka opening Yasashisa no Riyuu",
       "youtubeId": "3tvOowLuKxs"
     },
+    "voice": {
+      "speaker": "Hōtarō Oreki",
+      "query": "Hōtarō Oreki voice japanese"
+    },
     "emoji": "🔍🌸📚🏫🕰️",
     "item": {
       "name": "A club anthology",
@@ -4952,6 +5324,12 @@
       "query": "Gintama opening Pray",
       "youtubeId": "OQYcEEkG_V0"
     },
+    "voice": {
+      "speaker": "Gintoki Sakata",
+      "query": "Gintoki Sakata voice japanese",
+      "youtubeId": "vpC1Oy60XXU",
+      "start": 2
+    },
     "emoji": "🗡️👽🍓🥛🐶",
     "item": {
       "name": "Lake Tōya wooden sword",
@@ -5008,6 +5386,10 @@
       "clue": "A frantic rock opening by T.M.Revolution.",
       "query": "Soul Eater opening Resonance",
       "youtubeId": "zzJ8U8OtEsE"
+    },
+    "voice": {
+      "speaker": "Maka Albarn",
+      "query": "Maka Albarn voice japanese"
     },
     "emoji": "💀🌙🗡️🎹⭐",
     "item": {
@@ -5068,6 +5450,10 @@
       "clue": "An intense rock opening by UVERworld.",
       "query": "Blue Exorcist opening Core Pride",
       "youtubeId": "s99s4VCtCP8"
+    },
+    "voice": {
+      "speaker": "Rin Okumura",
+      "query": "Rin Okumura voice japanese"
     },
     "emoji": "🔥😈⛪🗡️🔵",
     "item": {
@@ -5130,6 +5516,12 @@
       "query": "Seven Deadly Sins opening Netsujou no Spectrum",
       "youtubeId": "Oc9NgPgUO3E"
     },
+    "voice": {
+      "speaker": "Meliodas",
+      "query": "Meliodas The Seven Deadly Sins japanese voice lines",
+      "youtubeId": "UlX4lgHDeUc",
+      "start": 2
+    },
     "emoji": "🐉🐻🐷🍺🗡️",
     "item": {
       "name": "Lostvayne",
@@ -5186,6 +5578,10 @@
       "clue": "A cool, jazzy opening as an ensemble of strangers crosses Ikebukuro.",
       "query": "Durarara opening Uragiri no Yuuyake",
       "youtubeId": "OTXYhpXezQ8"
+    },
+    "voice": {
+      "speaker": "Celty Sturluson",
+      "query": "Celty Sturluson voice japanese"
     },
     "emoji": "🏍️🐴👤📱🏙️",
     "item": {
@@ -5244,6 +5640,10 @@
       "clue": "A hard rock opening by Granrodeo.",
       "query": "Kuroko no Basket opening Can Do",
       "youtubeId": "5RVEM8-UKlg"
+    },
+    "voice": {
+      "speaker": "Tetsuya Kuroko",
+      "query": "Tetsuya Kuroko voice japanese"
     },
     "emoji": "🏀👻🐯🌈🏫",
     "item": {
@@ -5305,6 +5705,10 @@
       "query": "Yuri on Ice opening History Maker",
       "youtubeId": "dSrrRaVyQHQ"
     },
+    "voice": {
+      "speaker": "Yuri Katsuki",
+      "query": "Yuri Katsuki voice japanese"
+    },
     "emoji": "⛸️❄️🐩🍜🥇",
     "item": {
       "name": "Ice skates",
@@ -5362,6 +5766,10 @@
       "clue": "Hyperactive Eurobeat blares as a tofu-delivery car drifts down a mountain pass.",
       "query": "Initial D Deja Vu Dave Rodgers",
       "youtubeId": "tdeJiw6qMkA"
+    },
+    "voice": {
+      "speaker": "Takumi Fujiwara",
+      "query": "Takumi Fujiwara voice japanese"
     },
     "emoji": "🚗💨🏔️🧈🥤",
     "item": {
@@ -5428,6 +5836,10 @@
       "clue": "A fiery 80s rock opening by Crystal King.",
       "query": "Fist of the North Star opening Ai wo Torimodose",
       "youtubeId": "BbaaI5xf4y8"
+    },
+    "voice": {
+      "speaker": "Kenshiro",
+      "query": "Kenshiro voice japanese"
     },
     "emoji": "👊💥☠️🏜️⭐",
     "item": {
@@ -5498,6 +5910,10 @@
       "query": "Castle of Cagliostro Fire Treasure",
       "youtubeId": "E63eW8M_LvI"
     },
+    "voice": {
+      "speaker": "Arsène Lupin III",
+      "query": "Arsène Lupin III voice japanese"
+    },
     "emoji": "🏰🚗💍💵🎩",
     "item": {
       "name": "Fiat 500",
@@ -5562,6 +5978,10 @@
       "query": "Serial Experiments Lain opening Duvet Boa",
       "youtubeId": "MM8RufZr5lw"
     },
+    "voice": {
+      "speaker": "Lain Iwakura",
+      "query": "Lain Iwakura voice japanese"
+    },
     "emoji": "💻🧸⚡👧🌐",
     "item": {
       "name": "NAVI",
@@ -5621,6 +6041,10 @@
       "clue": "A hauntingly beautiful opening by LiSA.",
       "query": "Fate Zero opening oath sign",
       "youtubeId": "gCnCFtbY0ZI"
+    },
+    "voice": {
+      "speaker": "Kiritsugu Emiya",
+      "query": "Kiritsugu Emiya voice japanese"
     },
     "emoji": "🏆⚔️👑🔥🏙️",
     "item": {
@@ -5687,6 +6111,12 @@
       "query": "Madoka Magica opening Connect",
       "youtubeId": "g1vw9ftAWSc"
     },
+    "voice": {
+      "speaker": "Madoka Kaname",
+      "query": "Madoka Kaname Puella Magi Madoka Magica japanese voice lines",
+      "youtubeId": "DeqZpyXB9xI",
+      "start": 2
+    },
     "emoji": "🎀💎🐱🌀😱",
     "item": {
       "name": "Soul Gem",
@@ -5744,6 +6174,10 @@
       "query": "Dorohedoro opening Welcome to Chaos",
       "youtubeId": "iH_YJde1yps"
     },
+    "voice": {
+      "speaker": "Caiman",
+      "query": "Caiman voice japanese"
+    },
     "emoji": "🦎🥟🍄😷🔪",
     "item": {
       "name": "Gyoza",
@@ -5800,6 +6234,10 @@
       "clue": "A jazzy, stop-motion opening by ALI.",
       "query": "Beastars opening Wild Side",
       "youtubeId": "bgo9dJB_icw"
+    },
+    "voice": {
+      "speaker": "Legoshi",
+      "query": "Legoshi voice japanese"
     },
     "emoji": "🐺🐰🦌🎭🏫",
     "item": {
@@ -5859,6 +6297,10 @@
       "query": "Akame ga Kill opening Skyreach",
       "youtubeId": "vqshxf8WiHE"
     },
+    "voice": {
+      "speaker": "Tatsumi",
+      "query": "Tatsumi voice japanese"
+    },
     "emoji": "🗡️❤️👁️🏰⚰️",
     "item": {
       "name": "Murasame",
@@ -5917,6 +6359,10 @@
       "clue": "A bright, bubbly opening by YURiKA.",
       "query": "Little Witch Academia opening Shiny Ray",
       "youtubeId": "5mU66mU_Pw8"
+    },
+    "voice": {
+      "speaker": "Atsuko Kagari",
+      "query": "Atsuko Kagari voice japanese"
     },
     "emoji": "🧙‍♀️✨🏰🧹🌟",
     "item": {
@@ -5979,6 +6425,10 @@
       "query": "Delicious in Dungeon opening Sleepwalk",
       "youtubeId": "NAc8LWXYgAs"
     },
+    "voice": {
+      "speaker": "Laios",
+      "query": "Laios voice japanese"
+    },
     "emoji": "🍲🐉🍄🗡️🧝‍♀️",
     "item": {
       "name": "Walking Mushroom",
@@ -6038,6 +6488,10 @@
       "query": "Ranma 1/2 opening Jajauma ni Sasenaide",
       "youtubeId": "MGREcRw3Xw8"
     },
+    "voice": {
+      "speaker": "Ranma Saotome",
+      "query": "Ranma Saotome voice japanese"
+    },
     "emoji": "💧♂️♀️🐼🥋",
     "item": {
       "name": "A kettle of hot water",
@@ -6095,6 +6549,10 @@
       "clue": "A sing-along children's theme listing gadgets from a magic pocket.",
       "query": "Doraemon no Uta theme",
       "youtubeId": "QnoQSHTdXYs"
+    },
+    "voice": {
+      "speaker": "Doraemon",
+      "query": "Doraemon voice japanese"
     },
     "emoji": "🐱🔵🚪🍩🎒",
     "item": {
@@ -6160,6 +6618,10 @@
       "query": "Detective Conan main theme",
       "youtubeId": "7EYcOntuD7s"
     },
+    "voice": {
+      "speaker": "Conan Edogawa",
+      "query": "Conan Edogawa voice japanese"
+    },
     "emoji": "🔍👓🎀💊🕴️",
     "item": {
       "name": "Voice-Changing Bowtie",
@@ -6175,6 +6637,3019 @@
       "colors": [
         "#1d4ed8",
         "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-mushishi",
+    "name": "Mushishi",
+    "domain": "anime",
+    "year": 2005,
+    "genres": [
+      "Supernatural",
+      "Slice of Life"
+    ],
+    "studio": "Artland",
+    "creator": "Yuki Urushibara",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ginko",
+      "Tanyu Karibusa",
+      "Adashino"
+    ],
+    "themes": [
+      "Nature",
+      "Coexistence"
+    ],
+    "credits": [
+      "Original manga: Yuki Urushibara",
+      "Director: Hiroshi Nagahama"
+    ],
+    "fandom": "mushishi",
+    "cover": {
+      "wiki": "Mushishi",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/30/Mushishi%2C_Volume_1.jpg"
+    },
+    "quote": {
+      "text": "They simply exist, as we do.",
+      "speaker": "A wandering white-haired healer"
+    },
+    "audio": {
+      "clue": "Gentle acoustic folk drifting over quiet countryside.",
+      "query": "Mushishi The Sore Feet Song",
+      "youtubeId": "VBBFDb0hC4Y"
+    },
+    "voice": {
+      "speaker": "Ginko",
+      "query": "Ginko voice japanese"
+    },
+    "emoji": "🐛🌿🚬👁️🌫️",
+    "item": {
+      "name": "Ginko's cigarette",
+      "description": "A special smoke that keeps the mushi away.",
+      "image": "https://static.wikia.nocookie.net/mushi-shi/images/6/6f/Vlcsnap-2013-05-13-23h11m45s33.png/revision/latest/scale-to-width-down/640?cb=20140224152723"
+    },
+    "location": {
+      "name": "The forest mountains",
+      "description": "Misty rural Japan where people live beside invisible lifeforms.",
+      "image": "https://static.wikia.nocookie.net/mushi-shi/images/0/0d/Title11.png/revision/latest/scale-to-width-down/640?cb=20140729000923"
+    },
+    "visual": {
+      "icon": "🌿",
+      "colors": [
+        "#14532d",
+        "#d9f99d"
+      ]
+    }
+  },
+  {
+    "id": "a-pingpong",
+    "name": "Ping Pong the Animation",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Sports",
+      "Drama"
+    ],
+    "studio": "Tatsunoko Production",
+    "creator": "Taiyō Matsumoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Smile",
+      "Peco",
+      "Kong Wenge"
+    ],
+    "themes": [
+      "Rivalry",
+      "Talent"
+    ],
+    "credits": [
+      "Original manga: Taiyō Matsumoto",
+      "Director: Masaaki Yuasa"
+    ],
+    "fandom": "pingpong",
+    "cover": {
+      "wiki": "Ping Pong (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a7/Ping_Pong_manga.jpg"
+    },
+    "quote": {
+      "text": "The hero appears!",
+      "speaker": "A cocky boy with a lollipop"
+    },
+    "audio": {
+      "clue": "Bouncy electronic beats as two friends trade shots.",
+      "query": "Ping Pong the Animation soundtrack Tada Hito",
+      "youtubeId": "q1meZyq4eNM"
+    },
+    "voice": {
+      "speaker": "Smile",
+      "query": "Smile voice japanese"
+    },
+    "emoji": "🏓🤖🍭🦸‍♂️🥇",
+    "item": {
+      "name": "Ping-pong paddle",
+      "description": "A worn table-tennis bat, the tool of a boy called Smile."
+    },
+    "location": {
+      "name": "The Tamura table-tennis club",
+      "description": "A tiny local club run by an old woman where two friends learned to play."
+    },
+    "visual": {
+      "icon": "🏓",
+      "colors": [
+        "#1d4ed8",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "a-kaiji",
+    "name": "Kaiji: Ultimate Survivor",
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Psychological",
+      "Thriller"
+    ],
+    "studio": "Madhouse",
+    "creator": "Nobuyuki Fukumoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kaiji Itō",
+      "Yukio Tonegawa",
+      "Kazutaka Hyōdō"
+    ],
+    "themes": [
+      "Gambling",
+      "Debt"
+    ],
+    "credits": [
+      "Original manga: Nobuyuki Fukumoto",
+      "Director: Yūzō Satō"
+    ],
+    "fandom": "kaiji",
+    "cover": {
+      "wiki": "Kaiji (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e9/Kaiji.png"
+    },
+    "quote": {
+      "text": "Zawa... zawa...",
+      "speaker": "A tense crowd, again and again"
+    },
+    "audio": {
+      "clue": "Grinding, tense strings while a debtor bets everything.",
+      "query": "Kaiji Ultimate Survivor soundtrack",
+      "youtubeId": "1vv_u00Yk6w"
+    },
+    "voice": {
+      "speaker": "Kaiji Itō",
+      "query": "Kaiji Itō voice japanese"
+    },
+    "emoji": "🎲🃏💸😰🌉",
+    "item": {
+      "name": "Restricted Rock-Paper-Scissors cards",
+      "description": "Rock, paper and scissors cards traded for stars aboard a gambling ship.",
+      "image": "https://static.wikia.nocookie.net/kaiji/images/f/ff/Rockpaperscissors.jpg/revision/latest?cb=20180621223732"
+    },
+    "location": {
+      "name": "The Espoir",
+      "description": "A gambling cruise ship where debtors play for their freedom.",
+      "image": "https://static.wikia.nocookie.net/kaiji/images/2/2d/Espoir03.jpg/revision/latest/scale-to-width-down/640?cb=20180617040703"
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#0c0a09",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-paprika",
+    "name": "Paprika",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Sci-Fi",
+      "Psychological"
+    ],
+    "studio": "Madhouse",
+    "creator": "Satoshi Kon",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Atsuko Chiba",
+      "Paprika",
+      "Kōsaku Tokita"
+    ],
+    "themes": [
+      "Dreams",
+      "Identity"
+    ],
+    "credits": [
+      "Director: Satoshi Kon",
+      "Based on the novel by Yasutaka Tsutsui",
+      "Music: Susumu Hirasawa"
+    ],
+    "cover": {
+      "wiki": "Paprika (2006 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/16/Paprikaposter.jpg"
+    },
+    "quote": {
+      "text": "Don't you think dreams and the Internet are similar?",
+      "speaker": "A dream detective"
+    },
+    "audio": {
+      "clue": "A wildly joyful synth march of toys and appliances.",
+      "query": "Paprika Parade Susumu Hirasawa",
+      "youtubeId": "APIKVLw1tT0"
+    },
+    "voice": {
+      "speaker": "Atsuko Chiba",
+      "query": "Atsuko Chiba voice japanese"
+    },
+    "emoji": "💭🎪🧸🧠🌈",
+    "item": {
+      "name": "The DC Mini",
+      "description": "A small device that lets therapists enter and share patients' dreams."
+    },
+    "location": {
+      "name": "The dream parade",
+      "description": "A bizarre procession of fridges, dolls and frogs flooding the city."
+    },
+    "visual": {
+      "icon": "💭",
+      "colors": [
+        "#be123c",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-perfectblue",
+    "name": "Perfect Blue",
+    "domain": "anime",
+    "year": 1997,
+    "genres": [
+      "Psychological",
+      "Thriller"
+    ],
+    "studio": "Madhouse",
+    "creator": "Satoshi Kon",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Mima Kirigoe",
+      "Rumi",
+      "Me-Mania"
+    ],
+    "themes": [
+      "Identity",
+      "Fame"
+    ],
+    "credits": [
+      "Director: Satoshi Kon",
+      "Based on the novel by Yoshikazu Takeuchi"
+    ],
+    "cover": {
+      "wiki": "Perfect Blue",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/2a/Perfectblueposter.png"
+    },
+    "quote": {
+      "text": "Who are you?",
+      "speaker": "A pop idol to her reflection"
+    },
+    "audio": {
+      "clue": "Sugary idol pop that turns more sinister each time.",
+      "query": "Perfect Blue Angel of Love",
+      "youtubeId": "fJ_DH7jzoxQ"
+    },
+    "voice": {
+      "speaker": "Mima Kirigoe",
+      "query": "Mima Kirigoe voice japanese"
+    },
+    "emoji": "🎤🪞🔪🧠💔",
+    "item": {
+      "name": "The idol website",
+      "description": "A fan diary online that knows far too much about a singer's life."
+    },
+    "location": {
+      "name": "The cramped apartment",
+      "description": "A tiny flat with a fish tank where an ex-idol's reality starts to crack."
+    },
+    "visual": {
+      "icon": "🪞",
+      "colors": [
+        "#1e3a8a",
+        "#f9a8d4"
+      ]
+    }
+  },
+  {
+    "id": "a-wolfchildren",
+    "name": "Wolf Children",
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Drama",
+      "Family"
+    ],
+    "studio": "Studio Chizu",
+    "creator": "Mamoru Hosoda",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Hana",
+      "Yuki",
+      "Ame"
+    ],
+    "themes": [
+      "Parenthood",
+      "Growing up"
+    ],
+    "credits": [
+      "Director: Mamoru Hosoda",
+      "Music: Takagi Masakatsu"
+    ],
+    "cover": {
+      "wiki": "Wolf Children",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9c/%C5%8Ckami_Kodomo_no_Ame_to_Yuki_poster.jpg"
+    },
+    "audio": {
+      "clue": "Light piano and strings over snowy mountains.",
+      "query": "Wolf Children soundtrack Takagi Masakatsu",
+      "youtubeId": "GlcoZTIcQxs"
+    },
+    "voice": {
+      "speaker": "Hana",
+      "query": "Hana voice japanese"
+    },
+    "emoji": "🐺👩‍👧‍👦🌾❄️🏔️",
+    "item": {
+      "name": "The old country house",
+      "description": "A run-down farmhouse a widowed mother restores to raise two unusual kids."
+    },
+    "location": {
+      "name": "The snowy mountain",
+      "description": "Forest slopes where two children run, half human and half wolf."
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#65a30d",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-girlwholeapt",
+    "name": "The Girl Who Leapt Through Time",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Romance",
+      "Sci-Fi"
+    ],
+    "studio": "Madhouse",
+    "creator": "Mamoru Hosoda",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Novel",
+    "characters": [
+      "Makoto Konno",
+      "Chiaki Mamiya",
+      "Kōsuke Tsuda"
+    ],
+    "themes": [
+      "Time travel",
+      "Youth"
+    ],
+    "credits": [
+      "Director: Mamoru Hosoda",
+      "Based on the novel by Yasutaka Tsutsui"
+    ],
+    "cover": {
+      "wiki": "The Girl Who Leapt Through Time (2006 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4e/The_Girl_Who_Leapt_Through_Time_poster.jpg"
+    },
+    "quote": {
+      "text": "I'll be waiting for you.",
+      "speaker": "A boy from the future"
+    },
+    "audio": {
+      "clue": "A warm acoustic ballad over a summer sky.",
+      "query": "The Girl Who Leapt Through Time Garnet",
+      "youtubeId": "sZcWzkVSGMk"
+    },
+    "voice": {
+      "speaker": "Makoto Konno",
+      "query": "Makoto Konno voice japanese"
+    },
+    "emoji": "🏃‍♀️⏱️⚾🌅🍮",
+    "item": {
+      "name": "The walnut-shaped device",
+      "description": "A strange object that lets a schoolgirl leap back in time."
+    },
+    "location": {
+      "name": "The riverside embankment",
+      "description": "A summer riverbank where three friends ride bikes after school."
+    },
+    "visual": {
+      "icon": "⏱️",
+      "colors": [
+        "#0ea5e9",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-kaiju8",
+    "name": "Kaiju No. 8",
+    "domain": "anime",
+    "year": 2024,
+    "genres": [
+      "Action",
+      "Sci-Fi"
+    ],
+    "studio": "Production I.G",
+    "creator": "Naoya Matsumoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Kafka Hibino",
+      "Mina Ashiro",
+      "Reno Ichikawa"
+    ],
+    "themes": [
+      "Dreams",
+      "Second chances"
+    ],
+    "credits": [
+      "Original manga: Naoya Matsumoto",
+      "Kaiju design: Studio Khara"
+    ],
+    "fandom": "kaiju-no-8",
+    "cover": {
+      "wiki": "Kaiju No. 8",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Kaiju_No_8.jpg"
+    },
+    "quote": {
+      "text": "I can still make it to the Defense Force!",
+      "speaker": "A 32-year-old cleaner"
+    },
+    "audio": {
+      "clue": "A booming rock anthem by One Ok Rock.",
+      "query": "Kaiju No. 8 opening Abyss",
+      "youtubeId": "LYabT4zZnJQ"
+    },
+    "voice": {
+      "speaker": "Kafka Hibino",
+      "query": "Kafka Hibino voice japanese"
+    },
+    "emoji": "🦖🧹💪🎖️👊",
+    "item": {
+      "name": "Defense Force combat suit",
+      "description": "Armour that lets soldiers unleash a percentage of their power against monsters."
+    },
+    "location": {
+      "name": "Tachikawa base",
+      "description": "The Defense Force base where a man who turns into a monster trains in secret.",
+      "image": "https://static.wikia.nocookie.net/kaijuu-8-gou/images/f/f8/Tachikawa_Base.PNG/revision/latest?cb=20210407110211"
+    },
+    "visual": {
+      "icon": "🦖",
+      "colors": [
+        "#0f172a",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "a-dandadan",
+    "name": "Dandadan",
+    "domain": "anime",
+    "year": 2024,
+    "genres": [
+      "Action",
+      "Comedy",
+      "Supernatural"
+    ],
+    "studio": "Science Saru",
+    "creator": "Yukinobu Tatsu",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Momo Ayase",
+      "Okarun",
+      "Turbo Granny"
+    ],
+    "themes": [
+      "Aliens",
+      "Ghosts"
+    ],
+    "credits": [
+      "Original manga: Yukinobu Tatsu",
+      "Director: Fūga Yamashiro"
+    ],
+    "fandom": "dandadan",
+    "cover": {
+      "wiki": "Dandadan",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Dandadan_vol._1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A frantic, catchy J-rock opening by Creepy Nuts.",
+      "query": "Dandadan opening Otonoke",
+      "youtubeId": "a4na2opArGY"
+    },
+    "voice": {
+      "speaker": "Momo Ayase",
+      "query": "Momo Ayase voice japanese"
+    },
+    "emoji": "👽👻🥚👵🏃",
+    "item": {
+      "name": "Okarun's golden ball",
+      "description": "A lost precious item a cursed boy must recover from yōkai.",
+      "image": "https://static.wikia.nocookie.net/dandadan/images/b/b9/Kintama_Infobox_%28Anime%29.png/revision/latest/scale-to-width-down/596?cb=20241107163825"
+    },
+    "location": {
+      "name": "The tunnel",
+      "description": "A haunted tunnel where a granny ghost chases a boy at 100 km/h.",
+      "image": "https://static.wikia.nocookie.net/dandadan/images/2/2c/Turbo_Granny%27s_Tunnel.png/revision/latest/scale-to-width-down/640?cb=20241003190349"
+    },
+    "visual": {
+      "icon": "👽",
+      "colors": [
+        "#7c3aed",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-hellsparadise",
+    "name": "Hell's Paradise",
+    "domain": "anime",
+    "year": 2023,
+    "genres": [
+      "Action",
+      "Dark Fantasy"
+    ],
+    "studio": "MAPPA",
+    "creator": "Yūji Kaku",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Gabimaru",
+      "Yamada Asaemon Sagiri",
+      "Yuzuriha"
+    ],
+    "themes": [
+      "Survival",
+      "Love"
+    ],
+    "credits": [
+      "Original manga: Yūji Kaku",
+      "Director: Kaori Makita"
+    ],
+    "fandom": "jigokuraku",
+    "cover": {
+      "wiki": "Hell's Paradise: Jigokuraku",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4e/Jigokuraku_Vol_1.jpg"
+    },
+    "audio": {
+      "clue": "A dramatic opening by Ringo Sheena-style vocals.",
+      "query": "Hell's Paradise opening W.I.N.",
+      "youtubeId": "04WuoQMhhxw"
+    },
+    "voice": {
+      "speaker": "Gabimaru",
+      "query": "Gabimaru voice japanese"
+    },
+    "emoji": "🌸🥷🏝️⚔️🧪",
+    "item": {
+      "name": "The Elixir of Life",
+      "description": "A legendary potion criminals are sent to find on a deadly island.",
+      "image": "https://static.wikia.nocookie.net/jigokuraku/images/b/be/Elixir_of_Life.png/revision/latest/scale-to-width-down/640?cb=20200316065604"
+    },
+    "location": {
+      "name": "Shinsenkyō",
+      "description": "A beautiful island paradise full of monstrous immortals.",
+      "image": "https://static.wikia.nocookie.net/jigokuraku/images/7/7c/The_vanguard_sailing_to_Kotaku.png/revision/latest/scale-to-width-down/640?cb=20230408174025"
+    },
+    "visual": {
+      "icon": "🌸",
+      "colors": [
+        "#be185d",
+        "#065f46"
+      ]
+    }
+  },
+  {
+    "id": "a-zom100",
+    "name": "Zom 100: Bucket List of the Dead",
+    "domain": "anime",
+    "year": 2023,
+    "genres": [
+      "Comedy",
+      "Horror"
+    ],
+    "studio": "Bug Films",
+    "creator": "Haro Aso",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Akira Tendo",
+      "Shizuka Mikazuki",
+      "Kencho Ryuzaki"
+    ],
+    "themes": [
+      "Freedom",
+      "Overwork"
+    ],
+    "credits": [
+      "Original manga: Haro Aso",
+      "Art: Kotaro Takata"
+    ],
+    "fandom": "zombie-100",
+    "cover": {
+      "wiki": "Zom 100: Bucket List of the Dead",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/5c/Zom_100_manga_vol._1.png"
+    },
+    "audio": {
+      "clue": "A hyper, colourful pop-punk opening.",
+      "query": "Zom 100 opening Song of the Dead",
+      "youtubeId": "Tt4_enX63K0"
+    },
+    "voice": {
+      "speaker": "Akira Tendo",
+      "query": "Akira Tendo voice japanese"
+    },
+    "emoji": "🧟📝🎉🏃‍♂️🍺",
+    "item": {
+      "name": "The bucket list",
+      "description": "A list of 100 things to do before becoming a zombie."
+    },
+    "location": {
+      "name": "The black company office",
+      "description": "An exploitative workplace a salaryman is thrilled to never see again.",
+      "image": "https://static.wikia.nocookie.net/zombie-100/images/b/be/Episode_Akira_Tendou.jpg/revision/latest/scale-to-width-down/640?cb=20260322212126"
+    },
+    "visual": {
+      "icon": "🧟",
+      "colors": [
+        "#f97316",
+        "#16a34a"
+      ]
+    }
+  },
+  {
+    "id": "a-apothecary",
+    "name": "The Apothecary Diaries",
+    "domain": "anime",
+    "year": 2023,
+    "genres": [
+      "Mystery",
+      "Historical"
+    ],
+    "studio": "OLM",
+    "creator": "Natsu Hyūga",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Maomao",
+      "Jinshi",
+      "Gaoshun"
+    ],
+    "themes": [
+      "Medicine",
+      "Court intrigue"
+    ],
+    "credits": [
+      "Original light novel: Natsu Hyūga",
+      "Director: Norihiro Naganuma"
+    ],
+    "fandom": "kusuriya",
+    "cover": {
+      "wiki": "The Apothecary Diaries",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Kusuriyaaaa.jpg"
+    },
+    "audio": {
+      "clue": "A delicate, mysterious ballad with Chinese instruments.",
+      "query": "The Apothecary Diaries opening Hana ni Natte",
+      "youtubeId": "EQ-DKvLQlyQ"
+    },
+    "voice": {
+      "speaker": "Maomao",
+      "query": "Maomao voice japanese"
+    },
+    "emoji": "💊🏯🧪🌺🕵️‍♀️",
+    "item": {
+      "name": "Poison-tasting",
+      "description": "A girl tests food for poison — and enjoys it a little too much.",
+      "image": "https://static.wikia.nocookie.net/kusuriya-no-hitorigoto/images/4/41/Gyokuyou-and-ladies-S1E5.png/revision/latest/scale-to-width-down/640?cb=20240907175839"
+    },
+    "location": {
+      "name": "The rear palace",
+      "description": "An imperial harem where a kidnapped herbalist solves mysteries.",
+      "image": "https://static.wikia.nocookie.net/kusuriya-no-hitorigoto/images/f/f4/Rear_Palace_Side_View_%28Anime%29.png/revision/latest/scale-to-width-down/640?cb=20231024143913"
+    },
+    "visual": {
+      "icon": "💊",
+      "colors": [
+        "#9f1239",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-lycoris",
+    "name": "Lycoris Recoil",
+    "domain": "anime",
+    "year": 2022,
+    "genres": [
+      "Action",
+      "Comedy"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Spider Lily",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Chisato Nishikigi",
+      "Takina Inoue",
+      "Mika"
+    ],
+    "themes": [
+      "Friendship",
+      "Choosing your path"
+    ],
+    "credits": [
+      "Original story: Spider Lily",
+      "Director: Shingo Adachi"
+    ],
+    "fandom": "lycoris-recoil",
+    "cover": {
+      "wiki": "Lycoris Recoil",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ef/Lycoris_Recoil_key_visual.jpg"
+    },
+    "audio": {
+      "clue": "An upbeat café pop opening.",
+      "query": "Lycoris Recoil opening ALIVE",
+      "youtubeId": "VxR_BYPG7v4"
+    },
+    "voice": {
+      "speaker": "Chisato Nishikigi",
+      "query": "Chisato Nishikigi voice japanese"
+    },
+    "emoji": "🔫☕🌸👯‍♀️🎯",
+    "item": {
+      "name": "Non-lethal rubber bullets",
+      "description": "Special rounds a cheerful agent uses so she never kills."
+    },
+    "location": {
+      "name": "Café LycoReco",
+      "description": "A cosy café that secretly takes on dangerous jobs."
+    },
+    "visual": {
+      "icon": "☕",
+      "colors": [
+        "#dc2626",
+        "#1e40af"
+      ]
+    }
+  },
+  {
+    "id": "a-oddtaxi",
+    "name": "Odd Taxi",
+    "domain": "anime",
+    "year": 2021,
+    "genres": [
+      "Mystery",
+      "Neo-noir"
+    ],
+    "studio": "OLM",
+    "creator": "Kazuya Konomoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Hiroshi Odokawa",
+      "Shirakawa",
+      "Kakihana"
+    ],
+    "themes": [
+      "Loneliness",
+      "Crime"
+    ],
+    "credits": [
+      "Director: Baku Kinoshita",
+      "Writer: Kazuya Konomoto"
+    ],
+    "fandom": "oddtaxi",
+    "cover": {
+      "wiki": "Odd Taxi",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Odd_Taxi_manga_cover.jpg"
+    },
+    "audio": {
+      "clue": "A laid-back hip-hop opening over night streets.",
+      "query": "Odd Taxi opening ODDTAXI",
+      "youtubeId": "JBklbgxOHrM"
+    },
+    "voice": {
+      "speaker": "Hiroshi Odokawa",
+      "query": "Hiroshi Odokawa voice japanese"
+    },
+    "emoji": "🚕🦭🐾🌃💰",
+    "item": {
+      "name": "The taxi's dashcam",
+      "description": "A recorder that catches every odd passenger's confession.",
+      "image": "https://static.wikia.nocookie.net/oddtaxi/images/b/b1/Episode_3-1.jpg/revision/latest/scale-to-width-down/640?cb=20210419205902"
+    },
+    "location": {
+      "name": "Night-time Tokyo streets",
+      "description": "A city of talking animals seen from a cab window.",
+      "image": "https://static.wikia.nocookie.net/oddtaxi/images/0/07/Episode_2-1.png/revision/latest/scale-to-width-down/640?cb=20210419204257"
+    },
+    "visual": {
+      "icon": "🚕",
+      "colors": [
+        "#facc15",
+        "#1e293b"
+      ]
+    }
+  },
+  {
+    "id": "a-rankingofkings",
+    "name": "Ranking of Kings",
+    "domain": "anime",
+    "year": 2021,
+    "genres": [
+      "Fantasy",
+      "Adventure"
+    ],
+    "studio": "Wit Studio",
+    "creator": "Sōsuke Tōka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Bojji",
+      "Kage",
+      "Daida"
+    ],
+    "themes": [
+      "Courage",
+      "Disability"
+    ],
+    "credits": [
+      "Original manga: Sōsuke Tōka",
+      "Director: Yōsuke Hatta"
+    ],
+    "fandom": "ousamaranking",
+    "cover": {
+      "wiki": "Ranking of Kings",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/%C5%8Csama_Ranking_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral opening by King Gnu.",
+      "query": "Ranking of Kings opening Boy",
+      "youtubeId": "QB2J185kMr8"
+    },
+    "voice": {
+      "speaker": "Bojji",
+      "query": "Bojji voice japanese"
+    },
+    "emoji": "👑🗡️🖤🧸🏰",
+    "item": {
+      "name": "The needle sword",
+      "description": "A thin rapier that lets a small, deaf prince fight giants.",
+      "image": "https://static.wikia.nocookie.net/ousamaranking/images/a/a7/Masked_Swordsman.png/revision/latest/scale-to-width-down/440?cb=20230911160515"
+    },
+    "location": {
+      "name": "The underworld",
+      "description": "A realm of the dead where a tiny prince seeks to grow strong.",
+      "image": "https://static.wikia.nocookie.net/ousamaranking/images/a/a2/Underworld_castle2.jpg/revision/latest/scale-to-width-down/640?cb=20220107050306"
+    },
+    "visual": {
+      "icon": "👑",
+      "colors": [
+        "#7c2d12",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-toyoureternity",
+    "name": "To Your Eternity",
+    "domain": "anime",
+    "year": 2021,
+    "genres": [
+      "Drama",
+      "Fantasy"
+    ],
+    "studio": "Brain's Base",
+    "creator": "Yoshitoki Ōima",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Fushi",
+      "March",
+      "Gugu"
+    ],
+    "themes": [
+      "Immortality",
+      "Loss"
+    ],
+    "credits": [
+      "Original manga: Yoshitoki Ōima",
+      "Opening: Hikaru Utada"
+    ],
+    "fandom": "fumetsunoanatae",
+    "cover": {
+      "wiki": "To Your Eternity",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b5/Fumetsu_no_anata_e_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A quiet piano opening by Hikaru Utada.",
+      "query": "To Your Eternity opening Pink Blood",
+      "youtubeId": "2RrkFCw0t90"
+    },
+    "voice": {
+      "speaker": "Fushi",
+      "query": "Fushi voice japanese"
+    },
+    "emoji": "🐺🧊🌍♾️😢",
+    "item": {
+      "name": "The orb",
+      "description": "A white sphere sent to Earth that copies whatever touches it.",
+      "image": "https://static.wikia.nocookie.net/fumetsunoanatae/images/7/71/The_Beholder_Anime.png/revision/latest?cb=20210419160401"
+    },
+    "location": {
+      "name": "The snowy tundra",
+      "description": "A frozen land where an immortal being first takes the shape of a wolf.",
+      "image": "https://static.wikia.nocookie.net/fumetsunoanatae/images/1/17/Tundra.png/revision/latest/scale-to-width-down/640?cb=20191212123051"
+    },
+    "visual": {
+      "icon": "♾️",
+      "colors": [
+        "#e0f2fe",
+        "#475569"
+      ]
+    }
+  },
+  {
+    "id": "a-tokyorevengers",
+    "name": "Tokyo Revengers",
+    "domain": "anime",
+    "year": 2021,
+    "genres": [
+      "Action",
+      "Drama"
+    ],
+    "studio": "Liden Films",
+    "creator": "Ken Wakui",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Takemichi Hanagaki",
+      "Manjiro Sano",
+      "Ken Ryuguji"
+    ],
+    "themes": [
+      "Time travel",
+      "Gangs"
+    ],
+    "credits": [
+      "Original manga: Ken Wakui",
+      "Director: Kōichi Hatsumi"
+    ],
+    "fandom": "tokyorevengers",
+    "cover": {
+      "wiki": "Tokyo Revengers",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b1/Tokyo_Revengers_volume_1_cover.jpg"
+    },
+    "quote": {
+      "text": "I am Mikey, the leader of Toman.",
+      "speaker": "A short gang boss"
+    },
+    "audio": {
+      "clue": "A punchy rock opening by Official Hige Dandism.",
+      "query": "Tokyo Revengers opening Cry Baby",
+      "youtubeId": "By_JYrhx-WY"
+    },
+    "voice": {
+      "speaker": "Takemichi Hanagaki",
+      "query": "Takemichi Hanagaki voice japanese",
+      "youtubeId": "4rchIFn2J_w",
+      "start": 2
+    },
+    "emoji": "🏍️⏳👊🐉😭",
+    "item": {
+      "name": "The Toman jacket",
+      "description": "A black gang coat with golden embroidery.",
+      "image": "https://static.wikia.nocookie.net/tokyo-revengers/images/d/dd/Tokyo_Manji_Gang.png/revision/latest/scale-to-width-down/640?cb=20211203213133"
+    },
+    "location": {
+      "name": "Shibuya streets",
+      "description": "Where a crying loser fights delinquents to save his ex.",
+      "image": "https://static.wikia.nocookie.net/tokyo-revengers/images/0/02/Shibuya_%28manga%29.png/revision/latest/scale-to-width-down/488?cb=20210818011840"
+    },
+    "visual": {
+      "icon": "🏍️",
+      "colors": [
+        "#111827",
+        "#f59e0b"
+      ]
+    }
+  },
+  {
+    "id": "a-fireforce",
+    "name": "Fire Force",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "David Production",
+    "creator": "Atsushi Ōkubo",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Shinra Kusakabe",
+      "Arthur Boyle",
+      "Maki Oze"
+    ],
+    "themes": [
+      "Faith",
+      "Heroism"
+    ],
+    "credits": [
+      "Original manga: Atsushi Ōkubo",
+      "Director: Yuki Yase"
+    ],
+    "fandom": "fire-force",
+    "cover": {
+      "wiki": "Fire Force",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/06/Fire_Force%2C_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A roaring rock opening by Mrs. Green Apple.",
+      "query": "Fire Force opening Inferno",
+      "youtubeId": "JBqxVX_LXvk"
+    },
+    "voice": {
+      "speaker": "Shinra Kusakabe",
+      "query": "Shinra Kusakabe voice japanese"
+    },
+    "emoji": "🔥🚒😈👟⛪",
+    "item": {
+      "name": "Devil footprints",
+      "description": "Fire jets from his feet that let a grinning boy fly."
+    },
+    "location": {
+      "name": "Special Fire Force Company 8",
+      "description": "A church-turned-fire-station fighting people who burst into flame.",
+      "image": "https://static.wikia.nocookie.net/fire-brigade-of-flames/images/9/9f/Fire_Force_Company_8.png/revision/latest/scale-to-width-down/640?cb=20200522081025"
+    },
+    "visual": {
+      "icon": "🔥",
+      "colors": [
+        "#ea580c",
+        "#0f172a"
+      ]
+    }
+  },
+  {
+    "id": "a-shieldhero",
+    "name": "The Rising of the Shield Hero",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Isekai",
+      "Fantasy"
+    ],
+    "studio": "Kinema Citrus",
+    "creator": "Aneko Yusagi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Naofumi Iwatani",
+      "Raphtalia",
+      "Filo"
+    ],
+    "themes": [
+      "Betrayal",
+      "Trust"
+    ],
+    "credits": [
+      "Original light novel: Aneko Yusagi",
+      "Director: Takao Abo"
+    ],
+    "fandom": "shield-hero",
+    "cover": {
+      "wiki": "The Rising of the Shield Hero",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/65/The_Rising_of_the_Shield_Hero_light_novel_vol_1.jpg"
+    },
+    "audio": {
+      "clue": "An epic metal opening by MADKID.",
+      "query": "Shield Hero opening RISE",
+      "youtubeId": "jZvFEtR8RH0"
+    },
+    "voice": {
+      "speaker": "Naofumi Iwatani",
+      "query": "Naofumi Iwatani voice japanese"
+    },
+    "emoji": "🛡️🦝🐦⚔️😠",
+    "item": {
+      "name": "The Legendary Shield",
+      "description": "A shield that can't attack, forced on a summoned hero.",
+      "image": "https://static.wikia.nocookie.net/the-rising-of-the-shield-hero/images/2/2c/Leaf_Shield.png/revision/latest?cb=20150209233708"
+    },
+    "location": {
+      "name": "The Kingdom of Melromarc",
+      "description": "A kingdom that frames its own summoned hero.",
+      "image": "https://static.wikia.nocookie.net/the-rising-of-the-shield-hero/images/1/13/Melromarc_Light_Novel.png/revision/latest/scale-to-width-down/640?cb=20200206140859"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#166534",
+        "#a3a3a3"
+      ]
+    }
+  },
+  {
+    "id": "a-dororo",
+    "name": "Dororo",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Action",
+      "Historical"
+    ],
+    "studio": "MAPPA",
+    "creator": "Osamu Tezuka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Hyakkimaru",
+      "Dororo",
+      "Daigo Kagemitsu"
+    ],
+    "themes": [
+      "Humanity",
+      "Sacrifice"
+    ],
+    "credits": [
+      "Original manga: Osamu Tezuka",
+      "Studios: MAPPA and Tezuka Productions"
+    ],
+    "fandom": "dororo",
+    "cover": {
+      "wiki": "Dororo",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Dororo_manga_1.png"
+    },
+    "audio": {
+      "clue": "An intense rock opening by Queen Bee.",
+      "query": "Dororo opening Kaen",
+      "youtubeId": "9Q1rTavZBJo"
+    },
+    "voice": {
+      "speaker": "Hyakkimaru",
+      "query": "Hyakkimaru voice japanese"
+    },
+    "emoji": "🗡️👶👹🦾🌧️",
+    "item": {
+      "name": "Blades in his arms",
+      "description": "Swords hidden inside the prosthetic arms of a boy born without a body.",
+      "image": "https://static.wikia.nocookie.net/dororo/images/e/e3/Hyogo.png/revision/latest/scale-to-width-down/640?cb=20190519130635"
+    },
+    "location": {
+      "name": "Daigo's domain",
+      "description": "A land that prospered after its lord traded his son to demons.",
+      "image": "https://static.wikia.nocookie.net/dororo/images/9/98/1200px-Japanese_Crest_mitumori_mokkou.svg.png/revision/latest/scale-to-width-down/640?cb=20190614225955"
+    },
+    "visual": {
+      "icon": "👹",
+      "colors": [
+        "#7f1d1d",
+        "#e7e5e4"
+      ]
+    }
+  },
+  {
+    "id": "a-kakegurui",
+    "name": "Kakegurui",
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Psychological",
+      "Thriller"
+    ],
+    "studio": "MAPPA",
+    "creator": "Homura Kawamoto",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yumeko Jabami",
+      "Ryota Suzui",
+      "Kirari Momobami"
+    ],
+    "themes": [
+      "Gambling",
+      "Hierarchy"
+    ],
+    "credits": [
+      "Original manga: Homura Kawamoto",
+      "Art: Tōru Naomura"
+    ],
+    "fandom": "kakegurui",
+    "cover": {
+      "wiki": "Kakegurui – Compulsive Gambler"
+    },
+    "audio": {
+      "clue": "A dramatic, jazzy gambling theme.",
+      "query": "Kakegurui opening Deal with the Devil",
+      "youtubeId": "pJ-MywdW98o"
+    },
+    "voice": {
+      "speaker": "Yumeko Jabami",
+      "query": "Yumeko Jabami voice japanese"
+    },
+    "emoji": "🎰🃏😈🏫💰",
+    "item": {
+      "name": "The pet tag",
+      "description": "A badge marking students who lost everything at the casino school.",
+      "image": "https://static.wikia.nocookie.net/kakegurui/images/b/b0/Kakegurui_-_Episode_2_Template.jpg/revision/latest?cb=20190802081813"
+    },
+    "location": {
+      "name": "Hyakkaou Private Academy",
+      "description": "An elite school where status is decided by gambling.",
+      "image": "https://static.wikia.nocookie.net/kakegurui/images/7/78/HyakkaoAcademy.jpg/revision/latest/scale-to-width-down/640?cb=20190809132405"
+    },
+    "visual": {
+      "icon": "🎰",
+      "colors": [
+        "#7f1d1d",
+        "#fef08a"
+      ]
+    }
+  },
+  {
+    "id": "a-houseki",
+    "name": "Land of the Lustrous",
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Fantasy",
+      "Sci-Fi"
+    ],
+    "studio": "Orange",
+    "creator": "Haruko Ichikawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Phosphophyllite",
+      "Cinnabar",
+      "Kongō"
+    ],
+    "themes": [
+      "Identity",
+      "Change"
+    ],
+    "credits": [
+      "Original manga: Haruko Ichikawa",
+      "Director: Takahiko Kyōgoku"
+    ],
+    "fandom": "houseki-no-kuni",
+    "cover": {
+      "wiki": "Land of the Lustrous",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/90/Houseki_no_Kuni.jpg"
+    },
+    "audio": {
+      "clue": "A shimmering, crystalline orchestral opening.",
+      "query": "Land of the Lustrous opening Kyōmen no Nami",
+      "youtubeId": "swi8YKz0fsE"
+    },
+    "voice": {
+      "speaker": "Phosphophyllite",
+      "query": "Phosphophyllite voice japanese"
+    },
+    "emoji": "💎🌙🐌☁️🏛️",
+    "item": {
+      "name": "Phos's alloy arms",
+      "description": "Gold and platinum replacing a fragile gem's lost limbs."
+    },
+    "location": {
+      "name": "The school on the hill",
+      "description": "Where gem people live, guarded by a monk against the Lunarians.",
+      "image": "https://static.wikia.nocookie.net/houseki-no-kuni/images/2/29/IMG_6332.png/revision/latest/scale-to-width-down/640?cb=20180110115149"
+    },
+    "visual": {
+      "icon": "💎",
+      "colors": [
+        "#2dd4bf",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "a-devilman",
+    "name": "Devilman Crybaby",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Horror",
+      "Action"
+    ],
+    "studio": "Science Saru",
+    "creator": "Go Nagai",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Akira Fudo",
+      "Ryo Asuka",
+      "Miki Makimura"
+    ],
+    "themes": [
+      "Empathy",
+      "Apocalypse"
+    ],
+    "credits": [
+      "Original manga: Go Nagai",
+      "Director: Masaaki Yuasa"
+    ],
+    "fandom": "devilman",
+    "cover": {
+      "wiki": "Devilman Crybaby",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Devilman-crybaby-visual.png"
+    },
+    "audio": {
+      "clue": "A pounding electronic track by Kensuke Ushio.",
+      "query": "Devilman Crybaby Devilman no Uta",
+      "youtubeId": "BLXq9D0RuGw"
+    },
+    "voice": {
+      "speaker": "Akira Fudo",
+      "query": "Akira Fudo voice japanese"
+    },
+    "emoji": "😈😢🏃‍♂️🌧️🔥",
+    "item": {
+      "name": "The relay baton",
+      "description": "Passed between runners — a motif of carrying on."
+    },
+    "location": {
+      "name": "The Sabbath",
+      "description": "A rave where demons possess partying humans.",
+      "image": "https://static.wikia.nocookie.net/devilman/images/a/a3/5185001b-5235-4a81-b0b3-d15410b81a53.png/revision/latest/scale-to-width-down/422?cb=20230823113654"
+    },
+    "visual": {
+      "icon": "😈",
+      "colors": [
+        "#991b1b",
+        "#111827"
+      ]
+    }
+  },
+  {
+    "id": "a-megalobox",
+    "name": "Megalobox",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Sports",
+      "Sci-Fi"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Chikara Sakuma",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Joe",
+      "Nanbu Gansaku",
+      "Yuri"
+    ],
+    "themes": [
+      "Underdogs",
+      "Pride"
+    ],
+    "credits": [
+      "Director: Yō Moriyama",
+      "Inspired by Ashita no Joe"
+    ],
+    "cover": {
+      "wiki": "Megalobox",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Megalo_Box_poster.jpg"
+    },
+    "audio": {
+      "clue": "A gritty hip-hop opening.",
+      "query": "Megalobox opening Bite",
+      "youtubeId": "yDyvWlKTENo"
+    },
+    "voice": {
+      "speaker": "Joe",
+      "query": "Joe voice japanese"
+    },
+    "emoji": "🥊🦾🐕🏙️🏆",
+    "item": {
+      "name": "The Gear",
+      "description": "A mechanical frame boxers wear to amplify their punches."
+    },
+    "location": {
+      "name": "The slum outside the city",
+      "description": "Where an unregistered fighter boxes in rigged underground matches."
+    },
+    "visual": {
+      "icon": "🥊",
+      "colors": [
+        "#b91c1c",
+        "#d4d4d8"
+      ]
+    }
+  },
+  {
+    "id": "a-goldenkamuy",
+    "name": "Golden Kamuy",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Adventure",
+      "Historical"
+    ],
+    "studio": "Geno Studio",
+    "creator": "Satoru Noda",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Saichi Sugimoto",
+      "Asirpa",
+      "Hijikata Toshizō"
+    ],
+    "themes": [
+      "Treasure hunt",
+      "Ainu culture"
+    ],
+    "credits": [
+      "Original manga: Satoru Noda",
+      "Ainu consultant: Hiroshi Nakagawa"
+    ],
+    "fandom": "goldenkamuy",
+    "cover": {
+      "wiki": "Golden Kamuy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/98/Golden_Kamuy_v1_cover.jpg"
+    },
+    "quote": {
+      "text": "I'm Sugimoto the Immortal!",
+      "speaker": "A scarred war veteran"
+    },
+    "audio": {
+      "clue": "A rugged folk-rock opening.",
+      "query": "Golden Kamuy opening Winding Road",
+      "youtubeId": "b-Ma_fd1aXg"
+    },
+    "voice": {
+      "speaker": "Saichi Sugimoto",
+      "query": "Saichi Sugimoto voice japanese"
+    },
+    "emoji": "🪙🐻❄️🔪🦌",
+    "item": {
+      "name": "The tattooed skin map",
+      "description": "Pieces of a treasure map tattooed on escaped convicts.",
+      "image": "https://static.wikia.nocookie.net/goldenkamuy/images/4/4d/Abashiri_Convicts.png/revision/latest/scale-to-width-down/640?cb=20161004211446"
+    },
+    "location": {
+      "name": "Hokkaido's snowy forest",
+      "description": "Wilderness where a soldier and an Ainu girl hunt for gold."
+    },
+    "visual": {
+      "icon": "🪙",
+      "colors": [
+        "#78350f",
+        "#e5e7eb"
+      ]
+    }
+  },
+  {
+    "id": "a-bananafish",
+    "name": "Banana Fish",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Thriller",
+      "Drama"
+    ],
+    "studio": "MAPPA",
+    "creator": "Akimi Yoshida",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ash Lynx",
+      "Eiji Okumura",
+      "Dino Golzine"
+    ],
+    "themes": [
+      "Trauma",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Akimi Yoshida",
+      "Director: Hiroko Utsumi"
+    ],
+    "fandom": "banana-fish",
+    "cover": {
+      "wiki": "Banana Fish",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/BananaFishVol1.png"
+    },
+    "audio": {
+      "clue": "A tense alternative-rock opening.",
+      "query": "Banana Fish opening Found and Lost",
+      "youtubeId": "VrOOigt76K0"
+    },
+    "voice": {
+      "speaker": "Ash Lynx",
+      "query": "Ash Lynx voice japanese"
+    },
+    "emoji": "🍌🐟🔫🗽📚",
+    "item": {
+      "name": "Banana Fish",
+      "description": "A mysterious drug at the heart of a mafia conspiracy.",
+      "image": "https://static.wikia.nocookie.net/banana-fish/images/1/19/MangaSlider.png/revision/latest/scale-to-width-down/640?cb=20180729082844"
+    },
+    "location": {
+      "name": "New York",
+      "description": "A gritty Manhattan of gangs, where a teenage gang leader befriends a photographer."
+    },
+    "visual": {
+      "icon": "🐟",
+      "colors": [
+        "#ca8a04",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "a-yorimoi",
+    "name": "A Place Further than the Universe",
+    "domain": "anime",
+    "year": 2018,
+    "genres": [
+      "Adventure",
+      "Drama"
+    ],
+    "studio": "Madhouse",
+    "creator": "Yorimoi",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Mari Tamaki",
+      "Shirase Kobuchizawa",
+      "Hinata Miyake"
+    ],
+    "themes": [
+      "Friendship",
+      "Grief"
+    ],
+    "credits": [
+      "Director: Atsuko Ishizuka",
+      "Writer: Jukki Hanada"
+    ],
+    "cover": {
+      "wiki": "A Place Further than the Universe",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f3/A_Place_Further_Than_the_Universe_key_visual.png"
+    },
+    "audio": {
+      "clue": "A soaring pop opening.",
+      "query": "A Place Further than the Universe opening The Girls Are Alright",
+      "youtubeId": "DaTzRcSyEWc"
+    },
+    "voice": {
+      "speaker": "Mari Tamaki",
+      "query": "Mari Tamaki voice japanese"
+    },
+    "emoji": "🧊🐧🚢👭🌌",
+    "item": {
+      "name": "The million yen",
+      "description": "An envelope of savings a girl drops on the train platform."
+    },
+    "location": {
+      "name": "Antarctica",
+      "description": "The frozen continent four teenagers travel to."
+    },
+    "visual": {
+      "icon": "🐧",
+      "colors": [
+        "#38bdf8",
+        "#f8fafc"
+      ]
+    }
+  },
+  {
+    "id": "a-noragami",
+    "name": "Noragami",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "Bones",
+    "creator": "Adachitoka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yato",
+      "Hiyori Iki",
+      "Yukine"
+    ],
+    "themes": [
+      "Belonging",
+      "Gods"
+    ],
+    "credits": [
+      "Original manga: Adachitoka",
+      "Director: Kōtarō Tamura"
+    ],
+    "fandom": "noragami",
+    "cover": {
+      "wiki": "Noragami",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/Noragami_1.png"
+    },
+    "audio": {
+      "clue": "An energetic rock opening by Hello Sleepwalkers.",
+      "query": "Noragami opening Goya no Machiawase",
+      "youtubeId": "J69oCCM1EcI"
+    },
+    "voice": {
+      "speaker": "Yato",
+      "query": "Yato voice japanese"
+    },
+    "emoji": "⛩️🪙📱🗡️👻",
+    "item": {
+      "name": "The five-yen coin",
+      "description": "The offering a minor god asks for each job.",
+      "image": "https://static.wikia.nocookie.net/noragami/images/5/5c/Chapter_01.png/revision/latest/scale-to-width-down/640?cb=20210319074626"
+    },
+    "location": {
+      "name": "The Near Shore",
+      "description": "The spirit world bordering ours, full of phantoms.",
+      "image": "https://static.wikia.nocookie.net/noragami/images/a/aa/Capyper_Land-30.png/revision/latest/scale-to-width-down/640?cb=20230128233721"
+    },
+    "visual": {
+      "icon": "⛩️",
+      "colors": [
+        "#1e293b",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "a-parasyte",
+    "name": "Parasyte -the maxim-",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Horror",
+      "Sci-Fi"
+    ],
+    "studio": "Madhouse",
+    "creator": "Hitoshi Iwaaki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Shinichi Izumi",
+      "Migi",
+      "Ryōko Tamura"
+    ],
+    "themes": [
+      "Humanity",
+      "Survival"
+    ],
+    "credits": [
+      "Original manga: Hitoshi Iwaaki",
+      "Director: Kenichi Shimizu"
+    ],
+    "fandom": "parasyte",
+    "cover": {
+      "wiki": "Parasyte"
+    },
+    "audio": {
+      "clue": "A heavy rock-dubstep opening.",
+      "query": "Parasyte opening Let Me Hear",
+      "youtubeId": "ziatgnrtG0Y"
+    },
+    "voice": {
+      "speaker": "Shinichi Izumi",
+      "query": "Shinichi Izumi voice japanese"
+    },
+    "emoji": "🖐️👁️🧬😱🏫",
+    "item": {
+      "name": "Migi",
+      "description": "A parasite living in a boy's right hand, chatty and logical.",
+      "image": "https://static.wikia.nocookie.net/kiseijuu/images/0/0c/Migi.png/revision/latest/scale-to-width-down/384?cb=20141009194833"
+    },
+    "location": {
+      "name": "Higashi Fukuyama city",
+      "description": "A town where parasites quietly replace people."
+    },
+    "visual": {
+      "icon": "🖐️",
+      "colors": [
+        "#65a30d",
+        "#1f2937"
+      ]
+    }
+  },
+  {
+    "id": "a-spacedandy",
+    "name": "Space Dandy",
+    "domain": "anime",
+    "year": 2014,
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "studio": "Bones",
+    "creator": "Shinichirō Watanabe",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Dandy",
+      "QT",
+      "Meow"
+    ],
+    "themes": [
+      "Adventure",
+      "Absurdity"
+    ],
+    "credits": [
+      "Chief director: Shinichirō Watanabe",
+      "Director: Shingo Natsume"
+    ],
+    "fandom": "space-dandy",
+    "cover": {
+      "wiki": "Space Dandy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/88/Space_Dandy_promotional_image.jpg"
+    },
+    "quote": {
+      "text": "He's a dandy guy... in space.",
+      "speaker": "The narrator, every episode"
+    },
+    "audio": {
+      "clue": "A groovy retro rock opening.",
+      "query": "Space Dandy opening Viva Namida",
+      "youtubeId": "OI9aye8uTCk"
+    },
+    "voice": {
+      "speaker": "Dandy",
+      "query": "Dandy voice japanese"
+    },
+    "emoji": "🚀👽💇‍♂️🍔😎",
+    "item": {
+      "name": "The Alien Registry",
+      "description": "Where an alien hunter cashes in new species.",
+      "image": "https://static.wikia.nocookie.net/space-dandy/images/1/1b/ARC.jpg/revision/latest/scale-to-width-down/640?cb=20140323223901"
+    },
+    "location": {
+      "name": "BooBies",
+      "description": "A breastaurant chain the crew can't stop visiting.",
+      "image": "https://static.wikia.nocookie.net/space-dandy/images/2/2b/Rose_Working_at_BooBies.png/revision/latest/scale-to-width-down/640?cb=20150725223004"
+    },
+    "visual": {
+      "icon": "🚀",
+      "colors": [
+        "#db2777",
+        "#4c1d95"
+      ]
+    }
+  },
+  {
+    "id": "a-magi",
+    "name": "Magi: The Labyrinth of Magic",
+    "domain": "anime",
+    "year": 2012,
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "studio": "A-1 Pictures",
+    "creator": "Shinobu Ohtaka",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Aladdin",
+      "Alibaba Saluja",
+      "Morgiana"
+    ],
+    "themes": [
+      "Fate",
+      "Friendship"
+    ],
+    "credits": [
+      "Original manga: Shinobu Ohtaka",
+      "Director: Koji Masunari"
+    ],
+    "fandom": "magi",
+    "cover": {
+      "wiki": "Magi: The Labyrinth of Magic",
+      "image": "https://upload.wikimedia.org/wikipedia/en/3/31/MagiCover01.png"
+    },
+    "audio": {
+      "clue": "A bright, sweeping rock opening.",
+      "query": "Magi opening V.I.P",
+      "youtubeId": "pwO2AVjTH9k"
+    },
+    "voice": {
+      "speaker": "Aladdin",
+      "query": "Aladdin voice japanese"
+    },
+    "emoji": "🧞🪈🕌🏜️💎",
+    "item": {
+      "name": "Aladdin's flute",
+      "description": "A golden flute that summons a headless djinn.",
+      "image": "https://static.wikia.nocookie.net/magi/images/6/67/Ugo_Flute.png/revision/latest?cb=20130813130306"
+    },
+    "location": {
+      "name": "The dungeons",
+      "description": "Mysterious towers in the desert full of treasure and djinn.",
+      "image": "https://static.wikia.nocookie.net/magi/images/2/23/Baal-dungeon-in-anime.png/revision/latest/scale-to-width-down/446?cb=20140127190221"
+    },
+    "visual": {
+      "icon": "🧞",
+      "colors": [
+        "#1d4ed8",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "a-tigerbunny",
+    "name": "Tiger & Bunny",
+    "domain": "anime",
+    "year": 2011,
+    "genres": [
+      "Superhero",
+      "Action"
+    ],
+    "studio": "Sunrise",
+    "creator": "Masafumi Nishida",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Kotetsu T. Kaburagi",
+      "Barnaby Brooks Jr.",
+      "Karina Lyle"
+    ],
+    "themes": [
+      "Heroes",
+      "Partnership"
+    ],
+    "credits": [
+      "Director: Keiichi Satou",
+      "Writer: Masafumi Nishida"
+    ],
+    "fandom": "tigerbunny",
+    "cover": {
+      "wiki": "Tiger & Bunny",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/77/TIGER%26BUNNYPoster.jpg"
+    },
+    "audio": {
+      "clue": "A catchy rock opening.",
+      "query": "Tiger & Bunny opening Orion wo Nazoru",
+      "youtubeId": "-8f2cUzIhMo"
+    },
+    "voice": {
+      "speaker": "Kotetsu T. Kaburagi",
+      "query": "Kotetsu T. Kaburagi voice japanese"
+    },
+    "emoji": "🐯🐰🦸‍♂️📺💰",
+    "item": {
+      "name": "Sponsor logos",
+      "description": "Real brand logos on heroes' suits — they compete for points on TV.",
+      "image": "https://static.wikia.nocookie.net/tigerbunny/images/7/75/H01design.png/revision/latest/scale-to-width-down/491?cb=20180202173959"
+    },
+    "location": {
+      "name": "Sternbild City",
+      "description": "A three-tiered city where heroes fight crime as a reality show.",
+      "image": "https://static.wikia.nocookie.net/tigerbunny/images/4/45/TnB-KingOfWorks-SternbuildCity.JPG/revision/latest/scale-to-width-down/640?cb=20210114024836"
+    },
+    "visual": {
+      "icon": "🐯",
+      "colors": [
+        "#16a34a",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "a-baccano",
+    "name": "Baccano!",
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Action",
+      "Mystery"
+    ],
+    "studio": "Brain's Base",
+    "creator": "Ryōhgo Narita",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Isaac Dian",
+      "Miria Harvent",
+      "Firo Prochainezo"
+    ],
+    "themes": [
+      "Immortality",
+      "Chaos"
+    ],
+    "credits": [
+      "Original light novel: Ryōhgo Narita",
+      "Director: Takahiro Omori"
+    ],
+    "fandom": "baccano",
+    "cover": {
+      "wiki": "Baccano!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/98/Baccano.jpg"
+    },
+    "audio": {
+      "clue": "A swinging big-band jazz opening.",
+      "query": "Baccano opening Gun's & Roses",
+      "youtubeId": "_F5459jCtuM"
+    },
+    "voice": {
+      "speaker": "Isaac Dian",
+      "query": "Isaac Dian voice japanese"
+    },
+    "emoji": "🚂🎷🔫🍷♾️",
+    "item": {
+      "name": "The elixir of immortality",
+      "description": "A potion drunk by alchemists on a ship in 1711.",
+      "image": "https://static.wikia.nocookie.net/baccano/images/7/76/E03_FinishedProduct.jpg/revision/latest/scale-to-width-down/640?cb=20191023234018"
+    },
+    "location": {
+      "name": "The Flying Pussyfoot",
+      "description": "A transcontinental train hijacked by several gangs at once.",
+      "image": "https://static.wikia.nocookie.net/baccano/images/5/5e/FPF_-_Exterior.jpg/revision/latest/scale-to-width-down/640?cb=20181029211442"
+    },
+    "visual": {
+      "icon": "🚂",
+      "colors": [
+        "#78350f",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-darkerthanblack",
+    "name": "Darker than Black",
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Sci-Fi",
+      "Action"
+    ],
+    "studio": "Bones",
+    "creator": "Tensai Okamura",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Hei",
+      "Yin",
+      "Huang"
+    ],
+    "themes": [
+      "Identity",
+      "Espionage"
+    ],
+    "credits": [
+      "Director: Tensai Okamura",
+      "Music: Yoko Kanno"
+    ],
+    "fandom": "darkerthanblack",
+    "cover": {
+      "wiki": "Darker than Black",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/bc/DarkerthanBlacklogo.png"
+    },
+    "audio": {
+      "clue": "A brooding rock opening by Abingdon Boys School.",
+      "query": "Darker than Black opening Howling",
+      "youtubeId": "-i-TkI_Nhuk"
+    },
+    "voice": {
+      "speaker": "Hei",
+      "query": "Hei voice japanese"
+    },
+    "emoji": "🌑⭐⚡🎭🕴️",
+    "item": {
+      "name": "Hei's mask",
+      "description": "A white mask worn by an assassin nicknamed the Black Reaper."
+    },
+    "location": {
+      "name": "Hell's Gate",
+      "description": "A walled zone in Tokyo where the stars vanished.",
+      "image": "https://static.wikia.nocookie.net/d__/images/4/41/Map_tokyo_and_Hell%27s_Gate.gif/revision/latest?cb=20130215030755&path-prefix=darkerthanblack"
+    },
+    "visual": {
+      "icon": "🌑",
+      "colors": [
+        "#0f172a",
+        "#60a5fa"
+      ]
+    }
+  },
+  {
+    "id": "a-deathparade",
+    "name": "Death Parade",
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Psychological",
+      "Drama"
+    ],
+    "studio": "Madhouse",
+    "creator": "Yuzuru Tachikawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Decim",
+      "Chiyuki",
+      "Nona"
+    ],
+    "themes": [
+      "Judgement",
+      "Life"
+    ],
+    "credits": [
+      "Director and writer: Yuzuru Tachikawa"
+    ],
+    "fandom": "death-parade",
+    "cover": {
+      "wiki": "Death Parade",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c3/Deathparadevisual.jpg"
+    },
+    "audio": {
+      "clue": "A cheerful dance-rock opening at odds with the show.",
+      "query": "Death Parade opening Flyers",
+      "youtubeId": "9wh8FgsEtNQ"
+    },
+    "voice": {
+      "speaker": "Decim",
+      "query": "Decim voice japanese"
+    },
+    "emoji": "🎳🍸💀⚖️🎭",
+    "item": {
+      "name": "The arbiter's games",
+      "description": "Darts, bowling and billiards the dead play to be judged.",
+      "image": "https://static.wikia.nocookie.net/death-parade/images/1/10/Arbiters_On_The_Train.jpg/revision/latest/scale-to-width-down/640?cb=20150603024313"
+    },
+    "location": {
+      "name": "Quindecim",
+      "description": "A bar where pairs of the newly dead arrive with no memories.",
+      "image": "https://static.wikia.nocookie.net/death-parade/images/4/4a/Quindecim_front.png/revision/latest/scale-to-width-down/640?cb=20150119005458"
+    },
+    "visual": {
+      "icon": "🍸",
+      "colors": [
+        "#312e81",
+        "#fda4af"
+      ]
+    }
+  },
+  {
+    "id": "a-gto",
+    "name": "Great Teacher Onizuka",
+    "domain": "anime",
+    "year": 1999,
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "studio": "Studio Pierrot",
+    "creator": "Tōru Fujisawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Eikichi Onizuka",
+      "Azusa Fuyutsuki",
+      "Ryuji Danma"
+    ],
+    "themes": [
+      "Teaching",
+      "Delinquency"
+    ],
+    "credits": [
+      "Original manga: Tōru Fujisawa",
+      "Director: Noriyuki Abe"
+    ],
+    "fandom": "gto",
+    "cover": {
+      "wiki": "Great Teacher Onizuka",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b9/GTO_volume_1.jpg"
+    },
+    "quote": {
+      "text": "I am Onizuka Eikichi, 22 years old, single!",
+      "speaker": "A former biker turned teacher"
+    },
+    "audio": {
+      "clue": "A punchy rock opening.",
+      "query": "GTO opening Driver's High",
+      "youtubeId": "2JGl6UzfPkE"
+    },
+    "voice": {
+      "speaker": "Eikichi Onizuka",
+      "query": "Eikichi Onizuka voice japanese"
+    },
+    "emoji": "👨‍🏫🏍️🚬📚💪",
+    "item": {
+      "name": "The sledgehammer",
+      "description": "What a teacher uses to smash a wall in his student's house."
+    },
+    "location": {
+      "name": "Holy Forest Academy",
+      "description": "A private school with a class nobody can teach."
+    },
+    "visual": {
+      "icon": "👨‍🏫",
+      "colors": [
+        "#f59e0b",
+        "#1e293b"
+      ]
+    }
+  },
+  {
+    "id": "a-ippo",
+    "name": "Hajime no Ippo",
+    "domain": "anime",
+    "year": 2000,
+    "genres": [
+      "Sports",
+      "Martial Arts"
+    ],
+    "studio": "Madhouse",
+    "creator": "George Morikawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Ippo Makunouchi",
+      "Mamoru Takamura",
+      "Ichiro Miyata"
+    ],
+    "themes": [
+      "Strength",
+      "Perseverance"
+    ],
+    "credits": [
+      "Original manga: George Morikawa",
+      "Director: Satoshi Nishimura"
+    ],
+    "fandom": "ippo",
+    "cover": {
+      "wiki": "Hajime no Ippo",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c2/Hajime_no_Ippo_1.png"
+    },
+    "audio": {
+      "clue": "A rousing rock opening.",
+      "query": "Hajime no Ippo opening Under Star",
+      "youtubeId": "F8mOXnWOrhw"
+    },
+    "voice": {
+      "speaker": "Ippo Makunouchi",
+      "query": "Ippo voice Kohei Kiyasu",
+      "youtubeId": "1m3j2aDE3QE",
+      "start": 2
+    },
+    "emoji": "🥊🎣💦🌀🏆",
+    "item": {
+      "name": "The Dempsey Roll",
+      "description": "A weaving, figure-eight barrage of hooks.",
+      "image": "https://static.wikia.nocookie.net/ippo/images/4/44/Dempsey_Roll.png/revision/latest/scale-to-width-down/640?cb=20191008233118"
+    },
+    "location": {
+      "name": "Kamogawa Boxing Gym",
+      "description": "A gym run by a strict old coach with a cane.",
+      "image": "https://static.wikia.nocookie.net/ippo/images/d/d5/Kamogawa_Boxing_Gym_-_Manga_-_Front_-_01.png/revision/latest?cb=20190903011458"
+    },
+    "visual": {
+      "icon": "🥊",
+      "colors": [
+        "#1d4ed8",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "a-paranoiaagent",
+    "name": "Paranoia Agent",
+    "domain": "anime",
+    "year": 2004,
+    "genres": [
+      "Psychological",
+      "Mystery"
+    ],
+    "studio": "Madhouse",
+    "creator": "Satoshi Kon",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Tsukiko Sagi",
+      "Shōnen Bat",
+      "Keiichi Ikari"
+    ],
+    "themes": [
+      "Escapism",
+      "Mass hysteria"
+    ],
+    "credits": [
+      "Creator and director: Satoshi Kon",
+      "Music: Susumu Hirasawa"
+    ],
+    "cover": {
+      "wiki": "Paranoia Agent",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Paranoia_Agent.png"
+    },
+    "audio": {
+      "clue": "An eerie, cheerful synth opening of people laughing.",
+      "query": "Paranoia Agent opening Dream Island Obsessional Park",
+      "youtubeId": "0F36lQRC3KU"
+    },
+    "voice": {
+      "speaker": "Tsukiko Sagi",
+      "query": "Tsukiko Sagi voice japanese"
+    },
+    "emoji": "🏏🧸😱🌀📺",
+    "item": {
+      "name": "Maromi",
+      "description": "A plush pink dog every Tokyo fan is obsessed with."
+    },
+    "location": {
+      "name": "Musashino, Tokyo",
+      "description": "A neighbourhood living in fear of a boy with a golden bat."
+    },
+    "visual": {
+      "icon": "🧸",
+      "colors": [
+        "#f9a8d4",
+        "#1f2937"
+      ]
+    }
+  },
+  {
+    "id": "a-ouran",
+    "name": "Ouran High School Host Club",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Comedy",
+      "Romance"
+    ],
+    "studio": "Bones",
+    "creator": "Bisco Hatori",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Haruhi Fujioka",
+      "Tamaki Suoh",
+      "Kyoya Ootori"
+    ],
+    "themes": [
+      "Class",
+      "Gender"
+    ],
+    "credits": [
+      "Original manga: Bisco Hatori",
+      "Director: Takuya Igarashi"
+    ],
+    "fandom": "ouran",
+    "cover": {
+      "wiki": "Ouran High School Host Club",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/dc/Ouran_High_School_Vol_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A sparkly orchestral-pop opening.",
+      "query": "Ouran High School Host Club opening Sakura Kiss",
+      "youtubeId": "enygn6tBW1w"
+    },
+    "voice": {
+      "speaker": "Haruhi Fujioka",
+      "query": "Haruhi Fujioka voice japanese"
+    },
+    "emoji": "🌹🏰☕👑🎭",
+    "item": {
+      "name": "The broken vase",
+      "description": "An 8-million-yen vase a poor student breaks and must work off."
+    },
+    "location": {
+      "name": "Music Room 3",
+      "description": "An abandoned room where rich boys entertain girls.",
+      "image": "https://static.wikia.nocookie.net/ouran/images/0/06/Music_Room_3.jpg/revision/latest?cb=20130924204404"
+    },
+    "visual": {
+      "icon": "🌹",
+      "colors": [
+        "#ec4899",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-haruhi",
+    "name": "The Melancholy of Haruhi Suzumiya",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Comedy",
+      "Sci-Fi"
+    ],
+    "studio": "Kyoto Animation",
+    "creator": "Nagaru Tanigawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Haruhi Suzumiya",
+      "Kyon",
+      "Yuki Nagato"
+    ],
+    "themes": [
+      "Reality",
+      "Boredom"
+    ],
+    "credits": [
+      "Original light novel: Nagaru Tanigawa",
+      "Director: Tatsuya Ishihara"
+    ],
+    "fandom": "haruhi",
+    "cover": {
+      "wiki": "Haruhi Suzumiya",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/11/Haruhi_book_01_s.jpg"
+    },
+    "quote": {
+      "text": "I have no interest in ordinary humans.",
+      "speaker": "A new student's introduction"
+    },
+    "audio": {
+      "clue": "A bouncy J-pop ending everyone danced to.",
+      "query": "Hare Hare Yukai",
+      "youtubeId": "x2iKC0C32-g"
+    },
+    "voice": {
+      "speaker": "Haruhi Suzumiya",
+      "query": "Haruhi Suzumiya voice japanese"
+    },
+    "emoji": "🌀🏫👽⏳📚",
+    "item": {
+      "name": "The SOS Brigade armband",
+      "description": "Worn by the leader of a club hunting aliens, time travellers and espers.",
+      "image": "https://static.wikia.nocookie.net/haruhi/images/3/37/The_SOS_Brigade.jpg/revision/latest/scale-to-width-down/640?cb=20221226235639"
+    },
+    "location": {
+      "name": "North High's literature club room",
+      "description": "A room a girl takes over for her strange brigade.",
+      "image": "https://static.wikia.nocookie.net/haruhi/images/7/7c/SOSHQ.png/revision/latest/scale-to-width-down/640?cb=20130107164536"
+    },
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#f59e0b",
+        "#1e40af"
+      ]
+    }
+  },
+  {
+    "id": "a-spicewolf",
+    "name": "Spice and Wolf",
+    "domain": "anime",
+    "year": 2008,
+    "genres": [
+      "Romance",
+      "Fantasy"
+    ],
+    "studio": "Imagin",
+    "creator": "Isuna Hasekura",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Kraft Lawrence",
+      "Holo",
+      "Nora Arendt"
+    ],
+    "themes": [
+      "Economics",
+      "Companionship"
+    ],
+    "credits": [
+      "Original light novel: Isuna Hasekura",
+      "Director: Takeo Takahashi"
+    ],
+    "fandom": "spiceandwolf",
+    "cover": {
+      "wiki": "Spice and Wolf",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Ookamitokoshinryo01.jpg"
+    },
+    "audio": {
+      "clue": "A folky, pastoral opening.",
+      "query": "Spice and Wolf opening Tabi no Tochuu",
+      "youtubeId": "8IkKUBJ26fo"
+    },
+    "voice": {
+      "speaker": "Kraft Lawrence",
+      "query": "Kraft Lawrence voice japanese"
+    },
+    "emoji": "🐺🍎🌾💰🛒",
+    "item": {
+      "name": "Holo's pouch of wheat",
+      "description": "A little bag a wolf goddess lives in when she travels."
+    },
+    "location": {
+      "name": "Pasloe village",
+      "description": "A wheat village a harvest deity watched over for centuries.",
+      "image": "https://static.wikia.nocookie.net/spiceandwolf/images/0/0d/Pasloe_%28pre-series%29.png/revision/latest/scale-to-width-down/640?cb=20101211014215"
+    },
+    "visual": {
+      "icon": "🐺",
+      "colors": [
+        "#b45309",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-natsume",
+    "name": "Natsume's Book of Friends",
+    "domain": "anime",
+    "year": 2008,
+    "genres": [
+      "Supernatural",
+      "Slice of Life"
+    ],
+    "studio": "Brain's Base",
+    "creator": "Yuki Midorikawa",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Takashi Natsume",
+      "Madara",
+      "Natori Shūichi"
+    ],
+    "themes": [
+      "Loneliness",
+      "Kindness"
+    ],
+    "credits": [
+      "Original manga: Yuki Midorikawa",
+      "Director: Takahiro Omori"
+    ],
+    "fandom": "natsumeyuujinchou",
+    "cover": {
+      "wiki": "Natsume's Book of Friends",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/88/Natsume%27s_Book_of_Friends_1.png"
+    },
+    "audio": {
+      "clue": "A wistful acoustic opening.",
+      "query": "Natsume Yuujinchou opening Issei no Sei",
+      "youtubeId": "_FZ4T3YgGy4"
+    },
+    "voice": {
+      "speaker": "Takashi Natsume",
+      "query": "Takashi Natsume voice japanese"
+    },
+    "emoji": "📖🐱👻🍃🍶",
+    "item": {
+      "name": "The Book of Friends",
+      "description": "A notebook of yōkai names a boy inherits from his grandmother.",
+      "image": "https://static.wikia.nocookie.net/natsumeyuujinchou/images/b/b4/S1E1_-_Hishigaki-ich10.jpg/revision/latest/scale-to-width-down/640?cb=20201115230433"
+    },
+    "location": {
+      "name": "Rural Yatsuhara",
+      "description": "Countryside full of spirits only one boy can see."
+    },
+    "visual": {
+      "icon": "📖",
+      "colors": [
+        "#86efac",
+        "#78716c"
+      ]
+    }
+  },
+  {
+    "id": "a-blacklagoon",
+    "name": "Black Lagoon",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "studio": "Madhouse",
+    "creator": "Rei Hiroe",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Rokuro \"Rock\" Okajima",
+      "Revy",
+      "Dutch"
+    ],
+    "themes": [
+      "Crime",
+      "Morality"
+    ],
+    "credits": [
+      "Original manga: Rei Hiroe",
+      "Director: Sunao Katabuchi"
+    ],
+    "cover": {
+      "wiki": "Black Lagoon",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b4/Black_Lagoon_01.png"
+    },
+    "audio": {
+      "clue": "A heavy rock opening with English lyrics.",
+      "query": "Black Lagoon opening Red Fraction",
+      "youtubeId": "dWfxcRj39tg"
+    },
+    "voice": {
+      "speaker": "Rokuro \"Rock\" Okajima",
+      "query": "Rokuro \"Rock\" Okajima voice japanese"
+    },
+    "emoji": "🔫🚤🚬🌴💰",
+    "item": {
+      "name": "Revy's twin Berettas",
+      "description": "Customised pistols of a gunslinger called Two Hands."
+    },
+    "location": {
+      "name": "Roanapur",
+      "description": "A lawless Thai port city run by gangs."
+    },
+    "visual": {
+      "icon": "🚤",
+      "colors": [
+        "#0f766e",
+        "#b91c1c"
+      ]
+    }
+  },
+  {
+    "id": "a-shamanking",
+    "name": "Shaman King",
+    "domain": "anime",
+    "year": 2001,
+    "genres": [
+      "Action",
+      "Supernatural"
+    ],
+    "studio": "Xebec",
+    "creator": "Hiroyuki Takei",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Yoh Asakura",
+      "Amidamaru",
+      "Anna Kyoyama"
+    ],
+    "themes": [
+      "Spirits",
+      "Laid-back hope"
+    ],
+    "credits": [
+      "Original manga: Hiroyuki Takei",
+      "2021 remake by Bridge"
+    ],
+    "fandom": "shamanking",
+    "cover": {
+      "wiki": "Shaman King",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/04/Shaman_King_vol._32.png"
+    },
+    "audio": {
+      "clue": "An energetic rock opening.",
+      "query": "Shaman King opening Over Soul",
+      "youtubeId": "-VYMrLirXFY"
+    },
+    "voice": {
+      "speaker": "Yoh Asakura",
+      "query": "Yoh Asakura voice Yoko Hikasa",
+      "youtubeId": "XkG4xH-aV40",
+      "start": 2
+    },
+    "emoji": "🎧👻⚔️👑🍃",
+    "item": {
+      "name": "Yoh's orange headphones",
+      "description": "Always around the neck of a relaxed young shaman.",
+      "image": "https://static.wikia.nocookie.net/shamanking/images/f/f3/Asakura-Yoh.jpg/revision/latest?cb=20180106140247&path-prefix=en"
+    },
+    "location": {
+      "name": "Funbari Hill",
+      "description": "A cemetery hill where a boy meets a samurai ghost.",
+      "image": "https://static.wikia.nocookie.net/shamanking/images/b/bd/Funbari_Hill_map.png/revision/latest?cb=20230302154055&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🎧",
+      "colors": [
+        "#f97316",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "a-ccsakura",
+    "name": "Cardcaptor Sakura",
+    "domain": "anime",
+    "year": 1998,
+    "genres": [
+      "Magical Girl",
+      "Romance"
+    ],
+    "studio": "Madhouse",
+    "creator": "Clamp",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Sakura Kinomoto",
+      "Kero",
+      "Syaoran Li"
+    ],
+    "themes": [
+      "Kindness",
+      "Growing up"
+    ],
+    "credits": [
+      "Original manga: Clamp",
+      "Director: Morio Asaka"
+    ],
+    "fandom": "ccsakura",
+    "cover": {
+      "wiki": "Cardcaptor Sakura",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/50/Cardcaptor_Sakura_vol1_cover.jpg"
+    },
+    "quote": {
+      "text": "Hoe!",
+      "speaker": "A surprised fourth-grader"
+    },
+    "audio": {
+      "clue": "A cheerful, bubbly pop opening.",
+      "query": "Cardcaptor Sakura opening Catch You Catch Me",
+      "youtubeId": "6gpcPYDkPdg"
+    },
+    "voice": {
+      "speaker": "Sakura Kinomoto",
+      "query": "Sakura Kinomoto voice japanese"
+    },
+    "emoji": "🃏🌸🪄🐻🛼",
+    "item": {
+      "name": "The Clow Cards",
+      "description": "Magical cards a girl must recapture after releasing them by accident.",
+      "image": "https://static.wikia.nocookie.net/ccs/images/8/80/ClowArrow.jpg/revision/latest/scale-to-width-down/290?cb=20220525093411"
+    },
+    "location": {
+      "name": "Tomoeda",
+      "description": "A peaceful town hit by runaway magic cards.",
+      "image": "https://static.wikia.nocookie.net/ccs/images/6/65/TomoedaDowntown.jpg/revision/latest/scale-to-width-down/322?cb=20181228064607"
+    },
+    "visual": {
+      "icon": "🃏",
+      "colors": [
+        "#f472b6",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-utena",
+    "name": "Revolutionary Girl Utena",
+    "domain": "anime",
+    "year": 1997,
+    "genres": [
+      "Psychological",
+      "Fantasy"
+    ],
+    "studio": "J.C.Staff",
+    "creator": "Kunihiko Ikuhara",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Original",
+    "characters": [
+      "Utena Tenjou",
+      "Anthy Himemiya",
+      "Akio Ohtori"
+    ],
+    "themes": [
+      "Gender",
+      "Adolescence"
+    ],
+    "credits": [
+      "Director: Kunihiko Ikuhara",
+      "Manga: Chiho Saito"
+    ],
+    "fandom": "utena",
+    "cover": {
+      "wiki": "Revolutionary Girl Utena",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Revolutionary_Girl_Utena_logo_20170127.svg/960px-Revolutionary_Girl_Utena_logo_20170127.svg.png"
+    },
+    "audio": {
+      "clue": "A theatrical choral rock piece.",
+      "query": "Utena Zettai Unmei Mokushiroku",
+      "youtubeId": "E83hl6hDfKQ"
+    },
+    "voice": {
+      "speaker": "Utena Tenjou",
+      "query": "Utena Tenjou voice japanese"
+    },
+    "emoji": "🌹⚔️👑🏰💍",
+    "item": {
+      "name": "The Rose Signet",
+      "description": "A ring marking duellists who fight for the Rose Bride.",
+      "image": "https://static.wikia.nocookie.net/utena/images/a/ad/Screen_Shot_2018-09-29_at_9.06.35_AM.png/revision/latest/scale-to-width-down/640?cb=20180929130720"
+    },
+    "location": {
+      "name": "Ohtori Academy",
+      "description": "A surreal school with a dueling arena above it.",
+      "image": "https://static.wikia.nocookie.net/utena/images/6/67/Ohtori_map.jpg/revision/latest/scale-to-width-down/640?cb=20160806042548"
+    },
+    "visual": {
+      "icon": "🌹",
+      "colors": [
+        "#db2777",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "a-mushoku",
+    "name": "Mushoku Tensei: Jobless Reincarnation",
+    "domain": "anime",
+    "year": 2021,
+    "genres": [
+      "Isekai",
+      "Fantasy"
+    ],
+    "studio": "Studio Bind",
+    "creator": "Rifujin na Magonote",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Light Novel",
+    "characters": [
+      "Rudeus Greyrat",
+      "Roxy Migurdia",
+      "Eris Boreas Greyrat"
+    ],
+    "themes": [
+      "Redemption",
+      "Second chances"
+    ],
+    "credits": [
+      "Original web novel: Rifujin na Magonote",
+      "Director: Manabu Okamoto"
+    ],
+    "fandom": "mushokutensei",
+    "cover": {
+      "wiki": "Mushoku Tensei",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Mushoku_Tensei_1.png"
+    },
+    "audio": {
+      "clue": "A gentle, folk-tinged opening.",
+      "query": "Mushoku Tensei opening Tabibito no Uta",
+      "youtubeId": "pEoCT-Kv5CI"
+    },
+    "voice": {
+      "speaker": "Rudeus Greyrat",
+      "query": "Rudeus Greyrat voice japanese"
+    },
+    "emoji": "🧙‍♂️👶🔥📜🌍",
+    "item": {
+      "name": "Roxy's spellbook",
+      "description": "The magic textbook a reborn boy studies as a toddler.",
+      "image": "https://static.wikia.nocookie.net/mushokutensei/images/c/c3/MT-AN-S1-E01-GIF-01.gif/revision/latest?cb=20210224085820"
+    },
+    "location": {
+      "name": "Buena Village",
+      "description": "The quiet village where a reincarnated man grows up.",
+      "image": "https://static.wikia.nocookie.net/mushokutensei/images/c/c5/Buena_Village_2.png/revision/latest/scale-to-width-down/640?cb=20210215115556"
+    },
+    "visual": {
+      "icon": "🧙‍♂️",
+      "colors": [
+        "#2563eb",
+        "#fef08a"
+      ]
+    }
+  },
+  {
+    "id": "a-bsd",
+    "name": "Bungo Stray Dogs",
+    "domain": "anime",
+    "year": 2016,
+    "genres": [
+      "Action",
+      "Mystery"
+    ],
+    "studio": "Bones",
+    "creator": "Kafka Asagiri",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Atsushi Nakajima",
+      "Osamu Dazai",
+      "Ryūnosuke Akutagawa"
+    ],
+    "themes": [
+      "Belonging",
+      "Literature"
+    ],
+    "credits": [
+      "Original manga: Kafka Asagiri",
+      "Art: Sango Harukawa"
+    ],
+    "fandom": "bungostraydogs",
+    "cover": {
+      "wiki": "Bungo Stray Dogs",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Bung%C5%8D_Stray_Dogs_volume_1.jpg"
+    },
+    "audio": {
+      "clue": "An energetic rock opening by Granrodeo.",
+      "query": "Bungo Stray Dogs opening Trash Candy",
+      "youtubeId": "nhC5hbQpa-A"
+    },
+    "voice": {
+      "speaker": "Atsushi Nakajima",
+      "query": "Atsushi Nakajima voice japanese",
+      "youtubeId": "tTYmN3uRPNs",
+      "start": 2
+    },
+    "emoji": "🐯📚🕵️‍♂️🌊🔫",
+    "item": {
+      "name": "Dazai's \"No Longer Human\"",
+      "description": "An ability that cancels every other ability by touch.",
+      "image": "https://static.wikia.nocookie.net/bungostraydogs/images/5/5f/No_Longer_Human.gif/revision/latest?cb=20180111192256"
+    },
+    "location": {
+      "name": "The Armed Detective Agency",
+      "description": "A Yokohama office of gifted detectives.",
+      "image": "https://static.wikia.nocookie.net/bungostraydogs/images/b/ba/Armed_Detective_Agency.png/revision/latest/scale-to-width-down/640?cb=20210717142731"
+    },
+    "visual": {
+      "icon": "🐯",
+      "colors": [
+        "#1e3a8a",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-foodwars",
+    "name": "Food Wars! Shokugeki no Soma",
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Comedy",
+      "Shōnen"
+    ],
+    "studio": "J.C.Staff",
+    "creator": "Yūto Tsukuda",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Sōma Yukihira",
+      "Erina Nakiri",
+      "Megumi Tadokoro"
+    ],
+    "themes": [
+      "Cooking",
+      "Rivalry"
+    ],
+    "credits": [
+      "Original manga: Yūto Tsukuda",
+      "Art: Shun Saeki"
+    ],
+    "fandom": "shokugekinosoma",
+    "cover": {
+      "wiki": "Food Wars!: Shokugeki no Soma",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d3/Shokugeki_no_Souma_Volume_1.jpg"
+    },
+    "audio": {
+      "clue": "A fast, flashy rock opening.",
+      "query": "Food Wars opening Kibou no Uta",
+      "youtubeId": "251nvywgHdg"
+    },
+    "voice": {
+      "speaker": "Sōma Yukihira",
+      "query": "Sōma Yukihira voice japanese"
+    },
+    "emoji": "🍳🔪🍜😳🏆",
+    "item": {
+      "name": "The Shokugeki",
+      "description": "A cooking duel where students bet their future on a dish.",
+      "image": "https://static.wikia.nocookie.net/shokugekinosoma/images/c/c1/Shokugeki_EX.jpg/revision/latest/scale-to-width-down/414?cb=20130707203911"
+    },
+    "location": {
+      "name": "Tōtsuki Culinary Academy",
+      "description": "An elite cooking school with a brutal pass rate."
+    },
+    "visual": {
+      "icon": "🍳",
+      "colors": [
+        "#dc2626",
+        "#fef3c7"
+      ]
+    }
+  },
+  {
+    "id": "a-weathering",
+    "name": "Weathering with You",
+    "domain": "anime",
+    "year": 2019,
+    "genres": [
+      "Romance",
+      "Fantasy"
+    ],
+    "studio": "CoMix Wave Films",
+    "creator": "Makoto Shinkai",
+    "origin": "Japan",
+    "format": "Film",
+    "source": "Original",
+    "characters": [
+      "Hodaka Morishima",
+      "Hina Amano",
+      "Keisuke Suga"
+    ],
+    "themes": [
+      "Climate",
+      "Sacrifice"
+    ],
+    "credits": [
+      "Director and writer: Makoto Shinkai",
+      "Music: Radwimps"
+    ],
+    "cover": {
+      "wiki": "Weathering with You",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/66/Weathering_with_You_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A soaring rock ballad by Radwimps.",
+      "query": "Weathering With You Grand Escape",
+      "youtubeId": "YAXTn0E-Zgo"
+    },
+    "voice": {
+      "speaker": "Hodaka Morishima",
+      "query": "Hodaka Morishima voice japanese"
+    },
+    "emoji": "🌧️☀️👧🏙️🙏",
+    "item": {
+      "name": "The shrine gate",
+      "description": "A torii on a rooftop that gives a girl the power to clear the sky."
+    },
+    "location": {
+      "name": "Rainy Tokyo",
+      "description": "A city drowning in endless rain."
+    },
+    "visual": {
+      "icon": "☀️",
+      "colors": [
+        "#0284c7",
+        "#fde047"
       ]
     }
   }

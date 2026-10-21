@@ -76,7 +76,11 @@ export function buildRound(
 export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   const rand = mulberry32(hashString(`omnidle:${dateKey}:${domain}`));
   const used = new Set<string>();
-  return shuffle(GAME_TYPES, rand).map((type) => {
+  // Every mini-game this category has content for, ten of them a day (voice lines only exist for
+  // anime and games, so those categories rotate one game out each day).
+  const types = shuffle(GAME_TYPES.filter((t) => isAvailable(t, domain)), rand).slice(0, ROUNDS_PER_DAY);
+  while (types.length < ROUNDS_PER_DAY) types.push('classic');
+  return types.map((type) => {
     const spec = buildRound(type, domain, rand, used) ?? buildRound('classic', domain, rand, used)!;
     if (spec.targetId) used.add(spec.targetId);
     return spec;

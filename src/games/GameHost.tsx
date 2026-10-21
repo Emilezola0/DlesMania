@@ -5,23 +5,25 @@ import type { GameProps, GameType, RoundRecord } from '../types';
 import ClassicGame from './ClassicGame';
 import ClueGame from './ClueGame';
 import ConnectionsGame from './ConnectionsGame';
+import TilesGame from './TilesGame';
 import TimelineGame from './TimelineGame';
 
 const COMPONENTS: Record<GameType, ComponentType<GameProps>> = {
   classic: ClassicGame,
   quote: ClueGame,
   audio: ClueGame,
+  voice: ClueGame,
   emoji: ClueGame,
   visual: ClueGame,
   item: ClueGame,
   location: ClueGame,
-  tiles: ClueGame,
+  tiles: TilesGame,
   timeline: TimelineGame,
   connections: ConnectionsGame,
 };
 
 /** Games that play their own sounds for intermediate guesses (e.g. "one away", a solved group). */
-const OWN_FEEDBACK = new Set<GameType>(['connections']);
+const OWN_FEEDBACK = new Set<GameType>(['connections', 'tiles']);
 
 /** Renders the right mini-game and adds the shared juice: sounds, confetti, glow and transitions. */
 export function GameHost({ spec, record, onChange }: GameProps) {

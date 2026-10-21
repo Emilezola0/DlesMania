@@ -61,8 +61,9 @@ export const DIFFICULTIES = Object.fromEntries(
 ) as unknown as Record<Difficulty, DifficultySpec>;
 
 /**
- * Hard's second loops: every phase's second round is shorter but much harder, with visual
- * obstacles and bait cues meant to trick the player's reactions.
+ * Hard's second loops: every phase's second round is shorter but harder. Visual difficulty stays
+ * static and on the picture only — heavy zoom, a strong colour shift, an upside-down flip — so the
+ * input, buttons and layout never move.
  */
 export interface SecondLoop {
   blitz: BlitzEscalation;
@@ -70,44 +71,62 @@ export interface SecondLoop {
   finale: FinaleEscalation;
 }
 
-/** Knowledge Blitz: fewer answers but far less time, a glitching prompt, a wobbling board, and a timer bar that sometimes fakes running out. */
+/** Knowledge Blitz: fewer answers, far less time per answer. */
 export interface BlitzEscalation {
   countDelta: number;
   secondsPer: number;
-  /** How often (ms) two letters of the prompt swap for a moment; 0 = never. */
-  glitchMs: number;
-  wobble: boolean;
-  /** Chance, every couple of seconds, that the timer bar flashes near-empty for a moment (it isn't). */
-  fakeTimerDrops: number;
 }
 
-/** Final Blow: fewer faces but a much shorter clock, the picture zoomed in hard, wrong names flashed over it, and fake timer drops. */
-export interface FinaleEscalation {
-  targets: number;
-  seconds: number;
+/** Static picture distortion shared by the Radar and Final Blow second loops. */
+export interface PictureDistortion {
+  /** Zoom range on a random spot of the picture. */
   zoom: [number, number];
-  /** Chance, about once a second, that a wrong name flashes over the picture. */
-  ghostNames: number;
-  fakeTimerDrops: number;
+  /** Hue shift range in degrees (applied with a random sign). */
+  hue: [number, number];
+  /** Chance a picture is turned upside down. */
+  flip: number;
 }
 
-/**
- * The second Radar Defense loop on Hard: fewer cards, faster timers, and the picture zoomed in hard
- * on a random spot. Bait cues try to pull the player the wrong way — a "zones reversed" banner
- * when they aren't, a card that drifts towards the wrong zone, decoy glows on the wrong zone.
- */
-export interface RadarEscalation {
+/** Radar Defense: fewer, faster cards with distorted pictures. */
+export interface RadarEscalation extends PictureDistortion {
   cards: number;
   impostors: number;
   /** Multiplier on each card's time (0.65 = 35% less). */
   speed: number;
-  /** Zoom range on the picture. */
-  zoom: [number, number];
-  /** Chances per card of each bait cue. */
-  fakeReversed: number;
-  decoyRate: number;
-  baitLean: number;
 }
+
+/** Final Blow: fewer faces, a much shorter clock, distorted pictures. */
+export interface FinaleEscalation extends PictureDistortion {
+  targets: number;
+  seconds: number;
+}
+
+/** A still distortion drawn for one picture. */
+export interface PictureFx {
+  scale: number;
+  /** Zoom origin, in % of the picture. */
+  x: number;
+  y: number;
+  hue: number;
+  flip: boolean;
+}
+
+export function drawPictureFx(p: PictureDistortion, rand: () => number): PictureFx {
+  return {
+    scale: p.zoom[0] + rand() * (p.zoom[1] - p.zoom[0]),
+    x: 20 + rand() * 60,
+    y: 15 + rand() * 55,
+    hue: (rand() < 0.5 ? -1 : 1) * (p.hue[0] + rand() * (p.hue[1] - p.hue[0])),
+    flip: rand() < p.flip,
+  };
+}
+
+/** CSS for a still distortion: only ever put on the picture element. */
+export const pictureStyle = (fx: PictureFx) => ({
+  transform: `scale(${fx.scale})${fx.flip ? ' rotate(180deg)' : ''}`,
+  transformOrigin: `${fx.x}% ${fx.y}%`,
+  filter: `hue-rotate(${fx.hue}deg) saturate(1.7)`,
+});
 
 export const DIFFICULTY_IDS = Object.keys(DIFFICULTIES) as Difficulty[];
 
@@ -153,12 +172,8 @@ export interface RadarFx {
   decoy: 'left' | 'right' | null;
   /** Seeds for the clutter glyphs drifting over the picture. */
   clutter: number[];
-  /** Escalated loop: zoom on a spot of the picture (scale, origin in %). */
-  zoom?: { scale: number; x: number; y: number };
-  /** Bait: a "zones reversed" warning on a card whose zones are normal. */
-  fakeReversed?: boolean;
-  /** Bait: the card drifts this many px (towards the wrong zone) as it appears. */
-  lean?: number;
+  /** Escalated loop: a still distortion of the picture instead of the moving effects. */
+  still?: PictureFx;
 }
 
 export interface RadarCard extends BossCard {
@@ -194,21 +209,9 @@ export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number, loo
     ...shuffle([...rest.map((c) => ({ ...c, belongs: true })), ...impostors.map((c) => ({ ...c, belongs: false }))], rand),
   ];
   return order.map((c, i) => {
-    const fx = radarFx(d.distortion, i, rand);
-    if (!esc || !fx) return { ...c, fx };
-    // The wrong zone for this card: where a player fooled by the bait would send it.
-    const belongsSide = fx.reversed ? 'left' : 'right';
-    const wrongSide = c.belongs ? (belongsSide === 'left' ? 'right' : 'left') : belongsSide;
-    return {
-      ...c,
-      fx: {
-        ...fx,
-        zoom: { scale: esc.zoom[0] + rand() * (esc.zoom[1] - esc.zoom[0]), x: 15 + rand() * 70, y: 10 + rand() * 60 },
-        fakeReversed: !fx.reversed && i > 0 && rand() < esc.fakeReversed,
-        decoy: rand() < esc.decoyRate ? wrongSide : fx.decoy,
-        lean: rand() < esc.baitLean ? (wrongSide === 'right' ? 1 : -1) * (28 + rand() * 20) : 0,
-      },
-    };
+    // Second loop: no motion, no layout tricks — the picture alone is zoomed, recoloured and maybe flipped.
+    if (esc) return { ...c, fx: { hue: 0, saturate: 1, spin: 0, invert: false, reversed: false, decoy: null, clutter: [], still: drawPictureFx(esc, rand) } };
+    return { ...c, fx: radarFx(d.distortion, i, rand) };
   });
 }
 

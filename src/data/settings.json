@@ -1,6 +1,11 @@
 {
   "connections": {
     "groups": 3,
-    "maxMistakes": 4
+    "maxMistakes": 4,
+    "themed": {
+      "groups": 4,
+      "groupSize": 3,
+      "targetHerrings": 4
+    }
   }
 }

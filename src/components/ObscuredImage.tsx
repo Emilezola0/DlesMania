@@ -9,12 +9,12 @@ import { mulberry32 } from '../lib/rng';
  *   tilt — rotation of the whole frame, in degrees
  */
 const STEPS = [
-  { reveal: 0.28, blur: 14, grey: 0.85, hue: 120, split: 4, tilt: 7 },
-  { reveal: 0.4, blur: 12, grey: 0.7, hue: 80, split: 3, tilt: 5 },
-  { reveal: 0.52, blur: 9, grey: 0.5, hue: 45, split: 2, tilt: 3 },
-  { reveal: 0.66, blur: 6, grey: 0.3, hue: 20, split: 1, tilt: 1.5 },
-  { reveal: 0.8, blur: 4, grey: 0.15, hue: 0, split: 0, tilt: 0 },
-  { reveal: 0.92, blur: 2, grey: 0, hue: 0, split: 0, tilt: 0 },
+  { reveal: 0.42, blur: 10, grey: 0.6, hue: 90, split: 3, tilt: 5 },
+  { reveal: 0.54, blur: 8, grey: 0.45, hue: 60, split: 2, tilt: 3.5 },
+  { reveal: 0.66, blur: 6, grey: 0.3, hue: 35, split: 1.5, tilt: 2 },
+  { reveal: 0.76, blur: 4, grey: 0.15, hue: 15, split: 1, tilt: 1 },
+  { reveal: 0.86, blur: 3, grey: 0.05, hue: 0, split: 0, tilt: 0 },
+  { reveal: 0.94, blur: 1.5, grey: 0, hue: 0, split: 0, tilt: 0 },
 ];
 
 /** Windows per side of the grid. */
@@ -47,7 +47,7 @@ function windowOrder(seed: number): number[] {
 }
 
 /**
- * Iconic Item's clue. Instead of one heavy blur over everything, part of the picture shows through
+ * The "Guess from the Image" clue (game type `item`). Instead of one heavy blur over everything, part of the picture shows through
  * clear windows (colour-shifted, with split channels, on a tilted frame) while the rest stays fogged.
  * Each miss opens more windows and calms the distortion, so a sharp eye has a fair first-try chance.
  */

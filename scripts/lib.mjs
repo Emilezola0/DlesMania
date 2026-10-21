@@ -9,7 +9,7 @@ export const PREFIX = { games: 'g', anime: 'a', cinema: 'c', music: 'm' };
 
 const FIELD_ORDER = [
   'id', 'name', 'nameFr', 'subtitle', 'aliases', 'domain', 'year', 'genres', 'studio', 'creator', 'origin', 'format', 'source',
-  'platforms', 'characters', 'themes', 'credits', 'fandom', 'cover', 'quote', 'tracks', 'audio', 'emoji', 'item', 'location', 'visual',
+  'platforms', 'characters', 'themes', 'credits', 'fandom', 'cover', 'quote', 'tracks', 'audio', 'voice', 'emoji', 'item', 'location', 'visual',
 ];
 
 export const worksPath = (domain) => join(ROOT, 'src', 'data', 'works', `${domain}.json`);

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Glyph } from '../components/Glyph';
-import { escalated, radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
+import { escalated, pictureStyle, radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { useUi } from '../store/ui';
 import type { PhaseResult } from '../types';
@@ -82,8 +82,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
   useEffect(() => {
     appearedAt.current = performance.now();
     const timers: number[] = [];
-    // Real reversals and fake ones (escalated loop) show the same warning: read the zone labels.
-    if (card?.fx?.reversed || card?.fx?.fakeReversed) {
+    if (card?.fx?.reversed) {
       setWarnReversed(true);
       timers.push(window.setTimeout(() => setWarnReversed(false), 700));
     }
@@ -165,7 +164,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
           Card {Math.min(index + 1, cards.length)} / {cards.length}
-          {esc && <span className="boss-secret-title ml-2 font-bold text-coral">· Escalation</span>}
+          {esc && <span className="ml-2 font-bold text-coral">· Escalation</span>}
         </p>
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">
           Does it belong to <span className="text-accent">{franchise}</span>?
@@ -215,14 +214,12 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                 setDrag(0);
               }}
               className={`page flex cursor-grab touch-none select-none flex-col overflow-hidden rounded-md p-2 active:cursor-grabbing ${
-                fling ? '' : drag ? '' : fx?.lean ? 'boss-card-in boss-lean' : 'boss-card-in'
+                fling || drag ? '' : 'boss-card-in'
               }`}
               style={{
                 // Inline because `.page` sets position: relative, which would win over the `absolute` utility.
                 position: 'absolute',
                 inset: 0,
-                // Bait: the card drifts towards the wrong zone as it arrives.
-                ...(fx?.lean && !fling && !drag ? ({ '--lean': `${fx.lean}px` } as React.CSSProperties) : {}),
                 transform: fling
                   ? `translateX(${fling.zone === 'right' ? 160 : -160}%) rotate(${fling.zone === 'right' ? 24 : -24}deg)`
                   : `translateX(${drag}px) rotate(${drag / 18}deg)`,
@@ -230,10 +227,10 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                 transition: fling ? 'transform 0.5s ease-in, opacity 0.5s ease-in' : drag ? 'none' : 'transform 0.2s',
               }}
             >
-              <div className={`relative flex-1 overflow-hidden rounded-sm bg-tile ${fx && d.distortion === 2 && !fling ? 'boss-scramble' : ''}`}>
+              <div className={`relative flex-1 overflow-hidden rounded-sm bg-tile ${fx && !fx.still && d.distortion === 2 && !fling ? 'boss-scramble' : ''}`}>
                 {/* The picture spins and shifts colour over the card's lifetime. */}
                 <div
-                  className={`absolute inset-0 ${fx && !fling ? 'boss-spin' : ''}`}
+                  className={`absolute inset-0 ${fx && !fx.still && !fling ? 'boss-spin' : ''}`}
                   style={fx ? ({ '--spin': `${fx.spin}deg`, animationDuration: `${ms}ms` } as React.CSSProperties) : undefined}
                 >
                   {shown.image ? (
@@ -241,22 +238,20 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                       src={shown.image}
                       alt=""
                       draggable={false}
-                      className={`pointer-events-none size-full object-cover object-top ${fx?.zoom && !fling ? 'boss-zoom' : 'scale-110'} ${fx && !fling ? (d.distortion === 2 ? 'boss-fade-fast' : 'boss-fade') : ''}`}
+                      className={`pointer-events-none size-full object-cover object-top ${fx?.still ? '' : 'scale-110'} ${fx && !fx.still && !fling ? (d.distortion === 2 ? 'boss-fade-fast' : 'boss-fade') : ''}`}
                       style={
-                        fx && !fling
-                          ? ({
-                              filter: `hue-rotate(${fx.hue}deg) saturate(${fx.saturate})${fx.invert ? ' invert(1)' : ''}`,
-                              // Escalated loop: zoomed in hard on a random spot, pushing in further.
-                              ...(fx.zoom ? { '--zoom': fx.zoom.scale, transformOrigin: `${fx.zoom.x}% ${fx.zoom.y}%`, animationDuration: `${ms}ms, 0.8s` } : {}),
-                            } as React.CSSProperties)
-                          : undefined
+                        fx?.still && !fling
+                          ? pictureStyle(fx.still)
+                          : fx && !fling
+                            ? { filter: `hue-rotate(${fx.hue}deg) saturate(${fx.saturate})${fx.invert ? ' invert(1)' : ''}` }
+                            : undefined
                       }
                     />
                   ) : (
                     <span className="grid size-full place-items-center font-display text-xl">{shown.label}</span>
                   )}
                 </div>
-                {fx && !fling && <Clutter seeds={fx.clutter} fast={d.distortion === 2} />}
+                {fx && !fx.still && !fling && <Clutter seeds={fx.clutter} fast={d.distortion === 2} />}
                 {fling && (
                   <span
                     className={`absolute inset-x-0 bottom-0 px-2 py-1.5 text-center font-display text-sm font-bold ${
@@ -296,7 +291,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
       <p className="text-center text-xs text-ink-faint">
         Swipe the card, use the buttons, or press ← / →.
         {d.distortion === 2 && !esc && ' Watch for reversed zones — and wait for each card to settle.'}
-        {esc && ' Escalation: trust only the zone labels — warnings, glows and drifting cards may lie.'}
+        {esc && ' Escalation: fewer, faster cards — pictures zoomed in, recoloured and sometimes upside down.'}
       </p>
     </div>
   );

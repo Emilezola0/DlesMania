@@ -69,6 +69,18 @@
         "query": { "$ref": "#/definitions/nonEmpty" }
       }
     },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["speaker"],
+      "description": "Voice game: a character's original voice acting (no music). `query` finds a clip; `start` is the second the line begins.",
+      "properties": {
+        "speaker": { "$ref": "#/definitions/nonEmpty", "description": "Whose voice it is; revealed as the last hint." },
+        "youtubeId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{11}$" },
+        "start": { "type": "number", "minimum": 0 },
+        "query": { "$ref": "#/definitions/nonEmpty" }
+      }
+    },
     "emoji": { "$ref": "#/definitions/nonEmpty" },
     "item": { "$ref": "#/definitions/clue" },
     "location": { "$ref": "#/definitions/clue" },

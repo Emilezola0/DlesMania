@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { mulberry32, shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 
@@ -8,10 +8,12 @@ const COUNT = N * N;
 interface Props {
   src: string;
   seed: number;
-  /** Tiles snapped into place for the player — one per wrong guess. */
+  /** Tiles snapped into place for the player — one per hint. */
   assists: number;
   revealed: boolean;
   onError?: () => void;
+  /** Called once, with the number of moves (swaps and turns), when every tile is home and upright. */
+  onSolved?: (moves: number) => void;
 }
 
 interface Board {
@@ -39,14 +41,22 @@ const isHome = (b: Board, slot: number) => b.order[slot] === slot && b.turns[slo
  * A 3×3 puzzle cut from a cover. Tap two tiles to swap them; tap the same tile twice to rotate it.
  * Tiles that are home and upright get a small mark.
  */
-export function TilePuzzle({ src, seed, assists, revealed, onError }: Props) {
+export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: Props) {
   const initial = useMemo(() => scramble(seed), [seed]);
   const [board, setBoard] = useState<Board>(initial);
   const [picked, setPicked] = useState<number | null>(null);
   const [placedByHint, setPlacedByHint] = useState(0);
+  const [moves, setMoves] = useState(0);
   const solved = board.order.every((_, slot) => isHome(board, slot));
+  const reported = useRef(false);
+  useEffect(() => {
+    if (solved && !revealed && !reported.current) {
+      reported.current = true;
+      onSolved?.(moves);
+    }
+  }, [solved, revealed, moves, onSolved]);
 
-  // Each wrong guess snaps the first wrong tile home, upright.
+  // Each hint snaps the first wrong tile home, upright.
   useEffect(() => {
     if (assists <= placedByHint) return;
     setBoard((b) => {
@@ -75,6 +85,7 @@ export function TilePuzzle({ src, seed, assists, revealed, onError }: Props) {
       // Second tap on the same tile: rotate it a quarter turn.
       const tile = board.order[slot];
       setBoard((b) => ({ ...b, turns: b.turns.map((t, i) => (i === tile ? (t + 1) % 4 : t)) }));
+      setMoves((m) => m + 1);
       sfx.click();
     } else {
       setBoard((b) => {
@@ -82,6 +93,7 @@ export function TilePuzzle({ src, seed, assists, revealed, onError }: Props) {
         [order[picked], order[slot]] = [order[slot], order[picked]];
         return { ...b, order };
       });
+      setMoves((m) => m + 1);
       sfx.click();
     }
     setPicked(null);
@@ -129,7 +141,7 @@ export function TilePuzzle({ src, seed, assists, revealed, onError }: Props) {
         })}
       </div>
       <p className="text-center font-display text-[11px] tracking-wider text-ink-faint">
-        {done ? 'COVER RESTORED' : `TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · ${inPlace}/${COUNT} IN PLACE`}
+        {done ? 'COVER RESTORED' : `TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · ${inPlace}/${COUNT} IN PLACE · ${moves} MOVES`}
       </p>
     </div>
   );

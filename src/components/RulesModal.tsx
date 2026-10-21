@@ -43,7 +43,7 @@ function DailyRules() {
     <div className="space-y-6">
       <Step n="I" title="One daily per category">
         <p>
-          Video Games, Anime, Cinema and Music each have their own daily: ten rounds, one of every mini-game, the same for everyone that day. Finish
+          Video Games, Anime, Cinema and Music each have their own daily: ten rounds of different mini-games (Anime and Video Games add a voice game, so one sits out each day), the same for everyone. Finish
           a category to keep your streak alive. Free Play lets you replay any mini-game as often as you like.
         </p>
       </Step>
@@ -54,7 +54,7 @@ function DailyRules() {
         </p>
       </Step>
       <Step n="III" title="Cover Puzzle — rebuild the cover" demo={<TilesDemo />}>
-        <p>Tap two tiles to swap them; tap the same tile twice to rotate it. Each wrong guess snaps one tile home for you. Name the work to win.</p>
+        <p>Tap two tiles to swap them; tap the same tile twice to rotate it. Put every piece back in place to win — no title to type. A hint snaps one piece home, for a few points.</p>
       </Step>
       <Step n="IV" title="Every other round">
         <ul className="grid gap-1 sm:grid-cols-2">
@@ -97,7 +97,7 @@ function BossRules() {
         </ul>
         <p>
           On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
-          and a swipe made before a card has settled counts as a mistake. Every second loop on Hard is shorter but nastier: the clock runs faster, pictures are zoomed in tight, and the screen lies to you — fake “zones reversed” warnings, cards drifting the wrong way, decoy glows, flashed wrong names, a timer that fakes running out. Trust only the labels. And when a Hard guardian's life bar runs dry… don't relax just yet.
+          and a swipe made before a card has settled counts as a mistake. Every second loop on Hard is shorter but harder: less time, fewer but faster cards, and pictures zoomed in tight, recoloured and sometimes upside down. And when a Hard guardian's life bar runs dry… don't relax just yet.
         </p>
       </Step>
       {PHASES.map((p, i) => (

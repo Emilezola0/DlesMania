@@ -59,7 +59,7 @@
   },
   "hard": {
     "label": "Hard",
-    "blurb": "Every phase twice. Reversed zones, decoys, early-swipe penalties, one-mistake shields and a hidden clock. And the guardian does not lose gracefully…",
+    "blurb": "Every phase twice — the second time shorter, with zoomed, recoloured and upside-down pictures. Reversed zones, decoys, early-swipe penalties, one-mistake shields and a hidden clock. And the guardian does not lose gracefully…",
     "rounds": [
       2,
       2,
@@ -68,8 +68,8 @@
     "hearts": 3,
     "blitzExtra": 2,
     "blitzSecondsPer": 8,
-    "radarCards": 16,
-    "radarImpostors": 7,
+    "radarCards": 10,
+    "radarImpostors": 4,
     "radarMaxErrors": 1,
     "radarMs": {
       "start": 3200,
@@ -86,22 +86,21 @@
     "secondLoop": {
       "blitz": {
         "countDelta": -1,
-        "secondsPer": 5,
-        "glitchMs": 700,
-        "wobble": true,
-        "fakeTimerDrops": 0.4
+        "secondsPer": 5
       },
       "radar": {
-        "cards": 10,
-        "impostors": 5,
+        "cards": 5,
+        "impostors": 2,
         "speed": 0.65,
         "zoom": [
-          1.9,
-          2.9
+          2.2,
+          3.0
         ],
-        "fakeReversed": 0.3,
-        "decoyRate": 0.85,
-        "baitLean": 0.45
+        "hue": [
+          100,
+          220
+        ],
+        "flip": 0.6
       },
       "finale": {
         "targets": 3,
@@ -110,8 +109,11 @@
           2.2,
           3.0
         ],
-        "ghostNames": 0.6,
-        "fakeTimerDrops": 0.35
+        "hue": [
+          100,
+          220
+        ],
+        "flip": 0.6
       }
     },
     "secret": {

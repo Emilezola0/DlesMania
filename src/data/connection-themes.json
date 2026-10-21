@@ -206,6 +206,31 @@
       {
         "label": "Amazon Lily",
         "image": "https://static.wikia.nocookie.net/onepiece/images/8/88/Amazon_Lily_Infobox.png/revision/latest/scale-to-width-down/320?cb=20231222074153"
+      },
+      {
+        "label": "Marco",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4a/Polo_Marco_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/114?cb=20221010015200"
+      },
+      {
+        "label": "Rob Lucci",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/d7/Rob_Lucci_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/172?cb=20230102052113"
+      },
+      {
+        "label": "Kaku",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/0/09/Kaku_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/214?cb=20221127204534"
+      },
+      {
+        "label": "Yamato",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bd/Yamato_Anime_Infobox.png/revision/latest/scale-to-width-down/215?cb=20260126165014"
+      },
+      {
+        "label": "Sabo",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c2/Sabo_Anime_Infobox.png/revision/latest/scale-to-width-down/211?cb=20230804035141"
+      },
+      {
+        "label": "Rayleigh",
+        "src": "Silvers Rayleigh",
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b1/Silvers_Rayleigh_Anime_Infobox.png/revision/latest/scale-to-width-down/167?cb=20230601221758"
       }
     ],
     "categories": [
@@ -315,6 +340,61 @@
           "Wano",
           "Fish-Man Island",
           "Amazon Lily"
+        ]
+      },
+      {
+        "id": "monster-trio",
+        "label": "The Monster Trio",
+        "level": 2,
+        "items": [
+          "Luffy",
+          "Zoro",
+          "Sanji"
+        ]
+      },
+      {
+        "id": "marineford-admirals",
+        "label": "Admirals at Marineford",
+        "level": 3,
+        "items": [
+          "Akainu",
+          "Aokiji",
+          "Kizaru"
+        ]
+      },
+      {
+        "id": "zoan",
+        "label": "Zoan Devil Fruit users",
+        "level": 3,
+        "items": [
+          "Chopper",
+          "Kaido",
+          "Marco",
+          "Rob Lucci",
+          "Sengoku",
+          "Kaku",
+          "Yamato"
+        ]
+      },
+      {
+        "id": "brothers",
+        "label": "Sworn brothers",
+        "level": 2,
+        "items": [
+          "Luffy",
+          "Ace",
+          "Sabo"
+        ]
+      },
+      {
+        "id": "roger-crew",
+        "label": "Sailed with Gol D. Roger",
+        "level": 3,
+        "items": [
+          "Shanks",
+          "Buggy",
+          "Rayleigh",
+          "Oden"
         ]
       }
     ]
@@ -516,6 +596,27 @@
         "label": "Hizashi",
         "src": "Hizashi Hyūga",
         "image": "https://static.wikia.nocookie.net/naruto/images/1/15/Young_Hizashi.png/revision/latest/scale-to-width-down/320?cb=20160428002530"
+      },
+      {
+        "label": "Temari",
+        "image": "https://static.wikia.nocookie.net/naruto/images/b/bb/Temari_newshot.png/revision/latest/scale-to-width-down/320?cb=20180131102406"
+      },
+      {
+        "label": "Kankuro",
+        "src": "Kankurō",
+        "image": "https://static.wikia.nocookie.net/naruto/images/7/7d/Kankur%C5%8D1.png/revision/latest/scale-to-width-down/320?cb=20150125171209"
+      },
+      {
+        "label": "Rock Lee",
+        "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest/scale-to-width-down/320?cb=20181229065526"
+      },
+      {
+        "label": "Tenten",
+        "image": "https://static.wikia.nocookie.net/naruto/images/d/da/Tenten_Part_1.png/revision/latest/scale-to-width-down/320?cb=20180510203032"
+      },
+      {
+        "label": "Might Guy",
+        "image": "https://static.wikia.nocookie.net/naruto/images/3/31/Might_Guy.png/revision/latest/scale-to-width-down/320?cb=20150401084456"
       }
     ],
     "categories": [
@@ -565,16 +666,16 @@
       },
       {
         "id": "sannin",
-        "label": "Sannin and their apprentices",
+        "label": "Apprentices of a Sannin",
         "level": 2,
         "items": [
-          "Jiraiya",
-          "Tsunade",
-          "Orochimaru",
           "Minato",
           "Shizune",
           "Kabuto",
-          "Anko"
+          "Anko",
+          "Naruto",
+          "Sakura",
+          "Sasuke"
         ]
       },
       {
@@ -616,6 +717,61 @@
           "Hiashi",
           "Hanabi",
           "Hizashi"
+        ]
+      },
+      {
+        "id": "legendary-sannin",
+        "label": "The Legendary Sannin",
+        "level": 1,
+        "items": [
+          "Jiraiya",
+          "Tsunade",
+          "Orochimaru"
+        ]
+      },
+      {
+        "id": "team7-genin",
+        "label": "Team 7 genin",
+        "level": 1,
+        "items": [
+          "Naruto",
+          "Sasuke",
+          "Sakura"
+        ]
+      },
+      {
+        "id": "mangekyo",
+        "label": "Mangekyō Sharingan users",
+        "level": 3,
+        "items": [
+          "Itachi",
+          "Sasuke",
+          "Obito",
+          "Madara",
+          "Shisui",
+          "Kakashi",
+          "Izuna"
+        ]
+      },
+      {
+        "id": "sand-siblings",
+        "label": "Sand Siblings",
+        "level": 2,
+        "items": [
+          "Gaara",
+          "Temari",
+          "Kankuro"
+        ]
+      },
+      {
+        "id": "team-guy",
+        "label": "Team Guy",
+        "level": 2,
+        "items": [
+          "Rock Lee",
+          "Neji",
+          "Tenten",
+          "Might Guy"
         ]
       }
     ]
@@ -815,6 +971,18 @@
       {
         "label": "Yamcha",
         "image": "https://static.wikia.nocookie.net/dragonball/images/5/59/Yamcha_DB_Episode_138.png/revision/latest/scale-to-width-down/136?cb=20250201193345"
+      },
+      {
+        "label": "Bulma",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/a/a6/Bulma_anime_profile.png/revision/latest/scale-to-width-down/109?cb=20250617190824"
+      },
+      {
+        "label": "Bulla",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/8/8e/BullaDBGTmad.png/revision/latest/scale-to-width-down/320?cb=20240927043737"
+      },
+      {
+        "label": "Chiaotzu",
+        "image": "https://static.wikia.nocookie.net/dragonball/images/b/bb/Chiaotzu_DB_Ep_134_002.png/revision/latest/scale-to-width-down/252?cb=20231013025758"
       }
     ],
     "categories": [
@@ -932,6 +1100,52 @@
           "Android 18",
           "Trunks",
           "Goten"
+        ]
+      },
+      {
+        "id": "briefs",
+        "label": "The Briefs family",
+        "level": 2,
+        "items": [
+          "Bulma",
+          "Vegeta",
+          "Trunks",
+          "Bulla"
+        ]
+      },
+      {
+        "id": "king-kai",
+        "label": "Trained by King Kai",
+        "level": 3,
+        "items": [
+          "Goku",
+          "Piccolo",
+          "Tien",
+          "Yamcha",
+          "Chiaotzu"
+        ]
+      },
+      {
+        "id": "turtle-school",
+        "label": "Students of Master Roshi",
+        "level": 2,
+        "items": [
+          "Goku",
+          "Krillin",
+          "Yamcha"
+        ]
+      },
+      {
+        "id": "killed-by-frieza",
+        "label": "Killed by Frieza",
+        "level": 3,
+        "items": [
+          "Krillin",
+          "Vegeta",
+          "Dende",
+          "Bardock",
+          "Zarbon",
+          "Dodoria"
         ]
       }
     ]
@@ -1140,6 +1354,45 @@
       {
         "label": "Malon",
         "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/2/28/OoT_Malon_Artwork.png/revision/latest/scale-to-width-down/148?cb=20170511043102"
+      },
+      {
+        "label": "Din",
+        "src": "Din (Goddess)",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/b/b1/OoT_Din_%28better_image%29.png/revision/latest/scale-to-width-down/320?cb=20241028221325"
+      },
+      {
+        "label": "Nayru",
+        "src": "Nayru (Goddess)",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/5/59/Nayruoot.jpg/revision/latest/scale-to-width-down/320?cb=20100612044333"
+      },
+      {
+        "label": "Farore",
+        "src": "Farore (Goddess)",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/b/be/Faroreoot.jpg/revision/latest/scale-to-width-down/320?cb=20100612043950"
+      },
+      {
+        "label": "Tatl",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/9/99/MM3D_Tatl_Artwork.png/revision/latest/scale-to-width-down/299?cb=20141209201444"
+      },
+      {
+        "label": "Midna",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/b/b6/TPHD_Midna_Artwork.png/revision/latest/scale-to-width-down/173?cb=20160130084342"
+      },
+      {
+        "label": "Fi",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/e/ed/SS_Fi_Artwork.png/revision/latest/scale-to-width-down/320?cb=20111011033914"
+      },
+      {
+        "label": "Ezlo",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/2/25/TMC_Ezlo_Artwork.png/revision/latest/scale-to-width-down/240?cb=20130410210904"
+      },
+      {
+        "label": "Sidon",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/7/77/BotW_Sidon_Model.png/revision/latest/scale-to-width-down/121?cb=20170316212247"
+      },
+      {
+        "label": "King Dorephan",
+        "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/5/57/BotW_King_Dorephan_Model.png/revision/latest/scale-to-width-down/320?cb=20170316194640"
       }
     ],
     "categories": [
@@ -1248,6 +1501,49 @@
           "Ganondorf",
           "Link",
           "Rauru"
+        ]
+      },
+      {
+        "id": "triforce",
+        "label": "Bearers of the Triforce",
+        "level": 2,
+        "items": [
+          "Link",
+          "Zelda",
+          "Ganondorf"
+        ]
+      },
+      {
+        "id": "goddesses",
+        "label": "The Golden Goddesses",
+        "level": 1,
+        "items": [
+          "Din",
+          "Nayru",
+          "Farore"
+        ]
+      },
+      {
+        "id": "companions",
+        "label": "Link's travel companions",
+        "level": 2,
+        "items": [
+          "Navi",
+          "Tatl",
+          "Midna",
+          "Fi",
+          "Ezlo"
+        ]
+      },
+      {
+        "id": "zora-royals",
+        "label": "Zora royalty",
+        "level": 3,
+        "items": [
+          "Mipha",
+          "Ruto",
+          "Sidon",
+          "King Dorephan"
         ]
       }
     ]
@@ -1425,6 +1721,38 @@
       {
         "label": "Muk",
         "image": "https://static.wikia.nocookie.net/pokemon/images/4/41/0089Muk.png/revision/latest/scale-to-width-down/320?cb=20260203115719"
+      },
+      {
+        "label": "Raikou",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/4/48/0243Raikou.png/revision/latest/scale-to-width-down/320?cb=20260207054455"
+      },
+      {
+        "label": "Entei",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/2/2b/0244Entei.png/revision/latest/scale-to-width-down/320?cb=20260207054457"
+      },
+      {
+        "label": "Suicune",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/d/dc/0245Suicune.png/revision/latest/scale-to-width-down/320?cb=20260207054656"
+      },
+      {
+        "label": "Uxie",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/1/18/0480Uxie.png/revision/latest/scale-to-width-down/320?cb=20260223063120"
+      },
+      {
+        "label": "Mesprit",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/2/24/0481Mesprit.png/revision/latest/scale-to-width-down/320?cb=20260223063240"
+      },
+      {
+        "label": "Azelf",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/a/ac/0482Azelf.png/revision/latest/scale-to-width-down/320?cb=20260223063242"
+      },
+      {
+        "label": "Mewtwo",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/8/89/0150Mewtwo.png/revision/latest/scale-to-width-down/320?cb=20260203160233"
+      },
+      {
+        "label": "Alakazam",
+        "image": "https://static.wikia.nocookie.net/pokemon/images/b/bb/0065Alakazam.png/revision/latest/scale-to-width-down/320?cb=20260203111543"
       }
     ],
     "categories": [
@@ -1519,6 +1847,51 @@
           "Lucario",
           "Primeape",
           "Muk"
+        ]
+      },
+      {
+        "id": "beasts",
+        "label": "Legendary beasts of Johto",
+        "level": 1,
+        "items": [
+          "Raikou",
+          "Entei",
+          "Suicune"
+        ]
+      },
+      {
+        "id": "ash-kanto",
+        "label": "Ash's Kanto starters",
+        "level": 3,
+        "items": [
+          "Bulbasaur",
+          "Charizard",
+          "Squirtle"
+        ]
+      },
+      {
+        "id": "lake",
+        "label": "Lake guardians",
+        "level": 2,
+        "items": [
+          "Uxie",
+          "Mesprit",
+          "Azelf"
+        ]
+      },
+      {
+        "id": "psychic",
+        "label": "Psychic-type Pokémon",
+        "level": 2,
+        "items": [
+          "Mewtwo",
+          "Espeon",
+          "Alakazam",
+          "Lugia",
+          "Uxie",
+          "Mesprit",
+          "Azelf",
+          "Latias"
         ]
       }
     ]
@@ -1754,6 +2127,18 @@
       {
         "label": "Bowser",
         "image": "https://static.wikia.nocookie.net/mario/images/3/3f/SMBW_Bowser_Artwork.png/revision/latest/scale-to-width-down/319?cb=20230910142646"
+      },
+      {
+        "label": "Bowser Jr.",
+        "image": "https://static.wikia.nocookie.net/mario/images/5/5d/Bowser_Jr_SMB_Wonder_artwork.png/revision/latest/scale-to-width-down/320?cb=20230905201157"
+      },
+      {
+        "label": "King Boo",
+        "image": "https://static.wikia.nocookie.net/mario/images/b/b9/Kingbooluigismansion3.png/revision/latest/scale-to-width-down/320?cb=20230808025818"
+      },
+      {
+        "label": "Big Boo",
+        "image": "https://static.wikia.nocookie.net/mario/images/c/ce/Big_Boo_Artwork_-_Mario_Pinball_Land.png/revision/latest/scale-to-width-down/320?cb=20120414150828"
       }
     ],
     "categories": [
@@ -1875,6 +2260,53 @@
           "Iggy",
           "Yoshi",
           "Wario"
+        ]
+      },
+      {
+        "id": "bowser-family",
+        "label": "Bowser's family",
+        "level": 2,
+        "items": [
+          "Bowser",
+          "Bowser Jr.",
+          "Larry",
+          "Morton",
+          "Wendy",
+          "Iggy",
+          "Roy",
+          "Lemmy",
+          "Ludwig"
+        ]
+      },
+      {
+        "id": "princesses",
+        "label": "Princesses",
+        "level": 1,
+        "items": [
+          "Peach",
+          "Daisy",
+          "Rosalina"
+        ]
+      },
+      {
+        "id": "caps",
+        "label": "A letter on their cap",
+        "level": 3,
+        "items": [
+          "Mario",
+          "Luigi",
+          "Wario",
+          "Waluigi"
+        ]
+      },
+      {
+        "id": "ghosts",
+        "label": "Ghosts",
+        "level": 2,
+        "items": [
+          "Boo",
+          "King Boo",
+          "Big Boo"
         ]
       }
     ]
@@ -2066,6 +2498,18 @@
       {
         "label": "Kashyyyk",
         "image": "https://static.wikia.nocookie.net/starwars/images/e/ea/Kashyyyk-SW-MTHC.png/revision/latest/scale-to-width-down/320?cb=20251122015233"
+      },
+      {
+        "label": "Han Solo",
+        "image": "https://static.wikia.nocookie.net/starwars/images/e/e2/TFAHanSolo.png/revision/latest/scale-to-width-down/240?cb=20160208055002"
+      },
+      {
+        "label": "Kit Fisto",
+        "image": "https://static.wikia.nocookie.net/starwars/images/2/25/KitFisto-USWNE.png/revision/latest/scale-to-width-down/245?cb=20241201061011"
+      },
+      {
+        "label": "Sabine Wren",
+        "image": "https://static.wikia.nocookie.net/starwars/images/c/cc/Sabine_Wren-AG.png/revision/latest/scale-to-width-down/256?cb=20241217034612"
       }
     ],
     "categories": [
@@ -2158,6 +2602,50 @@
           "Dagobah",
           "Mustafar",
           "Kashyyyk"
+        ]
+      },
+      {
+        "id": "ot-heroes",
+        "label": "Original trilogy heroes",
+        "level": 1,
+        "items": [
+          "Luke Skywalker",
+          "Leia Organa",
+          "Han Solo"
+        ]
+      },
+      {
+        "id": "sidious-apprentices",
+        "label": "Darth Sidious's apprentices",
+        "level": 3,
+        "items": [
+          "Darth Maul",
+          "Count Dooku",
+          "Darth Vader"
+        ]
+      },
+      {
+        "id": "council",
+        "label": "Jedi Council members",
+        "level": 2,
+        "items": [
+          "Yoda",
+          "Mace Windu",
+          "Ki-Adi-Mundi",
+          "Plo Koon",
+          "Obi-Wan Kenobi",
+          "Kit Fisto"
+        ]
+      },
+      {
+        "id": "mandalorians",
+        "label": "Wore Mandalorian armour",
+        "level": 2,
+        "items": [
+          "Boba Fett",
+          "Jango Fett",
+          "Din Djarin",
+          "Sabine Wren"
         ]
       }
     ]
@@ -2353,6 +2841,38 @@
       {
         "label": "Nagini",
         "image": "https://static.wikia.nocookie.net/harrypotter/images/7/70/Nagini_PM.png/revision/latest/scale-to-width-down/320?cb=20161124073206"
+      },
+      {
+        "label": "Harry",
+        "src": "Harry Potter",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/ce/Harry_Potter_DHF1.jpg/revision/latest/scale-to-width-down/240?cb=20140603201724"
+      },
+      {
+        "label": "Hermione",
+        "src": "Hermione Granger",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/3/34/Hermione_Granger.jpg/revision/latest/scale-to-width-down/240?cb=20251206062840"
+      },
+      {
+        "label": "Phineas Nigellus",
+        "src": "Phineas Nigellus Black",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/1/13/Phineas_Black-Hogwart%27s_Legacy.png/revision/latest/scale-to-width-down/237?cb=20260127102736"
+      },
+      {
+        "label": "Rita Skeeter",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/2/23/Rita_Skeeter_2.jpg/revision/latest/scale-to-width-down/240?cb=20101113194128"
+      },
+      {
+        "label": "Elder Wand",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/5/59/Elder_Wand.png/revision/latest/scale-to-width-down/320?cb=20241227040818"
+      },
+      {
+        "label": "Resurrection Stone",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/ce/DeathlyHallow_WB_F7_ResurrectionStoneInOpen_Snitch_Image_100615_Port.jpg/revision/latest/scale-to-width-down/320?cb=20180709184423"
+      },
+      {
+        "label": "Invisibility Cloak",
+        "src": "Cloak of Invisibility",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/6/67/Cloak_of_Invisibility_PM.png/revision/latest/scale-to-width-down/320?cb=20161124181645"
       }
     ],
     "categories": [
@@ -2446,6 +2966,50 @@
           "Hufflepuff's Cup",
           "Ravenclaw's Diadem",
           "Nagini"
+        ]
+      },
+      {
+        "id": "golden-trio",
+        "label": "The Golden Trio",
+        "level": 1,
+        "items": [
+          "Harry",
+          "Ron",
+          "Hermione"
+        ]
+      },
+      {
+        "id": "headmasters",
+        "label": "Headmasters of Hogwarts",
+        "level": 3,
+        "items": [
+          "Dumbledore",
+          "Snape",
+          "McGonagall",
+          "Umbridge",
+          "Phineas Nigellus"
+        ]
+      },
+      {
+        "id": "animagi",
+        "label": "Animagi",
+        "level": 3,
+        "items": [
+          "McGonagall",
+          "Sirius",
+          "Pettigrew",
+          "James Potter",
+          "Rita Skeeter"
+        ]
+      },
+      {
+        "id": "hallows",
+        "label": "The Deathly Hallows",
+        "level": 2,
+        "items": [
+          "Elder Wand",
+          "Resurrection Stone",
+          "Invisibility Cloak"
         ]
       }
     ]
