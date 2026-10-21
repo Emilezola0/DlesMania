@@ -31,7 +31,13 @@
         "Is that all, summoner?"
       ],
       "win": "The Rift... is yours. For now.",
-      "lose": "Another summoner devoured."
+      "lose": "Another summoner devoured.",
+      "roulette": "You broke my shell... but the Rift always gets a last word. One champion each — pray we never choose alike.",
+      "spared": [
+        "Lucky.",
+        "Again, summoner."
+      ],
+      "shot": "Same champion. The Rift devours you."
     },
     "blitz": [
       {
@@ -494,7 +500,13 @@
         "The world needs a better hero."
       ],
       "win": "Perhaps... the world could use a hero like you.",
-      "lose": "As expected. The strong survive."
+      "lose": "As expected. The strong survive.",
+      "roulette": "Still standing? Then a final duel of nerves. Name a hero — I'll name mine.",
+      "spared": [
+        "Hm. Again.",
+        "Your aim holds... for now."
+      ],
+      "shot": "We chose alike. Game over, hero."
     },
     "blitz": [
       {
@@ -886,7 +898,13 @@
         "Creeper? Aw man."
       ],
       "win": "The End... is only the beginning.",
-      "lose": "You died. Respawn?"
+      "lose": "You died. Respawn?",
+      "roulette": "The End is not finished with you. Pick a creature. I pick one too. If they match... you respawn nowhere.",
+      "spared": [
+        "SKREE... again.",
+        "Another."
+      ],
+      "shot": "The same creature. You fell into the void."
     },
     "blitz": [
       {
@@ -1300,7 +1318,15 @@
         ],
         "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/9f/Armadillo.png/revision/latest/scale-to-width-down/400?cb=20240729213938"
       }
-    ]
+    ],
+    "roulette": {
+      "exclude": [
+        "Diamond",
+        "Crafting Table",
+        "Torch",
+        "TNT"
+      ]
+    }
   },
   {
     "id": "onepiece",
@@ -1330,7 +1356,13 @@
         "Go back to East Blue!"
       ],
       "win": "Wororororo... the new era belongs to you.",
-      "lose": "Another rookie sinks to the bottom of the sea."
+      "lose": "Another rookie sinks to the bottom of the sea.",
+      "roulette": "Wororo... not yet! Let's gamble like real pirates. Name one — if I name the same, you sink!",
+      "spared": [
+        "Wororo, lucky!",
+        "Again!"
+      ],
+      "shot": "Wororororo! Same name — to the bottom of the sea!"
     },
     "blitz": [
       {
@@ -1724,7 +1756,13 @@
         "Pathetic!"
       ],
       "win": "Defeated... by a mere mortal?!",
-      "lose": "Your planet will make a lovely addition to my collection."
+      "lose": "Your planet will make a lovely addition to my collection.",
+      "roulette": "Ohoho... you think this is my last form? Let's play a little game, monkey. Choose a fighter.",
+      "spared": [
+        "Hmph. Again.",
+        "Lucky monkey."
+      ],
+      "shot": "Ohohoho! The same one. How delightful."
     },
     "blitz": [
       {
@@ -2097,7 +2135,13 @@
         "This world is hell."
       ],
       "win": "So this is... the power of the new generation.",
-      "lose": "Dance for me, child. Infinite Tsukuyomi."
+      "lose": "Dance for me, child. Infinite Tsukuyomi.",
+      "roulette": "Interesting. Then let fate decide. Name a shinobi — if our eyes meet on the same one, you fall.",
+      "spared": [
+        "Fate spares you.",
+        "Again."
+      ],
+      "shot": "The same shinobi. Fate has chosen."
     },
     "blitz": [
       {
@@ -2478,7 +2522,13 @@
         "You have failed me."
       ],
       "win": "You were right about me... tell your friends.",
-      "lose": "Now, you will experience the full power of the Dark Side."
+      "lose": "Now, you will experience the full power of the Dark Side.",
+      "roulette": "You have defeated me... or so you believe. Let the Force choose. Name one — I will name another.",
+      "spared": [
+        "The Force protects you... for now.",
+        "Again."
+      ],
+      "shot": "We chose the same. Your destiny is sealed."
     },
     "blitz": [
       {
@@ -2848,7 +2898,12 @@
         "label": "Plo Koon",
         "image": "https://static.wikia.nocookie.net/starwars/images/b/bf/PloKoonCardTrader.png/revision/latest/scale-to-width-down/300?cb=20251218183946"
       }
-    ]
+    ],
+    "roulette": {
+      "exclude": [
+        "Millennium Falcon"
+      ]
+    }
   },
   {
     "id": "harrypotter",
@@ -2882,7 +2937,13 @@
         "Kneel before me!"
       ],
       "win": "No... the Elder Wand... was never mine...",
-      "lose": "Harry Potter... the boy who lived... to fail."
+      "lose": "Harry Potter... the boy who lived... to fail.",
+      "roulette": "Not so fast. One last game, with Death as the judge. Name one — I shall name mine.",
+      "spared": [
+        "Luck, not skill.",
+        "Again."
+      ],
+      "shot": "The same name. Avada Kedavra."
     },
     "blitz": [
       {
@@ -3288,7 +3349,12 @@
         ],
         "image": "https://static.wikia.nocookie.net/harrypotter/images/4/40/Gellert_Grindelwald_SODM.jpeg/revision/latest/scale-to-width-down/354?cb=20220928093827"
       }
-    ]
+    ],
+    "roulette": {
+      "exclude": [
+        "Golden Snitch"
+      ]
+    }
   },
   {
     "id": "lotr",
@@ -3324,7 +3390,13 @@
         "Kneel!"
       ],
       "win": "The Eye... closes.",
-      "lose": "One ring to rule them all."
+      "lose": "One ring to rule them all.",
+      "roulette": "The Eye is not closed yet. Name one of Middle-earth — and pray I do not name it too.",
+      "spared": [
+        "The Eye blinks.",
+        "Again."
+      ],
+      "shot": "The same. The Eye sees you, and you are lost."
     },
     "blitz": [
       {
@@ -3740,7 +3812,13 @@
         "Reality is often disappointing."
       ],
       "win": "The hardest choices... require the strongest wills.",
-      "lose": "I am... inevitable."
+      "lose": "I am... inevitable.",
+      "roulette": "You have my respect. Now let's see your luck. Name one — I'll do the same. A balanced game.",
+      "spared": [
+        "Hm. Perfectly balanced.",
+        "Again."
+      ],
+      "shot": "The same name. Inevitable."
     },
     "blitz": [
       {
@@ -4096,6 +4174,11 @@
         ],
         "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/98/Phil_Coulson_Infobox.jpg/revision/latest/scale-to-width-down/279?cb=20250203215516"
       }
-    ]
+    ],
+    "roulette": {
+      "exclude": [
+        "Mjølnir"
+      ]
+    }
   }
 ]

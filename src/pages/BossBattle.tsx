@@ -4,11 +4,24 @@ import { BossHeader, HeartIcon } from '../boss/BossHeader';
 import { FinalBlow } from '../boss/FinalBlow';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
+import { RussianRoulette, type RouletteResult } from '../boss/RussianRoulette';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
 import { getBoss } from '../data/bosses';
-import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, battleScore, drawBlitz, drawFinale, drawRadar, formatTime, totalRounds } from '../lib/boss';
+import {
+  DIFFICULTIES,
+  DIFFICULTY_IDS,
+  PHASES,
+  battleScore,
+  drawBlitz,
+  drawFinale,
+  drawRadar,
+  drawRoulette,
+  formatTime,
+  totalRounds,
+  type Roulette,
+} from '../lib/boss';
 import { celebrateBig, flash, shake } from '../lib/fx';
 import { pick } from '../lib/rng';
 import { sfx } from '../lib/sfx';
@@ -20,7 +33,10 @@ import type { Boss, PhaseResult } from '../types';
  * intro → (phase card → phase) × rounds → victory, or defeat once the hearts run out.
  * The difficulty sets how many rounds each phase needs (one boss segment each), and how hard
  * each round is. Losing a round costs a heart and that round is retried with fresh content.
+ * On Hard, emptying the life bar unlocks a secret fourth phase (phase index 3): Russian Roulette,
+ * which ends the fight on the spot either way.
  */
+const SECRET = 3;
 type Stage = 'intro' | 'card' | 'fight' | 'won' | 'lost';
 
 interface Line {
@@ -59,6 +75,9 @@ function BossBattle({ boss }: { boss: Boss }) {
   const [last, setLast] = useState<{ won: boolean; missed?: string[] } | null>(null);
   const [tally, setTally] = useState({ correct: 0, wrong: 0 });
   const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean } | null>(null);
+  /** Hard's secret phase, drawn when the main life bar empties. */
+  const [roulette, setRoulette] = useState<Roulette | null>(null);
+  const [rouletteResult, setRouletteResult] = useState<RouletteResult | null>(null);
   const startedAt = useRef(0);
   const arena = useRef<HTMLDivElement>(null);
   const flashLayer = useRef<HTMLDivElement>(null);
@@ -99,6 +118,17 @@ function BossBattle({ boss }: { boss: Boss }) {
       const won = cleared + 1;
       setCleared(won);
       if (won >= total) {
+        // Hard: the guardian isn't done yet.
+        const secret = drawRoulette(boss, d, Math.random);
+        if (secret) {
+          setRoulette(secret);
+          setPhase(SECRET);
+          setRound(0);
+          setAttempt(0);
+          window.setTimeout(() => say(boss.lines.roulette ?? 'You think it is over? One last game…', 'taunt'), 1200);
+          setStage('card');
+          return;
+        }
         say(boss.lines.win, 'hit');
         finish(true, won, hearts, t);
         return;
@@ -129,9 +159,28 @@ function BossBattle({ boss }: { boss: Boss }) {
     setStage('card');
   };
 
-  const finish = (won: boolean, roundsWon: number, heartsLeft: number, t: { correct: number; wrong: number }) => {
+  const onRouletteDone = (r: RouletteResult) => {
+    setRouletteResult(r);
+    if (r.survived) {
+      sfx.hit();
+      shake(arena.current, 14, 520);
+      flash(flashLayer.current, 'white');
+      say(boss.lines.win, 'hit');
+      finish(true, total, hearts, tally, roulette?.bonus ?? 0);
+    } else {
+      // Same pick as the boss: the fight is lost on the spot, whatever hearts were left.
+      shake(arena.current, 24, 700);
+      flash(flashLayer.current, 'rgb(220 60 60)');
+      setHearts(0);
+      say(boss.lines.shot ?? 'The same name. You lose.', 'hurt');
+      finish(false, total, 0, tally, -1);
+    }
+  };
+
+  /** `bonus`: the secret phase's points when survived, -1 when shot (no victory bonuses). */
+  const finish = (won: boolean, roundsWon: number, heartsLeft: number, t: { correct: number; wrong: number }, bonus = 0) => {
     const timeMs = performance.now() - startedAt.current;
-    const score = battleScore({ roundsWon, hearts: heartsLeft, ...t, timeMs }, d);
+    const score = battleScore({ roundsWon, hearts: heartsLeft, ...t, timeMs, bonus }, d);
     const best = score > record.bestScore;
     recordBoss(bossKey(boss.id, difficulty), { won, score, time: timeMs });
     setResult({ score, timeMs, best });
@@ -163,6 +212,8 @@ function BossBattle({ boss }: { boss: Boss }) {
     setTally({ correct: 0, wrong: 0 });
     setLast(null);
     setResult(null);
+    setRoulette(null);
+    setRouletteResult(null);
     usedPrompts.current = [];
     usedFaces.current = [];
     say(boss.lines.intro, 'taunt');
@@ -177,8 +228,9 @@ function BossBattle({ boss }: { boss: Boss }) {
     return () => window.removeEventListener('keydown', onKey);
   });
 
-  const info = PHASES[phase];
-  const rounds = d.rounds[phase];
+  const secretPhase = phase === SECRET;
+  const info = PHASES[Math.min(phase, PHASES.length - 1)];
+  const rounds = secretPhase ? 1 : d.rounds[phase];
   const accuracy = tally.correct + tally.wrong ? Math.round((tally.correct / (tally.correct + tally.wrong)) * 100) : 0;
 
   return (
@@ -193,9 +245,17 @@ function BossBattle({ boss }: { boss: Boss }) {
         </span>
       </div>
 
-      <div ref={arena} className={`page relative space-y-6 rounded-md p-4 sm:p-6 ${phase === 2 && stage === 'fight' ? 'boss-arena-final' : ''}`}>
+      <div ref={arena} className={`page relative space-y-6 rounded-md p-4 sm:p-6 ${phase >= 2 && stage === 'fight' ? 'boss-arena-final' : ''}`}>
         <div ref={flashLayer} className="pointer-events-none absolute inset-0 z-30 rounded-md opacity-0" aria-hidden />
-        <BossHeader boss={boss} hp={total - cleared} rounds={d.rounds} hearts={hearts} maxHearts={d.hearts} line={line} />
+        <BossHeader
+          boss={boss}
+          hp={total - cleared}
+          rounds={d.rounds}
+          hearts={hearts}
+          maxHearts={d.hearts}
+          secret={roulette ? (rouletteResult?.survived ? 'broken' : 'active') : undefined}
+          line={line}
+        />
 
         {/* Phase stepper; phases that take several rounds show their progress underneath. */}
         <ol className="flex items-start justify-center gap-2">
@@ -225,6 +285,19 @@ function BossBattle({ boss }: { boss: Boss }) {
               </li>
             );
           })}
+          {roulette && (
+            <li className="animate-pop flex items-start gap-2">
+              <span className="mt-4 h-px w-6 bg-coral sm:w-10" />
+              <span
+                title="Secret phase"
+                className={`boss-secret-title grid size-8 place-items-center rounded-full border-2 font-display text-xs font-bold ${
+                  rouletteResult?.survived ? 'border-hit bg-hit text-on-strong' : 'border-coral bg-coral text-on-strong'
+                }`}
+              >
+                {rouletteResult?.survived ? '✓' : '?'}
+              </span>
+            </li>
+          )}
         </ol>
 
         {stage === 'intro' && (
@@ -294,7 +367,25 @@ function BossBattle({ boss }: { boss: Boss }) {
           </div>
         )}
 
-        {stage === 'card' && (
+        {stage === 'card' && secretPhase && roulette && (
+          <div key="secret" className="boss-phase-card space-y-4 py-4 text-center">
+            <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">The guardian's life bar is empty…</p>
+            <p className="font-display text-xs uppercase tracking-[0.4em] text-coral">…but it refuses to fall</p>
+            <h2 className="boss-phase-title boss-secret-title font-display text-5xl font-bold tracking-[0.12em] text-coral sm:text-6xl">SECRET PHASE</h2>
+            <p className="font-display text-xl font-semibold tracking-wider">Russian Roulette</p>
+            <p className="mx-auto max-w-md text-sm text-ink-soft">
+              {roulette.pool.length} characters sit at the table. Name one, then {boss.boss.name} picks one at random from those left — yours
+              included. <b className="text-coral">If it's the same, you lose on the spot.</b> If not, both leave the table. Survive{' '}
+              <b className="text-ink">{roulette.picksToWin} picks</b> to win.
+              {roulette.turnSeconds > 0 && ` You have ${roulette.turnSeconds} seconds per pick, or fate picks for you.`}
+            </p>
+            <button type="button" onClick={begin} className="btn-accent rounded-md px-8 py-3 font-display font-bold tracking-widest">
+              Take a seat
+            </button>
+          </div>
+        )}
+
+        {stage === 'card' && !secretPhase && (
           <div key={`${phase}-${round}-${attempt}`} className="boss-phase-card space-y-4 py-4 text-center">
             {last && !last.won && (
               <div className="space-y-1">
@@ -328,6 +419,9 @@ function BossBattle({ boss }: { boss: Boss }) {
             {phase === 0 && <KnowledgeBlitz prompt={content.blitz} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 1 && <RadarDefense cards={content.radar} franchise={boss.franchise} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 2 && <FinalBlow targets={content.finale} pool={content.pool} difficulty={d} onEvent={onEvent} onDone={onPhaseDone} />}
+            {secretPhase && roulette && (
+              <RussianRoulette roulette={roulette} bossName={boss.boss.name} spared={boss.lines.spared ?? []} onSay={say} onDone={onRouletteDone} />
+            )}
           </div>
         )}
 
@@ -359,6 +453,13 @@ function BossBattle({ boss }: { boss: Boss }) {
               ))}
               {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">★ New best score</span>}
             </p>
+            {roulette && rouletteResult && (
+              <p className={`font-display text-sm font-bold tracking-wider ${rouletteResult.survived ? 'text-hit' : 'text-coral'}`}>
+                {rouletteResult.survived
+                  ? `Secret phase survived — ${rouletteResult.safePicks}/${roulette.picksToWin} picks (+${Math.round(roulette.bonus * d.scoreMultiplier)} pts)`
+                  : `Shot at the roulette table on pick ${rouletteResult.safePicks + 1} of ${roulette.picksToWin}`}
+              </p>
+            )}
             <div className="flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={rematch} className="btn-accent flex-1 rounded-md py-3 font-display font-bold tracking-widest">
                 {stage === 'won' ? 'Fight again' : 'Rematch'}

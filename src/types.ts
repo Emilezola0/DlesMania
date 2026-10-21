@@ -164,12 +164,21 @@ export interface Boss {
     hurt: string[];
     win: string;
     lose: string;
+    /** Hard's secret phase (defaults in BossBattle when missing): its opening, a survived turn, the fatal shot. */
+    roulette?: string;
+    spared?: string[];
+    shot?: string;
   };
   blitz: BlitzPrompt[];
   /** Phase 2: cards that belong to the franchise, and look-alikes from elsewhere. */
   radar: { members: BossCard[]; impostors: BossCard[] };
   /** Phase 3: rare items and secondary characters to name under pressure. */
   finale: BossCard[];
+  /**
+   * Per-boss overrides for Hard's secret Russian Roulette phase (src/data/difficulties.json has the
+   * defaults). `exclude` drops cards that aren't characters (items, ships...) from its pool.
+   */
+  roulette?: { picksToWin?: number; poolSize?: number; turnSeconds?: number; bonus?: number; exclude?: string[] };
 }
 
 /** How a phase ended, reported by the phase component to the battle. */

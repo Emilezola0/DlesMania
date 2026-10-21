@@ -9,6 +9,8 @@ interface Props {
   rounds: readonly number[];
   hearts: number;
   maxHearts: number;
+  /** Hard's secret phase: a hidden last segment that appears once the main bar is empty. */
+  secret?: 'active' | 'broken';
   line: { text: string; key: number; mood: 'taunt' | 'hit' | 'hurt' };
 }
 
@@ -26,7 +28,7 @@ export function HeartIcon({ full, className = '' }: { full: boolean; className?:
 }
 
 /** The boss portrait, its segmented life bar, the player's hearts and the boss's latest line. */
-export function BossHeader({ boss, hp, rounds, hearts, maxHearts, line }: Props) {
+export function BossHeader({ boss, hp, rounds, hearts, maxHearts, secret, line }: Props) {
   const total = rounds.reduce((a, b) => a + b, 0);
   // Segments follow the phases left to right, so they break from the left.
   let segment = 0;
@@ -64,9 +66,19 @@ export function BossHeader({ boss, hp, rounds, hearts, maxHearts, line }: Props)
                 })}
               </div>
             ))}
+            {secret && (
+              <div
+                title="Secret phase"
+                className={`animate-pop relative grid h-4 w-8 place-items-center overflow-hidden rounded-sm border border-coral font-display text-[10px] font-bold sm:h-5 ${
+                  secret === 'active' ? 'boss-segment-secret bg-coral text-on-strong' : 'bg-tile text-ink-faint'
+                }`}
+              >
+                ?
+              </div>
+            )}
           </div>
           <div className="mt-1.5 flex items-center justify-between">
-            <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{Math.round((hp / total) * 100)}% HP</span>
+            <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{secret === 'active' ? '???' : `${Math.round((hp / total) * 100)}%`} HP</span>
             <span className="flex items-center gap-0.5" aria-label={`${hearts} of ${maxHearts} hearts`}>
               <span className="mr-1 font-display text-[11px] uppercase tracking-widest text-ink-faint">You</span>
               {Array.from({ length: maxHearts }, (_, i) => (

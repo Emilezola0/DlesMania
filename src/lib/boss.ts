@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { BossDifficulty } from '../store/progress';
+import difficultyData from '../data/difficulties.json';
 import type { BlitzPrompt, Boss, BossCard } from '../types';
 import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
@@ -45,28 +46,33 @@ export interface DifficultySpec {
   /** Seconds that still earn the speed bonus. */
   parSeconds: number;
   scoreMultiplier: number;
+  /** Secret last phase after the boss's life runs out; null = none (Easy, Medium). */
+  roulette: RouletteSpec | null;
 }
 
-export const DIFFICULTIES: Record<Difficulty, DifficultySpec> = {
-  easy: {
-    id: 'easy', label: 'Easy', blurb: 'Three phases, clean cards, generous timers.',
-    rounds: [1, 1, 1], hearts: 3, blitzExtra: 0, blitzSecondsPer: 12,
-    radarCards: 10, radarImpostors: 4, radarMaxErrors: 2, radarMs: { start: 4600, step: 200, min: 2800 }, radarLockMs: 0,
-    finaleTargets: 3, finaleSeconds: 12, finalePenaltyMs: 2000, distortion: 0, parSeconds: 300, scoreMultiplier: 1,
-  },
-  medium: {
-    id: 'medium', label: 'Medium', blurb: 'Longer waves, tighter timers, shifting colours and spinning cards. The final phase must be won twice.',
-    rounds: [1, 1, 2], hearts: 3, blitzExtra: 1, blitzSecondsPer: 10,
-    radarCards: 14, radarImpostors: 6, radarMaxErrors: 2, radarMs: { start: 3800, step: 150, min: 2200 }, radarLockMs: 0,
-    finaleTargets: 4, finaleSeconds: 10, finalePenaltyMs: 2500, distortion: 1, parSeconds: 420, scoreMultiplier: 1.6,
-  },
-  hard: {
-    id: 'hard', label: 'Hard', blurb: 'Every phase twice. Reversed zones, decoys, early-swipe penalties, one-mistake shields and a hidden clock.',
-    rounds: [2, 2, 2], hearts: 3, blitzExtra: 2, blitzSecondsPer: 8,
-    radarCards: 16, radarImpostors: 7, radarMaxErrors: 1, radarMs: { start: 3200, step: 120, min: 1600 }, radarLockMs: 350,
-    finaleTargets: 5, finaleSeconds: 9, finalePenaltyMs: 3000, distortion: 2, parSeconds: 600, scoreMultiplier: 2.5,
-  },
-};
+/**
+ * "Russian Roulette": the player names a character from a shared pool, then the boss picks one
+ * at random from what's left (the player's pick included). Same character → instant defeat.
+ * Otherwise both leave the pool, and `picksToWin` safe picks win the fight.
+ */
+export interface RouletteSpec {
+  /** Safe picks needed (lowered automatically when the pool can't allow that many). */
+  picksToWin: number;
+  /** Characters drawn into the pool. */
+  poolSize: number;
+  /** Seconds per turn; when they run out the pick is made for you. 0 = no clock. */
+  turnSeconds: number;
+  /** Points added (before the multiplier) when the player survives. */
+  bonus: number;
+}
+
+/**
+ * The numbers live in src/data/difficulties.json so balancing is a data edit, not a code change
+ * (checked by `npm run data:validate`).
+ */
+export const DIFFICULTIES = Object.fromEntries(
+  Object.entries(difficultyData).map(([id, spec]) => [id, { ...spec, id }]),
+) as unknown as Record<Difficulty, DifficultySpec>;
 
 export const DIFFICULTY_IDS = Object.keys(DIFFICULTIES) as Difficulty[];
 
@@ -146,6 +152,39 @@ export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, av
   return shuffle(pool, rand).slice(0, d.finaleTargets);
 }
 
+/**
+ * Each safe turn removes two characters (the player's and the boss's), and the last turn needs
+ * at least two left so the boss's pick can miss — so `n` characters allow at most floor(n / 2) picks.
+ */
+export const maxSafePicks = (poolSize: number) => Math.floor(poolSize / 2);
+
+/** Characters a boss can bring to the roulette table: its cards, minus objects it lists in `roulette.exclude`. */
+export function roulettePool(boss: Boss): BossCard[] {
+  const exclude = new Set((boss.roulette?.exclude ?? []).map((l) => l.toLowerCase()));
+  const seen = new Set<string>();
+  return [...boss.radar.members, ...boss.finale].filter((c) => {
+    const key = c.label.toLowerCase();
+    if (exclude.has(key) || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+/**
+ * The roulette for one fight: difficulty settings, overridden per boss in bosses.json, then
+ * clamped so the target is reachable. Null when the difficulty has none or the pool is too small.
+ */
+export function drawRoulette(boss: Boss, d: DifficultySpec, rand: () => number) {
+  if (!d.roulette) return null;
+  const spec = { ...d.roulette, ...boss.roulette };
+  const pool = shuffle(roulettePool(boss), rand).slice(0, spec.poolSize);
+  const picksToWin = Math.min(spec.picksToWin, maxSafePicks(pool.length));
+  if (picksToWin < 1) return null;
+  return { pool, picksToWin, turnSeconds: spec.turnSeconds, bonus: spec.bonus };
+}
+
+export type Roulette = NonNullable<ReturnType<typeof drawRoulette>>;
+
 /** Every spelling of an answer (English, French, nicknames), compacted for exact comparison. */
 const compactSpellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(compactText).filter(Boolean);
 
@@ -182,17 +221,19 @@ export interface BattleStats {
   correct: number;
   wrong: number;
   timeMs: number;
+  /** Secret phase: its bonus when survived, -1 when shot (no victory bonuses). */
+  bonus?: number;
 }
 
 /**
  * Points: 1000 per round won, 400 per heart kept, accuracy and speed bonuses (victories only),
  * times the difficulty's multiplier.
  */
-export function battleScore({ roundsWon, hearts, correct, wrong, timeMs }: BattleStats, d: DifficultySpec) {
-  const won = roundsWon === totalRounds(d);
+export function battleScore({ roundsWon, hearts, correct, wrong, timeMs, bonus = 0 }: BattleStats, d: DifficultySpec) {
+  const won = roundsWon === totalRounds(d) && bonus >= 0;
   const accuracy = correct + wrong ? correct / (correct + wrong) : 0;
   const speed = won ? Math.max(0, d.parSeconds - timeMs / 1000) * 4 : 0;
-  return Math.round((roundsWon * 1000 + (won ? hearts * 400 : 0) + accuracy * 500 + speed) * d.scoreMultiplier);
+  return Math.round((roundsWon * 1000 + (won ? hearts * 400 : 0) + accuracy * 500 + speed + Math.max(0, bonus)) * d.scoreMultiplier);
 }
 
 export function formatTime(ms: number) {

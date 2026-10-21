@@ -82,6 +82,29 @@ console.log(`connections ${puzzles.length} puzzles (${perDomain}) | fully illust
 // Minimums follow Hard in src/lib/boss.ts (16-card waves with 7 impostors, 5 faces twice), with room
 // left so retries and second rounds draw something new.
 const bosses = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bosses.json'), 'utf8'));
+
+// Balancing lives in src/data/difficulties.json: check its shape, and that Hard's secret
+// Russian Roulette can be won (each safe turn removes 2 characters, so n allow floor(n / 2) picks).
+const difficulties = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'difficulties.json'), 'utf8'));
+const positive = ['hearts', 'blitzSecondsPer', 'radarCards', 'radarImpostors', 'finaleTargets', 'finaleSeconds', 'scoreMultiplier'];
+for (const id of ['easy', 'medium', 'hard']) {
+  const d = difficulties[id];
+  const at = `difficulties/${id}`;
+  if (!d) {
+    fail(`${at}: missing`);
+    continue;
+  }
+  for (const k of positive) if (!(d[k] > 0)) fail(`${at}: "${k}" must be a positive number`);
+  if (!Array.isArray(d.rounds) || d.rounds.length !== 3 || d.rounds.some((n) => !(n >= 1))) fail(`${at}: "rounds" needs three counts >= 1`);
+  if (d.radarImpostors >= d.radarCards) fail(`${at}: more impostors than cards`);
+  if (![0, 1, 2].includes(d.distortion)) fail(`${at}: "distortion" must be 0, 1 or 2`);
+  const r = d.roulette;
+  if (r) {
+    if (!(r.picksToWin >= 1)) fail(`${at}: roulette.picksToWin must be >= 1`);
+    if (!(r.poolSize >= 2)) fail(`${at}: roulette.poolSize must be >= 2`);
+    else if (r.picksToWin > Math.floor(r.poolSize / 2)) fail(`${at}: roulette.picksToWin ${r.picksToWin} can't be reached with ${r.poolSize} characters (max ${Math.floor(r.poolSize / 2)})`);
+  }
+}
 const bossIds = new Set();
 const label = (c) => (typeof c === 'string' ? c : c.label);
 for (const b of bosses) {
@@ -106,6 +129,18 @@ for (const b of bosses) {
   for (const c of b.radar.impostors) if (members.has(label(c).toLowerCase())) fail(`${at}: "${label(c)}" is both member and impostor`);
   const noImage = [...b.radar.members, ...b.radar.impostors, ...b.finale].filter((c) => typeof c === 'string' || !c.image).map(label);
   if (noImage.length) warn(`${at}: no image for ${noImage.join(', ')} (run scripts/enrich-bosses.mjs)`);
+  for (const k of ['roulette', 'shot']) if (!b.lines?.[k]) warn(`${at}: no "${k}" line (a generic one is used)`);
+  // Hard's roulette pool: members + finale cards that aren't excluded, capped at poolSize.
+  const roulette = { ...difficulties.hard?.roulette, ...b.roulette };
+  if (difficulties.hard?.roulette) {
+    const exclude = new Set((b.roulette?.exclude ?? []).map((l) => l.toLowerCase()));
+    const known = new Set([...b.radar.members, ...b.finale].map((c) => label(c).toLowerCase()));
+    for (const l of b.roulette?.exclude ?? []) if (!known.has(l.toLowerCase())) warn(`${at}: roulette.exclude "${l}" matches no card`);
+    const pool = Math.min(roulette.poolSize, [...known].filter((l) => !exclude.has(l)).length);
+    if (roulette.picksToWin > Math.floor(pool / 2)) {
+      warn(`${at}: roulette needs ${roulette.picksToWin} picks but ${pool} characters allow ${Math.floor(pool / 2)} (lowered in game)`);
+    }
+  }
 }
 console.log(`bosses      ${bosses.length} (${['games', 'anime', 'cinema'].map((d) => `${d}:${bosses.filter((b) => b.domain === d).length}`).join(' ')})`);
 

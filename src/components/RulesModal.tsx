@@ -97,7 +97,7 @@ function BossRules() {
         </ul>
         <p>
           On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
-          and a swipe made before a card has settled counts as a mistake.
+          and a swipe made before a card has settled counts as a mistake. And when a Hard guardian's life bar runs dry… don't relax just yet.
         </p>
       </Step>
       {PHASES.map((p, i) => (
