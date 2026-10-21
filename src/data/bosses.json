@@ -5671,5 +5671,1219 @@
         }
       ]
     }
+  },
+  {
+    "id": "smash",
+    "domain": "games",
+    "franchise": "Super Smash Bros.",
+    "aliases": [
+      "smash",
+      "smash bros",
+      "ssbu",
+      "smash ultimate"
+    ],
+    "images": "fandom:supersmashbros",
+    "boss": {
+      "name": "Master Hand",
+      "title": "The Hand of Creation",
+      "src": "fandom:supersmashbros:Master Hand",
+      "color": "#6366f1",
+      "image": "https://static.wikia.nocookie.net/ssb/images/2/2b/Master_Hand_SSBU.png/revision/latest/scale-to-width-down/400?cb=20230206130115",
+      "label": "Master Hand"
+    },
+    "lines": {
+      "intro": "A new challenger approaches... Show me you know every fighter in this world.",
+      "phase2": "You know your roster. But not everyone here was invited to the battle.",
+      "phase3": "Final Destination. No items. Name the fighters even veterans forget!",
+      "hit": [
+        "*finger snap*",
+        "Hmph.",
+        "A clean hit."
+      ],
+      "hurt": [
+        "GAME!",
+        "Off the stage you go!",
+        "Too slow!"
+      ],
+      "win": "GAME! ...You are the champion.",
+      "lose": "Continue? No. Not this time.",
+      "secret": "One more stock. I name a fighter, a stage or an item — you name another of the same. Never twice.",
+      "secretOk": [
+        "Hm. Next.",
+        "Still standing."
+      ],
+      "secretLost": "GAME. You lose your last stock."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 fighters from the original Super Smash Bros. (N64)",
+        "count": 5,
+        "answers": [
+          "Mario",
+          "Donkey Kong|DK",
+          "Link",
+          "Samus",
+          "Yoshi",
+          "Kirby",
+          "Fox|Fox McCloud",
+          "Pikachu",
+          "Luigi",
+          "Ness",
+          "Captain Falcon|Falcon",
+          "Jigglypuff|Rondoudou"
+        ]
+      },
+      {
+        "prompt": "Name 5 third-party fighters",
+        "count": 5,
+        "answers": [
+          "Sonic",
+          "Snake|Solid Snake",
+          "Pac-Man",
+          "Mega Man",
+          "Ryu",
+          "Ken",
+          "Cloud|Cloud Strife",
+          "Bayonetta",
+          "Simon|Simon Belmont",
+          "Richter|Richter Belmont",
+          "Joker",
+          "Hero",
+          "Banjo & Kazooie|Banjo|Banjo-Kazooie",
+          "Terry|Terry Bogard",
+          "Steve",
+          "Sephiroth",
+          "Kazuya|Kazuya Mishima",
+          "Sora"
+        ]
+      },
+      {
+        "prompt": "Name 4 Fire Emblem fighters",
+        "count": 4,
+        "answers": [
+          "Marth",
+          "Roy",
+          "Ike",
+          "Lucina",
+          "Robin",
+          "Corrin",
+          "Chrom",
+          "Byleth"
+        ]
+      },
+      {
+        "prompt": "Name 5 stages",
+        "count": 5,
+        "answers": [
+          "Final Destination|Destination Finale",
+          "Battlefield|Champ de bataille",
+          "Hyrule Castle|Château d'Hyrule",
+          "Peach's Castle",
+          "Kongo Jungle",
+          "Dream Land",
+          "Saffron City",
+          "Mushroom Kingdom",
+          "Corneria",
+          "Pokémon Stadium",
+          "Brinstar",
+          "Onett",
+          "Fountain of Dreams",
+          "Temple",
+          "Great Bay",
+          "Big Blue",
+          "Yoshi's Story",
+          "Smashville",
+          "Shadow Moses Island",
+          "Delfino Plaza",
+          "Skyloft",
+          "Town and City",
+          "Kalos Pokémon League",
+          "Mementos",
+          "Midgar",
+          "Spear Pillar",
+          "Bridge of Eldin",
+          "Pictochat",
+          "Wily Castle",
+          "Green Hill Zone",
+          "Halberd",
+          "Lylat Cruise",
+          "Port Town Aero Dive",
+          "Wuhu Island",
+          "Gaur Plain"
+        ]
+      },
+      {
+        "prompt": "Name 5 items",
+        "count": 5,
+        "answers": [
+          "Home-Run Bat|Home Run Bat|Batte home-run",
+          "Smash Ball",
+          "Poké Ball|Pokeball",
+          "Assist Trophy|Trophée Passe-partout",
+          "Hammer|Marteau",
+          "Golden Hammer|Marteau doré",
+          "Beam Sword|Sabre laser",
+          "Bob-omb",
+          "Super Mushroom",
+          "Poison Mushroom",
+          "Star Rod",
+          "Fire Flower",
+          "Bunny Hood",
+          "Franklin Badge",
+          "Ray Gun",
+          "Heart Container",
+          "Maxim Tomato",
+          "Pitfall",
+          "Banana Peel",
+          "Smoke Ball",
+          "Motion-Sensor Bomb",
+          "Fan",
+          "Lip's Stick",
+          "Boss Galaga",
+          "Killer Eye",
+          "Super Star|Starman",
+          "Metal Box",
+          "Freezie",
+          "Party Ball",
+          "Barrel",
+          "Crate",
+          "Capsule",
+          "Master Ball",
+          "Deku Nut",
+          "Boomerang",
+          "Bullet Bill",
+          "Smart Bomb",
+          "Super Scope",
+          "Warp Star"
+        ]
+      },
+      {
+        "prompt": "Name 4 Pokémon fighters",
+        "count": 4,
+        "answers": [
+          "Pikachu",
+          "Jigglypuff|Rondoudou",
+          "Pichu",
+          "Mewtwo",
+          "Lucario",
+          "Pokémon Trainer|Pokemon Trainer",
+          "Squirtle|Carapuce",
+          "Ivysaur|Herbizarre",
+          "Charizard|Dracaufeu",
+          "Greninja|Amphinobi",
+          "Incineroar|Félinferno"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Mario",
+          "src": "fandom:supersmashbros:Mario (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/0/07/Mario_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180910105834"
+        },
+        {
+          "label": "Link",
+          "src": "fandom:supersmashbros:Link (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/1/19/Link_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20190612145102"
+        },
+        {
+          "label": "Kirby",
+          "src": "fandom:supersmashbros:Kirby (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/9/92/Kirby_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/302?cb=20190715072044"
+        },
+        {
+          "label": "Pikachu",
+          "src": "fandom:supersmashbros:Pikachu (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/2/26/Pikachu_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180906080903"
+        },
+        {
+          "label": "Samus",
+          "src": "fandom:supersmashbros:Samus (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/4/4d/Samus_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/284?cb=20180612205333"
+        },
+        {
+          "label": "Fox",
+          "src": "fandom:supersmashbros:Fox (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/0/04/Fox_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/358?cb=20180612204657"
+        },
+        {
+          "label": "Donkey Kong",
+          "src": "fandom:supersmashbros:Donkey Kong (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/5/5f/Donkey_Kong_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612204654"
+        },
+        {
+          "label": "Yoshi",
+          "src": "fandom:supersmashbros:Yoshi (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/0/06/Yoshi_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/365?cb=20180612205516"
+        },
+        {
+          "label": "Captain Falcon",
+          "src": "fandom:supersmashbros:Captain Falcon (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/4/4a/Captain_Falcon_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/387?cb=20180612204650"
+        },
+        {
+          "label": "Ness",
+          "src": "fandom:supersmashbros:Ness (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/e/e3/Ness_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20260403192056"
+        },
+        {
+          "label": "Marth",
+          "src": "fandom:supersmashbros:Marth (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/f/ff/Marth_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/383?cb=20180612204959"
+        },
+        {
+          "label": "Sonic",
+          "src": "fandom:supersmashbros:Sonic (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/e/eb/Sonic_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/323?cb=20230304175700"
+        },
+        {
+          "label": "Snake",
+          "src": "fandom:supersmashbros:Snake (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/c/c3/Snake_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/397?cb=20180612205335"
+        },
+        {
+          "label": "Pac-Man",
+          "src": "fandom:supersmashbros:Pac-Man (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/5/5a/Pac-Man_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612205003"
+        },
+        {
+          "label": "Cloud",
+          "src": "fandom:supersmashbros:Cloud (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/d/d6/Cloud_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/377?cb=20180930104214"
+        },
+        {
+          "label": "Joker",
+          "src": "fandom:supersmashbros:Joker (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/5/56/Joker_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20201107233616"
+        },
+        {
+          "label": "Steve",
+          "src": "fandom:supersmashbros:Steve (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/3/3a/Steve_SSBU.png/revision/latest/scale-to-width-down/293?cb=20201001151548"
+        },
+        {
+          "label": "Inkling",
+          "src": "fandom:supersmashbros:Inkling (SSBU)",
+          "image": "https://static.wikia.nocookie.net/ssb/images/8/81/Inkling_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612204700"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Scorpion",
+          "src": "fandom:mortalkombat:Scorpion",
+          "image": "https://static.wikia.nocookie.net/mkwikia/images/0/0f/Scorpion_MK1_Render.png/revision/latest/scale-to-width-down/369?cb=20250512004816"
+        },
+        {
+          "label": "Sub-Zero",
+          "src": "fandom:mortalkombat:Sub-Zero",
+          "image": "https://static.wikia.nocookie.net/mkwikia/images/e/e5/Scorpion_MK1_render.webp/revision/latest/scale-to-width-down/152?cb=20250609102106"
+        },
+        {
+          "label": "Crash Bandicoot",
+          "src": "fandom:crashbandicoot:Crash Bandicoot (character)",
+          "image": "https://static.wikia.nocookie.net/crashban/images/0/03/Crash_1_Crash_Bandicoot.png/revision/latest/scale-to-width-down/210?cb=20230516213125"
+        },
+        {
+          "label": "Jak",
+          "src": "fandom:jakanddaxter:Jak",
+          "image": "https://static.wikia.nocookie.net/jakanddaxter/images/2/20/Jak_from_TPL_render.png/revision/latest/scale-to-width-down/202?cb=20190113043425"
+        },
+        {
+          "label": "Ratchet",
+          "src": "fandom:ratchetandclank:Ratchet",
+          "image": "https://static.wikia.nocookie.net/ratchet/images/a/aa/Ratchet_from_RA_render.png/revision/latest/scale-to-width-down/272?cb=20210614141822"
+        },
+        {
+          "label": "Rayman",
+          "src": "wp:Rayman (character)",
+          "image": "https://upload.wikimedia.org/wikipedia/en/1/19/Rayman_Legends_Title_Character_Art.png"
+        },
+        {
+          "label": "Master Chief",
+          "src": "fandom:halo:John-117",
+          "image": "https://static.wikia.nocookie.net/halo/images/8/84/InfiniteChiefTRANSPARENTholdingReachAR.png/revision/latest/scale-to-width-down/400?cb=20230220134648"
+        },
+        {
+          "label": "Kratos",
+          "src": "fandom:godofwar:Kratos",
+          "image": "https://static.wikia.nocookie.net/godofwar/images/e/e9/Kratos-_GOW_Ragnarok.png/revision/latest/scale-to-width-down/248?cb=20230115190836"
+        },
+        {
+          "label": "Sackboy",
+          "src": "wp:Sackboy",
+          "image": "https://upload.wikimedia.org/wikipedia/en/1/19/SackboySony.png"
+        },
+        {
+          "label": "Sly Cooper",
+          "src": "fandom:slycooper:Sly Cooper",
+          "image": "https://static.wikia.nocookie.net/sly/images/a/a8/Sly_Cooper_from_Thieves_in_Time.png/revision/latest/scale-to-width-down/400?cb=20160922180857"
+        },
+        {
+          "label": "Nathan Drake",
+          "src": "fandom:uncharted:Nathan Drake",
+          "image": "https://static.wikia.nocookie.net/uncharted/images/e/e1/Nathan_Drake_from_ATE_headshot.png/revision/latest/scale-to-width-down/322?cb=20221025141033"
+        },
+        {
+          "label": "Lara Croft",
+          "src": "fandom:tombraider:Lara Croft",
+          "image": "https://static.wikia.nocookie.net/laracroft/images/5/5a/20_Years_of_Croft.jpg/revision/latest/scale-to-width-down/400?cb=20161028173527"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Mr. Game & Watch",
+        "src": "fandom:supersmashbros:Mr. Game & Watch (SSBU)",
+        "aliases": [
+          "game and watch",
+          "game & watch"
+        ],
+        "image": "https://static.wikia.nocookie.net/ssb/images/8/8c/Mr._Game_%26_Watch_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/359?cb=20180612205002"
+      },
+      {
+        "label": "Ice Climbers",
+        "src": "fandom:supersmashbros:Ice Climbers (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/0c/Ice_Climbers_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180909141515"
+      },
+      {
+        "label": "R.O.B.",
+        "src": "fandom:supersmashbros:R.O.B. (SSBU)",
+        "aliases": [
+          "rob"
+        ],
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/02/R.O.B._-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20210726195004"
+      },
+      {
+        "label": "Olimar",
+        "src": "fandom:supersmashbros:Olimar (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/05/Olimar_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612205003"
+      },
+      {
+        "label": "Duck Hunt",
+        "src": "fandom:supersmashbros:Duck Hunt (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/0b/Duck_Hunt_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/288?cb=20180612204655"
+      },
+      {
+        "label": "Wii Fit Trainer",
+        "src": "fandom:supersmashbros:Wii Fit Trainer (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/0c/Wii_Fit_Trainer_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/307?cb=20260504040051"
+      },
+      {
+        "label": "Little Mac",
+        "src": "fandom:supersmashbros:Little Mac (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/e/e8/Little_Mac_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/315?cb=20180612204955"
+      },
+      {
+        "label": "Palutena",
+        "src": "fandom:supersmashbros:Palutena (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/c/c5/Palutena_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/379?cb=20220219175924"
+      },
+      {
+        "label": "Dark Pit",
+        "src": "fandom:supersmashbros:Dark Pit (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/b/b7/Dark_Pit_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/374?cb=20180612204653"
+      },
+      {
+        "label": "Shulk",
+        "src": "fandom:supersmashbros:Shulk (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/2/20/Shulk_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20181202120522"
+      },
+      {
+        "label": "Corrin",
+        "src": "fandom:supersmashbros:Corrin (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/8/8c/Corrin_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/371?cb=20180612204651"
+      },
+      {
+        "label": "Isabelle",
+        "src": "fandom:supersmashbros:Isabelle (SSBU)",
+        "aliases": [
+          "marie"
+        ],
+        "image": "https://static.wikia.nocookie.net/ssb/images/f/fb/Isabelle_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180914091810"
+      },
+      {
+        "label": "Piranha Plant",
+        "src": "fandom:supersmashbros:Piranha Plant (SSBU)",
+        "aliases": [
+          "plante piranha"
+        ],
+        "image": "https://static.wikia.nocookie.net/ssb/images/d/d7/Piranha_Plant_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20181101165757"
+      },
+      {
+        "label": "Min Min",
+        "src": "fandom:supersmashbros:Min Min (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/3/35/Min_Min_SSBU.png/revision/latest/scale-to-width-down/400?cb=20200622171658"
+      },
+      {
+        "label": "Pyra",
+        "src": "fandom:supersmashbros:Pyra (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/1/1c/Pyra.png/revision/latest/scale-to-width-down/215?cb=20221230092805"
+      },
+      {
+        "label": "Kazuya",
+        "src": "fandom:supersmashbros:Kazuya (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/6/61/Kazuya.png/revision/latest/scale-to-width-down/254?cb=20260411171942"
+      },
+      {
+        "label": "Byleth",
+        "src": "fandom:supersmashbros:Byleth (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/3/3d/Byleth_SSBU.png/revision/latest/scale-to-width-down/344?cb=20200116163825"
+      },
+      {
+        "label": "Hero",
+        "src": "fandom:supersmashbros:Hero (SSBU)",
+        "image": "https://static.wikia.nocookie.net/ssb/images/0/07/Hero_SSBU.png/revision/latest/scale-to-width-down/378?cb=20260403185733"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Stage",
+          "entities": [
+            "Final Destination|Destination Finale",
+            "Battlefield|Champ de bataille",
+            "Hyrule Castle|Château d'Hyrule",
+            "Peach's Castle",
+            "Kongo Jungle",
+            "Dream Land",
+            "Saffron City",
+            "Mushroom Kingdom",
+            "Corneria",
+            "Pokémon Stadium",
+            "Brinstar",
+            "Onett",
+            "Fountain of Dreams",
+            "Temple",
+            "Great Bay",
+            "Big Blue",
+            "Yoshi's Story",
+            "Smashville",
+            "Shadow Moses Island",
+            "Delfino Plaza",
+            "Skyloft",
+            "Town and City",
+            "Kalos Pokémon League",
+            "Mementos",
+            "Midgar",
+            "Spear Pillar",
+            "Bridge of Eldin",
+            "Pictochat",
+            "Wily Castle",
+            "Green Hill Zone",
+            "Halberd",
+            "Lylat Cruise",
+            "Port Town Aero Dive",
+            "Wuhu Island",
+            "Gaur Plain"
+          ]
+        },
+        {
+          "label": "Item",
+          "entities": [
+            "Home-Run Bat|Home Run Bat|Batte home-run",
+            "Smash Ball",
+            "Poké Ball|Pokeball",
+            "Assist Trophy|Trophée Passe-partout",
+            "Hammer|Marteau",
+            "Golden Hammer|Marteau doré",
+            "Beam Sword|Sabre laser",
+            "Bob-omb",
+            "Super Mushroom",
+            "Poison Mushroom",
+            "Star Rod",
+            "Fire Flower",
+            "Bunny Hood",
+            "Franklin Badge",
+            "Ray Gun",
+            "Heart Container",
+            "Maxim Tomato",
+            "Pitfall",
+            "Banana Peel",
+            "Smoke Ball",
+            "Motion-Sensor Bomb",
+            "Fan",
+            "Lip's Stick",
+            "Boss Galaga",
+            "Killer Eye",
+            "Super Star|Starman",
+            "Metal Box",
+            "Freezie",
+            "Party Ball",
+            "Barrel",
+            "Crate",
+            "Capsule",
+            "Master Ball",
+            "Deku Nut",
+            "Boomerang",
+            "Bullet Bill",
+            "Smart Bomb",
+            "Super Scope",
+            "Warp Star"
+          ]
+        },
+        {
+          "label": "Fighter",
+          "entities": [
+            "Mario",
+            "Link",
+            "Kirby",
+            "Pikachu",
+            "Samus",
+            "Fox",
+            "Donkey Kong",
+            "Yoshi",
+            "Captain Falcon",
+            "Ness",
+            "Marth",
+            "Sonic",
+            "Snake",
+            "Pac-Man",
+            "Cloud",
+            "Joker",
+            "Steve",
+            "Inkling",
+            "Mr. Game & Watch|game and watch|game & watch",
+            "Ice Climbers",
+            "R.O.B.|rob",
+            "Olimar",
+            "Duck Hunt",
+            "Wii Fit Trainer",
+            "Little Mac",
+            "Palutena",
+            "Dark Pit",
+            "Shulk",
+            "Corrin",
+            "Isabelle|marie",
+            "Piranha Plant|plante piranha",
+            "Min Min",
+            "Pyra",
+            "Kazuya",
+            "Byleth",
+            "Hero",
+            "Luigi",
+            "Jigglypuff|Rondoudou",
+            "Mega Man",
+            "Ryu",
+            "Ken",
+            "Bayonetta",
+            "Simon|Simon Belmont",
+            "Richter|Richter Belmont",
+            "Banjo & Kazooie|Banjo|Banjo-Kazooie",
+            "Terry|Terry Bogard",
+            "Sephiroth",
+            "Sora",
+            "Roy",
+            "Ike",
+            "Lucina",
+            "Robin",
+            "Chrom",
+            "Pichu",
+            "Mewtwo",
+            "Lucario",
+            "Pokémon Trainer|Pokemon Trainer",
+            "Squirtle|Carapuce",
+            "Ivysaur|Herbizarre",
+            "Charizard|Dracaufeu",
+            "Greninja|Amphinobi",
+            "Incineroar|Félinferno"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "inazuma",
+    "domain": "anime",
+    "franchise": "Inazuma Eleven",
+    "aliases": [
+      "inazuma",
+      "ie",
+      "inazuma eleven go"
+    ],
+    "images": "fandom:inazuma-eleven",
+    "boss": {
+      "name": "Kageyama Reiji",
+      "title": "The Commander in the Shadows",
+      "src": "fandom:inazuma-eleven:Kageyama Reiji",
+      "color": "#7c3aed",
+      "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bf/Kageyama_Reiji.png/revision/latest/scale-to-width-down/400?cb=20231214153852"
+    },
+    "lines": {
+      "intro": "So the Raimon brats send you. Soccer is only a tool. Show me how much you really know.",
+      "phase2": "Names are cheap. Can you tell my players from strangers who never set foot on this pitch?",
+      "phase3": "Hissatsu technique! Name the players even Raimon forgot!",
+      "hit": [
+        "Impossible...",
+        "A lucky goal.",
+        "Tch."
+      ],
+      "hurt": [
+        "Death Zone!",
+        "Your defence is full of holes.",
+        "Weak."
+      ],
+      "win": "So this is... the soccer Endou believes in.",
+      "lose": "Victory belongs to those who control the game.",
+      "secret": "One last match. I name a player, a technique or a team — answer with another of the same. Repeat nothing.",
+      "secretOk": [
+        "Hmph.",
+        "Again."
+      ],
+      "secretLost": "Wrong. Game over — Teikoku wins."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Raimon players",
+        "count": 5,
+        "answers": [
+          "Endou Mamoru|Endou|Mark Evans",
+          "Gouenji Shuuya|Gouenji|Axel Blaze",
+          "Kidou Yuuto|Kidou|Jude Sharp",
+          "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
+          "Someoka Ryuugo|Someoka|Kevin Dragonfly",
+          "Kabeyama Heigorou|Kabeyama|Jack Wallside",
+          "Domon Asuka|Domon|Bobby Shearer",
+          "Ichinose Kazuya|Ichinose|Erik Eagle",
+          "Fubuki Shirou|Fubuki|Shawn Froste",
+          "Tsunami Jousuke|Tsunami|Hurley Kane",
+          "Tachimukai Yuuki|Tachimukai|Darren LaChance",
+          "Kogure Yuuya|Kogure|Scotty Banyan",
+          "Megane Kakeru|Megane|Willy Glass",
+          "Shishido Sakichi|Shishido|Steve Grim",
+          "Kurimatsu Teppei|Kurimatsu|Tod Ironside",
+          "Matsuno Kuusuke|Matsuno|Max Carson",
+          "Handa Shinichi|Handa|Sam Kincaid",
+          "Shourinji Ayumu|Shourinji|Timmy Sanders",
+          "Kageno Jin|Kageno|Jim Wraith"
+        ]
+      },
+      {
+        "prompt": "Name 5 hissatsu techniques",
+        "count": 5,
+        "answers": [
+          "God Hand|Main Céleste",
+          "Majin The Hand|Majin the Hand",
+          "Fire Tornado|Tornade de feu",
+          "Dragon Tornado",
+          "Inazuma Break",
+          "Inazuma 1|Inazuma One|Inazuma 1 Gou",
+          "Twin Boost",
+          "Illusion Ball",
+          "Death Zone",
+          "Eternal Blizzard",
+          "Spinning Cut",
+          "The Wall",
+          "Fire Blizzard",
+          "Crossfire|Cross Fire",
+          "Grand Fire",
+          "Bakunetsu Screw",
+          "Dragon Crash",
+          "Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin",
+          "Mugen The Hand|Infinite Hand",
+          "Heaven Drive",
+          "Gungnir"
+        ]
+      },
+      {
+        "prompt": "Name 4 rival teams",
+        "count": 4,
+        "answers": [
+          "Teikoku Gakuen|Teikoku|Royal Academy",
+          "Zeus|Zeus Junior High",
+          "Occult|Occult Junior High",
+          "Gemini Storm",
+          "Epsilon",
+          "Genesis|Gaia",
+          "Chaos",
+          "Knights of Queen",
+          "Orpheus",
+          "Unicorn",
+          "The Kingdom",
+          "Fire Dragon",
+          "Little Gigant",
+          "Big Waves",
+          "Desert Lion",
+          "Kirkwood",
+          "Shuuyou Meito|Otaku"
+        ]
+      },
+      {
+        "prompt": "Name 5 Inazuma Japan players",
+        "count": 5,
+        "answers": [
+          "Endou Mamoru|Endou|Mark Evans",
+          "Gouenji Shuuya|Gouenji|Axel Blaze",
+          "Kidou Yuuto|Kidou|Jude Sharp",
+          "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
+          "Fubuki Shirou|Fubuki|Shawn Froste",
+          "Tsunami Jousuke|Tsunami|Hurley Kane",
+          "Tachimukai Yuuki|Tachimukai|Darren LaChance",
+          "Kabeyama Heigorou|Kabeyama|Jack Wallside",
+          "Kogure Yuuya|Kogure|Scotty Banyan",
+          "Kiyama Hiroto|Kiyama|Xavier Foster",
+          "Midorikawa Ryuuji|Midorikawa|Jordan Greenway",
+          "Fudou Akio|Fudou|Caleb Stonewall",
+          "Sakuma Jirou|Sakuma|David Samford",
+          "Utsunomiya Toramaru|Utsunomiya|Austin Hobbes",
+          "Someoka Ryuugo|Someoka|Kevin Dragonfly",
+          "Hijikata Raiden|Hijikata|Thor Stoutberg"
+        ]
+      },
+      {
+        "prompt": "Name 4 Aliea Academy captains",
+        "count": 4,
+        "answers": [
+          "Reize|Janus|Midorikawa Ryuuji|Midorikawa",
+          "Desarm|Dvalin",
+          "Gazel|Gazelle|Suzuno Fuusuke|Suzuno",
+          "Burn|Torch|Nagumo Haruya|Nagumo",
+          "Gran|Xene|Kiyama Hiroto|Hiroto",
+          "Dark|Zell"
+        ]
+      },
+      {
+        "prompt": "Name 4 Raimon managers or coaches",
+        "count": 4,
+        "answers": [
+          "Kino Aki|Kino|Silvia Woods",
+          "Raimon Natsumi|Raimon|Nelly Raimon",
+          "Otonashi Haruna|Otonashi|Celia Hills",
+          "Kudou Michiya|Kudou|Percival Travis",
+          "Hibiki Seigou|Hibiki|Seymour Hillman",
+          "Kudou Fuyuka|Fuyuka|Camellia Travis",
+          "Endou Daisuke|David Evans",
+          "Hitomiko Kira|Hitomiko|Lina Schiller"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Endou Mamoru",
+          "aliases": [
+            "Endou",
+            "Mark Evans"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6f/Endou_Mamoru.png/revision/latest/scale-to-width-down/266?cb=20171215142244"
+        },
+        {
+          "label": "Gouenji Shuuya",
+          "aliases": [
+            "Gouenji",
+            "Axel Blaze"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Gouenji_Shuuya.png/revision/latest/scale-to-width-down/205?cb=20230722171437"
+        },
+        {
+          "label": "Kidou Yuuto",
+          "aliases": [
+            "Kidou",
+            "Jude Sharp"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/57/Kidou_Yuuto.png/revision/latest/scale-to-width-down/264?cb=20230722172217"
+        },
+        {
+          "label": "Kazemaru Ichirouta",
+          "aliases": [
+            "Kazemaru",
+            "Nathan Swift"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f7/Kazemaru_Ichirouta.png/revision/latest/scale-to-width-down/305?cb=20221027010503"
+        },
+        {
+          "label": "Fubuki Shirou",
+          "aliases": [
+            "Fubuki",
+            "Shawn Froste"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/90/Fubuki_Shirou.png/revision/latest/scale-to-width-down/260?cb=20230722170904"
+        },
+        {
+          "label": "Someoka Ryuugo",
+          "aliases": [
+            "Someoka",
+            "Kevin Dragonfly"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7c/Someoka_Ryuugo.png/revision/latest/scale-to-width-down/351?cb=20230722173118"
+        },
+        {
+          "label": "Kabeyama Heigorou",
+          "aliases": [
+            "Kabeyama",
+            "Jack Wallside"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/Kabeyama_Heigorou.png/revision/latest?cb=20190629203833"
+        },
+        {
+          "label": "Domon Asuka",
+          "aliases": [
+            "Domon",
+            "Bobby Shearer"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Domon_Asuka.png/revision/latest/scale-to-width-down/346?cb=20190515124156"
+        },
+        {
+          "label": "Ichinose Kazuya",
+          "aliases": [
+            "Ichinose",
+            "Erik Eagle"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/97/Ichinose_Kazuya.png/revision/latest/scale-to-width-down/241?cb=20210529213317"
+        },
+        {
+          "label": "Tsunami Jousuke",
+          "aliases": [
+            "Tsunami",
+            "Hurley Kane"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a1/Tsunami_Jousuke.png/revision/latest/scale-to-width-down/393?cb=20230722180232"
+        },
+        {
+          "label": "Tachimukai Yuuki",
+          "aliases": [
+            "Tachimukai",
+            "Darren LaChance"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b2/Tachimukai_Yuuki.png/revision/latest/scale-to-width-down/400?cb=20230722175936"
+        },
+        {
+          "label": "Kiyama Hiroto",
+          "aliases": [
+            "Kiyama",
+            "Xavier Foster"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e3/Kiyama_Hiroto.png/revision/latest/scale-to-width-down/255?cb=20230722172508"
+        },
+        {
+          "label": "Fudou Akio",
+          "aliases": [
+            "Fudou",
+            "Caleb Stonewall"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/96/Fudou_Akio.png/revision/latest/scale-to-width-down/241?cb=20230805085203"
+        },
+        {
+          "label": "Afuro Terumi",
+          "aliases": [
+            "Afuro",
+            "Byron Love"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Afuro_Terumi.png/revision/latest/scale-to-width-down/325?cb=20190504144713"
+        },
+        {
+          "label": "Kino Aki",
+          "aliases": [
+            "Kino",
+            "Silvia Woods"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/af/Kino_Aki.png/revision/latest/scale-to-width-down/243?cb=20230926201511"
+        },
+        {
+          "label": "Raimon Natsumi",
+          "aliases": [
+            "Raimon",
+            "Nelly Raimon"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Raimon_Natsumi.png/revision/latest/scale-to-width-down/354?cb=20240521114554"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Tsubasa Ozora",
+          "src": "fandom:captaintsubasa:Tsubasa Ozora",
+          "image": "https://static.wikia.nocookie.net/captaintsubasa/images/9/98/Tsubasa_%28RS%29_0.png/revision/latest/scale-to-width-down/400?cb=20220824043549"
+        },
+        {
+          "label": "Kojiro Hyuga",
+          "src": "fandom:captaintsubasa:Kojiro Hyuga",
+          "image": "https://static.wikia.nocookie.net/captaintsubasa/images/3/3a/Kojiro_S2_%282018%29_1.jpg/revision/latest/scale-to-width-down/400?cb=20200207172447"
+        },
+        {
+          "label": "Genzo Wakabayashi",
+          "src": "fandom:captaintsubasa:Genzo Wakabayashi",
+          "image": "https://static.wikia.nocookie.net/captaintsubasa/images/e/eb/Genzo_S2_%282018%29_0.jpg/revision/latest/scale-to-width-down/400?cb=20191014203710"
+        },
+        {
+          "label": "Isagi Yoichi",
+          "src": "fandom:bluelock:Yoichi Isagi",
+          "image": "https://static.wikia.nocookie.net/bluelock/images/3/39/Yoichi_Isagi.png/revision/latest/scale-to-width-down/348?cb=20260404103354"
+        },
+        {
+          "label": "Meguru Bachira",
+          "src": "fandom:bluelock:Meguru Bachira",
+          "image": "https://static.wikia.nocookie.net/bluelock/images/f/f5/Meguru_Bachira.png/revision/latest/scale-to-width-down/348?cb=20221203161437"
+        },
+        {
+          "label": "Rin Itoshi",
+          "src": "fandom:bluelock:Rin Itoshi",
+          "image": "https://static.wikia.nocookie.net/bluelock/images/1/12/Rin_Itoshi.png/revision/latest/scale-to-width-down/348?cb=20221204031448"
+        },
+        {
+          "label": "Seishiro Nagi",
+          "src": "fandom:bluelock:Seishiro Nagi",
+          "image": "https://static.wikia.nocookie.net/bluelock/images/c/c9/Seishiro_Nagi.png/revision/latest/scale-to-width-down/348?cb=20221203160116"
+        },
+        {
+          "label": "Shoyo Hinata",
+          "src": "fandom:haikyuu:Shōyō Hinata",
+          "image": "https://static.wikia.nocookie.net/haikyuu/images/d/d2/Hinata_s4-e1-4.png/revision/latest/scale-to-width-down/400?cb=20200506183149"
+        },
+        {
+          "label": "Tetsuya Kuroko",
+          "src": "fandom:kurokonobasuke:Tetsuya Kuroko",
+          "image": "https://static.wikia.nocookie.net/kurokonobasuke/images/7/79/LG_Kuroko.png/revision/latest/scale-to-width-down/400?cb=20170730002650"
+        },
+        {
+          "label": "Hanamichi Sakuragi",
+          "src": "fandom:slamdunk:Hanamichi Sakuragi",
+          "image": "https://static.wikia.nocookie.net/slamdunk/images/b/b0/Sakuragi_%28After%29.png/revision/latest/scale-to-width-down/178?cb=20140503223504"
+        },
+        {
+          "label": "Ryoma Echizen",
+          "src": "fandom:princeoftennis:Ryoma Echizen",
+          "image": "https://static.wikia.nocookie.net/princeoftennis/images/f/f7/Ryoma_echizen.jpg/revision/latest?cb=20110619122634"
+        },
+        {
+          "label": "Ashito Aoi",
+          "src": "wp:Aoashi",
+          "image": "https://upload.wikimedia.org/wikipedia/en/e/ed/Aoashi_vol_1.png"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Megane Kakeru",
+        "aliases": [
+          "Megane",
+          "Willy Glass"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2f/Megane_Kakeru.png/revision/latest/scale-to-width-down/400?cb=20140505005410"
+      },
+      {
+        "label": "Shishido Sakichi",
+        "aliases": [
+          "Shishido",
+          "Steve Grim"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Shishido_Sakichi.png/revision/latest/scale-to-width-down/400?cb=20170102131051"
+      },
+      {
+        "label": "Kurimatsu Teppei",
+        "aliases": [
+          "Kurimatsu",
+          "Tod Ironside"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Kurimatsu_Teppei.png/revision/latest/scale-to-width-down/400?cb=20130922145734"
+      },
+      {
+        "label": "Matsuno Kuusuke",
+        "aliases": [
+          "Matsuno",
+          "Max Carson"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Matsuno_Kuusuke.png/revision/latest/scale-to-width-down/301?cb=20190516142940"
+      },
+      {
+        "label": "Handa Shinichi",
+        "aliases": [
+          "Handa",
+          "Sam Kincaid"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Handa_Shinichi.png/revision/latest/scale-to-width-down/242?cb=20240315211922"
+      },
+      {
+        "label": "Shourinji Ayumu",
+        "aliases": [
+          "Shourinji",
+          "Timmy Sanders"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c1/Shourinji_Ayumu.png/revision/latest/scale-to-width-down/272?cb=20230703080607"
+      },
+      {
+        "label": "Kageno Jin",
+        "aliases": [
+          "Kageno",
+          "Jim Wraith"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e7/Kageno_Jin.png/revision/latest/scale-to-width-down/400?cb=20240521190950"
+      },
+      {
+        "label": "Kogure Yuuya",
+        "aliases": [
+          "Kogure",
+          "Scotty Banyan"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Kogure_Yuuya.png/revision/latest/scale-to-width-down/346?cb=20240905203408"
+      },
+      {
+        "label": "Genda Koujirou",
+        "aliases": [
+          "Genda",
+          "Joseph King"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e2/Genda_Koujirou.png/revision/latest/scale-to-width-down/400?cb=20240813130949"
+      },
+      {
+        "label": "Sakuma Jirou",
+        "aliases": [
+          "Sakuma",
+          "David Samford"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Sakuma_Jirou.png/revision/latest/scale-to-width-down/222?cb=20230722173036"
+      },
+      {
+        "label": "Midorikawa Ryuuji",
+        "aliases": [
+          "Midorikawa",
+          "Jordan Greenway"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/59/Midorikawa_Ryuuji.png/revision/latest/scale-to-width-down/279?cb=20240112143852"
+      },
+      {
+        "label": "Suzuno Fuusuke",
+        "aliases": [
+          "Suzuno",
+          "Claude Beacons"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6c/Gazel.png/revision/latest/scale-to-width-down/400?cb=20230809121920"
+      },
+      {
+        "label": "Nagumo Haruya",
+        "aliases": [
+          "Nagumo",
+          "Bryce Whitingale"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Nagumo_Haruya.png/revision/latest/scale-to-width-down/400?cb=20261004121944"
+      },
+      {
+        "label": "Utsunomiya Toramaru",
+        "aliases": [
+          "Utsunomiya",
+          "Austin Hobbes"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Utsunomiya_Toramaru.png/revision/latest/scale-to-width-down/236?cb=20130906234209"
+      },
+      {
+        "label": "Hijikata Raiden",
+        "aliases": [
+          "Hijikata",
+          "Thor Stoutberg"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/Hijikata_Raiden.png/revision/latest/scale-to-width-down/400?cb=20230722171748"
+      },
+      {
+        "label": "Otonashi Haruna",
+        "aliases": [
+          "Otonashi",
+          "Celia Hills"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0f/Otonashi_Haruna.png/revision/latest?cb=20121222165850"
+      },
+      {
+        "label": "Kudou Michiya",
+        "aliases": [
+          "Kudou",
+          "Percival Travis"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Kudou_Michiya.png/revision/latest/scale-to-width-down/320?cb=20170611105509"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Technique",
+          "entities": [
+            "God Hand|Main Céleste",
+            "Majin The Hand|Majin the Hand",
+            "Fire Tornado|Tornade de feu",
+            "Dragon Tornado",
+            "Inazuma Break",
+            "Inazuma 1|Inazuma One|Inazuma 1 Gou",
+            "Twin Boost",
+            "Illusion Ball",
+            "Death Zone",
+            "Eternal Blizzard",
+            "Spinning Cut",
+            "The Wall",
+            "Fire Blizzard",
+            "Crossfire|Cross Fire",
+            "Grand Fire",
+            "Bakunetsu Screw",
+            "Dragon Crash",
+            "Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin",
+            "Mugen The Hand|Infinite Hand",
+            "Heaven Drive",
+            "Gungnir"
+          ]
+        },
+        {
+          "label": "Team",
+          "entities": [
+            "Teikoku Gakuen|Teikoku|Royal Academy",
+            "Zeus|Zeus Junior High",
+            "Occult|Occult Junior High",
+            "Gemini Storm",
+            "Epsilon",
+            "Genesis|Gaia",
+            "Chaos",
+            "Knights of Queen",
+            "Orpheus",
+            "Unicorn",
+            "The Kingdom",
+            "Fire Dragon",
+            "Little Gigant",
+            "Big Waves",
+            "Desert Lion",
+            "Kirkwood",
+            "Shuuyou Meito|Otaku"
+          ]
+        },
+        {
+          "label": "Character",
+          "entities": [
+            "Endou Mamoru|Endou|Mark Evans",
+            "Gouenji Shuuya|Gouenji|Axel Blaze",
+            "Kidou Yuuto|Kidou|Jude Sharp",
+            "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
+            "Fubuki Shirou|Fubuki|Shawn Froste",
+            "Someoka Ryuugo|Someoka|Kevin Dragonfly",
+            "Kabeyama Heigorou|Kabeyama|Jack Wallside",
+            "Domon Asuka|Domon|Bobby Shearer",
+            "Ichinose Kazuya|Ichinose|Erik Eagle",
+            "Tsunami Jousuke|Tsunami|Hurley Kane",
+            "Tachimukai Yuuki|Tachimukai|Darren LaChance",
+            "Kiyama Hiroto|Kiyama|Xavier Foster",
+            "Fudou Akio|Fudou|Caleb Stonewall",
+            "Afuro Terumi|Afuro|Byron Love",
+            "Kino Aki|Kino|Silvia Woods",
+            "Raimon Natsumi|Raimon|Nelly Raimon",
+            "Megane Kakeru|Megane|Willy Glass",
+            "Shishido Sakichi|Shishido|Steve Grim",
+            "Kurimatsu Teppei|Kurimatsu|Tod Ironside",
+            "Matsuno Kuusuke|Matsuno|Max Carson",
+            "Handa Shinichi|Handa|Sam Kincaid",
+            "Shourinji Ayumu|Shourinji|Timmy Sanders",
+            "Kageno Jin|Kageno|Jim Wraith",
+            "Kogure Yuuya|Kogure|Scotty Banyan",
+            "Genda Koujirou|Genda|Joseph King",
+            "Sakuma Jirou|Sakuma|David Samford",
+            "Midorikawa Ryuuji|Midorikawa|Jordan Greenway",
+            "Suzuno Fuusuke|Suzuno|Claude Beacons",
+            "Nagumo Haruya|Nagumo|Bryce Whitingale",
+            "Utsunomiya Toramaru|Utsunomiya|Austin Hobbes",
+            "Hijikata Raiden|Hijikata|Thor Stoutberg",
+            "Otonashi Haruna|Otonashi|Celia Hills",
+            "Kudou Michiya|Kudou|Percival Travis",
+            "Desarm|Dvalin",
+            "Dark|Zell",
+            "Hibiki Seigou|Hibiki|Seymour Hillman",
+            "Kudou Fuyuka|Fuyuka|Camellia Travis",
+            "Endou Daisuke|David Evans",
+            "Hitomiko Kira|Hitomiko|Lina Schiller"
+          ]
+        }
+      ]
+    }
   }
 ]

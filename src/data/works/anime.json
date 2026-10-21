@@ -9652,5 +9652,134 @@
         "#fde047"
       ]
     }
+  },
+  {
+    "id": "a-inazuma",
+    "name": "Inazuma Eleven",
+    "domain": "anime",
+    "year": 2008,
+    "genres": [
+      "Sports",
+      "Shōnen"
+    ],
+    "studio": "OLM",
+    "creator": "Akihiro Hino",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Video Game",
+    "characters": [
+      "Endou Mamoru",
+      "Gouenji Shuuya",
+      "Kidou Yuuto"
+    ],
+    "themes": [
+      "Soccer",
+      "Friendship"
+    ],
+    "credits": [
+      "Original game: Level-5",
+      "Series creator: Akihiro Hino",
+      "Animation: OLM"
+    ],
+    "fandom": "inazuma-eleven",
+    "cover": {
+      "wiki": "Inazuma Eleven (TV series)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e3/Inazuma_Eleven_DVD_vol_1.jpg"
+    },
+    "quote": {
+      "text": "Let's play soccer!",
+      "speaker": "A goalkeeper who never gives up"
+    },
+    "audio": {
+      "clue": "A bright, punchy J-rock opening by T-Pistonz+KMC.",
+      "query": "Inazuma Eleven opening Maji de Kansha",
+      "youtubeId": "R94KxPsXRCY"
+    },
+    "voice": {
+      "speaker": "Endou Mamoru",
+      "query": "Inazuma Eleven Endou Mamoru voice lines"
+    },
+    "emoji": "⚽⚡🧤🔥🏆",
+    "item": {
+      "name": "God Hand",
+      "description": "A giant glowing hand a goalkeeper summons to stop shots.",
+      "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ef/%28IE%29_Shin_God_Hand_4.png/revision/latest/scale-to-width-down/640?cb=20190106120416"
+    },
+    "location": {
+      "name": "The Inazuma steel tower",
+      "description": "A hilltop tower where the goalkeeper trains with a tyre every day.",
+      "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/640?cb=20260628144331"
+    },
+    "visual": {
+      "icon": "⚽",
+      "colors": [
+        "#facc15",
+        "#1d4ed8"
+      ]
+    }
+  },
+  {
+    "id": "a-beyblade",
+    "name": "Beyblade",
+    "domain": "anime",
+    "year": 2001,
+    "genres": [
+      "Sports",
+      "Action"
+    ],
+    "studio": "Madhouse",
+    "creator": "Takao Aoki",
+    "origin": "Japan",
+    "format": "TV Series",
+    "source": "Manga",
+    "characters": [
+      "Tyson Granger",
+      "Kai Hiwatari",
+      "Ray Kon"
+    ],
+    "themes": [
+      "Rivalry",
+      "Teamwork"
+    ],
+    "credits": [
+      "Original manga: Takao Aoki",
+      "Toy line: Takara"
+    ],
+    "fandom": "beyblade",
+    "cover": {
+      "wiki": "Beyblade (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/91/Beyblade05vol.jpg"
+    },
+    "quote": {
+      "text": "3, 2, 1, let it rip!",
+      "speaker": "Every blader before a battle"
+    },
+    "audio": {
+      "clue": "A high-energy rock opening.",
+      "query": "Beyblade opening Let It Rip",
+      "youtubeId": "19qpqjebafg"
+    },
+    "voice": {
+      "speaker": "Takao Kinomiya (Tyson Granger)",
+      "query": "Beyblade Takao Kinomiya voice"
+    },
+    "emoji": "🌀🐉🏟️⚔️🌪️",
+    "item": {
+      "name": "Dragoon",
+      "description": "A spinning top housing a dragon bit-beast.",
+      "image": "https://static.wikia.nocookie.net/beyblade/images/6/66/HD-wallpaper-beyblade-dragon-beybalde-anime-cartoon-blue.jpg/revision/latest/scale-to-width-down/360?cb=20220709103103"
+    },
+    "location": {
+      "name": "The beystadium",
+      "description": "A bowl-shaped arena where tops clash until one stops spinning.",
+      "image": "https://static.wikia.nocookie.net/beyblade/images/6/6f/Beystadium_10_BSB.jpg/revision/latest?cb=20250327063658"
+    },
+    "visual": {
+      "icon": "🌀",
+      "colors": [
+        "#2563eb",
+        "#ef4444"
+      ]
+    }
   }
 ]
