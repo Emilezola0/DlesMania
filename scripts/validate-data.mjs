@@ -79,7 +79,8 @@ const perDomain = [...DOMAINS, 'mixed'].map((d) => `${d}:${puzzles.filter((p) =>
 console.log(`connections ${puzzles.length} puzzles (${perDomain}) | fully illustrated: ${withImages}`);
 
 // ---------------------------------------------------------------- Boss Battle
-// Minimums mirror src/lib/boss.ts: a Radar wave is 6 members + 4 impostors, Final Blow draws 3.
+// Minimums follow Hard in src/lib/boss.ts (16-card waves with 7 impostors, 5 faces twice), with room
+// left so retries and second rounds draw something new.
 const bosses = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bosses.json'), 'utf8'));
 const bossIds = new Set();
 const label = (c) => (typeof c === 'string' ? c : c.label);
@@ -92,15 +93,15 @@ for (const b of bosses) {
   if (!b.boss?.image) warn(`${at}: no boss portrait`);
   for (const k of ['intro', 'phase2', 'phase3', 'win', 'lose']) if (!b.lines?.[k]) fail(`${at}: missing line "${k}"`);
   for (const k of ['hit', 'hurt']) if (!b.lines?.[k]?.length) fail(`${at}: needs at least one "${k}" line`);
-  if (!b.blitz?.length) fail(`${at}: no Knowledge Blitz prompt`);
+  if ((b.blitz?.length ?? 0) < 6) fail(`${at}: needs at least 6 Knowledge Blitz prompts`);
   for (const p of b.blitz ?? []) {
     const names = p.answers.map((a) => a.split('|')[0].toLowerCase());
     if (new Set(names).size !== names.length) fail(`${at}: duplicate answer in "${p.prompt}"`);
     if (p.answers.length < p.count) fail(`${at}: "${p.prompt}" has fewer answers than required`);
   }
-  if (b.radar.members.length < 6) fail(`${at}: needs at least 6 Radar members`);
-  if (b.radar.impostors.length < 4) fail(`${at}: needs at least 4 Radar impostors`);
-  if (b.finale.length < 3) fail(`${at}: needs at least 3 Final Blow cards`);
+  if (b.radar.members.length < 12) fail(`${at}: needs at least 12 Radar members`);
+  if (b.radar.impostors.length < 10) fail(`${at}: needs at least 10 Radar impostors`);
+  if (b.finale.length < 12) fail(`${at}: needs at least 12 Final Blow cards`);
   const members = new Set(b.radar.members.map((c) => label(c).toLowerCase()));
   for (const c of b.radar.impostors) if (members.has(label(c).toLowerCase())) fail(`${at}: "${label(c)}" is both member and impostor`);
   const noImage = [...b.radar.members, ...b.radar.impostors, ...b.finale].filter((c) => typeof c === 'string' || !c.image).map(label);

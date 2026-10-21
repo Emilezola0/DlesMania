@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { GAME_META, GAME_TYPES } from '../games/meta';
-import { PHASES } from '../lib/boss';
+import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, totalRounds } from '../lib/boss';
 import { useUi, type RulesTab } from '../store/ui';
 import { Glyph } from './Glyph';
 import { ClassicDemo, FinalDemo, SwipeDemo, TilesDemo, TypingDemo } from './RulesDemos';
@@ -80,8 +80,24 @@ function BossRules() {
     <div className="space-y-6">
       <Step n="⚔" title="The fight">
         <p>
-          Pick a domain, then a franchise, and face its guardian. Its life bar has three segments: win a phase to break one. Lose a phase and the boss
-          strikes — you lose one of your three hearts and retry that phase with new content. Lose all three and the fight is over.
+          Pick a domain, a franchise and a difficulty, then face its guardian. Its life bar has one segment per round: win a round to break one. Lose
+          a round and the boss strikes — you lose one of your three hearts and retry with new content. Lose all three and the fight is over.
+        </p>
+      </Step>
+      <Step n="◆" title="Three difficulties">
+        <ul className="space-y-1.5">
+          {DIFFICULTY_IDS.map((id) => {
+            const d = DIFFICULTIES[id];
+            return (
+              <li key={id}>
+                <b className="text-ink">{d.label}</b> — {totalRounds(d)} rounds, ×{d.scoreMultiplier} points. {d.blurb}
+              </li>
+            );
+          })}
+        </ul>
+        <p>
+          On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
+          and a swipe made before a card has settled counts as a mistake.
         </p>
       </Step>
       {PHASES.map((p, i) => (

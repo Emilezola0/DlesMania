@@ -6,7 +6,8 @@ import { domainInfo } from '../data';
 import { BOSS_DOMAINS, BOSSES } from '../data/bosses';
 import { formatTime } from '../lib/boss';
 import { bestSearchScore } from '../utils/textMatcher';
-import { EMPTY_BOSS_RECORD, useProgress } from '../store/progress';
+import { DIFFICULTIES, DIFFICULTY_IDS } from '../lib/boss';
+import { EMPTY_BOSS_RECORD, bossKey, useProgress } from '../store/progress';
 import type { Domain } from '../types';
 
 function chip(active: boolean) {
@@ -28,7 +29,9 @@ export default function BossSelect() {
     return BOSSES.filter((b) => bestSearchScore(query, [b.franchise, b.boss.name, ...b.aliases]) !== null);
   }, [domain, query]);
 
-  const totalWins = Object.values(records).filter((r) => r.wins > 0).length;
+  // A boss counts as defeated once beaten on any difficulty.
+  const beaten = (id: string) => DIFFICULTY_IDS.some((d) => (records[bossKey(id, d)]?.wins ?? 0) > 0);
+  const totalWins = BOSSES.filter((b) => beaten(b.id)).length;
 
   return (
     <div className="space-y-8">
@@ -87,7 +90,9 @@ export default function BossSelect() {
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((b) => {
-            const r = records[b.id] ?? EMPTY_BOSS_RECORD;
+            const per = DIFFICULTY_IDS.map((d) => ({ d, r: records[bossKey(b.id, d)] ?? EMPTY_BOSS_RECORD }));
+            const plays = per.reduce((n, x) => n + x.r.plays, 0);
+            const bestScore = Math.max(...per.map((x) => x.r.bestScore));
             return (
               <li key={b.id}>
                 <Link
@@ -99,8 +104,8 @@ export default function BossSelect() {
                     style={{ borderColor: b.boss.color }}
                   >
                     {b.boss.image && <img src={b.boss.image} alt="" loading="lazy" className="size-full object-cover object-top" />}
-                    {r.wins > 0 && (
-                      <span className="absolute inset-0 grid place-items-center bg-ink/45 font-display text-xs font-bold tracking-widest text-on-strong">
+                    {beaten(b.id) && (
+                      <span className="absolute inset-0 grid place-items-center bg-black/45 font-display text-xs font-bold tracking-widest text-white">
                         SLAIN
                       </span>
                     )}
@@ -111,10 +116,20 @@ export default function BossSelect() {
                     <span className="block truncate font-serif text-base italic text-ink-soft">
                       {b.boss.name}, {b.boss.title}
                     </span>
-                    <span className="mt-1 block text-xs text-ink-faint">
-                      {r.plays === 0
-                        ? 'Unchallenged'
-                        : `${r.wins}/${r.plays} won${r.bestTime != null ? ` · best ${formatTime(r.bestTime)}` : ''} · ${r.bestScore} pts`}
+                    <span className="mt-1 flex items-center gap-1 text-xs text-ink-faint">
+                      {/* One mark per difficulty, filled once that difficulty is beaten. */}
+                      {per.map(({ d, r }) => (
+                        <span
+                          key={d}
+                          title={`${DIFFICULTIES[d].label}: ${r.plays ? `${r.wins}/${r.plays} won${r.bestTime != null ? `, best ${formatTime(r.bestTime)}` : ''}` : 'not played'}`}
+                          className={`grid size-5 place-items-center rounded-sm border font-display text-[10px] font-bold ${
+                            r.wins ? 'border-hit bg-hit text-on-strong' : 'border-rule-strong text-ink-faint'
+                          }`}
+                        >
+                          {DIFFICULTIES[d].label[0]}
+                        </span>
+                      ))}
+                      <span className="ml-1">{plays === 0 ? 'Unchallenged' : `best ${bestScore} pts`}</span>
                     </span>
                   </span>
                 </Link>

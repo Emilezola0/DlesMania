@@ -16,6 +16,11 @@ export interface BossRecord {
 
 export const EMPTY_BOSS_RECORD: BossRecord = { plays: 0, wins: 0, bestScore: 0, bestTime: null };
 
+export type BossDifficulty = 'easy' | 'medium' | 'hard';
+
+/** Records are kept per boss and difficulty; Easy keeps the plain id that records had before difficulties. */
+export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty === 'easy' ? id : `${id}:${difficulty}`);
+
 /** 'system' follows the OS; the others force a theme. */
 export type ThemeChoice = 'system' | 'light' | 'dark';
 
@@ -31,11 +36,14 @@ interface ProgressState {
    */
   specs: Record<string, RoundSpec[]>;
   freePlay: { played: number; won: number; points: number };
-  /** Boss id -> record. */
+  /** bossKey(id, difficulty) -> record. */
   bosses: Record<string, BossRecord>;
+  /** Difficulty picked last on a boss intro. */
+  bossDifficulty: BossDifficulty;
   sound: boolean;
   theme: ThemeChoice;
-  recordBoss: (id: string, result: { won: boolean; score: number; time: number }) => void;
+  recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
+  setBossDifficulty: (d: BossDifficulty) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
@@ -51,6 +59,7 @@ export const useProgress = create<ProgressState>()(
       specs: {},
       freePlay: { played: 0, won: 0, points: 0 },
       bosses: {},
+      bossDifficulty: 'easy',
       sound: true,
       theme: 'system',
       setRound: (domain, date, index, record) =>
@@ -67,13 +76,14 @@ export const useProgress = create<ProgressState>()(
             points: s.freePlay.points + record.score,
           },
         })),
-      recordBoss: (id, { won, score, time }) =>
+      setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
+      recordBoss: (key, { won, score, time }) =>
         set((s) => {
-          const r = s.bosses[id] ?? EMPTY_BOSS_RECORD;
+          const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
           return {
             bosses: {
               ...s.bosses,
-              [id]: {
+              [key]: {
                 plays: r.plays + 1,
                 wins: r.wins + (won ? 1 : 0),
                 bestScore: Math.max(r.bestScore, score),

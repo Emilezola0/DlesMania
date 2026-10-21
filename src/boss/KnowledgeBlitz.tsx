@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { blitzSeconds, matchAnswer } from '../lib/boss';
+import { blitzSeconds, matchAnswer, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import type { BlitzPrompt, PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
@@ -7,12 +7,15 @@ import { TimerBar } from './TimerBar';
 interface Props {
   prompt: BlitzPrompt;
   onEvent: (good: boolean) => void;
+  difficulty: DifficultySpec;
   onDone: (result: PhaseResult) => void;
 }
 
 /** Phase I: name N things before the timer runs out. Answers are accepted as you type. */
-export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
-  const total = blitzSeconds(prompt) * 1000;
+export function KnowledgeBlitz({ prompt, difficulty: d, onEvent, onDone }: Props) {
+  const total = blitzSeconds(prompt, d) * 1000;
+  // Hard: no list of what you've already named, and no seconds counter.
+  const hidden = d.distortion === 2;
   const [found, setFound] = useState<string[]>([]);
   const [text, setText] = useState('');
   const [note, setNote] = useState<{ text: string; good: boolean; key: number } | null>(null);
@@ -82,7 +85,7 @@ export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
         <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">{prompt.prompt}</h3>
       </div>
 
-      <TimerBar total={total} running={!over} onExpire={() => finish(false)} />
+      <TimerBar total={total} running={!over} onExpire={() => finish(false)} hideSeconds={hidden} />
 
       <div className="flex justify-center gap-2" aria-label={`${found.length} of ${prompt.count} named`}>
         {Array.from({ length: prompt.count }, (_, i) => (
@@ -121,7 +124,7 @@ export function KnowledgeBlitz({ prompt, onEvent, onDone }: Props) {
         )}
       </p>
 
-      {found.length > 0 && (
+      {found.length > 0 && !hidden && (
         <ul className="flex flex-wrap justify-center gap-2">
           {found.map((n) => (
             <li key={n} className="animate-pop rounded-md border border-hit/50 bg-hit/10 px-2.5 py-1 text-sm font-semibold text-ink">

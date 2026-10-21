@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { FINALE_PENALTY_MS, FINALE_SECONDS, namesCard } from '../lib/boss';
+import { namesCard, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
 import type { BossCard, PhaseResult } from '../types';
@@ -9,24 +9,33 @@ interface Props {
   targets: BossCard[];
   /** Suggestions: the targets hidden among the franchise's other cards (any spelling finds them). */
   pool: BossCard[];
+  difficulty: DifficultySpec;
   onEvent: (good: boolean) => void;
   onDone: (result: PhaseResult) => void;
 }
 
+/** How the picture is hidden at each distortion level: spotlight jump interval, radius and blur. */
+const LOOK = [
+  { every: 520, radius: [16, 34], blur: [12, 1.5], turn: '' },
+  { every: 400, radius: [12, 30], blur: [14, 2.5], turn: 'boss-turn' },
+  { every: 280, radius: [9, 26], blur: [16, 3.5], turn: 'boss-turn-fast' },
+] as const;
+
 /** A spotlight that jumps around the picture; it widens as time runs out. */
-function useSpotlight(active: boolean) {
+function useSpotlight(active: boolean, every: number) {
   const [spot, setSpot] = useState({ x: 50, y: 35, key: 0 });
   useEffect(() => {
     if (!active) return;
-    const id = window.setInterval(() => setSpot((s) => ({ x: 20 + Math.random() * 60, y: 15 + Math.random() * 60, key: s.key + 1 })), 520);
+    const id = window.setInterval(() => setSpot((s) => ({ x: 20 + Math.random() * 60, y: 15 + Math.random() * 60, key: s.key + 1 })), every);
     return () => clearInterval(id);
-  }, [active]);
+  }, [active, every]);
   return spot;
 }
 
 /** Phase III: name flickering, half-hidden faces before the timer burns out. */
-export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
-  const total = FINALE_SECONDS * 1000;
+export function FinalBlow({ targets, pool, difficulty: d, onEvent, onDone }: Props) {
+  const total = d.finaleSeconds * 1000;
+  const look = LOOK[d.distortion];
   const [index, setIndex] = useState(0);
   const [text, setText] = useState('');
   const [active, setActive] = useState(0);
@@ -38,7 +47,7 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
   const [shakeKey, setShakeKey] = useState(0);
   const input = useRef<HTMLInputElement>(null);
   const target = targets[index];
-  const spot = useSpotlight(!over && !solved);
+  const spot = useSpotlight(!over && !solved, look.every);
 
   useEffect(() => targets.forEach((t) => t.image && (new Image().src = t.image)), [targets]);
   useEffect(() => input.current?.focus({ preventScroll: true }), [index]);
@@ -87,8 +96,9 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
     onDone({ won: false, correct: index, wrong, missed: [target.label] });
   };
 
-  const blur = solved || over ? 0 : Math.max(1.5, 12 - elapsed * 14);
-  const radius = solved || over ? 150 : 16 + elapsed * 34;
+  const clear = solved || over;
+  const blur = clear ? 0 : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
+  const radius = clear ? 150 : look.radius[0] + elapsed * look.radius[1];
   const mask = `radial-gradient(circle at ${spot.x}% ${spot.y}%, #000 ${radius}%, transparent ${radius + 14}%)`;
 
   return (
@@ -98,11 +108,13 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">Who — or what — is this?</h3>
       </div>
 
-      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={FINALE_PENALTY_MS} onExpire={expire} intense />
+      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
 
       <div key={shakeKey} className={`relative mx-auto aspect-square w-full max-w-xs ${shakeKey ? 'animate-shake' : ''}`}>
         <div className={`boss-glow absolute -inset-2 rounded-lg ${solved ? 'opacity-0' : ''}`} aria-hidden />
         <div className="relative size-full overflow-hidden rounded-md border-2 border-coral/70 bg-[#141018]">
+          {/* Medium/Hard: the picture also turns and shifts colour (Hard flips and inverts it too). */}
+          <div className={`absolute inset-0 ${clear ? '' : `${look.turn} ${d.distortion === 2 ? 'boss-hue-fast' : d.distortion === 1 ? 'boss-hue' : ''}`}`}>
           {target?.image && (
             <img
               key={target.label}
@@ -113,6 +125,7 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
               style={{ filter: `blur(${blur}px) contrast(1.1)`, WebkitMaskImage: mask, maskImage: mask }}
             />
           )}
+          </div>
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">
               ✓ {solved}
@@ -143,7 +156,7 @@ export function FinalBlow({ targets, pool, onEvent, onDone }: Props) {
               guess(typedHits ? text : (suggestions[active] ?? text));
             }
           }}
-          placeholder="Name it — a wrong answer burns 2 seconds"
+          placeholder={`Name it — a wrong answer burns ${d.finalePenaltyMs / 1000} seconds`}
           autoComplete="off"
           autoCapitalize="off"
           spellCheck={false}

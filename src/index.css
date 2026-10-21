@@ -306,6 +306,51 @@ h1, h2, h3, .font-serif, .font-display {
 .boss-phase-card { animation: boss-phase-card 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .boss-phase-title { text-shadow: 3px 3px 0 var(--stamp); }
 
+/* Boss Battle difficulty effects (Medium = level 1, Hard = level 2; see DifficultySpec.distortion). */
+/* Radar: the picture turns by --spin over the card's lifetime (duration set inline). */
+@keyframes boss-spin { from { transform: rotate(0); } to { transform: rotate(var(--spin, 0deg)); } }
+.boss-spin { animation: boss-spin 3s linear both; }
+@keyframes boss-fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.boss-fade { animation: boss-fade 1.6s ease-in-out infinite; }
+.boss-fade-fast { animation: boss-fade 0.8s steps(3, end) infinite; }
+/* Hard: colours jump in steps on top of the card's own hue shift. */
+@keyframes boss-scramble {
+  0% { filter: none; }
+  25% { filter: hue-rotate(110deg) contrast(1.3); }
+  50% { filter: hue-rotate(220deg) saturate(2); }
+  75% { filter: hue-rotate(310deg) brightness(1.3); }
+}
+.boss-scramble { animation: boss-scramble 0.9s steps(1, end) infinite; }
+@keyframes boss-drift { from { transform: translate(0, 0) rotate(0); } to { transform: translate(var(--dx), var(--dy)) rotate(40deg); } }
+.boss-drift { animation: boss-drift 1.4s ease-in-out infinite alternate; }
+/* A decoy zone glows like a real hint, then vanishes. */
+@keyframes boss-decoy { 0%, 100% { box-shadow: none; } 50% { box-shadow: 0 0 22px var(--color-hit); } }
+.boss-decoy { animation: boss-decoy 0.45s ease-in-out infinite; }
+@keyframes boss-reversed { 0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; } 20%, 80% { transform: translate(-50%, 0) scale(1.05); opacity: 1; } 100% { transform: translate(-50%, -6px) scale(1); opacity: 0; } }
+.boss-reversed { animation: boss-reversed 0.7s ease-out both; }
+
+/* Final Blow: the picture turns and shifts colour (Hard also flips and inverts it). */
+@keyframes boss-turn { from { transform: rotate(0) scale(1.15); } to { transform: rotate(360deg) scale(1.15); } }
+.boss-turn { animation: boss-turn 9s linear infinite; }
+@keyframes boss-turn-fast {
+  0% { transform: rotate(0) scale(1.2); }
+  30% { transform: rotate(140deg) scale(-1.2, 1.2); }
+  60% { transform: rotate(250deg) scale(1.3); }
+  100% { transform: rotate(360deg) scale(-1.2, 1.2); }
+}
+.boss-turn-fast { animation: boss-turn-fast 4.5s linear infinite; }
+@keyframes boss-hue { from { filter: hue-rotate(0); } to { filter: hue-rotate(360deg); } }
+.boss-turn.boss-hue { animation: boss-turn 9s linear infinite, boss-hue 3s linear infinite; }
+@keyframes boss-hue-fast {
+  0%, 100% { filter: hue-rotate(0); }
+  20% { filter: hue-rotate(140deg) invert(1); }
+  25% { filter: hue-rotate(160deg); }
+  60% { filter: hue-rotate(260deg) saturate(2); }
+  64% { filter: invert(1) hue-rotate(40deg); }
+  68% { filter: hue-rotate(300deg); }
+}
+.boss-turn-fast.boss-hue-fast { animation: boss-turn-fast 4.5s linear infinite, boss-hue-fast 1.8s steps(1, end) infinite; }
+
 /* ---------------------------------------------------------------- Rules demos (components/RulesDemos.tsx) */
 /* Each demo loops every 4s; the steps are keyed to the same timeline. */
 @keyframes demo-type { 0%, 8% { width: 0; } 40%, 80% { width: 5ch; } 88%, 100% { width: 0; } }

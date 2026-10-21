@@ -13,10 +13,12 @@ interface Props {
   resetKey?: string | number;
   /** Thick, burning bar for the final phase. */
   intense?: boolean;
+  /** Hard mode: no seconds counter, only the bar (the tick still warns at the end). */
+  hideSeconds?: boolean;
 }
 
 /** A draining bar with the seconds left; it turns red and ticks in the last stretch. */
-export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 0, resetKey, intense }: Props) {
+export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 0, resetKey, intense, hideSeconds }: Props) {
   const { left, penalize, reset } = useCountdown(total, running, onExpire);
   const seenPenalties = useRef(penalties);
   const lastTick = useRef(0);
@@ -46,7 +48,9 @@ export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 
           style={{ width: `${(left / total) * 100}%` }}
         />
       </div>
-      <span className={`w-10 text-right font-display text-lg font-bold tabular-nums ${low ? 'animate-pulse text-coral' : 'text-ink-soft'}`}>{secs}s</span>
+      <span className={`w-10 text-right font-display text-lg font-bold tabular-nums ${low ? 'animate-pulse text-coral' : 'text-ink-soft'}`}>
+        {hideSeconds ? '??' : `${secs}s`}
+      </span>
     </div>
   );
 }
