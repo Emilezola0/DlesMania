@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { BossDifficulty } from '../store/progress';
 import difficultyData from '../data/difficulties.json';
-import type { BlitzPrompt, Boss, BossCard } from '../types';
+import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings } from '../types';
 import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
 
@@ -46,24 +46,8 @@ export interface DifficultySpec {
   /** Seconds that still earn the speed bonus. */
   parSeconds: number;
   scoreMultiplier: number;
-  /** Secret last phase after the boss's life runs out; null = none (Easy, Medium). */
-  roulette: RouletteSpec | null;
-}
-
-/**
- * "Russian Roulette": the player names a character from a shared pool, then the boss picks one
- * at random from what's left (the player's pick included). Same character → instant defeat.
- * Otherwise both leave the pool, and `picksToWin` safe picks win the fight.
- */
-export interface RouletteSpec {
-  /** Safe picks needed (lowered automatically when the pool can't allow that many). */
-  picksToWin: number;
-  /** Characters drawn into the pool. */
-  poolSize: number;
-  /** Seconds per turn; when they run out the pick is made for you. 0 = no clock. */
-  turnSeconds: number;
-  /** Points added (before the multiplier) when the player survives. */
-  bonus: number;
+  /** Secret last phase after the boss's life runs out (the Name Chain); null = none (Easy, Medium). */
+  secret: SecretSettings | null;
 }
 
 /**
@@ -153,37 +137,25 @@ export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, av
 }
 
 /**
- * Each safe turn removes two characters (the player's and the boss's), and the last turn needs
- * at least two left so the boss's pick can miss — so `n` characters allow at most floor(n / 2) picks.
+ * Each exchange uses up two entities of one category (the boss's and the player's), so a category
+ * with n entities allows floor(n / 2) exchanges.
  */
-export const maxSafePicks = (poolSize: number) => Math.floor(poolSize / 2);
-
-/** Characters a boss can bring to the roulette table: its cards, minus objects it lists in `roulette.exclude`. */
-export function roulettePool(boss: Boss): BossCard[] {
-  const exclude = new Set((boss.roulette?.exclude ?? []).map((l) => l.toLowerCase()));
-  const seen = new Set<string>();
-  return [...boss.radar.members, ...boss.finale].filter((c) => {
-    const key = c.label.toLowerCase();
-    if (exclude.has(key) || seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
+export const maxExchanges = (categories: SecretCategory[]) => categories.reduce((n, c) => n + Math.floor(c.entities.length / 2), 0);
 
 /**
- * The roulette for one fight: difficulty settings, overridden per boss in bosses.json, then
- * clamped so the target is reachable. Null when the difficulty has none or the pool is too small.
+ * The Name Chain for one fight: Hard's settings, overridden per boss, with the target lowered so
+ * it can always be reached. Null when the difficulty has none or the boss has no categories.
  */
-export function drawRoulette(boss: Boss, d: DifficultySpec, rand: () => number) {
-  if (!d.roulette) return null;
-  const spec = { ...d.roulette, ...boss.roulette };
-  const pool = shuffle(roulettePool(boss), rand).slice(0, spec.poolSize);
-  const picksToWin = Math.min(spec.picksToWin, maxSafePicks(pool.length));
+export function drawSecret(boss: Boss, d: DifficultySpec) {
+  if (!d.secret || !boss.secret?.categories.length) return null;
+  const { categories, ...overrides } = boss.secret;
+  const settings = { ...d.secret, ...overrides };
+  const picksToWin = Math.min(settings.picksToWin, maxExchanges(categories));
   if (picksToWin < 1) return null;
-  return { pool, picksToWin, turnSeconds: spec.turnSeconds, bonus: spec.bonus };
+  return { ...settings, picksToWin, categories };
 }
 
-export type Roulette = NonNullable<ReturnType<typeof drawRoulette>>;
+export type SecretPhase = NonNullable<ReturnType<typeof drawSecret>>;
 
 /** Every spelling of an answer (English, French, nicknames), compacted for exact comparison. */
 const compactSpellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(compactText).filter(Boolean);
@@ -221,7 +193,7 @@ export interface BattleStats {
   correct: number;
   wrong: number;
   timeMs: number;
-  /** Secret phase: its bonus when survived, -1 when shot (no victory bonuses). */
+  /** Secret phase: its bonus when won, -1 when lost (no victory bonuses). */
   bonus?: number;
 }
 

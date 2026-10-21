@@ -164,10 +164,10 @@ export interface Boss {
     hurt: string[];
     win: string;
     lose: string;
-    /** Hard's secret phase (defaults in BossBattle when missing): its opening, a survived turn, the fatal shot. */
-    roulette?: string;
-    spared?: string[];
-    shot?: string;
+    /** Hard's secret phase (defaults in BossBattle when missing): its opening, a good answer, the losing one. */
+    secret?: string;
+    secretOk?: string[];
+    secretLost?: string;
   };
   blitz: BlitzPrompt[];
   /** Phase 2: cards that belong to the franchise, and look-alikes from elsewhere. */
@@ -175,10 +175,10 @@ export interface Boss {
   /** Phase 3: rare items and secondary characters to name under pressure. */
   finale: BossCard[];
   /**
-   * Per-boss overrides for Hard's secret Russian Roulette phase (src/data/difficulties.json has the
-   * defaults). `exclude` drops cards that aren't characters (items, ships...) from its pool.
+   * Hard's secret phase, the Name Chain: what the boss can name, by category (each entity belongs to
+   * exactly one). Any of src/data/difficulties.json's `secret` settings can be overridden here.
    */
-  roulette?: { picksToWin?: number; poolSize?: number; turnSeconds?: number; bonus?: number; exclude?: string[] };
+  secret?: Partial<SecretSettings> & { categories: SecretCategory[] };
 }
 
 /** How a phase ended, reported by the phase component to the battle. */
@@ -188,4 +188,22 @@ export interface PhaseResult {
   wrong: number;
   /** Answers the player missed, shown on the phase transition. */
   missed?: string[];
+}
+
+/** One kind of thing in the Name Chain ("Character", "Planet", "Spell"...). */
+export interface SecretCategory {
+  label: string;
+  entities: { name: string; aliases: string[] }[];
+}
+
+/** Name Chain balancing: src/data/difficulties.json (Hard), overridable per boss. */
+export interface SecretSettings {
+  /** Good answers needed to win (lowered automatically when the categories can't allow that many). */
+  picksToWin: number;
+  /** Seconds per answer; running out loses. */
+  turnSeconds: number;
+  /** How many of the latest names stay on screen; older ones must be remembered. */
+  historyShown: number;
+  /** Points added (before the multiplier) for winning it. */
+  bonus: number;
 }

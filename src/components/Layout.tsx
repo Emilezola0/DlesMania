@@ -4,6 +4,7 @@ import { computeStreak, useProgress, type ThemeChoice } from '../store/progress'
 import { useUi } from '../store/ui';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
+import { UpdateBanner } from './UpdateBanner';
 
 const NAV = [
   { to: '/daily', label: 'Daily' },
@@ -154,6 +155,7 @@ export function Layout() {
         <Outlet />
       </main>
       <RulesModal />
+      <UpdateBanner />
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />

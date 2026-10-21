@@ -120,8 +120,8 @@ console.log(`themes      ${themes.length} (${themes.reduce((n, t) => n + t.categ
 // left so retries and second rounds draw something new.
 const bosses = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bosses.json'), 'utf8'));
 
-// Balancing lives in src/data/difficulties.json: check its shape, and that Hard's secret
-// Russian Roulette can be won (each safe turn removes 2 characters, so n allow floor(n / 2) picks).
+// Balancing lives in src/data/difficulties.json: check its shape, and that Hard's secret Name Chain
+// can be won (each exchange uses two entities of one category, so n allow floor(n / 2) exchanges).
 const difficulties = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'difficulties.json'), 'utf8'));
 const positive = ['hearts', 'blitzSecondsPer', 'radarCards', 'radarImpostors', 'finaleTargets', 'finaleSeconds', 'scoreMultiplier'];
 for (const id of ['easy', 'medium', 'hard']) {
@@ -135,11 +135,11 @@ for (const id of ['easy', 'medium', 'hard']) {
   if (!Array.isArray(d.rounds) || d.rounds.length !== 3 || d.rounds.some((n) => !(n >= 1))) fail(`${at}: "rounds" needs three counts >= 1`);
   if (d.radarImpostors >= d.radarCards) fail(`${at}: more impostors than cards`);
   if (![0, 1, 2].includes(d.distortion)) fail(`${at}: "distortion" must be 0, 1 or 2`);
-  const r = d.roulette;
-  if (r) {
-    if (!(r.picksToWin >= 1)) fail(`${at}: roulette.picksToWin must be >= 1`);
-    if (!(r.poolSize >= 2)) fail(`${at}: roulette.poolSize must be >= 2`);
-    else if (r.picksToWin > Math.floor(r.poolSize / 2)) fail(`${at}: roulette.picksToWin ${r.picksToWin} can't be reached with ${r.poolSize} characters (max ${Math.floor(r.poolSize / 2)})`);
+  const sc = d.secret;
+  if (sc) {
+    if (!(sc.picksToWin >= 1)) fail(`${at}: secret.picksToWin must be >= 1`);
+    if (!(sc.turnSeconds >= 0)) fail(`${at}: secret.turnSeconds must be >= 0`);
+    if (!(sc.historyShown >= 0)) fail(`${at}: secret.historyShown must be >= 0`);
   }
 }
 const bossIds = new Set();
@@ -166,17 +166,26 @@ for (const b of bosses) {
   for (const c of b.radar.impostors) if (members.has(label(c).toLowerCase())) fail(`${at}: "${label(c)}" is both member and impostor`);
   const noImage = [...b.radar.members, ...b.radar.impostors, ...b.finale].filter((c) => typeof c === 'string' || !c.image).map(label);
   if (noImage.length) warn(`${at}: no image for ${noImage.join(', ')} (run scripts/enrich-bosses.mjs)`);
-  for (const k of ['roulette', 'shot']) if (!b.lines?.[k]) warn(`${at}: no "${k}" line (a generic one is used)`);
-  // Hard's roulette pool: members + finale cards that aren't excluded, capped at poolSize.
-  const roulette = { ...difficulties.hard?.roulette, ...b.roulette };
-  if (difficulties.hard?.roulette) {
-    const exclude = new Set((b.roulette?.exclude ?? []).map((l) => l.toLowerCase()));
-    const known = new Set([...b.radar.members, ...b.finale].map((c) => label(c).toLowerCase()));
-    for (const l of b.roulette?.exclude ?? []) if (!known.has(l.toLowerCase())) warn(`${at}: roulette.exclude "${l}" matches no card`);
-    const pool = Math.min(roulette.poolSize, [...known].filter((l) => !exclude.has(l)).length);
-    if (roulette.picksToWin > Math.floor(pool / 2)) {
-      warn(`${at}: roulette needs ${roulette.picksToWin} picks but ${pool} characters allow ${Math.floor(pool / 2)} (lowered in game)`);
+  for (const k of ['secret', 'secretLost']) if (!b.lines?.[k]) warn(`${at}: no "${k}" line (a generic one is used)`);
+  // Hard's Name Chain: categories of entities, each entity in exactly one.
+  if (difficulties.hard?.secret) {
+    const cats = b.secret?.categories ?? [];
+    if (cats.length < 2) fail(`${at}: secret.categories needs at least 2 categories`);
+    const owner = new Map();
+    for (const c of cats) {
+      if (c.entities.length < 2) fail(`${at}: secret category "${c.label}" needs at least 2 entities`);
+      for (const e of c.entities) {
+        for (const sp of e.split('|')) {
+          const key = sp.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+          if (!key) continue;
+          if (owner.has(key) && owner.get(key) !== `${c.label}/${e}`) fail(`${at}: "${sp}" is spelled the same in "${owner.get(key)}" and "${c.label}/${e}"`);
+          owner.set(key, `${c.label}/${e}`);
+        }
+      }
     }
+    const max = cats.reduce((n, c) => n + Math.floor(c.entities.length / 2), 0);
+    const want = b.secret?.picksToWin ?? difficulties.hard.secret.picksToWin;
+    if (want > max) warn(`${at}: Name Chain needs ${want} answers but its categories allow ${max} (lowered in game)`);
   }
 }
 console.log(`bosses      ${bosses.length} (${['games', 'anime', 'cinema'].map((d) => `${d}:${bosses.filter((b) => b.domain === d).length}`).join(' ')})`);

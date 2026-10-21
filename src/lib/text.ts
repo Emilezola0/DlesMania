@@ -11,3 +11,6 @@ export const workNames = (w: Work) => [w.name, w.nameFr, w.subtitle, ...(w.alias
 export function matchesQuery(w: Work, query: string): boolean {
   return bestSearchScore(query, workNames(w)) !== null;
 }
+
+/** "a character", "an item": the article for a lower-cased noun. */
+export const withArticle = (noun: string) => `${/^[aeiou]/i.test(noun) ? 'an' : 'a'} ${noun.toLowerCase()}`;

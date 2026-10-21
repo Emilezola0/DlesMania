@@ -351,15 +351,13 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .boss-turn-fast.boss-hue-fast { animation: boss-turn-fast 4.5s linear infinite, boss-hue-fast 1.8s steps(1, end) infinite; }
 
-/* Hard's secret Russian Roulette phase. */
+/* Hard's secret Name Chain phase. */
 @keyframes boss-secret {
   0%, 100% { text-shadow: 0 0 0 transparent; opacity: 1; }
   45% { text-shadow: 2px 0 0 var(--color-coral), -2px 0 0 var(--color-accent); opacity: 0.85; }
   50% { text-shadow: -3px 0 0 var(--color-coral), 3px 0 0 var(--color-accent); opacity: 1; }
 }
 .boss-secret-title { animation: boss-secret 1.6s steps(2, end) infinite; }
-@keyframes boss-roulette-shot { 0% { transform: scale(1.25); box-shadow: 0 0 0 0 rgb(220 60 60 / 0.9); } 100% { transform: scale(1); box-shadow: 0 0 0 24px rgb(220 60 60 / 0); } }
-.boss-roulette-shot { animation: boss-roulette-shot 0.6s ease-out both; }
 @keyframes boss-segment-secret { 0%, 100% { box-shadow: 0 0 4px var(--color-coral); } 50% { box-shadow: 0 0 16px var(--color-coral); } }
 .boss-segment-secret { animation: boss-segment-secret 0.9s ease-in-out infinite; }
 
