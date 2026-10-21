@@ -10,6 +10,7 @@ const NAV = [
   { to: '/daily', label: 'Daily' },
   { to: '/play', label: 'Free Play', short: 'Play' },
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
+  { to: '/whos-that', label: "Who's That?", short: 'Who?' },
   { to: '/archive', label: 'Archive' },
 ];
 
@@ -86,7 +87,7 @@ export function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2.5 sm:gap-4">
+        <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4 sm:gap-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
             <span className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
@@ -97,7 +98,7 @@ export function Layout() {
                 key={n.to}
                 to={n.to}
                 className={({ isActive }) =>
-                  `whitespace-nowrap border-b-2 px-1.5 py-1.5 font-display text-[13px] font-semibold tracking-wider transition min-[400px]:px-2.5 sm:px-3 ${
+                  `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`
                 }
@@ -118,7 +119,7 @@ export function Layout() {
             onClick={() => openRules(onBoss ? 'boss' : 'daily')}
             title="How to play"
             aria-label="How to play"
-            className="grid size-8 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink"
+            className="grid size-7 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
           >
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
           </button>
@@ -127,7 +128,7 @@ export function Layout() {
             onClick={toggleSound}
             title={sound ? 'Mute sound effects' : 'Unmute sound effects'}
             aria-pressed={sound}
-            className="rounded-md p-1.5 text-ink-soft transition hover:bg-tile hover:text-ink"
+            className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
           >
             <SpeakerIcon on={sound} />
           </button>
@@ -136,7 +137,7 @@ export function Layout() {
             onClick={cycleTheme}
             title={`${THEME_LABEL[theme]} (click to change)`}
             aria-label={THEME_LABEL[theme]}
-            className="rounded-md p-1.5 text-ink-soft transition hover:bg-tile hover:text-ink"
+            className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
           >
             <ThemeIcon theme={theme} />
           </button>

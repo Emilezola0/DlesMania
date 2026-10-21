@@ -47,6 +47,9 @@ export default function Home() {
             <Link to="/boss" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
               BOSS BATTLE
             </Link>
+            <Link to="/whos-that" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
+              WHO&apos;S THAT?
+            </Link>
           </div>
           <RulesButton tab="daily" label="How to play · Règles du jeu" />
           <div className="mt-4 grid w-full max-w-md grid-cols-3 divide-x divide-rule border-y border-rule py-3 text-center">

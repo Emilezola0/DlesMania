@@ -217,5 +217,20 @@ for (const b of bosses) {
 }
 console.log(`bosses      ${bosses.length} (${['games', 'anime', 'cinema'].map((d) => `${d}:${bosses.filter((b) => b.domain === d).length}`).join(' ')})`);
 
+// ---------------------------------------------------------------- Who's That? (src/data/silhouettes.json)
+const silhouettes = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'silhouettes.json'), 'utf8'));
+for (const sr of silhouettes) {
+  const at = `silhouettes/${sr.id}`;
+  if (!DOMAINS.includes(sr.domain)) fail(`${at}: bad domain "${sr.domain}"`);
+  if (sr.entries.length < 20) warn(`${at}: only ${sr.entries.length} entries — a minute will run out of faces`);
+  const names = new Set();
+  for (const e of sr.entries) {
+    if (!e.image) fail(`${at}/${e.name}: no image`);
+    if (names.has(e.name.toLowerCase())) fail(`${at}: duplicate "${e.name}"`);
+    names.add(e.name.toLowerCase());
+  }
+}
+console.log(`silhouettes ${silhouettes.map((sr) => `${sr.id}:${sr.entries.length}`).join(' ')}`);
+
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

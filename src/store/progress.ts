@@ -40,10 +40,13 @@ interface ProgressState {
   bosses: Record<string, BossRecord>;
   /** Difficulty picked last on a boss intro. */
   bossDifficulty: BossDifficulty;
+  /** "Who's That?": best score per series id or "all-<domain>". */
+  whosThat: Record<string, number>;
   sound: boolean;
   theme: ThemeChoice;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
+  recordWhosThat: (key: string, score: number) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
@@ -60,6 +63,7 @@ export const useProgress = create<ProgressState>()(
       freePlay: { played: 0, won: 0, points: 0 },
       bosses: {},
       bossDifficulty: 'easy',
+      whosThat: {},
       sound: true,
       theme: 'system',
       setRound: (domain, date, index, record) =>
@@ -77,6 +81,7 @@ export const useProgress = create<ProgressState>()(
           },
         })),
       setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
+      recordWhosThat: (key, score) => set((s) => ({ whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) } })),
       recordBoss: (key, { won, score, time }) =>
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
@@ -94,7 +99,7 @@ export const useProgress = create<ProgressState>()(
         }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {} }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {} }),
     }),
     {
       name: 'omnidle-progress',
