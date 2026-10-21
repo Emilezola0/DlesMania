@@ -62,7 +62,7 @@ export const DIFFICULTIES = Object.fromEntries(
 
 /**
  * Hard's second loops: every phase's second round is shorter but harder. Visual difficulty stays
- * static and on the picture only — heavy zoom, a strong colour shift, an upside-down flip — so the
+ * static and on the picture only — zoom, a strong colour shift, a turn (no blur) — so the
  * input, buttons and layout never move.
  */
 export interface SecondLoop {
@@ -83,8 +83,10 @@ export interface PictureDistortion {
   zoom: [number, number];
   /** Hue shift range in degrees (applied with a random sign). */
   hue: [number, number];
-  /** Chance a picture is turned upside down. */
+  /** Chance a picture is turned. */
   flip: number;
+  /** Angles a turned picture can take (default: upside down only). */
+  turns?: number[];
 }
 
 /** Radar Defense: fewer, faster cards with distorted pictures. */
@@ -108,7 +110,8 @@ export interface PictureFx {
   x: number;
   y: number;
   hue: number;
-  flip: boolean;
+  /** Rotation in degrees (0 = upright). */
+  turn: number;
 }
 
 export function drawPictureFx(p: PictureDistortion, rand: () => number): PictureFx {
@@ -117,13 +120,13 @@ export function drawPictureFx(p: PictureDistortion, rand: () => number): Picture
     x: 20 + rand() * 60,
     y: 15 + rand() * 55,
     hue: (rand() < 0.5 ? -1 : 1) * (p.hue[0] + rand() * (p.hue[1] - p.hue[0])),
-    flip: rand() < p.flip,
+    turn: rand() < p.flip ? (p.turns?.length ? p.turns[Math.floor(rand() * p.turns.length)] : 180) : 0,
   };
 }
 
 /** CSS for a still distortion: only ever put on the picture element. */
 export const pictureStyle = (fx: PictureFx) => ({
-  transform: `scale(${fx.scale})${fx.flip ? ' rotate(180deg)' : ''}`,
+  transform: `scale(${fx.scale})${fx.turn ? ` rotate(${fx.turn}deg)` : ''}`,
   transformOrigin: `${fx.x}% ${fx.y}%`,
   filter: `hue-rotate(${fx.hue}deg) saturate(1.7)`,
 });

@@ -158,6 +158,7 @@ for (const id of ['easy', 'medium', 'hard']) {
         if (!Array.isArray(p.zoom) || p.zoom.length !== 2 || !(p.zoom[0] >= 1 && p.zoom[1] >= p.zoom[0])) fail(`${at}: secondLoop zoom must be [min, max] with 1 <= min <= max`);
         if (!Array.isArray(p.hue) || p.hue.length !== 2 || !(p.hue[1] >= p.hue[0])) fail(`${at}: secondLoop hue must be [min, max]`);
         if (!(p.flip >= 0 && p.flip <= 1)) fail(`${at}: secondLoop flip must be a chance in [0, 1]`);
+        if (p.turns && (!Array.isArray(p.turns) || p.turns.some((t) => typeof t !== 'number'))) fail(`${at}: secondLoop turns must be a list of angles`);
       }
     }
   }

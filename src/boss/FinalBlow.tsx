@@ -51,7 +51,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const input = useRef<HTMLInputElement>(null);
   const target = targets[index];
   const spot = useSpotlight(!over && !solved, look.every);
-  // Second loop: each face gets a still distortion (zoom, colour shift, maybe upside down) instead of
+  // Second loop: each face gets a still distortion (zoom, colour shift, maybe turned) instead of
   // the moving spotlight, turning and flicker.
   const still = useMemo(() => (esc ? targets.map(() => drawPictureFx(esc, Math.random)) : null), [esc, targets]);
 
@@ -103,8 +103,8 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   };
 
   const clear = solved || over;
-  // Still (second-loop) pictures are already zoomed and flipped, so they get a lighter blur.
-  const blur = clear ? 0 : still ? Math.max(1, 8 - elapsed * 9) : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
+  // Still (second-loop) pictures are never blurred: zoom, colour and rotation are hard enough.
+  const blur = clear || still ? 0 : Math.max(look.blur[1], look.blur[0] - elapsed * (look.blur[0] + 2));
   const radius = clear ? 150 : look.radius[0] + elapsed * look.radius[1];
   const mask = `radial-gradient(circle at ${spot.x}% ${spot.y}%, #000 ${radius}%, transparent ${radius + 14}%)`;
 
@@ -134,7 +134,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
               className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved || still ? '' : 'boss-flicker'}`}
               style={
                 still && !clear
-                  ? { ...pictureStyle(still[index]), filter: `${pictureStyle(still[index]).filter} blur(${blur}px)` }
+                  ? pictureStyle(still[index])
                   : { filter: `blur(${blur}px) contrast(1.1)`, WebkitMaskImage: mask, maskImage: mask }
               }
             />

@@ -86,34 +86,44 @@
     "secondLoop": {
       "blitz": {
         "countDelta": -1,
-        "secondsPer": 5
+        "secondsPer": 6
       },
       "radar": {
         "cards": 5,
         "impostors": 2,
-        "speed": 0.65,
+        "speed": 0.75,
         "zoom": [
-          2.2,
-          3.0
+          1.6,
+          2.3
         ],
         "hue": [
-          100,
-          220
+          80,
+          180
         ],
-        "flip": 0.6
+        "flip": 0.6,
+        "turns": [
+          90,
+          180,
+          270
+        ]
       },
       "finale": {
         "targets": 3,
-        "seconds": 6,
+        "seconds": 8,
         "zoom": [
-          2.2,
-          3.0
+          1.5,
+          2.1
         ],
         "hue": [
-          100,
-          220
+          80,
+          180
         ],
-        "flip": 0.6
+        "flip": 0.75,
+        "turns": [
+          90,
+          180,
+          270
+        ]
       }
     },
     "secret": {
