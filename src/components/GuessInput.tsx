@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { workNames } from '../lib/text';
+import { workNames, type Named } from '../lib/text';
 import { rankBySearch, searchScore } from '../utils/textMatcher';
-import type { Work } from '../types';
 
 interface Props {
-  pool: Work[];
+  pool: Named[];
   exclude: string[];
   onGuess: (id: string) => void;
   placeholder?: string;
@@ -33,7 +32,7 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
     return dupes;
   }, [pool]);
 
-  const submit = (w: Work | undefined) => {
+  const submit = (w: Named | undefined) => {
     if (!w) return;
     onGuess(w.id);
     setQuery('');

@@ -6,6 +6,7 @@ import BossSelect from './pages/BossSelect';
 import Daily, { DailyHub } from './pages/Daily';
 import FreePlay from './pages/FreePlay';
 import Home from './pages/Home';
+import SpecialistUniverse, { SpecialistHub } from './pages/Specialist';
 import WhosThat, { WhosThatHub } from './pages/WhosThat';
 
 export default function App() {
@@ -22,6 +23,9 @@ export default function App() {
         <Route path="boss/:id" element={<BossBattle />} />
         <Route path="whos-that" element={<WhosThatHub />} />
         <Route path="whos-that/:key" element={<WhosThat />} />
+        <Route path="specialist" element={<SpecialistHub />} />
+        <Route path="specialist/:universe" element={<SpecialistUniverse />} />
+        <Route path="specialist/:universe/:date" element={<SpecialistUniverse />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

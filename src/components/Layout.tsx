@@ -11,8 +11,10 @@ const NAV = [
   { to: '/play', label: 'Free Play', short: 'Play' },
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/whos-that', label: "Who's That?", short: 'Who?' },
-  { to: '/archive', label: 'Archive' },
-];
+  { to: '/specialist', label: 'Specialist', short: 'Pro' },
+  // On the narrowest phones there's no room for six entries; the archive is still one tap away from each daily.
+  { to: '/archive', label: 'Archive', wideOnly: true },
+] as { to: string; label: string; short?: string; wideOnly?: boolean }[];
 
 /** Line-drawn icons in the same ink as the glyphs. */
 export function SpeakerIcon({ on }: { on: boolean }) {
@@ -98,7 +100,7 @@ export function Layout() {
                 key={n.to}
                 to={n.to}
                 className={({ isActive }) =>
-                  `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
+                  `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`
                 }

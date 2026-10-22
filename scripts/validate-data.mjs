@@ -232,5 +232,27 @@ for (const sr of silhouettes) {
 }
 console.log(`silhouettes ${silhouettes.map((sr) => `${sr.id}:${sr.entries.length}`).join(' ')}`);
 
+// ---------------------------------------------------------------- Specialist (src/data/specialist/*.json)
+const op = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'onepiece.json'), 'utf8'));
+const opIds = new Set();
+const spellings = new Map();
+for (const c of op.characters) {
+  const at = `specialist/onepiece/${c.name}`;
+  if (opIds.has(c.id)) fail(`${at}: duplicate id ${c.id}`);
+  opIds.add(c.id);
+  for (const k of ['image', 'gender', 'affiliation', 'origin', 'arc']) if (!c[k]) fail(`${at}: no ${k}`);
+  if (!(c.chapter > 0)) fail(`${at}: no debut chapter`);
+  // Two characters answering to the same name would make a guess ambiguous.
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (spellings.has(s) && spellings.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${spellings.get(s)}`);
+    spellings.set(s, c.id);
+  }
+}
+for (const l of op.laughs) if (!opIds.has(l.character)) fail(`specialist/onepiece: laugh "${l.laugh}" belongs to an unknown character ${l.character}`);
+for (const f of op.fruits) if (!f.type) fail(`specialist/onepiece/${f.name}: no type`);
+for (const c of op.crews) if (!c.flag) fail(`specialist/onepiece/${c.name}: no Jolly Roger`);
+if (op.characters.length < 150) warn(`specialist/onepiece: only ${op.characters.length} characters`);
+console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.fruits.length} fruits, ${op.crews.length} crews, ${op.laughs.length} laughs (${op.generated})`);
+
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

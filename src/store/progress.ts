@@ -42,11 +42,14 @@ interface ProgressState {
   bossDifficulty: BossDifficulty;
   /** "Who's That?": best score per series id or "all-<domain>". */
   whosThat: Record<string, number>;
+  /** Specialist dailies: "<universe>:<date>" -> round index -> record. */
+  special: Record<string, DayRounds>;
   sound: boolean;
   theme: ThemeChoice;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
   recordWhosThat: (key: string, score: number) => void;
+  setSpecialRound: (key: string, index: number, record: RoundRecord) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
@@ -64,6 +67,7 @@ export const useProgress = create<ProgressState>()(
       bosses: {},
       bossDifficulty: 'easy',
       whosThat: {},
+      special: {},
       sound: true,
       theme: 'system',
       setRound: (domain, date, index, record) =>
@@ -82,6 +86,7 @@ export const useProgress = create<ProgressState>()(
         })),
       setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
       recordWhosThat: (key, score) => set((s) => ({ whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) } })),
+      setSpecialRound: (key, index, record) => set((s) => ({ special: { ...s.special, [key]: { ...s.special[key], [index]: record } } })),
       recordBoss: (key, { won, score, time }) =>
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
@@ -99,7 +104,7 @@ export const useProgress = create<ProgressState>()(
         }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {} }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, special: {} }),
     }),
     {
       name: 'omnidle-progress',
@@ -171,4 +176,20 @@ export function computeStreak(days: ProgressState['days'], domain?: Domain): { c
     prev = d;
   }
   return { current, best: Math.max(best, current) };
+}
+
+/**
+ * Consecutive Specialist dailies completed (all `rounds` rounds played) for one universe, ending
+ * today or yesterday.
+ */
+export function specialStreak(special: ProgressState['special'], universe: string, rounds: number): number {
+  const done = (date: string) => Object.values(special[`${universe}:${date}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
+  let cursor = todayKey();
+  if (!done(cursor)) cursor = addDays(cursor, -1);
+  let n = 0;
+  while (done(cursor)) {
+    n++;
+    cursor = addDays(cursor, -1);
+  }
+  return n;
 }
