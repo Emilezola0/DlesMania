@@ -9006,11 +9006,15 @@
     },
     {
       "character": "buggy",
-      "laugh": "Gyahahaha"
+      "laugh": "Gyahahaha",
+      "youtubeId": "e1TJF9LfqGU",
+      "start": 0
     },
     {
       "character": "jango",
-      "laugh": "Uhyahyahya"
+      "laugh": "Uhyahyahya",
+      "youtubeId": "Ljcg0s7nnFE",
+      "start": 0
     },
     {
       "character": "arlong",
@@ -9028,7 +9032,9 @@
     },
     {
       "character": "wapol",
-      "laugh": "Maaha-ha-ha"
+      "laugh": "Maaha-ha-ha",
+      "youtubeId": "YRVNme92KhQ",
+      "start": 0
     },
     {
       "character": "crocodile",
@@ -9198,7 +9204,9 @@
     },
     {
       "character": "vito",
-      "laugh": "Nyororo"
+      "laugh": "Nyororo",
+      "youtubeId": "9dREW8rW-g8",
+      "start": 0
     },
     {
       "character": "charlotte-br-l-e",
@@ -9246,7 +9254,9 @@
     },
     {
       "character": "harald",
-      "laugh": "Barahaha"
+      "laugh": "Barahaha",
+      "youtubeId": "pZ2VATRUUKw",
+      "start": 0
     },
     {
       "character": "rocks-d-xebec",

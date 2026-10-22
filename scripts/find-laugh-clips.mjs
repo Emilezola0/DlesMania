@@ -42,6 +42,14 @@ async function search(query) {
   return out;
 }
 
+/** Clips checked and turned down: another show, another character, or someone laughing *at* them. */
+const REJECTED = new Set([
+  'KYxrEVj0FB4', // Tommy Pickles (Rugrats), not Pickles
+  'scHVJttTEnU', // Doflamingo in three languages, not Mjosgard
+  'sM8tPIush1k', // "Bartolomeo makes me laugh": not his laugh
+  'fQOoo1x0U90', // Gerd laughing at Loki
+]);
+
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 /** Several characters in one video, or not the original voice. */
 const NOT_ONE_LAUGH = /\b(top ?\d+|all|every|best|quiz|guess|alphabet|trend|compilation|tier|ranking|reaction|meme|edit|amv|remix|song|english|eng|dub(bed)?|fandub|cover|impression|vs|and)\b|&|\+|ランキング|クイズ|まとめ|比較/i;
@@ -62,7 +70,7 @@ function pick(results, c, laugh) {
 
 const data = JSON.parse(readFileSync(FILE, 'utf8'));
 const byId = new Map(data.characters.map((c) => [c.id, c]));
-const used = new Set(data.laughs.map((l) => l.youtubeId).filter(Boolean));
+const used = new Set([...REJECTED, ...data.laughs.map((l) => l.youtubeId).filter(Boolean)]);
 let found = 0;
 const todo = data.laughs.filter((l) => flags.force || !l.youtubeId);
 for (const [i, l] of todo.entries()) {
