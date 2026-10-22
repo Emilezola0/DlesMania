@@ -6303,14 +6303,14 @@
     ],
     "images": "fandom:inazuma-eleven",
     "boss": {
-      "name": "Kageyama Reiji",
+      "name": "Ray Dark",
       "title": "The Commander in the Shadows",
       "src": "fandom:inazuma-eleven:Kageyama Reiji",
       "color": "#7c3aed",
       "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bf/Kageyama_Reiji.png/revision/latest/scale-to-width-down/400?cb=20231214153852"
     },
     "lines": {
-      "intro": "So the Raimon brats send you. Soccer is only a tool. Show me how much you really know.",
+      "intro": "So the Raimon kids send you. Soccer is only a tool. Show me how much you really know.",
       "phase2": "Names are cheap. Can you tell my players from strangers who never set foot on this pitch?",
       "phase3": "Hissatsu technique! Name the players even Raimon forgot!",
       "hit": [
@@ -6323,65 +6323,65 @@
         "Your defence is full of holes.",
         "Weak."
       ],
-      "win": "So this is... the soccer Endou believes in.",
+      "win": "So this is... the soccer Mark Evans believes in.",
       "lose": "Victory belongs to those who control the game.",
       "secret": "One last match. I name a player, a technique or a team — answer with another of the same. Repeat nothing.",
       "secretOk": [
         "Hmph.",
         "Again."
       ],
-      "secretLost": "Wrong. Game over — Teikoku wins."
+      "secretLost": "Wrong. Game over — the Royal Academy wins."
     },
     "blitz": [
       {
         "prompt": "Name 5 Raimon players",
         "count": 5,
         "answers": [
-          "Endou Mamoru|Endou|Mark Evans",
-          "Gouenji Shuuya|Gouenji|Axel Blaze",
-          "Kidou Yuuto|Kidou|Jude Sharp",
-          "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
-          "Someoka Ryuugo|Someoka|Kevin Dragonfly",
-          "Kabeyama Heigorou|Kabeyama|Jack Wallside",
-          "Domon Asuka|Domon|Bobby Shearer",
-          "Ichinose Kazuya|Ichinose|Erik Eagle",
-          "Fubuki Shirou|Fubuki|Shawn Froste",
-          "Tsunami Jousuke|Tsunami|Hurley Kane",
-          "Tachimukai Yuuki|Tachimukai|Darren LaChance",
-          "Kogure Yuuya|Kogure|Scotty Banyan",
-          "Megane Kakeru|Megane|Willy Glass",
-          "Shishido Sakichi|Shishido|Steve Grim",
-          "Kurimatsu Teppei|Kurimatsu|Tod Ironside",
-          "Matsuno Kuusuke|Matsuno|Max Carson",
-          "Handa Shinichi|Handa|Sam Kincaid",
-          "Shourinji Ayumu|Shourinji|Timmy Sanders",
-          "Kageno Jin|Kageno|Jim Wraith"
+          "Mark Evans|Endou Mamoru|Endou",
+          "Axel Blaze|Gouenji Shuuya|Gouenji",
+          "Jude Sharp|Kidou Yuuto|Kidou",
+          "Nathan Swift|Kazemaru Ichirouta|Kazemaru",
+          "Kevin Dragonfly|Someoka Ryuugo|Someoka",
+          "Jack Wallside|Kabeyama Heigorou|Kabeyama",
+          "Bobby Shearer|Domon Asuka|Domon",
+          "Erik Eagle|Ichinose Kazuya|Ichinose",
+          "Shawn Froste|Fubuki Shirou|Fubuki",
+          "Hurley Kane|Tsunami Jousuke|Tsunami",
+          "Darren LaChance|Tachimukai Yuuki|Tachimukai",
+          "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
+          "William Glass|Megane Kakeru|Megane|Willy Glass",
+          "Sam Kincaid|Shishido Sakichi|Shishido",
+          "Tod Ironside|Kurimatsu Teppei|Kurimatsu",
+          "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson",
+          "Steve Grim|Handa Shinichi|Handa",
+          "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders",
+          "Jim Wraith|Kageno Jin|Kageno"
         ]
       },
       {
         "prompt": "Name 5 hissatsu techniques",
         "count": 5,
         "answers": [
-          "God Hand|Main Céleste",
-          "Majin The Hand|Majin the Hand",
-          "Fire Tornado|Tornade de feu",
-          "Dragon Tornado",
-          "Inazuma Break",
-          "Inazuma 1|Inazuma One|Inazuma 1 Gou",
-          "Twin Boost",
-          "Illusion Ball",
-          "Death Zone",
-          "Eternal Blizzard",
-          "Spinning Cut",
-          "The Wall",
-          "Fire Blizzard",
-          "Crossfire|Cross Fire",
-          "Grand Fire",
-          "Bakunetsu Screw",
-          "Dragon Crash",
-          "Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin",
-          "Mugen The Hand|Infinite Hand",
-          "Heaven Drive",
+          "Main Céleste|God Hand",
+          "Main Magique|Majin The Hand|Majin the Hand",
+          "Tornade de Feu|Fire Tornado|Tornade de feu",
+          "Tornade du Dragon|Dragon Tornado",
+          "Éclair Pulvérisant|Inazuma Break",
+          "Foudre|Inazuma 1|Inazuma One|Inazuma 1 Gou",
+          "Tir Puissance 2|Twin Boost",
+          "Ballon Illusoire|Illusion Ball",
+          "Triangle de la Mort|Death Zone",
+          "Blizzard Éternel|Eternal Blizzard",
+          "Scie Circulaire|Spinning Cut",
+          "Le Mur|The Wall",
+          "Blizzard Enflammé|Fire Blizzard",
+          "Feu Glacé|Crossfire|Cross Fire",
+          "Feu Tout-Puissant|Grand Fire",
+          "Tourbillon de Feu|Bakunetsu Screw",
+          "Choc du Dragon|Dragon Crash",
+          "Manchot Empereur N°2|Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin|Manchot Empereur",
+          "Mains de l'Infini|Mugen The Hand|Infinite Hand",
+          "Tir Céleste|Heaven Drive",
           "Gungnir"
         ]
       },
@@ -6389,203 +6389,218 @@
         "prompt": "Name 4 rival teams",
         "count": 4,
         "answers": [
-          "Teikoku Gakuen|Teikoku|Royal Academy",
+          "Royal Academy|Teikoku Gakuen|Teikoku|Royal Académie",
           "Zeus|Zeus Junior High",
-          "Occult|Occult Junior High",
-          "Gemini Storm",
+          "Occulte|Occult|Occult Junior High",
+          "Tempête des Gémeaux|Gemini Storm",
           "Epsilon",
           "Genesis|Gaia",
           "Chaos",
           "Knights of Queen",
-          "Orpheus",
-          "Unicorn",
-          "The Kingdom",
-          "Fire Dragon",
-          "Little Gigant",
+          "Orphée|Orpheus",
+          "Licornes|Unicorn",
+          "Rois du Football|The Kingdom",
+          "Dragons de Feu|Fire Dragon",
+          "Little Gigantes|Little Gigant",
           "Big Waves",
-          "Desert Lion",
+          "Lions du Désert|Desert Lion",
           "Kirkwood",
-          "Shuuyou Meito|Otaku"
+          "Otaku|Shuuyou Meito"
         ]
       },
       {
         "prompt": "Name 5 Inazuma Japan players",
         "count": 5,
         "answers": [
-          "Endou Mamoru|Endou|Mark Evans",
-          "Gouenji Shuuya|Gouenji|Axel Blaze",
-          "Kidou Yuuto|Kidou|Jude Sharp",
-          "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
-          "Fubuki Shirou|Fubuki|Shawn Froste",
-          "Tsunami Jousuke|Tsunami|Hurley Kane",
-          "Tachimukai Yuuki|Tachimukai|Darren LaChance",
-          "Kabeyama Heigorou|Kabeyama|Jack Wallside",
-          "Kogure Yuuya|Kogure|Scotty Banyan",
-          "Kiyama Hiroto|Kiyama|Xavier Foster",
-          "Midorikawa Ryuuji|Midorikawa|Jordan Greenway",
-          "Fudou Akio|Fudou|Caleb Stonewall",
-          "Sakuma Jirou|Sakuma|David Samford",
-          "Utsunomiya Toramaru|Utsunomiya|Austin Hobbes",
-          "Someoka Ryuugo|Someoka|Kevin Dragonfly",
-          "Hijikata Raiden|Hijikata|Thor Stoutberg"
+          "Mark Evans|Endou Mamoru|Endou",
+          "Axel Blaze|Gouenji Shuuya|Gouenji",
+          "Jude Sharp|Kidou Yuuto|Kidou",
+          "Nathan Swift|Kazemaru Ichirouta|Kazemaru",
+          "Shawn Froste|Fubuki Shirou|Fubuki",
+          "Hurley Kane|Tsunami Jousuke|Tsunami",
+          "Darren LaChance|Tachimukai Yuuki|Tachimukai",
+          "Jack Wallside|Kabeyama Heigorou|Kabeyama",
+          "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
+          "Xavier Foster|Kiyama Hiroto|Kiyama",
+          "Jordan Greenway|Midorikawa Ryuuji|Midorikawa",
+          "Caleb Stonewall|Fudou Akio|Fudou",
+          "David Samford|Sakuma Jirou|Sakuma",
+          "Austin Hobbes|Utsunomiya Toramaru|Utsunomiya",
+          "Kevin Dragonfly|Someoka Ryuugo|Someoka",
+          "Thor Stoutberg|Hijikata Raiden|Hijikata"
         ]
       },
       {
         "prompt": "Name 4 Aliea Academy captains",
         "count": 4,
         "answers": [
-          "Reize|Janus|Midorikawa Ryuuji|Midorikawa",
-          "Desarm|Dvalin",
-          "Gazel|Gazelle|Suzuno Fuusuke|Suzuno",
-          "Burn|Torch|Nagumo Haruya|Nagumo",
-          "Gran|Xene|Kiyama Hiroto|Hiroto",
-          "Dark|Zell"
+          "Janus|Reize|Midorikawa Ryuuji|Midorikawa|Jordan Greenway",
+          "Dvalin|Desarm|Dave Quagmire|Saginuma Osamu",
+          "Gazelle|Gazel|Suzuno Fuusuke|Suzuno|Bryce Whitingale",
+          "Torch|Burn|Nagumo Haruya|Nagumo|Claude Beacons",
+          "Xene|Gran|Kiyama Hiroto|Hiroto|Xavier Foster"
         ]
       },
       {
         "prompt": "Name 4 Raimon managers or coaches",
         "count": 4,
         "answers": [
-          "Kino Aki|Kino|Silvia Woods",
-          "Raimon Natsumi|Raimon|Nelly Raimon",
-          "Otonashi Haruna|Otonashi|Celia Hills",
-          "Kudou Michiya|Kudou|Percival Travis",
-          "Hibiki Seigou|Hibiki|Seymour Hillman",
-          "Kudou Fuyuka|Fuyuka|Camellia Travis",
-          "Endou Daisuke|David Evans",
-          "Hitomiko Kira|Hitomiko|Lina Schiller"
+          "Silvia Woods|Kino Aki|Kino",
+          "Nelly Raimon|Raimon Natsumi|Raimon",
+          "Celia Hills|Otonashi Haruna|Otonashi",
+          "Percival Travis|Kudou Michiya|Kudou",
+          "Seymour Hillman|Hibiki Seigou|Hibiki",
+          "Camellia Travis|Kudou Fuyuka|Fuyuka",
+          "David Evans|Endou Daisuke",
+          "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
         ]
       }
     ],
     "radar": {
       "members": [
         {
-          "label": "Endou Mamoru",
+          "label": "Mark Evans",
           "aliases": [
-            "Endou",
-            "Mark Evans"
+            "Endou Mamoru",
+            "Endou"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6f/Endou_Mamoru.png/revision/latest/scale-to-width-down/266?cb=20171215142244"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6f/Endou_Mamoru.png/revision/latest/scale-to-width-down/266?cb=20171215142244",
+          "src": "fandom:inazuma-eleven:Endou Mamoru"
         },
         {
-          "label": "Gouenji Shuuya",
+          "label": "Axel Blaze",
           "aliases": [
-            "Gouenji",
-            "Axel Blaze"
+            "Gouenji Shuuya",
+            "Gouenji"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Gouenji_Shuuya.png/revision/latest/scale-to-width-down/205?cb=20230722171437"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Gouenji_Shuuya.png/revision/latest/scale-to-width-down/205?cb=20230722171437",
+          "src": "fandom:inazuma-eleven:Gouenji Shuuya"
         },
         {
-          "label": "Kidou Yuuto",
+          "label": "Jude Sharp",
           "aliases": [
-            "Kidou",
-            "Jude Sharp"
+            "Kidou Yuuto",
+            "Kidou"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/57/Kidou_Yuuto.png/revision/latest/scale-to-width-down/264?cb=20230722172217"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/57/Kidou_Yuuto.png/revision/latest/scale-to-width-down/264?cb=20230722172217",
+          "src": "fandom:inazuma-eleven:Kidou Yuuto"
         },
         {
-          "label": "Kazemaru Ichirouta",
+          "label": "Nathan Swift",
           "aliases": [
-            "Kazemaru",
-            "Nathan Swift"
+            "Kazemaru Ichirouta",
+            "Kazemaru"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f7/Kazemaru_Ichirouta.png/revision/latest/scale-to-width-down/305?cb=20221027010503"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f7/Kazemaru_Ichirouta.png/revision/latest/scale-to-width-down/305?cb=20221027010503",
+          "src": "fandom:inazuma-eleven:Kazemaru Ichirouta"
         },
         {
-          "label": "Fubuki Shirou",
+          "label": "Shawn Froste",
           "aliases": [
-            "Fubuki",
-            "Shawn Froste"
+            "Fubuki Shirou",
+            "Fubuki"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/90/Fubuki_Shirou.png/revision/latest/scale-to-width-down/260?cb=20230722170904"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/90/Fubuki_Shirou.png/revision/latest/scale-to-width-down/260?cb=20230722170904",
+          "src": "fandom:inazuma-eleven:Fubuki Shirou"
         },
         {
-          "label": "Someoka Ryuugo",
+          "label": "Kevin Dragonfly",
           "aliases": [
-            "Someoka",
-            "Kevin Dragonfly"
+            "Someoka Ryuugo",
+            "Someoka"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7c/Someoka_Ryuugo.png/revision/latest/scale-to-width-down/351?cb=20230722173118"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7c/Someoka_Ryuugo.png/revision/latest/scale-to-width-down/351?cb=20230722173118",
+          "src": "fandom:inazuma-eleven:Someoka Ryuugo"
         },
         {
-          "label": "Kabeyama Heigorou",
+          "label": "Jack Wallside",
           "aliases": [
-            "Kabeyama",
-            "Jack Wallside"
+            "Kabeyama Heigorou",
+            "Kabeyama"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/Kabeyama_Heigorou.png/revision/latest?cb=20190629203833"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/Kabeyama_Heigorou.png/revision/latest?cb=20190629203833",
+          "src": "fandom:inazuma-eleven:Kabeyama Heigorou"
         },
         {
-          "label": "Domon Asuka",
+          "label": "Bobby Shearer",
           "aliases": [
-            "Domon",
-            "Bobby Shearer"
+            "Domon Asuka",
+            "Domon"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Domon_Asuka.png/revision/latest/scale-to-width-down/346?cb=20190515124156"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Domon_Asuka.png/revision/latest/scale-to-width-down/346?cb=20190515124156",
+          "src": "fandom:inazuma-eleven:Domon Asuka"
         },
         {
-          "label": "Ichinose Kazuya",
+          "label": "Erik Eagle",
           "aliases": [
-            "Ichinose",
-            "Erik Eagle"
+            "Ichinose Kazuya",
+            "Ichinose"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/97/Ichinose_Kazuya.png/revision/latest/scale-to-width-down/241?cb=20210529213317"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/97/Ichinose_Kazuya.png/revision/latest/scale-to-width-down/241?cb=20210529213317",
+          "src": "fandom:inazuma-eleven:Ichinose Kazuya"
         },
         {
-          "label": "Tsunami Jousuke",
+          "label": "Hurley Kane",
           "aliases": [
-            "Tsunami",
-            "Hurley Kane"
+            "Tsunami Jousuke",
+            "Tsunami"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a1/Tsunami_Jousuke.png/revision/latest/scale-to-width-down/393?cb=20230722180232"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a1/Tsunami_Jousuke.png/revision/latest/scale-to-width-down/393?cb=20230722180232",
+          "src": "fandom:inazuma-eleven:Tsunami Jousuke"
         },
         {
-          "label": "Tachimukai Yuuki",
+          "label": "Darren LaChance",
           "aliases": [
-            "Tachimukai",
-            "Darren LaChance"
+            "Tachimukai Yuuki",
+            "Tachimukai"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b2/Tachimukai_Yuuki.png/revision/latest/scale-to-width-down/400?cb=20230722175936"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b2/Tachimukai_Yuuki.png/revision/latest/scale-to-width-down/400?cb=20230722175936",
+          "src": "fandom:inazuma-eleven:Tachimukai Yuuki"
         },
         {
-          "label": "Kiyama Hiroto",
+          "label": "Xavier Foster",
           "aliases": [
-            "Kiyama",
-            "Xavier Foster"
+            "Kiyama Hiroto",
+            "Kiyama"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e3/Kiyama_Hiroto.png/revision/latest/scale-to-width-down/255?cb=20230722172508"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e3/Kiyama_Hiroto.png/revision/latest/scale-to-width-down/255?cb=20230722172508",
+          "src": "fandom:inazuma-eleven:Kiyama Hiroto"
         },
         {
-          "label": "Fudou Akio",
+          "label": "Caleb Stonewall",
           "aliases": [
-            "Fudou",
-            "Caleb Stonewall"
+            "Fudou Akio",
+            "Fudou"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/96/Fudou_Akio.png/revision/latest/scale-to-width-down/241?cb=20230805085203"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/96/Fudou_Akio.png/revision/latest/scale-to-width-down/241?cb=20230805085203",
+          "src": "fandom:inazuma-eleven:Fudou Akio"
         },
         {
-          "label": "Afuro Terumi",
+          "label": "Byron Love",
           "aliases": [
-            "Afuro",
-            "Byron Love"
+            "Afuro Terumi",
+            "Afuro"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Afuro_Terumi.png/revision/latest/scale-to-width-down/325?cb=20190504144713"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Afuro_Terumi.png/revision/latest/scale-to-width-down/325?cb=20190504144713",
+          "src": "fandom:inazuma-eleven:Afuro Terumi"
         },
         {
-          "label": "Kino Aki",
+          "label": "Silvia Woods",
           "aliases": [
-            "Kino",
-            "Silvia Woods"
+            "Kino Aki",
+            "Kino"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/af/Kino_Aki.png/revision/latest/scale-to-width-down/243?cb=20230926201511"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/af/Kino_Aki.png/revision/latest/scale-to-width-down/243?cb=20230926201511",
+          "src": "fandom:inazuma-eleven:Kino Aki"
         },
         {
-          "label": "Raimon Natsumi",
+          "label": "Nelly Raimon",
           "aliases": [
-            "Raimon",
-            "Nelly Raimon"
+            "Raimon Natsumi",
+            "Raimon"
           ],
-          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Raimon_Natsumi.png/revision/latest/scale-to-width-down/354?cb=20240521114554"
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Raimon_Natsumi.png/revision/latest/scale-to-width-down/354?cb=20240521114554",
+          "src": "fandom:inazuma-eleven:Raimon Natsumi"
         }
       ],
       "impostors": [
@@ -6653,140 +6668,161 @@
     },
     "finale": [
       {
-        "label": "Megane Kakeru",
+        "label": "William Glass",
         "aliases": [
+          "Megane Kakeru",
           "Megane",
           "Willy Glass"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2f/Megane_Kakeru.png/revision/latest/scale-to-width-down/400?cb=20140505005410"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2f/Megane_Kakeru.png/revision/latest/scale-to-width-down/400?cb=20140505005410",
+        "src": "fandom:inazuma-eleven:Megane Kakeru"
       },
       {
-        "label": "Shishido Sakichi",
+        "label": "Sam Kincaid",
         "aliases": [
-          "Shishido",
-          "Steve Grim"
+          "Shishido Sakichi",
+          "Shishido"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Shishido_Sakichi.png/revision/latest/scale-to-width-down/400?cb=20170102131051"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/08/Shishido_Sakichi.png/revision/latest/scale-to-width-down/400?cb=20170102131051",
+        "src": "fandom:inazuma-eleven:Shishido Sakichi"
       },
       {
-        "label": "Kurimatsu Teppei",
+        "label": "Tod Ironside",
         "aliases": [
-          "Kurimatsu",
-          "Tod Ironside"
+          "Kurimatsu Teppei",
+          "Kurimatsu"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Kurimatsu_Teppei.png/revision/latest/scale-to-width-down/400?cb=20130922145734"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Kurimatsu_Teppei.png/revision/latest/scale-to-width-down/400?cb=20130922145734",
+        "src": "fandom:inazuma-eleven:Kurimatsu Teppei"
       },
       {
-        "label": "Matsuno Kuusuke",
+        "label": "Maxwell Carson",
         "aliases": [
+          "Matsuno Kuusuke",
           "Matsuno",
           "Max Carson"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Matsuno_Kuusuke.png/revision/latest/scale-to-width-down/301?cb=20190516142940"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Matsuno_Kuusuke.png/revision/latest/scale-to-width-down/301?cb=20190516142940",
+        "src": "fandom:inazuma-eleven:Matsuno Kuusuke"
       },
       {
-        "label": "Handa Shinichi",
+        "label": "Steve Grim",
         "aliases": [
-          "Handa",
-          "Sam Kincaid"
+          "Handa Shinichi",
+          "Handa"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Handa_Shinichi.png/revision/latest/scale-to-width-down/242?cb=20240315211922"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Handa_Shinichi.png/revision/latest/scale-to-width-down/242?cb=20240315211922",
+        "src": "fandom:inazuma-eleven:Handa Shinichi"
       },
       {
-        "label": "Shourinji Ayumu",
+        "label": "Tim Saunders",
         "aliases": [
+          "Shourinji Ayumu",
           "Shourinji",
-          "Timmy Sanders"
+          "Timmy Saunders"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c1/Shourinji_Ayumu.png/revision/latest/scale-to-width-down/272?cb=20230703080607"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c1/Shourinji_Ayumu.png/revision/latest/scale-to-width-down/272?cb=20230703080607",
+        "src": "fandom:inazuma-eleven:Shourinji Ayumu"
       },
       {
-        "label": "Kageno Jin",
+        "label": "Jim Wraith",
         "aliases": [
-          "Kageno",
-          "Jim Wraith"
+          "Kageno Jin",
+          "Kageno"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e7/Kageno_Jin.png/revision/latest/scale-to-width-down/400?cb=20240521190950"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e7/Kageno_Jin.png/revision/latest/scale-to-width-down/400?cb=20240521190950",
+        "src": "fandom:inazuma-eleven:Kageno Jin"
       },
       {
-        "label": "Kogure Yuuya",
+        "label": "Scott Banyan",
         "aliases": [
+          "Kogure Yuuya",
           "Kogure",
           "Scotty Banyan"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Kogure_Yuuya.png/revision/latest/scale-to-width-down/346?cb=20240905203408"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Kogure_Yuuya.png/revision/latest/scale-to-width-down/346?cb=20240905203408",
+        "src": "fandom:inazuma-eleven:Kogure Yuuya"
       },
       {
-        "label": "Genda Koujirou",
+        "label": "Joseph King",
         "aliases": [
-          "Genda",
-          "Joseph King"
+          "Genda Koujirou",
+          "Genda"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e2/Genda_Koujirou.png/revision/latest/scale-to-width-down/400?cb=20240813130949"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e2/Genda_Koujirou.png/revision/latest/scale-to-width-down/400?cb=20240813130949",
+        "src": "fandom:inazuma-eleven:Genda Koujirou"
       },
       {
-        "label": "Sakuma Jirou",
+        "label": "David Samford",
         "aliases": [
-          "Sakuma",
-          "David Samford"
+          "Sakuma Jirou",
+          "Sakuma"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Sakuma_Jirou.png/revision/latest/scale-to-width-down/222?cb=20230722173036"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Sakuma_Jirou.png/revision/latest/scale-to-width-down/222?cb=20230722173036",
+        "src": "fandom:inazuma-eleven:Sakuma Jirou"
       },
       {
-        "label": "Midorikawa Ryuuji",
+        "label": "Jordan Greenway",
         "aliases": [
-          "Midorikawa",
-          "Jordan Greenway"
+          "Midorikawa Ryuuji",
+          "Midorikawa"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/59/Midorikawa_Ryuuji.png/revision/latest/scale-to-width-down/279?cb=20240112143852"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/59/Midorikawa_Ryuuji.png/revision/latest/scale-to-width-down/279?cb=20240112143852",
+        "src": "fandom:inazuma-eleven:Midorikawa Ryuuji"
       },
       {
-        "label": "Suzuno Fuusuke",
+        "label": "Bryce Whitingale",
         "aliases": [
-          "Suzuno",
-          "Claude Beacons"
+          "Suzuno Fuusuke",
+          "Suzuno"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6c/Gazel.png/revision/latest/scale-to-width-down/400?cb=20230809121920"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6c/Gazel.png/revision/latest/scale-to-width-down/400?cb=20230809121920",
+        "src": "fandom:inazuma-eleven:Suzuno Fuusuke"
       },
       {
-        "label": "Nagumo Haruya",
+        "label": "Claude Beacons",
         "aliases": [
-          "Nagumo",
-          "Bryce Whitingale"
+          "Nagumo Haruya",
+          "Nagumo"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Nagumo_Haruya.png/revision/latest/scale-to-width-down/400?cb=20261004121944"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Nagumo_Haruya.png/revision/latest/scale-to-width-down/400?cb=20261004121944",
+        "src": "fandom:inazuma-eleven:Nagumo Haruya"
       },
       {
-        "label": "Utsunomiya Toramaru",
+        "label": "Austin Hobbes",
         "aliases": [
-          "Utsunomiya",
-          "Austin Hobbes"
+          "Utsunomiya Toramaru",
+          "Utsunomiya"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Utsunomiya_Toramaru.png/revision/latest/scale-to-width-down/236?cb=20130906234209"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Utsunomiya_Toramaru.png/revision/latest/scale-to-width-down/236?cb=20130906234209",
+        "src": "fandom:inazuma-eleven:Utsunomiya Toramaru"
       },
       {
-        "label": "Hijikata Raiden",
+        "label": "Thor Stoutberg",
         "aliases": [
-          "Hijikata",
-          "Thor Stoutberg"
+          "Hijikata Raiden",
+          "Hijikata"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/Hijikata_Raiden.png/revision/latest/scale-to-width-down/400?cb=20230722171748"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/Hijikata_Raiden.png/revision/latest/scale-to-width-down/400?cb=20230722171748",
+        "src": "fandom:inazuma-eleven:Hijikata Raiden"
       },
       {
-        "label": "Otonashi Haruna",
+        "label": "Celia Hills",
         "aliases": [
-          "Otonashi",
-          "Celia Hills"
+          "Otonashi Haruna",
+          "Otonashi"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0f/Otonashi_Haruna.png/revision/latest?cb=20121222165850"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0f/Otonashi_Haruna.png/revision/latest?cb=20121222165850",
+        "src": "fandom:inazuma-eleven:Otonashi Haruna"
       },
       {
-        "label": "Kudou Michiya",
+        "label": "Percival Travis",
         "aliases": [
-          "Kudou",
-          "Percival Travis"
+          "Kudou Michiya",
+          "Kudou"
         ],
-        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Kudou_Michiya.png/revision/latest/scale-to-width-down/320?cb=20170611105509"
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Kudou_Michiya.png/revision/latest/scale-to-width-down/320?cb=20170611105509",
+        "src": "fandom:inazuma-eleven:Kudou Michiya"
       }
     ],
     "secret": {
@@ -6794,93 +6830,92 @@
         {
           "label": "Technique",
           "entities": [
-            "God Hand|Main Céleste",
-            "Majin The Hand|Majin the Hand",
-            "Fire Tornado|Tornade de feu",
-            "Dragon Tornado",
-            "Inazuma Break",
-            "Inazuma 1|Inazuma One|Inazuma 1 Gou",
-            "Twin Boost",
-            "Illusion Ball",
-            "Death Zone",
-            "Eternal Blizzard",
-            "Spinning Cut",
-            "The Wall",
-            "Fire Blizzard",
-            "Crossfire|Cross Fire",
-            "Grand Fire",
-            "Bakunetsu Screw",
-            "Dragon Crash",
-            "Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin",
-            "Mugen The Hand|Infinite Hand",
-            "Heaven Drive",
+            "Main Céleste|God Hand",
+            "Main Magique|Majin The Hand|Majin the Hand",
+            "Tornade de Feu|Fire Tornado|Tornade de feu",
+            "Tornade du Dragon|Dragon Tornado",
+            "Éclair Pulvérisant|Inazuma Break",
+            "Foudre|Inazuma 1|Inazuma One|Inazuma 1 Gou",
+            "Tir Puissance 2|Twin Boost",
+            "Ballon Illusoire|Illusion Ball",
+            "Triangle de la Mort|Death Zone",
+            "Blizzard Éternel|Eternal Blizzard",
+            "Scie Circulaire|Spinning Cut",
+            "Le Mur|The Wall",
+            "Blizzard Enflammé|Fire Blizzard",
+            "Feu Glacé|Crossfire|Cross Fire",
+            "Feu Tout-Puissant|Grand Fire",
+            "Tourbillon de Feu|Bakunetsu Screw",
+            "Choc du Dragon|Dragon Crash",
+            "Manchot Empereur N°2|Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin|Manchot Empereur",
+            "Mains de l'Infini|Mugen The Hand|Infinite Hand",
+            "Tir Céleste|Heaven Drive",
             "Gungnir"
           ]
         },
         {
           "label": "Team",
           "entities": [
-            "Teikoku Gakuen|Teikoku|Royal Academy",
+            "Royal Academy|Teikoku Gakuen|Teikoku|Royal Académie",
             "Zeus|Zeus Junior High",
-            "Occult|Occult Junior High",
-            "Gemini Storm",
+            "Occulte|Occult|Occult Junior High",
+            "Tempête des Gémeaux|Gemini Storm",
             "Epsilon",
             "Genesis|Gaia",
             "Chaos",
             "Knights of Queen",
-            "Orpheus",
-            "Unicorn",
-            "The Kingdom",
-            "Fire Dragon",
-            "Little Gigant",
+            "Orphée|Orpheus",
+            "Licornes|Unicorn",
+            "Rois du Football|The Kingdom",
+            "Dragons de Feu|Fire Dragon",
+            "Little Gigantes|Little Gigant",
             "Big Waves",
-            "Desert Lion",
+            "Lions du Désert|Desert Lion",
             "Kirkwood",
-            "Shuuyou Meito|Otaku"
+            "Otaku|Shuuyou Meito"
           ]
         },
         {
           "label": "Character",
           "entities": [
-            "Endou Mamoru|Endou|Mark Evans",
-            "Gouenji Shuuya|Gouenji|Axel Blaze",
-            "Kidou Yuuto|Kidou|Jude Sharp",
-            "Kazemaru Ichirouta|Kazemaru|Nathan Swift",
-            "Fubuki Shirou|Fubuki|Shawn Froste",
-            "Someoka Ryuugo|Someoka|Kevin Dragonfly",
-            "Kabeyama Heigorou|Kabeyama|Jack Wallside",
-            "Domon Asuka|Domon|Bobby Shearer",
-            "Ichinose Kazuya|Ichinose|Erik Eagle",
-            "Tsunami Jousuke|Tsunami|Hurley Kane",
-            "Tachimukai Yuuki|Tachimukai|Darren LaChance",
-            "Kiyama Hiroto|Kiyama|Xavier Foster",
-            "Fudou Akio|Fudou|Caleb Stonewall",
-            "Afuro Terumi|Afuro|Byron Love",
-            "Kino Aki|Kino|Silvia Woods",
-            "Raimon Natsumi|Raimon|Nelly Raimon",
-            "Megane Kakeru|Megane|Willy Glass",
-            "Shishido Sakichi|Shishido|Steve Grim",
-            "Kurimatsu Teppei|Kurimatsu|Tod Ironside",
-            "Matsuno Kuusuke|Matsuno|Max Carson",
-            "Handa Shinichi|Handa|Sam Kincaid",
-            "Shourinji Ayumu|Shourinji|Timmy Sanders",
-            "Kageno Jin|Kageno|Jim Wraith",
-            "Kogure Yuuya|Kogure|Scotty Banyan",
-            "Genda Koujirou|Genda|Joseph King",
-            "Sakuma Jirou|Sakuma|David Samford",
-            "Midorikawa Ryuuji|Midorikawa|Jordan Greenway",
-            "Suzuno Fuusuke|Suzuno|Claude Beacons",
-            "Nagumo Haruya|Nagumo|Bryce Whitingale",
-            "Utsunomiya Toramaru|Utsunomiya|Austin Hobbes",
-            "Hijikata Raiden|Hijikata|Thor Stoutberg",
-            "Otonashi Haruna|Otonashi|Celia Hills",
-            "Kudou Michiya|Kudou|Percival Travis",
-            "Desarm|Dvalin",
-            "Dark|Zell",
-            "Hibiki Seigou|Hibiki|Seymour Hillman",
-            "Kudou Fuyuka|Fuyuka|Camellia Travis",
-            "Endou Daisuke|David Evans",
-            "Hitomiko Kira|Hitomiko|Lina Schiller"
+            "Mark Evans|Endou Mamoru|Endou",
+            "Axel Blaze|Gouenji Shuuya|Gouenji",
+            "Jude Sharp|Kidou Yuuto|Kidou",
+            "Nathan Swift|Kazemaru Ichirouta|Kazemaru",
+            "Shawn Froste|Fubuki Shirou|Fubuki",
+            "Kevin Dragonfly|Someoka Ryuugo|Someoka",
+            "Jack Wallside|Kabeyama Heigorou|Kabeyama",
+            "Bobby Shearer|Domon Asuka|Domon",
+            "Erik Eagle|Ichinose Kazuya|Ichinose",
+            "Hurley Kane|Tsunami Jousuke|Tsunami",
+            "Darren LaChance|Tachimukai Yuuki|Tachimukai",
+            "Xavier Foster|Kiyama Hiroto|Kiyama",
+            "Caleb Stonewall|Fudou Akio|Fudou",
+            "Byron Love|Afuro Terumi|Afuro",
+            "Silvia Woods|Kino Aki|Kino",
+            "Nelly Raimon|Raimon Natsumi|Raimon",
+            "William Glass|Megane Kakeru|Megane|Willy Glass",
+            "Sam Kincaid|Shishido Sakichi|Shishido",
+            "Tod Ironside|Kurimatsu Teppei|Kurimatsu",
+            "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson",
+            "Steve Grim|Handa Shinichi|Handa",
+            "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders",
+            "Jim Wraith|Kageno Jin|Kageno",
+            "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
+            "Joseph King|Genda Koujirou|Genda",
+            "David Samford|Sakuma Jirou|Sakuma",
+            "Jordan Greenway|Midorikawa Ryuuji|Midorikawa",
+            "Bryce Whitingale|Suzuno Fuusuke|Suzuno",
+            "Claude Beacons|Nagumo Haruya|Nagumo",
+            "Austin Hobbes|Utsunomiya Toramaru|Utsunomiya",
+            "Thor Stoutberg|Hijikata Raiden|Hijikata",
+            "Celia Hills|Otonashi Haruna|Otonashi",
+            "Percival Travis|Kudou Michiya|Kudou",
+            "Dvalin|Desarm|Dave Quagmire|Saginuma Osamu",
+            "Seymour Hillman|Hibiki Seigou|Hibiki",
+            "Camellia Travis|Kudou Fuyuka|Fuyuka",
+            "David Evans|Endou Daisuke",
+            "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
           ]
         }
       ]
