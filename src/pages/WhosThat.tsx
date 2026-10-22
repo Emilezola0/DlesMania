@@ -19,14 +19,23 @@ const MAX_LEVEL = 5;
 /** Hell mode: seconds per silhouette, and the effects it cycles through, one per silhouette. */
 const HELL_SECONDS = 10;
 const HELL_CYCLE = ['Normal', 'Turned', 'Zoomed', 'Mirrored', 'Cropped', 'Spin'] as const;
+/** Flash mode: how long the silhouette stays on screen, shrinking with the streak down to FLASH_MIN_MS at FLASH_CAP names. */
+const FLASH_START_MS = 1500;
+const FLASH_MIN_MS = 200;
+const FLASH_CAP = 50;
+const flashMs = (streak: number) => Math.round(FLASH_START_MS * (FLASH_MIN_MS / FLASH_START_MS) ** (Math.min(streak, FLASH_CAP) / FLASH_CAP));
 
 type Card = SilhouetteEntry & { series: SilhouetteSeries };
-type Mode = 'easy' | 'rising' | 'hell';
+type Mode = 'easy' | 'rising' | 'hell' | 'flash';
 
 const MODES: Record<Mode, { label: string; blurb: string }> = {
   easy: { label: 'Easy', blurb: 'The plain silhouette, all run long.' },
   rising: { label: 'Rising', blurb: `Every ${LEVEL_EVERY} names it gets harder: turned, then zoomed in, mirrored, cropped, and finally spinning.` },
   hell: { label: 'Hell', blurb: `${HELL_SECONDS} seconds each, and every silhouette brings the next effect: ${HELL_CYCLE.join(', ')}, then round again.` },
+  flash: {
+    label: 'Flash',
+    blurb: `It shows for ${FLASH_START_MS / 1000} s, then vanishes — and each name makes it quicker, down to ${FLASH_MIN_MS / 1000} s at a ${FLASH_CAP} streak.`,
+  },
 };
 const MODE_IDS = Object.keys(MODES) as Mode[];
 
@@ -46,13 +55,10 @@ interface Look {
   spin: boolean;
 }
 
-/** Hide a big slice of one side and a smaller one of the opposite side. */
+/** Cut the same slice off two opposite sides (left and right, or top and bottom), leaving a straight band in the middle. */
 function drawCrop(rand: () => number) {
-  const cut = [0, 0, 0, 0];
-  const side = Math.floor(rand() * 4);
-  cut[side] = 30 + Math.round(rand() * 12);
-  cut[(side + 2) % 4] = 8 + Math.round(rand() * 10);
-  return `inset(${cut.map((c) => `${c}%`).join(' ')})`;
+  const cut = 22 + Math.round(rand() * 8);
+  return rand() < 0.5 ? `inset(0% ${cut}% 0% ${cut}%)` : `inset(${cut}% 0% ${cut}% 0%)`;
 }
 
 const zoomOrigin = (rand: () => number) => `${35 + Math.round(rand() * 30)}% ${30 + Math.round(rand() * 35)}%`;
@@ -91,7 +97,7 @@ export function WhosThatHub() {
         <h1 className="text-5xl font-bold">Who&apos;s That?</h1>
         <p className="max-w-xl text-ink-soft">
           Silhouettes appear one after another — keep naming them for as long as you can. A wrong name or a pass ends the run; your score is your streak.
-          Play Easy (always the plain silhouette), Rising (it gets harder as you go) or Hell ({HELL_SECONDS} seconds each, with a new effect every time).
+          Play Easy (always the plain silhouette), Rising (it gets harder as you go), Hell ({HELL_SECONDS} seconds each, with a new effect every time) or Flash (a glimpse that gets shorter with every name).
         </p>
       </div>
       {silhouetteDomains().map((domain) => {
@@ -167,7 +173,21 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   const isAll = playKey.startsWith(ALL_PREFIX);
   const score = named.length;
   const level = mode === 'rising' ? Math.min(MAX_LEVEL, Math.floor(score / LEVEL_EVERY)) : 0;
-  const look = useMemo(() => (mode === 'hell' ? hellLook(index, Math.random) : drawLook(level, Math.random)), [mode, level, index, run]);
+  const look = useMemo(
+    () => (mode === 'hell' ? hellLook(index, Math.random) : mode === 'rising' ? drawLook(level, Math.random) : drawLook(0, Math.random)),
+    [mode, level, index, run],
+  );
+  // Flash: the silhouette vanishes a moment after its picture has loaded.
+  const cardKey = `${run}-${index}`;
+  const [gone, setGone] = useState<string | null>(null);
+  const flashTimer = useRef<number>();
+  useEffect(() => () => window.clearTimeout(flashTimer.current), []);
+  const hidden = mode === 'flash' && gone === cardKey && !reveal;
+  const onShown = () => {
+    if (mode !== 'flash') return;
+    window.clearTimeout(flashTimer.current);
+    flashTimer.current = window.setTimeout(() => setGone(cardKey), flashMs(score));
+  };
 
   // Keep the next few pictures loading ahead.
   useEffect(() => {
@@ -228,6 +248,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
 
   const start = (m: Mode) => {
     window.clearTimeout(timer.current);
+    window.clearTimeout(flashTimer.current);
     setMode(m);
     setRun((r) => r + 1);
     setIndex(0);
@@ -263,13 +284,13 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             {deck.length} silhouettes. Name them one after another — a wrong name or a pass ends the run, and your score is your streak. English and French
             names both count, typos are forgiven.
           </p>
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {MODE_IDS.map((m) => (
               <button
                 key={m}
                 type="button"
                 onClick={() => start(m)}
-                className={`${m === 'easy' ? 'btn-accent' : 'btn-paper'} ${m === 'hell' ? 'ring-2 ring-coral/60' : ''} flex flex-col items-center gap-1 rounded-md px-4 py-3.5`}
+                className={`${m === 'easy' ? 'btn-accent' : 'btn-paper'} ${m === 'hell' || m === 'flash' ? 'ring-2 ring-coral/60' : ''} flex flex-col items-center gap-1 rounded-md px-4 py-3.5`}
               >
                 <span className="font-display text-lg font-bold tracking-[0.2em]">{MODES[m].label.toUpperCase()}</span>
                 <span className="text-xs opacity-80">{MODES[m].blurb}</span>
@@ -287,6 +308,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             <span className="text-sm tracking-wider text-ink-soft">
               {mode === 'rising' && <span className="mr-3 font-bold text-ochre">Level {level}</span>}
               {mode === 'hell' && <span className="mr-3 font-bold text-coral">{HELL_CYCLE[index % HELL_CYCLE.length]}</span>}
+              {mode === 'flash' && <span className="mr-3 font-bold tabular-nums text-coral">{(flashMs(score) / 1000).toFixed(2)} s</span>}
               Best {best}
             </span>
           </div>
@@ -300,28 +322,38 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-xl border-2 border-rule-strong"
             style={{ background: 'radial-gradient(circle at 50% 45%, #fde68a 0%, #f59e0b 35%, #1d4ed8 75%)' }}
           >
-            {/* Rising: the turn, zoom and crop sit on one layer, the spin on another; a reveal shows it plain. */}
+            {/* The crop sits on the frame (so its edges stay straight), the spin inside it, then the turn and zoom; a reveal shows it plain. */}
+            <div className="absolute inset-0" style={reveal ? undefined : { clipPath: look.clipPath }}>
             <div className={`absolute inset-0 ${look.spin && !reveal ? 'whos-spin' : ''}`}>
               <div
                 className="absolute inset-0 transition-transform duration-300"
-                style={reveal ? undefined : { transform: look.transform, transformOrigin: look.transformOrigin, clipPath: look.clipPath }}
+                style={reveal ? undefined : { transform: look.transform, transformOrigin: look.transformOrigin }}
               >
                 <img
-                  key={`${run}-${index}`}
+                  key={cardKey}
                   src={card.image}
                   alt={reveal ? card.name : 'Silhouette'}
                   draggable={false}
+                  onLoad={onShown}
                   onError={() => {
                     // A broken picture shouldn't end the run: move on to the next one.
                     if (index + 1 >= order.length) finish(named.length, null);
                     else setIndex((i) => i + 1);
                   }}
                   onContextMenu={(e) => e.preventDefault()}
-                  className="animate-pop absolute inset-0 size-full select-none object-contain p-6 transition-[filter] duration-300"
-                  style={{ filter: reveal ? 'none' : 'brightness(0) drop-shadow(0 4px 10px rgb(0 0 0 / 0.35))' }}
+                  className={`absolute inset-0 size-full select-none object-contain p-6 transition-[filter] duration-300 ${mode === 'flash' ? '' : 'animate-pop'}`}
+                  style={{
+                    filter: reveal ? 'none' : 'brightness(0) drop-shadow(0 4px 10px rgb(0 0 0 / 0.35))',
+                    // Flash: gone in an instant, no fade to linger on.
+                    visibility: hidden ? 'hidden' : 'visible',
+                  }}
                 />
               </div>
             </div>
+            </div>
+            {hidden && (
+              <span className="pointer-events-none absolute inset-0 grid place-items-center font-display text-6xl font-bold text-white/70 drop-shadow">?</span>
+            )}
             {reveal && (
               <span
                 className={`animate-pop absolute inset-x-0 bottom-0 px-3 py-2 text-center font-display text-lg font-bold text-on-strong ${reveal === 'right' ? 'bg-hit' : 'bg-coral'}`}
