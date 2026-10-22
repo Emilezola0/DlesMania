@@ -2930,5 +2930,660 @@
         "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Judge_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027205146"
       }
     ]
+  },
+  {
+    "id": "genshin",
+    "domain": "games",
+    "label": "Genshin Impact",
+    "noun": "character",
+    "cutout": true,
+    "entries": [
+      {
+        "name": "Amber",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/96/Amber_Portrait.png/revision/latest/scale-to-width-down/700?cb=20200914160851"
+      },
+      {
+        "name": "Barbara",
+        "aliases": [
+          "Barbara Pegg"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cf/Barbara_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071029"
+      },
+      {
+        "name": "Beidou",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/05/Beidou_Portrait.png/revision/latest/scale-to-width-down/700?cb=20200916170732"
+      },
+      {
+        "name": "Bennett",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d8/Bennett_Portrait.png/revision/latest?cb=20240726183101"
+      },
+      {
+        "name": "Chongyun",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/Chongyun_Portrait.png/revision/latest?cb=20240726183113"
+      },
+      {
+        "name": "Diluc",
+        "aliases": [
+          "Diluc Ragnvindr"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Diluc_Portrait.png/revision/latest/scale-to-width-down/700?cb=20200916171027"
+      },
+      {
+        "name": "Fischl",
+        "aliases": [
+          "Amy"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/99/Fischl_Portrait.png/revision/latest/scale-to-width-down/700?cb=20200916171212"
+      },
+      {
+        "name": "Jean",
+        "aliases": [
+          "Jean Gunnhildr"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Jean_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823020136"
+      },
+      {
+        "name": "Kaeya",
+        "aliases": [
+          "Kaeya Alberich"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/de/Kaeya_Portrait.png/revision/latest/scale-to-width-down/700?cb=20200916171117"
+      },
+      {
+        "name": "Keqing",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/20/Keqing_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240726183242"
+      },
+      {
+        "name": "Lisa",
+        "aliases": [
+          "Lisa Minci"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7a/Lisa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071221"
+      },
+      {
+        "name": "Mona",
+        "aliases": [
+          "Astrologist Mona Megistus"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/de/Mona_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230928121142"
+      },
+      {
+        "name": "Ningguang",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/44/Ningguang_Portrait.png/revision/latest?cb=20240726183050"
+      },
+      {
+        "name": "Noelle",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e0/Noelle_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071259"
+      },
+      {
+        "name": "Qiqi",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8e/Qiqi_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115226"
+      },
+      {
+        "name": "Razor",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/37/Razor_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240726183308"
+      },
+      {
+        "name": "Sucrose",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/17/Sucrose_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071352"
+      },
+      {
+        "name": "Venti",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/17/Venti_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250528024617"
+      },
+      {
+        "name": "Xiangling",
+        "aliases": [
+          "Mao Xiangling"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/ed/Xiangling_Portrait.png/revision/latest?cb=20240726183324"
+      },
+      {
+        "name": "Xingqiu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/05/Xingqiu_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826070937"
+      },
+      {
+        "name": "Klee",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9e/Klee_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250420042245"
+      },
+      {
+        "name": "Aino",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/08/Aino_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302113849"
+      },
+      {
+        "name": "Lauma",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9f/Lauma_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302112921"
+      },
+      {
+        "name": "Flins",
+        "aliases": [
+          "Kyryll Chudomirovich Flins"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Flins_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302111021"
+      },
+      {
+        "name": "Nefer",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/32/Nefer_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260526053325"
+      },
+      {
+        "name": "Durin",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3e/Durin_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302123344"
+      },
+      {
+        "name": "Jahoda",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/69/Jahoda_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302123639"
+      },
+      {
+        "name": "Columbina",
+        "aliases": [
+          "Columbina Hyposelenia"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d5/Columbina_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302124526"
+      },
+      {
+        "name": "Illuga",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/ce/Illuga_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302120412"
+      },
+      {
+        "name": "Zibai",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/21/Zibai_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302115955"
+      },
+      {
+        "name": "Varka",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/32/Varka_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260301093455"
+      },
+      {
+        "name": "Linnea",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/51/Linnea_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260421040235"
+      },
+      {
+        "name": "Nicole",
+        "aliases": [
+          "Nicole Reeyn"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/70/Nicole_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260520034916"
+      },
+      {
+        "name": "Prune",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Prune_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260520034919"
+      },
+      {
+        "name": "Lohen",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/11/Lohen_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260609100644"
+      },
+      {
+        "name": "Sandrone",
+        "aliases": [
+          "Marionette Guillotin"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/59/Sandrone_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260701030347"
+      },
+      {
+        "name": "Diona",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/26/Diona_Portrait.png/revision/latest?cb=20240726183123"
+      },
+      {
+        "name": "Tartaglia",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c9/Tartaglia_Portrait.png/revision/latest/scale-to-width-down/700?cb=20201109083418"
+      },
+      {
+        "name": "Xinyan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Xinyan_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240509164646"
+      },
+      {
+        "name": "Zhongli",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/65/Zhongli_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240726183254"
+      },
+      {
+        "name": "Albedo",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/97/Albedo_Portrait.png/revision/latest?cb=20250420042030"
+      },
+      {
+        "name": "Ganyu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/44/Ganyu_Portrait.png/revision/latest?cb=20240726183146"
+      },
+      {
+        "name": "Xiao",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/dc/Xiao_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071456"
+      },
+      {
+        "name": "Hu Tao",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Hu_Tao_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240726183231"
+      },
+      {
+        "name": "Rosaria",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e4/Rosaria_Portrait.png/revision/latest/scale-to-width-down/700?cb=20210330062634"
+      },
+      {
+        "name": "Yanfei",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/66/Yanfei_Portrait.png/revision/latest?cb=20240726183340"
+      },
+      {
+        "name": "Eula",
+        "aliases": [
+          "Eula Lawrence"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8a/Eula_Portrait.png/revision/latest?cb=20250420042106"
+      },
+      {
+        "name": "Kaedehara Kazuha",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b2/Kaedehara_Kazuha_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121312"
+      },
+      {
+        "name": "Kamisato Ayaka",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7a/Kamisato_Ayaka_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121313"
+      },
+      {
+        "name": "Sayu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/28/Sayu_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071336"
+      },
+      {
+        "name": "Yoimiya",
+        "aliases": [
+          "Naganohara Yoimiya"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8f/Yoimiya_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071011"
+      },
+      {
+        "name": "Aloy",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/13/Aloy_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230928133844"
+      },
+      {
+        "name": "Kujou Sara",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/99/Kujou_Sara_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071148"
+      },
+      {
+        "name": "Raiden Shogun",
+        "aliases": [
+          "Raiden Ei"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Raiden_Shogun_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230930045608"
+      },
+      {
+        "name": "Sangonomiya Kokomi",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Sangonomiya_Kokomi_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071317"
+      },
+      {
+        "name": "Thoma",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Thoma_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071416"
+      },
+      {
+        "name": "Arataki Itto",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/41/Arataki_Itto_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121319"
+      },
+      {
+        "name": "Gorou",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/14/Gorou_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071109"
+      },
+      {
+        "name": "Shenhe",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Shenhe_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230930045500"
+      },
+      {
+        "name": "Yun Jin",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Yun_Jin_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115502"
+      },
+      {
+        "name": "Yae Miko",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Yae_Miko_Portrait.png/revision/latest/scale-to-width-down/700?cb=20240119111322"
+      },
+      {
+        "name": "Kamisato Ayato",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Kamisato_Ayato_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121314"
+      },
+      {
+        "name": "Yelan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0b/Yelan_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826070957"
+      },
+      {
+        "name": "Kuki Shinobu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9f/Kuki_Shinobu_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121306"
+      },
+      {
+        "name": "Shikanoin Heizou",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a5/Shikanoin_Heizou_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115321"
+      },
+      {
+        "name": "Collei",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d7/Collei_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121327"
+      },
+      {
+        "name": "Tighnari",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c7/Tighnari_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115337"
+      },
+      {
+        "name": "Dori",
+        "aliases": [
+          "Dori Sangemah Bay"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Dori_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121207"
+      },
+      {
+        "name": "Candace",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/31/Candace_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121323"
+      },
+      {
+        "name": "Cyno",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a2/Cyno_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826090526"
+      },
+      {
+        "name": "Nilou",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9d/Nilou_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823110628"
+      },
+      {
+        "name": "Nahida",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Nahida_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071238"
+      },
+      {
+        "name": "Layla",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Layla_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230826071204"
+      },
+      {
+        "name": "Faruzan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/40/Faruzan_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121315"
+      },
+      {
+        "name": "Wanderer",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/03/Wanderer_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115352"
+      },
+      {
+        "name": "Alhaitham",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/05/Alhaitham_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115516"
+      },
+      {
+        "name": "Yaoyao",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9f/Yaoyao_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823115443"
+      },
+      {
+        "name": "Dehya",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/ae/Dehya_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121329"
+      },
+      {
+        "name": "Mika",
+        "aliases": [
+          "Mika Schmidt"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3f/Mika_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250211183628"
+      },
+      {
+        "name": "Baizhu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Baizhu_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823113951"
+      },
+      {
+        "name": "Kaveh",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Kaveh_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121310"
+      },
+      {
+        "name": "Kirara",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3f/Kirara_Portrait.png/revision/latest/scale-to-width-down/700?cb=20230823121309"
+      },
+      {
+        "name": "Lynette",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/8c/Lynette_Portrait.png/revision/latest?cb=20240726182255"
+      },
+      {
+        "name": "Lyney",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/05/Lyney_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260827073031"
+      },
+      {
+        "name": "Freminet",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c6/Freminet_Portrait.png/revision/latest?cb=20240726175052"
+      },
+      {
+        "name": "Neuvillette",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/72/Neuvillette_Portrait.png/revision/latest?cb=20240726175129"
+      },
+      {
+        "name": "Wriothesley",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Wriothesley_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260721170933"
+      },
+      {
+        "name": "Charlotte",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/ac/Charlotte_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302153210"
+      },
+      {
+        "name": "Furina",
+        "aliases": [
+          "Furina de Fontaine"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/62/Furina_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260806083853"
+      },
+      {
+        "name": "Navia",
+        "aliases": [
+          "Navia Caspar"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/85/Navia_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302152147"
+      },
+      {
+        "name": "Chevreuse",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0e/Chevreuse_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302152437"
+      },
+      {
+        "name": "Gaming",
+        "aliases": [
+          "Yip Gaming"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7d/Gaming_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302151519"
+      },
+      {
+        "name": "Xianyun",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1e/Xianyun_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302151114"
+      },
+      {
+        "name": "Chiori",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f6/Chiori_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260629173959"
+      },
+      {
+        "name": "Arlecchino",
+        "aliases": [
+          "Peruere"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/37/Arlecchino_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302150150"
+      },
+      {
+        "name": "Clorinde",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c7/Clorinde_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302145053"
+      },
+      {
+        "name": "Sethos",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/da/Sethos_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302145559"
+      },
+      {
+        "name": "Sigewinne",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/84/Sigewinne_Portrait.png/revision/latest?cb=20260721171331"
+      },
+      {
+        "name": "Emilie",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4e/Emilie_Portrait.png/revision/latest?cb=20240726175048"
+      },
+      {
+        "name": "Kachina",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fb/Kachina_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071444"
+      },
+      {
+        "name": "Mualani",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/73/Mualani_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071625"
+      },
+      {
+        "name": "Kinich",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/34/Kinich_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071501"
+      },
+      {
+        "name": "Xilonen",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/Xilonen_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808072058"
+      },
+      {
+        "name": "Chasca",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/1a/Chasca_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808070522"
+      },
+      {
+        "name": "Ororon",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Ororon_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071633"
+      },
+      {
+        "name": "Citlali",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4b/Citlali_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808070657"
+      },
+      {
+        "name": "Mavuika",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/68/Mavuika_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071549"
+      },
+      {
+        "name": "Lan Yan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/46/Lan_Yan_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260302160601"
+      },
+      {
+        "name": "Yumemizuki Mizuki",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d8/Yumemizuki_Mizuki_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808072110"
+      },
+      {
+        "name": "Iansan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/80/Iansan_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071321"
+      },
+      {
+        "name": "Varesa",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/14/Varesa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808072047"
+      },
+      {
+        "name": "Escoffier",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/45/Escoffier_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260305094604"
+      },
+      {
+        "name": "Ifa",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a4/Ifa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808071423"
+      },
+      {
+        "name": "Dahlia",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Dahlia_Portrait.png/revision/latest/scale-to-width-down/700?cb=20250808070714"
+      },
+      {
+        "name": "Skirk",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e2/Skirk_Portrait.png/revision/latest/scale-to-width-down/700?cb=20261007093432"
+      },
+      {
+        "name": "Ineffa",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b4/Ineffa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260228065237"
+      },
+      {
+        "name": "Alyosha",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e6/Alyosha_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260812030935"
+      },
+      {
+        "name": "Odette",
+        "aliases": [
+          "Odette Spessiva"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c4/Odette_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260812030651"
+      },
+      {
+        "name": "Vesna",
+        "aliases": [
+          "Vesna Strivozha"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7a/Vesna_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260923030600"
+      },
+      {
+        "name": "Vodyanitsa",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Vodyanitsa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260923030513"
+      }
+    ]
   }
 ]

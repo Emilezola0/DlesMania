@@ -264,6 +264,18 @@ for (const c of lol.champions) {
     lolNames.set(s, c.id);
   }
 }
+const gi = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'genshin.json'), 'utf8'));
+const giNames = new Map();
+for (const c of gi.characters) {
+  const at = `specialist/genshin/${c.name}`;
+  for (const k of ['image', 'element', 'weapon', 'region', 'version']) if (!c[k]) fail(`${at}: no ${k}`);
+  if (!c.portrait) warn(`${at}: no portrait (left out of the silhouettes)`);
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (giNames.has(s) && giNames.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${giNames.get(s)}`);
+    giNames.set(s, c.id);
+  }
+}
+console.log(`specialist  genshin: ${gi.characters.length} characters (${gi.generated})`);
 const mcu = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'marvel.json'), 'utf8'));
 const filmIds = new Set(mcu.films.map((f) => f.id));
 for (const f of mcu.films) {

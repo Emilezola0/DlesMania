@@ -6293,6 +6293,680 @@
     }
   },
   {
+    "id": "genshin",
+    "domain": "games",
+    "franchise": "Genshin Impact",
+    "aliases": [
+      "genshin",
+      "gi",
+      "teyvat"
+    ],
+    "images": "fandom:genshin-impact",
+    "boss": {
+      "name": "Il Dottore",
+      "title": "Second of the Fatui Harbingers",
+      "src": "fandom:genshin-impact:Il Dottore",
+      "color": "#0ea5e9",
+      "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/10/NPC_Il_Dottore.png/revision/latest/scale-to-width-down/222?cb=20230627163347"
+    },
+    "lines": {
+      "intro": "A Traveler, wandering into my laboratory. How convenient — I was running short of test subjects.",
+      "phase2": "Your memory holds. But can you tell a true Teyvat native from a clever imitation?",
+      "phase3": "Fascinating. Now, the final experiment: name them before the data runs out.",
+      "hit": [
+        "A minor setback.",
+        "Noted. Adjusting the parameters.",
+        "Hm. Unexpected."
+      ],
+      "hurt": [
+        "Another failed sample.",
+        "Your results are disappointing.",
+        "Back to the control group."
+      ],
+      "win": "Remarkable. I will be studying you for a very long time.",
+      "lose": "As predicted. Record it and dispose of the subject.",
+      "secret": "One last test, off the record. I name something from Teyvat — you name another of the same kind. Repeat nothing.",
+      "secretOk": [
+        "Acceptable.",
+        "Continue.",
+        "The data agrees."
+      ],
+      "secretLost": "Wrong. The experiment is over."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Pyro characters",
+        "count": 5,
+        "answers": [
+          "Amber",
+          "Bennett",
+          "Diluc|Diluc Ragnvindr",
+          "Xiangling|Mao Xiangling",
+          "Klee",
+          "Durin",
+          "Nicole|Nicole Reeyn",
+          "Xinyan",
+          "Hu Tao",
+          "Yanfei",
+          "Yoimiya|Naganohara Yoimiya",
+          "Thoma",
+          "Dehya",
+          "Lyney",
+          "Chevreuse",
+          "Gaming|Yip Gaming",
+          "Arlecchino|Peruere",
+          "Mavuika"
+        ]
+      },
+      {
+        "prompt": "Name 5 Hydro characters",
+        "count": 5,
+        "answers": [
+          "Barbara|Barbara Pegg",
+          "Mona|Astrologist Mona Megistus",
+          "Xingqiu",
+          "Aino",
+          "Columbina|Columbina Hyposelenia",
+          "Tartaglia",
+          "Sangonomiya Kokomi",
+          "Kamisato Ayato",
+          "Yelan",
+          "Candace",
+          "Nilou",
+          "Neuvillette",
+          "Furina|Furina de Fontaine",
+          "Sigewinne",
+          "Mualani",
+          "Dahlia",
+          "Vodyanitsa"
+        ]
+      },
+      {
+        "prompt": "Name 5 Electro characters",
+        "count": 5,
+        "answers": [
+          "Beidou",
+          "Fischl|Amy",
+          "Keqing",
+          "Lisa|Lisa Minci",
+          "Razor",
+          "Flins|Kyryll Chudomirovich Flins",
+          "Kujou Sara",
+          "Raiden Shogun|Raiden Ei",
+          "Yae Miko",
+          "Kuki Shinobu",
+          "Dori|Dori Sangemah Bay",
+          "Cyno",
+          "Clorinde",
+          "Sethos",
+          "Ororon",
+          "Iansan",
+          "Varesa",
+          "Ineffa",
+          "Alyosha"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters from Liyue",
+        "count": 5,
+        "answers": [
+          "Beidou",
+          "Chongyun",
+          "Keqing",
+          "Ningguang",
+          "Qiqi",
+          "Xiangling|Mao Xiangling",
+          "Xingqiu",
+          "Zibai",
+          "Xinyan",
+          "Zhongli",
+          "Ganyu",
+          "Xiao",
+          "Hu Tao",
+          "Yanfei",
+          "Shenhe",
+          "Yun Jin",
+          "Yelan",
+          "Yaoyao",
+          "Baizhu",
+          "Gaming|Yip Gaming",
+          "Xianyun",
+          "Lan Yan"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters from Inazuma",
+        "count": 5,
+        "answers": [
+          "Kaedehara Kazuha",
+          "Kamisato Ayaka",
+          "Sayu",
+          "Yoimiya|Naganohara Yoimiya",
+          "Kujou Sara",
+          "Raiden Shogun|Raiden Ei",
+          "Sangonomiya Kokomi",
+          "Thoma",
+          "Arataki Itto",
+          "Gorou",
+          "Yae Miko",
+          "Kamisato Ayato",
+          "Kuki Shinobu",
+          "Shikanoin Heizou",
+          "Kirara",
+          "Chiori",
+          "Yumemizuki Mizuki"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters from Fontaine",
+        "count": 5,
+        "answers": [
+          "Lynette",
+          "Lyney",
+          "Freminet",
+          "Neuvillette",
+          "Wriothesley",
+          "Charlotte",
+          "Furina|Furina de Fontaine",
+          "Navia|Navia Caspar",
+          "Chevreuse",
+          "Clorinde",
+          "Sigewinne",
+          "Emilie",
+          "Escoffier"
+        ]
+      },
+      {
+        "prompt": "Name 5 claymore users",
+        "count": 5,
+        "answers": [
+          "Beidou",
+          "Chongyun",
+          "Diluc|Diluc Ragnvindr",
+          "Noelle",
+          "Razor",
+          "Aino",
+          "Varka",
+          "Sandrone|Marionette Guillotin",
+          "Xinyan",
+          "Eula|Eula Lawrence",
+          "Sayu",
+          "Arataki Itto",
+          "Dori|Dori Sangemah Bay",
+          "Dehya",
+          "Kaveh",
+          "Freminet",
+          "Navia|Navia Caspar",
+          "Gaming|Yip Gaming",
+          "Kinich",
+          "Mavuika"
+        ]
+      },
+      {
+        "prompt": "Name 4 Archons",
+        "count": 4,
+        "answers": [
+          "Venti|Barbatos",
+          "Zhongli|Morax|Rex Lapis",
+          "Raiden Shogun|Ei|Raiden Ei|Beelzebul",
+          "Nahida|Kusanali|Lesser Lord Kusanali|Buer",
+          "Furina|Focalors|Furina de Fontaine",
+          "Mavuika"
+        ]
+      },
+      {
+        "prompt": "Name 4 Fatui Harbingers",
+        "count": 4,
+        "answers": [
+          "Tartaglia|Childe|Ajax",
+          "Arlecchino|The Knave|Peruere",
+          "Il Dottore|Dottore|The Doctor|Zandik",
+          "La Signora|Signora|The Fair Lady|Rosalyne",
+          "Pantalone|The Regrator",
+          "Pulcinella|The Rooster",
+          "Il Capitano|Capitano|The Captain",
+          "Sandrone|The Marionette",
+          "Columbina|The Damselette",
+          "Pierro|The Jester",
+          "Scaramouche|The Balladeer|Wanderer|Kunikuzushi"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Diluc",
+          "aliases": [
+            "Diluc Ragnvindr"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Diluc_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092341"
+        },
+        {
+          "label": "Jean",
+          "aliases": [
+            "Jean Gunnhildr"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/64/Jean_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040810"
+        },
+        {
+          "label": "Keqing",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/52/Keqing_Icon.png/revision/latest/scale-to-width-down/160?cb=20210213162751"
+        },
+        {
+          "label": "Mona",
+          "aliases": [
+            "Astrologist Mona Megistus"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/41/Mona_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040909"
+        },
+        {
+          "label": "Qiqi",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Qiqi_Icon.png/revision/latest/scale-to-width-down/160?cb=20220316020612"
+        },
+        {
+          "label": "Venti",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Venti_Icon.png/revision/latest/scale-to-width-down/160?cb=20210214011949"
+        },
+        {
+          "label": "Klee",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Klee_Icon.png/revision/latest/scale-to-width-down/160?cb=20210214011911"
+        },
+        {
+          "label": "Lauma",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Lauma_Icon.png/revision/latest/scale-to-width-down/160?cb=20250910024154"
+        },
+        {
+          "label": "Flins",
+          "aliases": [
+            "Kyryll Chudomirovich Flins"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Flins_Icon.png/revision/latest/scale-to-width-down/160?cb=20250910175819"
+        },
+        {
+          "label": "Nefer",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Nefer_Icon.png/revision/latest/scale-to-width-down/160?cb=20250911005040"
+        },
+        {
+          "label": "Durin",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Durin_Icon.png/revision/latest/scale-to-width-down/160?cb=20251203043105"
+        },
+        {
+          "label": "Columbina",
+          "aliases": [
+            "Columbina Hyposelenia"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Columbina_Icon.png/revision/latest/scale-to-width-down/160?cb=20260114031143"
+        },
+        {
+          "label": "Zibai",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Zibai_Icon.png/revision/latest/scale-to-width-down/160?cb=20260203100351"
+        },
+        {
+          "label": "Varka",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Varka_Icon.png/revision/latest/scale-to-width-down/160?cb=20260119061922"
+        },
+        {
+          "label": "Linnea",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a9/Linnea_Icon.png/revision/latest/scale-to-width-down/160?cb=20260408075838"
+        },
+        {
+          "label": "Nicole",
+          "aliases": [
+            "Nicole Reeyn"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Nicole_Icon.png/revision/latest/scale-to-width-down/160?cb=20260120013342"
+        },
+        {
+          "label": "Lohen",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/86/Lohen_Icon.png/revision/latest/scale-to-width-down/160?cb=20260521150129"
+        },
+        {
+          "label": "Sandrone",
+          "aliases": [
+            "Marionette Guillotin"
+          ],
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/c8/Sandrone_Icon.png/revision/latest/scale-to-width-down/160?cb=20260701024112"
+        },
+        {
+          "label": "Zhongli",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a6/Zhongli_Icon.png/revision/latest/scale-to-width-down/160?cb=20240711205450"
+        },
+        {
+          "label": "Albedo",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/30/Albedo_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040635"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Kafka",
+          "src": "fandom:honkai-star-rail:Kafka",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230809042240"
+        },
+        {
+          "label": "Silver Wolf",
+          "src": "fandom:honkai-star-rail:Silver Wolf",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/60/Character_Silver_Wolf_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230216230911"
+        },
+        {
+          "label": "March 7th",
+          "src": "fandom:honkai-star-rail:March 7th",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Character_March_7th_%28Preservation%29_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230525090156"
+        },
+        {
+          "label": "Dan Heng",
+          "src": "fandom:honkai-star-rail:Dan Heng",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e5/Character_Dan_Heng_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230525090149"
+        },
+        {
+          "label": "Himeko",
+          "src": "fandom:honkai-star-rail:Himeko",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8e/Character_Himeko_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230525090036"
+        },
+        {
+          "label": "Welt",
+          "src": "fandom:honkai-star-rail:Welt",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Character_Welt_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230525090017"
+        },
+        {
+          "label": "Acheron",
+          "src": "fandom:honkai-star-rail:Acheron",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20240327021325"
+        },
+        {
+          "label": "Firefly",
+          "src": "fandom:honkai-star-rail:Firefly",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Character_Firefly_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20241007220547"
+        },
+        {
+          "label": "Sparkle",
+          "src": "fandom:honkai-star-rail:Sparkle",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Sparkle_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20240327022635"
+        },
+        {
+          "label": "Black Swan",
+          "src": "fandom:honkai-star-rail:Black Swan",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fd/Character_Black_Swan_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20240220023547"
+        },
+        {
+          "label": "Jing Yuan",
+          "src": "fandom:honkai-star-rail:Jing Yuan",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/Character_Jing_Yuan_Splash_Art.png/revision/latest/scale-to-width-down/400?cb=20230210115809"
+        },
+        {
+          "label": "Ellen Joe",
+          "src": "fandom:zenless-zone-zero:Ellen Joe",
+          "image": "https://static.wikia.nocookie.net/zenless-zone-zero/images/e/e3/Agent_Ellen_Joe_Portrait.png/revision/latest/scale-to-width-down/340?cb=20241007222138"
+        },
+        {
+          "label": "Jane Doe",
+          "src": "fandom:zenless-zone-zero:Jane Doe",
+          "image": "https://static.wikia.nocookie.net/zenless-zone-zero/images/1/11/Agent_Jane_Doe_Portrait.png/revision/latest/scale-to-width-down/213?cb=20240904165715"
+        },
+        {
+          "label": "Kiana Kaslana",
+          "src": "fandom:honkaiimpact3:Kiana Kaslana",
+          "image": "https://static.wikia.nocookie.net/honkaiimpact3_gamepedia_en/images/f/f7/White_Comet_%28Thumbnail%29.png/revision/latest?cb=20240211115031"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Ganyu",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/79/Ganyu_Icon.png/revision/latest/scale-to-width-down/160?cb=20230519012425"
+      },
+      {
+        "label": "Xiao",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/fd/Xiao_Icon.png/revision/latest/scale-to-width-down/160?cb=20210214012045"
+      },
+      {
+        "label": "Hu Tao",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e9/Hu_Tao_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040745"
+      },
+      {
+        "label": "Eula",
+        "aliases": [
+          "Eula Lawrence"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Eula_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092858"
+      },
+      {
+        "label": "Kaedehara Kazuha",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e3/Kaedehara_Kazuha_Icon.png/revision/latest/scale-to-width-down/160?cb=20210623063513"
+      },
+      {
+        "label": "Kamisato Ayaka",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/51/Kamisato_Ayaka_Icon.png/revision/latest/scale-to-width-down/160?cb=20211221231648"
+      },
+      {
+        "label": "Yoimiya",
+        "aliases": [
+          "Naganohara Yoimiya"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/88/Yoimiya_Icon.png/revision/latest/scale-to-width-down/160?cb=20220214235604"
+      },
+      {
+        "label": "Aloy",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e5/Aloy_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215091525"
+      },
+      {
+        "label": "Raiden Shogun",
+        "aliases": [
+          "Raiden Ei"
+        ],
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/24/Raiden_Shogun_Icon.png/revision/latest/scale-to-width-down/160?cb=20240717072843"
+      },
+      {
+        "label": "Sangonomiya Kokomi",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/ff/Sangonomiya_Kokomi_Icon.png/revision/latest/scale-to-width-down/160?cb=20210921103819"
+      },
+      {
+        "label": "Arataki Itto",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/7b/Arataki_Itto_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215091612"
+      },
+      {
+        "label": "Shenhe",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Shenhe_Icon.png/revision/latest/scale-to-width-down/160?cb=20220210034241"
+      },
+      {
+        "label": "Yae Miko",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Yae_Miko_Icon.png/revision/latest/scale-to-width-down/160?cb=20220216025931"
+      },
+      {
+        "label": "Kamisato Ayato",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Kamisato_Ayato_Icon.png/revision/latest/scale-to-width-down/160?cb=20220601033710"
+      },
+      {
+        "label": "Yelan",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/d/d3/Yelan_Icon.png/revision/latest/scale-to-width-down/160?cb=20240711205454"
+      },
+      {
+        "label": "Tighnari",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/8/87/Tighnari_Icon.png/revision/latest/scale-to-width-down/160?cb=20220824024817"
+      },
+      {
+        "label": "Cyno",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/31/Cyno_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092240"
+      },
+      {
+        "label": "Nilou",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/58/Nilou_Icon.png/revision/latest/scale-to-width-down/160?cb=20221014102540"
+      },
+      {
+        "label": "Nahida",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f9/Nahida_Icon.png/revision/latest/scale-to-width-down/160?cb=20221102030809"
+      },
+      {
+        "label": "Alhaitham",
+        "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/2c/Alhaitham_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215091456"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Character",
+          "entities": [
+            "Amber",
+            "Barbara|Barbara Pegg",
+            "Beidou",
+            "Bennett",
+            "Chongyun",
+            "Diluc|Diluc Ragnvindr",
+            "Fischl|Amy",
+            "Jean|Jean Gunnhildr",
+            "Kaeya|Kaeya Alberich",
+            "Keqing",
+            "Lisa|Lisa Minci",
+            "Mona|Astrologist Mona Megistus",
+            "Ningguang",
+            "Noelle",
+            "Qiqi",
+            "Razor",
+            "Sucrose",
+            "Venti",
+            "Xiangling|Mao Xiangling",
+            "Xingqiu",
+            "Klee",
+            "Aino",
+            "Lauma",
+            "Flins|Kyryll Chudomirovich Flins",
+            "Nefer",
+            "Durin",
+            "Jahoda",
+            "Columbina|Columbina Hyposelenia",
+            "Illuga",
+            "Zibai",
+            "Varka",
+            "Linnea",
+            "Nicole|Nicole Reeyn",
+            "Prune",
+            "Lohen",
+            "Sandrone|Marionette Guillotin",
+            "Diona",
+            "Tartaglia",
+            "Xinyan",
+            "Zhongli",
+            "Albedo",
+            "Ganyu",
+            "Xiao",
+            "Hu Tao",
+            "Rosaria",
+            "Yanfei",
+            "Eula|Eula Lawrence",
+            "Kaedehara Kazuha",
+            "Kamisato Ayaka",
+            "Sayu",
+            "Yoimiya|Naganohara Yoimiya",
+            "Aloy",
+            "Kujou Sara",
+            "Raiden Shogun|Raiden Ei",
+            "Sangonomiya Kokomi",
+            "Thoma",
+            "Arataki Itto",
+            "Gorou",
+            "Shenhe",
+            "Yun Jin",
+            "Yae Miko",
+            "Kamisato Ayato",
+            "Yelan",
+            "Kuki Shinobu",
+            "Shikanoin Heizou",
+            "Collei",
+            "Tighnari",
+            "Dori|Dori Sangemah Bay",
+            "Candace",
+            "Cyno",
+            "Nilou",
+            "Nahida",
+            "Layla",
+            "Faruzan",
+            "Wanderer",
+            "Alhaitham",
+            "Yaoyao",
+            "Dehya",
+            "Mika|Mika Schmidt",
+            "Baizhu",
+            "Kaveh",
+            "Kirara",
+            "Lynette",
+            "Lyney",
+            "Freminet",
+            "Neuvillette",
+            "Wriothesley",
+            "Charlotte",
+            "Furina|Furina de Fontaine",
+            "Navia|Navia Caspar",
+            "Chevreuse",
+            "Gaming|Yip Gaming",
+            "Xianyun",
+            "Chiori",
+            "Arlecchino|Peruere",
+            "Clorinde",
+            "Sethos",
+            "Sigewinne",
+            "Emilie",
+            "Kachina",
+            "Mualani",
+            "Kinich",
+            "Xilonen",
+            "Chasca",
+            "Ororon",
+            "Citlali",
+            "Mavuika",
+            "Lan Yan",
+            "Yumemizuki Mizuki",
+            "Iansan",
+            "Varesa",
+            "Escoffier",
+            "Ifa",
+            "Dahlia",
+            "Skirk",
+            "Ineffa",
+            "Alyosha",
+            "Odette|Odette Spessiva",
+            "Vesna|Vesna Strivozha",
+            "Vodyanitsa"
+          ]
+        },
+        {
+          "label": "Region",
+          "entities": [
+            "Mondstadt",
+            "Liyue",
+            "Inazuma",
+            "Sumeru",
+            "Fontaine",
+            "Natlan",
+            "Snezhnaya",
+            "Nod-Krai",
+            "Khaenri'ah"
+          ]
+        },
+        {
+          "label": "Element",
+          "entities": [
+            "Anemo",
+            "Geo",
+            "Electro",
+            "Dendro",
+            "Hydro",
+            "Pyro",
+            "Cryo"
+          ]
+        },
+        {
+          "label": "Weapon type",
+          "entities": [
+            "Sword",
+            "Claymore",
+            "Polearm",
+            "Bow",
+            "Catalyst"
+          ]
+        }
+      ]
+    }
+  },
+  {
     "id": "inazuma",
     "domain": "anime",
     "franchise": "Inazuma Eleven",

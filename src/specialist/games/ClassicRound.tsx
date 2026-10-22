@@ -3,6 +3,7 @@ import type { RoundRecord } from '../../types';
 import { ARC_ORDER, ONE_PIECE, characterById, formatBounty, type OpCharacter } from '../data';
 import { LOL, championById, type LolChampion } from '../lol';
 import { MARVEL, filmById, mcuCharacterById, type McuCharacter } from '../marvel';
+import { GENSHIN, compareVersions, giCharacterById, type GiCharacter } from '../genshin';
 import { SP_META, spScore, type SpRound } from '../rounds';
 import { SpOutcome } from './SpGuessRound';
 
@@ -69,6 +70,22 @@ const MARVEL_COLUMNS: Column<McuCharacter>[] = [
   },
   { label: 'Phase', show: (c) => `Phase ${c.phase}`, judge: same((c) => String(c.phase)), arrow: (g, t) => t.phase - g.phase },
   { label: 'Films', show: (c) => String(c.films), judge: (g, t) => (g.films === t.films ? 'hit' : Math.abs(g.films - t.films) <= 1 ? 'near' : 'miss'), arrow: (g, t) => t.films - g.films },
+];
+
+const GENSHIN_COLUMNS: Column<GiCharacter>[] = [
+  { label: 'Gender', show: (c) => c.gender, judge: same((c) => c.gender) },
+  { label: 'Element', show: (c) => c.element, judge: same((c) => c.element) },
+  { label: 'Weapon', show: (c) => c.weapon, judge: same((c) => c.weapon) },
+  { label: 'Region', show: (c) => c.region, judge: same((c) => c.region) },
+  { label: 'Rarity', show: (c) => `${c.rarity}★`, judge: same((c) => String(c.rarity)) },
+  { label: 'Body', show: (c) => c.body, judge: same((c) => c.body) },
+  {
+    label: 'Version',
+    show: (c) => c.version,
+    // The same major version (4.x) is close.
+    judge: (g, t) => (g.version === t.version ? 'hit' : g.version.split('.')[0] === t.version.split('.')[0] ? 'near' : 'miss'),
+    arrow: (g, t) => compareVersions(t.version, g.version),
+  },
 ];
 
 const VERDICT_CLASS: Record<Verdict, string> = {
@@ -181,6 +198,11 @@ export function MarvelClassicRound(props: Props) {
   return (
     <ClassicGrid {...props} pool={MARVEL.characters} byId={mcuCharacterById} columns={MARVEL_COLUMNS} noun="character" detail={(t) => `${t.actor ? `Played by ${t.actor} · ` : ''}${debutOf(t).name}`} />
   );
+}
+
+/** Genshin Classic: gender, element, weapon, region, rarity, body type, version. */
+export function GenshinClassicRound(props: Props) {
+  return <ClassicGrid {...props} pool={GENSHIN.characters} byId={giCharacterById} columns={GENSHIN_COLUMNS} noun="character" detail={(t) => `${t.element} · ${t.region} · v${t.version}`} />;
 }
 
 /** League Classic: gender, positions, species, resource, range, regions, release year. */

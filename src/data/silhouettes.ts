@@ -16,6 +16,8 @@ export interface SilhouetteSeries {
   label: string;
   /** What one entry is called ("champion", "mob"...). */
   noun: string;
+  /** Pictures on a white background, cut out at play time (src/lib/cutout.ts) before blacking out. */
+  cutout?: boolean;
   entries: SilhouetteEntry[];
 }
 

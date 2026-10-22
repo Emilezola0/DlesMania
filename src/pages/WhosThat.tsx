@@ -9,6 +9,7 @@ import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { compactText, isFuzzyMatch } from '../utils/textMatcher';
+import { prepareCutout, useCutout } from '../lib/cutout';
 
 /** How long a named silhouette stays revealed, and how long the one that ended the run does. */
 const REVEAL_MS = 650;
@@ -170,6 +171,8 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   const timer = useRef<number>();
   useEffect(() => () => window.clearTimeout(timer.current), []);
   const card = order[index];
+  // Pictures on a white background (Genshin portraits) are cut out first; nothing shows until that's done.
+  const picture = useCutout(card?.image, !!card?.series.cutout);
   const isAll = playKey.startsWith(ALL_PREFIX);
   const score = named.length;
   const level = mode === 'rising' ? Math.min(MAX_LEVEL, Math.floor(score / LEVEL_EVERY)) : 0;
@@ -193,7 +196,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   useEffect(() => {
     for (let k = 1; k <= 3; k++) {
       const next = order[index + k];
-      if (next) new Image().src = next.image;
+      if (next) (next.series.cutout ? prepareCutout(next.image) : (new Image().src = next.image));
     }
   }, [index, order]);
 
@@ -331,7 +334,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               >
                 <img
                   key={cardKey}
-                  src={card.image}
+                  src={picture ?? undefined}
                   alt={reveal ? card.name : 'Silhouette'}
                   draggable={false}
                   onLoad={onShown}
