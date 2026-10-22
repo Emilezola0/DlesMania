@@ -351,6 +351,10 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .boss-turn-fast.boss-hue-fast { animation: boss-turn-fast 4.5s linear infinite, boss-hue-fast 1.8s steps(1, end) infinite; }
 
+/* Who's That? Rising, top level: a slow spin (no extra zoom on top of the silhouette's own). */
+@keyframes whos-spin { to { transform: rotate(360deg); } }
+.whos-spin { animation: whos-spin 10s linear infinite; }
+
 /* Hard's secret Name Chain phase. */
 @keyframes boss-secret {
   0%, 100% { text-shadow: 0 0 0 transparent; opacity: 1; }
