@@ -12,7 +12,7 @@ export const UNIVERSES = [
     id: 'onepiece',
     label: 'One Piece',
     ready: true,
-    blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and silhouettes — 300 characters.',
+    blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and silhouettes — 220 characters from the anime.',
     types: ['classic', 'fruit', 'laugh', 'flag', 'silhouette'] as SpType[],
   },
   {

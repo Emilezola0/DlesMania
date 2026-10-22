@@ -10,6 +10,15 @@ interface Props {
   disabled?: boolean;
 }
 
+/** A second name to show next to the main one: the alias that matched the query best, else the first alias. */
+function otherName(w: Named, query: string): string | undefined {
+  const aliases = (w.aliases ?? []).filter((a) => a !== w.name);
+  if (!aliases.length) return undefined;
+  const score = (s: string) => searchScore(query, s) ?? 9;
+  const typed = aliases.filter((a) => score(a) < score(w.name)).sort((a, b) => score(a) - score(b))[0];
+  return typed ?? aliases[0];
+}
+
 export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title…', disabled }: Props) {
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
@@ -74,16 +83,21 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
                 type="button"
                 onMouseEnter={() => setActive(i)}
                 onClick={() => submit(w)}
-                className={`flex w-full items-baseline justify-between gap-3 px-4 py-2.5 text-left ${
+                className={`flex w-full justify-between gap-3 px-4 text-left ${w.image ? 'items-center py-1.5' : 'items-baseline py-2.5'} ${
                   i === active ? 'bg-accent-soft' : 'hover:bg-tile'
                 }`}
               >
-                <span className="font-medium">
-                  {w.name}
-                  {/* Show the French title when that's what the player typed. */}
-                  {w.nameFr && (searchScore(query, w.nameFr) ?? 9) < (searchScore(query, w.name) ?? 9) && (
-                    <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {w.nameFr}</span>
-                  )}
+                <span className="flex items-center gap-2.5 font-medium">
+                  {w.image && <img src={w.image} alt="" loading="lazy" className="size-9 shrink-0 rounded-md bg-tile object-cover object-top" />}
+                  <span>
+                    {w.name}
+                    {/* Show the French title when that's what the player typed. */}
+                    {w.nameFr && (searchScore(query, w.nameFr) ?? 9) < (searchScore(query, w.name) ?? 9) && (
+                      <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {w.nameFr}</span>
+                    )}
+                    {/* Characters: their other name (the one typed, if that's how they were found). */}
+                    {w.image && otherName(w, query) && <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {otherName(w, query)}</span>}
+                  </span>
                 </span>
                 <span className="shrink-0 text-xs text-ink-soft">
                   {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}

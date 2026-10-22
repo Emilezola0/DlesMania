@@ -2,10 +2,11 @@
 // Builds src/data/specialist/onepiece.json for the One Piece Specialist mode, from the One Piece
 // wiki (onepiece.fandom.com). Re-run it to pick up new characters, bounties and Devil Fruits.
 //
-//   node scripts/build-specialist-onepiece.mjs [--characters=300] [--fruits=120] [--crews=45]
+//   node scripts/build-specialist-onepiece.mjs [--characters=220] [--fruits=120] [--crews=45]
 //
 // - Characters: every canon page with a character infobox ({{Char Box}}), the longest pages first
-//   (a fair proxy for importance). The infobox gives affiliation, origin, height, bounty, debut
+//   (a fair proxy for importance), and only those the anime has shown — or that come from chapters
+//   it hasn't reached yet. The infobox gives affiliation, origin, height, bounty, debut
 //   chapter and Devil Fruit; the page categories give gender and Haki.
 // - Devil Fruits: canon Paramecia / Zoan / Logia pages and their {{Devil Fruit Box}}. A picture is
 //   kept only for fruits whose look has been shown (otherwise the page picture is the user).
@@ -18,7 +19,7 @@ import { ROOT, fandomApi, mediawikiGet, parseArgs, sleep } from './lib.mjs';
 
 const { flags } = parseArgs();
 const API = fandomApi('onepiece');
-const LIMITS = { characters: Number(flags.characters ?? 300), fruits: Number(flags.fruits ?? 120), crews: Number(flags.crews ?? 45) };
+const LIMITS = { characters: Number(flags.characters ?? 220), fruits: Number(flags.fruits ?? 120), crews: Number(flags.crews ?? 45) };
 const OUT = join(ROOT, 'src', 'data', 'specialist', 'onepiece.json');
 
 /** Story arcs by first chapter; a debut chapter maps to the last arc that starts at or before it. */
@@ -183,18 +184,24 @@ async function characters() {
   const ranked = titles
     .filter((t) => !t.includes('/') && info.get(t) && !info.get(t).cats.has('Non-Canon Characters'))
     .sort((a, b) => weight(b) - weight(a) || info.get(b).length - info.get(a).length);
-  const picked = ranked.slice(0, Math.round(LIMITS.characters * 1.25));
+  const picked = ranked.slice(0, Math.round(LIMITS.characters * 1.8));
   const pages = await wikitexts(picked);
   // Pages whose box sits on a tabs template: fetch those templates too.
   const found = new Map(picked.map((t) => [t, boxSource(pages.get(t) ?? '')]));
   const templates = await wikitexts([...new Set([...found.values()].map((s) => s.tabs).filter(Boolean))]);
+  const boxes = new Map(picked.map((title) => [title, boxFields(found.get(title).text ?? templates.get(found.get(title).tabs) ?? '', 'Char Box')]));
+  const debut = (f, kind) => Number(f?.first?.match(new RegExp(`${kind} (\\d+)`))?.[1]) || 0;
+  // How far the anime has got: the latest chapter of any character it has already shown.
+  const animeReach = Math.max(...[...boxes.values()].filter((f) => debut(f, 'Episode')).map((f) => debut(f, 'Chapter')));
   const out = [];
   for (const title of picked) {
-    const src = found.get(title);
-    const f = boxFields(src.text ?? templates.get(src.tabs) ?? '', 'Char Box');
+    const f = boxes.get(title);
     const meta = info.get(title);
-    const chapter = Number(f?.first?.match(/Chapter (\d+)/)?.[1]);
-    if (!f || !chapter || !meta.image) continue;
+    const chapter = debut(f, 'Chapter');
+    // Characters the anime has shown, plus those from chapters it hasn't reached yet (Elbaph...):
+    // the ones it skipped are too obscure to recognise.
+    const animated = debut(f, 'Episode') > 0 || chapter > animeReach;
+    if (!f || !chapter || !animated || !meta.image) continue;
     const bounty = bountyOf(f.bounty);
     const fruits = [f.dfname, f.dfname2].filter(Boolean).map(plain);
     const types = [f.dftype, f.dftype2].filter(Boolean).map(fruitTypeOf);
