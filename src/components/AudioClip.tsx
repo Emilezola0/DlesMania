@@ -63,8 +63,11 @@ interface Props {
   revealed: boolean;
   /** Called when the clip can't be played (removed, embedding disabled, blocked...). */
   onUnavailable: () => void;
+  /** Play the whole clip from `start` every time, instead of growing snippets (short clips like a laugh). */
+  full?: boolean;
 }
 
+const ENDED = 0;
 const PLAYING = 1;
 
 /** Intros are often silent or ambient, so default to ~40% in, leaving room for the longest snippet. */
@@ -73,7 +76,7 @@ function autoStart(duration: number): number {
   return Math.floor(Math.min(duration * 0.4, duration - SNIPPETS[SNIPPETS.length - 1] - 5));
 }
 
-export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS }: Props) {
+export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS, full = false }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
@@ -83,8 +86,10 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const length = lengths[Math.min(step, lengths.length - 1)];
-  const max = lengths[lengths.length - 1];
+  const [duration, setDuration] = useState(0);
+  // A full clip runs to its end; otherwise the snippet unlocked so far.
+  const length = full ? Math.max(1, Math.ceil(duration - (clipStart ?? 0))) : lengths[Math.min(step, lengths.length - 1)];
+  const max = full ? length : lengths[lengths.length - 1];
 
   useEffect(() => {
     if (revealed) return;
@@ -105,11 +110,18 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
               const p = player.current;
               if (!p) return;
               p.setVolume(80);
+              setDuration(p.getDuration());
               setClipStart(start ?? autoStart(p.getDuration()));
               setReady(true);
             },
             onError: () => onUnavailable(),
             onStateChange: (e) => {
+              // The clip ran out before the timer did (a full clip, or a short video).
+              if (e.data === ENDED) {
+                window.clearInterval(timer.current);
+                setPlaying(false);
+                return;
+              }
               if (e.data !== PLAYING || pending.current === null) return;
               startTimer(pending.current);
               pending.current = null;
@@ -192,17 +204,18 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
           disabled={!ready}
           className="btn-ink flex items-center gap-2 rounded-full px-6 py-3 font-display font-bold tracking-wider"
         >
-          {ready ? (playing ? '↻ Replay' : '▶ Play') : 'Loading…'} {length}s
+          {ready ? (playing ? '↻ Replay' : '▶ Play') : 'Loading…'} {ready || !full ? `${length}s` : ''}
         </button>
-        {/* Timeline of unlockable snippet lengths. */}
+        {/* Timeline of unlockable snippet lengths (a full clip has just the one). */}
         <div className="relative h-2 w-full overflow-hidden rounded-full bg-tile">
           <div className="absolute inset-y-0 left-0 bg-rule-strong" style={{ width: `${(length / max) * 100}%` }} />
           <div className="absolute inset-y-0 left-0 bg-accent transition-[width] duration-75" style={{ width: `${(progress / max) * 100}%` }} />
-          {lengths.map((s) => (
-            <span key={s} className="absolute inset-y-0 w-px bg-paper" style={{ left: `${(s / max) * 100}%` }} />
-          ))}
+          {!full &&
+            lengths.map((s) => <span key={s} className="absolute inset-y-0 w-px bg-paper" style={{ left: `${(s / max) * 100}%` }} />)}
         </div>
-        <p className="text-xs text-ink-faint">Each wrong guess unlocks a longer snippet. The video is revealed at the end.</p>
+        <p className="text-xs text-ink-faint">
+          {full ? 'Plays the whole clip — listen as often as you like.' : 'Each wrong guess unlocks a longer snippet.'} The video is revealed at the end.
+        </p>
       </div>
     </div>
   );
