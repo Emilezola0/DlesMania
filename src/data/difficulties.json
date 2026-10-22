@@ -65,11 +65,11 @@
   },
   "hard": {
     "label": "Hard",
-    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. Then the guardian’s Signature challenge — three answers in a row, no suggestions, no second chance.",
+    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. The final phase must be won twice — then the guardian’s Signature challenge: three answers in a row, no suggestions, no second chance.",
     "rounds": [
       1,
       1,
-      1
+      2
     ],
     "hearts": 3,
     "blitzExtra": 2,
