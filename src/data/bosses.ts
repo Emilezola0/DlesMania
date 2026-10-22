@@ -6,12 +6,13 @@ import raw from './bosses.json';
  * matters to scripts/enrich-bosses.mjs), and a Knowledge Blitz answer is "Name|alias|alias".
  */
 type RawCard = string | { label: string; image?: string; aliases?: string[] };
-type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret'> & {
+type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 'signature'> & {
   aliases?: string[];
   blitz: { prompt: string; count: number; answers: string[] }[];
   radar: { members: RawCard[]; impostors: RawCard[] };
   finale: RawCard[];
   secret?: Omit<NonNullable<Boss['secret']>, 'categories'> & { categories: { label: string; entities: string[] }[] };
+  signature?: { label: string; prompt: string; clues: { text?: string; audio?: { youtubeId: string; start?: number }; answer: string }[] };
 };
 
 const card = (c: RawCard): BossCard =>
@@ -31,6 +32,7 @@ export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
   radar: { members: b.radar.members.map(card), impostors: b.radar.impostors.map(card) },
   finale: b.finale.map(card),
   secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ label: c.label, entities: c.entities.map(spelling) })) },
+  signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, answer: spelling(c.answer) })) },
 }));
 
 /** Music has no franchises to fight. */

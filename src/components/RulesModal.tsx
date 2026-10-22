@@ -97,7 +97,7 @@ function BossRules() {
         </ul>
         <p>
           On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
-          and a swipe made before a card has settled counts as a mistake. Every second loop on Hard is shorter but harder: less time, fewer but faster cards, and pictures zoomed in tight, recoloured and sometimes upside down. And when a Hard guardian's life bar runs dry… don't relax just yet.
+          and a swipe made before a card has settled counts as a mistake. And when a guardian's life bar runs dry on Medium or Hard… don't relax just yet: Medium ends with a Name Chain, Hard with the guardian's Signature — three clues on one very specific side of its world (a laugh, an item's stats, a Patronus…), answered in a row with no suggestions.
         </p>
       </Step>
       {PHASES.map((p, i) => (

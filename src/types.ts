@@ -168,7 +168,7 @@ export interface Boss {
     hurt: string[];
     win: string;
     lose: string;
-    /** Hard's secret phase (defaults in BossBattle when missing): its opening, a good answer, the losing one. */
+    /** The secret phase after the life bar (Medium's Name Chain, Hard's Signature): its opening, a good answer, the losing one. */
     secret?: string;
     secretOk?: string[];
     secretLost?: string;
@@ -179,10 +179,42 @@ export interface Boss {
   /** Phase 3: rare items and secondary characters to name under pressure. */
   finale: BossCard[];
   /**
-   * Hard's secret phase, the Name Chain: what the boss can name, by category (each entity belongs to
+   * Medium's secret phase, the Name Chain: what the boss can name, by category (each entity belongs to
    * exactly one). Any of src/data/difficulties.json's `secret` settings can be overridden here.
    */
   secret?: Partial<SecretSettings> & { categories: SecretCategory[] };
+  /** Hard's secret phase, the Signature: clues on one very specific side of the franchise. */
+  signature?: Signature;
+}
+
+/**
+ * A franchise's Signature challenge ("Whose laugh is this?", "Which item has these stats?"): a few
+ * of the clues are drawn, and they must all be answered in a row.
+ */
+export interface Signature {
+  /** What the clues are ("Laugh", "Item"). */
+  label: string;
+  /** The question asked for each clue. */
+  prompt: string;
+  clues: SignatureClue[];
+}
+
+export interface SignatureClue {
+  /** A written clue (stats, a technique's name...). */
+  text?: string;
+  /** Or a sound: a clip played in full. */
+  audio?: { youtubeId: string; start?: number };
+  answer: { name: string; aliases: string[] };
+}
+
+/** Hard's Signature balancing (src/data/difficulties.json). */
+export interface SignatureSettings {
+  /** Clues to answer in a row. */
+  toWin: number;
+  /** Seconds per clue; running out loses. */
+  seconds: number;
+  /** Points added (before the multiplier) for winning it. */
+  bonus: number;
 }
 
 /** How a phase ended, reported by the phase component to the battle. */
@@ -200,7 +232,7 @@ export interface SecretCategory {
   entities: { name: string; aliases: string[] }[];
 }
 
-/** Name Chain balancing: src/data/difficulties.json (Hard), overridable per boss. */
+/** Name Chain balancing: src/data/difficulties.json (Medium), overridable per boss. */
 export interface SecretSettings {
   /** Good answers needed to win (lowered automatically when the categories can't allow that many). */
   picksToWin: number;

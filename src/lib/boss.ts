@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { BossDifficulty } from '../store/progress';
 import difficultyData from '../data/difficulties.json';
-import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings } from '../types';
+import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings, SignatureSettings } from '../types';
 import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
 
@@ -48,8 +48,10 @@ export interface DifficultySpec {
   /** Seconds that still earn the speed bonus. */
   parSeconds: number;
   scoreMultiplier: number;
-  /** Secret last phase after the boss's life runs out (the Name Chain); null = none (Easy, Medium). */
+  /** Secret last phase after the boss's life runs out: the Name Chain (Medium); null = none. */
   secret: SecretSettings | null;
+  /** Or the Signature challenge (Hard); null = none. */
+  signature: SignatureSettings | null;
 }
 
 /**
@@ -249,6 +251,14 @@ export function drawSecret(boss: Boss, d: DifficultySpec) {
 }
 
 export type SecretPhase = NonNullable<ReturnType<typeof drawSecret>>;
+
+/** The Signature challenge for one fight: `toWin` clues drawn from the boss's, or null when there's none. */
+export function drawSignature(boss: Boss, d: DifficultySpec, rand: () => number = Math.random) {
+  if (!d.signature || !boss.signature || boss.signature.clues.length < d.signature.toWin) return null;
+  return { ...d.signature, label: boss.signature.label, prompt: boss.signature.prompt, clues: shuffle(boss.signature.clues, rand).slice(0, d.signature.toWin) };
+}
+
+export type SignaturePhase = NonNullable<ReturnType<typeof drawSignature>>;
 
 /** Every spelling of an answer (English, French, nicknames), compacted for exact comparison. */
 const compactSpellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(compactText).filter(Boolean);

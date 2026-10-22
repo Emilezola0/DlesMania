@@ -132,8 +132,9 @@ console.log(`themes      ${themes.length} (${themes.reduce((n, t) => n + t.categ
 // left so retries and second rounds draw something new.
 const bosses = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bosses.json'), 'utf8'));
 
-// Balancing lives in src/data/difficulties.json: check its shape, and that Hard's secret Name Chain
-// can be won (each exchange uses two entities of one category, so n allow floor(n / 2) exchanges).
+// Balancing lives in src/data/difficulties.json: check its shape, that the Name Chain (Medium) can be
+// won (each exchange uses two entities of one category, so n allow floor(n / 2) exchanges), and that
+// every boss has enough Signature clues (Hard).
 const difficulties = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'difficulties.json'), 'utf8'));
 const positive = ['hearts', 'blitzSecondsPer', 'radarCards', 'radarImpostors', 'finaleTargets', 'finaleSeconds', 'scoreMultiplier'];
 for (const id of ['easy', 'medium', 'hard']) {
@@ -168,7 +169,15 @@ for (const id of ['easy', 'medium', 'hard']) {
     if (!(sc.picksToWin >= 1)) fail(`${at}: secret.picksToWin must be >= 1`);
     if (!(sc.turnSeconds >= 0)) fail(`${at}: secret.turnSeconds must be >= 0`);
   }
+  const sg = d.signature;
+  if (sg) {
+    if (!(sg.toWin >= 1)) fail(`${at}: signature.toWin must be >= 1`);
+    if (!(sg.seconds >= 0)) fail(`${at}: signature.seconds must be >= 0`);
+  }
+  if (sc && sg) warn(`${at}: has both a Name Chain and a Signature — only the Name Chain is played`);
 }
+const chainSettings = Object.values(difficulties).find((d) => d?.secret)?.secret;
+const signatureSettings = Object.values(difficulties).find((d) => d?.signature)?.signature;
 const bossIds = new Set();
 const label = (c) => (typeof c === 'string' ? c : c.label);
 for (const b of bosses) {
@@ -194,8 +203,8 @@ for (const b of bosses) {
   const noImage = [...b.radar.members, ...b.radar.impostors, ...b.finale].filter((c) => typeof c === 'string' || !c.image).map(label);
   if (noImage.length) warn(`${at}: no image for ${noImage.join(', ')} (run scripts/enrich-bosses.mjs)`);
   for (const k of ['secret', 'secretLost']) if (!b.lines?.[k]) warn(`${at}: no "${k}" line (a generic one is used)`);
-  // Hard's Name Chain: categories of entities, each entity in exactly one.
-  if (difficulties.hard?.secret) {
+  // The Name Chain: categories of entities, each entity in exactly one.
+  if (chainSettings) {
     const cats = b.secret?.categories ?? [];
     if (cats.length < 2) fail(`${at}: secret.categories needs at least 2 categories`);
     const owner = new Map();
@@ -211,8 +220,20 @@ for (const b of bosses) {
       }
     }
     const max = cats.reduce((n, c) => n + Math.floor(c.entities.length / 2), 0);
-    const want = b.secret?.picksToWin ?? difficulties.hard.secret.picksToWin;
+    const want = b.secret?.picksToWin ?? chainSettings.picksToWin;
     if (want > max) warn(`${at}: Name Chain needs ${want} answers but its categories allow ${max} (lowered in game)`);
+  }
+  // The Signature: enough clues for a few different fights, each a text or a clip, with an answer.
+  if (signatureSettings) {
+    const sig = b.signature;
+    if (!sig?.label || !sig?.prompt) fail(`${at}: needs a signature with a label and a prompt (scripts/data/boss-signatures.mjs)`);
+    else {
+      if (sig.clues.length < signatureSettings.toWin * 3) fail(`${at}: signature needs at least ${signatureSettings.toWin * 3} clues, has ${sig.clues.length}`);
+      for (const c of sig.clues) {
+        if (!c.answer?.split('|')[0]) fail(`${at}: a signature clue has no answer`);
+        if (!c.text && !c.audio?.youtubeId) fail(`${at}: signature clue for "${c.answer}" has neither text nor audio`);
+      }
+    }
   }
 }
 console.log(`bosses      ${bosses.length} (${['games', 'anime', 'cinema'].map((d) => `${d}:${bosses.filter((b) => b.domain === d).length}`).join(' ')})`);

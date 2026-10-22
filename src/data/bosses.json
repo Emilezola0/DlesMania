@@ -692,6 +692,388 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Item",
+      "prompt": "Which item has these stats?",
+      "clues": [
+        {
+          "text": "+50 Ability Power · +4% Move Speed · 2,200 gold",
+          "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
+        },
+        {
+          "text": "+30 Attack Damage · +550 Health · 3,300 gold",
+          "answer": "Overlord's Bloodmail|Overlords Bloodmail"
+        },
+        {
+          "text": "+400 Health · +50 Armor · 2,800 gold",
+          "answer": "Unending Despair"
+        },
+        {
+          "text": "+80 Ability Power · +600 Mana · 2,800 gold",
+          "answer": "Blackfire Torch"
+        },
+        {
+          "text": "+400 Health · +80 Magic Resist · 2,900 gold",
+          "answer": "Kaenic Rookern"
+        },
+        {
+          "text": "+60 Ability Power · +20% Attack Speed · +300 Health · 3,100 gold",
+          "answer": "Dusk and Dawn"
+        },
+        {
+          "text": "+45% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "answer": "Fiendhunter Bolts"
+        },
+        {
+          "text": "+90 Ability Power · +300 Mana · 2,800 gold",
+          "answer": "Actualizer"
+        },
+        {
+          "text": "+55 Attack Damage · +25% Critical Strike Chance · 2,800 gold",
+          "answer": "Hexoptics C44"
+        },
+        {
+          "text": "+200 Health · +20 Armor · +20 Magic Resist · 2,300 gold",
+          "answer": "Bandlepipes"
+        },
+        {
+          "text": "+55 Attack Damage · +45 Armor · 3,200 gold",
+          "answer": "Guardian Angel"
+        },
+        {
+          "text": "+75 Attack Damage · +25% Critical Strike Chance · 3,500 gold",
+          "answer": "Infinity Edge"
+        },
+        {
+          "text": "+50 Attack Damage · +45% Attack Speed · 3,000 gold",
+          "answer": "Yun Tal Wildarrows"
+        },
+        {
+          "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
+          "answer": "Mortal Reminder"
+        },
+        {
+          "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,300 gold",
+          "answer": "Lord Dominik's Regards|Lord Dominiks Regards"
+        },
+        {
+          "text": "+65% Attack Speed · +25% Critical Strike Chance · +10% Move Speed · 2,650 gold",
+          "answer": "Phantom Dancer"
+        },
+        {
+          "text": "+300 Health · +25 Armor · +25 Magic Resist · 2,200 gold",
+          "answer": "Zeke's Convergence|Zekes Convergence"
+        },
+        {
+          "text": "+400 Health · +50 Magic Resist · 2,700 gold",
+          "answer": "Spirit Visage"
+        },
+        {
+          "text": "+350 Health · +50 Armor · 2,800 gold",
+          "answer": "Sunfire Aegis"
+        },
+        {
+          "text": "+45 Attack Damage · +400 Health · 3,000 gold",
+          "answer": "Black Cleaver"
+        },
+        {
+          "text": "+80 Attack Damage · +15% Life Steal · 3,400 gold",
+          "answer": "Bloodthirster"
+        },
+        {
+          "text": "+40 Attack Damage · +20% Attack Speed · +450 Health · 3,000 gold",
+          "answer": "Experimental Hexplate"
+        },
+        {
+          "text": "+65 Attack Damage · +12% Life Steal · 3,300 gold",
+          "answer": "Ravenous Hydra"
+        },
+        {
+          "text": "+150 Health · +75 Armor · 2,450 gold",
+          "answer": "Thornmail"
+        },
+        {
+          "text": "+36 Attack Damage · +30% Attack Speed · +333 Health · 3,333 gold",
+          "answer": "Trinity Force"
+        },
+        {
+          "text": "+40% Attack Speed · +25% Critical Strike Chance · +5% Move Speed · 2,650 gold",
+          "answer": "Runaan's Hurricane|Runaans Hurricane"
+        },
+        {
+          "text": "+45 Attack Damage · +45 Ability Power · +30% Attack Speed · +4% Move Speed · 3,000 gold",
+          "answer": "Statikk Shiv"
+        },
+        {
+          "text": "+50% Attack Speed · +45 Magic Resist · 2,800 gold",
+          "answer": "Wit's End|Wits End"
+        },
+        {
+          "text": "+35% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "answer": "Rapid Firecannon"
+        },
+        {
+          "text": "+50 Attack Damage · +25% Attack Speed · +25% Critical Strike Chance · 3,200 gold",
+          "answer": "Stormrazor"
+        },
+        {
+          "text": "+100 Ability Power · +6% Move Speed · 2,900 gold",
+          "answer": "Lich Bane"
+        },
+        {
+          "text": "+105 Ability Power · +40 Magic Resist · 3,000 gold",
+          "answer": "Banshee's Veil|Banshees Veil"
+        },
+        {
+          "text": "+200 Health · +40 Armor · 2,300 gold",
+          "answer": "Knight's Vow|Knights Vow"
+        },
+        {
+          "text": "+75 Armor · +400 Mana · 2,500 gold",
+          "answer": "Frozen Heart"
+        },
+        {
+          "text": "+80 Ability Power · +50% Attack Speed · 2,900 gold",
+          "answer": "Nashor's Tooth|Nashors Tooth"
+        },
+        {
+          "text": "+65 Ability Power · +400 Health · 2,600 gold",
+          "answer": "Rylai's Crystal Scepter|Rylais Crystal Scepter"
+        },
+        {
+          "text": "+90 Ability Power · +600 Mana · 2,700 gold",
+          "answer": "Malignance"
+        },
+        {
+          "text": "+30 Attack Damage · +30 Ability Power · +25% Attack Speed · 3,000 gold",
+          "answer": "Guinsoo's Rageblade|Guinsoos Rageblade"
+        },
+        {
+          "text": "+50 Attack Damage · +35 Magic Resist · +10% Life Steal · 3,200 gold",
+          "answer": "Mercurial Scimitar"
+        },
+        {
+          "text": "+55 Attack Damage · +4% Move Speed · 2,800 gold",
+          "answer": "Youmuu's Ghostblade|Youmuus Ghostblade"
+        },
+        {
+          "text": "+350 Health · +75 Armor · 2,700 gold",
+          "answer": "Randuin's Omen|Randuins Omen"
+        },
+        {
+          "text": "+40 Attack Damage · +80 Ability Power · 3,000 gold",
+          "answer": "Hextech Gunblade"
+        },
+        {
+          "text": "+60 Ability Power · +350 Health · 2,650 gold",
+          "answer": "Hextech Rocketbelt"
+        },
+        {
+          "text": "+40 Attack Damage · +25% Attack Speed · +10% Life Steal · 3,200 gold",
+          "answer": "Blade of The Ruined King"
+        },
+        {
+          "text": "+60 Attack Damage · +40 Magic Resist · 3,100 gold",
+          "answer": "Maw of Malmortius"
+        },
+        {
+          "text": "+105 Ability Power · +50 Armor · 3,250 gold",
+          "answer": "Zhonya's Hourglass|Zhonyas Hourglass"
+        },
+        {
+          "text": "+45 Attack Damage · +450 Health · 3,100 gold",
+          "answer": "Spear of Shojin"
+        },
+        {
+          "text": "+75 Ability Power · +350 Health · 2,850 gold",
+          "answer": "Morellonomicon"
+        },
+        {
+          "text": "+40 Attack Damage · +500 Health · +4% Move Speed · 3,000 gold",
+          "answer": "Hullbreaker"
+        },
+        {
+          "text": "+200 Health · +30 Armor · +30 Magic Resist · 2,200 gold",
+          "answer": "Locket of the Iron Solari"
+        },
+        {
+          "text": "+30 Attack Damage · +35% Attack Speed · 3,000 gold",
+          "answer": "Terminus"
+        },
+        {
+          "text": "+45 Ability Power · +4% Move Speed · 2,200 gold",
+          "answer": "Ardent Censer"
+        },
+        {
+          "text": "+50 Attack Damage · +25% Critical Strike Chance · 3,050 gold",
+          "answer": "Essence Reaver"
+        },
+        {
+          "text": "+350 Health · +55 Armor · +4% Move Speed · 2,900 gold",
+          "answer": "Dead Man's Plate|Dead Mans Plate"
+        },
+        {
+          "text": "+40 Attack Damage · +600 Health · 3,300 gold",
+          "answer": "Titanic Hydra"
+        },
+        {
+          "text": "+50 Attack Damage · +250 Health · 3,000 gold",
+          "answer": "Edge of Night"
+        },
+        {
+          "text": "+400 Health · +55 Magic Resist · +4% Move Speed · 2,800 gold",
+          "answer": "Force of Nature"
+        },
+        {
+          "text": "+70 Ability Power · +350 Health · +4% Move Speed · 3,000 gold",
+          "answer": "Cosmic Drive"
+        },
+        {
+          "text": "+70 Ability Power · +350 Health · 3,100 gold",
+          "answer": "Riftmaker"
+        },
+        {
+          "text": "+90 Ability Power · +6% Move Speed · 2,800 gold",
+          "answer": "Stormsurge"
+        },
+        {
+          "text": "+60 Attack Damage · +50 Armor · 3,300 gold",
+          "answer": "Death's Dance|Deaths Dance"
+        },
+        {
+          "text": "+45 Attack Damage · +450 Health · 3,000 gold",
+          "answer": "Chempunk Chainsword"
+        },
+        {
+          "text": "+40 Attack Damage · +400 Health · 3,100 gold",
+          "answer": "Sundered Sky"
+        },
+        {
+          "text": "+25 Ability Power · +200 Health · 2,200 gold",
+          "answer": "Moonstone Renewer"
+        },
+        {
+          "text": "+35 Ability Power · +200 Health · 2,200 gold",
+          "answer": "Echoes of Helia"
+        },
+        {
+          "text": "+40 Attack Damage · +25% Attack Speed · +450 Health · 3,300 gold",
+          "answer": "Stridebreaker"
+        },
+        {
+          "text": "+60 Ability Power · +300 Health · 3,000 gold",
+          "answer": "Liandry's Torment|Liandrys Torment"
+        },
+        {
+          "text": "+100 Ability Power · +600 Mana · 2,750 gold",
+          "answer": "Luden's Echo|Ludens Echo"
+        },
+        {
+          "text": "+400 Health · +40 Magic Resist · 2,800 gold",
+          "answer": "Hollow Radiance"
+        },
+        {
+          "text": "+350 Health · +45 Armor · +45 Magic Resist · 3,200 gold",
+          "answer": "Jak'Sho, The Protean|JakSho, The Protean"
+        },
+        {
+          "text": "+45 Attack Damage · +40% Attack Speed · +4% Move Speed · 3,000 gold",
+          "answer": "Kraken Slayer"
+        },
+        {
+          "text": "+55 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
+          "answer": "Immortal Shieldbow"
+        },
+        {
+          "text": "+40% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "answer": "Navori Flickerblade"
+        },
+        {
+          "text": "+65 Ability Power · +400 Health · 2,900 gold",
+          "answer": "Bloodletter's Curse|Bloodletters Curse"
+        },
+        {
+          "text": "+350 Health · +45 Magic Resist · 2,650 gold",
+          "answer": "Abyssal Mask"
+        },
+        {
+          "text": "+65 Ability Power · +6% Move Speed · 2,600 gold",
+          "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
+        },
+        {
+          "text": "+350 Health · +30 Armor · +30 Magic Resist · 2,300 gold",
+          "answer": "Zeke's Convergence|Zekes Convergence"
+        },
+        {
+          "text": "+200 Health · +85 Armor · 2,650 gold",
+          "answer": "Thornmail"
+        },
+        {
+          "text": "+30 Ability Power · +400 Health · 2,800 gold",
+          "answer": "Redemption"
+        },
+        {
+          "text": "+75 Armor · +500 Mana · 2,700 gold",
+          "answer": "Frozen Heart"
+        },
+        {
+          "text": "+250 Health · +30 Armor · +30 Magic Resist · 2,600 gold",
+          "answer": "Locket of the Iron Solari"
+        },
+        {
+          "text": "+55 Ability Power · +6% Move Speed · 2,600 gold",
+          "answer": "Ardent Censer"
+        },
+        {
+          "text": "+35 Ability Power · +400 Health · 2,900 gold",
+          "answer": "Moonstone Renewer"
+        },
+        {
+          "text": "+35 Ability Power · +250 Health · 2,600 gold",
+          "answer": "Echoes of Helia"
+        },
+        {
+          "text": "+350 Health · +50 Magic Resist · 2,850 gold",
+          "answer": "Abyssal Mask"
+        },
+        {
+          "text": "+20% Critical Strike Chance · +500 Health · 2,500 gold",
+          "answer": "Atma's Reckoning|Atmas Reckoning"
+        },
+        {
+          "text": "+250 Health · +80 Armor · 2,500 gold",
+          "answer": "Shield of Molten Stone"
+        },
+        {
+          "text": "+250 Health · +60 Magic Resist · 2,500 gold",
+          "answer": "Cloak of Starry Night"
+        },
+        {
+          "text": "+45 Attack Damage · +90 Ability Power · 2,500 gold",
+          "answer": "Hextech Gunblade"
+        },
+        {
+          "text": "+40% Attack Speed · +8% Move Speed · 2,500 gold",
+          "answer": "Zephyr"
+        },
+        {
+          "text": "+55 Armor · +55 Magic Resist · +8% Move Speed · 2,500 gold",
+          "answer": "Gargoyle Stoneplate"
+        },
+        {
+          "text": "+35 Ability Power · +150 Health · 2,500 gold",
+          "answer": "Sword of Blossoming Dawn"
+        },
+        {
+          "text": "+65 Ability Power · +250 Health · +600 Mana · 2,500 gold",
+          "answer": "Crown of the Shattered Queen"
+        },
+        {
+          "text": "+60 Ability Power · +25 Armor · +25 Magic Resist · 2,500 gold",
+          "answer": "Cruelty"
+        }
+      ]
     }
   },
   {
@@ -1226,6 +1608,148 @@
             "Hazard",
             "Maximilien|Max"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Ultimate",
+      "prompt": "Whose ultimate is this?",
+      "clues": [
+        {
+          "text": "Dragonblade",
+          "answer": "Genji"
+        },
+        {
+          "text": "Deadeye",
+          "answer": "Cassidy|McCree"
+        },
+        {
+          "text": "Self-Destruct",
+          "answer": "D.Va|Dva"
+        },
+        {
+          "text": "Death Blossom",
+          "answer": "Reaper|Faucheur"
+        },
+        {
+          "text": "Barrage",
+          "answer": "Pharah"
+        },
+        {
+          "text": "Pulse Bomb",
+          "answer": "Tracer"
+        },
+        {
+          "text": "Earthshatter",
+          "answer": "Reinhardt"
+        },
+        {
+          "text": "Graviton Surge",
+          "answer": "Zarya"
+        },
+        {
+          "text": "Nano Boost",
+          "answer": "Ana"
+        },
+        {
+          "text": "Sound Barrier",
+          "answer": "Lúcio|Lucio"
+        },
+        {
+          "text": "Valkyrie",
+          "answer": "Mercy|Ange"
+        },
+        {
+          "text": "Dragonstrike",
+          "answer": "Hanzo"
+        },
+        {
+          "text": "RIP-Tire",
+          "answer": "Junkrat|Chacal"
+        },
+        {
+          "text": "Whole Hog",
+          "answer": "Roadhog|Chopper"
+        },
+        {
+          "text": "Blizzard",
+          "answer": "Mei"
+        },
+        {
+          "text": "Primal Rage",
+          "answer": "Winston"
+        },
+        {
+          "text": "Coalescence",
+          "answer": "Moira"
+        },
+        {
+          "text": "Infra-Sight",
+          "answer": "Widowmaker|Fatale"
+        },
+        {
+          "text": "Transcendence",
+          "answer": "Zenyatta"
+        },
+        {
+          "text": "Tactical Visor",
+          "answer": "Soldier: 76|Soldier 76|Soldat 76"
+        },
+        {
+          "text": "Minefield",
+          "answer": "Wrecking Ball|Hammond|Bouldozer"
+        },
+        {
+          "text": "Kitsune Rush",
+          "answer": "Kiriko"
+        },
+        {
+          "text": "Rally",
+          "answer": "Brigitte"
+        },
+        {
+          "text": "EMP",
+          "answer": "Sombra"
+        },
+        {
+          "text": "Duplicate",
+          "answer": "Echo"
+        },
+        {
+          "text": "B.O.B.",
+          "answer": "Ashe"
+        },
+        {
+          "text": "Gravitic Flux",
+          "answer": "Sigma"
+        },
+        {
+          "text": "Amplification Matrix",
+          "answer": "Baptiste"
+        },
+        {
+          "text": "Meteor Strike",
+          "answer": "Doomfist"
+        },
+        {
+          "text": "Rampage",
+          "answer": "Junker Queen|Reine des Junkers"
+        },
+        {
+          "text": "Annihilation",
+          "answer": "Ramattra"
+        },
+        {
+          "text": "Tree of Life",
+          "answer": "Lifeweaver"
+        },
+        {
+          "text": "Captive Sun",
+          "answer": "Illari"
+        },
+        {
+          "text": "Cage Fight",
+          "answer": "Mauga"
         }
       ]
     }
@@ -1864,6 +2388,84 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Drop",
+      "prompt": "Which mob drops this?",
+      "clues": [
+        {
+          "text": "Ender Pearl",
+          "answer": "Enderman"
+        },
+        {
+          "text": "Blaze Rod",
+          "answer": "Blaze"
+        },
+        {
+          "text": "Ghast Tear",
+          "answer": "Ghast"
+        },
+        {
+          "text": "Slimeball",
+          "answer": "Slime"
+        },
+        {
+          "text": "Magma Cream",
+          "answer": "Magma Cube|Cube de magma"
+        },
+        {
+          "text": "Phantom Membrane",
+          "answer": "Phantom|Fantôme"
+        },
+        {
+          "text": "Shulker Shell",
+          "answer": "Shulker"
+        },
+        {
+          "text": "Nether Star",
+          "answer": "Wither"
+        },
+        {
+          "text": "Totem of Undying",
+          "answer": "Evoker|Évocateur"
+        },
+        {
+          "text": "Wither Skeleton Skull",
+          "answer": "Wither Skeleton|Squelette wither"
+        },
+        {
+          "text": "Ink Sac",
+          "answer": "Squid|Poulpe"
+        },
+        {
+          "text": "Glow Ink Sac",
+          "answer": "Glow Squid|Poulpe luisant"
+        },
+        {
+          "text": "Wet Sponge",
+          "answer": "Elder Guardian|Grand gardien"
+        },
+        {
+          "text": "Rabbit's Foot",
+          "answer": "Rabbit|Lapin"
+        },
+        {
+          "text": "Armadillo Scute",
+          "answer": "Armadillo|Tatou"
+        },
+        {
+          "text": "Breeze Rod",
+          "answer": "Breeze"
+        },
+        {
+          "text": "Sculk Catalyst",
+          "answer": "Warden|Gardien des profondeurs"
+        },
+        {
+          "text": "Trident",
+          "answer": "Drowned|Noyé"
+        }
+      ]
     }
   },
   {
@@ -2372,6 +2974,194 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Laugh",
+      "prompt": "Whose laugh is this?",
+      "clues": [
+        {
+          "audio": {
+            "youtubeId": "o1lZJ86KwSk",
+            "start": 0
+          },
+          "answer": "Monkey D. Luffy|Luffy|Mugiwara"
+        },
+        {
+          "audio": {
+            "youtubeId": "e1TJF9LfqGU",
+            "start": 0
+          },
+          "answer": "Buggy|Baggy"
+        },
+        {
+          "audio": {
+            "youtubeId": "Ljcg0s7nnFE",
+            "start": 0
+          },
+          "answer": "Jango|Django"
+        },
+        {
+          "audio": {
+            "youtubeId": "i0WNdgEP2XI",
+            "start": 0
+          },
+          "answer": "Arlong"
+        },
+        {
+          "audio": {
+            "youtubeId": "YRVNme92KhQ",
+            "start": 0
+          },
+          "answer": "Wapol"
+        },
+        {
+          "audio": {
+            "youtubeId": "LDIYdnJJ1LE",
+            "start": 0
+          },
+          "answer": "Crocodile"
+        },
+        {
+          "audio": {
+            "youtubeId": "JWfEmKz-OD4",
+            "start": 0
+          },
+          "answer": "Jesus Burgess|G. Zass Burgess|Burgess"
+        },
+        {
+          "audio": {
+            "youtubeId": "bStUsV_44yM",
+            "start": 0
+          },
+          "answer": "Marshall D. Teach|Marshall D. Teech|Teach|Blackbeard|Barbe Noire"
+        },
+        {
+          "audio": {
+            "youtubeId": "fRmBAakAZT4",
+            "start": 0
+          },
+          "answer": "Enel|Eneru|Ener"
+        },
+        {
+          "audio": {
+            "youtubeId": "NPIysfhGdlY",
+            "start": 0
+          },
+          "answer": "Foxy"
+        },
+        {
+          "audio": {
+            "youtubeId": "cQEIZgnnoKw",
+            "start": 0
+          },
+          "answer": "Jaguar D. Saul|Saul"
+        },
+        {
+          "audio": {
+            "youtubeId": "pal3Q4i-VgY",
+            "start": 0
+          },
+          "answer": "Brook"
+        },
+        {
+          "audio": {
+            "youtubeId": "Ncdomz-lhbo",
+            "start": 0
+          },
+          "answer": "Gecko Moria|Moria"
+        },
+        {
+          "audio": {
+            "youtubeId": "3PczY5qyzfI",
+            "start": 0
+          },
+          "answer": "Edward Newgate|Ward Newgate|Newgate|Whitebeard|Barbe Blanche"
+        },
+        {
+          "audio": {
+            "youtubeId": "agzNXTqxPJI",
+            "start": 0
+          },
+          "answer": "Vander Decken IX"
+        },
+        {
+          "audio": {
+            "youtubeId": "FB1ZKcFewfU",
+            "start": 0
+          },
+          "answer": "Charlotte Linlin|Linlin|Big Mom"
+        },
+        {
+          "audio": {
+            "youtubeId": "3KX3eyxonwY",
+            "start": 0
+          },
+          "answer": "Caesar Clown|Clown|Caesar"
+        },
+        {
+          "audio": {
+            "youtubeId": "PHUSZrLgvJs",
+            "start": 0
+          },
+          "answer": "Trebol"
+        },
+        {
+          "audio": {
+            "youtubeId": "R6KEb032WEA",
+            "start": 0
+          },
+          "answer": "Kurozumi Kanjuro|Kanjuro"
+        },
+        {
+          "audio": {
+            "youtubeId": "QYXRHSyREbU",
+            "start": 0
+          },
+          "answer": "Pica"
+        },
+        {
+          "audio": {
+            "youtubeId": "q-UZHSBceXc",
+            "start": 0
+          },
+          "answer": "Kaidou|Kaido"
+        },
+        {
+          "audio": {
+            "youtubeId": "vqO57JNb7zQ",
+            "start": 0
+          },
+          "answer": "Nekomamushi|Cat Viper Nekomamushi"
+        },
+        {
+          "audio": {
+            "youtubeId": "9dREW8rW-g8",
+            "start": 0
+          },
+          "answer": "Vito"
+        },
+        {
+          "audio": {
+            "youtubeId": "aY3QM1t93jY",
+            "start": 0
+          },
+          "answer": "Charlotte Brûlée|Charlotte Brulee|Brûlée"
+        },
+        {
+          "audio": {
+            "youtubeId": "UeES_SHCPmI",
+            "start": 0
+          },
+          "answer": "Killer"
+        },
+        {
+          "audio": {
+            "youtubeId": "pZ2VATRUUKw",
+            "start": 0
+          },
+          "answer": "Harald"
+        }
+      ]
     }
   },
   {
@@ -2863,6 +3653,80 @@
             "Supreme Kai|shin|kaioshin|kaioshin",
             "Yajirobe"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Technique",
+      "prompt": "Whose signature technique is this?",
+      "clues": [
+        {
+          "text": "Final Flash",
+          "answer": "Vegeta"
+        },
+        {
+          "text": "Galick Gun",
+          "answer": "Vegeta"
+        },
+        {
+          "text": "Big Bang Attack",
+          "answer": "Vegeta"
+        },
+        {
+          "text": "Special Beam Cannon",
+          "answer": "Piccolo"
+        },
+        {
+          "text": "Hellzone Grenade",
+          "answer": "Piccolo"
+        },
+        {
+          "text": "Destructo Disc",
+          "answer": "Krillin|Krilin"
+        },
+        {
+          "text": "Masenko",
+          "answer": "Gohan|Son Gohan"
+        },
+        {
+          "text": "Tri-Beam",
+          "answer": "Tien|Tenshinhan|Tien Shinhan"
+        },
+        {
+          "text": "Death Ball",
+          "answer": "Frieza|Freezer|Freeza"
+        },
+        {
+          "text": "Spirit Bomb",
+          "answer": "Goku|Son Goku"
+        },
+        {
+          "text": "Instant Transmission",
+          "answer": "Goku|Son Goku"
+        },
+        {
+          "text": "Wolf Fang Fist",
+          "answer": "Yamcha"
+        },
+        {
+          "text": "Burning Attack",
+          "answer": "Trunks"
+        },
+        {
+          "text": "Super Ghost Kamikaze Attack",
+          "answer": "Gotenks"
+        },
+        {
+          "text": "Eraser Cannon",
+          "answer": "Broly"
+        },
+        {
+          "text": "Body Change",
+          "answer": "Captain Ginyu|Ginyu"
+        },
+        {
+          "text": "Chocolate Beam",
+          "answer": "Majin Buu|Buu"
         }
       ]
     }
@@ -3359,6 +4223,72 @@
             "Kankurō|kankuro",
             "Temari"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Jutsu",
+      "prompt": "Whose jutsu is this?",
+      "clues": [
+        {
+          "text": "Rasenshuriken",
+          "answer": "Naruto|Naruto Uzumaki"
+        },
+        {
+          "text": "Sexy Jutsu",
+          "answer": "Naruto|Naruto Uzumaki"
+        },
+        {
+          "text": "Raikiri",
+          "answer": "Kakashi|Kakashi Hatake"
+        },
+        {
+          "text": "Kirin",
+          "answer": "Sasuke|Sasuke Uchiha"
+        },
+        {
+          "text": "Tsukuyomi",
+          "answer": "Itachi|Itachi Uchiha"
+        },
+        {
+          "text": "Shadow Possession Jutsu",
+          "answer": "Shikamaru|Shikamaru Nara"
+        },
+        {
+          "text": "Mind Transfer Jutsu",
+          "answer": "Ino|Ino Yamanaka"
+        },
+        {
+          "text": "Sand Coffin",
+          "answer": "Gaara"
+        },
+        {
+          "text": "Fang over Fang",
+          "answer": "Kiba|Kiba Inuzuka"
+        },
+        {
+          "text": "Shinra Tensei",
+          "answer": "Pain|Nagato"
+        },
+        {
+          "text": "Explosive Clay",
+          "answer": "Deidara"
+        },
+        {
+          "text": "Eight Trigrams Sixty-Four Palms",
+          "answer": "Neji|Neji Hyuga"
+        },
+        {
+          "text": "Paper Person of God",
+          "answer": "Konan"
+        },
+        {
+          "text": "Crow puppet",
+          "answer": "Kankuro"
+        },
+        {
+          "text": "Insect Clone Jutsu",
+          "answer": "Shino|Shino Aburame"
         }
       ]
     }
@@ -3920,6 +4850,52 @@
             "Hondo Ohnaka",
             "Asajj Ventress"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Ship",
+      "prompt": "Whose ship is this?",
+      "clues": [
+        {
+          "text": "Slave I",
+          "answer": "Boba Fett|Jango Fett"
+        },
+        {
+          "text": "Razor Crest",
+          "answer": "Din Djarin|The Mandalorian|Mando"
+        },
+        {
+          "text": "Ghost",
+          "answer": "Hera Syndulla|Hera"
+        },
+        {
+          "text": "Red Five",
+          "answer": "Luke Skywalker|Luke"
+        },
+        {
+          "text": "TIE Advanced x1",
+          "answer": "Darth Vader|Vader|Anakin Skywalker"
+        },
+        {
+          "text": "Scimitar",
+          "answer": "Darth Maul|Maul"
+        },
+        {
+          "text": "Tantive IV",
+          "answer": "Leia Organa|Leia|Princess Leia|Bail Organa"
+        },
+        {
+          "text": "Millennium Falcon",
+          "answer": "Han Solo|Han|Lando Calrissian|Lando"
+        },
+        {
+          "text": "Home One",
+          "answer": "Admiral Ackbar|Ackbar"
+        },
+        {
+          "text": "Executor",
+          "answer": "Darth Vader|Vader"
         }
       ]
     }
@@ -4559,6 +5535,64 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Patronus",
+      "prompt": "Whose Patronus is this?",
+      "clues": [
+        {
+          "text": "A stag",
+          "answer": "Harry Potter|Harry|James Potter"
+        },
+        {
+          "text": "An otter",
+          "answer": "Hermione Granger|Hermione"
+        },
+        {
+          "text": "A Jack Russell terrier",
+          "answer": "Ron Weasley|Ron"
+        },
+        {
+          "text": "A doe",
+          "answer": "Severus Snape|Snape|Lily Potter|Lily"
+        },
+        {
+          "text": "A hare",
+          "answer": "Luna Lovegood|Luna"
+        },
+        {
+          "text": "A phoenix",
+          "answer": "Albus Dumbledore|Dumbledore"
+        },
+        {
+          "text": "A lynx",
+          "answer": "Kingsley Shacklebolt|Kingsley"
+        },
+        {
+          "text": "A swan",
+          "answer": "Cho Chang|Cho"
+        },
+        {
+          "text": "A horse",
+          "answer": "Ginny Weasley|Ginny"
+        },
+        {
+          "text": "A tabby cat",
+          "answer": "Minerva McGonagall|McGonagall"
+        },
+        {
+          "text": "A wolf",
+          "answer": "Remus Lupin|Lupin"
+        },
+        {
+          "text": "A weasel",
+          "answer": "Arthur Weasley"
+        },
+        {
+          "text": "A goat",
+          "answer": "Aberforth Dumbledore|Aberforth"
+        }
+      ]
     }
   },
   {
@@ -5119,6 +6153,56 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Weapon",
+      "prompt": "Who wields this?",
+      "clues": [
+        {
+          "text": "Sting",
+          "answer": "Frodo Baggins|Frodo|Bilbo Baggins|Bilbo|Samwise Gamgee|Sam"
+        },
+        {
+          "text": "Andúril",
+          "answer": "Aragorn"
+        },
+        {
+          "text": "Glamdring",
+          "answer": "Gandalf"
+        },
+        {
+          "text": "Orcrist",
+          "answer": "Thorin Oakenshield|Thorin|Legolas"
+        },
+        {
+          "text": "Herugrim",
+          "answer": "Théoden|Theoden"
+        },
+        {
+          "text": "Guthwinë",
+          "answer": "Éomer|Eomer"
+        },
+        {
+          "text": "Narsil",
+          "answer": "Isildur|Elendil"
+        },
+        {
+          "text": "Aeglos",
+          "answer": "Gil-galad"
+        },
+        {
+          "text": "Hadhafang",
+          "answer": "Arwen"
+        },
+        {
+          "text": "A Morgul-blade",
+          "answer": "Witch-king of Angmar|Witch-king|Witch King"
+        },
+        {
+          "text": "The One Ring",
+          "answer": "Sauron"
+        }
+      ]
     }
   },
   {
@@ -5668,6 +6752,456 @@
             "Wong",
             "Phil Coulson|coulson"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Cast",
+      "prompt": "Which character does this actor play?",
+      "clues": [
+        {
+          "text": "Played by Robert Downey Jr.",
+          "answer": "Iron Man|Tony Stark|Anthony Edward Stark"
+        },
+        {
+          "text": "Played by Chris Evans",
+          "answer": "Steve Rogers|Steven Grant Rogers"
+        },
+        {
+          "text": "Played by Tom Holland",
+          "answer": "Spider-Man"
+        },
+        {
+          "text": "Played by Charlie Cox",
+          "answer": "Daredevil|Matt Murdock|Matthew Michael Murdock"
+        },
+        {
+          "text": "Played by Clark Gregg",
+          "answer": "Phil Coulson|Phillip J. Coulson"
+        },
+        {
+          "text": "Played by Chris Hemsworth",
+          "answer": "Thor|Thor Odinson"
+        },
+        {
+          "text": "Played by Mark Ruffalo",
+          "answer": "Hulk|David Bruce Banner"
+        },
+        {
+          "text": "Played by Scarlett Johansson",
+          "answer": "Natasha Romanoff|Natalia Alianovna Romanoff"
+        },
+        {
+          "text": "Played by Jon Bernthal",
+          "answer": "Punisher|Frank Castle Pete Castiglione|Francis David Castle Peter Castiglione"
+        },
+        {
+          "text": "Played by Samuel L. Jackson",
+          "answer": "Nick Fury|Nicholas Joseph Fury"
+        },
+        {
+          "text": "Played by Sebastian Stan",
+          "answer": "Winter Soldier|Bucky Barnes|James Buchanan Barnes"
+        },
+        {
+          "text": "Played by Anthony Mackie",
+          "answer": "Sam Wilson|Captain America|Samuel Thomas Wilson"
+        },
+        {
+          "text": "Played by Jeremy Renner",
+          "answer": "Clint Barton|Hawkeye|Clinton Francis Barton"
+        },
+        {
+          "text": "Played by Don Cheadle",
+          "answer": "War Machine|James Rupert Rhodes"
+        },
+        {
+          "text": "Played by Benedict Cumberbatch",
+          "answer": "Doctor Strange|Stephen Vincent Strange"
+        },
+        {
+          "text": "Played by Elizabeth Olsen",
+          "answer": "Scarlet Witch|Wanda Maximoff"
+        },
+        {
+          "text": "Played by Brie Larson",
+          "answer": "Carol Danvers|Captain Marvel|Vers|Carol Susan Jane Danvers"
+        },
+        {
+          "text": "Played by Bradley Cooper",
+          "answer": "Rocket Raccoon|89P13 Rocket"
+        },
+        {
+          "text": "Played by Tom Hiddleston",
+          "answer": "Loki|Loki Odinson|Loki Laufeyson"
+        },
+        {
+          "text": "Played by Paul Rudd",
+          "answer": "Scott Lang|Ant-Man|Scott Edward Harris Lang"
+        },
+        {
+          "text": "Played by Chris Pratt",
+          "answer": "Star-Lord|Peter Jason Quill"
+        },
+        {
+          "text": "Played by Hayley Atwell",
+          "answer": "Peggy Carter|Margaret Elizabeth Carter"
+        },
+        {
+          "text": "Played by Josh Brolin",
+          "answer": "Thanos"
+        },
+        {
+          "text": "Played by Karen Gillan",
+          "answer": "Nebula"
+        },
+        {
+          "text": "Played by Dave Bautista",
+          "answer": "Drax the Destroyer|Drax"
+        },
+        {
+          "text": "Played by Chadwick Boseman",
+          "answer": "T'Challa"
+        },
+        {
+          "text": "Played by Jon Favreau",
+          "answer": "Happy Hogan|Harold Joseph Hogan"
+        },
+        {
+          "text": "Played by Gwyneth Paltrow",
+          "answer": "Pepper Potts|Virginia Potts"
+        },
+        {
+          "text": "Played by Vin Diesel",
+          "answer": "Groot"
+        },
+        {
+          "text": "Played by Benedict Wong",
+          "answer": "Wong"
+        },
+        {
+          "text": "Played by Jacob Batalon",
+          "answer": "Ned Leeds|Edward Leeds"
+        },
+        {
+          "text": "Played by Evangeline Lilly",
+          "answer": "Hope van Dyne|Wasp"
+        },
+        {
+          "text": "Played by Pom Klementieff",
+          "answer": "Mantis"
+        },
+        {
+          "text": "Played by Powers Boothe",
+          "answer": "Gideon Malick"
+        },
+        {
+          "text": "Played by Zoe Saldaña",
+          "answer": "Gamora|Gamora Zen Whoberi Ben Titan"
+        },
+        {
+          "text": "Played by Cobie Smulders",
+          "answer": "Maria Hill"
+        },
+        {
+          "text": "Played by Idris Elba",
+          "answer": "Heimdall"
+        },
+        {
+          "text": "Played by Florence Pugh",
+          "answer": "Yelena Belova|Black Widow"
+        },
+        {
+          "text": "Played by Michael Douglas",
+          "answer": "Hank Pym|Henry Jonathan Pym"
+        },
+        {
+          "text": "Played by Natalie Portman",
+          "answer": "Mighty Thor|Jane Foster"
+        },
+        {
+          "text": "Played by Letitia Wright",
+          "answer": "Shuri|Black Panther"
+        },
+        {
+          "text": "Played by Owen Wilson",
+          "answer": "Mobius M. Mobius"
+        },
+        {
+          "text": "Played by Marisa Tomei",
+          "answer": "May Parker|Maybelle Reilly Maybelle Parker"
+        },
+        {
+          "text": "Played by Tessa Thompson",
+          "answer": "Valkyrie|Brunnhilde"
+        },
+        {
+          "text": "Played by Zendaya",
+          "answer": "Michelle Jones|MJ|Michelle Jones-Watson"
+        },
+        {
+          "text": "Played by Danai Gurira",
+          "answer": "Okoye"
+        },
+        {
+          "text": "Played by Tim Roth",
+          "answer": "Abomination|Emil Blonsky"
+        },
+        {
+          "text": "Played by Iman Vellani",
+          "answer": "Ms. Marvel|Kamala Khan"
+        },
+        {
+          "text": "Played by Sean Gunn",
+          "answer": "Kraglin Obfonteri"
+        },
+        {
+          "text": "Played by Paul Bettany",
+          "answer": "Vision|The Vision"
+        },
+        {
+          "text": "Played by Stellan Skarsgård",
+          "answer": "Erik Selvig"
+        },
+        {
+          "text": "Played by Tony Leung Chiu-wai",
+          "answer": "Xu Wenwu"
+        },
+        {
+          "text": "Played by Daniel Brühl",
+          "answer": "Baron Zemo|Helmut J. Zemo"
+        },
+        {
+          "text": "Played by Rosario Dawson",
+          "answer": "Claire Temple"
+        },
+        {
+          "text": "Played by Anthony Hopkins",
+          "answer": "Odin|Odin Borson"
+        },
+        {
+          "text": "Played by Wyatt Russell",
+          "answer": "U.S. Agent|John Walker|Jonathan F. Walker"
+        },
+        {
+          "text": "Played by Teyonah Parris",
+          "answer": "Monica Rambeau"
+        },
+        {
+          "text": "Played by Jaimie Alexander",
+          "answer": "Sif"
+        },
+        {
+          "text": "Played by Michelle Pfeiffer",
+          "answer": "Janet van Dyne"
+        },
+        {
+          "text": "Played by Martin Freeman",
+          "answer": "Everett Ross|Everett Kenneth Ross"
+        },
+        {
+          "text": "Played by Ben Kingsley",
+          "answer": "Trevor Slattery"
+        },
+        {
+          "text": "Played by Michael B. Jordan",
+          "answer": "Erik Killmonger|N'Jadaka Erik Stevens"
+        },
+        {
+          "text": "Played by Hailee Steinfeld",
+          "answer": "Kate Bishop|Katherine Elizabeth Bishop"
+        },
+        {
+          "text": "Played by Michael Rooker",
+          "answer": "Yondu|Yondu Udonta"
+        },
+        {
+          "text": "Played by Hannah John-Kamen",
+          "answer": "Ghost|Ava Starr"
+        },
+        {
+          "text": "Played by Winston Duke",
+          "answer": "M'Baku"
+        },
+        {
+          "text": "Played by Ray Stevenson",
+          "answer": "Volstagg"
+        },
+        {
+          "text": "Played by Florence Kasumba",
+          "answer": "Ayo"
+        },
+        {
+          "text": "Played by Frank Grillo",
+          "answer": "Crossbones|Brock Rumlow"
+        },
+        {
+          "text": "Played by James Spader",
+          "answer": "Ultron"
+        },
+        {
+          "text": "Played by Emily VanCamp",
+          "answer": "Power Broker|Sharon Carter"
+        },
+        {
+          "text": "Played by Maximiliano Hernández",
+          "answer": "Jasper Sitwell"
+        },
+        {
+          "text": "Played by David Harbour",
+          "answer": "Red Guardian|Alexei Andreovitch Shostakov"
+        },
+        {
+          "text": "Played by Corey Stoll",
+          "answer": "M.O.D.O.K.|Darren Agonistes Cross"
+        },
+        {
+          "text": "Played by Taika Waititi",
+          "answer": "Korg"
+        },
+        {
+          "text": "Played by Kat Dennings",
+          "answer": "Darcy Lewis"
+        },
+        {
+          "text": "Played by Martin Starr",
+          "answer": "Roger Harrington"
+        },
+        {
+          "text": "Played by Tim Blake Nelson",
+          "answer": "Leader|Samuel Sterns"
+        },
+        {
+          "text": "Played by Jake Gyllenhaal",
+          "answer": "Mysterio|Quentin Beck"
+        },
+        {
+          "text": "Played by Lashana Lynch",
+          "answer": "Maria Rambeau"
+        },
+        {
+          "text": "Played by Tadanobu Asano",
+          "answer": "Hogun"
+        },
+        {
+          "text": "Played by Tony Revolori",
+          "answer": "Flash Thompson|Eugene Thompson"
+        },
+        {
+          "text": "Played by Jeff Bridges",
+          "answer": "Iron Monger|Obadiah Stane"
+        },
+        {
+          "text": "Played by Rene Russo",
+          "answer": "Frigga"
+        },
+        {
+          "text": "Played by Aaron Taylor-Johnson",
+          "answer": "Quicksilver|Pietro Maximoff"
+        },
+        {
+          "text": "Played by Angela Bassett",
+          "answer": "Ramonda"
+        },
+        {
+          "text": "Played by Seth Green",
+          "answer": "Howard the Duck"
+        },
+        {
+          "text": "Played by Simu Liu",
+          "answer": "Shang-Chi|Shaun|Xu Shang-Chi"
+        },
+        {
+          "text": "Played by Angourie Rice",
+          "answer": "Betty Brant|Elizabeth Brant"
+        },
+        {
+          "text": "Played by Julia Louis-Dreyfus",
+          "answer": "Valentina Allegra de Fontaine"
+        },
+        {
+          "text": "Played by Andy Serkis",
+          "answer": "Ulysses Klaue"
+        },
+        {
+          "text": "Played by Olga Kurylenko",
+          "answer": "Taskmaster|Antonia Dreykov"
+        },
+        {
+          "text": "Played by Lee Pace",
+          "answer": "Ronan the Accuser|Ronan"
+        },
+        {
+          "text": "Played by Lewis Pullman",
+          "answer": "Sentry|Bob Reynolds|Robert Reynolds"
+        },
+        {
+          "text": "Played by Michael Keaton",
+          "answer": "Vulture|Adrian Toomes"
+        },
+        {
+          "text": "Played by Toby Jones",
+          "answer": "Arnim Zola"
+        },
+        {
+          "text": "Played by Jude Law",
+          "answer": "Yon-Rogg"
+        },
+        {
+          "text": "Played by Wunmi Mosaku",
+          "answer": "B-15"
+        },
+        {
+          "text": "Played by Lupita Nyong'o",
+          "answer": "Nakia"
+        },
+        {
+          "text": "Played by Tilda Swinton",
+          "answer": "Ancient One"
+        },
+        {
+          "text": "Played by Hugh Jackman",
+          "answer": "Wolverine|Logan|James Howlett"
+        },
+        {
+          "text": "Played by Pedro Pascal",
+          "answer": "Mister Fantastic|Reed Richards"
+        },
+        {
+          "text": "Played by Randall Park",
+          "answer": "Jimmy Woo|James E. Woo"
+        },
+        {
+          "text": "Played by Cate Blanchett",
+          "answer": "Hela|Hela Odinsdottir"
+        },
+        {
+          "text": "Played by Willem Dafoe",
+          "answer": "Green Goblin|Norman Virgil Osborn"
+        },
+        {
+          "text": "Played by Liv Tyler",
+          "answer": "Betty Ross|Elizabeth Ross"
+        },
+        {
+          "text": "Played by Alfred Molina",
+          "answer": "Doctor Octopus|Otto Gunther Octavius"
+        },
+        {
+          "text": "Played by Thomas Kretschmann",
+          "answer": "Baron Strucker|Wolfgang von Strucker"
+        },
+        {
+          "text": "Played by Tobey Maguire",
+          "answer": "Friendly Neighborhood Spider-Man"
+        },
+        {
+          "text": "Played by Will Poulter",
+          "answer": "Adam Warlock|Adam"
+        },
+        {
+          "text": "Played by Joseph Quinn",
+          "answer": "Human Torch|Johnny Storm|Jonathan Lowell Spencer Storm"
         }
       ]
     }
@@ -6288,6 +7822,76 @@
             "Greninja|Amphinobi",
             "Incineroar|Félinferno"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Final Smash",
+      "prompt": "Whose Final Smash is this?",
+      "clues": [
+        {
+          "text": "Giga Bowser Punch",
+          "answer": "Bowser"
+        },
+        {
+          "text": "Volt Tackle",
+          "answer": "Pikachu"
+        },
+        {
+          "text": "Mario Finale",
+          "answer": "Mario"
+        },
+        {
+          "text": "Super Sonic",
+          "answer": "Sonic"
+        },
+        {
+          "text": "Ultra Sword",
+          "answer": "Kirby"
+        },
+        {
+          "text": "Galaxia Darkness",
+          "answer": "Meta Knight"
+        },
+        {
+          "text": "Octopus",
+          "answer": "Mr. Game & Watch|Mr Game and Watch|Game & Watch"
+        },
+        {
+          "text": "Great Aether",
+          "answer": "Ike"
+        },
+        {
+          "text": "Black Hole Laser",
+          "answer": "Palutena"
+        },
+        {
+          "text": "Supernova",
+          "answer": "Sephiroth"
+        },
+        {
+          "text": "Omnislash Ver. Sonic",
+          "answer": "Cloud"
+        },
+        {
+          "text": "Gigaslash",
+          "answer": "Hero"
+        },
+        {
+          "text": "All-Out Attack",
+          "answer": "Joker"
+        },
+        {
+          "text": "PK Starstorm",
+          "answer": "Ness|Lucas"
+        },
+        {
+          "text": "Zero Laser",
+          "answer": "Samus"
+        },
+        {
+          "text": "Critical Hit",
+          "answer": "Marth|Lucina"
         }
       ]
     }
@@ -6964,6 +8568,492 @@
           ]
         }
       ]
+    },
+    "signature": {
+      "label": "Constellation",
+      "prompt": "Whose constellation is this?",
+      "clues": [
+        {
+          "text": "✦ Lepus ✦",
+          "answer": "Amber"
+        },
+        {
+          "text": "✦ Crater ✦",
+          "answer": "Barbara|Barbara Pegg"
+        },
+        {
+          "text": "✦ Victor Mare ✦",
+          "answer": "Beidou"
+        },
+        {
+          "text": "✦ Rota Calamitas ✦",
+          "answer": "Bennett"
+        },
+        {
+          "text": "✦ Nubis Caesor ✦",
+          "answer": "Chongyun"
+        },
+        {
+          "text": "✦ Noctua ✦",
+          "answer": "Diluc|Diluc Ragnvindr"
+        },
+        {
+          "text": "✦ Corvus ✦",
+          "answer": "Fischl|Amy"
+        },
+        {
+          "text": "✦ Leo Minor ✦",
+          "answer": "Jean|Jean Gunnhildr"
+        },
+        {
+          "text": "✦ Pavo Ocellus ✦",
+          "answer": "Kaeya|Kaeya Alberich"
+        },
+        {
+          "text": "✦ Trulla Cementarii ✦",
+          "answer": "Keqing"
+        },
+        {
+          "text": "✦ Tempus Fugit ✦",
+          "answer": "Lisa|Lisa Minci"
+        },
+        {
+          "text": "✦ Astrolabos ✦",
+          "answer": "Mona|Astrologist Mona Megistus"
+        },
+        {
+          "text": "✦ Opus Aequilibrium ✦",
+          "answer": "Ningguang"
+        },
+        {
+          "text": "✦ Parma Cordis ✦",
+          "answer": "Noelle"
+        },
+        {
+          "text": "✦ Pristina Nola ✦",
+          "answer": "Qiqi"
+        },
+        {
+          "text": "✦ Lupus Minor ✦",
+          "answer": "Razor"
+        },
+        {
+          "text": "✦ Ampulla ✦",
+          "answer": "Sucrose"
+        },
+        {
+          "text": "✦ Carmen Dei ✦",
+          "answer": "Venti"
+        },
+        {
+          "text": "✦ Trulla ✦",
+          "answer": "Xiangling|Mao Xiangling"
+        },
+        {
+          "text": "✦ Fabulae Textile ✦",
+          "answer": "Xingqiu"
+        },
+        {
+          "text": "✦ Trifolium ✦",
+          "answer": "Klee"
+        },
+        {
+          "text": "✦ Cistellula Mira ✦",
+          "answer": "Aino"
+        },
+        {
+          "text": "✦ Cerva Nivea ✦",
+          "answer": "Lauma"
+        },
+        {
+          "text": "✦ Laterna Vigilis ✦",
+          "answer": "Flins|Kyryll Chudomirovich Flins"
+        },
+        {
+          "text": "✦ Ludus Latrunculorum ✦",
+          "answer": "Nefer"
+        },
+        {
+          "text": "✦ Draco Rubedo ✦",
+          "answer": "Durin"
+        },
+        {
+          "text": "✦ Fragum ✦",
+          "answer": "Jahoda"
+        },
+        {
+          "text": "✦ Columbina Hyposelenia ✦",
+          "answer": "Columbina|Columbina Hyposelenia"
+        },
+        {
+          "text": "✦ Oriolus ✦",
+          "answer": "Illuga"
+        },
+        {
+          "text": "✦ Equa Alba ✦",
+          "answer": "Zibai"
+        },
+        {
+          "text": "✦ Lupus Majoris ✦",
+          "answer": "Varka"
+        },
+        {
+          "text": "✦ Alcyon ✦",
+          "answer": "Linnea"
+        },
+        {
+          "text": "✦ Reliquiarium ✦",
+          "answer": "Nicole|Nicole Reeyn"
+        },
+        {
+          "text": "✦ Turris Venefica ✦",
+          "answer": "Prune"
+        },
+        {
+          "text": "✦ Lepus Miles ✦",
+          "answer": "Lohen"
+        },
+        {
+          "text": "✦ Narcissorolegium ✦",
+          "answer": "Sandrone|Marionette Guillotin"
+        },
+        {
+          "text": "✦ Feles ✦",
+          "answer": "Diona"
+        },
+        {
+          "text": "✦ Monoceros Caeli ✦",
+          "answer": "Tartaglia"
+        },
+        {
+          "text": "✦ Fila Ignium ✦",
+          "answer": "Xinyan"
+        },
+        {
+          "text": "✦ Lapis Dei ✦",
+          "answer": "Zhongli"
+        },
+        {
+          "text": "✦ Princeps Cretaceus ✦",
+          "answer": "Albedo"
+        },
+        {
+          "text": "✦ Sinae Unicornis ✦",
+          "answer": "Ganyu"
+        },
+        {
+          "text": "✦ Alatus Nemeseos ✦",
+          "answer": "Xiao"
+        },
+        {
+          "text": "✦ Papilio Charontis ✦",
+          "answer": "Hu Tao"
+        },
+        {
+          "text": "✦ Spinea Corona ✦",
+          "answer": "Rosaria"
+        },
+        {
+          "text": "✦ Bestia Iustitia ✦",
+          "answer": "Yanfei"
+        },
+        {
+          "text": "✦ Aphros Delos ✦",
+          "answer": "Eula|Eula Lawrence"
+        },
+        {
+          "text": "✦ Acer Palmatum ✦",
+          "answer": "Kaedehara Kazuha"
+        },
+        {
+          "text": "✦ Grus Nivis ✦",
+          "answer": "Kamisato Ayaka"
+        },
+        {
+          "text": "✦ Nyctereutes Minor ✦",
+          "answer": "Sayu"
+        },
+        {
+          "text": "✦ Carassius Auratus ✦",
+          "answer": "Yoimiya|Naganohara Yoimiya"
+        },
+        {
+          "text": "✦ Nora Fortis ✦",
+          "answer": "Aloy"
+        },
+        {
+          "text": "✦ Flabellum ✦",
+          "answer": "Kujou Sara"
+        },
+        {
+          "text": "✦ Imperatrix Umbrosa ✦",
+          "answer": "Raiden Shogun|Raiden Ei"
+        },
+        {
+          "text": "✦ Dracaena Somnolenta ✦",
+          "answer": "Sangonomiya Kokomi"
+        },
+        {
+          "text": "✦ Rubeum Scutum ✦",
+          "answer": "Thoma"
+        },
+        {
+          "text": "✦ Taurus Iracundus ✦",
+          "answer": "Arataki Itto"
+        },
+        {
+          "text": "✦ Canis Bellatoris ✦",
+          "answer": "Gorou"
+        },
+        {
+          "text": "✦ Crista Doloris ✦",
+          "answer": "Shenhe"
+        },
+        {
+          "text": "✦ Opera Grandis ✦",
+          "answer": "Yun Jin"
+        },
+        {
+          "text": "✦ Divina Vulpes ✦",
+          "answer": "Yae Miko"
+        },
+        {
+          "text": "✦ Cypressus Custos ✦",
+          "answer": "Kamisato Ayato"
+        },
+        {
+          "text": "✦ Umbrabilis Orchis ✦",
+          "answer": "Yelan"
+        },
+        {
+          "text": "✦ Tribulatio Demptio ✦",
+          "answer": "Kuki Shinobu"
+        },
+        {
+          "text": "✦ Cervus Minor ✦",
+          "answer": "Shikanoin Heizou"
+        },
+        {
+          "text": "✦ Leptailurus Cervarius ✦",
+          "answer": "Collei"
+        },
+        {
+          "text": "✦ Vulpes Zerda ✦",
+          "answer": "Tighnari"
+        },
+        {
+          "text": "✦ Magicae Lucerna ✦",
+          "answer": "Dori|Dori Sangemah Bay"
+        },
+        {
+          "text": "✦ Sagitta Scutum ✦",
+          "answer": "Candace"
+        },
+        {
+          "text": "✦ Lupus Aureus ✦",
+          "answer": "Cyno"
+        },
+        {
+          "text": "✦ Lotos Somno ✦",
+          "answer": "Nilou"
+        },
+        {
+          "text": "✦ Sapientia Oromasdis ✦",
+          "answer": "Nahida"
+        },
+        {
+          "text": "✦ Luscinia ✦",
+          "answer": "Layla"
+        },
+        {
+          "text": "✦ Flosculi Implexi ✦",
+          "answer": "Faruzan"
+        },
+        {
+          "text": "✦ Peregrinus ✦",
+          "answer": "Wanderer"
+        },
+        {
+          "text": "✦ Vultur Volans ✦",
+          "answer": "Alhaitham"
+        },
+        {
+          "text": "✦ Osmanthus ✦",
+          "answer": "Yaoyao"
+        },
+        {
+          "text": "✦ Mantichora ✦",
+          "answer": "Dehya"
+        },
+        {
+          "text": "✦ Palumbus ✦",
+          "answer": "Mika|Mika Schmidt"
+        },
+        {
+          "text": "✦ Lagenaria ✦",
+          "answer": "Baizhu"
+        },
+        {
+          "text": "✦ Paradisaea ✦",
+          "answer": "Kaveh"
+        },
+        {
+          "text": "✦ Arcella ✦",
+          "answer": "Kirara"
+        },
+        {
+          "text": "✦ Felis Alba ✦",
+          "answer": "Lynette"
+        },
+        {
+          "text": "✦ Felis Fuscus ✦",
+          "answer": "Lyney"
+        },
+        {
+          "text": "✦ Automaton (Constellation) ✦",
+          "answer": "Freminet"
+        },
+        {
+          "text": "✦ Leviathan Judicator ✦",
+          "answer": "Neuvillette"
+        },
+        {
+          "text": "✦ Cerberus ✦",
+          "answer": "Wriothesley"
+        },
+        {
+          "text": "✦ Hualina Veritas ✦",
+          "answer": "Charlotte"
+        },
+        {
+          "text": "✦ Animula Choragi ✦",
+          "answer": "Furina|Furina de Fontaine"
+        },
+        {
+          "text": "✦ Rosa Multiflora ✦",
+          "answer": "Navia|Navia Caspar"
+        },
+        {
+          "text": "✦ Sclopetum Ensiferum ✦",
+          "answer": "Chevreuse"
+        },
+        {
+          "text": "✦ Leo Expergiscens ✦",
+          "answer": "Gaming|Yip Gaming"
+        },
+        {
+          "text": "✦ Grus Serena ✦",
+          "answer": "Xianyun"
+        },
+        {
+          "text": "✦ Cisoria ✦",
+          "answer": "Chiori"
+        },
+        {
+          "text": "✦ Ignis Purgatorius ✦",
+          "answer": "Arlecchino|Peruere"
+        },
+        {
+          "text": "✦ Rapperia ✦",
+          "answer": "Clorinde"
+        },
+        {
+          "text": "✦ Basileos Delta ✦",
+          "answer": "Sethos"
+        },
+        {
+          "text": "✦ Nereides ✦",
+          "answer": "Sigewinne"
+        },
+        {
+          "text": "✦ Pomum de Ambra ✦",
+          "answer": "Emilie"
+        },
+        {
+          "text": "✦ Ochotona Princeps ✦",
+          "answer": "Kachina"
+        },
+        {
+          "text": "✦ Phoca Neomonachus ✦",
+          "answer": "Mualani"
+        },
+        {
+          "text": "✦ Chimaera Alebriius ✦",
+          "answer": "Kinich"
+        },
+        {
+          "text": "✦ Panthera Ocelota ✦",
+          "answer": "Xilonen"
+        },
+        {
+          "text": "✦ Vultur Gryphus ✦",
+          "answer": "Chasca"
+        },
+        {
+          "text": "✦ Vampyrum Spectrum ✦",
+          "answer": "Ororon"
+        },
+        {
+          "text": "✦ Patina Anavatlaca ✦",
+          "answer": "Citlali"
+        },
+        {
+          "text": "✦ Sol Invictus ✦",
+          "answer": "Mavuika"
+        },
+        {
+          "text": "✦ Hirundo Lazuli ✦",
+          "answer": "Lan Yan"
+        },
+        {
+          "text": "✦ Tapirus Somniator ✦",
+          "answer": "Yumemizuki Mizuki"
+        },
+        {
+          "text": "✦ Carnotaurus ✦",
+          "answer": "Iansan"
+        },
+        {
+          "text": "✦ Mascara Luctatori ✦",
+          "answer": "Varesa"
+        },
+        {
+          "text": "✦ Dulciaria Structura ✦",
+          "answer": "Escoffier"
+        },
+        {
+          "text": "✦ Catena Opele ✦",
+          "answer": "Ifa"
+        },
+        {
+          "text": "✦ Cantus Choralis ✦",
+          "answer": "Dahlia"
+        },
+        {
+          "text": "✦ Crystallina ✦",
+          "answer": "Skirk"
+        },
+        {
+          "text": "✦ Vanilla Planifolia ✦",
+          "answer": "Ineffa"
+        },
+        {
+          "text": "✦ Canis Borzoides ✦",
+          "answer": "Alyosha"
+        },
+        {
+          "text": "✦ Cygnus Olor ✦",
+          "answer": "Odette|Odette Spessiva"
+        },
+        {
+          "text": "✦ Amentum Vernum ✦",
+          "answer": "Vesna|Vesna Strivozha"
+        },
+        {
+          "text": "✦ Piscicula Aurea ✦",
+          "answer": "Vodyanitsa"
+        }
+      ]
     }
   },
   {
@@ -7591,6 +9681,48 @@
             "David Evans|Endou Daisuke",
             "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
           ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Hissatsu",
+      "prompt": "Who uses this hissatsu?",
+      "clues": [
+        {
+          "text": "Main Céleste (God Hand)",
+          "answer": "Mark Evans|Endou Mamoru|Endou"
+        },
+        {
+          "text": "Main Magique (Majin The Hand)",
+          "answer": "Mark Evans|Endou Mamoru|Endou"
+        },
+        {
+          "text": "Tornade de Feu (Fire Tornado)",
+          "answer": "Axel Blaze|Gouenji Shuuya|Gouenji"
+        },
+        {
+          "text": "Tourbillon de Feu (Bakunetsu Screw)",
+          "answer": "Axel Blaze|Gouenji Shuuya|Gouenji"
+        },
+        {
+          "text": "Ballon Illusoire (Illusion Ball)",
+          "answer": "Jude Sharp|Kidou Yuuto|Kidou"
+        },
+        {
+          "text": "Blizzard Éternel (Eternal Blizzard)",
+          "answer": "Shawn Froste|Fubuki Shirou|Fubuki"
+        },
+        {
+          "text": "Le Mur (The Wall)",
+          "answer": "Jack Wallside|Kabeyama Heigorou|Kabeyama"
+        },
+        {
+          "text": "Scie Circulaire (Spinning Cut)",
+          "answer": "Bobby Shearer|Domon Asuka|Domon"
+        },
+        {
+          "text": "Tir Céleste (Heaven Drive)",
+          "answer": "Byron Love|Afuro Terumi|Afuro"
         }
       ]
     }

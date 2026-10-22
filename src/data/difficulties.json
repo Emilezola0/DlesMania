@@ -26,11 +26,12 @@
     "parSeconds": 300,
     "scoreMultiplier": 1,
     "secondLoop": null,
-    "secret": null
+    "secret": null,
+    "signature": null
   },
   "medium": {
     "label": "Medium",
-    "blurb": "Longer waves, tighter timers, shifting colours and spinning cards. The final phase must be won twice.",
+    "blurb": "Longer waves, tighter timers, shifting colours and spinning cards. The final phase must be won twice — and then the guardian challenges you to a Name Chain.",
     "rounds": [
       1,
       1,
@@ -55,15 +56,20 @@
     "parSeconds": 420,
     "scoreMultiplier": 1.6,
     "secondLoop": null,
-    "secret": null
+    "secret": {
+      "picksToWin": 5,
+      "turnSeconds": 15,
+      "bonus": 1200
+    },
+    "signature": null
   },
   "hard": {
     "label": "Hard",
-    "blurb": "Every phase twice — the second time shorter, with zoomed, recoloured and upside-down pictures. Reversed zones, decoys, early-swipe penalties, one-mistake shields and a hidden clock. And the guardian does not lose gracefully…",
+    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. Then the guardian’s Signature challenge — three answers in a row, no suggestions, no second chance.",
     "rounds": [
-      2,
-      2,
-      2
+      1,
+      1,
+      1
     ],
     "hearts": 3,
     "blitzExtra": 2,
@@ -83,52 +89,11 @@
     "distortion": 2,
     "parSeconds": 600,
     "scoreMultiplier": 2.5,
-    "secondLoop": {
-      "blitz": {
-        "countDelta": -1,
-        "secondsPer": 6
-      },
-      "radar": {
-        "cards": 5,
-        "impostors": 2,
-        "speed": 0.75,
-        "zoom": [
-          1.6,
-          2.3
-        ],
-        "hue": [
-          80,
-          180
-        ],
-        "flip": 0.6,
-        "turns": [
-          90,
-          180,
-          270
-        ]
-      },
-      "finale": {
-        "targets": 3,
-        "seconds": 8,
-        "zoom": [
-          1.5,
-          2.1
-        ],
-        "hue": [
-          80,
-          180
-        ],
-        "flip": 0.75,
-        "turns": [
-          90,
-          180,
-          270
-        ]
-      }
-    },
-    "secret": {
-      "picksToWin": 6,
-      "turnSeconds": 12,
+    "secondLoop": null,
+    "secret": null,
+    "signature": {
+      "toWin": 3,
+      "seconds": 12,
       "bonus": 2000
     }
   }
