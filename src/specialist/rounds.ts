@@ -4,7 +4,7 @@ import { LOL_POOLS } from './lol';
 import { MARVEL_POOLS } from './marvel';
 import { GENSHIN_POOLS } from './genshin';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -12,8 +12,8 @@ export const UNIVERSES = [
     id: 'onepiece',
     label: 'One Piece',
     ready: true,
-    blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and silhouettes — 220 characters from the anime.',
-    types: ['classic', 'fruit', 'laugh', 'flag', 'silhouette'] as SpType[],
+    blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and wanted posters — 220 characters from the anime.',
+    types: ['classic', 'fruit', 'laugh', 'flag', 'wanted'] as SpType[],
   },
   {
     id: 'lol',
@@ -47,6 +47,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   laugh: { name: 'Laugh', icon: '😆', tagline: 'Whose signature laugh is this?', maxAttempts: 6 },
   flag: { name: 'Jolly Roger', icon: '☠️', tagline: 'Which crew flies this flag?', maxAttempts: 6 },
   silhouette: { name: 'Silhouette', icon: '👤', tagline: 'Who is hiding in the shadow?', maxAttempts: 6 },
+  wanted: { name: 'Wanted', icon: '📜', tagline: 'Who is on the wanted poster?', maxAttempts: 6 },
   ability: { name: 'Ability', icon: '✨', tagline: 'Whose ability is this?', maxAttempts: 6 },
   splash: { name: 'Splash Art', icon: '🖼️', tagline: 'Whose splash art is this?', maxAttempts: 6 },
   film: { name: 'Film', icon: '🎬', tagline: 'Which film is this poster from?', maxAttempts: 6 },

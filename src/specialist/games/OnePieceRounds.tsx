@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AudioClip } from '../../components/AudioClip';
 import { ObscuredImage } from '../../components/ObscuredImage';
 import type { RoundRecord } from '../../types';
-import { ONE_PIECE, SILHOUETTE_OF, characterById, crewById, formatBounty, fruitById, type OpCharacter } from '../data';
+import { ONE_PIECE, characterById, crewById, formatBounty, fruitById, type OpCharacter } from '../data';
 import type { SpRound } from '../rounds';
 import { SpGuessRound } from './SpGuessRound';
 
@@ -124,35 +124,45 @@ export function FlagRound({ round, record, onChange }: Props) {
   );
 }
 
-/** Silhouette: a blacked-out cut-out, in colour once the round is over. */
-export function SilhouetteRound({ round, record, onChange }: Props) {
+/** How blurred the wanted poster's picture is at each miss, in px (0 once the round is over). */
+const WANTED_BLUR = [16, 12, 9, 6, 4, 2];
+
+/** Wanted: the character's picture on a wanted poster, blurred and sepia, sharpening with each miss. */
+export function WantedRound({ round, record, onChange }: Props) {
   const c = characterById.get(round.targetId)!;
-  const image = SILHOUETTE_OF.get(c.id)!;
   return (
     <SpGuessRound
-      type="silhouette"
-      question="Who is hiding in the shadow?"
+      type="wanted"
+      question="Who is on this wanted poster?"
       pool={characters}
       targetId={c.id}
       hints={characterHints(c)}
       record={record}
       onChange={onChange}
-      answer={{ name: c.name, image: c.image, detail: c.affiliation }}
-      clue={(_, done) => (
-        <div
-          className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-xl"
-          style={{ background: 'radial-gradient(circle at 50% 45%, #fde68a 0%, #f59e0b 35%, #1d4ed8 75%)' }}
-        >
-          <img
-            src={image}
-            alt={done ? c.name : 'Silhouette'}
-            draggable={false}
-            onContextMenu={(e) => e.preventDefault()}
-            className="absolute inset-0 size-full select-none object-contain p-5 transition-[filter] duration-500"
-            style={{ filter: done ? 'none' : 'brightness(0) drop-shadow(0 4px 10px rgb(0 0 0 / 0.35))' }}
-          />
-        </div>
-      )}
+      answer={{ name: c.name, image: c.image, detail: `${c.affiliation} · ${c.bounty ? `${formatBounty(c.bounty)} berries` : 'no bounty'}` }}
+      clue={(wrong, done) => {
+        const blur = done ? 0 : WANTED_BLUR[Math.min(wrong, WANTED_BLUR.length - 1)];
+        return (
+          <div
+            className="mx-auto flex w-full max-w-xs flex-col items-center gap-2 rounded-sm px-5 pb-5 pt-4 text-[#4a3424] shadow-xl"
+            style={{ background: 'radial-gradient(circle at 50% 40%, #f3e2bd 0%, #e6cc98 60%, #c9a46a 100%)' }}
+          >
+            <p className="font-serif text-5xl font-black tracking-wider">WANTED</p>
+            <div className="aspect-[4/3] w-full overflow-hidden border-2 border-[#4a3424]/60 bg-[#d9bf8c]">
+              <img
+                src={c.image}
+                alt={done ? c.name : 'Wanted'}
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="size-full scale-110 select-none object-cover object-top transition-[filter] duration-500"
+                style={{ filter: done ? 'none' : `blur(${blur}px) sepia(0.55) contrast(1.05)` }}
+              />
+            </div>
+            <p className="font-serif text-2xl font-black tracking-wide">DEAD OR ALIVE</p>
+            <p className="font-display text-[10px] uppercase tracking-[0.3em] opacity-70">{done ? c.name : 'Sharper with each miss'}</p>
+          </div>
+        );
+      }}
     />
   );
 }

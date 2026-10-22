@@ -103,6 +103,8 @@ export const POOLS = {
   laugh: (ONE_PIECE.laughs.some((l) => l.youtubeId) ? ONE_PIECE.laughs.filter((l) => l.youtubeId) : ONE_PIECE.laughs).map((l) => l.character),
   flag: ONE_PIECE.crews.map((c) => c.id),
   silhouette: [...SILHOUETTE_OF.keys()],
+  // Any of the best-known characters: the wiki portrait is blurred on a wanted poster.
+  wanted: ONE_PIECE.characters.slice(0, 160).map((c) => c.id),
 };
 
 /** Bounties the way the series writes them: 3,000,000,000 → "3B", 550,000,000 → "550M". */

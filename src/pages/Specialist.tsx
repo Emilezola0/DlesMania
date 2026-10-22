@@ -17,7 +17,7 @@ import { ClassicRound, GenshinClassicRound, LolClassicRound, MarvelClassicRound 
 import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/games/GenshinRounds';
 import { EmojiFilmRound, FilmRound, VoiceRound } from '../specialist/games/MarvelRounds';
 import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
-import { FlagRound, FruitRound, LaughRound, SilhouetteRound } from '../specialist/games/OnePieceRounds';
+import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
 
@@ -25,7 +25,7 @@ type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundReco
 
 /** Which component plays each round type, per universe. */
 const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<RoundProps>>>> = {
-  onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, silhouette: SilhouetteRound },
+  onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, wanted: WantedRound },
   lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound },
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound },
