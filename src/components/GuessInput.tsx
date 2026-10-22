@@ -8,6 +8,8 @@ interface Props {
   onGuess: (id: string) => void;
   placeholder?: string;
   disabled?: boolean;
+  /** Show pictures in the suggestions (off when the clue is that very picture). */
+  showImages?: boolean;
 }
 
 /** A second name to show next to the main one: the alias that matched the query best, else the first alias. */
@@ -19,7 +21,7 @@ function otherName(w: Named, query: string): string | undefined {
   return typed ?? aliases[0];
 }
 
-export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title…', disabled }: Props) {
+export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title…', disabled, showImages = true }: Props) {
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -83,12 +85,12 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
                 type="button"
                 onMouseEnter={() => setActive(i)}
                 onClick={() => submit(w)}
-                className={`flex w-full justify-between gap-3 px-4 text-left ${w.image ? 'items-center py-1.5' : 'items-baseline py-2.5'} ${
+                className={`flex w-full justify-between gap-3 px-4 text-left ${showImages && w.image ? 'items-center py-1.5' : 'items-baseline py-2.5'} ${
                   i === active ? 'bg-accent-soft' : 'hover:bg-tile'
                 }`}
               >
                 <span className="flex items-center gap-2.5 font-medium">
-                  {w.image && <img src={w.image} alt="" loading="lazy" className="size-9 shrink-0 rounded-md bg-tile object-cover object-top" />}
+                  {showImages && w.image && <img src={w.image} alt="" loading="lazy" className="size-9 shrink-0 rounded-md bg-tile object-cover object-top" />}
                   <span>
                     {w.name}
                     {/* Show the French title when that's what the player typed. */}

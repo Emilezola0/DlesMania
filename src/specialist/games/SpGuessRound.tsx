@@ -16,10 +16,12 @@ interface Props {
   record: RoundRecord;
   onChange: (record: RoundRecord) => void;
   answer: { name: string; image?: string; detail?: string };
+  /** The clue is the answer's own picture (a fruit, a portrait): keep pictures out of the suggestions. */
+  noPictures?: boolean;
 }
 
 /** The frame shared by the Specialist rounds that are "name it from a clue": clue, guesses, hints, result. */
-export function SpGuessRound({ type, clue, question, pool, targetId, hints, record, onChange, answer }: Props) {
+export function SpGuessRound({ type, clue, question, pool, targetId, hints, record, onChange, answer, noPictures = false }: Props) {
   const max = SP_META[type].maxAttempts;
   const done = record.status !== 'playing';
   const wrong = record.guesses.filter((g) => g !== targetId);
@@ -38,7 +40,7 @@ export function SpGuessRound({ type, clue, question, pool, targetId, hints, reco
       <p className="text-center text-ink-soft">{question}</p>
       <div className="page rounded-md p-5 sm:p-8">{clue(wrong.length, done)}</div>
 
-      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder="Type a name…" />}
+      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder="Type a name…" showImages={!noPictures} />}
 
       <div className="flex justify-center gap-1.5" aria-label="Attempts">
         {Array.from({ length: max }, (_, i) => {

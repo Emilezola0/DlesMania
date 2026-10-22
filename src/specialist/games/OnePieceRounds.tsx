@@ -42,6 +42,7 @@ export function FruitRound({ round, record, onChange }: Props) {
   return (
     <SpGuessRound
       type="fruit"
+      noPictures
       question="Which Devil Fruit is this?"
       pool={fruitNames}
       targetId={f.id}
@@ -133,6 +134,7 @@ export function WantedRound({ round, record, onChange }: Props) {
   return (
     <SpGuessRound
       type="wanted"
+      noPictures
       question="Who is on this wanted poster?"
       pool={characters}
       targetId={c.id}
