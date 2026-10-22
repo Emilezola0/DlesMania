@@ -28,8 +28,10 @@ export interface McuCharacter {
   team: string;
   status: string;
   actor?: string;
-  /** True when one actor clearly owns the role, so the Cast round can show it. */
+  /** True when one actor clearly owns the role (the boss's Signature names them). */
   castable: boolean;
+  /** A clip of the character speaking in the original English version (scripts/find-marvel-voice-clips.mjs). */
+  voice?: { youtubeId: string; start?: number };
   /** Id of their first film, the Phase it's in, and how many films they're in. */
   debut: string;
   phase: number;
@@ -55,5 +57,5 @@ export const MARVEL_POOLS = {
   classic: MARVEL.characters.slice(0, 120).map((c) => c.id),
   film: MARVEL.films.filter((f) => f.poster).map((f) => f.id),
   emoji: MARVEL.films.filter((f) => f.emoji).map((f) => f.id),
-  cast: MARVEL.characters.slice(0, 140).filter((c) => c.castable && c.actor).map((c) => c.id),
+  voice: MARVEL.characters.filter((c) => c.voice).map((c) => c.id),
 };

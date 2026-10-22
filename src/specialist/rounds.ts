@@ -4,7 +4,7 @@ import { LOL_POOLS } from './lol';
 import { MARVEL_POOLS } from './marvel';
 import { GENSHIN_POOLS } from './genshin';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'ability' | 'splash' | 'film' | 'emoji' | 'cast' | 'wish' | 'constellation';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -26,8 +26,8 @@ export const UNIVERSES = [
     id: 'marvel',
     label: 'Marvel (MCU)',
     ready: true,
-    blurb: 'Classic on 180 characters, plus posters, emoji films and the cast — every released film.',
-    types: ['classic', 'film', 'emoji', 'cast'] as SpType[],
+    blurb: 'Classic on 180 characters, plus posters, emoji films and voice lines — every released film.',
+    types: ['classic', 'film', 'emoji', 'voice'] as SpType[],
   },
   {
     id: 'genshin',
@@ -51,7 +51,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   splash: { name: 'Splash Art', icon: '🖼️', tagline: 'Whose splash art is this?', maxAttempts: 6 },
   film: { name: 'Film', icon: '🎬', tagline: 'Which film is this poster from?', maxAttempts: 6 },
   emoji: { name: 'Emoji', icon: '😎', tagline: 'A film told in emojis', maxAttempts: 6 },
-  cast: { name: 'Cast', icon: '🎭', tagline: 'Who does this actor play?', maxAttempts: 6 },
+  voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (original English voice)', maxAttempts: 6 },
   wish: { name: 'Wish Art', icon: '🌠', tagline: 'Whose wish art is this?', maxAttempts: 6 },
   constellation: { name: 'Constellation', icon: '✦', tagline: 'Whose constellation is this?', maxAttempts: 6 },
 };

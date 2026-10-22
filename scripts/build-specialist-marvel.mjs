@@ -12,7 +12,7 @@
 //   ("Avengers Members", "HYDRA Agents"...).
 // - Emoji summaries are hand-written in scripts/data/mcu-emoji.mjs.
 // Only facts and names are kept.
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, fandomApi, mediawikiGet, parseArgs, sleep } from './lib.mjs';
 import { MCU_EMOJI } from './data/mcu-emoji.mjs';
@@ -255,6 +255,14 @@ const owners = {};
 for (const c of characters) for (const n of [c.name, ...c.aliases]) (owners[n.toLowerCase()] ??= new Set()).add(c.id);
 for (const c of characters) c.aliases = c.aliases.filter((n) => owners[n.toLowerCase()].size === 1);
 console.log(`  ${characters.length} characters`);
+
+// Voice clips come from scripts/find-marvel-voice-clips.mjs: keep the ones already found.
+try {
+  const previous = new Map(JSON.parse(readFileSync(OUT, 'utf8')).characters.filter((c) => c.voice).map((c) => [c.id, c.voice]));
+  for (const c of characters) if (previous.has(c.id)) c.voice = previous.get(c.id);
+} catch {
+  /* first run */
+}
 
 mkdirSync(join(ROOT, 'src', 'data', 'specialist'), { recursive: true });
 writeFileSync(OUT, JSON.stringify({ generated: new Date().toISOString().slice(0, 10), films, characters }, null, 2) + '\n');

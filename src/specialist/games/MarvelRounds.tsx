@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AudioClip } from '../../components/AudioClip';
 import { ZoomImage } from '../../components/ZoomImage';
 import { mulberry32 } from '../../lib/rng';
 import type { RoundRecord } from '../../types';
@@ -65,32 +66,53 @@ export function EmojiFilmRound({ round, record, onChange }: Props) {
   );
 }
 
-/** Cast: an actor's name; name the character they play. */
-export function CastRound({ round, record, onChange }: Props) {
+/** Snippet lengths for a voice line, in seconds: one more per miss. */
+const VOICE_LENGTHS = [2, 4, 7, 12, 20];
+
+/** Voice Line: the character speaking in the original English version, in growing snippets. */
+export function VoiceRound({ round, record, onChange }: Props) {
   const c = mcuCharacterById.get(round.targetId)!;
   const debut = filmById.get(c.debut);
+  const [broken, setBroken] = useState(false);
   const hints = [
     debut && `First appears in ${debut.name} (${debut.year})`,
     c.team !== 'None' ? `Team: ${c.team}` : `Species: ${c.species}`,
     `${c.status === 'Deceased' ? 'Has died' : c.status === 'Alive' ? 'Still alive' : 'Fate unknown'} as of the latest film`,
+    c.actor && `Played by ${c.actor}`,
     `Their name starts with “${c.name[0]}”`,
   ].filter((h): h is string => !!h);
   return (
     <SpGuessRound
-      type="cast"
-      question="Which MCU character does this actor play?"
+      type="voice"
+      question="Which MCU character is speaking?"
       pool={MARVEL.characters}
       targetId={c.id}
-      hints={hints}
+      // Without the clip, the vaguest fact is given away for free.
+      hints={broken ? hints.slice(1) : hints}
       record={record}
       onChange={onChange}
-      answer={{ name: c.name, image: c.image, detail: `Played by ${c.actor}` }}
-      clue={() => (
-        <div className="space-y-1 py-6 text-center">
-          <p className="font-display text-[11px] uppercase tracking-[0.3em] text-ink-faint">Played by</p>
-          <p className="font-serif text-4xl font-bold sm:text-5xl">{c.actor}</p>
-        </div>
-      )}
+      answer={{ name: c.name, image: c.image, detail: c.actor ? `Played by ${c.actor}` : debut?.name }}
+      clue={(wrong, done) =>
+        c.voice && !broken ? (
+          <div className="space-y-3">
+            <p className="text-center font-display text-xs uppercase tracking-widest text-ink-faint">Listen · original English voice</p>
+            <AudioClip
+              videoId={c.voice.youtubeId}
+              start={c.voice.start ?? 0}
+              step={Math.min(wrong, VOICE_LENGTHS.length - 1)}
+              lengths={VOICE_LENGTHS}
+              revealed={done}
+              onUnavailable={() => setBroken(true)}
+            />
+          </div>
+        ) : (
+          <div className="space-y-2 py-6 text-center">
+            <p className="font-display text-5xl">🎙️</p>
+            <p className="font-display text-lg font-bold">{hints[0]}</p>
+            <p className="text-sm text-ink-soft">This clip won't play — go by the clues.</p>
+          </div>
+        )
+      }
     />
   );
 }

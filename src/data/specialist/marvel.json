@@ -551,7 +551,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 11
+      "films": 11,
+      "voice": {
+        "youtubeId": "yc8qbcIMZVg",
+        "start": 0
+      }
     },
     {
       "id": "steve-rogers",
@@ -568,7 +572,11 @@
       "castable": true,
       "debut": "captain-america-the-first-avenger",
       "phase": 1,
-      "films": 10
+      "films": 10,
+      "voice": {
+        "youtubeId": "F020aNi0wS0",
+        "start": 0
+      }
     },
     {
       "id": "spider-man",
@@ -583,7 +591,11 @@
       "castable": true,
       "debut": "iron-man-2",
       "phase": 1,
-      "films": 8
+      "films": 8,
+      "voice": {
+        "youtubeId": "6Sro7Z0TDyM",
+        "start": 0
+      }
     },
     {
       "id": "daredevil",
@@ -601,7 +613,11 @@
       "castable": true,
       "debut": "spider-man-no-way-home",
       "phase": 4,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "QSQNucXNIE0",
+        "start": 0
+      }
     },
     {
       "id": "phil-coulson",
@@ -618,7 +634,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "yiSxjChrdMA",
+        "start": 0
+      }
     },
     {
       "id": "thor",
@@ -635,7 +655,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 9
+      "films": 9,
+      "voice": {
+        "youtubeId": "T9X3YhUWsDc",
+        "start": 0
+      }
     },
     {
       "id": "hulk",
@@ -652,7 +676,11 @@
       "castable": true,
       "debut": "the-incredible-hulk",
       "phase": 1,
-      "films": 10
+      "films": 10,
+      "voice": {
+        "youtubeId": "N_sASevJEvk",
+        "start": 0
+      }
     },
     {
       "id": "natasha-romanoff",
@@ -669,7 +697,11 @@
       "castable": true,
       "debut": "iron-man-2",
       "phase": 1,
-      "films": 10
+      "films": 10,
+      "voice": {
+        "youtubeId": "OT2b5KzMoC0",
+        "start": 0
+      }
     },
     {
       "id": "punisher",
@@ -687,7 +719,11 @@
       "castable": true,
       "debut": "spider-man-brand-new-day",
       "phase": 6,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "QTu8Utk2no8",
+        "start": 0
+      }
     },
     {
       "id": "nick-fury",
@@ -704,7 +740,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 12
+      "films": 12,
+      "voice": {
+        "youtubeId": "Nyjwkav3h_0",
+        "start": 0
+      }
     },
     {
       "id": "winter-soldier",
@@ -722,7 +762,11 @@
       "castable": true,
       "debut": "captain-america-the-first-avenger",
       "phase": 1,
-      "films": 9
+      "films": 9,
+      "voice": {
+        "youtubeId": "QKxwZnLteus",
+        "start": 0
+      }
     },
     {
       "id": "captain-america",
@@ -740,7 +784,11 @@
       "castable": true,
       "debut": "captain-america-the-winter-soldier",
       "phase": 2,
-      "films": 7
+      "films": 7,
+      "voice": {
+        "youtubeId": "2bWWBjKEiZA",
+        "start": 0
+      }
     },
     {
       "id": "hawkeye",
@@ -758,7 +806,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "DIIIDF6bkqI",
+        "start": 0
+      }
     },
     {
       "id": "war-machine",
@@ -792,7 +844,11 @@
       "castable": true,
       "debut": "doctor-strange-film",
       "phase": 3,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "i3-U5yEtlWU",
+        "start": 0
+      }
     },
     {
       "id": "scarlet-witch",
@@ -809,7 +865,11 @@
       "castable": true,
       "debut": "captain-america-the-winter-soldier",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "SbwO51o5yQg",
+        "start": 0
+      }
     },
     {
       "id": "captain-marvel",
@@ -828,7 +888,11 @@
       "castable": true,
       "debut": "captain-marvel-film",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "Y7cfBolKKHI",
+        "start": 0
+      }
     },
     {
       "id": "rocket-raccoon",
@@ -845,7 +909,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "oA73XfJJ7AU",
+        "start": 0
+      }
     },
     {
       "id": "loki",
@@ -863,7 +931,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "cuhLA60fskk",
+        "start": 0
+      }
     },
     {
       "id": "ant-man",
@@ -881,7 +953,11 @@
       "castable": true,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "cslFsCgQfdg",
+        "start": 0
+      }
     },
     {
       "id": "star-lord",
@@ -898,7 +974,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "rLM-bmdTuy0",
+        "start": 0
+      }
     },
     {
       "id": "peggy-carter",
@@ -915,7 +995,11 @@
       "castable": true,
       "debut": "captain-america-the-first-avenger",
       "phase": 1,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "IB6-bxhbEsw",
+        "start": 0
+      }
     },
     {
       "id": "thanos",
@@ -930,7 +1014,11 @@
       "castable": true,
       "debut": "the-avengers",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "4d8VTAbotXY",
+        "start": 0
+      }
     },
     {
       "id": "nebula",
@@ -945,7 +1033,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "_h9wH8FID84",
+        "start": 0
+      }
     },
     {
       "id": "drax-the-destroyer",
@@ -962,7 +1054,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "aJ0LYQ21oIM",
+        "start": 0
+      }
     },
     {
       "id": "t-challa",
@@ -977,7 +1073,11 @@
       "castable": true,
       "debut": "captain-america-civil-war",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "TlJ8kKNugho",
+        "start": 0
+      }
     },
     {
       "id": "red-hulk",
@@ -994,7 +1094,11 @@
       "castable": false,
       "debut": "the-incredible-hulk",
       "phase": 1,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "ZryPCGliOoE",
+        "start": 0
+      }
     },
     {
       "id": "happy-hogan",
@@ -1011,7 +1115,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 9
+      "films": 9,
+      "voice": {
+        "youtubeId": "ssTNXY3rK3w",
+        "start": 0
+      }
     },
     {
       "id": "pepper-potts",
@@ -1028,7 +1136,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 7
+      "films": 7,
+      "voice": {
+        "youtubeId": "Srbb3UPZl0Q",
+        "start": 0
+      }
     },
     {
       "id": "groot",
@@ -1043,7 +1155,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "_X66Q7nzfsg",
+        "start": 0
+      }
     },
     {
       "id": "wong",
@@ -1058,7 +1174,11 @@
       "castable": true,
       "debut": "doctor-strange-film",
       "phase": 3,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "NrKGoX9rQ00",
+        "start": 0
+      }
     },
     {
       "id": "howard-stark",
@@ -1075,7 +1195,11 @@
       "castable": false,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "reQs3g5LO8E",
+        "start": 0
+      }
     },
     {
       "id": "ned-leeds",
@@ -1092,7 +1216,11 @@
       "castable": true,
       "debut": "spider-man-homecoming",
       "phase": 3,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "T7EwVardgw0",
+        "start": 0
+      }
     },
     {
       "id": "wasp",
@@ -1109,7 +1237,11 @@
       "castable": true,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "eGO_vQu8Ygs",
+        "start": 0
+      }
     },
     {
       "id": "mantis",
@@ -1124,7 +1256,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-vol-2",
       "phase": 3,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "kDuBXotNZFU",
+        "start": 0
+      }
     },
     {
       "id": "gideon-malick",
@@ -1156,7 +1292,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "S3wf3Pf_oEs",
+        "start": 0
+      }
     },
     {
       "id": "maria-hill",
@@ -1171,7 +1311,11 @@
       "castable": true,
       "debut": "the-avengers",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "hn3yoJ1ohA4",
+        "start": 0
+      }
     },
     {
       "id": "heimdall",
@@ -1186,7 +1330,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 6
+      "films": 6,
+      "voice": {
+        "youtubeId": "eGj0cKQ8oZ4",
+        "start": 0
+      }
     },
     {
       "id": "black-widow",
@@ -1203,7 +1351,11 @@
       "castable": true,
       "debut": "black-widow-film",
       "phase": 4,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "Wz8QAoy_rs8",
+        "start": 0
+      }
     },
     {
       "id": "hank-pym",
@@ -1220,7 +1372,11 @@
       "castable": true,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "tUYinqNWKr8",
+        "start": 0
+      }
     },
     {
       "id": "mighty-thor",
@@ -1237,7 +1393,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "RRt5bgLPOHM",
+        "start": 0
+      }
     },
     {
       "id": "black-panther",
@@ -1254,7 +1414,11 @@
       "castable": true,
       "debut": "black-panther-film",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "Hg4h_f4Hj4k",
+        "start": 0
+      }
     },
     {
       "id": "mobius-m-mobius",
@@ -1269,7 +1433,11 @@
       "castable": true,
       "debut": "avengers-endgame",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "XCP-LdpBPp0",
+        "start": 0
+      }
     },
     {
       "id": "may-parker",
@@ -1303,7 +1471,11 @@
       "castable": true,
       "debut": "thor-ragnarok",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "75u8q0fEK-E",
+        "start": 0
+      }
     },
     {
       "id": "michelle-jones",
@@ -1321,7 +1493,11 @@
       "castable": true,
       "debut": "spider-man-homecoming",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "rOS6aj3Mi6s",
+        "start": 0
+      }
     },
     {
       "id": "okoye",
@@ -1336,7 +1512,11 @@
       "castable": true,
       "debut": "black-panther-film",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "cuZRATftoeI",
+        "start": 0
+      }
     },
     {
       "id": "abomination",
@@ -1353,7 +1533,11 @@
       "castable": true,
       "debut": "the-incredible-hulk",
       "phase": 1,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "atY6wUjquFE",
+        "start": 0
+      }
     },
     {
       "id": "ms-marvel",
@@ -1370,7 +1554,11 @@
       "castable": true,
       "debut": "the-marvels",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "l16oNyKzvm8",
+        "start": 0
+      }
     },
     {
       "id": "kraglin-obfonteri",
@@ -1402,7 +1590,11 @@
       "castable": true,
       "debut": "avengers-age-of-ultron",
       "phase": 2,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "GrDCtkEgerg",
+        "start": 0
+      }
     },
     {
       "id": "wiccan",
@@ -1435,7 +1627,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 5
+      "films": 5,
+      "voice": {
+        "youtubeId": "ZpmZzEPLmzo",
+        "start": 0
+      }
     },
     {
       "id": "xu-wenwu",
@@ -1450,7 +1646,11 @@
       "castable": true,
       "debut": "shang-chi-and-the-legend-of-the-ten-rings",
       "phase": 4,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "yUve_jyM8HI",
+        "start": 0
+      }
     },
     {
       "id": "baron-zemo",
@@ -1467,7 +1667,11 @@
       "castable": true,
       "debut": "captain-america-civil-war",
       "phase": 3,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "MSLDsMm6afE",
+        "start": 0
+      }
     },
     {
       "id": "red-skull",
@@ -1484,7 +1688,11 @@
       "castable": false,
       "debut": "captain-america-the-first-avenger",
       "phase": 1,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "6t21TWERV_I",
+        "start": 0
+      }
     },
     {
       "id": "claire-temple",
@@ -1516,7 +1724,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "4avPmEGp3fM",
+        "start": 0
+      }
     },
     {
       "id": "u-s-agent",
@@ -1534,7 +1746,11 @@
       "castable": true,
       "debut": "thunderbolts",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "24FLgTRpsco",
+        "start": 0
+      }
     },
     {
       "id": "talos",
@@ -1549,7 +1765,11 @@
       "castable": false,
       "debut": "captain-marvel-film",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "lngS2kmBr_o",
+        "start": 0
+      }
     },
     {
       "id": "monica-rambeau",
@@ -1564,7 +1784,11 @@
       "castable": true,
       "debut": "captain-marvel-film",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "g1dHTFbMUI4",
+        "start": 0
+      }
     },
     {
       "id": "sif",
@@ -1579,7 +1803,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "wGXoGWrZeKk",
+        "start": 0
+      }
     },
     {
       "id": "janet-van-dyne",
@@ -1594,7 +1822,11 @@
       "castable": true,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "gn3QT0B4Juc",
+        "start": 0
+      }
     },
     {
       "id": "everett-ross",
@@ -1611,7 +1843,11 @@
       "castable": true,
       "debut": "captain-america-civil-war",
       "phase": 3,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "ubuQPvUKsPM",
+        "start": 0
+      }
     },
     {
       "id": "trevor-slattery",
@@ -1626,7 +1862,11 @@
       "castable": true,
       "debut": "iron-man-3",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "uqyqwrWV5HM",
+        "start": 0
+      }
     },
     {
       "id": "cassie-lang",
@@ -1643,7 +1883,11 @@
       "castable": false,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "tH4p4MfRDl0",
+        "start": 0
+      }
     },
     {
       "id": "erik-killmonger",
@@ -1677,7 +1921,11 @@
       "castable": true,
       "debut": "the-marvels",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "SyGXq2jK1OU",
+        "start": 0
+      }
     },
     {
       "id": "deadpool",
@@ -1694,7 +1942,11 @@
       "castable": false,
       "debut": "deadpool-wolverine",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "O_eJCqluZWI",
+        "start": 0
+      }
     },
     {
       "id": "yondu",
@@ -1711,7 +1963,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "MDlkKIb6fNk",
+        "start": 0
+      }
     },
     {
       "id": "ghost",
@@ -1728,7 +1984,11 @@
       "castable": true,
       "debut": "ant-man-and-the-wasp",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "rwfjan9U2VU",
+        "start": 0
+      }
     },
     {
       "id": "m-baku",
@@ -1743,7 +2003,11 @@
       "castable": true,
       "debut": "black-panther-film",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "3a0_TvmifEA",
+        "start": 0
+      }
     },
     {
       "id": "volstagg",
@@ -1758,7 +2022,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "2YYO_CwzRtY",
+        "start": 0
+      }
     },
     {
       "id": "ayo",
@@ -1773,7 +2041,11 @@
       "castable": true,
       "debut": "captain-america-civil-war",
       "phase": 3,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "YgMf7NtW06I",
+        "start": 0
+      }
     },
     {
       "id": "crossbones",
@@ -1790,7 +2062,11 @@
       "castable": true,
       "debut": "captain-america-the-winter-soldier",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "Y3PtV9H9eK4",
+        "start": 0
+      }
     },
     {
       "id": "fandral",
@@ -1820,7 +2096,11 @@
       "castable": true,
       "debut": "avengers-age-of-ultron",
       "phase": 2,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "geqQSuFHFfk",
+        "start": 0
+      }
     },
     {
       "id": "power-broker",
@@ -1837,7 +2117,11 @@
       "castable": true,
       "debut": "captain-america-the-winter-soldier",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "lykRCW6uWak",
+        "start": 0
+      }
     },
     {
       "id": "jasper-sitwell",
@@ -1869,7 +2153,11 @@
       "castable": true,
       "debut": "black-widow-film",
       "phase": 4,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "Ak8hZC_xYhs",
+        "start": 0
+      }
     },
     {
       "id": "m-o-d-o-k",
@@ -1886,7 +2174,11 @@
       "castable": true,
       "debut": "ant-man-film",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "PWLy1CLUatI",
+        "start": 0
+      }
     },
     {
       "id": "korg",
@@ -1901,7 +2193,11 @@
       "castable": true,
       "debut": "thor-ragnarok",
       "phase": 3,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "F6jdllA1F7c",
+        "start": 0
+      }
     },
     {
       "id": "darcy-lewis",
@@ -1916,7 +2212,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "n0WsQd8-Vzk",
+        "start": 0
+      }
     },
     {
       "id": "roger-harrington",
@@ -1948,7 +2248,11 @@
       "castable": true,
       "debut": "the-incredible-hulk",
       "phase": 1,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "rGfEwyk37n0",
+        "start": 0
+      }
     },
     {
       "id": "mysterio",
@@ -1965,7 +2269,11 @@
       "castable": true,
       "debut": "spider-man-far-from-home",
       "phase": 3,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "NPY5Iq-tCvk",
+        "start": 0
+      }
     },
     {
       "id": "maria-rambeau",
@@ -1980,7 +2288,11 @@
       "castable": true,
       "debut": "captain-marvel-film",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "2Ima8yW71gA",
+        "start": 0
+      }
     },
     {
       "id": "hogun",
@@ -1995,7 +2307,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "QPmutiN_Id8",
+        "start": 0
+      }
     },
     {
       "id": "flash-thompson",
@@ -2012,7 +2328,11 @@
       "castable": true,
       "debut": "spider-man-homecoming",
       "phase": 3,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "r6O9Jdimq4I",
+        "start": 0
+      }
     },
     {
       "id": "iron-monger",
@@ -2029,7 +2349,11 @@
       "castable": true,
       "debut": "iron-man-film",
       "phase": 1,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "LwmjAOM8Hb8",
+        "start": 0
+      }
     },
     {
       "id": "frigga",
@@ -2044,7 +2368,11 @@
       "castable": true,
       "debut": "thor-film",
       "phase": 1,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "CvbSzUh5WSw",
+        "start": 0
+      }
     },
     {
       "id": "quicksilver",
@@ -2061,7 +2389,11 @@
       "castable": true,
       "debut": "captain-america-the-winter-soldier",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "8wHPs9xWebY",
+        "start": 0
+      }
     },
     {
       "id": "ramonda",
@@ -2076,7 +2408,11 @@
       "castable": true,
       "debut": "black-panther-film",
       "phase": 3,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "XQolAIbsRX4",
+        "start": 0
+      }
     },
     {
       "id": "howard-the-duck",
@@ -2091,7 +2427,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 4
+      "films": 4,
+      "voice": {
+        "youtubeId": "K8KRup9becM",
+        "start": 0
+      }
     },
     {
       "id": "shang-chi",
@@ -2109,7 +2449,11 @@
       "castable": true,
       "debut": "shang-chi-and-the-legend-of-the-ten-rings",
       "phase": 4,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "LP7M0P9-E3U",
+        "start": 0
+      }
     },
     {
       "id": "betty-brant",
@@ -2126,7 +2470,11 @@
       "castable": true,
       "debut": "spider-man-homecoming",
       "phase": 3,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "HIHHUn3ilR4",
+        "start": 0
+      }
     },
     {
       "id": "valentina-allegra-de-fontaine",
@@ -2141,7 +2489,11 @@
       "castable": true,
       "debut": "black-widow-film",
       "phase": 4,
-      "films": 3
+      "films": 3,
+      "voice": {
+        "youtubeId": "_S-PBx3BJf0",
+        "start": 0
+      }
     },
     {
       "id": "ulysses-klaue",
@@ -2156,7 +2508,11 @@
       "castable": true,
       "debut": "avengers-age-of-ultron",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "3-FiUY4Rb-w",
+        "start": 0
+      }
     },
     {
       "id": "taskmaster",
@@ -2190,7 +2546,11 @@
       "castable": true,
       "debut": "guardians-of-the-galaxy-film",
       "phase": 2,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "bQSjAX7-6QE",
+        "start": 0
+      }
     },
     {
       "id": "sentry",
@@ -2208,7 +2568,11 @@
       "castable": true,
       "debut": "thunderbolts",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "eWgCeGh4xbU",
+        "start": 0
+      }
     },
     {
       "id": "vulture",
@@ -2225,7 +2589,11 @@
       "castable": true,
       "debut": "spider-man-homecoming",
       "phase": 3,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "rhOLAKRbLro",
+        "start": 0
+      }
     },
     {
       "id": "arnim-zola",
@@ -2240,7 +2608,11 @@
       "castable": true,
       "debut": "captain-america-the-first-avenger",
       "phase": 1,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "h7Yb_gndjH4",
+        "start": 0
+      }
     },
     {
       "id": "yon-rogg",
@@ -2255,7 +2627,11 @@
       "castable": true,
       "debut": "captain-marvel-film",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "0KK1Kv0IzUg",
+        "start": 0
+      }
     },
     {
       "id": "b-15",
@@ -2270,7 +2646,11 @@
       "castable": true,
       "debut": "deadpool-wolverine",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "lV2ymnjnE-c",
+        "start": 0
+      }
     },
     {
       "id": "nakia",
@@ -2285,7 +2665,11 @@
       "castable": true,
       "debut": "black-panther-film",
       "phase": 3,
-      "films": 2
+      "films": 2,
+      "voice": {
+        "youtubeId": "IAcbnfrtYd4",
+        "start": 0
+      }
     },
     {
       "id": "ancient-one",
@@ -2300,7 +2684,11 @@
       "castable": true,
       "debut": "doctor-strange-film",
       "phase": 3,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "tMRIOOvEeg4",
+        "start": 0
+      }
     },
     {
       "id": "wolverine",
@@ -2318,7 +2706,11 @@
       "castable": true,
       "debut": "deadpool-wolverine",
       "phase": 5,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "rQBy-QYCs2g",
+        "start": 0
+      }
     },
     {
       "id": "mister-fantastic",
@@ -2335,7 +2727,11 @@
       "castable": true,
       "debut": "the-fantastic-four-first-steps",
       "phase": 6,
-      "films": 1
+      "films": 1,
+      "voice": {
+        "youtubeId": "j-M3_g4dMzs",
+        "start": 0
+      }
     },
     {
       "id": "jimmy-woo",
