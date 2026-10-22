@@ -252,6 +252,19 @@ for (const l of op.laughs) if (!opIds.has(l.character)) fail(`specialist/onepiec
 for (const f of op.fruits) if (!f.type) fail(`specialist/onepiece/${f.name}: no type`);
 for (const c of op.crews) if (!c.flag) fail(`specialist/onepiece/${c.name}: no Jolly Roger`);
 if (op.characters.length < 150) warn(`specialist/onepiece: only ${op.characters.length} characters`);
+const lol = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'lol.json'), 'utf8'));
+const lolNames = new Map();
+for (const c of lol.champions) {
+  const at = `specialist/lol/${c.name}`;
+  for (const k of ['image', 'splash', 'gender', 'resource', 'range']) if (!c[k]) fail(`${at}: no ${k}`);
+  if (c.abilities.length !== 5 || c.abilities.some((a) => !a.icon || !a.name)) fail(`${at}: needs five abilities with names and icons`);
+  if (!c.complete) warn(`${at}: no wiki data yet (new champion?) — left out of Classic`);
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (lolNames.has(s) && lolNames.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${lolNames.get(s)}`);
+    lolNames.set(s, c.id);
+  }
+}
+console.log(`specialist  lol: ${lol.champions.length} champions (Data Dragon ${lol.version}, ${lol.generated})`);
 console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.fruits.length} fruits, ${op.crews.length} crews, ${op.laughs.length} laughs (${op.generated})`);
 
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);

@@ -8,16 +8,33 @@ import { sfx } from '../lib/sfx';
 import { roundEmoji } from '../lib/share';
 import { specialStreak, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type RoundRecord } from '../types';
+import type { ComponentType } from 'react';
 import { ONE_PIECE } from '../specialist/data';
-import { ClassicRound } from '../specialist/games/ClassicRound';
+import { LOL } from '../specialist/lol';
+import { ClassicRound, LolClassicRound } from '../specialist/games/ClassicRound';
+import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
 import { FlagRound, FruitRound, LaughRound, SilhouetteRound } from '../specialist/games/OnePieceRounds';
-import { SP_MAX_SCORE, SP_META, SP_TYPES, UNIVERSES, buildSpecialistDaily, randomRound, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
+import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
 
-const ROUND_COMPONENT = { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, silhouette: SilhouetteRound } as const;
+type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void };
 
-function Round({ round, record, onChange }: { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void }) {
-  const Component = ROUND_COMPONENT[round.type];
+/** Which component plays each round type, per universe. */
+const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<RoundProps>>>> = {
+  onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, silhouette: SilhouetteRound },
+  lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound },
+  marvel: {},
+};
+
+/** The line under a universe's title: what's in it, and when the data was built. */
+const DATA_LINE: Record<UniverseId, string> = {
+  onepiece: `${ONE_PIECE.characters.length} characters · ${ONE_PIECE.fruits.length} Devil Fruits · ${ONE_PIECE.crews.length} crews — wiki data from ${ONE_PIECE.generated}`,
+  lol: `${LOL.champions.length} champions — Data Dragon ${LOL.version}, built ${LOL.generated}`,
+  marvel: '',
+};
+
+function Round({ universe: id, round, record, onChange }: RoundProps & { universe: UniverseId }) {
+  const Component = ROUND_COMPONENT[id][round.type]!;
   return (
     <GameHostFx record={record} onChange={onChange}>
       {(change) => <Component round={round} record={record} onChange={change} />}
@@ -35,19 +52,19 @@ export function SpecialistHub() {
         <h1 className="text-5xl font-bold">Specialist</h1>
         <p className="max-w-xl text-ink-soft">
           Pick a universe and play rounds made only from it: a Classic built on its own traits, plus games you won&apos;t find anywhere else — Devil
-          Fruits, signature laughs, Jolly Rogers. A new daily every day, and practice whenever you like.
+          Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League. A new daily every day, and practice whenever you like.
         </p>
       </div>
       <ul className="grid gap-4 sm:grid-cols-3">
         {UNIVERSES.map((u) => {
           const today = Object.values(special[`${u.id}:${todayKey()}`] ?? {}).filter((r) => r.status !== 'playing').length;
-          const streak = specialStreak(special, u.id, SP_TYPES.length);
+          const streak = specialStreak(special, u.id, u.types.length);
           const body = (
             <>
               <span className="font-display text-xl font-bold">{u.label}</span>
               <span className="text-sm text-ink-soft">{u.blurb}</span>
               <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
-                {u.ready ? (today >= SP_TYPES.length ? 'Today: done' : today ? `Today: ${today}/${SP_TYPES.length}` : 'Today: not started') : 'Coming soon'}
+                {u.ready ? (today >= u.types.length ? 'Today: done' : today ? `Today: ${today}/${u.types.length}` : 'Today: not started') : 'Coming soon'}
                 {streak > 0 && (
                   <span className="inline-flex items-center gap-1 font-bold text-coral">
                     <FlameIcon /> {streak}
@@ -73,14 +90,13 @@ export function SpecialistHub() {
   );
 }
 
-function shareText(universe: string, date: string, rounds: SpRound[], records: Record<number, RoundRecord>, streak: number) {
+function shareText(id: UniverseId, date: string, rounds: SpRound[], records: Record<number, RoundRecord>, streak: number) {
   const score = rounds.reduce((n, _, i) => n + (records[i]?.score ?? 0), 0);
-  const label = UNIVERSES.find((u) => u.id === universe)!.label;
   return [
-    `Omnidle Specialist · ${label} ${date} — ${score}/${SP_MAX_SCORE}${streak > 1 ? ` 🔥${streak}` : ''}`,
+    `Omnidle Specialist · ${universe(id)!.label} ${date} — ${score}/${maxScore(id)}${streak > 1 ? ` 🔥${streak}` : ''}`,
     rounds.map((_, i) => roundEmoji(records[i])).join(''),
     rounds.map((r) => SP_META[r.type].icon).join(''),
-    `${window.location.origin}${window.location.pathname}#/specialist/${universe}/${date}`,
+    `${window.location.origin}${window.location.pathname}#/specialist/${id}/${date}`,
   ].join('\n');
 }
 
@@ -133,10 +149,10 @@ function DailyView({ universe, date }: { universe: UniverseId; date: string }) {
         </p>
         <p className="font-serif text-2xl font-bold tabular-nums">
           {score}
-          <span className="text-base text-ink-faint"> / {SP_MAX_SCORE}</span>
+          <span className="text-base text-ink-faint"> / {maxScore(universe)}</span>
         </p>
       </div>
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${rounds.length}, minmax(0, 1fr))` }}>
         {rounds.map((r, i) => {
           const rec = records[i];
           const tone = rec?.status === 'won' ? 'border-hit/70 bg-hit/15' : rec?.status === 'lost' ? 'border-miss/60 bg-miss/10' : 'border-rule bg-card';
@@ -163,7 +179,7 @@ function DailyView({ universe, date }: { universe: UniverseId; date: string }) {
             </h2>
             <p className="font-serif text-lg italic text-ink-soft">{SP_META[round.type].tagline}</p>
           </div>
-          <Round round={round} record={record} onChange={onChange} />
+          <Round universe={universe} round={round} record={record} onChange={onChange} />
           {record.status !== 'playing' && (
             <div className="flex justify-center">
               <button type="button" onClick={() => goTo(nextOpen)} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
@@ -177,7 +193,7 @@ function DailyView({ universe, date }: { universe: UniverseId; date: string }) {
           <p className="font-display text-sm uppercase tracking-[0.3em] text-ink-faint">Daily complete</p>
           <p className="font-serif text-7xl font-bold leading-none">{score}</p>
           <p className="text-ink-soft">
-            out of {SP_MAX_SCORE}
+            out of {maxScore(universe)}
             {streak > 0 && (
               <span className="ml-2 inline-flex items-center gap-1 font-bold text-coral">
                 <FlameIcon /> {streak}-day streak
@@ -200,10 +216,11 @@ function DailyView({ universe, date }: { universe: UniverseId; date: string }) {
 }
 
 /** Endless random rounds of one type; nothing is saved. */
-function PracticeView() {
-  const [type, setType] = useState<SpType>('classic');
+function PracticeView({ universe: id }: { universe: UniverseId }) {
+  const types = universe(id)!.types;
+  const [type, setType] = useState<SpType>(types[0]);
   const [n, setN] = useState(0);
-  const round = useMemo(() => randomRound(type, Math.random), [type, n]);
+  const round = useMemo(() => randomRound(id, type, Math.random), [id, type, n]);
   const [record, setRecord] = useState<RoundRecord>(EMPTY_RECORD);
   const next = (t: SpType = type) => {
     sfx.click();
@@ -214,7 +231,7 @@ function PracticeView() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap justify-center gap-2">
-        {SP_TYPES.map((t) => (
+        {types.map((t) => (
           <button
             key={t}
             type="button"
@@ -226,7 +243,7 @@ function PracticeView() {
         ))}
       </div>
       <section key={`${type}-${n}`} className="mx-auto max-w-4xl space-y-6">
-        <Round round={round} record={record} onChange={setRecord} />
+        <Round universe={id} round={round} record={record} onChange={setRecord} />
         {record.status !== 'playing' && (
           <div className="flex justify-center">
             <button type="button" onClick={() => next()} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
@@ -243,7 +260,7 @@ function PracticeView() {
 export default function SpecialistUniverse() {
   const { universe, date = todayKey() } = useParams();
   const [tab, setTab] = useState<'daily' | 'practice'>('daily');
-  const info = UNIVERSES.find((u) => u.id === universe);
+  const info = universe ? UNIVERSES.find((u) => u.id === universe) : undefined;
   if (!info?.ready) return <Navigate to="/specialist" replace />;
   if (!isPlayableDay(date)) return <Navigate to={`/specialist/${info.id}`} replace />;
   return (
@@ -254,9 +271,7 @@ export default function SpecialistUniverse() {
             ← Specialist
           </Link>
           <h1 className="text-4xl font-bold">{info.label}</h1>
-          <p className="text-xs text-ink-faint">
-            {ONE_PIECE.characters.length} characters · {ONE_PIECE.fruits.length} Devil Fruits · {ONE_PIECE.crews.length} crews — wiki data from {ONE_PIECE.generated}
-          </p>
+          <p className="text-xs text-ink-faint">{DATA_LINE[info.id]}</p>
         </div>
         <div className="flex rounded-md border border-rule-strong p-0.5">
           {(['daily', 'practice'] as const).map((t) => (
@@ -271,7 +286,7 @@ export default function SpecialistUniverse() {
           ))}
         </div>
       </div>
-      {tab === 'daily' ? <DailyView key={date} universe={info.id} date={date} /> : <PracticeView />}
+      {tab === 'daily' ? <DailyView key={`${info.id}-${date}`} universe={info.id} date={date} /> : <PracticeView key={info.id} universe={info.id} />}
     </div>
   );
 }

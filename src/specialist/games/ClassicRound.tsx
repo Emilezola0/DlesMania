@@ -1,20 +1,21 @@
 import { GuessInput } from '../../components/GuessInput';
 import type { RoundRecord } from '../../types';
 import { ARC_ORDER, ONE_PIECE, characterById, formatBounty, type OpCharacter } from '../data';
+import { LOL, championById, type LolChampion } from '../lol';
 import { SP_META, spScore, type SpRound } from '../rounds';
 import { SpOutcome } from './SpGuessRound';
 
 type Verdict = 'hit' | 'near' | 'miss';
 
-interface Column {
+interface Column<T> {
   label: string;
-  show: (c: OpCharacter) => string;
-  judge: (g: OpCharacter, t: OpCharacter) => Verdict;
+  show: (c: T) => string;
+  judge: (g: T, t: T) => Verdict;
   /** For numbers: ▲ when the answer is higher / later. */
-  arrow?: (g: OpCharacter, t: OpCharacter) => number;
+  arrow?: (g: T, t: T) => number;
 }
 
-/** Lists (Haki, fruit types): all shared is a hit, some shared is near. */
+/** Lists (Haki, positions, regions...): all shared is a hit, some shared is near. */
 const overlap = (g: string[], t: string[]): Verdict => {
   const shared = g.filter((x) => t.includes(x)).length;
   if (shared === t.length && g.length === t.length) return 'hit';
@@ -22,16 +23,17 @@ const overlap = (g: string[], t: string[]): Verdict => {
 };
 /** Numbers: equal is a hit, within `ratio` is near. */
 const close = (g: number, t: number, ratio: number): Verdict => (g === t ? 'hit' : g && t && Math.abs(g - t) <= t * ratio ? 'near' : 'miss');
+const same = <T,>(key: (c: T) => string) => (g: T, t: T): Verdict => (key(g) === key(t) ? 'hit' : 'miss');
 const arcIndex = (c: OpCharacter) => ARC_ORDER.indexOf(c.arc);
 
-const COLUMNS: Column[] = [
-  { label: 'Gender', show: (c) => c.gender, judge: (g, t) => (g.gender === t.gender ? 'hit' : 'miss') },
-  { label: 'Affiliation', show: (c) => c.affiliation, judge: (g, t) => (g.affiliation === t.affiliation ? 'hit' : 'miss') },
+const ONE_PIECE_COLUMNS: Column<OpCharacter>[] = [
+  { label: 'Gender', show: (c) => c.gender, judge: same((c) => c.gender) },
+  { label: 'Affiliation', show: (c) => c.affiliation, judge: same((c) => c.affiliation) },
   { label: 'Devil Fruit', show: (c) => c.fruitType.join(', '), judge: (g, t) => overlap(g.fruitType, t.fruitType) },
   { label: 'Haki', show: (c) => (c.haki.length ? c.haki.join(', ') : 'None'), judge: (g, t) => (!g.haki.length && !t.haki.length ? 'hit' : overlap(g.haki, t.haki)) },
   { label: 'Bounty', show: (c) => formatBounty(c.bounty), judge: (g, t) => close(g.bounty, t.bounty, 0.25), arrow: (g, t) => t.bounty - g.bounty },
   { label: 'Height', show: (c) => (c.height ? `${c.height} cm` : '?'), judge: (g, t) => close(g.height, t.height, 0.08), arrow: (g, t) => (g.height && t.height ? t.height - g.height : 0) },
-  { label: 'Origin', show: (c) => c.origin, judge: (g, t) => (g.origin === t.origin ? 'hit' : 'miss') },
+  { label: 'Origin', show: (c) => c.origin, judge: same((c) => c.origin) },
   {
     label: 'First arc',
     show: (c) => c.arc,
@@ -40,19 +42,39 @@ const COLUMNS: Column[] = [
   },
 ];
 
+const LOL_COLUMNS: Column<LolChampion>[] = [
+  { label: 'Gender', show: (c) => c.gender, judge: same((c) => c.gender) },
+  { label: 'Positions', show: (c) => c.positions.join(', '), judge: (g, t) => overlap(g.positions, t.positions) },
+  { label: 'Species', show: (c) => c.species.join(', '), judge: (g, t) => overlap(g.species, t.species) },
+  { label: 'Resource', show: (c) => c.resource, judge: same((c) => c.resource) },
+  { label: 'Range', show: (c) => c.range, judge: same((c) => c.range) },
+  { label: 'Regions', show: (c) => c.regions.join(', '), judge: (g, t) => overlap(g.regions, t.regions) },
+  { label: 'Release', show: (c) => (c.year ? String(c.year) : '?'), judge: same((c) => String(c.year)), arrow: (g, t) => t.year - g.year },
+];
+
 const VERDICT_CLASS: Record<Verdict, string> = {
   hit: 'bg-hit border-hit text-on-strong',
   near: 'bg-near border-near text-on-pastel',
   miss: 'bg-miss border-miss text-on-strong',
 };
 
-const grid = { gridTemplateColumns: `1.5fr repeat(${COLUMNS.length}, 1fr)` };
+interface GridProps<T extends { id: string; name: string; aliases: string[]; image: string }> {
+  round: SpRound;
+  record: RoundRecord;
+  onChange: (r: RoundRecord) => void;
+  pool: T[];
+  byId: Map<string, T>;
+  columns: Column<T>[];
+  noun: string;
+  detail: (t: T) => string;
+}
 
-/** One Piece Classic: guess a character, every trait is compared with the answer's. */
-export function ClassicRound({ round, record, onChange }: { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void }) {
-  const target = characterById.get(round.targetId)!;
+/** Guess an answer; every trait of each guess is compared with the answer's. */
+function ClassicGrid<T extends { id: string; name: string; aliases: string[]; image: string }>({ round, record, onChange, pool, byId, columns, noun, detail }: GridProps<T>) {
+  const target = byId.get(round.targetId)!;
   const max = SP_META.classic.maxAttempts;
   const done = record.status !== 'playing';
+  const grid = { gridTemplateColumns: `1.5fr repeat(${columns.length}, 1fr)` };
 
   const guess = (id: string) => {
     const guesses = [...record.guesses, id];
@@ -63,25 +85,25 @@ export function ClassicRound({ round, record, onChange }: { round: SpRound; reco
 
   return (
     <div className="space-y-5">
-      <p className="text-center text-ink-soft">Guess the mystery character. Each guess shows how their traits compare.</p>
-      {!done && <GuessInput pool={ONE_PIECE.characters} exclude={record.guesses} onGuess={guess} placeholder="Type a character…" />}
+      <p className="text-center text-ink-soft">Guess the mystery {noun}. Each guess shows how their traits compare.</p>
+      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Type a ${noun}…`} />}
       <p className="text-center text-xs text-ink-faint">
         {record.guesses.length} / {max} guesses
       </p>
 
       {record.guesses.length > 0 && (
         <div className="overflow-x-auto pb-2">
-          <div className="space-y-2" style={{ minWidth: 160 + COLUMNS.length * 92 }}>
+          <div className="space-y-2" style={{ minWidth: 160 + columns.length * 92 }}>
             <div className="grid gap-2 px-1 text-[11px] uppercase tracking-wider text-ink-faint" style={grid}>
-              <span>Character</span>
-              {COLUMNS.map((c) => (
+              <span className="capitalize">{noun}</span>
+              {columns.map((c) => (
                 <span key={c.label} className="text-center">
                   {c.label}
                 </span>
               ))}
             </div>
             {[...record.guesses].reverse().map((id) => {
-              const g = characterById.get(id);
+              const g = byId.get(id);
               if (!g) return null;
               return (
                 <div key={id} className="grid gap-2" style={grid}>
@@ -89,7 +111,7 @@ export function ClassicRound({ round, record, onChange }: { round: SpRound; reco
                     <img src={g.image} alt="" className="size-10 shrink-0 rounded-md bg-tile object-cover object-top" />
                     <span className="leading-tight">{g.name}</span>
                   </div>
-                  {COLUMNS.map((c, i) => {
+                  {columns.map((c, i) => {
                     const verdict = c.judge(g, target);
                     const dir = verdict !== 'hit' && c.arrow ? Math.sign(c.arrow(g, target)) : 0;
                     return (
@@ -117,7 +139,25 @@ export function ClassicRound({ round, record, onChange }: { round: SpRound; reco
         <span>▲▼ Higher / later</span>
       </div>
 
-      {done && <SpOutcome won={record.status === 'won'} name={target.name} image={target.image} detail={`${target.affiliation} · ${target.arc}`} />}
+      {done && <SpOutcome won={record.status === 'won'} name={target.name} image={target.image} detail={detail(target)} />}
     </div>
   );
+}
+
+interface Props {
+  round: SpRound;
+  record: RoundRecord;
+  onChange: (r: RoundRecord) => void;
+}
+
+/** One Piece Classic: gender, affiliation, Devil Fruit, Haki, bounty, height, origin, first arc. */
+export function ClassicRound(props: Props) {
+  return (
+    <ClassicGrid {...props} pool={ONE_PIECE.characters} byId={characterById} columns={ONE_PIECE_COLUMNS} noun="character" detail={(t) => `${t.affiliation} · ${t.arc}`} />
+  );
+}
+
+/** League Classic: gender, positions, species, resource, range, regions, release year. */
+export function LolClassicRound(props: Props) {
+  return <ClassicGrid {...props} pool={LOL.champions} byId={championById} columns={LOL_COLUMNS} noun="champion" detail={(t) => `${t.title} · ${t.regions.join(', ')}`} />;
 }
