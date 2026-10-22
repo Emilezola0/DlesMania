@@ -332,6 +332,13 @@ async function laughs(roster) {
 
 const roster = await characters();
 const data = { generated: new Date().toISOString().slice(0, 10), characters: roster, fruits: await devilFruits(roster), crews: await crews(), laughs: await laughs(roster) };
+// Laugh clips come from scripts/find-laugh-clips.mjs: keep the ones already found.
+try {
+  const previous = new Map(JSON.parse(readFileSync(OUT, 'utf8')).laughs.filter((l) => l.youtubeId).map((l) => [l.character, l]));
+  for (const l of data.laughs) if (previous.has(l.character)) Object.assign(l, { youtubeId: previous.get(l.character).youtubeId, start: previous.get(l.character).start });
+} catch {
+  /* first run */
+}
 mkdirSync(join(ROOT, 'src', 'data', 'specialist'), { recursive: true });
 writeFileSync(OUT, JSON.stringify(data, null, 2) + '\n');
 console.log(`✓ ${OUT}`);

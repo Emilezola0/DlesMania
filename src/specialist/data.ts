@@ -49,7 +49,11 @@ export interface OpCrew {
 
 export interface OpLaugh {
   character: string;
+  /** How the laugh is written ("Zehahaha"); a late hint, or the clue itself when there's no clip. */
   laugh: string;
+  /** A clip of the laugh in the original Japanese voice, found by scripts/find-laugh-clips.mjs. */
+  youtubeId?: string;
+  start?: number;
 }
 
 interface OnePieceData {
@@ -95,7 +99,8 @@ export const SILHOUETTE_OF: Map<string, string> = (() => {
 export const POOLS = {
   classic: ONE_PIECE.characters.slice(0, 160).map((c) => c.id),
   fruit: ONE_PIECE.fruits.filter((f) => f.image || f.users.some((u) => ONE_PIECE.characters.slice(0, 160).some((c) => c.name === u))).map((f) => f.id),
-  laugh: ONE_PIECE.laughs.map((l) => l.character),
+  // Laughs with a voice clip; the written laugh alone only if none have one.
+  laugh: (ONE_PIECE.laughs.some((l) => l.youtubeId) ? ONE_PIECE.laughs.filter((l) => l.youtubeId) : ONE_PIECE.laughs).map((l) => l.character),
   flag: ONE_PIECE.crews.map((c) => c.id),
   silhouette: [...SILHOUETTE_OF.keys()],
 };

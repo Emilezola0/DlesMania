@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AudioClip } from '../../components/AudioClip';
 import { ObscuredImage } from '../../components/ObscuredImage';
 import type { RoundRecord } from '../../types';
 import { ONE_PIECE, SILHOUETTE_OF, characterById, crewById, formatBounty, fruitById, type OpCharacter } from '../data';
@@ -64,23 +65,45 @@ export function FruitRound({ round, record, onChange }: Props) {
   );
 }
 
-/** Laugh: the character's written signature laugh. */
+/** Snippet lengths for a laugh, in seconds: one more per miss. */
+const LAUGH_SNIPPETS = [1, 2, 4, 7, 12];
+
+/** Laugh: the character's signature laugh in the original Japanese voice; the written laugh is a late hint. */
 export function LaughRound({ round, record, onChange }: Props) {
   const c = characterById.get(round.targetId)!;
-  const laugh = ONE_PIECE.laughs.find((l) => l.character === c.id)!.laugh;
+  const entry = ONE_PIECE.laughs.find((l) => l.character === c.id)!;
+  const [broken, setBroken] = useState(false);
+  const audio = entry.youtubeId && !broken;
+  const facts = characterHints(c);
+  // Heard: the written laugh comes after the vaguer facts. No clip: it's the clue itself.
+  const hints = audio ? [...facts.slice(0, 3), `It's written “${entry.laugh}”`, facts[4]] : facts;
   return (
     <SpGuessRound
       type="laugh"
       question="Whose signature laugh is this?"
       pool={characters}
       targetId={c.id}
-      hints={characterHints(c)}
+      hints={hints}
       record={record}
       onChange={onChange}
-      answer={{ name: c.name, image: c.image, detail: c.affiliation }}
-      clue={() => (
-        <p className="py-6 text-center font-serif text-5xl font-bold italic tracking-wide sm:text-6xl">“{laugh}”</p>
-      )}
+      answer={{ name: c.name, image: c.image, detail: `“${entry.laugh}” · ${c.affiliation}` }}
+      clue={(wrong, done) =>
+        audio ? (
+          <div className="space-y-3">
+            <p className="text-center font-display text-xs uppercase tracking-widest text-ink-faint">Listen to the laugh · original Japanese voice</p>
+            <AudioClip
+              videoId={entry.youtubeId!}
+              start={entry.start ?? 0}
+              step={Math.min(wrong, LAUGH_SNIPPETS.length - 1)}
+              lengths={LAUGH_SNIPPETS}
+              revealed={done}
+              onUnavailable={() => setBroken(true)}
+            />
+          </div>
+        ) : (
+          <p className="py-6 text-center font-serif text-5xl font-bold italic tracking-wide sm:text-6xl">“{entry.laugh}”</p>
+        )
+      }
     />
   );
 }

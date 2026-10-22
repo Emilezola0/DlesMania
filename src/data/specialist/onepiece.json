@@ -9000,7 +9000,9 @@
   "laughs": [
     {
       "character": "monkey-d-luffy",
-      "laugh": "Shishishishi"
+      "laugh": "Shishishishi",
+      "youtubeId": "o1lZJ86KwSk",
+      "start": 0
     },
     {
       "character": "buggy",
@@ -9012,7 +9014,9 @@
     },
     {
       "character": "arlong",
-      "laugh": "Shahahaha"
+      "laugh": "Shahahaha",
+      "youtubeId": "i0WNdgEP2XI",
+      "start": 0
     },
     {
       "character": "brogy",
@@ -9028,7 +9032,9 @@
     },
     {
       "character": "crocodile",
-      "laugh": "Kuhahahaha"
+      "laugh": "Kuhahahaha",
+      "youtubeId": "LDIYdnJJ1LE",
+      "start": 0
     },
     {
       "character": "bentham",
@@ -9036,19 +9042,27 @@
     },
     {
       "character": "jesus-burgess",
-      "laugh": "Wi-hahaha"
+      "laugh": "Wi-hahaha",
+      "youtubeId": "JWfEmKz-OD4",
+      "start": 0
     },
     {
       "character": "marshall-d-teach",
-      "laugh": "Zehahaha"
+      "laugh": "Zehahaha",
+      "youtubeId": "bStUsV_44yM",
+      "start": 0
     },
     {
       "character": "enel",
-      "laugh": "Yahahaha"
+      "laugh": "Yahahaha",
+      "youtubeId": "fRmBAakAZT4",
+      "start": 1
     },
     {
       "character": "foxy",
-      "laugh": "Fe-fe-fe"
+      "laugh": "Fe-fe-fe",
+      "youtubeId": "NPIysfhGdlY",
+      "start": 1
     },
     {
       "character": "pickles",
@@ -9056,11 +9070,15 @@
     },
     {
       "character": "jaguar-d-saul",
-      "laugh": "Dereshishishi"
+      "laugh": "Dereshishishi",
+      "youtubeId": "cQEIZgnnoKw",
+      "start": 0
     },
     {
       "character": "brook",
-      "laugh": "Yohohohoho"
+      "laugh": "Yohohohoho",
+      "youtubeId": "pal3Q4i-VgY",
+      "start": 0
     },
     {
       "character": "perona",
@@ -9068,7 +9086,9 @@
     },
     {
       "character": "gecko-moria",
-      "laugh": "Kishishishi"
+      "laugh": "Kishishishi",
+      "youtubeId": "Ncdomz-lhbo",
+      "start": 0
     },
     {
       "character": "rosward-charlos",
@@ -9080,7 +9100,9 @@
     },
     {
       "character": "edward-newgate",
-      "laugh": "Gurararara"
+      "laugh": "Gurararara",
+      "youtubeId": "3PczY5qyzfI",
+      "start": 0
     },
     {
       "character": "vasco-shot",
@@ -9100,7 +9122,9 @@
     },
     {
       "character": "vander-decken-ix",
-      "laugh": "Bahohoho"
+      "laugh": "Bahohoho",
+      "youtubeId": "agzNXTqxPJI",
+      "start": 1
     },
     {
       "character": "hody-jones",
@@ -9120,11 +9144,15 @@
     },
     {
       "character": "charlotte-linlin",
-      "laugh": "Mama-hahaha"
+      "laugh": "Mama-hahaha",
+      "youtubeId": "FB1ZKcFewfU",
+      "start": 1
     },
     {
       "character": "caesar-clown",
-      "laugh": "Shurororo"
+      "laugh": "Shurororo",
+      "youtubeId": "3KX3eyxonwY",
+      "start": 1
     },
     {
       "character": "lao-g",
@@ -9132,11 +9160,15 @@
     },
     {
       "character": "trebol",
-      "laugh": "Behehehe"
+      "laugh": "Behehehe",
+      "youtubeId": "PHUSZrLgvJs",
+      "start": 0
     },
     {
       "character": "kurozumi-kanjuro",
-      "laugh": "Ka-ka-ka"
+      "laugh": "Ka-ka-ka",
+      "youtubeId": "R6KEb032WEA",
+      "start": 0
     },
     {
       "character": "bartolomeo",
@@ -9144,7 +9176,9 @@
     },
     {
       "character": "pica",
-      "laugh": "Pikkya-pikkyarara"
+      "laugh": "Pikkya-pikkyarara",
+      "youtubeId": "QYXRHSyREbU",
+      "start": 1
     },
     {
       "character": "hajrudin",
@@ -9152,11 +9186,15 @@
     },
     {
       "character": "kaidou",
-      "laugh": "Worororo"
+      "laugh": "Worororo",
+      "youtubeId": "q-UZHSBceXc",
+      "start": 0
     },
     {
       "character": "nekomamushi",
-      "laugh": "Goronyanya"
+      "laugh": "Goronyanya",
+      "youtubeId": "vqO57JNb7zQ",
+      "start": 0
     },
     {
       "character": "vito",
@@ -9164,7 +9202,9 @@
     },
     {
       "character": "charlotte-br-l-e",
-      "laugh": "Wi-wi-wi"
+      "laugh": "Wi-wi-wi",
+      "youtubeId": "aY3QM1t93jY",
+      "start": 1
     },
     {
       "character": "jarul",
@@ -9188,7 +9228,9 @@
     },
     {
       "character": "killer",
-      "laugh": "Fa-fa-fa-fa"
+      "laugh": "Fa-fa-fa-fa",
+      "youtubeId": "UeES_SHCPmI",
+      "start": 0
     },
     {
       "character": "road",
