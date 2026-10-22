@@ -265,7 +265,9 @@ async function devilFruits(roster) {
       .filter((u) => u.length > 1);
     const type = fruitTypeOf(f.type);
     // The first English name, without the note on which translation uses it.
-    const english = firstItem(plain(f.ename ?? '').replace(/\s*\([^)]*\)/g, '')) || undefined;
+    // Split before flattening: forms listed on separate lines ("Gum-Gum Fruit<br>----<br>Human-Human Fruit") stay apart.
+    // Notes in brackets go first, as they can hold commas ("(VIZ, Funimation dub)").
+    const english = firstItem((f.ename ?? '').replace(/\s*\([^)]*\)/g, '').replace(/-{3,}/g, '')).trim() || undefined;
     out.push({
       id: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
       name: title,

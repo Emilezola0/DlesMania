@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { AudioClip } from '../../components/AudioClip';
 import { ObscuredImage } from '../../components/ObscuredImage';
+import { mulberry32, shuffle } from '../../lib/rng';
 import type { RoundRecord } from '../../types';
-import { ONE_PIECE, characterById, crewById, formatBounty, fruitById, type OpCharacter } from '../data';
+import { compactText } from '../../utils/textMatcher';
+import { ONE_PIECE, characterById, crewById, formatBounty, fruitById, type OpCharacter, type OpFruit } from '../data';
 import type { SpRound } from '../rounds';
 import { SpGuessRound } from './SpGuessRound';
 
@@ -28,10 +30,40 @@ function characterHints(c: OpCharacter): string[] {
 }
 
 /** Devil Fruit: the fruit's picture (when it's been shown), opening up with each miss; hints from its facts. */
+/** Characters can be guessed in the Devil Fruit round too: their ids are prefixed so they never match a fruit. */
+const USER_PREFIX = 'user:';
+const fruitOrUser = [
+  ...fruitNames,
+  ...ONE_PIECE.characters.map((c) => ({ id: `${USER_PREFIX}${c.id}`, name: c.name, aliases: c.aliases, subtitle: 'character' })),
+];
+
+/** How many fruits the shortlist offers when the fruit's user is named. */
+const SHORTLIST = 8;
+
+/** The roster ids of a fruit's users (matched on any of their names). */
+function userIds(f: OpFruit): string[] {
+  const names = new Set(f.users.map(compactText));
+  return ONE_PIECE.characters.filter((c) => [c.name, ...c.aliases].some((n) => names.has(compactText(n)))).map((c) => c.id);
+}
+
+/** The answer among a few others, same type first (so it stays a real choice), in alphabetical order. */
+function shortlist(f: OpFruit, seed: number): string[] {
+  const rand = mulberry32(seed ^ 0xf2017);
+  const others = ONE_PIECE.fruits.filter((x) => x.id !== f.id);
+  const sameType = shuffle(others.filter((x) => x.type === f.type), rand);
+  const rest = shuffle(others.filter((x) => x.type !== f.type), rand);
+  return [f, ...[...sameType, ...rest].slice(0, SHORTLIST - 1)].map((x) => x.name).sort((a, b) => a.localeCompare(b));
+}
+
 export function FruitRound({ round, record, onChange }: Props) {
   const f = fruitById.get(round.targetId)!;
   const [broken, setBroken] = useState(false);
   const picture = f.image && !broken;
+  // Naming the fruit's user costs a try but unlocks a shortlist; naming anyone else just costs the try.
+  const users = userIds(f);
+  const named = record.guesses.filter((g) => g.startsWith(USER_PREFIX)).map((g) => g.slice(USER_PREFIX.length));
+  const foundUser = named.find((id) => users.includes(id));
+  const strangers = named.filter((id) => !users.includes(id)).map((id) => characterById.get(id)?.name ?? id);
   const hints = [
     `Type: ${f.type}`,
     f.meaning && `Its name comes from “${f.meaning}”`,
@@ -43,25 +75,44 @@ export function FruitRound({ round, record, onChange }: Props) {
     <SpGuessRound
       type="fruit"
       noPictures
-      question="Which Devil Fruit is this?"
-      pool={fruitNames}
+      question="Which Devil Fruit is this? (Naming its user costs a try but shows a shortlist.)"
+      pool={fruitOrUser}
       targetId={f.id}
       // No picture: the first fact is given away for free.
       hints={picture ? hints : hints.slice(1)}
       record={record}
       onChange={onChange}
       answer={{ name: f.name, image: f.image, detail: [f.english, f.type, f.users.join(' & ')].filter(Boolean).join(' · ') }}
-      clue={(wrong, done) =>
-        picture ? (
-          <ObscuredImage src={f.image!} alt="Devil Fruit" step={wrong} revealed={done} seed={round.seed} onError={() => setBroken(true)} />
-        ) : (
-          <div className="space-y-2 py-6 text-center">
-            <p className="font-display text-5xl">🍈</p>
-            <p className="font-display text-lg font-bold">{hints[0]}</p>
-            <p className="text-sm text-ink-soft">This fruit's look was never shown — go by the clues.</p>
-          </div>
-        )
-      }
+      clue={(wrong, done) => (
+        <div className="space-y-4">
+          {picture ? (
+            <ObscuredImage src={f.image!} alt="Devil Fruit" step={wrong} revealed={done} seed={round.seed} onError={() => setBroken(true)} />
+          ) : (
+            <div className="space-y-2 py-6 text-center">
+              <p className="font-display text-5xl">🍈</p>
+              <p className="font-display text-lg font-bold">{hints[0]}</p>
+              <p className="text-sm text-ink-soft">This fruit's look was never shown — go by the clues.</p>
+            </div>
+          )}
+          {foundUser && !done && (
+            <div className="animate-pop rounded-md border border-accent/50 bg-accent-soft/60 p-3 text-center">
+              <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">
+                {characterById.get(foundUser)?.name} ate it — it's one of these
+              </p>
+              <ul className="mt-2 flex flex-wrap justify-center gap-1.5">
+                {shortlist(f, round.seed).map((n) => (
+                  <li key={n} className="rounded-sm border border-rule-strong bg-card px-2 py-1 text-sm font-semibold">
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {strangers.length > 0 && !done && (
+            <p className="text-center text-xs text-ink-soft">{strangers.join(', ')} didn't eat this fruit.</p>
+          )}
+        </div>
+      )}
     />
   );
 }
