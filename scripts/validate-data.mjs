@@ -264,6 +264,23 @@ for (const c of lol.champions) {
     lolNames.set(s, c.id);
   }
 }
+const mcu = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'marvel.json'), 'utf8'));
+const filmIds = new Set(mcu.films.map((f) => f.id));
+for (const f of mcu.films) {
+  if (!f.poster) warn(`specialist/marvel/${f.name}: no poster (left out of the Film round)`);
+  if (!f.emoji) warn(`specialist/marvel/${f.name}: no emoji summary — add one to scripts/data/mcu-emoji.mjs`);
+}
+const mcuNames = new Map();
+for (const c of mcu.characters) {
+  const at = `specialist/marvel/${c.name}`;
+  if (!filmIds.has(c.debut)) fail(`${at}: debut ${c.debut} isn't a known film`);
+  for (const k of ['image', 'gender', 'species', 'status']) if (!c[k]) fail(`${at}: no ${k}`);
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (mcuNames.has(s) && mcuNames.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${mcuNames.get(s)}`);
+    mcuNames.set(s, c.id);
+  }
+}
+console.log(`specialist  marvel: ${mcu.films.length} films, ${mcu.characters.length} characters (${mcu.characters.filter((c) => c.castable).length} for Cast), ${mcu.generated}`);
 console.log(`specialist  lol: ${lol.champions.length} champions (Data Dragon ${lol.version}, ${lol.generated})`);
 console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.fruits.length} fruits, ${op.crews.length} crews, ${op.laughs.length} laughs (${op.generated})`);
 

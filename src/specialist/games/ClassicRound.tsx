@@ -2,6 +2,7 @@ import { GuessInput } from '../../components/GuessInput';
 import type { RoundRecord } from '../../types';
 import { ARC_ORDER, ONE_PIECE, characterById, formatBounty, type OpCharacter } from '../data';
 import { LOL, championById, type LolChampion } from '../lol';
+import { MARVEL, filmById, mcuCharacterById, type McuCharacter } from '../marvel';
 import { SP_META, spScore, type SpRound } from '../rounds';
 import { SpOutcome } from './SpGuessRound';
 
@@ -50,6 +51,24 @@ const LOL_COLUMNS: Column<LolChampion>[] = [
   { label: 'Range', show: (c) => c.range, judge: same((c) => c.range) },
   { label: 'Regions', show: (c) => c.regions.join(', '), judge: (g, t) => overlap(g.regions, t.regions) },
   { label: 'Release', show: (c) => (c.year ? String(c.year) : '?'), judge: same((c) => String(c.year)), arrow: (g, t) => t.year - g.year },
+];
+
+const debutOf = (c: McuCharacter) => filmById.get(c.debut)!;
+
+const MARVEL_COLUMNS: Column<McuCharacter>[] = [
+  { label: 'Gender', show: (c) => c.gender, judge: same((c) => c.gender) },
+  { label: 'Species', show: (c) => c.species, judge: same((c) => c.species) },
+  { label: 'Team', show: (c) => c.team, judge: same((c) => c.team) },
+  { label: 'Status', show: (c) => c.status, judge: same((c) => c.status) },
+  {
+    label: 'Debut',
+    show: (c) => `${debutOf(c).name} (${debutOf(c).year})`,
+    // Same film, or a neighbour in release order, is close.
+    judge: (g, t) => (g.debut === t.debut ? 'hit' : Math.abs(debutOf(g).order - debutOf(t).order) <= 2 ? 'near' : 'miss'),
+    arrow: (g, t) => debutOf(t).order - debutOf(g).order,
+  },
+  { label: 'Phase', show: (c) => `Phase ${c.phase}`, judge: same((c) => String(c.phase)), arrow: (g, t) => t.phase - g.phase },
+  { label: 'Films', show: (c) => String(c.films), judge: (g, t) => (g.films === t.films ? 'hit' : Math.abs(g.films - t.films) <= 1 ? 'near' : 'miss'), arrow: (g, t) => t.films - g.films },
 ];
 
 const VERDICT_CLASS: Record<Verdict, string> = {
@@ -154,6 +173,13 @@ interface Props {
 export function ClassicRound(props: Props) {
   return (
     <ClassicGrid {...props} pool={ONE_PIECE.characters} byId={characterById} columns={ONE_PIECE_COLUMNS} noun="character" detail={(t) => `${t.affiliation} · ${t.arc}`} />
+  );
+}
+
+/** Marvel Classic: gender, species, team, status, debut film, Phase, number of films. */
+export function MarvelClassicRound(props: Props) {
+  return (
+    <ClassicGrid {...props} pool={MARVEL.characters} byId={mcuCharacterById} columns={MARVEL_COLUMNS} noun="character" detail={(t) => `${t.actor ? `Played by ${t.actor} · ` : ''}${debutOf(t).name}`} />
   );
 }
 
