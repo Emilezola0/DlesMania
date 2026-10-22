@@ -45,6 +45,10 @@ interface ProgressState {
   /** Specialist dailies: "<universe>:<date>" -> round index -> record. */
   special: Record<string, DayRounds>;
   sound: boolean;
+  /** Volume of the synthesized sound effects, 0–100. */
+  sfxVolume: number;
+  /** Volume of the YouTube clips (soundtracks, voices, laughs), 0–100. */
+  clipVolume: number;
   theme: ThemeChoice;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
@@ -54,6 +58,7 @@ interface ProgressState {
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
   recordFreePlay: (record: RoundRecord) => void;
   toggleSound: () => void;
+  setVolume: (kind: 'sfxVolume' | 'clipVolume', value: number) => void;
   cycleTheme: () => void;
   resetAll: () => void;
 }
@@ -69,6 +74,8 @@ export const useProgress = create<ProgressState>()(
       whosThat: {},
       special: {},
       sound: true,
+      sfxVolume: 100,
+      clipVolume: 80,
       theme: 'system',
       setRound: (domain, date, index, record) =>
         set((s) => {
@@ -103,6 +110,7 @@ export const useProgress = create<ProgressState>()(
           };
         }),
       toggleSound: () => set((s) => ({ sound: !s.sound })),
+      setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, special: {} }),
     }),

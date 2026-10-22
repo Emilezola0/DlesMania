@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
 import { useUi } from '../store/ui';
+import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
 import { UpdateBanner } from './UpdateBanner';
@@ -75,6 +76,72 @@ export function FlameIcon({ className = '' }: { className?: string }) {
   );
 }
 
+/** The speaker button: opens a small panel to switch effects on or off and set both volumes. */
+function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => void }) {
+  const [open, setOpen] = useState(false);
+  const sfxVolume = useProgress((s) => s.sfxVolume);
+  const clipVolume = useProgress((s) => s.clipVolume);
+  const setVolume = useProgress((s) => s.setVolume);
+  const box = useRef<HTMLDivElement>(null);
+  // Close on a click elsewhere or Escape.
+  useEffect(() => {
+    if (!open) return;
+    const away = (e: PointerEvent) => !box.current?.contains(e.target as Node) && setOpen(false);
+    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('pointerdown', away);
+    window.addEventListener('keydown', esc);
+    return () => {
+      window.removeEventListener('pointerdown', away);
+      window.removeEventListener('keydown', esc);
+    };
+  }, [open]);
+  const muted = !sound || sfxVolume === 0;
+  const slider = (label: string, kind: 'sfxVolume' | 'clipVolume', value: number, disabled = false) => (
+    <label className={`block space-y-1 ${disabled ? 'opacity-50' : ''}`}>
+      <span className="flex justify-between font-display text-[11px] uppercase tracking-widest text-ink-faint">
+        {label} <span className="tabular-nums">{value}%</span>
+      </span>
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={5}
+        value={value}
+        disabled={disabled}
+        onChange={(e) => setVolume(kind, Number(e.target.value))}
+        // Effects: a click to hear the new level.
+        onPointerUp={() => kind === 'sfxVolume' && sfx.click()}
+        className="w-full accent-[var(--color-accent,currentColor)]"
+      />
+    </label>
+  );
+  return (
+    <div ref={box} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        title="Sound and volume"
+        aria-label="Sound and volume"
+        aria-expanded={open}
+        className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
+      >
+        <SpeakerIcon on={!muted} />
+      </button>
+      {open && (
+        <div className="animate-pop absolute right-0 top-full z-40 mt-2 w-60 space-y-3 rounded-md border border-rule-strong bg-card p-4 shadow-2xl">
+          <label className="flex items-center justify-between gap-3 text-sm font-semibold">
+            Sound effects
+            <input type="checkbox" checked={sound} onChange={toggleSound} className="size-4 accent-[var(--color-accent,currentColor)]" />
+          </label>
+          {slider('Effects volume', 'sfxVolume', sfxVolume, !sound)}
+          {slider('Clips & voices', 'clipVolume', clipVolume)}
+          <p className="text-[11px] leading-snug text-ink-faint">Clips & voices covers soundtracks, voice lines and laughs.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function Layout() {
   const days = useProgress((s) => s.days);
   const sound = useProgress((s) => s.sound);
@@ -125,15 +192,7 @@ export function Layout() {
           >
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
           </button>
-          <button
-            type="button"
-            onClick={toggleSound}
-            title={sound ? 'Mute sound effects' : 'Unmute sound effects'}
-            aria-pressed={sound}
-            className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
-          >
-            <SpeakerIcon on={sound} />
-          </button>
+          <SoundMenu sound={sound} toggleSound={toggleSound} />
           <button
             type="button"
             onClick={cycleTheme}

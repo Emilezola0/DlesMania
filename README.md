@@ -33,7 +33,7 @@ Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a 
 | Cover Puzzle | `TilesGame` + `TilePuzzle` | The cover cut into a 3×3 grid, shuffled, rotated and disguised per tile (colour shift, blur, some inverted or mirrored). Swapping (tap two) and rotating (tap one twice) help read it, but only typing the title wins; a piece keeps its disguise wherever it's moved, and each miss restores two pieces to their true look |
 | Connections | `ConnectionsGame` | 16 picture tiles in 4 groups of 4, Yellow→Purple difficulty, 4 mistakes, "One away…" |
 
-`GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`, toggle 🔊 in the header), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:
+`GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`; the 🔊 header button opens a panel to switch them off and set two saved volumes — effects, and clips & voices for the YouTube soundtracks, voice lines and laughs), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:
 
 ```
 Omnidle Video Games 2026-10-18 — 820/1000 🔥3

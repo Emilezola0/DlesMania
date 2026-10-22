@@ -26,9 +26,12 @@ interface Note {
 
 function play(notes: Note[]) {
   const ac = audio();
-  if (!ac) return;
+  // The effects volume scales every note (0 = silent).
+  const level = useProgress.getState().sfxVolume / 100;
+  if (!ac || level <= 0) return;
   const t0 = ac.currentTime;
-  for (const { freq, at = 0, dur = 0.12, type = 'sine', gain = 0.12, slide } of notes) {
+  for (const { freq, at = 0, dur = 0.12, type = 'sine', gain: base = 0.12, slide } of notes) {
+    const gain = Math.max(0.0002, base * level);
     const osc = ac.createOscillator();
     const amp = ac.createGain();
     osc.type = type;

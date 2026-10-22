@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { sfx } from '../lib/sfx';
+import { useProgress } from '../store/progress';
 
 /** Snippet length (seconds) unlocked by each wrong guess, Heardle-style. */
 export const SNIPPETS = [1, 2, 4, 7, 11, 16];
@@ -88,6 +89,11 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   // A full clip runs to its end; otherwise the snippet unlocked so far.
+  // Follow the volume slider while the clip is loaded.
+  const clipVolume = useProgress((s) => s.clipVolume);
+  useEffect(() => {
+    player.current?.setVolume(clipVolume);
+  }, [clipVolume]);
   const length = full ? Math.max(1, Math.ceil(duration - (clipStart ?? 0))) : lengths[Math.min(step, lengths.length - 1)];
   const max = full ? length : lengths[lengths.length - 1];
 
@@ -109,7 +115,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
             onReady: () => {
               const p = player.current;
               if (!p) return;
-              p.setVolume(80);
+              p.setVolume(useProgress.getState().clipVolume);
               setDuration(p.getDuration());
               setClipStart(start ?? autoStart(p.getDuration()));
               setReady(true);
