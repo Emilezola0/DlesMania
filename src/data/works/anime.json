@@ -44,7 +44,9 @@
     },
     "voice": {
       "speaker": "Light Yagami",
-      "query": "Light Yagami voice japanese"
+      "query": "Light Yagami voice japanese",
+      "youtubeId": "eehdWTyQrjg",
+      "start": 3
     },
     "emoji": "📓🍎✍️💀🕵️",
     "item": {
@@ -466,7 +468,9 @@
     },
     "voice": {
       "speaker": "Goku",
-      "query": "Goku voice japanese"
+      "query": "Goku voice japanese",
+      "youtubeId": "hjve9s90DRU",
+      "start": 3
     },
     "emoji": "🐉🟠⭐💥👊",
     "item": {
@@ -810,7 +814,9 @@
     },
     "voice": {
       "speaker": "Usagi Tsukino",
-      "query": "Usagi Tsukino voice japanese"
+      "query": "Usagi Tsukino voice japanese",
+      "youtubeId": "wNGIHc00xv8",
+      "start": 1
     },
     "emoji": "🌙👧🐈‍⬛💫🎀",
     "item": {
@@ -869,7 +875,9 @@
     },
     "voice": {
       "speaker": "Shotaro Kaneda",
-      "query": "Shotaro Kaneda voice japanese"
+      "query": "Shotaro Kaneda voice japanese",
+      "youtubeId": "sLDXKOF8LJo",
+      "start": 3
     },
     "emoji": "🏍️🔴🧠💥🌆",
     "item": {
@@ -1147,7 +1155,10 @@
     },
     "voice": {
       "speaker": "Rintaro Okabe",
-      "query": "Rintaro Okabe voice japanese"
+      "query": "Rintaro Okabe voice japanese",
+      "youtubeId": "1CK5mhL7JNw",
+      "start": 1,
+      "lang": "fr"
     },
     "emoji": "📱🍌⏳🧪👨‍🔬",
     "item": {
@@ -1212,7 +1223,10 @@
     },
     "voice": {
       "speaker": "Lelouch Lamperouge",
-      "query": "Lelouch Lamperouge voice japanese"
+      "query": "Lelouch Lamperouge voice japanese",
+      "youtubeId": "zH5wuDGOl6U",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "♟️👁️🍕🤖👑",
     "item": {
@@ -1618,7 +1632,10 @@
     },
     "voice": {
       "speaker": "Kirito",
-      "query": "Kirito voice japanese"
+      "query": "Kirito voice japanese",
+      "youtubeId": "mPFx6fvSjfw",
+      "start": 1,
+      "lang": "fr"
     },
     "emoji": "🎮⚔️🏰💀🧑‍💻",
     "item": {
@@ -1677,7 +1694,9 @@
     },
     "voice": {
       "speaker": "Shoyo Hinata",
-      "query": "Shoyo Hinata voice japanese"
+      "query": "Shoyo Hinata voice japanese",
+      "youtubeId": "9DIBs51v7xU",
+      "start": 3
     },
     "emoji": "🏐🐦‍⬛🦵🏫🔥",
     "item": {
@@ -1740,7 +1759,9 @@
     },
     "voice": {
       "speaker": "Motoko Kusanagi",
-      "query": "Motoko Kusanagi voice japanese"
+      "query": "Motoko Kusanagi voice japanese",
+      "youtubeId": "aTKbP1OPWe8",
+      "start": 3
     },
     "emoji": "🤖🧠👩🌐🔫",
     "item": {
@@ -2077,7 +2098,9 @@
     },
     "voice": {
       "speaker": "Ken Kaneki",
-      "query": "Ken Kaneki voice japanese"
+      "query": "Ken Kaneki voice japanese",
+      "youtubeId": "pqZX1zRucUU",
+      "start": 3
     },
     "emoji": "☕👁️🩸🎭🦷",
     "item": {
@@ -2142,7 +2165,10 @@
     },
     "voice": {
       "speaker": "Shigeo Kageyama",
-      "query": "Shigeo Kageyama voice japanese"
+      "query": "Shigeo Kageyama voice japanese",
+      "youtubeId": "HYDIa7od9Hg",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "👦🔮💯🥦🏃",
     "item": {
@@ -2537,7 +2563,10 @@
     },
     "voice": {
       "speaker": "Natsu Dragneel",
-      "query": "Natsu Dragneel voice japanese"
+      "query": "Natsu Dragneel voice japanese",
+      "youtubeId": "7oC1mORrxE8",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "🧚🔥🐱🐉🍺",
     "item": {
@@ -2798,7 +2827,9 @@
     },
     "voice": {
       "speaker": "Ryuko Matoi",
-      "query": "Ryuko Matoi voice japanese"
+      "query": "Ryuko Matoi voice japanese",
+      "youtubeId": "olpe3pRiPIM",
+      "start": 1
     },
     "emoji": "✂️👘🏫💪🔥",
     "item": {
@@ -3303,7 +3334,10 @@
     },
     "voice": {
       "speaker": "Ai Hoshino",
-      "query": "Ai Hoshino voice japanese"
+      "query": "Ai Hoshino voice japanese",
+      "youtubeId": "eUCJocqdhqA",
+      "start": 1,
+      "lang": "fr"
     },
     "emoji": "⭐👁️🎤🍓🔪",
     "item": {
@@ -3494,7 +3528,9 @@
     },
     "voice": {
       "speaker": "Yugi Muto",
-      "query": "Yugi Muto voice japanese"
+      "query": "Yugi Muto voice japanese",
+      "youtubeId": "Q2_dPRp3xNE",
+      "start": 3
     },
     "emoji": "🃏🔺👁️🐉🏆",
     "item": {
@@ -4254,7 +4290,9 @@
     },
     "voice": {
       "speaker": "Shoya Ishida",
-      "query": "Shoya Ishida voice japanese"
+      "query": "Shoya Ishida voice japanese",
+      "youtubeId": "FhaH8jWT3KQ",
+      "start": 3
     },
     "emoji": "🧏‍♀️📓🌉🎆🐟",
     "item": {
@@ -4511,7 +4549,10 @@
     },
     "voice": {
       "speaker": "Porco Rosso",
-      "query": "Porco Rosso voice japanese"
+      "query": "Porco Rosso voice japanese",
+      "youtubeId": "kzDeoGWD94w",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "🐷✈️🌊🍷🔴",
     "item": {
@@ -4639,7 +4680,10 @@
     },
     "voice": {
       "speaker": "Alucard",
-      "query": "Alucard voice japanese"
+      "query": "Alucard voice japanese",
+      "youtubeId": "yg8g-txv7J0",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "🧛🔫🇬🇧✝️🩸",
     "item": {
@@ -4891,7 +4935,10 @@
     },
     "voice": {
       "speaker": "Kazuma Satō",
-      "query": "Kazuma Satō voice japanese"
+      "query": "Kazuma Satō voice japanese",
+      "youtubeId": "ILqYYWsxSRA",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "💥🧙‍♀️💧🐸🍺",
     "item": {
@@ -5077,7 +5124,10 @@
     },
     "voice": {
       "speaker": "Sora",
-      "query": "Sora voice japanese"
+      "query": "Sora voice japanese",
+      "youtubeId": "MWxpACH0f4E",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "🎲♟️👫🌍👑",
     "item": {
@@ -5137,7 +5187,10 @@
     },
     "voice": {
       "speaker": "Yuzuru Otonashi",
-      "query": "Yuzuru Otonashi voice japanese"
+      "query": "Yuzuru Otonashi voice japanese",
+      "youtubeId": "LEfv7MekVvk",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "👼🎸🏫💀🍜",
     "item": {
@@ -5264,7 +5317,9 @@
     },
     "voice": {
       "speaker": "Hōtarō Oreki",
-      "query": "Hōtarō Oreki voice japanese"
+      "query": "Hōtarō Oreki voice japanese",
+      "youtubeId": "33vGjkphX54",
+      "start": 3
     },
     "emoji": "🔍🌸📚🏫🕰️",
     "item": {
@@ -5707,7 +5762,10 @@
     },
     "voice": {
       "speaker": "Yuri Katsuki",
-      "query": "Yuri Katsuki voice japanese"
+      "query": "Yuri Katsuki voice japanese",
+      "youtubeId": "aTmTokqe338",
+      "start": 1,
+      "lang": "fr"
     },
     "emoji": "⛸️❄️🐩🍜🥇",
     "item": {
@@ -5839,7 +5897,9 @@
     },
     "voice": {
       "speaker": "Kenshiro",
-      "query": "Kenshiro voice japanese"
+      "query": "Kenshiro voice japanese",
+      "youtubeId": "WUzohpmW2Jo",
+      "start": 3
     },
     "emoji": "👊💥☠️🏜️⭐",
     "item": {
@@ -6490,7 +6550,9 @@
     },
     "voice": {
       "speaker": "Ranma Saotome",
-      "query": "Ranma Saotome voice japanese"
+      "query": "Ranma Saotome voice japanese",
+      "youtubeId": "GPNRqIdzS7c",
+      "start": 3
     },
     "emoji": "💧♂️♀️🐼🥋",
     "item": {
@@ -6873,7 +6935,10 @@
     },
     "voice": {
       "speaker": "Atsuko Chiba",
-      "query": "Atsuko Chiba voice japanese"
+      "query": "Atsuko Chiba voice japanese",
+      "youtubeId": "IUl7ohqnbxQ",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "💭🎪🧸🧠🌈",
     "item": {
@@ -7174,7 +7239,10 @@
     },
     "voice": {
       "speaker": "Momo Ayase",
-      "query": "Momo Ayase voice japanese"
+      "query": "Momo Ayase voice japanese",
+      "youtubeId": "lXGUjRRrQkw",
+      "start": 1,
+      "lang": "fr"
     },
     "emoji": "👽👻🥚👵🏃",
     "item": {
@@ -7294,7 +7362,9 @@
     },
     "voice": {
       "speaker": "Akira Tendo",
-      "query": "Akira Tendo voice japanese"
+      "query": "Akira Tendo voice japanese",
+      "youtubeId": "xghnsL5a79Y",
+      "start": 3
     },
     "emoji": "🧟📝🎉🏃‍♂️🍺",
     "item": {
@@ -7413,7 +7483,9 @@
     },
     "voice": {
       "speaker": "Chisato Nishikigi",
-      "query": "Chisato Nishikigi voice japanese"
+      "query": "Chisato Nishikigi voice japanese",
+      "youtubeId": "s35qasN8ADY",
+      "start": 3
     },
     "emoji": "🔫☕🌸👯‍♀️🎯",
     "item": {
@@ -8193,7 +8265,10 @@
     },
     "voice": {
       "speaker": "Ash Lynx",
-      "query": "Ash Lynx voice japanese"
+      "query": "Ash Lynx voice japanese",
+      "youtubeId": "b_-jxsKrn3k",
+      "start": 3,
+      "lang": "fr"
     },
     "emoji": "🍌🐟🔫🗽📚",
     "item": {
@@ -8491,7 +8566,9 @@
     },
     "voice": {
       "speaker": "Aladdin",
-      "query": "Aladdin voice japanese"
+      "query": "Aladdin voice japanese",
+      "youtubeId": "wHbAPzYWJi0",
+      "start": 1
     },
     "emoji": "🧞🪈🕌🏜️💎",
     "item": {
@@ -9576,7 +9653,9 @@
     },
     "voice": {
       "speaker": "Sōma Yukihira",
-      "query": "Sōma Yukihira voice japanese"
+      "query": "Sōma Yukihira voice japanese",
+      "youtubeId": "mfBpSebzyjc",
+      "start": 3
     },
     "emoji": "🍳🔪🍜😳🏆",
     "item": {

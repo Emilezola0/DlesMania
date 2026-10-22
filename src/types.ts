@@ -80,7 +80,8 @@ export interface Work {
     query?: string;
   };
   /** Voice game: a character's original voice acting — no openings, endings or soundtrack. */
-  voice?: { speaker: string; youtubeId?: string; start?: number; query?: string };
+  /** `lang: 'fr'` marks a French dub (VF), used when no clip in the original Japanese was found. */
+  voice?: { speaker: string; youtubeId?: string; start?: number; query?: string; lang?: 'fr' };
   emoji?: string;
   item?: Clue;
   location?: Clue;

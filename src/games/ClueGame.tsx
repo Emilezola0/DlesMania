@@ -98,7 +98,13 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
       if (w.voice?.youtubeId && !broken.has('voice')) {
         return (
           <div className="space-y-3">
-            <Label>Listen to the voice</Label>
+            <Label>
+              Listen to the voice
+              {/* No Japanese clip was found for this one: it's the French dub. */}
+              {w.voice.lang === 'fr' && (
+                <span className="ml-2 rounded-sm bg-accent px-1.5 py-0.5 align-middle text-[10px] font-bold tracking-widest text-on-strong">VF</span>
+              )}
+            </Label>
             <AudioClip
               videoId={w.voice.youtubeId}
               start={w.voice.start ?? 0}

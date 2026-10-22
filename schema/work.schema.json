@@ -78,7 +78,8 @@
         "speaker": { "$ref": "#/definitions/nonEmpty", "description": "Whose voice it is; revealed as the last hint." },
         "youtubeId": { "type": "string", "pattern": "^[A-Za-z0-9_-]{11}$" },
         "start": { "type": "number", "minimum": 0 },
-        "query": { "$ref": "#/definitions/nonEmpty" }
+        "query": { "$ref": "#/definitions/nonEmpty" },
+        "lang": { "enum": ["fr"], "description": "Set when the clip is the French dub (VF), used only when no Japanese clip was found." }
       }
     },
     "emoji": { "$ref": "#/definitions/nonEmpty" },
