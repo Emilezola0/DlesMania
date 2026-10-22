@@ -96,15 +96,15 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
     };
   }, [open]);
   const muted = !sound || sfxVolume === 0;
-  const slider = (label: string, kind: 'sfxVolume' | 'clipVolume', value: number, disabled = false) => (
+  const slider = (label: string, kind: 'sfxVolume' | 'clipVolume', value: number, max: number, disabled = false) => (
     <label className={`block space-y-1 ${disabled ? 'opacity-50' : ''}`}>
       <span className="flex justify-between font-display text-[11px] uppercase tracking-widest text-ink-faint">
-        {label} <span className="tabular-nums">{value}%</span>
+        {label} <span className={`tabular-nums ${value > 100 ? 'font-bold text-coral' : ''}`}>{value}%{value > 100 ? ' boost' : ''}</span>
       </span>
       <input
         type="range"
         min={0}
-        max={100}
+        max={max}
         step={5}
         value={value}
         disabled={disabled}
@@ -133,9 +133,11 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
             Sound effects
             <input type="checkbox" checked={sound} onChange={toggleSound} className="size-4 accent-[var(--color-accent,currentColor)]" />
           </label>
-          {slider('Effects volume', 'sfxVolume', sfxVolume, !sound)}
-          {slider('Clips & voices', 'clipVolume', clipVolume)}
-          <p className="text-[11px] leading-snug text-ink-faint">Clips & voices covers soundtracks, voice lines and laughs.</p>
+          {slider('Effects volume', 'sfxVolume', sfxVolume, 200, !sound)}
+          {slider('Clips & voices', 'clipVolume', clipVolume, 100)}
+          <p className="text-[11px] leading-snug text-ink-faint">
+            Effects can be boosted up to 200%. Clips & voices (soundtracks, voice lines, laughs) play through YouTube, which stops at 100%.
+          </p>
         </div>
       )}
     </div>
