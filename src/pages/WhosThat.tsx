@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { TimerBar } from '../boss/TimerBar';
 import { Glyph } from '../components/Glyph';
 import { domainInfo } from '../data';
 import { ALL_PREFIX, SILHOUETTES, deckFor, silhouetteDomains, type SilhouetteEntry, type SilhouetteSeries } from '../data/silhouettes';
@@ -15,14 +16,19 @@ const MISS_MS = 1600;
 /** Rising mode: the silhouette gets harder every this many names, up to MAX_LEVEL. */
 const LEVEL_EVERY = 4;
 const MAX_LEVEL = 5;
+/** Hell mode: seconds per silhouette, and the effects it cycles through, one per silhouette. */
+const HELL_SECONDS = 10;
+const HELL_CYCLE = ['Normal', 'Turned', 'Zoomed', 'Mirrored', 'Cropped', 'Spin'] as const;
 
 type Card = SilhouetteEntry & { series: SilhouetteSeries };
-type Mode = 'easy' | 'rising';
+type Mode = 'easy' | 'rising' | 'hell';
 
 const MODES: Record<Mode, { label: string; blurb: string }> = {
   easy: { label: 'Easy', blurb: 'The plain silhouette, all run long.' },
   rising: { label: 'Rising', blurb: `Every ${LEVEL_EVERY} names it gets harder: turned, then zoomed in, mirrored, cropped, and finally spinning.` },
+  hell: { label: 'Hell', blurb: `${HELL_SECONDS} seconds each, and every silhouette brings the next effect: ${HELL_CYCLE.join(', ')}, then round again.` },
 };
+const MODE_IDS = Object.keys(MODES) as Mode[];
 
 /** Best streaks are kept per mode ("easy:pokemon"), apart from the old timed scores. */
 const bestKey = (mode: Mode, key: string) => `${mode}:${key}`;
@@ -40,30 +46,39 @@ interface Look {
   spin: boolean;
 }
 
-/** Level 1 turns it, 2 also zooms in on part of it, 3 may mirror it, 4 crops a side away, 5 sets it spinning. */
+/** Hide a big slice of one side and a smaller one of the opposite side. */
+function drawCrop(rand: () => number) {
+  const cut = [0, 0, 0, 0];
+  const side = Math.floor(rand() * 4);
+  cut[side] = 30 + Math.round(rand() * 12);
+  cut[(side + 2) % 4] = 8 + Math.round(rand() * 10);
+  return `inset(${cut.map((c) => `${c}%`).join(' ')})`;
+}
+
+const zoomOrigin = (rand: () => number) => `${35 + Math.round(rand() * 30)}% ${30 + Math.round(rand() * 35)}%`;
+
+const toLook = (turn: number, zoom: number, mirror: boolean, origin: string, clipPath: string | undefined, spin: boolean): Look => ({
+  transform: `rotate(${Math.round(turn)}deg) scale(${(mirror ? -zoom : zoom).toFixed(2)}, ${zoom.toFixed(2)})`,
+  transformOrigin: origin,
+  clipPath,
+  spin,
+});
+
+/** Rising: level 1 turns it, 2 also zooms in on part of it, 3 may mirror it, 4 crops a side away, 5 sets it spinning. */
 function drawLook(level: number, rand: () => number): Look {
   const sign = rand() < 0.5 ? -1 : 1;
   const turn = level >= 1 ? sign * Math.min(180, 25 + level * 20 + rand() * 30) : 0;
   const zoom = level >= 2 ? 1.25 + (level - 2) * 0.1 + rand() * 0.15 : 1;
   const mirror = level >= 3 && rand() < 0.5;
-  const origin = level >= 2 ? `${35 + Math.round(rand() * 30)}% ${30 + Math.round(rand() * 35)}%` : '50% 50%';
-  let clipPath: string | undefined;
-  if (level >= 4) {
-    // Hide a big slice of one side and a smaller one of the opposite side.
-    const big = 30 + Math.round(rand() * 12);
-    const small = 8 + Math.round(rand() * 10);
-    const side = Math.floor(rand() * 4);
-    const cut = [0, 0, 0, 0];
-    cut[side] = big;
-    cut[(side + 2) % 4] = small;
-    clipPath = `inset(${cut.map((c) => `${c}%`).join(' ')})`;
-  }
-  return {
-    transform: `rotate(${Math.round(turn)}deg) scale(${(mirror ? -zoom : zoom).toFixed(2)}, ${zoom.toFixed(2)})`,
-    transformOrigin: origin,
-    clipPath,
-    spin: level >= 5,
-  };
+  return toLook(turn, zoom, mirror, level >= 2 ? zoomOrigin(rand) : '50% 50%', level >= 4 ? drawCrop(rand) : undefined, level >= 5);
+}
+
+/** Hell: one effect at a time, at full strength, in HELL_CYCLE order. */
+function hellLook(step: number, rand: () => number): Look {
+  const effect = HELL_CYCLE[step % HELL_CYCLE.length];
+  const turn = effect === 'Turned' ? (rand() < 0.5 ? -1 : 1) * (90 + rand() * 90) : 0;
+  const zoom = effect === 'Zoomed' ? 1.5 + rand() * 0.2 : 1;
+  return toLook(turn, zoom, effect === 'Mirrored', effect === 'Zoomed' ? zoomOrigin(rand) : '50% 50%', effect === 'Cropped' ? drawCrop(rand) : undefined, effect === 'Spin');
 }
 
 /** Picker: one card per series, plus "All" for each domain. */
@@ -76,7 +91,7 @@ export function WhosThatHub() {
         <h1 className="text-5xl font-bold">Who&apos;s That?</h1>
         <p className="max-w-xl text-ink-soft">
           Silhouettes appear one after another — keep naming them for as long as you can. A wrong name or a pass ends the run; your score is your streak.
-          Play Easy (always the plain silhouette) or Rising (it gets harder as you go).
+          Play Easy (always the plain silhouette), Rising (it gets harder as you go) or Hell ({HELL_SECONDS} seconds each, with a new effect every time).
         </p>
       </div>
       {silhouetteDomains().map((domain) => {
@@ -99,8 +114,8 @@ export function WhosThatHub() {
                     <span className="font-display text-lg font-bold">{o.title}</span>
                     <span className="text-sm text-ink-soft">{o.sub}</span>
                     <span className="mt-auto pt-2 text-xs text-ink-faint">
-                      {(['easy', 'rising'] as Mode[]).some((m) => best[bestKey(m, o.key)])
-                        ? (['easy', 'rising'] as Mode[]).map((m) => `${MODES[m].label}: ${best[bestKey(m, o.key)] ?? 0}`).join(' · ')
+                      {MODE_IDS.some((m) => best[bestKey(m, o.key)])
+                        ? MODE_IDS.map((m) => `${MODES[m].label}: ${best[bestKey(m, o.key)] ?? 0}`).join(' · ')
                         : 'Not played yet'}
                     </span>
                   </Link>
@@ -123,10 +138,11 @@ export default function WhosThatPage() {
 
 type Stage = 'ready' | 'playing' | 'done';
 
-/** How the run ended: the silhouette missed and what was typed (nothing for a pass), or the deck ran out. */
+/** How the run ended: the silhouette missed and what was typed (nothing for a pass or a time-out), or the deck ran out. */
 interface Miss {
   card: Card;
   typed: string | null;
+  timedOut?: boolean;
 }
 
 function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
@@ -151,7 +167,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   const isAll = playKey.startsWith(ALL_PREFIX);
   const score = named.length;
   const level = mode === 'rising' ? Math.min(MAX_LEVEL, Math.floor(score / LEVEL_EVERY)) : 0;
-  const look = useMemo(() => drawLook(level, Math.random), [level, index, run]);
+  const look = useMemo(() => (mode === 'hell' ? hellLook(index, Math.random) : drawLook(level, Math.random)), [mode, level, index, run]);
 
   // Keep the next few pictures loading ahead.
   useEffect(() => {
@@ -193,14 +209,15 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
     }, REVEAL_MS);
   };
 
-  /** A wrong name or a pass: show the answer, then the results. */
-  const fail = (typed: string | null) => {
+  /** A wrong name, a pass or a time-out: show the answer, then the results. */
+  const fail = (typed: string | null, timedOut = false) => {
     if (!card || reveal) return;
+    const ended = { card, typed, timedOut };
     setReveal('miss');
-    setMiss({ card, typed });
+    setMiss(ended);
     sfx.wrong();
     shake(frame.current, 6, 300);
-    timer.current = window.setTimeout(() => finish(named.length, { card, typed }), MISS_MS);
+    timer.current = window.setTimeout(() => finish(named.length, ended), MISS_MS);
   };
 
   const submit = (value: string) => {
@@ -246,13 +263,13 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             {deck.length} silhouettes. Name them one after another — a wrong name or a pass ends the run, and your score is your streak. English and French
             names both count, typos are forgiven.
           </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {(['easy', 'rising'] as Mode[]).map((m) => (
+          <div className="grid gap-3 sm:grid-cols-3">
+            {MODE_IDS.map((m) => (
               <button
                 key={m}
                 type="button"
                 onClick={() => start(m)}
-                className={`${m === 'easy' ? 'btn-accent' : 'btn-paper'} flex flex-col items-center gap-1 rounded-md px-4 py-3.5`}
+                className={`${m === 'easy' ? 'btn-accent' : 'btn-paper'} ${m === 'hell' ? 'ring-2 ring-coral/60' : ''} flex flex-col items-center gap-1 rounded-md px-4 py-3.5`}
               >
                 <span className="font-display text-lg font-bold tracking-[0.2em]">{MODES[m].label.toUpperCase()}</span>
                 <span className="text-xs opacity-80">{MODES[m].blurb}</span>
@@ -269,9 +286,14 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             <span className="text-2xl font-bold tabular-nums">🔥 {score}</span>
             <span className="text-sm tracking-wider text-ink-soft">
               {mode === 'rising' && <span className="mr-3 font-bold text-ochre">Level {level}</span>}
+              {mode === 'hell' && <span className="mr-3 font-bold text-coral">{HELL_CYCLE[index % HELL_CYCLE.length]}</span>}
               Best {best}
             </span>
           </div>
+
+          {mode === 'hell' && (
+            <TimerBar total={HELL_SECONDS * 1000} running={!reveal} resetKey={`${run}-${index}`} onExpire={() => fail(null, true)} />
+          )}
 
           <div
             ref={frame}
@@ -304,7 +326,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               <span
                 className={`animate-pop absolute inset-x-0 bottom-0 px-3 py-2 text-center font-display text-lg font-bold text-on-strong ${reveal === 'right' ? 'bg-hit' : 'bg-coral'}`}
               >
-                {reveal === 'right' ? '✓' : '✗ It was'} {card.name}
+                {reveal === 'right' ? '✓' : miss?.timedOut ? "⏱ Time's up — it was" : '✗ It was'} {card.name}
                 {isAll && <span className="ml-2 text-xs opacity-80">· {card.series.label}</span>}
               </span>
             )}
@@ -339,7 +361,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               Pass
             </button>
           </div>
-          <p className="text-center text-xs text-ink-faint">Enter to guess · a wrong name or a pass ends the run</p>
+          <p className="text-center text-xs text-ink-faint">Enter to guess · a wrong name or a pass{mode === 'hell' ? ', or running out of time,' : ''} ends the run</p>
         </div>
       )}
 
@@ -364,7 +386,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
                   {isAll && <span className="ml-2 text-xs font-normal text-ink-soft">{miss.card.series.label}</span>}
                 </p>
                 {miss.card.aliases.length > 0 && <p className="text-xs text-ink-soft">Also: {miss.card.aliases.join(', ')}</p>}
-                <p className="text-sm text-coral">{miss.typed ? `You answered “${miss.typed}”` : 'You passed'}</p>
+                <p className="text-sm text-coral">{miss.typed ? `You answered “${miss.typed}”` : miss.timedOut ? "Time's up" : 'You passed'}</p>
               </div>
             </div>
           )}
