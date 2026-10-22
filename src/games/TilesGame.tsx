@@ -9,7 +9,7 @@ import { GAME_META } from './meta';
 
 /**
  * Cover Puzzle: a scrambled, disguised cover. Swapping and turning the pieces helps read it, but
- * only typing the work's name wins. Each wrong guess clears the pieces a little.
+ * only typing the work's name wins. Each wrong guess gives a couple of pieces their true look back.
  */
 export default function TilesGame({ spec, record, onChange }: GameProps) {
   const work = getWork(spec.targetId!);
@@ -33,7 +33,7 @@ export default function TilesGame({ spec, record, onChange }: GameProps) {
         Which <span className="font-semibold text-ink">{domainInfo(work.domain).noun}</span> is behind this scrambled cover?
       </p>
       <div className="page rounded-md p-5 sm:p-8">
-        <TilePuzzle src={work.cover!.image!} seed={spec.seed} misses={misses} maxMisses={max} revealed={done} />
+        <TilePuzzle src={work.cover!.image!} seed={spec.seed} misses={misses} revealed={done} />
       </div>
       {!done && <GuessInput pool={pool} exclude={named} onGuess={guess} placeholder={`Search ${domainInfo(work.domain).label}…`} />}
       <div className="flex justify-center gap-1.5" aria-label="Attempts">

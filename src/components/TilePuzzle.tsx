@@ -4,19 +4,19 @@ import { sfx } from '../lib/sfx';
 
 const N = 3;
 const COUNT = N * N;
+/** Pieces that get their true look back with each wrong guess. */
+const CLEARED_PER_MISS = 2;
 
 interface Props {
   src: string;
   seed: number;
-  /** Wrong guesses so far: each one eases the tiles' effects. */
+  /** Wrong guesses so far: each one gives CLEARED_PER_MISS pieces their true look back. */
   misses: number;
-  /** Guesses allowed; the effects are at their lightest on the last one. */
-  maxMisses: number;
   revealed: boolean;
   onError?: () => void;
 }
 
-/** How one tile is disguised at full strength. */
+/** How one tile is disguised until it's cleared. */
 interface TileFx {
   hue: number;
   invert: boolean;
@@ -35,12 +35,12 @@ function drawFx(seed: number): TileFx[] {
   }));
 }
 
-/** The CSS for a tile at a given strength (1 = start, 0 = clean). Mirroring goes after 3 misses, inversion after 2. */
-function tileStyle(fx: TileFx, strength: number, misses: number) {
-  const invert = fx.invert && misses < 2 ? ' invert(1)' : '';
+/** The CSS for a disguised tile, or none once it's cleared. */
+function tileStyle(fx: TileFx, cleared: boolean) {
+  if (cleared) return { filter: 'none', mirror: false };
   return {
-    filter: `hue-rotate(${Math.round(fx.hue * strength)}deg) saturate(${1 + strength}) contrast(${1 + strength * 0.3}) blur(${(fx.blur * strength).toFixed(2)}px)${invert}`,
-    mirror: fx.mirror && misses < 3,
+    filter: `hue-rotate(${fx.hue}deg) saturate(2) contrast(1.3) blur(${fx.blur.toFixed(2)}px)${fx.invert ? ' invert(1)' : ''}`,
+    mirror: fx.mirror,
   };
 }
 
@@ -65,15 +65,17 @@ function scramble(seed: number): Board {
 
 /**
  * A 3×3 puzzle cut from a cover, each tile colour-shifted, blurred and maybe inverted or mirrored.
- * Tap two tiles to swap them; tap the same tile twice to rotate it. Rebuilding it doesn't win —
- * naming the work does — and nothing marks a tile as in place.
+ * A piece keeps its disguise wherever it's moved; each wrong guess clears a couple of pieces, in
+ * an order fixed by the seed. Tap two tiles to swap them; tap the same tile twice to rotate it.
+ * Rebuilding it doesn't win — naming the work does — and nothing marks a tile as in place.
  */
-export function TilePuzzle({ src, seed, misses, maxMisses, revealed, onError }: Props) {
+export function TilePuzzle({ src, seed, misses, revealed, onError }: Props) {
   const initial = useMemo(() => scramble(seed), [seed]);
   const fx = useMemo(() => drawFx(seed), [seed]);
+  const clearOrder = useMemo(() => shuffle([...Array(COUNT).keys()], mulberry32(seed ^ 0xc1ea)), [seed]);
+  const cleared = new Set(revealed ? clearOrder : clearOrder.slice(0, misses * CLEARED_PER_MISS));
   const [board, setBoard] = useState<Board>(initial);
   const [picked, setPicked] = useState<number | null>(null);
-  const strength = revealed ? 0 : Math.max(0.15, 1 - misses / Math.max(1, maxMisses - 1));
 
   const tap = (slot: number) => {
     if (revealed) return;
@@ -112,10 +114,11 @@ export function TilePuzzle({ src, seed, misses, maxMisses, revealed, onError }: 
           const row = Math.floor(tile / N);
           const col = tile % N;
           const turn = shown.turns[tile];
-          const look = tileStyle(fx[tile], strength, done ? Infinity : misses);
+          const look = tileStyle(fx[tile], cleared.has(tile));
           return (
+            // Keyed by piece, so a moved piece takes its own look along instead of fading into the slot's.
             <button
-              key={slot}
+              key={tile}
               type="button"
               onClick={() => tap(slot)}
               aria-label={`Tile ${slot + 1}${picked === slot ? ', selected — tap again to rotate' : ''}`}
@@ -142,7 +145,7 @@ export function TilePuzzle({ src, seed, misses, maxMisses, revealed, onError }: 
         })}
       </div>
       <p className="text-center font-display text-[11px] tracking-wider text-ink-faint">
-        {done ? 'THE COVER' : 'TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · EACH MISS CLEARS THE PIECES A LITTLE'}
+        {done ? 'THE COVER' : `TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · EACH MISS RESTORES ${CLEARED_PER_MISS} PIECES · ${cleared.size}/${COUNT} RESTORED`}
       </p>
     </div>
   );

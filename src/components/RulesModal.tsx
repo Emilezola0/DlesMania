@@ -54,7 +54,7 @@ function DailyRules() {
         </p>
       </Step>
       <Step n="III" title="Cover Puzzle — name the cover" demo={<TilesDemo />}>
-        <p>The cover is cut up, shuffled, recoloured, blurred and partly mirrored. Swap two tiles or tap one twice to rotate it if that helps you read it — but only typing the title wins. Each miss clears the pieces a little.</p>
+        <p>The cover is cut up, shuffled, recoloured, blurred and partly mirrored. Swap two tiles or tap one twice to rotate it if that helps you read it — but only typing the title wins. Each piece keeps its disguise when you move it, and each miss gives two pieces their true colours back.</p>
       </Step>
       <Step n="IV" title="Every other round">
         <ul className="grid gap-1 sm:grid-cols-2">
