@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { mulberry32, shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 
@@ -8,12 +8,40 @@ const COUNT = N * N;
 interface Props {
   src: string;
   seed: number;
-  /** Tiles snapped into place for the player — one per hint. */
-  assists: number;
+  /** Wrong guesses so far: each one eases the tiles' effects. */
+  misses: number;
+  /** Guesses allowed; the effects are at their lightest on the last one. */
+  maxMisses: number;
   revealed: boolean;
   onError?: () => void;
-  /** Called once, with the number of moves (swaps and turns), when every tile is home and upright. */
-  onSolved?: (moves: number) => void;
+}
+
+/** How one tile is disguised at full strength. */
+interface TileFx {
+  hue: number;
+  invert: boolean;
+  mirror: boolean;
+  blur: number;
+}
+
+/** Each tile gets its own colour shift and blur; about half are inverted, about half mirrored (no rotation undoes that). */
+function drawFx(seed: number): TileFx[] {
+  const rand = mulberry32(seed ^ 0x5eed);
+  return Array.from({ length: COUNT }, () => ({
+    hue: 90 + Math.floor(rand() * 180),
+    invert: rand() < 0.45,
+    mirror: rand() < 0.5,
+    blur: 1.5 + rand() * 2,
+  }));
+}
+
+/** The CSS for a tile at a given strength (1 = start, 0 = clean). Mirroring goes after 3 misses, inversion after 2. */
+function tileStyle(fx: TileFx, strength: number, misses: number) {
+  const invert = fx.invert && misses < 2 ? ' invert(1)' : '';
+  return {
+    filter: `hue-rotate(${Math.round(fx.hue * strength)}deg) saturate(${1 + strength}) contrast(${1 + strength * 0.3}) blur(${(fx.blur * strength).toFixed(2)}px)${invert}`,
+    mirror: fx.mirror && misses < 3,
+  };
 }
 
 interface Board {
@@ -35,47 +63,20 @@ function scramble(seed: number): Board {
   return { order, turns };
 }
 
-const isHome = (b: Board, slot: number) => b.order[slot] === slot && b.turns[slot] === 0;
-
 /**
- * A 3×3 puzzle cut from a cover. Tap two tiles to swap them; tap the same tile twice to rotate it.
- * Tiles that are home and upright get a small mark.
+ * A 3×3 puzzle cut from a cover, each tile colour-shifted, blurred and maybe inverted or mirrored.
+ * Tap two tiles to swap them; tap the same tile twice to rotate it. Rebuilding it doesn't win —
+ * naming the work does — and nothing marks a tile as in place.
  */
-export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: Props) {
+export function TilePuzzle({ src, seed, misses, maxMisses, revealed, onError }: Props) {
   const initial = useMemo(() => scramble(seed), [seed]);
+  const fx = useMemo(() => drawFx(seed), [seed]);
   const [board, setBoard] = useState<Board>(initial);
   const [picked, setPicked] = useState<number | null>(null);
-  const [placedByHint, setPlacedByHint] = useState(0);
-  const [moves, setMoves] = useState(0);
-  const solved = board.order.every((_, slot) => isHome(board, slot));
-  const reported = useRef(false);
-  useEffect(() => {
-    if (solved && !revealed && !reported.current) {
-      reported.current = true;
-      onSolved?.(moves);
-    }
-  }, [solved, revealed, moves, onSolved]);
-
-  // Each hint snaps the first wrong tile home, upright.
-  useEffect(() => {
-    if (assists <= placedByHint) return;
-    setBoard((b) => {
-      const order = [...b.order];
-      const turns = [...b.turns];
-      for (let k = placedByHint; k < assists; k++) {
-        const slot = order.findIndex((tile, s) => tile !== s || turns[tile] !== 0);
-        if (slot < 0) break;
-        const from = order.indexOf(slot);
-        [order[slot], order[from]] = [order[from], order[slot]];
-        turns[slot] = 0;
-      }
-      return { order, turns };
-    });
-    setPlacedByHint(assists);
-  }, [assists, placedByHint]);
+  const strength = revealed ? 0 : Math.max(0.15, 1 - misses / Math.max(1, maxMisses - 1));
 
   const tap = (slot: number) => {
-    if (revealed || solved) return;
+    if (revealed) return;
     if (picked === null) {
       setPicked(slot);
       sfx.select();
@@ -85,7 +86,6 @@ export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: 
       // Second tap on the same tile: rotate it a quarter turn.
       const tile = board.order[slot];
       setBoard((b) => ({ ...b, turns: b.turns.map((t, i) => (i === tile ? (t + 1) % 4 : t)) }));
-      setMoves((m) => m + 1);
       sfx.click();
     } else {
       setBoard((b) => {
@@ -93,15 +93,13 @@ export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: 
         [order[picked], order[slot]] = [order[slot], order[picked]];
         return { ...b, order };
       });
-      setMoves((m) => m + 1);
       sfx.click();
     }
     setPicked(null);
   };
 
-  const done = revealed || solved;
+  const done = revealed;
   const shown: Board = revealed ? { order: [...Array(COUNT).keys()], turns: Array(COUNT).fill(0) } : board;
-  const inPlace = shown.order.filter((_, slot) => isHome(shown, slot)).length;
 
   return (
     <div className="space-y-3">
@@ -114,6 +112,7 @@ export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: 
           const row = Math.floor(tile / N);
           const col = tile % N;
           const turn = shown.turns[tile];
+          const look = tileStyle(fx[tile], strength, done ? Infinity : misses);
           return (
             <button
               key={slot}
@@ -125,7 +124,10 @@ export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: 
               }`}
             >
               {/* The tile's piece of the cover, rotated as a whole. */}
-              <span className="absolute inset-0 transition-transform duration-200" style={{ transform: `rotate(${turn * 90}deg)` }}>
+              <span
+                className="absolute inset-0 transition-[transform,filter] duration-500"
+                style={{ transform: `rotate(${turn * 90}deg)${look.mirror ? ' scaleX(-1)' : ''}`, filter: look.filter }}
+              >
                 <img
                   src={src}
                   alt=""
@@ -135,13 +137,12 @@ export function TilePuzzle({ src, seed, assists, revealed, onError, onSolved }: 
                   style={{ width: `${N * 100}%`, height: `${N * 100}%`, left: `${-col * 100}%`, top: `${-row * 100}%` }}
                 />
               </span>
-              {isHome(shown, slot) && !done && <span className="absolute right-1 top-1 size-2 rounded-full bg-hit shadow ring-1 ring-card" />}
             </button>
           );
         })}
       </div>
       <p className="text-center font-display text-[11px] tracking-wider text-ink-faint">
-        {done ? 'COVER RESTORED' : `TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · ${inPlace}/${COUNT} IN PLACE · ${moves} MOVES`}
+        {done ? 'THE COVER' : 'TAP TWO TILES TO SWAP · TAP ONE TWICE TO ROTATE · EACH MISS CLEARS THE PIECES A LITTLE'}
       </p>
     </div>
   );

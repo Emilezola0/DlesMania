@@ -30,7 +30,7 @@ Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a 
 | Timeline | `TimelineGame` | Drag or arrows, 3 attempts |
 | Guess from the Image | `ClueGame` + `ObscuredImage` | Picture of an iconic item, partly shown through clear windows (colour-shifted, tilted) that open further with each miss; the description becomes the first hint |
 | Location | `ClueGame` + `ZoomImage` | In-world screenshot or real filming/recording location, starting at ×3.2 on a focal point (`location.focus`) and zooming out per miss |
-| Cover Puzzle | `TilesGame` + `TilePuzzle` | The cover cut into a 3×3 grid, shuffled and rotated: tap two tiles to swap, tap one twice to rotate. Rebuilding it wins (score by moves); hints snap a tile home for points |
+| Cover Puzzle | `TilesGame` + `TilePuzzle` | The cover cut into a 3×3 grid, shuffled, rotated and disguised per tile (colour shift, blur, some inverted or mirrored). Swapping (tap two) and rotating (tap one twice) help read it, but only typing the title wins; each miss eases the effects (inversion goes after 2, mirroring after 3) |
 | Connections | `ConnectionsGame` | 16 picture tiles in 4 groups of 4, Yellow→Purple difficulty, 4 mistakes, "One away…" |
 
 `GameHost` adds the shared juice: synthesized WebAudio SFX (`src/lib/sfx.ts`, toggle 🔊 in the header), confetti (`src/lib/fx.ts`), a glow on wins and slide-in round transitions. Finishing a daily plays a fanfare and produces a Wordle-style share text:

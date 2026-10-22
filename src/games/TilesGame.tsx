@@ -1,61 +1,49 @@
+import { useMemo } from 'react';
+import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
 import { TilePuzzle } from '../components/TilePuzzle';
-import { getWork } from '../data';
+import { candidates, domainInfo, getWork } from '../data';
+import { scoreFor } from '../lib/scoring';
 import type { GameProps } from '../types';
-
-/** Hints available, and what each costs. */
-const MAX_HINTS = 4;
-const HINT_COST = 12;
-/** Moves that still score full marks (9 tiles: a few swaps plus turns). */
-const PAR_MOVES = 14;
+import { GAME_META } from './meta';
 
 /**
- * Cover Puzzle: rebuild a scrambled cover. Assembling it is the whole goal — no title to type.
- * Hints snap a tile home (costing points); giving up reveals the cover and ends the round.
- * `record.guesses` holds "hint" entries, then "moves:<n>" once solved.
+ * Cover Puzzle: a scrambled, disguised cover. Swapping and turning the pieces helps read it, but
+ * only typing the work's name wins. Each wrong guess clears the pieces a little.
  */
 export default function TilesGame({ spec, record, onChange }: GameProps) {
   const work = getWork(spec.targetId!);
-  const hints = record.guesses.filter((g) => g === 'hint').length;
+  const max = GAME_META.tiles.maxAttempts;
+  const pool = useMemo(() => candidates('classic', work.domain), [work.domain]);
+  // Rounds saved before naming was required hold "hint" / "moves:n" entries instead of works.
+  const named = record.guesses.filter((g) => g !== 'hint' && g !== 'gave-up' && !g.startsWith('moves:'));
+  const misses = named.filter((g) => g !== work.id).length;
   const done = record.status !== 'playing';
-  const moves = Number(record.guesses.find((g) => g.startsWith('moves:'))?.slice(6) ?? 0);
 
-  const solved = (n: number) => {
-    if (done) return;
-    const score = Math.max(20, 100 - hints * HINT_COST - Math.max(0, n - PAR_MOVES) * 2);
-    onChange({ status: 'won', guesses: [...record.guesses, `moves:${n}`], score });
+  const guess = (id: string) => {
+    const guesses = [...named, id];
+    const won = id === work.id;
+    const status = won ? 'won' : guesses.length >= max ? 'lost' : 'playing';
+    onChange({ status, guesses, score: won ? scoreFor('tiles', guesses.length) : 0 });
   };
 
   return (
     <div className="space-y-6">
-      <p className="text-center text-ink-soft">Put the pieces back together to restore the cover.</p>
+      <p className="text-center text-ink-soft">
+        Which <span className="font-semibold text-ink">{domainInfo(work.domain).noun}</span> is behind this scrambled cover?
+      </p>
       <div className="page rounded-md p-5 sm:p-8">
-        <TilePuzzle src={work.cover!.image!} seed={spec.seed} assists={hints} revealed={record.status === 'lost'} onSolved={solved} />
+        <TilePuzzle src={work.cover!.image!} seed={spec.seed} misses={misses} maxMisses={max} revealed={done} />
       </div>
-      {!done && (
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            disabled={hints >= MAX_HINTS}
-            onClick={() => onChange({ ...record, guesses: [...record.guesses, 'hint'] })}
-            className="btn-paper rounded-md px-4 py-2 font-display text-sm font-semibold tracking-wider"
-          >
-            Hint — snap a piece ({MAX_HINTS - hints} left, −{HINT_COST} pts)
-          </button>
-          <button
-            type="button"
-            onClick={() => onChange({ status: 'lost', guesses: [...record.guesses, 'gave-up'], score: 0 })}
-            className="rounded-md px-3 py-2 font-display text-sm font-semibold tracking-wider text-ink-faint hover:text-ink"
-          >
-            Give up
-          </button>
-        </div>
-      )}
-      <Outcome
-        record={record}
-        answer={work}
-        answerLabel={record.status === 'won' ? `Restored in ${moves} moves${hints ? ` with ${hints} hint${hints > 1 ? 's' : ''}` : ''}` : undefined}
-      />
+      {!done && <GuessInput pool={pool} exclude={named} onGuess={guess} placeholder={`Search ${domainInfo(work.domain).label}…`} />}
+      <div className="flex justify-center gap-1.5" aria-label="Attempts">
+        {Array.from({ length: max }, (_, i) => {
+          const g = named[i];
+          const cls = !g ? 'bg-tile' : g === work.id ? 'bg-hit' : 'bg-miss';
+          return <span key={i} className={`h-2 w-8 rounded-full transition-colors duration-500 ${cls}`} />;
+        })}
+      </div>
+      <Outcome record={record} answer={work} />
     </div>
   );
 }

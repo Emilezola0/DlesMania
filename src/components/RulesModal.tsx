@@ -53,8 +53,8 @@ function DailyRules() {
           partial match (one shared genre, say), <b className="text-miss">red</b> no match. Narrow it down until every cell is green.
         </p>
       </Step>
-      <Step n="III" title="Cover Puzzle — rebuild the cover" demo={<TilesDemo />}>
-        <p>Tap two tiles to swap them; tap the same tile twice to rotate it. Put every piece back in place to win — no title to type. A hint snaps one piece home, for a few points.</p>
+      <Step n="III" title="Cover Puzzle — name the cover" demo={<TilesDemo />}>
+        <p>The cover is cut up, shuffled, recoloured, blurred and partly mirrored. Swap two tiles or tap one twice to rotate it if that helps you read it — but only typing the title wins. Each miss clears the pieces a little.</p>
       </Step>
       <Step n="IV" title="Every other round">
         <ul className="grid gap-1 sm:grid-cols-2">

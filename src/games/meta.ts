@@ -20,7 +20,7 @@ export const GAME_META: Record<GameType, GameMeta> = {
   timeline: { type: 'timeline', name: 'Timeline', icon: '📅', tagline: 'Sort four works by release date', maxAttempts: 3 },
   item: { type: 'item', name: 'Guess from the Image', icon: '🗡️', tagline: 'Name the work this picture comes from', maxAttempts: 6 },
   location: { type: 'location', name: 'Location', icon: '🗺️', tagline: 'Name the work from one of its places', maxAttempts: 6 },
-  tiles: { type: 'tiles', name: 'Cover Puzzle', icon: '🔳', tagline: 'Put the scrambled cover back together', maxAttempts: 6 },
+  tiles: { type: 'tiles', name: 'Cover Puzzle', icon: '🔳', tagline: 'Name the work behind a scrambled, disguised cover', maxAttempts: 6 },
   connections: { type: 'connections', name: 'Connections', icon: '🔗', tagline: 'Sort the tiles into hidden groups', maxAttempts: settings.connections.maxMistakes },
 };
 

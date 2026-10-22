@@ -23,7 +23,7 @@ const COMPONENTS: Record<GameType, ComponentType<GameProps>> = {
 };
 
 /** Games that play their own sounds for intermediate guesses (e.g. "one away", a solved group). */
-const OWN_FEEDBACK = new Set<GameType>(['connections', 'tiles']);
+const OWN_FEEDBACK = new Set<GameType>(['connections']);
 
 /** Renders the right mini-game and adds the shared juice: sounds, confetti, glow and transitions. */
 export function GameHost({ spec, record, onChange }: GameProps) {
