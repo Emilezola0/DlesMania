@@ -2301,7 +2301,7 @@
           "Luffy",
           "Mugiwara"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/e/e8/Luffy_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211212"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/2/28/Luffy_Sabaody_Thousand_Storm.png/revision/latest?cb=20181025193612"
       },
       {
         "name": "Roronoa Zoro",
@@ -2309,150 +2309,103 @@
           "Zoro",
           "Zorro"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/6/67/Zoro_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211301"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4f/Zoro_Wano_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191225203214"
       },
       {
         "name": "Nami",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Nami_Bounty_Rush.png/revision/latest?cb=20180901120353"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/a9/Nami_Thousand_Storm.png/revision/latest?cb=20180831175319"
       },
       {
         "name": "Usopp",
         "aliases": [
           "Pipo"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/9/91/Usopp_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211358"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/a5/Usopp_Wano_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191225203252"
       },
       {
         "name": "Sanji",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/a/a4/Sanji_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211523"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bd/Sanji_Cook_Thousand_Storm.png/revision/latest?cb=20181025215038"
       },
       {
         "name": "Tony Tony Chopper",
         "aliases": [
           "Chopper"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/3/3b/Chopper_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211624"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4d/Chopper_Thousand_Storm.png/revision/latest?cb=20181025223720"
       },
       {
         "name": "Nico Robin",
         "aliases": [
           "Robin"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ec/Robin_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211731"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/2/28/Robin_Wano_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20200109160946"
       },
       {
         "name": "Franky",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4d/Franky_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720211838"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/68/Franky_Wano_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191225203437"
       },
       {
         "name": "Brook",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/1/18/Brook_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720212009"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/7b/Brook_Thousand_Storm.png/revision/latest?cb=20181025221015"
       },
       {
-        "name": "Shanks",
+        "name": "Jinbe",
         "aliases": [
-          "Le Roux",
-          "Red-Haired Shanks"
+          "Jinbei",
+          "Jimbei"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/f/fd/Shanks_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720212038"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/8a/Jinbe_Samurai_Thousand_Storm.png/revision/latest?cb=20181025211435"
       },
       {
-        "name": "Dracule Mihawk",
+        "name": "Nefertari Vivi",
         "aliases": [
-          "Mihawk",
-          "Œil de Faucon"
+          "Vivi"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c1/Mihawk_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720220712"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c0/Vivi_Thousand_Storm.png/revision/latest?cb=20180830125915"
       },
       {
-        "name": "Crocodile",
+        "name": "Carrot",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/8/8a/Crocodile_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720220346"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c7/Carrot_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026152907"
       },
       {
-        "name": "Buggy",
-        "aliases": [
-          "Baggy"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b7/Buggy_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720213102"
-      },
-      {
-        "name": "Smoker",
+        "name": "Yamato",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/9/96/Smoker_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720214839"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/9/94/Yamato_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210919094040"
       },
       {
-        "name": "Tashigi",
+        "name": "Zeff",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/a/ae/Tashigi_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720215144"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/ff/Zeff_Thousand_Storm.png/revision/latest?cb=20181027194701"
       },
       {
-        "name": "Koby",
-        "aliases": [
-          "Coby"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/d/da/Koby_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720212811"
-      },
-      {
-        "name": "Monkey D. Garp",
-        "aliases": [
-          "Garp"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/8/8c/Garp_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510184218"
-      },
-      {
-        "name": "Sengoku",
+        "name": "Koala",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/d/d2/Sengoku_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510195949"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c7/Koala_Baltigo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026151542"
       },
       {
-        "name": "Kuzan",
-        "aliases": [
-          "Aokiji"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/9/93/Kuzan_World_Seeker.png/revision/latest/scale-to-width-down/360?cb=20191212104726"
-      },
-      {
-        "name": "Enel",
-        "aliases": [
-          "Eneru"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/0/07/Enel_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720220526"
-      },
-      {
-        "name": "Rob Lucci",
-        "aliases": [
-          "Lucci"
-        ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/f/f2/Lucci_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510184510"
-      },
-      {
-        "name": "Marco",
+        "name": "Sabo",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/5/55/Marco_Wano_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20260226181136"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/f8/Sabo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026150527"
       },
       {
-        "name": "Bartholomew Kuma",
+        "name": "Portgas D. Ace",
         "aliases": [
-          "Kuma"
+          "Ace"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b1/Kuma_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510184426"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/57/Ace_Thousand_Storm.png/revision/latest?cb=20181025191118"
       },
       {
-        "name": "Gecko Moria",
+        "name": "Emporio Ivankov",
         "aliases": [
-          "Moria"
+          "Ivankov",
+          "Iva"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/4/41/Gecko_Moria_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20250808142519"
-      },
-      {
-        "name": "Perona",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/4/48/Perona_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510184813"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ea/Ivankov_Thousand_Storm.png/revision/latest?cb=20181026152111"
       },
       {
         "name": "Bon Clay",
@@ -2460,14 +2413,194 @@
           "Mr. 2",
           "Bentham"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c0/Bentham_Super_Grand_Battle_X.png/revision/latest?cb=20200510184005"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/83/Mr._2_Thousand_Storm.png/revision/latest?cb=20181026202339"
       },
       {
-        "name": "Nefertari Vivi",
+        "name": "Bartolomeo",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/7b/Bartolomeo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026184005"
+      },
+      {
+        "name": "Cavendish",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/da/Cavendish_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026183921"
+      },
+      {
+        "name": "Rebecca",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ea/Rebecca_Thousand_Storm.png/revision/latest?cb=20181027203754"
+      },
+      {
+        "name": "Shirahoshi",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/3d/Shirahoshi_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20190912095015"
+      },
+      {
+        "name": "Silvers Rayleigh",
         "aliases": [
-          "Vivi"
+          "Rayleigh"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bb/Vivi_Super_Grand_Battle_X.png/revision/latest?cb=20180831142744"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/43/Rayleigh_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026184806"
+      },
+      {
+        "name": "Kozuki Oden",
+        "aliases": [
+          "Oden"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/1/19/Oden_Haori_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220816034847"
+      },
+      {
+        "name": "Kin'emon",
+        "aliases": [
+          "Kinemon"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4c/Kin%27emon_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191123203751"
+      },
+      {
+        "name": "Kikunojo",
+        "aliases": [
+          "Kiku"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b9/Kikunojo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20200513211509"
+      },
+      {
+        "name": "Denjiro",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4a/Denjiro_in_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20211028173043"
+      },
+      {
+        "name": "Kurozumi Orochi",
+        "aliases": [
+          "Orochi"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/5b/Kurozumi_Orochi_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210120130040"
+      },
+      {
+        "name": "Shanks",
+        "aliases": [
+          "Le Roux",
+          "Red-Haired Shanks"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/81/Shanks_Thousand_Storm.png/revision/latest?cb=20181025184607"
+      },
+      {
+        "name": "Benn Beckman",
+        "aliases": [
+          "Beckman"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c4/Benn_Beckman_Thousand_Storm.png/revision/latest?cb=20181026135105"
+      },
+      {
+        "name": "Uta",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/cf/Uta_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220816034845"
+      },
+      {
+        "name": "Edward Newgate",
+        "aliases": [
+          "Whitebeard",
+          "Barbe Blanche"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/9/9f/Whitebeard_Thousand_Storm.png/revision/latest?cb=20181026140127"
+      },
+      {
+        "name": "Marco",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/82/Marco_Thousand_Storm.png/revision/latest?cb=20181026192556"
+      },
+      {
+        "name": "Jozu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4c/Jozu_Thousand_Storm.png/revision/latest?cb=20181027194243"
+      },
+      {
+        "name": "Vista",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/83/Vista_Thousand_Storm.png/revision/latest?cb=20181027194437"
+      },
+      {
+        "name": "Kaido",
+        "aliases": [
+          "Kaidou"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/ba/Kaidou_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191231061721"
+      },
+      {
+        "name": "King",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b4/King_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210830151130"
+      },
+      {
+        "name": "Queen",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b2/Queen_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20201213144903"
+      },
+      {
+        "name": "Jack",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b2/Jack_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20221020041134"
+      },
+      {
+        "name": "Ulti",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Ulti_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210919094107"
+      },
+      {
+        "name": "Charlotte Linlin",
+        "aliases": [
+          "Big Mom",
+          "Linlin"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ec/Big_Mom_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026140636"
+      },
+      {
+        "name": "Charlotte Katakuri",
+        "aliases": [
+          "Katakuri"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c8/Katakuri_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026141739"
+      },
+      {
+        "name": "Charlotte Cracker",
+        "aliases": [
+          "Cracker"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/ff/Cracker_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20200516104505"
+      },
+      {
+        "name": "Charlotte Perospero",
+        "aliases": [
+          "Perospero"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/71/Perospero_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191107232024"
+      },
+      {
+        "name": "Charlotte Pudding",
+        "aliases": [
+          "Pudding"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/35/Pudding_Chocolat_Town_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20190427143046"
+      },
+      {
+        "name": "Marshall D. Teach",
+        "aliases": [
+          "Blackbeard",
+          "Barbe Noire",
+          "Teach"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/9/99/Blackbeard_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181025185512"
+      },
+      {
+        "name": "Jesus Burgess",
+        "aliases": [
+          "Burgess"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/50/Burgess_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220816034846"
+      },
+      {
+        "name": "Shiryu",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/1/18/Shiryu_One_Piece_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20200225122123"
       },
       {
         "name": "Gol D. Roger",
@@ -2475,27 +2608,326 @@
           "Roger",
           "Gold Roger"
         ],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/0/05/Roger_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510195931"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/6f/Gol_D._Roger_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210504132321"
       },
       {
-        "name": "King",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/e/e6/Luffy_King_of_Pirates_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20260226162036"
-      },
-      {
-        "name": "Shirahoshi",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/6/6a/Shirahoshi_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510200020"
-      },
-      {
-        "name": "Arlong",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/5/59/Arlong_in_Bounty_Rush.png/revision/latest/scale-to-width-down/360?cb=20190720215521"
+        "name": "Trafalgar Law",
+        "aliases": [
+          "Law",
+          "Trafalgar D. Water Law"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/61/Law_Thousand_Storm.png/revision/latest?cb=20181026130749"
       },
       {
         "name": "Bepo",
         "aliases": [],
-        "image": "https://static.wikia.nocookie.net/onepiece/images/c/c5/Bepo_Super_Grand_Battle_X.png/revision/latest/scale-to-width-down/360?cb=20200510184018"
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/3b/Bepo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027193820"
+      },
+      {
+        "name": "Eustass Kid",
+        "aliases": [
+          "Kid",
+          "Kidd"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/6b/Eustass_Kid_Thousand_Storm.png/revision/latest?cb=20181026132223"
+      },
+      {
+        "name": "Killer",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/fb/Killer_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220816034848"
+      },
+      {
+        "name": "Basil Hawkins",
+        "aliases": [
+          "Hawkins"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/de/Hawkins_Thousand_Storm.png/revision/latest?cb=20181026133839"
+      },
+      {
+        "name": "X Drake",
+        "aliases": [
+          "Drake"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/0/04/X_Drake_Thousand_Storm.png/revision/latest?cb=20181026133417"
+      },
+      {
+        "name": "Scratchmen Apoo",
+        "aliases": [
+          "Apoo"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/7a/Apoo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026134304"
+      },
+      {
+        "name": "Capone Bege",
+        "aliases": [
+          "Bege"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/d/d6/Capone_Bege_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026134058"
+      },
+      {
+        "name": "Boa Hancock",
+        "aliases": [
+          "Hancock"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/0/08/Hancock_Thousand_Storm.png/revision/latest?cb=20181026203308"
+      },
+      {
+        "name": "Dracule Mihawk",
+        "aliases": [
+          "Mihawk",
+          "Œil de Faucon"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/2/24/Mihawk_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026210712"
+      },
+      {
+        "name": "Crocodile",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/a0/Crocodile_Thousand_Storm.png/revision/latest?cb=20181026201734"
+      },
+      {
+        "name": "Daz Bonez",
+        "aliases": [
+          "Mr. 1",
+          "Daz Bones"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/68/Mr._1_Thousand_Storm.png/revision/latest?cb=20220817034305"
+      },
+      {
+        "name": "Galdino",
+        "aliases": [
+          "Mr. 3"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/86/Mr._3_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20190427145213"
+      },
+      {
+        "name": "Donquixote Doflamingo",
+        "aliases": [
+          "Doflamingo"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/75/Doflamingo_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026205050"
+      },
+      {
+        "name": "Trebol",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4d/Trebol_Thousand_Storm.png/revision/latest?cb=20220817034250"
+      },
+      {
+        "name": "Sugar",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/45/Sugar_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027203427"
+      },
+      {
+        "name": "Vergo",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/53/Vergo_Full_Body_Haki_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220817034242"
+      },
+      {
+        "name": "Monet",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/35/Monet_Christmas_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191216172721"
+      },
+      {
+        "name": "Caesar Clown",
+        "aliases": [
+          "Caesar"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/bc/Caesar_Gangster_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20210628234908"
+      },
+      {
+        "name": "Gecko Moria",
+        "aliases": [
+          "Moria"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/50/Gecko_Moria_Thousand_Storm.png/revision/latest?cb=20181026211243"
+      },
+      {
+        "name": "Perona",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/65/Perona_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20180831094532"
+      },
+      {
+        "name": "Absalom",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/48/Absalom_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220817034302"
+      },
+      {
+        "name": "Bartholomew Kuma",
+        "aliases": [
+          "Kuma"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/e6/Bartholomew_Kuma_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026212104"
+      },
+      {
+        "name": "Buggy",
+        "aliases": [
+          "Baggy"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/37/Buggy_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181025182339"
+      },
+      {
+        "name": "Alvida",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b6/Alvida_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20180830130324"
+      },
+      {
+        "name": "Kuro",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/72/Kuro_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20190126123920"
+      },
+      {
+        "name": "Don Krieg",
+        "aliases": [
+          "Krieg"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/84/Krieg_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026142505"
+      },
+      {
+        "name": "Gin",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ee/Gin_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026142938"
+      },
+      {
+        "name": "Hody Jones",
+        "aliases": [
+          "Hody"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/9/9c/Hody_Jones_Thousand_Storm.png/revision/latest?cb=20220817034256"
+      },
+      {
+        "name": "Enel",
+        "aliases": [
+          "Ener",
+          "Eneru"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/e/ec/Enel_Thousand_Storm.png/revision/latest?cb=20181026215459"
+      },
+      {
+        "name": "Gild Tesoro",
+        "aliases": [
+          "Tesoro"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/74/Gild_Tesoro_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027211335"
+      },
+      {
+        "name": "Shiki",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Shiki_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026143331"
+      },
+      {
+        "name": "Douglas Bullet",
+        "aliases": [
+          "Bullet"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/3/33/Douglas_Bullet_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20190912095235"
+      },
+      {
+        "name": "Monkey D. Garp",
+        "aliases": [
+          "Garp"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/6a/Garp_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026193506"
+      },
+      {
+        "name": "Sengoku",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/1/12/Sengoku_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026182202"
+      },
+      {
+        "name": "Tsuru",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b2/Tsuru_Thousand_Storm.png/revision/latest?cb=20181027201114"
+      },
+      {
+        "name": "Sakazuki",
+        "aliases": [
+          "Akainu"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b1/Sakazuki_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026191217"
+      },
+      {
+        "name": "Kuzan",
+        "aliases": [
+          "Aokiji"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b0/Kuzan_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026144412"
+      },
+      {
+        "name": "Borsalino",
+        "aliases": [
+          "Kizaru"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/7/75/Borsalino_%28Greatest_Military_Power%29_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20191123204925"
+      },
+      {
+        "name": "Issho",
+        "aliases": [
+          "Fujitora"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/4b/Fujitora_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026191913"
+      },
+      {
+        "name": "Smoker",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/0/06/Smoker_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026190539"
+      },
+      {
+        "name": "Tashigi",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/a/a4/Tashigi_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20180830130031"
+      },
+      {
+        "name": "Koby",
+        "aliases": [
+          "Coby",
+          "Kobby"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/2/25/Koby_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026183205"
+      },
+      {
+        "name": "Hina",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/6/69/Hina_Marineford_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027201919"
+      },
+      {
+        "name": "Magellan",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/1/12/Magellan_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026214628"
+      },
+      {
+        "name": "Rob Lucci",
+        "aliases": [
+          "Lucci"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/fc/Rob_Lucci_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181025183202"
+      },
+      {
+        "name": "Kaku",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/4/40/Kaku_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181026213844"
+      },
+      {
+        "name": "Jabra",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/b/b1/Jabra_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20220817034248"
+      },
+      {
+        "name": "Sentomaru",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/8/8f/Sentomaru_Thousand_Storm.png/revision/latest?cb=20220817034300"
+      },
+      {
+        "name": "Vinsmoke Reiju",
+        "aliases": [
+          "Reiju"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/5/51/Reiju_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027204817"
+      },
+      {
+        "name": "Vinsmoke Judge",
+        "aliases": [
+          "Judge"
+        ],
+        "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Judge_Thousand_Storm.png/revision/latest/scale-to-width-down/360?cb=20181027205146"
       }
     ]
   }

@@ -8,7 +8,7 @@
 //
 // Sources: Pokémon — PokeAPI (names in English/French, official artwork); League of Legends — Data
 // Dragon champion list + "<Champion> Render.png" on the League wiki; Minecraft — the mob pages'
-// renders on the Minecraft wiki; One Piece — Bounty Rush renders on the One Piece wiki.
+// renders on the Minecraft wiki; One Piece — game renders (Thousand Storm first) on the One Piece wiki.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, fandomApi, getJson, mediawikiGet, mediawikiImages, parseArgs, sleep } from './lib.mjs';
@@ -30,52 +30,91 @@ const MINECRAFT = [
   ['Silverfish', ["Poisson d'argent"]], ['Endermite'], ['Armadillo', ['Tatou']], ['Breeze'], ['Vex', ['Vexeur']], ['Zombie Villager', ['Villageois zombie']],
 ];
 
-// [name, aliases, search key for the Bounty Rush render]
+// [name, aliases (French names and nicknames), file-name key on the One Piece wiki]
 const ONE_PIECE = [
+  // Straw Hats and allies
   ['Monkey D. Luffy', ['Luffy', 'Mugiwara'], 'Luffy'], ['Roronoa Zoro', ['Zoro', 'Zorro'], 'Zoro'], ['Nami', [], 'Nami'], ['Usopp', ['Pipo'], 'Usopp'], ['Sanji', [], 'Sanji'],
   ['Tony Tony Chopper', ['Chopper'], 'Chopper'], ['Nico Robin', ['Robin'], 'Robin'], ['Franky', [], 'Franky'], ['Brook', [], 'Brook'], ['Jinbe', ['Jinbei', 'Jimbei'], 'Jinbe'],
-  ['Shanks', ['Le Roux', 'Red-Haired Shanks'], 'Shanks'], ['Portgas D. Ace', ['Ace'], 'Ace'], ['Sabo', [], 'Sabo'], ['Trafalgar Law', ['Law', 'Trafalgar D. Water Law'], 'Law'],
-  ['Boa Hancock', ['Hancock'], 'Hancock'], ['Dracule Mihawk', ['Mihawk', 'Œil de Faucon'], 'Mihawk'], ['Crocodile', [], 'Crocodile'], ['Donquixote Doflamingo', ['Doflamingo'], 'Doflamingo'],
-  ['Kaido', ['Kaidou'], 'Kaido'], ['Charlotte Linlin', ['Big Mom', 'Linlin'], 'Big Mom'], ['Edward Newgate', ['Whitebeard', 'Barbe Blanche'], 'Whitebeard'],
-  ['Marshall D. Teach', ['Blackbeard', 'Barbe Noire', 'Teach'], 'Blackbeard'], ['Buggy', ['Baggy'], 'Buggy'], ['Smoker', [], 'Smoker'], ['Tashigi', [], 'Tashigi'], ['Koby', ['Coby'], 'Koby'],
-  ['Monkey D. Garp', ['Garp'], 'Garp'], ['Sengoku', [], 'Sengoku'], ['Sakazuki', ['Akainu'], 'Akainu'], ['Kuzan', ['Aokiji'], 'Aokiji'], ['Borsalino', ['Kizaru'], 'Kizaru'],
-  ['Issho', ['Fujitora'], 'Fujitora'], ['Enel', ['Eneru'], 'Enel'], ['Rob Lucci', ['Lucci'], 'Lucci'], ['Eustass Kid', ['Kid', 'Kidd'], 'Kid'], ['Killer', [], 'Killer'], ['Marco', [], 'Marco'],
-  ['Yamato', [], 'Yamato'], ['Charlotte Katakuri', ['Katakuri'], 'Katakuri'], ['Bartholomew Kuma', ['Kuma'], 'Kuma'], ['Gecko Moria', ['Moria'], 'Moria'], ['Perona', [], 'Perona'],
-  ['Bon Clay', ['Mr. 2', 'Bentham'], 'Bon Clay'], ['Nefertari Vivi', ['Vivi'], 'Vivi'], ['Carrot', [], 'Carrot'], ['Kozuki Oden', ['Oden'], 'Oden'],
-  ['Silvers Rayleigh', ['Rayleigh'], 'Rayleigh'], ['Gol D. Roger', ['Roger', 'Gold Roger'], 'Roger'], ['King', [], 'King'], ['Queen', [], 'Queen'], ['Uta', [], 'Uta'],
-  ['Shirahoshi', [], 'Shirahoshi'], ['Arlong', [], 'Arlong'], ['Caesar Clown', ['Caesar'], 'Caesar'], ['Rebecca', [], 'Rebecca'], ["Kin'emon", ['Kinemon'], "Kin'emon"],
-  ['Kozuki Hiyori', ['Hiyori'], 'Hiyori'], ['Bepo', [], 'Bepo'], ['Sentomaru', [], 'Sentomaru'], ['Vegapunk', [], 'Vegapunk'],
+  ['Nefertari Vivi', ['Vivi'], 'Vivi'], ['Carrot', [], 'Carrot'], ['Yamato', [], 'Yamato'], ['Kozuki Momonosuke', ['Momonosuke', 'Momo'], 'Momonosuke'], ['Kaya', [], 'Kaya'],
+  ['Zeff', [], 'Zeff'], ['Koala', [], 'Koala'], ['Sabo', [], 'Sabo'], ['Portgas D. Ace', ['Ace'], 'Ace'], ['Monkey D. Dragon', ['Dragon'], 'Dragon'],
+  ['Emporio Ivankov', ['Ivankov', 'Iva'], 'Ivankov'], ['Inazuma', [], 'Inazuma'], ['Bon Clay', ['Mr. 2', 'Bentham'], 'Bentham'], ['Bartolomeo', [], 'Bartolomeo'],
+  ['Cavendish', [], 'Cavendish'], ['Kyros', [], 'Kyros'], ['Rebecca', [], 'Rebecca'], ['Pedro', [], 'Pedro'], ['Wiper', [], 'Wiper'], ['Neptune', [], 'Neptune'],
+  ['Shirahoshi', [], 'Shirahoshi'], ['Silvers Rayleigh', ['Rayleigh'], 'Rayleigh'], ['Shakky', ['Shakuyaku'], 'Shakky'],
+  // Wano
+  ['Kozuki Oden', ['Oden'], 'Oden'], ["Kin'emon", ['Kinemon'], "Kin'emon"], ['Kikunojo', ['Kiku'], 'Kikunojo'], ['Kanjuro', [], 'Kanjuro'], ['Denjiro', [], 'Denjiro'],
+  ['Shinobu', [], 'Shinobu'], ['Kozuki Hiyori', ['Hiyori'], 'Hiyori'], ['Kurozumi Orochi', ['Orochi'], 'Orochi'],
+  // Emperors and their crews
+  ['Shanks', ['Le Roux', 'Red-Haired Shanks'], 'Shanks'], ['Benn Beckman', ['Beckman'], 'Beckman'], ['Lucky Roux', ['Lucky Roo'], 'Lucky Roux'], ['Yasopp', [], 'Yasopp'],
+  ['Uta', [], 'Uta'], ['Edward Newgate', ['Whitebeard', 'Barbe Blanche'], 'Whitebeard'], ['Marco', [], 'Marco'], ['Jozu', [], 'Jozu'], ['Vista', [], 'Vista'], ['Izo', [], 'Izo'],
+  ['Kaido', ['Kaidou'], 'Kaido'], ['King', [], 'King'], ['Queen', [], 'Queen'], ['Jack', [], 'Jack'], ['Ulti', [], 'Ulti'],
+  ['Charlotte Linlin', ['Big Mom', 'Linlin'], 'Big Mom'], ['Charlotte Katakuri', ['Katakuri'], 'Katakuri'], ['Charlotte Cracker', ['Cracker'], 'Cracker'],
+  ['Charlotte Smoothie', ['Smoothie'], 'Smoothie'], ['Charlotte Perospero', ['Perospero'], 'Perospero'], ['Charlotte Pudding', ['Pudding'], 'Pudding'], ['Pekoms', [], 'Pekoms'],
+  ['Marshall D. Teach', ['Blackbeard', 'Barbe Noire', 'Teach'], 'Blackbeard'], ['Jesus Burgess', ['Burgess'], 'Burgess'], ['Shiryu', [], 'Shiryu'], ['Van Augur', ['Augur'], 'Augur'],
+  ['Laffitte', [], 'Laffitte'], ['Catarina Devon', ['Devon'], 'Devon'], ['Avalo Pizarro', ['Pizarro'], 'Pizarro'], ['Gol D. Roger', ['Roger', 'Gold Roger'], 'Roger'],
+  // Supernovas and other pirates
+  ['Trafalgar Law', ['Law', 'Trafalgar D. Water Law'], 'Law'], ['Bepo', [], 'Bepo'], ['Eustass Kid', ['Kid', 'Kidd'], 'Kid'], ['Killer', [], 'Killer'],
+  ['Basil Hawkins', ['Hawkins'], 'Hawkins'], ['X Drake', ['Drake'], 'Drake'], ['Scratchmen Apoo', ['Apoo'], 'Apoo'], ['Jewelry Bonney', ['Bonney'], 'Bonney'],
+  ['Capone Bege', ['Bege'], 'Bege'], ['Urouge', [], 'Urouge'], ['Boa Hancock', ['Hancock'], 'Hancock'], ['Dracule Mihawk', ['Mihawk', 'Œil de Faucon'], 'Mihawk'],
+  ['Crocodile', [], 'Crocodile'], ['Daz Bonez', ['Mr. 1', 'Daz Bones'], 'Daz'], ['Galdino', ['Mr. 3'], 'Galdino'], ['Donquixote Doflamingo', ['Doflamingo'], 'Doflamingo'],
+  ['Trebol', [], 'Trebol'], ['Sugar', [], 'Sugar'], ['Vergo', [], 'Vergo'], ['Monet', [], 'Monet'], ['Caesar Clown', ['Caesar'], 'Caesar'], ['Gecko Moria', ['Moria'], 'Moria'],
+  ['Perona', [], 'Perona'], ['Absalom', [], 'Absalom'], ['Bartholomew Kuma', ['Kuma'], 'Kuma'], ['Buggy', ['Baggy'], 'Buggy'], ['Alvida', [], 'Alvida'], ['Kuro', [], 'Kuro'],
+  ['Don Krieg', ['Krieg'], 'Krieg'], ['Gin', [], 'Gin'], ['Arlong', [], 'Arlong'], ['Hachi', ['Hatchan'], 'Hachi'], ['Hody Jones', ['Hody'], 'Hody'], ['Wapol', [], 'Wapol'],
+  ['Enel', ['Ener', 'Eneru'], 'Enel'], ['Foxy', [], 'Foxy'], ['Gild Tesoro', ['Tesoro'], 'Tesoro'], ['Shiki', [], 'Shiki'], ['Douglas Bullet', ['Bullet'], 'Bullet'],
+  // Marines, government and Egghead
+  ['Monkey D. Garp', ['Garp'], 'Garp'], ['Sengoku', [], 'Sengoku'], ['Tsuru', [], 'Tsuru'], ['Sakazuki', ['Akainu'], 'Akainu'], ['Kuzan', ['Aokiji'], 'Aokiji'],
+  ['Borsalino', ['Kizaru'], 'Kizaru'], ['Issho', ['Fujitora'], 'Fujitora'], ['Aramaki', ['Ryokugyu'], 'Ryokugyu'], ['Smoker', [], 'Smoker'], ['Tashigi', [], 'Tashigi'],
+  ['Koby', ['Coby', 'Kobby'], 'Koby'], ['Helmeppo', [], 'Helmeppo'], ['Hina', [], 'Hina'], ['Zephyr', ['Z'], 'Zephyr'], ['Magellan', [], 'Magellan'], ['Hannyabal', [], 'Hannyabal'],
+  ['Rob Lucci', ['Lucci'], 'Lucci'], ['Kaku', [], 'Kaku'], ['Jabra', [], 'Jabra'], ['Spandam', [], 'Spandam'], ['Stussy', [], 'Stussy'], ['Sentomaru', [], 'Sentomaru'],
+  ['Vegapunk', [], 'Vegapunk'], ['Vinsmoke Reiju', ['Reiju'], 'Reiju'], ['Vinsmoke Judge', ['Judge'], 'Judge'], ['Nefertari Cobra', ['Cobra'], 'Cobra'],
 ];
 
-/** Game renders on the One Piece wiki have transparent backgrounds; Bounty Rush ones first. */
-// (Pirate Warriors renders are painted on brush strokes, so they black out into blocks.)
-const RENDER_GAMES = ['Bounty Rush', 'Super Grand Battle X', 'Puzzle and Dragons', 'Burning Blood', 'World Seeker', 'Unlimited World Red'];
-
 /**
- * Candidate renders for a character, plainest first (the default costume tends to have the
- * shortest file name). Some uploads are in-game screenshots rather than cut-outs, so several are
- * kept: `--apply` later picks the first one that really has a transparent background.
+ * Game renders on the One Piece wiki, best first. Thousand Storm has the biggest roster and clean
+ * cut-outs (transparent, no outline); the others are fallbacks. Bounty Rush renders carry a glow
+ * outline that shows as a doubled edge in the silhouette, and Pirate Warriors ones are painted on
+ * brush strokes, so neither is used.
  */
-async function bountyRush(key) {
-  const urls = [];
-  for (const game of RENDER_GAMES) {
-    urls.push(...(await gameRenders(key, game)));
-    if (urls.length >= 10) break;
-  }
-  return urls.slice(0, 10);
+const RENDER_GAMES = ['Thousand Storm', 'World Seeker', 'Burning Will', 'Unlimited World Red', 'Burning Blood'];
+
+// Holiday and one-off costumes change the outline: kept only as a last resort.
+const COSTUME = /_(new_year|halloween|christmas|valentine|swimsuit|summer|child|kid_version)_/i;
+const gameRank = (n) => RENDER_GAMES.findIndex((g) => n.toLowerCase().endsWith(`_${g.replace(/ /g, '_')}.png`.toLowerCase()));
+
+/** Render files named "<key>_[<variant>_]<game>.png". */
+async function onePieceRenders(key) {
+  const d = await mediawikiGet(fandomApi('onepiece'), { action: 'query', list: 'allimages', aiprefix: key, ailimit: '500' });
+  const prefix = key.replace(/ /g, '_').toLowerCase();
+  return (d.query?.allimages ?? []).map((i) => i.name).filter((n) => n.toLowerCase().startsWith(`${prefix}_`) && gameRank(n) >= 0);
 }
 
-async function gameRenders(key, game) {
-  const d = await mediawikiGet(fandomApi('onepiece'), {
-    action: 'query', list: 'search', srnamespace: '6', srlimit: '20', srsearch: `${key} ${game}`,
+/**
+ * Candidate renders for a character, best first: regular outfits before costumes, then by game,
+ * then files found under the fuller spelling ("Monkey_D._Dragon_…" before "Dragon_…", which may be
+ * something else), then the plainest (shortest) name. `--apply` later keeps the first that really
+ * has a transparent background.
+ */
+async function onePieceCandidates(spellings) {
+  const found = new Map();
+  for (const [i, k] of spellings.entries()) {
+    for (const n of await onePieceRenders(k)) if (!found.has(n)) found.set(n, i);
+    await sleep(250);
+  }
+  const score = (n) => [COSTUME.test(n) ? 1 : 0, gameRank(n), found.get(n), n.length];
+  return [...found.keys()].sort((a, b) => {
+    const [x, y] = [score(a), score(b)];
+    const i = x.findIndex((v, k) => v !== y[k]);
+    return i < 0 ? 0 : x[i] - y[i];
   });
-  const ending = new RegExp(`${game}\\.png$`, 'i');
-  const titles = (d.query?.search ?? []).map((s) => s.title).filter((t) => ending.test(t) && t.toLowerCase().includes(key.toLowerCase()));
-  titles.sort((a, b) => a.length - b.length);
+}
+
+/** Image URLs for up to five candidate files. */
+async function fileUrls(files) {
+  const titles = files.slice(0, 5).map((n) => `File:${n}`);
   if (!titles.length) return [];
-  const info = await mediawikiGet(fandomApi('onepiece'), { action: 'query', prop: 'imageinfo', iiprop: 'url', iiurlwidth: String(SIZE), titles: titles.slice(0, 4).join('|') });
-  const byTitle = new Map((info.query?.pages ?? []).map((p) => [p.title, p.imageinfo?.[0]?.thumburl]));
-  return titles.slice(0, 4).map((t) => byTitle.get(t)).filter(Boolean);
+  const info = await mediawikiGet(fandomApi('onepiece'), { action: 'query', prop: 'imageinfo', iiprop: 'url', iiurlwidth: String(SIZE), titles: titles.join('|') });
+  const norm = new Map((info.query?.normalized ?? []).map((n) => [n.to, n.from]));
+  const byTitle = new Map((info.query?.pages ?? []).map((p) => [norm.get(p.title) ?? p.title, p.imageinfo?.[0]?.thumburl]));
+  return titles.map((t) => byTitle.get(t) ?? byTitle.get(t.replace(/_/g, ' '))).filter(Boolean);
 }
 
 /** Image URLs for "File:<name> Render.png" on the League wiki, 50 at a time. */
@@ -132,17 +171,12 @@ async function minecraft() {
 async function onePiece() {
   const entries = [];
   for (const [name, aliases, key] of ONE_PIECE) {
-    // File names use whichever name the game uses ("Kuzan", "Aokiji"...): try each in turn.
-    let found = [];
-    for (const k of [...new Set([key, ...aliases, name, name.split(' ').pop()])]) {
-      found = await bountyRush(k);
-      if (found.length) break;
-      await sleep(300);
-    }
-    const [image, ...alts] = found;
+    // File names use whichever name the game uses ("Sakazuki", "Akainu"...): try every spelling, full name first.
+    const ranked = await onePieceCandidates([...new Set([name, key, ...aliases])]);
+    const [image, ...alts] = await fileUrls(ranked);
     if (image) entries.push({ name, aliases, image, ...(alts.length ? { alts } : {}) });
-    else console.log(`  ✗ one piece: no Bounty Rush render for ${name}`);
-    await sleep(500);
+    else console.log(`  ✗ one piece: no render for ${name}`);
+    await sleep(400);
   }
   return entries;
 }
