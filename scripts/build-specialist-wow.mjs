@@ -10,6 +10,7 @@
 //   characters), each flag weighted, plus the article's size. Characters must appear in World of
 //   Warcraft (a "<zone> NPCs" / "mobs" / "bosses" category); the top `--size` are kept.
 // - Facts: the {{Npcbox}} infobox — gender, race, creature type, faction, class, status, titles.
+// - Debut: the first game each one appeared in, hand-written in scripts/data/wow-debuts.mjs.
 // - Pictures: the infobox art (portrait crop) and, for silhouettes, a render with a transparent
 //   background found among the PNGs on the character's page (Warcraft III Reforged, Warcraft Rumble…),
 //   checked by decoding the thumbnail here.
@@ -18,6 +19,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { inflateSync } from 'node:zlib';
 import { ROOT, mediawikiGet, parseArgs, sleep } from './lib.mjs';
+import { WOW_DEBUT, WOW_GAMES } from './data/wow-debuts.mjs';
 
 const API = 'https://warcraft.wiki.gg/api.php';
 const OUT = join(ROOT, 'src', 'data', 'specialist', 'wow.json');
@@ -401,6 +403,8 @@ for (const [i, { title, p, box }] of chosen.entries()) {
     class: className(box.character),
     status: statusOf(box.status),
     titles: [...new Set(titles)].slice(0, 6),
+    // First game they appeared in (index in `games`), hand-written in scripts/data/wow-debuts.mjs.
+    debut: WOW_DEBUT[title],
   };
   for (const n of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
     if (taken.has(n) && taken.get(n) !== c.id) {
@@ -417,5 +421,5 @@ for (const [i, { title, p, box }] of chosen.entries()) {
 const missing = (k) => characters.filter((c) => !c[k]).map((c) => c.name);
 console.log(`  no image: ${missing('image').join(', ') || '-'}\n  no render: ${missing('render').length} (${missing('render').slice(0, 30).join(', ')}…)`);
 mkdirSync(join(ROOT, 'src', 'data', 'specialist'), { recursive: true });
-writeFileSync(OUT, JSON.stringify({ generated: new Date().toISOString().slice(0, 10), characters }, null, 2) + '\n');
+writeFileSync(OUT, JSON.stringify({ generated: new Date().toISOString().slice(0, 10), games: WOW_GAMES, characters }, null, 2) + '\n');
 console.log(`✓ ${OUT}: ${characters.length} characters, ${characters.filter((c) => c.render).length} with a render`);

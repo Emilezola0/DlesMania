@@ -14,6 +14,7 @@ import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { GENSHIN } from '../specialist/genshin';
 import { WOW } from '../specialist/wow';
+import { timelineRoundFor } from '../specialist/games/TimelineRound';
 import { WowArtRound, WowSilhouetteRound, WowTitlesRound } from '../specialist/games/WowRounds';
 import { ClassicRound, GenshinClassicRound, LolClassicRound, MarvelClassicRound, WowClassicRound } from '../specialist/games/ClassicRound';
 import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/games/GenshinRounds';
@@ -27,11 +28,11 @@ type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundReco
 
 /** Which component plays each round type, per universe. */
 const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<RoundProps>>>> = {
-  onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, wanted: WantedRound },
-  lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound },
-  marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound },
-  genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound },
-  wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound },
+  onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, wanted: WantedRound, timeline: timelineRoundFor('onepiece') },
+  lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound, timeline: timelineRoundFor('lol') },
+  marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound, timeline: timelineRoundFor('marvel') },
+  genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
+  wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
 };
 
 /** The line under a universe's title: what's in it, and when the data was built. */
@@ -62,7 +63,7 @@ export function SpecialistHub() {
         <h1 className="text-5xl font-bold">Specialist</h1>
         <p className="max-w-xl text-ink-soft">
           Pick a universe and play rounds made only from it: a Classic built on its own traits, plus games you won&apos;t find anywhere else — Devil
-          Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League, posters and voice lines for Marvel, wish arts and constellations for Genshin, art and titles for World of Warcraft. A new daily every day, and practice whenever you like.
+          Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League, posters and voice lines for Marvel, wish arts and constellations for Genshin, art and titles for World of Warcraft — and in every universe, a Timeline of who came first. A new daily every day, and practice whenever you like.
         </p>
       </div>
       <ul className="grid gap-4 sm:grid-cols-3">

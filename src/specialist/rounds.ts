@@ -6,8 +6,9 @@ import { LOL_POOLS } from './lol';
 import { MARVEL_POOLS } from './marvel';
 import { GENSHIN_POOLS } from './genshin';
 import { WOW_POOLS } from './wow';
+import { timelinePool } from './timeline';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -16,35 +17,35 @@ export const UNIVERSES = [
     label: 'One Piece',
     ready: true,
     blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and wanted posters — 220 characters from the anime.',
-    types: ['classic', 'fruit', 'laugh', 'flag', 'wanted'] as SpType[],
+    types: ['classic', 'fruit', 'laugh', 'flag', 'wanted', 'timeline'] as SpType[],
   },
   {
     id: 'lol',
     label: 'League of Legends',
     ready: true,
     blurb: 'Classic, abilities, splash arts and silhouettes — every champion, from Data Dragon.',
-    types: ['classic', 'ability', 'splash', 'silhouette'] as SpType[],
+    types: ['classic', 'ability', 'splash', 'silhouette', 'timeline'] as SpType[],
   },
   {
     id: 'marvel',
     label: 'Marvel (MCU)',
     ready: true,
     blurb: 'Classic on 180 characters, plus posters, emoji films and voice lines — every released film.',
-    types: ['classic', 'film', 'emoji', 'voice'] as SpType[],
+    types: ['classic', 'film', 'emoji', 'voice', 'timeline'] as SpType[],
   },
   {
     id: 'genshin',
     label: 'Genshin Impact',
     ready: true,
     blurb: 'Classic, wish arts, silhouettes and constellations — every playable character.',
-    types: ['classic', 'wish', 'silhouette', 'constellation'] as SpType[],
+    types: ['classic', 'wish', 'silhouette', 'constellation', 'timeline'] as SpType[],
   },
   {
     id: 'wow',
     label: 'World of Warcraft',
     ready: true,
     blurb: 'Classic, art, silhouettes and titles — 120 of the best-known characters from the games.',
-    types: ['classic', 'art', 'silhouette', 'titles'] as SpType[],
+    types: ['classic', 'art', 'silhouette', 'titles', 'timeline'] as SpType[],
   },
 ] as const;
 export type UniverseId = (typeof UNIVERSES)[number]['id'];
@@ -65,6 +66,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (original English voice)', maxAttempts: 6 },
   wish: { name: 'Wish Art', icon: '🌠', tagline: 'Whose wish art is this?', maxAttempts: 6 },
   art: { name: 'Art', icon: '🖼️', tagline: 'Who is in this picture?', maxAttempts: 6 },
+  timeline: { name: 'Timeline', icon: '⏳', tagline: 'Who came first?', maxAttempts: 4 },
   titles: { name: 'Titles', icon: '📜', tagline: 'Who goes by these titles?', maxAttempts: 6 },
   constellation: { name: 'Constellation', icon: '✦', tagline: 'Whose constellation is this?', maxAttempts: 6 },
 };
@@ -83,7 +85,13 @@ export function spScore(type: SpType, attempts: number): number {
 
 export const maxScore = (id: UniverseId) => universe(id)!.types.length * 100;
 
-const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = { onepiece: POOLS, lol: LOL_POOLS, marvel: MARVEL_POOLS, genshin: GENSHIN_POOLS, wow: WOW_POOLS };
+const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
+  onepiece: { ...POOLS, timeline: timelinePool('onepiece') },
+  lol: { ...LOL_POOLS, timeline: timelinePool('lol') },
+  marvel: { ...MARVEL_POOLS, timeline: timelinePool('marvel') },
+  genshin: { ...GENSHIN_POOLS, timeline: timelinePool('genshin') },
+  wow: { ...WOW_POOLS, timeline: timelinePool('wow') },
+};
 
 /** How many answers a round type can draw from. */
 export const poolSize = (id: UniverseId, type: SpType) => (POOLS_OF[id][type] ?? []).length;
@@ -108,7 +116,8 @@ export function buildSpecialistDaily(id: UniverseId, date: string): SpRound[] {
   // No repeats across days: each round prefers what hasn't been an answer for the longest time.
   const lastUsed = new Map<string, number>();
   for (let day = EPOCH, n = 0; day < date; day = addDays(day, 1), n++) {
-    for (const r of buildSpecialistDaily(id, day)) lastUsed.set(r.targetId, n);
+    // Timeline rounds came later: leaving them out keeps the days already played as they were.
+    for (const r of buildSpecialistDaily(id, day)) if (r.type !== 'timeline') lastUsed.set(r.targetId, n);
   }
   const rounds = universe(id)!.types.map((type) => {
     const round = randomRound(id, type, rand, used, lastUsed);

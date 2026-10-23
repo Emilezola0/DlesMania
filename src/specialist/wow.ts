@@ -19,10 +19,14 @@ export interface WowCharacter {
   class: string;
   status: string;
   titles: string[];
+  /** First game they appeared in: an index in `WOW.games` (hand-written, so some have none). */
+  debut?: number;
 }
 
 interface WowData {
   generated: string;
+  /** The Warcraft games in release order, with their year. */
+  games: string[];
   characters: WowCharacter[];
 }
 
