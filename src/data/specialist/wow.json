@@ -1,0 +1,2248 @@
+{
+  "generated": "2026-10-23",
+  "characters": [
+    {
+      "id": "tyrande-whisperwind",
+      "name": "Tyrande Whisperwind",
+      "aliases": [
+        "Tyrande"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/160px-Tyrande_Mercenaries_3.jpg?bc0904",
+      "art": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/700px-Tyrande_Mercenaries_3.jpg?bc0904",
+      "render": "https://warcraft.wiki.gg/images/thumb/Tyrande_Reforged.png/360px-Tyrande_Reforged.png?721b13",
+      "gender": "Female",
+      "race": "Night elf",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Alive",
+      "titles": [
+        "The Night Warrior",
+        "High Priestess of Elune",
+        "Chosen of the Moon",
+        "Lady",
+        "Mistress",
+        "Leader of the Kaldorei"
+      ]
+    },
+    {
+      "id": "illidan-stormrage",
+      "name": "Illidan Stormrage",
+      "aliases": [
+        "Illidan"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/160px-Illidan_the_Betrayer.jpg?1e6975",
+      "art": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/700px-Illidan_the_Betrayer.jpg?1e6975",
+      "render": "https://warcraft.wiki.gg/images/thumb/Warcraft_III_Reforged_-_Illidan_art.png/360px-Warcraft_III_Reforged_-_Illidan_art.png?5a540f",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "Demon Hunter",
+      "status": "Alive",
+      "titles": [
+        "Lord",
+        "The Betrayer",
+        "Lord of Outland",
+        "Lord of the Illidari",
+        "Master of the Illidari",
+        "Chosen One"
+      ]
+    },
+    {
+      "id": "khadgar",
+      "name": "Khadgar",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Khadgar_HS_cropped.jpg/160px-Khadgar_HS_cropped.jpg?a1006e",
+      "art": "https://warcraft.wiki.gg/images/thumb/Khadgar_HS_cropped.jpg/700px-Khadgar_HS_cropped.jpg?a1006e",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "Guardian",
+        "Leader of the Kirin Tor",
+        "Archmage of the Kirin Tor",
+        "Lord Wizard",
+        "Young Trust",
+        "Sons of Lothar"
+      ]
+    },
+    {
+      "id": "uther-the-lightbringer",
+      "name": "Uther the Lightbringer",
+      "aliases": [
+        "Uther"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/160px-Uther_Mercenaries_3.jpg?d18530",
+      "art": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/700px-Uther_Mercenaries_3.jpg?d18530",
+      "render": "https://warcraft.wiki.gg/images/thumb/Uther_Reforged.png/360px-Uther_Reforged.png?808a2f",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Paladin",
+      "status": "Deceased",
+      "titles": [
+        "The Lightbringer",
+        "the First Paladin",
+        "Supreme Commander of the Paladin Order",
+        "Lord",
+        "Sir"
+      ]
+    },
+    {
+      "id": "medivh",
+      "name": "Medivh",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Medivh_Cropped.jpg/160px-Medivh_Cropped.jpg?f81da1",
+      "art": "https://warcraft.wiki.gg/images/Medivh_Cropped.jpg?f81da1",
+      "render": "https://warcraft.wiki.gg/images/thumb/Medivh_Reforged.png/360px-Medivh_Reforged.png?cd8fb8",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "The Last Guardian",
+        "Great Medivh",
+        "Archmage",
+        "Magus",
+        "Magna",
+        "the Prophet"
+      ]
+    },
+    {
+      "id": "alexstrasza",
+      "name": "Alexstrasza",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Alexstrasza_dragon_DF.jpeg/160px-Alexstrasza_dragon_DF.jpeg?f62a7c",
+      "art": "https://warcraft.wiki.gg/images/thumb/Alexstrasza_dragon_DF.jpeg/700px-Alexstrasza_dragon_DF.jpeg?f62a7c",
+      "gender": "Female",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "Dragon Queen (or Dragonqueen)",
+        "Queen of the Dragons",
+        "Life-Binder",
+        "Aspect of Life",
+        "Queen Of Life",
+        "Red Aspect"
+      ]
+    },
+    {
+      "id": "gelbin-mekkatorque",
+      "name": "Gelbin Mekkatorque",
+      "aliases": [
+        "Gelbin"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Mekkatorque_is_Iron_Gnome.jpg/160px-Mekkatorque_is_Iron_Gnome.jpg?95450b",
+      "art": "https://warcraft.wiki.gg/images/Mekkatorque_is_Iron_Gnome.jpg?95450b",
+      "gender": "Male",
+      "race": "Gnome",
+      "faction": "Alliance",
+      "class": "Engineer",
+      "status": "Alive",
+      "titles": [
+        "High Tinker",
+        "King of Gnomes"
+      ]
+    },
+    {
+      "id": "chronormu",
+      "name": "Chronormu",
+      "aliases": [
+        "Chromie"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Chromie_TCG.jpg/160px-Chromie_TCG.jpg?c4f577",
+      "art": "https://warcraft.wiki.gg/images/thumb/Chromie_TCG.jpg/700px-Chromie_TCG.jpg?c4f577",
+      "gender": "Female",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "Emissary of the Bronze Dragonflight",
+        "Ambassador of the Bronze Dragonflight",
+        "The Timewalkers"
+      ]
+    },
+    {
+      "id": "kel-thuzad",
+      "name": "Kel'Thuzad",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Ashbringer4CoverSampleA.jpg/160px-Ashbringer4CoverSampleA.jpg?79027f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Ashbringer4CoverSampleA.jpg/700px-Ashbringer4CoverSampleA.jpg?79027f",
+      "render": "https://warcraft.wiki.gg/images/thumb/Kel%27Thuzad_Lich_Reforged.png/360px-Kel%27Thuzad_Lich_Reforged.png?775202",
+      "gender": "Male",
+      "race": "Undead",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Archlich / Arch-Lich",
+        "Lich Lord of the Plaguelands",
+        "Lord of Naxxramas",
+        "Cult Master"
+      ]
+    },
+    {
+      "id": "lei-shen",
+      "name": "Lei Shen",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Lei_Shen.jpg/160px-Lei_Shen.jpg?2f9a55",
+      "art": "https://warcraft.wiki.gg/images/thumb/Lei_Shen.jpg/700px-Lei_Shen.jpg?2f9a55",
+      "gender": "Male",
+      "race": "Mogu",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Emperor of the Mogu",
+        "Thunder King"
+      ]
+    },
+    {
+      "id": "ragnaros",
+      "name": "Ragnaros",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Ragnaros_the_Firelord.png/160px-Ragnaros_the_Firelord.png?4705d2",
+      "art": "https://warcraft.wiki.gg/images/thumb/Ragnaros_the_Firelord.png/700px-Ragnaros_the_Firelord.png?4705d2",
+      "gender": "Male",
+      "race": "Elemental",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Firelord",
+        "Lord of Fire",
+        "Lord of Flame",
+        "The Great Fire",
+        "Ruler of the Firelands"
+      ]
+    },
+    {
+      "id": "ner-zhul",
+      "name": "Ner'zhul",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Ner%27zhul_Orc_TCG.jpg/160px-Ner%27zhul_Orc_TCG.jpg?bcd307",
+      "art": "https://warcraft.wiki.gg/images/Ner%27zhul_Orc_TCG.jpg?bcd307",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Shaman",
+      "status": "Deceased",
+      "titles": [
+        "Elder Shaman",
+        "Greatly Deceived One",
+        "Warchief of Draenor",
+        "Lich King",
+        "He Who Would Be King"
+      ]
+    },
+    {
+      "id": "queen-azshara",
+      "name": "Queen Azshara",
+      "aliases": [
+        "Azshara"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Queen_Azshara_HS.jpg/160px-Queen_Azshara_HS.jpg?c08c25",
+      "art": "https://warcraft.wiki.gg/images/thumb/Queen_Azshara_HS.jpg/700px-Queen_Azshara_HS.jpg?c08c25",
+      "gender": "Female",
+      "race": "Naga",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "Queen",
+        "Lady"
+      ]
+    },
+    {
+      "id": "tirion-fordring",
+      "name": "Tirion Fordring",
+      "aliases": [
+        "Tirion"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Tirion_Raneman_Cropped.jpg/160px-Tirion_Raneman_Cropped.jpg?717fd8",
+      "art": "https://warcraft.wiki.gg/images/Tirion_Raneman_Cropped.jpg?717fd8",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Paladin",
+      "status": "Deceased",
+      "titles": [
+        "Highlord of the Argent Crusade",
+        "Ashbringer",
+        "Lord Paladin",
+        "Lord",
+        "Sir",
+        "Paladin defender of Lordaeron"
+      ]
+    },
+    {
+      "id": "hogger",
+      "name": "Hogger",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Hogger_TCG.jpg/160px-Hogger_TCG.jpg?b9dbb4",
+      "art": "https://warcraft.wiki.gg/images/thumb/Hogger_TCG.jpg/700px-Hogger_TCG.jpg?b9dbb4",
+      "render": "https://warcraft.wiki.gg/images/thumb/Hogger_HotS.png/360px-Hogger_HotS.png?9283dc",
+      "gender": "Male",
+      "race": "Gnoll",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Gnoll King",
+        "Scourge of Elwynn"
+      ]
+    },
+    {
+      "id": "nozdormu",
+      "name": "Nozdormu",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Nozdormu_dragon_DF.jpg/160px-Nozdormu_dragon_DF.jpg?b21480",
+      "art": "https://warcraft.wiki.gg/images/thumb/Nozdormu_dragon_DF.jpg/700px-Nozdormu_dragon_DF.jpg?b21480",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "The Timeless One",
+        "the Timeless",
+        "Aspect of Time",
+        "Bronze Aspect",
+        "The Lord of Time",
+        "Lord of the Centuries"
+      ]
+    },
+    {
+      "id": "ysera",
+      "name": "Ysera",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/YseraDf.png/160px-YseraDf.png?e4f0d3",
+      "art": "https://warcraft.wiki.gg/images/thumb/YseraDf.png/700px-YseraDf.png?e4f0d3",
+      "gender": "Female",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Awakened",
+        "Aspect of Dreams",
+        "Aspect of Nature",
+        "Green Aspect",
+        "Mother of Dreams",
+        "Emerald Queen"
+      ]
+    },
+    {
+      "id": "brann-bronzebeard",
+      "name": "Brann Bronzebeard",
+      "aliases": [
+        "Brann"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Brann_Bronzebeard_in_Dornogal.jpg/160px-Brann_Bronzebeard_in_Dornogal.jpg?f63500",
+      "art": "https://warcraft.wiki.gg/images/Brann_Bronzebeard_in_Dornogal.jpg?f63500",
+      "gender": "Male",
+      "race": "Dwarf",
+      "faction": "Alliance",
+      "class": "None",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "sargeras",
+      "name": "Sargeras",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Sargeras_Gamescom_2017.png/160px-Sargeras_Gamescom_2017.png?95d38f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Sargeras_Gamescom_2017.png/700px-Sargeras_Gamescom_2017.png?95d38f",
+      "gender": "Male",
+      "race": "Titan",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Imprisoned",
+      "titles": [
+        "The Dark Titan",
+        "The Lord of the Burning Legion (see more below)"
+      ]
+    },
+    {
+      "id": "kargath-bladefist",
+      "name": "Kargath Bladefist",
+      "aliases": [
+        "Kargath"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Kargath_Bladefist_HS.jpg/160px-Kargath_Bladefist_HS.jpg?ad672b",
+      "art": "https://warcraft.wiki.gg/images/thumb/Kargath_Bladefist_HS.jpg/700px-Kargath_Bladefist_HS.jpg?ad672b",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Warchief",
+        "Shattered Hand Chieftain"
+      ]
+    },
+    {
+      "id": "blackhand",
+      "name": "Blackhand",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Blackhand_Chronicle_Cropped.png/160px-Blackhand_Chronicle_Cropped.png?6d276c",
+      "art": "https://warcraft.wiki.gg/images/Blackhand_Chronicle_Cropped.png?6d276c",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "The Destroyer",
+        "Warchief",
+        "Blackrock Chieftain"
+      ]
+    },
+    {
+      "id": "onyxia",
+      "name": "Onyxia",
+      "aliases": [
+        "Katrana Prestor"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Raid_Boss_Onyxia_HS.jpg/160px-Raid_Boss_Onyxia_HS.jpg?85b63f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Raid_Boss_Onyxia_HS.jpg/700px-Raid_Boss_Onyxia_HS.jpg?85b63f",
+      "render": "https://warcraft.wiki.gg/images/thumb/Onyxia2.png/360px-Onyxia2.png?ff5416",
+      "gender": "Female",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Lady"
+      ]
+    },
+    {
+      "id": "malygos",
+      "name": "Malygos",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Malygos_the_Spellweaver_Core_Set.png/160px-Malygos_the_Spellweaver_Core_Set.png?e91afa",
+      "art": "https://warcraft.wiki.gg/images/thumb/Malygos_the_Spellweaver_Core_Set.png/700px-Malygos_the_Spellweaver_Core_Set.png?e91afa",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Spellweaver (or Spell-Weaver)",
+        "Aspect of Magic",
+        "Lord of Magic",
+        "Steward of Magic",
+        "Guardian of Magic",
+        "Hand of Magic"
+      ]
+    },
+    {
+      "id": "n-zoth",
+      "name": "N'Zoth",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/N%27Zoth_HS_Mercenaries.jpg/160px-N%27Zoth_HS_Mercenaries.jpg?8fbbd4",
+      "art": "https://warcraft.wiki.gg/images/thumb/N%27Zoth_HS_Mercenaries.jpg/700px-N%27Zoth_HS_Mercenaries.jpg?8fbbd4",
+      "gender": "Unknown",
+      "race": "Old God",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "God of the Deep",
+        "the Corruptor",
+        "the Deep One",
+        "Lord of Ny'alotha"
+      ]
+    },
+    {
+      "id": "yogg-saron",
+      "name": "Yogg-Saron",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Yogg-Saron%2C_Unleashed_HS.jpg/160px-Yogg-Saron%2C_Unleashed_HS.jpg?27d57f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Yogg-Saron%2C_Unleashed_HS.jpg/700px-Yogg-Saron%2C_Unleashed_HS.jpg?27d57f",
+      "gender": "Unknown",
+      "race": "Old God",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Lucid Dream",
+        "The Monster In Your Nightmares",
+        "The Beast With a Thousand Maws",
+        "The Fiend of a Thousand Faces",
+        "The God of Death",
+        "That Which Must Not Be Named"
+      ]
+    },
+    {
+      "id": "xavius",
+      "name": "Xavius",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Xavius_HS_Book_of_Heroes.jpg/160px-Xavius_HS_Book_of_Heroes.jpg?1cd039",
+      "art": "https://warcraft.wiki.gg/images/thumb/Xavius_HS_Book_of_Heroes.jpg/700px-Xavius_HS_Book_of_Heroes.jpg?1cd039",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Satyr Lord",
+        "Lord of the Satyrs",
+        "Nightmare Lord",
+        "Lord",
+        "The First Satyr"
+      ]
+    },
+    {
+      "id": "c-thun",
+      "name": "C'Thun",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/C%27Thun_HS.jpg/160px-C%27Thun_HS.jpg?2a0df3",
+      "art": "https://warcraft.wiki.gg/images/thumb/C%27Thun_HS.jpg/700px-C%27Thun_HS.jpg?2a0df3",
+      "gender": "Unknown",
+      "race": "Old God",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": []
+    },
+    {
+      "id": "nefarian",
+      "name": "Nefarian",
+      "aliases": [
+        "Victor Nefarius"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Nefarian_HS2.jpg/160px-Nefarian_HS2.jpg?115d80",
+      "art": "https://warcraft.wiki.gg/images/thumb/Nefarian_HS2.jpg/700px-Nefarian_HS2.jpg?115d80",
+      "render": "https://warcraft.wiki.gg/images/thumb/Nefarian_Monster_Guide.png/360px-Nefarian_Monster_Guide.png?fc6ea0",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Lord of Blackrock Spire",
+        "Blackwing"
+      ]
+    },
+    {
+      "id": "edwin-vancleef",
+      "name": "Edwin VanCleef",
+      "aliases": [
+        "Edwin"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Edwin_VanCleef_TCG3.jpg/160px-Edwin_VanCleef_TCG3.jpg?88f38d",
+      "art": "https://warcraft.wiki.gg/images/Edwin_VanCleef_TCG3.jpg?88f38d",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Rogue",
+      "status": "Deceased",
+      "titles": [
+        "Defias Kingpin",
+        "Stonemason Guildmaster"
+      ]
+    },
+    {
+      "id": "leeroy-jenkins",
+      "name": "Leeroy Jenkins",
+      "aliases": [
+        "Leeroy"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Leeroy_Jenkins_TCG.jpg/160px-Leeroy_Jenkins_TCG.jpg?d9452d",
+      "art": "https://warcraft.wiki.gg/images/thumb/Leeroy_Jenkins_TCG.jpg/700px-Leeroy_Jenkins_TCG.jpg?d9452d",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "kil-jaeden",
+      "name": "Kil'jaeden",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Kil%27jaeden_HS.jpg/160px-Kil%27jaeden_HS.jpg?7da8b5",
+      "art": "https://warcraft.wiki.gg/images/thumb/Kil%27jaeden_HS.jpg/700px-Kil%27jaeden_HS.jpg?7da8b5",
+      "render": "https://warcraft.wiki.gg/images/thumb/Kil%27jaeden_Reforged.png/360px-Kil%27jaeden_Reforged.png?5c3d98",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "Warlock",
+      "status": "Deceased",
+      "titles": [
+        "The Deceiver",
+        "The Beautiful One",
+        "Great Friend",
+        "Great One",
+        "Legionlord",
+        "Lord of Flame"
+      ]
+    },
+    {
+      "id": "thalyssra",
+      "name": "Thalyssra",
+      "aliases": [
+        "First Arcanist Thalyssra"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/First_Arcanist_Thalyssra_Cured.jpg/160px-First_Arcanist_Thalyssra_Cured.jpg?b51da9",
+      "art": "https://warcraft.wiki.gg/images/First_Arcanist_Thalyssra_Cured.jpg?b51da9",
+      "gender": "Female",
+      "race": "Night elf",
+      "faction": "Horde",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "First Arcanist of Suramar",
+        "Lady",
+        "Dusk Lily"
+      ]
+    },
+    {
+      "id": "varimathras",
+      "name": "Varimathras",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Varimathras_Art.jpg/160px-Varimathras_Art.jpg?892099",
+      "art": "https://warcraft.wiki.gg/images/thumb/Varimathras_Art.jpg/700px-Varimathras_Art.jpg?892099",
+      "render": "https://warcraft.wiki.gg/images/thumb/Varimathras_DE.png/360px-Varimathras_DE.png?28456e",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Hostile",
+      "class": "Warlock",
+      "status": "Deceased",
+      "titles": [
+        "Lord",
+        "Arch Lord of the Undercity"
+      ]
+    },
+    {
+      "id": "cenarius",
+      "name": "Cenarius",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Cenarius_Signature_HS.jpg/160px-Cenarius_Signature_HS.jpg?249842",
+      "art": "https://warcraft.wiki.gg/images/thumb/Cenarius_Signature_HS.jpg/700px-Cenarius_Signature_HS.jpg?249842",
+      "gender": "Male",
+      "race": "Wild God",
+      "faction": "Neutral",
+      "class": "Druid",
+      "status": "Alive",
+      "titles": [
+        "Lord of the Forest",
+        "Forest Lord",
+        "Demigod of the Groves",
+        "Lord of the Groves"
+      ]
+    },
+    {
+      "id": "orgrim-doomhammer",
+      "name": "Orgrim Doomhammer",
+      "aliases": [
+        "Orgrim"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Orgrim_Doomhammer_HS.jpg/160px-Orgrim_Doomhammer_HS.jpg?f79244",
+      "art": "https://warcraft.wiki.gg/images/thumb/Orgrim_Doomhammer_HS.jpg/700px-Orgrim_Doomhammer_HS.jpg?f79244",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Warchief of the Horde",
+        "Blackrock Chieftain",
+        "Backstabber",
+        "The Doomhammer"
+      ]
+    },
+    {
+      "id": "archimonde",
+      "name": "Archimonde",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Archimonde_HS.jpg/160px-Archimonde_HS.jpg?cb9d30",
+      "art": "https://warcraft.wiki.gg/images/thumb/Archimonde_HS.jpg/700px-Archimonde_HS.jpg?cb9d30",
+      "render": "https://warcraft.wiki.gg/images/thumb/Archimonde_Reforged.png/360px-Archimonde_Reforged.png?4f4bb5",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "Warlock",
+      "status": "Deceased",
+      "titles": [
+        "The Defiler",
+        "Eredar Overlord of the Legion Forces",
+        "Master of the Augari"
+      ]
+    },
+    {
+      "id": "drek-thar",
+      "name": "Drek'Thar",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Drek%27Thar_HS.jpg/160px-Drek%27Thar_HS.jpg?98b4e3",
+      "art": "https://warcraft.wiki.gg/images/thumb/Drek%27Thar_HS.jpg/700px-Drek%27Thar_HS.jpg?98b4e3",
+      "render": "https://warcraft.wiki.gg/images/thumb/Drek%27Thar_Reforged.png/360px-Drek%27Thar_Reforged.png?8cade8",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Shaman",
+      "status": "Alive",
+      "titles": [
+        "Frostwolf General",
+        "Elder Shaman",
+        "Farseer"
+      ]
+    },
+    {
+      "id": "professor-putricide",
+      "name": "Professor Putricide",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Professor_Putricide_HS.jpg/160px-Professor_Putricide_HS.jpg?b9c77e",
+      "art": "https://warcraft.wiki.gg/images/Professor_Putricide_HS.jpg?b9c77e",
+      "gender": "Male",
+      "race": "Undead",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": []
+    },
+    {
+      "id": "teron-gorefiend",
+      "name": "Teron Gorefiend",
+      "aliases": [
+        "Teron"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Teron_Gorefiend_TCG.jpg/160px-Teron_Gorefiend_TCG.jpg?c05d0f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Teron_Gorefiend_TCG.jpg/700px-Teron_Gorefiend_TCG.jpg?c05d0f",
+      "gender": "Male",
+      "race": "Undead",
+      "faction": "Neutral",
+      "class": "Death Knight",
+      "status": "Deceased",
+      "titles": [
+        "Lord"
+      ]
+    },
+    {
+      "id": "hakkar-the-soulflayer",
+      "name": "Hakkar the Soulflayer",
+      "aliases": [
+        "Hakkar"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Hakkar_Other_Side.png/160px-Hakkar_Other_Side.png?84ba30",
+      "art": "https://warcraft.wiki.gg/images/thumb/Hakkar_Other_Side.png/700px-Hakkar_Other_Side.png?84ba30",
+      "gender": "Male",
+      "race": "Loa",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Soulflayer",
+        "The Blood God",
+        "The Faceless One",
+        "The Loa of Blood",
+        "Patron and doom of the Gurubashi Empire",
+        "Blood Loa"
+      ]
+    },
+    {
+      "id": "antonidas",
+      "name": "Antonidas",
+      "aliases": [
+        "Archmage Antonidas"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Antonidas-WH.jpg/160px-Antonidas-WH.jpg?cdcb1f",
+      "art": "https://warcraft.wiki.gg/images/Antonidas-WH.jpg?cdcb1f",
+      "render": "https://warcraft.wiki.gg/images/thumb/Antonidas_Ghost_Reforged.png/360px-Antonidas_Ghost_Reforged.png?e3d59a",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Grand Magus of the Kirin Tor",
+        "Head of the Kirin Tor",
+        "Lord",
+        "Archmage of the Kirin Tor"
+      ]
+    },
+    {
+      "id": "odyn",
+      "name": "Odyn",
+      "aliases": [
+        "Havi"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Odyn_Prime_Designate_by_Alex_Stone.jpg/160px-Odyn_Prime_Designate_by_Alex_Stone.jpg?7a571e",
+      "art": "https://warcraft.wiki.gg/images/thumb/Odyn_Prime_Designate_by_Alex_Stone.jpg/700px-Odyn_Prime_Designate_by_Alex_Stone.jpg?7a571e",
+      "gender": "Male",
+      "race": "Titan",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "All-Father",
+        "Prime Designate"
+      ]
+    },
+    {
+      "id": "anduin-lothar",
+      "name": "Anduin Lothar",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Anduin_Lothar_TCG.jpg/160px-Anduin_Lothar_TCG.jpg?94922c",
+      "art": "https://warcraft.wiki.gg/images/thumb/Anduin_Lothar_TCG.jpg/700px-Anduin_Lothar_TCG.jpg?94922c",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Supreme Commander of the Alliance",
+        "Supreme Allied Commander",
+        "Lion of Azeroth",
+        "Regent Lord of Stormwind",
+        "Knight Champion of Azeroth",
+        "Champion of Stormwind"
+      ]
+    },
+    {
+      "id": "sindragosa",
+      "name": "Sindragosa",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Sindragosa_by_Graven_Tung.jpg/160px-Sindragosa_by_Graven_Tung.jpg?7ff5a0",
+      "art": "https://warcraft.wiki.gg/images/thumb/Sindragosa_by_Graven_Tung.jpg/700px-Sindragosa_by_Graven_Tung.jpg?7ff5a0",
+      "gender": "Female",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Lady",
+        "Azure Queen",
+        "The Frost Queen",
+        "Queen of the Frostbrood"
+      ]
+    },
+    {
+      "id": "helya",
+      "name": "Helya",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Helya.jpg/160px-Helya.jpg?81f03a",
+      "art": "https://warcraft.wiki.gg/images/thumb/Helya.jpg/700px-Helya.jpg?81f03a",
+      "gender": "Female",
+      "race": "Undead",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "Sea-Witch",
+        "mother of the underworld"
+      ]
+    },
+    {
+      "id": "lady-deathwhisper",
+      "name": "Lady Deathwhisper",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Lady_Deathwhisper_HS_PoA.jpg/160px-Lady_Deathwhisper_HS_PoA.jpg?2fcd56",
+      "art": "https://warcraft.wiki.gg/images/thumb/Lady_Deathwhisper_HS_PoA.jpg/700px-Lady_Deathwhisper_HS_PoA.jpg?2fcd56",
+      "gender": "Female",
+      "race": "Undead",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Supreme Overseer of the Cult of the Damned",
+        "Sister"
+      ]
+    },
+    {
+      "id": "mannoroth",
+      "name": "Mannoroth",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Mannoroth_Mercenaries_3.jpg/160px-Mannoroth_Mercenaries_3.jpg?dc40ea",
+      "art": "https://warcraft.wiki.gg/images/thumb/Mannoroth_Mercenaries_3.jpg/700px-Mannoroth_Mercenaries_3.jpg?dc40ea",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "The Flayer",
+        "The Destructor",
+        "the Exalted One"
+      ]
+    },
+    {
+      "id": "terenas-menethil-ii",
+      "name": "Terenas Menethil II",
+      "aliases": [
+        "Terenas"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Terenas.jpg/160px-Terenas.jpg?736541",
+      "art": "https://warcraft.wiki.gg/images/thumb/Terenas.jpg/700px-Terenas.jpg?736541",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "King of Lordaeron",
+        "Lord"
+      ]
+    },
+    {
+      "id": "elisande",
+      "name": "Elisande",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Elisande_ToS.jpg/160px-Elisande_ToS.jpg?517450",
+      "art": "https://warcraft.wiki.gg/images/Elisande_ToS.jpg?517450",
+      "gender": "Female",
+      "race": "Night elf",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Grand Magistrix",
+        "High Magistrix"
+      ]
+    },
+    {
+      "id": "g-huun",
+      "name": "G'huun",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/G%27huun.jpg/160px-G%27huun.jpg?2b6ae3",
+      "art": "https://warcraft.wiki.gg/images/thumb/G%27huun.jpg/700px-G%27huun.jpg?2b6ae3",
+      "gender": "Unknown",
+      "race": "Old God",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Blood God"
+      ]
+    },
+    {
+      "id": "thrall",
+      "name": "Thrall",
+      "aliases": [
+        "Go'el"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Thrall_-_The_War_Within.png/160px-Thrall_-_The_War_Within.png?5f0b41",
+      "art": "https://warcraft.wiki.gg/images/thumb/Thrall_-_The_War_Within.png/700px-Thrall_-_The_War_Within.png?5f0b41",
+      "render": "https://warcraft.wiki.gg/images/thumb/Thrall_%28Mountless%29_Reforged.png/360px-Thrall_%28Mountless%29_Reforged.png?54e75d",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Shaman",
+      "status": "Alive",
+      "titles": [
+        "Earthbinder",
+        "World Shaman",
+        "Son of Durotan"
+      ]
+    },
+    {
+      "id": "sylvanas-windrunner",
+      "name": "Sylvanas Windrunner",
+      "aliases": [
+        "Sylvanas"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_9.2.png/160px-Sylvanas_9.2.png?800be2",
+      "art": "https://warcraft.wiki.gg/images/Sylvanas_9.2.png?800be2",
+      "render": "https://warcraft.wiki.gg/images/thumb/Sylvanas_Windrunner_Banshee_Reforged.png/360px-Sylvanas_Windrunner_Banshee_Reforged.png?b3ea44",
+      "gender": "Female",
+      "race": "Undead",
+      "faction": "Neutral",
+      "class": "Hunter",
+      "status": "Undead",
+      "titles": [
+        "Lady",
+        "Dark Lady",
+        "Banshee",
+        "Warchief of the Horde",
+        "Banshee Queen",
+        "Queen"
+      ]
+    },
+    {
+      "id": "varian-wrynn",
+      "name": "Varian Wrynn",
+      "aliases": [
+        "Varian"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Varian_Wei.jpg/160px-Varian_Wei.jpg?d75da1",
+      "art": "https://warcraft.wiki.gg/images/Varian_Wei.jpg?d75da1",
+      "render": "https://warcraft.wiki.gg/images/thumb/Grand_Marshal_Varian.png/360px-Grand_Marshal_Varian.png?f4e85f",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Former High King of the Alliance",
+        "King of Stormwind",
+        "Lo'Gosh",
+        "(The) Wolf",
+        "Leader of the Valiance Expedition",
+        "Champion of the Crimson Ring"
+      ]
+    },
+    {
+      "id": "anduin-wrynn",
+      "name": "Anduin Wrynn",
+      "aliases": [
+        "Anduin Llane Wrynn"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Anduin_-_The_War_Within.png/160px-Anduin_-_The_War_Within.png?c0f1e4",
+      "art": "https://warcraft.wiki.gg/images/thumb/Anduin_-_The_War_Within.png/700px-Anduin_-_The_War_Within.png?c0f1e4",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Alive",
+      "titles": [
+        "High King of the Alliance",
+        "King of Stormwind",
+        "Crown Prince of Stormwind"
+      ]
+    },
+    {
+      "id": "jaina-proudmoore",
+      "name": "Jaina Proudmoore",
+      "aliases": [
+        "Jaina"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/160px-HSKT_Jaina.jpg?d11e7e",
+      "art": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/700px-HSKT_Jaina.jpg?d11e7e",
+      "render": "https://warcraft.wiki.gg/images/thumb/Jaina_Reforged.png/360px-Jaina_Reforged.png?53dc66",
+      "gender": "Female",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "Lady",
+        "Miss",
+        "Archmage",
+        "Lord Admiral",
+        "Daughter of the Sea",
+        "Leader of the Kirin Tor"
+      ]
+    },
+    {
+      "id": "malfurion-stormrage",
+      "name": "Malfurion Stormrage",
+      "aliases": [
+        "Malfurion"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Malfurion_WotE_Cropped.jpg/160px-Malfurion_WotE_Cropped.jpg?61f856",
+      "art": "https://warcraft.wiki.gg/images/Malfurion_WotE_Cropped.jpg?61f856",
+      "gender": "Male",
+      "race": "Night elf",
+      "faction": "Alliance",
+      "class": "Druid",
+      "status": "Alive",
+      "titles": [
+        "Shan'do",
+        "First of the Druids",
+        "Arch-Druid of the Moonglade",
+        "Co-ruler of the night elves"
+      ]
+    },
+    {
+      "id": "garrosh-hellscream",
+      "name": "Garrosh Hellscream",
+      "aliases": [
+        "Garrosh"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/160px-Garrosh_Glowei_-_cropped.jpg?d54104",
+      "art": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/700px-Garrosh_Glowei_-_cropped.jpg?d54104",
+      "render": "https://warcraft.wiki.gg/images/thumb/High_Warlord_Garrosh.png/360px-High_Warlord_Garrosh.png?1db532",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Warlord of the Warsong clan",
+        "Lord",
+        "The Stranger",
+        "Hero of Northrend",
+        "Son of Hellscream",
+        "Warchief of the True Horde"
+      ]
+    },
+    {
+      "id": "lor-themar-theron",
+      "name": "Lor'themar Theron",
+      "aliases": [
+        "Lor'themar"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Lor%27themar_by_Bayard_Wu_Cropped.png/160px-Lor%27themar_by_Bayard_Wu_Cropped.png?7cf0d5",
+      "art": "https://warcraft.wiki.gg/images/thumb/Lor%27themar_by_Bayard_Wu_Cropped.png/700px-Lor%27themar_by_Bayard_Wu_Cropped.png?7cf0d5",
+      "gender": "Male",
+      "race": "Blood elf",
+      "faction": "Horde",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Regent Lord of Quel'Thalas",
+        "Regent Lord of Silvermoon",
+        "Lord Regent",
+        "Ranger Lord"
+      ]
+    },
+    {
+      "id": "deathwing",
+      "name": "Deathwing",
+      "aliases": [
+        "Neltharion",
+        "Daval Prestor"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Battle_of_the_Aspects_-_Deathwing.jpg/160px-Battle_of_the_Aspects_-_Deathwing.jpg?91bf1d",
+      "art": "https://warcraft.wiki.gg/images/thumb/Battle_of_the_Aspects_-_Deathwing.jpg/700px-Battle_of_the_Aspects_-_Deathwing.jpg?91bf1d",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Destroyer",
+        "Aspect of Death",
+        "The Worldbreaker",
+        "The Black Scourge",
+        "Black Aspect",
+        "former Earth-Warder"
+      ]
+    },
+    {
+      "id": "genn-greymane",
+      "name": "Genn Greymane",
+      "aliases": [
+        "Genn"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Genn%2C_Cursed_King_HS.png/160px-Genn%2C_Cursed_King_HS.png?72b47f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Genn%2C_Cursed_King_HS.png/700px-Genn%2C_Cursed_King_HS.png?72b47f",
+      "render": "https://warcraft.wiki.gg/images/thumb/Blizzard_Legends_Genn.png/360px-Blizzard_Legends_Genn.png?9cf71a",
+      "gender": "Male",
+      "race": "Worgen",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "Lord",
+        "Old Wolf",
+        "King",
+        "King of Gilneas"
+      ]
+    },
+    {
+      "id": "velen",
+      "name": "Velen",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Velen_mural.jpg/160px-Velen_mural.jpg?a8593a",
+      "art": "https://warcraft.wiki.gg/images/thumb/Velen_mural.jpg/700px-Velen_mural.jpg?a8593a",
+      "gender": "Male",
+      "race": "Draenei",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Alive",
+      "titles": [
+        "Prophet",
+        "The Divine",
+        "Prophet of the Naaru",
+        "Prophet of the Exodar",
+        "Great Prophet",
+        "Ageless One"
+      ]
+    },
+    {
+      "id": "valeera-sanguinar",
+      "name": "Valeera Sanguinar",
+      "aliases": [
+        "Valeera"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Valeera_HoW.png/160px-Valeera_HoW.png?411834",
+      "art": "https://warcraft.wiki.gg/images/Valeera_HoW.png?411834",
+      "render": "https://warcraft.wiki.gg/images/Nightslayer_Valeera.png?3ef072",
+      "gender": "Female",
+      "race": "Blood elf",
+      "faction": "Neutral",
+      "class": "Rogue",
+      "status": "Alive",
+      "titles": [
+        "Shadow",
+        "Champion of the Crimson Ring"
+      ]
+    },
+    {
+      "id": "baine-bloodhoof",
+      "name": "Baine Bloodhoof",
+      "aliases": [
+        "Baine"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Glowei_Baine_Bloodhoof.jpg/160px-Glowei_Baine_Bloodhoof.jpg?8f94e5",
+      "art": "https://warcraft.wiki.gg/images/thumb/Glowei_Baine_Bloodhoof.jpg/700px-Glowei_Baine_Bloodhoof.jpg?8f94e5",
+      "gender": "Male",
+      "race": "Tauren",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "Chieftain of the Bloodhoof tribe",
+        "High Chieftain",
+        "Son of Cairne"
+      ]
+    },
+    {
+      "id": "vol-jin",
+      "name": "Vol'jin",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Vol%27jinHS.jpg/160px-Vol%27jinHS.jpg?240393",
+      "art": "https://warcraft.wiki.gg/images/thumb/Vol%27jinHS.jpg/700px-Vol%27jinHS.jpg?240393",
+      "render": "https://warcraft.wiki.gg/images/thumb/Vol%27jin_Reforged.png/360px-Vol%27jin_Reforged.png?65fcd0",
+      "gender": "Male",
+      "race": "Troll",
+      "faction": "Horde",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Master of the Shadows",
+        "Warchief of the Horde",
+        "Chieftain of the Darkspears"
+      ]
+    },
+    {
+      "id": "chen-stormstout",
+      "name": "Chen Stormstout",
+      "aliases": [
+        "Chen"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Chen_Stormstout_Cinematic.jpg/160px-Chen_Stormstout_Cinematic.jpg?141945",
+      "art": "https://warcraft.wiki.gg/images/thumb/Chen_Stormstout_Cinematic.jpg/700px-Chen_Stormstout_Cinematic.jpg?141945",
+      "render": "https://warcraft.wiki.gg/images/thumb/Chen_Stormstout_Earth_Reforged.png/360px-Chen_Stormstout_Earth_Reforged.png?b066c5",
+      "gender": "Male",
+      "race": "Pandaren",
+      "faction": "Neutral",
+      "class": "Monk",
+      "status": "Alive",
+      "titles": [
+        "Legendary Brewmaster"
+      ]
+    },
+    {
+      "id": "arthas-menethil",
+      "name": "Arthas Menethil",
+      "aliases": [
+        "The Lich King",
+        "Lich King",
+        "Arthas"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Lich_King_by_Raneman.jpg/160px-Lich_King_by_Raneman.jpg?a6f73a",
+      "art": "https://warcraft.wiki.gg/images/thumb/Lich_King_by_Raneman.jpg/700px-Lich_King_by_Raneman.jpg?a6f73a",
+      "render": "https://warcraft.wiki.gg/images/thumb/Arthas_Reforged.png/360px-Arthas_Reforged.png?844e38",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Death Knight",
+      "status": "Deceased",
+      "titles": [
+        "Champion of Ner'zhul",
+        "Blessed Lord",
+        "King of Lordaeron",
+        "Lich King",
+        "Crown Prince of Lordaeron",
+        "Paladin of the Silver Hand"
+      ]
+    },
+    {
+      "id": "wrathion",
+      "name": "Wrathion",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/The_Vow_Eternal_cropped.jpg/160px-The_Vow_Eternal_cropped.jpg?15ce2a",
+      "art": "https://warcraft.wiki.gg/images/thumb/The_Vow_Eternal_cropped.jpg/700px-The_Vow_Eternal_cropped.jpg?15ce2a",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "rexxar",
+      "name": "Rexxar",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Rexxar_and_Misha_BFA.jpg/160px-Rexxar_and_Misha_BFA.jpg?4c4d46",
+      "art": "https://warcraft.wiki.gg/images/thumb/Rexxar_and_Misha_BFA.jpg/700px-Rexxar_and_Misha_BFA.jpg?4c4d46",
+      "render": "https://warcraft.wiki.gg/images/thumb/Rexxar_Reforged.png/360px-Rexxar_Reforged.png?d8fd45",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Champion of the Horde",
+        "Unseen Path",
+        "Stonemaul Chieftain"
+      ]
+    },
+    {
+      "id": "yrel",
+      "name": "Yrel",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Yrel_Art.jpg/160px-Yrel_Art.jpg?e01cc6",
+      "art": "https://warcraft.wiki.gg/images/Yrel_Art.jpg?e01cc6",
+      "gender": "Female",
+      "race": "Draenei",
+      "faction": "Neutral",
+      "class": "Paladin",
+      "status": "Alive",
+      "titles": [
+        "High Exarch",
+        "Voice of the Naaru",
+        "Light of Hope",
+        "Exarch",
+        "Vindicator",
+        "Lady"
+      ]
+    },
+    {
+      "id": "muradin-bronzebeard",
+      "name": "Muradin Bronzebeard",
+      "aliases": [
+        "Muradin"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Muradin_Glenn_Rane.jpg/160px-Muradin_Glenn_Rane.jpg?44425c",
+      "art": "https://warcraft.wiki.gg/images/thumb/Muradin_Glenn_Rane.jpg/700px-Muradin_Glenn_Rane.jpg?44425c",
+      "render": "https://warcraft.wiki.gg/images/thumb/Muradin_Bronzebeard_Reforged.png/360px-Muradin_Bronzebeard_Reforged.png?ea61aa",
+      "gender": "Male",
+      "race": "Dwarf",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "High Thane of the Bronzebeard clan",
+        "Bronzebeard Representative",
+        "King of the Frostborn",
+        "Ambassador of Ironforge"
+      ]
+    },
+    {
+      "id": "gul-dan",
+      "name": "Gul'dan",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Gul%27dan_Mercenaries_3.jpg/160px-Gul%27dan_Mercenaries_3.jpg?1daa05",
+      "art": "https://warcraft.wiki.gg/images/thumb/Gul%27dan_Mercenaries_3.jpg/700px-Gul%27dan_Mercenaries_3.jpg?1daa05",
+      "render": "https://warcraft.wiki.gg/images/thumb/Gul%27dan_Reforged.png/360px-Gul%27dan_Reforged.png?3ddd0b",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Warlock",
+      "status": "Deceased",
+      "titles": [
+        "Darkness Incarnate",
+        "Destroyer of Dreams",
+        "Great Betrayer",
+        "Betrayer of the Orcs"
+      ]
+    },
+    {
+      "id": "turalyon",
+      "name": "Turalyon",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Turalyon-profile-2.png/160px-Turalyon-profile-2.png?529ee0",
+      "art": "https://warcraft.wiki.gg/images/thumb/Turalyon-profile-2.png/700px-Turalyon-profile-2.png?529ee0",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Unknown",
+      "titles": [
+        "Lord Commander of the Alliance Forces",
+        "Regent of Stormwind",
+        "High Exarch of the Grand Army of the Light",
+        "Lord of the Silver Hand",
+        "Sir",
+        "Knight of the Silver Hand"
+      ]
+    },
+    {
+      "id": "alleria-windrunner",
+      "name": "Alleria Windrunner",
+      "aliases": [
+        "Alleria"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/AlleriaWindrunner-TWW.png/160px-AlleriaWindrunner-TWW.png?4a5b76",
+      "art": "https://warcraft.wiki.gg/images/thumb/AlleriaWindrunner-TWW.png/700px-AlleriaWindrunner-TWW.png?4a5b76",
+      "render": "https://warcraft.wiki.gg/images/Alleria_void_form_Midnight.png?1d43b8",
+      "gender": "Female",
+      "race": "Void",
+      "faction": "Alliance",
+      "class": "Hunter",
+      "status": "Unknown",
+      "titles": [
+        "Lady",
+        "Troll Hunter",
+        "Ranger-Captain of Quel'Thalas"
+      ]
+    },
+    {
+      "id": "vindicator-maraad",
+      "name": "Vindicator Maraad",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Vindicator_Maraad_LoW.jpg/160px-Vindicator_Maraad_LoW.jpg?8a9704",
+      "art": "https://warcraft.wiki.gg/images/Vindicator_Maraad_LoW.jpg?8a9704",
+      "gender": "Male",
+      "race": "Draenei",
+      "faction": "Alliance",
+      "class": "Paladin",
+      "status": "Deceased",
+      "titles": [
+        "Hammer of the Light"
+      ]
+    },
+    {
+      "id": "shandris-feathermoon",
+      "name": "Shandris Feathermoon",
+      "aliases": [
+        "Shandris"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/High_General_Shandris_Feathermoon_%28Midnight%29.jpg/160px-High_General_Shandris_Feathermoon_%28Midnight%29.jpg?92c714",
+      "art": "https://warcraft.wiki.gg/images/High_General_Shandris_Feathermoon_%28Midnight%29.jpg?92c714",
+      "render": "https://warcraft.wiki.gg/images/thumb/Shandris_Reforged.png/360px-Shandris_Reforged.png?4f202e",
+      "gender": "Female",
+      "race": "Night elf",
+      "faction": "Alliance",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Lady"
+      ]
+    },
+    {
+      "id": "moira-thaurissan",
+      "name": "Moira Thaurissan",
+      "aliases": [
+        "Moira"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Moira_Thaurissan.png/160px-Moira_Thaurissan.png?84bca7",
+      "art": "https://warcraft.wiki.gg/images/Moira_Thaurissan.png?84bca7",
+      "gender": "Female",
+      "race": "Dwarf",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Alive",
+      "titles": [
+        "Queen of the Dark Iron",
+        "Dark Iron Queen Regent",
+        "Dark Iron Representative",
+        "Queen-Regent of the Dark Iron Clan",
+        "Princess of Ironforge"
+      ]
+    },
+    {
+      "id": "kael-thas-sunstrider",
+      "name": "Kael'thas Sunstrider",
+      "aliases": [
+        "Kael'thas"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Kael%27thas_Revendreth.jpg/160px-Kael%27thas_Revendreth.jpg?2f330a",
+      "art": "https://warcraft.wiki.gg/images/thumb/Kael%27thas_Revendreth.jpg/700px-Kael%27thas_Revendreth.jpg?2f330a",
+      "gender": "Male",
+      "race": "Blood elf",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "The Sun King",
+        "Lord of the Blood elves",
+        "Prince of Quel'Thalas"
+      ]
+    },
+    {
+      "id": "li-li-stormstout",
+      "name": "Li Li Stormstout",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Li_Li_Stormstout.jpg/160px-Li_Li_Stormstout.jpg?2c047a",
+      "art": "https://warcraft.wiki.gg/images/thumb/Li_Li_Stormstout.jpg/700px-Li_Li_Stormstout.jpg?2c047a",
+      "gender": "Female",
+      "race": "Pandaren",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "The Wild Dog",
+        "World Wanderer",
+        "Apprentice Lorewalker"
+      ]
+    },
+    {
+      "id": "magni-bronzebeard",
+      "name": "Magni Bronzebeard",
+      "aliases": [
+        "Magni"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Magni_TheWarWithin.png/160px-Magni_TheWarWithin.png?2189bb",
+      "art": "https://warcraft.wiki.gg/images/Magni_TheWarWithin.png?2189bb",
+      "gender": "Male",
+      "race": "Dwarf",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "The Speaker",
+        "Herald of Azeroth",
+        "The Diamond King",
+        "King of Khaz Modan",
+        "Lord and Thane of Ironforge",
+        "High Thane of the Bronzebeard clan"
+      ]
+    },
+    {
+      "id": "grommash-hellscream",
+      "name": "Grommash Hellscream",
+      "aliases": [
+        "Grom Hellscream",
+        "Grom",
+        "Grommash"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Grom_Glowei_Cropped.jpg/160px-Grom_Glowei_Cropped.jpg?4f64aa",
+      "art": "https://warcraft.wiki.gg/images/Grom_Glowei_Cropped.jpg?4f64aa",
+      "render": "https://warcraft.wiki.gg/images/thumb/Grom_Hellscream_Reforged.png/360px-Grom_Hellscream_Reforged.png?bc8466",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Chieftain of the Warsong",
+        "Warlord with the Iron Will"
+      ]
+    },
+    {
+      "id": "vereesa-windrunner",
+      "name": "Vereesa Windrunner",
+      "aliases": [
+        "Vereesa"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Vereesa_Windrunner_%28hero%29_HS.jpg/160px-Vereesa_Windrunner_%28hero%29_HS.jpg?704862",
+      "art": "https://warcraft.wiki.gg/images/Vereesa_Windrunner_%28hero%29_HS.jpg?704862",
+      "gender": "Female",
+      "race": "Blood elf",
+      "faction": "Alliance",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Lady",
+        "Alliance Assault Leader",
+        "Ranger-General of the Silver Covenant"
+      ]
+    },
+    {
+      "id": "maiev-shadowsong",
+      "name": "Maiev Shadowsong",
+      "aliases": [
+        "Maiev"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Maiev_HS_cropped.jpg/160px-Maiev_HS_cropped.jpg?1d0a99",
+      "art": "https://warcraft.wiki.gg/images/thumb/Maiev_HS_cropped.jpg/700px-Maiev_HS_cropped.jpg?1d0a99",
+      "render": "https://warcraft.wiki.gg/images/thumb/Warcraft_III_Reforged_-_Maiev_art.png/360px-Warcraft_III_Reforged_-_Maiev_art.png?34c3a2",
+      "gender": "Female",
+      "race": "Night elf",
+      "faction": "Alliance",
+      "class": "Priest",
+      "status": "Alive",
+      "titles": [
+        "Warden",
+        "Watcher",
+        "Hunter of the Betrayer"
+      ]
+    },
+    {
+      "id": "xal-atath",
+      "name": "Xal'atath",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Supremacy_Xal%27atath.jpg/160px-Supremacy_Xal%27atath.jpg?73ea94",
+      "art": "https://warcraft.wiki.gg/images/thumb/Supremacy_Xal%27atath.jpg/700px-Supremacy_Xal%27atath.jpg?73ea94",
+      "gender": "Unknown",
+      "race": "Void",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "Harbinger of the Void",
+        "Blade of the Black Empire",
+        "Lady Darkness"
+      ]
+    },
+    {
+      "id": "vashj",
+      "name": "Vashj",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Baroness_Vashj.jpg/160px-Baroness_Vashj.jpg?52c6d6",
+      "art": "https://warcraft.wiki.gg/images/thumb/Baroness_Vashj.jpg/700px-Baroness_Vashj.jpg?52c6d6",
+      "gender": "Female",
+      "race": "Naga",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Baroness",
+        "Matron of Spies",
+        "Lady",
+        "Coilfang Matron",
+        "Handmaiden of Queen Azshara"
+      ]
+    },
+    {
+      "id": "varok-saurfang",
+      "name": "Varok Saurfang",
+      "aliases": [
+        "Varok"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Overlord_Saurfang.jpg/160px-Overlord_Saurfang.jpg?56b7e0",
+      "art": "https://warcraft.wiki.gg/images/thumb/Overlord_Saurfang.jpg/700px-Overlord_Saurfang.jpg?56b7e0",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "High Overlord of the Horde",
+        "High Overlord of the Kor'kron Guard",
+        "Saurfang the Elder",
+        "Supreme Commander of the Might of Kalimdor",
+        "Lord"
+      ]
+    },
+    {
+      "id": "lady-liadrin",
+      "name": "Lady Liadrin",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Lady_Liadrin_by_Bayard_Wu_Cropped.jpg/160px-Lady_Liadrin_by_Bayard_Wu_Cropped.jpg?682025",
+      "art": "https://warcraft.wiki.gg/images/thumb/Lady_Liadrin_by_Bayard_Wu_Cropped.jpg/700px-Lady_Liadrin_by_Bayard_Wu_Cropped.jpg?682025",
+      "gender": "Female",
+      "race": "Blood elf",
+      "faction": "Horde",
+      "class": "Paladin",
+      "status": "Deceased",
+      "titles": [
+        "Blood Knight Matriarch",
+        "Blood Matriarch",
+        "Lady of Light"
+      ]
+    },
+    {
+      "id": "garona-halforcen",
+      "name": "Garona Halforcen",
+      "aliases": [
+        "Garona"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Garona_Halforcen_HS.png/160px-Garona_Halforcen_HS.png?89ce9e",
+      "art": "https://warcraft.wiki.gg/images/thumb/Garona_Halforcen_HS.png/700px-Garona_Halforcen_HS.png?89ce9e",
+      "gender": "Female",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Rogue",
+      "status": "Alive",
+      "titles": [
+        "Shadow",
+        "Emissary"
+      ]
+    },
+    {
+      "id": "bolvar-fordragon",
+      "name": "Bolvar Fordragon",
+      "aliases": [
+        "Bolvar"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Bolvar_Game_Informer_cropped.png/160px-Bolvar_Game_Informer_cropped.png?f63781",
+      "art": "https://warcraft.wiki.gg/images/thumb/Bolvar_Game_Informer_cropped.png/700px-Bolvar_Game_Informer_cropped.png?f63781",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Paladin",
+      "status": "Alive",
+      "titles": [
+        "Highlord of the Ebon Blade Highlord",
+        "Lord",
+        "The Lich King",
+        "Jailer of the Damned",
+        "Regent of Stormwind"
+      ]
+    },
+    {
+      "id": "monte-gazlowe",
+      "name": "Monte Gazlowe",
+      "aliases": [
+        "Monte"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/GazloweTheGoblinWay.png/160px-GazloweTheGoblinWay.png?923ba7",
+      "art": "https://warcraft.wiki.gg/images/thumb/GazloweTheGoblinWay.png/700px-GazloweTheGoblinWay.png?923ba7",
+      "gender": "Male",
+      "race": "Goblin",
+      "faction": "Horde",
+      "class": "Engineer",
+      "status": "Alive",
+      "titles": [
+        "Trade Prince of the Bilgewater Cartel",
+        "Bilgewater Trade-Prince",
+        "Gazlowe's Greasemonkeys",
+        "Garrison Architect"
+      ]
+    },
+    {
+      "id": "archbishop-benedictus",
+      "name": "Archbishop Benedictus",
+      "aliases": [
+        "Benedictus"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Darkbishop_Benedictus_HS.jpg/160px-Darkbishop_Benedictus_HS.jpg?d71eaf",
+      "art": "https://warcraft.wiki.gg/images/thumb/Darkbishop_Benedictus_HS.jpg/700px-Darkbishop_Benedictus_HS.jpg?d71eaf",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Priest",
+      "status": "Deceased",
+      "titles": [
+        "Archbishop",
+        "Twilight Father",
+        "Twilight Prophet"
+      ]
+    },
+    {
+      "id": "falstad-wildhammer",
+      "name": "Falstad Wildhammer",
+      "aliases": [
+        "Falstad"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Falstad_HotS_Art_2.jpg/160px-Falstad_HotS_Art_2.jpg?ebbf11",
+      "art": "https://warcraft.wiki.gg/images/thumb/Falstad_HotS_Art_2.jpg/700px-Falstad_HotS_Art_2.jpg?ebbf11",
+      "gender": "Male",
+      "race": "Dwarf",
+      "faction": "Alliance",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "Dragonreaver",
+        "High Thane",
+        "Lord of Aerie Peak",
+        "Wildhammer Clan Representative"
+      ]
+    },
+    {
+      "id": "cho-gall",
+      "name": "Cho'gall",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Cho%27gall_HS.jpg/160px-Cho%27gall_HS.jpg?44b2d4",
+      "art": "https://warcraft.wiki.gg/images/thumb/Cho%27gall_HS.jpg/700px-Cho%27gall_HS.jpg?44b2d4",
+      "gender": "Male",
+      "race": "Ogre",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Leader of the Twilight's Hammer"
+      ]
+    },
+    {
+      "id": "mal-ganis",
+      "name": "Mal'Ganis",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Mal%27Ganis_Game_Informer.jpg/160px-Mal%27Ganis_Game_Informer.jpg?502848",
+      "art": "https://warcraft.wiki.gg/images/thumb/Mal%27Ganis_Game_Informer.jpg/700px-Mal%27Ganis_Game_Informer.jpg?502848",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Eternal"
+      ]
+    },
+    {
+      "id": "sally-whitemane",
+      "name": "Sally Whitemane",
+      "aliases": [
+        "Sally"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Inquisitor_Whitemane.jpg/160px-Inquisitor_Whitemane.jpg?32572b",
+      "art": "https://warcraft.wiki.gg/images/thumb/Inquisitor_Whitemane.jpg/700px-Inquisitor_Whitemane.jpg?32572b",
+      "gender": "Female",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Undead",
+      "titles": [
+        "High Inquisitor",
+        "Horseman of the Ebon Blade",
+        "Initiate"
+      ]
+    },
+    {
+      "id": "rehgar-earthfury",
+      "name": "Rehgar Earthfury",
+      "aliases": [
+        "Rehgar"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Rehgar_Art.jpg/160px-Rehgar_Art.jpg?bfb9b0",
+      "art": "https://warcraft.wiki.gg/images/Rehgar_Art.jpg?bfb9b0",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Horde",
+      "class": "Shaman",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "jastor-gallywix",
+      "name": "Jastor Gallywix",
+      "aliases": [
+        "Jastor"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Trade_Prince_Gallywix_Glowei.jpg/160px-Trade_Prince_Gallywix_Glowei.jpg?79caef",
+      "art": "https://warcraft.wiki.gg/images/thumb/Trade_Prince_Gallywix_Glowei.jpg/700px-Trade_Prince_Gallywix_Glowei.jpg?79caef",
+      "gender": "Male",
+      "race": "Goblin",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Big G",
+        "Merchant Prince",
+        "Big Goblin in the Trade Coalition",
+        "President of the Copper Street Conglomerate",
+        "Advisor to the Tinkers' Union",
+        "Overboss of Undermine"
+      ]
+    },
+    {
+      "id": "tess-greymane",
+      "name": "Tess Greymane",
+      "aliases": [
+        "Tess"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Tess_Greymane_HS.jpg/160px-Tess_Greymane_HS.jpg?70712c",
+      "art": "https://warcraft.wiki.gg/images/thumb/Tess_Greymane_HS.jpg/700px-Tess_Greymane_HS.jpg?70712c",
+      "gender": "Female",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Rogue",
+      "status": "Alive",
+      "titles": [
+        "Queen of Gilneas",
+        "Shadow",
+        "Princess of Gilneas"
+      ]
+    },
+    {
+      "id": "zovaal",
+      "name": "Zovaal",
+      "aliases": [
+        "Zovaal the Jailer",
+        "The Jailer",
+        "Jailer"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Eternity%27s_End_key_art_-_Zovaal.jpg/160px-Eternity%27s_End_key_art_-_Zovaal.jpg?b7df9e",
+      "art": "https://warcraft.wiki.gg/images/thumb/Eternity%27s_End_key_art_-_Zovaal.jpg/700px-Eternity%27s_End_key_art_-_Zovaal.jpg?b7df9e",
+      "gender": "Male",
+      "race": "Eternal One",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Banished One",
+        "The Arbiter"
+      ]
+    },
+    {
+      "id": "nathanos-blightcaller",
+      "name": "Nathanos Blightcaller",
+      "aliases": [
+        "Nathanos"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Nathanos_HS.jpg/160px-Nathanos_HS.jpg?beadee",
+      "art": "https://warcraft.wiki.gg/images/thumb/Nathanos_HS.jpg/700px-Nathanos_HS.jpg?beadee",
+      "gender": "Male",
+      "race": "Undead",
+      "faction": "Hostile",
+      "class": "Hunter",
+      "status": "Alive",
+      "titles": [
+        "Blightcaller",
+        "Champion of the Banshee Queen",
+        "Ranger Lord",
+        "Hunter Trainer"
+      ]
+    },
+    {
+      "id": "hamuul-runetotem",
+      "name": "Hamuul Runetotem",
+      "aliases": [
+        "Hamuul"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Hamuul_HS_cropped.jpg/160px-Hamuul_HS_cropped.jpg?1d6e99",
+      "art": "https://warcraft.wiki.gg/images/thumb/Hamuul_HS_cropped.jpg/700px-Hamuul_HS_cropped.jpg?1d6e99",
+      "gender": "Male",
+      "race": "Tauren",
+      "faction": "Horde",
+      "class": "Druid",
+      "status": "Alive",
+      "titles": [
+        "Archdruid of the Tauren",
+        "Cenarion Circle"
+      ]
+    },
+    {
+      "id": "darion-mograine",
+      "name": "Darion Mograine",
+      "aliases": [
+        "Darion"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Darion_Mograine_HS.jpg/160px-Darion_Mograine_HS.jpg?5cc922",
+      "art": "https://warcraft.wiki.gg/images/thumb/Darion_Mograine_HS.jpg/700px-Darion_Mograine_HS.jpg?5cc922",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Death Knight",
+      "status": "Alive",
+      "titles": [
+        "Highlord",
+        "Horseman of the Ebon Blade",
+        "Ashbringer",
+        "Highlord of the Ebon Blade"
+      ]
+    },
+    {
+      "id": "draka",
+      "name": "Draka",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Draka_Mercenaries_3.jpg/160px-Draka_Mercenaries_3.jpg?24dda7",
+      "art": "https://warcraft.wiki.gg/images/thumb/Draka_Mercenaries_3.jpg/700px-Draka_Mercenaries_3.jpg?24dda7",
+      "gender": "Female",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Margrave",
+        "Warlord",
+        "matron of wolves",
+        "Baroness",
+        "Warrior of the Frostwolf Clan"
+      ]
+    },
+    {
+      "id": "durotan",
+      "name": "Durotan",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Durotan_TCG.jpg/160px-Durotan_TCG.jpg?94b6be",
+      "art": "https://warcraft.wiki.gg/images/Durotan_TCG.jpg?94b6be",
+      "gender": "Male",
+      "race": "Orc",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Chieftain of the Frostwolf clan",
+        "Son of Garad"
+      ]
+    },
+    {
+      "id": "mathias-shaw",
+      "name": "Mathias Shaw",
+      "aliases": [
+        "Master Mathias Shaw",
+        "Mathias"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Mathias_Shaw_%28hero%29_cropped_HS.jpg/160px-Mathias_Shaw_%28hero%29_cropped_HS.jpg?8c65d9",
+      "art": "https://warcraft.wiki.gg/images/thumb/Mathias_Shaw_%28hero%29_cropped_HS.jpg/700px-Mathias_Shaw_%28hero%29_cropped_HS.jpg?8c65d9",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Alliance",
+      "class": "Rogue",
+      "status": "Alive",
+      "titles": [
+        "Leader of SI:7",
+        "Spymaster"
+      ]
+    },
+    {
+      "id": "taran-zhu",
+      "name": "Taran Zhu",
+      "aliases": [
+        "Taran"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Taran_Zhu_TCG.jpg/160px-Taran_Zhu_TCG.jpg?6dcf83",
+      "art": "https://warcraft.wiki.gg/images/thumb/Taran_Zhu_TCG.jpg/700px-Taran_Zhu_TCG.jpg?6dcf83",
+      "gender": "Male",
+      "race": "Pandaren",
+      "faction": "Neutral",
+      "class": "Monk",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "zul-jin",
+      "name": "Zul'jin",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Zul%27jinWallpaperCrop1.PNG/160px-Zul%27jinWallpaperCrop1.PNG?60a2ca",
+      "art": "https://warcraft.wiki.gg/images/thumb/Zul%27jinWallpaperCrop1.PNG/700px-Zul%27jinWallpaperCrop1.PNG?60a2ca",
+      "render": "https://warcraft.wiki.gg/images/thumb/Zuljin_hots_art.png/360px-Zuljin_hots_art.png?dbe033",
+      "gender": "Male",
+      "race": "Troll",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "Warlord of Zul'Aman",
+        "Chieftain of the Amani"
+      ]
+    },
+    {
+      "id": "talanji",
+      "name": "Talanji",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Talanji_HS.png/160px-Talanji_HS.png?dc3840",
+      "art": "https://warcraft.wiki.gg/images/thumb/Talanji_HS.png/700px-Talanji_HS.png?dc3840",
+      "gender": "Female",
+      "race": "Troll",
+      "faction": "Horde",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "Queen of Zandalar",
+        "Princess of Zandalar"
+      ]
+    },
+    {
+      "id": "kalecgos",
+      "name": "Kalecgos",
+      "aliases": [
+        "Kalec"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Kalecgos_dragon_DF.jpg/160px-Kalecgos_dragon_DF.jpg?d638c9",
+      "art": "https://warcraft.wiki.gg/images/thumb/Kalecgos_dragon_DF.jpg/700px-Kalecgos_dragon_DF.jpg?d638c9",
+      "render": "https://warcraft.wiki.gg/images/thumb/Kalecgos_Human_Form.png/360px-Kalecgos_Human_Form.png?92f1b2",
+      "gender": "Male",
+      "race": "Dragon",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Alive",
+      "titles": [
+        "Blue Dragon Aspect",
+        "Spell-Weaver",
+        "Steward of Magic",
+        "Aspect of Magic",
+        "Blue Aspect",
+        "Archmage"
+      ]
+    },
+    {
+      "id": "broll-bearmantle",
+      "name": "Broll Bearmantle",
+      "aliases": [
+        "Broll"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Broll-Bearmantle.jpg/160px-Broll-Bearmantle.jpg?fec7e0",
+      "art": "https://warcraft.wiki.gg/images/thumb/Broll-Bearmantle.jpg/700px-Broll-Bearmantle.jpg?fec7e0",
+      "gender": "Male",
+      "race": "Night elf",
+      "faction": "Alliance",
+      "class": "Druid",
+      "status": "Alive",
+      "titles": [
+        "Champion of the Crimson Ring"
+      ]
+    },
+    {
+      "id": "anub-arak",
+      "name": "Anub'arak",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Anub%27arak%2C_The_Traitor_King_TCG_%28alternate%29.jpg/160px-Anub%27arak%2C_The_Traitor_King_TCG_%28alternate%29.jpg?17b267",
+      "art": "https://warcraft.wiki.gg/images/thumb/Anub%27arak%2C_The_Traitor_King_TCG_%28alternate%29.jpg/700px-Anub%27arak%2C_The_Traitor_King_TCG_%28alternate%29.jpg?17b267",
+      "render": "https://warcraft.wiki.gg/images/thumb/Anub%27arak_Reforged.png/360px-Anub%27arak_Reforged.png?942395",
+      "gender": "Male",
+      "race": "Undead",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Traitor King"
+      ]
+    },
+    {
+      "id": "akama",
+      "name": "Akama",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Akama_TCG.jpg/160px-Akama_TCG.jpg?29eecb",
+      "art": "https://warcraft.wiki.gg/images/thumb/Akama_TCG.jpg/700px-Akama_TCG.jpg?29eecb",
+      "gender": "Male",
+      "race": "Draenei",
+      "faction": "Neutral",
+      "class": "Shaman",
+      "status": "Alive",
+      "titles": [
+        "Chieftain of the Ashtongue",
+        "Elder Sage",
+        "of the Broken",
+        "Illidari",
+        "Exarch"
+      ]
+    },
+    {
+      "id": "vanessa-vancleef",
+      "name": "Vanessa VanCleef",
+      "aliases": [
+        "Vanessa"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Vanessa_VanCleef_HS.png/160px-Vanessa_VanCleef_HS.png?edc6cd",
+      "art": "https://warcraft.wiki.gg/images/thumb/Vanessa_VanCleef_HS.png/700px-Vanessa_VanCleef_HS.png?edc6cd",
+      "gender": "Female",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Rogue",
+      "status": "Alive",
+      "titles": []
+    },
+    {
+      "id": "headless-horseman",
+      "name": "Headless Horseman",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Headless_Horseman_TCG.jpg/160px-Headless_Horseman_TCG.jpg?265717",
+      "art": "https://warcraft.wiki.gg/images/thumb/Headless_Horseman_TCG.jpg/700px-Headless_Horseman_TCG.jpg?265717",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Hostile",
+      "class": "None",
+      "status": "Deceased",
+      "titles": []
+    },
+    {
+      "id": "liam-greymane",
+      "name": "Liam Greymane",
+      "aliases": [
+        "Liam"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/LiamCoW2.png/160px-LiamCoW2.png?67182e",
+      "art": "https://warcraft.wiki.gg/images/LiamCoW2.png?67182e",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "Crown Prince of Gilneas"
+      ]
+    },
+    {
+      "id": "denathrius",
+      "name": "Denathrius",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Covenants_of_the_Shadowlands_-_Denathrius.jpg/160px-Covenants_of_the_Shadowlands_-_Denathrius.jpg?e16927",
+      "art": "https://warcraft.wiki.gg/images/Covenants_of_the_Shadowlands_-_Denathrius.jpg?e16927",
+      "gender": "Male",
+      "race": "Eternal One",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Alive",
+      "titles": [
+        "Sire",
+        "Master of Revendreth",
+        "King of the Venthyr",
+        "First Blooded",
+        "Commander of the Stoneborn",
+        "Fangs of the Shadowlands"
+      ]
+    },
+    {
+      "id": "cairne-bloodhoof",
+      "name": "Cairne Bloodhoof",
+      "aliases": [
+        "Cairne"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Cairne_Mercenaries_3.jpg/160px-Cairne_Mercenaries_3.jpg?c941e7",
+      "art": "https://warcraft.wiki.gg/images/thumb/Cairne_Mercenaries_3.jpg/700px-Cairne_Mercenaries_3.jpg?c941e7",
+      "render": "https://warcraft.wiki.gg/images/thumb/Cairne_Bloodhoof_Reforged.png/360px-Cairne_Bloodhoof_Reforged.png?7fc1e4",
+      "gender": "Male",
+      "race": "Tauren",
+      "faction": "Horde",
+      "class": "Warrior",
+      "status": "Deceased",
+      "titles": [
+        "High Chieftain",
+        "Earthmother's Chosen"
+      ]
+    },
+    {
+      "id": "tichondrius",
+      "name": "Tichondrius",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Tichondrius_HS_Battlegrounds.jpg/160px-Tichondrius_HS_Battlegrounds.jpg?6161b3",
+      "art": "https://warcraft.wiki.gg/images/thumb/Tichondrius_HS_Battlegrounds.jpg/700px-Tichondrius_HS_Battlegrounds.jpg?6161b3",
+      "gender": "Male",
+      "race": "Demon",
+      "faction": "Neutral",
+      "class": "None",
+      "status": "Deceased",
+      "titles": [
+        "The Darkener",
+        "Lord of the Nathrezim"
+      ]
+    },
+    {
+      "id": "rhonin",
+      "name": "Rhonin",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Rhonin_TCG.jpg/160px-Rhonin_TCG.jpg?e24802",
+      "art": "https://warcraft.wiki.gg/images/thumb/Rhonin_TCG.jpg/700px-Rhonin_TCG.jpg?e24802",
+      "gender": "Male",
+      "race": "Human",
+      "faction": "Neutral",
+      "class": "Mage",
+      "status": "Deceased",
+      "titles": [
+        "Draig'cyfaill (Dragonheart)",
+        "Redhair",
+        "Leader of the Kirin Tor",
+        "Kirin Tor"
+      ]
+    },
+    {
+      "id": "fandral-staghelm",
+      "name": "Fandral Staghelm",
+      "aliases": [
+        "Fandral"
+      ],
+      "image": "https://warcraft.wiki.gg/images/thumb/Fandral_Staghelm_HS.jpg/160px-Fandral_Staghelm_HS.jpg?bf5b1f",
+      "art": "https://warcraft.wiki.gg/images/thumb/Fandral_Staghelm_HS.jpg/700px-Fandral_Staghelm_HS.jpg?bf5b1f",
+      "gender": "Male",
+      "race": "Night elf",
+      "faction": "Neutral",
+      "class": "Druid",
+      "status": "Deceased",
+      "titles": [
+        "Kar'sis",
+        "Archdruid of the Flame",
+        "Majordomo of the Firelands"
+      ]
+    },
+    {
+      "id": "thorim",
+      "name": "Thorim",
+      "aliases": [],
+      "image": "https://warcraft.wiki.gg/images/thumb/Thorim%2C_Stormlord_HS.jpg/160px-Thorim%2C_Stormlord_HS.jpg?aaf570",
+      "art": "https://warcraft.wiki.gg/images/thumb/Thorim%2C_Stormlord_HS.jpg/700px-Thorim%2C_Stormlord_HS.jpg?aaf570",
+      "gender": "Male",
+      "race": "Titan",
+      "faction": "Neutral",
+      "class": "Warrior",
+      "status": "Alive",
+      "titles": [
+        "The Stormlord",
+        "Lord of Thunder",
+        "Keeper"
+      ]
+    }
+  ]
+}

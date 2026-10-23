@@ -4,6 +4,7 @@ import { ARC_ORDER, ONE_PIECE, characterById, formatBounty, type OpCharacter } f
 import { LOL, championById, type LolChampion } from '../lol';
 import { MARVEL, filmById, mcuCharacterById, type McuCharacter } from '../marvel';
 import { GENSHIN, compareVersions, giCharacterById, type GiCharacter } from '../genshin';
+import { WOW, wowCharacterById, type WowCharacter } from '../wow';
 import { SP_META, spScore, type SpRound } from '../rounds';
 import { SpOutcome } from './SpGuessRound';
 
@@ -86,6 +87,14 @@ const GENSHIN_COLUMNS: Column<GiCharacter>[] = [
     judge: (g, t) => (g.version === t.version ? 'hit' : g.version.split('.')[0] === t.version.split('.')[0] ? 'near' : 'miss'),
     arrow: (g, t) => compareVersions(t.version, g.version),
   },
+];
+
+const WOW_COLUMNS: Column<WowCharacter>[] = [
+  { label: 'Gender', show: (c) => c.gender, judge: same((c) => c.gender) },
+  { label: 'Race', show: (c) => c.race, judge: same((c) => c.race) },
+  { label: 'Faction', show: (c) => c.faction, judge: same((c) => c.faction) },
+  { label: 'Class', show: (c) => c.class, judge: same((c) => c.class) },
+  { label: 'Status', show: (c) => c.status, judge: same((c) => c.status) },
 ];
 
 const VERDICT_CLASS: Record<Verdict, string> = {
@@ -203,6 +212,11 @@ export function MarvelClassicRound(props: Props) {
 /** Genshin Classic: gender, element, weapon, region, rarity, body type, version. */
 export function GenshinClassicRound(props: Props) {
   return <ClassicGrid {...props} pool={GENSHIN.characters} byId={giCharacterById} columns={GENSHIN_COLUMNS} noun="character" detail={(t) => `${t.element} · ${t.region} · v${t.version}`} />;
+}
+
+/** World of Warcraft Classic: gender, race, faction, class, status. */
+export function WowClassicRound(props: Props) {
+  return <ClassicGrid {...props} pool={WOW.characters} byId={wowCharacterById} columns={WOW_COLUMNS} noun="character" detail={(t) => `${t.race} · ${t.faction}${t.class !== 'None' ? ` · ${t.class}` : ''}`} />;
 }
 
 /** League Classic: gender, positions, species, resource, range, regions, release year. */

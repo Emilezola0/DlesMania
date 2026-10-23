@@ -5,8 +5,9 @@ import { POOLS } from './data';
 import { LOL_POOLS } from './lol';
 import { MARVEL_POOLS } from './marvel';
 import { GENSHIN_POOLS } from './genshin';
+import { WOW_POOLS } from './wow';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -38,6 +39,13 @@ export const UNIVERSES = [
     blurb: 'Classic, wish arts, silhouettes and constellations — every playable character.',
     types: ['classic', 'wish', 'silhouette', 'constellation'] as SpType[],
   },
+  {
+    id: 'wow',
+    label: 'World of Warcraft',
+    ready: true,
+    blurb: 'Classic, art, silhouettes and titles — 120 of the best-known characters from the games.',
+    types: ['classic', 'art', 'silhouette', 'titles'] as SpType[],
+  },
 ] as const;
 export type UniverseId = (typeof UNIVERSES)[number]['id'];
 
@@ -56,6 +64,8 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   emoji: { name: 'Emoji', icon: '😎', tagline: 'A film told in emojis', maxAttempts: 6 },
   voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (original English voice)', maxAttempts: 6 },
   wish: { name: 'Wish Art', icon: '🌠', tagline: 'Whose wish art is this?', maxAttempts: 6 },
+  art: { name: 'Art', icon: '🖼️', tagline: 'Who is in this picture?', maxAttempts: 6 },
+  titles: { name: 'Titles', icon: '📜', tagline: 'Who goes by these titles?', maxAttempts: 6 },
   constellation: { name: 'Constellation', icon: '✦', tagline: 'Whose constellation is this?', maxAttempts: 6 },
 };
 
@@ -73,7 +83,7 @@ export function spScore(type: SpType, attempts: number): number {
 
 export const maxScore = (id: UniverseId) => universe(id)!.types.length * 100;
 
-const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = { onepiece: POOLS, lol: LOL_POOLS, marvel: MARVEL_POOLS, genshin: GENSHIN_POOLS };
+const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = { onepiece: POOLS, lol: LOL_POOLS, marvel: MARVEL_POOLS, genshin: GENSHIN_POOLS, wow: WOW_POOLS };
 
 /** How many answers a round type can draw from. */
 export const poolSize = (id: UniverseId, type: SpType) => (POOLS_OF[id][type] ?? []).length;

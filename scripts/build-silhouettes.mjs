@@ -9,7 +9,8 @@
 // Sources: Pokémon — PokeAPI (names in English/French, official artwork); League of Legends — Data
 // Dragon champion list + "<Champion> Render.png" on the League wiki; Minecraft — the mob pages'
 // renders on the Minecraft wiki; Genshin Impact — official portraits (white background, cut out at
-// play time); One Piece — game renders (Thousand Storm first) on the One Piece wiki.
+// play time); World of Warcraft — transparent renders found by build-specialist-wow.mjs; One Piece —
+// game renders (Thousand Storm first) on the One Piece wiki.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ROOT, fandomApi, getJson, mediawikiGet, mediawikiImages, parseArgs, sleep } from './lib.mjs';
@@ -188,6 +189,12 @@ async function genshin() {
   return data.characters.filter((c) => c.portrait).map((c) => ({ name: c.name, aliases: c.aliases, image: c.portrait }));
 }
 
+/** World of Warcraft: the Specialist data's transparent renders (built by build-specialist-wow.mjs). */
+async function wow() {
+  const data = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'wow.json'), 'utf8'));
+  return data.characters.filter((c) => c.render).map((c) => ({ name: c.name, aliases: c.aliases, image: c.render }));
+}
+
 const SERIES = [
   { id: 'lol', domain: 'games', label: 'League of Legends', noun: 'champion', build: league },
   { id: 'minecraft', domain: 'games', label: 'Minecraft', noun: 'mob', build: minecraft },
@@ -195,6 +202,7 @@ const SERIES = [
   { id: 'onepiece', domain: 'anime', label: 'One Piece', noun: 'character', build: onePiece },
   // Portraits sit on white: the game cuts the background away before blacking them out.
   { id: 'genshin', domain: 'games', label: 'Genshin Impact', noun: 'character', cutout: true, build: genshin },
+  { id: 'wow', domain: 'games', label: 'World of Warcraft', noun: 'character', build: wow },
 ];
 
 let data = [];

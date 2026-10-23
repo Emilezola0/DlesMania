@@ -13,7 +13,9 @@ import { ONE_PIECE } from '../specialist/data';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { GENSHIN } from '../specialist/genshin';
-import { ClassicRound, GenshinClassicRound, LolClassicRound, MarvelClassicRound } from '../specialist/games/ClassicRound';
+import { WOW } from '../specialist/wow';
+import { WowArtRound, WowSilhouetteRound, WowTitlesRound } from '../specialist/games/WowRounds';
+import { ClassicRound, GenshinClassicRound, LolClassicRound, MarvelClassicRound, WowClassicRound } from '../specialist/games/ClassicRound';
 import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/games/GenshinRounds';
 import { EmojiFilmRound, FilmRound, VoiceRound } from '../specialist/games/MarvelRounds';
 import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
@@ -29,6 +31,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound },
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound },
+  wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound },
 };
 
 /** The line under a universe's title: what's in it, and when the data was built. */
@@ -37,6 +40,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   lol: `${LOL.champions.length} champions — Data Dragon ${LOL.version}, built ${LOL.generated}`,
   marvel: `${MARVEL.characters.length} characters · ${MARVEL.films.length} films — MCU wiki data from ${MARVEL.generated}`,
   genshin: `${GENSHIN.characters.length} characters, up to version ${GENSHIN.characters[GENSHIN.characters.length - 1]?.version} — Genshin wiki data from ${GENSHIN.generated}`,
+  wow: `${WOW.characters.length} characters from the games — Warcraft Wiki data from ${WOW.generated}`,
 };
 
 function Round({ universe: id, round, record, onChange }: RoundProps & { universe: UniverseId }) {
@@ -58,7 +62,7 @@ export function SpecialistHub() {
         <h1 className="text-5xl font-bold">Specialist</h1>
         <p className="max-w-xl text-ink-soft">
           Pick a universe and play rounds made only from it: a Classic built on its own traits, plus games you won&apos;t find anywhere else — Devil
-          Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League, posters and voice lines for Marvel, wish arts and constellations for Genshin. A new daily every day, and practice whenever you like.
+          Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League, posters and voice lines for Marvel, wish arts and constellations for Genshin, art and titles for World of Warcraft. A new daily every day, and practice whenever you like.
         </p>
       </div>
       <ul className="grid gap-4 sm:grid-cols-3">

@@ -3585,5 +3585,231 @@
         "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3a/Vodyanitsa_Portrait.png/revision/latest/scale-to-width-down/700?cb=20260923030513"
       }
     ]
+  },
+  {
+    "id": "wow",
+    "domain": "games",
+    "label": "World of Warcraft",
+    "noun": "character",
+    "entries": [
+      {
+        "name": "Tyrande Whisperwind",
+        "aliases": [
+          "Tyrande"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Reforged.png/360px-Tyrande_Reforged.png?721b13"
+      },
+      {
+        "name": "Illidan Stormrage",
+        "aliases": [
+          "Illidan"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Warcraft_III_Reforged_-_Illidan_art.png/360px-Warcraft_III_Reforged_-_Illidan_art.png?5a540f"
+      },
+      {
+        "name": "Uther the Lightbringer",
+        "aliases": [
+          "Uther"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Uther_Reforged.png/360px-Uther_Reforged.png?808a2f"
+      },
+      {
+        "name": "Medivh",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Medivh_Reforged.png/360px-Medivh_Reforged.png?cd8fb8"
+      },
+      {
+        "name": "Kel'Thuzad",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Kel%27Thuzad_Lich_Reforged.png/360px-Kel%27Thuzad_Lich_Reforged.png?775202"
+      },
+      {
+        "name": "Hogger",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Hogger_HotS.png/360px-Hogger_HotS.png?9283dc"
+      },
+      {
+        "name": "Onyxia",
+        "aliases": [
+          "Katrana Prestor"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Onyxia2.png/360px-Onyxia2.png?ff5416"
+      },
+      {
+        "name": "Nefarian",
+        "aliases": [
+          "Victor Nefarius"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Nefarian_Monster_Guide.png/360px-Nefarian_Monster_Guide.png?fc6ea0"
+      },
+      {
+        "name": "Kil'jaeden",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Kil%27jaeden_Reforged.png/360px-Kil%27jaeden_Reforged.png?5c3d98"
+      },
+      {
+        "name": "Varimathras",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Varimathras_DE.png/360px-Varimathras_DE.png?28456e"
+      },
+      {
+        "name": "Archimonde",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Archimonde_Reforged.png/360px-Archimonde_Reforged.png?4f4bb5"
+      },
+      {
+        "name": "Drek'Thar",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Drek%27Thar_Reforged.png/360px-Drek%27Thar_Reforged.png?8cade8"
+      },
+      {
+        "name": "Antonidas",
+        "aliases": [
+          "Archmage Antonidas"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Antonidas_Ghost_Reforged.png/360px-Antonidas_Ghost_Reforged.png?e3d59a"
+      },
+      {
+        "name": "Thrall",
+        "aliases": [
+          "Go'el"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Thrall_%28Mountless%29_Reforged.png/360px-Thrall_%28Mountless%29_Reforged.png?54e75d"
+      },
+      {
+        "name": "Sylvanas Windrunner",
+        "aliases": [
+          "Sylvanas"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_Windrunner_Banshee_Reforged.png/360px-Sylvanas_Windrunner_Banshee_Reforged.png?b3ea44"
+      },
+      {
+        "name": "Varian Wrynn",
+        "aliases": [
+          "Varian"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Grand_Marshal_Varian.png/360px-Grand_Marshal_Varian.png?f4e85f"
+      },
+      {
+        "name": "Jaina Proudmoore",
+        "aliases": [
+          "Jaina"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Jaina_Reforged.png/360px-Jaina_Reforged.png?53dc66"
+      },
+      {
+        "name": "Garrosh Hellscream",
+        "aliases": [
+          "Garrosh"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/High_Warlord_Garrosh.png/360px-High_Warlord_Garrosh.png?1db532"
+      },
+      {
+        "name": "Genn Greymane",
+        "aliases": [
+          "Genn"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Blizzard_Legends_Genn.png/360px-Blizzard_Legends_Genn.png?9cf71a"
+      },
+      {
+        "name": "Valeera Sanguinar",
+        "aliases": [
+          "Valeera"
+        ],
+        "image": "https://warcraft.wiki.gg/images/Nightslayer_Valeera.png?3ef072"
+      },
+      {
+        "name": "Vol'jin",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Vol%27jin_Reforged.png/360px-Vol%27jin_Reforged.png?65fcd0"
+      },
+      {
+        "name": "Chen Stormstout",
+        "aliases": [
+          "Chen"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Chen_Stormstout_Earth_Reforged.png/360px-Chen_Stormstout_Earth_Reforged.png?b066c5"
+      },
+      {
+        "name": "Arthas Menethil",
+        "aliases": [
+          "The Lich King",
+          "Lich King",
+          "Arthas"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Arthas_Reforged.png/360px-Arthas_Reforged.png?844e38"
+      },
+      {
+        "name": "Rexxar",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Rexxar_Reforged.png/360px-Rexxar_Reforged.png?d8fd45"
+      },
+      {
+        "name": "Muradin Bronzebeard",
+        "aliases": [
+          "Muradin"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Muradin_Bronzebeard_Reforged.png/360px-Muradin_Bronzebeard_Reforged.png?ea61aa"
+      },
+      {
+        "name": "Gul'dan",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Gul%27dan_Reforged.png/360px-Gul%27dan_Reforged.png?3ddd0b"
+      },
+      {
+        "name": "Alleria Windrunner",
+        "aliases": [
+          "Alleria"
+        ],
+        "image": "https://warcraft.wiki.gg/images/Alleria_void_form_Midnight.png?1d43b8"
+      },
+      {
+        "name": "Shandris Feathermoon",
+        "aliases": [
+          "Shandris"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Shandris_Reforged.png/360px-Shandris_Reforged.png?4f202e"
+      },
+      {
+        "name": "Grommash Hellscream",
+        "aliases": [
+          "Grom Hellscream",
+          "Grom",
+          "Grommash"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Grom_Hellscream_Reforged.png/360px-Grom_Hellscream_Reforged.png?bc8466"
+      },
+      {
+        "name": "Maiev Shadowsong",
+        "aliases": [
+          "Maiev"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Warcraft_III_Reforged_-_Maiev_art.png/360px-Warcraft_III_Reforged_-_Maiev_art.png?34c3a2"
+      },
+      {
+        "name": "Zul'jin",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Zuljin_hots_art.png/360px-Zuljin_hots_art.png?dbe033"
+      },
+      {
+        "name": "Kalecgos",
+        "aliases": [
+          "Kalec"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Kalecgos_Human_Form.png/360px-Kalecgos_Human_Form.png?92f1b2"
+      },
+      {
+        "name": "Anub'arak",
+        "aliases": [],
+        "image": "https://warcraft.wiki.gg/images/thumb/Anub%27arak_Reforged.png/360px-Anub%27arak_Reforged.png?942395"
+      },
+      {
+        "name": "Cairne Bloodhoof",
+        "aliases": [
+          "Cairne"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Cairne_Bloodhoof_Reforged.png/360px-Cairne_Bloodhoof_Reforged.png?7fc1e4"
+      }
+    ]
   }
 ]

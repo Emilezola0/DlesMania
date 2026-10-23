@@ -9050,6 +9050,981 @@
     }
   },
   {
+    "id": "wow",
+    "domain": "games",
+    "franchise": "World of Warcraft",
+    "aliases": [
+      "wow",
+      "warcraft",
+      "azeroth"
+    ],
+    "images": "fandom:wowpedia",
+    "boss": {
+      "name": "The Lich King",
+      "title": "Lord of the Scourge",
+      "src": "https://warcraft.wiki.gg/images/thumb/Lich_King_by_Raneman.jpg/700px-Lich_King_by_Raneman.jpg?a6f73a",
+      "color": "#38bdf8",
+      "image": "https://warcraft.wiki.gg/images/thumb/Lich_King_by_Raneman.jpg/700px-Lich_King_by_Raneman.jpg?a6f73a"
+    },
+    "lines": {
+      "intro": "Another hero climbs my citadel. Come, then — the cold has room for one more.",
+      "phase2": "You remember names well. But can you tell Azeroth's own from the strangers at my gate?",
+      "phase3": "Enough. Name the fallen as they rise before you — if you can keep up.",
+      "hit": [
+        "A scratch.",
+        "The cold does not bleed.",
+        "Hmph. Again."
+      ],
+      "hurt": [
+        "Your warmth fades.",
+        "Kneel.",
+        "Another soul for the blade."
+      ],
+      "win": "So the ice cracks… There must always be a Lich King. Perhaps it will be you.",
+      "lose": "Rise, champion — and serve the Scourge for eternity.",
+      "secret": "One more game, champion. I name something of Azeroth — you name another of the same kind. Repeat nothing.",
+      "secretOk": [
+        "Acceptable.",
+        "Go on.",
+        "The blade listens."
+      ],
+      "secretLost": "Wrong. The frost takes you."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Horde characters",
+        "count": 5,
+        "answers": [
+          "Blackhand",
+          "Thalyssra|First Arcanist Thalyssra",
+          "Orgrim Doomhammer|Orgrim",
+          "Drek'Thar",
+          "Thrall|Go'el",
+          "Lor'themar Theron|Lor'themar",
+          "Baine Bloodhoof|Baine",
+          "Vol'jin",
+          "Rexxar",
+          "Grommash Hellscream|Grom Hellscream|Grom|Grommash",
+          "Varok Saurfang|Varok",
+          "Lady Liadrin",
+          "Garona Halforcen|Garona",
+          "Monte Gazlowe|Monte",
+          "Rehgar Earthfury|Rehgar",
+          "Hamuul Runetotem|Hamuul",
+          "Talanji",
+          "Cairne Bloodhoof|Cairne"
+        ]
+      },
+      {
+        "prompt": "Name 5 Alliance characters",
+        "count": 5,
+        "answers": [
+          "Tyrande Whisperwind|Tyrande",
+          "Khadgar",
+          "Gelbin Mekkatorque|Gelbin",
+          "Brann Bronzebeard|Brann",
+          "Antonidas|Archmage Antonidas",
+          "Anduin Lothar",
+          "Terenas Menethil II|Terenas",
+          "Varian Wrynn|Varian",
+          "Anduin Wrynn|Anduin Llane Wrynn",
+          "Jaina Proudmoore|Jaina",
+          "Malfurion Stormrage|Malfurion",
+          "Genn Greymane|Genn",
+          "Velen",
+          "Muradin Bronzebeard|Muradin",
+          "Turalyon",
+          "Alleria Windrunner|Alleria",
+          "Vindicator Maraad",
+          "Shandris Feathermoon|Shandris",
+          "Moira Thaurissan|Moira",
+          "Magni Bronzebeard|Magni",
+          "Vereesa Windrunner|Vereesa",
+          "Maiev Shadowsong|Maiev",
+          "Falstad Wildhammer|Falstad",
+          "Tess Greymane|Tess",
+          "Mathias Shaw|Master Mathias Shaw|Mathias",
+          "Broll Bearmantle|Broll"
+        ]
+      },
+      {
+        "prompt": "Name 5 orcs",
+        "count": 5,
+        "answers": [
+          "Ner'zhul",
+          "Kargath Bladefist|Kargath",
+          "Blackhand",
+          "Orgrim Doomhammer|Orgrim",
+          "Drek'Thar",
+          "Thrall|Go'el",
+          "Garrosh Hellscream|Garrosh",
+          "Rexxar",
+          "Gul'dan",
+          "Grommash Hellscream|Grom Hellscream|Grom|Grommash",
+          "Varok Saurfang|Varok",
+          "Garona Halforcen|Garona",
+          "Rehgar Earthfury|Rehgar",
+          "Draka",
+          "Durotan"
+        ]
+      },
+      {
+        "prompt": "Name 5 dragons",
+        "count": 5,
+        "answers": [
+          "Alexstrasza|Life-Binder",
+          "Chronormu|Chromie",
+          "Nozdormu|Timeless One",
+          "Ysera|Dreamer",
+          "Onyxia|Katrana Prestor",
+          "Malygos|Spell-Weaver",
+          "Nefarian|Victor Nefarius",
+          "Sindragosa",
+          "Deathwing|Neltharion|Earth-Warder",
+          "Wrathion",
+          "Kalecgos|Kalec",
+          "Merithra",
+          "Chromie|Chronormu"
+        ]
+      },
+      {
+        "prompt": "Name 4 Dragon Aspects",
+        "count": 4,
+        "answers": [
+          "Alexstrasza|Life-Binder",
+          "Ysera|Dreamer",
+          "Nozdormu|Timeless One",
+          "Malygos|Spell-Weaver",
+          "Deathwing|Neltharion|Earth-Warder",
+          "Kalecgos|Kalec",
+          "Merithra",
+          "Chromie|Chronormu"
+        ]
+      },
+      {
+        "prompt": "Name 4 Warchiefs of the Horde",
+        "count": 4,
+        "answers": [
+          "Blackhand",
+          "Orgrim Doomhammer|Doomhammer|Orgrim",
+          "Thrall|Go'el",
+          "Garrosh Hellscream|Garrosh",
+          "Vol'jin|Voljin",
+          "Sylvanas Windrunner|Sylvanas",
+          "Ner'zhul|Nerzhul",
+          "Gul'dan|Guldan"
+        ]
+      },
+      {
+        "prompt": "Name 6 playable races",
+        "count": 6,
+        "answers": [
+          "Human|Humans",
+          "Dwarf|Dwarves",
+          "Night elf|Night elves",
+          "Gnome|Gnomes",
+          "Draenei",
+          "Worgen",
+          "Orc|Orcs",
+          "Undead|Forsaken",
+          "Tauren",
+          "Troll|Trolls",
+          "Blood elf|Blood elves",
+          "Goblin|Goblins",
+          "Pandaren",
+          "Dracthyr",
+          "Earthen",
+          "Void elf|Void elves",
+          "Lightforged draenei",
+          "Dark Iron dwarf|Dark Iron dwarves",
+          "Kul Tiran|Kul Tirans",
+          "Mechagnome|Mechagnomes",
+          "Nightborne",
+          "Highmountain tauren",
+          "Mag'har orc|Maghar orc|Mag'har orcs",
+          "Zandalari troll|Zandalari trolls",
+          "Vulpera"
+        ]
+      },
+      {
+        "prompt": "Name 6 classes",
+        "count": 6,
+        "answers": [
+          "Warrior",
+          "Paladin",
+          "Hunter",
+          "Rogue",
+          "Priest",
+          "Shaman",
+          "Mage",
+          "Warlock",
+          "Druid",
+          "Death Knight|DK",
+          "Monk",
+          "Demon Hunter|DH",
+          "Evoker"
+        ]
+      },
+      {
+        "prompt": "Name 5 capital cities",
+        "count": 5,
+        "answers": [
+          "Stormwind|Stormwind City",
+          "Ironforge",
+          "Darnassus",
+          "The Exodar|Exodar",
+          "Gilneas|Gilneas City",
+          "Orgrimmar",
+          "Undercity",
+          "Thunder Bluff",
+          "Silvermoon|Silvermoon City",
+          "Dalaran",
+          "Shattrath|Shattrath City",
+          "Boralus",
+          "Dazar'alor|Dazaralor",
+          "Oribos",
+          "Valdrakken",
+          "Dornogal"
+        ]
+      },
+      {
+        "prompt": "Name 5 expansions",
+        "count": 5,
+        "answers": [
+          "The Burning Crusade|Burning Crusade|TBC",
+          "Wrath of the Lich King|WotLK|Wrath",
+          "Cataclysm|Cata",
+          "Mists of Pandaria|MoP",
+          "Warlords of Draenor|WoD",
+          "Legion",
+          "Battle for Azeroth|BfA",
+          "Shadowlands",
+          "Dragonflight",
+          "The War Within|War Within|TWW",
+          "Midnight",
+          "The Last Titan"
+        ]
+      },
+      {
+        "prompt": "Name 3 Old Gods",
+        "count": 3,
+        "answers": [
+          "C'Thun|Cthun",
+          "Yogg-Saron|Yogg Saron",
+          "N'Zoth|Nzoth",
+          "Y'Shaarj|Yshaarj",
+          "G'huun|Ghuun"
+        ]
+      },
+      {
+        "prompt": "Name 5 mages",
+        "count": 5,
+        "answers": [
+          "Khadgar",
+          "Medivh",
+          "Kel'Thuzad",
+          "Queen Azshara|Azshara",
+          "Xavius",
+          "Thalyssra|First Arcanist Thalyssra",
+          "Antonidas|Archmage Antonidas",
+          "Helya",
+          "Elisande",
+          "Jaina Proudmoore|Jaina",
+          "Kael'thas Sunstrider|Kael'thas",
+          "Vashj",
+          "Cho'gall",
+          "Kalecgos|Kalec",
+          "Rhonin"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Tyrande Whisperwind",
+          "aliases": [
+            "Tyrande"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/160px-Tyrande_Mercenaries_3.jpg?bc0904"
+        },
+        {
+          "label": "Illidan Stormrage",
+          "aliases": [
+            "Illidan"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/160px-Illidan_the_Betrayer.jpg?1e6975"
+        },
+        {
+          "label": "Uther the Lightbringer",
+          "aliases": [
+            "Uther"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/160px-Uther_Mercenaries_3.jpg?d18530"
+        },
+        {
+          "label": "Medivh",
+          "image": "https://warcraft.wiki.gg/images/thumb/Medivh_Cropped.jpg/160px-Medivh_Cropped.jpg?f81da1"
+        },
+        {
+          "label": "Kel'Thuzad",
+          "image": "https://warcraft.wiki.gg/images/thumb/Ashbringer4CoverSampleA.jpg/160px-Ashbringer4CoverSampleA.jpg?79027f"
+        },
+        {
+          "label": "Hogger",
+          "image": "https://warcraft.wiki.gg/images/thumb/Hogger_TCG.jpg/160px-Hogger_TCG.jpg?b9dbb4"
+        },
+        {
+          "label": "Onyxia",
+          "aliases": [
+            "Katrana Prestor"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Raid_Boss_Onyxia_HS.jpg/160px-Raid_Boss_Onyxia_HS.jpg?85b63f"
+        },
+        {
+          "label": "Nefarian",
+          "aliases": [
+            "Victor Nefarius"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Nefarian_HS2.jpg/160px-Nefarian_HS2.jpg?115d80"
+        },
+        {
+          "label": "Kil'jaeden",
+          "image": "https://warcraft.wiki.gg/images/thumb/Kil%27jaeden_HS.jpg/160px-Kil%27jaeden_HS.jpg?7da8b5"
+        },
+        {
+          "label": "Varimathras",
+          "image": "https://warcraft.wiki.gg/images/thumb/Varimathras_Art.jpg/160px-Varimathras_Art.jpg?892099"
+        },
+        {
+          "label": "Archimonde",
+          "image": "https://warcraft.wiki.gg/images/thumb/Archimonde_HS.jpg/160px-Archimonde_HS.jpg?cb9d30"
+        },
+        {
+          "label": "Drek'Thar",
+          "image": "https://warcraft.wiki.gg/images/thumb/Drek%27Thar_HS.jpg/160px-Drek%27Thar_HS.jpg?98b4e3"
+        },
+        {
+          "label": "Antonidas",
+          "aliases": [
+            "Archmage Antonidas"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Antonidas-WH.jpg/160px-Antonidas-WH.jpg?cdcb1f"
+        },
+        {
+          "label": "Thrall",
+          "aliases": [
+            "Go'el"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Thrall_-_The_War_Within.png/160px-Thrall_-_The_War_Within.png?5f0b41"
+        },
+        {
+          "label": "Sylvanas Windrunner",
+          "aliases": [
+            "Sylvanas"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_9.2.png/160px-Sylvanas_9.2.png?800be2"
+        },
+        {
+          "label": "Varian Wrynn",
+          "aliases": [
+            "Varian"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Varian_Wei.jpg/160px-Varian_Wei.jpg?d75da1"
+        },
+        {
+          "label": "Jaina Proudmoore",
+          "aliases": [
+            "Jaina"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/160px-HSKT_Jaina.jpg?d11e7e"
+        },
+        {
+          "label": "Garrosh Hellscream",
+          "aliases": [
+            "Garrosh"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/160px-Garrosh_Glowei_-_cropped.jpg?d54104"
+        },
+        {
+          "label": "Genn Greymane",
+          "aliases": [
+            "Genn"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Genn%2C_Cursed_King_HS.png/160px-Genn%2C_Cursed_King_HS.png?72b47f"
+        },
+        {
+          "label": "Valeera Sanguinar",
+          "aliases": [
+            "Valeera"
+          ],
+          "image": "https://warcraft.wiki.gg/images/thumb/Valeera_HoW.png/160px-Valeera_HoW.png?411834"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Tyrael",
+          "src": "fandom:diablo:Tyrael",
+          "image": "https://static.wikia.nocookie.net/diablo/images/6/63/Tyrael_Reckoning.jpg/revision/latest/scale-to-width-down/400?cb=20260428114047"
+        },
+        {
+          "label": "Diablo",
+          "src": "fandom:diablo:Diablo",
+          "image": "https://static.wikia.nocookie.net/diablo/images/3/3a/Diablo_Diablo_III_full_body.PNG/revision/latest/scale-to-width-down/327?cb=20120513133435"
+        },
+        {
+          "label": "Deckard Cain",
+          "src": "fandom:diablo:Deckard Cain",
+          "image": "https://static.wikia.nocookie.net/diablo/images/7/70/Deckard_Cain_D4.jpg/revision/latest/scale-to-width-down/400?cb=20260926131419"
+        },
+        {
+          "label": "Inarius",
+          "src": "fandom:diablo:Inarius",
+          "image": "https://static.wikia.nocookie.net/diablo/images/4/46/Inarius-D4art.jpg/revision/latest/scale-to-width-down/271?cb=20230604215856"
+        },
+        {
+          "label": "Lilith",
+          "src": "fandom:diablo:Lilith",
+          "image": "https://static.wikia.nocookie.net/diablo/images/5/52/Lilith_DIV_face2.jpg/revision/latest/scale-to-width-down/360?cb=20230328014303"
+        },
+        {
+          "label": "Sarah Kerrigan",
+          "src": "fandom:starcraft:Sarah Kerrigan",
+          "image": "https://static.wikia.nocookie.net/starcraft/images/e/ed/SarahKerrigan_SC2-LotV_Head1.jpg/revision/latest/scale-to-width-down/262?cb=20160108002527"
+        },
+        {
+          "label": "Jim Raynor",
+          "src": "fandom:starcraft:Jim Raynor",
+          "image": "https://static.wikia.nocookie.net/starcraft/images/f/f7/JimRaynor_SCTMG_Head1.jpg/revision/latest?cb=20260415000431"
+        },
+        {
+          "label": "Zeratul",
+          "src": "fandom:starcraft:Zeratul",
+          "image": "https://static.wikia.nocookie.net/starcraft/images/2/21/Zeratul_SC2_Story1.jpg/revision/latest/scale-to-width-down/400?cb=20170912134445"
+        },
+        {
+          "label": "Arcturus Mengsk",
+          "src": "fandom:starcraft:Arcturus Mengsk",
+          "image": "https://static.wikia.nocookie.net/starcraft/images/a/a4/ArcturusMengsk_SC2_Head3.jpg/revision/latest/scale-to-width-down/262?cb=20151129213638"
+        },
+        {
+          "label": "Reinhardt",
+          "src": "fandom:overwatch:Reinhardt",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Reinhardt.png/revision/latest/scale-to-width-down/310?cb=20220409014723"
+        },
+        {
+          "label": "Witch-king of Angmar",
+          "src": "fandom:lotr:Witch-king of Angmar",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/46/Melissa_Hitchcock_-_The_Black_Captain.webp/revision/latest/scale-to-width-down/280?cb=20241018153425"
+        },
+        {
+          "label": "Sauron",
+          "src": "fandom:lotr:Sauron",
+          "image": "https://static.wikia.nocookie.net/lotr/images/9/90/Sauron-2.jpg/revision/latest?cb=20110508182634"
+        },
+        {
+          "label": "Gandalf",
+          "src": "fandom:lotr:Gandalf",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/264?cb=20230617183640"
+        },
+        {
+          "label": "Thranduil",
+          "src": "fandom:lotr:Thranduil",
+          "image": "https://static.wikia.nocookie.net/lotr/images/0/0d/Thranduil_Mirkwood.png/revision/latest/scale-to-width-down/320?cb=20250408152800"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Khadgar",
+        "image": "https://warcraft.wiki.gg/images/thumb/Khadgar_HS_cropped.jpg/160px-Khadgar_HS_cropped.jpg?a1006e"
+      },
+      {
+        "label": "Alexstrasza",
+        "image": "https://warcraft.wiki.gg/images/thumb/Alexstrasza_dragon_DF.jpeg/160px-Alexstrasza_dragon_DF.jpeg?f62a7c"
+      },
+      {
+        "label": "Gelbin Mekkatorque",
+        "aliases": [
+          "Gelbin"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Mekkatorque_is_Iron_Gnome.jpg/160px-Mekkatorque_is_Iron_Gnome.jpg?95450b"
+      },
+      {
+        "label": "Chronormu",
+        "aliases": [
+          "Chromie"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Chromie_TCG.jpg/160px-Chromie_TCG.jpg?c4f577"
+      },
+      {
+        "label": "Lei Shen",
+        "image": "https://warcraft.wiki.gg/images/thumb/Lei_Shen.jpg/160px-Lei_Shen.jpg?2f9a55"
+      },
+      {
+        "label": "Ragnaros",
+        "image": "https://warcraft.wiki.gg/images/thumb/Ragnaros_the_Firelord.png/160px-Ragnaros_the_Firelord.png?4705d2"
+      },
+      {
+        "label": "Ner'zhul",
+        "image": "https://warcraft.wiki.gg/images/thumb/Ner%27zhul_Orc_TCG.jpg/160px-Ner%27zhul_Orc_TCG.jpg?bcd307"
+      },
+      {
+        "label": "Queen Azshara",
+        "aliases": [
+          "Azshara"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Queen_Azshara_HS.jpg/160px-Queen_Azshara_HS.jpg?c08c25"
+      },
+      {
+        "label": "Tirion Fordring",
+        "aliases": [
+          "Tirion"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Tirion_Raneman_Cropped.jpg/160px-Tirion_Raneman_Cropped.jpg?717fd8"
+      },
+      {
+        "label": "Nozdormu",
+        "image": "https://warcraft.wiki.gg/images/thumb/Nozdormu_dragon_DF.jpg/160px-Nozdormu_dragon_DF.jpg?b21480"
+      },
+      {
+        "label": "Ysera",
+        "image": "https://warcraft.wiki.gg/images/thumb/YseraDf.png/160px-YseraDf.png?e4f0d3"
+      },
+      {
+        "label": "Brann Bronzebeard",
+        "aliases": [
+          "Brann"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Brann_Bronzebeard_in_Dornogal.jpg/160px-Brann_Bronzebeard_in_Dornogal.jpg?f63500"
+      },
+      {
+        "label": "Sargeras",
+        "image": "https://warcraft.wiki.gg/images/thumb/Sargeras_Gamescom_2017.png/160px-Sargeras_Gamescom_2017.png?95d38f"
+      },
+      {
+        "label": "Kargath Bladefist",
+        "aliases": [
+          "Kargath"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Kargath_Bladefist_HS.jpg/160px-Kargath_Bladefist_HS.jpg?ad672b"
+      },
+      {
+        "label": "Blackhand",
+        "image": "https://warcraft.wiki.gg/images/thumb/Blackhand_Chronicle_Cropped.png/160px-Blackhand_Chronicle_Cropped.png?6d276c"
+      },
+      {
+        "label": "Malygos",
+        "image": "https://warcraft.wiki.gg/images/thumb/Malygos_the_Spellweaver_Core_Set.png/160px-Malygos_the_Spellweaver_Core_Set.png?e91afa"
+      },
+      {
+        "label": "N'Zoth",
+        "image": "https://warcraft.wiki.gg/images/thumb/N%27Zoth_HS_Mercenaries.jpg/160px-N%27Zoth_HS_Mercenaries.jpg?8fbbd4"
+      },
+      {
+        "label": "Yogg-Saron",
+        "image": "https://warcraft.wiki.gg/images/thumb/Yogg-Saron%2C_Unleashed_HS.jpg/160px-Yogg-Saron%2C_Unleashed_HS.jpg?27d57f"
+      },
+      {
+        "label": "Xavius",
+        "image": "https://warcraft.wiki.gg/images/thumb/Xavius_HS_Book_of_Heroes.jpg/160px-Xavius_HS_Book_of_Heroes.jpg?1cd039"
+      },
+      {
+        "label": "C'Thun",
+        "image": "https://warcraft.wiki.gg/images/thumb/C%27Thun_HS.jpg/160px-C%27Thun_HS.jpg?2a0df3"
+      },
+      {
+        "label": "Edwin VanCleef",
+        "aliases": [
+          "Edwin"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Edwin_VanCleef_TCG3.jpg/160px-Edwin_VanCleef_TCG3.jpg?88f38d"
+      },
+      {
+        "label": "Leeroy Jenkins",
+        "aliases": [
+          "Leeroy"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/Leeroy_Jenkins_TCG.jpg/160px-Leeroy_Jenkins_TCG.jpg?d9452d"
+      },
+      {
+        "label": "Thalyssra",
+        "aliases": [
+          "First Arcanist Thalyssra"
+        ],
+        "image": "https://warcraft.wiki.gg/images/thumb/First_Arcanist_Thalyssra_Cured.jpg/160px-First_Arcanist_Thalyssra_Cured.jpg?b51da9"
+      },
+      {
+        "label": "Cenarius",
+        "image": "https://warcraft.wiki.gg/images/thumb/Cenarius_Signature_HS.jpg/160px-Cenarius_Signature_HS.jpg?249842"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Character",
+          "entities": [
+            "Tyrande Whisperwind|Tyrande",
+            "Illidan Stormrage|Illidan",
+            "Khadgar",
+            "Uther the Lightbringer|Uther",
+            "Medivh",
+            "Alexstrasza",
+            "Gelbin Mekkatorque|Gelbin",
+            "Chronormu|Chromie",
+            "Kel'Thuzad",
+            "Lei Shen",
+            "Ragnaros",
+            "Ner'zhul",
+            "Queen Azshara|Azshara",
+            "Tirion Fordring|Tirion",
+            "Hogger",
+            "Nozdormu",
+            "Ysera",
+            "Brann Bronzebeard|Brann",
+            "Sargeras",
+            "Kargath Bladefist|Kargath",
+            "Blackhand",
+            "Onyxia|Katrana Prestor",
+            "Malygos",
+            "N'Zoth",
+            "Yogg-Saron",
+            "Xavius",
+            "C'Thun",
+            "Nefarian|Victor Nefarius",
+            "Edwin VanCleef|Edwin",
+            "Leeroy Jenkins|Leeroy",
+            "Kil'jaeden",
+            "Thalyssra|First Arcanist Thalyssra",
+            "Varimathras",
+            "Cenarius",
+            "Orgrim Doomhammer|Orgrim",
+            "Archimonde",
+            "Drek'Thar",
+            "Professor Putricide",
+            "Teron Gorefiend|Teron",
+            "Hakkar the Soulflayer|Hakkar",
+            "Antonidas|Archmage Antonidas",
+            "Odyn|Havi",
+            "Anduin Lothar",
+            "Sindragosa",
+            "Helya",
+            "Lady Deathwhisper",
+            "Mannoroth",
+            "Terenas Menethil II|Terenas",
+            "Elisande",
+            "G'huun",
+            "Thrall|Go'el",
+            "Sylvanas Windrunner|Sylvanas",
+            "Varian Wrynn|Varian",
+            "Anduin Wrynn|Anduin Llane Wrynn",
+            "Jaina Proudmoore|Jaina",
+            "Malfurion Stormrage|Malfurion",
+            "Garrosh Hellscream|Garrosh",
+            "Lor'themar Theron|Lor'themar",
+            "Deathwing|Neltharion|Daval Prestor",
+            "Genn Greymane|Genn",
+            "Velen",
+            "Valeera Sanguinar|Valeera",
+            "Baine Bloodhoof|Baine",
+            "Vol'jin",
+            "Chen Stormstout|Chen",
+            "Arthas Menethil|The Lich King|Lich King|Arthas",
+            "Wrathion",
+            "Rexxar",
+            "Yrel",
+            "Muradin Bronzebeard|Muradin",
+            "Gul'dan",
+            "Turalyon",
+            "Alleria Windrunner|Alleria",
+            "Vindicator Maraad",
+            "Shandris Feathermoon|Shandris",
+            "Moira Thaurissan|Moira",
+            "Kael'thas Sunstrider|Kael'thas",
+            "Li Li Stormstout",
+            "Magni Bronzebeard|Magni",
+            "Grommash Hellscream|Grom Hellscream|Grom|Grommash",
+            "Vereesa Windrunner|Vereesa",
+            "Maiev Shadowsong|Maiev",
+            "Xal'atath",
+            "Vashj",
+            "Varok Saurfang|Varok",
+            "Lady Liadrin",
+            "Garona Halforcen|Garona",
+            "Bolvar Fordragon|Bolvar",
+            "Monte Gazlowe|Monte",
+            "Archbishop Benedictus|Benedictus",
+            "Falstad Wildhammer|Falstad",
+            "Cho'gall",
+            "Mal'Ganis",
+            "Sally Whitemane|Sally",
+            "Rehgar Earthfury|Rehgar",
+            "Jastor Gallywix|Jastor",
+            "Tess Greymane|Tess",
+            "Zovaal|Zovaal the Jailer|The Jailer|Jailer",
+            "Nathanos Blightcaller|Nathanos",
+            "Hamuul Runetotem|Hamuul",
+            "Darion Mograine|Darion",
+            "Draka",
+            "Durotan",
+            "Mathias Shaw|Master Mathias Shaw|Mathias",
+            "Taran Zhu|Taran",
+            "Zul'jin",
+            "Talanji",
+            "Kalecgos|Kalec",
+            "Broll Bearmantle|Broll",
+            "Anub'arak",
+            "Akama",
+            "Vanessa VanCleef|Vanessa",
+            "Headless Horseman",
+            "Liam Greymane|Liam",
+            "Denathrius",
+            "Cairne Bloodhoof|Cairne",
+            "Tichondrius",
+            "Rhonin",
+            "Fandral Staghelm|Fandral",
+            "Thorim"
+          ]
+        },
+        {
+          "label": "Playable race",
+          "entities": [
+            "Human|Humans",
+            "Dwarf|Dwarves",
+            "Night elf|Night elves",
+            "Gnome|Gnomes",
+            "Draenei",
+            "Worgen",
+            "Orc|Orcs",
+            "Undead|Forsaken",
+            "Tauren",
+            "Troll|Trolls",
+            "Blood elf|Blood elves",
+            "Goblin|Goblins",
+            "Pandaren",
+            "Dracthyr",
+            "Earthen",
+            "Void elf|Void elves",
+            "Lightforged draenei",
+            "Dark Iron dwarf|Dark Iron dwarves",
+            "Kul Tiran|Kul Tirans",
+            "Mechagnome|Mechagnomes",
+            "Nightborne",
+            "Highmountain tauren",
+            "Mag'har orc|Maghar orc|Mag'har orcs",
+            "Zandalari troll|Zandalari trolls",
+            "Vulpera"
+          ]
+        },
+        {
+          "label": "Class",
+          "entities": [
+            "Warrior",
+            "Paladin",
+            "Hunter",
+            "Rogue",
+            "Priest",
+            "Shaman",
+            "Mage",
+            "Warlock",
+            "Druid",
+            "Death Knight|DK",
+            "Monk",
+            "Demon Hunter|DH",
+            "Evoker"
+          ]
+        },
+        {
+          "label": "Capital city",
+          "entities": [
+            "Stormwind|Stormwind City",
+            "Ironforge",
+            "Darnassus",
+            "The Exodar|Exodar",
+            "Gilneas|Gilneas City",
+            "Orgrimmar",
+            "Undercity",
+            "Thunder Bluff",
+            "Silvermoon|Silvermoon City",
+            "Dalaran",
+            "Shattrath|Shattrath City",
+            "Boralus",
+            "Dazar'alor|Dazaralor",
+            "Oribos",
+            "Valdrakken",
+            "Dornogal"
+          ]
+        },
+        {
+          "label": "Expansion",
+          "entities": [
+            "The Burning Crusade|Burning Crusade|TBC",
+            "Wrath of the Lich King|WotLK|Wrath",
+            "Cataclysm|Cata",
+            "Mists of Pandaria|MoP",
+            "Warlords of Draenor|WoD",
+            "Legion",
+            "Battle for Azeroth|BfA",
+            "Shadowlands",
+            "Dragonflight",
+            "The War Within|War Within|TWW",
+            "Midnight",
+            "The Last Titan"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Raid",
+      "prompt": "Who is the final boss of this raid?",
+      "clues": [
+        {
+          "text": "Molten Core",
+          "answer": "Ragnaros|Ragnaros the Firelord"
+        },
+        {
+          "text": "Onyxia's Lair",
+          "answer": "Onyxia"
+        },
+        {
+          "text": "Blackwing Lair",
+          "answer": "Nefarian|Victor Nefarius"
+        },
+        {
+          "text": "Naxxramas",
+          "answer": "Kel'Thuzad|Kelthuzad"
+        },
+        {
+          "text": "Temple of Ahn'Qiraj",
+          "answer": "C'Thun|Cthun"
+        },
+        {
+          "text": "Zul'Gurub",
+          "answer": "Hakkar|Hakkar the Soulflayer"
+        },
+        {
+          "text": "Karazhan",
+          "answer": "Prince Malchezaar|Malchezaar"
+        },
+        {
+          "text": "Gruul's Lair",
+          "answer": "Gruul|Gruul the Dragonkiller"
+        },
+        {
+          "text": "Serpentshrine Cavern",
+          "answer": "Lady Vashj|Vashj"
+        },
+        {
+          "text": "Tempest Keep",
+          "answer": "Kael'thas Sunstrider|Kael'thas|Kaelthas"
+        },
+        {
+          "text": "Black Temple",
+          "answer": "Illidan Stormrage|Illidan"
+        },
+        {
+          "text": "Sunwell Plateau",
+          "answer": "Kil'jaeden|Kiljaeden"
+        },
+        {
+          "text": "Ulduar",
+          "answer": "Yogg-Saron|Yogg Saron"
+        },
+        {
+          "text": "The Eye of Eternity",
+          "answer": "Malygos"
+        },
+        {
+          "text": "Trial of the Crusader",
+          "answer": "Anub'arak|Anubarak"
+        },
+        {
+          "text": "Icecrown Citadel",
+          "answer": "The Lich King|Lich King|Arthas"
+        },
+        {
+          "text": "The Ruby Sanctum",
+          "answer": "Halion"
+        },
+        {
+          "text": "Firelands",
+          "answer": "Ragnaros|Ragnaros the Firelord"
+        },
+        {
+          "text": "Dragon Soul",
+          "answer": "Deathwing|Madness of Deathwing"
+        },
+        {
+          "text": "Throne of Thunder",
+          "answer": "Lei Shen"
+        },
+        {
+          "text": "Siege of Orgrimmar",
+          "answer": "Garrosh Hellscream|Garrosh"
+        },
+        {
+          "text": "Blackrock Foundry",
+          "answer": "Blackhand"
+        },
+        {
+          "text": "Hellfire Citadel",
+          "answer": "Archimonde"
+        },
+        {
+          "text": "The Emerald Nightmare",
+          "answer": "Xavius"
+        },
+        {
+          "text": "The Nighthold",
+          "answer": "Gul'dan|Guldan"
+        },
+        {
+          "text": "Tomb of Sargeras",
+          "answer": "Kil'jaeden|Kiljaeden"
+        },
+        {
+          "text": "Antorus, the Burning Throne",
+          "answer": "Argus|Argus the Unmaker"
+        },
+        {
+          "text": "Uldir",
+          "answer": "G'huun|Ghuun"
+        },
+        {
+          "text": "Ny'alotha, the Waking City",
+          "answer": "N'Zoth|Nzoth|N'Zoth the Corruptor"
+        },
+        {
+          "text": "The Eternal Palace",
+          "answer": "Queen Azshara|Azshara"
+        },
+        {
+          "text": "Castle Nathria",
+          "answer": "Sire Denathrius|Denathrius"
+        },
+        {
+          "text": "Sanctum of Domination",
+          "answer": "Sylvanas Windrunner|Sylvanas"
+        },
+        {
+          "text": "Sepulcher of the First Ones",
+          "answer": "The Jailer|Jailer|Zovaal"
+        },
+        {
+          "text": "Vault of the Incarnates",
+          "answer": "Raszageth"
+        },
+        {
+          "text": "Amirdrassil, the Dream's Hope",
+          "answer": "Fyrakk|Fyrakk the Blazing"
+        },
+        {
+          "text": "Nerub-ar Palace",
+          "answer": "Queen Ansurek|Ansurek"
+        }
+      ]
+    }
+  },
+  {
     "id": "inazuma",
     "domain": "anime",
     "franchise": "Inazuma Eleven",

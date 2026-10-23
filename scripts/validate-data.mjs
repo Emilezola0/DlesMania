@@ -299,6 +299,19 @@ for (const c of gi.characters) {
   }
 }
 console.log(`specialist  genshin: ${gi.characters.length} characters (${gi.generated})`);
+const wowData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'wow.json'), 'utf8'));
+const wowNames = new Map();
+for (const c of wowData.characters) {
+  const at = `specialist/wow/${c.name}`;
+  for (const k of ['image', 'art', 'race', 'faction', 'class', 'status']) if (!c[k]) fail(`${at}: no ${k}`);
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (wowNames.has(s) && wowNames.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${wowNames.get(s)}`);
+    wowNames.set(s, c.id);
+  }
+}
+const wowRenders = wowData.characters.filter((c) => c.render).length;
+if (wowRenders < 20) fail(`specialist/wow: only ${wowRenders} silhouette renders`);
+console.log(`specialist  wow: ${wowData.characters.length} characters, ${wowRenders} renders (${wowData.generated})`);
 const mcu = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'marvel.json'), 'utf8'));
 const filmIds = new Set(mcu.films.map((f) => f.id));
 for (const f of mcu.films) {

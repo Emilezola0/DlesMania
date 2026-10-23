@@ -69,6 +69,21 @@ async function league() {
 // ── Hand-written facts ───────────────────────────────────────────────────────────
 
 const HAND = {
+  wow: {
+    label: 'Raid', prompt: 'Who is the final boss of this raid?',
+    clues: text([
+      ['Molten Core', 'Ragnaros|Ragnaros the Firelord'], ["Onyxia's Lair", 'Onyxia'], ['Blackwing Lair', 'Nefarian|Victor Nefarius'], ['Naxxramas', "Kel'Thuzad|Kelthuzad"],
+      ["Temple of Ahn'Qiraj", "C'Thun|Cthun"], ["Zul'Gurub", 'Hakkar|Hakkar the Soulflayer'], ['Karazhan', 'Prince Malchezaar|Malchezaar'], ["Gruul's Lair", 'Gruul|Gruul the Dragonkiller'],
+      ['Serpentshrine Cavern', 'Lady Vashj|Vashj'], ['Tempest Keep', "Kael'thas Sunstrider|Kael'thas|Kaelthas"], ['Black Temple', 'Illidan Stormrage|Illidan'],
+      ['Sunwell Plateau', "Kil'jaeden|Kiljaeden"], ['Ulduar', 'Yogg-Saron|Yogg Saron'], ['The Eye of Eternity', 'Malygos'], ['Trial of the Crusader', "Anub'arak|Anubarak"],
+      ['Icecrown Citadel', 'The Lich King|Lich King|Arthas'], ['The Ruby Sanctum', 'Halion'], ['Firelands', 'Ragnaros|Ragnaros the Firelord'], ['Dragon Soul', 'Deathwing|Madness of Deathwing'],
+      ['Throne of Thunder', 'Lei Shen'], ['Siege of Orgrimmar', 'Garrosh Hellscream|Garrosh'], ['Blackrock Foundry', 'Blackhand'], ['Hellfire Citadel', 'Archimonde'],
+      ['The Emerald Nightmare', 'Xavius'], ['The Nighthold', "Gul'dan|Guldan"], ['Tomb of Sargeras', "Kil'jaeden|Kiljaeden"], ['Antorus, the Burning Throne', 'Argus|Argus the Unmaker'],
+      ['Uldir', "G'huun|Ghuun"], ["Ny'alotha, the Waking City", "N'Zoth|Nzoth|N'Zoth the Corruptor"], ['The Eternal Palace', 'Queen Azshara|Azshara'],
+      ['Castle Nathria', 'Sire Denathrius|Denathrius'], ['Sanctum of Domination', 'Sylvanas Windrunner|Sylvanas'], ['Sepulcher of the First Ones', 'The Jailer|Jailer|Zovaal'],
+      ['Vault of the Incarnates', 'Raszageth'], ["Amirdrassil, the Dream's Hope", 'Fyrakk|Fyrakk the Blazing'], ['Nerub-ar Palace', 'Queen Ansurek|Ansurek'],
+    ]),
+  },
   overwatch: {
     label: 'Ultimate', prompt: 'Whose ultimate is this?',
     clues: text([
