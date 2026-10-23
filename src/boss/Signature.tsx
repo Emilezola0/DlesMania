@@ -11,6 +11,8 @@ interface Props {
   bossName: string;
   okLines: string[];
   onSay: (text: string, mood: 'taunt' | 'hit' | 'hurt') => void;
+  /** A wrong answer while chances remain: the battle takes every heart. */
+  onLastChance: () => void;
   onDone: (result: ChainResult) => void;
 }
 
@@ -18,54 +20,71 @@ interface Props {
 const AUDIO_EXTRA_SECONDS = 8;
 
 /**
- * Hard's secret phase. The boss shows clues on one very specific side of the franchise (a laugh,
- * an item's stats, a Patronus...), one at a time, and every one must be answered in a row: a wrong
- * answer or running out of time loses on the spot. No suggestions — the name has to be known.
+ * Hard's secret phase. The boss shows a clue on one very specific side of the franchise (a laugh,
+ * an item's stats, a Patronus...): `toWin` right answers win the fight. A wrong answer or running
+ * out of time uses a chance — the first one takes every heart and brings a new clue, the last one
+ * loses. No suggestions — the name has to be known.
  */
-export function Signature({ signature, bossName, okLines, onSay, onDone }: Props) {
-  const { clues, toWin, seconds, label, prompt } = signature;
+export function Signature({ signature, bossName, okLines, onSay, onLastChance, onDone }: Props) {
+  const { clues, toWin, chances, seconds, label, prompt } = signature;
   const [index, setIndex] = useState(0);
+  const [right, setRight] = useState(0);
+  const [missed, setMissed] = useState(0);
   const [text, setText] = useState('');
-  const [state, setState] = useState<'answer' | 'ok' | 'over'>('answer');
-  const [lost, setLost] = useState<string | null>(null);
+  const [state, setState] = useState<'answer' | 'ok' | 'miss' | 'over'>('answer');
+  const [message, setMessage] = useState<{ text: string; good: boolean } | null>(null);
   const input = useRef<HTMLInputElement>(null);
   const timers = useRef<number[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
   useEffect(() => {
     if (state === 'answer') input.current?.focus({ preventScroll: true });
   }, [state, index]);
-  const clue = clues[index];
+  const clue = clues[Math.min(index, clues.length - 1)];
   const answer = clue.answer;
+  const lastChance = missed > 0;
 
   const end = (won: boolean, reason: string, score: number) => {
     setState('over');
     timers.current.push(window.setTimeout(() => onDone({ won, score, reason }), won ? 1200 : 1800));
   };
 
-  const lose = (reason: string) => {
+  const nextClue = (after: 'ok' | 'miss') => {
+    setState(after);
+    timers.current.push(
+      window.setTimeout(() => {
+        setIndex((i) => i + 1);
+        setMessage(null);
+        setState('answer');
+      }, after === 'miss' ? 1800 : 900),
+    );
+  };
+
+  const miss = (reason: string) => {
     if (state !== 'answer') return;
-    setLost(reason);
+    const used = missed + 1;
+    setMissed(used);
+    setText('');
+    setMessage({ text: reason, good: false });
     sfx.hurt();
-    end(false, reason, index);
+    if (used >= chances) return end(false, reason, right);
+    onLastChance();
+    nextClue('miss');
   };
 
   const submit = () => {
     if (state !== 'answer' || !text.trim()) return;
-    if (!isFuzzyMatch(text, [answer.name, ...answer.aliases])) return lose(`“${text.trim()}” — it was ${answer.name}`);
+    if (!isFuzzyMatch(text, [answer.name, ...answer.aliases])) return miss(`“${text.trim()}” — it was ${answer.name}`);
     setText('');
     sfx.correct();
-    if (index + 1 >= toWin) {
+    const got = right + 1;
+    setRight(got);
+    setMessage({ text: answer.name, good: true });
+    if (got >= toWin) {
       sfx.streak();
-      return end(true, `${toWin} ${label.toLowerCase()} clues in a row`, toWin);
+      return end(true, toWin === 1 ? `named ${answer.name}` : `${toWin} ${label.toLowerCase()} clues answered`, got);
     }
-    setState('ok');
-    onSay(okLines[index % Math.max(1, okLines.length)] ?? 'Next.', 'hit');
-    timers.current.push(
-      window.setTimeout(() => {
-        setIndex((i) => i + 1);
-        setState('answer');
-      }, 900),
-    );
+    onSay(okLines[got % Math.max(1, okLines.length)] ?? 'Next.', 'hit');
+    nextClue('ok');
   };
 
   return (
@@ -75,18 +94,16 @@ export function Signature({ signature, bossName, okLines, onSay, onDone }: Props
         <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{prompt}</h3>
       </div>
 
-      <div className="flex items-center justify-center gap-1.5" aria-label={`${index} of ${toWin} answered`}>
-        {Array.from({ length: toWin }, (_, i) => (
-          <span key={i} className={`h-2 w-8 rounded-full transition ${i < index || (i === index && state !== 'answer' && !lost) ? 'bg-hit' : lost && i === index ? 'animate-pop bg-coral' : 'bg-rule-strong'}`} />
-        ))}
-      </div>
+      <p className={`text-center font-display text-xs font-bold uppercase tracking-widest ${lastChance ? 'animate-pop text-coral' : 'text-ink-faint'}`}>
+        {lastChance ? 'Last chance — no hearts left!' : `${toWin === 1 ? 'One right answer wins' : `${right} of ${toWin} answered`} · ${chances - missed} ${chances - missed === 1 ? 'try' : 'tries'} left`}
+      </p>
 
       <div key={index} className="animate-pop rounded-md border-2 border-coral/60 bg-card/70 p-4">
         <p className="mb-2 text-center font-display text-[11px] uppercase tracking-widest text-ink-faint">
-          {bossName} · clue {index + 1} of {toWin}
+          {bossName} · clue {index + 1}
         </p>
         {clue.audio ? (
-          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => lose('The clip would not play')} />
+          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} />
         ) : (
           <p className="py-4 text-center font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
         )}
@@ -97,7 +114,7 @@ export function Signature({ signature, bossName, okLines, onSay, onDone }: Props
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
           running={state === 'answer'}
           resetKey={index}
-          onExpire={() => lose(`Time's up — it was ${answer.name}`)}
+          onExpire={() => miss(`Time's up — it was ${answer.name}`)}
           hideSeconds
         />
       )}
@@ -118,8 +135,7 @@ export function Signature({ signature, bossName, okLines, onSay, onDone }: Props
       />
 
       <p className="min-h-5 text-center text-sm font-semibold" aria-live="polite">
-        {lost && <span className="animate-pop inline-block text-coral">✗ {lost}.</span>}
-        {!lost && state === 'ok' && <span className="animate-pop inline-block text-hit">✓ {answer.name}</span>}
+        {message && <span className={`animate-pop inline-block ${message.good ? 'text-hit' : 'text-coral'}`}>{message.good ? `✓ ${message.text}` : `✗ ${message.text}.`}</span>}
       </p>
     </div>
   );

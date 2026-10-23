@@ -97,7 +97,7 @@ function BossRules() {
         </ul>
         <p>
           On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
-          and a swipe made before a card has settled counts as a mistake. And when a guardian's life bar runs dry on Medium or Hard… don't relax just yet: Medium ends with a Name Chain, Hard with the guardian's Signature — three clues on one very specific side of its world (a laugh, an item's stats, a Patronus…), answered in a row with no suggestions.
+          and a swipe made before a card has settled counts as a mistake. Medium and Hard add a fourth phase, the Name Chain: the guardian names something, you name another of the same kind, and nothing can come back. And on Hard, when the life bar runs dry… one last test: the guardian's Signature, a clue on one very specific side of its world (a laugh, an item's stats, a Patronus…). Name it right and it falls; a wrong answer takes every heart, with one last chance.
         </p>
       </Step>
       {PHASES.map((p, i) => (

@@ -6,10 +6,18 @@ import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
 
 export const PHASES = [
-  { name: 'Knowledge Blitz', roman: 'I', how: 'Type names before the timer runs out — each valid answer is accepted as you type.' },
+  { name: 'Knowledge Blitz', roman: 'I', how: 'Type names before the timer runs out — press Enter after each one.' },
   { name: 'Radar Defense', roman: 'II', how: 'Swipe or press → when a card belongs. Reflect impostors with ← . Too many mistakes and the shield breaks.' },
   { name: 'Final Blow', roman: 'III', how: 'Name each flickering face before the timer burns out. Wrong answers cost time.' },
+  {
+    name: 'Name Chain',
+    roman: 'IV',
+    how: 'The guardian names something — answer with another of the same kind. Never repeat a name, yours or its, and keep the chain going to win.',
+  },
 ] as const;
+
+/** Phase index of the Name Chain (Medium and Hard). */
+export const CHAIN_PHASE = 3;
 
 /** Same ids as the store's saved choice. */
 export type Difficulty = BossDifficulty;
@@ -25,8 +33,8 @@ export interface DifficultySpec {
   id: Difficulty;
   label: string;
   blurb: string;
-  /** Rounds to win in each phase; the boss's life bar has one segment per round. */
-  rounds: [number, number, number];
+  /** Rounds to win in each of the four phases (0 = the phase isn't played); one life-bar segment per round. */
+  rounds: number[];
   hearts: number;
   /** Extra answers on top of each Blitz prompt's count, and seconds allowed per answer. */
   blitzExtra: number;
@@ -48,9 +56,9 @@ export interface DifficultySpec {
   /** Seconds that still earn the speed bonus. */
   parSeconds: number;
   scoreMultiplier: number;
-  /** Secret last phase after the boss's life runs out: the Name Chain (Medium); null = none. */
-  secret: SecretSettings | null;
-  /** Or the Signature challenge (Hard); null = none. */
+  /** Phase IV, the Name Chain (Medium, Hard); null when the difficulty has no fourth phase. */
+  chain: SecretSettings | null;
+  /** Secret phase after the boss's life runs out: the Signature challenge (Hard); null = none. */
   signature: SignatureSettings | null;
 }
 
@@ -238,13 +246,13 @@ export const finaleSeconds = (d: DifficultySpec, loop = 0) => (escalated(d, loop
 export const maxExchanges = (categories: SecretCategory[]) => categories.reduce((n, c) => n + Math.floor(c.entities.length / 2), 0);
 
 /**
- * The Name Chain for one fight: Hard's settings, overridden per boss, with the target lowered so
- * it can always be reached. Null when the difficulty has none or the boss has no categories.
+ * The Name Chain (phase IV): the difficulty's settings, overridden per boss, with the target lowered
+ * so it can always be reached. Null when the difficulty has none or the boss has no categories.
  */
 export function drawSecret(boss: Boss, d: DifficultySpec) {
-  if (!d.secret || !boss.secret?.categories.length) return null;
+  if (!d.chain || !boss.secret?.categories.length) return null;
   const { categories, ...overrides } = boss.secret;
-  const settings = { ...d.secret, ...overrides };
+  const settings = { ...d.chain, ...overrides };
   const picksToWin = Math.min(settings.picksToWin, maxExchanges(categories));
   if (picksToWin < 1) return null;
   return { ...settings, picksToWin, categories };
@@ -252,11 +260,21 @@ export function drawSecret(boss: Boss, d: DifficultySpec) {
 
 export type SecretPhase = NonNullable<ReturnType<typeof drawSecret>>;
 
-/** The Signature challenge for one fight: `toWin` clues drawn from the boss's, or null when there's none. */
-export function drawSignature(boss: Boss, d: DifficultySpec, rand: () => number = Math.random) {
-  if (!d.signature || !boss.signature || boss.signature.clues.length < d.signature.toWin) return null;
-  return { ...d.signature, label: boss.signature.label, prompt: boss.signature.prompt, clues: shuffle(boss.signature.clues, rand).slice(0, d.signature.toWin) };
+/**
+ * The Signature challenge for one fight: enough of the boss's clues for `toWin` answers plus the extra
+ * chances, avoiding the ones in `avoid` (seen in earlier fights) while there are others. Null when there's none.
+ */
+export function drawSignature(boss: Boss, d: DifficultySpec, rand: () => number = Math.random, avoid: string[] = []) {
+  if (!d.signature || !boss.signature) return null;
+  const needed = d.signature.toWin + Math.max(0, d.signature.chances - 1);
+  if (boss.signature.clues.length < needed) return null;
+  const fresh = shuffle(boss.signature.clues.filter((c) => !avoid.includes(signatureKey(c))), rand);
+  const seen = shuffle(boss.signature.clues.filter((c) => avoid.includes(signatureKey(c))), rand);
+  return { ...d.signature, label: boss.signature.label, prompt: boss.signature.prompt, clues: [...fresh, ...seen].slice(0, needed) };
 }
+
+/** What identifies a Signature clue in the "already seen" history. */
+export const signatureKey = (c: { text?: string; audio?: { youtubeId: string }; answer: { name: string } }) => c.text ?? c.audio?.youtubeId ?? c.answer.name;
 
 export type SignaturePhase = NonNullable<ReturnType<typeof drawSignature>>;
 

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Glyph } from '../components/Glyph';
 import { Pill } from '../components/Pill';
@@ -7,7 +7,7 @@ import { GameHost } from '../games/GameHost';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { pick } from '../lib/rng';
 import { buildRound, isAvailable } from '../lib/rounds';
-import { useProgress } from '../store/progress';
+import { seenOrder, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type Domain, type GameType, type RoundRecord, type RoundSpec } from '../types';
 
 type DomainChoice = Domain | 'all';
@@ -27,12 +27,11 @@ export default function FreePlay() {
   const [params, setParams] = useSearchParams();
   const domain = (params.get('domain') as DomainChoice) || 'all';
   const type = (params.get('type') as TypeChoice) || 'random';
-  const { freePlay, recordFreePlay } = useProgress();
+  const { freePlay, recordFreePlay, markSeen } = useProgress();
 
   const [spec, setSpec] = useState<RoundSpec | null>(null);
   const [record, setRecord] = useState<RoundRecord>(EMPTY_RECORD);
   const [round, setRound] = useState(0);
-  const recent = useRef<string[]>([]);
 
   const d = domain === 'all' ? undefined : domain;
   const playable = GAME_TYPES.filter((t) => isAvailable(t, d));
@@ -46,9 +45,11 @@ export default function FreePlay() {
 
   const start = () => {
     const t = type === 'random' || !playable.includes(type) ? pick(playable, Math.random) : type;
-    const s = buildRound(t, d, Math.random, new Set(recent.current));
+    // Answers never drawn come first, then the ones seen longest ago (saved across visits).
+    const scope = `free:${domain}`;
+    const s = buildRound(t, d, Math.random, new Set(), seenOrder(useProgress.getState().seen[scope]));
     if (!s) return;
-    if (s.targetId) recent.current = [s.targetId, ...recent.current].slice(0, 12);
+    if (s.targetId) markSeen(scope, [s.targetId]);
     setSpec(s);
     setRecord(EMPTY_RECORD);
     setRound((r) => r + 1);

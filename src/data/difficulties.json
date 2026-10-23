@@ -5,7 +5,8 @@
     "rounds": [
       1,
       1,
-      1
+      1,
+      0
     ],
     "hearts": 3,
     "blitzExtra": 0,
@@ -26,16 +27,17 @@
     "parSeconds": 300,
     "scoreMultiplier": 1,
     "secondLoop": null,
-    "secret": null,
-    "signature": null
+    "signature": null,
+    "chain": null
   },
   "medium": {
     "label": "Medium",
-    "blurb": "Longer waves, tighter timers, shifting colours and spinning cards. The final phase must be won twice — and then the guardian challenges you to a Name Chain.",
+    "blurb": "Longer waves, tighter timers, shifting colours and spinning cards — and a fourth phase: a Name Chain against the guardian.",
     "rounds": [
       1,
       1,
-      2
+      1,
+      1
     ],
     "hearts": 3,
     "blitzExtra": 1,
@@ -56,20 +58,21 @@
     "parSeconds": 420,
     "scoreMultiplier": 1.6,
     "secondLoop": null,
-    "secret": {
-      "picksToWin": 5,
+    "signature": null,
+    "chain": {
+      "picksToWin": 6,
       "turnSeconds": 15,
-      "bonus": 1200
-    },
-    "signature": null
+      "bonus": 0
+    }
   },
   "hard": {
     "label": "Hard",
-    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. The final phase must be won twice — then the guardian’s Signature challenge: three answers in a row, no suggestions, no second chance.",
+    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. Four phases, Name Chain included — then the guardian’s Signature: answer right to win; a wrong answer takes all your hearts, with one last chance.",
     "rounds": [
       1,
       1,
-      2
+      1,
+      1
     ],
     "hearts": 3,
     "blitzExtra": 2,
@@ -90,11 +93,16 @@
     "parSeconds": 600,
     "scoreMultiplier": 2.5,
     "secondLoop": null,
-    "secret": null,
     "signature": {
-      "toWin": 3,
+      "toWin": 1,
+      "chances": 2,
       "seconds": 12,
       "bonus": 2000
+    },
+    "chain": {
+      "picksToWin": 6,
+      "turnSeconds": 10,
+      "bonus": 0
     }
   }
 }

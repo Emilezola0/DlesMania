@@ -12,6 +12,7 @@ import { domainInfo } from '../data';
 import { getBoss } from '../data/bosses';
 import {
   DIFFICULTIES,
+  CHAIN_PHASE,
   DIFFICULTY_IDS,
   PHASES,
   battleScore,
@@ -20,16 +21,15 @@ import {
   drawRadar,
   drawSecret,
   drawSignature,
+  signatureKey,
   formatTime,
   totalRounds,
-  type SecretPhase,
   type SignaturePhase,
 } from '../lib/boss';
 import { celebrateBig, flash, shake } from '../lib/fx';
 import { pick } from '../lib/rng';
 import { sfx } from '../lib/sfx';
-import { withArticle } from '../lib/text';
-import { EMPTY_BOSS_RECORD, bossKey, useProgress } from '../store/progress';
+import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress } from '../store/progress';
 import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
 
@@ -37,10 +37,11 @@ import type { Boss, PhaseResult } from '../types';
  * intro → (phase card → phase) × rounds → victory, or defeat once the hearts run out.
  * The difficulty sets how many rounds each phase needs (one boss segment each), and how hard
  * each round is. Losing a round costs a heart and that round is retried with fresh content.
- * Emptying the life bar unlocks a secret fourth phase (phase index 3) on Medium (the Name Chain)
- * and Hard (the boss's Signature challenge), which ends the fight on the spot either way.
+ * Medium and Hard play a fourth phase, the Name Chain. On Hard, emptying the life bar then unlocks the
+ * secret phase (index 4), the boss's Signature: a right answer wins, a wrong one takes every heart
+ * and leaves one last chance.
  */
-const SECRET = 3;
+const SECRET = 4;
 type Stage = 'intro' | 'card' | 'fight' | 'won' | 'lost';
 
 interface Line {
@@ -76,20 +77,21 @@ function BossBattle({ boss }: { boss: Boss }) {
   const [attempt, setAttempt] = useState(0);
   const [hearts, setHearts] = useState(d.hearts);
   const [line, setLine] = useState<Line>({ text: boss.lines.intro, key: 0, mood: 'taunt' });
-  const [last, setLast] = useState<{ won: boolean; missed?: string[] } | null>(null);
+  const [last, setLast] = useState<{ won: boolean; missed?: string[]; reason?: string } | null>(null);
   const [tally, setTally] = useState({ correct: 0, wrong: 0 });
   const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean } | null>(null);
-  /** The secret phase, set up when the main life bar empties: Medium's Name Chain or Hard's Signature. */
-  const [secret, setSecret] = useState<SecretPhase | null>(null);
+  /** Hard's secret phase, set up when the main life bar empties. */
   const [signature, setSignature] = useState<SignaturePhase | null>(null);
-  const hidden = secret ?? signature;
   const [secretResult, setSecretResult] = useState<ChainResult | null>(null);
   const startedAt = useRef(0);
   const arena = useRef<HTMLDivElement>(null);
   const flashLayer = useRef<HTMLDivElement>(null);
-  // What this fight has already shown, so later rounds and retries draw something new.
-  const usedPrompts = useRef<string[]>([]);
-  const usedFaces = useRef<string[]>([]);
+  // What earlier rounds, retries and fights showed (saved), so each draw brings something new.
+  const markSeen = useProgress((s) => s.markSeen);
+  const scope = (kind: 'prompts' | 'faces' | 'signature') => `boss:${boss.id}:${kind}`;
+  const seenOf = (kind: 'prompts' | 'faces' | 'signature') => useProgress.getState().seen[scope(kind)];
+  /** Signature clues shown so far this fight. */
+  const sigShown = useRef(0);
 
   const say = (text: string, mood: Line['mood']) => setLine((l) => ({ text, key: l.key + 1, mood }));
   const total = totalRounds(d);
@@ -97,13 +99,15 @@ function BossBattle({ boss }: { boss: Boss }) {
   // Fresh content for every round and attempt.
   const content = useMemo(() => {
     const rand = Math.random;
-    const blitz = drawBlitz(boss, d, rand, usedPrompts.current, round);
-    const finale = drawFinale(boss, d, rand, usedFaces.current, round);
+    const blitz = drawBlitz(boss, d, rand, recentlySeen(seenOf('prompts'), boss.blitz.length), round);
+    const finale = drawFinale(boss, d, rand, recentlySeen(seenOf('faces'), boss.finale.length, d.finaleTargets), round);
     const seen = new Set<string>();
     const pool = [...boss.finale, ...boss.radar.members]
       .filter((c) => !seen.has(c.label) && seen.add(c.label))
       .sort((a, b) => a.label.localeCompare(b.label));
-    return { blitz, radar: drawRadar(boss, d, rand, round), finale, pool };
+    // Phase IV: a fresh Name Chain for every attempt.
+    const chain = phase === CHAIN_PHASE ? drawSecret(boss, d) : null;
+    return { blitz, radar: drawRadar(boss, d, rand, round), finale, pool, chain };
   }, [boss, d, phase, round, attempt, run]);
 
   // Small feedback inside a phase: a jolt on mistakes.
@@ -114,9 +118,9 @@ function BossBattle({ boss }: { boss: Boss }) {
   const onPhaseDone = (r: PhaseResult) => {
     const t = { correct: tally.correct + r.correct, wrong: tally.wrong + r.wrong };
     setTally(t);
-    setLast({ won: r.won, missed: r.missed });
-    if (phase === 0) usedPrompts.current.push(content.blitz.prompt);
-    if (phase === 2) usedFaces.current.push(...content.finale.map((c) => c.label));
+    setLast({ won: r.won, missed: r.missed, reason: r.reason });
+    if (phase === 0) markSeen(scope('prompts'), [content.blitz.prompt]);
+    if (phase === 2) markSeen(scope('faces'), content.finale.map((c) => c.label));
     if (r.won) {
       sfx.hit();
       shake(arena.current, 14, 520);
@@ -124,16 +128,17 @@ function BossBattle({ boss }: { boss: Boss }) {
       const won = cleared + 1;
       setCleared(won);
       if (won >= total) {
-        // Medium and Hard: the guardian isn't done yet.
-        const chain = drawSecret(boss, d);
-        const sig = chain ? null : drawSignature(boss, d);
-        if (chain || sig) {
-          setSecret(chain);
+        // Hard: the guardian isn't done yet.
+        const clues = boss.signature?.clues.length ?? 0;
+        const sig = drawSignature(boss, d, Math.random, recentlySeen(seenOf('signature'), clues, d.signature?.chances ?? 1));
+        if (sig) {
           setSignature(sig);
+          sigShown.current = 1;
+          markSeen(scope('signature'), [signatureKey(sig.clues[0])]);
           setPhase(SECRET);
           setRound(0);
           setAttempt(0);
-          window.setTimeout(() => say(boss.lines.secret ?? 'You think it is over? One last game…', 'taunt'), 1200);
+          window.setTimeout(() => say('You think it is over? One last test…', 'taunt'), 1200);
           setStage('card');
           return;
         }
@@ -145,10 +150,13 @@ function BossBattle({ boss }: { boss: Boss }) {
       setAttempt(0);
       if (round + 1 < d.rounds[phase]) setRound(round + 1);
       else {
-        const next = phase + 1;
+        // The next phase this difficulty plays.
+        let next = phase + 1;
+        while (next < PHASES.length && !d.rounds[next]) next++;
         setPhase(next);
         setRound(0);
-        window.setTimeout(() => say(next === 1 ? boss.lines.phase2 : boss.lines.phase3, 'taunt'), 1400);
+        const intro = next === 1 ? boss.lines.phase2 : next === 2 ? boss.lines.phase3 : (boss.lines.secret ?? 'One more game: I name something, you name another of the same kind.');
+        window.setTimeout(() => say(intro, 'taunt'), 1400);
       }
     } else {
       sfx.hurt();
@@ -167,6 +175,17 @@ function BossBattle({ boss }: { boss: Boss }) {
     setStage('card');
   };
 
+  /** The Signature's first wrong answer: every heart is gone, and the next clue is the last chance. */
+  const onLastChance = () => {
+    const next = signature?.clues[sigShown.current++];
+    if (next) markSeen(scope('signature'), [signatureKey(next)]);
+    sfx.hurt();
+    shake(arena.current, 18, 560);
+    flash(flashLayer.current, 'rgb(220 60 60)');
+    setHearts(0);
+    say(boss.lines.secretLost ?? 'Wrong! One last chance…', 'hurt');
+  };
+
   const onSecretDone = (r: ChainResult) => {
     setSecretResult(r);
     if (r.won) {
@@ -174,9 +193,9 @@ function BossBattle({ boss }: { boss: Boss }) {
       shake(arena.current, 14, 520);
       flash(flashLayer.current, 'white');
       say(boss.lines.win, 'hit');
-      finish(true, total, hearts, tally, hidden?.bonus ?? 0);
+      finish(true, total, hearts, tally, signature?.bonus ?? 0);
     } else {
-      // A broken chain loses the fight on the spot, whatever hearts were left.
+      // The last chance missed: the fight is lost.
       shake(arena.current, 24, 700);
       flash(flashLayer.current, 'rgb(220 60 60)');
       setHearts(0);
@@ -220,11 +239,8 @@ function BossBattle({ boss }: { boss: Boss }) {
     setTally({ correct: 0, wrong: 0 });
     setLast(null);
     setResult(null);
-    setSecret(null);
     setSignature(null);
     setSecretResult(null);
-    usedPrompts.current = [];
-    usedFaces.current = [];
     say(boss.lines.intro, 'taunt');
     setStage('intro');
   };
@@ -262,13 +278,14 @@ function BossBattle({ boss }: { boss: Boss }) {
           rounds={d.rounds}
           hearts={hearts}
           maxHearts={d.hearts}
-          secret={hidden ? (secretResult?.won ? 'broken' : 'active') : undefined}
+          secret={signature ? (secretResult?.won ? 'broken' : 'active') : undefined}
           line={line}
         />
 
         {/* Phase stepper; phases that take several rounds show their progress underneath. */}
         <ol className="flex items-start justify-center gap-2">
           {PHASES.map((p, i) => {
+            if (!d.rounds[i]) return null;
             const done = i < phase || stage === 'won';
             const won = done ? d.rounds[i] : i === phase ? round : 0;
             return (
@@ -294,7 +311,7 @@ function BossBattle({ boss }: { boss: Boss }) {
               </li>
             );
           })}
-          {hidden && (
+          {signature && (
             <li className="animate-pop flex items-start gap-2">
               <span className="mt-4 h-px w-6 bg-coral sm:w-10" />
               <span
@@ -350,7 +367,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             </div>
 
             <ul className="mx-auto max-w-md space-y-1.5 text-left text-sm text-ink-soft">
-              {PHASES.map((p, i) => (
+              {PHASES.map((p, i) => d.rounds[i] > 0 && (
                 <li key={p.name} className="flex gap-2">
                   <span className="w-6 shrink-0 font-display font-bold text-ink">{p.roman}</span>
                   <span>
@@ -376,25 +393,6 @@ function BossBattle({ boss }: { boss: Boss }) {
           </div>
         )}
 
-        {stage === 'card' && secretPhase && secret && (
-          <div key="secret" className="boss-phase-card space-y-4 py-4 text-center">
-            <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">The guardian's life bar is empty…</p>
-            <p className="font-display text-xs uppercase tracking-[0.4em] text-coral">…but it refuses to fall</p>
-            <h2 className="boss-phase-title boss-secret-title font-display text-5xl font-bold tracking-[0.12em] text-coral sm:text-6xl">SECRET PHASE</h2>
-            <p className="font-display text-xl font-semibold tracking-wider">Name Chain</p>
-            <p className="mx-auto max-w-md text-sm text-ink-soft">
-              {boss.boss.name} names something — {secret.categories.map((c) => withArticle(c.label)).join(', ')}. Answer with a{' '}
-              <b className="text-ink">different one of the same kind</b>. Nothing named by either of you can be named again.{' '}
-              <b className="text-coral">A wrong kind, a repeat or running out of time loses on the spot.</b> Give{' '}
-              <b className="text-ink">{secret.picksToWin} good answers</b> to win
-              {secret.turnSeconds > 0 && `, ${secret.turnSeconds} seconds each`}.
-            </p>
-            <button type="button" onClick={begin} className="btn-accent rounded-md px-8 py-3 font-display font-bold tracking-widest">
-              I'm ready
-            </button>
-          </div>
-        )}
-
         {stage === 'card' && secretPhase && signature && (
           <div key="signature" className="boss-phase-card space-y-4 py-4 text-center">
             <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">The guardian's life bar is empty…</p>
@@ -402,9 +400,9 @@ function BossBattle({ boss }: { boss: Boss }) {
             <h2 className="boss-phase-title boss-secret-title font-display text-5xl font-bold tracking-[0.12em] text-coral sm:text-6xl">SECRET PHASE</h2>
             <p className="font-display text-xl font-semibold tracking-wider">Signature — {signature.label}</p>
             <p className="mx-auto max-w-md text-sm text-ink-soft">
-              {signature.prompt} Answer <b className="text-ink">{signature.toWin} clues in a row</b>
-              {signature.seconds > 0 && `, ${signature.seconds} seconds each`} — type the name, there are no suggestions.{' '}
-              <b className="text-coral">One wrong answer or running out of time loses on the spot.</b>
+              {signature.prompt} <b className="text-ink">{signature.toWin === 1 ? 'Name it right and the guardian falls' : `Answer ${signature.toWin} clues to win`}</b>
+              {signature.seconds > 0 && ` — ${signature.seconds} seconds per clue`}, and type the name: there are no suggestions.{' '}
+              {signature.chances > 1 && <b className="text-coral">A wrong answer takes all your hearts — but you get one last chance on a new clue.</b>}
             </p>
             <button type="button" onClick={begin} className="btn-accent rounded-md px-8 py-3 font-display font-bold tracking-widest">
               I'm ready
@@ -417,6 +415,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             {last && !last.won && (
               <div className="space-y-1">
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">You took a hit — {hearts} heart{hearts === 1 ? '' : 's'} left</p>
+                {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
                 {last.missed?.length ? <p className="text-sm text-ink-soft">You could have named: {last.missed.join(', ')}</p> : null}
               </div>
             )}
@@ -446,18 +445,25 @@ function BossBattle({ boss }: { boss: Boss }) {
             {phase === 0 && <KnowledgeBlitz prompt={content.blitz} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 1 && <RadarDefense cards={content.radar} franchise={boss.franchise} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 2 && <FinalBlow targets={content.finale} pool={content.pool} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
-            {secretPhase && secret && (
+            {phase === CHAIN_PHASE && content.chain && (
               <NameChain
-                secret={secret}
+                secret={content.chain}
                 bossName={boss.boss.name}
                 cards={[...boss.radar.members, ...boss.finale, ...boss.radar.impostors]}
                 okLines={boss.lines.secretOk ?? []}
                 onSay={say}
-                onDone={onSecretDone}
+                onDone={(r) => onPhaseDone({ won: r.won, correct: r.score, wrong: r.won ? 0 : 1, reason: r.won ? undefined : r.reason })}
               />
             )}
             {secretPhase && signature && (
-              <Signature signature={signature} bossName={boss.boss.name} okLines={boss.lines.secretOk ?? []} onSay={say} onDone={onSecretDone} />
+              <Signature
+                signature={signature}
+                bossName={boss.boss.name}
+                okLines={boss.lines.secretOk ?? []}
+                onSay={say}
+                onLastChance={onLastChance}
+                onDone={onSecretDone}
+              />
             )}
           </div>
         )}
@@ -490,18 +496,11 @@ function BossBattle({ boss }: { boss: Boss }) {
               ))}
               {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">★ New best score</span>}
             </p>
-            {secret && secretResult && (
-              <p className={`font-display text-sm font-bold tracking-wider ${secretResult.won ? 'text-hit' : 'text-coral'}`}>
-                {secretResult.won
-                  ? `Name Chain won — ${secretResult.reason} (+${Math.round(secret.bonus * d.scoreMultiplier)} pts)`
-                  : `Name Chain broken after ${secretResult.score}/${secret.picksToWin}: ${secretResult.reason}`}
-              </p>
-            )}
             {signature && secretResult && (
               <p className={`font-display text-sm font-bold tracking-wider ${secretResult.won ? 'text-hit' : 'text-coral'}`}>
                 {secretResult.won
                   ? `Signature won — ${secretResult.reason} (+${Math.round(signature.bonus * d.scoreMultiplier)} pts)`
-                  : `Signature failed after ${secretResult.score}/${signature.toWin}: ${secretResult.reason}`}
+                  : `Signature failed: ${secretResult.reason}`}
               </p>
             )}
             <div className="flex flex-col gap-3 sm:flex-row">

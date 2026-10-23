@@ -145,7 +145,9 @@ for (const id of ['easy', 'medium', 'hard']) {
     continue;
   }
   for (const k of positive) if (!(d[k] > 0)) fail(`${at}: "${k}" must be a positive number`);
-  if (!Array.isArray(d.rounds) || d.rounds.length !== 3 || d.rounds.some((n) => !(n >= 1))) fail(`${at}: "rounds" needs three counts >= 1`);
+  // Four phases: Blitz, Radar and Final Blow at least once; the Name Chain (IV) may be 0 (not played).
+  if (!Array.isArray(d.rounds) || d.rounds.length !== 4 || d.rounds.slice(0, 3).some((n) => !(n >= 1)) || !(d.rounds[3] >= 0)) fail(`${at}: "rounds" needs four counts (the first three >= 1)`);
+  if (d.rounds?.[3] > 0 && !d.chain) fail(`${at}: plays the Name Chain (rounds[3] > 0) but has no "chain" settings`);
   if (d.radarImpostors >= d.radarCards) fail(`${at}: more impostors than cards`);
   if (![0, 1, 2].includes(d.distortion)) fail(`${at}: "distortion" must be 0, 1 or 2`);
   const sl = d.secondLoop;
@@ -164,19 +166,19 @@ for (const id of ['easy', 'medium', 'hard']) {
       }
     }
   }
-  const sc = d.secret;
+  const sc = d.chain;
   if (sc) {
-    if (!(sc.picksToWin >= 1)) fail(`${at}: secret.picksToWin must be >= 1`);
-    if (!(sc.turnSeconds >= 0)) fail(`${at}: secret.turnSeconds must be >= 0`);
+    if (!(sc.picksToWin >= 1)) fail(`${at}: chain.picksToWin must be >= 1`);
+    if (!(sc.turnSeconds >= 0)) fail(`${at}: chain.turnSeconds must be >= 0`);
   }
   const sg = d.signature;
   if (sg) {
     if (!(sg.toWin >= 1)) fail(`${at}: signature.toWin must be >= 1`);
     if (!(sg.seconds >= 0)) fail(`${at}: signature.seconds must be >= 0`);
+    if (!(sg.chances >= 1)) fail(`${at}: signature.chances must be >= 1`);
   }
-  if (sc && sg) warn(`${at}: has both a Name Chain and a Signature — only the Name Chain is played`);
 }
-const chainSettings = Object.values(difficulties).find((d) => d?.secret)?.secret;
+const chainSettings = Object.values(difficulties).find((d) => d?.chain)?.chain;
 const signatureSettings = Object.values(difficulties).find((d) => d?.signature)?.signature;
 const bossIds = new Set();
 const label = (c) => (typeof c === 'string' ? c : c.label);
@@ -228,7 +230,7 @@ for (const b of bosses) {
     const sig = b.signature;
     if (!sig?.label || !sig?.prompt) fail(`${at}: needs a signature with a label and a prompt (scripts/data/boss-signatures.mjs)`);
     else {
-      if (sig.clues.length < signatureSettings.toWin * 3) fail(`${at}: signature needs at least ${signatureSettings.toWin * 3} clues, has ${sig.clues.length}`);
+      if (sig.clues.length < (signatureSettings.toWin + signatureSettings.chances) * 3) fail(`${at}: signature needs at least ${(signatureSettings.toWin + signatureSettings.chances) * 3} clues, has ${sig.clues.length}`);
       for (const c of sig.clues) {
         if (!c.answer?.split('|')[0]) fail(`${at}: a signature clue has no answer`);
         if (!c.text && !c.audio?.youtubeId) fail(`${at}: signature clue for "${c.answer}" has neither text nor audio`);

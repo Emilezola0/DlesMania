@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { FlameIcon } from '../components/Layout';
 import { Ornament } from '../components/Glyph';
@@ -6,7 +6,7 @@ import { dayNumber, formatLong, isPlayableDay, todayKey } from '../lib/date';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { roundEmoji } from '../lib/share';
-import { specialStreak, useProgress } from '../store/progress';
+import { recentlySeen, specialStreak, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type RoundRecord } from '../types';
 import type { ComponentType } from 'react';
 import { ONE_PIECE } from '../specialist/data';
@@ -18,7 +18,7 @@ import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/
 import { EmojiFilmRound, FilmRound, VoiceRound } from '../specialist/games/MarvelRounds';
 import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
-import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
+import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
 
 type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void };
@@ -226,7 +226,13 @@ function PracticeView({ universe: id }: { universe: UniverseId }) {
   const types = universe(id)!.types;
   const [type, setType] = useState<SpType>(types[0]);
   const [n, setN] = useState(0);
-  const round = useMemo(() => randomRound(id, type, Math.random), [id, type, n]);
+  // Recent answers (saved across visits) stay out until the whole pool has come up.
+  const scope = `practice:${id}:${type}`;
+  const round = useMemo(
+    () => randomRound(id, type, Math.random, new Set(recentlySeen(useProgress.getState().seen[scope], poolSize(id, type)))),
+    [id, type, n],
+  );
+  useEffect(() => useProgress.getState().markSeen(scope, [round.targetId]), [round]);
   const [record, setRecord] = useState<RoundRecord>(EMPTY_RECORD);
   const next = (t: SpType = type) => {
     sfx.click();

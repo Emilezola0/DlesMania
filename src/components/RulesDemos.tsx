@@ -24,7 +24,7 @@ export function TypingDemo() {
         <span className="demo-type inline-block overflow-hidden whitespace-nowrap align-bottom">teemo</span>
         <span className="demo-caret ml-px inline-block h-4 w-0.5 bg-ink align-middle" />
       </div>
-      <p className="demo-accept absolute inset-x-0 bottom-3 text-center text-xs font-bold text-hit">✓ Teemo — accepted as you type</p>
+      <p className="demo-accept absolute inset-x-0 bottom-3 text-center text-xs font-bold text-hit">✓ Teemo — accepted on Enter</p>
     </Frame>
   );
 }

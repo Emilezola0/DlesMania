@@ -1,4 +1,6 @@
+import { EPOCH, addDays } from '../lib/date';
 import { hashString, mulberry32, pick } from '../lib/rng';
+import { leastRecent } from '../lib/rounds';
 import { POOLS } from './data';
 import { LOL_POOLS } from './lol';
 import { MARVEL_POOLS } from './marvel';
@@ -73,20 +75,39 @@ export const maxScore = (id: UniverseId) => universe(id)!.types.length * 100;
 
 const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = { onepiece: POOLS, lol: LOL_POOLS, marvel: MARVEL_POOLS, genshin: GENSHIN_POOLS };
 
-/** A random round of one type; `avoid` keeps one answer from coming up twice in a day. */
-export function randomRound(id: UniverseId, type: SpType, rand: () => number, avoid: Set<string> = new Set()): SpRound {
+/** How many answers a round type can draw from. */
+export const poolSize = (id: UniverseId, type: SpType) => (POOLS_OF[id][type] ?? []).length;
+
+/**
+ * A random round of one type; `avoid` keeps one answer from coming up twice in a day or a session,
+ * and `lastUsed` (dailies) prefers the answers that haven't come up for the longest time.
+ */
+export function randomRound(id: UniverseId, type: SpType, rand: () => number, avoid: Set<string> = new Set(), lastUsed?: Map<string, number>): SpRound {
   const all = POOLS_OF[id][type] ?? [];
   const pool = all.filter((x) => !avoid.has(x));
-  return { type, targetId: pick(pool.length ? pool : all, rand), seed: Math.floor(rand() * 2 ** 31) };
+  return { type, targetId: pick(leastRecent(pool.length ? pool : all, (x) => x, lastUsed), rand), seed: Math.floor(rand() * 2 ** 31) };
 }
 
 /** The day's rounds, one of each type, the same for everyone (seeded by the date). */
 export function buildSpecialistDaily(id: UniverseId, date: string): SpRound[] {
+  const key = `${id}:${date}`;
+  const cached = dailyCache.get(key);
+  if (cached) return cached;
   const rand = mulberry32(hashString(`omnidle:specialist:${id}:${date}`));
   const used = new Set<string>();
-  return universe(id)!.types.map((type) => {
-    const round = randomRound(id, type, rand, used);
+  // No repeats across days: each round prefers what hasn't been an answer for the longest time.
+  const lastUsed = new Map<string, number>();
+  for (let day = EPOCH, n = 0; day < date; day = addDays(day, 1), n++) {
+    for (const r of buildSpecialistDaily(id, day)) lastUsed.set(r.targetId, n);
+  }
+  const rounds = universe(id)!.types.map((type) => {
+    const round = randomRound(id, type, rand, used, lastUsed);
     used.add(round.targetId);
     return round;
   });
+  dailyCache.set(key, rounds);
+  return rounds;
 }
+
+/** Specialist dailies already built, by "universe:date" (each day depends on the days before it). */
+const dailyCache = new Map<string, SpRound[]>();

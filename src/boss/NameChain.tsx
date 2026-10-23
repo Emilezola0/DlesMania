@@ -36,7 +36,7 @@ type Turn = 'boss' | 'answer' | 'ok' | 'over';
 const spellings = (e: Entity) => [e.name, ...e.aliases];
 
 /**
- * Hard's secret phase. The boss names something of one category ("Character: Zoro"); the player
+ * Phase IV (Medium and Hard). The boss names something of one category ("Character: Zoro"); the player
  * must answer with a different thing of the same category. Nothing named by either side may come
  * back. A wrong category, a repeat or running out of time loses on the spot; `picksToWin` good
  * answers win — and so does the boss running out of things to name.
@@ -138,7 +138,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="boss-secret-title font-display text-xs font-bold uppercase tracking-[0.4em] text-coral">Secret phase · Name Chain</p>
+        <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-accent">Phase IV · Name Chain</p>
         <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">Answer with another of the same kind — never repeat a name.</h3>
       </div>
 

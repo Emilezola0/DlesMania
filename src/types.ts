@@ -209,8 +209,10 @@ export interface SignatureClue {
 
 /** Hard's Signature balancing (src/data/difficulties.json). */
 export interface SignatureSettings {
-  /** Clues to answer in a row. */
+  /** Right answers needed (Hard: one). */
   toWin: number;
+  /** Tries in all: a wrong answer takes every heart, and the next clue is the last chance. */
+  chances: number;
   /** Seconds per clue; running out loses. */
   seconds: number;
   /** Points added (before the multiplier) for winning it. */
@@ -224,6 +226,8 @@ export interface PhaseResult {
   wrong: number;
   /** Answers the player missed, shown on the phase transition. */
   missed?: string[];
+  /** Why the round was lost, when there is no list of missed answers (Name Chain). */
+  reason?: string;
 }
 
 /** One kind of thing in the Name Chain ("Character", "Planet", "Spell"...). */

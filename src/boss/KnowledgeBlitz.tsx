@@ -13,7 +13,7 @@ interface Props {
   onDone: (result: PhaseResult) => void;
 }
 
-/** Phase I: name N things before the timer runs out. Answers are accepted as you type. */
+/** Phase I: name N things before the timer runs out. Each answer counts when Enter is pressed. */
 export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }: Props) {
   const esc = escalated(d, loop) ? d.secondLoop!.blitz : null;
   const total = blitzSeconds(prompt, d, loop) * 1000;
@@ -25,15 +25,12 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
   const [wrong, setWrong] = useState(0);
   const [over, setOver] = useState(false);
   const input = useRef<HTMLInputElement>(null);
-  const pending = useRef<number>();
 
   useEffect(() => input.current?.focus({ preventScroll: true }), []);
-  useEffect(() => () => clearTimeout(pending.current), []);
 
   const finish = (won: boolean, list = found) => {
     if (over) return;
     setOver(true);
-    clearTimeout(pending.current);
     onDone({
       won,
       correct: list.length,
@@ -52,27 +49,17 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     if (next.length >= prompt.count) finish(true, next);
   };
 
-  const tryText = (value: string, submitted: boolean) => {
-    clearTimeout(pending.current);
-    // Exact spellings are accepted as you type; typos only on Enter or after a pause.
-    const m = matchAnswer(prompt, value, new Set(found), submitted);
+  /** Answers count only on Enter (typos forgiven then), so nothing is accepted halfway through a word. */
+  const submit = (value: string) => {
+    if (!value.trim()) return;
+    const m = matchAnswer(prompt, value, new Set(found), true);
     if (m?.already) {
-      if (submitted) {
-        setNote({ text: `${m.name} — already named`, good: false, key: Date.now() });
-        setText('');
-      }
+      setNote({ text: `${m.name} — already named`, good: false, key: Date.now() });
+      setText('');
       return;
     }
-    if (m && (m.exact || submitted)) return accept(m.name, m.typo);
-    if (!submitted) {
-      // A shorter answer that's also the start of a longer one, or a near miss, waits for a pause.
-      pending.current = window.setTimeout(() => {
-        const late = m ?? matchAnswer(prompt, value, new Set(found), true);
-        if (late && !late.already) accept(late.name, late.typo);
-      }, 900);
-      return;
-    }
-    if (value.trim()) {
+    if (m) return accept(m.name, m.typo);
+    {
       setWrong((w) => w + 1);
       setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
       sfx.wrong();
@@ -111,12 +98,9 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
         ref={input}
         value={text}
         disabled={over}
-        onChange={(e) => {
-          setText(e.target.value);
-          tryText(e.target.value, false);
-        }}
-        onKeyDown={(e) => e.key === 'Enter' && tryText(text, true)}
-        placeholder="Type a name…"
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && submit(text)}
+        placeholder="Type a name, then Enter…"
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}

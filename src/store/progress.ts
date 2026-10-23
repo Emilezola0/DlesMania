@@ -50,6 +50,12 @@ interface ProgressState {
   /** Volume of the YouTube clips (soundtracks, voices, laughs), 0–100: YouTube's player can't go louder. */
   clipVolume: number;
   theme: ThemeChoice;
+  /**
+   * What came up recently outside the dailies, most recent first, by scope ("boss:<id>:faces",
+   * "free:<domain>", "practice:<universe>:<type>"...), so new games draw something not seen lately.
+   */
+  seen: Record<string, string[]>;
+  markSeen: (scope: string, ids: string[]) => void;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
   recordWhosThat: (key: string, score: number) => void;
@@ -61,6 +67,24 @@ interface ProgressState {
   setVolume: (kind: 'sfxVolume' | 'clipVolume', value: number) => void;
   cycleTheme: () => void;
   resetAll: () => void;
+}
+
+/** How much history each "seen" scope keeps. */
+const SEEN_LIMIT = 300;
+
+/**
+ * The part of a scope's history to avoid when drawing `needed` items out of `poolSize`: the most
+ * recent ones, leaving the least recently seen (or never seen) available. Once everything has come
+ * up, the oldest come back first.
+ */
+export function recentlySeen(seen: string[] | undefined, poolSize: number, needed = 1): string[] {
+  return (seen ?? []).slice(0, Math.max(0, poolSize - needed));
+}
+
+/** A scope's history as recency ranks (higher = seen more recently), the shape `leastRecent` reads. */
+export function seenOrder(seen: string[] | undefined): Map<string, number> {
+  const list = seen ?? [];
+  return new Map(list.map((id, i) => [id, list.length - i]));
 }
 
 export const useProgress = create<ProgressState>()(
@@ -77,6 +101,12 @@ export const useProgress = create<ProgressState>()(
       sfxVolume: 100,
       clipVolume: 80,
       theme: 'system',
+      seen: {},
+      markSeen: (scope, ids) =>
+        set((s) => {
+          const old = (s.seen[scope] ?? []).filter((x) => !ids.includes(x));
+          return { seen: { ...s.seen, [scope]: [...ids, ...old].slice(0, SEEN_LIMIT) } };
+        }),
       setRound: (domain, date, index, record) =>
         set((s) => {
           const key = dayKey(domain, date);
@@ -112,7 +142,7 @@ export const useProgress = create<ProgressState>()(
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, special: {} }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, special: {}, seen: {} }),
     }),
     {
       name: 'omnidle-progress',
