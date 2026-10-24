@@ -312,6 +312,17 @@ for (const c of wowData.characters) {
 const wowRenders = wowData.characters.filter((c) => c.render).length;
 if (wowRenders < 20) fail(`specialist/wow: only ${wowRenders} silhouette renders`);
 console.log(`specialist  wow: ${wowData.characters.length} characters, ${wowRenders} renders (${wowData.generated})`);
+const rankData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'ranks.json'), 'utf8'));
+for (const g of rankData.games) {
+  const ids = new Set(g.ranks.map((r) => r.id));
+  for (const r of g.ranks) if (!r.icon) warn(`ranks/${g.id}: no emblem for ${r.name}`);
+  for (const c of g.clips) if (!ids.has(c.rank)) fail(`ranks/${g.id}: clip ${c.youtubeId} has unknown rank ${c.rank}`);
+  const empty = g.ranks.filter((r) => !g.clips.some((c) => c.rank === r.id)).map((r) => r.name);
+  if (empty.length) warn(`ranks/${g.id}: no clip for ${empty.join(', ')}`);
+  // A daily needs three different ranks.
+  if (g.ranks.length - empty.length < 3) fail(`ranks/${g.id}: fewer than 3 ranks with clips`);
+}
+console.log(`ranks       ${rankData.games.map((g) => `${g.id}:${g.clips.length}`).join(' ')} (${rankData.generated})`);
 const mcu = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'marvel.json'), 'utf8'));
 const filmIds = new Set(mcu.films.map((f) => f.id));
 for (const f of mcu.films) {

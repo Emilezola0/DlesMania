@@ -13,6 +13,7 @@ const NAV = [
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/whos-that', label: "Who's That?", short: 'Who?' },
   { to: '/specialist', label: 'Specialist', short: 'Pro' },
+  { to: '/rank', label: 'Guess the Rank', short: 'Rank', wideOnly: true },
   // On the narrowest phones there's no room for six entries; the archive is still one tap away from each daily.
   { to: '/archive', label: 'Archive', wideOnly: true },
 ] as { to: string; label: string; short?: string; wideOnly?: boolean }[];
@@ -176,8 +177,8 @@ export function Layout() {
               >
                 {n.short ? (
                   <>
-                    <span className="sm:hidden">{n.short}</span>
-                    <span className="hidden sm:inline">{n.label}</span>
+                    <span className="xl:hidden">{n.short}</span>
+                    <span className="hidden xl:inline">{n.label}</span>
                   </>
                 ) : (
                   n.label

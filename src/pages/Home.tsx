@@ -50,6 +50,9 @@ export default function Home() {
             <Link to="/whos-that" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
               WHO&apos;S THAT?
             </Link>
+            <Link to="/rank" className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-widest">
+              GUESS THE RANK
+            </Link>
           </div>
           <RulesButton tab="daily" label="How to play · Règles du jeu" />
           <div className="mt-4 grid w-full max-w-md grid-cols-3 divide-x divide-rule border-y border-rule py-3 text-center">

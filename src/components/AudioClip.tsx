@@ -1,56 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { sfx } from '../lib/sfx';
+import { YT_ENDED as ENDED, YT_PLAYING as PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
 import { useProgress } from '../store/progress';
 
 /** Snippet length (seconds) unlocked by each wrong guess, Heardle-style. */
 export const SNIPPETS = [1, 2, 4, 7, 11, 16];
 /** Voice lines need a little longer to be heard at all. */
 export const VOICE_SNIPPETS = [2, 3, 5, 8, 12, 16];
-
-// Minimal slice of the YouTube IFrame API we use.
-interface YTPlayer {
-  playVideo(): void;
-  pauseVideo(): void;
-  seekTo(seconds: number, allowSeekAhead: boolean): void;
-  getDuration(): number;
-  setVolume(v: number): void;
-  destroy(): void;
-}
-interface YTNamespace {
-  Player: new (
-    el: HTMLElement,
-    opts: {
-      videoId: string;
-      width?: string;
-      height?: string;
-      playerVars?: Record<string, number | string>;
-      events?: { onReady?: () => void; onError?: (e: { data: number }) => void; onStateChange?: (e: { data: number }) => void };
-    },
-  ) => YTPlayer;
-}
-declare global {
-  interface Window {
-    YT?: YTNamespace;
-    onYouTubeIframeAPIReady?: () => void;
-  }
-}
-
-let apiPromise: Promise<YTNamespace> | null = null;
-function loadYouTube(): Promise<YTNamespace> {
-  if (window.YT?.Player) return Promise.resolve(window.YT);
-  apiPromise ??= new Promise((resolve, reject) => {
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      prev?.();
-      resolve(window.YT!);
-    };
-    const s = document.createElement('script');
-    s.src = 'https://www.youtube.com/iframe_api';
-    s.onerror = () => reject(new Error('YouTube API failed to load'));
-    document.head.appendChild(s);
-  });
-  return apiPromise;
-}
 
 interface Props {
   videoId: string;
@@ -67,9 +23,6 @@ interface Props {
   /** Play the whole clip from `start` every time, instead of growing snippets (short clips like a laugh). */
   full?: boolean;
 }
-
-const ENDED = 0;
-const PLAYING = 1;
 
 /** Intros are often silent or ambient, so default to ~40% in, leaving room for the longest snippet. */
 function autoStart(duration: number): number {

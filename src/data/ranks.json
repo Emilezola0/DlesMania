@@ -1,0 +1,1318 @@
+{
+  "generated": "2026-10-24",
+  "games": [
+    {
+      "id": "lol",
+      "label": "League of Legends",
+      "ranks": [
+        {
+          "id": "iron",
+          "name": "Iron",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/iron.svg"
+        },
+        {
+          "id": "bronze",
+          "name": "Bronze",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/bronze.svg"
+        },
+        {
+          "id": "silver",
+          "name": "Silver",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/silver.svg"
+        },
+        {
+          "id": "gold",
+          "name": "Gold",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/gold.svg"
+        },
+        {
+          "id": "platinum",
+          "name": "Platinum",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/platinum.svg"
+        },
+        {
+          "id": "emerald",
+          "name": "Emerald",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/emerald.svg"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/diamond.svg"
+        },
+        {
+          "id": "master",
+          "name": "Master",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/master.svg"
+        },
+        {
+          "id": "grandmaster",
+          "name": "Grandmaster",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/grandmaster.svg"
+        },
+        {
+          "id": "challenger",
+          "name": "Challenger",
+          "icon": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/challenger.svg"
+        }
+      ],
+      "clips": [
+        {
+          "youtubeId": "yfjUVYGFiqc",
+          "rank": "iron",
+          "title": "Spectating NA Iron Games is INCREDIBLE",
+          "channel": "Rew",
+          "seconds": 2155
+        },
+        {
+          "youtubeId": "QAufDEfNyAo",
+          "rank": "iron",
+          "title": "Spectating Iron Games is INCREDIBLE",
+          "channel": "Rew",
+          "seconds": 2531
+        },
+        {
+          "youtubeId": "_dNDZH8fziw",
+          "rank": "iron",
+          "title": "LE PIRE JOUEUR D'EUROPE EST FR ?! (IRON 4 & 33% WINRATE)",
+          "channel": "Slipix - League of Legends",
+          "seconds": 1430
+        },
+        {
+          "youtubeId": "GFUHeVPpGXw",
+          "rank": "iron",
+          "title": "I Spectated An Iron IV 0 LP Garen Who Was UNBELIEVABLE",
+          "channel": "RossBoomsocks",
+          "seconds": 2470
+        },
+        {
+          "youtubeId": "k5-0UOi6xUc",
+          "rank": "iron",
+          "title": "Spectating an IRON 4 (0LP) Player.. *KADEEM*",
+          "channel": "Midbeast",
+          "seconds": 1864
+        },
+        {
+          "youtubeId": "9UmkXtqL8SI",
+          "rank": "bronze",
+          "title": "JOGADAS que QUEBRARAM o LEAGUE OF LEGENDS - MISTERIOS DO BRONZE 5",
+          "channel": "Bronziocre",
+          "seconds": 1302
+        },
+        {
+          "youtubeId": "0oY1qyDDfLs",
+          "rank": "bronze",
+          "title": "League of legends ranked in Bronze 1",
+          "channel": "EvanArt25TV || Rediffusion",
+          "seconds": 2599
+        },
+        {
+          "youtubeId": "rIasapK6vfQ",
+          "rank": "bronze",
+          "title": "Bronze 5 TWITCH 4,000,000 MASTERY POINTS- Spectate Highest Mastery Points on Twitch",
+          "channel": "TheLoLHounds",
+          "seconds": 709
+        },
+        {
+          "youtubeId": "H8Qncblv0hQ",
+          "rank": "bronze",
+          "title": "Gameplay League of Legends Soraka top Bronze I V #1 (No commentary)",
+          "channel": "Sargesor",
+          "seconds": 2161
+        },
+        {
+          "youtubeId": "y8IqsCbvCFo",
+          "rank": "bronze",
+          "title": "I spectated a Bronze Zenyatta who was also Spectating Bronzes",
+          "channel": "Flats",
+          "seconds": 1301
+        },
+        {
+          "youtubeId": "Bf7f_qsNnog",
+          "rank": "silver",
+          "title": "SILVER IS A JOKE! (Full Unedited Evelynn Carry Gameplay)",
+          "channel": "Embrace Agony ♥",
+          "seconds": 1339
+        },
+        {
+          "youtubeId": "GFIfXqeP-qg",
+          "rank": "silver",
+          "title": "Hardstuck Silver",
+          "channel": "Chilling Smite",
+          "seconds": 744
+        },
+        {
+          "youtubeId": "IamjEJpZxeI",
+          "rank": "silver",
+          "title": "ADC Silver Rank League Of Legends",
+          "channel": "Fuggy",
+          "seconds": 3497
+        },
+        {
+          "youtubeId": "EpsLsY_MYp8",
+          "rank": "silver",
+          "title": "SILVER IS NOT A REAL ELO I SWEAR 😭",
+          "channel": "Drututt",
+          "seconds": 1736
+        },
+        {
+          "youtubeId": "65ItRUt6AT8",
+          "rank": "silver",
+          "title": "I went UNDERCOVER as a SILVER PLAYER in the r/leagueoflegends DISCORD SERVER",
+          "channel": "Doaenel ",
+          "seconds": 1343
+        },
+        {
+          "youtubeId": "UKhIsxtgpIo",
+          "rank": "gold",
+          "title": "LoL — Aphelios — 1st — 4/7/4 — Gold Elo — Patch 16.20",
+          "channel": "jwleaguerecordings",
+          "seconds": 981
+        },
+        {
+          "youtubeId": "wZY0eh78Qxo",
+          "rank": "gold",
+          "title": "Mooda & Jynxzi Destroyed Gold Without Dantes (League Of Legends)",
+          "channel": "Moodaa Archives",
+          "seconds": 2089
+        },
+        {
+          "youtubeId": "4-AKPdYrD1c",
+          "rank": "gold",
+          "title": "League of Legends - Singed | Gold Gameplay | Season 15 [ No Commentary ]",
+          "channel": "SingedPropaganda",
+          "seconds": 2084
+        },
+        {
+          "youtubeId": "CcGEgcEYlD8",
+          "rank": "gold",
+          "title": "League of Legends - Senna | Gold Gameplay | Season 15 [ No Commentary ]",
+          "channel": "SingedPropaganda",
+          "seconds": 1963
+        },
+        {
+          "youtubeId": "G52yVrOs_h4",
+          "rank": "platinum",
+          "title": "Platinum Elo League of Legends is the Worst Thing on Earth",
+          "channel": "Rav",
+          "seconds": 653
+        },
+        {
+          "youtubeId": "fAnC86_WuFY",
+          "rank": "platinum",
+          "title": "The Platinum Experience",
+          "channel": "Chilling Smite",
+          "seconds": 3810
+        },
+        {
+          "youtubeId": "twk3A605Ry4",
+          "rank": "platinum",
+          "title": "Ludwig's Platinum Rank Up Game",
+          "channel": "Ludwin",
+          "seconds": 2667
+        },
+        {
+          "youtubeId": "1wbyZF6TEOM",
+          "rank": "platinum",
+          "title": "[LoL] League of Legends Riven Champion Gameplay - Platinum Ranked Solo Queue - Full Game",
+          "channel": "Deathdome9",
+          "seconds": 1704
+        },
+        {
+          "youtubeId": "414K22mWJe4",
+          "rank": "platinum",
+          "title": "[LoL] League of Legends Lissandra Gameplay - Season 3 Platinum Ranked Solo Queue - Full Game",
+          "channel": "Deathdome9",
+          "seconds": 2158
+        },
+        {
+          "youtubeId": "Euedh4l4lOc",
+          "rank": "emerald",
+          "title": "The WORST ELO Of All Time (Emerald)",
+          "channel": "Odysseus",
+          "seconds": 1497
+        },
+        {
+          "youtubeId": "fPWt-WPXJMQ",
+          "rank": "emerald",
+          "title": "League Ranked VOD25 Win = Emerald",
+          "channel": "Ridah P",
+          "seconds": 2018
+        },
+        {
+          "youtubeId": "RPxHOcqSego",
+          "rank": "emerald",
+          "title": "Full Crit Oldschool Shaco - 25 Kills Emerald Ranked [League of Legends] Full Game - Infernal Shaco",
+          "channel": "Infernal Shaco",
+          "seconds": 1929
+        },
+        {
+          "youtubeId": "q__8mLNLdOU",
+          "rank": "emerald",
+          "title": "Youmuus Rush Shaco Carry - S16 Emerald Ranked [League of Legends] Full Gameplay - Infernal Shaco",
+          "channel": "Infernal Shaco",
+          "seconds": 1648
+        },
+        {
+          "youtubeId": "R5hNz3_OWHo",
+          "rank": "emerald",
+          "title": "EMERALD ELO IS PURE TORTURE",
+          "channel": "AloisNL",
+          "seconds": 3068
+        },
+        {
+          "youtubeId": "q5tnsEJEhvM",
+          "rank": "diamond",
+          "title": "17/0 Assassin Shaco - Diamond 1 Ranked [League of Legends] Full Gameplay - Infernal Shaco",
+          "channel": "Infernal Shaco",
+          "seconds": 1292
+        },
+        {
+          "youtubeId": "qQiUhsw3We8",
+          "rank": "diamond",
+          "title": "Lilia POV Gameplay Carrying in Diamond Ranked High Elo",
+          "channel": "Oswaald_JG",
+          "seconds": 1075
+        },
+        {
+          "youtubeId": "73Z5ChBwYa4",
+          "rank": "diamond",
+          "title": "League of Legends | No commentary | Ranked Diamond IV Soraka V #193",
+          "channel": "Sargesor",
+          "seconds": 1400
+        },
+        {
+          "youtubeId": "Nh78V1NoXQw",
+          "rank": "diamond",
+          "title": "League of Legends | No commentary | Ranked Diamond III Soraka V #135",
+          "channel": "Sargesor",
+          "seconds": 1826
+        },
+        {
+          "youtubeId": "L3jv17uT4vA",
+          "rank": "diamond",
+          "title": "MOST ONE-SIDED DIAMOND GAME EVER: 21 KILLS. QUADRA KILL. 66.000+ DMG AND 52 TEAM DEATHS 💀💀",
+          "channel": "BaLoRi",
+          "seconds": 1590
+        },
+        {
+          "youtubeId": "aniW8u5JNC0",
+          "rank": "master",
+          "title": "Hextech Soul Assassin Shaco Ranked - S16 Master [League of Legends] Full Gameplay - Infernal Shaco",
+          "channel": "Infernal Shaco",
+          "seconds": 1912
+        },
+        {
+          "youtubeId": "EM_x1ra1vWs",
+          "rank": "master",
+          "title": "League Of Legends Nocturne 64% WR Build Ranked Gameplay Jungle Master (No commentary)",
+          "channel": "No Commentary League of Legends",
+          "seconds": 1241
+        },
+        {
+          "youtubeId": "_AfA9RGNQe0",
+          "rank": "master",
+          "title": "League Of Legends Ranked Wukong Gameplay Jungle Master (No commentary)",
+          "channel": "No Commentary League of Legends",
+          "seconds": 1651
+        },
+        {
+          "youtubeId": "Um13KjmL4TI",
+          "rank": "master",
+          "title": "Master Tier EXPOSED (Everything Wrong With Master Players)",
+          "channel": "Coach Curtis",
+          "seconds": 4314
+        },
+        {
+          "youtubeId": "MHnHEDSOztg",
+          "rank": "master",
+          "title": "29 Kills After The WORST Level 1 In League History (MASTER ELO)",
+          "channel": "KingBranco",
+          "seconds": 1074
+        },
+        {
+          "youtubeId": "H30f_BnRDaA",
+          "rank": "grandmaster",
+          "title": "I BEAT BROKENBLADE BACK TO BACK FOR GRANDMASTER",
+          "channel": "Solarbacca Too",
+          "seconds": 2138
+        },
+        {
+          "youtubeId": "T-54zSeOREo",
+          "rank": "grandmaster",
+          "title": "MASTERING NOCTURNE IN HIGH ELO – SANTORIN'S GRANDMASTER PERFORMANCE",
+          "channel": "Santorin",
+          "seconds": 1687
+        },
+        {
+          "youtubeId": "QIhTcF33zaM",
+          "rank": "grandmaster",
+          "title": "Bomba Grandmaster EUW👑🧔 (760LP)",
+          "channel": "Sloppy Walrus",
+          "seconds": 1280
+        },
+        {
+          "youtubeId": "cl1OY8gPQVM",
+          "rank": "grandmaster",
+          "title": "🔥 Zeus Gnar Top | Korea Grandmaster Solo Queue | Patch 25.11 | League of Legends 🔥",
+          "channel": "TOP KINGDOM",
+          "seconds": 923
+        },
+        {
+          "youtubeId": "ZVqRtsH2qiU",
+          "rank": "grandmaster",
+          "title": "Grandmaster Warwick Jungle unleashes the BEAST | XYLLOW",
+          "channel": "Xyllow",
+          "seconds": 951
+        },
+        {
+          "youtubeId": "Ij2DhkywoHc",
+          "rank": "challenger",
+          "title": "1000 HEARTSTEAL STACKS MUNDO IN CHALLENGER",
+          "channel": "AloisNL",
+          "seconds": 2224
+        },
+        {
+          "youtubeId": "_TPjZJzv71Q",
+          "rank": "challenger",
+          "title": "I TOOK MY XERATH INTO 1000 LP CHALLENGER GAME... AND THEN THIS HAPPENED",
+          "channel": "Zwag Xerath",
+          "seconds": 1815
+        },
+        {
+          "youtubeId": "lWEJ8oQdwV0",
+          "rank": "challenger",
+          "title": "Challenger ADC",
+          "channel": "NattyNatt",
+          "seconds": 1665
+        },
+        {
+          "youtubeId": "R_fe3Oe01a8",
+          "rank": "challenger",
+          "title": "NattyNatt's first full Korean PRO PLAYER / CHALLENGER LOBBY",
+          "channel": "NattyNatt",
+          "seconds": 2548
+        },
+        {
+          "youtubeId": "dN7IsLSH5Sc",
+          "rank": "challenger",
+          "title": "Kanavi Jungle Proview | Sylas · Naafiri | Korean Challenger POV",
+          "channel": "Pro Jungle Archive",
+          "seconds": 2952
+        }
+      ]
+    },
+    {
+      "id": "valorant",
+      "label": "Valorant",
+      "ranks": [
+        {
+          "id": "iron",
+          "name": "Iron",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/4/largeicon.png"
+        },
+        {
+          "id": "bronze",
+          "name": "Bronze",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/7/largeicon.png"
+        },
+        {
+          "id": "silver",
+          "name": "Silver",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/10/largeicon.png"
+        },
+        {
+          "id": "gold",
+          "name": "Gold",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/13/largeicon.png"
+        },
+        {
+          "id": "platinum",
+          "name": "Platinum",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/16/largeicon.png"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/19/largeicon.png"
+        },
+        {
+          "id": "ascendant",
+          "name": "Ascendant",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/22/largeicon.png"
+        },
+        {
+          "id": "immortal",
+          "name": "Immortal",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/25/largeicon.png"
+        },
+        {
+          "id": "radiant",
+          "name": "Radiant",
+          "icon": "https://media.valorant-api.com/competitivetiers/03621f52-342b-cf4e-4f86-9350a49c6d04/27/largeicon.png"
+        }
+      ],
+      "clips": [
+        {
+          "youtubeId": "qdUuMTV_fJ4",
+          "rank": "iron",
+          "title": "Valorant IRON Ranked Gameplay (No commentary)",
+          "channel": "SpudBud",
+          "seconds": 2576
+        },
+        {
+          "youtubeId": "ayr3voCtdag",
+          "rank": "iron",
+          "title": "The Iron VALORANT Experience...",
+          "channel": "Youngling",
+          "seconds": 926
+        },
+        {
+          "youtubeId": "ALKov0HIJXQ",
+          "rank": "iron",
+          "title": "Pro Shout Casters spectate an Iron Ranked Game... - Valorant",
+          "channel": "Valorant Curios",
+          "seconds": 2037
+        },
+        {
+          "youtubeId": "5zDj_1Xu80c",
+          "rank": "iron",
+          "title": "VALORANT - Iron Ranked Gameplay (whole game, no commentary)",
+          "channel": "rwre",
+          "seconds": 2606
+        },
+        {
+          "youtubeId": "fvj5a9iZYGQ",
+          "rank": "iron",
+          "title": "Valorant IRON Ranked Gameplay (No commentary)",
+          "channel": "SpudBud",
+          "seconds": 1956
+        },
+        {
+          "youtubeId": "X4dd-qhdh6Y",
+          "rank": "bronze",
+          "title": "Valorant  PC no commentary Ranked bronze 2",
+          "channel": "TITANIUMPIZZA",
+          "seconds": 3082
+        },
+        {
+          "youtubeId": "4HKEN_dDFb4",
+          "rank": "bronze",
+          "title": "VALORANT COMEBACK GAME! SUMMIT BRONZE MIKS GAMEPLAY",
+          "channel": "JessieGaming",
+          "seconds": 1227
+        },
+        {
+          "youtubeId": "jes5ACIjv2w",
+          "rank": "bronze",
+          "title": "I’m HARDSTUCK BRONZE in Valorant… (Losing My MInd)",
+          "channel": "Zinky",
+          "seconds": 705
+        },
+        {
+          "youtubeId": "oE0AiltaXKE",
+          "rank": "bronze",
+          "title": "Valorant ranked VOD #001/ Omen/ Bronze 1",
+          "channel": "Matis",
+          "seconds": 2453
+        },
+        {
+          "youtubeId": "h9y3tCOV6RE",
+          "rank": "silver",
+          "title": "\"Valorant – Silver Rank Gameplay | No Commentary\"",
+          "channel": "DFung",
+          "seconds": 1297
+        },
+        {
+          "youtubeId": "iz4GSc2DVy8",
+          "rank": "silver",
+          "title": "Valorant's SILVER EXPERIENCE is TERRIBLE",
+          "channel": "SASolo",
+          "seconds": 2002
+        },
+        {
+          "youtubeId": "55UK1Gdox9U",
+          "rank": "silver",
+          "title": "The True Silver Valorant Experience",
+          "channel": "SaltyPhishLIVE",
+          "seconds": 1124
+        },
+        {
+          "youtubeId": "YVv5b3wmGYs",
+          "rank": "silver",
+          "title": "Maybe I Don't Belong in Silver 1..",
+          "channel": "mikey",
+          "seconds": 1377
+        },
+        {
+          "youtubeId": "bwgxp37C8CI",
+          "rank": "gold",
+          "title": "An Experience of a Gold player | Valorant Gameplay *1440p*",
+          "channel": "ethan",
+          "seconds": 1906
+        },
+        {
+          "youtubeId": "xkYpqw0VNe4",
+          "rank": "platinum",
+          "title": "Platinum demons are real",
+          "channel": "Woohoojin",
+          "seconds": 1439
+        },
+        {
+          "youtubeId": "qVsH6IOy0Jw",
+          "rank": "platinum",
+          "title": "Split [Platinum 1] | Valorant Ranked #4",
+          "channel": "knarf",
+          "seconds": 2212
+        },
+        {
+          "youtubeId": "HBBqqhWYy8c",
+          "rank": "platinum",
+          "title": "Lotus [Platinum 1] | Valorant Ranked #5",
+          "channel": "knarf",
+          "seconds": 1866
+        },
+        {
+          "youtubeId": "3_vYc0cIP_0",
+          "rank": "diamond",
+          "title": "Diamond is ELO HELL in Valorant...",
+          "channel": "Rapple",
+          "seconds": 1925
+        },
+        {
+          "youtubeId": "m-pKCp0w3mc",
+          "rank": "diamond",
+          "title": "23 Kills with Iso in Diamond — Breeze Ranked | Valorant",
+          "channel": "MiRROR",
+          "seconds": 1423
+        },
+        {
+          "youtubeId": "ynDv2BoEvWg",
+          "rank": "diamond",
+          "title": "The Diamond side of Valorant ranked",
+          "channel": "AverageJonas",
+          "seconds": 888
+        },
+        {
+          "youtubeId": "3azlcG5hzis",
+          "rank": "ascendant",
+          "title": "Ascendant Ranked Demon.",
+          "channel": "Ache",
+          "seconds": 1521
+        },
+        {
+          "youtubeId": "vcSLc2A1UqQ",
+          "rank": "ascendant",
+          "title": "Valorant Gameplay No Commentary | Ascendant | Omen - Corrode",
+          "channel": "wintR",
+          "seconds": 1659
+        },
+        {
+          "youtubeId": "Lt5oCk_EOD4",
+          "rank": "ascendant",
+          "title": "Valorant Gameplay No Commentary | Ascendant | Clove - Corrode",
+          "channel": "wintR",
+          "seconds": 1162
+        },
+        {
+          "youtubeId": "LW3zUszOYwQ",
+          "rank": "ascendant",
+          "title": "Ascendant Rank Up ┃ FULL GAME FRIDAY",
+          "channel": "FausterVAL",
+          "seconds": 1540
+        },
+        {
+          "youtubeId": "hpzEod1idSI",
+          "rank": "ascendant",
+          "title": "Ascendant 3 lobbies are just sad..",
+          "channel": "Ache",
+          "seconds": 1849
+        },
+        {
+          "youtubeId": "GwhY92K2JdU",
+          "rank": "immortal",
+          "title": "Professional Immortal Player #9 (SOLO QUEUE)",
+          "channel": "Ache",
+          "seconds": 1935
+        },
+        {
+          "youtubeId": "PUPrmO992ww",
+          "rank": "immortal",
+          "title": "Professional Immortal Player #50 (VALORANT Gameplay)",
+          "channel": "Ache",
+          "seconds": 1976
+        },
+        {
+          "youtubeId": "X1QhxQoEOCw",
+          "rank": "immortal",
+          "title": "Playing Jett Without Fear in Immortal (w/notes)",
+          "channel": "Rexxy FPS",
+          "seconds": 1324
+        },
+        {
+          "youtubeId": "YQAdBuNOHgU",
+          "rank": "immortal",
+          "title": "Playing Without Fear In Immortal (w/notes)",
+          "channel": "Rexxy FPS",
+          "seconds": 1947
+        },
+        {
+          "youtubeId": "SBOnMOj5egQ",
+          "rank": "immortal",
+          "title": "pov: You're Dominating Immortal Elo",
+          "channel": "AimHan",
+          "seconds": 688
+        },
+        {
+          "youtubeId": "98ggqUhVxf4",
+          "rank": "radiant",
+          "title": "OXY'S JETT MOVEMENT ON ABYSS IS ACTUALLY ILLEGAL!  (Radiant MVP)",
+          "channel": "Valorant DAILY",
+          "seconds": 1917
+        },
+        {
+          "youtubeId": "QFcMsXkx448",
+          "rank": "radiant",
+          "title": "35 KILLS! C9 OXY Reyna Domination - Valorant RADIANT Gameplay Full Match VOD",
+          "channel": "Valorant DAILY",
+          "seconds": 1893
+        },
+        {
+          "youtubeId": "EoOxjY4asls",
+          "rank": "radiant",
+          "title": "FNC Kaajak 61.0% Headshot Rate in Radiant Lobby..",
+          "channel": "Valo Pro Replays",
+          "seconds": 886
+        },
+        {
+          "youtubeId": "rQPZC93T8lQ",
+          "rank": "radiant",
+          "title": "WHEN TENZ INSTA LOCKS JETT IN RADIANT !!!",
+          "channel": "TenZ Replay",
+          "seconds": 1590
+        },
+        {
+          "youtubeId": "bt5BFPDgfeQ",
+          "rank": "radiant",
+          "title": "INSANE 35 KILL CONSOLE RADIANT FULL VALORANT GAME",
+          "channel": "lunly",
+          "seconds": 1151
+        }
+      ]
+    },
+    {
+      "id": "rocketleague",
+      "label": "Rocket League",
+      "ranks": [
+        {
+          "id": "bronze",
+          "name": "Bronze",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/7/72/Season_reward_level_bronze.png/revision/latest?cb=20210708192226"
+        },
+        {
+          "id": "silver",
+          "name": "Silver",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/c/c5/Season_reward_level_silver.png/revision/latest?cb=20210708192228"
+        },
+        {
+          "id": "gold",
+          "name": "Gold",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/0/05/Season_reward_level_gold.png/revision/latest?cb=20210708192229"
+        },
+        {
+          "id": "platinum",
+          "name": "Platinum",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/c/c0/Season_reward_level_platinum.png/revision/latest?cb=20210708192229"
+        },
+        {
+          "id": "diamond",
+          "name": "Diamond",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/f/f9/Season_reward_level_diamond.png/revision/latest?cb=20210708192230"
+        },
+        {
+          "id": "champion",
+          "name": "Champion",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/9/9a/Season_reward_level_champion.png/revision/latest?cb=20210708192231"
+        },
+        {
+          "id": "grandchampion",
+          "name": "Grand Champion",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/3/33/Season_reward_level_grand_champion.png/revision/latest?cb=20210709125539"
+        },
+        {
+          "id": "ssl",
+          "name": "Supersonic Legend",
+          "icon": "https://static.wikia.nocookie.net/rocketleague/images/e/ef/Season_reward_level_supersonic_legend.png/revision/latest?cb=20210728124209"
+        }
+      ],
+      "clips": [
+        {
+          "youtubeId": "iZaOv4LbHU4",
+          "rank": "bronze",
+          "title": "Bronze Gameplay 2V2 Rocket League",
+          "channel": "Sam Forill",
+          "seconds": 805
+        },
+        {
+          "youtubeId": "P0QJKAWN_0c",
+          "rank": "bronze",
+          "title": "Meet the Worst Bronze in Rocket League",
+          "channel": "amustycow",
+          "seconds": 1960
+        },
+        {
+          "youtubeId": "9WgpUVpN85k",
+          "rank": "bronze",
+          "title": "Bronze Rocket League Gameplay",
+          "channel": "Fission Gaming",
+          "seconds": 2212
+        },
+        {
+          "youtubeId": "K-5A1E1Gq5Q",
+          "rank": "silver",
+          "title": "Silver Rank Rocket League Gameplay",
+          "channel": "Dragon Lord",
+          "seconds": 1600
+        },
+        {
+          "youtubeId": "cSCb1t6dFyA",
+          "rank": "silver",
+          "title": "1 Hour of Pathetic Rocket League Gameplay (Silver 2v2)",
+          "channel": "LEVEL 9850",
+          "seconds": 3725
+        },
+        {
+          "youtubeId": "mfIWen9lD_o",
+          "rank": "silver",
+          "title": "Rocket league  Silver Gameplay no commentary",
+          "channel": "Masked_7781",
+          "seconds": 3203
+        },
+        {
+          "youtubeId": "ETqT5Ya5avU",
+          "rank": "silver",
+          "title": "Rocket League Gameplay (no commentary, silver rank)",
+          "channel": "WhatsthepasswordGaming",
+          "seconds": 636
+        },
+        {
+          "youtubeId": "WwEkIyrHgUM",
+          "rank": "silver",
+          "title": "Rocket League Silver 2v2 Gameplay (no commentary)",
+          "channel": "JLTheAwesome",
+          "seconds": 615
+        },
+        {
+          "youtubeId": "OTi4Zdl7j_s",
+          "rank": "gold",
+          "title": "Rocket League Gold 2 Gameplay [2v2]",
+          "channel": "Drspeedlmao",
+          "seconds": 1683
+        },
+        {
+          "youtubeId": "-SkupHqy7RM",
+          "rank": "gold",
+          "title": "Gold Ranked 2V2 GAMEPLAY | MissedShotsRL",
+          "channel": "MissedShotsRL",
+          "seconds": 795
+        },
+        {
+          "youtubeId": "11ixhngGUPE",
+          "rank": "gold",
+          "title": "Rocket League 2v2 gameplay (gold)",
+          "channel": "RL JinWoo",
+          "seconds": 1890
+        },
+        {
+          "youtubeId": "0euux689wVY",
+          "rank": "gold",
+          "title": "Rocket League Gold 3 Gameplay (No commentary)",
+          "channel": "Drspeedlmao",
+          "seconds": 2211
+        },
+        {
+          "youtubeId": "A1FYN2ugeRk",
+          "rank": "gold",
+          "title": "gold.",
+          "channel": "amustycow",
+          "seconds": 1989
+        },
+        {
+          "youtubeId": "Q5Q6_ISnVTg",
+          "rank": "platinum",
+          "title": "Rocket League Platinum 1 Gameplay [2v2]",
+          "channel": "Drspeedlmao",
+          "seconds": 2824
+        },
+        {
+          "youtubeId": "4r1KKHsXyBk",
+          "rank": "platinum",
+          "title": "Rocket League Platinum 2 Ranked Gameplay [2v2]",
+          "channel": "Drspeedlmao",
+          "seconds": 2653
+        },
+        {
+          "youtubeId": "W4TbfIqbu8o",
+          "rank": "platinum",
+          "title": "Platinum 1 Gameplay Rocket League🚔",
+          "channel": "rares-trp",
+          "seconds": 2725
+        },
+        {
+          "youtubeId": "POicKyf6220",
+          "rank": "platinum",
+          "title": "🏆Rocket League Platinum 2v2 - Gameplay🏆",
+          "channel": "SteakLover",
+          "seconds": 1294
+        },
+        {
+          "youtubeId": "Ld4AD8oyxLM",
+          "rank": "platinum",
+          "title": "I Was NOT Ready for This in Platinum 2v2… 😱",
+          "channel": "Streak_9",
+          "seconds": 1484
+        },
+        {
+          "youtubeId": "sTKTDJulfiY",
+          "rank": "diamond",
+          "title": "Rocket League 2v2 | Diamond 2 (No Commentary)",
+          "channel": "Crudzy Gaming",
+          "seconds": 1454
+        },
+        {
+          "youtubeId": "pTxIc7rSufA",
+          "rank": "diamond",
+          "title": "Rocket League 2v2 Gameplay Diamond 3 💎 (No Commentary) [4K]",
+          "channel": "Zenyx",
+          "seconds": 1258
+        },
+        {
+          "youtubeId": "aGXcWIAILZI",
+          "rank": "diamond",
+          "title": "Rocket League 2v2, Diamond 2 lobby | 4K 240fps Gameplay",
+          "channel": "NASSKII",
+          "seconds": 1024
+        },
+        {
+          "youtubeId": "XW43TbLOh9w",
+          "rank": "diamond",
+          "title": "Diamond 3 Ranked 2v2 💎 | Rocket League Season 24 (No Commentary) [4K]",
+          "channel": "Zenyx",
+          "seconds": 1016
+        },
+        {
+          "youtubeId": "wB3RolAWL1I",
+          "rank": "diamond",
+          "title": "Diamond 3 Gameplay || 2v2 || Rocket League",
+          "channel": "Konsti_x08",
+          "seconds": 1086
+        },
+        {
+          "youtubeId": "rb6_X1lgnxc",
+          "rank": "champion",
+          "title": "Rocket League - Champion 1 Gameplay - 2v2 (No Commentary)",
+          "channel": "dimirr",
+          "seconds": 885
+        },
+        {
+          "youtubeId": "ekKc4NPWlTw",
+          "rank": "champion",
+          "title": "Champ 1 2v2 Gameplay",
+          "channel": "abdualrl",
+          "seconds": 1075
+        },
+        {
+          "youtubeId": "Me3-lylbf3c",
+          "rank": "champion",
+          "title": "Rocket League - Champion 3 Gameplay - 2v2 (No Commentary)",
+          "channel": "dimirr",
+          "seconds": 702
+        },
+        {
+          "youtubeId": "hpARZfFF_wg",
+          "rank": "champion",
+          "title": "Rocket League - Champion 2 Gameplay - 2v2 (No commentary)",
+          "channel": "Fugas RL",
+          "seconds": 971
+        },
+        {
+          "youtubeId": "h_olLDVY8H4",
+          "rank": "champion",
+          "title": "Rocket League Champion III 2v2 Gameplay (1300 MMR)",
+          "channel": "Frog66",
+          "seconds": 1002
+        },
+        {
+          "youtubeId": "BMqEUm3r1bs",
+          "rank": "grandchampion",
+          "title": "Rocket League Grand Champion II 2v2 Gameplay (1650 MMR)",
+          "channel": "Somey",
+          "seconds": 679
+        },
+        {
+          "youtubeId": "d35FqIVewMc",
+          "rank": "grandchampion",
+          "title": "Rocket League - Grand Champion 1 Gameplay - 2v2 (No Commentary)",
+          "channel": "dimirr",
+          "seconds": 765
+        },
+        {
+          "youtubeId": "EenSB1soc9U",
+          "rank": "grandchampion",
+          "title": "Rocket League Grand Champ 2 Gameplay! (2v2)",
+          "channel": "Somey",
+          "seconds": 683
+        },
+        {
+          "youtubeId": "HzpXz1mC728",
+          "rank": "grandchampion",
+          "title": "Rocket League - Grand Champion 1 Gameplay - 2v2 (No Commentary)",
+          "channel": "dimirr",
+          "seconds": 803
+        },
+        {
+          "youtubeId": "ovm67Slv5QY",
+          "rank": "grandchampion",
+          "title": "I Found The Most Toxic Grand Champ 1",
+          "channel": "Retals",
+          "seconds": 1695
+        },
+        {
+          "youtubeId": "5C8sjxKKvvg",
+          "rank": "ssl",
+          "title": "ZEN Rocket League Gameplay (SSL 2v2)",
+          "channel": "Orbital Gameplay",
+          "seconds": 1219
+        },
+        {
+          "youtubeId": "Lv8Fy2p-nrI",
+          "rank": "ssl",
+          "title": "DOMINATING RANKED WITH THE MOST MECHANICAL NA PLAYER... | SUPERSONIC LEGEND 2V2",
+          "channel": "SquishyMuffinz",
+          "seconds": 984
+        },
+        {
+          "youtubeId": "_ZTYxZbQl8s",
+          "rank": "ssl",
+          "title": "DARK Has 200IQ MECHANICS in SSL 2v2 🚀🔥",
+          "channel": "RLNation",
+          "seconds": 1092
+        },
+        {
+          "youtubeId": "DUqcUpPPLPQ",
+          "rank": "ssl",
+          "title": "Rocket League | SSL gameplay 2v2 #17 (4K)",
+          "channel": "R1 just vibing",
+          "seconds": 858
+        },
+        {
+          "youtubeId": "5X77jb5DR6I",
+          "rank": "ssl",
+          "title": "Chill 2k+ SSL 2vs2 Rocket League Gameplay | no Commentary",
+          "channel": "JOSIA",
+          "seconds": 1208
+        }
+      ]
+    },
+    {
+      "id": "cs2",
+      "label": "Counter-Strike 2",
+      "ranks": [
+        {
+          "id": "silver",
+          "name": "Silver",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/f/fa/Skillgroup6_new.png/revision/latest?cb=20171121155540"
+        },
+        {
+          "id": "goldnova",
+          "name": "Gold Nova",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/4/4c/Skillgroup10_new.png/revision/latest?cb=20171121155629"
+        },
+        {
+          "id": "mg",
+          "name": "Master Guardian",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/b/b8/Skillgroup12_new.png/revision/latest?cb=20171121155629"
+        },
+        {
+          "id": "dmg",
+          "name": "Distinguished Master Guardian",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/a/ad/Skillgroup14_new.png/revision/latest?cb=20171121155630"
+        },
+        {
+          "id": "le",
+          "name": "Legendary Eagle",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/0/06/Skillgroup15_new.png/revision/latest?cb=20171121155631"
+        },
+        {
+          "id": "lem",
+          "name": "Legendary Eagle Master",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/d/dc/Skillgroup16_new.png/revision/latest?cb=20171121155631"
+        },
+        {
+          "id": "supreme",
+          "name": "Supreme",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/1/1b/Skillgroup17_new.png/revision/latest?cb=20171121155631"
+        },
+        {
+          "id": "ge",
+          "name": "Global Elite",
+          "icon": "https://static.wikia.nocookie.net/cswikia/images/2/2f/Skillgroup18_new.png/revision/latest?cb=20171121155647"
+        }
+      ],
+      "clips": [
+        {
+          "youtubeId": "eKntlsRWQ_k",
+          "rank": "silver",
+          "title": "The REAL SILVER Counter-Strike Experience...",
+          "channel": "Mrtweeday",
+          "seconds": 1527
+        },
+        {
+          "youtubeId": "bJYFl9d_6R4",
+          "rank": "silver",
+          "title": "THE SILVER EXPERIENCE",
+          "channel": "Anomaly",
+          "seconds": 671
+        },
+        {
+          "youtubeId": "yv6s9PokZ6M",
+          "rank": "silver",
+          "title": "I Spectated the Lowest Rated Players in CS2! - Silver Cast",
+          "channel": "fl0m",
+          "seconds": 875
+        },
+        {
+          "youtubeId": "ii7AzVRoYdE",
+          "rank": "silver",
+          "title": "The True CS2 Silver Experience on Vertigo",
+          "channel": "lillie",
+          "seconds": 1012
+        },
+        {
+          "youtubeId": "acu0itdnSIM",
+          "rank": "silver",
+          "title": "i played on Silver 1...",
+          "channel": "neokCS",
+          "seconds": 711
+        },
+        {
+          "youtubeId": "sDAQyHWng1M",
+          "rank": "goldnova",
+          "title": "GOLD NOVA 4",
+          "channel": "loltyler1",
+          "seconds": 2226
+        },
+        {
+          "youtubeId": "abWrP_UJ13A",
+          "rank": "goldnova",
+          "title": "CSGO Mirage Gold Nova Competitive Gameplay",
+          "channel": "Nightwolf075",
+          "seconds": 1827
+        },
+        {
+          "youtubeId": "6oiodSONbpw",
+          "rank": "goldnova",
+          "title": "CS:GO Ranked Matchmaking (GOLD NOVA II)",
+          "channel": "H.O.R",
+          "seconds": 4406
+        },
+        {
+          "youtubeId": "5fcmWzUA3IE",
+          "rank": "goldnova",
+          "title": "Counter-Strike 2 Matchmaking 2026 02 04 Gold Nova 4",
+          "channel": "greiser671games",
+          "seconds": 1642
+        },
+        {
+          "youtubeId": "5f02HTNGSAo",
+          "rank": "goldnova",
+          "title": "Counter-Strike 2 Matchmaking 2026 02 04 Gold Nova 4",
+          "channel": "greiser671games",
+          "seconds": 2016
+        },
+        {
+          "youtubeId": "sJPdUhZhvrU",
+          "rank": "mg",
+          "title": "vibes on CS2 🎧🌿 Master Guardian 2 Gameplay",
+          "channel": "RelicMC",
+          "seconds": 1800
+        },
+        {
+          "youtubeId": "mEYl9jyz3hc",
+          "rank": "mg",
+          "title": "CSGO COMPETITIVE MATCH Counter Strike CSGO | CS GO COMP | MASTER GUARDIAN GAMEPLAY",
+          "channel": "Tyler Here",
+          "seconds": 2673
+        },
+        {
+          "youtubeId": "fcCrWzHv2bY",
+          "rank": "mg",
+          "title": "CS:GO | Master Guardian II Game | Full Match",
+          "channel": "scuffed",
+          "seconds": 2071
+        },
+        {
+          "youtubeId": "IpSIpMgKJxQ",
+          "rank": "mg",
+          "title": "CS GO Matchmaking #4 Inferno (Master Guardian 2)",
+          "channel": "Digital Tom",
+          "seconds": 2741
+        },
+        {
+          "youtubeId": "iZJ-hfs7zas",
+          "rank": "mg",
+          "title": "CS:GO Ranked Master Guardian 1",
+          "channel": "Guldrion",
+          "seconds": 822
+        },
+        {
+          "youtubeId": "Y35Uq4CHTVM",
+          "rank": "dmg",
+          "title": "Distinguished Master Guardian on Dust 2",
+          "channel": "BIGJOKR XV",
+          "seconds": 2306
+        },
+        {
+          "youtubeId": "p_d9xC7ML0s",
+          "rank": "dmg",
+          "title": "Distinguished Master Guardian on Boulder",
+          "channel": "BIGJOKR XV",
+          "seconds": 1385
+        },
+        {
+          "youtubeId": "VxD1CJ2nJkA",
+          "rank": "dmg",
+          "title": "CS GO #41 - Distinguished Master Guardian",
+          "channel": "mITkO-bOmBaTa",
+          "seconds": 1490
+        },
+        {
+          "youtubeId": "41KQeW4HWrU",
+          "rank": "dmg",
+          "title": "Distinguished Master Guardian Competitive CS:GO Match #19",
+          "channel": "ArrowSyler",
+          "seconds": 2732
+        },
+        {
+          "youtubeId": "pDa261WXWu0",
+          "rank": "dmg",
+          "title": "CS:GO Distinguished Master Guardian ̿̿ ̿̿'̿'\\̵͇̿̿\\з=( ͡° ͜ʖ ͡°)=ε/̵͇̿̿/’̿’̿ ̿ ̿̿ ̿̿",
+          "channel": "Arthas",
+          "seconds": 3403
+        },
+        {
+          "youtubeId": "QtdrFMhxKms",
+          "rank": "le",
+          "title": "LEGENDARY EAGLE!",
+          "channel": "MattCS",
+          "seconds": 696
+        },
+        {
+          "youtubeId": "Zi9cE9bdwxU",
+          "rank": "le",
+          "title": "Legendary Eagle on Boulder",
+          "channel": "BIGJOKR XV",
+          "seconds": 1972
+        },
+        {
+          "youtubeId": "O-75nBEjD3U",
+          "rank": "le",
+          "title": "Legendary Eagle on Alpine",
+          "channel": "BIGJOKR XV",
+          "seconds": 1288
+        },
+        {
+          "youtubeId": "ZYrp-6MXnKQ",
+          "rank": "le",
+          "title": "Legendary Eagle! (CS:GO: Full Gameplay)",
+          "channel": "Ben Wood",
+          "seconds": 1663
+        },
+        {
+          "youtubeId": "0FaWUfiElBU",
+          "rank": "le",
+          "title": "Legendary Eagle CS:GO game",
+          "channel": "2kliksphilip",
+          "seconds": 2049
+        },
+        {
+          "youtubeId": "puienSnq-SM",
+          "rank": "lem",
+          "title": "Legendary Eagle Master on Alpine",
+          "channel": "BIGJOKR XV",
+          "seconds": 1667
+        },
+        {
+          "youtubeId": "6Lgu2AlczTk",
+          "rank": "lem",
+          "title": "CS GO Legendary Eagle Master gameplay | Full-match dust2",
+          "channel": "MrGeesikser",
+          "seconds": 2461
+        },
+        {
+          "youtubeId": "5JYMvMcI4j8",
+          "rank": "lem",
+          "title": "The Throws Are Real - Legendary Eagle Master CS GO Competitive (LEM)",
+          "channel": "Nick Bunyun",
+          "seconds": 1126
+        },
+        {
+          "youtubeId": "xfD785xYsto",
+          "rank": "lem",
+          "title": "Legendary Eagle Master gameplay - Counter Strike Global Offensive",
+          "channel": "MrGeesikser",
+          "seconds": 1672
+        },
+        {
+          "youtubeId": "5gZdJa01-JE",
+          "rank": "supreme",
+          "title": "The Supreme Dream",
+          "channel": "Anomaly",
+          "seconds": 614
+        },
+        {
+          "youtubeId": "LmsgPxvr4qM",
+          "rank": "supreme",
+          "title": "SUPREME RANK! CSGO Competitive on DE_DUST2!",
+          "channel": "Nick Bunyun",
+          "seconds": 932
+        },
+        {
+          "youtubeId": "W7vFnqw35yI",
+          "rank": "supreme",
+          "title": "CS GO - Supreme - Full Game - Mirage",
+          "channel": "Hawke",
+          "seconds": 2035
+        },
+        {
+          "youtubeId": "aekUwLIQVnk",
+          "rank": "supreme",
+          "title": "CS2⭕️/COMPETITION DUST 2 @SUPREME❌",
+          "channel": "DEA7HZ0R",
+          "seconds": 2672
+        },
+        {
+          "youtubeId": "4Iud2TUM9-8",
+          "rank": "supreme",
+          "title": "CS GO Mirage Competitive Gameplay, Supreme Master First Class Rank Competitive Match!",
+          "channel": "Killer Instinct CS",
+          "seconds": 1279
+        },
+        {
+          "youtubeId": "KZOHbGdSluU",
+          "rank": "ge",
+          "title": "Toxic CS GO Ranked Gameplay, Dust 2 Global Elite Rank!",
+          "channel": "Killer Instinct CS",
+          "seconds": 2130
+        },
+        {
+          "youtubeId": "vWj_Z1zd95U",
+          "rank": "ge",
+          "title": "13 minutes and 47 seconds of Global Elite Gameplay",
+          "channel": "lekoen",
+          "seconds": 827
+        }
+      ]
+    }
+  ]
+}

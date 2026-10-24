@@ -7,6 +7,7 @@ import Daily, { DailyHub } from './pages/Daily';
 import FreePlay from './pages/FreePlay';
 import Home from './pages/Home';
 import SpecialistUniverse, { SpecialistHub } from './pages/Specialist';
+import GuessRankGame, { GuessRankHub } from './pages/GuessRank';
 import WhosThat, { WhosThatHub } from './pages/WhosThat';
 
 export default function App() {
@@ -26,6 +27,9 @@ export default function App() {
         <Route path="specialist" element={<SpecialistHub />} />
         <Route path="specialist/:universe" element={<SpecialistUniverse />} />
         <Route path="specialist/:universe/:date" element={<SpecialistUniverse />} />
+        <Route path="rank" element={<GuessRankHub />} />
+        <Route path="rank/:game" element={<GuessRankGame />} />
+        <Route path="rank/:game/:date" element={<GuessRankGame />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
