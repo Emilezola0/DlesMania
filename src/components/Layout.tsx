@@ -7,16 +7,17 @@ import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
 import { UpdateBanner } from './UpdateBanner';
 
+/** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
+export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year'];
+
 const NAV = [
   { to: '/daily', label: 'Daily' },
   { to: '/play', label: 'Free Play', short: 'Play' },
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
-  { to: '/whos-that', label: "Who's That?", short: 'Who?' },
-  { to: '/specialist', label: 'Specialist', short: 'Pro' },
-  { to: '/rank', label: 'Guess the Rank', short: 'Rank', wideOnly: true },
-  // On the narrowest phones there's no room for six entries; the archive is still one tap away from each daily.
+  { to: '/games', label: 'Games', also: GAME_PATHS },
+  // On the narrowest phones there's no room for every entry; the archive is still one tap away from each daily.
   { to: '/archive', label: 'Archive', wideOnly: true },
-] as { to: string; label: string; short?: string; wideOnly?: boolean }[];
+] as { to: string; label: string; short?: string; wideOnly?: boolean; also?: string[] }[];
 
 /** Line-drawn icons in the same ink as the glyphs. */
 export function SpeakerIcon({ on }: { on: boolean }) {
@@ -153,7 +154,8 @@ export function Layout() {
   const cycleTheme = useProgress((s) => s.cycleTheme);
   const { current } = computeStreak(days);
   const openRules = useUi((s) => s.openRules);
-  const onBoss = useLocation().pathname.startsWith('/boss');
+  const { pathname } = useLocation();
+  const onBoss = pathname.startsWith('/boss');
   useApplyTheme(theme);
 
   return (
@@ -169,16 +171,17 @@ export function Layout() {
               <NavLink
                 key={n.to}
                 to={n.to}
-                className={({ isActive }) =>
-                  `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
+                className={({ isActive: exact }) => {
+                  const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+                  return `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
-                  }`
-                }
+                  }`;
+                }}
               >
                 {n.short ? (
                   <>
-                    <span className="xl:hidden">{n.short}</span>
-                    <span className="hidden xl:inline">{n.label}</span>
+                    <span className="sm:hidden">{n.short}</span>
+                    <span className="hidden sm:inline">{n.label}</span>
                   </>
                 ) : (
                   n.label

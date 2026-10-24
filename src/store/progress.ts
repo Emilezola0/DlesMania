@@ -42,6 +42,8 @@ interface ProgressState {
   bossDifficulty: BossDifficulty;
   /** "Who's That?": best score per series id or "all-<domain>". */
   whosThat: Record<string, number>;
+  /** Best scores in the arcade games (Higher or Lower, Name Them All, Guess the Year), by "<game>:<mode>". */
+  bests: Record<string, number>;
   /** Specialist dailies: "<universe>:<date>" -> round index -> record. */
   special: Record<string, DayRounds>;
   sound: boolean;
@@ -59,6 +61,7 @@ interface ProgressState {
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
   recordWhosThat: (key: string, score: number) => void;
+  recordBest: (key: string, score: number) => void;
   setSpecialRound: (key: string, index: number, record: RoundRecord) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
@@ -96,6 +99,7 @@ export const useProgress = create<ProgressState>()(
       bosses: {},
       bossDifficulty: 'easy',
       whosThat: {},
+      bests: {},
       special: {},
       sound: true,
       sfxVolume: 100,
@@ -122,6 +126,7 @@ export const useProgress = create<ProgressState>()(
           },
         })),
       setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
+      recordBest: (key, score) => set((s) => ({ bests: { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) } })),
       recordWhosThat: (key, score) => set((s) => ({ whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) } })),
       setSpecialRound: (key, index, record) => set((s) => ({ special: { ...s.special, [key]: { ...s.special[key], [index]: record } } })),
       recordBoss: (key, { won, score, time }) =>
@@ -142,7 +147,7 @@ export const useProgress = create<ProgressState>()(
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, special: {}, seen: {} }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, special: {}, seen: {} }),
     }),
     {
       name: 'omnidle-progress',

@@ -59,6 +59,9 @@ export function SpecialistHub() {
   return (
     <div className="space-y-8">
       <div>
+        <Link to="/games" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
+          ← Games
+        </Link>
         <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">One universe, every angle</p>
         <h1 className="text-5xl font-bold">Specialist</h1>
         <p className="max-w-xl text-ink-soft">
