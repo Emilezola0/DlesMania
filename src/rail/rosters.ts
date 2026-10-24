@@ -20,6 +20,8 @@ export interface RailLine {
   icon: string;
   /** Sky top, sky bottom, far hills, near ground. */
   palette: [string, string, string, string];
+  /** Where the stations are, in order (the list loops on a long run). */
+  stations: string[];
   characters: RailCharacter[];
 }
 
@@ -34,13 +36,34 @@ const series = (id: string) =>
 
 // The Specialist rosters are ranked best-known first: the top of each keeps the signs recognisable.
 export const RAIL_LINES: RailLine[] = [
-  { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', palette: ['#0b3a66', '#f2b366', '#1d5c7a', '#c9a46a'], characters: pick(ONE_PIECE.characters, 120) },
-  { id: 'lol', label: 'League of Legends', icon: '⚔️', palette: ['#0b1626', '#3b6b8f', '#1c3346', '#3d4d3a'], characters: pick(LOL.champions) },
-  { id: 'marvel', label: 'Marvel (MCU)', icon: '🦸', palette: ['#1a0b2e', '#c2413a', '#3a1f3f', '#4a4552'], characters: pick(MARVEL.characters, 100) },
-  { id: 'genshin', label: 'Genshin Impact', icon: '✨', palette: ['#1f3b73', '#9ad0f5', '#5d8a6b', '#a7c48a'], characters: pick(GENSHIN.characters) },
-  { id: 'wow', label: 'World of Warcraft', icon: '🐉', palette: ['#120f24', '#6a4c93', '#2b2a45', '#4b3f36'], characters: pick(WOW.characters) },
-  { id: 'pokemon', label: 'Pokémon', icon: '⚡', palette: ['#2f80c8', '#ffe08a', '#4f9d57', '#8fcf6b'], characters: pick(series('pokemon')) },
-  { id: 'minecraft', label: 'Minecraft', icon: '⛏️', palette: ['#5aa5e6', '#cfe9ff', '#3f7d3a', '#7a5a3a'], characters: pick(series('minecraft')) },
+  {
+    id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', palette: ['#0b3a66', '#f2b366', '#1d5c7a', '#c9a46a'], characters: pick(ONE_PIECE.characters, 120),
+    stations: ['Foosha Village', 'Loguetown', 'Alabasta', 'Water 7', 'Sabaody', 'Fish-Man Island', 'Dressrosa', 'Whole Cake Island', 'Wano', 'Egghead'],
+  },
+  {
+    id: 'lol', label: 'League of Legends', icon: '⚔️', palette: ['#0b1626', '#3b6b8f', '#1c3346', '#3d4d3a'], characters: pick(LOL.champions),
+    stations: ['Demacia', 'Noxus', 'Piltover', 'Zaun', 'Ionia', 'Shurima', 'Freljord', 'Bilgewater', 'Targon', 'the Shadow Isles'],
+  },
+  {
+    id: 'marvel', label: 'Marvel (MCU)', icon: '🦸', palette: ['#1a0b2e', '#c2413a', '#3a1f3f', '#4a4552'], characters: pick(MARVEL.characters, 100),
+    stations: ['Stark Tower', 'New York', 'Wakanda', 'Asgard', 'the Sanctum', 'Xandar', 'Knowhere', 'Sakaar', 'Titan', 'the Quantum Realm'],
+  },
+  {
+    id: 'genshin', label: 'Genshin Impact', icon: '✨', palette: ['#1f3b73', '#9ad0f5', '#5d8a6b', '#a7c48a'], characters: pick(GENSHIN.characters),
+    stations: ['Mondstadt', 'Liyue Harbor', 'Inazuma City', 'Sumeru City', 'Fontaine', 'Natlan', 'Dragonspine', 'the Chasm', 'Snezhnaya', 'Celestia'],
+  },
+  {
+    id: 'wow', label: 'World of Warcraft', icon: '🐉', palette: ['#120f24', '#6a4c93', '#2b2a45', '#4b3f36'], characters: pick(WOW.characters),
+    stations: ['Goldshire', 'Stormwind', 'Ironforge', 'Orgrimmar', 'Thunder Bluff', 'Dalaran', 'Shattrath', 'Icecrown', 'Valdrakken', 'Dornogal'],
+  },
+  {
+    id: 'pokemon', label: 'Pokémon', icon: '⚡', palette: ['#2f80c8', '#ffe08a', '#4f9d57', '#8fcf6b'], characters: pick(series('pokemon')),
+    stations: ['Pallet Town', 'Viridian City', 'Pewter City', 'Cerulean City', 'Vermilion City', 'Lavender Town', 'Celadon City', 'Saffron City', 'Cinnabar Island', 'Indigo Plateau'],
+  },
+  {
+    id: 'minecraft', label: 'Minecraft', icon: '⛏️', palette: ['#5aa5e6', '#cfe9ff', '#3f7d3a', '#7a5a3a'], characters: pick(series('minecraft')),
+    stations: ['Spawn', 'the Village', 'the Desert Temple', 'the Mineshaft', 'the Stronghold', 'the Nether Portal', 'the Bastion', 'the Ocean Monument', 'the Ancient City', 'The End'],
+  },
 ];
 
 export const railLine = (id: string | undefined) => RAIL_LINES.find((l) => l.id === id);

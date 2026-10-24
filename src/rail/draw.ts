@@ -48,6 +48,8 @@ export interface Scene {
   palette: [string, string, string, string];
   /** Hard mode: signs are blurred. */
   blurSigns: boolean;
+  /** The next station, when one is coming: the train stops with its middle at `at`. */
+  station: { at: number; name: string } | null;
   time: number;
 }
 
@@ -161,6 +163,66 @@ function drawGate(ctx: CanvasRenderingContext2D, s: Scene, g: Gate, project: Ret
       ctx.globalAlpha = alpha;
     }
   });
+  ctx.restore();
+}
+
+/** Platforms on both sides, a canopy on pillars, and the station's name on a board over the tracks. */
+function drawStation(ctx: CanvasRenderingContext2D, s: Scene, project: ReturnType<typeof geometry>['project']) {
+  const st = s.station;
+  if (!st) return;
+  const near = Math.max(0.8, st.at - 16 - s.dist);
+  const far = st.at + 16 - s.dist;
+  if (far <= 0.8 || near > FAR) return;
+  const quad = (pts: { x: number; y: number }[], color: string) => {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    pts.forEach((p, k) => (k ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)));
+    ctx.closePath();
+    ctx.fill();
+  };
+  ctx.save();
+  ctx.globalAlpha = fogAlpha(Math.max(near, 1));
+  const edge = LANE * 1.55;
+  for (const side of [-1, 1]) {
+    const inner = side * edge;
+    const outer = side * (edge + 5);
+    // The platform's top, then its face toward the tracks.
+    quad([project(inner, 1.1, near), project(outer, 1.1, near), project(outer, 1.1, far), project(inner, 1.1, far)], '#cbbfa6');
+    quad([project(inner, 0, near), project(inner, 1.1, near), project(inner, 1.1, far), project(inner, 0, far)], '#7d6e58');
+    // A yellow safety line along the edge.
+    quad([project(inner, 1.11, near), project(inner + side * 0.35, 1.11, near), project(inner + side * 0.35, 1.11, far), project(inner, 1.11, far)], '#e8c547');
+    // Pillars and the canopy.
+    ctx.fillStyle = '#3a3029';
+    for (let z = Math.ceil((st.at - 15) / 6) * 6; z <= st.at + 15; z += 6) {
+      const rz = z - s.dist;
+      if (rz < 0.8) continue;
+      const a = project(side * (edge + 2.5) - 0.15, 5.2, rz);
+      const b = project(side * (edge + 2.5) + 0.15, 1.1, rz);
+      ctx.fillRect(Math.min(a.x, b.x), a.y, Math.max(1, Math.abs(b.x - a.x)), b.y - a.y);
+    }
+    quad([project(inner - side * 0.4, 5.2, near), project(outer, 5.6, near), project(outer, 5.6, far), project(inner - side * 0.4, 5.2, far)], '#8c2f2f');
+  }
+  // The name board, hanging over the far end of the platforms (ahead of a train stopped at the station).
+  const bz = st.at + 15 - s.dist;
+  // Fades out as the train runs under it, so it never covers the view.
+  if (bz > 6) {
+    ctx.globalAlpha = Math.min(fogAlpha(bz), (bz - 6) / 6);
+    const tl = project(-LANE * 1.2, 7.4, bz);
+    const br = project(LANE * 1.2, 5.6, bz);
+    const w = br.x - tl.x;
+    const h = br.y - tl.y;
+    ctx.fillStyle = '#1d2b3a';
+    roundRect(ctx, tl.x, tl.y, w, h, Math.max(2, h * 0.15));
+    ctx.fill();
+    ctx.strokeStyle = '#e8c547';
+    ctx.lineWidth = Math.max(1, h * 0.06);
+    ctx.stroke();
+    ctx.fillStyle = '#f4ead2';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = `bold ${Math.max(6, h * 0.42)}px Georgia, serif`;
+    ctx.fillText(st.name.toUpperCase(), tl.x + w / 2, tl.y + h / 2, w * 0.92);
+  }
   ctx.restore();
 }
 
@@ -286,6 +348,7 @@ export function drawScene(ctx: CanvasRenderingContext2D, s: Scene) {
     }
   }
 
+  drawStation(ctx, s, project);
   // Gates, far to near, then the train.
   [...s.gates].sort((a, b) => b.at - a.at).forEach((gate) => !gate.done && drawGate(ctx, s, gate, project));
   const train = drawTrain(ctx, s, project);
