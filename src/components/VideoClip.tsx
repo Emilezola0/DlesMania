@@ -20,6 +20,9 @@ interface Props {
  * masked while it plays, and the whole frame covered whenever it isn't playing (YouTube shows the
  * title and suggestions on a paused or unstarted video).
  */
+/** Clips start muted; unmuting holds for the rest of the visit. */
+let sessionMuted = true;
+
 export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
@@ -29,6 +32,7 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [muted, setMuted] = useState(sessionMuted);
   const clipVolume = useProgress((s) => s.clipVolume);
   useEffect(() => {
     player.current?.setVolume(clipVolume);
@@ -53,6 +57,8 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
               const p = player.current;
               if (!p) return;
               p.setVolume(useProgress.getState().clipVolume);
+              if (sessionMuted) p.mute();
+              else p.unMute();
               const d = p.getDuration();
               setStart(Math.floor(Math.max(0, Math.min(d * at, d - seconds - 10))));
               setReady(true);
@@ -96,6 +102,14 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
     }, 100);
   }
 
+  const toggleMute = () => {
+    const next = !muted;
+    sessionMuted = next;
+    setMuted(next);
+    if (next) player.current?.mute();
+    else player.current?.unMute();
+  };
+
   const play = () => {
     const p = player.current;
     if (!p) return;
@@ -113,7 +127,7 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
       <div className="animate-pop mx-auto aspect-video w-full max-w-3xl overflow-hidden rounded-xl bg-black shadow-2xl">
         <iframe
           className="size-full"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?start=${start}&rel=0`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?start=${start}&rel=0${muted ? '&mute=1' : ''}`}
           title="Gameplay clip"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
@@ -145,8 +159,18 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
           )}
         </button>
       </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-tile">
-        <div className="h-full bg-accent transition-[width] duration-100" style={{ width: `${(progress / seconds) * 100}%` }} />
+      <div className="flex items-center gap-3">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-tile">
+          <div className="h-full bg-accent transition-[width] duration-100" style={{ width: `${(progress / seconds) * 100}%` }} />
+        </div>
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-pressed={!muted}
+          className="rounded-md border border-rule-strong px-2.5 py-1 font-display text-xs font-semibold text-ink-soft transition hover:text-ink"
+        >
+          {muted ? '🔇 Sound off' : '🔊 Sound on'}
+        </button>
       </div>
     </div>
   );

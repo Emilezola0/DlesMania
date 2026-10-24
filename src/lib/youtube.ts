@@ -7,6 +7,8 @@ export interface YTPlayer {
   seekTo(seconds: number, allowSeekAhead: boolean): void;
   getDuration(): number;
   setVolume(v: number): void;
+  mute(): void;
+  unMute(): void;
   destroy(): void;
 }
 export interface YTNamespace {
