@@ -58,6 +58,13 @@ export default function GamesHub() {
   ];
   const arcade: GameCard[] = [
     {
+      to: '/rail-rush',
+      icon: '🚂',
+      title: 'Rail Rush',
+      blurb: 'A train on three tracks, faster and faster: name the character on a free track to switch to it before the barricade.',
+      stat: best('rail:') ? `Best: ${best('rail:')} gates` : undefined,
+    },
+    {
       to: '/whos-that',
       icon: '👤',
       title: "Who's That?",
