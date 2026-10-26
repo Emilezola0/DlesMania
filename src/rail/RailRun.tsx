@@ -206,6 +206,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
     if (phaseRef.current !== 'running' || !game.current.gate || !text.trim()) return;
     const m = findBestMatch(text, game.current.signs, (c) => [c.name, ...c.aliases]);
     if (m) return switchTo(game.current.signs.indexOf(m.item));
+    setText('');
     setMiss(true);
     window.setTimeout(() => setMiss(false), 400);
     sfx.wrong();
@@ -219,7 +220,6 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
     setChoosingLine(false);
     setPhase('running');
     spawnGate();
-    window.setTimeout(() => input.current?.focus({ preventScroll: true }), 0);
   };
 
   const pick = (item: RailItemId) => {
@@ -256,7 +256,6 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         if (c <= 1) {
           window.clearInterval(t);
           setPhase('running');
-          window.setTimeout(() => input.current?.focus({ preventScroll: true }), 0);
           return 0;
         }
         sfx.click();
@@ -265,6 +264,28 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
     }, 700);
     return () => window.clearInterval(t);
   }, [phase === 'countdown']);
+
+  // While the train runs, the name box keeps the focus: given back after the countdown, a station or
+  // a pause (once React has enabled it), taken back after a click on the track, and any key typed
+  // elsewhere goes into it.
+  const focusInput = () => input.current?.focus({ preventScroll: true });
+  useEffect(() => {
+    if (phase === 'running') focusInput();
+  }, [phase]);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (phaseRef.current !== 'running' || document.activeElement === input.current) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') focusInput();
+    };
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+  }, []);
+  const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    // Leaving for a link or a button (the back link, a menu) is fine; anything else gives it back.
+    const to = e.relatedTarget as HTMLElement | null;
+    if (phaseRef.current === 'running' && !to?.closest('a, button, input, select, textarea')) requestAnimationFrame(focusInput);
+  };
 
   // Pause when the tab is hidden.
   useEffect(() => {
@@ -446,7 +467,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
           </div>
         )}
         {phase === 'paused' && (
-          <button type="button" onClick={() => (setPhase('running'), input.current?.focus())} className="absolute inset-0 grid place-items-center bg-black/50 font-display text-2xl font-bold text-white">
+          <button type="button" onClick={() => setPhase('running')} className="absolute inset-0 grid place-items-center bg-black/50 font-display text-2xl font-bold text-white">
             ▶ Paused — tap to go on
           </button>
         )}
@@ -555,6 +576,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         disabled={phase === 'over' || phase === 'station'}
         onChange={(e) => onType(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && onEnter()}
+        onBlur={onBlur}
         placeholder="Name a free track's character…"
         autoComplete="off"
         autoCapitalize="off"
