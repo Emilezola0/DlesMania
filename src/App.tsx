@@ -13,6 +13,9 @@ import GuessYear from './pages/GuessYear';
 import HigherLower from './pages/HigherLower';
 import NameThemAll from './pages/NameThemAll';
 import RailRush from './pages/RailRush';
+import MemoryPairs from './pages/MemoryPairs';
+import OddOneOut from './pages/OddOneOut';
+import WhoAmI from './pages/WhoAmI';
 import WhosThat, { WhosThatHub } from './pages/WhosThat';
 
 export default function App() {
@@ -42,6 +45,10 @@ export default function App() {
         <Route path="name-them-all/:list" element={<NameThemAll />} />
         <Route path="guess-the-year" element={<GuessYear />} />
         <Route path="rail-rush" element={<RailRush />} />
+        <Route path="memory" element={<MemoryPairs />} />
+        <Route path="memory/:deck" element={<MemoryPairs />} />
+        <Route path="odd-one-out" element={<OddOneOut />} />
+        <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

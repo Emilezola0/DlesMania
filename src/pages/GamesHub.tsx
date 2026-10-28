@@ -86,6 +86,27 @@ export default function GamesHub() {
       stat: listsTried ? `${listsTried} lists tried · ${listsDone} completed` : undefined,
     },
     {
+      to: '/who-am-i',
+      icon: '🕵️',
+      title: 'Who Am I?',
+      blurb: 'Clues one at a time, vaguest first: name the character as early as you dare. One Piece, League, Marvel, Genshin and Warcraft.',
+      stat: best('who:') ? `Best: ${best('who:')} / 500` : undefined,
+    },
+    {
+      to: '/odd-one-out',
+      icon: '🧩',
+      title: 'Odd One Out',
+      blurb: 'Five cards, four share a link: spot the intruder, and keep the streak going.',
+      stat: best('odd:') ? `Best streak: ${best('odd:')}` : undefined,
+    },
+    {
+      to: '/memory',
+      icon: '🃏',
+      title: 'Memory Pairs',
+      blurb: 'Turn two cards at a time and match what goes together: a Devil Fruit and its user, a champion and their ultimate…',
+      stat: best('memory:') ? `Best: ${best('memory:')} points` : undefined,
+    },
+    {
       to: '/guess-the-year',
       icon: '📅',
       title: 'Guess the Year',
