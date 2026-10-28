@@ -17,6 +17,8 @@ import MemoryPairs from './pages/MemoryPairs';
 import OddOneOut from './pages/OddOneOut';
 import Crossroads from './pages/Crossroads';
 import Summit from './pages/Summit';
+import Shop from './pages/Shop';
+import Album from './pages/Album';
 import WhoAmI from './pages/WhoAmI';
 import FranchiseWordle from './pages/FranchiseWordle';
 import QuickSort from './pages/QuickSort';
@@ -57,6 +59,8 @@ export default function App() {
         <Route path="odd-one-out" element={<OddOneOut />} />
         <Route path="crossroads" element={<Crossroads />} />
         <Route path="summit" element={<Summit />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="album" element={<Album />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="wordle" element={<FranchiseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />

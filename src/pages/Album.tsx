@@ -1,0 +1,200 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Coins } from '../components/DleCoin';
+import { CardBack, CardFace, CardMissing } from '../gacha/CardView';
+import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { shownName } from '../lib/french';
+import { sfx } from '../lib/sfx';
+import { useProgress } from '../store/progress';
+
+type Show = 'all' | 'owned' | 'missing';
+type Sort = 'set' | 'rarity' | 'name' | 'count';
+
+const SORTS: { id: Sort; label: string }[] = [
+  { id: 'set', label: 'Set' },
+  { id: 'rarity', label: 'Rarity' },
+  { id: 'name', label: 'Name' },
+  { id: 'count', label: 'Most pulled' },
+];
+const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
+
+/**
+ * One card, big: drag it to turn it in your hands (it settles back when let go, its back showing
+ * past a half turn), or tap it to send it spinning.
+ */
+function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
+  const [rot, setRot] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [spin, setSpin] = useState(0);
+  const start = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  const down = (e: React.PointerEvent) => {
+    (e.target as Element).setPointerCapture?.(e.pointerId);
+    start.current = { x: e.clientX, y: e.clientY, moved: false };
+    setDragging(true);
+  };
+  const move = (e: React.PointerEvent) => {
+    const s = start.current;
+    if (!s) return;
+    const dx = e.clientX - s.x;
+    const dy = e.clientY - s.y;
+    if (Math.abs(dx) + Math.abs(dy) > 6) s.moved = true;
+    setRot({ x: Math.max(-40, Math.min(40, -dy * 0.35)), y: dx * 0.6 });
+  };
+  const up = () => {
+    const s = start.current;
+    start.current = null;
+    setDragging(false);
+    setRot({ x: 0, y: 0 });
+    // A tap, not a drag: a full spin.
+    if (s && !s.moved) (sfx.whoosh(), setSpin((n) => n + 360));
+  };
+
+  const y = rot.y + spin;
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
+      <div className="w-full space-y-4" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
+        <div
+          className="cursor-grab touch-none select-none [perspective:1000px] active:cursor-grabbing"
+          onPointerDown={down}
+          onPointerMove={move}
+          onPointerUp={up}
+          onPointerCancel={up}
+        >
+          <div
+            className={`relative [transform-style:preserve-3d] ${dragging ? '' : 'transition-transform duration-700 ease-out'}`}
+            style={{ transform: `rotateX(${rot.x}deg) rotateY(${y}deg)` }}
+          >
+            <div className="[backface-visibility:hidden]">
+              <CardFace card={card} count={count} tilt={false} />
+            </div>
+            <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <CardBack rarity={card.rarity} />
+            </div>
+          </div>
+        </div>
+        <div className="text-center text-white">
+          <p className="font-display text-xl font-bold">{shownName(card.name)}</p>
+          <p className="text-sm opacity-80">
+            {RARITY_INFO[card.rarity].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
+          </p>
+          <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** /album */
+export default function Album() {
+  const owned = useProgress((s) => s.cards);
+  const coins = useProgress((s) => s.coins);
+  const [set, setSet] = useState('all');
+  const [rarities, setRarities] = useState<Rarity[]>(RARITIES);
+  const [show, setShow] = useState<Show>('all');
+  const [sort, setSort] = useState<Sort>('set');
+  const [open, setOpen] = useState<Card | null>(null);
+
+  const unique = CARDS.filter((c) => owned[c.id]).length;
+  const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
+  const list = useMemo(() => {
+    const xs = CARDS.filter((c) => (set === 'all' || c.set === set) && rarities.includes(c.rarity) && (show === 'all' || (show === 'owned') === !!owned[c.id]));
+    const byRarity = (a: Card, b: Card) => RARITY_INFO[b.rarity].rank - RARITY_INFO[a.rarity].rank;
+    const bySet = (a: Card, b: Card) => (SET_ORDER.get(a.set) ?? 0) - (SET_ORDER.get(b.set) ?? 0) || a.no - b.no;
+    return [...xs].sort(
+      sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
+    );
+  }, [set, rarities, show, sort, owned]);
+
+  const toggleRarity = (r: Rarity) => {
+    sfx.click();
+    setRarities((xs) => (xs.includes(r) ? (xs.length > 1 ? xs.filter((x) => x !== r) : xs) : RARITIES.filter((x) => x === r || xs.includes(x))));
+  };
+  const pill = (on: boolean) => `rounded-full border-2 px-3 py-1 text-sm font-semibold transition ${on ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`;
+
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <Link to="/games" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
+            ← Games
+          </Link>
+          <h1 className="text-5xl font-bold">Album</h1>
+          <p className="text-ink-soft">
+            {unique} of {CARDS.length} cards collected · {pulls} pulled in all ·{' '}
+            {RARITIES.map((r) => `${CARDS.filter((c) => c.rarity === r && owned[c.id]).length}/${CARDS.filter((c) => c.rarity === r).length} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
+          </p>
+        </div>
+        <Link to="/shop" className="btn-accent rounded-md px-5 py-2.5 font-display font-bold">
+          Card Shop · <Coins n={coins} />
+        </Link>
+      </div>
+
+      <div className="page flex flex-wrap items-center gap-3 rounded-md p-3">
+        <select value={set} onChange={(e) => setSet(e.target.value)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label="Set">
+          <option value="all">Every set</option>
+          {SETS.map((s) => (
+            <option key={s.id} value={s.id}>
+              {s.franchise} ({CARDS.filter((c) => c.set === s.id && owned[c.id]).length}/{s.size})
+            </option>
+          ))}
+        </select>
+        <div className="flex flex-wrap gap-1.5">
+          {RARITIES.map((r) => (
+            <button key={r} type="button" aria-pressed={rarities.includes(r)} onClick={() => toggleRarity(r)} className={pill(rarities.includes(r))}>
+              {RARITY_INFO[r].gem} {RARITY_INFO[r].name}
+            </button>
+          ))}
+        </div>
+        <div className="flex gap-1.5">
+          {(['all', 'owned', 'missing'] as Show[]).map((s) => (
+            <button key={s} type="button" aria-pressed={show === s} onClick={() => (sfx.click(), setShow(s))} className={pill(show === s)}>
+              {s === 'all' ? 'All' : s === 'owned' ? 'Owned' : 'Missing'}
+            </button>
+          ))}
+        </div>
+        <label className="ml-auto flex items-center gap-2 text-sm font-semibold">
+          Sort
+          <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5">
+            {SORTS.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      {!unique && (
+        <p className="page rounded-md p-4 text-center text-ink-soft">
+          No cards yet. Play the dailies and the games to earn DleCoins, then open a pack in the{' '}
+          <Link to="/shop" className="font-semibold text-accent">
+            Card Shop
+          </Link>
+          .
+        </p>
+      )}
+
+      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+        {list.map((c) =>
+          owned[c.id] ? (
+            <button key={c.id} type="button" onClick={() => (sfx.select(), setOpen(c))} className="transition hover:z-10 hover:-translate-y-1" aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}>
+              <CardFace card={c} count={owned[c.id]} />
+            </button>
+          ) : (
+            <CardMissing key={c.id} card={c} />
+          ),
+        )}
+      </div>
+      {!list.length && <p className="text-center text-ink-soft">No card fits these filters.</p>}
+
+      {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
+    </div>
+  );
+}

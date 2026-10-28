@@ -4,6 +4,20 @@ import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
+import {
+  ARCADE_BEST_BONUS,
+  ARCADE_CAP,
+  ARCADE_COINS,
+  BOSS_AGAIN,
+  BOSS_COINS,
+  CATEGORY_BONUS,
+  MISSIONS,
+  freshEconomy,
+  missionsFor,
+  roundCoins,
+  type Economy,
+  type MissionKind,
+} from '../gacha/economy';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -47,6 +61,16 @@ interface ProgressState {
   whosThat: Record<string, number>;
   /** Best scores in the arcade games (Higher or Lower, Name Them All, Guess the Year), by "<game>:<mode>". */
   bests: Record<string, number>;
+  /** DleCoins, to spend on card packs (src/gacha). */
+  coins: number;
+  /** Cards collected: card id -> how many times it was pulled. */
+  cards: Record<string, number>;
+  /** Today's earnings book: capped coins, bosses paid for, missions (see src/gacha/economy.ts). */
+  econ: Economy;
+  packsOpened: number;
+  /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
+  openPack: (cost: number, cardIds: string[]) => boolean;
+  claimMission: (kind: MissionKind) => void;
   /** The Expedition run in progress (src/rogue/run.ts), kept across refreshes. */
   rogueRun: RunState | null;
   setRogueRun: (run: RunState | null) => void;
@@ -81,6 +105,37 @@ interface ProgressState {
   resetAll: () => void;
 }
 
+/** Today's earnings book (a new one each day). */
+export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
+
+/**
+ * Coins earned, written into the day's book: endless-game coins (`arcade`) stop at the daily cap,
+ * mission counters move on.
+ */
+function earn(
+  s: Pick<ProgressState, 'coins' | 'econ'>,
+  amount: number,
+  opts: { arcade?: boolean; count?: Partial<Record<MissionKind, number>>; boss?: string } = {},
+): Pick<ProgressState, 'coins' | 'econ'> {
+  const e = econToday(s.econ);
+  const paid = opts.arcade ? Math.max(0, Math.min(amount, ARCADE_CAP - e.arcade)) : amount;
+  const counters = { ...e.counters };
+  for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as MissionKind] = (counters[k as MissionKind] ?? 0) + (n ?? 0);
+  return {
+    coins: (s.coins ?? 0) + paid,
+    econ: {
+      ...e,
+      arcade: e.arcade + (opts.arcade ? paid : 0),
+      bosses: opts.boss ? [...e.bosses, opts.boss] : e.bosses,
+      counters,
+      earned: e.earned + paid,
+    },
+  };
+}
+
+/** A round that just finished (it was still being played, or not there yet). */
+const justFinished = (before: RoundRecord | undefined, after: RoundRecord) => after.status !== 'playing' && (!before || before.status === 'playing');
+
 /** How much history each "seen" scope keeps. */
 const SEEN_LIMIT = 300;
 
@@ -101,7 +156,7 @@ export function seenOrder(seen: string[] | undefined): Map<string, number> {
 
 export const useProgress = create<ProgressState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       days: {},
       specs: {},
       freePlay: { played: 0, won: 0, points: 0 },
@@ -109,6 +164,26 @@ export const useProgress = create<ProgressState>()(
       bossDifficulty: 'easy',
       whosThat: {},
       bests: {},
+      coins: 0,
+      cards: {},
+      econ: freshEconomy(todayKey()),
+      packsOpened: 0,
+      openPack: (cost, cardIds) => {
+        if (get().coins < cost) return false;
+        set((s) => {
+          const cards = { ...s.cards };
+          for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
+          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + 1 };
+        });
+        return true;
+      },
+      claimMission: (kind) =>
+        set((s) => {
+          const e = econToday(s.econ);
+          const m = MISSIONS[kind];
+          if (e.claimed.includes(kind) || !missionsFor(e.date).includes(kind) || (e.counters[kind] ?? 0) < m.need) return {};
+          return { coins: (s.coins ?? 0) + m.reward, econ: { ...e, claimed: [...e.claimed, kind], earned: e.earned + m.reward } };
+        }),
       rogueRun: null,
       setRogueRun: (rogueRun) => set({ rogueRun }),
       special: {},
@@ -127,11 +202,18 @@ export const useProgress = create<ProgressState>()(
       setRound: (domain, date, index, record) =>
         set((s) => {
           const key = dayKey(domain, date);
-          return { days: { ...s.days, [key]: { ...s.days[key], [index]: record } } };
+          const day = { ...s.days[key], [index]: record };
+          const update = { days: { ...s.days, [key]: day } };
+          if (!justFinished(s.days[key]?.[index], record)) return update;
+          // Coins for the round, and a bonus once all ten are played.
+          const won = record.status === 'won';
+          const complete = summarizeDay(day).finished >= ROUNDS_PER_DAY && summarizeDay(s.days[key]).finished < ROUNDS_PER_DAY;
+          return { ...update, ...earn(s, roundCoins(won, record.score) + (complete ? CATEGORY_BONUS : 0), { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
         }),
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
         set((s) => ({
+          ...earn(s, ARCADE_COINS, { arcade: true }),
           freePlay: {
             played: s.freePlay.played + 1,
             won: s.freePlay.won + (record.status === 'won' ? 1 : 0),
@@ -139,13 +221,32 @@ export const useProgress = create<ProgressState>()(
           },
         })),
       setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
-      recordBest: (key, score) => set((s) => ({ bests: { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) } })),
-      recordWhosThat: (key, score) => set((s) => ({ whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) } })),
-      setSpecialRound: (key, index, record) => set((s) => ({ special: { ...s.special, [key]: { ...s.special[key], [index]: record } } })),
+      recordBest: (key, score) =>
+        set((s) => ({
+          bests: { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) },
+          ...earn(s, ARCADE_COINS + (score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: true, count: { arcade: 1 } }),
+        })),
+      recordWhosThat: (key, score) =>
+        set((s) => ({
+          whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
+          ...earn(s, ARCADE_COINS + (score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: true, count: { whos: 1 } }),
+        })),
+      setSpecialRound: (key, index, record) =>
+        set((s) => {
+          const update = { special: { ...s.special, [key]: { ...s.special[key], [index]: record } } };
+          if (!justFinished(s.special[key]?.[index], record)) return update;
+          const won = record.status === 'won';
+          return { ...update, ...earn(s, roundCoins(won, record.score), { count: { special: won ? 1 : 0 } }) };
+        }),
       recordBoss: (key, { won, score, time }) =>
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
+          // A win pays by difficulty, the first time today at that difficulty.
+          const difficulty = (key.split(':')[1] ?? 'easy') as BossDifficulty;
+          const paid = econToday(s.econ).bosses.includes(key);
+          const coins = won ? earn(s, paid ? BOSS_AGAIN : BOSS_COINS[difficulty], { count: { boss: 1 }, boss: paid ? undefined : key }) : {};
           return {
+            ...coins,
             bosses: {
               ...s.bosses,
               [key]: {
@@ -160,7 +261,8 @@ export const useProgress = create<ProgressState>()(
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {} }),
+      resetAll: () =>
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), packsOpened: 0 }),
     }),
     {
       name: 'omnidle-progress',

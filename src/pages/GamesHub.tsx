@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { HL_DECKS } from '../arcade/higherLower';
 import { NAME_LISTS } from '../arcade/lists';
+import { DleCoin } from '../components/DleCoin';
+import { CARDS } from '../gacha/cards';
 import { todayKey } from '../lib/date';
 import { RANK_DATA, RANK_ROUNDS } from '../rank/data';
 import { UNIVERSES } from '../specialist/rounds';
@@ -30,7 +32,8 @@ function Card({ game }: { game: GameCard }) {
 
 /** /games: every game beyond the daily challenge, Free Play and the bosses. */
 export default function GamesHub() {
-  const { special, whosThat, bests, rogueRun } = useProgress();
+  const { special, whosThat, bests, rogueRun, coins, cards } = useProgress();
+  const collected = CARDS.filter((c) => cards[c.id]).length;
   const today = todayKey();
   const doneToday = (key: string, rounds: number) => Object.values(special[`${key}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
   const universesDone = UNIVERSES.filter((u) => doneToday(u.id, u.types.length)).length;
@@ -180,6 +183,30 @@ export default function GamesHub() {
           </span>
         </Link>
       </section>
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Collection</h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link to="/shop" className="page group flex items-center gap-4 rounded-md p-5 ring-2 ring-ochre/50 transition hover:-translate-y-0.5">
+            <DleCoin className="size-12 transition-transform group-hover:scale-110" />
+            <span className="flex-1">
+              <span className="block font-display text-xl font-bold">Card Shop</span>
+              <span className="block text-sm text-ink-soft">Spend the DleCoins you earn playing on packs of cards. Beat a boss to unlock its franchise&apos;s pack.</span>
+            </span>
+            <span className="text-xs font-bold text-ink-faint">{coins.toLocaleString('en')} coins</span>
+          </Link>
+          <Link to="/album" className="page group flex items-center gap-4 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
+            <span className="text-5xl transition-transform group-hover:scale-110">🃏</span>
+            <span className="flex-1">
+              <span className="block font-display text-xl font-bold">Album</span>
+              <span className="block text-sm text-ink-soft">Every card you have pulled, sorted your way — and how many times.</span>
+            </span>
+            <span className="text-xs font-bold text-ink-faint">
+              {collected}/{CARDS.length}
+            </span>
+          </Link>
+        </div>
+      </section>
+
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">More dailies</h2>
         <ul className="grid gap-4 sm:grid-cols-2">

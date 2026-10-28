@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
 import { useUi } from '../store/ui';
 import { NameLangSwitch } from './NameLangSwitch';
+import { DleCoin } from './DleCoin';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
 import { UpdateBanner } from './UpdateBanner';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
-export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit'];
+export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop', '/album'];
 
 const NAV = [
   { to: '/daily', label: 'Daily' },
@@ -147,6 +148,36 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
   );
 }
 
+/** The DleCoin balance, to the Card Shop; coins just earned float up from it. */
+function CoinChip() {
+  const coins = useProgress((s) => s.coins);
+  const last = useRef(coins);
+  const [gain, setGain] = useState<{ n: number; key: number } | null>(null);
+  useEffect(() => {
+    const d = coins - last.current;
+    last.current = coins;
+    if (d <= 0) return;
+    setGain({ n: d, key: Date.now() });
+    const t = window.setTimeout(() => setGain(null), 1600);
+    return () => window.clearTimeout(t);
+  }, [coins]);
+  return (
+    <Link
+      to="/shop"
+      title="DleCoins — the Card Shop"
+      className="relative flex items-center gap-1 rounded-full border border-ochre/60 bg-ochre/10 px-2 py-0.5 text-sm font-bold tabular-nums text-ink transition hover:bg-ochre/20 min-[420px]:px-2.5 min-[420px]:py-1"
+    >
+      <DleCoin className="size-4" />
+      <span className="hidden min-[380px]:inline">{coins.toLocaleString('en')}</span>
+      {gain && (
+        <span key={gain.key} className="coin-gain pointer-events-none absolute -bottom-5 right-0 whitespace-nowrap font-display text-xs font-bold text-ochre">
+          +{gain.n}
+        </span>
+      )}
+    </Link>
+  );
+}
+
 export function Layout() {
   const days = useProgress((s) => s.days);
   const sound = useProgress((s) => s.sound);
@@ -218,6 +249,7 @@ export function Layout() {
           >
             <FlameIcon /> {current}
           </span>
+          <CoinChip />
         </div>
       </header>
 
