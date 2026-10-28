@@ -1,136 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
-import { CardBack, CardFace, RARITY_STYLE } from '../gacha/CardView';
 import { CARDS, RARITY_INFO, SETS, type Card } from '../gacha/cards';
 import { ARCADE_CAP, BOSS_COINS, CATEGORY_BONUS, MISSIONS, missionsFor } from '../gacha/economy';
+import { PackArt } from '../gacha/PackArt';
+import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, ODDS, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
-import { celebrate, celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { econToday, useProgress } from '../store/progress';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const;
-
-/** A pack's wrapper: its colours, a torn top edge, a shine. */
-function PackArt({ pack, className = '' }: { pack: Pack; className?: string }) {
-  const set = pack.boss ? SETS.find((s) => s.id === pack.boss) : undefined;
-  return (
-    <div
-      className={`relative grid aspect-[3/4] w-full place-items-center overflow-hidden rounded-lg text-white shadow-xl [container-type:inline-size] ${className}`}
-      style={{ background: `linear-gradient(160deg, ${pack.colors[0]}, ${pack.colors[1]})`, clipPath: 'polygon(0 4%, 5% 0, 10% 4%, 15% 0, 20% 4%, 25% 0, 30% 4%, 35% 0, 40% 4%, 45% 0, 50% 4%, 55% 0, 60% 4%, 65% 0, 70% 4%, 75% 0, 80% 4%, 85% 0, 90% 4%, 95% 0, 100% 4%, 100% 100%, 0 100%)' }}
-    >
-      {set?.guardian.image ? (
-        <img src={set.guardian.image} alt="" draggable={false} className="absolute inset-0 size-full object-cover opacity-40 mix-blend-luminosity" />
-      ) : null}
-      <div className="relative text-center">
-        <p className="text-[26cqw] leading-none drop-shadow">{pack.icon}</p>
-        <p className="mt-[4cqw] px-[6cqw] font-display text-[10cqw] font-bold leading-tight drop-shadow">{pack.name.replace(' pack', '')}</p>
-        <p className="mt-[2cqw] font-display text-[6cqw] font-semibold tracking-[0.3em] opacity-80">5 CARDS</p>
-      </div>
-      <div className="card-sheen pointer-events-none absolute inset-0" />
-    </div>
-  );
-}
-
-/** Opening a pack: shake, tap, burst, then five cards dealt face down to turn one by one. */
-function Opening({ pack, cards, fresh, onClose, onAgain, canAgain }: { pack: Pack; cards: Card[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
-  const [phase, setPhase] = useState<'pack' | 'burst' | 'cards'>('pack');
-  const [shown, setShown] = useState<boolean[]>(() => cards.map(() => false));
-  const counts = useProgress((s) => s.cards);
-  const all = shown.every(Boolean);
-
-  const tear = () => {
-    if (phase !== 'pack') return;
-    sfx.whoosh();
-    setPhase('burst');
-    window.setTimeout(() => setPhase('cards'), 550);
-  };
-  const flip = (i: number) => {
-    if (shown[i]) return;
-    const c = cards[i];
-    setShown((s) => s.map((x, j) => x || j === i));
-    if (c.rarity === 'legendary') (sfx.victory(), celebrateBig());
-    else if (c.rarity === 'epic') (sfx.streak(), celebrate());
-    else if (c.rarity === 'rare') sfx.correct();
-    else sfx.select();
-  };
-  const next = () => {
-    const i = shown.indexOf(false);
-    if (i >= 0) flip(i);
-  };
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && (phase !== 'cards' || all)) onClose();
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      e.preventDefault();
-      if (phase === 'pack') tear();
-      else if (phase === 'cards') (all ? onClose() : next());
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  });
-
-  return (
-    <div className="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm">
-      {phase !== 'cards' ? (
-        <button type="button" onClick={tear} className="w-56 sm:w-64" aria-label="Open the pack">
-          <PackArt pack={pack} className={phase === 'pack' ? 'animate-pack-shake' : 'animate-pack-burst'} />
-          {phase === 'pack' && <p className="mt-4 animate-pulse text-center font-display text-lg font-bold text-white">Tap to open</p>}
-        </button>
-      ) : (
-        <div className="w-full max-w-4xl space-y-6">
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
-            {cards.map((c, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => flip(i)}
-                className="animate-card-deal [perspective:900px]"
-                style={{ animationDelay: `${i * 110}ms`, ['--deal-rot' as string]: `${(i - 2) * 8}deg` }}
-                aria-label={shown[i] ? c.name : 'Turn this card'}
-              >
-                <div className={`relative transition-transform duration-700 [transform-style:preserve-3d] ${shown[i] ? '[transform:rotateY(180deg)]' : 'hover:-translate-y-1'}`}>
-                  <div className="[backface-visibility:hidden]">
-                    {/* The glow gives the rarity away a moment before the card turns. */}
-                    <CardBack rarity={c.rarity === 'common' ? undefined : c.rarity} />
-                  </div>
-                  <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} />
-                  </div>
-                </div>
-                {shown[i] && (
-                  <p className="mt-2 animate-pop text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
-                    {RARITY_INFO[c.rarity].name}
-                  </p>
-                )}
-              </button>
-            ))}
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {!all ? (
-              <button type="button" onClick={() => cards.forEach((_, i) => window.setTimeout(() => flip(i), i * 180))} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
-                Turn them all
-              </button>
-            ) : (
-              <>
-                {canAgain && (
-                  <button type="button" onClick={onAgain} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
-                    Open another · <Coins n={pack.cost} />
-                  </button>
-                )}
-                <button type="button" onClick={onClose} className="btn-paper rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
-                  Done
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 
 /** /shop */
 export default function Shop() {
@@ -282,7 +162,7 @@ export default function Shop() {
       </section>
 
       {opening && (
-        <Opening
+        <PackOpening
           key={opening.key}
           pack={opening.pack}
           cards={opening.cards}

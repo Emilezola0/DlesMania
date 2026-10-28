@@ -510,3 +510,90 @@ h1, h2, h3, .font-serif, .font-display {
   100% { transform: translateY(-26px); opacity: 0; }
 }
 .coin-gain { animation: coin-gain 1.6s ease-out forwards; }
+
+/* Opening a pack (src/gacha/PackOpening.tsx). */
+@keyframes pack-float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+.pack-float { animation: pack-float 3s ease-in-out infinite; }
+@keyframes pack-hint {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(170px); opacity: 0; }
+}
+.pack-hint { animation: pack-hint 1.6s ease-in-out infinite; }
+@keyframes pack-flap {
+  to { transform: translate(60px, -160px) rotate(-38deg); opacity: 0; }
+}
+.pack-flap { animation: pack-flap 0.7s cubic-bezier(0.3, 0.6, 0.4, 1) forwards; }
+@keyframes pack-beam {
+  0% { transform: translateX(-50%) scaleY(0); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: translateX(-50%) scaleY(1); opacity: 0.85; }
+}
+.pack-beam { transform-origin: 50% 100%; animation: pack-beam 0.8s ease-out forwards; mix-blend-mode: screen; }
+@keyframes pack-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.6); }
+}
+.pack-glow { animation: pack-glow 0.45s ease-in-out 2; }
+@keyframes pack-meteor {
+  from { transform: translateX(-50vw); }
+  to { transform: translateX(150vw); }
+}
+.pack-meteor { animation: pack-meteor 0.85s cubic-bezier(0.5, 0, 0.7, 1) forwards; }
+.pack-meteor-slow { animation-duration: 1.3s; }
+@keyframes pack-twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+.pack-twinkle {
+  background-image: radial-gradient(2px 2px at 20% 30%, #fde68a, transparent), radial-gradient(2px 2px at 70% 20%, #fff, transparent), radial-gradient(3px 3px at 40% 70%, #fbbf24, transparent), radial-gradient(2px 2px at 85% 60%, #fde68a, transparent), radial-gradient(2px 2px at 10% 80%, #fff, transparent);
+  animation: pack-twinkle 0.5s ease-in-out 3;
+}
+@keyframes pack-flash {
+  from { opacity: 0.9; }
+  to { opacity: 0; }
+}
+.pack-flash { animation: pack-flash 0.6s ease-out forwards; mix-blend-mode: screen; }
+@keyframes pack-card-in {
+  from { transform: translateY(-30px) scale(0.85); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.pack-card-in { animation: pack-card-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+@keyframes pack-charge {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(-2px, 1px) rotate(-1deg); }
+  75% { transform: translate(2px, -1px) rotate(1deg); }
+}
+.pack-charge { animation: pack-charge 0.12s linear infinite; }
+@keyframes pack-charge-strong {
+  0% { transform: scale(1); filter: brightness(1); }
+  25% { transform: translate(-4px, 2px) rotate(-2deg) scale(1.03); }
+  50% { transform: translate(4px, -2px) rotate(2deg) scale(1.05); filter: brightness(1.5); }
+  75% { transform: translate(-3px, -1px) rotate(-1deg) scale(1.07); }
+  100% { transform: scale(1.08); filter: brightness(1.9); }
+}
+.pack-charge-strong { animation: pack-charge-strong 0.15s linear infinite; }
+@keyframes pack-rays { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.pack-rays { animation: pack-rays 9s linear infinite; }
+@keyframes pack-spark {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2); opacity: 0; }
+}
+.pack-spark { animation: pack-spark 0.9s cubic-bezier(0.1, 0.7, 0.3, 1) both; }
+@keyframes pack-stamp {
+  from { transform: scale(2.6) rotate(-18deg); opacity: 0; }
+  to { transform: scale(1) rotate(-10deg); opacity: 1; }
+}
+.pack-stamp { animation: pack-stamp 0.35s cubic-bezier(0.3, 1.4, 0.5, 1) 0.25s both; background: rgba(0, 0, 0, 0.35); }
+@keyframes pack-tray-in {
+  from { transform: translateY(-120px) scale(2.5); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.pack-tray-in { animation: pack-tray-in 0.4s cubic-bezier(0.3, 0.8, 0.4, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .pack-float, .pack-hint, .pack-rays, .pack-charge, .pack-charge-strong { animation: none; }
+}

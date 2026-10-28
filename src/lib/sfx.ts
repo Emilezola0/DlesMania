@@ -46,6 +46,31 @@ function play(notes: Note[]) {
   }
 }
 
+/** A burst of filtered noise, its band sweeping from one frequency to another: paper tearing, air rushing. */
+function noise(dur: number, from: number, to: number, base = 0.12) {
+  const ac = audio();
+  const level = useProgress.getState().sfxVolume / 100;
+  if (!ac || level <= 0) return;
+  const t0 = ac.currentTime;
+  const buf = ac.createBuffer(1, Math.ceil(ac.sampleRate * dur), ac.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+  const src = ac.createBufferSource();
+  src.buffer = buf;
+  const band = ac.createBiquadFilter();
+  band.type = 'bandpass';
+  band.Q.value = 1.2;
+  band.frequency.setValueAtTime(from, t0);
+  band.frequency.exponentialRampToValueAtTime(to, t0 + dur);
+  const amp = ac.createGain();
+  amp.gain.setValueAtTime(0.0001, t0);
+  amp.gain.exponentialRampToValueAtTime(Math.max(0.0002, base * level), t0 + 0.02);
+  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  src.connect(band).connect(amp).connect(ac.destination);
+  src.start(t0);
+  src.stop(t0 + dur + 0.02);
+}
+
 export const sfx = {
   click: () => play([{ freq: 660, dur: 0.05, type: 'triangle', gain: 0.06 }]),
   select: () => play([{ freq: 880, dur: 0.04, type: 'square', gain: 0.03 }]),
@@ -88,6 +113,18 @@ export const sfx = {
   whoosh: () => play([{ freq: 1400, dur: 0.12, type: 'triangle', gain: 0.035, slide: 380 }]),
   /** Short tick for the last seconds of a timer. */
   tick: () => play([{ freq: 1200, dur: 0.03, type: 'square', gain: 0.025 }]),
+  /** A pack tearing open. */
+  tear: () => noise(0.28, 2400, 900, 0.16),
+  /** A shooting star crossing the screen: rushing air and a falling whistle. */
+  meteor: (long = false) => {
+    noise(long ? 1.3 : 0.9, 400, 3200, 0.09);
+    play([{ freq: long ? 2400 : 1800, dur: long ? 1.2 : 0.8, type: 'sine', gain: 0.03, slide: 500 }]);
+  },
+  /** Something building up: a rising shimmer, longer and higher for rarer things. */
+  shimmer: (steps = 4) =>
+    play(Array.from({ length: steps }, (_, i) => ({ freq: 660 * 2 ** (i / 4), at: i * 0.09, dur: 0.14, type: 'triangle' as const, gain: 0.035 }))),
+  /** A small pop: a card turned. */
+  pop: () => play([{ freq: 520, dur: 0.07, type: 'triangle', gain: 0.08, slide: 880 }]),
   victory: () =>
     play(
       [392, 523.25, 659.25, 783.99, 659.25, 783.99, 1046.5].map((freq, i) => ({
