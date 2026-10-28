@@ -1,10 +1,10 @@
-// Crossroads: a ladder of vertical lines, characters at the top, their franchises at the bottom.
-// Each character slides straight down and takes every bridge (a rung between two neighbouring
-// lines) it meets. Some bridges are already there; the player draws the rest so everyone lands
-// on their own franchise. Any order can be reached with bridges, so every puzzle is solvable:
-// it's built from a hidden solution, and the bridge budget is that solution's size.
+// Crossroads: vertical lines, a character falling down one of them, franchises at the bottom.
+// The player draws bridges between lines, at any angle, and the character takes every bridge
+// whose end it meets — along the slant, to the other line — then keeps falling. Lead it to its
+// own franchise. Bridges stay from one character to the next and are cleared every few rounds,
+// when the franchises at the bottom change.
 import { BOSSES } from '../data/bosses';
-import { mulberry32, shuffle } from '../lib/rng';
+import { shuffle } from '../lib/rng';
 
 export interface Traveller {
   name: string;
@@ -12,26 +12,33 @@ export interface Traveller {
   franchise: string;
 }
 
-/** A bridge between line `col` and line `col + 1`, at height `row`. */
-export interface Rung {
-  col: number;
-  row: number;
-}
-
-export interface CrossPuzzle {
-  lines: number;
-  rows: number;
-  /** Top of line i. */
-  travellers: Traveller[];
-  /** Bottom of line i: a franchise. */
-  goals: string[];
-  /** Bridges already in place: they can't be removed. */
-  fixed: Rung[];
-  /** How many bridges the player may draw. */
-  budget: number;
+/** A bridge from line `a` at height `ya` to line `b` at height `yb` (any two lines, any slant). */
+export interface Bridge {
+  id: number;
+  a: number;
+  ya: number;
+  b: number;
+  yb: number;
 }
 
 export const CROSS_LIVES = 3;
+/** The franchises change, and the bridges are cleared, every this many characters. */
+export const ROUNDS_PER_BOARD = 5;
+/** Ladder geometry, in SVG units: lines COL_W apart, falling from TOP to BOTTOM. */
+export const COL_W = 100;
+export const HEIGHT = 560;
+export const TOP = 30;
+export const BOTTOM = HEIGHT - 16;
+/** Bridge ends can't sit closer than this on one line (it would be unclear which comes first). */
+export const MIN_GAP = 18;
+
+export const lineX = (col: number) => col * COL_W + COL_W / 2;
+
+/** Units per second: a gentle fall at first, quicker with every point, up to about three times. */
+export const fallSpeed = (score: number) => Math.min(230, 75 * (1 + 0.07 * score));
+
+/** More lines as the score grows. */
+export const linesFor = (score: number) => (score >= 25 ? 6 : score >= 10 ? 5 : 4);
 
 /** Smash Bros. members belong to other franchises too: they'd make two right answers. */
 const SKIP = new Set(['smash']);
@@ -51,65 +58,75 @@ const POOL: { franchise: string; people: Traveller[] }[] = (() => {
     .filter((f) => f.people.length >= 3);
 })();
 
-export const rungKey = (r: Rung) => `${r.col}:${r.row}`;
+/** The franchises at the bottom of a new board. */
+export const boardGoals = (lines: number, rand: () => number = Math.random) => shuffle(POOL, rand).slice(0, lines).map((f) => f.franchise);
 
-/** Bridges at the same height can't share a line. */
-export function clashes(rungs: Set<string>, r: Rung): boolean {
-  return rungs.has(rungKey({ col: r.col - 1, row: r.row })) || rungs.has(rungKey({ col: r.col + 1, row: r.row }));
+/** Someone from one of the board's franchises, not one of the last few seen. */
+export function nextTraveller(goals: string[], recent: string[], rand: () => number = Math.random): Traveller {
+  const people = POOL.filter((f) => goals.includes(f.franchise)).flatMap((f) => f.people);
+  const fresh = people.filter((p) => !recent.includes(p.name));
+  const from = fresh.length ? fresh : people;
+  return from[Math.floor(rand() * from.length)];
 }
 
-/** Where a traveller starting on line `start` ends up, and the turns on the way (line, row) for drawing. */
-export function walk(start: number, rows: number, rungs: Set<string>): { end: number; steps: { col: number; row: number }[] } {
-  let col = start;
-  const steps: { col: number; row: number }[] = [];
-  for (let row = 0; row < rows; row++) {
-    if (rungs.has(rungKey({ col, row }))) (steps.push({ col, row }), (col += 1), steps.push({ col, row }));
-    else if (rungs.has(rungKey({ col: col - 1, row }))) (steps.push({ col, row }), (col -= 1), steps.push({ col, row }));
+/** Where a bridge meets a line, if it does: the height there. */
+export const endOn = (br: Bridge, line: number) => (br.a === line ? br.ya : br.b === line ? br.yb : null);
+
+/** Whether a new bridge's ends would crowd an existing end on the same line. */
+export function crowded(bridges: Bridge[], line: number, y: number): boolean {
+  return bridges.some((br) => {
+    const e = endOn(br, line);
+    return e !== null && Math.abs(e - y) < MIN_GAP;
+  });
+}
+
+/** The falling character: going down a line, or across a bridge. */
+export type Fall =
+  | { mode: 'down'; line: number; y: number; taken: number[] }
+  | { mode: 'across'; bridge: Bridge; from: 'a' | 'b'; k: number; taken: number[] };
+
+export const fallStart = (line: number): Fall => ({ mode: 'down', line, y: TOP, taken: [] });
+
+/** Where the character is drawn. */
+export function fallPoint(f: Fall): { x: number; y: number } {
+  if (f.mode === 'down') return { x: lineX(f.line), y: f.y };
+  const { bridge: br, from, k } = f;
+  const [x1, y1, x2, y2] = from === 'a' ? [lineX(br.a), br.ya, lineX(br.b), br.yb] : [lineX(br.b), br.yb, lineX(br.a), br.ya];
+  return { x: x1 + (x2 - x1) * k, y: y1 + (y2 - y1) * k };
+}
+
+/**
+ * One step of `dist` units. Going down, the first bridge end met (one not taken yet this fall) sends
+ * the character across; across, it comes out on the far line and falls on from there. Each bridge is
+ * taken once a fall, so a fall always ends. Returns the line it landed on once it reaches the bottom.
+ */
+export function stepFall(f: Fall, bridges: Bridge[], dist: number): { fall: Fall; landed: number | null } {
+  let cur = f;
+  for (let guard = 0; dist > 0 && guard < 50; guard++) {
+    if (cur.mode === 'down') {
+      const { line, y, taken } = cur;
+      const next = bridges
+        .filter((br) => !taken.includes(br.id))
+        .map((br) => ({ br, at: endOn(br, line) }))
+        .filter((e): e is { br: Bridge; at: number } => e.at !== null && e.at > y && e.at <= y + dist)
+        .sort((p, q) => p.at - q.at)[0];
+      if (!next) {
+        const ny = y + dist;
+        if (ny >= BOTTOM) return { fall: { ...cur, y: BOTTOM }, landed: line };
+        return { fall: { ...cur, y: ny }, landed: null };
+      }
+      dist -= next.at - y;
+      cur = { mode: 'across', bridge: next.br, from: next.br.a === line ? 'a' : 'b', k: 0, taken: [...taken, next.br.id] };
+    } else {
+      const { bridge: br, from, k, taken } = cur;
+      const len = Math.hypot(lineX(br.b) - lineX(br.a), br.yb - br.ya) || 1;
+      const left = (1 - k) * len;
+      if (dist < left) return { fall: { ...cur, k: k + dist / len }, landed: null };
+      dist -= left;
+      const line = from === 'a' ? br.b : br.a;
+      const y = from === 'a' ? br.yb : br.ya;
+      cur = { mode: 'down', line, y, taken };
+    }
   }
-  return { end: col, steps };
-}
-
-/** How each level is shaped: more lines, more fixed bridges, a tighter budget. */
-export function levelShape(level: number) {
-  const lines = Math.min(6, 3 + Math.floor((level - 1) / 2));
-  return {
-    lines,
-    rows: 5 + lines,
-    fixed: Math.min(lines + 3, lines - 2 + Math.floor(level / 2)),
-    hidden: lines - 1 + Math.floor(level / 3),
-    slack: level <= 2 ? 1 : 0,
-  };
-}
-
-/** Random bridges on free, non-clashing spots. */
-function scatter(count: number, lines: number, rows: number, taken: Set<string>, rand: () => number): Rung[] {
-  const out: Rung[] = [];
-  for (let tries = 0; out.length < count && tries < 500; tries++) {
-    const r = { col: Math.floor(rand() * (lines - 1)), row: Math.floor(rand() * rows) };
-    if (taken.has(rungKey(r)) || clashes(taken, r)) continue;
-    taken.add(rungKey(r));
-    out.push(r);
-  }
-  return out;
-}
-
-export function crossPuzzle(level: number, seed = Math.floor(Math.random() * 1e9)): CrossPuzzle {
-  const rand = mulberry32(seed);
-  const { lines, rows, fixed: nFixed, hidden: nHidden, slack } = levelShape(level);
-  for (let attempt = 0; ; attempt++) {
-    const taken = new Set<string>();
-    const fixed = scatter(nFixed, lines, rows, taken, rand);
-    const fixedOnly = new Set(taken);
-    const hidden = scatter(nHidden, lines, rows, taken, rand);
-    const ends = Array.from({ length: lines }, (_, i) => walk(i, rows, taken).end);
-    const alone = Array.from({ length: lines }, (_, i) => walk(i, rows, fixedOnly).end);
-    // The bridges already there mustn't solve it, and nobody should just go straight down every time.
-    const same = ends.every((e, i) => e === alone[i]);
-    if ((same || ends.every((e, i) => e === i)) && attempt < 50) continue;
-    const franchises = shuffle(POOL, rand).slice(0, lines);
-    const travellers = franchises.map((f) => f.people[Math.floor(rand() * f.people.length)]);
-    const goals: string[] = Array(lines);
-    ends.forEach((end, i) => (goals[end] = travellers[i].franchise));
-    return { lines, rows, travellers, goals, fixed, budget: hidden.length + slack };
-  }
+  return { fall: cur, landed: null };
 }
