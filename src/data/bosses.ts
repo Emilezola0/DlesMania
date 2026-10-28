@@ -5,7 +5,7 @@ import raw from './bosses.json';
  * In bosses.json a card is a plain label or `{ label, src?, image?, aliases? }` (`src` only
  * matters to scripts/enrich-bosses.mjs), and a Knowledge Blitz answer is "Name|alias|alias".
  */
-type RawCard = string | { label: string; image?: string; aliases?: string[] };
+type RawCard = string | { label: string; image?: string; aliases?: string[]; fr?: string };
 type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 'signature'> & {
   aliases?: string[];
   blitz: { prompt: string; count: number; answers: string[] }[];
@@ -16,7 +16,7 @@ type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 
 };
 
 const card = (c: RawCard): BossCard =>
-  typeof c === 'string' ? { label: c } : { label: c.label, image: c.image, aliases: c.aliases };
+  typeof c === 'string' ? { label: c } : { label: c.label, image: c.image, aliases: c.aliases, fr: c.fr };
 
 const spelling = (a: string) => {
   const [name, ...aliases] = a.split('|');

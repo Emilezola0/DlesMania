@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Copies French names into the dataset:
 //   - scripts/data/french-titles.mjs → `nameFr` on works (skipped when same as the English name)
-//   - scripts/data/boss-french.mjs   → extra spellings on Boss Battle answers and Final Blow cards
+//   - scripts/data/boss-french.mjs   → extra spellings on Boss Battle answers, Final Blow and Radar cards
 //   node scripts/add-french-titles.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -56,6 +56,18 @@ for (const b of bosses) {
     merged += add.length;
     return { ...card, aliases: [...(card.aliases ?? []), ...add] };
   });
+  // Radar cards (the best-known faces, also used by Crossroads and Summit): the French spellings as
+  // aliases, and the first one as `fr`, the name shown when names are in French.
+  for (const side of ['members', 'impostors']) {
+    b.radar[side] = b.radar[side].map((c) => {
+      const card = typeof c === 'string' ? { label: c } : c;
+      const names = extra(card.label);
+      if (!names.length) return c;
+      const add = names.filter((n) => !(card.aliases ?? []).includes(n));
+      merged += add.length;
+      return { ...card, fr: names[0], aliases: [...(card.aliases ?? []), ...add] };
+    });
+  }
   for (const s of BOSS_SEARCH[b.id] ?? []) if (!b.aliases?.includes(s)) b.aliases = [...(b.aliases ?? []), s];
 }
 writeFileSync(bossFile, JSON.stringify(bosses, null, 2) + '\n');

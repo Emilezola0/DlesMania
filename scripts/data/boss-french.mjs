@@ -197,3 +197,55 @@ export const BOSS_FRENCH = {
     'Drax the Destroyer': ['Drax le Destructeur'],
   },
 };
+
+// The best-known faces (Radar Defense, Crossroads, Summit) whose French name differs.
+const RADAR_FRENCH = {
+  minecraft: {
+    Pig: ['Cochon'],
+    Villager: ['Villageois'],
+    Diamond: ['Diamant'],
+    'Crafting Table': ['Établi'],
+    Torch: ['Torche'],
+    'Iron Golem': ['Golem de fer'],
+    Bee: ['Abeille'],
+    Wolf: ['Loup'],
+    Cat: ['Chat'],
+    Fox: ['Renard'],
+  },
+  dbz: {
+    Frieza: ['Freezer'],
+    'Tien Shinhan': ['Ten Shin Han'],
+    'Majin Buu': ['Majin Boo', 'Boo'],
+  },
+  starwars: {
+    'C-3PO': ['Z-6PO'],
+    'R2-D2': ['D2-R2'],
+    'Millennium Falcon': ['Faucon Millenium'],
+  },
+  harrypotter: {
+    'Golden Snitch': ["Vif d'or"],
+    'Sorting Hat': ['Choixpeau'],
+    Hedwig: ['Hedwige'],
+    'Neville Longbottom': ['Neville Londubat'],
+  },
+  lotr: {
+    Treebeard: ['Sylvebarbe'],
+    'Bilbo Baggins': ['Bilbon Sacquet', 'Bilbon'],
+    'Witch-king of Angmar': ["Roi-Sorcier d'Angmar", 'Roi-Sorcier'],
+    Saruman: ['Saroumane'],
+  },
+  onepiece: {
+    Buggy: ['Baggy'],
+  },
+  wow: {
+    'Tyrande Whisperwind': ['Tyrande Murmevent'],
+    'Illidan Stormrage': ['Illidan Hurlorage'],
+    'Uther the Lightbringer': ['Uther le Porteur de Lumière'],
+    'Sylvanas Windrunner': ['Sylvanas Coursevent'],
+    'Jaina Proudmoore': ['Jaina Portvaillant'],
+    'Garrosh Hellscream': ['Garrosh Hurlenfer'],
+    'Genn Greymane': ['Genn Grisetête'],
+    Hogger: ['Lardeur'],
+  },
+};
+for (const [id, names] of Object.entries(RADAR_FRENCH)) BOSS_FRENCH[id] = { ...(BOSS_FRENCH[id] ?? {}), ...names };

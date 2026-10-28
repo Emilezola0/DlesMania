@@ -35,7 +35,7 @@ import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { useTypeToFocus } from '../lib/focus';
 import { getImage, isReady, preload } from '../lib/images';
 import { sfx } from '../lib/sfx';
-import { useProgress } from '../store/progress';
+import { useProgress, type NameLang } from '../store/progress';
 
 /** Best height, in tenths of a metre. */
 const BEST_KEY = 'climb:height';
@@ -68,6 +68,8 @@ interface State {
   fellAt: number;
   camY: number;
   typed: string;
+  /** Names shown in English or French (the setting, kept in step on every render). */
+  lang: NameLang;
 }
 
 const START_L: Grip = { x: 1.55, y: 0, kind: 'jug' };
@@ -95,6 +97,7 @@ function freshState(): State {
     fellAt: 0,
     camY: -1.2,
     typed: '',
+    lang: 'en',
   };
 }
 
@@ -264,7 +267,7 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
     if (now - since > REVEAL_MS) {
       ctx.font = '700 11px system-ui, sans-serif';
       ctx.textAlign = 'center';
-      const label = hd.face.name;
+      const label = (g.lang === 'fr' && hd.face.fr) || hd.face.name;
       const tw = ctx.measureText(label).width + 8;
       ctx.fillStyle = 'rgba(0,0,0,0.65)';
       ctx.fillRect(x - tw / 2, y - fr * 2.2 - 14, tw, 15);
@@ -360,6 +363,7 @@ function Game() {
   const best = useProgress((s) => s.bests[BEST_KEY] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const g = useRef<State>(freshState());
+  g.current.lang = useProgress((s) => s.nameLang);
   const [, redraw] = useReducer((x: number) => x + 1, 0);
   const [text, setText] = useState('');
   const [offer, setOffer] = useState<Item[] | null>(null);

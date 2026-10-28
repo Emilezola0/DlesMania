@@ -5,12 +5,25 @@
 // when the franchises at the bottom change.
 import { BOSSES } from '../data/bosses';
 import { shuffle } from '../lib/rng';
+import type { NameLang } from '../store/progress';
 
 export interface Traveller {
   name: string;
+  /** The French name, when it differs. */
+  fr?: string;
   image: string;
   franchise: string;
 }
+
+/** Franchises whose French title differs. */
+const FRANCHISE_FR: Record<string, string> = {
+  'The Lord of the Rings': 'Le Seigneur des anneaux',
+  'Marvel Cinematic Universe': 'Univers cinématographique Marvel',
+};
+
+/** A name or franchise in the chosen language. */
+export const travellerName = (t: Traveller, lang: NameLang) => (lang === 'fr' && t.fr) || t.name;
+export const franchiseName = (f: string, lang: NameLang) => (lang === 'fr' && FRANCHISE_FR[f]) || f;
 
 /** A bridge from line `a` at height `ya` to line `b` at height `yb` (any two lines, any slant). */
 export interface Bridge {
@@ -53,7 +66,7 @@ const POOL: { franchise: string; people: Traveller[] }[] = (() => {
       people: b.radar.members
         .filter((m) => m.image && count.get(m.label) === 1)
         .slice(0, 10)
-        .map((m) => ({ name: m.label, image: m.image!, franchise: b.franchise })),
+        .map((m) => ({ name: m.label, fr: m.fr, image: m.image!, franchise: b.franchise })),
     }))
     .filter((f) => f.people.length >= 3);
 })();

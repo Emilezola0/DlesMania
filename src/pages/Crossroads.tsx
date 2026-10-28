@@ -13,10 +13,12 @@ import {
   fallPoint,
   fallSpeed,
   fallStart,
+  franchiseName,
   lineX,
   linesFor,
   nextTraveller,
   stepFall,
+  travellerName,
   type Bridge,
   type Fall,
   type Traveller,
@@ -55,6 +57,7 @@ function distTo(br: Bridge, x: number, y: number) {
 function Game() {
   const best = useProgress((s) => s.bests[BEST_KEY] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
+  const lang = useProgress((s) => s.nameLang);
   const [board, setBoardState] = useState<Board>(() => newBoard(0));
   const [who, setWho] = useState<Traveller>(() => nextTraveller(board.goals, []));
   const [fall, setFall] = useState<Fall>(() => fallStart(randomLine(board.goals.length)));
@@ -221,7 +224,7 @@ function Game() {
       <div className="flex items-center justify-center gap-3 rounded-md border border-rule-strong bg-card px-3 py-2">
         {ready ? <img src={who.image} alt="" className="size-10 rounded-full bg-tile object-cover object-top" /> : <span className="grid size-10 place-items-center rounded-full bg-tile"><Spinner /></span>}
         <p className="font-display font-bold">
-          Lead <span className="text-accent">{who.name}</span> home
+          Lead <span className="text-accent">{travellerName(who, lang)}</span> home
         </p>
       </div>
 
@@ -266,13 +269,13 @@ function Game() {
           const tone = landed?.line === c ? (landed.right ? 'border-hit bg-hit/15' : 'border-miss bg-miss/15') : 'border-rule-strong bg-card';
           return (
             <div key={g} className={`flex min-h-12 items-center justify-center rounded-md border-2 p-1 text-center transition ${tone}`}>
-              <p className="text-[11px] font-bold leading-tight sm:text-xs">{g}</p>
+              <p className="text-[11px] font-bold leading-tight sm:text-xs">{franchiseName(g, lang)}</p>
             </div>
           );
         })}
       </div>
 
-      <p className="h-5 text-center text-sm font-semibold text-coral">{landed && !landed.right ? `${who.name} is from ${who.franchise}.` : note}</p>
+      <p className="h-5 text-center text-sm font-semibold text-coral">{landed && !landed.right ? `${travellerName(who, lang)} is from ${franchiseName(who.franchise, lang)}.` : note}</p>
 
       {phase === 'ready' && (
         <div className="text-center">

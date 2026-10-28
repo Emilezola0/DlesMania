@@ -142,6 +142,8 @@ export interface BossCard {
   image?: string;
   /** Other accepted spellings when the card has to be named (Final Blow). */
   aliases?: string[];
+  /** The French name, when it differs (also among the aliases): shown when names are in French. */
+  fr?: string;
 }
 
 /** Phase 1: "Name 5 champions from Demacia". */

@@ -10,6 +10,8 @@ export type WallAngle = 'slab' | 'vertical' | 'overhang';
 
 export interface Face {
   name: string;
+  /** The French name, when it differs. */
+  fr?: string;
   image: string;
   /** What can be typed to grab it, compacted (see `compact`). */
   spellings: string[];
@@ -68,9 +70,9 @@ export const compact = (s: string) =>
 
 const SMALL_WORDS = new Set(['the', 'of', 'and', 'von', 'van', 'del', 'des']);
 
-/** The full name, its aliases, and any word of it long enough to stand alone ("Luffy", "Chopper"). */
-function spellingsOf(name: string, aliases: string[] = []): string[] {
-  const words = name.split(/[\s.]+/).filter((w) => compact(w).length >= 4 && !SMALL_WORDS.has(w.toLowerCase()));
+/** The full name, its aliases, and any word of it (or of its French name) long enough to stand alone ("Luffy", "Chopper"). */
+function spellingsOf(name: string, aliases: string[] = [], fr?: string): string[] {
+  const words = [name, fr ?? ''].join(' ').split(/[\s.]+/).filter((w) => compact(w).length >= 4 && !SMALL_WORDS.has(w.toLowerCase()));
   return [...new Set([name, ...aliases, ...words].map(compact).filter(Boolean))];
 }
 
@@ -79,7 +81,7 @@ export const FACES: Face[] = (() => {
   const seen = new Set<string>();
   return BOSSES.flatMap((b) => b.radar.members)
     .filter((m) => m.image && !seen.has(m.label) && seen.add(m.label))
-    .map((m) => ({ name: m.label, image: m.image!, spellings: spellingsOf(m.label, m.aliases) }));
+    .map((m) => ({ name: m.label, fr: m.fr, image: m.image!, spellings: spellingsOf(m.label, [...(m.aliases ?? []), ...(m.fr ? [m.fr] : [])], m.fr) }));
 })();
 
 export const sectionOf = (y: number) => Math.floor(y / LEDGE_EVERY);

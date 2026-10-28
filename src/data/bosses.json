@@ -1269,7 +1269,11 @@
         },
         {
           "label": "Mercy",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/170?cb=20241102143122"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/170?cb=20241102143122",
+          "fr": "Ange",
+          "aliases": [
+            "Ange"
+          ]
         },
         {
           "label": "Reinhardt",
@@ -1285,7 +1289,11 @@
         },
         {
           "label": "Widowmaker",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/166?cb=20241108201530"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/166?cb=20241108201530",
+          "fr": "Fatale",
+          "aliases": [
+            "Fatale"
+          ]
         },
         {
           "label": "Winston",
@@ -1301,7 +1309,11 @@
         },
         {
           "label": "Reaper",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/228?cb=20241108201455"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/228?cb=20241108201455",
+          "fr": "Faucheur",
+          "aliases": [
+            "Faucheur"
+          ]
         },
         {
           "label": "Kiriko",
@@ -1309,7 +1321,11 @@
         },
         {
           "label": "Junkrat",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f2/OW2_Junkrat.png/revision/latest/scale-to-width-down/226?cb=20260214122743"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f2/OW2_Junkrat.png/revision/latest/scale-to-width-down/226?cb=20260214122743",
+          "fr": "Chacal",
+          "aliases": [
+            "Chacal"
+          ]
         },
         {
           "label": "Mei",
@@ -1333,7 +1349,12 @@
         },
         {
           "label": "Soldier: 76",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/OW2_S76.png/revision/latest/scale-to-width-down/186?cb=20260208153542"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/OW2_S76.png/revision/latest/scale-to-width-down/186?cb=20260208153542",
+          "fr": "Soldat : 76",
+          "aliases": [
+            "Soldat : 76",
+            "Soldat 76"
+          ]
         }
       ],
       "impostors": [
@@ -1981,11 +2002,19 @@
         },
         {
           "label": "Pig",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Pig_JE3_BE2.png/revision/latest/scale-to-width-down/400?cb=20251004183015"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Pig_JE3_BE2.png/revision/latest/scale-to-width-down/400?cb=20251004183015",
+          "fr": "Cochon",
+          "aliases": [
+            "Cochon"
+          ]
         },
         {
           "label": "Villager",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d8/Plains_Villager_Base.png/revision/latest/scale-to-width-down/199?cb=20260104164016"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d8/Plains_Villager_Base.png/revision/latest/scale-to-width-down/199?cb=20260104164016",
+          "fr": "Villageois",
+          "aliases": [
+            "Villageois"
+          ]
         },
         {
           "label": "Zombie",
@@ -1993,19 +2022,35 @@
         },
         {
           "label": "Skeleton",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/47/Skeleton_JE6_BE4.png/revision/latest/scale-to-width-down/216?cb=20210227130136"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/47/Skeleton_JE6_BE4.png/revision/latest/scale-to-width-down/216?cb=20210227130136",
+          "fr": "Squelette",
+          "aliases": [
+            "Squelette"
+          ]
         },
         {
           "label": "Diamond",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ab/Diamond_JE3_BE3.png/revision/latest?cb=20230924193138"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ab/Diamond_JE3_BE3.png/revision/latest?cb=20230924193138",
+          "fr": "Diamant",
+          "aliases": [
+            "Diamant"
+          ]
         },
         {
           "label": "Crafting Table",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b7/Crafting_Table_JE4_BE3.png/revision/latest?cb=20191229083528"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b7/Crafting_Table_JE4_BE3.png/revision/latest?cb=20191229083528",
+          "fr": "Établi",
+          "aliases": [
+            "Établi"
+          ]
         },
         {
           "label": "Torch",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Torch.gif/revision/latest?cb=20200111190834"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Torch.gif/revision/latest?cb=20200111190834",
+          "fr": "Torche",
+          "aliases": [
+            "Torche"
+          ]
         },
         {
           "label": "TNT",
@@ -2017,7 +2062,11 @@
         },
         {
           "label": "Iron Golem",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Iron_Golem_JE2_BE2.png/revision/latest/scale-to-width-down/213?cb=20190605101959"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Iron_Golem_JE2_BE2.png/revision/latest/scale-to-width-down/213?cb=20190605101959",
+          "fr": "Golem de fer",
+          "aliases": [
+            "Golem de fer"
+          ]
         },
         {
           "label": "Axolotl",
@@ -2025,19 +2074,35 @@
         },
         {
           "label": "Bee",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7c/Bee_types.gif/revision/latest?cb=20240729213952"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7c/Bee_types.gif/revision/latest?cb=20240729213952",
+          "fr": "Abeille",
+          "aliases": [
+            "Abeille"
+          ]
         },
         {
           "label": "Wolf",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c4/Wolf_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729213411"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c4/Wolf_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729213411",
+          "fr": "Loup",
+          "aliases": [
+            "Loup"
+          ]
         },
         {
           "label": "Cat",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Tuxedo_Cat_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729214002"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Tuxedo_Cat_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729214002",
+          "fr": "Chat",
+          "aliases": [
+            "Chat"
+          ]
         },
         {
           "label": "Fox",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Fox.png/revision/latest/scale-to-width-down/400?cb=20240729214702"
+          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Fox.png/revision/latest/scale-to-width-down/400?cb=20240729214702",
+          "fr": "Renard",
+          "aliases": [
+            "Renard"
+          ]
         },
         {
           "label": "Slime",
@@ -2534,7 +2599,7 @@
           "Jinbe|Jimbei|Jinbei",
           "Marshall D. Teach|Blackbeard|Teach|Barbe Noire",
           "Trafalgar Law|Law",
-          "Buggy",
+          "Buggy|Baggy",
           "Edward Weevil|Weevil"
         ]
       },
@@ -2548,7 +2613,7 @@
           "Marshall D. Teach|Blackbeard|Teach|Barbe Noire",
           "Edward Newgate|Whitebeard|Newgate|Barbe Blanche",
           "Monkey D. Luffy|Luffy|Mugiwara|Chapeau de paille",
-          "Buggy"
+          "Buggy|Baggy"
         ]
       },
       {
@@ -2631,7 +2696,12 @@
       "members": [
         {
           "label": "Monkey D. Luffy",
-          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637",
+          "fr": "Mugiwara",
+          "aliases": [
+            "Mugiwara",
+            "Chapeau de paille"
+          ]
         },
         {
           "label": "Roronoa Zoro",
@@ -2647,7 +2717,11 @@
         },
         {
           "label": "Tony Tony Chopper",
-          "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/312?cb=20240720150824"
+          "image": "https://static.wikia.nocookie.net/onepiece/images/a/af/Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/312?cb=20240720150824",
+          "fr": "Chopper",
+          "aliases": [
+            "Chopper"
+          ]
         },
         {
           "label": "Usopp",
@@ -2655,7 +2729,11 @@
         },
         {
           "label": "Shanks",
-          "image": "https://static.wikia.nocookie.net/onepiece/images/6/66/Shanks_Anime_Infobox.png/revision/latest/scale-to-width-down/279?cb=20240829145447"
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/66/Shanks_Anime_Infobox.png/revision/latest/scale-to-width-down/279?cb=20240829145447",
+          "fr": "Shanks le Roux",
+          "aliases": [
+            "Shanks le Roux"
+          ]
         },
         {
           "label": "Portgas D. Ace",
@@ -2663,7 +2741,11 @@
         },
         {
           "label": "Buggy",
-          "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Buggy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/400?cb=20240813025900"
+          "image": "https://static.wikia.nocookie.net/onepiece/images/f/f7/Buggy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/400?cb=20240813025900",
+          "fr": "Baggy",
+          "aliases": [
+            "Baggy"
+          ]
         },
         {
           "label": "Nico Robin",
@@ -2699,7 +2781,11 @@
         },
         {
           "label": "Edward Newgate",
-          "image": "https://static.wikia.nocookie.net/onepiece/images/b/b7/Edward_Newgate_Anime_Infobox.png/revision/latest/scale-to-width-down/400?cb=20220926165737"
+          "image": "https://static.wikia.nocookie.net/onepiece/images/b/b7/Edward_Newgate_Anime_Infobox.png/revision/latest/scale-to-width-down/400?cb=20220926165737",
+          "fr": "Barbe Blanche",
+          "aliases": [
+            "Barbe Blanche"
+          ]
         }
       ],
       "impostors": [
@@ -3338,7 +3424,11 @@
         },
         {
           "label": "Krillin",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/5/54/Krillin_DB_Episode_134.png/revision/latest/scale-to-width-down/270?cb=20241210001054"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/5/54/Krillin_DB_Episode_134.png/revision/latest/scale-to-width-down/270?cb=20241210001054",
+          "fr": "Krilin",
+          "aliases": [
+            "Krilin"
+          ]
         },
         {
           "label": "Cell",
@@ -3346,7 +3436,12 @@
         },
         {
           "label": "Majin Buu",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/4/4a/All_Majin_Buu_forms_%28Daiz4%29.jpg/revision/latest/scale-to-width-down/278?cb=20130605020823"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/4/4a/All_Majin_Buu_forms_%28Daiz4%29.jpg/revision/latest/scale-to-width-down/278?cb=20130605020823",
+          "fr": "Majin Boo",
+          "aliases": [
+            "Majin Boo",
+            "Boo"
+          ]
         },
         {
           "label": "Trunks",
@@ -3358,7 +3453,12 @@
         },
         {
           "label": "Android 18",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/e/e6/Android_18_anime_profile.png/revision/latest/scale-to-width-down/160?cb=20250617190842"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/e/e6/Android_18_anime_profile.png/revision/latest/scale-to-width-down/160?cb=20250617190842",
+          "fr": "C-18",
+          "aliases": [
+            "C-18",
+            "C18"
+          ]
         },
         {
           "label": "Goten",
@@ -3366,7 +3466,11 @@
         },
         {
           "label": "Master Roshi",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/5/5f/Master_roshi_enhanced.jpg/revision/latest/scale-to-width-down/297?cb=20210310020858"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/5/5f/Master_roshi_enhanced.jpg/revision/latest/scale-to-width-down/297?cb=20210310020858",
+          "fr": "Tortue Géniale",
+          "aliases": [
+            "Tortue Géniale"
+          ]
         },
         {
           "label": "Shenron",
@@ -3386,11 +3490,19 @@
         },
         {
           "label": "Tien Shinhan",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/2/2a/Tien_Shinhan.png/revision/latest/scale-to-width-down/223?cb=20250318211443"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/2/2a/Tien_Shinhan.png/revision/latest/scale-to-width-down/223?cb=20250318211443",
+          "fr": "Ten Shin Han",
+          "aliases": [
+            "Ten Shin Han"
+          ]
         },
         {
           "label": "Frieza",
-          "image": "https://static.wikia.nocookie.net/dragonball/images/e/ee/DBS_Broly_Frieza_Render.png/revision/latest/scale-to-width-down/334?cb=20221019232854"
+          "image": "https://static.wikia.nocookie.net/dragonball/images/e/ee/DBS_Broly_Frieza_Render.png/revision/latest/scale-to-width-down/334?cb=20221019232854",
+          "fr": "Freezer",
+          "aliases": [
+            "Freezer"
+          ]
         }
       ],
       "impostors": [
@@ -3928,7 +4040,12 @@
         },
         {
           "label": "Kurama",
-          "image": "https://static.wikia.nocookie.net/naruto/images/7/7b/Kurama2.png/revision/latest/scale-to-width-down/400?cb=20140818171718"
+          "image": "https://static.wikia.nocookie.net/naruto/images/7/7b/Kurama2.png/revision/latest/scale-to-width-down/400?cb=20140818171718",
+          "fr": "Kyûbi",
+          "aliases": [
+            "Kyûbi",
+            "Démon renard à neuf queues"
+          ]
         },
         {
           "label": "Tsunade",
@@ -4484,11 +4601,19 @@
         },
         {
           "label": "R2-D2",
-          "image": "https://static.wikia.nocookie.net/starwars/images/9/95/R2-D2-TROSOCE.png/revision/latest/scale-to-width-down/264?cb=20240104043013"
+          "image": "https://static.wikia.nocookie.net/starwars/images/9/95/R2-D2-TROSOCE.png/revision/latest/scale-to-width-down/264?cb=20240104043013",
+          "fr": "D2-R2",
+          "aliases": [
+            "D2-R2"
+          ]
         },
         {
           "label": "C-3PO",
-          "image": "https://static.wikia.nocookie.net/starwars/images/a/a2/C-3PO-TROSTGG.png/revision/latest/scale-to-width-down/300?cb=20230706042830"
+          "image": "https://static.wikia.nocookie.net/starwars/images/a/a2/C-3PO-TROSTGG.png/revision/latest/scale-to-width-down/300?cb=20230706042830",
+          "fr": "Z-6PO",
+          "aliases": [
+            "Z-6PO"
+          ]
         },
         {
           "label": "Han Solo",
@@ -4512,7 +4637,11 @@
         },
         {
           "label": "Darth Maul",
-          "image": "https://static.wikia.nocookie.net/starwars/images/8/89/MaulHS_SWI185.png/revision/latest/scale-to-width-down/300?cb=20181108061212"
+          "image": "https://static.wikia.nocookie.net/starwars/images/8/89/MaulHS_SWI185.png/revision/latest/scale-to-width-down/300?cb=20181108061212",
+          "fr": "Dark Maul",
+          "aliases": [
+            "Dark Maul"
+          ]
         },
         {
           "label": "BB-8",
@@ -4528,7 +4657,11 @@
         },
         {
           "label": "Millennium Falcon",
-          "image": "https://static.wikia.nocookie.net/starwars/images/5/52/Millennium_Falcon_Fathead_TROS.png/revision/latest/scale-to-width-down/400?cb=20221029015218"
+          "image": "https://static.wikia.nocookie.net/starwars/images/5/52/Millennium_Falcon_Fathead_TROS.png/revision/latest/scale-to-width-down/400?cb=20221029015218",
+          "fr": "Faucon Millenium",
+          "aliases": [
+            "Faucon Millenium"
+          ]
         },
         {
           "label": "Mace Windu",
@@ -5121,7 +5254,12 @@
         },
         {
           "label": "Severus Snape",
-          "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/268?cb=20150307193047"
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/268?cb=20150307193047",
+          "fr": "Severus Rogue",
+          "aliases": [
+            "Severus Rogue",
+            "Rogue"
+          ]
         },
         {
           "label": "Dobby",
@@ -5129,7 +5267,11 @@
         },
         {
           "label": "Hedwig",
-          "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest/scale-to-width-down/329?cb=20161123234010"
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest/scale-to-width-down/329?cb=20161123234010",
+          "fr": "Hedwige",
+          "aliases": [
+            "Hedwige"
+          ]
         },
         {
           "label": "Draco Malfoy",
@@ -5145,15 +5287,27 @@
         },
         {
           "label": "Neville Longbottom",
-          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/ba/Neville_Longbottom_DHF2_promo_2.jpg/revision/latest/scale-to-width-down/300?cb=20230923173442"
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/ba/Neville_Longbottom_DHF2_promo_2.jpg/revision/latest/scale-to-width-down/300?cb=20230923173442",
+          "fr": "Neville Londubat",
+          "aliases": [
+            "Neville Londubat"
+          ]
         },
         {
           "label": "Golden Snitch",
-          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b9/Golden_Snitch..png/revision/latest/scale-to-width-down/400?cb=20161120075526"
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b9/Golden_Snitch..png/revision/latest/scale-to-width-down/400?cb=20161120075526",
+          "fr": "Vif d'or",
+          "aliases": [
+            "Vif d'or"
+          ]
         },
         {
           "label": "Sorting Hat",
-          "image": "https://static.wikia.nocookie.net/harrypotter/images/6/62/Sorting_Hat.png/revision/latest/scale-to-width-down/400?cb=20161120072849"
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/6/62/Sorting_Hat.png/revision/latest/scale-to-width-down/400?cb=20161120072849",
+          "fr": "Choixpeau",
+          "aliases": [
+            "Choixpeau"
+          ]
         },
         {
           "label": "Minerva McGonagall",
@@ -5742,7 +5896,7 @@
         "count": 4,
         "answers": [
           "Frodo Baggins|Frodo|Frodon|Frodon Sacquet",
-          "Bilbo Baggins|Bilbo|Bilbon",
+          "Bilbo Baggins|Bilbo|Bilbon|Bilbon Sacquet",
           "Samwise Gamgee|Sam|Samsagace|Samsagace Gamegie",
           "Meriadoc Brandybuck|Merry|Meriadoc|Meriadoc Brandebouc",
           "Peregrin Took|Pippin|Peregrin|Peregrin Touque",
@@ -5782,7 +5936,12 @@
       "members": [
         {
           "label": "Frodo Baggins",
-          "image": "https://static.wikia.nocookie.net/lotr/images/3/32/Frodo_%28FotR%29.png/revision/latest/scale-to-width-down/400?cb=20221006065757"
+          "image": "https://static.wikia.nocookie.net/lotr/images/3/32/Frodo_%28FotR%29.png/revision/latest/scale-to-width-down/400?cb=20221006065757",
+          "fr": "Frodon Sacquet",
+          "aliases": [
+            "Frodon Sacquet",
+            "Frodon"
+          ]
         },
         {
           "label": "Gandalf",
@@ -5798,7 +5957,11 @@
         },
         {
           "label": "Aragorn",
-          "image": "https://static.wikia.nocookie.net/lotr/images/5/50/KipR_Aragorn.JPG/revision/latest/scale-to-width-down/283?cb=20230422203513"
+          "image": "https://static.wikia.nocookie.net/lotr/images/5/50/KipR_Aragorn.JPG/revision/latest/scale-to-width-down/283?cb=20230422203513",
+          "fr": "Grands-Pas",
+          "aliases": [
+            "Grands-Pas"
+          ]
         },
         {
           "label": "Gimli",
@@ -5806,11 +5969,20 @@
         },
         {
           "label": "Saruman",
-          "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Saruman_MattStewart.png/revision/latest/scale-to-width-down/313?cb=20230602171506"
+          "image": "https://static.wikia.nocookie.net/lotr/images/1/11/Saruman_MattStewart.png/revision/latest/scale-to-width-down/313?cb=20230602171506",
+          "fr": "Saroumane",
+          "aliases": [
+            "Saroumane"
+          ]
         },
         {
           "label": "Samwise Gamgee",
-          "image": "https://static.wikia.nocookie.net/lotr/images/2/20/Sam.jpg/revision/latest/scale-to-width-down/279?cb=20070623123241"
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/20/Sam.jpg/revision/latest/scale-to-width-down/279?cb=20070623123241",
+          "fr": "Samsagace Gamegie",
+          "aliases": [
+            "Samsagace Gamegie",
+            "Samsagace"
+          ]
         },
         {
           "label": "Galadriel",
@@ -5818,15 +5990,29 @@
         },
         {
           "label": "Treebeard",
-          "image": "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/400?cb=20210117035345"
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/400?cb=20210117035345",
+          "fr": "Sylvebarbe",
+          "aliases": [
+            "Sylvebarbe"
+          ]
         },
         {
           "label": "Bilbo Baggins",
-          "image": "https://static.wikia.nocookie.net/lotr/images/4/4b/Young_Bilbo_S_Morello.png/revision/latest/scale-to-width-down/297?cb=20240115164327"
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/4b/Young_Bilbo_S_Morello.png/revision/latest/scale-to-width-down/297?cb=20240115164327",
+          "fr": "Bilbon Sacquet",
+          "aliases": [
+            "Bilbon Sacquet",
+            "Bilbon"
+          ]
         },
         {
           "label": "Witch-king of Angmar",
-          "image": "https://static.wikia.nocookie.net/lotr/images/4/46/Melissa_Hitchcock_-_The_Black_Captain.webp/revision/latest/scale-to-width-down/280?cb=20241018153425"
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/46/Melissa_Hitchcock_-_The_Black_Captain.webp/revision/latest/scale-to-width-down/280?cb=20241018153425",
+          "fr": "Roi-Sorcier d'Angmar",
+          "aliases": [
+            "Roi-Sorcier d'Angmar",
+            "Roi-Sorcier"
+          ]
         },
         {
           "label": "Arwen",
@@ -5842,11 +6028,19 @@
         },
         {
           "label": "Meriadoc Brandybuck",
-          "image": "https://static.wikia.nocookie.net/lotr/images/d/d6/Merry_in_Hobbiton.jpg/revision/latest/scale-to-width-down/346?cb=20240929045555"
+          "image": "https://static.wikia.nocookie.net/lotr/images/d/d6/Merry_in_Hobbiton.jpg/revision/latest/scale-to-width-down/346?cb=20240929045555",
+          "fr": "Meriadoc Brandebouc",
+          "aliases": [
+            "Meriadoc Brandebouc"
+          ]
         },
         {
           "label": "Peregrin Took",
-          "image": "https://static.wikia.nocookie.net/lotr/images/b/b3/PippinByMagali.JPG/revision/latest?cb=20190729053305"
+          "image": "https://static.wikia.nocookie.net/lotr/images/b/b3/PippinByMagali.JPG/revision/latest?cb=20190729053305",
+          "fr": "Peregrin Touque",
+          "aliases": [
+            "Peregrin Touque"
+          ]
         },
         {
           "label": "Uruk-hai",
@@ -6386,11 +6580,19 @@
         },
         {
           "label": "Black Widow",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/Yelena_Belova_Infobox.jpg/revision/latest/scale-to-width-down/305?cb=20261017030110"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/Yelena_Belova_Infobox.jpg/revision/latest/scale-to-width-down/305?cb=20261017030110",
+          "fr": "Veuve Noire",
+          "aliases": [
+            "Veuve Noire"
+          ]
         },
         {
           "label": "Spider-Man",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Spider-Man_Infobox.jpg/revision/latest/scale-to-width-down/300?cb=20261016004855"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Spider-Man_Infobox.jpg/revision/latest/scale-to-width-down/300?cb=20261016004855",
+          "fr": "L'Homme-Araignée",
+          "aliases": [
+            "L'Homme-Araignée"
+          ]
         },
         {
           "label": "Groot",
@@ -6402,11 +6604,19 @@
         },
         {
           "label": "Black Panther",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/93/Black_Panther_Infobox.jpg/revision/latest/scale-to-width-down/282?cb=20261012121856"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/93/Black_Panther_Infobox.jpg/revision/latest/scale-to-width-down/282?cb=20261012121856",
+          "fr": "Panthère Noire",
+          "aliases": [
+            "Panthère Noire"
+          ]
         },
         {
           "label": "Doctor Strange",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/314?cb=20231021153337"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/314?cb=20231021153337",
+          "fr": "Docteur Strange",
+          "aliases": [
+            "Docteur Strange"
+          ]
         },
         {
           "label": "Captain Marvel",
@@ -6418,7 +6628,12 @@
         },
         {
           "label": "Scarlet Witch",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/60/Scarlet_Witch_Infobox.jpg/revision/latest/scale-to-width-down/313?cb=20250203231704"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/60/Scarlet_Witch_Infobox.jpg/revision/latest/scale-to-width-down/313?cb=20250203231704",
+          "fr": "Sorcière Rouge",
+          "aliases": [
+            "Sorcière Rouge",
+            "La Sorcière Rouge"
+          ]
         },
         {
           "label": "Mjølnir",
@@ -9119,7 +9334,7 @@
         "prompt": "Name 5 Alliance characters",
         "count": 5,
         "answers": [
-          "Tyrande Whisperwind|Tyrande",
+          "Tyrande Whisperwind|Tyrande|Tyrande Murmevent",
           "Khadgar",
           "Gelbin Mekkatorque|Gelbin",
           "Brann Bronzebeard|Brann",
@@ -9128,9 +9343,9 @@
           "Terenas Menethil II|Terenas",
           "Varian Wrynn|Varian",
           "Anduin Wrynn|Anduin Llane Wrynn",
-          "Jaina Proudmoore|Jaina",
+          "Jaina Proudmoore|Jaina|Jaina Portvaillant",
           "Malfurion Stormrage|Malfurion",
-          "Genn Greymane|Genn",
+          "Genn Greymane|Genn|Genn Grisetête",
           "Velen",
           "Muradin Bronzebeard|Muradin",
           "Turalyon",
@@ -9157,7 +9372,7 @@
           "Orgrim Doomhammer|Orgrim",
           "Drek'Thar",
           "Thrall|Go'el",
-          "Garrosh Hellscream|Garrosh",
+          "Garrosh Hellscream|Garrosh|Garrosh Hurlenfer",
           "Rexxar",
           "Gul'dan",
           "Grommash Hellscream|Grom Hellscream|Grom|Grommash",
@@ -9208,9 +9423,9 @@
           "Blackhand",
           "Orgrim Doomhammer|Doomhammer|Orgrim",
           "Thrall|Go'el",
-          "Garrosh Hellscream|Garrosh",
+          "Garrosh Hellscream|Garrosh|Garrosh Hurlenfer",
           "Vol'jin|Voljin",
-          "Sylvanas Windrunner|Sylvanas",
+          "Sylvanas Windrunner|Sylvanas|Sylvanas Coursevent",
           "Ner'zhul|Nerzhul",
           "Gul'dan|Guldan"
         ]
@@ -9329,7 +9544,7 @@
           "Antonidas|Archmage Antonidas",
           "Helya",
           "Elisande",
-          "Jaina Proudmoore|Jaina",
+          "Jaina Proudmoore|Jaina|Jaina Portvaillant",
           "Kael'thas Sunstrider|Kael'thas",
           "Vashj",
           "Cho'gall",
@@ -9343,23 +9558,29 @@
         {
           "label": "Tyrande Whisperwind",
           "aliases": [
-            "Tyrande"
+            "Tyrande",
+            "Tyrande Murmevent"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/160px-Tyrande_Mercenaries_3.jpg?bc0904"
+          "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/160px-Tyrande_Mercenaries_3.jpg?bc0904",
+          "fr": "Tyrande Murmevent"
         },
         {
           "label": "Illidan Stormrage",
           "aliases": [
-            "Illidan"
+            "Illidan",
+            "Illidan Hurlorage"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/160px-Illidan_the_Betrayer.jpg?1e6975"
+          "image": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/160px-Illidan_the_Betrayer.jpg?1e6975",
+          "fr": "Illidan Hurlorage"
         },
         {
           "label": "Uther the Lightbringer",
           "aliases": [
-            "Uther"
+            "Uther",
+            "Uther le Porteur de Lumière"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/160px-Uther_Mercenaries_3.jpg?d18530"
+          "image": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/160px-Uther_Mercenaries_3.jpg?d18530",
+          "fr": "Uther le Porteur de Lumière"
         },
         {
           "label": "Medivh",
@@ -9371,7 +9592,11 @@
         },
         {
           "label": "Hogger",
-          "image": "https://warcraft.wiki.gg/images/thumb/Hogger_TCG.jpg/160px-Hogger_TCG.jpg?b9dbb4"
+          "image": "https://warcraft.wiki.gg/images/thumb/Hogger_TCG.jpg/160px-Hogger_TCG.jpg?b9dbb4",
+          "fr": "Lardeur",
+          "aliases": [
+            "Lardeur"
+          ]
         },
         {
           "label": "Onyxia",
@@ -9420,9 +9645,11 @@
         {
           "label": "Sylvanas Windrunner",
           "aliases": [
-            "Sylvanas"
+            "Sylvanas",
+            "Sylvanas Coursevent"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_9.2.png/160px-Sylvanas_9.2.png?800be2"
+          "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_9.2.png/160px-Sylvanas_9.2.png?800be2",
+          "fr": "Sylvanas Coursevent"
         },
         {
           "label": "Varian Wrynn",
@@ -9434,23 +9661,29 @@
         {
           "label": "Jaina Proudmoore",
           "aliases": [
-            "Jaina"
+            "Jaina",
+            "Jaina Portvaillant"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/160px-HSKT_Jaina.jpg?d11e7e"
+          "image": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/160px-HSKT_Jaina.jpg?d11e7e",
+          "fr": "Jaina Portvaillant"
         },
         {
           "label": "Garrosh Hellscream",
           "aliases": [
-            "Garrosh"
+            "Garrosh",
+            "Garrosh Hurlenfer"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/160px-Garrosh_Glowei_-_cropped.jpg?d54104"
+          "image": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/160px-Garrosh_Glowei_-_cropped.jpg?d54104",
+          "fr": "Garrosh Hurlenfer"
         },
         {
           "label": "Genn Greymane",
           "aliases": [
-            "Genn"
+            "Genn",
+            "Genn Grisetête"
           ],
-          "image": "https://warcraft.wiki.gg/images/thumb/Genn%2C_Cursed_King_HS.png/160px-Genn%2C_Cursed_King_HS.png?72b47f"
+          "image": "https://warcraft.wiki.gg/images/thumb/Genn%2C_Cursed_King_HS.png/160px-Genn%2C_Cursed_King_HS.png?72b47f",
+          "fr": "Genn Grisetête"
         },
         {
           "label": "Valeera Sanguinar",
