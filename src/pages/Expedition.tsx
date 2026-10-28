@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
-import { ALL_MEDIA, MEDIA, challengesFor } from '../rogue/pools';
+import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
 import {
   ACTS,
@@ -15,7 +15,8 @@ import {
   goldFor,
   has,
   makeMap,
-  mediaOf,
+  picksOf,
+  roomsOf,
   modsFor,
   newRun,
   reachable,
@@ -42,58 +43,194 @@ const pickKind = (kinds: ChallengeKind[]) => kinds[Math.floor(Math.random() * ki
 const HEART_PRICE = 30;
 const REST_GOLD = 20;
 const MEDIA_KEY = 'omnidle:expedition:media';
+const SETUP_KEY = 'omnidle:expedition:setup';
 
-/** Each mix of kinds of work keeps its own best ("mixed": all of them, as before the choice existed). */
-const bestKey = (media: Domain[]) => (ALL_MEDIA.every((m) => media.includes(m)) ? 'rogue:mixed' : `rogue:${[...media].sort().join('+')}`);
+/** What an expedition is made of: franchises, and kinds of room. */
+interface Setup {
+  picks: string[];
+  rooms: ChallengeKind[];
+}
 
-const mediaLabel = (media: Domain[]) =>
-  ALL_MEDIA.every((m) => media.includes(m)) ? 'Everything' : MEDIA.filter((m) => media.includes(m.id)).map((m) => `${m.icon} ${m.label}`).join(' + ');
+const sameSet = (a: string[], b: string[]) => a.length === b.length && a.every((x) => b.includes(x));
 
-function savedMedia(): Domain[] {
+/** A setup that's just "these kinds of work, every room" (what the quick buttons make), or null for a hand-picked one. */
+function plainMedia(picks: string[], rooms: ChallengeKind[]): Domain[] | null {
+  const media = mediaOfKeys(picks);
+  return sameSet(picks, keysFor(media)) && sameSet(rooms, ALL_ROOMS) ? media : null;
+}
+
+/** Each mix of kinds of work keeps its own best ("mixed": all of them); a hand-picked expedition, "custom". */
+function bestKey(picks: string[], rooms: ChallengeKind[]) {
+  const media = plainMedia(picks, rooms);
+  if (!media) return 'rogue:custom';
+  return ALL_MEDIA.every((m) => media.includes(m)) ? 'rogue:mixed' : `rogue:${[...media].sort().join('+')}`;
+}
+
+function setupLabel(picks: string[], rooms: ChallengeKind[]) {
+  const media = plainMedia(picks, rooms);
+  if (media) return ALL_MEDIA.every((m) => media.includes(m)) ? 'Everything' : MEDIA.filter((m) => media.includes(m.id)).map((m) => `${m.icon} ${m.label}`).join(' + ');
+  const n = picks.length;
+  return `Custom: ${n} franchise${n === 1 ? '' : 's'}${rooms.length < ALL_ROOMS.length ? `, ${rooms.length} kind${rooms.length === 1 ? '' : 's'} of room` : ''}`;
+}
+
+function savedSetup(): Setup {
   try {
-    const v = JSON.parse(localStorage.getItem(MEDIA_KEY) ?? 'null');
-    if (Array.isArray(v)) {
-      const ok = ALL_MEDIA.filter((m) => v.includes(m));
-      if (ok.length) return ok;
+    const v = JSON.parse(localStorage.getItem(SETUP_KEY) ?? 'null');
+    if (v && Array.isArray(v.picks) && Array.isArray(v.rooms)) {
+      const picks = ALL_KEYS.filter((k) => v.picks.includes(k));
+      const rooms = ALL_ROOMS.filter((k) => v.rooms.includes(k));
+      return { picks, rooms: rooms.length ? rooms : ALL_ROOMS };
+    }
+    // Before hand-picking existed, only the kinds of work were remembered.
+    const m = JSON.parse(localStorage.getItem(MEDIA_KEY) ?? 'null');
+    if (Array.isArray(m)) {
+      const media = ALL_MEDIA.filter((d) => m.includes(d));
+      if (media.length) return { picks: keysFor(media), rooms: ALL_ROOMS };
     }
   } catch {
     // No storage: everything.
   }
-  return ALL_MEDIA;
+  return { picks: ALL_KEYS, rooms: ALL_ROOMS };
 }
 
-/** The kinds of work to set out with: any mix of them, never none. */
-function MediaPicker({ media, onChange }: { media: Domain[]; onChange: (m: Domain[]) => void }) {
-  const toggle = (id: Domain) => {
-    const next = media.includes(id) ? media.filter((m) => m !== id) : ALL_MEDIA.filter((m) => m === id || media.includes(m));
-    if (!next.length) return;
+/** Why a setup can't set out yet, if it can't. */
+function setupProblem({ picks, rooms }: Setup): string | null {
+  if (!picks.length) return 'Pick at least one franchise.';
+  if (!rooms.length) return 'Pick at least one kind of room.';
+  if (!challengesFor(picks, rooms).length) return "None of these franchises can fill the rooms you picked: add some of either.";
+  if (!bossesFor(picks).length) return 'Pick at least one franchise with a guardian (👑) for the bosses.';
+  return null;
+}
+
+const chip = (on: boolean) =>
+  `rounded-full border-2 px-3 py-1.5 text-sm font-semibold transition ${on ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`;
+
+/**
+ * The kinds of work to set out with (quick buttons, a kind is on when all its franchises are), and
+ * behind "Customise", every franchise and every kind of room, one by one.
+ */
+function SetupPicker({ setup, onChange }: { setup: Setup; onChange: (s: Setup) => void }) {
+  const [open, setOpen] = useState(() => !plainMedia(setup.picks, setup.rooms));
+  const set = (next: Setup) => {
     sfx.click();
     onChange(next);
     try {
-      localStorage.setItem(MEDIA_KEY, JSON.stringify(next));
+      localStorage.setItem(SETUP_KEY, JSON.stringify(next));
     } catch {
       // Not remembered, that's all.
     }
   };
+  const order = (keys: string[]) => ALL_KEYS.filter((k) => keys.includes(k));
+  const withKeys = (keys: string[], on: boolean) => set({ ...setup, picks: order(on ? [...new Set([...setup.picks, ...keys])] : setup.picks.filter((k) => !keys.includes(k))) });
+  const toggleKey = (k: string) => withKeys([k], !setup.picks.includes(k));
+  const toggleRoom = (r: ChallengeKind) =>
+    set({ ...setup, rooms: setup.rooms.includes(r) ? setup.rooms.filter((x) => x !== r) : ALL_ROOMS.filter((x) => x === r || setup.rooms.includes(x)) });
+  const allNone = (onAll: () => void, onNone: () => void) => (
+    <span className="flex gap-1 text-xs">
+      <button type="button" onClick={onAll} className="btn-paper rounded px-2 py-0.5 font-semibold">
+        All
+      </button>
+      <button type="button" onClick={onNone} className="btn-paper rounded px-2 py-0.5 font-semibold">
+        None
+      </button>
+    </span>
+  );
+
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Made of</p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         {MEDIA.map((m) => {
-          const on = media.includes(m.id);
+          const keys = keysFor([m.id]);
+          const n = keys.filter((k) => setup.picks.includes(k)).length;
+          const on = n === keys.length;
           return (
             <button
               key={m.id}
               type="button"
               aria-pressed={on}
-              onClick={() => toggle(m.id)}
-              className={`rounded-full border-2 px-4 py-2 font-display font-bold transition ${on ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`}
+              onClick={() => withKeys(keys, !on)}
+              className={`rounded-full border-2 px-4 py-2 font-display font-bold transition ${on ? 'border-ink bg-ink text-paper' : n ? 'border-ink bg-tile text-ink' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`}
             >
               {m.icon} {m.label}
+              {n > 0 && !on && <span className="ml-1.5 text-xs font-semibold">{n}/{keys.length}</span>}
             </button>
           );
         })}
+        <button type="button" onClick={() => (sfx.click(), setOpen((o) => !o))} aria-expanded={open} className="btn-paper rounded-full px-4 py-2 font-display text-sm font-bold">
+          ⚙ {open ? 'Hide the details' : 'Customise'}
+        </button>
       </div>
+
+      {open && (
+        <div className="animate-pop space-y-4 rounded-md border border-rule-strong bg-card p-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <p className="font-display font-bold">Franchises</p>
+            <span className="flex gap-2">
+              <button type="button" onClick={() => set({ picks: ALL_KEYS, rooms: ALL_ROOMS })} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold">
+                Select everything
+              </button>
+              <button type="button" onClick={() => set({ ...setup, picks: [] })} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold">
+                Deselect everything
+              </button>
+            </span>
+          </div>
+          {MEDIA.map((m) => {
+            const list = FRANCHISES.filter((x) => x.domain === m.id);
+            return (
+              <div key={m.id} className="space-y-1.5">
+                <div className="flex items-center gap-3">
+                  <p className="font-display text-sm font-bold">
+                    {m.icon} {m.label}
+                  </p>
+                  {allNone(
+                    () => withKeys(list.map((x) => x.key), true),
+                    () => withKeys(list.map((x) => x.key), false),
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {list.map((x) => {
+                    const rooms = franchiseRooms(x.key);
+                    return (
+                      <button
+                        key={x.key}
+                        type="button"
+                        aria-pressed={setup.picks.includes(x.key)}
+                        onClick={() => toggleKey(x.key)}
+                        title={`Rooms: ${rooms.map((r) => CHALLENGE_INFO[r].name).join(', ') || 'none'}${hasBoss(x.key) ? ' · has a guardian' : ''}`}
+                        className={chip(setup.picks.includes(x.key))}
+                      >
+                        {x.label}
+                        <span className="ml-1.5 text-xs opacity-80">
+                          {rooms.map((r) => CHALLENGE_INFO[r].icon).join('')}
+                          {hasBoss(x.key) ? '👑' : ''}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+          <div className="space-y-1.5 border-t border-rule pt-3">
+            <div className="flex items-center gap-3">
+              <p className="font-display font-bold">Rooms</p>
+              {allNone(
+                () => set({ ...setup, rooms: ALL_ROOMS }),
+                () => set({ ...setup, rooms: [] }),
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {ALL_ROOMS.map((r) => (
+                <button key={r} type="button" aria-pressed={setup.rooms.includes(r)} onClick={() => toggleRoom(r)} className={chip(setup.rooms.includes(r))}>
+                  {CHALLENGE_INFO[r].icon} {CHALLENGE_INFO[r].name}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-ink-faint">The icons beside a franchise are the rooms it can fill; 👑 means it has a guardian for the bosses. Shops, campfires and gambles always come.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -317,9 +454,10 @@ function RoomCard({ run, node, open, here, at, rowH, rows, touch }: { run: RunSt
 export default function Expedition() {
   const run = useProgress((s) => s.rogueRun);
   const setRun = useProgress((s) => s.setRogueRun);
-  const [media, setMedia] = useState<Domain[]>(savedMedia);
+  const [setup, setSetup] = useState<Setup>(savedSetup);
   const bests = useProgress((s) => s.bests);
-  const best = bests[bestKey(run ? mediaOf(run) : media)] ?? 0;
+  const best = bests[run ? bestKey(picksOf(run), roomsOf(run)) : bestKey(setup.picks, setup.rooms)] ?? 0;
+  const problem = setupProblem(setup);
   const recordBest = useProgress((s) => s.recordBest);
   const [screen, setScreen] = useState<Screen>({ kind: 'map' });
   const save = (r: RunState) => setRun({ ...r, log: r.log.slice(-6) });
@@ -327,7 +465,7 @@ export default function Expedition() {
   const finish = (r: RunState, won: boolean) => {
     const done = { ...r, over: true, won };
     save(done);
-    recordBest(bestKey(mediaOf(done)), runScore(done));
+    recordBest(bestKey(picksOf(done), roomsOf(done)), runScore(done));
   };
 
   const enter = (n: MapNode) => {
@@ -363,7 +501,7 @@ export default function Expedition() {
           finish(r, true);
           return setScreen({ kind: 'result', result: { ...result, line: 'The expedition is complete!' }, then: { kind: 'map' } });
         }
-        r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, mediaOf(r)), at: null };
+        r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, picksOf(r), roomsOf(r)), at: null };
         then = { kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` };
       } else if (elite || gamble) then = { kind: 'reward', offer: relicOffer(r), text: gamble ? 'The gamble paid off.' : 'Elite beaten: a relic of your choice.' };
       save(r);
@@ -403,12 +541,21 @@ export default function Expedition() {
             spend it all at shops. A lost room costs a heart; lose them all and the expedition ends.
           </p>
         </div>
-        <MediaPicker media={media} onChange={setMedia} />
+        <SetupPicker setup={setup} onChange={setSetup} />
         <div className="flex flex-wrap items-center gap-4">
-          <button type="button" onClick={() => (sfx.click(), setRun(newRun(media)), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-8 py-3.5 font-display text-lg font-bold tracking-widest">
+          <button
+            type="button"
+            disabled={!!problem}
+            onClick={() => (sfx.click(), setRun(newRun(setup.picks, setup.rooms)), setScreen({ kind: 'map' }))}
+            className="btn-ink rounded-md px-8 py-3.5 font-display text-lg font-bold tracking-widest disabled:opacity-40"
+          >
             Set out
           </button>
-          {best > 0 && <p className="text-ink-soft">Best expedition ({mediaLabel(media)}): {best} points</p>}
+          {problem ? (
+            <p className="text-sm font-semibold text-coral">{problem}</p>
+          ) : (
+            best > 0 && <p className="text-ink-soft">Best expedition ({setupLabel(setup.picks, setup.rooms)}): {best} points</p>
+          )}
         </div>
         <ul className="grid gap-2 sm:grid-cols-2">
           {(Object.keys(RELICS) as RelicId[]).map((r) => (
@@ -432,7 +579,7 @@ export default function Expedition() {
         <p className="font-display text-sm uppercase tracking-[0.3em] text-ink-faint">{run.won ? 'Expedition complete' : 'The expedition ends here'}</p>
         <p className="font-serif text-7xl font-bold">{score}</p>
         <p className="text-ink-soft">
-          {mediaLabel(mediaOf(run))} · {run.cleared} rooms won · {run.gold} gold · act {run.act} · {score >= best ? '★ Best expedition' : `best ${best}`}
+          {setupLabel(picksOf(run), roomsOf(run))} · {run.cleared} rooms won · {run.gold} gold · act {run.act} · {score >= best ? '★ Best expedition' : `best ${best}`}
         </p>
         <div className="flex justify-center gap-1 text-2xl">{run.relics.map((r) => RELICS[r].icon)}</div>
         <ul className="space-y-1 text-sm text-ink-soft">
@@ -441,7 +588,7 @@ export default function Expedition() {
           ))}
         </ul>
         <div className="flex justify-center gap-3">
-          <button type="button" onClick={() => (sfx.click(), setRun(newRun(mediaOf(run))), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
+          <button type="button" onClick={() => (sfx.click(), setRun(newRun(picksOf(run), roomsOf(run))), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
             New expedition
           </button>
           <button type="button" onClick={() => setRun(null)} className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-wider">
@@ -479,7 +626,7 @@ export default function Expedition() {
           <p className="mb-3 text-center font-display text-sm font-bold uppercase tracking-widest text-coral">
             {screen.challenge === 'boss' ? '👑 Boss' : screen.gamble ? '❓ Gamble' : screen.elite ? '💀 Elite' : '⚔️ Challenge'}
           </p>
-          {Room ? <Room mods={modsFor(run, screen.elite)} onDone={roomDone} /> : <BossRoom act={run.act} media={mediaOf(run)} onDone={roomDone} />}
+          {Room ? <Room mods={modsFor(run, screen.elite)} onDone={roomDone} /> : <BossRoom act={run.act} keys={picksOf(run)} onDone={roomDone} />}
         </section>
       )}
 
@@ -568,7 +715,7 @@ export default function Expedition() {
           <div className="flex justify-center gap-3">
             <button
               type="button"
-              onClick={() => setScreen({ kind: 'room', node: screen.node, challenge: pickKind(challengesFor(mediaOf(run))), elite: true, gamble: true })}
+              onClick={() => setScreen({ kind: 'room', node: screen.node, challenge: pickKind(challengesFor(picksOf(run), roomsOf(run))), elite: true, gamble: true })}
               className="btn-ink rounded-md px-5 py-3 font-display font-bold"
             >
               Accept

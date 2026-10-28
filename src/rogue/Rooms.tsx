@@ -13,8 +13,7 @@ import { shownName } from '../lib/french';
 import { preload, useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
-import type { Domain } from '../types';
-import { bossesFor, hlDecksFor, listsFor, sortDecksFor, universesFor } from './pools';
+import { bossesFor, hlDecksFor, listsFor, sortDecksFor, themeFilter, universesFor } from './pools';
 import type { Mods } from './run';
 
 export interface RoomResult {
@@ -46,7 +45,7 @@ function Header({ title, rule }: { title: string; rule: string }) {
 
 /** Blurred portrait: name a character from a blurred, black-and-white picture. */
 export function PortraitRoom({ mods, onDone }: RoomProps) {
-  const u = useMemo(() => pick(universesFor(mods.media)), []);
+  const u = useMemo(() => pick(universesFor(mods.keys)), []);
   const target = useMemo(() => pick(u.targets), [u]);
   const tries = mods.hard ? 2 : 3;
   const seconds = (mods.hard ? 15 : 22) + mods.bonusSeconds;
@@ -90,7 +89,7 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
 
 /** Higher or Lower: three calls in a row (five for an elite). */
 export function HigherLowerRoom({ mods, onDone }: RoomProps) {
-  const deck = useMemo(() => pick(hlDecksFor(mods.media)), []);
+  const deck = useMemo(() => pick(hlDecksFor(mods.keys)), []);
   const need = mods.hard ? 5 : 3;
   const seen = useRef(new Set<string>());
   const draw = (cur?: HlItem) => {
@@ -149,7 +148,7 @@ export function HigherLowerRoom({ mods, onDone }: RoomProps) {
 /** Odd One Out: one round (two in a row for an elite). */
 export function OddRoom({ mods, onDone }: RoomProps) {
   const need = mods.hard ? 2 : 1;
-  const [round, setRound] = useState(() => oddRound('all', Math.random, mods.media));
+  const [round, setRound] = useState(() => oddRound('all', Math.random, themeFilter(mods.keys)));
   const [got, setGot] = useState(0);
   const [slips, setSlips] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -165,7 +164,7 @@ export function OddRoom({ mods, onDone }: RoomProps) {
     window.setTimeout(() => {
       if (s > mods.forgive) return onDone({ won: false, perfect: false, note: `${round.odd} wasn't ${round.link}` });
       if (g >= need) return onDone({ won: true, perfect: s === 0, note: `Spotted ${round.odd}` });
-      setRound(oddRound('all', Math.random, mods.media));
+      setRound(oddRound('all', Math.random, themeFilter(mods.keys)));
       setPicked(null);
     }, 1300);
   };
@@ -193,7 +192,7 @@ export function OddRoom({ mods, onDone }: RoomProps) {
 
 /** Who Am I?: name them before the clues run out (four, three for an elite). */
 export function WhoAmIRoom({ mods, onDone }: RoomProps) {
-  const u = useMemo(() => pick(universesFor(mods.media)), []);
+  const u = useMemo(() => pick(universesFor(mods.keys)), []);
   const target = useMemo(() => pick(u.targets), [u]);
   const max = mods.hard ? 3 : 4;
   // The clues used here skip the very last one (the name's first letter), unless the Lantern shows it.
@@ -245,7 +244,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
 
 /** Quick Sort: ten cards (fifteen for an elite), one slip allowed with Second wind. */
 export function SortRoom({ mods, onDone }: RoomProps) {
-  const deck = useMemo(() => pick(sortDecksFor(mods.media)), []);
+  const deck = useMemo(() => pick(sortDecksFor(mods.keys)), []);
   const cards = useMemo(() => shuffle(deck.cards, Math.random).slice(0, mods.hard ? 15 : 10), [deck]);
   const seconds = (mods.hard ? 2 : 3) + mods.bonusSeconds / 2;
   const [i, setI] = useState(0);
@@ -298,7 +297,7 @@ export function SortRoom({ mods, onDone }: RoomProps) {
 
 /** Name them: five of a list (seven for an elite) against the clock. */
 export function Name5Room({ mods, onDone }: RoomProps) {
-  const list = useMemo(() => pick(listsFor(mods.media)), []);
+  const list = useMemo(() => pick(listsFor(mods.keys)), []);
   const need = mods.hard ? 7 : 5;
   const seconds = (mods.hard ? 45 : 50) + mods.bonusSeconds;
   const [found, setFound] = useState<string[]>([]);
@@ -364,8 +363,8 @@ export function Name5Room({ mods, onDone }: RoomProps) {
 }
 
 /** A boss room: one phase of a guardian's Boss Battle, at Medium. Act 1 is a Knowledge Blitz, act 2 a Final Blow. */
-export function BossRoom({ act, media, onDone }: { act: number; media: Domain[]; onDone: (r: RoomResult) => void }) {
-  const boss = useMemo(() => pick(bossesFor(media)), []);
+export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; onDone: (r: RoomResult) => void }) {
+  const boss = useMemo(() => pick(bossesFor(keys)), []);
   const d = DIFFICULTIES.medium;
   const blitz = useMemo(() => drawBlitz(boss, d, Math.random), [boss]);
   const finale = useMemo(() => drawFinale(boss, d, Math.random), [boss]);
