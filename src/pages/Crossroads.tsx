@@ -46,13 +46,6 @@ interface Board {
 const newBoard = (score: number): Board => ({ goals: boardGoals(linesFor(score)), bridges: [], played: 0 });
 const randomLine = (lines: number) => Math.floor(Math.random() * lines);
 
-/** Distance from a point to a bridge, to tap it away. */
-function distTo(br: Bridge, x: number, y: number) {
-  const [x1, y1, x2, y2] = [lineX(br.a), br.ya, lineX(br.b), br.yb];
-  const l2 = (x2 - x1) ** 2 + (y2 - y1) ** 2 || 1;
-  const k = Math.max(0, Math.min(1, ((x - x1) * (x2 - x1) + (y - y1) * (y2 - y1)) / l2));
-  return Math.hypot(x - (x1 + k * (x2 - x1)), y - (y1 + k * (y2 - y1)));
-}
 
 function Game() {
   const best = useProgress((s) => s.bests[BEST_KEY] ?? 0);
@@ -186,15 +179,13 @@ function Game() {
     setDrag(null);
     const { a, b } = drag;
     const cur = boardRef.current;
-    if (Math.hypot(b.x - a.x, b.y - a.y) < 14) {
-      // A tap: takes away the bridge under it.
-      const hit = cur.bridges.filter((br) => distTo(br, a.x, a.y) < 14).sort((p, q) => distTo(p, a.x, a.y) - distTo(q, a.x, a.y))[0];
-      if (hit) (sfx.select(), setBoard({ ...cur, bridges: cur.bridges.filter((br) => br !== hit) }));
-      return;
-    }
+    // A tap does nothing: bridges are there to stay — the board fills up, and that's the game.
+    if (Math.hypot(b.x - a.x, b.y - a.y) < 14) return;
     const la = lineNear(a.x);
     const lb = lineNear(b.x);
-    if (la === null || lb === null || la === lb) return setNote('A bridge starts on one line and ends on another.');
+    if (la === null || lb === null || la === lb) return setNote('A bridge starts on one line and ends on the next one.');
+    // Only neighbouring lines: from line 1 to line 3 takes two bridges, 1 to 2 and 2 to 3.
+    if (Math.abs(la - lb) !== 1) return (sfx.wrong(), setNote('A bridge only joins two neighbouring lines.'));
     const ya = clampY(a.y);
     const yb = clampY(b.y);
     if (crowded(cur.bridges, la, ya) || crowded(cur.bridges, lb, yb)) return (sfx.wrong(), setNote('Too close to another bridge on that line.'));
@@ -236,7 +227,7 @@ function Game() {
         onPointerMove={onMove}
         onPointerUp={onUp}
         onPointerCancel={() => setDrag(null)}
-        aria-label="The crossroads: draw from one line to another to build a bridge, tap a bridge to remove it"
+        aria-label="The crossroads: draw from one line to the next to build a bridge"
       >
         {Array.from({ length: lines }, (_, i) => (
           <line key={i} x1={lineX(i)} y1={TOP - 10} x2={lineX(i)} y2={HEIGHT} className="stroke-ink-soft" strokeWidth={4} strokeLinecap="round" />
@@ -310,9 +301,9 @@ export default function Crossroads() {
         </Link>
         <h1 className="text-5xl font-bold">Crossroads</h1>
         <p className="text-ink-soft">
-          A character falls down one of the lines: lead them to their own franchise at the bottom. Draw a bridge from one line to another, at
-          any angle — whoever meets its end takes it, across to the other line, and keeps falling. Tap a bridge to remove it. Your bridges stay
-          for the next character, and are cleared every {ROUNDS_PER_BOARD}; every point makes the fall a little quicker.
+          A character falls down one of the lines: lead them to their own franchise at the bottom. Draw a bridge between two neighbouring lines,
+          at any angle — whoever meets its end takes it, across to the other line, and keeps falling. A bridge can&apos;t be taken back: your
+          bridges stay for the next characters, and are cleared every {ROUNDS_PER_BOARD}; every point makes the fall a little quicker.
         </p>
       </div>
       <Game />

@@ -1,5 +1,5 @@
 // Crossroads: vertical lines, a character falling down one of them, franchises at the bottom.
-// The player draws bridges between lines, at any angle, and the character takes every bridge
+// The player draws bridges between neighbouring lines, at any angle, and the character takes every bridge
 // whose end it meets — along the slant, to the other line — then keeps falling. Lead it to its
 // own franchise. Bridges stay from one character to the next and are cleared every few rounds,
 // when the franchises at the bottom change.
@@ -25,7 +25,7 @@ const FRANCHISE_FR: Record<string, string> = {
 export const travellerName = (t: Traveller, lang: NameLang) => (lang === 'fr' && t.fr) || t.name;
 export const franchiseName = (f: string, lang: NameLang) => (lang === 'fr' && FRANCHISE_FR[f]) || f;
 
-/** A bridge from line `a` at height `ya` to line `b` at height `yb` (any two lines, any slant). */
+/** A bridge from line `a` at height `ya` to the next line `b` at height `yb` (any slant). */
 export interface Bridge {
   id: number;
   a: number;
