@@ -11,8 +11,9 @@ export const wordOf = (name: string) =>
     .replace(/[^A-Za-z]/g, '')
     .toUpperCase();
 
-export const MIN_LETTERS = 4;
-export const MAX_LETTERS = 9;
+// Any length goes: the answer's length is hidden, and a guess can be any name of the set.
+export const MIN_LETTERS = 2;
+export const MAX_LETTERS = 16;
 export const WORDLE_TRIES = 6;
 
 export interface WordleName {
@@ -40,9 +41,9 @@ const named = (names: string[]): WordleName[] => {
 };
 const series = (id: string) => SILHOUETTES.find((s) => s.id === id)?.entries.map((e) => e.name) ?? [];
 
-// One Piece goes by short names ("Luffy", "Zoro"): the first spelling of each that fits.
+// One Piece goes by short names ("Luffy", not "Monkey D. Luffy"): the first spelling of each up to 9 letters.
 const onePiece = ONE_PIECE.characters.slice(0, 120).flatMap((c) => {
-  const short = [c.name, ...c.aliases].find((n) => fits(wordOf(n)));
+  const short = [c.name, ...c.aliases].find((n) => fits(wordOf(n)) && wordOf(n).length <= 9);
   return short ? [short] : [];
 });
 
@@ -58,7 +59,14 @@ export const wordleSet = (id: string | undefined) => WORDLE_SETS.find((s) => s.i
 
 export type LetterMark = 'hit' | 'near' | 'miss';
 
-/** Wordle marks: right place, elsewhere in the word (as many times as it's there), or not in it. */
+/** How the answer's length compares to a guess's. */
+export const lengthHint = (guess: string, answer: string): 'longer' | 'shorter' | 'same' =>
+  answer.length > guess.length ? 'longer' : answer.length < guess.length ? 'shorter' : 'same';
+
+/**
+ * Wordle marks: right place, elsewhere in the word (as many times as it's there), or not in it.
+ * Guess and answer can differ in length: letters past the answer's end can only be elsewhere or out.
+ */
 export function markGuess(guess: string, answer: string): LetterMark[] {
   const marks: LetterMark[] = Array(guess.length).fill('miss');
   const left = new Map<string, number>();

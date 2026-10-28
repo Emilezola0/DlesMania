@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { WORDLE_SETS, WORDLE_TRIES, markGuess, wordleSet, type LetterMark, type WordleSet } from '../arcade/wordle';
+import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, lengthHint, markGuess, wordleSet, type LetterMark, type WordleSet } from '../arcade/wordle';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -12,6 +12,13 @@ const MARK_CLASS: Record<LetterMark, string> = {
   miss: 'border-miss/60 bg-miss/40 text-ink-soft',
 };
 const RANK: Record<LetterMark, number> = { miss: 0, near: 1, hit: 2 };
+const HINT = {
+  longer: { icon: '▲', text: 'The name is longer', className: 'text-accent' },
+  shorter: { icon: '▼', text: 'The name is shorter', className: 'text-coral' },
+  same: { icon: '=', text: 'Same length', className: 'text-hit' },
+};
+/** Rows are as long as their guess: tiles shrink so the longest still fits a phone. */
+const tileSize = (cols: number) => `min(2.75rem, calc((min(100vw, 36rem) - 4.5rem) / ${cols} - 0.375rem))`;
 
 function Game({ set }: { set: WordleSet }) {
   const key = `wordle:${set.id}`;
@@ -19,12 +26,11 @@ function Game({ set }: { set: WordleSet }) {
   const recordBest = useProgress((s) => s.recordBest);
   const [run, setRun] = useState(0);
   const answer = useMemo(() => set.names[Math.floor(Math.random() * set.names.length)], [set, run]);
-  const valid = useMemo(() => new Set(set.names.filter((n) => n.word.length === answer.word.length).map((n) => n.word)), [set, answer]);
+  const valid = useMemo(() => new Set(set.names.map((n) => n.word)), [set]);
   const [guesses, setGuesses] = useState<string[]>([]);
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
   const [streak, setStreak] = useState(0);
-  const len = answer.word.length;
   const won = guesses.at(-1) === answer.word;
   const done = won || guesses.length >= WORDLE_TRIES;
 
@@ -38,7 +44,7 @@ function Game({ set }: { set: WordleSet }) {
   }
 
   const submit = () => {
-    if (typed.length < len) return setNote(`${len} letters needed`);
+    if (!typed) return;
     if (!valid.has(typed)) {
       setNote(`Not a ${set.label.toLowerCase()} name`);
       shake(document.getElementById('wordle-row'), 6, 300);
@@ -65,7 +71,7 @@ function Game({ set }: { set: WordleSet }) {
     if (k === 'ENTER') return submit();
     setNote(null);
     if (k === 'BACK') return setTyped((t) => t.slice(0, -1));
-    if (/^[A-Z]$/.test(k)) setTyped((t) => (t.length < len ? t + k : t));
+    if (/^[A-Z]$/.test(k)) setTyped((t) => (t.length < MAX_LETTERS ? t + k : t));
   };
 
   useEffect(() => {
@@ -90,30 +96,33 @@ function Game({ set }: { set: WordleSet }) {
   return (
     <div className="mx-auto max-w-xl space-y-4">
       <div className="flex items-end justify-between">
-        <p className="font-serif text-lg italic text-ink-soft">{len} letters · {WORDLE_TRIES} tries</p>
+        <p className="font-serif text-lg italic text-ink-soft">Any name · {WORDLE_TRIES - guesses.length} {WORDLE_TRIES - guesses.length === 1 ? 'try' : 'tries'} left</p>
         <p className="font-display text-sm text-ink-soft">
           Streak <span className="font-serif text-2xl font-bold text-ink">{streak}</span> · best {Math.max(best, streak)}
         </p>
       </div>
       <div className="mx-auto grid w-fit gap-1.5">
-        {Array.from({ length: WORDLE_TRIES }, (_, row) => {
-          const g = guesses[row];
-          const current = row === guesses.length && !done;
-          const letters = g ?? (current ? typed : '');
+        {[...guesses, ...(done ? [] : [typed])].map((letters, row) => {
+          const g = row < guesses.length ? letters : null;
           const marks = g ? markGuess(g, answer.word) : null;
+          const hint = g && !(won && row === guesses.length - 1) ? HINT[lengthHint(g, answer.word)] : null;
+          const size = tileSize(Math.max(5, ...guesses.map((x) => x.length), typed.length) + 1);
           return (
-            <div key={row} id={current ? 'wordle-row' : undefined} className="flex gap-1.5">
-              {Array.from({ length: len }, (_, i) => (
+            <div key={row} id={g ? undefined : 'wordle-row'} className="flex items-center gap-1.5">
+              {Array.from({ length: Math.max(letters.length, g ? 0 : 1) }, (_, i) => (
                 <span
                   key={i}
-                  className={`grid size-9 place-items-center rounded-md border-2 font-display text-lg font-bold sm:size-11 sm:text-xl ${
-                    marks ? `animate-pop ${MARK_CLASS[marks[i]]}` : letters[i] ? 'border-ink' : 'border-rule'
+                  className={`grid aspect-square place-items-center rounded-md border-2 font-display text-[clamp(0.7rem,4vw,1.25rem)] font-bold ${
+                    marks ? `animate-pop ${MARK_CLASS[marks[i]]}` : letters[i] ? 'border-ink' : 'border-dashed border-rule'
                   }`}
-                  style={marks ? { animationDelay: `${i * 70}ms` } : undefined}
+                  style={{ width: size, ...(marks ? { animationDelay: `${i * 70}ms` } : {}) }}
                 >
                   {letters[i] ?? ''}
                 </span>
               ))}
+              <span title={hint?.text} aria-label={hint?.text} className={`grid place-items-center font-display text-lg font-bold ${hint?.className ?? ''}`} style={{ width: size }}>
+                {hint?.icon ?? ''}
+              </span>
             </div>
           );
         })}
@@ -186,8 +195,9 @@ export default function FranchiseWordle() {
         </Link>
         <h1 className="text-5xl font-bold">Franchise Wordle</h1>
         <p className="max-w-xl text-ink-soft">
-          Wordle with names: guess the Pokémon, the champion or the character in six tries. Every guess must be a real name of the same length;
-          green is the right letter in the right place, yellow is elsewhere in the name.
+          Wordle with names: guess the Pokémon, the champion or the character in six tries. The name's length is hidden and any name of the set
+          can be a guess: green is the right letter in the right place, yellow is elsewhere in the name, and ▲ ▼ tell you whether the name is
+          longer or shorter.
         </p>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
