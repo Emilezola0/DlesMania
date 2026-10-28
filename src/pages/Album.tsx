@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { canBeBackdrop } from '../gacha/Perks';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -86,7 +87,35 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
           </p>
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
+        <Perks card={card} />
       </div>
+    </div>
+  );
+}
+
+/** What the card can be: the player's icon (any card), the pages' background (Rare or better). */
+function Perks({ card }: { card: Card }) {
+  const avatar = useProgress((s) => s.avatar);
+  const backdrop = useProgress((s) => s.backdrop);
+  const setAvatar = useProgress((s) => s.setAvatar);
+  const setBackdrop = useProgress((s) => s.setBackdrop);
+  const isAvatar = avatar === card.id;
+  const isBackdrop = backdrop === card.id;
+  const btn = (on: boolean) => `rounded-full border-2 px-3 py-1.5 text-sm font-bold transition ${on ? 'border-white bg-white text-black' : 'border-white/40 text-white hover:border-white'}`;
+  return (
+    <div className="flex flex-wrap justify-center gap-2">
+      <button type="button" onClick={() => (sfx.select(), setAvatar(isAvatar ? null : card.id))} className={btn(isAvatar)}>
+        {isAvatar ? '✓ Your icon' : '👤 Use as my icon'}
+      </button>
+      {canBeBackdrop(card) ? (
+        <button type="button" onClick={() => (sfx.select(), setBackdrop(isBackdrop ? null : card.id))} className={btn(isBackdrop)}>
+          {isBackdrop ? '✓ Your background' : '🖼 Use as background'}
+        </button>
+      ) : (
+        <span className="rounded-full border-2 border-dashed border-white/25 px-3 py-1.5 text-sm font-semibold text-white/50" title="Only Rare cards and better can be a background">
+          🖼 Background: Rare or better
+        </span>
+      )}
     </div>
   );
 }

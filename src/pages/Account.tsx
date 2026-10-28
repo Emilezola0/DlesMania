@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { NameLangSwitch } from '../components/NameLangSwitch';
 import { Spinner } from '../components/Spinner';
 import { mergeSaves, pickSave, type SaveData } from '../cloud/merge';
+import { CARD_BY_ID, RARITY_INFO } from '../gacha/cards';
+import { CardAvatar } from '../gacha/Perks';
 import { startCloud, useCloud } from '../cloud/state';
 import { todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
@@ -63,6 +65,42 @@ function Backup() {
         <input ref={file} type="file" accept="application/json,.json" className="hidden" onChange={(e) => importSave(e.target.files?.[0])} />
       </div>
       {note && <p className="text-sm font-semibold">{note}</p>}
+    </section>
+  );
+}
+
+/** The cards the player shows: their icon and their background, picked in the album. */
+function Profile() {
+  const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? CARD_BY_ID.get(s.avatar) : undefined));
+  const backdrop = useProgress((s) => (s.backdrop && s.cards[s.backdrop] ? CARD_BY_ID.get(s.backdrop) : undefined));
+  const setAvatar = useProgress((s) => s.setAvatar);
+  const setBackdrop = useProgress((s) => s.setBackdrop);
+  const row = (label: string, card: typeof avatar, clear: () => void) => (
+    <div className="flex items-center gap-3">
+      {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
+      <div className="min-w-0 flex-1">
+        <p className="text-xs uppercase tracking-widest text-ink-faint">{label}</p>
+        <p className="truncate font-semibold">{card ? `${card.name} · ${RARITY_INFO[card.rarity].name}` : 'None'}</p>
+      </div>
+      {card && (
+        <button type="button" onClick={clear} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold">
+          Remove
+        </button>
+      )}
+    </div>
+  );
+  return (
+    <section className="page space-y-3 rounded-md p-5">
+      <h2 className="font-display text-lg font-bold">Your cards on show</h2>
+      {row('Icon', avatar, () => setAvatar(null))}
+      {row('Background', backdrop, () => setBackdrop(null))}
+      <p className="text-xs text-ink-faint">
+        Pick them in the{' '}
+        <Link to="/album" className="font-semibold text-accent">
+          Album
+        </Link>
+        : open a card, then “Use as my icon” — or, for a Rare card or better, “Use as background”.
+      </p>
     </section>
   );
 }
@@ -180,6 +218,8 @@ export default function Account() {
           <p className="text-xs text-ink-faint">Your progress in this browser comes with you: the first time you sign in here, it&apos;s added to your account.</p>
         </section>
       )}
+
+      <Profile />
 
       <section className="page flex flex-wrap items-center justify-between gap-3 rounded-md p-5">
         <div>

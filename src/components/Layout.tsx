@@ -5,6 +5,8 @@ import { useUi } from '../store/ui';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
 import { useCloud } from '../cloud/state';
+import { CARD_BY_ID } from '../gacha/cards';
+import { CardAvatar, CardBackdrop } from '../gacha/Perks';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
@@ -152,6 +154,8 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
 /** The account: a person when signed out, the player's initial when in, with a dot for the save's state. */
 function AccountButton() {
   const { status, email, name } = useCloud();
+  const avatarId = useProgress((s) => s.avatar);
+  const avatar = useProgress((s) => (avatarId && s.cards[avatarId] ? CARD_BY_ID.get(avatarId) : undefined));
   const signedIn = !!email && status !== 'signedOut';
   const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
   return (
@@ -161,7 +165,9 @@ function AccountButton() {
       aria-label="Account"
       className="relative grid size-7 shrink-0 place-items-center rounded-full text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
     >
-      {signedIn ? (
+      {avatar ? (
+        <CardAvatar card={avatar} className="size-6 min-[420px]:size-7" />
+      ) : signedIn ? (
         <span className="grid size-6 place-items-center rounded-full bg-accent font-display text-xs font-bold uppercase text-on-strong">{(name ?? email ?? '?')[0]}</span>
       ) : (
         <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
@@ -218,6 +224,7 @@ export function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <CardBackdrop />
       <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4 sm:gap-4">
           <NavLink to="/" className="group flex items-center gap-2.5">

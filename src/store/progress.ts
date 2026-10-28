@@ -68,6 +68,12 @@ interface ProgressState {
   /** Today's earnings book: capped coins, bosses paid for, missions (see src/gacha/economy.ts). */
   econ: Economy;
   packsOpened: number;
+  /** A card shown as the player's icon (any card they own). */
+  avatar: string | null;
+  /** A card shown behind the pages (Rare or better). */
+  backdrop: string | null;
+  setAvatar: (cardId: string | null) => void;
+  setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   openPack: (cost: number, cardIds: string[]) => boolean;
   claimMission: (kind: MissionKind) => void;
@@ -168,6 +174,10 @@ export const useProgress = create<ProgressState>()(
       cards: {},
       econ: freshEconomy(todayKey()),
       packsOpened: 0,
+      avatar: null,
+      backdrop: null,
+      setAvatar: (avatar) => set({ avatar }),
+      setBackdrop: (backdrop) => set({ backdrop }),
       openPack: (cost, cardIds) => {
         if (get().coins < cost) return false;
         set((s) => {
@@ -262,7 +272,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), packsOpened: 0 }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), packsOpened: 0, avatar: null, backdrop: null }),
     }),
     {
       name: 'omnidle-progress',

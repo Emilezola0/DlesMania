@@ -5,19 +5,23 @@ import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
-import { RARITIES, RARITY_INFO, type Card, type Rarity } from './cards';
+import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
 import type { Pack } from './packs';
-
-/** Each rarity's light: the glow from the torn pack, the shooting star, the bursts. */
-export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24' };
 
 /** Where the pack tears: this far down its height. */
 const TEAR_AT = 18;
 /** The share of the width a swipe has to cross to tear the pack. */
 const TEAR_ENOUGH = 0.8;
 
-type Phase = 'pack' | 'torn' | 'meteor' | 'reveal' | 'summary';
+type Phase = 'choose' | 'pack' | 'torn' | 'meteor' | 'reveal' | 'summary';
+
+/** The three packs to choose from: the same pack, each tinted and tilted a little differently. */
+const LINEUP = [
+  { filter: 'hue-rotate(-22deg) saturate(1.1)', tilt: -7 },
+  { filter: 'none', tilt: 0 },
+  { filter: 'hue-rotate(22deg) saturate(1.1)', tilt: 7 },
+];
 
 const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -49,7 +53,7 @@ function Burst({ color, count }: { color: string; count: number }) {
 function Rays({ color, strong }: { color: string; strong: boolean }) {
   return (
     <div
-      className="pack-rays pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[220%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+      className="pack-rays pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[220%] rounded-full"
       style={{
         background: `repeating-conic-gradient(from 0deg, ${color}${strong ? '66' : '33'} 0deg 8deg, transparent 8deg 24deg)`,
         maskImage: 'radial-gradient(circle, #000 20%, transparent 65%)',
@@ -69,7 +73,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const counts = useProgress((s) => s.cards);
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
-  const [phase, setPhase] = useState<Phase>('pack');
+  const [phase, setPhase] = useState<Phase>('choose');
+  const [chosen, setChosen] = useState<number | null>(null);
   const [tear, setTear] = useState(0);
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -171,7 +176,17 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       later(go, 380);
     } else go();
   };
+  /** One of the three: the others drop away, the chosen one comes forward to be torn. */
+  const choose = (k: number) => {
+    if (phase !== 'choose' || chosen !== null) return;
+    setChosen(k);
+    sfx.select();
+    sfx.shimmer(3);
+    later(() => setPhase('pack'), 650);
+  };
+
   const act = () => {
+    if (phase === 'choose') return choose(1);
     if (phase === 'pack') return autoTear();
     if (phase !== 'reveal' || charging) return;
     if (!flipped) return turn();
@@ -191,6 +206,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') return phase === 'summary' ? onClose() : skip();
+      if (phase === 'choose' && /^[1-3]$/.test(e.key)) return choose(Number(e.key) - 1);
       if (e.key !== 'Enter' && e.key !== ' ') return;
       e.preventDefault();
       if (phase === 'summary') onClose();
@@ -211,6 +227,32 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       )}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
+      {/* 0. Three packs: pick one. */}
+      {phase === 'choose' && (
+        <div className="flex w-full max-w-3xl flex-col items-center gap-8">
+          <p className="font-display text-sm font-bold tracking-[0.35em] text-white/80">CHOOSE YOUR PACK</p>
+          <div className="flex items-end justify-center gap-3 sm:gap-8">
+            {LINEUP.map((l, k) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => choose(k)}
+                aria-label={`Pack ${k + 1}`}
+                className={`w-24 transition-all duration-500 sm:w-40 ${chosen === null ? 'hover:-translate-y-3 hover:scale-105' : chosen === k ? 'pack-pick' : 'pack-pass'}`}
+                style={{ filter: l.filter, ['--tilt' as string]: `${l.tilt}deg`, animationDelay: chosen === null ? `${k * 0.4}s` : undefined }}
+              >
+                <div className={chosen === null ? 'pack-float' : ''} style={{ animationDelay: `${k * -1}s` }}>
+                  <div style={{ transform: `rotate(${l.tilt}deg)` }}>
+                    <PackArt pack={pack} />
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+          <p className="text-center font-display text-xs font-bold tracking-widest text-white/50">TAP ONE · OR PRESS 1, 2, 3</p>
+        </div>
+      )}
+
       {/* 1. The pack: swipe across its top to tear it. */}
       {(phase === 'pack' || phase === 'torn') && (
         <div className="flex flex-col items-center gap-6">
@@ -228,7 +270,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             {/* The light inside, pouring out of the tear. */}
             {phase === 'torn' && (
               <div
-                className="pack-beam pointer-events-none absolute left-1/2 w-[150%] -translate-x-1/2"
+                className="pack-beam pointer-events-none absolute left-1/2 w-[150%]"
                 style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${light}, ${light}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
                 aria-hidden
               />

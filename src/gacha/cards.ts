@@ -16,6 +16,9 @@ export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: numb
   legendary: { name: 'Legendary', gem: '★', rank: 3 },
 };
 
+/** Each rarity's light: the glow from a torn pack, the shooting star, the bursts, an icon's ring. */
+export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24' };
+
 export interface Card {
   id: string;
   name: string;
