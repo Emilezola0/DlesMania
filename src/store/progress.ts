@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
@@ -44,6 +45,9 @@ interface ProgressState {
   whosThat: Record<string, number>;
   /** Best scores in the arcade games (Higher or Lower, Name Them All, Guess the Year), by "<game>:<mode>". */
   bests: Record<string, number>;
+  /** The Expedition run in progress (src/rogue/run.ts), kept across refreshes. */
+  rogueRun: RunState | null;
+  setRogueRun: (run: RunState | null) => void;
   /** Specialist dailies: "<universe>:<date>" -> round index -> record. */
   special: Record<string, DayRounds>;
   sound: boolean;
@@ -100,6 +104,8 @@ export const useProgress = create<ProgressState>()(
       bossDifficulty: 'easy',
       whosThat: {},
       bests: {},
+      rogueRun: null,
+      setRogueRun: (rogueRun) => set({ rogueRun }),
       special: {},
       sound: true,
       sfxVolume: 100,
@@ -147,7 +153,7 @@ export const useProgress = create<ProgressState>()(
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
-      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, special: {}, seen: {} }),
+      resetAll: () => set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {} }),
     }),
     {
       name: 'omnidle-progress',

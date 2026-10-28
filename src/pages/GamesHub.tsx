@@ -30,7 +30,7 @@ function Card({ game }: { game: GameCard }) {
 
 /** /games: every game beyond the daily challenge, Free Play and the bosses. */
 export default function GamesHub() {
-  const { special, whosThat, bests } = useProgress();
+  const { special, whosThat, bests, rogueRun } = useProgress();
   const today = todayKey();
   const doneToday = (key: string, rounds: number) => Object.values(special[`${key}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
   const universesDone = UNIVERSES.filter((u) => doneToday(u.id, u.types.length)).length;
@@ -128,6 +128,13 @@ export default function GamesHub() {
       stat: best('memory:') ? `Best: ${best('memory:')} points` : undefined,
     },
     {
+      to: '/map-quiz',
+      icon: '📍',
+      title: 'Map Quiz',
+      blurb: 'A place name, a world map: click where it is. Kanto and Runeterra to start.',
+      stat: best('map:') ? `Best: ${best('map:')}` : undefined,
+    },
+    {
       to: '/guess-the-year',
       icon: '📅',
       title: 'Guess the Year',
@@ -143,6 +150,22 @@ export default function GamesHub() {
         <h1 className="text-5xl font-bold">Games</h1>
         <p className="max-w-xl text-ink-soft">Everything else to play: more dailies with their own streaks, and arcade games to play as long as you like.</p>
       </div>
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Adventure</h2>
+        <Link to="/expedition" className="page group flex flex-col gap-2 rounded-md p-6 ring-2 ring-coral/50 transition hover:-translate-y-0.5 sm:flex-row sm:items-center">
+          <span className="text-5xl transition-transform group-hover:scale-110">🗺️</span>
+          <span className="flex-1">
+            <span className="block font-display text-2xl font-bold">Expedition</span>
+            <span className="block text-sm text-ink-soft">
+              A roguelike made of every game: choose your path through rooms, collect gold and relics, beat a guardian at the end of each act. Lose all
+              your hearts and the run is over.
+            </span>
+          </span>
+          <span className="text-xs text-ink-faint">
+            {rogueRun && !rogueRun.over ? `Run in progress · act ${rogueRun.act}` : bests['rogue:mixed'] ? `Best: ${bests['rogue:mixed']}` : 'Not played yet'}
+          </span>
+        </Link>
+      </section>
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">More dailies</h2>
         <ul className="grid gap-4 sm:grid-cols-2">

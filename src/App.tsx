@@ -19,6 +19,8 @@ import WhoAmI from './pages/WhoAmI';
 import FranchiseWordle from './pages/FranchiseWordle';
 import QuickSort from './pages/QuickSort';
 import SixDegrees from './pages/SixDegrees';
+import Expedition from './pages/Expedition';
+import MapQuiz from './pages/MapQuiz';
 import WhosThat, { WhosThatHub } from './pages/WhosThat';
 
 export default function App() {
@@ -57,6 +59,10 @@ export default function App() {
         <Route path="quick-sort" element={<QuickSort />} />
         <Route path="quick-sort/:deck" element={<QuickSort />} />
         <Route path="six-degrees" element={<SixDegrees />} />
+        <Route path="expedition" element={<Expedition />} />
+        <Route path="map-quiz" element={<MapQuiz />} />
+        <Route path="map-quiz/:map" element={<MapQuiz />} />
+        <Route path="map-quiz/:map/edit" element={<MapQuiz edit />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
