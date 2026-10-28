@@ -9,7 +9,8 @@ const KEYS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
 const MARK_CLASS: Record<LetterMark, string> = {
   hit: 'border-hit bg-hit text-on-strong',
   near: 'border-near bg-near text-on-pastel',
-  miss: 'border-miss/60 bg-miss/40 text-ink-soft',
+  // Grey, and quiet: only the letters that are in the name should catch the eye.
+  miss: 'border-rule bg-tile text-ink-faint opacity-70',
 };
 const RANK: Record<LetterMark, number> = { miss: 0, near: 1, hit: 2 };
 const HINT = {
