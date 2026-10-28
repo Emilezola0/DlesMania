@@ -180,6 +180,9 @@ export function FlagRound({ round, record, onChange }: Props) {
 const WANTED_BLUR = [16, 12, 9, 6, 4, 2];
 
 /** Wanted: the character's picture on a wanted poster, blurred and sepia, sharpening with each miss. */
+/** Misses before the wanted poster's colours come back (a red coat, green hair... are a big hint). */
+const WANTED_COLOUR_AFTER = 3;
+
 export function WantedRound({ round, record, onChange }: Props) {
   const c = characterById.get(round.targetId)!;
   return (
@@ -195,6 +198,7 @@ export function WantedRound({ round, record, onChange }: Props) {
       answer={{ name: c.name, image: c.image, detail: `${c.affiliation} · ${c.bounty ? `${formatBounty(c.bounty)} berries` : 'no bounty'}` }}
       clue={(wrong, done) => {
         const blur = done ? 0 : WANTED_BLUR[Math.min(wrong, WANTED_BLUR.length - 1)];
+        const coloured = done || wrong >= WANTED_COLOUR_AFTER;
         return (
           <div
             className="mx-auto flex w-full max-w-xs flex-col items-center gap-2 rounded-sm px-5 pb-5 pt-4 text-[#4a3424] shadow-xl"
@@ -208,11 +212,11 @@ export function WantedRound({ round, record, onChange }: Props) {
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 className="size-full scale-110 select-none object-cover object-top transition-[filter] duration-500"
-                style={{ filter: done ? 'none' : `blur(${blur}px) sepia(0.55) contrast(1.05)` }}
+                style={{ filter: done ? 'none' : `blur(${blur}px) ${coloured ? 'sepia(0.35)' : 'grayscale(1) contrast(1.1)'}` }}
               />
             </div>
             <p className="font-serif text-2xl font-black tracking-wide">DEAD OR ALIVE</p>
-            <p className="font-display text-[10px] uppercase tracking-[0.3em] opacity-70">{done ? c.name : 'Sharper with each miss'}</p>
+            <p className="font-display text-[10px] uppercase tracking-[0.3em] opacity-70">{done ? c.name : coloured ? 'Sharper with each miss' : `Sharper with each miss · colour after ${WANTED_COLOUR_AFTER}`}</p>
           </div>
         );
       }}
