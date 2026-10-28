@@ -16,6 +16,9 @@ import RailRush from './pages/RailRush';
 import MemoryPairs from './pages/MemoryPairs';
 import OddOneOut from './pages/OddOneOut';
 import WhoAmI from './pages/WhoAmI';
+import FranchiseWordle from './pages/FranchiseWordle';
+import QuickSort from './pages/QuickSort';
+import SixDegrees from './pages/SixDegrees';
 import WhosThat, { WhosThatHub } from './pages/WhosThat';
 
 export default function App() {
@@ -49,6 +52,11 @@ export default function App() {
         <Route path="memory/:deck" element={<MemoryPairs />} />
         <Route path="odd-one-out" element={<OddOneOut />} />
         <Route path="who-am-i" element={<WhoAmI />} />
+        <Route path="wordle" element={<FranchiseWordle />} />
+        <Route path="wordle/:set" element={<FranchiseWordle />} />
+        <Route path="quick-sort" element={<QuickSort />} />
+        <Route path="quick-sort/:deck" element={<QuickSort />} />
+        <Route path="six-degrees" element={<SixDegrees />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

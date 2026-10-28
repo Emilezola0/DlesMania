@@ -86,6 +86,27 @@ export default function GamesHub() {
       stat: listsTried ? `${listsTried} lists tried · ${listsDone} completed` : undefined,
     },
     {
+      to: '/wordle',
+      icon: '🟩',
+      title: 'Franchise Wordle',
+      blurb: 'Wordle with names: a Pokémon, a champion, a Straw Hat… in six tries.',
+      stat: best('wordle:') ? `Best streak: ${best('wordle:')}` : undefined,
+    },
+    {
+      to: '/quick-sort',
+      icon: '↔️',
+      title: 'Quick Sort',
+      blurb: 'Horde or Alliance? Melee or ranged? Send each card to its side, faster and faster.',
+      stat: best('sort:') ? `Best: ${best('sort:')} sorted` : undefined,
+    },
+    {
+      to: '/six-degrees',
+      icon: '🕸️',
+      title: 'Six Degrees',
+      blurb: 'Link two characters through the groups they share, in as few steps as you can.',
+      stat: best('six:') ? `Best: ${best('six:')} / 15 ★` : undefined,
+    },
+    {
       to: '/who-am-i',
       icon: '🕵️',
       title: 'Who Am I?',
