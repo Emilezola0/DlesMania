@@ -136,3 +136,23 @@ export const sfx = {
       })),
     ),
 };
+
+/**
+ * What a sound says about the play: a right answer, a mistake, a big moment (a streak, a win).
+ * Every game already plays these, so listening here hears every game — equipped cards react to it
+ * (src/gacha/Reactions.tsx).
+ */
+export type Cue = 'good' | 'bad' | 'great';
+const listeners = new Set<(c: Cue) => void>();
+export function onCue(f: (c: Cue) => void): () => void {
+  listeners.add(f);
+  return () => void listeners.delete(f);
+}
+const CUES: Partial<Record<keyof typeof sfx, Cue>> = { correct: 'good', hit: 'good', wrong: 'bad', hurt: 'bad', lose: 'bad', streak: 'great', victory: 'great' };
+for (const [name, cue] of Object.entries(CUES) as [keyof typeof sfx, Cue][]) {
+  const sound = sfx[name] as (...args: unknown[]) => void;
+  (sfx as Record<string, (...args: unknown[]) => void>)[name] = (...args) => {
+    listeners.forEach((f) => f(cue));
+    sound(...args);
+  };
+}

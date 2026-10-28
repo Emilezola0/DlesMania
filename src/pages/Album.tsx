@@ -5,6 +5,7 @@ import { CardBack, CardFace, CardMissing } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { canBeBackdrop } from '../gacha/Perks';
+import { canSpeak, speak } from '../gacha/voice';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -109,6 +110,11 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
         <div className="text-center text-white">
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name)}</p>
           {card.title && <p className="text-sm italic opacity-80">{card.title}</p>}
+          {card.voice && canSpeak() && (
+            <button type="button" onClick={() => speak(card.voice!, card.set)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
+              🔊 Hear “{card.voice}”
+            </button>
+          )}
           <p className="text-sm opacity-80">
             {RARITY_INFO[card.rarity].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>

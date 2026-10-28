@@ -79,6 +79,9 @@ interface ProgressState {
   avatar: string | null;
   /** A card shown behind the pages (Rare or better). */
   backdrop: string | null;
+  /** Legendary and Mythic icons and backgrounds react to the play (on unless turned off). */
+  cardReactions: boolean;
+  setCardReactions: (on: boolean) => void;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -196,6 +199,8 @@ export const useProgress = create<ProgressState>()(
       packsOpened: 0,
       avatar: null,
       backdrop: null,
+      cardReactions: true,
+      setCardReactions: (cardReactions) => set({ cardReactions }),
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
       openPack: (cost, cardIds) => {

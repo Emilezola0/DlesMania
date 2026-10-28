@@ -1,8 +1,8 @@
-// The cards: every franchise of Boss Battle makes a set — its guardian (legendary), its best-known
-// faces (the Radar cards, best-known first: the first few epic, then rare, then common), its deep
-// cuts (the Final Blow cards: rare, then common), and above them all one mythic: a special edition
-// of the franchise's star, with its own title. Only cards with a picture, each name once (the
-// mythic aside).
+// The cards: every franchise of Boss Battle makes a set — three legendaries (its guardian and its
+// two best-known faces), the rest of its best-known faces (the Radar cards, best-known first: epic,
+// then rare, then common), its deep cuts (the Final Blow cards: rare, then common), and above them
+// all one mythic: a special edition of the franchise's star, with its own title and voice line.
+// Only cards with a picture, each name once (the mythic aside).
 import { WHO_UNIVERSES } from '../arcade/whoAmI';
 import { connectionThemes } from '../data';
 import { BOSSES } from '../data/bosses';
@@ -35,29 +35,31 @@ export interface Card {
   description: string;
   /** A mythic's title ("Sun God Nika"). */
   title?: string;
+  /** A mythic's voice line: their catchphrase, shown on the card and read aloud. */
+  voice?: string;
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
 
 /**
- * The mythics: each franchise's star in a special edition — a title and a line of their own.
- * (Lines written for these cards; titles from the franchises.)
+ * The mythics: each franchise's star in a special edition — a title, a line of their own, and a
+ * voice line: their catchphrase. (Lines written for these cards; titles and catchphrases from the franchises.)
  */
-const MYTHICS: Record<string, { name: string; title: string; line: string }> = {
-  lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.' },
-  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.' },
-  minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.' },
-  onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.' },
-  dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.' },
-  naruto: { name: 'Naruto Uzumaki', title: 'Seventh Hokage', line: 'The kid nobody believed in, carrying the whole Leaf on his back — and still grinning.' },
-  starwars: { name: 'Yoda', title: 'Grand Master of the Order', line: 'Nine hundred years of patience, all of it packed into one small green frame.' },
-  harrypotter: { name: 'Harry Potter', title: 'The Boy Who Lived', line: 'A scar, a broom and a stubborn heart: the wizarding world’s most famous survivor.' },
-  lotr: { name: 'Frodo Baggins', title: 'The Ring-bearer', line: 'The smallest of walkers carried the heaviest weight, all the way to the fire.' },
-  mcu: { name: 'Iron Man', title: 'The Armored Avenger', line: 'Genius, billionaire, philanthropist — and, at the very end, the one who snapped back.' },
-  smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.' },
-  genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.' },
-  wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.' },
-  inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!' },
+const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string }> = {
+  lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "Don't you trust me?" },
+  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!" },
+  minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…" },
+  onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.', voice: "I'm gonna be King of the Pirates!" },
+  dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.', voice: "Kamehameha!" },
+  naruto: { name: 'Naruto Uzumaki', title: 'Seventh Hokage', line: 'The kid nobody believed in, carrying the whole Leaf on his back — and still grinning.', voice: "Believe it!" },
+  starwars: { name: 'Yoda', title: 'Grand Master of the Order', line: 'Nine hundred years of patience, all of it packed into one small green frame.', voice: "Do or do not. There is no try." },
+  harrypotter: { name: 'Harry Potter', title: 'The Boy Who Lived', line: 'A scar, a broom and a stubborn heart: the wizarding world’s most famous survivor.', voice: "Expecto Patronum!" },
+  lotr: { name: 'Frodo Baggins', title: 'The Ring-bearer', line: 'The smallest of walkers carried the heaviest weight, all the way to the fire.', voice: "I will take the Ring." },
+  mcu: { name: 'Iron Man', title: 'The Armored Avenger', line: 'Genius, billionaire, philanthropist — and, at the very end, the one who snapped back.', voice: "I am Iron Man." },
+  smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!" },
+  genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Dawn!" },
+  wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "Elune be with you." },
+  inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
 };
 
 const slug = (s: string) =>
@@ -74,7 +76,8 @@ const WHO_SET: Record<string, string> = { marvel: 'mcu' };
 const CLUES = new Map(WHO_UNIVERSES.flatMap((u) => u.targets.map((t) => [`${WHO_SET[u.id] ?? u.id}:${t.name}`, t.clues.slice(-3, -1).join(' · ')] as const)));
 
 /** When nothing more telling is known: a line by rarity, with the card's own name. */
-const LINES: Record<'epic' | 'rare' | 'common' | 'deep', string[]> = {
+const LINES: Record<'legendary' | 'epic' | 'rare' | 'common' | 'deep', string[]> = {
+  legendary: ['One of the pillars of {f}: the story bends around them.', 'Where {f} goes, they lead.', 'A name every fan of {f} says with respect.'],
   epic: ['An icon of {f} — everyone knows this face.', 'The face of {f} for a generation of fans.', 'A legend of {f} in their own right.'],
   rare: ['{n}, a familiar face from {f}.', '{n}, a fan favourite of {f}.', 'Hard to picture {f} without {n}.'],
   common: ['{n}, part of the {f} roster.', '{n}, one of the many faces of {f}.', 'You have met {n} somewhere in {f}.'],
@@ -161,14 +164,16 @@ const FACTS: Map<string, Map<string, string[]>> = (() => {
 /**
  * A card's line, fuller the rarer the card: a common says one thing about it ("Damage hero."), a
  * rare up to two; an epic gets its Who Am I? clues (or its groups) and a word of its own; the
- * legendaries and mythics are written apart (the guardian's taunt, the mythic's own line).
+ * legendary hero the same with a line of standing; guardians and mythics are written apart (the
+ * guardian's taunt, the mythic's own line).
  */
 function describe(set: string, name: string, kind: keyof typeof LINES, franchise: string): string {
   const facts = (FACTS.get(set)?.get(name) ?? []).map(oneOf);
   if (kind === 'common' || kind === 'deep') return facts.length ? `${facts[0]}.` : `Seen in ${franchise}.`;
   if (kind === 'rare') return facts.length ? `${facts.join(' · ')}.` : `A familiar face of ${franchise}.`;
   const what = CLUES.get(`${set}:${name}`) || (facts.length ? facts.join(' · ') : '');
-  return what ? `${what.replace(/\.$/, '')}. ${line('epic', name, franchise)}` : line('epic', name, franchise);
+  const say = line(kind === 'legendary' ? 'legendary' : 'epic', name, franchise);
+  return what ? `${what.replace(/\.$/, '')}. ${say}` : say;
 }
 
 /** The first sentence of a guardian's opening taunt. */
@@ -196,14 +201,19 @@ export const CARDS: Card[] = (() => {
     const intro = (b.lines as { intro?: string } | undefined)?.intro;
     add(b.boss.name, b.boss.image, 'legendary', `${b.boss.title}, guardian of ${b.franchise}.${intro ? ` “${firstLine(intro)}”` : ''}`);
     b.radar.members.forEach((m, i) => {
-      const rarity: Rarity = i < 3 ? 'epic' : i < 8 ? 'rare' : 'common';
+      // The two best-known faces stand with the guardian as legendaries; the next four are epic.
+      const rarity: Rarity = i < 2 ? 'legendary' : i < 6 ? 'epic' : i < 11 ? 'rare' : 'common';
       add(m.label, m.image, rarity, describe(b.id, m.label, rarity, b.franchise));
     });
-    b.finale.forEach((c, i) => add(c.label, c.image, i < 4 ? 'rare' : 'common', describe(b.id, c.label, 'deep', b.franchise)));
+    // The deep cuts: the first an epic find, the next three rare.
+    b.finale.forEach((c, i) => {
+      const rarity: Rarity = i < 1 ? 'epic' : i < 4 ? 'rare' : 'common';
+      add(c.label, c.image, rarity, describe(b.id, c.label, rarity === 'epic' ? 'epic' : 'deep', b.franchise));
+    });
     // The mythic: the star's special edition, numbered after the rest of the set.
     const m = MYTHICS[b.id];
     const star = m && b.radar.members.find((x) => x.label === m.name);
-    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, description: m.line });
+    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, description: m.line });
     set.forEach((c, i) => out.push({ ...c, no: i + 1 }));
   }
   return out;

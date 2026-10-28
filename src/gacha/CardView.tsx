@@ -73,6 +73,11 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth }: {
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${card.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           <img src={card.image} alt="" draggable={false} loading="lazy" className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
+          {card.voice && (
+            <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">
+              “{card.voice}”
+            </p>
+          )}
         </div>
         <div className="relative z-10 flex items-center justify-between px-[4cqw] pt-[2.5cqw] text-[4.6cqw] font-semibold opacity-80">
           <span className="truncate">{card.franchise}</span>

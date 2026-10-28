@@ -28,6 +28,7 @@ export const SYNCED = [
   'nameLang',
   'avatar',
   'backdrop',
+  'cardReactions',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -155,5 +156,6 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // The icon and background: the account's on a first link (when it has them), else the latest.
     avatar: (firstLink ? cloud.avatar ?? local.avatar : latest.avatar) ?? null,
     backdrop: (firstLink ? cloud.backdrop ?? local.backdrop : latest.backdrop) ?? null,
+    cardReactions: (firstLink ? cloud : latest).cardReactions ?? local.cardReactions ?? true,
   };
 }

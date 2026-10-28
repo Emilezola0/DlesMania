@@ -7,6 +7,7 @@ import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
+import { speak } from './voice';
 import type { Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
@@ -172,6 +173,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         sfx.victory();
         celebrateBig();
         later(() => (celebrateBig(), sfx.streak()), 900);
+        if (c.voice) later(() => speak(c.voice!, c.set), 1300);
         shake(box.current, 18, 800);
       } else if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), shake(box.current, 14, 600));
       else if (c.rarity === 'epic') (sfx.streak(), celebrate(), shake(box.current, 6, 300));

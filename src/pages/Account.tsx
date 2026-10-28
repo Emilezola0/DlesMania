@@ -75,6 +75,8 @@ function Profile() {
   const backdrop = useProgress((s) => (s.backdrop && s.cards[s.backdrop] ? CARD_BY_ID.get(s.backdrop) : undefined));
   const setAvatar = useProgress((s) => s.setAvatar);
   const setBackdrop = useProgress((s) => s.setBackdrop);
+  const reactions = useProgress((s) => s.cardReactions ?? true);
+  const setReactions = useProgress((s) => s.setCardReactions);
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -94,6 +96,13 @@ function Profile() {
       <h2 className="font-display text-lg font-bold">Your cards on show</h2>
       {row('Icon', avatar, () => setAvatar(null))}
       {row('Background', backdrop, () => setBackdrop(null))}
+      <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">
+        <input type="checkbox" checked={reactions} onChange={(e) => setReactions(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
+        <span>
+          <span className="block font-semibold">Cards react while you play</span>
+          <span className="block text-sm text-ink-soft">A Legendary or Mythic icon pops up with a word on a right answer, a mistake or a big win (a Mythic says its voice line); a Legendary or Mythic background lights up, winces or bursts.</span>
+        </span>
+      </label>
       <p className="text-xs text-ink-faint">
         Pick them in the{' '}
         <Link to="/album" className="font-semibold text-accent">
