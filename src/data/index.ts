@@ -38,8 +38,11 @@ export interface ThemeBank {
   /** Default picture source for the cards (`fandom:<wiki>`, `wp`, `ddragon`). */
   images: string;
   cards: (string | { label: string; src?: string; image?: string })[];
-  /** Reusable sub-categories; `level` 0–3 is how hard the link is to spot. */
-  categories: { id: string; label: string; level: number; items: string[] }[];
+  /**
+   * Reusable sub-categories; `level` 0–3 is how hard the link is to spot. `kind` (what the cards
+   * are) is read from the label when left out: see kindOf() in src/lib/connections.ts.
+   */
+  categories: { id: string; label: string; level: number; items: string[]; kind?: 'character' | 'place' | 'thing' }[];
 }
 
 export const connectionThemes = rawThemes as unknown as ThemeBank[];

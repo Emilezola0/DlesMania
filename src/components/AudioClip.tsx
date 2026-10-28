@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { sfx } from '../lib/sfx';
 import { YT_ENDED as ENDED, YT_PLAYING as PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { Spinner } from './Spinner';
 import { useProgress } from '../store/progress';
 
 /** Snippet length (seconds) unlocked by each wrong guess, Heardle-style. */
@@ -38,6 +39,8 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
   const pending = useRef<number | null>(null);
   const [clipStart, setClipStart] = useState(start ?? 0);
   const [ready, setReady] = useState(false);
+  /** Asked to play, still buffering before the sound starts. */
+  const [starting, setStarting] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -77,6 +80,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
             onStateChange: (e) => {
               // The clip ran out before the timer did (a full clip, or a short video).
               if (e.data === ENDED) {
+                setStarting(false);
                 window.clearInterval(timer.current);
                 setPlaying(false);
                 return;
@@ -101,6 +105,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
 
   /** Counts the snippet from the moment audio is really playing, then pauses. */
   function startTimer(len: number) {
+    setStarting(false);
     const p = player.current;
     if (!p) return;
     setPlaying(true);
@@ -123,6 +128,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
     window.clearInterval(timer.current);
     setProgress(0);
     pending.current = length;
+    setStarting(true);
     p.seekTo(clipStart, true);
     p.playVideo();
   };
@@ -163,7 +169,19 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
           disabled={!ready}
           className="btn-ink flex items-center gap-2 rounded-full px-6 py-3 font-display font-bold tracking-wider"
         >
-          {ready ? (playing ? '↻ Replay' : '▶ Play') : 'Loading…'} {ready || !full ? `${length}s` : ''}
+          {!ready ? (
+            <>
+              <Spinner /> Loading the clip…
+            </>
+          ) : starting ? (
+            <>
+              <Spinner /> Starting…
+            </>
+          ) : (
+            <>
+              {playing ? '↻ Replay' : '▶ Play'} {length}s
+            </>
+          )}
         </button>
         {/* Timeline of unlockable snippet lengths (a full clip has just the one). */}
         <div className="relative h-2 w-full overflow-hidden rounded-full bg-tile">

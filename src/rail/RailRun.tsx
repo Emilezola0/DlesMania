@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { celebrateBig } from '../lib/fx';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
+import { useTypeToFocus } from '../lib/focus';
 import { useProgress } from '../store/progress';
 import { compactText, findBestMatch } from '../utils/textMatcher';
 import { LANE, TRAIN_Z, drawScene, stepParticles, wheelPoint, type Gate, type Scene } from './draw';
@@ -272,15 +273,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
   useEffect(() => {
     if (phase === 'running') focusInput();
   }, [phase]);
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (phaseRef.current !== 'running' || document.activeElement === input.current) return;
-      if (e.ctrlKey || e.metaKey || e.altKey) return;
-      if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Enter') focusInput();
-    };
-    window.addEventListener('keydown', onKey, true);
-    return () => window.removeEventListener('keydown', onKey, true);
-  }, []);
+  useTypeToFocus(input, phase === 'running');
   const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     // Leaving for a link or a button (the back link, a menu) is fine; anything else gives it back.
     const to = e.relatedTarget as HTMLElement | null;

@@ -50,3 +50,4 @@ export function loadYouTube(): Promise<YTNamespace> {
 /** Player states we act on. */
 export const YT_ENDED = 0;
 export const YT_PLAYING = 1;
+export const YT_BUFFERING = 3;

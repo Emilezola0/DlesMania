@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { blitzSeconds, escalated, matchAnswer, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import type { BlitzPrompt, PhaseResult } from '../types';
@@ -25,6 +26,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
   const [wrong, setWrong] = useState(0);
   const [over, setOver] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
 
   useEffect(() => input.current?.focus({ preventScroll: true }), []);
 

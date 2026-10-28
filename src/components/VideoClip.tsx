@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { sfx } from '../lib/sfx';
-import { YT_ENDED, YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { YT_BUFFERING, YT_ENDED, YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { Spinner } from './Spinner';
 import { useProgress } from '../store/progress';
 
 interface Props {
@@ -32,6 +33,8 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  /** Asked to play, or stalled mid-clip: the video is loading. */
+  const [waiting, setWaiting] = useState(false);
   const [muted, setMuted] = useState(sessionMuted);
   const clipVolume = useProgress((s) => s.clipVolume);
   useEffect(() => {
@@ -66,6 +69,8 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
             onError: () => onUnavailable(),
             onStateChange: (e) => {
               if (e.data === YT_ENDED) stop();
+              if (e.data === YT_BUFFERING) setWaiting(true);
+              if (e.data === YT_PLAYING) setWaiting(false);
               if (e.data === YT_PLAYING && pending.current) {
                 pending.current = false;
                 run();
@@ -118,6 +123,7 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
     window.clearInterval(timer.current);
     setProgress(0);
     pending.current = true;
+    setWaiting(true);
     p.seekTo(start, true);
     p.playVideo();
   };
@@ -154,7 +160,25 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
         >
           {!playing && (
             <span className="btn-paper flex items-center gap-2 rounded-full px-6 py-3 font-display font-bold tracking-wider">
-              {ready ? (progress > 0 ? '↻ Watch again' : '▶ Watch the clip') : 'Loading…'} {ready ? `${seconds}s` : ''}
+              {!ready ? (
+                <>
+                  <Spinner /> Loading the video…
+                </>
+              ) : waiting ? (
+                <>
+                  <Spinner /> Starting…
+                </>
+              ) : (
+                <>
+                  {progress > 0 ? '↻ Watch again' : '▶ Watch the clip'} {seconds}s
+                </>
+              )}
+            </span>
+          )}
+          {/* Stalled mid-clip. */}
+          {playing && waiting && (
+            <span className="flex items-center gap-2 rounded-full bg-black/70 px-4 py-2 font-display text-sm font-bold text-white">
+              <Spinner /> Buffering…
             </span>
           )}
         </button>

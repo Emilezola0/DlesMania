@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { Glyph } from '../components/Glyph';
@@ -170,6 +171,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   const [text, setText] = useState('');
   const [newBest, setNewBest] = useState(false);
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
   const frame = useRef<HTMLDivElement>(null);
   const timer = useRef<number>();
   useEffect(() => () => window.clearTimeout(timer.current), []);

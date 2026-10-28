@@ -15,7 +15,15 @@ function ItemCard({ item, value, side }: { item: HlItem; value: 'shown' | 'hidde
   return (
     <div key={item.id} className={`page flex flex-col items-center gap-3 rounded-md p-4 text-center sm:p-6 ${side === 'right' ? 'animate-round-in' : ''}`}>
       <div className="aspect-square w-full max-w-[12rem] overflow-hidden rounded-lg bg-tile">
-        {item.image && <img src={item.image} alt="" draggable={false} className="size-full object-cover object-top" />}
+        {/* Black and white: colours (a red coat, a flag) give too much away. The card being judged gets its colours back once revealed. */}
+        {item.image && (
+          <img
+            src={item.image}
+            alt=""
+            draggable={false}
+            className={`size-full object-cover object-top transition-[filter] duration-700 ${value === 'revealing' ? 'grayscale-0' : 'grayscale'}`}
+          />
+        )}
       </div>
       <div className="min-h-14">
         <p className="font-display text-lg font-bold leading-tight sm:text-xl">{item.name}</p>

@@ -93,7 +93,7 @@ if (![3, 4].includes(cs.themed?.groupSize)) fail('settings: connections.themed.g
 // src/lib/connections.ts, which also checks each grid has a single solution.
 const themes = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'connection-themes.json'), 'utf8'));
 const themeIds = new Set();
-let herringCards = 0;
+let sharedCards = 0;
 for (const th of themes) {
   const at = `connection-themes/${th.id}`;
   if (themeIds.has(th.id)) fail(`${at}: duplicate id`);
@@ -108,14 +108,16 @@ for (const th of themes) {
     if (catIds.has(c.id)) fail(`${at}/${c.id}: duplicate sub-category id`);
     catIds.add(c.id);
     if (![0, 1, 2, 3].includes(c.level)) fail(`${at}/${c.id}: level must be 0-3`);
+    if (c.kind && !['character', 'place', 'thing'].includes(c.kind)) fail(`${at}/${c.id}: kind must be character, place or thing`);
     if (new Set(c.items).size < 3) fail(`${at}/${c.id}: needs at least 3 distinct cards`);
     // Smaller than the current group size: kept, but the generator skips it.
     for (const i of c.items) if (!labels.has(i)) fail(`${at}/${c.id}: "${i}" is not in cards`);
   }
   const used = new Set(th.categories.flatMap((c) => c.items));
   for (const l of labels) if (!used.has(l)) warn(`${at}: card "${l}" is in no sub-category`);
-  // Red herrings come from cards listed in several sub-categories.
-  herringCards += [...used].filter((l) => th.categories.filter((c) => c.items.includes(l)).length > 1).length;
+  // Cards in several sub-categories never go on a board with two of them (src/lib/connections.ts):
+  // memberships must be complete, or a card that fits a second group could still show up.
+  sharedCards += [...used].filter((l) => th.categories.filter((c) => c.items.includes(l)).length > 1).length;
   const noImage = cards.filter((c) => !c.image).map((c) => c.label);
   if (noImage.length) warn(`${at}: no image for ${noImage.join(', ')} — grids using them show text only`);
   const byImage = new Map();
@@ -125,7 +127,7 @@ for (const th of themes) {
     byImage.set(key, c.label);
   }
 }
-console.log(`themes      ${themes.length} (${themes.reduce((n, t) => n + t.categories.length, 0)} sub-categories, ${herringCards} red-herring cards)`);
+console.log(`themes      ${themes.length} (${themes.reduce((n, t) => n + t.categories.length, 0)} sub-categories, ${sharedCards} cards in several)`);
 
 // ---------------------------------------------------------------- Boss Battle
 // Minimums follow Hard in src/lib/boss.ts (16-card waves with 7 impostors, 5 faces twice), with room

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { NAME_LISTS, listsByFranchise, nameList, type NameList } from '../arcade/lists';
 import { matchAnswer } from '../lib/boss';
@@ -18,6 +19,7 @@ function Game({ list }: { list: NameList }) {
   const [text, setText] = useState('');
   const [note, setNote] = useState<{ text: string; good: boolean; key: number } | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
   const prompt = { prompt: list.title, count: list.answers.length, answers: list.answers };
   const total = list.answers.length;
 

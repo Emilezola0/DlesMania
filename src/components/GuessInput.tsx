@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { workNames, type Named } from '../lib/text';
 import { rankBySearch, searchScore } from '../utils/textMatcher';
 
@@ -26,8 +27,9 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus without autoFocus so switching rounds doesn't scroll the page.
+  // Focus without autoFocus so switching rounds doesn't scroll the page; typing anywhere comes back here.
   useEffect(() => inputRef.current?.focus({ preventScroll: true }), []);
+  useTypeToFocus(inputRef, !disabled);
 
   const results = useMemo(
     () => rankBySearch(query, pool.filter((w) => !exclude.includes(w.id)), workNames),

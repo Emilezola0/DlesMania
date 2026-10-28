@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { drawPictureFx, escalated, finaleSeconds, namesCard, pictureStyle, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
@@ -49,6 +50,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const [elapsed, setElapsed] = useState(0);
   const [shakeKey, setShakeKey] = useState(0);
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
   const target = targets[index];
   const spot = useSpotlight(!over && !solved, look.every);
   // Second loop: each face also gets a still distortion (zoom, colour shift, maybe turned) on top of

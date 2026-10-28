@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import type { SecretPhase } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { withArticle } from '../lib/text';
@@ -59,6 +60,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   const [lost, setLost] = useState<string | null>(null);
   const [text, setText] = useState('');
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
   const timers = useRef<number[]>([]);
   const later = (ms: number, fn: () => void) => timers.current.push(window.setTimeout(fn, ms));
   useEffect(() => () => timers.current.forEach(clearTimeout), []);

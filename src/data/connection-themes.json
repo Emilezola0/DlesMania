@@ -1799,7 +1799,8 @@
           "Vulpix",
           "Ponyta",
           "Cyndaquil",
-          "Flareon"
+          "Flareon",
+          "Entei"
         ]
       },
       {
@@ -1846,7 +1847,8 @@
           "Greninja",
           "Lucario",
           "Primeape",
-          "Muk"
+          "Muk",
+          "Dragonite"
         ]
       },
       {
@@ -2873,6 +2875,68 @@
         "label": "Invisibility Cloak",
         "src": "Cloak of Invisibility",
         "image": "https://static.wikia.nocookie.net/harrypotter/images/6/67/Cloak_of_Invisibility_PM.png/revision/latest/scale-to-width-down/320?cb=20161124181645"
+      },
+      {
+        "label": "Hedwig",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest/scale-to-width-down/264?cb=20161123234010"
+      },
+      {
+        "label": "Buckbeak",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c7/B3C14M1_cropped_Buckbeak_PM.png/revision/latest/scale-to-width-down/320?cb=20220516100927"
+      },
+      {
+        "label": "Fawkes",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f8/Fawkes_WB_F2_FawkesCloseUpIllustration_Illust_100615_Port.jpg/revision/latest/scale-to-width-down/237?cb=20151218225509"
+      },
+      {
+        "label": "Aragog",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/2/2c/Aragog_in_his_lair_COSF.jpg/revision/latest/scale-to-width-down/320?cb=20100611145604"
+      },
+      {
+        "label": "Fluffy",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/1/11/B1C9M3_cropped_Fluffy.png/revision/latest/scale-to-width-down/296?cb=20170925204659"
+      },
+      {
+        "label": "Norbert",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c1/Norberta_Norwegian_Ridgeback.jpg/revision/latest/scale-to-width-down/320?cb=20161122220257"
+      },
+      {
+        "label": "Crookshanks",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/f/ff/Crookshanks_FH.png/revision/latest/scale-to-width-down/320?cb=20161118055031"
+      },
+      {
+        "label": "Dobby",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/8/82/Dobby.jpg/revision/latest/scale-to-width-down/286?cb=20230712061949"
+      },
+      {
+        "label": "Nearly Headless Nick",
+        "src": "Nicholas de Mimsy-Porpington",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/6/6d/Nicholas_de_Mimsy-Porpington.png/revision/latest/scale-to-width-down/226?cb=20200515191831"
+      },
+      {
+        "label": "The Fat Friar",
+        "src": "Fat Friar",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/e/ea/Fat_Friar_Profile.png/revision/latest/scale-to-width-down/217?cb=20160409230657"
+      },
+      {
+        "label": "The Grey Lady",
+        "src": "Helena Ravenclaw",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a1/Helena_Ravenclaw.png/revision/latest/scale-to-width-down/169?cb=20090525100646"
+      },
+      {
+        "label": "The Bloody Baron",
+        "src": "Bloody Baron",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/5/55/Bloody_Baron.jpg/revision/latest/scale-to-width-down/187?cb=20100408172210"
+      },
+      {
+        "label": "Moaning Myrtle",
+        "src": "Myrtle Warren",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b8/Myrtle_Warren_profile.png/revision/latest/scale-to-width-down/240?cb=20170113020338"
+      },
+      {
+        "label": "Professor Binns",
+        "src": "Cuthbert Binns",
+        "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b7/BinnsInHL.png/revision/latest/scale-to-width-down/278?cb=20230309231552"
       }
     ],
     "categories": [
@@ -2923,7 +2987,8 @@
           "Hagrid",
           "Umbridge",
           "Moody",
-          "Dumbledore"
+          "Dumbledore",
+          "Professor Binns"
         ]
       },
       {
@@ -3010,6 +3075,34 @@
           "Elder Wand",
           "Resurrection Stone",
           "Invisibility Cloak"
+        ]
+      },
+      {
+        "id": "creatures",
+        "label": "Magical creatures",
+        "level": 1,
+        "items": [
+          "Hedwig",
+          "Buckbeak",
+          "Fawkes",
+          "Aragog",
+          "Fluffy",
+          "Norbert",
+          "Crookshanks",
+          "Dobby"
+        ]
+      },
+      {
+        "id": "ghosts",
+        "label": "Hogwarts ghosts",
+        "level": 2,
+        "items": [
+          "Nearly Headless Nick",
+          "The Fat Friar",
+          "The Grey Lady",
+          "The Bloody Baron",
+          "Moaning Myrtle",
+          "Professor Binns"
         ]
       }
     ]

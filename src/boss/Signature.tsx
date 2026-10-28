@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTypeToFocus } from '../lib/focus';
 import { AudioClip } from '../components/AudioClip';
 import type { SignaturePhase } from '../lib/boss';
 import { sfx } from '../lib/sfx';
@@ -34,6 +35,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   const [state, setState] = useState<'answer' | 'ok' | 'miss' | 'over'>('answer');
   const [message, setMessage] = useState<{ text: string; good: boolean } | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  useTypeToFocus(input);
   const timers = useRef<number[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
   useEffect(() => {
