@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
@@ -9,6 +9,7 @@ import {
   ACTS,
   CHALLENGE_INFO,
   NODE_INFO,
+  describeNode,
   RELICS,
   ROWS,
   goldFor,
@@ -230,8 +231,12 @@ function RunMap({ run, onEnter }: { run: RunState; onEnter: (n: MapNode) => void
   const width = (row: number) => run.map.filter((n) => n.row === row).length;
   const pos = (n: MapNode) => ({ x: ((n.col + 0.5) / width(n.row)) * 100, y: n.row * rowH + rowH / 2 });
   const byId = new Map(run.map.map((n) => [n.id, n]));
+  // The room whose card shows: hovered or focused, or tapped once on a touch screen (a second tap enters).
+  const [shown, setShown] = useState<string | null>(null);
+  const touch = useRef(false);
+  const tip = shown ? byId.get(shown) : undefined;
   return (
-    <div className="relative mx-auto w-full max-w-md" style={{ height }}>
+    <div className="relative mx-auto w-full max-w-md" style={{ height }} onPointerLeave={() => !touch.current && setShown(null)}>
       <svg className="absolute inset-0 size-full" viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" aria-hidden>
         {run.map.flatMap((n) =>
           n.next.map((id) => {
@@ -251,18 +256,59 @@ function RunMap({ run, onEnter }: { run: RunState; onEnter: (n: MapNode) => void
           <button
             key={n.id}
             type="button"
-            disabled={!isOpen}
-            onClick={() => onEnter(n)}
-            title={name}
+            // Not `disabled`: rooms out of reach still show their card on hover.
+            aria-disabled={!isOpen}
+            aria-label={name}
+            onPointerDown={(e) => (touch.current = e.pointerType !== 'mouse')}
+            onPointerEnter={(e) => e.pointerType === 'mouse' && setShown(n.id)}
+            onFocus={() => setShown(n.id)}
+            onBlur={() => !touch.current && setShown(null)}
+            onClick={() => {
+              if (touch.current && shown !== n.id) return setShown(n.id);
+              if (isOpen) onEnter(n);
+            }}
             className={`absolute grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 transition ${n.kind === 'boss' ? 'size-16 text-3xl' : 'size-12 text-xl'} ${
-              here ? 'border-ink bg-ink text-paper' : isOpen ? 'animate-pulse border-accent bg-card shadow-lg hover:scale-110' : 'border-rule bg-card/70 opacity-60'
-            } ${n.kind === 'elite' ? 'ring-2 ring-coral/60' : ''}`}
+              here ? 'border-ink bg-ink text-paper' : isOpen ? 'animate-pulse border-accent bg-card shadow-lg hover:scale-110' : 'cursor-default border-rule bg-card/70 opacity-60'
+            } ${n.kind === 'elite' ? 'ring-2 ring-coral/60' : ''} ${shown === n.id ? 'z-10 scale-110' : ''}`}
             style={{ left: `${x}%`, top: y }}
           >
             {icon}
           </button>
         );
       })}
+      {tip && <RoomCard run={run} node={tip} open={open.has(tip.id)} here={run.at === tip.id} at={pos(tip)} rowH={rowH} rows={ROWS} touch={touch.current} />}
+    </div>
+  );
+}
+
+/** The card beside a room on the map: what it is, what it pays, what it costs. */
+function RoomCard({ run, node, open, here, at, rowH, rows, touch }: { run: RunState; node: MapNode; open: boolean; here: boolean; at: { x: number; y: number }; rowH: number; rows: number; touch: boolean }) {
+  const d = describeNode(run, node, HEART_PRICE, REST_GOLD);
+  const icon = node.challenge ? CHALLENGE_INFO[node.challenge].icon : NODE_INFO[node.kind].icon;
+  // Below the room in the top half of the map, above it lower down; kept inside the map's width.
+  const below = at.y < ((rows + 1) * rowH) / 2;
+  const h = at.x < 30 ? '-translate-x-6' : at.x > 70 ? '-translate-x-[calc(100%-1.5rem)]' : '-translate-x-1/2';
+  return (
+    <div
+      role="tooltip"
+      className={`animate-pop pointer-events-none absolute z-20 w-64 ${h} rounded-md border border-rule-strong bg-card p-3 text-left text-sm shadow-xl`}
+      style={{ left: `${at.x}%`, ...(below ? { top: at.y + 34 } : { bottom: (rows + 1) * rowH - at.y + 34 }) }}
+    >
+      <p className="font-display font-bold">
+        {icon} {d.title}
+      </p>
+      {d.body.map((b, i) => (
+        <p key={i} className={i ? 'mt-1 text-ink-soft' : 'mt-1'}>
+          {b}
+        </p>
+      ))}
+      {(d.win || d.lose) && (
+        <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 border-t border-rule pt-2 text-xs font-semibold">
+          {d.win && <span className="text-hit">Win: {d.win}</span>}
+          {d.lose && <span className="text-coral">Lose: {d.lose}</span>}
+        </div>
+      )}
+      <p className="mt-2 text-xs italic text-ink-faint">{here ? "You're here." : open ? (touch ? 'Tap again to enter.' : 'Click to enter.') : 'Out of reach from here.'}</p>
     </div>
   );
 }

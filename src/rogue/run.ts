@@ -66,13 +66,14 @@ export const NODE_INFO: Record<NodeKind, { icon: string; name: string }> = {
   boss: { icon: '👑', name: 'Boss' },
 };
 
-export const CHALLENGE_INFO: Record<ChallengeKind, { icon: string; name: string }> = {
-  portrait: { icon: '🌫️', name: 'Blurred portrait' },
-  higherlower: { icon: '↕️', name: 'Higher or Lower' },
-  odd: { icon: '🧩', name: 'Odd One Out' },
-  whoami: { icon: '🕵️', name: 'Who Am I?' },
-  sort: { icon: '↔️', name: 'Quick Sort' },
-  name5: { icon: '📝', name: 'Name them' },
+/** `rule` and `elite` match the limits in src/rogue/Rooms.tsx. */
+export const CHALLENGE_INFO: Record<ChallengeKind, { icon: string; name: string; rule: string; elite: string }> = {
+  portrait: { icon: '🌫️', name: 'Blurred portrait', rule: 'Name the character from a blurred, black-and-white picture: 3 tries, 22 s.', elite: '2 tries, 15 s, and more blur.' },
+  higherlower: { icon: '↕️', name: 'Higher or Lower', rule: 'Call 3 in a row right — bounties, release years, box office… One wrong call loses the room.', elite: '5 calls in a row.' },
+  odd: { icon: '🧩', name: 'Odd One Out', rule: "Five cards, four share a link: spot the one that doesn't belong.", elite: 'Two rounds in a row.' },
+  whoami: { icon: '🕵️', name: 'Who Am I?', rule: 'Name the character from clues, up to 4 of them.', elite: 'Only 3 clues.' },
+  sort: { icon: '↔️', name: 'Quick Sort', rule: 'Sort 10 cards left or right, 3 s each, without a mistake.', elite: '15 cards, 2 s each.' },
+  name5: { icon: '📝', name: 'Name them', rule: 'Name 5 from a list in 50 s.', elite: '7 names in 45 s.' },
 };
 
 /**
@@ -128,6 +129,33 @@ export function reachable(run: RunState): MapNode[] {
 }
 
 export const has = (run: RunState, r: RelicId) => run.relics.includes(r);
+
+/** What a room on the map is, for its hover card: what you'll face, what you can win, what you can lose. */
+export function describeNode(run: RunState, n: MapNode, heartPrice: number, restGold: number): { title: string; body: string[]; win?: string; lose?: string } {
+  const c = n.challenge && CHALLENGE_INFO[n.challenge];
+  switch (n.kind) {
+    case 'fight':
+      return { title: c!.name, body: [c!.rule], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless)`, lose: '❤ −1' };
+    case 'elite':
+      return { title: `Elite · ${c!.name}`, body: [c!.rule, `Elite: ${c!.elite}`], win: `🪙 ${goldFor(run, 'elite', false)} and a relic of your choice`, lose: '❤ −1' };
+    case 'shop':
+      return { title: 'Shop', body: [`Spend your gold on relics, or a heart for 🪙 ${heartPrice}.`] };
+    case 'rest':
+      return { title: 'Campfire', body: [`Rest to heal a heart, or search the camp for 🪙 ${restGold}.`] };
+    case 'event':
+      return { title: 'Gamble', body: ["A stranger's wager: beat an elite challenge of their choosing — or walk away."], win: 'A relic of your choice', lose: '❤ −1' };
+    case 'boss':
+      return {
+        title: `Act ${run.act} boss`,
+        body: [
+          run.act === 1 ? "A guardian's Knowledge Blitz: name as many answers as you can against the clock." : "A guardian's Final Blow: name the faces before time runs out.",
+          'A boss must be beaten: lose and you face it again.',
+        ],
+        win: `🪙 ${goldFor(run, 'boss', false)}${run.act < ACTS ? ', a relic, and the next act' : ' and the expedition'}`,
+        lose: '❤ −2',
+      };
+  }
+}
 
 /** Gold for winning a room. */
 export function goldFor(run: RunState, kind: NodeKind, perfect: boolean): number {
