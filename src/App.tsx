@@ -19,6 +19,7 @@ import Crossroads from './pages/Crossroads';
 import Summit from './pages/Summit';
 import Shop from './pages/Shop';
 import Album from './pages/Album';
+import Account from './pages/Account';
 import WhoAmI from './pages/WhoAmI';
 import FranchiseWordle from './pages/FranchiseWordle';
 import QuickSort from './pages/QuickSort';
@@ -61,6 +62,7 @@ export default function App() {
         <Route path="summit" element={<Summit />} />
         <Route path="shop" element={<Shop />} />
         <Route path="album" element={<Album />} />
+        <Route path="account" element={<Account />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="wordle" element={<FranchiseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />

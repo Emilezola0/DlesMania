@@ -4,6 +4,7 @@ import { computeStreak, useProgress, type ThemeChoice } from '../store/progress'
 import { useUi } from '../store/ui';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
+import { useCloud } from '../cloud/state';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
@@ -148,6 +149,31 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
   );
 }
 
+/** The account: a person when signed out, the player's initial when in, with a dot for the save's state. */
+function AccountButton() {
+  const { status, email, name } = useCloud();
+  const signedIn = !!email && status !== 'signedOut';
+  const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
+  return (
+    <Link
+      to="/account"
+      title={signedIn ? `Signed in as ${email}` : 'Sign in to play on all your devices'}
+      aria-label="Account"
+      className="relative grid size-7 shrink-0 place-items-center rounded-full text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
+    >
+      {signedIn ? (
+        <span className="grid size-6 place-items-center rounded-full bg-accent font-display text-xs font-bold uppercase text-on-strong">{(name ?? email ?? '?')[0]}</span>
+      ) : (
+        <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+          <circle cx="12" cy="8.5" r="3.6" />
+          <path d="M4.8 20c1.2-3.6 4-5.4 7.2-5.4s6 1.8 7.2 5.4" />
+        </svg>
+      )}
+      {signedIn && dot && <span className={`absolute right-0 top-0 size-2.5 rounded-full border-2 border-paper ${dot}`} />}
+    </Link>
+  );
+}
+
 /** The DleCoin balance, to the Card Shop; coins just earned float up from it. */
 function CoinChip() {
   const coins = useProgress((s) => s.coins);
@@ -165,7 +191,7 @@ function CoinChip() {
     <Link
       to="/shop"
       title="DleCoins — the Card Shop"
-      className="relative flex items-center gap-1 rounded-full border border-ochre/60 bg-ochre/10 px-2 py-0.5 text-sm font-bold tabular-nums text-ink transition hover:bg-ochre/20 min-[420px]:px-2.5 min-[420px]:py-1"
+      className="relative flex shrink-0 items-center gap-1 rounded-full border border-ochre/60 bg-ochre/10 px-2 py-0.5 text-sm font-bold tabular-nums text-ink transition hover:bg-ochre/20 min-[420px]:px-2.5 min-[420px]:py-1"
     >
       <DleCoin className="size-4" />
       <span className="hidden min-[380px]:inline">{coins.toLocaleString('en')}</span>
@@ -205,15 +231,15 @@ export function Layout() {
                 to={n.to}
                 className={({ isActive: exact }) => {
                   const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-                  return `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-3 ${
+                  return `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-2 lg:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`;
                 }}
               >
                 {n.short ? (
                   <>
-                    <span className="sm:hidden">{n.short}</span>
-                    <span className="hidden sm:inline">{n.label}</span>
+                    <span className="xl:hidden">{n.short}</span>
+                    <span className="hidden xl:inline">{n.label}</span>
                   </>
                 ) : (
                   n.label
@@ -226,12 +252,12 @@ export function Layout() {
             onClick={() => openRules(onBoss ? 'boss' : 'daily')}
             title="How to play"
             aria-label="How to play"
-            className="grid size-7 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
+            className="grid size-7 shrink-0 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
           >
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
           </button>
           <SoundMenu sound={sound} toggleSound={toggleSound} />
-          <NameLangSwitch display="hidden sm:inline-flex" />
+          <NameLangSwitch display="hidden lg:inline-flex" />
           <button
             type="button"
             onClick={cycleTheme}
@@ -243,13 +269,14 @@ export function Layout() {
           </button>
           <span
             title="Days in a row with at least one category completed"
-            className={`hidden items-center gap-1 rounded-full border px-2.5 py-1 text-sm font-bold sm:flex ${
+            className={`hidden items-center gap-1 rounded-full border px-2.5 py-1 text-sm font-bold lg:flex ${
               current > 0 ? 'border-coral/60 bg-coral/10 text-coral' : 'border-rule-strong text-ink-faint'
             }`}
           >
             <FlameIcon /> {current}
           </span>
           <CoinChip />
+          <AccountButton />
         </div>
       </header>
 
