@@ -9,19 +9,32 @@ import { useProgress } from '../store/progress';
 /** How long two cards that don't match stay face up. */
 const MISMATCH_MS = 900;
 
-function Card({ card, up, found, onClick }: { card: MemoryCard; up: boolean; found: boolean; onClick: () => void }) {
+/** The card's number, top left on both sides ("the pair was 3 and 11"). */
+function Num({ n, back }: { n: number; back?: boolean }) {
+  return (
+    <span
+      className={`absolute left-1.5 top-1.5 z-10 grid min-w-6 place-items-center rounded px-1 font-display text-xs font-bold leading-6 shadow sm:text-sm ${back ? 'bg-paper text-ink' : 'bg-ink/80 text-paper'}`}
+    >
+      {n}
+    </span>
+  );
+}
+
+function Card({ card, n, up, found, onClick }: { card: MemoryCard; n: number; up: boolean; found: boolean; onClick: () => void }) {
   const f = card.face;
   return (
-    <button type="button" onClick={onClick} disabled={up} className="aspect-[3/4] w-full [perspective:800px]" aria-label={up ? f.caption : 'Hidden card'}>
+    <button type="button" onClick={onClick} disabled={up} className="aspect-[3/4] w-full [perspective:800px]" aria-label={up ? `${n}: ${f.caption}` : `Card ${n}`}>
       <div className={`relative size-full transition-transform duration-500 [transform-style:preserve-3d] ${up ? '[transform:rotateY(180deg)]' : ''}`}>
         {/* Back: the Omnidle seal. */}
         <div className="absolute inset-0 grid place-items-center rounded-lg border-2 border-rule-strong bg-ink/90 shadow-md [backface-visibility:hidden] hover:border-accent">
+          <Num n={n} back />
           <GlyphSeal seed={card.key} size={40} tone="text-paper" />
         </div>
         {/* Face. */}
         <div
           className={`absolute inset-0 flex flex-col overflow-hidden rounded-lg border-2 bg-card shadow-md [backface-visibility:hidden] [transform:rotateY(180deg)] ${found ? 'border-hit' : 'border-accent'}`}
         >
+          <Num n={n} />
           {f.image ? (
             <img src={f.image} alt="" draggable={false} className="min-h-0 flex-1 bg-tile object-cover object-top" />
           ) : (
@@ -99,8 +112,8 @@ function Board({ deck }: { deck: MemoryDeck }) {
         </p>
       </div>
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
-        {cards.map((c) => (
-          <Card key={`${run}-${c.key}`} card={c} up={open.includes(c.key) || found.includes(c.pair)} found={found.includes(c.pair)} onClick={() => flip(c)} />
+        {cards.map((c, i) => (
+          <Card key={`${run}-${c.key}`} card={c} n={i + 1} up={open.includes(c.key) || found.includes(c.pair)} found={found.includes(c.pair)} onClick={() => flip(c)} />
         ))}
       </div>
       {done && (
