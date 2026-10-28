@@ -114,6 +114,13 @@ export default function GamesHub() {
       stat: best('who:') ? `Best: ${best('who:')} / 500` : undefined,
     },
     {
+      to: '/summit',
+      icon: '🧗',
+      title: 'Summit',
+      blurb: 'Climb hand over hand: type the name on a hold to grab it, before your stamina runs out. Your score is the height.',
+      stat: bests['climb:height'] ? `Best: ${(bests['climb:height'] / 10).toFixed(1)} m` : undefined,
+    },
+    {
       to: '/crossroads',
       icon: '🌉',
       title: 'Crossroads',
