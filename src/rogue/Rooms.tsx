@@ -7,7 +7,9 @@ import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { TimerBar } from '../boss/TimerBar';
 import { GuessInput } from '../components/GuessInput';
 import { DIFFICULTIES, drawBlitz, drawFinale, matchAnswer } from '../lib/boss';
+import { Spinner } from '../components/Spinner';
 import { useTypeToFocus } from '../lib/focus';
+import { preload, useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import type { Domain } from '../types';
@@ -50,6 +52,8 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
   const [wrong, setWrong] = useState<string[]>([]);
   const [over, setOver] = useState(false);
   // Light at first, heavier deeper into the run (4px → 10px, +3 for an elite), and sharper with each miss.
+  // The clock waits for the picture.
+  const ready = useImagesReady([target.image]);
   const blur = Math.max(1, (4 + 6 * mods.depth + (mods.hard ? 3 : 0) - wrong.length * 2) / (mods.loupe ? 2 : 1));
   const end = (won: boolean, why: string) => {
     if (over) return;
@@ -67,11 +71,16 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
   return (
     <div className="space-y-4">
       <Header title={`${u.icon} ${u.label}`} rule="Who is this?" />
-      <div className="mx-auto aspect-square w-56 overflow-hidden rounded-xl bg-tile shadow-lg">
+      <div className="relative mx-auto aspect-square w-56 overflow-hidden rounded-xl bg-tile shadow-lg">
+        {!ready && (
+          <span className="absolute inset-0 grid place-items-center text-ink-faint">
+            <Spinner className="size-8" />
+          </span>
+        )}
         <img src={target.image} alt="" draggable={false} className="size-full object-cover object-top transition-[filter] duration-700" style={{ filter: over ? 'none' : `blur(${blur}px) grayscale(1)` }} />
       </div>
       {mods.lantern && !over && <p className="text-center font-display font-bold">🏮 Starts with “{target.name[0]}”</p>}
-      <TimerBar total={seconds * 1000} running={!over} onExpire={() => end(false, `Time's up — ${target.name}`)} />
+      <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — ${target.name}`)} />
       {!over && <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder="Who is it?" showImages={false} />}
       <p className="text-center text-xs text-ink-faint">{allowance(tries, mods) - wrong.length} tries left</p>
     </div>
@@ -242,6 +251,9 @@ export function SortRoom({ mods, onDone }: RoomProps) {
   const [slips, setSlips] = useState(0);
   const [flash, setFlash] = useState<{ ok: boolean; card: SortCard } | null>(null);
   const card = cards[i];
+  // Every card loads from the start; each one's clock waits for its own picture.
+  useEffect(() => cards.forEach((c) => void preload(c.image)), [cards]);
+  const ready = useImagesReady([card?.image]);
   const sort = (side: 'left' | 'right' | null) => {
     if (!card || flash) return;
     const ok = side === card.side;
@@ -272,7 +284,7 @@ export function SortRoom({ mods, onDone }: RoomProps) {
           <div key={i} className={`page animate-round-in w-36 overflow-hidden rounded-lg ${flash ? (flash.ok ? 'ring-2 ring-hit' : 'ring-2 ring-miss') : ''}`}>
             <div className="aspect-square bg-tile">{card.image && <img src={card.image} alt="" className="size-full object-cover object-top" />}</div>
             <p className="truncate p-1.5 text-center text-sm font-bold">{card.name}</p>
-            {!flash && <TimerBar key={i} total={seconds * 1000} running={!flash} onExpire={() => sort(null)} hideSeconds />}
+            {!flash && <TimerBar key={i} total={seconds * 1000} running={!flash && ready} onExpire={() => sort(null)} hideSeconds />}
           </div>
         )}
         <button type="button" onClick={() => sort('right')} className="btn-paper min-h-32 rounded-lg font-display font-bold">

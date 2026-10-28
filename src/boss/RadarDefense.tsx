@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Glyph } from '../components/Glyph';
 import { escalated, pictureStyle, radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
+import { useImagesReady } from '../lib/images';
 import { sfx } from '../lib/sfx';
 import { useUi } from '../store/ui';
 import type { PhaseResult } from '../types';
@@ -71,6 +72,8 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
   const start = useRef<number | null>(null);
   const appearedAt = useRef(performance.now());
   const card = cards[index];
+  // The clock waits for the picture.
+  const ready = useImagesReady([card?.image]);
   const ms = radarCardMs(d, index, loop);
   const esc = escalated(d, loop);
   const maxErrors = d.radarMaxErrors;
@@ -171,7 +174,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
         </h3>
       </div>
 
-      <TimerBar total={ms} running={!over && !fling} resetKey={index} onExpire={() => decide(null)} hideSeconds={d.distortion === 2} />
+      <TimerBar total={ms} running={!over && !fling && ready} resetKey={index} onExpire={() => decide(null)} hideSeconds={d.distortion === 2} />
 
       <div className="flex items-center justify-center gap-2" aria-label={`Shield: ${maxErrors + 1 - errors} left`}>
         <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">Shield</span>

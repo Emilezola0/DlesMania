@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
+import { useImagesReady } from '../lib/images';
 import { drawPictureFx, escalated, finaleSeconds, namesCard, pictureStyle, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
@@ -52,6 +53,8 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const input = useRef<HTMLInputElement>(null);
   useTypeToFocus(input);
   const target = targets[index];
+  // The clock waits for the picture.
+  const ready = useImagesReady([target?.image]);
   const spot = useSpotlight(!over && !solved, look.every);
   // Second loop: each face also gets a still distortion (zoom, colour shift, maybe turned) on top of
   // the first loop's spotlight, blur, turning and flicker.
@@ -119,7 +122,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">Who — or what — is this?</h3>
       </div>
 
-      <TimerBar total={total} running={!over && !solved} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
+      <TimerBar total={total} running={!over && !solved && ready} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
 
       <div key={shakeKey} className={`relative mx-auto aspect-square w-full max-w-xs ${shakeKey ? 'animate-shake' : ''}`}>
         <div className={`boss-glow absolute -inset-2 rounded-lg ${solved ? 'opacity-0' : ''}`} aria-hidden />

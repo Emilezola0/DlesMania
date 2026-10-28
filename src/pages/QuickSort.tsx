@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { SORT_DECKS, SORT_LIVES, sortDeck, sortSeconds, type SortCard, type SortDeck } from '../arcade/quickSort';
 import { HeartIcon } from '../boss/BossHeader';
 import { celebrateBig, shake } from '../lib/fx';
+import { useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -54,9 +55,10 @@ function Game({ deck }: { deck: SortDeck }) {
     }, 220);
   };
 
-  // The clock for the card on screen: when it runs out, it counts as a miss.
+  // The clock for the card on screen: when it runs out, it counts as a miss. It starts once the picture is there.
+  const ready = useImagesReady([card?.image]);
   useEffect(() => {
-    if (state !== 'playing' || flying) return;
+    if (state !== 'playing' || flying || !ready) return;
     const total = sortSeconds(score) * 1000;
     const t0 = performance.now();
     const t = window.setInterval(() => {
@@ -68,7 +70,7 @@ function Game({ deck }: { deck: SortDeck }) {
       }
     }, 50);
     return () => window.clearInterval(t);
-  }, [card, state, flying]);
+  }, [card, state, flying, ready]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

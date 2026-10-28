@@ -33,6 +33,7 @@ import {
 } from '../arcade/climb';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { useTypeToFocus } from '../lib/focus';
+import { getImage, isReady, preload } from '../lib/images';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
@@ -115,19 +116,8 @@ function drainReasons(g: State): string[] {
 }
 
 // ── Drawing ───────────────────────────────────────────────────────────
-const images = new Map<string, HTMLImageElement>();
-function image(src: string) {
-  let im = images.get(src);
-  if (!im) {
-    im = new Image();
-    im.src = src;
-    images.set(src, im);
-  }
-  return im;
-}
-
 function drawFace(ctx: CanvasRenderingContext2D, src: string, x: number, y: number, r: number) {
-  const im = image(src);
+  const im = getImage(src);
   ctx.save();
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI * 2);
@@ -393,15 +383,20 @@ function Game() {
       if (st.anim && now - st.anim.t0 > HAND_MS) st.anim = null;
       if (st.phase === 'climb') {
         const sec = sectionOf(bodyY(st));
-        st.stamina -= drainRate(st.L, st.R, angleOf(sec, st.seed), sec, st.chalk > 0) * dt;
-        if (st.stamina <= 0) fall(now);
-        // The lit holds' clocks, for the names that show after a while.
         const lit = reachable(st.holds, anchorOf(st), moverOf(st));
-        for (const h of lit) if (!st.litSince.has(h.id)) st.litSince.set(h.id, now);
+        // Stamina holds while a face in reach is still loading: you can't name what you can't see.
+        const waiting = lit.some((h) => !isReady(h.face.image));
+        if (!waiting) st.stamina -= drainRate(st.L, st.R, angleOf(sec, st.seed), sec, st.chalk > 0) * dt;
+        if (st.stamina <= 0) fall(now);
+        // The lit holds' clocks, for the names that show after a while: from when the face is there.
+        for (const h of lit) if (!st.litSince.has(h.id) && isReady(h.face.image)) st.litSince.set(h.id, now);
       }
       // More wall above, two sections ahead.
       while (st.sections <= sectionOf(Math.max(st.L.y, st.R.y)) + 2) {
-        st.holds.push(...makeSection(st.sections, st.seed, (st.sections + 1) * 100_000));
+        const more = makeSection(st.sections, st.seed, (st.sections + 1) * 100_000);
+        // Faces load ahead, so they are there by the time the hands are.
+        more.forEach((h) => void preload(h.face.image));
+        st.holds.push(...more);
         st.sections++;
       }
       const c = canvas.current;

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { celebrateBig } from '../lib/fx';
+import { isReady, preload } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { useTypeToFocus } from '../lib/focus';
@@ -177,7 +178,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
     if (g.deck.length > 3) g.deck.slice(-3).forEach((c) => loadImage(c.image));
     const react = Math.max(d.minReact, d.react - g.passed * 0.08) + (g.longView ? 1.5 : 0);
     // Leaving a station the train is still slow: place the gate by the speed it's heading for.
-    g.gate = { at: s.dist + TRAIN_Z + Math.max(s.speed, targetSpeed() * 0.8) * react, blocked, images: g.signs.map((c) => loadImage(c.image)) as Gate['images'] };
+    g.gate = { at: s.dist + TRAIN_Z + Math.max(s.speed, targetSpeed() * 0.8) * react, blocked, images: g.signs.map((c) => (void preload(c.image), loadImage(c.image))) as Gate['images'] };
     // Only gates already gone through stay (for a moment); an unpassed one is replaced.
     s.gates = [...s.gates.filter((x) => x.done && x.at > s.dist - 2), g.gate];
     syncHud();
@@ -353,7 +354,9 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
       } else if (over) {
         s.speed = Math.max(0, s.speed - dt * 18);
       }
-      if (running || over) s.dist += s.speed * dt;
+      // The train holds while the next gate's pictures are still on their way (a broken one counts as there).
+      const waiting = running && !!g.gate && !g.gate.done && g.gate.images.some((im) => im && !im.complete && !isReady(im.src));
+      if ((running && !waiting) || over) s.dist += s.speed * dt;
       // The station stays behind once the train has left it.
       if (s.station && g.gate && s.dist > s.station.at + 20) s.station = null;
       // Slide toward the chosen track, leaning into it.

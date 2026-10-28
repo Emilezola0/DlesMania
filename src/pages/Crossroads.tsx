@@ -21,7 +21,9 @@ import {
   type Fall,
   type Traveller,
 } from '../arcade/crossroads';
+import { Spinner } from '../components/Spinner';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
+import { useImagesReady } from '../lib/images';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
@@ -71,6 +73,11 @@ function Game() {
   const boardRef = useRef(board);
   const setBoard = (b: Board) => ((boardRef.current = b), setBoardState(b));
 
+  // The fall waits for the face: no one should be falling before you can see who it is.
+  const ready = useImagesReady([who.image]);
+  const readyRef = useRef(ready);
+  readyRef.current = ready;
+
   const lines = board.goals.length;
   const width = lines * COL_W;
   const speed = fallSpeed(score);
@@ -84,6 +91,7 @@ function Game() {
     const frame = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
+      if (!readyRef.current) return void (id = requestAnimationFrame(frame));
       const { fall: f, landed: line } = stepFall(cur, boardRef.current.bridges, speed * dt);
       cur = f;
       setFall(f);
@@ -211,7 +219,7 @@ function Game() {
       </div>
 
       <div className="flex items-center justify-center gap-3 rounded-md border border-rule-strong bg-card px-3 py-2">
-        <img src={who.image} alt="" className="size-10 rounded-full bg-tile object-cover object-top" />
+        {ready ? <img src={who.image} alt="" className="size-10 rounded-full bg-tile object-cover object-top" /> : <span className="grid size-10 place-items-center rounded-full bg-tile"><Spinner /></span>}
         <p className="font-display font-bold">
           Lead <span className="text-accent">{who.name}</span> home
         </p>
