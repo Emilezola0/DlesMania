@@ -2,11 +2,9 @@
 // save kept in step — loaded and merged when signing in and when the page comes back into view,
 // written a moment after every change. One document per player (saves/<uid>) holds everything
 // small; the dailies, which grow every day, go one document per month (saves/<uid>/months/<YYYY-MM>).
-import { initializeApp } from 'firebase/app';
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  getAuth,
   getRedirectResult,
   isSignInWithEmailLink,
   onAuthStateChanged,
@@ -19,9 +17,9 @@ import {
   signOut as fbSignOut,
   type User,
 } from 'firebase/auth';
-import { collection, doc, getDoc, getDocs, getFirestore, writeBatch } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, writeBatch } from 'firebase/firestore';
 import { useProgress } from '../store/progress';
-import { FIREBASE_CONFIG } from './config';
+import { auth, db } from './firebase';
 import { BY_MONTH, SYNCED, mergeSaves, monthOf, pickSave, type SaveData } from './merge';
 import { SIGNED_IN_FLAG, useCloud } from './state';
 
@@ -31,9 +29,6 @@ const CHANGED_KEY = 'omnidle:cloud:changedAt';
 const PUSH_AFTER_MS = 2000;
 const PULL_EVERY_MS = 30_000;
 
-const app = initializeApp(FIREBASE_CONFIG);
-const auth = getAuth(app);
-const db = getFirestore(app);
 
 const store = {
   get: (k: string) => {
@@ -187,6 +182,8 @@ async function signedIn(user: User) {
   try {
     await pull(user.uid);
     watch(user.uid);
+    // Cards that came back for offers taken while away.
+    void import('./trades').then((t) => t.collectTrades()).catch(() => {});
   } catch (e) {
     fail(e);
     // Still keep writing what's played here; a later pull will merge.

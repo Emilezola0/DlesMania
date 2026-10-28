@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { DUPLICATE_VALUE } from '../gacha/economy';
 import { canBeBackdrop } from '../gacha/Perks';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
@@ -95,6 +96,8 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
 
 /** What the card can be: the player's icon (any card), the pages' background (Rare or better). */
 function Perks({ card }: { card: Card }) {
+  const count = useProgress((s) => s.cards[card.id] ?? 0);
+  const exchange = useProgress((s) => s.exchangeCards);
   const avatar = useProgress((s) => s.avatar);
   const backdrop = useProgress((s) => s.backdrop);
   const setAvatar = useProgress((s) => s.setAvatar);
@@ -116,6 +119,14 @@ function Perks({ card }: { card: Card }) {
           🖼 Background: Rare or better
         </span>
       )}
+      {count > 1 && (
+        <button type="button" onClick={() => (sfx.correct(), exchange({ [card.id]: 1 }, DUPLICATE_VALUE[card.rarity]))} className={btn(false)} title="One copy always stays in your album">
+          ♻ Exchange a spare copy (+{DUPLICATE_VALUE[card.rarity]} coins)
+        </button>
+      )}
+      <Link to={`/trades?give=${card.id}`} className={btn(false)}>
+        ⇄ Offer in a trade
+      </Link>
     </div>
   );
 }
@@ -130,6 +141,18 @@ export default function Album() {
   const [sort, setSort] = useState<Sort>('set');
   const [open, setOpen] = useState<Card | null>(null);
 
+  const exchange = useProgress((s) => s.exchangeCards);
+  // Every spare copy (beyond the first of each card), and what they're worth together.
+  const spare = useMemo(() => {
+    const byId: Record<string, number> = {};
+    let copies = 0;
+    let coins = 0;
+    for (const c of CARDS) {
+      const n = (owned[c.id] ?? 0) - 1;
+      if (n > 0) (byId[c.id] = n), (copies += n), (coins += n * DUPLICATE_VALUE[c.rarity]);
+    }
+    return { byId, copies, coins };
+  }, [owned]);
   const unique = CARDS.filter((c) => owned[c.id]).length;
   const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
   const list = useMemo(() => {
@@ -160,9 +183,27 @@ export default function Album() {
             {RARITIES.map((r) => `${CARDS.filter((c) => c.rarity === r && owned[c.id]).length}/${CARDS.filter((c) => c.rarity === r).length} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
           </p>
         </div>
-        <Link to="/shop" className="btn-accent rounded-md px-5 py-2.5 font-display font-bold">
-          Card Shop · <Coins n={coins} />
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          {spare.copies > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                if (!window.confirm(`Exchange ${spare.copies} spare cop${spare.copies === 1 ? 'y' : 'ies'} for ${spare.coins} DleCoins? One copy of each card stays in your album.`)) return;
+                sfx.streak();
+                exchange(spare.byId, spare.coins);
+              }}
+              className="btn-paper rounded-md px-4 py-2.5 font-display font-bold"
+            >
+              ♻ Exchange {spare.copies} spare{spare.copies === 1 ? '' : 's'} · <Coins n={spare.coins} />
+            </button>
+          )}
+          <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
+            ⇄ Trades
+          </Link>
+          <Link to="/shop" className="btn-accent rounded-md px-5 py-2.5 font-display font-bold">
+            Card Shop · <Coins n={coins} />
+          </Link>
+        </div>
       </div>
 
       <div className="page flex flex-wrap items-center gap-3 rounded-md p-3">

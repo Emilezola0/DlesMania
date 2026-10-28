@@ -84,6 +84,10 @@ interface ProgressState {
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   openPack: (cost: number, cardIds: string[]) => boolean;
   claimMission: (kind: MissionKind) => void;
+  /** Spare copies traded in for coins: card id -> how many (one copy of each always stays), and the coins they're worth. */
+  exchangeCards: (copies: Record<string, number>, coins: number) => void;
+  /** Cards in or out by trading (src/cloud/trades.ts): card id -> +1 or -1. */
+  moveCards: (delta: Record<string, number>) => void;
   /** The Expedition run in progress (src/rogue/run.ts), kept across refreshes. */
   rogueRun: RunState | null;
   setRogueRun: (run: RunState | null) => void;
@@ -203,6 +207,22 @@ export const useProgress = create<ProgressState>()(
         });
         return true;
       },
+      exchangeCards: (copies, coins) =>
+        set((s) => {
+          const cards = { ...s.cards };
+          for (const [id, n] of Object.entries(copies)) cards[id] = Math.max(1, (cards[id] ?? 0) - n);
+          return { cards, coins: (s.coins ?? 0) + coins };
+        }),
+      moveCards: (delta) =>
+        set((s) => {
+          const cards = { ...s.cards };
+          for (const [id, n] of Object.entries(delta)) {
+            const left = (cards[id] ?? 0) + n;
+            if (left > 0) cards[id] = left;
+            else delete cards[id];
+          }
+          return { cards };
+        }),
       claimMission: (kind) =>
         set((s) => {
           const e = econToday(s.econ);

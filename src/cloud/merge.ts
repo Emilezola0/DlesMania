@@ -1,8 +1,8 @@
 // What a cloud save holds, and how two saves (this device's and the account's) become one.
-// Nothing played is ever lost: days and rounds, bosses, bests and cards are combined, keeping the
-// better of each. What can go down as well as up — the coin balance, the Expedition run — follows
-// the save changed last; except the first time a device joins an account, when its coins are added
-// to the account's (they were earned apart).
+// Nothing played is ever lost: days and rounds, bosses and bests are combined, keeping the better of
+// each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
+// the save changed last; except the first time a device joins an account, when its coins and cards
+// are added to the account's (they were earned apart).
 import type { Economy } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
 import type { RoundRecord, RoundSpec } from '../types';
@@ -133,8 +133,9 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     bosses: mergeBosses(local.bosses, cloud.bosses),
     whosThat: maxBy(local.whosThat, cloud.whosThat),
     bests: maxBy(local.bests, cloud.bests),
-    // Cards pulled apart add up; once in step, the counts only grow, so the higher is the true one.
-    cards: firstLink ? sumBy(local.cards, cloud.cards) : maxBy(local.cards, cloud.cards),
+    // Cards pulled apart add up; once in step, the latest save is the true one (cards also go — traded,
+    // exchanged for coins — so the higher count isn't).
+    cards: firstLink ? sumBy(local.cards, cloud.cards) : (latest.cards ?? {}),
     econ: mergeEcon(local.econ, cloud.econ)!,
     // The same week: every boss paid on either side stays paid. Different weeks: the later one.
     bossWeek:
