@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, lengthHint, markGuess, namesIn, wordleSet, type LetterMark, type WordleName } from '../arcade/wordle';
+import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, didYouMean, lengthHint, markGuess, namesIn, wordleSet, type LetterMark, type WordleName } from '../arcade/wordle';
 import { NameLangSwitch } from '../components/NameLangSwitch';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -32,6 +32,8 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
   const [guesses, setGuesses] = useState<string[]>([]);
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
+  // A name the guess was close to (or another spelling of): one click, or Tab, puts it in the row.
+  const [suggest, setSuggest] = useState<WordleName | null>(null);
   const [streak, setStreak] = useState(0);
   const won = guesses.at(-1) === answer.word;
   const done = won || guesses.length >= WORDLE_TRIES;
@@ -48,10 +50,14 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
   const submit = () => {
     if (!typed) return;
     if (!valid.has(typed)) {
-      setNote(`Not a ${label.toLowerCase()} name`);
+      const near = didYouMean(names, typed);
+      setSuggest(near?.name ?? null);
+      // Another spelling of a name (the other language, a nickname, the full name) is told apart from a near-miss.
+      setNote(near?.why === 'alt' ? 'Right one, other spelling.' : `Not a ${label.toLowerCase()} name.`);
       shake(document.getElementById('wordle-row'), 6, 300);
       return sfx.wrong();
     }
+    setSuggest(null);
     const next = [...guesses, typed];
     setGuesses(next);
     setTyped('');
@@ -72,6 +78,7 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
     if (done) return;
     if (k === 'ENTER') return submit();
     setNote(null);
+    setSuggest(null);
     if (k === 'BACK') return setTyped((t) => t.slice(0, -1));
     if (/^[A-Z]$/.test(k)) setTyped((t) => (t.length < MAX_LETTERS ? t + k : t));
   };
@@ -79,7 +86,8 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
-      if (e.key === 'Enter') press('ENTER');
+      if (e.key === 'Tab' && suggest) (e.preventDefault(), takeSuggestion());
+      else if (e.key === 'Enter') press('ENTER');
       else if (e.key === 'Backspace') press('BACK');
       else if (/^[a-z]$/i.test(e.key)) press(e.key.toUpperCase());
     };
@@ -87,8 +95,17 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
     return () => window.removeEventListener('keydown', onKey);
   });
 
+  const takeSuggestion = () => {
+    if (!suggest) return;
+    sfx.select();
+    setTyped(suggest.word);
+    setSuggest(null);
+    setNote(null);
+  };
+
   const next = () => {
     sfx.click();
+    setSuggest(null);
     setRun((r) => r + 1);
     setGuesses([]);
     setTyped('');
@@ -129,7 +146,14 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
           );
         })}
       </div>
-      <p className="h-5 text-center text-sm font-semibold text-coral">{note}</p>
+      <div className="flex min-h-7 flex-wrap items-center justify-center gap-2 text-center text-sm font-semibold">
+        {note && <span className="text-coral">{note}</span>}
+        {suggest && !done && (
+          <button type="button" onClick={takeSuggestion} className="btn-paper animate-pop rounded-md px-2.5 py-1 text-sm" title="Tab">
+            Did you mean <span className="font-bold text-accent">{suggest.name}</span>? <span className="text-xs text-ink-faint">⇥ Tab</span>
+          </button>
+        )}
+      </div>
       {done ? (
         <div className={`animate-pop space-y-2 rounded-md border p-4 text-center ${won ? 'border-hit/50 bg-hit/10' : 'border-miss/50 bg-miss/10'}`}>
           <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{won ? `Found in ${guesses.length}` : 'Out of tries'}</p>
