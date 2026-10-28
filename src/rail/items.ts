@@ -2,7 +2,7 @@
 export type RailItemId = 'airbag' | 'wagon' | 'brake' | 'lantern' | 'longview' | 'switch';
 
 export const RAIL_ITEMS: Record<RailItemId, { icon: string; name: string; blurb: string }> = {
-  airbag: { icon: '🎈', name: 'Air bag', blurb: 'The next crash costs nothing. They stack.' },
+  airbag: { icon: '🎈', name: 'Air bag', blurb: 'The next crash costs nothing and still counts as a gate passed, points included. They stack.' },
   wagon: { icon: '🚃', name: 'Extra wagon', blurb: 'One more wagon: one more crash you can take.' },
   brake: { icon: '🛑', name: 'Brake', blurb: 'A quarter slower until the next station.' },
   lantern: { icon: '🏮', name: 'Lantern', blurb: "Each sign shows the first letter of its character's name, until the next station." },

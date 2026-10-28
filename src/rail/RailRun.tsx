@@ -52,6 +52,16 @@ function loadImage(src: string) {
   return img;
 }
 
+/** A gate the train hit: what was on the free tracks, to learn from at the end. */
+interface Crash {
+  gate: number;
+  line: RailLine;
+  /** The character on the track the train was on, and those on the free tracks. */
+  hit: RailCharacter;
+  free: RailCharacter[];
+  airbag: boolean;
+}
+
 const freshGame = (line: RailLine, wagons: number) => ({
   line,
   linesUsed: new Set([line.id]),
@@ -69,6 +79,9 @@ const freshGame = (line: RailLine, wagons: number) => ({
   brake: false,
   lantern: false,
   longView: false,
+  crashes: [] as Crash[],
+  /** Gates reached, passed or not. */
+  reached: 0,
 });
 
 /**
@@ -352,10 +365,21 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         const here = laneIndex(s.trainX);
         if (g.gate.blocked[here]) {
           g.gate.done = 'smashed';
+          const gate = g.gate;
+          g.crashes.push({
+            gate: g.reached + 1,
+            line: g.line,
+            hit: g.signs[here],
+            free: g.signs.filter((_, i) => !gate.blocked[i]),
+            airbag: g.airbags > 0,
+          });
           const p = wheelPoint(s);
           if (g.airbags > 0) {
-            // The air bag takes it: a jolt, no wagon lost.
+            // The air bag takes it: a jolt, no wagon lost, and the gate still counts (points too).
+            // That's what sets it apart from an extra wagon, which only takes the hit.
             g.airbags -= 1;
+            g.passed += 1;
+            g.score += g.mult;
             s.shake = 0.5;
             sfx.hit();
             say('🎈 Air bag!');
@@ -376,6 +400,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
           sfx.correct();
         }
         g.sectionGates += 1;
+        g.reached += 1;
         setText('');
         if (g.wagons <= 0) {
           setPhase('over');
@@ -533,8 +558,41 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         )}
       </div>
 
+      {/* Once it's over: every crash, with the names that would have saved it. */}
+      {phase === 'over' && g.crashes.length > 0 && (
+        <section className="animate-round-in space-y-2">
+          <h3 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Where you crashed — and who would have got you through</h3>
+          <ol className="space-y-2">
+            {g.crashes.map((c, k) => (
+              <li key={k} className={`rounded-md border p-3 ${c.airbag ? 'border-rule-strong bg-card' : 'border-miss/50 bg-miss/10'}`}>
+                <p className="mb-2 font-display text-xs font-bold uppercase tracking-widest text-ink-soft">
+                  Gate {c.gate} · {c.line.icon} {c.line.label} · {c.airbag ? '🎈 saved by an air bag' : '💥 a wagon lost'}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {c.free.map((x) => (
+                    <div key={x.id} className="flex min-w-0 flex-1 basis-56 items-center gap-2 rounded-md border border-hit/50 bg-hit/10 p-1.5">
+                      <img src={x.image} alt="" className="size-12 shrink-0 rounded object-cover object-top" />
+                      <div className="min-w-0 text-sm">
+                        <p className="font-semibold">{x.name}</p>
+                        {x.aliases.length > 0 && <p className="text-xs text-ink-soft">also: {x.aliases.join(', ')}</p>}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="flex min-w-0 basis-40 items-center gap-2 rounded-md border border-miss/40 p-1.5 opacity-70">
+                    <img src={c.hit.image} alt="" className="size-10 shrink-0 rounded object-cover object-top grayscale" />
+                    <p className="min-w-0 text-xs">
+                      <span className="text-ink-faint">You were under</span> <span className="font-semibold">{c.hit.name}</span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       {/* The signs, big and readable: name a free track's character to switch to it. */}
-      {hud?.approaching ? (
+      {phase === 'over' ? null : hud?.approaching ? (
         <p className="animate-round-in rounded-md border border-rule-strong bg-card p-4 text-center font-display font-bold">
           {phase === 'station' ? `🚉 ${hud.approaching} — pick an item to leave` : `🚉 Next station: ${hud.approaching} — braking…`}
         </p>
