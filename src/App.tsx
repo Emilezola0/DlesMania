@@ -15,6 +15,7 @@ import NameThemAll from './pages/NameThemAll';
 import RailRush from './pages/RailRush';
 import MemoryPairs from './pages/MemoryPairs';
 import OddOneOut from './pages/OddOneOut';
+import Crossroads from './pages/Crossroads';
 import WhoAmI from './pages/WhoAmI';
 import FranchiseWordle from './pages/FranchiseWordle';
 import QuickSort from './pages/QuickSort';
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="memory" element={<MemoryPairs />} />
         <Route path="memory/:deck" element={<MemoryPairs />} />
         <Route path="odd-one-out" element={<OddOneOut />} />
+        <Route path="crossroads" element={<Crossroads />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="wordle" element={<FranchiseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />

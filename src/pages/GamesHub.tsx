@@ -114,6 +114,13 @@ export default function GamesHub() {
       stat: best('who:') ? `Best: ${best('who:')} / 500` : undefined,
     },
     {
+      to: '/crossroads',
+      icon: '🌉',
+      title: 'Crossroads',
+      blurb: 'Characters at the top, their worlds at the bottom: draw the bridges between the lines so everyone slides home.',
+      stat: best('cross:') ? `Best: level ${best('cross:')}` : undefined,
+    },
+    {
       to: '/odd-one-out',
       icon: '🧩',
       title: 'Odd One Out',
