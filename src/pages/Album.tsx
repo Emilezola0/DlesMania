@@ -21,14 +21,30 @@ const SORTS: { id: Sort; label: string }[] = [
 const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 
 /**
- * One card, big: drag it to turn it in your hands (it settles back when let go, its back showing
- * past a half turn), or tap it to send it spinning.
+ * One card, big, in 3D: it sways gently on its own, so its foil keeps catching the light; drag it to
+ * turn it in your hands (the foil follows, its thick edge and its back show past a half turn), tap
+ * it to send it spinning. The name, badges and ribbon stand off the surface.
  */
 function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
   const [rot, setRot] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
+  const [sway, setSway] = useState({ x: 0, y: 0 });
   const start = useRef<{ x: number; y: number; moved: boolean } | null>(null);
+
+  // The idle sway: a slow figure of eight, a few degrees each way.
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    let id = 0;
+    const t0 = performance.now();
+    const frame = (now: number) => {
+      const t = (now - t0) / 1000;
+      setSway({ x: Math.sin(t * 0.9) * 6, y: Math.sin(t * 0.6) * 10 });
+      id = requestAnimationFrame(frame);
+    };
+    id = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -58,7 +74,12 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
     if (s && !s.moved) (sfx.whoosh(), setSpin((n) => n + 360));
   };
 
-  const y = rot.y + spin;
+  // Held, the card goes where the hand takes it; let go, it sways.
+  const rx = dragging ? rot.x : sway.x;
+  const ry = (dragging ? rot.y : sway.y) + spin;
+  // The foil takes its light from the turn: a few degrees move it across the whole card.
+  const face = ((((ry % 360) + 540) % 360) - 180) as number;
+  const foil = { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) };
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
       <div className="w-full space-y-4" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
@@ -70,19 +91,24 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
           onPointerCancel={up}
         >
           <div
-            className={`relative [transform-style:preserve-3d] ${dragging ? '' : 'transition-transform duration-700 ease-out'}`}
-            style={{ transform: `rotateX(${rot.x}deg) rotateY(${y}deg)` }}
+            className={`relative [transform-style:preserve-3d] ${dragging ? '' : 'transition-transform duration-500 ease-out'}`}
+            style={{ transform: `rotateX(${rx}deg) rotateY(${ry}deg)` }}
           >
-            <div className="[backface-visibility:hidden]">
-              <CardFace card={card} count={count} tilt={false} />
+            {/* The card's thickness: its edge, layer by layer, between the two faces. */}
+            {[1, 2, 3, 4, 5].map((z) => (
+              <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
+            ))}
+            <div className="[backface-visibility:hidden] [transform-style:preserve-3d]">
+              <CardFace card={card} count={count} tilt={false} foil={foil} depth />
             </div>
-            <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
             </div>
           </div>
         </div>
         <div className="text-center text-white">
-          <p className="font-display text-xl font-bold">{shownName(card.name)}</p>
+          <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name)}</p>
+          {card.title && <p className="text-sm italic opacity-80">{card.title}</p>}
           <p className="text-sm opacity-80">
             {RARITY_INFO[card.rarity].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>

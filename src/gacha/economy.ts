@@ -39,7 +39,7 @@ export interface BossWeek {
 }
 
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
-export const DUPLICATE_VALUE = { common: 4, rare: 12, epic: 40, legendary: 120 } as const;
+export const DUPLICATE_VALUE = { common: 4, rare: 12, epic: 40, legendary: 120, mythic: 400 } as const;
 
 export type MissionKind = 'rounds' | 'category' | 'special' | 'boss' | 'arcade' | 'whos';
 

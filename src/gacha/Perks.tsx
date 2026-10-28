@@ -6,7 +6,7 @@ import { CARD_BY_ID, RARITY_LIGHT, type Card, type Rarity } from './cards';
 /** Rare or better: a common card isn't one to show off. */
 export const canBeBackdrop = (c: Card) => c.rarity !== 'common';
 
-const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legendary: 0.22 };
+const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legendary: 0.22, mythic: 0.24 };
 
 /** A card as a round icon, ringed in its rarity's colour. */
 export function CardAvatar({ card, className = 'size-6' }: { card: Card; className?: string }) {

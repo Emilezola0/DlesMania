@@ -623,3 +623,115 @@ h1, h2, h3, .font-serif, .font-display {
 @media (prefers-reduced-motion: reduce) {
   .backdrop-holo { animation: none; }
 }
+
+/* ── Legendary and Mythic cards (src/gacha/CardView.tsx). The foils follow --mx / --my: the pointer, or the card's turn. ── */
+@property --spin {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes card-spin { to { --spin: 360deg; } }
+@keyframes card-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 1; }
+}
+@keyframes card-name-shimmer { to { background-position: 200% 0; } }
+@keyframes card-aurora {
+  0%, 100% { transform: translate(-6%, -4%) rotate(0deg); }
+  50% { transform: translate(6%, 4%) rotate(8deg); }
+}
+
+/* Legendary: a gold name, gold leaf that catches the light, a few glints. */
+.card-gold-name {
+  background: linear-gradient(90deg, #fff7c2, #fbbf24, #fff7c2, #f59e0b, #fff7c2);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: card-name-shimmer 3.5s linear infinite;
+}
+.card-gold-foil {
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 214, 90, 0.42) 42%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 214, 90, 0.42) 58%, transparent 75%);
+  background-size: 260% 260%;
+  background-position: var(--mx) var(--my);
+  mix-blend-mode: overlay;
+}
+.card-glints {
+  background:
+    radial-gradient(2px 2px at 14% 22%, #fff, transparent),
+    radial-gradient(2px 2px at 86% 16%, #fff7c2, transparent),
+    radial-gradient(1.5px 1.5px at 78% 62%, #fff, transparent),
+    radial-gradient(2px 2px at 22% 74%, #fde68a, transparent),
+    radial-gradient(1.5px 1.5px at 55% 90%, #fff, transparent);
+  animation: card-twinkle 2.4s ease-in-out infinite;
+}
+
+/* Mythic: a rainbow frame turning, a starry night with an aurora, a prism foil and glitter, a rainbow name. */
+.card-mythic-frame {
+  background: conic-gradient(from var(--spin), #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
+  animation: card-spin 4s linear infinite;
+}
+.card-mythic-sky {
+  background:
+    radial-gradient(1px 1px at 12% 18%, #fff, transparent),
+    radial-gradient(1px 1px at 72% 12%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 88% 40%, #e9d5ff, transparent),
+    radial-gradient(1px 1px at 34% 8%, #fff, transparent),
+    radial-gradient(1px 1px at 58% 30%, #bae6fd, transparent),
+    radial-gradient(1px 1px at 6% 52%, #fff, transparent),
+    linear-gradient(165deg, #1e1b4b, #0b0820 50%, #3b0764);
+}
+.card-mythic-sky::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse at 30% 30%, rgba(45, 212, 191, 0.28), transparent 45%), radial-gradient(ellipse at 70% 60%, rgba(236, 72, 153, 0.26), transparent 45%);
+  animation: card-aurora 9s ease-in-out infinite;
+  pointer-events: none;
+}
+.card-mythic-name {
+  background: linear-gradient(90deg, #ff9ff3, #ffe58f, #9ff5c7, #9fdcff, #e0b0ff, #ff9ff3);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: card-name-shimmer 3s linear infinite;
+}
+.card-prism {
+  background: linear-gradient(115deg, transparent 5%, rgba(255, 0, 128, 0.38) 22%, rgba(255, 230, 0, 0.38) 34%, rgba(0, 255, 170, 0.38) 46%, rgba(0, 190, 255, 0.38) 58%, rgba(170, 0, 255, 0.38) 70%, transparent 88%);
+  background-size: 320% 320%;
+  background-position: var(--mx) var(--my);
+  mix-blend-mode: color-dodge;
+  opacity: 0.75;
+}
+.card-glitter {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0.7px, transparent 1.2px), radial-gradient(circle, rgba(255, 240, 255, 0.8) 0.6px, transparent 1px);
+  background-size: 9px 9px, 13px 13px;
+  background-position: 0 0, 4px 6px;
+  mix-blend-mode: overlay;
+  -webkit-mask-image: radial-gradient(circle at var(--mx) var(--my), #000 0%, transparent 55%);
+  mask-image: radial-gradient(circle at var(--mx) var(--my), #000 0%, transparent 55%);
+}
+.card-mythic-ribbon {
+  background: conic-gradient(from var(--spin), #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
+  animation: card-spin 3s linear infinite;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+.card-mythic-back {
+  background:
+    linear-gradient(#1b1530, #1b1530) padding-box,
+    conic-gradient(from var(--spin), #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8) border-box;
+  animation: card-spin 2.5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-gold-name, .card-glints, .card-mythic-frame, .card-mythic-sky::before, .card-mythic-name, .card-mythic-ribbon, .card-mythic-back { animation: none; }
+}
+
+/* A mythic in a pack: a slower rainbow star, rainbow twinkles, and colours running through it as it charges. */
+.pack-meteor-slower { animation-duration: 1.7s; }
+.pack-twinkle-rainbow {
+  background-image: radial-gradient(3px 3px at 20% 30%, #ff4fd8, transparent), radial-gradient(3px 3px at 70% 20%, #ffcd3c, transparent), radial-gradient(3px 3px at 40% 70%, #3cff9e, transparent), radial-gradient(3px 3px at 85% 60%, #3cc7ff, transparent), radial-gradient(3px 3px at 10% 80%, #a855f7, transparent), radial-gradient(2px 2px at 55% 45%, #fff, transparent);
+}
+@keyframes pack-prism { to { filter: hue-rotate(360deg) brightness(1.6); } }
+.pack-charge-prism > * { animation: pack-prism 0.5s linear infinite; }

@@ -2,19 +2,35 @@ import { useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { RARITY_INFO, setSize, type Card, type Rarity } from './cards';
 
-/** Each rarity's frame, glow and the tint behind the picture. */
+/** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
   common: { frame: 'linear-gradient(145deg,#cbd5e1,#64748b 55%,#94a3b8)', glow: '0 4px 14px rgba(15,23,42,.35)', tint: 'radial-gradient(circle at 50% 35%,#475569,#1e293b)', text: '#e2e8f0' },
   rare: { frame: 'linear-gradient(145deg,#7dd3fc,#2563eb 55%,#38bdf8)', glow: '0 6px 22px rgba(37,99,235,.45)', tint: 'radial-gradient(circle at 50% 35%,#1d4ed8,#0b1a3f)', text: '#dbeafe' },
   epic: { frame: 'linear-gradient(145deg,#f0abfc,#7c3aed 55%,#c084fc)', glow: '0 8px 30px rgba(124,58,237,.55)', tint: 'radial-gradient(circle at 50% 35%,#7e22ce,#1e0a3c)', text: '#f3e8ff' },
-  legendary: { frame: 'linear-gradient(145deg,#fef08a,#f59e0b 40%,#fde047 60%,#b45309)', glow: '0 10px 40px rgba(245,158,11,.65)', tint: 'radial-gradient(circle at 50% 35%,#f59e0b,#451a03)', text: '#fef3c7' },
+  legendary: {
+    frame: 'linear-gradient(145deg,#fff7c2,#f59e0b 30%,#fde047 50%,#b45309 70%,#fef08a)',
+    glow: '0 10px 40px rgba(245,158,11,.65), 0 0 0 1px rgba(255,236,150,.6)',
+    tint: 'radial-gradient(circle at 50% 30%,#fcd34d,#b45309 45%,#2a1203)',
+    text: '#fef3c7',
+  },
+  // The mythic's frame and background are drawn by its classes (card-mythic-*): this is the fallback.
+  mythic: {
+    frame: 'conic-gradient(#ff4fd8,#ffcd3c,#3cff9e,#3cc7ff,#a855f7,#ff4fd8)',
+    glow: '0 12px 48px rgba(240,171,252,.6), 0 0 28px rgba(60,199,255,.35)',
+    tint: 'radial-gradient(circle at 50% 30%,#4c1d95,#0b0820 70%)',
+    text: '#fdf4ff',
+  },
 };
 
 /**
  * A card, front side. Its text is sized to its own width (container units), so the same card
- * reads at album size and in the big view. It tilts toward the pointer, the shine following.
+ * reads at album size and in the big view. It tilts toward the pointer — or, given `foil`, takes
+ * its light from outside (the big view passes the card's turn) — and the foil follows: a highlight
+ * on rare cards, a sweeping sheen on epics, gold leaf and glints on legendaries, and on mythics a
+ * prism: rainbow foil and glitter over a starry night, a rainbow frame turning around it all.
+ * `depth` lifts the name, badges and text off the card (for the 3D big view).
  */
-export function CardFace({ card, count = 0, tilt = true, isNew }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean }) {
+export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean }) {
   const st = RARITY_STYLE[card.rarity];
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
@@ -25,48 +41,77 @@ export function CardFace({ card, count = 0, tilt = true, isNew }: { card: Card; 
     const py = (e.clientY - r.top) / r.height;
     setT({ x: (0.5 - py) * 16, y: (px - 0.5) * 18, mx: px * 100, my: py * 100 });
   };
+  const mx = foil?.x ?? t.mx;
+  const my = foil?.y ?? t.my;
+  const mythic = card.rarity === 'mythic';
+  const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   return (
     <div
       ref={ref}
       onPointerMove={move}
       onPointerLeave={() => setT({ x: 0, y: 0, mx: 50, my: 50 })}
-      className="relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size]"
-      style={{ background: st.frame, boxShadow: st.glow, transform: `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)` }}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : ''}`}
+      style={{
+        background: mythic ? undefined : st.frame,
+        boxShadow: st.glow,
+        transform: tilt ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)` : undefined,
+        ['--mx' as string]: `${mx}%`,
+        ['--my' as string]: `${my}%`,
+      }}
     >
-      <div className="relative flex size-full flex-col overflow-hidden rounded-[5%] bg-[#0f0d16]" style={{ color: st.text }}>
-        {/* Name and rarity. */}
-        <div className="flex items-center justify-between gap-[2cqw] px-[4cqw] py-[2.5cqw]">
-          <p className="truncate font-display text-[7.5cqw] font-bold leading-tight">{shownName(card.name)}</p>
-          <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
-            {RARITY_INFO[card.rarity].gem}
-          </span>
+      <div className={`relative flex size-full flex-col overflow-hidden rounded-[5%] ${mythic ? 'card-mythic-sky' : 'bg-[#0f0d16]'}`} style={{ color: st.text }}>
+        {/* Name and rarity (and a mythic's title). */}
+        <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
+          <div className="flex items-center justify-between gap-[2cqw]">
+            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{shownName(card.name)}</p>
+            <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
+              {RARITY_INFO[card.rarity].gem}
+            </span>
+          </div>
+          {card.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{card.title}</p>}
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
-        <div className="relative mx-[3cqw] h-[56%] overflow-hidden rounded-[3cqw]" style={{ background: st.tint }}>
+        <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${card.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           <img src={card.image} alt="" draggable={false} loading="lazy" className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
         </div>
-        <div className="flex items-center justify-between px-[4cqw] pt-[2.5cqw] text-[4.6cqw] font-semibold opacity-80">
+        <div className="relative z-10 flex items-center justify-between px-[4cqw] pt-[2.5cqw] text-[4.6cqw] font-semibold opacity-80">
           <span className="truncate">{card.franchise}</span>
-          <span className="shrink-0 tabular-nums">
-            {card.no}/{setSize(card.set)}
-          </span>
+          <span className="shrink-0 tabular-nums">{mythic ? '✦' : `${card.no}/${setSize(card.set)}`}</span>
         </div>
-        <p className="line-clamp-3 px-[4cqw] pt-[1.5cqw] text-[4.6cqw] leading-snug opacity-90">{card.description}</p>
-        {/* The shine: epic and legendary cards move theirs with the pointer, the legendary in rainbow. */}
-        {card.rarity !== 'common' && (
-          <div
-            className={`pointer-events-none absolute inset-0 ${card.rarity === 'legendary' ? 'card-holo' : card.rarity === 'epic' ? 'card-sheen' : ''}`}
-            style={{
-              background:
-                card.rarity === 'rare'
-                  ? `radial-gradient(circle at ${t.mx}% ${t.my}%, rgba(255,255,255,.18), transparent 45%)`
-                  : `radial-gradient(circle at ${t.mx}% ${t.my}%, rgba(255,255,255,.28), transparent 50%)`,
-            }}
-          />
+        <p className="relative z-10 line-clamp-3 px-[4cqw] pt-[1.5cqw] text-[4.6cqw] leading-snug opacity-90">{card.description}</p>
+
+        {/* The foil, under the pointer (or the light of the turn). */}
+        {card.rarity === 'rare' && <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.18), transparent 45%)' }} />}
+        {card.rarity === 'epic' && <div className="card-sheen pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.26), transparent 50%)' }} />}
+        {card.rarity === 'legendary' && (
+          <>
+            <div className="card-gold-foil pointer-events-none absolute inset-0" />
+            <div className="card-glints pointer-events-none absolute inset-0" />
+          </>
+        )}
+        {mythic && (
+          <>
+            <div className="card-prism pointer-events-none absolute inset-0" />
+            <div className="card-glitter pointer-events-none absolute inset-0" />
+          </>
         )}
       </div>
-      {count > 1 && <span className="absolute -left-[4cqw] -top-[4cqw] grid min-w-[16cqw] place-items-center rounded-full bg-ink px-[3cqw] py-[1cqw] font-display text-[7cqw] font-bold text-paper shadow">×{count}</span>}
-      {isNew && <span className="absolute -right-[4cqw] -top-[4cqw] animate-pop rounded-full bg-coral px-[3cqw] py-[1cqw] font-display text-[6.5cqw] font-bold text-white shadow">NEW</span>}
+
+      {mythic && (
+        <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
+          ✦ MYTHIC
+        </span>
+      )}
+      {count > 1 && (
+        <span className="absolute -left-[4cqw] -top-[4cqw] grid min-w-[16cqw] place-items-center rounded-full bg-ink px-[3cqw] py-[1cqw] font-display text-[7cqw] font-bold text-paper shadow" style={lift(30)}>
+          ×{count}
+        </span>
+      )}
+      {isNew && (
+        <span className="absolute -right-[4cqw] -top-[4cqw] animate-pop rounded-full bg-coral px-[3cqw] py-[1cqw] font-display text-[6.5cqw] font-bold text-white shadow" style={lift(30)}>
+          NEW
+        </span>
+      )}
     </div>
   );
 }
@@ -75,8 +120,8 @@ export function CardFace({ card, count = 0, tilt = true, isNew }: { card: Card; 
 export function CardBack({ rarity }: { rarity?: Rarity }) {
   return (
     <div
-      className="relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] border-[#a78bfa] bg-[#1b1530] [container-type:inline-size]"
-      style={{ boxShadow: rarity ? RARITY_STYLE[rarity].glow : undefined, backgroundImage: 'repeating-linear-gradient(45deg, rgba(167,139,250,.12) 0 6px, transparent 6px 12px)' }}
+      className={`relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] bg-[#1b1530] [container-type:inline-size] ${rarity === 'mythic' ? 'card-mythic-back border-transparent' : 'border-[#a78bfa]'}`}
+      style={{ boxShadow: rarity ? RARITY_STYLE[rarity].glow : undefined, backgroundImage: rarity === 'mythic' ? undefined : 'repeating-linear-gradient(45deg, rgba(167,139,250,.12) 0 6px, transparent 6px 12px)' }}
     >
       <span className="font-display text-[22cqw] font-bold text-[#c4b5fd]">✦</span>
       <span className="absolute bottom-[6cqw] font-display text-[7cqw] font-bold tracking-[0.3em] text-[#c4b5fd]">OMNIDLE</span>
@@ -84,14 +129,15 @@ export function CardBack({ rarity }: { rarity?: Rarity }) {
   );
 }
 
-/** A card not collected yet: its outline and number only. */
+/** A card not collected yet: its outline and number only (a mythic's sparkles faintly). */
 export function CardMissing({ card }: { card: Card }) {
+  const mythic = card.rarity === 'mythic';
   return (
-    <div className="grid aspect-[5/7] w-full place-items-center rounded-[7%] border-2 border-dashed border-rule-strong bg-tile/50 text-center text-ink-faint [container-type:inline-size]">
+    <div className={`grid aspect-[5/7] w-full place-items-center rounded-[7%] border-2 border-dashed text-center text-ink-faint [container-type:inline-size] ${mythic ? 'border-[#f0abfc]/60 bg-[#f0abfc]/5' : 'border-rule-strong bg-tile/50'}`}>
       <div>
-        <p className="font-display text-[16cqw] font-bold">?</p>
+        <p className="font-display text-[16cqw] font-bold">{mythic ? '✦' : '?'}</p>
         <p className="text-[6cqw] font-semibold">
-          {card.franchise} · {card.no}/{setSize(card.set)}
+          {card.franchise} · {mythic ? 'Mythic' : `${card.no}/${setSize(card.set)}`}
         </p>
       </div>
     </div>

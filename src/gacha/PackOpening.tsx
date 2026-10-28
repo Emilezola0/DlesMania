@@ -23,18 +23,22 @@ const LINEUP = [
   { filter: 'hue-rotate(22deg) saturate(1.1)', tilt: 7 },
 ];
 
+/** A mythic's light is every colour at once. */
+const RAINBOW = ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'];
+const top = (r: Rarity) => r === 'legendary' || r === 'mythic';
+
 const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-/** Sparks flying out from a turned card, in its colour (more for rarer cards). */
-function Burst({ color, count }: { color: string; count: number }) {
+/** Sparks flying out from a turned card, in its colour (more for rarer cards; a mythic's in every colour). */
+function Burst({ color, count, rainbow }: { color: string; count: number; rainbow?: boolean }) {
   const sparks = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => {
         const angle = (i / count) * Math.PI * 2 + Math.random() * 0.4;
         const dist = 110 + Math.random() * 160;
-        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 4 + Math.random() * 7, delay: Math.random() * 120 };
+        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 4 + Math.random() * 7, delay: Math.random() * 120, color: rainbow ? RAINBOW[i % RAINBOW.length] : color };
       }),
-    [count],
+    [count, rainbow, color],
   );
   return (
     <div className="pointer-events-none absolute left-1/2 top-1/2 z-20" aria-hidden>
@@ -42,20 +46,22 @@ function Burst({ color, count }: { color: string; count: number }) {
         <span
           key={i}
           className="pack-spark absolute rounded-full"
-          style={{ width: p.size, height: p.size, background: color, boxShadow: `0 0 12px ${color}`, ['--dx' as string]: `${p.dx}px`, ['--dy' as string]: `${p.dy}px`, animationDelay: `${p.delay}ms` }}
+          style={{ width: p.size, height: p.size, background: p.color, boxShadow: `0 0 12px ${p.color}`, ['--dx' as string]: `${p.dx}px`, ['--dy' as string]: `${p.dy}px`, animationDelay: `${p.delay}ms` }}
         />
       ))}
     </div>
   );
 }
 
-/** Light rays turning behind a card (epic and legendary). */
-function Rays({ color, strong }: { color: string; strong: boolean }) {
+/** Light rays turning behind a card (epic and up; a mythic's in rainbow). */
+function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rainbow?: boolean }) {
   return (
     <div
       className="pack-rays pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[220%] rounded-full"
       style={{
-        background: `repeating-conic-gradient(from 0deg, ${color}${strong ? '66' : '33'} 0deg 8deg, transparent 8deg 24deg)`,
+        background: rainbow
+          ? `repeating-conic-gradient(from 0deg, #ff4fd877 0deg 6deg, transparent 6deg 12deg, #ffcd3c77 12deg 18deg, transparent 18deg 24deg, #3cc7ff77 24deg 30deg, transparent 30deg 36deg)`
+          : `repeating-conic-gradient(from 0deg, ${color}${strong ? '66' : '33'} 0deg 8deg, transparent 8deg 24deg)`,
         maskImage: 'radial-gradient(circle, #000 20%, transparent 65%)',
         WebkitMaskImage: 'radial-gradient(circle, #000 20%, transparent 65%)',
       }}
@@ -79,7 +85,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [charging, setCharging] = useState(false);
-  const [flash, setFlash] = useState<{ color: string; key: number } | null>(null);
+  const [flash, setFlash] = useState<{ color: string; key: number; rainbow?: boolean } | null>(null);
   const box = useRef<HTMLDivElement>(null);
   const packRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; moved: boolean } | null>(null);
@@ -98,9 +104,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     later(() => {
       if (reducedMotion()) return toReveal();
       setPhase('meteor');
-      sfx.meteor(best === 'legendary');
-      later(() => setFlash({ color: light, key: Date.now() }), best === 'legendary' ? 1300 : 850);
-      later(toReveal, best === 'legendary' ? 1650 : 1150);
+      sfx.meteor(top(best));
+      later(() => setFlash({ color: light, key: Date.now() }), best === 'mythic' ? 1700 : best === 'legendary' ? 1300 : 850);
+      later(toReveal, best === 'mythic' ? 2100 : best === 'legendary' ? 1650 : 1150);
     }, 950);
   };
   /** A tap instead of a swipe: the pack tears by itself, quickly. */
@@ -150,7 +156,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   /** A card arriving on top of the deck: rarer ones hum. */
   const cue = (c: Card | undefined) => {
     if (!c) return;
-    if (c.rarity === 'legendary') sfx.shimmer(8);
+    if (c.rarity === 'mythic') sfx.shimmer(12);
+    else if (c.rarity === 'legendary') sfx.shimmer(8);
     else if (c.rarity === 'epic') sfx.shimmer(5);
     else if (c.rarity === 'rare') sfx.shimmer(3);
   };
@@ -160,14 +167,23 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       setCharging(false);
       setFlipped(true);
       if (reducedMotion()) return;
-      setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now() });
-      if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), shake(box.current, 14, 600));
+      setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now(), rainbow: c.rarity === 'mythic' });
+      if (c.rarity === 'mythic') {
+        sfx.victory();
+        celebrateBig();
+        later(() => (celebrateBig(), sfx.streak()), 900);
+        shake(box.current, 18, 800);
+      } else if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), shake(box.current, 14, 600));
       else if (c.rarity === 'epic') (sfx.streak(), celebrate(), shake(box.current, 6, 300));
       else if (c.rarity === 'rare') sfx.correct();
       else sfx.pop();
     };
-    // A legendary takes a breath first: it shakes, glows, then turns.
-    if (c.rarity === 'legendary' && !reducedMotion()) {
+    // A mythic takes a long breath, every colour running through it; a legendary a shorter one.
+    if (c.rarity === 'mythic' && !reducedMotion()) {
+      setCharging(true);
+      sfx.shimmer(16);
+      later(go, 1500);
+    } else if (c.rarity === 'legendary' && !reducedMotion()) {
       setCharging(true);
       sfx.shimmer(10);
       later(go, 900);
@@ -200,7 +216,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     timers.current.forEach((t) => window.clearTimeout(t));
     setCharging(false);
     setPhase('summary');
-    if (cards.some((c) => c.rarity === 'legendary')) celebrateBig();
+    if (cards.some((c) => top(c.rarity))) celebrateBig();
   };
 
   useEffect(() => {
@@ -217,7 +233,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   });
 
   const style = card ? RARITY_STYLE[card.rarity] : null;
-  const big = card && (card.rarity === 'epic' || card.rarity === 'legendary');
+  const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     <div ref={box} className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${light}22`}, transparent 60%)` }}>
       {phase !== 'summary' && (
@@ -225,7 +241,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
           SKIP ⏭
         </button>
       )}
-      {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
+      {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
@@ -300,11 +316,15 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         <div className="pointer-events-none fixed inset-0" aria-hidden>
           <div className="absolute left-0 top-[28%] w-full -rotate-[18deg]">
             <div
-              className={`pack-meteor h-[6px] rounded-full ${best === 'legendary' ? 'pack-meteor-slow' : ''}`}
-              style={{ width: '45vw', background: `linear-gradient(90deg, transparent, ${light}88 40%, #fff)`, boxShadow: `0 0 18px ${light}, 0 0 48px ${light}` }}
+              className={`pack-meteor h-[6px] rounded-full ${best === 'mythic' ? 'pack-meteor-slower' : best === 'legendary' ? 'pack-meteor-slow' : ''}`}
+              style={{
+                width: '45vw',
+                background: best === 'mythic' ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${light}88 40%, #fff)`,
+                boxShadow: best === 'mythic' ? '0 0 18px #ff4fd8, 0 0 40px #3cc7ff, 0 0 70px #ffcd3c' : `0 0 18px ${light}, 0 0 48px ${light}`,
+              }}
             />
           </div>
-          {best === 'legendary' && <div className="pack-twinkle absolute inset-0" />}
+          {top(best) && <div className={`pack-twinkle absolute inset-0 ${best === 'mythic' ? 'pack-twinkle-rainbow' : ''}`} />}
         </div>
       )}
 
@@ -321,9 +341,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 <CardBack />
               </div>
             ))}
-            {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={card.rarity === 'legendary' && (charging || flipped)} />}
+            {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={card.rarity === 'mythic'} />}
             <div key={i} className="pack-card-in [perspective:1100px]">
-              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'legendary' ? 'pack-charge-strong' : 'pack-charge') : ''}`}>
+              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-strong pack-charge-prism' : card.rarity === 'legendary' ? 'pack-charge-strong' : 'pack-charge') : ''}`}>
                 <div className="[backface-visibility:hidden]">
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
@@ -332,15 +352,16 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 </div>
               </div>
             </div>
-            {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} count={card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
+            {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} rainbow={card.rarity === 'mythic'} count={card.rarity === 'mythic' ? 70 : card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
             {flipped && fresh.has(card.id) && <span className="pack-stamp absolute -right-6 top-6 z-30 rounded-md border-4 border-coral px-2 py-0.5 font-display text-xl font-black tracking-widest text-coral">NEW!</span>}
           </button>
           <div className="min-h-14 text-center">
             {flipped ? (
               <div className="animate-pop">
-                <p className="font-display text-sm font-bold tracking-[0.35em]" style={{ color: RARITY_LIGHT[card.rarity] }}>
-                  {card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
+                <p className={`font-display text-sm font-bold tracking-[0.35em] ${card.rarity === 'mythic' ? 'card-mythic-name text-base' : ''}`} style={card.rarity === 'mythic' ? undefined : { color: RARITY_LIGHT[card.rarity] }}>
+                  {card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
                 </p>
+                {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name)}</p>
               </div>
             ) : (
