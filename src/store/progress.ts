@@ -24,6 +24,8 @@ export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty =
 
 /** 'system' follows the OS; the others force a theme. */
 export type ThemeChoice = 'system' | 'light' | 'dark';
+/** Naming language for games that need one spelling. */
+export type NameLang = 'en' | 'fr';
 
 /** Storage key for one category's daily on one date, e.g. "anime:2026-10-18". */
 export const dayKey = (domain: Domain, date: string) => `${domain}:${date}`;
@@ -56,6 +58,9 @@ interface ProgressState {
   /** Volume of the YouTube clips (soundtracks, voices, laughs), 0–100: YouTube's player can't go louder. */
   clipVolume: number;
   theme: ThemeChoice;
+  /** Which names games ask for when only one will do (Franchise Wordle): English or French. */
+  nameLang: NameLang;
+  setNameLang: (lang: NameLang) => void;
   /**
    * What came up recently outside the dailies, most recent first, by scope ("boss:<id>:faces",
    * "free:<domain>", "practice:<universe>:<type>"...), so new games draw something not seen lately.
@@ -111,6 +116,8 @@ export const useProgress = create<ProgressState>()(
       sfxVolume: 100,
       clipVolume: 80,
       theme: 'system',
+      nameLang: 'en',
+      setNameLang: (nameLang) => set({ nameLang }),
       seen: {},
       markSeen: (scope, ids) =>
         set((s) => {

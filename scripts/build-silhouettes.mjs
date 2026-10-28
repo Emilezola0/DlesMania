@@ -144,7 +144,7 @@ async function pokemon() {
     const s = await getJson(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
     const en = s.names.find((n) => n.language.name === 'en')?.name ?? s.name;
     const fr = s.names.find((n) => n.language.name === 'fr')?.name;
-    entries.push({ name: en, aliases: fr && fr !== en ? [fr] : [], image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png` });
+    entries.push({ name: en, ...(fr && fr !== en ? { fr } : {}), aliases: fr && fr !== en ? [fr] : [], image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png` });
     if (id % 25 === 0) console.log(`  pokémon ${id}/151`);
   }
   return entries;
@@ -167,7 +167,8 @@ async function league() {
 
 async function minecraft() {
   const res = await mediawikiImages(fandomApi('minecraft'), MINECRAFT.map(([n]) => n), SIZE);
-  return MINECRAFT.map(([name, aliases = []]) => ({ name, aliases, image: res.get(name)?.image })).filter((e) => e.image);
+  // The first alias is the French in-game name.
+  return MINECRAFT.map(([name, aliases = []]) => ({ name, ...(aliases[0] ? { fr: aliases[0] } : {}), aliases, image: res.get(name)?.image })).filter((e) => e.image);
 }
 
 async function onePiece() {

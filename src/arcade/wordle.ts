@@ -2,6 +2,7 @@ import { SILHOUETTES } from '../data/silhouettes';
 import { ONE_PIECE } from '../specialist/data';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
+import type { NameLang } from '../store/progress';
 
 /** A name as Wordle letters: no accents, spaces or punctuation ("Kai'Sa" → KAISA). */
 export const wordOf = (name: string) =>
@@ -27,6 +28,8 @@ export interface WordleSet {
   label: string;
   icon: string;
   names: WordleName[];
+  /** The names in French, for sets where they differ (Pokémon, Minecraft); the others play the same either way. */
+  namesFr?: WordleName[];
 }
 
 const fits = (w: string) => w.length >= MIN_LETTERS && w.length <= MAX_LETTERS;
@@ -39,7 +42,7 @@ const named = (names: string[]): WordleName[] => {
     return [{ word, name }];
   });
 };
-const series = (id: string) => SILHOUETTES.find((s) => s.id === id)?.entries.map((e) => e.name) ?? [];
+const series = (id: string, lang: NameLang = 'en') => SILHOUETTES.find((s) => s.id === id)?.entries.map((e) => (lang === 'fr' && e.fr) || e.name) ?? [];
 
 // One Piece goes by short names ("Luffy", not "Monkey D. Luffy"): the first spelling of each up to 9 letters.
 const onePiece = ONE_PIECE.characters.slice(0, 120).flatMap((c) => {
@@ -48,14 +51,17 @@ const onePiece = ONE_PIECE.characters.slice(0, 120).flatMap((c) => {
 });
 
 export const WORDLE_SETS: WordleSet[] = [
-  { id: 'pokemon', label: 'Pokémon', icon: '⚡', names: named(series('pokemon')) },
+  { id: 'pokemon', label: 'Pokémon', icon: '⚡', names: named(series('pokemon')), namesFr: named(series('pokemon', 'fr')) },
   { id: 'lol', label: 'League champions', icon: '⚔️', names: named(LOL.champions.map((c) => c.name)) },
   { id: 'genshin', label: 'Genshin characters', icon: '✨', names: named(GENSHIN.characters.map((c) => c.name)) },
   { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', names: named(onePiece) },
-  { id: 'minecraft', label: 'Minecraft mobs', icon: '⛏️', names: named(series('minecraft')) },
+  { id: 'minecraft', label: 'Minecraft mobs', icon: '⛏️', names: named(series('minecraft')), namesFr: named(series('minecraft', 'fr')) },
 ];
 
 export const wordleSet = (id: string | undefined) => WORDLE_SETS.find((s) => s.id === id);
+
+/** The names a set plays with in a language: its French ones when it has them. */
+export const namesIn = (set: WordleSet, lang: NameLang) => (lang === 'fr' && set.namesFr) || set.names;
 
 export type LetterMark = 'hit' | 'near' | 'miss';
 

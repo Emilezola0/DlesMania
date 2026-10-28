@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
 import { useUi } from '../store/ui';
+import { NameLangSwitch } from './NameLangSwitch';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
@@ -199,6 +200,7 @@ export function Layout() {
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
           </button>
           <SoundMenu sound={sound} toggleSound={toggleSound} />
+          <NameLangSwitch display="hidden sm:inline-flex" />
           <button
             type="button"
             onClick={cycleTheme}

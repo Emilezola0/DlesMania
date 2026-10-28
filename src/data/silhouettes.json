@@ -876,6 +876,7 @@
       },
       {
         "name": "Skeleton",
+        "fr": "Squelette",
         "aliases": [
           "Squelette"
         ],
@@ -883,6 +884,7 @@
       },
       {
         "name": "Spider",
+        "fr": "Araignée",
         "aliases": [
           "Araignée"
         ],
@@ -900,6 +902,7 @@
       },
       {
         "name": "Witch",
+        "fr": "Sorcière",
         "aliases": [
           "Sorcière"
         ],
@@ -917,6 +920,7 @@
       },
       {
         "name": "Pig",
+        "fr": "Cochon",
         "aliases": [
           "Cochon"
         ],
@@ -924,6 +928,7 @@
       },
       {
         "name": "Sheep",
+        "fr": "Mouton",
         "aliases": [
           "Mouton"
         ],
@@ -931,6 +936,7 @@
       },
       {
         "name": "Chicken",
+        "fr": "Poule",
         "aliases": [
           "Poule",
           "Poulet"
@@ -939,6 +945,7 @@
       },
       {
         "name": "Horse",
+        "fr": "Cheval",
         "aliases": [
           "Cheval"
         ],
@@ -946,6 +953,7 @@
       },
       {
         "name": "Wolf",
+        "fr": "Loup",
         "aliases": [
           "Loup"
         ],
@@ -953,6 +961,7 @@
       },
       {
         "name": "Cat",
+        "fr": "Chat",
         "aliases": [
           "Chat"
         ],
@@ -965,6 +974,7 @@
       },
       {
         "name": "Rabbit",
+        "fr": "Lapin",
         "aliases": [
           "Lapin"
         ],
@@ -972,6 +982,7 @@
       },
       {
         "name": "Fox",
+        "fr": "Renard",
         "aliases": [
           "Renard"
         ],
@@ -984,6 +995,7 @@
       },
       {
         "name": "Parrot",
+        "fr": "Perroquet",
         "aliases": [
           "Perroquet"
         ],
@@ -991,6 +1003,7 @@
       },
       {
         "name": "Turtle",
+        "fr": "Tortue",
         "aliases": [
           "Tortue"
         ],
@@ -998,6 +1011,7 @@
       },
       {
         "name": "Llama",
+        "fr": "Lama",
         "aliases": [
           "Lama"
         ],
@@ -1005,6 +1019,7 @@
       },
       {
         "name": "Bee",
+        "fr": "Abeille",
         "aliases": [
           "Abeille"
         ],
@@ -1017,6 +1032,7 @@
       },
       {
         "name": "Frog",
+        "fr": "Grenouille",
         "aliases": [
           "Grenouille"
         ],
@@ -1024,6 +1040,7 @@
       },
       {
         "name": "Goat",
+        "fr": "Chèvre",
         "aliases": [
           "Chèvre"
         ],
@@ -1031,6 +1048,7 @@
       },
       {
         "name": "Camel",
+        "fr": "Dromadaire",
         "aliases": [
           "Dromadaire",
           "Chameau"
@@ -1039,6 +1057,7 @@
       },
       {
         "name": "Sniffer",
+        "fr": "Renifleur",
         "aliases": [
           "Renifleur"
         ],
@@ -1051,6 +1070,7 @@
       },
       {
         "name": "Iron Golem",
+        "fr": "Golem de fer",
         "aliases": [
           "Golem de fer"
         ],
@@ -1058,6 +1078,7 @@
       },
       {
         "name": "Snow Golem",
+        "fr": "Golem de neige",
         "aliases": [
           "Golem de neige"
         ],
@@ -1065,6 +1086,7 @@
       },
       {
         "name": "Villager",
+        "fr": "Villageois",
         "aliases": [
           "Villageois"
         ],
@@ -1072,6 +1094,7 @@
       },
       {
         "name": "Wandering Trader",
+        "fr": "Marchand ambulant",
         "aliases": [
           "Marchand ambulant"
         ],
@@ -1079,6 +1102,7 @@
       },
       {
         "name": "Pillager",
+        "fr": "Pillard",
         "aliases": [
           "Pillard"
         ],
@@ -1086,6 +1110,7 @@
       },
       {
         "name": "Vindicator",
+        "fr": "Vindicateur",
         "aliases": [
           "Vindicateur"
         ],
@@ -1093,6 +1118,7 @@
       },
       {
         "name": "Evoker",
+        "fr": "Évocateur",
         "aliases": [
           "Évocateur"
         ],
@@ -1100,6 +1126,7 @@
       },
       {
         "name": "Ravager",
+        "fr": "Ravageur",
         "aliases": [
           "Ravageur"
         ],
@@ -1107,6 +1134,7 @@
       },
       {
         "name": "Guardian",
+        "fr": "Gardien",
         "aliases": [
           "Gardien"
         ],
@@ -1114,6 +1142,7 @@
       },
       {
         "name": "Elder Guardian",
+        "fr": "Grand gardien",
         "aliases": [
           "Grand gardien"
         ],
@@ -1126,6 +1155,7 @@
       },
       {
         "name": "Phantom",
+        "fr": "Fantôme",
         "aliases": [
           "Fantôme"
         ],
@@ -1133,6 +1163,7 @@
       },
       {
         "name": "Drowned",
+        "fr": "Noyé",
         "aliases": [
           "Noyé"
         ],
@@ -1140,6 +1171,7 @@
       },
       {
         "name": "Husk",
+        "fr": "Zombie momifié",
         "aliases": [
           "Zombie momifié"
         ],
@@ -1147,6 +1179,7 @@
       },
       {
         "name": "Stray",
+        "fr": "Vagabond",
         "aliases": [
           "Vagabond"
         ],
@@ -1154,6 +1187,7 @@
       },
       {
         "name": "Wither Skeleton",
+        "fr": "Squelette wither",
         "aliases": [
           "Squelette wither"
         ],
@@ -1161,6 +1195,7 @@
       },
       {
         "name": "Magma Cube",
+        "fr": "Cube de magma",
         "aliases": [
           "Cube de magma"
         ],
@@ -1178,6 +1213,7 @@
       },
       {
         "name": "Strider",
+        "fr": "Arpenteur",
         "aliases": [
           "Arpenteur"
         ],
@@ -1200,6 +1236,7 @@
       },
       {
         "name": "Ender Dragon",
+        "fr": "Dragon de l'Ender",
         "aliases": [
           "Dragon de l'Ender",
           "Ender dragon"
@@ -1208,6 +1245,7 @@
       },
       {
         "name": "Squid",
+        "fr": "Poulpe",
         "aliases": [
           "Poulpe",
           "Calamar"
@@ -1216,6 +1254,7 @@
       },
       {
         "name": "Glow Squid",
+        "fr": "Poulpe luisant",
         "aliases": [
           "Poulpe luisant"
         ],
@@ -1223,6 +1262,7 @@
       },
       {
         "name": "Dolphin",
+        "fr": "Dauphin",
         "aliases": [
           "Dauphin"
         ],
@@ -1230,6 +1270,7 @@
       },
       {
         "name": "Polar Bear",
+        "fr": "Ours polaire",
         "aliases": [
           "Ours polaire"
         ],
@@ -1237,6 +1278,7 @@
       },
       {
         "name": "Mooshroom",
+        "fr": "Champimeuh",
         "aliases": [
           "Champimeuh"
         ],
@@ -1244,6 +1286,7 @@
       },
       {
         "name": "Bat",
+        "fr": "Chauve-souris",
         "aliases": [
           "Chauve-souris"
         ],
@@ -1251,6 +1294,7 @@
       },
       {
         "name": "Silverfish",
+        "fr": "Poisson d'argent",
         "aliases": [
           "Poisson d'argent"
         ],
@@ -1263,6 +1307,7 @@
       },
       {
         "name": "Armadillo",
+        "fr": "Tatou",
         "aliases": [
           "Tatou"
         ],
@@ -1270,6 +1315,7 @@
       },
       {
         "name": "Vex",
+        "fr": "Vexeur",
         "aliases": [
           "Vexeur"
         ],
@@ -1277,6 +1323,7 @@
       },
       {
         "name": "Zombie Villager",
+        "fr": "Villageois zombie",
         "aliases": [
           "Villageois zombie"
         ],
@@ -1292,6 +1339,7 @@
     "entries": [
       {
         "name": "Bulbasaur",
+        "fr": "Bulbizarre",
         "aliases": [
           "Bulbizarre"
         ],
@@ -1299,6 +1347,7 @@
       },
       {
         "name": "Ivysaur",
+        "fr": "Herbizarre",
         "aliases": [
           "Herbizarre"
         ],
@@ -1306,6 +1355,7 @@
       },
       {
         "name": "Venusaur",
+        "fr": "Florizarre",
         "aliases": [
           "Florizarre"
         ],
@@ -1313,6 +1363,7 @@
       },
       {
         "name": "Charmander",
+        "fr": "Salamèche",
         "aliases": [
           "Salamèche"
         ],
@@ -1320,6 +1371,7 @@
       },
       {
         "name": "Charmeleon",
+        "fr": "Reptincel",
         "aliases": [
           "Reptincel"
         ],
@@ -1327,6 +1379,7 @@
       },
       {
         "name": "Charizard",
+        "fr": "Dracaufeu",
         "aliases": [
           "Dracaufeu"
         ],
@@ -1334,6 +1387,7 @@
       },
       {
         "name": "Squirtle",
+        "fr": "Carapuce",
         "aliases": [
           "Carapuce"
         ],
@@ -1341,6 +1395,7 @@
       },
       {
         "name": "Wartortle",
+        "fr": "Carabaffe",
         "aliases": [
           "Carabaffe"
         ],
@@ -1348,6 +1403,7 @@
       },
       {
         "name": "Blastoise",
+        "fr": "Tortank",
         "aliases": [
           "Tortank"
         ],
@@ -1355,6 +1411,7 @@
       },
       {
         "name": "Caterpie",
+        "fr": "Chenipan",
         "aliases": [
           "Chenipan"
         ],
@@ -1362,6 +1419,7 @@
       },
       {
         "name": "Metapod",
+        "fr": "Chrysacier",
         "aliases": [
           "Chrysacier"
         ],
@@ -1369,6 +1427,7 @@
       },
       {
         "name": "Butterfree",
+        "fr": "Papilusion",
         "aliases": [
           "Papilusion"
         ],
@@ -1376,6 +1435,7 @@
       },
       {
         "name": "Weedle",
+        "fr": "Aspicot",
         "aliases": [
           "Aspicot"
         ],
@@ -1383,6 +1443,7 @@
       },
       {
         "name": "Kakuna",
+        "fr": "Coconfort",
         "aliases": [
           "Coconfort"
         ],
@@ -1390,6 +1451,7 @@
       },
       {
         "name": "Beedrill",
+        "fr": "Dardargnan",
         "aliases": [
           "Dardargnan"
         ],
@@ -1397,6 +1459,7 @@
       },
       {
         "name": "Pidgey",
+        "fr": "Roucool",
         "aliases": [
           "Roucool"
         ],
@@ -1404,6 +1467,7 @@
       },
       {
         "name": "Pidgeotto",
+        "fr": "Roucoups",
         "aliases": [
           "Roucoups"
         ],
@@ -1411,6 +1475,7 @@
       },
       {
         "name": "Pidgeot",
+        "fr": "Roucarnage",
         "aliases": [
           "Roucarnage"
         ],
@@ -1423,6 +1488,7 @@
       },
       {
         "name": "Raticate",
+        "fr": "Rattatac",
         "aliases": [
           "Rattatac"
         ],
@@ -1430,6 +1496,7 @@
       },
       {
         "name": "Spearow",
+        "fr": "Piafabec",
         "aliases": [
           "Piafabec"
         ],
@@ -1437,6 +1504,7 @@
       },
       {
         "name": "Fearow",
+        "fr": "Rapasdepic",
         "aliases": [
           "Rapasdepic"
         ],
@@ -1444,6 +1512,7 @@
       },
       {
         "name": "Ekans",
+        "fr": "Abo",
         "aliases": [
           "Abo"
         ],
@@ -1466,6 +1535,7 @@
       },
       {
         "name": "Sandshrew",
+        "fr": "Sabelette",
         "aliases": [
           "Sabelette"
         ],
@@ -1473,6 +1543,7 @@
       },
       {
         "name": "Sandslash",
+        "fr": "Sablaireau",
         "aliases": [
           "Sablaireau"
         ],
@@ -1510,6 +1581,7 @@
       },
       {
         "name": "Clefairy",
+        "fr": "Mélofée",
         "aliases": [
           "Mélofée"
         ],
@@ -1517,6 +1589,7 @@
       },
       {
         "name": "Clefable",
+        "fr": "Mélodelfe",
         "aliases": [
           "Mélodelfe"
         ],
@@ -1524,6 +1597,7 @@
       },
       {
         "name": "Vulpix",
+        "fr": "Goupix",
         "aliases": [
           "Goupix"
         ],
@@ -1531,6 +1605,7 @@
       },
       {
         "name": "Ninetales",
+        "fr": "Feunard",
         "aliases": [
           "Feunard"
         ],
@@ -1538,6 +1613,7 @@
       },
       {
         "name": "Jigglypuff",
+        "fr": "Rondoudou",
         "aliases": [
           "Rondoudou"
         ],
@@ -1545,6 +1621,7 @@
       },
       {
         "name": "Wigglytuff",
+        "fr": "Grodoudou",
         "aliases": [
           "Grodoudou"
         ],
@@ -1552,6 +1629,7 @@
       },
       {
         "name": "Zubat",
+        "fr": "Nosferapti",
         "aliases": [
           "Nosferapti"
         ],
@@ -1559,6 +1637,7 @@
       },
       {
         "name": "Golbat",
+        "fr": "Nosferalto",
         "aliases": [
           "Nosferalto"
         ],
@@ -1566,6 +1645,7 @@
       },
       {
         "name": "Oddish",
+        "fr": "Mystherbe",
         "aliases": [
           "Mystherbe"
         ],
@@ -1573,6 +1653,7 @@
       },
       {
         "name": "Gloom",
+        "fr": "Ortide",
         "aliases": [
           "Ortide"
         ],
@@ -1580,6 +1661,7 @@
       },
       {
         "name": "Vileplume",
+        "fr": "Rafflesia",
         "aliases": [
           "Rafflesia"
         ],
@@ -1597,6 +1679,7 @@
       },
       {
         "name": "Venonat",
+        "fr": "Mimitoss",
         "aliases": [
           "Mimitoss"
         ],
@@ -1604,6 +1687,7 @@
       },
       {
         "name": "Venomoth",
+        "fr": "Aéromite",
         "aliases": [
           "Aéromite"
         ],
@@ -1611,6 +1695,7 @@
       },
       {
         "name": "Diglett",
+        "fr": "Taupiqueur",
         "aliases": [
           "Taupiqueur"
         ],
@@ -1618,6 +1703,7 @@
       },
       {
         "name": "Dugtrio",
+        "fr": "Triopikeur",
         "aliases": [
           "Triopikeur"
         ],
@@ -1625,6 +1711,7 @@
       },
       {
         "name": "Meowth",
+        "fr": "Miaouss",
         "aliases": [
           "Miaouss"
         ],
@@ -1637,6 +1724,7 @@
       },
       {
         "name": "Psyduck",
+        "fr": "Psykokwak",
         "aliases": [
           "Psykokwak"
         ],
@@ -1644,6 +1732,7 @@
       },
       {
         "name": "Golduck",
+        "fr": "Akwakwak",
         "aliases": [
           "Akwakwak"
         ],
@@ -1651,6 +1740,7 @@
       },
       {
         "name": "Mankey",
+        "fr": "Férosinge",
         "aliases": [
           "Férosinge"
         ],
@@ -1658,6 +1748,7 @@
       },
       {
         "name": "Primeape",
+        "fr": "Colossinge",
         "aliases": [
           "Colossinge"
         ],
@@ -1665,6 +1756,7 @@
       },
       {
         "name": "Growlithe",
+        "fr": "Caninos",
         "aliases": [
           "Caninos"
         ],
@@ -1672,6 +1764,7 @@
       },
       {
         "name": "Arcanine",
+        "fr": "Arcanin",
         "aliases": [
           "Arcanin"
         ],
@@ -1679,6 +1772,7 @@
       },
       {
         "name": "Poliwag",
+        "fr": "Ptitard",
         "aliases": [
           "Ptitard"
         ],
@@ -1686,6 +1780,7 @@
       },
       {
         "name": "Poliwhirl",
+        "fr": "Têtarte",
         "aliases": [
           "Têtarte"
         ],
@@ -1693,6 +1788,7 @@
       },
       {
         "name": "Poliwrath",
+        "fr": "Tartard",
         "aliases": [
           "Tartard"
         ],
@@ -1715,6 +1811,7 @@
       },
       {
         "name": "Machop",
+        "fr": "Machoc",
         "aliases": [
           "Machoc"
         ],
@@ -1722,6 +1819,7 @@
       },
       {
         "name": "Machoke",
+        "fr": "Machopeur",
         "aliases": [
           "Machopeur"
         ],
@@ -1729,6 +1827,7 @@
       },
       {
         "name": "Machamp",
+        "fr": "Mackogneur",
         "aliases": [
           "Mackogneur"
         ],
@@ -1736,6 +1835,7 @@
       },
       {
         "name": "Bellsprout",
+        "fr": "Chétiflor",
         "aliases": [
           "Chétiflor"
         ],
@@ -1743,6 +1843,7 @@
       },
       {
         "name": "Weepinbell",
+        "fr": "Boustiflor",
         "aliases": [
           "Boustiflor"
         ],
@@ -1750,6 +1851,7 @@
       },
       {
         "name": "Victreebel",
+        "fr": "Empiflor",
         "aliases": [
           "Empiflor"
         ],
@@ -1767,6 +1869,7 @@
       },
       {
         "name": "Geodude",
+        "fr": "Racaillou",
         "aliases": [
           "Racaillou"
         ],
@@ -1774,6 +1877,7 @@
       },
       {
         "name": "Graveler",
+        "fr": "Gravalanch",
         "aliases": [
           "Gravalanch"
         ],
@@ -1781,6 +1885,7 @@
       },
       {
         "name": "Golem",
+        "fr": "Grolem",
         "aliases": [
           "Grolem"
         ],
@@ -1793,6 +1898,7 @@
       },
       {
         "name": "Rapidash",
+        "fr": "Galopa",
         "aliases": [
           "Galopa"
         ],
@@ -1800,6 +1906,7 @@
       },
       {
         "name": "Slowpoke",
+        "fr": "Ramoloss",
         "aliases": [
           "Ramoloss"
         ],
@@ -1807,6 +1914,7 @@
       },
       {
         "name": "Slowbro",
+        "fr": "Flagadoss",
         "aliases": [
           "Flagadoss"
         ],
@@ -1814,6 +1922,7 @@
       },
       {
         "name": "Magnemite",
+        "fr": "Magnéti",
         "aliases": [
           "Magnéti"
         ],
@@ -1821,6 +1930,7 @@
       },
       {
         "name": "Magneton",
+        "fr": "Magnéton",
         "aliases": [
           "Magnéton"
         ],
@@ -1828,6 +1938,7 @@
       },
       {
         "name": "Farfetch’d",
+        "fr": "Canarticho",
         "aliases": [
           "Canarticho"
         ],
@@ -1845,6 +1956,7 @@
       },
       {
         "name": "Seel",
+        "fr": "Otaria",
         "aliases": [
           "Otaria"
         ],
@@ -1852,6 +1964,7 @@
       },
       {
         "name": "Dewgong",
+        "fr": "Lamantine",
         "aliases": [
           "Lamantine"
         ],
@@ -1859,6 +1972,7 @@
       },
       {
         "name": "Grimer",
+        "fr": "Tadmorv",
         "aliases": [
           "Tadmorv"
         ],
@@ -1866,6 +1980,7 @@
       },
       {
         "name": "Muk",
+        "fr": "Grotadmorv",
         "aliases": [
           "Grotadmorv"
         ],
@@ -1873,6 +1988,7 @@
       },
       {
         "name": "Shellder",
+        "fr": "Kokiyas",
         "aliases": [
           "Kokiyas"
         ],
@@ -1880,6 +1996,7 @@
       },
       {
         "name": "Cloyster",
+        "fr": "Crustabri",
         "aliases": [
           "Crustabri"
         ],
@@ -1887,6 +2004,7 @@
       },
       {
         "name": "Gastly",
+        "fr": "Fantominus",
         "aliases": [
           "Fantominus"
         ],
@@ -1894,6 +2012,7 @@
       },
       {
         "name": "Haunter",
+        "fr": "Spectrum",
         "aliases": [
           "Spectrum"
         ],
@@ -1901,6 +2020,7 @@
       },
       {
         "name": "Gengar",
+        "fr": "Ectoplasma",
         "aliases": [
           "Ectoplasma"
         ],
@@ -1913,6 +2033,7 @@
       },
       {
         "name": "Drowzee",
+        "fr": "Soporifik",
         "aliases": [
           "Soporifik"
         ],
@@ -1920,6 +2041,7 @@
       },
       {
         "name": "Hypno",
+        "fr": "Hypnomade",
         "aliases": [
           "Hypnomade"
         ],
@@ -1932,6 +2054,7 @@
       },
       {
         "name": "Kingler",
+        "fr": "Krabboss",
         "aliases": [
           "Krabboss"
         ],
@@ -1939,6 +2062,7 @@
       },
       {
         "name": "Voltorb",
+        "fr": "Voltorbe",
         "aliases": [
           "Voltorbe"
         ],
@@ -1946,6 +2070,7 @@
       },
       {
         "name": "Electrode",
+        "fr": "Électrode",
         "aliases": [
           "Électrode"
         ],
@@ -1953,6 +2078,7 @@
       },
       {
         "name": "Exeggcute",
+        "fr": "Noeunoeuf",
         "aliases": [
           "Noeunoeuf"
         ],
@@ -1960,6 +2086,7 @@
       },
       {
         "name": "Exeggutor",
+        "fr": "Noadkoko",
         "aliases": [
           "Noadkoko"
         ],
@@ -1967,6 +2094,7 @@
       },
       {
         "name": "Cubone",
+        "fr": "Osselait",
         "aliases": [
           "Osselait"
         ],
@@ -1974,6 +2102,7 @@
       },
       {
         "name": "Marowak",
+        "fr": "Ossatueur",
         "aliases": [
           "Ossatueur"
         ],
@@ -1981,6 +2110,7 @@
       },
       {
         "name": "Hitmonlee",
+        "fr": "Kicklee",
         "aliases": [
           "Kicklee"
         ],
@@ -1988,6 +2118,7 @@
       },
       {
         "name": "Hitmonchan",
+        "fr": "Tygnon",
         "aliases": [
           "Tygnon"
         ],
@@ -1995,6 +2126,7 @@
       },
       {
         "name": "Lickitung",
+        "fr": "Excelangue",
         "aliases": [
           "Excelangue"
         ],
@@ -2002,6 +2134,7 @@
       },
       {
         "name": "Koffing",
+        "fr": "Smogo",
         "aliases": [
           "Smogo"
         ],
@@ -2009,6 +2142,7 @@
       },
       {
         "name": "Weezing",
+        "fr": "Smogogo",
         "aliases": [
           "Smogogo"
         ],
@@ -2016,6 +2150,7 @@
       },
       {
         "name": "Rhyhorn",
+        "fr": "Rhinocorne",
         "aliases": [
           "Rhinocorne"
         ],
@@ -2023,6 +2158,7 @@
       },
       {
         "name": "Rhydon",
+        "fr": "Rhinoféros",
         "aliases": [
           "Rhinoféros"
         ],
@@ -2030,6 +2166,7 @@
       },
       {
         "name": "Chansey",
+        "fr": "Leveinard",
         "aliases": [
           "Leveinard"
         ],
@@ -2037,6 +2174,7 @@
       },
       {
         "name": "Tangela",
+        "fr": "Saquedeneu",
         "aliases": [
           "Saquedeneu"
         ],
@@ -2044,6 +2182,7 @@
       },
       {
         "name": "Kangaskhan",
+        "fr": "Kangourex",
         "aliases": [
           "Kangourex"
         ],
@@ -2051,6 +2190,7 @@
       },
       {
         "name": "Horsea",
+        "fr": "Hypotrempe",
         "aliases": [
           "Hypotrempe"
         ],
@@ -2058,6 +2198,7 @@
       },
       {
         "name": "Seadra",
+        "fr": "Hypocéan",
         "aliases": [
           "Hypocéan"
         ],
@@ -2065,6 +2206,7 @@
       },
       {
         "name": "Goldeen",
+        "fr": "Poissirène",
         "aliases": [
           "Poissirène"
         ],
@@ -2072,6 +2214,7 @@
       },
       {
         "name": "Seaking",
+        "fr": "Poissoroy",
         "aliases": [
           "Poissoroy"
         ],
@@ -2079,6 +2222,7 @@
       },
       {
         "name": "Staryu",
+        "fr": "Stari",
         "aliases": [
           "Stari"
         ],
@@ -2086,6 +2230,7 @@
       },
       {
         "name": "Starmie",
+        "fr": "Staross",
         "aliases": [
           "Staross"
         ],
@@ -2093,6 +2238,7 @@
       },
       {
         "name": "Mr. Mime",
+        "fr": "M. Mime",
         "aliases": [
           "M. Mime"
         ],
@@ -2100,6 +2246,7 @@
       },
       {
         "name": "Scyther",
+        "fr": "Insécateur",
         "aliases": [
           "Insécateur"
         ],
@@ -2107,6 +2254,7 @@
       },
       {
         "name": "Jynx",
+        "fr": "Lippoutou",
         "aliases": [
           "Lippoutou"
         ],
@@ -2114,6 +2262,7 @@
       },
       {
         "name": "Electabuzz",
+        "fr": "Élektek",
         "aliases": [
           "Élektek"
         ],
@@ -2126,6 +2275,7 @@
       },
       {
         "name": "Pinsir",
+        "fr": "Scarabrute",
         "aliases": [
           "Scarabrute"
         ],
@@ -2138,6 +2288,7 @@
       },
       {
         "name": "Magikarp",
+        "fr": "Magicarpe",
         "aliases": [
           "Magicarpe"
         ],
@@ -2145,6 +2296,7 @@
       },
       {
         "name": "Gyarados",
+        "fr": "Léviator",
         "aliases": [
           "Léviator"
         ],
@@ -2152,6 +2304,7 @@
       },
       {
         "name": "Lapras",
+        "fr": "Lokhlass",
         "aliases": [
           "Lokhlass"
         ],
@@ -2159,6 +2312,7 @@
       },
       {
         "name": "Ditto",
+        "fr": "Métamorph",
         "aliases": [
           "Métamorph"
         ],
@@ -2166,6 +2320,7 @@
       },
       {
         "name": "Eevee",
+        "fr": "Évoli",
         "aliases": [
           "Évoli"
         ],
@@ -2173,6 +2328,7 @@
       },
       {
         "name": "Vaporeon",
+        "fr": "Aquali",
         "aliases": [
           "Aquali"
         ],
@@ -2180,6 +2336,7 @@
       },
       {
         "name": "Jolteon",
+        "fr": "Voltali",
         "aliases": [
           "Voltali"
         ],
@@ -2187,6 +2344,7 @@
       },
       {
         "name": "Flareon",
+        "fr": "Pyroli",
         "aliases": [
           "Pyroli"
         ],
@@ -2199,6 +2357,7 @@
       },
       {
         "name": "Omanyte",
+        "fr": "Amonita",
         "aliases": [
           "Amonita"
         ],
@@ -2206,6 +2365,7 @@
       },
       {
         "name": "Omastar",
+        "fr": "Amonistar",
         "aliases": [
           "Amonistar"
         ],
@@ -2223,6 +2383,7 @@
       },
       {
         "name": "Aerodactyl",
+        "fr": "Ptéra",
         "aliases": [
           "Ptéra"
         ],
@@ -2230,6 +2391,7 @@
       },
       {
         "name": "Snorlax",
+        "fr": "Ronflex",
         "aliases": [
           "Ronflex"
         ],
@@ -2237,6 +2399,7 @@
       },
       {
         "name": "Articuno",
+        "fr": "Artikodin",
         "aliases": [
           "Artikodin"
         ],
@@ -2244,6 +2407,7 @@
       },
       {
         "name": "Zapdos",
+        "fr": "Électhor",
         "aliases": [
           "Électhor"
         ],
@@ -2251,6 +2415,7 @@
       },
       {
         "name": "Moltres",
+        "fr": "Sulfura",
         "aliases": [
           "Sulfura"
         ],
@@ -2258,6 +2423,7 @@
       },
       {
         "name": "Dratini",
+        "fr": "Minidraco",
         "aliases": [
           "Minidraco"
         ],
@@ -2265,6 +2431,7 @@
       },
       {
         "name": "Dragonair",
+        "fr": "Draco",
         "aliases": [
           "Draco"
         ],
@@ -2272,6 +2439,7 @@
       },
       {
         "name": "Dragonite",
+        "fr": "Dracolosse",
         "aliases": [
           "Dracolosse"
         ],

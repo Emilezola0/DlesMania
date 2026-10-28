@@ -4,6 +4,8 @@ import raw from './silhouettes.json';
 /** One thing to recognise from its silhouette; any of its names counts. */
 export interface SilhouetteEntry {
   name: string;
+  /** The French name, when it isn't the English one (also among the aliases). */
+  fr?: string;
   aliases: string[];
   /** Transparent-background picture, blacked out until it's named. */
   image: string;

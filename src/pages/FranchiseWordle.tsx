@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, lengthHint, markGuess, wordleSet, type LetterMark, type WordleSet } from '../arcade/wordle';
+import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, lengthHint, markGuess, namesIn, wordleSet, type LetterMark, type WordleName } from '../arcade/wordle';
+import { NameLangSwitch } from '../components/NameLangSwitch';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -21,13 +22,13 @@ const HINT = {
 /** Rows are as long as their guess: tiles shrink so the longest still fits a phone. */
 const tileSize = (cols: number) => `min(2.75rem, calc((min(100vw, 36rem) - 4.5rem) / ${cols} - 0.375rem))`;
 
-function Game({ set }: { set: WordleSet }) {
-  const key = `wordle:${set.id}`;
+function Game({ id, label, names }: { id: string; label: string; names: WordleName[] }) {
+  const key = `wordle:${id}`;
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const [run, setRun] = useState(0);
-  const answer = useMemo(() => set.names[Math.floor(Math.random() * set.names.length)], [set, run]);
-  const valid = useMemo(() => new Set(set.names.map((n) => n.word)), [set]);
+  const answer = useMemo(() => names[Math.floor(Math.random() * names.length)], [names, run]);
+  const valid = useMemo(() => new Set(names.map((n) => n.word)), [names]);
   const [guesses, setGuesses] = useState<string[]>([]);
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
@@ -47,7 +48,7 @@ function Game({ set }: { set: WordleSet }) {
   const submit = () => {
     if (!typed) return;
     if (!valid.has(typed)) {
-      setNote(`Not a ${set.label.toLowerCase()} name`);
+      setNote(`Not a ${label.toLowerCase()} name`);
       shake(document.getElementById('wordle-row'), 6, 300);
       return sfx.wrong();
     }
@@ -171,6 +172,7 @@ function Game({ set }: { set: WordleSet }) {
 export default function FranchiseWordle() {
   const { set: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const lang = useProgress((s) => s.nameLang);
   if (id) {
     const set = wordleSet(id);
     if (!set) return <Navigate to="/wordle" replace />;
@@ -180,11 +182,15 @@ export default function FranchiseWordle() {
           <Link to="/wordle" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
             ← Franchise Wordle
           </Link>
-          <h1 className="text-4xl font-bold">
-            {set.icon} {set.label}
-          </h1>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h1 className="text-4xl font-bold">
+              {set.icon} {set.label}
+            </h1>
+            {set.namesFr && <NameLangSwitch />}
+          </div>
         </div>
-        <Game key={set.id} set={set} />
+        {/* A new name when the language changes: the board was for the other spelling. */}
+        <Game key={`${set.id}:${lang}`} id={set.id} label={set.label} names={namesIn(set, lang)} />
       </div>
     );
   }
@@ -200,6 +206,9 @@ export default function FranchiseWordle() {
           can be a guess: green is the right letter in the right place, yellow is elsewhere in the name, and ▲ ▼ tell you whether the name is
           longer or shorter.
         </p>
+        <p className="mt-3 flex items-center gap-2 text-sm text-ink-soft">
+          Names in <NameLangSwitch /> <span className="text-ink-faint">— Pokémon and Minecraft have their French names; the others are the same in both.</span>
+        </p>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {WORDLE_SETS.map((s) => (
@@ -208,7 +217,7 @@ export default function FranchiseWordle() {
               <span className="text-3xl">{s.icon}</span>
               <span className="font-display text-xl font-bold">{s.label}</span>
               <span className="text-xs text-ink-faint">
-                {s.names.length} names{(bests[`wordle:${s.id}`] ?? 0) > 0 ? ` · best streak ${bests[`wordle:${s.id}`]}` : ''}
+                {namesIn(s, lang).length} names{s.namesFr && lang === 'fr' ? ' · en français' : ''}{(bests[`wordle:${s.id}`] ?? 0) > 0 ? ` · best streak ${bests[`wordle:${s.id}`]}` : ''}
               </span>
             </Link>
           </li>
