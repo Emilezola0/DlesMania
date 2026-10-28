@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
-import { celebrateBig, shake } from '../lib/fx';
+import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { ALL_MEDIA, MEDIA, challengesFor } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
@@ -104,7 +104,100 @@ type Screen =
   | { kind: 'reward'; offer: RelicId[]; text: string }
   | { kind: 'shop'; offer: RelicId[] }
   | { kind: 'rest' }
-  | { kind: 'event'; node: MapNode };
+  | { kind: 'event'; node: MapNode }
+  | { kind: 'result'; result: Outcome; then: Screen };
+
+/** How a room went, shown before moving on. */
+interface Outcome {
+  won: boolean;
+  perfect: boolean;
+  boss: boolean;
+  note: string;
+  gold: number;
+  /** Hearts before the room, and how many it cost. */
+  hearts: number;
+  maxHearts: number;
+  lost: number;
+  line: string;
+  /** The run ended with this room. */
+  last: boolean;
+}
+
+const pickLine = (xs: string[]) => xs[Math.floor(Math.random() * xs.length)];
+const WIN_LINES = ['The path opens.', 'Onward!', 'Not even close.', 'Another one down.', 'Clean work.', 'They never stood a chance.'];
+const PERFECT_LINES = ['Flawless.', 'Not a single slip.', 'Textbook.'];
+const LOSS_LINES = ['Just a scratch — keep going.', 'Shake it off.', 'The next room is yours.', 'Even legends stumble.', 'Lesson learned.'];
+const BOSS_WIN_LINES = ['The guardian falls!', 'The way ahead is clear.', 'Legendary.'];
+const BOSS_LOSS_LINES = ['The guardian holds. Catch your breath and strike again.', 'Close! It knows your moves now — so do you.'];
+const LAST_LINES = ['Your last heart gave out.', 'The road ends here — this time.'];
+
+/** Counts up to `to`, for gold won. */
+function CountUp({ to }: { to: number }) {
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!to) return;
+    const start = performance.now();
+    let id = 0;
+    const step = (t: number) => {
+      const k = Math.min(1, (t - start) / 700);
+      setN(Math.round(to * (1 - (1 - k) ** 3)));
+      if (k < 1) id = requestAnimationFrame(step);
+    };
+    id = requestAnimationFrame(step);
+    // A hidden tab never runs the frames: land on the total anyway.
+    const done = window.setTimeout(() => setN(to), 900);
+    return () => (cancelAnimationFrame(id), window.clearTimeout(done));
+  }, [to]);
+  return <>{n}</>;
+}
+
+/** A room's outcome: a stamp, the gold won or the hearts it cost, and the way on. */
+function ResultCard({ result: o, onNext }: { result: Outcome; onNext: () => void }) {
+  useEffect(() => {
+    const go = (e: KeyboardEvent) => e.key === 'Enter' && onNext();
+    // A moment before Enter counts: the key that sent the last answer shouldn't skip the card.
+    const id = window.setTimeout(() => window.addEventListener('keydown', go), 400);
+    return () => (window.clearTimeout(id), window.removeEventListener('keydown', go));
+  }, [onNext]);
+  const title = o.won ? (o.boss ? 'Guardian defeated!' : o.perfect ? 'Perfect!' : 'Victory!') : o.last ? 'Fallen' : o.boss ? 'Driven back' : 'Room lost';
+  return (
+    <section className={`page animate-round-in space-y-4 overflow-hidden rounded-md p-6 text-center ${o.won ? 'ring-2 ring-hit/50' : 'ring-2 ring-miss/40'}`}>
+      <div className="animate-stamp text-6xl" aria-hidden>
+        {o.won ? (o.boss ? '👑' : o.perfect ? '🌟' : '⚔️') : o.last ? '🪦' : '💔'}
+      </div>
+      <p className={`font-display text-4xl font-bold tracking-wide ${o.won ? 'text-hit' : 'text-coral'}`}>{title}</p>
+      <p className="text-lg">{o.note}</p>
+      {o.won ? (
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <span className="animate-pop rounded-full border border-ochre/50 bg-ochre/10 px-4 py-1.5 font-display text-2xl font-bold" style={{ animationDelay: '250ms' }}>
+            +<CountUp to={o.gold} /> 🪙
+          </span>
+          {o.perfect && (
+            <span className="animate-pop rounded-full border border-hit/50 bg-hit/10 px-3 py-1 font-display text-sm font-bold uppercase tracking-widest text-hit" style={{ animationDelay: '500ms' }}>
+              Flawless +5
+            </span>
+          )}
+        </div>
+      ) : (
+        <div className="flex justify-center gap-1.5">
+          {Array.from({ length: o.maxHearts }, (_, i) => {
+            const breaking = i < o.hearts && i >= o.hearts - o.lost;
+            return (
+              <span key={i} className={breaking ? 'animate-heart-break' : ''} style={breaking ? { animationDelay: `${300 + (o.hearts - 1 - i) * 200}ms` } : undefined}>
+                <HeartIcon full={i < o.hearts} className="size-8" />
+              </span>
+            );
+          })}
+        </div>
+      )}
+      <p className="font-serif text-lg italic text-ink-soft">{o.line}</p>
+      <button type="button" onClick={onNext} className={`${o.won ? 'btn-accent' : 'btn-ink'} rounded-md px-8 py-3 font-display font-bold tracking-wider`}>
+        {o.last ? 'See the expedition' : !o.won && o.boss ? 'Face the guardian again' : 'Continue'}
+      </button>
+    </section>
+  );
+}
+
 
 function Hud({ run }: { run: RunState }) {
   return (
@@ -189,8 +282,6 @@ export default function Expedition() {
     const done = { ...r, over: true, won };
     save(done);
     recordBest(bestKey(mediaOf(done)), runScore(done));
-    if (won) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
-    setScreen({ kind: 'map' });
   };
 
   const enter = (n: MapNode) => {
@@ -209,31 +300,39 @@ export default function Expedition() {
   const roomDone = (res: RoomResult) => {
     if (!run || screen.kind !== 'room') return;
     const { node, elite, gamble } = screen;
+    const boss = node.kind === 'boss';
+    const base = { boss, note: res.note, hearts: run.hearts, maxHearts: run.maxHearts };
     let r: RunState = { ...run };
     if (res.won) {
-      sfx.hit();
-      const gold = goldFor(r, node.kind === 'boss' ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
+      const gold = goldFor(r, boss ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
       r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙)`] };
-      if (node.kind === 'boss') {
+      const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
+      if (boss) (sfx.victory(), celebrateBig());
+      else if (res.perfect) (sfx.streak(), celebrate());
+      else (sfx.hit(), celebrate());
+      let then: Screen = { kind: 'map' };
+      if (boss) {
         if (has(r, 'bandage')) r.hearts = Math.min(r.maxHearts, r.hearts + 1);
-        if (r.act >= ACTS) return finish(r, true);
+        if (r.act >= ACTS) {
+          finish(r, true);
+          return setScreen({ kind: 'result', result: { ...result, line: 'The expedition is complete!' }, then: { kind: 'map' } });
+        }
         r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, mediaOf(r)), at: null };
-        save(r);
-        return setScreen({ kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` });
-      }
+        then = { kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` };
+      } else if (elite || gamble) then = { kind: 'reward', offer: relicOffer(r), text: gamble ? 'The gamble paid off.' : 'Elite beaten: a relic of your choice.' };
       save(r);
-      if (elite || gamble) return setScreen({ kind: 'reward', offer: relicOffer(r), text: gamble ? 'The gamble paid off.' : 'Elite beaten: a relic of your choice.' });
-      return setScreen({ kind: 'map' });
+      return setScreen({ kind: 'result', result, then });
     }
     sfx.hurt();
     shake(document.querySelector('main'), 10, 400);
-    const cost = node.kind === 'boss' ? 2 : 1;
+    const cost = Math.min(r.hearts, boss ? 2 : 1);
     r = { ...r, hearts: r.hearts - cost, log: [...r.log, `✗ ${res.note} (−${cost} ❤)`] };
-    if (r.hearts <= 0) return finish(r, false);
-    save(r);
+    const last = r.hearts <= 0;
+    const result: Outcome = { ...base, won: false, perfect: false, gold: 0, lost: cost, last, line: pickLine(last ? LAST_LINES : boss ? BOSS_LOSS_LINES : LOSS_LINES) };
+    if (last) finish(r, false);
+    else save(r);
     // A boss has to be beaten: the act's last room comes back.
-    if (node.kind === 'boss') return setScreen({ kind: 'room', node, challenge: 'boss', elite: false });
-    setScreen({ kind: 'map' });
+    setScreen({ kind: 'result', result, then: !last && boss ? { kind: 'room', node, challenge: 'boss', elite: false } : { kind: 'map' } });
   };
 
   const takeReward = (relic: RelicId | null) => {
@@ -280,7 +379,7 @@ export default function Expedition() {
   }
 
   // ── The end ───────────────────────────────────────────────────────────
-  if (run.over) {
+  if (run.over && screen.kind !== 'result') {
     const score = runScore(run);
     return (
       <div className="mx-auto max-w-xl space-y-5 text-center">
@@ -337,6 +436,8 @@ export default function Expedition() {
           {Room ? <Room mods={modsFor(run, screen.elite)} onDone={roomDone} /> : <BossRoom act={run.act} media={mediaOf(run)} onDone={roomDone} />}
         </section>
       )}
+
+      {screen.kind === 'result' && <ResultCard result={screen.result} onNext={() => (sfx.click(), setScreen(screen.then))} />}
 
       {screen.kind === 'reward' && (
         <section className="page animate-round-in space-y-4 rounded-md p-5 text-center">
