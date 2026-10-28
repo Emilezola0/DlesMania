@@ -70,6 +70,8 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
       if (s > best) window.setTimeout(() => celebrateBig(), 300);
     } else if (next.length >= WORDLE_TRIES) {
       sfx.wrong();
+      // A lost word still counts as a game played (the best streak stays).
+      recordBest(key, 0);
       setStreak(0);
     } else sfx.click();
   };

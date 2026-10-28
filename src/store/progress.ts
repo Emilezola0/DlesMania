@@ -5,16 +5,21 @@ import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
+  ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
   ARCADE_CAP,
   ARCADE_COINS,
-  BOSS_AGAIN,
-  BOSS_COINS,
+  ARCADE_SPACING_MS,
+  BOSS_LOSS,
+  BOSS_WEEKLY,
+  BOSS_WIN,
   CATEGORY_BONUS,
   MISSIONS,
   freshEconomy,
   missionsFor,
   roundCoins,
+  weekOf,
+  type BossWeek,
   type Economy,
   type MissionKind,
 } from '../gacha/economy';
@@ -65,8 +70,10 @@ interface ProgressState {
   coins: number;
   /** Cards collected: card id -> how many times it was pulled. */
   cards: Record<string, number>;
-  /** Today's earnings book: capped coins, bosses paid for, missions (see src/gacha/economy.ts). */
+  /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
+  /** This week's boss bonuses already paid. */
+  bossWeek: BossWeek;
   packsOpened: number;
   /** A card shown as the player's icon (any card they own). */
   avatar: string | null;
@@ -114,17 +121,24 @@ interface ProgressState {
 /** Today's earnings book (a new one each day). */
 export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
 
+/** This week's boss book (a new one each Monday). */
+export const bossWeekNow = (b: BossWeek | undefined): BossWeek => (b && b.week === weekOf(todayKey()) ? b : { week: weekOf(todayKey()), keys: [] });
+
 /**
- * Coins earned, written into the day's book: endless-game coins (`arcade`) stop at the daily cap,
- * mission counters move on.
+ * Coins earned, written into the day's book: a game's coins (`arcade`: its key) come in full up to
+ * the daily amount, then as a token; a game that saves as it goes pays once per spacing. Mission
+ * counters move on.
  */
 function earn(
   s: Pick<ProgressState, 'coins' | 'econ'>,
   amount: number,
-  opts: { arcade?: boolean; count?: Partial<Record<MissionKind, number>>; boss?: string } = {},
-): Pick<ProgressState, 'coins' | 'econ'> {
+  opts: { arcade?: string; count?: Partial<Record<MissionKind, number>>; boss?: string } = {},
+): Partial<Pick<ProgressState, 'coins' | 'econ'>> {
   const e = econToday(s.econ);
-  const paid = opts.arcade ? Math.max(0, Math.min(amount, ARCADE_CAP - e.arcade)) : amount;
+  const now = Date.now();
+  if (opts.arcade && now - (e.lastPaid?.[opts.arcade] ?? 0) < ARCADE_SPACING_MS) return {};
+  const left = ARCADE_CAP - e.arcade;
+  const paid = opts.arcade ? (left > 0 ? Math.min(amount, left) : ARCADE_AFTER_CAP) : amount;
   const counters = { ...e.counters };
   for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as MissionKind] = (counters[k as MissionKind] ?? 0) + (n ?? 0);
   return {
@@ -133,6 +147,7 @@ function earn(
       ...e,
       arcade: e.arcade + (opts.arcade ? paid : 0),
       bosses: opts.boss ? [...e.bosses, opts.boss] : e.bosses,
+      lastPaid: opts.arcade ? { ...e.lastPaid, [opts.arcade]: now } : e.lastPaid,
       counters,
       earned: e.earned + paid,
     },
@@ -173,6 +188,7 @@ export const useProgress = create<ProgressState>()(
       coins: 0,
       cards: {},
       econ: freshEconomy(todayKey()),
+      bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
       avatar: null,
       backdrop: null,
@@ -223,7 +239,7 @@ export const useProgress = create<ProgressState>()(
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
         set((s) => ({
-          ...earn(s, ARCADE_COINS, { arcade: true }),
+          ...earn(s, ARCADE_COINS, { arcade: 'freeplay' }),
           freePlay: {
             played: s.freePlay.played + 1,
             won: s.freePlay.won + (record.status === 'won' ? 1 : 0),
@@ -234,12 +250,12 @@ export const useProgress = create<ProgressState>()(
       recordBest: (key, score) =>
         set((s) => ({
           bests: { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) },
-          ...earn(s, ARCADE_COINS + (score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: true, count: { arcade: 1 } }),
+          ...earn(s, ARCADE_COINS + (score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: key, count: { arcade: 1 } }),
         })),
       recordWhosThat: (key, score) =>
         set((s) => ({
           whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
-          ...earn(s, ARCADE_COINS + (score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: true, count: { whos: 1 } }),
+          ...earn(s, ARCADE_COINS + (score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: `whos:${key}`, count: { whos: 1 } }),
         })),
       setSpecialRound: (key, index, record) =>
         set((s) => {
@@ -251,12 +267,14 @@ export const useProgress = create<ProgressState>()(
       recordBoss: (key, { won, score, time }) =>
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
-          // A win pays by difficulty, the first time today at that difficulty.
+          // Every fight pays: a win by difficulty (plus the week's first win over this boss at this difficulty), a loss a token.
           const difficulty = (key.split(':')[1] ?? 'easy') as BossDifficulty;
-          const paid = econToday(s.econ).bosses.includes(key);
-          const coins = won ? earn(s, paid ? BOSS_AGAIN : BOSS_COINS[difficulty], { count: { boss: 1 }, boss: paid ? undefined : key }) : {};
+          const week = bossWeekNow(s.bossWeek);
+          const weekly = won && !week.keys.includes(key);
+          const coins = earn(s, won ? BOSS_WIN[difficulty] + (weekly ? BOSS_WEEKLY[difficulty] : 0) : BOSS_LOSS, { count: { boss: won ? 1 : 0 } });
           return {
             ...coins,
+            bossWeek: weekly ? { ...week, keys: [...week.keys, key] } : week,
             bosses: {
               ...s.bosses,
               [key]: {
@@ -272,7 +290,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), packsOpened: 0, avatar: null, backdrop: null }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, avatar: null, backdrop: null }),
     }),
     {
       name: 'omnidle-progress',

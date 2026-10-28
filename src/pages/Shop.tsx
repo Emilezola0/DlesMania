@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITY_INFO, SETS, type Card } from '../gacha/cards';
-import { ARCADE_CAP, BOSS_COINS, CATEGORY_BONUS, MISSIONS, missionsFor } from '../gacha/economy';
+import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_COINS, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, MISSIONS, missionsFor } from '../gacha/economy';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, ODDS, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
-import { econToday, useProgress } from '../store/progress';
+import { bossWeekNow, econToday, useProgress } from '../store/progress';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const;
@@ -18,6 +18,7 @@ export default function Shop() {
   const owned = useProgress((s) => s.cards);
   const bosses = useProgress((s) => s.bosses);
   const econ = econToday(useProgress((s) => s.econ));
+  const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
   const claim = useProgress((s) => s.claimMission);
   const [opening, setOpening] = useState<{ pack: Pack; cards: Card[]; fresh: Set<string>; key: number } | null>(null);
@@ -148,10 +149,12 @@ export default function Shop() {
           <li>Every daily round you finish: 6 to 16 coins, the better your score the more (2 for a lost round); +{CATEGORY_BONUS} for playing all ten of a category.</li>
           <li>Specialist dailies: the same per round.</li>
           <li>
-            A boss beaten: {BOSS_COINS.easy} on Easy, {BOSS_COINS.medium} on Medium, {BOSS_COINS.hard} on Hard — once a day for each.
+            Every Boss Battle: {BOSS_WIN.easy} for a win on Easy, {BOSS_WIN.medium} on Medium, {BOSS_WIN.hard} on Hard ({BOSS_LOSS} for a loss) — and the first win over each boss at each difficulty
+            this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium} or +{BOSS_WEEKLY.hard} more ({bossWeek.keys.length} of {SETS.length * 3} taken this week; they come back every Monday).
           </li>
           <li>
-            The endless games (Games page, Free Play, Who&apos;s That?): a couple of coins a game, a few more for a new best — up to {ARCADE_CAP} a day ({econ.arcade}/{ARCADE_CAP} today).
+            Every game from the Games page, Free Play and Who&apos;s That?: {ARCADE_COINS} coins, +{ARCADE_BEST_BONUS} for a new best — in full up to {ARCADE_CAP} a day ({Math.min(econ.arcade, ARCADE_CAP)}/
+            {ARCADE_CAP} today), then {ARCADE_AFTER_CAP} a game, as long as you play.
           </li>
           <li>Three missions a day, a bonus each.</li>
         </ul>

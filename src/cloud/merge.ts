@@ -23,6 +23,7 @@ export const SYNCED = [
   'coins',
   'cards',
   'econ',
+  'bossWeek',
   'packsOpened',
   'nameLang',
   'avatar',
@@ -135,6 +136,15 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // Cards pulled apart add up; once in step, the counts only grow, so the higher is the true one.
     cards: firstLink ? sumBy(local.cards, cloud.cards) : maxBy(local.cards, cloud.cards),
     econ: mergeEcon(local.econ, cloud.econ)!,
+    // The same week: every boss paid on either side stays paid. Different weeks: the later one.
+    bossWeek:
+      !local.bossWeek || !cloud.bossWeek
+        ? (local.bossWeek ?? cloud.bossWeek)
+        : local.bossWeek.week === cloud.bossWeek.week
+          ? { week: local.bossWeek.week, keys: [...new Set([...local.bossWeek.keys, ...cloud.bossWeek.keys])] }
+          : local.bossWeek.week > cloud.bossWeek.week
+            ? local.bossWeek
+            : cloud.bossWeek,
     coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
     packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
