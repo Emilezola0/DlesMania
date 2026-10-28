@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
+import { ALL_MEDIA, MEDIA, challengesFor } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
 import {
   ACTS,
@@ -13,6 +14,7 @@ import {
   goldFor,
   has,
   makeMap,
+  mediaOf,
   modsFor,
   newRun,
   reachable,
@@ -25,6 +27,7 @@ import {
   type RunState,
 } from '../rogue/run';
 import { useProgress } from '../store/progress';
+import type { Domain } from '../types';
 
 const ROOMS: Record<ChallengeKind, typeof PortraitRoom> = {
   portrait: PortraitRoom,
@@ -34,9 +37,65 @@ const ROOMS: Record<ChallengeKind, typeof PortraitRoom> = {
   sort: SortRoom,
   name5: Name5Room,
 };
-const KINDS = Object.keys(ROOMS) as ChallengeKind[];
+const pickKind = (kinds: ChallengeKind[]) => kinds[Math.floor(Math.random() * kinds.length)];
 const HEART_PRICE = 30;
 const REST_GOLD = 20;
+const MEDIA_KEY = 'omnidle:expedition:media';
+
+/** Each mix of kinds of work keeps its own best ("mixed": all of them, as before the choice existed). */
+const bestKey = (media: Domain[]) => (ALL_MEDIA.every((m) => media.includes(m)) ? 'rogue:mixed' : `rogue:${[...media].sort().join('+')}`);
+
+const mediaLabel = (media: Domain[]) =>
+  ALL_MEDIA.every((m) => media.includes(m)) ? 'Everything' : MEDIA.filter((m) => media.includes(m.id)).map((m) => `${m.icon} ${m.label}`).join(' + ');
+
+function savedMedia(): Domain[] {
+  try {
+    const v = JSON.parse(localStorage.getItem(MEDIA_KEY) ?? 'null');
+    if (Array.isArray(v)) {
+      const ok = ALL_MEDIA.filter((m) => v.includes(m));
+      if (ok.length) return ok;
+    }
+  } catch {
+    // No storage: everything.
+  }
+  return ALL_MEDIA;
+}
+
+/** The kinds of work to set out with: any mix of them, never none. */
+function MediaPicker({ media, onChange }: { media: Domain[]; onChange: (m: Domain[]) => void }) {
+  const toggle = (id: Domain) => {
+    const next = media.includes(id) ? media.filter((m) => m !== id) : ALL_MEDIA.filter((m) => m === id || media.includes(m));
+    if (!next.length) return;
+    sfx.click();
+    onChange(next);
+    try {
+      localStorage.setItem(MEDIA_KEY, JSON.stringify(next));
+    } catch {
+      // Not remembered, that's all.
+    }
+  };
+  return (
+    <div className="space-y-2">
+      <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Made of</p>
+      <div className="flex flex-wrap gap-2">
+        {MEDIA.map((m) => {
+          const on = media.includes(m.id);
+          return (
+            <button
+              key={m.id}
+              type="button"
+              aria-pressed={on}
+              onClick={() => toggle(m.id)}
+              className={`rounded-full border-2 px-4 py-2 font-display font-bold transition ${on ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`}
+            >
+              {m.icon} {m.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 /** What's on screen besides the map. */
 type Screen =
@@ -119,7 +178,9 @@ function RunMap({ run, onEnter }: { run: RunState; onEnter: (n: MapNode) => void
 export default function Expedition() {
   const run = useProgress((s) => s.rogueRun);
   const setRun = useProgress((s) => s.setRogueRun);
-  const best = useProgress((s) => s.bests['rogue:mixed'] ?? 0);
+  const [media, setMedia] = useState<Domain[]>(savedMedia);
+  const bests = useProgress((s) => s.bests);
+  const best = bests[bestKey(run ? mediaOf(run) : media)] ?? 0;
   const recordBest = useProgress((s) => s.recordBest);
   const [screen, setScreen] = useState<Screen>({ kind: 'map' });
   const save = (r: RunState) => setRun({ ...r, log: r.log.slice(-6) });
@@ -127,7 +188,7 @@ export default function Expedition() {
   const finish = (r: RunState, won: boolean) => {
     const done = { ...r, over: true, won };
     save(done);
-    recordBest('rogue:mixed', runScore(done));
+    recordBest(bestKey(mediaOf(done)), runScore(done));
     if (won) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     setScreen({ kind: 'map' });
   };
@@ -156,7 +217,7 @@ export default function Expedition() {
       if (node.kind === 'boss') {
         if (has(r, 'bandage')) r.hearts = Math.min(r.maxHearts, r.hearts + 1);
         if (r.act >= ACTS) return finish(r, true);
-        r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed), at: null };
+        r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, mediaOf(r)), at: null };
         save(r);
         return setScreen({ kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` });
       }
@@ -197,11 +258,12 @@ export default function Expedition() {
             spend it all at shops. A lost room costs a heart; lose them all and the expedition ends.
           </p>
         </div>
+        <MediaPicker media={media} onChange={setMedia} />
         <div className="flex flex-wrap items-center gap-4">
-          <button type="button" onClick={() => (sfx.click(), setRun(newRun()), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-8 py-3.5 font-display text-lg font-bold tracking-widest">
+          <button type="button" onClick={() => (sfx.click(), setRun(newRun(media)), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-8 py-3.5 font-display text-lg font-bold tracking-widest">
             Set out
           </button>
-          {best > 0 && <p className="text-ink-soft">Best expedition: {best} points</p>}
+          {best > 0 && <p className="text-ink-soft">Best expedition ({mediaLabel(media)}): {best} points</p>}
         </div>
         <ul className="grid gap-2 sm:grid-cols-2">
           {(Object.keys(RELICS) as RelicId[]).map((r) => (
@@ -225,7 +287,7 @@ export default function Expedition() {
         <p className="font-display text-sm uppercase tracking-[0.3em] text-ink-faint">{run.won ? 'Expedition complete' : 'The expedition ends here'}</p>
         <p className="font-serif text-7xl font-bold">{score}</p>
         <p className="text-ink-soft">
-          {run.cleared} rooms won · {run.gold} gold · act {run.act} · {score >= best ? '★ Best expedition' : `best ${best}`}
+          {mediaLabel(mediaOf(run))} · {run.cleared} rooms won · {run.gold} gold · act {run.act} · {score >= best ? '★ Best expedition' : `best ${best}`}
         </p>
         <div className="flex justify-center gap-1 text-2xl">{run.relics.map((r) => RELICS[r].icon)}</div>
         <ul className="space-y-1 text-sm text-ink-soft">
@@ -234,7 +296,7 @@ export default function Expedition() {
           ))}
         </ul>
         <div className="flex justify-center gap-3">
-          <button type="button" onClick={() => (sfx.click(), setRun(newRun()), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
+          <button type="button" onClick={() => (sfx.click(), setRun(newRun(mediaOf(run))), setScreen({ kind: 'map' }))} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
             New expedition
           </button>
           <button type="button" onClick={() => setRun(null)} className="btn-paper rounded-md px-6 py-3 font-display font-bold tracking-wider">
@@ -272,7 +334,7 @@ export default function Expedition() {
           <p className="mb-3 text-center font-display text-sm font-bold uppercase tracking-widest text-coral">
             {screen.challenge === 'boss' ? '👑 Boss' : screen.gamble ? '❓ Gamble' : screen.elite ? '💀 Elite' : '⚔️ Challenge'}
           </p>
-          {Room ? <Room mods={modsFor(run, screen.elite)} onDone={roomDone} /> : <BossRoom act={run.act} onDone={roomDone} />}
+          {Room ? <Room mods={modsFor(run, screen.elite)} onDone={roomDone} /> : <BossRoom act={run.act} media={mediaOf(run)} onDone={roomDone} />}
         </section>
       )}
 
@@ -359,7 +421,7 @@ export default function Expedition() {
           <div className="flex justify-center gap-3">
             <button
               type="button"
-              onClick={() => setScreen({ kind: 'room', node: screen.node, challenge: KINDS[Math.floor(Math.random() * KINDS.length)], elite: true, gamble: true })}
+              onClick={() => setScreen({ kind: 'room', node: screen.node, challenge: pickKind(challengesFor(mediaOf(run))), elite: true, gamble: true })}
               className="btn-ink rounded-md px-5 py-3 font-display font-bold"
             >
               Accept

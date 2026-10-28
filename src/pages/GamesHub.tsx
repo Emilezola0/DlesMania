@@ -162,7 +162,7 @@ export default function GamesHub() {
             </span>
           </span>
           <span className="text-xs text-ink-faint">
-            {rogueRun && !rogueRun.over ? `Run in progress · act ${rogueRun.act}` : bests['rogue:mixed'] ? `Best: ${bests['rogue:mixed']}` : 'Not played yet'}
+            {rogueRun && !rogueRun.over ? `Run in progress · act ${rogueRun.act}` : best('rogue:') ? `Best: ${best('rogue:')}` : 'Not played yet'}
           </span>
         </Link>
       </section>

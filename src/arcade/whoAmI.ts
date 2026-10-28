@@ -3,6 +3,7 @@ import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL, filmById } from '../specialist/marvel';
 import { WOW, telltaleTitles } from '../specialist/wow';
+import type { Domain } from '../types';
 
 /** Someone to find, with clues from the vaguest to the most telling. */
 export interface WhoTarget {
@@ -17,6 +18,7 @@ export interface WhoUniverse {
   id: string;
   label: string;
   icon: string;
+  domain: Domain;
   /** Everyone the player can name. */
   pool: WhoTarget[];
   /** Who can be the answer: the best-known part of the pool. */
@@ -117,11 +119,11 @@ const wow: WhoTarget[] = WOW.characters.map((c) => {
 });
 
 export const WHO_UNIVERSES: WhoUniverse[] = [
-  { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', pool: onePiece, targets: onePiece.slice(0, 80) },
-  { id: 'lol', label: 'League of Legends', icon: '⚔️', pool: league, targets: league },
-  { id: 'marvel', label: 'Marvel (MCU)', icon: '🦸', pool: marvel, targets: marvel.slice(0, 60) },
-  { id: 'genshin', label: 'Genshin Impact', icon: '✨', pool: genshin, targets: genshin },
-  { id: 'wow', label: 'World of Warcraft', icon: '🐉', pool: wow, targets: wow.slice(0, 80) },
+  { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', domain: 'anime', pool: onePiece, targets: onePiece.slice(0, 80) },
+  { id: 'lol', label: 'League of Legends', icon: '⚔️', domain: 'games', pool: league, targets: league },
+  { id: 'marvel', label: 'Marvel (MCU)', icon: '🦸', domain: 'cinema', pool: marvel, targets: marvel.slice(0, 60) },
+  { id: 'genshin', label: 'Genshin Impact', icon: '✨', domain: 'games', pool: genshin, targets: genshin },
+  { id: 'wow', label: 'World of Warcraft', icon: '🐉', domain: 'games', pool: wow, targets: wow.slice(0, 80) },
 ];
 
 /** Characters per run, and wrong names allowed per character. */

@@ -3,6 +3,7 @@ import { ONE_PIECE, formatBounty } from '../specialist/data';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
+import type { Domain } from '../types';
 
 /** Something to compare: its number, and how that number reads. */
 export interface HlItem {
@@ -13,6 +14,8 @@ export interface HlItem {
   detail?: string;
   value: number;
   shown: string;
+  /** In a deck of every kind of work: which kind this one is. */
+  domain?: Domain;
 }
 
 export interface HlDeck {
@@ -24,6 +27,8 @@ export interface HlDeck {
   higher: string;
   lower: string;
   icon: string;
+  /** What the deck is about ("mixed": every kind of work, see each item's own). */
+  domain: Domain | 'mixed';
   items: HlItem[];
 }
 
@@ -40,6 +45,7 @@ const versionValue = (v: string) => v.split('.').map(Number).reduce((n, x, i) =>
 export const HL_DECKS: HlDeck[] = [
   {
     id: 'bounty',
+    domain: 'anime',
     label: 'One Piece bounties',
     question: 'Whose bounty is higher?',
     higher: 'Higher bounty',
@@ -49,6 +55,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'height',
+    domain: 'anime',
     label: 'One Piece heights',
     question: 'Who is taller?',
     higher: 'Taller',
@@ -58,6 +65,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'boxoffice',
+    domain: 'cinema',
     label: 'MCU box office',
     question: 'Which film made more at the box office?',
     higher: 'More',
@@ -70,6 +78,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'mcu-films',
+    domain: 'cinema',
     label: 'MCU appearances',
     question: 'Who is in more MCU films?',
     higher: 'More films',
@@ -79,6 +88,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'lol-year',
+    domain: 'games',
     label: 'League release years',
     question: 'Which champion came out later?',
     higher: 'Later',
@@ -88,6 +98,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'genshin-version',
+    domain: 'games',
     label: 'Genshin release versions',
     question: 'Which character came out later?',
     higher: 'Later',
@@ -97,6 +108,7 @@ export const HL_DECKS: HlDeck[] = [
   },
   {
     id: 'works-year',
+    domain: 'mixed',
     label: 'Release years',
     question: 'Which one came out later?',
     higher: 'Later',
@@ -109,6 +121,7 @@ export const HL_DECKS: HlDeck[] = [
       detail: domainInfo(w.domain).noun[0].toUpperCase() + domainInfo(w.domain).noun.slice(1),
       value: w.year,
       shown: String(w.year),
+      domain: w.domain,
     })),
   },
 ];

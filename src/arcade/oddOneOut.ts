@@ -1,4 +1,5 @@
 import { connectionThemes, type ThemeBank } from '../data';
+import type { Domain } from '../types';
 import { kindOf } from '../lib/connections';
 import { shuffle } from '../lib/rng';
 
@@ -45,9 +46,9 @@ function tryRound(bank: ThemeBank, rand: () => number): OddRound | null {
   return { theme: bank.theme, link: link.label, cards: shuffle(five, rand).map((label) => ({ label, image: images.get(label) })), odd };
 }
 
-/** A round from one theme, or from any theme when `themeId` is "all". */
-export function oddRound(themeId: string, rand: () => number = Math.random): OddRound {
-  const banks = themeId === 'all' ? connectionThemes : connectionThemes.filter((t) => t.id === themeId);
+/** A round from one theme, or from any theme when `themeId` is "all" (of the given kinds of work, when set). */
+export function oddRound(themeId: string, rand: () => number = Math.random, domains?: Domain[]): OddRound {
+  const banks = (themeId === 'all' ? connectionThemes : connectionThemes.filter((t) => t.id === themeId)).filter((t) => !domains || domains.includes(t.domain));
   for (let i = 0; i < 200; i++) {
     const r = tryRound(banks[Math.floor(rand() * banks.length)], rand);
     if (r) return r;

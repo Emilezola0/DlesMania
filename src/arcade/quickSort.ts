@@ -4,6 +4,7 @@ import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
+import type { Domain } from '../types';
 
 /** Something to sort: which side it goes, and what shows once it's sorted. */
 export interface SortCard {
@@ -13,6 +14,8 @@ export interface SortCard {
   side: 'left' | 'right';
   /** The fact behind its side ("Ranged", "Released 1998"...). */
   fact: string;
+  /** In a deck of every kind of work: which kind this one is. */
+  domain?: Domain;
 }
 
 export interface SortDeck {
@@ -21,6 +24,8 @@ export interface SortDeck {
   icon: string;
   left: string;
   right: string;
+  /** What the deck is about ("mixed": every kind of work, see each card's own). */
+  domain: Domain | 'mixed';
   cards: SortCard[];
 }
 
@@ -30,6 +35,7 @@ const YEAR_LINE = 2000;
 export const SORT_DECKS: SortDeck[] = [
   {
     id: 'lol-range',
+    domain: 'games',
     label: 'League: melee or ranged?',
     icon: '⚔️',
     left: 'Melee',
@@ -38,6 +44,7 @@ export const SORT_DECKS: SortDeck[] = [
   },
   {
     id: 'wow-faction',
+    domain: 'games',
     label: 'Warcraft: Horde or Alliance?',
     icon: '🐉',
     left: 'Horde',
@@ -48,6 +55,7 @@ export const SORT_DECKS: SortDeck[] = [
   },
   {
     id: 'genshin-rarity',
+    domain: 'games',
     label: 'Genshin: 4★ or 5★?',
     icon: '✨',
     left: '4★',
@@ -56,6 +64,7 @@ export const SORT_DECKS: SortDeck[] = [
   },
   {
     id: 'marvel-status',
+    domain: 'cinema',
     label: 'MCU: alive or dead?',
     icon: '🦸',
     left: 'Alive',
@@ -67,6 +76,7 @@ export const SORT_DECKS: SortDeck[] = [
   },
   {
     id: 'op-bounty',
+    domain: 'anime',
     label: 'One Piece: bounty under or over 500M?',
     icon: '💰',
     left: 'Under 500M',
@@ -77,6 +87,7 @@ export const SORT_DECKS: SortDeck[] = [
   },
   {
     id: 'works-year',
+    domain: 'mixed',
     label: `Released before or after ${YEAR_LINE}?`,
     icon: '📅',
     left: `Before ${YEAR_LINE}`,
@@ -87,6 +98,7 @@ export const SORT_DECKS: SortDeck[] = [
       image: w.cover!.image,
       side: w.year >= YEAR_LINE ? 'right' : 'left',
       fact: `${domainInfo(w.domain).noun} · ${w.year}`,
+      domain: w.domain,
     })),
   },
 ];

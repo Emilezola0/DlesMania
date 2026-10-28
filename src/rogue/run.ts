@@ -2,6 +2,8 @@
 // from the other games. Hearts, gold and relics carry from room to room; out of hearts, the run ends.
 // The run is plain data (saved in the store), so a refresh doesn't lose it.
 import { mulberry32 } from '../lib/rng';
+import type { Domain } from '../types';
+import { ALL_MEDIA, challengesFor } from './pools';
 
 export type RelicId = 'hourglass' | 'lantern' | 'secondwind' | 'loupe' | 'vitality' | 'greedy' | 'luckycoin' | 'bandage';
 
@@ -46,6 +48,8 @@ export interface RunState {
   log: string[];
   over: boolean;
   won: boolean;
+  /** The kinds of work the rooms draw from (runs saved before the choice existed: all of them). */
+  media?: Domain[];
 }
 
 export const ACTS = 2;
@@ -71,13 +75,12 @@ export const CHALLENGE_INFO: Record<ChallengeKind, { icon: string; name: string 
   name5: { icon: '📝', name: 'Name them' },
 };
 
-const CHALLENGES = Object.keys(CHALLENGE_INFO) as ChallengeKind[];
-
 /**
  * One act's map: ROWS rows of 2–3 rooms, each leading to the rooms just below it, then the boss.
  * The first row is all challenges, the row before the boss a campfire; elites only from row 2.
  */
-export function makeMap(act: number, seed: number): MapNode[] {
+export function makeMap(act: number, seed: number, media: Domain[] = ALL_MEDIA): MapNode[] {
+  const CHALLENGES = challengesFor(media);
   const rand = mulberry32(seed * 31 + act);
   const rows: MapNode[][] = [];
   for (let r = 0; r < ROWS; r++) {
@@ -111,9 +114,11 @@ export function makeMap(act: number, seed: number): MapNode[] {
   return [...rows.flat(), boss];
 }
 
-export function newRun(seed = Math.floor(Math.random() * 1e9)): RunState {
-  return { seed, act: 1, hearts: START_HEARTS, maxHearts: START_HEARTS, gold: 0, relics: [], map: makeMap(1, seed), at: null, cleared: 0, log: [], over: false, won: false };
+export function newRun(media: Domain[] = ALL_MEDIA, seed = Math.floor(Math.random() * 1e9)): RunState {
+  return { seed, act: 1, hearts: START_HEARTS, maxHearts: START_HEARTS, gold: 0, relics: [], map: makeMap(1, seed, media), at: null, cleared: 0, log: [], over: false, won: false, media };
 }
+
+export const mediaOf = (run: RunState) => (run.media?.length ? run.media : ALL_MEDIA);
 
 /** Rooms the player can enter now. */
 export function reachable(run: RunState): MapNode[] {
@@ -138,6 +143,8 @@ export interface Mods {
   loupe: boolean;
   /** Elites: tighter limits. */
   hard: boolean;
+  /** The kinds of work to draw from. */
+  media: Domain[];
 }
 
 export const modsFor = (run: RunState, hard: boolean): Mods => ({
@@ -146,6 +153,7 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
   forgive: has(run, 'secondwind') ? 1 : 0,
   loupe: has(run, 'loupe'),
   hard,
+  media: mediaOf(run),
 });
 
 /** A relic's effect on taking it (most work through `Mods` instead). */

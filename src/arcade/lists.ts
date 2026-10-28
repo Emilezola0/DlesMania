@@ -2,7 +2,7 @@ import { BOSSES } from '../data/bosses';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
-import type { BlitzPrompt } from '../types';
+import type { BlitzPrompt, Domain } from '../types';
 
 /** A list to name in full against the clock. */
 export interface NameList {
@@ -10,6 +10,7 @@ export interface NameList {
   /** "Devil Fruits", "Champions from Demacia"... */
   title: string;
   franchise: string;
+  domain: Domain;
   answers: BlitzPrompt['answers'];
   /** Time allowed, in seconds. */
   seconds: number;
@@ -30,22 +31,23 @@ const fromBosses: NameList[] = BOSSES.flatMap((b) =>
   b.blitz
     // A few answers make a poor list: the Blitz asks for some of them, here it's all of them.
     .filter((p) => p.answers.length >= 6)
-    .map((p) => ({ id: `${b.id}-${slug(titleOf(p.prompt))}`, title: titleOf(p.prompt), franchise: b.franchise, answers: p.answers, seconds: timeFor(p.answers.length) })),
+    .map((p) => ({ id: `${b.id}-${slug(titleOf(p.prompt))}`, title: titleOf(p.prompt), franchise: b.franchise, domain: b.domain, answers: p.answers, seconds: timeFor(p.answers.length) })),
 );
 
-const roster = (id: string, title: string, franchise: string, items: { name: string; aliases?: string[] }[]): NameList => ({
+const roster = (id: string, title: string, franchise: string, domain: Domain, items: { name: string; aliases?: string[] }[]): NameList => ({
   id,
   title,
   franchise,
+  domain,
   answers: items.map((x) => ({ name: x.name, aliases: x.aliases ?? [] })),
   seconds: timeFor(items.length),
 });
 
 /** Whole rosters from the Specialist data: the big ones. */
 const rosters: NameList[] = [
-  roster('lol-champions', 'Every champion', 'League of Legends', LOL.champions),
-  roster('genshin-characters', 'Every playable character', 'Genshin Impact', GENSHIN.characters),
-  roster('mcu-films', 'Every MCU film', 'Marvel Cinematic Universe', MARVEL.films),
+  roster('lol-champions', 'Every champion', 'League of Legends', 'games', LOL.champions),
+  roster('genshin-characters', 'Every playable character', 'Genshin Impact', 'games', GENSHIN.characters),
+  roster('mcu-films', 'Every MCU film', 'Marvel Cinematic Universe', 'cinema', MARVEL.films),
 ];
 
 /** Same title in one franchise (two bosses can ask for the same thing): the first stays. */
