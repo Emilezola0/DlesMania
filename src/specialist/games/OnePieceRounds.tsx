@@ -177,7 +177,7 @@ export function FlagRound({ round, record, onChange }: Props) {
 }
 
 /** How blurred the wanted poster's picture is at each miss, in px (0 once the round is over). */
-const WANTED_BLUR = [16, 12, 9, 6, 4, 2];
+const WANTED_BLUR = [10, 7, 5, 4, 3, 2];
 
 /** Wanted: the character's picture on a wanted poster, blurred and sepia, sharpening with each miss. */
 /** Misses before the wanted poster's colours come back (a red coat, green hair... are a big hint). */

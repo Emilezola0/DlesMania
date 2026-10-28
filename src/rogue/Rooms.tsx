@@ -49,7 +49,8 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
   const seconds = (mods.hard ? 15 : 22) + mods.bonusSeconds;
   const [wrong, setWrong] = useState<string[]>([]);
   const [over, setOver] = useState(false);
-  const blur = (mods.hard ? 16 : 11) / (mods.loupe ? 2 : 1);
+  // Light at first, heavier deeper into the run (4px → 10px, +3 for an elite), and sharper with each miss.
+  const blur = Math.max(1, (4 + 6 * mods.depth + (mods.hard ? 3 : 0) - wrong.length * 2) / (mods.loupe ? 2 : 1));
   const end = (won: boolean, why: string) => {
     if (over) return;
     setOver(true);

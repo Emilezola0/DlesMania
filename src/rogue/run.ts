@@ -145,6 +145,8 @@ export interface Mods {
   hard: boolean;
   /** The kinds of work to draw from. */
   media: Domain[];
+  /** How far into the run this room is, 0 (first row of act 1) to 1 (last row of the last act): rooms get harder. */
+  depth: number;
 }
 
 export const modsFor = (run: RunState, hard: boolean): Mods => ({
@@ -154,7 +156,13 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
   loupe: has(run, 'loupe'),
   hard,
   media: mediaOf(run),
+  depth: depthOf(run),
 });
+
+function depthOf(run: RunState): number {
+  const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
+  return Math.min(1, ((run.act - 1) * ROWS + Math.min(row, ROWS - 1)) / (ACTS * ROWS - 1));
+}
 
 /** A relic's effect on taking it (most work through `Mods` instead). */
 export function takeRelic(run: RunState, r: RelicId): RunState {
