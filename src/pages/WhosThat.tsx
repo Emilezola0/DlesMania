@@ -5,6 +5,7 @@ import { TimerBar } from '../boss/TimerBar';
 import { Glyph } from '../components/Glyph';
 import { domainInfo } from '../data';
 import { ALL_PREFIX, SILHOUETTES, deckFor, silhouetteDomains, type SilhouetteEntry, type SilhouetteSeries } from '../data/silhouettes';
+import { withFrench, shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
@@ -44,7 +45,7 @@ const MODE_IDS = Object.keys(MODES) as Mode[];
 /** Best streaks are kept per mode ("easy:pokemon"), apart from the old timed scores. */
 const bestKey = (mode: Mode, key: string) => `${mode}:${key}`;
 
-const spellings = (c: Card) => [c.name, ...c.aliases];
+const spellings = (c: Card) => withFrench([c.name, ...c.aliases]);
 
 /** "champions", "mobs" — but "Pokémon" stays the same in the plural. */
 const plural = (noun: string, n: number) => (n === 1 || /mon$|s$/.test(noun) ? noun : `${noun}s`);
@@ -366,7 +367,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               <span
                 className={`animate-pop absolute inset-x-0 bottom-0 px-3 py-2 text-center font-display text-lg font-bold text-on-strong ${reveal === 'right' ? 'bg-hit' : 'bg-coral'}`}
               >
-                {reveal === 'right' ? '✓' : miss?.timedOut ? "⏱ Time's up — it was" : '✗ It was'} {card.name}
+                {reveal === 'right' ? '✓' : miss?.timedOut ? "⏱ Time's up — it was" : '✗ It was'} {shownName(card.name)}
                 {isAll && <span className="ml-2 text-xs opacity-80">· {card.series.label}</span>}
               </span>
             )}
@@ -422,7 +423,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               <div className="min-w-0">
                 <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">The one that got you</p>
                 <p className="font-display text-xl font-bold">
-                  {miss.card.name}
+                  {shownName(miss.card.name)}
                   {isAll && <span className="ml-2 text-xs font-normal text-ink-soft">{miss.card.series.label}</span>}
                 </p>
                 {miss.card.aliases.length > 0 && <p className="text-xs text-ink-soft">Also: {miss.card.aliases.join(', ')}</p>}
@@ -435,7 +436,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               {named.map((c, i) => (
                 <li key={i} className="flex items-center gap-1 rounded-md border border-hit/50 bg-hit/10 px-1.5 py-1 text-xs font-semibold">
                   <img src={c.image} alt="" className="size-6 object-contain" />
-                  {c.name}
+                  {shownName(c.name)}
                 </li>
               ))}
             </ul>

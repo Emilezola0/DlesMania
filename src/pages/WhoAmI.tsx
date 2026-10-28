@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_UNIVERSES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
 import { GuessInput } from '../components/GuessInput';
+import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
@@ -120,7 +121,7 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
           <img src={target.image} alt="" className="size-20 shrink-0 rounded-lg object-cover object-top" />
           <div className="min-w-0 flex-1">
             <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{results[index] ? `+${results[index]}` : 'Out of tries'}</p>
-            <p className="text-2xl font-bold">{target.name}</p>
+            <p className="text-2xl font-bold">{shownName(target.name)}</p>
             {target.aliases.length > 0 && <p className="text-xs text-ink-soft">also: {target.aliases.join(', ')}</p>}
           </div>
           {!over ? (

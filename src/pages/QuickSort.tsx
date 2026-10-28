@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { SORT_DECKS, SORT_LIVES, sortDeck, sortSeconds, type SortCard, type SortDeck } from '../arcade/quickSort';
 import { HeartIcon } from '../boss/BossHeader';
+import { shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
 import { useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
@@ -128,7 +129,7 @@ function Game({ deck }: { deck: SortDeck }) {
               style={{ transform: flying ? `translateX(${flying === 'left' ? '-140%' : '140%'}) rotate(${flying === 'left' ? -12 : 12}deg)` : undefined }}
             >
               <div className="aspect-square bg-tile">{card.image && <img src={card.image} alt="" draggable={false} className="size-full object-cover object-top" />}</div>
-              <p className="truncate p-2 text-center font-display font-bold">{card.name}</p>
+              <p className="truncate p-2 text-center font-display font-bold">{shownName(card.name)}</p>
               <div className="h-1.5 bg-tile">
                 <div className={`h-full ${left < 0.3 ? 'bg-coral' : 'bg-accent'}`} style={{ width: `${left * 100}%` }} />
               </div>
@@ -158,7 +159,7 @@ function Game({ deck }: { deck: SortDeck }) {
       <p className="h-6 text-center text-sm font-semibold" aria-live="polite">
         {last && (
           <span key={last.card.id + score + lives} className={`animate-pop inline-block ${last.ok ? 'text-hit' : 'text-coral'}`}>
-            {last.ok ? '✓' : '✗'} {last.card.name}: {last.card.fact}
+            {last.ok ? '✓' : '✗'} {shownName(last.card.name)}: {last.card.fact}
           </span>
         )}
       </p>

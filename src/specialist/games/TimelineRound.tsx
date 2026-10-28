@@ -1,4 +1,5 @@
 import { useMemo, useState, type ComponentType } from 'react';
+import { shownName } from '../../lib/french';
 import type { RoundRecord } from '../../types';
 import { SP_META, spScore, type SpRound, type UniverseId } from '../rounds';
 import { timelineRound, timelineSource } from '../timeline';
@@ -68,7 +69,7 @@ function TimelineRound({ universe, round, record, onChange }: Props & { universe
               <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-tile text-sm font-bold text-ink-soft">{i + 1}</span>
               <img src={x.image} alt="" draggable={false} className="size-12 shrink-0 rounded-lg border border-rule object-cover object-top" />
               <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold">{x.name}</p>
+                <p className="truncate font-semibold">{shownName(x.name)}</p>
                 {done && <p className="animate-pop truncate text-xs text-ink-soft">{x.label}</p>}
               </div>
               {!done && (

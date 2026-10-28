@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { FlameIcon } from '../components/Layout';
 import { HL_DECKS, hlDeck, nextItem, type HlDeck, type HlItem } from '../arcade/higherLower';
+import { shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -18,7 +19,7 @@ function ItemCard({ item, value, side }: { item: HlItem; value: 'shown' | 'hidde
         {item.image && <img src={item.image} alt="" draggable={false} className="size-full object-cover object-top" />}
       </div>
       <div className="min-h-14">
-        <p className="font-display text-lg font-bold leading-tight sm:text-xl">{item.name}</p>
+        <p className="font-display text-lg font-bold leading-tight sm:text-xl">{shownName(item.name)}</p>
         {item.detail && <p className="text-xs text-ink-faint">{item.detail}</p>}
       </div>
       <p className={`font-serif text-2xl font-bold tabular-nums sm:text-3xl ${value === 'revealing' ? 'animate-pop text-accent' : ''}`}>{value === 'hidden' ? '?' : item.shown}</p>

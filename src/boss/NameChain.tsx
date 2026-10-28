@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import type { SecretPhase } from '../lib/boss';
+import { withFrench, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { withArticle } from '../lib/text';
 import { findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
@@ -34,7 +35,7 @@ interface Entity {
 
 type Turn = 'boss' | 'answer' | 'ok' | 'over';
 
-const spellings = (e: Entity) => [e.name, ...e.aliases];
+const spellings = (e: Entity) => withFrench([e.name, ...e.aliases]);
 
 /**
  * Phase IV (Medium and Hard). The boss names something of one category ("Character: Zoro"); the player
@@ -135,7 +136,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     setText('');
   };
 
-  const portrait = call && cards.find((c) => isFuzzyMatch(call.name, [c.label, ...(c.aliases ?? [])]))?.image;
+  const portrait = call && cards.find((c) => isFuzzyMatch(call.name, withFrench([c.label, ...(c.aliases ?? [])])))?.image;
 
   return (
     <div className="space-y-4">
@@ -165,7 +166,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
               <span className="mr-2 inline-block rounded-sm bg-coral px-2 py-0.5 align-middle font-display text-xs font-bold uppercase tracking-widest text-on-strong">
                 {categories[call.cat].label}
               </span>
-              <span className="align-middle font-display text-xl font-bold sm:text-2xl">{call.name}</span>
+              <span className="align-middle font-display text-xl font-bold sm:text-2xl">{shownName(call.name)}</span>
             </p>
           ) : (
             <p className="font-display text-xl text-ink-faint">…</p>

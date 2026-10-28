@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
+import { frenchOf } from '../lib/french';
 import { workNames, type Named } from '../lib/text';
+import { useProgress } from '../store/progress';
 import { rankBySearch, searchScore } from '../utils/textMatcher';
 
 interface Props {
@@ -23,6 +25,7 @@ function otherName(w: Named, query: string): string | undefined {
 }
 
 export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title…', disabled, showImages = true }: Props) {
+  const lang = useProgress((s) => s.nameLang);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -93,15 +96,22 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title
               >
                 <span className="flex items-center gap-2.5 font-medium">
                   {showImages && w.image && <img src={w.image} alt="" loading="lazy" className="size-9 shrink-0 rounded-md bg-tile object-cover object-top" />}
-                  <span>
-                    {w.name}
-                    {/* Show the French title when that's what the player typed. */}
-                    {w.nameFr && (searchScore(query, w.nameFr) ?? 9) < (searchScore(query, w.name) ?? 9) && (
-                      <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {w.nameFr}</span>
-                    )}
-                    {/* Characters: their other name (the one typed, if that's how they were found). */}
-                    {w.image && otherName(w, query) && <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {otherName(w, query)}</span>}
-                  </span>
+                  {(() => {
+                    // Names in French: the French name first, the English one beside it. In English, the
+                    // French one shows when that's what the player typed.
+                    const fr = w.nameFr ?? frenchOf(w.name);
+                    const main = lang === 'fr' && fr ? fr : w.name;
+                    const other = main !== w.name ? w.name : fr && (searchScore(query, fr) ?? 9) < (searchScore(query, w.name) ?? 9) ? fr : undefined;
+                    const alias = w.image ? otherName(w, query) : undefined;
+                    return (
+                      <span>
+                        {main}
+                        {other && <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {other}</span>}
+                        {/* Characters: their other name (the one typed, if that's how they were found). */}
+                        {alias && alias !== main && alias !== other && <span className="ml-1.5 font-serif text-sm italic text-ink-soft">· {alias}</span>}
+                      </span>
+                    );
+                  })()}
                 </span>
                 <span className="shrink-0 text-xs text-ink-soft">
                   {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}

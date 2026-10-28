@@ -1,4 +1,5 @@
 import { GuessInput } from '../../components/GuessInput';
+import { shownName } from '../../lib/french';
 import type { RoundRecord } from '../../types';
 import { ARC_ORDER, ONE_PIECE, characterById, formatBounty, type OpCharacter } from '../data';
 import { LOL, championById, type LolChampion } from '../lol';
@@ -154,7 +155,7 @@ function ClassicGrid<T extends { id: string; name: string; aliases: string[]; im
                 <div key={id} className="grid gap-2" style={grid}>
                   <div className="flex items-center gap-2 rounded-lg border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold">
                     <img src={g.image} alt="" className="size-10 shrink-0 rounded-md bg-tile object-cover object-top" />
-                    <span className="leading-tight">{g.name}</span>
+                    <span className="leading-tight">{shownName(g.name)}</span>
                   </div>
                   {columns.map((c, i) => {
                     const verdict = c.judge(g, target);

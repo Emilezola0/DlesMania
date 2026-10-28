@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { GuessInput } from '../../components/GuessInput';
+import { shownName } from '../../lib/french';
 import type { RoundRecord } from '../../types';
 import type { Guessable } from '../data';
 import { SP_META, spScore, type SpType } from '../rounds';
@@ -81,7 +82,7 @@ export function SpOutcome({ won, name, image, detail }: { won: boolean; name: st
       {image && <img src={image} alt="" className="h-24 w-24 shrink-0 rounded-lg bg-tile object-contain" />}
       <div>
         <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{won ? 'Nailed it' : 'Out of tries'}</p>
-        <p className="mt-1 text-2xl font-bold">{name}</p>
+        <p className="mt-1 text-2xl font-bold">{shownName(name)}</p>
         {detail && <p className="text-sm text-ink-soft">{detail}</p>}
       </div>
     </div>

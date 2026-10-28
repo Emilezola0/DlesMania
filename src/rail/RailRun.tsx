@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { withFrench, shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { isReady, preload } from '../lib/images';
 import { shuffle } from '../lib/rng';
@@ -219,7 +220,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
   };
   const onEnter = () => {
     if (phaseRef.current !== 'running' || !game.current.gate || !text.trim()) return;
-    const m = findBestMatch(text, game.current.signs, (c) => [c.name, ...c.aliases]);
+    const m = findBestMatch(text, game.current.signs, (c) => withFrench([c.name, ...c.aliases]));
     if (m) return switchTo(game.current.signs.indexOf(m.item));
     setText('');
     setMiss(true);
@@ -576,7 +577,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
                     <div key={x.id} className="flex min-w-0 flex-1 basis-56 items-center gap-2 rounded-md border border-hit/50 bg-hit/10 p-1.5">
                       <img src={x.image} alt="" className="size-12 shrink-0 rounded object-cover object-top" />
                       <div className="min-w-0 text-sm">
-                        <p className="font-semibold">{x.name}</p>
+                        <p className="font-semibold">{shownName(x.name)}</p>
                         {x.aliases.length > 0 && <p className="text-xs text-ink-soft">also: {x.aliases.join(', ')}</p>}
                       </div>
                     </div>
@@ -584,7 +585,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
                   <div className="flex min-w-0 basis-40 items-center gap-2 rounded-md border border-miss/40 p-1.5 opacity-70">
                     <img src={c.hit.image} alt="" className="size-10 shrink-0 rounded object-cover object-top grayscale" />
                     <p className="min-w-0 text-xs">
-                      <span className="text-ink-faint">You were under</span> <span className="font-semibold">{c.hit.name}</span>
+                      <span className="text-ink-faint">You were under</span> <span className="font-semibold">{shownName(c.hit.name)}</span>
                     </p>
                   </div>
                 </div>

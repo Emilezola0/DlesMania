@@ -2,10 +2,13 @@
 // Copies French names into the dataset:
 //   - scripts/data/french-titles.mjs → `nameFr` on works (skipped when same as the English name)
 //   - scripts/data/boss-french.mjs   → extra spellings on Boss Battle answers, Final Blow and Radar cards
+//   - both of those, and scripts/data/character-french.mjs → src/data/french-names.json, the one
+//     dictionary (English name → French name) the games show and accept French names from
 //   node scripts/add-french-titles.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { BOSS_FRENCH } from './data/boss-french.mjs';
+import { CHARACTER_FRENCH } from './data/character-french.mjs';
 import { FRENCH_TITLES } from './data/french-titles.mjs';
 import { DOMAINS, ROOT, loadWorks, saveWorks } from './lib.mjs';
 
@@ -74,3 +77,14 @@ writeFileSync(bossFile, JSON.stringify(bosses, null, 2) + '\n');
 console.log(`${merged} French boss answers merged`);
 const unused = Object.entries(BOSS_FRENCH).flatMap(([id, m]) => Object.keys(m).map((k) => `${id}/${k}`)).filter((k) => !used.has(k));
 if (unused.length) console.log(`no matching answer for: ${unused.join(', ')}`);
+
+// ---------------------------------------------------------------- The dictionary
+// English name → French name, for every game: the first French name of each Boss Battle entry,
+// and the Specialist characters and titles. (Who's That French names and works' nameFr are read
+// from their own data.)
+const dict = {};
+for (const names of Object.values(BOSS_FRENCH)) for (const [en, fr] of Object.entries(names)) dict[en] ??= fr[0];
+Object.assign(dict, CHARACTER_FRENCH);
+const sorted = Object.fromEntries(Object.entries(dict).sort(([a], [b]) => a.localeCompare(b)));
+writeFileSync(join(ROOT, 'src', 'data', 'french-names.json'), JSON.stringify(sorted, null, 2) + '\n');
+console.log(`${Object.keys(sorted).length} names in src/data/french-names.json`);

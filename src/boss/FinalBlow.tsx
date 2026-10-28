@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
+import { withFrench, shownName } from '../lib/french';
 import { useImagesReady } from '../lib/images';
 import { drawPictureFx, escalated, finaleSeconds, namesCard, pictureStyle, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
@@ -73,7 +74,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   }, [index, over, total]);
 
   const suggestions = useMemo(
-    () => (text.trim() ? rankBySearch(text, pool, (c) => [c.label, ...(c.aliases ?? [])], 6).map((c) => c.label) : []),
+    () => (text.trim() ? rankBySearch(text, pool, (c) => withFrench([c.label, ...(c.aliases ?? [])]), 6).map((c) => c.label) : []),
     [pool, text],
   );
 
@@ -150,7 +151,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
           </div>
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">
-              ✓ {solved}
+              ✓ {shownName(solved)}
             </span>
           )}
         </div>
@@ -174,7 +175,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
               setActive((a) => Math.max(a - 1, 0));
             } else if (e.key === 'Enter') {
               // What was typed wins when it already names the target (typos forgiven); otherwise the highlighted suggestion.
-              const typedHits = isFuzzyMatch(text, [target.label, ...(target.aliases ?? [])]);
+              const typedHits = isFuzzyMatch(text, withFrench([target.label, ...(target.aliases ?? [])]));
               guess(typedHits ? text : (suggestions[active] ?? text));
             }
           }}

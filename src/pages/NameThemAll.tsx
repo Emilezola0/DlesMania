@@ -3,6 +3,7 @@ import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { NAME_LISTS, listsByFranchise, nameList, type NameList } from '../arcade/lists';
 import { matchAnswer } from '../lib/boss';
+import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -146,7 +147,7 @@ function Game({ list }: { list: NameList }) {
                 key={a.name}
                 className={`truncate rounded-md border px-2.5 py-1.5 text-sm font-semibold ${got ? 'animate-pop border-hit/60 bg-hit/15' : missed ? 'border-miss/50 bg-miss/10 text-ink-soft' : 'border-rule bg-card text-ink-faint'}`}
               >
-                {got || missed ? a.name : `${i + 1}.`}
+                {got || missed ? shownName(a.name) : `${i + 1}.`}
               </li>
             );
           })}

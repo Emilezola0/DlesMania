@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { AudioClip } from '../components/AudioClip';
 import type { SignaturePhase } from '../lib/boss';
+import { withFrench } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch } from '../utils/textMatcher';
 import type { ChainResult } from './NameChain';
@@ -75,7 +76,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
 
   const submit = () => {
     if (state !== 'answer' || !text.trim()) return;
-    if (!isFuzzyMatch(text, [answer.name, ...answer.aliases])) return miss(`“${text.trim()}” — it was ${answer.name}`);
+    if (!isFuzzyMatch(text, withFrench([answer.name, ...answer.aliases]))) return miss(`“${text.trim()}” — it was ${answer.name}`);
     setText('');
     sfx.correct();
     const got = right + 1;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { blitzSeconds, escalated, matchAnswer, type DifficultySpec } from '../lib/boss';
+import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import type { BlitzPrompt, PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
@@ -121,7 +122,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
         <ul className="flex flex-wrap justify-center gap-2">
           {found.map((n) => (
             <li key={n} className="animate-pop rounded-md border border-hit/50 bg-hit/10 px-2.5 py-1 text-sm font-semibold text-ink">
-              {n}
+              {shownName(n)}
             </li>
           ))}
         </ul>

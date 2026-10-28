@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { GuessInput } from '../components/GuessInput';
 import { Outcome } from '../components/Outcome';
 import { candidates, domainInfo, getWork } from '../data';
+import { shownName } from '../lib/french';
 import { scoreFor } from '../lib/scoring';
 import { workNames } from '../lib/text';
 import type { Domain, GameProps, Work } from '../types';
@@ -184,7 +185,7 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
               return (
                 <div key={id} className="grid gap-2" style={grid}>
                   <div className="flex items-center rounded-lg border border-rule-strong bg-card px-3 py-2 text-sm font-semibold">
-                    {w.name}
+                    {shownName(w.name)}
                   </div>
                   {columns.map((c, i) => {
                     const g = c.get(w);

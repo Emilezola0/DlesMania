@@ -3,6 +3,7 @@
 // (hands far apart or crossed) — and comes back on the ledges every few metres. Out of stamina, you
 // fall to the last ledge (or piton) and lose a rope. The score is the height reached.
 import { BOSSES } from '../data/bosses';
+import { withFrench } from '../lib/french';
 import { mulberry32 } from '../lib/rng';
 
 export type HoldKind = 'jug' | 'pinch' | 'crimp' | 'sloper';
@@ -73,7 +74,7 @@ const SMALL_WORDS = new Set(['the', 'of', 'and', 'von', 'van', 'del', 'des']);
 /** The full name, its aliases, and any word of it (or of its French name) long enough to stand alone ("Luffy", "Chopper"). */
 function spellingsOf(name: string, aliases: string[] = [], fr?: string): string[] {
   const words = [name, fr ?? ''].join(' ').split(/[\s.]+/).filter((w) => compact(w).length >= 4 && !SMALL_WORDS.has(w.toLowerCase()));
-  return [...new Set([name, ...aliases, ...words].map(compact).filter(Boolean))];
+  return [...new Set(withFrench([name, ...aliases, ...words]).map(compact).filter(Boolean))];
 }
 
 /** Every well-known face of the Boss Battle franchises, once each. */

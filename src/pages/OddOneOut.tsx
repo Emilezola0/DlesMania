@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ODD_THEMES, oddRound, type OddRound } from '../arcade/oddOneOut';
+import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -57,7 +58,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
           return (
             <button key={c.label} type="button" disabled={!!picked} onClick={() => pick(c.label)} className={`animate-round-in flex flex-col overflow-hidden rounded-lg border-2 bg-card text-left transition ${tone}`}>
               <div className="aspect-square w-full bg-tile">{c.image && <img src={c.image} alt="" draggable={false} className="size-full object-cover object-top" />}</div>
-              <p className="truncate p-2 text-center text-sm font-semibold">{c.label}</p>
+              <p className="truncate p-2 text-center text-sm font-semibold">{shownName(c.label)}</p>
             </button>
           );
         })}

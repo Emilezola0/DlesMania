@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Glyph } from '../components/Glyph';
 import { escalated, pictureStyle, radarCardMs, type DifficultySpec, type RadarCard } from '../lib/boss';
+import { shownName } from '../lib/french';
 import { useImagesReady } from '../lib/images';
 import { sfx } from '../lib/sfx';
 import { useUi } from '../store/ui';
@@ -251,7 +252,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                       }
                     />
                   ) : (
-                    <span className="grid size-full place-items-center font-display text-xl">{shown.label}</span>
+                    <span className="grid size-full place-items-center font-display text-xl">{shownName(shown.label)}</span>
                   )}
                 </div>
                 {fx && !fx.still && !fling && <Clutter seeds={fx.clutter} fast={d.distortion === 2} />}
@@ -262,7 +263,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                     }`}
                   >
                     {fling.note ? `${fling.note} ` : ''}
-                    {fling.correct ? '✓' : '✗'} {fling.card.label}
+                    {fling.correct ? '✓' : '✗'} {shownName(fling.card.label)}
                     {!fling.card.belongs && ' · impostor'}
                   </span>
                 )}

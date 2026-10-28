@@ -9,6 +9,7 @@ import { GuessInput } from '../components/GuessInput';
 import { DIFFICULTIES, drawBlitz, drawFinale, matchAnswer } from '../lib/boss';
 import { Spinner } from '../components/Spinner';
 import { useTypeToFocus } from '../lib/focus';
+import { shownName } from '../lib/french';
 import { preload, useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
@@ -62,11 +63,11 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
   };
   const guess = (id: string) => {
     if (over) return;
-    if (id === target.id) return sfx.correct(), end(true, `Named ${target.name}`);
+    if (id === target.id) return sfx.correct(), end(true, `Named ${shownName(target.name)}`);
     sfx.wrong();
     const w = [...wrong, id];
     setWrong(w);
-    if (w.length >= allowance(tries, mods)) end(false, `It was ${target.name}`);
+    if (w.length >= allowance(tries, mods)) end(false, `It was ${shownName(target.name)}`);
   };
   return (
     <div className="space-y-4">
@@ -80,7 +81,7 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
         <img src={target.image} alt="" draggable={false} className="size-full object-cover object-top transition-[filter] duration-700" style={{ filter: over ? 'none' : `blur(${blur}px) grayscale(1)` }} />
       </div>
       {mods.lantern && !over && <p className="text-center font-display font-bold">🏮 Starts with “{target.name[0]}”</p>}
-      <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — ${target.name}`)} />
+      <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — ${shownName(target.name)}`)} />
       {!over && <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder="Who is it?" showImages={false} />}
       <p className="text-center text-xs text-ink-faint">{allowance(tries, mods) - wrong.length} tries left</p>
     </div>
@@ -112,7 +113,7 @@ export function HigherLowerRoom({ mods, onDone }: RoomProps) {
     setGot(g);
     setSlips(s);
     window.setTimeout(() => {
-      if (s > mods.forgive) return onDone({ won: false, perfect: false, note: `${right.name}: ${right.shown}` });
+      if (s > mods.forgive) return onDone({ won: false, perfect: false, note: `${shownName(right.name)}: ${right.shown}` });
       if (g >= need) return onDone({ won: true, perfect: s === 0, note: `${need} calls right` });
       setLeft(right);
       setRight(draw(right));
@@ -122,7 +123,7 @@ export function HigherLowerRoom({ mods, onDone }: RoomProps) {
   const Card = ({ x, shown }: { x: HlItem; shown: boolean }) => (
     <div className="page flex flex-col items-center gap-2 rounded-md p-3 text-center">
       <div className="aspect-square w-full max-w-[9rem] overflow-hidden rounded bg-tile">{x.image && <img src={x.image} alt="" className="size-full object-cover object-top" />}</div>
-      <p className="font-display text-sm font-bold leading-tight">{x.name}</p>
+      <p className="font-display text-sm font-bold leading-tight">{shownName(x.name)}</p>
       <p className={`font-serif text-xl font-bold ${shown ? '' : 'text-ink-faint'}`}>{shown ? x.shown : '?'}</p>
     </div>
   );
@@ -181,7 +182,7 @@ export function OddRoom({ mods, onDone }: RoomProps) {
             className={`overflow-hidden rounded-md border-2 bg-card ${!picked ? 'border-rule-strong hover:border-ink' : c.label === round.odd ? 'border-hit' : c.label === picked ? 'border-miss' : 'border-rule opacity-60'}`}
           >
             <div className="aspect-square bg-tile">{c.image && <img src={c.image} alt="" className="size-full object-cover object-top" />}</div>
-            <p className="truncate p-1 text-[10px] font-semibold sm:text-xs">{c.label}</p>
+            <p className="truncate p-1 text-[10px] font-semibold sm:text-xs">{shownName(c.label)}</p>
           </button>
         ))}
       </div>
@@ -205,7 +206,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
     if (id === target.id) {
       sfx.correct();
       setOver(true);
-      return onDone({ won: true, perfect: shown <= 2 && !wrong.length, note: `${target.name} in ${shown} clue${shown === 1 ? '' : 's'}` });
+      return onDone({ won: true, perfect: shown <= 2 && !wrong.length, note: `${shownName(target.name)} in ${shown} clue${shown === 1 ? '' : 's'}` });
     }
     sfx.wrong();
     const w = [...wrong, id];
@@ -213,7 +214,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
     const forgiven = w.length <= mods.forgive;
     if (!forgiven && shown >= max) {
       setOver(true);
-      return onDone({ won: false, perfect: false, note: `It was ${target.name}` });
+      return onDone({ won: false, perfect: false, note: `It was ${shownName(target.name)}` });
     }
     if (!forgiven) setShown((s) => Math.min(max, s + 1));
   };
@@ -263,7 +264,7 @@ export function SortRoom({ mods, onDone }: RoomProps) {
     setFlash({ ok, card });
     window.setTimeout(() => {
       setFlash(null);
-      if (s > mods.forgive) return onDone({ won: false, perfect: false, note: `${card.name}: ${card.fact}` });
+      if (s > mods.forgive) return onDone({ won: false, perfect: false, note: `${shownName(card.name)}: ${card.fact}` });
       if (i + 1 >= cards.length) return onDone({ won: true, perfect: s === 0, note: `${cards.length} cards sorted` });
       setI(i + 1);
     }, 350);
@@ -283,7 +284,7 @@ export function SortRoom({ mods, onDone }: RoomProps) {
         {card && (
           <div key={i} className={`page animate-round-in w-36 overflow-hidden rounded-lg ${flash ? (flash.ok ? 'ring-2 ring-hit' : 'ring-2 ring-miss') : ''}`}>
             <div className="aspect-square bg-tile">{card.image && <img src={card.image} alt="" className="size-full object-cover object-top" />}</div>
-            <p className="truncate p-1.5 text-center text-sm font-bold">{card.name}</p>
+            <p className="truncate p-1.5 text-center text-sm font-bold">{shownName(card.name)}</p>
             {!flash && <TimerBar key={i} total={seconds * 1000} running={!flash && ready} onExpire={() => sort(null)} hideSeconds />}
           </div>
         )}
@@ -345,7 +346,7 @@ export function Name5Room({ mods, onDone }: RoomProps) {
       <ul className="flex flex-wrap justify-center gap-1.5">
         {found.map((n) => (
           <li key={n} className="animate-pop rounded-md border border-hit/50 bg-hit/10 px-2 py-1 text-sm font-semibold">
-            {n}
+            {shownName(n)}
           </li>
         ))}
         {mods.lantern &&
@@ -354,7 +355,7 @@ export function Name5Room({ mods, onDone }: RoomProps) {
             .slice(0, need - found.length)
             .map((a) => (
               <li key={a.name} className="rounded-md border border-dashed border-rule-strong px-2 py-1 text-sm text-ink-faint">
-                {a.name[0]}…
+                {shownName(a.name)[0]}…
               </li>
             ))}
       </ul>

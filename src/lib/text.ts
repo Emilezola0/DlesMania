@@ -1,5 +1,6 @@
 import type { Work } from '../types';
 import { bestSearchScore, normalizeText } from '../utils/textMatcher';
+import { withFrench } from './french';
 
 /** Lower case, no accents or punctuation (see utils/textMatcher). */
 export const normalize = normalizeText;
@@ -10,8 +11,8 @@ export type Named = Pick<Work, 'id' | 'name'> & Partial<Pick<Work, 'nameFr' | 's
   image?: string;
 };
 
-/** Every name a work can be searched by: English and French titles, subtitle, aliases. */
-export const workNames = (w: Named) => [w.name, w.nameFr, w.subtitle, ...(w.aliases ?? [])];
+/** Every name a work can be searched by: English and French titles, subtitle, aliases (and the French name of each, see lib/french). */
+export const workNames = (w: Named) => withFrench([w.name, w.nameFr, w.subtitle, ...(w.aliases ?? [])]);
 
 /** Whether a partly typed query finds this work (typos, accents and punctuation forgiven). */
 export function matchesQuery(w: Work, query: string): boolean {

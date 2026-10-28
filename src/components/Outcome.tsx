@@ -1,3 +1,4 @@
+import { shownName } from '../lib/french';
 import type { RoundRecord, Work } from '../types';
 
 interface Props {
@@ -23,7 +24,7 @@ export function Outcome({ record, answer, answerLabel }: Props) {
         <p className="text-sm font-display uppercase tracking-widest text-ink-soft">{won ? 'Nailed it' : 'Out of tries'}</p>
         {answer && (
           <p className="mt-1 text-2xl font-bold">
-            {answer.name}
+            {shownName(answer.name)}
             {answer.subtitle && <span className="text-ink-soft"> — {answer.subtitle}</span>}
           </p>
         )}

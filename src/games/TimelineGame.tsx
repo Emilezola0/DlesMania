@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Outcome } from '../components/Outcome';
 import { domainInfo, getWork } from '../data';
+import { shownName } from '../lib/french';
 import { mulberry32, shuffle } from '../lib/rng';
 import { scoreFor } from '../lib/scoring';
 import type { GameProps } from '../types';
@@ -72,7 +73,7 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
               </span>
               <span className="text-2xl">{w.visual?.icon ?? '🎞️'}</span>
               <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold">{w.name}</p>
+                <p className="truncate font-semibold">{shownName(w.name)}</p>
                 <p className="text-xs text-ink-soft">{w.subtitle ?? w.studio}</p>
               </div>
               {done ? (

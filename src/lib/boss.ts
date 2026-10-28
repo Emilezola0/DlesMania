@@ -4,6 +4,7 @@ import difficultyData from '../data/difficulties.json';
 import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings, SignatureSettings } from '../types';
 import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
+import { withFrench } from './french';
 
 export const PHASES = [
   { name: 'Knowledge Blitz', roman: 'I', how: 'Type names before the timer runs out — press Enter after each one.' },
@@ -279,7 +280,7 @@ export const signatureKey = (c: { text?: string; audio?: { youtubeId: string }; 
 export type SignaturePhase = NonNullable<ReturnType<typeof drawSignature>>;
 
 /** Every spelling of an answer (English, French, nicknames), compacted for exact comparison. */
-const compactSpellings = (name: string, aliases: string[] = []) => [name, ...aliases].map(compactText).filter(Boolean);
+const compactSpellings = (name: string, aliases: string[] = []) => withFrench([name, ...aliases]).map(compactText).filter(Boolean);
 
 /**
  * Knowledge Blitz matching: the answer `text` names, if any.
@@ -300,12 +301,12 @@ export function matchAnswer(prompt: BlitzPrompt, text: string, found: Set<string
     return { name: hit.name, already: found.has(hit.name), exact: !ambiguous, typo: false };
   }
   if (!typos) return null;
-  const best = findBestMatch(text, prompt.answers, (a) => [a.name, ...a.aliases]);
+  const best = findBestMatch(text, prompt.answers, (a) => withFrench([a.name, ...a.aliases]));
   return best ? { name: best.item.name, already: found.has(best.item.name), exact: true, typo: true } : null;
 }
 
 /** Final Blow: whether `text` names the card (any spelling, small typos forgiven). */
-export const namesCard = (card: BossCard, text: string) => isFuzzyMatch(text, [card.label, ...(card.aliases ?? [])]);
+export const namesCard = (card: BossCard, text: string) => isFuzzyMatch(text, withFrench([card.label, ...(card.aliases ?? [])]));
 
 export interface BattleStats {
   /** Rounds won (boss segments broken). */
