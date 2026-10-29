@@ -108,7 +108,7 @@ function Game() {
       celebrate();
       const s = score + 1;
       setScore(s);
-      recordBest(BEST_KEY, s);
+      recordBest(BEST_KEY, s, { save: true });
       window.setTimeout(() => nextRound(s), PAUSE_MS);
       return;
     }
@@ -119,6 +119,8 @@ function Game() {
     if (l > 0) return void window.setTimeout(() => nextRound(score), PAUSE_MS);
     window.setTimeout(() => {
       setPhase('over');
+      // The run's end: a coin a couple of landings.
+      recordBest(BEST_KEY, score, { reached: score / 2 });
       if (score > bestBefore.current) (sfx.streak(), celebrateBig());
     }, PAUSE_MS);
   };

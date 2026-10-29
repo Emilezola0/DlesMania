@@ -17,9 +17,30 @@ export const BOSS_LOSS = 3;
 /** The first win over a boss at a difficulty each week (weeks start on Monday). */
 export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 80, hard: 150 };
 
-/** A game from the Games page: a few coins, more for a new best — fully up to a daily amount, then a token. */
-export const ARCADE_COINS = 3;
+/**
+ * A game from the Games page, by how it went — fully up to a daily amount, then a token:
+ * - won or lost (a Wordle, a Memory grid, a Free Play round): a good sum for a win, a token for a loss;
+ * - a set of rounds (Guess the Year, Map Quiz…): by the share of the best score, a token below 40%;
+ * - an endless run (Higher or Lower, Summit…): more the further it went, a little faster each step.
+ * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
+ */
+export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
+export const ARCADE_WIN = 10;
+export const ARCADE_LOSS = 1;
 export const ARCADE_BEST_BONUS = 5;
+/** An endless run's coins at most. */
+export const ARCADE_RUN_MAX = 40;
+
+export function arcadeCoins(r: ArcadeResult): number {
+  if ('save' in r) return 0;
+  if ('won' in r) return r.won ? ARCADE_WIN : ARCADE_LOSS;
+  if ('ratio' in r) return r.ratio < 0.4 ? ARCADE_LOSS : Math.round(2 + 10 * Math.min(1, r.ratio));
+  // `reached`: the run's length in steps (each game says what a step is): 1 + a step each, and a bit more as it goes on.
+  const u = Math.max(0, r.reached);
+  return Math.min(ARCADE_RUN_MAX, 1 + Math.floor(u + (u * u) / 40));
+}
+/** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
+export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
 export const ARCADE_CAP = 150;
 export const ARCADE_AFTER_CAP = 1;
 /** Games that save as they go (a point at a time, a ledge at a time) pay once per this long. */

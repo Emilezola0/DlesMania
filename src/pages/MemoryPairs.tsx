@@ -83,7 +83,7 @@ function Board({ deck }: { deck: MemoryDeck }) {
       setOpen([]);
       if (all.length === PAIRS_PER_GAME) {
         const points = memoryScore(moves + 1, seconds);
-        recordBest(key, points);
+        recordBest(key, points, { won: true });
         window.setTimeout(() => (sfx.streak(), celebrateBig()), 400);
       }
     } else {

@@ -61,7 +61,7 @@ function Game({ deck }: { deck: HlDeck }) {
       shake(arena.current, 10, 420);
       setState('wrong');
       if (score > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 500);
-      recordBest(`hl:${deck.id}`, score);
+      recordBest(`hl:${deck.id}`, score, { reached: score / 2 });
     }
   };
 

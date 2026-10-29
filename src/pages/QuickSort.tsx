@@ -30,7 +30,7 @@ function Game({ deck }: { deck: SortDeck }) {
 
   const finish = (s: number) => {
     setState('over');
-    recordBest(key, s);
+    recordBest(key, s, { reached: s / 3 });
     if (s > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
   };
 

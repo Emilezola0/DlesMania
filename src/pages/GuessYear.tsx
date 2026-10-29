@@ -37,7 +37,7 @@ function Run({ domain, onExit }: { domain: Domain | 'all'; onExit: () => void })
     if (next.length === ROUNDS) {
       const sum = next.reduce((a, b) => a + b, 0);
       if (sum > best) window.setTimeout(() => celebrateBig(), 500);
-      recordBest(key, sum);
+      recordBest(key, sum, { ratio: sum / (ROUNDS * 100) });
     }
   };
   const next = () => {

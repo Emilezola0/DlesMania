@@ -102,7 +102,7 @@ function Play({ map }: { map: QuizMap }) {
     setScores(all);
     if (all.length === order.length) {
       const sum = all.reduce((a, b) => a + b, 0);
-      recordBest(key, sum);
+      recordBest(key, sum, { ratio: sum / (order.length * 100) });
       if (sum > best) window.setTimeout(() => celebrateBig(), 400);
     }
   };

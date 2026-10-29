@@ -373,7 +373,8 @@ function Game() {
   const bestBefore = useRef(best);
   useTypeToFocus(input, g.current.phase === 'climb');
 
-  const save = () => recordBest(BEST_KEY, Math.round(g.current.maxH * 10));
+  // Kept at every fall and ledge; paid once, when the last rope's gone: a coin every few metres.
+  const save = () => recordBest(BEST_KEY, Math.round(g.current.maxH * 10), g.current.phase === 'over' ? { reached: g.current.maxH / 4 } : { save: true });
 
   // The loop: stamina, the camera, the wall ahead, and the picture.
   useEffect(() => {
@@ -440,6 +441,7 @@ function Game() {
     window.setTimeout(() => {
       if (st.ropes <= 0) {
         st.phase = 'over';
+        save();
         if (Math.round(st.maxH * 10) > bestBefore.current) (sfx.streak(), celebrateBig());
       } else {
         st.L = st.checkpoint.L;

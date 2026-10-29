@@ -409,7 +409,7 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         if (g.wagons <= 0) {
           setPhase('over');
           const points = Math.round(g.score);
-          recordBest(bestKey, points);
+          recordBest(bestKey, points, { reached: points / 4 });
           if (points > best && points > 0) window.setTimeout(() => (sfx.streak(), celebrateBig()), 600);
           syncHud();
         } else if (g.sectionGates >= GATES_PER_STATION) spawnStation();

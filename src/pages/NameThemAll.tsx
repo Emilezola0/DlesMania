@@ -36,7 +36,8 @@ function Game({ list }: { list: NameList }) {
 
   const finish = (names: string[]) => {
     setState('over');
-    recordBest(key, names.length);
+    // Against the clock: a coin every few names (all of them is a long run).
+    recordBest(key, names.length, { reached: names.length / 3 });
     if (names.length === total) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     else sfx.wrong();
   };

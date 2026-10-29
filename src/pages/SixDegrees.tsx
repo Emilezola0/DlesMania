@@ -42,7 +42,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
     setStars(all);
     if (all.length === SIX_ROUNDS) {
       const sum = all.reduce((a, b) => a + b, 0);
-      recordBest(key, sum);
+      recordBest(key, sum, { ratio: sum / (SIX_ROUNDS * 3) });
       if (sum > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     }
   };

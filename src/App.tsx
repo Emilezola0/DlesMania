@@ -1,33 +1,40 @@
+import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import Archive from './pages/Archive';
-import BossBattle from './pages/BossBattle';
-import BossSelect from './pages/BossSelect';
-import Daily, { DailyHub } from './pages/Daily';
-import FreePlay from './pages/FreePlay';
 import Home from './pages/Home';
-import SpecialistUniverse, { SpecialistHub } from './pages/Specialist';
-import GuessRankGame, { GuessRankHub } from './pages/GuessRank';
-import GamesHub from './pages/GamesHub';
-import GuessYear from './pages/GuessYear';
-import HigherLower from './pages/HigherLower';
-import NameThemAll from './pages/NameThemAll';
-import RailRush from './pages/RailRush';
-import MemoryPairs from './pages/MemoryPairs';
-import OddOneOut from './pages/OddOneOut';
-import Crossroads from './pages/Crossroads';
-import Summit from './pages/Summit';
-import Shop from './pages/Shop';
-import Album from './pages/Album';
-import Account from './pages/Account';
-import Trades from './pages/Trades';
-import WhoAmI from './pages/WhoAmI';
-import FranchiseWordle from './pages/FranchiseWordle';
-import QuickSort from './pages/QuickSort';
-import SixDegrees from './pages/SixDegrees';
-import Expedition from './pages/Expedition';
-import MapQuiz from './pages/MapQuiz';
-import WhosThat, { WhosThatHub } from './pages/WhosThat';
+
+// Each page in its own file, downloaded when first opened (the home page comes with the app).
+const Archive = lazy(() => import('./pages/Archive'));
+const BossBattle = lazy(() => import('./pages/BossBattle'));
+const BossSelect = lazy(() => import('./pages/BossSelect'));
+const FreePlay = lazy(() => import('./pages/FreePlay'));
+const GamesHub = lazy(() => import('./pages/GamesHub'));
+const GuessYear = lazy(() => import('./pages/GuessYear'));
+const HigherLower = lazy(() => import('./pages/HigherLower'));
+const NameThemAll = lazy(() => import('./pages/NameThemAll'));
+const RailRush = lazy(() => import('./pages/RailRush'));
+const MemoryPairs = lazy(() => import('./pages/MemoryPairs'));
+const OddOneOut = lazy(() => import('./pages/OddOneOut'));
+const Crossroads = lazy(() => import('./pages/Crossroads'));
+const Summit = lazy(() => import('./pages/Summit'));
+const Shop = lazy(() => import('./pages/Shop'));
+const Album = lazy(() => import('./pages/Album'));
+const Account = lazy(() => import('./pages/Account'));
+const Trades = lazy(() => import('./pages/Trades'));
+const WhoAmI = lazy(() => import('./pages/WhoAmI'));
+const FranchiseWordle = lazy(() => import('./pages/FranchiseWordle'));
+const QuickSort = lazy(() => import('./pages/QuickSort'));
+const SixDegrees = lazy(() => import('./pages/SixDegrees'));
+const Expedition = lazy(() => import('./pages/Expedition'));
+const MapQuiz = lazy(() => import('./pages/MapQuiz'));
+const Daily = lazy(() => import('./pages/Daily'));
+const DailyHub = lazy(() => import('./pages/Daily').then((m) => ({ default: m.DailyHub })));
+const SpecialistUniverse = lazy(() => import('./pages/Specialist'));
+const SpecialistHub = lazy(() => import('./pages/Specialist').then((m) => ({ default: m.SpecialistHub })));
+const GuessRankGame = lazy(() => import('./pages/GuessRank'));
+const GuessRankHub = lazy(() => import('./pages/GuessRank').then((m) => ({ default: m.GuessRankHub })));
+const WhosThat = lazy(() => import('./pages/WhosThat'));
+const WhosThatHub = lazy(() => import('./pages/WhosThat').then((m) => ({ default: m.WhosThatHub })));
 
 export default function App() {
   return (

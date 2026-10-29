@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITY_INFO, SETS, type Card } from '../gacha/cards';
-import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_COINS, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
@@ -241,10 +241,11 @@ export default function Shop() {
             this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium} or +{BOSS_WEEKLY.hard} more ({bossWeek.keys.length} of {SETS.length * 3} taken this week; they come back every Monday).
           </li>
           <li>
-            Every game from the Games page, Free Play and Who&apos;s That?: {ARCADE_COINS} coins, +{ARCADE_BEST_BONUS} for a new best — in full up to {ARCADE_CAP} a day ({Math.min(econ.arcade, ARCADE_CAP)}/
-            {ARCADE_CAP} today), then {ARCADE_AFTER_CAP} a game, as long as you play.
+            Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to 12 by your score; an
+            endless run (Higher or Lower, Summit, Rail Rush…) more the further you get, up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
+            ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then {ARCADE_AFTER_CAP} a game, as long as you play.
           </li>
-          <li>Three missions a day, a bonus each.</li>
+          <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>
         <p className="pt-1 text-xs">
           Odds per card: {Object.entries(ODDS).map(([r, p]) => `${RARITY_INFO[r as keyof typeof RARITY_INFO].name} ${p}%`).join(' · ')} — the fifth card is always Rare or better. With a Hard win:{' '}

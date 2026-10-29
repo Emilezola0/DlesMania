@@ -1,14 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
 import { useUi } from '../store/ui';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
 import { useCloud } from '../cloud/state';
-import { CARD_BY_ID } from '../gacha/cards';
-import { CardAvatar, CardBackdrop } from '../gacha/Perks';
-import { CardReactions } from '../gacha/Reactions';
-import { OmniAura } from '../gacha/OmniAura';
+import { Spinner } from './Spinner';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
@@ -153,11 +150,25 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
   );
 }
 
+// The equipped cards (icon, background, reactions, aura) and the card catalogue behind them: only
+// downloaded once a card is equipped.
+const cardLayers = () => import('../gacha/LayoutCards');
+const CardLayers = lazy(() => cardLayers().then((m) => ({ default: m.CardLayers })));
+const AvatarIcon = lazy(() => cardLayers().then((m) => ({ default: m.AvatarIcon })));
+
+/** While a page's code arrives: a quiet spinner where the page will be. */
+function PageLoading() {
+  return (
+    <div className="grid min-h-[40vh] place-items-center">
+      <Spinner />
+    </div>
+  );
+}
+
 /** The account: a person when signed out, the player's initial when in, with a dot for the save's state. */
 function AccountButton() {
   const { status, email, name } = useCloud();
-  const avatarId = useProgress((s) => s.avatar);
-  const avatar = useProgress((s) => (avatarId && s.cards[avatarId] ? CARD_BY_ID.get(avatarId) : undefined));
+  const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? s.avatar : null));
   const signedIn = !!email && status !== 'signedOut';
   const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
   return (
@@ -168,7 +179,9 @@ function AccountButton() {
       className="relative grid size-7 shrink-0 place-items-center rounded-full text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
     >
       {avatar ? (
-        <CardAvatar card={avatar} className="size-6 min-[420px]:size-7" />
+        <Suspense fallback={<span className="size-6 rounded-full bg-tile min-[420px]:size-7" />}>
+          <AvatarIcon id={avatar} className="size-6 min-[420px]:size-7" />
+        </Suspense>
       ) : signedIn ? (
         <span className="grid size-6 place-items-center rounded-full bg-accent font-display text-xs font-bold uppercase text-on-strong">{(name ?? email ?? '?')[0]}</span>
       ) : (
@@ -223,12 +236,15 @@ export function Layout() {
   const { pathname } = useLocation();
   const onBoss = pathname.startsWith('/boss');
   useApplyTheme(theme);
+  const equipped = useProgress((s) => !!(s.avatar || s.backdrop));
 
   return (
     <div className="flex min-h-screen flex-col">
-      <CardBackdrop />
-      <CardReactions />
-      <OmniAura />
+      {equipped && (
+        <Suspense fallback={null}>
+          <CardLayers />
+        </Suspense>
+      )}
       <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4 sm:gap-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
@@ -292,7 +308,9 @@ export function Layout() {
       </header>
 
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
-        <Outlet />
+        <Suspense fallback={<PageLoading />}>
+          <Outlet />
+        </Suspense>
       </main>
       <RulesModal />
       <UpdateBanner />

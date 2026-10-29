@@ -58,7 +58,8 @@
           "Xin Zhao|Xin",
           "Sylas",
           "Kayle",
-          "Morgana"
+          "Morgana",
+          "Locke"
         ]
       },
       {
@@ -80,7 +81,8 @@
           "Riven",
           "LeBlanc",
           "Briar",
-          "Ambessa"
+          "Ambessa",
+          "Mel"
         ]
       },
       {
@@ -129,7 +131,8 @@
           "Lillia",
           "Kayn",
           "Hwei",
-          "Ivern"
+          "Ivern",
+          "Yunara"
         ]
       },
       {
@@ -191,7 +194,11 @@
           "Corki",
           "Graves",
           "Quinn",
-          "Kindred"
+          "Kindred",
+          "Akshan",
+          "Kayle",
+          "Teemo",
+          "Yunara"
         ]
       },
       {
@@ -534,7 +541,95 @@
             "Tear of the Goddess|Tear|Larme de la déesse",
             "Manamune",
             "Seraph's Embrace",
-            "Archangel's Staff"
+            "Archangel's Staff",
+            "Abyssal Mask",
+            "Actualizer",
+            "Ardent Censer",
+            "Armored Advance",
+            "Axiom Arc",
+            "Bandlepipes",
+            "Bastionbreaker",
+            "Berserker's Greaves",
+            "Blackfire Torch",
+            "Bloodletter's Curse",
+            "Chainlaced Crushers",
+            "Chempunk Chainsword",
+            "Cosmic Drive",
+            "Crimson Lucidity",
+            "Cryptbloom",
+            "Dawncore",
+            "Dead Man's Plate",
+            "Death's Dance",
+            "Dusk and Dawn",
+            "Echoes of Helia",
+            "Eclipse",
+            "Edge of Night",
+            "Endless Hunger",
+            "Essence Reaver",
+            "Experimental Hexplate",
+            "Fiendhunter Bolts",
+            "Force of Nature",
+            "Gluttonous Greaves",
+            "Guardian's Blade",
+            "Guardian's Hammer",
+            "Guardian's Horn",
+            "Guardian's Orb",
+            "Guinsoo's Rageblade",
+            "Gunmetal Greaves",
+            "Hexoptics C44",
+            "Hextech Gunblade",
+            "Hollow Radiance",
+            "Horizon Focus",
+            "Hubris",
+            "Hullbreaker",
+            "Iceborn Gauntlet",
+            "Immortal Path",
+            "Immortal Shieldbow",
+            "Imperial Mandate",
+            "Ionian Boots of Lucidity",
+            "Jak'Sho, The Protean",
+            "Kaenic Rookern",
+            "Knight's Vow",
+            "Locket of the Iron Solari",
+            "Luden's Echo",
+            "Malignance",
+            "Maw of Malmortius",
+            "Mikael's Blessing",
+            "Moonstone Renewer",
+            "Mortal Reminder",
+            "Nashor's Tooth",
+            "Navori Flickerblade",
+            "Overlord's Bloodmail",
+            "Profane Hydra",
+            "Protoplasm Harness",
+            "Ravenous Hydra",
+            "Redemption",
+            "Riftmaker",
+            "Rod of Ages",
+            "Serpent's Fang",
+            "Serylda's Grudge",
+            "Shadowflame",
+            "Shurelya's Battlesong",
+            "Sorcerer's Shoes",
+            "Spear of Shojin",
+            "Spellslinger's Shoes",
+            "Staff of Flowing Water",
+            "Sterak's Gage",
+            "Stormrazor",
+            "Stormsurge",
+            "Stridebreaker",
+            "Sundered Sky",
+            "Swiftmarch",
+            "Terminus",
+            "The Collector",
+            "Titanic Hydra",
+            "Umbral Glaive",
+            "Unending Despair",
+            "Voltaic Cyclosword",
+            "Winter's Approach",
+            "Wit's End",
+            "Yun Tal Wildarrows",
+            "Zeke's Convergence"
           ]
         },
         {
@@ -688,7 +783,54 @@
             "Taric",
             "Azir",
             "Ornn",
-            "Udyr"
+            "Udyr",
+            "Aatrox",
+            "Akshan",
+            "Alistar",
+            "Anivia",
+            "Aurora",
+            "Brand",
+            "Braum",
+            "Diana",
+            "Evelynn",
+            "Fizz",
+            "Gangplank",
+            "Gragas",
+            "Illaoi",
+            "Jax",
+            "K'Sante|Ksante",
+            "Leona",
+            "Lissandra",
+            "Locke",
+            "Malphite",
+            "Mel",
+            "Milio",
+            "Naafiri",
+            "Nami",
+            "Nasus",
+            "Nautilus",
+            "Neeko",
+            "Nidalee",
+            "Nocturne",
+            "Olaf",
+            "Pantheon",
+            "Qiyana",
+            "Renekton",
+            "Rengar",
+            "Ryze",
+            "Sejuani",
+            "Shaco",
+            "Soraka",
+            "Tahm Kench|Tahm",
+            "Trundle",
+            "Tryndamere",
+            "Twisted Fate|TF",
+            "Volibear",
+            "Xerath",
+            "Yunara",
+            "Zaahen",
+            "Zoe",
+            "Zyra"
           ]
         }
       ]
@@ -1138,7 +1280,13 @@
           "Sombra",
           "Symmetra|Sym",
           "Torbjörn|Torbjorn|Torb",
-          "Venture"
+          "Venture",
+          "Freja",
+          "Anran",
+          "Emre",
+          "Shion",
+          "Sierra",
+          "Vendetta"
         ]
       },
       {
@@ -1155,7 +1303,11 @@
           "Kiriko",
           "Lifeweaver",
           "Illari",
-          "Juno"
+          "Juno",
+          "Wuyang",
+          "Doctrine",
+          "Jetpack Cat",
+          "Mizuki"
         ]
       },
       {
@@ -1174,7 +1326,9 @@
           "Ramattra",
           "Mauga",
           "Doomfist",
-          "Hazard"
+          "Hazard",
+          "D.Mon|DMon",
+          "Domina"
         ]
       },
       {
@@ -1257,7 +1411,10 @@
           "Mauga",
           "Sigma",
           "Baptiste|Bap",
-          "Maximilien|Max"
+          "Maximilien|Max",
+          "Vendetta",
+          "Shion",
+          "Mizuki"
         ]
       }
     ],
@@ -1716,7 +1873,19 @@
             "Mauga",
             "Doomfist",
             "Hazard",
-            "Maximilien|Max"
+            "Maximilien|Max",
+            "Freja",
+            "Anran",
+            "Emre",
+            "Shion",
+            "Sierra",
+            "Vendetta",
+            "Wuyang",
+            "Doctrine",
+            "Jetpack Cat",
+            "Mizuki",
+            "D.Mon|DMon",
+            "Domina"
           ]
         }
       ]
@@ -2538,7 +2707,27 @@
             "Villager",
             "Iron Golem",
             "Wither",
-            "Piglin"
+            "Piglin",
+            "Cod|Morue",
+            "Copper Golem|Golem de cuivre",
+            "Happy Ghast",
+            "Illusioner|Illusionniste",
+            "Pufferfish|Poisson-globe",
+            "Salmon|Saumon",
+            "Skeleton Horse|Cheval squelette",
+            "Snow Golem|Golem de neige",
+            "Tadpole|Têtard",
+            "Trader Llama|Lama de marchand",
+            "Tropical Fish|Poisson tropical",
+            "Wandering Trader|Marchand ambulant",
+            "Zoglin",
+            "Zombie Horse|Cheval zombie",
+            "Zombie Villager|Villageois zombie",
+            "Zombified Piglin|Piglin zombifié|Zombie Pigman",
+            "Nautilus",
+            "Zombie Nautilus|Nautilus zombie",
+            "Camel Husk",
+            "Parched"
           ]
         }
       ]
@@ -8117,7 +8306,35 @@
             "Ivysaur|Herbizarre",
             "Charizard|Dracaufeu",
             "Greninja|Amphinobi",
-            "Incineroar|Félinferno"
+            "Incineroar|Félinferno",
+            "Dark Samus|Samus sombre",
+            "Peach",
+            "Daisy",
+            "Bowser",
+            "Sheik",
+            "Zelda",
+            "Dr. Mario|Dr Mario|Docteur Mario",
+            "Falco",
+            "Young Link|Link enfant",
+            "Ganondorf|Ganon",
+            "Meta Knight|Meta-Knight",
+            "Pit",
+            "Zero Suit Samus|ZSS|Samus sans armure",
+            "Wario",
+            "Diddy Kong|Diddy",
+            "Lucas",
+            "King Dedede|Dedede|Roi Dadidou",
+            "Toon Link|Link Cartoon",
+            "Wolf",
+            "Villager|Villageois",
+            "Rosalina & Luma|Rosalina|Harmonie et Luma|Harmonie",
+            "Mii Brawler|Combattant Mii",
+            "Mii Swordfighter|Épéiste Mii|Epeiste Mii",
+            "Mii Gunner|Tireur Mii",
+            "Bowser Jr.|Bowser Jr|Bowser Junior",
+            "Ridley",
+            "King K. Rool|King K Rool|K. Rool",
+            "Mythra|Mythra"
           ]
         }
       ]
@@ -8825,7 +9042,9 @@
             "Alyosha",
             "Odette|Odette Spessiva",
             "Vesna|Vesna Strivozha",
-            "Vodyanitsa"
+            "Vodyanitsa",
+            "Traveler|Aether|Lumine|Voyageur|Voyageuse",
+            "Manekin|Manekina"
           ]
         },
         {

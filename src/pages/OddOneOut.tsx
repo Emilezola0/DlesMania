@@ -24,7 +24,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
       setStreak((s) => s + 1);
     } else {
       sfx.wrong();
-      recordBest(key, streak);
+      recordBest(key, streak, { reached: streak / 2 });
       if (streak > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 400);
     }
   };

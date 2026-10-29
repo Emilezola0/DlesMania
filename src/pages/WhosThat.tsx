@@ -216,7 +216,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
     setMiss(ended);
     const isBest = total > best;
     setNewBest(isBest && total > 0);
-    recordBest(bestKey(mode, playKey), total);
+    recordBest(bestKey(mode, playKey), total, { reached: total / 2 });
     if (isBest && total > 0) {
       sfx.victory();
       celebrateBig();

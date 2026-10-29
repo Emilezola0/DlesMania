@@ -29,7 +29,7 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
     setResults(all);
     if (all.length === WHO_ROUNDS) {
       const sum = all.reduce((a, b) => a + b, 0);
-      recordBest(key, sum);
+      recordBest(key, sum, { ratio: sum / (WHO_ROUNDS * 100) });
       if (sum > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 400);
     }
   };

@@ -473,7 +473,8 @@ export default function Expedition() {
   const finish = (r: RunState, won: boolean) => {
     const done = { ...r, over: true, won };
     save(done);
-    recordBest(bestKey(picksOf(done), roomsOf(done)), runScore(done));
+    // Its coins come room by room (run.ts): the best only.
+    recordBest(bestKey(picksOf(done), roomsOf(done)), runScore(done), { save: true });
   };
 
   const enter = (n: MapNode) => {

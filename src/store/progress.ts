@@ -8,8 +8,10 @@ import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
   ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
+  arcadeCoins,
+  bestCounts,
+  type ArcadeResult,
   ARCADE_CAP,
-  ARCADE_COINS,
   ARCADE_SPACING_MS,
   BOSS_LOSS,
   BOSS_WEEKLY,
@@ -146,8 +148,9 @@ interface ProgressState {
   markSeen: (scope: string, ids: string[]) => void;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
-  recordWhosThat: (key: string, score: number) => void;
-  recordBest: (key: string, score: number) => void;
+  /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
+  recordWhosThat: (key: string, score: number, result: ArcadeResult) => void;
+  recordBest: (key: string, score: number, result: ArcadeResult) => void;
   setSpecialRound: (key: string, index: number, record: RoundRecord) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
   saveSpecs: (domain: Domain, date: string, specs: RoundSpec[]) => void;
@@ -366,7 +369,7 @@ export const useProgress = create<ProgressState>()(
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
         set((s) => ({
-          ...earn(s, ARCADE_COINS, { arcade: 'freeplay' }),
+          ...earn(s, arcadeCoins({ won: record.status === 'won' }), { arcade: 'freeplay' }),
           freePlay: {
             played: s.freePlay.played + 1,
             won: s.freePlay.won + (record.status === 'won' ? 1 : 0),
@@ -374,16 +377,22 @@ export const useProgress = create<ProgressState>()(
           },
         })),
       setBossDifficulty: (bossDifficulty) => set({ bossDifficulty }),
-      recordBest: (key, score) =>
-        set((s) => ({
-          bests: { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) },
-          ...earn(s, ARCADE_COINS + (score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: key, count: { arcade: 1 } }),
-        })),
-      recordWhosThat: (key, score) =>
-        set((s) => ({
-          whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
-          ...earn(s, ARCADE_COINS + (score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0), { arcade: `whos:${key}`, count: { whos: 1 } }),
-        })),
+      recordBest: (key, score, result) =>
+        set((s) => {
+          const bests = { ...s.bests, [key]: Math.max(s.bests[key] ?? 0, score) };
+          // A best kept mid-run: nothing paid, nothing counted (the run's end will).
+          if ('save' in result) return { bests };
+          const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
+          return { bests, ...earn(s, arcadeCoins(result) + bonus, { arcade: key, count: { arcade: 1 } }) };
+        }),
+      recordWhosThat: (key, score, result) =>
+        set((s) => {
+          const bonus = bestCounts(result) && score > 0 && score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
+          return {
+            whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
+            ...earn(s, arcadeCoins(result) + bonus, { arcade: `whos:${key}`, count: { whos: 1 } }),
+          };
+        }),
       setSpecialRound: (key, index, record) =>
         set((s) => {
           const update = { special: { ...s.special, [key]: { ...s.special[key], [index]: record } } };

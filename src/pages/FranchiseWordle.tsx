@@ -66,12 +66,12 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
       sfx.streak();
       const s = streak + 1;
       setStreak(s);
-      recordBest(key, s);
+      recordBest(key, s, { won: true });
       if (s > best) window.setTimeout(() => celebrateBig(), 300);
     } else if (next.length >= WORDLE_TRIES) {
       sfx.wrong();
       // A lost word still counts as a game played (the best streak stays).
-      recordBest(key, 0);
+      recordBest(key, 0, { won: false });
       setStreak(0);
     } else sfx.click();
   };
@@ -232,9 +232,9 @@ export default function FranchiseWordle() {
           can be a guess: green is the right letter in the right place, yellow is elsewhere in the name, and ▲ ▼ tell you whether the name is
           longer or shorter.
         </p>
-        <p className="mt-3 flex items-center gap-2 text-sm text-ink-soft">
+        <div className="mt-3 flex items-center gap-2 text-sm text-ink-soft">
           Names in <NameLangSwitch /> <span className="text-ink-faint">— Pokémon and Minecraft have their French names; the others are the same in both.</span>
-        </p>
+        </div>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {WORDLE_SETS.map((s) => (
