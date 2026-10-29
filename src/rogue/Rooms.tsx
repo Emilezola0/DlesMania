@@ -365,7 +365,8 @@ export function Name5Room({ mods, onDone }: RoomProps) {
 /** A boss room: one phase of a guardian's Boss Battle, at Medium. Act 1 is a Knowledge Blitz, act 2 a Final Blow. */
 export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; onDone: (r: RoomResult) => void }) {
   const boss = useMemo(() => pick(bossesFor(keys)), []);
-  const d = DIFFICULTIES.medium;
+  // The guardians fight harder from the third act on.
+  const d = act >= 3 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
   const blitz = useMemo(() => drawBlitz(boss, d, Math.random), [boss]);
   const finale = useMemo(() => drawFinale(boss, d, Math.random), [boss]);
   const pool = useMemo(() => {
@@ -382,7 +383,7 @@ export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; o
           <p className="font-serif text-2xl font-bold">{boss.boss.name}</p>
         </div>
       </div>
-      {act === 1 ? (
+      {act % 2 === 1 ? (
         <KnowledgeBlitz prompt={blitz} difficulty={d} loop={0} onEvent={() => {}} onDone={(r) => done(r.won, r.correct)} />
       ) : (
         <FinalBlow targets={finale} pool={pool} difficulty={d} loop={0} onEvent={() => {}} onDone={(r) => done(r.won, r.correct)} />

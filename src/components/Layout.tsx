@@ -8,6 +8,7 @@ import { useCloud } from '../cloud/state';
 import { CARD_BY_ID } from '../gacha/cards';
 import { CardAvatar, CardBackdrop } from '../gacha/Perks';
 import { CardReactions } from '../gacha/Reactions';
+import { OmniAura } from '../gacha/OmniAura';
 import { sfx } from '../lib/sfx';
 import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
@@ -227,11 +228,12 @@ export function Layout() {
     <div className="flex min-h-screen flex-col">
       <CardBackdrop />
       <CardReactions />
+      <OmniAura />
       <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4 sm:gap-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
-            <span className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
+            <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
           </NavLink>
           <nav className="ml-auto flex items-center gap-0.5 text-sm sm:gap-1">
             {NAV.map((n) => (

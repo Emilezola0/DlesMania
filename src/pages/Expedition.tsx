@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
+import { DleCoin } from '../components/DleCoin';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
 import {
-  ACTS,
+  bossCoins,
+  roomCoins,
   CHALLENGE_INFO,
   NODE_INFO,
   describeNode,
@@ -252,6 +254,8 @@ interface Outcome {
   boss: boolean;
   note: string;
   gold: number;
+  /** DleCoins won with it (for the shop). */
+  coins: number;
   /** Hearts before the room, and how many it cost. */
   hearts: number;
   maxHearts: number;
@@ -310,6 +314,9 @@ function ResultCard({ result: o, onNext }: { result: Outcome; onNext: () => void
           <span className="animate-pop rounded-full border border-ochre/50 bg-ochre/10 px-4 py-1.5 font-display text-2xl font-bold" style={{ animationDelay: '250ms' }}>
             +<CountUp to={o.gold} /> 🪙
           </span>
+          <span className="animate-pop rounded-full border border-accent/50 bg-accent/10 px-4 py-1.5 font-display text-2xl font-bold" style={{ animationDelay: '400ms' }}>
+            +<CountUp to={o.coins} /> <DleCoin className="inline size-6" />
+          </span>
           {o.perfect && (
             <span className="animate-pop rounded-full border border-hit/50 bg-hit/10 px-3 py-1 font-display text-sm font-bold uppercase tracking-widest text-hit" style={{ animationDelay: '500ms' }}>
               Flawless +5
@@ -347,7 +354,7 @@ function Hud({ run }: { run: RunState }) {
       </div>
       <p className="font-display text-sm font-bold">🪙 {run.gold}</p>
       <p className="font-display text-sm text-ink-soft">
-        Act {run.act}/{ACTS} · {run.cleared} won
+        Act {run.act} · {run.cleared} won
       </p>
       <div className="flex gap-1">
         {run.relics.map((r) => (
@@ -459,6 +466,7 @@ export default function Expedition() {
   const best = bests[run ? bestKey(picksOf(run), roomsOf(run)) : bestKey(setup.picks, setup.rooms)] ?? 0;
   const problem = setupProblem(setup);
   const recordBest = useProgress((s) => s.recordBest);
+  const earnCoins = useProgress((s) => s.earnCoins);
   const [screen, setScreen] = useState<Screen>({ kind: 'map' });
   const save = (r: RunState) => setRun({ ...r, log: r.log.slice(-6) });
 
@@ -489,18 +497,18 @@ export default function Expedition() {
     let r: RunState = { ...run };
     if (res.won) {
       const gold = goldFor(r, boss ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
-      r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙)`] };
-      const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
+      // DleCoins for the shop, more the further the run has gone.
+      const coins = boss ? bossCoins(r.act) : roomCoins(r.act) * (elite ? 2 : 1);
+      earnCoins(coins);
+      r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙, +${coins} DleCoins)`] };
+      const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, coins, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
       if (boss) (sfx.victory(), celebrateBig());
       else if (res.perfect) (sfx.streak(), celebrate());
       else (sfx.hit(), celebrate());
       let then: Screen = { kind: 'map' };
       if (boss) {
         if (has(r, 'bandage')) r.hearts = Math.min(r.maxHearts, r.hearts + 1);
-        if (r.act >= ACTS) {
-          finish(r, true);
-          return setScreen({ kind: 'result', result: { ...result, line: 'The expedition is complete!' }, then: { kind: 'map' } });
-        }
+        // No last act: the expedition goes on, harder, for as long as the hearts last.
         r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, picksOf(r), roomsOf(r)), at: null };
         then = { kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` };
       } else if (elite || gamble) then = { kind: 'reward', offer: relicOffer(r), text: gamble ? 'The gamble paid off.' : 'Elite beaten: a relic of your choice.' };
@@ -512,7 +520,7 @@ export default function Expedition() {
     const cost = Math.min(r.hearts, boss ? 2 : 1);
     r = { ...r, hearts: r.hearts - cost, log: [...r.log, `✗ ${res.note} (−${cost} ❤)`] };
     const last = r.hearts <= 0;
-    const result: Outcome = { ...base, won: false, perfect: false, gold: 0, lost: cost, last, line: pickLine(last ? LAST_LINES : boss ? BOSS_LOSS_LINES : LOSS_LINES) };
+    const result: Outcome = { ...base, won: false, perfect: false, gold: 0, coins: 0, lost: cost, last, line: pickLine(last ? LAST_LINES : boss ? BOSS_LOSS_LINES : LOSS_LINES) };
     if (last) finish(r, false);
     else save(r);
     // A boss has to be beaten: the act's last room comes back.
@@ -536,9 +544,10 @@ export default function Expedition() {
           </Link>
           <h1 className="text-5xl font-bold">Expedition</h1>
           <p className="max-w-2xl text-ink-soft">
-            A run through {ACTS} acts of rooms, each a short challenge from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
-            I?, Quick Sort, lists to name — and a guardian at the end of each act. Choose your path; win rooms for gold, beat elites for relics,
-            spend it all at shops. A lost room costs a heart; lose them all and the expedition ends.
+            An endless run of acts, each a map of short challenges from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
+            I?, Quick Sort, lists to name — and a guardian at the end of each act, harder as you go. Choose your path; win rooms for gold, beat
+            elites for relics, spend it all at shops — and every room won pays DleCoins, more the deeper you are. A lost room costs a heart; lose
+            them all and the expedition ends. Leave whenever you like: the run waits for you.
           </p>
         </div>
         <SetupPicker setup={setup} onChange={setSetup} />

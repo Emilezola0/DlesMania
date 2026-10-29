@@ -77,6 +77,8 @@ function Profile() {
   const setBackdrop = useProgress((s) => s.setBackdrop);
   const reactions = useProgress((s) => s.cardReactions ?? true);
   const setReactions = useProgress((s) => s.setCardReactions);
+  const aura = useProgress((s) => s.omniAura ?? true);
+  const setAura = useProgress((s) => s.setOmniAura);
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -101,6 +103,13 @@ function Profile() {
         <span>
           <span className="block font-semibold">Cards react while you play</span>
           <span className="block text-sm text-ink-soft">A Legendary or Mythic icon pops up with a word on a right answer, a mistake or a big win (a Mythic says its voice line); a Legendary or Mythic background lights up, winces or bursts.</span>
+        </span>
+      </label>
+      <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">
+        <input type="checkbox" checked={aura} onChange={(e) => setAura(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
+        <span>
+          <span className="block font-semibold">✪ Omni aura</span>
+          <span className="block text-sm text-ink-soft">With an Omni card as your icon or background, the whole site shines: an aurora behind the pages, a rainbow under the header, a golden logo and buttons, sparkles behind the cursor.</span>
         </span>
       </label>
       <p className="text-xs text-ink-faint">

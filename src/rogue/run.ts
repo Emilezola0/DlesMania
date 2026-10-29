@@ -56,7 +56,12 @@ export interface RunState {
   rooms?: ChallengeKind[];
 }
 
-export const ACTS = 2;
+/** Acts go on for ever; the challenge climbs until this act, then stays at its hardest. */
+export const HARDEST_ACT = 4;
+
+/** DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — more the further the run goes. */
+export const roomCoins = (act: number) => 2 + act * 2;
+export const bossCoins = (act: number) => 10 + act * 10;
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;
@@ -142,7 +147,7 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
   const c = n.challenge && CHALLENGE_INFO[n.challenge];
   switch (n.kind) {
     case 'fight':
-      return { title: c!.name, body: [c!.rule], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless)`, lose: '❤ −1' };
+      return { title: c!.name, body: [c!.rule], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless) and ${roomCoins(run.act)} DleCoins`, lose: '❤ −1' };
     case 'elite':
       return { title: `Elite · ${c!.name}`, body: [c!.rule, `Elite: ${c!.elite}`], win: `🪙 ${goldFor(run, 'elite', false)} and a relic of your choice`, lose: '❤ −1' };
     case 'shop':
@@ -158,7 +163,7 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
           run.act === 1 ? "A guardian's Knowledge Blitz: name as many answers as you can against the clock." : "A guardian's Final Blow: name the faces before time runs out.",
           'A boss must be beaten: lose and you face it again.',
         ],
-        win: `🪙 ${goldFor(run, 'boss', false)}${run.act < ACTS ? ', a relic, and the next act' : ' and the expedition'}`,
+        win: `🪙 ${goldFor(run, 'boss', false)}, a relic, the next act, and ${bossCoins(run.act)} DleCoins`,
         lose: '❤ −2',
       };
   }
@@ -196,7 +201,7 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
 
 function depthOf(run: RunState): number {
   const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
-  return Math.min(1, ((run.act - 1) * ROWS + Math.min(row, ROWS - 1)) / (ACTS * ROWS - 1));
+  return Math.min(1, ((run.act - 1) * ROWS + Math.min(row, ROWS - 1)) / (HARDEST_ACT * ROWS - 1));
 }
 
 /** A relic's effect on taking it (most work through `Mods` instead). */

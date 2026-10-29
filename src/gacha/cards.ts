@@ -7,10 +7,12 @@ import { WHO_UNIVERSES } from '../arcade/whoAmI';
 import { connectionThemes } from '../data';
 import { BOSSES } from '../data/bosses';
 import { hashString } from '../lib/rng';
+import { SILHOUETTES } from '../data/silhouettes';
+import FROZEN_RARITIES from '../data/card-rarities.json';
 import type { Domain } from '../types';
 
-export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic';
-export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic'];
+export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
+export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
 
 export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: number }> = {
   common: { name: 'Common', gem: '◆', rank: 0 },
@@ -18,10 +20,11 @@ export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: numb
   epic: { name: 'Epic', gem: '◆◆◆', rank: 2 },
   legendary: { name: 'Legendary', gem: '★', rank: 3 },
   mythic: { name: 'Mythic', gem: '✦', rank: 4 },
+  omni: { name: 'Omni', gem: '✪', rank: 5 },
 };
 
 /** Each rarity's light: the glow from a torn pack, the shooting star, the bursts, an icon's ring. */
-export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#f0abfc' };
+export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#f0abfc', omni: '#fff1a8' };
 
 export interface Card {
   id: string;
@@ -39,6 +42,8 @@ export interface Card {
   voice?: string;
   /** The real recording of it, when there is one; else the browser reads it. */
   audio?: string;
+  /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard. */
+  awaken?: { title: string; image: string; line: string };
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
@@ -48,12 +53,12 @@ export interface Card {
  * voice line: their catchphrase — for the game stars, their real recording (the fan wikis host the
  * games' voice files). (Lines written for these cards; titles and catchphrases from the franchises.)
  */
-const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string }> = {
+const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; image?: string }> = {
   lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "A clever fox is never caught.", audio: "https://static.wikia.nocookie.net/leagueoflegends/images/5/5e/Ahri_Select.ogg/revision/latest?cb=20230110210107" },
   overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000" },
   minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…", audio: "https://minecraft.wiki/images/Creeper_fuse.ogg?2ff0e" },
-  onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.', voice: "I'm gonna be King of the Pirates!" },
-  dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.', voice: "Kamehameha!" },
+  onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.', voice: "I'm gonna be King of the Pirates!", image: 'https://static.wikia.nocookie.net/onepiece/images/6/66/Gear_5_Infobox.png/revision/latest/scale-to-width-down/500?cb=20251221160520' },
+  dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.', voice: "Kamehameha!", image: 'https://static.wikia.nocookie.net/dragonball/images/b/b9/Ultra_Instinct_Goku.png/revision/latest/scale-to-width-down/500?cb=20180930060236' },
   naruto: { name: 'Naruto Uzumaki', title: 'Seventh Hokage', line: 'The kid nobody believed in, carrying the whole Leaf on his back — and still grinning.', voice: "Believe it!" },
   starwars: { name: 'Yoda', title: 'Grand Master of the Order', line: 'Nine hundred years of patience, all of it packed into one small green frame.', voice: "Do or do not. There is no try." },
   harrypotter: { name: 'Harry Potter', title: 'The Boy Who Lived', line: 'A scar, a broom and a stubborn heart: the wizarding world’s most famous survivor.', voice: "Expecto Patronum!" },
@@ -64,6 +69,96 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "The goddess watches over us.", audio: "https://static.wikia.nocookie.net/allstars_gamepedia/images/d/d4/Tyrande_IntroBoast01.ogg/revision/latest?cb=20180709081959" },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
 };
+
+/**
+ * The omnis, rarest of all: a franchise's legend in two forms. The first is theirs from the pack;
+ * the second wakes once the franchise's guardian is beaten on Hard (Gear 4 → Gear 5, Super Saiyan →
+ * Perfected Ultra Instinct). `image` left out: the character's own picture. (Lines written for
+ * these cards; art from the fan wikis.)
+ */
+const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; awaken: { title: string; image: string; line: string } }> = {
+  onepiece: {
+    name: 'Monkey D. Luffy',
+    title: 'Gear Fourth: Boundman',
+    line: 'Rubber muscle swollen with Haki, bouncing like a war drum — and this is not even his final form.',
+    image: 'https://static.wikia.nocookie.net/onepiece/images/b/b5/Luffy_Gear_Fourth_Pirate_Warriors_4.png/revision/latest/scale-to-width-down/500?cb=20191216211624',
+    awaken: {
+      title: 'Gear Fifth: Joy Boy',
+      line: 'The drums of liberation, at last: he laughs, and the whole world bends like rubber with him.',
+      image: 'https://static.wikia.nocookie.net/onepiece/images/8/8d/Luffy_Activates_Gear_5.png/revision/latest/scale-to-width-down/500?cb=20231011132639',
+    },
+  },
+  dbz: {
+    name: 'Goku',
+    title: 'The Legendary Super Saiyan',
+    line: 'Golden hair, green eyes, a fury born on Namek — the legend everyone said was a myth.',
+    image: 'https://static.wikia.nocookie.net/dragonball/images/c/c1/Super_Saiyan_Goku.png/revision/latest/scale-to-width-down/500?cb=20251228192049',
+    awaken: {
+      title: 'Perfected Ultra Instinct',
+      line: 'Silver light, a silent mind: the technique even the gods struggle to master, finally his.',
+      image: 'https://static.wikia.nocookie.net/dragonball/images/5/55/Perfected_Ultra_Instinct_Goku_cloaked_in_aura.jpg/revision/latest/scale-to-width-down/500?cb=20210510004359',
+    },
+  },
+  naruto: {
+    name: 'Naruto Uzumaki',
+    title: 'Nine-Tails Chakra Mode',
+    line: 'The fox inside is a partner now: golden flames, a cloak of chakra, and a grin to match.',
+    image: 'https://static.wikia.nocookie.net/naruto/images/2/21/Naruto%27s_Kurama_Mode.png/revision/latest/scale-to-width-down/500?cb=20160206204708',
+    awaken: {
+      title: 'Baryon Mode',
+      line: 'Two lives burning as one, for a single impossible fight. Strongest — and saddest.',
+      image: 'https://static.wikia.nocookie.net/naruto/images/1/17/Naruto%27s_Baryon_Mode.png/revision/latest/scale-to-width-down/500?cb=20210926184438',
+    },
+  },
+  lotr: {
+    name: 'Gandalf',
+    title: 'The Grey Pilgrim',
+    line: 'A wanderer in a battered hat, with fireworks in his pockets and the fate of the world on his mind.',
+    awaken: {
+      title: 'Gandalf the White',
+      line: 'He fell with the shadow and came back as light: at the turn of the tide.',
+      image: 'https://static.wikia.nocookie.net/lotr/images/4/4f/Gandalf_the_White_returns.png/revision/latest/scale-to-width-down/500?cb=20121003055423',
+    },
+  },
+  mcu: {
+    name: 'Iron Man',
+    title: 'Mark III',
+    line: 'Hot-rod red and gold, built in a cave from a box of scraps — the suit that started it all.',
+    image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/47/Iron_Man_Armor_-_Mark_III.png/revision/latest/scale-to-width-down/500?cb=20170424185316',
+    awaken: {
+      title: 'Mark LXXXV: The Snap',
+      line: 'Six stones, one hand, one last choice. Inevitable, he said — and Tony answered.',
+      image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/cc/Iron_Man_Mark_LXXXV_Infinity_Stones.png/revision/latest/scale-to-width-down/500?cb=20190816074423',
+    },
+  },
+  minecraft: {
+    name: 'Creeper',
+    title: 'The Green Menace',
+    line: 'Every crafter has met it once — usually right behind them.',
+    awaken: {
+      title: 'Charged Creeper',
+      line: 'Struck by lightning and crackling blue: twice the boom, and it still makes no sound until it is too late.',
+      image: 'https://minecraft.wiki/images/thumb/Charged_Creeper_JE1_BE1.png/360px-Charged_Creeper_JE1_BE1.png?87117',
+    },
+  },
+  lol: {
+    name: 'Ahri',
+    title: 'Fox of the Ionian Wilds',
+    line: 'She took memories to live; now she makes her own, one charm at a time.',
+    awaken: {
+      title: 'Spirit Blossom Ahri',
+      line: 'Under the blossoms of the spirit realm, the fox remembers who she loved — and who she was.',
+      image: 'https://static.wikia.nocookie.net/leagueoflegends/images/1/19/Ahri_SpiritBlossomSkin.jpg/revision/latest/scale-to-width-down/500?cb=20240906175707',
+    },
+  },
+};
+
+/**
+ * Every card's rarity, set once and for all (src/data/card-rarities.json, filled by
+ * `npm run cards:freeze`): a card never changes rarity — what a player pulled as a rare stays a
+ * rare. New cards take the rarity the rules below give them, then get frozen too.
+ */
+const FROZEN = FROZEN_RARITIES as Record<string, Rarity>;
 
 const slug = (s: string) =>
   s
@@ -216,8 +311,18 @@ export const CARDS: Card[] = (() => {
     // The mythic: the star's special edition, numbered after the rest of the set.
     const m = MYTHICS[b.id];
     const star = m && b.radar.members.find((x) => x.label === m.name);
-    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
-    set.forEach((c, i) => out.push({ ...c, no: i + 1 }));
+    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: m.image ?? star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
+    // The omni: the legend in its first form, its second waiting for a Hard win.
+    const o = OMNIS[b.id];
+    const legend = o && b.radar.members.find((x) => x.label === o.name);
+    const oImage = o?.image ?? legend?.image;
+    if (o && oImage) set.push({ id: `${b.id}:omni`, name: o.name, image: oImage, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'omni', title: o.title, description: o.line, awaken: o.awaken });
+    // More faces from the same franchise (Who's That's rosters): commons, with a rare now and then.
+    for (const e of SILHOUETTES.find((x) => x.id === b.id && !x.cutout)?.entries ?? []) {
+      const rarity: Rarity = hashString(e.name) % 7 === 0 ? 'rare' : 'common';
+      add(e.name, e.image, rarity, describe(b.id, e.name, rarity === 'rare' ? 'rare' : 'common', b.franchise));
+    }
+    set.forEach((c, i) => out.push({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 }));
   }
   return out;
 })();

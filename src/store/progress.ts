@@ -82,11 +82,16 @@ interface ProgressState {
   /** Legendary and Mythic icons and backgrounds react to the play (on unless turned off). */
   cardReactions: boolean;
   setCardReactions: (on: boolean) => void;
+  /** An equipped Omni card restyles the whole site (on unless turned off). */
+  omniAura: boolean;
+  setOmniAura: (on: boolean) => void;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   openPack: (cost: number, cardIds: string[]) => boolean;
   claimMission: (kind: MissionKind) => void;
+  /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
+  earnCoins: (amount: number) => void;
   /** Spare copies traded in for coins: card id -> how many (one copy of each always stays), and the coins they're worth. */
   exchangeCards: (copies: Record<string, number>, coins: number) => void;
   /** Cards in or out by trading (src/cloud/trades.ts): card id -> +1 or -1. */
@@ -201,6 +206,8 @@ export const useProgress = create<ProgressState>()(
       backdrop: null,
       cardReactions: true,
       setCardReactions: (cardReactions) => set({ cardReactions }),
+      omniAura: true,
+      setOmniAura: (omniAura) => set({ omniAura }),
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
       openPack: (cost, cardIds) => {
@@ -228,6 +235,7 @@ export const useProgress = create<ProgressState>()(
           }
           return { cards };
         }),
+      earnCoins: (amount) => set((s) => earn(s, amount)),
       claimMission: (kind) =>
         set((s) => {
           const e = econToday(s.econ);

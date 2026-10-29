@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
-import { CardBack, CardFace, CardMissing } from '../gacha/CardView';
+import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { canBeBackdrop } from '../gacha/Perks';
@@ -27,6 +27,8 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
  * it to send it spinning. The name, badges and ribbon stand off the surface.
  */
 function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
+  // An omni shows the form it has reached (its title changes once awakened).
+  const form = useCardForm(card);
   const [rot, setRot] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
@@ -109,7 +111,8 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
         </div>
         <div className="text-center text-white">
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name)}</p>
-          {card.title && <p className="text-sm italic opacity-80">{card.title}</p>}
+          {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
+          {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard to awaken it: {card.awaken.title}.</p>}
           {canHear(card) && (
             <button type="button" onClick={() => playVoice(card)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               🔊 Hear “{card.voice}”
