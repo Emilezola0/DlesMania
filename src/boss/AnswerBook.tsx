@@ -81,7 +81,7 @@ function sectionsOf(boss: Boss): Section[] {
 
 /**
  * Every answer a boss fight takes, phase by phase, with the other spellings that count — to see why an
- * answer wasn't accepted, or learn the ones missed. Only offered outside the fight itself.
+ * answer wasn't accepted, or learn the ones missed. A button at the top of every fight opens it.
  */
 export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void }) {
   const sections = useMemo(() => sectionsOf(boss), [boss]);

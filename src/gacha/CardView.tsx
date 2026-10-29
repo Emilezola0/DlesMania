@@ -159,13 +159,14 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
           ✪ {form.awakened ? 'AWAKENED' : 'OMNI'}
         </span>
       )}
+      {/* Above the name bar (z-10) and the grade sheen (z-5), which they overlap at the corners. */}
       {count > 1 && (
-        <span className="absolute -left-[4cqw] -top-[4cqw] grid min-w-[16cqw] place-items-center rounded-full bg-ink px-[3cqw] py-[1cqw] font-display text-[7cqw] font-bold text-paper shadow" style={lift(30)}>
+        <span className="absolute -left-[4cqw] -top-[4cqw] z-20 grid min-w-[16cqw] place-items-center rounded-full bg-ink px-[3cqw] py-[1cqw] font-display text-[7cqw] font-bold text-paper shadow" style={lift(30)}>
           ×{count}
         </span>
       )}
       {isNew && (
-        <span className="absolute -right-[4cqw] -top-[4cqw] animate-pop rounded-full bg-coral px-[3cqw] py-[1cqw] font-display text-[6.5cqw] font-bold text-white shadow" style={lift(30)}>
+        <span className="absolute -right-[4cqw] -top-[4cqw] z-20 animate-pop rounded-full bg-coral px-[3cqw] py-[1cqw] font-display text-[6.5cqw] font-bold text-white shadow" style={lift(30)}>
           NEW
         </span>
       )}

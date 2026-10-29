@@ -91,7 +91,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   /** Hard's secret phase, set up when the main life bar empties. */
   const [signature, setSignature] = useState<SignaturePhase | null>(null);
   const [secretResult, setSecretResult] = useState<ChainResult | null>(null);
-  /** The book of every accepted answer, opened from the result screen. */
+  /** The book of every accepted answer, opened from the button at the top. */
   const [book, setBook] = useState(false);
   const startedAt = useRef(0);
   const arena = useRef<HTMLDivElement>(null);
@@ -278,10 +278,14 @@ function BossBattle({ boss }: { boss: Boss }) {
         <Link to={`/boss?domain=${boss.domain}`} className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
           ← All bosses
         </Link>
-        <span className="flex items-center gap-1.5 font-display text-xs uppercase tracking-widest text-ink-faint">
-          <Glyph seed={boss.domain} size={14} className={domainInfo(boss.domain).tone} /> {boss.franchise}
-          {stage !== 'intro' && <span className={`ml-1 font-bold ${DIFFICULTY_TONE[difficulty]}`}>· {d.label}</span>}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1.5 font-display text-xs uppercase tracking-widest text-ink-faint">
+            <Glyph seed={boss.domain} size={14} className={domainInfo(boss.domain).tone} /> {boss.franchise}
+            {stage !== 'intro' && <span className={`ml-1 font-bold ${DIFFICULTY_TONE[difficulty]}`}>· {d.label}</span>}
+          </span>
+          {/* Every answer this fight takes, any time: to learn them, or see why one wasn't accepted. */}
+          <AnswerBookButton onClick={() => setBook(true)} label="Answers" />
+        </div>
       </div>
 
       <div ref={arena} className={`page relative space-y-6 rounded-md p-4 sm:p-6 ${phase >= 2 && stage === 'fight' ? 'boss-arena-final' : ''}`}>
@@ -530,8 +534,6 @@ function BossBattle({ boss }: { boss: Boss }) {
                 Choose another boss
               </Link>
             </div>
-            {/* Why an answer wasn't taken, and the ones missed: every answer the fight accepts. */}
-            <AnswerBookButton onClick={() => setBook(true)} label="Every accepted answer" />
           </div>
         )}
       </div>
