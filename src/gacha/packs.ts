@@ -10,6 +10,15 @@ export const PACK_SIZE = 5;
 /** Base odds, in percent, for each card of a pack. */
 export const ODDS: Record<Rarity, number> = { common: 68.41, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08, omni: 0.01 };
 
+/**
+ * Luck (pity): every pack opened without a Legendary or better raises the odds of Legendary, Mythic and
+ * Omni by this share, up to PITY_MAX times; the first one pulled sets it back to the start.
+ */
+export const PITY_STEP = 0.1;
+export const PITY_MAX = 5;
+export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * Math.max(0, pity));
+export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexOf('legendary');
+
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
 export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5, hell: 3.2 };
 
@@ -66,14 +75,17 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
   return null;
 }
 
-/** The odds with a boost: epic multiplied, rare, legendary, mythic and omni by half as much (the top stays rare), common taking the rest. */
-export function oddsWith(boost: number): Record<Rarity, number> {
+/**
+ * The odds with a boost: epic multiplied, rare, legendary, mythic and omni by half as much (the top stays rare), common taking the rest;
+ * `luck` (see pityLuck) multiplies legendary, mythic and omni again.
+ */
+export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
   const rare = ODDS.rare * half;
   const epic = ODDS.epic * boost;
-  const legendary = ODDS.legendary * half;
-  const mythic = ODDS.mythic * half;
-  const omni = ODDS.omni * half;
+  const legendary = ODDS.legendary * half * luck;
+  const mythic = ODDS.mythic * half * luck;
+  const omni = ODDS.omni * half * luck;
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 
@@ -86,9 +98,9 @@ const rollRarity = (odds: Record<Rarity, number>, rand: () => number, atLeast: R
 };
 
 /** Five cards from a pack; the last one is at least rare. A rarity the pool lacks falls to the next one down. */
-export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random): Card[] {
+export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1): Card[] {
   const pool = CARDS.filter(pack.pool);
-  const odds = oddsWith(boost);
+  const odds = oddsWith(boost, luck);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
     let r = rollRarity(odds, rand, i === PACK_SIZE - 1 ? 'rare' : 'common');
@@ -103,4 +115,15 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
     taken.add(card.id);
     return card;
   }).sort((a, b) => RARITIES.indexOf(a.rarity) - RARITIES.indexOf(b.rarity));
+}
+
+/** `count` packs in a row, each with the luck the packs before it left: the cards, and the pity after them. */
+export function pullPacks(pack: Pack, count: number, boost: number, pity: number): { packs: Card[][]; pity: number } {
+  const packs: Card[][] = [];
+  for (let i = 0; i < count; i++) {
+    const cards = pullPack(pack, boost, Math.random, pityLuck(pity));
+    packs.push(cards);
+    pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : pity + 1;
+  }
+  return { packs, pity };
 }

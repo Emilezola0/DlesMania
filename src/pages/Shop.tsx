@@ -8,7 +8,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, bossBest, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -55,7 +55,7 @@ function DropRates() {
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and the top tiers up by half as much). Per card, and in brackets the chance of at least one in a pack.
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and the top tiers up by half as much). And every pack opened without a Legendary or better raises the odds of Legendary, Mythic and Omni by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Per card, and in brackets the chance of at least one in a pack (without that luck).
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">
@@ -174,6 +174,7 @@ export default function Shop() {
   const econ = econToday(useProgress((s) => s.econ));
   const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
+  const pity = useProgress((s) => s.pity ?? 0);
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));
@@ -185,9 +186,10 @@ export default function Shop() {
   const buy = (p: Pack) => {
     const best = boostOf(p);
     if (p.boss && !best) return;
-    const cards = pullPack(p, best ? BOOST[best] : 1);
+    const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity);
+    const cards = pull.packs[0];
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost, cards.map((c) => c.id))) return sfx.wrong();
+    if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity)) return sfx.wrong();
     sfx.click();
     setOpening({ pack: p, cards, fresh, key: Date.now() });
   };
@@ -196,11 +198,13 @@ export default function Shop() {
   const buyMany = (p: Pack) => {
     const best = boostOf(p);
     if (p.boss && !best) return;
-    const cards = Array.from({ length: MANY }, () => pullPack(p, best ? BOOST[best] : 1))
+    // One pack after another, each with the luck the ones before it left.
+    const pull = pullPacks(p, MANY, best ? BOOST[best] : 1, pity);
+    const cards = pull.packs
       .flat()
       .sort((a, b) => RARITY_INFO[a.rarity].rank - RARITY_INFO[b.rarity].rank);
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY)) return sfx.wrong();
+    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity)) return sfx.wrong();
     sfx.click();
     setOpening({ pack: p, cards, fresh, key: Date.now() });
   };
@@ -265,6 +269,13 @@ export default function Shop() {
           <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Your DleCoins</p>
           <Coins n={coins} className="text-4xl" />
           <p className="text-xs text-ink-soft">+{econ.earned} today</p>
+          {/* Luck: the packs since the last Legendary or better raise their odds. */}
+          <p
+            className={`mt-1 text-xs font-semibold ${pity > 0 ? 'text-ochre' : 'text-ink-faint'}`}
+            title={`Every pack without a Legendary or better: +${Math.round(PITY_STEP * 100)}% to Legendary, Mythic and Omni odds, up to ×${PITY_MAX}. Back to ×1 when one drops.`}
+          >
+            ✨ Luck ×{pityLuck(pity).toFixed(1)}{pity > 0 ? ` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary` : ''}
+          </p>
         </div>
       </div>
 

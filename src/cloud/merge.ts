@@ -25,6 +25,7 @@ export const SYNCED = [
   'econ',
   'bossWeek',
   'packsOpened',
+  'pity',
   'nameLang',
   'avatar',
   'backdrop',
@@ -177,6 +178,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
             ? local.bossWeek
             : cloud.bossWeek,
     coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
+    // The luck of the latest save (pulled apart on a first link: the lower, so it's never doubled).
+    pity: firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : ((cloudNewer ? cloud.pity : local.pity) ?? 0),
     packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
     rogueRun: firstLink ? (cloud.rogueRun ?? local.rogueRun) : latest.rogueRun,

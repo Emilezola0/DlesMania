@@ -87,6 +87,8 @@ interface ProgressState {
   /** This week's boss bonuses already paid. */
   bossWeek: BossWeek;
   packsOpened: number;
+  /** Packs opened since the last Legendary or better: the luck that raises their odds (see pityLuck). */
+  pity: number;
   /** A card shown as the player's icon (any card they own). */
   avatar: string | null;
   /** A card shown behind the pages (Rare or better). */
@@ -114,7 +116,7 @@ interface ProgressState {
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   /** `packs`: how many packs that was (five opened at once count as five). */
-  openPack: (cost: number, cardIds: string[], packs?: number) => boolean;
+  openPack: (cost: number, cardIds: string[], packs?: number, pity?: number) => boolean;
   claimMission: (kind: MissionKind) => void;
   /** This week's and this month's missions (see src/gacha/economy.ts). */
   missionBooks: PeriodBooks;
@@ -259,6 +261,7 @@ export const useProgress = create<ProgressState>()(
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
+      pity: 0,
       missionBooks: booksNow(undefined),
       redeemed: [],
       groups: {},
@@ -314,12 +317,12 @@ export const useProgress = create<ProgressState>()(
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
-      openPack: (cost, cardIds, packs = 1) => {
+      openPack: (cost, cardIds, packs = 1, pity) => {
         if (get().coins < cost) return false;
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }) };
+          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity } : {}) };
         });
         return true;
       },
