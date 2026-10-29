@@ -7,6 +7,7 @@ import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
+  clampPity,
   ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
   arcadeCoins,
@@ -322,7 +323,7 @@ export const useProgress = create<ProgressState>()(
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity } : {}) };
+          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}) };
         });
         return true;
       },

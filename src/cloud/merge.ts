@@ -3,6 +3,7 @@
 // each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
 // the save changed last; except the first time a device joins an account, when its coins and cards
 // are added to the account's (they were earned apart).
+import { clampPity } from '../gacha/economy';
 import type { Economy, PeriodBook } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
 import type { RoundRecord, RoundSpec } from '../types';
@@ -179,7 +180,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
             : cloud.bossWeek,
     coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
     // The luck of the latest save (pulled apart on a first link: the lower, so it's never doubled).
-    pity: firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : ((cloudNewer ? cloud.pity : local.pity) ?? 0),
+    pity: clampPity(firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : (cloudNewer ? cloud.pity : local.pity)),
     packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
     rogueRun: firstLink ? (cloud.rogueRun ?? local.rogueRun) : latest.rogueRun,

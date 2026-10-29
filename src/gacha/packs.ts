@@ -4,19 +4,15 @@
 import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
 import { CARDS, RARITIES, type Card, type Rarity } from './cards';
+import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, pityLuck } from './economy';
 
 export const PACK_SIZE = 5;
 
 /** Base odds, in percent, for each card of a pack. */
 export const ODDS: Record<Rarity, number> = { common: 68.41, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08, omni: 0.01 };
 
-/**
- * Luck (pity): every pack opened without a Legendary or better raises the odds of Legendary, Mythic and
- * Omni by this share, up to PITY_MAX times; the first one pulled sets it back to the start.
- */
-export const PITY_STEP = 0.1;
-export const PITY_MAX = 5;
-export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * Math.max(0, pity));
+/** The luck (pity) lives with the economy, which the store reads without the card catalogue. */
+export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, pityLuck };
 export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexOf('legendary');
 
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
@@ -123,7 +119,7 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
   for (let i = 0; i < count; i++) {
     const cards = pullPack(pack, boost, Math.random, pityLuck(pity));
     packs.push(cards);
-    pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : pity + 1;
+    pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
   }
-  return { packs, pity };
+  return { packs, pity: clampPity(pity) };
 }

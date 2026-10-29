@@ -8,7 +8,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, bossBest, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, bossBest, clampPity, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -174,7 +174,7 @@ export default function Shop() {
   const econ = econToday(useProgress((s) => s.econ));
   const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
-  const pity = useProgress((s) => s.pity ?? 0);
+  const pity = useProgress((s) => clampPity(s.pity));
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));

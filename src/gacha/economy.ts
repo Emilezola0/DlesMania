@@ -63,6 +63,17 @@ export interface BossWeek {
   keys: string[];
 }
 
+/**
+ * Luck (pity): every pack opened without a Legendary or better raises the odds of Legendary, Mythic and
+ * Omni by this share, up to PITY_MAX times; the first one pulled sets it back to the start.
+ */
+export const PITY_STEP = 0.1;
+export const PITY_MAX = 5;
+/** The packs it takes to reach the most luck: the counter never goes past it (nor below 0, nor to NaN). */
+export const PITY_PACKS = Math.round((PITY_MAX - 1) / PITY_STEP);
+export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? Math.min(PITY_PACKS, Math.max(0, Math.floor(pity as number))) : 0);
+export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
+
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
 export const DUPLICATE_VALUE = { common: 4, rare: 12, epic: 40, legendary: 120, mythic: 400, omni: 1500 } as const;
 
