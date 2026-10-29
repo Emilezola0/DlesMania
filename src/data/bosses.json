@@ -841,378 +841,472 @@
       "clues": [
         {
           "text": "+50 Ability Power · +4% Move Speed · 2,200 gold",
+          "effect": "Active: you and nearby allies gain a burst of move speed.",
           "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
         },
         {
           "text": "+30 Attack Damage · +550 Health · 3,300 gold",
+          "effect": "Bonus AD from bonus health; more AD the lower your health.",
           "answer": "Overlord's Bloodmail|Overlords Bloodmail"
         },
         {
           "text": "+400 Health · +50 Armor · 2,800 gold",
+          "effect": "In combat: drains nearby enemies every few seconds, healing you.",
           "answer": "Unending Despair"
         },
         {
           "text": "+80 Ability Power · +600 Mana · 2,800 gold",
+          "effect": "Abilities burn; more AP for each enemy burning.",
           "answer": "Blackfire Torch"
         },
         {
           "text": "+400 Health · +80 Magic Resist · 2,900 gold",
+          "effect": "Out of combat: a big magic-damage shield regenerates.",
           "answer": "Kaenic Rookern"
         },
         {
           "text": "+60 Ability Power · +20% Attack Speed · +300 Health · 3,100 gold",
+          "effect": "Spellblade: after a spell, the next attack hits twice with on-hit.",
           "answer": "Dusk and Dawn"
         },
         {
           "text": "+45% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "effect": "Crit; ultimate refunds on takedowns, more damage after an ult.",
           "answer": "Fiendhunter Bolts"
         },
         {
           "text": "+90 Ability Power · +300 Mana · 2,800 gold",
+          "effect": "Active: damage a target, mana back; takedowns refresh the cooldown.",
           "answer": "Actualizer"
         },
         {
           "text": "+55 Attack Damage · +25% Critical Strike Chance · 2,800 gold",
+          "effect": "More damage the farther away the target is.",
           "answer": "Hexoptics C44"
         },
         {
           "text": "+200 Health · +20 Armor · +20 Magic Resist · 2,300 gold",
+          "effect": "Immobilizing an enemy gives nearby allies attack and move speed.",
           "answer": "Bandlepipes"
         },
         {
           "text": "+55 Attack Damage · +45 Armor · 3,200 gold",
+          "effect": "Revive on death after a short stasis.",
           "answer": "Guardian Angel"
         },
         {
           "text": "+75 Attack Damage · +25% Critical Strike Chance · 3,500 gold",
+          "effect": "Critical strikes deal much more damage.",
           "answer": "Infinity Edge"
         },
         {
           "text": "+50 Attack Damage · +45% Attack Speed · 3,000 gold",
+          "effect": "Crits shorten an active that grants a burst of attack speed.",
           "answer": "Yun Tal Wildarrows"
         },
         {
           "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
+          "effect": "Armor pen; physical damage cuts enemy healing.",
           "answer": "Mortal Reminder"
         },
         {
           "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,300 gold",
+          "effect": "Big armor penetration, made for tanks.",
           "answer": "Lord Dominik's Regards|Lord Dominiks Regards"
         },
         {
           "text": "+65% Attack Speed · +25% Critical Strike Chance · +10% Move Speed · 2,650 gold",
+          "effect": "Attacks grant move speed and ghosting; more attack speed in a fight.",
           "answer": "Phantom Dancer"
         },
         {
           "text": "+300 Health · +25 Armor · +25 Magic Resist · 2,200 gold",
+          "effect": "After your ultimate, your bound ally’s attacks burn and slow.",
           "answer": "Zeke's Convergence|Zekes Convergence"
         },
         {
           "text": "+400 Health · +50 Magic Resist · 2,700 gold",
+          "effect": "More healing and shielding received.",
           "answer": "Spirit Visage"
         },
         {
           "text": "+350 Health · +50 Armor · 2,800 gold",
+          "effect": "Burns nearby enemies, stacking with each hit.",
           "answer": "Sunfire Aegis"
         },
         {
           "text": "+45 Attack Damage · +400 Health · 3,000 gold",
+          "effect": "Physical hits shred armor, stacking; move speed on damage.",
           "answer": "Black Cleaver"
         },
         {
           "text": "+80 Attack Damage · +15% Life Steal · 3,400 gold",
+          "effect": "Overheal from life steal turns into a shield.",
           "answer": "Bloodthirster"
         },
         {
           "text": "+40 Attack Damage · +20% Attack Speed · +450 Health · 3,000 gold",
+          "effect": "Ultimate cooldown cut; after an ult, attack and move speed.",
           "answer": "Experimental Hexplate"
         },
         {
           "text": "+65 Attack Damage · +12% Life Steal · 3,300 gold",
+          "effect": "Attacks cleave around you; active deals a wide slash.",
           "answer": "Ravenous Hydra"
         },
         {
           "text": "+150 Health · +75 Armor · 2,450 gold",
+          "effect": "Reflects damage to attackers and cuts their healing.",
           "answer": "Thornmail"
         },
         {
           "text": "+36 Attack Damage · +30% Attack Speed · +333 Health · 3,333 gold",
+          "effect": "Spellblade: the next attack after a spell deals extra damage; speed on hit.",
           "answer": "Trinity Force"
         },
         {
           "text": "+40% Attack Speed · +25% Critical Strike Chance · +5% Move Speed · 2,650 gold",
+          "effect": "Attacks fire bolts at two more nearby enemies.",
           "answer": "Runaan's Hurricane|Runaans Hurricane"
         },
         {
           "text": "+45 Attack Damage · +45 Ability Power · +30% Attack Speed · +4% Move Speed · 3,000 gold",
+          "effect": "Charged attacks chain lightning, more on minions.",
           "answer": "Statikk Shiv"
         },
         {
           "text": "+50% Attack Speed · +45 Magic Resist · 2,800 gold",
+          "effect": "On-hit magic damage; more magic resist in a fight.",
           "answer": "Wit's End|Wits End"
         },
         {
           "text": "+35% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "effect": "Charged attack with bonus range and damage.",
           "answer": "Rapid Firecannon"
         },
         {
           "text": "+50 Attack Damage · +25% Attack Speed · +25% Critical Strike Chance · 3,200 gold",
+          "effect": "Charged attack deals bonus damage and grants a burst of speed.",
           "answer": "Stormrazor"
         },
         {
           "text": "+100 Ability Power · +6% Move Speed · 2,900 gold",
+          "effect": "Spellblade: the next attack after a spell deals bonus magic damage.",
           "answer": "Lich Bane"
         },
         {
           "text": "+105 Ability Power · +40 Magic Resist · 3,000 gold",
+          "effect": "A spell shield blocks the next enemy ability.",
           "answer": "Banshee's Veil|Banshees Veil"
         },
         {
           "text": "+200 Health · +40 Armor · 2,300 gold",
+          "effect": "Bind an ally: redirect part of the damage they take to you.",
           "answer": "Knight's Vow|Knights Vow"
         },
         {
           "text": "+75 Armor · +400 Mana · 2,500 gold",
+          "effect": "Slows the attack speed of nearby enemies.",
           "answer": "Frozen Heart"
         },
         {
           "text": "+80 Ability Power · +50% Attack Speed · 2,900 gold",
+          "effect": "Attacks deal bonus magic damage that scales with AP.",
           "answer": "Nashor's Tooth|Nashors Tooth"
         },
         {
           "text": "+65 Ability Power · +400 Health · 2,600 gold",
+          "effect": "Damaging abilities slow enemies.",
           "answer": "Rylai's Crystal Scepter|Rylais Crystal Scepter"
         },
         {
           "text": "+90 Ability Power · +600 Mana · 2,700 gold",
+          "effect": "Ultimate cooldown cut; it scorches the ground, shredding magic resist.",
           "answer": "Malignance"
         },
         {
           "text": "+30 Attack Damage · +30 Ability Power · +25% Attack Speed · 3,000 gold",
+          "effect": "Every third attack applies on-hit effects twice.",
           "answer": "Guinsoo's Rageblade|Guinsoos Rageblade"
         },
         {
           "text": "+50 Attack Damage · +35 Magic Resist · +10% Life Steal · 3,200 gold",
+          "effect": "Active: removes crowd control and grants move speed.",
           "answer": "Mercurial Scimitar"
         },
         {
           "text": "+55 Attack Damage · +4% Move Speed · 2,800 gold",
+          "effect": "Lethality; active grants a burst of move speed and ghosting.",
           "answer": "Youmuu's Ghostblade|Youmuus Ghostblade"
         },
         {
           "text": "+350 Health · +75 Armor · 2,700 gold",
+          "effect": "Takes less damage from critical strikes; active slows nearby enemies.",
           "answer": "Randuin's Omen|Randuins Omen"
         },
         {
           "text": "+40 Attack Damage · +80 Ability Power · 3,000 gold",
+          "effect": "Omnivamp; active damages and slows a target.",
           "answer": "Hextech Gunblade"
         },
         {
           "text": "+60 Ability Power · +350 Health · 2,650 gold",
+          "effect": "Active: dash forward and fire a cone of bolts.",
           "answer": "Hextech Rocketbelt"
         },
         {
           "text": "+40 Attack Damage · +25% Attack Speed · +10% Life Steal · 3,200 gold",
+          "effect": "Attacks deal a share of current health; hits steal move speed.",
           "answer": "Blade of The Ruined King"
         },
         {
           "text": "+60 Attack Damage · +40 Magic Resist · 3,100 gold",
+          "effect": "A magic shield at low health; omnivamp while it lasts.",
           "answer": "Maw of Malmortius"
         },
         {
           "text": "+105 Ability Power · +50 Armor · 3,250 gold",
+          "effect": "Active: become untargetable and invulnerable for a moment.",
           "answer": "Zhonya's Hourglass|Zhonyas Hourglass"
         },
         {
           "text": "+45 Attack Damage · +450 Health · 3,100 gold",
+          "effect": "Basic ability haste; abilities deal more damage, stacking.",
           "answer": "Spear of Shojin"
         },
         {
           "text": "+75 Ability Power · +350 Health · 2,850 gold",
+          "effect": "Magic damage cuts enemy healing.",
           "answer": "Morellonomicon"
         },
         {
           "text": "+40 Attack Damage · +500 Health · +4% Move Speed · 3,000 gold",
+          "effect": "Stronger alone; bonus damage to towers.",
           "answer": "Hullbreaker"
         },
         {
           "text": "+200 Health · +30 Armor · +30 Magic Resist · 2,200 gold",
+          "effect": "Active: shields nearby allies.",
           "answer": "Locket of the Iron Solari"
         },
         {
           "text": "+30 Attack Damage · +35% Attack Speed · 3,000 gold",
+          "effect": "Alternating attacks give you resistances or armor and MR penetration.",
           "answer": "Terminus"
         },
         {
           "text": "+45 Ability Power · +4% Move Speed · 2,200 gold",
+          "effect": "Heals and shields grant the ally attack speed and on-hit damage.",
           "answer": "Ardent Censer"
         },
         {
           "text": "+50 Attack Damage · +25% Critical Strike Chance · 3,050 gold",
+          "effect": "Spellblade: the next attack after a spell restores mana.",
           "answer": "Essence Reaver"
         },
         {
           "text": "+350 Health · +55 Armor · +4% Move Speed · 2,900 gold",
+          "effect": "Builds momentum while moving; the next attack hits harder and slows.",
           "answer": "Dead Man's Plate|Dead Mans Plate"
         },
         {
           "text": "+40 Attack Damage · +600 Health · 3,300 gold",
+          "effect": "Attacks deal bonus damage in a cone, scaling with health.",
           "answer": "Titanic Hydra"
         },
         {
           "text": "+50 Attack Damage · +250 Health · 3,000 gold",
+          "effect": "A spell shield after a short time out of combat.",
           "answer": "Edge of Night"
         },
         {
           "text": "+400 Health · +55 Magic Resist · +4% Move Speed · 2,800 gold",
+          "effect": "Magic damage taken stacks magic resist and move speed.",
           "answer": "Force of Nature"
         },
         {
           "text": "+70 Ability Power · +350 Health · +4% Move Speed · 3,000 gold",
+          "effect": "Damaging a champion grants move speed.",
           "answer": "Cosmic Drive"
         },
         {
           "text": "+70 Ability Power · +350 Health · 3,100 gold",
+          "effect": "Omnivamp; more damage the longer you fight, then true damage.",
           "answer": "Riftmaker"
         },
         {
           "text": "+90 Ability Power · +6% Move Speed · 2,800 gold",
+          "effect": "Bursting a champion fast calls a delayed lightning strike.",
           "answer": "Stormsurge"
         },
         {
           "text": "+60 Attack Damage · +50 Armor · 3,300 gold",
+          "effect": "Part of the damage taken is delayed; a takedown cleanses it.",
           "answer": "Death's Dance|Deaths Dance"
         },
         {
           "text": "+45 Attack Damage · +450 Health · 3,000 gold",
+          "effect": "Physical damage cuts enemy healing.",
           "answer": "Chempunk Chainsword"
         },
         {
           "text": "+40 Attack Damage · +400 Health · 3,100 gold",
+          "effect": "The first attack on a champion crits and heals you.",
           "answer": "Sundered Sky"
         },
         {
           "text": "+25 Ability Power · +200 Health · 2,200 gold",
+          "effect": "Healing or shielding an ally also heals another.",
           "answer": "Moonstone Renewer"
         },
         {
           "text": "+35 Ability Power · +200 Health · 2,200 gold",
+          "effect": "Damaging champions charges shards that heal allies.",
           "answer": "Echoes of Helia"
         },
         {
           "text": "+40 Attack Damage · +25% Attack Speed · +450 Health · 3,300 gold",
+          "effect": "Active: slam the ground, slowing enemies around you.",
           "answer": "Stridebreaker"
         },
         {
           "text": "+60 Ability Power · +300 Health · 3,000 gold",
+          "effect": "Abilities burn for a share of max health.",
           "answer": "Liandry's Torment|Liandrys Torment"
         },
         {
           "text": "+100 Ability Power · +600 Mana · 2,750 gold",
+          "effect": "Abilities fire extra bolts at the target and nearby enemies.",
           "answer": "Luden's Echo|Ludens Echo"
         },
         {
           "text": "+400 Health · +40 Magic Resist · 2,800 gold",
+          "effect": "Burns nearby enemies; kills unleash a burst of magic damage.",
           "answer": "Hollow Radiance"
         },
         {
           "text": "+350 Health · +45 Armor · +45 Magic Resist · 3,200 gold",
+          "effect": "Armor and magic resist grow over a fight.",
           "answer": "Jak'Sho, The Protean|JakSho, The Protean"
         },
         {
           "text": "+45 Attack Damage · +40% Attack Speed · +4% Move Speed · 3,000 gold",
+          "effect": "Every third attack deals bonus damage, more on low-health targets.",
           "answer": "Kraken Slayer"
         },
         {
           "text": "+55 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
+          "effect": "At low health: a shield and life steal.",
           "answer": "Immortal Shieldbow"
         },
         {
           "text": "+40% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
+          "effect": "Attacks shorten your basic abilities’ cooldowns.",
           "answer": "Navori Flickerblade"
         },
         {
           "text": "+65 Ability Power · +400 Health · 2,900 gold",
+          "effect": "Abilities stack a magic resist shred on champions.",
           "answer": "Bloodletter's Curse|Bloodletters Curse"
         },
         {
           "text": "+350 Health · +45 Magic Resist · 2,650 gold",
+          "effect": "Nearby enemies take more magic damage.",
           "answer": "Abyssal Mask"
         },
         {
           "text": "+65 Ability Power · +6% Move Speed · 2,600 gold",
+          "effect": "Active: you and nearby allies gain a burst of move speed.",
           "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
         },
         {
           "text": "+350 Health · +30 Armor · +30 Magic Resist · 2,300 gold",
+          "effect": "After your ultimate, your bound ally’s attacks burn and slow.",
           "answer": "Zeke's Convergence|Zekes Convergence"
         },
         {
           "text": "+200 Health · +85 Armor · 2,650 gold",
+          "effect": "Reflects damage to attackers and cuts their healing.",
           "answer": "Thornmail"
         },
         {
           "text": "+30 Ability Power · +400 Health · 2,800 gold",
+          "effect": "Active: after a delay, heal allies and damage enemies in an area.",
           "answer": "Redemption"
         },
         {
           "text": "+75 Armor · +500 Mana · 2,700 gold",
+          "effect": "Slows the attack speed of nearby enemies.",
           "answer": "Frozen Heart"
         },
         {
           "text": "+250 Health · +30 Armor · +30 Magic Resist · 2,600 gold",
+          "effect": "Active: shields nearby allies.",
           "answer": "Locket of the Iron Solari"
         },
         {
           "text": "+55 Ability Power · +6% Move Speed · 2,600 gold",
+          "effect": "Heals and shields grant the ally attack speed and on-hit damage.",
           "answer": "Ardent Censer"
         },
         {
           "text": "+35 Ability Power · +400 Health · 2,900 gold",
+          "effect": "Healing or shielding an ally also heals another.",
           "answer": "Moonstone Renewer"
         },
         {
           "text": "+35 Ability Power · +250 Health · 2,600 gold",
+          "effect": "Damaging champions charges shards that heal allies.",
           "answer": "Echoes of Helia"
         },
         {
           "text": "+350 Health · +50 Magic Resist · 2,850 gold",
+          "effect": "Nearby enemies take more magic damage.",
           "answer": "Abyssal Mask"
         },
         {
           "text": "+20% Critical Strike Chance · +500 Health · 2,500 gold",
+          "effect": "Bonus AD from bonus health.",
           "answer": "Atma's Reckoning|Atmas Reckoning"
         },
         {
           "text": "+250 Health · +80 Armor · 2,500 gold",
+          "effect": "Arena: a shield and heavy armor.",
           "answer": "Shield of Molten Stone"
         },
         {
           "text": "+250 Health · +60 Magic Resist · 2,500 gold",
+          "effect": "Arena: magic resist and healing on a timer.",
           "answer": "Cloak of Starry Night"
         },
         {
           "text": "+45 Attack Damage · +90 Ability Power · 2,500 gold",
+          "effect": "Omnivamp; active damages and slows a target.",
           "answer": "Hextech Gunblade"
         },
         {
           "text": "+40% Attack Speed · +8% Move Speed · 2,500 gold",
+          "effect": "Arena: attack and move speed, tenacity.",
           "answer": "Zephyr"
         },
         {
           "text": "+55 Armor · +55 Magic Resist · +8% Move Speed · 2,500 gold",
+          "effect": "Active: a big shield, but your damage drops.",
           "answer": "Gargoyle Stoneplate"
         },
         {
           "text": "+35 Ability Power · +150 Health · 2,500 gold",
+          "effect": "Arena: attacks heal the most wounded ally.",
           "answer": "Sword of Blossoming Dawn"
         },
         {
           "text": "+65 Ability Power · +250 Health · +600 Mana · 2,500 gold",
+          "effect": "A shield that cuts damage taken, refreshed out of combat.",
           "answer": "Crown of the Shattered Queen"
         },
         {
           "text": "+60 Ability Power · +25 Armor · +25 Magic Resist · 2,500 gold",
+          "effect": "Arena: immobilizing a champion calls a burst of magic damage.",
           "answer": "Cruelty"
         }
       ]

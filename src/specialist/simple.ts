@@ -171,6 +171,7 @@ export function simplePools(u: SimpleUniverse['id']) {
   return {
     picture: x.characters.filter((c) => c.image).map((c) => c.id),
     windows: x.characters.filter((c) => c.image).map((c) => c.id),
+    spotlight: x.characters.filter((c) => c.image).map((c) => c.id),
     ...(x.silhouettes?.length ? { silhouette: x.silhouettes.filter((id) => ids.has(id)) } : {}),
     ...(x.voices?.length ? { voice: x.voices.flatMap((v, i) => (ids.has(v.answer) ? [String(i)] : [])) } : {}),
     // A clue round's id is its clue's index (two clues can name the same character).

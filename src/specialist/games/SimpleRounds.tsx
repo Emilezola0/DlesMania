@@ -165,3 +165,61 @@ export const voiceRoundFor = (u: SimpleUniverse['id']) =>
       />
     );
   };
+
+/** How the Spotlight picture is hidden at each wrong-guess step: the light's radius (%) and the blur (px). */
+const SPOT_STEPS = [
+  { radius: 14, blur: 10 },
+  { radius: 18, blur: 8 },
+  { radius: 22, blur: 6 },
+  { radius: 27, blur: 4 },
+  { radius: 33, blur: 2.5 },
+  { radius: 40, blur: 1 },
+];
+
+/** Spotlight: Phase III's look — a blurred picture in the dark, lit by a light that jumps around it; each miss widens it. */
+function SpotlightImage({ src, step, revealed }: { src: string; step: number; revealed: boolean }) {
+  const [spot, setSpot] = useState({ x: 50, y: 35 });
+  useEffect(() => {
+    if (revealed) return;
+    const id = window.setInterval(() => setSpot({ x: 20 + Math.random() * 60, y: 15 + Math.random() * 60 }), 650);
+    return () => clearInterval(id);
+  }, [revealed]);
+  const s = SPOT_STEPS[Math.min(step, SPOT_STEPS.length - 1)];
+  const mask = revealed ? undefined : `radial-gradient(circle at ${spot.x}% ${spot.y}%, #000 ${s.radius}%, transparent ${s.radius + 14}%)`;
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-xs">
+      <div className={`boss-glow absolute -inset-2 rounded-lg transition-opacity ${revealed ? 'opacity-0' : ''}`} aria-hidden />
+      <div className="relative size-full overflow-hidden rounded-md border-2 border-coral/70 bg-[#141018]">
+        <div className="absolute inset-0" style={{ WebkitMaskImage: mask, maskImage: mask }}>
+          <img
+            src={src}
+            alt=""
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+            className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${revealed ? '' : 'boss-flicker'}`}
+            style={{ filter: revealed ? 'none' : `blur(${s.blur}px) contrast(1.1)` }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const spotlightRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleSpotlightRound({ round, record, onChange }: Props) {
+    const c = simpleCharacter(u, round.targetId)!;
+    return (
+      <SpGuessRound
+        type="spotlight"
+        question="Who is in the spotlight?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image, detail: detail(c) }}
+        noPictures
+        clue={(wrong, done) => <SpotlightImage src={c.image} step={wrong} revealed={done} />}
+      />
+    );
+  };

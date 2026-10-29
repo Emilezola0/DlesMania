@@ -7,6 +7,7 @@ import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
 import { NameChain, type ChainResult } from '../boss/NameChain';
 import { Signature } from '../boss/Signature';
+import { AnswerBook, AnswerBookButton } from '../boss/AnswerBook';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
@@ -90,6 +91,8 @@ function BossBattle({ boss }: { boss: Boss }) {
   /** Hard's secret phase, set up when the main life bar empties. */
   const [signature, setSignature] = useState<SignaturePhase | null>(null);
   const [secretResult, setSecretResult] = useState<ChainResult | null>(null);
+  /** The book of every accepted answer, opened from the result screen. */
+  const [book, setBook] = useState(false);
   const startedAt = useRef(0);
   const arena = useRef<HTMLDivElement>(null);
   const flashLayer = useRef<HTMLDivElement>(null);
@@ -527,9 +530,12 @@ function BossBattle({ boss }: { boss: Boss }) {
                 Choose another boss
               </Link>
             </div>
+            {/* Why an answer wasn't taken, and the ones missed: every answer the fight accepts. */}
+            <AnswerBookButton onClick={() => setBook(true)} label="Every accepted answer" />
           </div>
         )}
       </div>
+      {book && <AnswerBook boss={boss} onClose={() => setBook(false)} />}
     </div>
   );
 }

@@ -119,7 +119,10 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         {clue.audio ? (
           <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} />
         ) : (
-          <p className="py-4 text-center font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
+          <div className="py-4 text-center">
+            <p className="font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
+            {clue.effect && <p className="mx-auto mt-2 max-w-md font-serif text-base italic text-ink-soft">{clue.effect}</p>}
+          </div>
         )}
       </div>
 

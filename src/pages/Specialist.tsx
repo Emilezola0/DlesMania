@@ -23,7 +23,7 @@ import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/gam
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
-import { classicRoundFor, clueRoundFor, pictureRoundFor, silhouetteRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
+import { classicRoundFor, clueRoundFor, pictureRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
 import { BlueprintClassicRound, BlueprintClueRound, BlueprintPinsRound } from '../specialist/games/BlueprintRounds';
@@ -37,7 +37,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound, timeline: timelineRoundFor('marvel') },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
-  forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor') },
+  forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor'), spotlight: spotlightRoundFor('forhonor') },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   unreal: { classic: BlueprintClassicRound, pins: BlueprintPinsRound, clue: BlueprintClueRound },

@@ -206,6 +206,8 @@ export interface Signature {
 export interface SignatureClue {
   /** A written clue (stats, a technique's name...). */
   text?: string;
+  /** A line under the text (an item's effect, words trimmed). */
+  effect?: string;
   /** Or a sound: a clip played in full. */
   audio?: { youtubeId: string; start?: number };
   answer: { name: string; aliases: string[] };
