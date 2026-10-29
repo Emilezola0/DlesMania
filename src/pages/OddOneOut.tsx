@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ODD_THEMES, oddRound, type OddRound } from '../arcade/oddOneOut';
+import { TimerBar } from '../boss/TimerBar';
 import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+
+/** Seconds for each round: 20 at first, less with every one found, down to 5. */
+const secondsFor = (streak: number) => Math.max(5, 20 - streak * 0.75);
+/** What a round ran out of time is recorded as (never a card's label). */
+const TIMEOUT = '__timeout__';
 
 function Run({ themeId, label, onExit }: { themeId: string; label: string; onExit: () => void }) {
   const key = `odd:${themeId}`;
@@ -51,6 +57,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
       <p className="text-center font-serif text-lg italic text-ink-soft">
         {round.theme}: four of them share something. Which one doesn&apos;t belong?
       </p>
+      <TimerBar total={secondsFor(streak) * 1000} running={!picked} resetKey={round.cards.map((c) => c.label).join()} onExpire={() => !picked && pick(TIMEOUT)} />
       <div key={round.cards.map((c) => c.label).join()} className="grid grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
         {round.cards.map((c) => {
           const isOdd = c.label === round.odd;
@@ -65,7 +72,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
       </div>
       {picked && (
         <div className={`animate-pop space-y-2 rounded-md border p-4 text-center ${right ? 'border-hit/50 bg-hit/10' : 'border-miss/50 bg-miss/10'}`}>
-          <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{right ? 'Right!' : 'Streak over'}</p>
+          <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{right ? 'Right!' : picked === TIMEOUT ? "Time's up — streak over" : 'Streak over'}</p>
           <p className="text-lg">
             The others are all <span className="font-bold">{round.link}</span> — <span className="font-bold">{round.odd}</span> isn&apos;t.
           </p>
@@ -99,7 +106,7 @@ export default function OddOneOut() {
           ← Games
         </Link>
         <h1 className="text-5xl font-bold">Odd One Out</h1>
-        <p className="max-w-xl text-ink-soft">Five cards: four share a link, one doesn&apos;t. Spot the intruder and keep the streak going until the first mistake.</p>
+        <p className="max-w-xl text-ink-soft">Five cards: four share a link, one doesn&apos;t. Spot the intruder and keep the streak going until the first mistake — each round a little quicker than the last.</p>
       </div>
       <ul className="grid gap-3 sm:grid-cols-3">
         {ODD_THEMES.map((t) => (

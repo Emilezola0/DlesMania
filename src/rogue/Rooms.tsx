@@ -48,8 +48,9 @@ function Header({ title, rule }: { title: string; rule: string }) {
 export function PortraitRoom({ mods, onDone }: RoomProps) {
   const u = useMemo(() => pick(universesFor(mods.keys)), []);
   const target = useMemo(() => pick(u.targets), [u]);
-  const tries = mods.hard ? 2 : 3;
-  const seconds = (mods.hard ? 15 : 22) + mods.bonusSeconds;
+  // Deeper in the run: a try fewer every three acts, two seconds fewer each act.
+  const tries = Math.max(1, (mods.hard ? 2 : 3) - Math.floor(mods.level / 3));
+  const seconds = Math.max(8, (mods.hard ? 15 : 22) - Math.round(2 * mods.level)) + mods.bonusSeconds;
   const [wrong, setWrong] = useState<string[]>([]);
   const [over, setOver] = useState(false);
   // Light at first, heavier deeper into the run (4px → 10px, +3 for an elite), and sharper with each miss.
@@ -91,7 +92,8 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
 /** Higher or Lower: three calls in a row (five for an elite). */
 export function HigherLowerRoom({ mods, onDone }: RoomProps) {
   const deck = useMemo(() => pick(hlDecksFor(mods.keys)), []);
-  const need = mods.hard ? 5 : 3;
+  // A call more to make each act.
+  const need = Math.min(10, (mods.hard ? 5 : 3) + Math.floor(mods.level));
   const seen = useRef(new Set<string>());
   const draw = (cur?: HlItem) => {
     const x = nextItem(deck, cur, seen.current);
@@ -148,7 +150,8 @@ export function HigherLowerRoom({ mods, onDone }: RoomProps) {
 
 /** Odd One Out: one round (two in a row for an elite). */
 export function OddRoom({ mods, onDone }: RoomProps) {
-  const need = mods.hard ? 2 : 1;
+  // A round more every two acts.
+  const need = Math.min(4, (mods.hard ? 2 : 1) + Math.floor(mods.level / 2));
   const [round, setRound] = useState(() => oddRound('all', Math.random, themeFilter(mods.keys)));
   const [got, setGot] = useState(0);
   const [slips, setSlips] = useState(0);
@@ -195,7 +198,8 @@ export function OddRoom({ mods, onDone }: RoomProps) {
 export function WhoAmIRoom({ mods, onDone }: RoomProps) {
   const u = useMemo(() => pick(universesFor(mods.keys)), []);
   const target = useMemo(() => pick(u.targets), [u]);
-  const max = mods.hard ? 3 : 4;
+  // A clue fewer every two acts.
+  const max = Math.max(2, (mods.hard ? 3 : 4) - Math.floor(mods.level / 2));
   // The clues used here skip the very last one (the name's first letter), unless the Lantern shows it.
   const clues = target.clues.slice(0, -1);
   const [shown, setShown] = useState(mods.lantern ? 2 : 1);
@@ -246,8 +250,9 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
 /** Quick Sort: ten cards (fifteen for an elite), one slip allowed with Second wind. */
 export function SortRoom({ mods, onDone }: RoomProps) {
   const deck = useMemo(() => pick(sortDecksFor(mods.keys)), []);
-  const cards = useMemo(() => shuffle(deck.cards, Math.random).slice(0, mods.hard ? 15 : 10), [deck]);
-  const seconds = (mods.hard ? 2 : 3) + mods.bonusSeconds / 2;
+  // Two cards more and a little less time for each, every act.
+  const cards = useMemo(() => shuffle(deck.cards, Math.random).slice(0, Math.min(25, (mods.hard ? 15 : 10) + 2 * Math.floor(mods.level))), [deck]);
+  const seconds = Math.max(1.2, (mods.hard ? 2 : 3) - 0.3 * mods.level) + mods.bonusSeconds / 2;
   const [i, setI] = useState(0);
   const [slips, setSlips] = useState(0);
   const [flash, setFlash] = useState<{ ok: boolean; card: SortCard } | null>(null);
@@ -299,8 +304,9 @@ export function SortRoom({ mods, onDone }: RoomProps) {
 /** Name them: five of a list (seven for an elite) against the clock. */
 export function Name5Room({ mods, onDone }: RoomProps) {
   const list = useMemo(() => pick(listsFor(mods.keys)), []);
-  const need = mods.hard ? 7 : 5;
-  const seconds = (mods.hard ? 45 : 50) + mods.bonusSeconds;
+  // A name more and three seconds fewer each act (never more names than the list has).
+  const need = Math.min(list.answers.length, 12, (mods.hard ? 7 : 5) + Math.floor(mods.level));
+  const seconds = Math.max(25, (mods.hard ? 45 : 50) - 3 * Math.floor(mods.level)) + mods.bonusSeconds;
   const [found, setFound] = useState<string[]>([]);
   const [text, setText] = useState('');
   const [over, setOver] = useState(false);
@@ -366,8 +372,8 @@ export function Name5Room({ mods, onDone }: RoomProps) {
 /** A boss room: one phase of a guardian's Boss Battle, at Medium. Act 1 is a Knowledge Blitz, act 2 a Final Blow. */
 export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; onDone: (r: RoomResult) => void }) {
   const boss = useMemo(() => pick(bossesFor(keys)), []);
-  // The guardians fight harder from the third act on.
-  const d = act >= 3 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
+  // The guardians fight harder from the third act on, and at Hell from the fifth.
+  const d = act >= 5 ? DIFFICULTIES.hell : act >= 3 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
   const blitz = useMemo(() => drawBlitz(boss, d, Math.random), [boss]);
   const finale = useMemo(() => drawFinale(boss, d, Math.random, [], 0, finaleFaces(boss)), [boss]);
   const pool = useMemo(() => {

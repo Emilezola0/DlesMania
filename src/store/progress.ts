@@ -200,7 +200,8 @@ function earn(
   const now = Date.now();
   if (opts.arcade && now - (e.lastPaid?.[opts.arcade] ?? 0) < ARCADE_SPACING_MS) return {};
   const left = ARCADE_CAP - e.arcade;
-  const paid = opts.arcade ? (left > 0 ? Math.min(amount, left) : ARCADE_AFTER_CAP) : amount;
+  // Past the daily amount, half: what remains of it in full, the rest at half.
+  const paid = opts.arcade ? (left >= amount ? amount : Math.max(1, Math.max(0, left) + Math.round((amount - Math.max(0, left)) * ARCADE_AFTER_CAP))) : amount;
   const counters = { ...e.counters };
   for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as MissionKind] = (counters[k as MissionKind] ?? 0) + (n ?? 0);
   return {

@@ -54,14 +54,21 @@ export interface RunState {
   picks?: string[];
   /** The kinds of room the map is made of (runs saved before: all of them). */
   rooms?: ChallengeKind[];
+  /** The last act each relic works in (relics wear out; runs saved before: the act they were in). */
+  relicsUntil?: Partial<Record<RelicId, number>>;
 }
 
-/** Acts go on for ever; the challenge climbs until this act, then stays at its hardest. */
+/** Acts go on for ever, each harder than the last (see levelOf); the blur alone stops growing at this act. */
 export const HARDEST_ACT = 4;
+/** A relic works for this many acts: the one it was found in and the next. */
+export const RELIC_ACTS = 2;
 
-/** DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — more the further the run goes. */
-export const roomCoins = (act: number) => 2 + act * 2;
-export const bossCoins = (act: number) => 10 + act * 10;
+/**
+ * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — little in the first acts,
+ * more and more the deeper the run goes, as the rooms get harder.
+ */
+export const roomCoins = (act: number) => act + 1 + Math.floor((act * act) / 4);
+export const bossCoins = (act: number) => 8 * act + act * act;
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;
@@ -147,7 +154,7 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
   const c = n.challenge && CHALLENGE_INFO[n.challenge];
   switch (n.kind) {
     case 'fight':
-      return { title: c!.name, body: [c!.rule], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless) and ${roomCoins(run.act)} DleCoins`, lose: '❤ −1' };
+      return { title: c!.name, body: [c!.rule, ...(run.act > 1 ? [`Act ${run.act}: harder than it says — more to get right, less time.`] : [])], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless) and ${roomCoins(run.act)} DleCoins`, lose: '❤ −1' };
     case 'elite':
       return { title: `Elite · ${c!.name}`, body: [c!.rule, `Elite: ${c!.elite}`], win: `🪙 ${goldFor(run, 'elite', false)} and a relic of your choice`, lose: '❤ −1' };
     case 'shop':
@@ -187,6 +194,8 @@ export interface Mods {
   keys: string[];
   /** How far into the run this room is, 0 (first row of act 1) to 1 (last row of the last act): rooms get harder. */
   depth: number;
+  /** The same with no ceiling: 0 at the start, 1 an act in, 2 two acts in… Every room's limits tighten with it. */
+  level: number;
 }
 
 export const modsFor = (run: RunState, hard: boolean): Mods => ({
@@ -197,7 +206,13 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
   hard,
   keys: picksOf(run),
   depth: depthOf(run),
+  level: levelOf(run),
 });
+
+function levelOf(run: RunState): number {
+  const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
+  return run.act - 1 + Math.min(row, ROWS - 1) / ROWS;
+}
 
 function depthOf(run: RunState): number {
   const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
@@ -206,7 +221,7 @@ function depthOf(run: RunState): number {
 
 /** A relic's effect on taking it (most work through `Mods` instead). */
 export function takeRelic(run: RunState, r: RelicId): RunState {
-  const next = { ...run, relics: [...run.relics, r] };
+  const next = { ...run, relics: [...run.relics, r], relicsUntil: { ...run.relicsUntil, [r]: run.act + RELIC_ACTS - 1 } };
   if (r === 'vitality') {
     next.maxHearts = Math.min(MAX_HEARTS_CAP, next.maxHearts + 1);
     next.hearts = Math.min(next.maxHearts, next.hearts + 1);
@@ -216,6 +231,22 @@ export function takeRelic(run: RunState, r: RelicId): RunState {
     next.hearts = Math.min(next.hearts, next.maxHearts);
   }
   return next;
+}
+
+/** The last act a relic works in. */
+export const relicUntil = (run: RunState, r: RelicId) => run.relicsUntil?.[r] ?? run.act;
+
+/** On reaching a new act: the relics that have worn out go (with what they changed: Vitality's heart, Greed's). */
+export function wearRelics(run: RunState): { run: RunState; gone: RelicId[] } {
+  const gone = run.relics.filter((r) => relicUntil(run, r) < run.act);
+  if (!gone.length) return { run, gone };
+  let maxHearts = run.maxHearts;
+  if (gone.includes('vitality')) maxHearts -= 1;
+  if (gone.includes('greedy')) maxHearts += 1;
+  maxHearts = Math.max(1, Math.min(MAX_HEARTS_CAP, maxHearts));
+  const relicsUntil = { ...run.relicsUntil };
+  for (const r of gone) delete relicsUntil[r];
+  return { run: { ...run, relics: run.relics.filter((r) => !gone.includes(r)), relicsUntil, maxHearts, hearts: Math.max(1, Math.min(run.hearts, maxHearts)) }, gone };
 }
 
 /** Three relics the player doesn't have yet (fewer when few are left). */

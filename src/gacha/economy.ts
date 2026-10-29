@@ -1,7 +1,7 @@
 // DleCoins: what playing earns, to spend on card packs. The dailies pay the most (more for a better
 // score); every boss fight pays by difficulty, and the first win over each boss at each difficulty
-// pays a bonus once a week; every game from the Games page pays a few coins (fully up to a daily
-// amount, then a token per game, so there's always something to farm); three daily missions pay a
+// pays a bonus once a week; every game from the Games page pays by how it went (fully up to a daily
+// amount, then half, so farming always pays); three daily missions pay a
 // bonus each, and three a week and three a month pay more.
 import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
@@ -25,26 +25,30 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 8
  * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
-export const ARCADE_WIN = 10;
-export const ARCADE_LOSS = 1;
-export const ARCADE_BEST_BONUS = 5;
+export const ARCADE_WIN = 15;
+export const ARCADE_LOSS = 2;
+export const ARCADE_BEST_BONUS = 10;
+/** A set of rounds: up to this much for a perfect score. */
+export const ARCADE_SET_MAX = 20;
 /** An endless run's coins at most. */
-export const ARCADE_RUN_MAX = 40;
+export const ARCADE_RUN_MAX = 150;
 
 export function arcadeCoins(r: ArcadeResult): number {
   if ('save' in r) return 0;
   if ('won' in r) return r.won ? ARCADE_WIN : ARCADE_LOSS;
-  if ('ratio' in r) return r.ratio < 0.4 ? ARCADE_LOSS : Math.round(2 + 10 * Math.min(1, r.ratio));
-  // `reached`: the run's length in steps (each game says what a step is): 1 + a step each, and a bit more as it goes on.
+  if ('ratio' in r) return r.ratio < 0.4 ? ARCADE_LOSS : Math.round(4 + (ARCADE_SET_MAX - 4) * Math.min(1, r.ratio));
+  // `reached`: the run's length in steps (each game says what a step is): 2 a step, and more and more as it goes
+  // on — the endless games get harder the further they go, so the deep steps pay the most.
   const u = Math.max(0, r.reached);
-  return Math.min(ARCADE_RUN_MAX, 1 + Math.floor(u + (u * u) / 40));
+  return Math.min(ARCADE_RUN_MAX, 2 + Math.floor(2 * u + (u * u) / 15));
 }
 /** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
 export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
-export const ARCADE_CAP = 150;
-export const ARCADE_AFTER_CAP = 1;
-/** Games that save as they go (a point at a time, a ledge at a time) pay once per this long. */
-export const ARCADE_SPACING_MS = 20_000;
+export const ARCADE_CAP = 400;
+/** Past the daily amount, this share of what a game would pay (at least a coin). */
+export const ARCADE_AFTER_CAP = 0.5;
+/** A game pays at most once per this long (so a run lost at once, again and again, isn't a farm). */
+export const ARCADE_SPACING_MS = 8_000;
 
 /** The Monday a date's week starts on: "2026-10-28" → "2026-10-26". */
 export function weekOf(date: string): string {

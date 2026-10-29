@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
 import { HL_DECKS, hlDeck, nextItem, type HlDeck, type HlItem } from '../arcade/higherLower';
 import { shownName } from '../lib/french';
@@ -11,6 +12,8 @@ import { useProgress } from '../store/progress';
 const REVEAL_MS = 1100;
 /** Items not drawn again within this many turns. */
 const MEMORY = 30;
+/** Seconds to call each pair: 10 at first, a quarter-second less each right call, down to 3. */
+const secondsFor = (streak: number) => Math.max(3, 10 - streak * 0.25);
 
 function ItemCard({ item, value, side }: { item: HlItem; value: 'shown' | 'hidden' | 'revealing'; side: 'left' | 'right' }) {
   return (
@@ -56,13 +59,14 @@ function Game({ deck }: { deck: HlDeck }) {
         setRight(draw(right));
         setState('guess');
       }, REVEAL_MS);
-    } else {
-      sfx.wrong();
-      shake(arena.current, 10, 420);
-      setState('wrong');
-      if (score > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 500);
-      recordBest(`hl:${deck.id}`, score, { reached: score / 2 });
-    }
+    } else fail();
+  };
+  const fail = () => {
+    sfx.wrong();
+    shake(arena.current, 10, 420);
+    setState('wrong');
+    if (score > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 500);
+    recordBest(`hl:${deck.id}`, score, { reached: score / 2 });
   };
 
   const restart = () => {
@@ -82,6 +86,8 @@ function Game({ deck }: { deck: HlDeck }) {
           Streak <span className="font-serif text-2xl font-bold text-ink">{score}</span> · best {Math.max(best, state === 'wrong' ? score : 0)}
         </p>
       </div>
+      {/* Faster and faster: the clock for each call shortens with the streak. */}
+      <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${right.id}`} onExpire={() => state === 'guess' && fail()} />
       <div ref={arena} className="relative grid grid-cols-2 gap-3 sm:gap-6">
         <ItemCard item={left} value="shown" side="left" />
         <ItemCard item={right} value={state === 'guess' ? 'hidden' : 'revealing'} side="right" />

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
@@ -334,10 +334,11 @@ export default function Shop() {
             this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium}, +{BOSS_WEEKLY.hard} or +{BOSS_WEEKLY.hell} more ({bossWeek.keys.length} of {SETS.length * 4} taken this week; they come back every Monday).
           </li>
           <li>
-            Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to 12 by your score; an
-            endless run (Higher or Lower, Summit, Rail Rush…) more the further you get, up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
-            ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then {ARCADE_AFTER_CAP} a game, as long as you play.
+            Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an
+            endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
+            ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play.
           </li>
+          <li>Expeditions: every room won pays, more each act — and each act is harder than the last.</li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>
         <p className="pt-1 text-xs">Every rarity's odds, per card and per pack: see Drop rates above.</p>

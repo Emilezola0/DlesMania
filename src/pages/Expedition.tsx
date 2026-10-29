@@ -7,6 +7,9 @@ import { sfx } from '../lib/sfx';
 import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
 import {
+  RELIC_ACTS,
+  relicUntil,
+  wearRelics,
   bossCoins,
   roomCoins,
   CHALLENGE_INFO,
@@ -357,11 +360,16 @@ function Hud({ run }: { run: RunState }) {
         Act {run.act} · {run.cleared} won
       </p>
       <div className="flex gap-1">
-        {run.relics.map((r) => (
-          <span key={r} title={`${RELICS[r].name}: ${RELICS[r].blurb}`} className="cursor-help text-xl">
-            {RELICS[r].icon}
-          </span>
-        ))}
+        {run.relics.map((r) => {
+          // Acts it still works in, this one included.
+          const left = relicUntil(run, r) - run.act + 1;
+          return (
+            <span key={r} title={`${RELICS[r].name}: ${RELICS[r].blurb} ${left > 1 ? `Lasts ${left} more acts.` : 'Wears out at the end of this act.'}`} className="relative cursor-help text-xl">
+              {RELICS[r].icon}
+              <span className={`absolute -bottom-1 -right-1 grid size-3.5 place-items-center rounded-full font-display text-[9px] font-bold ${left > 1 ? 'bg-ink text-paper' : 'bg-coral text-on-strong'}`}>{left}</span>
+            </span>
+          );
+        })}
       </div>
     </div>
   );
@@ -511,7 +519,11 @@ export default function Expedition() {
         if (has(r, 'bandage')) r.hearts = Math.min(r.maxHearts, r.hearts + 1);
         // No last act: the expedition goes on, harder, for as long as the hearts last.
         r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, picksOf(r), roomsOf(r)), at: null };
-        then = { kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.` };
+        // Relics wear out: the ones found two acts ago go now.
+        const worn = wearRelics(r);
+        r = worn.run;
+        const gone = worn.gone.length ? ` Worn out: ${worn.gone.map((x) => `${RELICS[x].icon} ${RELICS[x].name}`).join(', ')}.` : '';
+        then = { kind: 'reward', offer: relicOffer(r), text: `Act ${r.act - 1} cleared! Take a relic for the road.${gone}` };
       } else if (elite || gamble) then = { kind: 'reward', offer: relicOffer(r), text: gamble ? 'The gamble paid off.' : 'Elite beaten: a relic of your choice.' };
       save(r);
       return setScreen({ kind: 'result', result, then });
@@ -547,7 +559,7 @@ export default function Expedition() {
           <p className="max-w-2xl text-ink-soft">
             An endless run of acts, each a map of short challenges from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
             I?, Quick Sort, lists to name — and a guardian at the end of each act, harder as you go. Choose your path; win rooms for gold, beat
-            elites for relics, spend it all at shops — and every room won pays DleCoins, more the deeper you are. A lost room costs a heart; lose
+            elites for relics (each lasts {RELIC_ACTS} acts, then wears out), spend it all at shops — and every room won pays DleCoins, more the deeper you are, as every act is harder than the last. A lost room costs a heart; lose
             them all and the expedition ends. Leave whenever you like: the run waits for you.
           </p>
         </div>
@@ -651,6 +663,7 @@ export default function Expedition() {
                 <span className="text-3xl">{RELICS[r].icon}</span>
                 <span className="font-display font-bold">{RELICS[r].name}</span>
                 <span className="text-xs text-ink-soft">{RELICS[r].blurb}</span>
+                <span className="text-[11px] text-ink-faint">Lasts {RELIC_ACTS} acts</span>
               </button>
             ))}
           </div>
