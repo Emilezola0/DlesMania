@@ -79,6 +79,8 @@ function Profile() {
   const setReactions = useProgress((s) => s.setCardReactions);
   const aura = useProgress((s) => s.omniAura ?? true);
   const setAura = useProgress((s) => s.setOmniAura);
+  const voices = useProgress((s) => s.voiceLines ?? true);
+  const setVoices = useProgress((s) => s.setVoiceLines);
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -110,6 +112,13 @@ function Profile() {
         <span>
           <span className="block font-semibold">✪ Omni aura</span>
           <span className="block text-sm text-ink-soft">With an Omni card as your icon or background, the whole site shines: an aurora behind the pages, a rainbow under the header, a golden logo and buttons, sparkles behind the cursor.</span>
+        </span>
+      </label>
+      <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">
+        <input type="checkbox" checked={voices} onChange={(e) => setVoices(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
+        <span>
+          <span className="block font-semibold">🔊 Voice lines</span>
+          <span className="block text-sm text-ink-soft">Mythic cards say their line in their voice actor's voice — out of a pack, in the album, on a big win. Off: the line stays on the card, silent.</span>
         </span>
       </label>
       <p className="text-xs text-ink-faint">

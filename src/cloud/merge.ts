@@ -30,6 +30,7 @@ export const SYNCED = [
   'backdrop',
   'cardReactions',
   'omniAura',
+  'voiceLines',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -159,5 +160,6 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     backdrop: (firstLink ? cloud.backdrop ?? local.backdrop : latest.backdrop) ?? null,
     cardReactions: (firstLink ? cloud : latest).cardReactions ?? local.cardReactions ?? true,
     omniAura: (firstLink ? cloud : latest).omniAura ?? local.omniAura ?? true,
+    voiceLines: (firstLink ? cloud : latest).voiceLines ?? local.voiceLines ?? true,
   };
 }

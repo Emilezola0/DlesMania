@@ -5,6 +5,7 @@ import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView'
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { canBeBackdrop } from '../gacha/Perks';
+import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { canHear, playVoice } from '../gacha/voice';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
@@ -114,7 +115,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard to awaken it: {card.awaken.title}.</p>}
           {canHear(card) && (
-            <button type="button" onClick={() => playVoice(card)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
+            <button type="button" onClick={() => playVoice(card, true)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               🔊 Hear “{card.voice}”
             </button>
           )}
@@ -175,6 +176,8 @@ export default function Album() {
   const [show, setShow] = useState<Show>('all');
   const [sort, setSort] = useState<Sort>('set');
   const [open, setOpen] = useState<Card | null>(null);
+  const [renewing, setRenewing] = useState(false);
+  const canRenew = useMemo(() => Object.values(spareByRarity(owned)).some((n) => n >= RENEW_COST), [owned]);
 
   const exchange = useProgress((s) => s.exchangeCards);
   // Every spare copy (beyond the first of each card), and what they're worth together.
@@ -232,6 +235,9 @@ export default function Album() {
               ♻ Exchange {spare.copies} spare{spare.copies === 1 ? '' : 's'} · <Coins n={spare.coins} />
             </button>
           )}
+          <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={`${RENEW_COST} spare copies of a rarity for a new card of it`}>
+            ♻ Renew
+          </button>
           <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
             ⇄ Trades
           </Link>
@@ -300,6 +306,7 @@ export default function Album() {
       {!list.length && <p className="text-center text-ink-soft">No card fits these filters.</p>}
 
       {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
+      {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
     </div>
   );
 }

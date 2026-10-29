@@ -85,6 +85,11 @@ interface ProgressState {
   /** An equipped Omni card restyles the whole site (on unless turned off). */
   omniAura: boolean;
   setOmniAura: (on: boolean) => void;
+  /** Mythics' voice lines, heard (on unless turned off; the card still shows them). */
+  voiceLines: boolean;
+  setVoiceLines: (on: boolean) => void;
+  /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
+  renewCards: (spent: Record<string, number>, gained: string) => void;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -208,6 +213,16 @@ export const useProgress = create<ProgressState>()(
       setCardReactions: (cardReactions) => set({ cardReactions }),
       omniAura: true,
       setOmniAura: (omniAura) => set({ omniAura }),
+      voiceLines: true,
+      setVoiceLines: (voiceLines) => set({ voiceLines }),
+      renewCards: (spent, gained) =>
+        set((s) => {
+          const cards = { ...s.cards };
+          // Only spare copies go: one of each card always stays.
+          for (const [id, n] of Object.entries(spent)) cards[id] = Math.max(1, (cards[id] ?? 0) - n);
+          cards[gained] = (cards[gained] ?? 0) + 1;
+          return { cards };
+        }),
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
       openPack: (cost, cardIds) => {

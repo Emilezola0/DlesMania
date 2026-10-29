@@ -66,9 +66,13 @@ function say(line: string, set: string) {
 
 let playing: HTMLAudioElement | null = null;
 
-/** A card's voice line, heard: its recording if it has one, else the browser's voice. */
-export function playVoice(card: Card) {
-  if (!card.voice || !useProgress.getState().sound) return;
+/**
+ * A card's voice line, heard: its recording if it has one, else the browser's voice. Silent when the
+ * sound is off, or when voice lines are (Account page) unless the player asked for it (`asked`: the 🔊 button).
+ */
+export function playVoice(card: Card, asked = false) {
+  const st = useProgress.getState();
+  if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return;
   playing?.pause();
   if (!card.audio) return say(card.voice, card.set);
   const a = new Audio(card.audio);
