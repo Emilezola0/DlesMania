@@ -12,8 +12,9 @@ export function finaleFaces(boss: Boss): BossCard[] {
   if (hit) return hit;
   const known = new Map<string, BossCard>();
   for (const c of [...boss.finale, ...boss.radar.members]) known.set(c.label, c);
-  const faces = [...boss.finale];
-  const taken = new Set(faces.map((c) => c.label));
+  const skip = new Set(boss.finaleSkip ?? []);
+  const faces = boss.finale.filter((c) => !skip.has(c.label));
+  const taken = new Set([...boss.finale.map((c) => c.label), ...skip]);
   for (const c of CARDS) {
     if (c.set !== boss.id || taken.has(c.name) || c.name === boss.boss.name) continue;
     if (!['rare', 'epic', 'legendary'].includes(c.rarity) || !c.image) continue;

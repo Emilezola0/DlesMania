@@ -13226,7 +13226,27 @@
           "answer": "Mai"
         }
       ]
-    }
+    },
+    "finaleSkip": [
+      "Ursa",
+      "Ukano",
+      "Mongke",
+      "Mira",
+      "Rie",
+      "Aika",
+      "Gilak",
+      "Fume",
+      "Lu Ten",
+      "Szeto",
+      "Vachir",
+      "Sung",
+      "Tyro",
+      "Taqukaq",
+      "Sneers",
+      "Kahchi",
+      "Ogodei",
+      "Tom-Tom"
+    ]
   },
   {
     "id": "unreal",
@@ -15700,6 +15720,14 @@
           "answer": "Quicksilver Storm"
         }
       ]
-    }
+    },
+    "finaleSkip": [
+      "Tyra Karn",
+      "Primus Ta'aun",
+      "Riksis",
+      "Malok",
+      "Draksis",
+      "Ir Halak"
+    ]
   }
 ]

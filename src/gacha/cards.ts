@@ -85,7 +85,13 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     audio: 'https://www.myinstants.com/media/sounds/hello-zuko-here.mp3',
     image: 'https://static.wikia.nocookie.net/avatar/images/0/05/Zuko_Blu-ray_art.png/revision/latest?cb=20261025210247',
   },
-  destiny: { name: 'Cayde-6', title: 'Ace of the Vanguard', line: 'Hunter Vanguard, gambler and incurable joker: he always had a plan, and a hand cannon to back it up.', voice: 'Got a plan. It is a good one, promise.' },
+  destiny: {
+    name: 'Cayde-6',
+    title: 'Back from the Pale Heart',
+    line: 'Years after his last stand, he walks again inside the Traveler, in the Pale Heart — same grin, same hand cannon, and of course a plan.',
+    voice: 'Got a plan. It is a good one, promise.',
+    image: 'https://destiny.wiki.gallery/images/9/96/TFSCayde.jpg',
+  },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -294,6 +300,17 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
     },
   },
+  destiny: {
+    name: 'The Witness',
+    title: "Salvation's Edge",
+    line: 'At the summit of its Monolith it waits for the fireteam that came this far: a god of the Darkness, stepping out of its shroud to fight in person.',
+    image: 'https://destiny.wiki.gallery/images/thumb/2/25/Witness_true_battle_dewey_bonczyk.jpg/600px-Witness_true_battle_dewey_bonczyk.jpg',
+    awaken: {
+      title: 'The Final Shape',
+      line: 'Its arm comes down on the platform with the weight of a collapsing universe — the last thing between the Light and the end of everything.',
+      image: 'https://destiny.wiki.gallery/images/thumb/0/08/Witness_edge_slam.png/600px-Witness_edge_slam.png',
+    },
+  },
   lol: {
     name: 'Ahri',
     title: 'Fox of the Ionian Wilds',
@@ -401,6 +418,16 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
   { set: 'forts', id: 'forts:deck-gun', name: 'Deck Gun', rarity: 'rare', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-DeckGun.png', description: 'A ship\'s gun, firing broadside.' },
   { set: 'forts', id: 'forts:harpoon', name: 'Harpoon', rarity: 'rare', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-Harpoon.png', description: 'Hook it, reel it in.' },
   { set: 'forts', id: 'forts:dome', name: 'Dome', rarity: 'common', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-Dome.png', description: 'A familiar face of Forts.' },
+  // Destiny's third mythic: the Taken King in the art of the Destinypedia infobox.
+  {
+    set: 'destiny',
+    id: 'destiny:mythic-oryx',
+    name: 'Oryx',
+    rarity: 'mythic',
+    title: 'The Taken King',
+    image: 'https://destiny.wiki.gallery/images/thumb/7/70/OryxInfobox.jpg/600px-OryxInfobox.jpg',
+    description: 'He killed his own gods and took their power, then bent whole armies to his will — and his Dreadnaught still drifts in the rings of Saturn.',
+  },
 ];
 
 /** Franchises added after the first fourteen (see CARDS). */

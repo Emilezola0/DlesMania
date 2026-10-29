@@ -189,6 +189,8 @@ export interface Boss {
   secret?: Partial<SecretSettings> & { categories: SecretCategory[] };
   /** Hard's secret phase, the Signature: clues on one very specific side of the franchise. */
   signature?: Signature;
+  /** Faces kept out of the Final Blow (too obscure to name), though their cards stay. */
+  finaleSkip?: string[];
 }
 
 /**
