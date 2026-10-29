@@ -238,81 +238,81 @@
       "members": [
         {
           "label": "Ahri",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ahri.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ahri_OriginalLoading.jpg?babce"
         },
         {
           "label": "Yasuo",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Yasuo.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Yasuo_OriginalLoading.jpg?ad3bd"
         },
         {
           "label": "Jinx",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Jinx.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Jinx_OriginalLoading.jpg?b2a7e"
         },
         {
           "label": "Teemo",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Teemo.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Teemo_OriginalLoading.jpg?10811"
         },
         {
           "label": "Garen",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Garen.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Garen_OriginalLoading.jpg?94b72"
         },
         {
           "label": "Lux",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Lux.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Lux_OriginalLoading.jpg?18bc7"
         },
         {
           "label": "Thresh",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Thresh.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Thresh_OriginalLoading.jpg?2da49"
         },
         {
           "label": "Zed",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Zed.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Zed_OriginalLoading.jpg?3f9d4"
         },
         {
           "label": "Lee Sin",
           "src": "ddragon:LeeSin",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/LeeSin.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Lee_Sin_OriginalLoading.jpg?16baa"
         },
         {
           "label": "Ezreal",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ezreal.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ezreal_OriginalLoading.jpg?b0439"
         },
         {
           "label": "Darius",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Darius.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Darius_OriginalLoading.jpg?d1cb4"
         },
         {
           "label": "Annie",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Annie.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Annie_OriginalLoading.jpg?c9d0a"
         },
         {
           "label": "Miss Fortune",
           "src": "ddragon:MissFortune",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/MissFortune.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Miss_Fortune_OriginalLoading.jpg?3045a"
         },
         {
           "label": "Vi",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Vi.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Vi_OriginalLoading.jpg?bb26c"
         },
         {
           "label": "Ekko",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ekko.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ekko_OriginalLoading.jpg?ba435"
         },
         {
           "label": "Caitlyn",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Caitlyn.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Caitlyn_OriginalLoading.jpg?282e1"
         },
         {
           "label": "Akali",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Akali.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Akali_OriginalLoading.jpg?5faf2"
         },
         {
           "label": "Katarina",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Katarina.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Katarina_OriginalLoading.jpg?60e1b"
         },
         {
           "label": "Pyke",
-          "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Pyke.png"
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Pyke_OriginalLoading.jpg?9a9c5"
         }
       ],
       "impostors": [
@@ -386,15 +386,15 @@
     "finale": [
       {
         "label": "Bard",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Bard.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Bard_OriginalLoading.jpg?cfff0"
       },
       {
         "label": "Ivern",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ivern.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Ivern_OriginalLoading.jpg?1e2a3"
       },
       {
         "label": "Kindred",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Kindred.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Kindred_OriginalLoading.jpg?30643"
       },
       {
         "label": "Aurelion Sol",
@@ -402,11 +402,11 @@
         "aliases": [
           "asol"
         ],
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/AurelionSol.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Aurelion_Sol_OriginalLoading.jpg?31a43"
       },
       {
         "label": "Taliyah",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Taliyah.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Taliyah_OriginalLoading.jpg?32fbc"
       },
       {
         "label": "Bel'Veth",
@@ -414,7 +414,7 @@
         "aliases": [
           "belveth"
         ],
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Belveth.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Bel%27Veth_OriginalLoading.jpg?2a433"
       },
       {
         "label": "Nunu & Willump",
@@ -423,35 +423,35 @@
           "nunu",
           "nunu and willump"
         ],
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Nunu.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Nunu_OriginalLoading.jpg?2f3de"
       },
       {
         "label": "Fiddlesticks",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Fiddlesticks.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Fiddlesticks_OriginalLoading.jpg?4e858"
       },
       {
         "label": "Zilean",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Zilean.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Zilean_OriginalLoading.jpg?8f47c"
       },
       {
         "label": "Skarner",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Skarner.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Skarner_OriginalLoading.jpg?22f22"
       },
       {
         "label": "Rammus",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Rammus.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Rammus_OriginalLoading.jpg?5ef5f"
       },
       {
         "label": "Taric",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Taric.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Taric_OriginalLoading.jpg?088e7"
       },
       {
         "label": "Kled",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Kled.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Kled_OriginalLoading.jpg?75d16"
       },
       {
         "label": "Azir",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Azir.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Azir_OriginalLoading.jpg?6521c"
       },
       {
         "label": "Rek'Sai",
@@ -459,19 +459,19 @@
         "aliases": [
           "reksai"
         ],
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/RekSai.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Rek%27Sai_OriginalLoading.jpg?57a9d"
       },
       {
         "label": "Ornn",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Ornn.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Ornn_OriginalLoading.jpg?d5373"
       },
       {
         "label": "Udyr",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Udyr.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Udyr_OriginalLoading.jpg?e798d"
       },
       {
         "label": "Galio",
-        "image": "https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/Galio.png"
+        "image": "https://wiki.leagueoflegends.com/en-us/images/Galio_OriginalLoading.jpg?df84f"
       }
     ],
     "secret": {
@@ -14348,46 +14348,162 @@
         "prompt": "Name 5 Exotic weapons",
         "count": 5,
         "answers": [
-          "Gjallarhorn",
+          "Abbadon",
           "Ace of Spades",
-          "Thorn",
-          "The Last Word|Last Word",
-          "Hawkmoon",
-          "Sweet Business",
-          "Whisper of the Worm|Whisper",
-          "Outbreak Perfected|Outbreak Prime|Outbreak",
-          "Sleeper Simulant|Sleeper",
-          "Telesto",
-          "Vex Mythoclast",
-          "MIDA Multi-Tool|Mida",
-          "Jötunn|Jotunn",
-          "Riskrunner",
-          "Izanagi's Burden|Izanagis Burden|Izanagi",
-          "Wish-Ender|Wish Ender",
-          "Lament",
-          "Divinity",
-          "Witherhoard",
-          "Xenophage",
-          "Osteo Striga",
-          "Graviton Lance",
-          "Polaris Lance",
-          "Fighting Lion",
-          "Merciless",
-          "Black Talon",
-          "Le Monarque",
-          "Arbalest",
-          "Eyes of Tomorrow",
-          "Anarchy",
-          "Malfeasance",
           "Bad Juju",
-          "Red Death",
+          "Black Spindle",
+          "Bolt-Caster",
+          "Boolean Gemini",
+          "Dark-Drinker",
+          "Dragon's Breath|Dragons Breath",
+          "Dreg's Promise|Dregs Promise",
+          "Fabian Strategy",
+          "Fate of All Fools",
+          "Gjallarhorn",
           "Hard Light",
-          "Lumina",
-          "Truth",
-          "Sunshot",
+          "Hawkmoon",
+          "Hereafter",
+          "Ice Breaker",
+          "Invective",
+          "Khvostov 7G-0X",
+          "Lord of Wolves",
+          "MIDA Multi-Tool",
+          "Monte Carlo",
           "Necrochasm",
+          "Nemesis Star",
+          "No Land Beyond",
+          "No Time to Explain",
+          "Nova Mortis",
+          "Outbreak Prime",
+          "Patience and Time",
+          "Plan C",
+          "Pocket Infinity",
+          "Queenbreakers' Bow|Queenbreakers Bow",
+          "Raze-Lighter",
+          "Red Death",
+          "SUROS Regime",
+          "Sleeper Simulant",
+          "Super Good Advice",
+          "Telesto",
+          "The 4th Horseman|4th Horseman",
+          "The Chaperone|Chaperone",
+          "The First Curse|First Curse",
+          "The Jade Rabbit|Jade Rabbit",
+          "The Last Word|Last Word",
+          "The Young Wolf's Howl|Young Wolf's Howl|The Young Wolfs Howl",
+          "Thorn",
+          "Thunderlord",
+          "Tlaloc",
           "Touch of Malice",
-          "Vigilance Wing"
+          "Trespasser",
+          "Truth",
+          "Universal Remote",
+          "Vex Mythoclast",
+          "Zen Meteor",
+          "Zhalo Supercell",
+          "Black Talon",
+          "Borealis",
+          "Cerberus+1",
+          "Coldheart",
+          "Crimson",
+          "D.A.R.C.I.",
+          "Dead Man's Tale|Dead Mans Tale",
+          "Divinity",
+          "Fighting Lion",
+          "Graviton Lance",
+          "Legend of Acrius",
+          "Long Arm",
+          "Malfeasance",
+          "Merciless",
+          "One Thousand Voices",
+          "Polaris Lance",
+          "Prometheus Lens",
+          "Rat King",
+          "Riskrunner",
+          "Ruinous Effigy",
+          "Skyburner's Oath|Skyburners Oath",
+          "Sturm",
+          "Sunshot",
+          "Sweet Business",
+          "The Colony|Colony",
+          "The Huckleberry|Huckleberry",
+          "The Prospector|Prospector",
+          "The Wardcliff Coil|Wardcliff Coil",
+          "Ticuu's Divination|Ticuus Divination",
+          "Tommy's Matchbook|Tommys Matchbook",
+          "Tractor Cannon",
+          "Traveler's Chosen|Travelers Chosen",
+          "Trinity Ghoul",
+          "Two-Tailed Fox",
+          "Vigilance Wing",
+          "Wavesplitter",
+          "Whisper of the Worm",
+          "Wish-Ender",
+          "Witherhoard",
+          "Worldline Zero",
+          "Arbalest",
+          "Anarchy",
+          "Barrow-Dyad",
+          "Bastion",
+          "Buried Bloodline",
+          "Centrifuse",
+          "Choir of One",
+          "Cloudstrike",
+          "Collective Obligation",
+          "Conditional Finality",
+          "Cryosthesia 77K",
+          "Dead Messenger",
+          "Deathbringer",
+          "Deterministic Chaos",
+          "Devil's Ruin|Devils Ruin",
+          "Duality",
+          "Edge of Action",
+          "Edge of Concurrence",
+          "Edge of Intent",
+          "Ergo Sum",
+          "Eriana's Vow|Erianas Vow",
+          "Euphony",
+          "Ex Diris",
+          "Eyes of Tomorrow",
+          "Final Warning",
+          "Forerunner",
+          "Grand Overture",
+          "Graviton Spike",
+          "Heartshadow",
+          "Heir Apparent",
+          "Hierarchy of Needs",
+          "Izanagi's Burden|Izanagis Burden|Izanagi",
+          "Jötunn|Jotunn",
+          "Lament|The Lament",
+          "Le Monarque",
+          "Leviathan's Breath|Leviathans Breath",
+          "Lorentz Driver",
+          "Lumina",
+          "Microcosm",
+          "Osteo Striga",
+          "Outbreak Perfected|Outbreak Prime|Outbreak",
+          "Parasite",
+          "Quicksilver Storm",
+          "Red Death Reformed|Red Death",
+          "Revision Zero",
+          "Salvation's Grip|Salvations Grip",
+          "Slayer's Fang|Slayers Fang",
+          "Still Hunt",
+          "Symmetry",
+          "Tarrabah",
+          "Tessellation",
+          "The Fourth Horseman|Fourth Horseman|The 4th Horseman",
+          "The Manticore|Manticore",
+          "The Navigator|Navigator",
+          "The Queenbreaker|Queenbreaker",
+          "Verglas Curve",
+          "Vexcalibur",
+          "Wicked Implement",
+          "Winterbite",
+          "Wish-Keeper",
+          "Xenophage",
+          "Ager's Scepter|Agers Scepter",
+          "Delicate Tomb"
         ]
       },
       {
@@ -14399,6 +14515,8 @@
           "King's Fall|Kings Fall|La Chute du Roi",
           "Wrath of the Machine",
           "Leviathan",
+          "Eater of Worlds",
+          "Spire of Stars",
           "Last Wish|Dernier Vœu|Dernier Voeu",
           "Scourge of the Past",
           "Crown of Sorrow",
@@ -14407,12 +14525,11 @@
           "Vow of the Disciple",
           "Root of Nightmares",
           "Salvation's Edge|Salvations Edge",
-          "Eater of Worlds",
-          "Spire of Stars"
+          "The Desert Perpetual|Desert Perpetual"
         ]
       },
       {
-        "prompt": "Name 5 characters of the Tower",
+        "prompt": "Name 5 allies of the Guardians",
         "count": 5,
         "answers": [
           "Zavala|Commander Zavala|Commandant Zavala",
@@ -14431,14 +14548,63 @@
           "Eris Morn|Eris",
           "Osiris",
           "The Speaker|Speaker|Le Locuteur|Locuteur",
-          "Crow"
+          "Crow",
+          "Master Rahool|Rahool",
+          "Tyra Karn|Tyra",
+          "Lord Saladin|Saladin",
+          "Executor Hideo|Hideo",
+          "Arach Jalaal|Jalaal",
+          "Lakshmi-2|Lakshmi",
+          "Asher Mir|Asher",
+          "Devrim Kay|Devrim",
+          "Failsafe",
+          "Sloane",
+          "Spider|The Spider",
+          "Petra Venj|Petra",
+          "Shaw Han|Shaw",
+          "Benedict 99-40|Benedict",
+          "Arcite 99-40|Arcite",
+          "Shiro-4|Shiro",
+          "Efrideet|Lady Efrideet",
+          "Lodi",
+          "Ana Bray|Anastasia Bray",
+          "Elsie Bray|Exo Stranger",
+          "Nimbus",
+          "Orin",
+          "Micah-10|Micah",
+          "Fynch",
+          "Starhorse",
+          "Mara Sov|Mara",
+          "Mithrax",
+          "Variks",
+          "Eido",
+          "Misraaks",
+          "Caiatl|Empress Caiatl",
+          "Rasputin",
+          "Clovis Bray",
+          "Maya Sundaresh|Maya",
+          "Chioma Esi|Chioma",
+          "Glint",
+          "Sagira",
+          "Ghost|Spectre",
+          "Shin Malphur|Shin",
+          "Toland",
+          "Kabr",
+          "Praedyth",
+          "Pahanin",
+          "Lord Felwinter|Felwinter",
+          "Lord Timur|Timur",
+          "Lord Radegast|Radegast",
+          "Jaren Ward",
+          "Vance|Brother Vance",
+          "Rohan"
         ]
       },
       {
         "prompt": "Name 4 Destiny expansions",
         "count": 4,
         "answers": [
-          "The Dark Below|Les Profondeurs Obscures",
+          "The Dark Below|Les Profondeurs Obscures|Dark Below",
           "House of Wolves|La Maison des Loups",
           "The Taken King|Le Roi des Corrompus|Taken King",
           "Rise of Iron|Les Seigneurs de Fer",
@@ -14450,7 +14616,8 @@
           "The Witch Queen|Witch Queen|La Reine Sorcière|La Reine Sorciere",
           "Lightfall|Éclipse|Eclipse",
           "The Final Shape|Final Shape|La Forme Finale",
-          "The Edge of Fate|Edge of Fate"
+          "The Edge of Fate|Edge of Fate",
+          "Renegades|Destiny 2: Renegades"
         ]
       },
       {
@@ -14467,13 +14634,280 @@
           "Io",
           "The Dreaming City|Dreaming City|La Cité des Rêves|Cite des Reves",
           "Europa|Europe",
-          "Savathûn's Throne World|Savathuns Throne World|Throne World|Monde du Trône",
+          "Savathûn's Throne World|Savathuns Throne World|Throne World|Monde du Trône|Savathun's Throne World|Savathûns Throne World",
           "Neomuna|Néomuna",
           "The Pale Heart|Pale Heart|Le Cœur Pâle|Coeur Pale",
           "The Tangled Shore|Tangled Shore|Le Rivage Enchevêtré|Rivage Enchevetre",
           "European Dead Zone|EDZ|ZME",
           "The Cosmodrome|Cosmodrome",
-          "The Dreadnaught|Dreadnaught|Le Cuirassé|Cuirasse"
+          "The Dreadnaught|Dreadnaught|Le Cuirassé|Cuirasse",
+          "The Reef|Reef|Le Récif|Recif",
+          "Kepler",
+          "The Farm|Farm|La Ferme",
+          "The Last City|Last City|La Dernière Cité|Derniere Cite",
+          "The Tower|Tower|La Tour",
+          "Old Russia|Vieille Russie",
+          "Hellas Basin",
+          "Plaguelands",
+          "The Leviathan|Leviathan",
+          "Eternity",
+          "The H.E.L.M.|HELM|H.E.L.M."
+        ]
+      },
+      {
+        "prompt": "Name 5 villains",
+        "count": 5,
+        "answers": [
+          "Oryx|The Taken King",
+          "Crota|Cropta",
+          "Atheon|Atheon, Time's Conflux",
+          "Savathûn|The Witch Queen|Savathun",
+          "Xivu Arath",
+          "The Witness|Witness",
+          "Rhulk",
+          "Nezarec",
+          "Calus|Emperor Calus",
+          "Dominus Ghaul|Ghaul",
+          "Riven",
+          "Uldren Sov|Uldren",
+          "Skolas",
+          "Taniks",
+          "Eramis",
+          "Fikrul",
+          "Quria",
+          "Aksis",
+          "Sepiks Prime",
+          "Valus Ta'aurc|Valus Taaurc",
+          "Draksis",
+          "Ir Anûk|Ir Anuk",
+          "Ir Halak",
+          "Golgoroth",
+          "Zydron",
+          "Phogoth",
+          "Omnigul",
+          "Kaniks",
+          "Insurrection Prime",
+          "Val Ca'uor|Val Cauor",
+          "Shuro Chi",
+          "Morgeth",
+          "Kalli",
+          "Argos",
+          "Nokris",
+          "Xol",
+          "Malok",
+          "Zulmak",
+          "Phylaks",
+          "Primus Ta'aun|Ta'aun|Primus Taaun",
+          "The Templar|Templar",
+          "Akelous",
+          "Persys",
+          "The Caretaker|Caretaker",
+          "Riksis",
+          "Aksor",
+          "Dredgen Yor",
+          "Ecthar",
+          "Warpriest",
+          "Atraks-1|Atraks",
+          "Kell Echo",
+          "Avarokk",
+          "Simmumah ur-Nokru|Simmumah",
+          "Sanctified Mind",
+          "Siviks",
+          "Bracus Zahn",
+          "Vosik",
+          "Sedia"
+        ]
+      },
+      {
+        "prompt": "Name 4 dungeons",
+        "count": 4,
+        "answers": [
+          "The Shattered Throne|Shattered Throne",
+          "Pit of Heresy",
+          "Prophecy",
+          "Grasp of Avarice",
+          "Duality",
+          "Spire of the Watcher",
+          "Ghosts of the Deep",
+          "Warlord's Ruin|Warlords Ruin",
+          "Vesper's Host|Vespers Host",
+          "Sundered Doctrine",
+          "Equilibrium"
+        ]
+      },
+      {
+        "prompt": "Name 5 subclasses",
+        "count": 5,
+        "answers": [
+          "Gunslinger",
+          "Bladedancer",
+          "Arcstrider",
+          "Nightstalker",
+          "Revenant",
+          "Threadrunner",
+          "Striker",
+          "Defender",
+          "Sentinel",
+          "Sunbreaker",
+          "Behemoth",
+          "Berserker",
+          "Voidwalker",
+          "Sunsinger",
+          "Dawnblade",
+          "Stormcaller",
+          "Shadebinder",
+          "Broodweaver",
+          "Prismatic"
+        ]
+      },
+      {
+        "prompt": "Name 5 Exotic armor pieces",
+        "count": 5,
+        "answers": [
+          "ACD/0 Feedback Fence",
+          "Actium War Rig",
+          "Aeon Safe",
+          "Aeon Soul",
+          "Aeon Swift",
+          "An Insurmountable Skullfort",
+          "Apotheosis Veil",
+          "Armamentarium",
+          "Ashen Wake",
+          "Astrocyte Verse",
+          "Celestial Nighthawk",
+          "Claws of Ahamkara",
+          "Crest of Alpha Lupi",
+          "Crown of Tempests",
+          "Doom Fang Pauldron",
+          "Dunemarchers",
+          "Eternal Warrior",
+          "Eye of Another World",
+          "Foetracer",
+          "Gemini Jester",
+          "Graviton Forfeit",
+          "Gwisin Vest",
+          "Hallowfire Heart",
+          "Helm of Saint-14",
+          "Karnstein Armlets",
+          "Khepri's Horn|Khepris Horn",
+          "Knucklehead Radar",
+          "Lion Rampant",
+          "Lucky Pants",
+          "Lucky Raspberry",
+          "Lunafaction Boots",
+          "Mask of the Quiet One",
+          "Mechaneer's Tricksleeves|Mechaneers Tricksleeves",
+          "Mk. 44 Stand Asides",
+          "Nezarec's Sin|Nezarecs Sin",
+          "Oathkeeper",
+          "Ophidia Spathe",
+          "Ophidian Aspect",
+          "Orpheus Rig",
+          "Peacekeepers",
+          "Raiden Flux",
+          "Sanguine Alchemy",
+          "Sealed Ahamkara Grasps",
+          "Shinobu's Vow|Shinobus Vow",
+          "Skull of Dire Ahamkara",
+          "St0mp-EE5",
+          "Starfire Protocol",
+          "Sunbracers",
+          "Synthoceps",
+          "The Dragon's Shadow|Dragon's Shadow|The Dragons Shadow",
+          "The Stag|Stag",
+          "Transversive Steps",
+          "Vesper of Radius",
+          "Wings of Sacred Dawn",
+          "Winter's Guile|Winters Guile",
+          "Wormgod Caress",
+          "Young Ahamkara's Spine|Young Ahamkaras Spine",
+          "Heart of Inmost Light",
+          "Phoenix Protocol",
+          "Contraverse Hold",
+          "Geomag Stabilizers",
+          "Wormhusk Crown",
+          "Liar's Handshake|Liars Handshake",
+          "Assassin's Cowl|Assassins Cowl",
+          "Mask of Bakris",
+          "Shards of Galanor",
+          "Star-Eater Scales",
+          "Gyrfalcon's Hauberk|Gyrfalcons Hauberk",
+          "Cyrtarachne's Façade|Cyrtarachne's Facade|Cyrtarachnes Façade",
+          "Cuirass of the Falling Star",
+          "Precious Scars",
+          "Loreley Splendor Helm",
+          "One-Eyed Mask",
+          "Ursa Furiosa",
+          "Hoarfrost-Z",
+          "Abeyant Leap",
+          "Point-Contact Cannon Brace",
+          "Pyrogale Gauntlets",
+          "Wishful Ignorance",
+          "Hazardous Propulsion",
+          "Severance Enclosure",
+          "Getaway Artist",
+          "Necrotic Grip",
+          "Osmiomancy Gloves",
+          "Ballidorse Wrathweavers",
+          "Rime-coat Raiment",
+          "Swarmers",
+          "Speaker's Sight|Speakers Sight",
+          "Boots of the Assembler",
+          "Fallen Sunstar",
+          "Verity's Brow|Veritys Brow",
+          "Promethium Spur",
+          "Felwinter's Helm|Felwinters Helm",
+          "Stormdancer's Brace|Stormdancers Brace",
+          "Bones of Eao",
+          "ATS/8 Arachnid",
+          "Achlyophage Symbiote",
+          "Obsidian Mind",
+          "Light Beyond Nemesis",
+          "Purifier Robes",
+          "Voidfang Vestments",
+          "Heart of the Praxic Fire",
+          "No Backup Plans",
+          "Helm of Inmost Light",
+          "Ruin Wings",
+          "Twilight Garrison",
+          "Empyrean Bellicose",
+          "Skyburner Annex",
+          "The Ram|Ram",
+          "Nothing Manacles",
+          "Mask of the Third Man",
+          "Chromatic Fire",
+          "Sixth Coyote",
+          "Frost-EE5"
+        ]
+      },
+      {
+        "prompt": "Name 4 seasons or episodes",
+        "count": 4,
+        "answers": [
+          "Season of the Outlaw|Outlaw",
+          "Season of the Forge|Forge",
+          "Season of the Drifter|Drifter",
+          "Season of Opulence|Opulence",
+          "Season of the Undying|Undying",
+          "Season of Dawn|Dawn",
+          "Season of the Worthy|Worthy",
+          "Season of Arrivals|Arrivals",
+          "Season of the Hunt|Hunt",
+          "Season of the Chosen|Chosen",
+          "Season of the Splicer|Splicer",
+          "Season of the Lost|Lost",
+          "Season of the Risen|Risen",
+          "Season of the Haunted|Haunted",
+          "Season of Plunder|Plunder",
+          "Season of the Seraph|Seraph",
+          "Season of Defiance|Defiance",
+          "Season of the Deep|Deep",
+          "Season of the Witch|Witch",
+          "Season of the Wish|Wish",
+          "Episode: Echoes|Echoes|Episode Echoes",
+          "Episode: Revenant|Revenant|Episode Revenant",
+          "Episode: Heresy|Heresy|Episode Heresy",
+          "Age of Triumph"
         ]
       }
     ],
@@ -14485,33 +14919,33 @@
             "Cayde 6",
             "Cayde"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/2/24/Cayde-6.png/revision/latest/scale-to-width-down/329?cb=20140622223202"
+          "image": "https://destiny.wiki.gallery/images/thumb/1/1c/Cayde-6_Chicken.jpg/400px-Cayde-6_Chicken.jpg"
         },
         {
           "label": "Zavala",
           "aliases": [
             "Commander Zavala"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/6/62/CommanderZavala2.jpg/revision/latest/scale-to-width-down/400?cb=20160826061659"
+          "image": "https://destiny.wiki.gallery/images/thumb/5/56/ZavalaGhost.png/400px-ZavalaGhost.png"
         },
         {
           "label": "Ikora Rey",
           "aliases": [
             "Ikora"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/f/fc/Ikora-Io.png/revision/latest/scale-to-width-down/400?cb=20180113174823"
+          "image": "https://destiny.wiki.gallery/images/thumb/f/fb/Ikora-Destiny_2.jpg/400px-Ikora-Destiny_2.jpg"
         },
         {
           "label": "Ghost",
           "fr": "Spectre",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/ab/Ghost.png/revision/latest/scale-to-width-down/400?cb=20140824204738"
+          "image": "https://destiny.wiki.gallery/images/thumb/c/cd/GhostsGrimoireCard.jpg/400px-GhostsGrimoireCard.jpg"
         },
         {
           "label": "Savathûn",
           "aliases": [
             "Savathun"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/7/7a/Savath%C3%BBn.jpg/revision/latest/scale-to-width-down/400?cb=20250318030519"
+          "image": "https://destiny.wiki.gallery/images/thumb/8/80/HiveSavath%C3%BBn.jpg/400px-HiveSavath%C3%BBn.jpg"
         },
         {
           "label": "The Witness",
@@ -14519,14 +14953,14 @@
             "Witness"
           ],
           "fr": "Le Témoin",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e3/The_Witness.png/revision/latest/scale-to-width-down/400?cb=20250227000913"
+          "image": "https://destiny.wiki.gallery/images/thumb/2/2a/WitnessInfobox.jpg/400px-WitnessInfobox.jpg"
         },
         {
           "label": "Eris Morn",
           "aliases": [
             "Eris"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/0/0a/ErisTDB2.jpg/revision/latest/scale-to-width-down/291?cb=20141030135437"
+          "image": "https://destiny.wiki.gallery/images/thumb/7/7b/Eris_Morn_Shadowkeep.png/400px-Eris_Morn_Shadowkeep.png"
         },
         {
           "label": "Saint-14",
@@ -14534,18 +14968,18 @@
             "Saint 14",
             "Saint"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/1/12/Saint-14.png/revision/latest/scale-to-width-down/400?cb=20191204023912"
+          "image": "https://destiny.wiki.gallery/images/thumb/1/1a/Saint14Infobox.jpg/400px-Saint14Infobox.jpg"
         },
         {
           "label": "Osiris",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e3/Osiris.png/revision/latest/scale-to-width-down/400?cb=20171101083335"
+          "image": "https://destiny.wiki.gallery/images/thumb/6/65/OsirisInfobox.jpg/400px-OsirisInfobox.jpg"
         },
         {
           "label": "Mara Sov",
           "aliases": [
             "Mara"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/d/d4/QueenMaraSov.png/revision/latest/scale-to-width-down/400?cb=20230409193410"
+          "image": "https://destiny.wiki.gallery/images/thumb/4/41/QueenMara.jpg/400px-QueenMara.jpg"
         },
         {
           "label": "Lord Shaxx",
@@ -14554,21 +14988,21 @@
           ],
           "src": "Shaxx",
           "fr": "Seigneur Shaxx",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/7/77/Lord_Shaxx.png/revision/latest/scale-to-width-down/399?cb=20140623034010"
+          "image": "https://destiny.wiki.gallery/images/thumb/2/2f/ShaxxInfobox.jpg/400px-ShaxxInfobox.jpg"
         },
         {
           "label": "Xûr",
           "aliases": [
             "Xur"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/6/67/Xur_Agent_of_the_Nine.png/revision/latest?cb=20140912180018"
+          "image": "https://destiny.wiki.gallery/images/thumb/5/5b/XurAgentOfTheNineGrimoireCard.jpg/400px-XurAgentOfTheNineGrimoireCard.jpg"
         },
         {
           "label": "Uldren Sov",
           "aliases": [
             "Uldren"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/aa/Brother.png/revision/latest/scale-to-width-down/400?cb=20140912172004"
+          "image": "https://destiny.wiki.gallery/images/thumb/b/bb/CrowVanguardInfobox.png/400px-CrowVanguardInfobox.png"
         },
         {
           "label": "Crota",
@@ -14576,11 +15010,11 @@
             "Crota, Son of Oryx"
           ],
           "fr": "Cropta",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/b/b2/Crota%2C_Son_of_Oryx.jpg/revision/latest/scale-to-width-down/308?cb=20141222050105"
+          "image": "https://destiny.wiki.gallery/images/thumb/d/db/CrotaInfobox.jpg/400px-CrotaInfobox.jpg"
         },
         {
           "label": "Rasputin",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/2/20/Warmind_Rasputin.jpg/revision/latest?cb=20190804101033"
+          "image": "https://destiny.wiki.gallery/images/thumb/d/d0/RaRasputin.png/400px-RaRasputin.png"
         },
         {
           "label": "Calus",
@@ -14588,7 +15022,7 @@
             "Emperor Calus"
           ],
           "fr": "Empereur Calus",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/8/80/Calus.png/revision/latest/scale-to-width-down/400?cb=20170918115623"
+          "image": "https://destiny.wiki.gallery/images/thumb/b/b1/ShadowCalusInfo2.jpg/400px-ShadowCalusInfo2.jpg"
         },
         {
           "label": "Drifter",
@@ -14596,7 +15030,7 @@
             "The Drifter"
           ],
           "fr": "Le Vagabond",
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/5/5d/The_Drifter_%28Character%29_%28High_Resolution%29.png/revision/latest/scale-to-width-down/274?cb=20190101045735"
+          "image": "https://destiny.wiki.gallery/images/thumb/f/fb/TheDrifterInbofox.jpg/400px-TheDrifterInbofox.jpg"
         },
         {
           "label": "Banshee-44",
@@ -14604,7 +15038,7 @@
             "Banshee 44",
             "Banshee"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/ae/Banshee-44.png/revision/latest/scale-to-width-down/364?cb=20140621191153"
+          "image": "https://destiny.wiki.gallery/images/thumb/1/1b/Banshee44Infobox.jpg/400px-Banshee44Infobox.jpg"
         },
         {
           "label": "Riven",
@@ -14618,7 +15052,7 @@
           "aliases": [
             "Amanda"
           ],
-          "image": "https://static.wikia.nocookie.net/destinypedia/images/3/32/Amanda_Holliday.png/revision/latest/scale-to-width-down/309?cb=20151209033004"
+          "image": "https://destiny.wiki.gallery/images/thumb/7/7c/AmandaInfobox.jpg/400px-AmandaInfobox.jpg"
         }
       ],
       "impostors": [
@@ -14711,113 +15145,113 @@
         "aliases": [
           "Atheon, Time's Conflux"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/0/07/Atheon.jpg/revision/latest/scale-to-width-down/400?cb=20150403034110"
+        "image": "https://destiny.wiki.gallery/images/thumb/e/ec/AtheonTimesConfluxGrimoireCard.jpg/400px-AtheonTimesConfluxGrimoireCard.jpg"
       },
       {
         "label": "Rhulk",
         "aliases": [
           "Rhulk, Disciple of the Witness"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/47/RhulkPhaseOne.jpg/revision/latest/scale-to-width-down/285?cb=20220511163326"
+        "image": "https://destiny.wiki.gallery/images/thumb/5/55/RhulkInfobox.jpg/400px-RhulkInfobox.jpg"
       },
       {
         "label": "Nezarec",
         "aliases": [
           "Nezarec, Final God of Pain"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/e/ea/Nezarec-1.jpg/revision/latest/scale-to-width-down/400?cb=20230702163110"
+        "image": "https://destiny.wiki.gallery/images/thumb/0/03/NezarecInfobox.jpg/400px-NezarecInfobox.jpg"
       },
       {
         "label": "Eramis",
         "aliases": [
           "Eramis, Kell of Darkness"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4d/Eramis.jpg/revision/latest/scale-to-width-down/289?cb=20201021230842"
+        "image": "https://destiny.wiki.gallery/images/thumb/3/3f/Eramis_VariksCutscene.jpg/400px-Eramis_VariksCutscene.jpg"
       },
       {
         "label": "Mithrax",
         "aliases": [
           "Mithrax, the Forsaken"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/b/b2/Mithrax_Splicer.jpg/revision/latest/scale-to-width-down/400?cb=20210521122925"
+        "image": "https://destiny.wiki.gallery/images/thumb/f/fa/Mithrax0.jpg/400px-Mithrax0.jpg"
       },
       {
         "label": "Variks",
         "aliases": [
           "Variks, the Loyal"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/5/5d/Variks_Grimoire_Card.jpg/revision/latest/scale-to-width-down/308?cb=20190804150913"
+        "image": "https://destiny.wiki.gallery/images/thumb/3/3e/VariksJudgment.jpg/400px-VariksJudgment.jpg"
       },
       {
         "label": "Petra Venj",
         "aliases": [
           "Petra"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/0/0c/HoW_Screenshot_4.jpg/revision/latest/scale-to-width-down/400?cb=20150424155259"
+        "image": "https://destiny.wiki.gallery/images/thumb/3/3a/PetraVenjInfobox.jpg/400px-PetraVenjInfobox.jpg"
       },
       {
         "label": "Taniks",
         "aliases": [
           "Taniks, the Scarred"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/c/ce/Shadowthief.jpg/revision/latest/scale-to-width-down/400?cb=20150507141810"
+        "image": "https://destiny.wiki.gallery/images/thumb/7/7c/Taniks_the_Scarred.jpg/400px-Taniks_the_Scarred.jpg"
       },
       {
         "label": "Skolas",
         "aliases": [
           "Skolas, Kell of Kells"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/5/58/Skolas%2C_Kell_of_Kells.jpg/revision/latest/scale-to-width-down/308?cb=20190817010350"
+        "image": "https://destiny.wiki.gallery/images/thumb/1/19/Skolas-defeated-grimoire.jpg/400px-Skolas-defeated-grimoire.jpg"
       },
       {
         "label": "Sepiks Prime",
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e1/Sepiks_Prime_Closeup.png/revision/latest/scale-to-width-down/400?cb=20140610174930"
+        "image": "https://destiny.wiki.gallery/images/thumb/4/4a/SepiksPrimeServitorGrimoireCard.jpg/400px-SepiksPrimeServitorGrimoireCard.jpg"
       },
       {
         "label": "Aksis",
         "aliases": [
           "Aksis, Archon Prime"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/7/72/Aksis%2C_Archon_Prime_%28Grimoire_Card%29.jpg/revision/latest/scale-to-width-down/308?cb=20160924061705"
+        "image": "https://destiny.wiki.gallery/images/thumb/5/5f/Grimoire_Aksis-Archon-Prime.jpg/400px-Grimoire_Aksis-Archon-Prime.jpg"
       },
       {
         "label": "Quria",
         "aliases": [
           "Quria, Blade Transform"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/48/Quria.jpg/revision/latest/scale-to-width-down/400?cb=20250319002038"
+        "image": "https://destiny.wiki.gallery/images/thumb/c/cb/QuriaInfo1.jpg/400px-QuriaInfo1.jpg"
       },
       {
         "label": "Shin Malphur",
         "aliases": [
           "Shin"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/1/1d/Shin_malphur.jpeg/revision/latest?cb=20190905153209"
+        "image": "https://destiny.wiki.gallery/images/thumb/1/12/Grimoire_GF_The_Last_Word_1-2.jpg/400px-Grimoire_GF_The_Last_Word_1-2.jpg"
       },
       {
         "label": "Toland",
         "aliases": [
           "Toland, the Shattered"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/c/ca/Toland.jpeg/revision/latest?cb=20190905152739"
+        "image": "https://destiny.wiki.gallery/images/9/9e/Toland.jpg"
       },
       {
         "label": "Felwinter",
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4d/FelwinterStatue.png/revision/latest?cb=20161002014802"
+        "image": "https://destiny.wiki.gallery/images/thumb/9/9d/FelwinterInfobox.jpg/400px-FelwinterInfobox.jpg"
       },
       {
         "label": "Ana Bray",
         "aliases": [
           "Anastasia Bray"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/a/aa/Ana_Bray.png/revision/latest/scale-to-width-down/400?cb=20180425000647"
+        "image": "https://destiny.wiki.gallery/images/thumb/9/96/AnaBrayInfobox.jpg/400px-AnaBrayInfobox.jpg"
       },
       {
         "label": "Suraya Hawthorne",
         "aliases": [
           "Hawthorne"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/2/27/Suraya_Hawthorne_2.png/revision/latest/scale-to-width-down/400?cb=20220330020718"
+        "image": "https://destiny.wiki.gallery/images/thumb/3/38/HawthorneInfobox.jpg/400px-HawthorneInfobox.jpg"
       },
       {
         "label": "Elsie Bray",
@@ -14825,7 +15259,7 @@
           "Exo Stranger",
           "The Stranger"
         ],
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4e/300px-ExoStranger.jpg/revision/latest/scale-to-width-down/400?cb=20220827223420"
+        "image": "https://destiny.wiki.gallery/images/thumb/3/3f/ExoStrangerInfobox.jpg/400px-ExoStrangerInfobox.jpg"
       },
       {
         "label": "Dominus Ghaul",
@@ -14833,7 +15267,7 @@
           "Ghaul"
         ],
         "src": "Ghaul",
-        "image": "https://static.wikia.nocookie.net/destinypedia/images/7/7e/D2_ghaul_05.png/revision/latest/scale-to-width-down/400?cb=20170730044724"
+        "image": "https://destiny.wiki.gallery/images/thumb/f/fc/DominusGhaulInfobox.jpg/400px-DominusGhaulInfobox.jpg"
       },
       {
         "label": "The Traveler",
@@ -14865,7 +15299,7 @@
             "Crota|Cropta",
             "Rasputin",
             "Calus",
-            "Drifter|The Drifter|Le Vagabond",
+            "Drifter|The Drifter|Le Vagabond|Vagabond",
             "Banshee-44|Banshee",
             "Riven",
             "Amanda Holliday|Amanda",
@@ -14888,7 +15322,91 @@
             "Crow",
             "Eva Levante|Eva",
             "Tess Everis|Tess",
-            "Ada-1|Ada"
+            "Ada-1|Ada",
+            "The Speaker|Speaker|Le Locuteur|Locuteur",
+            "Master Rahool|Rahool",
+            "Tyra Karn|Tyra",
+            "Lord Saladin|Saladin",
+            "Executor Hideo|Hideo",
+            "Arach Jalaal|Jalaal",
+            "Lakshmi-2|Lakshmi",
+            "Asher Mir|Asher",
+            "Devrim Kay|Devrim",
+            "Failsafe",
+            "Sloane",
+            "Spider|The Spider",
+            "Shaw Han|Shaw",
+            "Benedict 99-40|Benedict",
+            "Arcite 99-40|Arcite",
+            "Shiro-4|Shiro",
+            "Efrideet|Lady Efrideet",
+            "Lodi",
+            "Nimbus",
+            "Orin",
+            "Micah-10|Micah",
+            "Fynch",
+            "Starhorse",
+            "Eido",
+            "Misraaks",
+            "Caiatl|Empress Caiatl",
+            "Clovis Bray",
+            "Maya Sundaresh|Maya",
+            "Chioma Esi|Chioma",
+            "Glint",
+            "Sagira",
+            "Kabr",
+            "Praedyth",
+            "Pahanin",
+            "Lord Felwinter|Felwinter",
+            "Lord Timur|Timur",
+            "Lord Radegast|Radegast",
+            "Jaren Ward",
+            "Vance|Brother Vance",
+            "Rohan",
+            "Xivu Arath",
+            "Fikrul",
+            "Quria",
+            "Aksis",
+            "Sepiks Prime",
+            "Valus Ta'aurc|Valus Taaurc",
+            "Draksis",
+            "Ir Anûk|Ir Anuk",
+            "Ir Halak",
+            "Golgoroth",
+            "Zydron",
+            "Phogoth",
+            "Omnigul",
+            "Kaniks",
+            "Insurrection Prime",
+            "Val Ca'uor|Val Cauor",
+            "Shuro Chi",
+            "Morgeth",
+            "Kalli",
+            "Argos",
+            "Nokris",
+            "Xol",
+            "Malok",
+            "Zulmak",
+            "Phylaks",
+            "Primus Ta'aun|Ta'aun|Primus Taaun",
+            "The Templar|Templar",
+            "Akelous",
+            "Persys",
+            "The Caretaker|Caretaker",
+            "Riksis",
+            "Aksor",
+            "Dredgen Yor",
+            "Ecthar",
+            "Warpriest",
+            "Atraks-1|Atraks",
+            "Kell Echo",
+            "Avarokk",
+            "Simmumah ur-Nokru|Simmumah",
+            "Sanctified Mind",
+            "Siviks",
+            "Bracus Zahn",
+            "Vosik",
+            "Sedia"
           ]
         },
         {
@@ -14935,12 +15453,60 @@
             "Mercury|Mercure",
             "Nessus",
             "Io",
-            "The Dreaming City|Dreaming City",
+            "The Dreaming City|Dreaming City|La Cité des Rêves|Cite des Reves",
             "Europa|Europe",
-            "Neomuna",
-            "The Pale Heart|Pale Heart",
-            "The Tangled Shore|Tangled Shore",
-            "The Cosmodrome|Cosmodrome"
+            "Savathûn's Throne World|Savathuns Throne World|Throne World|Monde du Trône|Savathun's Throne World|Savathûns Throne World",
+            "Neomuna|Néomuna",
+            "The Pale Heart|Pale Heart|Le Cœur Pâle|Coeur Pale",
+            "The Tangled Shore|Tangled Shore|Le Rivage Enchevêtré|Rivage Enchevetre",
+            "European Dead Zone|EDZ|ZME",
+            "The Cosmodrome|Cosmodrome",
+            "The Dreadnaught|Dreadnaught|Le Cuirassé|Cuirasse",
+            "The Reef|Reef|Le Récif|Recif",
+            "Kepler",
+            "The Farm|Farm|La Ferme",
+            "The Last City|Last City|La Dernière Cité|Derniere Cite",
+            "The Tower|Tower|La Tour",
+            "Old Russia|Vieille Russie",
+            "Hellas Basin",
+            "Plaguelands",
+            "Eternity",
+            "The H.E.L.M.|HELM|H.E.L.M."
+          ]
+        },
+        {
+          "label": "Raid",
+          "entities": [
+            "Vault of Glass|Caveau de verre",
+            "Crota's End|Crotas End|La Chute de Cropta",
+            "King's Fall|Kings Fall|La Chute du Roi",
+            "Wrath of the Machine",
+            "Eater of Worlds",
+            "Spire of Stars",
+            "Last Wish|Dernier Vœu|Dernier Voeu",
+            "Scourge of the Past",
+            "Crown of Sorrow",
+            "Garden of Salvation|Jardin du Salut",
+            "Deep Stone Crypt",
+            "Vow of the Disciple",
+            "Root of Nightmares",
+            "Salvation's Edge|Salvations Edge",
+            "The Desert Perpetual|Desert Perpetual"
+          ]
+        },
+        {
+          "label": "Dungeon",
+          "entities": [
+            "The Shattered Throne|Shattered Throne",
+            "Pit of Heresy",
+            "Prophecy",
+            "Grasp of Avarice",
+            "Spire of the Watcher",
+            "Ghosts of the Deep",
+            "Warlord's Ruin|Warlords Ruin",
+            "Vesper's Host|Vespers Host",
+            "Sundered Doctrine",
+            "Equilibrium"
           ]
         }
       ]
@@ -15044,6 +15610,94 @@
         {
           "text": "A sword whose Exotic perks change with each copy that drops",
           "answer": "Ergo Sum"
+        },
+        {
+          "text": "A machine gun whose rounds sometimes call down lightning strikes",
+          "answer": "Thunderlord"
+        },
+        {
+          "text": "A pulse rifle that heals you and speeds up its reload on kills",
+          "answer": "Red Death|Red Death Reformed"
+        },
+        {
+          "text": "A pulse rifle whose kills fill your Super and refill its magazine",
+          "answer": "Bad Juju"
+        },
+        {
+          "text": "A rocket launcher whose blast leaves burning embers behind",
+          "answer": "Dragon's Breath|Dragons Breath"
+        },
+        {
+          "text": "A Destiny 1 sniper rifle that turns its user invisible while aiming",
+          "answer": "Patience and Time"
+        },
+        {
+          "text": "A sniper rifle that slowly regenerates its own ammunition",
+          "answer": "Ice Breaker|Icebreaker"
+        },
+        {
+          "text": "A bolt-action rifle in the primary slot, with iron sights and no scope",
+          "answer": "No Land Beyond"
+        },
+        {
+          "text": "A sidearm that grows stronger the more fireteam members carry one",
+          "answer": "Rat King"
+        },
+        {
+          "text": "A heavy shotgun from the Leviathan raid that fires one devastating slug",
+          "answer": "Legend of Acrius"
+        },
+        {
+          "text": "A shotgun that blasts enemies away and leaves them weak to every element",
+          "answer": "Tractor Cannon"
+        },
+        {
+          "text": "A rocket launcher that fires two rockets at once, each of a different element",
+          "answer": "Two-Tailed Fox"
+        },
+        {
+          "text": "A rocket launcher that fires a wide spread of small missiles",
+          "answer": "The Wardcliff Coil|Wardcliff Coil"
+        },
+        {
+          "text": "A trace rifle whose damage ramps up the longer its beam stays on target",
+          "answer": "Coldheart"
+        },
+        {
+          "text": "A Solar trace rifle that once melted the Crucible for a whole week",
+          "answer": "Prometheus Lens"
+        },
+        {
+          "text": "A sniper rifle whose precision kills call down a lightning storm",
+          "answer": "Cloudstrike"
+        },
+        {
+          "text": "The battered auto rifle in your hands at the very start of the first game",
+          "answer": "Khvostov 7G-0X|Khvostov"
+        },
+        {
+          "text": "A bow whose fully drawn arrows poison their target",
+          "answer": "Le Monarque"
+        },
+        {
+          "text": "A kinetic linear fusion rifle built to break shields",
+          "answer": "Arbalest"
+        },
+        {
+          "text": "A bow that fires heavy bolts that send enemies flying",
+          "answer": "Leviathan's Breath|Leviathans Breath"
+        },
+        {
+          "text": "A fusion rifle that fires a single tracking fireball",
+          "answer": "Jötunn|Jotunn"
+        },
+        {
+          "text": "A Stasis trace rifle that slows and freezes its targets",
+          "answer": "Ager's Scepter|Agers Scepter"
+        },
+        {
+          "text": "An auto rifle that can also launch grenades and rockets from its own frame",
+          "answer": "Quicksilver Storm"
         }
       ]
     }
