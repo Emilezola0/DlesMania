@@ -300,11 +300,20 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+  // Keep the page behind still while the pack is open: only the overlay scrolls.
+  useEffect(() => {
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, []);
 
   const style = card ? RARITY_STYLE[card.rarity] : null;
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
-    <div ref={box} className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'meteor' || phase === 'torn' ? glow : light}22`}, transparent 60%)` }}>
+    // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
+    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'meteor' || phase === 'torn' ? glow : light}22`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
@@ -461,10 +470,10 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
 
       {/* 4. All five together. */}
       {phase === 'summary' && (
-        <div className="w-full max-w-4xl space-y-6">
+        <div className="my-auto w-full max-w-4xl space-y-6 py-4">
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {cards.map((c, k) => (
-              <div key={k} className="animate-card-deal" style={{ animationDelay: `${k * 90}ms`, ['--deal-rot' as string]: `${(k - 2) * 6}deg` }}>
+              <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
                 <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} />
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {RARITY_INFO[c.rarity].name}

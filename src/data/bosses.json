@@ -14264,5 +14264,788 @@
         }
       ]
     }
+  },
+  {
+    "id": "destiny",
+    "domain": "games",
+    "franchise": "Destiny",
+    "aliases": [
+      "destiny",
+      "destiny 2",
+      "destiny2"
+    ],
+    "images": "fandom:destiny",
+    "boss": {
+      "name": "Oryx",
+      "title": "The Taken King",
+      "color": "#4c1d95",
+      "src": "fandom:destiny:Oryx",
+      "image": "https://static.wikia.nocookie.net/destinypedia/images/6/67/Oryx-_Rebuked_Grimoire_Card.jpg/revision/latest/scale-to-width-down/308?cb=20170630145827",
+      "label": "Oryx"
+    },
+    "lines": {
+      "intro": "Little light, you walk into my throne world as if the sword logic owed you mercy. Prove you have earned your place in it.",
+      "phase2": "My Taken wear many faces. Tell mine from the strangers at the gate, if your Ghost can see that far.",
+      "phase3": "Now the court is watching. Name those who stand in the dark before the light in you goes out.",
+      "hit": [
+        "A blade worth remembering…",
+        "So the light still burns.",
+        "You strike like a Guardian."
+      ],
+      "hurt": [
+        "Taken.",
+        "Your light flickers.",
+        "The deep claims another.",
+        "Kneel."
+      ],
+      "win": "You have carved a place in my ledger. Few ever have.",
+      "lose": "Another light, Taken. Your Ghost will not find you here.",
+      "secret": "One more ritual. I name a Guardian, a foe, a world or a power; you answer with another of the same. No repeats.",
+      "secretOk": [
+        "Accepted.",
+        "Again.",
+        "The sword logic approves."
+      ],
+      "secretLost": "Your answer rings hollow. The ritual is mine."
+    },
+    "blitz": [
+      {
+        "prompt": "Name the 3 Guardian classes",
+        "count": 3,
+        "answers": [
+          "Titan",
+          "Hunter|Chasseur",
+          "Warlock|Arcaniste"
+        ]
+      },
+      {
+        "prompt": "Name 4 enemy races",
+        "count": 4,
+        "answers": [
+          "Fallen|Eliksni|Déchus|Dechus",
+          "Hive|Krill|Ruche",
+          "Vex",
+          "Cabal",
+          "Taken|Corrompus",
+          "Scorn|Rebuts",
+          "Dread|Effroi",
+          "Tormentors|Tormentor|Tourmenteurs"
+        ]
+      },
+      {
+        "prompt": "Name 4 subclass elements",
+        "count": 4,
+        "answers": [
+          "Solar|Solaire",
+          "Arc|Cryo-électrique|Cryo-electrique",
+          "Void|Abyssal",
+          "Stasis|Stase",
+          "Strand|Filobscur",
+          "Prismatic|Prismatique"
+        ]
+      },
+      {
+        "prompt": "Name 5 Exotic weapons",
+        "count": 5,
+        "answers": [
+          "Gjallarhorn",
+          "Ace of Spades",
+          "Thorn",
+          "The Last Word|Last Word",
+          "Hawkmoon",
+          "Sweet Business",
+          "Whisper of the Worm|Whisper",
+          "Outbreak Perfected|Outbreak Prime|Outbreak",
+          "Sleeper Simulant|Sleeper",
+          "Telesto",
+          "Vex Mythoclast",
+          "MIDA Multi-Tool|Mida",
+          "Jötunn|Jotunn",
+          "Riskrunner",
+          "Izanagi's Burden|Izanagis Burden|Izanagi",
+          "Wish-Ender|Wish Ender",
+          "Lament",
+          "Divinity",
+          "Witherhoard",
+          "Xenophage",
+          "Osteo Striga",
+          "Graviton Lance",
+          "Polaris Lance",
+          "Fighting Lion",
+          "Merciless",
+          "Black Talon",
+          "Le Monarque",
+          "Arbalest",
+          "Eyes of Tomorrow",
+          "Anarchy",
+          "Malfeasance",
+          "Bad Juju",
+          "Red Death",
+          "Hard Light",
+          "Lumina",
+          "Truth",
+          "Sunshot",
+          "Necrochasm",
+          "Touch of Malice",
+          "Vigilance Wing"
+        ]
+      },
+      {
+        "prompt": "Name 5 raids",
+        "count": 5,
+        "answers": [
+          "Vault of Glass|Caveau de verre",
+          "Crota's End|Crotas End|La Chute de Cropta",
+          "King's Fall|Kings Fall|La Chute du Roi",
+          "Wrath of the Machine",
+          "Leviathan",
+          "Last Wish|Dernier Vœu|Dernier Voeu",
+          "Scourge of the Past",
+          "Crown of Sorrow",
+          "Garden of Salvation|Jardin du Salut",
+          "Deep Stone Crypt",
+          "Vow of the Disciple",
+          "Root of Nightmares",
+          "Salvation's Edge|Salvations Edge",
+          "Eater of Worlds",
+          "Spire of Stars"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of the Tower",
+        "count": 5,
+        "answers": [
+          "Zavala|Commander Zavala|Commandant Zavala",
+          "Ikora Rey|Ikora",
+          "Cayde-6|Cayde 6|Cayde",
+          "Banshee-44|Banshee 44|Banshee",
+          "Lord Shaxx|Shaxx|Seigneur Shaxx",
+          "Amanda Holliday|Amanda",
+          "Tess Everis|Tess",
+          "Suraya Hawthorne|Hawthorne",
+          "Saint-14|Saint 14|Saint",
+          "The Drifter|Drifter|Le Vagabond|Vagabond",
+          "Eva Levante|Eva",
+          "Ada-1|Ada 1|Ada",
+          "Xûr|Xur",
+          "Eris Morn|Eris",
+          "Osiris",
+          "The Speaker|Speaker|Le Locuteur|Locuteur",
+          "Crow"
+        ]
+      },
+      {
+        "prompt": "Name 4 Destiny expansions",
+        "count": 4,
+        "answers": [
+          "The Dark Below|Les Profondeurs Obscures",
+          "House of Wolves|La Maison des Loups",
+          "The Taken King|Le Roi des Corrompus|Taken King",
+          "Rise of Iron|Les Seigneurs de Fer",
+          "Curse of Osiris|La Malédiction d'Osiris|La Malediction d'Osiris",
+          "Warmind|L'Esprit Belliqueux",
+          "Forsaken|Renégats|Renegats",
+          "Shadowkeep|Bastion des Ombres",
+          "Beyond Light|Au-delà de la Lumière|Au-dela de la Lumiere",
+          "The Witch Queen|Witch Queen|La Reine Sorcière|La Reine Sorciere",
+          "Lightfall|Éclipse|Eclipse",
+          "The Final Shape|Final Shape|La Forme Finale",
+          "The Edge of Fate|Edge of Fate"
+        ]
+      },
+      {
+        "prompt": "Name 5 destinations",
+        "count": 5,
+        "answers": [
+          "Earth|Terre",
+          "The Moon|Moon|Lune",
+          "Venus|Vénus",
+          "Mars",
+          "Mercury|Mercure",
+          "Titan",
+          "Nessus",
+          "Io",
+          "The Dreaming City|Dreaming City|La Cité des Rêves|Cite des Reves",
+          "Europa|Europe",
+          "Savathûn's Throne World|Savathuns Throne World|Throne World|Monde du Trône",
+          "Neomuna|Néomuna",
+          "The Pale Heart|Pale Heart|Le Cœur Pâle|Coeur Pale",
+          "The Tangled Shore|Tangled Shore|Le Rivage Enchevêtré|Rivage Enchevetre",
+          "European Dead Zone|EDZ|ZME",
+          "The Cosmodrome|Cosmodrome",
+          "The Dreadnaught|Dreadnaught|Le Cuirassé|Cuirasse"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Cayde-6",
+          "aliases": [
+            "Cayde 6",
+            "Cayde"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/2/24/Cayde-6.png/revision/latest/scale-to-width-down/329?cb=20140622223202"
+        },
+        {
+          "label": "Zavala",
+          "aliases": [
+            "Commander Zavala"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/6/62/CommanderZavala2.jpg/revision/latest/scale-to-width-down/400?cb=20160826061659"
+        },
+        {
+          "label": "Ikora Rey",
+          "aliases": [
+            "Ikora"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/f/fc/Ikora-Io.png/revision/latest/scale-to-width-down/400?cb=20180113174823"
+        },
+        {
+          "label": "Ghost",
+          "fr": "Spectre",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/ab/Ghost.png/revision/latest/scale-to-width-down/400?cb=20140824204738"
+        },
+        {
+          "label": "Savathûn",
+          "aliases": [
+            "Savathun"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/7/7a/Savath%C3%BBn.jpg/revision/latest/scale-to-width-down/400?cb=20250318030519"
+        },
+        {
+          "label": "The Witness",
+          "aliases": [
+            "Witness"
+          ],
+          "fr": "Le Témoin",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e3/The_Witness.png/revision/latest/scale-to-width-down/400?cb=20250227000913"
+        },
+        {
+          "label": "Eris Morn",
+          "aliases": [
+            "Eris"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/0/0a/ErisTDB2.jpg/revision/latest/scale-to-width-down/291?cb=20141030135437"
+        },
+        {
+          "label": "Saint-14",
+          "aliases": [
+            "Saint 14",
+            "Saint"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/1/12/Saint-14.png/revision/latest/scale-to-width-down/400?cb=20191204023912"
+        },
+        {
+          "label": "Osiris",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e3/Osiris.png/revision/latest/scale-to-width-down/400?cb=20171101083335"
+        },
+        {
+          "label": "Mara Sov",
+          "aliases": [
+            "Mara"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/d/d4/QueenMaraSov.png/revision/latest/scale-to-width-down/400?cb=20230409193410"
+        },
+        {
+          "label": "Lord Shaxx",
+          "aliases": [
+            "Shaxx"
+          ],
+          "src": "Shaxx",
+          "fr": "Seigneur Shaxx",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/7/77/Lord_Shaxx.png/revision/latest/scale-to-width-down/399?cb=20140623034010"
+        },
+        {
+          "label": "Xûr",
+          "aliases": [
+            "Xur"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/6/67/Xur_Agent_of_the_Nine.png/revision/latest?cb=20140912180018"
+        },
+        {
+          "label": "Uldren Sov",
+          "aliases": [
+            "Uldren"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/aa/Brother.png/revision/latest/scale-to-width-down/400?cb=20140912172004"
+        },
+        {
+          "label": "Crota",
+          "aliases": [
+            "Crota, Son of Oryx"
+          ],
+          "fr": "Cropta",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/b/b2/Crota%2C_Son_of_Oryx.jpg/revision/latest/scale-to-width-down/308?cb=20141222050105"
+        },
+        {
+          "label": "Rasputin",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/2/20/Warmind_Rasputin.jpg/revision/latest?cb=20190804101033"
+        },
+        {
+          "label": "Calus",
+          "aliases": [
+            "Emperor Calus"
+          ],
+          "fr": "Empereur Calus",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/8/80/Calus.png/revision/latest/scale-to-width-down/400?cb=20170918115623"
+        },
+        {
+          "label": "Drifter",
+          "aliases": [
+            "The Drifter"
+          ],
+          "fr": "Le Vagabond",
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/5/5d/The_Drifter_%28Character%29_%28High_Resolution%29.png/revision/latest/scale-to-width-down/274?cb=20190101045735"
+        },
+        {
+          "label": "Banshee-44",
+          "aliases": [
+            "Banshee 44",
+            "Banshee"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/a/ae/Banshee-44.png/revision/latest/scale-to-width-down/364?cb=20140621191153"
+        },
+        {
+          "label": "Riven",
+          "aliases": [
+            "Riven of a Thousand Voices"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/0/0e/Riven.jpeg/revision/latest?cb=20190808061413"
+        },
+        {
+          "label": "Amanda Holliday",
+          "aliases": [
+            "Amanda"
+          ],
+          "image": "https://static.wikia.nocookie.net/destinypedia/images/3/32/Amanda_Holliday.png/revision/latest/scale-to-width-down/309?cb=20151209033004"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Master Chief",
+          "src": "fandom:halo:John-117",
+          "aliases": [
+            "John-117"
+          ],
+          "image": "https://static.wikia.nocookie.net/halo/images/8/84/InfiniteChiefTRANSPARENTholdingReachAR.png/revision/latest/scale-to-width-down/400?cb=20230220134648"
+        },
+        {
+          "label": "Cortana",
+          "src": "fandom:halo:Cortana",
+          "image": "https://static.wikia.nocookie.net/halo/images/6/6d/H5G_Cutscene_Cortana.png/revision/latest/scale-to-width-down/400?cb=20151119112629"
+        },
+        {
+          "label": "The Arbiter",
+          "src": "fandom:halo:Thel 'Vadam",
+          "aliases": [
+            "Arbiter"
+          ],
+          "image": "https://static.wikia.nocookie.net/halo/images/1/10/H5G_Screenshot_ThelVadam-Profile.png/revision/latest/scale-to-width-down/254?cb=20171124145947"
+        },
+        {
+          "label": "Commander Shepard",
+          "src": "fandom:masseffect:Commander Shepard",
+          "aliases": [
+            "Shepard"
+          ],
+          "image": "https://static.wikia.nocookie.net/masseffect/images/2/24/MELE_Default_Shepards.png/revision/latest/scale-to-width-down/400?cb=20211028200648"
+        },
+        {
+          "label": "Garrus Vakarian",
+          "src": "fandom:masseffect:Garrus Vakarian",
+          "aliases": [
+            "Garrus"
+          ],
+          "image": "https://static.wikia.nocookie.net/masseffect/images/9/9d/ME_garrus_charshot.png/revision/latest/scale-to-width-down/315?cb=20210620043621"
+        },
+        {
+          "label": "Samus Aran",
+          "src": "fandom:metroid:Samus Aran",
+          "aliases": [
+            "Samus"
+          ],
+          "image": "https://static.wikia.nocookie.net/metroid/images/7/7f/Mom_vignette.jpg/revision/latest/scale-to-width-down/293?cb=20150704073331"
+        },
+        {
+          "label": "Isaac Clarke",
+          "src": "fandom:deadspace:Isaac Clarke",
+          "image": "https://static.wikia.nocookie.net/deadspace/images/3/3a/DSR_Isaac_Portrait.png/revision/latest/scale-to-width-down/328?cb=20250503003409"
+        },
+        {
+          "label": "Doom Slayer",
+          "src": "fandom:doom:Doomguy",
+          "aliases": [
+            "Doomguy"
+          ],
+          "image": "https://static.wikia.nocookie.net/doom/images/b/b1/Doomguy.png/revision/latest/scale-to-width-down/298?cb=20160711041847"
+        },
+        {
+          "label": "BT-7274",
+          "src": "fandom:titanfall:BT-7274",
+          "aliases": [
+            "BT"
+          ],
+          "image": "https://static.wikia.nocookie.net/titanfall/images/1/15/TF2_BT-7274.jpg/revision/latest/scale-to-width-down/300?cb=20161109022745"
+        },
+        {
+          "label": "Claptrap",
+          "src": "fandom:borderlands:Claptrap",
+          "image": "https://static.wikia.nocookie.net/borderlands/images/b/b5/ClaptrapTPS.jpeg/revision/latest/scale-to-width-down/374?cb=20151004033523"
+        },
+        {
+          "label": "Handsome Jack",
+          "src": "fandom:borderlands:Handsome Jack",
+          "image": "https://static.wikia.nocookie.net/borderlands/images/9/90/Handsome_Jack.png/revision/latest/scale-to-width-down/157?cb=20200415123317"
+        },
+        {
+          "label": "Marcus Fenix",
+          "src": "fandom:gearsofwar:Marcus Fenix",
+          "image": "https://static.wikia.nocookie.net/gearsofwar/images/0/0b/G5MarcusRender.png/revision/latest/scale-to-width-down/336?cb=20210717205425"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Atheon",
+        "aliases": [
+          "Atheon, Time's Conflux"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/0/07/Atheon.jpg/revision/latest/scale-to-width-down/400?cb=20150403034110"
+      },
+      {
+        "label": "Rhulk",
+        "aliases": [
+          "Rhulk, Disciple of the Witness"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/47/RhulkPhaseOne.jpg/revision/latest/scale-to-width-down/285?cb=20220511163326"
+      },
+      {
+        "label": "Nezarec",
+        "aliases": [
+          "Nezarec, Final God of Pain"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/e/ea/Nezarec-1.jpg/revision/latest/scale-to-width-down/400?cb=20230702163110"
+      },
+      {
+        "label": "Eramis",
+        "aliases": [
+          "Eramis, Kell of Darkness"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4d/Eramis.jpg/revision/latest/scale-to-width-down/289?cb=20201021230842"
+      },
+      {
+        "label": "Mithrax",
+        "aliases": [
+          "Mithrax, the Forsaken"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/b/b2/Mithrax_Splicer.jpg/revision/latest/scale-to-width-down/400?cb=20210521122925"
+      },
+      {
+        "label": "Variks",
+        "aliases": [
+          "Variks, the Loyal"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/5/5d/Variks_Grimoire_Card.jpg/revision/latest/scale-to-width-down/308?cb=20190804150913"
+      },
+      {
+        "label": "Petra Venj",
+        "aliases": [
+          "Petra"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/0/0c/HoW_Screenshot_4.jpg/revision/latest/scale-to-width-down/400?cb=20150424155259"
+      },
+      {
+        "label": "Taniks",
+        "aliases": [
+          "Taniks, the Scarred"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/c/ce/Shadowthief.jpg/revision/latest/scale-to-width-down/400?cb=20150507141810"
+      },
+      {
+        "label": "Skolas",
+        "aliases": [
+          "Skolas, Kell of Kells"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/5/58/Skolas%2C_Kell_of_Kells.jpg/revision/latest/scale-to-width-down/308?cb=20190817010350"
+      },
+      {
+        "label": "Sepiks Prime",
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/e/e1/Sepiks_Prime_Closeup.png/revision/latest/scale-to-width-down/400?cb=20140610174930"
+      },
+      {
+        "label": "Aksis",
+        "aliases": [
+          "Aksis, Archon Prime"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/7/72/Aksis%2C_Archon_Prime_%28Grimoire_Card%29.jpg/revision/latest/scale-to-width-down/308?cb=20160924061705"
+      },
+      {
+        "label": "Quria",
+        "aliases": [
+          "Quria, Blade Transform"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/48/Quria.jpg/revision/latest/scale-to-width-down/400?cb=20250319002038"
+      },
+      {
+        "label": "Shin Malphur",
+        "aliases": [
+          "Shin"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/1/1d/Shin_malphur.jpeg/revision/latest?cb=20190905153209"
+      },
+      {
+        "label": "Toland",
+        "aliases": [
+          "Toland, the Shattered"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/c/ca/Toland.jpeg/revision/latest?cb=20190905152739"
+      },
+      {
+        "label": "Felwinter",
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4d/FelwinterStatue.png/revision/latest?cb=20161002014802"
+      },
+      {
+        "label": "Ana Bray",
+        "aliases": [
+          "Anastasia Bray"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/a/aa/Ana_Bray.png/revision/latest/scale-to-width-down/400?cb=20180425000647"
+      },
+      {
+        "label": "Suraya Hawthorne",
+        "aliases": [
+          "Hawthorne"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/2/27/Suraya_Hawthorne_2.png/revision/latest/scale-to-width-down/400?cb=20220330020718"
+      },
+      {
+        "label": "Elsie Bray",
+        "aliases": [
+          "Exo Stranger",
+          "The Stranger"
+        ],
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/4/4e/300px-ExoStranger.jpg/revision/latest/scale-to-width-down/400?cb=20220827223420"
+      },
+      {
+        "label": "Dominus Ghaul",
+        "aliases": [
+          "Ghaul"
+        ],
+        "src": "Ghaul",
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/7/7e/D2_ghaul_05.png/revision/latest/scale-to-width-down/400?cb=20170730044724"
+      },
+      {
+        "label": "The Traveler",
+        "aliases": [
+          "Traveler"
+        ],
+        "fr": "Le Voyageur",
+        "image": "https://static.wikia.nocookie.net/destinypedia/images/1/1d/Destiny_2_Broken_Traveller.png/revision/latest/scale-to-width-down/400?cb=20190804094209"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Character",
+          "entities": [
+            "Cayde-6|Cayde 6|Cayde",
+            "Zavala|Commander Zavala",
+            "Ikora Rey|Ikora",
+            "Ghost|Spectre",
+            "Savathûn|Savathun",
+            "The Witness|Witness|Le Témoin",
+            "Eris Morn|Eris",
+            "Saint-14|Saint 14",
+            "Osiris",
+            "Mara Sov|Mara",
+            "Lord Shaxx|Shaxx",
+            "Xûr|Xur",
+            "Uldren Sov|Uldren",
+            "Crota|Cropta",
+            "Rasputin",
+            "Calus",
+            "Drifter|The Drifter|Le Vagabond",
+            "Banshee-44|Banshee",
+            "Riven",
+            "Amanda Holliday|Amanda",
+            "Oryx",
+            "Atheon",
+            "Rhulk",
+            "Nezarec",
+            "Eramis",
+            "Mithrax",
+            "Variks",
+            "Petra Venj|Petra",
+            "Taniks",
+            "Skolas",
+            "Shin Malphur|Shin",
+            "Toland",
+            "Ana Bray|Anastasia Bray",
+            "Suraya Hawthorne|Hawthorne",
+            "Elsie Bray|Exo Stranger",
+            "Dominus Ghaul|Ghaul",
+            "Crow",
+            "Eva Levante|Eva",
+            "Tess Everis|Tess",
+            "Ada-1|Ada"
+          ]
+        },
+        {
+          "label": "Class",
+          "entities": [
+            "Titan",
+            "Hunter|Chasseur",
+            "Warlock|Arcaniste"
+          ]
+        },
+        {
+          "label": "Race",
+          "entities": [
+            "Fallen|Eliksni|Déchus",
+            "Hive|Krill|Ruche",
+            "Vex",
+            "Cabal",
+            "Taken|Corrompus",
+            "Scorn|Rebuts",
+            "Dread|Effroi",
+            "Human|Humain",
+            "Awoken|Éveillé|Eveille",
+            "Exo"
+          ]
+        },
+        {
+          "label": "Element",
+          "entities": [
+            "Solar|Solaire",
+            "Arc|Cryo-électrique",
+            "Void|Abyssal",
+            "Stasis|Stase",
+            "Strand|Filobscur",
+            "Prismatic|Prismatique"
+          ]
+        },
+        {
+          "label": "Destination",
+          "entities": [
+            "Earth|Terre",
+            "The Moon|Moon|Lune",
+            "Venus|Vénus",
+            "Mars",
+            "Mercury|Mercure",
+            "Nessus",
+            "Io",
+            "The Dreaming City|Dreaming City",
+            "Europa|Europe",
+            "Neomuna",
+            "The Pale Heart|Pale Heart",
+            "The Tangled Shore|Tangled Shore",
+            "The Cosmodrome|Cosmodrome"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Exotic",
+      "prompt": "Which Exotic is this?",
+      "clues": [
+        {
+          "text": "A rocket launcher whose rockets burst into a pack of smaller, tracking ones",
+          "answer": "Gjallarhorn"
+        },
+        {
+          "text": "A hand cannon carried by the Hunter Vanguard himself, card suit and all",
+          "answer": "Ace of Spades"
+        },
+        {
+          "text": "A hand cannon that poisons, born of a Hunter gone wrong",
+          "answer": "Thorn"
+        },
+        {
+          "text": "A hand cannon fired from the hip, the answer to Thorn",
+          "answer": "The Last Word|Last Word"
+        },
+        {
+          "text": "A hand cannon of a Hunter legend, whose precision hits charge a Paracausal Shot",
+          "answer": "Hawkmoon"
+        },
+        {
+          "text": "An auto rifle that spins up and fires faster the longer you hold the trigger",
+          "answer": "Sweet Business"
+        },
+        {
+          "text": "A sniper rifle from a hidden, timed mission on Io",
+          "answer": "Whisper of the Worm|Whisper"
+        },
+        {
+          "text": "A pulse rifle that spreads nanite swarms, rebuilt in the Zero Hour mission",
+          "answer": "Outbreak Perfected|Outbreak Prime|Outbreak"
+        },
+        {
+          "text": "A linear fusion rifle whose shots bounce off walls, a Warmind weapon",
+          "answer": "Sleeper Simulant|Sleeper"
+        },
+        {
+          "text": "A fusion rifle that sticks projectiles which then explode — famous for its bugs",
+          "answer": "Telesto"
+        },
+        {
+          "text": "A Vex fusion rifle from the Vault of Glass that fires like a beam",
+          "answer": "Vex Mythoclast"
+        },
+        {
+          "text": "A scout rifle that gives speed and radar while sprinting, from the Cosmodrome",
+          "answer": "MIDA Multi-Tool|Mida"
+        },
+        {
+          "text": "A trace rifle from the Garden of Salvation that wraps its target in a bubble with a weak spot",
+          "answer": "Divinity"
+        },
+        {
+          "text": "A bow from the Dreaming City whose arrows pierce through walls and shields",
+          "answer": "Wish-Ender|Wish Ender"
+        },
+        {
+          "text": "A sword with a revving chainsaw edge",
+          "answer": "Lament"
+        },
+        {
+          "text": "A grenade launcher whose rounds leave a pool of blight on the ground",
+          "answer": "Witherhoard"
+        },
+        {
+          "text": "A machine gun that fires explosive rounds, earned through a puzzle on the Moon",
+          "answer": "Xenophage"
+        },
+        {
+          "text": "A grenade launcher that sticks arc rounds that chain between enemies",
+          "answer": "Anarchy"
+        },
+        {
+          "text": "A Gambit hand cannon whose rounds explode after enough hits, deadly against Taken",
+          "answer": "Malfeasance"
+        },
+        {
+          "text": "A hand cannon whose kills charge rounds that heal allies",
+          "answer": "Lumina"
+        },
+        {
+          "text": "A rocket launcher from the Deep Stone Crypt that fires a volley of tracking rockets",
+          "answer": "Eyes of Tomorrow"
+        },
+        {
+          "text": "A submachine gun that spreads poison, from the Witch Queen's campaign",
+          "answer": "Osteo Striga"
+        },
+        {
+          "text": "A scout rifle from King's Fall whose last round drains your own health",
+          "answer": "Touch of Malice"
+        },
+        {
+          "text": "A sword whose Exotic perks change with each copy that drops",
+          "answer": "Ergo Sum"
+        }
+      ]
+    }
   }
 ]

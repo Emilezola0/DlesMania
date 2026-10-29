@@ -85,6 +85,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     audio: 'https://www.myinstants.com/media/sounds/hello-zuko-here.mp3',
     image: 'https://static.wikia.nocookie.net/avatar/images/0/05/Zuko_Blu-ray_art.png/revision/latest?cb=20261025210247',
   },
+  destiny: { name: 'Cayde-6', title: 'Ace of the Vanguard', line: 'Hunter Vanguard, gambler and incurable joker: he always had a plan, and a hand cannon to back it up.', voice: 'Got a plan. It is a good one, promise.' },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -124,6 +125,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
     image: 'https://static.wikia.nocookie.net/avatar/images/5/56/Toph_Blu-ray_art.png/revision/latest/scale-to-width-down/500?cb=20261025210823',
   },
   inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
+  destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
 };
 
 /**
@@ -402,7 +404,9 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
 ];
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny']);
+/** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
+const KEEP_OUT_OF_SEEN = new Set(['destiny']);
 
 const slug = (s: string) =>
   s
@@ -544,7 +548,8 @@ export const CARDS: Card[] = (() => {
     const own = LATE_SETS.has(b.id);
     const add = (name: string, image: string | undefined, rarity: Rarity, description: string) => {
       if (!image || (own ? set.some((c) => c.name === name) : seen.has(name))) return;
-      seen.add(name);
+      // Nor can they keep a name from the rosters added after (Destiny's Ghost must leave Marvel's be).
+      if (!KEEP_OUT_OF_SEEN.has(b.id)) seen.add(name);
       set.push({ id: `${b.id}:${slug(name)}`, name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity, description });
     };
     const intro = (b.lines as { intro?: string } | undefined)?.intro;

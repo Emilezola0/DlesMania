@@ -15,6 +15,7 @@ import { playVoice } from './voice';
  * included): a right answer, a mistake. A mythic speaks as its star does.
  */
 export const CHARACTER_LINES: Record<string, { good: string[]; bad: string[] }> = {
+  "Oryx": { good: ["Even a king must mark this in his ledger.","The sword logic favours you."], bad: ["Taken.","Your light is mine now."] },
   "Ozai": { good: ["Even the Phoenix King must admit it.","You burn brighter than I thought."], bad: ["Pathetic.","You are no match for the Fire Nation."] },
   "Aang": { good: ["Yeah! Airbending master!","That was awesome!"], bad: ["Whoops… let’s try again.","Even Monk Gyatso missed sometimes."] },
   "Apollyon": { good: ["A wolf among sheep, at last.","That is how war is waged."], bad: ["A sheep, after all.","The Legion expected more."] },
@@ -83,6 +84,7 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   wow: { good: ['Epic loot!', 'Level up!', 'For Azeroth!'], bad: ['Wipe! Run back…', 'Repair your gear and retry.', 'Pulled too many…'] },
   unreal: { good: ['Compiled successfully!', 'Clean graph!', 'Zero warnings.'], bad: ['Accessed None…', 'Infinite loop detected!', 'Compile error.'] },
   avatar: { good: ['Perfectly balanced!', 'Your bending is getting stronger!', 'Yip yip!'], bad: ['That was a cabbage-level mistake…', 'Back to the Air Temple to train…', 'The elements are not with you.'] },
+  destiny: { good: ['Eyes up, Guardian!', 'An Exotic drop!', 'The Light holds!'], bad: ['Your Ghost is reviving you…', 'Another blue engram…', 'Back to orbit…'] },
   forhonor: { good: ['Guard break!', 'A worthy duel!', 'Execution!'], bad: ['Parried…', 'Your guard is open!', 'Back to the war camp…'] },
   forts: { good: ['Direct hit!', 'Reactor breached!', 'Fort holding strong.'], bad: ['Bracing down!', 'Incoming fire!', 'Repair crews, now!'] },
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },
