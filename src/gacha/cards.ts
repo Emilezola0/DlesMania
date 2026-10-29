@@ -72,6 +72,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!", audio: "https://mario.wiki.gallery/images/7/7c/SM64_Mario_Let%27s-a-go%21.wav" },
   genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Time for — retribution!", audio: "https://static.wikia.nocookie.net/gensin-impact/images/5/57/VO_Diluc_Elemental_Burst_03.ogg/revision/latest?cb=20221112195845" },
   wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "The goddess watches over us.", audio: "https://static.wikia.nocookie.net/allstars_gamepedia/images/d/d4/Tyrande_IntroBoast01.ogg/revision/latest?cb=20180709081959" },
+  forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
 };
@@ -361,7 +362,7 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
 ];
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts']);
+const LATE_SETS = new Set(['forts', 'forhonor']);
 
 const slug = (s: string) =>
   s

@@ -11961,5 +11961,572 @@
         }
       ]
     }
+  },
+  {
+    "id": "forhonor",
+    "domain": "games",
+    "franchise": "For Honor",
+    "aliases": [
+      "for honor",
+      "forhonor"
+    ],
+    "images": "fandom:forhonor",
+    "boss": {
+      "name": "Apollyon",
+      "title": "Warlord of the Blackstone Legion",
+      "color": "#7f1d1d",
+      "image": "https://static.wikia.nocookie.net/for-honor/images/b/b7/Ap.jpg/revision/latest/scale-to-width-down/400?cb=20170219092425"
+    },
+    "lines": {
+      "intro": "Sheep, wolves, and the rare few who are something more. Step into the circle and show me which you are.",
+      "phase2": "Every faction sends its best. Can you tell my warriors from the pretenders at the gate?",
+      "phase3": "Steel against steel now. Name the fighters who stand before you — before they cut you down.",
+      "hit": [
+        "A clean strike…",
+        "So you have teeth.",
+        "The Legion felt that one."
+      ],
+      "hurt": [
+        "Guard break!",
+        "Too slow.",
+        "You leave your flank open.",
+        "Wolves do not hesitate."
+      ],
+      "win": "At last — a wolf. The war will remember your name.",
+      "lose": "A sheep, after all. Back to the flock.",
+      "secret": "One last duel. I name a hero, a faction, a class or a face from the war — answer with another of the same. No repeats.",
+      "secretOk": [
+        "Parried.",
+        "Again.",
+        "Hm. Sharp."
+      ],
+      "secretLost": "Your guard drops. The duel is mine."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 Knights",
+        "count": 5,
+        "answers": [
+          "Warden",
+          "Conqueror",
+          "Peacekeeper",
+          "Lawbringer",
+          "Centurion",
+          "Gladiator",
+          "Black Prior",
+          "Warmonger",
+          "Gryphon"
+        ]
+      },
+      {
+        "prompt": "Name 5 Vikings",
+        "count": 5,
+        "answers": [
+          "Raider",
+          "Warlord",
+          "Berserker",
+          "Valkyrie",
+          "Highlander",
+          "Shaman",
+          "Jormungandr",
+          "Varangian Guard"
+        ]
+      },
+      {
+        "prompt": "Name 5 Samurai",
+        "count": 5,
+        "answers": [
+          "Kensei",
+          "Shugoki",
+          "Orochi",
+          "Nobushi",
+          "Shinobi",
+          "Aramusha",
+          "Hitokiri",
+          "Kyoshin",
+          "Sohei",
+          "Arakure"
+        ]
+      },
+      {
+        "prompt": "Name 4 Wu Lin heroes",
+        "count": 4,
+        "answers": [
+          "Tiandi",
+          "Jiang Jun",
+          "Nuxia",
+          "Shaolin",
+          "Zhanhu",
+          "Juren"
+        ]
+      },
+      {
+        "prompt": "Name 4 Outlanders",
+        "count": 4,
+        "answers": [
+          "Pirate",
+          "Medjay",
+          "Afeera",
+          "Ocelotl",
+          "Khatun",
+          "Virtuosa"
+        ]
+      },
+      {
+        "prompt": "Name 5 Assassins",
+        "count": 5,
+        "answers": [
+          "Peacekeeper",
+          "Gladiator",
+          "Berserker",
+          "Shaman",
+          "Orochi",
+          "Shinobi",
+          "Nuxia",
+          "Khatun",
+          "Arakure"
+        ]
+      },
+      {
+        "prompt": "Name 5 Heavies",
+        "count": 5,
+        "answers": [
+          "Conqueror",
+          "Black Prior",
+          "Warlord",
+          "Jormungandr",
+          "Shugoki",
+          "Hitokiri",
+          "Sohei",
+          "Jiang Jun"
+        ]
+      },
+      {
+        "prompt": "Name 4 factions",
+        "count": 4,
+        "answers": [
+          "Knights|Knight",
+          "Vikings|Viking",
+          "Samurai",
+          "Wu Lin|Wulin",
+          "Outlanders|Outlander"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Warden",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/a/a5/Warden.png/revision/latest/scale-to-width-down/400?cb=20180724205106"
+        },
+        {
+          "label": "Kensei",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/5/5e/Kensei.png/revision/latest/scale-to-width-down/400?cb=20180724210748"
+        },
+        {
+          "label": "Centurion",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/e/ec/Centurion-0.png/revision/latest/scale-to-width-down/400?cb=20180725000715"
+        },
+        {
+          "label": "Raider",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/e/e7/Raider.png/revision/latest/scale-to-width-down/400?cb=20180724210119"
+        },
+        {
+          "label": "Orochi",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/1/12/Orochi.png/revision/latest/scale-to-width-down/400?cb=20180724221226"
+        },
+        {
+          "label": "Lawbringer",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/8/8a/Lawbringer.png/revision/latest/scale-to-width-down/400?cb=20180724234333"
+        },
+        {
+          "label": "Valkyrie",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/d/d5/Valkyrie.png/revision/latest/scale-to-width-down/400?cb=20180725000050"
+        },
+        {
+          "label": "Conqueror",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/0/01/Conqueror-2.png/revision/latest/scale-to-width-down/400?cb=20180724213858"
+        },
+        {
+          "label": "Peacekeeper",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/6/64/Peacekeeper.png/revision/latest/scale-to-width-down/400?cb=20180724220415"
+        },
+        {
+          "label": "Berserker",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/3/39/Berserker-0.png/revision/latest/scale-to-width-down/400?cb=20180724222621"
+        },
+        {
+          "label": "Shugoki",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/d/dd/Shugoki.png/revision/latest/scale-to-width-down/400?cb=20180724214545"
+        },
+        {
+          "label": "Warlord",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/c/c8/Warlord.png/revision/latest/scale-to-width-down/400?cb=20180724215705"
+        },
+        {
+          "label": "Nobushi",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/3/33/Nobushi.png/revision/latest/scale-to-width-down/400?cb=20180724235255"
+        },
+        {
+          "label": "Highlander",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/3/34/Highlander.png/revision/latest/scale-to-width-down/400?cb=20180725005723"
+        },
+        {
+          "label": "Shinobi",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/a/a9/Shinobi-0.png/revision/latest/scale-to-width-down/400?cb=20180725001443"
+        },
+        {
+          "label": "Gladiator",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/5/58/Gladiator-0.png/revision/latest/scale-to-width-down/400?cb=20180725004534"
+        },
+        {
+          "label": "Tiandi",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/b/b5/Wu_Lin_Tiandi_M.jpg/revision/latest/scale-to-width-down/400?cb=20181222221928"
+        },
+        {
+          "label": "Jiang Jun",
+          "image": "https://static.wikia.nocookie.net/for-honor/images/e/ee/Wu_Lin_Jiang_Jun.jpg/revision/latest/scale-to-width-down/400?cb=20181222215424"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Ezio Auditore",
+          "image": "https://static.wikia.nocookie.net/assassinscreed/images/6/66/ACI-Ezio.png/revision/latest/scale-to-width-down/400?cb=20250725015309",
+          "aliases": [
+            "Ezio"
+          ]
+        },
+        {
+          "label": "Bayek",
+          "image": "https://static.wikia.nocookie.net/assassinscreed/images/4/4c/ACO_THO_Hidden_One_Bayek.png/revision/latest/scale-to-width-down/400?cb=20240405122718"
+        },
+        {
+          "label": "Eivor",
+          "image": "https://static.wikia.nocookie.net/assassinscreed/images/c/c4/ACV_Female_Eivor_render.png/revision/latest/scale-to-width-down/400?cb=20200714110025"
+        },
+        {
+          "label": "Solaire of Astora",
+          "image": "https://static.wikia.nocookie.net/darksouls/images/2/21/DS1R_Solaire_of_Astora_in_Undead_Burg_%28half_body%2C_front%29.webp/revision/latest/scale-to-width-down/400?cb=20231127191535",
+          "aliases": [
+            "Solaire"
+          ]
+        },
+        {
+          "label": "Artorias",
+          "image": "https://static.wikia.nocookie.net/darksouls/images/b/ba/Knight_Artorias_Model.png/revision/latest/scale-to-width-down/400?cb=20210810060149"
+        },
+        {
+          "label": "Jin Sakai",
+          "image": "https://static.wikia.nocookie.net/ghostoftsushima/images/9/94/Jin_Sakai_key_art_cropped.png/revision/latest/scale-to-width-down/400?cb=20200802081711"
+        },
+        {
+          "label": "Sekiro",
+          "image": "https://static.wikia.nocookie.net/sekiro/images/4/41/Sekiro.png/revision/latest/scale-to-width-down/400?cb=20190422172934&path-prefix=es",
+          "aliases": [
+            "Wolf"
+          ]
+        },
+        {
+          "label": "Genichiro Ashina",
+          "image": "https://static.wikia.nocookie.net/shadowsdietwice/images/6/60/Genichiro_Ashina.png/revision/latest/scale-to-width-down/400?cb=20190418124558",
+          "aliases": [
+            "Genichiro"
+          ]
+        },
+        {
+          "label": "Altaïr",
+          "image": "https://static.wikia.nocookie.net/assassinscreed/images/9/93/ACR_Altair_Render2.png/revision/latest/scale-to-width-down/400?cb=20250725023629",
+          "aliases": [
+            "Altair"
+          ]
+        },
+        {
+          "label": "Kassandra",
+          "image": "https://static.wikia.nocookie.net/assassinscreed/images/1/1a/ACOD_Memories_Awoken_Kassandra_Myrrine_Spear.png/revision/latest/scale-to-width-down/400?cb=20190402070728"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Black Prior",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/2/26/For_Honor_-_BP_profile_M.jpg/revision/latest/scale-to-width-down/400?cb=20190202024332"
+      },
+      {
+        "label": "Jormungandr",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/6/6d/HuldaProfile.jpg/revision/latest/scale-to-width-down/400?cb=20190801225313"
+      },
+      {
+        "label": "Hitokiri",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/1/11/SakuraProfile.jpg/revision/latest/scale-to-width-down/400?cb=20190502164420"
+      },
+      {
+        "label": "Shaman",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/5/56/Shaman.png/revision/latest/scale-to-width-down/400?cb=20180725010318"
+      },
+      {
+        "label": "Aramusha",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/c/ce/Aramusha.png/revision/latest/scale-to-width-down/400?cb=20180725010631"
+      },
+      {
+        "label": "Nuxia",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/b/b0/Wu_Lin_Nuxia.jpg/revision/latest/scale-to-width-down/400?cb=20181222213337"
+      },
+      {
+        "label": "Shaolin",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/0/05/Wu_Lin_Shaolin.jpg/revision/latest/scale-to-width-down/400?cb=20181222212327"
+      },
+      {
+        "label": "Zhanhu",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/7/7b/Sun_Da_Profile.jpg/revision/latest/scale-to-width-down/400?cb=20191107202640"
+      },
+      {
+        "label": "Warmonger",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/9/90/Warmonger.png/revision/latest/scale-to-width-down/400?cb=20200806201956"
+      },
+      {
+        "label": "Gryphon",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/7/70/Gryphon_portrait.jpg/revision/latest/scale-to-width-down/400?cb=20201210221738"
+      },
+      {
+        "label": "Varangian Guard",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/4/4f/Varangian_Guard_profile_4.png/revision/latest/scale-to-width-down/400?cb=20240204100845"
+      },
+      {
+        "label": "Kyoshin",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/e/e1/Kyoshin_portrait_4.png/revision/latest/scale-to-width-down/400?cb=20210727204521"
+      },
+      {
+        "label": "Sohei",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/e/e8/Sohei_profile_5.png/revision/latest/scale-to-width-down/400?cb=20240727132605"
+      },
+      {
+        "label": "Pirate",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/0/08/Pirate_profile_1.png/revision/latest/scale-to-width-down/400?cb=20220128110635"
+      },
+      {
+        "label": "Medjay",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/0/0d/Medjay_profile.PNG/revision/latest/scale-to-width-down/400?cb=20220729051918"
+      },
+      {
+        "label": "Afeera",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/b/b1/Afeera_profile_5.PNG/revision/latest/scale-to-width-down/400?cb=20230719074222"
+      },
+      {
+        "label": "Ocelotl",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/1/1f/Ocelotl_-_profile_2.PNG/revision/latest/scale-to-width-down/400?cb=20230730224255"
+      },
+      {
+        "label": "Khatun",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/9/94/Khatun_profile_3.png/revision/latest/scale-to-width-down/400?cb=20250210161915"
+      },
+      {
+        "label": "Juren",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/2/2e/For_Honor_Juren_profile.jpg/revision/latest/scale-to-width-down/400?cb=20260209122038"
+      },
+      {
+        "label": "Virtuosa",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/1/19/Virtuosa_profile_4.png/revision/latest/scale-to-width-down/400?cb=20250726150325"
+      },
+      {
+        "label": "Arakure",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/7/73/Arakure_profile.jpg/revision/latest/scale-to-width-down/400?cb=20260725164717"
+      },
+      {
+        "label": "Holden Cross",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/8/88/Holdencross.jpg/revision/latest/scale-to-width-down/400?cb=20170921085041"
+      },
+      {
+        "label": "Stone",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/9/90/Stone.jpg/revision/latest/scale-to-width-down/400?cb=20170214203122"
+      },
+      {
+        "label": "Mercy",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/8/81/Mercy.jpg/revision/latest/scale-to-width-down/400?cb=20170214203730"
+      },
+      {
+        "label": "Gudmundr",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/1/10/Gudmundr.jpg/revision/latest/scale-to-width-down/400?cb=20170215032845"
+      },
+      {
+        "label": "Ayu",
+        "image": "https://static.wikia.nocookie.net/for-honor/images/a/a9/AyuFace.png/revision/latest/scale-to-width-down/400?cb=20180919042547"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Hero",
+          "entities": [
+            "Warden",
+            "Conqueror",
+            "Peacekeeper",
+            "Lawbringer",
+            "Centurion",
+            "Gladiator",
+            "Black Prior",
+            "Warmonger",
+            "Gryphon",
+            "Raider",
+            "Warlord",
+            "Berserker",
+            "Valkyrie",
+            "Highlander",
+            "Shaman",
+            "Jormungandr",
+            "Varangian Guard",
+            "Kensei",
+            "Shugoki",
+            "Orochi",
+            "Nobushi",
+            "Shinobi",
+            "Aramusha",
+            "Hitokiri",
+            "Kyoshin",
+            "Sohei",
+            "Arakure",
+            "Tiandi",
+            "Jiang Jun",
+            "Nuxia",
+            "Shaolin",
+            "Zhanhu",
+            "Juren",
+            "Pirate",
+            "Medjay",
+            "Afeera",
+            "Ocelotl",
+            "Khatun",
+            "Virtuosa"
+          ]
+        },
+        {
+          "label": "Faction",
+          "entities": [
+            "Knights|Knight",
+            "Vikings|Viking",
+            "Samurai",
+            "Wu Lin|Wulin",
+            "Outlanders|Outlander"
+          ]
+        },
+        {
+          "label": "Class",
+          "entities": [
+            "Vanguard",
+            "Assassin",
+            "Heavy",
+            "Hybrid"
+          ]
+        },
+        {
+          "label": "Character",
+          "entities": [
+            "Apollyon",
+            "Holden Cross",
+            "Stone",
+            "Mercy",
+            "Gudmundr",
+            "Ayu",
+            "Hulda",
+            "Seiji",
+            "Horokai",
+            "Siegfried"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Weapon",
+      "prompt": "Which hero fights with this?",
+      "clues": [
+        {
+          "text": "A longsword, both hands on the grip",
+          "answer": "Warden"
+        },
+        {
+          "text": "A flail and a heavy shield",
+          "answer": "Conqueror"
+        },
+        {
+          "text": "A sword in one hand, a dagger in the other",
+          "answer": "Peacekeeper"
+        },
+        {
+          "text": "A poleaxe",
+          "answer": "Lawbringer"
+        },
+        {
+          "text": "A gladius — and fists",
+          "answer": "Centurion"
+        },
+        {
+          "text": "A trident and a buckler",
+          "answer": "Gladiator"
+        },
+        {
+          "text": "A Dane axe",
+          "answer": "Raider"
+        },
+        {
+          "text": "A sword and a round shield",
+          "answer": "Warlord"
+        },
+        {
+          "text": "Two axes",
+          "answer": "Berserker"
+        },
+        {
+          "text": "A spear and a shield",
+          "answer": "Valkyrie"
+        },
+        {
+          "text": "A claymore",
+          "answer": "Highlander"
+        },
+        {
+          "text": "A hammer, swung like a storm",
+          "answer": "Jormungandr"
+        },
+        {
+          "text": "A nodachi",
+          "answer": "Kensei"
+        },
+        {
+          "text": "A kanabo club",
+          "answer": "Shugoki"
+        },
+        {
+          "text": "A katana, drawn in a flash",
+          "answer": "Orochi"
+        },
+        {
+          "text": "A naginata",
+          "answer": "Nobushi"
+        },
+        {
+          "text": "Two kusarigama on chains",
+          "answer": "Shinobi"
+        },
+        {
+          "text": "Two katanas at once",
+          "answer": "Aramusha"
+        },
+        {
+          "text": "A guandao",
+          "answer": "Jiang Jun"
+        },
+        {
+          "text": "Hook swords",
+          "answer": "Nuxia"
+        },
+        {
+          "text": "A staff",
+          "answer": "Shaolin"
+        },
+        {
+          "text": "A cutlass and a pistol",
+          "answer": "Pirate"
+        }
+      ]
+    }
   }
 ]
