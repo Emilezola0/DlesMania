@@ -249,6 +249,17 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/76/Endou_Mamoru_%28GO%29.png/revision/latest/scale-to-width-down/500?cb=20171215142343"
     }
   },
+  forts: {
+    name: 'Howitzer',
+    title: 'Full Barrage',
+    line: 'The howitzer gives the signal and every gun on the fort answers — rockets, cannons, lasers — until the sky over the enemy turns to fire.',
+    image: 'https://www.earthworkgames.com/wp-content/uploads/2022/02/forts-landing-page.png',
+    awaken: {
+      title: 'The Last Shell',
+      line: 'One gunner, one tin hat, one shell left — and it is going straight through the enemy reactor.',
+      image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
+    },
+  },
   lol: {
     name: 'Ahri',
     title: 'Fox of the Ionian Wilds',
@@ -332,6 +343,22 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'wow:omni': { voice: 'Frostmourne hungers.' },
   'inazuma:omni': { voice: 'God Hand!' },
 };
+
+/**
+ * Single cards added later, each with an id of its own: a favourite of the franchise again, at a
+ * higher rarity, in another pose (the Howitzer, close up and firing, from the studio's art).
+ */
+const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description'> & { set: string })[] = [
+  {
+    set: 'forts',
+    id: 'forts:howitzer-legendary',
+    name: 'Howitzer',
+    rarity: 'legendary',
+    title: 'The Big Gun',
+    image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
+    description: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
+  },
+];
 
 /** Franchises added after the first fourteen (see CARDS). */
 const LATE_SETS = new Set(['forts']);
@@ -528,6 +555,11 @@ export const CARDS: Card[] = (() => {
       ids.add(id);
       set.push({ id, name: r.name, image: r.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: r.rarity, description: describe(b.id, r.name, r.rarity === 'epic' ? 'epic' : r.rarity === 'rare' ? 'rare' : 'common', b.franchise) });
     }
+  }
+  // Then the single cards added on their own.
+  for (const x of EXTRA) {
+    const b = BOSSES.find((y) => y.id === x.set);
+    if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description });
   }
   // And last: the second mythics, each set's newest card.
   for (const b of BOSSES) {
