@@ -8,6 +8,10 @@ import { connectionThemes } from '../data';
 import { BOSSES } from '../data/bosses';
 import { hashString } from '../lib/rng';
 import { SILHOUETTES } from '../data/silhouettes';
+import { ONE_PIECE } from '../specialist/data';
+import { GENSHIN } from '../specialist/genshin';
+import { MARVEL } from '../specialist/marvel';
+import { WOW } from '../specialist/wow';
 import FROZEN_RARITIES from '../data/card-rarities.json';
 import type { Domain } from '../types';
 
@@ -141,6 +145,79 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       image: 'https://minecraft.wiki/images/thumb/Charged_Creeper_JE1_BE1.png/360px-Charged_Creeper_JE1_BE1.png?87117',
     },
   },
+  overwatch: {
+    "name": "Mercy",
+    "title": "Guardian Angel",
+    "line": "Wings, a staff and a promise she has never broken: no hero falls on her watch.",
+    "awaken": {
+      "title": "Valkyrie",
+      "line": "Golden wings unfurled, she takes to the sky — and heals the whole battlefield at once.",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/Mercy_Skin_Valkyrie.png/revision/latest/scale-to-width-down/500?cb=20160915183233"
+    }
+  },
+  starwars: {
+    "name": "Anakin Skywalker",
+    "title": "The Chosen One",
+    "line": "The boy from Tatooine, born to bring balance to the Force — and so very afraid to lose.",
+    "image": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/500?cb=20130621175844",
+    "awaken": {
+      "title": "Darth Vader",
+      "line": "Anakin is gone; the mask breathes for him now. The Chosen One, fallen to the dark side.",
+      "image": "https://static.wikia.nocookie.net/starwars/images/b/b1/Darth_Vader_Promo_Rogue_One.png/revision/latest/scale-to-width-down/500?cb=20260114054939"
+    }
+  },
+  harrypotter: {
+    "name": "Harry Potter",
+    "title": "The Chosen One",
+    "line": "Marked as an equal by the Dark Lord, before he could walk — and never once asked for it.",
+    "awaken": {
+      "title": "Master of the Deathly Hallows",
+      "line": "Wand, stone and cloak: he walked into the forest to die, and came back out.",
+      "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c9/Harry-Potter-Deathly-Hallows-Promo-Picture_1-714x1024.jpg/revision/latest/scale-to-width-down/500?cb=20101028203626"
+    }
+  },
+  smash: {
+    "name": "Link",
+    "title": "Hero of Time",
+    "line": "Green tunic, Master Sword, an ocarina in his pocket: the hero who travels through time.",
+    "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/2/29/OoT_Link_Artwork.png/revision/latest/scale-to-width-down/500?cb=20120304192937",
+    "awaken": {
+      "title": "Champion of Hyrule",
+      "line": "A hundred years asleep, he wakes in a blue tunic to a ruined kingdom — and a wide open world.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/7/7f/BotW_Link_Artwork.png/revision/latest/scale-to-width-down/500?cb=20210621032827"
+    }
+  },
+  genshin: {
+    "name": "Zhongli",
+    "title": "Consultant of the Wangsheng",
+    "line": "A gentleman of Liyue who forgets his wallet, and somehow knows the price of everything.",
+    "awaken": {
+      "title": "Rex Lapis",
+      "line": "The God of Contracts, Lord of Geo: six thousand years of Liyue carved in stone.",
+      "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/93/NPC_Rex_Lapis.png/revision/latest/scale-to-width-down/500?cb=20230704195903"
+    }
+  },
+  wow: {
+    "name": "Arthas Menethil",
+    "title": "Prince of Lordaeron",
+    "line": "Golden hair, a paladin’s hammer and the whole kingdom’s hopes — for now.",
+    "image": "https://warcraft.wiki.gg/images/thumb/Arthas_HS.jpg/500px-Arthas_HS.jpg?35627d",
+    "awaken": {
+      "title": "The Lich King",
+      "line": "He took up Frostmourne to save his people, and lost his soul to it. All of Northrend bows.",
+      "image": "https://warcraft.wiki.gg/images/thumb/Lich_King_Arthas_art.jpg/500px-Lich_King_Arthas_art.jpg?7da394"
+    }
+  },
+  inazuma: {
+    "name": "Mark Evans",
+    "title": "Raimon's Goalkeeper",
+    "line": "An orange headband, an old notebook of his grandfather’s, and a hand nothing gets past.",
+    "awaken": {
+      "title": "Coach of Raimon",
+      "line": "Ten years on, the boy who saved soccer comes home to teach it — same headband, same fire.",
+      "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/76/Endou_Mamoru_%28GO%29.png/revision/latest/scale-to-width-down/500?cb=20171215142343"
+    }
+  },
   lol: {
     name: 'Ahri',
     title: 'Fox of the Ionian Wilds',
@@ -159,6 +236,19 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
  * rare. New cards take the rarity the rules below give them, then get frozen too.
  */
 const FROZEN = FROZEN_RARITIES as Record<string, Rarity>;
+
+/**
+ * More faces from the Specialist rosters, their rarity from the data itself: a 5★ Genshin character
+ * is epic and a 4★ rare; a One Piece bounty over a billion is epic, over a hundred million rare; an
+ * MCU character in six films or more is epic, in three rare; the best-known Warcraft heroes epic,
+ * the next ones rare. (Each name once: a face already in the set keeps its card.)
+ */
+const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]> = {
+  genshin: GENSHIN.characters.map((c) => ({ name: c.name, image: c.portrait ?? c.image, rarity: c.rarity >= 5 ? 'epic' : 'rare' })),
+  onepiece: ONE_PIECE.characters.map((c) => ({ name: c.name, image: c.image, rarity: c.bounty >= 1e9 ? 'epic' : c.bounty >= 1e8 ? 'rare' : 'common' })),
+  mcu: MARVEL.characters.map((c) => ({ name: c.name, image: c.image, rarity: c.films >= 6 ? 'epic' : c.films >= 3 ? 'rare' : 'common' })),
+  wow: WOW.characters.map((c, i) => ({ name: c.name, image: c.render ?? c.image, rarity: i < 15 ? 'epic' : i < 45 ? 'rare' : 'common' })),
+};
 
 const slug = (s: string) =>
   s
@@ -287,10 +377,14 @@ function firstLine(s: string): string {
 }
 
 export const CARDS: Card[] = (() => {
+  // Each name once across all sets: the first set to build it keeps it. The order below is the
+  // order cards were added over time — a later addition can never take a name an earlier card has,
+  // so released cards keep their ids.
   const seen = new Set<string>();
-  const out: Card[] = [];
+  const sets = new Map<string, Omit<Card, 'no'>[]>();
   for (const b of BOSSES) {
     const set: Omit<Card, 'no'>[] = [];
+    sets.set(b.id, set);
     const add = (name: string, image: string | undefined, rarity: Rarity, description: string) => {
       if (!image || seen.has(name)) return;
       seen.add(name);
@@ -322,9 +416,17 @@ export const CARDS: Card[] = (() => {
       const rarity: Rarity = hashString(e.name) % 7 === 0 ? 'rare' : 'common';
       add(e.name, e.image, rarity, describe(b.id, e.name, rarity === 'rare' ? 'rare' : 'common', b.franchise));
     }
-    set.forEach((c, i) => out.push({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 }));
   }
-  return out;
+  // Added later: the Specialist rosters, after every set's earlier cards.
+  for (const b of BOSSES) {
+    const set = sets.get(b.id)!;
+    for (const r of ROSTERS[b.id] ?? []) {
+      if (!r.image || seen.has(r.name)) continue;
+      seen.add(r.name);
+      set.push({ id: `${b.id}:${slug(r.name)}`, name: r.name, image: r.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: r.rarity, description: describe(b.id, r.name, r.rarity === 'epic' ? 'epic' : r.rarity === 'rare' ? 'rare' : 'common', b.franchise) });
+    }
+  }
+  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));
