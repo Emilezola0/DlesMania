@@ -9,7 +9,8 @@ import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } 
 export const PACK_SIZE = 5;
 
 /** Base odds, in percent, for each card of a pack. */
-export const ODDS: Record<Rarity, number> = { common: 68.41, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08, omni: 0.01 };
+// Mythic and Omni are the endgame: about one in every 250 packs has one.
+export const ODDS: Record<Rarity, number> = { common: 68.444, rare: 23, epic: 8, legendary: 0.5, mythic: 0.05, omni: 0.006 };
 
 /** The luck (pity) lives with the economy, which the store reads without the card catalogue. */
 export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck };
@@ -19,7 +20,7 @@ export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexO
  * The most a card can ever be of the top rarities, in percent, whatever stacks up (a guardian's boost and
  * full luck): the drop rates never climb past these.
  */
-export const TOP_CAP: Partial<Record<Rarity, number>> = { legendary: 3, mythic: 0.4, omni: 0.05 };
+export const TOP_CAP: Partial<Record<Rarity, number>> = { legendary: 3, mythic: 0.2, omni: 0.03 };
 
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
 export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5, hell: 3.2 };
@@ -78,8 +79,9 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
 }
 
 /**
- * The odds with a boost: epic multiplied, rare, legendary, mythic and omni by half as much (the top stays rare), common taking the rest;
- * `luck` (see pityLuck) multiplies legendary again, and mythic and omni by PITY_TOP_SHARE of it — each kept under its TOP_CAP.
+ * The odds with a boost: epic multiplied, rare and legendary by half as much, mythic and omni not at all (they stay the
+ * endgame), common taking the rest; `luck` (see pityLuck) multiplies legendary again, and mythic and omni by
+ * PITY_TOP_SHARE of it — each kept under its TOP_CAP.
  */
 export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
@@ -87,8 +89,8 @@ export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   const epic = ODDS.epic * boost;
   const legendary = Math.min(TOP_CAP.legendary!, ODDS.legendary * half * luck);
   const topLuck = 1 + (luck - 1) * PITY_TOP_SHARE;
-  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * half * topLuck);
-  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * half * topLuck);
+  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * topLuck);
+  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * topLuck);
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 

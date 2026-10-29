@@ -28,9 +28,9 @@ export const gradeOf = (grades: Record<string, number> | undefined, id: string) 
 
 /**
  * A grade's reward: what the four spares would fetch traded in, times this — so a grade-up always pays
- * more than trading them, and more the higher the grade (Bronze ×1.25 … Radiant ×4).
+ * as much as trading them, and more the higher the grade (Bronze ×1 … Radiant ×2.5).
  */
-export const GRADE_REWARD_SHARE: Record<number, number> = { 2: 1.25, 3: 1.75, 4: 2.5, 5: 4 };
+export const GRADE_REWARD_SHARE: Record<number, number> = { 2: 1, 3: 1.25, 4: 1.75, 5: 2.5 };
 export const gradeReward = (rarity: Rarity, grade: number) => Math.round(DUPLICATE_VALUE[rarity] * GRADE_COST * (GRADE_REWARD_SHARE[grade] ?? 0));
 /** Every grade's reward from `from` (excluded) up to `to`. */
 export function gradeRewards(rarity: Rarity, from: number, to: number): number {
