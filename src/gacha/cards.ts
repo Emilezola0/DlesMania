@@ -77,6 +77,14 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!", audio: "https://mario.wiki.gallery/images/7/7c/SM64_Mario_Let%27s-a-go%21.wav" },
   genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Time for — retribution!", audio: "https://static.wikia.nocookie.net/gensin-impact/images/5/57/VO_Diluc_Elemental_Burst_03.ogg/revision/latest?cb=20221112195845" },
   wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "The goddess watches over us.", audio: "https://static.wikia.nocookie.net/allstars_gamepedia/images/d/d4/Tyrande_IntroBoast01.ogg/revision/latest?cb=20180709081959" },
+  avatar: {
+    name: 'Zuko',
+    title: 'Fire Lord',
+    line: 'The banished prince who lost everything chasing his honour — and found it by choosing his own side.',
+    voice: 'Hello, Zuko here.',
+    audio: 'https://www.myinstants.com/media/sounds/hello-zuko-here.mp3',
+    image: 'https://static.wikia.nocookie.net/avatar/images/0/05/Zuko_Blu-ray_art.png/revision/latest?cb=20261025210247',
+  },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -108,6 +116,13 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   smash: { name: 'Kirby', title: 'The Star Warrior', line: 'Small, round, always hungry — and somehow the last one standing on every stage.', voice: 'Poyo!' },
   genshin: { name: 'Raiden Shogun', title: 'The Eternal Shogun', line: 'One stroke of the Musou no Hitotachi, and the storm itself bows to eternity.', voice: 'Inazuma shines eternal!' },
   wow: { name: 'Thrall', title: 'The World-Shaman', line: 'Born a slave, raised a warchief: the orc who taught the Horde to be free.', voice: 'For the Horde!' },
+  avatar: {
+    name: 'Toph',
+    title: 'The Blind Bandit',
+    line: 'She sees through her feet, wins every fight blindfolded — and invented metalbending at twelve.',
+    voice: 'I am the Blind Bandit!',
+    image: 'https://static.wikia.nocookie.net/avatar/images/5/56/Toph_Blu-ray_art.png/revision/latest/scale-to-width-down/500?cb=20261025210823',
+  },
   inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
 };
 
@@ -255,6 +270,17 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/76/Endou_Mamoru_%28GO%29.png/revision/latest/scale-to-width-down/500?cb=20171215142343"
     }
   },
+  avatar: {
+    name: 'Aang',
+    title: 'The Last Airbender',
+    line: 'A hundred years in the ice, a whole nation gone — and still the kid who laughs on the back of a flying bison.',
+    image: 'https://static.wikia.nocookie.net/avatar/images/5/56/Aang_airbending.png/revision/latest?cb=20200418205438',
+    awaken: {
+      title: 'Avatar State',
+      line: 'Every Avatar who came before him, speaking through his eyes: the glow of a thousand lifetimes, and the whole world holding its breath.',
+      image: 'https://static.wikia.nocookie.net/avatar/images/1/11/Aang_in_the_Avatar_State.png/revision/latest?cb=20140124170912',
+    },
+  },
   forts: {
     name: 'Howitzer',
     title: 'Full Barrage',
@@ -348,6 +374,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
   'wow:omni': { voice: 'Frostmourne hungers.' },
   'inazuma:omni': { voice: 'God Hand!' },
+  'avatar:omni': { voice: 'Yip yip!' },
   // ── Forts: the Armoured Door's only picture is a screenshot — framed on the door. (The rest have the
   // Forts RTS Wiki's own art, in src/data/bosses.json.) ──
   'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },

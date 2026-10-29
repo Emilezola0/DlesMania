@@ -2326,5 +2326,557 @@
    "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/140?cb=20260304090759",
    "rarity": "common"
   }
+ ],
+ "avatar": [
+  {
+   "name": "Ta Min",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/1e/Young_Ta_Min.png/revision/latest?cb=20131230132842",
+   "rarity": "epic"
+  },
+  {
+   "name": "Jin",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/08/Jin.png/revision/latest?cb=20140504182006",
+   "rarity": "epic"
+  },
+  {
+   "name": "Lao Beifong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/a/aa/Lao_Beifong.png/revision/latest?cb=20140317211137",
+   "rarity": "epic"
+  },
+  {
+   "name": "Longshot",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/e7/Longshot.png/revision/latest?cb=20140413233811",
+   "rarity": "epic"
+  },
+  {
+   "name": "Ukano",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/ee/Ukano.png/revision/latest?cb=20130706145902",
+   "rarity": "epic"
+  },
+  {
+   "name": "Azulon",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/1e/Azulon.png/revision/latest?cb=20140331143003",
+   "rarity": "epic"
+  },
+  {
+   "name": "Mongke",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f9/Colonel_Mongke.png/revision/latest?cb=20140215111854",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mira",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/2a/Mira.png/revision/latest?cb=20260802141807",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lu Ten",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/14/Lu_Ten_bowing.png/revision/latest?cb=20241203231226",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rie",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/fd/Rie.png/revision/latest?cb=20260115112326",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fume",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/cb/Fume.png/revision/latest?cb=20260715213105",
+   "rarity": "rare"
+  },
+  {
+   "name": "Aika",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/48/Aika.png/revision/latest?cb=20260115113420",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gilak",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/cd/Gilak.png/revision/latest?cb=20170524065046",
+   "rarity": "rare"
+  },
+  {
+   "name": "Szeto",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/92/Szeto.png/revision/latest?cb=20200721012517",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kanna",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/47/Kanna.png/revision/latest?cb=20130822224809",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Boulder",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/70/The_Boulder.png/revision/latest?cb=20140317195145",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vachir",
+   "image": "https://static.wikia.nocookie.net/avatar/images/a/ad/Vachir.png/revision/latest?cb=20140407161002",
+   "rarity": "rare"
+  },
+  {
+   "name": "Warden (Boiling Rock)",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/0f/Boiling_Rock_warden.png/revision/latest?cb=20220328163908",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sung",
+   "image": "https://static.wikia.nocookie.net/avatar/images/a/ad/Sung.png/revision/latest?cb=20140517113730",
+   "rarity": "rare"
+  },
+  {
+   "name": "Chong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f8/Chong.png/revision/latest?cb=20140127210142",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tyro",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/88/Tyro_during_the_invasion.png/revision/latest?cb=20130609164844",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kya (nonbender)",
+   "image": "https://static.wikia.nocookie.net/avatar/images/b/b5/Kya_%28nonbender%29.png/revision/latest?cb=20170523213135",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pipsqueak",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/ef/Pipsqueak.png/revision/latest?cb=20130706005357",
+   "rarity": "rare"
+  },
+  {
+   "name": "Taqukaq",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/0d/Taqukaq.png/revision/latest?cb=20220323015331",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sneers",
+   "image": "https://static.wikia.nocookie.net/avatar/images/6/65/Sneers.png/revision/latest?cb=20200728155533",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kahchi",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/77/Kahchi.png/revision/latest?cb=20140407160126",
+   "rarity": "rare"
+  },
+  {
+   "name": "Warden (prison rig)",
+   "image": "https://static.wikia.nocookie.net/avatar/images/a/a5/Warden.png/revision/latest?cb=20140108104427",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ogodei",
+   "image": "https://static.wikia.nocookie.net/avatar/images/b/ba/Ogodei.png/revision/latest?cb=20140407160127",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mechanist",
+   "image": "https://static.wikia.nocookie.net/avatar/images/b/b7/Mechanist.png/revision/latest?cb=20140118124602",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tom-Tom",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/4a/Tom-Tom_tearful.png/revision/latest/scale-to-width-down/400?cb=20220320160427",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bosco",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/9b/Bosco.png/revision/latest?cb=20140517110638",
+   "rarity": "common"
+  },
+  {
+   "name": "La",
+   "image": "https://static.wikia.nocookie.net/avatar/images/3/32/La.png/revision/latest?cb=20140124171520",
+   "rarity": "common"
+  },
+  {
+   "name": "How",
+   "image": "https://static.wikia.nocookie.net/avatar/images/5/54/How.png/revision/latest?cb=20130627093056",
+   "rarity": "common"
+  },
+  {
+   "name": "Yeh-Lu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/fe/Yeh-Lu.png/revision/latest?cb=20140407161003",
+   "rarity": "common"
+  },
+  {
+   "name": "Chin",
+   "image": "https://static.wikia.nocookie.net/avatar/images/6/6f/Chin_the_Great.png/revision/latest?cb=20140215111604",
+   "rarity": "common"
+  },
+  {
+   "name": "Xin Fu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/02/Xin_Fu.png/revision/latest?cb=20140317211615",
+   "rarity": "common"
+  },
+  {
+   "name": "Yu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/e2/Yu.png/revision/latest?cb=20140317211616",
+   "rarity": "common"
+  },
+  {
+   "name": "Michi",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/0b/Michi.png/revision/latest?cb=20130706134435",
+   "rarity": "common"
+  },
+  {
+   "name": "Macmu-Ling",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f8/Macmu-Ling.png/revision/latest?cb=20140504182010",
+   "rarity": "common"
+  },
+  {
+   "name": "Shyu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/c9/Shyu.png/revision/latest?cb=20130622211349",
+   "rarity": "common"
+  },
+  {
+   "name": "Joo Dee",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/1f/Joo_Dee.png/revision/latest?cb=20140422090643",
+   "rarity": "common"
+  },
+  {
+   "name": "Chit Sang",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/81/Chit_Sang.png/revision/latest?cb=20121021000707",
+   "rarity": "common"
+  },
+  {
+   "name": "Tui",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/99/Tui.png/revision/latest?cb=20140122221307",
+   "rarity": "common"
+  },
+  {
+   "name": "Huu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/85/Huu.png/revision/latest?cb=20130630224726",
+   "rarity": "common"
+  },
+  {
+   "name": "The Duke",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/cd/The_Duke.png/revision/latest?cb=20130706011726",
+   "rarity": "common"
+  },
+  {
+   "name": "Zei",
+   "image": "https://static.wikia.nocookie.net/avatar/images/b/b0/Zei.png/revision/latest?cb=20140404204805",
+   "rarity": "common"
+  },
+  {
+   "name": "Arnook",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/0c/Chief.png/revision/latest?cb=20140122221730",
+   "rarity": "common"
+  },
+  {
+   "name": "Oyaji",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/42/Oyaji.png/revision/latest?cb=20130819103514",
+   "rarity": "common"
+  },
+  {
+   "name": "46th Earth King",
+   "image": "https://static.wikia.nocookie.net/avatar/images/5/51/46th_Earth_King.png/revision/latest?cb=20130627160441",
+   "rarity": "common"
+  },
+  {
+   "name": "Bato",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/e3/Bato_smiling.png/revision/latest?cb=20130626122901",
+   "rarity": "common"
+  },
+  {
+   "name": "The Big Bad Hippo",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/df/The_Big_Bad_Hippo.png/revision/latest?cb=20140317211139",
+   "rarity": "common"
+  },
+  {
+   "name": "Sud",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d1/Sud.png/revision/latest?cb=20130110111840",
+   "rarity": "common"
+  },
+  {
+   "name": "Oh",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d7/Oh.png/revision/latest?cb=20140119145456",
+   "rarity": "common"
+  },
+  {
+   "name": "Qin",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d4/Qin.png/revision/latest?cb=20140118125456",
+   "rarity": "common"
+  },
+  {
+   "name": "Than",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/85/Than.png/revision/latest?cb=20140413234452",
+   "rarity": "common"
+  },
+  {
+   "name": "Poppy Beifong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/c8/Poppy_Beifong.png/revision/latest?cb=20131231180143",
+   "rarity": "common"
+  },
+  {
+   "name": "Pao",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/45/Pao.png/revision/latest?cb=20140422090645",
+   "rarity": "common"
+  },
+  {
+   "name": "Fang",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/c3/Fang.png/revision/latest?cb=20121217082142",
+   "rarity": "common"
+  },
+  {
+   "name": "Ummi",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/24/Ummi.png/revision/latest?cb=20130627163647",
+   "rarity": "common"
+  },
+  {
+   "name": "Moku",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/78/Moku.png/revision/latest?cb=20140128105200",
+   "rarity": "common"
+  },
+  {
+   "name": "Ying",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/76/Ying.png/revision/latest?cb=20140413234455",
+   "rarity": "common"
+  },
+  {
+   "name": "Hahn",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/46/Hahn.png/revision/latest?cb=20140122221732",
+   "rarity": "common"
+  },
+  {
+   "name": "Lily",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/0a/Lily.png/revision/latest?cb=20140128105159",
+   "rarity": "common"
+  },
+  {
+   "name": "Shinu",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d6/Shinu.png/revision/latest?cb=20130413140104",
+   "rarity": "common"
+  },
+  {
+   "name": "Wu (fortuneteller)",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/c9/Aunt_Wu.png/revision/latest?cb=20130626124117",
+   "rarity": "common"
+  },
+  {
+   "name": "Yon Rha",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/94/Yon_Rha.png/revision/latest?cb=20081225191900",
+   "rarity": "common"
+  },
+  {
+   "name": "Kaja",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/16/Kaja.png/revision/latest?cb=20130627155839",
+   "rarity": "common"
+  },
+  {
+   "name": "Painted Lady",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/80/Painted_Lady.png/revision/latest?cb=20140613143544",
+   "rarity": "common"
+  },
+  {
+   "name": "Fong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/08/Fong.png/revision/latest?cb=20130625120143",
+   "rarity": "common"
+  },
+  {
+   "name": "Ghashiun",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/98/Ghashiun.png/revision/latest?cb=20130705103954",
+   "rarity": "common"
+  },
+  {
+   "name": "Gow",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d9/Gow.png/revision/latest?cb=20140331143005",
+   "rarity": "common"
+  },
+  {
+   "name": "Zhang leader",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/ef/Zhang_leader.png/revision/latest?cb=20130311211244",
+   "rarity": "common"
+  },
+  {
+   "name": "Yagoda",
+   "image": "https://static.wikia.nocookie.net/avatar/images/5/5b/Yagoda.png/revision/latest?cb=20140119144821",
+   "rarity": "common"
+  },
+  {
+   "name": "Canyon guide",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/db/Canyon_guide.png/revision/latest?cb=20131202201055",
+   "rarity": "common"
+  },
+  {
+   "name": "Song (villager)",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/7e/Song.png/revision/latest?cb=20140128110439",
+   "rarity": "common"
+  },
+  {
+   "name": "Fire Nation Man",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/46/Fire_Nation_Man.png/revision/latest?cb=20140317210008",
+   "rarity": "common"
+  },
+  {
+   "name": "Sela",
+   "image": "https://static.wikia.nocookie.net/avatar/images/5/5c/Sela.png/revision/latest?cb=20140331143654",
+   "rarity": "common"
+  },
+  {
+   "name": "Jin Wei",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/9c/Jin_Wei.png/revision/latest?cb=20131202203023",
+   "rarity": "common"
+  },
+  {
+   "name": "Gan Jin leader",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d8/Gan_Jin_leader.png/revision/latest?cb=20131202205816",
+   "rarity": "common"
+  },
+  {
+   "name": "Tong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/20/Tong.png/revision/latest?cb=20140215112603",
+   "rarity": "common"
+  },
+  {
+   "name": "Dama",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/2e/Dama.png/revision/latest/scale-to-width-down/400?cb=20261016034215",
+   "rarity": "common"
+  },
+  {
+   "name": "Fisherman",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f0/Fisherman.png/revision/latest?cb=20130714140302",
+   "rarity": "common"
+  },
+  {
+   "name": "Pu-on Tim",
+   "image": "https://static.wikia.nocookie.net/avatar/images/c/cd/Pu-on_Tim.png/revision/latest?cb=20240906171401",
+   "rarity": "common"
+  },
+  {
+   "name": "Jee",
+   "image": "https://static.wikia.nocookie.net/avatar/images/e/eb/Jee.png/revision/latest?cb=20130714141540",
+   "rarity": "common"
+  },
+  {
+   "name": "Sun Warrior chief",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/2e/The_Sun_Warriors.png/revision/latest?cb=20171016193449",
+   "rarity": "common"
+  },
+  {
+   "name": "Lee",
+   "image": "https://static.wikia.nocookie.net/avatar/images/5/50/Lee.png/revision/latest?cb=20140331143006",
+   "rarity": "common"
+  },
+  {
+   "name": "Wei Jin",
+   "image": "https://static.wikia.nocookie.net/avatar/images/2/27/Wei_Jin.png/revision/latest?cb=20131202204031",
+   "rarity": "common"
+  },
+  {
+   "name": "On Ji",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/9a/On_Ji.png/revision/latest?cb=20140602125810",
+   "rarity": "common"
+  },
+  {
+   "name": "Sha-Mo",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/9f/Sha-Mo.png/revision/latest?cb=20260512022246",
+   "rarity": "common"
+  },
+  {
+   "name": "Due",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/7b/Due.png/revision/latest?cb=20130630225941",
+   "rarity": "common"
+  },
+  {
+   "name": "Captured agent",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/89/Captured_agent.png/revision/latest?cb=20140517110639",
+   "rarity": "common"
+  },
+  {
+   "name": "Chan",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/9d/Chan.png/revision/latest?cb=20140908141053",
+   "rarity": "common"
+  },
+  {
+   "name": "Koko",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f0/Koko.png/revision/latest?cb=20130819093502",
+   "rarity": "common"
+  },
+  {
+   "name": "Female prison guard",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/00/Female_prison_guard.png/revision/latest?cb=20201210135313",
+   "rarity": "common"
+  },
+  {
+   "name": "Bujing",
+   "image": "https://static.wikia.nocookie.net/avatar/images/7/76/Bujing.png/revision/latest?cb=20130714152817",
+   "rarity": "common"
+  },
+  {
+   "name": "Earthbending academy teenagers",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/11/Earthbending_academy_teenagers.png/revision/latest?cb=20140317210008",
+   "rarity": "common"
+  },
+  {
+   "name": "Tho",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/d6/Tho.png/revision/latest?cb=20130630225558",
+   "rarity": "common"
+  },
+  {
+   "name": "Lower Ring guard",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/1f/Ba_Sing_Se_guards.png/revision/latest?cb=20250703210853",
+   "rarity": "common"
+  },
+  {
+   "name": "Omashu guard",
+   "image": "https://static.wikia.nocookie.net/avatar/images/d/dc/Omashu_guard.png/revision/latest?cb=20261011115343",
+   "rarity": "common"
+  },
+  {
+   "name": "Bully guard",
+   "image": "https://static.wikia.nocookie.net/avatar/images/0/02/Bully_guard.png/revision/latest?cb=20120702232626",
+   "rarity": "common"
+  },
+  {
+   "name": "Chey",
+   "image": "https://static.wikia.nocookie.net/avatar/images/8/8d/Chey.png/revision/latest?cb=20140116103519",
+   "rarity": "common"
+  },
+  {
+   "name": "Hide",
+   "image": "https://static.wikia.nocookie.net/avatar/images/9/96/Hide.png/revision/latest?cb=20140602093934",
+   "rarity": "common"
+  },
+  {
+   "name": "Hope",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/18/Hope.png/revision/latest?cb=20140413233809",
+   "rarity": "common"
+  },
+  {
+   "name": "Tashi",
+   "image": "https://static.wikia.nocookie.net/avatar/images/3/35/Tashi.png/revision/latest?cb=20130714155745",
+   "rarity": "common"
+  },
+  {
+   "name": "Meng",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/42/Meng.png/revision/latest?cb=20130814090639",
+   "rarity": "common"
+  },
+  {
+   "name": "Great Sage",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/15/Great_Sage.png/revision/latest?cb=20130622212928",
+   "rarity": "common"
+  },
+  {
+   "name": "Pong",
+   "image": "https://static.wikia.nocookie.net/avatar/images/f/f8/Pong.png/revision/latest?cb=20140422090646",
+   "rarity": "common"
+  },
+  {
+   "name": "Than's sister",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/16/Than%27s_sister.png/revision/latest?cb=20140413234453",
+   "rarity": "common"
+  },
+  {
+   "name": "The Gecko",
+   "image": "https://static.wikia.nocookie.net/avatar/images/4/43/The_Gecko.png/revision/latest?cb=20140317211140",
+   "rarity": "common"
+  },
+  {
+   "name": "Oma",
+   "image": "https://static.wikia.nocookie.net/avatar/images/1/16/Oma.png/revision/latest?cb=20140128110438",
+   "rarity": "common"
+  }
  ]
 }
