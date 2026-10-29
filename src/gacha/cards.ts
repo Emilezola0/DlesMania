@@ -288,6 +288,51 @@ const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]
  */
 const MORE = MORE_ROSTERS as Record<string, { name: string; image: string; rarity: Rarity }[]>;
 
+/**
+ * The mythics and omnis at their strongest, in their own voices: the most powerful form or the
+ * finest alternate look the franchise has (Ultra Ego Vegeta, Sasuke's Susanoo, King of Hell Zoro;
+ * for the games, their skins and outfits — Star Guardian Jinx, Red Dead of Night Diluc), and their
+ * line in the voice actor's original language (the anime's Japanese; Genshin's Liyue in Chinese
+ * and Inazuma in Japanese), from the wikis' voice files and myinstants. A card left out keeps its
+ * own picture, and its line is read by the browser's voice.
+ */
+const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio'>>> = {
+  // ── First mythics ──
+  'lol:mythic': { title: 'Prestige K/DA', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/f/fc/Ahri_PrestigeKDALoading.jpg/revision/latest?cb=20230110233703' },
+  'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
+  'naruto:mythic': { image: 'https://static.wikia.nocookie.net/naruto/images/4/42/Naruto_Part_III.png/revision/latest/scale-to-width-down/500?cb=20180117103539' },
+  'genshin:mythic': { title: 'Red Dead of Night', image: 'https://static.wikia.nocookie.net/gensin-impact/images/2/29/Character_Diluc_Red_Dead_of_Night_Full_Wish.png/revision/latest/scale-to-width-down/500?cb=20220801021754' },
+  'inazuma:mythic': { image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/a/a7/Endou_Mamoru_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20210926134601' },
+  // ── Second mythics ──
+  'lol:mythic-2': { title: 'Star Guardian', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ea/Jinx_StarGuardianLoading.jpg/revision/latest?cb=20200424235449', voice: 'Get excited!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/3/3a/VO_Jinx_spell_resolve_ally_GetExcited_01.ogg/revision/latest?cb=20210715230517' },
+  'minecraft:mythic-2': { voice: 'Sniff… sniff…', audio: 'https://minecraft.wiki/images/Warden_sniff1.ogg?b4ff6' },
+  'onepiece:mythic-2': { title: 'King of Hell', image: 'https://static.wikia.nocookie.net/onepiece/images/c/cf/King_of_Hell_Three_Sword_Style.png/revision/latest/scale-to-width-down/500?cb=20250427161903', voice: 'Santōryū… Rengoku Onigiri!', audio: 'https://www.myinstants.com/media/sounds/zoro-santoryu-rengoku-onigiri-one-piece-vostfr-trim.mp3' },
+  'dbz:mythic-2': { title: 'Ultra Ego', image: 'https://static.wikia.nocookie.net/dragonball/images/7/7f/Ultra_Ego_Vegeta_%28Digital_Colored_Manga%29.png/revision/latest/scale-to-width-down/500?cb=20260205042243', voice: 'Final Flash!', audio: 'https://www.myinstants.com/media/sounds/vegeta-final-flash.mp3' },
+  'naruto:mythic-2': { title: 'Susanoo', image: 'https://static.wikia.nocookie.net/naruto/images/2/28/Sasuke%27s_Fully_body_Susanoo.png/revision/latest/scale-to-width-down/500?cb=20141016124203', voice: 'Chidori!', audio: 'https://www.myinstants.com/media/sounds/chidorii.mp3' },
+  'starwars:mythic-2': { voice: 'I am your father.', audio: 'https://www.myinstants.com/media/sounds/i-am-your-father_ujQC0Zu.mp3' },
+  'harrypotter:mythic-2': { voice: "It's Levi-O-sa, not Levi-o-SA!", audio: 'https://www.myinstants.com/media/sounds/itsleviosa_HEW2LBa.mp3' },
+  'lotr:mythic-2': { title: 'King Elessar', image: 'https://static.wikia.nocookie.net/lotr/images/3/35/King_Elessar.jpg/revision/latest/scale-to-width-down/500?cb=20210510072541', voice: 'For Frodo.', audio: 'https://www.myinstants.com/media/sounds/sub-final.mp3' },
+  'mcu:mythic-2': { title: 'Stormbreaker', image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/ed/Avengers_Infinity_War_Thor_concept_art_3.jpg/revision/latest/scale-to-width-down/500?cb=20181106193641', voice: 'Bring me Thanos!', audio: 'https://www.myinstants.com/media/sounds/bring_me_thanos.mp3' },
+  'smash:mythic-2': { voice: 'Poyo!', audio: 'https://www.myinstants.com/media/sounds/poyo.mp3' },
+  'genshin:mythic-2': { voice: 'Inabikari, sunawachi eien nari!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/VO_JA_Raiden_Shogun_Elemental_Burst_03.ogg/revision/latest?cb=20221112234607' },
+  'wow:mythic-2': { image: 'https://warcraft.wiki.gg/images/thumb/Thrall_HotS_World-Shaman.jpg/500px-Thrall_HotS_World-Shaman.jpg?543732' },
+  'inazuma:mythic-2': { image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d0/Gouenji_Shuuya_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20190912000534' },
+  // ── Omnis: their voices ──
+  'lol:omni': { voice: 'A chase, then!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ef/Ahri_SpiritBlossom_R_1.ogg/revision/latest?cb=20200726232639' },
+  'overwatch:omni': { voice: 'Heroes never die!', audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913' },
+  'minecraft:omni': { voice: '*BOOM*', audio: 'https://minecraft.wiki/images/Explosion1.ogg?6ed29' },
+  'onepiece:omni': { voice: 'Gomu Gomu no…!', audio: 'https://www.myinstants.com/media/sounds/gomu-gomu-no.mp3' },
+  'dbz:omni': { voice: 'Kamehameha!', audio: 'https://www.myinstants.com/media/sounds/kamehameha_qWZSJCi.mp3' },
+  'naruto:omni': { voice: 'Rasengan!', audio: 'https://www.myinstants.com/media/sounds/naruto-rasengan-voice.mp3' },
+  'starwars:omni': { voice: 'You underestimate my power!', audio: 'https://www.myinstants.com/media/sounds/you-underestimate-my-power_cN70zP4.mp3' },
+  'harrypotter:omni': { voice: 'Expelliarmus!' },
+  'lotr:omni': { voice: 'You shall not pass!', audio: 'https://www.myinstants.com/media/sounds/gandalf_shallnotpass.mp3' },
+  'mcu:omni': { voice: 'I am Iron Man.', audio: 'https://www.myinstants.com/media/sounds/ironman_Qaec4ow.mp3' },
+  'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
+  'wow:omni': { voice: 'Frostmourne hungers.' },
+  'inazuma:omni': { voice: 'God Hand!' },
+};
+
 /** Franchises added after the first fourteen (see CARDS). */
 const LATE_SETS = new Set(['forts']);
 
@@ -491,7 +536,7 @@ export const CARDS: Card[] = (() => {
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
     if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
   }
-  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
+  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));

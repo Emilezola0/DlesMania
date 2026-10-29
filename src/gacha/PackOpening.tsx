@@ -178,6 +178,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         celebrateBig();
         later(() => (celebrateBig(), sfx.streak()), 800);
         later(() => (celebrateBig(), sfx.victory()), 1700);
+        // Then the legend speaks, once the fanfare has passed.
+        if (c.voice) later(() => playVoice(c), 2400);
         shake(box.current, 22, 1000);
       } else if (c.rarity === 'mythic') {
         sfx.victory();
