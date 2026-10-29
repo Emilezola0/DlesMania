@@ -49,6 +49,11 @@ export interface Card {
   audio?: string;
   /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard. */
   awaken?: { title: string; image: string; line: string };
+  /**
+   * Framing for a picture with more around it than the card wants (a group shot, a title banner, a
+   * screenshot): zoomed `zoom` times on the point at `x`% / `y`% of it.
+   */
+  focus?: { x: number; y: number; zoom: number };
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
@@ -308,7 +313,7 @@ const MORE = MORE_ROSTERS as Record<string, { name: string; image: string; rarit
  * and Inazuma in Japanese), from the wikis' voice files and myinstants. A card left out keeps its
  * own picture, and its line is read by the browser's voice.
  */
-const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio'>>> = {
+const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'focus'>>> = {
   // ── First mythics ──
   'lol:mythic': { title: 'Prestige K/DA', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/f/fc/Ahri_PrestigeKDALoading.jpg/revision/latest?cb=20230110233703' },
   'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
@@ -343,6 +348,17 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
   'wow:omni': { voice: 'Frostmourne hungers.' },
   'inazuma:omni': { voice: 'God Hand!' },
+  // ── Forts, better framed: the commanders out of their title banners (Architect and Armourdillo
+  // from the studio's group art), the weapons out of their screenshots, the Cannon's own art. ──
+  'forts:eagle-eye': { focus: { x: 40, y: 60, zoom: 2.2 } },
+  'forts:mythic': { focus: { x: 40, y: 60, zoom: 2.2 } },
+  'forts:architect': { image: 'https://www.earthworkgames.com/wp-content/uploads/2021/11/Commander-group-1@2x.png', focus: { x: 19, y: 72, zoom: 1.45 } },
+  'forts:armourdillo': { image: 'https://www.earthworkgames.com/wp-content/uploads/2021/11/Commander-group-1@2x.png', focus: { x: 47, y: 72, zoom: 1.45 } },
+  'forts:cannon': { image: 'https://static.wikia.nocookie.net/forts7876/images/f/f6/HUD-Cannon-A.png/revision/latest?cb=20190711080741' },
+  'forts:warhead': { focus: { x: 62, y: 42, zoom: 2.6 } },
+  'forts:heavy-mortar': { focus: { x: 60, y: 42, zoom: 2.6 } },
+  'forts:battery': { focus: { x: 50, y: 50, zoom: 1.5 } },
+  'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },
 };
 
 /**
@@ -359,6 +375,11 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
     description: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
   },
+  // The expansions' weapons, in the studio's own art (Weapon-*.png on earthworkgames.com).
+  { set: 'forts', id: 'forts:orbital-laser', name: 'Orbital Laser', rarity: 'epic', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-OrbitalLaser.png', description: 'A beam from orbit that sweeps straight down through the enemy fort.' },
+  { set: 'forts', id: 'forts:deck-gun', name: 'Deck Gun', rarity: 'rare', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-DeckGun.png', description: 'A ship\'s gun, firing broadside.' },
+  { set: 'forts', id: 'forts:harpoon', name: 'Harpoon', rarity: 'rare', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-Harpoon.png', description: 'Hook it, reel it in.' },
+  { set: 'forts', id: 'forts:dome', name: 'Dome', rarity: 'common', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-Dome.png', description: 'A familiar face of Forts.' },
 ];
 
 /** Franchises added after the first fourteen (see CARDS). */

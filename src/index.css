@@ -1007,3 +1007,22 @@ h1, h2, h3, .font-serif, .font-display {
   .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-4::after, .card-grade-5::after,
   .card-grade-orbit, .card-grade-halo, .grade-emblem-radiant .grade-rays, .card-grade-flare { animation: none; }
 }
+
+/* Pack opening: a shooting star that evolves on the way (src/gacha/PackOpening.tsx, EVOLVE_AT = 42%):
+   the colour it showed fades, its true colour takes over, and a burst flares at its head. */
+@keyframes pack-star-out {
+  0%, 40% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+@keyframes pack-star-in {
+  0%, 40% { opacity: 0; }
+  46%, 100% { opacity: 1; }
+}
+@keyframes pack-star-flare {
+  0%, 38% { opacity: 0; transform: translateY(-50%) scale(0.2); }
+  44% { opacity: 1; transform: translateY(-50%) scale(2.6); }
+  60%, 100% { opacity: 0; transform: translateY(-50%) scale(1); }
+}
+.pack-star-before { animation-name: pack-star-out; animation-timing-function: linear; animation-fill-mode: both; }
+.pack-star-after { opacity: 0; animation-name: pack-star-in; animation-timing-function: linear; animation-fill-mode: both; }
+.pack-star-burst { opacity: 0; animation-name: pack-star-flare; animation-timing-function: ease-out; animation-fill-mode: both; }

@@ -97,7 +97,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,241,168,.5), rgba(168,85,247,.25) 45%, rgba(15,10,40,.2) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
-          <img key={form.image} src={form.image} alt="" draggable={false} loading="lazy" className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
+          <img
+            key={form.image}
+            src={form.image}
+            alt=""
+            draggable={false}
+            loading="lazy"
+            className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]"
+            // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
+            style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
+          />
           {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
             <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">

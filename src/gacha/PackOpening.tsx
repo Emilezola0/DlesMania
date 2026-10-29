@@ -30,6 +30,42 @@ const top = (r: Rarity) => r === 'legendary' || r === 'mythic' || r === 'omni';
 /** The rainbow tiers: mythic and, above it, omni. */
 const prismatic = (r: Rarity) => r === 'mythic' || r === 'omni';
 
+/** A pack's shooting stars: one per card, in its colour, the rarest last. */
+interface Star {
+  /** The card's rarity, and the one the star shows first (a rarity lower when it evolves on the way). */
+  to: Rarity;
+  from: Rarity;
+  /** When it starts and how long it flies, in ms; its height and tilt on screen. */
+  delay: number;
+  duration: number;
+  top: number;
+  tilt: number;
+}
+/** How often a pack has a star that evolves (Rare → Epic, Epic → Legendary…) mid-flight. */
+const EVOLVE_CHANCE = 0.3;
+const STAR_GAP = 260;
+const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
+
+function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
+  // Now and then one star (Rare or better) shows a rarity lower, and evolves on the way.
+  const able = cards.map((c, i) => (RARITIES.indexOf(c.rarity) >= 1 ? i : -1)).filter((i) => i >= 0);
+  const evolving = able.length && rand() < EVOLVE_CHANCE ? able[Math.floor(rand() * able.length)] : -1;
+  let at = 0;
+  return cards.map((c, i) => {
+    const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
+    const star: Star = { to: c.rarity, from, delay: at, duration: flight(c.rarity) + (from !== c.rarity ? 600 : 0), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
+    at += STAR_GAP + (top(c.rarity) ? 250 : 0);
+    return star;
+  });
+}
+/** The moment in a star's flight it evolves, a little before halfway across (the same 42% as .pack-star-* in index.css). */
+const EVOLVE_AT = 0.42;
+/** A star's streak: transparent tail, its colour, a white head (a rainbow for mythics and omnis). */
+const streak = (r: Rarity) => ({
+  background: prismatic(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
+  boxShadow: prismatic(r) ? '0 0 18px #ff4fd8, 0 0 40px #3cc7ff, 0 0 70px #ffcd3c' : `0 0 16px ${RARITY_LIGHT[r]}, 0 0 40px ${RARITY_LIGHT[r]}`,
+});
+
 const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** Sparks flying out from a turned card, in its colour (more for rarer cards; a mythic's in every colour). */
@@ -97,6 +133,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
 
   const card = cards[i];
+  // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
+  const stars = useMemo(() => starsFor(cards), [cards]);
 
   // ── Tearing ─────────────────────────────────────────────────────────
   const torn = () => {
@@ -107,9 +145,14 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     later(() => {
       if (reducedMotion()) return toReveal();
       setPhase('meteor');
-      sfx.meteor(top(best));
-      later(() => setFlash({ color: light, key: Date.now() }), best === 'omni' ? 2300 : best === 'mythic' ? 1700 : best === 'legendary' ? 1300 : 850);
-      later(toReveal, best === 'omni' ? 2700 : best === 'mythic' ? 2100 : best === 'legendary' ? 1650 : 1150);
+      // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
+      stars.forEach((s, k) => {
+        later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
+        if (s.from !== s.to) later(() => (sfx.shimmer(5), sfx.streak()), s.delay + s.duration * EVOLVE_AT);
+      });
+      const end = Math.max(...stars.map((s) => s.delay + s.duration));
+      later(() => setFlash({ color: light, key: Date.now() }), end - 100);
+      later(toReveal, end + 300);
     }, 950);
   };
   /** A tap instead of a swipe: the pack tears by itself, quickly. */
@@ -329,19 +372,30 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         </div>
       )}
 
-      {/* 2. The shooting star, in the best card's colour. */}
+      {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one evolves on the way. */}
       {phase === 'meteor' && (
-        <div className="pointer-events-none fixed inset-0" aria-hidden>
-          <div className="absolute left-0 top-[28%] w-full -rotate-[18deg]">
-            <div
-              className={`pack-meteor h-[6px] rounded-full ${prismatic(best) ? 'pack-meteor-slower' : best === 'legendary' ? 'pack-meteor-slow' : ''}`}
-              style={{
-                width: '45vw',
-                background: prismatic(best) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${light}88 40%, #fff)`,
-                boxShadow: prismatic(best) ? '0 0 18px #ff4fd8, 0 0 40px #3cc7ff, 0 0 70px #ffcd3c' : `0 0 18px ${light}, 0 0 48px ${light}`,
-              }}
-            />
-          </div>
+        <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+          {stars.map((s, k) => {
+            const evolves = s.from !== s.to;
+            const timing = { animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms` };
+            const turn = timing;
+            const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
+            return (
+              <div key={k} className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
+                <div className="pack-meteor relative rounded-full" style={{ ...timing, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
+                  {/* What it shows first; an evolving star swaps it for its true colour on the way. */}
+                  <div className={`absolute inset-0 rounded-full ${evolves ? 'pack-star-before' : ''}`} style={{ ...streak(s.from), ...(evolves ? turn : {}) }} />
+                  {evolves && (
+                    <>
+                      <div className="pack-star-after absolute inset-0 rounded-full" style={{ ...streak(s.to), ...turn }} />
+                      {/* The burst at its head as it changes. */}
+                      <div className="pack-star-burst absolute -right-6 top-1/2 size-12 rounded-full" style={{ ...turn, background: `radial-gradient(circle, #fff, ${RARITY_LIGHT[s.to]} 40%, transparent 70%)` }} />
+                    </>
+                  )}
+                </div>
+              </div>
+            );
+          })}
           {top(best) && <div className={`pack-twinkle absolute inset-0 ${prismatic(best) ? 'pack-twinkle-rainbow' : ''}`} />}
         </div>
       )}

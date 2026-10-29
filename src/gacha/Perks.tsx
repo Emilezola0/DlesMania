@@ -13,7 +13,14 @@ const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legenda
 export function CardAvatar({ card, className = 'size-6' }: { card: Card; className?: string }) {
   return (
     <span className={`block overflow-hidden rounded-full bg-[#0f0d16] ${className}`} style={{ boxShadow: `0 0 0 2px ${RARITY_LIGHT[card.rarity]}` }}>
-      <img src={card.image} alt="" draggable={false} className="size-full scale-125 object-cover object-top" />
+      <img
+        src={card.image}
+        alt=""
+        draggable={false}
+        className={`size-full object-cover ${card.focus ? '' : 'scale-125 object-top'}`}
+        // A framed picture: its subject in the circle.
+        style={card.focus ? { objectPosition: `${card.focus.x}% ${card.focus.y}%`, transform: `scale(${Math.max(1.25, card.focus.zoom * 0.7)})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
+      />
     </span>
   );
 }
