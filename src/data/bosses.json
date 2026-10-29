@@ -1493,6 +1493,95 @@
       {
         "label": "Moira",
         "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5a/OW2_Moira.png/revision/latest/scale-to-width-down/272?cb=20240404082150"
+      },
+      {
+        "label": "Cassidy",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/OW2_Cassidy.png/revision/latest/scale-to-width-down/140?cb=20241108201305",
+        "aliases": [
+          "McCree"
+        ]
+      },
+      {
+        "label": "Zarya",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/02/OW2_Zarya.png/revision/latest/scale-to-width-down/140?cb=20241108201623"
+      },
+      {
+        "label": "Ashe",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/89/OW2_Ashe.png/revision/latest/scale-to-width-down/140?cb=20250329135344"
+      },
+      {
+        "label": "Junker Queen",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/OW2_JunkerQueen.png/revision/latest/scale-to-width-down/400?cb=20241101134259",
+        "fr": "Reine des Junkers",
+        "aliases": [
+          "Reine des Junkers",
+          "JQ"
+        ]
+      },
+      {
+        "label": "Roadhog",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/34/OW2_Roadhog.png/revision/latest/scale-to-width-down/140?cb=20260213114356",
+        "fr": "Chopper",
+        "aliases": [
+          "Chopper",
+          "Hog"
+        ]
+      },
+      {
+        "label": "Bastion",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/400?cb=20241108201208"
+      },
+      {
+        "label": "Symmetra",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/51/OW2_Symmetra.png/revision/latest/scale-to-width-down/140?cb=20240130124019"
+      },
+      {
+        "label": "Freja",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/31/OW2_Freja.png/revision/latest/scale-to-width-down/140?cb=20250322151231"
+      },
+      {
+        "label": "Wuyang",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/OW2_Wuyang.png/revision/latest/scale-to-width-down/140?cb=20260305234200"
+      },
+      {
+        "label": "Anran",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/07/OW2_Anran.png/revision/latest/scale-to-width-down/140?cb=20260611085803"
+      },
+      {
+        "label": "D.Mon",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/dc/OW2_DMonBeast.png/revision/latest/scale-to-width-down/400?cb=20260812012011"
+      },
+      {
+        "label": "Doctrine",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Doctrine.png/revision/latest/scale-to-width-down/400?cb=20260918043518"
+      },
+      {
+        "label": "Domina",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Domina.png/revision/latest/scale-to-width-down/140?cb=20260213022447"
+      },
+      {
+        "label": "Emre",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Emre.png/revision/latest/scale-to-width-down/140?cb=20260213003055"
+      },
+      {
+        "label": "Jetpack Cat",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Jetpack_Cat.png/revision/latest/scale-to-width-down/140?cb=20260206154545"
+      },
+      {
+        "label": "Mizuki",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Mizuki.png/revision/latest/scale-to-width-down/140?cb=20260215135742"
+      },
+      {
+        "label": "Shion",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8a/OW2_Shion.png/revision/latest/scale-to-width-down/140?cb=20260630073141"
+      },
+      {
+        "label": "Sierra",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/OW2_Sierra.png/revision/latest/scale-to-width-down/140?cb=20260415005653"
+      },
+      {
+        "label": "Vendetta",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/140?cb=20260304090759"
       }
     ],
     "secret": {

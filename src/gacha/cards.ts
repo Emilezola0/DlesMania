@@ -13,6 +13,7 @@ import { GENSHIN } from '../specialist/genshin';
 import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
 import FROZEN_RARITIES from '../data/card-rarities.json';
+import MORE_ROSTERS from '../data/card-rosters.json';
 import type { Domain } from '../types';
 
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
@@ -250,6 +251,13 @@ const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]
   wow: WOW.characters.map((c, i) => ({ name: c.name, image: c.render ?? c.image, rarity: i < 15 ? 'epic' : i < 45 ? 'rare' : 'common' })),
 };
 
+/**
+ * Bigger rosters still (src/data/card-rosters.json, from the fan wikis): Naruto, Dragon Ball and
+ * Inazuma Eleven's casts, and every Overwatch hero. Their rarity is set in the file: the best-known
+ * faces epic, the next ones rare.
+ */
+const MORE = MORE_ROSTERS as Record<string, { name: string; image: string; rarity: Rarity }[]>;
+
 const slug = (s: string) =>
   s
     .normalize('NFD')
@@ -424,6 +432,20 @@ export const CARDS: Card[] = (() => {
       if (!r.image || seen.has(r.name)) continue;
       seen.add(r.name);
       set.push({ id: `${b.id}:${slug(r.name)}`, name: r.name, image: r.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: r.rarity, description: describe(b.id, r.name, r.rarity === 'epic' ? 'epic' : r.rarity === 'rare' ? 'rare' : 'common', b.franchise) });
+    }
+  }
+  // Added last: the bigger rosters. A name only has to be new to its own set here (Overwatch's Ashe
+  // isn't League's), so nothing added before can lose its card.
+  for (const b of BOSSES) {
+    const set = sets.get(b.id)!;
+    const names = new Set(set.map((c) => c.name));
+    const ids = new Set(set.map((c) => c.id));
+    for (const r of MORE[b.id] ?? []) {
+      const id = `${b.id}:${slug(r.name)}`;
+      if (names.has(r.name) || ids.has(id)) continue;
+      names.add(r.name);
+      ids.add(id);
+      set.push({ id, name: r.name, image: r.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: r.rarity, description: describe(b.id, r.name, r.rarity === 'epic' ? 'epic' : r.rarity === 'rare' ? 'rare' : 'common', b.franchise) });
     }
   }
   return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));

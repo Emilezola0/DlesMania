@@ -1,0 +1,2330 @@
+{
+ "naruto": [
+  {
+   "name": "Kisame Hoshigaki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f7/Kisame_Hoshigaki_full.png/revision/latest/scale-to-width-down/400?cb=20160304061903",
+   "rarity": "epic"
+  },
+  {
+   "name": "Deidara",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f5/NUNSRDeidara.png/revision/latest/scale-to-width-down/400?cb=20160623115341",
+   "rarity": "epic"
+  },
+  {
+   "name": "Boruto Uzumaki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/de/Boruto_Infobox.png/revision/latest/scale-to-width-down/400?cb=20220130144217",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kaguya Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/6/6c/Kaguya_%C5%8Ctsutsuki.png/revision/latest/scale-to-width-down/400?cb=20180824113908",
+   "rarity": "epic"
+  },
+  {
+   "name": "Shisui Uchiha",
+   "image": "https://static.wikia.nocookie.net/naruto/images/1/1d/Shisui_Child_OL.png/revision/latest/scale-to-width-down/400?cb=20210415225920",
+   "rarity": "epic"
+  },
+  {
+   "name": "Hiruzen Sarutobi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e8/Young_Hiruzen_Mobile.png/revision/latest/scale-to-width-down/400?cb=20210422155026",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kushina Uzumaki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/6/6c/Kid_Kushina.png/revision/latest/scale-to-width-down/400?cb=20260130205650",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kiba Inuzuka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/03/Kiba.png/revision/latest/scale-to-width-down/400?cb=20180124105049",
+   "rarity": "rare"
+  },
+  {
+   "name": "Chōji Akimichi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/7d/Ch%C5%8Dji_Akimichi.png/revision/latest/scale-to-width-down/400?cb=20200426204415",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ino Yamanaka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/dd/Ino.png/revision/latest/scale-to-width-down/400?cb=20170622102745",
+   "rarity": "rare"
+  },
+  {
+   "name": "Asuma Sarutobi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/7c/Asuma.png/revision/latest/scale-to-width-down/400?cb=20150822043018",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kurenai Yūhi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/6/67/Kurenai_Part_I.png/revision/latest/scale-to-width-down/400?cb=20150207094753",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tobirama Senju",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/70/Kid_Tobirama.png/revision/latest/scale-to-width-down/400?cb=20230322145433",
+   "rarity": "rare"
+  },
+  {
+   "name": "Konohamaru Sarutobi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/89/Konohamaru_p1.png/revision/latest/scale-to-width-down/400?cb=20150122131608",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kakuzu",
+   "image": "https://static.wikia.nocookie.net/naruto/images/1/1a/Kakuzu_UNSR.png/revision/latest/scale-to-width-down/400?cb=20170529102009",
+   "rarity": "rare"
+  },
+  {
+   "name": "Danzō Shimura",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d2/Danzo_full.png/revision/latest/scale-to-width-down/400?cb=20140807015514",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sarada Uchiha",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/9a/Sarada_Infobox.png/revision/latest/scale-to-width-down/400?cb=20180531174206",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mitsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/5c/Mitsuki.png/revision/latest/scale-to-width-down/400?cb=20180727050509",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kawaki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/ef/Kawaki_infobox.png/revision/latest/scale-to-width-down/400?cb=20211018061922",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hagoromo Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/83/Kid_Hagoromo.png/revision/latest/scale-to-width-down/400?cb=20160528091016",
+   "rarity": "rare"
+  },
+  {
+   "name": "A (Fourth Raikage)",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/4c/Fourth_Raikage_2.png/revision/latest/scale-to-width-down/400?cb=20180901014100",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ōnoki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/6/67/%C5%8Cnoki.png/revision/latest/scale-to-width-down/400?cb=20181203071043",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mei Terumī",
+   "image": "https://static.wikia.nocookie.net/naruto/images/6/6f/Mei.png/revision/latest/scale-to-width-down/400?cb=20170927110950",
+   "rarity": "rare"
+  },
+  {
+   "name": "Suigetsu Hōzuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/3e/Suigetsu_H%C5%8Dzuki.png/revision/latest/scale-to-width-down/400?cb=20171012002428",
+   "rarity": "rare"
+  },
+  {
+   "name": "Karin",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/72/Karin3.png/revision/latest/scale-to-width-down/400?cb=20170906102126",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shizune",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/0a/Shizune_Infobox.png/revision/latest/scale-to-width-down/400?cb=20170726101304",
+   "rarity": "rare"
+  },
+  {
+   "name": "Iruka Umino",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/bc/Iruka.png/revision/latest/scale-to-width-down/400?cb=20161013212102",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yahiko",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/37/Yahiko_child.png/revision/latest/scale-to-width-down/400?cb=20210413161324",
+   "rarity": "rare"
+  },
+  {
+   "name": "Momoshiki Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/89/Momoshiki_%C5%8Ctsutsuki.png/revision/latest/scale-to-width-down/400?cb=20240702223234",
+   "rarity": "rare"
+  },
+  {
+   "name": "Isshiki Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/21/Isshiki.png/revision/latest/scale-to-width-down/400?cb=20210924094944",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gamabunta",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f6/Gamabunta2.png/revision/latest/scale-to-width-down/400?cb=20150131220923",
+   "rarity": "rare"
+  },
+  {
+   "name": "Akamaru",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/09/Akamaru_p1.png/revision/latest/scale-to-width-down/400?cb=20140705090523",
+   "rarity": "common"
+  },
+  {
+   "name": "Himawari Uzumaki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f7/Himawari_Part_I.png/revision/latest/scale-to-width-down/400?cb=20231018143215",
+   "rarity": "common"
+  },
+  {
+   "name": "Shikadai Nara",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/3d/Shikadai_Nara.png/revision/latest/scale-to-width-down/400?cb=20150624043352",
+   "rarity": "common"
+  },
+  {
+   "name": "Inojin Yamanaka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e6/Inojin_movie.png/revision/latest/scale-to-width-down/400?cb=20160715224617",
+   "rarity": "common"
+  },
+  {
+   "name": "Chōchō Akimichi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/08/Ch%C5%8Dch%C5%8D_Akimichi.png/revision/latest/scale-to-width-down/400?cb=20171220104427",
+   "rarity": "common"
+  },
+  {
+   "name": "Kinshiki Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/c/ca/Kinshiki.png/revision/latest/scale-to-width-down/400?cb=20180614114549",
+   "rarity": "common"
+  },
+  {
+   "name": "Darui",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/45/Darui.png/revision/latest/scale-to-width-down/400?cb=20170913102716",
+   "rarity": "common"
+  },
+  {
+   "name": "Mifune",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/ee/Mifune.png/revision/latest/scale-to-width-down/400?cb=20150514152216",
+   "rarity": "common"
+  },
+  {
+   "name": "Kurotsuchi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/29/Kurotsuchi_Part_II.png/revision/latest/scale-to-width-down/400?cb=20170913104850",
+   "rarity": "common"
+  },
+  {
+   "name": "Chōjūrō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d8/Chojuro_2.png/revision/latest/scale-to-width-down/400?cb=20170913102939",
+   "rarity": "common"
+  },
+  {
+   "name": "Kidōmaru",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e8/Kid%C5%8Dmaru.png/revision/latest/scale-to-width-down/400?cb=20240902034037",
+   "rarity": "common"
+  },
+  {
+   "name": "Tayuya",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/78/Tayuya_Shot.png/revision/latest/scale-to-width-down/400?cb=20260807021117",
+   "rarity": "common"
+  },
+  {
+   "name": "Sakon and Ukon",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/2e/Sakon_and_Ukon.png/revision/latest/scale-to-width-down/400?cb=20210726001946",
+   "rarity": "common"
+  },
+  {
+   "name": "Jirōbō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/45/Jirobo_newshot.png/revision/latest/scale-to-width-down/400?cb=20260807020908",
+   "rarity": "common"
+  },
+  {
+   "name": "Dosu Kinuta",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/b0/Dosu_Kinuta.png/revision/latest/scale-to-width-down/400?cb=20210421154038",
+   "rarity": "common"
+  },
+  {
+   "name": "Zaku Abumi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/40/Zaku_Abumi.PNG/revision/latest/scale-to-width-down/400?cb=20241001021714",
+   "rarity": "common"
+  },
+  {
+   "name": "Kin Tsuchi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f3/Kin_Tsuchi.PNG/revision/latest/scale-to-width-down/400?cb=20241115003908",
+   "rarity": "common"
+  },
+  {
+   "name": "Anko Mitarashi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/bd/Anko_Part_I.png/revision/latest/scale-to-width-down/400?cb=20170412103610",
+   "rarity": "common"
+  },
+  {
+   "name": "Ibiki Morino",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/4b/Ibiki_Part_I.png/revision/latest/scale-to-width-down/400?cb=20220218113218",
+   "rarity": "common"
+  },
+  {
+   "name": "Ebisu",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/77/Ebisu.png/revision/latest/scale-to-width-down/400?cb=20160626182251",
+   "rarity": "common"
+  },
+  {
+   "name": "Hayate Gekkō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/3a/Hayate_Gekk%C5%8D.png/revision/latest/scale-to-width-down/400?cb=20150118200748",
+   "rarity": "common"
+  },
+  {
+   "name": "Genma Shiranui",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/90/Genma_Shiranui.png/revision/latest/scale-to-width-down/400?cb=20160122112630",
+   "rarity": "common"
+  },
+  {
+   "name": "Kotetsu Hagane",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/81/Kotetsu_Hagane.png/revision/latest/scale-to-width-down/400?cb=20160115135316",
+   "rarity": "common"
+  },
+  {
+   "name": "Izumo Kamizuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/5d/Izumo_Kamizuki.png/revision/latest/scale-to-width-down/400?cb=20140111135444",
+   "rarity": "common"
+  },
+  {
+   "name": "Hiashi Hyūga",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/ee/Hiashi_Hyuga.png/revision/latest/scale-to-width-down/400?cb=20150109142633",
+   "rarity": "common"
+  },
+  {
+   "name": "Hanabi Hyūga",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/da/Hanabi_Hyuga.png/revision/latest/scale-to-width-down/400?cb=20180314102603",
+   "rarity": "common"
+  },
+  {
+   "name": "Hizashi Hyūga",
+   "image": "https://static.wikia.nocookie.net/naruto/images/1/15/Young_Hizashi.png/revision/latest/scale-to-width-down/400?cb=20160428002530",
+   "rarity": "common"
+  },
+  {
+   "name": "Fugaku Uchiha",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f2/Fugaku.png/revision/latest/scale-to-width-down/400?cb=20180502064054",
+   "rarity": "common"
+  },
+  {
+   "name": "Mikoto Uchiha",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/8e/Mikoto_Uchiha.png/revision/latest/scale-to-width-down/400?cb=20150130135950",
+   "rarity": "common"
+  },
+  {
+   "name": "Izuna Uchiha",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/83/Izuna_Uchiha.png/revision/latest/scale-to-width-down/400?cb=20170818214808",
+   "rarity": "common"
+  },
+  {
+   "name": "Sakumo Hatake",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/3f/Sakumo_Hatake.png/revision/latest/scale-to-width-down/400?cb=20150504191510",
+   "rarity": "common"
+  },
+  {
+   "name": "Rin Nohara",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/de/Rin%27s_Legacy.png/revision/latest/scale-to-width-down/400?cb=20160822001444",
+   "rarity": "common"
+  },
+  {
+   "name": "Utakata",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/27/Utakata.png/revision/latest/scale-to-width-down/400?cb=20160223174142",
+   "rarity": "common"
+  },
+  {
+   "name": "Yugito Nii",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/2f/Yugito.png/revision/latest/scale-to-width-down/400?cb=20220205121239",
+   "rarity": "common"
+  },
+  {
+   "name": "Rōshi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/37/Roshi_OL.png/revision/latest/scale-to-width-down/400?cb=20210323164638",
+   "rarity": "common"
+  },
+  {
+   "name": "Han",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/3c/Han.png/revision/latest/scale-to-width-down/400?cb=20220205121445",
+   "rarity": "common"
+  },
+  {
+   "name": "Fū",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f6/Fu.png/revision/latest/scale-to-width-down/400?cb=20220205122040",
+   "rarity": "common"
+  },
+  {
+   "name": "Yagura Karatachi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e0/Yagura.png/revision/latest/scale-to-width-down/400?cb=20220206065510",
+   "rarity": "common"
+  },
+  {
+   "name": "Gyūki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d7/Gyuki.png/revision/latest/scale-to-width-down/400?cb=20140817221249",
+   "rarity": "common"
+  },
+  {
+   "name": "Shukaku",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/99/Shukaku.png/revision/latest/scale-to-width-down/400?cb=20140916210030",
+   "rarity": "common"
+  },
+  {
+   "name": "Matatabi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/a/a7/Matatabi.png/revision/latest/scale-to-width-down/400?cb=20140818015320",
+   "rarity": "common"
+  },
+  {
+   "name": "Isobu",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/df/Isobu.png/revision/latest/scale-to-width-down/400?cb=20130913110358",
+   "rarity": "common"
+  },
+  {
+   "name": "Son Gokū",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/5e/Son_Goku.png/revision/latest/scale-to-width-down/400?cb=20140817220446",
+   "rarity": "common"
+  },
+  {
+   "name": "Kokuō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/a/a3/Kokuo.png/revision/latest/scale-to-width-down/400?cb=20140817215510",
+   "rarity": "common"
+  },
+  {
+   "name": "Saiken",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/58/Saiken.png/revision/latest/scale-to-width-down/400?cb=20140211075946",
+   "rarity": "common"
+  },
+  {
+   "name": "Chōmei",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/78/Chomei.png/revision/latest/scale-to-width-down/400?cb=20130913103927",
+   "rarity": "common"
+  },
+  {
+   "name": "Chiyo",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/73/Chiyo.png/revision/latest/scale-to-width-down/400?cb=20160113171702",
+   "rarity": "common"
+  },
+  {
+   "name": "Ebizō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/02/Ebiz%C5%8D.png/revision/latest/scale-to-width-down/400?cb=20160626182848",
+   "rarity": "common"
+  },
+  {
+   "name": "Baki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/04/Baki_Infobox.png/revision/latest/scale-to-width-down/400?cb=20160122172410",
+   "rarity": "common"
+  },
+  {
+   "name": "Rasa",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/24/Yondaime_Kazekage.png/revision/latest/scale-to-width-down/400?cb=20210806012316",
+   "rarity": "common"
+  },
+  {
+   "name": "Pakkun",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/bc/Pakkun.png/revision/latest/scale-to-width-down/400?cb=20240902033238",
+   "rarity": "common"
+  },
+  {
+   "name": "Manda",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e0/Manda_Summoned.png/revision/latest/scale-to-width-down/400?cb=20150131221107",
+   "rarity": "common"
+  },
+  {
+   "name": "Katsuyu",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/59/Katsuyu_Summoned.png/revision/latest/scale-to-width-down/400?cb=20150131221131",
+   "rarity": "common"
+  },
+  {
+   "name": "Fukasaku",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/fc/Fukusaku.png/revision/latest/scale-to-width-down/400?cb=20160510201946",
+   "rarity": "common"
+  },
+  {
+   "name": "Guren",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/51/Guren_as_a_Child.png/revision/latest/scale-to-width-down/400?cb=20151030204554",
+   "rarity": "common"
+  },
+  {
+   "name": "Black Zetsu",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e0/Black_Zetsu_as_a_child.png/revision/latest/scale-to-width-down/400?cb=20240624165558",
+   "rarity": "common"
+  },
+  {
+   "name": "Indra Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/bd/Indra_%C5%8Ctsutsuki.png/revision/latest/scale-to-width-down/400?cb=20220214090844",
+   "rarity": "common"
+  },
+  {
+   "name": "Asura Ōtsutsuki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/56/Asura_%C5%8Ctsutsuki.png/revision/latest/scale-to-width-down/400?cb=20220214090535",
+   "rarity": "common"
+  },
+  {
+   "name": "Code",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/38/Code.png/revision/latest/scale-to-width-down/400?cb=20260111023145",
+   "rarity": "common"
+  },
+  {
+   "name": "Eida",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/45/Senrigan.svg/revision/latest/scale-to-width-down/400?cb=20230309014022",
+   "rarity": "common"
+  },
+  {
+   "name": "Daemon",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/25/Daemon_infobox.png/revision/latest/scale-to-width-down/400?cb=20241008195350",
+   "rarity": "common"
+  },
+  {
+   "name": "Amado",
+   "image": "https://static.wikia.nocookie.net/naruto/images/8/89/Amado%27s_Appearance.png/revision/latest/scale-to-width-down/400?cb=20241004202240",
+   "rarity": "common"
+  },
+  {
+   "name": "Jigen",
+   "image": "https://static.wikia.nocookie.net/naruto/images/5/54/Jigen_Infobox.png/revision/latest/scale-to-width-down/400?cb=20210902055901",
+   "rarity": "common"
+  },
+  {
+   "name": "Shikaku Nara",
+   "image": "https://static.wikia.nocookie.net/naruto/images/e/e0/Shikaku_Nara.png/revision/latest/scale-to-width-down/400?cb=20210802192328",
+   "rarity": "common"
+  },
+  {
+   "name": "Inoichi Yamanaka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d2/Inoichi_Yamanaka.png/revision/latest/scale-to-width-down/400?cb=20150409122740",
+   "rarity": "common"
+  },
+  {
+   "name": "Chōza Akimichi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/a/a8/Ch%C5%8Dza_Akimichi.png/revision/latest/scale-to-width-down/400?cb=20180304093618",
+   "rarity": "common"
+  },
+  {
+   "name": "Tsume Inuzuka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f6/Tsume_Inuzuka.png/revision/latest/scale-to-width-down/400?cb=20160203222106",
+   "rarity": "common"
+  },
+  {
+   "name": "Hana Inuzuka",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Hana_Inuzuka.png/revision/latest/scale-to-width-down/400?cb=20150818182327",
+   "rarity": "common"
+  },
+  {
+   "name": "Shibi Aburame",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/b3/Shibi.png/revision/latest/scale-to-width-down/400?cb=20150315114902",
+   "rarity": "common"
+  },
+  {
+   "name": "Udon",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/76/Udon_p1.png/revision/latest/scale-to-width-down/400?cb=20150122130939",
+   "rarity": "common"
+  },
+  {
+   "name": "Moegi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/b/b7/Moegi_p1.png/revision/latest/scale-to-width-down/400?cb=20150122130558",
+   "rarity": "common"
+  },
+  {
+   "name": "Teuchi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Teuchi_Infobox.png/revision/latest/scale-to-width-down/400?cb=20160131060713",
+   "rarity": "common"
+  },
+  {
+   "name": "Ayame",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/4f/Ayame.png/revision/latest/scale-to-width-down/400?cb=20160115175059",
+   "rarity": "common"
+  },
+  {
+   "name": "Tazuna",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/46/Tazuna_Part_II.png/revision/latest/scale-to-width-down/400?cb=20180811083233",
+   "rarity": "common"
+  },
+  {
+   "name": "Inari",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/0e/Inari.png/revision/latest/scale-to-width-down/400?cb=20150122183558",
+   "rarity": "common"
+  },
+  {
+   "name": "Gatō",
+   "image": "https://static.wikia.nocookie.net/naruto/images/d/d8/Gato.png/revision/latest/scale-to-width-down/400?cb=20150221135530",
+   "rarity": "common"
+  },
+  {
+   "name": "Torune",
+   "image": "https://static.wikia.nocookie.net/naruto/images/3/35/Torune_Anime.png/revision/latest/scale-to-width-down/400?cb=20150209195934",
+   "rarity": "common"
+  },
+  {
+   "name": "Sora",
+   "image": "https://static.wikia.nocookie.net/naruto/images/2/2d/Sora_full.png/revision/latest/scale-to-width-down/400?cb=20210829042720",
+   "rarity": "common"
+  },
+  {
+   "name": "Menma",
+   "image": "https://static.wikia.nocookie.net/naruto/images/a/a3/Masked_Menma_Art_Naruto_Online.png/revision/latest/scale-to-width-down/400?cb=20251012222901",
+   "rarity": "common"
+  },
+  {
+   "name": "Mū",
+   "image": "https://static.wikia.nocookie.net/naruto/images/c/c9/Mu_full.png/revision/latest/scale-to-width-down/400?cb=20160305040529",
+   "rarity": "common"
+  },
+  {
+   "name": "Third Raikage",
+   "image": "https://static.wikia.nocookie.net/naruto/images/f/f5/Raikage3.png/revision/latest/scale-to-width-down/400?cb=20160116123903",
+   "rarity": "common"
+  },
+  {
+   "name": "Second Mizukage",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/9f/Gengetsu_H%C5%8Dzuki.png/revision/latest/scale-to-width-down/400?cb=20150417014745",
+   "rarity": "common"
+  },
+  {
+   "name": "Shinki",
+   "image": "https://static.wikia.nocookie.net/naruto/images/7/78/Shinki.png/revision/latest/scale-to-width-down/400?cb=20180503122523",
+   "rarity": "common"
+  },
+  {
+   "name": "Iwabee Yuino",
+   "image": "https://static.wikia.nocookie.net/naruto/images/0/0b/Iwabee_Yuino.png/revision/latest/scale-to-width-down/400?cb=20180824075948",
+   "rarity": "common"
+  },
+  {
+   "name": "Denki Kaminarimon",
+   "image": "https://static.wikia.nocookie.net/naruto/images/a/a3/Denki_Kaminarimon.png/revision/latest/scale-to-width-down/400?cb=20180208013944",
+   "rarity": "common"
+  },
+  {
+   "name": "Metal Lee",
+   "image": "https://static.wikia.nocookie.net/naruto/images/9/93/Metal_Lee.png/revision/latest/scale-to-width-down/400?cb=20180824114015",
+   "rarity": "common"
+  },
+  {
+   "name": "Sumire Kakei",
+   "image": "https://static.wikia.nocookie.net/naruto/images/1/12/Sumire_Kakei.png/revision/latest/scale-to-width-down/400?cb=20210124172759",
+   "rarity": "common"
+  },
+  {
+   "name": "Kagura Karatachi",
+   "image": "https://static.wikia.nocookie.net/naruto/images/4/4a/Kagura_Karatachi.png/revision/latest/scale-to-width-down/400?cb=20220206063301",
+   "rarity": "common"
+  }
+ ],
+ "dbz": [
+  {
+   "name": "Future Trunks",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/4f/Future_Trunks_DBZ_Episode_131.png/revision/latest/scale-to-width-down/400?cb=20241206021927",
+   "rarity": "epic"
+  },
+  {
+   "name": "Gotenks",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/08/Gotenks.png/revision/latest/scale-to-width-down/400?cb=20260821150453",
+   "rarity": "epic"
+  },
+  {
+   "name": "Gogeta",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/7b/Gogeta_Base_Full.jpg/revision/latest/scale-to-width-down/400?cb=20191027075547",
+   "rarity": "epic"
+  },
+  {
+   "name": "Vegito",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/53/Vegito.jpg/revision/latest/scale-to-width-down/400?cb=20250317214139",
+   "rarity": "epic"
+  },
+  {
+   "name": "Android 17",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/27/Android_17_%28DBZ_ep.148%29.jpg/revision/latest/scale-to-width-down/400?cb=20250410044432",
+   "rarity": "epic"
+  },
+  {
+   "name": "Goku Black",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/13/Screenshot_%282%29.png/revision/latest/scale-to-width-down/400?cb=20190211123553",
+   "rarity": "epic"
+  },
+  {
+   "name": "Jiren",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/3/33/Jiren1.png/revision/latest/scale-to-width-down/400?cb=20170723224647",
+   "rarity": "epic"
+  },
+  {
+   "name": "Zamasu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/59/Zamasu_DBS_Ep_53_006.png/revision/latest/scale-to-width-down/400?cb=20180820041712",
+   "rarity": "epic"
+  },
+  {
+   "name": "Hit",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/ec/Hit_Profile.jpg/revision/latest/scale-to-width-down/400?cb=20160404221157",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kefla",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/af/Kefla_01.png/revision/latest/scale-to-width-down/400?cb=20171105024801",
+   "rarity": "epic"
+  },
+  {
+   "name": "Android 16",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b2/Android_16.png/revision/latest/scale-to-width-down/400?cb=20210331024540",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kid Buu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/53/Kid_Buu.png/revision/latest/scale-to-width-down/400?cb=20260821150947",
+   "rarity": "rare"
+  },
+  {
+   "name": "Super Buu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/3/32/MajinBuuSuperVsGohan02.png/revision/latest/scale-to-width-down/400?cb=20260820190521",
+   "rarity": "rare"
+  },
+  {
+   "name": "Captain Ginyu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/28/CaptainGinyuVsGoku.png/revision/latest/scale-to-width-down/400?cb=20260822002603",
+   "rarity": "rare"
+  },
+  {
+   "name": "King Cold",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/22/King_Cold_episode_122.png/revision/latest/scale-to-width-down/400?cb=20241217033208",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pan",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1c/Super_Hero_-_Pan_artwork_2.png/revision/latest/scale-to-width-down/400?cb=20250923210359",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cell Jr.",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/ef/Cell_Junior_episode_184.png/revision/latest/scale-to-width-down/400?cb=20211023035521",
+   "rarity": "rare"
+  },
+  {
+   "name": "Android 21",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/17/DBH_Universe_Mission_2_-_Android_21.png/revision/latest/scale-to-width-down/400?cb=20230807202034",
+   "rarity": "rare"
+  },
+  {
+   "name": "Toppo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/87/Top.png/revision/latest/scale-to-width-down/400?cb=20180123150059",
+   "rarity": "rare"
+  },
+  {
+   "name": "Champa",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/f/fc/13001281_1570422286602499_8941391900815166996_n.jpg/revision/latest/scale-to-width-down/400?cb=20160411002336",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vados",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/41/VadosWikia_%281%29.jpg/revision/latest/scale-to-width-down/400?cb=20170625154835",
+   "rarity": "rare"
+  },
+  {
+   "name": "Zeno",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c1/Zeno.png/revision/latest/scale-to-width-down/400?cb=20170805000223",
+   "rarity": "rare"
+  },
+  {
+   "name": "Grand Priest",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/78/Daishinkan1.png/revision/latest/scale-to-width-down/400?cb=20170815212212",
+   "rarity": "rare"
+  },
+  {
+   "name": "Caulifla",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/6b/Caulif.png/revision/latest/scale-to-width-down/400?cb=20170721060144",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kale",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/d/df/Kale_01.png/revision/latest/scale-to-width-down/400?cb=20171227051452",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cabba",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8c/Cabba_Dragon_Ball_Super_Episode_37.png/revision/latest/scale-to-width-down/400?cb=20210419202430",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gine",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/5e/Broly_-_Gine_following_Bardock.png/revision/latest/scale-to-width-down/400?cb=20240601102128",
+   "rarity": "rare"
+  },
+  {
+   "name": "King Vegeta",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/65/King_Vegeta.png/revision/latest/scale-to-width-down/400?cb=20210428223509",
+   "rarity": "rare"
+  },
+  {
+   "name": "Moro",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/14/Moro_%28Digitial_Colored_Manga%29.jpg/revision/latest/scale-to-width-down/400?cb=20201003082939",
+   "rarity": "rare"
+  },
+  {
+   "name": "Granolah",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/be/Granolah_color.PNG/revision/latest/scale-to-width-down/400?cb=20210127214752",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gamma 1",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/eb/Gamma_1_movie_profile.png/revision/latest/scale-to-width-down/400?cb=20220910033102",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gamma 2",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/d/df/Gamma_2_movie_profile.png/revision/latest/scale-to-width-down/400?cb=20220910033256",
+   "rarity": "rare"
+  },
+  {
+   "name": "Dende",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/0d/DendeIllFightToo.png/revision/latest/scale-to-width-down/400?cb=20110906232642",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mr. Popo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/98/Mrpopo.png/revision/latest/scale-to-width-down/400?cb=20241221193238",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kami",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/a2/KamiGarlicJuniorSagaNV.png/revision/latest/scale-to-width-down/400?cb=20250325021450",
+   "rarity": "rare"
+  },
+  {
+   "name": "Uub",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1b/Cvanon.jpg/revision/latest/scale-to-width-down/400?cb=20171214122930",
+   "rarity": "rare"
+  },
+  {
+   "name": "Turles",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/0b/The_Tree_of_Might_-_Turles_looking_down_at_Gohan.jpg/revision/latest/scale-to-width-down/400?cb=20210927023245",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lord Slug",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/88/Lord_Slug_-_Lord_Slug_-_007.png/revision/latest/scale-to-width-down/400?cb=20250308100918",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jeice",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/3/35/Jeice_DBZ_Episode_71.png/revision/latest/scale-to-width-down/400?cb=20210519195015",
+   "rarity": "common"
+  },
+  {
+   "name": "Burter",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/f/f5/Big_Blue_Snake_Guy.png/revision/latest/scale-to-width-down/400?cb=20210319195352",
+   "rarity": "common"
+  },
+  {
+   "name": "Recoome",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8a/RecoomeTGFP.png/revision/latest/scale-to-width-down/400?cb=20100409151048",
+   "rarity": "common"
+  },
+  {
+   "name": "Guldo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/cb/GULDO.jpg/revision/latest/scale-to-width-down/400?cb=20140228015925",
+   "rarity": "common"
+  },
+  {
+   "name": "Android 19",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1f/Android_19_DBZ_Episode_130.png/revision/latest/scale-to-width-down/400?cb=20210904181928",
+   "rarity": "common"
+  },
+  {
+   "name": "Dr. Gero",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/71/Dr.GeroEp130.png/revision/latest/scale-to-width-down/400?cb=20160922141535",
+   "rarity": "common"
+  },
+  {
+   "name": "Paragus",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/ab/ParagusDVD.png/revision/latest/scale-to-width-down/400?cb=20100809114554",
+   "rarity": "common"
+  },
+  {
+   "name": "Tarble",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/9c/Nhequeiroqwsdasdsadasd.png/revision/latest/scale-to-width-down/400?cb=20150123192131",
+   "rarity": "common"
+  },
+  {
+   "name": "Garlic Jr.",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/15/Garlic_Jr_anime.png/revision/latest/scale-to-width-down/400?cb=20260521233638",
+   "rarity": "common"
+  },
+  {
+   "name": "Bojack",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/29/Bojack.BojackUnbound.png/revision/latest/scale-to-width-down/400?cb=20230626181902",
+   "rarity": "common"
+  },
+  {
+   "name": "Hirudegarn",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/07/Hirudegarn_better.png/revision/latest/scale-to-width-down/400?cb=20180525033132",
+   "rarity": "common"
+  },
+  {
+   "name": "Cheelai",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/aa/Cheelai_1.png/revision/latest/scale-to-width-down/400?cb=20190203134030",
+   "rarity": "common"
+  },
+  {
+   "name": "Lemo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/9a/Lemo_Vector.png/revision/latest/scale-to-width-down/400?cb=20190402034015",
+   "rarity": "common"
+  },
+  {
+   "name": "Dr. Hedo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/46/Dr._Hedo_profile.png/revision/latest/scale-to-width-down/400?cb=20220910030019",
+   "rarity": "common"
+  },
+  {
+   "name": "Magenta",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/5b/Magenta_profile.png/revision/latest/scale-to-width-down/400?cb=20220910032101",
+   "rarity": "common"
+  },
+  {
+   "name": "Korin",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/f/fe/KorinBuuSagaNV.png/revision/latest/scale-to-width-down/400?cb=20100513171706",
+   "rarity": "common"
+  },
+  {
+   "name": "Chiaotzu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/bb/Chiaotzu_DB_Ep_134_002.png/revision/latest/scale-to-width-down/400?cb=20231013025758",
+   "rarity": "common"
+  },
+  {
+   "name": "Launch",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/99/Launch_Combined_DB_Episode_15.png/revision/latest/scale-to-width-down/400?cb=20250119032837",
+   "rarity": "common"
+  },
+  {
+   "name": "Oolong",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/79/OolongWMATEp17.png/revision/latest/scale-to-width-down/400?cb=20241219021741",
+   "rarity": "common"
+  },
+  {
+   "name": "Puar",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1c/Puar_Episode_9.png/revision/latest/scale-to-width-down/400?cb=20250306174509",
+   "rarity": "common"
+  },
+  {
+   "name": "Ox-King",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/5b/Ox-KingPresentsEp05.png/revision/latest/scale-to-width-down/400?cb=20250401030059",
+   "rarity": "common"
+  },
+  {
+   "name": "Mercenary Tao",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/87/Mercenary_Tao_Dragon_Ball_Episode_59.png/revision/latest/scale-to-width-down/400?cb=20241209224259",
+   "rarity": "common"
+  },
+  {
+   "name": "Pilaf",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/6a/Emperor_Pilaf_DB_Ep_32_002.png/revision/latest/scale-to-width-down/400?cb=20241214224943",
+   "rarity": "common"
+  },
+  {
+   "name": "Mai",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/cf/Mai_DB_Episode_10.png/revision/latest/scale-to-width-down/400?cb=20241217045134",
+   "rarity": "common"
+  },
+  {
+   "name": "Shu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/4a/ShuS3.png/revision/latest/scale-to-width-down/400?cb=20130626233957",
+   "rarity": "common"
+  },
+  {
+   "name": "Nail",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/40/Nail.png/revision/latest/scale-to-width-down/400?cb=20260822134102",
+   "rarity": "common"
+  },
+  {
+   "name": "Guru",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/d/de/Guru_DBZ_Ep_76_001.png/revision/latest/scale-to-width-down/400?cb=20170915040925",
+   "rarity": "common"
+  },
+  {
+   "name": "Bulla",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8e/BullaDBGTmad.png/revision/latest/scale-to-width-down/400?cb=20240927043737",
+   "rarity": "common"
+  },
+  {
+   "name": "Marron",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/bd/Marron_naso1.jpg/revision/latest/scale-to-width-down/400?cb=20071210151352",
+   "rarity": "common"
+  },
+  {
+   "name": "Baby",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/a3/Baby_confronting_Goten.png/revision/latest/scale-to-width-down/400?cb=20241227021316",
+   "rarity": "common"
+  },
+  {
+   "name": "Pikkon",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b1/Pikkon_DBZ_Ep_198_003.png/revision/latest/scale-to-width-down/400?cb=20170916231851",
+   "rarity": "common"
+  },
+  {
+   "name": "Kibito",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/ce/Kibito-0.jpg/revision/latest/scale-to-width-down/400?cb=20170521172437",
+   "rarity": "common"
+  },
+  {
+   "name": "Old Kai",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/3/30/Old_Kai.jpg/revision/latest/scale-to-width-down/400?cb=20210316155139",
+   "rarity": "common"
+  },
+  {
+   "name": "Fortuneteller Baba",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c4/FortunetellerBaba.png/revision/latest/scale-to-width-down/400?cb=20250309063247",
+   "rarity": "common"
+  },
+  {
+   "name": "Spopovich",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b3/Spopovich_25th_BT.png/revision/latest/scale-to-width-down/400?cb=20211004205424",
+   "rarity": "common"
+  },
+  {
+   "name": "Yamu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c9/Yamu_Good.png/revision/latest/scale-to-width-down/400?cb=20211004210620",
+   "rarity": "common"
+  },
+  {
+   "name": "Frost",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/4b/FrostFinalForm.png/revision/latest/scale-to-width-down/400?cb=20170724232039",
+   "rarity": "common"
+  },
+  {
+   "name": "Belmod",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/03/Belmod.png/revision/latest/scale-to-width-down/400?cb=20170823160402",
+   "rarity": "common"
+  },
+  {
+   "name": "Marcarita",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/02/U11Angel.png/revision/latest/scale-to-width-down/400?cb=20170823155611",
+   "rarity": "common"
+  },
+  {
+   "name": "Dyspo",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/f/f4/Dyspoo.png/revision/latest/scale-to-width-down/400?cb=20170823113011",
+   "rarity": "common"
+  },
+  {
+   "name": "Gas",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/59/Gas_profile.png/revision/latest/scale-to-width-down/400?cb=20220723123508",
+   "rarity": "common"
+  },
+  {
+   "name": "Elec",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/78/Elec_full_body.png/revision/latest/scale-to-width-down/400?cb=20220901162013",
+   "rarity": "common"
+  },
+  {
+   "name": "Merus",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/42/Merus_profile.png/revision/latest/scale-to-width-down/400?cb=20201014202831",
+   "rarity": "common"
+  },
+  {
+   "name": "General Blue",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/5a/General_Blue_DB_Ep_48_001.png/revision/latest/scale-to-width-down/400?cb=20241005211129",
+   "rarity": "common"
+  },
+  {
+   "name": "Commander Red",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/7b/Commander_Red_DB_Ep_67_003.png/revision/latest/scale-to-width-down/400?cb=20241213021920",
+   "rarity": "common"
+  },
+  {
+   "name": "Grandpa Gohan",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/29/Gohan-dragon-ball.jpg/revision/latest/scale-to-width-down/400?cb=20220428060623",
+   "rarity": "common"
+  },
+  {
+   "name": "Glorio",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/40/Glorio_waiting_for_Bulma_finish_inspecting_his_plane.jpg/revision/latest/scale-to-width-down/400?cb=20250418202356",
+   "rarity": "common"
+  },
+  {
+   "name": "Gomah",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c7/Daima_-_Gomah.PNG/revision/latest/scale-to-width-down/400?cb=20241012154402",
+   "rarity": "common"
+  },
+  {
+   "name": "Degesu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b6/DBD_Ep_1_05.png/revision/latest/scale-to-width-down/400?cb=20241014024516",
+   "rarity": "common"
+  },
+  {
+   "name": "Panzy",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/9d/Panzy.png/revision/latest/scale-to-width-down/400?cb=20240910072956",
+   "rarity": "common"
+  },
+  {
+   "name": "Kibito Kai",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/12/KibitoKaiNV.png/revision/latest/scale-to-width-down/400?cb=20100424162026",
+   "rarity": "common"
+  },
+  {
+   "name": "Goku Jr.",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/e6/GokuJr.01.png/revision/latest/scale-to-width-down/400?cb=20250103023037",
+   "rarity": "common"
+  },
+  {
+   "name": "Vegeta Jr.",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b7/VegetaJr.DBGT01.png/revision/latest/scale-to-width-down/400?cb=20250103023052",
+   "rarity": "common"
+  },
+  {
+   "name": "Super 17",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/67/S17_infobox.PNG/revision/latest/scale-to-width-down/400?cb=20251109135152",
+   "rarity": "common"
+  },
+  {
+   "name": "Omega Shenron",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/6a/Omega_Shenron_Dbox.png/revision/latest/scale-to-width-down/400?cb=20210904220600",
+   "rarity": "common"
+  },
+  {
+   "name": "Porunga",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/88/Porunga_is_summoned_by_Dende.png/revision/latest/scale-to-width-down/400?cb=20250214203821",
+   "rarity": "common"
+  },
+  {
+   "name": "Nam",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/82/Nam_DB_Ep_22_002.png/revision/latest/scale-to-width-down/400?cb=20241213021426",
+   "rarity": "common"
+  },
+  {
+   "name": "Bora",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/0/05/Bora_fishing.png/revision/latest/scale-to-width-down/400?cb=20250311165447",
+   "rarity": "common"
+  },
+  {
+   "name": "Upa",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/46/Upa_DB_Ep_58_001.png/revision/latest/scale-to-width-down/400?cb=20250311140014",
+   "rarity": "common"
+  },
+  {
+   "name": "Arale Norimaki",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/7a/AraleNorimaki01.png/revision/latest/scale-to-width-down/400?cb=20241217001133",
+   "rarity": "common"
+  },
+  {
+   "name": "Sorbet",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/85/Sorbet_main_image.png/revision/latest/scale-to-width-down/400?cb=20210401023542",
+   "rarity": "common"
+  },
+  {
+   "name": "Tagoma",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8d/Tagomaa.png/revision/latest/scale-to-width-down/400?cb=20161118010305",
+   "rarity": "common"
+  },
+  {
+   "name": "Shisami",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/d/d0/Shisami.png/revision/latest/scale-to-width-down/400?cb=20161118024256",
+   "rarity": "common"
+  },
+  {
+   "name": "Cus",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/2f/Cus.png/revision/latest/scale-to-width-down/400?cb=20170706212905",
+   "rarity": "common"
+  },
+  {
+   "name": "Mojito",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/16/Screenshot_2017-04-09-14-40-46-1.png/revision/latest/scale-to-width-down/400?cb=20170710181703",
+   "rarity": "common"
+  },
+  {
+   "name": "Liquiir",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/e5/Screenshot_8.png/revision/latest/scale-to-width-down/400?cb=20170716093719",
+   "rarity": "common"
+  },
+  {
+   "name": "Ribrianne",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/41/Brianne_at_Tournament.png/revision/latest/scale-to-width-down/400?cb=20170703160022",
+   "rarity": "common"
+  },
+  {
+   "name": "Kakunsa",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/5/58/Sanka2.png/revision/latest/scale-to-width-down/400?cb=20170810105434",
+   "rarity": "common"
+  },
+  {
+   "name": "Cocotte",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/ac/Cocotte-0.png/revision/latest/scale-to-width-down/400?cb=20170730014801",
+   "rarity": "common"
+  },
+  {
+   "name": "Zirloin",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/6/6a/TournamentofpowerU2Memb_%282%29.png/revision/latest/scale-to-width-down/400?cb=20170703035519",
+   "rarity": "common"
+  },
+  {
+   "name": "Anilaza",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1e/Anirazaa.png/revision/latest/scale-to-width-down/400?cb=20171227022453",
+   "rarity": "common"
+  },
+  {
+   "name": "Saonel",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/b/b7/Saonel1.png/revision/latest/scale-to-width-down/400?cb=20171016071456",
+   "rarity": "common"
+  },
+  {
+   "name": "Pirina",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/ef/Pirina1.png/revision/latest/scale-to-width-down/400?cb=20171016071816",
+   "rarity": "common"
+  },
+  {
+   "name": "Heles",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/16/Helles_during_a_conversation.png/revision/latest/scale-to-width-down/400?cb=20170707163504",
+   "rarity": "common"
+  },
+  {
+   "name": "Iwan",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8b/IwenA.png/revision/latest/scale-to-width-down/400?cb=20170718043114",
+   "rarity": "common"
+  },
+  {
+   "name": "Quitela",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/4/44/HakaishinQuitela.png/revision/latest/scale-to-width-down/400?cb=20170703013641",
+   "rarity": "common"
+  },
+  {
+   "name": "Sidra",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c9/Sidra2.png/revision/latest/scale-to-width-down/400?cb=20170823155247",
+   "rarity": "common"
+  },
+  {
+   "name": "Rumsshi",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/e/e0/Rumoosh1.png/revision/latest/scale-to-width-down/400?cb=20170706212753",
+   "rarity": "common"
+  },
+  {
+   "name": "Geene",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/2b/Screenshot_geene8.png/revision/latest/scale-to-width-down/400?cb=20170703014824",
+   "rarity": "common"
+  },
+  {
+   "name": "Gowasu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8b/Gowasu2.png/revision/latest/scale-to-width-down/400?cb=20170809025918",
+   "rarity": "common"
+  },
+  {
+   "name": "Tapion",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8c/FMSv13dXwAY3f4a.jpg/revision/latest/scale-to-width-down/400?cb=20220223171217",
+   "rarity": "common"
+  },
+  {
+   "name": "Android 13",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/3/35/Android_13_-_Super_Android_13_-_005.png/revision/latest/scale-to-width-down/400?cb=20240906012340",
+   "rarity": "common"
+  },
+  {
+   "name": "Android 14",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/9/99/A-14.jpg/revision/latest/scale-to-width-down/400?cb=20081128213355",
+   "rarity": "common"
+  },
+  {
+   "name": "Android 15",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/8/8c/Anime_15.png/revision/latest/scale-to-width-down/400?cb=20220223220830",
+   "rarity": "common"
+  },
+  {
+   "name": "Salza",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/24/Cooler%27s_Revenge_-_Salza_walking_to_the_cave_Goku%27s_in.png/revision/latest/scale-to-width-down/400?cb=20250101212714",
+   "rarity": "common"
+  },
+  {
+   "name": "Neiz",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/a0/Cooler%27s_Revenge_-_Neiz_prepare_to_use_Neiz_Bind_Wave.png/revision/latest/scale-to-width-down/400?cb=20250101213321",
+   "rarity": "common"
+  },
+  {
+   "name": "Kiwi",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/c/c5/Cui.png/revision/latest/scale-to-width-down/400?cb=20210506230048",
+   "rarity": "common"
+  },
+  {
+   "name": "Appule",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/2/20/Appule_High_Detail.png/revision/latest/scale-to-width-down/400?cb=20210808051903",
+   "rarity": "common"
+  },
+  {
+   "name": "Zangya",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/7f/Zangya3.png/revision/latest/scale-to-width-down/400?cb=20090503184325",
+   "rarity": "common"
+  },
+  {
+   "name": "Bido",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/7/70/Bojack_Unbound_-_Bido.jpg/revision/latest/scale-to-width-down/400?cb=20081224075022",
+   "rarity": "common"
+  },
+  {
+   "name": "Bujin",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/a/a7/Dbz-28.jpg/revision/latest/scale-to-width-down/400?cb=20110306183432",
+   "rarity": "common"
+  },
+  {
+   "name": "Kogu",
+   "image": "https://static.wikia.nocookie.net/dragonball/images/1/1a/10._Kogu_focus.png/revision/latest/scale-to-width-down/400?cb=20120831122346",
+   "rarity": "common"
+  }
+ ],
+ "inazuma": [
+  {
+   "name": "Seymour Hillman",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/Hibiki_Seigou.png/revision/latest/scale-to-width-down/300?cb=20190419151025",
+   "rarity": "epic"
+  },
+  {
+   "name": "Shadow Cimmerian",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fb/Yamino_Kageto.png/revision/latest/scale-to-width-down/300?cb=20190516120621",
+   "rarity": "epic"
+  },
+  {
+   "name": "Paul Peabody",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b0/%28R%29_Tamano_Gorou_sprite_%28S%29.png/revision/latest/scale-to-width-down/300?cb=20230724144900",
+   "rarity": "epic"
+  },
+  {
+   "name": "Archer Hawkins",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/41/Tobitaka_Seiya.png/revision/latest/scale-to-width-down/300?cb=20200427125004",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fidio Aldena",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e8/Fidio_Aldena.png/revision/latest/scale-to-width-down/300?cb=20130917005445",
+   "rarity": "epic"
+  },
+  {
+   "name": "Canon Evans",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/8f/Endou_Canon.png/revision/latest/scale-to-width-down/300?cb=20130310172429",
+   "rarity": "epic"
+  },
+  {
+   "name": "Camellia Travis",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f6/Kudou_Fuyuka.png/revision/latest/scale-to-width-down/300?cb=20131009154925",
+   "rarity": "rare"
+  },
+  {
+   "name": "Peter Drent",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1c/Oono_Densuke.png/revision/latest/scale-to-width-down/300?cb=20240512233222",
+   "rarity": "rare"
+  },
+  {
+   "name": "David Evans",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/21/Endou_Daisuke.png/revision/latest/scale-to-width-down/300?cb=20170408122739",
+   "rarity": "rare"
+  },
+  {
+   "name": "Marvin Murdock",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0f/Mukata_Masaru.png/revision/latest/scale-to-width-down/300?cb=20230624134902",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ethan Whitering",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d1/Atsuishi_Shigeto.png/revision/latest/scale-to-width-down/300?cb=20210806150245",
+   "rarity": "rare"
+  },
+  {
+   "name": "Grant Cook",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/06/%28IE%29_Burnout_2.png/revision/latest/scale-to-width-down/300?cb=20210806125808",
+   "rarity": "rare"
+  },
+  {
+   "name": "Isaac Glass",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/10/Megane_Kazuto.png/revision/latest/scale-to-width-down/300?cb=20110626050131",
+   "rarity": "rare"
+  },
+  {
+   "name": "Albert Denver",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/Gokukawa_Kantarou.png/revision/latest/scale-to-width-down/300?cb=20230809100826",
+   "rarity": "rare"
+  },
+  {
+   "name": "Brenda Firequest",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0f/%28P%29_Rean_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251129235307",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lou Edmonds",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/75/Idemae_You.png/revision/latest/scale-to-width-down/300?cb=20230730105422",
+   "rarity": "rare"
+  },
+  {
+   "name": "Dawson Foxx",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6f/Kadomichi_Tooru.png/revision/latest/scale-to-width-down/300?cb=20230809103129",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ving Rice",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/70/Kurione_Yuki.png/revision/latest/scale-to-width-down/300?cb=20230809104456",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sam Bournes",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/70/%28P%29_Bonitona_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251204102740",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ben North",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/27/Shirai_Ikkaku.png/revision/latest/scale-to-width-down/300?cb=20230809091141",
+   "rarity": "rare"
+  },
+  {
+   "name": "Suzette Hartland",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e0/Urabe_Rica.png/revision/latest/scale-to-width-down/300?cb=20200427123911",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lucy Hailstone",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0d/Touchi_Ai.png/revision/latest/scale-to-width-down/300?cb=20201127185104",
+   "rarity": "rare"
+  },
+  {
+   "name": "Alan Downhill",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/3b/Touchi_Shuuji.png/revision/latest/scale-to-width-down/300?cb=20230809092206",
+   "rarity": "rare"
+  },
+  {
+   "name": "Frank Wintersea",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e7/Fuyukai_Suguru.png/revision/latest/scale-to-width-down/300?cb=20180521213612",
+   "rarity": "rare"
+  },
+  {
+   "name": "Zack Cummings",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/01/Ishidaira_Hanzou.png/revision/latest/scale-to-width-down/300?cb=20210812004708",
+   "rarity": "rare"
+  },
+  {
+   "name": "Johan Tassman",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ae/Yuukoku_Hiroyuki.png/revision/latest/scale-to-width-down/300?cb=20240323232957",
+   "rarity": "rare"
+  },
+  {
+   "name": "Edgar Valtinas",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bb/Edgar_Valtinas.png/revision/latest/scale-to-width-down/300?cb=20230722175234",
+   "rarity": "rare"
+  },
+  {
+   "name": "Garshield Bayhan",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f5/Garshield_Bayhan.png/revision/latest/scale-to-width-down/300?cb=20190430211351",
+   "rarity": "rare"
+  },
+  {
+   "name": "Chester Horse Jr",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/78/Kakuma_Keita.png/revision/latest/scale-to-width-down/300?cb=20240813130432",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mack Ronijo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/24/Mack_Ronijo.png/revision/latest/scale-to-width-down/300?cb=20240713113154",
+   "rarity": "rare"
+  },
+  {
+   "name": "Nakata Hidetoshi",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1b/Nakata_Hidetoshi.png/revision/latest/scale-to-width-down/300?cb=20250104124849",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rococo Ulpa",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d1/Rococo_Ulpa.png/revision/latest/scale-to-width-down/300?cb=20240417125130",
+   "rarity": "rare"
+  },
+  {
+   "name": "Daniel Hatch",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/Jimon_Daiki.png/revision/latest/scale-to-width-down/300?cb=20240813163049",
+   "rarity": "rare"
+  },
+  {
+   "name": "Thomas Feldt",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/46/Sugimori_Takeshi.png/revision/latest/scale-to-width-down/300?cb=20240502140801",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bash Lancer",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d4/Baddap_Sleed.png/revision/latest/scale-to-width-down/300?cb=20130530060446",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bjorn Kyle",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bc/Bjorn_Kyle.png/revision/latest/scale-to-width-down/300?cb=20260531000732",
+   "rarity": "rare"
+  },
+  {
+   "name": "Desuta",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/07/Desuta.png/revision/latest/scale-to-width-down/300?cb=20230815141139",
+   "rarity": "common"
+  },
+  {
+   "name": "Bruce Chaney",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Chaki_Shiito.png/revision/latest/scale-to-width-down/300?cb=20210831184010",
+   "rarity": "common"
+  },
+  {
+   "name": "Argie Bargie",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5a/Gouin_Takeshi.png/revision/latest/scale-to-width-down/300?cb=20210905151851",
+   "rarity": "common"
+  },
+  {
+   "name": "Jonas Pollack",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/56/Jonas_Pollack.png/revision/latest/scale-to-width-down/300?cb=20140517142416",
+   "rarity": "common"
+  },
+  {
+   "name": "Kirigakure Saiji",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/47/Kirigakure_Saiji.png/revision/latest/scale-to-width-down/300?cb=20240525155037",
+   "rarity": "common"
+  },
+  {
+   "name": "Greg Bernard",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6a/Mizuguchi_Seiji.png/revision/latest/scale-to-width-down/300?cb=20210831185501",
+   "rarity": "common"
+  },
+  {
+   "name": "Niese Dolphin",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4e/Niese_Dolphin.png/revision/latest/scale-to-width-down/300?cb=20221202221049",
+   "rarity": "common"
+  },
+  {
+   "name": "Querardo Naval",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Querardo_Naval.png/revision/latest/scale-to-width-down/300?cb=20201227114035",
+   "rarity": "common"
+  },
+  {
+   "name": "Pierre Godin",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ee/Pierre_Godin.png/revision/latest/scale-to-width-down/300?cb=20130328111216",
+   "rarity": "common"
+  },
+  {
+   "name": "Sein",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/64/Sein.png/revision/latest/scale-to-width-down/300?cb=20231209102647",
+   "rarity": "common"
+  },
+  {
+   "name": "Teles Torrue",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/99/Teles_Torrue.png/revision/latest/scale-to-width-down/300?cb=20240609142710",
+   "rarity": "common"
+  },
+  {
+   "name": "Mildford Scott",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/8e/Tachino_Seiichi.png/revision/latest/scale-to-width-down/300?cb=20210831184613",
+   "rarity": "common"
+  },
+  {
+   "name": "Cameron Morefield",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/24/Yasunaga_Hidetsugu.png/revision/latest/scale-to-width-down/300?cb=20210831184839",
+   "rarity": "common"
+  },
+  {
+   "name": "Aaron Adams",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/17/Aaron_Adams.png/revision/latest/scale-to-width-down/300?cb=20120715163421",
+   "rarity": "common"
+  },
+  {
+   "name": "Ashton Malone",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e9/Akutsu_Kiyoshi.png/revision/latest/scale-to-width-down/300?cb=20210812010202",
+   "rarity": "common"
+  },
+  {
+   "name": "Gus Heeley",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/41/%28Z%29_Aki_Tamamatsu_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260123162623",
+   "rarity": "common"
+  },
+  {
+   "name": "Cliff Tomlinson",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c4/%28TG%29_Ena_Kazuki_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251203193620",
+   "rarity": "common"
+  },
+  {
+   "name": "Harry Closs",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/40/%28Z%29_Heraku_Resu_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260123162705",
+   "rarity": "common"
+  },
+  {
+   "name": "Hunt Mercer",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5a/Hanezaki_Gouta.png/revision/latest/scale-to-width-down/300?cb=20230806092847",
+   "rarity": "common"
+  },
+  {
+   "name": "Bob Carlton",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0b/%28TG%29_Hyoudou_Yuuhei_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251203193527",
+   "rarity": "common"
+  },
+  {
+   "name": "Iggy Russ",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/04/%28Z%29_Ika_Michiyuki_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260123161547",
+   "rarity": "common"
+  },
+  {
+   "name": "Kim Powell",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/df/Kii_Fumiko.png/revision/latest/scale-to-width-down/300?cb=20210901100457",
+   "rarity": "common"
+  },
+  {
+   "name": "Aquilina Schiller",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f5/Kira_Hitomiko.png/revision/latest/scale-to-width-down/300?cb=20230708175109",
+   "rarity": "common"
+  },
+  {
+   "name": "Connor Murray",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/57/Komazawa_Kyouma.png/revision/latest/scale-to-width-down/300?cb=20210811183257",
+   "rarity": "common"
+  },
+  {
+   "name": "Katie Brown",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f1/Kui_Lulu.png/revision/latest/scale-to-width-down/300?cb=20230806094154",
+   "rarity": "common"
+  },
+  {
+   "name": "Andy Chronic",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7b/%28Z%29_Kurono_Tokio_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260123162802",
+   "rarity": "common"
+  },
+  {
+   "name": "Gail Baker",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5a/Kujirai_Takanori.png/revision/latest/scale-to-width-down/300?cb=20250110212947",
+   "rarity": "common"
+  },
+  {
+   "name": "Leon Sams",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2e/Leon_Sams.png/revision/latest/scale-to-width-down/300?cb=20190527123923",
+   "rarity": "common"
+  },
+  {
+   "name": "Lubbock Henktacker",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/10/Lubbock_Henktacker.png/revision/latest/scale-to-width-down/300?cb=20180806203647",
+   "rarity": "common"
+  },
+  {
+   "name": "Ned Yousef",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/%28Z%29_Medo_Usa_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260123162849",
+   "rarity": "common"
+  },
+  {
+   "name": "Lee Jin-sung",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7a/Lee_Jin-sung.png/revision/latest/scale-to-width-down/300?cb=20260924215025",
+   "rarity": "common"
+  },
+  {
+   "name": "Jim Lawrenson",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/35/%28TG%29_Mukumoto_Kei_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251203193707",
+   "rarity": "common"
+  },
+  {
+   "name": "Nelson Rockwell",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/75/Nemuro_Kimiyuki.png/revision/latest/scale-to-width-down/300?cb=20230806083306",
+   "rarity": "common"
+  },
+  {
+   "name": "Steve Ingham",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d1/Ookusu_Seiji.png/revision/latest/scale-to-width-down/300?cb=20170522174338",
+   "rarity": "common"
+  },
+  {
+   "name": "Barry Potts",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/89/%28TG%29_Shibuki_Shoudai_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251203193742",
+   "rarity": "common"
+  },
+  {
+   "name": "Angelo Gabrini",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ea/Angelo_Gabrini.png/revision/latest/scale-to-width-down/300?cb=20260826155553",
+   "rarity": "common"
+  },
+  {
+   "name": "Anton Gattsuso",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/23/Anton_Gattsuso.png/revision/latest/scale-to-width-down/300?cb=20171128100601",
+   "rarity": "common"
+  },
+  {
+   "name": "Alessandro Rossa",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e4/Alessandro_Rossa.png/revision/latest/scale-to-width-down/300?cb=20230812162539",
+   "rarity": "common"
+  },
+  {
+   "name": "Bonnie Sparks",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/75/Barazono_Hana.png/revision/latest/scale-to-width-down/300?cb=20210806132157",
+   "rarity": "common"
+  },
+  {
+   "name": "Bagre Antonio",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/93/Bagre_Antonio.png/revision/latest/scale-to-width-down/300?cb=20230813143029",
+   "rarity": "common"
+  },
+  {
+   "name": "Beat Smash",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/51/Beat_Smash.png/revision/latest/scale-to-width-down/300?cb=20240830165120",
+   "rarity": "common"
+  },
+  {
+   "name": "Dante Diavlo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/91/Dante_Diavlo.png/revision/latest/scale-to-width-down/300?cb=20130623130914",
+   "rarity": "common"
+  },
+  {
+   "name": "Daniele Sanctis",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ae/Daniele_Sanctis.png/revision/latest/scale-to-width-down/300?cb=20230812161805",
+   "rarity": "common"
+  },
+  {
+   "name": "Borboleta Barbosa",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c8/Borboleta_Barbosa.png/revision/latest/scale-to-width-down/300?cb=20230813145710",
+   "rarity": "common"
+  },
+  {
+   "name": "Coruja Cerezo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a6/Coruja_Cerezo.png/revision/latest/scale-to-width-down/300?cb=20190324133343",
+   "rarity": "common"
+  },
+  {
+   "name": "David Buckingham",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fb/David_Buckingham.png/revision/latest/scale-to-width-down/300?cb=20201223173106",
+   "rarity": "common"
+  },
+  {
+   "name": "Cho Myong-ho",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/49/Cho_Myong-ho.png/revision/latest/scale-to-width-down/300?cb=20201223162153",
+   "rarity": "common"
+  },
+  {
+   "name": "Cavalo Oliviera",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/05/Cavalo_Oliviera.png/revision/latest/scale-to-width-down/300?cb=20230813153438",
+   "rarity": "common"
+  },
+  {
+   "name": "Bob Bobbins",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b7/Bob_Bobbins.png/revision/latest/scale-to-width-down/300?cb=20130928173815",
+   "rarity": "common"
+  },
+  {
+   "name": "Cha Jung-won",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d8/%28FD%29_Cha_Jung-won_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260204182559",
+   "rarity": "common"
+  },
+  {
+   "name": "Enrico Olivier",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/80/Enrico_Olivier.png/revision/latest/scale-to-width-down/300?cb=20240118172827",
+   "rarity": "common"
+  },
+  {
+   "name": "Falcão da Silva",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/45/Falc%C3%A3o_da_Silva.png/revision/latest/scale-to-width-down/300?cb=20230813141432",
+   "rarity": "common"
+  },
+  {
+   "name": "Freddie McQueen",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Freddie_McQueen.png/revision/latest/scale-to-width-down/300?cb=20181025132301",
+   "rarity": "common"
+  },
+  {
+   "name": "Drago Hill",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4c/Drago_Hill.png/revision/latest/scale-to-width-down/300?cb=20170611105252",
+   "rarity": "common"
+  },
+  {
+   "name": "Formiga Clemens",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/9f/Formiga_Clemens.png/revision/latest/scale-to-width-down/300?cb=20240701103407",
+   "rarity": "common"
+  },
+  {
+   "name": "Edge Ripper",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/21/Edge_Ripper.png/revision/latest/scale-to-width-down/300?cb=20181025131823",
+   "rarity": "common"
+  },
+  {
+   "name": "Eric Purpleton",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ae/Eric_Purpleton.png/revision/latest/scale-to-width-down/300?cb=20130928233757",
+   "rarity": "common"
+  },
+  {
+   "name": "Gianluca Zanardi",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/71/Gianluca_Zanardi.png/revision/latest/scale-to-width-down/300?cb=20240118173552",
+   "rarity": "common"
+  },
+  {
+   "name": "Gigi Blasi",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/72/Gigi_Blasi.png/revision/latest/scale-to-width-down/300?cb=20190515132448",
+   "rarity": "common"
+  },
+  {
+   "name": "Giorgio Giannini",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/76/%28IE_%28091%29%29_Giorgio_injured.png/revision/latest/scale-to-width-down/300?cb=20231111124433",
+   "rarity": "common"
+  },
+  {
+   "name": "Giuseppe Cannavaro",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c7/Giuseppe_Cannavaro.png/revision/latest/scale-to-width-down/300?cb=20240118173111",
+   "rarity": "common"
+  },
+  {
+   "name": "Gato",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d8/Gato.png/revision/latest/scale-to-width-down/300?cb=20171123222840",
+   "rarity": "common"
+  },
+  {
+   "name": "Ghoshu Flare",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/de/Ghoshu_Flare.png/revision/latest/scale-to-width-down/300?cb=20230814104912",
+   "rarity": "common"
+  },
+  {
+   "name": "Gary Links",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/15/Gary_Links.png/revision/latest/scale-to-width-down/300?cb=20201223173217",
+   "rarity": "common"
+  },
+  {
+   "name": "Gareth Barrett",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/dc/Gareth_Barrett.png/revision/latest/scale-to-width-down/300?cb=20201223173705",
+   "rarity": "common"
+  },
+  {
+   "name": "Ben Blowton",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/81/Honba_Geki.png/revision/latest/scale-to-width-down/300?cb=20230809200932",
+   "rarity": "common"
+  },
+  {
+   "name": "Val Flamewood",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b1/%28P%29_Bakurei_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251204102351",
+   "rarity": "common"
+  },
+  {
+   "name": "Grilo Santos",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/35/Grilo_Santos.png/revision/latest/scale-to-width-down/300?cb=20230813155051",
+   "rarity": "common"
+  },
+  {
+   "name": "Hong Doo-yoon",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/be/Hong_Doo-yoon.png/revision/latest/scale-to-width-down/300?cb=20201223161817",
+   "rarity": "common"
+  },
+  {
+   "name": "Heo Ji-nan",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/%28FD%29_Ji-nan_3D_%281%29.png/revision/latest/scale-to-width-down/300?cb=20200104151130",
+   "rarity": "common"
+  },
+  {
+   "name": "Jo Jung-soo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/95/Jo_Jung-soo.png/revision/latest/scale-to-width-down/300?cb=20180627205556",
+   "rarity": "common"
+  },
+  {
+   "name": "Hwang Woo-myang",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a0/Hwang_Woo-myang.png/revision/latest/scale-to-width-down/300?cb=20180811120111",
+   "rarity": "common"
+  },
+  {
+   "name": "Jinny Geino",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c1/Jinny_Geino.png/revision/latest/scale-to-width-down/300?cb=20170611105754",
+   "rarity": "common"
+  },
+  {
+   "name": "Javali Ribeiro",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c5/Javali_Ribeiro.png/revision/latest/scale-to-width-down/300?cb=20230403144740",
+   "rarity": "common"
+  },
+  {
+   "name": "Godric Wyles",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4e/Kenzaki_Ryuuichi.png/revision/latest/scale-to-width-down/300?cb=20210826131116",
+   "rarity": "common"
+  },
+  {
+   "name": "Kane Saitoh",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f8/Kane_Saitoh.png/revision/latest/scale-to-width-down/300?cb=20230814110157",
+   "rarity": "common"
+  },
+  {
+   "name": "Keat Liando",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/77/Keat_Liando.png/revision/latest/scale-to-width-down/300?cb=20230814103138",
+   "rarity": "common"
+  },
+  {
+   "name": "Johnny Gascoigne",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a1/Johnny_Gascoigne.png/revision/latest/scale-to-width-down/300?cb=20130929185528",
+   "rarity": "common"
+  },
+  {
+   "name": "Lagarto Carlos",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/56/Lagarto_Carlos.png/revision/latest/scale-to-width-down/300?cb=20190315120910",
+   "rarity": "common"
+  },
+  {
+   "name": "Claire Lesnow",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Kurakake_Clara.png/revision/latest/scale-to-width-down/300?cb=20230809093218",
+   "rarity": "common"
+  },
+  {
+   "name": "Lance Rotten",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/81/Lance_Rotten.png/revision/latest/scale-to-width-down/300?cb=20111126153216",
+   "rarity": "common"
+  },
+  {
+   "name": "Ko Sung-hwan",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/46/Ko_Sung-hwan.png/revision/latest/scale-to-width-down/300?cb=20180201211217",
+   "rarity": "common"
+  },
+  {
+   "name": "Kim Eun-young",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a5/Kim_Eun-young.png/revision/latest/scale-to-width-down/300?cb=20201223162436",
+   "rarity": "common"
+  },
+  {
+   "name": "Marco Maserati",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1c/Marco_Maserati.png/revision/latest/scale-to-width-down/300?cb=20130623130957",
+   "rarity": "common"
+  },
+  {
+   "name": "Leonardo Almeida",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/ce/Leonardo_Almeida.png/revision/latest/scale-to-width-down/300?cb=20120103001809",
+   "rarity": "common"
+  },
+  {
+   "name": "Maxi Kuu",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c3/Maxi_Kuu.png/revision/latest/scale-to-width-down/300?cb=20240111222652",
+   "rarity": "common"
+  },
+  {
+   "name": "Marron Ian",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f1/Marron_Ian.png/revision/latest/scale-to-width-down/300?cb=20170611105856",
+   "rarity": "common"
+  },
+  {
+   "name": "Maygar Nathan",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/39/Maygar_Nathan.png/revision/latest/scale-to-width-down/300?cb=20170611111748",
+   "rarity": "common"
+  },
+  {
+   "name": "McCall Kisarra",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5e/McCall_Kisarra.png/revision/latest/scale-to-width-down/300?cb=20131201221508",
+   "rarity": "common"
+  },
+  {
+   "name": "Martin Squall",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Martin_Squall.png/revision/latest/scale-to-width-down/300?cb=20190102134855",
+   "rarity": "common"
+  },
+  {
+   "name": "Lee Chung-yoon",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/22/Lee_Chung-yoon.png/revision/latest/scale-to-width-down/300?cb=20131204173654",
+   "rarity": "common"
+  },
+  {
+   "name": "Denzel Freezer",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/75/Mikoori_Rei.png/revision/latest/scale-to-width-down/300?cb=20230809123625",
+   "rarity": "common"
+  },
+  {
+   "name": "Monstro",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/27/Monstro.png/revision/latest/scale-to-width-down/300?cb=20230813143454",
+   "rarity": "common"
+  },
+  {
+   "name": "Mikey Richards",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/78/Mikey_Richards.png/revision/latest/scale-to-width-down/300?cb=20130928230640",
+   "rarity": "common"
+  },
+  {
+   "name": "Ottorino Nobili",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b1/Ottorino_Nobili.png/revision/latest/scale-to-width-down/300?cb=20181121222224",
+   "rarity": "common"
+  },
+  {
+   "name": "Nigel August",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bb/Netsuha_Natsuhiko.png/revision/latest/scale-to-width-down/300?cb=20230809214328",
+   "rarity": "common"
+  },
+  {
+   "name": "Nick Woodgate",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f3/Nick_Woodgate.png/revision/latest/scale-to-width-down/300?cb=20201223173401",
+   "rarity": "common"
+  },
+  {
+   "name": "Noh Sung-joon",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/53/%28FD%29_Noh_Sung-joon_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260204182600",
+   "rarity": "common"
+  },
+  {
+   "name": "Raffaele Generani",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/64/Raffaele_Generani.png/revision/latest/scale-to-width-down/300?cb=20230812160839",
+   "rarity": "common"
+  },
+  {
+   "name": "Philip Owen",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d6/Philip_Owen.png/revision/latest/scale-to-width-down/300?cb=20180414141915",
+   "rarity": "common"
+  },
+  {
+   "name": "Ryuu Scale",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/Ryuu_Scale.png/revision/latest/scale-to-width-down/300?cb=20120703114334",
+   "rarity": "common"
+  },
+  {
+   "name": "Peter Cole",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/63/Peter_Cole.png/revision/latest/scale-to-width-down/300?cb=20130917000533",
+   "rarity": "common"
+  },
+  {
+   "name": "Presa",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d3/Presa.png/revision/latest/scale-to-width-down/300?cb=20111108031056",
+   "rarity": "common"
+  },
+  {
+   "name": "Paul Appleton",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/85/Paul_Appleton.png/revision/latest/scale-to-width-down/300?cb=20130916234222",
+   "rarity": "common"
+  },
+  {
+   "name": "Rob Parker",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ad/Rob_Parker.png/revision/latest/scale-to-width-down/300?cb=20130928172651",
+   "rarity": "common"
+  },
+  {
+   "name": "Park Baek-young",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Park_Baek-young.png/revision/latest/scale-to-width-down/300?cb=20131005173323",
+   "rarity": "common"
+  },
+  {
+   "name": "Jim Flareson",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/54/%28P%29_Siden_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251204102826",
+   "rarity": "common"
+  },
+  {
+   "name": "Shinti Hanpa",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6d/Shinti_Hanpa.png/revision/latest/scale-to-width-down/300?cb=20131202213925",
+   "rarity": "common"
+  },
+  {
+   "name": "Seol Hyeon-dae",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d3/Seol_Hyeon-dae.png/revision/latest/scale-to-width-down/300?cb=20131204173815",
+   "rarity": "common"
+  },
+  {
+   "name": "Sean Ashford",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c8/%28P%29_Satos_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251204102547",
+   "rarity": "common"
+  },
+  {
+   "name": "Skid Wu",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ef/Skid_Wu.png/revision/latest/scale-to-width-down/300?cb=20230814123055",
+   "rarity": "common"
+  },
+  {
+   "name": "Vento Gagliano",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/57/Vento_Gagliano.png/revision/latest/scale-to-width-down/300?cb=20131126232042",
+   "rarity": "common"
+  },
+  {
+   "name": "Walter Mountain",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/3f/Walter_Mountain.png/revision/latest/scale-to-width-down/300?cb=20170705145143",
+   "rarity": "common"
+  },
+  {
+   "name": "Windy Fasta",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/87/Windy_Fasta.png/revision/latest/scale-to-width-down/300?cb=20230814103036",
+   "rarity": "common"
+  },
+  {
+   "name": "Brad Coldwater",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d8/Toba_Ren.png/revision/latest/scale-to-width-down/300?cb=20230809102316",
+   "rarity": "common"
+  },
+  {
+   "name": "Bernie White",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/de/Tsumujino_Touji.png/revision/latest/scale-to-width-down/300?cb=20230809104917",
+   "rarity": "common"
+  },
+  {
+   "name": "Urso Nogueira",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Urso_Nogueira.png/revision/latest/scale-to-width-down/300?cb=20230813153929",
+   "rarity": "common"
+  },
+  {
+   "name": "Tigre Mendes",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1a/%28TK%29_Tigre_3D_%281%29.png/revision/latest/scale-to-width-down/300?cb=20200128150418",
+   "rarity": "common"
+  },
+  {
+   "name": "Victoria Vanguard",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e7/Zaizen_Touko.png/revision/latest/scale-to-width-down/300?cb=20200427123333",
+   "rarity": "common"
+  },
+  {
+   "name": "Yuumu Rinjie",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/af/Yuumu_Rinjie.png/revision/latest/scale-to-width-down/300?cb=20230814102023",
+   "rarity": "common"
+  },
+  {
+   "name": "Choi Chang-soo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/9b/Choi_Chang-soo.png/revision/latest/scale-to-width-down/300?cb=20130409154832",
+   "rarity": "common"
+  },
+  {
+   "name": "Jonas Demetrius",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2c/Demete_Yutaka.png/revision/latest/scale-to-width-down/300?cb=20231215122353",
+   "rarity": "common"
+  },
+  {
+   "name": "Daniel Stavín",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/66/Daniel_Stav%C3%ADn.png/revision/latest/scale-to-width-down/300?cb=20130922214052",
+   "rarity": "common"
+  },
+  {
+   "name": "Eliza Manon",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e6/Eliza_Manon.png/revision/latest/scale-to-width-down/300?cb=20120226230041",
+   "rarity": "common"
+  },
+  {
+   "name": "Gordon Star",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c2/Goryuu_Reo.png/revision/latest/scale-to-width-down/300?cb=20210830120837",
+   "rarity": "common"
+  },
+  {
+   "name": "Henry House",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/77/Hera_Tadashi.png/revision/latest/scale-to-width-down/300?cb=20231215124222",
+   "rarity": "common"
+  },
+  {
+   "name": "Wilbur Watkins",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ed/Izuno_Yuu.png/revision/latest/scale-to-width-down/300?cb=20230806120800",
+   "rarity": "common"
+  },
+  {
+   "name": "Izzy Jupiter",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b1/Io_Shuntarou.png/revision/latest/scale-to-width-down/300?cb=20210831085653",
+   "rarity": "common"
+  },
+  {
+   "name": "Charles Riverboat",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/62/Karoku_Satori.png/revision/latest/scale-to-width-down/300?cb=20230707173815",
+   "rarity": "common"
+  },
+  {
+   "name": "Jim Landing",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5f/Kikuma_Shousuke.png/revision/latest/scale-to-width-down/300?cb=20210831093124",
+   "rarity": "common"
+  },
+  {
+   "name": "Pat Box",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f7/Kinki_Nozomi.png/revision/latest/scale-to-width-down/300?cb=20230707175040",
+   "rarity": "common"
+  },
+  {
+   "name": "Dylan Bluemoon",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c3/Miura_Hiromu.png/revision/latest/scale-to-width-down/300?cb=20230707194051",
+   "rarity": "common"
+  },
+  {
+   "name": "Alan Master",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a6/Narukami_Kenya.png/revision/latest/scale-to-width-down/300?cb=20240803204309",
+   "rarity": "common"
+  },
+  {
+   "name": "Rhona Countdown",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Nanakaze_Rimu.png/revision/latest/scale-to-width-down/300?cb=20210831090241",
+   "rarity": "common"
+  },
+  {
+   "name": "Gregory Saturn",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/cb/Omotsuki_Sora.png/revision/latest/scale-to-width-down/300?cb=20240613203159",
+   "rarity": "common"
+  },
+  {
+   "name": "Robert Cliser",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bd/Robert_Cliser.png/revision/latest/scale-to-width-down/300?cb=20131114181422",
+   "rarity": "common"
+  },
+  {
+   "name": "Connor Shuttle",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b9/Sango_Yoshirou.png/revision/latest/scale-to-width-down/300?cb=20230707171220",
+   "rarity": "common"
+  },
+  {
+   "name": "Isabelle Trick",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/dd/Yagami_Reina.png/revision/latest/scale-to-width-down/300?cb=20240316163759",
+   "rarity": "common"
+  },
+  {
+   "name": "Astaroth",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/86/Astaroth.png/revision/latest/scale-to-width-down/300?cb=20201127163219",
+   "rarity": "common"
+  },
+  {
+   "name": "Alexander Hausen",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f2/%28B%29_Alexander_Hausen_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260409225544",
+   "rarity": "common"
+  },
+  {
+   "name": "Arachnes",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5a/Arachnes.png/revision/latest/scale-to-width-down/300?cb=20201127163937",
+   "rarity": "common"
+  },
+  {
+   "name": "Aiel",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d5/Aiel.png/revision/latest/scale-to-width-down/300?cb=20230815120157",
+   "rarity": "common"
+  },
+  {
+   "name": "Alain Failliot",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/51/Alain_Failliot.png/revision/latest/scale-to-width-down/300?cb=20140517144109",
+   "rarity": "common"
+  },
+  {
+   "name": "Antonio Galius",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4c/Antonio_Galius.png/revision/latest/scale-to-width-down/300?cb=20231211000118",
+   "rarity": "common"
+  },
+  {
+   "name": "André Panzo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/06/Andr%C3%A9_Panzo.png/revision/latest/scale-to-width-down/300?cb=20140515231249",
+   "rarity": "common"
+  },
+  {
+   "name": "Adel Siddique",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/19/%28DL%29_Adel_Siddique_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20251207130849",
+   "rarity": "common"
+  },
+  {
+   "name": "Diego Oro",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a7/Diego_Oro.png/revision/latest/scale-to-width-down/300?cb=20190524111044",
+   "rarity": "common"
+  },
+  {
+   "name": "David Waterman",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/55/David_Waterman.png/revision/latest/scale-to-width-down/300?cb=20130917001443",
+   "rarity": "common"
+  },
+  {
+   "name": "Bump Trungus",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b2/Buvo_Trangas.png/revision/latest/scale-to-width-down/300?cb=20130530055959",
+   "rarity": "common"
+  },
+  {
+   "name": "Beelzebu",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/30/Beelzebu.png/revision/latest/scale-to-width-down/300?cb=20240809180250",
+   "rarity": "common"
+  },
+  {
+   "name": "Belial",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f4/Belial.png/revision/latest/scale-to-width-down/300?cb=20230815134319",
+   "rarity": "common"
+  },
+  {
+   "name": "Davi Peroqui",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/66/Davi_Peroqui.png/revision/latest/scale-to-width-down/300?cb=20231211001044",
+   "rarity": "common"
+  },
+  {
+   "name": "Clark Cain",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1c/Clark_Cain.png/revision/latest/scale-to-width-down/300?cb=20130919000838",
+   "rarity": "common"
+  },
+  {
+   "name": "Bruce Marlin",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/af/%28BW%29_Bruce_Marlin_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260203163704",
+   "rarity": "common"
+  },
+  {
+   "name": "Radd Ischer",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fc/Daicko_Bouka.png/revision/latest/scale-to-width-down/300?cb=20130530054846",
+   "rarity": "common"
+  },
+  {
+   "name": "Carlos Arroyo",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/40/%28RM%29_Carlos_Arroyo_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260306203335",
+   "rarity": "common"
+  },
+  {
+   "name": "Daniel Barrack",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d8/Daniel_Barrack.png/revision/latest/scale-to-width-down/300?cb=20130915235726",
+   "rarity": "common"
+  },
+  {
+   "name": "Clive Scissors",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/cf/Clive_Scissors.png/revision/latest/scale-to-width-down/300?cb=20130915224622",
+   "rarity": "common"
+  },
+  {
+   "name": "Claude Moreau",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/50/Claude_Moreau.png/revision/latest/scale-to-width-down/300?cb=20140517140253",
+   "rarity": "common"
+  },
+  {
+   "name": "Cosimo Beck",
+   "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/96/%28STG%29_Bekki_Kousuke_sprite_%28VR%29.png/revision/latest/scale-to-width-down/300?cb=20260126221745",
+   "rarity": "common"
+  }
+ ],
+ "overwatch": [
+  {
+   "name": "Cassidy",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/OW2_Cassidy.png/revision/latest/scale-to-width-down/140?cb=20241108201305",
+   "rarity": "rare"
+  },
+  {
+   "name": "Zarya",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/02/OW2_Zarya.png/revision/latest/scale-to-width-down/140?cb=20241108201623",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ashe",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/89/OW2_Ashe.png/revision/latest/scale-to-width-down/140?cb=20250329135344",
+   "rarity": "rare"
+  },
+  {
+   "name": "Junker Queen",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/OW2_JunkerQueen.png/revision/latest/scale-to-width-down/400?cb=20241101134259",
+   "rarity": "rare"
+  },
+  {
+   "name": "Roadhog",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/34/OW2_Roadhog.png/revision/latest/scale-to-width-down/140?cb=20260213114356",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bastion",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/400?cb=20241108201208",
+   "rarity": "common"
+  },
+  {
+   "name": "Symmetra",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/51/OW2_Symmetra.png/revision/latest/scale-to-width-down/140?cb=20240130124019",
+   "rarity": "common"
+  },
+  {
+   "name": "Freja",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/31/OW2_Freja.png/revision/latest/scale-to-width-down/140?cb=20250322151231",
+   "rarity": "common"
+  },
+  {
+   "name": "Wuyang",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/OW2_Wuyang.png/revision/latest/scale-to-width-down/140?cb=20260305234200",
+   "rarity": "common"
+  },
+  {
+   "name": "Anran",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/07/OW2_Anran.png/revision/latest/scale-to-width-down/140?cb=20260611085803",
+   "rarity": "common"
+  },
+  {
+   "name": "D.Mon",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/dc/OW2_DMonBeast.png/revision/latest/scale-to-width-down/400?cb=20260812012011",
+   "rarity": "common"
+  },
+  {
+   "name": "Doctrine",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Doctrine.png/revision/latest/scale-to-width-down/400?cb=20260918043518",
+   "rarity": "common"
+  },
+  {
+   "name": "Domina",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Domina.png/revision/latest/scale-to-width-down/140?cb=20260213022447",
+   "rarity": "common"
+  },
+  {
+   "name": "Emre",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Emre.png/revision/latest/scale-to-width-down/140?cb=20260213003055",
+   "rarity": "common"
+  },
+  {
+   "name": "Jetpack Cat",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Jetpack_Cat.png/revision/latest/scale-to-width-down/140?cb=20260206154545",
+   "rarity": "common"
+  },
+  {
+   "name": "Mizuki",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Mizuki.png/revision/latest/scale-to-width-down/140?cb=20260215135742",
+   "rarity": "common"
+  },
+  {
+   "name": "Shion",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8a/OW2_Shion.png/revision/latest/scale-to-width-down/140?cb=20260630073141",
+   "rarity": "common"
+  },
+  {
+   "name": "Sierra",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/OW2_Sierra.png/revision/latest/scale-to-width-down/140?cb=20260415005653",
+   "rarity": "common"
+  },
+  {
+   "name": "Vendetta",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/140?cb=20260304090759",
+   "rarity": "common"
+  }
+ ]
+}
