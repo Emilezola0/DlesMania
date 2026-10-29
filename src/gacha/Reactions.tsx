@@ -15,6 +15,9 @@ import { playVoice } from './voice';
  * included): a right answer, a mistake. A mythic speaks as its star does.
  */
 export const CHARACTER_LINES: Record<string, { good: string[]; bad: string[] }> = {
+  "Phantom": { good: ["You saw that coming? Impressive.","Cloak holding. Good call."], bad: ["Fooled by a decoy.","You aimed at nothing at all."] },
+  "Eagle Eye": { good: ["Clean shot.","Right between the plates."], bad: ["Missed. Check your sights.","Wind took that one."] },
+  "Architect": { good: ["Solid foundations.","Built to last."], bad: ["That bracing will not hold.","Back to the drawing board."] },
   "Baron Nashor": { good: ["*a low rumble from the pit* …Acceptable.","The Rift trembles at your answer."], bad: ["*the pit hisses* Weak.","The Baron devours the unprepared."] },
   "Ahri": { good: ["Mm, clever. I like clever.","You caught that faster than I catch hearts."], bad: ["Aww, so close, darling.","Even a fox trips sometimes."] },
   "Yasuo": { good: ["Like the wind — swift and clean.","Hasagi! A true strike."], bad: ["A sword is poor company for that answer.","Even the wind loses its way."] },
@@ -74,6 +77,7 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   smash: { good: ['GAME!', 'Perfect combo!', 'A new champion!'], bad: ['Self-destruct…', 'Shield break!', 'Off the stage…'] },
   genshin: { good: ['Elemental reaction!', 'Five-star play!', 'Luck is on your side.'], bad: ['Only three stars…', 'Pity counter +1.', 'Out of stamina…'] },
   wow: { good: ['Epic loot!', 'Level up!', 'For Azeroth!'], bad: ['Wipe! Run back…', 'Repair your gear and retry.', 'Pulled too many…'] },
+  forts: { good: ['Direct hit!', 'Reactor breached!', 'Fort holding strong.'], bad: ['Bracing down!', 'Incoming fire!', 'Repair crews, now!'] },
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },
 };
 

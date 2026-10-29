@@ -11235,5 +11235,529 @@
         }
       ]
     }
+  },
+  {
+    "id": "forts",
+    "domain": "games",
+    "franchise": "Forts",
+    "aliases": [
+      "forts",
+      "forts rts"
+    ],
+    "images": "fandom:forts",
+    "boss": {
+      "name": "Phantom",
+      "title": "The Commander Nobody Sees",
+      "color": "#0f766e",
+      "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png"
+    },
+    "lines": {
+      "intro": "You can't hit what you can't see. Build your fort, Commander — and let's find out what you really know.",
+      "phase2": "Half of what you see out there is a decoy. Tell my real guns from the fakes.",
+      "phase3": "Bracing down, doors open — name the pieces of my fort before the next volley lands!",
+      "hit": [
+        "A direct hit… lucky shot.",
+        "My cloak is slipping!",
+        "Repair crews, now!"
+      ],
+      "hurt": [
+        "Incoming!",
+        "Your reactor is showing.",
+        "Fire spreading on your side.",
+        "Ghost shot."
+      ],
+      "win": "Cloak down… the field is yours. Well commanded.",
+      "lose": "Your fort is rubble. Next time, look where nothing seems to be.",
+      "secret": "One last exchange. I name a commander, a weapon, a device or a faction — answer with another of the same. No repeats.",
+      "secretOk": [
+        "Noted.",
+        "Reload.",
+        "Hm. Again."
+      ],
+      "secretLost": "Silence on your side. The reactor goes up."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 4 commanders",
+        "count": 4,
+        "answers": [
+          "Buster",
+          "Moonshine",
+          "Phantom",
+          "Scattershot",
+          "Seep",
+          "Shockenaugh",
+          "Architect",
+          "Overdrive",
+          "Hurricane",
+          "Eagle Eye|Eagleeye",
+          "Firebird",
+          "Warthog",
+          "Pinchfist",
+          "Spook",
+          "Armourdillo|Armordillo"
+        ]
+      },
+      {
+        "prompt": "Name 5 weapons",
+        "count": 5,
+        "answers": [
+          "Machine Gun|Machinegun|MG",
+          "Minigun|Mini Gun",
+          "Sniper",
+          "AP Sniper|Armour Piercing Sniper|Armor Piercing Sniper|APS",
+          "20mm Cannon|20mm",
+          "Mortar",
+          "Heavy Mortar",
+          "Incendiary Mortar",
+          "Cannon",
+          "Howitzer",
+          "Plasma Laser|Laser",
+          "Firebeam|Fire Beam",
+          "Magnabeam|Magna Beam",
+          "Swarm Missiles|Swarm|Swarm Missile",
+          "Warhead|Nuke|Missile Silo|Warhead Missile",
+          "EMP Missile|EMP|EMP Launcher",
+          "Flak",
+          "Rocket|Rocket Launcher",
+          "Shotgun",
+          "Buzz Saw|Buzzsaw|Saw",
+          "Smoke Bomb|Smoke"
+        ]
+      },
+      {
+        "prompt": "Name 4 devices",
+        "count": 4,
+        "answers": [
+          "Mine|Metal Mine",
+          "Super Mine|Deep Mine",
+          "Wind Turbine|Windmill|Turbine",
+          "Super Turbine|Super Windmill",
+          "Battery",
+          "Metal Store",
+          "Workshop",
+          "Factory",
+          "Munitions Plant",
+          "Upgrade Centre|Upgrade Center",
+          "Armoury|Armory",
+          "Sandbags",
+          "Reactor"
+        ]
+      },
+      {
+        "prompt": "Name 3 factions",
+        "count": 3,
+        "answers": [
+          "Eagle Empire|Eagle Army",
+          "Dragon Army",
+          "Iron Bear Alliance|Iron Bear",
+          "Black Penguin Oil|Black Penguin",
+          "The Coalition|Coalition"
+        ]
+      },
+      {
+        "prompt": "Name 4 fort materials",
+        "count": 4,
+        "answers": [
+          "Bracing|Wood",
+          "Armour|Armor",
+          "Door|Armoured Door|Armored Door|Metal Door",
+          "Energy Shield|Shield",
+          "Rope",
+          "Portal"
+        ]
+      },
+      {
+        "prompt": "Name the 3 commanders of the Eagle Empire",
+        "count": 3,
+        "answers": [
+          "Eagle Eye|Eagleeye",
+          "Firebird",
+          "Warthog"
+        ]
+      },
+      {
+        "prompt": "Name the 3 commanders of the Dragon Army",
+        "count": 3,
+        "answers": [
+          "Architect",
+          "Overdrive",
+          "Hurricane"
+        ]
+      },
+      {
+        "prompt": "Name both resources",
+        "count": 2,
+        "answers": [
+          "Metal",
+          "Energy"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Eagle Eye",
+          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderEagleEye.png",
+          "aliases": [
+            "Eagleeye"
+          ]
+        },
+        {
+          "label": "Architect",
+          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderArchitect.png"
+        },
+        {
+          "label": "Armourdillo",
+          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderArmourdillo.png",
+          "aliases": [
+            "Armordillo"
+          ]
+        },
+        {
+          "label": "Buster",
+          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Buster.png"
+        },
+        {
+          "label": "Moonshine",
+          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Moonshine.png"
+        },
+        {
+          "label": "Warhead",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/8/8f/Warhead_Missile.PNG/revision/latest/scale-to-width-down/400?cb=20171208222246",
+          "aliases": [
+            "Nuke",
+            "Warhead Missile"
+          ]
+        },
+        {
+          "label": "Plasma Laser",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/6/6d/Plasma_Laser.jpg/revision/latest/scale-to-width-down/400?cb=20190810153319",
+          "aliases": [
+            "Laser"
+          ]
+        },
+        {
+          "label": "Cannon",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/5/5d/Cannon.PNG/revision/latest/scale-to-width-down/400?cb=20190224214115"
+        },
+        {
+          "label": "Howitzer",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/1/1d/Howitzer.png/revision/latest/scale-to-width-down/400?cb=20220126165357"
+        },
+        {
+          "label": "Reactor",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/8/8a/Reactor.jpg/revision/latest/scale-to-width-down/400?cb=20190813150123"
+        },
+        {
+          "label": "Firebeam",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/3/37/Firebeam.png/revision/latest/scale-to-width-down/400?cb=20220713223004",
+          "aliases": [
+            "Fire Beam"
+          ]
+        },
+        {
+          "label": "Minigun",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/a/a1/Minigun.PNG/revision/latest/scale-to-width-down/400?cb=20171208221142",
+          "aliases": [
+            "Mini Gun"
+          ]
+        },
+        {
+          "label": "Sniper",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/2/23/Sniper.PNG/revision/latest/scale-to-width-down/400?cb=20190214234452"
+        },
+        {
+          "label": "Machine Gun",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/e/ed/Machinegunner.PNG/revision/latest/scale-to-width-down/400?cb=20171204204951",
+          "aliases": [
+            "Machinegun",
+            "Machine Gunner"
+          ]
+        },
+        {
+          "label": "Mortar",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/4/43/Incendiary_mortar.webp/revision/latest/scale-to-width-down/400?cb=20220909225258"
+        },
+        {
+          "label": "Flak",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/2/2b/Flak.PNG/revision/latest/scale-to-width-down/400?cb=20190224214342"
+        },
+        {
+          "label": "20mm Cannon",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/f/ff/20mm_cannon.webp/revision/latest/scale-to-width-down/400?cb=20220911020015",
+          "aliases": [
+            "20mm"
+          ]
+        },
+        {
+          "label": "AP Sniper",
+          "image": "https://static.wikia.nocookie.net/forts7876/images/c/c7/AP_Sniper.PNG/revision/latest/scale-to-width-down/400?cb=20190221213738",
+          "aliases": [
+            "Armour Piercing Sniper",
+            "Armor Piercing Sniper"
+          ]
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Holy Hand Grenade",
+          "image": "https://static.wikia.nocookie.net/worms/images/0/04/Holy_Grenade.png/revision/latest/scale-to-width-down/400?cb=20110430085240"
+        },
+        {
+          "label": "Super Sheep",
+          "image": "https://static.wikia.nocookie.net/worms/images/a/a7/W4_SuperSheep.png/revision/latest/scale-to-width-down/400?cb=20110430175056"
+        },
+        {
+          "label": "Concrete Donkey",
+          "image": "https://static.wikia.nocookie.net/worms/images/e/eb/W4_ConcreteDonkey.png/revision/latest/scale-to-width-down/400?cb=20110430175057"
+        },
+        {
+          "label": "Banana Bomb",
+          "image": "https://static.wikia.nocookie.net/worms/images/b/bb/Bananabomb.png/revision/latest/scale-to-width-down/400?cb=20110430065631"
+        },
+        {
+          "label": "Eagle Artillery",
+          "image": "https://static.wikia.nocookie.net/clashofclans/images/3/36/Eagle_Artillery7.png/revision/latest/scale-to-width-down/400?cb=20240418091823"
+        },
+        {
+          "label": "Mammoth tank",
+          "image": "https://static.wikia.nocookie.net/cnc_gamepedia_en/images/e/ec/TDR_Mammoth_Tank_Cameo.png/revision/latest/scale-to-width-down/400?cb=20200609001400"
+        },
+        {
+          "label": "Cob Cannon",
+          "image": "https://static.wikia.nocookie.net/plantsvszombies/images/0/0c/Cob-cannon.png/revision/latest/scale-to-width-down/400?cb=20260813045313"
+        },
+        {
+          "label": "Melon-pult",
+          "image": "https://static.wikia.nocookie.net/plantsvszombies/images/8/86/Melonpult2009HD.png/revision/latest/scale-to-width-down/400?cb=20260813021123"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Missile Silo",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/7/7a/Warhead_Structure.PNG/revision/latest/scale-to-width-down/400?cb=20171208222129",
+        "aliases": [
+          "Silo"
+        ]
+      },
+      {
+        "label": "Heavy Mortar",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/2/2d/410900_screenshots_20170419113936_1.jpg/revision/latest/scale-to-width-down/400?cb=20170419164916"
+      },
+      {
+        "label": "Shotgun",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/e/e6/HUD-Shotgun-D.png/revision/latest/scale-to-width-down/400?cb=20190711085656"
+      },
+      {
+        "label": "Super Mine",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/8/82/Super_Mine.jpg/revision/latest/scale-to-width-down/400?cb=20190813121739",
+        "aliases": [
+          "Deep Mine"
+        ]
+      },
+      {
+        "label": "Mine",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/8/8e/Mine.jpg/revision/latest/scale-to-width-down/400?cb=20190813121556",
+        "aliases": [
+          "Metal Mine"
+        ]
+      },
+      {
+        "label": "Battery",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/6/6d/Battery.png/revision/latest/scale-to-width-down/400?cb=20220222150513"
+      },
+      {
+        "label": "Metal Store",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/e/ea/Metal_store.png/revision/latest/scale-to-width-down/400?cb=20220222151317"
+      },
+      {
+        "label": "Munitions Plant",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/c/cb/Munitions.jpg/revision/latest/scale-to-width-down/400?cb=20190810134054"
+      },
+      {
+        "label": "Workshop",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/4/49/Workshop.png/revision/latest/scale-to-width-down/400?cb=20190711184658"
+      },
+      {
+        "label": "Sandbags",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/c/ca/Sandbags.jpg/revision/latest/scale-to-width-down/400?cb=20190815120413"
+      },
+      {
+        "label": "Wind Turbine",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/0/06/Wind_Mill.jpg/revision/latest/scale-to-width-down/400?cb=20190813143241",
+        "aliases": [
+          "Windmill",
+          "Turbine"
+        ]
+      },
+      {
+        "label": "Super Turbine",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/3/35/Super_Wind_Mill.jpg/revision/latest/scale-to-width-down/400?cb=20190813143329",
+        "aliases": [
+          "Super Windmill"
+        ]
+      },
+      {
+        "label": "Armoured Door",
+        "image": "https://static.wikia.nocookie.net/forts7876/images/3/3e/HUD-Details-Door-1.png/revision/latest/scale-to-width-down/400?cb=20190711082918",
+        "aliases": [
+          "Armored Door",
+          "Door",
+          "Metal Door"
+        ]
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Commander",
+          "entities": [
+            "Buster",
+            "Moonshine",
+            "Phantom",
+            "Scattershot",
+            "Seep",
+            "Shockenaugh",
+            "Architect",
+            "Overdrive",
+            "Hurricane",
+            "Eagle Eye|Eagleeye",
+            "Firebird",
+            "Warthog",
+            "Pinchfist",
+            "Spook",
+            "Armourdillo|Armordillo"
+          ]
+        },
+        {
+          "label": "Weapon",
+          "entities": [
+            "Machine Gun|Machinegun|MG",
+            "Minigun|Mini Gun",
+            "Sniper",
+            "AP Sniper|Armour Piercing Sniper|Armor Piercing Sniper|APS",
+            "20mm Cannon|20mm",
+            "Mortar",
+            "Heavy Mortar",
+            "Incendiary Mortar",
+            "Cannon",
+            "Howitzer",
+            "Plasma Laser|Laser",
+            "Firebeam|Fire Beam",
+            "Magnabeam|Magna Beam",
+            "Swarm Missiles|Swarm|Swarm Missile",
+            "Warhead|Nuke|Missile Silo|Warhead Missile",
+            "EMP Missile|EMP|EMP Launcher",
+            "Flak",
+            "Rocket|Rocket Launcher",
+            "Shotgun",
+            "Buzz Saw|Buzzsaw|Saw",
+            "Smoke Bomb|Smoke"
+          ]
+        },
+        {
+          "label": "Device",
+          "entities": [
+            "Mine|Metal Mine",
+            "Super Mine|Deep Mine",
+            "Wind Turbine|Windmill|Turbine",
+            "Super Turbine|Super Windmill",
+            "Battery",
+            "Metal Store",
+            "Workshop",
+            "Factory",
+            "Munitions Plant",
+            "Upgrade Centre|Upgrade Center",
+            "Armoury|Armory",
+            "Sandbags",
+            "Reactor",
+            "Bracing|Wood",
+            "Armour|Armor",
+            "Door|Armoured Door|Armored Door|Metal Door",
+            "Energy Shield|Shield",
+            "Rope",
+            "Portal"
+          ]
+        },
+        {
+          "label": "Faction",
+          "entities": [
+            "Eagle Empire|Eagle Army",
+            "Dragon Army",
+            "Iron Bear Alliance|Iron Bear",
+            "Black Penguin Oil|Black Penguin",
+            "The Coalition|Coalition"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Commander",
+      "prompt": "Which commander has this ability?",
+      "clues": [
+        {
+          "text": "Weapons stay cloaked until they take damage, and dummy weapons fool the enemy",
+          "answer": "Phantom"
+        },
+        {
+          "text": "Shields bounce every projectile straight back",
+          "answer": "Scattershot"
+        },
+        {
+          "text": "Fort materials cost less, and batteries and metal stores hold more",
+          "answer": "Architect"
+        },
+        {
+          "text": "Snipers get laser sights — and, on command, explosive bullets",
+          "answer": "Eagle Eye|Eagleeye"
+        },
+        {
+          "text": "On command, every weapon turns incendiary",
+          "answer": "Firebird"
+        },
+        {
+          "text": "Heavy weapons aim better, reload faster and hit harder on command",
+          "answer": "Warthog"
+        },
+        {
+          "text": "Cheap repairs, better reclaim — and firing at half cost",
+          "answer": "Pinchfist"
+        },
+        {
+          "text": "Hides its own damage, sees the enemy’s resources, can steal them",
+          "answer": "Spook"
+        },
+        {
+          "text": "Cheaper armour, doors that open twice as fast, rapid half-price repairs",
+          "answer": "Armourdillo|Armordillo"
+        },
+        {
+          "text": "Free foundations, and AP snipers that paint targets for missiles",
+          "answer": "Buster"
+        },
+        {
+          "text": "Area weapons gain an EMP effect, and shields block AP snipers",
+          "answer": "Moonshine"
+        },
+        {
+          "text": "Destroyed warheads burst into swarms of missiles",
+          "answer": "Seep"
+        },
+        {
+          "text": "Energy shields turn incoming laser fire into energy",
+          "answer": "Shockenaugh"
+        },
+        {
+          "text": "Faster upgrades, and a production boost on command",
+          "answer": "Overdrive"
+        },
+        {
+          "text": "Builds and repairs faster, and can reload in a flash",
+          "answer": "Hurricane"
+        }
+      ]
+    }
   }
 ]

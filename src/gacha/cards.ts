@@ -72,7 +72,37 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!", audio: "https://mario.wiki.gallery/images/7/7c/SM64_Mario_Let%27s-a-go%21.wav" },
   genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Time for — retribution!", audio: "https://static.wikia.nocookie.net/gensin-impact/images/5/57/VO_Diluc_Elemental_Burst_03.ogg/revision/latest?cb=20221112195845" },
   wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "The goddess watches over us.", audio: "https://static.wikia.nocookie.net/allstars_gamepedia/images/d/d4/Tyrande_IntroBoast01.ogg/revision/latest?cb=20180709081959" },
+  forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
+};
+
+/**
+ * A second mythic for every franchise, added later (ids `<set>:mythic-2`): another star's special
+ * edition, its picture the star's own card unless given. Doomfist's line is his own voice (the
+ * Overwatch wiki's file); the others are read in the browser's voice. (Lines written for these cards;
+ * titles and catchphrases from the franchises.)
+ */
+const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; image?: string }> = {
+  lol: { name: 'Jinx', title: 'The Loose Cannon', line: 'Two guns, one rocket launcher and zero plans — Piltover has never been so loud.', voice: 'Get excited!' },
+  overwatch: {
+    name: 'Doomfist',
+    title: 'The Successor',
+    line: 'He leaps, the sky goes dark, and one gauntlet comes down like a falling star.',
+    voice: 'Meteor Strike!',
+    audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/54/Doomfist_-_Meteor_strike.ogg/revision/latest?cb=20230913153702',
+  },
+  minecraft: { name: 'Warden', title: 'The Deep Dark', line: 'Blind, patient, listening: one careless footstep in the Deep Dark and it is already coming.', voice: 'Sniff… sniff…' },
+  onepiece: { name: 'Roronoa Zoro', title: 'The Pirate Hunter', line: 'Three swords, no sense of direction, and a promise to be the greatest swordsman alive.', voice: 'Santōryū!' },
+  dbz: { name: 'Vegeta', title: 'Prince of All Saiyans', line: 'Pride sharper than any blade: he will surpass Kakarot, or burn trying.', voice: 'Final Flash!' },
+  naruto: { name: 'Sasuke Uchiha', title: 'The Last Uchiha', line: 'Lightning in one hand, the Sharingan in his eyes — the rival who walked his own dark road.', voice: 'Chidori!' },
+  starwars: { name: 'Darth Vader', title: 'Dark Lord of the Sith', line: 'A mechanical breath in the dark, a red blade, and a father nobody expected.', voice: 'I am your father.' },
+  harrypotter: { name: 'Hermione Granger', title: 'The Brightest Witch of Her Age', line: 'Every book read, every spell perfect — and the one who saved them all, twice a year.', voice: 'Wingardium Leviosa!' },
+  lotr: { name: 'Aragorn', title: 'King of Gondor', line: 'A ranger in the wild, a king at the Black Gate: the heir who finally came home.', voice: 'For Frodo.' },
+  mcu: { name: 'Thor', title: 'God of Thunder', line: 'A hammer that chooses its bearer, an axe forged in a dying star, and lightning to spare.', voice: 'Bring me Thanos!' },
+  smash: { name: 'Kirby', title: 'The Star Warrior', line: 'Small, round, always hungry — and somehow the last one standing on every stage.', voice: 'Poyo!' },
+  genshin: { name: 'Raiden Shogun', title: 'The Eternal Shogun', line: 'One stroke of the Musou no Hitotachi, and the storm itself bows to eternity.', voice: 'Inazuma shines eternal!' },
+  wow: { name: 'Thrall', title: 'The World-Shaman', line: 'Born a slave, raised a warchief: the orc who taught the Horde to be free.', voice: 'For the Horde!' },
+  inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
 };
 
 /**
@@ -258,6 +288,9 @@ const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]
  */
 const MORE = MORE_ROSTERS as Record<string, { name: string; image: string; rarity: Rarity }[]>;
 
+/** Franchises added after the first fourteen (see CARDS). */
+const LATE_SETS = new Set(['forts']);
+
 const slug = (s: string) =>
   s
     .normalize('NFD')
@@ -393,8 +426,11 @@ export const CARDS: Card[] = (() => {
   for (const b of BOSSES) {
     const set: Omit<Card, 'no'>[] = [];
     sets.set(b.id, set);
+    // Franchises added after the first fourteen only need a name new to their own set: being last, they can't
+    // take one from another (Forts' Phantom isn't Minecraft's).
+    const own = LATE_SETS.has(b.id);
     const add = (name: string, image: string | undefined, rarity: Rarity, description: string) => {
-      if (!image || seen.has(name)) return;
+      if (!image || (own ? set.some((c) => c.name === name) : seen.has(name))) return;
       seen.add(name);
       set.push({ id: `${b.id}:${slug(name)}`, name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity, description });
     };
@@ -447,6 +483,13 @@ export const CARDS: Card[] = (() => {
       ids.add(id);
       set.push({ id, name: r.name, image: r.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: r.rarity, description: describe(b.id, r.name, r.rarity === 'epic' ? 'epic' : r.rarity === 'rare' ? 'rare' : 'common', b.franchise) });
     }
+  }
+  // And last: the second mythics, each set's newest card.
+  for (const b of BOSSES) {
+    const set = sets.get(b.id)!;
+    const m = MYTHICS_2[b.id];
+    const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
+    if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
   }
   return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
