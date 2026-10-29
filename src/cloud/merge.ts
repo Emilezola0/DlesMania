@@ -31,6 +31,7 @@ export const SYNCED = [
   'cardReactions',
   'omniAura',
   'voiceLines',
+  'grades',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -139,6 +140,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // Cards pulled apart add up; once in step, the latest save is the true one (cards also go — traded,
     // exchanged for coins — so the higher count isn't).
     cards: firstLink ? sumBy(local.cards, cloud.cards) : (latest.cards ?? {}),
+    // Grades go with the cards: the higher of the two on a first link, then the latest save's.
+    grades: firstLink ? maxBy(local.grades, cloud.grades) : (latest.grades ?? {}),
     econ: mergeEcon(local.econ, cloud.econ)!,
     // The same week: every boss paid on either side stays paid. Different weeks: the later one.
     bossWeek:

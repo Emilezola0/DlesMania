@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
 import { RARITY_INFO, setSize, type Card, type Rarity } from './cards';
+import { GradeEmblem } from './GradeEmblem';
+import { gradeOf } from './grades';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -44,9 +46,12 @@ export function useCardForm(card: Card): { image: string; title?: string; descri
  * its light from outside (the big view passes the card's turn) — and the foil follows: a highlight
  * on rare cards, a sweeping sheen on epics, gold leaf and glints on legendaries, and on mythics a
  * prism: rainbow foil and glitter over a starry night, a rainbow frame turning around it all.
- * `depth` lifts the name, badges and text off the card (for the 3D big view).
+ * `depth` lifts the name, badges and text off the card (for the 3D big view). Above grade I, the
+ * card wears its grade's emblem and shine (`grade`: the player's own when not given).
  */
-export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean }) {
+export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number }) {
+  const owned = useProgress((s) => gradeOf(s.grades, card.id));
+  const grade = given ?? owned;
   const st = RARITY_STYLE[card.rarity];
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
@@ -93,6 +98,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth }: {
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,241,168,.5), rgba(168,85,247,.25) 45%, rgba(15,10,40,.2) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           <img key={form.image} src={form.image} alt="" draggable={false} loading="lazy" className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
+          {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
             <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">
               “{card.voice}”
@@ -122,7 +128,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth }: {
             <div className={`card-sparks pointer-events-none absolute inset-0 ${omni ? 'card-sparks-gold' : ''}`} />
           </>
         )}
+        {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
+        {grade > 1 && <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`} />}
       </div>
+      {/* Gold and Radiant: a light running round the frame, and a halo. */}
+      {grade >= 4 && (
+        <>
+          <div className={`card-grade-orbit card-grade-orbit-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />
+          <div className={`card-grade-halo card-grade-halo-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />
+        </>
+      )}
 
       {mythic && (
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>

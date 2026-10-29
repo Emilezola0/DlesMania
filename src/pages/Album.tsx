@@ -4,6 +4,9 @@ import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
+import { GradeEmblem } from '../gacha/GradeEmblem';
+import { canGradeUp, GRADE_COST, gradeOf, GRADES, MAX_GRADE } from '../gacha/grades';
+import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { canHear, playVoice } from '../gacha/voice';
@@ -12,11 +15,12 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
 type Show = 'all' | 'owned' | 'missing';
-type Sort = 'set' | 'rarity' | 'name' | 'count';
+type Sort = 'set' | 'rarity' | 'grade' | 'name' | 'count';
 
 const SORTS: { id: Sort; label: string }[] = [
   { id: 'set', label: 'Set' },
   { id: 'rarity', label: 'Rarity' },
+  { id: 'grade', label: 'Grade' },
   { id: 'name', label: 'Name' },
   { id: 'count', label: 'Most pulled' },
 ];
@@ -30,6 +34,9 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
+  const grade = useProgress((s) => gradeOf(s.grades, card.id));
+  // Bumped on a grade-up: the card flares.
+  const [flare, setFlare] = useState(0);
   const [rot, setRot] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
@@ -102,7 +109,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div className="[backface-visibility:hidden] [transform-style:preserve-3d]">
+            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? 'card-grade-flare' : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} depth />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
@@ -120,19 +127,27 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             </button>
           )}
           <p className="text-sm opacity-80">
-            {RARITY_INFO[card.rarity].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
+            {RARITY_INFO[card.rarity].name} · {GRADES[grade].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
-        <Perks card={card} />
+        <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
       </div>
     </div>
   );
 }
 
 /** What the card can be: the player's icon (any card), the pages' background (Rare or better). */
-function Perks({ card }: { card: Card }) {
+function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const count = useProgress((s) => s.cards[card.id] ?? 0);
+  const grade = useProgress((s) => gradeOf(s.grades, card.id));
+  const gradeUp = useProgress((s) => s.gradeUp);
+  const up = () => {
+    if (!gradeUp(card.id)) return;
+    onGradeUp();
+    if (grade + 1 >= 4) (sfx.victory(), celebrateBig());
+    else (sfx.streak(), celebrate());
+  };
   const exchange = useProgress((s) => s.exchangeCards);
   const avatar = useProgress((s) => s.avatar);
   const backdrop = useProgress((s) => s.backdrop);
@@ -143,6 +158,23 @@ function Perks({ card }: { card: Card }) {
   const btn = (on: boolean) => `rounded-full border-2 px-3 py-1.5 text-sm font-bold transition ${on ? 'border-white bg-white text-black' : 'border-white/40 text-white hover:border-white'}`;
   return (
     <div className="flex flex-wrap justify-center gap-2">
+      {/* Five copies into one a grade higher: the card and four spares. */}
+      {grade < MAX_GRADE ? (
+        <button
+          type="button"
+          onClick={up}
+          disabled={!canGradeUp(count, grade)}
+          className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${canGradeUp(count, grade) ? 'border-[#fde68a] bg-[#fde68a]/15 text-[#fef3c7] hover:bg-[#fde68a]/30' : 'border-dashed border-white/25 text-white/50'}`}
+          title={`Merge ${GRADE_COST + 1} copies of this card into one: the card and ${GRADE_COST} spares`}
+        >
+          <GradeEmblem grade={grade + 1} className="size-7" />
+          {canGradeUp(count, grade) ? `Upgrade to ${GRADES[grade + 1].name}` : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
+        </button>
+      ) : (
+        <span className="flex items-center gap-1.5 rounded-full border-2 border-[#f0abfc] px-3 py-1 text-sm font-bold text-[#fdf4ff]">
+          <GradeEmblem grade={MAX_GRADE} className="size-7" /> Radiant — top grade
+        </span>
+      )}
       <button type="button" onClick={() => (sfx.select(), setAvatar(isAvatar ? null : card.id))} className={btn(isAvatar)}>
         {isAvatar ? '✓ Your icon' : '👤 Use as my icon'}
       </button>
@@ -170,6 +202,7 @@ function Perks({ card }: { card: Card }) {
 /** /album */
 export default function Album() {
   const owned = useProgress((s) => s.cards);
+  const grades = useProgress((s) => s.grades);
   const coins = useProgress((s) => s.coins);
   const [set, setSet] = useState('all');
   const [rarities, setRarities] = useState<Rarity[]>(RARITIES);
@@ -195,12 +228,14 @@ export default function Album() {
   const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
   const list = useMemo(() => {
     const xs = CARDS.filter((c) => (set === 'all' || c.set === set) && rarities.includes(c.rarity) && (show === 'all' || (show === 'owned') === !!owned[c.id]));
+    // Cards not owned last: they have no grade.
+    const byGrade = (c: Card) => (owned[c.id] ? gradeOf(grades, c.id) : 0);
     const byRarity = (a: Card, b: Card) => RARITY_INFO[b.rarity].rank - RARITY_INFO[a.rarity].rank;
     const bySet = (a: Card, b: Card) => (SET_ORDER.get(a.set) ?? 0) - (SET_ORDER.get(b.set) ?? 0) || a.no - b.no;
     return [...xs].sort(
-      sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
+      sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
     );
-  }, [set, rarities, show, sort, owned]);
+  }, [set, rarities, show, sort, owned, grades]);
 
   const toggleRarity = (r: Rarity) => {
     sfx.click();

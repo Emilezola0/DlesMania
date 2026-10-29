@@ -918,3 +918,92 @@ h1, h2, h3, .font-serif, .font-display {
 @media (prefers-reduced-motion: reduce) {
   .omni-aura body::before, .omni-aura header::after, .omni-aura [data-logo] { animation: none; }
 }
+
+/* ── Card grades II–V (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
+/* Bronze: an edge of warm metal. Silver: a cool edge and a gleam passing over. Gold: a gold edge, the gleam,
+   specks of light. Radiant: a prismatic edge, a brighter gleam, more specks. */
+.card-grade-fx { z-index: 5; border-radius: inherit; }
+.card-grade-2 { box-shadow: inset 0 0 0 1.2cqw rgba(205, 127, 50, 0.55), inset 0 0 6cqw rgba(205, 127, 50, 0.35); }
+.card-grade-3,
+.card-grade-4,
+.card-grade-5 {
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.32) 48%, rgba(255, 255, 255, 0.06) 54%, transparent 62%);
+  background-size: 300% 100%;
+  animation: card-grade-gleam 5s ease-in-out infinite;
+}
+.card-grade-3 { box-shadow: inset 0 0 0 1.2cqw rgba(226, 232, 240, 0.6), inset 0 0 7cqw rgba(203, 213, 225, 0.35); }
+.card-grade-4 {
+  box-shadow: inset 0 0 0 1.3cqw rgba(251, 191, 36, 0.65), inset 0 0 8cqw rgba(251, 191, 36, 0.4);
+  animation-duration: 4s;
+}
+.card-grade-5 {
+  box-shadow: inset 0 0 0 1.4cqw rgba(240, 171, 252, 0.7), inset 0 0 9cqw rgba(159, 220, 255, 0.45);
+  background-image: linear-gradient(105deg, transparent 36%, rgba(255, 159, 243, 0.35) 44%, rgba(255, 255, 255, 0.55) 49%, rgba(159, 220, 255, 0.35) 54%, transparent 62%);
+  animation-duration: 3s;
+}
+.card-grade-4::after,
+.card-grade-5::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1.5cqw 1.5cqw at 18% 30%, #fff, transparent),
+    radial-gradient(1.2cqw 1.2cqw at 82% 22%, #fff7c2, transparent),
+    radial-gradient(1.5cqw 1.5cqw at 70% 78%, #fff, transparent),
+    radial-gradient(1.2cqw 1.2cqw at 30% 88%, #fde68a, transparent);
+  animation: card-twinkle 2s ease-in-out infinite;
+}
+.card-grade-5::after {
+  background:
+    radial-gradient(1.6cqw 1.6cqw at 14% 26%, #fff, transparent),
+    radial-gradient(1.3cqw 1.3cqw at 84% 18%, #ff9ff3, transparent),
+    radial-gradient(1.6cqw 1.6cqw at 74% 74%, #fff, transparent),
+    radial-gradient(1.3cqw 1.3cqw at 26% 86%, #9fdcff, transparent),
+    radial-gradient(1.2cqw 1.2cqw at 50% 50%, #ffe58f, transparent),
+    radial-gradient(1.2cqw 1.2cqw at 90% 52%, #fff, transparent);
+  animation-duration: 1.5s;
+}
+@keyframes card-grade-gleam {
+  0%, 35% { background-position: 120% 0; }
+  75%, 100% { background-position: -20% 0; }
+}
+/* Gold and Radiant: a comet of light running round the frame. */
+.card-grade-orbit {
+  padding: 1.6cqw;
+  background: conic-gradient(from var(--spin), transparent 0 72%, rgba(255, 236, 150, 0.2) 80%, #fff7c2 92%, #fff 96%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: card-spin 3.5s linear infinite;
+}
+.card-grade-orbit-5 {
+  background: conic-gradient(from var(--spin), transparent 0 60%, #ff9ff3 72%, #ffe58f 82%, #9fdcff 90%, #fff 96%, transparent 100%);
+  animation-duration: 2.4s;
+}
+/* And a halo round the card, breathing. */
+.card-grade-halo { animation: card-grade-breathe 2.8s ease-in-out infinite; }
+.card-grade-halo-4 { --halo: rgba(251, 191, 36, 0.55); }
+.card-grade-halo-5 { --halo: rgba(240, 171, 252, 0.6); }
+@keyframes card-grade-breathe {
+  0%, 100% { box-shadow: 0 0 3cqw 0.5cqw var(--halo); }
+  50% { box-shadow: 0 0 8cqw 2cqw var(--halo); }
+}
+/* The Radiant emblem: its rays turn, the emblem glows. */
+.grade-emblem-radiant { filter: drop-shadow(0 0 2cqw rgba(255, 255, 255, 0.7)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)); }
+.grade-emblem-radiant .grade-rays {
+  transform-origin: 30px 31px;
+  animation: grade-rays-turn 9s linear infinite;
+}
+@keyframes grade-rays-turn { to { transform: rotate(360deg); } }
+/* A grade-up: the card flares. */
+@keyframes card-grade-flare {
+  0% { filter: brightness(1); transform: scale(1); }
+  30% { filter: brightness(2.2) saturate(1.4); transform: scale(1.06); }
+  100% { filter: brightness(1); transform: scale(1); }
+}
+.card-grade-flare { animation: card-grade-flare 0.9s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-4::after, .card-grade-5::after,
+  .card-grade-orbit, .card-grade-halo, .grade-emblem-radiant .grade-rays, .card-grade-flare { animation: none; }
+}

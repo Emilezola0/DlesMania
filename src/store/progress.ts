@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { canGradeUp, gradeOf, GRADE_COST } from '../gacha/grades';
 import { persist } from 'zustand/middleware';
 import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
@@ -90,6 +91,10 @@ interface ProgressState {
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
   renewCards: (spent: Record<string, number>, gained: string) => void;
+  /** Each card's grade, I to V (1 when missing). */
+  grades: Record<string, number>;
+  /** Five copies of a card into one a grade higher (the card and four spares). */
+  gradeUp: (id: string) => boolean;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -223,6 +228,14 @@ export const useProgress = create<ProgressState>()(
           cards[gained] = (cards[gained] ?? 0) + 1;
           return { cards };
         }),
+      grades: {},
+      gradeUp: (id) => {
+        const s = get();
+        const grade = gradeOf(s.grades, id);
+        if (!canGradeUp(s.cards[id] ?? 0, grade)) return false;
+        set({ cards: { ...s.cards, [id]: s.cards[id] - GRADE_COST }, grades: { ...s.grades, [id]: grade + 1 } });
+        return true;
+      },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
       openPack: (cost, cardIds) => {
@@ -248,7 +261,10 @@ export const useProgress = create<ProgressState>()(
             if (left > 0) cards[id] = left;
             else delete cards[id];
           }
-          return { cards };
+          // A card traded away for good takes its grade with it.
+          const grades = { ...(s.grades ?? {}) };
+          for (const id of Object.keys(grades)) if (!cards[id]) delete grades[id];
+          return { cards, grades };
         }),
       earnCoins: (amount) => set((s) => earn(s, amount)),
       claimMission: (kind) =>
