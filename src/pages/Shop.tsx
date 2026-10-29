@@ -8,7 +8,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, bossBest, clampPity, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -55,7 +55,7 @@ function DropRates() {
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and the top tiers up by half as much). And every pack opened without a Legendary or better raises the odds of Legendary, Mythic and Omni by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Per card, and in brackets the chance of at least one in a pack (without that luck).
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and the top tiers up by half as much). And every pack opened without a Legendary or better raises the odds of Legendary, Mythic and Omni by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">
