@@ -5,7 +5,7 @@ import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView'
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { GradeEmblem } from '../gacha/GradeEmblem';
-import { canGradeUp, GRADE_COST, gradeOf, GRADES, MAX_GRADE } from '../gacha/grades';
+import { canGradeUp, GRADE_COST, gradeOf, gradeReward, GRADES, MAX_GRADE } from '../gacha/grades';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
@@ -142,8 +142,10 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const count = useProgress((s) => s.cards[card.id] ?? 0);
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
   const gradeUp = useProgress((s) => s.gradeUp);
+  // The next grade's reward, unless that grade was already paid for once.
+  const reward = useProgress((s) => (grade + 1 > (s.gradesPaid?.[card.id] ?? 1) ? gradeReward(card.rarity, grade + 1) : 0));
   const up = () => {
-    if (!gradeUp(card.id)) return;
+    if (!gradeUp(card.id, card.rarity)) return;
     onGradeUp();
     if (grade + 1 >= 4) (sfx.victory(), celebrateBig());
     else (sfx.streak(), celebrate());
@@ -169,6 +171,7 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         >
           <GradeEmblem grade={grade + 1} className="size-7" />
           {canGradeUp(count, grade) ? `Upgrade to ${GRADES[grade + 1].name}` : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
+          {reward > 0 && <span className="ml-1 rounded-full bg-[#fde68a]/20 px-1.5 text-xs text-[#fde68a]">+{reward} 🪙</span>}
         </button>
       ) : (
         <span className="flex items-center gap-1.5 rounded-full border-2 border-[#f0abfc] px-3 py-1 text-sm font-bold text-[#fdf4ff]">

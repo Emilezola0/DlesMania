@@ -1,6 +1,9 @@
 // A card's grade, I to V: separate from its rarity (which never changes). Five copies of the same
 // card merge into one a grade higher — the card itself and four spares — and each grade has its emblem
-// and a little more shine on top of the rarity's own.
+// and a little more shine on top of the rarity's own. Every grade reached pays DleCoins, by the card's
+// rarity and more for each grade up.
+import { DUPLICATE_VALUE } from './economy';
+import type { Rarity } from './cards';
 
 export const MAX_GRADE = 5;
 /** Spare copies a grade-up takes (with the card itself: five copies become one). */
@@ -22,6 +25,19 @@ export const GRADES: Record<number, GradeInfo> = {
 };
 
 export const gradeOf = (grades: Record<string, number> | undefined, id: string) => Math.min(MAX_GRADE, Math.max(1, grades?.[id] ?? 1));
+
+/**
+ * A grade's reward: what the four spares would fetch traded in, times this — so a grade-up always pays
+ * more than trading them, and more the higher the grade (Bronze ×1.25 … Radiant ×4).
+ */
+export const GRADE_REWARD_SHARE: Record<number, number> = { 2: 1.25, 3: 1.75, 4: 2.5, 5: 4 };
+export const gradeReward = (rarity: Rarity, grade: number) => Math.round(DUPLICATE_VALUE[rarity] * GRADE_COST * (GRADE_REWARD_SHARE[grade] ?? 0));
+/** Every grade's reward from `from` (excluded) up to `to`. */
+export function gradeRewards(rarity: Rarity, from: number, to: number): number {
+  let sum = 0;
+  for (let g = Math.max(1, from) + 1; g <= Math.min(MAX_GRADE, to); g++) sum += gradeReward(rarity, g);
+  return sum;
+}
 
 /** Whether a card can go up a grade now: below V, with enough spares. */
 export const canGradeUp = (count: number, grade: number) => grade < MAX_GRADE && count - 1 >= GRADE_COST;

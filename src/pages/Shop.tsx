@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
 import { ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { GRADE_REWARD_SHARE, gradeReward } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
@@ -339,6 +340,9 @@ export default function Shop() {
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play.
           </li>
           <li>Expeditions: every room won pays, more each act — and each act is harder than the last.</li>
+          <li>
+            Every card grade reached: Bronze, Silver, Gold and Radiant pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}× and {GRADE_REWARD_SHARE[5]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Radiant {gradeReward('legendary', 5)}.
+          </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>
         <p className="pt-1 text-xs">Every rarity's odds, per card and per pack: see Drop rates above.</p>

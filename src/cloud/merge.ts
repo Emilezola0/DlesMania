@@ -32,6 +32,7 @@ export const SYNCED = [
   'omniAura',
   'voiceLines',
   'grades',
+  'gradesPaid',
   'missionBooks',
   'redeemed',
   'groups',
@@ -155,6 +156,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     cards: firstLink ? sumBy(local.cards, cloud.cards) : (latest.cards ?? {}),
     // Grades go with the cards: the higher of the two on a first link, then the latest save's.
     grades: firstLink ? maxBy(local.grades, cloud.grades) : (latest.grades ?? {}),
+    // A grade paid on either side stays paid (never twice).
+    gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),
     econ: mergeEcon(local.econ, cloud.econ)!,
     missionBooks: {
       week: mergeBook(local.missionBooks?.week, cloud.missionBooks?.week)!,

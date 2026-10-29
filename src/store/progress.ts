@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { canGradeUp, gradeOf, GRADE_COST } from '../gacha/grades';
+import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST } from '../gacha/grades';
+import type { Rarity } from '../gacha/cards';
 import { persist } from 'zustand/middleware';
 import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
@@ -103,8 +104,12 @@ interface ProgressState {
   renewCards: (spent: Record<string, number>, gained: string) => void;
   /** Each card's grade, I to V (1 when missing). */
   grades: Record<string, number>;
-  /** Five copies of a card into one a grade higher (the card and four spares). */
-  gradeUp: (id: string) => boolean;
+  /** The highest grade already paid for, per card (grades reached before the rewards existed are paid once, later). */
+  gradesPaid: Record<string, number>;
+  /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. */
+  gradeUp: (id: string, rarity: Rarity) => boolean;
+  /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
+  payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -275,12 +280,37 @@ export const useProgress = create<ProgressState>()(
           return { cards };
         }),
       grades: {},
-      gradeUp: (id) => {
+      gradesPaid: {},
+      gradeUp: (id, rarity) => {
         const s = get();
         const grade = gradeOf(s.grades, id);
         if (!canGradeUp(s.cards[id] ?? 0, grade)) return false;
-        set({ cards: { ...s.cards, [id]: s.cards[id] - GRADE_COST }, grades: { ...s.grades, [id]: grade + 1 } });
+        // A grade pays once, even if the card was traded away and graded again.
+        const paid = s.gradesPaid?.[id] ?? 1;
+        const coins = grade + 1 > paid ? gradeReward(rarity, grade + 1) : 0;
+        set({
+          cards: { ...s.cards, [id]: s.cards[id] - GRADE_COST },
+          grades: { ...s.grades, [id]: grade + 1 },
+          gradesPaid: { ...s.gradesPaid, [id]: Math.max(paid, grade + 1) },
+          ...(coins ? earn(s, coins) : {}),
+        });
         return true;
+      },
+      payGradeBacklog: (rarityOf) => {
+        const s = get();
+        let coins = 0;
+        let count = 0;
+        const gradesPaid = { ...s.gradesPaid };
+        for (const [id, g] of Object.entries(s.grades ?? {})) {
+          const paid = gradesPaid[id] ?? 1;
+          const rarity = rarityOf(id);
+          if (!rarity || g <= paid) continue;
+          coins += gradeRewards(rarity, paid, g);
+          count += g - paid;
+          gradesPaid[id] = g;
+        }
+        if (count) set({ gradesPaid, ...(coins ? earn(s, coins) : {}) });
+        return { coins, grades: count };
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
