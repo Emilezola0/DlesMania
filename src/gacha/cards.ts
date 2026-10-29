@@ -35,20 +35,23 @@ export interface Card {
   description: string;
   /** A mythic's title ("Sun God Nika"). */
   title?: string;
-  /** A mythic's voice line: their catchphrase, shown on the card and read aloud. */
+  /** A mythic's voice line: their catchphrase, shown on the card and heard. */
   voice?: string;
+  /** The real recording of it, when there is one; else the browser reads it. */
+  audio?: string;
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
 
 /**
  * The mythics: each franchise's star in a special edition — a title, a line of their own, and a
- * voice line: their catchphrase. (Lines written for these cards; titles and catchphrases from the franchises.)
+ * voice line: their catchphrase — for the game stars, their real recording (the fan wikis host the
+ * games' voice files). (Lines written for these cards; titles and catchphrases from the franchises.)
  */
-const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string }> = {
-  lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "Don't you trust me?" },
-  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!" },
-  minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…" },
+const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string }> = {
+  lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "A clever fox is never caught.", audio: "https://static.wikia.nocookie.net/leagueoflegends/images/5/5e/Ahri_Select.ogg/revision/latest?cb=20230110210107" },
+  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000" },
+  minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…", audio: "https://minecraft.wiki/images/Creeper_fuse.ogg?2ff0e" },
   onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.', voice: "I'm gonna be King of the Pirates!" },
   dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.', voice: "Kamehameha!" },
   naruto: { name: 'Naruto Uzumaki', title: 'Seventh Hokage', line: 'The kid nobody believed in, carrying the whole Leaf on his back — and still grinning.', voice: "Believe it!" },
@@ -56,9 +59,9 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   harrypotter: { name: 'Harry Potter', title: 'The Boy Who Lived', line: 'A scar, a broom and a stubborn heart: the wizarding world’s most famous survivor.', voice: "Expecto Patronum!" },
   lotr: { name: 'Frodo Baggins', title: 'The Ring-bearer', line: 'The smallest of walkers carried the heaviest weight, all the way to the fire.', voice: "I will take the Ring." },
   mcu: { name: 'Iron Man', title: 'The Armored Avenger', line: 'Genius, billionaire, philanthropist — and, at the very end, the one who snapped back.', voice: "I am Iron Man." },
-  smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!" },
-  genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Dawn!" },
-  wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "Elune be with you." },
+  smash: { name: 'Mario', title: 'The First Challenger', line: 'A cap, a moustache and a jump that launched a thousand worlds.', voice: "Let's-a go!", audio: "https://mario.wiki.gallery/images/7/7c/SM64_Mario_Let%27s-a-go%21.wav" },
+  genshin: { name: 'Diluc', title: 'The Darknight Hero', line: 'By day he runs a winery; by night, Mondstadt’s fire walks its rooftops.', voice: "Time for — retribution!", audio: "https://static.wikia.nocookie.net/gensin-impact/images/5/57/VO_Diluc_Elemental_Burst_03.ogg/revision/latest?cb=20221112195845" },
+  wow: { name: 'Tyrande Whisperwind', title: 'The Night Warrior', line: 'When Elune’s light falters, her high priestess becomes the dark that hunts.', voice: "The goddess watches over us.", audio: "https://static.wikia.nocookie.net/allstars_gamepedia/images/d/d4/Tyrande_IntroBoast01.ogg/revision/latest?cb=20180709081959" },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
 };
 
@@ -213,7 +216,7 @@ export const CARDS: Card[] = (() => {
     // The mythic: the star's special edition, numbered after the rest of the set.
     const m = MYTHICS[b.id];
     const star = m && b.radar.members.find((x) => x.label === m.name);
-    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, description: m.line });
+    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
     set.forEach((c, i) => out.push({ ...c, no: i + 1 }));
   }
   return out;

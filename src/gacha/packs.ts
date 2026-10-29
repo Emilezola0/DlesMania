@@ -8,7 +8,7 @@ import { CARDS, RARITIES, type Card, type Rarity } from './cards';
 export const PACK_SIZE = 5;
 
 /** Base odds, in percent, for each card of a pack. */
-export const ODDS: Record<Rarity, number> = { common: 67.75, rare: 23, epic: 8, legendary: 1, mythic: 0.25 };
+export const ODDS: Record<Rarity, number> = { common: 68.42, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08 };
 
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
 export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5 };
@@ -66,12 +66,13 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
   return null;
 }
 
-/** The odds with a boost: epic, legendary and mythic multiplied, rare by half as much, common taking the rest. */
+/** The odds with a boost: epic multiplied, rare, legendary and mythic by half as much (the top stays rare), common taking the rest. */
 export function oddsWith(boost: number): Record<Rarity, number> {
-  const rare = ODDS.rare * (1 + (boost - 1) / 2);
+  const half = 1 + (boost - 1) / 2;
+  const rare = ODDS.rare * half;
   const epic = ODDS.epic * boost;
-  const legendary = ODDS.legendary * boost;
-  const mythic = ODDS.mythic * boost;
+  const legendary = ODDS.legendary * half;
+  const mythic = ODDS.mythic * half;
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic), rare, epic, legendary, mythic };
 }
 

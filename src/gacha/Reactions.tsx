@@ -1,15 +1,65 @@
 // Equipped cards that react to the play: a Legendary or Mythic icon pops up beside the header with
-// a word in its franchise's voice (sometimes on a right answer, sometimes on a mistake, always on a
-// big moment — a mythic then says its own line), and a Legendary or Mythic background lights up,
-// winces or bursts behind the page. Hears every game through the sound cues (lib/sfx onCue);
+// a word in its own character's voice (sometimes on a right answer, sometimes on a mistake, always on
+// a big moment — a mythic then says its voice line, out loud), and a Legendary or Mythic background
+// lights up, winces or bursts behind the page. Hears every game through the sound cues (lib/sfx onCue);
 // the player can turn it off (Account page).
 import { useEffect, useRef, useState } from 'react';
 import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
+import { playVoice } from './voice';
 
-/** Lines in each franchise's spirit (written for Omnidle), for a good moment and a bad one. */
+/**
+ * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
+ * included): a right answer, a mistake. A mythic speaks as its star does.
+ */
+export const CHARACTER_LINES: Record<string, { good: string[]; bad: string[] }> = {
+  "Baron Nashor": { good: ["*a low rumble from the pit* …Acceptable.","The Rift trembles at your answer."], bad: ["*the pit hisses* Weak.","The Baron devours the unprepared."] },
+  "Ahri": { good: ["Mm, clever. I like clever.","You caught that faster than I catch hearts."], bad: ["Aww, so close, darling.","Even a fox trips sometimes."] },
+  "Yasuo": { good: ["Like the wind — swift and clean.","Hasagi! A true strike."], bad: ["A sword is poor company for that answer.","Even the wind loses its way."] },
+  "Doomfist": { good: ["Strength recognises strength.","Conflict sharpens you. Good."], bad: ["Weakness. Talon has no use for it.","One punch, and you fold?"] },
+  "Tracer": { good: ["Ooh, brilliant!","Right on the money, love!"], bad: ["Whoops! Fancy a rewind?","Oi, I'll pretend I didn't see that!"] },
+  "Mercy": { good: ["Heroes never die — and neither does that streak!","Wunderbar!"], bad: ["Hold still — I'll patch that up.","Don't worry, I've got you."] },
+  "Ender Dragon": { good: ["*a roar echoes across the End*","The End acknowledges you, crafter."], bad: ["*the dragon circles, amused*","Back to the Overworld with you."] },
+  "Creeper": { good: ["Sss… sss… nice.","*a proud, quiet hiss*"], bad: ["Ssss… BOOM.","*hisses right behind you*"] },
+  "Enderman": { good: ["*vwoop* …acceptable.","*picks up a block, satisfied*"], bad: ["Don't look at me like that.","*teleports away in disgust*"] },
+  "Kaido": { good: ["Wororo! Not bad, rookie!","You've got some spine!"], bad: ["Wororororo! Pathetic!","Is that all? I'm still bored!"] },
+  "Monkey D. Luffy": { good: ["Shishishi! That was awesome!","Yosh! Meat party after this!"], bad: ["Eh?! That's not it?!","Doesn't matter — we keep sailing!"] },
+  "Roronoa Zoro": { good: ["Hmph. Not bad.","That one cut clean."], bad: ["…Wrong way again. Happens.","Nothing happened. Got it?"] },
+  "Frieza": { good: ["Ohoho… impressive, for a monkey.","My, my. You might be useful after all."], bad: ["Ohohoho! How disappointing.","Did you really think that would work?"] },
+  "Goku": { good: ["Wow, you're strong! Let's go again!","Hey, that was awesome!"], bad: ["Aw man, now I'm hungry.","Don't worry, I'll train you up!"] },
+  "Vegeta": { good: ["Hmph. That's the pride of a Saiyan.","Not bad… for a lower-class warrior."], bad: ["Clown! Are you even trying?!","Pathetic. Get up and fight!"] },
+  "Madara Uchiha": { good: ["Interesting… you've made it this far.","Now this is a dance worth dancing."], bad: ["Wake up to reality.","You lack resolve — and the answer."] },
+  "Naruto Uzumaki": { good: ["Yatta! That's my ninja way!","Believe it — you nailed it!"], bad: ["Aw man, so close!","I never go back on my word — try again!"] },
+  "Sasuke Uchiha": { good: ["Hn. Acceptable.","You're not as weak as I thought."], bad: ["You're annoying.","Hn. Too slow."] },
+  "Darth Vader": { good: ["Impressive. Most impressive.","The Force is strong with this one."], bad: ["I find your lack of knowledge disturbing.","You have failed me… for now."] },
+  "Yoda": { good: ["Strong with the Force, you are.","Hmm. Learned well, you have."], bad: ["Clouded, your answer is.","Patience. Try again, you must."] },
+  "Chewbacca": { good: ["RRAAAWR! (That means \"nice!\")","*a delighted Wookiee roar*"], bad: ["*a sad Wookiee groan*","Hrrrnnn… (Chewie is not impressed.)"] },
+  "Lord Voldemort": { good: ["Clever… almost worthy of Slytherin.","You show… promise."], bad: ["Foolish child.","You disappoint me. Again."] },
+  "Harry Potter": { good: ["Brilliant, that was!","That's worth a Quidditch cup!"], bad: ["Not quite… happens to the best of us.","Even I got detention sometimes."] },
+  "Hermione Granger": { good: ["Honestly, that was textbook!","Ten points — at least!"], bad: ["It's Levi-O-sa, not Levio-SA!","Have you even read the book?"] },
+  "Sauron": { good: ["The Eye sees your cunning.","You serve me well, little one."], bad: ["You cannot hide your mistakes from me.","Darkness takes another."] },
+  "Frodo Baggins": { good: ["Sam would be proud of that one!","Onward — even the smallest step counts."], bad: ["I wish the Ring had never come to me…","It's a long road. We keep going."] },
+  "Gandalf": { good: ["Splendid, my friend!","A wizard is never late — and neither was that."], bad: ["Fool of a Took!","You shall not pass… not with that answer."] },
+  "Thanos": { good: ["Perfectly balanced, as all things should be.","Impressive. You have my respect."], bad: ["Dread it. Run from it. The miss arrives all the same.","I know what it is to lose."] },
+  "Iron Man": { good: ["Genius. Obviously.","Not bad — I'd have done it faster."], bad: ["JARVIS, log that as a miss.","Sometimes you gotta run before you walk."] },
+  "Captain America": { good: ["That's how it's done.","I could do this all day — and so could you!"], bad: ["Language! …and also, wrong.","Get back up. We keep fighting."] },
+  "Master Hand": { good: ["*snaps its fingers approvingly*","A worthy challenger."], bad: ["*flicks you off the stage*","GAME… over, for that one."] },
+  "Mario": { good: ["Wahoo!","Here we go!"], bad: ["Mamma mia…","Oh no!"] },
+  "Link": { good: ["*triumphant item-get fanfare*","Hyah!"], bad: ["*a silent, heroic sigh*","It's dangerous to go alone — try again."] },
+  "Il Dottore": { good: ["Fascinating. Record that result.","A promising specimen."], bad: ["A failed experiment. Again.","How… disappointing. Next subject."] },
+  "Diluc": { good: ["Not bad.","Justice served."], bad: ["Hmph. Sloppy.","Get yourself together."] },
+  "Jean": { good: ["Well done! The Knights are proud.","Excellent work, as expected."], bad: ["Don't overwork yourself — try again.","Mondstadt believes in you."] },
+  "The Lich King": { good: ["Your strength serves me well.","Rise… and keep going."], bad: ["Frostmourne hungers.","You will kneel before the end."] },
+  "Tyrande Whisperwind": { good: ["Elune smiles upon you.","Swift as the moonlight."], bad: ["Elune guide your next step.","Steady your aim, sister."] },
+  "Illidan Stormrage": { good: ["You are prepared!","Impressive… for a mortal."], bad: ["You are not prepared!","I have no time for failure."] },
+  "Ray Dark": { good: ["Hmph. A lucky shot.","So you have some talent after all."], bad: ["Soccer is a tool — and you misused it.","Just as I planned."] },
+  "Mark Evans": { good: ["Great save! Let's keep it up!","That's the spirit — let's play some soccer!"], bad: ["Don't give up! The match isn't over!","Shake it off — the next one's ours!"] },
+  "Axel Blaze": { good: ["Fire Tornado!","A clean finish."], bad: ["…Just a warm-up.","I'll score the next one."] },
+};
+
+/** A franchise's spirit, for a card with no lines of its own. */
 export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   lol: { good: ['Outplayed!', "That's how you carry.", 'Clean as a pentakill.'], bad: ['Back to the fountain…', 'That was a misplay.', 'Report the jungler?'] },
   overwatch: { good: ['Play of the game!', 'Nice shot!', "Group up — we've got this."], bad: ['We need healing!', 'Ouch — wrong call.', 'Regroup and push again.'] },
@@ -69,9 +119,11 @@ export function CardReactions() {
       // Big moments always; otherwise now and then, so fast games don't drown in bubbles.
       if (kind !== 'great' && (now - last.current < 6000 || Math.random() > 0.45)) return;
       last.current = now;
-      const lines = REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
+      const lines = CHARACTER_LINES[avatar.name] ?? REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
       const text = kind === 'great' && avatar.voice ? avatar.voice : pick(kind === 'bad' ? lines.bad : lines.good);
       setBubble({ kind, text, key: now });
+      // A mythic's big moment: its voice line, heard.
+      if (kind === 'great' && avatar.voice) playVoice(avatar);
       window.clearTimeout(timer);
       timer = window.setTimeout(() => setBubble(null), 2600);
     });
