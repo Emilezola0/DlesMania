@@ -1,7 +1,7 @@
 {
   "easy": {
     "label": "Easy",
-    "blurb": "Three phases, clean cards, generous timers.",
+    "blurb": "Three phases, clean cards, generous timers — a little quicker each round you win.",
     "rounds": [
       1,
       1,
@@ -28,15 +28,21 @@
     "scoreMultiplier": 1,
     "secondLoop": null,
     "signature": null,
-    "chain": null
+    "chain": null,
+    "pace": {
+      "step": 0.05,
+      "min": 0.8,
+      "rematch": 0.02,
+      "rematchMax": 0.1
+    }
   },
   "medium": {
     "label": "Medium",
-    "blurb": "Longer waves, tighter timers, shifting colours and spinning cards — and a fourth phase: a Name Chain against the guardian.",
+    "blurb": "Two rounds a phase, tighter timers that shrink as you win, shifting colours and spinning cards — and a fourth phase: a Name Chain against the guardian.",
     "rounds": [
-      1,
-      1,
-      1,
+      2,
+      2,
+      2,
       1
     ],
     "hearts": 3,
@@ -63,15 +69,21 @@
       "picksToWin": 6,
       "turnSeconds": 15,
       "bonus": 0
+    },
+    "pace": {
+      "step": 0.07,
+      "min": 0.65,
+      "rematch": 0.03,
+      "rematchMax": 0.15
     }
   },
   "hard": {
     "label": "Hard",
-    "blurb": "Every phase at full speed: reversed zones, decoys, early-swipe penalties, one-mistake shields, distorted faces and a hidden clock. Four phases, Name Chain included — then the guardian’s Signature: answer right to win; a wrong answer takes all your hearts, with one last chance.",
+    "blurb": "Two rounds a phase, the second escalated: distorted faces, shorter lists, faster cards. Reversed zones, decoys, one-mistake shields and a hidden clock that keeps shrinking. Name Chain included — then the guardian’s Signature: answer right to win; a wrong answer takes all your hearts, with one last chance.",
     "rounds": [
-      1,
-      1,
-      1,
+      2,
+      2,
+      2,
       1
     ],
     "hearts": 3,
@@ -92,7 +104,44 @@
     "distortion": 2,
     "parSeconds": 600,
     "scoreMultiplier": 2.5,
-    "secondLoop": null,
+    "secondLoop": {
+      "blitz": {
+        "countDelta": -1,
+        "secondsPer": 6
+      },
+      "radar": {
+        "cards": 8,
+        "impostors": 3,
+        "speed": 0.8,
+        "zoom": [
+          1.3,
+          1.8
+        ],
+        "hue": [
+          40,
+          120
+        ],
+        "flip": 0.3
+      },
+      "finale": {
+        "targets": 3,
+        "seconds": 7,
+        "zoom": [
+          1.4,
+          2
+        ],
+        "hue": [
+          60,
+          150
+        ],
+        "flip": 0.35,
+        "turns": [
+          90,
+          180,
+          270
+        ]
+      }
+    },
     "signature": {
       "toWin": 1,
       "chances": 2,
@@ -103,6 +152,12 @@
       "picksToWin": 6,
       "turnSeconds": 10,
       "bonus": 0
+    },
+    "pace": {
+      "step": 0.09,
+      "min": 0.55,
+      "rematch": 0.03,
+      "rematchMax": 0.15
     }
   }
 }

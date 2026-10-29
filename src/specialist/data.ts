@@ -1,6 +1,7 @@
 import onePiece from '../data/specialist/onepiece.json';
 import { SILHOUETTES } from '../data/silhouettes';
 import { compactText } from '../utils/textMatcher';
+import { fruitShortSpellings } from './fruitNames';
 
 /** A One Piece character, as built by scripts/build-specialist-onepiece.mjs from the One Piece wiki. */
 export interface OpCharacter {
@@ -64,7 +65,13 @@ interface OnePieceData {
   laughs: OpLaugh[];
 }
 
-export const ONE_PIECE = onePiece as OnePieceData;
+export const ONE_PIECE: OnePieceData = (() => {
+  const data = onePiece as OnePieceData;
+  // Fruits answer to their short names too ("Gomu Gomu", "Gomu"), unless a character or crew already goes by one.
+  const taken = new Set([...data.characters, ...data.crews].flatMap((x) => [x.name, ...x.aliases]).map(compactText));
+  const all = data.fruits.map((f) => f.name);
+  return { ...data, fruits: data.fruits.map((f) => ({ ...f, aliases: [...f.aliases, ...fruitShortSpellings(f.name, all, taken)] })) };
+})();
 
 /** Anything a round can ask for: shown in suggestions, matched by any of its names. */
 export interface Guessable {

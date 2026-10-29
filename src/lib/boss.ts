@@ -3,7 +3,7 @@ import type { BossDifficulty } from '../store/progress';
 import difficultyData from '../data/difficulties.json';
 import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings, SignatureSettings } from '../types';
 import { pick, shuffle } from './rng';
-import { compactText, findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
+import { compactText, findBestMatch, isFuzzyMatch, namesAnotherWord } from '../utils/textMatcher';
 import { withFrench } from './french';
 
 export const PHASES = [
@@ -61,6 +61,30 @@ export interface DifficultySpec {
   chain: SecretSettings | null;
   /** Secret phase after the boss's life runs out: the Signature challenge (Hard); null = none. */
   signature: SignatureSettings | null;
+  /**
+   * The pressure: every round won in a fight takes `step` off every clock, down to `min`; every
+   * earlier win over this guardian at this difficulty takes `rematch` more (up to `rematchMax`).
+   */
+  pace: { step: number; min: number; rematch: number; rematchMax: number };
+}
+
+/** The share of the clocks left: 1 for a first round of a first fight, less as the fight and the rematches go on. */
+export const paceFactor = (d: DifficultySpec, cleared: number, wins: number) =>
+  Math.max(d.pace.min, 1 - d.pace.step * cleared - Math.min(d.pace.rematchMax, d.pace.rematch * wins));
+
+/** The difficulty with every clock scaled by `f` (Blitz, Radar, Final Blow, Name Chain, Signature). */
+export function paced(d: DifficultySpec, f: number): DifficultySpec {
+  if (f >= 1) return d;
+  const sl = d.secondLoop;
+  return {
+    ...d,
+    blitzSecondsPer: d.blitzSecondsPer * f,
+    radarMs: { start: d.radarMs.start * f, step: d.radarMs.step * f, min: d.radarMs.min * f },
+    finaleSeconds: d.finaleSeconds * f,
+    secondLoop: sl && { ...sl, blitz: { ...sl.blitz, secondsPer: sl.blitz.secondsPer * f }, radar: { ...sl.radar, speed: sl.radar.speed * f }, finale: { ...sl.finale, seconds: sl.finale.seconds * f } },
+    chain: d.chain && { ...d.chain, turnSeconds: d.chain.turnSeconds * f },
+    signature: d.signature && { ...d.signature, seconds: d.signature.seconds * f },
+  };
 }
 
 /**
@@ -210,11 +234,15 @@ function radarFx(level: 0 | 1 | 2, index: number, rand: () => number): RadarFx |
   };
 }
 
-export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number, loop = 0): RadarCard[] {
+/** Radar cards, avoiding the members shown in earlier rounds and fights (`avoid`) while there are others. */
+export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number, loop = 0, avoid: string[] = []): RadarCard[] {
   const esc = escalated(d, loop) ? d.secondLoop!.radar : null;
   const cards = esc?.cards ?? d.radarCards;
   const impostorCount = esc?.impostors ?? d.radarImpostors;
-  const members = shuffle(boss.radar.members, rand).slice(0, cards - impostorCount);
+  const need = cards - impostorCount;
+  const fresh = shuffle(boss.radar.members.filter((c) => !avoid.includes(c.label)), rand);
+  const stale = shuffle(boss.radar.members.filter((c) => avoid.includes(c.label)), rand);
+  const members = [...fresh, ...stale].slice(0, need);
   const impostors = shuffle(boss.radar.impostors, rand).slice(0, impostorCount);
   // Never open on an impostor: the first card teaches the gesture.
   const [first, ...rest] = members;
@@ -301,7 +329,10 @@ export function matchAnswer(prompt: BlitzPrompt, text: string, found: Set<string
     return { name: hit.name, already: found.has(hit.name), exact: !ambiguous, typo: false };
   }
   if (!typos) return null;
-  const best = findBestMatch(text, prompt.answers, (a) => withFrench([a.name, ...a.aliases]));
+  const spell = (a: BlitzPrompt['answers'][number]) => withFrench([a.name, ...a.aliases]);
+  const best = findBestMatch(text, prompt.answers, spell);
+  // A real word of another answer isn't a typo: let the "Did you mean" ask instead.
+  if (best && best.distance > 0 && namesAnotherWord(text, prompt.answers, spell, best.item)) return null;
   return best ? { name: best.item.name, already: found.has(best.item.name), exact: true, typo: true } : null;
 }
 

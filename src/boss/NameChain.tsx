@@ -4,7 +4,8 @@ import type { SecretPhase } from '../lib/boss';
 import { withFrench, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { withArticle } from '../lib/text';
-import { findBestMatch, isFuzzyMatch } from '../utils/textMatcher';
+import { findBestMatch, isFuzzyMatch, namesAnotherWord, suggestNames } from '../utils/textMatcher';
+import { DidYouMean } from './DidYouMean';
 import type { BossCard } from '../types';
 import { TimerBar } from './TimerBar';
 
@@ -58,6 +59,8 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
   const [note, setNote] = useState<{ text: string; key: number } | null>(null);
+  /** Names a half-typed answer could be, offered before calling it unknown. */
+  const [maybe, setMaybe] = useState<Entity[]>([]);
   const [lost, setLost] = useState<string | null>(null);
   const [text, setText] = useState('');
   const input = useRef<HTMLInputElement>(null);
@@ -112,6 +115,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     if (turn !== 'answer' || !call) return;
     setText('');
     setNote(null);
+    setMaybe([]);
     if (used.has(e.key)) return lose(`${e.name} was already named`);
     if (e.cat !== call.cat) return lose(`${e.name} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`);
     const next = new Set(used).add(e.key);
@@ -130,8 +134,16 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
 
   const submitText = () => {
     // Small typos are forgiven; anything else must be spelled out.
-    const typed = findBestMatch(text, all, spellings)?.item;
-    if (typed) return answer(typed);
+    const best = findBestMatch(text, all, spellings);
+    // A typo-match that is word for word part of another name asks instead ("Haruno" isn't "Naruto").
+    if (best && !(best.distance > 0 && namesAnotherWord(text, all, spellings, best.item))) return answer(best.item);
+    const close = suggestNames(text, all, spellings);
+    if (close.length) {
+      setMaybe(close);
+      setNote(null);
+      setText('');
+      return;
+    }
     setNote({ text: `“${text.trim()}” — ${bossName} doesn't know that one. Try another name.`, key: Date.now() });
     setText('');
   };
@@ -181,9 +193,12 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
           ref={input}
           value={text}
           disabled={turn !== 'answer'}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => (setText(e.target.value), setMaybe([]))}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && text.trim()) submitText();
+            if (e.key !== 'Enter') return;
+            if (text.trim()) submitText();
+            // Enter on an empty box takes the first "Did you mean".
+            else if (maybe[0]) answer(maybe[0]);
           }}
           placeholder={
             turn === 'answer' && call ? `Another ${categories[call.cat].label.toLowerCase()}…` : turn === 'boss' ? `${bossName} is thinking…` : ''
@@ -194,6 +209,8 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
           className="w-full rounded-xl border border-coral/60 bg-card/90 px-4 py-3 text-base outline-none ring-coral/30 transition placeholder:text-ink-faint focus:border-coral focus:ring-4 disabled:opacity-60"
         />
       </div>
+
+      <DidYouMean names={turn === 'answer' ? maybe.map((e) => e.name) : []} onPick={(n) => { const e = maybe.find((x) => x.name === n); if (e) answer(e); }} />
 
       <p className="min-h-5 text-center text-sm font-semibold" aria-live="polite">
         {lost && <span className="animate-pop inline-block text-coral">✗ {lost}.</span>}

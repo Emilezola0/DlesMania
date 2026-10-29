@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { blitzSeconds, escalated, matchAnswer, type DifficultySpec } from '../lib/boss';
-import { shownName } from '../lib/french';
+import { shownName, withFrench } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import type { BlitzPrompt, PhaseResult } from '../types';
+import { suggestNames } from '../utils/textMatcher';
+import { DidYouMean } from './DidYouMean';
 import { TimerBar } from './TimerBar';
 
 interface Props {
@@ -25,6 +27,8 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
   const [text, setText] = useState('');
   const [note, setNote] = useState<{ text: string; good: boolean; key: number } | null>(null);
   const [wrong, setWrong] = useState(0);
+  /** Answers a half-typed name could be ("Kakashi" → Kakashi Hatake), offered instead of a miss. */
+  const [maybe, setMaybe] = useState<string[]>([]);
   const [over, setOver] = useState(false);
   const input = useRef<HTMLInputElement>(null);
   useTypeToFocus(input);
@@ -43,6 +47,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
   };
 
   const accept = (name: string, typo = false) => {
+    setMaybe([]);
     const next = [...found, name];
     setFound(next);
     setText('');
@@ -62,6 +67,15 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
       return;
     }
     if (m) return accept(m.name, m.typo);
+    // Part of a name on the list (or nearly): ask, no penalty.
+    const close = suggestNames(value, prompt.answers.filter((a) => !found.includes(a.name)), (a) => withFrench([a.name, ...a.aliases]));
+    if (close.length) {
+      setMaybe(close.map((a) => a.name));
+      setNote(null);
+      setText('');
+      sfx.click();
+      return;
+    }
     {
       setWrong((w) => w + 1);
       setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
@@ -101,14 +115,17 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
         ref={input}
         value={text}
         disabled={over}
-        onChange={(e) => setText(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && submit(text)}
+        onChange={(e) => (setText(e.target.value), setMaybe([]))}
+        // Enter on an empty box takes the first "Did you mean".
+        onKeyDown={(e) => e.key === 'Enter' && (!text.trim() && maybe[0] ? accept(maybe[0]) : submit(text))}
         placeholder="Type a name, then Enter…"
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}
         className="w-full rounded-xl border border-rule-strong bg-card/90 px-4 py-3 text-center text-lg outline-none ring-accent/30 transition placeholder:text-ink-faint focus:border-accent focus:ring-4 disabled:opacity-50"
       />
+
+      <DidYouMean names={over ? [] : maybe} onPick={(n) => accept(n)} />
 
       <p className="h-6 text-center text-sm font-semibold" aria-live="polite">
         {note && (

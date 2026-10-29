@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
-import { CARDS, RARITY_INFO, SETS, type Card } from '../gacha/cards';
+import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
 import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, ODDS, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -24,6 +24,75 @@ function daysLeft(p: Period): number {
     d++;
   }
   return d;
+}
+
+/** A percentage, as many decimals as it needs to show anything ("0.010%"). */
+const pct = (x: number) => `${x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x >= 0.1 ? x.toFixed(2) : x.toFixed(3)}%`;
+
+/**
+ * A rarity's chances: per card, and of at least one in a pack — four cards on the odds, the last
+ * one at least rare (the odds of rare and up, shared out again among themselves).
+ */
+function chances(odds: Record<Rarity, number>, r: Rarity) {
+  const top = RARITIES.slice(1).reduce((t, x) => t + odds[x], 0);
+  const p = odds[r] / 100;
+  const last = r === 'common' ? 0 : odds[r] / top;
+  const pack = 1 - Math.pow(1 - p, PACK_SIZE - 1) * (1 - last);
+  return { card: odds[r], pack: pack * 100 };
+}
+
+/** Every rarity's odds: a plain pack, and a franchise pack once its guardian falls on Medium or Hard. */
+function DropRates() {
+  const columns = [
+    { label: 'Any pack', boost: 1 },
+    { label: 'Guardian beaten on Medium', boost: BOOST.medium },
+    { label: 'Guardian beaten on Hard', boost: BOOST.hard },
+  ].map((c) => ({ ...c, odds: oddsWith(c.boost) }));
+  return (
+    <section className="space-y-3">
+      <h2 className="font-display text-lg font-bold">Drop rates</h2>
+      <p className="text-sm text-ink-soft">
+        Each pack has {PACK_SIZE} different cards; the last is always Rare or better. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
+        {BOOST.medium} Epic) or Hard (×{BOOST.hard} Epic; Rare and the top tiers up by half as much). Per card, and in brackets the chance of at least one in a pack.
+      </p>
+      <div className="page overflow-x-auto rounded-md">
+        <table className="w-full min-w-[30rem] text-sm">
+          <thead>
+            <tr className="border-b border-rule text-left font-display text-xs uppercase tracking-wider text-ink-faint">
+              <th className="px-3 py-2">Rarity</th>
+              {columns.map((c) => (
+                <th key={c.label} className="px-3 py-2 text-right">
+                  {c.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {RARITIES.map((r) => (
+              <tr key={r} className="border-b border-rule/60 last:border-0">
+                <td className="px-3 py-2 font-semibold">
+                  <span style={{ color: RARITY_LIGHT[r] }}>{RARITY_INFO[r].gem}</span> {RARITY_INFO[r].name}
+                </td>
+                {columns.map((c) => {
+                  const x = chances(c.odds, r);
+                  return (
+                    <td key={c.label} className="px-3 py-2 text-right tabular-nums">
+                      <span className="font-semibold text-ink">{pct(x.card)}</span>
+                      {r !== 'common' && <span className="text-ink-faint"> ({pct(x.pack)})</span>}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-ink-faint">
+        {RARITIES.map((r) => `${RARITY_INFO[r].name}: ${CARDS.filter((c) => c.rarity === r).length}`).join(' · ')} cards in all — when a pack has none of a rarity left to give, the
+        card drops to the rarity below.
+      </p>
+    </section>
+  );
 }
 
 /** One mission: its goal, a progress bar, and its claim. */
@@ -229,6 +298,8 @@ export default function Shop() {
         </div>
       </section>
 
+      <DropRates />
+
       <section className="page space-y-2 rounded-md p-4 text-sm text-ink-soft">
         <h2 className="flex items-center gap-2 font-display text-base font-bold text-ink">
           <DleCoin /> Earning DleCoins
@@ -247,10 +318,7 @@ export default function Shop() {
           </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>
-        <p className="pt-1 text-xs">
-          Odds per card: {Object.entries(ODDS).map(([r, p]) => `${RARITY_INFO[r as keyof typeof RARITY_INFO].name} ${p}%`).join(' · ')} — the fifth card is always Rare or better. With a Hard win:{' '}
-          {Object.entries(oddsWith(BOOST.hard)).map(([r, p]) => `${RARITY_INFO[r as keyof typeof RARITY_INFO].name} ${Math.round(p * 10) / 10}%`).join(' · ')}.
-        </p>
+        <p className="pt-1 text-xs">Every rarity's odds, per card and per pack: see Drop rates above.</p>
       </section>
 
       {opening && (

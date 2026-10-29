@@ -4,7 +4,8 @@ import { AudioClip } from '../components/AudioClip';
 import type { SignaturePhase } from '../lib/boss';
 import { withFrench } from '../lib/french';
 import { sfx } from '../lib/sfx';
-import { isFuzzyMatch } from '../utils/textMatcher';
+import { isFuzzyMatch, suggestNames } from '../utils/textMatcher';
+import { DidYouMean } from './DidYouMean';
 import type { ChainResult } from './NameChain';
 import { TimerBar } from './TimerBar';
 
@@ -33,6 +34,8 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   const [right, setRight] = useState(0);
   const [missed, setMissed] = useState(0);
   const [text, setText] = useState('');
+  /** A half-typed answer ("Kakashi"): asked about, not counted as a miss. */
+  const [maybe, setMaybe] = useState<string | null>(null);
   const [state, setState] = useState<'answer' | 'ok' | 'miss' | 'over'>('answer');
   const [message, setMessage] = useState<{ text: string; good: boolean } | null>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -74,9 +77,17 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
     nextClue('miss');
   };
 
-  const submit = () => {
-    if (state !== 'answer' || !text.trim()) return;
-    if (!isFuzzyMatch(text, withFrench([answer.name, ...answer.aliases]))) return miss(`“${text.trim()}” — it was ${answer.name}`);
+  const submit = (value = text) => {
+    if (state !== 'answer' || !value.trim()) return;
+    setMaybe(null);
+    if (!isFuzzyMatch(value, withFrench([answer.name, ...answer.aliases]))) {
+      // Part of the name: ask before calling it a miss.
+      if (suggestNames(value, [answer], (a) => withFrench([a.name, ...a.aliases])).length) {
+        setText('');
+        return setMaybe(answer.name);
+      }
+      return miss(`“${value.trim()}” — it was ${answer.name}`);
+    }
     setText('');
     sfx.correct();
     const got = right + 1;
@@ -126,9 +137,10 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         ref={input}
         value={text}
         disabled={state !== 'answer'}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => (setText(e.target.value), setMaybe(null))}
         onKeyDown={(e) => {
-          if (e.key === 'Enter') submit();
+          // Enter on an empty box takes the "Did you mean".
+          if (e.key === 'Enter') submit(!text.trim() && maybe ? maybe : text);
         }}
         placeholder={state === 'answer' ? 'Type the name…' : ''}
         autoComplete="off"
@@ -136,6 +148,8 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         spellCheck={false}
         className="w-full rounded-xl border border-coral/60 bg-card/90 px-4 py-3 text-base outline-none ring-coral/30 transition placeholder:text-ink-faint focus:border-coral focus:ring-4 disabled:opacity-60"
       />
+
+      <DidYouMean names={state === 'answer' && maybe ? [maybe] : []} onPick={(n) => submit(n)} />
 
       <p className="min-h-5 text-center text-sm font-semibold" aria-live="polite">
         {message && <span className={`animate-pop inline-block ${message.good ? 'text-hit' : 'text-coral'}`}>{message.good ? `✓ ${message.text}` : `✗ ${message.text}.`}</span>}

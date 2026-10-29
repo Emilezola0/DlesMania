@@ -102,6 +102,58 @@ export function findBestMatch<T>(input: string, candidates: T[], spellingsOf: (c
 }
 
 /**
+ * Whether `input` is, word for word, part of a candidate's name other than `except` — then a typo
+ * shouldn't turn it into something else ("Haruno" is Sakura's name, not a misspelt "Naruto").
+ */
+export function namesAnotherWord<T>(input: string, candidates: T[], spellingsOf: (c: T) => string[], except: T): boolean {
+  const q = normalizeText(input);
+  if (!q) return false;
+  return candidates.some((c) => c !== except && spellingsOf(c).some((s) => ` ${normalizeText(s)} `.includes(` ${q} `)));
+}
+
+/**
+ * What a not-quite answer could mean, for a "Did you mean…?": a whole word of a name typed alone
+ * ("Kakashi" → Kakashi Hatake, "Luffy" → Monkey D. Luffy), the start of a long name ("Trafalgar"),
+ * or the whole name a few more typos off than an answer may be. Best guesses first, at most `limit`.
+ */
+export function suggestNames<T>(input: string, candidates: T[], spellingsOf: (c: T) => string[], limit = 3): T[] {
+  const q = compactText(input);
+  if (q.length < 3) return [];
+  const scored: { item: T; score: number }[] = [];
+  for (const item of candidates) {
+    let best = Infinity;
+    for (const s of spellingsOf(item)) {
+      const n = normalizeText(s);
+      const full = n.replace(/ /g, '');
+      if (!full || full === q) continue;
+      // One word of the name, typed in full (small typos forgiven).
+      for (const w of n.split(' ')) {
+        if (w.length < 3) continue;
+        const allowed = typoAllowance(w.length);
+        const d = levenshtein(q, w, allowed);
+        if (d <= allowed) best = Math.min(best, d);
+      }
+      // The beginning of a longer name.
+      if (q.length >= 4 && full.startsWith(q)) best = Math.min(best, 0.5);
+      // A long name, one typo further off than an answer may be ("Itachy Uchia").
+      if (full.length >= 8) {
+        const loose = typoAllowance(full.length) + 1;
+        const d = levenshtein(q, full, loose);
+        if (d <= loose) best = Math.min(best, d + 1);
+      }
+    }
+    if (best < Infinity) scored.push({ item, score: best });
+  }
+  // Only the closest: a name matched word for word crowds out the near-misses.
+  const top = Math.min(...scored.map((s) => s.score));
+  return scored
+    .filter((s) => s.score <= top + 0.5)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, limit)
+    .map((s) => s.item);
+}
+
+/**
  * How well a partly typed search matches a name, for ranking autocomplete (lower is better):
  *   0 starts with it · 1 a word starts with it · 2 contains it · 3 close despite typos · null no match
  */

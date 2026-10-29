@@ -23,6 +23,8 @@ import {
   drawSignature,
   signatureKey,
   formatTime,
+  paceFactor,
+  paced,
   totalRounds,
   type SignaturePhase,
 } from '../lib/boss';
@@ -65,7 +67,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   const difficulty = useProgress((s) => s.bossDifficulty);
   const setDifficulty = useProgress((s) => s.setBossDifficulty);
   const records = useProgress((s) => s.bosses);
-  const d = DIFFICULTIES[difficulty];
+  const base = DIFFICULTIES[difficulty];
   const record = records[bossKey(boss.id, difficulty)] ?? EMPTY_BOSS_RECORD;
 
   const [run, setRun] = useState(0); // bumped on rematch
@@ -75,6 +77,9 @@ function BossBattle({ boss }: { boss: Boss }) {
   const [round, setRound] = useState(0);
   /** Rounds won in total — each one breaks a segment of the boss's life. */
   const [cleared, setCleared] = useState(0);
+  // The clocks shrink with every round won, and a little more with every earlier win over this guardian.
+  const pace = paceFactor(base, cleared, record.wins);
+  const d = useMemo(() => paced(base, pace), [base, pace]);
   const [attempt, setAttempt] = useState(0);
   const [hearts, setHearts] = useState(d.hearts);
   const [line, setLine] = useState<Line>({ text: boss.lines.intro, key: 0, mood: 'taunt' });
@@ -89,8 +94,8 @@ function BossBattle({ boss }: { boss: Boss }) {
   const flashLayer = useRef<HTMLDivElement>(null);
   // What earlier rounds, retries and fights showed (saved), so each draw brings something new.
   const markSeen = useProgress((s) => s.markSeen);
-  const scope = (kind: 'prompts' | 'faces' | 'signature') => `boss:${boss.id}:${kind}`;
-  const seenOf = (kind: 'prompts' | 'faces' | 'signature') => useProgress.getState().seen[scope(kind)];
+  const scope = (kind: 'prompts' | 'faces' | 'signature' | 'radar') => `boss:${boss.id}:${kind}`;
+  const seenOf = (kind: 'prompts' | 'faces' | 'signature' | 'radar') => useProgress.getState().seen[scope(kind)];
   /** Signature clues shown so far this fight. */
   const sigShown = useRef(0);
 
@@ -108,8 +113,10 @@ function BossBattle({ boss }: { boss: Boss }) {
       .sort((a, b) => a.label.localeCompare(b.label));
     // Phase IV: a fresh Name Chain for every attempt.
     const chain = phase === CHAIN_PHASE ? drawSecret(boss, d) : null;
-    return { blitz, radar: drawRadar(boss, d, rand, round), finale, pool, chain };
-  }, [boss, d, phase, round, attempt, run]);
+    const radar = drawRadar(boss, d, rand, round, recentlySeen(seenOf('radar'), boss.radar.members.length, d.radarCards));
+    return { blitz, radar, finale, pool, chain };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [boss, difficulty, phase, round, attempt, run]);
 
   // Small feedback inside a phase: a jolt on mistakes.
   const onEvent = (good: boolean) => {
@@ -121,6 +128,7 @@ function BossBattle({ boss }: { boss: Boss }) {
     setTally(t);
     setLast({ won: r.won, missed: r.missed, reason: r.reason });
     if (phase === 0) markSeen(scope('prompts'), [content.blitz.prompt]);
+    if (phase === 1) markSeen(scope('radar'), content.radar.filter((c) => c.belongs).map((c) => c.label));
     if (phase === 2) markSeen(scope('faces'), content.finale.map((c) => c.label));
     if (r.won) {
       sfx.hit();
@@ -432,6 +440,11 @@ function BossBattle({ boss }: { boss: Boss }) {
               {rounds > 1 && <span className="text-ink-faint"> · round {round + 1} of {rounds}</span>}
             </p>
             <p className="mx-auto max-w-md text-sm text-ink-soft">{info.how}</p>
+            {pace < 1 && (
+              <p className="font-display text-sm font-bold text-coral" title="Every round won, and every earlier win over this guardian, shortens the clocks">
+                ⏱ Clocks at {Math.round(pace * 100)}% — the guardian is speeding up
+              </p>
+            )}
             <div className="flex items-center justify-center gap-3">
               <button type="button" onClick={begin} className="btn-ink rounded-md px-8 py-3 font-display font-bold tracking-widest">
                 Ready
