@@ -3,7 +3,7 @@
 // each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
 // the save changed last; except the first time a device joins an account, when its coins and cards
 // are added to the account's (they were earned apart).
-import type { Economy } from '../gacha/economy';
+import type { Economy, PeriodBook } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
 import type { RoundRecord, RoundSpec } from '../types';
 
@@ -32,6 +32,8 @@ export const SYNCED = [
   'omniAura',
   'voiceLines',
   'grades',
+  'missionBooks',
+  'redeemed',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -118,6 +120,16 @@ function mergeEcon(a: Economy | undefined, b: Economy | undefined): Economy | un
   };
 }
 
+/** A week's or month's missions: the same period, the most of each and both claims; else the later one. */
+function mergeBook(a: PeriodBook | undefined, b: PeriodBook | undefined): PeriodBook | undefined {
+  if (!a) return b;
+  if (!b) return a;
+  if (a.period !== b.period) return a.period > b.period ? a : b;
+  const counters = { ...a.counters };
+  for (const [k, v] of Object.entries(b.counters)) counters[k as keyof typeof counters] = Math.max(counters[k as keyof typeof counters] ?? 0, v ?? 0);
+  return { period: a.period, counters, claimed: [...new Set([...a.claimed, ...b.claimed])] };
+}
+
 /**
  * One save from two. `firstLink`: this device has never synced with this account (its coins were
  * earned apart, so they add up). `cloudNewer`: the account's save changed after this device's.
@@ -143,6 +155,12 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // Grades go with the cards: the higher of the two on a first link, then the latest save's.
     grades: firstLink ? maxBy(local.grades, cloud.grades) : (latest.grades ?? {}),
     econ: mergeEcon(local.econ, cloud.econ)!,
+    missionBooks: {
+      week: mergeBook(local.missionBooks?.week, cloud.missionBooks?.week)!,
+      month: mergeBook(local.missionBooks?.month, cloud.missionBooks?.month)!,
+    },
+    // A code redeemed on either side stays redeemed.
+    redeemed: [...new Set([...(local.redeemed ?? []), ...(cloud.redeemed ?? [])])],
     // The same week: every boss paid on either side stays paid. Different weeks: the later one.
     bossWeek:
       !local.bossWeek || !cloud.bossWeek

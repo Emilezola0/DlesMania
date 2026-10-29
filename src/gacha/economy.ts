@@ -2,7 +2,7 @@
 // score); every boss fight pays by difficulty, and the first win over each boss at each difficulty
 // pays a bonus once a week; every game from the Games page pays a few coins (fully up to a daily
 // amount, then a token per game, so there's always something to farm); three daily missions pay a
-// bonus each.
+// bonus each, and three a week and three a month pay more.
 import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
 
@@ -82,3 +82,56 @@ export interface Economy {
 }
 
 export const freshEconomy = (date: string): Economy => ({ date, arcade: 0, bosses: [], counters: {}, claimed: [], earned: 0 });
+
+// ── Weekly and monthly missions: the same kinds of goal, bigger, for bigger rewards; three a week, three a
+// month, drawn the same for everyone. Their progress counts from the day the period starts. ──
+
+export type Period = 'week' | 'month';
+/** What the long missions count: the daily kinds, and packs opened. */
+export type LongKind = MissionKind | 'packs';
+
+export const LONG_MISSIONS: Record<Period, Record<LongKind, { icon: string; text: string; need: number; reward: number }>> = {
+  week: {
+    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 150 },
+    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 180 },
+    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 150 },
+    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 220 },
+    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 120 },
+    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 100 },
+    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 150 },
+  },
+  month: {
+    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 500 },
+    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 600 },
+    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 450 },
+    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 700 },
+    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 400 },
+    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 350 },
+    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 450 },
+  },
+};
+
+/** The period a date falls in: its week's Monday, or its month ("2026-10"). */
+export const periodOf = (p: Period, date: string) => (p === 'week' ? weekOf(date) : date.slice(0, 7));
+
+/** A period's three missions, the same for everyone. */
+export function longMissionsFor(p: Period, period: string): LongKind[] {
+  const pool = Object.keys(LONG_MISSIONS[p]) as LongKind[];
+  const out: LongKind[] = [];
+  let h = hashString(`missions:${p}:${period}`);
+  while (out.length < 3) {
+    out.push(pool.splice(h % pool.length, 1)[0]);
+    h = Math.floor(h / 7) + 13;
+  }
+  return out;
+}
+
+/** A week's or a month's missions book. */
+export interface PeriodBook {
+  period: string;
+  counters: Partial<Record<LongKind, number>>;
+  claimed: LongKind[];
+}
+export type PeriodBooks = Record<Period, PeriodBook>;
+
+export const freshBook = (p: Period, date: string): PeriodBook => ({ period: periodOf(p, date), counters: {}, claimed: [] });

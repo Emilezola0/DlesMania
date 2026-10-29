@@ -2,15 +2,98 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITY_INFO, SETS, type Card } from '../gacha/cards';
-import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_COINS, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, MISSIONS, missionsFor } from '../gacha/economy';
+import { ARCADE_AFTER_CAP, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_COINS, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { addDays, todayKey } from '../lib/date';
+import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, ODDS, bossBest, oddsWith, packsFor, pullPack, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
-import { bossWeekNow, econToday, useProgress } from '../store/progress';
+import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const;
+
+/** Days until a period's missions change: next Monday, or the 1st of next month. */
+function daysLeft(p: Period): number {
+  const today = todayKey();
+  let d = 1;
+  while (d < 32) {
+    const next = addDays(today, d);
+    if (p === 'week' ? new Date(`${next}T12:00:00Z`).getUTCDay() === 1 : next.slice(0, 7) !== today.slice(0, 7)) return d;
+    d++;
+  }
+  return d;
+}
+
+/** One mission: its goal, a progress bar, and its claim. */
+function Mission({ m, n, done, onClaim }: { m: { icon: string; text: string; need: number; reward: number }; n: number; done: boolean; onClaim: () => void }) {
+  const got = Math.min(m.need, n);
+  const ready = !done && got >= m.need;
+  return (
+    <div className={`page flex flex-col gap-2 rounded-md p-3 ${done ? 'opacity-60' : ''} ${ready ? 'ring-2 ring-hit' : ''}`}>
+      <p className="font-semibold">
+        {m.icon} {m.text}
+      </p>
+      <div className="h-2 overflow-hidden rounded-full bg-tile">
+        <div className="h-full bg-hit transition-[width]" style={{ width: `${(got / m.need) * 100}%` }} />
+      </div>
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-ink-soft">
+          {got}/{m.need}
+        </span>
+        {done ? (
+          <span className="font-semibold text-hit">✓ Claimed</span>
+        ) : (
+          <button type="button" disabled={!ready} onClick={onClaim} className="btn-accent rounded-md px-3 py-1 text-sm font-bold disabled:opacity-40">
+            Claim <Coins n={m.reward} />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** A box for gift codes: each pays once. */
+function RedeemCode() {
+  const redeem = useProgress((s) => s.redeemCode);
+  const [code, setCode] = useState('');
+  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!code.trim()) return;
+    const r = redeem(code);
+    if (r.ok) {
+      sfx.streak();
+      celebrate();
+      setMsg({ ok: true, text: `+${r.coins} DleCoins! ${r.note}` });
+      setCode('');
+    } else {
+      sfx.wrong();
+      setMsg({ ok: false, text: r.reason === 'used' ? 'You already redeemed this code.' : "That code doesn't exist (yet)." });
+    }
+  };
+  return (
+    <section className="space-y-3">
+      <h2 className="font-display text-lg font-bold">🎁 Gift codes</h2>
+      <form onSubmit={submit} className="page flex flex-wrap items-center gap-2 rounded-md p-3">
+        <input
+          value={code}
+          onChange={(e) => (setCode(e.target.value), setMsg(null))}
+          placeholder="Enter a code"
+          aria-label="Gift code"
+          autoComplete="off"
+          spellCheck={false}
+          className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2 font-display font-bold uppercase tracking-widest placeholder:font-sans placeholder:font-normal placeholder:normal-case placeholder:tracking-normal"
+        />
+        <button type="submit" disabled={!code.trim()} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
+          Redeem
+        </button>
+        {msg && <p className={`w-full text-sm font-semibold ${msg.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{msg.text}</p>}
+      </form>
+    </section>
+  );
+}
 
 /** /shop */
 export default function Shop() {
@@ -21,6 +104,8 @@ export default function Shop() {
   const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
   const claim = useProgress((s) => s.claimMission);
+  const claimLong = useProgress((s) => s.claimLongMission);
+  const books = booksNow(useProgress((s) => s.missionBooks));
   const [opening, setOpening] = useState<{ pack: Pack; cards: Card[]; fresh: Set<string>; key: number } | null>(null);
   const missions = missionsFor(econ.date);
   const collected = useMemo(() => CARDS.filter((c) => owned[c.id]).length, [owned]);
@@ -94,36 +179,39 @@ export default function Shop() {
       <section className="space-y-3">
         <h2 className="font-display text-lg font-bold">Today&apos;s missions</h2>
         <div className="grid gap-3 sm:grid-cols-3">
-          {missions.map((k) => {
-            const m = MISSIONS[k];
-            const n = Math.min(m.need, econ.counters[k] ?? 0);
-            const done = econ.claimed.includes(k);
-            const ready = !done && n >= m.need;
-            return (
-              <div key={k} className={`page flex flex-col gap-2 rounded-md p-3 ${done ? 'opacity-60' : ''}`}>
-                <p className="font-semibold">
-                  {m.icon} {m.text}
-                </p>
-                <div className="h-2 overflow-hidden rounded-full bg-tile">
-                  <div className="h-full bg-hit transition-[width]" style={{ width: `${(n / m.need) * 100}%` }} />
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-ink-soft">
-                    {n}/{m.need}
-                  </span>
-                  {done ? (
-                    <span className="font-semibold text-hit">✓ Claimed</span>
-                  ) : (
-                    <button type="button" disabled={!ready} onClick={() => (sfx.streak(), claim(k))} className="btn-accent rounded-md px-3 py-1 text-sm font-bold disabled:opacity-40">
-                      Claim <Coins n={m.reward} />
-                    </button>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {missions.map((k) => (
+            <Mission key={k} m={MISSIONS[k]} n={econ.counters[k] ?? 0} done={econ.claimed.includes(k)} onClaim={() => (sfx.streak(), claim(k))} />
+          ))}
         </div>
       </section>
+
+      {(['week', 'month'] as const).map((p) => {
+        const book = books[p];
+        const left = daysLeft(p);
+        return (
+          <section key={p} className="space-y-3">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="font-display text-lg font-bold">{p === 'week' ? 'This week' : 'This month'}&apos;s missions</h2>
+              <span className="text-sm text-ink-soft">
+                New ones in {left} day{left === 1 ? '' : 's'}
+              </span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {longMissionsFor(p, book.period).map((k) => (
+                <Mission
+                  key={k}
+                  m={LONG_MISSIONS[p][k]}
+                  n={book.counters[k] ?? 0}
+                  done={book.claimed.includes(k)}
+                  onClaim={() => (sfx.victory(), celebrate(), claimLong(p, k))}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      })}
+
+      <RedeemCode />
 
       <section className="space-y-3">
         <h2 className="font-display text-lg font-bold">Packs</h2>

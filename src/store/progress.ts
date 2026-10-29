@@ -23,7 +23,15 @@ import {
   type BossWeek,
   type Economy,
   type MissionKind,
+  freshBook,
+  LONG_MISSIONS,
+  longMissionsFor,
+  periodOf,
+  type LongKind,
+  type Period,
+  type PeriodBooks,
 } from '../gacha/economy';
+import { CODES, normalizeCode } from '../gacha/codes';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -100,6 +108,13 @@ interface ProgressState {
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   openPack: (cost: number, cardIds: string[]) => boolean;
   claimMission: (kind: MissionKind) => void;
+  /** This week's and this month's missions (see src/gacha/economy.ts). */
+  missionBooks: PeriodBooks;
+  claimLongMission: (period: Period, kind: LongKind) => void;
+  /** Gift codes already redeemed (normalized). */
+  redeemed: string[];
+  /** A gift code typed in the Shop: its coins, once per player. */
+  redeemCode: (code: string) => { ok: true; coins: number; note: string } | { ok: false; reason: 'used' | 'unknown' };
   /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
   earnCoins: (amount: number) => void;
   /** Spare copies traded in for coins: card id -> how many (one copy of each always stays), and the coins they're worth. */
@@ -143,6 +158,24 @@ interface ProgressState {
 /** Today's earnings book (a new one each day). */
 export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
 
+/** This week's and this month's missions books (new ones each Monday and each 1st). */
+export const booksNow = (b: PeriodBooks | undefined): PeriodBooks => {
+  const today = todayKey();
+  const now = (p: Period) => (b?.[p] && b[p].period === periodOf(p, today) ? b[p] : freshBook(p, today));
+  return { week: now('week'), month: now('month') };
+};
+
+/** The books with a few more done (`count`: kind -> how many). */
+function countLong(b: PeriodBooks | undefined, count: Partial<Record<LongKind, number>>): PeriodBooks {
+  const books = booksNow(b);
+  const bump = (p: Period) => {
+    const counters = { ...books[p].counters };
+    for (const [k, n] of Object.entries(count)) if (n) counters[k as LongKind] = (counters[k as LongKind] ?? 0) + n;
+    return { ...books[p], counters };
+  };
+  return { week: bump('week'), month: bump('month') };
+}
+
 /** This week's boss book (a new one each Monday). */
 export const bossWeekNow = (b: BossWeek | undefined): BossWeek => (b && b.week === weekOf(todayKey()) ? b : { week: weekOf(todayKey()), keys: [] });
 
@@ -152,10 +185,10 @@ export const bossWeekNow = (b: BossWeek | undefined): BossWeek => (b && b.week =
  * counters move on.
  */
 function earn(
-  s: Pick<ProgressState, 'coins' | 'econ'>,
+  s: Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>,
   amount: number,
   opts: { arcade?: string; count?: Partial<Record<MissionKind, number>>; boss?: string } = {},
-): Partial<Pick<ProgressState, 'coins' | 'econ'>> {
+): Partial<Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>> {
   const e = econToday(s.econ);
   const now = Date.now();
   if (opts.arcade && now - (e.lastPaid?.[opts.arcade] ?? 0) < ARCADE_SPACING_MS) return {};
@@ -165,6 +198,7 @@ function earn(
   for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as MissionKind] = (counters[k as MissionKind] ?? 0) + (n ?? 0);
   return {
     coins: (s.coins ?? 0) + paid,
+    ...(opts.count ? { missionBooks: countLong(s.missionBooks, opts.count) } : {}),
     econ: {
       ...e,
       arcade: e.arcade + (opts.arcade ? paid : 0),
@@ -212,6 +246,8 @@ export const useProgress = create<ProgressState>()(
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
+      missionBooks: booksNow(undefined),
+      redeemed: [],
       avatar: null,
       backdrop: null,
       cardReactions: true,
@@ -243,7 +279,7 @@ export const useProgress = create<ProgressState>()(
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + 1 };
+          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + 1, missionBooks: countLong(s.missionBooks, { packs: 1 }) };
         });
         return true;
       },
@@ -267,6 +303,28 @@ export const useProgress = create<ProgressState>()(
           return { cards, grades };
         }),
       earnCoins: (amount) => set((s) => earn(s, amount)),
+      claimLongMission: (p, kind) =>
+        set((s) => {
+          const books = booksNow(s.missionBooks);
+          const book = books[p];
+          const m = LONG_MISSIONS[p][kind];
+          if (book.claimed.includes(kind) || !longMissionsFor(p, book.period).includes(kind) || (book.counters[kind] ?? 0) < m.need) return {};
+          const e = econToday(s.econ);
+          return {
+            coins: (s.coins ?? 0) + m.reward,
+            econ: { ...e, earned: e.earned + m.reward },
+            missionBooks: { ...books, [p]: { ...book, claimed: [...book.claimed, kind] } },
+          };
+        }),
+      redeemCode: (raw) => {
+        const code = normalizeCode(raw);
+        const gift = CODES[code];
+        if (!gift) return { ok: false, reason: 'unknown' };
+        const s = get();
+        if ((s.redeemed ?? []).includes(code)) return { ok: false, reason: 'used' };
+        set({ coins: (s.coins ?? 0) + gift.coins, redeemed: [...(s.redeemed ?? []), code] });
+        return { ok: true, coins: gift.coins, note: gift.note };
+      },
       claimMission: (kind) =>
         set((s) => {
           const e = econToday(s.econ);
@@ -354,7 +412,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, avatar: null, backdrop: null }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null }),
     }),
     {
       name: 'omnidle-progress',
