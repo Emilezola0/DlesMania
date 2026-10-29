@@ -4,7 +4,7 @@
 import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
 import { CARDS, RARITIES, type Card, type Rarity } from './cards';
-import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, pityLuck } from './economy';
+import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
 
 export const PACK_SIZE = 5;
 
@@ -12,7 +12,7 @@ export const PACK_SIZE = 5;
 export const ODDS: Record<Rarity, number> = { common: 68.41, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08, omni: 0.01 };
 
 /** The luck (pity) lives with the economy, which the store reads without the card catalogue. */
-export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, pityLuck };
+export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck };
 export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexOf('legendary');
 
 /**
@@ -79,15 +79,16 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
 
 /**
  * The odds with a boost: epic multiplied, rare, legendary, mythic and omni by half as much (the top stays rare), common taking the rest;
- * `luck` (see pityLuck) multiplies legendary, mythic and omni again — each kept under its TOP_CAP.
+ * `luck` (see pityLuck) multiplies legendary again, and mythic and omni by PITY_TOP_SHARE of it — each kept under its TOP_CAP.
  */
 export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
   const rare = ODDS.rare * half;
   const epic = ODDS.epic * boost;
   const legendary = Math.min(TOP_CAP.legendary!, ODDS.legendary * half * luck);
-  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * half * luck);
-  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * half * luck);
+  const topLuck = 1 + (luck - 1) * PITY_TOP_SHARE;
+  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * half * topLuck);
+  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * half * topLuck);
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 

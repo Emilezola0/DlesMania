@@ -65,10 +65,13 @@ export interface BossWeek {
 
 /**
  * Luck (pity): every pack opened without a Legendary or better raises the odds of Legendary, Mythic and
- * Omni by this share, up to PITY_MAX times; the first one pulled sets it back to the start.
+ * Omni by this share, up to PITY_MAX times; the first one pulled sets it back to the start. Mythic and Omni
+ * only get PITY_TOP_SHARE of it, so they stay rare: a Legendary or better about every 16 packs on average
+ * (24 without luck), a Mythic or better about every 120 (155 without).
  */
-export const PITY_STEP = 0.1;
-export const PITY_MAX = 5;
+export const PITY_STEP = 0.05;
+export const PITY_MAX = 3;
+export const PITY_TOP_SHARE = 0.5;
 /** The packs it takes to reach the most luck: the counter never goes past it (nor below 0, nor to NaN). */
 export const PITY_PACKS = Math.round((PITY_MAX - 1) / PITY_STEP);
 export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? Math.min(PITY_PACKS, Math.max(0, Math.floor(pity as number))) : 0);
