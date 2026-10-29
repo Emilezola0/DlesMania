@@ -190,6 +190,19 @@ export default function Shop() {
     sfx.click();
     setOpening({ pack: p, cards, fresh, key: Date.now() });
   };
+  /** Five packs at once: 25 cards in one opening, the rarest last. */
+  const MANY = 5;
+  const buyMany = (p: Pack) => {
+    const best = boostOf(p);
+    if (p.boss && !best) return;
+    const cards = Array.from({ length: MANY }, () => pullPack(p, best ? BOOST[best] : 1))
+      .flat()
+      .sort((a, b) => RARITY_INFO[a.rarity].rank - RARITY_INFO[b.rarity].rank);
+    const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
+    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY)) return sfx.wrong();
+    sfx.click();
+    setOpening({ pack: p, cards, fresh, key: Date.now() });
+  };
 
   const general = PACKS.filter((p) => !p.boss);
   const franchise = PACKS.filter((p) => p.boss);
@@ -215,9 +228,17 @@ export default function Shop() {
             🔒 Beat {set?.guardian.name ?? 'the boss'} to unlock
           </Link>
         ) : (
-          <button type="button" disabled={!afford} onClick={() => buy(p)} className="btn-accent mt-auto rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
-            Open · <Coins n={p.cost} />
-          </button>
+          <div className="mt-auto flex flex-col gap-1.5">
+            <button type="button" disabled={!afford} onClick={() => buy(p)} className="btn-accent rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
+              Open · <Coins n={p.cost} />
+            </button>
+            {/* Five at once, when the coins are there. */}
+            {coins >= p.cost * MANY && (
+              <button type="button" onClick={() => buyMany(p)} className="btn-paper rounded-md px-3 py-1.5 font-display text-xs font-bold">
+                Open ×{MANY} · <Coins n={p.cost * MANY} />
+              </button>
+            )}
+          </div>
         )}
       </div>
     );

@@ -3,6 +3,7 @@ import { nextItem, type HlItem } from '../arcade/higherLower';
 import { oddRound } from '../arcade/oddOneOut';
 import type { SortCard } from '../arcade/quickSort';
 import { FinalBlow } from '../boss/FinalBlow';
+import { finaleFaces } from '../boss/faces';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { TimerBar } from '../boss/TimerBar';
 import { GuessInput } from '../components/GuessInput';
@@ -368,10 +369,10 @@ export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; o
   // The guardians fight harder from the third act on.
   const d = act >= 3 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
   const blitz = useMemo(() => drawBlitz(boss, d, Math.random), [boss]);
-  const finale = useMemo(() => drawFinale(boss, d, Math.random), [boss]);
+  const finale = useMemo(() => drawFinale(boss, d, Math.random, [], 0, finaleFaces(boss)), [boss]);
   const pool = useMemo(() => {
     const seen = new Set<string>();
-    return [...boss.finale, ...boss.radar.members].filter((c) => !seen.has(c.label) && seen.add(c.label)).sort((a, b) => a.label.localeCompare(b.label));
+    return [...finaleFaces(boss), ...boss.radar.members].filter((c) => !seen.has(c.label) && seen.add(c.label)).sort((a, b) => a.label.localeCompare(b.label));
   }, [boss]);
   const done = (won: boolean, correct: number) => onDone({ won, perfect: won, note: `${boss.boss.name} ${won ? 'defeated' : 'stood firm'} (${correct} right)` });
   return (

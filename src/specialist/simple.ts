@@ -22,6 +22,10 @@ export interface SimpleUniverse {
   columns: string[];
   /** Text clues and the character each one names. */
   clues: { text: string; answer: string }[];
+  /** Characters whose picture has a transparent background: a Silhouette round. */
+  silhouettes?: string[];
+  /** Voice lines: who speaks, the original recording, and the French dub's when there is one. */
+  voices?: { answer: string; en?: string; fr?: string }[];
 }
 
 const slug = (s: string) =>
@@ -85,6 +89,8 @@ function forts(): SimpleUniverse {
       ...things.map((c) => ({ id: slug(c.name), name: c.name, aliases: [], image: c.image, traits: { Kind: 'Weapon or device' } })),
     ],
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    // The Forts RTS Wiki's portraits are cut out (the studio's three aren't checked: left out).
+    silhouettes: ['Eagle Eye', 'Firebird', 'Warthog', 'Architect', 'Overdrive', 'Hurricane', 'Pinchfist', 'Spook', 'Armourdillo', 'Scattershot', 'Seep', 'Shockenaugh'].map(slug),
   };
 }
 
@@ -141,6 +147,16 @@ function avatar(): SimpleUniverse {
     columns: ['Nation', 'Bending', 'Gender', 'Kind'],
     characters: ATLA.map(([name, nation, bending, gender, kind]) => ({ id: slug(name), name, aliases: ATLA_ALIASES[name] ?? [], image: pics.get(name) ?? '', traits: { Nation: nation, Bending: bending, Gender: gender, Kind: kind } })),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    // The original English voices (clips from myinstants); a French dub's recording goes in `fr` when found.
+    voices: [
+      { answer: 'zuko', en: 'https://www.myinstants.com/media/sounds/hello-zuko-here.mp3' },
+      { answer: 'zuko', en: 'https://www.myinstants.com/media/sounds/thats-rough-buddy.mp3' },
+      { answer: 'iroh', en: 'https://www.myinstants.com/media/sounds/atlat-hotleafjuice.mp3' },
+      { answer: 'sokka', en: 'https://www.myinstants.com/media/sounds/cactus-juice-salesman-sokka-of-the-southern-water-tribe.mp3' },
+      { answer: 'katara', en: 'https://www.myinstants.com/media/sounds/katara-water.mp3' },
+      { answer: 'bumi', en: 'https://www.myinstants.com/media/sounds/bumi-strategy.mp3' },
+      { answer: 'cabbage-merchant', en: 'https://www.myinstants.com/media/sounds/my_cabbages_mp3cut.mp3' },
+    ],
   };
 }
 
@@ -154,6 +170,9 @@ export function simplePools(u: SimpleUniverse['id']) {
   const ids = new Set(x.characters.map((c) => c.id));
   return {
     picture: x.characters.filter((c) => c.image).map((c) => c.id),
+    windows: x.characters.filter((c) => c.image).map((c) => c.id),
+    ...(x.silhouettes?.length ? { silhouette: x.silhouettes.filter((id) => ids.has(id)) } : {}),
+    ...(x.voices?.length ? { voice: x.voices.flatMap((v, i) => (ids.has(v.answer) ? [String(i)] : [])) } : {}),
     // A clue round's id is its clue's index (two clues can name the same character).
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
     ...(x.columns.length ? { classic: x.characters.map((c) => c.id) } : {}),

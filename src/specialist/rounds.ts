@@ -10,7 +10,7 @@ import { timelinePool } from './timeline';
 import { simplePools } from './simple';
 import { BLUEPRINT_POOLS } from './blueprint';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -53,22 +53,22 @@ export const UNIVERSES = [
     id: 'forhonor',
     label: 'For Honor',
     ready: true,
-    blurb: 'Pictures and weapons — all 39 heroes of the five factions.',
-    types: ['picture', 'clue'] as SpType[],
+    blurb: 'Pictures, windows and weapons — all 39 heroes of the five factions.',
+    types: ['picture', 'clue', 'windows'] as SpType[],
   },
   {
     id: 'forts',
     label: 'Forts',
     ready: true,
-    blurb: 'Pictures of commanders, weapons and devices, and the commanders by their abilities.',
-    types: ['picture', 'clue'] as SpType[],
+    blurb: 'Pictures and windows of commanders, weapons and devices, commanders in silhouette and by their abilities.',
+    types: ['picture', 'clue', 'windows', 'silhouette'] as SpType[],
   },
   {
     id: 'avatar',
     label: 'Avatar: The Last Airbender',
     ready: true,
-    blurb: 'Classic by nation and bending, pictures from the show, and the characters by their story.',
-    types: ['classic', 'picture', 'clue'] as SpType[],
+    blurb: 'Classic by nation and bending, pictures from the show, windows, voice lines, and the characters by their story.',
+    types: ['classic', 'picture', 'clue', 'windows', 'voice'] as SpType[],
   },
   {
     id: 'unreal',
@@ -100,6 +100,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   titles: { name: 'Titles', icon: '📜', tagline: 'Who goes by these titles?', maxAttempts: 6 },
   constellation: { name: 'Constellation', icon: '✦', tagline: 'Whose constellation is this?', maxAttempts: 6 },
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
+  windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };

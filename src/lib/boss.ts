@@ -257,11 +257,14 @@ export function drawRadar(boss: Boss, d: DifficultySpec, rand: () => number, loo
   });
 }
 
-/** Final Blow targets, avoiding faces already shown earlier in this fight where possible. */
-export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = [], loop = 0): BossCard[] {
+/**
+ * Final Blow targets, avoiding faces already shown earlier where possible. `faces`: what to draw from
+ * (src/boss/faces.ts widens a boss's own list with its franchise's cards).
+ */
+export function drawFinale(boss: Boss, d: DifficultySpec, rand: () => number, avoid: string[] = [], loop = 0, faces: BossCard[] = boss.finale): BossCard[] {
   const targets = escalated(d, loop) ? d.secondLoop!.finale.targets : d.finaleTargets;
-  const fresh = boss.finale.filter((c) => !avoid.includes(c.label));
-  const pool = fresh.length >= targets ? fresh : boss.finale;
+  const fresh = faces.filter((c) => !avoid.includes(c.label));
+  const pool = fresh.length >= targets ? fresh : faces;
   return shuffle(pool, rand).slice(0, targets);
 }
 

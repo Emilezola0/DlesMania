@@ -108,7 +108,8 @@ interface ProgressState {
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
-  openPack: (cost: number, cardIds: string[]) => boolean;
+  /** `packs`: how many packs that was (five opened at once count as five). */
+  openPack: (cost: number, cardIds: string[], packs?: number) => boolean;
   claimMission: (kind: MissionKind) => void;
   /** This week's and this month's missions (see src/gacha/economy.ts). */
   missionBooks: PeriodBooks;
@@ -282,12 +283,12 @@ export const useProgress = create<ProgressState>()(
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
-      openPack: (cost, cardIds) => {
+      openPack: (cost, cardIds, packs = 1) => {
         if (get().coins < cost) return false;
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + 1, missionBooks: countLong(s.missionBooks, { packs: 1 }) };
+          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }) };
         });
         return true;
       },

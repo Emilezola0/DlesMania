@@ -41,20 +41,25 @@ interface Star {
   top: number;
   tilt: number;
 }
-/** How often a pack has a star that evolves (Rare → Epic, Epic → Legendary…) mid-flight. */
+/**
+ * How often a pack plays a fake-out: its best card, when Epic or better, poses as one rarity lower — the
+ * pack glows Rare when it holds an Epic, Epic when it holds a Legendary… — until its star evolves mid-flight.
+ */
 const EVOLVE_CHANCE = 0.3;
 const STAR_GAP = 260;
 const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
 
 function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
-  // Now and then one star (Rare or better) shows a rarity lower, and evolves on the way.
-  const able = cards.map((c, i) => (RARITIES.indexOf(c.rarity) >= 1 ? i : -1)).filter((i) => i >= 0);
-  const evolving = able.length && rand() < EVOLVE_CHANCE ? able[Math.floor(rand() * able.length)] : -1;
+  // Now and then the best card (Epic or better: the smallest fake-out is Rare → Epic) shows a rarity lower,
+  // and evolves on the way. The cards come sorted, the best last.
+  const last = cards.length - 1;
+  const evolving = last >= 0 && RARITIES.indexOf(cards[last].rarity) >= 2 && rand() < EVOLVE_CHANCE ? last : -1;
   let at = 0;
   return cards.map((c, i) => {
     const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
     const star: Star = { to: c.rarity, from, delay: at, duration: flight(c.rarity) + (from !== c.rarity ? 600 : 0), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
-    at += STAR_GAP + (top(c.rarity) ? 250 : 0);
+    // Many cards (five packs at once): the stars come closer together.
+    at += (cards.length > 5 ? STAR_GAP / 2.5 : STAR_GAP) + (top(c.rarity) ? 250 : 0);
     return star;
   });
 }
@@ -118,6 +123,12 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const counts = useProgress((s) => s.cards);
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
+  // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
+  const stars = useMemo(() => starsFor(cards), [cards]);
+  // A fake-out: until its star evolves, the pack glows the colour of the rarity it pretends to be.
+  const tease = stars.find((s) => s.from !== s.to);
+  const shownBest = tease && cards.filter((c) => c.rarity === best).length === 1 ? tease.from : best;
+  const glow = RARITY_LIGHT[shownBest];
   const [phase, setPhase] = useState<Phase>('choose');
   const [chosen, setChosen] = useState<number | null>(null);
   const [tear, setTear] = useState(0);
@@ -133,9 +144,6 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
 
   const card = cards[i];
-  // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
-  const stars = useMemo(() => starsFor(cards), [cards]);
-
   // ── Tearing ─────────────────────────────────────────────────────────
   const torn = () => {
     if (phase !== 'pack') return;
@@ -296,7 +304,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const style = card ? RARITY_STYLE[card.rarity] : null;
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
-    <div ref={box} className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${light}22`}, transparent 60%)` }}>
+    <div ref={box} className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'meteor' || phase === 'torn' ? glow : light}22`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
@@ -340,7 +348,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             onPointerUp={onUp}
             onPointerCancel={() => (drag.current = null)}
             className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' ? 'pack-float' : ''}`}
-            style={phase === 'pack' && tear > 0 ? { filter: `drop-shadow(0 0 ${8 + tear * 30}px ${light})` } : undefined}
+            style={phase === 'pack' && tear > 0 ? { filter: `drop-shadow(0 0 ${8 + tear * 30}px ${glow})` } : undefined}
             role="button"
             aria-label="Swipe across the pack, or tap it, to tear it open"
           >
@@ -348,7 +356,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             {phase === 'torn' && (
               <div
                 className="pack-beam pointer-events-none absolute left-1/2 w-[150%]"
-                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${light}, ${light}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
+                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${glow}, ${glow}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
                 aria-hidden
               />
             )}
@@ -360,7 +368,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             </div>
             {/* The tear, glowing along the cut. */}
             {phase === 'pack' && (
-              <div className="pointer-events-none absolute left-0 h-[3px] rounded-full" style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, background: '#fff', boxShadow: `0 0 10px #fff, 0 0 22px ${light}` }} />
+              <div className="pointer-events-none absolute left-0 h-[3px] rounded-full" style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, background: '#fff', boxShadow: `0 0 10px #fff, 0 0 22px ${glow}` }} />
             )}
             {phase === 'pack' && tear === 0 && (
               <div className="pack-hint pointer-events-none absolute left-[8%] font-display text-2xl text-white drop-shadow" style={{ top: `calc(${TEAR_AT}% - 1.2rem)` }}>
@@ -396,7 +404,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
               </div>
             );
           })}
-          {top(best) && <div className={`pack-twinkle absolute inset-0 ${prismatic(best) ? 'pack-twinkle-rainbow' : ''}`} />}
+          {top(shownBest) && <div className={`pack-twinkle absolute inset-0 ${prismatic(shownBest) ? 'pack-twinkle-rainbow' : ''}`} />}
         </div>
       )}
 

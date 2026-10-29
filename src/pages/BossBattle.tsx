@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { BossHeader, HeartIcon } from '../boss/BossHeader';
 import { FinalBlow } from '../boss/FinalBlow';
+import { finaleFaces } from '../boss/faces';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
 import { NameChain, type ChainResult } from '../boss/NameChain';
@@ -106,9 +107,10 @@ function BossBattle({ boss }: { boss: Boss }) {
   const content = useMemo(() => {
     const rand = Math.random;
     const blitz = drawBlitz(boss, d, rand, recentlySeen(seenOf('prompts'), boss.blitz.length), round);
-    const finale = drawFinale(boss, d, rand, recentlySeen(seenOf('faces'), boss.finale.length, d.finaleTargets), round);
+    const faces = finaleFaces(boss);
+    const finale = drawFinale(boss, d, rand, recentlySeen(seenOf('faces'), faces.length, d.finaleTargets), round, faces);
     const seen = new Set<string>();
-    const pool = [...boss.finale, ...boss.radar.members]
+    const pool = [...faces, ...boss.radar.members]
       .filter((c) => !seen.has(c.label) && seen.add(c.label))
       .sort((a, b) => a.label.localeCompare(b.label));
     // Phase IV: a fresh Name Chain for every attempt.

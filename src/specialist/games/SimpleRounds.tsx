@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { ObscuredImage } from '../../components/ObscuredImage';
+import { useProgress } from '../../store/progress';
 import { ZoomImage } from '../../components/ZoomImage';
 import { mulberry32 } from '../../lib/rng';
 import type { RoundRecord } from '../../types';
@@ -72,3 +74,94 @@ export const classicRoundFor = (u: SimpleUniverse['id'], noun: string) => {
     return <ClassicGrid {...props} pool={SIMPLE[u].characters} byId={byId} columns={columns} noun={noun} detail={detail} />;
   };
 };
+
+/** Windows: the picture behind tiles that open, a few more with each miss. */
+export const windowsRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleWindowsRound({ round, record, onChange }: Props) {
+    const c = simpleCharacter(u, round.targetId)!;
+    return (
+      <SpGuessRound
+        type="windows"
+        question="Who — or what — is behind the windows?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image, detail: detail(c) }}
+        noPictures
+        clue={(wrong, done) => <ObscuredImage src={c.image} alt="Picture behind windows" step={wrong} revealed={done} seed={round.seed} />}
+      />
+    );
+  };
+
+/** Silhouette: a cut-out portrait, blacked out. */
+export const silhouetteRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleSilhouetteRound({ round, record, onChange }: Props) {
+    const c = simpleCharacter(u, round.targetId)!;
+    return (
+      <SpGuessRound
+        type="silhouette"
+        question="Who is hiding in the shadow?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image, detail: detail(c) }}
+        noPictures
+        clue={(_, done) => (
+          <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-xl" style={{ background: 'radial-gradient(circle at 50% 45%, #fde68a 0%, #d97706 38%, #1e3a8a 78%)' }}>
+            <img
+              src={c.image}
+              alt=""
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+              className="absolute inset-0 size-full select-none object-contain p-4 transition-[filter] duration-500"
+              style={{ filter: done ? 'none' : 'brightness(0) drop-shadow(0 4px 10px rgb(0 0 0 / 0.35))' }}
+            />
+          </div>
+        )}
+      />
+    );
+  };
+
+/** Voice: a line in their voice — the French dub when names are in French and there is one, else the original. */
+export const voiceRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleVoiceRound({ round, record, onChange }: Props) {
+    const v = SIMPLE[u].voices![Number(round.targetId)];
+    const c = simpleCharacter(u, v.answer)!;
+    const lang = useProgress((s) => s.nameLang);
+    const french = lang === 'fr' && !!v.fr;
+    const src = french ? v.fr! : (v.en ?? v.fr!);
+    const audio = useRef<HTMLAudioElement | null>(null);
+    const play = () => {
+      audio.current?.pause();
+      const a = new Audio(src);
+      a.volume = Math.min(1, useProgress.getState().clipVolume / 100);
+      audio.current = a;
+      void a.play().catch(() => {});
+    };
+    useEffect(() => () => audio.current?.pause(), []);
+    return (
+      <SpGuessRound
+        type="voice"
+        question="Who is speaking?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image || undefined, detail: detail(c) }}
+        noPictures
+        clue={() => (
+          <div className="page mx-auto flex max-w-sm flex-col items-center gap-3 rounded-md px-6 py-8 text-center">
+            <button type="button" onClick={play} className="btn-accent grid size-20 place-items-center rounded-full text-3xl" aria-label="Play the voice line">
+              🔊
+            </button>
+            <p className="text-xs text-ink-faint">{french ? 'Version française' : lang === 'fr' ? 'Original English voice (no French dub clip for this line yet)' : 'Original English voice'}</p>
+          </div>
+        )}
+      />
+    );
+  };

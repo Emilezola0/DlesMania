@@ -2878,5 +2878,32 @@
    "image": "https://static.wikia.nocookie.net/avatar/images/1/16/Oma.png/revision/latest?cb=20140128110438",
    "rarity": "common"
   }
+ ],
+ "forhonor": [
+  {
+   "name": "Holden Cross",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/8/88/Holdencross.jpg/revision/latest/scale-to-width-down/400?cb=20170921085041",
+   "rarity": "common"
+  },
+  {
+   "name": "Stone",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/9/90/Stone.jpg/revision/latest/scale-to-width-down/400?cb=20170214203122",
+   "rarity": "common"
+  },
+  {
+   "name": "Mercy",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/8/81/Mercy.jpg/revision/latest/scale-to-width-down/400?cb=20170214203730",
+   "rarity": "common"
+  },
+  {
+   "name": "Gudmundr",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/1/10/Gudmundr.jpg/revision/latest/scale-to-width-down/400?cb=20170215032845",
+   "rarity": "common"
+  },
+  {
+   "name": "Ayu",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/a/a9/AyuFace.png/revision/latest/scale-to-width-down/400?cb=20180919042547",
+   "rarity": "common"
+  }
  ]
 }

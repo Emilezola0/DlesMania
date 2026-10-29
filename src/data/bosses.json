@@ -12366,26 +12366,6 @@
       {
         "label": "Arakure",
         "image": "https://static.wikia.nocookie.net/for-honor/images/7/73/Arakure_profile.jpg/revision/latest/scale-to-width-down/400?cb=20260725164717"
-      },
-      {
-        "label": "Holden Cross",
-        "image": "https://static.wikia.nocookie.net/for-honor/images/8/88/Holdencross.jpg/revision/latest/scale-to-width-down/400?cb=20170921085041"
-      },
-      {
-        "label": "Stone",
-        "image": "https://static.wikia.nocookie.net/for-honor/images/9/90/Stone.jpg/revision/latest/scale-to-width-down/400?cb=20170214203122"
-      },
-      {
-        "label": "Mercy",
-        "image": "https://static.wikia.nocookie.net/for-honor/images/8/81/Mercy.jpg/revision/latest/scale-to-width-down/400?cb=20170214203730"
-      },
-      {
-        "label": "Gudmundr",
-        "image": "https://static.wikia.nocookie.net/for-honor/images/1/10/Gudmundr.jpg/revision/latest/scale-to-width-down/400?cb=20170215032845"
-      },
-      {
-        "label": "Ayu",
-        "image": "https://static.wikia.nocookie.net/for-honor/images/a/a9/AyuFace.png/revision/latest/scale-to-width-down/400?cb=20180919042547"
       }
     ],
     "secret": {
@@ -12451,21 +12431,6 @@
             "Assassin",
             "Heavy",
             "Hybrid"
-          ]
-        },
-        {
-          "label": "Character",
-          "entities": [
-            "Apollyon",
-            "Holden Cross",
-            "Stone",
-            "Mercy",
-            "Gudmundr",
-            "Ayu",
-            "Hulda",
-            "Seiji",
-            "Horokai",
-            "Siegfried"
           ]
         }
       ]
