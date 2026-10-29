@@ -93,7 +93,17 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     image: 'https://destiny.wiki.gallery/images/9/96/TFSCayde.jpg',
   },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
-  forts: { name: 'Eagle Eye', title: 'Master Marksman', line: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.', voice: 'Target acquired.' },
+  // Forts' mythic is the Howitzer (it was Eagle Eye, who took the Howitzer's place as a legendary): its
+  // voice is a howitzer firing — the shot of a 25-pounder Sexton (Wikimedia Commons, LouiseBrown1981, CC BY-SA 3.0),
+  // cut to the blast and its echo.
+  forts: {
+    name: 'Howitzer',
+    title: 'The Big Gun',
+    line: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
+    voice: 'BOOM!',
+    audio: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/5/57/Sexton_artillery_firing.oga/Sexton_artillery_firing.oga.mp3#t=12.6,16',
+    image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
+  },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
 };
 
@@ -406,12 +416,13 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
 const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description'> & { set: string })[] = [
   {
     set: 'forts',
+    // Swapped with the mythic: this legendary is now Eagle Eye (the id stays, so no one loses a card).
     id: 'forts:howitzer-legendary',
-    name: 'Howitzer',
+    name: 'Eagle Eye',
     rarity: 'legendary',
-    title: 'The Big Gun',
-    image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
-    description: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
+    title: 'Master Marksman',
+    image: 'https://static.wikia.nocookie.net/forts-rts/images/7/70/Eagle_Eye_Portrait.png/revision/latest/scale-to-width-down/400?cb=20220901021356',
+    description: 'One laser sight, one steady hand — and a sniper round through the one gap in your armour.',
   },
   // The expansions' weapons, in the studio's own art (Weapon-*.png on earthworkgames.com).
   { set: 'forts', id: 'forts:orbital-laser', name: 'Orbital Laser', rarity: 'epic', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Weapon-OrbitalLaser.png', description: 'A beam from orbit that sweeps straight down through the enemy fort.' },
