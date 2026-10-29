@@ -111,6 +111,9 @@ interface ProgressState {
   /** This week's and this month's missions (see src/gacha/economy.ts). */
   missionBooks: PeriodBooks;
   claimLongMission: (period: Period, kind: LongKind) => void;
+  /** Dailies shared by a group code (src/cloud/groups.ts), by dayKey: the code this player made, or the one they joined. */
+  groups: Record<string, { code: string; role: 'host' | 'joined'; host?: string }>;
+  setGroup: (key: string, group: { code: string; role: 'host' | 'joined'; host?: string }) => void;
   /** Gift codes already redeemed (normalized). */
   redeemed: string[];
   /** A gift code typed in the Shop: its coins, once per player. */
@@ -248,6 +251,8 @@ export const useProgress = create<ProgressState>()(
       packsOpened: 0,
       missionBooks: booksNow(undefined),
       redeemed: [],
+      groups: {},
+      setGroup: (key, group) => set((s) => ({ groups: { ...(s.groups ?? {}), [key]: group } })),
       avatar: null,
       backdrop: null,
       cardReactions: true,

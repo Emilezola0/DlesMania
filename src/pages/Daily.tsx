@@ -15,6 +15,7 @@ import { roundEmoji, shareText } from '../lib/share';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
 import { RulesButton } from '../components/RulesModal';
+import { GroupHost, GroupJoin } from '../components/GroupCode';
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
@@ -159,6 +160,7 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
           Past days
         </Link>
       </div>
+      {date === todayKey() && <GroupHost domain={domain} date={date} />}
       {date === todayKey() && (
         <p className="text-sm text-ink-faint">
           Next challenge in <Countdown />
@@ -285,6 +287,12 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
           );
         })}
       </div>
+
+      {date === todayKey() && !sum.complete && (
+        <div className="flex justify-center">
+          <GroupJoin domain={domain} date={date} onJoined={() => setIndex(-1)} />
+        </div>
+      )}
 
       {spec && record ? (
         <section key={`${key}-${index}`} className="mx-auto max-w-3xl space-y-6">

@@ -31,5 +31,17 @@ service cloud.firestore {
               && (resource.data.want == null || request.resource.data.got == resource.data.want))
         );
     }
+
+    // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
+    // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
+    match /groups/{code} {
+      allow get: if true;
+      allow create: if request.auth != null
+        && request.resource.data.host == request.auth.uid
+        && request.resource.data.joined == 0;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['joined'])
+        && request.resource.data.joined == resource.data.joined + 1
+        && request.resource.data.joined <= 12;
+    }
   }
 }
