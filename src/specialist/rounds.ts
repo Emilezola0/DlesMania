@@ -7,8 +7,10 @@ import { MARVEL_POOLS } from './marvel';
 import { GENSHIN_POOLS } from './genshin';
 import { WOW_POOLS } from './wow';
 import { timelinePool } from './timeline';
+import { simplePools } from './simple';
+import { BLUEPRINT_POOLS } from './blueprint';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -47,6 +49,34 @@ export const UNIVERSES = [
     blurb: 'Classic, art, silhouettes and titles — 120 of the best-known characters from the games.',
     types: ['classic', 'art', 'silhouette', 'titles', 'timeline'] as SpType[],
   },
+  {
+    id: 'forhonor',
+    label: 'For Honor',
+    ready: true,
+    blurb: 'Pictures and weapons — all 39 heroes of the five factions.',
+    types: ['picture', 'clue'] as SpType[],
+  },
+  {
+    id: 'forts',
+    label: 'Forts',
+    ready: true,
+    blurb: 'Pictures of commanders, weapons and devices, and the commanders by their abilities.',
+    types: ['picture', 'clue'] as SpType[],
+  },
+  {
+    id: 'avatar',
+    label: 'Avatar: The Last Airbender',
+    ready: true,
+    blurb: 'Classic by nation and bending, pictures from the show, and the characters by their story.',
+    types: ['classic', 'picture', 'clue'] as SpType[],
+  },
+  {
+    id: 'unreal',
+    label: 'Unreal Engine Blueprints',
+    ready: true,
+    blurb: 'Classic, pins and clues — guess the Blueprint node, from Branch to Spawn Actor from Class.',
+    types: ['classic', 'pins', 'clue'] as SpType[],
+  },
 ] as const;
 export type UniverseId = (typeof UNIVERSES)[number]['id'];
 
@@ -69,6 +99,9 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   timeline: { name: 'Timeline', icon: '⏳', tagline: 'Who came first?', maxAttempts: 4 },
   titles: { name: 'Titles', icon: '📜', tagline: 'Who goes by these titles?', maxAttempts: 6 },
   constellation: { name: 'Constellation', icon: '✦', tagline: 'Whose constellation is this?', maxAttempts: 6 },
+  picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
+  clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
+  pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
 
 /** One round: what to guess, and a seed for anything random about how it's shown. */
@@ -91,6 +124,10 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   marvel: { ...MARVEL_POOLS, timeline: timelinePool('marvel') },
   genshin: { ...GENSHIN_POOLS, timeline: timelinePool('genshin') },
   wow: { ...WOW_POOLS, timeline: timelinePool('wow') },
+  forhonor: simplePools('forhonor'),
+  forts: simplePools('forts'),
+  avatar: simplePools('avatar'),
+  unreal: BLUEPRINT_POOLS,
 };
 
 /** How many answers a round type can draw from. */

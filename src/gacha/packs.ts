@@ -11,7 +11,7 @@ export const PACK_SIZE = 5;
 export const ODDS: Record<Rarity, number> = { common: 68.41, rare: 23, epic: 8, legendary: 0.5, mythic: 0.08, omni: 0.01 };
 
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
-export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5 };
+export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5, hell: 3.2 };
 
 export interface Pack {
   id: string;
@@ -62,7 +62,7 @@ export function packsFor(sets: { id: string; franchise: string; domain: Domain; 
 
 /** The hardest difficulty a boss was beaten at, if it was. */
 export function bossBest(bosses: Record<string, { wins: number }>, id: string): BossDifficulty | null {
-  for (const d of ['hard', 'medium', 'easy'] as const) if ((bosses[bossKey(id, d)]?.wins ?? 0) > 0) return d;
+  for (const d of ['hell', 'hard', 'medium', 'easy'] as const) if ((bosses[bossKey(id, d)]?.wins ?? 0) > 0) return d;
   return null;
 }
 

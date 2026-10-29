@@ -383,7 +383,7 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
 ];
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal']);
 
 const slug = (s: string) =>
   s

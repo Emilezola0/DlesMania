@@ -23,6 +23,10 @@ import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/gam
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
+import { classicRoundFor, clueRoundFor, pictureRoundFor } from '../specialist/games/SimpleRounds';
+import { SIMPLE } from '../specialist/simple';
+import { BLUEPRINT_NODES } from '../specialist/blueprint';
+import { BlueprintClassicRound, BlueprintClueRound, BlueprintPinsRound } from '../specialist/games/BlueprintRounds';
 
 type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void };
 
@@ -33,6 +37,10 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound, timeline: timelineRoundFor('marvel') },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
+  forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?') },
+  forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?') },
+  avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?') },
+  unreal: { classic: BlueprintClassicRound, pins: BlueprintPinsRound, clue: BlueprintClueRound },
 };
 
 /** The line under a universe's title: what's in it, and when the data was built. */
@@ -42,6 +50,10 @@ const DATA_LINE: Record<UniverseId, string> = {
   marvel: `${MARVEL.characters.length} characters · ${MARVEL.films.length} films — MCU wiki data from ${MARVEL.generated}`,
   genshin: `${GENSHIN.characters.length} characters, up to version ${GENSHIN.characters[GENSHIN.characters.length - 1]?.version} — Genshin wiki data from ${GENSHIN.generated}`,
   wow: `${WOW.characters.length} characters from the games — Warcraft Wiki data from ${WOW.generated}`,
+  forhonor: `${SIMPLE.forhonor.characters.length} heroes · ${SIMPLE.forhonor.clues.length} weapons — For Honor wiki`,
+  forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
+  avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues — Avatar Wiki`,
+  unreal: `${BLUEPRINT_NODES.length} of the Blueprint nodes everyone uses — drawn in the editor's colours`,
 };
 
 function Round({ universe: id, round, record, onChange }: RoundProps & { universe: UniverseId }) {

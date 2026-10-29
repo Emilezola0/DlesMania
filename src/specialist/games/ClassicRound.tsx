@@ -9,9 +9,9 @@ import { WOW, wowCharacterById, type WowCharacter } from '../wow';
 import { SP_META, spScore, type SpRound } from '../rounds';
 import { SpOutcome } from './SpGuessRound';
 
-type Verdict = 'hit' | 'near' | 'miss';
+export type Verdict = 'hit' | 'near' | 'miss';
 
-interface Column<T> {
+export interface Column<T> {
   label: string;
   show: (c: T) => string;
   judge: (g: T, t: T) => Verdict;
@@ -27,7 +27,7 @@ const overlap = (g: string[], t: string[]): Verdict => {
 };
 /** Numbers: equal is a hit, within `ratio` is near. */
 const close = (g: number, t: number, ratio: number): Verdict => (g === t ? 'hit' : g && t && Math.abs(g - t) <= t * ratio ? 'near' : 'miss');
-const same = <T,>(key: (c: T) => string) => (g: T, t: T): Verdict => (key(g) === key(t) ? 'hit' : 'miss');
+export const same = <T,>(key: (c: T) => string) => (g: T, t: T): Verdict => (key(g) === key(t) ? 'hit' : 'miss');
 const arcIndex = (c: OpCharacter) => ARC_ORDER.indexOf(c.arc);
 
 const ONE_PIECE_COLUMNS: Column<OpCharacter>[] = [
@@ -116,7 +116,7 @@ interface GridProps<T extends { id: string; name: string; aliases: string[]; ima
 }
 
 /** Guess an answer; every trait of each guess is compared with the answer's. */
-function ClassicGrid<T extends { id: string; name: string; aliases: string[]; image: string }>({ round, record, onChange, pool, byId, columns, noun, detail }: GridProps<T>) {
+export function ClassicGrid<T extends { id: string; name: string; aliases: string[]; image: string }>({ round, record, onChange, pool, byId, columns, noun, detail }: GridProps<T>) {
   const target = byId.get(round.targetId)!;
   const max = SP_META.classic.maxAttempts;
   const done = record.status !== 'playing';

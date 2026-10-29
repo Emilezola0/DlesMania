@@ -157,6 +157,8 @@ export interface BlitzPrompt {
 export interface Boss {
   id: string;
   domain: Domain;
+  /** "other": shown under Boss Battle's Other tab instead of its domain's (Unreal Engine Blueprints…). */
+  category?: 'other';
   franchise: string;
   aliases: string[];
   boss: { name: string; title: string; image?: string; color: string };

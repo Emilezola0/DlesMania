@@ -13132,5 +13132,1042 @@
         }
       ]
     }
+  },
+  {
+    "id": "unreal",
+    "domain": "games",
+    "category": "other",
+    "franchise": "Unreal Engine Blueprints",
+    "aliases": [
+      "unreal",
+      "blueprints",
+      "unreal engine",
+      "blueprint nodes",
+      "ue5",
+      "ue4"
+    ],
+    "images": "none",
+    "boss": {
+      "name": "Tanglewire",
+      "title": "Lord of the Spaghetti Graph",
+      "color": "#1d4ed8",
+      "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20400%22%3E%3Cdefs%3E%3CradialGradient%20id%3D%22bg%22%20cx%3D%2250%25%22%20cy%3D%2245%25%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b0764%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230b0b12%22%2F%3E%3C%2FradialGradient%3E%3ClinearGradient%20id%3D%22hd%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20fill%3D%22url(%23bg)%22%2F%3E%3Cg%20opacity%3D%220.12%22%20stroke%3D%22%23fff%22%3E%3Cpath%20d%3D%22M0%200%20V400%20M0%200%20H400%22%2F%3E%3Cpath%20d%3D%22M20%200%20V400%20M0%2020%20H400%22%2F%3E%3Cpath%20d%3D%22M40%200%20V400%20M0%2040%20H400%22%2F%3E%3Cpath%20d%3D%22M60%200%20V400%20M0%2060%20H400%22%2F%3E%3Cpath%20d%3D%22M80%200%20V400%20M0%2080%20H400%22%2F%3E%3Cpath%20d%3D%22M100%200%20V400%20M0%20100%20H400%22%2F%3E%3Cpath%20d%3D%22M120%200%20V400%20M0%20120%20H400%22%2F%3E%3Cpath%20d%3D%22M140%200%20V400%20M0%20140%20H400%22%2F%3E%3Cpath%20d%3D%22M160%200%20V400%20M0%20160%20H400%22%2F%3E%3Cpath%20d%3D%22M180%200%20V400%20M0%20180%20H400%22%2F%3E%3Cpath%20d%3D%22M200%200%20V400%20M0%20200%20H400%22%2F%3E%3Cpath%20d%3D%22M220%200%20V400%20M0%20220%20H400%22%2F%3E%3Cpath%20d%3D%22M240%200%20V400%20M0%20240%20H400%22%2F%3E%3Cpath%20d%3D%22M260%200%20V400%20M0%20260%20H400%22%2F%3E%3Cpath%20d%3D%22M280%200%20V400%20M0%20280%20H400%22%2F%3E%3Cpath%20d%3D%22M300%200%20V400%20M0%20300%20H400%22%2F%3E%3Cpath%20d%3D%22M320%200%20V400%20M0%20320%20H400%22%2F%3E%3Cpath%20d%3D%22M340%200%20V400%20M0%20340%20H400%22%2F%3E%3Cpath%20d%3D%22M360%200%20V400%20M0%20360%20H400%22%2F%3E%3Cpath%20d%3D%22M380%200%20V400%20M0%20380%20H400%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M390%20200%20C%20200%2080%2C%20-8%20300%2C%2021%20265%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M320%20348%20C%20402%20124%2C%20-24%20128%2C%2037%20102%22%20stroke%3D%22%23a30000%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M160%20386%20C%20454%20225%2C%20126%2010%2C%20174%2012%22%20stroke%3D%22%23a0e83a%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M31%20286%20C%20318%20307%2C%20331%2032%2C%20330%2061%22%20stroke%3D%22%2300a9ff%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M26%20123%20C%2094%20310%2C%20439%20179%2C%20390%20213%22%20stroke%3D%22%23ffca23%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M151%2016%20C%20-51%20231%2C%20370%20341%2C%20309%20356%22%20stroke%3D%22%23ff2bd4%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Cpath%20d%3D%22M312%2046%20C%20-10%20129%2C%20175%20399%2C%20148%20383%22%20stroke%3D%22%231fe3af%22%20stroke-width%3D%227%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%2F%3E%3Crect%20x%3D%22110%22%20y%3D%22120%22%20width%3D%22180%22%20height%3D%22150%22%20rx%3D%2216%22%20fill%3D%22%23151517%22%20stroke%3D%22%23000%22%20stroke-width%3D%224%22%2F%3E%3Cpath%20d%3D%22M110%20136%20a16%2016%200%200%201%2016%20-16%20h148%20a16%2016%200%200%201%2016%2016%20v22%20h-180%20z%22%20fill%3D%22url(%23hd)%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22150%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3ETanglewire%3C%2Ftext%3E%3Cellipse%20cx%3D%22165%22%20cy%3D%22205%22%20rx%3D%2218%22%20ry%3D%2222%22%20fill%3D%22%23fde047%22%2F%3E%3Cellipse%20cx%3D%22235%22%20cy%3D%22205%22%20rx%3D%2218%22%20ry%3D%2222%22%20fill%3D%22%23fde047%22%2F%3E%3Ccircle%20cx%3D%22170%22%20cy%3D%22210%22%20r%3D%228%22%20fill%3D%22%23111%22%2F%3E%3Ccircle%20cx%3D%22230%22%20cy%3D%22210%22%20r%3D%228%22%20fill%3D%22%23111%22%2F%3E%3Cpath%20d%3D%22M160%20245%20q40%2020%2080%200%22%20stroke%3D%22%23fde047%22%20stroke-width%3D%226%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M110%20195%20h-30%20M110%20225%20h-30%20M290%20195%20h30%20M290%20225%20h30%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22195%22%20r%3D%227%22%20fill%3D%22%23a0e83a%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22225%22%20r%3D%227%22%20fill%3D%22%2300a9ff%22%2F%3E%3Ccircle%20cx%3D%22320%22%20cy%3D%22195%22%20r%3D%227%22%20fill%3D%22%23ffca23%22%2F%3E%3Ccircle%20cx%3D%22320%22%20cy%3D%22225%22%20r%3D%227%22%20fill%3D%22%23a30000%22%2F%3E%3C%2Fsvg%3E"
+    },
+    "lines": {
+      "intro": "Another developer, lost in my graph. Every wire leads back to me. Show me you can still read a node.",
+      "phase2": "Half these nodes are not even Blueprints. Sort my graph from the impostors.",
+      "phase3": "Compile errors everywhere! Name every node before the editor crashes!",
+      "hit": [
+        "A clean connection…",
+        "You found the right pin.",
+        "Hmph. It compiles."
+      ],
+      "hurt": [
+        "Accessed None!",
+        "Infinite loop detected.",
+        "Your exec pin is dangling.",
+        "Wrong pin type!"
+      ],
+      "win": "My wires… untangled. Your graph is cleaner than mine ever was.",
+      "lose": "Back to spaghetti with you. Ship it — broken.",
+      "secret": "One last compile. I name a node, a pin type, a kind of Blueprint or a graph — answer with another of the same. No repeats.",
+      "secretOk": [
+        "Compiles.",
+        "Again.",
+        "Connected."
+      ],
+      "secretLost": "Compile failed. The graph is mine."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 4 flow control nodes",
+        "count": 4,
+        "answers": [
+          "Branch",
+          "Sequence",
+          "For Loop",
+          "For Each Loop|ForEach",
+          "While Loop",
+          "Do Once|DoOnce",
+          "DoN|Do N",
+          "Gate",
+          "FlipFlop|Flip Flop",
+          "Switch on Int",
+          "Switch on String",
+          "Switch on Enum",
+          "Delay",
+          "Retriggerable Delay",
+          "For Loop with Break",
+          "MultiGate"
+        ]
+      },
+      {
+        "prompt": "Name 4 events",
+        "count": 4,
+        "answers": [
+          "Event BeginPlay|BeginPlay",
+          "Event Tick|Tick",
+          "Event ActorBeginOverlap|ActorBeginOverlap|Begin Overlap",
+          "Event ActorEndOverlap|ActorEndOverlap|End Overlap",
+          "Event Hit|On Hit",
+          "Event AnyDamage|AnyDamage",
+          "Event EndPlay|EndPlay",
+          "Event Destroyed|Destroyed",
+          "Custom Event",
+          "Event Possessed|Possessed",
+          "Event Construct",
+          "Event Pre Construct|Event PreConstruct"
+        ]
+      },
+      {
+        "prompt": "Name 5 pin types",
+        "count": 5,
+        "answers": [
+          "Boolean|Bool",
+          "Byte",
+          "Integer|Int",
+          "Integer64|Int64",
+          "Float|Double",
+          "Name",
+          "String",
+          "Text",
+          "Vector",
+          "Rotator",
+          "Transform",
+          "Object Reference|Object",
+          "Class Reference|Class",
+          "Structure|Struct",
+          "Enum|Enumeration",
+          "Interface",
+          "Execution|Exec",
+          "Wildcard"
+        ]
+      },
+      {
+        "prompt": "Name 4 kinds of Blueprint",
+        "count": 4,
+        "answers": [
+          "Level Blueprint",
+          "Blueprint Class",
+          "Data-Only Blueprint",
+          "Blueprint Interface",
+          "Blueprint Macro Library",
+          "Blueprint Function Library",
+          "Widget Blueprint",
+          "Animation Blueprint|Anim Blueprint|AnimBP"
+        ]
+      },
+      {
+        "prompt": "Name 5 math nodes",
+        "count": 5,
+        "answers": [
+          "Lerp",
+          "Make Vector",
+          "Break Vector",
+          "Random Integer in Range",
+          "Random Float in Range",
+          "Clamp",
+          "Vector Length|VSize",
+          "Normalize",
+          "Find Look at Rotation",
+          "RInterp To",
+          "VInterp To",
+          "FInterp To",
+          "Dot Product",
+          "Cross Product",
+          "Absolute|Abs",
+          "Min",
+          "Max",
+          "Sin",
+          "Cos",
+          "Floor",
+          "Round",
+          "Truncate"
+        ]
+      },
+      {
+        "prompt": "Name 3 save game nodes",
+        "count": 3,
+        "answers": [
+          "Create Save Game Object",
+          "Save Game to Slot",
+          "Load Game from Slot",
+          "Does Save Game Exist",
+          "Delete Game in Slot",
+          "Async Save Game to Slot",
+          "Async Load Game from Slot"
+        ]
+      },
+      {
+        "prompt": "Name 4 UI (widget) nodes",
+        "count": 4,
+        "answers": [
+          "Create Widget",
+          "Add to Viewport",
+          "Remove from Parent",
+          "Set Text",
+          "Set Visibility",
+          "Set Input Mode UI Only",
+          "Set Input Mode Game Only",
+          "Set Input Mode Game and UI",
+          "Set Percent",
+          "Get Owning Player"
+        ]
+      },
+      {
+        "prompt": "Name 4 nodes that move or turn an actor",
+        "count": 4,
+        "answers": [
+          "Set Actor Location",
+          "Set Actor Rotation",
+          "Set Actor Transform",
+          "Set Actor Location and Rotation",
+          "Add Actor World Offset",
+          "Add Actor Local Offset",
+          "Add Actor World Rotation",
+          "Add Actor Local Rotation",
+          "Add Movement Input",
+          "Launch Character",
+          "Teleport",
+          "Add Impulse"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Event BeginPlay",
+          "image": "node:Event BeginPlay",
+          "aliases": [
+            "BeginPlay"
+          ]
+        },
+        {
+          "label": "Print String",
+          "image": "node:Print String",
+          "aliases": [
+            "PrintString"
+          ]
+        },
+        {
+          "label": "Branch",
+          "image": "node:Branch",
+          "aliases": [
+            "If"
+          ]
+        },
+        {
+          "label": "Event Tick",
+          "image": "node:Event Tick",
+          "aliases": [
+            "Tick"
+          ]
+        },
+        {
+          "label": "Cast To Character",
+          "image": "node:Cast To Character",
+          "aliases": [
+            "Cast To",
+            "Cast"
+          ]
+        },
+        {
+          "label": "Spawn Actor from Class",
+          "image": "node:Spawn Actor from Class",
+          "aliases": [
+            "SpawnActor",
+            "Spawn Actor"
+          ]
+        },
+        {
+          "label": "Sequence",
+          "image": "node:Sequence"
+        },
+        {
+          "label": "For Each Loop",
+          "image": "node:For Each Loop",
+          "aliases": [
+            "ForEach"
+          ]
+        },
+        {
+          "label": "Delay",
+          "image": "node:Delay"
+        },
+        {
+          "label": "Get Player Character",
+          "image": "node:Get Player Character",
+          "aliases": [
+            "GetPlayerCharacter"
+          ]
+        },
+        {
+          "label": "Line Trace By Channel",
+          "image": "node:Line Trace By Channel",
+          "aliases": [
+            "LineTraceByChannel",
+            "Line Trace",
+            "Raycast"
+          ]
+        },
+        {
+          "label": "Create Widget",
+          "image": "node:Create Widget",
+          "aliases": [
+            "CreateWidget"
+          ]
+        },
+        {
+          "label": "Add to Viewport",
+          "image": "node:Add to Viewport",
+          "aliases": [
+            "AddToViewport"
+          ]
+        },
+        {
+          "label": "Get Actor Location",
+          "image": "node:Get Actor Location",
+          "aliases": [
+            "GetActorLocation"
+          ]
+        },
+        {
+          "label": "Set Actor Location",
+          "image": "node:Set Actor Location",
+          "aliases": [
+            "SetActorLocation"
+          ]
+        },
+        {
+          "label": "Do Once",
+          "image": "node:Do Once",
+          "aliases": [
+            "DoOnce"
+          ]
+        },
+        {
+          "label": "Is Valid",
+          "image": "node:Is Valid",
+          "aliases": [
+            "IsValid"
+          ]
+        },
+        {
+          "label": "Set Timer by Event",
+          "image": "node:Set Timer by Event",
+          "aliases": [
+            "SetTimerByEvent",
+            "Set Timer"
+          ]
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Principled BSDF",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20142%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22140%22%20rx%3D%226%22%20fill%3D%22%23303030%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%226%22%20fill%3D%22%233c6e3c%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EPrincipled%20BSDF%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23c7c729%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EBase%20Color%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EMetallic%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2298%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22102%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3ERoughness%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%22122%22%20r%3D%225%22%20fill%3D%22%2339c884%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22126%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EBSDF%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "Mix Shader",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20118%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22116%22%20rx%3D%226%22%20fill%3D%22%23303030%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%226%22%20fill%3D%22%233c6e3c%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMix%20Shader%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EFac%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%2339c884%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EShader%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2298%22%20r%3D%225%22%20fill%3D%22%2339c884%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22102%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EShader%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "Noise Texture",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20142%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22140%22%20rx%3D%226%22%20fill%3D%22%23303030%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%226%22%20fill%3D%22%2387481a%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ENoise%20Texture%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%236363c7%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EVector%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EScale%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2298%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22102%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EDetail%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%22122%22%20r%3D%225%22%20fill%3D%22%23c7c729%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22126%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EColor%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "Image Texture",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20118%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22116%22%20rx%3D%226%22%20fill%3D%22%23303030%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%226%22%20fill%3D%22%2387481a%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EImage%20Texture%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%236363c7%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EVector%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%23c7c729%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EColor%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2298%22%20r%3D%225%22%20fill%3D%22%23a1a1a1%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22102%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EAlpha%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "TextureSample",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20118%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22116%22%20rx%3D%222%22%20fill%3D%22%231d1d1d%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%222%22%20fill%3D%22%234a6b3f%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ETextureSample%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EUVs%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3ERGB%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2298%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%22102%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EAlpha%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "Fresnel",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2094%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2292%22%20rx%3D%222%22%20fill%3D%22%231d1d1d%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%222%22%20fill%3D%22%234a6b3f%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EFresnel%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EExponentIn%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2274%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2278%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3ENormal%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "TexCoord",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2070%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2268%22%20rx%3D%222%22%20fill%3D%22%231d1d1d%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%222%22%20fill%3D%22%234a6b3f%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ETexCoord%5B0%5D%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%239ca3af%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3EUVs%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "when flag clicked",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2090%22%3E%3Cpath%20d%3D%22M4%2014%20a10%2010%200%200%201%2010%20-10%20h30%20l8%208%20h24%20l8%20-8%20h202%20a10%2010%200%200%201%2010%2010%20v52%20a10%2010%200%200%201%20-10%2010%20h-202%20l-8%208%20h-24%20l-8%20-8%20h-30%20a10%2010%200%200%201%20-10%20-10%20z%22%20fill%3D%22%23ffab19%22%20stroke%3D%22%2300000055%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2224%22%20y%3D%2252%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3Ewhen%20flag%20clicked%3C%2Ftext%3E%3C%2Fsvg%3E",
+          "aliases": [
+            "when green flag clicked"
+          ]
+        },
+        {
+          "label": "move 10 steps",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2090%22%3E%3Cpath%20d%3D%22M4%2014%20a10%2010%200%200%201%2010%20-10%20h30%20l8%208%20h24%20l8%20-8%20h202%20a10%2010%200%200%201%2010%2010%20v52%20a10%2010%200%200%201%20-10%2010%20h-202%20l-8%208%20h-24%20l-8%20-8%20h-30%20a10%2010%200%200%201%20-10%20-10%20z%22%20fill%3D%22%234c97ff%22%20stroke%3D%22%2300000055%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2224%22%20y%3D%2252%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3Emove%2010%20steps%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "forever",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2090%22%3E%3Cpath%20d%3D%22M4%2014%20a10%2010%200%200%201%2010%20-10%20h30%20l8%208%20h24%20l8%20-8%20h202%20a10%2010%200%200%201%2010%2010%20v52%20a10%2010%200%200%201%20-10%2010%20h-202%20l-8%208%20h-24%20l-8%20-8%20h-30%20a10%2010%200%200%201%20-10%20-10%20z%22%20fill%3D%22%23ffab19%22%20stroke%3D%22%2300000055%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2224%22%20y%3D%2252%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3Eforever%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "say Hello!",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2090%22%3E%3Cpath%20d%3D%22M4%2014%20a10%2010%200%200%201%2010%20-10%20h30%20l8%208%20h24%20l8%20-8%20h202%20a10%2010%200%200%201%2010%2010%20v52%20a10%2010%200%200%201%20-10%2010%20h-202%20l-8%208%20h-24%20l-8%20-8%20h-30%20a10%2010%200%200%201%20-10%20-10%20z%22%20fill%3D%22%239966ff%22%20stroke%3D%22%2300000055%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%2224%22%20y%3D%2252%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3Esay%20Hello!%3C%2Ftext%3E%3C%2Fsvg%3E"
+        },
+        {
+          "label": "_process",
+          "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2070%22%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2268%22%20rx%3D%224%22%20fill%3D%22%23252b38%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2230%22%20rx%3D%224%22%20fill%3D%22%2341558a%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2221%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3E_process(delta)%3C%2Ftext%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22%237fb0ff%22%2F%3E%3Ctext%20x%3D%2226%22%20y%3D%2254%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e5e5%22%3Edelta%3C%2Ftext%3E%3C%2Fsvg%3E",
+          "aliases": [
+            "process"
+          ]
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "For Loop",
+        "image": "node:For Loop"
+      },
+      {
+        "label": "While Loop",
+        "image": "node:While Loop"
+      },
+      {
+        "label": "DoN",
+        "image": "node:DoN",
+        "aliases": [
+          "Do N"
+        ]
+      },
+      {
+        "label": "Gate",
+        "image": "node:Gate"
+      },
+      {
+        "label": "FlipFlop",
+        "image": "node:FlipFlop",
+        "aliases": [
+          "Flip Flop"
+        ]
+      },
+      {
+        "label": "Switch on Int",
+        "image": "node:Switch on Int"
+      },
+      {
+        "label": "Retriggerable Delay",
+        "image": "node:Retriggerable Delay"
+      },
+      {
+        "label": "Event ActorBeginOverlap",
+        "image": "node:Event ActorBeginOverlap",
+        "aliases": [
+          "ActorBeginOverlap",
+          "Begin Overlap"
+        ]
+      },
+      {
+        "label": "Event Hit",
+        "image": "node:Event Hit",
+        "aliases": [
+          "On Hit"
+        ]
+      },
+      {
+        "label": "Event AnyDamage",
+        "image": "node:Event AnyDamage",
+        "aliases": [
+          "AnyDamage"
+        ]
+      },
+      {
+        "label": "Event EndPlay",
+        "image": "node:Event EndPlay",
+        "aliases": [
+          "EndPlay"
+        ]
+      },
+      {
+        "label": "Event Destroyed",
+        "image": "node:Event Destroyed",
+        "aliases": [
+          "Destroyed"
+        ]
+      },
+      {
+        "label": "Custom Event",
+        "image": "node:Custom Event"
+      },
+      {
+        "label": "Destroy Actor",
+        "image": "node:Destroy Actor",
+        "aliases": [
+          "DestroyActor"
+        ]
+      },
+      {
+        "label": "Get Actor Rotation",
+        "image": "node:Get Actor Rotation",
+        "aliases": [
+          "GetActorRotation"
+        ]
+      },
+      {
+        "label": "Set Actor Rotation",
+        "image": "node:Set Actor Rotation",
+        "aliases": [
+          "SetActorRotation"
+        ]
+      },
+      {
+        "label": "Get Actor Forward Vector",
+        "image": "node:Get Actor Forward Vector",
+        "aliases": [
+          "GetActorForwardVector"
+        ]
+      },
+      {
+        "label": "Get Distance To",
+        "image": "node:Get Distance To",
+        "aliases": [
+          "GetDistanceTo"
+        ]
+      },
+      {
+        "label": "Get All Actors Of Class",
+        "image": "node:Get All Actors Of Class",
+        "aliases": [
+          "GetAllActorsOfClass"
+        ]
+      },
+      {
+        "label": "Get Player Controller",
+        "image": "node:Get Player Controller",
+        "aliases": [
+          "GetPlayerController"
+        ]
+      },
+      {
+        "label": "Get Game Mode",
+        "image": "node:Get Game Mode",
+        "aliases": [
+          "GetGameMode"
+        ]
+      },
+      {
+        "label": "Select",
+        "image": "node:Select"
+      },
+      {
+        "label": "Add Movement Input",
+        "image": "node:Add Movement Input",
+        "aliases": [
+          "AddMovementInput"
+        ]
+      },
+      {
+        "label": "Add Controller Yaw Input",
+        "image": "node:Add Controller Yaw Input",
+        "aliases": [
+          "AddControllerYawInput"
+        ]
+      },
+      {
+        "label": "Jump",
+        "image": "node:Jump"
+      },
+      {
+        "label": "Launch Character",
+        "image": "node:Launch Character",
+        "aliases": [
+          "LaunchCharacter"
+        ]
+      },
+      {
+        "label": "Enable Input",
+        "image": "node:Enable Input",
+        "aliases": [
+          "EnableInput"
+        ]
+      },
+      {
+        "label": "Set Show Mouse Cursor",
+        "image": "node:Set Show Mouse Cursor",
+        "aliases": [
+          "Show Mouse Cursor"
+        ]
+      },
+      {
+        "label": "Sphere Trace By Channel",
+        "image": "node:Sphere Trace By Channel",
+        "aliases": [
+          "SphereTraceByChannel",
+          "Sphere Trace"
+        ]
+      },
+      {
+        "label": "Remove from Parent",
+        "image": "node:Remove from Parent",
+        "aliases": [
+          "RemoveFromParent"
+        ]
+      },
+      {
+        "label": "Set Text",
+        "image": "node:Set Text",
+        "aliases": [
+          "SetText"
+        ]
+      },
+      {
+        "label": "Clear and Invalidate Timer by Handle",
+        "image": "node:Clear and Invalidate Timer by Handle",
+        "aliases": [
+          "Clear Timer",
+          "ClearAndInvalidateTimerByHandle"
+        ]
+      },
+      {
+        "label": "Get World Delta Seconds",
+        "image": "node:Get World Delta Seconds",
+        "aliases": [
+          "GetWorldDeltaSeconds",
+          "Delta Seconds"
+        ]
+      },
+      {
+        "label": "Lerp",
+        "image": "node:Lerp"
+      },
+      {
+        "label": "Make Vector",
+        "image": "node:Make Vector",
+        "aliases": [
+          "MakeVector"
+        ]
+      },
+      {
+        "label": "Break Vector",
+        "image": "node:Break Vector",
+        "aliases": [
+          "BreakVector"
+        ]
+      },
+      {
+        "label": "Random Integer in Range",
+        "image": "node:Random Integer in Range",
+        "aliases": [
+          "RandomIntegerInRange"
+        ]
+      },
+      {
+        "label": "Random Float in Range",
+        "image": "node:Random Float in Range",
+        "aliases": [
+          "RandomFloatInRange"
+        ]
+      },
+      {
+        "label": "Clamp",
+        "image": "node:Clamp"
+      },
+      {
+        "label": "Vector Length",
+        "image": "node:Vector Length",
+        "aliases": [
+          "VSize"
+        ]
+      },
+      {
+        "label": "Normalize",
+        "image": "node:Normalize"
+      },
+      {
+        "label": "Find Look at Rotation",
+        "image": "node:Find Look at Rotation",
+        "aliases": [
+          "FindLookAtRotation"
+        ]
+      },
+      {
+        "label": "RInterp To",
+        "image": "node:RInterp To",
+        "aliases": [
+          "RInterpTo"
+        ]
+      },
+      {
+        "label": "Append",
+        "image": "node:Append"
+      },
+      {
+        "label": "Format Text",
+        "image": "node:Format Text",
+        "aliases": [
+          "FormatText"
+        ]
+      },
+      {
+        "label": "Play Sound at Location",
+        "image": "node:Play Sound at Location",
+        "aliases": [
+          "PlaySoundAtLocation"
+        ]
+      },
+      {
+        "label": "Play Sound 2D",
+        "image": "node:Play Sound 2D",
+        "aliases": [
+          "PlaySound2D"
+        ]
+      },
+      {
+        "label": "Spawn Emitter at Location",
+        "image": "node:Spawn Emitter at Location",
+        "aliases": [
+          "SpawnEmitterAtLocation"
+        ]
+      },
+      {
+        "label": "Apply Damage",
+        "image": "node:Apply Damage",
+        "aliases": [
+          "ApplyDamage"
+        ]
+      },
+      {
+        "label": "Add Impulse",
+        "image": "node:Add Impulse",
+        "aliases": [
+          "AddImpulse"
+        ]
+      },
+      {
+        "label": "Set Simulate Physics",
+        "image": "node:Set Simulate Physics",
+        "aliases": [
+          "SetSimulatePhysics"
+        ]
+      },
+      {
+        "label": "Open Level",
+        "image": "node:Open Level",
+        "aliases": [
+          "OpenLevel",
+          "Open Level (by Name)"
+        ]
+      },
+      {
+        "label": "Quit Game",
+        "image": "node:Quit Game",
+        "aliases": [
+          "QuitGame"
+        ]
+      },
+      {
+        "label": "Create Save Game Object",
+        "image": "node:Create Save Game Object",
+        "aliases": [
+          "CreateSaveGameObject"
+        ]
+      },
+      {
+        "label": "Save Game to Slot",
+        "image": "node:Save Game to Slot",
+        "aliases": [
+          "SaveGameToSlot"
+        ]
+      },
+      {
+        "label": "Load Game from Slot",
+        "image": "node:Load Game from Slot",
+        "aliases": [
+          "LoadGameFromSlot"
+        ]
+      },
+      {
+        "label": "Does Save Game Exist",
+        "image": "node:Does Save Game Exist",
+        "aliases": [
+          "DoesSaveGameExist"
+        ]
+      },
+      {
+        "label": "Play Anim Montage",
+        "image": "node:Play Anim Montage",
+        "aliases": [
+          "PlayAnimMontage"
+        ]
+      },
+      {
+        "label": "Create Dynamic Material Instance",
+        "image": "node:Create Dynamic Material Instance",
+        "aliases": [
+          "CreateDynamicMaterialInstance",
+          "Dynamic Material Instance"
+        ]
+      },
+      {
+        "label": "Set Scalar Parameter Value",
+        "image": "node:Set Scalar Parameter Value",
+        "aliases": [
+          "SetScalarParameterValue"
+        ]
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Node",
+          "entities": [
+            "Branch|If",
+            "Sequence",
+            "For Loop",
+            "For Each Loop|ForEach",
+            "While Loop",
+            "Do Once|DoOnce",
+            "DoN|Do N",
+            "Gate",
+            "FlipFlop|Flip Flop",
+            "Switch on Int",
+            "Delay",
+            "Retriggerable Delay",
+            "Event BeginPlay|BeginPlay",
+            "Event Tick|Tick",
+            "Event ActorBeginOverlap|ActorBeginOverlap|Begin Overlap",
+            "Event Hit|On Hit",
+            "Event AnyDamage|AnyDamage",
+            "Event EndPlay|EndPlay",
+            "Event Destroyed|Destroyed",
+            "Custom Event",
+            "Spawn Actor from Class|SpawnActor|Spawn Actor",
+            "Destroy Actor|DestroyActor",
+            "Get Actor Location|GetActorLocation",
+            "Set Actor Location|SetActorLocation",
+            "Get Actor Rotation|GetActorRotation",
+            "Set Actor Rotation|SetActorRotation",
+            "Get Actor Forward Vector|GetActorForwardVector",
+            "Get Distance To|GetDistanceTo",
+            "Get All Actors Of Class|GetAllActorsOfClass",
+            "Get Player Character|GetPlayerCharacter",
+            "Get Player Controller|GetPlayerController",
+            "Get Game Mode|GetGameMode",
+            "Cast To Character|Cast To|Cast",
+            "Is Valid|IsValid",
+            "Select",
+            "Add Movement Input|AddMovementInput",
+            "Add Controller Yaw Input|AddControllerYawInput",
+            "Jump",
+            "Launch Character|LaunchCharacter",
+            "Enable Input|EnableInput",
+            "Set Show Mouse Cursor|Show Mouse Cursor",
+            "Line Trace By Channel|LineTraceByChannel|Line Trace|Raycast",
+            "Sphere Trace By Channel|SphereTraceByChannel|Sphere Trace",
+            "Create Widget|CreateWidget",
+            "Add to Viewport|AddToViewport",
+            "Remove from Parent|RemoveFromParent",
+            "Set Text|SetText",
+            "Set Timer by Event|SetTimerByEvent|Set Timer",
+            "Clear and Invalidate Timer by Handle|Clear Timer|ClearAndInvalidateTimerByHandle",
+            "Get World Delta Seconds|GetWorldDeltaSeconds|Delta Seconds",
+            "Lerp",
+            "Make Vector|MakeVector",
+            "Break Vector|BreakVector",
+            "Random Integer in Range|RandomIntegerInRange",
+            "Random Float in Range|RandomFloatInRange",
+            "Clamp",
+            "Vector Length|VSize",
+            "Normalize",
+            "Find Look at Rotation|FindLookAtRotation",
+            "RInterp To|RInterpTo",
+            "Print String|PrintString",
+            "Append",
+            "Format Text|FormatText",
+            "Play Sound at Location|PlaySoundAtLocation",
+            "Play Sound 2D|PlaySound2D",
+            "Spawn Emitter at Location|SpawnEmitterAtLocation",
+            "Apply Damage|ApplyDamage",
+            "Add Impulse|AddImpulse",
+            "Set Simulate Physics|SetSimulatePhysics",
+            "Open Level|OpenLevel|Open Level (by Name)",
+            "Quit Game|QuitGame",
+            "Create Save Game Object|CreateSaveGameObject",
+            "Save Game to Slot|SaveGameToSlot",
+            "Load Game from Slot|LoadGameFromSlot",
+            "Does Save Game Exist|DoesSaveGameExist",
+            "Play Anim Montage|PlayAnimMontage",
+            "Create Dynamic Material Instance|CreateDynamicMaterialInstance|Dynamic Material Instance",
+            "Set Scalar Parameter Value|SetScalarParameterValue"
+          ]
+        },
+        {
+          "label": "Pin type",
+          "entities": [
+            "Boolean|Bool",
+            "Byte",
+            "Integer|Int",
+            "Integer64|Int64",
+            "Float|Double",
+            "Name",
+            "String",
+            "Text",
+            "Vector",
+            "Rotator",
+            "Transform",
+            "Object Reference|Object",
+            "Class Reference|Class",
+            "Structure|Struct",
+            "Enum|Enumeration",
+            "Interface",
+            "Execution|Exec",
+            "Wildcard"
+          ]
+        },
+        {
+          "label": "Kind of Blueprint",
+          "entities": [
+            "Level Blueprint",
+            "Blueprint Class",
+            "Data-Only Blueprint",
+            "Blueprint Interface",
+            "Blueprint Macro Library",
+            "Blueprint Function Library",
+            "Widget Blueprint",
+            "Animation Blueprint|Anim Blueprint|AnimBP"
+          ]
+        },
+        {
+          "label": "Graph",
+          "entities": [
+            "Event Graph",
+            "Construction Script",
+            "Function Graph|Function",
+            "Macro Graph|Macro",
+            "AnimGraph|Anim Graph"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Node",
+      "prompt": "Which node does this?",
+      "clues": [
+        {
+          "text": "Sends the flow down one of two paths depending on a true-or-false condition.",
+          "answer": "Branch|If"
+        },
+        {
+          "text": "Fires several outputs one after the other, in order, from a single input.",
+          "answer": "Sequence"
+        },
+        {
+          "text": "Runs its body once for every number between two indexes.",
+          "answer": "For Loop"
+        },
+        {
+          "text": "Runs its body once for each element of an array.",
+          "answer": "For Each Loop|ForEach"
+        },
+        {
+          "text": "Keeps running its body as long as a condition stays true.",
+          "answer": "While Loop"
+        },
+        {
+          "text": "Lets the flow through a single time, until it is reset.",
+          "answer": "Do Once|DoOnce"
+        },
+        {
+          "text": "Lets the flow through a set number of times, then stays shut until reset.",
+          "answer": "DoN|Do N"
+        },
+        {
+          "text": "A door for the flow: it can be opened, closed or toggled from other inputs.",
+          "answer": "Gate"
+        },
+        {
+          "text": "Alternates between two outputs each time it runs.",
+          "answer": "FlipFlop|Flip Flop"
+        },
+        {
+          "text": "Picks an output by number, with a default for anything else.",
+          "answer": "Switch on Int"
+        },
+        {
+          "text": "Waits a number of seconds before carrying on — calling it again while waiting does nothing.",
+          "answer": "Delay"
+        },
+        {
+          "text": "Waits a number of seconds, restarting the countdown every time it is called again.",
+          "answer": "Retriggerable Delay"
+        },
+        {
+          "text": "An event of your own, which other graphs can call by name.",
+          "answer": "Custom Event"
+        },
+        {
+          "text": "Creates a new actor of a given class in the world, at a given transform.",
+          "answer": "Spawn Actor from Class|SpawnActor|Spawn Actor"
+        },
+        {
+          "text": "Removes an actor from the world.",
+          "answer": "Destroy Actor|DestroyActor"
+        },
+        {
+          "text": "Gives where an actor is in the world.",
+          "answer": "Get Actor Location|GetActorLocation"
+        },
+        {
+          "text": "Moves an actor to a new position, optionally stopping at whatever it hits.",
+          "answer": "Set Actor Location|SetActorLocation"
+        },
+        {
+          "text": "Gives which way an actor is turned.",
+          "answer": "Get Actor Rotation|GetActorRotation"
+        },
+        {
+          "text": "Turns an actor to face a new rotation.",
+          "answer": "Set Actor Rotation|SetActorRotation"
+        },
+        {
+          "text": "Gives the direction an actor is facing, as a unit vector.",
+          "answer": "Get Actor Forward Vector|GetActorForwardVector"
+        },
+        {
+          "text": "Gives how far apart two actors are.",
+          "answer": "Get Distance To|GetDistanceTo"
+        },
+        {
+          "text": "Finds every actor of a given class in the level — slow, so best kept out of Tick.",
+          "answer": "Get All Actors Of Class|GetAllActorsOfClass"
+        },
+        {
+          "text": "Gives the character a player is controlling.",
+          "answer": "Get Player Character|GetPlayerCharacter"
+        },
+        {
+          "text": "Gives the controller of a player — their input and their camera.",
+          "answer": "Get Player Controller|GetPlayerController"
+        },
+        {
+          "text": "Gives the object that holds the rules of the current game.",
+          "answer": "Get Game Mode|GetGameMode"
+        },
+        {
+          "text": "Checks whether an object is a character, and gives it back as one if so.",
+          "answer": "Cast To Character|Cast To|Cast"
+        },
+        {
+          "text": "Splits the flow on whether an object reference actually points at something.",
+          "answer": "Is Valid|IsValid"
+        },
+        {
+          "text": "Picks one of several values according to an index or a condition.",
+          "answer": "Select"
+        },
+        {
+          "text": "Pushes a pawn in a direction — how most characters walk.",
+          "answer": "Add Movement Input|AddMovementInput"
+        },
+        {
+          "text": "Turns the controller left or right — how the mouse turns the camera.",
+          "answer": "Add Controller Yaw Input|AddControllerYawInput"
+        }
+      ]
+    }
   }
 ]

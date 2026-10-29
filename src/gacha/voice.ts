@@ -32,6 +32,7 @@ const SPEAKERS: Record<string, Speaker> = {
   forts: { pitch: 0.85, rate: 1, lang: 'en-GB' },
   forhonor: { pitch: 0.8, rate: 0.95, lang: 'en-GB' },
   avatar: { pitch: 1.2, rate: 1.05, lang: 'en-US' },
+  unreal: { pitch: 0.7, rate: 1.1, lang: 'en-US' },
 };
 
 // Voice names that say which way they sound (browsers don't tell): Windows, macOS, Chrome and Edge voices.

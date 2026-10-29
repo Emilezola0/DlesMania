@@ -31,6 +31,13 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/5/5a/Alistar_Render.png/revision/latest/scale-to-width-down/360?cb=20200324143400"
       },
       {
+        "name": "Ambessa",
+        "aliases": [
+          "Ambessa Medarda"
+        ],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/d/d8/Ambessa_Render.png/revision/latest/scale-to-width-down/360?cb=20250304155737"
+      },
+      {
         "name": "Amumu",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/1/17/Amumu_Render.png/revision/latest/scale-to-width-down/360?cb=20200324143252"
@@ -140,14 +147,14 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/c/c2/Diana_Render.png/revision/latest/scale-to-width-down/360?cb=20241006153051"
       },
       {
-        "name": "Draven",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/3/37/Draven_Render.png/revision/latest/scale-to-width-down/360?cb=20200330081332"
-      },
-      {
         "name": "Dr. Mundo",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/6/6b/Dr._Mundo_Render.png/revision/latest/scale-to-width-down/360?cb=20210525204518"
+      },
+      {
+        "name": "Draven",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/3/37/Draven_Render.png/revision/latest/scale-to-width-down/360?cb=20200330081332"
       },
       {
         "name": "Ekko",
@@ -280,6 +287,11 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/c/c8/Jinx_Render.png/revision/latest/scale-to-width-down/360?cb=20200514000223"
       },
       {
+        "name": "K'Sante",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/e/e4/K%27Sante_Render.png/revision/latest/scale-to-width-down/360?cb=20221020004336"
+      },
+      {
         "name": "Kai'Sa",
         "aliases": [
           "Kaisa"
@@ -349,11 +361,6 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/4/4c/Kog%27Maw_Render.png/revision/latest/scale-to-width-down/360?cb=20210522162235"
       },
       {
-        "name": "K'Sante",
-        "aliases": [],
-        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/e/e4/K%27Sante_Render.png/revision/latest/scale-to-width-down/360?cb=20221020004336"
-      },
-      {
         "name": "LeBlanc",
         "aliases": [
           "Leblanc"
@@ -416,6 +423,13 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/e/e7/Master_Yi_Render.png/revision/latest/scale-to-width-down/360?cb=20210110231715"
       },
       {
+        "name": "Mel",
+        "aliases": [
+          "Mel Medarda"
+        ],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/4/4d/Mel_Render.png/revision/latest/scale-to-width-down/360?cb=20250304155903"
+      },
+      {
         "name": "Milio",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/f/f6/Milio_Render.png/revision/latest/scale-to-width-down/360?cb=20230309004020"
@@ -424,13 +438,6 @@
         "name": "Miss Fortune",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/1/16/Miss_Fortune_Render.png/revision/latest/scale-to-width-down/360?cb=20210521205159"
-      },
-      {
-        "name": "Wukong",
-        "aliases": [
-          "MonkeyKing"
-        ],
-        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/d/dd/Wukong_Render.png/revision/latest/scale-to-width-down/360?cb=20200322005417"
       },
       {
         "name": "Mordekaiser",
@@ -481,6 +488,14 @@
         "name": "Nocturne",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/c/c5/Nocturne_Render.png/revision/latest/scale-to-width-down/360?cb=20141003134722"
+      },
+      {
+        "name": "Nunu & Willump",
+        "aliases": [
+          "Nunu",
+          "Nunu and Willump"
+        ],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/2/2d/Nunu_Render.png/revision/latest/scale-to-width-down/360?cb=20181111000427"
       },
       {
         "name": "Olaf",
@@ -785,6 +800,13 @@
         "name": "Warwick",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/3/3a/Warwick_Render.png/revision/latest/scale-to-width-down/360?cb=20231116213235"
+      },
+      {
+        "name": "Wukong",
+        "aliases": [
+          "MonkeyKing"
+        ],
+        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/d/dd/Wukong_Render.png/revision/latest/scale-to-width-down/360?cb=20200322005417"
       },
       {
         "name": "Xayah",

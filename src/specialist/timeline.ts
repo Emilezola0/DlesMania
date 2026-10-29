@@ -31,7 +31,8 @@ interface TimelineSource {
 /** "5.10" → 510, so versions sort as numbers. */
 const versionKey = (v: string) => v.split('.').map(Number).reduce((n, x, i) => n + x * (i ? 1 : 100), 0);
 
-const SOURCES: Record<UniverseId, () => TimelineSource> = {
+/** The universes with a Timeline round (the lighter ones, built from the boss battles, have none). */
+const SOURCES: Partial<Record<UniverseId, () => TimelineSource>> = {
   onepiece: () => ({
     order: 'from their first appearance in the manga to the latest',
     gap: 20,
@@ -70,7 +71,7 @@ const SOURCES: Record<UniverseId, () => TimelineSource> = {
 
 const cache = new Map<UniverseId, TimelineSource>();
 export function timelineSource(id: UniverseId): TimelineSource {
-  if (!cache.has(id)) cache.set(id, SOURCES[id]());
+  if (!cache.has(id)) cache.set(id, SOURCES[id]?.() ?? { order: '', gap: 0, items: [] });
   return cache.get(id)!;
 }
 

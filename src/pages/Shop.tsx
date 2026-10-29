@@ -12,7 +12,7 @@ import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
 const PACKS = packsFor(SETS);
-const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard' } as const;
+const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
 
 /** Days until a period's missions change: next Monday, or the 1st of next month. */
 function daysLeft(p: Period): number {
@@ -47,13 +47,14 @@ function DropRates() {
     { label: 'Any pack', boost: 1 },
     { label: 'Guardian beaten on Medium', boost: BOOST.medium },
     { label: 'Guardian beaten on Hard', boost: BOOST.hard },
+    { label: 'Guardian beaten on Hell', boost: BOOST.hell },
   ].map((c) => ({ ...c, odds: oddsWith(c.boost) }));
   return (
     <section className="space-y-3">
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic) or Hard (×{BOOST.hard} Epic; Rare and the top tiers up by half as much). Per card, and in brackets the chance of at least one in a pack.
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and the top tiers up by half as much). Per card, and in brackets the chance of at least one in a pack.
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">
@@ -308,8 +309,8 @@ export default function Shop() {
           <li>Every daily round you finish: 6 to 16 coins, the better your score the more (2 for a lost round); +{CATEGORY_BONUS} for playing all ten of a category.</li>
           <li>Specialist dailies: the same per round.</li>
           <li>
-            Every Boss Battle: {BOSS_WIN.easy} for a win on Easy, {BOSS_WIN.medium} on Medium, {BOSS_WIN.hard} on Hard ({BOSS_LOSS} for a loss) — and the first win over each boss at each difficulty
-            this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium} or +{BOSS_WEEKLY.hard} more ({bossWeek.keys.length} of {SETS.length * 3} taken this week; they come back every Monday).
+            Every Boss Battle: {BOSS_WIN.easy} for a win on Easy, {BOSS_WIN.medium} on Medium, {BOSS_WIN.hard} on Hard, {BOSS_WIN.hell} on Hell ({BOSS_LOSS} for a loss) — and the first win over each boss at each difficulty
+            this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium}, +{BOSS_WEEKLY.hard} or +{BOSS_WEEKLY.hell} more ({bossWeek.keys.length} of {SETS.length * 4} taken this week; they come back every Monday).
           </li>
           <li>
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to 12 by your score; an

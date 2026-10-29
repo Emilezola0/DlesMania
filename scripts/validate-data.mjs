@@ -139,7 +139,7 @@ const bosses = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'bosses.json'),
 // every boss has enough Signature clues (Hard).
 const difficulties = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'difficulties.json'), 'utf8'));
 const positive = ['hearts', 'blitzSecondsPer', 'radarCards', 'radarImpostors', 'finaleTargets', 'finaleSeconds', 'scoreMultiplier'];
-for (const id of ['easy', 'medium', 'hard']) {
+for (const id of ['easy', 'medium', 'hard', 'hell']) {
   const d = difficulties[id];
   const at = `difficulties/${id}`;
   if (!d) {

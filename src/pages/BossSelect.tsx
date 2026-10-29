@@ -3,12 +3,11 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
-import { BOSS_DOMAINS, BOSSES } from '../data/bosses';
+import { BOSS_TABS, BOSSES, inTab, type BossTab } from '../data/bosses';
 import { formatTime } from '../lib/boss';
 import { bestSearchScore } from '../utils/textMatcher';
 import { DIFFICULTIES, DIFFICULTY_IDS } from '../lib/boss';
 import { EMPTY_BOSS_RECORD, bossKey, useProgress } from '../store/progress';
-import type { Domain } from '../types';
 
 function chip(active: boolean) {
   return `inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm font-semibold transition ${
@@ -19,13 +18,13 @@ function chip(active: boolean) {
 /** Step 1: pick a domain. Step 2: pick a franchise (searchable). */
 export default function BossSelect() {
   const [params, setParams] = useSearchParams();
-  const domain = (BOSS_DOMAINS as string[]).includes(params.get('domain') ?? '') ? (params.get('domain') as Domain) : 'games';
+  const domain = (BOSS_TABS as string[]).includes(params.get('domain') ?? '') ? (params.get('domain') as BossTab) : 'games';
   const [query, setQuery] = useState('');
   const records = useProgress((s) => s.bosses);
 
   // A search looks across every domain, so a franchise is found even from the wrong tab.
   const list = useMemo(() => {
-    if (!query.trim()) return BOSSES.filter((b) => b.domain === domain);
+    if (!query.trim()) return BOSSES.filter((b) => inTab(b, domain));
     return BOSSES.filter((b) => bestSearchScore(query, [b.franchise, b.boss.name, ...b.aliases]) !== null);
   }, [domain, query]);
 
@@ -55,8 +54,8 @@ export default function BossSelect() {
         <div>
           <p className="mb-2 font-display text-xs uppercase tracking-widest text-ink-faint">I · Domain</p>
           <div className="flex flex-wrap gap-2">
-            {BOSS_DOMAINS.map((id) => {
-              const d = domainInfo(id);
+            {BOSS_TABS.map((id) => {
+              const d = id === 'other' ? { label: 'Other', tone: 'text-ink-soft' } : domainInfo(id);
               const active = domain === id && !query;
               return (
                 <button

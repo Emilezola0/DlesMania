@@ -120,7 +120,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
         <div className="text-center text-white">
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name)}</p>
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
-          {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard to awaken it: {card.awaken.title}.</p>}
+          {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
           {canHear(card) && (
             <button type="button" onClick={() => playVoice(card, true)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               🔊 Hear “{card.voice}”

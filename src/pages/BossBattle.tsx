@@ -60,7 +60,7 @@ export default function BossBattlePage() {
   return <BossBattle key={boss.id} boss={boss} />;
 }
 
-const DIFFICULTY_TONE = { easy: 'text-hit', medium: 'text-ochre', hard: 'text-coral' } as const;
+const DIFFICULTY_TONE = { easy: 'text-hit', medium: 'text-ochre', hard: 'text-coral', hell: 'text-red-600' } as const;
 
 function BossBattle({ boss }: { boss: Boss }) {
   const recordBoss = useProgress((s) => s.recordBoss);
@@ -347,7 +347,7 @@ function BossBattle({ boss }: { boss: Boss }) {
 
             {/* Difficulty */}
             <div className="space-y-2">
-              <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Difficulty">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="radiogroup" aria-label="Difficulty">
                 {DIFFICULTY_IDS.map((id) => {
                   const spec = DIFFICULTIES[id];
                   const r = records[bossKey(boss.id, id)];

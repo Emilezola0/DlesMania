@@ -47,7 +47,7 @@ export interface BossRecord {
 
 export const EMPTY_BOSS_RECORD: BossRecord = { plays: 0, wins: 0, bestScore: 0, bestTime: null };
 
-export type BossDifficulty = 'easy' | 'medium' | 'hard';
+export type BossDifficulty = 'easy' | 'medium' | 'hard' | 'hell';
 
 /** Records are kept per boss and difficulty; Easy keeps the plain id that records had before difficulties. */
 export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty === 'easy' ? id : `${id}:${difficulty}`);

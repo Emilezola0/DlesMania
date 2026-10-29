@@ -32,9 +32,10 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
   },
 };
 
-/** An omni's form: its second (awakened) once its franchise's guardian has been beaten on Hard. */
+/** An omni's form: its second (awakened) once its franchise's guardian has been beaten on Hard (or Hell). */
 export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean } {
-  const awake = useProgress((s) => !!card.awaken && (s.bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0);
+  // Hard or Hell: either win awakens it.
+  const awake = useProgress((s) => !!card.awaken && ((s.bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0));
   return awake && card.awaken
     ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true }
     : { image: card.image, title: card.title, description: card.description, awakened: false };

@@ -12,10 +12,10 @@ export const roundCoins = (won: boolean, score: number) => (won ? 6 + Math.floor
 export const CATEGORY_BONUS = 25;
 
 /** Every boss fight: a win by difficulty, a token for a loss. */
-export const BOSS_WIN: Record<BossDifficulty, number> = { easy: 12, medium: 25, hard: 45 };
+export const BOSS_WIN: Record<BossDifficulty, number> = { easy: 12, medium: 25, hard: 45, hell: 80 };
 export const BOSS_LOSS = 3;
 /** The first win over a boss at a difficulty each week (weeks start on Monday). */
-export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 80, hard: 150 };
+export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 80, hard: 150, hell: 250 };
 
 /**
  * A game from the Games page, by how it went — fully up to a daily amount, then a token:

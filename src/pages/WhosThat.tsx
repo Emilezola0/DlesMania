@@ -12,6 +12,7 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { compactText, isFuzzyMatch } from '../utils/textMatcher';
 import { prepareCutout, useCutout } from '../lib/cutout';
+import { Spinner } from '../components/Spinner';
 
 /** How long a named silhouette stays revealed, and how long the one that ended the run does. */
 const REVEAL_MS = 650;
@@ -178,7 +179,11 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   useEffect(() => () => window.clearTimeout(timer.current), []);
   const card = order[index];
   // Pictures on a white background (Genshin portraits) are cut out first; nothing shows until that's done.
-  const picture = useCutout(card?.image, !!card?.series.cutout);
+  // A picture that fails is asked for again once (the wikis' servers sometimes refuse a burst of
+  // requests) before the run moves on without it.
+  const [retried, setRetried] = useState<string | null>(null);
+  const source = card && retried === card.image ? `${card.image}${card.image.includes('?') ? '&' : '?'}retry=1` : card?.image;
+  const picture = useCutout(source, !!card?.series.cutout);
   const isAll = playKey.startsWith(ALL_PREFIX);
   const score = named.length;
   const level = mode === 'rising' ? Math.min(MAX_LEVEL, Math.floor(score / LEVEL_EVERY)) : 0;
@@ -338,14 +343,18 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
                 className="absolute inset-0 transition-transform duration-300"
                 style={reveal ? undefined : { transform: look.transform, transformOrigin: look.transformOrigin }}
               >
+                {/* Nothing until the picture is ready: an empty image would show its alt text, blacked out. */}
+                {picture ? (
                 <img
-                  key={cardKey}
-                  src={picture ?? undefined}
-                  alt={reveal ? card.name : 'Silhouette'}
+                  key={`${cardKey}-${source}`}
+                  src={picture}
+                  // No name in the alt text: a picture that fails to load would show it.
+                  alt=""
                   draggable={false}
                   onLoad={onShown}
                   onError={() => {
-                    // A broken picture shouldn't end the run: move on to the next one.
+                    // Once more, then on to the next one (a broken picture shouldn't end the run).
+                    if (card && retried !== card.image) return setRetried(card.image);
                     if (index + 1 >= order.length) finish(named.length, null);
                     else setIndex((i) => i + 1);
                   }}
@@ -357,6 +366,11 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
                     visibility: hidden ? 'hidden' : 'visible',
                   }}
                 />
+                ) : (
+                  <span className="absolute inset-0 grid place-items-center text-white/80" aria-label="Loading the picture">
+                    <Spinner className="size-6" />
+                  </span>
+                )}
               </div>
             </div>
             </div>
