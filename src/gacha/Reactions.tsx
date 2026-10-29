@@ -15,6 +15,8 @@ import { playVoice } from './voice';
  * included): a right answer, a mistake. A mythic speaks as its star does.
  */
 export const CHARACTER_LINES: Record<string, { good: string[]; bad: string[] }> = {
+  "Ozai": { good: ["Even the Phoenix King must admit it.","You burn brighter than I thought."], bad: ["Pathetic.","You are no match for the Fire Nation."] },
+  "Aang": { good: ["Yeah! Airbending master!","That was awesome!"], bad: ["Whoops… let’s try again.","Even Monk Gyatso missed sometimes."] },
   "Apollyon": { good: ["A wolf among sheep, at last.","That is how war is waged."], bad: ["A sheep, after all.","The Legion expected more."] },
   "Kensei": { good: ["A clean cut.","The way of the blade."], bad: ["Your stance was off.","Breathe. Strike again."] },
   "Phantom": { good: ["You saw that coming? Impressive.","Cloak holding. Good call."], bad: ["Fooled by a decoy.","You aimed at nothing at all."] },
@@ -79,6 +81,7 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   smash: { good: ['GAME!', 'Perfect combo!', 'A new champion!'], bad: ['Self-destruct…', 'Shield break!', 'Off the stage…'] },
   genshin: { good: ['Elemental reaction!', 'Five-star play!', 'Luck is on your side.'], bad: ['Only three stars…', 'Pity counter +1.', 'Out of stamina…'] },
   wow: { good: ['Epic loot!', 'Level up!', 'For Azeroth!'], bad: ['Wipe! Run back…', 'Repair your gear and retry.', 'Pulled too many…'] },
+  avatar: { good: ['Perfectly balanced!', 'Your bending is getting stronger!', 'Yip yip!'], bad: ['That was a cabbage-level mistake…', 'Back to the Air Temple to train…', 'The elements are not with you.'] },
   forhonor: { good: ['Guard break!', 'A worthy duel!', 'Execution!'], bad: ['Parried…', 'Your guard is open!', 'Back to the war camp…'] },
   forts: { good: ['Direct hit!', 'Reactor breached!', 'Fort holding strong.'], bad: ['Bracing down!', 'Incoming fire!', 'Repair crews, now!'] },
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },

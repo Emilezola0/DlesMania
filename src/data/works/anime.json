@@ -8434,7 +8434,8 @@
     ],
     "fandom": "parasyte",
     "cover": {
-      "wiki": "Parasyte"
+      "wiki": "Parasyte",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Parasyte_4.png"
     },
     "audio": {
       "clue": "A heavy rock-dubstep opening.",
@@ -9858,6 +9859,254 @@
       "colors": [
         "#2563eb",
         "#ef4444"
+      ]
+    }
+  },
+  {
+    "id": "a-nana",
+    "name": "Nana",
+    "domain": "anime",
+    "year": 2006,
+    "genres": [
+      "Drama",
+      "Romance",
+      "Music"
+    ],
+    "studio": "Madhouse",
+    "creator": "Ai Yazawa",
+    "origin": "Japan",
+    "format": "TV",
+    "source": "Manga",
+    "characters": [
+      "Nana Osaki",
+      "Nana Komatsu",
+      "Ren Honjo",
+      "Nobuo Terashima"
+    ],
+    "themes": [
+      "Friendship",
+      "Punk rock",
+      "Love"
+    ],
+    "credits": [
+      "Director: Morio Asaka",
+      "Original manga: Ai Yazawa",
+      "Studio: Madhouse"
+    ],
+    "fandom": "nana",
+    "cover": {
+      "wiki": "Nana (manga)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/09/Nana_volume_1.png"
+    },
+    "audio": {
+      "clue": "A raw punk-rock opening with a raspy female vocal.",
+      "query": "NANA opening Rose"
+    },
+    "voice": {
+      "speaker": "Nana Osaki",
+      "query": "Nana Osaki NANA japanese voice lines"
+    },
+    "emoji": "🎸🍓🚃🏠🎤",
+    "location": {
+      "name": "Apartment 707",
+      "description": "The Tokyo flat the two Nanas end up sharing.",
+      "image": "https://static.wikia.nocookie.net/nana/images/5/52/707.jpg/revision/latest?cb=20180524214239"
+    },
+    "visual": {
+      "icon": "🎸",
+      "colors": [
+        "#18181b",
+        "#f43f5e"
+      ]
+    }
+  },
+  {
+    "id": "a-tanya",
+    "name": "Saga of Tanya the Evil",
+    "aliases": [
+      "tanya the evil",
+      "youjo senki",
+      "the saga of tanya the evil"
+    ],
+    "domain": "anime",
+    "year": 2017,
+    "genres": [
+      "Military",
+      "Isekai",
+      "Fantasy"
+    ],
+    "studio": "Nut",
+    "creator": "Carlo Zen",
+    "origin": "Japan",
+    "format": "TV",
+    "source": "Light Novel",
+    "characters": [
+      "Tanya Degurechaff",
+      "Viktoriya Serebryakova",
+      "Being X",
+      "Erich von Rerugen"
+    ],
+    "themes": [
+      "Reincarnation",
+      "War",
+      "Faith"
+    ],
+    "credits": [
+      "Director: Yutaka Uemura",
+      "Original novels: Carlo Zen",
+      "Studio: Nut"
+    ],
+    "fandom": "youjo-senki",
+    "cover": {
+      "wiki": "The Saga of Tanya the Evil",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9b/Y%C5%8Djo_Senki_light_novel_volume_1_cover.jpg"
+    },
+    "audio": {
+      "clue": "A militaristic, choir-backed rock opening.",
+      "query": "Youjo Senki opening JINGO JUNGLE"
+    },
+    "voice": {
+      "speaker": "Tanya Degurechaff",
+      "query": "Tanya Degurechaff Youjo Senki japanese voice lines"
+    },
+    "emoji": "👧🔫✈️☁️😈",
+    "item": {
+      "name": "The Elinium Type 95",
+      "description": "An experimental computation orb that only works when its user prays.",
+      "image": "https://static.wikia.nocookie.net/youjo-senki/images/5/5d/EliniumType95Anime.png/revision/latest/scale-to-width-down/640?cb=20170203083526"
+    },
+    "location": {
+      "name": "The Rhine front",
+      "description": "The trenches where a child mage becomes a war hero."
+    },
+    "visual": {
+      "icon": "✈️",
+      "colors": [
+        "#1c1917",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "a-prisonschool",
+    "name": "Prison School",
+    "aliases": [
+      "prison school",
+      "kangoku gakuen"
+    ],
+    "domain": "anime",
+    "year": 2015,
+    "genres": [
+      "Comedy"
+    ],
+    "studio": "J.C.Staff",
+    "creator": "Akira Hiramoto",
+    "origin": "Japan",
+    "format": "TV",
+    "source": "Manga",
+    "characters": [
+      "Kiyoshi Fujino",
+      "Mari Kurihara",
+      "Meiko Shiraki",
+      "Hana Midorikawa"
+    ],
+    "themes": [
+      "Punishment",
+      "Escape"
+    ],
+    "credits": [
+      "Director: Tsutomu Mizushima",
+      "Original manga: Akira Hiramoto",
+      "Studio: J.C.Staff"
+    ],
+    "fandom": "prison-school",
+    "cover": {
+      "wiki": "Prison School",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f0/Prison_School_Manga_Volume_Cover.png"
+    },
+    "audio": {
+      "clue": "A dramatic, over-the-top choral opening.",
+      "query": "Prison School opening Ai no Prison"
+    },
+    "voice": {
+      "speaker": "Kiyoshi Fujino",
+      "query": "Kiyoshi Fujino Prison School japanese voice lines"
+    },
+    "emoji": "🏫⛓️👓🧹🏃",
+    "location": {
+      "name": "The school prison",
+      "description": "A jail built on the grounds of an elite academy."
+    },
+    "visual": {
+      "icon": "⛓️",
+      "colors": [
+        "#1f2937",
+        "#f472b6"
+      ]
+    }
+  },
+  {
+    "id": "a-bakugan",
+    "name": "Bakugan Battle Brawlers",
+    "aliases": [
+      "bakugan"
+    ],
+    "domain": "anime",
+    "year": 2007,
+    "genres": [
+      "Action",
+      "Adventure"
+    ],
+    "studio": "TMS Entertainment",
+    "creator": "Mitsuo Hashimoto",
+    "origin": "Japan",
+    "format": "TV",
+    "source": "Original",
+    "characters": [
+      "Dan Kuso",
+      "Drago",
+      "Runo Misaki",
+      "Shun Kazami"
+    ],
+    "themes": [
+      "Battling",
+      "Friendship"
+    ],
+    "credits": [
+      "Director: Mitsuo Hashimoto",
+      "Studio: TMS Entertainment",
+      "Based on the toy line by Sega Toys and Spin Master"
+    ],
+    "fandom": "bakugan",
+    "cover": {
+      "wiki": "Bakugan Battle Brawlers",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Bakugan_DVD_Volume_13_%28Japanese%29.jpg"
+    },
+    "audio": {
+      "clue": "An upbeat rock opening for a battle show.",
+      "query": "Bakugan Battle Brawlers opening"
+    },
+    "voice": {
+      "speaker": "Dan Kuso",
+      "query": "Dan Kuso Bakugan japanese voice lines"
+    },
+    "emoji": "🐉🎴⚪🔥💥",
+    "item": {
+      "name": "A Gate Card",
+      "description": "The card a Bakugan is rolled onto to start a battle.",
+      "src": "fandom:bakugan:Gate Card"
+    },
+    "location": {
+      "name": "Vestroia",
+      "description": "The Bakugan’s home dimension.",
+      "src": "fandom:bakugan:Vestroia",
+      "image": "https://static.wikia.nocookie.net/bakugan/images/5/5a/New_Vestroia.jpg/revision/latest?cb=20210617142845"
+    },
+    "visual": {
+      "icon": "🐉",
+      "colors": [
+        "#7c2d12",
+        "#facc15"
       ]
     }
   }

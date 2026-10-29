@@ -5041,7 +5041,8 @@
       "Score: Trent Reznor & Atticus Ross"
     ],
     "cover": {
-      "wiki": "The Social Network"
+      "wiki": "The Social Network",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png"
     },
     "quote": {
       "text": "A million dollars isn't cool. You know what's cool? A billion dollars.",
@@ -6162,6 +6163,115 @@
       "colors": [
         "#ec4899",
         "#fbcfe8"
+      ]
+    }
+  },
+  {
+    "id": "c-meninblack",
+    "name": "Men in Black",
+    "aliases": [
+      "mib"
+    ],
+    "domain": "cinema",
+    "year": 1997,
+    "genres": [
+      "Sci-Fi",
+      "Comedy"
+    ],
+    "studio": "Columbia Pictures",
+    "creator": "Barry Sonnenfeld",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "Agent J",
+      "Agent K",
+      "Edgar the Bug",
+      "Zed"
+    ],
+    "themes": [
+      "Aliens among us",
+      "Secrets"
+    ],
+    "credits": [
+      "Director: Barry Sonnenfeld",
+      "Executive producer: Steven Spielberg",
+      "Based on the comics by Lowell Cunningham"
+    ],
+    "cover": {
+      "wiki": "Men in Black (1997 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Men_in_Black_Poster.jpg"
+    },
+    "audio": {
+      "clue": "A funky hip-hop title song by the film’s star.",
+      "query": "Men in Black Will Smith song"
+    },
+    "emoji": "🕶️👽🔫⚡🗽",
+    "item": {
+      "name": "The Neuralyzer",
+      "description": "A flashing pen-sized device that wipes memories clean."
+    },
+    "location": {
+      "name": "MIB headquarters",
+      "description": "A secret base for aliens on Earth, under an old ventilation building in Manhattan."
+    },
+    "visual": {
+      "icon": "🕶️",
+      "colors": [
+        "#0a0a0a",
+        "#e5e7eb"
+      ]
+    }
+  },
+  {
+    "id": "c-planetapes",
+    "name": "Planet of the Apes",
+    "nameFr": "La Planète des singes",
+    "aliases": [
+      "la planete des singes"
+    ],
+    "domain": "cinema",
+    "year": 1968,
+    "genres": [
+      "Sci-Fi",
+      "Adventure"
+    ],
+    "studio": "20th Century Fox",
+    "creator": "Franklin J. Schaffner",
+    "origin": "USA",
+    "format": "Live-action",
+    "characters": [
+      "George Taylor",
+      "Cornelius",
+      "Zira",
+      "Dr. Zaius"
+    ],
+    "themes": [
+      "Evolution",
+      "Humanity"
+    ],
+    "credits": [
+      "Director: Franklin J. Schaffner",
+      "Based on the novel by Pierre Boulle",
+      "Score: Jerry Goldsmith"
+    ],
+    "cover": {
+      "wiki": "Planet of the Apes (1968 film)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fd/PlanetoftheapesPoster.jpg"
+    },
+    "audio": {
+      "clue": "An avant-garde percussive score full of strange sounds.",
+      "query": "Planet of the Apes 1968 Jerry Goldsmith main title"
+    },
+    "emoji": "🐒🚀🏜️⏳👨‍🚀",
+    "location": {
+      "name": "The Forbidden Zone",
+      "description": "A desert wasteland the apes forbid anyone to enter."
+    },
+    "visual": {
+      "icon": "🐒",
+      "colors": [
+        "#78350f",
+        "#fcd34d"
       ]
     }
   }

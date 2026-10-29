@@ -12528,5 +12528,609 @@
         }
       ]
     }
+  },
+  {
+    "id": "avatar",
+    "domain": "anime",
+    "franchise": "Avatar: The Last Airbender",
+    "aliases": [
+      "avatar",
+      "atla",
+      "the last airbender",
+      "avatar the last airbender",
+      "avatar le dernier maitre de l air"
+    ],
+    "images": "fandom:avatar",
+    "boss": {
+      "name": "Ozai",
+      "title": "The Phoenix King",
+      "color": "#b91c1c",
+      "image": "https://static.wikia.nocookie.net/avatar/images/4/4a/Ozai.png/revision/latest/scale-to-width-down/400?cb=20130612170743"
+    },
+    "lines": {
+      "intro": "Four nations, and only one worthy to rule them. You come to my throne room to test me? Then burn, or prove what you know.",
+      "phase2": "My spies are everywhere. Tell my people from the strangers who would wear our colours.",
+      "phase3": "The comet is rising! Name them, every one — before the sky turns to fire.",
+      "hit": [
+        "A lucky draft…",
+        "You have some fire in you.",
+        "Hmph. Again."
+      ],
+      "hurt": [
+        "Agni Kai!",
+        "Your bending is sloppy.",
+        "Feel the heat.",
+        "The Fire Nation does not miss."
+      ],
+      "win": "The balance… is restored. Take the crown of knowledge, Avatar.",
+      "lose": "The world bows to the Phoenix King.",
+      "secret": "One last duel. I name a person, a place or a bending art — answer with another of the same. Repeat nothing.",
+      "secretOk": [
+        "Adequate.",
+        "Again.",
+        "Hm. Sharp."
+      ],
+      "secretLost": "Your flame goes out. Kneel."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 4 members of Team Avatar",
+        "count": 4,
+        "answers": [
+          "Aang",
+          "Katara",
+          "Sokka",
+          "Toph|Toph Beifong",
+          "Zuko",
+          "Suki"
+        ]
+      },
+      {
+        "prompt": "Name the 4 nations",
+        "count": 4,
+        "answers": [
+          "Water Tribe|Water Tribes",
+          "Earth Kingdom",
+          "Fire Nation",
+          "Air Nomads|Air Nomad"
+        ]
+      },
+      {
+        "prompt": "Name 4 Avatars",
+        "count": 4,
+        "answers": [
+          "Aang",
+          "Roku|Avatar Roku",
+          "Kyoshi|Avatar Kyoshi",
+          "Kuruk|Avatar Kuruk",
+          "Yangchen|Avatar Yangchen",
+          "Wan|Avatar Wan",
+          "Korra|Avatar Korra"
+        ]
+      },
+      {
+        "prompt": "Name 5 firebenders",
+        "count": 5,
+        "answers": [
+          "Zuko",
+          "Iroh",
+          "Azula",
+          "Ozai|Fire Lord Ozai",
+          "Zhao|Admiral Zhao|Commander Zhao",
+          "Combustion Man",
+          "Roku",
+          "Jeong Jeong",
+          "Sozin|Fire Lord Sozin"
+        ]
+      },
+      {
+        "prompt": "Name 4 earthbenders",
+        "count": 4,
+        "answers": [
+          "Toph|Toph Beifong",
+          "Bumi|King Bumi",
+          "Kyoshi",
+          "Haru",
+          "Long Feng",
+          "Tyro"
+        ]
+      },
+      {
+        "prompt": "Name 4 waterbenders",
+        "count": 4,
+        "answers": [
+          "Katara",
+          "Pakku|Master Pakku",
+          "Hama",
+          "Kuruk",
+          "Yugoda"
+        ]
+      },
+      {
+        "prompt": "Name 5 places",
+        "count": 5,
+        "answers": [
+          "Ba Sing Se",
+          "Omashu",
+          "Ember Island",
+          "Kyoshi Island",
+          "Northern Water Tribe|North Pole",
+          "Southern Water Tribe|South Pole",
+          "Southern Air Temple",
+          "Western Air Temple",
+          "Gaoling",
+          "The Boiling Rock|Boiling Rock",
+          "Si Wong Desert",
+          "Fire Nation Capital|Caldera City"
+        ]
+      },
+      {
+        "prompt": "Name 5 bending arts",
+        "count": 5,
+        "answers": [
+          "Airbending",
+          "Waterbending",
+          "Earthbending",
+          "Firebending",
+          "Bloodbending",
+          "Metalbending",
+          "Lightning generation|Lightningbending",
+          "Lightning redirection",
+          "Combustionbending",
+          "Healing|Waterbending healing",
+          "Energybending"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Aang",
+          "image": "https://static.wikia.nocookie.net/avatar/images/a/ae/Aang_at_Jasmine_Dragon.png/revision/latest/scale-to-width-down/400?cb=20250504214141"
+        },
+        {
+          "label": "Zuko",
+          "image": "https://static.wikia.nocookie.net/avatar/images/4/4b/Zuko.png/revision/latest/scale-to-width-down/400?cb=20180630112142"
+        },
+        {
+          "label": "Katara",
+          "image": "https://static.wikia.nocookie.net/avatar/images/7/7a/Katara_smiles_at_coronation.png/revision/latest/scale-to-width-down/400?cb=20150104171449"
+        },
+        {
+          "label": "Sokka",
+          "image": "https://static.wikia.nocookie.net/avatar/images/c/cc/Sokka.png/revision/latest/scale-to-width-down/400?cb=20140905085428"
+        },
+        {
+          "label": "Toph",
+          "image": "https://static.wikia.nocookie.net/avatar/images/4/46/Toph_Beifong.png/revision/latest/scale-to-width-down/400?cb=20131230122047",
+          "aliases": [
+            "Toph Beifong"
+          ]
+        },
+        {
+          "label": "Iroh",
+          "image": "https://static.wikia.nocookie.net/avatar/images/c/c1/Iroh_smiling.png/revision/latest/scale-to-width-down/400?cb=20130626131914",
+          "aliases": [
+            "Uncle Iroh"
+          ]
+        },
+        {
+          "label": "Azula",
+          "image": "https://static.wikia.nocookie.net/avatar/images/1/12/Azula.png/revision/latest/scale-to-width-down/400?cb=20140905084941"
+        },
+        {
+          "label": "Appa",
+          "image": "https://static.wikia.nocookie.net/avatar/images/6/65/Appa_flying.png/revision/latest/scale-to-width-down/400?cb=20140517110636"
+        },
+        {
+          "label": "Momo",
+          "image": "https://static.wikia.nocookie.net/avatar/images/8/80/Momo_staring.png/revision/latest/scale-to-width-down/400?cb=20200802080013"
+        },
+        {
+          "label": "Suki",
+          "image": "https://static.wikia.nocookie.net/avatar/images/1/14/Suki.png/revision/latest/scale-to-width-down/400?cb=20130819094354"
+        },
+        {
+          "label": "Ty Lee",
+          "image": "https://static.wikia.nocookie.net/avatar/images/6/6d/Ty_Lee.png/revision/latest/scale-to-width-down/400?cb=20140905083814"
+        },
+        {
+          "label": "Mai",
+          "image": "https://static.wikia.nocookie.net/avatar/images/4/40/Mai.png/revision/latest/scale-to-width-down/400?cb=20090406114652"
+        },
+        {
+          "label": "Roku",
+          "image": "https://static.wikia.nocookie.net/avatar/images/f/f6/Roku.png/revision/latest/scale-to-width-down/400?cb=20220323130414",
+          "aliases": [
+            "Avatar Roku"
+          ]
+        },
+        {
+          "label": "Kyoshi",
+          "image": "https://static.wikia.nocookie.net/avatar/images/3/39/Kyoshi.png/revision/latest/scale-to-width-down/400?cb=20230729120809",
+          "aliases": [
+            "Avatar Kyoshi"
+          ]
+        },
+        {
+          "label": "Bumi",
+          "image": "https://static.wikia.nocookie.net/avatar/images/0/06/Bumi.png/revision/latest/scale-to-width-down/400?cb=20140318090248",
+          "aliases": [
+            "King Bumi"
+          ]
+        },
+        {
+          "label": "Jet",
+          "image": "https://static.wikia.nocookie.net/avatar/images/1/1e/Jet.png/revision/latest/scale-to-width-down/400?cb=20150324102352"
+        },
+        {
+          "label": "Zhao",
+          "image": "https://static.wikia.nocookie.net/avatar/images/e/e1/Commander_Zhao.png/revision/latest/scale-to-width-down/400?cb=20140103180854",
+          "aliases": [
+            "Admiral Zhao"
+          ]
+        },
+        {
+          "label": "Yue",
+          "image": "https://static.wikia.nocookie.net/avatar/images/9/9d/Kind_Yue.png/revision/latest/scale-to-width-down/400?cb=20140122221734",
+          "aliases": [
+            "Princess Yue"
+          ]
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Po",
+          "image": "https://static.wikia.nocookie.net/kungfupanda/images/2/28/PoXiao.jpg/revision/latest/scale-to-width-down/400?cb=20261004063324"
+        },
+        {
+          "label": "Tigress",
+          "image": "https://static.wikia.nocookie.net/kungfupanda/images/e/ea/Tigress.png/revision/latest/scale-to-width-down/400?cb=20260125065636"
+        },
+        {
+          "label": "Ben Tennyson",
+          "image": "https://static.wikia.nocookie.net/ben10/images/2/2e/Ben_10_Heroes_Glitch.png/revision/latest/scale-to-width-down/400?cb=20260322204137",
+          "aliases": [
+            "Ben 10"
+          ]
+        },
+        {
+          "label": "Kim Possible",
+          "image": "https://static.wikia.nocookie.net/kimpossible/images/4/49/Kim_Possible_Mugshot.png/revision/latest/scale-to-width-down/400?cb=20150728134300"
+        },
+        {
+          "label": "Star Butterfly",
+          "image": "https://static.wikia.nocookie.net/star-and-the-forces-of-evil/images/3/3b/Star_Butterfly_S3_profile.png/revision/latest/scale-to-width-down/400?cb=20240107212937"
+        },
+        {
+          "label": "Dipper Pines",
+          "image": "https://static.wikia.nocookie.net/gravityfalls/images/0/08/S1e3_dipper%27s_keen_powers_of_observation.png/revision/latest/scale-to-width-down/400?cb=20240514023236",
+          "aliases": [
+            "Dipper"
+          ]
+        },
+        {
+          "label": "Master Shifu",
+          "image": "https://static.wikia.nocookie.net/dreamworks/images/5/54/Shifu_Profile.jpg/revision/latest/scale-to-width-down/400?cb=20240210032942",
+          "aliases": [
+            "Shifu"
+          ]
+        },
+        {
+          "label": "Luz Noceda",
+          "image": "https://static.wikia.nocookie.net/the-owl-house/images/f/f9/Luz_Luzura.png/revision/latest/scale-to-width-down/400?cb=20230410215546",
+          "aliases": [
+            "Luz"
+          ]
+        },
+        {
+          "label": "Marinette",
+          "image": "https://static.wikia.nocookie.net/lady-bug/images/5/58/Ladybug_%28S6%29_Square.png/revision/latest/scale-to-width-down/400?cb=20260828142715"
+        },
+        {
+          "label": "Adora",
+          "image": "https://static.wikia.nocookie.net/shera-and-the-princesses-of-power/images/a/a4/AdoraRender.png/revision/latest/scale-to-width-down/400?cb=20240512152430"
+        },
+        {
+          "label": "Kipo",
+          "image": "https://static.wikia.nocookie.net/kipoandtheageofwonderbeasts/images/1/1c/EOR74CLWsAEV7Ye.jpg/revision/latest/scale-to-width-down/400?cb=20200711205342"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Hakoda",
+        "image": "https://static.wikia.nocookie.net/avatar/images/4/4e/Hakoda_smiling.png/revision/latest/scale-to-width-down/400?cb=20201220143258"
+      },
+      {
+        "label": "Pakku",
+        "image": "https://static.wikia.nocookie.net/avatar/images/b/bb/Pakku_looking_smug.png/revision/latest/scale-to-width-down/400?cb=20140119164142",
+        "aliases": [
+          "Master Pakku"
+        ]
+      },
+      {
+        "label": "Long Feng",
+        "image": "https://static.wikia.nocookie.net/avatar/images/8/8d/Long_Feng_scheming.png/revision/latest/scale-to-width-down/400?cb=20140510202422"
+      },
+      {
+        "label": "Combustion Man",
+        "image": "https://static.wikia.nocookie.net/avatar/images/f/fc/Combustion_Man.png/revision/latest/scale-to-width-down/400?cb=20140908141111",
+        "aliases": [
+          "Sparky Sparky Boom Man"
+        ]
+      },
+      {
+        "label": "Cabbage merchant",
+        "image": "https://static.wikia.nocookie.net/avatar/images/2/2f/Cabbage_merchant.png/revision/latest/scale-to-width-down/400?cb=20140112200908",
+        "aliases": [
+          "Cabbage man",
+          "Cabbage guy"
+        ]
+      },
+      {
+        "label": "Hama",
+        "image": "https://static.wikia.nocookie.net/avatar/images/4/4d/Sinister_Hama.png/revision/latest/scale-to-width-down/400?cb=20111215082556"
+      },
+      {
+        "label": "Haru",
+        "image": "https://static.wikia.nocookie.net/avatar/images/d/da/Haru.png/revision/latest/scale-to-width-down/400?cb=20110104010244"
+      },
+      {
+        "label": "Kuruk",
+        "image": "https://static.wikia.nocookie.net/avatar/images/d/d1/Kuruk.png/revision/latest/scale-to-width-down/400?cb=20260818193030",
+        "aliases": [
+          "Avatar Kuruk"
+        ]
+      },
+      {
+        "label": "Yangchen",
+        "image": "https://static.wikia.nocookie.net/avatar/images/d/db/Yangchen.png/revision/latest/scale-to-width-down/400?cb=20220324195813",
+        "aliases": [
+          "Avatar Yangchen"
+        ]
+      },
+      {
+        "label": "Wan Shi Tong",
+        "image": "https://static.wikia.nocookie.net/avatar/images/4/4c/Wan_Shi_Tong.png/revision/latest/scale-to-width-down/400?cb=20140404204804"
+      },
+      {
+        "label": "Koh",
+        "image": "https://static.wikia.nocookie.net/avatar/images/4/4f/Koh_the_Face_Stealer.png/revision/latest/scale-to-width-down/400?cb=20251121221047",
+        "aliases": [
+          "Koh the Face Stealer"
+        ]
+      },
+      {
+        "label": "Hei Bai",
+        "image": "https://static.wikia.nocookie.net/avatar/images/b/b2/Calm_Hei_Bai.png/revision/latest/scale-to-width-down/400?cb=20140124170913"
+      },
+      {
+        "label": "Sozin",
+        "image": "https://static.wikia.nocookie.net/avatar/images/a/aa/Old_Sozin.png/revision/latest/scale-to-width-down/400?cb=20220323100904",
+        "aliases": [
+          "Fire Lord Sozin"
+        ]
+      },
+      {
+        "label": "Ursa",
+        "image": "https://static.wikia.nocookie.net/avatar/images/a/a6/Ursa.png/revision/latest/scale-to-width-down/400?cb=20140331143655"
+      },
+      {
+        "label": "Jeong Jeong",
+        "image": "https://static.wikia.nocookie.net/avatar/images/a/a7/Jeong_Jeong_serious.png/revision/latest/scale-to-width-down/400?cb=20140116113256"
+      },
+      {
+        "label": "Piandao",
+        "image": "https://static.wikia.nocookie.net/avatar/images/e/e1/Piandao.png/revision/latest/scale-to-width-down/400?cb=20140905225031"
+      },
+      {
+        "label": "Guru Pathik",
+        "image": "https://static.wikia.nocookie.net/avatar/images/9/91/Guru_Pathik.png/revision/latest/scale-to-width-down/400?cb=20140510202641"
+      },
+      {
+        "label": "Gyatso",
+        "image": "https://static.wikia.nocookie.net/avatar/images/a/a4/Monk_Gyatso.png/revision/latest/scale-to-width-down/400?cb=20140103203807",
+        "aliases": [
+          "Monk Gyatso"
+        ]
+      },
+      {
+        "label": "Teo",
+        "image": "https://static.wikia.nocookie.net/avatar/images/7/77/Teo.png/revision/latest/scale-to-width-down/400?cb=20140118125457"
+      },
+      {
+        "label": "Smellerbee",
+        "image": "https://static.wikia.nocookie.net/avatar/images/3/3a/Smellerbee.png/revision/latest/scale-to-width-down/400?cb=20140413234450"
+      },
+      {
+        "label": "Kuei",
+        "image": "https://static.wikia.nocookie.net/avatar/images/5/5e/Kuei.png/revision/latest/scale-to-width-down/400?cb=20130627084042",
+        "aliases": [
+          "Earth King",
+          "Earth King Kuei"
+        ]
+      },
+      {
+        "label": "Hawky",
+        "image": "https://static.wikia.nocookie.net/avatar/images/2/2f/Hawky.png/revision/latest/scale-to-width-down/400?cb=20121120044332"
+      },
+      {
+        "label": "June",
+        "image": "https://static.wikia.nocookie.net/avatar/images/e/ea/June.png/revision/latest/scale-to-width-down/400?cb=20130626132827"
+      },
+      {
+        "label": "Foo Foo Cuddlypoops",
+        "image": "https://static.wikia.nocookie.net/avatar/images/c/c4/Foo_Foo_Cuddlypoops.png/revision/latest/scale-to-width-down/400?cb=20130619092711"
+      },
+      {
+        "label": "Nyla",
+        "image": "https://static.wikia.nocookie.net/avatar/images/7/71/Shirshu.png/revision/latest/scale-to-width-down/400?cb=20130626132120"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Character",
+          "entities": [
+            "Aang",
+            "Katara",
+            "Sokka",
+            "Toph|Toph Beifong",
+            "Zuko",
+            "Iroh",
+            "Azula",
+            "Ozai",
+            "Appa",
+            "Momo",
+            "Suki",
+            "Ty Lee",
+            "Mai",
+            "Bumi",
+            "Jet",
+            "Zhao",
+            "Yue",
+            "Hakoda",
+            "Pakku",
+            "Long Feng",
+            "Combustion Man",
+            "Cabbage merchant|Cabbage man",
+            "Hama",
+            "Haru",
+            "Wan Shi Tong",
+            "Koh",
+            "Hei Bai",
+            "Ursa",
+            "Piandao",
+            "Guru Pathik",
+            "Gyatso|Monk Gyatso",
+            "Teo",
+            "Smellerbee",
+            "Kuei|Earth King",
+            "June"
+          ]
+        },
+        {
+          "label": "Place",
+          "entities": [
+            "Ba Sing Se",
+            "Omashu",
+            "Ember Island",
+            "Kyoshi Island",
+            "Northern Water Tribe|North Pole",
+            "Southern Water Tribe|South Pole",
+            "Southern Air Temple",
+            "Western Air Temple",
+            "Gaoling",
+            "The Boiling Rock|Boiling Rock",
+            "Si Wong Desert",
+            "Fire Nation Capital|Caldera City"
+          ]
+        },
+        {
+          "label": "Bending",
+          "entities": [
+            "Airbending",
+            "Waterbending",
+            "Earthbending",
+            "Firebending",
+            "Bloodbending",
+            "Metalbending",
+            "Lightning generation|Lightningbending",
+            "Lightning redirection",
+            "Combustionbending",
+            "Healing|Waterbending healing",
+            "Energybending"
+          ]
+        },
+        {
+          "label": "Nation",
+          "entities": [
+            "Water Tribe|Water Tribes",
+            "Earth Kingdom",
+            "Fire Nation",
+            "Air Nomads|Air Nomad"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Character",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "Learned to see through the earth itself — and was the first to bend metal",
+          "answer": "Toph|Toph Beifong"
+        },
+        {
+          "text": "Turned lightning back on its sender, a trick learned from waterbenders",
+          "answer": "Iroh"
+        },
+        {
+          "text": "Fires explosions from a third eye on his forehead",
+          "answer": "Combustion Man"
+        },
+        {
+          "text": "Bends the blood in people’s bodies under the full moon",
+          "answer": "Hama"
+        },
+        {
+          "text": "A firebender whose flames burn blue",
+          "answer": "Azula"
+        },
+        {
+          "text": "Fights with a boomerang, and later a sword forged from a meteorite",
+          "answer": "Sokka"
+        },
+        {
+          "text": "Woke up after a hundred years frozen in an iceberg",
+          "answer": "Aang"
+        },
+        {
+          "text": "Bears a scar from an Agni Kai with his own father",
+          "answer": "Zuko"
+        },
+        {
+          "text": "King of Omashu, fond of mail chutes and strange riddles",
+          "answer": "Bumi|King Bumi"
+        },
+        {
+          "text": "Gave her life to become the Moon Spirit",
+          "answer": "Yue|Princess Yue"
+        },
+        {
+          "text": "Hunts by scent with a shirshu named Nyla",
+          "answer": "June"
+        },
+        {
+          "text": "A spirit who steals the face of anyone who shows emotion",
+          "answer": "Koh"
+        },
+        {
+          "text": "Loses his stall again and again as the heroes pass through",
+          "answer": "Cabbage merchant|Cabbage man"
+        },
+        {
+          "text": "Fan-wielding Avatar who founded an island’s warriors",
+          "answer": "Kyoshi|Avatar Kyoshi"
+        },
+        {
+          "text": "Flying bison, six legs, best friend of the last airbender",
+          "answer": "Appa"
+        },
+        {
+          "text": "Head of the Dai Li in Ba Sing Se",
+          "answer": "Long Feng"
+        },
+        {
+          "text": "Blocks chi with quick strikes, cartwheeling into every fight",
+          "answer": "Ty Lee"
+        },
+        {
+          "text": "Throws knives and stilettos with deadly aim, bored by everything else",
+          "answer": "Mai"
+        }
+      ]
+    }
   }
 ]
