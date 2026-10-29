@@ -76,14 +76,12 @@ const FORTS_FACTION: Record<string, string[]> = {
 function forts(): SimpleUniverse {
   const b = boss('forts');
   const commanders = Object.values(FORTS_FACTION).flat();
-  // Pictures with the commander's name printed on them can't be a Picture round.
-  const BANNER = new Set(['Eagle Eye']);
   const things = CARDS.filter((c) => c.set === 'forts' && c.rarity !== 'mythic' && c.rarity !== 'omni' && !commanders.includes(c.name) && c.id !== 'forts:howitzer-legendary');
   return {
     id: 'forts',
     columns: [],
     characters: [
-      ...commanders.map((name) => ({ id: slug(name), name, aliases: name === 'Armourdillo' ? ['Armordillo'] : [], image: BANNER.has(name) ? '' : cardImage('forts', name), traits: { Kind: 'Commander', Faction: groupOf(FORTS_FACTION, name) } })),
+      ...commanders.map((name) => ({ id: slug(name), name, aliases: name === 'Armourdillo' ? ['Armordillo'] : [], image: cardImage('forts', name), traits: { Kind: 'Commander', Faction: groupOf(FORTS_FACTION, name) } })),
       ...things.map((c) => ({ id: slug(c.name), name: c.name, aliases: [], image: c.image, traits: { Kind: 'Weapon or device' } })),
     ],
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),

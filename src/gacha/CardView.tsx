@@ -89,7 +89,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         {/* Name and rarity (and a mythic's title). */}
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
           <div className="flex items-center justify-between gap-[2cqw]">
-            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{shownName(card.name)}</p>
+            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{shownName(card.name, card.set)}</p>
             <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
               {RARITY_INFO[card.rarity].gem}
             </span>

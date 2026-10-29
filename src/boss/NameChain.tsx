@@ -116,8 +116,8 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     setText('');
     setNote(null);
     setMaybe([]);
-    if (used.has(e.key)) return lose(`${e.name} was already named`);
-    if (e.cat !== call.cat) return lose(`${e.name} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`);
+    if (used.has(e.key)) return lose(`${shownName(e.name)} was already named`);
+    if (e.cat !== call.cat) return lose(`${shownName(e.name)} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`);
     const next = new Set(used).add(e.key);
     const nextScore = score + 1;
     setUsed(next);

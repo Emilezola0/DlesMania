@@ -123,7 +123,7 @@ export function RenewDialog({ onClose }: { onClose: () => void }) {
                 <span className="font-display font-bold" style={{ color: RARITY_LIGHT[result.card.rarity] }}>
                   {RARITY_INFO[result.card.rarity].name}
                 </span>{' '}
-                · <b>{shownName(result.card.name)}</b> {result.fresh ? '— new to your album!' : '— another copy (you had them all).'}
+                · <b>{shownName(result.card.name, result.card.set)}</b> {result.fresh ? '— new to your album!' : '— another copy (you had them all).'}
               </p>
             )}
             <button type="button" onClick={() => setResult(null)} className="btn-accent rounded-md px-5 py-2 font-display font-bold">

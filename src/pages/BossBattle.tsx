@@ -425,7 +425,7 @@ function BossBattle({ boss }: { boss: Boss }) {
               <div className="space-y-1">
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">You took a hit — {hearts} heart{hearts === 1 ? '' : 's'} left</p>
                 {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
-                {last.missed?.length ? <p className="text-sm text-ink-soft">You could have named: {last.missed.map(shownName).join(', ')}</p> : null}
+                {last.missed?.length ? <p className="text-sm text-ink-soft">You could have named: {last.missed.map((n) => shownName(n)).join(', ')}</p> : null}
               </div>
             )}
             {last?.won && (

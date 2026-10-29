@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { shownName } from '../lib/french';
 import { Link } from 'react-router-dom';
 import { DOMAINS, WORKS, domainInfo } from '../data';
 import { celebrateBig } from '../lib/fx';
@@ -80,7 +81,7 @@ function Run({ domain, onExit }: { domain: Domain | 'all'; onExit: () => void })
               <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
                 {domainInfo(work.domain).noun} · {work.studio}
               </p>
-              <h2 className="text-3xl font-bold">{work.name}</h2>
+              <h2 className="text-3xl font-bold">{shownName(work.name)}</h2>
               {work.subtitle && <p className="text-ink-soft">{work.subtitle}</p>}
             </div>
             <div className="space-y-2">

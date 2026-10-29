@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { AudioClip } from '../components/AudioClip';
 import type { SignaturePhase } from '../lib/boss';
-import { withFrench } from '../lib/french';
+import { shownName, withFrench } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, suggestNames } from '../utils/textMatcher';
 import { DidYouMean } from './DidYouMean';
@@ -86,16 +86,16 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         setText('');
         return setMaybe(answer.name);
       }
-      return miss(`“${value.trim()}” — it was ${answer.name}`);
+      return miss(`“${value.trim()}” — it was ${shownName(answer.name)}`);
     }
     setText('');
     sfx.correct();
     const got = right + 1;
     setRight(got);
-    setMessage({ text: answer.name, good: true });
+    setMessage({ text: shownName(answer.name), good: true });
     if (got >= toWin) {
       sfx.streak();
-      return end(true, toWin === 1 ? `named ${answer.name}` : `${toWin} ${label.toLowerCase()} clues answered`, got);
+      return end(true, toWin === 1 ? `named ${shownName(answer.name)}` : `${toWin} ${label.toLowerCase()} clues answered`, got);
     }
     onSay(okLines[got % Math.max(1, okLines.length)] ?? 'Next.', 'hit');
     nextClue('ok');
@@ -128,7 +128,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
           running={state === 'answer'}
           resetKey={index}
-          onExpire={() => miss(`Time's up — it was ${answer.name}`)}
+          onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}`)}
           hideSeconds
         />
       )}

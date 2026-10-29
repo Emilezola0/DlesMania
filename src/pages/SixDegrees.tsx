@@ -187,7 +187,7 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
           <div ref={grid} className="flex flex-wrap justify-center gap-1.5">
             {choices.map((c) => (
               <button key={c.label} type="button" onClick={() => step(c.label)} className="transition hover:-translate-y-0.5">
-                <Tile label={c.label} image={c.image} small tone={c.label === puzzle.to ? 'border-hit/70' : 'border-rule'} />
+                <Tile label={shownName(c.label)} image={c.image} small tone={c.label === puzzle.to ? 'border-hit/70' : 'border-rule'} />
               </button>
             ))}
           </div>

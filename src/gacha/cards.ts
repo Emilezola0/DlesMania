@@ -348,16 +348,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
   'wow:omni': { voice: 'Frostmourne hungers.' },
   'inazuma:omni': { voice: 'God Hand!' },
-  // ── Forts, better framed: the commanders out of their title banners (Architect and Armourdillo
-  // from the studio's group art), the weapons out of their screenshots, the Cannon's own art. ──
-  'forts:eagle-eye': { focus: { x: 40, y: 60, zoom: 2.2 } },
-  'forts:mythic': { focus: { x: 40, y: 60, zoom: 2.2 } },
-  'forts:architect': { image: 'https://www.earthworkgames.com/wp-content/uploads/2021/11/Commander-group-1@2x.png', focus: { x: 19, y: 72, zoom: 1.45 } },
-  'forts:armourdillo': { image: 'https://www.earthworkgames.com/wp-content/uploads/2021/11/Commander-group-1@2x.png', focus: { x: 47, y: 72, zoom: 1.45 } },
-  'forts:cannon': { image: 'https://static.wikia.nocookie.net/forts7876/images/f/f6/HUD-Cannon-A.png/revision/latest?cb=20190711080741' },
-  'forts:warhead': { focus: { x: 62, y: 42, zoom: 2.6 } },
-  'forts:heavy-mortar': { focus: { x: 60, y: 42, zoom: 2.6 } },
-  'forts:battery': { focus: { x: 50, y: 50, zoom: 1.5 } },
+  // ── Forts: the Armoured Door's only picture is a screenshot — framed on the door. (The rest have the
+  // Forts RTS Wiki's own art, in src/data/bosses.json.) ──
   'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },
 };
 

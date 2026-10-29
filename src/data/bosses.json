@@ -11592,18 +11592,18 @@
       "members": [
         {
           "label": "Eagle Eye",
-          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderEagleEye.png",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/7/70/Eagle_Eye_Portrait.png/revision/latest/scale-to-width-down/400?cb=20220901021356",
           "aliases": [
             "Eagleeye"
           ]
         },
         {
           "label": "Architect",
-          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderArchitect.png"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/f/fb/Architect.png/revision/latest/scale-to-width-down/400?cb=20220715045601"
         },
         {
           "label": "Armourdillo",
-          "image": "https://www.earthworkgames.com/wp-content/uploads/2025/09/CommanderArmourdillo.png",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/5/5b/Armourdillo.png/revision/latest/scale-to-width-down/400?cb=20220821180555",
           "aliases": [
             "Armordillo"
           ]
@@ -11618,7 +11618,7 @@
         },
         {
           "label": "Warhead",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/8/8f/Warhead_Missile.PNG/revision/latest/scale-to-width-down/400?cb=20171208222246",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/1/13/Warhead_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006125237",
           "aliases": [
             "Nuke",
             "Warhead Missile"
@@ -11626,44 +11626,44 @@
         },
         {
           "label": "Plasma Laser",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/6/6d/Plasma_Laser.jpg/revision/latest/scale-to-width-down/400?cb=20190810153319",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/7/77/Plasmalaser_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221005163703",
           "aliases": [
             "Laser"
           ]
         },
         {
           "label": "Cannon",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/5/5d/Cannon.PNG/revision/latest/scale-to-width-down/400?cb=20190224214115"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/4/4f/Cannon_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006232717"
         },
         {
           "label": "Howitzer",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/1/1d/Howitzer.png/revision/latest/scale-to-width-down/400?cb=20220126165357"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/2/28/Howitzer_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20220905182959"
         },
         {
           "label": "Reactor",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/8/8a/Reactor.jpg/revision/latest/scale-to-width-down/400?cb=20190813150123"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/a/a1/Reactor_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006022833"
         },
         {
           "label": "Firebeam",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/3/37/Firebeam.png/revision/latest/scale-to-width-down/400?cb=20220713223004",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/d/d4/Firebeam_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221005205048",
           "aliases": [
             "Fire Beam"
           ]
         },
         {
           "label": "Minigun",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/a/a1/Minigun.PNG/revision/latest/scale-to-width-down/400?cb=20171208221142",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/f/f4/HUD-Minigun.png/revision/latest?cb=20221016013811",
           "aliases": [
             "Mini Gun"
           ]
         },
         {
           "label": "Sniper",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/2/23/Sniper.PNG/revision/latest/scale-to-width-down/400?cb=20190214234452"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/4/4e/Sniper_HUDicon.png/revision/latest/scale-to-width-down/400?cb=20221006033707"
         },
         {
           "label": "Machine Gun",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/e/ed/Machinegunner.PNG/revision/latest/scale-to-width-down/400?cb=20171204204951",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/0/00/Machinegun_HUDicon.png/revision/latest/scale-to-width-down/400?cb=20221006023053",
           "aliases": [
             "Machinegun",
             "Machine Gunner"
@@ -11675,18 +11675,18 @@
         },
         {
           "label": "Flak",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/2/2b/Flak.PNG/revision/latest/scale-to-width-down/400?cb=20190224214342"
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/3/3c/Flak.png/revision/latest?cb=20191107070448"
         },
         {
           "label": "20mm Cannon",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/f/ff/20mm_cannon.webp/revision/latest/scale-to-width-down/400?cb=20220911020015",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/e/e1/20mmCannon_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006233423",
           "aliases": [
             "20mm"
           ]
         },
         {
           "label": "AP Sniper",
-          "image": "https://static.wikia.nocookie.net/forts7876/images/c/c7/AP_Sniper.PNG/revision/latest/scale-to-width-down/400?cb=20190221213738",
+          "image": "https://static.wikia.nocookie.net/forts-rts/images/6/69/APSniper_HUDicon.png/revision/latest/scale-to-width-down/400?cb=20221006033636",
           "aliases": [
             "Armour Piercing Sniper",
             "Armor Piercing Sniper"
@@ -11746,11 +11746,11 @@
       },
       {
         "label": "Heavy Mortar",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/2/2d/410900_screenshots_20170419113936_1.jpg/revision/latest/scale-to-width-down/400?cb=20170419164916"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/a/a1/HeavyMortar_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006022726"
       },
       {
         "label": "Shotgun",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/e/e6/HUD-Shotgun-D.png/revision/latest/scale-to-width-down/400?cb=20190711085656"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/e/e7/HUD-Shotgun.png/revision/latest?cb=20221018015743"
       },
       {
         "label": "Super Mine",
@@ -11761,14 +11761,14 @@
       },
       {
         "label": "Mine",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/8/8e/Mine.jpg/revision/latest/scale-to-width-down/400?cb=20190813121556",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/a/a0/Mine.png/revision/latest?cb=20190329222728",
         "aliases": [
           "Metal Mine"
         ]
       },
       {
         "label": "Battery",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/6/6d/Battery.png/revision/latest/scale-to-width-down/400?cb=20220222150513"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/6/6d/Battery.png/revision/latest?cb=20190330112523"
       },
       {
         "label": "Metal Store",
@@ -11776,19 +11776,19 @@
       },
       {
         "label": "Munitions Plant",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/c/cb/Munitions.jpg/revision/latest/scale-to-width-down/400?cb=20190810134054"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/e/eb/Munitions_plant.png/revision/latest?cb=20190402122917"
       },
       {
         "label": "Workshop",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/4/49/Workshop.png/revision/latest/scale-to-width-down/400?cb=20190711184658"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/4/49/Workshop.png/revision/latest/scale-to-width-down/400?cb=20190330220923"
       },
       {
         "label": "Sandbags",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/c/ca/Sandbags.jpg/revision/latest/scale-to-width-down/400?cb=20190815120413"
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/1/1a/Sandbags_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221012134011"
       },
       {
         "label": "Wind Turbine",
-        "image": "https://static.wikia.nocookie.net/forts7876/images/0/06/Wind_Mill.jpg/revision/latest/scale-to-width-down/400?cb=20190813143241",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/2/27/Turbine.png/revision/latest?cb=20190330103451",
         "aliases": [
           "Windmill",
           "Turbine"
@@ -11809,6 +11809,42 @@
           "Door",
           "Metal Door"
         ]
+      },
+      {
+        "label": "Firebird",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/3/39/Firebird.png/revision/latest?cb=20250215093742"
+      },
+      {
+        "label": "Hurricane",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/7/78/Hurricane.png/revision/latest/scale-to-width-down/400?cb=20230206200922"
+      },
+      {
+        "label": "Overdrive",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/a/ab/Overdrive.png/revision/latest/scale-to-width-down/400?cb=20220901170024"
+      },
+      {
+        "label": "Pinchfist",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/4/4d/Picnicfist2_-_not_tiny.png/revision/latest/scale-to-width-down/400?cb=20220819014920"
+      },
+      {
+        "label": "Spook",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/0/02/Spook.png/revision/latest/scale-to-width-down/400?cb=20220923090004"
+      },
+      {
+        "label": "Scattershot",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/6/6f/Scattershot.png/revision/latest/scale-to-width-down/400?cb=20220818213843"
+      },
+      {
+        "label": "Seep",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/0/03/Seep.png/revision/latest/scale-to-width-down/400?cb=20220715053521"
+      },
+      {
+        "label": "Shockenaugh",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/4/41/Shockenaugh.png/revision/latest?cb=20220818180657"
+      },
+      {
+        "label": "Warthog",
+        "image": "https://static.wikia.nocookie.net/forts-rts/images/e/ea/Wart.png/revision/latest?cb=20220819055027"
       }
     ],
     "secret": {

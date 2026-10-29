@@ -51,7 +51,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     const next = [...found, name];
     setFound(next);
     setText('');
-    setNote({ text: typo ? `${name} (typo forgiven)` : name, good: true, key: Date.now() });
+    setNote({ text: typo ? `${shownName(name)} (typo forgiven)` : shownName(name), good: true, key: Date.now() });
     sfx.correct();
     onEvent(true);
     if (next.length >= prompt.count) finish(true, next);
@@ -62,7 +62,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     if (!value.trim()) return;
     const m = matchAnswer(prompt, value, new Set(found), true);
     if (m?.already) {
-      setNote({ text: `${m.name} — already named`, good: false, key: Date.now() });
+      setNote({ text: `${shownName(m.name)} — already named`, good: false, key: Date.now() });
       setText('');
       return;
     }

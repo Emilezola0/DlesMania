@@ -434,7 +434,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                   {card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
                 </p>
                 {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
-                <p className="font-serif text-2xl font-bold text-white">{shownName(card.name)}</p>
+                <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
               </div>
             ) : (
               <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? '…' : 'TAP TO TURN'}</p>

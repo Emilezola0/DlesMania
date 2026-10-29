@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { shownName } from '../lib/french';
 import { Link } from 'react-router-dom';
 import { NameLangSwitch } from '../components/NameLangSwitch';
 import { Spinner } from '../components/Spinner';
@@ -86,7 +87,7 @@ function Profile() {
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
       <div className="min-w-0 flex-1">
         <p className="text-xs uppercase tracking-widest text-ink-faint">{label}</p>
-        <p className="truncate font-semibold">{card ? `${card.name} · ${RARITY_INFO[card.rarity].name}` : 'None'}</p>
+        <p className="truncate font-semibold">{card ? `${shownName(card.name, card.set)} · ${RARITY_INFO[card.rarity].name}` : 'None'}</p>
       </div>
       {card && (
         <button type="button" onClick={clear} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold">
