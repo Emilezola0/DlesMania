@@ -148,12 +148,12 @@ export const DUPLICATE_VALUE = { common: 2, rare: 5, epic: 15, legendary: 50, my
 export type MissionKind = 'rounds' | 'category' | 'special' | 'boss' | 'arcade' | 'whos';
 
 export const MISSIONS: Record<MissionKind, { icon: string; text: string; need: number; reward: number }> = {
-  rounds: { icon: '📅', text: 'Win 5 daily rounds', need: 5, reward: 40 },
-  category: { icon: '🏁', text: 'Play a whole daily category', need: 1, reward: 50 },
-  special: { icon: '🎯', text: 'Win 3 Specialist rounds', need: 3, reward: 40 },
-  boss: { icon: '👑', text: 'Beat a boss', need: 1, reward: 60 },
-  arcade: { icon: '🕹️', text: 'Finish 3 games from the Games page', need: 3, reward: 30 },
-  whos: { icon: '👤', text: "Play a Who's That? run", need: 1, reward: 25 },
+  rounds: { icon: '📅', text: 'Win 5 daily rounds', need: 5, reward: 80 },
+  category: { icon: '🏁', text: 'Play a whole daily category', need: 1, reward: 100 },
+  special: { icon: '🎯', text: 'Win 3 Specialist rounds', need: 3, reward: 80 },
+  boss: { icon: '👑', text: 'Beat a boss', need: 1, reward: 120 },
+  arcade: { icon: '🕹️', text: 'Finish 3 games from the Games page', need: 3, reward: 60 },
+  whos: { icon: '👤', text: "Play a Who's That? run", need: 1, reward: 50 },
 };
 
 const KINDS = Object.keys(MISSIONS) as MissionKind[];
@@ -198,22 +198,22 @@ export type LongKind = MissionKind | 'packs';
 
 export const LONG_MISSIONS: Record<Period, Record<LongKind, { icon: string; text: string; need: number; reward: number }>> = {
   week: {
-    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 150 },
-    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 180 },
-    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 150 },
-    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 220 },
-    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 120 },
-    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 100 },
-    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 150 },
+    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 300 },
+    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 360 },
+    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 300 },
+    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 440 },
+    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 240 },
+    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 200 },
+    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 300 },
   },
   month: {
-    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 500 },
-    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 600 },
-    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 450 },
-    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 700 },
-    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 400 },
-    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 350 },
-    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 450 },
+    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 1000 },
+    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 1200 },
+    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 900 },
+    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 1400 },
+    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 800 },
+    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 700 },
+    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 900 },
   },
 };
 
