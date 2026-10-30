@@ -121,7 +121,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
 /**
  * A second mythic for every franchise, added later (ids `<set>:mythic-2`): another star's special
  * edition, its picture the star's own card unless given. Doomfist's line is his own voice (the
- * Overwatch wiki's file; in French, a YouTube clip); the others are read in the browser's voice. (Lines written for these cards;
+ * Overwatch wiki's file, in French too); the others are read in the browser's voice. (Lines written for these cards;
  * titles and catchphrases from the franchises.)
  */
 const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceFr?: string; audioFr?: string; image?: string }> = {
@@ -132,9 +132,9 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
     line: 'He leaps, the sky goes dark, and one gauntlet comes down like a falling star.',
     voice: 'Meteor Strike!',
     audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/54/Doomfist_-_Meteor_strike.ogg/revision/latest?cb=20230913153702',
-    // In French, his Frappe météore from an Overwatch 2 highlight (YouTube, 1:31–1:33).
+    // In French, his ultimate's line in Doudou Masta's voice (the Overwatch wiki's French Dubbing page).
     voiceFr: 'Frappe météore !',
-    audioFr: 'youtube:xVx84MP6tDA@91-93',
+    audioFr: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/43/FrenchDoomfistULT.wav/revision/latest?cb=20241202040803',
   },
   minecraft: { name: 'Warden', title: 'The Deep Dark', line: 'Blind, patient, listening: one careless footstep in the Deep Dark and it is already coming.', voice: 'Sniff… sniff…' },
   onepiece: { name: 'Roronoa Zoro', title: 'The Pirate Hunter', line: 'Three swords, no sense of direction, and a promise to be the greatest swordsman alive.', voice: 'Santōryū!' },

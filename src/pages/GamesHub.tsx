@@ -65,6 +65,13 @@ export default function GamesHub() {
   ];
   const arcade: GameCard[] = [
     {
+      to: '/voice-line',
+      icon: '🎙️',
+      title: 'Voice Line',
+      blurb: "Overwatch: hear a hero's real voice line and find who says it. One mistake ends the streak.",
+      stat: best('voice:') ? `Best: ${best('voice:')} in a row` : undefined,
+    },
+    {
       to: '/rail-rush',
       icon: '🚂',
       title: 'Rail Rush',
