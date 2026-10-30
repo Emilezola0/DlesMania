@@ -23,6 +23,24 @@ export function celebrateBig() {
 }
 
 /** Jolts an element (screen shake). `strength` is the peak offset in pixels. */
+/**
+ * A rumble: the element trembles for `duration` ms, in small random jolts that grow from `from` to `to`
+ * pixels (an earthquake building up), then settles.
+ */
+export function rumble(el: HTMLElement | null, duration: number, from = 1, to = 6) {
+  if (!el || reducedMotion() || !el.animate) return;
+  const steps = Math.max(2, Math.round(duration / 45));
+  const frames: Keyframe[] = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const s = i === steps ? 0 : from + (to - from) * t * t;
+    const x = (Math.random() * 2 - 1) * s;
+    const y = (Math.random() * 2 - 1) * s * 0.7;
+    frames.push({ transform: `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(${((Math.random() * 2 - 1) * s * 0.06).toFixed(2)}deg)` });
+  }
+  el.animate(frames, { duration, easing: 'linear' });
+}
+
 export function shake(el: HTMLElement | null, strength = 8, duration = 420) {
   if (!el || reducedMotion() || !el.animate) return;
   const s = strength;

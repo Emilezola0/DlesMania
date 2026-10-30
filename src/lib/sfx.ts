@@ -71,7 +71,56 @@ function noise(dur: number, from: number, to: number, base = 0.12) {
   src.stop(t0 + dur + 0.02);
 }
 
+/**
+ * A soft suspense drone for `dur` seconds: two low, slightly detuned tones rising a fifth, a slow tremolo
+ * quickening, swelling a little and cut short at the end (the moment something happens).
+ */
+function drone(dur: number, base = 0.035) {
+  const ac = audio();
+  const level = useProgress.getState().sfxVolume / 100;
+  if (!ac || level <= 0) return;
+  const t0 = ac.currentTime;
+  const amp = ac.createGain();
+  amp.gain.setValueAtTime(0.0001, t0);
+  amp.gain.exponentialRampToValueAtTime(Math.max(0.0002, base * level * 0.5), t0 + 0.4);
+  amp.gain.exponentialRampToValueAtTime(Math.max(0.0002, base * level), t0 + dur - 0.08);
+  amp.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+  // The tremolo: the volume pulsing, faster and faster, like a heartbeat speeding up.
+  const trem = ac.createGain();
+  trem.gain.value = 0.7;
+  const lfo = ac.createOscillator();
+  lfo.frequency.setValueAtTime(3, t0);
+  lfo.frequency.exponentialRampToValueAtTime(12, t0 + dur);
+  const depth = ac.createGain();
+  depth.gain.value = 0.3;
+  lfo.connect(depth).connect(trem.gain);
+  trem.connect(amp).connect(ac.destination);
+  for (const [freq, type] of [[110, 'triangle'], [110.8, 'sine']] as const) {
+    const osc = ac.createOscillator();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t0);
+    osc.frequency.exponentialRampToValueAtTime(freq * 1.5, t0 + dur);
+    osc.connect(trem);
+    osc.start(t0);
+    osc.stop(t0 + dur + 0.02);
+  }
+  lfo.start(t0);
+  lfo.stop(t0 + dur + 0.02);
+}
+
 export const sfx = {
+  /** The wait before the best card's star: a quiet drone rising, its pulse quickening. */
+  suspense: (seconds: number) => drone(seconds),
+  /** Two stars crashing together and bursting: a crack, a low boom, and sparkles. */
+  clash: () => {
+    noise(0.5, 3500, 250, 0.16);
+    play([
+      { freq: 140, dur: 0.45, type: 'sine', gain: 0.18, slide: 40 },
+      { freq: 1568, at: 0.08, dur: 0.18, type: 'triangle', gain: 0.03 },
+      { freq: 2093, at: 0.16, dur: 0.2, type: 'triangle', gain: 0.03 },
+      { freq: 2637, at: 0.24, dur: 0.3, type: 'triangle', gain: 0.025 },
+    ]);
+  },
   click: () => play([{ freq: 660, dur: 0.05, type: 'triangle', gain: 0.06 }]),
   select: () => play([{ freq: 880, dur: 0.04, type: 'square', gain: 0.03 }]),
   wrong: () =>
