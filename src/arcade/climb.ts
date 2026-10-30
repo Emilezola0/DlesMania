@@ -3,6 +3,7 @@
 // (hands far apart or crossed) — and comes back on the ledges every few metres. Out of stamina, you
 // fall to the last ledge (or piton) and lose a rope. The score is the height reached.
 import { BOSSES } from '../data/bosses';
+import { romajiSpellings, toHiragana } from '../lib/romaji';
 import { withFrench } from '../lib/french';
 import { mulberry32 } from '../lib/rng';
 
@@ -18,6 +19,9 @@ export interface Face {
   spellings: string[];
   /** Its franchise: the Boss Battle id (Customise picks by it). */
   set: string;
+  /** JLPT kanji: their readings (the only thing that can be typed) and their meaning, shown after a fall. */
+  reading?: string;
+  meaning?: string;
 }
 
 export interface Hold {
@@ -68,8 +72,16 @@ export const compact = (s: string) =>
   s
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
+    // Kana stay (JLPT readings can be typed in kana): their voiced marks go back on.
+    .normalize('NFC')
     .toLowerCase()
-    .replace(/[^a-z0-9]/g, '');
+    .replace(/[^a-z0-9\u3041-\u30ff]/g, '');
+
+/** A kanji's readings as typed: kana and romaji ("サン・やま" → さん, san, やま, yama). */
+function kanjiSpellings(reading: string): string[] {
+  const kana = reading.split(/[・、\s]+/).map((r) => toHiragana(r.replace(/[.\-～~]/g, ''))).filter(Boolean);
+  return [...new Set([...kana, ...kana.flatMap(romajiSpellings)].map(compact).filter(Boolean))];
+}
 
 const SMALL_WORDS = new Set(['the', 'of', 'and', 'von', 'van', 'del', 'des']);
 
@@ -84,7 +96,12 @@ export const FACES: Face[] = (() => {
   const seen = new Set<string>();
   return BOSSES.flatMap((b) => b.radar.members.map((m) => ({ m, set: b.id })))
     .filter(({ m }) => m.image && !seen.has(m.label) && seen.add(m.label))
-    .map(({ m, set }) => ({ name: m.label, fr: m.fr, image: m.image!, spellings: spellingsOf(m.label, [...(m.aliases ?? []), ...(m.fr ? [m.fr] : [])], m.fr), set }));
+    .map(({ m, set }) =>
+      // A kanji is grabbed by its reading only (romaji or kana), never by its English meaning: the point is to learn it.
+      set === 'jlpt' && m.reading
+        ? { name: m.label, image: m.image!, spellings: kanjiSpellings(m.reading), set, reading: m.reading, meaning: m.label }
+        : { name: m.label, fr: m.fr, image: m.image!, spellings: spellingsOf(m.label, [...(m.aliases ?? []), ...(m.fr ? [m.fr] : [])], m.fr), set },
+    );
 })();
 
 export const sectionOf = (y: number) => Math.floor(y / LEDGE_EVERY);
