@@ -19,7 +19,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -33,6 +33,8 @@ export interface SimpleUniverse {
   executions?: { answer: string; name: string; youtubeId: string; seconds: number }[];
   /** Overwatch: each hero's ultimate and its charge cost, for the Ultimate Cost round. */
   ults?: { answer: string; ultimate: string; cost: number }[];
+  /** Ufouria: the heroes cheering, cut out (the official art), for the Dance round: who is dancing in the shadow? */
+  dances?: { answer: string; image: string }[];
   /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
   items?: SimpleCharacter[];
 }
@@ -313,7 +315,43 @@ function overwatch(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch() };
+// ── Ufouria: The Saga 2: the four heroes, the enemies (the in-game bestiary's names) and the things of the cards. ──
+const UFOURIA_HEROES: [string, string[]][] = [
+  ['Hebe', ['Bop-Louie']],
+  ['O-Chan', ['Ochan', 'Ō-Chan', 'Freeon-Leon']],
+  ['Sukezaemon', ['Shades']],
+  ['Jennifer', ['Gil']],
+];
+const UFOURIA_ENEMIES = ['Utsujin', 'Kotsu', 'Bumyon', 'Bemyon', 'Bomyon', 'Kerasu', 'Sanbo', 'Teketeke', 'Punipuni', 'Gako', 'Nezuchiu', 'Keronba', 'Kokeron', 'Hobachiu', 'Hoppin', 'Hanageruge', 'Gyorochan', 'Nanikano Tamago', 'Donadona', 'Micky', 'Kuchigeruge', 'Capchiu', 'Nyanham', 'Pen-Chan', 'Ricky', 'Muneko', 'Bobodori'];
+const ufouriaArt = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/ufouria/${file}`;
+
+function ufouria(): SimpleUniverse {
+  const b = boss('ufouria');
+  const heroes = UFOURIA_HEROES.map(([n]) => n);
+  const enemies = new Set(UFOURIA_ENEMIES);
+  const cards = CARDS.filter((c) => c.set === 'ufouria' && c.rarity !== 'mythic' && c.rarity !== 'omni');
+  const things = cards.filter((c) => !heroes.includes(c.name) && !enemies.has(c.name));
+  return {
+    id: 'ufouria',
+    columns: [],
+    characters: [
+      ...UFOURIA_HEROES.map(([name, aliases]) => ({ id: slug(name), name, aliases, image: cardImage('ufouria', name), traits: { Kind: 'Hero' } })),
+      ...UFOURIA_ENEMIES.map((name) => ({ id: slug(name), name, aliases: [], image: cardImage('ufouria', name) || (name === 'Utsujin' ? (b.boss.image ?? '') : ''), traits: { Kind: 'Enemy' } })),
+      ...things.map((c) => ({ id: slug(c.name), name: c.name, aliases: [], image: c.image, traits: { Kind: 'Thing or place' } })),
+    ],
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    dances: [
+      { answer: 'hebe', image: ufouriaArt('dance-hebe-1.png') },
+      { answer: 'hebe', image: ufouriaArt('dance-hebe-2.png') },
+      { answer: 'o-chan', image: ufouriaArt('dance-o-chan.png') },
+      { answer: 'sukezaemon', image: ufouriaArt('dance-sukezaemon.png') },
+      { answer: 'jennifer', image: ufouriaArt('dance-jennifer-1.png') },
+      { answer: 'jennifer', image: ufouriaArt('dance-jennifer-2.png') },
+    ],
+  };
+}
+
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 
@@ -333,6 +371,8 @@ export function simplePools(u: SimpleUniverse['id']) {
     ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
     // Ultimate Cost: only heroes whose cost no one else has, so the number has one answer.
     ...(x.ults?.length ? { ultcost: x.ults.filter((u) => x.ults!.filter((o) => o.cost === u.cost).length === 1 && ids.has(u.answer)).map((u) => u.answer) } : {}),
+    // A dance round's id is its index (a hero has several poses).
+    ...(x.dances?.length ? { dance: x.dances.flatMap((d, i) => (ids.has(d.answer) ? [String(i)] : [])) } : {}),
     // An execution round's id is its index (a hero has several).
     ...(x.executions?.length ? { execution: x.executions.flatMap((e, i) => (ids.has(e.answer) ? [String(i)] : [])) } : {}),
   };

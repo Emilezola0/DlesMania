@@ -20,6 +20,9 @@ import CARD_ART from '../data/card-art.json';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
 
+/** Ufouria's pictures, served with the site (public/art/ufouria): the game's wikis don't let others show theirs. */
+const UFOURIA_ART = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/ufouria/${file}`;
+
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
 export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
 
@@ -119,6 +122,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
+  ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', image: UFOURIA_ART('dance-hebe-2.png') },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -184,6 +188,18 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       title: '合格 — Gōkaku',
       line: 'Oni-Sensei bows for the first time: every stroke in its place, every reading known. N1 — passed.',
       image: kanjiPicture('kanji-awake:合格'),
+    },
+  },
+  // Ufouria: O-Chan cheering (the official site's art); on a Hard win, flying over the Earth (the key art).
+  ufouria: {
+    name: 'O-Chan',
+    title: 'The Cat-Suit Friend',
+    line: 'The first friend Utsujin’s Bumyon took over, and the first one Hebe had to fight to bring back. She can’t hold back any longer!',
+    image: UFOURIA_ART('dance-o-chan.png'),
+    awaken: {
+      title: 'Over the Earth',
+      line: 'Saucer gone, Bumyon cleaned up: O-Chan floats above the whole world, Hebe and the others beside her.',
+      image: UFOURIA_ART('o-chan-space.jpg'),
     },
   },
   onepiece: {
@@ -576,7 +592,7 @@ const CLIPS: Record<string, string> = {
 /** The clips under 150 KB. */
 const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'avatar:mythic-2', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
-const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'onepiece:omni', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2']);
+const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'onepiece:omni', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
 const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
@@ -586,9 +602,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria']);
 
 const slug = (s: string) =>
   s
