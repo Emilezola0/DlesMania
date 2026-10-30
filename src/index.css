@@ -949,6 +949,39 @@ h1, h2, h3, .font-serif, .font-display {
   .card-backdrop { animation: none; }
 }
 
+/* ── A big moment (src/gacha/Reactions.tsx): the page's whole background comes alive for a few seconds. ── */
+@keyframes moment-bg {
+  0%, 100% { opacity: 0; }
+  10%, 80% { opacity: 1; }
+}
+.moment-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  overflow: hidden;
+  pointer-events: none;
+  animation: moment-bg 6s ease-in-out both;
+}
+.moment-rays {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180vmax;
+  height: 180vmax;
+  margin: -90vmax 0 0 -90vmax;
+  background: repeating-conic-gradient(transparent 0deg, color-mix(in srgb, var(--glow) 80%, transparent) 6deg, transparent 14deg, transparent 30deg);
+  animation: card-backdrop-turn 16s linear infinite;
+}
+.moment-clip { position: absolute; inset: 0; opacity: 0.8; }
+.moment-clip video { position: absolute; inset: 0; }
+.moment-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
+}
+.moment-on .page { background-color: color-mix(in srgb, var(--color-card) 72%, transparent); transition: background-color 0.5s; }
+
 /* ── The Omni aura (src/gacha/OmniAura.tsx): the whole site, while an Omni card is on show. ── */
 @keyframes omni-aurora {
   0% { background-position: 0% 50%, 100% 50%; }

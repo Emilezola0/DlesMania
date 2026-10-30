@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { playVoice, voiceOf } from './voice';
+import { YT_VOICE, playVoice, voiceOf } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -95,8 +95,8 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
 };
 
 /** A big moment's animation: how long it stays, and at least how long between two. */
-const MOMENT_MS = 4500;
-const MOMENT_GAP_MS = 60_000;
+const MOMENT_MS = 6000;
+const MOMENT_GAP_MS = 45_000;
 
 const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
 /** Legendary or better, and in the album. */
@@ -133,8 +133,15 @@ export function CardReactions() {
   const [bubble, setBubble] = useState<{ kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
   /** The icon's animation, on a big moment now and then. */
-  const [moment, setMoment] = useState<{ clip: string; key: number } | null>(null);
+  const [moment, setMoment] = useState<{ clip?: string; key: number } | null>(null);
   const lastMoment = useRef(0);
+  const [clipFailed, setClipFailed] = useState<string | null>(null);
+  // The page itself turns see-through while it lasts.
+  useEffect(() => {
+    if (!moment) return;
+    document.documentElement.classList.add('moment-on');
+    return () => document.documentElement.classList.remove('moment-on');
+  }, [moment]);
   useEffect(() => {
     if (!enabled || !avatar) return;
     let timer = 0;
@@ -149,9 +156,9 @@ export function CardReactions() {
       setBubble({ kind, text, key: now });
       // A mythic's big moment: its voice line, heard.
       if (kind === 'great' && avatar.voice) playVoice(avatar);
-      // A win, a finished game: its animation too, now and then. Not where cards already show theirs.
+      // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
       const clip = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
-      if (kind === 'great' && clip && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         lastMoment.current = now;
         setMoment({ clip, key: now });
         window.clearTimeout(momentTimer);
@@ -167,11 +174,15 @@ export function CardReactions() {
   const light = RARITY_LIGHT[avatar.rarity];
   return (
     <>
+      {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind (not one from YouTube: too slow to load for a moment this short). */}
       {moment && (
-        <div key={moment.key} className="animate-pop pointer-events-none fixed bottom-4 right-3 z-40 w-56 max-sm:bottom-16 overflow-hidden rounded-xl border-2 shadow-2xl sm:w-72" style={{ borderColor: light, boxShadow: `0 0 28px ${light}` }} aria-hidden>
-          <div className="relative aspect-video w-full overflow-hidden">
-            <CardClip src={moment.clip} onFail={() => setMoment(null)} className="size-full object-cover" />
-          </div>
+        <div key={moment.key} className="moment-bg" style={{ ['--glow' as string]: light, animationDuration: `${MOMENT_MS}ms` }} aria-hidden>
+          <div className="moment-rays" />
+          {moment.clip && clipFailed !== moment.clip && !YT_VOICE.test(moment.clip) && (
+            <div className="moment-clip">
+              <CardClip src={moment.clip} onFail={() => setClipFailed(moment.clip!)} className="size-full object-cover" />
+            </div>
+          )}
         </div>
       )}
       {bubble && (

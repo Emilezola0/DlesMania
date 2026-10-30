@@ -2,9 +2,11 @@
 // symbols drifting behind the pages; and its companions, the other cards owned from that franchise, who
 // pop up in the corner now and then to talk among themselves.
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { shownName } from '../lib/french';
 import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CARDS, CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
+import { pickExchange } from './Dialogue';
 import { CardAvatar } from './Perks';
 import { CHARACTER_LINES, REACTIONS } from './Reactions';
 
@@ -96,53 +98,69 @@ export function FranchiseTheme() {
   );
 }
 
-/** At least this long between two conversations, and how long each line stays. */
-const CHAT_GAP_MS = 90_000;
-const LINE_MS = 2600;
+/** At least this long between two conversations (an icon at Mythic or above keeps them talking), the chance a plain play starts one, and how long each line stays. */
+const CHAT_GAP_MS = 60_000;
+const CHAT_GAP_TOP_MS = 20_000;
+const CHAT_CHANCE = 0.25;
+const CHAT_CHANCE_TOP = 0.6;
+const LINE_MS = 2800;
+/** After the play: the icon's own reaction reads first. */
+const CHAT_DELAY_MS = 900;
 const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
-/** What a card says: its own lines, else its franchise's. */
+/** What a lone card says: its own lines, else its franchise's. */
 const lineOf = (c: Card, kind: Cue) => {
   const lines = CHARACTER_LINES[c.name] ?? REACTIONS[c.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
   return pick(kind === 'bad' ? lines.bad : lines.good);
 };
 
 /**
- * The franchise's other characters: two cards the player owns pop up after a play and trade a word each.
- * Only cards that are owned come, so the conversation grows with the collection.
+ * The franchise's characters talking about the game: cards the player owns pop up after a play and hold a
+ * little exchange, glad or dismayed according to how it went. Only cards that are owned come, so the
+ * conversation grows with the collection; a Mythic or Omni icon joins in, and gets them talking far more often.
  */
 export function Companions() {
   const on = useProgress((s) => s.companions ?? true);
-  const set = useThemeSet();
+  const themeSet = useThemeSet();
   const cards = useProgress((s) => s.cards);
-  const avatar = useProgress((s) => s.avatar);
-  const cast = useMemo(() => (set ? CARDS.filter((c) => c.set === set && cards[c.id] && c.id !== avatar && c.rarity !== 'mythic' && c.rarity !== 'omni') : []), [set, cards, avatar]);
+  const avatarId = useProgress((s) => s.avatar);
+  const icon = avatarId && cards[avatarId] ? CARD_BY_ID.get(avatarId) : undefined;
+  const top = !!icon && RARITY_INFO[icon.rarity].rank >= 4;
+  // A top icon brings its franchise along, whichever theme is on.
+  const set = top ? icon.set : themeSet;
+  const cast = useMemo(() => (set ? CARDS.filter((c) => c.set === set && cards[c.id] && c.id !== avatarId && c.rarity !== 'mythic' && c.rarity !== 'omni') : []), [set, cards, avatarId]);
   const [talk, setTalk] = useState<{ card: Card; text: string; key: number; side: number } | null>(null);
   const last = useRef(0);
   const timers = useRef<number[]>([]);
   useEffect(() => {
-    if (!on || cast.length < 1) return;
+    if (!on || !set || cast.length < 1) return;
     const off = onCue((kind) => {
       const now = Date.now();
-      if (now - last.current < CHAT_GAP_MS || /\/(shop|album)/.test(window.location.hash)) return;
+      if (now - last.current < (top ? CHAT_GAP_TOP_MS : CHAT_GAP_MS) || /\/(shop|album)/.test(window.location.hash)) return;
       // A big moment always draws them; otherwise now and then.
-      if (kind !== 'great' && Math.random() > 0.2) return;
+      if (kind !== 'great' && Math.random() > (top ? CHAT_CHANCE_TOP : CHAT_CHANCE)) return;
       last.current = now;
-      const first = pick(cast);
-      const others = cast.filter((c) => c.name !== first.name);
-      const second = others.length ? pick(others) : null;
       timers.current.forEach(clearTimeout);
       timers.current = [];
-      setTalk({ card: first, text: lineOf(first, kind), key: now, side: 0 });
+      const first = pick(cast);
+      // The icon answers about half the time, when it's a top card.
+      const others = cast.filter((c) => c.name !== first.name);
+      const second = top && icon && icon.name !== first.name && (Math.random() < 0.5 || !others.length) ? icon : others.length ? pick(others) : null;
+      const say = (card: Card, text: string, i: number) => timers.current.push(window.setTimeout(() => setTalk({ card, text, key: now + i, side: i % 2 }), CHAT_DELAY_MS + LINE_MS * i));
       if (second) {
-        timers.current.push(window.setTimeout(() => setTalk({ card: second, text: lineOf(second, kind === 'bad' ? 'bad' : 'good'), key: now + 1, side: 1 }), LINE_MS));
-        timers.current.push(window.setTimeout(() => setTalk(null), LINE_MS * 2));
-      } else timers.current.push(window.setTimeout(() => setTalk(null), LINE_MS));
+        const speaker = (i: number) => (i % 2 ? second : first);
+        const lines = pickExchange(set, kind, (i) => shownName(speaker(i + 1).name, set));
+        lines.forEach((text, i) => say(speaker(i), text, i));
+        timers.current.push(window.setTimeout(() => setTalk(null), CHAT_DELAY_MS + LINE_MS * lines.length));
+      } else {
+        say(first, lineOf(first, kind), 0);
+        timers.current.push(window.setTimeout(() => setTalk(null), CHAT_DELAY_MS + LINE_MS));
+      }
     });
     return () => {
       off();
       timers.current.forEach(clearTimeout);
     };
-  }, [on, cast]);
+  }, [on, set, cast, top, icon]);
   if (!talk) return null;
   const light = RARITY_LIGHT[talk.card.rarity];
   return (
