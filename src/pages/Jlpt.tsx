@@ -34,6 +34,40 @@ function KeepButton({ id }: { id: string }) {
   );
 }
 
+/** Every word or kanji of a run, with its reading and meaning, each one starrable onto the review list. */
+function RunWords({ entries }: { entries: JlptEntry[] }) {
+  const add = useProgress((s) => s.addJlptReview);
+  const list = useProgress((s) => s.jlptReview);
+  const unique = entries.filter((e, i) => entries.findIndex((x) => x.id === e.id) === i);
+  const all = unique.every((e) => e.id in list);
+  return (
+    <section className="page animate-pop space-y-3 rounded-md p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-display font-bold">This run: {unique.length} {unique.length === 1 ? 'word' : 'words'}</p>
+        <button type="button" disabled={all} onClick={() => add(unique.map((e) => e.id))} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold disabled:opacity-50">
+          {all ? '★ All in your review list' : '☆ Add them all to my review list'}
+        </button>
+      </div>
+      <ul className="space-y-2">
+        {unique.map((e) => (
+          <li key={e.id} className="flex items-center gap-3 rounded-md border border-rule px-3 py-2">
+            <span lang="ja" className="min-w-14 font-serif text-2xl font-bold">
+              {e.text}
+            </span>
+            <span className="min-w-0 flex-1 text-sm">
+              <span lang="ja" className="block text-ink-soft">
+                {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+              </span>
+              <span className="block">{shortMeaning(e.meaning, 4)}</span>
+            </span>
+            <KeepButton id={e.id} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 /**
  * One deck's quiz. A level or theme deck is a streak with a clock, over at the first mistake; every miss
  * goes on the review list. The review deck has no clock and goes on after a miss: a right answer counts
@@ -60,6 +94,8 @@ function Game({ deck }: { deck: JlptDeck }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [missed, setMissed] = useState(0);
+  // Every word or kanji of this run, to go over at the end (and put on the review list).
+  const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const arena = useRef<HTMLDivElement>(null);
 
@@ -74,6 +110,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     shake(arena.current, 10, 420);
     setPicked(choice);
     setState('wrong');
+    setSeen((s) => [...s, q.entry]);
     if (review) {
       reviewJlpt(q.entry.id, false);
       setMissed((m) => m + 1);
@@ -90,6 +127,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     setPicked(choice);
     setState('right');
     setScore(score + 1);
+    setSeen((s) => [...s, q.entry]);
     if (review) reviewJlpt(q.entry.id, true);
     window.setTimeout(next, REVEAL_MS);
   };
@@ -97,6 +135,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     sfx.click();
     setScore(0);
     setMissed(0);
+    setSeen([]);
     next();
   };
 
@@ -203,6 +242,7 @@ function Game({ deck }: { deck: JlptDeck }) {
             </button>
           </div>
         ))}
+      {state === 'wrong' && !review && seen.length > 0 && <RunWords entries={seen} />}
     </div>
   );
 }
