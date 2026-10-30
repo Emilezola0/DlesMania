@@ -94,13 +94,13 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   // Forts' mythic is the Howitzer (it was Eagle Eye, who took the Howitzer's place as a legendary): its
-  // voice is the game's own howitzer shot, from "The sounds of Forts" on YouTube (0:54–0:57).
+  // voice is the game's own howitzer shot, from "The sounds of Forts" on YouTube (0:55.0–0:55.9).
   forts: {
     name: 'Howitzer',
     title: 'The Big Gun',
     line: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
     voice: 'BOOM!',
-    audio: 'youtube:rKj_ebK1T5E@54-57',
+    audio: 'youtube:rKj_ebK1T5E@55-55.9',
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -108,8 +108,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
 
 /**
  * A second mythic for every franchise, added later (ids `<set>:mythic-2`): another star's special
- * edition, its picture the star's own card unless given. Doomfist's line is his own voice (the
- * Overwatch wiki's file); the others are read in the browser's voice. (Lines written for these cards;
+ * edition, its picture the star's own card unless given. Doomfist's line is his own voice (a
+ * YouTube clip); the others are read in the browser's voice. (Lines written for these cards;
  * titles and catchphrases from the franchises.)
  */
 const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; image?: string }> = {
@@ -119,7 +119,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
     title: 'The Successor',
     line: 'He leaps, the sky goes dark, and one gauntlet comes down like a falling star.',
     voice: 'Meteor Strike!',
-    audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/54/Doomfist_-_Meteor_strike.ogg/revision/latest?cb=20230913153702',
+    // His Meteor Strike from an Overwatch 2 highlight (YouTube, 1:31–1:33).
+    audio: 'youtube:xVx84MP6tDA@91-93',
   },
   minecraft: { name: 'Warden', title: 'The Deep Dark', line: 'Blind, patient, listening: one careless footstep in the Deep Dark and it is already coming.', voice: 'Sniff… sniff…' },
   onepiece: { name: 'Roronoa Zoro', title: 'The Pirate Hunter', line: 'Three swords, no sense of direction, and a promise to be the greatest swordsman alive.', voice: 'Santōryū!' },
