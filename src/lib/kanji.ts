@@ -4,14 +4,14 @@
 
 const FONT = "'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','MS Mincho',serif";
 
-/** A kanji on squared paper, its practice grid in faint lines. */
+/** A kanji (or a word: the size shrinks with its length) on squared paper, its practice grid in faint lines. */
 function paper(k: string): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
 <defs><radialGradient id="p" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#fbf5e6"/><stop offset="1" stop-color="#e8dcc0"/></radialGradient></defs>
 <rect width="400" height="400" fill="url(#p)"/>
 <rect x="40" y="40" width="320" height="320" fill="none" stroke="#c0392b" stroke-opacity=".35" stroke-width="3"/>
 <path d="M200 40V360M40 200H360" stroke="#c0392b" stroke-opacity=".18" stroke-width="2" stroke-dasharray="10 8"/>
-<text x="200" y="208" font-family="${FONT}" font-size="250" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917">${k}</text>
+<text x="200" y="208" font-family="${FONT}" font-size="${[250, 250, 165, 115, 88][Math.min([...k].length, 4)]}" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917">${k}</text>
 </svg>`;
 }
 

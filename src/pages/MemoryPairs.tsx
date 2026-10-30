@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { MEMORY_DECKS, PAIRS_PER_GAME, dealBoard, memoryDeck, memoryScore, type MemoryCard, type MemoryDeck } from '../arcade/memory';
+import { Customise, useCustomPicks } from '../components/Customise';
+import { JLPT_MEMORY_DEFAULT, JLPT_PAIR_TYPES, MEMORY_DECKS, PAIRS_PER_GAME, dealBoard, jlptPairs, memoryDeck, memoryScore, type MemoryCard, type MemoryDeck } from '../arcade/memory';
+import { JLPT_LEVELS } from '../arcade/jlpt';
 import { GlyphSeal } from '../components/Glyph';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -38,9 +40,12 @@ function Card({ card, n, up, found, onClick }: { card: MemoryCard; n: number; up
           {f.image ? (
             <img src={f.image} alt="" draggable={false} className="min-h-0 flex-1 bg-tile object-cover object-top" />
           ) : (
-            <p className="grid flex-1 place-items-center p-2 text-center font-serif text-sm font-bold leading-tight sm:text-base">{f.text}</p>
+            <p lang={f.big ? 'ja' : undefined} className={`grid flex-1 place-items-center p-2 text-center font-serif font-bold leading-tight ${f.big ? 'text-3xl sm:text-5xl' : 'text-sm sm:text-base'}`}>
+              {f.text}
+            </p>
           )}
-          {found && f.image && <p className="animate-pop truncate bg-hit/20 px-1 py-0.5 text-center text-[10px] font-semibold sm:text-xs">{f.caption}</p>}
+          {/* Once found, the picture's name — or for JLPT the reading: the point is to learn it. */}
+          {found && (f.image || f.caption !== f.text) && <p lang="ja" className="animate-pop truncate bg-hit/20 px-1 py-0.5 text-center text-[10px] font-semibold sm:text-xs">{f.caption}</p>}
         </div>
       </div>
     </button>
@@ -133,11 +138,29 @@ function Board({ deck }: { deck: MemoryDeck }) {
 }
 
 /** /memory and /memory/:deck */
+/** JLPT: which kinds of pair, which levels (N5 and N4 at first). */
+const JLPT_MEMORY_OPTIONS = [
+  ...JLPT_PAIR_TYPES.map((t) => ({ key: t.key, label: t.label, group: 'Pairs' })),
+  ...JLPT_LEVELS.map((l) => ({ key: l.level, label: l.level, group: 'Levels' })),
+];
+
+/** Decks to mix in "Your mix". */
+const MEMORY_OPTIONS = MEMORY_DECKS.map((d) => ({ key: d.id, label: `${d.icon} ${d.label}` }));
+
 export default function MemoryPairs() {
   const { deck: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-memory', MEMORY_OPTIONS);
+  const jlpt = useCustomPicks('omnidle-custom-memory-jlpt', JLPT_MEMORY_OPTIONS, JLPT_MEMORY_DEFAULT);
   if (id) {
-    const deck = memoryDeck(id);
+    // "Your mix" (Customise): the pairs of every picked deck, dealt together.
+    const mixed = MEMORY_DECKS.filter((d) => picks.includes(d.id));
+    const deck: MemoryDeck | undefined =
+      id === 'custom' && mixed.length
+        ? { id: 'custom', label: 'Your mix', icon: '🎛', rule: `Match what goes together: ${mixed.map((d) => d.rule.replace(/\.$/, '').toLowerCase()).join('; ')}.`, pairs: mixed.flatMap((d) => d.pairs.map((p) => ({ ...p, id: `${d.id}:${p.id}` }))) }
+        : id === 'jlpt'
+          ? { ...memoryDeck('jlpt')!, pairs: jlptPairs(jlpt.picks) }
+          : memoryDeck(id);
     if (!deck) return <Navigate to="/memory" replace />;
     return (
       <div className="mx-auto max-w-3xl space-y-6">
@@ -149,7 +172,16 @@ export default function MemoryPairs() {
             {deck.icon} {deck.label}
           </h1>
         </div>
-        <Board key={deck.id} deck={deck} />
+        {deck.id === 'jlpt' && (
+          <Customise
+            options={JLPT_MEMORY_OPTIONS}
+            picks={jlpt.picks}
+            onChange={jlpt.setPicks}
+            noun="option"
+            problem={deck.pairs.length < PAIRS_PER_GAME ? 'Pick at least one kind of pair and one level.' : null}
+          />
+        )}
+        {deck.pairs.length >= PAIRS_PER_GAME && <Board key={`${deck.id}:${picks.join(',')}:${jlpt.picks.join(',')}`} deck={deck} />}
       </div>
     );
   }
@@ -164,7 +196,19 @@ export default function MemoryPairs() {
           {PAIRS_PER_GAME} pairs face down: turn two cards at a time and find what goes together — a Devil Fruit and its user, a champion and their ultimate… Fewer flips, faster, more points.
         </p>
       </div>
+      <Customise options={MEMORY_OPTIONS} picks={picks} onChange={setPicks} noun="deck" />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {picks.length > 0 && (
+          <li>
+            <Link to="/memory/custom" className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="text-3xl">🎛</span>
+              <span className="font-display text-xl font-bold">Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {picks.length} deck{picks.length === 1 ? '' : 's'}{(bests['memory:custom'] ?? 0) > 0 ? ` · best ${bests['memory:custom']}` : ''}
+              </span>
+            </Link>
+          </li>
+        )}
         {MEMORY_DECKS.map((d) => (
           <li key={d.id}>
             <Link to={`/memory/${d.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">

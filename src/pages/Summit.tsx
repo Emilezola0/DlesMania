@@ -304,7 +304,8 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
     if (now - since > REVEAL_MS) {
       ctx.font = '700 11px system-ui, sans-serif';
       ctx.textAlign = 'center';
-      const label = (g.lang === 'fr' && hd.face.fr) || hd.face.name;
+      // A kanji shows its reading (what has to be typed), never its English meaning.
+      const label = hd.face.reading ? hd.face.reading.split(/[・、]/)[0].replace(/[.\-～~]/g, '') : (g.lang === 'fr' && hd.face.fr) || hd.face.name;
       const tw = ctx.measureText(label).width + 8;
       ctx.fillStyle = 'rgba(0,0,0,0.65)';
       ctx.fillRect(x - tw / 2, y - fr * 2.2 - 14, tw, 15);
@@ -396,6 +397,32 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
 }
 
 // ── The game ──────────────────────────────────────────────────────────
+/** The holds that were in reach when a rope was lost: their answers (for a kanji, its readings and meaning). */
+function MissedList({ faces }: { faces: Face[] }) {
+  return (
+    <div className="mx-auto max-w-md space-y-1 rounded-md border border-rule-strong bg-card p-3 text-left">
+      <p className="font-display text-xs uppercase tracking-[0.25em] text-ink-faint">In reach when you fell</p>
+      <ul className="space-y-1">
+        {faces.map((f) => (
+          <li key={f.image + f.name} className="flex items-center gap-3 text-sm">
+            <img src={f.image} alt="" className="size-9 shrink-0 rounded-full bg-tile object-cover" />
+            {f.reading ? (
+              <span>
+                <span lang="ja" className="font-semibold">
+                  {f.reading}
+                </span>{' '}
+                <span className="text-ink-soft">· {f.meaning}</span>
+              </span>
+            ) : (
+              <span className="font-semibold">{f.name}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
   const best = useProgress((s) => s.bests[bestKey] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
@@ -404,6 +431,7 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
   const [, redraw] = useReducer((x: number) => x + 1, 0);
   const [text, setText] = useState('');
   const [offer, setOffer] = useState<Item[] | null>(null);
+  const [missed, setMissed] = useState<Face[]>([]);
   const canvas = useRef<HTMLCanvasElement>(null);
   const box = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -466,6 +494,9 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
 
   const fall = (now: number) => {
     const st = g.current;
+    // The faces that were in reach: their answers show after the fall (to learn the ones that were missed).
+    const inReach = reachable(st.holds, anchorOf(st), moverOf(st)).map((h) => h.face);
+    setMissed((m) => [...m, ...inReach.filter((f) => !m.includes(f))]);
     st.phase = 'fell';
     st.fellAt = now;
     st.stamina = 0;
@@ -605,6 +636,7 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
     bestBefore.current = Math.max(bestBefore.current, Math.round(g.current.maxH * 10));
     g.current = freshState(faces);
     g.current.phase = 'climb';
+    setMissed([]);
     setTyped('');
     setOffer(null);
     input.current?.focus({ preventScroll: true });
@@ -671,6 +703,11 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
             </div>
           </div>
         )}
+        {st.phase === 'fell' && missed.length > 0 && (
+          <div className="pointer-events-none absolute inset-x-3 bottom-3 animate-pop">
+            <MissedList faces={missed.slice(-3)} />
+          </div>
+        )}
         {st.phase === 'over' && (
           <div className="absolute inset-0 grid place-items-center rounded-md bg-paper/70 backdrop-blur-[2px]">
             <div className="animate-pop space-y-2 text-center">
@@ -680,6 +717,7 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
               <button type="button" onClick={again} className="btn-ink rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
                 Climb again
               </button>
+              {missed.length > 0 && <MissedList faces={missed} />}
             </div>
           </div>
         )}

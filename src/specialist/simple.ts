@@ -5,6 +5,7 @@
 import { BOSSES } from '../data/bosses';
 import { CARDS } from '../gacha/cards';
 import OW_VOICES from '../data/overwatch-voices.json';
+import OW_ULTS from '../data/overwatch-ults.json';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 
 export interface SimpleCharacter {
@@ -30,6 +31,8 @@ export interface SimpleUniverse {
   voices?: { answer: string; en?: string; fr?: string }[];
   /** Executions (For Honor): a hero's finishing move, a short YouTube video played in silhouette. */
   executions?: { answer: string; name: string; youtubeId: string; seconds: number }[];
+  /** Overwatch: each hero's ultimate and its charge cost, for the Ultimate Cost round. */
+  ults?: { answer: string; ultimate: string; cost: number }[];
   /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
   items?: SimpleCharacter[];
 }
@@ -305,6 +308,8 @@ function overwatch(): SimpleUniverse {
     characters,
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
     voices: OW_VOICES.flatMap((h) => h.lines.map((en) => ({ answer: slug(h.name), en }))),
+    // scripts/build-overwatch-ults.mjs: from each hero's wiki page.
+    ults: OW_ULTS.map((u) => ({ answer: slug(u.hero), ultimate: u.ultimate, cost: u.cost })),
   };
 }
 
@@ -326,6 +331,8 @@ export function simplePools(u: SimpleUniverse['id']) {
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
     ...(x.columns.length ? { classic: x.characters.map((c) => c.id) } : {}),
     ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
+    // Ultimate Cost: only heroes whose cost no one else has, so the number has one answer.
+    ...(x.ults?.length ? { ultcost: x.ults.filter((u) => x.ults!.filter((o) => o.cost === u.cost).length === 1 && ids.has(u.answer)).map((u) => u.answer) } : {}),
     // An execution round's id is its index (a hero has several).
     ...(x.executions?.length ? { execution: x.executions.flatMap((e, i) => (ids.has(e.answer) ? [String(i)] : [])) } : {}),
   };

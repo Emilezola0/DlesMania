@@ -10647,5 +10647,58 @@
         "#fde047"
       ]
     }
+  },
+  {
+    "id": "g-ufouria2",
+    "name": "Ufouria: The Saga 2",
+    "aliases": [
+      "Ufouria 2",
+      "Hebereke 2",
+      "へべれけ2"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Platformer",
+      "Metroidvania"
+    ],
+    "studio": "Sunsoft",
+    "creator": "Sunsoft",
+    "origin": "Japan",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Hebe",
+      "Ō-Chan",
+      "Sukezaemon",
+      "Jennifer"
+    ],
+    "credits": [
+      "Publisher: Sunsoft",
+      "Sequel to Ufouria: The Saga (NES, 1991)",
+      "Known in Japan as Hebereke 2"
+    ],
+    "cover": {
+      "wiki": "Ufouria: The Saga 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/Ufouriathesaga2_cover.jpg"
+    },
+    "audio": {
+      "clue": "Bouncy, colourful platformer music for four odd little friends exploring a strange world.",
+      "query": "Ufouria The Saga 2 soundtrack",
+      "youtubeId": "q6Afw7hWJ7A"
+    },
+    "emoji": "🐧🛸🗺️🎮",
+    "visual": {
+      "icon": "🐧",
+      "colors": [
+        "#38bdf8",
+        "#f472b6"
+      ]
+    }
   }
 ]

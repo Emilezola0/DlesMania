@@ -4,6 +4,8 @@ import { ONE_PIECE } from '../specialist/data';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import type { NameLang } from '../store/progress';
+import { JLPT_LEVELS, shortMeaning } from './jlpt';
+import { romaji, romajiSpellings, toHiragana } from '../lib/romaji';
 
 /** A name as Wordle letters: no accents, spaces or punctuation ("Kai'Sa" → KAISA). */
 export const wordOf = (name: string) =>
@@ -12,6 +14,21 @@ export const wordOf = (name: string) =>
     .replace(/[̀-ͯ]/g, '')
     .replace(/[^A-Za-z]/g, '')
     .toUpperCase();
+
+/** JLPT: the list's N5 and N4 words in romaji (3 to 9 letters), each shown with its kanji, kana and meaning. */
+function jlptNames(): WordleName[] {
+  const seen = new Set<string>();
+  return JLPT_LEVELS.filter((l) => l.level === 'N5' || l.level === 'N4')
+    .flatMap((l) => l.decks.find((d) => d.kind === 'vocab')!.entries)
+    .flatMap((e) => {
+      const kana = e.reading.split(/[/／・、\s]+/).map(toHiragana).filter(Boolean)[0];
+      if (!kana) return [];
+      const word = wordOf(romaji(kana));
+      if (word.length < 3 || word.length > 9 || seen.has(word)) return [];
+      seen.add(word);
+      return [{ word, name: romaji(kana), alts: romajiSpellings(kana).map(wordOf).filter((w) => w !== word), note: `${e.text}${e.text !== kana ? ` · ${kana}` : ''} — ${shortMeaning(e.meaning, 2)}` }];
+    });
+}
 
 // Any length goes: the answer's length is hidden, and a guess can be any name of the set.
 export const MIN_LETTERS = 2;
@@ -24,6 +41,8 @@ export interface WordleName {
   name: string;
   /** Its other spellings as Wordle letters (the other language, aliases, the full name): not played, but recognised. */
   alts: string[];
+  /** JLPT: the word in Japanese and its meaning, shown with the answer (the point is to learn it). */
+  note?: string;
 }
 
 export interface WordleSet {
@@ -65,6 +84,7 @@ export const WORDLE_SETS: WordleSet[] = [
   { id: 'genshin', label: 'Genshin characters', icon: '✨', names: named(roster(GENSHIN.characters)) },
   { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', names: named(onePiece) },
   { id: 'minecraft', label: 'Minecraft mobs', icon: '⛏️', names: named(series('minecraft')), namesFr: named(series('minecraft', 'fr')) },
+  { id: 'jlpt', label: 'JLPT words (romaji)', icon: '🈴', names: jlptNames() },
 ];
 
 /** Letters apart: insertions, deletions and substitutions (Levenshtein), stopping early past `cap`. */

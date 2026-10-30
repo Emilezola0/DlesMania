@@ -4,6 +4,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { Glyph } from '../components/Glyph';
 import { domainInfo } from '../data';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { ALL_PREFIX, SILHOUETTES, deckFor, silhouetteDomains, type SilhouetteEntry, type SilhouetteSeries } from '../data/silhouettes';
 import { withFrench, shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
@@ -91,9 +92,14 @@ function hellLook(step: number, rand: () => number): Look {
   return toLook(turn, zoom, effect === 'Mirrored', effect === 'Zoomed' ? zoomOrigin(rand) : '50% 50%', effect === 'Cropped' ? drawCrop(rand) : undefined, effect === 'Spin');
 }
 
+/** Series to mix in "Your mix" (Customise), by kind of work. */
+const WHO_KEY = 'omnidle-custom-whosthat';
+const WHO_OPTIONS = SILHOUETTES.map((s) => ({ key: s.id, label: s.label, group: domainInfo(s.domain).label }));
+
 /** Picker: one card per series, plus "All" for each domain. */
 export function WhosThatHub() {
   const best = useProgress((s) => s.whosThat);
+  const { picks, setPicks } = useCustomPicks(WHO_KEY, WHO_OPTIONS);
   return (
     <div className="space-y-8">
       <div>
@@ -107,6 +113,16 @@ export function WhosThatHub() {
           Play Easy (always the plain silhouette), Rising (it gets harder as you go), Hell ({HELL_SECONDS} seconds each, with a new effect every time) or Flash (a glimpse that gets shorter with every name).
         </p>
       </div>
+      <Customise options={WHO_OPTIONS} picks={picks} onChange={setPicks} noun="series" />
+      {picks.length > 0 && (
+        <Link to="/whos-that/custom" className="page flex flex-col rounded-md p-4 ring-2 ring-coral/60 transition hover:-translate-y-0.5 sm:w-1/3">
+          <span className="font-display text-lg font-bold">🎛 Your mix</span>
+          <span className="text-sm text-ink-soft">{SILHOUETTES.filter((s) => picks.includes(s.id)).map((s) => s.label).join(' · ')}</span>
+          <span className="mt-auto pt-2 text-xs text-ink-faint">
+            {MODE_IDS.some((m) => best[bestKey(m, 'custom')]) ? MODE_IDS.map((m) => `${MODES[m].label}: ${best[bestKey(m, 'custom')] ?? 0}`).join(' · ') : 'Not played yet'}
+          </span>
+        </Link>
+      )}
       {silhouetteDomains().map((domain) => {
         const d = domainInfo(domain);
         const series = SILHOUETTES.filter((s) => s.domain === domain);
@@ -144,7 +160,9 @@ export function WhosThatHub() {
 
 export default function WhosThatPage() {
   const { key = '' } = useParams();
-  const deck = useMemo(() => deckFor(key), [key]);
+  const { picks } = useCustomPicks(WHO_KEY, WHO_OPTIONS);
+  // "Your mix" (Customise): every picked series together.
+  const deck = useMemo(() => (key === 'custom' ? SILHOUETTES.filter((s) => picks.includes(s.id)).flatMap((s) => s.entries.map((e) => ({ ...e, series: s }))) : deckFor(key)), [key, picks]);
   if (!deck?.length) return <Navigate to="/whos-that" replace />;
   return <WhosThatGame key={key} playKey={key} deck={deck} />;
 }

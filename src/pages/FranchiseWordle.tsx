@@ -164,6 +164,11 @@ function Game({ id, label, names }: { id: string; label: string; names: WordleNa
         <div className={`animate-pop space-y-2 rounded-md border p-4 text-center ${won ? 'border-hit/50 bg-hit/10' : 'border-miss/50 bg-miss/10'}`}>
           <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{won ? `Found in ${guesses.length}` : 'Out of tries'}</p>
           <p className="text-2xl font-bold">{answer.name}</p>
+          {answer.note && (
+            <p lang="ja" className="text-lg text-ink-soft">
+              {answer.note}
+            </p>
+          )}
           <button type="button" onClick={next} className="btn-ink rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
             {won ? 'Next name →' : 'Try another'}
           </button>

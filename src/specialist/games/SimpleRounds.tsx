@@ -287,3 +287,37 @@ export const executionRoundFor = (u: SimpleUniverse['id']) =>
       />
     );
   };
+
+/** Ultimate Cost (Overwatch): the points an ultimate needs to charge — whose is it? Close costs are shown as hints. */
+export const ultCostRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleUltCostRound({ round, record, onChange }: Props) {
+    const ults = SIMPLE[u].ults ?? [];
+    const ult = ults.find((x) => x.answer === round.targetId)!;
+    const c = simpleCharacter(u, ult.answer)!;
+    const near = [...ults].sort((a, b) => Math.abs(a.cost - ult.cost) - Math.abs(b.cost - ult.cost)).filter((x) => x !== ult).slice(0, 2);
+    const fmt = (n: number) => n.toLocaleString('en');
+    return (
+      <SpGuessRound
+        type="ultcost"
+        question="Whose ultimate costs this many points to charge?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={[
+          ...(c.traits.Role ? [`Role: ${c.traits.Role}`] : []),
+          `Close by: ${near.map((x) => `${simpleCharacter(u, x.answer)?.name} (${fmt(x.cost)})`).join(', ')}`,
+          `The ultimate: ${ult.ultimate}`,
+          `Their name starts with “${c.name[0]}”`,
+        ]}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image || undefined, detail: `${ult.ultimate} · ${fmt(ult.cost)} points` }}
+        noPictures
+        clue={() => (
+          <div className="flex flex-col items-center gap-1 py-4 text-center">
+            <p className="font-serif text-7xl font-bold tabular-nums">{fmt(ult.cost)}</p>
+            <p className="font-display text-sm uppercase tracking-[0.3em] text-ink-faint">ultimate charge points</p>
+          </div>
+        )}
+      />
+    );
+  };

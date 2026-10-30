@@ -4,6 +4,9 @@ import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
+import { JLPT_LEVELS, JLPT_THEMES } from '../arcade/jlpt';
+import { kanjiPicture } from '../lib/kanji';
+import { romajiSpellings, toHiragana } from '../lib/romaji';
 
 /** Someone to name on a track sign. */
 export interface RailCharacter {
@@ -63,6 +66,19 @@ export const RAIL_LINES: RailLine[] = [
   {
     id: 'minecraft', label: 'Minecraft', icon: '⛏️', palette: ['#5aa5e6', '#cfe9ff', '#3f7d3a', '#7a5a3a'], characters: pick(series('minecraft')),
     stations: ['Spawn', 'the Village', 'the Desert Temple', 'the Mineshaft', 'the Stronghold', 'the Nether Portal', 'the Bastion', 'the Ocean Monument', 'the Ancient City', 'The End'],
+  },
+  // JLPT: N5 and N4 words written in kanji on the signs — switch tracks by typing their reading (romaji or kana).
+  // The stations are the list's own places. Every crash shows the readings of the signs it passed.
+  {
+    id: 'jlpt', label: 'JLPT', icon: '🈴', palette: ['#7f1d1d', '#fbcfe8', '#3f6212', '#a8a29e'],
+    characters: JLPT_LEVELS.filter((l) => l.level === 'N5' || l.level === 'N4')
+      .flatMap((l) => l.decks.find((d) => d.kind === 'vocab')!.entries)
+      .filter((e) => /[\u3400-\u9fff]/.test(e.text) && !/[/／\s]/.test(e.text) && [...e.text].length <= 4)
+      .flatMap((e) => {
+        const kana = e.reading.split(/[/／・、\s]+/).map(toHiragana).filter(Boolean);
+        return kana.length ? [{ id: `jlpt-${e.id}`, name: `${kana[0]} (${romajiSpellings(kana[0])[0]})`, aliases: [...new Set([...kana, ...kana.flatMap(romajiSpellings)])], image: kanjiPicture(`kanji:${e.text}`) }] : [];
+      }),
+    stations: JLPT_THEMES.find((t) => t.id === 'theme-places')!.entries.filter((e) => e.level === 'N5').slice(0, 10).map((e) => `${e.text} (${e.reading})`),
   },
 ];
 

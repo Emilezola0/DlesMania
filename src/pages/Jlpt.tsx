@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
@@ -30,6 +31,40 @@ function KeepButton({ id }: { id: string }) {
     >
       {kept ? '★ In my review list' : '☆ Add to my review list'}
     </button>
+  );
+}
+
+/** Every word or kanji of a run, with its reading and meaning, each one starrable onto the review list. */
+function RunWords({ entries }: { entries: JlptEntry[] }) {
+  const add = useProgress((s) => s.addJlptReview);
+  const list = useProgress((s) => s.jlptReview);
+  const unique = entries.filter((e, i) => entries.findIndex((x) => x.id === e.id) === i);
+  const all = unique.every((e) => e.id in list);
+  return (
+    <section className="page animate-pop space-y-3 rounded-md p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-display font-bold">This run: {unique.length} {unique.length === 1 ? 'word' : 'words'}</p>
+        <button type="button" disabled={all} onClick={() => add(unique.map((e) => e.id))} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold disabled:opacity-50">
+          {all ? '★ All in your review list' : '☆ Add them all to my review list'}
+        </button>
+      </div>
+      <ul className="space-y-2">
+        {unique.map((e) => (
+          <li key={e.id} className="flex items-center gap-3 rounded-md border border-rule px-3 py-2">
+            <span lang="ja" className="min-w-14 font-serif text-2xl font-bold">
+              {e.text}
+            </span>
+            <span className="min-w-0 flex-1 text-sm">
+              <span lang="ja" className="block text-ink-soft">
+                {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+              </span>
+              <span className="block">{shortMeaning(e.meaning, 4)}</span>
+            </span>
+            <KeepButton id={e.id} />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -59,6 +94,8 @@ function Game({ deck }: { deck: JlptDeck }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [missed, setMissed] = useState(0);
+  // Every word or kanji of this run, to go over at the end (and put on the review list).
+  const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const arena = useRef<HTMLDivElement>(null);
 
@@ -73,6 +110,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     shake(arena.current, 10, 420);
     setPicked(choice);
     setState('wrong');
+    setSeen((s) => [...s, q.entry]);
     if (review) {
       reviewJlpt(q.entry.id, false);
       setMissed((m) => m + 1);
@@ -89,6 +127,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     setPicked(choice);
     setState('right');
     setScore(score + 1);
+    setSeen((s) => [...s, q.entry]);
     if (review) reviewJlpt(q.entry.id, true);
     window.setTimeout(next, REVEAL_MS);
   };
@@ -96,6 +135,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     sfx.click();
     setScore(0);
     setMissed(0);
+    setSeen([]);
     next();
   };
 
@@ -202,6 +242,7 @@ function Game({ deck }: { deck: JlptDeck }) {
             </button>
           </div>
         ))}
+      {state === 'wrong' && !review && seen.length > 0 && <RunWords entries={seen} />}
     </div>
   );
 }
@@ -324,6 +365,24 @@ function DayCard({ kind, entry }: { kind: 'word' | 'kanji'; entry: JlptEntry }) 
       )}
       <p className="font-display text-lg font-semibold">{shortMeaning(entry.meaning, 5)}</p>
       <p className="text-xs text-ink-faint">JLPT {entry.level}</p>
+      {/* A word written with kanji: what each of them means (the ones the list has). */}
+      {kind === 'word' && kanjiOfWord(entry.text).length > 0 && (
+        <ul className="mt-1 w-full space-y-1 border-t border-rule pt-2 text-left text-sm">
+          {kanjiOfWord(entry.text).map((k) => (
+            <li key={k.id} className="flex items-baseline gap-3">
+              <span lang="ja" className="font-serif text-2xl font-bold">
+                {k.text}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="font-semibold">{shortMeaning(k.meaning, 3)}</span>
+                <span lang="ja" className="block text-xs text-ink-faint">
+                  {k.reading} · {k.level}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
       <KeepButton id={entry.id} />
     </div>
   );
@@ -473,16 +532,28 @@ function NameThemAllRow() {
   );
 }
 
+/** "Your deck" (Customise): the levels and kinds picked, mixed. */
+const JLPT_OPTIONS = [
+  ...JLPT_LEVELS.map((l) => ({ key: l.level, label: l.level, group: 'Levels' })),
+  { key: 'vocab', label: '語 Words', group: 'Kinds' },
+  { key: 'kanji', label: '字 Kanji', group: 'Kinds' },
+];
+function customDeck(picks: string[]): JlptDeck | undefined {
+  const entries = JLPT_LEVELS.filter((l) => picks.includes(l.level)).flatMap((l) => l.decks.filter((d) => picks.includes(d.kind)).flatMap((d) => d.entries));
+  return entries.length ? { id: 'custom', level: 'All', kind: 'theme', label: 'Your deck', icon: '🎛', entries } : undefined;
+}
+
 /** /jlpt and /jlpt/:deck ("review": the review list) */
 export default function Jlpt() {
   const { deck: id, level } = useParams();
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-jlpt', JLPT_OPTIONS);
+  const [grammar, setGrammar] = useState<string | null>(null);
   if (level) {
     const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
   }
-  const [grammar, setGrammar] = useState<string | null>(null);
   if (id) {
-    const deck = id === 'review' ? reviewDeck([]) : jlptDeck(id);
+    const deck = id === 'review' ? reviewDeck([]) : id === 'custom' ? customDeck(picks) : jlptDeck(id);
     if (!deck) return <Navigate to="/jlpt" replace />;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
@@ -526,6 +597,15 @@ export default function Jlpt() {
             </li>
           ))}
         </ul>
+      </section>
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Your deck</h2>
+        <Customise options={JLPT_OPTIONS} picks={picks} onChange={setPicks} noun="filter" problem={(customDeck(picks)?.entries.length ?? 0) < 8 ? 'Pick at least one level and one kind (words or kanji).' : null} />
+        {(customDeck(picks)?.entries.length ?? 0) >= 8 && (
+          <ul className="grid gap-4 sm:grid-cols-3">
+            <DeckCard deck={customDeck(picks)!} glyph="🎛" title="Your deck" />
+          </ul>
+        )}
       </section>
       <ReviewList />
       <section className="space-y-3">
