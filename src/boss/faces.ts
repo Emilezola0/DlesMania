@@ -5,6 +5,27 @@
 import { CARDS } from '../gacha/cards';
 import type { Boss, BossCard } from '../types';
 
+/** What people actually call the cards named with a title or a pair: nobody types "Grand Moff" against the clock. */
+const SHORT_NAMES: Record<string, string[]> = {
+  'Luke Skywalker': ['Luke'],
+  'Obi-Wan Kenobi': ['Obi-Wan', 'Kenobi', 'Ben Kenobi'],
+  Palpatine: ['Sheev Palpatine', 'Emperor Palpatine', 'Darth Sidious', 'Sidious'],
+  'Anakin Skywalker': ['Anakin'],
+  'Din Djarin': ['Mando', 'The Mandalorian'],
+  'Qui-Gon Jinn': ['Qui-Gon'],
+  'Count Dooku': ['Dooku'],
+  'Captain Rex': ['Rex'],
+  'Grand Moff Tarkin': ['Tarkin', 'Moff Tarkin'],
+  'Captain Phasma': ['Phasma'],
+  'General Hux': ['Hux'],
+  'Moff Gideon': ['Gideon'],
+  'Kanan Jarrus': ['Kanan'],
+  'Fíli and Kíli': ['Fíli', 'Kíli', 'Fíli Kíli', 'Kíli and Fíli'],
+  'Bard the Bowman': ['Bard'],
+  'Rosalina & Luma': ['Rosalina'],
+  'Banjo & Kazooie': ['Banjo', 'Kazooie'],
+};
+
 const cache = new Map<string, BossCard[]>();
 
 export function finaleFaces(boss: Boss): BossCard[] {
@@ -19,7 +40,7 @@ export function finaleFaces(boss: Boss): BossCard[] {
     if (c.set !== boss.id || taken.has(c.name) || c.name === boss.boss.name) continue;
     if (!['rare', 'epic', 'legendary'].includes(c.rarity) || !c.image) continue;
     // A card from the radar keeps its spellings (aliases, French name).
-    faces.push(known.get(c.name) ?? { label: c.name, image: c.image });
+    faces.push(known.get(c.name) ?? { label: c.name, image: c.image, aliases: SHORT_NAMES[c.name] });
     taken.add(c.name);
   }
   cache.set(boss.id, faces);

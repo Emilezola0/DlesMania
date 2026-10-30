@@ -3789,5 +3789,1068 @@
    "image": "https://static.wikia.nocookie.net/balatrogame/images/a/ad/Yorick.png/revision/latest?cb=20250712101456",
    "rarity": "legendary"
   }
+ ],
+ "harrypotter": [
+  {
+   "name": "James Potter",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/1/10/James_Potter_I_Deathly_Hallows.jpg/revision/latest/scale-to-width-down/292?cb=20180601015416",
+   "rarity": "epic"
+  },
+  {
+   "name": "Lily Potter",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/53/Lily_Potter_%28I%29_DHF2.jpg/revision/latest/scale-to-width-down/292?cb=20140712171247",
+   "rarity": "epic"
+  },
+  {
+   "name": "Alastor Moody",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/4/4d/MoodyProfile.png/revision/latest/scale-to-width-down/251?cb=20210819174911",
+   "rarity": "epic"
+  },
+  {
+   "name": "Dolores Umbridge",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/4/4e/Dolores_Umbridge_DHF1_promotional_image.jpg/revision/latest/scale-to-width-down/303?cb=20101127041001",
+   "rarity": "epic"
+  },
+  {
+   "name": "Newt Scamander",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/3/36/Newton_Scamander_Profile_crop.png/revision/latest/scale-to-width-down/241?cb=20190609204955",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fred Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Fred_Weasley_promo_DHF1.jpg/revision/latest/scale-to-width-down/300?cb=20230526122025",
+   "rarity": "rare"
+  },
+  {
+   "name": "George Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b5/George_Weasley_promo_DHF1.jpg/revision/latest/scale-to-width-down/300?cb=20161119235305",
+   "rarity": "rare"
+  },
+  {
+   "name": "Arthur Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/0/02/Arthur_Weasley_profile.jpg/revision/latest/scale-to-width-down/300?cb=20150828155118",
+   "rarity": "rare"
+  },
+  {
+   "name": "Molly Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/3/3c/Molly_Weasley_Deathly_Hallows.jpg/revision/latest/scale-to-width-down/300?cb=20150828155116",
+   "rarity": "rare"
+  },
+  {
+   "name": "Percy Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/bc/Percy_WeasleyDH.jpg/revision/latest?cb=20160720032549",
+   "rarity": "common"
+  },
+  {
+   "name": "Bill Weasley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/66/BillWeasleyDH2.png/revision/latest/scale-to-width-down/266?cb=20160212193938",
+   "rarity": "common"
+  },
+  {
+   "name": "Fleur Delacour",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Fleur_Delacour.jpg/revision/latest/scale-to-width-down/300?cb=20220718183655",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lucius Malfoy",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b4/Lucius_Malfoy_BoH.png/revision/latest/scale-to-width-down/270?cb=20190604135420",
+   "rarity": "rare"
+  },
+  {
+   "name": "Narcissa Malfoy",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/7/78/Narcissa_Malfoy.png/revision/latest/scale-to-width-down/294?cb=20190111020523",
+   "rarity": "common"
+  },
+  {
+   "name": "Gilderoy Lockhart",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/7/7b/Gilderoy_Lockhart_promotional_image_COSF.jpg/revision/latest/scale-to-width-down/296?cb=20221104114009",
+   "rarity": "rare"
+  },
+  {
+   "name": "Horace Slughorn",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a1/Horace_Slughorn_%28HBP_promo%29_1-1.jpg/revision/latest/scale-to-width-down/316?cb=20100706114608",
+   "rarity": "rare"
+  },
+  {
+   "name": "Filius Flitwick",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/4/4b/Flitwickarmourbattle.png/revision/latest/scale-to-width-down/276?cb=20110628141204",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pomona Sprout",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/6e/Pomona_Sprout_DHF2.jpg/revision/latest/scale-to-width-down/270?cb=20170730031333",
+   "rarity": "common"
+  },
+  {
+   "name": "Peter Pettigrew",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/5a/Peter_Pettigrew_GOFF.webp/revision/latest/scale-to-width-down/284?cb=20260603053214",
+   "rarity": "rare"
+  },
+  {
+   "name": "Argus Filch",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c9/Filch-GOF.jpg/revision/latest/scale-to-width-down/323?cb=20100418170019",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cornelius Fudge",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/6d/Corneliushogwarts.jpg/revision/latest/scale-to-width-down/300?cb=20100312184011",
+   "rarity": "common"
+  },
+  {
+   "name": "Kingsley Shacklebolt",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/5e/Kingsley_Shacklebolt_DHF1_promo.jpg/revision/latest/scale-to-width-down/300?cb=20101113194841",
+   "rarity": "common"
+  },
+  {
+   "name": "Cho Chang",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Cho_Chang.jpg/revision/latest/scale-to-width-down/274?cb=20180322164130",
+   "rarity": "rare"
+  },
+  {
+   "name": "Seamus Finnigan",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a7/Seamus_Finnigan_GOFF_promo.png/revision/latest/scale-to-width-down/281?cb=20081129113406",
+   "rarity": "common"
+  },
+  {
+   "name": "Dean Thomas",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/9/93/Dean_Thomas_DHF2.jpg/revision/latest/scale-to-width-down/302?cb=20220628110512",
+   "rarity": "common"
+  },
+  {
+   "name": "Lavender Brown",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b6/Lavender_Brown_HBP.jpg/revision/latest/scale-to-width-down/266?cb=20180203062638",
+   "rarity": "common"
+  },
+  {
+   "name": "Parvati Patil",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/3/31/Parvati_Patil_headshot.jpg/revision/latest/scale-to-width-down/363?cb=20240912010507",
+   "rarity": "common"
+  },
+  {
+   "name": "Padma Patil",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/4/45/PadmaPatil.png/revision/latest/scale-to-width-down/348?cb=20220930121241",
+   "rarity": "common"
+  },
+  {
+   "name": "Oliver Wood",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/2/2f/Oliver_WoodDH2.jpg/revision/latest/scale-to-width-down/271?cb=20110801072255",
+   "rarity": "common"
+  },
+  {
+   "name": "Vincent Crabbe",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/ba/Vincent_Crabbe.jpg/revision/latest/scale-to-width-down/281?cb=20091224183746",
+   "rarity": "common"
+  },
+  {
+   "name": "Gregory Goyle",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e7/Gregory_Goyle_DH2.jpg/revision/latest/scale-to-width-down/291?cb=20180306163743",
+   "rarity": "common"
+  },
+  {
+   "name": "Pansy Parkinson",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/8/81/Pansy_Parkinson_infobox.png/revision/latest/scale-to-width-down/302?cb=20141024191624",
+   "rarity": "common"
+  },
+  {
+   "name": "Sybill Trelawney",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/5d/Sybill_Trelawney.JPG/revision/latest/scale-to-width-down/259?cb=20110108192301",
+   "rarity": "rare"
+  },
+  {
+   "name": "Quirinus Quirrell",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/d/d2/Quirinus_Quirrell_PS_promo.jpg/revision/latest/scale-to-width-down/300?cb=20110806132643",
+   "rarity": "rare"
+  },
+  {
+   "name": "Barty Crouch Jr.",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f4/Barty_Crouch_Junior.jpg/revision/latest/scale-to-width-down/255?cb=20161221034115",
+   "rarity": "common"
+  },
+  {
+   "name": "Fenrir Greyback",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/b/b2/Fenrir_Greyback.png/revision/latest/scale-to-width-down/233?cb=20090814213734",
+   "rarity": "common"
+  },
+  {
+   "name": "Igor Karkaroff",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1b/Igor_Karkaroff_GoF.jpg/revision/latest/scale-to-width-down/264?cb=20100724115703",
+   "rarity": "common"
+  },
+  {
+   "name": "Olympe Maxime",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f9/Maxime_1.png/revision/latest/scale-to-width-down/292?cb=20190628213447",
+   "rarity": "common"
+  },
+  {
+   "name": "Crookshanks",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/f/ff/Crookshanks_FH.png/revision/latest/scale-to-width-down/400?cb=20161118055031",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fang",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/2/22/Fang.jpg/revision/latest/scale-to-width-down/240?cb=20100220154955",
+   "rarity": "common"
+  },
+  {
+   "name": "Norbert",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/c/c1/Norberta_Norwegian_Ridgeback.jpg/revision/latest/scale-to-width-down/400?cb=20161122220257",
+   "rarity": "common"
+  },
+  {
+   "name": "Fluffy",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/1/11/B1C9M3_cropped_Fluffy.png/revision/latest/scale-to-width-down/369?cb=20170925204659",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mrs Norris",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/f/f7/Mrs_Norris_PS.png/revision/latest/scale-to-width-down/400?cb=20170102070857",
+   "rarity": "common"
+  },
+  {
+   "name": "Vernon Dursley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/9/9e/Vernon_Dursley_HP5.jpg/revision/latest/scale-to-width-down/286?cb=20160121162004",
+   "rarity": "common"
+  },
+  {
+   "name": "Petunia Dursley",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/64/Petunia_DH1.png/revision/latest/scale-to-width-down/303?cb=20200413045426",
+   "rarity": "common"
+  },
+  {
+   "name": "Garrick Ollivander",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/6f/Garrick_Ollivander.png/revision/latest/scale-to-width-down/251?cb=20180127182338",
+   "rarity": "common"
+  },
+  {
+   "name": "Aberforth Dumbledore",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/4/40/Aberforth_Dumbledore.jpg/revision/latest?cb=20170911160033",
+   "rarity": "common"
+  },
+  {
+   "name": "Xenophilius Lovegood",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/54/Xenophilius_Lovegood_Promo_Shot.jpg/revision/latest/scale-to-width-down/296?cb=20160719193236",
+   "rarity": "common"
+  },
+  {
+   "name": "Mundungus Fletcher",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/e/e0/Fletcher_DH1.jpg/revision/latest/scale-to-width-down/400?cb=20251113021854",
+   "rarity": "common"
+  },
+  {
+   "name": "Rita Skeeter",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/2/23/Rita_Skeeter_2.jpg/revision/latest/scale-to-width-down/300?cb=20101113194128",
+   "rarity": "common"
+  },
+  {
+   "name": "Nearly Headless Nick",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/6/6d/Nicholas_de_Mimsy-Porpington.png/revision/latest?cb=20200515191831",
+   "rarity": "common"
+  },
+  {
+   "name": "Bloody Baron",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/5/55/Bloody_Baron.jpg/revision/latest/scale-to-width-down/234?cb=20100408172210",
+   "rarity": "common"
+  },
+  {
+   "name": "Basilisk",
+   "image": "https://static.wikia.nocookie.net/harrypotter/images/9/9a/Basilisk2.PNG/revision/latest?cb=20090822212528",
+   "rarity": "rare"
+  }
+ ],
+ "starwars": [
+  {
+   "name": "Luke Skywalker",
+   "image": "https://static.wikia.nocookie.net/starwars/images/3/3d/LukeSkywalker.png/revision/latest/scale-to-width-down/300?cb=20241221010122",
+   "rarity": "legendary"
+  },
+  {
+   "name": "Obi-Wan Kenobi",
+   "image": "https://static.wikia.nocookie.net/starwars/images/4/4e/ObiWanHS-SWE.jpg/revision/latest/scale-to-width-down/300?cb=20111115052816",
+   "rarity": "legendary"
+  },
+  {
+   "name": "Palpatine",
+   "image": "https://static.wikia.nocookie.net/starwars/images/e/e2/Palpatine-CEUEEd.png/revision/latest/scale-to-width-down/334?cb=20250105171652",
+   "rarity": "legendary"
+  },
+  {
+   "name": "Anakin Skywalker",
+   "image": "https://static.wikia.nocookie.net/starwars/images/6/6f/Anakin_Skywalker_RotS.png/revision/latest/scale-to-width-down/320?cb=20130621175844",
+   "rarity": "epic"
+  },
+  {
+   "name": "Din Djarin",
+   "image": "https://static.wikia.nocookie.net/starwars/images/4/46/DinDjarinArmor-CGSWG.png/revision/latest/scale-to-width-down/322?cb=20241206044557",
+   "rarity": "epic"
+  },
+  {
+   "name": "Qui-Gon Jinn",
+   "image": "https://static.wikia.nocookie.net/starwars/images/f/f6/Qui-Gon_Jinn_Headshot_TPM.jpg/revision/latest/scale-to-width-down/293?cb=20180430174809",
+   "rarity": "epic"
+  },
+  {
+   "name": "Count Dooku",
+   "image": "https://static.wikia.nocookie.net/starwars/images/5/5f/Dooku-SWBC61.png/revision/latest/scale-to-width-down/300?cb=20241118020049",
+   "rarity": "epic"
+  },
+  {
+   "name": "Captain Rex",
+   "image": "https://static.wikia.nocookie.net/starwars/images/8/89/Captain_Rex_old.png/revision/latest/scale-to-width-down/300?cb=20250413205834",
+   "rarity": "epic"
+  },
+  {
+   "name": "Finn",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/1a/Finn-TSWB.png/revision/latest/scale-to-width-down/365?cb=20250106074103",
+   "rarity": "rare"
+  },
+  {
+   "name": "Poe Dameron",
+   "image": "https://static.wikia.nocookie.net/starwars/images/6/6b/PoeDameron-Heroes2023.png/revision/latest/scale-to-width-down/300?cb=20251128064305",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cassian Andor",
+   "image": "https://static.wikia.nocookie.net/starwars/images/3/31/CassianAndor-Fathead.png/revision/latest/scale-to-width-down/300?cb=20161108051806",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jyn Erso",
+   "image": "https://static.wikia.nocookie.net/starwars/images/b/b3/JynErsoPromo.png/revision/latest/scale-to-width-down/267?cb=20180211063950",
+   "rarity": "rare"
+  },
+  {
+   "name": "K-2SO",
+   "image": "https://static.wikia.nocookie.net/starwars/images/2/23/K2SO-SWBC35cvr.png/revision/latest/scale-to-width-down/369?cb=20241112052810",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cad Bane",
+   "image": "https://static.wikia.nocookie.net/starwars/images/9/9a/CadBane-Bravura.png/revision/latest/scale-to-width-down/351?cb=20260214050607",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bo-Katan Kryze",
+   "image": "https://static.wikia.nocookie.net/starwars/images/e/ec/BoKatanKryze-TTG2024.png/revision/latest/scale-to-width-down/300?cb=20251118053437",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jar Jar Binks",
+   "image": "https://static.wikia.nocookie.net/starwars/images/e/ed/Binks22BBY.png/revision/latest/scale-to-width-down/320?cb=20241220222900",
+   "rarity": "rare"
+  },
+  {
+   "name": "Grand Moff Tarkin",
+   "image": "https://static.wikia.nocookie.net/starwars/images/c/c1/Tarkininfobox.jpg/revision/latest/scale-to-width-down/300?cb=20100620213033",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kanan Jarrus",
+   "image": "https://static.wikia.nocookie.net/starwars/images/f/f6/Kanan-JediNight.png/revision/latest/scale-to-width-down/300?cb=20241231035454",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ezra Bridger",
+   "image": "https://static.wikia.nocookie.net/starwars/images/a/ad/Ezra_Bridger_character_poster.png/revision/latest/scale-to-width-down/300?cb=20260201003755",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sabine Wren",
+   "image": "https://static.wikia.nocookie.net/starwars/images/c/cc/Sabine_Wren-AG.png/revision/latest/scale-to-width-down/320?cb=20241217034612",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hera Syndulla",
+   "image": "https://static.wikia.nocookie.net/starwars/images/c/cc/MaryElizabethWinsteadasHeraSyndulla-ToppsChoice2025.png/revision/latest/scale-to-width-down/320?cb=20251206225907",
+   "rarity": "rare"
+  },
+  {
+   "name": "Chopper",
+   "image": "https://static.wikia.nocookie.net/starwars/images/b/bb/Chopper_Live_Action.png/revision/latest/scale-to-width-down/300?cb=20230620225311",
+   "rarity": "common"
+  },
+  {
+   "name": "Zeb Orrelios",
+   "image": "https://static.wikia.nocookie.net/starwars/images/5/59/ZebOrrelios-TMGPremiere.png/revision/latest/scale-to-width-down/300?cb=20260523150814",
+   "rarity": "common"
+  },
+  {
+   "name": "Snoke",
+   "image": "https://static.wikia.nocookie.net/starwars/images/f/f0/Snoke-TLJOCE.png/revision/latest/scale-to-width-down/300?cb=20221204063658",
+   "rarity": "rare"
+  },
+  {
+   "name": "Captain Phasma",
+   "image": "https://static.wikia.nocookie.net/starwars/images/0/02/Phasma.png/revision/latest/scale-to-width-down/300?cb=20220915042839",
+   "rarity": "rare"
+  },
+  {
+   "name": "General Hux",
+   "image": "https://static.wikia.nocookie.net/starwars/images/d/d0/HuxTLJPromo.png/revision/latest/scale-to-width-down/282?cb=20250815234411",
+   "rarity": "rare"
+  },
+  {
+   "name": "Moff Gideon",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/16/Gideon_Armored.png/revision/latest/scale-to-width-down/292?cb=20251102175525",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kit Fisto",
+   "image": "https://static.wikia.nocookie.net/starwars/images/2/25/KitFisto-USWNE.png/revision/latest/scale-to-width-down/307?cb=20241201061011",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cara Dune",
+   "image": "https://static.wikia.nocookie.net/starwars/images/3/32/CaraDuneS2-EW.png/revision/latest/scale-to-width-down/300?cb=20200909003912",
+   "rarity": "common"
+  },
+  {
+   "name": "Greef Karga",
+   "image": "https://static.wikia.nocookie.net/starwars/images/3/3e/GreefKarga-ToppsFinest2023.png/revision/latest/scale-to-width-down/300?cb=20251123230318",
+   "rarity": "common"
+  },
+  {
+   "name": "Fennec Shand",
+   "image": "https://static.wikia.nocookie.net/starwars/images/0/03/FennecShandHeadshot-BOBFCE.png/revision/latest/scale-to-width-down/300?cb=20250524021217",
+   "rarity": "common"
+  },
+  {
+   "name": "Dengar",
+   "image": "https://static.wikia.nocookie.net/starwars/images/3/3f/Dengar-2025ChromeSapphire.png/revision/latest/scale-to-width-down/300?cb=20251221205047",
+   "rarity": "common"
+  },
+  {
+   "name": "IG-88",
+   "image": "https://static.wikia.nocookie.net/starwars/images/f/fe/IG-88B-TESB40.png/revision/latest/scale-to-width-down/300?cb=20211224193425",
+   "rarity": "common"
+  },
+  {
+   "name": "Zam Wesell",
+   "image": "https://static.wikia.nocookie.net/starwars/images/9/9a/ZamWesell-FF.png/revision/latest/scale-to-width-down/300?cb=20240218200905",
+   "rarity": "common"
+  },
+  {
+   "name": "Nute Gunray",
+   "image": "https://static.wikia.nocookie.net/starwars/images/e/ed/NuteGunray-ALTA.png/revision/latest/scale-to-width-down/284?cb=20251107045823",
+   "rarity": "common"
+  },
+  {
+   "name": "Sebulba",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/11/LewisMacLeodasSebulba-TheDarkSig.png/revision/latest/scale-to-width-down/400?cb=20260113015034",
+   "rarity": "common"
+  },
+  {
+   "name": "Shaak Ti",
+   "image": "https://static.wikia.nocookie.net/starwars/images/8/84/Shaak_Ti_Card_Trader.png/revision/latest/scale-to-width-down/274?cb=20251109005332",
+   "rarity": "common"
+  },
+  {
+   "name": "Aayla Secura",
+   "image": "https://static.wikia.nocookie.net/starwars/images/5/59/AaylaSecura-SWYBYNE.png/revision/latest/scale-to-width-down/266?cb=20240313002805",
+   "rarity": "common"
+  },
+  {
+   "name": "Quinlan Vos",
+   "image": "https://static.wikia.nocookie.net/starwars/images/2/29/QuinlanVos-Masterwork2022.png/revision/latest/scale-to-width-down/300?cb=20251203043846",
+   "rarity": "common"
+  },
+  {
+   "name": "Savage Opress",
+   "image": "https://static.wikia.nocookie.net/starwars/images/a/a0/SavageOpress-BTMF74.png/revision/latest/scale-to-width-down/333?cb=20260228041538",
+   "rarity": "common"
+  },
+  {
+   "name": "Mother Talzin",
+   "image": "https://static.wikia.nocookie.net/starwars/images/0/0b/MotherTalzinHS-SWCT.png/revision/latest/scale-to-width-down/300?cb=20190411234756",
+   "rarity": "common"
+  },
+  {
+   "name": "Bib Fortuna",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/12/BibFortuna-CEUEEd.png/revision/latest/scale-to-width-down/300?cb=20250527014854",
+   "rarity": "common"
+  },
+  {
+   "name": "Salacious B. Crumb",
+   "image": "https://static.wikia.nocookie.net/starwars/images/d/d1/SalaciousBCrumb-Db.png/revision/latest/scale-to-width-down/400?cb=20250314034304",
+   "rarity": "common"
+  },
+  {
+   "name": "Max Rebo",
+   "image": "https://static.wikia.nocookie.net/starwars/images/2/25/MaxRebo-Db.png/revision/latest/scale-to-width-down/400?cb=20240309161401",
+   "rarity": "common"
+  },
+  {
+   "name": "Rose Tico",
+   "image": "https://static.wikia.nocookie.net/starwars/images/a/a8/RoseTico-RotR.png/revision/latest/scale-to-width-down/300?cb=20260118045940",
+   "rarity": "common"
+  },
+  {
+   "name": "Maz Kanata",
+   "image": "https://static.wikia.nocookie.net/starwars/images/5/53/MazKanata-TROSGG.png/revision/latest/scale-to-width-down/332?cb=20241205034901",
+   "rarity": "common"
+  },
+  {
+   "name": "Baze Malbus",
+   "image": "https://static.wikia.nocookie.net/starwars/images/f/f9/BazeMalbus-Heroes2023.png/revision/latest/scale-to-width-down/300?cb=20251117063606",
+   "rarity": "common"
+  },
+  {
+   "name": "Chirrut Îmwe",
+   "image": "https://static.wikia.nocookie.net/starwars/images/b/b2/ChirrutImwe-2024ToppsSWHighTek.png/revision/latest/scale-to-width-down/300?cb=20251224200512",
+   "rarity": "common"
+  },
+  {
+   "name": "Galen Erso",
+   "image": "https://static.wikia.nocookie.net/starwars/images/9/94/Galen_Erso_SWI170.png/revision/latest/scale-to-width-down/300?cb=20250116054304",
+   "rarity": "common"
+  },
+  {
+   "name": "Orson Krennic",
+   "image": "https://static.wikia.nocookie.net/starwars/images/0/05/OrsonKrennic-SWI171.png/revision/latest/scale-to-width-down/300?cb=20221004010739",
+   "rarity": "common"
+  },
+  {
+   "name": "Admiral Piett",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/13/FirusPiett-CGSWG.png/revision/latest/scale-to-width-down/235?cb=20241127051016",
+   "rarity": "common"
+  },
+  {
+   "name": "Porg",
+   "image": "https://static.wikia.nocookie.net/starwars/images/e/ef/Porg-SWLS.png/revision/latest/scale-to-width-down/262?cb=20241201183008",
+   "rarity": "common"
+  },
+  {
+   "name": "Death Star",
+   "image": "https://static.wikia.nocookie.net/starwars/images/7/70/DSI-HDapproach.png/revision/latest/scale-to-width-down/400?cb=20130221005853",
+   "rarity": "common"
+  },
+  {
+   "name": "AT-AT",
+   "image": "https://static.wikia.nocookie.net/starwars/images/1/16/AT-AT_2_Fathead.png/revision/latest/scale-to-width-down/279?cb=20161108042721",
+   "rarity": "common"
+  },
+  {
+   "name": "X-wing",
+   "image": "https://static.wikia.nocookie.net/starwars/images/7/77/Xwing-SWB.png/revision/latest/scale-to-width-down/400?cb=20260201070752",
+   "rarity": "common"
+  }
+ ],
+ "lotr": [
+  {
+   "name": "Morgoth",
+   "image": "https://static.wikia.nocookie.net/lotr/images/e/e8/MorgothbyDymondStarr.JPG/revision/latest/scale-to-width-down/253?cb=20250117211351",
+   "rarity": "epic"
+  },
+  {
+   "name": "Isildur",
+   "image": "https://static.wikia.nocookie.net/lotr/images/6/6c/LOTR_Isildur.jpg/revision/latest/scale-to-width-down/400?cb=20130320004244",
+   "rarity": "epic"
+  },
+  {
+   "name": "Éomer",
+   "image": "https://static.wikia.nocookie.net/lotr/images/b/b9/Eomer_-_Close_up.PNG/revision/latest/scale-to-width-down/400?cb=20120922113500",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tauriel",
+   "image": "https://static.wikia.nocookie.net/lotr/images/1/17/Tauriel_Taking_Aim.jpg/revision/latest/scale-to-width-down/266?cb=20150202053301",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bard the Bowman",
+   "image": "https://static.wikia.nocookie.net/lotr/images/d/d1/BardByMontanini.png/revision/latest?cb=20221112222321",
+   "rarity": "rare"
+  },
+  {
+   "name": "Balin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/e/e2/Balin%2C_Tolman_Cotton.jpg/revision/latest/scale-to-width-down/313?cb=20240715224320",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fíli and Kíli",
+   "image": "https://static.wikia.nocookie.net/lotr/images/8/8e/F%C3%ADliAndK%C3%ADliByMontanini.jpg/revision/latest/scale-to-width-down/400?cb=20221119012127",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gothmog",
+   "image": "https://static.wikia.nocookie.net/lotr/images/7/77/Gothmog_by_John_Howe.jpg/revision/latest?cb=20190520171916",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lurtz",
+   "image": "https://static.wikia.nocookie.net/lotr/images/b/bf/Lurtz_2.jpg/revision/latest?cb=20110527083830",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shadowfax",
+   "image": "https://static.wikia.nocookie.net/lotr/images/d/d5/Gandalf_on_Shad%2C_Damiani.png/revision/latest/scale-to-width-down/400?cb=20230617184145",
+   "rarity": "rare"
+  },
+  {
+   "name": "The One Ring",
+   "image": "https://static.wikia.nocookie.net/lotr/images/0/0d/The_One_Ring_on_a_map_of_Middle-earth.jpg/revision/latest/scale-to-width-down/400?cb=20200305221819",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sting",
+   "image": "https://static.wikia.nocookie.net/lotr/images/5/5d/Sting_with_scabbard.jpg/revision/latest/scale-to-width-down/388?cb=20140527085852",
+   "rarity": "rare"
+  },
+  {
+   "name": "Déagol",
+   "image": "https://static.wikia.nocookie.net/lotr/images/a/a0/Deagol.png/revision/latest/scale-to-width-down/400?cb=20121031104242",
+   "rarity": "common"
+  },
+  {
+   "name": "Quickbeam",
+   "image": "https://static.wikia.nocookie.net/lotr/images/2/2c/Bregalad_-_TT.png/revision/latest/scale-to-width-down/400?cb=20181208194021",
+   "rarity": "common"
+  },
+  {
+   "name": "Elendil",
+   "image": "https://static.wikia.nocookie.net/lotr/images/2/2b/Elendil11.jpg/revision/latest?cb=20060507071506",
+   "rarity": "common"
+  },
+  {
+   "name": "Gil-galad",
+   "image": "https://static.wikia.nocookie.net/lotr/images/8/81/Gil-galad_2.jpg/revision/latest?cb=20070322223340",
+   "rarity": "common"
+  },
+  {
+   "name": "Rosie Cotton",
+   "image": "https://static.wikia.nocookie.net/lotr/images/5/5c/Rosie_Cotton_celebrates_-_FOTR.png/revision/latest/scale-to-width-down/386?cb=20121003132330",
+   "rarity": "common"
+  },
+  {
+   "name": "Lobelia Sackville-Baggins",
+   "image": "https://static.wikia.nocookie.net/lotr/images/7/7f/Lobelia_Sackville-Baggins2.JPG/revision/latest/scale-to-width-down/396?cb=20160308121156",
+   "rarity": "common"
+  },
+  {
+   "name": "Mouth of Sauron",
+   "image": "https://static.wikia.nocookie.net/lotr/images/f/f2/Mouth_of_Sauron.png/revision/latest/scale-to-width-down/400?cb=20210117030358",
+   "rarity": "common"
+  },
+  {
+   "name": "Shagrat",
+   "image": "https://static.wikia.nocookie.net/lotr/images/2/25/Shagrat.jpg/revision/latest/scale-to-width-down/394?cb=20190205204114",
+   "rarity": "common"
+  },
+  {
+   "name": "Gorbag",
+   "image": "https://static.wikia.nocookie.net/lotr/images/d/da/Gorbag.jpg/revision/latest/scale-to-width-down/400?cb=20190205204344",
+   "rarity": "common"
+  },
+  {
+   "name": "Grishnákh",
+   "image": "https://static.wikia.nocookie.net/lotr/images/9/95/Grishnakh.jpg/revision/latest/scale-to-width-down/299?cb=20190205204258",
+   "rarity": "common"
+  },
+  {
+   "name": "Uglúk",
+   "image": "https://static.wikia.nocookie.net/lotr/images/6/68/Ugl%C3%BAk.jpg/revision/latest/scale-to-width-down/346?cb=20190210101956",
+   "rarity": "common"
+  },
+  {
+   "name": "Fëanor",
+   "image": "https://static.wikia.nocookie.net/lotr/images/f/ff/F%C3%ABanor%2C_Soni_A-Hender.jpg/revision/latest/scale-to-width-down/291?cb=20230909182133",
+   "rarity": "common"
+  },
+  {
+   "name": "Lúthien",
+   "image": "https://static.wikia.nocookie.net/lotr/images/6/6e/L%C3%BAthien_by_samo_art.jpg/revision/latest/scale-to-width-down/232?cb=20240115163810",
+   "rarity": "common"
+  },
+  {
+   "name": "Beren",
+   "image": "https://static.wikia.nocookie.net/lotr/images/0/03/Eve_Ventrue_-_Beren_Camlost.jpg/revision/latest/scale-to-width-down/253?cb=20201030175755",
+   "rarity": "common"
+  },
+  {
+   "name": "Túrin Turambar",
+   "image": "https://static.wikia.nocookie.net/lotr/images/7/7f/Turin_by_Jan_Pospisil.png/revision/latest/scale-to-width-down/400?cb=20230509024956",
+   "rarity": "common"
+  },
+  {
+   "name": "Eärendil",
+   "image": "https://static.wikia.nocookie.net/lotr/images/e/e8/Jenny_Dolfen_-_Earendil_the_Mariner.jpg/revision/latest/scale-to-width-down/305?cb=20130208184758",
+   "rarity": "common"
+  },
+  {
+   "name": "Ungoliant",
+   "image": "https://static.wikia.nocookie.net/lotr/images/7/77/Ungoliant_Spider.jpg/revision/latest/scale-to-width-down/283?cb=20211216192522",
+   "rarity": "common"
+  },
+  {
+   "name": "Dwalin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/1/1c/Dwalin.jpg/revision/latest/scale-to-width-down/400?cb=20120911200601",
+   "rarity": "common"
+  },
+  {
+   "name": "Bombur",
+   "image": "https://static.wikia.nocookie.net/lotr/images/a/a6/Bombur30.png/revision/latest/scale-to-width-down/325?cb=20260330220046",
+   "rarity": "common"
+  },
+  {
+   "name": "Bofur",
+   "image": "https://static.wikia.nocookie.net/lotr/images/5/56/Bofur_Nesbitt.jpg/revision/latest/scale-to-width-down/400?cb=20121030120400",
+   "rarity": "common"
+  },
+  {
+   "name": "Bifur",
+   "image": "https://static.wikia.nocookie.net/lotr/images/b/b5/Bifur.jpg/revision/latest/scale-to-width-down/332?cb=20110731144825",
+   "rarity": "common"
+  },
+  {
+   "name": "Ori",
+   "image": "https://static.wikia.nocookie.net/lotr/images/a/af/Orithehobbitfilms.png/revision/latest?cb=20260106202732",
+   "rarity": "common"
+  },
+  {
+   "name": "Nori",
+   "image": "https://static.wikia.nocookie.net/lotr/images/4/45/NoriByMontanini.jpg/revision/latest?cb=20221202224236",
+   "rarity": "common"
+  },
+  {
+   "name": "Dori",
+   "image": "https://static.wikia.nocookie.net/lotr/images/8/89/Dori-markhadlow-p.jpg/revision/latest/scale-to-width-down/332?cb=20120107052829",
+   "rarity": "common"
+  },
+  {
+   "name": "Óin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/e/e8/Oin.jpg/revision/latest/scale-to-width-down/400?cb=20120908125247",
+   "rarity": "common"
+  },
+  {
+   "name": "Glóin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/f/fc/Gloin_2.jpg/revision/latest/scale-to-width-down/312?cb=20250217002027",
+   "rarity": "common"
+  },
+  {
+   "name": "Bolg",
+   "image": "https://static.wikia.nocookie.net/lotr/images/b/b3/Bolg_in_Ravenhill.jpg/revision/latest/scale-to-width-down/400?cb=20141226160836",
+   "rarity": "common"
+  },
+  {
+   "name": "Great Goblin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/6/6e/Great_goblin_by_John_Howe.png/revision/latest/scale-to-width-down/307?cb=20131213151022",
+   "rarity": "common"
+  },
+  {
+   "name": "Thrór",
+   "image": "https://static.wikia.nocookie.net/lotr/images/a/a2/Carc_and_Thror%2C_Giancola.jpeg/revision/latest/scale-to-width-down/320?cb=20231003034705",
+   "rarity": "common"
+  },
+  {
+   "name": "Thráin",
+   "image": "https://static.wikia.nocookie.net/lotr/images/6/67/ThrainAzanulbizar.jpg/revision/latest/scale-to-width-down/280?cb=20240906085601",
+   "rarity": "common"
+  },
+  {
+   "name": "Halbarad",
+   "image": "https://static.wikia.nocookie.net/lotr/images/0/07/Halbarad.jpg/revision/latest?cb=20060908102125",
+   "rarity": "common"
+  },
+  {
+   "name": "Imrahil",
+   "image": "https://static.wikia.nocookie.net/lotr/images/1/1d/Prince_Imrahil.jpg/revision/latest/scale-to-width-down/262?cb=20230514114242",
+   "rarity": "common"
+  },
+  {
+   "name": "Gamling",
+   "image": "https://static.wikia.nocookie.net/lotr/images/3/33/Gamling.jpg/revision/latest/scale-to-width-down/400?cb=20150308165156",
+   "rarity": "common"
+  },
+  {
+   "name": "Háma",
+   "image": "https://static.wikia.nocookie.net/lotr/images/1/1d/H%C3%A1ma.jpg/revision/latest/scale-to-width-down/400?cb=20150308163846",
+   "rarity": "common"
+  },
+  {
+   "name": "Ghân-buri-Ghân",
+   "image": "https://static.wikia.nocookie.net/lotr/images/5/5c/Ghan-buri-ghan.jpg/revision/latest?cb=20060207123605",
+   "rarity": "common"
+  },
+  {
+   "name": "Dáin Ironfoot",
+   "image": "https://static.wikia.nocookie.net/lotr/images/e/ea/D%C3%A1in_Ironfoot%2C_Justin_Gerard.jpg/revision/latest/scale-to-width-down/343?cb=20230517183457",
+   "rarity": "common"
+  },
+  {
+   "name": "Andúril",
+   "image": "https://static.wikia.nocookie.net/lotr/images/1/10/Anduril2.png/revision/latest/scale-to-width-down/75?cb=20130120174607",
+   "rarity": "common"
+  },
+  {
+   "name": "Fatty Bolger",
+   "image": "https://static.wikia.nocookie.net/lotr/images/5/57/Screen_shot_2010-12-08_at_7.59.34_PM.png/revision/latest?cb=20101209010035",
+   "rarity": "common"
+  }
+ ],
+ "smash": [
+  {
+   "name": "Bowser",
+   "image": "https://static.wikia.nocookie.net/ssb/images/f/f4/SMG_Artwork_Bowser_%282021_Remake%29.png/revision/latest/scale-to-width-down/397?cb=20231117120206",
+   "rarity": "epic"
+  },
+  {
+   "name": "Zelda",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/17/ZeldaALBW.png/revision/latest/scale-to-width-down/327?cb=20210907143605",
+   "rarity": "epic"
+  },
+  {
+   "name": "Ganondorf",
+   "image": "https://static.wikia.nocookie.net/ssb/images/b/b4/GanondorfOOT3D.png/revision/latest/scale-to-width-down/290?cb=20210907143117",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sephiroth",
+   "image": "https://static.wikia.nocookie.net/ssb/images/6/66/FFVIIRB_Sephiroth.png/revision/latest/scale-to-width-down/239?cb=20240622052047",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sora",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/42/Sora_KH3.png/revision/latest/scale-to-width-down/274?cb=20211005174002",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fox",
+   "image": "https://static.wikia.nocookie.net/ssb/images/5/5a/SFZ_Fox_McCloud.png/revision/latest/scale-to-width-down/230?cb=20180723022401",
+   "rarity": "epic"
+  },
+  {
+   "name": "Luigi",
+   "image": "https://static.wikia.nocookie.net/ssb/images/7/72/MPSS_Luigi.png/revision/latest/scale-to-width-down/203?cb=20220113045529",
+   "rarity": "epic"
+  },
+  {
+   "name": "Peach",
+   "image": "https://static.wikia.nocookie.net/ssb/images/0/03/PPS_Peach_Artwork.png/revision/latest/scale-to-width-down/381?cb=20240303023049",
+   "rarity": "epic"
+  },
+  {
+   "name": "Mewtwo",
+   "image": "https://static.wikia.nocookie.net/ssb/images/2/24/MewtwoBDSP.png/revision/latest/scale-to-width-down/400?cb=20220127010222",
+   "rarity": "epic"
+  },
+  {
+   "name": "Jigglypuff",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/3e/039Jigglypuff.png/revision/latest/scale-to-width-down/400?cb=20251012154056",
+   "rarity": "rare"
+  },
+  {
+   "name": "Meta Knight",
+   "image": "https://static.wikia.nocookie.net/ssb/images/b/b0/KatFL_Meta_Knight_artwork.png/revision/latest/scale-to-width-down/400?cb=20231116080445",
+   "rarity": "rare"
+  },
+  {
+   "name": "King Dedede",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/3c/KRtDLD_King_Dedede.png/revision/latest/scale-to-width-down/349?cb=20231116081327",
+   "rarity": "rare"
+  },
+  {
+   "name": "Wario",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/31/Super_Mario_Party_Wario_Artwork.png/revision/latest?cb=20181123113730",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lucario",
+   "image": "https://static.wikia.nocookie.net/ssb/images/8/81/448Lucario_BDSP.png/revision/latest/scale-to-width-down/400?cb=20210907133205",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mega Man",
+   "image": "https://static.wikia.nocookie.net/ssb/images/9/95/7BF23EB2-A442-4D64-BD49-F1E34DA667A7.png/revision/latest/scale-to-width-down/251?cb=20180902072330",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ryu",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/32/SF6_Ryu.png/revision/latest/scale-to-width-down/287?cb=20240622110929",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bayonetta",
+   "image": "https://static.wikia.nocookie.net/ssb/images/d/db/Bayonetta.png/revision/latest/scale-to-width-down/320?cb=20210413030550",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ridley",
+   "image": "https://static.wikia.nocookie.net/ssb/images/5/57/Ridley_Zero_M.png/revision/latest?cb=20180717065359",
+   "rarity": "rare"
+  },
+  {
+   "name": "Banjo & Kazooie",
+   "image": "https://static.wikia.nocookie.net/ssb/images/c/cc/Banjo_and_Kazooie.png/revision/latest/scale-to-width-down/303?cb=20250414172712",
+   "rarity": "rare"
+  },
+  {
+   "name": "Terry",
+   "image": "https://static.wikia.nocookie.net/ssb/images/f/f5/Terry_SSBU.png/revision/latest/scale-to-width-down/400?cb=20200626010159",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pit",
+   "image": "https://static.wikia.nocookie.net/ssb/images/0/0d/Pit_%28KIU%29.png/revision/latest/scale-to-width-down/299?cb=20181114212807",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ike",
+   "image": "https://static.wikia.nocookie.net/ssb/images/7/70/FEH_Ike.png/revision/latest/scale-to-width-down/270?cb=20180723030930",
+   "rarity": "rare"
+  },
+  {
+   "name": "Villager",
+   "image": "https://static.wikia.nocookie.net/ssb/images/f/fb/VillagerCityFolk.png/revision/latest/scale-to-width-down/311?cb=20250414212853",
+   "rarity": "rare"
+  },
+  {
+   "name": "Greninja",
+   "image": "https://static.wikia.nocookie.net/ssb/images/d/d5/GreninjaOfficialLarge.png/revision/latest/scale-to-width-down/400?cb=20181207010825",
+   "rarity": "rare"
+  },
+  {
+   "name": "Falco",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/1b/SFZ_Falco_Lombardi.png/revision/latest/scale-to-width-down/181?cb=20260730201740",
+   "rarity": "rare"
+  },
+  {
+   "name": "Diddy Kong",
+   "image": "https://static.wikia.nocookie.net/ssb/images/c/c0/Diddy_Kong_JP_website.png/revision/latest/scale-to-width-down/400?cb=20230206142444",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rosalina & Luma",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/17/RosalinaMarioPartyTop100.png/revision/latest/scale-to-width-down/232?cb=20181110020459",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lucina",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/43/FEH_Lucina.png/revision/latest/scale-to-width-down/283?cb=20180723025509",
+   "rarity": "rare"
+  },
+  {
+   "name": "Roy",
+   "image": "https://static.wikia.nocookie.net/ssb/images/6/67/FEH_Roy.png/revision/latest/scale-to-width-down/228?cb=20180723031119",
+   "rarity": "rare"
+  },
+  {
+   "name": "Toon Link",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/47/439px-WW_Link_HD_2.png/revision/latest/scale-to-width-down/375?cb=20180725015659",
+   "rarity": "rare"
+  },
+  {
+   "name": "Crazy Hand",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/41/Crazy-Hand-Official-Artwork-SSBU.png/revision/latest/scale-to-width-down/400?cb=20181129093018",
+   "rarity": "rare"
+  },
+  {
+   "name": "Incineroar",
+   "image": "https://static.wikia.nocookie.net/ssb/images/f/ff/Incineroar-Official-Artwork.png/revision/latest/scale-to-width-down/400?cb=20181207011333",
+   "rarity": "rare"
+  },
+  {
+   "name": "King K. Rool",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/45/King_K_Rool_render.png/revision/latest/scale-to-width-down/357?cb=20250414214237",
+   "rarity": "rare"
+  },
+  {
+   "name": "Daisy",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/15/SMBW_Daisy.png/revision/latest/scale-to-width-down/339?cb=20231117115957",
+   "rarity": "common"
+  },
+  {
+   "name": "Dr. Mario",
+   "image": "https://static.wikia.nocookie.net/ssb/images/7/7d/Dr_Mario_DMW.png/revision/latest/scale-to-width-down/299?cb=20240807124455",
+   "rarity": "common"
+  },
+  {
+   "name": "Pichu",
+   "image": "https://static.wikia.nocookie.net/ssb/images/e/e2/PichuArtwork.png/revision/latest/scale-to-width-down/400?cb=20180707004746",
+   "rarity": "common"
+  },
+  {
+   "name": "Wolf",
+   "image": "https://static.wikia.nocookie.net/ssb/images/9/98/Wolf_Render.png/revision/latest/scale-to-width-down/251?cb=20250414212335",
+   "rarity": "common"
+  },
+  {
+   "name": "Sheik",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/39/OoT_Sheik.png/revision/latest/scale-to-width-down/168?cb=20180725020621",
+   "rarity": "common"
+  },
+  {
+   "name": "Young Link",
+   "image": "https://static.wikia.nocookie.net/ssb/images/5/53/Young_Link.png/revision/latest/scale-to-width-down/292?cb=20210413030800",
+   "rarity": "common"
+  },
+  {
+   "name": "Chrom",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/13/Chrom_%28FE13_Artwork%29.png/revision/latest/scale-to-width-down/213?cb=20140714165133",
+   "rarity": "common"
+  },
+  {
+   "name": "Zero Suit Samus",
+   "image": "https://static.wikia.nocookie.net/ssb/images/9/9a/Zero_Suit_Samus_Other_M_Artwork.png/revision/latest/scale-to-width-down/94?cb=20160114035034",
+   "rarity": "common"
+  },
+  {
+   "name": "Pokémon Trainer",
+   "image": "https://static.wikia.nocookie.net/ssb/images/8/83/FireRed_LeafGreen_Red.png/revision/latest/scale-to-width-down/186?cb=20140414063113",
+   "rarity": "common"
+  },
+  {
+   "name": "Bowser Jr.",
+   "image": "https://static.wikia.nocookie.net/ssb/images/2/29/SNW_Bowser_Jr..png/revision/latest/scale-to-width-down/260?cb=20240807130922",
+   "rarity": "common"
+  },
+  {
+   "name": "Robin",
+   "image": "https://static.wikia.nocookie.net/ssb/images/b/be/Robin_Artwork.png/revision/latest/scale-to-width-down/148?cb=20180723025255",
+   "rarity": "common"
+  },
+  {
+   "name": "Ken",
+   "image": "https://static.wikia.nocookie.net/ssb/images/a/ad/SF6_Ken.png/revision/latest/scale-to-width-down/350?cb=20240622110814",
+   "rarity": "common"
+  },
+  {
+   "name": "Simon",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/4e/Grimoire_of_Souls_Simon.png/revision/latest/scale-to-width-down/400?cb=20190105094200",
+   "rarity": "common"
+  },
+  {
+   "name": "Richter",
+   "image": "https://static.wikia.nocookie.net/ssb/images/5/5f/Richter_Belmont_HoD.png/revision/latest/scale-to-width-down/400?cb=20210907135240",
+   "rarity": "common"
+  },
+  {
+   "name": "Mythra",
+   "image": "https://static.wikia.nocookie.net/ssb/images/1/1c/Pyra.png/revision/latest/scale-to-width-down/215?cb=20221230092805",
+   "rarity": "common"
+  },
+  {
+   "name": "Dark Samus",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/31/Dark-Samus-Metroid-Prime-3.png/revision/latest/scale-to-width-down/252?cb=20181201025629",
+   "rarity": "common"
+  },
+  {
+   "name": "Mii Fighter",
+   "image": "https://static.wikia.nocookie.net/ssb/images/3/3b/Mii-updated.png/revision/latest/scale-to-width-down/192?cb=20140707130426",
+   "rarity": "common"
+  },
+  {
+   "name": "Tabuu",
+   "image": "https://static.wikia.nocookie.net/ssb/images/e/e7/Tabbu_Spirit.png/revision/latest/scale-to-width-down/400?cb=20210515224955",
+   "rarity": "common"
+  },
+  {
+   "name": "Galeem",
+   "image": "https://static.wikia.nocookie.net/ssb/images/7/76/Galeem_SSBU.png/revision/latest/scale-to-width-down/400?cb=20181102032110",
+   "rarity": "common"
+  },
+  {
+   "name": "Dharkon",
+   "image": "https://static.wikia.nocookie.net/ssb/images/4/42/Dharkon_SSBU.png/revision/latest/scale-to-width-down/400?cb=20190309061946",
+   "rarity": "common"
+  }
  ]
 }

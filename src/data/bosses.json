@@ -6676,6 +6676,10 @@
         }
       ]
     },
+    "finaleSkip": [
+      "The One Ring",
+      "Sting"
+    ],
     "finale": [
       {
         "label": "Tom Bombadil",
