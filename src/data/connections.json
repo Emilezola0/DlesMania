@@ -1588,104 +1588,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Band members",
+        "label": "Beatles songs with “love” in the title",
         "items": [
-          {
-            "label": "John",
-            "src": "John Lennon",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/John_Lennon_%22Walls_and_Bridges%22_1974_press_photo_2_%28color%29_%28cropped%29.jpg/330px-John_Lennon_%22Walls_and_Bridges%22_1974_press_photo_2_%28color%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Paul",
-            "src": "Paul McCartney",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/MaccaLyricsRFH051121_%2815_of_18%29_%28updated%29_%28cropped%29.jpg/330px-MaccaLyricsRFH051121_%2815_of_18%29_%28updated%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "George",
-            "src": "George Harrison",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/George-wa-portrait.jpg/330px-George-wa-portrait.jpg"
-          },
-          {
-            "label": "Ringo",
-            "src": "Ringo Starr",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/ARTIST_INTERVIEW_-_Ringo_Starr_%28Former_the_Beatles%29_exclusive_interview_0-14_screenshot_%28portrait_crop%29.jpg/330px-ARTIST_INTERVIEW_-_Ringo_Starr_%28Former_the_Beatles%29_exclusive_interview_0-14_screenshot_%28portrait_crop%29.jpg"
-          }
+          "All You Need Is Love",
+          "Can't Buy Me Love",
+          "Love Me Do",
+          "P.S. I Love You"
         ]
       },
       {
         "level": 1,
-        "label": "Albums",
+        "label": "Beatles songs named after a woman",
         "items": [
-          {
-            "label": "Revolver",
-            "src": "Revolver (Beatles album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/e/ec/Revolver_%28album_cover%29.jpg"
-          },
-          {
-            "label": "Rubber Soul",
-            "image": "https://upload.wikimedia.org/wikipedia/en/5/5b/Rubber_Soul.png"
-          },
-          {
-            "label": "Help!",
-            "src": "Help! (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Beatles_-_Help%21.png"
-          },
-          {
-            "label": "Let It Be",
-            "src": "Let It Be (album)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Beatles_-_Let_It_Be.png/330px-The_Beatles_-_Let_It_Be.png"
-          }
+          "Michelle",
+          "Eleanor Rigby",
+          "Julia",
+          "Martha My Dear"
         ]
       },
       {
         "level": 2,
-        "label": "Songs named after a woman",
+        "label": "Beatles songs named after a place",
         "items": [
-          {
-            "label": "Michelle",
-            "src": "Michelle (song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/e/ee/Michelle_-_The_Beatles.jpg"
-          },
-          {
-            "label": "Eleanor Rigby",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/82/Eleanor_rigby_single_usa.jpg"
-          },
-          {
-            "label": "Julia",
-            "src": "Julia (Beatles song)",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/7/7b/BeatlesObLaDiObLaDaJulia.png"
-          },
-          {
-            "label": "Lucy in the Sky with Diamonds",
-            "image": "https://upload.wikimedia.org/wikipedia/en/f/f0/Lucy_in_the_Sky_with_Diamonds_US_sheet_music_cover.jpg"
-          }
+          "Penny Lane",
+          "Strawberry Fields Forever",
+          "Back in the U.S.S.R.",
+          "Norwegian Wood"
         ]
       },
       {
         "level": 3,
-        "label": "Songs named after a place",
+        "label": "Beatles songs with a number",
         "items": [
-          {
-            "label": "Penny Lane",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/69/Pennystrawps.jpg"
-          },
-          {
-            "label": "Strawberry Fields Forever",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/69/Pennystrawps.jpg"
-          },
-          {
-            "label": "Back in the U.S.S.R.",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/94/Back_in_the_USSR_single.png"
-          },
-          {
-            "label": "Norwegian Wood",
-            "src": "Norwegian Wood (This Bird Has Flown)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/b/bf/Norwegian_wood_upload_wizard.PNG"
-          }
+          "Eight Days a Week",
+          "When I'm Sixty-Four",
+          "Revolution 9",
+          "One After 909"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-pop",
@@ -1693,104 +1634,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Taylor Swift albums",
+        "label": "Michael Jackson songs",
         "items": [
-          {
-            "label": "Fearless",
-            "src": "Fearless (Taylor Swift album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/86/Taylor_Swift_-_Fearless.png"
-          },
-          {
-            "label": "Red",
-            "src": "Red (Taylor Swift album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/e/e8/Taylor_Swift_-_Red.png"
-          },
-          {
-            "label": "Folklore",
-            "src": "Folklore (Taylor Swift album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/f/f8/Taylor_Swift_-_Folklore.png"
-          },
-          {
-            "label": "Midnights",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png"
-          }
+          "Billie Jean",
+          "Thriller",
+          "Beat It",
+          "Smooth Criminal"
         ]
       },
       {
         "level": 1,
-        "label": "Michael Jackson songs",
+        "label": "Taylor Swift songs",
         "items": [
-          {
-            "label": "Billie Jean",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Billie_Jean_Single.jpg"
-          },
-          {
-            "label": "Beat It",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/82/Beat_It.jpg"
-          },
-          {
-            "label": "Smooth Criminal",
-            "image": "https://upload.wikimedia.org/wikipedia/en/3/33/Smooth_Criminal.jpg"
-          },
-          {
-            "label": "Black or White",
-            "src": "Black or White",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Michael_Jackson_-_Black_or_White.png"
-          }
+          "Shake It Off",
+          "Blank Space",
+          "Love Story",
+          "Anti-Hero"
         ]
       },
       {
         "level": 2,
-        "label": "Beyoncé songs",
+        "label": "Lady Gaga songs",
         "items": [
-          {
-            "label": "Halo",
-            "src": "Halo (Beyoncé song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/ac/Beyonce_-_Halo.png"
-          },
-          {
-            "label": "Single Ladies",
-            "src": "Single Ladies (Put a Ring on It)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/44/Single_Ladies_%28Put_a_Ring_on_It%29_cover.png"
-          },
-          {
-            "label": "Crazy in Love",
-            "image": "https://upload.wikimedia.org/wikipedia/en/3/30/Beyonce_-_Crazy_in_Love_%28single%29.png"
-          },
-          {
-            "label": "Formation",
-            "src": "Formation (song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/7/72/Beyonce_-_Formation.png"
-          }
+          "Poker Face",
+          "Bad Romance",
+          "Shallow",
+          "Just Dance"
         ]
       },
       {
         "level": 3,
-        "label": "Lady Gaga songs",
+        "label": "Beyoncé songs",
         "items": [
-          {
-            "label": "Poker Face",
-            "src": "Poker Face (song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/3/3a/Poker_Face_by_Lady_Gaga_alternative_cover.png"
-          },
-          {
-            "label": "Bad Romance",
-            "image": "https://upload.wikimedia.org/wikipedia/en/c/cc/Lady_Gaga_-_Bad_Romance.png"
-          },
-          {
-            "label": "Telephone",
-            "src": "Telephone (song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/64/Lady_Gaga_Telephone_cover.png"
-          },
-          {
-            "label": "Just Dance",
-            "src": "Just Dance (song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/7/77/Just_Dance_cover.png"
-          }
+          "Halo",
+          "Single Ladies",
+          "Crazy in Love",
+          "Formation"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-rock",
@@ -1798,99 +1680,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Queen members",
+        "label": "Queen songs",
         "items": [
-          {
-            "label": "Freddie Mercury",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg/330px-Freddie_Mercury_performing_in_New_Haven%2C_CT%2C_November_1977.jpg"
-          },
-          {
-            "label": "Brian May",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Brian_May_%2854760284093%29.jpg/330px-Brian_May_%2854760284093%29.jpg"
-          },
-          {
-            "label": "Roger Taylor",
-            "src": "Roger Taylor (Queen drummer)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/QueenLambertO2060622_%2832_of_49%29_%2852162868898%29_%28Roger_Taylor_crop%29.jpg/330px-QueenLambertO2060622_%2832_of_49%29_%2852162868898%29_%28Roger_Taylor_crop%29.jpg"
-          },
-          {
-            "label": "John Deacon",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Queen_News_Of_The_World_%281977_Press_Kit_Photo_07%29_John_Deacon.jpg/330px-Queen_News_Of_The_World_%281977_Press_Kit_Photo_07%29_John_Deacon.jpg"
-          }
+          "Bohemian Rhapsody",
+          "We Will Rock You",
+          "Don't Stop Me Now",
+          "Under Pressure"
         ]
       },
       {
         "level": 1,
         "label": "Nirvana songs",
         "items": [
-          {
-            "label": "Lithium",
-            "src": "Lithium (Nirvana song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/6c/Nirvana-lithium-geffen-2-s.jpg"
-          },
-          {
-            "label": "In Bloom",
-            "image": "https://upload.wikimedia.org/wikipedia/en/b/b8/Nirvana-usa-in-bloom-geffen-s.jpg"
-          },
-          {
-            "label": "Come as You Are",
-            "src": "Come as You Are (Nirvana song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/0/06/ComeAsYouAre.jpg"
-          },
-          {
-            "label": "Heart-Shaped Box",
-            "image": "https://upload.wikimedia.org/wikipedia/en/e/e2/Nirvana-usa-heartshaped-box-geffen-s.jpg"
-          }
+          "Smells Like Teen Spirit",
+          "Come as You Are",
+          "Lithium",
+          "Heart-Shaped Box"
         ]
       },
       {
         "level": 2,
         "label": "Led Zeppelin songs",
         "items": [
-          {
-            "label": "Stairway to Heaven",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Stairway_to_Heaven_by_Led_Zeppelin_US_promotional_single.png/330px-Stairway_to_Heaven_by_Led_Zeppelin_US_promotional_single.png"
-          },
-          {
-            "label": "Black Dog",
-            "src": "Black Dog (Led Zeppelin song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/ad/Black_Dog45.jpg"
-          },
-          {
-            "label": "Whole Lotta Love",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/66/Wllsingle.jpg"
-          },
-          {
-            "label": "Immigrant Song",
-            "image": "https://upload.wikimedia.org/wikipedia/en/d/db/Led_Zeppelin_-_Immigrant_Song.jpg"
-          }
+          "Stairway to Heaven",
+          "Whole Lotta Love",
+          "Kashmir",
+          "Immigrant Song"
         ]
       },
       {
         "level": 3,
-        "label": "Bands with an animal in the name",
+        "label": "AC/DC songs",
         "items": [
-          {
-            "label": "Gorillaz",
-            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/c6/Gorillaz_family.jpg/330px-Gorillaz_family.jpg"
-          },
-          {
-            "label": "The Beatles",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/The_Beatles_1963_Dezo_Hoffman_Capitol_Records_press_photo_2.jpg/330px-The_Beatles_1963_Dezo_Hoffman_Capitol_Records_press_photo_2.jpg"
-          },
-          {
-            "label": "Def Leppard",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Def_Leppard_2018.jpg/330px-Def_Leppard_2018.jpg"
-          },
-          {
-            "label": "Eagles",
-            "src": "Eagles (band)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/The_Eagles_in_performance%2C_2008.jpg/330px-The_Eagles_in_performance%2C_2008.jpg"
-          }
+          "Highway to Hell",
+          "Back in Black",
+          "Thunderstruck",
+          "T.N.T."
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-hiphop",
@@ -1898,100 +1726,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Rappers from Compton",
+        "label": "Eminem songs",
         "items": [
-          {
-            "label": "Kendrick Lamar",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg/330px-KendrickSZASPurs230725-144_%28cropped%29_desaturated.jpg"
-          },
-          {
-            "label": "Dr. Dre",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Dr_Dre_sig.svg/330px-Dr_Dre_sig.svg.png"
-          },
-          {
-            "label": "Eazy-E",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Eazy_E_headshot.jpg"
-          },
-          {
-            "label": "The Game",
-            "src": "The Game (rapper)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/The_Game_2016.jpg/330px-The_Game_2016.jpg"
-          }
+          "Lose Yourself",
+          "Without Me",
+          "Stan",
+          "The Real Slim Shady"
         ]
       },
       {
         "level": 1,
-        "label": "Wu-Tang Clan members",
+        "label": "Kendrick Lamar songs",
         "items": [
-          {
-            "label": "RZA",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/RZA_speaking_at_the_2018_San_Diego_Comic_Con_International_%28cropped%29.jpg/330px-RZA_speaking_at_the_2018_San_Diego_Comic_Con_International_%28cropped%29.jpg"
-          },
-          {
-            "label": "GZA",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/GZA_%2852381849794%29_%28cropped%29.jpg/330px-GZA_%2852381849794%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Method Man",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Methodman_at_TIFF_2025_-_2_%28cropped%29.jpg/330px-Methodman_at_TIFF_2025_-_2_%28cropped%29.jpg"
-          },
-          {
-            "label": "Ghostface Killah",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Ghostface_Killah_in_2010_%28cropped%29.jpg/330px-Ghostface_Killah_in_2010_%28cropped%29.jpg"
-          }
+          "HUMBLE.",
+          "Alright",
+          "Money Trees",
+          "Swimming Pools"
         ]
       },
       {
         "level": 2,
-        "label": "Kanye West albums",
+        "label": "Drake songs",
         "items": [
-          {
-            "label": "Graduation",
-            "src": "Graduation (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/7/70/Graduation_%28album%29.jpg"
-          },
-          {
-            "label": "Yeezus",
-            "image": "https://upload.wikimedia.org/wikipedia/en/0/03/Yeezus_album_cover.png"
-          },
-          {
-            "label": "The College Dropout",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/a3/Kanyewest_collegedropout.jpg"
-          },
-          {
-            "label": "Donda",
-            "src": "Donda (album)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Almost_black_square_020305.svg/330px-Almost_black_square_020305.svg.png"
-          }
+          "Hotline Bling",
+          "God's Plan",
+          "One Dance",
+          "Started from the Bottom"
         ]
       },
       {
         "level": 3,
-        "label": "Drake albums",
+        "label": "Kanye West songs",
         "items": [
-          {
-            "label": "Views",
-            "src": "Views (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/af/Drake_-_Views_cover.jpg"
-          },
-          {
-            "label": "Scorpion",
-            "src": "Scorpion (Drake album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/90/Scorpion_by_Drake.jpg"
-          },
-          {
-            "label": "Take Care",
-            "src": "Take Care (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/ae/Drake_-_Take_Care_cover.jpg"
-          },
-          {
-            "label": "Nothing Was the Same",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/42/Drake_-_Nothing_Was_the_Same_cover.png"
-          }
+          "Stronger",
+          "Gold Digger",
+          "Heartless",
+          "Power"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-misc",
@@ -2001,100 +1774,43 @@
         "level": 0,
         "label": "Daft Punk songs",
         "items": [
-          {
-            "label": "Around the World",
-            "src": "Around the World (Daft Punk song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Aroundtheworld_DaftPunk.jpg"
-          },
-          {
-            "label": "One More Time",
-            "src": "One More Time (Daft Punk song)",
-            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/99/DaftPunk_OneMoreTime.jpg/330px-DaftPunk_OneMoreTime.jpg"
-          },
-          {
-            "label": "Get Lucky",
-            "src": "Get Lucky (Daft Punk song)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/7/71/Get_Lucky.jpg"
-          },
-          {
-            "label": "Digital Love",
-            "src": "fandom:daftpunk:Digital Love",
-            "image": "https://static.wikia.nocookie.net/daftpunk/images/d/dd/Digital_Love.jpg/revision/latest/scale-to-width-down/320?cb=20220622191523"
-          }
+          "One More Time",
+          "Get Lucky",
+          "Around the World",
+          "Harder, Better, Faster, Stronger"
         ]
       },
       {
         "level": 1,
-        "label": "Woodwind instruments",
+        "label": "Songs with a colour in the title",
         "items": [
-          {
-            "label": "Flute",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Shinobue_and_other_flutes-3.jpg/330px-Shinobue_and_other_flutes-3.jpg"
-          },
-          {
-            "label": "Clarinet",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Leitner%2BKraus_410_320.png/330px-Leitner%2BKraus_410_320.png"
-          },
-          {
-            "label": "Oboe",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Oboe_Patricola_Artista_PT1.jpg/330px-Oboe_Patricola_Artista_PT1.jpg"
-          },
-          {
-            "label": "Bassoon",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/FoxBassoon.png/330px-FoxBassoon.png"
-          }
+          "Yellow",
+          "Purple Rain",
+          "Paint It Black",
+          "Blue (Da Ba Dee)"
         ]
       },
       {
         "level": 2,
-        "label": "Brass instruments",
+        "label": "Songs with a day of the week",
         "items": [
-          {
-            "label": "Trumpet",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Yamaha_Trumpet_YTR-8335LA_crop.jpg/330px-Yamaha_Trumpet_YTR-8335LA_crop.jpg"
-          },
-          {
-            "label": "Trombone",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Yamaha_Tenor_trombone_YSL-891Z_%28re-crop%29.jpg/330px-Yamaha_Tenor_trombone_YSL-891Z_%28re-crop%29.jpg"
-          },
-          {
-            "label": "Tuba",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Yamaha_Bass_tuba_YFB-822.tif/lossy-page1-330px-Yamaha_Bass_tuba_YFB-822.tif.jpg"
-          },
-          {
-            "label": "French horn",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Yamaha_Horn_YHR-667V.tif/lossy-page1-330px-Yamaha_Horn_YHR-667V.tif.jpg"
-          }
+          "Friday I'm in Love",
+          "Manic Monday",
+          "Sunday Bloody Sunday",
+          "Ruby Tuesday"
         ]
       },
       {
         "level": 3,
-        "label": "Grammy Album of the Year winners",
+        "label": "Songs with a number in the title",
         "items": [
-          {
-            "label": "Rumours",
-            "src": "Rumours (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG"
-          },
-          {
-            "label": "Thriller",
-            "src": "Thriller (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png"
-          },
-          {
-            "label": "21",
-            "src": "21 (Adele album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/1/1b/Adele_-_21.png"
-          },
-          {
-            "label": "1989",
-            "src": "1989 (Taylor Swift album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/f/f6/Taylor_Swift_-_1989.png"
-          }
+          "7 Rings",
+          "99 Problems",
+          "1999",
+          "22"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cx-1",
@@ -4379,202 +4095,91 @@
     "groups": [
       {
         "level": 0,
-        "label": "Guitar heroes",
+        "label": "Songs named after a woman",
         "items": [
-          {
-            "label": "Jimi Hendrix",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Jimi_Hendrix_%281967%29_%28cropped%29.jpg/330px-Jimi_Hendrix_%281967%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Eric Clapton",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg/330px-JeffBeckTribute1RAH220523_%28106_of_136%29_%2852920038844%29_%28Eric_Clapton%29.jpg"
-          },
-          {
-            "label": "Jimmy Page",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Jimmy_Page_at_the_Echo_music_award_2013.jpg/330px-Jimmy_Page_at_the_Echo_music_award_2013.jpg"
-          },
-          {
-            "label": "Slash",
-            "src": "Slash (musician)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Slash_live_in_London_2022_%28Cropped_-_upright%29.jpg/330px-Slash_live_in_London_2022_%28Cropped_-_upright%29.jpg"
-          }
+          "Roxanne",
+          "Jolene",
+          "Layla",
+          "Rosanna"
         ]
       },
       {
         "level": 1,
-        "label": "Divas",
+        "label": "Songs about rain or sun",
         "items": [
-          {
-            "label": "Whitney Houston",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Whitney_Houston_%28cropped3%29.JPEG/330px-Whitney_Houston_%28cropped3%29.JPEG"
-          },
-          {
-            "label": "Mariah Carey",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/2/22/Mariah_Carey_Library_of_Congress_2023_1_Cropped_3.png"
-          },
-          {
-            "label": "Céline Dion",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/C%C3%A9line_Dion_2012.jpg/330px-C%C3%A9line_Dion_2012.jpg"
-          },
-          {
-            "label": "Aretha Franklin",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Aretha_Franklin_1968.jpg/330px-Aretha_Franklin_1968.jpg"
-          }
+          "Here Comes the Sun",
+          "Umbrella",
+          "Set Fire to the Rain",
+          "November Rain"
         ]
       },
       {
         "level": 2,
-        "label": "Rock drummers",
+        "label": "Songs that ask a question",
         "items": [
-          {
-            "label": "John Bonham",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/John_Bonham_1975.jpg/330px-John_Bonham_1975.jpg"
-          },
-          {
-            "label": "Dave Grohl",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/FoosDublin210819-6_%2848620330261%29_%28cropped%29.jpg/330px-FoosDublin210819-6_%2848620330261%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Neil Peart",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Rush_band_1970s_%28cropped%29.jpg/330px-Rush_band_1970s_%28cropped%29.jpg"
-          },
-          {
-            "label": "Keith Moon",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/Keith_Moon_4_-_The_Who_-_1975-2.jpg/330px-Keith_Moon_4_-_The_Who_-_1975-2.jpg"
-          }
+          "What's Up?",
+          "Do I Wanna Know?",
+          "Is This Love",
+          "Who Let the Dogs Out"
         ]
       },
       {
         "level": 3,
-        "label": "Rappers turned actors",
+        "label": "Songs named after a place",
         "items": [
-          {
-            "label": "Will Smith",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/TechCrunch_Disrupt_San_Francisco_2019_-_Day_1_%2848834070763%29_%28cropped%29.jpg/330px-TechCrunch_Disrupt_San_Francisco_2019_-_Day_1_%2848834070763%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Ice Cube",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Ice_Cube_September_2025.png/330px-Ice_Cube_September_2025.png"
-          },
-          {
-            "label": "Queen Latifah",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Queen_Latifah_by_Gage_Skidmore.jpg/330px-Queen_Latifah_by_Gage_Skidmore.jpg"
-          },
-          {
-            "label": "Ludacris",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Ludacris_at_NAS_Pax_River_2_%28cropped%29.jpg/330px-Ludacris_at_NAS_Pax_River_2_%28cropped%29.jpg"
-          }
+          "Hotel California",
+          "New York, New York",
+          "Viva Las Vegas",
+          "Sweet Home Alabama"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-kpop",
     "domain": "music",
-    "theme": "K-pop",
     "groups": [
       {
         "level": 0,
-        "label": "BTS members",
+        "label": "BTS songs",
         "items": [
-          {
-            "label": "RM",
-            "src": "RM (rapper)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/RM_at_W_Korea_Love_Your_W%2C_November_2023.jpg/330px-RM_at_W_Korea_Love_Your_W%2C_November_2023.jpg"
-          },
-          {
-            "label": "Jin",
-            "src": "Jin (singer)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/BTS_Jin_at_Maison_Fred%2C_13_March_2025_04.png/330px-BTS_Jin_at_Maison_Fred%2C_13_March_2025_04.png"
-          },
-          {
-            "label": "Suga",
-            "src": "Suga (rapper)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Suga_for_Valentino_and_Marie_Claire_Korea_06.jpg/330px-Suga_for_Valentino_and_Marie_Claire_Korea_06.jpg"
-          },
-          {
-            "label": "Jungkook",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Jung_Kook_of_BTS%2C_February_12%2C_2026_%281%29.png/330px-Jung_Kook_of_BTS%2C_February_12%2C_2026_%281%29.png"
-          }
+          "Dynamite",
+          "Butter",
+          "Boy with Luv",
+          "Fake Love"
         ]
       },
       {
         "level": 1,
-        "label": "BLACKPINK members",
+        "label": "BLACKPINK songs",
         "items": [
-          {
-            "label": "Jennie",
-            "src": "Jennie (singer)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/20260526_Jennie_Kim_04.jpg/330px-20260526_Jennie_Kim_04.jpg"
-          },
-          {
-            "label": "Lisa",
-            "src": "Lisa (rapper)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/20240314_Lisa_Manoban_07.jpg/330px-20240314_Lisa_Manoban_07.jpg"
-          },
-          {
-            "label": "Rosé",
-            "src": "Rosé (singer)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Blackpink_Ros%C3%A9_Rimowa_1.jpg/330px-Blackpink_Ros%C3%A9_Rimowa_1.jpg"
-          },
-          {
-            "label": "Jisoo",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Jisoo_at_Boyfriend_on_Demand_press_conference_on_26022026_%2812%29.png/330px-Jisoo_at_Boyfriend_on_Demand_press_conference_on_26022026_%2812%29.png"
-          }
+          "How You Like That",
+          "Ddu-Du Ddu-Du",
+          "Pink Venom",
+          "Kill This Love"
         ]
       },
       {
         "level": 2,
-        "label": "K-pop groups",
+        "label": "BIGBANG songs",
         "items": [
-          {
-            "label": "Twice",
-            "src": "Twice (group)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Twice_260618.jpg/330px-Twice_260618.jpg"
-          },
-          {
-            "label": "EXO",
-            "src": "Exo",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Exo_monster_160618_suwon.png/330px-Exo_monster_160618_suwon.png"
-          },
-          {
-            "label": "Stray Kids",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png/330px-Stray_Kids_at_the_40th_Golden_Disc_Awards%2C_January_10%2C_2026_%281%29.png"
-          },
-          {
-            "label": "NewJeans",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/NewJeans_2023_MelonMusicAwards_composite.jpg/330px-NewJeans_2023_MelonMusicAwards_composite.jpg"
-          }
+          "Bang Bang Bang",
+          "Fantastic Baby",
+          "Haru Haru",
+          "Lies"
         ]
       },
       {
         "level": 3,
-        "label": "BIGBANG members",
+        "label": "TWICE songs",
         "items": [
-          {
-            "label": "G-Dragon",
-            "src": "fandom:kpop:G-Dragon",
-            "image": "https://static.wikia.nocookie.net/kpop/images/3/3c/BIGBANG_G-Dragon_BiiiG_concept_photo_4.png/revision/latest/scale-to-width-down/256?cb=20260812010628"
-          },
-          {
-            "label": "Taeyang",
-            "src": "Taeyang",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Taeyang_-_MADE_THE_MOVIE_Premiere_%28cropped%29.jpg/330px-Taeyang_-_MADE_THE_MOVIE_Premiere_%28cropped%29.jpg"
-          },
-          {
-            "label": "T.O.P",
-            "src": "T.O.P (entertainer)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/T.O.P_-_0.TO.10_in_Seoul_-_2.jpg/330px-T.O.P_-_0.TO.10_in_Seoul_-_2.jpg"
-          },
-          {
-            "label": "Daesung",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Daesung_-_MADE_THE_MOVIE_Premiere.jpg/330px-Daesung_-_MADE_THE_MOVIE_Premiere.jpg"
-          }
+          "TT",
+          "Cheer Up",
+          "Fancy",
+          "What Is Love?"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-90s",
@@ -4582,99 +4187,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Grunge bands",
+        "label": "Grunge songs",
         "items": [
-          {
-            "label": "Nirvana",
-            "src": "Nirvana (band)",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Nirvana_around_1992.jpg/330px-Nirvana_around_1992.jpg"
-          },
-          {
-            "label": "Pearl Jam",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Pearl_Jam_2016.jpg/330px-Pearl_Jam_2016.jpg"
-          },
-          {
-            "label": "Soundgarden",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Soundgarden_at_Paramount_Theatre.jpg/330px-Soundgarden_at_Paramount_Theatre.jpg"
-          },
-          {
-            "label": "Alice in Chains",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Alice_in_Chains_2019.jpg/330px-Alice_in_Chains_2019.jpg"
-          }
+          "Black Hole Sun",
+          "Even Flow",
+          "Man in the Box",
+          "Plush"
         ]
       },
       {
         "level": 1,
-        "label": "Boy bands",
+        "label": "Boy band songs",
         "items": [
-          {
-            "label": "Backstreet Boys",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Backstreet_Boys_2019_by_Glenn_Francis.jpg/330px-Backstreet_Boys_2019_by_Glenn_Francis.jpg"
-          },
-          {
-            "label": "NSYNC",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/NSYNC.jpg/330px-NSYNC.jpg"
-          },
-          {
-            "label": "Take That",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Take_That_performing_in_Glasgow%2C_2017.jpg/330px-Take_That_performing_in_Glasgow%2C_2017.jpg"
-          },
-          {
-            "label": "Westlife",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Westlife_2021_Warner_Music_New_Zealand.png/330px-Westlife_2021_Warner_Music_New_Zealand.png"
-          }
+          "I Want It That Way",
+          "Bye Bye Bye",
+          "Everybody (Backstreet's Back)",
+          "Tearin' Up My Heart"
         ]
       },
       {
         "level": 2,
-        "label": "Spice Girls",
+        "label": "Spice Girls songs",
         "items": [
-          {
-            "label": "Scary",
-            "src": "Mel B",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Mel_B_SXSW_2026_1_%28cropped%29.jpg/330px-Mel_B_SXSW_2026_1_%28cropped%29.jpg"
-          },
-          {
-            "label": "Sporty",
-            "src": "Melanie C",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/2019_Melanie_C._%28cropped%29.jpg/330px-2019_Melanie_C._%28cropped%29.jpg"
-          },
-          {
-            "label": "Baby",
-            "src": "Emma Bunton",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Emma_Bunton_2014_1.png/330px-Emma_Bunton_2014_1.png"
-          },
-          {
-            "label": "Ginger",
-            "src": "Geri Halliwell",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/SpiceGirlWembley150619-69_%2849000357276%29_%28cropped%29.jpg/330px-SpiceGirlWembley150619-69_%2849000357276%29_%28cropped%29.jpg"
-          }
+          "Wannabe",
+          "Say You'll Be There",
+          "2 Become 1",
+          "Spice Up Your Life"
         ]
       },
       {
         "level": 3,
-        "label": "90s rap icons",
+        "label": "90s rap songs",
         "items": [
-          {
-            "label": "Tupac Shakur",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Tupac_Shakur_in_1995.jpg/330px-Tupac_Shakur_in_1995.jpg"
-          },
-          {
-            "label": "The Notorious B.I.G.",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/Biggie_Smalls_1997.jpg"
-          },
-          {
-            "label": "Snoop Dogg",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Snoop_Dogg%2C_WrestleMania_XL_%28cropped%29_%28cropped%29.jpg/330px-Snoop_Dogg%2C_WrestleMania_XL_%28cropped%29_%28cropped%29.jpg"
-          },
-          {
-            "label": "Busta Rhymes",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Busta_Rhymes_%2852380599657%29_%28cropped%29.jpg/330px-Busta_Rhymes_%2852380599657%29_%28cropped%29.jpg"
-          }
+          "California Love",
+          "Gangsta's Paradise",
+          "Juicy",
+          "Nuthin' but a 'G' Thang"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-scene",
@@ -4682,95 +4233,45 @@
     "groups": [
       {
         "level": 0,
-        "label": "Superstar DJs",
+        "label": "Minecraft tracks",
         "items": [
-          {
-            "label": "Avicii",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Avicii_2014_003cr.jpg/330px-Avicii_2014_003cr.jpg"
-          },
-          {
-            "label": "Calvin Harris",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Calvin_Harris_-_Press_Image_1.tif/lossy-page1-330px-Calvin_Harris_-_Press_Image_1.tif.jpg"
-          },
-          {
-            "label": "David Guetta",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/2023-11-16_Gala_de_los_Latin_Grammy%2C_22_%28David_Guetta%29.jpg/330px-2023-11-16_Gala_de_los_Latin_Grammy%2C_22_%28David_Guetta%29.jpg"
-          },
-          {
-            "label": "Skrillex",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/From_First_To_Last_-_Emo_Nite_2_-_PH_Carl_Pocket_%28cropped%29.jpg/330px-From_First_To_Last_-_Emo_Nite_2_-_PH_Carl_Pocket_%28cropped%29.jpg"
-          }
+          "Wet Hands",
+          "Sweden",
+          "Subwoofer Lullaby",
+          "Pigstep"
         ]
       },
       {
         "level": 1,
-        "label": "String instruments",
+        "label": "Zelda songs",
         "items": [
-          {
-            "label": "Violin",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Violin_VL100.png/330px-Violin_VL100.png"
-          },
-          {
-            "label": "Cello",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/Cello_front_side.png/330px-Cello_front_side.png"
-          },
-          {
-            "label": "Harp",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Harp.png/330px-Harp.png"
-          },
-          {
-            "label": "Double bass",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/AGK_bass1_full.jpg/330px-AGK_bass1_full.jpg"
-          }
+          "Song of Storms",
+          "Saria's Song",
+          "Zelda's Lullaby",
+          "Ballad of the Wind Fish"
         ]
       },
       {
         "level": 2,
-        "label": "Music festivals",
+        "label": "Anime openings",
         "items": [
-          {
-            "label": "Coachella",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Coachella18W1-18_%2842058161311%29.jpg/330px-Coachella18W1-18_%2842058161311%29.jpg"
-          },
-          {
-            "label": "Glastonbury Festival",
-            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/9b/Glastologo.png/330px-Glastologo.png"
-          },
-          {
-            "label": "Tomorrowland",
-            "src": "Tomorrowland (festival)",
-            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/9/90/Tomorrowland_festival_logo.svg/330px-Tomorrowland_festival_logo.svg.png"
-          },
-          {
-            "label": "Woodstock",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Woodstock_poster.jpg/330px-Woodstock_poster.jpg"
-          }
+          "Gurenge",
+          "Unravel",
+          "Tank!",
+          "Kick Back"
         ]
       },
       {
         "level": 3,
-        "label": "Known by one name",
+        "label": "Video game boss themes",
         "items": [
-          {
-            "label": "Adele",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Adele_2016.jpg/330px-Adele_2016.jpg"
-          },
-          {
-            "label": "Rihanna",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Rihanna_Fenty_2018.png/330px-Rihanna_Fenty_2018.png"
-          },
-          {
-            "label": "Shakira",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/2023-11-16_Gala_de_los_Latin_Grammy%2C_03_%28cropped%2902.jpg/330px-2023-11-16_Gala_de_los_Latin_Grammy%2C_03_%28cropped%2902.jpg"
-          },
-          {
-            "label": "Beyoncé",
-            "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg/330px-Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_%2810_of_118%29_%2852946364598%29_%28best_crop%29.jpg"
-          }
+          "Megalovania",
+          "One-Winged Angel",
+          "Rules of Nature",
+          "Gwyn, Lord of Cinder"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   },
   {
     "id": "cm-albums",
@@ -4778,109 +4279,44 @@
     "groups": [
       {
         "level": 0,
-        "label": "Pink Floyd albums",
+        "label": "Disney songs",
         "items": [
-          {
-            "label": "Animals",
-            "src": "Animals (Pink Floyd album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/7/74/Pink_Floyd-Animals-Frontal.jpg"
-          },
-          {
-            "label": "Wish You Were Here",
-            "src": "Wish You Were Here (Pink Floyd album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/a/a4/Pink_Floyd%2C_Wish_You_Were_Here_%281975%29.png"
-          },
-          {
-            "label": "Meddle",
-            "src": "Meddle",
-            "image": "https://thumb.wikimedia.org/wikipedia/en/thumb/d/d4/MeddleCover.jpeg/330px-MeddleCover.jpeg"
-          },
-          {
-            "label": "The Division Bell",
-            "src": "The Division Bell",
-            "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Pink_Floyd_-_Division_Bell.jpg"
-          }
+          "Let It Go",
+          "Hakuna Matata",
+          "Under the Sea",
+          "A Whole New World"
         ]
       },
       {
         "level": 1,
-        "label": "Radiohead albums",
+        "label": "James Bond themes",
         "items": [
-          {
-            "label": "Kid A",
-            "src": "Kid A",
-            "image": "https://upload.wikimedia.org/wikipedia/en/0/02/Radioheadkida.png"
-          },
-          {
-            "label": "In Rainbows",
-            "src": "In Rainbows",
-            "image": "https://upload.wikimedia.org/wikipedia/en/1/14/Inrainbowscover.png"
-          },
-          {
-            "label": "The Bends",
-            "src": "The Bends (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/5/55/Radioheadthebends.png"
-          },
-          {
-            "label": "Amnesiac",
-            "src": "Amnesiac (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/8c/Radiohead_-_Amnesiac_cover.png"
-          }
+          "Skyfall",
+          "Goldfinger",
+          "Live and Let Die",
+          "No Time to Die"
         ]
       },
       {
         "level": 2,
-        "label": "Kendrick Lamar albums",
+        "label": "Songs from films",
         "items": [
-          {
-            "label": "good kid, m.A.A.d city",
-            "src": "Good Kid, M.A.A.D City",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/93/KendrickGKMC.jpg"
-          },
-          {
-            "label": "DAMN.",
-            "src": "Damn (Kendrick Lamar album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Kendrick_Lamar_-_Damn.png"
-          },
-          {
-            "label": "Section.80",
-            "src": "Section.80",
-            "image": "https://upload.wikimedia.org/wikipedia/en/4/48/Section.80-Cover.jpg"
-          },
-          {
-            "label": "GNX",
-            "src": "GNX (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/9/93/Kendrick_Lamar_-_GNX.png"
-          }
+          "My Heart Will Go On",
+          "Eye of the Tiger",
+          "Stayin' Alive",
+          "Footloose"
         ]
       },
       {
         "level": 3,
-        "label": "Taylor Swift albums",
+        "label": "Christmas songs",
         "items": [
-          {
-            "label": "Speak Now",
-            "src": "Speak Now",
-            "image": "https://upload.wikimedia.org/wikipedia/en/8/8f/Taylor_Swift_-_Speak_Now_cover.png"
-          },
-          {
-            "label": "Lover",
-            "src": "Lover (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Taylor_Swift_-_Lover.png"
-          },
-          {
-            "label": "Reputation",
-            "src": "Reputation (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Taylor_Swift_-_Reputation.png"
-          },
-          {
-            "label": "Evermore",
-            "src": "Evermore (album)",
-            "image": "https://upload.wikimedia.org/wikipedia/en/0/0a/Taylor_Swift_-_Evermore.png"
-          }
+          "Last Christmas",
+          "Jingle Bell Rock",
+          "All I Want for Christmas Is You",
+          "Feliz Navidad"
         ]
       }
-    ],
-    "images": "wp"
+    ]
   }
 ]

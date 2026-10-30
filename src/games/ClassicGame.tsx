@@ -40,10 +40,11 @@ const COLUMNS: Record<Domain, Column[]> = {
     { label: 'Origin', get: (w) => w.origin },
     { label: 'Year', get: (w) => w.year },
   ],
+  // Songs: the artist is a column (a clue), never an answer.
   music: [
     { label: 'Genre', get: (w) => w.genres },
     { label: 'Artist', get: (w) => w.creator },
-    { label: 'Label', get: (w) => w.studio },
+    { label: 'Type', get: (w) => w.format },
     { label: 'Origin', get: (w) => w.origin },
     { label: 'Year', get: (w) => w.year },
   ],
@@ -87,8 +88,8 @@ function cluesFor(w: Work): Clue[] {
   const themes = safe(w.themes);
   const credits = safe(w.credits);
   // A side character (the list starts with the lead), or for albums a track that isn't the title track.
-  const people = safe(w.domain === 'music' ? w.tracks : w.characters);
-  const person = w.domain === 'music' ? 'A track' : 'A character';
+  const people = safe(w.domain === 'music' ? w.facts : w.characters);
+  const person = w.domain === 'music' ? 'Clue' : 'A character';
   const clues: (Clue | null)[] = [
     // No themes: a second side character or track instead.
     themes.length ? { label: 'Themes', value: themes.join(', '), after: 3 } : people.length > 1 ? { label: person, value: people[people.length - 2], after: 3 } : null,

@@ -63,7 +63,7 @@ export const DOMAINS: { id: Domain; label: string; noun: string; icon: string; t
   { id: 'games', label: 'Video Games', noun: 'video game', icon: '🎮', tone: 'text-accent', fill: 'bg-accent' },
   { id: 'anime', label: 'Anime', noun: 'anime', icon: '🌸', tone: 'text-rose', fill: 'bg-rose' },
   { id: 'cinema', label: 'Cinema', noun: 'movie', icon: '🎬', tone: 'text-ochre', fill: 'bg-ochre' },
-  { id: 'music', label: 'Music', noun: 'album', icon: '🎵', tone: 'text-plum', fill: 'bg-plum' },
+  { id: 'music', label: 'Music', noun: 'song', icon: '🎵', tone: 'text-plum', fill: 'bg-plum' },
 ];
 
 export function domainInfo(id: Domain) {
@@ -72,8 +72,8 @@ export function domainInfo(id: Domain) {
 
 /** Whether a work has the content a single-target mini-game needs. */
 const HAS_CONTENT: Partial<Record<GameType, (w: Work) => boolean>> = {
-  // Albums have no dialogue: their "quote" round reveals track titles instead.
-  quote: (w) => !!w.quote || !!w.tracks?.length,
+  // Songs have no dialogue: their "quote" round reveals written clues instead.
+  quote: (w) => !!w.quote || !!w.tracks?.length || !!w.facts?.length,
   // Soundtrack falls back to a zoomed cover detail when a clip can't play.
   audio: (w) => !!w.audio && (!!w.audio.youtubeId || !!w.cover?.image),
   // Only clips that were found: there is no text fallback for a voice.

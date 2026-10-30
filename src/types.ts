@@ -70,6 +70,8 @@ export interface Work {
   quote?: { text: string; speaker?: string };
   /** Music only: notable track titles, revealed one by one in the Quote mini-game. */
   tracks?: string[];
+  /** Music (songs): written clues, vaguest first — where it's from, then who made it; one more per miss in the Quote round. */
+  facts?: string[];
   audio?: {
     /** Text description, shown when no clip is available and as a hint. */
     clue: string;

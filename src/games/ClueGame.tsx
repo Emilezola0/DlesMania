@@ -46,6 +46,23 @@ export function textClueShown(type: GameType, w: Work, broken: Set<string>): boo
 function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
   switch (type) {
     case 'quote':
+      if (!w.quote && w.facts?.length) {
+        // Songs: one more written clue per miss (where it's from, then who made it).
+        const facts = w.facts;
+        const shown = done ? facts.length : Math.min(facts.length, 1 + wrong);
+        return (
+          <div className="space-y-3">
+            <Label>Clues</Label>
+            <ol className="mx-auto max-w-md space-y-2">
+              {facts.map((t, i) => (
+                <li key={t} className={`rounded-lg px-4 py-2.5 text-center ${i < shown ? 'animate-pop bg-tile' : 'bg-tile/50'}`}>
+                  <span className={i < shown ? 'font-semibold text-ink' : 'select-none text-ink-faint/70 blur-[3px]'}>{i < shown ? t : '████████████████'}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        );
+      }
       if (!w.quote && w.tracks) {
         // Albums: reveal one more track title per miss.
         const shown = done ? w.tracks.length : Math.min(w.tracks.length, 1 + wrong);

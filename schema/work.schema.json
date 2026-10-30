@@ -57,7 +57,8 @@
       "required": ["text"],
       "properties": { "text": { "$ref": "#/definitions/nonEmpty" }, "speaker": { "$ref": "#/definitions/nonEmpty" } }
     },
-    "tracks": { "$ref": "#/definitions/stringList", "description": "Music: track titles, ordered from deep cut to biggest hit." },
+    "tracks": { "$ref": "#/definitions/stringList", "description": "Albums (no longer used for music): track titles, ordered from deep cut to biggest hit." },
+    "facts": { "$ref": "#/definitions/stringList", "description": "Music: written clues about the song, vaguest first (where it comes from, then its artist), revealed one per miss in the Quote round." },
     "audio": {
       "type": "object",
       "additionalProperties": false,

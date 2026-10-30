@@ -15,7 +15,7 @@ const validate = ajv.compile(schema);
 const MIN_PER_GAME = 8;
 // Mirrors HAS_CONTENT in src/data/index.ts: picture rounds only draw works that have the picture.
 const COVERAGE = {
-  quote: (w) => w.quote || w.tracks?.length,
+  quote: (w) => w.quote || w.tracks?.length || w.facts?.length,
   audio: (w) => w.audio && (w.audio.youtubeId || w.cover?.image),
   voice: (w) => w.voice?.youtubeId,
   emoji: (w) => w.emoji,

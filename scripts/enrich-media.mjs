@@ -14,7 +14,7 @@ const { flags } = parseArgs();
 const domains = flags.domain ? [flags.domain] : DOMAINS;
 const force = !!flags.force;
 const YT_KEY = process.env.YOUTUBE_API_KEY;
-const NOUN = { games: 'video game', anime: 'anime', cinema: 'film', music: 'album' };
+const NOUN = { games: 'video game', anime: 'anime', cinema: 'film', music: 'song' };
 const IMAGE_WIDTH = 640;
 
 /**

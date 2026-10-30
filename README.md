@@ -22,7 +22,7 @@ Progress is stored per `domain:date` (`src/store/progress.ts`). Each round is a 
 | Game | Component | Media |
 |------|-----------|-------|
 | Classic attributes | `ClassicGame` | Green / yellow (partial) / red; shared genres and platforms are ticked, a year within 3 is yellow, ▲▼ for year. Cinema adds Type (live-action / animated), anime adds Creator. Clues unlock after 3, 5 and 7 misses: themes (or, without themes, a side character or track), a credit line, then a side character (albums: a track); any that names the title is skipped |
-| Quote | `ClueGame` | Quote with progressive hints; albums reveal their **tracklist** instead |
+| Quote | `ClueGame` | Quote with progressive hints; songs reveal written **clues** instead (`facts`: where the song comes from, then its artist) |
 | Soundtrack | `ClueGame` + `AudioClip` | Hidden YouTube player, Heardle-style 1→16 s snippets starting ~40% into the clip (or `audio.start`); video revealed at the end. If a clip is missing or won't play, the round becomes a **zoomed-in cover detail** (`ZoomImage`), then text |
 | Voice Line | `ClueGame` + `AudioClip` | A character's original voice acting (no openings, endings or soundtrack), 2→16 s snippets from `voice.start`; the speaker is the last hint. Anime clips are in the original Japanese; when none is found, the French dub (marked **VF**, `voice.lang: "fr"`), never an English dub. `node scripts/find-voice-clips.mjs` searches YouTube for anime without a clip (titles only, so picks are worth a listen). Anime and Video Games only |
 | Emoji | `ClueGame` | One more emoji per miss |
@@ -40,6 +40,10 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 🟩🟩🟨🟥🟩
 🟩🟨🟩🟩🟥
 ```
+
+## Music
+
+Music is **songs**: the title is the only answer — never an album, never an artist. Artists and albums are clues only (the Classic grid's Artist column, the Quote round's clues, credits). The old albums became the song their clip plays, and video game and anime songs joined them (`scripts/data/music-songs.mjs`: openings, endings, boss themes, film themes…), with `node scripts/add-music.mjs` (which also finds their YouTube clips from search results, titles only) and `node scripts/enrich-media.mjs --domain=music --no-youtube` for covers. The music Connections are songs only too.
 
 ## Data
 
