@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { createTikTokPlayer, type TikTokPlayer } from '../lib/tiktok';
 import { YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
-import { YT_VOICE } from './voice';
+import { TT_CLIP, YT_VOICE } from './voice';
 
 /** How often a YouTube clip checks whether it has reached its end (ms): its moments can be under a second. */
 const LOOP_CHECK_MS = 50;
@@ -51,9 +52,45 @@ function YouTubeLoop({ id, start, end, onFail, className }: { id: string; start:
   return <div ref={host} aria-hidden className={`card-clip-yt ${playing ? '' : 'opacity-0'} ${className ?? ''}`} />;
 }
 
-/** A card's clip: an MP4, or a moment of a YouTube video ("youtube:VIDEO_ID@55-55.9", as for voices). */
+/** The width TikTok's player is drawn at, before it's scaled down to the card: its own marks stay small. */
+const TT_WIDTH = 640;
+
+/** A moment of a TikTok on a silent loop, hidden until it has reached that moment. */
+function TikTokLoop({ id, start, end, onFail, className }: { id: string; start: number; end: number; onFail: () => void; className?: string }) {
+  const host = useRef<HTMLDivElement>(null);
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => {
+    const el = host.current;
+    if (!el) return;
+    const fit = () => el.style.setProperty('--tt-scale', String(el.clientWidth / TT_WIDTH));
+    fit();
+    const size = new ResizeObserver(fit);
+    size.observe(el);
+    const player: TikTokPlayer = createTikTokPlayer(el, id, { muted: true }, {
+      onReady: () => {
+        player.seekTo(start);
+        player.play();
+      },
+      onTime: (at) => {
+        if (at >= end) player.seekTo(start);
+        else if (at >= start) setPlaying(true);
+      },
+      onError: onFail,
+    });
+    return () => {
+      size.disconnect();
+      player.destroy();
+    };
+    // One player per clip: `onFail` doesn't change what it plays.
+  }, [id, start, end]);
+  return <div ref={host} aria-hidden className={`card-clip-tt ${playing ? '' : 'opacity-0'} ${className ?? ''}`} />;
+}
+
+/** A card's clip: an MP4, or a moment of a video kept elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). */
 export function CardClip({ src, poster, onFail, className }: { src: string; poster?: string; onFail: () => void; className?: string }) {
   const yt = YT_VOICE.exec(src);
   if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} className={className} />;
+  const tt = TT_CLIP.exec(src);
+  if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} className={className} />;
   return <video key={src} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} className={className} />;
 }

@@ -3,7 +3,8 @@
 // gender and accent, pitched and paced for each star (a slow, low Yoda; a quick, bright Naruto).
 // Silent when the sound is off; a recording that can't play (some browsers can't read .ogg) falls
 // back to the browser's voice. A recording can also be a moment of a YouTube video:
-// "youtube:VIDEO_ID@start-end" (seconds), played in a hidden player.
+// "youtube:VIDEO_ID@start-end" (seconds), played in a hidden player; or of a TikTok: "tiktok:POST_ID@start-end".
+import { createTikTokPlayer, TT_PLAYING, type TikTokPlayer } from '../lib/tiktok';
 import { loadYouTube, YT_ENDED, YT_PLAYING, type YTPlayer } from '../lib/youtube';
 import { useProgress } from '../store/progress';
 import type { Card } from './cards';
@@ -76,7 +77,63 @@ let playing: HTMLAudioElement | null = null;
 
 /** A voice line kept on YouTube: "youtube:VIDEO_ID@54-57" plays seconds 54 to 57 of that video. */
 export const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
+/** The same on TikTok: "tiktok:POST_ID@9-13". */
+export const TT_CLIP = /^tiktok:(\d+)@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
+/** A clip kept on another site: it plays in an embedded player, which takes a moment to start. */
+export const isEmbedClip = (src: string) => YT_VOICE.test(src) || TT_CLIP.test(src);
 let ytVoice: { host: HTMLElement; player?: YTPlayer; timer?: number } | null = null;
+let ttVoice: { host: HTMLElement; player?: TikTokPlayer; timer?: number } | null = null;
+
+function stopTikTokVoice() {
+  if (!ttVoice) return;
+  window.clearTimeout(ttVoice.timer);
+  ttVoice.player?.destroy();
+  ttVoice.host.remove();
+  ttVoice = null;
+}
+
+/** How long a TikTok voice may take to start before it's given up on: late, it wouldn't match the moment. */
+const TT_START_MS = 8000;
+
+/**
+ * Plays start..end of a TikTok, out of sight; `fallback` if it can't. Its player has no volume of its
+ * own to set: only mute or not, so this one ignores the sound slider.
+ */
+function playTikTokVoice(id: string, start: number, end: number, fallback: () => void) {
+  stopTikTokVoice();
+  const host = document.createElement('div');
+  host.style.cssText = 'position:fixed;left:-9999px;top:0;width:320px;height:568px;opacity:0;pointer-events:none';
+  document.body.appendChild(host);
+  const me: { host: HTMLElement; player?: TikTokPlayer; timer?: number } = { host };
+  ttVoice = me;
+  const stop = () => ttVoice === me && stopTikTokVoice();
+  const giveUp = () => {
+    if (ttVoice !== me) return;
+    stopTikTokVoice();
+    fallback();
+  };
+  let heard = false;
+  me.timer = window.setTimeout(giveUp, TT_START_MS);
+  const player: TikTokPlayer = createTikTokPlayer(host, id, { muted: false }, {
+    onReady: () => {
+      player.unMute();
+      player.seekTo(start);
+      player.play();
+    },
+    onState: (state) => {
+      if (state !== TT_PLAYING || heard) return;
+      heard = true;
+      // The clip's length from the moment it really starts (it may buffer first), then it goes.
+      window.clearTimeout(me.timer);
+      me.timer = window.setTimeout(stop, (end - start) * 1000 + 250);
+    },
+    onTime: (at) => {
+      if (at >= end) stop();
+    },
+    onError: giveUp,
+  });
+  me.player = player;
+}
 
 function stopYouTubeVoice() {
   if (!ytVoice) return;
@@ -139,8 +196,11 @@ export function playVoice(card: Card, asked = false) {
   if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return;
   playing?.pause();
   stopYouTubeVoice();
+  stopTikTokVoice();
   const { line, audio } = voiceOf(card, st.nameLang);
   if (!audio) return say(line!, card.set);
+  const tt = TT_CLIP.exec(audio);
+  if (tt) return playTikTokVoice(tt[1], Number(tt[2]), Number(tt[3]), () => say(line!, card.set));
   const yt = YT_VOICE.exec(audio);
   if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(line!, card.set));
   const a = new Audio(audio);

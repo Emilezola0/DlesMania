@@ -5,7 +5,7 @@ import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { gradeOf } from './grades';
-import { YT_VOICE } from './voice';
+import { isEmbedClip } from './voice';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -122,7 +122,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
     return () => io.disconnect();
   }, [animate, motion, form.clipLight]);
   const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (motion && !!form.clipLight && inView));
-  const clipInFront = !!form.clip && YT_VOICE.test(form.clip);
+  const clipInFront = !!form.clip && isEmbedClip(form.clip);
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   return (
     <div
@@ -174,7 +174,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
             style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
           />
           )}
-          {/* A moment chosen from YouTube is shown itself, over the picture, once it plays. */}
+          {/* A moment chosen from YouTube or TikTok is shown itself, over the picture, once it plays. */}
           {clipOn && clipInFront && (
             <div className="absolute inset-0 overflow-hidden">
               <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full" />

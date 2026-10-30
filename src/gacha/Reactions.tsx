@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { YT_VOICE, playVoice, voiceOf } from './voice';
+import { isEmbedClip, playVoice, voiceOf } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -174,11 +174,11 @@ export function CardReactions() {
   const light = RARITY_LIGHT[avatar.rarity];
   return (
     <>
-      {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind (not one from YouTube: too slow to load for a moment this short). */}
+      {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind (not one kept on YouTube or TikTok: too slow to start for a moment this short). */}
       {moment && (
         <div key={moment.key} className="moment-bg" style={{ ['--glow' as string]: light, animationDuration: `${MOMENT_MS}ms` }} aria-hidden>
           <div className="moment-rays" />
-          {moment.clip && clipFailed !== moment.clip && !YT_VOICE.test(moment.clip) && (
+          {moment.clip && clipFailed !== moment.clip && !isEmbedClip(moment.clip) && (
             <div className="moment-clip">
               <CardClip src={moment.clip} onFail={() => setClipFailed(moment.clip!)} className="size-full object-cover" />
             </div>

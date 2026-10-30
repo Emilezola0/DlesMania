@@ -940,6 +940,9 @@ h1, h2, h3, .font-serif, .font-display {
 /* YouTube's frame, zoomed on its left side: its corners and bottom bar stay out of sight, and so does the pause mark it flashes in its middle each time the moment restarts. */
 .card-clip-yt { position: absolute; inset: 0; transition: opacity 0.25s; pointer-events: none; }
 .card-clip-yt iframe { position: absolute; left: -35%; top: 50%; width: 300%; height: auto; aspect-ratio: 16 / 9; transform: translateY(-50%); }
+/* TikTok's player, drawn large and scaled down to the card (640 wide: see CardClip), cropped to the middle of its tall frame: its logo sits above that, its notices below. */
+.card-clip-tt { position: absolute; inset: 0; overflow: hidden; transition: opacity 0.25s; pointer-events: none; }
+.card-clip-tt iframe { position: absolute; left: 0; top: 0; width: 640px; height: 1138px; border: 0; transform-origin: 0 0; transform: scale(var(--tt-scale, 0.3)) translateY(-32%); }
 /* A picture with its own background melts into the moving one. */
 .card-feather {
   -webkit-mask-image: radial-gradient(ellipse 62% 62% at 50% 48%, #000 62%, transparent 100%);

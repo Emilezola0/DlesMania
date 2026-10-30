@@ -105,13 +105,13 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   balatro: { name: 'Perkeo', title: 'The Negative', line: 'Leave the shop with one card and come back with two: the only jester who always keeps a spare up his sleeve.', voice: 'One more for the road.' },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   // Forts' mythic is the Howitzer (it was Eagle Eye, who took the Howitzer's place as a legendary): its
-  // voice is the game's own howitzer shot, from "The sounds of Forts" on YouTube (0:55.0–0:55.9).
+  // voice comes from the game's own TikTok (@fortsgame, 0:09–0:13).
   forts: {
     name: 'Howitzer',
     title: 'The Big Gun',
     line: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
     voice: 'BOOM!',
-    audio: 'youtube:rKj_ebK1T5E@55-55.9',
+    audio: 'tiktok:7367350882020625670@9-13',
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -539,8 +539,8 @@ const CLIPS: Record<string, string> = {
   'inazuma:mythic': 'https://media.tenor.com/s0u-malnHkoAAAP1/mark-evans-endou-mamoru.mp4',
   'inazuma:omni': 'https://media.tenor.com/WW2B3R_iirIAAAP1/inazuma-eleven-inazuma-eleven-3.mp4',
   'inazuma:mythic-2': 'https://media.tenor.com/BfiOzlRAU2QAAAPo/shuuya-gouenji-tsurugi-kyousuke-fire-tornado-double-drive.mp4',
-  // The howitzer firing, from "The sounds of Forts" on YouTube (0:55.0–0:55.9), the moment its voice line comes from.
-  'forts:mythic': 'youtube:rKj_ebK1T5E@55-55.9',
+  // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
+  'forts:mythic': 'tiktok:7367350882020625670@1-5',
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
   'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
