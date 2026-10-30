@@ -30,7 +30,6 @@ const Expedition = lazy(() => import('./pages/Expedition'));
 const MapQuiz = lazy(() => import('./pages/MapQuiz'));
 const Daily = lazy(() => import('./pages/Daily'));
 const DailyHub = lazy(() => import('./pages/Daily').then((m) => ({ default: m.DailyHub })));
-const VoiceLine = lazy(() => import('./pages/VoiceLine'));
 const SpecialistUniverse = lazy(() => import('./pages/Specialist'));
 const SpecialistHub = lazy(() => import('./pages/Specialist').then((m) => ({ default: m.SpecialistHub })));
 const GuessRankGame = lazy(() => import('./pages/GuessRank'));
@@ -76,7 +75,7 @@ export default function App() {
         <Route path="album" element={<Album />} />
         <Route path="account" element={<Account />} />
         <Route path="trades" element={<Trades />} />
-        <Route path="voice-line" element={<VoiceLine />} />
+        <Route path="voice-line" element={<Navigate to="/specialist/overwatch" replace />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="wordle" element={<FranchiseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />

@@ -9,8 +9,9 @@ import { WOW_POOLS } from './wow';
 import { timelinePool } from './timeline';
 import { simplePools } from './simple';
 import { BLUEPRINT_POOLS } from './blueprint';
+import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -53,8 +54,16 @@ export const UNIVERSES = [
     id: 'forhonor',
     label: 'For Honor',
     ready: true,
-    blurb: 'Pictures, windows, the spotlight and weapons — all 39 heroes of the five factions.',
-    types: ['picture', 'clue', 'windows', 'spotlight'] as SpType[],
+    blurb: 'Pictures, windows, the spotlight, weapons and executions in silhouette — all 39 heroes of the five factions.',
+    // Executions join once there are GIFs (scripts/build-forhonor-executions.mjs); added last, so earlier days keep their rounds.
+    types: ['picture', 'clue', 'windows', 'spotlight', ...(FH_EXECUTIONS.length ? ['execution'] : [])] as SpType[],
+  },
+  {
+    id: 'overwatch',
+    label: 'Overwatch',
+    ready: true,
+    blurb: "Voice lines from the wiki's recordings, ultimates, pictures and windows — every hero.",
+    types: ['voice', 'clue', 'picture', 'windows'] as SpType[],
   },
   {
     id: 'forts',
@@ -109,6 +118,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
   windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   spotlight: { name: 'Spotlight', icon: '🔦', tagline: 'The light widens with each miss', maxAttempts: 6 },
+  execution: { name: 'Execution', icon: '🗡️', tagline: 'Whose execution is this?', maxAttempts: 6 },
   exotic: { name: 'Exotic', icon: '✦', tagline: 'Which Exotic weapon is this?', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
@@ -135,6 +145,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   genshin: { ...GENSHIN_POOLS, timeline: timelinePool('genshin') },
   wow: { ...WOW_POOLS, timeline: timelinePool('wow') },
   forhonor: simplePools('forhonor'),
+  overwatch: simplePools('overwatch'),
   forts: simplePools('forts'),
   avatar: simplePools('avatar'),
   destiny: simplePools('destiny'),

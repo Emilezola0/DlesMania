@@ -14,7 +14,7 @@ import { GradeBackPay } from './GradeBackPay';
 import { RetiredCards } from './RetiredCards';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
-export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/voice-line', '/shop'];
+export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
 
 const NAV = [
   { to: '/daily', label: 'Daily' },

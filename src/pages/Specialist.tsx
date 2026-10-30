@@ -23,7 +23,7 @@ import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/gam
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
-import { classicRoundFor, clueRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
+import { classicRoundFor, clueRoundFor, executionRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
 import { BlueprintClassicRound, BlueprintClueRound, BlueprintPinsRound } from '../specialist/games/BlueprintRounds';
@@ -37,7 +37,8 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound, timeline: timelineRoundFor('marvel') },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
-  forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor'), spotlight: spotlightRoundFor('forhonor') },
+  forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor'), spotlight: spotlightRoundFor('forhonor'), execution: executionRoundFor('forhonor') },
+  overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch') },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   destiny: { classic: classicRoundFor('destiny', 'character'), picture: pictureRoundFor('destiny'), clue: clueRoundFor('destiny', 'Who is this?'), windows: windowsRoundFor('destiny'), exotic: itemRoundFor('destiny', 'Which Exotic weapon is this?') },
@@ -51,7 +52,8 @@ const DATA_LINE: Record<UniverseId, string> = {
   marvel: `${MARVEL.characters.length} characters · ${MARVEL.films.length} films — MCU wiki data from ${MARVEL.generated}`,
   genshin: `${GENSHIN.characters.length} characters, up to version ${GENSHIN.characters[GENSHIN.characters.length - 1]?.version} — Genshin wiki data from ${GENSHIN.generated}`,
   wow: `${WOW.characters.length} characters from the games — Warcraft Wiki data from ${WOW.generated}`,
-  forhonor: `${SIMPLE.forhonor.characters.length} heroes · ${SIMPLE.forhonor.clues.length} weapons — For Honor wiki`,
+  forhonor: `${SIMPLE.forhonor.characters.length} heroes · ${SIMPLE.forhonor.clues.length} weapons${SIMPLE.forhonor.executions?.length ? ` · ${SIMPLE.forhonor.executions.length} executions` : ''} — For Honor wiki`,
+  overwatch: `${SIMPLE.overwatch.characters.length} heroes · ${SIMPLE.overwatch.voices?.length ?? 0} voice lines · ${SIMPLE.overwatch.clues.length} ultimates — Overwatch wiki`,
   forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
   avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues · ${SIMPLE.avatar.voices?.length ?? 0} voice lines — Avatar Wiki, myinstants`,
   destiny: `${SIMPLE.destiny.characters.length} characters · ${SIMPLE.destiny.clues.length} clues · ${SIMPLE.destiny.items?.length ?? 0} Exotic weapons — Destinypedia, Bungie (via godroll.tv)`,

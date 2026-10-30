@@ -74,7 +74,6 @@ export const HOT_GAMES = [
   { id: 'memory', to: '/memory', title: 'Memory Pairs', icon: '🃏' },
   { id: 'map', to: '/map-quiz', title: 'Map Quiz', icon: '📍' },
   { id: 'year', to: '/guess-the-year', title: 'Guess the Year', icon: '📅' },
-  { id: 'voice', to: '/voice-line', title: 'Voice Line', icon: '🎙️' },
   { id: 'jlpt', to: '/jlpt', title: 'JLPT', icon: '🇯🇵' },
 ] as const;
 

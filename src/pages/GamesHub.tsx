@@ -52,7 +52,7 @@ export default function GamesHub() {
       to: '/specialist',
       icon: '🎯',
       title: 'Specialist',
-      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin and World of Warcraft, each with its own rounds.',
+      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch and more, each with its own rounds.',
       stat: universesDone ? `Today: ${universesDone}/${UNIVERSES.length} universes done` : undefined,
     },
     {
@@ -64,13 +64,6 @@ export default function GamesHub() {
     },
   ];
   const arcade: GameCard[] = [
-    {
-      to: '/voice-line',
-      icon: '🎙️',
-      title: 'Voice Line',
-      blurb: "Overwatch: hear a hero's real voice line and find who says it. One mistake ends the streak.",
-      stat: best('voice:') ? `Best: ${best('voice:')} in a row` : undefined,
-    },
     {
       to: '/rail-rush',
       icon: '🚂',

@@ -4,6 +4,8 @@
 // where every character's traits are known for sure, a Classic round.
 import { BOSSES } from '../data/bosses';
 import { CARDS } from '../gacha/cards';
+import OW_VOICES from '../data/overwatch-voices.json';
+import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 
 export interface SimpleCharacter {
   id: string;
@@ -16,7 +18,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -26,6 +28,8 @@ export interface SimpleUniverse {
   silhouettes?: string[];
   /** Voice lines: who speaks, the original recording, and the French dub's when there is one. */
   voices?: { answer: string; en?: string; fr?: string }[];
+  /** Executions (For Honor): a hero's finishing move as an animated GIF, shown in silhouette. */
+  executions?: { answer: string; name: string; gif: string }[];
   /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
   items?: SimpleCharacter[];
 }
@@ -67,6 +71,8 @@ function forHonor(): SimpleUniverse {
     columns: [],
     characters: heroes.map((name) => ({ id: slug(name), name, aliases: [], image: pics.get(name) ?? '', traits: { Faction: groupOf(FH_FACTION, name), Class: groupOf(FH_CLASS, name) } })),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    // scripts/build-forhonor-executions.mjs (or by hand): { hero, name, gif }.
+    executions: (FH_EXECUTIONS as { hero: string; name: string; gif: string }[]).map((e) => ({ answer: slug(e.hero), name: e.name, gif: e.gif })),
   };
 }
 
@@ -275,7 +281,33 @@ function destinyUniverse(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse() };
+// ── Overwatch: every hero with voice lines on the Overwatch wiki (the Voice Line rounds), their OW2 portraits
+// from the boss, and the boss's Signature clues (their ultimates). Roles only where they're sure. ──
+const OW_ROLE: Record<string, string[]> = {
+  Tank: ['D.Va', 'Doomfist', 'Hazard', 'Junker Queen', 'Mauga', 'Orisa', 'Ramattra', 'Reinhardt', 'Roadhog', 'Sigma', 'Winston', 'Wrecking Ball', 'Zarya'],
+  Damage: ['Ashe', 'Bastion', 'Cassidy', 'Echo', 'Freja', 'Genji', 'Hanzo', 'Junkrat', 'Mei', 'Pharah', 'Reaper', 'Sojourn', 'Soldier: 76', 'Sombra', 'Symmetra', 'Torbjörn', 'Tracer', 'Venture', 'Widowmaker'],
+  Support: ['Ana', 'Baptiste', 'Brigitte', 'Illari', 'Juno', 'Kiriko', 'Lifeweaver', 'Lúcio', 'Mercy', 'Moira', 'Wuyang', 'Zenyatta'],
+};
+
+function overwatch(): SimpleUniverse {
+  const b = boss('overwatch');
+  const portraits = [b.boss, ...b.radar.members, ...b.finale] as { label?: string; name?: string; image?: string; aliases?: string[] }[];
+  const byName = new Map(portraits.map((c) => [c.label ?? c.name ?? '', c]));
+  const characters = OW_VOICES.map((h): SimpleCharacter => {
+    const p = byName.get(h.name);
+    const role = groupOf(OW_ROLE, h.name);
+    return { id: slug(h.name), name: h.name, aliases: p?.aliases ?? [], image: p?.image || h.image || '', traits: role === 'Unknown' ? {} : { Role: role } };
+  });
+  return {
+    id: 'overwatch',
+    columns: [],
+    characters,
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    voices: OW_VOICES.flatMap((h) => h.lines.map((en) => ({ answer: slug(h.name), en }))),
+  };
+}
+
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 
@@ -293,5 +325,7 @@ export function simplePools(u: SimpleUniverse['id']) {
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
     ...(x.columns.length ? { classic: x.characters.map((c) => c.id) } : {}),
     ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
+    // An execution round's id is its index (a hero has several).
+    ...(x.executions?.length ? { execution: x.executions.flatMap((e, i) => (ids.has(e.answer) ? [String(i)] : [])) } : {}),
   };
 }
