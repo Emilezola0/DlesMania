@@ -1,5 +1,9 @@
 /** First playable daily challenge. */
 export const EPOCH = '2026-10-01';
+/** The day Omnidle went online (its first deploy): its birthday, marked every year in the Archive. */
+export const LAUNCH = '2026-10-18';
+/** Is this date Omnidle's birthday (the launch day, or its anniversary)? */
+export const isBirthday = (key: string) => key >= LAUNCH && key.slice(5) === LAUNCH.slice(5);
 
 export function toKey(d: Date): string {
   const y = d.getFullYear();

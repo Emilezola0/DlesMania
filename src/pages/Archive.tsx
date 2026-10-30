@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { FlameIcon } from '../components/Layout';
 import { Glyph } from '../components/Glyph';
 import { DOMAINS } from '../data';
-import { EPOCH, dayNumber, fromKey, toKey, todayKey } from '../lib/date';
+import { EPOCH, LAUNCH, dayNumber, fromKey, isBirthday, toKey, todayKey } from '../lib/date';
 import { isDomain } from '../lib/rounds';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 
@@ -39,6 +39,13 @@ export default function Archive() {
         <h1 className="text-3xl font-black tracking-tight">Archive</h1>
         <p className="text-ink-soft">Missed a day? Every past challenge stays playable, for each category.</p>
       </div>
+      {isBirthday(today) && (
+        <p className="page animate-pop rounded-md p-4 text-center font-display text-lg font-bold ring-2 ring-ochre/60">
+          🎂 Happy birthday, Omnidle! Online since {fromKey(LAUNCH).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })} —{' '}
+          {Number(today.slice(0, 4)) - Number(LAUNCH.slice(0, 4)) || 'opening day'}
+          {Number(today.slice(0, 4)) - Number(LAUNCH.slice(0, 4)) === 1 ? ' year' : Number(today.slice(0, 4)) > Number(LAUNCH.slice(0, 4)) ? ' years' : ''}.
+        </p>
+      )}
 
       <div className="flex flex-wrap gap-2">
         {DOMAINS.map((d) => (
@@ -85,10 +92,18 @@ export default function Archive() {
                 ? 'border-near/60 bg-near/15'
                 : 'border-rule bg-card';
             const dayLabel = fromKey(key).getDate();
+            // Omnidle's birthday: the day it went online, and every anniversary.
+            const birthday = isBirthday(key);
+            const cake = birthday ? (
+              <span className="pointer-events-none absolute -right-1 -top-2 text-base" title={key === LAUNCH ? 'Omnidle went online this day' : "Omnidle's birthday"} aria-label="Omnidle's birthday">
+                🎂
+              </span>
+            ) : null;
             if (!playable) {
               return (
-                <span key={key} className="flex aspect-square items-center justify-center rounded-xl text-sm text-ink-faint/50">
+                <span key={key} className="relative flex aspect-square items-center justify-center rounded-xl text-sm text-ink-faint/50">
                   {dayLabel}
+                  {cake}
                 </span>
               );
             }
@@ -96,10 +111,12 @@ export default function Archive() {
               <Link
                 key={key}
                 to={`/daily/${domain}/${key}`}
-                className={`flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-ink-faint ${tone} ${
-                  key === today ? 'ring-2 ring-accent' : ''
+                title={birthday ? (key === LAUNCH ? 'Omnidle went online this day 🎂' : "Omnidle's birthday 🎂") : undefined}
+                className={`relative flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-ink-faint ${tone} ${
+                  key === today ? 'ring-2 ring-accent' : birthday ? 'ring-2 ring-ochre/70' : ''
                 }`}
               >
+                {cake}
                 <span className="font-bold">{dayLabel}</span>
                 <span className="text-[10px] text-ink-soft">{sum.finished ? `${sum.score}` : `#${dayNumber(key)}`}</span>
               </Link>
@@ -111,6 +128,7 @@ export default function Archive() {
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit/60" /> Completed</span>
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near/60" /> In progress</span>
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-tile-strong" /> Not started</span>
+          <span className="flex items-center gap-1.5">🎂 Omnidle&apos;s birthday</span>
         </div>
       </div>
     </div>

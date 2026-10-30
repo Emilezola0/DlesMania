@@ -16,3 +16,6 @@ Rules the owner set; keep to them in every change.
 
 ## Music
 - Music is **song titles only**: never an album or an artist as an answer. Artists and albums may be clues (Classic's Artist column, the Quote round's clues). Video game and anime songs belong in Music too.
+
+## Dates
+- Omnidle went online on **18 October 2026** (first deploy): its birthday, `LAUNCH` in `src/lib/date.ts`, marked 🎂 in the Archive every year. Puzzle №1 is earlier (`EPOCH`, 1 October 2026): the archive was filled back from there.
