@@ -20,6 +20,8 @@ type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 
 
 /** "node:<name>": a Blueprint node, drawn from src/specialist/blueprint.ts rather than stored as a picture. */
 const picture = (image?: string) => {
+  // "local:art/…": a picture served with the site (public/art), for wikis that don't let others show theirs.
+  if (image?.startsWith('local:')) return `${import.meta.env.BASE_URL}${image.slice(6)}`;
   if (!image?.startsWith('node:')) return kanjiPicture(image);
   const n = BLUEPRINT_NODES.find((x) => x.name === image.slice(5));
   return n ? nodeImage(n) : undefined;
@@ -40,7 +42,9 @@ export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
   boss: { ...b.boss, image: picture(b.boss.image) },
   aliases: b.aliases ?? [],
   blitz: b.blitz.map(prompt),
-  radar: { members: b.radar.members.map(card), impostors: b.radar.impostors.map(card) },
+  // Faces with no drawn art leave the Radar (`radarSkip`), but keep their cards (`cardMembers`).
+  radar: { members: b.radar.members.filter((c) => !b.radarSkip?.includes(typeof c === 'string' ? c : c.label)).map(card), impostors: b.radar.impostors.map(card) },
+  cardMembers: b.radarSkip?.length ? b.radar.members.map(card) : undefined,
   finale: b.finale.map(card),
   secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ label: c.label, entities: c.entities.map(spelling) })) },
   signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, image: picture(c.image), answer: spelling(c.answer) })) },

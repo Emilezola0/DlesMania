@@ -296,7 +296,8 @@ function overwatch(): SimpleUniverse {
   const characters = OW_VOICES.map((h): SimpleCharacter => {
     const p = byName.get(h.name);
     const role = groupOf(OW_ROLE, h.name);
-    return { id: slug(h.name), name: h.name, aliases: p?.aliases ?? [], image: p?.image || h.image || '', traits: role === 'Unknown' ? {} : { Role: role } };
+    // The boss's drawn art only (the wiki's icons are 3D renders): a hero without it is never a picture to guess.
+    return { id: slug(h.name), name: h.name, aliases: p?.aliases ?? [], image: p?.image || '', traits: role === 'Unknown' ? {} : { Role: role } };
   });
   return {
     id: 'overwatch',

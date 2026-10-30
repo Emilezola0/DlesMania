@@ -16,6 +16,7 @@ import FROZEN_RARITIES from '../data/card-rarities.json';
 import MORE_ROSTERS from '../data/card-rosters.json';
 import UNREAL_ART from '../data/unreal-art.json';
 import JLPT_CARDS from '../data/jlpt-cards.json';
+import CARD_ART from '../data/card-art.json';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
 
@@ -716,13 +717,27 @@ function firstLine(s: string): string {
   return out.trim();
 }
 
+/**
+ * The cards' own pictures where Boss Battle has moved on: the bosses of these sets now show 2D art (3D
+ * models are kept for silhouettes), but the cards players have pulled keep the picture they were pulled with
+ * (src/data/card-art.json, by set and name; "@boss" is the guardian's).
+ */
+const ART = CARD_ART as Record<string, Record<string, string>>;
+const withCardArt = (b: (typeof BOSSES)[number]): (typeof BOSSES)[number] => {
+  const art = ART[b.id];
+  if (!art) return b;
+  const keep = <T extends { label: string; image?: string }>(c: T): T => ({ ...c, image: art[c.label] ?? c.image });
+  return { ...b, boss: { ...b.boss, image: art['@boss'] ?? b.boss.image }, radar: { ...b.radar, members: (b.cardMembers ?? b.radar.members).map(keep) }, finale: b.finale.map(keep) };
+};
+const CARD_BOSSES = BOSSES.map(withCardArt);
+
 export const CARDS: Card[] = (() => {
   // Each name once across all sets: the first set to build it keeps it. The order below is the
   // order cards were added over time — a later addition can never take a name an earlier card has,
   // so released cards keep their ids.
   const seen = new Set<string>();
   const sets = new Map<string, Omit<Card, 'no'>[]>();
-  for (const b of BOSSES) {
+  for (const b of CARD_BOSSES) {
     const set: Omit<Card, 'no'>[] = [];
     sets.set(b.id, set);
     // Franchises added after the first fourteen only need a name new to their own set: being last, they can't
@@ -762,7 +777,7 @@ export const CARDS: Card[] = (() => {
     }
   }
   // Added later: the Specialist rosters, after every set's earlier cards.
-  for (const b of BOSSES) {
+  for (const b of CARD_BOSSES) {
     const set = sets.get(b.id)!;
     for (const r of ROSTERS[b.id] ?? []) {
       if (!r.image || seen.has(r.name)) continue;
@@ -772,7 +787,7 @@ export const CARDS: Card[] = (() => {
   }
   // Added last: the bigger rosters. A name only has to be new to its own set here (Overwatch's Ashe
   // isn't League's), so nothing added before can lose its card.
-  for (const b of BOSSES) {
+  for (const b of CARD_BOSSES) {
     const set = sets.get(b.id)!;
     const names = new Set(set.map((c) => c.name));
     const ids = new Set(set.map((c) => c.id));
@@ -786,21 +801,21 @@ export const CARDS: Card[] = (() => {
   }
   // Then the single cards added on their own.
   for (const x of EXTRA) {
-    const b = BOSSES.find((y) => y.id === x.set);
+    const b = CARD_BOSSES.find((y) => y.id === x.set);
     if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description });
   }
   // And last: the second mythics, each set's newest card.
-  for (const b of BOSSES) {
+  for (const b of CARD_BOSSES) {
     const set = sets.get(b.id)!;
     const m = MYTHICS_2[b.id];
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
     if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
   }
-  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
+  return CARD_BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));
 
 /** The sets, in Boss Battle order: id, franchise, kind of work, size. */
-export const SETS = BOSSES.map((b) => ({ id: b.id, franchise: b.franchise, domain: b.domain, size: CARDS.filter((c) => c.set === b.id).length, guardian: b.boss }));
+export const SETS = CARD_BOSSES.map((b) => ({ id: b.id, franchise: b.franchise, domain: b.domain, size: CARDS.filter((c) => c.set === b.id).length, guardian: b.boss }));
 export const setSize = (id: string) => SETS.find((s) => s.id === id)?.size ?? 0;

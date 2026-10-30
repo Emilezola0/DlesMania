@@ -38,6 +38,8 @@ export function finaleFaces(boss: Boss): BossCard[] {
   const taken = new Set([...boss.finale.map((c) => c.label), ...skip]);
   for (const c of CARDS) {
     if (c.set !== boss.id || taken.has(c.name) || c.name === boss.boss.name) continue;
+    // Bosses drawn in 2D only: a card's picture may be a 3D model (kept for the cards), so only faces the boss has art for.
+    if (boss.drawnOnly && !known.has(c.name)) continue;
     if (!['rare', 'epic', 'legendary'].includes(c.rarity) || !c.image) continue;
     // A card from the radar keeps its spellings (aliases, French name).
     faces.push(known.get(c.name) ?? { label: c.name, image: c.image, aliases: SHORT_NAMES[c.name] });

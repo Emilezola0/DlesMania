@@ -273,7 +273,8 @@ function BossBattle({ boss }: { boss: Boss }) {
   const accuracy = tally.correct + tally.wrong ? Math.round((tally.correct / (tally.correct + tally.wrong)) * 100) : 0;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-5">
+    // Pixel art (Minecraft's faces and textures) stays sharp when it's blown up.
+    <div className={`mx-auto max-w-2xl space-y-5 ${boss.pixelArt ? '[&_img]:[image-rendering:pixelated]' : ''}`}>
       <div className="flex items-center justify-between gap-2">
         <Link to={`/boss?domain=${boss.domain}`} className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
           ← All bosses

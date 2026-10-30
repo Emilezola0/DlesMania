@@ -180,6 +180,10 @@ export interface Boss {
   blitz: BlitzPrompt[];
   /** Phase 2: cards that belong to the franchise, and look-alikes from elsewhere. */
   radar: { members: BossCard[]; impostors: BossCard[] };
+  /** Radar members kept out of the fight (no drawn art for them), by label: they keep their cards. */
+  radarSkip?: string[];
+  /** Every Radar member, the skipped ones too: what the cards are made from (when some are skipped). */
+  cardMembers?: BossCard[];
   /** Phase 3: rare items and secondary characters to name under pressure. */
   finale: BossCard[];
   /**
@@ -191,6 +195,10 @@ export interface Boss {
   signature?: Signature;
   /** Faces kept out of the Final Blow (too obscure to name), though their cards stay. */
   finaleSkip?: string[];
+  /** Boss Battle shows drawn art only (no 3D models): Final Blow takes no card pictures (scripts/data/boss-2d-art.mjs). */
+  drawnOnly?: boolean;
+  /** Its pictures are pixel art, drawn without smoothing. */
+  pixelArt?: boolean;
 }
 
 /**

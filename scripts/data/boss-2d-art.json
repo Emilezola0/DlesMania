@@ -1,0 +1,182 @@
+{
+ "smash": {
+  "art": {
+   "Master Hand": "https://ssb.wiki.gallery/images/0/03/MasterHandHeadSSB.png",
+   "Link": "https://ssb.wiki.gallery/images/e/e4/Link_OoT.png",
+   "Kirby": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png",
+   "Pikachu": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png",
+   "Samus": "https://ssb.wiki.gallery/images/6/68/Samus_Other_M_Artwork.png",
+   "Fox": "https://ssb.wiki.gallery/images/2/26/Fox_Command.jpg",
+   "Yoshi": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg",
+   "Captain Falcon": "https://ssb.wiki.gallery/images/7/74/GX_Captain_Falcon.png",
+   "Ness": "https://ssb.wiki.gallery/images/d/d5/Ness.png",
+   "Marth": "https://ssb.wiki.gallery/images/0/0d/Marth_FE3.png",
+   "Snake": "https://ssb.wiki.gallery/images/5/5b/SnakeSubArt.jpg",
+   "Pac-Man": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png",
+   "Cloud": "https://ssb.wiki.gallery/images/9/9e/Cloud_Strife.png",
+   "Joker": "https://ssb.wiki.gallery/images/8/87/Joker_Phantom_Thief.png",
+   "Mr. Game & Watch": "https://ssb.wiki.gallery/images/8/87/Mr._Game_%26_Watch.png",
+   "Ice Climbers": "https://ssb.wiki.gallery/images/3/36/Ice_Climbers.PNG",
+   "R.O.B.": "https://ssb.wiki.gallery/images/f/fd/R.O.B._Famicom.jpg",
+   "Olimar": "https://ssb.wiki.gallery/images/c/ca/OlimarP.jpg",
+   "Duck Hunt": "https://ssb.wiki.gallery/images/d/da/Duck_Hunt_Dog_Duck.PNG",
+   "Little Mac": "https://ssb.wiki.gallery/images/0/0a/Littlemacnes.png",
+   "Palutena": "https://ssb.wiki.gallery/images/8/8e/Palutena_Uprising.png",
+   "Dark Pit": "https://ssb.wiki.gallery/images/2/29/DarkPit_Artwork.png",
+   "Shulk": "https://ssb.wiki.gallery/images/8/88/Shulk_Artwork.png",
+   "Corrin": "https://ssb.wiki.gallery/images/1/11/Corrin_Male.png",
+   "Isabelle": "https://ssb.wiki.gallery/images/4/43/Villager_and_Isabelle_artwork.jpg",
+   "Piranha Plant": "https://ssb.wiki.gallery/images/4/43/Piranha_pipe.png",
+   "Pyra": "https://ssb.wiki.gallery/images/6/64/XC2_Pyra_artwork.png",
+   "Byleth": "https://ssb.wiki.gallery/images/f/fa/Byleth.png",
+   "Hero": "https://ssb.wiki.gallery/images/b/bc/DQHeroVIII.png",
+   "Mario": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png",
+   "Donkey Kong": "https://mario.wiki.gallery/images/e/e0/Donkey_Kong_Arcade_side_art.png",
+   "Sonic": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537",
+   "Steve": "local:art/minecraft/steve.png",
+   "Inkling": "https://cdn.wikimg.net/en/splatoonwiki/images/e/eb/S2_Inkling_Girl_with_Dualies_2D_art_with_background.jpg"
+  },
+  "impostors": [
+   {
+    "label": "Ahri",
+    "image": "https://wiki.leagueoflegends.com/en-us/images/Ahri_OriginalLoading.jpg?babce"
+   },
+   {
+    "label": "Yasuo",
+    "image": "https://wiki.leagueoflegends.com/en-us/images/Yasuo_OriginalLoading.jpg?ad3bd"
+   },
+   {
+    "label": "Jinx",
+    "image": "https://wiki.leagueoflegends.com/en-us/images/Jinx_OriginalLoading.jpg?b2a7e"
+   },
+   {
+    "label": "Garen",
+    "image": "https://wiki.leagueoflegends.com/en-us/images/Garen_OriginalLoading.jpg?94b72"
+   },
+   {
+    "label": "Teemo",
+    "image": "https://wiki.leagueoflegends.com/en-us/images/Teemo_OriginalLoading.jpg?10811"
+   },
+   {
+    "label": "Diluc",
+    "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Diluc_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092341"
+   },
+   {
+    "label": "Keqing",
+    "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/52/Keqing_Icon.png/revision/latest/scale-to-width-down/160?cb=20210213162751"
+   },
+   {
+    "label": "Monkey D. Luffy",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
+   },
+   {
+    "label": "Roronoa Zoro",
+    "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/150?cb=20241029161719"
+   },
+   {
+    "label": "Goku",
+    "image": "https://static.wikia.nocookie.net/dragonball/images/b/ba/Goku_anime_profile.png/revision/latest/scale-to-width-down/202?cb=20250723190513"
+   },
+   {
+    "label": "Aang",
+    "image": "https://static.wikia.nocookie.net/avatar/images/a/ae/Aang_at_Jasmine_Dragon.png/revision/latest/scale-to-width-down/400?cb=20250504214141"
+   },
+   {
+    "label": "Zuko",
+    "image": "https://static.wikia.nocookie.net/avatar/images/4/4b/Zuko.png/revision/latest/scale-to-width-down/400?cb=20180630112142"
+   }
+  ]
+ },
+ "minecraft": {
+  "art": {
+   "Ghast": "local:art/minecraft/ghast.png",
+   "Pig": "local:art/minecraft/pig.png",
+   "Skeleton": "local:art/minecraft/skeleton.png",
+   "Slime": "local:art/minecraft/slime.png",
+   "Zombie": "local:art/minecraft/zombie.png",
+   "Wolf": "local:art/minecraft/wolf.png",
+   "Enderman": "local:art/minecraft/enderman.png",
+   "Silverfish": "local:art/minecraft/silverfish.png",
+   "Mooshroom": "local:art/minecraft/mooshroom.png",
+   "Villager": "local:art/minecraft/villager.png",
+   "Ender Dragon": "local:art/minecraft/ender-dragon.png",
+   "Cat": "local:art/minecraft/cat.png",
+   "Iron Golem": "local:art/minecraft/iron-golem.png",
+   "Wither": "local:art/minecraft/wither.png",
+   "Endermite": "local:art/minecraft/endermite.png",
+   "Elder Guardian": "local:art/minecraft/elder-guardian.png",
+   "Shulker": "local:art/minecraft/shulker.png",
+   "Vindicator": "local:art/minecraft/vindicator.png",
+   "Phantom": "local:art/minecraft/phantom.png",
+   "Ravager": "local:art/minecraft/ravager.png",
+   "Fox": "local:art/minecraft/fox.png",
+   "Bee": "local:art/minecraft/bee.png",
+   "Piglin": "local:art/minecraft/piglin.png",
+   "Strider": "local:art/minecraft/strider.png",
+   "Axolotl": "local:art/minecraft/axolotl.png",
+   "Warden": "local:art/minecraft/warden.png",
+   "Allay": "local:art/minecraft/allay.png",
+   "Sniffer": "local:art/minecraft/sniffer.png",
+   "Armadillo": "local:art/minecraft/armadillo.png",
+   "Hoglin": "local:art/minecraft/hoglin.png",
+   "Diamond": "local:art/minecraft/diamond.png",
+   "Torch": "local:art/minecraft/torch.png",
+   "Crafting Table": "local:art/minecraft/crafting-table.png",
+   "TNT": "local:art/minecraft/tnt.png",
+   "Creeper": "local:art/minecraft/creeper.png"
+  },
+  "impostors": [
+   {
+    "label": "Eye of Cthulhu",
+    "src": "fandom:terraria:Eye of Cthulhu",
+    "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/9/9e/Eye_of_Cthulhu_second_form_cloud.png/revision/latest?cb=20200605223034"
+   },
+   {
+    "label": "Moon Lord",
+    "src": "fandom:terraria:Moon Lord",
+    "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/7/7f/Moon_Lord.png/revision/latest/scale-to-width-down/400?cb=20200805023430"
+   },
+   {
+    "label": "King Slime",
+    "src": "fandom:terraria:King Slime",
+    "image": "https://static.wikia.nocookie.net/terraria_gamepedia/images/9/93/King_Slime.gif/revision/latest?cb=20200523113558"
+   },
+   {
+    "label": "Kirby",
+    "image": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png"
+   },
+   {
+    "label": "Link",
+    "image": "https://ssb.wiki.gallery/images/e/e4/Link_OoT.png"
+   },
+   {
+    "label": "Pikachu",
+    "image": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png"
+   },
+   {
+    "label": "Pac-Man",
+    "image": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png"
+   },
+   {
+    "label": "Mario",
+    "image": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png"
+   },
+   {
+    "label": "Donkey Kong",
+    "image": "https://mario.wiki.gallery/images/e/e0/Donkey_Kong_Arcade_side_art.png"
+   },
+   {
+    "label": "Sonic",
+    "image": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537"
+   },
+   {
+    "label": "Yoshi",
+    "image": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg"
+   },
+   {
+    "label": "Ness",
+    "image": "https://ssb.wiki.gallery/images/d/d5/Ness.png"
+   }
+  ]
+ }
+}

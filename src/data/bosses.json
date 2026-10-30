@@ -1326,7 +1326,7 @@
       "title": "The Successor",
       "src": "fandom:overwatch:Doomfist",
       "color": "#f97316",
-      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1e/OW2_Doomfist_render.png/revision/latest/scale-to-width-down/255?cb=20241102135923",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bc/Spray_Doomfist_Cute.png/revision/latest?cb=20171002194218",
       "label": "Doomfist"
     },
     "lines": {
@@ -1516,11 +1516,11 @@
       "members": [
         {
           "label": "Tracer",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Tracer.png/revision/latest/scale-to-width-down/140?cb=20241102134907"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/Spray_Tracer_Cute.png/revision/latest?cb=20160906133306"
         },
         {
           "label": "Mercy",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/170?cb=20241102143122",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/Spray_Mercy_Cute.png/revision/latest?cb=20160906022059",
           "fr": "Ange",
           "aliases": [
             "Ange"
@@ -1528,19 +1528,19 @@
         },
         {
           "label": "Reinhardt",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Reinhardt.png/revision/latest/scale-to-width-down/310?cb=20220409014723"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9d/Spray_Reinhardt_Cute.png/revision/latest?cb=20240430160703"
         },
         {
           "label": "Genji",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/17/OW2_Genji.png/revision/latest/scale-to-width-down/170?cb=20241102133634"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3e/Spray_Genji_Cute.png/revision/latest?cb=20160906002221"
         },
         {
           "label": "D.Va",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/394?cb=20241108201346"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3f/Spray_D.Va_Cute.png/revision/latest?cb=20160905235706"
         },
         {
           "label": "Widowmaker",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/166?cb=20241108201530",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Spray_Widowmaker_Cute.png/revision/latest?cb=20160906134300",
           "fr": "Fatale",
           "aliases": [
             "Fatale"
@@ -1548,19 +1548,19 @@
         },
         {
           "label": "Winston",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/39/OW2_Winston.png/revision/latest/scale-to-width-down/263?cb=20241102142153"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/45/Spray_Winston_Cute.png/revision/latest?cb=20160906135330"
         },
         {
           "label": "Ana",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/OW2_Ana.png/revision/latest/scale-to-width-down/173?cb=20241102141052"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6e/Spray_Ana_Cute.png/revision/latest?cb=20160905213011"
         },
         {
           "label": "Lúcio",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_L%C3%BAcio.png/revision/latest/scale-to-width-down/158?cb=20241102140611"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Spray_L%C3%BAcio_Cute.png/revision/latest?cb=20230420050736"
         },
         {
           "label": "Reaper",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/228?cb=20241108201455",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/Spray_Reaper_Cute.png/revision/latest?cb=20160906024959",
           "fr": "Faucheur",
           "aliases": [
             "Faucheur"
@@ -1568,11 +1568,11 @@
         },
         {
           "label": "Kiriko",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/16/OW2_Kiriko.png/revision/latest/scale-to-width-down/143?cb=20241102132938"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e3/Spray_Kiriko_Cute.png/revision/latest?cb=20240427211705"
         },
         {
           "label": "Junkrat",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f2/OW2_Junkrat.png/revision/latest/scale-to-width-down/226?cb=20260214122743",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4c/Spray_Junkrat_Cute.png/revision/latest?cb=20160906005637",
           "fr": "Chacal",
           "aliases": [
             "Chacal"
@@ -1580,27 +1580,27 @@
         },
         {
           "label": "Mei",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Mei.png/revision/latest/scale-to-width-down/208?cb=20241102134134"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/95/Spray_Mei_Cute.png/revision/latest?cb=20160906020528"
         },
         {
           "label": "Zenyatta",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_Zenyatta.png/revision/latest/scale-to-width-down/348?cb=20260324055645"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d6/Spray_Zenyatta_Cute.png/revision/latest?cb=20160906142104"
         },
         {
           "label": "Sombra",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Sombra.png/revision/latest/scale-to-width-down/136?cb=20241108201559"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/22/Spray_Sombra_Cute.png/revision/latest?cb=20161113213536"
         },
         {
           "label": "Pharah",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png/revision/latest/scale-to-width-down/200?cb=20241108201144"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ed/Spray_Pharah_Cute.png/revision/latest?cb=20160906023416"
         },
         {
           "label": "Hanzo",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/OW2_Hanzo.png/revision/latest/scale-to-width-down/151?cb=20260616073741"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/39/Spray_Hanzo_Cute.png/revision/latest?cb=20160906003829"
         },
         {
           "label": "Soldier: 76",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/OW2_S76.png/revision/latest/scale-to-width-down/186?cb=20260208153542",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/75/Spray_Soldier_76_Cute.png/revision/latest?cb=20160906123435",
           "fr": "Soldat : 76",
           "aliases": [
             "Soldat : 76",
@@ -1611,98 +1611,86 @@
       "impostors": [
         {
           "label": "Jett",
-          "src": "fandom:valorant:Jett",
-          "image": "https://static.wikia.nocookie.net/valorant/images/e/e3/Jett_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202742"
+          "image": "https://media.valorant-api.com/agents/add6443a-41bd-e414-f6ad-e58d267f4e95/fullportrait.png"
         },
         {
           "label": "Phoenix",
-          "src": "fandom:valorant:Phoenix",
-          "image": "https://static.wikia.nocookie.net/valorant/images/9/90/Phoenix_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202811"
+          "image": "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/fullportrait.png"
         },
         {
           "label": "Sova",
-          "src": "fandom:valorant:Sova",
-          "image": "https://static.wikia.nocookie.net/valorant/images/c/c5/Sova_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202832"
-        },
-        {
-          "label": "Wraith",
-          "src": "fandom:apexlegends:Wraith",
-          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/0/00/Apex_Voidshifter_Wraith_Tier_1.png/revision/latest/scale-to-width-down/254?cb=20221207035721"
-        },
-        {
-          "label": "Bloodhound",
-          "src": "fandom:apexlegends:Bloodhound",
-          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/2/21/Apex_Hunter_Bloodhound_Tier_1.png/revision/latest/scale-to-width-down/254?cb=20220310114554"
-        },
-        {
-          "label": "Lifeline",
-          "src": "fandom:apexlegends:Lifeline",
-          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/9/93/Runaway_Hit_Lifeline.jpg/revision/latest/scale-to-width-down/254?cb=20240103034815"
-        },
-        {
-          "label": "Heavy",
-          "src": "fandom:teamfortress:Heavy",
-          "image": "https://static.wikia.nocookie.net/teamfortress/images/c/c5/H.W.G.png/revision/latest/scale-to-width-down/400?cb=20240804080157"
-        },
-        {
-          "label": "Scout",
-          "src": "fandom:teamfortress:Scout",
-          "image": "https://static.wikia.nocookie.net/teamfortress/images/4/48/Scout_Full_Body.png/revision/latest/scale-to-width-down/382?cb=20240804201309"
-        },
-        {
-          "label": "Pathfinder",
-          "src": "fandom:apexlegends:Pathfinder",
-          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/f/fc/Angel_City_Pacer_Pathfinder.png/revision/latest/scale-to-width-down/254?cb=20220120212959"
-        },
-        {
-          "label": "Octane",
-          "src": "fandom:apexlegends:Octane",
-          "image": "https://static.wikia.nocookie.net/apexlegends_gamepedia_en/images/2/26/Apex_Riptide.webp/revision/latest/scale-to-width-down/400?cb=20250402215015"
+          "image": "https://media.valorant-api.com/agents/320b2a48-4d9b-a075-30f1-1f93a9b638fa/fullportrait.png"
         },
         {
           "label": "Killjoy",
-          "src": "fandom:valorant:Killjoy",
-          "image": "https://static.wikia.nocookie.net/valorant/images/8/81/Killjoy_Artwork_Full.png/revision/latest/scale-to-width-down/400?cb=20220810202751"
+          "image": "https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/fullportrait.png"
         },
         {
-          "label": "Spy",
-          "src": "fandom:teamfortress:Spy",
-          "image": "https://static.wikia.nocookie.net/teamfortress/images/3/36/Spy.png/revision/latest/scale-to-width-down/157?cb=20170717232237"
+          "label": "Sage",
+          "image": "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png"
+        },
+        {
+          "label": "Reyna",
+          "image": "https://media.valorant-api.com/agents/a3bfb853-43b2-7238-a4f1-ad90e9e46bcc/fullportrait.png"
+        },
+        {
+          "label": "Omen",
+          "image": "https://media.valorant-api.com/agents/8e253930-4c05-31dd-1b6c-968525494517/fullportrait.png"
+        },
+        {
+          "label": "Cypher",
+          "image": "https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/fullportrait.png"
+        },
+        {
+          "label": "Raze",
+          "image": "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/fullportrait.png"
+        },
+        {
+          "label": "Brimstone",
+          "image": "https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png"
+        },
+        {
+          "label": "Viper",
+          "image": "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/fullportrait.png"
+        },
+        {
+          "label": "Neon",
+          "image": "https://media.valorant-api.com/agents/bb2a4828-46eb-8cd1-e765-15848195d751/fullportrait.png"
         }
       ]
     },
     "finale": [
       {
         "label": "Lifeweaver",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Lifeweaver.png/revision/latest/scale-to-width-down/242?cb=20241123123936"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6b/Spray_Lifeweaver_Cute.png/revision/latest?cb=20230421221553"
       },
       {
         "label": "Ramattra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/OW2_Ramattra.png/revision/latest/scale-to-width-down/198?cb=20260304093912"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8b/Spray_Ramattra_Cute.png/revision/latest?cb=20230107113423"
       },
       {
         "label": "Mauga",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/78/OW2_Mauga.png/revision/latest/scale-to-width-down/400?cb=20260304093509"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d0/Spray_Mauga_Cute.png/revision/latest?cb=20240427213005"
       },
       {
         "label": "Venture",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Venture.png/revision/latest/scale-to-width-down/202?cb=20241102122834"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5b/Spray_Venture_Cute.png/revision/latest?cb=20240425173220"
       },
       {
         "label": "Illari",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2b/OW2_Illari.png/revision/latest/scale-to-width-down/222?cb=20260304090158"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9e/Spray_Illari_Cute.png/revision/latest?cb=20230827105205"
       },
       {
         "label": "Sojourn",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ae/OW2_Sojourn.png/revision/latest/scale-to-width-down/169?cb=20240928162620"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/dc/Spray_Sojourn_Cute.png/revision/latest?cb=20230423022741"
       },
       {
         "label": "Echo",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bd/OW_Echo.png/revision/latest/scale-to-width-down/163?cb=20241102150435"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/fc/Spray_Echo_Cute.png/revision/latest?cb=20200415164236"
       },
       {
         "label": "Baptiste",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/00/OW2_Baptiste.png/revision/latest/scale-to-width-down/209?cb=20241108201237"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/56/Spray_Baptiste_Cute.png/revision/latest?cb=20230420144418"
       },
       {
         "label": "Wrecking Ball",
@@ -1710,7 +1698,7 @@
           "hammond",
           "Bouldozer"
         ],
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/03/OW2_Wrecking_Ball.png/revision/latest/scale-to-width-down/400?cb=20260304093441"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0d/Spray_Wrecking_Ball_Cute.png/revision/latest?cb=20180811140901"
       },
       {
         "label": "Torbjörn",
@@ -1719,50 +1707,50 @@
           "torb",
           "Torbjorn"
         ],
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Torbj%C3%B6rn.png/revision/latest/scale-to-width-down/310?cb=20260321080029"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/aa/Spray_Torbj%C3%B6rn_Cute.png/revision/latest?cb=20160906130047"
       },
       {
         "label": "Hazard",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Hazard.png/revision/latest/scale-to-width-down/271?cb=20241124152149"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/73/Spray_Hazard_Cute.png/revision/latest?cb=20241217173629"
       },
       {
         "label": "Juno",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/21/OW2_Juno.png/revision/latest/scale-to-width-down/185?cb=20260213110336"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/49/Spray_Juno_Cute.png/revision/latest?cb=20240831043418"
       },
       {
         "label": "Sigma",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c9/OW2_Sigma.png/revision/latest/scale-to-width-down/400?cb=20240404193956"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/38/Spray_Sigma_Cute.png/revision/latest?cb=20190813225223"
       },
       {
         "label": "Orisa",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/75/OW2-Orisa.png/revision/latest/scale-to-width-down/320?cb=20241126124432"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d5/Spray_Orisa_Cute.png/revision/latest?cb=20170321204811"
       },
       {
         "label": "Brigitte",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Brigitte.png/revision/latest/scale-to-width-down/192?cb=20220930191642"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Spray_Brigitte_Cute.png/revision/latest?cb=20240427210528"
       },
       {
         "label": "Moira",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5a/OW2_Moira.png/revision/latest/scale-to-width-down/272?cb=20240404082150"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/10/Spray_Moira_Cute.png/revision/latest?cb=20171203170043"
       },
       {
         "label": "Cassidy",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/OW2_Cassidy.png/revision/latest/scale-to-width-down/140?cb=20241108201305",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/91/Spray_Cassidy_Cute.png/revision/latest?cb=20160906013859",
         "aliases": [
           "McCree"
         ]
       },
       {
         "label": "Zarya",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/02/OW2_Zarya.png/revision/latest/scale-to-width-down/140?cb=20241108201623"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b6/Spray_Zarya_Cute.png/revision/latest?cb=20160906141059"
       },
       {
         "label": "Ashe",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/89/OW2_Ashe.png/revision/latest/scale-to-width-down/140?cb=20250329135344"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b7/Spray_Ashe_Cute.png/revision/latest?cb=20181117053652"
       },
       {
         "label": "Junker Queen",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/OW2_JunkerQueen.png/revision/latest/scale-to-width-down/400?cb=20241101134259",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c4/Spray_Junker_Queen_Cute.png/revision/latest?cb=20230423030537",
         "fr": "Reine des Junkers",
         "aliases": [
           "Reine des Junkers",
@@ -1771,7 +1759,7 @@
       },
       {
         "label": "Roadhog",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/34/OW2_Roadhog.png/revision/latest/scale-to-width-down/140?cb=20260213114356",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/93/Spray_Roadhog_Cute.png/revision/latest?cb=20160906121551",
         "fr": "Chopper",
         "aliases": [
           "Chopper",
@@ -1780,23 +1768,23 @@
       },
       {
         "label": "Bastion",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/400?cb=20241108201208"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e7/Spray_Bastion_Cute.png/revision/latest?cb=20160905234255"
       },
       {
         "label": "Symmetra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/51/OW2_Symmetra.png/revision/latest/scale-to-width-down/140?cb=20240130124019"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/33/Spray_Symmetra_Cute.png/revision/latest?cb=20160906124946"
       },
       {
         "label": "Freja",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/31/OW2_Freja.png/revision/latest/scale-to-width-down/140?cb=20250322151231"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0a/Spray_Freja_Cute.png/revision/latest?cb=20250527214315"
       },
       {
         "label": "Wuyang",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/OW2_Wuyang.png/revision/latest/scale-to-width-down/140?cb=20260305234200"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d6/Spray_Wuyang_Cute.png/revision/latest?cb=20250913001918"
       },
       {
         "label": "Anran",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/07/OW2_Anran.png/revision/latest/scale-to-width-down/140?cb=20260611085803"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/Spray_Anran_Cute.png/revision/latest?cb=20260219095446"
       },
       {
         "label": "D.Mon",
@@ -1808,31 +1796,31 @@
       },
       {
         "label": "Domina",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Domina.png/revision/latest/scale-to-width-down/140?cb=20260213022447"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4c/Spray_Domina_Cute.png/revision/latest?cb=20260420100250"
       },
       {
         "label": "Emre",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Emre.png/revision/latest/scale-to-width-down/140?cb=20260213003055"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/81/Spray_Emre_Cute.png/revision/latest?cb=20260219094640"
       },
       {
         "label": "Jetpack Cat",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Jetpack_Cat.png/revision/latest/scale-to-width-down/140?cb=20260206154545"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/Spray_Jetpack_Cat_Cute.png/revision/latest?cb=20260219095247"
       },
       {
         "label": "Mizuki",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Mizuki.png/revision/latest/scale-to-width-down/140?cb=20260215135742"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/57/Spray_Mizuki_Cute.png/revision/latest?cb=20260217151452"
       },
       {
         "label": "Shion",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8a/OW2_Shion.png/revision/latest/scale-to-width-down/140?cb=20260630073141"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/23/Spray_Shion_Cute.png/revision/latest?cb=20260620122758"
       },
       {
         "label": "Sierra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/OW2_Sierra.png/revision/latest/scale-to-width-down/140?cb=20260415005653"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/21/Spray_Sierra_Cute.png/revision/latest?cb=20260426080749"
       },
       {
         "label": "Vendetta",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/140?cb=20260304090759"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d5/Spray_Vendetta_Cute.png/revision/latest?cb=20251211193238"
       }
     ],
     "secret": {
@@ -2125,7 +2113,12 @@
           "answer": "Mauga"
         }
       ]
-    }
+    },
+    "drawnOnly": true,
+    "finaleSkip": [
+      "D.Mon",
+      "Doctrine"
+    ]
   },
   {
     "id": "minecraft",
@@ -2140,7 +2133,7 @@
       "title": "Guardian of the End",
       "src": "fandom:minecraft:Ender Dragon",
       "color": "#a855f7",
-      "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0a/Ender_Dragon.gif/revision/latest/scale-to-width-down/392?cb=20210107043116",
+      "image": "local:art/minecraft/ender-dragon.png",
       "label": "Ender Dragon"
     },
     "lines": {
@@ -2346,15 +2339,15 @@
       "members": [
         {
           "label": "Creeper",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/5/5b/Creeper_JE2_BE1.png/revision/latest/scale-to-width-down/196?cb=20191229172043"
+          "image": "local:art/minecraft/creeper.png"
         },
         {
           "label": "Enderman",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/28/Enderman.png/revision/latest/scale-to-width-down/400?cb=20240729214332"
+          "image": "local:art/minecraft/enderman.png"
         },
         {
           "label": "Pig",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Pig_JE3_BE2.png/revision/latest/scale-to-width-down/400?cb=20251004183015",
+          "image": "local:art/minecraft/pig.png",
           "fr": "Cochon",
           "aliases": [
             "Cochon"
@@ -2362,7 +2355,7 @@
         },
         {
           "label": "Villager",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d8/Plains_Villager_Base.png/revision/latest/scale-to-width-down/199?cb=20260104164016",
+          "image": "local:art/minecraft/villager.png",
           "fr": "Villageois",
           "aliases": [
             "Villageois"
@@ -2370,11 +2363,11 @@
         },
         {
           "label": "Zombie",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/8/87/Zombie_JE3_BE2.png/revision/latest/scale-to-width-down/240?cb=20191227070025"
+          "image": "local:art/minecraft/zombie.png"
         },
         {
           "label": "Skeleton",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/47/Skeleton_JE6_BE4.png/revision/latest/scale-to-width-down/216?cb=20210227130136",
+          "image": "local:art/minecraft/skeleton.png",
           "fr": "Squelette",
           "aliases": [
             "Squelette"
@@ -2382,7 +2375,7 @@
         },
         {
           "label": "Diamond",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/ab/Diamond_JE3_BE3.png/revision/latest?cb=20230924193138",
+          "image": "local:art/minecraft/diamond.png",
           "fr": "Diamant",
           "aliases": [
             "Diamant"
@@ -2390,7 +2383,7 @@
         },
         {
           "label": "Crafting Table",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b7/Crafting_Table_JE4_BE3.png/revision/latest?cb=20191229083528",
+          "image": "local:art/minecraft/crafting-table.png",
           "fr": "Établi",
           "aliases": [
             "Établi"
@@ -2398,7 +2391,7 @@
         },
         {
           "label": "Torch",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/90/Torch.gif/revision/latest?cb=20200111190834",
+          "image": "local:art/minecraft/torch.png",
           "fr": "Torche",
           "aliases": [
             "Torche"
@@ -2406,15 +2399,15 @@
         },
         {
           "label": "TNT",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/TNT_JE3_BE2.png/revision/latest?cb=20210110120939"
+          "image": "local:art/minecraft/tnt.png"
         },
         {
           "label": "Ghast",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d5/Ghast_JE2_BE2.gif/revision/latest?cb=20201108222940"
+          "image": "local:art/minecraft/ghast.png"
         },
         {
           "label": "Iron Golem",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/02/Iron_Golem_JE2_BE2.png/revision/latest/scale-to-width-down/213?cb=20190605101959",
+          "image": "local:art/minecraft/iron-golem.png",
           "fr": "Golem de fer",
           "aliases": [
             "Golem de fer"
@@ -2422,11 +2415,11 @@
         },
         {
           "label": "Axolotl",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/99/Lucy_Axolotl_JE2.png/revision/latest/scale-to-width-down/400?cb=20240729213943"
+          "image": "local:art/minecraft/axolotl.png"
         },
         {
           "label": "Bee",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/7c/Bee_types.gif/revision/latest?cb=20240729213952",
+          "image": "local:art/minecraft/bee.png",
           "fr": "Abeille",
           "aliases": [
             "Abeille"
@@ -2434,7 +2427,7 @@
         },
         {
           "label": "Wolf",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/c4/Wolf_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729213411",
+          "image": "local:art/minecraft/wolf.png",
           "fr": "Loup",
           "aliases": [
             "Loup"
@@ -2442,7 +2435,7 @@
         },
         {
           "label": "Cat",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Tuxedo_Cat_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729214002",
+          "image": "local:art/minecraft/cat.png",
           "fr": "Chat",
           "aliases": [
             "Chat"
@@ -2450,7 +2443,7 @@
         },
         {
           "label": "Fox",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/73/Fox.png/revision/latest/scale-to-width-down/400?cb=20240729214702",
+          "image": "local:art/minecraft/fox.png",
           "fr": "Renard",
           "aliases": [
             "Renard"
@@ -2458,7 +2451,7 @@
         },
         {
           "label": "Slime",
-          "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/dd/Slime_JE3_BE2.png/revision/latest/scale-to-width-down/400?cb=20191230025505"
+          "image": "local:art/minecraft/slime.png"
         }
       ],
       "impostors": [
@@ -2479,113 +2472,104 @@
         },
         {
           "label": "Kirby",
-          "src": "wp:Kirby (character)",
-          "image": "https://upload.wikimedia.org/wikipedia/en/4/4e/Kirby_Nintendo.png"
-        },
-        {
-          "label": "Korok",
-          "src": "fandom:zelda:Korok",
-          "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/c/cc/TWW_Koroks_Artwork.png/revision/latest/scale-to-width-down/306?cb=20201102145055"
-        },
-        {
-          "label": "Toad",
-          "src": "fandom:mario:Toad",
-          "image": "https://static.wikia.nocookie.net/mario/images/4/4d/SMG1%2BSMG2_Toad_Artwork.png/revision/latest/scale-to-width-down/293?cb=20251021045216"
-        },
-        {
-          "label": "Boo",
-          "src": "fandom:mario:Boo",
-          "image": "https://static.wikia.nocookie.net/mario/images/3/3f/MPS_Boo_Artwork.png/revision/latest/scale-to-width-down/400?cb=20230418174843"
-        },
-        {
-          "label": "Snorlax",
-          "src": "fandom:pokemon:Snorlax",
-          "image": "https://static.wikia.nocookie.net/pokemon/images/3/3f/0143Snorlax.png/revision/latest/scale-to-width-down/400?cb=20260203155155"
+          "image": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png"
         },
         {
           "label": "Link",
-          "src": "fandom:zelda:Link",
-          "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/4/47/TLoZ_Series_Link_Render.png/revision/latest/scale-to-width-down/261?cb=20210220213135"
+          "image": "https://ssb.wiki.gallery/images/e/e4/Link_OoT.png"
         },
         {
           "label": "Pikachu",
-          "src": "fandom:pokemon:Pikachu",
-          "image": "https://static.wikia.nocookie.net/pokemon/images/4/49/0025APikachu.png/revision/latest/scale-to-width-down/400?cb=20260203150816"
-        },
-        {
-          "label": "Mega Man",
-          "src": "wp:Mega Man (character)",
-          "image": "https://upload.wikimedia.org/wikipedia/en/7/7e/Mega_Man_11_Artwork.png"
+          "image": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png"
         },
         {
           "label": "Pac-Man",
-          "src": "wp:Pac-Man (character)",
-          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Pac-Man_ingame_and_2D_alternative_design.png/500px-Pac-Man_ingame_and_2D_alternative_design.png"
+          "image": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png"
+        },
+        {
+          "label": "Mario",
+          "image": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png"
+        },
+        {
+          "label": "Donkey Kong",
+          "image": "https://mario.wiki.gallery/images/e/e0/Donkey_Kong_Arcade_side_art.png"
+        },
+        {
+          "label": "Sonic",
+          "image": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537"
+        },
+        {
+          "label": "Yoshi",
+          "image": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg"
+        },
+        {
+          "label": "Ness",
+          "image": "https://ssb.wiki.gallery/images/d/d5/Ness.png"
         }
       ]
     },
     "finale": [
       {
         "label": "Wither",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/3b/Wither_JE2_BE2.png/revision/latest/scale-to-width-down/400?cb=20240729214341"
+        "image": "local:art/minecraft/wither.png"
       },
       {
         "label": "Warden",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1a/Warden.gif/revision/latest/scale-to-width-down/250?cb=20220218034755",
+        "image": "local:art/minecraft/warden.png",
         "aliases": [
           "Gardien des profondeurs"
         ]
       },
       {
         "label": "Elder Guardian",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/75/Elder_Guardian.gif/revision/latest?cb=20190925152022",
+        "image": "local:art/minecraft/elder-guardian.png",
         "aliases": [
           "Grand gardien"
         ]
       },
       {
         "label": "Shulker",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/06/Shulker.png/revision/latest/scale-to-width-down/258?cb=20200107095352"
+        "image": "local:art/minecraft/shulker.png"
       },
       {
         "label": "Allay",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/45/Allay_JE2.gif/revision/latest?cb=20230325131818"
+        "image": "local:art/minecraft/allay.png"
       },
       {
         "label": "Sniffer",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ec/Sniffer_sniffsniff.gif/revision/latest/scale-to-width-down/400?cb=20240729213335",
+        "image": "local:art/minecraft/sniffer.png",
         "aliases": [
           "Renifleur"
         ]
       },
       {
         "label": "Ravager",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a3/Ravager_JE1.png/revision/latest/scale-to-width-down/400?cb=20210120025723",
+        "image": "local:art/minecraft/ravager.png",
         "aliases": [
           "Ravageur"
         ]
       },
       {
         "label": "Piglin",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6c/Piglin.png/revision/latest/scale-to-width-down/260?cb=20220610025226"
+        "image": "local:art/minecraft/piglin.png"
       },
       {
         "label": "Strider",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a6/Strider_JE2_BE2.gif/revision/latest?cb=20240729214354",
+        "image": "local:art/minecraft/strider.png",
         "aliases": [
           "Arpenteur"
         ]
       },
       {
         "label": "Mooshroom",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/1c/Red_Mooshroom_JE4.png/revision/latest/scale-to-width-down/292?cb=20240729214731",
+        "image": "local:art/minecraft/mooshroom.png",
         "aliases": [
           "Champimeuh"
         ]
       },
       {
         "label": "Endermite",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/6/6e/Endermite.gif/revision/latest?cb=20200126021254"
+        "image": "local:art/minecraft/endermite.png"
       },
       {
         "label": "Silverfish",
@@ -2593,7 +2577,7 @@
           "poisson d'argent",
           "Poisson d'argent"
         ],
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/22/Silverfish_JE1_BE1.gif/revision/latest/scale-to-width-down/400?cb=20200125235834"
+        "image": "local:art/minecraft/silverfish.png"
       },
       {
         "label": "Vindicator",
@@ -2601,7 +2585,7 @@
           "vindicateur",
           "Vindicateur"
         ],
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b7/Vindicator_JE3.png/revision/latest/scale-to-width-down/200?cb=20220611074851"
+        "image": "local:art/minecraft/vindicator.png"
       },
       {
         "label": "Phantom",
@@ -2609,18 +2593,18 @@
           "fantôme",
           "Fantôme"
         ],
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/39/Phantom_JE2.gif/revision/latest?cb=20180706142237"
+        "image": "local:art/minecraft/phantom.png"
       },
       {
         "label": "Hoglin",
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/41/Hoglin_JE3.png/revision/latest/scale-to-width-down/400?cb=20240729214720"
+        "image": "local:art/minecraft/hoglin.png"
       },
       {
         "label": "Armadillo",
         "aliases": [
           "tatou"
         ],
-        "image": "https://static.wikia.nocookie.net/minecraft_gamepedia/images/9/9f/Armadillo.png/revision/latest/scale-to-width-down/400?cb=20240729213938"
+        "image": "local:art/minecraft/armadillo.png"
       }
     ],
     "secret": {
@@ -2903,7 +2887,9 @@
           "answer": "Drowned|Noyé"
         }
       ]
-    }
+    },
+    "drawnOnly": true,
+    "pixelArt": true
   },
   {
     "id": "onepiece",
@@ -8000,7 +7986,7 @@
       "title": "The Hand of Creation",
       "src": "fandom:supersmashbros:Master Hand",
       "color": "#6366f1",
-      "image": "https://static.wikia.nocookie.net/ssb/images/2/2b/Master_Hand_SSBU.png/revision/latest/scale-to-width-down/400?cb=20230206130115",
+      "image": "https://ssb.wiki.gallery/images/0/03/MasterHandHeadSSB.png",
       "label": "Master Hand"
     },
     "lines": {
@@ -8192,154 +8178,142 @@
         {
           "label": "Mario",
           "src": "fandom:supersmashbros:Mario (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/0/07/Mario_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180910105834"
+          "image": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png"
         },
         {
           "label": "Link",
           "src": "fandom:supersmashbros:Link (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/1/19/Link_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20190612145102"
+          "image": "https://ssb.wiki.gallery/images/e/e4/Link_OoT.png"
         },
         {
           "label": "Kirby",
           "src": "fandom:supersmashbros:Kirby (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/9/92/Kirby_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/302?cb=20190715072044"
+          "image": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png"
         },
         {
           "label": "Pikachu",
           "src": "fandom:supersmashbros:Pikachu (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/2/26/Pikachu_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180906080903"
+          "image": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png"
         },
         {
           "label": "Samus",
           "src": "fandom:supersmashbros:Samus (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/4/4d/Samus_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/284?cb=20180612205333"
+          "image": "https://ssb.wiki.gallery/images/6/68/Samus_Other_M_Artwork.png"
         },
         {
           "label": "Fox",
           "src": "fandom:supersmashbros:Fox (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/0/04/Fox_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/358?cb=20180612204657"
+          "image": "https://ssb.wiki.gallery/images/2/26/Fox_Command.jpg"
         },
         {
           "label": "Donkey Kong",
           "src": "fandom:supersmashbros:Donkey Kong (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/5/5f/Donkey_Kong_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612204654"
+          "image": "https://mario.wiki.gallery/images/e/e0/Donkey_Kong_Arcade_side_art.png"
         },
         {
           "label": "Yoshi",
           "src": "fandom:supersmashbros:Yoshi (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/0/06/Yoshi_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/365?cb=20180612205516"
+          "image": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg"
         },
         {
           "label": "Captain Falcon",
           "src": "fandom:supersmashbros:Captain Falcon (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/4/4a/Captain_Falcon_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/387?cb=20180612204650"
+          "image": "https://ssb.wiki.gallery/images/7/74/GX_Captain_Falcon.png"
         },
         {
           "label": "Ness",
           "src": "fandom:supersmashbros:Ness (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/e/e3/Ness_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20260403192056"
+          "image": "https://ssb.wiki.gallery/images/d/d5/Ness.png"
         },
         {
           "label": "Marth",
           "src": "fandom:supersmashbros:Marth (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/f/ff/Marth_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/383?cb=20180612204959"
+          "image": "https://ssb.wiki.gallery/images/0/0d/Marth_FE3.png"
         },
         {
           "label": "Sonic",
           "src": "fandom:supersmashbros:Sonic (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/e/eb/Sonic_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/323?cb=20230304175700"
+          "image": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537"
         },
         {
           "label": "Snake",
           "src": "fandom:supersmashbros:Snake (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/c/c3/Snake_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/397?cb=20180612205335"
+          "image": "https://ssb.wiki.gallery/images/5/5b/SnakeSubArt.jpg"
         },
         {
           "label": "Pac-Man",
           "src": "fandom:supersmashbros:Pac-Man (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/5/5a/Pac-Man_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612205003"
+          "image": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png"
         },
         {
           "label": "Cloud",
           "src": "fandom:supersmashbros:Cloud (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/d/d6/Cloud_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/377?cb=20180930104214"
+          "image": "https://ssb.wiki.gallery/images/9/9e/Cloud_Strife.png"
         },
         {
           "label": "Joker",
           "src": "fandom:supersmashbros:Joker (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/5/56/Joker_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20201107233616"
+          "image": "https://ssb.wiki.gallery/images/8/87/Joker_Phantom_Thief.png"
         },
         {
           "label": "Steve",
           "src": "fandom:supersmashbros:Steve (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/3/3a/Steve_SSBU.png/revision/latest/scale-to-width-down/293?cb=20201001151548"
+          "image": "local:art/minecraft/steve.png"
         },
         {
           "label": "Inkling",
           "src": "fandom:supersmashbros:Inkling (SSBU)",
-          "image": "https://static.wikia.nocookie.net/ssb/images/8/81/Inkling_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612204700"
+          "image": "https://cdn.wikimg.net/en/splatoonwiki/images/e/eb/S2_Inkling_Girl_with_Dualies_2D_art_with_background.jpg"
         }
       ],
       "impostors": [
         {
-          "label": "Scorpion",
-          "src": "fandom:mortalkombat:Scorpion",
-          "image": "https://static.wikia.nocookie.net/mkwikia/images/0/0f/Scorpion_MK1_Render.png/revision/latest/scale-to-width-down/369?cb=20250512004816"
+          "label": "Ahri",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ahri_OriginalLoading.jpg?babce"
         },
         {
-          "label": "Sub-Zero",
-          "src": "fandom:mortalkombat:Sub-Zero",
-          "image": "https://static.wikia.nocookie.net/mkwikia/images/e/e5/Scorpion_MK1_render.webp/revision/latest/scale-to-width-down/152?cb=20250609102106"
+          "label": "Yasuo",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Yasuo_OriginalLoading.jpg?ad3bd"
         },
         {
-          "label": "Crash Bandicoot",
-          "src": "fandom:crashbandicoot:Crash Bandicoot (character)",
-          "image": "https://static.wikia.nocookie.net/crashban/images/0/03/Crash_1_Crash_Bandicoot.png/revision/latest/scale-to-width-down/210?cb=20230516213125"
+          "label": "Jinx",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Jinx_OriginalLoading.jpg?b2a7e"
         },
         {
-          "label": "Jak",
-          "src": "fandom:jakanddaxter:Jak",
-          "image": "https://static.wikia.nocookie.net/jakanddaxter/images/2/20/Jak_from_TPL_render.png/revision/latest/scale-to-width-down/202?cb=20190113043425"
+          "label": "Garen",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Garen_OriginalLoading.jpg?94b72"
         },
         {
-          "label": "Ratchet",
-          "src": "fandom:ratchetandclank:Ratchet",
-          "image": "https://static.wikia.nocookie.net/ratchet/images/a/aa/Ratchet_from_RA_render.png/revision/latest/scale-to-width-down/272?cb=20210614141822"
+          "label": "Teemo",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Teemo_OriginalLoading.jpg?10811"
         },
         {
-          "label": "Rayman",
-          "src": "wp:Rayman (character)",
-          "image": "https://upload.wikimedia.org/wikipedia/en/1/19/Rayman_Legends_Title_Character_Art.png"
+          "label": "Diluc",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Diluc_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092341"
         },
         {
-          "label": "Master Chief",
-          "src": "fandom:halo:John-117",
-          "image": "https://static.wikia.nocookie.net/halo/images/8/84/InfiniteChiefTRANSPARENTholdingReachAR.png/revision/latest/scale-to-width-down/400?cb=20230220134648"
+          "label": "Keqing",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/52/Keqing_Icon.png/revision/latest/scale-to-width-down/160?cb=20210213162751"
         },
         {
-          "label": "Kratos",
-          "src": "fandom:godofwar:Kratos",
-          "image": "https://static.wikia.nocookie.net/godofwar/images/e/e9/Kratos-_GOW_Ragnarok.png/revision/latest/scale-to-width-down/248?cb=20230115190836"
+          "label": "Monkey D. Luffy",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
         },
         {
-          "label": "Sackboy",
-          "src": "wp:Sackboy",
-          "image": "https://upload.wikimedia.org/wikipedia/en/1/19/SackboySony.png"
+          "label": "Roronoa Zoro",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/150?cb=20241029161719"
         },
         {
-          "label": "Sly Cooper",
-          "src": "fandom:slycooper:Sly Cooper",
-          "image": "https://static.wikia.nocookie.net/sly/images/a/a8/Sly_Cooper_from_Thieves_in_Time.png/revision/latest/scale-to-width-down/400?cb=20160922180857"
+          "label": "Goku",
+          "image": "https://static.wikia.nocookie.net/dragonball/images/b/ba/Goku_anime_profile.png/revision/latest/scale-to-width-down/202?cb=20250723190513"
         },
         {
-          "label": "Nathan Drake",
-          "src": "fandom:uncharted:Nathan Drake",
-          "image": "https://static.wikia.nocookie.net/uncharted/images/e/e1/Nathan_Drake_from_ATE_headshot.png/revision/latest/scale-to-width-down/322?cb=20221025141033"
+          "label": "Aang",
+          "image": "https://static.wikia.nocookie.net/avatar/images/a/ae/Aang_at_Jasmine_Dragon.png/revision/latest/scale-to-width-down/400?cb=20250504214141"
         },
         {
-          "label": "Lara Croft",
-          "src": "fandom:tombraider:Lara Croft",
-          "image": "https://static.wikia.nocookie.net/laracroft/images/5/5a/20_Years_of_Croft.jpg/revision/latest/scale-to-width-down/400?cb=20161028173527"
+          "label": "Zuko",
+          "image": "https://static.wikia.nocookie.net/avatar/images/4/4b/Zuko.png/revision/latest/scale-to-width-down/400?cb=20180630112142"
         }
       ]
     },
@@ -8351,12 +8325,12 @@
           "game and watch",
           "game & watch"
         ],
-        "image": "https://static.wikia.nocookie.net/ssb/images/8/8c/Mr._Game_%26_Watch_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/359?cb=20180612205002"
+        "image": "https://ssb.wiki.gallery/images/8/87/Mr._Game_%26_Watch.png"
       },
       {
         "label": "Ice Climbers",
         "src": "fandom:supersmashbros:Ice Climbers (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/0/0c/Ice_Climbers_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180909141515"
+        "image": "https://ssb.wiki.gallery/images/3/36/Ice_Climbers.PNG"
       },
       {
         "label": "R.O.B.",
@@ -8364,17 +8338,17 @@
         "aliases": [
           "rob"
         ],
-        "image": "https://static.wikia.nocookie.net/ssb/images/0/02/R.O.B._-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20210726195004"
+        "image": "https://ssb.wiki.gallery/images/f/fd/R.O.B._Famicom.jpg"
       },
       {
         "label": "Olimar",
         "src": "fandom:supersmashbros:Olimar (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/0/05/Olimar_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180612205003"
+        "image": "https://ssb.wiki.gallery/images/c/ca/OlimarP.jpg"
       },
       {
         "label": "Duck Hunt",
         "src": "fandom:supersmashbros:Duck Hunt (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/0/0b/Duck_Hunt_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/288?cb=20180612204655"
+        "image": "https://ssb.wiki.gallery/images/d/da/Duck_Hunt_Dog_Duck.PNG"
       },
       {
         "label": "Wii Fit Trainer",
@@ -8384,27 +8358,27 @@
       {
         "label": "Little Mac",
         "src": "fandom:supersmashbros:Little Mac (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/e/e8/Little_Mac_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/315?cb=20180612204955"
+        "image": "https://ssb.wiki.gallery/images/0/0a/Littlemacnes.png"
       },
       {
         "label": "Palutena",
         "src": "fandom:supersmashbros:Palutena (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/c/c5/Palutena_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/379?cb=20220219175924"
+        "image": "https://ssb.wiki.gallery/images/8/8e/Palutena_Uprising.png"
       },
       {
         "label": "Dark Pit",
         "src": "fandom:supersmashbros:Dark Pit (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/b/b7/Dark_Pit_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/374?cb=20180612204653"
+        "image": "https://ssb.wiki.gallery/images/2/29/DarkPit_Artwork.png"
       },
       {
         "label": "Shulk",
         "src": "fandom:supersmashbros:Shulk (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/2/20/Shulk_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20181202120522"
+        "image": "https://ssb.wiki.gallery/images/8/88/Shulk_Artwork.png"
       },
       {
         "label": "Corrin",
         "src": "fandom:supersmashbros:Corrin (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/8/8c/Corrin_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/371?cb=20180612204651"
+        "image": "https://ssb.wiki.gallery/images/1/11/Corrin_Male.png"
       },
       {
         "label": "Isabelle",
@@ -8412,7 +8386,7 @@
         "aliases": [
           "marie"
         ],
-        "image": "https://static.wikia.nocookie.net/ssb/images/f/fb/Isabelle_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20180914091810"
+        "image": "https://ssb.wiki.gallery/images/4/43/Villager_and_Isabelle_artwork.jpg"
       },
       {
         "label": "Piranha Plant",
@@ -8420,7 +8394,7 @@
         "aliases": [
           "plante piranha"
         ],
-        "image": "https://static.wikia.nocookie.net/ssb/images/d/d7/Piranha_Plant_-_Super_Smash_Bros._Ultimate.png/revision/latest/scale-to-width-down/400?cb=20181101165757"
+        "image": "https://ssb.wiki.gallery/images/4/43/Piranha_pipe.png"
       },
       {
         "label": "Min Min",
@@ -8430,7 +8404,7 @@
       {
         "label": "Pyra",
         "src": "fandom:supersmashbros:Pyra (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/1/1c/Pyra.png/revision/latest/scale-to-width-down/215?cb=20221230092805"
+        "image": "https://ssb.wiki.gallery/images/6/64/XC2_Pyra_artwork.png"
       },
       {
         "label": "Kazuya",
@@ -8440,12 +8414,12 @@
       {
         "label": "Byleth",
         "src": "fandom:supersmashbros:Byleth (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/3/3d/Byleth_SSBU.png/revision/latest/scale-to-width-down/344?cb=20200116163825"
+        "image": "https://ssb.wiki.gallery/images/f/fa/Byleth.png"
       },
       {
         "label": "Hero",
         "src": "fandom:supersmashbros:Hero (SSBU)",
-        "image": "https://static.wikia.nocookie.net/ssb/images/0/07/Hero_SSBU.png/revision/latest/scale-to-width-down/378?cb=20260403185733"
+        "image": "https://ssb.wiki.gallery/images/b/bc/DQHeroVIII.png"
       }
     ],
     "secret": {
@@ -8700,7 +8674,13 @@
           "answer": "Marth|Lucina"
         }
       ]
-    }
+    },
+    "drawnOnly": true,
+    "finaleSkip": [
+      "Wii Fit Trainer",
+      "Min Min",
+      "Kazuya"
+    ]
   },
   {
     "id": "genshin",
