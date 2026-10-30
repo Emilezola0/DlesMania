@@ -8,6 +8,7 @@ import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
+import { isAwake } from './CardView';
 import { playVoice, voiceOf } from './voice';
 
 /**
@@ -90,6 +91,10 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },
 };
 
+/** A big moment's animation: how long it stays, and at least how long between two. */
+const MOMENT_MS = 4500;
+const MOMENT_GAP_MS = 60_000;
+
 const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
 /** Legendary or better, and in the album. */
 const showy = (id: string | null, cards: Record<string, number>): Card | undefined => {
@@ -124,9 +129,13 @@ export function CardReactions() {
   const avatar = useProgress((s) => showy(s.avatar, s.cards));
   const [bubble, setBubble] = useState<{ kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
+  /** The icon's animation, on a big moment now and then. */
+  const [moment, setMoment] = useState<{ clip: string; key: number } | null>(null);
+  const lastMoment = useRef(0);
   useEffect(() => {
     if (!enabled || !avatar) return;
     let timer = 0;
+    let momentTimer = 0;
     const off = onCue((kind) => {
       const now = Date.now();
       // Big moments always; otherwise now and then, so fast games don't drown in bubbles.
@@ -137,15 +146,30 @@ export function CardReactions() {
       setBubble({ kind, text, key: now });
       // A mythic's big moment: its voice line, heard.
       if (kind === 'great' && avatar.voice) playVoice(avatar);
+      // A win, a finished game: its animation too, now and then. Not where cards already show theirs.
+      const clip = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
+      if (kind === 'great' && clip && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        lastMoment.current = now;
+        setMoment({ clip, key: now });
+        window.clearTimeout(momentTimer);
+        momentTimer = window.setTimeout(() => setMoment(null), MOMENT_MS);
+      }
       window.clearTimeout(timer);
       timer = window.setTimeout(() => setBubble(null), 2600);
     });
-    return () => (off(), window.clearTimeout(timer));
+    return () => (off(), window.clearTimeout(timer), window.clearTimeout(momentTimer));
   }, [enabled, avatar]);
 
-  if (!bubble || !avatar) return null;
+  if ((!bubble && !moment) || !avatar) return null;
   const light = RARITY_LIGHT[avatar.rarity];
   return (
+    <>
+      {moment && (
+        <div key={moment.key} className="animate-pop pointer-events-none fixed bottom-4 right-3 z-40 w-56 overflow-hidden rounded-xl border-2 shadow-2xl sm:w-72" style={{ borderColor: light, boxShadow: `0 0 28px ${light}` }} aria-hidden>
+          <video src={moment.clip} autoPlay muted loop playsInline onError={() => setMoment(null)} className="aspect-video w-full object-cover" />
+        </div>
+      )}
+      {bubble && (
     <div key={bubble.key} className="react-in pointer-events-none fixed right-3 top-14 z-40 flex max-w-[16rem] items-center gap-2" aria-live="polite">
       <p className="rounded-2xl rounded-tr-sm border-2 bg-card px-3 py-1.5 text-sm font-bold shadow-xl" style={{ borderColor: bubble.kind === 'bad' ? '#f87171' : light }}>
         <span className={avatar.rarity === 'mythic' && bubble.kind === 'great' ? 'card-mythic-name' : ''}>{bubble.text}</span>
@@ -154,5 +178,7 @@ export function CardReactions() {
         <CardAvatar card={avatar} className="size-12" />
       </span>
     </div>
+      )}
+    </>
   );
 }

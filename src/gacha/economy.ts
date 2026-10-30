@@ -77,6 +77,10 @@ export const PITY_PACKS = Math.round((PITY_MAX - 1) / PITY_STEP);
 export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? Math.min(PITY_PACKS, Math.max(0, Math.floor(pity as number))) : 0);
 export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
 
+/** The most an Expedition pays in DleCoins for one room (elites included) and one boss, however deep the run. */
+export const EXPEDITION_ROOM_MAX = 40;
+export const EXPEDITION_BOSS_MAX = 200;
+
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
 export const DUPLICATE_VALUE = { common: 2, rare: 5, epic: 15, legendary: 50, mythic: 150, omni: 500 } as const;
 

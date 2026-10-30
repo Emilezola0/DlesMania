@@ -387,8 +387,8 @@ export function Name5Room({ mods, onDone }: RoomProps) {
 /** A boss room: one phase of a guardian's Boss Battle, at Medium. Act 1 is a Knowledge Blitz, act 2 a Final Blow. */
 export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; onDone: (r: RoomResult) => void }) {
   const boss = useMemo(() => pick(bossesFor(keys)), []);
-  // The guardians fight harder from the third act on, and at Hell from the fifth.
-  const d = act >= 5 ? DIFFICULTIES.hell : act >= 3 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
+  // The guardians fight harder from the fourth act on, and at Hell from the seventh.
+  const d = act >= 7 ? DIFFICULTIES.hell : act >= 4 ? DIFFICULTIES.hard : DIFFICULTIES.medium;
   const blitz = useMemo(() => drawBlitz(boss, d, Math.random), [boss]);
   const finale = useMemo(() => drawFinale(boss, d, Math.random, [], 0, finaleFaces(boss)), [boss]);
   const pool = useMemo(() => {

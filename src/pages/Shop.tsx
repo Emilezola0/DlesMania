@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { EXPEDITION_BOSS_MAX, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { GRADE_REWARD_SHARE, gradeReward } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -350,7 +350,7 @@ export default function Shop() {
             endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play.
           </li>
-          <li>Expeditions: every room won pays, more each act — and each act is harder than the last.</li>
+          <li>Expeditions: every room won pays, more each act, up to {EXPEDITION_ROOM_MAX} a room and {EXPEDITION_BOSS_MAX} a boss — and each act is harder than the last.</li>
           <li>
             Every card grade reached: Bronze, Silver, Gold and Radiant pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}× and {GRADE_REWARD_SHARE[5]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Radiant {gradeReward('legendary', 5)}.
           </li>

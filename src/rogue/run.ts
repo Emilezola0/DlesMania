@@ -1,6 +1,7 @@
 // Expedition, the roguelike: a run is a branching map of rooms, each a short challenge borrowed
 // from the other games. Hearts, gold and relics carry from room to room; out of hearts, the run ends.
 // The run is plain data (saved in the store), so a refresh doesn't lose it.
+import { EXPEDITION_BOSS_MAX, EXPEDITION_ROOM_MAX } from '../gacha/economy';
 import { mulberry32 } from '../lib/rng';
 import type { Domain } from '../types';
 import { ALL_KEYS, ALL_ROOMS, challengesFor, keysFor, mediaOfKeys } from './pools';
@@ -65,10 +66,10 @@ export const RELIC_ACTS = 2;
 
 /**
  * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — little in the first acts,
- * more and more the deeper the run goes, as the rooms get harder.
+ * more and more the deeper the run goes, up to a ceiling (see economy.ts).
  */
-export const roomCoins = (act: number) => act + 1 + Math.floor((act * act) / 4);
-export const bossCoins = (act: number) => 8 * act + act * act;
+export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, (act + 1 + Math.floor((act * act) / 4)) * (elite ? 2 : 1));
+export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 8 * act + act * act);
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;
@@ -194,7 +195,7 @@ export interface Mods {
   keys: string[];
   /** How far into the run this room is, 0 (first row of act 1) to 1 (last row of the last act): rooms get harder. */
   depth: number;
-  /** The same with no ceiling: 0 at the start, 1 an act in, 2 two acts in… Every room's limits tighten with it. */
+  /** The same with no ceiling, climbing a little each act (LEVEL_PER_ACT). Every room's limits tighten with it. */
   level: number;
 }
 
@@ -209,9 +210,12 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
   level: levelOf(run),
 });
 
+/** How much harder each act makes the rooms: a little over half a step, so a run lasts. */
+const LEVEL_PER_ACT = 0.6;
+
 function levelOf(run: RunState): number {
   const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
-  return run.act - 1 + Math.min(row, ROWS - 1) / ROWS;
+  return (run.act - 1 + Math.min(row, ROWS - 1) / ROWS) * LEVEL_PER_ACT;
 }
 
 function depthOf(run: RunState): number {

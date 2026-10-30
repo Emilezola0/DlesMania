@@ -51,9 +51,11 @@ export interface Card {
   voiceFr?: string;
   audioFr?: string;
   /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard (its clip: see `clip`). */
-  awaken?: { title: string; image: string; line: string; clip?: string };
+  awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean };
   /** A short looping clip (MP4) of a mythic, played instead of its picture where the card is seen up close. */
   clip?: string;
+  /** A clip so small it can run all the time, in the album too (the player can turn that off). */
+  clipLight?: boolean;
   /**
    * Framing for a picture with more around it than the card wants (a group shot, a title banner, a
    * screenshot): zoomed `zoom` times on the point at `x`% / `y`% of it.
@@ -483,7 +485,7 @@ const CLIPS: Record<string, string> = {
   'mcu:mythic': 'https://media.tenor.com/X65SdRy9nbwAAAP1/iron-man.mp4',
   'mcu:omni': 'https://media.tenor.com/KRu4vbcBkEoAAAP1/robert-downey-jr-ironman.mp4',
   'mcu:mythic-2': 'https://media.tenor.com/SP5FwVSdM8kAAAP1/almighty-thunder.mp4',
-  'smash:mythic': 'https://media.tenor.com/qZ9dQh5yvF8AAAP1/dr-mario.mp4',
+  'smash:mythic': 'https://media.tenor.com/2mGaUC5YyN4AAAP1/ucm-imucm.mp4',
   'smash:omni': 'https://media.tenor.com/9beKjndyAScAAAP1/legendofzelda-link.mp4',
   'smash:mythic-2': 'https://media.tenor.com/BjXbSxg_O2UAAAPo/kasane-teto-teto-kasane.mp4',
   'genshin:mythic': 'https://media.tenor.com/hio_kwnWe7cAAAPo/hyejinsgenre-diluc.mp4',
@@ -499,16 +501,19 @@ const CLIPS: Record<string, string> = {
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
   'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
-  'avatar:omni': 'https://media.tenor.com/EeoH1xjh8QQAAAP1/aang-water-spirit.mp4',
+  'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
   'avatar:mythic-2': 'https://media.tenor.com/FwNFDMOM2bIAAAPo/toph-avatar-the-last-airbender.mp4',
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
   'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
 };
+/** The clips under 150 KB. */
+const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'avatar:mythic-2', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic']);
 const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
   if (!clip) return c;
-  return c.awaken ? { ...c, awaken: { ...c.awaken, clip } } : { ...c, clip };
+  const clipLight = LIGHT_CLIPS.has(c.id);
+  return c.awaken ? { ...c, awaken: { ...c.awaken, clip, clipLight } } : { ...c, clip, clipLight };
 };
 
 /** Franchises added after the first fourteen (see CARDS). */

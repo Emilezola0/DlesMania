@@ -33,6 +33,7 @@ export const SYNCED = [
   'cardReactions',
   'omniAura',
   'voiceLines',
+  'cardMotion',
   'grades',
   'gradesPaid',
   'missionBooks',
@@ -192,5 +193,6 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     cardReactions: (firstLink ? cloud : latest).cardReactions ?? local.cardReactions ?? true,
     omniAura: (firstLink ? cloud : latest).omniAura ?? local.omniAura ?? true,
     voiceLines: (firstLink ? cloud : latest).voiceLines ?? local.voiceLines ?? true,
+    cardMotion: (firstLink ? cloud : latest).cardMotion ?? local.cardMotion ?? true,
   };
 }

@@ -103,6 +103,9 @@ interface ProgressState {
   setOmniAura: (on: boolean) => void;
   /** Mythics' voice lines, heard (on unless turned off; the card still shows them). */
   voiceLines: boolean;
+  /** Light animations (GIF art, small clips) run all the time on cards; off: still pictures, except up close. */
+  cardMotion: boolean;
+  setCardMotion: (on: boolean) => void;
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
   renewCards: (spent: Record<string, number>, gained: string) => void;
@@ -277,6 +280,8 @@ export const useProgress = create<ProgressState>()(
       omniAura: true,
       setOmniAura: (omniAura) => set({ omniAura }),
       voiceLines: true,
+      cardMotion: true,
+      setCardMotion: (cardMotion) => set({ cardMotion }),
       setVoiceLines: (voiceLines) => set({ voiceLines }),
       renewCards: (spent, gained) =>
         set((s) => {

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
 import { RARITY_INFO, setSize, type Card, type Rarity } from './cards';
@@ -33,12 +33,31 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
 };
 
 /** An omni's form: its second (awakened) once its franchise's guardian has been beaten on Hard (or Hell). */
-export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string } {
-  // Hard or Hell: either win awakens it.
-  const awake = useProgress((s) => !!card.awaken && ((s.bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0));
+/** Whether an omni has woken: its guardian beaten on Hard or Hell. */
+export const isAwake = (card: Card, bosses: Record<string, { wins: number }>) => !!card.awaken && ((bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
+
+export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean } {
+  const awake = useProgress((s) => isAwake(card, s.bosses));
   return awake && card.awaken
-    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip }
-    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip };
+    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip, clipLight: card.awaken.clipLight }
+    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight };
+}
+
+/** A GIF held on its first frame (a canvas: the picture only has to be shown, never read). */
+function StillGif({ src, className }: { src: string; className: string }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      const c = ref.current;
+      if (!c) return;
+      c.width = img.naturalWidth;
+      c.height = img.naturalHeight;
+      c.getContext('2d')?.drawImage(img, 0, 0);
+    };
+    img.src = src;
+  }, [src]);
+  return <canvas ref={ref} className={className} />;
 }
 
 /**
@@ -74,6 +93,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
   // Mythics and omnis share the prism; omnis add a cosmos, a crown, and a second form.
   const prism = mythic || omni;
   const form = useCardForm(card);
+  const motion = useProgress((s) => s.cardMotion ?? true);
+  // A light clip only loads once its card is on screen.
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (animate || !motion || !form.clipLight || !el) return;
+    const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: '100px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [animate, motion, form.clipLight]);
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   return (
     <div
@@ -102,8 +131,8 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,241,168,.5), rgba(168,85,247,.25) 45%, rgba(15,10,40,.2) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
-          {/* Up close (`animate`), a mythic's clip loops in place of its picture; in the album grids, the picture. */}
-          {animate && form.clip && clipFailed !== form.clip ? (
+          {/* Up close (`animate`), a mythic's clip loops in place of its picture; elsewhere only a light clip does, once on screen. */}
+          {form.clip && clipFailed !== form.clip && (animate || (motion && form.clipLight && inView)) ? (
             <video
               key={form.clip}
               src={form.clip}
@@ -115,6 +144,8 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
               onError={() => setClipFailed(form.clip!)}
               className="size-full object-cover"
             />
+          ) : !motion && !animate && /\.gif/i.test(form.image) ? (
+            <StillGif src={form.image} className="size-full object-contain" />
           ) : (
           <img
             key={form.image}

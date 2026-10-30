@@ -507,7 +507,7 @@ export default function Expedition() {
     if (res.won) {
       const gold = goldFor(r, boss ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
       // DleCoins for the shop, more the further the run has gone.
-      const coins = boss ? bossCoins(r.act) : roomCoins(r.act) * (elite ? 2 : 1);
+      const coins = boss ? bossCoins(r.act) : roomCoins(r.act, elite);
       earnCoins(coins);
       r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙, +${coins} DleCoins)`] };
       const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, coins, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
