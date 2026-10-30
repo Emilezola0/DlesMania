@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HL_DECKS } from '../arcade/higherLower';
+import { JLPT_DECKS } from '../arcade/jlpt';
 import { NAME_LISTS } from '../arcade/lists';
 import { DleCoin } from '../components/DleCoin';
 import { CARDS } from '../gacha/cards';
@@ -153,6 +154,13 @@ export default function GamesHub() {
       title: 'Map Quiz',
       blurb: 'A place name, a world map: click where it is. Kanto and Runeterra to start.',
       stat: best('map:') ? `Best: ${best('map:')}` : undefined,
+    },
+    {
+      to: '/jlpt',
+      icon: '🇯🇵',
+      title: 'JLPT',
+      blurb: `Japanese from N5 to N1: the meaning or the reading of a word or a kanji, until the first mistake. ${JLPT_DECKS.length} decks.`,
+      stat: best('jlpt:') ? `Best streak: ${best('jlpt:')}` : undefined,
     },
     {
       to: '/guess-the-year',

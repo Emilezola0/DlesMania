@@ -11,6 +11,7 @@ const FreePlay = lazy(() => import('./pages/FreePlay'));
 const GamesHub = lazy(() => import('./pages/GamesHub'));
 const GuessYear = lazy(() => import('./pages/GuessYear'));
 const HigherLower = lazy(() => import('./pages/HigherLower'));
+const Jlpt = lazy(() => import('./pages/Jlpt'));
 const NameThemAll = lazy(() => import('./pages/NameThemAll'));
 const RailRush = lazy(() => import('./pages/RailRush'));
 const MemoryPairs = lazy(() => import('./pages/MemoryPairs'));
@@ -59,6 +60,8 @@ export default function App() {
         <Route path="games" element={<GamesHub />} />
         <Route path="higher-lower" element={<HigherLower />} />
         <Route path="higher-lower/:deck" element={<HigherLower />} />
+        <Route path="jlpt" element={<Jlpt />} />
+        <Route path="jlpt/:deck" element={<Jlpt />} />
         <Route path="name-them-all" element={<NameThemAll />} />
         <Route path="name-them-all/:list" element={<NameThemAll />} />
         <Route path="guess-the-year" element={<GuessYear />} />

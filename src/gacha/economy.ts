@@ -74,6 +74,7 @@ export const HOT_GAMES = [
   { id: 'memory', to: '/memory', title: 'Memory Pairs', icon: '🃏' },
   { id: 'map', to: '/map-quiz', title: 'Map Quiz', icon: '📍' },
   { id: 'year', to: '/guess-the-year', title: 'Guess the Year', icon: '📅' },
+  { id: 'jlpt', to: '/jlpt', title: 'JLPT', icon: '🇯🇵' },
 ] as const;
 
 /** A player's place in the day's order: how many times the bonus has moved, and the games played of the current one. */
