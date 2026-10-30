@@ -159,7 +159,7 @@ export default function GamesHub() {
       to: '/jlpt',
       icon: '🇯🇵',
       title: 'JLPT',
-      blurb: `Japanese from N5 to N1: the meaning or the reading of a word or a kanji, until the first mistake. ${JLPT_DECKS.length} decks.`,
+      blurb: `Japanese from N5 to N1, by level or by theme (animals, food, the body…): the meaning or the reading of a word or a kanji, with a review list of the ones that give you trouble. ${JLPT_DECKS.length} decks.`,
       stat: best('jlpt:') ? `Best streak: ${best('jlpt:')}` : undefined,
     },
     {

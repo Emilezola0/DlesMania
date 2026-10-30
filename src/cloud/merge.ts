@@ -42,6 +42,7 @@ export const SYNCED = [
   'missionBooks',
   'redeemed',
   'groups',
+  'jlptReview',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -208,5 +209,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     cardMotion: (firstLink ? cloud : latest).cardMotion ?? local.cardMotion ?? true,
     uiTheme: (firstLink ? cloud : latest).uiTheme ?? local.uiTheme ?? 'icon',
     companions: (firstLink ? cloud : latest).companions ?? local.companions ?? true,
+    // The JLPT review list: both lists on a first link; then the latest (words learned leave it).
+    jlptReview: firstLink ? { ...(cloud.jlptReview ?? {}), ...(local.jlptReview ?? {}) } : (latest.jlptReview ?? local.jlptReview ?? {}),
   };
 }

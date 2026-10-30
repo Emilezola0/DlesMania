@@ -2,66 +2,106 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, jlptDeck, nextQuestion, shortMeaning, type JlptDeck, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, reviewDeck, shortMeaning, type JlptDeck, type JlptQuestion } from '../arcade/jlpt';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
-import { useProgress } from '../store/progress';
+import { JLPT_LEARNED, useProgress } from '../store/progress';
 
 /** How long a right answer stays shown before the next question. */
 const REVEAL_MS = 900;
-/** Entries not drawn again within this many questions. */
+/** Entries not drawn again within this many questions (fewer in a short review list). */
 const MEMORY = 40;
 /** Seconds per question: 12 at first, a fifth of a second less each right answer, down to 4. */
 const secondsFor = (streak: number) => Math.max(4, 12 - streak * 0.2);
 
+/** The star that puts a word on the review list, or takes it off. */
+function KeepButton({ id }: { id: string }) {
+  const kept = useProgress((s) => id in s.jlptReview);
+  const add = useProgress((s) => s.addJlptReview);
+  const remove = useProgress((s) => s.removeJlptReview);
+  return (
+    <button
+      type="button"
+      onClick={() => (kept ? remove(id) : add([id]))}
+      aria-pressed={kept}
+      className={`rounded-full border px-3 py-1 font-display text-xs font-bold transition ${kept ? 'border-ochre bg-ochre/15 text-ochre' : 'border-rule-strong text-ink-soft hover:text-ink'}`}
+    >
+      {kept ? '★ In my review list' : '☆ Add to my review list'}
+    </button>
+  );
+}
+
+/**
+ * One deck's quiz. A level or theme deck is a streak with a clock, over at the first mistake; every miss
+ * goes on the review list. The review deck has no clock and goes on after a miss: a right answer counts
+ * towards learning the word (JLPT_LEARNED in a row and it leaves the list), a wrong one starts it over.
+ */
 function Game({ deck }: { deck: JlptDeck }) {
+  const review = deck.kind === 'review';
   const key = `jlpt:${deck.id}`;
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
+  const addReview = useProgress((s) => s.addJlptReview);
+  const reviewJlpt = useProgress((s) => s.reviewJlpt);
+  const list = useProgress((s) => s.jlptReview);
   const recent = useRef<string[]>([]);
   const draw = () => {
-    const q = nextQuestion(deck, new Set(recent.current));
-    recent.current = [q.entry.id, ...recent.current].slice(0, MEMORY);
+    // The review list as it is now: learned words have left it.
+    const d = review ? reviewDeck(Object.keys(useProgress.getState().jlptReview)) : deck;
+    if (!d.entries.length) return null;
+    const q = nextQuestion(d, new Set(recent.current));
+    recent.current = [q.entry.id, ...recent.current].slice(0, Math.min(MEMORY, Math.floor(d.entries.length / 2)));
     return q;
   };
-  const [q, setQ] = useState<JlptQuestion>(() => draw());
+  const [q, setQ] = useState<JlptQuestion | null>(() => draw());
   const [picked, setPicked] = useState<string | null>(null);
   const [score, setScore] = useState(0);
+  const [missed, setMissed] = useState(0);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const arena = useRef<HTMLDivElement>(null);
 
+  const next = () => {
+    setQ(draw());
+    setPicked(null);
+    setState('guess');
+  };
   const fail = (choice: string | null) => {
+    if (!q) return;
     sfx.wrong();
     shake(arena.current, 10, 420);
     setPicked(choice);
     setState('wrong');
+    if (review) {
+      reviewJlpt(q.entry.id, false);
+      setMissed((m) => m + 1);
+      return;
+    }
+    addReview([q.entry.id]);
     if (score > best) window.setTimeout(() => (sfx.streak(), celebrateBig()), 500);
     recordBest(key, score, { reached: score / 2 });
   };
   const answer = (choice: string) => {
-    if (state !== 'guess') return;
+    if (!q || state !== 'guess') return;
     if (choice !== q.answer) return fail(choice);
     sfx.correct();
     setPicked(choice);
     setState('right');
     setScore(score + 1);
-    window.setTimeout(() => {
-      setQ(draw());
-      setPicked(null);
-      setState('guess');
-    }, REVEAL_MS);
+    if (review) reviewJlpt(q.entry.id, true);
+    window.setTimeout(next, REVEAL_MS);
   };
   const restart = () => {
     sfx.click();
-    setQ(draw());
-    setPicked(null);
     setScore(0);
-    setState('guess');
+    setMissed(0);
+    next();
   };
 
-  // 1–4 on the keyboard pick an answer.
+  // 1–4 on the keyboard pick an answer; Enter goes on after a miss in Review.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (!q) return;
+      if (review && state === 'wrong' && e.key === 'Enter') return next();
       const i = Number(e.key) - 1;
       if (i >= 0 && i < q.options.length) answer(q.options[i]);
     };
@@ -69,23 +109,53 @@ function Game({ deck }: { deck: JlptDeck }) {
     return () => window.removeEventListener('keydown', onKey);
   });
 
+  if (!q) {
+    return (
+      <div className="page space-y-3 rounded-md p-8 text-center">
+        <p className="font-serif text-5xl">🎉</p>
+        <p className="font-display text-xl font-bold">{score ? 'Your review list is empty — every word learned!' : 'Your review list is empty.'}</p>
+        <p className="text-sm text-ink-soft">The words you miss in the other decks land here, and so do the ones you star.</p>
+        <Link to="/jlpt" className="btn-ink inline-block rounded-md px-6 py-3 font-display font-bold tracking-wider">
+          Back to the decks
+        </Link>
+      </div>
+    );
+  }
+
   const tone = (o: string) => {
     if (state === 'guess') return 'btn-paper';
     if (o === q.answer) return 'border-hit bg-hit/20';
     if (o === picked) return 'border-miss bg-miss/20';
     return 'btn-paper opacity-60';
   };
+  const left = Object.keys(list).length;
+  const learning = list[q.entry.id] ?? 0;
 
   return (
     <div className="space-y-5">
       <div className="flex items-end justify-between">
         <p className="font-serif text-lg italic text-ink-soft">{q.ask === 'meaning' ? 'What does it mean?' : 'How is it read?'}</p>
-        <p className="font-display text-sm text-ink-soft">
-          Streak <span className="font-serif text-2xl font-bold text-ink">{score}</span> · best {Math.max(best, state === 'wrong' ? score : 0)}
-        </p>
+        {review ? (
+          <p className="font-display text-sm text-ink-soft">
+            ✓ <span className="font-serif text-2xl font-bold text-ink">{score}</span> · ✗ {missed} · {left} to learn
+          </p>
+        ) : (
+          <p className="font-display text-sm text-ink-soft">
+            Streak <span className="font-serif text-2xl font-bold text-ink">{score}</span> · best {Math.max(best, state === 'wrong' ? score : 0)}
+          </p>
+        )}
       </div>
-      <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
-      <div ref={arena} className="page flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
+      {!review && (
+        <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
+      )}
+      <div ref={arena} className="page relative flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
+        {deck.level === 'All' && <span className="absolute left-3 top-3 rounded-full border border-rule-strong px-2 py-0.5 font-display text-xs text-ink-faint">{q.entry.level}</span>}
+        {review && (
+          <span className="absolute right-3 top-3 font-display text-xs text-ink-faint" title={`${JLPT_LEARNED} right in a row and it's learned`}>
+            {'●'.repeat(learning)}
+            {'○'.repeat(Math.max(0, JLPT_LEARNED - learning))}
+          </span>
+        )}
         <p key={q.entry.id} lang="ja" className="animate-round-in font-serif text-6xl font-bold leading-tight sm:text-7xl">
           {q.entry.text}
         </p>
@@ -94,6 +164,7 @@ function Game({ deck }: { deck: JlptDeck }) {
           {q.entry.reading !== q.entry.text && q.entry.reading}
         </p>
         {state !== 'guess' && <p className="animate-pop text-sm text-ink-faint">{shortMeaning(q.entry.meaning, 6)}</p>}
+        <KeepButton id={q.entry.id} />
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {q.options.map((o, i) => (
@@ -110,27 +181,117 @@ function Game({ deck }: { deck: JlptDeck }) {
           </button>
         ))}
       </div>
-      {state === 'wrong' && (
-        <div className="animate-pop space-y-3 rounded-md border border-miss/50 bg-miss/10 p-5 text-center">
-          <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{picked ? 'Streak over' : "Time's up"}</p>
-          <p className="font-serif text-5xl font-bold">{score}</p>
-          {score > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best}</p>}
-          <button type="button" onClick={restart} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
-            Play again
-          </button>
-        </div>
-      )}
+      {state === 'wrong' &&
+        (review ? (
+          <div className="animate-pop flex items-center justify-between gap-3 rounded-md border border-miss/50 bg-miss/10 p-4">
+            <p className="text-sm text-ink-soft">Not this time — it stays on your list, and starts over.</p>
+            <button type="button" onClick={next} className="btn-ink rounded-md px-5 py-2 font-display font-bold tracking-wider">
+              Next ↵
+            </button>
+          </div>
+        ) : (
+          <div className="animate-pop space-y-3 rounded-md border border-miss/50 bg-miss/10 p-5 text-center">
+            <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{picked ? 'Streak over' : "Time's up"}</p>
+            <p className="font-serif text-5xl font-bold">{score}</p>
+            {score > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best}</p>}
+            <p className="text-xs text-ink-faint">{q.entry.text} is now on your review list.</p>
+            <button type="button" onClick={restart} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
+              Play again
+            </button>
+          </div>
+        ))}
     </div>
   );
 }
 
-/** /jlpt and /jlpt/:deck */
+/** The review list: every word kept, to look over or take off. */
+function ReviewList() {
+  const list = useProgress((s) => s.jlptReview);
+  const remove = useProgress((s) => s.removeJlptReview);
+  const [open, setOpen] = useState(false);
+  const ids = Object.keys(list).filter((id) => jlptEntry(id));
+  return (
+    <section className="page space-y-4 rounded-md p-5 ring-2 ring-ochre/50">
+      <div className="flex flex-wrap items-center gap-4">
+        <span className="text-4xl">🔁</span>
+        <div className="min-w-0 flex-1">
+          <p className="font-display text-xl font-bold">My review list</p>
+          <p className="text-sm text-ink-soft">
+            {ids.length
+              ? `${ids.length} word${ids.length === 1 ? '' : 's'} that give you trouble. Get one right ${JLPT_LEARNED} times in a row in Review and it's learned.`
+              : 'Empty for now: the words you miss land here, and so do the ones you star (☆) while playing.'}
+          </p>
+        </div>
+        {ids.length > 0 && (
+          <>
+            <button type="button" onClick={() => setOpen(!open)} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
+              {open ? 'Hide the list' : 'See the list'}
+            </button>
+            <Link to="/jlpt/review" className="btn-accent rounded-md px-5 py-2 font-display font-bold tracking-wider">
+              Review
+            </Link>
+          </>
+        )}
+      </div>
+      {open && (
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {ids.map((id) => {
+            const e = jlptEntry(id)!;
+            return (
+              <li key={id} className="flex items-center gap-3 rounded-md border border-rule px-3 py-2">
+                <span lang="ja" className="font-serif text-2xl font-bold">
+                  {e.text}
+                </span>
+                <span className="min-w-0 flex-1 text-sm">
+                  <span lang="ja" className="block text-ink-soft">
+                    {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+                  </span>
+                  <span className="block truncate text-ink-faint">{shortMeaning(e.meaning)}</span>
+                </span>
+                <span className="font-display text-xs text-ink-faint">
+                  {'●'.repeat(list[id])}
+                  {'○'.repeat(Math.max(0, JLPT_LEARNED - list[id]))}
+                </span>
+                <button type="button" onClick={() => remove(id)} aria-label={`Take ${e.text} off the list`} className="px-1 text-ink-faint hover:text-miss">
+                  ✕
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function DeckCard({ deck, glyph, title }: { deck: JlptDeck; glyph: string; title: string }) {
+  const best = useProgress((s) => s.bests[`jlpt:${deck.id}`] ?? 0);
+  return (
+    <li>
+      <Link to={`/jlpt/${deck.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
+        <span lang="ja" className="font-serif text-3xl font-bold">
+          {glyph}
+        </span>
+        <span className="font-display text-xl font-bold">{title}</span>
+        <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
+          {deck.entries.length.toLocaleString('en')} {deck.kind === 'kanji' ? 'kanji' : 'words'}
+          {best > 0 && (
+            <span className="inline-flex items-center gap-1 font-bold text-coral">
+              <FlameIcon /> best {best}
+            </span>
+          )}
+        </span>
+      </Link>
+    </li>
+  );
+}
+
+/** /jlpt and /jlpt/:deck ("review": the review list) */
 export default function Jlpt() {
   const { deck: id } = useParams();
-  const bests = useProgress((s) => s.bests);
   const [grammar, setGrammar] = useState<string | null>(null);
   if (id) {
-    const deck = jlptDeck(id);
+    const deck = id === 'review' ? reviewDeck([]) : jlptDeck(id);
     if (!deck) return <Navigate to="/jlpt" replace />;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
@@ -138,7 +299,11 @@ export default function Jlpt() {
           <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
             ← JLPT
           </Link>
-          <h1 className="text-4xl font-bold">{deck.label}</h1>
+          <h1 className="text-4xl font-bold">
+            {deck.icon && `${deck.icon} `}
+            {deck.label}
+          </h1>
+          {deck.kind === 'review' && <p className="text-sm text-ink-soft">No clock, and a miss doesn&apos;t end it. {JLPT_LEARNED} right in a row and a word is learned.</p>}
         </div>
         <Game key={deck.id} deck={deck} />
       </div>
@@ -155,27 +320,21 @@ export default function Jlpt() {
           Japanese from N5 to N1: a word or a kanji, four answers — its meaning or its reading. Faster and faster, until the first mistake. Keys 1–4 answer.
         </p>
       </div>
+      <ReviewList />
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Themes · every level</h2>
+        <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          {JLPT_THEMES.map((d) => (
+            <DeckCard key={d.id} deck={d} glyph={d.icon!} title={d.label} />
+          ))}
+        </ul>
+      </section>
       {JLPT_LEVELS.map((l) => (
         <section key={l.level} className="space-y-3">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{l.level}</h2>
           <ul className="grid gap-4 sm:grid-cols-3">
             {l.decks.map((d) => (
-              <li key={d.id}>
-                <Link to={`/jlpt/${d.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
-                  <span lang="ja" className="font-serif text-3xl font-bold">
-                    {d.kind === 'vocab' ? '語' : '字'}
-                  </span>
-                  <span className="font-display text-xl font-bold">{d.kind === 'vocab' ? 'Vocabulary' : 'Kanji'}</span>
-                  <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
-                    {d.entries.length.toLocaleString('en')} {d.kind === 'vocab' ? 'words' : 'kanji'}
-                    {(bests[`jlpt:${d.id}`] ?? 0) > 0 && (
-                      <span className="inline-flex items-center gap-1 font-bold text-coral">
-                        <FlameIcon /> best {bests[`jlpt:${d.id}`]}
-                      </span>
-                    )}
-                  </span>
-                </Link>
-              </li>
+              <DeckCard key={d.id} deck={d} glyph={d.kind === 'vocab' ? '語' : '字'} title={d.kind === 'vocab' ? 'Vocabulary' : 'Kanji'} />
             ))}
             <li>
               <button

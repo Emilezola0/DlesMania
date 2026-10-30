@@ -173,6 +173,18 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
  * these cards; art from the fan wikis.)
  */
 const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; awaken: { title: string; image: string; line: string } }> = {
+  // 日本語 itself: the language, in gold on black; on a Hard win it wakes as the whole 漢字 seal.
+  jlpt: {
+    name: 'Language',
+    title: '日本語 — Nihongo',
+    line: 'Three scripts, two thousand kanji and a hundred ways to say “I”: every card of the set, written together, makes this one word.',
+    image: kanjiPicture('kanji-omni:日本語'),
+    awaken: {
+      title: '漢字 — The Way of Kanji',
+      line: 'Oni-Sensei bows for the first time: every stroke in its place, every reading known. N1 — gōkaku.',
+      image: kanjiPicture('kanji-awake:漢字'),
+    },
+  },
   onepiece: {
     name: 'Monkey D. Luffy',
     title: 'Gear Fourth: Boundman',
@@ -413,10 +425,13 @@ const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]
  * Inazuma Eleven's casts, and every Overwatch hero. Their rarity is set in the file: the best-known
  * faces epic, the next ones rare.
  */
-const MORE = { ...MORE_ROSTERS, jlpt: JLPT_CARDS.roster.map((c) => ({ name: c.name, image: kanjiPicture(`kanji:${c.kanji}`), rarity: c.rarity })) } as Record<string, { name: string; image: string; rarity: Rarity }[]>;
+/** JLPT cards: [name, kanji, reading, meaning, level(, rarity)] (scripts/data/jlpt-boss.mjs) — a card for every kanji of the list. */
+type JlptRow = [string, string, string, string, string, Rarity?];
+const JLPT_ROSTER = JLPT_CARDS.roster as JlptRow[];
+const MORE = { ...MORE_ROSTERS, jlpt: JLPT_ROSTER.map(([name, kanji, , , , rarity]) => ({ name, image: kanjiPicture(`kanji:${kanji}`), rarity: rarity! })) } as Record<string, { name: string; image: string; rarity: Rarity }[]>;
 
-/** A JLPT card says its kanji: its meanings, its readings and its level (every N5 and N4 kanji is a card). */
-const JLPT_LINE = new Map([...JLPT_CARDS.described, ...JLPT_CARDS.roster].map((c) => [c.name, `${c.kanji} — ${c.meaning}. Read ${c.reading.replace(/\./g, '')}. JLPT ${c.level}.`]));
+/** A JLPT card says its kanji: its meanings, its readings and its level. */
+const JLPT_LINE = new Map([...(JLPT_CARDS.described as JlptRow[]), ...JLPT_ROSTER].map(([name, kanji, reading, meaning, level]) => [name, `${kanji} — ${meaning || name.toLowerCase()}. Read ${reading.replace(/\./g, '')}. JLPT ${level}.`]));
 
 /**
  * The mythics and omnis at their strongest, in their own voices: the most powerful form or the

@@ -174,6 +174,16 @@ interface ProgressState {
    */
   seen: Record<string, string[]>;
   markSeen: (scope: string, ids: string[]) => void;
+  /**
+   * The JLPT words and kanji the player keeps for review (missed ones go in by themselves), by entry id
+   * ("N3:vocab:12") -> right answers in a row in Review; JLPT_LEARNED in a row and it leaves the list.
+   */
+  jlptReview: Record<string, number>;
+  /** Puts entries on the list (`keep`: added by hand — a right answer elsewhere doesn't count against it). */
+  addJlptReview: (ids: string[]) => void;
+  removeJlptReview: (id: string) => void;
+  /** A Review answer: right ones add up (until it's learned and leaves), a wrong one starts over. */
+  reviewJlpt: (id: string, right: boolean) => void;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
@@ -256,6 +266,9 @@ const SEEN_LIMIT = 300;
  * recent ones, leaving the least recently seen (or never seen) available. Once everything has come
  * up, the oldest come back first.
  */
+/** Right answers in a row in JLPT Review for a word to count as learned and leave the list. */
+export const JLPT_LEARNED = 3;
+
 export function recentlySeen(seen: string[] | undefined, poolSize: number, needed = 1): string[] {
   return (seen ?? []).slice(0, Math.max(0, poolSize - needed));
 }
@@ -444,6 +457,21 @@ export const useProgress = create<ProgressState>()(
       theme: 'system',
       nameLang: 'en',
       setNameLang: (nameLang) => set({ nameLang }),
+      jlptReview: {},
+      addJlptReview: (ids) => set((s) => ({ jlptReview: { ...s.jlptReview, ...Object.fromEntries(ids.map((id) => [id, 0])) } })),
+      removeJlptReview: (id) =>
+        set((s) => {
+          const { [id]: _, ...rest } = s.jlptReview;
+          return { jlptReview: rest };
+        }),
+      reviewJlpt: (id, right) =>
+        set((s) => {
+          if (!(id in s.jlptReview)) return {};
+          const n = right ? s.jlptReview[id] + 1 : 0;
+          if (n < JLPT_LEARNED) return { jlptReview: { ...s.jlptReview, [id]: n } };
+          const { [id]: _, ...rest } = s.jlptReview;
+          return { jlptReview: rest };
+        }),
       seen: {},
       markSeen: (scope, ids) =>
         set((s) => {

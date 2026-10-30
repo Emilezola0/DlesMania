@@ -126,7 +126,7 @@ const boss = {
   signature: { label: 'Kanji', prompt: 'What does this kanji mean?', clues },
 };
 
-// The album's JLPT cards beyond the boss's: every N5 and N4 kanji (src/data/jlpt-cards.json), and what
+// The album's JLPT cards beyond the boss's: a card for every kanji of the list (src/data/jlpt-cards.json), and what
 // every JLPT card says (its kanji, readings and meanings, the boss's cards too).
 const CARDS = new URL('../../src/data/jlpt-cards.json', import.meta.url);
 const info = (k, name) => {
@@ -144,7 +144,31 @@ for (const level of ['N5', 'N4']) {
     roster.push({ ...info(k, c.label), rarity: level === 'N4' && i % 5 === 0 ? 'rare' : 'common' });
   });
 }
-writeFileSync(CARDS, `${JSON.stringify({ described, roster })}\n`);
+// Then every other kanji of the list, so the set has a card for each one: N3 to N1, and the N5 and N4 kanji
+// whose meaning a card already had (named by another of their meanings, else with the kanji itself).
+const slug = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const slugs = new Set([...members, ...finale, ...roster].map((c) => slug(c.label ?? c.name)));
+const carded = new Set([...TWINS.map(([k]) => k), ...FINALE, ...roster.map((c) => c.kanji)]);
+for (const level of ['N5', 'N4', 'N3', 'N2', 'N1']) {
+  JLPT.levels.find((l) => l.level === level).kanji.forEach(([k], i) => {
+    if (carded.has(k) || !KANJI.has(k)) return;
+    carded.add(k);
+    const meanings = KANJI.get(k).meanings.filter((m) => !/radical|counter/i.test(m)).map(title);
+    // A card's id is its name in plain letters ("jlpt:settle-debt-etc"), so names must differ there too:
+    // another meaning, else the meaning and the kanji's reading ("Kanji (ka)").
+    const free = (n) => !taken.has(n.toLowerCase()) && !slugs.has(slug(n));
+    const reading = romaji(readingsOf(KANJI.get(k).reading)[0] ?? '') || 'kanji';
+    let name = meanings.find(free) ?? `${meanings[0] ?? 'Kanji'} (${reading})`;
+    for (let n = 2; !free(name); n++) name = `${meanings[0] ?? 'Kanji'} (${reading} ${n})`;
+    taken.add(name.toLowerCase());
+    slugs.add(slug(name));
+    const rarity = level === 'N5' || level === 'N4' ? 'common' : level === 'N3' ? (i % 4 === 0 ? 'rare' : 'common') : level === 'N2' ? (i % 3 === 0 ? 'rare' : 'common') : i % 8 === 0 ? 'epic' : 'rare';
+    roster.push({ ...info(k, name), rarity });
+  });
+}
+// Compact rows: [name, kanji, reading, meaning, level(, rarity)].
+const row = (c) => [c.name, c.kanji, c.reading, c.meaning, c.level, ...(c.rarity ? [c.rarity] : [])];
+writeFileSync(CARDS, `${JSON.stringify({ described: described.map(row), roster: roster.map(row) })}\n`);
 
 const bosses = JSON.parse(readFileSync(BOSSES, 'utf8'));
 const at = bosses.findIndex((b) => b.id === 'jlpt');
