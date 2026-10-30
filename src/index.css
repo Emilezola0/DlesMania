@@ -929,14 +929,6 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .card-omni-awake .card-backdrop-omni { animation-duration: 3.5s; }
 .card-backdrop-still { animation: none; }
-.card-backdrop-clip {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  filter: blur(1.2cqw) brightness(0.72) saturate(1.25);
-  transform: scale(1.08);
-  pointer-events: none;
-}
 /* YouTube's frame, zoomed on its left side: its corners and bottom bar stay out of sight, and so does the pause mark it flashes in its middle each time the moment restarts. */
 .card-clip-yt { position: absolute; inset: 0; transition: opacity 0.25s; pointer-events: none; }
 .card-clip-yt iframe { position: absolute; left: -35%; top: 50%; width: 300%; height: auto; aspect-ratio: 16 / 9; transform: translateY(-50%); }

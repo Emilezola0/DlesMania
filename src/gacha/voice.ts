@@ -79,8 +79,6 @@ let playing: HTMLAudioElement | null = null;
 export const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
 /** The same on TikTok: "tiktok:POST_ID@9-13". */
 export const TT_CLIP = /^tiktok:(\d+)@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
-/** A clip kept on another site: it plays in an embedded player, which takes a moment to start. */
-export const isEmbedClip = (src: string) => YT_VOICE.test(src) || TT_CLIP.test(src);
 let ytVoice: { host: HTMLElement; player?: YTPlayer; timer?: number } | null = null;
 let ttVoice: { host: HTMLElement; player?: TikTokPlayer; timer?: number } | null = null;
 
