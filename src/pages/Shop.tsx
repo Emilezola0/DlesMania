@@ -8,7 +8,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -32,12 +32,11 @@ const pct = (x: number) => `${x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x
 
 /**
  * A rarity's chances: per card, and of at least one in a pack — four cards on the odds, the last
- * one at least rare (the odds of rare and up, shared out again among themselves).
+ * one at least rare (see lastCardOdds).
  */
 function chances(odds: Record<Rarity, number>, r: Rarity) {
-  const top = RARITIES.slice(1).reduce((t, x) => t + odds[x], 0);
   const p = odds[r] / 100;
-  const last = r === 'common' ? 0 : odds[r] / top;
+  const last = lastCardOdds(odds)[r] / 100;
   const pack = 1 - Math.pow(1 - p, PACK_SIZE - 1) * (1 - last);
   return { card: odds[r], pack: pack * 100 };
 }
@@ -55,7 +54,7 @@ function DropRates() {
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much; Mythic and Omni never change). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">

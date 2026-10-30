@@ -79,28 +79,44 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
 }
 
 /**
- * The odds with a boost: epic multiplied, rare and legendary by half as much, mythic and omni not at all (they stay the
+ * The odds with a boost: epic multiplied, rare and legendary by half as much, mythic and omni by a quarter (they stay the
  * endgame), common taking the rest; `luck` (see pityLuck) multiplies legendary again, and mythic and omni by
  * PITY_TOP_SHARE of it — each kept under its TOP_CAP.
  */
 export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
+  const quarter = 1 + (boost - 1) / 4;
   const rare = ODDS.rare * half;
   const epic = ODDS.epic * boost;
   const legendary = Math.min(TOP_CAP.legendary!, ODDS.legendary * half * luck);
   const topLuck = 1 + (luck - 1) * PITY_TOP_SHARE;
-  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * topLuck);
-  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * topLuck);
+  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * quarter * topLuck);
+  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * quarter * topLuck);
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 
+/** How much likelier the top rarities are on a pack's last card, the one that's at least rare. */
+const LAST_CARD_LIFT = 100 / (100 - ODDS.common);
+
+/**
+ * The odds of a pack's last card: no common, the top rarities lifted by the same amount whatever the boost
+ * (so a better rare or epic never crowds them out), rare and epic sharing the rest as they do on the others.
+ */
+export function lastCardOdds(odds: Record<Rarity, number>): Record<Rarity, number> {
+  const legendary = odds.legendary * LAST_CARD_LIFT;
+  const mythic = odds.mythic * LAST_CARD_LIFT;
+  const omni = odds.omni * LAST_CARD_LIFT;
+  const rest = 100 - legendary - mythic - omni;
+  const lower = odds.rare + odds.epic;
+  return { common: 0, rare: (rest * odds.rare) / lower, epic: (rest * odds.epic) / lower, legendary, mythic, omni };
+}
+
 /** The rarity of a card: the hardest to get is tried first (Omni, then Mythic, and so on), Common last. */
-const rollRarity = (odds: Record<Rarity, number>, rand: () => number, atLeast: Rarity = 'common'): Rarity => {
-  const allowed = RARITIES.slice(RARITIES.indexOf(atLeast)).reverse();
-  const total = allowed.reduce((t, r) => t + odds[r], 0);
-  let x = rand() * total;
-  for (const r of allowed) if ((x -= odds[r]) < 0) return r;
-  return allowed[allowed.length - 1];
+const rollRarity = (odds: Record<Rarity, number>, rand: () => number): Rarity => {
+  const order = [...RARITIES].reverse();
+  let x = rand() * 100;
+  for (const r of order) if ((x -= odds[r]) < 0) return r;
+  return order[order.length - 1];
 };
 
 /** One of these cards: every franchise among them has the same chance, however many cards it has, then every card of it. */
@@ -117,7 +133,7 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
   const odds = oddsWith(boost, luck);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
-    let r = rollRarity(odds, rand, i === PACK_SIZE - 1 ? 'rare' : 'common');
+    let r = rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
     // Five different cards: one already in this pack isn't drawn again.
     const of = (x: Rarity) => pool.filter((c) => c.rarity === x && !taken.has(c.id));
     let cands = of(r);
