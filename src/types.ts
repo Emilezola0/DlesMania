@@ -146,6 +146,8 @@ export interface BossCard {
   aliases?: string[];
   /** The French name, when it differs (also among the aliases): shown when names are in French. */
   fr?: string;
+  /** JLPT: the kanji's readings, shown once the card is answered (the games are there to learn). */
+  reading?: string;
 }
 
 /** Phase 1: "Name 5 champions from Demacia". */
@@ -225,6 +227,8 @@ export interface SignatureClue {
   /** Or a sound: a clip played in full. */
   audio?: { youtubeId: string; start?: number };
   answer: { name: string; aliases: string[] };
+  /** JLPT: the kanji's readings, shown once the clue is answered. */
+  reading?: string;
 }
 
 /** Hard's Signature balancing (src/data/difficulties.json). */

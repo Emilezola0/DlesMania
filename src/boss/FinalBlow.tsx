@@ -155,6 +155,12 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
           {solved && (
             <span className="animate-pop absolute inset-x-0 bottom-0 bg-hit px-3 py-2 text-center font-display text-lg font-bold text-on-strong">
               ✓ {shownName(solved)}
+              {/* JLPT: the reading, under the name, once it's answered. */}
+              {target?.reading && (
+                <span lang="ja" className="block text-base font-normal">
+                  {target.reading}
+                </span>
+              )}
             </span>
           )}
         </div>

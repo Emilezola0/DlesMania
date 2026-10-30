@@ -268,6 +268,11 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                   >
                     {fling.note ? `${fling.note} ` : ''}
                     {fling.correct ? '✓' : '✗'} {shownName(fling.card.label)}
+                    {fling.card.reading && (
+                      <span lang="ja" className="block text-xs font-normal">
+                        {fling.card.reading}
+                      </span>
+                    )}
                     {!fling.card.belongs && ' · impostor'}
                   </span>
                 )}

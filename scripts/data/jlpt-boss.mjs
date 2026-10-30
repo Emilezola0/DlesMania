@@ -52,7 +52,8 @@ function card(k, label) {
   const name = label ?? title(meanings[0]);
   const readings = info ? readingsOf(info.reading) : [];
   const aliases = [...new Set([...meanings.slice(label ? 0 : 1, 4).map(title), ...readings.map(romaji), ...readings, k])].filter((a) => a && a.toLowerCase() !== name.toLowerCase());
-  return { label: name, image: `kanji:${k}`, aliases };
+  // Its readings as the list gives them, shown once the card is answered.
+  return { label: name, image: `kanji:${k}`, aliases, ...(info ? { reading: info.reading } : {}) };
 }
 
 // Everyday kanji to keep on the Radar (every one from the list, N5 to N2), against N1 kanji: the ones a
@@ -67,7 +68,7 @@ const members = TWINS.map(([k, label]) => card(k, label));
 const N1 = JLPT.levels.find((l) => l.level === 'N1').kanji;
 const impostors = N1.filter(([, , m]) => !/[;,]/.test(m) && /^[a-z ]+$/i.test(m))
   .slice(0, 16)
-  .map(([k, , m]) => ({ label: `${title(m)} (N1)`, image: `kanji:${k}` }));
+  .map(([k, r, m]) => ({ label: `${title(m)} (N1)`, image: `kanji:${k}`, reading: r }));
 
 const twinsUsed = new Set(TWINS.map(([k]) => k));
 const FINALE = ['山', '川', '火', '水', '木', '金', '土', '雨', '花', '犬', '牛', '肉', '茶', '海', '夜', '朝', '春', '夏', '秋', '冬', '赤', '黒', '白', '手', '口', '目', '足', '店', '紙', '歌'];
@@ -80,7 +81,7 @@ const clues = N3.filter(([, , m]) => !/[;,]/.test(m) && m.length <= 14 && /^[a-z
   .map(([k, r]) => {
     const readings = readingsOf(r);
     const [meaning] = N3.find((x) => x[0] === k)[2].split(';');
-    return { text: k, answer: [title(meaning), ...readings.map(romaji), ...readings].join('|') };
+    return { text: k, answer: [title(meaning), ...readings.map(romaji), ...readings].join('|'), reading: r };
   });
 
 // Knowledge Blitz and Name Chain: the list's own words about one thing (N5 to N3), found as in the theme

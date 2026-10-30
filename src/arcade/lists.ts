@@ -64,7 +64,8 @@ const jlpt: NameList[] = JLPT_THEMES.map((t) => {
     const readings = e.reading.split(/[/／・、\s]+/).filter(Boolean);
     const forms = e.text.split(/[/／\s]+/).filter(Boolean);
     words.set(e.text, {
-      name: `${e.text} · ${romajiSpellings(readings[0] ?? e.text)[0]}`,
+      // The word, its kana and its romaji: every name named shows how it's read.
+      name: readings[0] && readings[0] !== e.text ? `${e.text} · ${readings[0]} (${romajiSpellings(readings[0])[0]})` : `${e.text} (${romajiSpellings(e.text)[0]})`,
       aliases: [...new Set([...forms, ...readings, ...readings.map(toHiragana), ...readings.flatMap(romajiSpellings)])],
     });
   }

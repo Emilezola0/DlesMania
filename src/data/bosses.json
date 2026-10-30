@@ -17349,7 +17349,8 @@
             "け",
             "いき",
             "気"
-          ]
+          ],
+          "reading": "キ・ケ・いき"
         },
         {
           "label": "Language",
@@ -17364,7 +17365,8 @@
             "かたる",
             "かたらう",
             "語"
-          ]
+          ],
+          "reading": "ゴ・かた.る・かた.らう"
         },
         {
           "label": "Write",
@@ -17377,7 +17379,8 @@
             "かく",
             "がき",
             "書"
-          ]
+          ],
+          "reading": "ショ・か.く・~が.き・~がき"
         },
         {
           "label": "East",
@@ -17388,7 +17391,8 @@
             "とう",
             "ひがし",
             "東"
-          ]
+          ],
+          "reading": "トウ・ひがし"
         },
         {
           "label": "Gate",
@@ -17401,7 +17405,8 @@
             "かど",
             "と",
             "門"
-          ]
+          ],
+          "reading": "モン・かど・と"
         },
         {
           "label": "Car",
@@ -17412,7 +17417,8 @@
             "しゃ",
             "くるま",
             "車"
-          ]
+          ],
+          "reading": "シャ・くるま"
         },
         {
           "label": "Horse",
@@ -17425,7 +17431,8 @@
             "うま",
             "ま",
             "馬"
-          ]
+          ],
+          "reading": "バ・うま・うま~・ま"
         },
         {
           "label": "Bird",
@@ -17437,7 +17444,8 @@
             "ちょう",
             "とり",
             "鳥"
-          ]
+          ],
+          "reading": "チョウ・とり"
         },
         {
           "label": "See",
@@ -17455,7 +17463,8 @@
             "みえる",
             "みせる",
             "見"
-          ]
+          ],
+          "reading": "ケン・み.る・み.える・み.せる"
         },
         {
           "label": "Long",
@@ -17471,7 +17480,8 @@
             "ながい",
             "おさ",
             "長"
-          ]
+          ],
+          "reading": "チョウ・なが.い・おさ"
         },
         {
           "label": "Talk",
@@ -17485,7 +17495,8 @@
             "はなす",
             "はなし",
             "話"
-          ]
+          ],
+          "reading": "ワ・はな.す・はなし"
         },
         {
           "label": "Read",
@@ -17502,7 +17513,8 @@
             "よむ",
             "よみ",
             "読"
-          ]
+          ],
+          "reading": "ドク・トク・トウ・よ.む・~よ.み"
         },
         {
           "label": "Time",
@@ -17516,7 +17528,8 @@
             "とき",
             "どき",
             "時"
-          ]
+          ],
+          "reading": "ジ・とき・~どき"
         },
         {
           "label": "Electricity",
@@ -17525,7 +17538,8 @@
             "den",
             "でん",
             "電"
-          ]
+          ],
+          "reading": "デン"
         },
         {
           "label": "Interval",
@@ -17543,7 +17557,8 @@
             "ま",
             "あい",
             "間"
-          ]
+          ],
+          "reading": "カン・ケン・あいだ・ま・あい"
         },
         {
           "label": "Hear",
@@ -17560,7 +17575,8 @@
             "きく",
             "きこえる",
             "聞"
-          ]
+          ],
+          "reading": "ブン・モン・き.く・き.こえる"
         },
         {
           "label": "Buy",
@@ -17571,7 +17587,8 @@
             "ばい",
             "かう",
             "買"
-          ]
+          ],
+          "reading": "バイ・か.う"
         },
         {
           "label": "Wind",
@@ -17589,7 +17606,8 @@
             "かぜ",
             "かざ",
             "風"
-          ]
+          ],
+          "reading": "フウ・フ・かぜ・かざ~・~かぜ"
         },
         {
           "label": "Fish",
@@ -17604,7 +17622,8 @@
             "さかな",
             "ざかな",
             "魚"
-          ]
+          ],
+          "reading": "ギョ・うお・さかな・~ざかな"
         },
         {
           "label": "Open",
@@ -17627,7 +17646,8 @@
             "あく",
             "あける",
             "開"
-          ]
+          ],
+          "reading": "カイ・ひら.く・ひら.き・~びら.き・ひら.ける・あ.く・あ.ける"
         },
         {
           "label": "Drink",
@@ -17644,7 +17664,8 @@
             "のむ",
             "のみ",
             "飲"
-          ]
+          ],
+          "reading": "イン・オン・の.む・~の.み"
         },
         {
           "label": "Meal",
@@ -17656,7 +17677,8 @@
             "はん",
             "めし",
             "飯"
-          ]
+          ],
+          "reading": "ハン・めし"
         },
         {
           "label": "Station",
@@ -17665,7 +17687,8 @@
             "eki",
             "えき",
             "駅"
-          ]
+          ],
+          "reading": "エキ"
         },
         {
           "label": "Silver",
@@ -17676,73 +17699,90 @@
             "ぎん",
             "しろがね",
             "銀"
-          ]
+          ],
+          "reading": "ギン・しろがね"
         }
       ],
       "impostors": [
         {
           "label": "Paulownia (N1)",
-          "image": "kanji:桐"
+          "image": "kanji:桐",
+          "reading": "トウ・ドウ・きり"
         },
         {
           "label": "Chestnut (N1)",
-          "image": "kanji:栗"
+          "image": "kanji:栗",
+          "reading": "リツ・リ・くり・おののく"
         },
         {
           "label": "Wise (N1)",
-          "image": "kanji:慧"
+          "image": "kanji:慧",
+          "reading": "ケイ・エ・さとい"
         },
         {
           "label": "Lagoon (N1)",
-          "image": "kanji:潟"
+          "image": "kanji:潟",
+          "reading": "セキ・かた・~がた"
         },
         {
           "label": "Eulogy (N1)",
-          "image": "kanji:頌"
+          "image": "kanji:頌",
+          "reading": "ショウ・ジュ・ヨウ・かたち・たた.える・ほめ.る"
         },
         {
           "label": "Lungs (N1)",
-          "image": "kanji:肺"
+          "image": "kanji:肺",
+          "reading": "ハイ"
         },
         {
           "label": "Deep and broad (N1)",
-          "image": "kanji:滉"
+          "image": "kanji:滉",
+          "reading": "コウ・ひろ.い"
         },
         {
           "label": "Warmth (N1)",
-          "image": "kanji:暖"
+          "image": "kanji:暖",
+          "reading": "ダン・ノン・あたた.か・あたた.かい・あたた.まる・あたた.める"
         },
         {
           "label": "Pregnancy (N1)",
-          "image": "kanji:妊"
+          "image": "kanji:妊",
+          "reading": "ニン・ジン・はら.む・みごも.る"
         },
         {
           "label": "Chrysanthemum (N1)",
-          "image": "kanji:菊"
+          "image": "kanji:菊",
+          "reading": "キク"
         },
         {
           "label": "Counter for articles (N1)",
-          "image": "kanji:箇"
+          "image": "kanji:箇",
+          "reading": "カ・コ"
         },
         {
           "label": "Pine tree (N1)",
-          "image": "kanji:松"
+          "image": "kanji:松",
+          "reading": "ショウ・まつ"
         },
         {
           "label": "Silkworm (N1)",
-          "image": "kanji:蚕"
+          "image": "kanji:蚕",
+          "reading": "サン・テン・かいこ・こ"
         },
         {
           "label": "Neighboring (N1)",
-          "image": "kanji:隣"
+          "image": "kanji:隣",
+          "reading": "リン・とな.る・となり"
         },
         {
           "label": "Camphor tree (N1)",
-          "image": "kanji:楠"
+          "image": "kanji:楠",
+          "reading": "ナン・ダン・ゼン・ネン・くす・くすのき"
         },
         {
           "label": "Clear (N1)",
-          "image": "kanji:瞭"
+          "image": "kanji:瞭",
+          "reading": "リョウ・あきらか"
         }
       ]
     },
@@ -17758,7 +17798,8 @@
           "せん",
           "やま",
           "山"
-        ]
+        ],
+        "reading": "サン・セン・やま"
       },
       {
         "label": "Stream",
@@ -17770,7 +17811,8 @@
           "せん",
           "かわ",
           "川"
-        ]
+        ],
+        "reading": "セン・かわ"
       },
       {
         "label": "Fire",
@@ -17785,7 +17827,8 @@
           "び",
           "ほ",
           "火"
-        ]
+        ],
+        "reading": "カ・ひ・~び・ほ~"
       },
       {
         "label": "Water",
@@ -17796,7 +17839,8 @@
           "すい",
           "みず",
           "水"
-        ]
+        ],
+        "reading": "スイ・みず・みず~"
       },
       {
         "label": "Tree",
@@ -17812,7 +17856,8 @@
           "き",
           "こ",
           "木"
-        ]
+        ],
+        "reading": "ボク・モク・き・こ~"
       },
       {
         "label": "Gold",
@@ -17831,7 +17876,8 @@
           "かな",
           "がね",
           "金"
-        ]
+        ],
+        "reading": "キン・コン・ゴン・かね・かな~・~がね"
       },
       {
         "label": "Soil",
@@ -17847,7 +17893,8 @@
           "と",
           "つち",
           "土"
-        ]
+        ],
+        "reading": "ド・ト・つち"
       },
       {
         "label": "Rain",
@@ -17862,7 +17909,8 @@
           "あま",
           "さめ",
           "雨"
-        ]
+        ],
+        "reading": "ウ・あめ・あま~・~さめ"
       },
       {
         "label": "Flower",
@@ -17875,7 +17923,8 @@
           "け",
           "はな",
           "花"
-        ]
+        ],
+        "reading": "カ・ケ・はな"
       },
       {
         "label": "Dog",
@@ -17886,7 +17935,8 @@
           "けん",
           "いぬ",
           "犬"
-        ]
+        ],
+        "reading": "ケン・いぬ・いぬ~"
       },
       {
         "label": "Cow",
@@ -17897,7 +17947,8 @@
           "ぎゅう",
           "うし",
           "牛"
-        ]
+        ],
+        "reading": "ギュウ・うし"
       },
       {
         "label": "Meat",
@@ -17908,7 +17959,8 @@
           "にく",
           "しし",
           "肉"
-        ]
+        ],
+        "reading": "ニク・しし"
       },
       {
         "label": "Tea",
@@ -17919,7 +17971,8 @@
           "ちゃ",
           "さ",
           "茶"
-        ]
+        ],
+        "reading": "チャ・サ"
       },
       {
         "label": "Sea",
@@ -17931,7 +17984,8 @@
           "かい",
           "うみ",
           "海"
-        ]
+        ],
+        "reading": "カイ・うみ"
       },
       {
         "label": "Night",
@@ -17945,7 +17999,8 @@
           "よ",
           "よる",
           "夜"
-        ]
+        ],
+        "reading": "ヤ・よ・よる"
       },
       {
         "label": "Morning",
@@ -17959,7 +18014,8 @@
           "ちょう",
           "あさ",
           "朝"
-        ]
+        ],
+        "reading": "チョウ・あさ"
       },
       {
         "label": "Springtime",
@@ -17971,7 +18027,8 @@
           "しゅん",
           "はる",
           "春"
-        ]
+        ],
+        "reading": "シュン・はる"
       },
       {
         "label": "Summer",
@@ -17986,7 +18043,8 @@
           "げ",
           "なつ",
           "夏"
-        ]
+        ],
+        "reading": "カ・ガ・ゲ・なつ"
       },
       {
         "label": "Autumn",
@@ -17999,7 +18057,8 @@
           "あき",
           "とき",
           "秋"
-        ]
+        ],
+        "reading": "シュウ・あき・とき"
       },
       {
         "label": "Winter",
@@ -18010,7 +18069,8 @@
           "とう",
           "ふゆ",
           "冬"
-        ]
+        ],
+        "reading": "トウ・ふゆ"
       },
       {
         "label": "Red",
@@ -18029,7 +18089,8 @@
           "あからむ",
           "あからめる",
           "赤"
-        ]
+        ],
+        "reading": "セキ・シャク・あか・あか~・あか.い・あか.らむ・あか.らめる"
       },
       {
         "label": "Black",
@@ -18044,7 +18105,8 @@
           "くろずむ",
           "くろい",
           "黒"
-        ]
+        ],
+        "reading": "コク・くろ・くろ.ずむ・くろ.い"
       },
       {
         "label": "White",
@@ -18061,7 +18123,8 @@
           "しら",
           "しろい",
           "白"
-        ]
+        ],
+        "reading": "ハク・ビャク・しろ・しら~・しろ.い"
       },
       {
         "label": "Hand",
@@ -18076,7 +18139,8 @@
           "て",
           "た",
           "手"
-        ]
+        ],
+        "reading": "シュ・ズ・て・て~・~て・た~"
       },
       {
         "label": "Mouth",
@@ -18089,7 +18153,8 @@
           "く",
           "くち",
           "口"
-        ]
+        ],
+        "reading": "コウ・ク・くち"
       },
       {
         "label": "Eye",
@@ -18107,7 +18172,8 @@
           "め",
           "ま",
           "目"
-        ]
+        ],
+        "reading": "モク・ボク・め・~め・ま~"
       },
       {
         "label": "Leg",
@@ -18126,7 +18192,8 @@
           "たる",
           "たす",
           "足"
-        ]
+        ],
+        "reading": "ソク・あし・た.りる・た.る・た.す"
       },
       {
         "label": "Store",
@@ -18140,7 +18207,8 @@
           "みせ",
           "たな",
           "店"
-        ]
+        ],
+        "reading": "テン・みせ・たな"
       },
       {
         "label": "Paper",
@@ -18151,7 +18219,8 @@
           "し",
           "かみ",
           "紙"
-        ]
+        ],
+        "reading": "シ・かみ"
       },
       {
         "label": "Song",
@@ -18165,7 +18234,8 @@
           "うた",
           "うたう",
           "歌"
-        ]
+        ],
+        "reading": "カ・うた・うた.う"
       }
     ],
     "secret": {
@@ -18348,75 +18418,93 @@
       "clues": [
         {
           "text": "忘",
-          "answer": "Forget|bou|wasureru|ぼう|わすれる"
+          "answer": "Forget|bou|wasureru|ぼう|わすれる",
+          "reading": "ボウ・わす.れる"
         },
         {
           "text": "雪",
-          "answer": "Snow|setsu|yuki|せつ|ゆき"
+          "answer": "Snow|setsu|yuki|せつ|ゆき",
+          "reading": "セツ・ゆき"
         },
         {
           "text": "雑",
-          "answer": "Miscellaneous|zatsu|zou|majieru|majiru|ざつ|ぞう|まじえる|まじる"
+          "answer": "Miscellaneous|zatsu|zou|majieru|majiru|ざつ|ぞう|まじえる|まじる",
+          "reading": "ザツ・ゾウ・まじ.える・まじ.る"
         },
         {
           "text": "晴",
-          "answer": "Clear up|sei|hareru|hare|bare|harasu|せい|はれる|はれ|ばれ|はらす"
+          "answer": "Clear up|sei|hareru|hare|bare|harasu|せい|はれる|はれ|ばれ|はらす",
+          "reading": "セイ・は.れる・は.れ・は.れ~・~ば.れ・は.らす"
         },
         {
           "text": "煙",
-          "answer": "Smoke|en|kemuru|kemuri|kemui|えん|けむる|けむり|けむい"
+          "answer": "Smoke|en|kemuru|kemuri|kemui|えん|けむる|けむり|けむい",
+          "reading": "エン・けむ.る・けむり・けむ.い"
         },
         {
           "text": "泳",
-          "answer": "Swim|ei|oyogu|えい|およぐ"
+          "answer": "Swim|ei|oyogu|えい|およぐ",
+          "reading": "エイ・およ.ぐ"
         },
         {
           "text": "馬",
-          "answer": "Horse|ba|uma|ma|ば|うま|ま"
+          "answer": "Horse|ba|uma|ma|ば|うま|ま",
+          "reading": "バ・うま・うま~・ま"
         },
         {
           "text": "声",
-          "answer": "Voice|sei|shou|koe|kowa|せい|しょう|こえ|こわ"
+          "answer": "Voice|sei|shou|koe|kowa|せい|しょう|こえ|こわ",
+          "reading": "セイ・ショウ・こえ・こわ~"
         },
         {
           "text": "石",
-          "answer": "Stone|seki|shaku|koku|ishi|せき|しゃく|こく|いし"
+          "answer": "Stone|seki|shaku|koku|ishi|せき|しゃく|こく|いし",
+          "reading": "セキ・シャク・コク・いし"
         },
         {
           "text": "耳",
-          "answer": "Ear|ji|mimi|じ|みみ"
+          "answer": "Ear|ji|mimi|じ|みみ",
+          "reading": "ジ・みみ"
         },
         {
           "text": "婚",
-          "answer": "Marriage|kon|こん"
+          "answer": "Marriage|kon|こん",
+          "reading": "コン"
         },
         {
           "text": "寒",
-          "answer": "Cold|kan|samui|かん|さむい"
+          "answer": "Cold|kan|samui|かん|さむい",
+          "reading": "カン・さむ.い"
         },
         {
           "text": "猫",
-          "answer": "Cat|byou|neko|びょう|ねこ"
+          "answer": "Cat|byou|neko|びょう|ねこ",
+          "reading": "ビョウ・ねこ"
         },
         {
           "text": "静",
-          "answer": "Quiet|sei|jou|shizu|shizuka|shizumaru|shizumeru|せい|じょう|しず|しずか|しずまる|しずめる"
+          "answer": "Quiet|sei|jou|shizu|shizuka|shizumaru|shizumeru|せい|じょう|しず|しずか|しずまる|しずめる",
+          "reading": "セイ・ジョウ・しず~・しず.か・しず.まる・しず.める"
         },
         {
           "text": "遊",
-          "answer": "Play|yuu|yu|asobu|asobasu|ゆう|ゆ|あそぶ|あそばす"
+          "answer": "Play|yuu|yu|asobu|asobasu|ゆう|ゆ|あそぶ|あそばす",
+          "reading": "ユウ・ユ・あそ.ぶ・あそ.ばす"
         },
         {
           "text": "港",
-          "answer": "Harbor|kou|minato|こう|みなと"
+          "answer": "Harbor|kou|minato|こう|みなと",
+          "reading": "コウ・みなと"
         },
         {
           "text": "笑",
-          "answer": "Laugh|shou|warau|emu|しょう|わらう|えむ"
+          "answer": "Laugh|shou|warau|emu|しょう|わらう|えむ",
+          "reading": "ショウ・わら.う・え.む"
         },
         {
           "text": "靴",
-          "answer": "Shoes|ka|kutsu|か|くつ"
+          "answer": "Shoes|ka|kutsu|か|くつ",
+          "reading": "カ・くつ"
         }
       ]
     }

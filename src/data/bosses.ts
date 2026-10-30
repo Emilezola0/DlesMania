@@ -8,14 +8,14 @@ import { kanjiPicture } from '../lib/kanji';
  * In bosses.json a card is a plain label or `{ label, src?, image?, aliases? }` (`src` only
  * matters to scripts/enrich-bosses.mjs), and a Knowledge Blitz answer is "Name|alias|alias".
  */
-type RawCard = string | { label: string; image?: string; aliases?: string[]; fr?: string };
+type RawCard = string | { label: string; image?: string; aliases?: string[]; fr?: string; reading?: string };
 type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 'signature'> & {
   aliases?: string[];
   blitz: { prompt: string; count: number; answers: string[] }[];
   radar: { members: RawCard[]; impostors: RawCard[] };
   finale: RawCard[];
   secret?: Omit<NonNullable<Boss['secret']>, 'categories'> & { categories: { label: string; entities: string[] }[] };
-  signature?: { label: string; prompt: string; clues: { text?: string; effect?: string; image?: string; audio?: { youtubeId: string; start?: number }; answer: string }[] };
+  signature?: { label: string; prompt: string; clues: { text?: string; effect?: string; image?: string; audio?: { youtubeId: string; start?: number }; answer: string; reading?: string }[] };
 };
 
 /** "node:<name>": a Blueprint node, drawn from src/specialist/blueprint.ts rather than stored as a picture. */
@@ -28,7 +28,7 @@ const picture = (image?: string) => {
 };
 
 const card = (c: RawCard): BossCard =>
-  typeof c === 'string' ? { label: c } : { label: c.label, image: picture(c.image), aliases: c.aliases, fr: c.fr };
+  typeof c === 'string' ? { label: c } : { label: c.label, image: picture(c.image), aliases: c.aliases, fr: c.fr, reading: c.reading };
 
 const spelling = (a: string) => {
   const [name, ...aliases] = a.split('|');

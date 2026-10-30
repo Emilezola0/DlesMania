@@ -93,13 +93,13 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         setText('');
         return setMaybe(answer.name);
       }
-      return miss(`“${value.trim()}” — it was ${shownName(answer.name)}`);
+      return miss(`“${value.trim()}” — it was ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`);
     }
     setText('');
     sfx.correct();
     const got = right + 1;
     setRight(got);
-    setMessage({ text: shownName(answer.name), good: true });
+    setMessage({ text: `${shownName(answer.name)}${clue.reading ? ` — ${clue.reading}` : ''}`, good: true });
     if (got >= toWin) {
       sfx.streak();
       return end(true, toWin === 1 ? `named ${shownName(answer.name)}` : `${toWin} ${label.toLowerCase()} clues answered`, got);
@@ -142,7 +142,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
           running={state === 'answer' && pictureReady}
           resetKey={index}
-          onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}`)}
+          onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`)}
           hideSeconds
         />
       )}
