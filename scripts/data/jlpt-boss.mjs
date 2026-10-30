@@ -1,7 +1,8 @@
 // The JLPT boss: Oni-Sensei, keeper of the kanji. Its cards are kanji drawn by the app ("kanji:山", see
 // src/lib/kanji.ts), named by their meaning; their readings, in romaji and in kana, are accepted too.
-// Radar: the Japanese kanji against their simplified Chinese twins. Final Blow: N5 and N4 kanji to name
-// by their meaning. Signature (Hard): N3 kanji. Re-run after changing src/data/jlpt.json.
+// Every Japanese word, kanji and reading comes from src/data/jlpt.json (Coto Academy's list) — no other
+// source. Radar: everyday kanji against N1 ones. Final Blow: N5 and N4 kanji to name by their meaning.
+// Blitz and Name Chain: the list's words by topic. Signature (Hard): N3 kanji. Re-run after changing the list.
 // node scripts/data/jlpt-boss.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 
@@ -54,15 +55,19 @@ function card(k, label) {
   return { label: name, image: `kanji:${k}`, aliases };
 }
 
-// The kanji Japan kept whole and their simplified Chinese twins.
+// Everyday kanji to keep on the Radar (every one from the list, N5 to N2), against N1 kanji: the ones a
+// learner isn't ready for yet. Everything Japanese here comes from src/data/jlpt.json.
 const TWINS = [
-  ['気', '气', 'Spirit'], ['語', '语', 'Language'], ['書', '书', 'Write'], ['東', '东', 'East'], ['門', '门', 'Gate'], ['車', '车', 'Car'], ['馬', '马', 'Horse'],
-  ['鳥', '鸟', 'Bird'], ['見', '见', 'See'], ['長', '长', 'Long'], ['話', '话', 'Talk'], ['読', '读', 'Read'], ['時', '时', 'Time'], ['電', '电', 'Electricity'],
-  ['間', '间', 'Interval'], ['聞', '闻', 'Hear'], ['買', '买', 'Buy'], ['風', '风', 'Wind'], ['魚', '鱼', 'Fish'], ['開', '开', 'Open'], ['飲', '饮', 'Drink'],
-  ['飯', '饭', 'Meal'], ['駅', '驿', 'Station'], ['銀', '银', 'Silver'],
+  ['気', 'Spirit'], ['語', 'Language'], ['書', 'Write'], ['東', 'East'], ['門', 'Gate'], ['車', 'Car'], ['馬', 'Horse'],
+  ['鳥', 'Bird'], ['見', 'See'], ['長', 'Long'], ['話', 'Talk'], ['読', 'Read'], ['時', 'Time'], ['電', 'Electricity'],
+  ['間', 'Interval'], ['聞', 'Hear'], ['買', 'Buy'], ['風', 'Wind'], ['魚', 'Fish'], ['開', 'Open'], ['飲', 'Drink'],
+  ['飯', 'Meal'], ['駅', 'Station'], ['銀', 'Silver'],
 ];
-const members = TWINS.map(([k, , label]) => card(k, label));
-const impostors = TWINS.slice(0, 16).map(([, z, label]) => ({ label: `${label} (simplified Chinese)`, image: `kanji:${z}` }));
+const members = TWINS.map(([k, label]) => card(k, label));
+const N1 = JLPT.levels.find((l) => l.level === 'N1').kanji;
+const impostors = N1.filter(([, , m]) => !/[;,]/.test(m) && /^[a-z ]+$/i.test(m))
+  .slice(0, 16)
+  .map(([k, , m]) => ({ label: `${title(m)} (N1)`, image: `kanji:${k}` }));
 
 const twinsUsed = new Set(TWINS.map(([k]) => k));
 const FINALE = ['山', '川', '火', '水', '木', '金', '土', '雨', '花', '犬', '牛', '肉', '茶', '海', '夜', '朝', '春', '夏', '秋', '冬', '赤', '黒', '白', '手', '口', '目', '足', '店', '紙', '歌'];
@@ -78,51 +83,71 @@ const clues = N3.filter(([, , m]) => !/[;,]/.test(m) && m.length <= 14 && /^[a-z
     return { text: k, answer: [title(meaning), ...readings.map(romaji), ...readings].join('|') };
   });
 
-/** Words a Name Chain can go through: romaji first, kana and kanji as other spellings. */
-const chain = (label, words) => ({ label, entities: words.map((w) => w.join('|')) });
+// Knowledge Blitz and Name Chain: the list's own words about one thing (N5 to N3), found as in the theme
+// decks (src/arcade/jlpt.ts): one of a word's first three senses is exactly one of these. Each is named in
+// romaji first, then kana and kanji; a spelling two words share goes to the first only.
+const TOPICS = {
+  Animal: 'animal, dog, cat, bird, horse, cow, cattle, ox, pig, fish, insect, monkey, bear, rabbit, mouse, rat, sheep, chicken, duck, snake, frog, turtle, whale, elephant, lion, tiger, wolf, fox, deer, crow, butterfly, bee, ant, mosquito, spider, worm, crab, owl, eagle, dragon, pet, livestock',
+  Food: 'food, meal, rice, cooked rice, bread, meat, beef, pork, egg, vegetable, fruit, apple, orange, banana, grape, strawberry, peach, melon, tomato, potato, onion, cabbage, mushroom, bean, beans, noodles, soup, curry, cake, candy, sweets, confectionery, sugar, salt, pepper, soy sauce, sauce, butter, cheese, milk, tea, green tea, black tea, coffee, juice, beer, sake, alcohol, wine, breakfast, lunch, dinner, supper, snack, lunch box, cuisine, dish, flour, oil, honey',
+  'Body part': 'body, head, face, eye, ear, nose, mouth, tooth, teeth, tongue, lip, neck, throat, shoulder, arm, hand, finger, nail, leg, foot, knee, back, stomach, belly, chest, heart, bone, skin, hair, blood, brain, forehead, cheek, elbow, wrist, toe, waist',
+  'Family member': 'family, father, mother, parent, parents, older brother, elder brother, younger brother, older sister, elder sister, younger sister, brother, sister, son, daughter, child, children, baby, grandfather, grandmother, grandchild, uncle, aunt, cousin, husband, wife, relative',
+  Colour: 'color, colour, red, blue, green, yellow, white, black, brown, purple, pink, orange, gray, grey, gold, silver',
+  Place: 'school, university, hospital, station, bank, post office, library, museum, park, shop, store, department store, supermarket, restaurant, hotel, inn, house, home, room, kitchen, toilet, bathroom, office, company, factory, temple, shrine, church, city, town, village, country, airport, harbour, port, police station, police box, bookstore, building, apartment, garden, zoo, cinema, stadium, embassy, castle, bridge',
+  'Day or season': 'monday, tuesday, wednesday, thursday, friday, saturday, sunday, today, tomorrow, yesterday, morning, noon, afternoon, evening, night, spring, summer, autumn, winter, weekend',
+};
+const senses = (m) => m.split(/[;,]/).slice(0, 3).map((s) => s.replace(/\(.*?\)/g, '').trim().toLowerCase().replace(/^(a|an|the) /, ''));
+const spelled = new Set();
+const words = (topic, levels = ['N5', 'N4', 'N3']) => {
+  const keys = new Set(TOPICS[topic].split(/,\s*/));
+  const out = [];
+  for (const level of levels) {
+    for (const [text, reading, meaning] of JLPT.levels.find((l) => l.level === level).vocab) {
+      if (!senses(meaning).some((s) => keys.has(s))) continue;
+      const kana = reading.split(/[/／・、\s]+/).filter(Boolean).map(hira);
+      const forms = [...new Set([...kana.map(romaji).filter(Boolean), ...kana, ...text.split(/[/／\s]+/)])].filter(Boolean);
+      const key = (w) => w.toLowerCase().replace(/[^a-z0-9\u3041-\u30ff\u3400-\u9fff]/g, '');
+      if (!forms.length || forms.some((f) => spelled.has(key(f)))) continue;
+      forms.forEach((f) => spelled.add(key(f)));
+      out.push(forms.join('|'));
+    }
+  }
+  return out;
+};
+const PLURAL = { Animal: 'animals', Food: 'foods and drinks', 'Body part': 'body parts', 'Family member': 'family members', Colour: 'colour words', Place: 'places', 'Day or season': 'days, times and seasons' };
+const chainTopics = ['Animal', 'Food', 'Place', 'Body part', 'Colour'];
+const chainCategories = chainTopics.map((label) => ({ label, entities: words(label) }));
+spelled.clear();
+const blitz = Object.keys(TOPICS)
+  .map((topic) => ({ topic, answers: words(topic, ['N5', 'N4']) }))
+  .filter((t) => t.answers.length >= 6)
+  .map(({ topic, answers }) => ({ prompt: `Name 5 ${PLURAL[topic]} in Japanese`, count: 5, answers }));
 
 const boss = {
   id: 'jlpt',
   domain: 'anime',
   category: 'other',
   franchise: 'JLPT',
-  aliases: ['jlpt', 'japanese', 'japonais', 'kanji', 'nihongo', '日本語'],
+  aliases: ['jlpt', 'japanese', 'japonais', 'kanji', '漢字'],
   images: 'none',
   boss: { name: 'Oni-Sensei', title: 'Keeper of the Kanji', color: '#b91c1c', image: 'kanji:鬼' },
+  // Japanese in the lines only from the list too: 違う (N5), すごい (N4), 合格 (N3), 始め (N5).
   lines: {
-    intro: 'Irasshai, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.',
-    phase2: 'Half of these are not Japanese at all. Keep the kanji, throw out the simplified impostors!',
+    intro: 'Welcome, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.',
+    phase2: 'Half of these are N1 kanji you are not ready for. Keep the ones you should know, throw out the rest!',
     phase3: 'Final exam! Read each kanji before the bell rings.',
-    hit: ['Yoku dekimashita!', 'Correct. Hmph.', 'Your stroke order is acceptable.'],
-    hurt: ['Chigaimasu!', 'Wrong reading!', 'Back to the textbook!', 'That was Chinese, student.'],
+    hit: ['Correct. Hmph.', 'Sugoi.', 'Your stroke order is acceptable.'],
+    hurt: ['Chigau!', 'Wrong reading!', 'Back to the textbook!', 'That one was N1, student.'],
     win: 'Gōkaku — you pass. Take my kanji with you; they are yours now.',
     lose: 'Fail. Study the N5 list again and come back tomorrow.',
     secret: 'One more lesson, no textbook. I say a word; you answer with another of the same kind. No repeats!',
-    secretOk: ['Sō desu!', 'Good.', 'Again!'],
+    secretOk: ['Good.', 'Again!', 'Sugoi.'],
     secretLost: 'Silence? Then the lesson is over.',
   },
-  blitz: [
-    { prompt: 'Name the 5 vowels of hiragana', count: 5, answers: ['a|あ', 'i|い', 'u|う', 'e|え', 'o|お'] },
-    { prompt: 'Name the 4 seasons in Japanese', count: 4, answers: ['haru|はる|春', 'natsu|なつ|夏', 'aki|あき|秋', 'fuyu|ふゆ|冬'] },
-    { prompt: 'Name 5 numbers in Japanese', count: 5, answers: ['ichi|いち|一', 'ni|に|二', 'san|さん|三', 'yon|よん|shi|し|四', 'go|ご|五', 'roku|ろく|六', 'nana|なな|shichi|しち|七', 'hachi|はち|八', 'kyuu|きゅう|kyu|ku|く|九', 'juu|じゅう|ju|十', 'hyaku|ひゃく|百', 'sen|せん|千', 'man|まん|万'] },
-    { prompt: 'Name 5 days of the week in Japanese', count: 5, answers: ['getsuyoubi|げつようび|月曜日|getsuyobi', 'kayoubi|かようび|火曜日|kayobi', 'suiyoubi|すいようび|水曜日|suiyobi', 'mokuyoubi|もくようび|木曜日|mokuyobi', 'kinyoubi|きんようび|金曜日|kinyobi', 'doyoubi|どようび|土曜日|doyobi', 'nichiyoubi|にちようび|日曜日|nichiyobi'] },
-    { prompt: 'Name 5 colours in Japanese', count: 5, answers: ['aka|あか|赤', 'ao|あお|青', 'kuro|くろ|黒', 'shiro|しろ|白', 'kiiro|きいろ|黄色', 'midori|みどり|緑', 'chairo|ちゃいろ|茶色', 'murasaki|むらさき|紫', 'pinku|ピンク', 'orenji|オレンジ'] },
-    { prompt: 'Name the 3 Japanese scripts', count: 3, answers: ['hiragana|ひらがな', 'katakana|カタカナ', 'kanji|漢字'] },
-    { prompt: 'Name the 5 JLPT levels', count: 5, answers: ['N1', 'N2', 'N3', 'N4', 'N5'] },
-    { prompt: 'Name 5 family members in Japanese', count: 5, answers: ['haha|はは|母', 'chichi|ちち|父', 'ani|あに|兄', 'ane|あね|姉', 'otouto|おとうと|弟', 'imouto|いもうと|妹', 'sofu|そふ|祖父', 'sobo|そぼ|祖母', 'kazoku|かぞく|家族', 'okaasan|おかあさん|お母さん', 'otousan|おとうさん|お父さん'] },
-    { prompt: 'Name 5 body parts in Japanese', count: 5, answers: ['me|め|目', 'mimi|みみ|耳', 'kuchi|くち|口', 'te|て|手', 'ashi|あし|足', 'atama|あたま|頭', 'kao|かお|顔', 'ha|は|歯', 'yubi|ゆび|指', 'kokoro|こころ|心'] },
-  ],
+
+  blitz,
   radar: { members, impostors },
   finale,
-  secret: {
-    categories: [
-      chain('Animal', [['inu', 'いぬ', '犬'], ['neko', 'ねこ', '猫'], ['tori', 'とり', '鳥'], ['uma', 'うま', '馬'], ['sakana', 'さかな', '魚'], ['ushi', 'うし', '牛'], ['buta', 'ぶた', '豚'], ['saru', 'さる', '猿'], ['kuma', 'くま', '熊'], ['usagi', 'うさぎ', '兎']]),
-      chain('Food', [['gohan', 'ごはん', 'ご飯'], ['pan', 'パン'], ['sushi', 'すし', '寿司'], ['ramen', 'ラーメン'], ['niku', 'にく', '肉'], ['yasai', 'やさい', '野菜'], ['tamago', 'たまご', '卵'], ['kudamono', 'くだもの', '果物'], ['mizu', 'みず', '水'], ['ocha', 'おちゃ', 'お茶']]),
-      chain('Place', [['gakkou', 'がっこう', '学校', 'gakko'], ['eki', 'えき', '駅'], ['byouin', 'びょういん', '病院', 'byoin'], ['ginkou', 'ぎんこう', '銀行', 'ginko'], ['kouen', 'こうえん', '公園', 'koen'], ['mise', 'みせ', '店'], ['toshokan', 'としょかん', '図書館'], ['uchi', 'うち', '家'], ['yama', 'やま', '山'], ['umi', 'うみ', '海']]),
-      chain('Verb', [['taberu', 'たべる', '食べる'], ['nomu', 'のむ', '飲む'], ['miru', 'みる', '見る'], ['iku', 'いく', '行く'], ['kuru', 'くる', '来る'], ['suru', 'する'], ['yomu', 'よむ', '読む'], ['kaku', 'かく', '書く'], ['hanasu', 'はなす', '話す'], ['kiku', 'きく', '聞く'], ['kau', 'かう', '買う'], ['neru', 'ねる', '寝る']]),
-      chain('Adjective', [['ookii', 'おおきい', '大きい'], ['chiisai', 'ちいさい', '小さい'], ['atarashii', 'あたらしい', '新しい'], ['furui', 'ふるい', '古い'], ['takai', 'たかい', '高い'], ['yasui', 'やすい', '安い'], ['atsui', 'あつい', '暑い'], ['samui', 'さむい', '寒い'], ['oishii', 'おいしい'], ['tanoshii', 'たのしい', '楽しい']]),
-    ],
-  },
+  secret: { categories: chainCategories },
   signature: { label: 'Kanji', prompt: 'What does this kanji mean?', clues },
 };
 

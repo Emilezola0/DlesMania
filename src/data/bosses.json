@@ -17126,8 +17126,7 @@
       "japanese",
       "japonais",
       "kanji",
-      "nihongo",
-      "日本語"
+      "漢字"
     ],
     "images": "none",
     "boss": {
@@ -17137,135 +17136,67 @@
       "image": "kanji:鬼"
     },
     "lines": {
-      "intro": "Irasshai, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.",
-      "phase2": "Half of these are not Japanese at all. Keep the kanji, throw out the simplified impostors!",
+      "intro": "Welcome, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.",
+      "phase2": "Half of these are N1 kanji you are not ready for. Keep the ones you should know, throw out the rest!",
       "phase3": "Final exam! Read each kanji before the bell rings.",
       "hit": [
-        "Yoku dekimashita!",
         "Correct. Hmph.",
+        "Sugoi.",
         "Your stroke order is acceptable."
       ],
       "hurt": [
-        "Chigaimasu!",
+        "Chigau!",
         "Wrong reading!",
         "Back to the textbook!",
-        "That was Chinese, student."
+        "That one was N1, student."
       ],
       "win": "Gōkaku — you pass. Take my kanji with you; they are yours now.",
       "lose": "Fail. Study the N5 list again and come back tomorrow.",
       "secret": "One more lesson, no textbook. I say a word; you answer with another of the same kind. No repeats!",
       "secretOk": [
-        "Sō desu!",
         "Good.",
-        "Again!"
+        "Again!",
+        "Sugoi."
       ],
       "secretLost": "Silence? Then the lesson is over."
     },
     "blitz": [
       {
-        "prompt": "Name the 5 vowels of hiragana",
+        "prompt": "Name 5 animals in Japanese",
         "count": 5,
         "answers": [
-          "a|あ",
-          "i|い",
-          "u|う",
-          "e|え",
-          "o|お"
+          "sakana|さかな|魚",
+          "tori|とり|鳥",
+          "inu|いぬ|犬",
+          "neko|ねこ|猫",
+          "doubutsu|どうぶつ|動物",
+          "mushi|むし|虫"
         ]
       },
       {
-        "prompt": "Name the 4 seasons in Japanese",
-        "count": 4,
-        "answers": [
-          "haru|はる|春",
-          "natsu|なつ|夏",
-          "aki|あき|秋",
-          "fuyu|ふゆ|冬"
-        ]
-      },
-      {
-        "prompt": "Name 5 numbers in Japanese",
+        "prompt": "Name 5 foods and drinks in Japanese",
         "count": 5,
         "answers": [
-          "ichi|いち|一",
-          "ni|に|二",
-          "san|さん|三",
-          "yon|よん|shi|し|四",
-          "go|ご|五",
-          "roku|ろく|六",
-          "nana|なな|shichi|しち|七",
-          "hachi|はち|八",
-          "kyuu|きゅう|kyu|ku|く|九",
-          "juu|じゅう|ju|十",
-          "hyaku|ひゃく|百",
-          "sen|せん|千",
-          "man|まん|万"
-        ]
-      },
-      {
-        "prompt": "Name 5 days of the week in Japanese",
-        "count": 5,
-        "answers": [
-          "getsuyoubi|げつようび|月曜日|getsuyobi",
-          "kayoubi|かようび|火曜日|kayobi",
-          "suiyoubi|すいようび|水曜日|suiyobi",
-          "mokuyoubi|もくようび|木曜日|mokuyobi",
-          "kinyoubi|きんようび|金曜日|kinyobi",
-          "doyoubi|どようび|土曜日|doyobi",
-          "nichiyoubi|にちようび|日曜日|nichiyobi"
-        ]
-      },
-      {
-        "prompt": "Name 5 colours in Japanese",
-        "count": 5,
-        "answers": [
-          "aka|あか|赤",
-          "ao|あお|青",
-          "kuro|くろ|黒",
-          "shiro|しろ|白",
-          "kiiro|きいろ|黄色",
-          "midori|みどり|緑",
-          "chairo|ちゃいろ|茶色",
-          "murasaki|むらさき|紫",
-          "pinku|ピンク",
-          "orenji|オレンジ"
-        ]
-      },
-      {
-        "prompt": "Name the 3 Japanese scripts",
-        "count": 3,
-        "answers": [
-          "hiragana|ひらがな",
-          "katakana|カタカナ",
-          "kanji|漢字"
-        ]
-      },
-      {
-        "prompt": "Name the 5 JLPT levels",
-        "count": 5,
-        "answers": [
-          "N1",
-          "N2",
-          "N3",
-          "N4",
-          "N5"
-        ]
-      },
-      {
-        "prompt": "Name 5 family members in Japanese",
-        "count": 5,
-        "answers": [
-          "haha|はは|母",
-          "chichi|ちち|父",
-          "ani|あに|兄",
-          "ane|あね|姉",
-          "otouto|おとうと|弟",
-          "imouto|いもうと|妹",
-          "sofu|そふ|祖父",
-          "sobo|そぼ|祖母",
-          "kazoku|かぞく|家族",
-          "okaasan|おかあさん|お母さん",
-          "otousan|おとうさん|お父さん"
+          "gohan|ごはん|御飯",
+          "tamago|たまご|卵",
+          "ame|あめ|飴",
+          "asagohan|あさごはん|朝御飯",
+          "tabemono|たべもの|食べ物",
+          "gyuunyuu|ぎゅうにゅう|牛乳",
+          "ryouri|りょうり|料理",
+          "yuuhan|ゆうはん|夕飯",
+          "kudamono|くだもの|果物",
+          "osake|おさけ|お酒",
+          "satou|さとう|砂糖",
+          "shio|しお|塩",
+          "gyuuniku|ぎゅうにく|牛肉",
+          "yasai|やさい|野菜",
+          "koucha|こうちゃ|紅茶",
+          "butaniku|ぶたにく|豚肉",
+          "ocha|おちゃ|お茶",
+          "okashi|おかし|お菓子",
+          "osara|おさら|お皿",
+          "niku|にく|肉"
         ]
       },
       {
@@ -17273,15 +17204,132 @@
         "count": 5,
         "answers": [
           "me|め|目",
-          "mimi|みみ|耳",
-          "kuchi|くち|口",
-          "te|て|手",
+          "hana|はな|鼻",
           "ashi|あし|足",
+          "te|て|手",
+          "mimi|みみ|耳",
+          "karada|からだ|体",
           "atama|あたま|頭",
-          "kao|かお|顔",
+          "kuchi|くち|口",
           "ha|は|歯",
+          "ude|うで|腕",
           "yubi|ゆび|指",
-          "kokoro|こころ|心"
+          "kokoro|こころ|心",
+          "kubi|くび|首",
+          "chi|ち|血",
+          "kami|かみ|髪"
+        ]
+      },
+      {
+        "prompt": "Name 5 family members in Japanese",
+        "count": 5,
+        "answers": [
+          "oniisan|おにいさん|お兄さん",
+          "ane|あね|姉",
+          "okaasan|おかあさん|お母さん",
+          "otousan|おとうさん|お父さん",
+          "okusan|おくさん|奥さん",
+          "imouto|いもうと|妹",
+          "obasan|おばさん|伯母さん|叔母さん",
+          "ojiisan|おじいさん|伯父|叔父",
+          "oneesan|おねえさん|お姉さん",
+          "ani|あに|兄",
+          "otouto|おとうと|弟",
+          "kodomo|こども|子供",
+          "kazoku|かぞく|家族",
+          "musuko|むすこ|息子",
+          "otto|おっと|夫",
+          "musume|むすめ|娘",
+          "ko|こ|子",
+          "oya|おや|親",
+          "akanbou|あかんぼう|赤ん坊",
+          "sobo|そぼ|祖母",
+          "sofu|そふ|祖父",
+          "tsuma|つま|妻"
+        ]
+      },
+      {
+        "prompt": "Name 5 colour words in Japanese",
+        "count": 5,
+        "answers": [
+          "shiroi|しろい|白い",
+          "aoi|あおい|青い",
+          "ao|あお|青",
+          "iro|いろ|色",
+          "kuroi|くろい|黒い",
+          "kiiroi|きいろい|黄色い",
+          "midori|みどり|緑",
+          "kiiro|きいろ|黄色",
+          "akai|あかい|赤い",
+          "chairo|ちゃいろ|茶色",
+          "kuro|くろ|黒",
+          "shiro|しろ|白",
+          "aka|あか|赤"
+        ]
+      },
+      {
+        "prompt": "Name 5 places in Japanese",
+        "count": 5,
+        "answers": [
+          "mise|みせ|店",
+          "gakkou|がっこう|学校",
+          "taishikan|たいしかん|大使館",
+          "eki|えき|駅",
+          "niwa|にわ|庭",
+          "eigakan|えいがかん|映画館",
+          "mura|むら|村",
+          "otearai|おてあらい|お手洗い",
+          "toshokan|としょかん|図書館",
+          "hashi|はし|橋",
+          "daigaku|だいがく|大学",
+          "ie|いえ|家",
+          "kuni|くに|国",
+          "ginkou|ぎんこう|銀行",
+          "byouin|びょういん|病院",
+          "tatemono|たてもの|建物",
+          "yuubinkyoku|ゆうびんきょく|郵便局",
+          "machi|まち|町",
+          "heya|へや|部屋",
+          "kouen|こうえん|公園",
+          "daidokoro|だいどころ|台所",
+          "kouban|こうばん|交番",
+          "kaisha|かいしゃ|会社",
+          "kyoukai|きょうかい|教会",
+          "tera|てら|寺",
+          "minato|みなと|港",
+          "hikoujou|ひこうじょう|飛行場",
+          "koujou|こうじょう|工場",
+          "kuukou|くうこう|空港",
+          "jimusho|じむしょ|事務所",
+          "doubutsuen|どうぶつえん|動物園",
+          "shi|し|市"
+        ]
+      },
+      {
+        "prompt": "Name 5 days, times and seasons in Japanese",
+        "count": 5,
+        "answers": [
+          "kayoubi|かようび|火曜日",
+          "kinou|きのう|昨日",
+          "gozen|ごぜん|午前",
+          "asa|あさ|朝",
+          "haru|はる|春",
+          "nichiyoubi|にちようび|日曜日",
+          "natsu|なつ|夏",
+          "gogo|ごご|午後",
+          "fuyu|ふゆ|冬",
+          "ban|ばん|晩",
+          "yuugata|ゆうがた|夕方",
+          "ashita|あした|明日",
+          "mokuyoubi|もくようび|木曜日",
+          "hiru|ひる|昼",
+          "kyou|きょう|今日",
+          "kinyoubi|きんようび|金曜日",
+          "doyoubi|どようび|土曜日",
+          "yoru|よる|夜",
+          "getsuyoubi|げつようび|月曜日",
+          "suiyoubi|すいようび|水曜日",
+          "aki|あき|秋"
         ]
       }
     ],
@@ -17633,68 +17681,68 @@
       ],
       "impostors": [
         {
-          "label": "Spirit (simplified Chinese)",
-          "image": "kanji:气"
+          "label": "Paulownia (N1)",
+          "image": "kanji:桐"
         },
         {
-          "label": "Language (simplified Chinese)",
-          "image": "kanji:语"
+          "label": "Chestnut (N1)",
+          "image": "kanji:栗"
         },
         {
-          "label": "Write (simplified Chinese)",
-          "image": "kanji:书"
+          "label": "Wise (N1)",
+          "image": "kanji:慧"
         },
         {
-          "label": "East (simplified Chinese)",
-          "image": "kanji:东"
+          "label": "Lagoon (N1)",
+          "image": "kanji:潟"
         },
         {
-          "label": "Gate (simplified Chinese)",
-          "image": "kanji:门"
+          "label": "Eulogy (N1)",
+          "image": "kanji:頌"
         },
         {
-          "label": "Car (simplified Chinese)",
-          "image": "kanji:车"
+          "label": "Lungs (N1)",
+          "image": "kanji:肺"
         },
         {
-          "label": "Horse (simplified Chinese)",
-          "image": "kanji:马"
+          "label": "Deep and broad (N1)",
+          "image": "kanji:滉"
         },
         {
-          "label": "Bird (simplified Chinese)",
-          "image": "kanji:鸟"
+          "label": "Warmth (N1)",
+          "image": "kanji:暖"
         },
         {
-          "label": "See (simplified Chinese)",
-          "image": "kanji:见"
+          "label": "Pregnancy (N1)",
+          "image": "kanji:妊"
         },
         {
-          "label": "Long (simplified Chinese)",
-          "image": "kanji:长"
+          "label": "Chrysanthemum (N1)",
+          "image": "kanji:菊"
         },
         {
-          "label": "Talk (simplified Chinese)",
-          "image": "kanji:话"
+          "label": "Counter for articles (N1)",
+          "image": "kanji:箇"
         },
         {
-          "label": "Read (simplified Chinese)",
-          "image": "kanji:读"
+          "label": "Pine tree (N1)",
+          "image": "kanji:松"
         },
         {
-          "label": "Time (simplified Chinese)",
-          "image": "kanji:时"
+          "label": "Silkworm (N1)",
+          "image": "kanji:蚕"
         },
         {
-          "label": "Electricity (simplified Chinese)",
-          "image": "kanji:电"
+          "label": "Neighboring (N1)",
+          "image": "kanji:隣"
         },
         {
-          "label": "Interval (simplified Chinese)",
-          "image": "kanji:间"
+          "label": "Camphor tree (N1)",
+          "image": "kanji:楠"
         },
         {
-          "label": "Hear (simplified Chinese)",
-          "image": "kanji:闻"
+          "label": "Clear (N1)",
+          "image": "kanji:瞭"
         }
       ]
     },
@@ -18125,78 +18173,171 @@
         {
           "label": "Animal",
           "entities": [
+            "sakana|さかな|魚",
+            "tori|とり|鳥",
             "inu|いぬ|犬",
             "neko|ねこ|猫",
-            "tori|とり|鳥",
-            "uma|うま|馬",
-            "sakana|さかな|魚",
+            "doubutsu|どうぶつ|動物",
+            "mushi|むし|虫",
             "ushi|うし|牛",
-            "buta|ぶた|豚",
             "saru|さる|猿",
-            "kuma|くま|熊",
-            "usagi|うさぎ|兎"
+            "ikimono|いきもの|生き物",
+            "tora|とら|虎",
+            "nezumi|ねずみ|鼠",
+            "uma|うま|馬",
+            "usagi|うさぎ|兎",
+            "zou|ぞう|象"
           ]
         },
         {
           "label": "Food",
           "entities": [
-            "gohan|ごはん|ご飯",
-            "pan|パン",
-            "sushi|すし|寿司",
-            "ramen|ラーメン",
-            "niku|にく|肉",
-            "yasai|やさい|野菜",
+            "gohan|ごはん|御飯",
             "tamago|たまご|卵",
+            "ame|あめ|飴",
+            "asagohan|あさごはん|朝御飯",
+            "tabemono|たべもの|食べ物",
+            "gyuunyuu|ぎゅうにゅう|牛乳",
+            "ryouri|りょうり|料理",
+            "yuuhan|ゆうはん|夕飯",
             "kudamono|くだもの|果物",
-            "mizu|みず|水",
-            "ocha|おちゃ|お茶"
+            "osake|おさけ|お酒",
+            "satou|さとう|砂糖",
+            "shio|しお|塩",
+            "gyuuniku|ぎゅうにく|牛肉",
+            "yasai|やさい|野菜",
+            "koucha|こうちゃ|紅茶",
+            "butaniku|ぶたにく|豚肉",
+            "ocha|おちゃ|お茶",
+            "okashi|おかし|お菓子",
+            "osara|おさら|お皿",
+            "niku|にく|肉",
+            "abura|あぶら|油",
+            "kona|こな|粉",
+            "sake|さけ|酒",
+            "shokumotsu|しょくもつ|食物",
+            "sekiyu|せきゆ|石油",
+            "chuushoku|ちゅうしょく|昼食",
+            "mame|まめ|豆",
+            "sara|さら|皿",
+            "ohiru|おひる|お昼",
+            "cha|ちゃ|茶",
+            "mi|み|実",
+            "meshi|めし|飯",
+            "shokuji|しょくじ|食事",
+            "shokuryou|しょくりょう|食料"
           ]
         },
         {
           "label": "Place",
           "entities": [
-            "gakkou|がっこう|学校|gakko",
-            "eki|えき|駅",
-            "byouin|びょういん|病院|byoin",
-            "ginkou|ぎんこう|銀行|ginko",
-            "kouen|こうえん|公園|koen",
             "mise|みせ|店",
+            "gakkou|がっこう|学校",
+            "taishikan|たいしかん|大使館",
+            "eki|えき|駅",
+            "niwa|にわ|庭",
+            "eigakan|えいがかん|映画館",
+            "mura|むら|村",
+            "otearai|おてあらい|お手洗い",
             "toshokan|としょかん|図書館",
-            "uchi|うち|家",
-            "yama|やま|山",
-            "umi|うみ|海"
+            "hashi|はし|橋",
+            "daigaku|だいがく|大学",
+            "ie|いえ|家",
+            "kuni|くに|国",
+            "ginkou|ぎんこう|銀行",
+            "byouin|びょういん|病院",
+            "tatemono|たてもの|建物",
+            "yuubinkyoku|ゆうびんきょく|郵便局",
+            "machi|まち|町",
+            "heya|へや|部屋",
+            "kouen|こうえん|公園",
+            "daidokoro|だいどころ|台所",
+            "kouban|こうばん|交番",
+            "kaisha|かいしゃ|会社",
+            "kyoukai|きょうかい|教会",
+            "tera|てら|寺",
+            "minato|みなと|港",
+            "hikoujou|ひこうじょう|飛行場",
+            "koujou|こうじょう|工場",
+            "kuukou|くうこう|空港",
+            "jimusho|じむしょ|事務所",
+            "doubutsuen|どうぶつえん|動物園",
+            "shi|し|市",
+            "kokka|こっか|国家",
+            "tsure|つれ|連れ",
+            "kousai|こうさい|交際",
+            "aki|あき|空き",
+            "shiro|しろ|城",
+            "hakubutsukan|はくぶつかん|博物館",
+            "aite|あいて|相手",
+            "kishi|きし|岸",
+            "tokai|とかい|都会",
+            "yado|やど|宿",
+            "taku|たく|宅",
+            "toshi|とし|都市",
+            "nakama|なかま|仲間",
+            "ikka|いっか|一家",
+            "ma|ま|間"
           ]
         },
         {
-          "label": "Verb",
+          "label": "Body part",
           "entities": [
-            "taberu|たべる|食べる",
-            "nomu|のむ|飲む",
-            "miru|みる|見る",
-            "iku|いく|行く",
-            "kuru|くる|来る",
-            "suru|する",
-            "yomu|よむ|読む",
-            "kaku|かく|書く",
-            "hanasu|はなす|話す",
-            "kiku|きく|聞く",
-            "kau|かう|買う",
-            "neru|ねる|寝る"
+            "me|め|目",
+            "hana|はな|鼻",
+            "ashi|あし|足",
+            "te|て|手",
+            "mimi|みみ|耳",
+            "karada|からだ|体",
+            "atama|あたま|頭",
+            "kuchi|くち|口",
+            "ha|は|歯",
+            "ude|うで|腕",
+            "yubi|ゆび|指",
+            "kokoro|こころ|心",
+            "kubi|くび|首",
+            "chi|ち|血",
+            "kami|かみ|髪",
+            "chuushin|ちゅうしん|中心",
+            "hone|ほね|骨",
+            "hoho|ほほ|頬",
+            "hiza|ひざ|膝",
+            "gaku|がく|額",
+            "men|めん|面",
+            "shintai|しんたい|身体",
+            "hyoumen|ひょうめん|表面",
+            "i|い|胃",
+            "shita|した|舌",
+            "onaka|おなか|お腹",
+            "kaminoke|かみのけ|髪の毛",
+            "hara|はら|腹",
+            "seishin|せいしん|精神",
+            "nodo|のど|喉",
+            "shinzou|しんぞう|心臓",
+            "kawa|かわ|皮",
+            "kata|かた|肩",
+            "hari|はり|針",
+            "mune|むね|胸",
+            "hada|はだ|肌"
           ]
         },
         {
-          "label": "Adjective",
+          "label": "Colour",
           "entities": [
-            "ookii|おおきい|大きい",
-            "chiisai|ちいさい|小さい",
-            "atarashii|あたらしい|新しい",
-            "furui|ふるい|古い",
-            "takai|たかい|高い",
-            "yasui|やすい|安い",
-            "atsui|あつい|暑い",
-            "samui|さむい|寒い",
-            "oishii|おいしい",
-            "tanoshii|たのしい|楽しい"
+            "shiroi|しろい|白い",
+            "aoi|あおい|青い",
+            "ao|あお|青",
+            "iro|いろ|色",
+            "kuroi|くろい|黒い",
+            "kiiroi|きいろい|黄色い",
+            "midori|みどり|緑",
+            "kiiro|きいろ|黄色",
+            "akai|あかい|赤い",
+            "chairo|ちゃいろ|茶色",
+            "kuro|くろ|黒",
+            "aka|あか|赤",
+            "gin|ぎん|銀",
+            "kane|かね|金"
           ]
         }
       ]

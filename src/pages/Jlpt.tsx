@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, reviewDeck, shortMeaning, type JlptDeck, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -287,6 +288,166 @@ function DeckCard({ deck, glyph, title }: { deck: JlptDeck; glyph: string; title
   );
 }
 
+/** A kanji's readings as the list gives them, split: on'yomi in katakana, kun'yomi in hiragana. */
+function readingsOf(reading: string) {
+  const parts = reading.split(/[・、\s]+/).filter(Boolean);
+  return { on: parts.filter((p) => /^[\u30a0-\u30ff]/.test(p)), kun: parts.filter((p) => !/^[\u30a0-\u30ff]/.test(p)) };
+}
+
+function DayCard({ kind, entry }: { kind: 'word' | 'kanji'; entry: JlptEntry }) {
+  const r = readingsOf(entry.reading);
+  return (
+    <div className="page flex flex-col items-center gap-2 rounded-md p-6 text-center ring-2 ring-coral/50">
+      <p className="font-display text-xs uppercase tracking-[0.25em] text-coral">{kind === 'word' ? 'Word of the day' : 'Kanji of the day'}</p>
+      <p lang="ja" className="font-serif text-6xl font-bold leading-tight">
+        {entry.text}
+      </p>
+      {kind === 'word' ? (
+        <p lang="ja" className="text-xl text-ink-soft">
+          {entry.reading}
+        </p>
+      ) : (
+        <div lang="ja" className="space-y-0.5 text-ink-soft">
+          {r.on.length > 0 && (
+            <p>
+              <span className="font-display text-xs text-ink-faint">On </span>
+              {r.on.join('・')}
+            </p>
+          )}
+          {r.kun.length > 0 && (
+            <p>
+              <span className="font-display text-xs text-ink-faint">Kun </span>
+              {r.kun.join('・')}
+            </p>
+          )}
+        </div>
+      )}
+      <p className="font-display text-lg font-semibold">{shortMeaning(entry.meaning, 5)}</p>
+      <p className="text-xs text-ink-faint">JLPT {entry.level}</p>
+      <KeepButton id={entry.id} />
+    </div>
+  );
+}
+
+/**
+ * The word and the kanji of the day (not a daily to play: something new to learn each day), with the
+ * days before to look back on.
+ */
+function OfTheDay() {
+  const today = todayKey();
+  const [date, setDate] = useState(today);
+  const { word, kanji } = ofTheDay(date);
+  return (
+    <section className="space-y-3">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{date === today ? 'Today' : formatLong(date)}</h2>
+        <div className="flex gap-2">
+          <button type="button" onClick={() => setDate(addDays(date, -1))} className="btn-paper rounded-md px-3 py-1 font-display text-sm font-bold" aria-label="The day before">
+            ←
+          </button>
+          <button type="button" disabled={date >= today} onClick={() => setDate(addDays(date, 1))} className="btn-paper rounded-md px-3 py-1 font-display text-sm font-bold disabled:opacity-40" aria-label="The day after">
+            →
+          </button>
+        </div>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <DayCard kind="word" entry={word} />
+        <DayCard kind="kanji" entry={kanji} />
+      </div>
+    </section>
+  );
+}
+
+const PAGE = 120;
+
+/** /jlpt/list/:level — everything the list has for one level: its kanji, its words and its grammar. */
+function LevelList({ level }: { level: string }) {
+  const l = JLPT_LEVELS.find((x) => x.level === level)!;
+  const [tab, setTab] = useState<'kanji' | 'vocab' | 'grammar'>('kanji');
+  const [query, setQuery] = useState('');
+  const [shown, setShown] = useState(PAGE);
+  const q = query.trim().toLowerCase();
+  const entries = tab === 'grammar' ? [] : l.decks.find((d) => d.kind === tab)!.entries.filter((e) => !q || e.text.includes(q) || e.reading.includes(q) || e.meaning.toLowerCase().includes(q));
+  const grammar = tab === 'grammar' ? l.grammar.filter((g) => !q || g.includes(q)) : [];
+  const count = tab === 'grammar' ? grammar.length : entries.length;
+  return (
+    <div className="mx-auto max-w-3xl space-y-5">
+      <div>
+        <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
+          ← JLPT
+        </Link>
+        <h1 className="text-4xl font-bold">{level} — everything on the list</h1>
+        <p className="text-sm text-ink-soft">
+          {l.decks[1].entries.length} kanji · {l.decks[0].entries.length.toLocaleString('en')} words · {l.grammar.length} grammar points
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {JLPT_LEVELS.map((x) => (
+          <Link key={x.level} to={`/jlpt/list/${x.level.toLowerCase()}`} className={`rounded-full px-3 py-1 font-display text-sm font-bold ${x.level === level ? 'btn-ink' : 'btn-paper'}`}>
+            {x.level}
+          </Link>
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        {(['kanji', 'vocab', 'grammar'] as const).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => (setTab(t), setShown(PAGE))}
+            className={`rounded-md px-4 py-2 font-display text-sm font-bold ${tab === t ? 'btn-accent' : 'btn-paper'}`}
+          >
+            {t === 'kanji' ? 'Kanji' : t === 'vocab' ? 'Vocabulary' : 'Grammar'}
+          </button>
+        ))}
+        <input
+          value={query}
+          onChange={(e) => (setQuery(e.target.value), setShown(PAGE))}
+          placeholder="Search (kanji, kana or English)…"
+          className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2"
+        />
+      </div>
+      <p className="text-xs text-ink-faint">{count.toLocaleString('en')} shown</p>
+      {tab === 'grammar' ? (
+        <ul lang="ja" className="grid gap-2 sm:grid-cols-2">
+          {grammar.map((g) => (
+            <li key={g} className="page rounded-md px-4 py-2 text-lg">
+              {g}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <>
+          <ul className="space-y-2">
+            {entries.slice(0, shown).map((e) => {
+              const r = readingsOf(e.reading);
+              return (
+                <li key={e.id} className="page flex items-center gap-4 rounded-md px-4 py-2">
+                  <span lang="ja" className={`font-serif font-bold ${tab === 'kanji' ? 'w-14 text-4xl' : 'min-w-24 text-2xl'}`}>
+                    {e.text}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span lang="ja" className="block text-ink-soft">
+                      {tab === 'kanji' ? [r.on.join('・'), r.kun.join('・')].filter(Boolean).join(' · ') : e.reading !== e.text && e.reading}
+                    </span>
+                    <span className="block text-sm">{e.meaning}</span>
+                  </span>
+                  <KeepButton id={e.id} />
+                </li>
+              );
+            })}
+          </ul>
+          {shown < entries.length && (
+            <button type="button" onClick={() => setShown(shown + PAGE)} className="btn-paper w-full rounded-md py-2 font-display font-bold">
+              Show more ({(entries.length - shown).toLocaleString('en')} left)
+            </button>
+          )}
+        </>
+      )}
+      <p className="text-xs text-ink-faint">From {JLPT_SOURCE}.</p>
+    </div>
+  );
+}
+
 /** Name Them All, in Japanese: every word of a theme against the clock (src/arcade/lists.ts). */
 function NameThemAllRow() {
   const bests = useProgress((s) => s.bests);
@@ -314,7 +475,11 @@ function NameThemAllRow() {
 
 /** /jlpt and /jlpt/:deck ("review": the review list) */
 export default function Jlpt() {
-  const { deck: id } = useParams();
+  const { deck: id, level } = useParams();
+  if (level) {
+    const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
+    return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
+  }
   const [grammar, setGrammar] = useState<string | null>(null);
   if (id) {
     const deck = id === 'review' ? reviewDeck([]) : jlptDeck(id);
@@ -346,6 +511,22 @@ export default function Jlpt() {
           Japanese from N5 to N1: a word or a kanji, four answers — its meaning or its reading. Faster and faster, until the first mistake. Keys 1–4 answer.
         </p>
       </div>
+      <OfTheDay />
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">The list, level by level</h2>
+        <ul className="flex flex-wrap gap-2">
+          {JLPT_LEVELS.map((l) => (
+            <li key={l.level}>
+              <Link to={`/jlpt/list/${l.level.toLowerCase()}`} className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
+                📖 {l.level}
+                <span className="text-xs font-normal text-ink-faint">
+                  {l.decks[1].entries.length} kanji · {l.decks[0].entries.length} words · {l.grammar.length} grammar
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
       <ReviewList />
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Themes · every level</h2>

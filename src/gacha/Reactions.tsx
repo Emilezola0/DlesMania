@@ -87,7 +87,7 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   wow: { good: ['Epic loot!', 'Level up!', 'For Azeroth!'], bad: ['Wipe! Run back…', 'Repair your gear and retry.', 'Pulled too many…'] },
   unreal: { good: ['Compiled successfully!', 'Clean graph!', 'Zero warnings.'], bad: ['Accessed None…', 'Infinite loop detected!', 'Compile error.'] },
   avatar: { good: ['Perfectly balanced!', 'Your bending is getting stronger!', 'Yip yip!'], bad: ['That was a cabbage-level mistake…', 'Back to the Air Temple to train…', 'The elements are not with you.'] },
-  jlpt: { good: ['Yoku dekimashita!', 'Sugoi!', 'Perfect stroke order!'], bad: ['Chigaimasu…', 'Back to the textbook!', 'Ganbatte!'] },
+  jlpt: { good: ['Sugoi!', 'Gōkaku!', 'Perfect stroke order!'], bad: ['Chigau…', 'Back to the textbook!', 'One more time!'] },
   balatro: { good: ['Nice hand!', 'That one scored!', 'Mult go brrr!'], bad: ['Bust!', 'Not enough chips…', 'Should have discarded that.'] },
   destiny: { good: ['Eyes up, Guardian!', 'An Exotic drop!', 'The Light holds!'], bad: ['Your Ghost is reviving you…', 'Another blue engram…', 'Back to orbit…'] },
   forhonor: { good: ['Guard break!', 'A worthy duel!', 'Execution!'], bad: ['Parried…', 'Your guard is open!', 'Back to the war camp…'] },

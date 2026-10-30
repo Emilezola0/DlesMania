@@ -104,8 +104,8 @@ export const DIALOGUE: Record<string, Talk> = {
     great: [['An Exotic! A real one!', 'Don’t ask Cayde to hold it, {other}.', 'Whether we wanted it or not.']],
   },
   jlpt: {
-    good: [['Did you see that reading, {other}?', 'On-yomi and kun-yomi. Not bad.'], ['They wrote it without looking.', 'Stroke order and all, {other}.']],
-    bad: [['That was the simplified one, {other}.', 'Every student falls for it once.'], ['Hashi or hashi?', 'Bridge, chopsticks or edge — they guessed wrong, {other}.']],
+    good: [['Did you see that reading, {other}?', 'Both readings. Not bad.'], ['They wrote it without looking.', 'Stroke order and all, {other}.']],
+    bad: [['That one was N1, {other}.', 'Every student falls for it once.'], ['Hashi or hashi?', 'Bridge, chopsticks or edge — they guessed wrong, {other}.']],
     great: [['N1 level!', 'Is that a native speaker, {other}?', 'Sugoi…']],
   },
   balatro: {

@@ -1,5 +1,5 @@
 // Kanji drawn as pictures ("kanji:山" in bosses.json): ink on paper, like a page of a workbook. The
-// guardian's ("kanji:鬼") is a red seal, and the omni's ("kanji-omni:日本語") gold on a red sun. They're
+// guardian's ("kanji:鬼") is a red seal, and the omni's ("kanji-omni:漢字") gold on a red sun. They're
 // SVGs written here, so they need no file and no network: the kanji come from the device's Japanese font.
 
 const FONT = "'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','MS Mincho',serif";

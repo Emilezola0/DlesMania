@@ -174,16 +174,16 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
  * these cards; art from the fan wikis.)
  */
 const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; awaken: { title: string; image: string; line: string } }> = {
-  // 日本語 itself: the language, in gold on black; on a Hard win it wakes as the whole 漢字 seal.
+  // 漢字 itself, in gold on black; on a Hard win it wakes as 合格, "passed" (both words from the list).
   jlpt: {
     name: 'Language',
-    title: '日本語 — Nihongo',
-    line: 'Three scripts, two thousand kanji and a hundred ways to say “I”: every card of the set, written together, makes this one word.',
-    image: kanjiPicture('kanji-omni:日本語'),
+    title: '漢字 — Kanji',
+    line: 'Two thousand of them in the list, each with its readings and its meanings: every card of the set, written together, makes this one word.',
+    image: kanjiPicture('kanji-omni:漢字'),
     awaken: {
-      title: '漢字 — The Way of Kanji',
-      line: 'Oni-Sensei bows for the first time: every stroke in its place, every reading known. N1 — gōkaku.',
-      image: kanjiPicture('kanji-awake:漢字'),
+      title: '合格 — Gōkaku',
+      line: 'Oni-Sensei bows for the first time: every stroke in its place, every reading known. N1 — passed.',
+      image: kanjiPicture('kanji-awake:合格'),
     },
   },
   onepiece: {

@@ -1,5 +1,6 @@
 import data from '../data/jlpt.json';
-import { shuffle } from '../lib/rng';
+import { dayNumber } from '../lib/date';
+import { hashString, mulberry32, shuffle } from '../lib/rng';
 
 /** A word or a kanji: what's written, how it's read, what it means. */
 export interface JlptEntry {
@@ -132,4 +133,19 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
     wrong.add(s);
   }
   return { entry, ask, answer, options: shuffle([answer, ...wrong], Math.random) };
+}
+
+/**
+ * The word and the kanji of the day: every word and every kanji of the list once, in an order drawn once and
+ * for all, a new one each day from EPOCH — the same for everyone. (Not a daily to play: just to learn.)
+ */
+const ALL_VOCAB = JLPT_LEVELS.flatMap((l) => l.decks.find((d) => d.kind === 'vocab')!.entries);
+const ALL_KANJI = JLPT_LEVELS.flatMap((l) => l.decks.find((d) => d.kind === 'kanji')!.entries);
+const VOCAB_ORDER = shuffle(ALL_VOCAB, mulberry32(hashString('omnidle:jlpt:word-of-the-day')));
+const KANJI_ORDER = shuffle(ALL_KANJI, mulberry32(hashString('omnidle:jlpt:kanji-of-the-day')));
+const at = <T>(xs: T[], n: number) => xs[((n % xs.length) + xs.length) % xs.length];
+
+export function ofTheDay(date: string): { word: JlptEntry; kanji: JlptEntry } {
+  const n = dayNumber(date);
+  return { word: at(VOCAB_ORDER, n), kanji: at(KANJI_ORDER, n) };
 }

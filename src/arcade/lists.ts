@@ -29,7 +29,8 @@ const timeFor = (n: number) => Math.min(600, Math.max(90, n * 8));
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-const fromBosses: NameList[] = BOSSES.flatMap((b) =>
+// JLPT's lists are its themes (below), not its boss's Blitz.
+const fromBosses: NameList[] = BOSSES.filter((b) => b.id !== 'jlpt').flatMap((b) =>
   b.blitz
     // A few answers make a poor list: the Blitz asks for some of them, here it's all of them.
     .filter((p) => p.answers.length >= 6)

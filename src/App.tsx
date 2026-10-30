@@ -62,6 +62,7 @@ export default function App() {
         <Route path="higher-lower/:deck" element={<HigherLower />} />
         <Route path="jlpt" element={<Jlpt />} />
         <Route path="jlpt/:deck" element={<Jlpt />} />
+        <Route path="jlpt/list/:level" element={<Jlpt />} />
         <Route path="name-them-all" element={<NameThemAll />} />
         <Route path="name-them-all/:list" element={<NameThemAll />} />
         <Route path="guess-the-year" element={<GuessYear />} />
