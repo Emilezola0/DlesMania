@@ -119,7 +119,38 @@ function drainReasons(g: State): string[] {
 }
 
 // ── Drawing ───────────────────────────────────────────────────────────
+/** A kanji card's character (its picture is an SVG drawn by src/lib/kanji.ts), or null for any other picture. */
+const glyphs = new Map<string, string | null>();
+function kanjiOf(src: string): string | null {
+  if (!glyphs.has(src)) {
+    let k: string | null = null;
+    if (src.startsWith('data:image/svg+xml')) {
+      const m = decodeURIComponent(src.slice(src.indexOf(',') + 1)).match(/<text[^>]*>([^<]+)<\/text>/);
+      k = m ? m[1] : null;
+    }
+    glyphs.set(src, k);
+  }
+  return glyphs.get(src)!;
+}
+
 function drawFace(ctx: CanvasRenderingContext2D, src: string, x: number, y: number, r: number) {
+  // Kanji: the character itself, big and centred on paper, so it reads at any size.
+  const kanji = kanjiOf(src);
+  if (kanji) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = '#fbf5e6';
+    ctx.fill();
+    ctx.fillStyle = '#1c1917';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const size = (r * 2 * 0.78) / Math.max(1, [...kanji].length * 0.85);
+    ctx.font = `700 ${size}px 'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho',serif`;
+    ctx.fillText(kanji, x, y + r * 0.04);
+    ctx.restore();
+    return;
+  }
   const im = getImage(src);
   ctx.save();
   ctx.beginPath();
