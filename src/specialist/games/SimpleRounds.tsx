@@ -245,3 +245,45 @@ export const itemRoundFor = (u: SimpleUniverse['id'], question: string) =>
       />
     );
   };
+
+/** How an execution's GIF is hidden at each wrong-guess step: shapes only at first, the picture coming back with each miss. */
+const SHADOW_STEPS = [
+  'grayscale(1) contrast(9) brightness(0.45)',
+  'grayscale(1) contrast(6) brightness(0.55)',
+  'grayscale(1) contrast(4) brightness(0.65)',
+  'grayscale(1) contrast(2.5) brightness(0.8)',
+  'grayscale(1) contrast(1.6)',
+  'grayscale(0.6) contrast(1.2)',
+];
+
+/** Execution: a hero's finishing move, playing in silhouette; the fighters come out of the shadow with each miss. */
+export const executionRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleExecutionRound({ round, record, onChange }: Props) {
+    const e = SIMPLE[u].executions![Number(round.targetId)];
+    const c = simpleCharacter(u, e.answer)!;
+    return (
+      <SpGuessRound
+        type="execution"
+        question="Whose execution is this?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={[...hintsFor(c).slice(0, -1), `The execution: “${e.name}”`, hintsFor(c).at(-1)!]}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image || undefined, detail: `${detail(c)} · ${e.name}` }}
+        noPictures
+        clue={(wrong, done) => (
+          <div className="relative mx-auto aspect-video w-full max-w-lg overflow-hidden rounded-md border-2 border-coral/70 bg-black">
+            <img
+              src={e.gif}
+              alt=""
+              draggable={false}
+              onContextMenu={(ev) => ev.preventDefault()}
+              className="size-full select-none object-cover transition-[filter] duration-500"
+              style={{ filter: done ? 'none' : SHADOW_STEPS[Math.min(wrong, SHADOW_STEPS.length - 1)] }}
+            />
+          </div>
+        )}
+      />
+    );
+  };
