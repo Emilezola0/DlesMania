@@ -13,11 +13,14 @@ import { RAIL_LINES, type RailCharacter, type RailLine } from './rosters';
 
 export type RailDifficulty = 'easy' | 'normal' | 'hard';
 
-/** Speeds in m/s; reaction is the time from a gate appearing to reaching it, shrinking as you go. */
-export const RAIL_DIFFICULTY: Record<RailDifficulty, { label: string; wagons: number; start: number; gain: number; max: number; react: number; minReact: number; blur: boolean; blurb: string }> = {
-  easy: { label: 'Easy', wagons: 3, start: 9, gain: 0.35, max: 22, react: 6, minReact: 3.4, blur: false, blurb: '3 wagons, a gentle climb in speed.' },
-  normal: { label: 'Normal', wagons: 2, start: 11, gain: 0.45, max: 28, react: 5, minReact: 2.8, blur: false, blurb: '2 wagons, faster and faster.' },
-  hard: { label: 'Hard', wagons: 1, start: 13, gain: 0.55, max: 34, react: 4.2, minReact: 2.3, blur: true, blurb: 'One wagon, top speed, and blurred signs.' },
+/**
+ * Speeds in m/s; reaction is the time from a gate appearing to reaching it, shrinking as you go. `pay`: how much
+ * each gate passed counts toward the run's DleCoins (20 gates: about 25 on Easy, 40 on Normal, 60 on Hard).
+ */
+export const RAIL_DIFFICULTY: Record<RailDifficulty, { label: string; wagons: number; start: number; gain: number; max: number; react: number; minReact: number; blur: boolean; pay: number; blurb: string }> = {
+  easy: { label: 'Easy', wagons: 3, start: 9, gain: 0.35, max: 22, react: 6, minReact: 3.4, blur: false, pay: 0.45, blurb: '3 wagons, a gentle climb in speed.' },
+  normal: { label: 'Normal', wagons: 2, start: 11, gain: 0.45, max: 28, react: 5, minReact: 2.8, blur: false, pay: 0.65, blurb: '2 wagons, faster and faster.' },
+  hard: { label: 'Hard', wagons: 1, start: 13, gain: 0.55, max: 34, react: 4.2, minReact: 2.3, blur: true, pay: 0.9, blurb: 'One wagon, top speed, and blurred signs.' },
 };
 
 const LANE_ARROWS = ['←', '↑', '→'];
@@ -409,7 +412,8 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
         if (g.wagons <= 0) {
           setPhase('over');
           const points = Math.round(g.score);
-          recordBest(bestKey, points, { reached: points / 4 });
+          // Paid by gates passed, more on a harder line.
+          recordBest(bestKey, points, { reached: g.passed * d.pay });
           if (points > best && points > 0) window.setTimeout(() => (sfx.streak(), celebrateBig()), 600);
           syncHud();
         } else if (g.sectionGates >= GATES_PER_STATION) spawnStation();

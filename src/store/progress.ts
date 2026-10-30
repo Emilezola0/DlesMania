@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST } from '../gacha/grades';
 import type { Rarity } from '../gacha/cards';
+import { RETIRED } from '../gacha/retired';
 import { persist } from 'zustand/middleware';
 import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
@@ -113,6 +114,8 @@ interface ProgressState {
   gradeUp: (id: string, rarity: Rarity) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
   payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
+  /** Folds the copies of retired cards into the cards that replace them (see RETIRED): what was folded, and the coins. */
+  foldRetiredCards: () => { folded: { name: string; intoName: string; copies: number }[]; coins: number };
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -299,6 +302,32 @@ export const useProgress = create<ProgressState>()(
           ...(coins ? earn(s, coins) : {}),
         });
         return true;
+      },
+      foldRetiredCards: () => {
+        const s = get();
+        const cards = { ...s.cards };
+        const grades = { ...s.grades };
+        const gradesPaid = { ...s.gradesPaid };
+        let { avatar, backdrop } = s;
+        let coins = 0;
+        const folded: { name: string; intoName: string; copies: number }[] = [];
+        for (const [id, r] of Object.entries(RETIRED)) {
+          const copies = cards[id] ?? 0;
+          if (!copies) continue;
+          cards[r.into] = (cards[r.into] ?? 0) + copies;
+          delete cards[id];
+          // The better grade of the two stays, and is never paid again.
+          if (grades[id]) grades[r.into] = Math.max(grades[r.into] ?? 1, grades[id]);
+          if (gradesPaid[id]) gradesPaid[r.into] = Math.max(gradesPaid[r.into] ?? 1, gradesPaid[id]);
+          delete grades[id];
+          delete gradesPaid[id];
+          if (avatar === id) avatar = r.into;
+          if (backdrop === id) backdrop = r.into;
+          coins += copies * r.coins;
+          folded.push({ name: r.name, intoName: r.intoName, copies });
+        }
+        if (folded.length) set({ cards, grades, gradesPaid, avatar, backdrop, ...(coins ? earn(s, coins) : {}) });
+        return { folded, coins };
       },
       payGradeBacklog: (rarityOf) => {
         const s = get();

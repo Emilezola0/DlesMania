@@ -11,6 +11,7 @@ import { GlyphSeal, Ornament } from './Glyph';
 import { RulesModal } from './RulesModal';
 import { UpdateBanner } from './UpdateBanner';
 import { GradeBackPay } from './GradeBackPay';
+import { RetiredCards } from './RetiredCards';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
 export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop', '/album', '/trades'];
@@ -316,6 +317,7 @@ export function Layout() {
       <RulesModal />
       <UpdateBanner />
       <GradeBackPay />
+      <RetiredCards />
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />
