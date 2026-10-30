@@ -110,7 +110,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
             <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? 'card-grade-flare' : ''}`}>
-              <CardFace card={card} count={count} tilt={false} foil={foil} depth />
+              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />

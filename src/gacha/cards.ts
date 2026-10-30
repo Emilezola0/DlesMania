@@ -50,8 +50,10 @@ export interface Card {
   /** The French dub's line and recording, heard (and shown) when names are in French. */
   voiceFr?: string;
   audioFr?: string;
-  /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard. */
-  awaken?: { title: string; image: string; line: string };
+  /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard (its clip: see `clip`). */
+  awaken?: { title: string; image: string; line: string; clip?: string };
+  /** A short looping clip (MP4) of a mythic, played instead of its picture where the card is seen up close. */
+  clip?: string;
   /**
    * Framing for a picture with more around it than the card wants (a group shot, a title banner, a
    * screenshot): zoomed `zoom` times on the point at `x`% / `y`% of it.
@@ -446,6 +448,69 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
   },
 ];
 
+/**
+ * The mythics' and omnis' animated clips: short loops from Tenor (their MP4s), chosen by eye. An omni's
+ * is its awakened form's, seen once its guardian falls on Hard.
+ */
+const CLIPS: Record<string, string> = {
+  'lol:mythic': 'https://media.tenor.com/ovaIqQkF4M0AAAPo/ahri-kda.mp4',
+  'lol:omni': 'https://media.tenor.com/OaenBPLYCCYAAAPo/ahri-league-of-legends.mp4',
+  'lol:mythic-2': 'https://media.tenor.com/aON12Kv1-8UAAAPo/jinx-star-guardian.mp4',
+  'overwatch:mythic': 'https://media.tenor.com/G_EVend5kNYAAAP1/tracer-overwatch.mp4',
+  'overwatch:omni': 'https://media.tenor.com/Q_tSybqTqr0AAAP1/pink-rose-gold.mp4',
+  'overwatch:mythic-2': 'https://media.tenor.com/eW-0Jv-XG28AAAP1/overwatch-overwatch-league.mp4',
+  'minecraft:mythic': 'https://media.tenor.com/G7ryB6dOXCsAAAPo/creeper-creeper-explosion.mp4',
+  'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
+  'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
+  'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
+  'onepiece:omni': 'https://media.tenor.com/S9Xo7A1m3_EAAAP1/one-piece-onigashima-arc.mp4',
+  'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
+  'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
+  'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
+  'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
+  'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
+  'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
+  'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
+  'starwars:mythic': 'https://media.tenor.com/AOUl2bhSY4cAAAP1/yoda-fight.mp4',
+  'starwars:omni': 'https://media.tenor.com/a1VrRecyJjQAAAP1/vader-natode-vader.mp4',
+  'starwars:mythic-2': 'https://media.tenor.com/nwBMOVfhuS0AAAPo/darth-vader-im-ready.mp4',
+  'harrypotter:mythic': 'https://media.tenor.com/wt7eXX5sQxoAAAP1/hp-harry-potter.mp4',
+  'harrypotter:omni': 'https://media.tenor.com/_Po2TZKmqLkAAAPo/elder-wand-harry-potter.mp4',
+  'harrypotter:mythic-2': 'https://media.tenor.com/i0J9xP3hu8QAAAPo/stupefy-hermione-granger.mp4',
+  'lotr:mythic': 'https://media.tenor.com/MuVqoWRdyp8AAAP1/lord-of-the-rings-ring.mp4',
+  'lotr:omni': 'https://media.tenor.com/aKR7BgooK-UAAAPo/gandalf-the-white-gandalf.mp4',
+  'lotr:mythic-2': 'https://media.tenor.com/LtGe_1jolSwAAAPo/lord-of-the-rings-return-of-the-king.mp4',
+  'mcu:mythic': 'https://media.tenor.com/X65SdRy9nbwAAAP1/iron-man.mp4',
+  'mcu:omni': 'https://media.tenor.com/KRu4vbcBkEoAAAP1/robert-downey-jr-ironman.mp4',
+  'mcu:mythic-2': 'https://media.tenor.com/SP5FwVSdM8kAAAP1/almighty-thunder.mp4',
+  'smash:mythic': 'https://media.tenor.com/qZ9dQh5yvF8AAAP1/dr-mario.mp4',
+  'smash:omni': 'https://media.tenor.com/9beKjndyAScAAAP1/legendofzelda-link.mp4',
+  'smash:mythic-2': 'https://media.tenor.com/BjXbSxg_O2UAAAPo/kasane-teto-teto-kasane.mp4',
+  'genshin:mythic': 'https://media.tenor.com/hio_kwnWe7cAAAPo/hyejinsgenre-diluc.mp4',
+  'genshin:omni': 'https://media.tenor.com/BTgMUyjU5SgAAAPo/zhongli-zhongli-burst.mp4',
+  'genshin:mythic-2': 'https://media.tenor.com/umRS1zU3OUsAAAPo/raiden-baal.mp4',
+  'wow:mythic': 'https://media.tenor.com/X8gVLf0ElZgAAAP1/tyrande-vs-sylvanas-warcraft.mp4',
+  'wow:omni': 'https://media.tenor.com/YD60vE1x6-QAAAP1/arthas.mp4',
+  'wow:mythic-2': 'https://media.tenor.com/UXYdx30sa4QAAAPo/thrall-world-of-warcraft.mp4',
+  'inazuma:mythic': 'https://media.tenor.com/s0u-malnHkoAAAP1/mark-evans-endou-mamoru.mp4',
+  'inazuma:omni': 'https://media.tenor.com/WW2B3R_iirIAAAP1/inazuma-eleven-inazuma-eleven-3.mp4',
+  'inazuma:mythic-2': 'https://media.tenor.com/BfiOzlRAU2QAAAPo/shuuya-gouenji-tsurugi-kyousuke-fire-tornado-double-drive.mp4',
+  'forts:mythic': 'https://media.tenor.com/yBPzZbfYvLUAAAPo/forts-yeet.mp4',
+  'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
+  'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
+  'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
+  'avatar:omni': 'https://media.tenor.com/EeoH1xjh8QQAAAP1/aang-water-spirit.mp4',
+  'avatar:mythic-2': 'https://media.tenor.com/FwNFDMOM2bIAAAPo/toph-avatar-the-last-airbender.mp4',
+  'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
+  'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
+  'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
+};
+const withClip = (c: Card): Card => {
+  const clip = CLIPS[c.id];
+  if (!clip) return c;
+  return c.awaken ? { ...c, awaken: { ...c.awaken, clip } } : { ...c, clip };
+};
+
 /** Franchises added after the first fourteen (see CARDS). */
 const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
@@ -657,7 +722,7 @@ export const CARDS: Card[] = (() => {
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
     if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
   }
-  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
+  return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));

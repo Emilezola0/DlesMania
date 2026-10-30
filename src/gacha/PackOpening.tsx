@@ -437,7 +437,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} />
+                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate />
                 </div>
               </div>
             </div>

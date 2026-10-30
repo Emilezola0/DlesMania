@@ -33,12 +33,12 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
 };
 
 /** An omni's form: its second (awakened) once its franchise's guardian has been beaten on Hard (or Hell). */
-export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean } {
+export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string } {
   // Hard or Hell: either win awakens it.
   const awake = useProgress((s) => !!card.awaken && ((s.bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0));
   return awake && card.awaken
-    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true }
-    : { image: card.image, title: card.title, description: card.description, awakened: false };
+    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip }
+    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip };
 }
 
 /**
@@ -50,7 +50,9 @@ export function useCardForm(card: Card): { image: string; title?: string; descri
  * `depth` lifts the name, badges and text off the card (for the 3D big view). Above grade I, the
  * card wears its grade's emblem and shine (`grade`: the player's own when not given).
  */
-export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number }) {
+export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean }) {
+  /** A clip that wouldn't play: back to the picture. */
+  const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
   // The voice line in the names' language (a French dub's when the card has one).
   const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
@@ -100,6 +102,20 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,241,168,.5), rgba(168,85,247,.25) 45%, rgba(15,10,40,.2) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
+          {/* Up close (`animate`), a mythic's clip loops in place of its picture; in the album grids, the picture. */}
+          {animate && form.clip && clipFailed !== form.clip ? (
+            <video
+              key={form.clip}
+              src={form.clip}
+              poster={form.image}
+              autoPlay
+              muted
+              loop
+              playsInline
+              onError={() => setClipFailed(form.clip!)}
+              className="size-full object-cover"
+            />
+          ) : (
           <img
             key={form.image}
             src={form.image}
@@ -110,6 +126,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
             // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
             style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
           />
+          )}
           {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
             <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">
