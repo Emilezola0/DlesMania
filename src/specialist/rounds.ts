@@ -12,7 +12,7 @@ import { BLUEPRINT_POOLS } from './blueprint';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import { JLPT_POOLS } from './jlpt';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -74,6 +74,13 @@ export const UNIVERSES = [
     types: ['picture', 'clue', 'windows', 'silhouette'] as SpType[],
   },
   {
+    id: 'ufouria',
+    label: 'Ufouria: The Saga 2',
+    ready: true,
+    blurb: 'The heroes dancing in silhouette, pictures, windows and the spotlight on heroes, enemies and things, and clues from the bestiary.',
+    types: ['dance', 'picture', 'clue', 'windows', 'spotlight'] as SpType[],
+  },
+  {
     id: 'avatar',
     label: 'Avatar: The Last Airbender',
     ready: true,
@@ -126,6 +133,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
   windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   spotlight: { name: 'Spotlight', icon: '🔦', tagline: 'The light widens with each miss', maxAttempts: 6 },
+  dance: { name: 'Dance', icon: '💃', tagline: 'Who is dancing in the shadow?', maxAttempts: 4 },
   ultcost: { name: 'Ultimate Cost', icon: '⚡', tagline: 'Whose ultimate costs this many points?', maxAttempts: 6 },
   kanji: { name: 'Kanji', icon: '字', tagline: 'What does this kanji mean?', maxAttempts: 6 },
   reading: { name: 'Reading', icon: '読', tagline: 'How is this word read?', maxAttempts: 6 },
@@ -159,6 +167,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   forhonor: simplePools('forhonor'),
   overwatch: simplePools('overwatch'),
   forts: simplePools('forts'),
+  ufouria: simplePools('ufouria'),
   avatar: simplePools('avatar'),
   destiny: simplePools('destiny'),
   jlpt: JLPT_POOLS,

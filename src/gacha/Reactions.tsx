@@ -89,6 +89,7 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   avatar: { good: ['Perfectly balanced!', 'Your bending is getting stronger!', 'Yip yip!'], bad: ['That was a cabbage-level mistake…', 'Back to the Air Temple to train…', 'The elements are not with you.'] },
   jlpt: { good: ['Sugoi!', 'Gōkaku!', 'Perfect stroke order!'], bad: ['Chigau…', 'Back to the textbook!', 'One more time!'] },
   balatro: { good: ['Nice hand!', 'That one scored!', 'Mult go brrr!'], bad: ['Bust!', 'Not enough chips…', 'Should have discarded that.'] },
+  ufouria: { good: ['Uppo!', 'Butt stomp!', 'Bumyon cleaned up!'], bad: ['Bumyon’d…', 'Splat!', 'Back to bed, Hebe.'] },
   destiny: { good: ['Eyes up, Guardian!', 'An Exotic drop!', 'The Light holds!'], bad: ['Your Ghost is reviving you…', 'Another blue engram…', 'Back to orbit…'] },
   forhonor: { good: ['Guard break!', 'A worthy duel!', 'Execution!'], bad: ['Parried…', 'Your guard is open!', 'Back to the war camp…'] },
   forts: { good: ['Direct hit!', 'Reactor breached!', 'Fort holding strong.'], bad: ['Bracing down!', 'Incoming fire!', 'Repair crews, now!'] },

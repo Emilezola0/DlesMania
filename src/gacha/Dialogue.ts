@@ -113,6 +113,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Why did they discard that, {other}?', 'I stopped asking on Ante 2.'], ['High Card.', 'High Card, {other}.']],
     great: [['Look at that Mult!', 'That’s not a number any more, {other}!', 'One more run. Just one.']],
   },
+  ufouria: {
+    good: [['Did you see that butt stomp, {other}?', 'Straight into coins.'], ['Another Bumyon gone.', 'Popoons work wonders, {other}.']],
+    bad: [['They got Bumyon’d, {other}.', 'Sticky. Very sticky.'], ['A Kerasu got them.', 'Right on the head, {other}.']],
+    great: [['Utsujin’s saucer is down!', 'Is that O-Chan cheering, {other}?', 'Uppo!']],
+  },
 };
 
 /** For a franchise with no lines of its own. */

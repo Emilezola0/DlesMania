@@ -18508,5 +18508,494 @@
         }
       ]
     }
+  },
+  {
+    "id": "ufouria",
+    "domain": "games",
+    "franchise": "Ufouria: The Saga 2",
+    "aliases": [
+      "ufouria",
+      "ufouria 2",
+      "ufouria the saga 2",
+      "ufouria: the saga 2",
+      "hebereke",
+      "hebereke 2",
+      "へべれけ",
+      "へべれけ2"
+    ],
+    "images": "none",
+    "boss": {
+      "name": "Utsujin",
+      "title": "The Alien in the Flying Saucer",
+      "color": "#7c3aed",
+      "image": "local:art/ufouria/utsujin.jpg"
+    },
+    "lines": {
+      "intro": "Hehehe! Ufouria is covered in Bumyon, and every last sticky glob of it is mine. Come and clean it up, if you can!",
+      "phase2": "Half of these faces never set foot in Ufouria. Pick out the real ones before my Bumyon swallow them all!",
+      "phase3": "Down from the saucer! Name everything you see before I take off again!",
+      "hit": [
+        "My saucer!",
+        "Not the antenna!",
+        "Ow, ow, ow!"
+      ],
+      "hurt": [
+        "Bumyon'd!",
+        "Splat!",
+        "Too slow, earthling!",
+        "Back to Hebe's house with you!"
+      ],
+      "win": "Fine, fine… take your fields back. My saucer and I are going home. For now.",
+      "lose": "Ufouria is one big purple blob now! Go back to bed, earthling.",
+      "secret": "One last game before I fly off. I name a hero, an enemy, a place or an item of Ufouria — you name another of the same. No repeats!",
+      "secretOk": [
+        "Hmph.",
+        "Again!",
+        "Lucky earthling."
+      ],
+      "secretLost": "Nothing? Then the Bumyon win."
+    },
+    "blitz": [
+      {
+        "prompt": "Name the 4 heroes",
+        "count": 4,
+        "answers": [
+          "Hebe|Bop-Louie",
+          "O-Chan|Ochan|Ō-Chan|Oh-Chan|Freeon-Leon",
+          "Sukezaemon|Shades",
+          "Jennifer|Gil"
+        ]
+      },
+      {
+        "prompt": "Name 5 enemies",
+        "count": 5,
+        "answers": [
+          "Kerasu",
+          "Teketeke",
+          "Punipuni",
+          "Gako",
+          "Nezuchiu",
+          "Keronba",
+          "Kokeron",
+          "Hobachiu",
+          "Hoppin",
+          "Hanageruge",
+          "Gyorochan",
+          "Nanikano Tamago",
+          "Donadona",
+          "Micky",
+          "Kuchigeruge",
+          "Capchiu",
+          "Nyanham",
+          "Pen-Chan|Penchan",
+          "Ricky",
+          "Sanbo",
+          "Muneko",
+          "Kotsu",
+          "Bumyon",
+          "Bemyon",
+          "Bomyon",
+          "Bobodori"
+        ]
+      },
+      {
+        "prompt": "Name 4 places",
+        "count": 4,
+        "answers": [
+          "Ufouria Fields",
+          "Shady Forest",
+          "Popoitto Caves",
+          "Chilly Caves",
+          "Frozen Depths",
+          "Scalding Peaks",
+          "Horizon Tree",
+          "Inky Caves",
+          "Kerasu Nest",
+          "Hebe's House|Hebes House"
+        ]
+      },
+      {
+        "prompt": "Name 3 things sold in Hebe's Vending Machine",
+        "count": 3,
+        "answers": [
+          "Life Drink",
+          "Medicine",
+          "Life Water",
+          "White Egg",
+          "Dimensional Crystal",
+          "Strength Ring",
+          "Guidebook"
+        ]
+      },
+      {
+        "prompt": "Name the 3 purple blobs",
+        "count": 3,
+        "answers": [
+          "Bumyon",
+          "Bemyon",
+          "Bomyon"
+        ]
+      },
+      {
+        "prompt": "Name the 3 mouse enemies",
+        "count": 3,
+        "answers": [
+          "Nezuchiu",
+          "Hobachiu",
+          "Capchiu"
+        ]
+      },
+      {
+        "prompt": "Name the 3 caves",
+        "count": 3,
+        "answers": [
+          "Popoitto Caves|Popoitto",
+          "Chilly Caves|Chilly",
+          "Inky Caves|Inky"
+        ]
+      },
+      {
+        "prompt": "Name both frogs",
+        "count": 2,
+        "answers": [
+          "Keronba",
+          "Kokeron"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Hebe",
+          "image": "local:art/ufouria/hebe.jpg",
+          "aliases": [
+            "Bop-Louie"
+          ]
+        },
+        {
+          "label": "O-Chan",
+          "image": "local:art/ufouria/o-chan.jpg",
+          "aliases": [
+            "Ochan",
+            "Ō-Chan",
+            "Freeon-Leon"
+          ]
+        },
+        {
+          "label": "Sukezaemon",
+          "image": "local:art/ufouria/sukezaemon.jpg",
+          "aliases": [
+            "Shades"
+          ]
+        },
+        {
+          "label": "Jennifer",
+          "image": "local:art/ufouria/jennifer.jpg",
+          "aliases": [
+            "Gil"
+          ]
+        },
+        {
+          "label": "Bumyon",
+          "image": "local:art/ufouria/bumyon.jpg"
+        },
+        {
+          "label": "Kerasu",
+          "image": "local:art/ufouria/kerasu.jpg"
+        },
+        {
+          "label": "Sanbo",
+          "image": "local:art/ufouria/sanbo.jpg"
+        },
+        {
+          "label": "Sun",
+          "image": "local:art/ufouria/sun.jpg",
+          "aliases": [
+            "The Sun"
+          ]
+        },
+        {
+          "label": "Moon",
+          "image": "local:art/ufouria/moon.jpg",
+          "aliases": [
+            "The Moon"
+          ]
+        },
+        {
+          "label": "Toilet",
+          "image": "local:art/ufouria/toilet.jpg",
+          "aliases": [
+            "Hebe's Toilet"
+          ]
+        },
+        {
+          "label": "Bed",
+          "image": "local:art/ufouria/bed.jpg",
+          "aliases": [
+            "Hebe's Bed"
+          ]
+        },
+        {
+          "label": "Kerasu Poop",
+          "image": "local:art/ufouria/kerasu-poop.jpg",
+          "aliases": [
+            "Poop",
+            "Kerasu Poo",
+            "Poo"
+          ]
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Kirby",
+          "image": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png"
+        },
+        {
+          "label": "Pikachu",
+          "image": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png"
+        },
+        {
+          "label": "Yoshi",
+          "image": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg"
+        },
+        {
+          "label": "Pac-Man",
+          "image": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png"
+        },
+        {
+          "label": "Ness",
+          "image": "https://ssb.wiki.gallery/images/d/d5/Ness.png"
+        },
+        {
+          "label": "Olimar",
+          "image": "https://ssb.wiki.gallery/images/c/ca/OlimarP.jpg"
+        },
+        {
+          "label": "Mr. Game & Watch",
+          "image": "https://ssb.wiki.gallery/images/8/87/Mr._Game_%26_Watch.png"
+        },
+        {
+          "label": "Isabelle",
+          "image": "https://ssb.wiki.gallery/images/4/43/Villager_and_Isabelle_artwork.jpg"
+        },
+        {
+          "label": "Mario",
+          "image": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png"
+        },
+        {
+          "label": "Sonic",
+          "image": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Utsujin's UFO",
+        "image": "local:art/ufouria/utsujins-ufo.jpg",
+        "aliases": [
+          "UFO",
+          "Flying Saucer",
+          "Utsujin's Flying Saucer"
+        ]
+      },
+      {
+        "label": "Hebe's Vending Machine",
+        "image": "local:art/ufouria/vending-machine.jpg",
+        "aliases": [
+          "Vending Machine"
+        ]
+      },
+      {
+        "label": "Hebe's House",
+        "image": "local:art/ufouria/hebes-house.jpg",
+        "aliases": [
+          "Hebes House"
+        ]
+      },
+      {
+        "label": "Kerasu Nest",
+        "image": "local:art/ufouria/kerasu-nest.jpg"
+      },
+      {
+        "label": "World Atlas",
+        "image": "local:art/ufouria/world-atlas.jpg",
+        "aliases": [
+          "Atlas"
+        ]
+      },
+      {
+        "label": "Bookshelf",
+        "image": "local:art/ufouria/bookshelf.jpg",
+        "aliases": [
+          "Bookcase"
+        ]
+      },
+      {
+        "label": "Hobachiu",
+        "image": "local:art/ufouria/hobachiu.jpg"
+      },
+      {
+        "label": "Teketeke",
+        "image": "local:art/ufouria/teketeke.jpg"
+      },
+      {
+        "label": "Life Drink",
+        "image": "local:art/ufouria/life-drink.jpg"
+      },
+      {
+        "label": "Medicine",
+        "image": "local:art/ufouria/medicine.jpg"
+      },
+      {
+        "label": "Life Water",
+        "image": "local:art/ufouria/life-water.jpg"
+      },
+      {
+        "label": "White Egg",
+        "image": "local:art/ufouria/white-egg.jpg",
+        "aliases": [
+          "Egg"
+        ]
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Hero",
+          "entities": [
+            "Hebe|Bop-Louie",
+            "O-Chan|Ochan|Ō-Chan|Oh-Chan|Freeon-Leon",
+            "Sukezaemon|Shades",
+            "Jennifer|Gil"
+          ]
+        },
+        {
+          "label": "Enemy",
+          "entities": [
+            "Kerasu",
+            "Teketeke",
+            "Punipuni",
+            "Gako",
+            "Nezuchiu",
+            "Keronba",
+            "Kokeron",
+            "Hobachiu",
+            "Hoppin",
+            "Hanageruge",
+            "Gyorochan",
+            "Nanikano Tamago",
+            "Donadona",
+            "Micky",
+            "Kuchigeruge",
+            "Capchiu",
+            "Nyanham",
+            "Pen-Chan|Penchan",
+            "Ricky",
+            "Sanbo",
+            "Muneko",
+            "Kotsu",
+            "Bumyon",
+            "Bemyon",
+            "Bomyon",
+            "Bobodori",
+            "Utsujin"
+          ]
+        },
+        {
+          "label": "Place",
+          "entities": [
+            "Ufouria Fields",
+            "Shady Forest",
+            "Popoitto Caves",
+            "Chilly Caves",
+            "Frozen Depths",
+            "Scalding Peaks",
+            "Horizon Tree",
+            "Inky Caves",
+            "Kerasu Nest",
+            "Hebe's House|Hebes House"
+          ]
+        },
+        {
+          "label": "Item",
+          "entities": [
+            "Life Drink",
+            "Medicine",
+            "Life Water",
+            "White Egg",
+            "Dimensional Crystal",
+            "Strength Ring",
+            "Guidebook",
+            "Popoon"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Ufouria",
+      "prompt": "Who or what is this?",
+      "clues": [
+        {
+          "text": "The penguin-like hero in a blue woolly hat",
+          "answer": "Hebe"
+        },
+        {
+          "text": "A friend in an orange cat suit, the first one Hebe has to fight to free",
+          "answer": "O-Chan|Ochan"
+        },
+        {
+          "text": "A ghost in a red cap and sunglasses who floats across long gaps",
+          "answer": "Sukezaemon"
+        },
+        {
+          "text": "A green friend with a light on her head who dives into deep water",
+          "answer": "Jennifer"
+        },
+        {
+          "text": "The alien who covered Ufouria in sticky purple globs",
+          "answer": "Utsujin"
+        },
+        {
+          "text": "The short purple blob a butt stomp cannot beat",
+          "answer": "Bumyon"
+        },
+        {
+          "text": "A black bird that drops something nasty on your head",
+          "answer": "Kerasu"
+        },
+        {
+          "text": "The large yellow boss of the Popoitto Caves",
+          "answer": "Sanbo"
+        },
+        {
+          "text": "A yellow mouse that flies",
+          "answer": "Hobachiu"
+        },
+        {
+          "text": "A small white blob with red feet",
+          "answer": "Teketeke"
+        },
+        {
+          "text": "Restores one heart, now mixed with a popular drink",
+          "answer": "Life Drink"
+        },
+        {
+          "text": "Dropped by Bobodori in the Ufouria Fields, it glimmers in the light",
+          "answer": "White Egg|Egg"
+        },
+        {
+          "text": "The shop at Hebe’s house that sells drinks, eggs and upgrades",
+          "answer": "Hebe's Vending Machine|Vending Machine"
+        },
+        {
+          "text": "Utsujin’s smaller alien minions in the final fight",
+          "answer": "Kotsu"
+        },
+        {
+          "text": "The breezy prairie a quick walk from Hebe’s house",
+          "answer": "Ufouria Fields"
+        }
+      ]
+    }
   }
 ]

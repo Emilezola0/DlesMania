@@ -23,7 +23,7 @@ import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/gam
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
-import { classicRoundFor, clueRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
+import { classicRoundFor, clueRoundFor, danceRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
 import { JLPT_KANJI, JLPT_WORDS } from '../specialist/jlpt';
@@ -41,6 +41,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
   forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor'), spotlight: spotlightRoundFor('forhonor'), execution: executionRoundFor('forhonor') },
   overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch'), ultcost: ultCostRoundFor('overwatch') },
+  ufouria: { dance: danceRoundFor('ufouria'), picture: pictureRoundFor('ufouria'), clue: clueRoundFor('ufouria', 'Who or what is this?'), windows: windowsRoundFor('ufouria'), spotlight: spotlightRoundFor('ufouria') },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   destiny: { classic: classicRoundFor('destiny', 'character'), picture: pictureRoundFor('destiny'), clue: clueRoundFor('destiny', 'Who is this?'), windows: windowsRoundFor('destiny'), exotic: itemRoundFor('destiny', 'Which Exotic weapon is this?') },
@@ -57,6 +58,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   wow: `${WOW.characters.length} characters from the games — Warcraft Wiki data from ${WOW.generated}`,
   forhonor: `${SIMPLE.forhonor.characters.length} heroes · ${SIMPLE.forhonor.clues.length} weapons${SIMPLE.forhonor.executions?.length ? ` · ${SIMPLE.forhonor.executions.length} executions` : ''} — For Honor wiki`,
   overwatch: `${SIMPLE.overwatch.characters.length} heroes · ${SIMPLE.overwatch.voices?.length ?? 0} voice lines · ${SIMPLE.overwatch.clues.length} ultimates — Overwatch wiki`,
+  ufouria: `${SIMPLE.ufouria.characters.length} heroes, enemies and things · ${SIMPLE.ufouria.dances?.length ?? 0} dances · ${SIMPLE.ufouria.clues.length} clues — Sunsoft (official site, store pages and trailers)`,
   forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
   avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues · ${SIMPLE.avatar.voices?.length ?? 0} voice lines — Avatar Wiki, myinstants`,
   destiny: `${SIMPLE.destiny.characters.length} characters · ${SIMPLE.destiny.clues.length} clues · ${SIMPLE.destiny.items?.length ?? 0} Exotic weapons — Destinypedia, Bungie (via godroll.tv)`,

@@ -8,15 +8,15 @@ import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
 
 /** A finished daily round (category or Specialist): more for a better score. */
-export const roundCoins = (won: boolean, score: number) => (won ? 6 + Math.floor(Math.max(0, score) / 10) : 2);
+export const roundCoins = (won: boolean, score: number) => (won ? 12 + 2 * Math.floor(Math.max(0, score) / 10) : 4);
 /** All ten rounds of a category's daily played. */
-export const CATEGORY_BONUS = 25;
+export const CATEGORY_BONUS = 50;
 
 /** Every boss fight: a win by difficulty, a token for a loss. */
-export const BOSS_WIN: Record<BossDifficulty, number> = { easy: 12, medium: 25, hard: 125, hell: 200 };
-export const BOSS_LOSS = 3;
+export const BOSS_WIN: Record<BossDifficulty, number> = { easy: 24, medium: 50, hard: 250, hell: 400 };
+export const BOSS_LOSS = 6;
 /** The first win over a boss at a difficulty each week (weeks start on Monday). */
-export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 80, hard: 150, hell: 250 };
+export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 80, medium: 160, hard: 300, hell: 500 };
 
 /**
  * A game from the Games page, by how it went — fully up to a daily amount, then a token:
@@ -26,26 +26,26 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 8
  * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
-export const ARCADE_WIN = 20;
-export const ARCADE_LOSS = 3;
-export const ARCADE_BEST_BONUS = 15;
+export const ARCADE_WIN = 40;
+export const ARCADE_LOSS = 6;
+export const ARCADE_BEST_BONUS = 30;
 /** A set of rounds: up to this much for a perfect score. */
-export const ARCADE_SET_MAX = 25;
+export const ARCADE_SET_MAX = 50;
 /** An endless run's coins at most. */
-export const ARCADE_RUN_MAX = 100;
+export const ARCADE_RUN_MAX = 200;
 
 export function arcadeCoins(r: ArcadeResult): number {
   if ('save' in r) return 0;
   if ('won' in r) return r.won ? ARCADE_WIN : ARCADE_LOSS;
-  if ('ratio' in r) return r.ratio < 0.4 ? ARCADE_LOSS : Math.round(4 + (ARCADE_SET_MAX - 4) * Math.min(1, r.ratio));
+  if ('ratio' in r) return r.ratio < 0.4 ? ARCADE_LOSS : Math.round(8 + (ARCADE_SET_MAX - 8) * Math.min(1, r.ratio));
   // `reached`: the run's length in steps (each game says what a step is): 2 a step, and more and more as it goes
   // on — the endless games get harder the further they go, so the deep steps pay the most.
   const u = Math.max(0, r.reached);
-  return Math.min(ARCADE_RUN_MAX, 2 + Math.floor(2 * u + (u * u) / 15));
+  return Math.min(ARCADE_RUN_MAX, 4 + 2 * Math.floor(2 * u + (u * u) / 15));
 }
 /** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
 export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
-export const ARCADE_CAP = 600;
+export const ARCADE_CAP = 1200;
 /** Past the daily amount, this share of what a game would pay (at least a coin). */
 export const ARCADE_AFTER_CAP = 0.5;
 /** A game pays at most once per this long (so a run lost at once, again and again, isn't a farm). */
@@ -136,10 +136,10 @@ export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? 
 export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
 
 /** The most an Expedition pays in DleCoins for one room (elites included) and one boss, however deep the run. */
-export const EXPEDITION_ROOM_MAX = 12;
-export const EXPEDITION_BOSS_MAX = 60;
+export const EXPEDITION_ROOM_MAX = 24;
+export const EXPEDITION_BOSS_MAX = 120;
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
-export const EXPEDITION_CAP = 150;
+export const EXPEDITION_CAP = 300;
 export const EXPEDITION_AFTER_CAP = 0.25;
 
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
@@ -148,12 +148,12 @@ export const DUPLICATE_VALUE = { common: 2, rare: 5, epic: 15, legendary: 50, my
 export type MissionKind = 'rounds' | 'category' | 'special' | 'boss' | 'arcade' | 'whos';
 
 export const MISSIONS: Record<MissionKind, { icon: string; text: string; need: number; reward: number }> = {
-  rounds: { icon: '📅', text: 'Win 5 daily rounds', need: 5, reward: 40 },
-  category: { icon: '🏁', text: 'Play a whole daily category', need: 1, reward: 50 },
-  special: { icon: '🎯', text: 'Win 3 Specialist rounds', need: 3, reward: 40 },
-  boss: { icon: '👑', text: 'Beat a boss', need: 1, reward: 60 },
-  arcade: { icon: '🕹️', text: 'Finish 3 games from the Games page', need: 3, reward: 30 },
-  whos: { icon: '👤', text: "Play a Who's That? run", need: 1, reward: 25 },
+  rounds: { icon: '📅', text: 'Win 5 daily rounds', need: 5, reward: 80 },
+  category: { icon: '🏁', text: 'Play a whole daily category', need: 1, reward: 100 },
+  special: { icon: '🎯', text: 'Win 3 Specialist rounds', need: 3, reward: 80 },
+  boss: { icon: '👑', text: 'Beat a boss', need: 1, reward: 120 },
+  arcade: { icon: '🕹️', text: 'Finish 3 games from the Games page', need: 3, reward: 60 },
+  whos: { icon: '👤', text: "Play a Who's That? run", need: 1, reward: 50 },
 };
 
 const KINDS = Object.keys(MISSIONS) as MissionKind[];
@@ -198,22 +198,22 @@ export type LongKind = MissionKind | 'packs';
 
 export const LONG_MISSIONS: Record<Period, Record<LongKind, { icon: string; text: string; need: number; reward: number }>> = {
   week: {
-    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 150 },
-    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 180 },
-    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 150 },
-    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 220 },
-    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 120 },
-    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 100 },
-    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 150 },
+    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 300 },
+    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 360 },
+    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 300 },
+    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 440 },
+    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 240 },
+    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 200 },
+    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 300 },
   },
   month: {
-    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 500 },
-    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 600 },
-    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 450 },
-    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 700 },
-    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 400 },
-    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 350 },
-    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 450 },
+    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 1000 },
+    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 1200 },
+    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 900 },
+    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 1400 },
+    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 800 },
+    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 700 },
+    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 900 },
   },
 };
 

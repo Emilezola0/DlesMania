@@ -68,8 +68,8 @@ export const RELIC_ACTS = 2;
  * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — a little more each act, up to
  * a low ceiling, so that a long run never out-earns the other games (see economy.ts).
  */
-export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, (1 + Math.ceil(act / 2)) * (elite ? 2 : 1));
-export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 5 + 5 * act);
+export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, 2 * (1 + Math.ceil(act / 2)) * (elite ? 2 : 1));
+export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 10 + 10 * act);
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;

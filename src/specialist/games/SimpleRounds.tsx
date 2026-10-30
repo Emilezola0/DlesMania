@@ -127,6 +127,38 @@ export const silhouetteRoundFor = (u: SimpleUniverse['id']) =>
     );
   };
 
+/** Dance (Ufouria): a hero cheering, dancing in the shadow; it slows down with each miss, and steps into the light at the end. */
+export const danceRoundFor = (u: SimpleUniverse['id']) =>
+  function SimpleDanceRound({ round, record, onChange }: Props) {
+    const d = SIMPLE[u].dances![Number(round.targetId)];
+    const c = simpleCharacter(u, d.answer)!;
+    return (
+      <SpGuessRound
+        type="dance"
+        question="Who is dancing in the shadow?"
+        pool={SIMPLE[u].characters}
+        targetId={c.id}
+        hints={hintsFor(c)}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: d.image, detail: detail(c) }}
+        noPictures
+        clue={(wrong, done) => (
+          <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-xl" style={{ background: 'radial-gradient(circle at 50% 40%, #fef9c3 0%, #93c5fd 45%, #1e3a8a 85%)' }}>
+            <img
+              src={d.image}
+              alt=""
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+              className={`absolute inset-0 size-full select-none object-contain p-8 transition-[filter] duration-500 ${done ? '' : 'animate-dance'}`}
+              style={{ filter: done ? 'none' : 'brightness(0) drop-shadow(0 6px 10px rgb(0 0 0 / 0.35))', animationDuration: `${1.3 + wrong * 0.5}s` }}
+            />
+          </div>
+        )}
+      />
+    );
+  };
+
 /** Voice: a line in their voice — the French dub when names are in French and there is one, else the original. */
 export const voiceRoundFor = (u: SimpleUniverse['id']) =>
   function SimpleVoiceRound({ round, record, onChange }: Props) {
