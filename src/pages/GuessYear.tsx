@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { shownName } from '../lib/french';
 import { Link } from 'react-router-dom';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { DOMAINS, WORKS, domainInfo } from '../data';
 import { celebrateBig } from '../lib/fx';
 import { shuffle } from '../lib/rng';
@@ -16,12 +17,21 @@ const points = (guess: number, year: number) => Math.max(0, 100 - Math.abs(guess
 
 const pool = (domain: Domain | 'all') => WORKS.filter((w) => w.cover?.image && w.year && (domain === 'all' || w.domain === domain));
 
-function Run({ domain, onExit }: { domain: Domain | 'all'; onExit: () => void }) {
+/** Customise: kinds of work and decades, mixed. */
+const decade = (year: number) => `${Math.floor(year / 10) * 10}s`;
+const DECADES = [...new Set(pool('all').map((w) => decade(w.year)))].sort();
+const YEAR_OPTIONS = [
+  ...DOMAINS.map((d) => ({ key: d.id, label: `${d.icon} ${d.label}`, group: 'Kinds of work' })),
+  ...DECADES.map((x) => ({ key: x, label: x, group: 'Decades' })),
+];
+const mixPool = (picks: string[]) => pool('all').filter((w) => picks.includes(w.domain) && picks.includes(decade(w.year)));
+
+function Run({ domain, onExit, mix }: { domain: Domain | 'all' | 'custom'; onExit: () => void; mix?: string[] }) {
   const key = `year:${domain}`;
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const [run, setRun] = useState(0);
-  const works = useMemo(() => shuffle(pool(domain), Math.random).slice(0, ROUNDS), [domain, run]);
+  const works = useMemo(() => shuffle(mix ? mixPool(mix) : pool(domain as Domain | 'all'), Math.random).slice(0, ROUNDS), [domain, run, mix]);
   const [index, setIndex] = useState(0);
   const [guess, setGuess] = useState(2005);
   const [results, setResults] = useState<number[]>([]);
@@ -58,7 +68,7 @@ function Run({ domain, onExit }: { domain: Domain | 'all'; onExit: () => void })
     <div className="space-y-5">
       <div className="flex items-end justify-between">
         <button type="button" onClick={onExit} className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-          ← {domain === 'all' ? 'All categories' : domainInfo(domain).label}
+          ← {domain === 'custom' ? 'Your mix' : domain === 'all' ? 'All categories' : domainInfo(domain).label}
         </button>
         <p className="font-serif text-2xl font-bold tabular-nums">
           {total}
@@ -151,8 +161,10 @@ function Run({ domain, onExit }: { domain: Domain | 'all'; onExit: () => void })
 /** /guess-the-year */
 export default function GuessYear() {
   const bests = useProgress((s) => s.bests);
-  const [domain, setDomain] = useState<Domain | 'all' | null>(null);
-  if (domain) return <Run key={domain} domain={domain} onExit={() => setDomain(null)} />;
+  const [domain, setDomain] = useState<Domain | 'all' | 'custom' | null>(null);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-year', YEAR_OPTIONS);
+  const mixed = mixPool(picks).length;
+  if (domain) return <Run key={domain} domain={domain} onExit={() => setDomain(null)} mix={domain === 'custom' ? picks : undefined} />;
   const choices: { id: Domain | 'all'; label: string; icon: string }[] = [{ id: 'all', label: 'Everything', icon: '🌐' }, ...DOMAINS.map((d) => ({ id: d.id, label: d.label, icon: d.icon }))];
   return (
     <div className="space-y-8">
@@ -165,7 +177,19 @@ export default function GuessYear() {
           {ROUNDS} games, anime, films or albums: when did each come out? The exact year scores 100, and every year off costs 10.
         </p>
       </div>
+      <Customise options={YEAR_OPTIONS} picks={picks} onChange={setPicks} noun="filter" problem={mixed < ROUNDS ? `Your mix has ${mixed} works: pick more kinds of work or decades (${ROUNDS} needed).` : null} />
       <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {mixed >= ROUNDS && (
+          <li>
+            <button type="button" onClick={() => (sfx.click(), setDomain('custom'))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-5 text-left ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="text-3xl">🎛</span>
+              <span className="font-display text-xl font-bold">Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {mixed} works{(bests['year:custom'] ?? 0) > 0 ? ` · best ${bests['year:custom']}` : ''}
+              </span>
+            </button>
+          </li>
+        )}
         {choices.map((c) => (
           <li key={c.id}>
             <button

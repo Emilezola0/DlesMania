@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { NAME_LISTS, listsByFranchise, nameList, type NameList } from '../arcade/lists';
+import { Customise, useCustomPicks } from '../components/Customise';
+
+/** Franchises to show (Customise), and to draw the random list from. */
+const NTL_OPTIONS = listsByFranchise().map(([f, lists]) => ({ key: f, label: f, hint: `${lists.length} lists` }));
 import { matchAnswer } from '../lib/boss';
 import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
@@ -162,6 +166,7 @@ function Game({ list }: { list: NameList }) {
 export default function NameThemAll() {
   const { list: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-ntl', NTL_OPTIONS);
   if (id) {
     const list = nameList(id);
     if (!list) return <Navigate to="/name-them-all" replace />;
@@ -178,7 +183,9 @@ export default function NameThemAll() {
       </div>
     );
   }
-  const random = NAME_LISTS[Math.floor(Math.random() * NAME_LISTS.length)];
+  // Customise: only the picked franchises' lists, here and for the random list.
+  const shown = NAME_LISTS.filter((l) => picks.includes(l.franchise));
+  const random = shown[Math.floor(Math.random() * shown.length)];
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -189,11 +196,14 @@ export default function NameThemAll() {
           <h1 className="text-5xl font-bold">Name Them All</h1>
           <p className="max-w-xl text-ink-soft">Pick a list and name every one of them before the clock runs out. {NAME_LISTS.length} lists across {listsByFranchise().length} franchises.</p>
         </div>
-        <Link to={`/name-them-all/${random.id}`} className="btn-accent rounded-md px-5 py-2.5 font-display font-semibold tracking-wider">
-          🎲 Random list
-        </Link>
+        {random && (
+          <Link to={`/name-them-all/${random.id}`} className="btn-accent rounded-md px-5 py-2.5 font-display font-semibold tracking-wider">
+            🎲 Random list
+          </Link>
+        )}
       </div>
-      {listsByFranchise().map(([franchise, lists]) => (
+      <Customise options={NTL_OPTIONS} picks={picks} onChange={setPicks} />
+      {listsByFranchise().filter(([franchise]) => picks.includes(franchise)).map(([franchise, lists]) => (
         <section key={franchise} className="space-y-2">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{franchise}</h2>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">

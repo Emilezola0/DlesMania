@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { MEMORY_DECKS, PAIRS_PER_GAME, dealBoard, memoryDeck, memoryScore, type MemoryCard, type MemoryDeck } from '../arcade/memory';
 import { GlyphSeal } from '../components/Glyph';
 import { celebrateBig } from '../lib/fx';
@@ -133,11 +134,20 @@ function Board({ deck }: { deck: MemoryDeck }) {
 }
 
 /** /memory and /memory/:deck */
+/** Decks to mix in "Your mix". */
+const MEMORY_OPTIONS = MEMORY_DECKS.map((d) => ({ key: d.id, label: `${d.icon} ${d.label}` }));
+
 export default function MemoryPairs() {
   const { deck: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-memory', MEMORY_OPTIONS);
   if (id) {
-    const deck = memoryDeck(id);
+    // "Your mix" (Customise): the pairs of every picked deck, dealt together.
+    const mixed = MEMORY_DECKS.filter((d) => picks.includes(d.id));
+    const deck: MemoryDeck | undefined =
+      id === 'custom' && mixed.length
+        ? { id: 'custom', label: 'Your mix', icon: '🎛', rule: `Match what goes together: ${mixed.map((d) => d.rule.replace(/\.$/, '').toLowerCase()).join('; ')}.`, pairs: mixed.flatMap((d) => d.pairs.map((p) => ({ ...p, id: `${d.id}:${p.id}` }))) }
+        : memoryDeck(id);
     if (!deck) return <Navigate to="/memory" replace />;
     return (
       <div className="mx-auto max-w-3xl space-y-6">
@@ -149,7 +159,7 @@ export default function MemoryPairs() {
             {deck.icon} {deck.label}
           </h1>
         </div>
-        <Board key={deck.id} deck={deck} />
+        <Board key={`${deck.id}:${picks.join(',')}`} deck={deck} />
       </div>
     );
   }
@@ -164,7 +174,19 @@ export default function MemoryPairs() {
           {PAIRS_PER_GAME} pairs face down: turn two cards at a time and find what goes together — a Devil Fruit and its user, a champion and their ultimate… Fewer flips, faster, more points.
         </p>
       </div>
+      <Customise options={MEMORY_OPTIONS} picks={picks} onChange={setPicks} noun="deck" />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {picks.length > 0 && (
+          <li>
+            <Link to="/memory/custom" className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="text-3xl">🎛</span>
+              <span className="font-display text-xl font-bold">Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {picks.length} deck{picks.length === 1 ? '' : 's'}{(bests['memory:custom'] ?? 0) > 0 ? ` · best ${bests['memory:custom']}` : ''}
+              </span>
+            </Link>
+          </li>
+        )}
         {MEMORY_DECKS.map((d) => (
           <li key={d.id}>
             <Link to={`/memory/${d.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
