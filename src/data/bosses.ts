@@ -21,7 +21,7 @@ type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 
 /** "node:<name>": a Blueprint node, drawn from src/specialist/blueprint.ts rather than stored as a picture. */
 const picture = (image?: string) => {
   // "local:art/…": a picture served with the site (public/art), for wikis that don't let others show theirs.
-  if (image?.startsWith('local:')) return `${import.meta.env.BASE_URL}${image.slice(6)}`;
+  if (image?.startsWith('local:')) return `${import.meta.env?.BASE_URL ?? './'}${image.slice(6)}`;
   if (!image?.startsWith('node:')) return kanjiPicture(image);
   const n = BLUEPRINT_NODES.find((x) => x.name === image.slice(5));
   return n ? nodeImage(n) : undefined;
