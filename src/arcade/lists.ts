@@ -2,6 +2,8 @@ import { BOSSES } from '../data/bosses';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
+import { JLPT_THEMES } from './jlpt';
+import { romajiSpellings, toHiragana } from '../lib/romaji';
 import type { BlitzPrompt, Domain } from '../types';
 
 /** A list to name in full against the clock. */
@@ -50,8 +52,27 @@ const rosters: NameList[] = [
   roster('mcu-films', 'Every MCU film', 'Marvel Cinematic Universe', 'cinema', MARVEL.films),
 ];
 
+/**
+ * JLPT themes: every word of a theme, named in Japanese — in romaji ("inu", long vowels or not), in kana or
+ * in kanji. A word listed twice (two levels, two senses) counts once.
+ */
+const jlpt: NameList[] = JLPT_THEMES.map((t) => {
+  const words = new Map<string, { name: string; aliases: string[] }>();
+  for (const e of t.entries) {
+    if (words.has(e.text)) continue;
+    const readings = e.reading.split(/[/／・、\s]+/).filter(Boolean);
+    const forms = e.text.split(/[/／\s]+/).filter(Boolean);
+    words.set(e.text, {
+      name: `${e.text} · ${romajiSpellings(readings[0] ?? e.text)[0]}`,
+      aliases: [...new Set([...forms, ...readings, ...readings.map(toHiragana), ...readings.flatMap(romajiSpellings)])],
+    });
+  }
+  const answers = [...words.values()];
+  return { id: `jlpt-${t.id.replace(/^theme-/, '')}`, title: `${t.icon} ${t.label} in Japanese`, franchise: 'JLPT', domain: 'anime', answers, seconds: timeFor(answers.length) };
+});
+
 /** Same title in one franchise (two bosses can ask for the same thing): the first stays. */
-export const NAME_LISTS: NameList[] = [...rosters, ...fromBosses].filter((l, i, all) => all.findIndex((o) => o.id === l.id) === i);
+export const NAME_LISTS: NameList[] = [...rosters, ...fromBosses, ...jlpt].filter((l, i, all) => all.findIndex((o) => o.id === l.id) === i);
 
 export const nameList = (id: string | undefined) => NAME_LISTS.find((l) => l.id === id);
 

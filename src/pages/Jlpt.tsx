@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
 import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, reviewDeck, shortMeaning, type JlptDeck, type JlptQuestion } from '../arcade/jlpt';
+import { NAME_LISTS } from '../arcade/lists';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
@@ -286,6 +287,31 @@ function DeckCard({ deck, glyph, title }: { deck: JlptDeck; glyph: string; title
   );
 }
 
+/** Name Them All, in Japanese: every word of a theme against the clock (src/arcade/lists.ts). */
+function NameThemAllRow() {
+  const bests = useProgress((s) => s.bests);
+  const lists = NAME_LISTS.filter((l) => l.franchise === 'JLPT');
+  return (
+    <section className="space-y-3">
+      <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Name them all · in Japanese</h2>
+      <p className="max-w-xl text-sm text-ink-soft">Name as many words of a theme as you can before the clock runs out — in romaji (inu), in kana (いぬ) or in kanji (犬).</p>
+      <ul className="flex flex-wrap gap-2">
+        {lists.map((l) => (
+          <li key={l.id}>
+            <Link to={`/name-them-all/${l.id}`} className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
+              {l.title.replace(' in Japanese', '')}
+              <span className="text-xs font-normal text-ink-faint">
+                {bests[`ntl:${l.id}`] ? `${bests[`ntl:${l.id}`]}/` : ''}
+                {l.answers.length}
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
 /** /jlpt and /jlpt/:deck ("review": the review list) */
 export default function Jlpt() {
   const { deck: id } = useParams();
@@ -329,6 +355,7 @@ export default function Jlpt() {
           ))}
         </ul>
       </section>
+      <NameThemAllRow />
       {JLPT_LEVELS.map((l) => (
         <section key={l.level} className="space-y-3">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{l.level}</h2>
