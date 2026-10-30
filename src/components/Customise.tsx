@@ -11,7 +11,7 @@ export interface CustomOption {
   hint?: string;
 }
 
-const read = (storageKey: string, all: string[]): string[] => {
+const read = (storageKey: string, all: string[], fallback: string[]): string[] => {
   try {
     const v = JSON.parse(localStorage.getItem(storageKey) ?? 'null');
     if (Array.isArray(v)) {
@@ -21,16 +21,16 @@ const read = (storageKey: string, all: string[]): string[] => {
   } catch {
     // No storage: everything.
   }
-  return all;
+  return fallback;
 };
 
 /**
  * What a game is made of, picked by the player as for an Expedition: everything by default, remembered
- * on this device (`storageKey`). `custom` is true when it isn't everything (games keep a separate best then).
+ * on this device (`storageKey`); `defaults`, when given, is the first choice. `custom` is true when it isn't everything (games keep a separate best then).
  */
-export function useCustomPicks(storageKey: string, options: CustomOption[]) {
+export function useCustomPicks(storageKey: string, options: CustomOption[], defaults?: string[]) {
   const all = options.map((o) => o.key);
-  const [picks, setPicks] = useState<string[]>(() => read(storageKey, all));
+  const [picks, setPicks] = useState<string[]>(() => read(storageKey, all, defaults ? all.filter((k) => defaults.includes(k)) : all));
   const set = (next: string[]) => {
     const ordered = all.filter((k) => next.includes(k));
     setPicks(ordered);
