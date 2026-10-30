@@ -5,6 +5,7 @@ import { FlameIcon } from '../components/Layout';
 import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
@@ -473,16 +474,28 @@ function NameThemAllRow() {
   );
 }
 
+/** "Your deck" (Customise): the levels and kinds picked, mixed. */
+const JLPT_OPTIONS = [
+  ...JLPT_LEVELS.map((l) => ({ key: l.level, label: l.level, group: 'Levels' })),
+  { key: 'vocab', label: '語 Words', group: 'Kinds' },
+  { key: 'kanji', label: '字 Kanji', group: 'Kinds' },
+];
+function customDeck(picks: string[]): JlptDeck | undefined {
+  const entries = JLPT_LEVELS.filter((l) => picks.includes(l.level)).flatMap((l) => l.decks.filter((d) => picks.includes(d.kind)).flatMap((d) => d.entries));
+  return entries.length ? { id: 'custom', level: 'All', kind: 'theme', label: 'Your deck', icon: '🎛', entries } : undefined;
+}
+
 /** /jlpt and /jlpt/:deck ("review": the review list) */
 export default function Jlpt() {
   const { deck: id, level } = useParams();
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-jlpt', JLPT_OPTIONS);
+  const [grammar, setGrammar] = useState<string | null>(null);
   if (level) {
     const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
   }
-  const [grammar, setGrammar] = useState<string | null>(null);
   if (id) {
-    const deck = id === 'review' ? reviewDeck([]) : jlptDeck(id);
+    const deck = id === 'review' ? reviewDeck([]) : id === 'custom' ? customDeck(picks) : jlptDeck(id);
     if (!deck) return <Navigate to="/jlpt" replace />;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
@@ -526,6 +539,15 @@ export default function Jlpt() {
             </li>
           ))}
         </ul>
+      </section>
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Your deck</h2>
+        <Customise options={JLPT_OPTIONS} picks={picks} onChange={setPicks} noun="filter" problem={(customDeck(picks)?.entries.length ?? 0) < 8 ? 'Pick at least one level and one kind (words or kanji).' : null} />
+        {(customDeck(picks)?.entries.length ?? 0) >= 8 && (
+          <ul className="grid gap-4 sm:grid-cols-3">
+            <DeckCard deck={customDeck(picks)!} glyph="🎛" title="Your deck" />
+          </ul>
+        )}
       </section>
       <ReviewList />
       <section className="space-y-3">

@@ -7,6 +7,11 @@ import { shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { Customise, useCustomPicks } from '../components/Customise';
+import { DOMAINS } from '../data';
+
+/** Kinds of work, for the decks that mix them (Customise). */
+const HL_OPTIONS = DOMAINS.map((d) => ({ key: d.id, label: `${d.icon} ${d.label}` }));
 
 /** How long the revealed value stays before the next pair. */
 const REVEAL_MS = 1100;
@@ -123,9 +128,14 @@ function Game({ deck }: { deck: HlDeck }) {
 export default function HigherLower() {
   const { deck: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const { picks, setPicks, custom } = useCustomPicks('omnidle-custom-hl', HL_OPTIONS);
   if (id) {
-    const deck = hlDeck(id);
-    if (!deck) return <Navigate to="/higher-lower" replace />;
+    const full = hlDeck(id);
+    if (!full) return <Navigate to="/higher-lower" replace />;
+    // Customise: a deck of every kind of work keeps the kinds picked (with its own best then).
+    const mixed = full.domain === 'mixed';
+    const items = mixed ? full.items.filter((x) => !x.domain || picks.includes(x.domain)) : full.items;
+    const deck = mixed && custom ? { ...full, id: `${full.id}-custom`, items } : full;
     return (
       <div className="mx-auto max-w-3xl space-y-6">
         <div>
@@ -136,7 +146,8 @@ export default function HigherLower() {
             {deck.icon} {deck.label}
           </h1>
         </div>
-        <Game key={deck.id} deck={deck} />
+        {mixed && <Customise options={HL_OPTIONS} picks={picks} onChange={setPicks} noun="kind of work" min={1} problem={items.length < 4 ? 'Not enough to compare: pick more kinds of work.' : null} />}
+        {items.length >= 4 && <Game key={`${deck.id}:${picks.join(',')}`} deck={deck} />}
       </div>
     );
   }

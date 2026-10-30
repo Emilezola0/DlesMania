@@ -4,6 +4,15 @@ import { RAIL_DIFFICULTY, RailRun, type RailDifficulty } from '../rail/RailRun';
 import { RAIL_LINES, type RailLine } from '../rail/rosters';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { Customise, useCustomPicks } from '../components/Customise';
+
+const RAIL_OPTIONS = RAIL_LINES.map((l) => ({ key: l.id, label: `${l.icon} ${l.label}` }));
+
+/** "Your mix" (Customise): one line made of the picked lines' characters and stations, in the first one's colours. */
+function mixLine(picks: string[]): RailLine {
+  const lines = RAIL_LINES.filter((l) => picks.includes(l.id));
+  return { id: 'custom', label: 'Your mix', icon: '🎛', palette: lines[0].palette, stations: lines.flatMap((l) => l.stations), characters: lines.flatMap((l) => l.characters) };
+}
 
 /** /rail-rush: pick a line (a game), a difficulty, and ride as far as you can. */
 export default function RailRush() {
@@ -11,6 +20,7 @@ export default function RailRush() {
   const [line, setLine] = useState<RailLine | null>(null);
   const [difficulty, setDifficulty] = useState<RailDifficulty>('normal');
   const [riding, setRiding] = useState(false);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-rail', RAIL_OPTIONS);
 
   if (line && riding) {
     return (
@@ -44,7 +54,24 @@ export default function RailRush() {
 
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">1 · Pick a line</h2>
+        <Customise options={RAIL_OPTIONS} picks={picks} onChange={setPicks} noun="line" />
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {picks.length > 0 && (
+            <li>
+              <button
+                type="button"
+                onClick={() => (sfx.click(), setLine(mixLine(picks)))}
+                className={`flex h-full w-full flex-col items-start gap-1 rounded-md border-2 bg-card p-4 text-left ring-2 ring-coral/60 transition hover:-translate-y-0.5 ${line?.id === 'custom' ? 'border-ink' : 'border-transparent'}`}
+              >
+                <span className="text-3xl">🎛</span>
+                <span className="font-display text-lg font-bold">Your mix</span>
+                <span className="text-xs text-ink-faint">
+                  {picks.length} line{picks.length === 1 ? '' : 's'}
+                  {Math.max(0, ...Object.keys(RAIL_DIFFICULTY).map((k) => bests[`rail:custom:${k}`] ?? 0)) ? ` · best ${Math.max(0, ...Object.keys(RAIL_DIFFICULTY).map((k) => bests[`rail:custom:${k}`] ?? 0))} gates` : ''}
+                </span>
+              </button>
+            </li>
+          )}
           {RAIL_LINES.map((l) => {
             const best = Math.max(0, ...Object.keys(RAIL_DIFFICULTY).map((k) => bests[`rail:${l.id}:${k}`] ?? 0));
             return (

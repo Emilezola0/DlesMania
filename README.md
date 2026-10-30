@@ -45,6 +45,10 @@ Omnidle Video Games 2026-10-18 — 820/1000 🔥3
 
 Music is **songs**: the title is the only answer — never an album, never an artist. Artists and albums are clues only (the Classic grid's Artist column, the Quote round's clues, credits). The old albums became the song their clip plays, and video game and anime songs joined them (`scripts/data/music-songs.mjs`: openings, endings, boss themes, film themes…), with `node scripts/add-music.mjs` (which also finds their YouTube clips from search results, titles only) and `node scripts/enrich-media.mjs --domain=music --no-youtube` for covers. The music Connections are songs only too.
 
+## Customise
+
+Every game can be narrowed down as an Expedition can (`src/components/Customise.tsx`: a ⚙ Customise panel with every option one by one, All / None per group, remembered on the device). Summit and Crossroads play only the picked franchises; Odd One Out, Six Degrees, Who Am I?, Franchise Wordle, Memory Pairs, Who's That?, Rail Rush and JLPT get a **Your mix** (the picked themes, sets, series, lines, or JLPT levels and kinds, together); Guess the Year mixes kinds of work and decades; Name Them All shows (and draws its random list from) the picked franchises; Higher or Lower's decks of every kind of work keep the kinds picked. A custom run keeps its own best (`…:custom`). Free Play already picks its domain and mini-game; Quick Sort and Map Quiz decks are each one question, so they have nothing to mix.
+
 ## Data
 
 - **Works**: `src/data/works/{games,anime,cinema,music}.json`, 100+ per category. Shape: [`schema/work.schema.json`](schema/work.schema.json). Optional fields (`quote`/`tracks`, `audio`, `emoji`, `item`, `location`, `cover`, `visual`) decide which mini-games a work can appear in.
