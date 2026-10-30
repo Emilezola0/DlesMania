@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
+import { useImagesReady } from '../lib/images';
 import { AudioClip } from '../components/AudioClip';
 import type { SignaturePhase } from '../lib/boss';
 import { shownName, withFrench } from '../lib/french';
@@ -46,6 +47,12 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
     if (state === 'answer') input.current?.focus({ preventScroll: true });
   }, [state, index]);
   const clue = clues[Math.min(index, clues.length - 1)];
+  // A picture clue: the clock waits for it, and the next one loads ahead.
+  const pictureReady = useImagesReady([clue.image]);
+  useEffect(() => {
+    const next = clues[index + 1]?.image;
+    if (next) new Image().src = next;
+  }, [clues, index]);
   const answer = clue.answer;
   const lastChance = missed > 0;
 
@@ -116,7 +123,11 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         <p className="mb-2 text-center font-display text-[11px] uppercase tracking-widest text-ink-faint">
           {bossName} · clue {index + 1}
         </p>
-        {clue.audio ? (
+        {clue.image ? (
+          <div className="grid place-items-center py-2">
+            <img src={clue.image} alt="" draggable={false} onContextMenu={(e) => e.preventDefault()} className="size-40 select-none rounded-md border-2 border-rule-strong object-cover shadow-lg" />
+          </div>
+        ) : clue.audio ? (
           <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} />
         ) : (
           <div className="py-4 text-center">
@@ -129,7 +140,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
       {seconds > 0 && (
         <TimerBar
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
-          running={state === 'answer'}
+          running={state === 'answer' && pictureReady}
           resetKey={index}
           onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}`)}
           hideSeconds

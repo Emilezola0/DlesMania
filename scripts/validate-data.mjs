@@ -235,7 +235,7 @@ for (const b of bosses) {
       if (sig.clues.length < (signatureSettings.toWin + signatureSettings.chances) * 3) fail(`${at}: signature needs at least ${(signatureSettings.toWin + signatureSettings.chances) * 3} clues, has ${sig.clues.length}`);
       for (const c of sig.clues) {
         if (!c.answer?.split('|')[0]) fail(`${at}: a signature clue has no answer`);
-        if (!c.text && !c.audio?.youtubeId) fail(`${at}: signature clue for "${c.answer}" has neither text nor audio`);
+        if (!c.text && !c.image && !c.audio?.youtubeId) fail(`${at}: signature clue for "${c.answer}" has no text, picture or audio`);
       }
     }
   }

@@ -71,7 +71,7 @@ function sectionsOf(boss: Boss): Section[] {
       groups: [
         {
           entries: boss.signature.clues.map((c) =>
-            entry(c.answer.name, c.answer.aliases, set, { clue: c.text ? [c.text, c.effect].filter(Boolean).join(' — ') : '🔊 A sound clip' }),
+            entry(c.answer.name, c.answer.aliases, set, c.image ? { image: c.image } : { clue: c.text ? [c.text, c.effect].filter(Boolean).join(' — ') : '🔊 A sound clip' }),
           ),
         },
       ],
