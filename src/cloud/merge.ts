@@ -121,6 +121,7 @@ function mergeEcon(a: Economy | undefined, b: Economy | undefined): Economy | un
   return {
     date: a.date,
     arcade: Math.max(a.arcade, b.arcade),
+    expedition: Math.max(a.expedition ?? 0, b.expedition ?? 0),
     bosses: [...new Set([...a.bosses, ...b.bosses])],
     counters,
     claimed: [...new Set([...a.claimed, ...b.claimed])],

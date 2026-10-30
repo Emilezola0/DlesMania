@@ -65,11 +65,11 @@ export const HARDEST_ACT = 4;
 export const RELIC_ACTS = 2;
 
 /**
- * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — little in the first acts,
- * more and more the deeper the run goes, up to a ceiling (see economy.ts).
+ * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — a little more each act, up to
+ * a low ceiling, so that a long run never out-earns the other games (see economy.ts).
  */
-export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, (act + 1 + Math.floor((act * act) / 4)) * (elite ? 2 : 1));
-export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 8 * act + act * act);
+export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, (1 + Math.ceil(act / 2)) * (elite ? 2 : 1));
+export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 5 + 5 * act);
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;
@@ -155,7 +155,7 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
   const c = n.challenge && CHALLENGE_INFO[n.challenge];
   switch (n.kind) {
     case 'fight':
-      return { title: c!.name, body: [c!.rule, ...(run.act > 1 ? [`Act ${run.act}: harder than it says — more to get right, less time.`] : [])], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless) and ${roomCoins(run.act)} DleCoins`, lose: '❤ −1' };
+      return { title: c!.name, body: [c!.rule, ...(run.act > 1 ? [`Act ${run.act}: harder than it says — more to get right, less time.`] : [])], win: `🪙 ${goldFor(run, 'fight', false)} (+5 if flawless) and up to ${roomCoins(run.act)} DleCoins`, lose: '❤ −1' };
     case 'elite':
       return { title: `Elite · ${c!.name}`, body: [c!.rule, `Elite: ${c!.elite}`], win: `🪙 ${goldFor(run, 'elite', false)} and a relic of your choice`, lose: '❤ −1' };
     case 'shop':
@@ -171,7 +171,7 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
           run.act === 1 ? "A guardian's Knowledge Blitz: name as many answers as you can against the clock." : "A guardian's Final Blow: name the faces before time runs out.",
           'A boss must be beaten: lose and you face it again.',
         ],
-        win: `🪙 ${goldFor(run, 'boss', false)}, a relic, the next act, and ${bossCoins(run.act)} DleCoins`,
+        win: `🪙 ${goldFor(run, 'boss', false)}, a relic, the next act, and up to ${bossCoins(run.act)} DleCoins`,
         lose: '❤ −2',
       };
   }

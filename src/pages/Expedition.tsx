@@ -474,7 +474,7 @@ export default function Expedition() {
   const best = bests[run ? bestKey(picksOf(run), roomsOf(run)) : bestKey(setup.picks, setup.rooms)] ?? 0;
   const problem = setupProblem(setup);
   const recordBest = useProgress((s) => s.recordBest);
-  const earnCoins = useProgress((s) => s.earnCoins);
+  const earnExpedition = useProgress((s) => s.earnExpedition);
   const [screen, setScreen] = useState<Screen>({ kind: 'map' });
   const save = (r: RunState) => setRun({ ...r, log: r.log.slice(-6) });
 
@@ -507,8 +507,7 @@ export default function Expedition() {
     if (res.won) {
       const gold = goldFor(r, boss ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
       // DleCoins for the shop, more the further the run has gone.
-      const coins = boss ? bossCoins(r.act) : roomCoins(r.act, elite);
-      earnCoins(coins);
+      const coins = earnExpedition(boss ? bossCoins(r.act) : roomCoins(r.act, elite));
       r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙, +${coins} DleCoins)`] };
       const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, coins, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
       if (boss) (sfx.victory(), celebrateBig());
@@ -559,7 +558,7 @@ export default function Expedition() {
           <p className="max-w-2xl text-ink-soft">
             An endless run of acts, each a map of short challenges from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
             I?, Quick Sort, lists to name — and a guardian at the end of each act, harder as you go. Choose your path; win rooms for gold, beat
-            elites for relics (each lasts {RELIC_ACTS} acts, then wears out), spend it all at shops — and every room won pays DleCoins, more the deeper you are, as every act is harder than the last. A lost room costs a heart; lose
+            elites for relics (each lasts {RELIC_ACTS} acts, then wears out), spend it all at shops — and every room won pays a few DleCoins, a little more each act, as every act is harder than the last. A lost room costs a heart; lose
             them all and the expedition ends. Leave whenever you like: the run waits for you.
           </p>
         </div>

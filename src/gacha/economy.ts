@@ -1,7 +1,8 @@
 // DleCoins: what playing earns, to spend on card packs. The dailies pay the most (more for a better
 // score); every boss fight pays by difficulty, and the first win over each boss at each difficulty
 // pays a bonus once a week; every game from the Games page pays by how it went (fully up to a daily
-// amount, then half, so farming always pays); three daily missions pay a
+// amount, then half, so farming always pays); Expeditions pay little, with a daily amount of their own
+// (then a quarter), so that they never replace the other games; three daily missions pay a
 // bonus each, and three a week and three a month pay more.
 import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
@@ -25,13 +26,13 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 40, medium: 8
  * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
-export const ARCADE_WIN = 15;
-export const ARCADE_LOSS = 2;
-export const ARCADE_BEST_BONUS = 10;
+export const ARCADE_WIN = 20;
+export const ARCADE_LOSS = 3;
+export const ARCADE_BEST_BONUS = 15;
 /** A set of rounds: up to this much for a perfect score. */
-export const ARCADE_SET_MAX = 20;
+export const ARCADE_SET_MAX = 25;
 /** An endless run's coins at most. */
-export const ARCADE_RUN_MAX = 150;
+export const ARCADE_RUN_MAX = 100;
 
 export function arcadeCoins(r: ArcadeResult): number {
   if ('save' in r) return 0;
@@ -44,7 +45,7 @@ export function arcadeCoins(r: ArcadeResult): number {
 }
 /** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
 export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
-export const ARCADE_CAP = 400;
+export const ARCADE_CAP = 600;
 /** Past the daily amount, this share of what a game would pay (at least a coin). */
 export const ARCADE_AFTER_CAP = 0.5;
 /** A game pays at most once per this long (so a run lost at once, again and again, isn't a farm). */
@@ -55,7 +56,7 @@ export const ARCADE_SPACING_MS = 8_000;
  * of it the bonus moves to another game, and it moves with each new day too. The order is drawn from the
  * date, the same for everyone; each player moves through it at their own pace.
  */
-export const HOT_BONUS = 0.5;
+export const HOT_BONUS = 1;
 export const HOT_PLAYS = 3;
 /** The games it visits: `id` is what their best keys start with ("memory:pokemon"). */
 export const HOT_GAMES = [
@@ -134,8 +135,11 @@ export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? 
 export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
 
 /** The most an Expedition pays in DleCoins for one room (elites included) and one boss, however deep the run. */
-export const EXPEDITION_ROOM_MAX = 40;
-export const EXPEDITION_BOSS_MAX = 200;
+export const EXPEDITION_ROOM_MAX = 12;
+export const EXPEDITION_BOSS_MAX = 60;
+/** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
+export const EXPEDITION_CAP = 150;
+export const EXPEDITION_AFTER_CAP = 0.25;
 
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
 export const DUPLICATE_VALUE = { common: 2, rare: 5, epic: 15, legendary: 50, mythic: 150, omni: 500 } as const;
@@ -170,6 +174,8 @@ export interface Economy {
   date: string;
   /** Coins from the endless games so far today. */
   arcade: number;
+  /** Coins from Expeditions so far today. */
+  expedition?: number;
   /** bossKey()s already paid for today (kept for old saves; bosses now pay by the week, see BossWeek). */
   bosses: string[];
   /** When each game last paid (by its best key), for the spacing between pays. */

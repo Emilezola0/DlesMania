@@ -17,6 +17,8 @@ import {
   bestCounts,
   type ArcadeResult,
   ARCADE_CAP,
+  EXPEDITION_AFTER_CAP,
+  EXPEDITION_CAP,
   ARCADE_SPACING_MS,
   BOSS_LOSS,
   BOSS_WEEKLY,
@@ -146,7 +148,8 @@ interface ProgressState {
   /** A gift code typed in the Shop: its coins, once per player. */
   redeemCode: (code: string) => { ok: true; coins: number; note: string } | { ok: false; reason: 'used' | 'unknown' };
   /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
-  earnCoins: (amount: number) => void;
+  /** An Expedition's coins, through its own daily amount: what was really paid. */
+  earnExpedition: (amount: number) => number;
   /** Spare copies traded in for coins: card id -> how many (one copy of each always stays), and the coins they're worth. */
   exchangeCards: (copies: Record<string, number>, coins: number) => void;
   /** Cards in or out by trading (src/cloud/trades.ts): card id -> +1 or -1. */
@@ -394,7 +397,15 @@ export const useProgress = create<ProgressState>()(
           for (const id of Object.keys(grades)) if (!cards[id]) delete grades[id];
           return { cards, grades };
         }),
-      earnCoins: (amount) => set((s) => earn(s, amount)),
+      earnExpedition: (amount) => {
+        const s = get();
+        const done = econToday(s.econ).expedition ?? 0;
+        const left = Math.max(0, EXPEDITION_CAP - done);
+        const paid = amount <= left ? amount : Math.max(1, left + Math.round((amount - left) * EXPEDITION_AFTER_CAP));
+        const earned = earn(s, paid);
+        set({ ...earned, econ: { ...earned.econ!, expedition: done + paid } });
+        return paid;
+      },
       claimLongMission: (p, kind) =>
         set((s) => {
           const books = booksNow(s.missionBooks);
