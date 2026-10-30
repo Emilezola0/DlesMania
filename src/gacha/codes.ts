@@ -13,7 +13,6 @@ export const CODES: Record<string, GiftCode> = {
   GAMBLEPLEASE: { coins: 500, note: 'Because We Love Gamble s love' },
   FORTSHONOR: { coins: 1000, note: 'For Forts player' },
   THELAST: { coins: 1000, note: 'I trust this last !' },
-  THEULTIMATENOPAINLOTOFGAINS: { coins: 25000, note: 'Wow that a lot' },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');
