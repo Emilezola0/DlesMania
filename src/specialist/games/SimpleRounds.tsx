@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ObscuredImage } from '../../components/ObscuredImage';
+import { VideoClip } from '../../components/VideoClip';
 import { useProgress } from '../../store/progress';
 import { ZoomImage } from '../../components/ZoomImage';
 import { mulberry32 } from '../../lib/rng';
@@ -246,7 +247,7 @@ export const itemRoundFor = (u: SimpleUniverse['id'], question: string) =>
     );
   };
 
-/** How an execution's GIF is hidden at each wrong-guess step: shapes only at first, the picture coming back with each miss. */
+/** How an execution is hidden at each wrong-guess step: shapes only at first, the picture coming back with each miss. */
 const SHADOW_STEPS = [
   'grayscale(1) contrast(9) brightness(0.45)',
   'grayscale(1) contrast(6) brightness(0.55)',
@@ -261,6 +262,7 @@ export const executionRoundFor = (u: SimpleUniverse['id']) =>
   function SimpleExecutionRound({ round, record, onChange }: Props) {
     const e = SIMPLE[u].executions![Number(round.targetId)];
     const c = simpleCharacter(u, e.answer)!;
+    const [gone, setGone] = useState(false);
     return (
       <SpGuessRound
         type="execution"
@@ -272,18 +274,16 @@ export const executionRoundFor = (u: SimpleUniverse['id']) =>
         onChange={onChange}
         answer={{ name: c.name, image: c.image || undefined, detail: `${detail(c)} · ${e.name}` }}
         noPictures
-        clue={(wrong, done) => (
-          <div className="relative mx-auto aspect-video w-full max-w-lg overflow-hidden rounded-md border-2 border-coral/70 bg-black">
-            <img
-              src={e.gif}
-              alt=""
-              draggable={false}
-              onContextMenu={(ev) => ev.preventDefault()}
-              className="size-full select-none object-cover transition-[filter] duration-500"
-              style={{ filter: done ? 'none' : SHADOW_STEPS[Math.min(wrong, SHADOW_STEPS.length - 1)] }}
-            />
-          </div>
-        )}
+        clue={(wrong, done) =>
+          gone && !done ? (
+            // A video gone from YouTube: the hero's picture in silhouette instead.
+            <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-md bg-black">
+              <img src={c.image} alt="" draggable={false} className="size-full object-cover object-top" style={{ filter: SHADOW_STEPS[Math.min(wrong, SHADOW_STEPS.length - 1)] }} />
+            </div>
+          ) : (
+            <VideoClip videoId={e.youtubeId} at={0} seconds={e.seconds} revealed={done} onUnavailable={() => setGone(true)} filter={SHADOW_STEPS[Math.min(wrong, SHADOW_STEPS.length - 1)]} />
+          )
+        }
       />
     );
   };

@@ -55,7 +55,7 @@ export const UNIVERSES = [
     label: 'For Honor',
     ready: true,
     blurb: 'Pictures, windows, the spotlight, weapons and executions in silhouette — all 39 heroes of the five factions.',
-    // Executions join once there are GIFs (scripts/build-forhonor-executions.mjs); added last, so earlier days keep their rounds.
+    // Executions join once there are videos (scripts/build-forhonor-executions.mjs); added last, so earlier days keep their rounds.
     types: ['picture', 'clue', 'windows', 'spotlight', ...(FH_EXECUTIONS.length ? ['execution'] : [])] as SpType[],
   },
   {

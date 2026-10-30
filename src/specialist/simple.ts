@@ -28,8 +28,8 @@ export interface SimpleUniverse {
   silhouettes?: string[];
   /** Voice lines: who speaks, the original recording, and the French dub's when there is one. */
   voices?: { answer: string; en?: string; fr?: string }[];
-  /** Executions (For Honor): a hero's finishing move as an animated GIF, shown in silhouette. */
-  executions?: { answer: string; name: string; gif: string }[];
+  /** Executions (For Honor): a hero's finishing move, a short YouTube video played in silhouette. */
+  executions?: { answer: string; name: string; youtubeId: string; seconds: number }[];
   /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
   items?: SimpleCharacter[];
 }
@@ -71,8 +71,8 @@ function forHonor(): SimpleUniverse {
     columns: [],
     characters: heroes.map((name) => ({ id: slug(name), name, aliases: [], image: pics.get(name) ?? '', traits: { Faction: groupOf(FH_FACTION, name), Class: groupOf(FH_CLASS, name) } })),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
-    // scripts/build-forhonor-executions.mjs (or by hand): { hero, name, gif }.
-    executions: (FH_EXECUTIONS as { hero: string; name: string; gif: string }[]).map((e) => ({ answer: slug(e.hero), name: e.name, gif: e.gif })),
+    // scripts/build-forhonor-executions.mjs: { hero, name, youtubeId, seconds }.
+    executions: FH_EXECUTIONS.map((e) => ({ answer: slug(e.hero), name: e.name, youtubeId: e.youtubeId, seconds: e.seconds })),
   };
 }
 

@@ -1,1 +1,2966 @@
-[]
+[
+  {
+    "hero": "Warden",
+    "name": "Guts Then Chops",
+    "youtubeId": "sw1-gi17HNM",
+    "seconds": 5
+  },
+  {
+    "hero": "Warden",
+    "name": "Hilt Strike",
+    "youtubeId": "bxezqBRTzKo",
+    "seconds": 6
+  },
+  {
+    "hero": "Warden",
+    "name": "Taking Out The Trash",
+    "youtubeId": "ZqGCzRPFQuI",
+    "seconds": 6
+  },
+  {
+    "hero": "Warden",
+    "name": "Spinning Decapitation",
+    "youtubeId": "WZiO4dM5vvk",
+    "seconds": 5
+  },
+  {
+    "hero": "Warden",
+    "name": "Backhand Strike",
+    "youtubeId": "zwFkfTa-nxw",
+    "seconds": 7
+  },
+  {
+    "hero": "Warden",
+    "name": "Shoulder Tackle",
+    "youtubeId": "IPjzSxErhJs",
+    "seconds": 11
+  },
+  {
+    "hero": "Warden",
+    "name": "Blackstone Bash",
+    "youtubeId": "_oj8OqB8R60",
+    "seconds": 7
+  },
+  {
+    "hero": "Warden",
+    "name": "End Them Rightly",
+    "youtubeId": "wAn3GtffKAY",
+    "seconds": 9
+  },
+  {
+    "hero": "Warden",
+    "name": "A Moment Of Silence",
+    "youtubeId": "5OvVtnaEgKg",
+    "seconds": 9
+  },
+  {
+    "hero": "Warden",
+    "name": "Knockout",
+    "youtubeId": "AyDVJibDBak",
+    "seconds": 10
+  },
+  {
+    "hero": "Warden",
+    "name": "Grave Passing",
+    "youtubeId": "goOf9R_q2wg",
+    "seconds": 10
+  },
+  {
+    "hero": "Warden",
+    "name": "Brutality of Camlann",
+    "youtubeId": "YInxc7xL6TE",
+    "seconds": 12
+  },
+  {
+    "hero": "Warden",
+    "name": "Fractured Ribcage",
+    "youtubeId": "BxDSyLKfNqM",
+    "seconds": 11
+  },
+  {
+    "hero": "Warden",
+    "name": "Larry's Banner",
+    "youtubeId": "nqlvwdNwwbg",
+    "seconds": 12
+  },
+  {
+    "hero": "Warden",
+    "name": "Alarius' Wrath",
+    "youtubeId": "vAdjDaVwCnQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Warden",
+    "name": "Deep Hacking",
+    "youtubeId": "Dwuyh99KKMs",
+    "seconds": 12
+  },
+  {
+    "hero": "Warden",
+    "name": "Manus Manum Secat",
+    "youtubeId": "VGfwIQ_uhws",
+    "seconds": 11
+  },
+  {
+    "hero": "Warden",
+    "name": "Use It Or Lose It",
+    "youtubeId": "Ix5EkyS5IS4",
+    "seconds": 8
+  },
+  {
+    "hero": "Warden",
+    "name": "The Archer's Guard",
+    "youtubeId": "TfiwSjqdyzE",
+    "seconds": 12
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Garrote",
+    "youtubeId": "6TYZohw7L0w",
+    "seconds": 7
+  },
+  {
+    "hero": "Conqueror",
+    "name": "The Pop Top",
+    "youtubeId": "djQW2vk4SL0",
+    "seconds": 6
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Low Blow",
+    "youtubeId": "xLejmvs5xbI",
+    "seconds": 6
+  },
+  {
+    "hero": "Conqueror",
+    "name": "The Wind Up",
+    "youtubeId": "UBMWYE39dWI",
+    "seconds": 7
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Gut Punch Neck Breaker",
+    "youtubeId": "BgDo2rgJiOM",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Mongrel's Charge",
+    "youtubeId": "B6jdJId7rbc",
+    "seconds": 6
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Dislocator",
+    "youtubeId": "MBZBM-xrG2U",
+    "seconds": 7
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Modified Hangman",
+    "youtubeId": "E5Qz82zKSZw",
+    "seconds": 10
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Eat Dirt!",
+    "youtubeId": "UQeYdHYu_1Y",
+    "seconds": 7
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Get Off",
+    "youtubeId": "v0wkwmxAQHI",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Spiked Punch",
+    "youtubeId": "dpQvCPme-Qc",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Spine Twister",
+    "youtubeId": "Is2HXvJPsoc",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Feros Ferio",
+    "youtubeId": "NWrEJ82aW94",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Pugilism",
+    "youtubeId": "_ATLP1-NbOQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Head In The Clouds",
+    "youtubeId": "A5bAPcbFPfI",
+    "seconds": 9
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Rowdy Sentence",
+    "youtubeId": "VyQbWExLZEo",
+    "seconds": 15
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Qui Ferit Non Errat",
+    "youtubeId": "G-IPwI1shhU",
+    "seconds": 11
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Windmill Of Death",
+    "youtubeId": "1DUba3CMWfQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Conqueror",
+    "name": "Paddle Ball",
+    "youtubeId": "YKAyrYf42Ik",
+    "seconds": 11
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Dis Armer",
+    "youtubeId": "6NVJvt5YqrY",
+    "seconds": 7
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Nightinggale Guillotine",
+    "youtubeId": "lH-l4rI5PrI",
+    "seconds": 10
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "The Sacrifice",
+    "youtubeId": "juoDPfSxRbc",
+    "seconds": 6
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Sunday Roast",
+    "youtubeId": "HUx-hcw98Lg",
+    "seconds": 6
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Over Under",
+    "youtubeId": "mgzrD7utnJY",
+    "seconds": 5
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Led To Slaughter",
+    "youtubeId": "xAUdVcTA26w",
+    "seconds": 5
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Deadly Embrace",
+    "youtubeId": "D_wISi5K65o",
+    "seconds": 5
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Ole!",
+    "youtubeId": "NNKW5s8Sxto",
+    "seconds": 7
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Instant Regrets",
+    "youtubeId": "WPiYgzhvURI",
+    "seconds": 11
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Good Form",
+    "youtubeId": "zjsxjd1yMME",
+    "seconds": 8
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Trepanation",
+    "youtubeId": "7cSYWHRPACQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Stepped Stool",
+    "youtubeId": "dysphL8l1lw",
+    "seconds": 7
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Errantia Lumina Fallunt",
+    "youtubeId": "LOY8-eBfeBg",
+    "seconds": 8
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Arrow In The Head",
+    "youtubeId": "L5-czQnhWg4",
+    "seconds": 11
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "The Wing Breaker",
+    "youtubeId": "3kqnPqfNKv4",
+    "seconds": 12
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Skilled Cut",
+    "youtubeId": "0g14HwAQ5iU",
+    "seconds": 11
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Mobilitate Viget",
+    "youtubeId": "jSatzr8OoTQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Precision Onslaught",
+    "youtubeId": "Tx0lPQmmyQo",
+    "seconds": 5
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Sprightly Skewer",
+    "youtubeId": "pwH_u6neOZw",
+    "seconds": 7
+  },
+  {
+    "hero": "Peacekeeper",
+    "name": "Death From Above",
+    "youtubeId": "rT2xqccQm2Q",
+    "seconds": 9
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Off With Their Head Lawbringer",
+    "youtubeId": "0hePbBD-Ol4",
+    "seconds": 11
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Sweep The Leg",
+    "youtubeId": "Z551hUhr2M4",
+    "seconds": 8
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Back Breaker",
+    "youtubeId": "ke6sgWUuMKc",
+    "seconds": 9
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Long Shot",
+    "youtubeId": "ozoWzhNfxt8",
+    "seconds": 6
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "The Impaler",
+    "youtubeId": "h-4IJNHBfic",
+    "seconds": 8
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "The Stomp",
+    "youtubeId": "rc5dybDClXA",
+    "seconds": 7
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Oh Come On!",
+    "youtubeId": "_zxDKnu9oY8",
+    "seconds": 12
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Knock Knock",
+    "youtubeId": "bXW9QCKtg2A",
+    "seconds": 11
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Hands On Approach",
+    "youtubeId": "6bcaFXxvw6I",
+    "seconds": 11
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Chokehold",
+    "youtubeId": "rp5u06HtAkU",
+    "seconds": 13
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Stick 'Em",
+    "youtubeId": "Bw-QF9P0f7c",
+    "seconds": 11
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Dura Lex Sed Lex",
+    "youtubeId": "NSf3iRoXAVA",
+    "seconds": 15
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Sto Pro Veritate",
+    "youtubeId": "BQ7_Si2j0_c",
+    "seconds": 10
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "The Final Blow",
+    "youtubeId": "nN2TP-j9m4g",
+    "seconds": 11
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "The Horse Rider",
+    "youtubeId": "YRXZmxy6Li8",
+    "seconds": 13
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Cyclonic Justice",
+    "youtubeId": "3SV2PM3BJc8",
+    "seconds": 9
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Tene Cursum",
+    "youtubeId": "joq2xIfSu1s",
+    "seconds": 10
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Vis Moralis",
+    "youtubeId": "U8-xXAUQsOY",
+    "seconds": 10
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "The Head Remover",
+    "youtubeId": "-ayJACCsefY",
+    "seconds": 9
+  },
+  {
+    "hero": "Lawbringer",
+    "name": "Tug Of War",
+    "youtubeId": "ENQEwX69gCE",
+    "seconds": 11
+  },
+  {
+    "hero": "Centurion",
+    "name": "Kneel Before Me!",
+    "youtubeId": "Nxj5lsU2-pc",
+    "seconds": 8
+  },
+  {
+    "hero": "Centurion",
+    "name": "Stay Down!",
+    "youtubeId": "eXaUyf6ft4o",
+    "seconds": 7
+  },
+  {
+    "hero": "Centurion",
+    "name": "Glorious Execution",
+    "youtubeId": "BLXpMdahrzc",
+    "seconds": 10
+  },
+  {
+    "hero": "Centurion",
+    "name": "Pollice Verso",
+    "youtubeId": "8nAo_sHfV6Q",
+    "seconds": 10
+  },
+  {
+    "hero": "Centurion",
+    "name": "Knock Your Block Off",
+    "youtubeId": "MXh9jbpJCjs",
+    "seconds": 7
+  },
+  {
+    "hero": "Centurion",
+    "name": "Roman Uppercut",
+    "youtubeId": "c2V9xOuT4vk",
+    "seconds": 9
+  },
+  {
+    "hero": "Centurion",
+    "name": "Percision Cut",
+    "youtubeId": "5qDk-o5lAJI",
+    "seconds": 8
+  },
+  {
+    "hero": "Centurion",
+    "name": "Inglorious End",
+    "youtubeId": "ux81hV-6fkk",
+    "seconds": 9
+  },
+  {
+    "hero": "Centurion",
+    "name": "Ala Iacta Est",
+    "youtubeId": "m9czjsIkbA0",
+    "seconds": 8
+  },
+  {
+    "hero": "Centurion",
+    "name": "Brutal Beating",
+    "youtubeId": "EwMZ74Cx68w",
+    "seconds": 12
+  },
+  {
+    "hero": "Centurion",
+    "name": "Veni Vidi Vici",
+    "youtubeId": "cvM-1i8Nm_o",
+    "seconds": 11
+  },
+  {
+    "hero": "Centurion",
+    "name": "Fortiter Et Recte",
+    "youtubeId": "Lnx3H-rjdw8",
+    "seconds": 12
+  },
+  {
+    "hero": "Centurion",
+    "name": "It Takes Guts",
+    "youtubeId": "0LqXqOcRWhQ",
+    "seconds": 12
+  },
+  {
+    "hero": "Centurion",
+    "name": "A Spina Ad Brachium",
+    "youtubeId": "KngCfjaK22w",
+    "seconds": 10
+  },
+  {
+    "hero": "Centurion",
+    "name": "Knock Yourself Out",
+    "youtubeId": "R-Bfmsue7iQ",
+    "seconds": 13
+  },
+  {
+    "hero": "Centurion",
+    "name": "Gladius In Jugulum",
+    "youtubeId": "PqWNCCSsbps",
+    "seconds": 13
+  },
+  {
+    "hero": "Centurion",
+    "name": "The Ides of March",
+    "youtubeId": "5j4Km-yDQA8",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Deep Cut",
+    "youtubeId": "f60lqvesxd4",
+    "seconds": 7
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Bone Crusher",
+    "youtubeId": "xGzTxVQyWeA",
+    "seconds": 7
+  },
+  {
+    "hero": "Gladiator",
+    "name": "No Mercy!",
+    "youtubeId": "wgOBYqwK3v4",
+    "seconds": 6
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Intent To Behead",
+    "youtubeId": "HbTU7elJxFw",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Skilled Performer",
+    "youtubeId": "yoWXRacyYqI",
+    "seconds": 8
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Sleep Now",
+    "youtubeId": "bsYlTQz4E0M",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "How Dare You!",
+    "youtubeId": "Bs_qXskafK8",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "This One's Fiesty!",
+    "youtubeId": "FKMUopBG5bs",
+    "seconds": 12
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Brain Dead",
+    "youtubeId": "qptfGvvarBk",
+    "seconds": 7
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Ruthless Tidings",
+    "youtubeId": "7gF2MB11sWE",
+    "seconds": 11
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Cave Adsum",
+    "youtubeId": "8g4MmFmgMc4",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Fun And Roses",
+    "youtubeId": "U63oov_Rw5U",
+    "seconds": 11
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Knock It Off",
+    "youtubeId": "-gI5Tu5Sv0A",
+    "seconds": 15
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Wriggling Victim",
+    "youtubeId": "JAXglhX5EZQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Carpe Ventrem",
+    "youtubeId": "SH2yWPipfRs",
+    "seconds": 14
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Flying Farewell",
+    "youtubeId": "390HPf7a2KA",
+    "seconds": 5
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Fall On Your Spear",
+    "youtubeId": "YGXf_iSf0-o",
+    "seconds": 10
+  },
+  {
+    "hero": "Gladiator",
+    "name": "Flag Pole Kick",
+    "youtubeId": "7EEyK440i20",
+    "seconds": 11
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Spinebreaker",
+    "youtubeId": "4q5HXOxccpM",
+    "seconds": 15
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Mala Ultro Adsunt",
+    "youtubeId": "ByJdrc30e9Q",
+    "seconds": 8
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Vortiger's Reckoning",
+    "youtubeId": "qP4A_Cq_4kA",
+    "seconds": 9
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Severe Sentence",
+    "youtubeId": "K8Mzna_P4Do",
+    "seconds": 9
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Limb Slicer",
+    "youtubeId": "xxvJFjcn5vo",
+    "seconds": 8
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Up To The Hilt",
+    "youtubeId": "0JtnbaOtDxU",
+    "seconds": 11
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Erzebet's Prowesss",
+    "youtubeId": "SHfufx979P4",
+    "seconds": 8
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Slowly But Surely",
+    "youtubeId": "v9hO2gL_pZU",
+    "seconds": 14
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Malo Undique Clades",
+    "youtubeId": "ux8VkXlJS-8",
+    "seconds": 8
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Vortiger's Regards",
+    "youtubeId": "S2UqeFpwTlI",
+    "seconds": 11
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Vae Victis",
+    "youtubeId": "-VNJZg7UqlI",
+    "seconds": 9
+  },
+  {
+    "hero": "Black Prior",
+    "name": "Fatal Hamstring",
+    "youtubeId": "8LfOKtUukqw",
+    "seconds": 8
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Evisceration",
+    "youtubeId": "OS9hbHHlSeM",
+    "seconds": 7
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Perforation",
+    "youtubeId": "KQEKbsFAREk",
+    "seconds": 9
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Sovreignty",
+    "youtubeId": "Xfjof8HfTK0",
+    "seconds": 9
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Humiliation",
+    "youtubeId": "JFGBG3dBG3Y",
+    "seconds": 12
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Obliteration",
+    "youtubeId": "1a7m4fG2pq8",
+    "seconds": 12
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Slaughter of the Sheep",
+    "youtubeId": "St1VcfUBKUI",
+    "seconds": 14
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Horkos Shave",
+    "youtubeId": "w0RC57M8TCs",
+    "seconds": 14
+  },
+  {
+    "hero": "Warmonger",
+    "name": "Degredation",
+    "youtubeId": "a_FPPIUOQVQ",
+    "seconds": 8
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Heads Will Fly",
+    "youtubeId": "4_2md11M5YY",
+    "seconds": 6
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Flipped Over",
+    "youtubeId": "OanCxCm8wVc",
+    "seconds": 7
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Heads Will Roll",
+    "youtubeId": "zjy4NjwPPTI",
+    "seconds": 9
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Crossed Off",
+    "youtubeId": "APgSSno3Du8",
+    "seconds": 8
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Verdict Of Chimera",
+    "youtubeId": "RXmMIOkcvXs",
+    "seconds": 10
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Clockwise Grind",
+    "youtubeId": "vq0jGPnc48A",
+    "seconds": 10
+  },
+  {
+    "hero": "Gryphon",
+    "name": "Chimera's Retribution",
+    "youtubeId": "WnkvvXRnzoY",
+    "seconds": 9
+  },
+  {
+    "hero": "Raider",
+    "name": "Axe Uppercut",
+    "youtubeId": "8ZlO3kj1x3s",
+    "seconds": 6
+  },
+  {
+    "hero": "Raider",
+    "name": "Gutbuster",
+    "youtubeId": "RFHRLM8CSa0",
+    "seconds": 7
+  },
+  {
+    "hero": "Raider",
+    "name": "Pure Force",
+    "youtubeId": "oQDAMlDouw4",
+    "seconds": 6
+  },
+  {
+    "hero": "Raider",
+    "name": "Skull Cracker",
+    "youtubeId": "akSvtlyfXqY",
+    "seconds": 7
+  },
+  {
+    "hero": "Raider",
+    "name": "Neckbreaker",
+    "youtubeId": "aNwYTjGFCc4",
+    "seconds": 7
+  },
+  {
+    "hero": "Raider",
+    "name": "Aegir's Tide",
+    "youtubeId": "cBJ4zXxy1kc",
+    "seconds": 8
+  },
+  {
+    "hero": "Raider",
+    "name": "Chokeslam",
+    "youtubeId": "THAJn15nGI0",
+    "seconds": 11
+  },
+  {
+    "hero": "Raider",
+    "name": "Viking Press Backbreaker",
+    "youtubeId": "dIPQis82LJo",
+    "seconds": 12
+  },
+  {
+    "hero": "Raider",
+    "name": "Traditional Viking Salute",
+    "youtubeId": "uh0zIvheZHQ",
+    "seconds": 5
+  },
+  {
+    "hero": "Raider",
+    "name": "Headhunting",
+    "youtubeId": "jZTnuREPHAQ",
+    "seconds": 7
+  },
+  {
+    "hero": "Raider",
+    "name": "Lost My Head!",
+    "youtubeId": "wnudppJtEi0",
+    "seconds": 7
+  },
+  {
+    "hero": "Raider",
+    "name": "Bloody Haul",
+    "youtubeId": "pEsKw_suPxk",
+    "seconds": 8
+  },
+  {
+    "hero": "Raider",
+    "name": "What A Joke",
+    "youtubeId": "L024taqEEvg",
+    "seconds": 10
+  },
+  {
+    "hero": "Raider",
+    "name": "It's A Norse Trap",
+    "youtubeId": "RmiP5O5KWoc",
+    "seconds": 12
+  },
+  {
+    "hero": "Raider",
+    "name": "So Bull It",
+    "youtubeId": "kY2Ndw-ksn4",
+    "seconds": 8
+  },
+  {
+    "hero": "Raider",
+    "name": "From The Beard",
+    "youtubeId": "ZKX5vZOFMIU",
+    "seconds": 14
+  },
+  {
+    "hero": "Raider",
+    "name": "Cleaving Me Softly",
+    "youtubeId": "f8uOo-FQ25E",
+    "seconds": 11
+  },
+  {
+    "hero": "Raider",
+    "name": "Is That It?",
+    "youtubeId": "5J_lwsfUD08",
+    "seconds": 10
+  },
+  {
+    "hero": "Raider",
+    "name": "Deadweight Throw",
+    "youtubeId": "btU1x4_0WR0",
+    "seconds": 8
+  },
+  {
+    "hero": "Warlord",
+    "name": "Targetted Strike",
+    "youtubeId": "gXbxp4-CEPA",
+    "seconds": 9
+  },
+  {
+    "hero": "Warlord",
+    "name": "Shield Bash Uppercut",
+    "youtubeId": "aMOB6CJml2A",
+    "seconds": 6
+  },
+  {
+    "hero": "Warlord",
+    "name": "Attitude Adjuster",
+    "youtubeId": "JVxCIpLEtd8",
+    "seconds": 8
+  },
+  {
+    "hero": "Warlord",
+    "name": "Like A Stuck Pig",
+    "youtubeId": "WdQtxTL2i9o",
+    "seconds": 8
+  },
+  {
+    "hero": "Warlord",
+    "name": "Beat Down",
+    "youtubeId": "SmxleASS5Cc",
+    "seconds": 6
+  },
+  {
+    "hero": "Warlord",
+    "name": "Head Scissor",
+    "youtubeId": "zdwaEGjEjTQ",
+    "seconds": 5
+  },
+  {
+    "hero": "Warlord",
+    "name": "Nailed Down",
+    "youtubeId": "WjaWxpe4PMc",
+    "seconds": 13
+  },
+  {
+    "hero": "Warlord",
+    "name": "The Heartattack",
+    "youtubeId": "e8FI_u3P-JI",
+    "seconds": 7
+  },
+  {
+    "hero": "Warlord",
+    "name": "Head On A Platter",
+    "youtubeId": "hfZUe5KsaCs",
+    "seconds": 12
+  },
+  {
+    "hero": "Warlord",
+    "name": "The Viking's Elbow",
+    "youtubeId": "G2XZ4wvKNfk",
+    "seconds": 7
+  },
+  {
+    "hero": "Warlord",
+    "name": "The Best Offense",
+    "youtubeId": "5egx1Kk35rU",
+    "seconds": 9
+  },
+  {
+    "hero": "Warlord",
+    "name": "Final Slumber",
+    "youtubeId": "V49IOxe8l8U",
+    "seconds": 13
+  },
+  {
+    "hero": "Warlord",
+    "name": "Smack In The Face",
+    "youtubeId": "CwirqSqCL0k",
+    "seconds": 11
+  },
+  {
+    "hero": "Warlord",
+    "name": "Norse Guillotine",
+    "youtubeId": "_3IOWmjic9c",
+    "seconds": 12
+  },
+  {
+    "hero": "Warlord",
+    "name": "Can't Punch This",
+    "youtubeId": "TeWBKV_zS3w",
+    "seconds": 9
+  },
+  {
+    "hero": "Warlord",
+    "name": "Head Carrier",
+    "youtubeId": "YqMfLcV6tps",
+    "seconds": 10
+  },
+  {
+    "hero": "Warlord",
+    "name": "Cumbered Bash",
+    "youtubeId": "mJpGwvmNipg",
+    "seconds": 11
+  },
+  {
+    "hero": "Warlord",
+    "name": "The Back Slammer",
+    "youtubeId": "Q_afwH5veUE",
+    "seconds": 9
+  },
+  {
+    "hero": "Warlord",
+    "name": "Skull Assessment",
+    "youtubeId": "Tujv0RRszvI",
+    "seconds": 9
+  },
+  {
+    "hero": "Berserker",
+    "name": "Timber! Berserker",
+    "youtubeId": "JabX62RBWvk",
+    "seconds": 6
+  },
+  {
+    "hero": "Berserker",
+    "name": "This   Is   Valkenheim!",
+    "youtubeId": "304MkP2nkio",
+    "seconds": 5
+  },
+  {
+    "hero": "Berserker",
+    "name": "Work The Leg",
+    "youtubeId": "hEpqhFhfnCE",
+    "seconds": 5
+  },
+  {
+    "hero": "Berserker",
+    "name": "Double Your Efforts",
+    "youtubeId": "Lk2kQxj5JIc",
+    "seconds": 6
+  },
+  {
+    "hero": "Berserker",
+    "name": "Severe Amputation",
+    "youtubeId": "ZvIcuFqbsYU",
+    "seconds": 5
+  },
+  {
+    "hero": "Berserker",
+    "name": "Blood Rage",
+    "youtubeId": "j-SrdypkorU",
+    "seconds": 6
+  },
+  {
+    "hero": "Berserker",
+    "name": "Final Dance",
+    "youtubeId": "DTaayBRghaE",
+    "seconds": 7
+  },
+  {
+    "hero": "Berserker",
+    "name": "Punch Drunk",
+    "youtubeId": "_EGKf4w-PuY",
+    "seconds": 8
+  },
+  {
+    "hero": "Berserker",
+    "name": "Cannonball Dropkick",
+    "youtubeId": "yFFk7pF0Ze4",
+    "seconds": 8
+  },
+  {
+    "hero": "Berserker",
+    "name": "Move It Along!",
+    "youtubeId": "nyCNS4ojRqg",
+    "seconds": 9
+  },
+  {
+    "hero": "Berserker",
+    "name": "Watch This!",
+    "youtubeId": "fJnpCXQfpcs",
+    "seconds": 7
+  },
+  {
+    "hero": "Berserker",
+    "name": "Vehement Axe Stomp",
+    "youtubeId": "hL_OnWLqLY8",
+    "seconds": 11
+  },
+  {
+    "hero": "Berserker",
+    "name": "Head Cracker",
+    "youtubeId": "SciGmwi5tkg",
+    "seconds": 8
+  },
+  {
+    "hero": "Berserker",
+    "name": "Spark It Off",
+    "youtubeId": "-aqdDBGTIGM",
+    "seconds": 12
+  },
+  {
+    "hero": "Berserker",
+    "name": "Almost Dropped It",
+    "youtubeId": "1rbsUqfQkoU",
+    "seconds": 13
+  },
+  {
+    "hero": "Berserker",
+    "name": "Dismemberment",
+    "youtubeId": "VjGDmrD_7FU",
+    "seconds": 13
+  },
+  {
+    "hero": "Berserker",
+    "name": "Split Not",
+    "youtubeId": "SA0kkPx5o0s",
+    "seconds": 10
+  },
+  {
+    "hero": "Berserker",
+    "name": "Absolute Frenzy",
+    "youtubeId": "-GYj7TnDK3E",
+    "seconds": 11
+  },
+  {
+    "hero": "Berserker",
+    "name": "Nice Catch!",
+    "youtubeId": "Ph5zGtPHxyE",
+    "seconds": 11
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "New Valkyrie \"No Touching\" Execution!",
+    "youtubeId": "XX2HiaMvZHw",
+    "seconds": 13
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Shield  Trip",
+    "youtubeId": "azGML3uQu-E",
+    "seconds": 10
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Get The Horns",
+    "youtubeId": "LbNbuXiOHLM",
+    "seconds": 9
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Aim For The Head",
+    "youtubeId": "8L4JfAwmSFc",
+    "seconds": 6
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Vlad The Impaler",
+    "youtubeId": "yzNURpZLBZ8",
+    "seconds": 7
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Plant Your Flag",
+    "youtubeId": "1EJLyCklmss",
+    "seconds": 6
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Judgement Call",
+    "youtubeId": "CK8ocjB2VNk",
+    "seconds": 10
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Get To The Chopper!",
+    "youtubeId": "MjUcoKcdUOI",
+    "seconds": 6
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Trick Shot",
+    "youtubeId": "06vPkq2OSq8",
+    "seconds": 7
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Shield Grab",
+    "youtubeId": "qDYQYCLWzJY",
+    "seconds": 9
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Spearfishing",
+    "youtubeId": "KmEKAX1rPjo",
+    "seconds": 8
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Harpooned",
+    "youtubeId": "oAKYXZkilVY",
+    "seconds": 12
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Sportive Knockout",
+    "youtubeId": "82riOim49kA",
+    "seconds": 8
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Decisive Leap",
+    "youtubeId": "hpSs5v9vRd8",
+    "seconds": 9
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Warrior Meets Horn",
+    "youtubeId": "RTlqL2V-0Bs",
+    "seconds": 13
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Through And Through",
+    "youtubeId": "eyLqFgt81ec",
+    "seconds": 11
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Skewer Let On",
+    "youtubeId": "b8cUy_GoAtA",
+    "seconds": 10
+  },
+  {
+    "hero": "Valkyrie",
+    "name": "Valhalla Sendoff",
+    "youtubeId": "Q-faAhTXtL4",
+    "seconds": 15
+  },
+  {
+    "hero": "Highlander",
+    "name": "Heave Ho!",
+    "youtubeId": "CbKOyK76fJo",
+    "seconds": 8
+  },
+  {
+    "hero": "Highlander",
+    "name": "Curel Demise",
+    "youtubeId": "op8zAEesNJE",
+    "seconds": 16
+  },
+  {
+    "hero": "Highlander",
+    "name": "Deep Cut",
+    "youtubeId": "rHFBs-pvjLE",
+    "seconds": 6
+  },
+  {
+    "hero": "Highlander",
+    "name": "Intent To Behead",
+    "youtubeId": "c3XFxoPTZSI",
+    "seconds": 5
+  },
+  {
+    "hero": "Highlander",
+    "name": "No Mercy!",
+    "youtubeId": "yZDc15WtIJw",
+    "seconds": 10
+  },
+  {
+    "hero": "Highlander",
+    "name": "Bone Crusher",
+    "youtubeId": "kei4Hv27enk",
+    "seconds": 7
+  },
+  {
+    "hero": "Highlander",
+    "name": "360 Takedown",
+    "youtubeId": "RVl_jNBCeto",
+    "seconds": 9
+  },
+  {
+    "hero": "Highlander",
+    "name": "Spin The Bottle",
+    "youtubeId": "xZvbuuBS26Y",
+    "seconds": 8
+  },
+  {
+    "hero": "Highlander",
+    "name": "Pathetic!",
+    "youtubeId": "cKMT8zfW_V8",
+    "seconds": 8
+  },
+  {
+    "hero": "Highlander",
+    "name": "Fatal Toss",
+    "youtubeId": "yy_-Zcx0qb0",
+    "seconds": 10
+  },
+  {
+    "hero": "Highlander",
+    "name": "Northern Brutality",
+    "youtubeId": "tnyfUD8rEpY",
+    "seconds": 8
+  },
+  {
+    "hero": "Highlander",
+    "name": "Hole Lander",
+    "youtubeId": "nV3ZmL6w_i8",
+    "seconds": 14
+  },
+  {
+    "hero": "Highlander",
+    "name": "Done My Smash",
+    "youtubeId": "ayQh9stAsDo",
+    "seconds": 15
+  },
+  {
+    "hero": "Highlander",
+    "name": "Hilt It Up",
+    "youtubeId": "3utn4C2iQrM",
+    "seconds": 11
+  },
+  {
+    "hero": "Highlander",
+    "name": "High Sender",
+    "youtubeId": "-jBsNUAWFYM",
+    "seconds": 12
+  },
+  {
+    "hero": "Highlander",
+    "name": "High Feigner",
+    "youtubeId": "ACUEdnkY694",
+    "seconds": 9
+  },
+  {
+    "hero": "Highlander",
+    "name": "Loyalty's End",
+    "youtubeId": "Iy6y4025Iuo",
+    "seconds": 8
+  },
+  {
+    "hero": "Shaman",
+    "name": "Over/Under",
+    "youtubeId": "TYIfGhp9vMA",
+    "seconds": 6
+  },
+  {
+    "hero": "Shaman",
+    "name": "Timber!",
+    "youtubeId": "CT0qC2qaDW0",
+    "seconds": 9
+  },
+  {
+    "hero": "Shaman",
+    "name": "Over power",
+    "youtubeId": "WXvmf0rlFek",
+    "seconds": 11
+  },
+  {
+    "hero": "Shaman",
+    "name": "Calming The Voices",
+    "youtubeId": "b88efKIV8wI",
+    "seconds": 9
+  },
+  {
+    "hero": "Shaman",
+    "name": "Incorrigible",
+    "youtubeId": "D-gIjXsJ-UE",
+    "seconds": 13
+  },
+  {
+    "hero": "Shaman",
+    "name": "You Better Run!",
+    "youtubeId": "8UBpFEe3CE8",
+    "seconds": 7
+  },
+  {
+    "hero": "Shaman",
+    "name": "Really Get In There",
+    "youtubeId": "ocmid7KCq9c",
+    "seconds": 13
+  },
+  {
+    "hero": "Shaman",
+    "name": "Head Banger",
+    "youtubeId": "vlHGnraGIsI",
+    "seconds": 16
+  },
+  {
+    "hero": "Shaman",
+    "name": "Alfablot",
+    "youtubeId": "nqzVg8w6aWU",
+    "seconds": 12
+  },
+  {
+    "hero": "Shaman",
+    "name": "Wicked Rampage",
+    "youtubeId": "UQhtpXfRx9g",
+    "seconds": 10
+  },
+  {
+    "hero": "Shaman",
+    "name": "Backing Out",
+    "youtubeId": "G8HB162PJkw",
+    "seconds": 11
+  },
+  {
+    "hero": "Shaman",
+    "name": "Had A Blast",
+    "youtubeId": "zunJ71YN7IM",
+    "seconds": 11
+  },
+  {
+    "hero": "Shaman",
+    "name": "Sacrifice Throw",
+    "youtubeId": "MAYQMaHvcWU",
+    "seconds": 6
+  },
+  {
+    "hero": "Shaman",
+    "name": "Seen And Done Roll",
+    "youtubeId": "q0PpzGRa0N8",
+    "seconds": 8
+  },
+  {
+    "hero": "Shaman",
+    "name": "Bloody Appetite",
+    "youtubeId": "tU7Yo4uckp0",
+    "seconds": 12
+  },
+  {
+    "hero": "Shaman",
+    "name": "Take It On The Chin",
+    "youtubeId": "zBgzf59bxQk",
+    "seconds": 8
+  },
+  {
+    "hero": "Shaman",
+    "name": "Incessant Migraine",
+    "youtubeId": "tzPx-86BAW8",
+    "seconds": 11
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Brutal Upswing",
+    "youtubeId": "j39JZs9av9M",
+    "seconds": 6
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Skull Crusher",
+    "youtubeId": "Ec4U8CeulKQ",
+    "seconds": 9
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Hammerhead",
+    "youtubeId": "lzKzUUMDG_Y",
+    "seconds": 14
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Swing For It",
+    "youtubeId": "qVhptPJoRdk",
+    "seconds": 5
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Hamarr and Anvil",
+    "youtubeId": "Ha5CY-lNJXU",
+    "seconds": 10
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Bait And Nail",
+    "youtubeId": "7wfTQQZdP6Y",
+    "seconds": 12
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Skaldi Crush",
+    "youtubeId": "2oy1BH-0BAQ",
+    "seconds": 9
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "The High Striker",
+    "youtubeId": "Bes5n-NHO7g",
+    "seconds": 11
+  },
+  {
+    "hero": "Jormungandr",
+    "name": "Knee Popper",
+    "youtubeId": "PnV9dbrLpVg",
+    "seconds": 10
+  },
+  {
+    "hero": "Varangian Guard",
+    "name": "Absolute Will",
+    "youtubeId": "PDFj0czVIPk",
+    "seconds": 8
+  },
+  {
+    "hero": "Varangian Guard",
+    "name": "Axe and Hammer",
+    "youtubeId": "JBWlQXVcYxw",
+    "seconds": 9
+  },
+  {
+    "hero": "Varangian Guard",
+    "name": "The Severing",
+    "youtubeId": "T2D0Tc9PqDE",
+    "seconds": 6
+  },
+  {
+    "hero": "Varangian Guard",
+    "name": "Back Crack",
+    "youtubeId": "ufojLQD69KY",
+    "seconds": 6
+  },
+  {
+    "hero": "Varangian Guard",
+    "name": "Head Block",
+    "youtubeId": "rH2aa-hblwE",
+    "seconds": 8
+  },
+  {
+    "hero": "Kensei",
+    "name": "Evisceration",
+    "youtubeId": "KfpEZU98eYg",
+    "seconds": 6
+  },
+  {
+    "hero": "Kensei",
+    "name": "Insert New Spine",
+    "youtubeId": "dN1tpM9AlqU",
+    "seconds": 7
+  },
+  {
+    "hero": "Kensei",
+    "name": "No Look Kill",
+    "youtubeId": "X2WUBvTQC6U",
+    "seconds": 5
+  },
+  {
+    "hero": "Kensei",
+    "name": "Beheader",
+    "youtubeId": "MSOUd7r0GlA",
+    "seconds": 5
+  },
+  {
+    "hero": "Kensei",
+    "name": "Ground Stabber",
+    "youtubeId": "Ob97CbW_k0o",
+    "seconds": 7
+  },
+  {
+    "hero": "Kensei",
+    "name": "Kikashi",
+    "youtubeId": "F1GVljHLYDM",
+    "seconds": 7
+  },
+  {
+    "hero": "Kensei",
+    "name": "Lose Something?",
+    "youtubeId": "yTV1ipC7DaE",
+    "seconds": 10
+  },
+  {
+    "hero": "Kensei",
+    "name": "Gravity's Fall",
+    "youtubeId": "snRb0Htssic",
+    "seconds": 7
+  },
+  {
+    "hero": "Kensei",
+    "name": "From Ear To Ear",
+    "youtubeId": "Rk5xvhwV8Ig",
+    "seconds": 8
+  },
+  {
+    "hero": "Kensei",
+    "name": "Zutsu",
+    "youtubeId": "mHA3-8Soznk",
+    "seconds": 9
+  },
+  {
+    "hero": "Kensei",
+    "name": "Yasuraka",
+    "youtubeId": "oQjBMvdLCTg",
+    "seconds": 9
+  },
+  {
+    "hero": "Kensei",
+    "name": "Shizuka Ni Nemure",
+    "youtubeId": "bWKQdlnnTIQ",
+    "seconds": 13
+  },
+  {
+    "hero": "Kensei",
+    "name": "Umisen Yamasen",
+    "youtubeId": "-ioiymmCdVA",
+    "seconds": 8
+  },
+  {
+    "hero": "Kensei",
+    "name": "Kyudoka",
+    "youtubeId": "hAIbfnkKLh4",
+    "seconds": 14
+  },
+  {
+    "hero": "Kensei",
+    "name": "The Daimyo's Verdict",
+    "youtubeId": "FRfWEsTDvLI",
+    "seconds": 12
+  },
+  {
+    "hero": "Kensei",
+    "name": "Osoto Gari",
+    "youtubeId": "eUiVD4rlu00",
+    "seconds": 8
+  },
+  {
+    "hero": "Kensei",
+    "name": "En No Atari",
+    "youtubeId": "iibPUubUTxM",
+    "seconds": 10
+  },
+  {
+    "hero": "Kensei",
+    "name": "Shuunenbukai",
+    "youtubeId": "KggMR6_1S7U",
+    "seconds": 4
+  },
+  {
+    "hero": "Kensei",
+    "name": "Triple Slash",
+    "youtubeId": "P0yqlXMsG_o",
+    "seconds": 9
+  },
+  {
+    "hero": "Kensei",
+    "name": "Can't Stand It",
+    "youtubeId": "I--t-KXX8nM",
+    "seconds": 11
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Door Mat",
+    "youtubeId": "TbGzT39o6No",
+    "seconds": 9
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Break In Half",
+    "youtubeId": "OhI34pstrrw",
+    "seconds": 6
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Burst Your Bubble",
+    "youtubeId": "f3051SJAHWg",
+    "seconds": 7
+  },
+  {
+    "hero": "Shugoki",
+    "name": "One Inch Punch",
+    "youtubeId": "qA7ZW8urYYE",
+    "seconds": 7
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Hip Attack",
+    "youtubeId": "trJ4d57aJvo",
+    "seconds": 8
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Sit On It",
+    "youtubeId": "DbFltcHrT_Y",
+    "seconds": 9
+  },
+  {
+    "hero": "Shugoki",
+    "name": "The Mountain",
+    "youtubeId": "UDmlyJC-rPA",
+    "seconds": 10
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Shugoki Smash!",
+    "youtubeId": "fFg1ToBgtAk",
+    "seconds": 10
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Pinch Hitter",
+    "youtubeId": "mU8uqfzRIQE",
+    "seconds": 7
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Dyspepsia",
+    "youtubeId": "h3Et16epd_A",
+    "seconds": 10
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Kimarite",
+    "youtubeId": "i5Sv6Keyp0o",
+    "seconds": 15
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Kinjite",
+    "youtubeId": "FZ7Ksi1mNHI",
+    "seconds": 11
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Smashing Success",
+    "youtubeId": "r_jpJmPYtjI",
+    "seconds": 11
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Bombastic",
+    "youtubeId": "GdMu-zsUpUs",
+    "seconds": 13
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Okuma's Fling",
+    "youtubeId": "46F_lRsQml0",
+    "seconds": 10
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Samurai Senton",
+    "youtubeId": "X1E8MAIAmYg",
+    "seconds": 15
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Nebari O Kakuru",
+    "youtubeId": "6Y06Wh7jvW4",
+    "seconds": 13
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Wrecking Ball",
+    "youtubeId": "qFEqZKd-4tw",
+    "seconds": 8
+  },
+  {
+    "hero": "Shugoki",
+    "name": "Feet Off!",
+    "youtubeId": "ATqBJwZaE24",
+    "seconds": 8
+  },
+  {
+    "hero": "Orochi",
+    "name": "Choke On This",
+    "youtubeId": "xy656Unww2A",
+    "seconds": 8
+  },
+  {
+    "hero": "Orochi",
+    "name": "Kneel For Me",
+    "youtubeId": "XtLo12RHz58",
+    "seconds": 7
+  },
+  {
+    "hero": "Orochi",
+    "name": "From Above",
+    "youtubeId": "nCweRmaQt6A",
+    "seconds": 5
+  },
+  {
+    "hero": "Orochi",
+    "name": "Excessive Force",
+    "youtubeId": "m2k3E-ZRBsc",
+    "seconds": 5
+  },
+  {
+    "hero": "Orochi",
+    "name": "Clean Kill",
+    "youtubeId": "jfEXK6F_yqA",
+    "seconds": 5
+  },
+  {
+    "hero": "Orochi",
+    "name": "Tsubame Gaeshi",
+    "youtubeId": "d2mE8y_AKh0",
+    "seconds": 7
+  },
+  {
+    "hero": "Orochi",
+    "name": "Toro! Toro!",
+    "youtubeId": "3iqxeK7rj-8",
+    "seconds": 9
+  },
+  {
+    "hero": "Orochi",
+    "name": "And Bow",
+    "youtubeId": "h0iGI2wy7Jc",
+    "seconds": 8
+  },
+  {
+    "hero": "Orochi",
+    "name": "Overkill",
+    "youtubeId": "t6-LKCZU3O4",
+    "seconds": 7
+  },
+  {
+    "hero": "Orochi",
+    "name": "Senbazuru",
+    "youtubeId": "JYOmeaK3JuI",
+    "seconds": 9
+  },
+  {
+    "hero": "Orochi",
+    "name": "Rokko No Shi",
+    "youtubeId": "nClfz5IzsKg",
+    "seconds": 11
+  },
+  {
+    "hero": "Orochi",
+    "name": "Tobasu",
+    "youtubeId": "FWFco0FHfYY",
+    "seconds": 7
+  },
+  {
+    "hero": "Orochi",
+    "name": "Senkei",
+    "youtubeId": "0vx3eHiNk_o",
+    "seconds": 11
+  },
+  {
+    "hero": "Orochi",
+    "name": "Throw And Kick",
+    "youtubeId": "Q-1f898gQ2g",
+    "seconds": 10
+  },
+  {
+    "hero": "Orochi",
+    "name": "Seijuro's Finesse",
+    "youtubeId": "DBJnLTGpt4k",
+    "seconds": 8
+  },
+  {
+    "hero": "Orochi",
+    "name": "Neck Snap",
+    "youtubeId": "zlGopC6iV5c",
+    "seconds": 11
+  },
+  {
+    "hero": "Orochi",
+    "name": "Ken No Sen",
+    "youtubeId": "VHXc9J3SOa4",
+    "seconds": 13
+  },
+  {
+    "hero": "Orochi",
+    "name": "Agehacho",
+    "youtubeId": "n0POzD-K8C0",
+    "seconds": 8
+  },
+  {
+    "hero": "Orochi",
+    "name": "Tooth Fairy",
+    "youtubeId": "1wFcXoCfx50",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Off With Their Head",
+    "youtubeId": "qwBud7YskuM",
+    "seconds": 6
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Home Run",
+    "youtubeId": "XBRkgoCBvdY",
+    "seconds": 9
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Sting Like A Bee",
+    "youtubeId": "Lo55lVz8C74",
+    "seconds": 6
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Snap Off",
+    "youtubeId": "27XBubM1WGQ",
+    "seconds": 5
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Snapmare",
+    "youtubeId": "-3WClZzWEAs",
+    "seconds": 7
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Going For A Ride",
+    "youtubeId": "thaFTD6MEhA",
+    "seconds": 6
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Oikase",
+    "youtubeId": "FanCJCLO_54",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "5 Deadly Stabs",
+    "youtubeId": "aTw9PYWcO9g",
+    "seconds": 9
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Spearitual Journey",
+    "youtubeId": "fJ0tKfRFgbg",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Give Us A Smile",
+    "youtubeId": "GdOcU3DEY0k",
+    "seconds": 11
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Butterfly Dance",
+    "youtubeId": "ZkeA2XbWd6M",
+    "seconds": 11
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Dearest Pity",
+    "youtubeId": "01ALaP8p2RM",
+    "seconds": 10
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Ohisama No Kataki",
+    "youtubeId": "1I96Tl9uhmg",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Kuroyuri No Mai",
+    "youtubeId": "TvZuXamwU_U",
+    "seconds": 9
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Momiji's Efficiency",
+    "youtubeId": "rhXitIdvfK8",
+    "seconds": 10
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Nobushi Wheel",
+    "youtubeId": "aI1qHmWlGms",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Momiji No Uchi",
+    "youtubeId": "tGfrWGPw8VY",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Meigetsu",
+    "youtubeId": "hkIK3y7Po1k",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Fuusoku",
+    "youtubeId": "b500EwMnwd8",
+    "seconds": 8
+  },
+  {
+    "hero": "Nobushi",
+    "name": "Futile Footrest",
+    "youtubeId": "6wG8YfYzzJY",
+    "seconds": 11
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Hack And Slash",
+    "youtubeId": "nkj02_zx-lg",
+    "seconds": 6
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Scorpion Sting",
+    "youtubeId": "Z-57FASNPnk",
+    "seconds": 7
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Shadow Of Death",
+    "youtubeId": "SWUmEdZBB8o",
+    "seconds": 8
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Flying Lotus",
+    "youtubeId": "8MgykuOxiDw",
+    "seconds": 7
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Get Back Here!",
+    "youtubeId": "gm1kTP172UA",
+    "seconds": 10
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Under The Bridge",
+    "youtubeId": "iSdu7onFir0",
+    "seconds": 5
+  },
+  {
+    "hero": "Shinobi",
+    "name": "You're Gonna Flip",
+    "youtubeId": "Hwp8NN72ctA",
+    "seconds": 5
+  },
+  {
+    "hero": "Shinobi",
+    "name": "No Escape!",
+    "youtubeId": "YPFlPCEdUqE",
+    "seconds": 6
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Nagado",
+    "youtubeId": "2BH38gnqgnc",
+    "seconds": 7
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Oshimai",
+    "youtubeId": "fYhI_GvNHbw",
+    "seconds": 8
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Zankoku Slicer",
+    "youtubeId": "p8vmZwTjqxQ",
+    "seconds": 9
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Inazuma Dash",
+    "youtubeId": "Cuc1EyMCODk",
+    "seconds": 7
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Spinning Around",
+    "youtubeId": "6Ch-XFZrjqA",
+    "seconds": 9
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Throwing Stars",
+    "youtubeId": "Or4ozCN_t24",
+    "seconds": 10
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Hooked On A Killing",
+    "youtubeId": "x2cOaq3vPws",
+    "seconds": 9
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Sekka No Atari",
+    "youtubeId": "VMA1KCLznzc",
+    "seconds": 9
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Baneful Whiplash",
+    "youtubeId": "4EFG_hqJRZ0",
+    "seconds": 10
+  },
+  {
+    "hero": "Shinobi",
+    "name": "Spin and Sever",
+    "youtubeId": "P4yH7ayX74Q",
+    "seconds": 5
+  },
+  {
+    "hero": "Shinobi",
+    "name": "What A Drag",
+    "youtubeId": "xjD6ZLzfDQo",
+    "seconds": 12
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Dis Jointed",
+    "youtubeId": "mlB5KFLyhUg",
+    "seconds": 8
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Head Over Heels",
+    "youtubeId": "fJNgGSyob9k",
+    "seconds": 6
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Dragon Palm Strike",
+    "youtubeId": "okHL5-_DUiA",
+    "seconds": 10
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Mulberry Field",
+    "youtubeId": "zJI9Kzyeyz4",
+    "seconds": 8
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Flawless Execution!",
+    "youtubeId": "NYyAsmTezN0",
+    "seconds": 6
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Slashing Wind",
+    "youtubeId": "8NTACgVrpWM",
+    "seconds": 6
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Twin Dragons",
+    "youtubeId": "aihjS6MUpm0",
+    "seconds": 8
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Bare Hand Beat Down",
+    "youtubeId": "Obnj32Q-YCM",
+    "seconds": 16
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Sayuri",
+    "youtubeId": "IUChjYwjzn4",
+    "seconds": 7
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Think Fast",
+    "youtubeId": "B7TNYetrx_I",
+    "seconds": 10
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Head Cutter",
+    "youtubeId": "WbR9IrA_cjs",
+    "seconds": 8
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Rebel Just For Kicks",
+    "youtubeId": "r_giPXPkj64",
+    "seconds": 13
+  },
+  {
+    "hero": "Aramusha",
+    "name": "In The Forearm",
+    "youtubeId": "8V-Y6tDd9bw",
+    "seconds": 10
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Ryu Sui No Uchi",
+    "youtubeId": "T0Z2pJRsdBc",
+    "seconds": 11
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Shizuo's Sentence",
+    "youtubeId": "fRF1zy9sb1k",
+    "seconds": 10
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Flying Arm",
+    "youtubeId": "mPqO-mK5C8g",
+    "seconds": 7
+  },
+  {
+    "hero": "Aramusha",
+    "name": "Springboard",
+    "youtubeId": "6PGoB1iDgT4",
+    "seconds": 7
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Hitobashira",
+    "youtubeId": "79HeGyiJzis",
+    "seconds": 9
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Hack and Smash",
+    "youtubeId": "Jq0BX0Qi93k",
+    "seconds": 6
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Kamaitachi",
+    "youtubeId": "8mv-8XlvfyA",
+    "seconds": 8
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Shingetsuha",
+    "youtubeId": "aYE2IqBaycU",
+    "seconds": 9
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Ishiwari Sakura",
+    "youtubeId": "lH1xLrYZjTs",
+    "seconds": 9
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Yato's Parricide",
+    "youtubeId": "tDWOpYcVOrM",
+    "seconds": 12
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Butterfly Beheading",
+    "youtubeId": "T-tY886SAe4",
+    "seconds": 8
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Makura O Sayuru",
+    "youtubeId": "W476iPzmrt8",
+    "seconds": 12
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Fatal Diversion",
+    "youtubeId": "ASidFZFfiF8",
+    "seconds": 9
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Toriireru",
+    "youtubeId": "Up4C0LoBL3g",
+    "seconds": 7
+  },
+  {
+    "hero": "Hitokiri",
+    "name": "Disarmed & Doomed",
+    "youtubeId": "_a6tivG16Sc",
+    "seconds": 9
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Savage Sandstorm",
+    "youtubeId": "nMDgEh8Da7E",
+    "seconds": 10
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Through The Head",
+    "youtubeId": "ZfPFFsPvflo",
+    "seconds": 10
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Relentless Windstorm",
+    "youtubeId": "x9g3bCbHjXM",
+    "seconds": 9
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Celestial Discipline",
+    "youtubeId": "PfJKoCojabY",
+    "seconds": 10
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Might of the Winds",
+    "youtubeId": "S_mMRLR_Mso",
+    "seconds": 8
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "The Wind's Edge",
+    "youtubeId": "PrxTtmhD9ZA",
+    "seconds": 7
+  },
+  {
+    "hero": "Kyoshin",
+    "name": "Can't Catch Me",
+    "youtubeId": "c2tgH1W-aTQ",
+    "seconds": 9
+  },
+  {
+    "hero": "Sohei",
+    "name": "Mercy Kill",
+    "youtubeId": "SEC99FVhVig",
+    "seconds": 11
+  },
+  {
+    "hero": "Sohei",
+    "name": "Throat Tickler",
+    "youtubeId": "TDtbUbpNo_8",
+    "seconds": 5
+  },
+  {
+    "hero": "Sohei",
+    "name": "Tsuki Yari",
+    "youtubeId": "DIk0ovWpY7s",
+    "seconds": 11
+  },
+  {
+    "hero": "Sohei",
+    "name": "Face Meet Metal",
+    "youtubeId": "QSXzS0kdkKU",
+    "seconds": 9
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Swallow Backspin",
+    "youtubeId": "OOEJNPumGEY",
+    "seconds": 7
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Typhoon Punishment",
+    "youtubeId": "Qh2KCXH3jRI",
+    "seconds": 7
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Revolution",
+    "youtubeId": "gdEH86YaC6U",
+    "seconds": 6
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Monsoon Frenzy",
+    "youtubeId": "DPpVKpGqoRs",
+    "seconds": 7
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Down To Earth",
+    "youtubeId": "ADxOJ8Prqcw",
+    "seconds": 6
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Hold This",
+    "youtubeId": "4koAxHLw1_U",
+    "seconds": 6
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Yi Ru Fan Zhang",
+    "youtubeId": "9sGMmhfcp4k",
+    "seconds": 15
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Keep Trying",
+    "youtubeId": "Xvlq5jc36E4",
+    "seconds": 12
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Spiral Ending",
+    "youtubeId": "O64McHvL6-k",
+    "seconds": 6
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Feng Closa",
+    "youtubeId": "BEUS591Dor4",
+    "seconds": 9
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Atonement of Shidou",
+    "youtubeId": "h5W3nqUibbA",
+    "seconds": 8
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Relentless Cyclone",
+    "youtubeId": "14vUcXumyyQ",
+    "seconds": 9
+  },
+  {
+    "hero": "Tiandi",
+    "name": "Encircling Victory",
+    "youtubeId": "1tuglovX4OA",
+    "seconds": 8
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Backhand Spiral",
+    "youtubeId": "tig93dFTB6Q",
+    "seconds": 7
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Windmill Stab",
+    "youtubeId": "m99pjcI3AnM",
+    "seconds": 8
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Sifu's Punishment",
+    "youtubeId": "6X4hTXFMD4Y",
+    "seconds": 9
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Fly Swatter",
+    "youtubeId": "_3eTW4c_n90",
+    "seconds": 13
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Stay Down",
+    "youtubeId": "_OXC9rCmg9I",
+    "seconds": 14
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Keep Your Stance Wide",
+    "youtubeId": "RgPX4lcJar8",
+    "seconds": 7
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Ember Management",
+    "youtubeId": "IUTtmFoRKKA",
+    "seconds": 12
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Slammed Head",
+    "youtubeId": "_pdPbqr0DX4",
+    "seconds": 8
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Upward Guillotine",
+    "youtubeId": "QLC5IqLnEp4",
+    "seconds": 11
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Fei Lian",
+    "youtubeId": "k2lQ0KFjt7I",
+    "seconds": 7
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Close Call",
+    "youtubeId": "EuTgpGaevGc",
+    "seconds": 12
+  },
+  {
+    "hero": "Jiang Jun",
+    "name": "Be Quiet",
+    "youtubeId": "cdgxos5t1Vs",
+    "seconds": 8
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Roulette of Ruin",
+    "youtubeId": "nFXxTzLh92w",
+    "seconds": 8
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Hook, Line, and Sinker!",
+    "youtubeId": "ckU1ArozDHs",
+    "seconds": 8
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Hare's Sweep",
+    "youtubeId": "QSwA9mRl33I",
+    "seconds": 7
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Bai Mao Nu",
+    "youtubeId": "Q2rHVa2Dx7U",
+    "seconds": 10
+  },
+  {
+    "hero": "Nuxia",
+    "name": "A Short Rest",
+    "youtubeId": "Tth4HZX8vOI",
+    "seconds": 6
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Crossed Moonsnap",
+    "youtubeId": "5gVSCHTbtxo",
+    "seconds": 6
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Blazing Swallow Kick",
+    "youtubeId": "6F0tTUAnsZk",
+    "seconds": 8
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Merciless Spiral",
+    "youtubeId": "mvy0p7ZxuYo",
+    "seconds": 8
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Coat Rack",
+    "youtubeId": "AMtT55cl138",
+    "seconds": 7
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Han Zixian",
+    "youtubeId": "fCHky6aJJrk",
+    "seconds": 10
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Dian Mu",
+    "youtubeId": "mavfIxJxDWA",
+    "seconds": 16
+  },
+  {
+    "hero": "Nuxia",
+    "name": "Spin cision",
+    "youtubeId": "t7EjpCQT8OY",
+    "seconds": 7
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Anxi",
+    "youtubeId": "n7Fs8CBfXEc",
+    "seconds": 8
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Cartwheel",
+    "youtubeId": "kofLBrkwA68",
+    "seconds": 8
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Flurry of Blows",
+    "youtubeId": "5_3u-sHMxxE",
+    "seconds": 6
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Shua Peng",
+    "youtubeId": "fbRtbhtKlcM",
+    "seconds": 10
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Monkeying Around",
+    "youtubeId": "TIPBtpUYt3E",
+    "seconds": 12
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Brawling Showdown",
+    "youtubeId": "IGPBvV7K4lU",
+    "seconds": 7
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Maximum Shaolin",
+    "youtubeId": "8kg3dLohyWc",
+    "seconds": 12
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Mischevious Kill",
+    "youtubeId": "cHFwDD30O1U",
+    "seconds": 9
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Helicopter Strike",
+    "youtubeId": "JDNa2BiWDeg",
+    "seconds": 6
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Feng Bo",
+    "youtubeId": "BJZ10_ZuggU",
+    "seconds": 9
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Flair and Finesse",
+    "youtubeId": "ab0DUoCgBiU",
+    "seconds": 10
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Wukong Leap",
+    "youtubeId": "idHrFs2IdeE",
+    "seconds": 6
+  },
+  {
+    "hero": "Shaolin",
+    "name": "Catch And Release",
+    "youtubeId": "VQN13u99Muo",
+    "seconds": 8
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Fu Huo's Dominance",
+    "youtubeId": "PZb9tZFkKLo",
+    "seconds": 9
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Graceful Expedient",
+    "youtubeId": "omhh4_oeqmk",
+    "seconds": 8
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "What A Waist",
+    "youtubeId": "nYf-FWsCcTc",
+    "seconds": 9
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Sun Da's Rule",
+    "youtubeId": "TLkXxsUXdLQ",
+    "seconds": 10
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Imperial Toll",
+    "youtubeId": "eLjTGEivxMk",
+    "seconds": 8
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Xie Feng",
+    "youtubeId": "U4NtoO2F4kY",
+    "seconds": 7
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "The Creature Within",
+    "youtubeId": "k5nHCE9P8Cc",
+    "seconds": 9
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Dou's Will",
+    "youtubeId": "K_KIaVwn6k0",
+    "seconds": 8
+  },
+  {
+    "hero": "Zhanhu",
+    "name": "Zhi's Duplicity",
+    "youtubeId": "0euGybuf5AA",
+    "seconds": 9
+  },
+  {
+    "hero": "Juren",
+    "name": "Not Dead Enough",
+    "youtubeId": "bXH7YTmyZY8",
+    "seconds": 9
+  },
+  {
+    "hero": "Juren",
+    "name": "Off the Ground",
+    "youtubeId": "ffKMb9csW7s",
+    "seconds": 11
+  },
+  {
+    "hero": "Juren",
+    "name": "Insect Swatting",
+    "youtubeId": "sYggi78XPEA",
+    "seconds": 12
+  },
+  {
+    "hero": "Juren",
+    "name": "Force of Nature",
+    "youtubeId": "g2SILDwsy_8",
+    "seconds": 8
+  },
+  {
+    "hero": "Pirate",
+    "name": "Flying Sword",
+    "youtubeId": "g3Aoij3JQlY",
+    "seconds": 8
+  },
+  {
+    "hero": "Pirate",
+    "name": "Pirate's Sanction",
+    "youtubeId": "TAuCQb8Rhyg",
+    "seconds": 11
+  },
+  {
+    "hero": "Pirate",
+    "name": "Lock & Load",
+    "youtubeId": "WrEPv7JpJVE",
+    "seconds": 11
+  },
+  {
+    "hero": "Pirate",
+    "name": "Flames of Death",
+    "youtubeId": "BAn93ht6LvY",
+    "seconds": 9
+  },
+  {
+    "hero": "Pirate",
+    "name": "Bullet Dance",
+    "youtubeId": "AHb3qZCglr4",
+    "seconds": 11
+  },
+  {
+    "hero": "Pirate",
+    "name": "What'd You Expect",
+    "youtubeId": "PAGHLv7nOGo",
+    "seconds": 8
+  },
+  {
+    "hero": "Pirate",
+    "name": "Hold Still!",
+    "youtubeId": "PQbqgELYkQk",
+    "seconds": 15
+  },
+  {
+    "hero": "Medjay",
+    "name": "Guardian of Ruins",
+    "youtubeId": "Kc-7WZSNknY",
+    "seconds": 7
+  },
+  {
+    "hero": "Medjay",
+    "name": "Pharaoh's Judgement",
+    "youtubeId": "I4X1gAgw0ek",
+    "seconds": 9
+  },
+  {
+    "hero": "Medjay",
+    "name": "Neferkha's Decree",
+    "youtubeId": "p_fdasLRg8o",
+    "seconds": 7
+  },
+  {
+    "hero": "Medjay",
+    "name": "Heatwave Vigor",
+    "youtubeId": "5uXnx1EHpkE",
+    "seconds": 8
+  },
+  {
+    "hero": "Medjay",
+    "name": "Dunes of Retribution",
+    "youtubeId": "etCmExFqxWY",
+    "seconds": 8
+  },
+  {
+    "hero": "Medjay",
+    "name": "X Marks The Corpse",
+    "youtubeId": "49CoiS0BPYs",
+    "seconds": 9
+  },
+  {
+    "hero": "Afeera",
+    "name": "Bloody Prophecy",
+    "youtubeId": "Qz2UtlHIRf4",
+    "seconds": 10
+  },
+  {
+    "hero": "Afeera",
+    "name": "Scholar of Death",
+    "youtubeId": "1T0O0ahP83Y",
+    "seconds": 9
+  },
+  {
+    "hero": "Afeera",
+    "name": "Around The World",
+    "youtubeId": "wTjqJdw4I_M",
+    "seconds": 10
+  },
+  {
+    "hero": "Afeera",
+    "name": "Sultana's Sanction",
+    "youtubeId": "ARS_7_xdhJM",
+    "seconds": 8
+  },
+  {
+    "hero": "Afeera",
+    "name": "Fate's End",
+    "youtubeId": "meNJ4DJgPWo",
+    "seconds": 10
+  },
+  {
+    "hero": "Afeera",
+    "name": "Divine Precision",
+    "youtubeId": "ZiPsW4iEH_I",
+    "seconds": 5
+  },
+  {
+    "hero": "Ocelotl",
+    "name": "New World Greetings",
+    "youtubeId": "7Cxv0amfrbw",
+    "seconds": 7
+  },
+  {
+    "hero": "Ocelotl",
+    "name": "Lethal Pounce",
+    "youtubeId": "IE1wFKlO_j0",
+    "seconds": 12
+  },
+  {
+    "hero": "Ocelotl",
+    "name": "Aztec Guillotine",
+    "youtubeId": "sb7f-QUi-A0",
+    "seconds": 8
+  },
+  {
+    "hero": "Ocelotl",
+    "name": "Skewered Prey",
+    "youtubeId": "dJCZU-fNeRA",
+    "seconds": 10
+  },
+  {
+    "hero": "Ocelotl",
+    "name": "Ripsaw",
+    "youtubeId": "-91txOdj_1k",
+    "seconds": 8
+  },
+  {
+    "hero": "Khatun",
+    "name": "Ceaseless Onslaught",
+    "youtubeId": "I4-UBIDllCk",
+    "seconds": 12
+  },
+  {
+    "hero": "Khatun",
+    "name": "Steppes Sanction",
+    "youtubeId": "1Td6Plxfk2k",
+    "seconds": 10
+  },
+  {
+    "hero": "Khatun",
+    "name": "Bokh Champion",
+    "youtubeId": "kQ7mpvgCx-Q",
+    "seconds": 12
+  },
+  {
+    "hero": "Khatun",
+    "name": "Hack The Head",
+    "youtubeId": "Vd6mt9a3cI4",
+    "seconds": 9
+  },
+  {
+    "hero": "Virtuosa",
+    "name": "Smile for the Fans",
+    "youtubeId": "rexKo9_uwRE",
+    "seconds": 11
+  },
+  {
+    "hero": "Virtuosa",
+    "name": "Take A Seat",
+    "youtubeId": "YVPs_HISvh8",
+    "seconds": 10
+  },
+  {
+    "hero": "Virtuosa",
+    "name": "Easy Breezy",
+    "youtubeId": "TfnZtfkk5mw",
+    "seconds": 8
+  },
+  {
+    "hero": "Virtuosa",
+    "name": "Perfected Reversal",
+    "youtubeId": "krlvNN8yhRk",
+    "seconds": 6
+  }
+]

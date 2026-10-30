@@ -14,6 +14,8 @@ interface Props {
   revealed: boolean;
   /** The video can't be played (removed, embedding disabled...). */
   onUnavailable: () => void;
+  /** A CSS filter on the playing video (For Honor's executions play in silhouette). */
+  filter?: string;
 }
 
 /**
@@ -24,7 +26,7 @@ interface Props {
 /** Clips start muted; unmuting holds for the rest of the visit. */
 let sessionMuted = true;
 
-export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Props) {
+export function VideoClip({ videoId, at, seconds, revealed, onUnavailable, filter }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
@@ -145,7 +147,7 @@ export function VideoClip({ videoId, at, seconds, revealed, onUnavailable }: Pro
   return (
     <div className="mx-auto w-full max-w-3xl space-y-2">
       <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-black shadow-2xl">
-        <div ref={host} className="pointer-events-none size-full [&_iframe]:size-full" aria-hidden />
+        <div ref={host} className="pointer-events-none size-full transition-[filter] duration-500 [&_iframe]:size-full" style={filter ? { filter } : undefined} aria-hidden />
         {/* YouTube's title bar (it names the rank), its logo corner and its share corner. */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[16%] bg-black" />
         <div className="pointer-events-none absolute bottom-0 right-0 h-[13%] w-[18%] bg-black" />
