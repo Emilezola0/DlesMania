@@ -3,6 +3,7 @@ import { HL_DECKS } from '../arcade/higherLower';
 import { NAME_LISTS } from '../arcade/lists';
 import { DleCoin } from '../components/DleCoin';
 import { CARDS } from '../gacha/cards';
+import { HOT_BONUS, HOT_PLAYS, hotNow } from '../gacha/economy';
 import { todayKey } from '../lib/date';
 import { RANK_DATA, RANK_ROUNDS } from '../rank/data';
 import { UNIVERSES } from '../specialist/rounds';
@@ -17,9 +18,10 @@ interface GameCard {
   stat?: string;
 }
 
-function Card({ game }: { game: GameCard }) {
+function Card({ game, hot }: { game: GameCard; hot?: string }) {
   return (
-    <li>
+    <li className="relative">
+      {hot === game.to && <span className="pointer-events-none absolute right-2 top-2 z-10 rounded-full bg-coral px-2 py-0.5 font-display text-xs font-bold text-on-strong">🔥 +{Math.round(HOT_BONUS * 100)}%</span>}
       <Link to={game.to} className="page group flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
         <span className="text-3xl transition-transform group-hover:scale-110">{game.icon}</span>
         <span className="font-display text-xl font-bold">{game.title}</span>
@@ -32,7 +34,8 @@ function Card({ game }: { game: GameCard }) {
 
 /** /games: every game beyond the daily challenge, Free Play and the bosses. */
 export default function GamesHub() {
-  const { special, whosThat, bests, rogueRun, coins, cards } = useProgress();
+  const { special, whosThat, bests, rogueRun, coins, cards, hotGame } = useProgress();
+  const hot = hotNow(hotGame, todayKey());
   const collected = CARDS.filter((c) => cards[c.id]).length;
   const today = todayKey();
   const doneToday = (key: string, rounds: number) => Object.values(special[`${key}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
@@ -167,6 +170,20 @@ export default function GamesHub() {
         <h1 className="text-5xl font-bold">Games</h1>
         <p className="max-w-xl text-ink-soft">Everything else to play: more dailies with their own streaks, and arcade games to play as long as you like.</p>
       </div>
+      {/* The Hot Game: more coins for moving around. */}
+      <Link to={hot.game.to} className="page flex items-center gap-4 rounded-md p-4 ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+        <span className="text-3xl">{hot.game.icon}</span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-xs uppercase tracking-[0.25em] text-coral">🔥 Hot game</span>
+          <span className="block font-display text-xl font-bold">
+            {hot.game.title}: +{Math.round(HOT_BONUS * 100)}% DleCoins
+          </span>
+          <span className="block text-sm text-ink-soft">
+            {hot.left} game{hot.left === 1 ? '' : 's'} left, then the bonus moves to another game. Every {HOT_PLAYS} games, and every new day.
+          </span>
+        </span>
+      </Link>
+
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Adventure</h2>
         <Link to="/expedition" className="page group flex flex-col gap-2 rounded-md p-6 ring-2 ring-coral/50 transition hover:-translate-y-0.5 sm:flex-row sm:items-center">
@@ -211,7 +228,7 @@ export default function GamesHub() {
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">More dailies</h2>
         <ul className="grid gap-4 sm:grid-cols-2">
           {dailies.map((g) => (
-            <Card key={g.to} game={g} />
+            <Card key={g.to} game={g} hot={hot.game.to} />
           ))}
         </ul>
       </section>
@@ -219,7 +236,7 @@ export default function GamesHub() {
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Arcade · endless</h2>
         <ul className="grid gap-4 sm:grid-cols-2">
           {arcade.map((g) => (
-            <Card key={g.to} game={g} />
+            <Card key={g.to} game={g} hot={hot.game.to} />
           ))}
         </ul>
       </section>

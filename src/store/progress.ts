@@ -12,6 +12,8 @@ import {
   ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
   arcadeCoins,
+  payHot,
+  type HotBook,
   bestCounts,
   type ArcadeResult,
   ARCADE_CAP,
@@ -36,7 +38,7 @@ import {
   type Period,
   type PeriodBooks,
 } from '../gacha/economy';
-import { CODES, normalizeCode } from '../gacha/codes';
+import { giftFor, normalizeCode } from '../gacha/codes';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -89,6 +91,8 @@ interface ProgressState {
   /** This week's boss bonuses already paid. */
   bossWeek: BossWeek;
   packsOpened: number;
+  /** Where the player is in the day's Hot Games (src/gacha/economy.ts). */
+  hotGame?: HotBook;
   /** Packs opened since the last Legendary or better: the luck that raises their odds (see pityLuck). */
   pity: number;
   /** A card shown as the player's icon (any card they own). */
@@ -406,7 +410,7 @@ export const useProgress = create<ProgressState>()(
         }),
       redeemCode: (raw) => {
         const code = normalizeCode(raw);
-        const gift = CODES[code];
+        const gift = giftFor(code);
         if (!gift) return { ok: false, reason: 'unknown' };
         const s = get();
         if ((s.redeemed ?? []).includes(code)) return { ok: false, reason: 'used' };
@@ -463,14 +467,20 @@ export const useProgress = create<ProgressState>()(
           // A best kept mid-run: nothing paid, nothing counted (the run's end will).
           if ('save' in result) return { bests };
           const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
-          return { bests, ...earn(s, arcadeCoins(result) + bonus, { arcade: key, count: { arcade: 1 } }) };
+          const hot = payHot(s.hotGame, todayKey(), key, arcadeCoins(result) + bonus);
+          const paid = earn(s, hot.amount, { arcade: key, count: { arcade: 1 } });
+          // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
+          return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
         }),
       recordWhosThat: (key, score, result) =>
         set((s) => {
           const bonus = bestCounts(result) && score > 0 && score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
+          const hot = payHot(s.hotGame, todayKey(), `whos:${key}`, arcadeCoins(result) + bonus);
+          const paid = earn(s, hot.amount, { arcade: `whos:${key}`, count: { whos: 1 } });
           return {
             whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
-            ...earn(s, arcadeCoins(result) + bonus, { arcade: `whos:${key}`, count: { whos: 1 } }),
+            ...paid,
+            ...(paid.coins !== undefined ? { hotGame: hot.book } : {}),
           };
         }),
       setSpecialRound: (key, index, record) =>

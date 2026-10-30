@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { EXPEDITION_BOSS_MAX, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { GRADE_REWARD_SHARE, gradeReward } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -169,6 +169,7 @@ function RedeemCode() {
 /** /shop */
 export default function Shop() {
   const coins = useProgress((s) => s.coins);
+  const hotGame = useProgress((s) => s.hotGame);
   const owned = useProgress((s) => s.cards);
   const bosses = useProgress((s) => s.bosses);
   const econ = econToday(useProgress((s) => s.econ));
@@ -349,6 +350,9 @@ export default function Shop() {
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an
             endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play.
+          </li>
+          <li>
+            The Hot Game: one game of the Games page pays +{Math.round(HOT_BONUS * 100)}% ({hotNow(hotGame, econ.date).game.title} right now). After {HOT_PLAYS} games of it, or the next day, the bonus moves to another.
           </li>
           <li>Expeditions: every room won pays, more each act, up to {EXPEDITION_ROOM_MAX} a room and {EXPEDITION_BOSS_MAX} a boss — and each act is harder than the last.</li>
           <li>

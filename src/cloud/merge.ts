@@ -26,6 +26,7 @@ export const SYNCED = [
   'econ',
   'bossWeek',
   'packsOpened',
+  'hotGame',
   'pity',
   'nameLang',
   'avatar',
@@ -141,6 +142,12 @@ function mergeBook(a: PeriodBook | undefined, b: PeriodBook | undefined): Period
  * One save from two. `firstLink`: this device has never synced with this account (its coins were
  * earned apart, so they add up). `cloudNewer`: the account's save changed after this device's.
  */
+function laterHot(a: SaveData['hotGame'], b: SaveData['hotGame']): SaveData['hotGame'] {
+  if (!a || !b) return a ?? b;
+  if (a.date !== b.date) return a.date > b.date ? a : b;
+  return a.moves * 100 + a.played >= b.moves * 100 + b.played ? a : b;
+}
+
 export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer }: { firstLink: boolean; cloudNewer: boolean }): SaveData {
   if (!cloud) return local;
   const latest = cloudNewer ? cloud : local;
@@ -184,6 +191,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
     // The luck of the latest save (pulled apart on a first link: the lower, so it's never doubled).
     pity: clampPity(firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : (cloudNewer ? cloud.pity : local.pity)),
+    // The same day: the further along of the two. Otherwise the later day's.
+    hotGame: laterHot(local.hotGame, cloud.hotGame),
     packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
     rogueRun: firstLink ? (cloud.rogueRun ?? local.rogueRun) : latest.rogueRun,

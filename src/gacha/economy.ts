@@ -50,6 +50,62 @@ export const ARCADE_AFTER_CAP = 0.5;
 /** A game pays at most once per this long (so a run lost at once, again and again, isn't a farm). */
 export const ARCADE_SPACING_MS = 8_000;
 
+/**
+ * The Hot Game: one game of the Games page pays more, so farming means moving around. After a few games
+ * of it the bonus moves to another game, and it moves with each new day too. The order is drawn from the
+ * date, the same for everyone; each player moves through it at their own pace.
+ */
+export const HOT_BONUS = 0.5;
+export const HOT_PLAYS = 3;
+/** The games it visits: `id` is what their best keys start with ("memory:pokemon"). */
+export const HOT_GAMES = [
+  { id: 'rail', to: '/rail-rush', title: 'Rail Rush', icon: '🚂' },
+  { id: 'whos', to: '/whos-that', title: "Who's That?", icon: '👤' },
+  { id: 'hl', to: '/higher-lower', title: 'Higher or Lower', icon: '↕️' },
+  { id: 'ntl', to: '/name-them-all', title: 'Name Them All', icon: '📝' },
+  { id: 'wordle', to: '/wordle', title: 'Franchise Wordle', icon: '🟩' },
+  { id: 'sort', to: '/quick-sort', title: 'Quick Sort', icon: '↔️' },
+  { id: 'six', to: '/six-degrees', title: 'Six Degrees', icon: '🕸️' },
+  { id: 'who', to: '/who-am-i', title: 'Who Am I?', icon: '🕵️' },
+  { id: 'climb', to: '/summit', title: 'Summit', icon: '🧗' },
+  { id: 'cross', to: '/crossroads', title: 'Crossroads', icon: '🌉' },
+  { id: 'odd', to: '/odd-one-out', title: 'Odd One Out', icon: '🧩' },
+  { id: 'memory', to: '/memory', title: 'Memory Pairs', icon: '🃏' },
+  { id: 'map', to: '/map-quiz', title: 'Map Quiz', icon: '📍' },
+  { id: 'year', to: '/guess-the-year', title: 'Guess the Year', icon: '📅' },
+] as const;
+
+/** A player's place in the day's order: how many times the bonus has moved, and the games played of the current one. */
+export interface HotBook {
+  date: string;
+  moves: number;
+  played: number;
+}
+
+/** The game at a place in a day's order: never the same one twice in a row. */
+function hotAt(date: string, moves: number): (typeof HOT_GAMES)[number] {
+  const pick = hashString(`hot:${date}:${moves}`) % HOT_GAMES.length;
+  if (moves <= 0) return HOT_GAMES[pick];
+  return HOT_GAMES[pick] === hotAt(date, moves - 1) ? HOT_GAMES[(pick + 1) % HOT_GAMES.length] : HOT_GAMES[pick];
+}
+
+/** The Hot Game today, and how many games of it are left. */
+export function hotNow(book: HotBook | undefined, date: string) {
+  const b = book?.date === date ? book : { date, moves: 0, played: 0 };
+  return { game: hotAt(date, b.moves), left: HOT_PLAYS - b.played, book: b };
+}
+
+/** A finished game's coins with the bonus if it's the Hot Game, and the book after it. */
+export function payHot(book: HotBook | undefined, date: string, key: string, amount: number): { amount: number; book: HotBook } {
+  const now = hotNow(book, date);
+  if (key.split(':')[0] !== now.game.id) return { amount, book: now.book };
+  const played = now.book.played + 1;
+  return {
+    amount: Math.round(amount * (1 + HOT_BONUS)),
+    book: played >= HOT_PLAYS ? { date, moves: now.book.moves + 1, played: 0 } : { date, moves: now.book.moves, played },
+  };
+}
+
 /** The Monday a date's week starts on: "2026-10-28" → "2026-10-26". */
 export function weekOf(date: string): string {
   const d = new Date(`${date}T12:00:00Z`);
