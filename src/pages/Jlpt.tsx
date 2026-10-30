@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { Customise, useCustomPicks } from '../components/Customise';
@@ -325,6 +325,24 @@ function DayCard({ kind, entry }: { kind: 'word' | 'kanji'; entry: JlptEntry }) 
       )}
       <p className="font-display text-lg font-semibold">{shortMeaning(entry.meaning, 5)}</p>
       <p className="text-xs text-ink-faint">JLPT {entry.level}</p>
+      {/* A word written with kanji: what each of them means (the ones the list has). */}
+      {kind === 'word' && kanjiOfWord(entry.text).length > 0 && (
+        <ul className="mt-1 w-full space-y-1 border-t border-rule pt-2 text-left text-sm">
+          {kanjiOfWord(entry.text).map((k) => (
+            <li key={k.id} className="flex items-baseline gap-3">
+              <span lang="ja" className="font-serif text-2xl font-bold">
+                {k.text}
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="font-semibold">{shortMeaning(k.meaning, 3)}</span>
+                <span lang="ja" className="block text-xs text-ink-faint">
+                  {k.reading} · {k.level}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
       <KeepButton id={entry.id} />
     </div>
   );

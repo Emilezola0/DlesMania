@@ -149,3 +149,10 @@ export function ofTheDay(date: string): { word: JlptEntry; kanji: JlptEntry } {
   const n = dayNumber(date);
   return { word: at(VOCAB_ORDER, n), kanji: at(KANJI_ORDER, n) };
 }
+
+/** The list's entry for a kanji (its first level), to explain the kanji a word is written with. */
+const KANJI_BY_CHAR = new Map<string, JlptEntry>();
+for (const e of ALL_KANJI) if (!KANJI_BY_CHAR.has(e.text)) KANJI_BY_CHAR.set(e.text, e);
+export const kanjiInfo = (char: string) => KANJI_BY_CHAR.get(char);
+/** The kanji of a word that the list explains, in order, each once. */
+export const kanjiOfWord = (word: string) => [...new Set([...word])].flatMap((c) => KANJI_BY_CHAR.get(c) ?? []);
