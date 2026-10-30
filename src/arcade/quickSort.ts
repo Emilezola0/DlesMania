@@ -5,6 +5,8 @@ import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
 import type { Domain } from '../types';
+import { JLPT_THEMES, shortMeaning } from './jlpt';
+import { kanjiPicture } from '../lib/kanji';
 
 /** Something to sort: which side it goes, and what shows once it's sorted. */
 export interface SortCard {
@@ -31,6 +33,35 @@ export interface SortDeck {
 
 const BOUNTY_LINE = 500_000_000;
 const YEAR_LINE = 2000;
+
+/**
+ * JLPT: the list's words (N5 to N3) from two of its theme decks — which side is each? Once sorted, a word
+ * shows its reading and meaning. A word in both themes is left out.
+ */
+const JLPT_SORTS: [string, string, string][] = [
+  ['animals', 'food', '🐾'],
+  ['body', 'nature', '🫀'],
+  ['family', 'places', '👪'],
+  ['time', 'school', '📅'],
+];
+function jlptSort(a: string, b: string, icon: string): SortDeck {
+  const [ta, tb] = [a, b].map((id) => JLPT_THEMES.find((t) => t.id === `theme-${id}`)!);
+  const keep = (e: { level: string }) => e.level === 'N5' || e.level === 'N4' || e.level === 'N3';
+  const inB = new Set(tb.entries.map((e) => e.text));
+  const inA = new Set(ta.entries.map((e) => e.text));
+  const seen = new Set<string>();
+  const card = (side: 'left' | 'right') => (e: (typeof ta.entries)[number]) =>
+    seen.has(e.text) || !seen.add(e.text) ? [] : [{ id: e.id, name: e.text, image: kanjiPicture(`kanji:${e.text}`), side, fact: `${e.reading} · ${shortMeaning(e.meaning, 2)}` }];
+  return {
+    id: `jlpt-${a}-${b}`,
+    domain: 'anime',
+    label: `JLPT: ${ta.label.toLowerCase()} or ${tb.label.toLowerCase()}?`,
+    icon,
+    left: ta.label,
+    right: tb.label,
+    cards: [...ta.entries.filter((e) => keep(e) && !inB.has(e.text)).flatMap(card('left')), ...tb.entries.filter((e) => keep(e) && !inA.has(e.text)).flatMap(card('right'))],
+  };
+}
 
 export const SORT_DECKS: SortDeck[] = [
   {
@@ -101,6 +132,7 @@ export const SORT_DECKS: SortDeck[] = [
       domain: w.domain,
     })),
   },
+  ...JLPT_SORTS.map(([a, b, icon]) => jlptSort(a, b, icon)),
 ];
 
 export const sortDeck = (id: string | undefined) => SORT_DECKS.find((d) => d.id === id);

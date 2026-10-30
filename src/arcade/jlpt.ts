@@ -156,3 +156,8 @@ for (const e of ALL_KANJI) if (!KANJI_BY_CHAR.has(e.text)) KANJI_BY_CHAR.set(e.t
 export const kanjiInfo = (char: string) => KANJI_BY_CHAR.get(char);
 /** The kanji of a word that the list explains, in order, each once. */
 export const kanjiOfWord = (word: string) => [...new Set([...word])].flatMap((c) => KANJI_BY_CHAR.get(c) ?? []);
+
+/** A word of the list by how it's written (its first entry), to show its reading and meaning in other games. */
+const WORD_BY_TEXT = new Map<string, JlptEntry>();
+for (const e of ALL_VOCAB) if (!WORD_BY_TEXT.has(e.text)) WORD_BY_TEXT.set(e.text, e);
+export const jlptWord = (text: string) => WORD_BY_TEXT.get(text);

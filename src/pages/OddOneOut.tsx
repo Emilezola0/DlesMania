@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ODD_THEMES, oddRound, type OddRound } from '../arcade/oddOneOut';
+import { jlptWord, shortMeaning } from '../arcade/jlpt';
 import { Customise, useCustomPicks } from '../components/Customise';
 
 /** Themes to mix in "Your mix". */
@@ -72,6 +73,12 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
             <button key={c.label} type="button" disabled={!!picked} onClick={() => pick(c.label)} className={`animate-round-in flex flex-col overflow-hidden rounded-lg border-2 bg-card text-left transition ${tone}`}>
               <div className="aspect-square w-full bg-tile">{c.image && <img src={c.image} alt="" draggable={false} className="size-full object-cover object-top" />}</div>
               <p className="truncate p-2 text-center text-sm font-semibold">{shownName(c.label)}</p>
+              {/* JLPT words: their reading and meaning once the round is over (the point is to learn). */}
+              {picked && jlptWord(c.label) && (
+                <p lang="ja" className="animate-pop px-2 pb-2 text-center text-xs text-ink-soft">
+                  {jlptWord(c.label)!.reading} · {shortMeaning(jlptWord(c.label)!.meaning, 2)}
+                </p>
+              )}
             </button>
           );
         })}
