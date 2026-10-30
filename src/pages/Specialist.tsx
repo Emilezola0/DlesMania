@@ -23,7 +23,7 @@ import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/gam
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
 import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
-import { classicRoundFor, clueRoundFor, executionRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
+import { classicRoundFor, clueRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
 import { JLPT_KANJI, JLPT_WORDS } from '../specialist/jlpt';
@@ -40,7 +40,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
   forhonor: { picture: pictureRoundFor('forhonor'), clue: clueRoundFor('forhonor', 'Which hero fights with this?'), windows: windowsRoundFor('forhonor'), spotlight: spotlightRoundFor('forhonor'), execution: executionRoundFor('forhonor') },
-  overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch') },
+  overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch'), ultcost: ultCostRoundFor('overwatch') },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   destiny: { classic: classicRoundFor('destiny', 'character'), picture: pictureRoundFor('destiny'), clue: clueRoundFor('destiny', 'Who is this?'), windows: windowsRoundFor('destiny'), exotic: itemRoundFor('destiny', 'Which Exotic weapon is this?') },

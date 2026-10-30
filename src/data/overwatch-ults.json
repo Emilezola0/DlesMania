@@ -1,0 +1,257 @@
+[
+ {
+  "hero": "Ana",
+  "ultimate": "Nano Boost",
+  "cost": 2300
+ },
+ {
+  "hero": "Anran",
+  "ultimate": "Vermillion Ascent",
+  "cost": 2000
+ },
+ {
+  "hero": "Ashe",
+  "ultimate": "B.O.B.",
+  "cost": 2450
+ },
+ {
+  "hero": "Baptiste",
+  "ultimate": "Amplification Matrix",
+  "cost": 2550
+ },
+ {
+  "hero": "Bastion",
+  "ultimate": "Configuration: Artillery",
+  "cost": 2050
+ },
+ {
+  "hero": "Brigitte",
+  "ultimate": "Rally",
+  "cost": 2700
+ },
+ {
+  "hero": "Cassidy",
+  "ultimate": "Deadeye",
+  "cost": 1800
+ },
+ {
+  "hero": "D.Va",
+  "ultimate": "Self-Destruct",
+  "cost": 1700
+ },
+ {
+  "hero": "Domina",
+  "ultimate": "Panopticon",
+  "cost": 2200
+ },
+ {
+  "hero": "Doomfist",
+  "ultimate": "Meteor Strike",
+  "cost": 1975
+ },
+ {
+  "hero": "Echo",
+  "ultimate": "Duplicate",
+  "cost": 1850
+ },
+ {
+  "hero": "Emre",
+  "ultimate": "Override Protocol",
+  "cost": 2750
+ },
+ {
+  "hero": "Freja",
+  "ultimate": "Bola Shot",
+  "cost": 1750
+ },
+ {
+  "hero": "Genji",
+  "ultimate": "Dragonblade",
+  "cost": 2125
+ },
+ {
+  "hero": "Hanzo",
+  "ultimate": "Dragonstrike",
+  "cost": 1700
+ },
+ {
+  "hero": "Hazard",
+  "ultimate": "Downpour",
+  "cost": 2150
+ },
+ {
+  "hero": "Illari",
+  "ultimate": "Captive Sun",
+  "cost": 2975
+ },
+ {
+  "hero": "Junker Queen",
+  "ultimate": "Rampage",
+  "cost": 2700
+ },
+ {
+  "hero": "Junkrat",
+  "ultimate": "RIP-Tire",
+  "cost": 2100
+ },
+ {
+  "hero": "Juno",
+  "ultimate": "Orbital Ray",
+  "cost": 2900
+ },
+ {
+  "hero": "Kiriko",
+  "ultimate": "Kitsune Rush",
+  "cost": 2725
+ },
+ {
+  "hero": "Lifeweaver",
+  "ultimate": "Tree of Life",
+  "cost": 2400
+ },
+ {
+  "hero": "Lúcio",
+  "ultimate": "Sound Barrier",
+  "cost": 2900
+ },
+ {
+  "hero": "Mauga",
+  "ultimate": "Cage Fight",
+  "cost": 2700
+ },
+ {
+  "hero": "Mei",
+  "ultimate": "Blizzard",
+  "cost": 1925
+ },
+ {
+  "hero": "Mercy",
+  "ultimate": "Valkyrie",
+  "cost": 2150
+ },
+ {
+  "hero": "Mizuki",
+  "ultimate": "Kekkai Sanctuary",
+  "cost": 3100
+ },
+ {
+  "hero": "Moira",
+  "ultimate": "Coalescence",
+  "cost": 2700
+ },
+ {
+  "hero": "Orisa",
+  "ultimate": "Terra Surge",
+  "cost": 2150
+ },
+ {
+  "hero": "Pharah",
+  "ultimate": "Barrage",
+  "cost": 2200
+ },
+ {
+  "hero": "Ramattra",
+  "ultimate": "Annihilation",
+  "cost": 2300
+ },
+ {
+  "hero": "Reaper",
+  "ultimate": "Death Blossom",
+  "cost": 2050
+ },
+ {
+  "hero": "Reinhardt",
+  "ultimate": "Earthshatter",
+  "cost": 1960
+ },
+ {
+  "hero": "Roadhog",
+  "ultimate": "Whole Hog",
+  "cost": 2700
+ },
+ {
+  "hero": "Shion",
+  "ultimate": "Satsuriku Spree",
+  "cost": 2400
+ },
+ {
+  "hero": "Sierra",
+  "ultimate": "Trailblazer",
+  "cost": 2350
+ },
+ {
+  "hero": "Sigma",
+  "ultimate": "Gravitic Flux",
+  "cost": 2300
+ },
+ {
+  "hero": "Sojourn",
+  "ultimate": "Overclock",
+  "cost": 2300
+ },
+ {
+  "hero": "Soldier: 76",
+  "ultimate": "Tactical Visor",
+  "cost": 2750
+ },
+ {
+  "hero": "Sombra",
+  "ultimate": "EMP",
+  "cost": 3100
+ },
+ {
+  "hero": "Symmetra",
+  "ultimate": "Photon Barrier",
+  "cost": 2025
+ },
+ {
+  "hero": "Torbjörn",
+  "ultimate": "Molten Core",
+  "cost": 2350
+ },
+ {
+  "hero": "Tracer",
+  "ultimate": "Pulse Bomb",
+  "cost": 1375
+ },
+ {
+  "hero": "Vendetta",
+  "ultimate": "Sundering Blade",
+  "cost": 2050
+ },
+ {
+  "hero": "Venture",
+  "ultimate": "Tectonic Shock",
+  "cost": 1950
+ },
+ {
+  "hero": "Widowmaker",
+  "ultimate": "Infra-Sight",
+  "cost": 1400
+ },
+ {
+  "hero": "Winston",
+  "ultimate": "Primal Rage",
+  "cost": 2525
+ },
+ {
+  "hero": "Wrecking Ball",
+  "ultimate": "Minefield",
+  "cost": 1850
+ },
+ {
+  "hero": "Wuyang",
+  "ultimate": "Tidal Blast",
+  "cost": 2800
+ },
+ {
+  "hero": "Zarya",
+  "ultimate": "Graviton Surge",
+  "cost": 2500
+ },
+ {
+  "hero": "Zenyatta",
+  "ultimate": "Transcendence",
+  "cost": 2500
+ }
+]

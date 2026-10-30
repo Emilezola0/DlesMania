@@ -12,7 +12,7 @@ import { BLUEPRINT_POOLS } from './blueprint';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import { JLPT_POOLS } from './jlpt';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -63,8 +63,8 @@ export const UNIVERSES = [
     id: 'overwatch',
     label: 'Overwatch',
     ready: true,
-    blurb: "Voice lines from the wiki's recordings, ultimates, pictures and windows — every hero.",
-    types: ['voice', 'clue', 'picture', 'windows'] as SpType[],
+    blurb: "Voice lines from the wiki's recordings, ultimates and their charge cost, pictures and windows — every hero.",
+    types: ['voice', 'clue', 'picture', 'windows', 'ultcost'] as SpType[],
   },
   {
     id: 'forts',
@@ -126,6 +126,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
   windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   spotlight: { name: 'Spotlight', icon: '🔦', tagline: 'The light widens with each miss', maxAttempts: 6 },
+  ultcost: { name: 'Ultimate Cost', icon: '⚡', tagline: 'Whose ultimate costs this many points?', maxAttempts: 6 },
   kanji: { name: 'Kanji', icon: '字', tagline: 'What does this kanji mean?', maxAttempts: 6 },
   reading: { name: 'Reading', icon: '読', tagline: 'How is this word read?', maxAttempts: 6 },
   word: { name: 'Word', icon: '語', tagline: 'Which Japanese word means this?', maxAttempts: 6 },
