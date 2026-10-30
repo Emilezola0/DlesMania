@@ -24,7 +24,7 @@ const LINEUP = [
   { filter: 'hue-rotate(22deg) saturate(1.1)', tilt: 7 },
 ];
 
-/** The pack's own light, the same whatever it holds: its colours wait for the cards (the backdrop too). */
+/** The pack's own light before it's torn, and the flash as the cards come (the tear itself glows in the best card's colour). */
 const PACK_LIGHT = '#c4b5fd';
 /** A mythic's light is every colour at once. */
 const RAINBOW = ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'];
@@ -160,8 +160,8 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
 }
 
 /**
- * Opening a pack, in four beats: swipe across the pack to tear it (light pours out, the same colour
- * whatever it holds), a shooting star crosses the screen per card, the cards come one at a time from
+ * Opening a pack, in four beats: swipe across the pack to tear it (light pours out, in the colour of
+ * the best card inside — or of the rarity it poses as, when its star is about to evolve), a shooting star crosses the screen per card, the cards come one at a time from
  * the deck — rarer ones charge up before they turn, then burst — and the five are laid out together.
  */
 export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: { pack: Pack; cards: Card[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
@@ -170,6 +170,11 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
   const stars = useMemo(() => starsFor(cards), [cards]);
+  // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
+  // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
+  const tease = stars.find((s) => s.from !== s.to);
+  const shownBest = tease && cards.filter((c) => c.rarity === best).length === 1 ? tease.from : best;
+  const glow = RARITY_LIGHT[shownBest];
   const [phase, setPhase] = useState<Phase>('choose');
   const [chosen, setChosen] = useState<number | null>(null);
   const [tear, setTear] = useState(0);
@@ -366,7 +371,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : PACK_LIGHT}22`}, transparent 60%)` }}>
+    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}22`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
@@ -410,7 +415,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             onPointerUp={onUp}
             onPointerCancel={() => (drag.current = null)}
             className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' ? 'pack-float' : ''}`}
-            style={phase === 'pack' && tear > 0 ? { filter: `drop-shadow(0 0 ${8 + tear * 30}px ${PACK_LIGHT})` } : undefined}
+            style={phase === 'pack' && tear > 0 ? { filter: `drop-shadow(0 0 ${8 + tear * 30}px ${glow})` } : undefined}
             role="button"
             aria-label="Swipe across the pack, or tap it, to tear it open"
           >
@@ -418,7 +423,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             {phase === 'torn' && (
               <div
                 className="pack-beam pointer-events-none absolute left-1/2 w-[150%]"
-                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${PACK_LIGHT}, ${PACK_LIGHT}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
+                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${glow}, ${glow}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
                 aria-hidden
               />
             )}
@@ -430,7 +435,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             </div>
             {/* The tear, glowing along the cut. */}
             {phase === 'pack' && (
-              <div className="pointer-events-none absolute left-0 h-[3px] rounded-full" style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, background: '#fff', boxShadow: `0 0 10px #fff, 0 0 22px ${PACK_LIGHT}` }} />
+              <div className="pointer-events-none absolute left-0 h-[3px] rounded-full" style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, background: '#fff', boxShadow: `0 0 10px #fff, 0 0 22px ${glow}` }} />
             )}
             {phase === 'pack' && tear === 0 && (
               <div className="pack-hint pointer-events-none absolute left-[8%] font-display text-2xl text-white drop-shadow" style={{ top: `calc(${TEAR_AT}% - 1.2rem)` }}>
