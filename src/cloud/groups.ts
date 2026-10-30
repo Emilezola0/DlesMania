@@ -30,6 +30,16 @@ const newCode = () => Array.from({ length: 6 }, () => CODE_CHARS[Math.floor(Math
 export const cleanGroupCode = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
 
 const finished = (r?: RoundRecord) => !!r && r.status !== 'playing';
+/**
+ * Firebase refusing the write means the database's rules don't have the groups section yet (firestore.rules
+ * in this repo has it; it takes effect once published in the Firebase console): said plainly.
+ */
+function explain(e: unknown): Error {
+  if ((e as { code?: string })?.code === 'permission-denied')
+    return new Error("Group codes aren't switched on in the database yet: its rules need the groups section (firestore.rules) published.");
+  return e instanceof Error ? e : new Error(String(e));
+}
+
 /** Firestore keeps no `undefined`: the specs as plain JSON. */
 const plain = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
 
@@ -64,6 +74,8 @@ export async function makeGroup(domain: Domain): Promise<string> {
       };
       tx.set(ref, group);
       return true;
+    }).catch((e) => {
+      throw explain(e);
     });
     if (made) {
       useProgress.getState().setGroup(key, { code, role: 'host' });
@@ -113,6 +125,8 @@ export async function joinGroup(raw: string, domain: Domain): Promise<{ group: G
     if (played.length === g.specs.length) throw new Error('You already finished this daily.');
     tx.update(ref, { joined: (g.joined ?? 0) + 1 });
     return g;
+  }).catch((e) => {
+    throw explain(e);
   });
 
   // The rounds, one by one: each pays its coins and counts for the missions, as if played here.
