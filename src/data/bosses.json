@@ -12128,7 +12128,7 @@
       ],
       "win": "At last — a wolf. The war will remember your name.",
       "lose": "A sheep, after all. Back to the flock.",
-      "secret": "One last duel. I name a hero, a faction, a class or a face from the war — answer with another of the same. No repeats.",
+      "secret": "One last duel. I name a hero, a faction or a class — answer with another of the same. No repeats.",
       "secretOk": [
         "Parried.",
         "Again.",
@@ -12380,6 +12380,20 @@
         }
       ]
     },
+    "finaleSkip": [
+      "Holden Cross",
+      "Stone",
+      "Mercy",
+      "Gudmundr",
+      "Ayu",
+      "Runa",
+      "Stigandr",
+      "Tozen",
+      "Ademar",
+      "Hulda",
+      "Ragnar",
+      "Blackstone Legion"
+    ],
     "finale": [
       {
         "label": "Black Prior",
