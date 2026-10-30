@@ -223,3 +223,25 @@ export const spotlightRoundFor = (u: SimpleUniverse['id']) =>
       />
     );
   };
+
+/** Exotic: an item's icon (not a character: Destiny's Exotic weapons), behind windows that open with each miss. */
+export const itemRoundFor = (u: SimpleUniverse['id'], question: string) =>
+  function SimpleItemRound({ round, record, onChange }: Props) {
+    const items = SIMPLE[u].items ?? [];
+    const c = items.find((x) => x.id === round.targetId)!;
+    const words = c.name.split(/\s+/).length;
+    return (
+      <SpGuessRound
+        type="exotic"
+        question={question}
+        pool={items}
+        targetId={c.id}
+        hints={[`${words} word${words === 1 ? '' : 's'}`, `Its name starts with “${c.name[0]}”`]}
+        record={record}
+        onChange={onChange}
+        answer={{ name: c.name, image: c.image }}
+        noPictures
+        clue={(wrong, done) => <ObscuredImage src={c.image} alt="Icon to name" step={wrong} revealed={done} seed={round.seed} />}
+      />
+    );
+  };

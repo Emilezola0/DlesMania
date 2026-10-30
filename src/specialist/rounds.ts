@@ -10,7 +10,7 @@ import { timelinePool } from './timeline';
 import { simplePools } from './simple';
 import { BLUEPRINT_POOLS } from './blueprint';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -71,6 +71,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'clue', 'windows', 'voice'] as SpType[],
   },
   {
+    id: 'destiny',
+    label: 'Destiny',
+    ready: true,
+    blurb: 'Classic on the best-known characters of both games, pictures, windows, clues — and every Exotic weapon by its icon.',
+    types: ['classic', 'picture', 'clue', 'windows', 'exotic'] as SpType[],
+  },
+  {
     id: 'unreal',
     label: 'Unreal Engine Blueprints',
     ready: true,
@@ -102,6 +109,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
   windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   spotlight: { name: 'Spotlight', icon: '🔦', tagline: 'The light widens with each miss', maxAttempts: 6 },
+  exotic: { name: 'Exotic', icon: '✦', tagline: 'Which Exotic weapon is this?', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
@@ -129,6 +137,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   forhonor: simplePools('forhonor'),
   forts: simplePools('forts'),
   avatar: simplePools('avatar'),
+  destiny: simplePools('destiny'),
   unreal: BLUEPRINT_POOLS,
 };
 

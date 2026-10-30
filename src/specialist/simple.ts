@@ -1,5 +1,5 @@
-// The lighter Specialist universes, built from what the boss battles already know: For Honor, Forts
-// and Avatar: The Last Airbender. Each has a Picture round (the card art, zoomed in), a Clue round
+// The lighter Specialist universes, built from what the boss battles already know: For Honor, Forts,
+// Avatar: The Last Airbender and Destiny. Each has a Picture round (the card art, zoomed in), a Clue round
 // (the boss's Signature clues: a hero's weapon, a commander's ability, a character's story) and,
 // where every character's traits are known for sure, a Classic round.
 import { BOSSES } from '../data/bosses';
@@ -16,7 +16,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -26,6 +26,8 @@ export interface SimpleUniverse {
   silhouettes?: string[];
   /** Voice lines: who speaks, the original recording, and the French dub's when there is one. */
   voices?: { answer: string; en?: string; fr?: string }[];
+  /** Things to name from their icon, apart from the characters (Destiny's Exotic weapons): an Exotic round. */
+  items?: SimpleCharacter[];
 }
 
 const slug = (s: string) =>
@@ -160,7 +162,120 @@ function avatar(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar() };
+// ── Destiny: the best-known characters of both games, by species, side, Guardian class, gender and the game
+// they first appeared in (in person); and every Exotic weapon of Destiny 2 by its icon (the boss's Signature). ──
+const D: [string, string, string, string, string, string][] = [
+  // name, species, side, Guardian, gender, debut
+  ['Cayde-6', 'Exo', 'Ally', 'Hunter', 'Male', 'Destiny'],
+  ['Zavala', 'Awoken', 'Ally', 'Titan', 'Male', 'Destiny'],
+  ['Ikora Rey', 'Human', 'Ally', 'Warlock', 'Female', 'Destiny'],
+  ['Lord Shaxx', 'Unknown', 'Ally', 'Titan', 'Male', 'Destiny'],
+  ['Banshee-44', 'Exo', 'Ally', 'No', 'Male', 'Destiny'],
+  ['Eris Morn', 'Human', 'Ally', 'Hunter', 'Female', 'Destiny'],
+  ['Xûr', 'Unknown', 'Neutral', 'No', 'Male', 'Destiny'],
+  ['Saint-14', 'Exo', 'Ally', 'Titan', 'Male', 'Destiny 2'],
+  ['Osiris', 'Human', 'Ally', 'Warlock', 'Male', 'Destiny 2'],
+  ['Mara Sov', 'Awoken', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Uldren Sov', 'Awoken', 'Enemy', 'No', 'Male', 'Destiny'],
+  ['Crow', 'Awoken', 'Ally', 'Hunter', 'Male', 'Destiny 2'],
+  ['Savathûn', 'Hive', 'Enemy', 'No', 'Female', 'Destiny 2'],
+  ['Oryx', 'Hive', 'Enemy', 'No', 'Male', 'Destiny'],
+  ['Crota', 'Hive', 'Enemy', 'No', 'Male', 'Destiny'],
+  ['Xivu Arath', 'Hive', 'Enemy', 'No', 'Female', 'Destiny 2'],
+  ['Rhulk', 'Other', 'Enemy', 'No', 'Male', 'Destiny 2'],
+  ['Nezarec', 'Other', 'Enemy', 'No', 'Male', 'Destiny 2'],
+  ['The Witness', 'Other', 'Enemy', 'No', 'Unknown', 'Destiny 2'],
+  ['Calus', 'Cabal', 'Enemy', 'No', 'Male', 'Destiny 2'],
+  ['Dominus Ghaul', 'Cabal', 'Enemy', 'No', 'Male', 'Destiny 2'],
+  ['Caiatl', 'Cabal', 'Ally', 'No', 'Female', 'Destiny 2'],
+  ['Riven', 'Ahamkara', 'Enemy', 'No', 'Female', 'Destiny 2'],
+  ['Rasputin', 'AI', 'Ally', 'No', 'Unknown', 'Destiny'],
+  ['Drifter', 'Human', 'Ally', 'Unknown', 'Male', 'Destiny 2'],
+  ['Amanda Holliday', 'Human', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Ana Bray', 'Human', 'Ally', 'Hunter', 'Female', 'Destiny 2'],
+  ['Elsie Bray', 'Exo', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Suraya Hawthorne', 'Human', 'Ally', 'No', 'Female', 'Destiny 2'],
+  ['Petra Venj', 'Awoken', 'Ally', 'No', 'Female', 'Destiny'],
+  ['The Speaker', 'Human', 'Ally', 'No', 'Male', 'Destiny'],
+  ['Variks', 'Eliksni', 'Ally', 'No', 'Male', 'Destiny'],
+  ['Mithrax', 'Eliksni', 'Ally', 'No', 'Male', 'Destiny 2'],
+  ['Eramis', 'Eliksni', 'Enemy', 'No', 'Female', 'Destiny 2'],
+  ['Taniks', 'Eliksni', 'Enemy', 'No', 'Male', 'Destiny'],
+  ['Spider', 'Eliksni', 'Neutral', 'No', 'Male', 'Destiny 2'],
+  ['Atheon', 'Vex', 'Enemy', 'No', 'Unknown', 'Destiny'],
+  ['Master Rahool', 'Human', 'Ally', 'No', 'Male', 'Destiny'],
+  ['Tess Everis', 'Human', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Eva Levante', 'Human', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Ada-1', 'Exo', 'Ally', 'No', 'Female', 'Destiny'],
+  ['Lord Saladin', 'Human', 'Ally', 'Titan', 'Male', 'Destiny'],
+  ['Devrim Kay', 'Human', 'Ally', 'No', 'Male', 'Destiny 2'],
+  ['Failsafe', 'AI', 'Ally', 'No', 'Female', 'Destiny 2'],
+  ['Asher Mir', 'Human', 'Ally', 'Warlock', 'Male', 'Destiny 2'],
+  ['Ghost', 'Ghost', 'Ally', 'No', 'Male', 'Destiny'],
+  ['Sagira', 'Ghost', 'Ally', 'No', 'Female', 'Destiny 2'],
+];
+const D_ALIASES: Record<string, string[]> = {
+  'Cayde-6': ['Cayde', 'Cayde 6'], Zavala: ['Commander Zavala'], 'Ikora Rey': ['Ikora'], 'Lord Shaxx': ['Shaxx'], 'Banshee-44': ['Banshee', 'Banshee 44'], 'Eris Morn': ['Eris'], Xûr: ['Xur'],
+  'Saint-14': ['Saint', 'Saint 14'], 'Mara Sov': ['Mara', 'Queen Mara'], 'Uldren Sov': ['Uldren'], Savathûn: ['Savathun'], 'The Witness': ['Witness'], Calus: ['Emperor Calus'], 'Dominus Ghaul': ['Ghaul'],
+  Caiatl: ['Empress Caiatl'], Drifter: ['The Drifter'], 'Amanda Holliday': ['Amanda'], 'Ana Bray': ['Anastasia Bray'], 'Elsie Bray': ['Exo Stranger', 'The Stranger'], 'Suraya Hawthorne': ['Hawthorne'],
+  'Petra Venj': ['Petra'], 'The Speaker': ['Speaker'], 'Master Rahool': ['Rahool'], 'Tess Everis': ['Tess'], 'Eva Levante': ['Eva'], 'Ada-1': ['Ada'], 'Lord Saladin': ['Saladin'], 'Devrim Kay': ['Devrim'], 'Asher Mir': ['Asher'],
+};
+// Clues written for the game: who they are, never their name.
+const D_CLUES: [string, string][] = [
+  ['The Hunter Vanguard who never stopped joking — until the Prison of Elders breakout', 'Cayde-6'],
+  ['The Awoken Titan who commands the Vanguard', 'Zavala'],
+  ['The Warlock Vanguard, a master of the Void', 'Ikora Rey'],
+  ['The voice of the Crucible, roaring at every kill', 'Lord Shaxx'],
+  ["The Tower's gunsmith, an Exo whose memory keeps slipping", 'Banshee-44'],
+  ['She came back from the Hellmouth with three green eyes and a warning about the Hive', 'Eris Morn'],
+  ['He turns up on weekends with Exotics to sell, on behalf of the Nine', 'Xûr'],
+  ['A legendary Exo Titan brought back from the Infinite Forest, fond of pigeons', 'Saint-14'],
+  ['The Warlock obsessed with the Vex and the Infinite Forest, once exiled from the City', 'Osiris'],
+  ['Queen of the Awoken, who vanished into the Ascendant Plane and came back', 'Mara Sov'],
+  ['The prince of the Reef who killed Cayde-6', 'Uldren Sov'],
+  ['Raised as a Guardian with no memory of the prince he used to be', 'Crow'],
+  ['The Witch Queen, Hive god of cunning, who stole the Light', 'Savathûn'],
+  ['The Taken King, father of Crota, fought in his Dreadnaught', 'Oryx'],
+  ['Son of Oryx, he waited for Guardians in the Hellmouth with his sword', 'Crota'],
+  ['The Hive god of war, sister of Savathûn', 'Xivu Arath'],
+  ['The Disciple of the Witness, met at the end of Vow of the Disciple', 'Rhulk'],
+  ['The Final God of Pain, freed in Root of Nightmares', 'Nezarec'],
+  ['The Darkness given a will, chasing the Final Shape', 'The Witness'],
+  ['A Cabal emperor in exile, master of the Leviathan', 'Calus'],
+  ['The Dominus of the Red Legion, who caged the Traveler and took the Light', 'Dominus Ghaul'],
+  ['Empress of the Cabal, daughter of Calus', 'Caiatl'],
+  ['The Ahamkara whose wishes wait at the heart of Last Wish', 'Riven'],
+  ['The Warmind who watched over humanity, from Mars to the Moon', 'Rasputin'],
+  ['He runs Gambit from the Annex, and plays both sides', 'Drifter'],
+  ['The shipwright of the Tower hangar', 'Amanda Holliday'],
+  ['Kell of Kells, who gathered the House of Light', 'Mithrax'],
+  ['The Kell of Darkness who took up Stasis on Europa', 'Eramis'],
+  ['The Eliksni who served the Queen of the Reef, the Loyal', 'Variks'],
+  ['The crime lord of the Tangled Shore, always with a deal', 'Spider'],
+  ['The Cryptarch who decodes your engrams', 'Master Rahool'],
+  ['She sells Eververse engrams in the Tower plaza', 'Tess Everis'],
+  ["The leader of the City's scouts, never without her falcon", 'Suraya Hawthorne'],
+  ['The Iron Lord who keeps the forges of Felwinter Peak', 'Lord Saladin'],
+  ['The little light who raised you from death', 'Ghost'],
+  ["Osiris's Ghost, sharp-tongued and brave", 'Sagira'],
+  ["The keeper of the Black Armory's forges", 'Ada-1'],
+  ['The Exo from another timeline, sister of Ana Bray', 'Elsie Bray'],
+];
+
+function destinyUniverse(): SimpleUniverse {
+  const b = boss('destiny');
+  const pics = new Map([b.boss, ...b.radar.members, ...b.finale].map((c) => ['label' in c ? c.label : c.name, c.image ?? '']));
+  const picture = (name: string) => pics.get(name) || cardImage('destiny', name);
+  return {
+    id: 'destiny',
+    columns: ['Species', 'Side', 'Guardian', 'Gender', 'Debut'],
+    characters: D.map(([name, species, side, guardian, gender, debut]) => ({ id: slug(name), name, aliases: D_ALIASES[name] ?? [], image: picture(name), traits: { Species: species, Side: side, Guardian: guardian, Gender: gender, Debut: debut } })),
+    clues: D_CLUES.map(([text, name]) => ({ text, answer: slug(name) })),
+    items: (b.signature?.clues ?? []).flatMap((c) => (c.image ? [{ id: slug(c.answer.name), name: c.answer.name, aliases: c.answer.aliases, image: c.image, traits: {} }] : [])),
+  };
+}
+
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 
@@ -177,5 +292,6 @@ export function simplePools(u: SimpleUniverse['id']) {
     // A clue round's id is its clue's index (two clues can name the same character).
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
     ...(x.columns.length ? { classic: x.characters.map((c) => c.id) } : {}),
+    ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
   };
 }
