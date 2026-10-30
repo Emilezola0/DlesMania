@@ -10,8 +10,9 @@ import { timelinePool } from './timeline';
 import { simplePools } from './simple';
 import { BLUEPRINT_POOLS } from './blueprint';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
+import { JLPT_POOLS } from './jlpt';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -87,6 +88,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'clue', 'windows', 'exotic'] as SpType[],
   },
   {
+    id: 'jlpt',
+    label: 'JLPT',
+    ready: true,
+    blurb: "Japanese from Coto Academy's JLPT list, N5 to N1: a kanji's meaning, a word's reading, a meaning back into Japanese.",
+    types: ['kanji', 'reading', 'word'] as SpType[],
+  },
+  {
     id: 'unreal',
     label: 'Unreal Engine Blueprints',
     ready: true,
@@ -118,6 +126,9 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   picture: { name: 'Picture', icon: '🖼️', tagline: 'Who or what is in the picture?', maxAttempts: 6 },
   windows: { name: 'Windows', icon: '🪟', tagline: 'Windows open with each miss', maxAttempts: 6 },
   spotlight: { name: 'Spotlight', icon: '🔦', tagline: 'The light widens with each miss', maxAttempts: 6 },
+  kanji: { name: 'Kanji', icon: '字', tagline: 'What does this kanji mean?', maxAttempts: 6 },
+  reading: { name: 'Reading', icon: '読', tagline: 'How is this word read?', maxAttempts: 6 },
+  word: { name: 'Word', icon: '語', tagline: 'Which Japanese word means this?', maxAttempts: 6 },
   execution: { name: 'Execution', icon: '🗡️', tagline: 'Whose execution is this?', maxAttempts: 6 },
   exotic: { name: 'Exotic', icon: '✦', tagline: 'Which Exotic weapon is this?', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
@@ -149,6 +160,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   forts: simplePools('forts'),
   avatar: simplePools('avatar'),
   destiny: simplePools('destiny'),
+  jlpt: JLPT_POOLS,
   unreal: BLUEPRINT_POOLS,
 };
 

@@ -26,6 +26,8 @@ import { GameHostFx } from '../games/GameHost';
 import { classicRoundFor, clueRoundFor, executionRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
+import { JLPT_KANJI, JLPT_WORDS } from '../specialist/jlpt';
+import { JlptKanjiRound, JlptReadingRound, JlptWordRound } from '../specialist/games/JlptRounds';
 import { BlueprintClassicRound, BlueprintClueRound, BlueprintPinsRound } from '../specialist/games/BlueprintRounds';
 
 type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundRecord) => void };
@@ -42,6 +44,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   destiny: { classic: classicRoundFor('destiny', 'character'), picture: pictureRoundFor('destiny'), clue: clueRoundFor('destiny', 'Who is this?'), windows: windowsRoundFor('destiny'), exotic: itemRoundFor('destiny', 'Which Exotic weapon is this?') },
+  jlpt: { kanji: JlptKanjiRound, reading: JlptReadingRound, word: JlptWordRound },
   unreal: { classic: BlueprintClassicRound, pins: BlueprintPinsRound, clue: BlueprintClueRound },
 };
 
@@ -57,6 +60,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
   avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues · ${SIMPLE.avatar.voices?.length ?? 0} voice lines — Avatar Wiki, myinstants`,
   destiny: `${SIMPLE.destiny.characters.length} characters · ${SIMPLE.destiny.clues.length} clues · ${SIMPLE.destiny.items?.length ?? 0} Exotic weapons — Destinypedia, Bungie (via godroll.tv)`,
+  jlpt: `${JLPT_KANJI.length.toLocaleString('en')} kanji · ${JLPT_WORDS.length.toLocaleString('en')} words — Coto Academy's JLPT list`,
   unreal: `${BLUEPRINT_NODES.length} of the Blueprint nodes everyone uses — drawn in the editor's colours`,
 };
 

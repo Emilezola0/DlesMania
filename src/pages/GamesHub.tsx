@@ -52,7 +52,7 @@ export default function GamesHub() {
       to: '/specialist',
       icon: '🎯',
       title: 'Specialist',
-      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch and more, each with its own rounds.',
+      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch, JLPT and more, each with its own rounds.',
       stat: universesDone ? `Today: ${universesDone}/${UNIVERSES.length} universes done` : undefined,
     },
     {
