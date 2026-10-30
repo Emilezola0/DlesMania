@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { Customise, useCustomPicks } from '../components/Customise';
@@ -16,6 +16,15 @@ const REVEAL_MS = 900;
 const MEMORY = 40;
 /** Seconds per question: 12 at first, a fifth of a second less each right answer, down to 4. */
 const secondsFor = (streak: number) => Math.max(4, 12 - streak * 0.2);
+/** Review: answers picked from four, or typed out (remembered on this device). */
+const TYPING_KEY = 'omnidle-jlpt-review-typing';
+const readTyping = () => {
+  try {
+    return localStorage.getItem(TYPING_KEY) === '1';
+  } catch {
+    return false;
+  }
+};
 
 /** The star that puts a word on the review list, or takes it off. */
 function KeepButton({ id }: { id: string }) {
@@ -98,10 +107,24 @@ function Game({ deck }: { deck: JlptDeck }) {
   const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const arena = useRef<HTMLDivElement>(null);
+  // Review only: type the reading or the meaning instead of picking it (no list, no suggestions).
+  const [typing, setTyping] = useState(() => review && readTyping());
+  const [typed, setTyped] = useState('');
+  const field = useRef<HTMLInputElement>(null);
+  const toggleTyping = (on: boolean) => {
+    sfx.click();
+    setTyping(on);
+    try {
+      localStorage.setItem(TYPING_KEY, on ? '1' : '0');
+    } catch {
+      // Not remembered, that's all.
+    }
+  };
 
   const next = () => {
     setQ(draw());
     setPicked(null);
+    setTyped('');
     setState('guess');
   };
   const fail = (choice: string | null) => {
@@ -123,6 +146,15 @@ function Game({ deck }: { deck: JlptDeck }) {
   const answer = (choice: string) => {
     if (!q || state !== 'guess') return;
     if (choice !== q.answer) return fail(choice);
+    win(choice);
+  };
+  const submitTyped = () => {
+    if (!q || state !== 'guess' || !typed.trim()) return;
+    if (!typedRight(q.entry, q.ask, typed)) return fail(typed.trim());
+    win(q.answer);
+  };
+  const win = (choice: string) => {
+    if (!q) return;
     sfx.correct();
     setPicked(choice);
     setState('right');
@@ -144,12 +176,18 @@ function Game({ deck }: { deck: JlptDeck }) {
     const onKey = (e: KeyboardEvent) => {
       if (!q) return;
       if (review && state === 'wrong' && e.key === 'Enter') return next();
+      if (typing) return;
       const i = Number(e.key) - 1;
       if (i >= 0 && i < q.options.length) answer(q.options[i]);
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+
+  // A typed answer: the field keeps the focus from one question to the next.
+  useEffect(() => {
+    if (typing && state === 'guess') field.current?.focus();
+  }, [typing, state, q]);
 
   if (!q) {
     return (
@@ -208,7 +246,54 @@ function Game({ deck }: { deck: JlptDeck }) {
         {state !== 'guess' && <p className="animate-pop text-sm text-ink-faint">{shortMeaning(q.entry.meaning, 6)}</p>}
         <KeepButton id={q.entry.id} />
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
+      {review && (
+        <div className="flex items-center justify-center gap-2 text-sm">
+          <span className="text-ink-faint">Answer by</span>
+          {[false, true].map((on) => (
+            <button key={String(on)} type="button" aria-pressed={typing === on} onClick={() => toggleTyping(on)} className={`rounded-full border-2 px-3 py-1 font-semibold ${typing === on ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`}>
+              {on ? '✍️ Typing it' : '☑ Picking from four'}
+            </button>
+          ))}
+        </div>
+      )}
+      {typing ? (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitTyped();
+          }}
+          className="space-y-2"
+        >
+          <div className="flex gap-2">
+            <input
+              ref={field}
+              value={typed}
+              onChange={(e) => setTyped(e.target.value)}
+              disabled={state !== 'guess'}
+              lang={q.ask === 'reading' ? 'ja' : 'en'}
+              placeholder={q.ask === 'reading' ? 'The reading, in kana or romaji…' : 'The meaning, in English…'}
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              name="jlpt-answer"
+              className={`min-w-0 flex-1 rounded-md border-2 bg-card px-4 py-3 text-lg outline-none focus:border-ink ${state === 'right' ? 'border-hit' : state === 'wrong' ? 'border-miss' : 'border-rule-strong'}`}
+            />
+            <button type="submit" disabled={state !== 'guess' || !typed.trim()} className="btn-ink rounded-md px-5 font-display font-bold tracking-wider disabled:opacity-50">
+              ↵
+            </button>
+          </div>
+          {state === 'wrong' && (
+            <p className="animate-pop text-center text-sm">
+              <span className="text-ink-faint">The answer: </span>
+              <span lang={q.ask === 'reading' ? 'ja' : undefined} className="font-semibold">
+                {q.ask === 'reading' ? q.entry.reading : shortMeaning(q.entry.meaning, 6)}
+              </span>
+            </p>
+          )}
+        </form>
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2">
         {q.options.map((o, i) => (
           <button
             key={o}
@@ -223,6 +308,7 @@ function Game({ deck }: { deck: JlptDeck }) {
           </button>
         ))}
       </div>
+      )}
       {state === 'wrong' &&
         (review ? (
           <div className="animate-pop flex items-center justify-between gap-3 rounded-md border border-miss/50 bg-miss/10 p-4">
