@@ -15,6 +15,8 @@ import { WOW } from '../specialist/wow';
 import FROZEN_RARITIES from '../data/card-rarities.json';
 import MORE_ROSTERS from '../data/card-rosters.json';
 import UNREAL_ART from '../data/unreal-art.json';
+import JLPT_CARDS from '../data/jlpt-cards.json';
+import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
 
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
@@ -115,6 +117,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
+  jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -159,6 +162,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
   forhonor: { name: 'Black Prior', title: 'Sworn to the Cross', line: 'A kite shield, a heavy blade and a vow he never broke: the Blackstone’s fallen knight still stands between you and everyone he guards.', voice: 'For honor!' },
   forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
+  jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
 };
 
@@ -409,7 +413,10 @@ const ROSTERS: Record<string, { name: string; image?: string; rarity: Rarity }[]
  * Inazuma Eleven's casts, and every Overwatch hero. Their rarity is set in the file: the best-known
  * faces epic, the next ones rare.
  */
-const MORE = MORE_ROSTERS as Record<string, { name: string; image: string; rarity: Rarity }[]>;
+const MORE = { ...MORE_ROSTERS, jlpt: JLPT_CARDS.roster.map((c) => ({ name: c.name, image: kanjiPicture(`kanji:${c.kanji}`), rarity: c.rarity })) } as Record<string, { name: string; image: string; rarity: Rarity }[]>;
+
+/** A JLPT card says its kanji: its meanings, its readings and its level (every N5 and N4 kanji is a card). */
+const JLPT_LINE = new Map([...JLPT_CARDS.described, ...JLPT_CARDS.roster].map((c) => [c.name, `${c.kanji} — ${c.meaning}. Read ${c.reading.replace(/\./g, '')}. JLPT ${c.level}.`]));
 
 /**
  * The mythics and omnis at their strongest, in their own voices: the most powerful form or the
@@ -563,9 +570,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt']);
 
 const slug = (s: string) =>
   s
@@ -673,6 +680,7 @@ const FACTS: Map<string, Map<string, string[]>> = (() => {
  * guardian's taunt, the mythic's own line).
  */
 function describe(set: string, name: string, kind: keyof typeof LINES, franchise: string): string {
+  if (set === 'jlpt' && JLPT_LINE.has(name)) return JLPT_LINE.get(name)!;
   const facts = (FACTS.get(set)?.get(name) ?? []).map(oneOf);
   if (kind === 'common' || kind === 'deep') return facts.length ? `${facts[0]}.` : `Seen in ${franchise}.`;
   if (kind === 'rare') return facts.length ? `${facts.join(' · ')}.` : `A familiar face of ${franchise}.`;

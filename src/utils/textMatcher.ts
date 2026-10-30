@@ -3,6 +3,7 @@
  *
  *  - case, accents and ligatures are ignored ("Château" = "chateau" = "CHATEAU", "Œil" = "oeil")
  *  - punctuation and spacing are ignored ("Bel'Veth" = "belveth" = "bel veth", "Spider-Man" = "spiderman")
+ *  - kana and kanji are kept as they are ("ねこ", "猫"), so Japanese answers can be typed too
  *  - small typos are allowed: 1 for 3–5 letters, 2 for 6+ (Levenshtein distance)
  *
  * English and French names are just more spellings: callers pass every name a thing goes by.
@@ -17,8 +18,10 @@ export function normalizeText(s: string): string {
     .replace(/[œæßøłđ]/g, (c) => LIGATURES[c])
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
+    // Kana and kanji stay (JLPT answers): their voiced marks, split off by NFD, go back on.
+    .normalize('NFC')
     .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/[^a-z0-9\u3041-\u30ff\u3400-\u9fff]+/g, ' ')
     .trim();
 }
 

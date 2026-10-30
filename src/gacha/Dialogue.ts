@@ -103,6 +103,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Their Ghost is getting tired, {other}.', 'He’s revived them four times.'], ['Another blue engram?', 'Dismantle it. Don’t tell them.']],
     great: [['An Exotic! A real one!', 'Don’t ask Cayde to hold it, {other}.', 'Whether we wanted it or not.']],
   },
+  jlpt: {
+    good: [['Did you see that reading, {other}?', 'On-yomi and kun-yomi. Not bad.'], ['They wrote it without looking.', 'Stroke order and all, {other}.']],
+    bad: [['That was the simplified one, {other}.', 'Every student falls for it once.'], ['Hashi or hashi?', 'Bridge, chopsticks or edge — they guessed wrong, {other}.']],
+    great: [['N1 level!', 'Is that a native speaker, {other}?', 'Sugoi…']],
+  },
   balatro: {
     good: [['That scored, {other}.', 'It scored a lot.'], ['Did they keep the right joker?', 'For once.']],
     bad: [['Why did they discard that, {other}?', 'I stopped asking on Ante 2.'], ['High Card.', 'High Card, {other}.']],

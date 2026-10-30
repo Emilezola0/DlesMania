@@ -17135,5 +17135,1169 @@
         }
       ]
     }
+  },
+  {
+    "id": "jlpt",
+    "domain": "anime",
+    "category": "other",
+    "franchise": "JLPT",
+    "aliases": [
+      "jlpt",
+      "japanese",
+      "japonais",
+      "kanji",
+      "nihongo",
+      "日本語"
+    ],
+    "images": "none",
+    "boss": {
+      "name": "Oni-Sensei",
+      "title": "Keeper of the Kanji",
+      "color": "#b91c1c",
+      "image": "kanji:鬼"
+    },
+    "lines": {
+      "intro": "Irasshai, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.",
+      "phase2": "Half of these are not Japanese at all. Keep the kanji, throw out the simplified impostors!",
+      "phase3": "Final exam! Read each kanji before the bell rings.",
+      "hit": [
+        "Yoku dekimashita!",
+        "Correct. Hmph.",
+        "Your stroke order is acceptable."
+      ],
+      "hurt": [
+        "Chigaimasu!",
+        "Wrong reading!",
+        "Back to the textbook!",
+        "That was Chinese, student."
+      ],
+      "win": "Gōkaku — you pass. Take my kanji with you; they are yours now.",
+      "lose": "Fail. Study the N5 list again and come back tomorrow.",
+      "secret": "One more lesson, no textbook. I say a word; you answer with another of the same kind. No repeats!",
+      "secretOk": [
+        "Sō desu!",
+        "Good.",
+        "Again!"
+      ],
+      "secretLost": "Silence? Then the lesson is over."
+    },
+    "blitz": [
+      {
+        "prompt": "Name the 5 vowels of hiragana",
+        "count": 5,
+        "answers": [
+          "a|あ",
+          "i|い",
+          "u|う",
+          "e|え",
+          "o|お"
+        ]
+      },
+      {
+        "prompt": "Name the 4 seasons in Japanese",
+        "count": 4,
+        "answers": [
+          "haru|はる|春",
+          "natsu|なつ|夏",
+          "aki|あき|秋",
+          "fuyu|ふゆ|冬"
+        ]
+      },
+      {
+        "prompt": "Name 5 numbers in Japanese",
+        "count": 5,
+        "answers": [
+          "ichi|いち|一",
+          "ni|に|二",
+          "san|さん|三",
+          "yon|よん|shi|し|四",
+          "go|ご|五",
+          "roku|ろく|六",
+          "nana|なな|shichi|しち|七",
+          "hachi|はち|八",
+          "kyuu|きゅう|kyu|ku|く|九",
+          "juu|じゅう|ju|十",
+          "hyaku|ひゃく|百",
+          "sen|せん|千",
+          "man|まん|万"
+        ]
+      },
+      {
+        "prompt": "Name 5 days of the week in Japanese",
+        "count": 5,
+        "answers": [
+          "getsuyoubi|げつようび|月曜日|getsuyobi",
+          "kayoubi|かようび|火曜日|kayobi",
+          "suiyoubi|すいようび|水曜日|suiyobi",
+          "mokuyoubi|もくようび|木曜日|mokuyobi",
+          "kinyoubi|きんようび|金曜日|kinyobi",
+          "doyoubi|どようび|土曜日|doyobi",
+          "nichiyoubi|にちようび|日曜日|nichiyobi"
+        ]
+      },
+      {
+        "prompt": "Name 5 colours in Japanese",
+        "count": 5,
+        "answers": [
+          "aka|あか|赤",
+          "ao|あお|青",
+          "kuro|くろ|黒",
+          "shiro|しろ|白",
+          "kiiro|きいろ|黄色",
+          "midori|みどり|緑",
+          "chairo|ちゃいろ|茶色",
+          "murasaki|むらさき|紫",
+          "pinku|ピンク",
+          "orenji|オレンジ"
+        ]
+      },
+      {
+        "prompt": "Name the 3 Japanese scripts",
+        "count": 3,
+        "answers": [
+          "hiragana|ひらがな",
+          "katakana|カタカナ",
+          "kanji|漢字"
+        ]
+      },
+      {
+        "prompt": "Name the 5 JLPT levels",
+        "count": 5,
+        "answers": [
+          "N1",
+          "N2",
+          "N3",
+          "N4",
+          "N5"
+        ]
+      },
+      {
+        "prompt": "Name 5 family members in Japanese",
+        "count": 5,
+        "answers": [
+          "haha|はは|母",
+          "chichi|ちち|父",
+          "ani|あに|兄",
+          "ane|あね|姉",
+          "otouto|おとうと|弟",
+          "imouto|いもうと|妹",
+          "sofu|そふ|祖父",
+          "sobo|そぼ|祖母",
+          "kazoku|かぞく|家族",
+          "okaasan|おかあさん|お母さん",
+          "otousan|おとうさん|お父さん"
+        ]
+      },
+      {
+        "prompt": "Name 5 body parts in Japanese",
+        "count": 5,
+        "answers": [
+          "me|め|目",
+          "mimi|みみ|耳",
+          "kuchi|くち|口",
+          "te|て|手",
+          "ashi|あし|足",
+          "atama|あたま|頭",
+          "kao|かお|顔",
+          "ha|は|歯",
+          "yubi|ゆび|指",
+          "kokoro|こころ|心"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Spirit",
+          "image": "kanji:気",
+          "aliases": [
+            "Mind",
+            "Air",
+            "Atmosphere",
+            "ki",
+            "ke",
+            "iki",
+            "き",
+            "け",
+            "いき",
+            "気"
+          ]
+        },
+        {
+          "label": "Language",
+          "image": "kanji:語",
+          "aliases": [
+            "Word",
+            "Speech",
+            "go",
+            "kataru",
+            "katarau",
+            "ご",
+            "かたる",
+            "かたらう",
+            "語"
+          ]
+        },
+        {
+          "label": "Write",
+          "image": "kanji:書",
+          "aliases": [
+            "sho",
+            "kaku",
+            "gaki",
+            "しょ",
+            "かく",
+            "がき",
+            "書"
+          ]
+        },
+        {
+          "label": "East",
+          "image": "kanji:東",
+          "aliases": [
+            "tou",
+            "higashi",
+            "とう",
+            "ひがし",
+            "東"
+          ]
+        },
+        {
+          "label": "Gate",
+          "image": "kanji:門",
+          "aliases": [
+            "mon",
+            "kado",
+            "to",
+            "もん",
+            "かど",
+            "と",
+            "門"
+          ]
+        },
+        {
+          "label": "Car",
+          "image": "kanji:車",
+          "aliases": [
+            "sha",
+            "kuruma",
+            "しゃ",
+            "くるま",
+            "車"
+          ]
+        },
+        {
+          "label": "Horse",
+          "image": "kanji:馬",
+          "aliases": [
+            "ba",
+            "uma",
+            "ma",
+            "ば",
+            "うま",
+            "ま",
+            "馬"
+          ]
+        },
+        {
+          "label": "Bird",
+          "image": "kanji:鳥",
+          "aliases": [
+            "Chicken",
+            "chou",
+            "tori",
+            "ちょう",
+            "とり",
+            "鳥"
+          ]
+        },
+        {
+          "label": "See",
+          "image": "kanji:見",
+          "aliases": [
+            "Hopes",
+            "Chances",
+            "Idea",
+            "ken",
+            "miru",
+            "mieru",
+            "miseru",
+            "けん",
+            "みる",
+            "みえる",
+            "みせる",
+            "見"
+          ]
+        },
+        {
+          "label": "Long",
+          "image": "kanji:長",
+          "aliases": [
+            "Leader",
+            "Superior",
+            "Senior",
+            "chou",
+            "nagai",
+            "osa",
+            "ちょう",
+            "ながい",
+            "おさ",
+            "長"
+          ]
+        },
+        {
+          "label": "Talk",
+          "image": "kanji:話",
+          "aliases": [
+            "Tale",
+            "wa",
+            "hanasu",
+            "hanashi",
+            "わ",
+            "はなす",
+            "はなし",
+            "話"
+          ]
+        },
+        {
+          "label": "Read",
+          "image": "kanji:読",
+          "aliases": [
+            "doku",
+            "toku",
+            "tou",
+            "yomu",
+            "yomi",
+            "どく",
+            "とく",
+            "とう",
+            "よむ",
+            "よみ",
+            "読"
+          ]
+        },
+        {
+          "label": "Time",
+          "image": "kanji:時",
+          "aliases": [
+            "Hour",
+            "ji",
+            "toki",
+            "doki",
+            "じ",
+            "とき",
+            "どき",
+            "時"
+          ]
+        },
+        {
+          "label": "Electricity",
+          "image": "kanji:電",
+          "aliases": [
+            "den",
+            "でん",
+            "電"
+          ]
+        },
+        {
+          "label": "Interval",
+          "image": "kanji:間",
+          "aliases": [
+            "Space",
+            "kan",
+            "ken",
+            "aida",
+            "ma",
+            "ai",
+            "かん",
+            "けん",
+            "あいだ",
+            "ま",
+            "あい",
+            "間"
+          ]
+        },
+        {
+          "label": "Hear",
+          "image": "kanji:聞",
+          "aliases": [
+            "Ask",
+            "Listen",
+            "bun",
+            "mon",
+            "kiku",
+            "kikoeru",
+            "ぶん",
+            "もん",
+            "きく",
+            "きこえる",
+            "聞"
+          ]
+        },
+        {
+          "label": "Buy",
+          "image": "kanji:買",
+          "aliases": [
+            "bai",
+            "kau",
+            "ばい",
+            "かう",
+            "買"
+          ]
+        },
+        {
+          "label": "Wind",
+          "image": "kanji:風",
+          "aliases": [
+            "Air",
+            "Style",
+            "Manner",
+            "fuu",
+            "fu",
+            "kaze",
+            "kaza",
+            "ふう",
+            "ふ",
+            "かぜ",
+            "かざ",
+            "風"
+          ]
+        },
+        {
+          "label": "Fish",
+          "image": "kanji:魚",
+          "aliases": [
+            "gyo",
+            "uo",
+            "sakana",
+            "zakana",
+            "ぎょ",
+            "うお",
+            "さかな",
+            "ざかな",
+            "魚"
+          ]
+        },
+        {
+          "label": "Open",
+          "image": "kanji:開",
+          "aliases": [
+            "Unfold",
+            "Unseal",
+            "kai",
+            "hiraku",
+            "hiraki",
+            "biraki",
+            "hirakeru",
+            "aku",
+            "akeru",
+            "かい",
+            "ひらく",
+            "ひらき",
+            "びらき",
+            "ひらける",
+            "あく",
+            "あける",
+            "開"
+          ]
+        },
+        {
+          "label": "Drink",
+          "image": "kanji:飲",
+          "aliases": [
+            "Smoke",
+            "Take",
+            "in",
+            "on",
+            "nomu",
+            "nomi",
+            "いん",
+            "おん",
+            "のむ",
+            "のみ",
+            "飲"
+          ]
+        },
+        {
+          "label": "Meal",
+          "image": "kanji:飯",
+          "aliases": [
+            "Boiled rice",
+            "han",
+            "meshi",
+            "はん",
+            "めし",
+            "飯"
+          ]
+        },
+        {
+          "label": "Station",
+          "image": "kanji:駅",
+          "aliases": [
+            "eki",
+            "えき",
+            "駅"
+          ]
+        },
+        {
+          "label": "Silver",
+          "image": "kanji:銀",
+          "aliases": [
+            "gin",
+            "shirogane",
+            "ぎん",
+            "しろがね",
+            "銀"
+          ]
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Spirit (simplified Chinese)",
+          "image": "kanji:气"
+        },
+        {
+          "label": "Language (simplified Chinese)",
+          "image": "kanji:语"
+        },
+        {
+          "label": "Write (simplified Chinese)",
+          "image": "kanji:书"
+        },
+        {
+          "label": "East (simplified Chinese)",
+          "image": "kanji:东"
+        },
+        {
+          "label": "Gate (simplified Chinese)",
+          "image": "kanji:门"
+        },
+        {
+          "label": "Car (simplified Chinese)",
+          "image": "kanji:车"
+        },
+        {
+          "label": "Horse (simplified Chinese)",
+          "image": "kanji:马"
+        },
+        {
+          "label": "Bird (simplified Chinese)",
+          "image": "kanji:鸟"
+        },
+        {
+          "label": "See (simplified Chinese)",
+          "image": "kanji:见"
+        },
+        {
+          "label": "Long (simplified Chinese)",
+          "image": "kanji:长"
+        },
+        {
+          "label": "Talk (simplified Chinese)",
+          "image": "kanji:话"
+        },
+        {
+          "label": "Read (simplified Chinese)",
+          "image": "kanji:读"
+        },
+        {
+          "label": "Time (simplified Chinese)",
+          "image": "kanji:时"
+        },
+        {
+          "label": "Electricity (simplified Chinese)",
+          "image": "kanji:电"
+        },
+        {
+          "label": "Interval (simplified Chinese)",
+          "image": "kanji:间"
+        },
+        {
+          "label": "Hear (simplified Chinese)",
+          "image": "kanji:闻"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Mountain",
+        "image": "kanji:山",
+        "aliases": [
+          "san",
+          "sen",
+          "yama",
+          "さん",
+          "せん",
+          "やま",
+          "山"
+        ]
+      },
+      {
+        "label": "Stream",
+        "image": "kanji:川",
+        "aliases": [
+          "River",
+          "sen",
+          "kawa",
+          "せん",
+          "かわ",
+          "川"
+        ]
+      },
+      {
+        "label": "Fire",
+        "image": "kanji:火",
+        "aliases": [
+          "ka",
+          "hi",
+          "bi",
+          "ho",
+          "か",
+          "ひ",
+          "び",
+          "ほ",
+          "火"
+        ]
+      },
+      {
+        "label": "Water",
+        "image": "kanji:水",
+        "aliases": [
+          "sui",
+          "mizu",
+          "すい",
+          "みず",
+          "水"
+        ]
+      },
+      {
+        "label": "Tree",
+        "image": "kanji:木",
+        "aliases": [
+          "Wood",
+          "boku",
+          "moku",
+          "ki",
+          "ko",
+          "ぼく",
+          "もく",
+          "き",
+          "こ",
+          "木"
+        ]
+      },
+      {
+        "label": "Gold",
+        "image": "kanji:金",
+        "aliases": [
+          "kin",
+          "kon",
+          "gon",
+          "kane",
+          "kana",
+          "gane",
+          "きん",
+          "こん",
+          "ごん",
+          "かね",
+          "かな",
+          "がね",
+          "金"
+        ]
+      },
+      {
+        "label": "Soil",
+        "image": "kanji:土",
+        "aliases": [
+          "Earth",
+          "Ground",
+          "Turkey",
+          "do",
+          "to",
+          "tsuchi",
+          "ど",
+          "と",
+          "つち",
+          "土"
+        ]
+      },
+      {
+        "label": "Rain",
+        "image": "kanji:雨",
+        "aliases": [
+          "u",
+          "ame",
+          "ama",
+          "same",
+          "う",
+          "あめ",
+          "あま",
+          "さめ",
+          "雨"
+        ]
+      },
+      {
+        "label": "Flower",
+        "image": "kanji:花",
+        "aliases": [
+          "ka",
+          "ke",
+          "hana",
+          "か",
+          "け",
+          "はな",
+          "花"
+        ]
+      },
+      {
+        "label": "Dog",
+        "image": "kanji:犬",
+        "aliases": [
+          "ken",
+          "inu",
+          "けん",
+          "いぬ",
+          "犬"
+        ]
+      },
+      {
+        "label": "Cow",
+        "image": "kanji:牛",
+        "aliases": [
+          "gyuu",
+          "ushi",
+          "ぎゅう",
+          "うし",
+          "牛"
+        ]
+      },
+      {
+        "label": "Meat",
+        "image": "kanji:肉",
+        "aliases": [
+          "niku",
+          "shishi",
+          "にく",
+          "しし",
+          "肉"
+        ]
+      },
+      {
+        "label": "Tea",
+        "image": "kanji:茶",
+        "aliases": [
+          "cha",
+          "sa",
+          "ちゃ",
+          "さ",
+          "茶"
+        ]
+      },
+      {
+        "label": "Sea",
+        "image": "kanji:海",
+        "aliases": [
+          "Ocean",
+          "kai",
+          "umi",
+          "かい",
+          "うみ",
+          "海"
+        ]
+      },
+      {
+        "label": "Night",
+        "image": "kanji:夜",
+        "aliases": [
+          "Evening",
+          "ya",
+          "yo",
+          "yoru",
+          "や",
+          "よ",
+          "よる",
+          "夜"
+        ]
+      },
+      {
+        "label": "Morning",
+        "image": "kanji:朝",
+        "aliases": [
+          "Dynasty",
+          "Regime",
+          "Epoch",
+          "chou",
+          "asa",
+          "ちょう",
+          "あさ",
+          "朝"
+        ]
+      },
+      {
+        "label": "Springtime",
+        "image": "kanji:春",
+        "aliases": [
+          "Spring (season)",
+          "shun",
+          "haru",
+          "しゅん",
+          "はる",
+          "春"
+        ]
+      },
+      {
+        "label": "Summer",
+        "image": "kanji:夏",
+        "aliases": [
+          "ka",
+          "ga",
+          "ge",
+          "natsu",
+          "か",
+          "が",
+          "げ",
+          "なつ",
+          "夏"
+        ]
+      },
+      {
+        "label": "Autumn",
+        "image": "kanji:秋",
+        "aliases": [
+          "shuu",
+          "aki",
+          "toki",
+          "しゅう",
+          "あき",
+          "とき",
+          "秋"
+        ]
+      },
+      {
+        "label": "Winter",
+        "image": "kanji:冬",
+        "aliases": [
+          "tou",
+          "fuyu",
+          "とう",
+          "ふゆ",
+          "冬"
+        ]
+      },
+      {
+        "label": "Red",
+        "image": "kanji:赤",
+        "aliases": [
+          "seki",
+          "shaku",
+          "aka",
+          "akai",
+          "akaramu",
+          "akarameru",
+          "せき",
+          "しゃく",
+          "あか",
+          "あかい",
+          "あからむ",
+          "あからめる",
+          "赤"
+        ]
+      },
+      {
+        "label": "Black",
+        "image": "kanji:黒",
+        "aliases": [
+          "koku",
+          "kuro",
+          "kurozumu",
+          "kuroi",
+          "こく",
+          "くろ",
+          "くろずむ",
+          "くろい",
+          "黒"
+        ]
+      },
+      {
+        "label": "White",
+        "image": "kanji:白",
+        "aliases": [
+          "haku",
+          "byaku",
+          "shiro",
+          "shira",
+          "shiroi",
+          "はく",
+          "びゃく",
+          "しろ",
+          "しら",
+          "しろい",
+          "白"
+        ]
+      },
+      {
+        "label": "Hand",
+        "image": "kanji:手",
+        "aliases": [
+          "shu",
+          "zu",
+          "te",
+          "ta",
+          "しゅ",
+          "ず",
+          "て",
+          "た",
+          "手"
+        ]
+      },
+      {
+        "label": "Mouth",
+        "image": "kanji:口",
+        "aliases": [
+          "kou",
+          "ku",
+          "kuchi",
+          "こう",
+          "く",
+          "くち",
+          "口"
+        ]
+      },
+      {
+        "label": "Eye",
+        "image": "kanji:目",
+        "aliases": [
+          "Class",
+          "Look",
+          "Insight",
+          "moku",
+          "boku",
+          "me",
+          "ma",
+          "もく",
+          "ぼく",
+          "め",
+          "ま",
+          "目"
+        ]
+      },
+      {
+        "label": "Leg",
+        "image": "kanji:足",
+        "aliases": [
+          "Foot",
+          "Be sufficient",
+          "soku",
+          "ashi",
+          "tariru",
+          "taru",
+          "tasu",
+          "そく",
+          "あし",
+          "たりる",
+          "たる",
+          "たす",
+          "足"
+        ]
+      },
+      {
+        "label": "Store",
+        "image": "kanji:店",
+        "aliases": [
+          "Shop",
+          "ten",
+          "mise",
+          "tana",
+          "てん",
+          "みせ",
+          "たな",
+          "店"
+        ]
+      },
+      {
+        "label": "Paper",
+        "image": "kanji:紙",
+        "aliases": [
+          "shi",
+          "kami",
+          "し",
+          "かみ",
+          "紙"
+        ]
+      },
+      {
+        "label": "Song",
+        "image": "kanji:歌",
+        "aliases": [
+          "Sing",
+          "ka",
+          "uta",
+          "utau",
+          "か",
+          "うた",
+          "うたう",
+          "歌"
+        ]
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Animal",
+          "entities": [
+            "inu|いぬ|犬",
+            "neko|ねこ|猫",
+            "tori|とり|鳥",
+            "uma|うま|馬",
+            "sakana|さかな|魚",
+            "ushi|うし|牛",
+            "buta|ぶた|豚",
+            "saru|さる|猿",
+            "kuma|くま|熊",
+            "usagi|うさぎ|兎"
+          ]
+        },
+        {
+          "label": "Food",
+          "entities": [
+            "gohan|ごはん|ご飯",
+            "pan|パン",
+            "sushi|すし|寿司",
+            "ramen|ラーメン",
+            "niku|にく|肉",
+            "yasai|やさい|野菜",
+            "tamago|たまご|卵",
+            "kudamono|くだもの|果物",
+            "mizu|みず|水",
+            "ocha|おちゃ|お茶"
+          ]
+        },
+        {
+          "label": "Place",
+          "entities": [
+            "gakkou|がっこう|学校|gakko",
+            "eki|えき|駅",
+            "byouin|びょういん|病院|byoin",
+            "ginkou|ぎんこう|銀行|ginko",
+            "kouen|こうえん|公園|koen",
+            "mise|みせ|店",
+            "toshokan|としょかん|図書館",
+            "uchi|うち|家",
+            "yama|やま|山",
+            "umi|うみ|海"
+          ]
+        },
+        {
+          "label": "Verb",
+          "entities": [
+            "taberu|たべる|食べる",
+            "nomu|のむ|飲む",
+            "miru|みる|見る",
+            "iku|いく|行く",
+            "kuru|くる|来る",
+            "suru|する",
+            "yomu|よむ|読む",
+            "kaku|かく|書く",
+            "hanasu|はなす|話す",
+            "kiku|きく|聞く",
+            "kau|かう|買う",
+            "neru|ねる|寝る"
+          ]
+        },
+        {
+          "label": "Adjective",
+          "entities": [
+            "ookii|おおきい|大きい",
+            "chiisai|ちいさい|小さい",
+            "atarashii|あたらしい|新しい",
+            "furui|ふるい|古い",
+            "takai|たかい|高い",
+            "yasui|やすい|安い",
+            "atsui|あつい|暑い",
+            "samui|さむい|寒い",
+            "oishii|おいしい",
+            "tanoshii|たのしい|楽しい"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Kanji",
+      "prompt": "What does this kanji mean?",
+      "clues": [
+        {
+          "text": "忘",
+          "answer": "Forget|bou|wasureru|ぼう|わすれる"
+        },
+        {
+          "text": "雪",
+          "answer": "Snow|setsu|yuki|せつ|ゆき"
+        },
+        {
+          "text": "雑",
+          "answer": "Miscellaneous|zatsu|zou|majieru|majiru|ざつ|ぞう|まじえる|まじる"
+        },
+        {
+          "text": "晴",
+          "answer": "Clear up|sei|hareru|hare|bare|harasu|せい|はれる|はれ|ばれ|はらす"
+        },
+        {
+          "text": "煙",
+          "answer": "Smoke|en|kemuru|kemuri|kemui|えん|けむる|けむり|けむい"
+        },
+        {
+          "text": "泳",
+          "answer": "Swim|ei|oyogu|えい|およぐ"
+        },
+        {
+          "text": "馬",
+          "answer": "Horse|ba|uma|ma|ば|うま|ま"
+        },
+        {
+          "text": "声",
+          "answer": "Voice|sei|shou|koe|kowa|せい|しょう|こえ|こわ"
+        },
+        {
+          "text": "石",
+          "answer": "Stone|seki|shaku|koku|ishi|せき|しゃく|こく|いし"
+        },
+        {
+          "text": "耳",
+          "answer": "Ear|ji|mimi|じ|みみ"
+        },
+        {
+          "text": "婚",
+          "answer": "Marriage|kon|こん"
+        },
+        {
+          "text": "寒",
+          "answer": "Cold|kan|samui|かん|さむい"
+        },
+        {
+          "text": "猫",
+          "answer": "Cat|byou|neko|びょう|ねこ"
+        },
+        {
+          "text": "静",
+          "answer": "Quiet|sei|jou|shizu|shizuka|shizumaru|shizumeru|せい|じょう|しず|しずか|しずまる|しずめる"
+        },
+        {
+          "text": "遊",
+          "answer": "Play|yuu|yu|asobu|asobasu|ゆう|ゆ|あそぶ|あそばす"
+        },
+        {
+          "text": "港",
+          "answer": "Harbor|kou|minato|こう|みなと"
+        },
+        {
+          "text": "笑",
+          "answer": "Laugh|shou|warau|emu|しょう|わらう|えむ"
+        },
+        {
+          "text": "靴",
+          "answer": "Shoes|ka|kutsu|か|くつ"
+        }
+      ]
+    }
   }
 ]

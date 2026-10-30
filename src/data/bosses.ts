@@ -2,6 +2,7 @@ import type { BlitzPrompt, Boss, BossCard, Domain } from '../types';
 import raw from './bosses.json';
 import { BLUEPRINT_NODES, nodeImage } from '../specialist/blueprint';
 import { addFrench } from '../lib/french';
+import { kanjiPicture } from '../lib/kanji';
 
 /**
  * In bosses.json a card is a plain label or `{ label, src?, image?, aliases? }` (`src` only
@@ -19,7 +20,7 @@ type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 
 
 /** "node:<name>": a Blueprint node, drawn from src/specialist/blueprint.ts rather than stored as a picture. */
 const picture = (image?: string) => {
-  if (!image?.startsWith('node:')) return image;
+  if (!image?.startsWith('node:')) return kanjiPicture(image);
   const n = BLUEPRINT_NODES.find((x) => x.name === image.slice(5));
   return n ? nodeImage(n) : undefined;
 };
@@ -36,12 +37,13 @@ const prompt = (p: RawBoss['blitz'][number]): BlitzPrompt => ({ prompt: p.prompt
 
 export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
   ...b,
+  boss: { ...b.boss, image: picture(b.boss.image) },
   aliases: b.aliases ?? [],
   blitz: b.blitz.map(prompt),
   radar: { members: b.radar.members.map(card), impostors: b.radar.impostors.map(card) },
   finale: b.finale.map(card),
   secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ label: c.label, entities: c.entities.map(spelling) })) },
-  signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, answer: spelling(c.answer) })) },
+  signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, image: picture(c.image), answer: spelling(c.answer) })) },
 }));
 
 // The bosses' own French spellings (Overwatch's Mercy is Ange), each kept to its franchise, and shared with

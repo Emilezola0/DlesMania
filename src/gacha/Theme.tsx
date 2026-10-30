@@ -38,6 +38,7 @@ export const THEMES: Record<string, FranchiseTheme> = {
   avatar: { accent: '#2f8fa8', strong: '#247186', glyphs: ['💧', '🪨', '🔥', '🌪️'] },
   unreal: { accent: '#4b6cc4', strong: '#3a549e', glyphs: ['🔷', '⚙️', '🧩'] },
   destiny: { accent: '#5a7fa8', strong: '#466589', glyphs: ['🔺', '👁️', '✨'] },
+  jlpt: { accent: '#b91c1c', strong: '#8f1515', glyphs: ['漢', '字', '⛩️', '🌸'] },
   balatro: { accent: '#c9352c', strong: '#a12a23', glyphs: ['♠️', '♥️', '♣️', '♦️', '🃏'] },
 };
 
