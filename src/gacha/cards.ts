@@ -51,9 +51,11 @@ export interface Card {
   voiceFr?: string;
   audioFr?: string;
   /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard (its clip: see `clip`). */
-  awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean };
+  awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean; cutout?: boolean };
   /** A short looping clip (MP4) of a mythic, played instead of its picture where the card is seen up close. */
   clip?: string;
+  /** Its picture has a transparent background: it can step out of the frame on hover. */
+  cutout?: boolean;
   /** A clip so small it can run all the time, in the album too (the player can turn that off). */
   clipLight?: boolean;
   /**
@@ -511,11 +513,14 @@ const CLIPS: Record<string, string> = {
 };
 /** The clips under 150 KB. */
 const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'avatar:mythic-2', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic']);
+/** The pictures measured as cut out (transparent edges), first form and awakened. */
+const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'onepiece:omni', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2']);
+const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
 const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
-  if (!clip) return c;
-  const clipLight = LIGHT_CLIPS.has(c.id);
-  return c.awaken ? { ...c, awaken: { ...c.awaken, clip, clipLight } } : { ...c, clip, clipLight };
+  const clipLight = !!clip && LIGHT_CLIPS.has(c.id);
+  const cutout = CUTOUTS.has(c.id);
+  return c.awaken ? { ...c, cutout, awaken: { ...c.awaken, clip, clipLight, cutout: CUTOUTS_AWAKE.has(c.id) } } : { ...c, clip, clipLight, cutout };
 };
 
 /** Franchises added after the first fourteen (see CARDS). */

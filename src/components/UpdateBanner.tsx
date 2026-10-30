@@ -53,7 +53,7 @@ export function UpdateBanner() {
 
   if (!available || dismissed === available) return null;
   return (
-    <div role="status" className="animate-pop fixed inset-x-3 bottom-3 z-40 mx-auto flex max-w-md items-center gap-3 rounded-md border border-accent bg-card px-4 py-3 shadow-2xl">
+    <div role="status" className="animate-pop fixed inset-x-3 bottom-3 z-40 max-sm:bottom-16 mx-auto flex max-w-md items-center gap-3 rounded-md border border-accent bg-card px-4 py-3 shadow-2xl">
       <span className="grid size-8 shrink-0 place-items-center rounded-full bg-accent font-display text-sm font-bold text-on-strong" aria-hidden>
         ↻
       </span>

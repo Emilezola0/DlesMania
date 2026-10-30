@@ -92,8 +92,8 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
   const face = ((((ry % 360) + 540) % 360) - 180) as number;
   const foil = { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) };
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
-      <div className="w-full space-y-4" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
+      <div className="my-auto w-full space-y-4 py-6" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
         <div
           className="cursor-grab touch-none select-none [perspective:1000px] active:cursor-grabbing"
           onPointerDown={down}
@@ -204,6 +204,9 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
 
 /** /album */
 export default function Album() {
+  /** On a phone: the mythic or omni brought to life by a first tap. */
+  const [armed, setArmed] = useState<string | null>(null);
+  const lastPointer = useRef('mouse');
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
   const coins = useProgress((s) => s.coins);
@@ -333,8 +336,23 @@ export default function Album() {
       <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
         {list.map((c) =>
           owned[c.id] ? (
-            <button key={c.id} type="button" onClick={() => (sfx.select(), setOpen(c))} className="transition hover:z-10 hover:-translate-y-1" aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}>
-              <CardFace card={c} count={owned[c.id]} />
+            <button
+              key={c.id}
+              type="button"
+              onPointerDown={(e) => (lastPointer.current = e.pointerType)}
+              onClick={() => {
+                // On a phone, a mythic's or omni's first tap brings it to life; the next opens it.
+                const top = c.rarity === 'mythic' || c.rarity === 'omni';
+                if (top && lastPointer.current === 'touch' && armed !== c.id) return (sfx.select(), setArmed(c.id));
+                sfx.select();
+                setArmed(null);
+                setOpen(c);
+              }}
+              className={`relative transition hover:z-10 hover:-translate-y-1 ${armed === c.id ? 'z-10' : ''}`}
+              aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}
+            >
+              <CardFace card={c} count={owned[c.id]} hoverHero hero={armed === c.id} />
+              {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">TAP AGAIN TO OPEN</span>}
             </button>
           ) : (
             <CardMissing key={c.id} card={c} />

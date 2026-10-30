@@ -87,13 +87,13 @@ export default function BossSelect() {
       {list.length === 0 ? (
         <p className="text-center font-serif text-lg italic text-ink-soft">No guardian answers to that name… yet.</p>
       ) : (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((b) => {
             const per = DIFFICULTY_IDS.map((d) => ({ d, r: records[bossKey(b.id, d)] ?? EMPTY_BOSS_RECORD }));
             const plays = per.reduce((n, x) => n + x.r.plays, 0);
             const bestScore = Math.max(...per.map((x) => x.r.bestScore));
             return (
-              <li key={b.id}>
+              <li key={b.id} className="min-w-0">
                 <Link
                   to={`/boss/${b.id}`}
                   className="page group relative flex h-full items-center gap-4 rounded-md p-4 transition hover:-translate-y-0.5"

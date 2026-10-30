@@ -1090,3 +1090,24 @@ h1, h2, h3, .font-serif, .font-display {
   to { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
 }
 .theme-drift { animation: theme-drift 30s linear infinite; }
+
+/* ── A mythic or omni coming to life on hover (a first tap on a phone). ── */
+@keyframes card-hero-pop {
+  from { opacity: 0; transform: translateY(14%) scale(0.84); }
+  to { opacity: 1; transform: none; }
+}
+.card-hero-pop {
+  animation: card-hero-pop 0.3s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.65));
+}
+@keyframes card-hero-rays { to { transform: rotate(360deg); } }
+.card-hero-rays {
+  background: repeating-conic-gradient(from 0deg, var(--glow) 0deg 10deg, transparent 10deg 30deg);
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
+  opacity: 0.6;
+  animation: card-hero-rays 9s linear infinite;
+}
+
+/* The phone menu steps aside while typing: the keyboard already takes half the screen. */
+body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { display: none; }

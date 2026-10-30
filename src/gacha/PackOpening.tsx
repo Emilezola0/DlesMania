@@ -473,7 +473,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {cards.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
-                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} />
+                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero />
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {RARITY_INFO[c.rarity].name}
                 </p>

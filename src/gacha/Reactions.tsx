@@ -167,7 +167,7 @@ export function CardReactions() {
   return (
     <>
       {moment && (
-        <div key={moment.key} className="animate-pop pointer-events-none fixed bottom-4 right-3 z-40 w-56 overflow-hidden rounded-xl border-2 shadow-2xl sm:w-72" style={{ borderColor: light, boxShadow: `0 0 28px ${light}` }} aria-hidden>
+        <div key={moment.key} className="animate-pop pointer-events-none fixed bottom-4 right-3 z-40 w-56 max-sm:bottom-16 overflow-hidden rounded-xl border-2 shadow-2xl sm:w-72" style={{ borderColor: light, boxShadow: `0 0 28px ${light}` }} aria-hidden>
           <video src={moment.clip} autoPlay muted loop playsInline onError={() => setMoment(null)} className="aspect-video w-full object-cover" />
         </div>
       )}

@@ -146,7 +146,7 @@ export function Companions() {
   if (!talk) return null;
   const light = RARITY_LIGHT[talk.card.rarity];
   return (
-    <div key={talk.key} className="react-in pointer-events-none fixed bottom-4 left-3 z-40 flex max-w-[18rem] items-center gap-2" style={{ marginBottom: talk.side ? '3.5rem' : 0 }} aria-live="polite">
+    <div key={talk.key} className="react-in pointer-events-none fixed bottom-4 left-3 z-40 flex max-sm:bottom-16 max-w-[18rem] items-center gap-2" style={{ marginBottom: talk.side ? '3.5rem' : 0 }} aria-live="polite">
       <CardAvatar card={talk.card} className="size-12 shrink-0" />
       <div className="rounded-2xl rounded-bl-sm border-2 bg-card px-3 py-1.5 text-sm shadow-xl" style={{ borderColor: light }}>
         <p className="font-display text-[10px] font-bold uppercase tracking-widest" style={{ color: light }}>

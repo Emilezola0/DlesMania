@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
-import { RARITY_INFO, setSize, type Card, type Rarity } from './cards';
+import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { gradeOf } from './grades';
 
@@ -36,11 +36,11 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
 /** Whether an omni has woken: its guardian beaten on Hard or Hell. */
 export const isAwake = (card: Card, bosses: Record<string, { wins: number }>) => !!card.awaken && ((bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
 
-export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean } {
+export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean; cutout?: boolean } {
   const awake = useProgress((s) => isAwake(card, s.bosses));
   return awake && card.awaken
-    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip, clipLight: card.awaken.clipLight }
-    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight };
+    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip, clipLight: card.awaken.clipLight, cutout: card.awaken.cutout }
+    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight, cutout: card.cutout };
 }
 
 /** The embers floating around an Omni up close: where, and how far off the card (px). */
@@ -80,7 +80,10 @@ function StillGif({ src, className }: { src: string; className: string }) {
  * `depth` lifts the name, badges and text off the card (for the 3D big view). Above grade I, the
  * card wears its grade's emblem and shine (`grade`: the player's own when not given).
  */
-export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean }) {
+export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean }) {
+  // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
+  const [hovered, setHovered] = useState(false);
+  const heroOn = (hero || hovered) && (card.rarity === 'mythic' || card.rarity === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
@@ -121,12 +124,14 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
     <div
       ref={ref}
       onPointerMove={move}
-      onPointerLeave={() => setT({ x: 0, y: 0, mx: 50, my: 50 })}
+      onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
+      onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
       className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : ''}`}
       style={{
         background: prism ? undefined : st.frame,
         boxShadow: st.glow,
-        transform: tilt ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)` : undefined,
+        transform: tilt ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${heroOn ? ' translateY(-5%) scale(1.1)' : ''}` : heroOn ? 'translateY(-5%) scale(1.1)' : undefined,
+        zIndex: heroOn ? 20 : undefined,
         ['--mx' as string]: `${mx}%`,
         ['--my' as string]: `${my}%`,
       }}
@@ -145,7 +150,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           {/* Up close (`animate`), a mythic's clip loops in place of its picture; elsewhere only a light clip does, once on screen. */}
-          {form.clip && clipFailed !== form.clip && (animate || (motion && form.clipLight && inView)) ? (
+          {form.clip && clipFailed !== form.clip && (animate || heroOn || (motion && form.clipLight && inView)) ? (
             <video
               key={form.clip}
               src={form.clip}
@@ -217,6 +222,9 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
           ✦ MYTHIC
         </span>
       )}
+      {/* Coming to life: light turning behind the card, and a cut-out picture stepping out of the frame. */}
+      {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[card.rarity] }} />}
+      {heroOn && form.cutout && <img src={form.image} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}
       {/* Up close, in 3D: rings of fire orbiting the card, in front and behind, and embers at every depth. */}
       {omni && depth && (
         <>

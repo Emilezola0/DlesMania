@@ -21,9 +21,8 @@ const NAV = [
   { to: '/play', label: 'Free Play', short: 'Play' },
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/games', label: 'Games', also: GAME_PATHS },
-  // On the narrowest phones there's no room for every entry; the archive is still one tap away from each daily.
-  { to: '/archive', label: 'Archive', wideOnly: true },
-] as { to: string; label: string; short?: string; wideOnly?: boolean; also?: string[] }[];
+  { to: '/archive', label: 'Archive' },
+] as { to: string; label: string; short?: string; also?: string[] }[];
 
 /** Line-drawn icons in the same ink as the glyphs. */
 export function SpeakerIcon({ on }: { on: boolean }) {
@@ -242,7 +241,7 @@ export function Layout() {
   const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off')));
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-clip max-sm:pb-14">
       {equipped && (
         <Suspense fallback={null}>
           <CardLayers />
@@ -254,14 +253,14 @@ export function Layout() {
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
             <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
           </NavLink>
-          <nav className="ml-auto flex items-center gap-0.5 text-sm sm:gap-1">
+          <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
                 to={n.to}
                 className={({ isActive: exact }) => {
                   const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-                  return `${n.wideOnly ? 'hidden min-[420px]:block' : ''} whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-2 lg:px-3 ${
+                  return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-2 lg:px-3 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`;
                 }}
@@ -282,12 +281,12 @@ export function Layout() {
             onClick={() => openRules(onBoss ? 'boss' : 'daily')}
             title="How to play"
             aria-label="How to play"
-            className="grid size-7 shrink-0 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
+            className="grid size-7 shrink-0 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink max-sm:ml-auto min-[420px]:size-8"
           >
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
           </button>
           <SoundMenu sound={sound} toggleSound={toggleSound} />
-          <NameLangSwitch display="hidden lg:inline-flex" />
+          <NameLangSwitch display="inline-flex sm:hidden lg:inline-flex" />
           <button
             type="button"
             onClick={cycleTheme}
@@ -315,6 +314,21 @@ export function Layout() {
           <Outlet />
         </Suspense>
       </main>
+      {/* Phones: the menu along the bottom, within reach of a thumb. */}
+      <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden" aria-label="Main menu">
+        {NAV.map((n) => (
+          <NavLink
+            key={n.to}
+            to={n.to}
+            className={({ isActive: exact }) => {
+              const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+              return `flex-1 border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
+            }}
+          >
+            {n.short ?? n.label}
+          </NavLink>
+        ))}
+      </nav>
       <RulesModal />
       <UpdateBanner />
       <GradeBackPay />
