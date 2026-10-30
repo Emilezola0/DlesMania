@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { NameLangSwitch } from '../components/NameLangSwitch';
 import { Spinner } from '../components/Spinner';
 import { mergeSaves, pickSave, type SaveData } from '../cloud/merge';
-import { CARD_BY_ID, RARITY_INFO } from '../gacha/cards';
+import { CARD_BY_ID, SETS, RARITY_INFO } from '../gacha/cards';
+import { THEMES, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
 import { startCloud, useCloud } from '../cloud/state';
 import { todayKey } from '../lib/date';
@@ -84,6 +85,12 @@ function Profile() {
   const setVoices = useProgress((s) => s.setVoiceLines);
   const motion = useProgress((s) => s.cardMotion ?? true);
   const setMotion = useProgress((s) => s.setCardMotion);
+  const uiTheme = useProgress((s) => s.uiTheme ?? 'icon');
+  const setUiTheme = useProgress((s) => s.setUiTheme);
+  const companions = useProgress((s) => s.companions ?? true);
+  const setCompanions = useProgress((s) => s.setCompanions);
+  const owned = useProgress((s) => s.cards);
+  const unlocked = unlockedThemes(owned);
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -129,6 +136,26 @@ function Profile() {
         <span>
           <span className="block font-semibold">🎞 Animated cards in the album</span>
           <span className="block text-sm text-ink-soft">Cards with a light animation (the Ender Dragon's GIF, Mercy's clip…) keep moving wherever they're shown. Off: still pictures, and animations only up close and on big wins.</span>
+        </span>
+      </label>
+      <label className="block rounded-md border border-rule p-3">
+        <span className="block font-semibold">🎨 Site theme</span>
+        <span className="mb-2 block text-sm text-ink-soft">Recolours the whole site in a franchise's colours, its symbols drifting behind the pages. A franchise unlocks when you own one of its Legendary cards or better.</span>
+        <select value={uiTheme} onChange={(e) => setUiTheme(e.target.value)} className="w-full rounded-md border border-rule-strong bg-card px-3 py-2 font-semibold">
+          <option value="icon">Follow my icon's franchise</option>
+          <option value="off">Off: the classic look</option>
+          {SETS.filter((s) => THEMES[s.id]).map((s) => (
+            <option key={s.id} value={s.id} disabled={!unlocked.has(s.id)}>
+              {unlocked.has(s.id) ? s.franchise : `🔒 ${s.franchise}`}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">
+        <input type="checkbox" checked={companions} onChange={(e) => setCompanions(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
+        <span>
+          <span className="block font-semibold">💬 Companions</span>
+          <span className="block text-sm text-ink-soft">With a theme on, the other characters you own from that franchise pop up now and then to talk among themselves. The more of them you own, the more voices.</span>
         </span>
       </label>
       <p className="text-xs text-ink-faint">

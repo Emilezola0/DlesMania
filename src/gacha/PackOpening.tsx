@@ -31,6 +31,8 @@ const RAINBOW = ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'];
 const top = (r: Rarity) => r === 'legendary' || r === 'mythic' || r === 'omni';
 /** The rainbow tiers: mythic and, above it, omni. */
 const prismatic = (r: Rarity) => r === 'mythic' || r === 'omni';
+/** Only the mythic is a rainbow: the omni burns in its own colours. */
+const rainbowy = (r: Rarity) => r === 'mythic';
 
 /** A pack's shooting stars: one per card, in its colour, the rarest last. */
 interface Star {
@@ -69,8 +71,8 @@ function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
 const EVOLVE_AT = 0.42;
 /** A star's streak: transparent tail, its colour, a white head (a rainbow for mythics and omnis). */
 const streak = (r: Rarity) => ({
-  background: prismatic(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
-  boxShadow: prismatic(r) ? '0 0 18px #ff4fd8, 0 0 40px #3cc7ff, 0 0 70px #ffcd3c' : `0 0 16px ${RARITY_LIGHT[r]}, 0 0 40px ${RARITY_LIGHT[r]}`,
+  background: rainbowy(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
+  boxShadow: rainbowy(r) ? '0 0 18px #ff4fd8, 0 0 40px #3cc7ff, 0 0 70px #ffcd3c' : `0 0 16px ${RARITY_LIGHT[r]}, 0 0 40px ${RARITY_LIGHT[r]}`,
 });
 
 const reducedMotion = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -220,7 +222,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       setCharging(false);
       setFlipped(true);
       if (reducedMotion()) return;
-      setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now(), rainbow: prismatic(c.rarity) });
+      setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now(), rainbow: rainbowy(c.rarity) });
       if (c.rarity === 'omni') {
         // The rarest pull of all: three showers, the strongest shake.
         sfx.victory();
@@ -427,9 +429,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 <CardBack />
               </div>
             ))}
-            {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={prismatic(card.rarity)} />}
+            {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={rainbowy(card.rarity)} />}
             <div key={i} className="pack-card-in [perspective:1100px]">
-              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (prismatic(card.rarity) ? 'pack-charge-strong pack-charge-prism' : card.rarity === 'legendary' ? 'pack-charge-strong' : 'pack-charge') : ''}`}>
+              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-strong pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-strong' : 'pack-charge') : ''}`}>
                 <div className="[backface-visibility:hidden]">
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
@@ -438,7 +440,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 </div>
               </div>
             </div>
-            {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} rainbow={prismatic(card.rarity)} count={card.rarity === 'omni' ? 100 : card.rarity === 'mythic' ? 70 : card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
+            {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} rainbow={rainbowy(card.rarity)} count={card.rarity === 'omni' ? 100 : card.rarity === 'mythic' ? 70 : card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
             {flipped && fresh.has(card.id) && <span className="pack-stamp absolute -right-6 top-6 z-30 rounded-md border-4 border-coral px-2 py-0.5 font-display text-xl font-black tracking-widest text-coral">NEW!</span>}
           </button>
           <div className="min-h-14 text-center">

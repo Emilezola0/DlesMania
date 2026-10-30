@@ -16120,5 +16120,1002 @@
       "Sepiks Prime",
       "Quria"
     ]
+  },
+  {
+    "id": "balatro",
+    "domain": "games",
+    "franchise": "Balatro",
+    "aliases": [
+      "balatro"
+    ],
+    "images": "fandom:balatrogame",
+    "boss": {
+      "name": "Jimbo",
+      "title": "The Joker",
+      "color": "#d6392f",
+      "src": "Joker",
+      "image": "https://static.wikia.nocookie.net/balatrogame/images/e/ef/Joker.png/revision/latest?cb=20250619163211"
+    },
+    "lines": {
+      "intro": "Hey there, friend! Pull up a chair. The blinds are small, the chips are stacked, and I've never once lost a hand I didn't mean to.",
+      "phase2": "Now let's see that eye of yours. Which of these jesters actually belong at my table?",
+      "phase3": "Last hand of the Ante! Name the cards in your hand before the deck runs out.",
+      "hit": [
+        "Nice hand!",
+        "Oh, that scored!",
+        "Look at that Mult go!"
+      ],
+      "hurt": [
+        "Bust!",
+        "Not enough chips, friend.",
+        "Should have discarded that.",
+        "High Card? Really?"
+      ],
+      "win": "You beat the Ante! Go on, take the Jokers. I've got plenty more up my sleeve.",
+      "lose": "Game over, friend. Same seed next time?",
+      "secret": "One more round, on the house. I name a card, a hand, a planet; you name another of the same. No repeats!",
+      "secretOk": [
+        "Scored!",
+        "Again!",
+        "Now that is a combo."
+      ],
+      "secretLost": "Out of hands, friend. The house wins."
+    },
+    "blitz": [
+      {
+        "prompt": "Name the 4 suits",
+        "count": 4,
+        "answers": [
+          "Spades|Spade|Piques",
+          "Hearts|Heart|Coeurs|Cœurs",
+          "Clubs|Club|Trèfles|Trefles",
+          "Diamonds|Diamond|Carreaux"
+        ]
+      },
+      {
+        "prompt": "Name 5 poker hands",
+        "count": 5,
+        "answers": [
+          "High Card|Carte haute",
+          "Pair|Paire",
+          "Two Pair|Double paire",
+          "Three of a Kind|Brelan",
+          "Straight|Suite|Quinte",
+          "Flush|Couleur",
+          "Full House|Full",
+          "Four of a Kind|Carré|Carre",
+          "Straight Flush|Quinte flush",
+          "Royal Flush|Quinte flush royale",
+          "Five of a Kind",
+          "Flush House",
+          "Flush Five"
+        ]
+      },
+      {
+        "prompt": "Name the 5 Legendary Jokers",
+        "count": 5,
+        "answers": [
+          "Canio",
+          "Chicot",
+          "Perkeo",
+          "Triboulet",
+          "Yorick"
+        ]
+      },
+      {
+        "prompt": "Name 5 Decks",
+        "count": 5,
+        "answers": [
+          "Red Deck|Red",
+          "Blue Deck|Blue",
+          "Yellow Deck|Yellow",
+          "Green Deck|Green",
+          "Black Deck|Black",
+          "Magic Deck|Magic",
+          "Nebula Deck|Nebula",
+          "Ghost Deck|Ghost",
+          "Abandoned Deck|Abandoned",
+          "Checkered Deck|Checkered",
+          "Zodiac Deck|Zodiac",
+          "Painted Deck|Painted",
+          "Anaglyph Deck|Anaglyph",
+          "Plasma Deck|Plasma",
+          "Erratic Deck|Erratic"
+        ]
+      },
+      {
+        "prompt": "Name 5 Stakes",
+        "count": 5,
+        "answers": [
+          "White Stake|White",
+          "Red Stake|Red",
+          "Green Stake|Green",
+          "Black Stake|Black",
+          "Blue Stake|Blue",
+          "Purple Stake|Purple",
+          "Orange Stake|Orange",
+          "Gold Stake|Gold"
+        ]
+      },
+      {
+        "prompt": "Name 5 Tarot cards",
+        "count": 5,
+        "answers": [
+          "The Fool|Fool",
+          "The Magician|Magician",
+          "The High Priestess|High Priestess",
+          "The Empress|Empress",
+          "The Emperor|Emperor",
+          "The Hierophant|Hierophant",
+          "The Lovers|Lovers",
+          "The Chariot|Chariot",
+          "Justice",
+          "The Hermit|Hermit",
+          "The Wheel of Fortune|Wheel of Fortune",
+          "Strength",
+          "The Hanged Man|Hanged Man",
+          "Death",
+          "Temperance",
+          "The Devil|Devil",
+          "The Tower|Tower",
+          "The Star|Star",
+          "The Moon|Moon",
+          "The Sun|Sun",
+          "Judgement|Judgment",
+          "The World|World"
+        ]
+      },
+      {
+        "prompt": "Name 5 Planet cards",
+        "count": 5,
+        "answers": [
+          "Mercury",
+          "Venus",
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Saturn",
+          "Uranus",
+          "Neptune",
+          "Pluto",
+          "Planet X",
+          "Ceres",
+          "Eris"
+        ]
+      },
+      {
+        "prompt": "Name 5 Spectral cards",
+        "count": 5,
+        "answers": [
+          "Familiar",
+          "Grim",
+          "Incantation",
+          "Talisman",
+          "Aura",
+          "Wraith",
+          "Sigil",
+          "Ouija",
+          "Ectoplasm",
+          "Immolate",
+          "Ankh",
+          "Deja Vu|Déjà Vu",
+          "Hex",
+          "Trance",
+          "Medium",
+          "Cryptid",
+          "The Soul|Soul",
+          "Black Hole"
+        ]
+      },
+      {
+        "prompt": "Name 5 Boss Blinds",
+        "count": 5,
+        "answers": [
+          "The Hook|Hook",
+          "The Ox|Ox",
+          "The House|House",
+          "The Wall|Wall",
+          "The Wheel|Wheel",
+          "The Arm|Arm",
+          "The Club|Club",
+          "The Fish|Fish",
+          "The Psychic|Psychic",
+          "The Goad|Goad",
+          "The Water|Water",
+          "The Window|Window",
+          "The Manacle|Manacle",
+          "The Eye|Eye",
+          "The Mouth|Mouth",
+          "The Plant|Plant",
+          "The Serpent|Serpent",
+          "The Pillar|Pillar",
+          "The Needle|Needle",
+          "The Head|Head",
+          "The Tooth|Tooth",
+          "The Flint|Flint",
+          "The Mark|Mark",
+          "Amber Acorn",
+          "Verdant Leaf",
+          "Violet Vessel",
+          "Crimson Heart",
+          "Cerulean Bell"
+        ]
+      },
+      {
+        "prompt": "Name the 4 card editions",
+        "count": 4,
+        "answers": [
+          "Foil",
+          "Holographic",
+          "Polychrome",
+          "Negative"
+        ]
+      },
+      {
+        "prompt": "Name 5 card enhancements",
+        "count": 5,
+        "answers": [
+          "Bonus",
+          "Mult",
+          "Wild",
+          "Glass",
+          "Steel",
+          "Stone",
+          "Gold",
+          "Lucky"
+        ]
+      },
+      {
+        "prompt": "Name the 4 seals",
+        "count": 4,
+        "answers": [
+          "Gold Seal|Gold",
+          "Red Seal|Red",
+          "Blue Seal|Blue",
+          "Purple Seal|Purple"
+        ]
+      },
+      {
+        "prompt": "Name 8 Jokers",
+        "count": 8,
+        "answers": [
+          "8 Ball",
+          "Abstract Joker",
+          "Banner",
+          "Blue Joker",
+          "Business Card",
+          "Cavendish",
+          "Chaos the Clown",
+          "Clever Joker",
+          "Crafty Joker",
+          "Crazy Joker",
+          "Credit Card",
+          "Delayed Gratification",
+          "Devious Joker",
+          "Droll Joker",
+          "Drunkard",
+          "Egg",
+          "Even Steven",
+          "Faceless Joker",
+          "Fortune Teller",
+          "Gluttonous Joker",
+          "Golden Joker",
+          "Golden Ticket",
+          "Greedy Joker",
+          "Green Joker",
+          "Gros Michel",
+          "Half Joker",
+          "Hallucination",
+          "Hanging Chad",
+          "Ice Cream",
+          "Joker",
+          "Jolly Joker",
+          "Juggler",
+          "Lusty Joker",
+          "Mad Joker",
+          "Mail-In Rebate",
+          "Misprint",
+          "Mystic Summit",
+          "Odd Todd",
+          "Photograph",
+          "Popcorn",
+          "Raised Fist",
+          "Red Card",
+          "Reserved Parking",
+          "Ride the Bus",
+          "Riff-Raff",
+          "Runner",
+          "Scary Face",
+          "Scholar",
+          "Shoot the Moon",
+          "Sly Joker",
+          "Smiley Face",
+          "Splash",
+          "Square Joker",
+          "Supernova",
+          "Superposition",
+          "Swashbuckler",
+          "To Do List",
+          "Walkie Talkie",
+          "Wily Joker",
+          "Wrathful Joker",
+          "Zany Joker",
+          "Acrobat",
+          "Arrowhead",
+          "Astronomer",
+          "Blackboard",
+          "Bloodstone",
+          "Bootstraps",
+          "Bull",
+          "Burglar",
+          "Card Sharp",
+          "Cartomancer",
+          "Castle",
+          "Ceremonial Dagger",
+          "Certificate",
+          "Cloud 9",
+          "Constellation",
+          "Diet Cola",
+          "Dusk",
+          "Erosion",
+          "Fibonacci",
+          "Flash Card",
+          "Flower Pot",
+          "Four Fingers",
+          "Gift Card",
+          "Glass Joker",
+          "Hack",
+          "Hiker",
+          "Hologram",
+          "Joker Stencil",
+          "Loyalty Card",
+          "Luchador",
+          "Lucky Cat",
+          "Madness",
+          "Marble Joker",
+          "Matador",
+          "Merry Andy",
+          "Midas Mask",
+          "Mime",
+          "Mr. Bones",
+          "Onyx Agate",
+          "Oops! All 6s",
+          "Pareidolia",
+          "Ramen",
+          "Rocket",
+          "Rough Gem",
+          "Satellite",
+          "Seeing Double",
+          "Seltzer",
+          "Shortcut",
+          "Showman",
+          "Sixth Sense",
+          "Smeared Joker",
+          "Sock and Buskin",
+          "Space Joker",
+          "Spare Trousers",
+          "Steel Joker",
+          "Stone Joker",
+          "Séance",
+          "The Idol",
+          "Throwback",
+          "To the Moon",
+          "Trading Card",
+          "Troubadour",
+          "Turtle Bean",
+          "Vampire",
+          "Ancient Joker",
+          "Baron",
+          "Baseball Card",
+          "Blueprint",
+          "Brainstorm",
+          "Burnt Joker",
+          "Campfire",
+          "DNA",
+          "Driver's License",
+          "Hit the Road",
+          "Invisible Joker",
+          "Obelisk",
+          "Stuntman",
+          "The Duo",
+          "The Family",
+          "The Order",
+          "The Tribe",
+          "The Trio",
+          "Vagabond",
+          "Wee Joker",
+          "Canio",
+          "Chicot",
+          "Perkeo",
+          "Triboulet",
+          "Yorick"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Perkeo",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/6/60/Perkeo.png/revision/latest?cb=20250712102236"
+        },
+        {
+          "label": "Triboulet",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/9/9f/Triboulet.png/revision/latest?cb=20250712101531"
+        },
+        {
+          "label": "Blueprint",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/9/98/Blueprint.png/revision/latest?cb=20250619053653"
+        },
+        {
+          "label": "Brainstorm",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/8/84/Brainstorm.png/revision/latest?cb=20230925033425"
+        },
+        {
+          "label": "Baron",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/4/40/Baron.png/revision/latest?cb=20240502124112"
+        },
+        {
+          "label": "DNA",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/4/47/DNA.png/revision/latest?cb=20241026221241"
+        },
+        {
+          "label": "Mime",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/6/65/Mime.png/revision/latest?cb=20230925010010"
+        },
+        {
+          "label": "Four Fingers",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/f/fd/Four_Fingers.png/revision/latest?cb=20250619170832"
+        },
+        {
+          "label": "Baseball Card",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/d/dd/Baseball_Card.png/revision/latest?cb=20240320232328"
+        },
+        {
+          "label": "Sock and Buskin",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/4/48/Sock_and_Buskin.png/revision/latest?cb=20240429133023"
+        },
+        {
+          "label": "Hanging Chad",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/1/15/Hanging_Chad.png/revision/latest?cb=20230925032056"
+        },
+        {
+          "label": "Joker",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/e/ef/Joker.png/revision/latest?cb=20250619163211"
+        },
+        {
+          "label": "Jolly Joker",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/4/40/Jolly_Joker.png/revision/latest?cb=20240320232234"
+        },
+        {
+          "label": "Greedy Joker",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/4/43/Greedy_Joker.png/revision/latest?cb=20240320232231"
+        },
+        {
+          "label": "Cavendish",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/1/13/Cavendish.png/revision/latest?cb=20240320232317"
+        },
+        {
+          "label": "Gros Michel",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/6/6f/Gros_Michel.png/revision/latest?cb=20230925031850"
+        },
+        {
+          "label": "Golden Joker",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/9/9a/Golden_Joker.png/revision/latest?cb=20230925013018"
+        },
+        {
+          "label": "Fibonacci",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/f/f1/Fibonacci.png/revision/latest?cb=20230925030041"
+        },
+        {
+          "label": "Scholar",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/c/c5/Scholar.png/revision/latest?cb=20230925021359"
+        },
+        {
+          "label": "Mr. Bones",
+          "image": "https://static.wikia.nocookie.net/balatrogame/images/1/11/Mr._Bones.png/revision/latest?cb=20230925021838"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Dark Magician",
+          "src": "fandom:yugioh:Dark Magician",
+          "image": "https://static.wikia.nocookie.net/yugioh/images/f/f8/BondBetweenTeacherandStudent-TF06-JP-VG.png/revision/latest/scale-to-width-down/400?cb=20111020194630"
+        },
+        {
+          "label": "Ironclad",
+          "src": "fandom:slay-the-spire:The Ironclad",
+          "image": "https://static.wikia.nocookie.net/slay-the-spire/images/c/cf/Chad.jpg/revision/latest/scale-to-width-down/400?cb=20190323010858"
+        },
+        {
+          "label": "The Silent",
+          "src": "fandom:slay-the-spire:The Silent",
+          "image": "https://static.wikia.nocookie.net/slay-the-spire/images/a/a1/Soylent1.jpg/revision/latest/scale-to-width-down/400?cb=20190323013642"
+        },
+        {
+          "label": "Leshy",
+          "src": "fandom:inscryption:Leshy",
+          "image": "https://static.wikia.nocookie.net/inscryption/images/8/8f/Featured-Inscryption-How-to-beat-Leshy-in-Inscryption.jpg/revision/latest/scale-to-width-down/400?cb=20211031173007"
+        },
+        {
+          "label": "Leeroy Jenkins",
+          "src": "fandom:hearthstone:Leeroy Jenkins",
+          "image": "https://static.wikia.nocookie.net/hearthstone_gamepedia/images/e/eb/Leeroy_WoW.jpg/revision/latest/scale-to-width-down/252?cb=20200217010213"
+        },
+        {
+          "label": "Ragnaros",
+          "src": "fandom:hearthstone:Ragnaros the Firelord",
+          "image": "https://static.wikia.nocookie.net/hearthstone_gamepedia/images/5/50/Ragnaros_WoW.jpg/revision/latest/scale-to-width-down/293?cb=20170201071102"
+        },
+        {
+          "label": "Joker (Persona 5)",
+          "src": "fandom:megamitensei:Protagonist (Persona 5)",
+          "aliases": [
+            "Joker",
+            "Ren Amamiya"
+          ],
+          "image": "https://static.wikia.nocookie.net/megamitensei/images/6/63/Persona_5_Hero.png/revision/latest/scale-to-width-down/169?cb=20240407105006"
+        },
+        {
+          "label": "The Joker (Batman)",
+          "src": "fandom:dc:Joker",
+          "aliases": [
+            "Batman Joker"
+          ],
+          "image": "https://static.wikia.nocookie.net/marvel_dc/images/3/35/Joker_Earth-Two_001.jpg/revision/latest/scale-to-width-down/202?cb=20160110070539"
+        },
+        {
+          "label": "Geralt",
+          "src": "fandom:witcher:Geralt of Rivia",
+          "image": "https://static.wikia.nocookie.net/witcher/images/5/51/Netflix_geralt_shirt.jpg/revision/latest/scale-to-width-down/328?cb=20191228182240"
+        },
+        {
+          "label": "Gambit",
+          "src": "fandom:marvel:Remy LeBeau (Earth-616)",
+          "image": "https://static.wikia.nocookie.net/marveldatabase/images/4/46/Uncanny_X-Men_Vol_6_12_Clarke_Variant_Textless.jpg/revision/latest/scale-to-width-down/283?cb=20250314183728"
+        },
+        {
+          "label": "Kaiba",
+          "src": "fandom:yugioh:Seto Kaiba",
+          "image": "https://static.wikia.nocookie.net/yugioh/images/d/dc/Seto_Kaiba.png/revision/latest/scale-to-width-down/400?cb=20250724005644"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Wee Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/2/2b/Wee_Joker.png/revision/latest?cb=20240307061737"
+      },
+      {
+        "label": "Vampire",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4e/Vampire.png/revision/latest?cb=20240320232319"
+      },
+      {
+        "label": "Hologram",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/0/07/Hologram.gif/revision/latest?cb=20240413030441"
+      },
+      {
+        "label": "Steel Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/f/fd/Steel_Joker.png/revision/latest?cb=20230925011654"
+      },
+      {
+        "label": "Sly Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4e/Sly_Joker.png/revision/latest?cb=20240502162932"
+      },
+      {
+        "label": "Wily Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4d/Wily_Joker.png/revision/latest?cb=20240320232256"
+      },
+      {
+        "label": "Clever Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/6/6a/Clever_Joker.png/revision/latest?cb=20240502162603"
+      },
+      {
+        "label": "Half Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/a/a0/Half_Joker.png/revision/latest?cb=20240502193610"
+      },
+      {
+        "label": "Banner",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/8/87/Banner.png/revision/latest?cb=20250328234052"
+      },
+      {
+        "label": "Mystic Summit",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/a/a4/Mystic_Summit.png/revision/latest?cb=20230925010736"
+      },
+      {
+        "label": "Even Steven",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/2/20/Even_Steven.png/revision/latest?cb=20230925021257"
+      },
+      {
+        "label": "Odd Todd",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/1/17/Odd_Todd.png/revision/latest?cb=20230925021342"
+      },
+      {
+        "label": "Abstract Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/c/ca/Abstract_Joker.png/revision/latest?cb=20230925013704"
+      },
+      {
+        "label": "Joker Stencil",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/2/2e/Joker_Stencil.png/revision/latest?cb=20230925030255"
+      },
+      {
+        "label": "Hack",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/f/fd/Hack.png/revision/latest?cb=20230925011231"
+      },
+      {
+        "label": "Smiley Face",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/6/6f/Smiley_Face.png/revision/latest?cb=20240320232405"
+      },
+      {
+        "label": "Fortune Teller",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/8/8b/Fortune_Teller.png/revision/latest?cb=20230925030949"
+      },
+      {
+        "label": "Gift Card",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/3/37/Gift_Card.png/revision/latest?cb=20240320232324"
+      },
+      {
+        "label": "Egg",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/2/26/Egg.png/revision/latest?cb=20230925034821"
+      },
+      {
+        "label": "Ice Cream",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/5/5d/Ice_Cream.png/revision/latest?cb=20230925035153"
+      },
+      {
+        "label": "Popcorn",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/8/85/Popcorn.png/revision/latest?cb=20240320232401"
+      },
+      {
+        "label": "Green Joker",
+        "image": "https://static.wikia.nocookie.net/balatrogame/images/6/6c/Green_Joker.png/revision/latest?cb=20240320232316"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Joker",
+          "entities": [
+            "8 Ball",
+            "Abstract Joker",
+            "Banner",
+            "Blue Joker",
+            "Business Card",
+            "Cavendish",
+            "Chaos the Clown",
+            "Clever Joker",
+            "Crafty Joker",
+            "Crazy Joker",
+            "Credit Card",
+            "Delayed Gratification",
+            "Devious Joker",
+            "Droll Joker",
+            "Drunkard",
+            "Egg",
+            "Even Steven",
+            "Faceless Joker",
+            "Fortune Teller",
+            "Gluttonous Joker",
+            "Golden Joker",
+            "Golden Ticket",
+            "Greedy Joker",
+            "Green Joker",
+            "Gros Michel",
+            "Half Joker",
+            "Hallucination",
+            "Hanging Chad",
+            "Ice Cream",
+            "Joker",
+            "Jolly Joker",
+            "Juggler",
+            "Lusty Joker",
+            "Mad Joker",
+            "Mail-In Rebate",
+            "Misprint",
+            "Mystic Summit",
+            "Odd Todd",
+            "Photograph",
+            "Popcorn",
+            "Raised Fist",
+            "Red Card",
+            "Reserved Parking",
+            "Ride the Bus",
+            "Riff-Raff",
+            "Runner",
+            "Scary Face",
+            "Scholar",
+            "Shoot the Moon",
+            "Sly Joker",
+            "Smiley Face",
+            "Splash",
+            "Square Joker",
+            "Supernova",
+            "Superposition",
+            "Swashbuckler",
+            "To Do List",
+            "Walkie Talkie",
+            "Wily Joker",
+            "Wrathful Joker",
+            "Zany Joker",
+            "Acrobat",
+            "Arrowhead",
+            "Astronomer",
+            "Blackboard",
+            "Bloodstone",
+            "Bootstraps",
+            "Bull",
+            "Burglar",
+            "Card Sharp",
+            "Cartomancer",
+            "Castle",
+            "Ceremonial Dagger",
+            "Certificate",
+            "Cloud 9",
+            "Constellation",
+            "Diet Cola",
+            "Dusk",
+            "Erosion",
+            "Fibonacci",
+            "Flash Card",
+            "Flower Pot",
+            "Four Fingers",
+            "Gift Card",
+            "Glass Joker",
+            "Hack",
+            "Hiker",
+            "Hologram",
+            "Joker Stencil",
+            "Loyalty Card",
+            "Luchador",
+            "Lucky Cat",
+            "Madness",
+            "Marble Joker",
+            "Matador",
+            "Merry Andy",
+            "Midas Mask",
+            "Mime",
+            "Mr. Bones",
+            "Onyx Agate",
+            "Oops! All 6s",
+            "Pareidolia",
+            "Ramen",
+            "Rocket",
+            "Rough Gem",
+            "Satellite",
+            "Seeing Double",
+            "Seltzer",
+            "Shortcut",
+            "Showman",
+            "Sixth Sense",
+            "Smeared Joker",
+            "Sock and Buskin",
+            "Space Joker",
+            "Spare Trousers",
+            "Steel Joker",
+            "Stone Joker",
+            "Séance",
+            "The Idol",
+            "Throwback",
+            "To the Moon",
+            "Trading Card",
+            "Troubadour",
+            "Turtle Bean",
+            "Vampire",
+            "Ancient Joker",
+            "Baron",
+            "Baseball Card",
+            "Blueprint",
+            "Brainstorm",
+            "Burnt Joker",
+            "Campfire",
+            "DNA",
+            "Driver's License",
+            "Hit the Road",
+            "Invisible Joker",
+            "Obelisk",
+            "Stuntman",
+            "The Duo",
+            "The Family",
+            "The Order",
+            "The Tribe",
+            "The Trio",
+            "Vagabond",
+            "Wee Joker",
+            "Canio",
+            "Chicot",
+            "Perkeo",
+            "Triboulet",
+            "Yorick"
+          ]
+        },
+        {
+          "label": "Hand",
+          "entities": [
+            "High Card",
+            "Pair",
+            "Two Pair",
+            "Three of a Kind",
+            "Straight",
+            "Flush",
+            "Full House",
+            "Four of a Kind",
+            "Straight Flush",
+            "Royal Flush",
+            "Five of a Kind",
+            "Flush House",
+            "Flush Five"
+          ]
+        },
+        {
+          "label": "Tarot",
+          "entities": [
+            "The Fool|Fool",
+            "The Magician|Magician",
+            "The High Priestess|High Priestess",
+            "The Empress|Empress",
+            "The Emperor|Emperor",
+            "The Hierophant|Hierophant",
+            "The Lovers|Lovers",
+            "The Chariot|Chariot",
+            "Justice",
+            "The Hermit|Hermit",
+            "The Wheel of Fortune|Wheel of Fortune",
+            "Strength",
+            "The Hanged Man|Hanged Man",
+            "Death",
+            "Temperance",
+            "The Devil|Devil",
+            "The Tower|Tower",
+            "The Star|Star",
+            "The Moon|Moon",
+            "The Sun|Sun",
+            "Judgement",
+            "The World|World"
+          ]
+        },
+        {
+          "label": "Planet",
+          "entities": [
+            "Mercury",
+            "Venus",
+            "Earth",
+            "Mars",
+            "Jupiter",
+            "Saturn",
+            "Uranus",
+            "Neptune",
+            "Pluto",
+            "Planet X",
+            "Ceres",
+            "Eris"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Joker",
+      "prompt": "Which Joker does this?",
+      "clues": [
+        {
+          "text": "Copies the ability of the Joker to its right",
+          "answer": "Blueprint"
+        },
+        {
+          "text": "Copies the ability of the leftmost Joker",
+          "answer": "Brainstorm"
+        },
+        {
+          "text": "Each King held in hand gives X1.5 Mult",
+          "answer": "Baron"
+        },
+        {
+          "text": "Retriggers all card held-in-hand abilities",
+          "answer": "Mime"
+        },
+        {
+          "text": "If the first hand of the round has only 1 card, adds a permanent copy of it to the deck",
+          "answer": "DNA"
+        },
+        {
+          "text": "Earn $4 at the end of the round",
+          "answer": "Golden Joker"
+        },
+        {
+          "text": "Uncommon Jokers each give X1.5 Mult",
+          "answer": "Baseball Card"
+        },
+        {
+          "text": "Creates a Negative copy of a random consumable when leaving the shop",
+          "answer": "Perkeo"
+        },
+        {
+          "text": "Gains X1 Mult whenever a face card is destroyed",
+          "answer": "Canio"
+        },
+        {
+          "text": "Played Kings and Queens each give X2 Mult",
+          "answer": "Triboulet"
+        },
+        {
+          "text": "Gains X1 Mult every 23 cards discarded",
+          "answer": "Yorick"
+        },
+        {
+          "text": "Disables the effect of every Boss Blind",
+          "answer": "Chicot"
+        },
+        {
+          "text": "+4 Mult, and nothing more",
+          "answer": "Joker"
+        },
+        {
+          "text": "Played Diamonds each give +3 Mult",
+          "answer": "Greedy Joker"
+        },
+        {
+          "text": "+8 Mult if the played hand contains a Pair",
+          "answer": "Jolly Joker"
+        },
+        {
+          "text": "+50 Chips if the played hand contains a Pair",
+          "answer": "Sly Joker"
+        },
+        {
+          "text": "+20 Mult if the played hand has 3 or fewer cards",
+          "answer": "Half Joker"
+        },
+        {
+          "text": "+30 Chips for each discard remaining",
+          "answer": "Banner"
+        },
+        {
+          "text": "+15 Mult when 0 discards remain",
+          "answer": "Mystic Summit"
+        },
+        {
+          "text": "Each played Ace, 2, 3, 5 or 8 gives +8 Mult",
+          "answer": "Fibonacci"
+        },
+        {
+          "text": "Played Aces each give +20 Chips and +4 Mult",
+          "answer": "Scholar"
+        },
+        {
+          "text": "Retriggers each played 2, 3, 4 or 5",
+          "answer": "Hack"
+        },
+        {
+          "text": "Played cards with an even rank each give +4 Mult",
+          "answer": "Even Steven"
+        },
+        {
+          "text": "Played cards with an odd rank each give +31 Chips",
+          "answer": "Odd Todd"
+        },
+        {
+          "text": "X3 Mult, with a 1 in 1000 chance of being destroyed each round",
+          "answer": "Cavendish"
+        },
+        {
+          "text": "+15 Mult, with a 1 in 6 chance of being destroyed each round",
+          "answer": "Gros Michel"
+        },
+        {
+          "text": "Flushes and Straights can be made with 4 cards",
+          "answer": "Four Fingers"
+        },
+        {
+          "text": "Prevents death if chips scored are at least 25% of the required chips",
+          "answer": "Mr. Bones"
+        },
+        {
+          "text": "Retriggers all played face cards",
+          "answer": "Sock and Buskin"
+        },
+        {
+          "text": "Retriggers the first played card used in scoring 2 more times",
+          "answer": "Hanging Chad"
+        }
+      ]
+    }
   }
 ]

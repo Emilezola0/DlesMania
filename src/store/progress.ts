@@ -105,6 +105,12 @@ interface ProgressState {
   voiceLines: boolean;
   /** Light animations (GIF art, small clips) run all the time on cards; off: still pictures, except up close. */
   cardMotion: boolean;
+  /** The site's look: 'icon' follows the icon's franchise, a set id that franchise's theme, 'off' none. */
+  uiTheme: string;
+  setUiTheme: (theme: string) => void;
+  /** The franchise's other owned characters pop up to talk. */
+  companions: boolean;
+  setCompanions: (on: boolean) => void;
   setCardMotion: (on: boolean) => void;
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
@@ -281,6 +287,10 @@ export const useProgress = create<ProgressState>()(
       setOmniAura: (omniAura) => set({ omniAura }),
       voiceLines: true,
       cardMotion: true,
+      uiTheme: 'icon',
+      setUiTheme: (uiTheme) => set({ uiTheme }),
+      companions: true,
+      setCompanions: (companions) => set({ companions }),
       setCardMotion: (cardMotion) => set({ cardMotion }),
       setVoiceLines: (voiceLines) => set({ voiceLines }),
       renewCards: (spent, gained) =>

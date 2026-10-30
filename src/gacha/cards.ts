@@ -29,7 +29,7 @@ export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: numb
 };
 
 /** Each rarity's light: the glow from a torn pack, the shooting star, the bursts, an icon's ring. */
-export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#f0abfc', omni: '#fff1a8' };
+export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#f0abfc', omni: '#ff3b4e' };
 
 export interface Card {
   id: string;
@@ -99,6 +99,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     voice: 'Got a plan. It is a good one, promise.',
     image: 'https://destiny.wiki.gallery/images/9/96/TFSCayde.jpg',
   },
+  balatro: { name: 'Perkeo', title: 'The Negative', line: 'Leave the shop with one card and come back with two: the only jester who always keeps a spare up his sleeve.', voice: 'One more for the road.' },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   // Forts' mythic is the Howitzer (it was Eagle Eye, who took the Howitzer's place as a legendary): its
   // voice is the game's own howitzer shot, from "The sounds of Forts" on YouTube (0:55.0–0:55.9).
@@ -150,6 +151,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
     image: 'https://static.wikia.nocookie.net/avatar/images/5/56/Toph_Blu-ray_art.png/revision/latest/scale-to-width-down/500?cb=20261025210823',
   },
   inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
+  balatro: { name: 'Jimbo', title: 'Your Friend at the Table', line: 'He knows every seed, every shop and every hand you should have played, and he will tell you all about it.', voice: 'Hey there, friend!' },
   destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
 };
 
@@ -517,9 +519,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro']);
 
 const slug = (s: string) =>
   s

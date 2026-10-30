@@ -802,10 +802,10 @@ h1, h2, h3, .font-serif, .font-display {
   .react-good, .react-bad, .react-great, .backdrop-good, .backdrop-bad, .backdrop-great { animation: none; }
 }
 
-/* ── Omni cards: a cosmos in a living gold-and-rainbow frame, a crown, sparks; brighter still once awakened. ── */
+/* ── Omni cards: a blood eclipse — crimson and ember on obsidian, white-hot at the heart; brighter still once awakened. ── */
 @keyframes card-omni-pulse {
-  0%, 100% { box-shadow: 0 0 0 2px rgba(255, 241, 168, 0.8), 0 14px 50px rgba(255, 241, 168, 0.45), 0 0 30px rgba(255, 79, 216, 0.35); }
-  50% { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95), 0 18px 80px rgba(255, 241, 168, 0.75), 0 0 60px rgba(60, 199, 255, 0.5); }
+  0%, 100% { box-shadow: 0 0 0 2px rgba(255, 59, 78, 0.85), 0 14px 50px rgba(255, 59, 78, 0.5), 0 0 30px rgba(255, 122, 24, 0.35); }
+  50% { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95), 0 18px 80px rgba(255, 59, 78, 0.85), 0 0 60px rgba(255, 122, 24, 0.6); }
 }
 @keyframes card-nebula {
   0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
@@ -813,33 +813,78 @@ h1, h2, h3, .font-serif, .font-display {
   100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
 }
 .card-omni-frame {
-  background: conic-gradient(from var(--spin), #fff1a8, #ff4fd8, #fff1a8, #3cc7ff, #fff1a8, #a855f7, #fff1a8);
+  background: conic-gradient(from var(--spin), #ff3b4e, #0a0508, #ff7a18, #ffffff, #ff3b4e, #0a0508, #ff7a18, #ff3b4e);
   animation: card-spin 3s linear infinite, card-omni-pulse 2.6s ease-in-out infinite;
 }
-.card-omni-awake { animation: card-spin 1.6s linear infinite, card-omni-pulse 1.3s ease-in-out infinite; }
+.card-omni-awake { animation: card-spin 1.4s linear infinite, card-omni-pulse 1.2s ease-in-out infinite; }
 .card-omni-sky {
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(255, 79, 216, 0.35), transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(60, 199, 255, 0.3), transparent 50%),
-    radial-gradient(ellipse at 50% 40%, rgba(255, 241, 168, 0.25), transparent 55%),
-    #070514;
-  background-size: 200% 200%, 200% 200%, 180% 180%;
+    radial-gradient(ellipse at 20% 15%, rgba(255, 59, 78, 0.4), transparent 50%),
+    radial-gradient(ellipse at 80% 75%, rgba(255, 122, 24, 0.3), transparent 50%),
+    radial-gradient(circle at 50% 38%, transparent 28%, rgba(255, 255, 255, 0.14) 33%, transparent 42%),
+    #060305;
+  background-size: 200% 200%, 200% 200%, 100% 100%;
   animation: card-nebula 12s ease-in-out infinite;
 }
 .card-omni-name {
-  background: linear-gradient(90deg, #fff1a8, #ffffff, #ffcd3c, #ff9ff3, #9fdcff, #fff1a8);
+  background: linear-gradient(90deg, #ff3b4e, #ffffff, #ff7a18, #ffffff, #ff3b4e);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: card-name-shimmer 2.4s linear infinite;
-  filter: drop-shadow(0 0 4px rgba(255, 241, 168, 0.6));
+  filter: drop-shadow(0 0 4px rgba(255, 59, 78, 0.75));
 }
 .card-omni-crown {
-  color: #2a1203;
-  background: linear-gradient(90deg, #fff7c2, #fbbf24, #fff7c2);
-  box-shadow: 0 0 0 2px #fff, 0 0 18px rgba(255, 241, 168, 0.9);
+  color: #fff;
+  background: linear-gradient(90deg, #0a0508, #b3121f, #0a0508);
+  box-shadow: 0 0 0 2px #ff3b4e, 0 0 18px rgba(255, 59, 78, 0.95);
   z-index: 10;
+}
+/* Its foil: a band of ember following the light, not the mythic's rainbow. */
+.card-omni-foil {
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 59, 78, 0.3) 38%, rgba(255, 255, 255, 0.28) 48%, rgba(255, 122, 24, 0.3) 58%, transparent 78%);
+  background-size: 320% 320%;
+  background-position: var(--mx) var(--my);
+  mix-blend-mode: color-dodge;
+  opacity: 0.45;
+}
+.card-omni-back {
+  background:
+    linear-gradient(#0a0508, #0a0508) padding-box,
+    conic-gradient(from var(--spin), #ff3b4e, #0a0508, #ff7a18, #ffffff, #ff3b4e) border-box;
+  animation: card-spin 2.5s linear infinite;
+}
+/* Up close, in 3D: two rings of fire orbiting the card, passing in front and behind, and embers at every depth. */
+@keyframes card-omni-orbit { to { transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(360deg); } }
+.card-omni-ring {
+  position: absolute;
+  inset: -3% -12%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 59, 78, 0.9);
+  border-top-color: #fff;
+  border-bottom-color: #ff7a18;
+  box-shadow: 0 0 14px rgba(255, 59, 78, 0.85), inset 0 0 14px rgba(255, 122, 24, 0.5);
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(0deg);
+  animation: card-omni-orbit 7s linear infinite;
+  pointer-events: none;
+}
+.card-omni-ring-2 { --rx: 74deg; --ry: 18deg; inset: -8% -20%; animation-duration: 11s; animation-direction: reverse; opacity: 0.75; }
+.card-omni-ring-1 { --rx: 78deg; --ry: -14deg; }
+.card-omni-awake .card-omni-ring { animation-duration: 3.5s; }
+@keyframes card-omni-ember {
+  0%, 100% { opacity: 0.25; margin-top: 0; }
+  50% { opacity: 1; margin-top: -10%; }
+}
+.card-omni-ember {
+  position: absolute;
+  width: 3.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #ff7a18 45%, transparent 72%);
+  box-shadow: 0 0 10px #ff3b4e;
+  animation: card-omni-ember 3.6s ease-in-out infinite;
+  pointer-events: none;
 }
 /* Sparks drifting up (mythic: rainbow, omni: gold and white). */
 @keyframes card-sparks { to { background-position: 0 -200%, 30% -260%, 70% -180%, 50% -240%; } }
@@ -855,14 +900,14 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .card-sparks-gold {
   background:
-    radial-gradient(2.5px 2.5px at 20% 80%, #fff1a8, transparent),
+    radial-gradient(2.5px 2.5px at 20% 80%, #ff7a18, transparent),
     radial-gradient(2px 2px at 60% 90%, #fff, transparent),
-    radial-gradient(2px 2px at 80% 70%, #fbbf24, transparent),
-    radial-gradient(2.5px 2.5px at 40% 95%, #fff7c2, transparent);
+    radial-gradient(2px 2px at 80% 70%, #ff3b4e, transparent),
+    radial-gradient(2.5px 2.5px at 40% 95%, #ffb38a, transparent);
   animation-duration: 4s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks { animation: none; }
+  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks, .card-omni-back, .card-omni-ring, .card-omni-ember { animation: none; }
 }
 
 /* ── The Omni aura (src/gacha/OmniAura.tsx): the whole site, while an Omni card is on show. ── */
@@ -878,9 +923,9 @@ h1, h2, h3, .font-serif, .font-display {
   z-index: -20;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255, 79, 216, 0.16), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 70% 80%, rgba(60, 199, 255, 0.14), transparent 70%),
-    linear-gradient(120deg, rgba(255, 241, 168, 0.06), rgba(168, 85, 247, 0.08), rgba(60, 199, 255, 0.06));
+    radial-gradient(ellipse 60% 40% at 30% 20%, rgba(255, 59, 78, 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 70% 80%, rgba(255, 122, 24, 0.13), transparent 70%),
+    linear-gradient(120deg, rgba(255, 59, 78, 0.05), rgba(10, 5, 8, 0.1), rgba(255, 122, 24, 0.05));
   background-size: 200% 200%, 200% 200%, 100% 100%;
   animation: omni-aurora 18s ease-in-out infinite;
 }
@@ -890,21 +935,21 @@ h1, h2, h3, .font-serif, .font-display {
   position: absolute;
   inset: auto 0 -1px 0;
   height: 2px;
-  background: linear-gradient(90deg, #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
+  background: linear-gradient(90deg, #ff3b4e, #ffffff, #ff7a18, #0a0508, #ff3b4e);
   background-size: 200% 100%;
   animation: card-name-shimmer 4s linear infinite;
-  box-shadow: 0 0 12px rgba(255, 241, 168, 0.6);
+  box-shadow: 0 0 12px rgba(255, 59, 78, 0.7);
 }
 .omni-aura [data-logo] {
-  background: linear-gradient(90deg, #fff1a8, #ffcd3c, #ff9ff3, #9fdcff, #fff1a8);
+  background: linear-gradient(90deg, #ff3b4e, #ffffff, #ff7a18, #ffffff, #ff3b4e);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: card-name-shimmer 3s linear infinite;
 }
-.omni-aura .btn-accent { box-shadow: 0 0 0 2px rgba(255, 241, 168, 0.85), 0 0 18px rgba(255, 241, 168, 0.45); }
-.omni-aura .page { box-shadow: 0 0 0 1px rgba(255, 241, 168, 0.25), 0 0 22px rgba(168, 85, 247, 0.12); }
+.omni-aura .btn-accent { box-shadow: 0 0 0 2px rgba(255, 59, 78, 0.85), 0 0 18px rgba(255, 59, 78, 0.5); }
+.omni-aura .page { box-shadow: 0 0 0 1px rgba(255, 59, 78, 0.28), 0 0 22px rgba(255, 122, 24, 0.12); }
 @keyframes omni-spark {
   from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0); opacity: 0; }
@@ -1026,3 +1071,22 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-star-before { animation-name: pack-star-out; animation-timing-function: linear; animation-fill-mode: both; }
 .pack-star-after { opacity: 0; animation-name: pack-star-in; animation-timing-function: linear; animation-fill-mode: both; }
 .pack-star-burst { opacity: 0; animation-name: pack-star-flare; animation-timing-function: ease-out; animation-fill-mode: both; }
+
+/* ── A franchise's theme (src/gacha/Theme.tsx): its colour on the header and panels, its symbols drifting up. ── */
+.ui-themed header { box-shadow: 0 1px 0 var(--theme), 0 6px 24px -14px var(--theme); }
+.ui-themed .page { box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme) 28%, transparent); }
+.ui-themed body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -11;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--theme) 16%, transparent), transparent 70%);
+}
+@keyframes theme-drift {
+  from { transform: translateY(10vh) rotate(-8deg); opacity: 0; }
+  12% { opacity: 0.1; }
+  88% { opacity: 0.1; }
+  to { transform: translateY(-110vh) rotate(10deg); opacity: 0; }
+}
+.theme-drift { animation: theme-drift 30s linear infinite; }

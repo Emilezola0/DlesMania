@@ -43,6 +43,17 @@ export function useCardForm(card: Card): { image: string; title?: string; descri
     : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight };
 }
 
+/** The embers floating around an Omni up close: where, and how far off the card (px). */
+const EMBERS = [
+  { x: 6, y: 18, z: 70 },
+  { x: 90, y: 12, z: 110 },
+  { x: 14, y: 72, z: 130 },
+  { x: 84, y: 64, z: 60 },
+  { x: 48, y: 92, z: 95 },
+  { x: 94, y: 88, z: -40 },
+  { x: 3, y: 46, z: -60 },
+];
+
 /** A GIF held on its first frame (a canvas: the picture only has to be shown, never read). */
 function StillGif({ src, className }: { src: string; className: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -84,7 +95,9 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
     const r = ref.current.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
-    setT({ x: (0.5 - py) * 16, y: (px - 0.5) * 18, mx: px * 100, my: py * 100 });
+    // An omni tilts further: more depth to it.
+    const k = card.rarity === 'omni' ? 1.7 : 1;
+    setT({ x: (0.5 - py) * 16 * k, y: (px - 0.5) * 18 * k, mx: px * 100, my: py * 100 });
   };
   const mx = foil?.x ?? t.mx;
   const my = foil?.y ?? t.my;
@@ -130,7 +143,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
-        <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,241,168,.5), rgba(168,85,247,.25) 45%, rgba(15,10,40,.2) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
+        <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           {/* Up close (`animate`), a mythic's clip loops in place of its picture; elsewhere only a light clip does, once on screen. */}
           {form.clip && clipFailed !== form.clip && (animate || (motion && form.clipLight && inView)) ? (
             <video
@@ -182,7 +195,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         )}
         {prism && (
           <>
-            <div className="card-prism pointer-events-none absolute inset-0" />
+            <div className={`${omni ? 'card-omni-foil' : 'card-prism'} pointer-events-none absolute inset-0`} />
             <div className="card-glitter pointer-events-none absolute inset-0" />
             {/* Sparks drifting up through the card. */}
             <div className={`card-sparks pointer-events-none absolute inset-0 ${omni ? 'card-sparks-gold' : ''}`} />
@@ -203,6 +216,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
           ✦ MYTHIC
         </span>
+      )}
+      {/* Up close, in 3D: rings of fire orbiting the card, in front and behind, and embers at every depth. */}
+      {omni && depth && (
+        <>
+          <div className="card-omni-ring card-omni-ring-1" />
+          <div className="card-omni-ring card-omni-ring-2" />
+          {EMBERS.map((e, i) => (
+            <span key={i} className="card-omni-ember" style={{ left: `${e.x}%`, top: `${e.y}%`, transform: `translateZ(${e.z}px)`, animationDelay: `${i * -0.6}s` }} />
+          ))}
+        </>
       )}
       {omni && (
         <span className="card-omni-crown absolute left-1/2 top-[-4.5cqw] -translate-x-1/2 whitespace-nowrap rounded-full px-[4.5cqw] py-[1.2cqw] font-display text-[5.2cqw] font-black tracking-[0.3em] shadow-lg" style={lift(50)}>
@@ -228,7 +251,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
 export function CardBack({ rarity }: { rarity?: Rarity }) {
   return (
     <div
-      className={`relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] bg-[#1b1530] [container-type:inline-size] ${rarity === 'mythic' || rarity === 'omni' ? 'card-mythic-back border-transparent' : 'border-[#a78bfa]'}`}
+      className={`relative grid aspect-[5/7] w-full place-items-center rounded-[7%] border-[3px] bg-[#1b1530] [container-type:inline-size] ${rarity === 'omni' ? 'card-omni-back border-transparent' : rarity === 'mythic' ? 'card-mythic-back border-transparent' : 'border-[#a78bfa]'}`}
       style={{ boxShadow: rarity ? RARITY_STYLE[rarity].glow : undefined, backgroundImage: rarity === 'mythic' || rarity === 'omni' ? undefined : 'repeating-linear-gradient(45deg, rgba(167,139,250,.12) 0 6px, transparent 6px 12px)' }}
     >
       <span className="font-display text-[22cqw] font-bold text-[#c4b5fd]">✦</span>

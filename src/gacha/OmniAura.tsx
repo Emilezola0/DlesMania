@@ -1,12 +1,12 @@
 // An equipped Omni card changes the whole site while it's on show (as the icon or the background):
-// an aurora drifts behind every page, a rainbow line glows under the header, the logo turns
-// gold-and-rainbow, the main buttons and panels catch a golden light — and a mouse leaves a trail of
-// sparkles. The player can turn it off (Account page).
+// an aurora drifts behind every page, a line of fire glows under the header, the logo burns crimson
+// and white, the main buttons and panels catch an ember light — and a mouse leaves a trail of
+// sparks. The player can turn it off (Account page).
 import { useEffect, useRef } from 'react';
 import { useProgress } from '../store/progress';
 import { CARD_BY_ID } from './cards';
 
-const SPARKS = ['#fff1a8', '#ff9ff3', '#9fdcff', '#ffffff', '#ffcd3c'];
+const SPARKS = ['#ff3b4e', '#ff7a18', '#ffb38a', '#ffffff'];
 
 /** Whether an Omni card is on show, owned, and its aura wanted. */
 export function useOmniAura(): boolean {

@@ -238,7 +238,8 @@ export function Layout() {
   const { pathname } = useLocation();
   const onBoss = pathname.startsWith('/boss');
   useApplyTheme(theme);
-  const equipped = useProgress((s) => !!(s.avatar || s.backdrop));
+  // A card on show, or a franchise's theme picked outright.
+  const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off')));
 
   return (
     <div className="flex min-h-screen flex-col">
