@@ -236,6 +236,8 @@ export interface PhaseResult {
   missed?: string[];
   /** Why the round was lost, when there is no list of missed answers (Name Chain). */
   reason?: string;
+  /** What the player got wrong: the names typed that didn't count, or the cards misjudged. */
+  tries?: string[];
 }
 
 /** One kind of thing in the Name Chain ("Character", "Planet", "Spell"...). */

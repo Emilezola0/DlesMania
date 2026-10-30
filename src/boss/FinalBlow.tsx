@@ -47,6 +47,8 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const [active, setActive] = useState(0);
   const [penalties, setPenalties] = useState(0);
   const [wrong, setWrong] = useState(0);
+  /** Every wrong name, with the face it was given for: this face's under the box, all of them after the round. */
+  const [tries, setTries] = useState<{ face: string; name: string }[]>([]);
   const [solved, setSolved] = useState<string | null>(null);
   const [over, setOver] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -90,13 +92,14 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
         setSolved(null);
         if (index + 1 >= targets.length) {
           setOver(true);
-          onDone({ won: true, correct: targets.length, wrong });
+          onDone({ won: true, correct: targets.length, wrong, tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
         } else setIndex(index + 1);
       }, 900);
     } else {
       sfx.wrong();
       onEvent(false);
       setWrong((w) => w + 1);
+      setTries((t) => [...t, { face: target.label, name: value.trim() }]);
       setPenalties((p) => p + 1);
       setShakeKey((k) => k + 1);
     }
@@ -105,7 +108,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const expire = () => {
     if (over || solved) return;
     setOver(true);
-    onDone({ won: false, correct: index, wrong, missed: [target.label] });
+    onDone({ won: false, correct: index, wrong, missed: [target.label], tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
   };
 
   const clear = solved || over;
@@ -202,6 +205,12 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
           </ul>
         )}
       </div>
+      {/* What was tried for this face, so a miss is never a mystery. */}
+      {tries.some((t) => t.face === target?.label) && (
+        <p className="text-center text-sm text-ink-soft">
+          Not it: {tries.filter((t) => t.face === target.label).map((t, i) => <span key={i} className="mx-1 font-semibold text-coral line-through">{t.name}</span>)}
+        </p>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import type { PhaseResult } from '../types';
 import { nextItem, type HlItem } from '../arcade/higherLower';
 import { oddRound } from '../arcade/oddOneOut';
 import type { SortCard } from '../arcade/quickSort';
@@ -44,6 +45,11 @@ function Header({ title, rule }: { title: string; rule: string }) {
   );
 }
 
+/** A lost room's note ends with what was tried, so a miss is never a mystery. */
+const tried = (names: string[]) => (names.length ? ` · You tried: ${names.join(', ')}` : '');
+/** And with the answers there were to give, a few of them. */
+const couldHave = (names: string[], max = 8) => (names.length ? ` · The answers: ${names.slice(0, max).join(', ')}${names.length > max ? ` and ${names.length - max} more` : ''}` : '');
+
 /** Blurred portrait: name a character from a blurred, black-and-white picture. */
 export function PortraitRoom({ mods, onDone }: RoomProps) {
   const u = useMemo(() => pick(universesFor(mods.keys)), []);
@@ -68,8 +74,11 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
     sfx.wrong();
     const w = [...wrong, id];
     setWrong(w);
-    if (w.length >= allowance(tries, mods)) end(false, `It was ${shownName(target.name)}`);
+    if (w.length >= allowance(tries, mods)) end(false, `It was ${shownName(target.name)}${tried(w.map(nameOf))}`);
   };
+  function nameOf(id: string) {
+    return shownName(u.targets.find((t) => t.id === id)?.name ?? id);
+  }
   return (
     <div className="space-y-4">
       <Header title={`${u.icon} ${u.label}`} rule="Who is this?" />
@@ -82,7 +91,7 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
         <img src={target.image} alt="" draggable={false} className="size-full object-cover object-top transition-[filter] duration-700" style={{ filter: over ? 'none' : `blur(${blur}px) grayscale(1)` }} />
       </div>
       {mods.lantern && !over && <p className="text-center font-display font-bold">🏮 Starts with “{target.name[0]}”</p>}
-      <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — ${shownName(target.name)}`)} />
+      <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — it was ${shownName(target.name)}${tried(wrong.map(nameOf))}`)} />
       {!over && <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder="Who is it?" showImages={false} />}
       <p className="text-center text-xs text-ink-faint">{allowance(tries, mods) - wrong.length} tries left</p>
     </div>
@@ -218,7 +227,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
     const forgiven = w.length <= mods.forgive;
     if (!forgiven && shown >= max) {
       setOver(true);
-      return onDone({ won: false, perfect: false, note: `It was ${shownName(target.name)}` });
+      return onDone({ won: false, perfect: false, note: `It was ${shownName(target.name)}${tried(w.map((x) => shownName(u.targets.find((t) => t.id === x)?.name ?? x)))}` });
     }
     if (!forgiven) setShown((s) => Math.min(max, s + 1));
   };
@@ -306,6 +315,8 @@ export function Name5Room({ mods, onDone }: RoomProps) {
   const list = useMemo(() => pick(listsFor(mods.keys)), []);
   // A name more and three seconds fewer each act (never more names than the list has).
   const need = Math.min(list.answers.length, 12, (mods.hard ? 7 : 5) + Math.floor(mods.level));
+  /** Names typed that didn't count. */
+  const misses = useRef<string[]>([]);
   const seconds = Math.max(25, (mods.hard ? 45 : 50) - 3 * Math.floor(mods.level)) + mods.bonusSeconds;
   const [found, setFound] = useState<string[]>([]);
   const [text, setText] = useState('');
@@ -332,12 +343,16 @@ export function Name5Room({ mods, onDone }: RoomProps) {
   const onEnter = () => {
     const m = matchAnswer(prompt, text, new Set(found), true);
     if (m && !m.already) accept(m.name);
-    else (sfx.wrong(), setText(''));
+    else {
+      if (text.trim() && !m?.already) misses.current = [...misses.current, text.trim()];
+      sfx.wrong();
+      setText('');
+    }
   };
   return (
     <div className="space-y-4">
       <Header title={`📝 ${list.franchise}`} rule={`Name ${need}: ${list.title} — ${found.length}/${need}`} />
-      <TimerBar total={seconds * 1000} running={!over} onExpire={() => !over && (setOver(true), onDone({ won: false, perfect: false, note: `${found.length}/${need} ${list.title.toLowerCase()}` }))} />
+      <TimerBar total={seconds * 1000} running={!over} onExpire={() => !over && (setOver(true), onDone({ won: false, perfect: false, note: `${found.length}/${need} ${list.title.toLowerCase()}${couldHave(list.answers.map((a) => a.name).filter((n) => !found.includes(n)).map((n) => shownName(n)))}${tried(misses.current)}` }))} />
       <input
         ref={input}
         value={text}
@@ -380,7 +395,8 @@ export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; o
     const seen = new Set<string>();
     return [...finaleFaces(boss), ...boss.radar.members].filter((c) => !seen.has(c.label) && seen.add(c.label)).sort((a, b) => a.label.localeCompare(b.label));
   }, [boss]);
-  const done = (won: boolean, correct: number) => onDone({ won, perfect: won, note: `${boss.boss.name} ${won ? 'defeated' : 'stood firm'} (${correct} right)` });
+  const done = (r: PhaseResult) =>
+    onDone({ won: r.won, perfect: r.won, note: `${boss.boss.name} ${r.won ? 'defeated' : 'stood firm'} (${r.correct} right)${r.won ? '' : couldHave((r.missed ?? []).map((n) => shownName(n)))}${r.won ? '' : tried(r.tries ?? [])}` });
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-center gap-3">
@@ -391,9 +407,9 @@ export function BossRoom({ act, keys, onDone }: { act: number; keys: string[]; o
         </div>
       </div>
       {act % 2 === 1 ? (
-        <KnowledgeBlitz prompt={blitz} difficulty={d} loop={0} onEvent={() => {}} onDone={(r) => done(r.won, r.correct)} />
+        <KnowledgeBlitz prompt={blitz} difficulty={d} loop={0} onEvent={() => {}} onDone={done} />
       ) : (
-        <FinalBlow targets={finale} pool={pool} difficulty={d} loop={0} onEvent={() => {}} onDone={(r) => done(r.won, r.correct)} />
+        <FinalBlow targets={finale} pool={pool} difficulty={d} loop={0} onEvent={() => {}} onDone={done} />
       )}
     </div>
   );

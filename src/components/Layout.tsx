@@ -325,17 +325,6 @@ export function Layout() {
           Omnidle — a daily pop-culture challenge across games, anime, cinema &amp; music. Progress is saved in your browser.
         </p>
         <p className="mt-1">A fan project; all works, images and clips belong to their respective owners.</p>
-        <p className="mt-1 text-[11px]">
-          Mythic Howitzer's shot: “Sexton artillery firing” by LouiseBrown1981,{' '}
-          <a href="https://commons.wikimedia.org/wiki/File:Sexton_artillery_firing.oga" className="underline" target="_blank" rel="noreferrer">
-            Wikimedia Commons
-          </a>
-          ,{' '}
-          <a href="https://creativecommons.org/licenses/by-sa/3.0/" className="underline" target="_blank" rel="noreferrer">
-            CC BY-SA 3.0
-          </a>
-          , cut to the shot.
-        </p>
       </footer>
     </div>
   );

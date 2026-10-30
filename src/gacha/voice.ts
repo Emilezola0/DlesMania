@@ -2,7 +2,9 @@
 // their voice files), else the browser's own voice — the most natural one it has, of the right
 // gender and accent, pitched and paced for each star (a slow, low Yoda; a quick, bright Naruto).
 // Silent when the sound is off; a recording that can't play (some browsers can't read .ogg) falls
-// back to the browser's voice.
+// back to the browser's voice. A recording can also be a moment of a YouTube video:
+// "youtube:VIDEO_ID@start-end" (seconds), played in a hidden player.
+import { loadYouTube, YT_ENDED, YT_PLAYING, type YTPlayer } from '../lib/youtube';
 import { useProgress } from '../store/progress';
 import type { Card } from './cards';
 
@@ -71,6 +73,62 @@ function say(line: string, set: string) {
 
 let playing: HTMLAudioElement | null = null;
 
+/** A voice line kept on YouTube: "youtube:VIDEO_ID@54-57" plays seconds 54 to 57 of that video. */
+const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
+let ytVoice: { host: HTMLElement; player?: YTPlayer; timer?: number } | null = null;
+
+function stopYouTubeVoice() {
+  if (!ytVoice) return;
+  window.clearTimeout(ytVoice.timer);
+  ytVoice.player?.destroy();
+  ytVoice.host.remove();
+  ytVoice = null;
+}
+
+/** Plays start..end of a YouTube video, out of sight; `fallback` if it can't (embedding off, blocked, offline). */
+function playYouTubeVoice(id: string, start: number, end: number, volume: number, fallback: () => void) {
+  stopYouTubeVoice();
+  const host = document.createElement('div');
+  // Out of sight but full size: YouTube won't play in a player smaller than 200×200.
+  host.style.cssText = 'position:fixed;left:-9999px;top:0;width:200px;height:200px;opacity:0;pointer-events:none';
+  const el = document.createElement('div');
+  host.appendChild(el);
+  document.body.appendChild(host);
+  const me: { host: HTMLElement; player?: YTPlayer; timer?: number } = { host };
+  ytVoice = me;
+  let failed = false;
+  const fail = () => {
+    if (failed) return;
+    failed = true;
+    if (ytVoice === me) stopYouTubeVoice();
+    fallback();
+  };
+  loadYouTube()
+    .then((YT) => {
+      if (ytVoice !== me) return;
+      me.player = new YT.Player(el, {
+        videoId: id,
+        width: '200',
+        height: '200',
+        playerVars: { start: Math.floor(start), end: Math.ceil(end), autoplay: 1, controls: 0, playsinline: 1, disablekb: 1 },
+        events: {
+          onReady: () => {
+            me.player?.setVolume(volume);
+            me.player?.seekTo(start, true);
+            me.player?.playVideo();
+          },
+          onStateChange: (e) => {
+            // The clip's length from the moment it really starts (it may buffer first), then it goes.
+            if (e.data === YT_PLAYING && !me.timer) me.timer = window.setTimeout(() => ytVoice === me && stopYouTubeVoice(), (end - start) * 1000 + 250);
+            if (e.data === YT_ENDED && ytVoice === me) stopYouTubeVoice();
+          },
+          onError: fail,
+        },
+      });
+    })
+    .catch(fail);
+}
+
 /**
  * A card's voice line, heard: its recording if it has one, else the browser's voice. Silent when the
  * sound is off, or when voice lines are (Account page) unless the player asked for it (`asked`: the 🔊 button).
@@ -79,7 +137,10 @@ export function playVoice(card: Card, asked = false) {
   const st = useProgress.getState();
   if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return;
   playing?.pause();
+  stopYouTubeVoice();
   if (!card.audio) return say(card.voice, card.set);
+  const yt = YT_VOICE.exec(card.audio);
+  if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(card.voice!, card.set));
   const a = new Audio(card.audio);
   a.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
   playing = a;

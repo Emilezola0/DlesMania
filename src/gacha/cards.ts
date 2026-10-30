@@ -94,14 +94,13 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   },
   forhonor: { name: 'Centurion', title: 'The Legion\'s Fist', line: 'Gladius, fists and a voice that carries over the whole battlefield: he breaks your guard, then your will.', voice: 'INCREDIBILIS!', audio: 'https://www.myinstants.com/media/sounds/for-honor-incredibilis.mp3' },
   // Forts' mythic is the Howitzer (it was Eagle Eye, who took the Howitzer's place as a legendary): its
-  // voice is a howitzer firing — the shot of a 25-pounder Sexton (Wikimedia Commons, LouiseBrown1981, CC BY-SA 3.0),
-  // cut to the blast and its echo.
+  // voice is the game's own howitzer shot, from "The sounds of Forts" on YouTube (0:54–0:57).
   forts: {
     name: 'Howitzer',
     title: 'The Big Gun',
     line: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
     voice: 'BOOM!',
-    audio: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/5/57/Sexton_artillery_firing.oga/Sexton_artillery_firing.oga.mp3#t=12.6,16',
+    audio: 'youtube:rKj_ebK1T5E@54-57',
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },

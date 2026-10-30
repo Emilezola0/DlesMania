@@ -27,6 +27,8 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
   const [text, setText] = useState('');
   const [note, setNote] = useState<{ text: string; good: boolean; key: number } | null>(null);
   const [wrong, setWrong] = useState(0);
+  /** The names typed that weren't on the list, shown after the round. */
+  const tries = useRef<string[]>([]);
   /** Answers a half-typed name could be ("Kakashi" → Kakashi Hatake), offered instead of a miss. */
   const [maybe, setMaybe] = useState<string[]>([]);
   const [over, setOver] = useState(false);
@@ -42,7 +44,8 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
       won,
       correct: list.length,
       wrong,
-      missed: won ? undefined : prompt.answers.filter((a) => !list.includes(a.name)).slice(0, 6).map((a) => a.name),
+      missed: won ? undefined : prompt.answers.filter((a) => !list.includes(a.name)).map((a) => a.name),
+      tries: tries.current,
     });
   };
 
@@ -78,6 +81,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     }
     {
       setWrong((w) => w + 1);
+      tries.current = [...tries.current, value.trim()];
       setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
       sfx.wrong();
       onEvent(false);

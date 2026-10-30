@@ -64,6 +64,8 @@ function Clutter({ seeds, fast }: { seeds: number[]; fast: boolean }) {
 export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, onDone }: Props) {
   const [index, setIndex] = useState(0);
   const [errors, setErrors] = useState(0);
+  /** The cards misjudged, for the list after the round. */
+  const [tries, setTries] = useState<string[]>([]);
   const [correct, setCorrect] = useState(0);
   const [fling, setFling] = useState<Fling | null>(null);
   const [drag, setDrag] = useState(0);
@@ -110,6 +112,8 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
     const nextCorrect = correct + (ok ? 1 : 0);
     setErrors(nextErrors);
     setCorrect(nextCorrect);
+    const nextTries = ok ? tries : [...tries, `${shownName(card.label)} ${card.belongs ? 'belonged' : 'was an impostor'}${early ? ' (too early)' : zone === null ? ' (too slow)' : ''}`];
+    setTries(nextTries);
     // On a timeout the card leaves the way it should have gone.
     const shownZone: Zone = zone ?? (card.belongs ? belongsZone(card) : belongsZone(card) === 'right' ? 'left' : 'right');
     setFling({ card, zone: shownZone, correct: ok, note: early ? 'Too early!' : zone === null ? 'Too slow!' : undefined });
@@ -121,10 +125,10 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
       setFling(null);
       if (nextErrors > maxErrors) {
         setOver(true);
-        onDone({ won: false, correct: nextCorrect, wrong: nextErrors });
+        onDone({ won: false, correct: nextCorrect, wrong: nextErrors, tries: nextTries });
       } else if (index + 1 >= cards.length) {
         setOver(true);
-        onDone({ won: true, correct: nextCorrect, wrong: nextErrors });
+        onDone({ won: true, correct: nextCorrect, wrong: nextErrors, tries: nextTries });
       } else setIndex(index + 1);
     }, 520);
   };

@@ -85,7 +85,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   const [attempt, setAttempt] = useState(0);
   const [hearts, setHearts] = useState(d.hearts);
   const [line, setLine] = useState<Line>({ text: boss.lines.intro, key: 0, mood: 'taunt' });
-  const [last, setLast] = useState<{ won: boolean; missed?: string[]; reason?: string } | null>(null);
+  const [last, setLast] = useState<{ won: boolean; missed?: string[]; reason?: string; tries?: string[] } | null>(null);
   const [tally, setTally] = useState({ correct: 0, wrong: 0 });
   const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean } | null>(null);
   /** Hard's secret phase, set up when the main life bar empties. */
@@ -131,7 +131,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   const onPhaseDone = (r: PhaseResult) => {
     const t = { correct: tally.correct + r.correct, wrong: tally.wrong + r.wrong };
     setTally(t);
-    setLast({ won: r.won, missed: r.missed, reason: r.reason });
+    setLast({ won: r.won, missed: r.missed, reason: r.reason, tries: r.tries });
     if (phase === 0) markSeen(scope('prompts'), [content.blitz.prompt]);
     if (phase === 1) markSeen(scope('radar'), content.radar.filter((c) => c.belongs).map((c) => c.label));
     if (phase === 2) markSeen(scope('faces'), content.finale.map((c) => c.label));
@@ -434,7 +434,6 @@ function BossBattle({ boss }: { boss: Boss }) {
               <div className="space-y-1">
                 <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">You took a hit — {hearts} heart{hearts === 1 ? '' : 's'} left</p>
                 {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
-                {last.missed?.length ? <p className="text-sm text-ink-soft">You could have named: {last.missed.map((n) => shownName(n)).join(', ')}</p> : null}
               </div>
             )}
             {last?.won && (
@@ -442,6 +441,7 @@ function BossBattle({ boss }: { boss: Boss }) {
                 {round > 0 ? 'A blow lands — again!' : 'Phase broken — the guardian staggers!'}
               </p>
             )}
+            {last && <RoundReview missed={last.won ? undefined : last.missed} tries={last.tries} onBook={() => setBook(true)} />}
             <p className="font-display text-xs uppercase tracking-[0.4em] text-ink-faint">{attempt > 0 ? 'Again —' : 'Now entering'}</p>
             <h2 className="boss-phase-title font-display text-6xl font-bold tracking-[0.15em] sm:text-7xl">PHASE {info.roman}</h2>
             <p className="font-display text-xl font-semibold tracking-wider">
@@ -519,6 +519,12 @@ function BossBattle({ boss }: { boss: Boss }) {
               ))}
               {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">★ New best score</span>}
             </p>
+            {stage === 'lost' && last && !last.won && (
+              <div className="space-y-1">
+                {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
+                <RoundReview missed={last.missed} tries={last.tries} onBook={() => setBook(true)} />
+              </div>
+            )}
             {signature && secretResult && (
               <p className={`font-display text-sm font-bold tracking-wider ${secretResult.won ? 'text-hit' : 'text-coral'}`}>
                 {secretResult.won
@@ -538,6 +544,40 @@ function BossBattle({ boss }: { boss: Boss }) {
         )}
       </div>
       {book && <AnswerBook boss={boss} onClose={() => setBook(false)} />}
+    </div>
+  );
+}
+
+/** How many answers a round's review lists before pointing to the book of answers. */
+const REVIEW_MAX = 12;
+
+/**
+ * After a round: the answers that were there to give (when it was lost) and what the player got wrong —
+ * every name typed that didn't count, or the cards misjudged — so a miss is never a mystery.
+ */
+function RoundReview({ missed, tries, onBook }: { missed?: string[]; tries?: string[]; onBook: () => void }) {
+  if (!missed?.length && !tries?.length) return null;
+  const more = (missed?.length ?? 0) - REVIEW_MAX;
+  return (
+    <div className="mx-auto max-w-lg space-y-1 text-sm">
+      {missed?.length ? (
+        <p className="text-ink-soft">
+          <b className="text-ink">The answer{missed.length === 1 ? '' : 's'}:</b> {missed.slice(0, REVIEW_MAX).map((n) => shownName(n)).join(', ')}
+          {more > 0 && (
+            <>
+              {' '}
+              <button type="button" onClick={onBook} className="underline hover:text-ink">
+                and {more} more
+              </button>
+            </>
+          )}
+        </p>
+      ) : null}
+      {tries?.length ? (
+        <p className="text-ink-soft">
+          <b className="text-coral">You tried:</b> {tries.join(' · ')}
+        </p>
+      ) : null}
     </div>
   );
 }
