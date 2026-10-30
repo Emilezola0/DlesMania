@@ -94,13 +94,22 @@ export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 
+/** The rarity of a card: the hardest to get is tried first (Omni, then Mythic, and so on), Common last. */
 const rollRarity = (odds: Record<Rarity, number>, rand: () => number, atLeast: Rarity = 'common'): Rarity => {
-  const allowed = RARITIES.slice(RARITIES.indexOf(atLeast));
+  const allowed = RARITIES.slice(RARITIES.indexOf(atLeast)).reverse();
   const total = allowed.reduce((t, r) => t + odds[r], 0);
   let x = rand() * total;
   for (const r of allowed) if ((x -= odds[r]) < 0) return r;
   return allowed[allowed.length - 1];
 };
+
+/** One of these cards: every franchise among them has the same chance, however many cards it has, then every card of it. */
+function drawFairly(cards: Card[], rand: () => number): Card {
+  const sets = [...new Set(cards.map((c) => c.set))];
+  const set = sets[Math.floor(rand() * sets.length)];
+  const own = cards.filter((c) => c.set === set);
+  return own[Math.floor(rand() * own.length)];
+}
 
 /** Five cards from a pack; the last one is at least rare. A rarity the pool lacks falls to the next one down. */
 export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1): Card[] {
@@ -116,7 +125,7 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
       r = RARITIES[RARITIES.indexOf(r) - 1];
       cands = of(r);
     }
-    const card = cands[Math.floor(rand() * cands.length)];
+    const card = drawFairly(cands, rand);
     taken.add(card.id);
     return card;
   }).sort((a, b) => RARITIES.indexOf(a.rarity) - RARITIES.indexOf(b.rarity));
