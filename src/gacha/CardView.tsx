@@ -52,6 +52,8 @@ export function useCardForm(card: Card): { image: string; title?: string; descri
  */
 export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number }) {
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
+  // The voice line in the names' language (a French dub's when the card has one).
+  const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
   const grade = given ?? owned;
   const st = RARITY_STYLE[card.rarity];
   const ref = useRef<HTMLDivElement>(null);
@@ -111,7 +113,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
           {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
             <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">
-              “{card.voice}”
+              “{voiceLine}”
             </p>
           )}
         </div>

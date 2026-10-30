@@ -138,14 +138,21 @@ export function playVoice(card: Card, asked = false) {
   if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return;
   playing?.pause();
   stopYouTubeVoice();
-  if (!card.audio) return say(card.voice, card.set);
-  const yt = YT_VOICE.exec(card.audio);
-  if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(card.voice!, card.set));
-  const a = new Audio(card.audio);
+  const { line, audio } = voiceOf(card, st.nameLang);
+  if (!audio) return say(line!, card.set);
+  const yt = YT_VOICE.exec(audio);
+  if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(line!, card.set));
+  const a = new Audio(audio);
   a.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
   playing = a;
-  a.play().catch(() => say(card.voice!, card.set));
-  a.onerror = () => say(card.voice!, card.set);
+  a.play().catch(() => say(line!, card.set));
+  a.onerror = () => say(line!, card.set);
+}
+
+/** A card's line and recording in the language names are shown in (the French dub's when it has one). */
+export function voiceOf(card: Card, lang = useProgress.getState().nameLang): { line?: string; audio?: string } {
+  const fr = lang === 'fr';
+  return { line: (fr && card.voiceFr) || card.voice, audio: (fr && card.audioFr) || card.audio };
 }
 
 /** Whether a card can be heard at all (a recording, or a browser that speaks). */

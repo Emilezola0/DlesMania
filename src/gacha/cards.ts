@@ -47,6 +47,9 @@ export interface Card {
   voice?: string;
   /** The real recording of it, when there is one; else the browser reads it. */
   audio?: string;
+  /** The French dub's line and recording, heard (and shown) when names are in French. */
+  voiceFr?: string;
+  audioFr?: string;
   /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard. */
   awaken?: { title: string; image: string; line: string };
   /**
@@ -63,7 +66,7 @@ export interface Card {
  * voice line: their catchphrase in their voice actor's own voice — the games' voice files (hosted
  * by the fan wikis), the anime's Japanese voices and the films' actors (clips from myinstants). (Lines written for these cards; titles and catchphrases from the franchises.)
  */
-const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; image?: string }> = {
+const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceFr?: string; audioFr?: string; image?: string }> = {
   lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "A clever fox is never caught.", audio: "https://static.wikia.nocookie.net/leagueoflegends/images/5/5e/Ahri_Select.ogg/revision/latest?cb=20230110210107" },
   overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000" },
   minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…", audio: "https://minecraft.wiki/images/Creeper_fuse.ogg?2ff0e" },
@@ -108,19 +111,21 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
 
 /**
  * A second mythic for every franchise, added later (ids `<set>:mythic-2`): another star's special
- * edition, its picture the star's own card unless given. Doomfist's line is his own voice (a
- * YouTube clip); the others are read in the browser's voice. (Lines written for these cards;
+ * edition, its picture the star's own card unless given. Doomfist's line is his own voice (the
+ * Overwatch wiki's file; in French, a YouTube clip); the others are read in the browser's voice. (Lines written for these cards;
  * titles and catchphrases from the franchises.)
  */
-const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; image?: string }> = {
+const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceFr?: string; audioFr?: string; image?: string }> = {
   lol: { name: 'Jinx', title: 'The Loose Cannon', line: 'Two guns, one rocket launcher and zero plans — Piltover has never been so loud.', voice: 'Get excited!' },
   overwatch: {
     name: 'Doomfist',
     title: 'The Successor',
     line: 'He leaps, the sky goes dark, and one gauntlet comes down like a falling star.',
     voice: 'Meteor Strike!',
-    // His Meteor Strike from an Overwatch 2 highlight (YouTube, 1:31–1:33).
-    audio: 'youtube:xVx84MP6tDA@91-93',
+    audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/54/Doomfist_-_Meteor_strike.ogg/revision/latest?cb=20230913153702',
+    // In French, his Frappe météore from an Overwatch 2 highlight (YouTube, 1:31–1:33).
+    voiceFr: 'Frappe météore !',
+    audioFr: 'youtube:xVx84MP6tDA@91-93',
   },
   minecraft: { name: 'Warden', title: 'The Deep Dark', line: 'Blind, patient, listening: one careless footstep in the Deep Dark and it is already coming.', voice: 'Sniff… sniff…' },
   onepiece: { name: 'Roronoa Zoro', title: 'The Pirate Hunter', line: 'Three swords, no sense of direction, and a promise to be the greatest swordsman alive.', voice: 'Santōryū!' },
@@ -605,7 +610,7 @@ export const CARDS: Card[] = (() => {
     // The mythic: the star's special edition, numbered after the rest of the set.
     const m = MYTHICS[b.id];
     const star = m && b.radar.members.find((x) => x.label === m.name);
-    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: m.image ?? star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
+    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: m.image ?? star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
     // The omni: the legend in its first form, its second waiting for a Hard win.
     const o = OMNIS[b.id];
     const legend = o && b.radar.members.find((x) => x.label === o.name);
@@ -650,7 +655,7 @@ export const CARDS: Card[] = (() => {
     const set = sets.get(b.id)!;
     const m = MYTHICS_2[b.id];
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
-    if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, description: m.line });
+    if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
   }
   return BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => ({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();

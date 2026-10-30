@@ -8,7 +8,7 @@ import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
-import { playVoice } from './voice';
+import { playVoice, voiceOf } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -133,7 +133,7 @@ export function CardReactions() {
       if (kind !== 'great' && (now - last.current < 6000 || Math.random() > 0.45)) return;
       last.current = now;
       const lines = CHARACTER_LINES[avatar.name] ?? REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
-      const text = kind === 'great' && avatar.voice ? avatar.voice : pick(kind === 'bad' ? lines.bad : lines.good);
+      const text = kind === 'great' && avatar.voice ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
       setBubble({ kind, text, key: now });
       // A mythic's big moment: its voice line, heard.
       if (kind === 'great' && avatar.voice) playVoice(avatar);
