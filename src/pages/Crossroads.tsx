@@ -9,6 +9,7 @@ import {
   ROUNDS_PER_BOARD,
   TOP,
   boardGoals,
+  CROSS_FRANCHISES,
   crowded,
   fallPoint,
   fallSpeed,
@@ -27,9 +28,12 @@ import { Spinner } from '../components/Spinner';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { useImagesReady } from '../lib/images';
 import { sfx } from '../lib/sfx';
+import { Customise, useCustomPicks } from '../components/Customise';
+import { franchiseOptions } from '../lib/customOptions';
 import { useProgress } from '../store/progress';
 
 const BEST_KEY = 'cross:score';
+const CROSS_OPTIONS = franchiseOptions(new Set(CROSS_FRANCHISES));
 /** How close to a line a stroke has to start and end to count, in SVG units. */
 const SNAP = 42;
 const PAUSE_MS = 1100;
@@ -43,15 +47,15 @@ interface Board {
   played: number;
 }
 
-const newBoard = (score: number): Board => ({ goals: boardGoals(linesFor(score)), bridges: [], played: 0 });
+const newBoard = (score: number, allowed?: string[]): Board => ({ goals: boardGoals(linesFor(score), Math.random, allowed), bridges: [], played: 0 });
 const randomLine = (lines: number) => Math.floor(Math.random() * lines);
 
 
-function Game() {
-  const best = useProgress((s) => s.bests[BEST_KEY] ?? 0);
+function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
+  const best = useProgress((s) => s.bests[bestKey] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const lang = useProgress((s) => s.nameLang);
-  const [board, setBoardState] = useState<Board>(() => newBoard(0));
+  const [board, setBoardState] = useState<Board>(() => newBoard(0, allowed));
   const [who, setWho] = useState<Traveller>(() => nextTraveller(board.goals, []));
   const [fall, setFall] = useState<Fall>(() => fallStart(randomLine(board.goals.length)));
   const [phase, setPhase] = useState<Phase>('ready');
@@ -108,7 +112,7 @@ function Game() {
       celebrate();
       const s = score + 1;
       setScore(s);
-      recordBest(BEST_KEY, s, { save: true });
+      recordBest(bestKey, s, { save: true });
       window.setTimeout(() => nextRound(s), PAUSE_MS);
       return;
     }
@@ -120,7 +124,7 @@ function Game() {
     window.setTimeout(() => {
       setPhase('over');
       // The run's end: a coin a couple of landings.
-      recordBest(BEST_KEY, score, { reached: score / 2 });
+      recordBest(bestKey, score, { reached: score / 2 });
       if (score > bestBefore.current) (sfx.streak(), celebrateBig());
     }, PAUSE_MS);
   };
@@ -129,7 +133,7 @@ function Game() {
     recent.current = [who.name, ...recent.current].slice(0, 8);
     let b = { ...boardRef.current, played: boardRef.current.played + 1 };
     if (b.played >= ROUNDS_PER_BOARD) {
-      b = newBoard(s);
+      b = newBoard(s, allowed);
       setNote('New crossroads: the bridges are cleared.');
     } else setNote(null);
     setBoard(b);
@@ -145,7 +149,7 @@ function Game() {
   };
   const restart = () => {
     sfx.click();
-    const b = newBoard(0);
+    const b = newBoard(0, allowed);
     recent.current = [];
     bestBefore.current = Math.max(bestBefore.current, score);
     setBoard(b);
@@ -295,6 +299,7 @@ function Game() {
 
 /** /crossroads */
 export default function Crossroads() {
+  const { picks, setPicks, custom } = useCustomPicks('omnidle-custom-crossroads', CROSS_OPTIONS);
   return (
     <div className="space-y-6">
       <div className="mx-auto max-w-2xl">
@@ -308,7 +313,10 @@ export default function Crossroads() {
           bridges stay for the next characters, and are cleared every {ROUNDS_PER_BOARD}; every point makes the fall a little quicker.
         </p>
       </div>
-      <Game />
+      <div className="mx-auto max-w-2xl">
+        <Customise options={CROSS_OPTIONS} picks={picks} onChange={setPicks} min={2} />
+      </div>
+      {picks.length >= 2 && <Game key={picks.join(',')} allowed={picks} bestKey={custom ? 'cross:custom' : BEST_KEY} />}
     </div>
   );
 }

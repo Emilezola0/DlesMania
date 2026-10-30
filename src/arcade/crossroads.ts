@@ -57,11 +57,12 @@ export const linesFor = (score: number) => (score >= 25 ? 6 : score >= 10 ? 5 : 
 const SKIP = new Set(['smash']);
 
 /** The best-known faces of each franchise (a boss's radar members come best-known first). */
-const POOL: { franchise: string; people: Traveller[] }[] = (() => {
+const POOL: { id: string; franchise: string; people: Traveller[] }[] = (() => {
   const count = new Map<string, number>();
   for (const b of BOSSES) for (const m of b.radar.members) count.set(m.label, (count.get(m.label) ?? 0) + 1);
   return BOSSES.filter((b) => !SKIP.has(b.id))
     .map((b) => ({
+      id: b.id,
       franchise: b.franchise,
       people: b.radar.members
         .filter((m) => m.image && count.get(m.label) === 1)
@@ -72,7 +73,13 @@ const POOL: { franchise: string; people: Traveller[] }[] = (() => {
 })();
 
 /** The franchises at the bottom of a new board. */
-export const boardGoals = (lines: number, rand: () => number = Math.random) => shuffle(POOL, rand).slice(0, lines).map((f) => f.franchise);
+export const boardGoals = (lines: number, rand: () => number = Math.random, allowed?: string[]) =>
+  shuffle(allowed ? POOL.filter((f) => allowed.includes(f.id)) : POOL, rand)
+    .slice(0, lines)
+    .map((f) => f.franchise);
+
+/** The franchises a board can be made of (Customise picks among them), by Boss Battle id. */
+export const CROSS_FRANCHISES = POOL.map((f) => f.id);
 
 /** Someone from one of the board's franchises, not one of the last few seen. */
 export function nextTraveller(goals: string[], recent: string[], rand: () => number = Math.random): Traveller {

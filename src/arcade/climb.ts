@@ -16,6 +16,8 @@ export interface Face {
   image: string;
   /** What can be typed to grab it, compacted (see `compact`). */
   spellings: string[];
+  /** Its franchise: the Boss Battle id (Customise picks by it). */
+  set: string;
 }
 
 export interface Hold {
@@ -80,9 +82,9 @@ function spellingsOf(name: string, aliases: string[] = [], fr?: string): string[
 /** Every well-known face of the Boss Battle franchises, once each. */
 export const FACES: Face[] = (() => {
   const seen = new Set<string>();
-  return BOSSES.flatMap((b) => b.radar.members)
-    .filter((m) => m.image && !seen.has(m.label) && seen.add(m.label))
-    .map((m) => ({ name: m.label, fr: m.fr, image: m.image!, spellings: spellingsOf(m.label, [...(m.aliases ?? []), ...(m.fr ? [m.fr] : [])], m.fr) }));
+  return BOSSES.flatMap((b) => b.radar.members.map((m) => ({ m, set: b.id })))
+    .filter(({ m }) => m.image && !seen.has(m.label) && seen.add(m.label))
+    .map(({ m, set }) => ({ name: m.label, fr: m.fr, image: m.image!, spellings: spellingsOf(m.label, [...(m.aliases ?? []), ...(m.fr ? [m.fr] : [])], m.fr), set }));
 })();
 
 export const sectionOf = (y: number) => Math.floor(y / LEDGE_EVERY);
@@ -106,7 +108,7 @@ function kindFor(section: number, r: number): HoldKind {
  * The holds between one ledge and the next: rows every half metre or so, two or three holds a
  * row, spread across the wall. Same seed, same wall.
  */
-export function makeSection(section: number, seed: number, firstId: number): Hold[] {
+export function makeSection(section: number, seed: number, firstId: number, faces: Face[] = FACES): Hold[] {
   const rand = mulberry32(seed * 977 + section * 7919);
   const holds: Hold[] = [];
   const base = section * LEDGE_EVERY;
@@ -120,8 +122,8 @@ export function makeSection(section: number, seed: number, firstId: number): Hol
       if (xs.every((o) => Math.abs(o - x) > 0.75)) xs.push(x);
     }
     for (const x of xs) {
-      let face = FACES[Math.floor(rand() * FACES.length)];
-      for (let t = 0; t < 10 && recent.includes(face.name); t++) face = FACES[Math.floor(rand() * FACES.length)];
+      let face = faces[Math.floor(rand() * faces.length)];
+      for (let t = 0; t < 10 && recent.includes(face.name); t++) face = faces[Math.floor(rand() * faces.length)];
       recent.push(face.name);
       if (recent.length > 14) recent.shift();
       holds.push({ id: id++, x, y: y + (rand() - 0.5) * 0.12, kind: kindFor(section, rand()), face });

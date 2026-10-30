@@ -1,6 +1,9 @@
 import { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SIX_ROUNDS, SIX_THEMES, sixGraph, sixPuzzle, sixStars } from '../arcade/sixDegrees';
+import { Customise, useCustomPicks } from '../components/Customise';
+
+const SIX_OPTIONS = SIX_THEMES.map((t) => ({ key: t.id, label: t.theme }));
 import { shownName } from '../lib/french';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -16,14 +19,17 @@ function Tile({ label, image, tone = '', small = false }: { label: string; image
   );
 }
 
-function Run({ themeId, label, onExit }: { themeId: string; label: string; onExit: () => void }) {
+function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; onExit: () => void; mix?: string[] }) {
   const key = `six:${themeId}`;
+  // "Your mix" (Customise): each puzzle from one of the picked themes.
+  const pickTheme = () => (mix ? mix[Math.floor(Math.random() * mix.length)] : themeId);
+  const [themeNow, setThemeNow] = useState(pickTheme);
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
-  const g = sixGraph(themeId);
+  const g = sixGraph(themeNow);
   const images = useMemo(() => new Map(g.cards.map((c) => [c.label, c.image])), [g]);
   const [index, setIndex] = useState(0);
-  const [puzzle, setPuzzle] = useState(() => sixPuzzle(themeId));
+  const [puzzle, setPuzzle] = useState(() => sixPuzzle(themeNow));
   const [chain, setChain] = useState<string[]>(() => [puzzle.from]);
   const [wrong, setWrong] = useState(0);
   const [stars, setStars] = useState<number[]>([]);
@@ -76,7 +82,9 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
   };
   /** A new puzzle, its chain starting from its own first card. */
   const newPuzzle = () => {
-    const p = sixPuzzle(themeId);
+    const t = pickTheme();
+    setThemeNow(t);
+    const p = sixPuzzle(t);
     setPuzzle(p);
     setChain([p.from]);
     setWrong(0);
@@ -201,7 +209,8 @@ function Run({ themeId, label, onExit }: { themeId: string; label: string; onExi
 export default function SixDegrees() {
   const bests = useProgress((s) => s.bests);
   const [theme, setTheme] = useState<(typeof SIX_THEMES)[number] | null>(null);
-  if (theme) return <Run key={theme.id} themeId={theme.id} label={theme.theme} onExit={() => setTheme(null)} />;
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-six', SIX_OPTIONS);
+  if (theme) return <Run key={theme.id} themeId={theme.id} label={theme.theme} onExit={() => setTheme(null)} mix={theme.id === 'custom' ? picks : undefined} />;
   return (
     <div className="space-y-8">
       <div>
@@ -214,7 +223,18 @@ export default function SixDegrees() {
           with the last. Reach the target in as few steps as par for three stars. {SIX_ROUNDS} puzzles a run.
         </p>
       </div>
+      <Customise options={SIX_OPTIONS} picks={picks} onChange={setPicks} noun="theme" />
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {picks.length > 0 && (
+          <li>
+            <button type="button" onClick={() => (sfx.click(), setTheme({ id: 'custom', theme: 'Your mix' }))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-4 text-left ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="font-display text-lg font-bold">🎛 Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {picks.length} theme{picks.length === 1 ? '' : 's'} · {(bests['six:custom'] ?? 0) > 0 ? `Best: ${bests['six:custom']} / ${SIX_ROUNDS * 3} ★` : 'Not played yet'}
+              </span>
+            </button>
+          </li>
+        )}
         {SIX_THEMES.map((t) => (
           <li key={t.id}>
             <button type="button" onClick={() => (sfx.click(), setTheme(t))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-4 text-left ring-2 ring-accent/40 transition hover:-translate-y-0.5">

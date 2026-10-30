@@ -1,6 +1,9 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_UNIVERSES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
+import { Customise, useCustomPicks } from '../components/Customise';
+
+const WHO_OPTIONS = WHO_UNIVERSES.map((u) => ({ key: u.id, label: `${u.icon} ${u.label}` }));
 import { GuessInput } from '../components/GuessInput';
 import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
@@ -146,7 +149,14 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
 export default function WhoAmI() {
   const bests = useProgress((s) => s.bests);
   const [universe, setUniverse] = useState<WhoUniverse | null>(null);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-who', WHO_OPTIONS);
   if (universe) return <Run key={universe.id} universe={universe} onExit={() => setUniverse(null)} />;
+  /** "Your mix" (Customise): the picked universes as one, ids kept apart. */
+  const mix = (): WhoUniverse => {
+    const us = WHO_UNIVERSES.filter((u) => picks.includes(u.id));
+    const tag = (u: WhoUniverse) => (x: WhoUniverse['pool'][number]) => ({ ...x, id: `${u.id}:${x.id}` });
+    return { id: 'custom', label: 'Your mix', icon: '🎛', domain: us[0].domain, pool: us.flatMap((u) => u.pool.map(tag(u))), targets: us.flatMap((u) => u.targets.map(tag(u))) };
+  };
   return (
     <div className="space-y-8">
       <div>
@@ -159,7 +169,19 @@ export default function WhoAmI() {
           worth 100, and every extra clue or wrong name costs a little. {WHO_ROUNDS} characters a run.
         </p>
       </div>
+      <Customise options={WHO_OPTIONS} picks={picks} onChange={setPicks} noun="universe" />
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {picks.length > 0 && (
+          <li>
+            <button type="button" onClick={() => (sfx.click(), setUniverse(mix()))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-5 text-left ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="text-3xl">🎛</span>
+              <span className="font-display text-xl font-bold">Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {picks.length} universe{picks.length === 1 ? '' : 's'}{(bests['who:custom'] ?? 0) > 0 ? ` · best ${bests['who:custom']} / ${WHO_ROUNDS * 100}` : ''}
+              </span>
+            </button>
+          </li>
+        )}
         {WHO_UNIVERSES.map((u) => (
           <li key={u.id}>
             <button type="button" onClick={() => (sfx.click(), setUniverse(u))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-5 text-left ring-2 ring-accent/40 transition hover:-translate-y-0.5">

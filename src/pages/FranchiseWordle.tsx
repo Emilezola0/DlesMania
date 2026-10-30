@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { MAX_LETTERS, WORDLE_SETS, WORDLE_TRIES, didYouMean, lengthHint, markGuess, namesIn, wordleSet, type LetterMark, type WordleName } from '../arcade/wordle';
 import { NameLangSwitch } from '../components/NameLangSwitch';
 import { celebrateBig, shake } from '../lib/fx';
@@ -21,6 +22,9 @@ const HINT = {
 };
 /** Rows are as long as their guess: tiles shrink so the longest still fits a phone. */
 const tileSize = (cols: number) => `min(2.75rem, calc((min(100vw, 36rem) - 4.5rem) / ${cols} - 0.375rem))`;
+
+/** Sets to mix in "Your mix". */
+const WORDLE_OPTIONS = WORDLE_SETS.map((s) => ({ key: s.id, label: `${s.icon} ${s.label}` }));
 
 function Game({ id, label, names }: { id: string; label: string; names: WordleName[] }) {
   const key = `wordle:${id}`;
@@ -199,8 +203,14 @@ export default function FranchiseWordle() {
   const { set: id } = useParams();
   const bests = useProgress((s) => s.bests);
   const lang = useProgress((s) => s.nameLang);
+  const { picks, setPicks } = useCustomPicks('omnidle-custom-wordle', WORDLE_OPTIONS);
+  // "Your mix" (Customise): every name of the picked sets, each word once.
+  const mixNames = (): WordleName[] => {
+    const seen = new Set<string>();
+    return WORDLE_SETS.filter((s) => picks.includes(s.id)).flatMap((s) => namesIn(s, lang)).filter((n) => !seen.has(n.word) && seen.add(n.word));
+  };
   if (id) {
-    const set = wordleSet(id);
+    const set = id === 'custom' && picks.length ? { id: 'custom', label: 'Your mix', icon: '🎛', names: mixNames(), namesFr: undefined } : wordleSet(id);
     if (!set) return <Navigate to="/wordle" replace />;
     return (
       <div className="space-y-6">
@@ -216,7 +226,7 @@ export default function FranchiseWordle() {
           </div>
         </div>
         {/* A new name when the language changes: the board was for the other spelling. */}
-        <Game key={`${set.id}:${lang}`} id={set.id} label={set.label} names={namesIn(set, lang)} />
+        <Game key={`${set.id}:${lang}:${picks.join(',')}`} id={set.id} label={set.label} names={set.id === 'custom' ? set.names : namesIn(set, lang)} />
       </div>
     );
   }
@@ -236,7 +246,19 @@ export default function FranchiseWordle() {
           Names in <NameLangSwitch /> <span className="text-ink-faint">— Pokémon and Minecraft have their French names; the others are the same in both.</span>
         </div>
       </div>
+      <Customise options={WORDLE_OPTIONS} picks={picks} onChange={setPicks} noun="set" />
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {picks.length > 0 && (
+          <li>
+            <Link to="/wordle/custom" className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+              <span className="text-3xl">🎛</span>
+              <span className="font-display text-xl font-bold">Your mix</span>
+              <span className="text-xs text-ink-faint">
+                {picks.length} set{picks.length === 1 ? '' : 's'}{(bests['wordle:custom'] ?? 0) > 0 ? ` · best streak ${bests['wordle:custom']}` : ''}
+              </span>
+            </Link>
+          </li>
+        )}
         {WORDLE_SETS.map((s) => (
           <li key={s.id}>
             <Link to={`/wordle/${s.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">

@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ANGLE_INFO,
@@ -30,7 +30,11 @@ import {
   type Hold,
   type HoldKind,
   type Item,
+  FACES,
+  type Face,
 } from '../arcade/climb';
+import { Customise, useCustomPicks } from '../components/Customise';
+import { franchiseOptions } from '../lib/customOptions';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { useTypeToFocus } from '../lib/focus';
 import { getImage, isReady, preload } from '../lib/images';
@@ -39,6 +43,8 @@ import { useProgress, type NameLang } from '../store/progress';
 
 /** Best height, in tenths of a metre. */
 const BEST_KEY = 'climb:height';
+/** Every franchise with faces on the wall, to pick from. */
+const SUMMIT_OPTIONS = franchiseOptions(new Set(FACES.map((f) => f.set)));
 const HAND_MS = 220;
 const FALL_MS = 1300;
 const KIND_COLOR: Record<HoldKind, string> = { jug: '#34d399', pinch: '#60a5fa', crimp: '#fb923c', sloper: '#f472b6' };
@@ -75,7 +81,7 @@ interface State {
 const START_L: Grip = { x: 1.55, y: 0, kind: 'jug' };
 const START_R: Grip = { x: 2.45, y: 0, kind: 'jug' };
 
-function freshState(): State {
+function freshState(faces: Face[]): State {
   const seed = Math.floor(Math.random() * 1e9);
   return {
     phase: 'ready',
@@ -89,7 +95,7 @@ function freshState(): State {
     chalk: 0,
     items: [],
     checkpoint: { L: START_L, R: START_R, mover: 'L' },
-    holds: [...makeSection(0, seed, 1), ...makeSection(1, seed, 100_000)],
+    holds: [...makeSection(0, seed, 1, faces), ...makeSection(1, seed, 100_000, faces)],
     sections: 2,
     maxH: 0,
     litSince: new Map(),
@@ -390,10 +396,10 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
 }
 
 // ── The game ──────────────────────────────────────────────────────────
-function Game() {
-  const best = useProgress((s) => s.bests[BEST_KEY] ?? 0);
+function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
+  const best = useProgress((s) => s.bests[bestKey] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
-  const g = useRef<State>(freshState());
+  const g = useRef<State>(freshState(faces));
   g.current.lang = useProgress((s) => s.nameLang);
   const [, redraw] = useReducer((x: number) => x + 1, 0);
   const [text, setText] = useState('');
@@ -405,7 +411,7 @@ function Game() {
   useTypeToFocus(input, g.current.phase === 'climb');
 
   // Kept at every fall and ledge; paid once, when the last rope's gone: a coin every few metres.
-  const save = () => recordBest(BEST_KEY, Math.round(g.current.maxH * 10), g.current.phase === 'over' ? { reached: g.current.maxH / 4 } : { save: true });
+  const save = () => recordBest(bestKey, Math.round(g.current.maxH * 10), g.current.phase === 'over' ? { reached: g.current.maxH / 4 } : { save: true });
 
   // The loop: stamina, the camera, the wall ahead, and the picture.
   useEffect(() => {
@@ -429,7 +435,7 @@ function Game() {
       }
       // More wall above, two sections ahead.
       while (st.sections <= sectionOf(Math.max(st.L.y, st.R.y)) + 2) {
-        const more = makeSection(st.sections, st.seed, (st.sections + 1) * 100_000);
+        const more = makeSection(st.sections, st.seed, (st.sections + 1) * 100_000, faces);
         // Faces load ahead, so they are there by the time the hands are.
         more.forEach((h) => void preload(h.face.image));
         st.holds.push(...more);
@@ -597,7 +603,7 @@ function Game() {
 
   const again = () => {
     bestBefore.current = Math.max(bestBefore.current, Math.round(g.current.maxH * 10));
-    g.current = freshState();
+    g.current = freshState(faces);
     g.current.phase = 'climb';
     setTyped('');
     setOffer(null);
@@ -717,6 +723,8 @@ function Game() {
 
 /** /summit */
 export default function Summit() {
+  const { picks, setPicks, custom } = useCustomPicks('omnidle-custom-summit', SUMMIT_OPTIONS);
+  const faces = useMemo(() => FACES.filter((f) => picks.includes(f.set)), [picks]);
   return (
     <div className="space-y-6">
       <div className="mx-auto max-w-xl">
@@ -731,7 +739,10 @@ export default function Summit() {
           the height you reach.
         </p>
       </div>
-      <Game />
+      <div className="mx-auto max-w-xl">
+        <Customise options={SUMMIT_OPTIONS} picks={picks} onChange={setPicks} problem={faces.length < 12 ? 'Pick franchises with at least 12 faces between them.' : null} />
+      </div>
+      {faces.length >= 12 && <Game key={picks.join(',')} faces={faces} bestKey={custom ? 'climb:custom' : BEST_KEY} />}
     </div>
   );
 }
