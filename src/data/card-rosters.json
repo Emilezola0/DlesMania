@@ -2325,6 +2325,81 @@
    "name": "Vendetta",
    "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/140?cb=20260304090759",
    "rarity": "common"
+  },
+  {
+   "name": "Athena",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e9/Athena_Recall_Logo.png/revision/latest/scale-to-width-down/400?cb=20160407210339",
+   "rarity": "rare"
+  },
+  {
+   "name": "Efi Oladele",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/aa/Efi_Oladele.png/revision/latest/scale-to-width-down/290?cb=20170221193624",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bob",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d5/BOB_Reuinion.png/revision/latest/scale-to-width-down/400?cb=20181103235347",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ganymede",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0a/5_q17a9SiSFAUurRfmvyFGt-t7AFAG9iyzm4DsC8G5c.jpg/revision/latest?cb=20160818220136",
+   "rarity": "rare"
+  },
+  {
+   "name": "Snowball",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/04/Snowball.png/revision/latest?cb=20161220162254",
+   "rarity": "rare"
+  },
+  {
+   "name": "Maximilien",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/14/Maximilien-vault.jpg/revision/latest/scale-to-width-down/400?cb=20250326000736",
+   "rarity": "rare"
+  },
+  {
+   "name": "Balderich von Adler",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/aa/Balderich_von_Adler.png/revision/latest/scale-to-width-down/400?cb=20171105002204",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tekhartha Mondatta",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8b/Mondatta_Alive_Speech.png/revision/latest/scale-to-width-down/400?cb=20160403193834",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ironclad",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/258?cb=20241108201208",
+   "rarity": "common"
+  },
+  {
+   "name": "Sanjay Korpal",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/36/SanjayVC.png/revision/latest/scale-to-width-down/320?cb=20260823023322",
+   "rarity": "common"
+  },
+  {
+   "name": "Vishkar Corporation",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/07/Spray_Symmetra_Vishkar.png/revision/latest/scale-to-width-down/400?cb=20160906125628",
+   "rarity": "common"
+  },
+  {
+   "name": "Talon",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/16/Talon_logo.jpg/revision/latest/scale-to-width-down/400?cb=20260215123427",
+   "rarity": "common"
+  },
+  {
+   "name": "Null Sector",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f7/NullSectorEnemies2.jpg/revision/latest/scale-to-width-down/400?cb=20200410012038",
+   "rarity": "common"
+  },
+  {
+   "name": "Emily",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6a/Spray_Tracer_Emily.png/revision/latest/scale-to-width-down/400?cb=20240427220456",
+   "rarity": "common"
+  },
+  {
+   "name": "Payload",
+   "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4d/Circuit_Royal_Payload.png/revision/latest/scale-to-width-down/400?cb=20240412073014",
+   "rarity": "common"
   }
  ],
  "avatar": [
@@ -2903,6 +2978,41 @@
   {
    "name": "Ayu",
    "image": "https://static.wikia.nocookie.net/for-honor/images/a/a9/AyuFace.png/revision/latest/scale-to-width-down/400?cb=20180919042547",
+   "rarity": "common"
+  },
+  {
+   "name": "Runa",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/3/3f/Runa.png/revision/latest/scale-to-width-down/265?cb=20180803001415",
+   "rarity": "rare"
+  },
+  {
+   "name": "Stigandr",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/f/f3/Stigandr.jpg/revision/latest/scale-to-width-down/332?cb=20170215031119",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tozen",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/2/20/Tozen.jpg/revision/latest/scale-to-width-down/366?cb=20170228231100",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ademar",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/1/11/Ademar-0.jpg/revision/latest/scale-to-width-down/154?cb=20180630170933",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hulda",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/6/6d/HuldaProfile.jpg/revision/latest/scale-to-width-down/389?cb=20190801225313",
+   "rarity": "common"
+  },
+  {
+   "name": "Ragnar",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/b/bf/Ragnar.jpg/revision/latest/scale-to-width-down/396?cb=20170215023412",
+   "rarity": "common"
+  },
+  {
+   "name": "Blackstone Legion",
+   "image": "https://static.wikia.nocookie.net/for-honor/images/4/42/BlackstoneLegion_Emblem.png/revision/latest/scale-to-width-down/194?cb=20170203175557",
    "rarity": "common"
   }
  ],
@@ -3788,6 +3898,356 @@
    "name": "Yorick",
    "image": "https://static.wikia.nocookie.net/balatrogame/images/a/ad/Yorick.png/revision/latest?cb=20250712101456",
    "rarity": "legendary"
+  },
+  {
+   "name": "Abandoned Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/d/de/Abandoned_Deck.png/revision/latest?cb=20240313231634",
+   "rarity": "common"
+  },
+  {
+   "name": "Anaglyph Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/a/ac/Anaglyph_Deck.png/revision/latest?cb=20240313231811",
+   "rarity": "common"
+  },
+  {
+   "name": "Black Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/20/Black_Deck.png/revision/latest?cb=20240313231449",
+   "rarity": "common"
+  },
+  {
+   "name": "Blue Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/24/Blue_Deck.png/revision/latest?cb=20240313231327",
+   "rarity": "common"
+  },
+  {
+   "name": "Checkered Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/a/a8/Checkered_Deck.png/revision/latest?cb=20240313231701",
+   "rarity": "common"
+  },
+  {
+   "name": "Erratic Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/1/17/Erratic_Deck.png/revision/latest?cb=20240313231921",
+   "rarity": "common"
+  },
+  {
+   "name": "Ghost Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/a/a1/Ghost_Deck.png/revision/latest?cb=20240313231607",
+   "rarity": "common"
+  },
+  {
+   "name": "Green Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/1/12/Green_Deck.png/revision/latest?cb=20240313231426",
+   "rarity": "common"
+  },
+  {
+   "name": "Magic Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/c/c3/Magic_Deck.png/revision/latest?cb=20240313231514",
+   "rarity": "common"
+  },
+  {
+   "name": "Nebula Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/1/12/Nebula_Deck.png/revision/latest?cb=20240313231539",
+   "rarity": "common"
+  },
+  {
+   "name": "Painted Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/8/8a/Painted_Deck.png/revision/latest?cb=20240313231748",
+   "rarity": "common"
+  },
+  {
+   "name": "Ceres",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/0/07/Planet_Ceres.png/revision/latest?cb=20240407004107",
+   "rarity": "common"
+  },
+  {
+   "name": "Earth",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/5/59/Planet_Earth.png/revision/latest?cb=20230925223736",
+   "rarity": "common"
+  },
+  {
+   "name": "Eris",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/eb/Planet_Eris.png/revision/latest?cb=20240407004110",
+   "rarity": "common"
+  },
+  {
+   "name": "Jupiter",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/29/Planet_Jupiter.png/revision/latest?cb=20230925223848",
+   "rarity": "common"
+  },
+  {
+   "name": "Mars",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/f/fa/Planet_Mars.png/revision/latest?cb=20230925223722",
+   "rarity": "common"
+  },
+  {
+   "name": "Mercury",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/e7/Planet_Mercury.png/revision/latest?cb=20230925223651",
+   "rarity": "common"
+  },
+  {
+   "name": "Neptune",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/f/f9/Planet_Neptune.png/revision/latest?cb=20230925223942",
+   "rarity": "common"
+  },
+  {
+   "name": "Pluto",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/9/9c/Planet_Pluto.png/revision/latest?cb=20230925224001",
+   "rarity": "common"
+  },
+  {
+   "name": "Saturn",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/8/82/Planet_Saturn.png/revision/latest?cb=20230925223909",
+   "rarity": "common"
+  },
+  {
+   "name": "Uranus",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/5/51/Planet_Uranus.png/revision/latest?cb=20230925223927",
+   "rarity": "common"
+  },
+  {
+   "name": "Venus",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/b/b6/Planet_Venus.png/revision/latest?cb=20230925223826",
+   "rarity": "common"
+  },
+  {
+   "name": "Planet X",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/6/68/Planet_X.png/revision/latest?cb=20230925224111",
+   "rarity": "common"
+  },
+  {
+   "name": "Plasma Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/3/3c/Plasma_Deck.png/revision/latest?cb=20240313231845",
+   "rarity": "common"
+  },
+  {
+   "name": "Red Deck",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/24/Red_Deck.png/revision/latest?cb=20240313231252",
+   "rarity": "common"
+  },
+  {
+   "name": "Ankh",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/ec/Spectral_Ankh.png/revision/latest?cb=20250209034053",
+   "rarity": "common"
+  },
+  {
+   "name": "Aura",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/47/Spectral_Aura.png/revision/latest?cb=20250209034106",
+   "rarity": "common"
+  },
+  {
+   "name": "Black Hole",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/0/00/Spectral_Black_Hole.png/revision/latest?cb=20250209034107",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cryptid",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/5/5d/Spectral_Cryptid.png/revision/latest?cb=20250209034108",
+   "rarity": "common"
+  },
+  {
+   "name": "Deja Vu",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/a/a0/Spectral_Deja_Vu.png/revision/latest?cb=20250209034108",
+   "rarity": "common"
+  },
+  {
+   "name": "Ectoplasm",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/e5/Spectral_Ectoplasm.png/revision/latest?cb=20250209034109",
+   "rarity": "common"
+  },
+  {
+   "name": "Familiar",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/2c/Spectral_Familiar.png/revision/latest?cb=20250209034109",
+   "rarity": "common"
+  },
+  {
+   "name": "Grim",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/e0/Spectral_Grim.png/revision/latest?cb=20250209034110",
+   "rarity": "common"
+  },
+  {
+   "name": "Hex",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/f/f4/Spectral_Hex.png/revision/latest?cb=20250209034111",
+   "rarity": "common"
+  },
+  {
+   "name": "Immolate",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/d/d8/Spectral_Immolate.png/revision/latest?cb=20250209034111",
+   "rarity": "common"
+  },
+  {
+   "name": "Incantation",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/6/65/Spectral_Incantation.png/revision/latest?cb=20250209034112",
+   "rarity": "common"
+  },
+  {
+   "name": "Jumbo 1",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4e/Spectral_Jumbo_1.png/revision/latest?cb=20240309051727",
+   "rarity": "common"
+  },
+  {
+   "name": "Medium",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/e1/Spectral_Medium.png/revision/latest?cb=20250209034112",
+   "rarity": "common"
+  },
+  {
+   "name": "Mega 1",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/9/98/Spectral_Mega_1.png/revision/latest?cb=20240309051942",
+   "rarity": "common"
+  },
+  {
+   "name": "Normal 1",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/2a/Spectral_Normal_1.png/revision/latest?cb=20240309051942",
+   "rarity": "common"
+  },
+  {
+   "name": "Normal 2",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/b/b3/Spectral_Normal_2.png/revision/latest?cb=20240309051942",
+   "rarity": "common"
+  },
+  {
+   "name": "Ouija",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/f/fc/Spectral_Ouija.png/revision/latest?cb=20250209034113",
+   "rarity": "common"
+  },
+  {
+   "name": "Sigil",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/5/5d/Spectral_Sigil.png/revision/latest?cb=20250209034114",
+   "rarity": "common"
+  },
+  {
+   "name": "Talisman",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/3/34/Spectral_Talisman.png/revision/latest?cb=20250209034114",
+   "rarity": "common"
+  },
+  {
+   "name": "Trance",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/7/78/Spectral_Trance.png/revision/latest?cb=20250209034115",
+   "rarity": "common"
+  },
+  {
+   "name": "Wraith",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/48/Spectral_Wraith.png/revision/latest?cb=20250209034115",
+   "rarity": "common"
+  },
+  {
+   "name": "Death",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4d/Tarot_Death.png/revision/latest?cb=20230925221002",
+   "rarity": "common"
+  },
+  {
+   "name": "Judgement",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/d/d9/Tarot_Judgement.png/revision/latest?cb=20230925221239",
+   "rarity": "common"
+  },
+  {
+   "name": "Justice",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/45/Tarot_Justice.png/revision/latest?cb=20230925220748",
+   "rarity": "common"
+  },
+  {
+   "name": "Merchant",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/3/32/Tarot_Merchant.png/revision/latest?cb=20250120194523",
+   "rarity": "common"
+  },
+  {
+   "name": "Strength",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/7/7d/Tarot_Strength.png/revision/latest?cb=20230925220915",
+   "rarity": "common"
+  },
+  {
+   "name": "Temperance",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/6/67/Tarot_Temperance.png/revision/latest?cb=20230925221029",
+   "rarity": "common"
+  },
+  {
+   "name": "The Chariot",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/f/f8/Tarot_The_Chariot.png/revision/latest?cb=20230925220724",
+   "rarity": "common"
+  },
+  {
+   "name": "The Devil",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/7/72/Tarot_The_Devil.png/revision/latest?cb=20230925221050",
+   "rarity": "common"
+  },
+  {
+   "name": "The Emperor",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/1/11/Tarot_The_Emperor.png/revision/latest?cb=20230925220604",
+   "rarity": "common"
+  },
+  {
+   "name": "The Empress",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/8/8b/Tarot_The_Empress.png/revision/latest?cb=20230925220549",
+   "rarity": "common"
+  },
+  {
+   "name": "The Fool",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/6/61/Tarot_The_Fool.png/revision/latest?cb=20230925220339",
+   "rarity": "common"
+  },
+  {
+   "name": "The Hanged Man",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/d/d6/Tarot_The_Hanged_Man.png/revision/latest?cb=20230925220935",
+   "rarity": "common"
+  },
+  {
+   "name": "The Hermit",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/1/19/Tarot_The_Hermit.png/revision/latest?cb=20230925220806",
+   "rarity": "common"
+  },
+  {
+   "name": "The Hierophant",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/b/bc/Tarot_The_Hierophant.png/revision/latest?cb=20230925220638",
+   "rarity": "common"
+  },
+  {
+   "name": "The High Priestess",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/c/cc/Tarot_The_High_Priestess.png/revision/latest?cb=20230925220519",
+   "rarity": "common"
+  },
+  {
+   "name": "The Lovers",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/4c/Tarot_The_Lovers.png/revision/latest?cb=20230925220703",
+   "rarity": "common"
+  },
+  {
+   "name": "The Magician",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/7/78/Tarot_The_Magician.png/revision/latest?cb=20230925220456",
+   "rarity": "common"
+  },
+  {
+   "name": "The Moon",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/29/Tarot_The_Moon.png/revision/latest?cb=20230925221203",
+   "rarity": "common"
+  },
+  {
+   "name": "The Star",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/e/e1/Tarot_The_Star.png/revision/latest?cb=20230925221142",
+   "rarity": "common"
+  },
+  {
+   "name": "The Sun",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/2/2e/Tarot_The_Sun.png/revision/latest?cb=20230925221221",
+   "rarity": "common"
+  },
+  {
+   "name": "The Tower",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/a/af/Tarot_The_Tower.png/revision/latest?cb=20230925221108",
+   "rarity": "common"
+  },
+  {
+   "name": "The Wheel of Fortune",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/5/57/Tarot_The_Wheel_of_Fortune.png/revision/latest?cb=20230925220831",
+   "rarity": "common"
+  },
+  {
+   "name": "The World",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/4/49/Tarot_The_World.png/revision/latest?cb=20230925221302",
+   "rarity": "common"
+  },
+  {
+   "name": "Tycoon",
+   "image": "https://static.wikia.nocookie.net/balatrogame/images/9/9e/Tarot_Tycoon.png/revision/latest?cb=20250120194531",
+   "rarity": "common"
   }
  ],
  "harrypotter": [
@@ -4850,6 +5310,946 @@
   {
    "name": "Dharkon",
    "image": "https://static.wikia.nocookie.net/ssb/images/4/42/Dharkon_SSBU.png/revision/latest/scale-to-width-down/400?cb=20190309061946",
+   "rarity": "common"
+  }
+ ],
+ "forts": [
+  {
+   "name": "Rocket",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/d/dc/Rocket_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221005204652",
+   "rarity": "rare"
+  },
+  {
+   "name": "EMP Rocket",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/d/dd/EMP_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221005162731",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shield",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/9/9f/EnergyShield_HUDIcon.png/revision/latest/scale-to-width-down/400?cb=20221006034909",
+   "rarity": "rare"
+  },
+  {
+   "name": "Portal",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/a/ae/Portal_HUDIcon.png/revision/latest?cb=20221005205240",
+   "rarity": "rare"
+  },
+  {
+   "name": "Door",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/c/ce/Tiny_Door.jpg/revision/latest/scale-to-width-down/400?cb=20220803183655",
+   "rarity": "common"
+  },
+  {
+   "name": "Bracing",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/3/3c/Bracing_HUDicon.png/revision/latest/scale-to-width-down/400?cb=20221006035046",
+   "rarity": "common"
+  },
+  {
+   "name": "Armour",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/4/45/HUD-Armour.png/revision/latest?cb=20221016221027",
+   "rarity": "common"
+  },
+  {
+   "name": "Factory",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/a/a3/Factory.png/revision/latest/scale-to-width-down/400?cb=20190402124026",
+   "rarity": "common"
+  },
+  {
+   "name": "Repair Station",
+   "image": "https://static.wikia.nocookie.net/forts-rts/images/4/40/Repair_station.png/revision/latest/scale-to-width-down/200?cb=20190330114902",
+   "rarity": "common"
+  }
+ ],
+ "genshin": [
+  {
+   "name": "Paimon",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/7/79/NPC_Paimon.png/revision/latest/scale-to-width-down/225?cb=20231207143716",
+   "rarity": "epic"
+  },
+  {
+   "name": "Dainsleif",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/a0/Dainsleif_Card.png/revision/latest/scale-to-width-down/158?cb=20260725020702",
+   "rarity": "epic"
+  },
+  {
+   "name": "La Signora",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/be/Enemy_La_Signora.png/revision/latest/scale-to-width-down/400?cb=20230314064150",
+   "rarity": "epic"
+  },
+  {
+   "name": "Focalors",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/e/e9/NPC_Focalors.png/revision/latest/scale-to-width-down/222?cb=20240406074127",
+   "rarity": "epic"
+  },
+  {
+   "name": "Pierro",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6c/NPC_Pierro.png/revision/latest/scale-to-width-down/234?cb=20260813045251",
+   "rarity": "rare"
+  },
+  {
+   "name": "Capitano",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/4c/NPC_Capitano.png/revision/latest/scale-to-width-down/222?cb=20241011092133",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pantalone",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/05/NPC_Pantalone.png/revision/latest/scale-to-width-down/223?cb=20260928181354",
+   "rarity": "rare"
+  },
+  {
+   "name": "Katheryne",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/NPC_Katheryne.png/revision/latest/scale-to-width-down/222?cb=20230102023015",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rukkhadevata",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/54/NPC_Greater_Lord_Rukkhadevata.png/revision/latest/scale-to-width-down/400?cb=20221003085121",
+   "rarity": "rare"
+  },
+  {
+   "name": "Makoto",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/16/NPC_Makoto.png/revision/latest/scale-to-width-down/400?cb=20230704201226",
+   "rarity": "rare"
+  },
+  {
+   "name": "Abyss Lector",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/c/ce/Enemy_Abyss_Lector_Violet_Lightning.png/revision/latest/scale-to-width-down/300?cb=20260606160513",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hilichurl",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0a/Enemy_Hilichurl.png/revision/latest/scale-to-width-down/300?cb=20260606155806",
+   "rarity": "rare"
+  },
+  {
+   "name": "Andrius",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/0/0c/Enemy_Boreas.png/revision/latest/scale-to-width-down/400?cb=20260602013850",
+   "rarity": "rare"
+  },
+  {
+   "name": "Dvalin",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/91/Enemy_Dvalin.png/revision/latest/scale-to-width-down/400?cb=20260602013842",
+   "rarity": "rare"
+  },
+  {
+   "name": "Azhdaha",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/18/Enemy_Azhdaha.png/revision/latest/scale-to-width-down/400?cb=20260602013906",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pulcinella",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/14/NPC_Pulcinella.png/revision/latest/scale-to-width-down/212?cb=20261005234108",
+   "rarity": "common"
+  },
+  {
+   "name": "Timmie",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/6d/NPC_Timmie.png/revision/latest/scale-to-width-down/225?cb=20230703053112",
+   "rarity": "common"
+  },
+  {
+   "name": "Liben",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/1/10/NPC_Liben.png/revision/latest/scale-to-width-down/225?cb=20240122153852",
+   "rarity": "common"
+  },
+  {
+   "name": "Slime",
+   "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/38/Slime.png/revision/latest/scale-to-width-down/400?cb=20230409090147",
+   "rarity": "common"
+  }
+ ],
+ "wow": [
+  {
+   "name": "Patchwerk",
+   "image": "https://warcraft.wiki.gg/images/thumb/Patchwerk_TCG.jpg/400px-Patchwerk_TCG.jpg?2f8ead",
+   "rarity": "rare"
+  },
+  {
+   "name": "Murky",
+   "image": "https://warcraft.wiki.gg/images/thumb/MurkyArt.jpg/400px-MurkyArt.jpg?eb4c2e",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pepe",
+   "image": "https://warcraft.wiki.gg/images/thumb/Pepe.jpg/400px-Pepe.jpg?a90df2",
+   "rarity": "rare"
+  },
+  {
+   "name": "Algalon the Observer",
+   "image": "https://warcraft.wiki.gg/images/thumb/Algalon_the_Observer.jpg/400px-Algalon_the_Observer.jpg?269b3b",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sapphiron",
+   "image": "https://warcraft.wiki.gg/images/thumb/Sapphiron_Maldraxxus.jpg/400px-Sapphiron_Maldraxxus.jpg?820d3d",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lilian Voss",
+   "image": "https://warcraft.wiki.gg/images/thumb/Lilian_Voss_HS.jpg/400px-Lilian_Voss_HS.jpg?764ec5",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mr. Bigglesworth",
+   "image": "https://warcraft.wiki.gg/images/Mrbigglesworth.jpg?a5498a",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mimiron",
+   "image": "https://warcraft.wiki.gg/images/thumb/Mimiron%2C_the_Mastermind.png/400px-Mimiron%2C_the_Mastermind.png?31a116",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mankrik",
+   "image": "https://warcraft.wiki.gg/images/thumb/Mankrik_HS.jpg/400px-Mankrik_HS.jpg?bca917",
+   "rarity": "common"
+  },
+  {
+   "name": "Morgan the Collector",
+   "image": "https://warcraft.wiki.gg/images/thumb/Morgan_the_Collector.jpg/400px-Morgan_the_Collector.jpg?cb4031",
+   "rarity": "common"
+  },
+  {
+   "name": "King Mrgl-Mrgl",
+   "image": "https://warcraft.wiki.gg/images/thumb/King_Mrgl-Mrgl.jpg/400px-King_Mrgl-Mrgl.jpg?d2b7da",
+   "rarity": "common"
+  },
+  {
+   "name": "Nazgrim",
+   "image": "https://warcraft.wiki.gg/images/thumb/Deathlord_Nazgrim.jpg/400px-Deathlord_Nazgrim.jpg?866162",
+   "rarity": "common"
+  },
+  {
+   "name": "Rokhan",
+   "image": "https://warcraft.wiki.gg/images/Rokhan.jpg?3dce9e",
+   "rarity": "common"
+  },
+  {
+   "name": "Vol'kaal",
+   "image": "https://warcraft.wiki.gg/images/thumb/Vol%27kaal.jpg/400px-Vol%27kaal.jpg?2f0898",
+   "rarity": "common"
+  },
+  {
+   "name": "Koltira Deathweaver",
+   "image": "https://warcraft.wiki.gg/images/thumb/Koltira_Deathweaver_Legion.jpg/400px-Koltira_Deathweaver_Legion.jpg?7bf232",
+   "rarity": "common"
+  },
+  {
+   "name": "Thassarian",
+   "image": "https://warcraft.wiki.gg/images/thumb/Thassarian_TCG.jpg/400px-Thassarian_TCG.jpg?ce4c12",
+   "rarity": "common"
+  },
+  {
+   "name": "Alonsus Faol",
+   "image": "https://warcraft.wiki.gg/images/thumb/Alonsus_Faol_Alive.jpg/400px-Alonsus_Faol_Alive.jpg?956873",
+   "rarity": "common"
+  },
+  {
+   "name": "Aegwynn",
+   "image": "https://warcraft.wiki.gg/images/thumb/TCG_Aegwynn.jpg/400px-TCG_Aegwynn.jpg?6fb09f",
+   "rarity": "common"
+  },
+  {
+   "name": "Nielas Aran",
+   "image": "https://warcraft.wiki.gg/images/thumb/Shade_of_Aran_TCG.jpg/400px-Shade_of_Aran_TCG.jpg?efff76",
+   "rarity": "common"
+  },
+  {
+   "name": "Maexxna",
+   "image": "https://warcraft.wiki.gg/images/thumb/Maexxna_TCG.jpg/400px-Maexxna_TCG.jpg?1e3690",
+   "rarity": "common"
+  },
+  {
+   "name": "Lord Marrowgar",
+   "image": "https://warcraft.wiki.gg/images/thumb/Lord_Marrowgar_HS_Core.jpg/400px-Lord_Marrowgar_HS_Core.jpg?7bee09",
+   "rarity": "common"
+  },
+  {
+   "name": "Prince Malchezaar",
+   "image": "https://warcraft.wiki.gg/images/thumb/Prince_Malchezaar_HS.jpg/400px-Prince_Malchezaar_HS.jpg?d96e54",
+   "rarity": "common"
+  },
+  {
+   "name": "Attumen",
+   "image": "https://warcraft.wiki.gg/images/thumb/Attumen_and_Midnight.jpg/400px-Attumen_and_Midnight.jpg?7915af",
+   "rarity": "common"
+  },
+  {
+   "name": "Freya",
+   "image": "https://warcraft.wiki.gg/images/thumb/Freya_Signature_HS.jpg/400px-Freya_Signature_HS.jpg?bb7888",
+   "rarity": "common"
+  },
+  {
+   "name": "Hodir",
+   "image": "https://warcraft.wiki.gg/images/thumb/Hodir%2C_Father_of_Giants_HS.jpg/400px-Hodir%2C_Father_of_Giants_HS.jpg?c7bb0d",
+   "rarity": "common"
+  },
+  {
+   "name": "General Vezax",
+   "image": "https://warcraft.wiki.gg/images/thumb/General_Vezax_HS.jpg/400px-General_Vezax_HS.jpg?c364f6",
+   "rarity": "common"
+  },
+  {
+   "name": "Dagran Thaurissan",
+   "image": "https://warcraft.wiki.gg/images/thumb/DagranThaurissan_HS.jpg/400px-DagranThaurissan_HS.jpg?246603",
+   "rarity": "common"
+  },
+  {
+   "name": "Sha of Anger",
+   "image": "https://warcraft.wiki.gg/images/thumb/Sha_of_Anger_TBoS.jpg/400px-Sha_of_Anger_TBoS.jpg?401212",
+   "rarity": "common"
+  },
+  {
+   "name": "Galakras",
+   "image": "https://warcraft.wiki.gg/images/thumb/Galakras.jpg/400px-Galakras.jpg?cc36ac",
+   "rarity": "common"
+  },
+  {
+   "name": "Thok the Bloodthirsty",
+   "image": "https://warcraft.wiki.gg/images/thumb/Thok_the_Bloodthirsty.jpg/400px-Thok_the_Bloodthirsty.jpg?24b48b",
+   "rarity": "common"
+  }
+ ],
+ "minecraft": [
+  {
+   "name": "Steve",
+   "image": "https://minecraft.wiki/images/thumb/Steve_%28classic%29_JE6.png/400px-Steve_%28classic%29_JE6.png?c0d48",
+   "rarity": "epic"
+  },
+  {
+   "name": "Alex",
+   "image": "https://minecraft.wiki/images/thumb/Alex_%28slim%29_JE3.png/400px-Alex_%28slim%29_JE3.png?baaf0",
+   "rarity": "epic"
+  },
+  {
+   "name": "Herobrine",
+   "image": "https://minecraft.wiki/images/thumb/Herobrine.png/400px-Herobrine.png?bc881",
+   "rarity": "epic"
+  },
+  {
+   "name": "Diamond Sword",
+   "image": "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296",
+   "rarity": "rare"
+  },
+  {
+   "name": "Netherite Ingot",
+   "image": "https://minecraft.wiki/images/Netherite_Ingot_JE1_BE2.png?79364",
+   "rarity": "rare"
+  },
+  {
+   "name": "Elytra",
+   "image": "https://minecraft.wiki/images/thumb/Elytra_JE2_BE2.png/400px-Elytra_JE2_BE2.png?3bccc",
+   "rarity": "epic"
+  },
+  {
+   "name": "Totem of Undying",
+   "image": "https://minecraft.wiki/images/Totem_of_Undying_JE2_BE2.png?732e6",
+   "rarity": "epic"
+  },
+  {
+   "name": "Enchanted Golden Apple",
+   "image": "https://minecraft.wiki/images/Enchanted_Golden_Apple_JE2_BE2.gif?f4719",
+   "rarity": "epic"
+  },
+  {
+   "name": "Beacon",
+   "image": "https://minecraft.wiki/images/Beacon_JE6_BE2.png?684bf",
+   "rarity": "epic"
+  },
+  {
+   "name": "Nether Star",
+   "image": "https://minecraft.wiki/images/Nether_Star.gif?fb01f",
+   "rarity": "epic"
+  },
+  {
+   "name": "Dragon Egg",
+   "image": "https://minecraft.wiki/images/Dragon_Egg_JE5.png?07921",
+   "rarity": "epic"
+  },
+  {
+   "name": "Ender Pearl",
+   "image": "https://minecraft.wiki/images/Ender_Pearl_JE3_BE2.png?829a7",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cake",
+   "image": "https://minecraft.wiki/images/Cake_JE4.png?7c59e",
+   "rarity": "rare"
+  },
+  {
+   "name": "Redstone Dust",
+   "image": "https://minecraft.wiki/images/Redstone_Dust_JE2_BE2.png?8cf17",
+   "rarity": "common"
+  },
+  {
+   "name": "Emerald",
+   "image": "https://minecraft.wiki/images/Emerald_JE3_BE3.png?4c5f3",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bedrock",
+   "image": "https://minecraft.wiki/images/Bedrock_JE2_BE2.png?5ea94",
+   "rarity": "rare"
+  },
+  {
+   "name": "Obsidian",
+   "image": "https://minecraft.wiki/images/Obsidian_JE3_BE2.png?0a8ae",
+   "rarity": "common"
+  },
+  {
+   "name": "Grass Block",
+   "image": "https://minecraft.wiki/images/Grass_Block_JE7_BE6.png?2bd37",
+   "rarity": "common"
+  },
+  {
+   "name": "Chest",
+   "image": "https://minecraft.wiki/images/Chest.gif?ca959",
+   "rarity": "common"
+  },
+  {
+   "name": "Furnace",
+   "image": "https://minecraft.wiki/images/Furnace_%28S%29_JE4.png?93891",
+   "rarity": "common"
+  },
+  {
+   "name": "Enchanting Table",
+   "image": "https://minecraft.wiki/images/Enchanting_Table.gif?904a7",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bed",
+   "image": "https://minecraft.wiki/images/thumb/White_Bed_%28N%29.png/400px-White_Bed_%28N%29.png?4df42",
+   "rarity": "common"
+  },
+  {
+   "name": "Jukebox",
+   "image": "https://minecraft.wiki/images/Jukebox_JE2_BE2.png?50367",
+   "rarity": "common"
+  },
+  {
+   "name": "End Portal",
+   "image": "https://minecraft.wiki/images/thumb/End_Portal_%28Active%29.png/400px-End_Portal_%28Active%29.png?390eb",
+   "rarity": "rare"
+  },
+  {
+   "name": "Nether Portal",
+   "image": "https://minecraft.wiki/images/Nether_portal_%28animated%29.png?26915",
+   "rarity": "rare"
+  },
+  {
+   "name": "Trident",
+   "image": "https://minecraft.wiki/images/Trident.png?f6cb9",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mace",
+   "image": "https://minecraft.wiki/images/Mace_JE1_BE1.png?90f67",
+   "rarity": "rare"
+  },
+  {
+   "name": "Spyglass",
+   "image": "https://minecraft.wiki/images/Spyglass_JE2_BE1.png?cb81d",
+   "rarity": "common"
+  },
+  {
+   "name": "Heavy Core",
+   "image": "https://minecraft.wiki/images/Heavy_Core_JE1_BE1.png?57df9",
+   "rarity": "common"
+  },
+  {
+   "name": "Breeze",
+   "image": "https://minecraft.wiki/images/Breeze_BE1_JE2.webp?87e5c",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bogged",
+   "image": "https://minecraft.wiki/images/Bogged_JE2_BE2.png?55cb9",
+   "rarity": "common"
+  },
+  {
+   "name": "Creaking",
+   "image": "https://minecraft.wiki/images/Creaking_JE1_BE1.png?1a8ab",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tadpole",
+   "image": "https://minecraft.wiki/images/thumb/Tadpole_JE1.png/400px-Tadpole_JE1.png?94313",
+   "rarity": "common"
+  },
+  {
+   "name": "Trader Llama",
+   "image": "https://minecraft.wiki/images/thumb/White_Trader_Llama.png/400px-White_Trader_Llama.png?5f954",
+   "rarity": "common"
+  },
+  {
+   "name": "Piglin Brute",
+   "image": "https://minecraft.wiki/images/thumb/Piglin_Brute_JE1.png/400px-Piglin_Brute_JE1.png?5d4a0",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cod",
+   "image": "https://minecraft.wiki/images/Cod.gif?fe8d7",
+   "rarity": "common"
+  },
+  {
+   "name": "Salmon",
+   "image": "https://minecraft.wiki/images/Salmon.gif?cb24f",
+   "rarity": "common"
+  },
+  {
+   "name": "Pufferfish",
+   "image": "https://minecraft.wiki/images/Pufferfish_small.gif?f12fb",
+   "rarity": "common"
+  },
+  {
+   "name": "Tropical Fish",
+   "image": "https://minecraft.wiki/images/thumb/Clownfish.png/400px-Clownfish.png?1b6b5",
+   "rarity": "common"
+  },
+  {
+   "name": "Cow",
+   "image": "https://minecraft.wiki/images/thumb/Cow_JE7_BE4.png/400px-Cow_JE7_BE4.png?3de94",
+   "rarity": "common"
+  },
+  {
+   "name": "Donkey",
+   "image": "https://minecraft.wiki/images/thumb/Donkey_JE5.png/400px-Donkey_JE5.png?9e2a1",
+   "rarity": "common"
+  },
+  {
+   "name": "Mule",
+   "image": "https://minecraft.wiki/images/thumb/Mule_JE5.png/400px-Mule_JE5.png?3c1f0",
+   "rarity": "common"
+  },
+  {
+   "name": "Skeleton Horse",
+   "image": "https://minecraft.wiki/images/thumb/Skeleton_Horse.png/400px-Skeleton_Horse.png?5e42a",
+   "rarity": "common"
+  },
+  {
+   "name": "Zombie Horse",
+   "image": "https://minecraft.wiki/images/thumb/Zombie_Horse_JE6.png/400px-Zombie_Horse_JE6.png?b6882",
+   "rarity": "common"
+  },
+  {
+   "name": "Cave Spider",
+   "image": "https://minecraft.wiki/images/thumb/Cave_Spider_JE3_BE3.png/400px-Cave_Spider_JE3_BE3.png?86c1d",
+   "rarity": "common"
+  },
+  {
+   "name": "Ender Chest",
+   "image": "https://minecraft.wiki/images/Ender_Chest_JE2_BE2.gif?90e80",
+   "rarity": "rare"
+  },
+  {
+   "name": "Golden Apple",
+   "image": "https://minecraft.wiki/images/Golden_Apple_JE2_BE2.png?aa827",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bread",
+   "image": "https://minecraft.wiki/images/Bread_JE3_BE3.png?e1046",
+   "rarity": "common"
+  },
+  {
+   "name": "Pumpkin",
+   "image": "https://minecraft.wiki/images/Pumpkin_JE3.png?32a4a",
+   "rarity": "common"
+  },
+  {
+   "name": "Jack o'Lantern",
+   "image": "https://minecraft.wiki/images/Jack_o%27Lantern_%28S%29_JE4.png?fbeb0",
+   "rarity": "common"
+  },
+  {
+   "name": "Anvil",
+   "image": "https://minecraft.wiki/images/Anvil_%28N%29_JE3.png?d438e",
+   "rarity": "common"
+  },
+  {
+   "name": "Compass",
+   "image": "https://minecraft.wiki/images/Compass_JE3_BE3.gif?0043f",
+   "rarity": "common"
+  },
+  {
+   "name": "Clock",
+   "image": "https://minecraft.wiki/images/Clock_JE3_BE3.gif?a4011",
+   "rarity": "common"
+  },
+  {
+   "name": "Fishing Rod",
+   "image": "https://minecraft.wiki/images/Fishing_Rod_JE2_BE2.png?4862d",
+   "rarity": "common"
+  },
+  {
+   "name": "Bow",
+   "image": "https://minecraft.wiki/images/Bow_JE2_BE1.png?c428a",
+   "rarity": "common"
+  },
+  {
+   "name": "Shield",
+   "image": "https://minecraft.wiki/images/Shield_JE2_BE1.png?4837d",
+   "rarity": "common"
+  },
+  {
+   "name": "Saddle",
+   "image": "https://minecraft.wiki/images/Saddle_%28Pig%29_JE2_BE2.png?310b1",
+   "rarity": "common"
+  },
+  {
+   "name": "Name Tag",
+   "image": "https://minecraft.wiki/images/Name_Tag_JE3_BE2.png?cbdc1",
+   "rarity": "common"
+  },
+  {
+   "name": "Lava",
+   "image": "https://minecraft.wiki/images/Lava_JE19.gif?792cb",
+   "rarity": "common"
+  },
+  {
+   "name": "Water",
+   "image": "https://minecraft.wiki/images/Water_JE16-a1.png?5ea99",
+   "rarity": "common"
+  },
+  {
+   "name": "Happy Ghast",
+   "image": "https://minecraft.wiki/images/thumb/Happy_Ghast_JE1_BE1.gif/400px-Happy_Ghast_JE1_BE1.gif?ae2ce",
+   "rarity": "rare"
+  },
+  {
+   "name": "Copper Golem",
+   "image": "https://minecraft.wiki/images/Copper_Golem_JE1_BE1.png?3c87d",
+   "rarity": "rare"
+  }
+ ],
+ "unreal": [
+  {
+   "name": "Event ActorEndOverlap",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EEvent%20ActorEndOverlap%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOther%20Actor%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Event Possessed",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EEvent%20Possessed%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ENew%20Controller%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Event On Landed",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EEvent%20On%20Landed%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%230058a8%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EHit%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Event Construct",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EEvent%20Construct%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Event Blueprint Update Animation",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EEvent%20Blueprint%20Update%20Animation%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EDelta%20Time%20X%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "InputAction Jump",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EInputAction%20Jump%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EPressed%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReleased%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "InputAxis MoveForward",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23b91c1c%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%237f1d1d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EInputAxis%20MoveForward%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EAxis%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Attach Actor to Actor",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EAttach%20Actor%20to%20Actor%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EParent%20Actor%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Detach From Actor",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EDetach%20From%20Actor%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Actor Hidden In Game",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Actor%20Hidden%20In%20Game%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Hidden%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Visibility",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Visibility%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Visibility%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Actor Scale 3D",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Actor%20Scale%203D%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Scale%203D%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Actor Transform",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Actor%20Transform%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Transform%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set World Location",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20World%20Location%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Location%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Relative Location",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Relative%20Location%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Location%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Actor Tick Enabled",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Actor%20Tick%20Enabled%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EEnabled%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Life Span",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Life%20Span%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIn%20Lifespan%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Collision Enabled",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Collision%20Enabled%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23c58bff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ENew%20Type%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Material",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20156%22%20width%3D%22300%22%20height%3D%22156%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22154%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Material%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%231fe3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EElement%20Index%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22130%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22134%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EMaterial%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Input Mode UI Only",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Input%20Mode%20UI%20Only%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPlayer%20Controller%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Input Mode Game Only",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Input%20Mode%20Game%20Only%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPlayer%20Controller%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Game Paused",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Game%20Paused%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPaused%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Set Global Time Dilation",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESet%20Global%20Time%20Dilation%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETime%20Dilation%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Stop Movement Immediately",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EStop%20Movement%20Immediately%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "AI Move To",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EAI%20Move%20To%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPawn%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EDestination%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M278%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOn%20Success%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOn%20Fail%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Timeline",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ETimeline%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPlay%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EReverse%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EStop%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EUpdate%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EFinished%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EAlpha%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Reroute Node",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EReroute%20Node%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIn%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOut%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Comment",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EComment%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EFix%20this%20later%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "MultiGate",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMultiGate%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIs%20Random%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ELoop%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOut%200%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOut%201%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOut%202%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Switch on String",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESwitch%20on%20String%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ESelection%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EDefault%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Switch on Enum",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESwitch%20on%20Enum%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23c58bff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ESelection%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EDefault%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "For Each Loop with Break",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EFor%20Each%20Loop%20with%20Break%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EArray%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%2230%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EBreak%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ELoop%20Body%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EArray%20Element%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ECompleted%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Reverse For Each Loop",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2364748b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23334155%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EReverse%20For%20Each%20Loop%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EArray%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ELoop%20Body%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EArray%20Element%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2098%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ECompleted%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Cast To PlayerController",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232563eb%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231e3a8a%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ECast%20To%20PlayerController%3C%2Ftext%3E%3Cpath%20d%3D%22M10%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EObject%3C%2Ftext%3E%3Cpath%20d%3D%22M278%2046%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M278%2072%20h7%20l6%206%20-6%206%20h-7%20z%22%20fill%3D%22%23fff%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.6%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ECast%20Failed%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EAs%20Player%20Controller%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Get Player Pawn",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Player%20Pawn%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%231fe3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPlayer%20Index%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Player Camera Manager",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Player%20Camera%20Manager%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%231fe3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPlayer%20Index%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Overlapping Actors",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Overlapping%20Actors%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EOverlapping%20Actors%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Velocity",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Velocity%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Actor Up Vector",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Actor%20Up%20Vector%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Actor Right Vector",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Actor%20Right%20Vector%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Control Rotation",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Control%20Rotation%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0b4ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Component by Class",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Component%20by%20Class%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EComponent%20Class%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Has Authority",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EHas%20Authority%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Is Locally Controlled",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EIs%20Locally%20Controlled%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Game Instance",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Game%20Instance%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Current Level Name",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Current%20Level%20Name%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Get Game Time in Seconds",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EGet%20Game%20Time%20in%20Seconds%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Dot Product",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EDot%20Product%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EB%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Cross Product",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ECross%20Product%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EB%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Abs",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EAbs%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Sin",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ESin%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Nearly Equal",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ENearly%20Equal%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EB%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETolerance%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Make Rotator",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMake%20Rotator%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ERoll%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EPitch%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EYaw%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0b4ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Break Rotator",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EBreak%20Rotator%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0b4ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ERotation%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ERoll%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EPitch%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EYaw%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Make Transform",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMake%20Transform%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ELocation%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0b4ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ERotation%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EScale%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Break Hit Result",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EBreak%20Hit%20Result%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%230058a8%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EHit%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ELocation%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3ENormal%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%2300a9ff%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EHit%20Actor%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Map Range Clamped",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMap%20Range%20Clamped%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EValue%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIn%20Range%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EOut%20Range%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "FInterp To",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EFInterp%20To%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ECurrent%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EInterp%20Speed%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "VInterp To",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20130%22%20width%3D%22300%22%20height%3D%22130%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22128%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EVInterp%20To%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ECurrent%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%22104%22%20r%3D%225.5%22%20fill%3D%22%23a0e83a%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%22108%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EInterp%20Speed%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ffca23%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "NOT Boolean",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ENOT%20Boolean%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "AND Boolean",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EAND%20Boolean%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EB%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "OR Boolean",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EOR%20Boolean%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EA%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EB%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Make Array",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMake%20Array%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3E%5B0%5D%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3E%5B1%5D%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EArray%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "rare"
+  },
+  {
+   "name": "Contains",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%20104%22%20width%3D%22300%22%20height%3D%22104%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%22102%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EContains%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3ETarget%20Array%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2278%22%20r%3D%225.5%22%20fill%3D%22%239ca3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2282%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EItem%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23a30000%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "Make Literal String",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3EMake%20Literal%20String%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EValue%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
+   "rarity": "common"
+  },
+  {
+   "name": "To String (Integer)",
+   "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ETo%20String%20(Integer)%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%231fe3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIn%20Int%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
    "rarity": "common"
   }
  ]

@@ -75,7 +75,7 @@ function say(line: string, set: string) {
 let playing: HTMLAudioElement | null = null;
 
 /** A voice line kept on YouTube: "youtube:VIDEO_ID@54-57" plays seconds 54 to 57 of that video. */
-const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
+export const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
 let ytVoice: { host: HTMLElement; player?: YTPlayer; timer?: number } | null = null;
 
 function stopYouTubeVoice() {

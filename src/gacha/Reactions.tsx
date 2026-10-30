@@ -6,6 +6,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
@@ -168,7 +169,9 @@ export function CardReactions() {
     <>
       {moment && (
         <div key={moment.key} className="animate-pop pointer-events-none fixed bottom-4 right-3 z-40 w-56 max-sm:bottom-16 overflow-hidden rounded-xl border-2 shadow-2xl sm:w-72" style={{ borderColor: light, boxShadow: `0 0 28px ${light}` }} aria-hidden>
-          <video src={moment.clip} autoPlay muted loop playsInline onError={() => setMoment(null)} className="aspect-video w-full object-cover" />
+          <div className="relative aspect-video w-full overflow-hidden">
+            <CardClip src={moment.clip} onFail={() => setMoment(null)} className="size-full object-cover" />
+          </div>
         </div>
       )}
       {bubble && (

@@ -14,6 +14,7 @@ import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
 import FROZEN_RARITIES from '../data/card-rarities.json';
 import MORE_ROSTERS from '../data/card-rosters.json';
+import UNREAL_ART from '../data/unreal-art.json';
 import type { Domain } from '../types';
 
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
@@ -114,6 +115,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
+  unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
 /**
@@ -155,6 +157,9 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
   balatro: { name: 'Jimbo', title: 'Your Friend at the Table', line: 'He knows every seed, every shop and every hand you should have played, and he will tell you all about it.', voice: 'Hey there, friend!' },
   destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
+  forhonor: { name: 'Black Prior', title: 'Sworn to the Cross', line: 'A kite shield, a heavy blade and a vow he never broke: the Blackstone’s fallen knight still stands between you and everyone he guards.', voice: 'For honor!' },
+  forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
+  unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
 };
 
 /**
@@ -321,6 +326,39 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       title: 'The Last Shell',
       line: 'One gunner, one tin hat, one shell left — and it is going straight through the enemy reactor.',
       image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
+    },
+  },
+  forhonor: {
+    name: 'Apollyon',
+    title: 'The Wolf Among Sheep',
+    line: 'She set knights, Vikings and samurai at one another’s throats, on purpose, because she believed only war makes wolves of men.',
+    image: 'https://static.wikia.nocookie.net/for-honor/images/b/b9/Apollyon.png/revision/latest/scale-to-width-down/500?cb=20160730005307',
+    awaken: {
+      title: 'Warlord of the Blackstone',
+      line: 'The war she lit has outlived her: every keep burning, every faction in arms, and her statue still watching over it all.',
+      image: 'https://static.wikia.nocookie.net/for-honor/images/2/2d/Apollyon.jpg/revision/latest/scale-to-width-down/500?cb=20170204122924',
+    },
+  },
+  balatro: {
+    name: 'The Soul',
+    title: 'Spectral Card',
+    line: 'The rarest card in the pack: open it, and a legendary joker takes the seat beside you. No one has ever said no.',
+    image: 'https://static.wikia.nocookie.net/balatrogame/images/6/6b/Spectral_The_Soul.png/revision/latest?cb=20250619173423',
+    awaken: {
+      title: 'Naneinf',
+      line: 'The chips climb past every number there is, the counter gives up, and the screen reads naneinf. You have broken the game.',
+      image: 'https://static.wikia.nocookie.net/balatrogame/images/b/b9/PolychromeModJoker.png/revision/latest?cb=20250420022806',
+    },
+  },
+  unreal: {
+    name: 'Tanglewire',
+    title: 'The Spaghetti Graph',
+    line: 'Three years of “I’ll clean this up later”, all in one Blueprint, and it has grown a face. Nobody dares touch a single wire.',
+    image: UNREAL_ART.tangle,
+    awaken: {
+      title: 'Good to Go',
+      line: 'Every wire straight, every node aligned, and the compile button finally green. It can’t remember what it was so angry about.',
+      image: UNREAL_ART.compiled,
     },
   },
   destiny: {
@@ -501,7 +539,8 @@ const CLIPS: Record<string, string> = {
   'inazuma:mythic': 'https://media.tenor.com/s0u-malnHkoAAAP1/mark-evans-endou-mamoru.mp4',
   'inazuma:omni': 'https://media.tenor.com/WW2B3R_iirIAAAP1/inazuma-eleven-inazuma-eleven-3.mp4',
   'inazuma:mythic-2': 'https://media.tenor.com/BfiOzlRAU2QAAAPo/shuuya-gouenji-tsurugi-kyousuke-fire-tornado-double-drive.mp4',
-  'forts:mythic': 'https://media.tenor.com/yBPzZbfYvLUAAAPo/forts-yeet.mp4',
+  // The howitzer firing, from "The sounds of Forts" on YouTube (0:55.0–0:55.9), the moment its voice line comes from.
+  'forts:mythic': 'youtube:rKj_ebK1T5E@55-55.9',
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
   'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',

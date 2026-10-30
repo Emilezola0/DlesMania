@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
+import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { gradeOf } from './grades';
+import { YT_VOICE } from './voice';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -119,6 +121,8 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
     io.observe(el);
     return () => io.disconnect();
   }, [animate, motion, form.clipLight]);
+  const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (motion && !!form.clipLight && inView));
+  const clipInFront = !!form.clip && YT_VOICE.test(form.clip);
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   return (
     <div
@@ -149,21 +153,15 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
         <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
-          {/* Up close (`animate`), a mythic's clip loops in place of its picture; elsewhere only a light clip does, once on screen. */}
-          {form.clip && clipFailed !== form.clip && (animate || heroOn || (motion && form.clipLight && inView)) ? (
-            <video
-              key={form.clip}
-              src={form.clip}
-              poster={form.image}
-              autoPlay
-              muted
-              loop
-              playsInline
-              onError={() => setClipFailed(form.clip!)}
-              className="size-full object-cover"
-            />
-          ) : !motion && !animate && /\.gif/i.test(form.image) ? (
-            <StillGif src={form.image} className="size-full object-contain" />
+          {/* A mythic's or omni's background is what moves: light turning, and its clip behind that (up close, or a light clip once on screen). The picture stays sharp in front. */}
+          {prism && <div className={`card-backdrop ${omni ? 'card-backdrop-omni' : 'card-backdrop-mythic'} ${motion || animate || heroOn ? '' : 'card-backdrop-still'}`} />}
+          {clipOn && !clipInFront && (
+            <div className="card-backdrop-clip">
+              <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full object-cover" />
+            </div>
+          )}
+          {!motion && !animate && /\.gif/i.test(form.image) ? (
+            <StillGif src={form.image} className="relative size-full object-contain" />
           ) : (
           <img
             key={form.image}
@@ -171,10 +169,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
             alt=""
             draggable={false}
             loading="lazy"
-            className="size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]"
+            className={`relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''}`}
             // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
             style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
           />
+          )}
+          {/* A moment chosen from YouTube is shown itself, over the picture, once it plays. */}
+          {clipOn && clipInFront && (
+            <div className="absolute inset-0 overflow-hidden">
+              <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full" />
+            </div>
           )}
           {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
