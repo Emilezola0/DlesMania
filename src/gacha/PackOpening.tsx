@@ -51,6 +51,10 @@ interface Star {
  */
 const EVOLVE_CHANCE = 0.3;
 const STAR_GAP = 260;
+/** The beat of suspense before the last star (the best card's), once every other star has crossed: evolving or not. The screen rumbles meanwhile. */
+const LAST_STAR_PAUSE = 2000;
+/** The rumble of that wait: a light shake this often, a little stronger each time. */
+const RUMBLE_EVERY = 250;
 const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
 
 function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
@@ -59,11 +63,15 @@ function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
   const last = cards.length - 1;
   const evolving = last >= 0 && RARITIES.indexOf(cards[last].rarity) >= 2 && rand() < EVOLVE_CHANCE ? last : -1;
   let at = 0;
+  let clear = 0;
   return cards.map((c, i) => {
+    // The last star waits for the sky to empty, then a moment more.
+    if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
     const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
     const star: Star = { to: c.rarity, from, delay: at, duration: flight(c.rarity) + (from !== c.rarity ? 600 : 0), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
     // Many cards (five packs at once): the stars come closer together.
     at += (cards.length > 5 ? STAR_GAP / 2.5 : STAR_GAP) + (top(c.rarity) ? 250 : 0);
+    clear = Math.max(clear, star.delay + star.duration);
     return star;
   });
 }
@@ -158,6 +166,12 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
         if (s.from !== s.to) later(() => (sfx.shimmer(5), sfx.streak()), s.delay + s.duration * EVOLVE_AT);
       });
+      // The wait before the last star: the screen trembles, harder and harder, until it flies.
+      if (stars.length > 1) {
+        const lastStar = stars[stars.length - 1];
+        const beats = Math.floor(LAST_STAR_PAUSE / RUMBLE_EVERY);
+        for (let b = 0; b < beats; b++) later(() => shake(box.current, 1.5 + (b / beats) * 4, RUMBLE_EVERY + 20), lastStar.delay - LAST_STAR_PAUSE + b * RUMBLE_EVERY);
+      }
       const end = Math.max(...stars.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
       later(toReveal, end + 300);

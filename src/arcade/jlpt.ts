@@ -1,6 +1,7 @@
 import data from '../data/jlpt.json';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32, shuffle } from '../lib/rng';
+import { romajiSpellings, toHiragana } from '../lib/romaji';
 
 /** A word or a kanji: what's written, how it's read, what it means. */
 export interface JlptEntry {
@@ -134,6 +135,49 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
   }
   return { entry, ask, answer, options: shuffle([answer, ...wrong], Math.random) };
 }
+
+// ── Typed answers (Review, "Type it"): no list to pick from, the reading or the meaning written out. ──
+
+/** What was typed, comparable: lower case, katakana as hiragana, macrons as long vowels, no spaces or punctuation. */
+const typedKey = (s: string) =>
+  toHiragana(s.normalize('NFKC').toLowerCase())
+    .replace(/[āâ]/g, 'aa')
+    .replace(/[īî]/g, 'ii')
+    .replace(/[ūû]/g, 'uu')
+    .replace(/[ēê]/g, 'ee')
+    .replace(/[ōô]/g, 'ou')
+    .replace(/[^a-z0-9\u3040-\u309f\u4e00-\u9fff]/g, '');
+
+/**
+ * Every way to write an entry's reading: each reading of the list (a word's "まいげつ/まいつき", a kanji's
+ * "サン・セン・やま"), in kana (katakana or hiragana) or in romaji; a kun reading with its okurigana
+ * ("ま.ず") whole or without it.
+ */
+export function readingSpellings(e: JlptEntry): Set<string> {
+  const kana = e.reading
+    .split(/[・、/／,\s]+/)
+    .flatMap((r) => [r.replace(/[.\-～~]/g, ''), r.split('.')[0].replace(/[-～~]/g, '')])
+    .map((r) => toHiragana(r))
+    .filter(Boolean);
+  return new Set([...kana, ...kana.flatMap(romajiSpellings)].map(typedKey).filter(Boolean));
+}
+
+/** Every way to write an entry's meaning: each sense of the list's English, with or without "to", "a", "the" or what's in brackets. */
+export function meaningSpellings(e: JlptEntry): Set<string> {
+  const senses = e.meaning.split(/[;,/]\s*/).map((s) => s.trim()).filter(Boolean);
+  const forms = senses.flatMap((s) => {
+    const bare = s.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+    return [s, bare, bare.replace(/^(to|a|an|the)\s+/i, '')];
+  });
+  return new Set(forms.map(typedKey).filter(Boolean));
+}
+
+/** A typed answer, right or not: the reading (kana or romaji) or the meaning (any of its senses). */
+export const typedRight = (e: JlptEntry, ask: JlptAsk, typed: string) => {
+  const k = typedKey(typed);
+  if (!k) return false;
+  return (ask === 'reading' ? readingSpellings(e) : meaningSpellings(e)).has(k);
+};
 
 /**
  * The word and the kanji of the day: every word and every kanji of the list once, in an order drawn once and
