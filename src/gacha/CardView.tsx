@@ -4,7 +4,7 @@ import { bossKey, useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
-import { gradeOf } from './grades';
+import { gradeOf, MAX_GRADE } from './grades';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -128,7 +128,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       onPointerMove={move}
       onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade === MAX_GRADE ? 'isolate' : ''}`}
       style={{
         background: prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -206,7 +206,13 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
         {grade > 1 && <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`} />}
       </div>
-      {/* Gold and Radiant: a light running round the frame, and a halo. */}
+      {/* The top grade: rays of light turning behind the card. */}
+      {grade === MAX_GRADE && (
+        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
+          <div className="card-grade-crown" />
+        </div>
+      )}
+      {/* Gold and up: a light running round the frame, and a halo. */}
       {grade >= 4 && (
         <>
           <div className={`card-grade-orbit card-grade-orbit-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />

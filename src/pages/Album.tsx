@@ -109,7 +109,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? 'card-grade-flare' : ''}`}>
+            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === MAX_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} depth animate />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
@@ -174,8 +174,8 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
           {reward > 0 && <span className="ml-1 rounded-full bg-[#fde68a]/20 px-1.5 text-xs text-[#fde68a]">+{reward} 🪙</span>}
         </button>
       ) : (
-        <span className="flex items-center gap-1.5 rounded-full border-2 border-[#f0abfc] px-3 py-1 text-sm font-bold text-[#fdf4ff]">
-          <GradeEmblem grade={MAX_GRADE} className="size-7" /> Radiant — top grade
+        <span className="flex items-center gap-1.5 rounded-full border-2 border-[#fde68a] px-3 py-1 text-sm font-bold text-[#fef3c7]">
+          <GradeEmblem grade={MAX_GRADE} className="size-7" /> {GRADES[MAX_GRADE].name} — top grade
         </span>
       )}
       <button type="button" onClick={() => (sfx.select(), setAvatar(isAvatar ? null : card.id))} className={btn(isAvatar)}>
