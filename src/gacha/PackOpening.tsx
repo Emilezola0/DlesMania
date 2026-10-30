@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Coins } from '../components/DleCoin';
-import { celebrate, celebrateBig, shake } from '../lib/fx';
+import { celebrate, celebrateBig, rumble, shake } from '../lib/fx';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -53,8 +53,12 @@ const EVOLVE_CHANCE = 0.3;
 const STAR_GAP = 260;
 /** The beat of suspense before the last star (the best card's), once every other star has crossed: evolving or not. The screen rumbles meanwhile. */
 const LAST_STAR_PAUSE = 2000;
-/** The rumble of that wait: a light shake this often, a little stronger each time. */
-const RUMBLE_EVERY = 250;
+/**
+ * An evolving star doesn't cross: it and a second star rush in from both sides, crash together in the
+ * middle after CLASH_AT ms and burst in the colour of the rarity it becomes (BOOM ms of sparks).
+ */
+const CLASH_AT = 950;
+const BOOM = 1000;
 const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
 
 function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
@@ -68,15 +72,13 @@ function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
     // The last star waits for the sky to empty, then a moment more.
     if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
     const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
-    const star: Star = { to: c.rarity, from, delay: at, duration: flight(c.rarity) + (from !== c.rarity ? 600 : 0), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
+    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
     // Many cards (five packs at once): the stars come closer together.
     at += (cards.length > 5 ? STAR_GAP / 2.5 : STAR_GAP) + (top(c.rarity) ? 250 : 0);
     clear = Math.max(clear, star.delay + star.duration);
     return star;
   });
 }
-/** The moment in a star's flight it evolves, a little before halfway across (the same 42% as .pack-star-* in index.css). */
-const EVOLVE_AT = 0.42;
 /** A star's streak: transparent tail, its colour, a white head (a rainbow for mythics and omnis). */
 const streak = (r: Rarity) => ({
   background: rainbowy(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
@@ -105,6 +107,37 @@ function Burst({ color, count, rainbow }: { color: string; count: number; rainbo
           style={{ width: p.size, height: p.size, background: p.color, boxShadow: `0 0 12px ${p.color}`, ['--dx' as string]: `${p.dx}px`, ['--dy' as string]: `${p.dy}px`, animationDelay: `${p.delay}ms` }}
         />
       ))}
+    </div>
+  );
+}
+
+/**
+ * An evolving star: two stars in its first colour rush in from both sides, crash in the middle of the
+ * screen and burst in the colour of the rarity it turns out to be.
+ */
+function Clash({ star, thick }: { star: Star; thick: number }) {
+  const [boom, setBoom] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setBoom(true), star.delay + CLASH_AT);
+    return () => window.clearTimeout(t);
+  }, [star.delay]);
+  const timing = { animationDuration: `${CLASH_AT}ms`, animationDelay: `${star.delay}ms` };
+  const color = RARITY_LIGHT[star.to];
+  return (
+    <div className="absolute inset-0">
+      {/* From the left, and from the right (the same star turned around), meeting in the middle. */}
+      {[star.tilt, 180 + star.tilt].map((angle) => (
+        <div key={angle} className="absolute left-1/2 top-1/2 h-0 w-0" style={{ transform: `rotate(${angle}deg)` }}>
+          <div className="pack-clash absolute right-0 top-0 rounded-full" style={{ ...timing, width: `${top(star.to) ? 40 : 30}vw`, height: thick + 2, ...streak(star.from) }} />
+        </div>
+      ))}
+      {boom && (
+        <>
+          <div className="pack-clash-boom absolute left-1/2 top-1/2 size-40 rounded-full" style={{ background: rainbowy(star.to) ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 72%)` : `radial-gradient(circle, #fff 10%, ${color} 40%, transparent 70%)` }} />
+          <div className="pack-clash-ring absolute left-1/2 top-1/2 size-40 rounded-full border-4" style={{ borderColor: color, boxShadow: `0 0 30px ${color}` }} />
+          <Burst color={color} rainbow={rainbowy(star.to)} count={top(star.to) ? 70 : 44} />
+        </>
+      )}
     </div>
   );
 }
@@ -164,13 +197,19 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
       stars.forEach((s, k) => {
         later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
-        if (s.from !== s.to) later(() => (sfx.shimmer(5), sfx.streak()), s.delay + s.duration * EVOLVE_AT);
+        // An evolving star: the crash, a hard shake and the burst in its new colour.
+        if (s.from !== s.to)
+          later(() => {
+            sfx.clash();
+            sfx.shimmer(5);
+            shake(box.current, 14, 520);
+            setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
+          }, s.delay + CLASH_AT);
       });
-      // The wait before the last star: the screen trembles, harder and harder, until it flies.
+      // The wait before the last star: the screen trembles, harder and harder, to a quiet rising drone.
       if (stars.length > 1) {
-        const lastStar = stars[stars.length - 1];
-        const beats = Math.floor(LAST_STAR_PAUSE / RUMBLE_EVERY);
-        for (let b = 0; b < beats; b++) later(() => shake(box.current, 1.5 + (b / beats) * 4, RUMBLE_EVERY + 20), lastStar.delay - LAST_STAR_PAUSE + b * RUMBLE_EVERY);
+        const wait = stars[stars.length - 1].delay - LAST_STAR_PAUSE;
+        later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), wait);
       }
       const end = Math.max(...stars.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
@@ -403,26 +442,17 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         </div>
       )}
 
-      {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one evolves on the way. */}
+      {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
           {stars.map((s, k) => {
-            const evolves = s.from !== s.to;
-            const timing = { animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms` };
-            const turn = timing;
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
+            // An evolving star crashes into another and bursts in its true colour.
+            if (s.from !== s.to) return <Clash key={k} star={s} thick={thick} />;
             return (
               <div key={k} className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
-                <div className="pack-meteor relative rounded-full" style={{ ...timing, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
-                  {/* What it shows first; an evolving star swaps it for its true colour on the way. */}
-                  <div className={`absolute inset-0 rounded-full ${evolves ? 'pack-star-before' : ''}`} style={{ ...streak(s.from), ...(evolves ? turn : {}) }} />
-                  {evolves && (
-                    <>
-                      <div className="pack-star-after absolute inset-0 rounded-full" style={{ ...streak(s.to), ...turn }} />
-                      {/* The burst at its head as it changes. */}
-                      <div className="pack-star-burst absolute -right-6 top-1/2 size-12 rounded-full" style={{ ...turn, background: `radial-gradient(circle, #fff, ${RARITY_LIGHT[s.to]} 40%, transparent 70%)` }} />
-                    </>
-                  )}
+                <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms`, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
+                  <div className="absolute inset-0 rounded-full" style={streak(s.to)} />
                 </div>
               </div>
             );
