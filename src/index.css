@@ -953,9 +953,15 @@ h1, h2, h3, .font-serif, .font-display {
 }
 
 /* ── A big moment (src/gacha/Reactions.tsx): the page's whole background comes alive for a few seconds. ── */
-@keyframes moment-bg {
-  0%, 100% { opacity: 0; }
-  10%, 80% { opacity: 1; }
+@keyframes moment-in {
+  from { opacity: 0; }
+}
+@keyframes moment-out {
+  to { opacity: 0; }
+}
+@keyframes moment-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 .moment-bg {
   position: fixed;
@@ -963,8 +969,18 @@ h1, h2, h3, .font-serif, .font-display {
   z-index: -5;
   overflow: hidden;
   pointer-events: none;
-  animation: moment-bg 6s ease-in-out both;
+  animation: moment-in 0.6s ease-out both;
 }
+.moment-out { animation: moment-out 1.2s ease-in both; }
+/* While its clip is on its way: the card's light, breathing. */
+.moment-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--glow) 60%, transparent), transparent 70%);
+  transition: opacity 0.5s;
+}
+.moment-wait .moment-glow { animation: moment-pulse 1.6s ease-in-out infinite; }
 .moment-rays {
   position: absolute;
   left: 50%;
@@ -977,6 +993,8 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .moment-clip { position: absolute; inset: 0; opacity: 0.8; }
 .moment-clip video { position: absolute; inset: 0; }
+/* A YouTube clip covers the screen, not the zoom it has on a card. */
+.moment-clip .card-clip-yt iframe { left: 50%; width: max(100vw, 177.78vh); transform: translate(-50%, -50%); }
 .moment-bg::after {
   content: '';
   position: absolute;

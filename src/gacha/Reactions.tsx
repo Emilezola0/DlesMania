@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { isEmbedClip, playVoice, voiceOf } from './voice';
+import { playVoice, voiceOf } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -94,8 +94,10 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },
 };
 
-/** A big moment's animation: how long it stays, and at least how long between two. */
+/** A big moment's animation: how long it stays once playing, how long its clip may take to start, its fade out, and at least how long between two. */
 const MOMENT_MS = 6000;
+const MOMENT_WAIT_MS = 20_000;
+const MOMENT_OUT_MS = 1200;
 const MOMENT_GAP_MS = 45_000;
 
 const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
@@ -133,9 +135,26 @@ export function CardReactions() {
   const [bubble, setBubble] = useState<{ kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
   /** The icon's animation, on a big moment now and then. */
-  const [moment, setMoment] = useState<{ clip?: string; key: number } | null>(null);
+  const [moment, setMoment] = useState<{ clip?: string; key: number; waiting: boolean; leaving: boolean } | null>(null);
   const lastMoment = useRef(0);
-  const [clipFailed, setClipFailed] = useState<string | null>(null);
+  const momentTimer = useRef(0);
+  const clipWait = useRef(false);
+  const failedClips = useRef(new Set<string>());
+  const endMoment = (after: number) => {
+    window.clearTimeout(momentTimer.current);
+    momentTimer.current = window.setTimeout(() => {
+      clipWait.current = false;
+      setMoment((m) => m && { ...m, waiting: false, leaving: true });
+      momentTimer.current = window.setTimeout(() => setMoment(null), MOMENT_OUT_MS);
+    }, after);
+  };
+  /** The wait is over, the clip playing or not: the moment's full length from now. */
+  const clipSettled = (clip?: string) => {
+    if (!clipWait.current) return;
+    clipWait.current = false;
+    setMoment((m) => m && { ...m, clip, waiting: false });
+    endMoment(MOMENT_MS - MOMENT_OUT_MS);
+  };
   // The page itself turns see-through while it lasts.
   useEffect(() => {
     if (!moment) return;
@@ -145,7 +164,6 @@ export function CardReactions() {
   useEffect(() => {
     if (!enabled || !avatar) return;
     let timer = 0;
-    let momentTimer = 0;
     const off = onCue((kind) => {
       const now = Date.now();
       // Big moments always; otherwise now and then, so fast games don't drown in bubbles.
@@ -157,36 +175,54 @@ export function CardReactions() {
       // A mythic's big moment: its voice line, heard.
       if (kind === 'great' && avatar.voice) playVoice(avatar);
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
-      const clip = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
+      const own = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
+      const clip = own && !failedClips.current.has(own) ? own : undefined;
       if (kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         lastMoment.current = now;
-        setMoment({ clip, key: now });
-        window.clearTimeout(momentTimer);
-        momentTimer = window.setTimeout(() => setMoment(null), MOMENT_MS);
+        // A clip can be slow to start (above all one kept on YouTube or TikTok): the light glows until it does, and it still plays.
+        clipWait.current = !!clip;
+        setMoment({ clip, key: now, waiting: !!clip, leaving: false });
+        endMoment(clip ? MOMENT_WAIT_MS : MOMENT_MS - MOMENT_OUT_MS);
       }
       window.clearTimeout(timer);
       timer = window.setTimeout(() => setBubble(null), 2600);
     });
-    return () => (off(), window.clearTimeout(timer), window.clearTimeout(momentTimer));
+    return () => {
+      off();
+      window.clearTimeout(timer);
+      window.clearTimeout(momentTimer.current);
+      clipWait.current = false;
+      setMoment(null);
+    };
   }, [enabled, avatar]);
 
   if ((!bubble && !moment) || !avatar) return null;
   const light = RARITY_LIGHT[avatar.rarity];
   return (
     <>
-      {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind (not one kept on YouTube or TikTok: too slow to start for a moment this short). */}
+      {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind. */}
       {moment && (
-        <div key={moment.key} className="moment-bg" style={{ ['--glow' as string]: light, animationDuration: `${MOMENT_MS}ms` }} aria-hidden>
+        <div key={`moment-${moment.key}`} className={`moment-bg ${moment.waiting ? 'moment-wait' : ''} ${moment.leaving ? 'moment-out' : ''}`} style={{ ['--glow' as string]: light }} aria-hidden>
           <div className="moment-rays" />
-          {moment.clip && clipFailed !== moment.clip && !isEmbedClip(moment.clip) && (
+          <div className="moment-glow" />
+          {moment.clip && (
             <div className="moment-clip">
-              <CardClip src={moment.clip} onFail={() => setClipFailed(moment.clip!)} className="size-full object-cover" />
+              <CardClip
+                src={moment.clip}
+                onFail={() => {
+                  failedClips.current.add(moment.clip!);
+                  clipSettled();
+                  setMoment((m) => m && { ...m, clip: undefined });
+                }}
+                onPlaying={() => clipSettled(moment.clip)}
+                className="size-full object-cover"
+              />
             </div>
           )}
         </div>
       )}
       {bubble && (
-    <div key={bubble.key} className="react-in pointer-events-none fixed right-3 top-14 z-40 flex max-w-[16rem] items-center gap-2" aria-live="polite">
+    <div key={`bubble-${bubble.key}`} className="react-in pointer-events-none fixed right-3 top-14 z-40 flex max-w-[16rem] items-center gap-2" aria-live="polite">
       <p className="rounded-2xl rounded-tr-sm border-2 bg-card px-3 py-1.5 text-sm font-bold shadow-xl" style={{ borderColor: bubble.kind === 'bad' ? '#f87171' : light }}>
         <span className={avatar.rarity === 'mythic' && bubble.kind === 'great' ? 'card-mythic-name' : ''}>{bubble.text}</span>
       </p>

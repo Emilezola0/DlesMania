@@ -14,13 +14,14 @@ import { GradeBackPay } from './GradeBackPay';
 import { RetiredCards } from './RetiredCards';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
-export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop', '/album', '/trades'];
+export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
 
 const NAV = [
   { to: '/daily', label: 'Daily' },
   { to: '/play', label: 'Free Play', short: 'Play' },
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/games', label: 'Games', also: GAME_PATHS },
+  { to: '/album', label: 'Album', also: ['/trades'] },
   { to: '/archive', label: 'Archive' },
 ] as { to: string; label: string; short?: string; also?: string[] }[];
 
@@ -248,10 +249,10 @@ export function Layout() {
         </Suspense>
       )}
       <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4 sm:gap-4">
+        <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
-            <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline">OMNIDLE</span>
+            <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline sm:hidden lg:inline">OMNIDLE</span>
           </NavLink>
           <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex">
             {NAV.map((n) => (
@@ -260,7 +261,7 @@ export function Layout() {
                 to={n.to}
                 className={({ isActive: exact }) => {
                   const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-                  return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-2 lg:px-3 ${
+                  return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-1 lg:px-2 ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`;
                 }}

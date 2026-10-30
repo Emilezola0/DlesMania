@@ -92,8 +92,8 @@ function stopTikTokVoice() {
   ttVoice = null;
 }
 
-/** How long a TikTok voice may take to start before it's given up on: late, it wouldn't match the moment. */
-const TT_START_MS = 8000;
+/** How long a TikTok voice may take to start before it's given up on: a little late is better than not heard. */
+const TT_START_MS = 20_000;
 
 /**
  * Plays start..end of a TikTok, out of sight; `fallback` if it can't. Its player has no volume of its
