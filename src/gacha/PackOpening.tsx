@@ -69,19 +69,20 @@ const SPIN: Partial<Record<Rarity, React.CSSProperties>> = {
   omni: { ['--turns' as string]: 4, animationDuration: '2200ms' },
 };
 
-/** Where the black hole opens, on screen (%). */
-const HOLE = { x: 62, y: 42 };
-/** A swallowed star's fall into the hole, and its way back out once every other star has passed (ms). */
-const SWALLOW_MS = 1200;
-const EMERGE_MS = 1300;
-const EMERGE_GAP = 900;
+/** Where the black hole opens: the middle of the screen (%). */
+const HOLE = { x: 50, y: 45 };
+/** With a black hole: each star's way in from the left, round the hole and out to the right (or into it), and the gap between stars (ms). */
+const ORBIT_MS = 3000;
+const ORBIT_GAP = 420;
 
 /**
- * Now and then (BLACK_HOLE_CHANCE, 5%) a black hole opens as the stars fly, and each star passing (not an
- * evolving one) may be pulled in (ABSORB_CHANCE). Its card comes last, with an anomaly to keep or not.
+ * Now and then (BLACK_HOLE_CHANCE, 5%) a black hole opens in the middle of the screen: the stars come in from
+ * the left as ever, but circle round it; after a while, those it doesn't keep fly on to the right, and the ones
+ * it pulls in (ABSORB_CHANCE each; never the last star, the best card's) vanish into it in a spark. Then the
+ * last star comes as usual (evolving or not). A swallowed star's card comes last, with an anomaly to keep or not.
  * For testing, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
  */
-function cosmosFor(stars: Star[], rand: () => number = Math.random): { hole: boolean; swallowed: Map<number, AnomalyId> } {
+function cosmosFor(cards: Card[], rand: () => number = Math.random): { hole: boolean; stars: Star[]; swallowed: Map<number, AnomalyId> } {
   let force: string | null = null;
   try {
     force = localStorage.getItem('omnidle-force-anomaly');
@@ -91,16 +92,17 @@ function cosmosFor(stars: Star[], rand: () => number = Math.random): { hole: boo
   // "1": a black hole and a swallowed star; or the name of an anomaly, to get that one.
   const forced = force === '1' || (ANOMALY_IDS as string[]).includes(force ?? '');
   const roll = () => ((ANOMALY_IDS as string[]).includes(force ?? '') ? (force as AnomalyId) : rollAnomaly(rand));
-  const hole = forced || rand() < BLACK_HOLE_CHANCE;
+  const hole = cards.length > 1 && (forced || rand() < BLACK_HOLE_CHANCE);
+  const stars = starsFor(cards, hole, rand);
   const swallowed = new Map<number, AnomalyId>();
-  if (!hole) return { hole, swallowed };
-  const candidates = stars.flatMap((s, k) => (s.from === s.to ? [k] : []));
+  if (!hole) return { hole, stars, swallowed };
+  const candidates = stars.slice(0, -1).map((_, k) => k);
   for (const k of candidates) if (rand() < ABSORB_CHANCE) swallowed.set(k, roll());
   if (forced && !swallowed.size && candidates.length) swallowed.set(candidates[Math.floor(rand() * candidates.length)], roll());
-  return { hole, swallowed };
+  return { hole, stars, swallowed };
 }
 
-function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
+function starsFor(cards: Card[], hole: boolean, rand: () => number = Math.random): Star[] {
   // Now and then the best card (Epic or better: the smallest fake-out is Rare → Epic) shows a rarity lower,
   // and evolves on the way. The cards come sorted, the best last.
   const last = cards.length - 1;
@@ -111,9 +113,12 @@ function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
     // The last star waits for the sky to empty, then a moment more.
     if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
     const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
-    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
+    // With a black hole, every star but the last circles it first: a longer way.
+    const orbit = hole && i !== last;
+    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
     // Many cards (five packs at once): the stars come closer together.
-    at += (cards.length > 5 ? STAR_GAP / 2.5 : STAR_GAP) + (top(c.rarity) ? 250 : 0);
+    const gap = orbit ? ORBIT_GAP : STAR_GAP;
+    at += (cards.length > 5 ? gap / 2.5 : gap) + (top(c.rarity) && !orbit ? 250 : 0);
     clear = Math.max(clear, star.delay + star.duration);
     return star;
   });
@@ -193,20 +198,46 @@ function BlackHole({ until }: { until: number }) {
 }
 
 /**
- * A star the black hole swallows: it flies at the hole, bends, shrinks and is gone; once every other star
- * has passed, it shoots back out of the hole the other way.
+ * A star round the black hole: in from the left, a turn and a half around it, then out to the right — or,
+ * pulled in, spiralling ever closer until it's gone in a spark. Its way is a path across the screen.
  */
-function Swallowed({ star, thick, backAt }: { star: Star; thick: number; backAt: number }) {
-  const width = `${top(star.to) ? 40 : 28}vw`;
+function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: number; swallowed: boolean }) {
+  const path = useMemo(() => {
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const cx = (W * HOLE.x) / 100;
+    const cy = (H * HOLE.y) / 100;
+    const r = Math.min(W, H) * (0.17 + (k % 5) * 0.035);
+    const y0 = (H * star.top) / 100;
+    const start = `M -120 ${y0} L ${cx - r} ${cy}`;
+    if (!swallowed) return `${start} A ${r} ${r} 0 0 1 ${cx + r} ${cy} A ${r} ${r} 0 0 1 ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} L ${W + 160} ${cy + (y0 - cy) * 0.4}`;
+    // Pulled in: half-turns ever closer, side to side, down to the middle.
+    const xs = [-1, 0.75, -0.5, 0.3, -0.14, 0.05].map((f) => cx + f * r);
+    const arcs = xs.slice(1).map((x, i) => `A ${Math.abs(x - xs[i]) / 2} ${Math.abs(x - xs[i]) / 2} 0 0 1 ${x} ${cy}`);
+    return `${start} ${arcs.join(' ')} L ${cx} ${cy}`;
+  }, [star, k, swallowed]);
+  const [spark, setSpark] = useState(false);
+  useEffect(() => {
+    if (!swallowed) return;
+    const t = window.setTimeout(() => setSpark(true), star.delay + star.duration - 80);
+    return () => window.clearTimeout(t);
+  }, [swallowed, star]);
   return (
-    <div className="absolute inset-0">
-      <div className="absolute h-0 w-0" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, transform: `rotate(${star.tilt}deg)` }}>
-        <div className="pack-swallow absolute right-0 top-0 origin-right rounded-full" style={{ width, height: thick, animationDuration: `${SWALLOW_MS}ms`, animationDelay: `${star.delay}ms`, ...streak(star.to) }} />
-      </div>
-      <div className="absolute h-0 w-0" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, transform: `rotate(${-star.tilt - 8}deg)` }}>
-        <div className="pack-emerge absolute left-0 top-0 rounded-full" style={{ width, height: thick + 2, animationDuration: `${EMERGE_MS}ms`, animationDelay: `${backAt}ms`, ...streak(star.to) }} />
-      </div>
-    </div>
+    <>
+      <div
+        className={`${swallowed ? 'pack-orbit-in' : 'pack-orbit'} absolute left-0 top-0 rounded-full`}
+        style={{ width: top(star.to) ? 90 : 64, height: thick + 1, offsetPath: `path('${path}')`, offsetRotate: 'auto', animationDuration: `${star.duration}ms`, animationDelay: `${star.delay}ms`, ...streak(star.to) }}
+      />
+      {/* Swallowed: a spark where it went in. */}
+      {spark && (
+        <div className="absolute" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, width: 0, height: 0 }}>
+          <div className="pack-spark-flash absolute size-16 rounded-full" style={{ background: `radial-gradient(circle, #fff, ${RARITY_LIGHT[star.to]} 45%, transparent 70%)` }} />
+          <div className="absolute left-0 top-0">
+            <Burst color={RARITY_LIGHT[star.to]} count={16} rainbow={rainbowy(star.to)} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -260,9 +291,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
-  const stars = useMemo(() => starsFor(cards), [cards]);
-  // A black hole, now and then, and the stars it swallows: their cards come last, with an anomaly to keep or not.
-  const cosmos = useMemo(() => cosmosFor(stars), [stars]);
+  // …with a black hole now and then, and the stars it swallows (their cards come last, with an anomaly to keep or not).
+  const cosmos = useMemo(() => cosmosFor(cards), [cards]);
+  const stars = cosmos.stars;
   const deck = useMemo(() => [...cards.filter((_, k) => !cosmos.swallowed.has(k)), ...cards.filter((_, k) => cosmos.swallowed.has(k))], [cards, cosmos]);
   /** The anomaly each card of the deck came back with (by its place in the deck), and what the player said. */
   const pending = useMemo(() => {
@@ -280,9 +311,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     if (keep) (setAnomaly(deck[k].id, a), sfx.streak());
     else sfx.click();
   };
-  // When the swallowed stars come back: after every other star (and the last one's pause), one after another.
-  const normalEnd = Math.max(0, ...stars.map((s, k) => (cosmos.swallowed.has(k) ? 0 : s.delay + s.duration)));
-  const emergeAt = (j: number) => normalEnd + 700 + j * EMERGE_GAP;
+  // When the black hole closes: once every star round it has flown on or gone in (the last star comes after).
+  const holeEnd = Math.max(0, ...stars.slice(0, -1).map((s) => s.delay + s.duration));
   // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
   // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
   const tease = stars.find((s) => s.from !== s.to);
@@ -315,13 +345,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
       // The black hole: it opens with a hum as the first star flies.
       if (cosmos.hole) later(() => (sfx.blackHole(), rumble(box.current, 1800, 0.3, 3)), 0);
-      const back = [...cosmos.swallowed.keys()];
-      back.forEach((k, j) => {
-        later(() => (sfx.swallow(), shake(box.current, 6, 400)), stars[k].delay + SWALLOW_MS - 200);
-        later(() => (sfx.meteor(true), shake(box.current, 10, 500)), emergeAt(j));
-      });
+      // A star it pulls in: a rush of air, and a jolt as it goes.
+      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), shake(box.current, 7, 400)), stars[k].delay + stars[k].duration - 300);
       stars.forEach((s, k) => {
-        if (cosmos.swallowed.has(k)) return;
         later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
         // An evolving star: the crash, a hard shake and the burst in its new colour.
         if (s.from !== s.to)
@@ -337,7 +363,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         const wait = stars[stars.length - 1].delay - LAST_STAR_PAUSE;
         later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), wait);
       }
-      const end = Math.max(normalEnd, ...back.map((_, j) => emergeAt(j) + EMERGE_MS));
+      const end = Math.max(...stars.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
     }, 950);
@@ -573,13 +599,11 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-          {cosmos.hole && <BlackHole until={Math.max(normalEnd, ...[...cosmos.swallowed.keys()].map((_, j) => emergeAt(j) + 400))} />}
-          {[...cosmos.swallowed.keys()].map((k, j) => (
-            <Swallowed key={`sw${k}`} star={stars[k]} thick={top(stars[k].to) ? 7 : RARITIES.indexOf(stars[k].to) >= 2 ? 5 : 3} backAt={emergeAt(j)} />
-          ))}
+          {cosmos.hole && <BlackHole until={holeEnd} />}
           {stars.map((s, k) => {
-            if (cosmos.swallowed.has(k)) return null;
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
+            // A black hole: every star but the last circles it (and some go in).
+            if (cosmos.hole && k < stars.length - 1) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} />;
             // An evolving star crashes into another and bursts in its true colour.
             if (s.from !== s.to) return <Clash key={k} star={s} thick={thick} />;
             return (

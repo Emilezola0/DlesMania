@@ -1494,19 +1494,25 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 .pack-hole-core { width: 15vmin; height: 15vmin; background: radial-gradient(circle, #000 62%, #12061f 72%, transparent 76%); box-shadow: 0 0 30px 8px #000, 0 0 60px 20px rgba(124, 58, 237, 0.35); }
 @keyframes pack-hole-spin { to { rotate: 360deg; } }
 @keyframes pack-hole-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.06; } }
-/* A star pulled in: head first at the hole, speeding up, bending and shrinking to nothing. */
-.pack-swallow { opacity: 0; animation-name: pack-swallow; animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.5); animation-fill-mode: both; translate: 0 -50%; }
-@keyframes pack-swallow {
-  0% { transform: translateX(-80vw) scaleX(1); opacity: 1; }
-  70% { transform: translateX(-6vmin) scaleX(0.7) rotate(12deg); opacity: 1; }
-  100% { transform: translateX(0) scaleX(0.02) rotate(40deg); opacity: 0; }
+/* Round the black hole: a star along its path (offset-path), in from the left and on to the right… */
+.pack-orbit { opacity: 0; animation-name: pack-orbit; animation-timing-function: cubic-bezier(0.3, 0.1, 0.6, 1); animation-fill-mode: both; }
+@keyframes pack-orbit {
+  0% { offset-distance: 0%; opacity: 1; }
+  97% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
 }
-/* And out again, the other way, once every other star has passed. */
-.pack-emerge { opacity: 0; animation-name: pack-emerge; animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1); animation-fill-mode: both; translate: 0 -50%; transform-origin: left; }
-@keyframes pack-emerge {
-  0% { transform: translateX(0) scaleX(0.05); opacity: 0; }
-  8% { opacity: 1; }
-  100% { transform: translateX(90vw) scaleX(1); opacity: 1; }
+/* …or pulled in, faster and smaller as it nears the middle, and gone. */
+.pack-orbit-in { opacity: 0; animation-name: pack-orbit-in; animation-timing-function: cubic-bezier(0.4, 0, 0.85, 0.6); animation-fill-mode: both; }
+@keyframes pack-orbit-in {
+  0% { offset-distance: 0%; opacity: 1; scale: 1; }
+  80% { opacity: 1; scale: 0.7; }
+  100% { offset-distance: 100%; opacity: 0; scale: 0.1; }
+}
+/* Its spark as it goes in. */
+.pack-spark-flash { translate: -50% -50%; animation: pack-spark-flash 0.6s ease-out both; mix-blend-mode: screen; }
+@keyframes pack-spark-flash {
+  from { scale: 0.2; opacity: 1; }
+  to { scale: 2.4; opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pack-hole-disc, .pack-hole-lens { animation: none; }
