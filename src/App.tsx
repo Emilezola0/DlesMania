@@ -25,6 +25,7 @@ const Trades = lazy(() => import('./pages/Trades'));
 const WhoAmI = lazy(() => import('./pages/WhoAmI'));
 const FranchiseWordle = lazy(() => import('./pages/FranchiseWordle'));
 const JapaneseWordle = lazy(() => import('./pages/JapaneseWordle'));
+const ToTheLast = lazy(() => import('./pages/ToTheLast'));
 const QuickSort = lazy(() => import('./pages/QuickSort'));
 const SixDegrees = lazy(() => import('./pages/SixDegrees'));
 const Expedition = lazy(() => import('./pages/Expedition'));
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="higher-lower" element={<HigherLower />} />
         <Route path="higher-lower/:deck" element={<HigherLower />} />
         <Route path="jlpt" element={<Jlpt />} />
+        <Route path="jlpt-last/:level/:kind" element={<ToTheLast />} />
         <Route path="jlpt/:deck" element={<Jlpt />} />
         <Route path="jlpt/list/:level" element={<Jlpt />} />
         <Route path="name-them-all" element={<NameThemAll />} />

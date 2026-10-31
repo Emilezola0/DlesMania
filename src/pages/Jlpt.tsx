@@ -5,6 +5,7 @@ import { FlameIcon } from '../components/Layout';
 import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
+import { LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
 import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -645,6 +646,44 @@ function NameThemAllRow() {
   );
 }
 
+/** To the Last: a whole level, item by item, until none is left (src/arcade/toTheLast.ts). */
+function ToTheLastRow() {
+  return (
+    <section className="space-y-3">
+      <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">To the last</h2>
+      <p className="max-w-xl text-sm text-ink-soft">
+        A whole level, one word, kanji or grammar point at a time: type the answer, and a right one never comes back. Clear them all to finish — your progress is
+        kept, so a level can take as many sittings as it needs.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="text-sm">
+          <tbody>
+            {JLPT_LEVELS.map((l) => (
+              <tr key={l.level}>
+                <th className="pr-3 text-left font-display">{l.level}</th>
+                {LAST_KINDS.map((kind) => {
+                  const p = loadLast(l.level, kind);
+                  const total = lastItems(l.level, kind).length;
+                  return (
+                    <td key={kind} className="p-1">
+                      <Link to={`/jlpt-last/${l.level}/${kind}`} className="btn-paper inline-flex w-full items-center justify-between gap-2 rounded-full px-3 py-1.5 font-display font-bold">
+                        {LAST_KIND_LABEL[kind]}
+                        <span className="text-xs font-normal text-ink-faint">
+                          {total - p.left.length}/{total}
+                        </span>
+                      </Link>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 /** "Your deck" (Customise): the levels and kinds picked, mixed. */
 const JLPT_OPTIONS = [
   ...JLPT_LEVELS.map((l) => ({ key: l.level, label: l.level, group: 'Levels' })),
@@ -730,6 +769,7 @@ export default function Jlpt() {
         </ul>
       </section>
       <NameThemAllRow />
+      <ToTheLastRow />
       {JLPT_LEVELS.map((l) => (
         <section key={l.level} className="space-y-3">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{l.level}</h2>
