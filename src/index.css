@@ -1060,9 +1060,9 @@ h1, h2, h3, .font-serif, .font-display {
   .omni-aura body::before, .omni-aura header::after, .omni-aura [data-logo] { animation: none; }
 }
 
-/* ── Card grades II–V (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
+/* ── Card grades II–VI (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
 /* Bronze: an edge of warm metal. Silver: a cool edge and a gleam passing over. Gold: a gold edge, the gleam,
-   specks of light. Radiant: a prismatic edge, a brighter gleam, more specks. */
+   specks of light. Radiant: a prismatic edge, a brighter gleam, more specks. Celestial: see below. */
 .card-grade-fx { z-index: 5; border-radius: inherit; }
 .card-grade-2 { box-shadow: inset 0 0 0 1.2cqw rgba(205, 127, 50, 0.55), inset 0 0 6cqw rgba(205, 127, 50, 0.35); }
 .card-grade-3,
@@ -1137,6 +1137,68 @@ h1, h2, h3, .font-serif, .font-display {
   animation: grade-rays-turn 9s linear infinite;
 }
 @keyframes grade-rays-turn { to { transform: rotate(360deg); } }
+/* Celestial, the top grade: a white-gold edge and a quick gleam, light turning over the card, stars rising through it,
+   two comets round the frame, a stronger halo, rays turning behind the card and an emblem with two rings. */
+.card-grade-6 {
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1.5cqw rgba(255, 241, 168, 0.9), inset 0 0 3cqw 1cqw rgba(255, 255, 255, 0.55), inset 0 0 14cqw rgba(242, 185, 46, 0.55);
+  background: linear-gradient(105deg, transparent 34%, rgba(255, 241, 168, 0.4) 44%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 241, 168, 0.4) 56%, transparent 66%);
+  background-size: 300% 100%;
+  animation: card-grade-gleam 2.2s ease-in-out infinite;
+}
+.card-grade-6::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(from var(--spin) at 50% 40%, transparent 0 12%, rgba(255, 241, 168, 0.28) 20%, transparent 30% 45%, rgba(255, 255, 255, 0.24) 55%, transparent 65% 80%, rgba(242, 185, 46, 0.28) 90%, transparent 100%);
+  mix-blend-mode: screen;
+  animation: card-spin 7s linear infinite;
+}
+.card-grade-6::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.1cqw 1.1cqw at 15% 20%, #fff, transparent),
+    radial-gradient(0.8cqw 0.8cqw at 70% 45%, #fff1a8, transparent),
+    radial-gradient(1.3cqw 1.3cqw at 40% 75%, #fff, transparent),
+    radial-gradient(0.9cqw 0.9cqw at 85% 85%, #f2b92e, transparent);
+  background-size: 60cqw 60cqw, 45cqw 45cqw, 75cqw 75cqw, 50cqw 50cqw;
+  animation: card-grade-stars 5s linear infinite;
+}
+@keyframes card-grade-stars {
+  to { background-position: 0 -60cqw, 0 -90cqw, 0 -75cqw, 0 -100cqw; }
+}
+.card-grade-orbit-6 {
+  padding: 2cqw;
+  background: conic-gradient(from var(--spin), transparent 0 22%, #f2b92e 36%, #fff 48%, transparent 50% 72%, #f2b92e 86%, #fff 98%, transparent 100%);
+  animation-duration: 1.8s;
+}
+.card-grade-halo-6 {
+  --halo: rgba(255, 225, 120, 0.8);
+  animation-duration: 2.2s;
+}
+.card-grade-crown {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 190cqw;
+  aspect-ratio: 1;
+  background: repeating-conic-gradient(rgba(255, 241, 168, 0.75) 0 5deg, transparent 5deg 15deg, rgba(255, 255, 255, 0.5) 15deg 17deg, transparent 17deg 30deg);
+  -webkit-mask: radial-gradient(circle closest-side, #000 58%, transparent 100%);
+  mask: radial-gradient(circle closest-side, #000 58%, transparent 100%);
+  animation: card-grade-crown-turn 16s linear infinite;
+}
+@keyframes card-grade-crown-turn {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.grade-emblem-celestial { filter: drop-shadow(0 0 2.5cqw rgba(255, 225, 120, 0.95)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)); }
+.grade-emblem-celestial .grade-rays { animation-duration: 5s; }
+.grade-emblem-celestial .grade-rays-back {
+  transform-origin: 30px 31px;
+  animation: grade-rays-turn 7s linear infinite reverse;
+}
 /* A grade-up: the card flares. */
 @keyframes card-grade-flare {
   0% { filter: brightness(1); transform: scale(1); }
@@ -1144,9 +1206,18 @@ h1, h2, h3, .font-serif, .font-display {
   100% { filter: brightness(1); transform: scale(1); }
 }
 .card-grade-flare { animation: card-grade-flare 0.9s ease-out; }
+/* Reaching the top grade: longer, whiter, with a jolt. */
+@keyframes card-grade-flare-top {
+  0% { filter: brightness(1); transform: scale(1); }
+  12% { filter: brightness(4) saturate(0.4); transform: scale(0.9); }
+  35% { filter: brightness(3) saturate(1.5); transform: scale(1.14); }
+  100% { filter: brightness(1); transform: scale(1); }
+}
+.card-grade-flare-top { animation: card-grade-flare-top 1.7s ease-out; }
 @media (prefers-reduced-motion: reduce) {
-  .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-4::after, .card-grade-5::after,
-  .card-grade-orbit, .card-grade-halo, .grade-emblem-radiant .grade-rays, .card-grade-flare { animation: none; }
+  .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-6, .card-grade-4::after, .card-grade-5::after, .card-grade-6::before, .card-grade-6::after,
+  .card-grade-orbit, .card-grade-halo, .card-grade-crown, .grade-emblem-radiant .grade-rays, .grade-emblem-celestial .grade-rays-back, .card-grade-flare, .card-grade-flare-top { animation: none; }
+  .card-grade-crown { transform: translate(-50%, -50%); }
 }
 
 /* Pack opening: a shooting star that evolves on the way (src/gacha/PackOpening.tsx, EVOLVE_AT = 42%):

@@ -8,7 +8,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 
@@ -32,12 +32,11 @@ const pct = (x: number) => `${x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x
 
 /**
  * A rarity's chances: per card, and of at least one in a pack — four cards on the odds, the last
- * one at least rare (the odds of rare and up, shared out again among themselves).
+ * one at least rare (see lastCardOdds).
  */
 function chances(odds: Record<Rarity, number>, r: Rarity) {
-  const top = RARITIES.slice(1).reduce((t, x) => t + odds[x], 0);
   const p = odds[r] / 100;
-  const last = r === 'common' ? 0 : odds[r] / top;
+  const last = lastCardOdds(odds)[r] / 100;
   const pack = 1 - Math.pow(1 - p, PACK_SIZE - 1) * (1 - last);
   return { card: odds[r], pack: pack * 100 };
 }
@@ -54,8 +53,8 @@ function DropRates() {
     <section className="space-y-3">
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
-        Each pack has {PACK_SIZE} different cards; the last is always Rare or better. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much; Mythic and Omni never change). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
+        Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">
@@ -358,7 +357,7 @@ export default function Shop() {
             Expeditions: every room won pays, a little more each act, up to {EXPEDITION_ROOM_MAX} a room and {EXPEDITION_BOSS_MAX} a boss. In full up to {EXPEDITION_CAP} a day ({Math.min(econ.expedition ?? 0, EXPEDITION_CAP)}/{EXPEDITION_CAP} today), then a quarter as much.
           </li>
           <li>
-            Every card grade reached: Bronze, Silver, Gold and Radiant pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}× and {GRADE_REWARD_SHARE[5]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Radiant {gradeReward('legendary', 5)}.
+            Every card grade reached: Bronze, Silver, Gold, Radiant and Celestial pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}× and {GRADE_REWARD_SHARE[6]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Celestial {gradeReward('legendary', 6)}.
           </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>

@@ -340,7 +340,14 @@ export function Layout() {
         <p className="font-serif text-sm italic">
           Omnidle — a daily pop-culture challenge across games, anime, cinema &amp; music. Progress is saved in your browser.
         </p>
-        <p className="mt-1">A fan project; all works, images and clips belong to their respective owners.</p>
+        <p className="mt-1">A free fan project, not affiliated with any of these companies; all works, images and clips belong to their respective owners.</p>
+        <p className="mt-1">
+          Own something shown here and want it removed?{' '}
+          <a href="https://github.com/Emilezola0/DlesMania/issues" target="_blank" rel="noreferrer" className="underline hover:text-ink">
+            Tell us
+          </a>{' '}
+          and it will be taken down.
+        </p>
       </footer>
     </div>
   );

@@ -121,7 +121,7 @@ interface ProgressState {
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
   renewCards: (spent: Record<string, number>, gained: string) => void;
-  /** Each card's grade, I to V (1 when missing). */
+  /** Each card's grade, I to VI (1 when missing). */
   grades: Record<string, number>;
   /** The highest grade already paid for, per card (grades reached before the rewards existed are paid once, later). */
   gradesPaid: Record<string, number>;
