@@ -154,7 +154,14 @@ export function ClassicGrid<T extends { id: string; name: string; aliases: strin
               return (
                 <div key={id} className="grid gap-2" style={grid}>
                   <div className="flex items-center gap-2 rounded-lg border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold">
-                    <img src={g.image} alt="" className="size-10 shrink-0 rounded-md bg-tile object-cover object-top" />
+                    {g.image ? (
+                      <img src={g.image} alt="" className="size-10 shrink-0 rounded-md bg-tile object-cover object-top" />
+                    ) : (
+                      // No picture of them: their initial instead of a broken image.
+                      <span className="grid size-10 shrink-0 place-items-center rounded-md bg-tile font-display text-lg font-bold text-ink-soft" aria-hidden>
+                        {shownName(g.name)[0]}
+                      </span>
+                    )}
                     <span className="leading-tight">{shownName(g.name)}</span>
                   </div>
                   {columns.map((c, i) => {
