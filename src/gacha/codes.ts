@@ -12,11 +12,10 @@ const CODES: Record<string, GiftCode> = {
   '6722a4db17aa51be4d0dd1f0c70a58342260d08c9e54b8c05ff27b490cc360d2': { coins: 300, note: 'The first code — welcome gift.' },
   'cf236801d18436128120963c02b298ffc05c855453a9df550977d0b1aa177dda': { coins: 300, note: 'For Tokars who need Dle Coins' },
   'd6d9e5b44ffd5a1d622ea6f28e1d618bcd14fb16a9c5860ec4c22c5592f4e24f': { coins: 500, note: 'Because We Love Gamble s love' },
-  '1a847abff2e562cb1f940ae139186df1296bf182c312fe3d69c38d6bc7bbf585': { coins: 1000, note: 'For Forts player' },
   'e2e537ed6b8420f4655cc212e574f1e3fb3e00e572253224369b70917fb20801': { coins: 1000, note: 'I trust this last !' },
-  '34f43ecd4466474370c4581994679a52629d5a94754b37a16603e270dfa50096': { coins: 5000, note: "Test" },
   '343fc0f23e8b0fd743e39f9b56ff6ce8b98587fee55246fae10f5608d3c661f2': { coins: 5000, note: "Have some Fun" },
   '9233acab3a51350673f481c8a784e77eec1dee62dc65429a54dc39a387683410': { coins: 5000, note: "Halloween" },
+  '9ffd68196cd3d274ec9983558d4e70be92e6e0d28dfec6e0d6df31b7a61d190e': { coins: 5000, note: "I'm dev it's normal" },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');
