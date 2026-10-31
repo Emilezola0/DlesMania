@@ -16,6 +16,28 @@ const MARK_CLASS: Record<LetterMark, string> = {
   miss: 'border-rule bg-tile text-ink-faint opacity-70',
 };
 const RANK: Record<LetterMark, number> = { miss: 0, near: 1, hit: 2 };
+
+/** The kana keyboard: the chart's columns (a vowel per row), then the voiced ones, then the small ones. */
+const CHART: string[][] = ['あいうえお', 'かきくけこ', 'さしすせそ', 'たちつてと', 'なにぬねの', 'はひふへほ', 'まみむめも', 'や ゆ よ', 'らりるれろ', 'わ   を', 'ん    '].map((c) => [...c]);
+const VOICED: string[][] = ['がぎぐげご', 'ざじずぜぞ', 'だぢづでど', 'ばびぶべぼ', 'ぱぴぷぺぽ'].map((c) => [...c]);
+const SMALL: string[][] = [...'ぁぃぅぇぉゃゅょっー'].map((k) => [k]);
+
+/** A kana without its marks and full size: が → か, ぱ → は, ゃ → や (for the sound-family aid). */
+const SMALL_TO_BIG: Record<string, string> = { ぁ: 'あ', ぃ: 'い', ぅ: 'う', ぇ: 'え', ぉ: 'お', ゃ: 'や', ゅ: 'ゆ', ょ: 'よ', っ: 'つ', ゎ: 'わ' };
+const plainKana = (k: string) => {
+  const big = SMALL_TO_BIG[k] ?? k;
+  return big.normalize('NFD').replace(/[\u3099\u309a]/g, '').normalize('NFC');
+};
+
+/** The aids: each one tells something more, and takes a fifth off the win's DleCoins. */
+type Aid = 'level' | 'meaning' | 'kanji' | 'sound';
+const AIDS: { id: Aid; label: string; blurb: string }[] = [
+  { id: 'level', label: 'Level', blurb: 'its JLPT level' },
+  { id: 'meaning', label: 'Meaning', blurb: 'what it means' },
+  { id: 'kanji', label: 'Kanji', blurb: 'how many kanji it is written with' },
+  { id: 'sound', label: 'Sound marks', blurb: 'a ゛ on a tile whose right kana is the same sound with another mark or size (か/が, は/ぱ, つ/っ)' },
+];
+const AID_COST = 0.2;
 /** The day's guesses, kept on this device (the word is the same for everyone), by its word. */
 const storeKey = (date: string, kana: string) => `omnidle-wordle-ja:${date}:${kana}`;
 const readGuesses = (date: string, kana: string): string[] => {
@@ -51,6 +73,27 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
   const field = useRef<HTMLInputElement>(null);
+  // The aids used today on this word (kept with the guesses).
+  const aidsKey = `${storeKey(date, word.kana)}:aids`;
+  const [aids, setAids] = useState<Aid[]>(() => {
+    try {
+      const v = JSON.parse(localStorage.getItem(aidsKey) ?? '[]');
+      return Array.isArray(v) ? v : [];
+    } catch {
+      return [];
+    }
+  });
+  const takeAid = (a: Aid) => {
+    if (aids.includes(a)) return;
+    sfx.select();
+    const next = [...aids, a];
+    setAids(next);
+    try {
+      localStorage.setItem(aidsKey, JSON.stringify(next));
+    } catch {
+      // Not kept, that's all.
+    }
+  };
   const won = guesses.at(-1) === word.kana;
   /** The day's word's length: as many tiles, and every guess as long. */
   const wordLen = [...word.kana].length;
@@ -95,7 +138,8 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
     }
     if (g === word.kana) {
       sfx.streak();
-      recordBest('wordle:ja', 1, { won: true });
+      // Found without aids: a full win; each aid used takes a fifth off.
+      recordBest('wordle:ja', 1, aids.length ? { ratio: Math.max(0, 1 - aids.length * AID_COST) } : { won: true });
       window.setTimeout(() => celebrateBig(), 300);
     } else if (next.length >= JA_TRIES) {
       sfx.wrong();
@@ -103,6 +147,16 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
       // A missed word goes on the JLPT review list.
       addReview([word.entry.id]);
     } else sfx.click();
+  };
+
+  // The on-screen keyboard: a kana added to what's typed (romaji typed so far turned into kana first), ⌫, ↵.
+  const press = (k: string) => {
+    if (done) return;
+    setNote(null);
+    if (k === 'BACK') return setTyped((t) => [...kanaFromRomaji(t)].slice(0, -1).join(''));
+    if (k === 'ENTER') return submit();
+    sfx.click();
+    setTyped((t) => kanaFromRomaji(t, true) + k);
   };
 
   const rows = [...guesses, ...(done ? [] : [kana])];
@@ -121,7 +175,7 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
         </p>
         <p className="mt-2 max-w-xl text-sm text-ink-soft">
           Find the word in six tries — today it&apos;s {wordLen} kana long. Every kana is a tile, small ones too: a contracted sound like きゃ or しょ takes two,
-          and so does a long vowel (とう, ー). Type in romaji (<i>kyou</i> → きょう) or in kana. Green: right kana, right place; yellow: elsewhere in the word.
+          and so does a long vowel (とう, ー). Type in romaji (<i>kyou</i> → きょう), in kana, or tap the kana below. Green: right kana, right place; yellow: elsewhere in the word.
         </p>
         <div className="mt-3">{children}</div>
       </div>
@@ -145,12 +199,18 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
                 <span
                   key={i}
                   lang="ja"
-                  className={`grid aspect-square place-items-center rounded-md border-2 font-serif text-[clamp(1rem,5vw,1.6rem)] font-bold ${
+                  className={`relative grid aspect-square place-items-center rounded-md border-2 font-serif text-[clamp(1rem,5vw,1.6rem)] font-bold ${
                     marks ? `animate-pop ${MARK_CLASS[marks[i]]}` : chars[i] ? (i >= wordLen ? 'border-miss' : 'border-ink') : 'border-dashed border-rule'
                   }`}
                   style={{ width: size, ...(marks ? { animationDelay: `${i * 70}ms` } : {}) }}
                 >
                   {chars[i] ?? ''}
+                  {/* Sound marks (an aid): the right kana here is this one with another mark or size. */}
+                  {marks && marks[i] !== 'hit' && aids.includes('sound') && plainKana(chars[i]) === plainKana([...word.kana][i] ?? '') && (
+                    <span className="absolute right-0.5 top-0 text-xs font-bold text-ochre" title="Same sound, another mark or size">
+                      ゛
+                    </span>
+                  )}
                 </span>
               ))}
             </div>
@@ -213,13 +273,63 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
         </form>
       )}
 
-      {kanaMarks.size > 0 && (
-        <div className="flex flex-wrap justify-center gap-1">
-          {[...kanaMarks].map(([k, m]) => (
-            <span key={k} lang="ja" className={`grid size-9 place-items-center rounded-md border font-serif text-lg font-bold ${MARK_CLASS[m]}`}>
-              {k}
-            </span>
+      {/* The aids: each tells something more, and takes a fifth off the win's DleCoins. */}
+      {!done && (
+        <div className="space-y-2 rounded-md border border-rule-strong bg-card p-3">
+          <p className="text-center text-xs text-ink-faint">Stuck? Each aid takes a fifth off the DleCoins for finding it.</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {AIDS.map((a) => (
+              <button key={a.id} type="button" onClick={() => takeAid(a.id)} disabled={aids.includes(a.id)} title={`Shows ${a.blurb}`} className={`rounded-full border px-3 py-1 text-sm font-semibold ${aids.includes(a.id) ? 'border-ochre bg-ochre/15 text-ochre' : 'border-rule-strong hover:border-ink'}`}>
+                💡 {a.label}
+              </button>
+            ))}
+          </div>
+          {aids.length > 0 && (
+            <ul className="space-y-0.5 text-center text-sm">
+              {aids.includes('level') && <li>Level: <b>{word.entry.level}</b></li>}
+              {aids.includes('meaning') && <li>Meaning: <b>{shortMeaning(word.entry.meaning, 2)}</b></li>}
+              {aids.includes('kanji') && (
+                <li>
+                  {(() => {
+                    const n = [...word.entry.text].filter((c) => /\p{Script=Han}/u.test(c)).length;
+                    return n ? <>Written with <b>{n} kanji</b></> : <>Written in <b>kana only</b></>;
+                  })()}
+                </li>
+              )}
+              {aids.includes('sound') && <li className="text-ink-soft">゛ on a tile: the right kana there is the same sound with another mark or size.</li>}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {/* The kana keyboard: tap to type, each kana in the colour of its best result so far. */}
+      {!done && (
+        <div className="space-y-2" lang="ja">
+          {[CHART, VOICED, SMALL].map((block, b) => (
+            <div key={b} className="mx-auto flex w-fit gap-1">
+              {block.map((col, c) => (
+                <div key={c} className="flex flex-col gap-1">
+                  {col.map((k, r) =>
+                    k === ' ' ? (
+                      <span key={r} className="size-8 sm:size-9" />
+                    ) : (
+                      <button key={r} type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => press(k)} className={`grid size-8 place-items-center rounded-md border font-serif text-base font-bold sm:size-9 sm:text-lg ${kanaMarks.get(k) ? MARK_CLASS[kanaMarks.get(k)!] : 'border-rule-strong bg-card hover:border-ink'}`}>
+                        {k}
+                      </button>
+                    ),
+                  )}
+                </div>
+              ))}
+            </div>
           ))}
+          <div className="flex justify-center gap-2">
+            <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => press('BACK')} className="btn-paper rounded-md px-4 py-1.5 font-display text-sm font-bold">
+              ⌫ Delete
+            </button>
+            <button type="button" onMouseDown={(e) => e.preventDefault()} onClick={() => press('ENTER')} className="btn-ink rounded-md px-4 py-1.5 font-display text-sm font-bold">
+              Enter ↵
+            </button>
+          </div>
         </div>
       )}
     </div>
