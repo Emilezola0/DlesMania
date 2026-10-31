@@ -62,6 +62,13 @@ const CLASH_AT = 950;
 const BOOM = 1000;
 const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
 
+/** Legendary and up: the card spins as it charges, faster and faster — turns in the charge's time (see turn()). */
+const SPIN: Partial<Record<Rarity, React.CSSProperties>> = {
+  legendary: { ['--turns' as string]: 2, animationDuration: '900ms' },
+  mythic: { ['--turns' as string]: 3, animationDuration: '1500ms' },
+  omni: { ['--turns' as string]: 4, animationDuration: '2200ms' },
+};
+
 /** Where the black hole opens, on screen (%). */
 const HOLE = { x: 62, y: 42 };
 /** A swallowed star's fall into the hole, and its way back out once every other star has passed (ms). */
@@ -601,7 +608,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             ))}
             {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={rainbowy(card.rarity)} />}
             <div key={i} className="pack-card-in [perspective:1100px]">
-              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-strong pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-strong' : 'pack-charge') : ''}`}>
+              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-spin pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && top(card.rarity) ? SPIN[card.rarity] : undefined}>
                 <div className="[backface-visibility:hidden]">
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>

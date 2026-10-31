@@ -16,7 +16,8 @@ import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
 import { bossKey, useProgress } from '../store/progress';
 
-type Show = 'all' | 'owned' | 'missing';
+/** Which cards: all, owned, missing, or Altered (back from a black hole with an anomaly). */
+type Show = 'all' | 'owned' | 'missing' | 'altered';
 type Sort = 'set' | 'rarity' | 'grade' | 'name' | 'count';
 
 const SORTS: { id: Sort; label: string }[] = [
@@ -224,6 +225,7 @@ export default function Album() {
   const lastPointer = useRef('mouse');
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
+  const anomalies = useProgress((s) => s.anomalies ?? {});
   const coins = useProgress((s) => s.coins);
   const [set, setSet] = useState('all');
   const [rarities, setRarities] = useState<Rarity[]>(RARITIES);
@@ -248,7 +250,9 @@ export default function Album() {
   const unique = CARDS.filter((c) => owned[c.id]).length;
   const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
   const list = useMemo(() => {
-    const xs = CARDS.filter((c) => (set === 'all' || c.set === set) && rarities.includes(c.rarity) && (show === 'all' || (show === 'owned') === !!owned[c.id]));
+    const xs = CARDS.filter(
+      (c) => (set === 'all' || c.set === set) && rarities.includes(c.rarity) && (show === 'all' || (show === 'altered' ? !!owned[c.id] && !!anomalies[c.id] : (show === 'owned') === !!owned[c.id])),
+    );
     // Cards not owned last: they have no grade.
     const byGrade = (c: Card) => (owned[c.id] ? gradeOf(grades, c.id) : 0);
     const byRarity = (a: Card, b: Card) => RARITY_INFO[b.rarity].rank - RARITY_INFO[a.rarity].rank;
@@ -256,7 +260,7 @@ export default function Album() {
     return [...xs].sort(
       sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
     );
-  }, [set, rarities, show, sort, owned, grades]);
+  }, [set, rarities, show, sort, owned, grades, anomalies]);
 
   const toggleRarity = (r: Rarity) => {
     sfx.click();
@@ -320,9 +324,9 @@ export default function Album() {
           ))}
         </div>
         <div className="flex gap-1.5">
-          {(['all', 'owned', 'missing'] as Show[]).map((s) => (
-            <button key={s} type="button" aria-pressed={show === s} onClick={() => (sfx.click(), setShow(s))} className={pill(show === s)}>
-              {s === 'all' ? 'All' : s === 'owned' ? 'Owned' : 'Missing'}
+          {(['all', 'owned', 'missing', 'altered'] as Show[]).map((s) => (
+            <button key={s} type="button" aria-pressed={show === s} onClick={() => (sfx.click(), setShow(s))} className={pill(show === s)} title={s === 'altered' ? 'Cards back from a black hole, with an anomaly' : undefined}>
+              {s === 'all' ? 'All' : s === 'owned' ? 'Owned' : s === 'missing' ? 'Missing' : `🕳️ Altered (${Object.keys(anomalies).filter((id) => owned[id]).length})`}
             </button>
           ))}
         </div>
