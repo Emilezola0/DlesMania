@@ -2,7 +2,7 @@ import { BOSSES } from '../data/bosses';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
-import { JLPT_THEMES } from './jlpt';
+import { JLPT_LEVELS, JLPT_THEMES, type JlptEntry } from './jlpt';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import type { BlitzPrompt, Domain } from '../types';
 
@@ -57,9 +57,10 @@ const rosters: NameList[] = [
  * JLPT themes: every word of a theme, named in Japanese — in romaji ("inu", long vowels or not), in kana or
  * in kanji. A word listed twice (two levels, two senses) counts once.
  */
-const jlpt: NameList[] = JLPT_THEMES.map((t) => {
+/** Words to name: each once, shown with its kana and romaji, named by any of them (or in kanji). */
+function wordAnswers(entries: JlptEntry[]) {
   const words = new Map<string, { name: string; aliases: string[] }>();
-  for (const e of t.entries) {
+  for (const e of entries) {
     if (words.has(e.text)) continue;
     const readings = e.reading.split(/[/／・、\s]+/).filter(Boolean);
     const forms = e.text.split(/[/／\s]+/).filter(Boolean);
@@ -69,9 +70,52 @@ const jlpt: NameList[] = JLPT_THEMES.map((t) => {
       aliases: [...new Set([...forms, ...readings, ...readings.map(toHiragana), ...readings.flatMap(romajiSpellings)])],
     });
   }
-  const answers = [...words.values()];
-  return { id: `jlpt-${t.id.replace(/^theme-/, '')}`, title: `${t.icon} ${t.label} in Japanese`, franchise: 'JLPT', domain: 'anime', answers, seconds: timeFor(answers.length) };
-});
+  return [...words.values()];
+}
+
+/** Kanji to name: by the kanji itself, or by any of its readings (on or kun, kana or romaji; a kun reading's okurigana or not). */
+function kanjiAnswers(entries: JlptEntry[]) {
+  const seen = new Set<string>();
+  return entries.flatMap((e) => {
+    if (seen.has(e.text)) return [];
+    seen.add(e.text);
+    const readings = e.reading
+      .split(/[・、/\s]+/)
+      .flatMap((r) => [r.replace(/[.\-～~]/g, ''), r.split('.')[0].replace(/[-～~]/g, '')])
+      .map(toHiragana)
+      .filter(Boolean);
+    return [{ name: `${e.text} · ${e.reading}`, aliases: [...new Set([e.text, ...readings, ...readings.flatMap(romajiSpellings)])] }];
+  });
+}
+
+/** Grammar points to name: as the list writes them, without the ～ (and a reading in brackets as another way). */
+function grammarAnswers(points: string[]) {
+  return points.map((g) => {
+    const bare = g.replace(/[～~]/g, '').trim();
+    const inBrackets = /[（(]([^）)]+)[）)]/.exec(bare)?.[1];
+    const outside = bare.replace(/[（(][^）)]*[）)]/g, '').trim();
+    const kana = [outside, inBrackets].filter((x): x is string => !!x && /^[ぁ-ゖァ-ヶー\s]+$/.test(x));
+    return { name: g, aliases: [...new Set([bare, outside, ...(inBrackets ? [inBrackets] : []), ...kana.map(toHiragana), ...kana.flatMap((k) => romajiSpellings(k.replace(/\s/g, '')))].filter(Boolean))] };
+  });
+}
+
+/** Whole levels: every word, every kanji or every grammar point of N5 … N1. */
+const KIND_LABEL = { vocab: 'Vocabulary', kanji: 'Kanji', grammar: 'Grammar' } as const;
+const jlptLevels: NameList[] = JLPT_LEVELS.flatMap((l) =>
+  (['vocab', 'kanji', 'grammar'] as const).map((kind) => {
+    const deck = l.decks.find((d) => d.kind === kind);
+    const answers = kind === 'grammar' ? grammarAnswers(l.grammar) : kind === 'kanji' ? kanjiAnswers(deck!.entries) : wordAnswers(deck!.entries);
+    return { id: `jlpt-${l.level.toLowerCase()}-${kind}`, title: `${l.level} ${KIND_LABEL[kind]}`, franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+  }),
+);
+
+const jlpt: NameList[] = [
+  ...jlptLevels,
+  ...JLPT_THEMES.map((t) => {
+    const answers = wordAnswers(t.entries);
+    return { id: `jlpt-${t.id.replace(/^theme-/, '')}`, title: `${t.icon} ${t.label} in Japanese`, franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+  }),
+];
 
 /** Same title in one franchise (two bosses can ask for the same thing): the first stays. */
 export const NAME_LISTS: NameList[] = [...rosters, ...fromBosses, ...jlpt].filter((l, i, all) => all.findIndex((o) => o.id === l.id) === i);

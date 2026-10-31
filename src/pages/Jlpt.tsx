@@ -593,23 +593,50 @@ function LevelList({ level }: { level: string }) {
   );
 }
 
-/** Name Them All, in Japanese: every word of a theme against the clock (src/arcade/lists.ts). */
+/** Name Them All, in Japanese: a whole level (its words, kanji or grammar) or every word of a theme, against the clock (src/arcade/lists.ts). */
 function NameThemAllRow() {
   const bests = useProgress((s) => s.bests);
   const lists = NAME_LISTS.filter((l) => l.franchise === 'JLPT');
+  const levelList = (level: string, kind: string) => lists.find((l) => l.id === `jlpt-${level.toLowerCase()}-${kind}`);
+  const themes = lists.filter((l) => !/^jlpt-n\d-/.test(l.id));
+  const score = (id: string, n: number) => `${bests[`ntl:${id}`] ? `${bests[`ntl:${id}`]}/` : ''}${n}`;
   return (
     <section className="space-y-3">
       <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Name them all · in Japanese</h2>
-      <p className="max-w-xl text-sm text-ink-soft">Name as many words of a theme as you can before the clock runs out — in romaji (inu), in kana (いぬ) or in kanji (犬).</p>
+      <p className="max-w-xl text-sm text-ink-soft">
+        Name as many as you can before the clock runs out: a level&apos;s words, kanji or grammar, or a theme&apos;s words — in romaji (inu), in kana (いぬ) or in
+        kanji (犬). A kanji counts by any of its readings.
+      </p>
+      <div className="overflow-x-auto">
+        <table className="text-sm">
+          <tbody>
+            {JLPT_LEVELS.map((l) => (
+              <tr key={l.level}>
+                <th className="pr-3 text-left font-display">{l.level}</th>
+                {(['vocab', 'kanji', 'grammar'] as const).map((kind) => {
+                  const list = levelList(l.level, kind);
+                  return (
+                    <td key={kind} className="p-1">
+                      {list && (
+                        <Link to={`/name-them-all/${list.id}`} className="btn-paper inline-flex w-full items-center justify-between gap-2 rounded-full px-3 py-1.5 font-display font-bold">
+                          {kind === 'vocab' ? '語 Words' : kind === 'kanji' ? '字 Kanji' : '文 Grammar'}
+                          <span className="text-xs font-normal text-ink-faint">{score(list.id, list.answers.length)}</span>
+                        </Link>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <ul className="flex flex-wrap gap-2">
-        {lists.map((l) => (
+        {themes.map((l) => (
           <li key={l.id}>
             <Link to={`/name-them-all/${l.id}`} className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
               {l.title.replace(' in Japanese', '')}
-              <span className="text-xs font-normal text-ink-faint">
-                {bests[`ntl:${l.id}`] ? `${bests[`ntl:${l.id}`]}/` : ''}
-                {l.answers.length}
-              </span>
+              <span className="text-xs font-normal text-ink-faint">{score(l.id, l.answers.length)}</span>
             </Link>
           </li>
         ))}
