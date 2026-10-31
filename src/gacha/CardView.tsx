@@ -6,7 +6,7 @@ import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { gradeOf } from './grades';
-import { ANOMALIES, fakeTag, scrambled, shownRarity, type AnomalyId } from './anomalies';
+import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -175,15 +175,10 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
           <div className="flex items-center justify-between gap-[2cqw]">
             <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
-            {anomaly?.posesAsMythic ? (
-              <span className="card-anomaly-tag shrink-0 rounded-full px-[2cqw] text-[4cqw] font-bold italic" style={{ ['--true' as string]: RARITY_LIGHT[card.rarity] }}>
-                {fakeTag(card.id)}
-              </span>
-            ) : (
-              <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
-                {RARITY_INFO[card.rarity].gem}
-              </span>
-            )}
+            {/* A Fake Rarity shows a Mythic's gem: it passes for one. */}
+            <span className="shrink-0 text-[5.5cqw]" title={anomaly?.posesAsMythic ? undefined : RARITY_INFO[card.rarity].name}>
+              {RARITY_INFO[look].gem}
+            </span>
           </div>
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
         </div>
@@ -296,7 +291,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
 
       {mythic && (
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
-          ✦ {anomaly?.posesAsMythic ? fakeTag(card.id).toUpperCase() : 'MYTHIC'}
+          ✦ MYTHIC
         </span>
       )}
       {/* A Fake Rarity: its true colours showing through at the edges of the mythic frame. */}

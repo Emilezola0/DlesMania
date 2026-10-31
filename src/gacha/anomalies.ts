@@ -1,9 +1,8 @@
 // Cosmic anomalies: now and then a black hole opens during a pack opening, and now and then it swallows
 // a shooting star. A swallowed star comes back once every other star has passed, and its card (shown
 // last) can keep an anomaly — the player chooses. Each anomaly is an entry of ANOMALIES: its look is a
-// class on the card (index.css) plus what CardFace reads here (a scrambling name, a disguised rarity).
+// class on the card (index.css) plus what CardFace reads here (a scrambling name, a rarity in disguise).
 // More can be added by adding an entry and its styles.
-import { hashString } from '../lib/rng';
 import type { Rarity } from './cards';
 
 /** The chance a pack opening has a black hole. */
@@ -40,7 +39,7 @@ export const ANOMALIES: Record<AnomalyId, Anomaly> = {
     id: 'fake',
     name: 'Fake Rarity',
     icon: '◈',
-    blurb: 'It passes for a Mythic, but its true colours show at the edges — and its rarity has a name of its own.',
+    blurb: 'It passes for a Mythic, but its true colours show at the edges.',
     className: 'card-anomaly-fake',
     posesAsMythic: true,
   },
@@ -50,9 +49,6 @@ export const ANOMALY_IDS = Object.keys(ANOMALIES) as AnomalyId[];
 /** The anomaly a swallowed star brings back (the player can still say no). */
 export const rollAnomaly = (rand: () => number = Math.random): AnomalyId => ANOMALY_IDS[Math.floor(rand() * ANOMALY_IDS.length)];
 
-/** A Fake Rarity's name for its rarity: the same for a card every time. */
-const FAKE_TAGS = ['Mirage', 'Errant', 'Phantasm', 'Void-Touched', 'Counterfeit', 'Echo', 'Paradox', 'Nameless', '???'];
-export const fakeTag = (cardId: string) => FAKE_TAGS[hashString(`fake:${cardId}`) % FAKE_TAGS.length];
 
 /** A name scrambled for an instant: its letters swapped for glitch characters, spaces kept. */
 const GLITCH = '#%&@$*!?▚▞▓▒░<>/\\|=+0123456789ΣΨΩ';

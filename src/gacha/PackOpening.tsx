@@ -8,7 +8,7 @@ import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
-import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, fakeTag, rollAnomaly, type AnomalyId } from './anomalies';
+import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
 import type { Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
@@ -618,7 +618,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
               <div className="animate-pop">
                 <p className={`font-display text-sm font-bold tracking-[0.35em] ${card.rarity === 'omni' ? 'card-omni-name text-lg' : card.rarity === 'mythic' ? 'card-mythic-name text-base' : ''}`} style={prismatic(card.rarity) ? undefined : { color: RARITY_LIGHT[card.rarity] }}>
                   {pending.get(i) === 'fake' && kept[i] !== false
-                    ? `◈ ${fakeTag(card.id).toUpperCase()} ◈`
+                    ? '✦ MYTHIC ✦'
                     : card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
                 </p>
                 {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
@@ -650,7 +650,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
-                  {pending.get(k) === 'fake' && kept[k] !== false ? fakeTag(c.id) : RARITY_INFO[c.rarity].name}
+                  {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
               </div>
             ))}
