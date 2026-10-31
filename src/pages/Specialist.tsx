@@ -218,7 +218,7 @@ function DailyView({ universe, date }: { universe: UniverseId; date: string }) {
           <Round universe={universe} round={round} record={record} onChange={onChange} />
           {record.status !== 'playing' && (
             <div className="flex justify-center">
-              <button type="button" onClick={() => goTo(nextOpen)} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
+              <button type="button" data-next onClick={() => goTo(nextOpen)} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
                 {nextOpen >= 0 ? 'Next round →' : 'See results →'}
               </button>
             </div>

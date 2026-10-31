@@ -169,7 +169,7 @@ function DailyView({ game, date }: { game: RankGame; date: string }) {
           </GameHostFx>
           {record.status !== 'playing' && (
             <div className="flex justify-center">
-              <button type="button" onClick={() => goTo(nextOpen)} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
+              <button type="button" data-next onClick={() => goTo(nextOpen)} className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider">
                 {nextOpen >= 0 ? 'Next clip →' : 'See results →'}
               </button>
             </div>

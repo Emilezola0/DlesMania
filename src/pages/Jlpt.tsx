@@ -172,11 +172,10 @@ function Game({ deck }: { deck: JlptDeck }) {
     next();
   };
 
-  // 1–4 on the keyboard pick an answer; Enter goes on after a miss in Review.
+  // 1–4 on the keyboard pick an answer (Space or Enter go on after a miss in Review: the site-wide next key).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!q) return;
-      if (review && state === 'wrong' && e.key === 'Enter') return next();
       if (typing) return;
       const i = Number(e.key) - 1;
       if (i >= 0 && i < q.options.length) answer(q.options[i]);
@@ -314,7 +313,7 @@ function Game({ deck }: { deck: JlptDeck }) {
         (review ? (
           <div className="animate-pop flex items-center justify-between gap-3 rounded-md border border-miss/50 bg-miss/10 p-4">
             <p className="text-sm text-ink-soft">Not this time — it stays on your list, and starts over.</p>
-            <button type="button" onClick={next} className="btn-ink rounded-md px-5 py-2 font-display font-bold tracking-wider">
+            <button type="button" data-next onClick={next} className="btn-ink rounded-md px-5 py-2 font-display font-bold tracking-wider">
               Next ↵
             </button>
           </div>

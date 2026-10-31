@@ -128,7 +128,7 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
             {target.aliases.length > 0 && <p className="text-xs text-ink-soft">also: {target.aliases.join(', ')}</p>}
           </div>
           {!over ? (
-            <button type="button" onClick={next} className="btn-ink shrink-0 rounded-md px-5 py-2.5 font-display font-bold tracking-wider">
+            <button type="button" data-next onClick={next} className="btn-ink shrink-0 rounded-md px-5 py-2.5 font-display font-bold tracking-wider">
               Next →
             </button>
           ) : (

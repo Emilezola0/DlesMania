@@ -90,7 +90,7 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
             The others are all <span className="font-bold">{round.link}</span> — <span className="font-bold">{round.odd}</span> isn&apos;t.
           </p>
           {right ? (
-            <button type="button" onClick={next} className="btn-ink rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
+            <button type="button" data-next onClick={next} className="btn-ink rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
               Next →
             </button>
           ) : (

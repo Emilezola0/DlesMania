@@ -227,7 +227,29 @@ function CoinChip() {
   );
 }
 
+/**
+ * Space and Enter go on to the next question in every game: once a round is over, they press its "next"
+ * button (marked data-next) — never while typing in a field, nor over a button that has the focus (it
+ * answers them itself).
+ */
+function useNextKey() {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.key !== 'Enter' && e.key !== ' ') || e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+      const a = document.activeElement as HTMLElement | null;
+      if (a && (a.isContentEditable || a.matches('input, textarea, select, button, a[href], [role="button"]'))) return;
+      const next = [...document.querySelectorAll<HTMLButtonElement>('[data-next]')].filter((b) => !b.disabled && b.offsetParent !== null).at(-1);
+      if (!next) return;
+      e.preventDefault();
+      next.click();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+}
+
 export function Layout() {
+  useNextKey();
   const days = useProgress((s) => s.days);
   const sound = useProgress((s) => s.sound);
   const toggleSound = useProgress((s) => s.toggleSound);

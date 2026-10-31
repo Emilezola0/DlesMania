@@ -308,7 +308,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
 
           {record.status !== 'playing' && (
             <div className="flex justify-center">
-              <button
+              <button data-next
                 type="button"
                 onClick={() => goTo(nextOpen)}
                 className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider"

@@ -131,7 +131,7 @@ export default function FreePlay() {
           <GameHost key={round} spec={spec} record={record} onChange={onChange} />
           {record.status !== 'playing' && (
             <div className="flex justify-center">
-              <button type="button" onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
+              <button type="button" data-next onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
                 Next round →
               </button>
             </div>

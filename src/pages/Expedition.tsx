@@ -299,7 +299,7 @@ function CountUp({ to }: { to: number }) {
 /** A room's outcome: a stamp, the gold won or the hearts it cost, and the way on. */
 function ResultCard({ result: o, onNext }: { result: Outcome; onNext: () => void }) {
   useEffect(() => {
-    const go = (e: KeyboardEvent) => e.key === 'Enter' && onNext();
+    const go = (e: KeyboardEvent) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), onNext());
     // A moment before Enter counts: the key that sent the last answer shouldn't skip the card.
     const id = window.setTimeout(() => window.addEventListener('keydown', go), 400);
     return () => (window.clearTimeout(id), window.removeEventListener('keydown', go));
