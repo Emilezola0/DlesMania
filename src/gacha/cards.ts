@@ -581,7 +581,8 @@ const CLIPS: Record<string, string> = {
   // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
   'forts:mythic': 'tiktok:7367350882020625670@1-5',
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
-  'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
+  // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
+  'forhonor:mythic': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
   'avatar:mythic-2': 'https://media.tenor.com/FwNFDMOM2bIAAAPo/toph-avatar-the-last-airbender.mp4',

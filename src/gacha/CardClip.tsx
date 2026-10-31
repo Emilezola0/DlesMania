@@ -91,11 +91,21 @@ function TikTokLoop({ id, start, end, onFail, onPlaying, className }: { id: stri
   return <div ref={host} aria-hidden className={`card-clip-tt ${playing ? '' : 'opacity-0'} ${className ?? ''}`} />;
 }
 
-/** A card's clip: an MP4, or a moment of a video kept elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once. */
+/** Several MP4s, one after the other and round again (each one a different moment): a random one first. */
+function Mp4Series({ srcs, poster, onFail, onPlaying, className }: { srcs: string[]; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string }) {
+  const [at, setAt] = useState(() => Math.floor(Math.random() * srcs.length));
+  return <video key={srcs[at]} src={srcs[at]} poster={poster} autoPlay muted playsInline onEnded={() => setAt((i) => (i + 1) % srcs.length)} onError={onFail} onPlaying={onPlaying} className={className} />;
+}
+
+/**
+ * A card's clip: an MP4, several MP4s played in turn ("a.mp4|b.mp4|c.mp4"), or a moment of a video kept
+ * elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once.
+ */
 export function CardClip({ src, poster, onFail, onPlaying, className }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string }) {
   const yt = YT_VOICE.exec(src);
   if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
+  if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
   return <video key={src} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
 }
