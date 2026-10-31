@@ -70,7 +70,7 @@ const EMERGE_MS = 1300;
 const EMERGE_GAP = 900;
 
 /**
- * Now and then (BLACK_HOLE_CHANCE) a black hole opens as the stars fly, and each star passing (not an
+ * Now and then (BLACK_HOLE_CHANCE, 5%) a black hole opens as the stars fly, and each star passing (not an
  * evolving one) may be pulled in (ABSORB_CHANCE). Its card comes last, with an anomaly to keep or not.
  * For testing, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
  */
