@@ -18856,6 +18856,15 @@
         "aliases": [
           "Egg"
         ]
+      },
+      {
+        "label": "Rocket",
+        "image": "local:art/ufouria/rocket.jpg",
+        "aliases": [
+          "Hebe's Rocket",
+          "Spaceship",
+          "Space Rocket"
+        ]
       }
     ],
     "secret": {
@@ -18926,7 +18935,8 @@
             "Dimensional Crystal",
             "Strength Ring",
             "Guidebook",
-            "Popoon"
+            "Popoon",
+            "Rocket"
           ]
         }
       ]
@@ -18994,6 +19004,10 @@
         {
           "text": "The breezy prairie a quick walk from Hebe’s house",
           "answer": "Ufouria Fields"
+        },
+        {
+          "text": "What Hebe and his friends ride to go after Utsujin, up to space",
+          "answer": "Rocket"
         }
       ]
     }
