@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { NAME_LISTS, listsByFranchise, nameList, type NameList } from '../arcade/lists';
+import { RARE_LABEL, addUses, bannedOf, pointsFor, setBanned, usesOf } from '../arcade/nameUses';
 import { Customise, useCustomPicks } from '../components/Customise';
 
 /** Franchises to show (Customise), and to draw the random list from. */
@@ -14,8 +15,21 @@ import { useProgress } from '../store/progress';
 
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.max(0, s) % 60).padStart(2, '0')}`;
 
-function Game({ list }: { list: NameList }) {
-  const key = `ntl:${list.id}`;
+function Game({ list: whole }: { list: NameList }) {
+  const key = `ntl:${whole.id}`;
+  // Banned answers leave the list (kept per list on this device).
+  const [banned, setBan] = useState<string[]>(() => bannedOf(whole.id));
+  const [banOpen, setBanOpen] = useState(false);
+  const [banFilter, setBanFilter] = useState('');
+  const list = { ...whole, answers: whole.answers.filter((a) => !banned.includes(a.name)) };
+  const toggleBan = (name: string) => {
+    const next = banned.includes(name) ? banned.filter((n) => n !== name) : [...banned, name];
+    setBan(next);
+    setBanned(whole.id, next);
+  };
+  // How often each name was named in earlier runs: rarer names are worth more.
+  const [uses, setUses] = useState(() => usesOf(whole.id));
+  const [points, setPoints] = useState(0);
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const [state, setState] = useState<'ready' | 'playing' | 'over'>('ready');
@@ -40,8 +54,10 @@ function Game({ list }: { list: NameList }) {
 
   const finish = (names: string[]) => {
     setState('over');
-    // Against the clock: a coin every few names (all of them is a long run).
-    recordBest(key, names.length, { reached: names.length / 3 });
+    // Against the clock: a coin every few points (rare names count more; all of them is a long run).
+    const pts = names.reduce((n, x) => n + pointsFor(uses[x] ?? 0), 0);
+    recordBest(key, names.length, { reached: pts / 3 });
+    addUses(whole.id, names);
     if (names.length === total) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     else sfx.wrong();
   };
@@ -50,7 +66,10 @@ function Game({ list }: { list: NameList }) {
     const next = [...found, name];
     setFound(next);
     setText('');
-    setNote({ text: typo ? `${name} (typo forgiven)` : name, good: true, key: Date.now() });
+    const before = uses[name] ?? 0;
+    setPoints((p) => p + pointsFor(before));
+    const rare = RARE_LABEL(before);
+    setNote({ text: `${typo ? `${name} (typo forgiven)` : name}${rare ? ` · ${rare} +${pointsFor(before)}` : ''}`, good: true, key: Date.now() });
     sfx.correct();
     if (next.length === total) finish(next);
   };
@@ -73,6 +92,8 @@ function Game({ list }: { list: NameList }) {
 
   const start = () => {
     sfx.click();
+    setUses(usesOf(whole.id));
+    setPoints(0);
     setFound([]);
     setLeft(list.seconds);
     setText('');
@@ -86,6 +107,7 @@ function Game({ list }: { list: NameList }) {
         <p className="font-serif text-3xl font-bold tabular-nums">
           {found.length}
           <span className="text-base text-ink-faint"> / {total}</span>
+          {state !== 'ready' && <span className="ml-3 font-display text-base text-ochre">{points} pts</span>}
         </p>
         <p className={`font-serif text-3xl font-bold tabular-nums ${state === 'playing' && left <= 10 ? 'text-coral' : ''}`}>{clock(left)}</p>
       </div>
@@ -96,9 +118,35 @@ function Game({ list }: { list: NameList }) {
             {total} to find in {clock(list.seconds)}. Type a name: it counts as soon as it&apos;s spelled right (Enter forgives a typo).
           </p>
           {best > 0 && <p className="text-sm text-ink-faint">Your best: {best} / {total}</p>}
-          <button type="button" onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
+          <p className="text-xs text-ink-faint">Names you rarely give are worth more: a new one 3 points, a rare one 2, a usual one 1 — and the DleCoins follow the points.</p>
+          <button type="button" onClick={start} disabled={total === 0} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider disabled:opacity-50">
             Start
           </button>
+          <div className="space-y-2 text-left">
+            <button type="button" onClick={() => (sfx.click(), setBanOpen((o) => !o))} className="btn-paper rounded-full px-4 py-1.5 font-display text-sm font-bold">
+              🚫 {banOpen ? 'Hide' : 'Ban some answers'}
+              {banned.length > 0 && <span className="ml-1 font-normal text-ink-faint">· {banned.length} banned</span>}
+            </button>
+            {banOpen && (
+              <div className="animate-pop space-y-2 rounded-md border border-rule-strong bg-card p-3">
+                <p className="text-xs text-ink-soft">Tap an answer to take it off this list (tap again to bring it back). Banned answers don&apos;t count, and stay banned next time.</p>
+                <input value={banFilter} onChange={(e) => setBanFilter(e.target.value)} placeholder="Find an answer…" autoComplete="off" className="w-full rounded-md border border-rule-strong bg-paper px-3 py-1.5 text-sm" />
+                <div className="flex max-h-64 flex-wrap gap-1.5 overflow-y-auto">
+                  {whole.answers
+                    .filter((a) => !banFilter || shownName(a.name).toLowerCase().includes(banFilter.toLowerCase()) || a.aliases?.some((x) => x.toLowerCase().includes(banFilter.toLowerCase())))
+                    .slice(0, 300)
+                    .map((a) => {
+                      const off = banned.includes(a.name);
+                      return (
+                        <button key={a.name} type="button" aria-pressed={off} onClick={() => toggleBan(a.name)} className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${off ? 'border-miss bg-miss/15 text-miss line-through' : 'border-rule-strong bg-paper text-ink-soft hover:border-ink'}`}>
+                          {shownName(a.name)}
+                        </button>
+                      );
+                    })}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
@@ -135,6 +183,7 @@ function Game({ list }: { list: NameList }) {
             {found.length}
             <span className="text-xl text-ink-faint"> / {total}</span>
           </p>
+          <p className="font-display text-sm text-ochre">{points} points{points > found.length ? ` · +${points - found.length} for rare names` : ''}</p>
           {found.length > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best} / {total}</p>}
           <button type="button" onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
             Try again
