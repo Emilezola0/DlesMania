@@ -248,8 +248,40 @@ function useNextKey() {
   }, []);
 }
 
+/** How many times, and how long apart (ms), a picture of the site's own that failed to load is tried again. */
+const IMAGE_RETRIES = 3;
+const IMAGE_RETRY_MS = 3000;
+
+/**
+ * A picture served with the site (public/art…) that fails to load is tried again a few seconds later, a few
+ * times: right after an update the site can be missing its files for a minute, and a slow connection can
+ * drop one. Pictures from elsewhere are left to their own fallbacks.
+ */
+function useImageRetry() {
+  useEffect(() => {
+    const onError = (e: Event) => {
+      const img = e.target;
+      if (!(img instanceof HTMLImageElement) || !img.src) return;
+      const url = new URL(img.src, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      const tries = Number(url.searchParams.get('retry') ?? 0);
+      if (tries >= IMAGE_RETRIES) return;
+      window.setTimeout(() => {
+        // Still the same picture (not swapped for another meanwhile): ask for it again, past any cache.
+        if (!img.isConnected || new URL(img.src, window.location.href).pathname !== url.pathname) return;
+        url.searchParams.set('retry', String(tries + 1));
+        img.src = url.toString();
+      }, IMAGE_RETRY_MS * (tries + 1));
+    };
+    // Load errors don't bubble: caught on their way down.
+    window.addEventListener('error', onError, true);
+    return () => window.removeEventListener('error', onError, true);
+  }, []);
+}
+
 export function Layout() {
   useNextKey();
+  useImageRetry();
   const days = useProgress((s) => s.days);
   const sound = useProgress((s) => s.sound);
   const toggleSound = useProgress((s) => s.toggleSound);
