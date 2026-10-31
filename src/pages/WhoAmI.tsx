@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_UNIVERSES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
+import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_UNIVERSES, WHO_FREE_CLUES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
 import { Customise, useCustomPicks } from '../components/Customise';
 
 const WHO_OPTIONS = WHO_UNIVERSES.map((u) => ({ key: u.id, label: `${u.icon} ${u.label}` }));
@@ -18,7 +18,7 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
   const [run, setRun] = useState(0);
   const targets = useMemo(() => shuffle(u.targets, Math.random).slice(0, WHO_ROUNDS), [u, run]);
   const [index, setIndex] = useState(0);
-  const [shown, setShown] = useState(1);
+  const [shown, setShown] = useState(WHO_FREE_CLUES);
   const [wrong, setWrong] = useState<string[]>([]);
   const [results, setResults] = useState<number[]>([]);
   const target = targets[index];
@@ -56,14 +56,14 @@ function Run({ universe: u, onExit }: { universe: WhoUniverse; onExit: () => voi
   const next = () => {
     sfx.click();
     setIndex((i) => i + 1);
-    setShown(1);
+    setShown(WHO_FREE_CLUES);
     setWrong([]);
   };
   const again = () => {
     setRun((r) => r + 1);
     setResults([]);
     setIndex(0);
-    setShown(1);
+    setShown(WHO_FREE_CLUES);
     setWrong([]);
   };
 
@@ -165,7 +165,7 @@ export default function WhoAmI() {
         </Link>
         <h1 className="text-5xl font-bold">Who Am I?</h1>
         <p className="max-w-xl text-ink-soft">
-          Clues come one at a time, from the vaguest to the most telling. Name the character whenever you think you know: on the first clue it&apos;s
+          Three clues to start with, then more one at a time, from the vaguest to the most telling. Name the character whenever you think you know: on the first three clues it&apos;s
           worth 100, and every extra clue or wrong name costs a little. {WHO_ROUNDS} characters a run.
         </p>
       </div>

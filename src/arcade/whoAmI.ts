@@ -131,4 +131,6 @@ export const WHO_ROUNDS = 5;
 export const WHO_MAX_WRONG = 5;
 
 /** Named on the first clue: 100; every extra clue costs 12, every wrong name 8 (never below 10). */
-export const whoPoints = (cluesShown: number, wrong: number) => Math.max(10, 100 - (cluesShown - 1) * 12 - wrong * 8);
+/** Clues shown from the start: the first three are free. */
+export const WHO_FREE_CLUES = 3;
+export const whoPoints = (cluesShown: number, wrong: number) => Math.max(10, 100 - Math.max(0, cluesShown - WHO_FREE_CLUES) * 12 - wrong * 8);
