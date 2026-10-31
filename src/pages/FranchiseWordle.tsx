@@ -259,7 +259,7 @@ export default function FranchiseWordle() {
             <span className="font-display text-xl font-bold">
               <span lang="ja">日本語</span> Wordle
             </span>
-            <span className="text-xs text-ink-faint">A Japanese word of six kana, a new one every day</span>
+            <span className="text-xs text-ink-faint">Any word of the JLPT list, a new one every day</span>
           </Link>
         </li>
         {picks.length > 0 && (

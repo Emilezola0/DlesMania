@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { JA_LETTERS, JA_TRIES, JA_WORDS, isJaWord, jaWordOfTheDay } from '../arcade/wordleJa';
+import { JA_TRIES, JA_WORDS, isJaWord, jaWordOfTheDay } from '../arcade/wordleJa';
 import { markGuess, type LetterMark } from '../arcade/wordle';
 import { shortMeaning } from '../arcade/jlpt';
 import { formatLong, todayKey } from '../lib/date';
@@ -15,29 +15,31 @@ const MARK_CLASS: Record<LetterMark, string> = {
   miss: 'border-rule bg-tile text-ink-faint opacity-70',
 };
 const RANK: Record<LetterMark, number> = { miss: 0, near: 1, hit: 2 };
-/** The day's guesses, kept on this device (the word is the same for everyone). */
-const storeKey = (date: string) => `omnidle-wordle-ja:${date}`;
-const readGuesses = (date: string): string[] => {
+/** The day's guesses, kept on this device (the word is the same for everyone), by its word. */
+const storeKey = (date: string, kana: string) => `omnidle-wordle-ja:${date}:${kana}`;
+const readGuesses = (date: string, kana: string): string[] => {
   try {
-    const v = JSON.parse(localStorage.getItem(storeKey(date)) ?? '[]');
+    const v = JSON.parse(localStorage.getItem(storeKey(date, kana)) ?? '[]');
     return Array.isArray(v) ? v.filter((x) => typeof x === 'string') : [];
   } catch {
     return [];
   }
 };
 
-/** /wordle/japanese — 日本語 Wordle: the day's six-kana word. */
+/** /wordle/japanese — 日本語 Wordle: the day's word, any word of the JLPT list. */
 export default function JapaneseWordle() {
   const date = todayKey();
   const word = jaWordOfTheDay(date);
   const recordBest = useProgress((s) => s.recordBest);
   const addReview = useProgress((s) => s.addJlptReview);
-  const [guesses, setGuesses] = useState<string[]>(() => readGuesses(date));
+  const [guesses, setGuesses] = useState<string[]>(() => readGuesses(date, word.kana));
   // What's typed, as typed (romaji or kana): shown as kana, converted like an IME would.
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
   const field = useRef<HTMLInputElement>(null);
   const won = guesses.at(-1) === word.kana;
+  /** The day's word's length: as many tiles, and every guess as long. */
+  const wordLen = [...word.kana].length;
   const done = won || guesses.length >= JA_TRIES;
   const kana = kanaFromRomaji(typed);
   const tiles = [...kana];
@@ -58,8 +60,8 @@ export default function JapaneseWordle() {
   const submit = () => {
     if (done) return;
     const g = kanaFromRomaji(typed, true);
-    if ([...g].length !== JA_LETTERS || /[a-z]/.test(g)) {
-      setNote(`Six kana: small ones (ゃ, っ…) and ー count as one each.`);
+    if ([...g].length !== wordLen || /[a-z]/.test(g)) {
+      setNote(`${wordLen} kana: small ones (ゃ, っ…) and ー count as one each.`);
       shake(document.getElementById('wordle-ja-row'), 6, 300);
       return sfx.wrong();
     }
@@ -73,7 +75,7 @@ export default function JapaneseWordle() {
     setTyped('');
     setNote(null);
     try {
-      localStorage.setItem(storeKey(date), JSON.stringify(next));
+      localStorage.setItem(storeKey(date, word.kana), JSON.stringify(next));
     } catch {
       // Not kept, that's all.
     }
@@ -90,7 +92,7 @@ export default function JapaneseWordle() {
   };
 
   const rows = [...guesses, ...(done ? [] : [kana])];
-  const size = 'min(3.25rem, calc((min(100vw, 36rem) - 3rem) / 6 - 0.375rem))';
+  const size = `min(3.25rem, calc((min(100vw, 36rem) - 3rem) / ${Math.max(5, wordLen)} - 0.375rem))`;
   return (
     <div className="mx-auto max-w-xl space-y-5">
       <div>
@@ -104,7 +106,7 @@ export default function JapaneseWordle() {
           {formatLong(date)} · a new word every day, the same for everyone · {JA_WORDS.length} words of the JLPT list
         </p>
         <p className="mt-2 max-w-xl text-sm text-ink-soft">
-          Find the word in six tries. It&apos;s six kana long: every kana is a tile, small ones too — a contracted sound like きゃ or しょ takes two,
+          Find the word in six tries — today it&apos;s {wordLen} kana long. Every kana is a tile, small ones too: a contracted sound like きゃ or しょ takes two,
           and so does a long vowel (とう, ー). Type in romaji (<i>kyou</i> → きょう) or in kana. Green: right kana, right place; yellow: elsewhere in the word.
         </p>
       </div>
@@ -116,12 +118,12 @@ export default function JapaneseWordle() {
           const chars = [...letters];
           return (
             <div key={row} id={g ? undefined : 'wordle-ja-row'} className="flex gap-1.5">
-              {Array.from({ length: JA_LETTERS }, (_, i) => (
+              {Array.from({ length: wordLen }, (_, i) => (
                 <span
                   key={i}
                   lang="ja"
                   className={`grid aspect-square place-items-center rounded-md border-2 font-serif text-[clamp(1rem,5vw,1.6rem)] font-bold ${
-                    marks ? `animate-pop ${MARK_CLASS[marks[i]]}` : chars[i] ? (i >= JA_LETTERS ? 'border-miss' : 'border-ink') : 'border-dashed border-rule'
+                    marks ? `animate-pop ${MARK_CLASS[marks[i]]}` : chars[i] ? (i >= wordLen ? 'border-miss' : 'border-ink') : 'border-dashed border-rule'
                   }`}
                   style={{ width: size, ...(marks ? { animationDelay: `${i * 70}ms` } : {}) }}
                 >
@@ -134,7 +136,7 @@ export default function JapaneseWordle() {
         {!done &&
           Array.from({ length: JA_TRIES - rows.length }, (_, r) => (
             <div key={`e${r}`} className="flex gap-1.5 opacity-40">
-              {Array.from({ length: JA_LETTERS }, (_, i) => (
+              {Array.from({ length: wordLen }, (_, i) => (
                 <span key={i} className="aspect-square rounded-md border-2 border-dashed border-rule" style={{ width: size }} />
               ))}
             </div>
