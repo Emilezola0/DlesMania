@@ -20,13 +20,13 @@ export interface Column<T> {
 }
 
 /** Lists (Haki, positions, regions...): all shared is a hit, some shared is near. */
-const overlap = (g: string[], t: string[]): Verdict => {
+export const overlap = (g: string[], t: string[]): Verdict => {
   const shared = g.filter((x) => t.includes(x)).length;
   if (shared === t.length && g.length === t.length) return 'hit';
   return shared ? 'near' : 'miss';
 };
 /** Numbers: equal is a hit, within `ratio` is near. */
-const close = (g: number, t: number, ratio: number): Verdict => (g === t ? 'hit' : g && t && Math.abs(g - t) <= t * ratio ? 'near' : 'miss');
+export const close = (g: number, t: number, ratio: number): Verdict => (g === t ? 'hit' : g && t && Math.abs(g - t) <= t * ratio ? 'near' : 'miss');
 export const same = <T,>(key: (c: T) => string) => (g: T, t: T): Verdict => (key(g) === key(t) ? 'hit' : 'miss');
 const arcIndex = (c: OpCharacter) => ARC_ORDER.indexOf(c.arc);
 

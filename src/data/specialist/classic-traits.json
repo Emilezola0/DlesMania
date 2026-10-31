@@ -1,0 +1,589 @@
+{
+ "overwatch": {
+  "Ana": {
+   "Role": "Support",
+   "Sub-role": "Tactician",
+   "Nationality": "Egyptian",
+   "Health": "250",
+   "Age": "62"
+  },
+  "Anran": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "Chinese",
+   "Health": "250",
+   "Age": "22"
+  },
+  "Ashe": {
+   "Role": "Damage",
+   "Sub-role": "Sharpshooter",
+   "Nationality": "American",
+   "Health": "250",
+   "Age": "41"
+  },
+  "Baptiste": {
+   "Role": "Support",
+   "Sub-role": "Tactician",
+   "Nationality": "Haitian",
+   "Health": "250",
+   "Age": "38"
+  },
+  "Bastion": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Health": "250",
+   "Age": "32"
+  },
+  "Brigitte": {
+   "Role": "Support",
+   "Sub-role": "Survivor",
+   "Nationality": "Swedish",
+   "Health": "175",
+   "Age": "25"
+  },
+  "Cassidy": {
+   "Role": "Damage",
+   "Sub-role": "Sharpshooter",
+   "Nationality": "American",
+   "Health": "250",
+   "Age": "39"
+  },
+  "D.Va": {
+   "Role": "Tank",
+   "Sub-role": "Initiator",
+   "Nationality": "Korean",
+   "Health": "175",
+   "Age": "21"
+  },
+  "Domina": {
+   "Role": "Tank",
+   "Sub-role": "Stalwart",
+   "Nationality": "Indian",
+   "Health": "100",
+   "Age": "32"
+  },
+  "Doomfist": {
+   "Role": "Tank",
+   "Sub-role": "Initiator",
+   "Nationality": "Nigerian",
+   "Health": "375",
+   "Age": "47"
+  },
+  "Echo": {
+   "Role": "Damage",
+   "Sub-role": "Recon",
+   "Health": "150",
+   "Age": "14"
+  },
+  "Emre": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "Turkish",
+   "Health": "250",
+   "Age": "44"
+  },
+  "Freja": {
+   "Role": "Damage",
+   "Sub-role": "Recon",
+   "Nationality": "Danish",
+   "Health": "225",
+   "Age": "34"
+  },
+  "Genji": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "Japanese",
+   "Health": "250",
+   "Age": "37"
+  },
+  "Hanzo": {
+   "Role": "Damage",
+   "Sub-role": "Sharpshooter",
+   "Nationality": "Japanese",
+   "Health": "250",
+   "Age": "40"
+  },
+  "Hazard": {
+   "Role": "Tank",
+   "Sub-role": "Initiator",
+   "Nationality": "Scottish",
+   "Health": "275",
+   "Age": "24"
+  },
+  "Illari": {
+   "Role": "Support",
+   "Sub-role": "Survivor",
+   "Nationality": "Peruvian",
+   "Health": "250",
+   "Age": "18"
+  },
+  "Junker Queen": {
+   "Role": "Tank",
+   "Sub-role": "Stalwart",
+   "Nationality": "Australian",
+   "Health": "375",
+   "Age": "31"
+  },
+  "Junkrat": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "Australian",
+   "Health": "250",
+   "Age": "27"
+  },
+  "Juno": {
+   "Role": "Support",
+   "Sub-role": "Survivor",
+   "Nationality": "Martian",
+   "Health": "75",
+   "Age": "19"
+  },
+  "Kiriko": {
+   "Role": "Support",
+   "Sub-role": "Medic",
+   "Nationality": "Japanese",
+   "Health": "250",
+   "Age": "21"
+  },
+  "Lifeweaver": {
+   "Role": "Support",
+   "Sub-role": "Medic",
+   "Nationality": "Thai",
+   "Health": "200",
+   "Age": "31"
+  },
+  "Lúcio": {
+   "Role": "Support",
+   "Sub-role": "Tactician",
+   "Nationality": "Brazilian",
+   "Health": "225",
+   "Age": "28"
+  },
+  "Mauga": {
+   "Role": "Tank",
+   "Sub-role": "Bruiser",
+   "Nationality": "Samoan",
+   "Health": "425",
+   "Age": "37"
+  },
+  "Mei": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "Chinese",
+   "Health": "300",
+   "Age": "33"
+  },
+  "Mercy": {
+   "Role": "Support",
+   "Sub-role": "Medic",
+   "Nationality": "Swiss",
+   "Health": "225",
+   "Age": "39"
+  },
+  "Mizuki": {
+   "Role": "Support",
+   "Sub-role": "Survivor",
+   "Nationality": "Japanese",
+   "Health": "250",
+   "Age": "22"
+  },
+  "Moira": {
+   "Role": "Support",
+   "Sub-role": "Medic",
+   "Nationality": "Irish",
+   "Health": "225",
+   "Age": "50"
+  },
+  "Orisa": {
+   "Role": "Tank",
+   "Sub-role": "Bruiser",
+   "Nationality": "Numbanian",
+   "Health": "150",
+   "Age": "1"
+  },
+  "Pharah": {
+   "Role": "Damage",
+   "Sub-role": "Recon",
+   "Nationality": "Canadian/ Egyptian",
+   "Health": "225",
+   "Age": "34"
+  },
+  "Ramattra": {
+   "Role": "Tank",
+   "Sub-role": "Stalwart",
+   "Health": "275",
+   "Age": "28"
+  },
+  "Reaper": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "American",
+   "Health": "275",
+   "Age": "60"
+  },
+  "Reinhardt": {
+   "Role": "Tank",
+   "Sub-role": "Stalwart",
+   "Nationality": "German",
+   "Health": "250",
+   "Age": "63"
+  },
+  "Roadhog": {
+   "Role": "Tank",
+   "Sub-role": "Bruiser",
+   "Nationality": "Australian",
+   "Health": "750",
+   "Age": "50"
+  },
+  "Shion": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "Japanese",
+   "Health": "250",
+   "Age": "28"
+  },
+  "Sierra": {
+   "Role": "Damage",
+   "Sub-role": "Recon",
+   "Nationality": "American",
+   "Health": "250",
+   "Age": "25"
+  },
+  "Sigma": {
+   "Role": "Tank",
+   "Sub-role": "Stalwart",
+   "Nationality": "Dutch",
+   "Health": "200",
+   "Age": "64"
+  },
+  "Sojourn": {
+   "Role": "Damage",
+   "Sub-role": "Sharpshooter",
+   "Nationality": "Canadian",
+   "Health": "225",
+   "Age": "51"
+  },
+  "Soldier: 76": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "American",
+   "Health": "250",
+   "Age": "58"
+  },
+  "Sombra": {
+   "Role": "Support",
+   "Sub-role": "Tactician",
+   "Nationality": "Mexican",
+   "Health": "225",
+   "Age": "32"
+  },
+  "Symmetra": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "Indian",
+   "Health": "125",
+   "Age": "30"
+  },
+  "Torbjörn": {
+   "Role": "Damage",
+   "Sub-role": "Specialist",
+   "Nationality": "Swedish",
+   "Health": "225",
+   "Age": "59"
+  },
+  "Tracer": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "English",
+   "Health": "175",
+   "Age": "28"
+  },
+  "Vendetta": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "Italian",
+   "Health": "200",
+   "Age": "29"
+  },
+  "Venture": {
+   "Role": "Damage",
+   "Sub-role": "Flanker",
+   "Nationality": "Canadian/ Mexican",
+   "Health": "250",
+   "Age": "26"
+  },
+  "Widowmaker": {
+   "Role": "Damage",
+   "Sub-role": "Sharpshooter",
+   "Nationality": "French",
+   "Health": "225",
+   "Age": "35"
+  },
+  "Winston": {
+   "Role": "Tank",
+   "Sub-role": "Initiator",
+   "Health": "275",
+   "Age": "31"
+  },
+  "Wrecking Ball": {
+   "Role": "Tank",
+   "Sub-role": "Initiator",
+   "Health": "300",
+   "Age": "16"
+  },
+  "Wuyang": {
+   "Role": "Support",
+   "Sub-role": "Survivor",
+   "Nationality": "Chinese",
+   "Health": "225",
+   "Age": "19"
+  },
+  "Zarya": {
+   "Role": "Tank",
+   "Sub-role": "Bruiser",
+   "Nationality": "Russian",
+   "Health": "175",
+   "Age": "30"
+  },
+  "Zenyatta": {
+   "Role": "Support",
+   "Sub-role": "Tactician",
+   "Health": "75",
+   "Age": "33"
+  }
+ },
+ "forhonor": {
+  "Warden": {
+   "Faction": "Knights",
+   "Class": "Vanguard",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Conqueror": {
+   "Faction": "Knights",
+   "Class": "Heavy",
+   "Gender": "Both",
+   "Health": "140"
+  },
+  "Peacekeeper": {
+   "Faction": "Knights",
+   "Class": "Assassin",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Lawbringer": {
+   "Faction": "Knights",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Centurion": {
+   "Faction": "Knights",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "120"
+  },
+  "Gladiator": {
+   "Faction": "Knights",
+   "Class": "Assassin",
+   "Gender": "Both",
+   "Health": "120"
+  },
+  "Black Prior": {
+   "Faction": "Knights",
+   "Class": "Heavy",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Warmonger": {
+   "Faction": "Knights",
+   "Class": "Vanguard",
+   "Gender": "Female",
+   "Health": "130"
+  },
+  "Gryphon": {
+   "Faction": "Knights",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "130"
+  },
+  "Raider": {
+   "Faction": "Vikings",
+   "Class": "Vanguard",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Warlord": {
+   "Faction": "Vikings",
+   "Class": "Heavy",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Berserker": {
+   "Faction": "Vikings",
+   "Class": "Assassin",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Valkyrie": {
+   "Faction": "Vikings",
+   "Class": "Hybrid",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Highlander": {
+   "Faction": "Vikings",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "130"
+  },
+  "Shaman": {
+   "Faction": "Vikings",
+   "Class": "Assassin",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Jormungandr": {
+   "Faction": "Vikings",
+   "Class": "Heavy",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Varangian Guard": {
+   "Faction": "Vikings",
+   "Class": "Heavy",
+   "Gender": "Female",
+   "Health": "140"
+  },
+  "Kensei": {
+   "Faction": "Samurai",
+   "Class": "Vanguard",
+   "Gender": "Both",
+   "Health": "125"
+  },
+  "Shugoki": {
+   "Faction": "Samurai",
+   "Class": "Heavy",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Orochi": {
+   "Faction": "Samurai",
+   "Class": "Assassin",
+   "Gender": "Both",
+   "Health": "120"
+  },
+  "Nobushi": {
+   "Faction": "Samurai",
+   "Class": "Hybrid",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Shinobi": {
+   "Faction": "Samurai",
+   "Class": "Assassin",
+   "Gender": "Both",
+   "Health": "120"
+  },
+  "Aramusha": {
+   "Faction": "Samurai",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "120"
+  },
+  "Hitokiri": {
+   "Faction": "Samurai",
+   "Class": "Heavy",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Kyoshin": {
+   "Faction": "Samurai",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "120"
+  },
+  "Sohei": {
+   "Faction": "Samurai",
+   "Class": "Heavy",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Arakure": {
+   "Faction": "Samurai",
+   "Class": "Assassin",
+   "Gender": "Female",
+   "Health": "125"
+  },
+  "Tiandi": {
+   "Faction": "Wu Lin",
+   "Class": "Vanguard",
+   "Gender": "Both",
+   "Health": "130"
+  },
+  "Jiang Jun": {
+   "Faction": "Wu Lin",
+   "Class": "Heavy",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Nuxia": {
+   "Faction": "Wu Lin",
+   "Class": "Assassin",
+   "Health": "120"
+  },
+  "Shaolin": {
+   "Faction": "Wu Lin",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "120"
+  },
+  "Zhanhu": {
+   "Faction": "Wu Lin",
+   "Class": "Hybrid",
+   "Gender": "Both",
+   "Health": "125"
+  },
+  "Juren": {
+   "Faction": "Wu Lin",
+   "Gender": "Male",
+   "Health": "140"
+  },
+  "Pirate": {
+   "Faction": "Outlanders",
+   "Class": "Hybrid",
+   "Gender": "Female",
+   "Health": "130"
+  },
+  "Medjay": {
+   "Faction": "Outlanders",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "130"
+  },
+  "Afeera": {
+   "Faction": "Outlanders",
+   "Class": "Hybrid",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Ocelotl": {
+   "Faction": "Outlanders",
+   "Class": "Hybrid",
+   "Gender": "Male",
+   "Health": "130"
+  },
+  "Khatun": {
+   "Faction": "Outlanders",
+   "Class": "Assassin",
+   "Gender": "Female",
+   "Health": "120"
+  },
+  "Virtuosa": {
+   "Faction": "Outlanders",
+   "Class": "Hybrid",
+   "Gender": "Female",
+   "Health": "120"
+  }
+ }
+}

@@ -7,7 +7,7 @@ import { mulberry32 } from '../../lib/rng';
 import type { RoundRecord } from '../../types';
 import type { SpRound } from '../rounds';
 import { SIMPLE, simpleCharacter, type SimpleCharacter, type SimpleUniverse } from '../simple';
-import { ClassicGrid, same, type Column } from './ClassicRound';
+import { ClassicGrid, close, overlap, same, type Column } from './ClassicRound';
 import { SpGuessRound } from './SpGuessRound';
 
 interface Props {
@@ -69,10 +69,21 @@ export const clueRoundFor = (u: SimpleUniverse['id'], question: string) =>
 
 /** Classic: every trait of a guess compared with the answer's. */
 export const classicRoundFor = (u: SimpleUniverse['id'], noun: string) => {
-  const columns: Column<SimpleCharacter>[] = SIMPLE[u].columns.map((label) => ({ label, show: (c) => c.traits[label], judge: same((c) => c.traits[label]) }));
-  const byId = new Map(SIMPLE[u].characters.map((c) => [c.id, c]));
+  const x = SIMPLE[u];
+  const num = (c: SimpleCharacter, label: string) => Number(c.traits[label]) || 0;
+  const list = (c: SimpleCharacter, label: string) => (c.traits[label] ?? '').split(' / ').filter(Boolean);
+  const columns: Column<SimpleCharacter>[] = x.columns.map((label) =>
+    x.numeric?.includes(label)
+      ? { label, show: (c) => c.traits[label] ?? '?', judge: (g, t) => close(num(g, label), num(t, label), 0.1), arrow: (g, t) => num(t, label) - num(g, label) }
+      : x.lists?.includes(label)
+        ? { label, show: (c) => c.traits[label] ?? '?', judge: (g, t) => overlap(list(g, label), list(t, label)) }
+        : { label, show: (c) => c.traits[label] ?? '?', judge: same((c) => c.traits[label]) },
+  );
+  // Only those whose every trait is known can be guessed in the grid.
+  const pool = x.characters.filter((c) => x.columns.every((k) => c.traits[k] && c.traits[k] !== 'Unknown'));
+  const byId = new Map(x.characters.map((c) => [c.id, c]));
   return function SimpleClassicRound(props: Props) {
-    return <ClassicGrid {...props} pool={SIMPLE[u].characters} byId={byId} columns={columns} noun={noun} detail={detail} />;
+    return <ClassicGrid {...props} pool={pool} byId={byId} columns={columns} noun={noun} detail={detail} />;
   };
 };
 

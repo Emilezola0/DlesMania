@@ -55,16 +55,16 @@ export const UNIVERSES = [
     id: 'forhonor',
     label: 'For Honor',
     ready: true,
-    blurb: 'Pictures, windows, the spotlight, weapons and executions in silhouette — all 39 heroes of the five factions.',
+    blurb: 'Classic by faction, class, gender and health, pictures, windows, the spotlight, weapons and executions in silhouette — all 39 heroes of the five factions.',
     // Executions join once there are videos (scripts/build-forhonor-executions.mjs); added last, so earlier days keep their rounds.
-    types: ['picture', 'clue', 'windows', 'spotlight', ...(FH_EXECUTIONS.length ? ['execution'] : [])] as SpType[],
+    types: ['picture', 'clue', 'windows', 'spotlight', ...(FH_EXECUTIONS.length ? ['execution'] : []), 'classic'] as SpType[],
   },
   {
     id: 'overwatch',
     label: 'Overwatch',
     ready: true,
-    blurb: "Voice lines from the wiki's recordings, ultimates and their charge cost, pictures and windows — every hero.",
-    types: ['voice', 'clue', 'picture', 'windows', 'ultcost'] as SpType[],
+    blurb: "Classic by role, sub-role, nationality, health and age, voice lines from the wiki's recordings, ultimates and their charge cost, pictures and windows — every hero.",
+    types: ['voice', 'clue', 'picture', 'windows', 'ultcost', 'classic'] as SpType[],
   },
   {
     id: 'forts',
@@ -77,8 +77,8 @@ export const UNIVERSES = [
     id: 'ufouria',
     label: 'Ufouria: The Saga 2',
     ready: true,
-    blurb: 'The heroes dancing in silhouette, pictures, windows and the spotlight on heroes, enemies and things, and clues from the bestiary.',
-    types: ['dance', 'picture', 'clue', 'windows', 'spotlight'] as SpType[],
+    blurb: 'The heroes dancing in silhouette, Classic by kind, creature and where they are met, pictures, windows and the spotlight on heroes, enemies and things, and clues from the bestiary.',
+    types: ['dance', 'picture', 'clue', 'windows', 'spotlight', 'classic'] as SpType[],
   },
   {
     id: 'avatar',

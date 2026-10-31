@@ -7,6 +7,7 @@ import { CARDS } from '../gacha/cards';
 import OW_VOICES from '../data/overwatch-voices.json';
 import OW_ULTS from '../data/overwatch-ults.json';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
+import CLASSIC_TRAITS from '../data/specialist/classic-traits.json';
 
 export interface SimpleCharacter {
   id: string;
@@ -23,6 +24,9 @@ export interface SimpleUniverse {
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
+  /** Columns that are numbers (▲▼, near within a tenth), and columns that can hold several values (" / ": some shared is near). */
+  numeric?: string[];
+  lists?: string[];
   /** Text clues and the character each one names. */
   clues: { text: string; answer: string }[];
   /** Characters whose picture has a transparent background: a Silhouette round. */
@@ -73,8 +77,13 @@ function forHonor(): SimpleUniverse {
   const pics = new Map([...b.radar.members, ...b.finale].map((c) => [c.label, c.image ?? '']));
   return {
     id: 'forhonor',
-    columns: [],
-    characters: heroes.map((name) => ({ id: slug(name), name, aliases: [], image: pics.get(name) ?? '', traits: { Faction: groupOf(FH_FACTION, name), Class: groupOf(FH_CLASS, name) } })),
+    columns: ['Faction', 'Class', 'Gender', 'Health'],
+    numeric: ['Health'],
+    // Gender and health from the For Honor wiki (scripts/build-classic-traits.mjs); Nuxia's isn't in her infobox.
+    characters: heroes.map((name) => {
+      const w = (CLASSIC_TRAITS.forhonor as Record<string, Record<string, string>>)[name] ?? {};
+      return { id: slug(name), name, aliases: [], image: pics.get(name) ?? '', traits: { Faction: groupOf(FH_FACTION, name), Class: groupOf(FH_CLASS, name), Gender: w.Gender ?? (name === 'Nuxia' ? 'Female' : 'Unknown'), Health: w.Health ?? '' } };
+    }),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
     // scripts/build-forhonor-executions.mjs: { hero, name, youtubeId, seconds }.
     executions: FH_EXECUTIONS.map((e) => ({ answer: slug(e.hero), name: e.name, youtubeId: e.youtubeId, seconds: e.seconds })),
@@ -302,11 +311,21 @@ function overwatch(): SimpleUniverse {
     const p = byName.get(h.name);
     const role = groupOf(OW_ROLE, h.name);
     // The boss's drawn art only (the wiki's icons are 3D renders): a hero without it is never a picture to guess.
-    return { id: slug(h.name), name: h.name, aliases: p?.aliases ?? [], image: p?.image || '', traits: role === 'Unknown' ? {} : { Role: role } };
+    // Sub-role, nationality, health and age from the Overwatch wiki (scripts/build-classic-traits.mjs); an omnic or a gorilla has no nationality.
+    const w = (CLASSIC_TRAITS.overwatch as Record<string, Record<string, string>>)[h.name] ?? {};
+    const r = w.Role ?? (role === 'Unknown' ? '' : role);
+    const traits: Record<string, string> = r ? { Role: r } : {};
+    if (w['Sub-role']) traits['Sub-role'] = w['Sub-role'];
+    traits.Nationality = (w.Nationality ?? 'None').split(/\s*\/\s*/).join(' / ');
+    if (w.Health) traits.Health = w.Health;
+    if (w.Age) traits.Age = w.Age;
+    return { id: slug(h.name), name: h.name, aliases: p?.aliases ?? [], image: p?.image || '', traits };
   });
   return {
     id: 'overwatch',
-    columns: [],
+    columns: ['Role', 'Sub-role', 'Nationality', 'Health', 'Age'],
+    numeric: ['Health', 'Age'],
+    lists: ['Nationality'],
     characters,
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
     voices: OW_VOICES.flatMap((h) => h.lines.map((en) => ({ answer: slug(h.name), en }))),
@@ -323,6 +342,46 @@ const UFOURIA_HEROES: [string, string[]][] = [
   ['Jennifer', ['Gil']],
 ];
 const UFOURIA_ENEMIES = ['Utsujin', 'Kotsu', 'Bumyon', 'Bemyon', 'Bomyon', 'Kerasu', 'Sanbo', 'Teketeke', 'Punipuni', 'Gako', 'Nezuchiu', 'Keronba', 'Kokeron', 'Hobachiu', 'Hoppin', 'Hanageruge', 'Gyorochan', 'Nanikano Tamago', 'Donadona', 'Micky', 'Kuchigeruge', 'Capchiu', 'Nyanham', 'Pen-Chan', 'Ricky', 'Muneko', 'Bobodori'];
+/**
+ * Ufouria's Classic: kind, creature and where they're met — the heroes as the game shows them, the
+ * enemies as the in-game bestiary describes them (its list and locations, kosgames' guide).
+ */
+const UFOURIA_TRAITS: Record<string, [kind: string, creature: string, where: string]> = {
+  Hebe: ['Hero', 'Penguin', "Hebe's team"],
+  'O-Chan': ['Hero', 'Cat', "Hebe's team"],
+  Sukezaemon: ['Hero', 'Ghost', "Hebe's team"],
+  Jennifer: ['Hero', 'Fish', "Hebe's team"],
+  Utsujin: ['Villain', 'Alien', 'Final battle'],
+  Kotsu: ['Enemy', 'Alien', 'Final battle'],
+  Bumyon: ['Enemy', 'Blob', 'Everywhere'],
+  Bemyon: ['Enemy', 'Blob', 'Everywhere'],
+  Bomyon: ['Enemy', 'Blob', 'Everywhere'],
+  Teketeke: ['Enemy', 'Blob', 'Everywhere'],
+  Punipuni: ['Enemy', 'Blob', 'Everywhere'],
+  Kerasu: ['Enemy', 'Bird', 'Everywhere'],
+  Kuchigeruge: ['Enemy', 'Snail', 'Everywhere'],
+  Gako: ['Enemy', 'Duck', 'Shady Forest'],
+  Keronba: ['Enemy', 'Frog', 'Shady Forest'],
+  Kokeron: ['Enemy', 'Frog', 'Shady Forest'],
+  Gyorochan: ['Enemy', 'Fish', 'Shady Forest'],
+  Nezuchiu: ['Enemy', 'Mouse', 'Chilly Caves / Frozen Depths'],
+  Ricky: ['Enemy', 'Wallaby', 'Chilly Caves / Frozen Depths'],
+  'Pen-Chan': ['Enemy', 'Penguin', 'Frozen Depths'],
+  Hobachiu: ['Enemy', 'Mouse', 'Popoitto Caves / Chilly Caves / Scalding Peaks'],
+  Hoppin: ['Enemy', 'Worker', 'Scalding Peaks'],
+  'Nanikano Tamago': ['Enemy', 'Egg', 'Horizon Tree'],
+  Donadona: ['Enemy', 'Egg', 'Horizon Tree'],
+  Micky: ['Enemy', 'Koala', 'Horizon Tree'],
+  Capchiu: ['Enemy', 'Mouse', 'Inky Caves'],
+  Nyanham: ['Enemy', 'Cat', 'Inky Caves'],
+  Sanbo: ['Boss', 'Giant', 'Popoitto Caves / Chilly Caves / Inky Caves / Horizon Tree'],
+  Muneko: ['Enemy', 'Cat', 'Untamed levels'],
+  Hanageruge: ['Enemy', 'Clown', 'End of levels'],
+};
+const ufouriaTraits = (name: string, fallback: string): Record<string, string> => {
+  const t = UFOURIA_TRAITS[name];
+  return t ? { Kind: t[0], Creature: t[1], 'Met in': t[2] } : { Kind: fallback };
+};
 const ufouriaArt = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/ufouria/${file}`;
 
 function ufouria(): SimpleUniverse {
@@ -333,10 +392,11 @@ function ufouria(): SimpleUniverse {
   const things = cards.filter((c) => !heroes.includes(c.name) && !enemies.has(c.name));
   return {
     id: 'ufouria',
-    columns: [],
+    columns: ['Kind', 'Creature', 'Met in'],
+    lists: ['Met in'],
     characters: [
-      ...UFOURIA_HEROES.map(([name, aliases]) => ({ id: slug(name), name, aliases, image: cardImage('ufouria', name), traits: { Kind: 'Hero' } })),
-      ...UFOURIA_ENEMIES.map((name) => ({ id: slug(name), name, aliases: [], image: cardImage('ufouria', name) || (name === 'Utsujin' ? (b.boss.image ?? '') : ''), traits: { Kind: 'Enemy' } })),
+      ...UFOURIA_HEROES.map(([name, aliases]) => ({ id: slug(name), name, aliases, image: cardImage('ufouria', name), traits: ufouriaTraits(name, 'Hero') })),
+      ...UFOURIA_ENEMIES.map((name) => ({ id: slug(name), name, aliases: [], image: cardImage('ufouria', name) || (name === 'Utsujin' ? (b.boss.image ?? '') : ''), traits: ufouriaTraits(name, 'Enemy') })),
       ...things.map((c) => ({ id: slug(c.name), name: c.name, aliases: [], image: c.image, traits: { Kind: 'Thing or place' } })),
     ],
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
@@ -367,7 +427,8 @@ export function simplePools(u: SimpleUniverse['id']) {
     ...(x.voices?.length ? { voice: x.voices.flatMap((v, i) => (ids.has(v.answer) ? [String(i)] : [])) } : {}),
     // A clue round's id is its clue's index (two clues can name the same character).
     clue: x.clues.flatMap((c, i) => (ids.has(c.answer) ? [String(i)] : [])),
-    ...(x.columns.length ? { classic: x.characters.map((c) => c.id) } : {}),
+    // Classic: everyone whose every trait is known (Ufouria's things and unlisted enemies stay out).
+    ...(x.columns.length ? { classic: x.characters.filter((c) => x.columns.every((k) => c.traits[k] && c.traits[k] !== 'Unknown')).map((c) => c.id) } : {}),
     ...(x.items?.length ? { exotic: x.items.map((c) => c.id) } : {}),
     // Ultimate Cost: only heroes whose cost no one else has, so the number has one answer.
     ...(x.ults?.length ? { ultcost: x.ults.filter((u) => x.ults!.filter((o) => o.cost === u.cost).length === 1 && ids.has(u.answer)).map((u) => u.answer) } : {}),
