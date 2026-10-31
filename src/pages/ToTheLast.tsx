@@ -8,8 +8,8 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
 const REVEAL_MS = 1100;
-const QUESTION: Record<string, string> = { meaning: 'What does it mean?', reading: 'How is it read?', pattern: 'Write the grammar point out in full' };
-const PLACEHOLDER: Record<string, string> = { meaning: 'The meaning, in English…', reading: 'The reading, in kana or romaji…', pattern: 'The whole pattern, in kana or romaji…' };
+const QUESTION: Record<string, string> = { meaning: 'What does it mean — or how is it read?', reading: 'How is it read?', pattern: 'Write the grammar point out in full' };
+const PLACEHOLDER: Record<string, string> = { meaning: 'The meaning (English) or the reading (kana or romaji)…', reading: 'The reading, in kana or romaji…', pattern: 'The whole pattern, in kana or romaji…' };
 
 /** /jlpt-last/:level/:kind — To the Last: every item of a level, until none is left (a fresh game for each level and kind). */
 export default function ToTheLast() {
@@ -82,9 +82,11 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
         <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
           ← JLPT
         </Link>
-        <h1 className="text-4xl font-bold">
-          To the Last · {level} {LAST_KIND_LABEL[k]}
-        </h1>
+        <h1 className="text-5xl font-bold leading-tight sm:text-6xl">To the Last</h1>
+        <p className="mt-1 flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-ink px-3 py-1 font-display text-lg font-bold text-paper">{level}</span>
+          <span className="rounded-full border-2 border-ink px-3 py-0.5 font-display text-lg font-bold">{LAST_KIND_LABEL[k]}</span>
+        </p>
         <p className="text-sm text-ink-soft">
           Every {k === 'vocab' ? 'word' : k === 'kanji' ? 'kanji' : 'grammar point'} of {level}, one at a time. Right, and it&apos;s gone for good; wrong, and it comes back a
           little later. Clear them all to finish — your progress is kept on this device.
@@ -119,7 +121,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
         </div>
       ) : (
         <>
-          <p className="font-serif text-lg italic text-ink-soft">{QUESTION[ask]}</p>
+          <p className="font-display text-2xl font-bold">{QUESTION[ask]}</p>
           <div ref={arena} className="page flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
             <p key={entry.id} lang="ja" className="animate-round-in font-serif text-5xl font-bold leading-tight sm:text-6xl">
               {state === 'guess' ? shown : entry.text}

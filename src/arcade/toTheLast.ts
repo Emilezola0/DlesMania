@@ -2,7 +2,7 @@
 // A right answer takes it off for good; a wrong one sends it back a little later. Progress is kept on this
 // device, so a level can be learned over many sittings.
 import { hashString, mulberry32, shuffle } from '../lib/rng';
-import { kanaFromRomaji, toHiragana } from '../lib/romaji';
+import { kanaFromRomaji, romajiSpellings, toHiragana } from '../lib/romaji';
 import { JLPT_LEVELS, typedRight, type JlptAsk, type JlptEntry } from './jlpt';
 
 export type LastKind = 'vocab' | 'kanji' | 'grammar';
@@ -40,12 +40,30 @@ export function maskPattern(pattern: string, seed: number): string {
 /** A grammar point's pattern as it can be typed: without ～, brackets or spaces, in hiragana. */
 const patternKey = (s: string) => toHiragana(s.replace(/[～~\s（）()]/g, ''));
 
+/** A particle as it's said: は "wa", を "o", へ "e" — each of them either way. */
+const particleForms = (kana: string): string[] => {
+  const out = new Set([kana]);
+  for (const [k, said] of [['は', 'わ'], ['を', 'お'], ['へ', 'え']] as const) for (const x of [...out]) out.add(x.replaceAll(k, said));
+  return [...out];
+};
+/** Romaji as compared: lower case, letters only. */
+const latin = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
+
+/**
+ * Right or not. A word or kanji asked its meaning can be answered with its reading too, in kana or romaji
+ * (午前: "morning" or "gozen"); asked its reading, only the reading. A grammar point: written out in full,
+ * in kana or romaji ("tsumoridesu"), the particles either way (は as "ha" or "wa").
+ */
 export function lastRight(e: JlptEntry, ask: LastAsk, typed: string): boolean {
-  if (ask !== 'pattern') return typedRight(e, ask, typed);
-  const want = patternKey(e.text);
-  const got = patternKey(kanaFromRomaji(typed, true));
+  if (ask === 'meaning') return typedRight(e, 'meaning', typed) || typedRight(e, 'reading', typed);
+  if (ask === 'reading') return typedRight(e, 'reading', typed);
+  const patterns = [e.text, e.text.replace(/[（(][^）)]*[）)]/g, '')].map(patternKey);
   // The bracketed reading is optional ("～や否や（いなや）": や否や is enough).
-  return got === want || got === patternKey(e.text.replace(/[（(][^）)]*[）)]/g, ''));
+  const got = patternKey(kanaFromRomaji(typed, true));
+  if (patterns.some((p) => particleForms(p).includes(got) || p === got)) return true;
+  // In romaji: against every Latin spelling of the pattern (long vowels written or not).
+  const roman = latin(typed);
+  return !!roman && patterns.some((p) => particleForms(p).some((form) => /^[ぁ-ゖー]+$/.test(form) && romajiSpellings(form).some((r) => latin(r) === roman)));
 }
 
 /** Saved progress: the ids still to answer, in their order, and the counts so far. */
