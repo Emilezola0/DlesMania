@@ -1060,7 +1060,7 @@ h1, h2, h3, .font-serif, .font-display {
   .omni-aura body::before, .omni-aura header::after, .omni-aura [data-logo] { animation: none; }
 }
 
-/* ── Card grades II–VI (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
+/* ── Card grades II–VII (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
 /* Bronze: an edge of warm metal. Silver: a cool edge and a gleam passing over. Gold: a gold edge, the gleam,
    specks of light. Radiant: a prismatic edge, a brighter gleam, more specks. Celestial: see below. */
 .card-grade-fx { z-index: 5; border-radius: inherit; }
@@ -1199,6 +1199,102 @@ h1, h2, h3, .font-serif, .font-display {
   transform-origin: 30px 31px;
   animation: grade-rays-turn 7s linear infinite reverse;
 }
+/* Singularity, the last grade: where every other grade adds light, this one swallows it. A black edge, the card's corners
+   going dark, darkness turning over the picture, motes spiralling in, cracks of white light in the frame, and a thin disc
+   of light bending round the card while the page goes dark around it. */
+.card-grade-7 {
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1.6cqw #000, inset 0 0 0 1.9cqw rgba(196, 181, 253, 0.8), inset 0 0 16cqw 3cqw rgba(0, 0, 0, 0.9);
+}
+.card-grade-7::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: conic-gradient(from var(--spin) at 50% 50%, rgba(0, 0, 0, 0.5) 0 8%, transparent 25%, rgba(0, 0, 0, 0.5) 33% 41%, transparent 58%, rgba(0, 0, 0, 0.5) 66% 74%, transparent 91%, rgba(0, 0, 0, 0.5) 100%);
+  animation: card-spin 9s linear infinite;
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 18%, #000 60%);
+  mask: radial-gradient(circle at 50% 50%, transparent 18%, #000 60%);
+}
+.card-singularity-picture { animation: card-singularity-pull 6s ease-in-out infinite; }
+@keyframes card-singularity-pull {
+  0%, 100% { filter: contrast(1.15) saturate(0.8) brightness(0.92); scale: 1; }
+  50% { filter: contrast(1.25) saturate(0.65) brightness(0.8); scale: 0.95; }
+}
+.card-singularity-warp { animation: card-singularity-warp 6s ease-in-out infinite; }
+@keyframes card-singularity-warp {
+  0%, 100% { filter: url(#card-singularity-warp) contrast(1.15) saturate(0.8) brightness(0.9); scale: 1; }
+  50% { filter: url(#card-singularity-warp) contrast(1.25) saturate(0.65) brightness(0.8); scale: 0.95; }
+}
+.card-singularity-motes i {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 1.5cqw;
+  height: 1.5cqw;
+  margin: -0.75cqw;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 2cqw 0.5cqw rgba(196, 181, 253, 0.9);
+  animation: card-singularity-mote 6.4s cubic-bezier(0.55, 0, 0.9, 0.6) infinite;
+}
+@keyframes card-singularity-mote {
+  0% { transform: rotate(var(--a)) translateX(62cqw) scale(1); opacity: 0; }
+  12% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { transform: rotate(calc(var(--a) + 720deg)) translateX(0) scale(0.1); opacity: 0; }
+}
+.card-singularity-cracks path {
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px #c4b5fd) drop-shadow(0 0 5px #7dd3fc);
+  animation: card-singularity-crack 3.7s steps(1) infinite;
+}
+@keyframes card-singularity-crack {
+  0%, 100% { opacity: 1; }
+  41% { opacity: 0.35; }
+  44% { opacity: 1; }
+  47% { opacity: 0.2; }
+  52% { opacity: 1; }
+  83% { opacity: 0.5; }
+}
+.card-singularity-engraving {
+  color: #fff;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 2cqw #c4b5fd, 0 1px 2px #000;
+}
+.card-singularity-disc {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150cqw;
+  height: 190cqw;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.95) 72%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
+}
+/* The thin ring of light it hasn't swallowed yet. */
+.card-singularity-disc::before {
+  content: '';
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: conic-gradient(from var(--spin), transparent, #fff 8%, #c4b5fd 16%, transparent 34%, #7dd3fc 52%, #fff 58%, transparent 74%, #c4b5fd 90%, transparent);
+  -webkit-mask: radial-gradient(closest-side, transparent 96%, #000 97.5%, #000 98.5%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 96%, #000 97.5%, #000 98.5%, transparent 100%);
+  animation: card-spin 5s linear infinite;
+}
+.card-grade-orbit-7 {
+  padding: 1.1cqw;
+  background: conic-gradient(from var(--spin), #000 0 55%, #7dd3fc 70%, #c4b5fd 82%, #fff 96%, #000 100%);
+  animation-duration: 3s;
+}
+.card-grade-halo-7 {
+  --halo: rgba(0, 0, 0, 0.95);
+  animation-duration: 3.4s;
+}
+.grade-emblem-singularity { filter: drop-shadow(0 0 2cqw rgba(196, 181, 253, 0.95)) drop-shadow(0 0 1px #fff); }
 /* A grade-up: the card flares. */
 @keyframes card-grade-flare {
   0% { filter: brightness(1); transform: scale(1); }
@@ -1214,10 +1310,21 @@ h1, h2, h3, .font-serif, .font-display {
   100% { filter: brightness(1); transform: scale(1); }
 }
 .card-grade-flare-top { animation: card-grade-flare-top 1.7s ease-out; }
+/* Reaching Singularity: the card collapses to a point, holds there, then bursts back (the sound and confetti at 55%: see Album.tsx). */
+@keyframes card-grade-collapse {
+  0% { filter: brightness(1); transform: scale(1) rotate(0deg); }
+  36% { filter: brightness(5) saturate(0); transform: scale(0.012) rotate(420deg); }
+  55% { filter: brightness(8) saturate(0); transform: scale(0.012) rotate(420deg); animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1); }
+  68% { filter: brightness(3) saturate(1.4); transform: scale(1.22) rotate(720deg); }
+  100% { filter: brightness(1); transform: scale(1) rotate(720deg); }
+}
+.card-grade-collapse { animation: card-grade-collapse 2.6s ease-in both; }
 @media (prefers-reduced-motion: reduce) {
-  .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-6, .card-grade-4::after, .card-grade-5::after, .card-grade-6::before, .card-grade-6::after,
+  .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-6, .card-grade-4::after, .card-grade-5::after, .card-grade-6::before, .card-grade-6::after, .card-grade-7::before,
+  .card-singularity-picture, .card-singularity-warp, .card-singularity-motes i, .card-singularity-cracks path, .card-singularity-disc::before, .card-grade-collapse,
   .card-grade-orbit, .card-grade-halo, .card-grade-crown, .grade-emblem-radiant .grade-rays, .grade-emblem-celestial .grade-rays-back, .card-grade-flare, .card-grade-flare-top { animation: none; }
   .card-grade-crown { transform: translate(-50%, -50%); }
+  .card-singularity-motes { display: none; }
 }
 
 /* Pack opening: a shooting star that evolves on the way (src/gacha/PackOpening.tsx, EVOLVE_AT = 42%):

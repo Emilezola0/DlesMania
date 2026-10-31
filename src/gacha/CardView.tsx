@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { fromKey } from '../lib/date';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
-import { gradeOf, MAX_GRADE } from './grades';
+import { gradeOf } from './grades';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -55,6 +56,9 @@ const EMBERS = [
   { x: 3, y: 46, z: -60 },
 ];
 
+/** Singularity's motes of light: where each one starts round the card, and when. */
+const MOTES = Array.from({ length: 12 }, (_, i) => ({ a: i * 30, delay: -i * 0.53 }));
+
 /** A GIF held on its first frame (a canvas: the picture only has to be shown, never read). */
 function StillGif({ src, className }: { src: string; className: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -88,9 +92,11 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
+  const engraving = useProgress((s) => s.engraved?.[card.id]);
   // The voice line in the names' language (a French dub's when the card has one).
   const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
   const grade = given ?? owned;
+  const singularity = grade === 7;
   const st = RARITY_STYLE[card.rarity];
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
@@ -128,9 +134,9 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       onPointerMove={move}
       onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade === MAX_GRADE ? 'isolate' : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade >= 6 ? 'isolate' : ''}`}
       style={{
-        background: prism ? undefined : st.frame,
+        background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
         transform: tilt ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${heroOn ? ' translateY(-5%) scale(1.1)' : ''}` : heroOn ? 'translateY(-5%) scale(1.1)' : undefined,
         zIndex: heroOn ? 20 : undefined,
@@ -162,7 +168,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
             alt=""
             draggable={false}
             loading="lazy"
-            className={`relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''}`}
+            className={`relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''} ${singularity ? (depth ? 'card-singularity-warp' : 'card-singularity-picture') : ''}`}
             // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
             style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
           />
@@ -205,9 +211,45 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         )}
         {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
         {grade > 1 && <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`} />}
+        {/* Singularity: motes of light spiralling into the middle, and who took it there. */}
+        {singularity && (
+          <div className="card-singularity-motes pointer-events-none absolute inset-0 z-[6]" aria-hidden>
+            {MOTES.map((m) => (
+              <i key={m.a} style={{ ['--a' as string]: `${m.a}deg`, animationDelay: `${m.delay}s` }} />
+            ))}
+          </div>
+        )}
+        {singularity && engraving && (
+          <p className="card-singularity-engraving absolute inset-x-[3cqw] bottom-[1.2cqw] z-[7] truncate text-center text-[3.5cqw] font-semibold">
+            {engraving.by ? `${engraving.by} · ` : ''}
+            {fromKey(engraving.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+          </p>
+        )}
       </div>
-      {/* The top grade: rays of light turning behind the card. */}
-      {grade === MAX_GRADE && (
+      {/* Singularity: a disc of light bending round the card, the page going dark around it; cracks of light in its frame. */}
+      {singularity && (
+        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
+          <div className="card-singularity-disc" />
+        </div>
+      )}
+      {singularity && (
+        <svg viewBox="0 0 100 140" preserveAspectRatio="none" className="card-singularity-cracks pointer-events-none absolute inset-0 size-full" aria-hidden>
+          <path d="M0 22 L6 26 L4 34 L9 39 M6 26 L11 24 M16 0 L13 5 L19 9 L17 14 M100 58 L94 62 L96 71 L90 75 L92 82 M96 71 L100 74 M84 140 L87 134 L81 129 L83 123 M0 104 L5 100 L3 93 L8 89 M60 0 L58 4 L63 7 M100 118 L95 116 L92 122 L87 121 M30 140 L33 135 L28 131 L31 126" fill="none" vectorEffect="non-scaling-stroke" />
+        </svg>
+      )}
+      {/* Up close, the picture itself bends. */}
+      {singularity && depth && (
+        <svg className="absolute size-0" aria-hidden>
+          <filter id="card-singularity-warp" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves={2} seed={7} />
+            <feDisplacementMap in="SourceGraphic" xChannelSelector="R" yChannelSelector="G" scale="10">
+              <animate attributeName="scale" values="4;26;4" dur="6s" repeatCount="indefinite" />
+            </feDisplacementMap>
+          </filter>
+        </svg>
+      )}
+      {/* Celestial: rays of light turning behind the card. */}
+      {grade === 6 && (
         <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
           <div className="card-grade-crown" />
         </div>

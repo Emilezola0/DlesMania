@@ -357,7 +357,7 @@ export default function Shop() {
             Expeditions: every room won pays, a little more each act, up to {EXPEDITION_ROOM_MAX} a room and {EXPEDITION_BOSS_MAX} a boss. In full up to {EXPEDITION_CAP} a day ({Math.min(econ.expedition ?? 0, EXPEDITION_CAP)}/{EXPEDITION_CAP} today), then a quarter as much.
           </li>
           <li>
-            Every card grade reached: Bronze, Silver, Gold, Radiant and Celestial pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}× and {GRADE_REWARD_SHARE[6]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Celestial {gradeReward('legendary', 6)}.
+            Every card grade reached: Bronze, Silver, Gold, Radiant, Celestial and Singularity pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}×, {GRADE_REWARD_SHARE[6]}× and {GRADE_REWARD_SHARE[7]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Singularity {gradeReward('legendary', 7)}. Singularity also asks for the card's boss beaten on Hell.
           </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>

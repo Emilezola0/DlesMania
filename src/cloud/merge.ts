@@ -39,6 +39,7 @@ export const SYNCED = [
   'companions',
   'grades',
   'gradesPaid',
+  'engraved',
   'missionBooks',
   'redeemed',
   'groups',
@@ -172,6 +173,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     grades: firstLink ? maxBy(local.grades, cloud.grades) : (latest.grades ?? {}),
     // A grade paid on either side stays paid (never twice).
     gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),
+    engraved: { ...cloud.engraved, ...local.engraved },
     econ: mergeEcon(local.econ, cloud.econ)!,
     missionBooks: {
       week: mergeBook(local.missionBooks?.week, cloud.missionBooks?.week)!,

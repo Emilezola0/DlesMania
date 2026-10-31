@@ -5,14 +5,15 @@ import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView'
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DUPLICATE_VALUE } from '../gacha/economy';
 import { GradeEmblem } from '../gacha/GradeEmblem';
-import { canGradeUp, GRADE_COST, gradeOf, gradeReward, GRADES, MAX_GRADE } from '../gacha/grades';
+import { canGradeUp, GRADE_COST, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE } from '../gacha/grades';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { canHear, playVoice } from '../gacha/voice';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
-import { useProgress } from '../store/progress';
+import { useCloud } from '../cloud/state';
+import { bossKey, useProgress } from '../store/progress';
 
 type Show = 'all' | 'owned' | 'missing';
 type Sort = 'set' | 'rarity' | 'grade' | 'name' | 'count';
@@ -31,6 +32,9 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
  * turn it in your hands (the foil follows, its thick edge and its back show past a half turn), tap
  * it to send it spinning. The name, badges and ribbon stand off the surface.
  */
+/** When the burst comes in the card's collapse (see card-grade-collapse in index.css: 55% of 2.6s). */
+const COLLAPSE_BURST_MS = 1430;
+
 function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
@@ -109,7 +113,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === MAX_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
+            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === MAX_GRADE ? 'card-grade-collapse' : grade === 6 ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} depth animate />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
@@ -144,10 +148,15 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const gradeUp = useProgress((s) => s.gradeUp);
   // The next grade's reward, unless that grade was already paid for once.
   const reward = useProgress((s) => (grade + 1 > (s.gradesPaid?.[card.id] ?? 1) ? gradeReward(card.rarity, grade + 1) : 0));
+  const signedIn = useCloud((s) => s.name ?? s.email?.split('@')[0] ?? undefined);
+  const hellBeaten = useProgress((s) => (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
+  const ready = canGradeUp(count, grade, hellBeaten);
   const up = () => {
-    if (!gradeUp(card.id, card.rarity)) return;
+    if (!gradeUp(card.id, card.rarity, signedIn)) return;
     onGradeUp();
-    if (grade + 1 >= 4) (sfx.victory(), celebrateBig());
+    // Singularity: the card collapses to a point, a silence, then the burst (see card-grade-collapse).
+    if (grade + 1 === HELL_GRADE) window.setTimeout(() => (sfx.victory(), celebrateBig()), COLLAPSE_BURST_MS);
+    else if (grade + 1 >= 4) (sfx.victory(), celebrateBig());
     else (sfx.streak(), celebrate());
   };
   const exchange = useProgress((s) => s.exchangeCards);
@@ -165,12 +174,16 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         <button
           type="button"
           onClick={up}
-          disabled={!canGradeUp(count, grade)}
-          className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${canGradeUp(count, grade) ? 'border-[#fde68a] bg-[#fde68a]/15 text-[#fef3c7] hover:bg-[#fde68a]/30' : 'border-dashed border-white/25 text-white/50'}`}
+          disabled={!ready}
+          className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${ready ? 'border-[#fde68a] bg-[#fde68a]/15 text-[#fef3c7] hover:bg-[#fde68a]/30' : 'border-dashed border-white/25 text-white/50'}`}
           title={`Merge ${GRADE_COST + 1} copies of this card into one: the card and ${GRADE_COST} spares`}
         >
           <GradeEmblem grade={grade + 1} className="size-7" />
-          {canGradeUp(count, grade) ? `Upgrade to ${GRADES[grade + 1].name}` : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
+          {ready
+            ? `Upgrade to ${GRADES[grade + 1].name}`
+            : grade + 1 === HELL_GRADE && !hellBeaten
+              ? `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares, and beat its boss on Hell`
+              : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
           {reward > 0 && <span className="ml-1 rounded-full bg-[#fde68a]/20 px-1.5 text-xs text-[#fde68a]">+{reward} 🪙</span>}
         </button>
       ) : (

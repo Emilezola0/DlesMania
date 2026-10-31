@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST } from '../gacha/grades';
+import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, type Engraving } from '../gacha/grades';
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { persist } from 'zustand/middleware';
@@ -121,12 +121,14 @@ interface ProgressState {
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
   renewCards: (spent: Record<string, number>, gained: string) => void;
-  /** Each card's grade, I to VI (1 when missing). */
+  /** Each card's grade, I to VII (1 when missing). */
   grades: Record<string, number>;
   /** The highest grade already paid for, per card (grades reached before the rewards existed are paid once, later). */
   gradesPaid: Record<string, number>;
+  /** The cards taken to the last grade: who by (`by`, when signed in) and when. */
+  engraved: Record<string, Engraving>;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. */
-  gradeUp: (id: string, rarity: Rarity) => boolean;
+  gradeUp: (id: string, rarity: Rarity, by?: string) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
   payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
   /** Folds the copies of retired cards into the cards that replace them (see RETIRED): what was folded, and the coins. */
@@ -323,10 +325,13 @@ export const useProgress = create<ProgressState>()(
         }),
       grades: {},
       gradesPaid: {},
-      gradeUp: (id, rarity) => {
+      engraved: {},
+      gradeUp: (id, rarity, by) => {
         const s = get();
         const grade = gradeOf(s.grades, id);
-        if (!canGradeUp(s.cards[id] ?? 0, grade)) return false;
+        // A card's id starts with its franchise.
+        const hellBeaten = (s.bosses[bossKey(id.split(':')[0], 'hell')]?.wins ?? 0) > 0;
+        if (!canGradeUp(s.cards[id] ?? 0, grade, hellBeaten)) return false;
         // A grade pays once, even if the card was traded away and graded again.
         const paid = s.gradesPaid?.[id] ?? 1;
         const coins = grade + 1 > paid ? gradeReward(rarity, grade + 1) : 0;
@@ -334,6 +339,7 @@ export const useProgress = create<ProgressState>()(
           cards: { ...s.cards, [id]: s.cards[id] - GRADE_COST },
           grades: { ...s.grades, [id]: grade + 1 },
           gradesPaid: { ...s.gradesPaid, [id]: Math.max(paid, grade + 1) },
+          ...(grade + 1 === HELL_GRADE ? { engraved: { ...s.engraved, [id]: { by, date: todayKey() } } } : {}),
           ...(coins ? earn(s, coins) : {}),
         });
         return true;

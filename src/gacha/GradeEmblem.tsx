@@ -3,8 +3,8 @@ import { GRADES } from './grades';
 
 /**
  * A grade's emblem: a metal shield with its numeral, one more ornament each grade — wings at Silver,
- * a star above at Gold, at Radiant a ring of rays, the whole emblem shining, and at Celestial
- * two rings turning opposite ways and a crown.
+ * a star above at Gold, at Radiant a ring of rays, the whole emblem shining, at Celestial
+ * two rings turning opposite ways and a crown, and at Singularity a black shield with a hole of white light.
  */
 export function GradeEmblem({ grade, className = '' }: { grade: number; className?: string }) {
   // Its own gradient ids: a hidden emblem's would leave the others without their metal.
@@ -13,7 +13,7 @@ export function GradeEmblem({ grade, className = '' }: { grade: number; classNam
   if (!g || grade < 2) return null;
   const [light, mid, dark] = g.metal;
   return (
-    <svg viewBox="0 0 60 60" className={`${className} ${grade >= 5 ? 'grade-emblem-radiant' : ''} ${grade === 6 ? 'grade-emblem-celestial' : ''}`} aria-label={g.name} role="img">
+    <svg viewBox="0 0 60 60" className={`${className} ${grade >= 5 ? 'grade-emblem-radiant' : ''} ${grade >= 6 ? 'grade-emblem-celestial' : ''} ${grade === 7 ? 'grade-emblem-singularity' : ''}`} aria-label={g.name} role="img">
       <defs>
         <linearGradient id={`${id}-metal`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor={light} />
@@ -22,15 +22,15 @@ export function GradeEmblem({ grade, className = '' }: { grade: number; classNam
         </linearGradient>
         {grade >= 5 && (
           <linearGradient id={`${id}-prism`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor={grade === 6 ? '#ffffff' : '#ff9ff3'} />
-            <stop offset=".35" stopColor={grade === 6 ? '#fff1a8' : '#ffe58f'} />
-            <stop offset=".65" stopColor={grade === 6 ? '#f2b92e' : '#9fdcff'} />
-            <stop offset="1" stopColor={grade === 6 ? '#ffffff' : '#c4b5fd'} />
+            <stop offset="0" stopColor={grade === 7 ? '#ffffff' : grade === 6 ? '#ffffff' : '#ff9ff3'} />
+            <stop offset=".35" stopColor={grade === 7 ? '#c4b5fd' : grade === 6 ? '#fff1a8' : '#ffe58f'} />
+            <stop offset=".65" stopColor={grade === 7 ? '#7dd3fc' : grade === 6 ? '#f2b92e' : '#9fdcff'} />
+            <stop offset="1" stopColor={grade === 7 ? '#ffffff' : grade === 6 ? '#ffffff' : '#c4b5fd'} />
           </linearGradient>
         )}
       </defs>
-      {/* Celestial: a second ring, turning the other way. */}
-      {grade === 6 && (
+      {/* Celestial and up: a second ring, turning the other way. */}
+      {grade >= 6 && (
         <g className="grade-rays-back" stroke={`url(#${id}-prism)`} strokeWidth="1.4" strokeLinecap="round">
           {Array.from({ length: 12 }, (_, i) => {
             const a = ((i + 0.5) * Math.PI) / 6;
@@ -62,7 +62,7 @@ export function GradeEmblem({ grade, className = '' }: { grade: number; classNam
       {/* The shield. */}
       <path d="M30 13 L46 19 V33 C46 43 38 50 30 54 C22 50 14 43 14 33 V19 Z" fill={`url(#${id}-metal)`} stroke={dark} strokeWidth="1.6" />
       <path d="M30 17 L42.5 21.8 V33 C42.5 41 36.5 46.5 30 49.7 C23.5 46.5 17.5 41 17.5 33 V21.8 Z" fill="none" stroke={light} strokeOpacity=".7" strokeWidth="1" />
-      <text x="30" y={grade === 3 || grade === 6 ? 38.5 : 39} textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="900" fontSize={grade === 3 || grade === 6 ? 13 : 15} fill={dark} stroke={light} strokeWidth=".5">
+      <text x="30" y={grade === 7 ? 38 : grade === 3 || grade === 6 ? 38.5 : 39} textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="900" fontSize={grade === 7 ? 11 : grade === 3 || grade === 6 ? 13 : 15} fill={grade === 7 ? light : dark} stroke={grade === 7 ? '#c4b5fd' : light} strokeWidth={grade === 7 ? 0.3 : 0.5}>
         {g.numeral}
       </text>
     </svg>
