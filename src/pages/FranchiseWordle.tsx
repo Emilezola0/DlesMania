@@ -253,6 +253,15 @@ export default function FranchiseWordle() {
       </div>
       <Customise options={WORDLE_OPTIONS} picks={picks} onChange={setPicks} noun="set" />
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <li>
+          <Link to="/wordle/japanese" className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-coral/60 transition hover:-translate-y-0.5">
+            <span className="text-3xl">🇯🇵</span>
+            <span className="font-display text-xl font-bold">
+              <span lang="ja">日本語</span> Wordle
+            </span>
+            <span className="text-xs text-ink-faint">A Japanese word of six kana, a new one every day</span>
+          </Link>
+        </li>
         {picks.length > 0 && (
           <li>
             <Link to="/wordle/custom" className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-coral/60 transition hover:-translate-y-0.5">

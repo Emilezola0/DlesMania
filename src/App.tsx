@@ -24,6 +24,7 @@ const Account = lazy(() => import('./pages/Account'));
 const Trades = lazy(() => import('./pages/Trades'));
 const WhoAmI = lazy(() => import('./pages/WhoAmI'));
 const FranchiseWordle = lazy(() => import('./pages/FranchiseWordle'));
+const JapaneseWordle = lazy(() => import('./pages/JapaneseWordle'));
 const QuickSort = lazy(() => import('./pages/QuickSort'));
 const SixDegrees = lazy(() => import('./pages/SixDegrees'));
 const Expedition = lazy(() => import('./pages/Expedition'));
@@ -79,6 +80,7 @@ export default function App() {
         <Route path="voice-line" element={<Navigate to="/specialist/overwatch" replace />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="wordle" element={<FranchiseWordle />} />
+        <Route path="wordle/japanese" element={<JapaneseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />
         <Route path="quick-sort" element={<QuickSort />} />
         <Route path="quick-sort/:deck" element={<QuickSort />} />
