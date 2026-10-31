@@ -22,6 +22,8 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
   const items = useMemo(() => (valid ? lastItems(level, kind as LastKind) : []), [valid, level, kind]);
   const byId = useMemo(() => new Map(items.map((e) => [e.id, e])), [items]);
   const recordBest = useProgress((s) => s.recordBest);
+  const payCleared = useProgress((s) => s.payCleared);
+  const [clearPay, setClearPay] = useState(-1);
   const [progress, setProgress] = useState(() => (valid ? loadLast(level, kind as LastKind) : { left: [], right: 0, wrong: 0 }));
   const [typed, setTyped] = useState('');
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
@@ -52,6 +54,8 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
       sfx.streak();
       celebrateBig();
       recordBest(`jlpt-last:${level}-${kind}`, total, { won: true });
+      // A whole level cleared: a big reward on top (once a day per level and kind).
+      setClearPay(payCleared(`jlpt-last:${level}-${kind}`, total));
     }
   };
   const submit = () => {
@@ -115,6 +119,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
           <p className="text-sm text-ink-soft">
             {progress.right} right answers, {progress.wrong} misses along the way.
           </p>
+          {clearPay > 0 && <p className="animate-pop font-display text-lg font-bold text-ochre">🏆 +{clearPay} DleCoins for clearing it all!</p>}
           <button type="button" onClick={restart} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
             Start over
           </button>

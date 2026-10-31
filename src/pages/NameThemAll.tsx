@@ -32,6 +32,9 @@ function Game({ list: whole }: { list: NameList }) {
   const [points, setPoints] = useState(0);
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
+  const payCleared = useProgress((s) => s.payCleared);
+  // The big reward for a list named in full: paid now, or already today (-1: not cleared).
+  const [clearPay, setClearPay] = useState(-1);
   const [state, setState] = useState<'ready' | 'playing' | 'over'>('ready');
   const [found, setFound] = useState<string[]>([]);
   const [left, setLeft] = useState(list.seconds);
@@ -58,6 +61,8 @@ function Game({ list: whole }: { list: NameList }) {
     const pts = names.reduce((n, x) => n + pointsFor(uses[x] ?? 0), 0);
     recordBest(key, names.length, { reached: pts / 3 });
     addUses(whole.id, names);
+    // Every one of them: a big reward on top (once a day per list).
+    setClearPay(names.length === total && total > 0 ? payCleared(key, total) : -1);
     if (names.length === total) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     else sfx.wrong();
   };
@@ -183,6 +188,8 @@ function Game({ list: whole }: { list: NameList }) {
             {found.length}
             <span className="text-xl text-ink-faint"> / {total}</span>
           </p>
+          {clearPay > 0 && <p className="animate-pop font-display text-lg font-bold text-ochre">🏆 +{clearPay} DleCoins for clearing the whole list!</p>}
+          {clearPay === 0 && <p className="text-xs text-ink-faint">The whole list again — its big reward is once a day.</p>}
           <p className="font-display text-sm text-ochre">{points} points{points > found.length ? ` · +${points - found.length} for rare names` : ''}</p>
           {found.length > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best} / {total}</p>}
           <button type="button" onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">

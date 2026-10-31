@@ -18,6 +18,7 @@ import {
   bestCounts,
   type ArcadeResult,
   ARCADE_CAP,
+  CLEAR_PER_ANSWER,
   EXPEDITION_AFTER_CAP,
   EXPEDITION_CAP,
   ARCADE_SPACING_MS,
@@ -194,6 +195,8 @@ interface ProgressState {
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
   recordWhosThat: (key: string, score: number, result: ArcadeResult) => void;
+  /** A whole list cleared: CLEAR_PER_ANSWER a name, once a day per list. Returns what was paid (0 if already today). */
+  payCleared: (key: string, answers: number) => number;
   recordBest: (key: string, score: number, result: ArcadeResult) => void;
   setSpecialRound: (key: string, index: number, record: RoundRecord) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
@@ -527,6 +530,15 @@ export const useProgress = create<ProgressState>()(
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
         }),
+      payCleared: (key, answers) => {
+        const s = get();
+        const e = econToday(s.econ);
+        if (answers <= 0 || e.cleared?.includes(key)) return 0;
+        const amount = answers * CLEAR_PER_ANSWER;
+        const paid = earn(s, amount);
+        set({ ...paid, econ: { ...paid.econ!, cleared: [...(e.cleared ?? []), key] } });
+        return amount;
+      },
       recordWhosThat: (key, score, result) =>
         set((s) => {
           const bonus = bestCounts(result) && score > 0 && score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0;

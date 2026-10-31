@@ -26,6 +26,8 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 80, medium: 1
  * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
+/** Clearing a whole list (Name Them All, To the Last): this much a name, on top of the usual pay — once a day per list. */
+export const CLEAR_PER_ANSWER = 10;
 export const ARCADE_WIN = 40;
 export const ARCADE_LOSS = 6;
 export const ARCADE_BEST_BONUS = 30;
@@ -185,6 +187,8 @@ export interface Economy {
   claimed: MissionKind[];
   /** Coins earned today in all, for the shop's "today" line. */
   earned: number;
+  /** Lists cleared in full today (Name Them All, To the Last), each paid its big reward once a day. */
+  cleared?: string[];
 }
 
 export const freshEconomy = (date: string): Economy => ({ date, arcade: 0, bosses: [], counters: {}, claimed: [], earned: 0 });
