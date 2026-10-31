@@ -8,6 +8,7 @@ import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
+import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, fakeTag, rollAnomaly, type AnomalyId } from './anomalies';
 import type { Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
@@ -60,6 +61,37 @@ const LAST_STAR_PAUSE = 2000;
 const CLASH_AT = 950;
 const BOOM = 1000;
 const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
+
+/** Where the black hole opens, on screen (%). */
+const HOLE = { x: 62, y: 42 };
+/** A swallowed star's fall into the hole, and its way back out once every other star has passed (ms). */
+const SWALLOW_MS = 1200;
+const EMERGE_MS = 1300;
+const EMERGE_GAP = 900;
+
+/**
+ * Now and then (BLACK_HOLE_CHANCE) a black hole opens as the stars fly, and each star passing (not an
+ * evolving one) may be pulled in (ABSORB_CHANCE). Its card comes last, with an anomaly to keep or not.
+ * For testing, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
+ */
+function cosmosFor(stars: Star[], rand: () => number = Math.random): { hole: boolean; swallowed: Map<number, AnomalyId> } {
+  let force: string | null = null;
+  try {
+    force = localStorage.getItem('omnidle-force-anomaly');
+  } catch {
+    // No storage: chance alone.
+  }
+  // "1": a black hole and a swallowed star; or the name of an anomaly, to get that one.
+  const forced = force === '1' || (ANOMALY_IDS as string[]).includes(force ?? '');
+  const roll = () => ((ANOMALY_IDS as string[]).includes(force ?? '') ? (force as AnomalyId) : rollAnomaly(rand));
+  const hole = forced || rand() < BLACK_HOLE_CHANCE;
+  const swallowed = new Map<number, AnomalyId>();
+  if (!hole) return { hole, swallowed };
+  const candidates = stars.flatMap((s, k) => (s.from === s.to ? [k] : []));
+  for (const k of candidates) if (rand() < ABSORB_CHANCE) swallowed.set(k, roll());
+  if (forced && !swallowed.size && candidates.length) swallowed.set(candidates[Math.floor(rand() * candidates.length)], roll());
+  return { hole, swallowed };
+}
 
 function starsFor(cards: Card[], rand: () => number = Math.random): Star[] {
   // Now and then the best card (Epic or better: the smallest fake-out is Rare → Epic) shows a rarity lower,
@@ -142,6 +174,58 @@ function Clash({ star, thick }: { star: Star; thick: number }) {
   );
 }
 
+/** The black hole: a disc of darkness ringed with light, bending what's behind it; it opens, then closes at `until` ms. */
+function BlackHole({ until }: { until: number }) {
+  return (
+    <div className="pack-hole pointer-events-none absolute z-10" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, ['--hole-life' as string]: `${until + 600}ms` }} aria-hidden>
+      <div className="pack-hole-lens" />
+      <div className="pack-hole-disc" />
+      <div className="pack-hole-core" />
+    </div>
+  );
+}
+
+/**
+ * A star the black hole swallows: it flies at the hole, bends, shrinks and is gone; once every other star
+ * has passed, it shoots back out of the hole the other way.
+ */
+function Swallowed({ star, thick, backAt }: { star: Star; thick: number; backAt: number }) {
+  const width = `${top(star.to) ? 40 : 28}vw`;
+  return (
+    <div className="absolute inset-0">
+      <div className="absolute h-0 w-0" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, transform: `rotate(${star.tilt}deg)` }}>
+        <div className="pack-swallow absolute right-0 top-0 origin-right rounded-full" style={{ width, height: thick, animationDuration: `${SWALLOW_MS}ms`, animationDelay: `${star.delay}ms`, ...streak(star.to) }} />
+      </div>
+      <div className="absolute h-0 w-0" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, transform: `rotate(${-star.tilt - 8}deg)` }}>
+        <div className="pack-emerge absolute left-0 top-0 rounded-full" style={{ width, height: thick + 2, animationDuration: `${EMERGE_MS}ms`, animationDelay: `${backAt}ms`, ...streak(star.to) }} />
+      </div>
+    </div>
+  );
+}
+
+/** The choice for a card back from the black hole: keep its anomaly, or let it be. */
+function AnomalyChoice({ anomaly, kept, onDecide, compact }: { anomaly: AnomalyId; kept?: boolean; onDecide: (keep: boolean) => void; compact?: boolean }) {
+  const a = ANOMALIES[anomaly];
+  if (kept !== undefined)
+    return <p className="animate-pop text-center text-xs font-bold tracking-widest text-white/70">{kept ? `${a.icon} ${a.name.toUpperCase()} — KEPT` : 'LEFT AS IT WAS'}</p>;
+  return (
+    <div className={`animate-pop mx-auto space-y-2 rounded-md border border-[#a78bfa]/60 bg-[#1b1530]/90 text-center text-white ${compact ? 'mt-2 p-2' : 'max-w-sm p-3'}`}>
+      <p className={`font-display font-bold tracking-widest ${compact ? 'text-[10px]' : 'text-xs'}`}>
+        {a.icon} {a.name.toUpperCase()}
+      </p>
+      {!compact && <p className="text-xs text-white/75">This card came back from the black hole changed. {a.blurb} Keep it that way?</p>}
+      <div className="flex justify-center gap-2">
+        <button type="button" onClick={(e) => (e.stopPropagation(), onDecide(true))} className={`rounded-md bg-[#a78bfa] font-display font-bold text-[#1b1530] ${compact ? 'px-2 py-0.5 text-[10px]' : 'px-3 py-1 text-sm'}`}>
+          Keep it
+        </button>
+        <button type="button" onClick={(e) => (e.stopPropagation(), onDecide(false))} className={`rounded-md border border-white/40 font-display font-bold ${compact ? 'px-2 py-0.5 text-[10px]' : 'px-3 py-1 text-sm'}`}>
+          Leave it
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /** Light rays turning behind a card (epic and up; a mythic's in rainbow). */
 function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rainbow?: boolean }) {
   return (
@@ -170,6 +254,28 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
   const stars = useMemo(() => starsFor(cards), [cards]);
+  // A black hole, now and then, and the stars it swallows: their cards come last, with an anomaly to keep or not.
+  const cosmos = useMemo(() => cosmosFor(stars), [stars]);
+  const deck = useMemo(() => [...cards.filter((_, k) => !cosmos.swallowed.has(k)), ...cards.filter((_, k) => cosmos.swallowed.has(k))], [cards, cosmos]);
+  /** The anomaly each card of the deck came back with (by its place in the deck), and what the player said. */
+  const pending = useMemo(() => {
+    const m = new Map<number, AnomalyId>();
+    const back = [...cosmos.swallowed.entries()];
+    back.forEach(([, a], j) => m.set(deck.length - back.length + j, a));
+    return m;
+  }, [cosmos, deck]);
+  const [kept, setKept] = useState<Record<number, boolean>>({});
+  const setAnomaly = useProgress((s) => s.setAnomaly);
+  const decide = (k: number, keep: boolean) => {
+    const a = pending.get(k);
+    if (!a || k in kept) return;
+    setKept((x) => ({ ...x, [k]: keep }));
+    if (keep) (setAnomaly(deck[k].id, a), sfx.streak());
+    else sfx.click();
+  };
+  // When the swallowed stars come back: after every other star (and the last one's pause), one after another.
+  const normalEnd = Math.max(0, ...stars.map((s, k) => (cosmos.swallowed.has(k) ? 0 : s.delay + s.duration)));
+  const emergeAt = (j: number) => normalEnd + 700 + j * EMERGE_GAP;
   // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
   // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
   const tease = stars.find((s) => s.from !== s.to);
@@ -189,7 +295,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const later = (f: () => void, ms: number) => timers.current.push(window.setTimeout(f, ms));
   useEffect(() => () => timers.current.forEach((t) => window.clearTimeout(t)), []);
 
-  const card = cards[i];
+  const card = deck[i];
   // ── Tearing ─────────────────────────────────────────────────────────
   const torn = () => {
     if (phase !== 'pack') return;
@@ -200,7 +306,15 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       if (reducedMotion()) return toReveal();
       setPhase('meteor');
       // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
+      // The black hole: it opens with a hum as the first star flies.
+      if (cosmos.hole) later(() => (sfx.blackHole(), rumble(box.current, 1800, 0.3, 3)), 0);
+      const back = [...cosmos.swallowed.keys()];
+      back.forEach((k, j) => {
+        later(() => (sfx.swallow(), shake(box.current, 6, 400)), stars[k].delay + SWALLOW_MS - 200);
+        later(() => (sfx.meteor(true), shake(box.current, 10, 500)), emergeAt(j));
+      });
       stars.forEach((s, k) => {
+        if (cosmos.swallowed.has(k)) return;
         later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
         // An evolving star: the crash, a hard shake and the burst in its new colour.
         if (s.from !== s.to)
@@ -216,7 +330,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         const wait = stars[stars.length - 1].delay - LAST_STAR_PAUSE;
         later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), wait);
       }
-      const end = Math.max(...stars.map((s) => s.delay + s.duration));
+      const end = Math.max(normalEnd, ...back.map((_, j) => emergeAt(j) + EMERGE_MS));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
     }, 950);
@@ -263,7 +377,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     setPhase('reveal');
     setI(0);
     setFlipped(false);
-    cue(cards[0]);
+    cue(deck[0]);
   };
   /** A card arriving on top of the deck: rarer ones hum. */
   const cue = (c: Card | undefined) => {
@@ -333,17 +447,19 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     if (phase === 'pack') return autoTear();
     if (phase !== 'reveal' || charging) return;
     if (!flipped) return turn();
-    if (i + 1 >= cards.length) return setPhase('summary');
+    // A card back from the black hole waits for the player's choice.
+    if (pending.has(i) && !(i in kept)) return;
+    if (i + 1 >= deck.length) return setPhase('summary');
     sfx.whoosh();
     setI(i + 1);
     setFlipped(false);
-    cue(cards[i + 1]);
+    cue(deck[i + 1]);
   };
   const skip = () => {
     timers.current.forEach((t) => window.clearTimeout(t));
     setCharging(false);
     setPhase('summary');
-    if (cards.some((c) => top(c.rarity))) celebrateBig();
+    if (deck.some((c) => top(c.rarity))) celebrateBig();
   };
 
   useEffect(() => {
@@ -450,7 +566,12 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+          {cosmos.hole && <BlackHole until={Math.max(normalEnd, ...[...cosmos.swallowed.keys()].map((_, j) => emergeAt(j) + 400))} />}
+          {[...cosmos.swallowed.keys()].map((k, j) => (
+            <Swallowed key={`sw${k}`} star={stars[k]} thick={top(stars[k].to) ? 7 : RARITIES.indexOf(stars[k].to) >= 2 ? 5 : 3} backAt={emergeAt(j)} />
+          ))}
           {stars.map((s, k) => {
+            if (cosmos.swallowed.has(k)) return null;
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
             // An evolving star crashes into another and bursts in its true colour.
             if (s.from !== s.to) return <Clash key={k} star={s} thick={thick} />;
@@ -469,11 +590,11 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {phase === 'reveal' && card && style && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-5">
           <p className="font-display text-xs font-bold tracking-[0.35em] text-white/60">
-            CARD {i + 1} OF {cards.length}
+            {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : ''}CARD {i + 1} OF {deck.length}
           </p>
           <button type="button" onClick={act} className="relative isolate w-52 outline-none sm:w-60" aria-label={flipped ? `${card.name} — next` : 'Turn the card'}>
             {/* The rest of the deck, underneath. */}
-            {Array.from({ length: Math.min(3, cards.length - i - 1) }, (_, k) => (
+            {Array.from({ length: Math.min(3, deck.length - i - 1) }, (_, k) => (
               <div key={k} className="absolute inset-0 opacity-70" style={{ transform: `translate(${(k + 1) * 6}px, ${(k + 1) * 6}px)`, zIndex: -1 - k }}>
                 <CardBack />
               </div>
@@ -485,7 +606,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate />
+                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
                 </div>
               </div>
             </div>
@@ -496,7 +617,9 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             {flipped ? (
               <div className="animate-pop">
                 <p className={`font-display text-sm font-bold tracking-[0.35em] ${card.rarity === 'omni' ? 'card-omni-name text-lg' : card.rarity === 'mythic' ? 'card-mythic-name text-base' : ''}`} style={prismatic(card.rarity) ? undefined : { color: RARITY_LIGHT[card.rarity] }}>
-                  {card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
+                  {pending.get(i) === 'fake' && kept[i] !== false
+                    ? `◈ ${fakeTag(card.id).toUpperCase()} ◈`
+                    : card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
                 </p>
                 {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
@@ -505,11 +628,13 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
               <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? '…' : 'TAP TO TURN'}</p>
             )}
           </div>
+          {/* Back from the black hole: keep its anomaly, or let the card be. */}
+          {flipped && pending.has(i) && <AnomalyChoice anomaly={pending.get(i)!} kept={kept[i]} onDecide={(keep) => decide(i, keep)} />}
           {/* The tray: the cards already turned. */}
           <div className="flex h-20 items-end justify-center gap-2">
-            {cards.slice(0, flipped ? i + 1 : i).map((c, k) => (
+            {deck.slice(0, flipped ? i + 1 : i).map((c, k) => (
               <div key={k} className="pack-tray-in w-12 sm:w-14" style={{ filter: `drop-shadow(0 0 6px ${RARITY_LIGHT[c.rarity]}88)` }}>
-                <CardFace card={c} tilt={false} />
+                <CardFace card={c} tilt={false} anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
               </div>
             ))}
           </div>
@@ -520,11 +645,12 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {phase === 'summary' && (
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
-            {cards.map((c, k) => (
+            {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
-                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero />
+                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+                {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
-                  {RARITY_INFO[c.rarity].name}
+                  {pending.get(k) === 'fake' && kept[k] !== false ? fakeTag(c.id) : RARITY_INFO[c.rarity].name}
                 </p>
               </div>
             ))}

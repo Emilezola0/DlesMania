@@ -1,3 +1,4 @@
+import { ANOMALIES } from '../gacha/anomalies';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
@@ -133,6 +134,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
           <p className="text-sm opacity-80">
             {RARITY_INFO[card.rarity].name} · {GRADES[grade].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
+          <AnomalyNote cardId={card.id} />
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
@@ -377,5 +379,21 @@ export default function Album() {
       {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
       {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
     </div>
+  );
+}
+
+/** A card back from a black hole: its anomaly, and a way to let it go (it can't be got back). */
+function AnomalyNote({ cardId }: { cardId: string }) {
+  const id = useProgress((s) => s.anomalies?.[cardId]);
+  const setAnomaly = useProgress((s) => s.setAnomaly);
+  if (!id) return null;
+  const a = ANOMALIES[id];
+  return (
+    <p className="mt-1 text-xs text-[#c4b5fd]">
+      {a.icon} {a.name} — back from a black hole.{' '}
+      <button type="button" onClick={() => window.confirm(`Remove ${a.name} from this card for good?`) && setAnomaly(cardId, null)} className="underline opacity-80 hover:opacity-100">
+        Remove it
+      </button>
+    </p>
   );
 }

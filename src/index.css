@@ -1387,3 +1387,121 @@ h1, h2, h3, .font-serif, .font-display {
 
 /* The phone menu steps aside while typing: the keyboard already takes half the screen. */
 body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { display: none; }
+
+/* ── Cosmic anomalies (src/gacha/anomalies.ts): cards back from a black hole. ── */
+/* Corrupted: colours split apart (red and cyan ghosts), the card flickers and jolts now and then. */
+.card-anomaly-corrupted { animation: anomaly-flicker 4.3s steps(1, end) infinite; }
+.card-anomaly-corrupted img,
+.card-anomaly-corrupted video { filter: drop-shadow(2px 0 0 rgba(255, 0, 64, 0.65)) drop-shadow(-2px 0 0 rgba(0, 240, 255, 0.65)); animation: anomaly-split 2.7s steps(1, end) infinite; }
+.card-anomaly-corrupted p,
+.card-anomaly-corrupted span { text-shadow: 1px 0 rgba(255, 0, 64, 0.8), -1px 0 rgba(0, 240, 255, 0.8); }
+@keyframes anomaly-flicker {
+  0%, 100% { opacity: 1; transform: none; }
+  61% { opacity: 0.55; transform: translateX(-1.5%) skewX(-2deg); }
+  62% { opacity: 1; transform: translateX(1%); }
+  63% { transform: none; }
+  88% { opacity: 0.8; filter: hue-rotate(90deg) saturate(2); }
+  89% { opacity: 1; filter: none; }
+}
+@keyframes anomaly-split {
+  0%, 100% { filter: drop-shadow(2px 0 0 rgba(255, 0, 64, 0.65)) drop-shadow(-2px 0 0 rgba(0, 240, 255, 0.65)); }
+  40% { filter: drop-shadow(6px 0 0 rgba(255, 0, 64, 0.8)) drop-shadow(-6px 1px 0 rgba(0, 240, 255, 0.8)); }
+  42% { filter: drop-shadow(-3px 0 0 rgba(255, 0, 64, 0.7)) drop-shadow(3px 0 0 rgba(0, 240, 255, 0.7)); }
+  44% { filter: drop-shadow(2px 0 0 rgba(255, 0, 64, 0.65)) drop-shadow(-2px 0 0 rgba(0, 240, 255, 0.65)); }
+}
+/* Its scanlines, and a slice of the card torn sideways for an instant. */
+.card-anomaly-glitch {
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+  overflow: hidden;
+}
+.card-anomaly-glitch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 0, 64, 0.35), rgba(0, 240, 255, 0.35));
+  mix-blend-mode: screen;
+  clip-path: inset(40% 0 52% 0);
+  opacity: 0;
+  animation: anomaly-tear 3.1s steps(1, end) infinite;
+}
+@keyframes anomaly-tear {
+  0%, 100% { opacity: 0; }
+  30% { opacity: 1; clip-path: inset(18% 0 74% 0); transform: translateX(-6%); }
+  32% { opacity: 1; clip-path: inset(55% 0 36% 0); transform: translateX(8%); }
+  34% { opacity: 1; clip-path: inset(80% 0 12% 0); transform: translateX(-3%); }
+  36% { opacity: 0; }
+  71% { opacity: 1; clip-path: inset(33% 0 60% 0); transform: translateX(5%); }
+  72% { opacity: 0; }
+}
+/* Fake Rarity: the mythic's frame, but the card's true frame showing through as a thin inner ring and at the corners. */
+.card-anomaly-remnant {
+  padding: 2.2%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0.9;
+  animation: anomaly-remnant 3.5s ease-in-out infinite;
+}
+@keyframes anomaly-remnant {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+.card-anomaly-tag {
+  color: #fdf4ff;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.55), var(--true));
+  box-shadow: 0 0 8px var(--true);
+  letter-spacing: 0.04em;
+}
+.card-anomaly-fake .card-mythic-ribbon { box-shadow: 0 0 0 2px var(--true, #fff), 0 6px 18px rgba(0, 0, 0, 0.4); }
+@media (prefers-reduced-motion: reduce) {
+  .card-anomaly-corrupted, .card-anomaly-corrupted img, .card-anomaly-corrupted video, .card-anomaly-glitch::after, .card-anomaly-remnant { animation: none; }
+}
+
+/* ── The black hole in a pack opening: it opens, turns, bends the light around it, and closes. ── */
+.pack-hole { width: 0; height: 0; animation: pack-hole-life var(--hole-life, 6s) linear both; }
+@keyframes pack-hole-life {
+  0% { transform: scale(0); opacity: 0; }
+  6% { transform: scale(1); opacity: 1; }
+  92% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0); opacity: 0; }
+}
+.pack-hole-lens, .pack-hole-disc, .pack-hole-core { position: absolute; left: 0; top: 0; border-radius: 9999px; translate: -50% -50%; }
+/* The light bent around it: what's behind blurs and swells into a ring. */
+.pack-hole-lens {
+  width: 46vmin; height: 46vmin;
+  backdrop-filter: blur(3px) saturate(1.6) brightness(1.15);
+  -webkit-backdrop-filter: blur(3px) saturate(1.6) brightness(1.15);
+  mask: radial-gradient(circle, transparent 28%, #000 36%, #000 52%, transparent 70%);
+  -webkit-mask: radial-gradient(circle, transparent 28%, #000 36%, #000 52%, transparent 70%);
+  animation: pack-hole-breathe 2.4s ease-in-out infinite;
+}
+/* The accretion disc: hot light turning round it. */
+.pack-hole-disc {
+  width: 30vmin; height: 30vmin;
+  background: conic-gradient(from 0deg, #ffb86b, #ff4fd8 20%, transparent 32%, #7c3aed 50%, #3cc7ff 64%, transparent 76%, #ffd27a 90%, #ffb86b);
+  mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
+  -webkit-mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
+  filter: blur(1.5px) drop-shadow(0 0 18px #a855f7);
+  animation: pack-hole-spin 1.6s linear infinite;
+}
+.pack-hole-core { width: 15vmin; height: 15vmin; background: radial-gradient(circle, #000 62%, #12061f 72%, transparent 76%); box-shadow: 0 0 30px 8px #000, 0 0 60px 20px rgba(124, 58, 237, 0.35); }
+@keyframes pack-hole-spin { to { rotate: 360deg; } }
+@keyframes pack-hole-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.06; } }
+/* A star pulled in: head first at the hole, speeding up, bending and shrinking to nothing. */
+.pack-swallow { opacity: 0; animation-name: pack-swallow; animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.5); animation-fill-mode: both; translate: 0 -50%; }
+@keyframes pack-swallow {
+  0% { transform: translateX(-80vw) scaleX(1); opacity: 1; }
+  70% { transform: translateX(-6vmin) scaleX(0.7) rotate(12deg); opacity: 1; }
+  100% { transform: translateX(0) scaleX(0.02) rotate(40deg); opacity: 0; }
+}
+/* And out again, the other way, once every other star has passed. */
+.pack-emerge { opacity: 0; animation-name: pack-emerge; animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1); animation-fill-mode: both; translate: 0 -50%; transform-origin: left; }
+@keyframes pack-emerge {
+  0% { transform: translateX(0) scaleX(0.05); opacity: 0; }
+  8% { opacity: 1; }
+  100% { transform: translateX(90vw) scaleX(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-hole-disc, .pack-hole-lens { animation: none; }
+}

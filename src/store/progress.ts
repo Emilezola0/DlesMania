@@ -1,3 +1,4 @@
+import type { AnomalyId } from '../gacha/anomalies';
 import { create } from 'zustand';
 import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, type Engraving } from '../gacha/grades';
 import type { Rarity } from '../gacha/cards';
@@ -127,6 +128,9 @@ interface ProgressState {
   gradesPaid: Record<string, number>;
   /** The cards taken to the last grade: who by (`by`, when signed in) and when. */
   engraved: Record<string, Engraving>;
+  /** Cards that came back from a black hole with an anomaly (src/gacha/anomalies.ts), by card id. */
+  anomalies: Record<string, AnomalyId>;
+  setAnomaly: (cardId: string, anomaly: AnomalyId | null) => void;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. */
   gradeUp: (id: string, rarity: Rarity, by?: string) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -326,6 +330,12 @@ export const useProgress = create<ProgressState>()(
       grades: {},
       gradesPaid: {},
       engraved: {},
+      anomalies: {},
+      setAnomaly: (cardId, anomaly) =>
+        set((s) => {
+          const { [cardId]: _, ...rest } = s.anomalies ?? {};
+          return { anomalies: anomaly ? { ...rest, [cardId]: anomaly } : rest };
+        }),
       gradeUp: (id, rarity, by) => {
         const s = get();
         const grade = gradeOf(s.grades, id);

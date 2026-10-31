@@ -111,6 +111,16 @@ function drone(dur: number, base = 0.035) {
 export const sfx = {
   /** The wait before the best card's star: a quiet drone rising, its pulse quickening. */
   suspense: (seconds: number) => drone(seconds),
+  /** A black hole opening: a deep hum swelling under everything. */
+  blackHole: () => {
+    drone(2.4, 0.03);
+    play([{ freq: 55, dur: 2.2, type: 'sine', gain: 0.12, slide: 38 }]);
+  },
+  /** A star pulled into the black hole: air rushing in and a falling whistle, swallowed. */
+  swallow: () => {
+    noise(0.7, 2600, 120, 0.12);
+    play([{ freq: 1800, dur: 0.7, type: 'sine', gain: 0.04, slide: 80 }]);
+  },
   /** Two stars crashing together and bursting: a crack, a low boom, and sparkles. */
   clash: () => {
     noise(0.5, 3500, 250, 0.16);

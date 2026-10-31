@@ -6,6 +6,7 @@ import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { gradeOf } from './grades';
+import { ANOMALIES, fakeTag, scrambled, shownRarity, type AnomalyId } from './anomalies';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -85,10 +86,35 @@ function StillGif({ src, className }: { src: string; className: string }) {
  * `depth` lifts the name, badges and text off the card (for the 3D big view). Above grade I, the
  * card wears its grade's emblem and shine (`grade`: the player's own when not given).
  */
-export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean }) {
+/** A name that scrambles for an instant every few seconds (a Corrupted card's). */
+function useScramble(name: string, on: boolean) {
+  const [shown, setShown] = useState(name);
+  useEffect(() => {
+    setShown(name);
+    if (!on || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    let t: number;
+    const burst = (left: number) => {
+      setShown(left > 0 ? scrambled(name) : name);
+      t = window.setTimeout(() => (left > 0 ? burst(left - 1) : loop()), left > 0 ? 60 : 0);
+    };
+    const loop = () => (t = window.setTimeout(() => burst(6), 2500 + Math.random() * 3500));
+    loop();
+    return () => window.clearTimeout(t);
+  }, [name, on]);
+  return shown;
+}
+
+export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null }) {
+  // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
+  const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
+  const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
+  const anomaly = anomalyId ? ANOMALIES[anomalyId] : undefined;
+  // What the card looks like: a Fake Rarity passes for a Mythic.
+  const look = shownRarity(card.rarity, anomalyId);
+  const name = useScramble(shownName(card.name, card.set), !!anomaly?.scramble);
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
-  const heroOn = (hero || hovered) && (card.rarity === 'mythic' || card.rarity === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const heroOn = (hero || hovered) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
@@ -97,7 +123,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
   const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
   const grade = given ?? owned;
   const singularity = grade === 7;
-  const st = RARITY_STYLE[card.rarity];
+  const st = RARITY_STYLE[look];
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
   const move = (e: React.PointerEvent) => {
@@ -106,13 +132,13 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
     // An omni tilts further: more depth to it.
-    const k = card.rarity === 'omni' ? 1.7 : 1;
+    const k = look === 'omni' ? 1.7 : 1;
     setT({ x: (0.5 - py) * 16 * k, y: (px - 0.5) * 18 * k, mx: px * 100, my: py * 100 });
   };
   const mx = foil?.x ?? t.mx;
   const my = foil?.y ?? t.my;
-  const mythic = card.rarity === 'mythic';
-  const omni = card.rarity === 'omni';
+  const mythic = look === 'mythic';
+  const omni = look === 'omni';
   // Mythics and omnis share the prism; omnis add a cosmos, a crown, and a second form.
   const prism = mythic || omni;
   const form = useCardForm(card);
@@ -134,7 +160,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       onPointerMove={move}
       onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade >= 6 ? 'isolate' : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade >= 6 ? 'isolate' : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -148,10 +174,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         {/* Name and rarity (and a mythic's title). */}
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
           <div className="flex items-center justify-between gap-[2cqw]">
-            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{shownName(card.name, card.set)}</p>
-            <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
-              {RARITY_INFO[card.rarity].gem}
-            </span>
+            <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
+            {anomaly?.posesAsMythic ? (
+              <span className="card-anomaly-tag shrink-0 rounded-full px-[2cqw] text-[4cqw] font-bold italic" style={{ ['--true' as string]: RARITY_LIGHT[card.rarity] }}>
+                {fakeTag(card.id)}
+              </span>
+            ) : (
+              <span className="shrink-0 text-[5.5cqw]" title={RARITY_INFO[card.rarity].name}>
+                {RARITY_INFO[card.rarity].gem}
+              </span>
+            )}
           </div>
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
         </div>
@@ -193,9 +225,9 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         <p className="relative z-10 line-clamp-3 px-[4cqw] pt-[1.5cqw] text-[4.6cqw] leading-snug opacity-90">{form.description}</p>
 
         {/* The foil, under the pointer (or the light of the turn). */}
-        {card.rarity === 'rare' && <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.18), transparent 45%)' }} />}
-        {card.rarity === 'epic' && <div className="card-sheen pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.26), transparent 50%)' }} />}
-        {card.rarity === 'legendary' && (
+        {look === 'rare' && <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.18), transparent 45%)' }} />}
+        {look === 'epic' && <div className="card-sheen pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,.26), transparent 50%)' }} />}
+        {look === 'legendary' && (
           <>
             <div className="card-gold-foil pointer-events-none absolute inset-0" />
             <div className="card-glints pointer-events-none absolute inset-0" />
@@ -264,11 +296,15 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
 
       {mythic && (
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
-          ✦ MYTHIC
+          ✦ {anomaly?.posesAsMythic ? fakeTag(card.id).toUpperCase() : 'MYTHIC'}
         </span>
       )}
+      {/* A Fake Rarity: its true colours showing through at the edges of the mythic frame. */}
+      {anomaly?.posesAsMythic && <div className="card-anomaly-remnant pointer-events-none absolute inset-0 z-[8] rounded-[7%]" style={{ background: RARITY_STYLE[card.rarity].frame }} />}
+      {/* Corrupted: a scanline glitch running over the card. */}
+      {anomaly?.scramble && <div className="card-anomaly-glitch pointer-events-none absolute inset-0 z-[9] rounded-[7%]" />}
       {/* Coming to life: light turning behind the card, and a cut-out picture stepping out of the frame. */}
-      {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[card.rarity] }} />}
+      {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[look] }} />}
       {heroOn && form.cutout && <img src={form.image} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}
       {/* Up close, in 3D: rings of fire orbiting the card, in front and behind, and embers at every depth. */}
       {omni && depth && (
