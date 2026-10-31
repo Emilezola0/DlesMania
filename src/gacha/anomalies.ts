@@ -51,7 +51,7 @@ export const ANOMALY_IDS = Object.keys(ANOMALIES) as AnomalyId[];
 export const rollAnomaly = (rand: () => number = Math.random): AnomalyId => ANOMALY_IDS[Math.floor(rand() * ANOMALY_IDS.length)];
 
 /** A Fake Rarity's name for its rarity: the same for a card every time. */
-const FAKE_TAGS = ['Mirage', 'Errant', 'Phantasm', 'Void-Touched', 'Counterfeit', 'Unknown', 'Echo', 'Paradox', 'Nameless', '???'];
+const FAKE_TAGS = ['Mirage', 'Errant', 'Phantasm', 'Void-Touched', 'Counterfeit', 'Echo', 'Paradox', 'Nameless', '???'];
 export const fakeTag = (cardId: string) => FAKE_TAGS[hashString(`fake:${cardId}`) % FAKE_TAGS.length];
 
 /** A name scrambled for an instant: its letters swapped for glitch characters, spaces kept. */
