@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { JA_TRIES, JA_WORDS, isJaWord, jaWordOfTheDay } from '../arcade/wordleJa';
+import { JA_LENGTHS, JA_TRIES, JA_WORDS, isJaWord, jaWord, jaWordOfTheDay, type JaWord } from '../arcade/wordleJa';
+import { Customise, useCustomPicks } from '../components/Customise';
 import { markGuess, type LetterMark } from '../arcade/wordle';
 import { shortMeaning } from '../arcade/jlpt';
 import { formatLong, todayKey } from '../lib/date';
@@ -29,7 +30,20 @@ const readGuesses = (date: string, kana: string): string[] => {
 /** /wordle/japanese — 日本語 Wordle: the day's word, any word of the JLPT list. */
 export default function JapaneseWordle() {
   const date = todayKey();
-  const word = jaWordOfTheDay(date);
+  // Customise: the lengths the word can have (every length by default — the same word for everyone).
+  const { picks, setPicks, custom } = useCustomPicks('omnidle-custom-wordle-ja', LENGTH_OPTIONS);
+  const word = jaWordOfTheDay(date, picks.map(Number));
+  return (
+    <JaGame key={word.kana} date={date} word={word} custom={custom}>
+      <Customise options={LENGTH_OPTIONS} picks={picks} onChange={setPicks} noun="length" />
+    </JaGame>
+  );
+}
+
+/** Customise's choices: each length a word can have. */
+const LENGTH_OPTIONS = JA_LENGTHS.map((n) => ({ key: String(n), label: `${n} kana`, hint: `${JA_WORDS.filter((w) => [...w.kana].length === n).length} words` }));
+
+function JaGame({ date, word, custom, children }: { date: string; word: JaWord; custom: boolean; children: React.ReactNode }) {
   const recordBest = useProgress((s) => s.recordBest);
   const addReview = useProgress((s) => s.addJlptReview);
   const [guesses, setGuesses] = useState<string[]>(() => readGuesses(date, word.kana));
@@ -103,12 +117,13 @@ export default function JapaneseWordle() {
           🇯🇵 <span lang="ja">日本語</span> Wordle
         </h1>
         <p className="text-sm text-ink-soft">
-          {formatLong(date)} · a new word every day, the same for everyone · {JA_WORDS.length} words of the JLPT list
+          {formatLong(date)} · a new word every day, the same for everyone{custom ? ' who picks the same lengths' : ''} · {JA_WORDS.length} words of the JLPT list
         </p>
         <p className="mt-2 max-w-xl text-sm text-ink-soft">
           Find the word in six tries — today it&apos;s {wordLen} kana long. Every kana is a tile, small ones too: a contracted sound like きゃ or しょ takes two,
           and so does a long vowel (とう, ー). Type in romaji (<i>kyou</i> → きょう) or in kana. Green: right kana, right place; yellow: elsewhere in the word.
         </p>
+        <div className="mt-3">{children}</div>
       </div>
 
       <div className="mx-auto grid w-fit gap-1.5">
@@ -117,7 +132,13 @@ export default function JapaneseWordle() {
           const marks = g ? markGuess(g, word.kana) : null;
           const chars = [...letters];
           return (
-            <div key={row} id={g ? undefined : 'wordle-ja-row'} className="flex gap-1.5">
+            <div key={row} id={g ? undefined : 'wordle-ja-row'} className="relative flex gap-1.5">
+              {/* A word tried: what it means, small, to its left. */}
+              {g && (
+                <span className="absolute right-full top-1/2 mr-2 line-clamp-2 w-[min(7rem,calc((100vw-100%)/2-1.25rem))] -translate-y-1/2 text-right text-[11px] leading-tight text-ink-faint">
+                  {shortMeaning(jaWord(g)?.entry.meaning ?? '', 2)}
+                </span>
+              )}
               {Array.from({ length: wordLen }, (_, i) => (
                 <span
                   key={i}

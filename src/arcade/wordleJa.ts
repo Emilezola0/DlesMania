@@ -35,6 +35,22 @@ export const JA_WORDS: JaWord[] = (() => {
 const VALID = new Set(JA_WORDS.map((w) => w.kana));
 export const isJaWord = (kana: string) => VALID.has(kana);
 
+const BY_KANA = new Map(JA_WORDS.map((w) => [w.kana, w]));
+/** A word of the list by its kana (its meaning, for the guesses). */
+export const jaWord = (kana: string) => BY_KANA.get(kana);
+
+/** Every length a word can have, in kana (for Customise). */
+export const JA_LENGTHS = [...new Set(JA_WORDS.map((w) => [...w.kana].length))].sort((a, b) => a - b);
+
 /** The words in an order drawn once and for all: day 1 the first, and round again once they're all done. */
 const ORDER = shuffle(JA_WORDS, mulberry32(hashString('omnidle:wordle-ja')));
-export const jaWordOfTheDay = (date: string) => ORDER[(((dayNumber(date) - 1) % ORDER.length) + ORDER.length) % ORDER.length];
+/**
+ * The day's word: the same for everyone who plays the same lengths. Every length (the default): the list's
+ * own order; some lengths only (Customise): the same order, keeping only those.
+ */
+export function jaWordOfTheDay(date: string, lengths: number[] = JA_LENGTHS) {
+  const all = lengths.length === 0 || JA_LENGTHS.every((n) => lengths.includes(n));
+  const pool = all ? ORDER : ORDER.filter((w) => lengths.includes([...w.kana].length));
+  const list = pool.length ? pool : ORDER;
+  return list[(((dayNumber(date) - 1) % list.length) + list.length) % list.length];
+}
