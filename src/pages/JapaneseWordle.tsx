@@ -139,6 +139,8 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
                   {shortMeaning(jaWord(g)?.entry.meaning ?? '', 2)}
                 </span>
               )}
+              {/* …and a star to its right, to put it on the JLPT review list. */}
+              {g && jaWord(g) && <ReviewStar id={jaWord(g)!.entry.id} className="absolute left-full top-1/2 ml-2 -translate-y-1/2" />}
               {Array.from({ length: wordLen }, (_, i) => (
                 <span
                   key={i}
@@ -177,7 +179,9 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
           <p className="text-sm text-ink-soft">
             {shortMeaning(word.entry.meaning, 6)} · {word.entry.level}
           </p>
-          {!won && <p className="text-xs text-ink-faint">It&apos;s on your JLPT review list now.</p>}
+          <div className="flex justify-center pt-1">
+            <ReviewStar id={word.entry.id} label />
+          </div>
           <p className="pt-2 text-sm text-ink-faint">A new word tomorrow.</p>
         </div>
       ) : (
@@ -219,5 +223,25 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
         </div>
       )}
     </div>
+  );
+}
+
+/** A star that puts a word on the JLPT review list, or takes it off (`label`: with words). */
+function ReviewStar({ id, label, className = '' }: { id: string; label?: boolean; className?: string }) {
+  const kept = useProgress((s) => id in s.jlptReview);
+  const add = useProgress((s) => s.addJlptReview);
+  const remove = useProgress((s) => s.removeJlptReview);
+  const toggle = () => (sfx.click(), kept ? remove(id) : add([id]));
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={kept}
+      title={kept ? 'On your review list — tap to take it off' : 'Add to my review list'}
+      className={`${className} ${label ? 'rounded-full border px-3 py-1 text-sm font-semibold' : 'grid size-7 place-items-center rounded-full text-lg'} ${kept ? 'border-ochre text-ochre' : 'border-rule-strong text-ink-faint hover:text-ink'}`}
+    >
+      {kept ? '★' : '☆'}
+      {label && <span className="ml-1">{kept ? 'In my review list' : 'Add to my review list'}</span>}
+    </button>
   );
 }
