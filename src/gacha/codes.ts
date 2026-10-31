@@ -16,6 +16,7 @@ const CODES: Record<string, GiftCode> = {
   '343fc0f23e8b0fd743e39f9b56ff6ce8b98587fee55246fae10f5608d3c661f2': { coins: 5000, note: "Have some Fun" },
   '9233acab3a51350673f481c8a784e77eec1dee62dc65429a54dc39a387683410': { coins: 5000, note: "Halloween" },
   '9ffd68196cd3d274ec9983558d4e70be92e6e0d28dfec6e0d6df31b7a61d190e': { coins: 5000, note: "I'm dev it's normal" },
+  '928ab9146b1eaa65e9da71be808011eaf43ac571b2abfd7b1d789546e6994282': { coins: 5000, note: "Black hole?" },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');
