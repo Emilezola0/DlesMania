@@ -349,7 +349,7 @@ export default function Shop() {
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an
             endless run (Higher or Lower, Summit, Rail Rush…) more and more the further you get — they get harder as you go — up to {ARCADE_RUN_MAX}. +{ARCADE_BEST_BONUS} for a new best. In full up to {ARCADE_CAP} a day
             ({Math.min(econ.arcade, ARCADE_CAP)}/{ARCADE_CAP} today), then half as much, as long as you play. A whole Name Them All list or a whole To the
-            Last level cleared: +{CLEAR_PER_ANSWER} a name on top, once a day per list.
+            Last level cleared: +{CLEAR_PER_ANSWER} a name on top, once a day per list (not with answers banned).
           </li>
           <li>
             The Hot Game: one game of the Games page pays +{Math.round(HOT_BONUS * 100)}% ({hotNow(hotGame, econ.date).game.title} right now). After {HOT_PLAYS} games of it, or the next day, the bonus moves to another.

@@ -61,8 +61,9 @@ function Game({ list: whole }: { list: NameList }) {
     const pts = names.reduce((n, x) => n + pointsFor(uses[x] ?? 0), 0);
     recordBest(key, names.length, { reached: pts / 3 });
     addUses(whole.id, names);
-    // Every one of them: a big reward on top (once a day per list).
-    setClearPay(names.length === total && total > 0 ? payCleared(key, total) : -1);
+    // Every one of them, with nothing banned: a big reward on top (once a day per list). A list with bans
+    // takes the usual pay only.
+    setClearPay(names.length === total && total > 0 && !banned.length ? payCleared(key, total) : -1);
     if (names.length === total) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     else sfx.wrong();
   };
@@ -190,6 +191,7 @@ function Game({ list: whole }: { list: NameList }) {
           </p>
           {clearPay > 0 && <p className="animate-pop font-display text-lg font-bold text-ochre">🏆 +{clearPay} DleCoins for clearing the whole list!</p>}
           {clearPay === 0 && <p className="text-xs text-ink-faint">The whole list again — its big reward is once a day.</p>}
+          {found.length === total && total > 0 && banned.length > 0 && <p className="text-xs text-ink-faint">Every one of them — but with answers banned, the big reward for a whole list doesn&apos;t apply.</p>}
           <p className="font-display text-sm text-ochre">{points} points{points > found.length ? ` · +${points - found.length} for rare names` : ''}</p>
           {found.length > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best} / {total}</p>}
           <button type="button" onClick={start} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider">
