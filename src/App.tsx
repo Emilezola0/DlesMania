@@ -23,6 +23,7 @@ const Album = lazy(() => import('./pages/Album'));
 const Account = lazy(() => import('./pages/Account'));
 const Trades = lazy(() => import('./pages/Trades'));
 const WhoAmI = lazy(() => import('./pages/WhoAmI'));
+const CurveClash = lazy(() => import('./pages/CurveClash'));
 const FranchiseWordle = lazy(() => import('./pages/FranchiseWordle'));
 const JapaneseWordle = lazy(() => import('./pages/JapaneseWordle'));
 const ToTheLast = lazy(() => import('./pages/ToTheLast'));
@@ -81,6 +82,7 @@ export default function App() {
         <Route path="trades" element={<Trades />} />
         <Route path="voice-line" element={<Navigate to="/specialist/overwatch" replace />} />
         <Route path="who-am-i" element={<WhoAmI />} />
+        <Route path="curve-clash" element={<CurveClash />} />
         <Route path="wordle" element={<FranchiseWordle />} />
         <Route path="wordle/japanese" element={<JapaneseWordle />} />
         <Route path="wordle/:set" element={<FranchiseWordle />} />

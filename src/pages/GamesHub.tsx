@@ -169,6 +169,12 @@ export default function GamesHub() {
       blurb: 'Five games, anime, films or albums: when did each come out? The closer, the more points.',
       stat: best('year:') ? `Best: ${best('year:')} / 500` : undefined,
     },
+    {
+      to: '/curve-clash',
+      icon: '📈',
+      title: 'Curve Clash',
+      blurb: 'Two players, one screen: fire along the curve of a function you write, over the islands, and knock out the other side.',
+    },
   ];
 
   return (
