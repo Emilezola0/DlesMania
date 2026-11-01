@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
@@ -199,7 +199,7 @@ function Game({ deck }: { deck: JlptDeck }) {
   return (
     <div className="space-y-5">
       <div className="flex items-end justify-between">
-        <p className="font-serif text-lg italic text-ink-soft">{q.ask === 'meaning' ? 'What does it mean?' : 'How is it read?'}</p>
+        <p className="font-serif text-lg italic text-ink-soft">{q.ask === 'meaning' && q.entry.level !== 'Kana' ? 'What does it mean?' : 'How is it read?'}</p>
         {review ? (
           <p className="font-display text-sm text-ink-soft">
             ✓ <span className="font-serif text-2xl font-bold text-ink">{score}</span> · ✗ {missed} · {left} to learn
@@ -414,7 +414,7 @@ function DeckCard({ deck, glyph, title }: { deck: JlptDeck; glyph: string; title
         </span>
         <span className="font-display text-xl font-bold">{title}</span>
         <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
-          {deck.entries.length.toLocaleString('en')} {deck.kind === 'kanji' ? 'kanji' : 'words'}
+          {deck.entries.length.toLocaleString('en')} {deck.kind === 'kanji' ? 'kanji' : deck.kind === 'kana' ? 'signs' : 'words'}
           {best > 0 && (
             <span className="inline-flex items-center gap-1 font-bold text-coral">
               <FlameIcon /> best {best}
@@ -748,6 +748,15 @@ export default function Jlpt() {
         </p>
       </div>
       <OfTheDay />
+      {/* For beginners: the two kana scripts, read in romaji. */}
+      <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Start here · the kana</h2>
+        <ul className="grid gap-4 sm:grid-cols-3">
+          {KANA_DECKS.map((d) => (
+            <DeckCard key={d.id} deck={d} glyph={d.icon!} title={d.label} />
+          ))}
+        </ul>
+      </section>
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">The list, level by level</h2>
         <ul className="flex flex-wrap gap-2">

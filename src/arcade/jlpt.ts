@@ -12,7 +12,7 @@ export interface JlptEntry {
   level: string;
 }
 
-export type JlptKind = 'vocab' | 'kanji' | 'theme' | 'review';
+export type JlptKind = 'vocab' | 'kanji' | 'theme' | 'review' | 'kana';
 
 export interface JlptDeck {
   /** "n5-vocab", "n1-kanji", "theme-animals"… also the best's key, after "jlpt:". */
@@ -80,7 +80,29 @@ export const JLPT_THEMES: JlptDeck[] = THEMES.map((t) => {
   return { id: `theme-${t.id}`, level: 'All', kind: 'theme' as const, label: t.label, icon: t.icon, entries: VOCAB.filter((e) => senses(e.meaning).some((s) => words.has(s))) };
 });
 
-export const JLPT_DECKS = [...JLPT_LEVELS.flatMap((l) => l.decks), ...JLPT_THEMES];
+/**
+ * The two kana scripts, before any level: every sign — the 46 plain ones, those with dakuten and handakuten,
+ * and the combined ones (きゃ, しゅ…) — asked how it's read, in romaji (the site's own romaji, src/lib/romaji.ts).
+ */
+const HIRAGANA =
+  'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん' +
+  'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ';
+const COMBINED = 'きしちにひみりぎじびぴ';
+const kanaDeck = (script: 'hiragana' | 'katakana'): JlptDeck => {
+  const signs = [...HIRAGANA, ...[...COMBINED].flatMap((k) => ['ゃ', 'ゅ', 'ょ'].map((y) => k + y))];
+  const shown = (h: string) => (script === 'hiragana' ? h : h.replace(/[ぁ-ゖ]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0x60)));
+  return {
+    id: `kana-${script}`,
+    level: 'Kana',
+    kind: 'kana',
+    label: script === 'hiragana' ? 'Hiragana' : 'Katakana',
+    icon: script === 'hiragana' ? 'あ' : 'ア',
+    entries: signs.map((h) => ({ id: `Kana:${script}:${h}`, text: shown(h), reading: shown(h), meaning: romajiSpellings(h)[0], level: 'Kana' })),
+  };
+};
+export const KANA_DECKS: JlptDeck[] = [kanaDeck('hiragana'), kanaDeck('katakana')];
+
+export const JLPT_DECKS = [...JLPT_LEVELS.flatMap((l) => l.decks), ...JLPT_THEMES, ...KANA_DECKS];
 const ENTRY_BY_ID = new Map(JLPT_DECKS.flatMap((d) => d.entries.map((e) => [e.id, e] as const)));
 export const jlptEntry = (id: string) => ENTRY_BY_ID.get(id);
 
