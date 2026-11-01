@@ -4,6 +4,7 @@ import { TimerBar } from '../boss/TimerBar';
 import { JLPT_LEVELS, jlptEntry, shortMeaning } from '../arcade/jlpt';
 import { audioUrl, nextSentence, pieces, sentencesOf, tatoebaUrl, wordsIn, type JlptSentence, type SentenceQuestion } from '../arcade/jlptSentences';
 import { KeepButton } from '../components/JlptKeep';
+import { GrammarNote } from '../components/JlptGrammarNote';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -106,6 +107,7 @@ export function SentenceGame({ level }: { level: string }) {
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const addReview = useProgress((s) => s.addJlptReview);
+  const lang = useProgress((s) => s.nameLang);
   const recent = useRef<number[]>([]);
   const play = useRecording();
   const draw = () => {
@@ -186,7 +188,7 @@ export function SentenceGame({ level }: { level: string }) {
       <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${s.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
       <div ref={arena} className="page flex flex-col items-center gap-3 rounded-md p-6 text-center sm:p-8">
         <Sentence key={s.id} s={s} level={level} answered={state !== 'guess'} tone={state === 'guess' ? null : state} />
-        <p className="text-ink-soft">“{s.en}”</p>
+        <p className="text-ink-soft">“{(lang === 'fr' && s.fr) || s.en}”</p>
         {s.audio && state !== 'guess' && (
           <button type="button" onClick={() => play(s, true)} className="rounded-full border border-rule-strong px-3 py-1 font-display text-xs font-bold text-ink-soft hover:text-ink">
             🔊 Listen again
@@ -211,19 +213,20 @@ export function SentenceGame({ level }: { level: string }) {
               </span>{' '}
               <span className="text-ink-faint">({level})</span>
             </p>
-          ) : (
-            word && (
-              <p className="text-sm">
-                <span className="font-display font-bold">Word</span> ·{' '}
-                <span lang="ja" className="font-semibold">
-                  {word.text}
-                </span>{' '}
-                <span lang="ja" className="text-ink-soft">
-                  {word.reading}
-                </span>{' '}
-                — {shortMeaning(word.meaning, 4)}
-              </p>
-            )
+          ) : null}
+          {/* What the grammar point means, and other sentences that use it. */}
+          {s.grammar && <GrammarNote level={level} pattern={s.grammar} not={s.id} />}
+          {!s.grammar && word && (
+            <p className="text-sm">
+              <span className="font-display font-bold">Word</span> ·{' '}
+              <span lang="ja" className="font-semibold">
+                {word.text}
+              </span>{' '}
+              <span lang="ja" className="text-ink-soft">
+                {word.reading}
+              </span>{' '}
+              — {shortMeaning(word.meaning, 4)}
+            </p>
           )}
           {words.length > 0 && (
             <ul className="space-y-1.5">

@@ -1,0 +1,1143 @@
+{
+ "source": "Bunpro (bunpro.jp), JLPT Sensei (jlptsensei.com), JMdict via Jisho (jisho.org, CC BY-SA 4.0)",
+ "levels": {
+  "N5": {
+   "つもりです": {
+    "en": "To plan to, To intend to",
+    "src": "Bunpro"
+   },
+   "～んです": {
+    "en": "Explanatory, Emphasis, The fact is",
+    "src": "Bunpro"
+   },
+   "ので": {
+    "en": "Because, So, Since, The reason being",
+    "src": "Bunpro"
+   },
+   "は": {
+    "en": "As for... (Highlights sentence topic)",
+    "src": "Bunpro"
+   },
+   "～ましょう": {
+    "en": "Let's, Shall we (Polite volitional)",
+    "src": "Bunpro"
+   },
+   "～のがじょうずです": {
+    "en": "To be good at, Proficient",
+    "src": "Bunpro"
+   },
+   "～まえに": {
+    "en": "Before, In front of",
+    "src": "Bunpro"
+   },
+   "～のほうが～より": {
+    "en": "To be more ~ than",
+    "src": "Bunpro"
+   },
+   "～にいく": {
+    "en": "To go ~, To go in order to",
+    "src": "Bunpro"
+   },
+   "～がいます": {
+    "en": "there is, to be, is (living things)",
+    "src": "JLPT Sensei"
+   },
+   "～く/ ～になる": {
+    "en": "To become (Adjective)",
+    "src": "Bunpro"
+   },
+   "～のがへたです": {
+    "en": "To be bad at, Poor at, Unskillful",
+    "src": "Bunpro"
+   },
+   "～てください": {
+    "en": "Please do (Polite request)",
+    "src": "Bunpro"
+   },
+   "～たり …～たりする": {
+    "en": "Things like ~ and",
+    "src": "Bunpro"
+   },
+   "～てもいいです": {
+    "en": "is OK to ~, is alright to ~, may I ~?",
+    "src": "JLPT Sensei"
+   },
+   "～があります": {
+    "en": "there is, is (non-living things)",
+    "src": "JLPT Sensei"
+   },
+   "です": {
+    "en": "To be, Is",
+    "src": "Bunpro"
+   },
+   "～なくちゃいけない": {
+    "en": "Must do, Have to do",
+    "src": "Bunpro"
+   },
+   "～のがすきです": {
+    "en": "Like doing, Love doing",
+    "src": "Bunpro"
+   },
+   "～ている": {
+    "en": "Is, Am, Are (~ing)",
+    "src": "Bunpro"
+   },
+   "や": {
+    "en": "Things like, And the like",
+    "src": "Bunpro"
+   },
+   "を": {
+    "en": "Object marking particle",
+    "src": "Bunpro"
+   },
+   "～てはいけません": {
+    "en": "Must not, May not",
+    "src": "Bunpro"
+   },
+   "stem +たいです": {
+    "en": "Want to do",
+    "src": "Bunpro"
+   },
+   "ないでください": {
+    "en": "Please don't (Polite request)",
+    "src": "Bunpro"
+   },
+   "でしょう": {
+    "en": "Right?, Probably, Isn't it?",
+    "src": "Bunpro"
+   },
+   "～ませんか": {
+    "en": "Won't you, Would you not, Why don't we",
+    "src": "Bunpro"
+   },
+   "まだ～ていません": {
+    "en": "Still haven't done (something)",
+    "src": "Bunpro"
+   },
+   "で": {
+    "en": "At, In",
+    "src": "Bunpro"
+   },
+   "～から": {
+    "en": "Because, Since",
+    "src": "Bunpro"
+   },
+   "も": {
+    "en": "Also, Too, As well, Even, Either, Neither",
+    "src": "Bunpro"
+   },
+   "と": {
+    "en": "And",
+    "src": "Bunpro"
+   },
+   "～すぎる": {
+    "en": "Too much, Very",
+    "src": "Bunpro"
+   },
+   "～ほうがいい": {
+    "en": "had better, it'd be better to, should",
+    "src": "JLPT Sensei"
+   },
+   "に": {
+    "en": "In, At, To, For, On",
+    "src": "Bunpro"
+   },
+   "～のなかで～がいちばん～": {
+    "en": "Out of ~, ~ is the best/most",
+    "src": "Bunpro"
+   },
+   "～ましょうか": {
+    "en": "Shall we, Shall I",
+    "src": "Bunpro"
+   },
+   "～てから": {
+    "en": "Once...is done, Once...happens, After doing",
+    "src": "Bunpro"
+   },
+   "～たことがある": {
+    "en": "Have done before",
+    "src": "Bunpro"
+   },
+   "に/へ": {
+    "en": "To, Toward",
+    "src": "Bunpro"
+   }
+  },
+  "N4": {
+   "～おう": {
+    "en": "Let's, I shall (Casual volitional)",
+    "src": "Bunpro"
+   },
+   "～という～": {
+    "en": "called, named, that",
+    "src": "JLPT Sensei"
+   },
+   "～かどうか": {
+    "en": "Whether or not, If...or not",
+    "src": "Bunpro"
+   },
+   "～のようてほしい": {
+    "en": "Want ~ to ~ like ~, Want ~ to be able to ~, Want ~ to ~ in the way of",
+    "src": "Bunpro"
+   },
+   "～はずです": {
+    "en": "Bound to (be), Expected to (be), Should be (able)",
+    "src": "Bunpro"
+   },
+   "～てある": {
+    "en": "Something is done, Has been done, Remaining state",
+    "src": "Bunpro"
+   },
+   "Dictionary form+と": {
+    "en": "If, When, Whenever, And, [Conditional]",
+    "src": "Bunpro"
+   },
+   "～がほしい": {
+    "en": "To want something, To be in need of",
+    "src": "Bunpro"
+   },
+   "～なさい": {
+    "en": "Command to do",
+    "src": "Bunpro"
+   },
+   "～てもらう": {
+    "en": "To get someone to do, To have someone do",
+    "src": "Bunpro"
+   },
+   "しか～ない": {
+    "en": "No more than, Not exceeding, As few as・as little as, Only",
+    "src": "Bunpro"
+   },
+   "～よう": {
+    "en": "Let's, I shall (Casual volitional)",
+    "src": "Bunpro"
+   },
+   "～てあげる": {
+    "en": "To do something for someone, As a favor for",
+    "src": "Bunpro"
+   },
+   "(period)に(frequency)": {
+    "en": "Times (In each time period), Every, Frequency of",
+    "src": "Bunpro"
+   },
+   "そうです": {
+    "en": "I heard that, it is said that",
+    "src": "JLPT Sensei"
+   },
+   "～ていただけませんか": {
+    "en": "Won't you, Could you please (Humble request)",
+    "src": "Bunpro"
+   },
+   "～やすい": {
+    "en": "Easy to, Likely to",
+    "src": "Bunpro"
+   },
+   "～かもしれない": {
+    "en": "Might, Maybe, Probably",
+    "src": "Bunpro"
+   },
+   "～ば/～れば": {
+    "en": "If… then, (Conditional)",
+    "src": "Bunpro"
+   },
+   "～たらどうですか": {
+    "en": "Why don't you...?, What if you did...?",
+    "src": "Bunpro"
+   },
+   "～く/ ～にする": {
+    "en": "Adjective + する, To make something/someone (more)",
+    "src": "Bunpro"
+   },
+   "のに": {
+    "en": "Despite, Although, Even though",
+    "src": "Bunpro"
+   },
+   "Number+も": {
+    "en": "Emphasis, As ~ as, Not even",
+    "src": "Bunpro"
+   },
+   "てみる": {
+    "en": "To try to",
+    "src": "Bunpro"
+   },
+   "～ばよかった": {
+    "en": "Should have, I wish, It would have been better to",
+    "src": "Bunpro"
+   },
+   "～てすみません": {
+    "en": "I'm sorry for",
+    "src": "Bunpro"
+   },
+   "～ないで": {
+    "en": "Without doing, Not ~ and",
+    "src": "Bunpro"
+   },
+   "～ているあいだに,～": {
+    "en": "While, During the time that",
+    "src": "Bunpro"
+   },
+   "～といいです": {
+    "en": "I hope, I wish, You should, It would be good",
+    "src": "Bunpro"
+   },
+   "～てくれる": {
+    "en": "To do something for someone (usually you)",
+    "src": "Bunpro"
+   },
+   "～のように": {
+    "en": "Like (Noun), Similar to (Noun)",
+    "src": "Bunpro"
+   },
+   "～させる": {
+    "en": "To make/let/have (somebody do something)",
+    "src": "Bunpro"
+   },
+   "～させられる": {
+    "en": "causative-passive, to be made to do something",
+    "src": "JLPT Sensei"
+   },
+   "～し": {
+    "en": "and, and what’s more ~ (emphasis)",
+    "src": "JLPT Sensei"
+   },
+   "なら": {
+    "en": "Were it, If, If it's the case, As for (Conditional)",
+    "src": "Bunpro"
+   },
+   "～ことにする": {
+    "en": "to decide on",
+    "src": "JLPT Sensei"
+   },
+   "～てくれてありがとう": {
+    "en": "Thank you for ~ ing",
+    "src": "Bunpro"
+   },
+   "～ておく": {
+    "en": "To do something in advance",
+    "src": "Bunpro"
+   },
+   "～てしまう": {
+    "en": "To do something by accident, To finish completely・totally",
+    "src": "Bunpro"
+   },
+   "～のような": {
+    "en": "Like (Noun), Similar to (Noun)",
+    "src": "Bunpro"
+   },
+   "～ても": {
+    "en": "Even if, Even though",
+    "src": "Bunpro"
+   },
+   "～みたい": {
+    "en": "Like, Similar to, Resembling",
+    "src": "Bunpro"
+   },
+   "～ながら": {
+    "en": "While ~ing, During, As",
+    "src": "Bunpro"
+   },
+   "～なくてもいい": {
+    "en": "Don't have to",
+    "src": "Bunpro"
+   },
+   "～てよかった": {
+    "en": "I'm glad that",
+    "src": "Bunpro"
+   },
+   "～たら": {
+    "en": "When, From when, Just when, If",
+    "src": "Bunpro"
+   },
+   "～にくい": {
+    "en": "Difficult to, Hard to",
+    "src": "Bunpro"
+   },
+   "～られる": {
+    "en": "passive form, passive voice / potential form, ability or inability to do something",
+    "src": "JLPT Sensei"
+   },
+   "～そうです": {
+    "en": "Look like, Appear, Seem, Have a feeling that",
+    "src": "Bunpro"
+   },
+   "～たがる": {
+    "en": "To want to (Third person)",
+    "src": "Bunpro"
+   }
+  },
+  "N3": {
+   "～たび～": {
+    "en": "Each time, Every time, Whenever",
+    "src": "Bunpro"
+   },
+   "ようにする": {
+    "en": "To try to, To make sure to, To endeavor to",
+    "src": "Bunpro"
+   },
+   "まさか": {
+    "en": "I never dreamed, Never, No way, Don't tell me, You don't say",
+    "src": "Bunpro"
+   },
+   "～げ": {
+    "en": "Seemingly, Giving appearance of, [Expresses emotions or feelings]",
+    "src": "Bunpro"
+   },
+   "～始める": {
+    "en": "To start, To begin to",
+    "src": "Bunpro"
+   },
+   "～らしい": {
+    "en": "Seems like, Apparently, I heard",
+    "src": "Bunpro"
+   },
+   "～ぐらい": {
+    "en": "approximately, about, around, to the extent",
+    "src": "JLPT Sensei"
+   },
+   "～ても": {
+    "en": "Even if, Even though",
+    "src": "Bunpro"
+   },
+   "～によると": {
+    "en": "According to",
+    "src": "Bunpro"
+   },
+   "むしろ": {
+    "en": "Rather, Instead, Over",
+    "src": "Bunpro"
+   },
+   "～として": {
+    "en": "As (i.e. in the role of), For",
+    "src": "Bunpro"
+   },
+   "N+ばかり": {
+    "en": "Just, Only, Nothing but",
+    "src": "Bunpro"
+   },
+   "すぎない（過ぎない）": {
+    "en": "No more than, Just, Merely",
+    "src": "Bunpro"
+   },
+   "～っぽい": {
+    "en": "-ish, -like, Characteristic of, Typical of, Tendency to",
+    "src": "Bunpro"
+   },
+   "すでに（既に）": {
+    "en": "Already, Too late",
+    "src": "Bunpro"
+   },
+   "おいて（於いて）": {
+    "en": "In, On, At, Regarding, In terms of",
+    "src": "Bunpro"
+   },
+   "ほど": {
+    "en": "The more, About, To the extent that, So much… that",
+    "src": "Bunpro"
+   },
+   "～ないで": {
+    "en": "Without doing, Not ~ and",
+    "src": "Bunpro"
+   },
+   "つい": {
+    "en": "Accidentally, Unconsciously, Against one's better judgement",
+    "src": "Bunpro"
+   },
+   "ふり": {
+    "en": "To pretend, To act as if",
+    "src": "Bunpro"
+   },
+   "まま": {
+    "en": "As is, While remaining, Left in a state",
+    "src": "Bunpro"
+   },
+   "～ために": {
+    "en": "Due to, Because of, As a result of",
+    "src": "Bunpro"
+   },
+   "～ないうちに": {
+    "en": "Before it becomes, Before ~ occurs, Without",
+    "src": "Bunpro"
+   },
+   "～としたら": {
+    "en": "If it were the case that, Assuming that...",
+    "src": "Bunpro"
+   },
+   "つもりで": {
+    "en": "with the intention of doing",
+    "src": "JLPT Sensei"
+   },
+   "～に関する": {
+    "en": "Related to, About, Regarding",
+    "src": "Bunpro"
+   },
+   "～とても～ない": {
+    "en": "Not ~ at all, Cannot ~ at all",
+    "src": "Bunpro"
+   },
+   "どうしても": {
+    "en": "Regardless of, No matter what",
+    "src": "Bunpro"
+   },
+   "～とともに～": {
+    "en": "Together with, At the same time, As well as",
+    "src": "Bunpro"
+   },
+   "きり": {
+    "en": "Only, Just, Since",
+    "src": "Bunpro"
+   },
+   "～によって": {
+    "en": "By means of, According to, Depending on, Because of, Due to",
+    "src": "Bunpro"
+   },
+   "ように": {
+    "en": "in order to, so that",
+    "src": "JLPT Sensei"
+   },
+   "～て初めて": {
+    "en": "For the first time, Not until, Only after, Only when, Only because",
+    "src": "Bunpro"
+   },
+   "～がち": {
+    "en": "Apt to do, Tend to do, Prone to do",
+    "src": "Bunpro"
+   },
+   "～ず": {
+    "en": "Without doing",
+    "src": "Bunpro"
+   },
+   "～ようになる": {
+    "en": "To reach the point that, To come to be that, To turn into",
+    "src": "Bunpro"
+   },
+   "せいぜい": {
+    "en": "at the most, at best, to the utmost",
+    "src": "JLPT Sensei"
+   },
+   "N+を始め": {
+    "en": "Not only...but also..., Starting with",
+    "src": "Bunpro"
+   },
+   "～ば～ほど": {
+    "en": "The more…the more",
+    "src": "Bunpro"
+   },
+   "～たて": {
+    "en": "Freshly ~ed, Just ~ed",
+    "src": "Bunpro"
+   },
+   "～は～くらいです": {
+    "en": "About the only, To the extent that",
+    "src": "Bunpro"
+   },
+   "どうやら": {
+    "en": "Apparently, Looks Like, Seems like",
+    "src": "Bunpro"
+   },
+   "～は～で有名": {
+    "en": "Is famous for",
+    "src": "Bunpro"
+   },
+   "～かえって": {
+    "en": "All the more, On the contrary, Conversely",
+    "src": "Bunpro"
+   },
+   "～さえ～ば": {
+    "en": "If only…then, As long as..., Provided...",
+    "src": "Bunpro"
+   },
+   "こそ": {
+    "en": "For sure, For certain, Even more so",
+    "src": "Bunpro"
+   },
+   "～になれる": {
+    "en": "to be used to something",
+    "src": "JLPT Sensei"
+   },
+   "さらに（更に）": {
+    "en": "furthermore, again, more and more",
+    "src": "JLPT Sensei"
+   },
+   "～代わり": {
+    "en": "Instead of, In place of, In exchange for",
+    "src": "Bunpro"
+   },
+   "まい": {
+    "en": "Won't, Intend not to, Probably not",
+    "src": "Bunpro"
+   },
+   "わざわざ": {
+    "en": "Expressly, Especially, Go out of one's way, Take the trouble to",
+    "src": "Bunpro"
+   },
+   "限る": {
+    "en": "Nothing better than, There's nothing like, Limited to",
+    "src": "Bunpro"
+   },
+   "おかげで": {
+    "en": "Thanks to, Because of",
+    "src": "Bunpro"
+   },
+   "さえ": {
+    "en": "Even",
+    "src": "Bunpro"
+   },
+   "～たものだ": {
+    "en": "Used to",
+    "src": "Bunpro"
+   },
+   "～のような": {
+    "en": "Like (Noun), Similar to (Noun)",
+    "src": "Bunpro"
+   },
+   "的": {
+    "en": "~ly・~like・~al, Typical",
+    "src": "Bunpro"
+   },
+   "いったい（一体）": {
+    "en": "(What) the heck?, (Who) in the world?, (Where) on earth?",
+    "src": "Bunpro"
+   },
+   "～ことになる": {
+    "en": "It will end up being, It is the result of, It has been decided that",
+    "src": "Bunpro"
+   },
+   "～に違いない": {
+    "en": "There is no doubt that, I'm sure",
+    "src": "Bunpro"
+   },
+   "なかなか": {
+    "en": "Very, Quite, Considerably",
+    "src": "Bunpro"
+   },
+   "～たばかり": {
+    "en": "Just did, Something just happened",
+    "src": "Bunpro"
+   }
+  },
+  "N2": {
+   "～わけです": {
+    "en": "For that reason, No wonder, As you'd expect, Naturally, Thus",
+    "src": "Bunpro"
+   },
+   "何といっても": {
+    "en": "By any account, All the same, No doubt",
+    "src": "Bunpro"
+   },
+   "～ような気がする": {
+    "en": "Have a feeling that",
+    "src": "Bunpro"
+   },
+   "～ことにする": {
+    "en": "To decide on, Have decided to",
+    "src": "Bunpro"
+   },
+   "以外の": {
+    "en": "with the exception of, excepting",
+    "src": "JLPT Sensei"
+   },
+   "～に気をつける": {
+    "en": "Take care, Be careful, Pay attention, Make sure, Watch out",
+    "src": "Bunpro"
+   },
+   "別に～ない": {
+    "en": "Not really, Not particularly, It's not like...",
+    "src": "Bunpro"
+   },
+   "～しか～ない": {
+    "en": "Have no choice but, Only, Just",
+    "src": "Bunpro"
+   },
+   "～にあたる": {
+    "en": "Correspond to, Amounts to, Equals to, Is appropriate",
+    "src": "Bunpro"
+   },
+   "とうてい": {
+    "en": "(cannot) possibly, (not) by any means, (not) at all, utterly",
+    "src": "JMdict"
+   },
+   "のぼる": {
+    "en": "to add up to",
+    "src": "JMdict"
+   },
+   "～ないで済む": {
+    "en": "Get by without doing something, To get away with",
+    "src": "Bunpro"
+   },
+   "がてら": {
+    "en": "On the occasion of, While … as well, While … (one is) at it, During",
+    "src": "Bunpro"
+   },
+   "および": {
+    "en": "And, As well as",
+    "src": "Bunpro"
+   },
+   "いったんーば": {
+    "en": "once",
+    "src": "JMdict"
+   },
+   "よっぽど": {
+    "en": "very, greatly, much, to a large extent",
+    "src": "JLPT Sensei"
+   },
+   "つうじて（通じて）": {
+    "en": "Through, Via, Throughout",
+    "src": "Bunpro"
+   },
+   "思うように": {
+    "en": "As one hopes, As desired, As one thought",
+    "src": "Bunpro"
+   },
+   "いよいよ": {
+    "en": "At last, Finally, More and more",
+    "src": "Bunpro"
+   },
+   "～より仕方がない": {
+    "en": "There is no choice but, Can't be helped, Inevitable",
+    "src": "Bunpro"
+   },
+   "～ものですから": {
+    "en": "Because, My excuse is, My explanation is",
+    "src": "Bunpro"
+   },
+   "～なかなか～ない": {
+    "en": "Not really, Hardly, Not easily or readily, By no means, Far from",
+    "src": "Bunpro"
+   },
+   "せっかく": {
+    "en": "especially, (thank you for) troubling to, going to great pains for",
+    "src": "JLPT Sensei"
+   },
+   "やむをえず": {
+    "en": "unavoidably, inevitably, necessarily, reluctantly, against one's will",
+    "src": "JMdict"
+   },
+   "やっぱり": {
+    "en": "as expected, sure enough, just as one thought",
+    "src": "JMdict"
+   },
+   "かたわら（傍ら）": {
+    "en": "While, Besides, In addition to",
+    "src": "Bunpro"
+   },
+   "ろくに": {
+    "en": "not well, not enough, improperly, insufficiently, unsatisfactorily​",
+    "src": "JLPT Sensei"
+   },
+   "なるべく": {
+    "en": "As ~ as possible, Wherever practicable",
+    "src": "Bunpro"
+   },
+   "かねる": {
+    "en": "Cannot, Be unable to, Hard to, Hesitant to",
+    "src": "Bunpro"
+   },
+   "せいか": {
+    "en": "perhaps because",
+    "src": "JLPT Sensei"
+   },
+   "たしか": {
+    "en": "If I'm not mistaken, If I remember correctly, If I remember rightly",
+    "src": "JMdict"
+   },
+   "～ではないだろうか": {
+    "en": "I think ... isn't it?, It might be that..., Don't you agree?",
+    "src": "Bunpro"
+   },
+   "～わけにはいかない": {
+    "en": "Cannot afford to, No way, Impossible to do",
+    "src": "Bunpro"
+   },
+   "まんいち（万一）": {
+    "en": "(if) by some chance, by some possibility, in the unlikely event that",
+    "src": "JMdict"
+   },
+   "～は～に限る": {
+    "en": "is best, nothing is better than",
+    "src": "JLPT Sensei"
+   },
+   "ゆえに": {
+    "en": "Because, The reason is, Due to, Therefore, So",
+    "src": "Bunpro"
+   },
+   "一方では": {
+    "en": "on one hand, on the other hand, although",
+    "src": "JLPT Sensei"
+   },
+   "なにしろ（何しろ）": {
+    "en": "No wonder, After all, In fact, Because, At any rate",
+    "src": "Bunpro"
+   },
+   "それにしても": {
+    "en": "Nevertheless, Even so",
+    "src": "Bunpro"
+   },
+   "～を～にまかせる": {
+    "en": "Leave 〜 up to, Entrust 〜 to",
+    "src": "Bunpro"
+   },
+   "～というわけではない": {
+    "en": "It is not that, It doesn't mean that, It is not always the case",
+    "src": "Bunpro"
+   },
+   "かけては": {
+    "en": "When it comes to, Regarding, Concerning",
+    "src": "Bunpro"
+   },
+   "たちまち": {
+    "en": "Immediately, Quickly, Suddenly, In a moment or flash",
+    "src": "Bunpro"
+   },
+   "さすがに": {
+    "en": "as one would expect, only natural, that is just like..., even",
+    "src": "Bunpro"
+   },
+   "～に越したことはない": {
+    "en": "There is nothing better than, It is the best, Would be the best",
+    "src": "Bunpro"
+   },
+   "ものの": {
+    "en": "Although, But, Even Though",
+    "src": "Bunpro"
+   },
+   "いつのまにか": {
+    "en": "Suddenly, Unnoticed, Without noticing, Too soon",
+    "src": "Bunpro"
+   },
+   "さしつかえない": {
+    "en": "can ~, it’s okay if ~ (indicates permission or compromise)",
+    "src": "JLPT Sensei"
+   },
+   "あえて": {
+    "en": "dare to, daringly, deliberately, purposely",
+    "src": "JLPT Sensei"
+   },
+   "たまらない": {
+    "en": "Can't help but want to, Very, Extremely",
+    "src": "Bunpro"
+   },
+   "～た上で": {
+    "en": "After, Upon",
+    "src": "Bunpro"
+   },
+   "～ないわけにはいかない": {
+    "en": "Can't not, No way to avoid",
+    "src": "Bunpro"
+   },
+   "ごとし（如し）": {
+    "en": "Like, Similar to, As if, The same as",
+    "src": "Bunpro"
+   },
+   "かねない": {
+    "en": "Might, Could be, Capable of, Possible",
+    "src": "Bunpro"
+   },
+   "ろくに～ない": {
+    "en": "not well, not enough, improperly, insufficiently, unsatisfactorily​",
+    "src": "JLPT Sensei"
+   },
+   "～と言っても～": {
+    "en": "Although ~ might say that",
+    "src": "Bunpro"
+   },
+   "～が気になる": {
+    "en": "To be interested in, To be concerned about",
+    "src": "Bunpro"
+   },
+   "せめて": {
+    "en": "At least",
+    "src": "Bunpro"
+   },
+   "くせに": {
+    "en": "Even though, And yet, Despite",
+    "src": "Bunpro"
+   },
+   "いたるまで（至るまで）": {
+    "en": "(Everything) from...to..., From…up until...",
+    "src": "Bunpro"
+   }
+  },
+  "N1": {
+   "～めく": {
+    "en": "Like, To show signs of, To have the appearance of, Somewhat, An air of",
+    "src": "Bunpro"
+   },
+   "～かたわら": {
+    "en": "While, Besides, In addition to",
+    "src": "Bunpro"
+   },
+   "～と思いきや": {
+    "en": "Thought...but, When...thought that...but, Despite having thought...",
+    "src": "Bunpro"
+   },
+   "～が早いか": {
+    "en": "As soon as, No sooner than, The instant that, No sooner had",
+    "src": "Bunpro"
+   },
+   "ただ～のみ": {
+    "en": "Nothing but, Should, Have to, Only, All that remains",
+    "src": "Bunpro"
+   },
+   "～なり": {
+    "en": "As soon as, The moment, When",
+    "src": "Bunpro"
+   },
+   "～や否や（いなや）": {
+    "en": "As soon as, No sooner than, The minute",
+    "src": "Bunpro"
+   },
+   "～ごとき": {
+    "en": "Like, Similar to, As if, The same as",
+    "src": "Bunpro"
+   },
+   "～がてら": {
+    "en": "On the occasion of, While … as well, While … (one is) at it, During",
+    "src": "Bunpro"
+   },
+   "～を皮切りに": {
+    "en": "Beginning of, Starting with",
+    "src": "Bunpro"
+   },
+   "～をもって": {
+    "en": "By means of, With, By, Via, In view of",
+    "src": "Bunpro"
+   },
+   "～が最後": {
+    "en": "if you do... negative result",
+    "src": "JLPT Sensei"
+   },
+   "～まみれ": {
+    "en": "covered with, stained, smeared with",
+    "src": "JLPT Sensei"
+   },
+   "～とあれば": {
+    "en": "(Emphatic) if, If it is the case that, As (you wish)",
+    "src": "Bunpro"
+   },
+   "～ともなると": {
+    "en": "When, If, Once, As",
+    "src": "Bunpro"
+   },
+   "～なくしては": {
+    "en": "cannot do without",
+    "src": "JLPT Sensei"
+   },
+   "～なしに": {
+    "en": "without, without doing",
+    "src": "JLPT Sensei"
+   },
+   "～ならでは": {
+    "en": "Unique to, Only, Impossible if not, Expected only of",
+    "src": "Bunpro"
+   },
+   "～に足る": {
+    "en": "To be worthy of, To be enough, To be sufficient",
+    "src": "Bunpro"
+   },
+   "～とあって": {
+    "en": "Since...(it is no wonder that), Because...(it is no wonder that)",
+    "src": "Bunpro"
+   },
+   "～べく": {
+    "en": "For the purpose of, In order to, To ensure",
+    "src": "Bunpro"
+   },
+   "～かたがた": {
+    "en": "Partly for (the purpose of), In addition to, Along with, By the way",
+    "src": "Bunpro"
+   },
+   "～たところで": {
+    "en": "Even if ~ cannot or will not, Even though ~ not",
+    "src": "Bunpro"
+   },
+   "～であれ": {
+    "en": "Even if, Even, No matter",
+    "src": "Bunpro"
+   },
+   "～にたえない": {
+    "en": "worth doing, can do, cannot bear doing",
+    "src": "JLPT Sensei"
+   },
+   "～を限りに": {
+    "en": "As of (the end of), (Starting) from, (No longer) after, By (the)",
+    "src": "Bunpro"
+   },
+   "～ところを": {
+    "en": "When, While, In spite of (the circumstances)",
+    "src": "Bunpro"
+   },
+   "～にそくして": {
+    "en": "In line with, Based on, In accordance with",
+    "src": "Bunpro"
+   },
+   "～とはいえ": {
+    "en": "Though, Although (I admit that), Be that as it may, Nonetheless",
+    "src": "Bunpro"
+   },
+   "～ものを": {
+    "en": "But, Although, If only, I wish I had",
+    "src": "Bunpro"
+   },
+   "～ようが": {
+    "en": "Even if, No matter what, Whether or not, [Emphatic], Volitional + が",
+    "src": "Bunpro"
+   },
+   "～いかん": {
+    "en": "in accordance with, depending on, whether or not",
+    "src": "JLPT Sensei"
+   },
+   "～と相まって": {
+    "en": "together with..., more, because of the influence of..., more",
+    "src": "JLPT Sensei"
+   },
+   "～をよそに": {
+    "en": "Ignoring, Disregarding, Despite",
+    "src": "Bunpro"
+   },
+   "～ないまでも": {
+    "en": "May not … but (at least), Even though not, Even if not",
+    "src": "Bunpro"
+   },
+   "～てもさしつかえない": {
+    "en": "May, Is it a bother if, Do you mind if, Is it a problem if",
+    "src": "Bunpro"
+   },
+   "～たる": {
+    "en": "To be (in a position of), As a, For",
+    "src": "Bunpro"
+   },
+   "～まじき": {
+    "en": "Unbecoming of, Unworthy of, Not proper for, Should not, Must not",
+    "src": "Bunpro"
+   },
+   "～極まる": {
+    "en": "Extreme, Extremely",
+    "src": "Bunpro"
+   },
+   "～にかこつけて": {
+    "en": "In the name of, Using the excuse of, To use as a pretext of",
+    "src": "Bunpro"
+   },
+   "～に（は）あたらない": {
+    "en": "No need to/for, Cannot, Not worth it to, Not suitable",
+    "src": "Bunpro"
+   },
+   "～にかたくない": {
+    "en": "Not hard to, Not difficult to, Easy to, Is obvious that",
+    "src": "Bunpro"
+   },
+   "～べからず": {
+    "en": "Do not, Must not, Should not, Cannot (べからざる)",
+    "src": "Bunpro"
+   },
+   "～を禁じ得ない": {
+    "en": "Cannot help feeling, Cannot but, Cannot hold back",
+    "src": "Bunpro"
+   },
+   "～たりとも": {
+    "en": "not even, not any",
+    "src": "JLPT Sensei"
+   },
+   "～きらいがある": {
+    "en": "Have a tendency to, Tend to, Be slightly",
+    "src": "Bunpro"
+   },
+   "～しまつだ": {
+    "en": "Ends up, Finally, In the end, (Unfortunately) As a result, To wind up",
+    "src": "Bunpro"
+   },
+   "～を余儀なくされる": {
+    "en": "To be forced to do something",
+    "src": "Bunpro"
+   },
+   "～てやまない": {
+    "en": "Never cease to, Always, Sincerely, Greatly",
+    "src": "Bunpro"
+   },
+   "～割りに（は）": {
+    "en": "considering ~, for ~, despite",
+    "src": "JLPT Sensei"
+   },
+   "～かいもなく": {
+    "en": "despite, even though",
+    "src": "JLPT Sensei"
+   },
+   "～だけまし": {
+    "en": "At least, It's better than..., One should feel grateful for",
+    "src": "Bunpro"
+   },
+   "～ないではすまない": {
+    "en": "Won't get away without, Won't get off without, Have to, Can’t not",
+    "src": "Bunpro"
+   },
+   "～をふまえて": {
+    "en": "Based on, Considering, Keeping in mind, Taking into account, Therefore",
+    "src": "Bunpro"
+   },
+   "～をおして": {
+    "en": "to overcome (opposition), to push past",
+    "src": "JLPT Sensei"
+   },
+   "～を経て": {
+    "en": "Via, Through, After (experience at job, university, etc.), Pass through",
+    "src": "Bunpro"
+   },
+   "～ゆえ": {
+    "en": "Because, The reason is, Due to, Therefore, So",
+    "src": "Bunpro"
+   },
+   "～ながらも": {
+    "en": "But, Even while, Even though, Despite, Although",
+    "src": "Bunpro"
+   },
+   "～ことなしに": {
+    "en": "without doing something",
+    "src": "JLPT Sensei"
+   },
+   "～ではあるまいし": {
+    "en": "it’s not like, it isn’t as if",
+    "src": "JLPT Sensei"
+   },
+   "～てからというもの": {
+    "en": "After, Since, Ever since then",
+    "src": "Bunpro"
+   },
+   "～としたところで": {
+    "en": "even if, even supposing that",
+    "src": "JLPT Sensei"
+   },
+   "～（で）すら": {
+    "en": "Even",
+    "src": "Bunpro"
+   },
+   "～といえども": {
+    "en": "Even (if), Although, Even though",
+    "src": "Bunpro"
+   },
+   "～っぱなし": {
+    "en": "Leaving something in a certain state, Left as is, Keep on -ing",
+    "src": "Bunpro"
+   },
+   "～ずくめ": {
+    "en": "Completely, Entirely, All in, Nothing but, A real streak of",
+    "src": "Bunpro"
+   },
+   "～ながらに": {
+    "en": "While being, Born (with), As always, While crying or in tears",
+    "src": "Bunpro"
+   },
+   "～にもまして": {
+    "en": "Even -er than, Even more than, More than anything, More than anybody",
+    "src": "Bunpro"
+   },
+   "～にひきかえ": {
+    "en": "In stark contrast, In comparison, On the other hand, While",
+    "src": "Bunpro"
+   },
+   "～はおろか": {
+    "en": "Let alone, Much less, Needless to say, Not to mention",
+    "src": "Bunpro"
+   }
+  }
+ }
+}

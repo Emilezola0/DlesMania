@@ -6,6 +6,7 @@ import { hashString } from '../lib/rng';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { GrammarNote } from '../components/JlptGrammarNote';
 
 const REVEAL_MS = 1100;
 const QUESTION: Record<string, string> = { meaning: 'What does it mean — or how is it read?', reading: 'How is it read?', pattern: 'Fill in the gaps — or write it all out' };
@@ -63,7 +64,8 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
     if (lastRight(entry, ask, typed, shown)) {
       sfx.correct();
       setState('right');
-      window.setTimeout(() => move(true), REVEAL_MS);
+      // A grammar point waits for Next: its meaning and examples are there to be read.
+      if (ask !== 'pattern') window.setTimeout(() => move(true), REVEAL_MS);
     } else {
       sfx.wrong();
       shake(arena.current, 8, 380);
@@ -144,10 +146,17 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
             )}
             {state === 'right' && <p className="animate-pop font-display text-sm font-bold text-hit">✓ Cleared</p>}
           </div>
+          {/* A grammar point, right or wrong: what it means, and real sentences that use it. */}
+          {state !== 'guess' && ask === 'pattern' && (
+            <div className="page rounded-md p-4">
+              <GrammarNote level={level} pattern={entry.text} />
+            </div>
+          )}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               if (state === 'wrong') move(false);
+              else if (state === 'right') move(true);
               else submit();
             }}
             className="flex gap-2"
@@ -166,8 +175,8 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
               name="jlpt-last"
               className={`min-w-0 flex-1 rounded-md border-2 bg-card px-4 py-3 text-lg outline-none focus:border-ink ${state === 'right' ? 'border-hit' : state === 'wrong' ? 'border-miss' : 'border-rule-strong'}`}
             />
-            {state === 'wrong' ? (
-              <button type="submit" autoFocus className="btn-ink rounded-md px-5 font-display font-bold tracking-wider">
+            {state === 'wrong' || (state === 'right' && ask === 'pattern') ? (
+              <button type="submit" autoFocus data-next className="btn-ink rounded-md px-5 font-display font-bold tracking-wider">
                 Next ↵
               </button>
             ) : (
