@@ -1,6 +1,9 @@
 import { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SIX_ROUNDS, SIX_THEMES, sixGraph, sixPuzzle, sixStars } from '../arcade/sixDegrees';
+
+/** A theme's best (a run is one puzzle now: the bests of the five-puzzle runs stay under `six:<theme>`). */
+const bestKey = (themeId: string) => `six:${themeId}:1`;
 import { Customise, useCustomPicks } from '../components/Customise';
 
 const SIX_OPTIONS = SIX_THEMES.map((t) => ({ key: t.id, label: t.theme }));
@@ -20,7 +23,7 @@ function Tile({ label, image, tone = '', small = false }: { label: string; image
 }
 
 function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; onExit: () => void; mix?: string[] }) {
-  const key = `six:${themeId}`;
+  const key = bestKey(themeId);
   // "Your mix" (Customise): each puzzle from one of the picked themes.
   const pickTheme = () => (mix ? mix[Math.floor(Math.random() * mix.length)] : themeId);
   const [themeNow, setThemeNow] = useState(pickTheme);
@@ -114,7 +117,7 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
           ← {label}
         </button>
         <p className="font-display text-sm text-ink-soft">
-          Puzzle {Math.min(index + 1, SIX_ROUNDS)}/{SIX_ROUNDS} · <span className="font-serif text-2xl font-bold text-ink">{total}</span> / {SIX_ROUNDS * 3} ★
+          {SIX_ROUNDS > 1 && `Puzzle ${Math.min(index + 1, SIX_ROUNDS)}/${SIX_ROUNDS} · `}<span className="font-serif text-2xl font-bold text-ink">{total}</span> / {SIX_ROUNDS * 3} ★
         </p>
       </div>
 
@@ -126,7 +129,9 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
         <div className="flex flex-wrap items-center justify-center gap-1.5">
           {chain.map((c, i) => (
             <span key={c} className="flex items-center gap-1.5">
-              {i > 0 && <span className="max-w-24 text-center text-[10px] font-semibold leading-tight text-accent">→ {g.links.get(chain[i - 1])?.get(c)?.[0]} →</span>}
+              {i > 0 && <span className="max-w-24 text-center text-[10px] font-semibold leading-tight text-accent" title={g.links.get(chain[i - 1])?.get(c)?.join('\n')}>
+                  → {g.links.get(chain[i - 1])?.get(c)?.[0]} →
+                </span>}
               <Tile label={c} image={images.get(c)} tone={c === puzzle.to ? 'border-hit' : 'border-ink'} />
             </span>
           ))}
@@ -158,7 +163,7 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
             A shortest chain:{' '}
             {puzzle.path.map((c, i) => (
               <span key={c}>
-                {i > 0 && <span className="text-accent"> → {g.links.get(puzzle.path[i - 1])?.get(c)?.[0]} → </span>}
+                {i > 0 && <span className="text-accent"> → {g.links.get(puzzle.path[i - 1])?.get(c)?.join(' / ')} → </span>}
                 <span className="font-semibold text-ink">{c}</span>
               </span>
             ))}
@@ -220,7 +225,7 @@ export default function SixDegrees() {
         <h1 className="text-5xl font-bold">Six Degrees</h1>
         <p className="max-w-xl text-ink-soft">
           Link two characters through the groups they share — Luffy → Straw Hats → Zoro → master swordsmen → Mihawk. Each step must share a group
-          with the last. Reach the target in as few steps as par for three stars. {SIX_ROUNDS} puzzles a run.
+          with the last. Reach the target in as few steps as par for three stars. {SIX_ROUNDS === 1 ? 'One puzzle a run.' : `${SIX_ROUNDS} puzzles a run.`}
         </p>
       </div>
       <Customise options={SIX_OPTIONS} picks={picks} onChange={setPicks} noun="theme" />
@@ -230,7 +235,7 @@ export default function SixDegrees() {
             <button type="button" onClick={() => (sfx.click(), setTheme({ id: 'custom', theme: 'Your mix' }))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-4 text-left ring-2 ring-coral/60 transition hover:-translate-y-0.5">
               <span className="font-display text-lg font-bold">🎛 Your mix</span>
               <span className="text-xs text-ink-faint">
-                {picks.length} theme{picks.length === 1 ? '' : 's'} · {(bests['six:custom'] ?? 0) > 0 ? `Best: ${bests['six:custom']} / ${SIX_ROUNDS * 3} ★` : 'Not played yet'}
+                {picks.length} theme{picks.length === 1 ? '' : 's'} · {(bests[bestKey('custom')] ?? 0) > 0 ? `Best: ${bests[bestKey('custom')]} / ${SIX_ROUNDS * 3} ★` : 'Not played yet'}
               </span>
             </button>
           </li>
@@ -239,7 +244,7 @@ export default function SixDegrees() {
           <li key={t.id}>
             <button type="button" onClick={() => (sfx.click(), setTheme(t))} className="page flex h-full w-full flex-col items-start gap-1 rounded-md p-4 text-left ring-2 ring-accent/40 transition hover:-translate-y-0.5">
               <span className="font-display text-lg font-bold">{t.theme}</span>
-              <span className="text-xs text-ink-faint">{(bests[`six:${t.id}`] ?? 0) > 0 ? `Best: ${bests[`six:${t.id}`]} / ${SIX_ROUNDS * 3} ★` : 'Not played yet'}</span>
+              <span className="text-xs text-ink-faint">{(bests[bestKey(t.id)] ?? 0) > 0 ? `Best: ${bests[bestKey(t.id)]} / ${SIX_ROUNDS * 3} ★` : 'Not played yet'}</span>
             </button>
           </li>
         ))}
