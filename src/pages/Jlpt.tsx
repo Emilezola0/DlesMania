@@ -10,6 +10,9 @@ import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
+import { KeepButton } from '../components/JlptKeep';
+import { sentencesOf } from '../arcade/jlptSentences';
+import { SentencePage } from './JlptSentences';
 
 /** How long a right answer stays shown before the next question. */
 const REVEAL_MS = 900;
@@ -26,23 +29,6 @@ const readTyping = () => {
     return false;
   }
 };
-
-/** The star that puts a word on the review list, or takes it off. */
-function KeepButton({ id }: { id: string }) {
-  const kept = useProgress((s) => id in s.jlptReview);
-  const add = useProgress((s) => s.addJlptReview);
-  const remove = useProgress((s) => s.removeJlptReview);
-  return (
-    <button
-      type="button"
-      onClick={() => (kept ? remove(id) : add([id]))}
-      aria-pressed={kept}
-      className={`rounded-full border px-3 py-1 font-display text-xs font-bold transition ${kept ? 'border-ochre bg-ochre/15 text-ochre' : 'border-rule-strong text-ink-soft hover:text-ink'}`}
-    >
-      {kept ? '★ In my review list' : '☆ Add to my review list'}
-    </button>
-  );
-}
 
 /** Every word or kanji of a run, with its reading and meaning, each one starrable onto the review list. */
 function RunWords({ entries }: { entries: JlptEntry[] }) {
@@ -393,6 +379,32 @@ function ReviewList() {
   );
 }
 
+/** A level's grammar: its sentences with a gap to play, and its list of points to show. */
+function GrammarCard({ level, points, open, onToggle }: { level: string; points: number; open: boolean; onToggle: () => void }) {
+  const best = useProgress((s) => s.bests[`jlpt:${level.toLowerCase()}-sentences`] ?? 0);
+  return (
+    <li className="page flex h-full flex-col rounded-md ring-2 ring-accent/40 transition hover:-translate-y-0.5">
+      <Link to={`/jlpt/${level.toLowerCase()}-sentences`} className="flex flex-1 flex-col gap-1 p-5 pb-2">
+        <span lang="ja" className="font-serif text-3xl font-bold">
+          文
+        </span>
+        <span className="font-display text-xl font-bold">Grammar</span>
+        <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
+          {sentencesOf(level).length} sentences with a gap
+          {best > 0 && (
+            <span className="inline-flex items-center gap-1 font-bold text-coral">
+              <FlameIcon /> best {best}
+            </span>
+          )}
+        </span>
+      </Link>
+      <button type="button" onClick={onToggle} className="px-5 pb-4 text-left text-xs text-ink-faint hover:text-ink hover:underline">
+        {points} points · {open ? 'hide the list' : 'show the list'}
+      </button>
+    </li>
+  );
+}
+
 function DeckCard({ deck, glyph, title }: { deck: JlptDeck; glyph: string; title: string }) {
   const best = useProgress((s) => s.bests[`jlpt:${deck.id}`] ?? 0);
   return (
@@ -704,6 +716,9 @@ export default function Jlpt() {
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
   }
   if (id) {
+    // A level's grammar, in sentences with a gap.
+    const sentences = /^(n[1-5])-sentences$/.exec(id);
+    if (sentences) return <SentencePage key={id} level={sentences[1].toUpperCase()} />;
     const deck = id === 'review' ? reviewDeck([]) : id === 'custom' ? customDeck(picks) : jlptDeck(id);
     if (!deck) return <Navigate to="/jlpt" replace />;
     return (
@@ -776,21 +791,7 @@ export default function Jlpt() {
             {l.decks.map((d) => (
               <DeckCard key={d.id} deck={d} glyph={d.kind === 'vocab' ? '語' : '字'} title={d.kind === 'vocab' ? 'Vocabulary' : 'Kanji'} />
             ))}
-            <li>
-              <button
-                type="button"
-                onClick={() => setGrammar(grammar === l.level ? null : l.level)}
-                className="page flex h-full w-full flex-col gap-1 rounded-md p-5 text-left ring-2 ring-rule-strong/40 transition hover:-translate-y-0.5"
-              >
-                <span lang="ja" className="font-serif text-3xl font-bold">
-                  文
-                </span>
-                <span className="font-display text-xl font-bold">Grammar</span>
-                <span className="mt-auto pt-3 text-xs text-ink-faint">
-                  {l.grammar.length} points · {grammar === l.level ? 'hide' : 'show the list'}
-                </span>
-              </button>
-            </li>
+            <GrammarCard level={l.level} points={l.grammar.length} open={grammar === l.level} onToggle={() => setGrammar(grammar === l.level ? null : l.level)} />
           </ul>
           {grammar === l.level && (
             <ul lang="ja" className="page animate-pop flex flex-wrap gap-2 rounded-md p-4">

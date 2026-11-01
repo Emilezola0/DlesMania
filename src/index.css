@@ -1639,3 +1639,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 [data-still] *,
 [data-still] *::before,
 [data-still] *::after { animation-play-state: paused !important; }
+
+/* Furigana under the kanji (JLPT sentences): the reading below the character, as everywhere else in JLPT. */
+.ruby-under ruby { ruby-position: under; -webkit-ruby-position: after; }
+.ruby-under rt { font-size: 0.42em; font-weight: 500; opacity: 0.75; }
