@@ -6,6 +6,7 @@ import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
 import { JLPT_LEVELS, JLPT_THEMES } from '../arcade/jlpt';
 import { kanjiPicture } from '../lib/kanji';
+import { DRAGON_BALL, HARRY_POTTER, NARUTO, STAR_WARS } from '../specialist/extra';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 
 /** Someone to name on a track sign. */
@@ -58,6 +59,22 @@ export const RAIL_LINES: RailLine[] = [
   {
     id: 'wow', label: 'World of Warcraft', icon: '🐉', palette: ['#120f24', '#6a4c93', '#2b2a45', '#4b3f36'], characters: pick(WOW.characters),
     stations: ['Goldshire', 'Stormwind', 'Ironforge', 'Orgrimmar', 'Thunder Bluff', 'Dalaran', 'Shattrath', 'Icecrown', 'Valdrakken', 'Dornogal'],
+  },
+  {
+    id: 'harrypotter', label: 'Harry Potter', icon: '🪄', palette: ['#1b1a33', '#d9b45a', '#3b2f4a', '#4a5a3a'], characters: pick(HARRY_POTTER),
+    stations: ['Privet Drive', "King's Cross", 'Diagon Alley', 'Gringotts', 'Hogwarts', 'Hogsmeade', 'The Burrow', "Godric's Hollow", 'Grimmauld Place', 'Azkaban'],
+  },
+  {
+    id: 'starwars', label: 'Star Wars', icon: '🌌', palette: ['#05060f', '#3a4a7a', '#2a2a3a', '#7a5a3a'], characters: pick(STAR_WARS),
+    stations: ['Tatooine', 'Naboo', 'Coruscant', 'Kamino', 'Geonosis', 'Mustafar', 'Hoth', 'Dagobah', 'Bespin', 'Endor'],
+  },
+  {
+    id: 'naruto', label: 'Naruto', icon: '🍥', palette: ['#f28c38', '#ffe0a8', '#3d6b3a', '#7a5a3a'], characters: pick(NARUTO, 120),
+    stations: ['Konohagakure', 'Land of Waves', 'Sunagakure', 'Valley of the End', 'Kirigakure', 'Kumogakure', 'Iwagakure', 'Amegakure', 'Mount Myōboku', 'Otogakure'],
+  },
+  {
+    id: 'dbz', label: 'Dragon Ball', icon: '💥', palette: ['#4f9ee8', '#ffe8a8', '#3f8a4a', '#c99a5a'], characters: pick(DRAGON_BALL),
+    stations: ['Kame House', 'Capsule Corp', "Kami's Lookout", 'Snake Way', "King Kai's planet", 'Namek', 'the Cell Games', "Beerus's planet", 'the Tournament of Power', 'Planet Vegeta'],
   },
   {
     id: 'pokemon', label: 'Pokémon', icon: '⚡', palette: ['#2f80c8', '#ffe08a', '#4f9d57', '#8fcf6b'], characters: pick(series('pokemon')),

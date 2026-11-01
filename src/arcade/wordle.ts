@@ -3,6 +3,8 @@ import { withFrench } from '../lib/french';
 import { ONE_PIECE } from '../specialist/data';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
+import { DRAGON_BALL, HARRY_POTTER, NARUTO, STAR_WARS } from '../specialist/extra';
+import { SIMPLE } from '../specialist/simple';
 import type { NameLang } from '../store/progress';
 
 /** A name as Wordle letters: no accents, spaces or punctuation ("Kai'Sa" → KAISA). */
@@ -61,12 +63,34 @@ const onePiece: Source[] = ONE_PIECE.characters.slice(0, 120).flatMap((c) => {
   return short ? [{ name: short, alts: [c.name, ...c.aliases] }] : [];
 });
 
+/** Someone's first name when no one else in the set has it ("Hermione"), or their whole name. */
+const firstNames = (xs: { name: string; aliases?: string[] }[]): Source[] => {
+  const first = (n: string) => n.split(/\s+/)[0];
+  const count = new Map<string, number>();
+  for (const x of xs) count.set(wordOf(first(x.name)), (count.get(wordOf(first(x.name))) ?? 0) + 1);
+  // A droid's number isn't letters (C-3PO would be "CPO"): left out.
+  return xs.filter((x) => !/\d/.test(x.name)).map((x) => {
+    const f = first(x.name);
+    const short = wordOf(f).length >= 3 && count.get(wordOf(f)) === 1;
+    return { name: short ? f : x.name, alts: [x.name, ...(x.aliases ?? [])] };
+  });
+};
+
 export const WORDLE_SETS: WordleSet[] = [
   { id: 'pokemon', label: 'Pokémon', icon: '⚡', names: named(series('pokemon')), namesFr: named(series('pokemon', 'fr')) },
   { id: 'lol', label: 'League champions', icon: '⚔️', names: named(roster(LOL.champions)) },
   { id: 'genshin', label: 'Genshin characters', icon: '✨', names: named(roster(GENSHIN.characters)) },
   { id: 'onepiece', label: 'One Piece', icon: '🏴‍☠️', names: named(onePiece) },
   { id: 'minecraft', label: 'Minecraft mobs', icon: '⛏️', names: named(series('minecraft')), namesFr: named(series('minecraft', 'fr')) },
+  // From the franchises' open data and the Specialist's rosters.
+  { id: 'harrypotter', label: 'Harry Potter', icon: '🪄', names: named(firstNames(HARRY_POTTER)) },
+  { id: 'starwars', label: 'Star Wars', icon: '🌌', names: named(firstNames(STAR_WARS)) },
+  { id: 'naruto', label: 'Naruto', icon: '🍥', names: named(firstNames(NARUTO.slice(0, 120))) },
+  { id: 'dbz', label: 'Dragon Ball', icon: '💥', names: named(roster(DRAGON_BALL)) },
+  { id: 'overwatch', label: 'Overwatch heroes', icon: '🎯', names: named(roster(SIMPLE.overwatch.characters)) },
+  { id: 'forhonor', label: 'For Honor heroes', icon: '🛡️', names: named(roster(SIMPLE.forhonor.characters)) },
+  { id: 'avatar', label: 'Avatar: The Last Airbender', icon: '🌊', names: named(firstNames(SIMPLE.avatar.characters)) },
+  { id: 'destiny', label: 'Destiny', icon: '🌒', names: named(roster(SIMPLE.destiny.characters)) },
 ];
 
 /** Letters apart: insertions, deletions and substitutions (Levenshtein), stopping early past `cap`. */

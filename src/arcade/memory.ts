@@ -5,6 +5,19 @@ import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { WOW, telltaleTitles } from '../specialist/wow';
 import { JLPT_LEVELS, shortMeaning } from './jlpt';
+import { HARRY_POTTER, NARUTO, STAR_WARS } from '../specialist/extra';
+import { SIMPLE } from '../specialist/simple';
+
+/** One person per value (two with the same homeworld would both fit): a picture and that value — never one the name gives away. */
+function onePer<T extends { id: string; name: string; image?: string }>(xs: T[], value: (x: T) => string): MemoryPair[] {
+  const seen = new Set<string>();
+  return xs.flatMap((x) => {
+    const v = value(x);
+    if (!x.image || !v || seen.has(v) || x.name.toLowerCase().includes(v.toLowerCase())) return [];
+    seen.add(v);
+    return [{ id: x.id, a: { image: x.image, caption: x.name }, b: { text: v, caption: v } }];
+  });
+}
 
 /** One face of a card: a picture, a few words, or both. */
 export interface MemoryFace {
@@ -87,6 +100,18 @@ export const memoryDeck = (id: string | undefined) => MEMORY_DECKS.find((d) => d
 
 /** Pairs on a board. */
 export const PAIRS_PER_GAME = 8;
+
+// More, from the franchises' open data and the Specialist's traits (src/specialist/extra.ts, simple.ts).
+MEMORY_DECKS.push(
+  ...[
+    { id: 'hp-actors', label: 'Harry Potter actors', icon: '🪄', rule: 'Match each character to the actor who plays them.', pairs: onePer(HARRY_POTTER, (c) => c.actor) },
+    { id: 'hp-patronus', label: 'Patronuses', icon: '🦌', rule: 'Match each witch or wizard to their Patronus.', pairs: onePer(HARRY_POTTER, (c) => c.patronus) },
+    { id: 'sw-homeworld', label: 'Star Wars homeworlds', icon: '🌌', rule: 'Match each character to their homeworld.', pairs: onePer(STAR_WARS, (c) => c.homeworld) },
+    { id: 'naruto-kekkei', label: 'Kekkei genkai', icon: '🍥', rule: 'Match each ninja to their kekkei genkai.', pairs: onePer(NARUTO, (c) => c.kekkeiGenkai[0] ?? '') },
+    { id: 'ow-nationality', label: 'Overwatch nationalities', icon: '🎯', rule: 'Match each hero to their nationality.', pairs: onePer(SIMPLE.overwatch.characters, (c) => (c.traits.Nationality && c.traits.Nationality !== 'None' ? c.traits.Nationality : '')) },
+  ].filter((d) => d.pairs.length >= PAIRS_PER_GAME),
+);
+
 
 /** A card on the board: which pair, which side. */
 export interface MemoryCard {
