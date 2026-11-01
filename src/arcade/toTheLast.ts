@@ -37,6 +37,36 @@ export function maskPattern(pattern: string, seed: number): string {
   return chars.map((c, i) => (hide.has(i) ? '＿' : c)).join('');
 }
 
+/** The kana a masked pattern hides, in order (～んです shown as "～ん＿＿": "です"). */
+export function hiddenKana(pattern: string, shown: string): string {
+  const masked = [...shown];
+  return [...pattern].filter((c, i) => masked[i] === '＿' && c !== '＿').join('');
+}
+
+/** Each kanji's readings in the list (on'yomi in hiragana, kun'yomi without its okurigana), and a one-kanji word's (的: てき). */
+const KANJI_READINGS = (() => {
+  const m = new Map<string, Set<string>>();
+  const add = (k: string, readings: string) => {
+    const set = m.get(k) ?? m.set(k, new Set()).get(k)!;
+    for (const r of readings.split(/[・、/／\s]+/)) {
+      const kana = toHiragana(r.replace(/[-－]/g, '').split('.')[0]);
+      if (kana) set.add(kana);
+    }
+  };
+  for (const l of JLPT_LEVELS)
+    for (const d of l.decks) for (const e of d.entries) if ([...e.text].length === 1 && /\p{Script=Han}/u.test(e.text)) add(e.text, e.reading);
+  return new Map([...m].map(([k, v]) => [k, [...v]]));
+})();
+/** A pattern with its kanji read out, each way the list reads them (的: てき; に関する: にかんする), to type it in romaji. */
+function readOut(pattern: string): string[] {
+  let forms = [''];
+  for (const c of pattern) {
+    const rs = KANJI_READINGS.get(c);
+    forms = (rs?.length ? forms.flatMap((f) => rs.map((r) => f + r)) : forms.map((f) => f + c)).slice(0, 64);
+  }
+  return forms;
+}
+
 /** A grammar point's pattern as it can be typed: without ～, brackets or spaces, in hiragana. */
 const patternKey = (s: string) => toHiragana(s.replace(/[～~\s（）()]/g, ''));
 
@@ -51,13 +81,17 @@ const latin = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
 
 /**
  * Right or not. A word or kanji asked its meaning can be answered with its reading too, in kana or romaji
- * (午前: "morning" or "gozen"); asked its reading, only the reading. A grammar point: written out in full,
- * in kana or romaji ("tsumoridesu"), the particles either way (は as "ha" or "wa").
+ * (午前: "morning" or "gozen"); asked its reading, only the reading. A grammar point (`shown` with gaps):
+ * its gaps filled — the hidden kana alone ("desu" for ～ん＿＿) — or the whole pattern, in kana or romaji
+ * ("ndesu"), the particles either way (は as "ha" or "wa").
  */
-export function lastRight(e: JlptEntry, ask: LastAsk, typed: string): boolean {
+export function lastRight(e: JlptEntry, ask: LastAsk, typed: string, shown?: string): boolean {
   if (ask === 'meaning') return typedRight(e, 'meaning', typed) || typedRight(e, 'reading', typed);
   if (ask === 'reading') return typedRight(e, 'reading', typed);
-  const patterns = [e.text, e.text.replace(/[（(][^）)]*[）)]/g, '')].map(patternKey);
+  const gap = shown ? hiddenKana(e.text, shown) : '';
+  const whole = [e.text, e.text.replace(/[（(][^）)]*[）)]/g, '')];
+  // Its kanji read out too (a pattern all in kanji, 的, has no gap to fill).
+  const patterns = [...whole, ...whole.flatMap(readOut), ...(gap ? [gap] : [])].map(patternKey);
   // The bracketed reading is optional ("～や否や（いなや）": や否や is enough).
   const got = patternKey(kanaFromRomaji(typed, true));
   if (patterns.some((p) => particleForms(p).includes(got) || p === got)) return true;

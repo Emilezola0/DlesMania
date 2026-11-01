@@ -8,8 +8,8 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
 const REVEAL_MS = 1100;
-const QUESTION: Record<string, string> = { meaning: 'What does it mean — or how is it read?', reading: 'How is it read?', pattern: 'Write the grammar point out in full' };
-const PLACEHOLDER: Record<string, string> = { meaning: 'The meaning (English) or the reading (kana or romaji)…', reading: 'The reading, in kana or romaji…', pattern: 'The whole pattern, in kana or romaji…' };
+const QUESTION: Record<string, string> = { meaning: 'What does it mean — or how is it read?', reading: 'How is it read?', pattern: 'Fill in the gaps — or write it all out' };
+const PLACEHOLDER: Record<string, string> = { meaning: 'The meaning (English) or the reading (kana or romaji)…', reading: 'The reading, in kana or romaji…', pattern: 'The missing kana or the whole pattern, in kana or romaji…' };
 
 /** /jlpt-last/:level/:kind — To the Last: every item of a level, until none is left (a fresh game for each level and kind). */
 export default function ToTheLast() {
@@ -60,7 +60,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
   };
   const submit = () => {
     if (!entry || state !== 'guess' || !typed.trim()) return;
-    if (lastRight(entry, ask, typed)) {
+    if (lastRight(entry, ask, typed, shown)) {
       sfx.correct();
       setState('right');
       window.setTimeout(() => move(true), REVEAL_MS);
