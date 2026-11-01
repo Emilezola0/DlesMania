@@ -148,8 +148,9 @@ for (const id of ['easy', 'medium', 'hard', 'hell']) {
   }
   for (const k of positive) if (!(d[k] > 0)) fail(`${at}: "${k}" must be a positive number`);
   // Four phases: Blitz, Radar and Final Blow at least once; the Name Chain (IV) may be 0 (not played).
-  if (!Array.isArray(d.rounds) || d.rounds.length !== 4 || d.rounds.slice(0, 3).some((n) => !(n >= 1)) || !(d.rounds[3] >= 0)) fail(`${at}: "rounds" needs four counts (the first three >= 1)`);
+  if (!Array.isArray(d.rounds) || d.rounds.length !== 5 || d.rounds.slice(0, 3).some((n) => !(n >= 1)) || !(d.rounds[3] >= 0) || !(d.rounds[4] >= 0)) fail(`${at}: "rounds" needs five counts (the first three >= 1)`);
   if (d.rounds?.[3] > 0 && !d.chain) fail(`${at}: plays the Name Chain (rounds[3] > 0) but has no "chain" settings`);
+  if (d.rounds?.[4] > 0 && !(d.connections?.seconds > 0)) fail(`${at}: plays Connections (rounds[4] > 0) but has no "connections.seconds"`);
   if (d.radarImpostors >= d.radarCards) fail(`${at}: more impostors than cards`);
   if (![0, 1, 2].includes(d.distortion)) fail(`${at}: "distortion" must be 0, 1 or 2`);
   const sl = d.secondLoop;

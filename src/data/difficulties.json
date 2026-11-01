@@ -6,6 +6,7 @@
       1,
       1,
       1,
+      0,
       0
     ],
     "hearts": 3,
@@ -34,7 +35,8 @@
       "min": 0.8,
       "rematch": 0.02,
       "rematchMax": 0.1
-    }
+    },
+    "connections": null
   },
   "medium": {
     "label": "Medium",
@@ -43,7 +45,8 @@
       1,
       1,
       1,
-      1
+      1,
+      0
     ],
     "hearts": 3,
     "blitzExtra": 0,
@@ -75,7 +78,8 @@
       "min": 0.65,
       "rematch": 0.03,
       "rematchMax": 0.15
-    }
+    },
+    "connections": null
   },
   "hard": {
     "label": "Hard",
@@ -84,7 +88,8 @@
       1,
       1,
       1,
-      1
+      1,
+      0
     ],
     "hearts": 3,
     "blitzExtra": 1,
@@ -121,15 +126,17 @@
       "min": 0.55,
       "rematch": 0.03,
       "rematchMax": 0.15
-    }
+    },
+    "connections": null
   },
   "hell": {
     "label": "Hell",
-    "blurb": "Two rounds a phase, the second escalated: zoomed and recoloured faces, shorter lists, faster cards — two hearts only, clocks that keep shrinking, a long Name Chain, and the Signature at the end.",
+    "blurb": "Hard's four phases with two hearts only, clocks that keep shrinking and a long Name Chain — then a fifth phase, Connections: five faces, ten words, two under each. Wrong and it costs a heart. The Signature at the end.",
     "rounds": [
-      2,
-      2,
-      2,
+      1,
+      1,
+      1,
+      1,
       1
     ],
     "hearts": 2,
@@ -150,44 +157,7 @@
     "distortion": 2,
     "parSeconds": 600,
     "scoreMultiplier": 4,
-    "secondLoop": {
-      "blitz": {
-        "countDelta": -1,
-        "secondsPer": 5
-      },
-      "radar": {
-        "cards": 8,
-        "impostors": 3,
-        "speed": 0.75,
-        "zoom": [
-          1.4,
-          1.9
-        ],
-        "hue": [
-          50,
-          140
-        ],
-        "flip": 0.35
-      },
-      "finale": {
-        "targets": 3,
-        "seconds": 6,
-        "zoom": [
-          1.5,
-          2.1
-        ],
-        "hue": [
-          60,
-          160
-        ],
-        "flip": 0.4,
-        "turns": [
-          90,
-          180,
-          270
-        ]
-      }
-    },
+    "secondLoop": null,
     "signature": {
       "toWin": 2,
       "chances": 2,
@@ -204,6 +174,10 @@
       "min": 0.5,
       "rematch": 0.03,
       "rematchMax": 0.15
+    },
+    "connections": {
+      "seconds": 100,
+      "bonus": 0
     }
   }
 }

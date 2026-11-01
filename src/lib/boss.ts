@@ -15,10 +15,17 @@ export const PHASES = [
     roman: 'IV',
     how: 'The guardian names something — answer with another of the same kind. Never repeat a name, yours or its, and keep the chain going to win.',
   },
+  {
+    name: 'Connections',
+    roman: 'V',
+    how: 'Five faces, ten words: place two under each — a name or what links it to the franchise. Submit when you think it’s right: a wrong board costs a heart.',
+  },
 ] as const;
 
 /** Phase index of the Name Chain (Medium and Hard). */
 export const CHAIN_PHASE = 3;
+/** Phase index of Connections (Hell). */
+export const CONNECT_PHASE = 4;
 
 /** Same ids as the store's saved choice. */
 export type Difficulty = BossDifficulty;
@@ -34,7 +41,7 @@ export interface DifficultySpec {
   id: Difficulty;
   label: string;
   blurb: string;
-  /** Rounds to win in each of the four phases (0 = the phase isn't played); one life-bar segment per round. */
+  /** Rounds to win in each of the five phases (0 = the phase isn't played); one life-bar segment per round. */
   rounds: number[];
   hearts: number;
   /** Extra answers on top of each Blitz prompt's count, and seconds allowed per answer. */
@@ -59,6 +66,8 @@ export interface DifficultySpec {
   scoreMultiplier: number;
   /** Phase IV, the Name Chain (Medium, Hard); null when the difficulty has no fourth phase. */
   chain: SecretSettings | null;
+  /** Phase V, Connections (Hell): seconds to place the ten words; null = not played. */
+  connections: { seconds: number; bonus: number } | null;
   /** Secret phase after the boss's life runs out: the Signature challenge (Hard); null = none. */
   signature: SignatureSettings | null;
   /**
@@ -83,6 +92,7 @@ export function paced(d: DifficultySpec, f: number): DifficultySpec {
     finaleSeconds: d.finaleSeconds * f,
     secondLoop: sl && { ...sl, blitz: { ...sl.blitz, secondsPer: sl.blitz.secondsPer * f }, radar: { ...sl.radar, speed: sl.radar.speed * f }, finale: { ...sl.finale, seconds: sl.finale.seconds * f } },
     chain: d.chain && { ...d.chain, turnSeconds: d.chain.turnSeconds * f },
+    connections: d.connections && { ...d.connections, seconds: d.connections.seconds * f },
     signature: d.signature && { ...d.signature, seconds: d.signature.seconds * f },
   };
 }

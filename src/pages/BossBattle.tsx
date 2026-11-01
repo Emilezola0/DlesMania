@@ -15,6 +15,7 @@ import { getBoss } from '../data/bosses';
 import {
   DIFFICULTIES,
   CHAIN_PHASE,
+  CONNECT_PHASE,
   DIFFICULTY_IDS,
   PHASES,
   battleScore,
@@ -37,16 +38,18 @@ import { sfx } from '../lib/sfx';
 import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress } from '../store/progress';
 import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
+import { Connections } from '../boss/Connections';
+import { drawConnections } from '../boss/connections';
 
 /**
  * intro → (phase card → phase) × rounds → victory, or defeat once the hearts run out.
  * The difficulty sets how many rounds each phase needs (one boss segment each), and how hard
  * each round is. Losing a round costs a heart and that round is retried with fresh content.
- * Medium and Hard play a fourth phase, the Name Chain. On Hard, emptying the life bar then unlocks the
- * secret phase (index 4), the boss's Signature: a right answer wins, a wrong one takes every heart
- * and leaves one last chance.
+ * Medium and Hard play a fourth phase, the Name Chain; Hell a fifth, Connections. On Hard and Hell,
+ * emptying the life bar then unlocks the secret phase (index 5), the boss's Signature: a right answer
+ * wins, a wrong one takes every heart and leaves one last chance.
  */
-const SECRET = 4;
+const SECRET = 5;
 type Stage = 'intro' | 'card' | 'fight' | 'won' | 'lost';
 
 interface Line {
@@ -69,7 +72,11 @@ function BossBattle({ boss }: { boss: Boss }) {
   const difficulty = useProgress((s) => s.bossDifficulty);
   const setDifficulty = useProgress((s) => s.setBossDifficulty);
   const records = useProgress((s) => s.bosses);
-  const base = DIFFICULTIES[difficulty];
+  // Connections needs five faces with links: a franchise without enough skips it.
+  const base = useMemo(() => {
+    const spec = DIFFICULTIES[difficulty];
+    return spec.rounds[CONNECT_PHASE] && !drawConnections(boss) ? { ...spec, rounds: spec.rounds.map((n, i) => (i === CONNECT_PHASE ? 0 : n)) } : spec;
+  }, [difficulty, boss]);
   const record = records[bossKey(boss.id, difficulty)] ?? EMPTY_BOSS_RECORD;
 
   const [run, setRun] = useState(0); // bumped on rematch
@@ -119,7 +126,9 @@ function BossBattle({ boss }: { boss: Boss }) {
     // Phase IV: a fresh Name Chain for every attempt.
     const chain = phase === CHAIN_PHASE ? drawSecret(boss, d) : null;
     const radar = drawRadar(boss, d, rand, round, recentlySeen(seenOf('radar'), boss.radar.members.length, d.radarCards));
-    return { blitz, radar, finale, pool, chain };
+    // Phase V (Hell): a fresh board for every attempt.
+    const connections = phase === CONNECT_PHASE ? drawConnections(boss, rand) : null;
+    return { blitz, radar, finale, pool, chain, connections };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [boss, difficulty, phase, round, attempt, run]);
 
@@ -169,7 +178,8 @@ function BossBattle({ boss }: { boss: Boss }) {
         while (next < PHASES.length && !d.rounds[next]) next++;
         setPhase(next);
         setRound(0);
-        const intro = next === 1 ? boss.lines.phase2 : next === 2 ? boss.lines.phase3 : (boss.lines.secret ?? 'One more game: I name something, you name another of the same kind.');
+        const intro =
+          next === 1 ? boss.lines.phase2 : next === 2 ? boss.lines.phase3 : next === CONNECT_PHASE ? 'Five of mine, ten words. Put each where it belongs — and every mistake will cost you.' : (boss.lines.secret ?? 'One more game: I name something, you name another of the same kind.');
         window.setTimeout(() => say(intro, 'taunt'), 1400);
       }
     } else {
@@ -187,6 +197,23 @@ function BossBattle({ boss }: { boss: Boss }) {
       setAttempt((a) => a + 1);
     }
     setStage('card');
+  };
+
+  /** Connections: a wrong board costs a heart, the board stays. False when that was the last heart (the fight is lost). */
+  const onConnectionsMiss = () => {
+    sfx.hurt();
+    shake(arena.current, 18, 560);
+    flash(flashLayer.current, 'rgb(220 60 60)');
+    const left = hearts - 1;
+    setHearts(left);
+    setTally((t) => ({ ...t, wrong: t.wrong + 1 }));
+    if (left <= 0) {
+      say(boss.lines.lose, 'hurt');
+      finish(false, cleared, 0, { ...tally, wrong: tally.wrong + 1 });
+      return false;
+    }
+    say(pick(boss.lines.hurt, Math.random), 'hurt');
+    return true;
   };
 
   /** The Signature's first wrong answer: every heart is gone, and the next clue is the last chance. */
@@ -478,6 +505,9 @@ function BossBattle({ boss }: { boss: Boss }) {
                 onSay={say}
                 onDone={(r) => onPhaseDone({ won: r.won, correct: r.score, wrong: r.won ? 0 : 1, reason: r.won ? undefined : r.reason })}
               />
+            )}
+            {phase === CONNECT_PHASE && content.connections && (
+              <Connections board={content.connections} difficulty={d} onEvent={onEvent} onMiss={onConnectionsMiss} onDone={onPhaseDone} />
             )}
             {secretPhase && signature && (
               <Signature
