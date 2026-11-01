@@ -3,12 +3,14 @@
 // (or the clock ran out on one: the other then fills in "no shot" for them). Each device replays the
 // rounds into the same game (src/arcade/curveClash.ts). firestore.rules lets only the two players write.
 import { doc, onSnapshot, runTransaction } from 'firebase/firestore';
-import type { Move, Round } from '../arcade/curveClash';
+import type { Level, Move, Round } from '../arcade/curveClash';
 import { auth, db } from './firebase';
 
 export interface ClashGame {
   code: string;
   seed: number;
+  /** The field's level (older games: medium). */
+  level?: Level;
   host: string;
   hostName: string;
   guest: string | null;
@@ -36,13 +38,13 @@ export const clashUid = () => auth.currentUser?.uid ?? null;
 const ref = (code: string) => doc(db, 'clash', code);
 
 /** A new game, waiting for someone to join: its code. */
-export async function createClash(): Promise<string> {
+export async function createClash(level: Level = 'medium'): Promise<string> {
   const { uid, name } = me();
   for (let tries = 0; tries < 5; tries++) {
     const code = newCode();
     const made = await runTransaction(db, async (tx) => {
       if ((await tx.get(ref(code))).exists()) return false;
-      tx.set(ref(code), { code, seed: Math.floor(Math.random() * 1e9), host: uid, hostName: name, guest: null, guestName: null, rounds: [{}], roundAt: Date.now(), createdAt: Date.now() });
+      tx.set(ref(code), { code, seed: Math.floor(Math.random() * 1e9), level, host: uid, hostName: name, guest: null, guestName: null, rounds: [{}], roundAt: Date.now(), createdAt: Date.now() });
       return true;
     });
     if (made) return code;

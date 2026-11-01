@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
-import { GUNNER, H, W, compile, replay, type Gunner, type Island } from '../arcade/curveClash';
+import { LEVELS, compile, replay, type Level } from '../arcade/curveClash';
+import { CLASH_PLAYERS as PLAYER, ClashField, ClashLog, LevelPicker } from '../components/ClashField';
 import type { ClashGame } from '../cloud/clash';
 import { startCloud, useCloud } from '../cloud/state';
 import { shake } from '../lib/fx';
@@ -12,44 +13,6 @@ const clash = () => import('../cloud/clash');
 
 /** Seconds to write a function each round (CLASH_SECONDS in src/cloud/clash.ts). */
 const ROUND_SECONDS = 45;
-const PX = 20;
-const sx = (x: number) => (x + W) * PX;
-const sy = (y: number) => (H - y) * PX;
-const PLAYER = [
-  { name: 'Blue', color: '#3b82f6' },
-  { name: 'Red', color: '#ef4444' },
-];
-
-/** The field: islands, gunners (one's own picked by a tap), and shots drawn out. */
-function Field({ islands, gunners, shots, shotsKey, mine, picked, onPick }: { shotsKey: number; islands: Island[]; gunners: Gunner[]; shots: { path: [number, number][]; player: 0 | 1 }[]; mine: 0 | 1 | null; picked?: string; onPick: (id: string) => void }) {
-  return (
-    <svg viewBox={`0 0 ${2 * W * PX} ${2 * H * PX}`} className="block h-auto w-full bg-[#0f172a]">
-      {Array.from({ length: 2 * W + 1 }, (_, k) => k - W).filter((v) => v % 5 === 0).map((v) => <line key={`gx${v}`} x1={sx(v)} x2={sx(v)} y1={0} y2={2 * H * PX} stroke="#1e293b" strokeWidth={v === 0 ? 2 : 1} />)}
-      {Array.from({ length: 2 * H + 1 }, (_, k) => k - H).filter((v) => v % 5 === 0).map((v) => <line key={`gy${v}`} y1={sy(v)} y2={sy(v)} x1={0} x2={2 * W * PX} stroke="#1e293b" strokeWidth={v === 0 ? 2 : 1} />)}
-      {islands.map((o, k) => (
-        <circle key={k} cx={sx(o.x)} cy={sy(o.y)} r={o.r * PX} fill="#3f6212" stroke="#65a30d" strokeWidth={3} />
-      ))}
-      {shots.map((s, k) => (
-        <polyline key={`${shotsKey}-${k}`} pathLength={1} points={s.path.map(([x, y]) => `${sx(x)},${sy(y)}`).join(' ')} fill="none" stroke={PLAYER[s.player].color} strokeWidth={3} strokeLinecap="round" className="clash-shot" />
-      ))}
-      {gunners.map((g) => {
-        const own = g.player === mine && g.alive;
-        return (
-          <g key={g.id} opacity={g.alive ? 1 : 0.25} onClick={() => own && (sfx.select(), onPick(g.id))} className={own ? 'cursor-pointer' : ''}>
-            {own && g.id === picked && <circle cx={sx(g.x)} cy={sy(g.y)} r={GUNNER * PX + 8} fill="none" stroke="#fde68a" strokeWidth={3} strokeDasharray="6 4" />}
-            <circle cx={sx(g.x)} cy={sy(g.y)} r={GUNNER * PX} fill={PLAYER[g.player].color} stroke="#f8fafc" strokeWidth={2} />
-            {!g.alive && (
-              <text x={sx(g.x)} y={sy(g.y) + 7} textAnchor="middle" fontSize={22} fill="#f8fafc">
-                ✕
-              </text>
-            )}
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
 /** One online game, followed live: both players write a function at once, both shots fly together. */
 function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
   const [g, setG] = useState<ClashGame | null>(null);
@@ -71,7 +34,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
     return () => stop();
   }, [code]);
 
-  const game = useMemo(() => (g ? replay(g.seed, g.rounds) : null), [g]);
+  const game = useMemo(() => (g ? replay(g.seed, g.rounds, g.level ?? 'medium') : null), [g]);
   const me: 0 | 1 | null = g && uid ? (g.host === uid ? 0 : g.guest === uid ? 1 : null) : null;
   const round = g ? g.rounds.length - 1 : 0;
   const current = g?.rounds[round] ?? {};
@@ -108,7 +71,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
   if (error) return <p className="page rounded-md p-4 text-coral">{error}</p>;
   if (!g || !game) return <p className="page rounded-md p-4 text-ink-soft">Loading the game…</p>;
 
-  const mine = game.gunners.filter((x) => x.player === me && x.alive);
+  const mine = game.world.gunners.filter((x) => x.player === me && x.alive);
   const from = mine.find((x) => x.id === picked) ?? mine[0];
   const fire = async () => {
     if (me === null || sent || !from) return;
@@ -128,7 +91,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
     <div className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="font-display text-sm text-ink-soft">
-          Game <span className="font-mono text-lg font-bold text-ink">{code}</span> ·{' '}
+          Game <span className="font-mono text-lg font-bold text-ink">{code}</span> · {LEVELS[g.level ?? 'medium'].label} ·{' '}
           <span style={{ color: PLAYER[0].color }}>{g.hostName}</span> vs <span style={{ color: PLAYER[1].color }}>{g.guestName ?? '…'}</span>
           {me !== null && <span> · you are {PLAYER[me].name}</span>}
         </p>
@@ -156,7 +119,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
         </p>
       )}
       <div ref={board} className="page overflow-hidden rounded-md">
-        <Field shotsKey={game.played} islands={game.islands} gunners={game.gunners} shots={game.last} mine={ready ? me : null} picked={from?.id} onPick={setPicked} />
+        <ClashField shotsKey={game.played} world={game.world} shots={game.last} mine={ready ? me : null} picked={from?.id} onPick={setPicked} />
       </div>
       {ready && me !== null && (
         <>
@@ -190,13 +153,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
           </form>
         </>
       )}
-      {game.log.length > 0 && (
-        <ul className="page space-y-1 rounded-md p-3 font-mono text-xs text-ink-soft">
-          {game.log.map((l, k) => (
-            <li key={k}>{l}</li>
-          ))}
-        </ul>
-      )}
+      <ClashLog lines={game.log} />
     </div>
   );
 }
@@ -209,6 +166,7 @@ export function CurveClashOnline() {
   const [typed, setTyped] = useState('');
   const [note, setNote] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [level, setLevel] = useState<Level>('medium');
   useEffect(() => void startCloud(), []);
 
   if (!signedIn)
@@ -234,9 +192,12 @@ export function CurveClashOnline() {
   };
   return (
     <div className="page space-y-3 rounded-md p-4">
-      <button type="button" disabled={busy} onClick={() => run(async () => (await clash()).createClash())} className="btn-ink rounded-md px-5 py-2.5 font-display font-bold tracking-wider">
-        New online game
-      </button>
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="button" disabled={busy} onClick={() => run(async () => (await clash()).createClash(level))} className="btn-ink rounded-md px-5 py-2.5 font-display font-bold tracking-wider">
+          New online game
+        </button>
+        <LevelPicker level={level} onChange={setLevel} />
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
