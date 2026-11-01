@@ -38,7 +38,7 @@ import { sfx } from '../lib/sfx';
 import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress } from '../store/progress';
 import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
-import { Connections } from '../boss/Connections';
+import { Connections } from '../boss/ConnectionsPhase';
 import { drawConnections } from '../boss/connections';
 
 /**
