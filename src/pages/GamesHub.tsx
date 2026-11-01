@@ -68,7 +68,7 @@ export default function GamesHub() {
       to: '/stick-fight',
       icon: '🥊',
       title: 'Stick Fight (test)',
-      blurb: 'Fight a mystery Overwatch hero as a stickman: its moves are the clue, and only its name can finish the fight.',
+      blurb: 'A turn-based duel with a mystery Overwatch hero, as a stickman: its moves are the clue, and only its name can finish the fight.',
     },
     {
       to: '/rail-rush',
