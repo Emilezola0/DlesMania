@@ -32,6 +32,23 @@ service cloud.firestore {
         );
     }
 
+    // Curve Clash online (src/cloud/clash.ts): any signed-in player can look a game up and join it
+    // while it has one player; only its two players can play it. Its field and players never change.
+    match /clash/{code} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.host == request.auth.uid
+        && request.resource.data.guest == null;
+      allow update: if request.auth != null
+        && request.resource.data.host == resource.data.host
+        && request.resource.data.seed == resource.data.seed
+        && (
+          (resource.data.guest == null && request.resource.data.guest == request.auth.uid)
+          || ((request.auth.uid == resource.data.host || request.auth.uid == resource.data.guest)
+              && request.resource.data.guest == resource.data.guest)
+        );
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

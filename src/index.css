@@ -1643,3 +1643,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 /* Furigana under the kanji (JLPT sentences): the reading below the character, as everywhere else in JLPT. */
 .ruby-under ruby { ruby-position: under; -webkit-ruby-position: after; }
 .ruby-under rt { font-size: 0.42em; font-weight: 500; opacity: 0.75; }
+
+/* Curve Clash online: both shots of a round drawn out along their curves at once. */
+@keyframes clash-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.clash-shot { stroke-dasharray: 1; stroke-dashoffset: 0; animation: clash-draw 1.2s ease-out both; }
