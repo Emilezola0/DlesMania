@@ -1,6 +1,7 @@
-// Boss Battle shows 2D art only: 3D models are for silhouettes (Who's That?). This sets the guardian, Radar
-// and Final Blow pictures of the bosses whose cards came from 3D renders (Overwatch, Smash, Minecraft) to
-// drawn art, each franchise from its own wiki, and marks them `drawnOnly` (src/boss/faces.ts). The cards keep
+// Boss Battle shows 2D art, not 3D models — except Overwatch, whose official portraits (its cards') the owner
+// prefers to the chibi sprays it had: no emotes or figurines in any game. This sets the guardian, Radar and
+// Final Blow pictures of the bosses whose cards came from 3D renders (Overwatch, Smash, Minecraft), each
+// franchise's from its own wiki, and marks them `drawnOnly` (src/boss/faces.ts). The cards keep
 // the pictures they were pulled with (src/data/card-art.json). A face with no 2D art sits out the fight
 // (finaleSkip, radarSkip) and keeps its card. Minecraft's faces and textures are kept in public/art/minecraft
 // ("local:art/…"): minecraft.wiki doesn't let other sites show its pictures.
@@ -42,17 +43,25 @@ async function firstOf(api, names, candidates) {
 
 const under = (s) => s.replaceAll(' ', '_');
 
-// ── Overwatch: the heroes' "Cute" sprays (drawn chibis), else their pixel or portrait sprays. The impostors
-// are Valorant agents, whose official portraits are painted. ──
+// ── Overwatch: the heroes' official portraits, the ones on their cards (src/data/card-art.json) — the owner
+// prefers them to the "Cute" sprays (chibi emotes) every game used before. The impostors are Valorant
+// agents, whose official portraits are painted (kept as they are when valorant-api.com doesn't answer). ──
 async function overwatch(b) {
-  const API = 'https://overwatch.fandom.com/api.php';
-  const file = (n) => under(n.replace(':', ''));
+  const cards = JSON.parse(readFileSync(new URL('../../src/data/card-art.json', import.meta.url), 'utf8')).overwatch;
   const names = [b.boss.name, ...b.radar.members.map((c) => c.label), ...b.finale.map((c) => c.label)];
-  const art = await firstOf(API, names, (n) => [`Spray_${file(n)}_Cute.png`, `Spray_${file(n)}_Pixel.png`, `Spray_${file(n)}_Portrait.png`, `Spray_${file(n)}_Icon.png`]);
-  const agents = (await (await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true', { headers: UA })).json()).data;
-  const portrait = new Map(agents.map((a) => [a.displayName, a.fullPortrait]));
-  const IMPOSTORS = ['Jett', 'Phoenix', 'Sova', 'Killjoy', 'Sage', 'Reyna', 'Omen', 'Cypher', 'Raze', 'Brimstone', 'Viper', 'Neon'];
-  return { art, impostors: IMPOSTORS.filter((n) => portrait.get(n)).map((n) => ({ label: n, image: portrait.get(n) })) };
+  const art = Object.fromEntries(names.flatMap((n) => {
+    const image = n === b.boss.name ? cards['@boss'] : cards[n];
+    // The same picture, served larger than on a card (a game shows it bigger).
+    return image ? [[n, image.replace(/scale-to-width-down\/\d+/, 'scale-to-width-down/400')]] : [];
+  }));
+  try {
+    const agents = (await (await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true', { headers: UA })).json()).data;
+    const portrait = new Map(agents.map((a) => [a.displayName, a.fullPortrait]));
+    const IMPOSTORS = ['Jett', 'Phoenix', 'Sova', 'Killjoy', 'Sage', 'Reyna', 'Omen', 'Cypher', 'Raze', 'Brimstone', 'Viper', 'Neon'];
+    return { art, impostors: IMPOSTORS.filter((n) => portrait.get(n)).map((n) => ({ label: n, image: portrait.get(n) })) };
+  } catch {
+    return { art };
+  }
 }
 
 // ── The others, picked by eye from each franchise's own art (scripts/data/boss-2d-art.json): Smash's

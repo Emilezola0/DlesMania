@@ -1844,7 +1844,7 @@
       "title": "The Successor",
       "src": "fandom:overwatch:Doomfist",
       "color": "#f97316",
-      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bc/Spray_Doomfist_Cute.png/revision/latest?cb=20171002194218",
+      "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1e/OW2_Doomfist_render.png/revision/latest/scale-to-width-down/400?cb=20241102135923",
       "label": "Doomfist"
     },
     "lines": {
@@ -2034,11 +2034,11 @@
       "members": [
         {
           "label": "Tracer",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/Spray_Tracer_Cute.png/revision/latest?cb=20160906133306"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Tracer.png/revision/latest/scale-to-width-down/400?cb=20241102134907"
         },
         {
           "label": "Mercy",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/Spray_Mercy_Cute.png/revision/latest?cb=20160906022059",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/11/OW2_Mercy.png/revision/latest/scale-to-width-down/400?cb=20241102143122",
           "fr": "Ange",
           "aliases": [
             "Ange"
@@ -2046,19 +2046,19 @@
         },
         {
           "label": "Reinhardt",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9d/Spray_Reinhardt_Cute.png/revision/latest?cb=20240430160703"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Reinhardt.png/revision/latest/scale-to-width-down/400?cb=20220409014723"
         },
         {
           "label": "Genji",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3e/Spray_Genji_Cute.png/revision/latest?cb=20160906002221"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/17/OW2_Genji.png/revision/latest/scale-to-width-down/400?cb=20241102133634"
         },
         {
           "label": "D.Va",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/3f/Spray_D.Va_Cute.png/revision/latest?cb=20160905235706"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1a/OW2_Dva.png/revision/latest/scale-to-width-down/400?cb=20241108201346"
         },
         {
           "label": "Widowmaker",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7c/Spray_Widowmaker_Cute.png/revision/latest?cb=20160906134300",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ab/OW2_Widowmaker.png/revision/latest/scale-to-width-down/400?cb=20241108201530",
           "fr": "Fatale",
           "aliases": [
             "Fatale"
@@ -2066,19 +2066,19 @@
         },
         {
           "label": "Winston",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/45/Spray_Winston_Cute.png/revision/latest?cb=20160906135330"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/39/OW2_Winston.png/revision/latest/scale-to-width-down/400?cb=20241102142153"
         },
         {
           "label": "Ana",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6e/Spray_Ana_Cute.png/revision/latest?cb=20160905213011"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/OW2_Ana.png/revision/latest/scale-to-width-down/400?cb=20241102141052"
         },
         {
           "label": "Lúcio",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Spray_L%C3%BAcio_Cute.png/revision/latest?cb=20230420050736"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_L%C3%BAcio.png/revision/latest/scale-to-width-down/400?cb=20241102140611"
         },
         {
           "label": "Reaper",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2e/Spray_Reaper_Cute.png/revision/latest?cb=20160906024959",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8c/OW2_Reaper.png/revision/latest/scale-to-width-down/400?cb=20241108201455",
           "fr": "Faucheur",
           "aliases": [
             "Faucheur"
@@ -2086,11 +2086,11 @@
         },
         {
           "label": "Kiriko",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e3/Spray_Kiriko_Cute.png/revision/latest?cb=20240427211705"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/16/OW2_Kiriko.png/revision/latest/scale-to-width-down/400?cb=20241102132938"
         },
         {
           "label": "Junkrat",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4c/Spray_Junkrat_Cute.png/revision/latest?cb=20160906005637",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f2/OW2_Junkrat.png/revision/latest/scale-to-width-down/400?cb=20260214122743",
           "fr": "Chacal",
           "aliases": [
             "Chacal"
@@ -2098,27 +2098,27 @@
         },
         {
           "label": "Mei",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/95/Spray_Mei_Cute.png/revision/latest?cb=20160906020528"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Mei.png/revision/latest/scale-to-width-down/400?cb=20241102134134"
         },
         {
           "label": "Zenyatta",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d6/Spray_Zenyatta_Cute.png/revision/latest?cb=20160906142104"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/OW2_Zenyatta.png/revision/latest/scale-to-width-down/400?cb=20260324055645"
         },
         {
           "label": "Sombra",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/22/Spray_Sombra_Cute.png/revision/latest?cb=20161113213536"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Sombra.png/revision/latest/scale-to-width-down/400?cb=20241108201559"
         },
         {
           "label": "Pharah",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ed/Spray_Pharah_Cute.png/revision/latest?cb=20160906023416"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b3/OW2_Pharah.png/revision/latest/scale-to-width-down/400?cb=20241108201144"
         },
         {
           "label": "Hanzo",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/39/Spray_Hanzo_Cute.png/revision/latest?cb=20160906003829"
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/OW2_Hanzo.png/revision/latest/scale-to-width-down/400?cb=20260616073741"
         },
         {
           "label": "Soldier: 76",
-          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/75/Spray_Soldier_76_Cute.png/revision/latest?cb=20160906123435",
+          "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bf/OW2_S76.png/revision/latest/scale-to-width-down/400?cb=20260208153542",
           "fr": "Soldat : 76",
           "aliases": [
             "Soldat : 76",
@@ -2180,35 +2180,35 @@
     "finale": [
       {
         "label": "Lifeweaver",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/6b/Spray_Lifeweaver_Cute.png/revision/latest?cb=20230421221553"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/7e/OW2_Lifeweaver.png/revision/latest/scale-to-width-down/400?cb=20241123123936"
       },
       {
         "label": "Ramattra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8b/Spray_Ramattra_Cute.png/revision/latest?cb=20230107113423"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/ef/OW2_Ramattra.png/revision/latest/scale-to-width-down/400?cb=20260304093912"
       },
       {
         "label": "Mauga",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d0/Spray_Mauga_Cute.png/revision/latest?cb=20240427213005"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/78/OW2_Mauga.png/revision/latest/scale-to-width-down/400?cb=20260304093509"
       },
       {
         "label": "Venture",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5b/Spray_Venture_Cute.png/revision/latest?cb=20240425173220"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Venture.png/revision/latest/scale-to-width-down/400?cb=20241102122834"
       },
       {
         "label": "Illari",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/9e/Spray_Illari_Cute.png/revision/latest?cb=20230827105205"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/2b/OW2_Illari.png/revision/latest/scale-to-width-down/400?cb=20260304090158"
       },
       {
         "label": "Sojourn",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/dc/Spray_Sojourn_Cute.png/revision/latest?cb=20230423022741"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ae/OW2_Sojourn.png/revision/latest/scale-to-width-down/400?cb=20240928162620"
       },
       {
         "label": "Echo",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/fc/Spray_Echo_Cute.png/revision/latest?cb=20200415164236"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/bd/OW_Echo.png/revision/latest/scale-to-width-down/400?cb=20241102150435"
       },
       {
         "label": "Baptiste",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/56/Spray_Baptiste_Cute.png/revision/latest?cb=20230420144418"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/00/OW2_Baptiste.png/revision/latest/scale-to-width-down/400?cb=20241108201237"
       },
       {
         "label": "Wrecking Ball",
@@ -2216,7 +2216,7 @@
           "hammond",
           "Bouldozer"
         ],
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0d/Spray_Wrecking_Ball_Cute.png/revision/latest?cb=20180811140901"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/03/OW2_Wrecking_Ball.png/revision/latest/scale-to-width-down/400?cb=20260304093441"
       },
       {
         "label": "Torbjörn",
@@ -2225,50 +2225,50 @@
           "torb",
           "Torbjorn"
         ],
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/aa/Spray_Torbj%C3%B6rn_Cute.png/revision/latest?cb=20160906130047"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Torbj%C3%B6rn.png/revision/latest/scale-to-width-down/400?cb=20260321080029"
       },
       {
         "label": "Hazard",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/73/Spray_Hazard_Cute.png/revision/latest?cb=20241217173629"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/63/OW2_Hazard.png/revision/latest/scale-to-width-down/400?cb=20241124152149"
       },
       {
         "label": "Juno",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/49/Spray_Juno_Cute.png/revision/latest?cb=20240831043418"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/21/OW2_Juno.png/revision/latest/scale-to-width-down/400?cb=20260213110336"
       },
       {
         "label": "Sigma",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/38/Spray_Sigma_Cute.png/revision/latest?cb=20190813225223"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c9/OW2_Sigma.png/revision/latest/scale-to-width-down/400?cb=20240404193956"
       },
       {
         "label": "Orisa",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d5/Spray_Orisa_Cute.png/revision/latest?cb=20170321204811"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/7/75/OW2-Orisa.png/revision/latest/scale-to-width-down/400?cb=20241126124432"
       },
       {
         "label": "Brigitte",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Spray_Brigitte_Cute.png/revision/latest?cb=20240427210528"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Brigitte.png/revision/latest/scale-to-width-down/400?cb=20220930191642"
       },
       {
         "label": "Moira",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/10/Spray_Moira_Cute.png/revision/latest?cb=20171203170043"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5a/OW2_Moira.png/revision/latest/scale-to-width-down/400?cb=20240404082150"
       },
       {
         "label": "Cassidy",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/91/Spray_Cassidy_Cute.png/revision/latest?cb=20160906013859",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/a0/OW2_Cassidy.png/revision/latest/scale-to-width-down/400?cb=20241108201305",
         "aliases": [
           "McCree"
         ]
       },
       {
         "label": "Zarya",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b6/Spray_Zarya_Cute.png/revision/latest?cb=20160906141059"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/02/OW2_Zarya.png/revision/latest/scale-to-width-down/400?cb=20241108201623"
       },
       {
         "label": "Ashe",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b7/Spray_Ashe_Cute.png/revision/latest?cb=20181117053652"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/89/OW2_Ashe.png/revision/latest/scale-to-width-down/400?cb=20250329135344"
       },
       {
         "label": "Junker Queen",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c4/Spray_Junker_Queen_Cute.png/revision/latest?cb=20230423030537",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/50/OW2_JunkerQueen.png/revision/latest/scale-to-width-down/400?cb=20241101134259",
         "fr": "Reine des Junkers",
         "aliases": [
           "Reine des Junkers",
@@ -2277,7 +2277,7 @@
       },
       {
         "label": "Roadhog",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/93/Spray_Roadhog_Cute.png/revision/latest?cb=20160906121551",
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/34/OW2_Roadhog.png/revision/latest/scale-to-width-down/400?cb=20260213114356",
         "fr": "Chopper",
         "aliases": [
           "Chopper",
@@ -2286,23 +2286,23 @@
       },
       {
         "label": "Bastion",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e7/Spray_Bastion_Cute.png/revision/latest?cb=20160905234255"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/47/OW2-Bastion.png/revision/latest/scale-to-width-down/400?cb=20241108201208"
       },
       {
         "label": "Symmetra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/33/Spray_Symmetra_Cute.png/revision/latest?cb=20160906124946"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/51/OW2_Symmetra.png/revision/latest/scale-to-width-down/400?cb=20240130124019"
       },
       {
         "label": "Freja",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/0a/Spray_Freja_Cute.png/revision/latest?cb=20250527214315"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/31/OW2_Freja.png/revision/latest/scale-to-width-down/400?cb=20250322151231"
       },
       {
         "label": "Wuyang",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d6/Spray_Wuyang_Cute.png/revision/latest?cb=20250913001918"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/OW2_Wuyang.png/revision/latest/scale-to-width-down/400?cb=20260305234200"
       },
       {
         "label": "Anran",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/Spray_Anran_Cute.png/revision/latest?cb=20260219095446"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/07/OW2_Anran.png/revision/latest/scale-to-width-down/400?cb=20260611085803"
       },
       {
         "label": "D.Mon",
@@ -2314,31 +2314,31 @@
       },
       {
         "label": "Domina",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/4c/Spray_Domina_Cute.png/revision/latest?cb=20260420100250"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d7/OW2_Domina.png/revision/latest/scale-to-width-down/400?cb=20260213022447"
       },
       {
         "label": "Emre",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/81/Spray_Emre_Cute.png/revision/latest?cb=20260219094640"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c7/OW2_Emre.png/revision/latest/scale-to-width-down/400?cb=20260213003055"
       },
       {
         "label": "Jetpack Cat",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/66/Spray_Jetpack_Cat_Cute.png/revision/latest?cb=20260219095247"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/27/OW2_Jetpack_Cat.png/revision/latest/scale-to-width-down/400?cb=20260206154545"
       },
       {
         "label": "Mizuki",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/57/Spray_Mizuki_Cute.png/revision/latest?cb=20260217151452"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/83/OW2_Mizuki.png/revision/latest/scale-to-width-down/400?cb=20260215135742"
       },
       {
         "label": "Shion",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/23/Spray_Shion_Cute.png/revision/latest?cb=20260620122758"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/8/8a/OW2_Shion.png/revision/latest/scale-to-width-down/400?cb=20260630073141"
       },
       {
         "label": "Sierra",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/21/Spray_Sierra_Cute.png/revision/latest?cb=20260426080749"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/1c/OW2_Sierra.png/revision/latest/scale-to-width-down/400?cb=20260415005653"
       },
       {
         "label": "Vendetta",
-        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d5/Spray_Vendetta_Cute.png/revision/latest?cb=20251211193238"
+        "image": "https://static.wikia.nocookie.net/overwatch_gamepedia/images/9/96/OW2_Vendetta.png/revision/latest/scale-to-width-down/400?cb=20260304090759"
       }
     ],
     "secret": {
