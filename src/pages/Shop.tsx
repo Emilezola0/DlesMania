@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
@@ -140,7 +141,8 @@ function RedeemCode() {
       setCode('');
     } else {
       sfx.wrong();
-      setMsg({ ok: false, text: r.reason === 'used' ? 'You already redeemed this code.' : "That code doesn't exist (yet)." });
+      const daily = giftFor(normalizeCode(code))?.daily;
+      setMsg({ ok: false, text: r.reason === 'used' ? (daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.') : "That code doesn't exist (yet)." });
     }
   };
   return (

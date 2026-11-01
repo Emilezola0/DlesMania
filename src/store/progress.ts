@@ -456,8 +456,10 @@ export const useProgress = create<ProgressState>()(
         const gift = giftFor(code);
         if (!gift) return { ok: false, reason: 'unknown' };
         const s = get();
-        if ((s.redeemed ?? []).includes(code)) return { ok: false, reason: 'used' };
-        set({ coins: (s.coins ?? 0) + gift.coins, redeemed: [...(s.redeemed ?? []), code] });
+        // A daily code is kept with the day it was redeemed: it works again tomorrow.
+        const mark = gift.daily ? `${code}@${todayKey()}` : code;
+        if ((s.redeemed ?? []).includes(mark)) return { ok: false, reason: 'used' };
+        set({ coins: (s.coins ?? 0) + gift.coins, redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), mark] });
         return { ok: true, coins: gift.coins, note: gift.note };
       },
       claimMission: (kind) =>

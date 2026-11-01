@@ -6,6 +6,8 @@ export interface GiftCode {
   coins: number;
   /** Shown once it's redeemed. */
   note: string;
+  /** Redeemable again every day (once a day), not once and for all. */
+  daily?: boolean;
 }
 
 const CODES: Record<string, GiftCode> = {
@@ -13,6 +15,7 @@ const CODES: Record<string, GiftCode> = {
   'cf236801d18436128120963c02b298ffc05c855453a9df550977d0b1aa177dda': { coins: 300, note: 'For Tokars who need Dle Coins' },
   'd6d9e5b44ffd5a1d622ea6f28e1d618bcd14fb16a9c5860ec4c22c5592f4e24f': { coins: 500, note: 'Because We Love Gamble s love' },
   '343fc0f23e8b0fd743e39f9b56ff6ce8b98587fee55246fae10f5608d3c661f2': { coins: 5000, note: "Have some Fun" },
+  '33a0f97d40c9c4890932d4f8935f651a585950fbdda4cbd36fdeef99e72a3b13': { coins: 500, note: "Today's gift — come back tomorrow for another.", daily: true },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');

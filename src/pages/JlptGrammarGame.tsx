@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
-import { hiddenKana, lastItems, lastRight, maskPattern } from '../arcade/toTheLast';
+import { hiddenKana, lastItems, lastRight, maskPattern, type GapLevel } from '../arcade/toTheLast';
 import { grammarMeaning } from '../arcade/jlptGrammar';
 import { GrammarNote } from '../components/JlptGrammarNote';
 import { celebrateBig, shake } from '../lib/fx';
@@ -18,9 +18,10 @@ const secondsFor = (streak: number) => Math.max(15, 30 - streak * 0.5);
  * the Last). A streak with a clock, over at the first mistake. Every answer shows the whole pattern, what
  * it means and sentences that use it.
  */
-function GrammarGame({ level }: { level: string }) {
+function GrammarGame({ level, gaps }: { level: string; gaps: GapLevel }) {
   const items = useMemo(() => lastItems(level, 'grammar'), [level]);
-  const key = `jlpt:${level.toLowerCase()}-grammar`;
+  // Each difficulty keeps its own best (medium keeps the one from before there were difficulties).
+  const key = `jlpt:${level.toLowerCase()}-grammar${gaps === 'medium' ? '' : `-${gaps}`}`;
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const lang = useProgress((s) => s.nameLang);
@@ -30,7 +31,7 @@ function GrammarGame({ level }: { level: string }) {
     const pool = fresh.length ? fresh : items;
     const entry = pool[Math.floor(Math.random() * pool.length)];
     recent.current = [entry.id, ...recent.current].slice(0, Math.floor(items.length / 2));
-    return { entry, shown: maskPattern(entry.text, Math.floor(Math.random() * 1e9)) };
+    return { entry, shown: maskPattern(entry.text, Math.floor(Math.random() * 1e9), gaps) };
   };
   const [q, setQ] = useState(draw);
   const [typed, setTyped] = useState('');
@@ -150,7 +151,31 @@ function GrammarGame({ level }: { level: string }) {
 }
 
 /** A level's grammar page: a title, then the game. */
+const GAP_LEVELS: { id: GapLevel; label: string; help: string }[] = [
+  { id: 'easy', label: 'Easy', help: 'at least two kana shown' },
+  { id: 'medium', label: 'Medium', help: 'some kana shown' },
+  { id: 'hard', label: 'Hard', help: 'no kana shown' },
+];
+const GAPS_KEY = 'omnidle-jlpt-grammar-gaps';
+
 export function GrammarPage({ level }: { level: string }) {
+  const [gaps, setGaps] = useState<GapLevel>(() => {
+    try {
+      const v = localStorage.getItem(GAPS_KEY);
+      return v === 'easy' || v === 'hard' ? v : 'medium';
+    } catch {
+      return 'medium';
+    }
+  });
+  const pick = (g: GapLevel) => {
+    sfx.click();
+    setGaps(g);
+    try {
+      localStorage.setItem(GAPS_KEY, g);
+    } catch {
+      // Not remembered, that's all.
+    }
+  };
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
@@ -163,7 +188,15 @@ export function GrammarPage({ level }: { level: string }) {
           grammar point means.
         </p>
       </div>
-      <GrammarGame key={level} level={level} />
+      <div className="flex flex-wrap items-center gap-2">
+        {GAP_LEVELS.map((g) => (
+          <button key={g.id} type="button" aria-pressed={gaps === g.id} onClick={() => pick(g.id)} className={`rounded-full border-2 px-3 py-1 text-sm font-semibold ${gaps === g.id ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card text-ink-soft hover:border-ink'}`} title={g.help}>
+            {g.label}
+          </button>
+        ))}
+        <span className="text-xs text-ink-faint">{GAP_LEVELS.find((g) => g.id === gaps)!.help}</span>
+      </div>
+      <GrammarGame key={`${level}-${gaps}`} level={level} gaps={gaps} />
     </div>
   );
 }

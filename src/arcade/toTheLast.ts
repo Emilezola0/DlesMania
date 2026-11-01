@@ -28,12 +28,16 @@ export function askFor(e: JlptEntry, kind: LastKind, seed: number): LastAsk {
 }
 
 const KANA = /[ぁ-ゖァ-ヶ]/;
-/** A grammar point with about half its kana hidden ("～の_う_が～より"), always at least one; the rest stays as written. */
-export function maskPattern(pattern: string, seed: number): string {
+/** How much of a grammar point is hidden: easy shows at least two kana (never the whole answer), medium about half, hard none. */
+export type GapLevel = 'easy' | 'medium' | 'hard';
+const hiddenCount = (n: number, level: GapLevel) => (level === 'hard' ? n : level === 'easy' ? Math.max(1, Math.min(n - 2, Math.ceil(n / 3))) : Math.max(1, Math.ceil(n / 2)));
+
+/** A grammar point with some of its kana hidden ("～の_う_が～より"), always at least one; the rest stays as written. */
+export function maskPattern(pattern: string, seed: number, level: GapLevel = 'medium'): string {
   const chars = [...pattern];
   const kana = chars.flatMap((c, i) => (KANA.test(c) ? [i] : []));
   if (!kana.length) return pattern;
-  const hide = new Set(shuffle(kana, mulberry32(seed)).slice(0, Math.max(1, Math.ceil(kana.length / 2))));
+  const hide = new Set(shuffle(kana, mulberry32(seed)).slice(0, hiddenCount(kana.length, level)));
   return chars.map((c, i) => (hide.has(i) ? '＿' : c)).join('');
 }
 
