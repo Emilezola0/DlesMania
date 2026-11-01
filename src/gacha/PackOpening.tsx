@@ -517,6 +517,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   }, []);
 
   const style = card ? RARITY_STYLE[card.rarity] : null;
+  // A Legendary or better charging: it spins front over back.
+  const spinning = charging && !!card && top(card.rarity);
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
@@ -633,10 +635,11 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={rainbowy(card.rarity)} />}
             <div key={i} className="pack-card-in [perspective:1100px]">
               <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-spin pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && top(card.rarity) ? SPIN[card.rarity] : undefined}>
-                <div className="[backface-visibility:hidden]">
+                {/* Spinning front over back (Legendary and up): the back shows on both sides, the face stays hidden until the turn. */}
+                <div className={spinning ? '' : '[backface-visibility:hidden]'}>
                   <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
-                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${spinning ? 'opacity-0' : ''}`}>
                   <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
                 </div>
               </div>
