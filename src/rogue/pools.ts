@@ -4,7 +4,7 @@
 import { HL_DECKS, type HlDeck } from '../arcade/higherLower';
 import { NAME_LISTS } from '../arcade/lists';
 import { SORT_DECKS, type SortDeck } from '../arcade/quickSort';
-import { WHO_UNIVERSES } from '../arcade/whoAmI';
+import { WHO_ALL as WHO_UNIVERSES } from '../arcade/whoAmIMore';
 import { connectionThemes, type ThemeBank } from '../data';
 import { BOSSES } from '../data/bosses';
 import type { Domain } from '../types';
@@ -44,6 +44,23 @@ const DECK_KEY: Record<string, string> = {
   'genshin-rarity': 'genshin',
   'marvel-status': 'mcu',
   'op-bounty': 'onepiece',
+  'hp-wand': 'harrypotter',
+  'sw-height': 'starwars',
+  'naruto-height': 'naruto',
+  'dbz-ki': 'dragonball',
+  'ow-health': 'overwatch',
+  'fh-health': 'forhonor',
+  'mc-food': 'minecraft',
+  'mc-hardness': 'minecraft',
+  'hp-house': 'harrypotter',
+  'sw-side': 'starwars',
+  'naruto-village': 'naruto',
+  'dbz-saiyan': 'dragonball',
+  'mc-mob': 'minecraft',
+  'ow-role': 'overwatch',
+  'avatar-nation': 'avatar',
+  'fh-faction': 'forhonor',
+  'destiny-side': 'destiny',
 };
 
 /** Name lists go by franchise name: the boss franchises, plus the whole-roster lists. */

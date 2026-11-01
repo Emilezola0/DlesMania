@@ -26,8 +26,8 @@ export interface WhoUniverse {
 }
 
 /** The last clue always: how the name starts and how long it is. */
-const nameClue = (name: string) => `Their name starts with “${name[0]}” and has ${name.replace(/[^\p{L}\p{N}]/gu, '').length} letters`;
-const list = (xs: string[]) => xs.filter(Boolean).join(', ') || 'none';
+export const nameClue = (name: string) => `Their name starts with “${name[0]}” and has ${name.replace(/[^\p{L}\p{N}]/gu, '').length} letters`;
+export const list = (xs: string[]) => xs.filter(Boolean).join(', ') || 'none';
 
 const onePiece: WhoTarget[] = ONE_PIECE.characters.slice(0, 160).map((c) => ({
   id: c.id,

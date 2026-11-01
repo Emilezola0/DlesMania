@@ -2,6 +2,7 @@ import { BOSSES } from '../data/bosses';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
+import { DRAGON_BALL, HARRY_POTTER, MINECRAFT, NARUTO, STAR_WARS } from '../specialist/extra';
 import { JLPT_LEVELS, JLPT_THEMES, type JlptEntry } from './jlpt';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import type { BlitzPrompt, Domain } from '../types';
@@ -51,7 +52,20 @@ const rosters: NameList[] = [
   roster('lol-champions', 'Every champion', 'League of Legends', 'games', LOL.champions),
   roster('genshin-characters', 'Every playable character', 'Genshin Impact', 'games', GENSHIN.characters),
   roster('mcu-films', 'Every MCU film', 'Marvel Cinematic Universe', 'cinema', MARVEL.films),
-];
+  // From the franchises' open data (src/specialist/extra.ts): lists the bosses don't have.
+  ...['Gryffindor', 'Slytherin', 'Ravenclaw', 'Hufflepuff'].map((house) => roster(`hp-${house.toLowerCase()}`, `${house}s`, 'Harry Potter', 'cinema', HARRY_POTTER.filter((c) => c.house === house))),
+  roster('sw-rebels', 'Members of the Rebel Alliance', 'Star Wars', 'cinema', STAR_WARS.filter((c) => c.affiliations.includes('Alliance to Restore the Republic'))),
+  roster('sw-empire', 'Servants of the Galactic Empire', 'Star Wars', 'cinema', STAR_WARS.filter((c) => c.affiliations.includes('Galactic Empire'))),
+  roster('naruto-uchiha', 'Uchiha clan members', 'Naruto', 'anime', NARUTO.filter((c) => c.clan === 'Uchiha')),
+  roster('naruto-hyuga', 'Hyūga clan members', 'Naruto', 'anime', NARUTO.filter((c) => /^Hy[uū]{1,2}ga$/.test(c.clan))),
+  roster('naruto-jinchuriki', 'Jinchūriki', 'Naruto', 'anime', NARUTO.filter((c) => c.classification.some((x) => /^Jinch/.test(x)))),
+  roster('naruto-suna', 'Sand Village ninja', 'Naruto', 'anime', NARUTO.filter((c) => c.village === 'Sunagakure')),
+  roster('dbz-gods', 'Gods and Angels', 'Dragon Ball Z', 'anime', DRAGON_BALL.filter((c) => c.race === 'God' || c.race === 'Angel')),
+  roster('dbz-kais', 'Kais and Supreme Kais', 'Dragon Ball Z', 'anime', DRAGON_BALL.filter((c) => c.race === 'Core Person')),
+  roster('mc-hostile', 'Every hostile mob', 'Minecraft', 'games', MINECRAFT.mobs.filter((m) => m.kind === 'Hostile')),
+  roster('mc-passive', 'Every passive mob', 'Minecraft', 'games', MINECRAFT.mobs.filter((m) => m.kind === 'Passive')),
+  roster('mc-foods', 'Every food', 'Minecraft', 'games', MINECRAFT.foods),
+].filter((l) => l.answers.length >= 6);
 
 /**
  * JLPT themes: every word of a theme, named in Japanese — in romaji ("inu", long vowels or not), in kana or

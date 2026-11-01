@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_UNIVERSES, WHO_FREE_CLUES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
+import { WHO_MAX_WRONG, WHO_ROUNDS, WHO_FREE_CLUES, whoPoints, type WhoUniverse } from '../arcade/whoAmI';
+import { WHO_ALL as WHO_UNIVERSES } from '../arcade/whoAmIMore';
 import { Customise, useCustomPicks } from '../components/Customise';
 
 const WHO_OPTIONS = WHO_UNIVERSES.map((u) => ({ key: u.id, label: `${u.icon} ${u.label}` }));

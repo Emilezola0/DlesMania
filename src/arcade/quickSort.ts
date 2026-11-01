@@ -4,6 +4,8 @@ import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { WOW } from '../specialist/wow';
+import { DRAGON_BALL, HARRY_POTTER, MINECRAFT, NARUTO, STAR_WARS } from '../specialist/extra';
+import { SIMPLE } from '../specialist/simple';
 import type { Domain } from '../types';
 import { JLPT_THEMES, shortMeaning } from './jlpt';
 import { kanjiPicture } from '../lib/kanji';
@@ -62,6 +64,65 @@ function jlptSort(a: string, b: string, icon: string): SortDeck {
     cards: [...ta.entries.filter((e) => keep(e) && !inB.has(e.text)).flatMap(card('left')), ...tb.entries.filter((e) => keep(e) && !inA.has(e.text)).flatMap(card('right'))],
   };
 }
+
+/** A Specialist universe's people with one trait or the other (the rest left out). */
+const byTrait = (id: keyof typeof SIMPLE, trait: string, left: string, right: string) =>
+  SIMPLE[id].characters.filter((c) => c.traits[trait] === left || c.traits[trait] === right).map((c) => ({ id: c.id, name: c.name, image: c.image || undefined, side: (c.traits[trait] === left ? 'left' : 'right') as 'left' | 'right', fact: c.traits[trait] }));
+const REBELS = 'Alliance to Restore the Republic';
+const EMPIRE = 'Galactic Empire';
+
+/** More decks, from the franchises' open data and the Specialist's traits. */
+const MORE_SORTS: SortDeck[] = [
+  {
+    id: 'hp-house',
+    domain: 'cinema',
+    label: 'Harry Potter: Gryffindor or Slytherin?',
+    icon: '🦁',
+    left: 'Gryffindor',
+    right: 'Slytherin',
+    cards: HARRY_POTTER.filter((c) => c.house === 'Gryffindor' || c.house === 'Slytherin').map((c) => ({ id: c.id, name: c.name, image: c.image || undefined, side: c.house === 'Gryffindor' ? 'left' : 'right', fact: c.house })),
+  },
+  {
+    id: 'sw-side',
+    domain: 'cinema',
+    label: 'Star Wars: Rebel Alliance or Empire?',
+    icon: '🌌',
+    left: 'Rebel Alliance',
+    right: 'Galactic Empire',
+    cards: STAR_WARS.filter((c) => c.affiliations.includes(REBELS) !== c.affiliations.includes(EMPIRE)).map((c) => ({ id: c.id, name: c.name, image: c.image || undefined, side: c.affiliations.includes(REBELS) ? 'left' : 'right', fact: c.affiliations.includes(REBELS) ? 'Rebel Alliance' : 'Galactic Empire' })),
+  },
+  {
+    id: 'naruto-village',
+    domain: 'anime',
+    label: 'Naruto: the Leaf Village or another?',
+    icon: '🍥',
+    left: 'Konohagakure',
+    right: 'Another village',
+    cards: NARUTO.filter((c) => /gakure$/.test(c.village)).map((c) => ({ id: c.id, name: c.name, image: c.image, side: c.village === 'Konohagakure' ? 'left' : 'right', fact: c.village })),
+  },
+  {
+    id: 'dbz-saiyan',
+    domain: 'anime',
+    label: 'Dragon Ball: Saiyan or not?',
+    icon: '💥',
+    left: 'Saiyan',
+    right: 'Not a Saiyan',
+    cards: DRAGON_BALL.filter((c) => c.race).map((c) => ({ id: c.id, name: c.name, image: c.image, side: c.race === 'Saiyan' ? 'left' : 'right', fact: c.race })),
+  },
+  {
+    id: 'mc-mob',
+    domain: 'games',
+    label: 'Minecraft: passive or hostile mob?',
+    icon: '🧟',
+    left: 'Passive',
+    right: 'Hostile',
+    cards: MINECRAFT.mobs.map((m) => ({ id: m.id, name: m.name, side: m.kind === 'Passive' ? 'left' : 'right', fact: `${m.kind} mob` })),
+  },
+  { id: 'ow-role', domain: 'games', label: 'Overwatch: Tank or Support?', icon: '🎯', left: 'Tank', right: 'Support', cards: byTrait('overwatch', 'Role', 'Tank', 'Support') },
+  { id: 'avatar-nation', domain: 'anime', label: 'Avatar: Water Tribe or Fire Nation?', icon: '🌊', left: 'Water Tribe', right: 'Fire Nation', cards: byTrait('avatar', 'Nation', 'Water Tribe', 'Fire Nation') },
+  { id: 'fh-faction', domain: 'games', label: 'For Honor: Knight or Viking?', icon: '🛡️', left: 'Knights', right: 'Vikings', cards: byTrait('forhonor', 'Faction', 'Knights', 'Vikings') },
+  { id: 'destiny-side', domain: 'games', label: 'Destiny: ally or enemy?', icon: '🌒', left: 'Ally', right: 'Enemy', cards: byTrait('destiny', 'Side', 'Ally', 'Enemy') },
+];
 
 export const SORT_DECKS: SortDeck[] = [
   {
@@ -133,6 +194,7 @@ export const SORT_DECKS: SortDeck[] = [
     })),
   },
   ...JLPT_SORTS.map(([a, b, icon]) => jlptSort(a, b, icon)),
+  ...MORE_SORTS.filter((d) => d.cards.some((c) => c.side === 'left') && d.cards.some((c) => c.side === 'right') && d.cards.length >= 8),
 ];
 
 export const sortDeck = (id: string | undefined) => SORT_DECKS.find((d) => d.id === id);
