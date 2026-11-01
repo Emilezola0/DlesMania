@@ -55,6 +55,20 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   }, [clues, index]);
   const answer = clue.answer;
   const lastChance = missed > 0;
+  // Hints (a boss that has them): four, one by one as the clock runs down — the first after 10 seconds,
+  // the last 10 seconds before the end, the others evenly between.
+  const [hintsShown, setHintsShown] = useState(0);
+  const hints = signature.hints ? hintsFor(answer.name) : [];
+  useEffect(() => {
+    setHintsShown(0);
+    if (!hints.length || seconds <= 20 || state !== 'answer' || !pictureReady) return;
+    const first = 10;
+    const last = seconds - 10;
+    const ts = hints.map((_, i) => window.setTimeout(() => setHintsShown((n) => Math.max(n, i + 1)), (first + ((last - first) * i) / Math.max(1, hints.length - 1)) * 1000));
+    return () => ts.forEach(clearTimeout);
+    // A new clue starts them over.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index, pictureReady, signature.hints, seconds]);
 
   const end = (won: boolean, reason: string, score: number) => {
     setState('over');
@@ -137,6 +151,16 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         )}
       </div>
 
+      {hintsShown > 0 && state === 'answer' && (
+        <ul className="space-y-1 rounded-md border border-ochre/50 bg-ochre/10 p-3 text-sm">
+          {hints.slice(0, hintsShown).map((h, i) => (
+            <li key={i} className="animate-pop">
+              💡 {h}
+            </li>
+          ))}
+        </ul>
+      )}
+
       {seconds > 0 && (
         <TimerBar
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
@@ -170,4 +194,21 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
       </p>
     </div>
   );
+}
+
+/**
+ * Four hints for a name, each telling more: how long it is, its first letter, the first letter of every
+ * word, then every other letter.
+ */
+function hintsFor(name: string): string[] {
+  const words = name.split(/\s+/).filter(Boolean);
+  const letters = name.replace(/[^\p{L}\p{N}]/gu, '').length;
+  const mask = (keep: (w: string, i: number) => boolean) =>
+    words.map((w) => [...w].map((c, i) => (/[\p{L}\p{N}]/u.test(c) && !keep(w, i) ? '_' : c)).join('')).join('  ');
+  return [
+    `${words.length} word${words.length === 1 ? '' : 's'}, ${letters} letters`,
+    `It starts with “${name[0]}”`,
+    mask((_, i) => i === 0),
+    mask((_, i) => i % 2 === 0),
+  ];
 }

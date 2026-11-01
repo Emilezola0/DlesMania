@@ -15,7 +15,7 @@ type RawBoss = Omit<Boss, 'blitz' | 'radar' | 'finale' | 'aliases' | 'secret' | 
   radar: { members: RawCard[]; impostors: RawCard[] };
   finale: RawCard[];
   secret?: Omit<NonNullable<Boss['secret']>, 'categories'> & { categories: { label: string; entities: string[] }[] };
-  signature?: { label: string; prompt: string; clues: { text?: string; effect?: string; image?: string; audio?: { youtubeId: string; start?: number }; answer: string; reading?: string }[] };
+  signature?: { label: string; prompt: string; seconds?: number; hints?: boolean; clues: { text?: string; effect?: string; image?: string; audio?: { youtubeId: string; start?: number }; answer: string; reading?: string }[] };
 };
 
 /** "node:<name>": a Blueprint node, drawn from src/specialist/blueprint.ts rather than stored as a picture. */

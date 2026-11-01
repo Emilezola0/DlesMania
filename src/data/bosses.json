@@ -837,7 +837,7 @@
     },
     "signature": {
       "label": "Item",
-      "prompt": "Which item has these stats?",
+      "prompt": "Which League of Legends item has these stats? The line under them tells what it does — type the item's exact name. Hints come as the clock runs down.",
       "clues": [
         {
           "text": "+50 Ability Power · +4% Move Speed · 2,200 gold",
@@ -1309,7 +1309,9 @@
           "effect": "Arena: immobilizing a champion calls a burst of magic damage.",
           "answer": "Cruelty"
         }
-      ]
+      ],
+      "seconds": 30,
+      "hints": true
     }
   },
   {
@@ -3611,7 +3613,8 @@
             "Sabo"
           ]
         }
-      ]
+      ],
+      "turnScale": 0.5
     },
     "signature": {
       "label": "Laugh",

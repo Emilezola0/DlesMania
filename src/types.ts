@@ -194,7 +194,8 @@ export interface Boss {
    * Medium's secret phase, the Name Chain: what the boss can name, by category (each entity belongs to
    * exactly one). Any of src/data/difficulties.json's `secret` settings can be overridden here.
    */
-  secret?: Partial<SecretSettings> & { categories: SecretCategory[] };
+  /** The Name Chain for this boss: its categories, overrides of the difficulty's settings, and `turnScale` (its clock × this). */
+  secret?: Partial<SecretSettings> & { categories: SecretCategory[]; turnScale?: number };
   /** Hard's secret phase, the Signature: clues on one very specific side of the franchise. */
   signature?: Signature;
   /** Faces kept out of the Final Blow (too obscure to name), though their cards stay. */
@@ -215,6 +216,10 @@ export interface Signature {
   /** The question asked for each clue. */
   prompt: string;
   clues: SignatureClue[];
+  /** Seconds per clue for this boss, instead of the difficulty's. */
+  seconds?: number;
+  /** Hints that come one by one as the clock runs down (the answer's length, first letter, then its letters). */
+  hints?: boolean;
 }
 
 export interface SignatureClue {

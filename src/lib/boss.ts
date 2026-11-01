@@ -293,8 +293,10 @@ export const maxExchanges = (categories: SecretCategory[]) => categories.reduce(
  */
 export function drawSecret(boss: Boss, d: DifficultySpec) {
   if (!d.chain || !boss.secret?.categories.length) return null;
-  const { categories, ...overrides } = boss.secret;
+  const { categories, turnScale, ...overrides } = boss.secret;
   const settings = { ...d.chain, ...overrides };
+  // A boss can shorten (or lengthen) the difficulty's clock for its own chain.
+  if (turnScale) settings.turnSeconds = settings.turnSeconds * turnScale;
   const picksToWin = Math.min(settings.picksToWin, maxExchanges(categories));
   if (picksToWin < 1) return null;
   return { ...settings, picksToWin, categories };
@@ -312,7 +314,15 @@ export function drawSignature(boss: Boss, d: DifficultySpec, rand: () => number 
   if (boss.signature.clues.length < needed) return null;
   const fresh = shuffle(boss.signature.clues.filter((c) => !avoid.includes(signatureKey(c))), rand);
   const seen = shuffle(boss.signature.clues.filter((c) => avoid.includes(signatureKey(c))), rand);
-  return { ...d.signature, label: boss.signature.label, prompt: boss.signature.prompt, clues: [...fresh, ...seen].slice(0, needed) };
+  return {
+    ...d.signature,
+    // A boss can set its own time per clue, and hints that come as it runs down.
+    seconds: boss.signature.seconds ?? d.signature.seconds,
+    hints: !!boss.signature.hints,
+    label: boss.signature.label,
+    prompt: boss.signature.prompt,
+    clues: [...fresh, ...seen].slice(0, needed),
+  };
 }
 
 /** What identifies a Signature clue in the "already seen" history. */
