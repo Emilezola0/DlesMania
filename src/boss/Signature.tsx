@@ -55,10 +55,11 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   }, [clues, index]);
   const answer = clue.answer;
   const lastChance = missed > 0;
-  // Hints (a boss that has them): four, one by one as the clock runs down — the first after 10 seconds,
+  // Hints (a boss that has them): the clue's own (LoL: the item's other stats, who buys it, what it's built
+  // from, its passive last — so the effect line waits for the last hint), one by one as the clock runs down — the first after 10 seconds,
   // the last 10 seconds before the end, the others evenly between.
   const [hintsShown, setHintsShown] = useState(0);
-  const hints = signature.hints ? hintsFor(answer.name) : [];
+  const hints = (signature.hints && clue.hints) || [];
   useEffect(() => {
     setHintsShown(0);
     if (!hints.length || seconds <= 20 || state !== 'answer' || !pictureReady) return;
@@ -146,7 +147,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         ) : (
           <div className="py-4 text-center">
             <p className="font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
-            {clue.effect && <p className="mx-auto mt-2 max-w-md font-serif text-base italic text-ink-soft">{clue.effect}</p>}
+            {clue.effect && (!hints.length || state !== 'answer') && <p className="mx-auto mt-2 max-w-md font-serif text-base italic text-ink-soft">{clue.effect}</p>}
           </div>
         )}
       </div>
@@ -194,21 +195,4 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
       </p>
     </div>
   );
-}
-
-/**
- * Four hints for a name, each telling more: how long it is, its first letter, the first letter of every
- * word, then every other letter.
- */
-function hintsFor(name: string): string[] {
-  const words = name.split(/\s+/).filter(Boolean);
-  const letters = name.replace(/[^\p{L}\p{N}]/gu, '').length;
-  const mask = (keep: (w: string, i: number) => boolean) =>
-    words.map((w) => [...w].map((c, i) => (/[\p{L}\p{N}]/u.test(c) && !keep(w, i) ? '_' : c)).join('')).join('  ');
-  return [
-    `${words.length} word${words.length === 1 ? '' : 's'}, ${letters} letters`,
-    `It starts with “${name[0]}”`,
-    mask((_, i) => i === 0),
-    mask((_, i) => i % 2 === 0),
-  ];
 }

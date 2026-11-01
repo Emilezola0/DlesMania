@@ -218,7 +218,7 @@ export interface Signature {
   clues: SignatureClue[];
   /** Seconds per clue for this boss, instead of the difficulty's. */
   seconds?: number;
-  /** Hints that come one by one as the clock runs down (the answer's length, first letter, then its letters). */
+  /** Hints that come one by one as the clock runs down (each clue's own `hints`). */
   hints?: boolean;
 }
 
@@ -227,6 +227,8 @@ export interface SignatureClue {
   text?: string;
   /** A line under the text (an item's effect, words trimmed). */
   effect?: string;
+  /** Hints shown one by one as the clock runs down (LoL: other stats, who buys it, its parts, its passive last). */
+  hints?: string[];
   /** Or a picture (an item's icon) to name. */
   image?: string;
   /** Or a sound: a clip played in full. */

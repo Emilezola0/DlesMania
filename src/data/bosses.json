@@ -837,432 +837,942 @@
     },
     "signature": {
       "label": "Item",
-      "prompt": "Which League of Legends item has these stats? The line under them tells what it does — type the item's exact name. Hints come as the clock runs down.",
+      "prompt": "Which League of Legends item has these stats? Type its exact name. Hints come as the clock runs down: its other stats, who buys it, what it's built from — and what it does, last.",
       "clues": [
         {
           "text": "+50 Ability Power · +4% Move Speed · 2,200 gold",
           "effect": "Active: you and nearby allies gain a burst of move speed.",
-          "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
+          "answer": "Shurelya's Battlesong|Shurelyas Battlesong",
+          "hints": [
+            "Its other stats: +15 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Aether Wisp + Bandleglass Mirror",
+            "Active “Inspiring Speech”: you and nearby allies gain a burst of move speed."
+          ]
         },
         {
           "text": "+30 Attack Damage · +550 Health · 3,300 gold",
           "effect": "Bonus AD from bonus health; more AD the lower your health.",
-          "answer": "Overlord's Bloodmail|Overlords Bloodmail"
+          "answer": "Overlord's Bloodmail|Overlords Bloodmail",
+          "hints": [
+            "Combining its parts costs 1,000 gold",
+            "Usually bought by fighters",
+            "Built from: 2× Tunneler",
+            "Passive “Tyranny”, Passive “Retribution”: Bonus AD from bonus health; more AD the lower your health."
+          ]
         },
         {
           "text": "+400 Health · +50 Armor · 2,800 gold",
           "effect": "In combat: drains nearby enemies every few seconds, healing you.",
-          "answer": "Unending Despair"
+          "answer": "Unending Despair",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by tanks",
+            "Built from: Chain Vest + Kindlegem + Ruby Crystal",
+            "Passive “Anguish”: In combat: drains nearby enemies every few seconds, healing you."
+          ]
         },
         {
           "text": "+80 Ability Power · +600 Mana · 2,800 gold",
           "effect": "Abilities burn; more AP for each enemy burning.",
-          "answer": "Blackfire Torch"
+          "answer": "Blackfire Torch",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Lost Chapter + Fated Ashes",
+            "Passive “Baleful Blaze”: Abilities burn; more AP for each enemy burning."
+          ]
         },
         {
           "text": "+400 Health · +80 Magic Resist · 2,900 gold",
           "effect": "Out of combat: a big magic-damage shield regenerates.",
-          "answer": "Kaenic Rookern"
+          "answer": "Kaenic Rookern",
+          "hints": [
+            "Its other stats: +100% Base Health Regen",
+            "Usually bought by tanks",
+            "Built from: Spectre's Cowl + Negatron Cloak",
+            "Passive “Magebane”: Out of combat: a big magic-damage shield regenerates."
+          ]
         },
         {
           "text": "+60 Ability Power · +20% Attack Speed · +300 Health · 3,100 gold",
           "effect": "Spellblade: after a spell, the next attack hits twice with on-hit.",
-          "answer": "Dusk and Dawn"
+          "answer": "Dusk and Dawn",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Sheen + Blasting Wand + Kindlegem + Dagger",
+            "Passive “Spellblade”: Spellblade: after a spell, the next attack hits twice with on-hit."
+          ]
         },
         {
           "text": "+45% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
           "effect": "Crit; ultimate refunds on takedowns, more damage after an ult.",
-          "answer": "Fiendhunter Bolts"
+          "answer": "Fiendhunter Bolts",
+          "hints": [
+            "Combining its parts costs 850 gold",
+            "Usually bought by marksmen",
+            "Built from: Zeal + Scout's Slingshot",
+            "Passive “Night Vigil”, Passive “Opening Barrage”: Crit; ultimate refunds on takedowns, more damage after an ult."
+          ]
         },
         {
           "text": "+90 Ability Power · +300 Mana · 2,800 gold",
           "effect": "Active: damage a target, mana back; takedowns refresh the cooldown.",
-          "answer": "Actualizer"
+          "answer": "Actualizer",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Lost Chapter + Blasting Wand",
+            "Active “Mana Made Real”: damage a target, mana back; takedowns refresh the cooldown."
+          ]
         },
         {
           "text": "+55 Attack Damage · +25% Critical Strike Chance · 2,800 gold",
           "effect": "More damage the farther away the target is.",
-          "answer": "Hexoptics C44"
+          "answer": "Hexoptics C44",
+          "hints": [
+            "Combining its parts costs 275 gold",
+            "Usually bought by marksmen",
+            "Built from: Pickaxe + Noonquiver + Long Sword",
+            "Passive “Magnification”, Passive “Arcane Aim”: More damage the farther away the target is."
+          ]
         },
         {
           "text": "+200 Health · +20 Armor · +20 Magic Resist · 2,300 gold",
           "effect": "Immobilizing an enemy gives nearby allies attack and move speed.",
-          "answer": "Bandlepipes"
+          "answer": "Bandlepipes",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Cloth Armor + Null-Magic Mantle",
+            "Passive “Fanfare”: Immobilizing an enemy gives nearby allies attack and move speed."
+          ]
         },
         {
           "text": "+55 Attack Damage · +45 Armor · 3,200 gold",
           "effect": "Revive on death after a short stasis.",
-          "answer": "Guardian Angel"
+          "answer": "Guardian Angel",
+          "hints": [
+            "Combining its parts costs 800 gold",
+            "Combining its parts costs 800 gold",
+            "Built from: Steel Sigil + B. F. Sword",
+            "Passive “Rebirth”: Revive on death after a short stasis."
+          ]
         },
         {
           "text": "+75 Attack Damage · +25% Critical Strike Chance · 3,500 gold",
           "effect": "Critical strikes deal much more damage.",
-          "answer": "Infinity Edge"
+          "answer": "Infinity Edge",
+          "hints": [
+            "Its other stats: +30% Critical Strike Damage",
+            "Usually bought by marksmen",
+            "Built from: B. F. Sword + Pickaxe + Cloak of Agility",
+            "Critical strikes deal much more damage."
+          ]
         },
         {
           "text": "+50 Attack Damage · +45% Attack Speed · 3,000 gold",
           "effect": "Crits shorten an active that grants a burst of attack speed.",
-          "answer": "Yun Tal Wildarrows"
+          "answer": "Yun Tal Wildarrows",
+          "hints": [
+            "Its other stats: +0% Critical Strike Chance",
+            "Usually bought by marksmen",
+            "Built from: B. F. Sword + Scout's Slingshot + Long Sword",
+            "Passive “Practice Makes Lethal”, Passive “Flurry”: Crits shorten an active that grants a burst of attack speed."
+          ]
         },
         {
           "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
           "effect": "Armor pen; physical damage cuts enemy healing.",
-          "answer": "Mortal Reminder"
+          "answer": "Mortal Reminder",
+          "hints": [
+            "Its other stats: +30% Armor Penetration",
+            "Usually bought by marksmen",
+            "Built from: Executioner's Calling + Last Whisper + Cloak of Agility",
+            "Passive “Grievous Wounds”: Armor pen; physical damage cuts enemy healing."
+          ]
         },
         {
           "text": "+35 Attack Damage · +25% Critical Strike Chance · 3,300 gold",
           "effect": "Big armor penetration, made for tanks.",
-          "answer": "Lord Dominik's Regards|Lord Dominiks Regards"
+          "answer": "Lord Dominik's Regards|Lord Dominiks Regards",
+          "hints": [
+            "Its other stats: +35% Armor Penetration",
+            "Usually bought by marksmen",
+            "Built from: Last Whisper + Noonquiver",
+            "Passive “Giant Slayer”: Big armor penetration, made for tanks."
+          ]
         },
         {
           "text": "+65% Attack Speed · +25% Critical Strike Chance · +10% Move Speed · 2,650 gold",
           "effect": "Attacks grant move speed and ghosting; more attack speed in a fight.",
-          "answer": "Phantom Dancer"
+          "answer": "Phantom Dancer",
+          "hints": [
+            "Combining its parts costs 950 gold",
+            "Usually bought by marksmen",
+            "Built from: 2× Dagger + Zeal",
+            "Passive “Spectral Waltz”: Attacks grant move speed and ghosting; more attack speed in a fight."
+          ]
         },
         {
           "text": "+300 Health · +25 Armor · +25 Magic Resist · 2,200 gold",
           "effect": "After your ultimate, your bound ally’s attacks burn and slow.",
-          "answer": "Zeke's Convergence|Zekes Convergence"
+          "answer": "Zeke's Convergence|Zekes Convergence",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Cloth Armor + Null-Magic Mantle",
+            "Passive “Frostfire Tempest”: After your ultimate, your bound ally’s attacks burn and slow."
+          ]
         },
         {
           "text": "+400 Health · +50 Magic Resist · 2,700 gold",
           "effect": "More healing and shielding received.",
-          "answer": "Spirit Visage"
+          "answer": "Spirit Visage",
+          "hints": [
+            "Its other stats: +10 Ability Haste · +100% Base Health Regen",
+            "Usually bought by tanks",
+            "Built from: Spectre's Cowl + Kindlegem",
+            "Passive “Boundless Vitality”: More healing and shielding received."
+          ]
         },
         {
           "text": "+350 Health · +50 Armor · 2,800 gold",
           "effect": "Burns nearby enemies, stacking with each hit.",
-          "answer": "Sunfire Aegis"
+          "answer": "Sunfire Aegis",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by tanks",
+            "Built from: Bami's Cinder + Chain Vest + Ruby Crystal",
+            "Passive “Immolate”: Burns nearby enemies, stacking with each hit."
+          ]
         },
         {
           "text": "+45 Attack Damage · +400 Health · 3,000 gold",
           "effect": "Physical hits shred armor, stacking; move speed on damage.",
-          "answer": "Black Cleaver"
+          "answer": "Black Cleaver",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Phage + Kindlegem + Pickaxe",
+            "Passive “Carve”, Passive “Fervor”: Physical hits shred armor, stacking; move speed on damage."
+          ]
         },
         {
           "text": "+80 Attack Damage · +15% Life Steal · 3,400 gold",
           "effect": "Overheal from life steal turns into a shield.",
-          "answer": "Bloodthirster"
+          "answer": "Bloodthirster",
+          "hints": [
+            "Combining its parts costs 325 gold",
+            "Usually bought by fighters",
+            "Built from: B. F. Sword + Pickaxe + Vampiric Scepter",
+            "Passive “Ichorshield”: Overheal from life steal turns into a shield."
+          ]
         },
         {
           "text": "+40 Attack Damage · +20% Attack Speed · +450 Health · 3,000 gold",
           "effect": "Ultimate cooldown cut; after an ult, attack and move speed.",
-          "answer": "Experimental Hexplate"
+          "answer": "Experimental Hexplate",
+          "hints": [
+            "Combining its parts costs 500 gold",
+            "Usually bought by fighters",
+            "Built from: Tunneler + Dagger + Phage",
+            "Passive “Hexcharged”, Passive “Overdrive”: Ultimate cooldown cut; after an ult, attack and move speed."
+          ]
         },
         {
           "text": "+65 Attack Damage · +12% Life Steal · 3,300 gold",
           "effect": "Attacks cleave around you; active deals a wide slash.",
-          "answer": "Ravenous Hydra"
+          "answer": "Ravenous Hydra",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Tiamat + Vampiric Scepter + Caulfield's Warhammer",
+            "Passive “Cleave”: Attacks cleave around you; active deals a wide slash."
+          ]
         },
         {
           "text": "+150 Health · +75 Armor · 2,450 gold",
           "effect": "Reflects damage to attackers and cuts their healing.",
-          "answer": "Thornmail"
+          "answer": "Thornmail",
+          "hints": [
+            "Combining its parts costs 450 gold",
+            "Usually bought by tanks",
+            "Built from: Bramble Vest + Chain Vest + Ruby Crystal",
+            "Passive “Thorns”: Reflects damage to attackers and cuts their healing."
+          ]
         },
         {
           "text": "+36 Attack Damage · +30% Attack Speed · +333 Health · 3,333 gold",
           "effect": "Spellblade: the next attack after a spell deals extra damage; speed on hit.",
-          "answer": "Trinity Force"
+          "answer": "Trinity Force",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Sheen + Phage + Hearthbound Axe",
+            "Passive “Spellblade”, Passive “Quicken”: Spellblade: the next attack after a spell deals extra damage; speed on hit."
+          ]
         },
         {
           "text": "+40% Attack Speed · +25% Critical Strike Chance · +5% Move Speed · 2,650 gold",
           "effect": "Attacks fire bolts at two more nearby enemies.",
-          "answer": "Runaan's Hurricane|Runaans Hurricane"
+          "answer": "Runaan's Hurricane|Runaans Hurricane",
+          "hints": [
+            "Combining its parts costs 850 gold",
+            "Usually bought by marksmen",
+            "Built from: Zeal + Scout's Slingshot",
+            "Passive “Wind's Fury”: Attacks fire bolts at two more nearby enemies."
+          ]
         },
         {
           "text": "+45 Attack Damage · +45 Ability Power · +30% Attack Speed · +4% Move Speed · 3,000 gold",
           "effect": "Charged attacks chain lightning, more on minions.",
-          "answer": "Statikk Shiv"
+          "answer": "Statikk Shiv",
+          "hints": [
+            "Combining its parts costs 625 gold",
+            "Usually bought by on-hit carries",
+            "Built from: Scout's Slingshot + Aether Wisp + Pickaxe",
+            "Passive “Electrospark”, Passive “Electroshock”: Charged attacks chain lightning, more on minions."
+          ]
         },
         {
           "text": "+50% Attack Speed · +45 Magic Resist · 2,800 gold",
           "effect": "On-hit magic damage; more magic resist in a fight.",
-          "answer": "Wit's End|Wits End"
+          "answer": "Wit's End|Wits End",
+          "hints": [
+            "Its other stats: +20% Tenacity",
+            "Usually bought by marksmen",
+            "Built from: 2× Recurve Bow + Negatron Cloak",
+            "Passive “Fray”: On-hit magic damage; more magic resist in a fight."
+          ]
         },
         {
           "text": "+35% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
           "effect": "Charged attack with bonus range and damage.",
-          "answer": "Rapid Firecannon"
+          "answer": "Rapid Firecannon",
+          "hints": [
+            "Combining its parts costs 850 gold",
+            "Usually bought by marksmen",
+            "Built from: Zeal + Scout's Slingshot",
+            "Passive “Sharpshooter”: Charged attack with bonus range and damage."
+          ]
         },
         {
           "text": "+50 Attack Damage · +25% Attack Speed · +25% Critical Strike Chance · 3,200 gold",
           "effect": "Charged attack deals bonus damage and grants a burst of speed.",
-          "answer": "Stormrazor"
+          "answer": "Stormrazor",
+          "hints": [
+            "Combining its parts costs 700 gold",
+            "Usually bought by marksmen",
+            "Built from: B. F. Sword + Cloak of Agility + Scout's Slingshot",
+            "Passive “Energized”, Passive “Bolt”: Charged attack deals bonus damage and grants a burst of speed."
+          ]
         },
         {
           "text": "+100 Ability Power · +6% Move Speed · 2,900 gold",
           "effect": "Spellblade: the next attack after a spell deals bonus magic damage.",
-          "answer": "Lich Bane"
+          "answer": "Lich Bane",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Sheen + Aether Wisp + Blasting Wand",
+            "Passive “Spellblade”: Spellblade: the next attack after a spell deals bonus magic damage."
+          ]
         },
         {
           "text": "+105 Ability Power · +40 Magic Resist · 3,000 gold",
           "effect": "A spell shield blocks the next enemy ability.",
-          "answer": "Banshee's Veil|Banshees Veil"
+          "answer": "Banshee's Veil|Banshees Veil",
+          "hints": [
+            "Combining its parts costs 200 gold",
+            "Usually bought by mages",
+            "Built from: Needlessly Large Rod + Verdant Barrier",
+            "Passive “Annul”: A spell shield blocks the next enemy ability."
+          ]
         },
         {
           "text": "+200 Health · +40 Armor · 2,300 gold",
           "effect": "Bind an ally: redirect part of the damage they take to you.",
-          "answer": "Knight's Vow|Knights Vow"
+          "answer": "Knight's Vow|Knights Vow",
+          "hints": [
+            "Its other stats: +10 Ability Haste · +100% Base Health Regen",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Chain Vest + Rejuvenation Bead",
+            "Passive “Sacrifice”, Active “Pledge”: Bind an ally: redirect part of the damage they take to you."
+          ]
         },
         {
           "text": "+75 Armor · +400 Mana · 2,500 gold",
           "effect": "Slows the attack speed of nearby enemies.",
-          "answer": "Frozen Heart"
+          "answer": "Frozen Heart",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Combining its parts costs 600 gold",
+            "Built from: Warden's Mail + Glacial Buckler",
+            "Passive “Winter's Caress”: Slows the attack speed of nearby enemies."
+          ]
         },
         {
           "text": "+80 Ability Power · +50% Attack Speed · 2,900 gold",
           "effect": "Attacks deal bonus magic damage that scales with AP.",
-          "answer": "Nashor's Tooth|Nashors Tooth"
+          "answer": "Nashor's Tooth|Nashors Tooth",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Recurve Bow + Blasting Wand + Fiendish Codex",
+            "Passive “Icathian Bite”: Attacks deal bonus magic damage that scales with AP."
+          ]
         },
         {
           "text": "+65 Ability Power · +400 Health · 2,600 gold",
           "effect": "Damaging abilities slow enemies.",
-          "answer": "Rylai's Crystal Scepter|Rylais Crystal Scepter"
+          "answer": "Rylai's Crystal Scepter|Rylais Crystal Scepter",
+          "hints": [
+            "Combining its parts costs 450 gold",
+            "Usually bought by mages",
+            "Built from: Blasting Wand + Giant's Belt + Amplifying Tome",
+            "Passive “Rimefrost”: Damaging abilities slow enemies."
+          ]
         },
         {
           "text": "+90 Ability Power · +600 Mana · 2,700 gold",
           "effect": "Ultimate cooldown cut; it scorches the ground, shredding magic resist.",
-          "answer": "Malignance"
+          "answer": "Malignance",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Lost Chapter + Blasting Wand",
+            "Passive “Scorn”, Passive “Hatefog”: Ultimate cooldown cut; it scorches the ground, shredding magic resist."
+          ]
         },
         {
           "text": "+30 Attack Damage · +30 Ability Power · +25% Attack Speed · 3,000 gold",
           "effect": "Every third attack applies on-hit effects twice.",
-          "answer": "Guinsoo's Rageblade|Guinsoos Rageblade"
+          "answer": "Guinsoo's Rageblade|Guinsoos Rageblade",
+          "hints": [
+            "Combining its parts costs 1,025 gold",
+            "Usually bought by on-hit carries",
+            "Built from: Amplifying Tome + Recurve Bow + Pickaxe",
+            "Passive “Wrath”, Passive “Seething Strike”: Every third attack applies on-hit effects twice."
+          ]
         },
         {
           "text": "+50 Attack Damage · +35 Magic Resist · +10% Life Steal · 3,200 gold",
           "effect": "Active: removes crowd control and grants move speed.",
-          "answer": "Mercurial Scimitar"
+          "answer": "Mercurial Scimitar",
+          "hints": [
+            "Combining its parts costs 125 gold",
+            "Usually bought by fighters",
+            "Built from: Quicksilver Sash + Pickaxe + Vampiric Scepter",
+            "Active “ACTIVE”, Active “Quicksilver”: removes crowd control and grants move speed."
+          ]
         },
         {
           "text": "+55 Attack Damage · +4% Move Speed · 2,800 gold",
           "effect": "Lethality; active grants a burst of move speed and ghosting.",
-          "answer": "Youmuu's Ghostblade|Youmuus Ghostblade"
+          "answer": "Youmuu's Ghostblade|Youmuus Ghostblade",
+          "hints": [
+            "Its other stats: +18 Lethality",
+            "Usually bought by assassins",
+            "Built from: Serrated Dirk + Rectrix + Long Sword",
+            "Passive “Haunt”, Active “Wraith Step”: Lethality; active grants a burst of move speed and ghosting."
+          ]
         },
         {
           "text": "+350 Health · +75 Armor · 2,700 gold",
           "effect": "Takes less damage from critical strikes; active slows nearby enemies.",
-          "answer": "Randuin's Omen|Randuins Omen"
+          "answer": "Randuin's Omen|Randuins Omen",
+          "hints": [
+            "Combining its parts costs 800 gold",
+            "Usually bought by tanks",
+            "Built from: Warden's Mail + Giant's Belt",
+            "Passive “Resilience”, Active “Humility”: Takes less damage from critical strikes; active slows nearby enemies."
+          ]
         },
         {
           "text": "+40 Attack Damage · +80 Ability Power · 3,000 gold",
           "effect": "Omnivamp; active damages and slows a target.",
-          "answer": "Hextech Gunblade"
+          "answer": "Hextech Gunblade",
+          "hints": [
+            "Its other stats: +10% Omnivamp",
+            "Usually bought by on-hit carries and fighters",
+            "Built from: Vampiric Scepter + Hextech Alternator + Amplifying Tome",
+            "Active “ACTIVE”, Active “Lightning Bolt”: Omnivamp; active damages and slows a target."
+          ]
         },
         {
           "text": "+60 Ability Power · +350 Health · 2,650 gold",
           "effect": "Active: dash forward and fire a cone of bolts.",
-          "answer": "Hextech Rocketbelt"
+          "answer": "Hextech Rocketbelt",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Hextech Alternator + Kindlegem + Ruby Crystal",
+            "Active “Supersonic”: dash forward and fire a cone of bolts."
+          ]
         },
         {
           "text": "+40 Attack Damage · +25% Attack Speed · +10% Life Steal · 3,200 gold",
           "effect": "Attacks deal a share of current health; hits steal move speed.",
-          "answer": "Blade of The Ruined King"
+          "answer": "Blade of The Ruined King",
+          "hints": [
+            "Combining its parts costs 725 gold",
+            "Usually bought by marksmen and fighters",
+            "Built from: Vampiric Scepter + Recurve Bow + Pickaxe",
+            "Passive “Mist's Edge”, Passive “Clawing Shadows”: Attacks deal a share of current health; hits steal move speed."
+          ]
         },
         {
           "text": "+60 Attack Damage · +40 Magic Resist · 3,100 gold",
           "effect": "A magic shield at low health; omnivamp while it lasts.",
-          "answer": "Maw of Malmortius"
+          "answer": "Maw of Malmortius",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Hexdrinker + Caulfield's Warhammer",
+            "Passive “Lifeline”: A magic shield at low health; omnivamp while it lasts."
+          ]
         },
         {
           "text": "+105 Ability Power · +50 Armor · 3,250 gold",
           "effect": "Active: become untargetable and invulnerable for a moment.",
-          "answer": "Zhonya's Hourglass|Zhonyas Hourglass"
+          "answer": "Zhonya's Hourglass|Zhonyas Hourglass",
+          "hints": [
+            "Combining its parts costs 450 gold",
+            "Usually bought by mages",
+            "Built from: Needlessly Large Rod + Seeker's Armguard",
+            "Active “Time Stop”: become untargetable and invulnerable for a moment."
+          ]
         },
         {
           "text": "+45 Attack Damage · +450 Health · 3,100 gold",
           "effect": "Basic ability haste; abilities deal more damage, stacking.",
-          "answer": "Spear of Shojin"
+          "answer": "Spear of Shojin",
+          "hints": [
+            "Combining its parts costs 675 gold",
+            "Usually bought by fighters",
+            "Built from: Pickaxe + Tunneler + Ruby Crystal",
+            "Passive “Dragonforce”, Passive “Focused Will”: Basic ability haste; abilities deal more damage, stacking."
+          ]
         },
         {
           "text": "+75 Ability Power · +350 Health · 2,850 gold",
           "effect": "Magic damage cuts enemy healing.",
-          "answer": "Morellonomicon"
+          "answer": "Morellonomicon",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Oblivion Orb + Blasting Wand + Kindlegem",
+            "Passive “Grievous Wounds”: Magic damage cuts enemy healing."
+          ]
         },
         {
           "text": "+40 Attack Damage · +500 Health · +4% Move Speed · 3,000 gold",
           "effect": "Stronger alone; bonus damage to towers.",
-          "answer": "Hullbreaker"
+          "answer": "Hullbreaker",
+          "hints": [
+            "Combining its parts costs 175 gold",
+            "Usually bought by fighters",
+            "Built from: Tunneler + Winged Moonplate + Pickaxe",
+            "Passive “Skipper”, Passive “Boarding Party”: Stronger alone; bonus damage to towers."
+          ]
         },
         {
           "text": "+200 Health · +30 Armor · +30 Magic Resist · 2,200 gold",
           "effect": "Active: shields nearby allies.",
-          "answer": "Locket of the Iron Solari"
+          "answer": "Locket of the Iron Solari",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Cloth Armor + Null-Magic Mantle",
+            "Active “Devotion”: shields nearby allies."
+          ]
         },
         {
           "text": "+30 Attack Damage · +35% Attack Speed · 3,000 gold",
           "effect": "Alternating attacks give you resistances or armor and MR penetration.",
-          "answer": "Terminus"
+          "answer": "Terminus",
+          "hints": [
+            "Combining its parts costs 1,100 gold",
+            "Usually bought by marksmen",
+            "Built from: Hearthbound Axe + Recurve Bow",
+            "Passive “Shadow”, Passive “Juxtaposition”: Alternating attacks give you resistances or armor and MR penetration."
+          ]
         },
         {
           "text": "+45 Ability Power · +4% Move Speed · 2,200 gold",
           "effect": "Heals and shields grant the ally attack speed and on-hit damage.",
-          "answer": "Ardent Censer"
+          "answer": "Ardent Censer",
+          "hints": [
+            "Its other stats: +10% Heal and Shield Power · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Aether Wisp + Forbidden Idol",
+            "Passive “Sanctify”: Heals and shields grant the ally attack speed and on-hit damage."
+          ]
         },
         {
           "text": "+50 Attack Damage · +25% Critical Strike Chance · 3,050 gold",
           "effect": "Spellblade: the next attack after a spell restores mana.",
-          "answer": "Essence Reaver"
+          "answer": "Essence Reaver",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Usually bought by marksmen",
+            "Built from: Sheen + Caulfield's Warhammer + Cloak of Agility",
+            "Passive “Spellblade”: Spellblade: the next attack after a spell restores mana."
+          ]
         },
         {
           "text": "+350 Health · +55 Armor · +4% Move Speed · 2,900 gold",
           "effect": "Builds momentum while moving; the next attack hits harder and slows.",
-          "answer": "Dead Man's Plate|Dead Mans Plate"
+          "answer": "Dead Man's Plate|Dead Mans Plate",
+          "hints": [
+            "Combining its parts costs 900 gold",
+            "Usually bought by tanks",
+            "Built from: Winged Moonplate + Ruby Crystal + Chain Vest",
+            "Passive “Shipwrecker”, Passive “Unsinkable”: Builds momentum while moving; the next attack hits harder and slows."
+          ]
         },
         {
           "text": "+40 Attack Damage · +600 Health · 3,300 gold",
           "effect": "Attacks deal bonus damage in a cone, scaling with health.",
-          "answer": "Titanic Hydra"
+          "answer": "Titanic Hydra",
+          "hints": [
+            "Combining its parts costs 50 gold",
+            "Usually bought by fighters",
+            "Built from: Tiamat + Tunneler + Giant's Belt",
+            "Passive “Cleave”: Attacks deal bonus damage in a cone, scaling with health."
+          ]
         },
         {
           "text": "+50 Attack Damage · +250 Health · 3,000 gold",
           "effect": "A spell shield after a short time out of combat.",
-          "answer": "Edge of Night"
+          "answer": "Edge of Night",
+          "hints": [
+            "Its other stats: +15 Lethality",
+            "Usually bought by assassins and fighters",
+            "Built from: Serrated Dirk + Tunneler",
+            "Passive “Annul”: A spell shield after a short time out of combat."
+          ]
         },
         {
           "text": "+400 Health · +55 Magic Resist · +4% Move Speed · 2,800 gold",
           "effect": "Magic damage taken stacks magic resist and move speed.",
-          "answer": "Force of Nature"
+          "answer": "Force of Nature",
+          "hints": [
+            "Combining its parts costs 750 gold",
+            "Usually bought by tanks",
+            "Built from: Negatron Cloak + Ruby Crystal + Winged Moonplate",
+            "Passive “Steadfast”: Magic damage taken stacks magic resist and move speed."
+          ]
         },
         {
           "text": "+70 Ability Power · +350 Health · +4% Move Speed · 3,000 gold",
           "effect": "Damaging a champion grants move speed.",
-          "answer": "Cosmic Drive"
+          "answer": "Cosmic Drive",
+          "hints": [
+            "Its other stats: +25 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Kindlegem + Aether Wisp + Fiendish Codex",
+            "Passive “Spelldance”: Damaging a champion grants move speed."
+          ]
         },
         {
           "text": "+70 Ability Power · +350 Health · 3,100 gold",
           "effect": "Omnivamp; more damage the longer you fight, then true damage.",
-          "answer": "Riftmaker"
+          "answer": "Riftmaker",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Haunting Guise + Fiendish Codex",
+            "Passive “Void Corruption”, Passive “Void Infusion”: Omnivamp; more damage the longer you fight, then true damage."
+          ]
         },
         {
           "text": "+90 Ability Power · +6% Move Speed · 2,800 gold",
           "effect": "Bursting a champion fast calls a delayed lightning strike.",
-          "answer": "Stormsurge"
+          "answer": "Stormsurge",
+          "hints": [
+            "Its other stats: +15 Magic Penetration",
+            "Usually bought by mages",
+            "Built from: Hextech Alternator + Aether Wisp",
+            "Passive “Stormraider”, Passive “Squall”: Bursting a champion fast calls a delayed lightning strike."
+          ]
         },
         {
           "text": "+60 Attack Damage · +50 Armor · 3,300 gold",
           "effect": "Part of the damage taken is delayed; a takedown cleanses it.",
-          "answer": "Death's Dance|Deaths Dance"
+          "answer": "Death's Dance|Deaths Dance",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Combining its parts costs 275 gold",
+            "Built from: Steel Sigil + Pickaxe + Caulfield's Warhammer",
+            "Passive “Ignore Pain”, Passive “Defy”, Passive “Ignore Pain's”: Part of the damage taken is delayed; a takedown cleanses it."
+          ]
         },
         {
           "text": "+45 Attack Damage · +450 Health · 3,000 gold",
           "effect": "Physical damage cuts enemy healing.",
-          "answer": "Chempunk Chainsword"
+          "answer": "Chempunk Chainsword",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Executioner's Calling + Giant's Belt + Caulfield's Warhammer",
+            "Passive “Hackshorn”: Physical damage cuts enemy healing."
+          ]
         },
         {
           "text": "+40 Attack Damage · +400 Health · 3,100 gold",
           "effect": "The first attack on a champion crits and heals you.",
-          "answer": "Sundered Sky"
+          "answer": "Sundered Sky",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by fighters",
+            "Built from: Tunneler + Caulfield's Warhammer",
+            "Passive “Lightshield Strike”: The first attack on a champion crits and heals you."
+          ]
         },
         {
           "text": "+25 Ability Power · +200 Health · 2,200 gold",
           "effect": "Healing or shielding an ally also heals another.",
-          "answer": "Moonstone Renewer"
+          "answer": "Moonstone Renewer",
+          "hints": [
+            "Its other stats: +20 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Kindlegem + Bandleglass Mirror",
+            "Passive “Starlit Grace”: Healing or shielding an ally also heals another."
+          ]
         },
         {
           "text": "+35 Ability Power · +200 Health · 2,200 gold",
           "effect": "Damaging champions charges shards that heal allies.",
-          "answer": "Echoes of Helia"
+          "answer": "Echoes of Helia",
+          "hints": [
+            "Its other stats: +20 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Kindlegem + Bandleglass Mirror",
+            "Passive “Soul Siphon”, Passive “Soul Charges”: Damaging champions charges shards that heal allies."
+          ]
         },
         {
           "text": "+40 Attack Damage · +25% Attack Speed · +450 Health · 3,300 gold",
           "effect": "Active: slam the ground, slowing enemies around you.",
-          "answer": "Stridebreaker"
+          "answer": "Stridebreaker",
+          "hints": [
+            "Combining its parts costs 750 gold",
+            "Usually bought by fighters",
+            "Built from: Tiamat + Phage + Dagger",
+            "Passive “Cleave”, Active “Breaking Shockwave”: slam the ground, slowing enemies around you."
+          ]
         },
         {
           "text": "+60 Ability Power · +300 Health · 3,000 gold",
           "effect": "Abilities burn for a share of max health.",
-          "answer": "Liandry's Torment|Liandrys Torment"
+          "answer": "Liandry's Torment|Liandrys Torment",
+          "hints": [
+            "Combining its parts costs 800 gold",
+            "Usually bought by mages",
+            "Built from: Haunting Guise + Fated Ashes",
+            "Passive “Suffering”: Abilities burn for a share of max health."
+          ]
         },
         {
           "text": "+100 Ability Power · +600 Mana · 2,750 gold",
           "effect": "Abilities fire extra bolts at the target and nearby enemies.",
-          "answer": "Luden's Echo|Ludens Echo"
+          "answer": "Luden's Echo|Ludens Echo",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Lost Chapter + Hextech Alternator",
+            "Abilities fire extra bolts at the target and nearby enemies."
+          ]
         },
         {
           "text": "+400 Health · +40 Magic Resist · 2,800 gold",
           "effect": "Burns nearby enemies; kills unleash a burst of magic damage.",
-          "answer": "Hollow Radiance"
+          "answer": "Hollow Radiance",
+          "hints": [
+            "Its other stats: +10 Ability Haste · +100% Base Health Regen",
+            "Usually bought by tanks",
+            "Built from: Bami's Cinder + Spectre's Cowl",
+            "Passive “Immolate”, Passive “Desolate”: Burns nearby enemies; kills unleash a burst of magic damage."
+          ]
         },
         {
           "text": "+350 Health · +45 Armor · +45 Magic Resist · 3,200 gold",
           "effect": "Armor and magic resist grow over a fight.",
-          "answer": "Jak'Sho, The Protean|JakSho, The Protean"
+          "answer": "Jak'Sho, The Protean|JakSho, The Protean",
+          "hints": [
+            "Combining its parts costs 650 gold",
+            "Usually bought by tanks",
+            "Built from: Giant's Belt + Chain Vest + Negatron Cloak",
+            "Passive “Voidborn Resilience”: Armor and magic resist grow over a fight."
+          ]
         },
         {
           "text": "+45 Attack Damage · +40% Attack Speed · +4% Move Speed · 3,000 gold",
           "effect": "Every third attack deals bonus damage, more on low-health targets.",
-          "answer": "Kraken Slayer"
+          "answer": "Kraken Slayer",
+          "hints": [
+            "Combining its parts costs 325 gold",
+            "Usually bought by marksmen",
+            "Built from: Rectrix + Hearthbound Axe + Recurve Bow",
+            "Passive “Bring It Down”: Every third attack deals bonus damage, more on low-health targets."
+          ]
         },
         {
           "text": "+55 Attack Damage · +25% Critical Strike Chance · 3,000 gold",
           "effect": "At low health: a shield and life steal.",
-          "answer": "Immortal Shieldbow"
+          "answer": "Immortal Shieldbow",
+          "hints": [
+            "Combining its parts costs 825 gold",
+            "Usually bought by marksmen",
+            "Built from: Pickaxe + Noonquiver",
+            "Passive “Lifeline”: At low health: a shield and life steal."
+          ]
         },
         {
           "text": "+40% Attack Speed · +25% Critical Strike Chance · +4% Move Speed · 2,650 gold",
           "effect": "Attacks shorten your basic abilities’ cooldowns.",
-          "answer": "Navori Flickerblade"
+          "answer": "Navori Flickerblade",
+          "hints": [
+            "Combining its parts costs 950 gold",
+            "Usually bought by marksmen",
+            "Built from: 2× Dagger + Zeal",
+            "Passive “Transcendence”: Attacks shorten your basic abilities’ cooldowns."
+          ]
         },
         {
           "text": "+65 Ability Power · +400 Health · 2,900 gold",
           "effect": "Abilities stack a magic resist shred on champions.",
-          "answer": "Bloodletter's Curse|Bloodletters Curse"
+          "answer": "Bloodletter's Curse|Bloodletters Curse",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by mages",
+            "Built from: Haunting Guise + Fiendish Codex",
+            "Passive “Vile Decay”: Abilities stack a magic resist shred on champions."
+          ]
         },
         {
           "text": "+350 Health · +45 Magic Resist · 2,650 gold",
           "effect": "Nearby enemies take more magic damage.",
-          "answer": "Abyssal Mask"
+          "answer": "Abyssal Mask",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by tanks",
+            "Built from: Kindlegem + Negatron Cloak",
+            "Passive “Unmake”: Nearby enemies take more magic damage."
+          ]
         },
         {
           "text": "+65 Ability Power · +6% Move Speed · 2,600 gold",
           "effect": "Active: you and nearby allies gain a burst of move speed.",
-          "answer": "Shurelya's Battlesong|Shurelyas Battlesong"
+          "answer": "Shurelya's Battlesong|Shurelyas Battlesong",
+          "hints": [
+            "Its other stats: +15 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Aether Wisp + Bandleglass Mirror",
+            "Active “Inspiring Speech”: you and nearby allies gain a burst of move speed."
+          ]
         },
         {
           "text": "+350 Health · +30 Armor · +30 Magic Resist · 2,300 gold",
           "effect": "After your ultimate, your bound ally’s attacks burn and slow.",
-          "answer": "Zeke's Convergence|Zekes Convergence"
+          "answer": "Zeke's Convergence|Zekes Convergence",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Cloth Armor + Null-Magic Mantle",
+            "Passive “Frostfire Tempest”: After your ultimate, your bound ally’s attacks burn and slow."
+          ]
         },
         {
           "text": "+200 Health · +85 Armor · 2,650 gold",
           "effect": "Reflects damage to attackers and cuts their healing.",
-          "answer": "Thornmail"
+          "answer": "Thornmail",
+          "hints": [
+            "Combining its parts costs 450 gold",
+            "Usually bought by tanks",
+            "Built from: Bramble Vest + Chain Vest + Ruby Crystal",
+            "Passive “Thorns”: Reflects damage to attackers and cuts their healing."
+          ]
         },
         {
           "text": "+30 Ability Power · +400 Health · 2,800 gold",
           "effect": "Active: after a delay, heal allies and damage enemies in an area.",
-          "answer": "Redemption"
+          "answer": "Redemption",
+          "hints": [
+            "Its other stats: +15 Ability Haste · +100% Base Mana Regen · +10% Heal and Shield Power",
+            "Usually bought by enchanter supports",
+            "Built from: Fiendish Codex + Forbidden Idol",
+            "Active “Intervention”: after a delay, heal allies and damage enemies in an area."
+          ]
         },
         {
           "text": "+75 Armor · +500 Mana · 2,700 gold",
           "effect": "Slows the attack speed of nearby enemies.",
-          "answer": "Frozen Heart"
+          "answer": "Frozen Heart",
+          "hints": [
+            "Its other stats: +20 Ability Haste",
+            "Combining its parts costs 600 gold",
+            "Built from: Warden's Mail + Glacial Buckler",
+            "Passive “Winter's Caress”: Slows the attack speed of nearby enemies."
+          ]
         },
         {
           "text": "+250 Health · +30 Armor · +30 Magic Resist · 2,600 gold",
           "effect": "Active: shields nearby allies.",
-          "answer": "Locket of the Iron Solari"
+          "answer": "Locket of the Iron Solari",
+          "hints": [
+            "Its other stats: +10 Ability Haste",
+            "Usually bought by tank supports",
+            "Built from: Kindlegem + Cloth Armor + Null-Magic Mantle",
+            "Active “Devotion”: shields nearby allies."
+          ]
         },
         {
           "text": "+55 Ability Power · +6% Move Speed · 2,600 gold",
           "effect": "Heals and shields grant the ally attack speed and on-hit damage.",
-          "answer": "Ardent Censer"
+          "answer": "Ardent Censer",
+          "hints": [
+            "Its other stats: +10% Heal and Shield Power · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Aether Wisp + Forbidden Idol",
+            "Passive “Sanctify”: Heals and shields grant the ally attack speed and on-hit damage."
+          ]
         },
         {
           "text": "+35 Ability Power · +400 Health · 2,900 gold",
           "effect": "Healing or shielding an ally also heals another.",
-          "answer": "Moonstone Renewer"
+          "answer": "Moonstone Renewer",
+          "hints": [
+            "Its other stats: +20 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Kindlegem + Bandleglass Mirror",
+            "Passive “Starlit Grace”: Healing or shielding an ally also heals another."
+          ]
         },
         {
           "text": "+35 Ability Power · +250 Health · 2,600 gold",
           "effect": "Damaging champions charges shards that heal allies.",
-          "answer": "Echoes of Helia"
+          "answer": "Echoes of Helia",
+          "hints": [
+            "Its other stats: +20 Ability Haste · +125% Base Mana Regen",
+            "Usually bought by enchanter supports",
+            "Built from: Kindlegem + Bandleglass Mirror",
+            "Passive “Soul Siphon”, Passive “Soul Charges”: Damaging champions charges shards that heal allies."
+          ]
         },
         {
           "text": "+350 Health · +50 Magic Resist · 2,850 gold",
           "effect": "Nearby enemies take more magic damage.",
-          "answer": "Abyssal Mask"
+          "answer": "Abyssal Mask",
+          "hints": [
+            "Its other stats: +15 Ability Haste",
+            "Usually bought by tanks",
+            "Built from: Kindlegem + Negatron Cloak",
+            "Passive “Unmake”: Nearby enemies take more magic damage."
+          ]
         },
         {
           "text": "+20% Critical Strike Chance · +500 Health · 2,500 gold",
@@ -1282,7 +1792,13 @@
         {
           "text": "+45 Attack Damage · +90 Ability Power · 2,500 gold",
           "effect": "Omnivamp; active damages and slows a target.",
-          "answer": "Hextech Gunblade"
+          "answer": "Hextech Gunblade",
+          "hints": [
+            "Its other stats: +10% Omnivamp",
+            "Usually bought by on-hit carries and fighters",
+            "Built from: Vampiric Scepter + Hextech Alternator + Amplifying Tome",
+            "Active “ACTIVE”, Active “Lightning Bolt”: Omnivamp; active damages and slows a target."
+          ]
         },
         {
           "text": "+40% Attack Speed · +8% Move Speed · 2,500 gold",
