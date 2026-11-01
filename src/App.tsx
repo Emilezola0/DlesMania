@@ -14,6 +14,7 @@ const HigherLower = lazy(() => import('./pages/HigherLower'));
 const Jlpt = lazy(() => import('./pages/Jlpt'));
 const NameThemAll = lazy(() => import('./pages/NameThemAll'));
 const RailRush = lazy(() => import('./pages/RailRush'));
+const StickFight = lazy(() => import('./pages/StickFight'));
 const MemoryPairs = lazy(() => import('./pages/MemoryPairs'));
 const OddOneOut = lazy(() => import('./pages/OddOneOut'));
 const Crossroads = lazy(() => import('./pages/Crossroads'));
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="name-them-all/:list" element={<NameThemAll />} />
         <Route path="guess-the-year" element={<GuessYear />} />
         <Route path="rail-rush" element={<RailRush />} />
+        <Route path="stick-fight" element={<StickFight />} />
         <Route path="memory" element={<MemoryPairs />} />
         <Route path="memory/:deck" element={<MemoryPairs />} />
         <Route path="odd-one-out" element={<OddOneOut />} />
