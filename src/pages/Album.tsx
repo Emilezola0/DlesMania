@@ -1,5 +1,5 @@
 import { ANOMALIES } from '../gacha/anomalies';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
@@ -261,6 +261,33 @@ export default function Album() {
       sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
     );
   }, [set, rarities, show, sort, owned, grades, anomalies]);
+  // The grid in blocks of whole rows: only the blocks near the screen hold their cards (see AlbumBlock).
+  const blocks = useMemo(() => Array.from({ length: Math.ceil(list.length / BLOCK) }, (_, i) => list.slice(i * BLOCK, (i + 1) * BLOCK)), [list]);
+
+  /** One card of the grid: owned, the card itself (a button to open it); missing, its outline. */
+  const cell = (c: Card) =>
+    owned[c.id] ? (
+      <button
+        key={c.id}
+        type="button"
+        onPointerDown={(e) => (lastPointer.current = e.pointerType)}
+        onClick={() => {
+          // On a phone, a mythic's or omni's first tap brings it to life; the next opens it.
+          const top = c.rarity === 'mythic' || c.rarity === 'omni';
+          if (top && lastPointer.current === 'touch' && armed !== c.id) return (sfx.select(), setArmed(c.id));
+          sfx.select();
+          setArmed(null);
+          setOpen(c);
+        }}
+        className={`relative transition hover:z-10 hover:-translate-y-1 ${armed === c.id ? 'z-10' : ''}`}
+        aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}
+      >
+        <CardFace card={c} count={owned[c.id]} hoverHero hero={armed === c.id} />
+        {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">TAP AGAIN TO OPEN</span>}
+      </button>
+    ) : (
+      <CardMissing key={c.id} card={c} />
+    );
 
   const toggleRarity = (r: Rarity) => {
     sfx.click();
@@ -352,36 +379,67 @@ export default function Album() {
         </p>
       )}
 
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-        {list.map((c) =>
-          owned[c.id] ? (
-            <button
-              key={c.id}
-              type="button"
-              onPointerDown={(e) => (lastPointer.current = e.pointerType)}
-              onClick={() => {
-                // On a phone, a mythic's or omni's first tap brings it to life; the next opens it.
-                const top = c.rarity === 'mythic' || c.rarity === 'omni';
-                if (top && lastPointer.current === 'touch' && armed !== c.id) return (sfx.select(), setArmed(c.id));
-                sfx.select();
-                setArmed(null);
-                setOpen(c);
-              }}
-              className={`relative transition hover:z-10 hover:-translate-y-1 ${armed === c.id ? 'z-10' : ''}`}
-              aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}
-            >
-              <CardFace card={c} count={owned[c.id]} hoverHero hero={armed === c.id} />
-              {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">TAP AGAIN TO OPEN</span>}
-            </button>
-          ) : (
-            <CardMissing key={c.id} card={c} />
-          ),
-        )}
+      <div className="space-y-3">
+        {blocks.map((cards, i) => (
+          <AlbumBlock key={i} cards={cards} render={cell} />
+        ))}
       </div>
       {!list.length && <p className="text-center text-ink-soft">No card fits these filters.</p>}
 
       {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
       {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
+    </div>
+  );
+}
+
+/** Cards per block of the grid: whole rows at every width (3, 4, 5 or 6 cards a row), so the blocks stack like one grid. */
+const BLOCK = 60;
+/** How far off screen a block keeps its cards (px): they're there before they scroll in. */
+const NEAR_MARGIN = 1600;
+/** Cards drawn each frame as a block comes near. */
+const DRAW_PER_FRAME = 12;
+
+/**
+ * A block of the album's grid. Near the screen it holds its cards; further off, boxes of the same size (a
+ * full album is thousands of cards, each one a little world of animations). Each card it holds stands
+ * still while it's off screen — its animations pause until it scrolls back in. On screen, nothing changes.
+ */
+function AlbumBlock({ cards, render }: { cards: Card[]; render: (c: Card) => ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+  // How many of its cards are drawn: coming near, a few each frame (no stall while scrolling).
+  const [drawn, setDrawn] = useState(0);
+  // Before the first paint: the blocks already on screen show all their cards straight away.
+  useLayoutEffect(() => {
+    const r = ref.current?.getBoundingClientRect();
+    if (r && r.bottom > -NEAR_MARGIN && r.top < window.innerHeight + NEAR_MARGIN) (setNear(true), setDrawn(cards.length));
+    // Only on the first paint.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), { rootMargin: `${NEAR_MARGIN}px 0px` });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    if (!near) return setDrawn(0);
+    if (drawn >= cards.length) return;
+    const id = requestAnimationFrame(() => setDrawn((n) => Math.min(cards.length, n + DRAW_PER_FRAME)));
+    return () => cancelAnimationFrame(id);
+  }, [near, drawn, cards.length]);
+  // Its cards, one by one: marked still while off screen (see [data-still] in index.css).
+  useEffect(() => {
+    const el = ref.current;
+    if (!near || !el) return;
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => e.target.toggleAttribute('data-still', !e.isIntersecting)), { rootMargin: '60px 0px' });
+    for (const cell of el.children) io.observe(cell);
+    return () => io.disconnect();
+  }, [near, drawn, cards]);
+  return (
+    <div ref={ref} className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+      {cards.map((c, i) => (near && i < drawn ? render(c) : <div key={c.id} className="aspect-[5/7] w-full" />))}
     </div>
   );
 }

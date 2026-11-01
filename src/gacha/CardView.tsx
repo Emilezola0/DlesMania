@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { fromKey } from '../lib/date';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
@@ -104,7 +104,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -170,6 +170,14 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
         ['--my' as string]: `${my}%`,
       }}
     >
+      {/* A mythic's or omni's frame: its rainbow turning (a layer turned whole, so the card isn't redrawn each frame). */}
+      {prism && !singularity && (
+        <div className="card-frame-turn pointer-events-none absolute inset-0 overflow-hidden rounded-[7%]" aria-hidden>
+          <i className={omni ? 'card-frame-turn-omni' : 'card-frame-turn-mythic'} />
+        </div>
+      )}
+      {/* An omni's glow, pulsing (under everything, as the card's own shadow was). */}
+      {omni && <div className="card-omni-pulse pointer-events-none absolute inset-0 -z-20 rounded-[7%]" aria-hidden />}
       <div className={`relative flex size-full flex-col overflow-hidden rounded-[5%] ${omni ? 'card-omni-sky' : mythic ? 'card-mythic-sky' : 'bg-[#0f0d16]'}`} style={{ color: st.text }}>
         {/* Name and rarity (and a mythic's title). */}
         <div className="relative z-10 px-[4cqw] py-[2.5cqw]">
@@ -237,7 +245,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
           </>
         )}
         {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
-        {grade > 1 && <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`} />}
+        {grade > 1 && (
+          <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`}>
+            {grade >= 3 && grade <= 6 && (
+              <>
+                <i className="card-grade-gleam" />
+                <i className="card-grade-edge" />
+              </>
+            )}
+          </div>
+        )}
         {/* Singularity: motes of light spiralling into the middle, and who took it there. */}
         {singularity && (
           <div className="card-singularity-motes pointer-events-none absolute inset-0 z-[6]" aria-hidden>
@@ -256,7 +273,11 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       {/* Singularity: a disc of light bending round the card, the page going dark around it; cracks of light in its frame. */}
       {singularity && (
         <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
-          <div className="card-singularity-disc" />
+          <div className="card-singularity-disc">
+            <div className="card-singularity-ring">
+              <i />
+            </div>
+          </div>
         </div>
       )}
       {singularity && (
@@ -284,14 +305,16 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       {/* Gold and up: a light running round the frame, and a halo. */}
       {grade >= 4 && (
         <>
-          <div className={`card-grade-orbit card-grade-orbit-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />
+          <div className={`card-grade-orbit card-grade-orbit-${grade} pointer-events-none absolute inset-0 rounded-[7%]`}>
+            <i />
+          </div>
           <div className={`card-grade-halo card-grade-halo-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />
         </>
       )}
 
       {mythic && (
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
-          ✦ MYTHIC
+          <i aria-hidden />✦ MYTHIC
         </span>
       )}
       {/* A Fake Rarity: its true colours showing through at the edges of the mythic frame. */}
@@ -329,7 +352,7 @@ export function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, gra
       )}
     </div>
   );
-}
+});
 
 /** A card face down: the Omnidle back, coloured by rarity once it's known (the glow gives it away a moment early). */
 export function CardBack({ rarity }: { rarity?: Rarity }) {

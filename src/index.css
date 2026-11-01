@@ -465,16 +465,22 @@ h1, h2, h3, .font-serif, .font-display {
 }
 
 /* Cards (src/gacha): an epic card's sweeping sheen, a legendary's rainbow holo, packs shaking and tearing. */
+/* The band is a layer of its own sliding across (a transform: no repaint each frame), the same path as a
+   60%-wide background going from -150% to 250%. */
 @keyframes card-sweep {
-  0% { background-position: -150% 0; }
-  100% { background-position: 250% 0; }
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(166.667%); }
 }
+.card-sheen { overflow: hidden; }
 .card-sheen::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.22) 48%, transparent 60%) no-repeat;
-  background-size: 60% 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.22) 48%, transparent 60%);
+  transform: translateX(-100%);
   animation: card-sweep 3.2s ease-in-out infinite;
 }
 @keyframes card-holo-shift {
@@ -687,10 +693,8 @@ h1, h2, h3, .font-serif, .font-display {
 }
 
 /* Mythic: a rainbow frame turning, a starry night with an aurora, a prism foil and glitter, a rainbow name. */
-.card-mythic-frame {
-  background: conic-gradient(from var(--spin), #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
-  animation: card-spin 4s linear infinite;
-}
+/* The frame's rainbow is drawn by .card-frame-turn (a layer turning whole), not by the card itself. */
+.card-mythic-frame { background: none; }
 .card-mythic-sky {
   background:
     radial-gradient(1px 1px at 12% 18%, #fff, transparent),
@@ -734,10 +738,21 @@ h1, h2, h3, .font-serif, .font-display {
   mask-image: radial-gradient(circle at var(--mx) var(--my), #000 0%, transparent 55%);
 }
 .card-mythic-ribbon {
-  background: conic-gradient(from var(--spin), #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
-  animation: card-spin 3s linear infinite;
+  overflow: hidden;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   z-index: 10;
+}
+/* Its rainbow: a square turning behind the words, wider than the ribbon so it always fills it. */
+.card-mythic-ribbon > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 120%;
+  aspect-ratio: 1;
+  background: conic-gradient(#ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8);
+  transform: translate(-50%, -50%);
+  animation: card-turn 3s linear infinite;
 }
 .card-mythic-back {
   background:
@@ -746,7 +761,7 @@ h1, h2, h3, .font-serif, .font-display {
   animation: card-spin 2.5s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .card-gold-name, .card-glints, .card-mythic-frame, .card-mythic-sky::before, .card-mythic-name, .card-mythic-ribbon, .card-mythic-back { animation: none; }
+  .card-gold-name, .card-glints, .card-mythic-frame, .card-mythic-sky::before, .card-mythic-name, .card-mythic-ribbon, .card-mythic-ribbon > i, .card-mythic-back { animation: none; }
 }
 
 /* A mythic in a pack: a slower rainbow star, rainbow twinkles, and colours running through it as it charges. */
@@ -832,11 +847,59 @@ h1, h2, h3, .font-serif, .font-display {
   50% { background-position: 100% 50%, 0% 50%, 30% 70%; }
   100% { background-position: 0% 0%, 100% 100%, 50% 50%; }
 }
-.card-omni-frame {
-  background: conic-gradient(from var(--spin), #ff3b4e, #0a0508, #ff7a18, #ffffff, #ff3b4e, #0a0508, #ff7a18, #ff3b4e);
-  animation: card-spin 3s linear infinite, card-omni-pulse 2.6s ease-in-out infinite;
+.card-omni-frame { background: none; }
+/* Its glow pulses (see .card-omni-pulse): the card's own still glow only shows when motion is reduced. */
+@media (prefers-reduced-motion: no-preference) {
+  .card-omni-frame { box-shadow: none !important; }
 }
-.card-omni-awake { animation: card-spin 1.4s linear infinite, card-omni-pulse 1.2s ease-in-out infinite; }
+/* The rainbow of a mythic's or omni's frame: a square wider than the card's diagonal, turning whole behind
+   it — the same picture as the conic gradient turning, but drawn once and turned (no repaint each frame). */
+@keyframes card-turn {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.card-frame-turn > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 176%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  animation: card-turn 4s linear infinite;
+}
+.card-frame-turn > .card-frame-turn-mythic { background: conic-gradient(#ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8); }
+.card-frame-turn > .card-frame-turn-omni {
+  background: conic-gradient(#ff3b4e, #0a0508, #ff7a18, #ffffff, #ff3b4e, #0a0508, #ff7a18, #ff3b4e);
+  animation-duration: 3s;
+}
+.card-omni-awake .card-frame-turn > .card-frame-turn-omni { animation-duration: 1.4s; }
+/* The omni's pulse: its two glows (card-omni-pulse's two ends) fading into each other. */
+@keyframes card-fade-in-out {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+@keyframes card-fade-out-in {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.card-omni-pulse::before,
+.card-omni-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.card-omni-pulse::before {
+  box-shadow: 0 0 0 2px rgba(255, 59, 78, 0.85), 0 14px 50px rgba(255, 59, 78, 0.5), 0 0 30px rgba(255, 122, 24, 0.35);
+  animation: card-fade-out-in 2.6s ease-in-out infinite;
+}
+.card-omni-pulse::after {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95), 0 18px 80px rgba(255, 59, 78, 0.85), 0 0 60px rgba(255, 122, 24, 0.6);
+  opacity: 0;
+  animation: card-fade-in-out 2.6s ease-in-out infinite;
+}
+.card-omni-awake .card-omni-pulse::before,
+.card-omni-awake .card-omni-pulse::after { animation-duration: 1.2s; }
 .card-omni-sky {
   background:
     radial-gradient(ellipse at 20% 15%, rgba(255, 59, 78, 0.4), transparent 50%),
@@ -927,7 +990,8 @@ h1, h2, h3, .font-serif, .font-display {
   animation-duration: 4s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks, .card-omni-back, .card-omni-ring, .card-omni-ember { animation: none; }
+  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks, .card-omni-back, .card-omni-ring, .card-omni-ember, .card-frame-turn > i { animation: none; }
+  .card-omni-pulse { display: none; }
 }
 
 /* ── Behind a mythic's or omni's picture: the background moves, the character stays sharp in front. ── */
@@ -1074,21 +1138,33 @@ h1, h2, h3, .font-serif, .font-display {
    specks of light. Radiant: a prismatic edge, a brighter gleam, more specks. Celestial: see below. */
 .card-grade-fx { z-index: 5; border-radius: inherit; }
 .card-grade-2 { box-shadow: inset 0 0 0 1.2cqw rgba(205, 127, 50, 0.55), inset 0 0 6cqw rgba(205, 127, 50, 0.35); }
-.card-grade-3,
-.card-grade-4,
-.card-grade-5 {
+/* III–VI: the gleam (a band three times the card's width, sliding across: a transform, no repaint each
+   frame — the same path as a 300%-wide background going from 120% to -20%), then the edge over it. */
+.card-grade-fx > i {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.card-grade-gleam { z-index: -2; overflow: hidden; }
+.card-grade-gleam::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300%;
   background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.32) 48%, rgba(255, 255, 255, 0.06) 54%, transparent 62%);
-  background-size: 300% 100%;
+  transform: translateX(-80%);
   animation: card-grade-gleam 5s ease-in-out infinite;
 }
-.card-grade-3 { box-shadow: inset 0 0 0 1.2cqw rgba(226, 232, 240, 0.6), inset 0 0 7cqw rgba(203, 213, 225, 0.35); }
-.card-grade-4 {
-  box-shadow: inset 0 0 0 1.3cqw rgba(251, 191, 36, 0.65), inset 0 0 8cqw rgba(251, 191, 36, 0.4);
-  animation-duration: 4s;
-}
-.card-grade-5 {
-  box-shadow: inset 0 0 0 1.4cqw rgba(240, 171, 252, 0.7), inset 0 0 9cqw rgba(159, 220, 255, 0.45);
-  background-image: linear-gradient(105deg, transparent 36%, rgba(255, 159, 243, 0.35) 44%, rgba(255, 255, 255, 0.55) 49%, rgba(159, 220, 255, 0.35) 54%, transparent 62%);
+.card-grade-edge { z-index: -1; }
+.card-grade-3 > .card-grade-edge { box-shadow: inset 0 0 0 1.2cqw rgba(226, 232, 240, 0.6), inset 0 0 7cqw rgba(203, 213, 225, 0.35); }
+.card-grade-4 > .card-grade-edge { box-shadow: inset 0 0 0 1.3cqw rgba(251, 191, 36, 0.65), inset 0 0 8cqw rgba(251, 191, 36, 0.4); }
+.card-grade-4 > .card-grade-gleam::before { animation-duration: 4s; }
+.card-grade-5 > .card-grade-edge { box-shadow: inset 0 0 0 1.4cqw rgba(240, 171, 252, 0.7), inset 0 0 9cqw rgba(159, 220, 255, 0.45); }
+.card-grade-5 > .card-grade-gleam::before {
+  background: linear-gradient(105deg, transparent 36%, rgba(255, 159, 243, 0.35) 44%, rgba(255, 255, 255, 0.55) 49%, rgba(159, 220, 255, 0.35) 54%, transparent 62%);
   animation-duration: 3s;
 }
 .card-grade-4::after,
@@ -1114,31 +1190,52 @@ h1, h2, h3, .font-serif, .font-display {
   animation-duration: 1.5s;
 }
 @keyframes card-grade-gleam {
-  0%, 35% { background-position: 120% 0; }
-  75%, 100% { background-position: -20% 0; }
+  0%, 35% { transform: translateX(-80%); }
+  75%, 100% { transform: translateX(13.333%); }
 }
 /* Gold and Radiant: a comet of light running round the frame. */
 .card-grade-orbit {
   padding: 1.6cqw;
-  background: conic-gradient(from var(--spin), transparent 0 72%, rgba(255, 236, 150, 0.2) 80%, #fff7c2 92%, #fff 96%, transparent 100%);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
-  animation: card-spin 3.5s linear infinite;
 }
-.card-grade-orbit-5 {
-  background: conic-gradient(from var(--spin), transparent 0 60%, #ff9ff3 72%, #ffe58f 82%, #9fdcff 90%, #fff 96%, transparent 100%);
+/* The comet: a square wider than the card's diagonal, turning whole under the ring's mask. */
+.card-grade-orbit > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 176%;
+  aspect-ratio: 1;
+  background: conic-gradient(transparent 0 72%, rgba(255, 236, 150, 0.2) 80%, #fff7c2 92%, #fff 96%, transparent 100%);
+  transform: translate(-50%, -50%);
+  animation: card-turn 3.5s linear infinite;
+}
+.card-grade-orbit-5 > i {
+  background: conic-gradient(transparent 0 60%, #ff9ff3 72%, #ffe58f 82%, #9fdcff 90%, #fff 96%, transparent 100%);
   animation-duration: 2.4s;
 }
 /* And a halo round the card, breathing. */
-.card-grade-halo { animation: card-grade-breathe 2.8s ease-in-out infinite; }
+/* And a halo round the card, breathing: its two glows (small and wide) fading into each other. */
+.card-grade-halo::before,
+.card-grade-halo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.card-grade-halo::before {
+  box-shadow: 0 0 3cqw 0.5cqw var(--halo);
+  animation: card-fade-out-in 2.8s ease-in-out infinite;
+}
+.card-grade-halo::after {
+  box-shadow: 0 0 8cqw 2cqw var(--halo);
+  opacity: 0;
+  animation: card-fade-in-out 2.8s ease-in-out infinite;
+}
 .card-grade-halo-4 { --halo: rgba(251, 191, 36, 0.55); }
 .card-grade-halo-5 { --halo: rgba(240, 171, 252, 0.6); }
-@keyframes card-grade-breathe {
-  0%, 100% { box-shadow: 0 0 3cqw 0.5cqw var(--halo); }
-  50% { box-shadow: 0 0 8cqw 2cqw var(--halo); }
-}
 /* The Radiant emblem: its rays turn, the emblem glows. */
 .grade-emblem-radiant { filter: drop-shadow(0 0 2cqw rgba(255, 255, 255, 0.7)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)); }
 .grade-emblem-radiant .grade-rays {
@@ -1148,20 +1245,25 @@ h1, h2, h3, .font-serif, .font-display {
 @keyframes grade-rays-turn { to { transform: rotate(360deg); } }
 /* Celestial, the top grade: a white-gold edge and a quick gleam, light turning over the card, stars rising through it,
    two comets round the frame, a stronger halo, rays turning behind the card and an emblem with two rings. */
-.card-grade-6 {
-  overflow: hidden;
-  box-shadow: inset 0 0 0 1.5cqw rgba(255, 241, 168, 0.9), inset 0 0 3cqw 1cqw rgba(255, 255, 255, 0.55), inset 0 0 14cqw rgba(242, 185, 46, 0.55);
+.card-grade-6 { overflow: hidden; }
+.card-grade-6 > .card-grade-edge { box-shadow: inset 0 0 0 1.5cqw rgba(255, 241, 168, 0.9), inset 0 0 3cqw 1cqw rgba(255, 255, 255, 0.55), inset 0 0 14cqw rgba(242, 185, 46, 0.55); }
+.card-grade-6 > .card-grade-gleam::before {
   background: linear-gradient(105deg, transparent 34%, rgba(255, 241, 168, 0.4) 44%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 241, 168, 0.4) 56%, transparent 66%);
-  background-size: 300% 100%;
-  animation: card-grade-gleam 2.2s ease-in-out infinite;
+  animation-duration: 2.2s;
 }
+/* Its light turning over the card (centred at 40% of its height): a square big enough to cover the card
+   from there, turning whole. */
 .card-grade-6::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: conic-gradient(from var(--spin) at 50% 40%, transparent 0 12%, rgba(255, 241, 168, 0.28) 20%, transparent 30% 45%, rgba(255, 255, 255, 0.24) 55%, transparent 65% 80%, rgba(242, 185, 46, 0.28) 90%, transparent 100%);
+  left: 50%;
+  top: 40%;
+  width: 202%;
+  aspect-ratio: 1;
+  background: conic-gradient(transparent 0 12%, rgba(255, 241, 168, 0.28) 20%, transparent 30% 45%, rgba(255, 255, 255, 0.24) 55%, transparent 65% 80%, rgba(242, 185, 46, 0.28) 90%, transparent 100%);
   mix-blend-mode: screen;
-  animation: card-spin 7s linear infinite;
+  transform: translate(-50%, -50%);
+  animation: card-turn 7s linear infinite;
 }
 .card-grade-6::after {
   content: '';
@@ -1178,15 +1280,14 @@ h1, h2, h3, .font-serif, .font-display {
 @keyframes card-grade-stars {
   to { background-position: 0 -60cqw, 0 -90cqw, 0 -75cqw, 0 -100cqw; }
 }
-.card-grade-orbit-6 {
-  padding: 2cqw;
-  background: conic-gradient(from var(--spin), transparent 0 22%, #f2b92e 36%, #fff 48%, transparent 50% 72%, #f2b92e 86%, #fff 98%, transparent 100%);
+.card-grade-orbit-6 { padding: 2cqw; }
+.card-grade-orbit-6 > i {
+  background: conic-gradient(transparent 0 22%, #f2b92e 36%, #fff 48%, transparent 50% 72%, #f2b92e 86%, #fff 98%, transparent 100%);
   animation-duration: 1.8s;
 }
-.card-grade-halo-6 {
-  --halo: rgba(255, 225, 120, 0.8);
-  animation-duration: 2.2s;
-}
+.card-grade-halo-6 { --halo: rgba(255, 225, 120, 0.8); }
+.card-grade-halo-6::before,
+.card-grade-halo-6::after { animation-duration: 2.2s; }
 .card-grade-crown {
   position: absolute;
   left: 50%;
@@ -1215,14 +1316,20 @@ h1, h2, h3, .font-serif, .font-display {
   overflow: hidden;
   box-shadow: inset 0 0 0 1.6cqw #000, inset 0 0 0 1.9cqw rgba(196, 181, 253, 0.8), inset 0 0 16cqw 3cqw rgba(0, 0, 0, 0.9);
 }
+/* The darkness turning: a square covering the card, turning whole. Its round mask (clear in the middle,
+   dark from there out) is the same circle as before, given against the square's own size. */
 .card-grade-7::before {
   content: '';
   position: absolute;
-  inset: -30%;
-  background: conic-gradient(from var(--spin) at 50% 50%, rgba(0, 0, 0, 0.5) 0 8%, transparent 25%, rgba(0, 0, 0, 0.5) 33% 41%, transparent 58%, rgba(0, 0, 0, 0.5) 66% 74%, transparent 91%, rgba(0, 0, 0, 0.5) 100%);
-  animation: card-spin 9s linear infinite;
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 18%, #000 60%);
-  mask: radial-gradient(circle at 50% 50%, transparent 18%, #000 60%);
+  left: 50%;
+  top: 50%;
+  width: 178%;
+  aspect-ratio: 1;
+  background: conic-gradient(rgba(0, 0, 0, 0.5) 0 8%, transparent 25%, rgba(0, 0, 0, 0.5) 33% 41%, transparent 58%, rgba(0, 0, 0, 0.5) 66% 74%, transparent 91%, rgba(0, 0, 0, 0.5) 100%);
+  transform: translate(-50%, -50%);
+  animation: card-turn 9s linear infinite;
+  -webkit-mask: radial-gradient(circle closest-side, transparent 28.17%, #000 93.92%);
+  mask: radial-gradient(circle closest-side, transparent 28.17%, #000 93.92%);
 }
 .card-singularity-picture { animation: card-singularity-pull 6s ease-in-out infinite; }
 @keyframes card-singularity-pull {
@@ -1283,26 +1390,32 @@ h1, h2, h3, .font-serif, .font-display {
   transform: translate(-50%, -50%);
   background: radial-gradient(closest-side, rgba(0, 0, 0, 0.95) 72%, rgba(0, 0, 0, 0.55) 86%, transparent 100%);
 }
-/* The thin ring of light it hasn't swallowed yet. */
-.card-singularity-disc::before {
-  content: '';
+/* The thin ring of light it hasn't swallowed yet: the ring (its mask) stays still, its light turns whole inside. */
+.card-singularity-ring {
   position: absolute;
   inset: 8%;
   border-radius: 50%;
-  background: conic-gradient(from var(--spin), transparent, #fff 8%, #c4b5fd 16%, transparent 34%, #7dd3fc 52%, #fff 58%, transparent 74%, #c4b5fd 90%, transparent);
   -webkit-mask: radial-gradient(closest-side, transparent 96%, #000 97.5%, #000 98.5%, transparent 100%);
   mask: radial-gradient(closest-side, transparent 96%, #000 97.5%, #000 98.5%, transparent 100%);
-  animation: card-spin 5s linear infinite;
 }
-.card-grade-orbit-7 {
-  padding: 1.1cqw;
-  background: conic-gradient(from var(--spin), #000 0 55%, #7dd3fc 70%, #c4b5fd 82%, #fff 96%, #000 100%);
+.card-singularity-ring > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130%;
+  aspect-ratio: 1;
+  background: conic-gradient(transparent, #fff 8%, #c4b5fd 16%, transparent 34%, #7dd3fc 52%, #fff 58%, transparent 74%, #c4b5fd 90%, transparent);
+  transform: translate(-50%, -50%);
+  animation: card-turn 5s linear infinite;
+}
+.card-grade-orbit-7 { padding: 1.1cqw; }
+.card-grade-orbit-7 > i {
+  background: conic-gradient(#000 0 55%, #7dd3fc 70%, #c4b5fd 82%, #fff 96%, #000 100%);
   animation-duration: 3s;
 }
-.card-grade-halo-7 {
-  --halo: rgba(0, 0, 0, 0.95);
-  animation-duration: 3.4s;
-}
+.card-grade-halo-7 { --halo: rgba(0, 0, 0, 0.95); }
+.card-grade-halo-7::before,
+.card-grade-halo-7::after { animation-duration: 3.4s; }
 .grade-emblem-singularity { filter: drop-shadow(0 0 2cqw rgba(196, 181, 253, 0.95)) drop-shadow(0 0 1px #fff); }
 /* A grade-up: the card flares. */
 @keyframes card-grade-flare {
@@ -1330,8 +1443,9 @@ h1, h2, h3, .font-serif, .font-display {
 .card-grade-collapse { animation: card-grade-collapse 2.6s ease-in both; }
 @media (prefers-reduced-motion: reduce) {
   .card-grade-3, .card-grade-4, .card-grade-5, .card-grade-6, .card-grade-4::after, .card-grade-5::after, .card-grade-6::before, .card-grade-6::after, .card-grade-7::before,
-  .card-singularity-picture, .card-singularity-warp, .card-singularity-motes i, .card-singularity-cracks path, .card-singularity-disc::before, .card-grade-collapse,
-  .card-grade-orbit, .card-grade-halo, .card-grade-crown, .grade-emblem-radiant .grade-rays, .grade-emblem-celestial .grade-rays-back, .card-grade-flare, .card-grade-flare-top { animation: none; }
+  .card-singularity-picture, .card-singularity-warp, .card-singularity-motes i, .card-singularity-cracks path, .card-singularity-ring > i, .card-grade-collapse,
+  .card-grade-orbit, .card-grade-orbit > i, .card-grade-gleam::before, .card-grade-halo, .card-grade-crown, .grade-emblem-radiant .grade-rays, .grade-emblem-celestial .grade-rays-back, .card-grade-flare, .card-grade-flare-top { animation: none; }
+  .card-grade-halo::before, .card-grade-halo::after { display: none; }
   .card-grade-crown { transform: translate(-50%, -50%); }
   .card-singularity-motes { display: none; }
 }
@@ -1520,3 +1634,8 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 @media (prefers-reduced-motion: reduce) {
   .pack-hole-disc, .pack-hole-lens { animation: none; }
 }
+
+/* The album's cards off screen (src/pages/Album.tsx): their animations wait, still, until they scroll back in. */
+[data-still] *,
+[data-still] *::before,
+[data-still] *::after { animation-play-state: paused !important; }
