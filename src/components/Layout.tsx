@@ -402,6 +402,7 @@ export function Layout() {
           </a>{' '}
           and it will be taken down.
         </p>
+        <p className="mt-2 font-display tracking-wider opacity-70">v{__APP_RELEASE__}</p>
       </footer>
     </div>
   );

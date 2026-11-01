@@ -22,6 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The whole history: the footer's version counts the commits since package.json's version changed.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
