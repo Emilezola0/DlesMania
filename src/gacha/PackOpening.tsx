@@ -64,9 +64,9 @@ const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 
 
 /** Legendary and up: the card spins as it charges, faster and faster — turns in the charge's time (see turn()). */
 const SPIN: Partial<Record<Rarity, React.CSSProperties>> = {
-  legendary: { ['--turns' as string]: 2, animationDuration: '900ms' },
-  mythic: { ['--turns' as string]: 3, animationDuration: '1500ms' },
-  omni: { ['--turns' as string]: 4, animationDuration: '2200ms' },
+  legendary: { ['--turns' as string]: 5, animationDuration: '2000ms' },
+  mythic: { ['--turns' as string]: 6, animationDuration: '2100ms' },
+  omni: { ['--turns' as string]: 7, animationDuration: '2300ms' },
 };
 
 /** Where the black hole opens: the middle of the screen (%). */
@@ -452,15 +452,15 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     if (c.rarity === 'omni' && !reducedMotion()) {
       setCharging(true);
       sfx.shimmer(20);
-      later(go, 2200);
+      later(go, 2300);
     } else if (c.rarity === 'mythic' && !reducedMotion()) {
       setCharging(true);
       sfx.shimmer(16);
-      later(go, 1500);
+      later(go, 2100);
     } else if (c.rarity === 'legendary' && !reducedMotion()) {
       setCharging(true);
       sfx.shimmer(10);
-      later(go, 900);
+      later(go, 2000);
     } else if (c.rarity === 'epic' && !reducedMotion()) {
       setCharging(true);
       later(go, 380);
