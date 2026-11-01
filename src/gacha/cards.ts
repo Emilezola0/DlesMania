@@ -206,7 +206,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     name: 'Monkey D. Luffy',
     title: 'Gear Fourth: Boundman',
     line: 'Rubber muscle swollen with Haki, bouncing like a war drum — and this is not even his final form.',
-    image: 'https://static.wikia.nocookie.net/onepiece/images/b/b5/Luffy_Gear_Fourth_Pirate_Warriors_4.png/revision/latest/scale-to-width-down/500?cb=20191216211624',
+    image: 'https://static.wikia.nocookie.net/onepiece/images/5/56/Gear_4_Infobox.png/revision/latest/scale-to-width-down/500?cb=20170830213511',
     awaken: {
       title: 'Gear Fifth: Joy Boy',
       line: 'The drums of liberation, at last: he laughs, and the whole world bends like rubber with him.',
@@ -594,7 +594,7 @@ const CLIPS: Record<string, string> = {
 /** The clips under 150 KB. */
 const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'avatar:mythic-2', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
-const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'onepiece:omni', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
+const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
 const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
@@ -749,6 +749,29 @@ const withCardArt = (b: (typeof BOSSES)[number]): (typeof BOSSES)[number] => {
 };
 const CARD_BOSSES = BOSSES.map(withCardArt);
 
+/**
+ * One Piece in the manga's and the anime's own pictures only: a card drawn from the Who's That? roster came
+ * with a video game render (Thousand Storm, Pirate Warriors) — it takes the character's anime picture
+ * instead (the boss's, the Specialist's, or the wiki's infobox).
+ */
+const GAME_RENDER = /Thousand_Storm|Pirate_Warriors|Bounty_Rush|Treasure_Cruise/i;
+const OP_KEY = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+const OP_ANIME = (() => {
+  const m = new Map<string, string>();
+  const put = (name: string, url?: string) => {
+    if (url && !GAME_RENDER.test(url) && !m.has(OP_KEY(name))) m.set(OP_KEY(name), url.replace(/\/scale-to-width-down\/\d+/, '/scale-to-width-down/400'));
+  };
+  const boss = BOSSES.find((b) => b.id === 'onepiece');
+  for (const c of [...(boss?.radar.members ?? []), ...(boss?.finale ?? [])]) put(c.label, c.image);
+  for (const c of ONE_PIECE.characters) for (const n of [c.name, ...c.aliases]) put(n, c.image);
+  // From the One Piece wiki's infoboxes: the ones neither knows.
+  const wiki = 'https://static.wikia.nocookie.net/onepiece/images/';
+  for (const [n, f] of [['Jozu', '6/61/Jozu_Anime_Infobox.png'], ['Vista', '7/78/Vista_Anime_Infobox.png'], ['Gin', '4/49/Gin_Anime_Infobox.png'], ['Shiki', '3/32/Shiki_Anime_Infobox.png'], ['Douglas Bullet', '5/54/Douglas_Bullet_Anime_Infobox.png'], ['Tsuru', '9/91/Tsuru_Anime_Infobox.png'], ['Hina', '0/0d/Hina_Anime_Infobox.png']])
+    put(n, `${wiki}${f}/revision/latest/scale-to-width-down/400`);
+  return m;
+})();
+const animeOnly = (c: Omit<Card, 'no'>): Omit<Card, 'no'> => (c.set === 'onepiece' && GAME_RENDER.test(c.image) ? { ...c, image: OP_ANIME.get(OP_KEY(c.name)) ?? c.image } : c);
+
 export const CARDS: Card[] = (() => {
   // Each name once across all sets: the first set to build it keeps it. The order below is the
   // order cards were added over time — a later addition can never take a name an earlier card has,
@@ -829,7 +852,7 @@ export const CARDS: Card[] = (() => {
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
     if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
   }
-  return CARD_BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...c, ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
+  return CARD_BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...animeOnly(c), ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));
