@@ -123,15 +123,21 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
   const readable = entry.reading && entry.reading !== entry.text;
   const ask: JlptAsk = readable && Math.random() < 0.4 ? 'reading' : 'meaning';
   const answer = shown(entry, ask);
+  // Two answers that mean the same are a duplicate, whatever the case or a bracket ("five" and "Five",
+  // "sky" and "sky, heavens"): one sense in common is enough.
+  const sensesOf = (t: string) => t.split(/[;,]/).map((x) => x.replace(/\(.*?\)/g, '').toLowerCase().replace(/^(to|a|an|the) /, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim()).filter(Boolean);
+  const taken = new Set(sensesOf(answer));
+  const clash = (t: string) => sensesOf(t).some((x) => taken.has(x));
   const wrong = new Set<string>();
   // A small deck (a short review list) borrows its wrong answers from where the entry comes from.
   const others = deck.entries.length >= 12 ? deck.entries : [...deck.entries, ...homeDeck(entry).entries];
   for (const e of shuffle(others, Math.random)) {
     if (wrong.size >= 3) break;
     const s = shown(e, ask);
-    if (!s || e.text === entry.text || s === answer || wrong.has(s)) continue;
+    if (!s || e.text === entry.text || clash(s)) continue;
     if (ask === 'meaning' && e.meaning === entry.meaning) continue;
     wrong.add(s);
+    for (const x of sensesOf(s)) taken.add(x);
   }
   return { entry, ask, answer, options: shuffle([answer, ...wrong], Math.random) };
 }
