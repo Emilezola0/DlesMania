@@ -2,7 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { Customise, useCustomPicks } from '../components/Customise';
 import { JLPT_MEMORY_DEFAULT, JLPT_PAIR_TYPES, MEMORY_DECKS, PAIRS_PER_GAME, dealBoard, jlptPairs, memoryDeck, memoryScore, type MemoryCard, type MemoryDeck } from '../arcade/memory';
-import { JLPT_LEVELS } from '../arcade/jlpt';
+import { JLPT_LEVELS, jlptEntry, shortMeaning } from '../arcade/jlpt';
+import { KeepButton } from '../components/JlptKeep';
 import { GlyphSeal } from '../components/Glyph';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -121,6 +122,7 @@ function Board({ deck }: { deck: MemoryDeck }) {
           <Card key={`${run}-${c.key}`} card={c} n={i + 1} up={open.includes(c.key) || found.includes(c.pair)} found={found.includes(c.pair)} onClick={() => flip(c)} />
         ))}
       </div>
+      <FoundWords ids={found.flatMap((id) => deck.pairs.find((p) => p.id === id)?.entries ?? [])} />
       {done && (
         <div className="animate-pop space-y-2 rounded-md border border-hit/50 bg-hit/10 p-5 text-center">
           <p className="font-display text-sm uppercase tracking-widest text-ink-soft">All pairs found</p>
@@ -137,7 +139,42 @@ function Board({ deck }: { deck: MemoryDeck }) {
   );
 }
 
-/** /memory and /memory/:deck */
+/** JLPT: the words and kanji of the pairs found so far, each one starrable onto the review list. */
+function FoundWords({ ids }: { ids: string[] }) {
+  const add = useProgress((s) => s.addJlptReview);
+  const list = useProgress((s) => s.jlptReview);
+  const entries = [...new Set(ids)].flatMap((id) => jlptEntry(id) ?? []);
+  if (!entries.length) return null;
+  const all = entries.every((e) => e.id in list);
+  return (
+    <section className="page space-y-2 rounded-md p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-display font-bold">Found: {entries.length}</p>
+        <button type="button" disabled={all} onClick={() => add(entries.map((e) => e.id))} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold disabled:opacity-50">
+          {all ? '★ All in your review list' : '☆ Add them all to my review list'}
+        </button>
+      </div>
+      <ul className="space-y-1.5">
+        {entries.map((e) => (
+          <li key={e.id} className="animate-pop flex items-center gap-3 rounded-md border border-rule px-3 py-1.5">
+            <span lang="ja" className="min-w-12 font-serif text-xl font-bold">
+              {e.text}
+            </span>
+            <span className="min-w-0 flex-1 text-sm">
+              <span lang="ja" className="block text-ink-soft">
+                {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+              </span>
+              <span className="block">{shortMeaning(e.meaning, 4)}</span>
+            </span>
+            <KeepButton id={e.id} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/** /memory and /memory/:deck
 /** JLPT: which kinds of pair, which levels (N5 and N4 at first). */
 const JLPT_MEMORY_OPTIONS = [
   ...JLPT_PAIR_TYPES.map((t) => ({ key: t.key, label: t.label, group: 'Pairs' })),

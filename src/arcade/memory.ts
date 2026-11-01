@@ -34,6 +34,8 @@ export interface MemoryPair {
   id: string;
   a: MemoryFace;
   b: MemoryFace;
+  /** JLPT: the list's words and kanji on the pair, to put on the review list once it's found. */
+  entries?: string[];
 }
 
 export interface MemoryDeck {
@@ -165,17 +167,17 @@ export function jlptPairs(picks: string[]): MemoryPair[] {
   const meaning = (m: string) => shortMeaning(m, 2);
   const out: MemoryPair[] = [];
   if (picks.includes('kanji-meaning'))
-    for (const k of kanji) if (fresh(k.text, meaning(k.meaning))) out.push({ id: `km:${k.id}`, a: { text: k.text, big: true, caption: k.reading }, b: { text: meaning(k.meaning), caption: `${k.text} · ${k.reading}` } });
+    for (const k of kanji) if (fresh(k.text, meaning(k.meaning))) out.push({ id: `km:${k.id}`, entries: [k.id], a: { text: k.text, big: true, caption: k.reading }, b: { text: meaning(k.meaning), caption: `${k.text} · ${k.reading}` } });
   if (picks.includes('word-meaning'))
     for (const w of words)
-      if (w.text.match(KANJI_RE) && fresh(w.text, meaning(w.meaning))) out.push({ id: `wm:${w.id}`, a: { text: w.text, big: true, caption: w.reading }, b: { text: meaning(w.meaning), caption: `${w.text} · ${w.reading}` } });
+      if (w.text.match(KANJI_RE) && fresh(w.text, meaning(w.meaning))) out.push({ id: `wm:${w.id}`, entries: [w.id], a: { text: w.text, big: true, caption: w.reading }, b: { text: meaning(w.meaning), caption: `${w.text} · ${w.reading}` } });
   if (picks.includes('kanji-word'))
     for (const k of kanji) {
       const w = words.find((x) => (x.text.match(KANJI_RE) ?? []).length === 1 && x.text.includes(k.text) && !used.has(x.text));
-      if (w && fresh(`k:${k.text}`, w.text)) out.push({ id: `kw:${k.id}`, a: { text: k.text, big: true, caption: `${k.reading} · ${shortMeaning(k.meaning, 2)}` }, b: { text: w.text, big: true, caption: `${w.reading} · ${shortMeaning(w.meaning, 2)}` } });
+      if (w && fresh(`k:${k.text}`, w.text)) out.push({ id: `kw:${k.id}`, entries: [k.id, w.id], a: { text: k.text, big: true, caption: `${k.reading} · ${shortMeaning(k.meaning, 2)}` }, b: { text: w.text, big: true, caption: `${w.reading} · ${shortMeaning(w.meaning, 2)}` } });
     }
   if (picks.includes('katakana-meaning'))
-    for (const w of words) if (KATAKANA_ONLY.test(w.text) && fresh(w.text, meaning(w.meaning))) out.push({ id: `cm:${w.id}`, a: { text: w.text, big: true, caption: w.text }, b: { text: meaning(w.meaning), caption: w.text } });
+    for (const w of words) if (KATAKANA_ONLY.test(w.text) && fresh(w.text, meaning(w.meaning))) out.push({ id: `cm:${w.id}`, entries: [w.id], a: { text: w.text, big: true, caption: w.text }, b: { text: meaning(w.meaning), caption: w.text } });
   return out;
 }
 
