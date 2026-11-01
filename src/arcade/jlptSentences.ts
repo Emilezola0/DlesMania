@@ -1,9 +1,8 @@
-// JLPT sentences with a blank (built by scripts/build-jlpt-sentences.mjs): real sentences from Tatoeba,
-// each with a blank on one of the level's grammar points or words, its translation, its furigana, and a
-// recording when a voice read it. The words, readings and grammar points are the list's (jlpt.json).
+// JLPT sentences (built by scripts/build-jlpt-sentences.mjs): real sentences from Tatoeba using one of a
+// level's grammar points (or words), with their translation, their furigana and a recording when a voice
+// read it — the examples shown once a grammar question is answered (src/components/JlptGrammarNote.tsx).
+// The words, readings and grammar points are the list's (jlpt.json).
 import data from '../data/jlpt-sentences.json';
-import { shuffle } from '../lib/rng';
-import { JLPT_LEVELS, jlptEntry, type JlptEntry } from './jlpt';
 
 export interface JlptSentence {
   /** Tatoeba's number for it. */
@@ -56,44 +55,4 @@ export function pieces(furigana: string): Piece[] {
     at += base.length;
   }
   return out;
-}
-
-/** The list's words in a sentence (its longest matches, each once — a lone kanji too), to go over once it's answered. */
-const WORD_INDEX = (() => {
-  const m = new Map<string, JlptEntry>();
-  for (const l of JLPT_LEVELS) for (const e of l.decks[0].entries) for (const w of e.text.split('/')) if (/\p{Script=Han}/u.test(w) && !m.has(w)) m.set(w, e);
-  return m;
-})();
-export function wordsIn(s: JlptSentence): JlptEntry[] {
-  const out: JlptEntry[] = [];
-  const word = s.word ? jlptEntry(s.word) : undefined;
-  if (word) out.push(word);
-  for (let i = 0; i < s.ja.length; i++) {
-    for (let len = Math.min(6, s.ja.length - i); len >= 1; len--) {
-      const e = WORD_INDEX.get(s.ja.slice(i, i + len));
-      if (e) {
-        if (!out.some((x) => x.id === e.id)) out.push(e);
-        i += len - 1;
-        break;
-      }
-    }
-  }
-  return out.slice(0, 8);
-}
-
-export interface SentenceQuestion {
-  s: JlptSentence;
-  answer: string;
-  options: string[];
-}
-
-/** A sentence not asked lately, its four answers mixed. */
-export function nextSentence(level: string, recent: Set<number>): SentenceQuestion | null {
-  const all = sentencesOf(level).filter((s) => s.wrong.length === 3);
-  if (!all.length) return null;
-  const fresh = all.filter((s) => !recent.has(s.id));
-  const pool = fresh.length ? fresh : all;
-  const s = pool[Math.floor(Math.random() * pool.length)];
-  const answer = s.ja.slice(s.blank[0], s.blank[1]);
-  return { s, answer, options: shuffle([answer, ...s.wrong.filter((w) => w !== answer)], Math.random) };
 }

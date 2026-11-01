@@ -11,8 +11,7 @@ import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
 import { KeepButton } from '../components/JlptKeep';
-import { sentencesOf } from '../arcade/jlptSentences';
-import { SentencePage } from './JlptSentences';
+import { GrammarPage } from './JlptGrammarGame';
 
 /** How long a right answer stays shown before the next question. */
 const REVEAL_MS = 900;
@@ -379,18 +378,18 @@ function ReviewList() {
   );
 }
 
-/** A level's grammar: its sentences with a gap to play, and its list of points to show. */
+/** A level's grammar: its patterns with gaps to play, and its list of points to show. */
 function GrammarCard({ level, points, open, onToggle }: { level: string; points: number; open: boolean; onToggle: () => void }) {
-  const best = useProgress((s) => s.bests[`jlpt:${level.toLowerCase()}-sentences`] ?? 0);
+  const best = useProgress((s) => s.bests[`jlpt:${level.toLowerCase()}-grammar`] ?? 0);
   return (
     <li className="page flex h-full flex-col rounded-md ring-2 ring-accent/40 transition hover:-translate-y-0.5">
-      <Link to={`/jlpt/${level.toLowerCase()}-sentences`} className="flex flex-1 flex-col gap-1 p-5 pb-2">
+      <Link to={`/jlpt/${level.toLowerCase()}-grammar`} className="flex flex-1 flex-col gap-1 p-5 pb-2">
         <span lang="ja" className="font-serif text-3xl font-bold">
           文
         </span>
         <span className="font-display text-xl font-bold">Grammar</span>
         <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
-          {sentencesOf(level).length} sentences with a gap
+          {points} points with gaps to fill
           {best > 0 && (
             <span className="inline-flex items-center gap-1 font-bold text-coral">
               <FlameIcon /> best {best}
@@ -399,7 +398,7 @@ function GrammarCard({ level, points, open, onToggle }: { level: string; points:
         </span>
       </Link>
       <button type="button" onClick={onToggle} className="px-5 pb-4 text-left text-xs text-ink-faint hover:text-ink hover:underline">
-        {points} points · {open ? 'hide the list' : 'show the list'}
+        {open ? 'Hide the list' : 'Show the list'}
       </button>
     </li>
   );
@@ -716,9 +715,9 @@ export default function Jlpt() {
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
   }
   if (id) {
-    // A level's grammar, in sentences with a gap.
-    const sentences = /^(n[1-5])-sentences$/.exec(id);
-    if (sentences) return <SentencePage key={id} level={sentences[1].toUpperCase()} />;
+    // A level's grammar: its patterns with gaps to fill (the old sentence game's address leads there too).
+    const grammar = /^(n[1-5])-(grammar|sentences)$/.exec(id);
+    if (grammar) return grammar[2] === 'grammar' ? <GrammarPage key={id} level={grammar[1].toUpperCase()} /> : <Navigate to={`/jlpt/${grammar[1]}-grammar`} replace />;
     const deck = id === 'review' ? reviewDeck([]) : id === 'custom' ? customDeck(picks) : jlptDeck(id);
     if (!deck) return <Navigate to="/jlpt" replace />;
     return (
