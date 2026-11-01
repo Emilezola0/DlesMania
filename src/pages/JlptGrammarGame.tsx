@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { hiddenKana, lastItems, lastRight, maskPattern } from '../arcade/toTheLast';
+import { grammarMeaning } from '../arcade/jlptGrammar';
 import { GrammarNote } from '../components/JlptGrammarNote';
 import { celebrateBig, shake } from '../lib/fx';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
@@ -22,6 +23,7 @@ function GrammarGame({ level }: { level: string }) {
   const key = `jlpt:${level.toLowerCase()}-grammar`;
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
+  const lang = useProgress((s) => s.nameLang);
   const recent = useRef<string[]>([]);
   const draw = () => {
     const fresh = items.filter((e) => !recent.current.includes(e.id));
@@ -66,6 +68,7 @@ function GrammarGame({ level }: { level: string }) {
     next();
   };
 
+  const hint = grammarMeaning(level, q.entry.text, lang);
   // The missing kana, and how they're typed in romaji.
   const gap = hiddenKana(q.entry.text, q.shown);
   const gapRomaji = gap && /^[ぁ-ゖァ-ヶー]+$/.test(gap) ? romajiSpellings(toHiragana(gap))[0] : '';
@@ -83,6 +86,8 @@ function GrammarGame({ level }: { level: string }) {
         <p key={`${q.entry.id}:${q.shown}`} lang="ja" className="animate-round-in font-serif text-5xl font-bold leading-tight sm:text-6xl">
           {state === 'guess' ? q.shown : q.entry.text}
         </p>
+        {/* The hint: what it means (a one-kana particle, all hidden, can't be guessed without it). */}
+        {state === 'guess' && hint && <p className="text-sm text-ink-soft">💡 {hint.text}</p>}
         {state === 'right' && <p className="animate-pop font-display text-sm font-bold text-hit">✓ Right</p>}
         {state === 'wrong' && gap && (
           <p className="animate-pop text-sm">

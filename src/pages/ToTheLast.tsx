@@ -7,6 +7,7 @@ import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { GrammarNote } from '../components/JlptGrammarNote';
+import { grammarMeaning } from '../arcade/jlptGrammar';
 
 const REVEAL_MS = 1100;
 const QUESTION: Record<string, string> = { meaning: 'What does it mean — or how is it read?', reading: 'How is it read?', pattern: 'Fill in the gaps — or write it all out' };
@@ -23,6 +24,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
   const items = useMemo(() => (valid ? lastItems(level, kind as LastKind) : []), [valid, level, kind]);
   const byId = useMemo(() => new Map(items.map((e) => [e.id, e])), [items]);
   const recordBest = useProgress((s) => s.recordBest);
+  const lang = useProgress((s) => s.nameLang);
   const payCleared = useProgress((s) => s.payCleared);
   const [clearPay, setClearPay] = useState(-1);
   const [progress, setProgress] = useState(() => (valid ? loadLast(level, kind as LastKind) : { left: [], right: 0, wrong: 0 }));
@@ -36,6 +38,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
   const seed = hashString(`${entry?.id}:${progress.right + progress.wrong}`);
   const ask = entry ? askFor(entry, kind as LastKind, seed) : 'meaning';
   const shown = entry && ask === 'pattern' ? maskPattern(entry.text, seed) : entry?.text;
+  const hint = entry && ask === 'pattern' ? grammarMeaning(level, entry.text, lang) : null;
 
   useEffect(() => {
     if (state === 'guess') field.current?.focus();
@@ -144,6 +147,8 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
                 <p className="animate-pop text-sm text-ink-faint">{shortMeaning(entry.meaning, 6)}</p>
               </>
             )}
+            {/* A grammar point's hint: what it means (a one-kana particle, all hidden, can't be guessed without it). */}
+            {state === 'guess' && ask === 'pattern' && hint && <p className="text-sm text-ink-soft">💡 {hint.text}</p>}
             {state === 'right' && <p className="animate-pop font-display text-sm font-bold text-hit">✓ Cleared</p>}
           </div>
           {/* A grammar point, right or wrong: what it means, and real sentences that use it. */}
