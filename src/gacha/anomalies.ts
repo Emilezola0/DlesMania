@@ -6,7 +6,7 @@
 import type { Rarity } from './cards';
 
 /** The chance a pack opening has a black hole. */
-export const BLACK_HOLE_CHANCE = 0.05;
+export const BLACK_HOLE_CHANCE = 0.1;
 /** With a black hole open: the chance each passing star is pulled in (never the best card's evolving star). */
 export const ABSORB_CHANCE = 0.12;
 
