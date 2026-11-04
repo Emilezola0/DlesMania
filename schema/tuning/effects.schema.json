@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "description": "Off until the design is approved and the hooks are wired into the games"
+    },
+    "effects": {
+      "type": "object",
+      "title": "Effects",
+      "propertyNames": {
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "buff",
+              "debuff",
+              "mixed"
+            ]
+          },
+          "blurb": {
+            "type": "string"
+          },
+          "modifiers": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {
+                  "type": "string",
+                  "enum": [
+                    "roundCoins",
+                    "arcadeCoins",
+                    "bossWinCoins",
+                    "expeditionCoins",
+                    "duplicateValue",
+                    "packLuck",
+                    "packBoost",
+                    "packCost",
+                    "bossClock",
+                    "bossHearts",
+                    "radarErrors"
+                  ],
+                  "description": "The number the effect changes (a hook in the game code)"
+                },
+                "op": {
+                  "type": "string",
+                  "enum": [
+                    "multiply",
+                    "add",
+                    "set"
+                  ]
+                },
+                "value": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "target",
+                "op",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "duration": {
+            "type": "object",
+            "description": "Ends at whichever comes first",
+            "properties": {
+              "uses": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "fights": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "days": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false,
+            "minProperties": 1
+          },
+          "stacking": {
+            "type": "string",
+            "enum": [
+              "none",
+              "refresh",
+              "stack"
+            ],
+            "description": "Played again while active: ignored, timer reset, or added"
+          },
+          "rarities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "common",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic",
+                "omni"
+              ]
+            },
+            "description": "Rarities that can carry it"
+          }
+        },
+        "required": [
+          "name",
+          "icon",
+          "kind",
+          "blurb",
+          "modifiers",
+          "duration",
+          "stacking",
+          "rarities"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "enabled",
+    "effects"
+  ],
+  "additionalProperties": false,
+  "title": "Effect cards"
+}

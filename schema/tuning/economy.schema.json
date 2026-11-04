@@ -1,0 +1,924 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "round": {
+      "type": "object",
+      "properties": {
+        "win": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A won daily round, before the score bonus"
+        },
+        "perTenPoints": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Added for every 10 points of score"
+        },
+        "loss": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A lost daily round"
+        }
+      },
+      "required": [
+        "win",
+        "perTenPoints",
+        "loss"
+      ],
+      "additionalProperties": false,
+      "title": "Daily rounds"
+    },
+    "categoryBonus": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "All ten rounds of a category played"
+    },
+    "bossWin": {
+      "type": "object",
+      "properties": {
+        "easy": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hard": {
+          "type": "integer",
+          "minimum": 125,
+          "description": "The owner wants Hard at 125 or more"
+        },
+        "hell": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "easy",
+        "medium",
+        "hard",
+        "hell"
+      ],
+      "additionalProperties": false,
+      "title": "Boss win",
+      "description": "Every boss fight won, by difficulty"
+    },
+    "bossLoss": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "A lost boss fight"
+    },
+    "bossWeekly": {
+      "type": "object",
+      "properties": {
+        "easy": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hard": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hell": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "easy",
+        "medium",
+        "hard",
+        "hell"
+      ],
+      "additionalProperties": false,
+      "title": "Boss weekly bonus",
+      "description": "First win over a boss at a difficulty each week"
+    },
+    "arcade": {
+      "type": "object",
+      "properties": {
+        "win": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A won game"
+        },
+        "loss": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A lost game"
+        },
+        "bestBonus": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A new best"
+        },
+        "setMax": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A set of rounds, perfect score"
+        },
+        "runMax": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "An endless run at most"
+        },
+        "clearPerAnswer": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Clearing a whole list: per name, once a day per list"
+        },
+        "dailyCap": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Paid in full up to this each day"
+        },
+        "afterCap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share paid past the daily amount"
+        },
+        "spacingMs": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "A game pays at most once per this many ms"
+        }
+      },
+      "required": [
+        "win",
+        "loss",
+        "bestBonus",
+        "setMax",
+        "runMax",
+        "clearPerAnswer",
+        "dailyCap",
+        "afterCap",
+        "spacingMs"
+      ],
+      "additionalProperties": false,
+      "title": "Games page"
+    },
+    "hot": {
+      "type": "object",
+      "properties": {
+        "bonus": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Extra share on the Hot Game (1 = double)"
+        },
+        "plays": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Games before the bonus moves"
+        }
+      },
+      "required": [
+        "bonus",
+        "plays"
+      ],
+      "additionalProperties": false,
+      "title": "Hot Game"
+    },
+    "pity": {
+      "type": "object",
+      "properties": {
+        "step": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Luck added per pack without a Legendary",
+          "exclusiveMinimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Most luck (×)"
+        },
+        "topShare": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share of the luck Mythic and Omni get"
+        }
+      },
+      "required": [
+        "step",
+        "max",
+        "topShare"
+      ],
+      "additionalProperties": false,
+      "title": "Luck (pity)"
+    },
+    "expedition": {
+      "type": "object",
+      "properties": {
+        "roomMax": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Most for one room"
+        },
+        "bossMax": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Most for one boss"
+        },
+        "dailyCap": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Paid in full up to this each day"
+        },
+        "afterCap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share paid past the daily amount"
+        }
+      },
+      "required": [
+        "roomMax",
+        "bossMax",
+        "dailyCap",
+        "afterCap"
+      ],
+      "additionalProperties": false,
+      "title": "Expeditions"
+    },
+    "duplicateValue": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rare": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "epic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "legendary": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mythic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "omni": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "common",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "omni"
+      ],
+      "additionalProperties": false,
+      "title": "Spare copy value",
+      "description": "A spare copy traded in, by rarity"
+    },
+    "missions": {
+      "type": "object",
+      "properties": {
+        "rounds": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        },
+        "category": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        },
+        "special": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        },
+        "boss": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        },
+        "arcade": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        },
+        "whos": {
+          "type": "object",
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "text": {
+              "type": "string"
+            },
+            "need": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "How many it takes"
+            },
+            "reward": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "DleCoins"
+            }
+          },
+          "required": [
+            "icon",
+            "text",
+            "need",
+            "reward"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "rounds",
+        "category",
+        "special",
+        "boss",
+        "arcade",
+        "whos"
+      ],
+      "additionalProperties": false,
+      "title": "Daily missions"
+    },
+    "longMissions": {
+      "type": "object",
+      "properties": {
+        "week": {
+          "type": "object",
+          "properties": {
+            "rounds": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "category": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "special": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "boss": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "arcade": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "whos": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "packs": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "rounds",
+            "category",
+            "special",
+            "boss",
+            "arcade",
+            "whos",
+            "packs"
+          ],
+          "additionalProperties": false
+        },
+        "month": {
+          "type": "object",
+          "properties": {
+            "rounds": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "category": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "special": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "boss": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "arcade": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "whos": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            },
+            "packs": {
+              "type": "object",
+              "properties": {
+                "icon": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "need": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "How many it takes"
+                },
+                "reward": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "DleCoins"
+                }
+              },
+              "required": [
+                "icon",
+                "text",
+                "need",
+                "reward"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "rounds",
+            "category",
+            "special",
+            "boss",
+            "arcade",
+            "whos",
+            "packs"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "week",
+        "month"
+      ],
+      "additionalProperties": false,
+      "title": "Weekly & monthly missions"
+    }
+  },
+  "required": [
+    "round",
+    "categoryBonus",
+    "bossWin",
+    "bossLoss",
+    "bossWeekly",
+    "arcade",
+    "hot",
+    "pity",
+    "expedition",
+    "duplicateValue",
+    "missions",
+    "longMissions"
+  ],
+  "additionalProperties": false,
+  "title": "Economy"
+}

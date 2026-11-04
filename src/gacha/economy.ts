@@ -4,19 +4,23 @@
 // amount, then half, so farming always pays); Expeditions pay little, with a daily amount of their own
 // (then a quarter), so that they never replace the other games; three daily missions pay a
 // bonus each, and three a week and three a month pay more.
+//
+// The numbers live in src/data/tuning/economy.json (edited from the dev-only #/admin page, checked by
+// `npm run data:validate`); the rules that use them stay here.
 import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
+import T from '../data/tuning/economy.json';
 
 /** A finished daily round (category or Specialist): more for a better score. */
-export const roundCoins = (won: boolean, score: number) => (won ? 12 + 2 * Math.floor(Math.max(0, score) / 10) : 4);
+export const roundCoins = (won: boolean, score: number, r: typeof T.round = T.round) => (won ? r.win + r.perTenPoints * Math.floor(Math.max(0, score) / 10) : r.loss);
 /** All ten rounds of a category's daily played. */
-export const CATEGORY_BONUS = 50;
+export const CATEGORY_BONUS = T.categoryBonus;
 
 /** Every boss fight: a win by difficulty, a token for a loss. */
-export const BOSS_WIN: Record<BossDifficulty, number> = { easy: 24, medium: 50, hard: 250, hell: 400 };
-export const BOSS_LOSS = 6;
+export const BOSS_WIN: Record<BossDifficulty, number> = T.bossWin;
+export const BOSS_LOSS = T.bossLoss;
 /** The first win over a boss at a difficulty each week (weeks start on Monday). */
-export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 80, medium: 160, hard: 300, hell: 500 };
+export const BOSS_WEEKLY: Record<BossDifficulty, number> = T.bossWeekly;
 
 /**
  * A game from the Games page, by how it went — fully up to a daily amount, then a token:
@@ -27,14 +31,14 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = { easy: 80, medium: 1
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
 /** Clearing a whole list (Name Them All, To the Last): this much a name, on top of the usual pay — once a day per list. */
-export const CLEAR_PER_ANSWER = 10;
-export const ARCADE_WIN = 40;
-export const ARCADE_LOSS = 6;
-export const ARCADE_BEST_BONUS = 30;
+export const CLEAR_PER_ANSWER = T.arcade.clearPerAnswer;
+export const ARCADE_WIN = T.arcade.win;
+export const ARCADE_LOSS = T.arcade.loss;
+export const ARCADE_BEST_BONUS = T.arcade.bestBonus;
 /** A set of rounds: up to this much for a perfect score. */
-export const ARCADE_SET_MAX = 50;
+export const ARCADE_SET_MAX = T.arcade.setMax;
 /** An endless run's coins at most. */
-export const ARCADE_RUN_MAX = 200;
+export const ARCADE_RUN_MAX = T.arcade.runMax;
 
 export function arcadeCoins(r: ArcadeResult): number {
   if ('save' in r) return 0;
@@ -47,19 +51,19 @@ export function arcadeCoins(r: ArcadeResult): number {
 }
 /** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
 export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
-export const ARCADE_CAP = 1200;
+export const ARCADE_CAP = T.arcade.dailyCap;
 /** Past the daily amount, this share of what a game would pay (at least a coin). */
-export const ARCADE_AFTER_CAP = 0.5;
+export const ARCADE_AFTER_CAP = T.arcade.afterCap;
 /** A game pays at most once per this long (so a run lost at once, again and again, isn't a farm). */
-export const ARCADE_SPACING_MS = 8_000;
+export const ARCADE_SPACING_MS = T.arcade.spacingMs;
 
 /**
  * The Hot Game: one game of the Games page pays more, so farming means moving around. After a few games
  * of it the bonus moves to another game, and it moves with each new day too. The order is drawn from the
  * date, the same for everyone; each player moves through it at their own pace.
  */
-export const HOT_BONUS = 1;
-export const HOT_PLAYS = 3;
+export const HOT_BONUS = T.hot.bonus;
+export const HOT_PLAYS = T.hot.plays;
 /** The games it visits: `id` is what their best keys start with ("memory:pokemon"). */
 export const HOT_GAMES = [
   { id: 'rail', to: '/rail-rush', title: 'Rail Rush', icon: '🚂' },
@@ -129,34 +133,28 @@ export interface BossWeek {
  * get none of it (PITY_TOP_SHARE), so they stay rare: a Legendary or better about every 16 packs on average
  * (24 without luck); a Mythic or better about every 250, luck or not.
  */
-export const PITY_STEP = 0.05;
-export const PITY_MAX = 3;
-export const PITY_TOP_SHARE = 0;
+export const PITY_STEP = T.pity.step;
+export const PITY_MAX = T.pity.max;
+export const PITY_TOP_SHARE = T.pity.topShare;
 /** The packs it takes to reach the most luck: the counter never goes past it (nor below 0, nor to NaN). */
 export const PITY_PACKS = Math.round((PITY_MAX - 1) / PITY_STEP);
 export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? Math.min(PITY_PACKS, Math.max(0, Math.floor(pity as number))) : 0);
 export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
 
 /** The most an Expedition pays in DleCoins for one room (elites included) and one boss, however deep the run. */
-export const EXPEDITION_ROOM_MAX = 24;
-export const EXPEDITION_BOSS_MAX = 120;
+export const EXPEDITION_ROOM_MAX = T.expedition.roomMax;
+export const EXPEDITION_BOSS_MAX = T.expedition.bossMax;
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
-export const EXPEDITION_CAP = 300;
-export const EXPEDITION_AFTER_CAP = 0.25;
+export const EXPEDITION_CAP = T.expedition.dailyCap;
+export const EXPEDITION_AFTER_CAP = T.expedition.afterCap;
 
 /** A spare copy of a card, traded in: by rarity (a pack of five costs 100–150). */
-export const DUPLICATE_VALUE = { common: 2, rare: 5, epic: 15, legendary: 50, mythic: 150, omni: 500 } as const;
+export const DUPLICATE_VALUE: Record<'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni', number> = T.duplicateValue;
 
 export type MissionKind = 'rounds' | 'category' | 'special' | 'boss' | 'arcade' | 'whos';
 
-export const MISSIONS: Record<MissionKind, { icon: string; text: string; need: number; reward: number }> = {
-  rounds: { icon: '📅', text: 'Win 5 daily rounds', need: 5, reward: 80 },
-  category: { icon: '🏁', text: 'Play a whole daily category', need: 1, reward: 100 },
-  special: { icon: '🎯', text: 'Win 3 Specialist rounds', need: 3, reward: 80 },
-  boss: { icon: '👑', text: 'Beat a boss', need: 1, reward: 120 },
-  arcade: { icon: '🕹️', text: 'Finish 3 games from the Games page', need: 3, reward: 60 },
-  whos: { icon: '👤', text: "Play a Who's That? run", need: 1, reward: 50 },
-};
+export type MissionSpec = { icon: string; text: string; need: number; reward: number };
+export const MISSIONS: Record<MissionKind, MissionSpec> = T.missions;
 
 const KINDS = Object.keys(MISSIONS) as MissionKind[];
 
@@ -200,26 +198,7 @@ export type Period = 'week' | 'month';
 /** What the long missions count: the daily kinds, and packs opened. */
 export type LongKind = MissionKind | 'packs';
 
-export const LONG_MISSIONS: Record<Period, Record<LongKind, { icon: string; text: string; need: number; reward: number }>> = {
-  week: {
-    rounds: { icon: '📅', text: 'Win 25 daily rounds', need: 25, reward: 300 },
-    category: { icon: '🏁', text: 'Play 4 whole daily categories', need: 4, reward: 360 },
-    special: { icon: '🎯', text: 'Win 12 Specialist rounds', need: 12, reward: 300 },
-    boss: { icon: '👑', text: 'Beat 4 bosses', need: 4, reward: 440 },
-    arcade: { icon: '🕹️', text: 'Finish 15 games from the Games page', need: 15, reward: 240 },
-    whos: { icon: '👤', text: "Play 5 Who's That? runs", need: 5, reward: 200 },
-    packs: { icon: '🎴', text: 'Open 4 card packs', need: 4, reward: 300 },
-  },
-  month: {
-    rounds: { icon: '📅', text: 'Win 80 daily rounds', need: 80, reward: 1000 },
-    category: { icon: '🏁', text: 'Play 12 whole daily categories', need: 12, reward: 1200 },
-    special: { icon: '🎯', text: 'Win 40 Specialist rounds', need: 40, reward: 900 },
-    boss: { icon: '👑', text: 'Beat 12 bosses', need: 12, reward: 1400 },
-    arcade: { icon: '🕹️', text: 'Finish 50 games from the Games page', need: 50, reward: 800 },
-    whos: { icon: '👤', text: "Play 15 Who's That? runs", need: 15, reward: 700 },
-    packs: { icon: '🎴', text: 'Open 15 card packs', need: 15, reward: 900 },
-  },
-};
+export const LONG_MISSIONS: Record<Period, Record<LongKind, MissionSpec>> = T.longMissions;
 
 /** The period a date falls in: its week's Monday, or its month ("2026-10"). */
 export const periodOf = (p: Period, date: string) => (p === 'week' ? weekOf(date) : date.slice(0, 7));

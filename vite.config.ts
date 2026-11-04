@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { adminServer } from './scripts/admin-server';
 
 /**
  * One id per build: the commit (GITHUB_SHA in Actions, git locally) plus the build time, so two
@@ -56,7 +57,8 @@ function versionFile(): Plugin {
 export default defineConfig({
   // Relative asset paths so the build works from any sub-path (e.g. GitHub Pages /DlesMania/).
   base: './',
-  plugins: [react(), tailwindcss(), versionFile()],
+  // adminServer: the dev-only #/admin API (apply: 'serve', never in a build).
+  plugins: [react(), tailwindcss(), versionFile(), adminServer()],
   define: { __APP_VERSION__: JSON.stringify(VERSION), __APP_RELEASE__: JSON.stringify(releaseVersion()) },
   // The bundle is mostly the works dataset (~270 KB gzipped); one chunk is fine for a static site.
   build: { chunkSizeWarningLimit: 1200 },

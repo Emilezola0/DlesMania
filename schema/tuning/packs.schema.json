@@ -1,0 +1,243 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "packSize": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Cards per pack",
+      "maximum": 10
+    },
+    "odds": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "type": "number",
+          "minimum": 0
+        },
+        "rare": {
+          "type": "number",
+          "minimum": 0
+        },
+        "epic": {
+          "type": "number",
+          "minimum": 0
+        },
+        "legendary": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mythic": {
+          "type": "number",
+          "minimum": 0
+        },
+        "omni": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "common",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "omni"
+      ],
+      "additionalProperties": false,
+      "title": "Base odds (%)",
+      "description": "Per card; must add up to 100",
+      "x-sumTo": 100
+    },
+    "topCap": {
+      "type": "object",
+      "properties": {
+        "legendary": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mythic": {
+          "type": "number",
+          "minimum": 0
+        },
+        "omni": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "legendary",
+        "mythic",
+        "omni"
+      ],
+      "additionalProperties": false,
+      "title": "Top caps (%)",
+      "description": "Never more than this, whatever stacks up"
+    },
+    "boost": {
+      "type": "object",
+      "properties": {
+        "easy": {
+          "type": "number",
+          "minimum": 1
+        },
+        "medium": {
+          "type": "number",
+          "minimum": 1
+        },
+        "hard": {
+          "type": "number",
+          "minimum": 1
+        },
+        "hell": {
+          "type": "number",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "easy",
+        "medium",
+        "hard",
+        "hell"
+      ],
+      "additionalProperties": false,
+      "title": "Franchise pack boost",
+      "description": "By the hardest difficulty its boss was beaten at"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "blurb": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "icon": {
+          "type": "string"
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$",
+            "x-widget": "color"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "x-widget": "colors"
+        }
+      },
+      "required": [
+        "name",
+        "blurb",
+        "cost",
+        "icon",
+        "colors"
+      ],
+      "additionalProperties": false,
+      "title": "General pack"
+    },
+    "domain": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "packs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string",
+                "enum": [
+                  "games",
+                  "anime",
+                  "cinema"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "colors": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^#[0-9a-fA-F]{6}$",
+                  "x-widget": "color"
+                },
+                "minItems": 2,
+                "maxItems": 2,
+                "x-widget": "colors"
+              }
+            },
+            "required": [
+              "domain",
+              "name",
+              "icon",
+              "colors"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "cost",
+        "packs"
+      ],
+      "additionalProperties": false,
+      "title": "Domain packs"
+    },
+    "franchise": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "icon": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color",
+          "description": "Used when the guardian has no colour"
+        },
+        "secondColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        }
+      },
+      "required": [
+        "cost",
+        "icon",
+        "color",
+        "secondColor"
+      ],
+      "additionalProperties": false,
+      "title": "Franchise packs"
+    }
+  },
+  "required": [
+    "packSize",
+    "odds",
+    "topCap",
+    "boost",
+    "general",
+    "domain",
+    "franchise"
+  ],
+  "additionalProperties": false,
+  "title": "Packs"
+}

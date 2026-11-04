@@ -4,12 +4,14 @@
 // rarity and more for each grade up. The last, Singularity, also asks for the card's boss beaten on Hell.
 import { DUPLICATE_VALUE } from './economy';
 import type { Rarity } from './cards';
+// The numbers and the emblems' metals live in src/data/tuning/grades.json (edited from the dev-only #/admin page).
+import T from '../data/tuning/grades.json';
 
-export const MAX_GRADE = 7;
+export const MAX_GRADE = T.maxGrade;
 /** The grade that also asks for the franchise's boss beaten on Hell. */
-export const HELL_GRADE = 7;
+export const HELL_GRADE = T.hellGrade;
 /** Spare copies a grade-up takes (with the card itself: five copies become one). */
-export const GRADE_COST = 4;
+export const GRADE_COST = T.gradeCost;
 
 export interface GradeInfo {
   name: string;
@@ -18,15 +20,7 @@ export interface GradeInfo {
   metal: [string, string, string];
 }
 
-export const GRADES: Record<number, GradeInfo> = {
-  1: { name: 'Grade I', numeral: 'I', metal: ['#e2e8f0', '#94a3b8', '#475569'] },
-  2: { name: 'Bronze', numeral: 'II', metal: ['#ffd7a8', '#cd7f32', '#6b3a12'] },
-  3: { name: 'Silver', numeral: 'III', metal: ['#ffffff', '#cbd5e1', '#64748b'] },
-  4: { name: 'Gold', numeral: 'IV', metal: ['#fff7c2', '#fbbf24', '#92400e'] },
-  5: { name: 'Radiant', numeral: 'V', metal: ['#ffffff', '#f0abfc', '#6d28d9'] },
-  6: { name: 'Celestial', numeral: 'VI', metal: ['#fff6c9', '#f2b92e', '#1c1033'] },
-  7: { name: 'Singularity', numeral: 'VII', metal: ['#ffffff', '#1d1533', '#000000'] },
-};
+export const GRADES = T.grades as unknown as Record<number, GradeInfo>;
 
 export const gradeOf = (grades: Record<string, number> | undefined, id: string) => Math.min(MAX_GRADE, Math.max(1, grades?.[id] ?? 1));
 
@@ -34,8 +28,9 @@ export const gradeOf = (grades: Record<string, number> | undefined, id: string) 
  * A grade's reward: what the four spares would fetch traded in, times this — so a grade-up always pays
  * as much as trading them, and more the higher the grade (Bronze ×1 … Singularity ×5).
  */
-export const GRADE_REWARD_SHARE: Record<number, number> = { 2: 1, 3: 1.25, 4: 1.75, 5: 2.5, 6: 3.5, 7: 5 };
-export const gradeReward = (rarity: Rarity, grade: number) => Math.round(DUPLICATE_VALUE[rarity] * GRADE_COST * (GRADE_REWARD_SHARE[grade] ?? 0));
+export const GRADE_REWARD_SHARE: Record<number, number> = T.rewardShare;
+export const gradeReward = (rarity: Rarity, grade: number, cost = GRADE_COST, share: Record<number, number> = GRADE_REWARD_SHARE) =>
+  Math.round(DUPLICATE_VALUE[rarity] * cost * (share[grade] ?? 0));
 /** Every grade's reward from `from` (excluded) up to `to`. */
 export function gradeRewards(rarity: Rarity, from: number, to: number): number {
   let sum = 0;

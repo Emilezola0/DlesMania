@@ -1,0 +1,42 @@
+{
+  "info": {
+    "common": {
+      "name": "Common",
+      "gem": "◆",
+      "rank": 0
+    },
+    "rare": {
+      "name": "Rare",
+      "gem": "◆◆",
+      "rank": 1
+    },
+    "epic": {
+      "name": "Epic",
+      "gem": "◆◆◆",
+      "rank": 2
+    },
+    "legendary": {
+      "name": "Legendary",
+      "gem": "★",
+      "rank": 3
+    },
+    "mythic": {
+      "name": "Mythic",
+      "gem": "✦",
+      "rank": 4
+    },
+    "omni": {
+      "name": "Omni",
+      "gem": "✪",
+      "rank": 5
+    }
+  },
+  "light": {
+    "common": "#e2e8f0",
+    "rare": "#38bdf8",
+    "epic": "#c084fc",
+    "legendary": "#fbbf24",
+    "mythic": "#f0abfc",
+    "omni": "#ff3b4e"
+  }
+}

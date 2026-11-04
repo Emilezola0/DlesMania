@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "connections": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "integer",
+          "enum": [
+            2,
+            3,
+            4
+          ]
+        },
+        "maxMistakes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "themed": {
+          "type": "object",
+          "properties": {
+            "groups": {
+              "type": "integer",
+              "enum": [
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            "groupSize": {
+              "type": "integer",
+              "enum": [
+                3,
+                4
+              ]
+            }
+          },
+          "required": [
+            "groups",
+            "groupSize"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "groups",
+        "maxMistakes",
+        "themed"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "connections"
+  ],
+  "additionalProperties": false,
+  "title": "Settings"
+}

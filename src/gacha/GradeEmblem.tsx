@@ -1,15 +1,15 @@
 import { useId } from 'react';
-import { GRADES } from './grades';
+import { GRADES, type GradeInfo } from './grades';
 
 /**
  * A grade's emblem: a metal shield with its numeral, one more ornament each grade — wings at Silver,
  * a star above at Gold, at Radiant a ring of rays, the whole emblem shining, at Celestial
  * two rings turning opposite ways and a crown, and at Singularity a black shield with a hole of white light.
  */
-export function GradeEmblem({ grade, className = '' }: { grade: number; className?: string }) {
+export function GradeEmblem({ grade, className = '', info }: { grade: number; className?: string; info?: GradeInfo }) {
   // Its own gradient ids: a hidden emblem's would leave the others without their metal.
   const id = `grade${useId().replace(/:/g, '')}`;
-  const g = GRADES[grade];
+  const g = info ?? GRADES[grade];
   if (!g || grade < 2) return null;
   const [light, mid, dark] = g.metal;
   return (

@@ -4,11 +4,14 @@
 // class on the card (index.css) plus what CardFace reads here (a scrambling name, a rarity in disguise).
 // More can be added by adding an entry and its styles.
 import type { Rarity } from './cards';
+// The chances and each anomaly's text live in src/data/tuning/anomalies.json (edited from the dev-only #/admin page);
+// a new anomaly also needs its id in AnomalyId and its class in index.css.
+import T from '../data/tuning/anomalies.json';
 
 /** The chance a pack opening has a black hole. */
-export const BLACK_HOLE_CHANCE = 0.1;
+export const BLACK_HOLE_CHANCE = T.blackHoleChance;
 /** With a black hole open: the chance each passing star is pulled in (never the best card's evolving star). */
-export const ABSORB_CHANCE = 0.12;
+export const ABSORB_CHANCE = T.absorbChance;
 
 export type AnomalyId = 'corrupted' | 'fake';
 
@@ -26,24 +29,7 @@ export interface Anomaly {
   posesAsMythic?: boolean;
 }
 
-export const ANOMALIES: Record<AnomalyId, Anomaly> = {
-  corrupted: {
-    id: 'corrupted',
-    name: 'Corrupted',
-    icon: '▚',
-    blurb: 'Glitches, colours splitting apart, flickers — and a name that scrambles now and then.',
-    className: 'card-anomaly-corrupted',
-    scramble: true,
-  },
-  fake: {
-    id: 'fake',
-    name: 'Fake Rarity',
-    icon: '◈',
-    blurb: 'It passes for a Mythic, but its true colours show at the edges.',
-    className: 'card-anomaly-fake',
-    posesAsMythic: true,
-  },
-};
+export const ANOMALIES = Object.fromEntries(Object.entries(T.anomalies).map(([id, a]) => [id, { ...a, id }])) as Record<AnomalyId, Anomaly>;
 export const ANOMALY_IDS = Object.keys(ANOMALIES) as AnomalyId[];
 
 /** The anomaly a swallowed star brings back (the player can still say no). */

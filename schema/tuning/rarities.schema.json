@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "info": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        },
+        "rare": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        },
+        "epic": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        },
+        "legendary": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        },
+        "mythic": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        },
+        "omni": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "gem": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Order; 3 and up count as top cards"
+            }
+          },
+          "required": [
+            "name",
+            "gem",
+            "rank"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "common",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "omni"
+      ],
+      "additionalProperties": false,
+      "title": "Names & gems"
+    },
+    "light": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        },
+        "rare": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        },
+        "epic": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        },
+        "legendary": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        },
+        "mythic": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        },
+        "omni": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "x-widget": "color"
+        }
+      },
+      "required": [
+        "common",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "omni"
+      ],
+      "additionalProperties": false,
+      "title": "Light",
+      "description": "The glow from a torn pack, the shooting star, the bursts, an icon's ring"
+    }
+  },
+  "required": [
+    "info",
+    "light"
+  ],
+  "additionalProperties": false,
+  "title": "Rarities"
+}

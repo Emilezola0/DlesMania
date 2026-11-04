@@ -5,12 +5,14 @@ import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
 import { CARDS, RARITIES, type Card, type Rarity } from './cards';
 import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
+// The numbers and the packs' looks live in src/data/tuning/packs.json (edited from the dev-only #/admin page).
+import T from '../data/tuning/packs.json';
 
-export const PACK_SIZE = 5;
+export const PACK_SIZE = T.packSize;
 
 /** Base odds, in percent, for each card of a pack. */
 // Mythic and Omni are the endgame: about one in every 250 packs has one.
-export const ODDS: Record<Rarity, number> = { common: 68.444, rare: 23, epic: 8, legendary: 0.5, mythic: 0.05, omni: 0.006 };
+export const ODDS: Record<Rarity, number> = T.odds;
 
 /** The luck (pity) lives with the economy, which the store reads without the card catalogue. */
 export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck };
@@ -20,10 +22,10 @@ export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexO
  * The most a card can ever be of the top rarities, in percent, whatever stacks up (a guardian's boost and
  * full luck): the drop rates never climb past these.
  */
-export const TOP_CAP: Partial<Record<Rarity, number>> = { legendary: 3, mythic: 0.2, omni: 0.03 };
+export const TOP_CAP: Partial<Record<Rarity, number>> = T.topCap;
 
 /** A franchise pack's odds boost, by the hardest difficulty its boss was beaten at. */
-export const BOOST: Record<BossDifficulty, number> = { easy: 1, medium: 1.6, hard: 2.5, hell: 3.2 };
+export const BOOST: Record<BossDifficulty, number> = T.boost;
 
 export interface Pack {
   id: string;
@@ -40,20 +42,16 @@ export interface Pack {
   domain?: Domain;
 }
 
-const DOMAIN_PACKS: { domain: Domain; name: string; icon: string; colors: [string, string] }[] = [
-  { domain: 'games', name: 'Video Games pack', icon: '🎮', colors: ['#4f46e5', '#22d3ee'] },
-  { domain: 'anime', name: 'Anime pack', icon: '🌸', colors: ['#db2777', '#fb923c'] },
-  { domain: 'cinema', name: 'Movies pack', icon: '🎬', colors: ['#b45309', '#facc15'] },
-];
+const DOMAIN_PACKS = T.domain.packs as { domain: Domain; name: string; icon: string; colors: [string, string] }[];
 
 export function packsFor(sets: { id: string; franchise: string; domain: Domain; guardian: { color?: string; image?: string } }[]): Pack[] {
   return [
-    { id: 'general', name: 'Omnidle pack', blurb: 'Five cards from every franchise.', cost: 100, icon: '✦', colors: ['#334155', '#a78bfa'], pool: () => true },
+    { id: 'general', ...T.general, colors: T.general.colors as [string, string], pool: () => true },
     ...DOMAIN_PACKS.map((d) => ({
       id: `domain:${d.domain}`,
       name: d.name,
       blurb: `Five cards from the ${d.name.replace(' pack', '').toLowerCase()} franchises only.`,
-      cost: 120,
+      cost: T.domain.cost,
       icon: d.icon,
       colors: d.colors,
       pool: (c: Card) => c.domain === d.domain,
@@ -63,9 +61,9 @@ export function packsFor(sets: { id: string; franchise: string; domain: Domain; 
       id: `set:${s.id}`,
       name: `${s.franchise} pack`,
       blurb: `Five ${s.franchise} cards only.`,
-      cost: 150,
-      icon: '👑',
-      colors: [s.guardian.color ?? '#7c3aed', '#111827'] as [string, string],
+      cost: T.franchise.cost,
+      icon: T.franchise.icon,
+      colors: [s.guardian.color ?? T.franchise.color, T.franchise.secondColor] as [string, string],
       pool: (c: Card) => c.set === s.id,
       boss: s.id,
     })),
@@ -83,29 +81,37 @@ export function bossBest(bosses: Record<string, { wins: number }>, id: string): 
  * endgame), common taking the rest; `luck` (see pityLuck) multiplies legendary again, and mythic and omni by
  * PITY_TOP_SHARE of it — each kept under its TOP_CAP.
  */
-export function oddsWith(boost: number, luck = 1): Record<Rarity, number> {
+export interface OddsTuning {
+  odds: Record<Rarity, number>;
+  topCap: Partial<Record<Rarity, number>>;
+  topShare: number;
+}
+/** The odds in play (the admin page previews others). */
+const LIVE_ODDS: OddsTuning = { odds: ODDS, topCap: TOP_CAP, topShare: PITY_TOP_SHARE };
+
+export function oddsWith(boost: number, luck = 1, t: OddsTuning = LIVE_ODDS): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
   const quarter = 1 + (boost - 1) / 4;
-  const rare = ODDS.rare * half;
-  const epic = ODDS.epic * boost;
-  const legendary = Math.min(TOP_CAP.legendary!, ODDS.legendary * half * luck);
-  const topLuck = 1 + (luck - 1) * PITY_TOP_SHARE;
-  const mythic = Math.min(TOP_CAP.mythic!, ODDS.mythic * quarter * topLuck);
-  const omni = Math.min(TOP_CAP.omni!, ODDS.omni * quarter * topLuck);
+  const rare = t.odds.rare * half;
+  const epic = t.odds.epic * boost;
+  const legendary = Math.min(t.topCap.legendary!, t.odds.legendary * half * luck);
+  const topLuck = 1 + (luck - 1) * t.topShare;
+  const mythic = Math.min(t.topCap.mythic!, t.odds.mythic * quarter * topLuck);
+  const omni = Math.min(t.topCap.omni!, t.odds.omni * quarter * topLuck);
   return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
 }
 
-/** How much likelier the top rarities are on a pack's last card, the one that's at least rare. */
-const LAST_CARD_LIFT = 100 / (100 - ODDS.common);
 
 /**
  * The odds of a pack's last card: no common, the top rarities lifted by the same amount whatever the boost
  * (so a better rare or epic never crowds them out), rare and epic sharing the rest as they do on the others.
  */
-export function lastCardOdds(odds: Record<Rarity, number>): Record<Rarity, number> {
-  const legendary = odds.legendary * LAST_CARD_LIFT;
-  const mythic = odds.mythic * LAST_CARD_LIFT;
-  const omni = odds.omni * LAST_CARD_LIFT;
+export function lastCardOdds(odds: Record<Rarity, number>, base: Record<Rarity, number> = ODDS): Record<Rarity, number> {
+  // How much likelier the top rarities are on a pack's last card, the one that's at least rare.
+  const lift = 100 / (100 - base.common);
+  const legendary = odds.legendary * lift;
+  const mythic = odds.mythic * lift;
+  const omni = odds.omni * lift;
   const rest = 100 - legendary - mythic - omni;
   const lower = odds.rare + odds.epic;
   return { common: 0, rare: (rest * odds.rare) / lower, epic: (rest * odds.epic) / lower, legendary, mythic, omni };

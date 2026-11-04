@@ -1,0 +1,78 @@
+{
+  "maxGrade": 7,
+  "hellGrade": 7,
+  "gradeCost": 4,
+  "grades": {
+    "1": {
+      "name": "Grade I",
+      "numeral": "I",
+      "metal": [
+        "#e2e8f0",
+        "#94a3b8",
+        "#475569"
+      ]
+    },
+    "2": {
+      "name": "Bronze",
+      "numeral": "II",
+      "metal": [
+        "#ffd7a8",
+        "#cd7f32",
+        "#6b3a12"
+      ]
+    },
+    "3": {
+      "name": "Silver",
+      "numeral": "III",
+      "metal": [
+        "#ffffff",
+        "#cbd5e1",
+        "#64748b"
+      ]
+    },
+    "4": {
+      "name": "Gold",
+      "numeral": "IV",
+      "metal": [
+        "#fff7c2",
+        "#fbbf24",
+        "#92400e"
+      ]
+    },
+    "5": {
+      "name": "Radiant",
+      "numeral": "V",
+      "metal": [
+        "#ffffff",
+        "#f0abfc",
+        "#6d28d9"
+      ]
+    },
+    "6": {
+      "name": "Celestial",
+      "numeral": "VI",
+      "metal": [
+        "#fff6c9",
+        "#f2b92e",
+        "#1c1033"
+      ]
+    },
+    "7": {
+      "name": "Singularity",
+      "numeral": "VII",
+      "metal": [
+        "#ffffff",
+        "#1d1533",
+        "#000000"
+      ]
+    }
+  },
+  "rewardShare": {
+    "2": 1,
+    "3": 1.25,
+    "4": 1.75,
+    "5": 2.5,
+    "6": 3.5,
+    "7": 5
+  }
+}

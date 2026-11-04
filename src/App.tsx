@@ -40,6 +40,9 @@ const GuessRankGame = lazy(() => import('./pages/GuessRank'));
 const GuessRankHub = lazy(() => import('./pages/GuessRank').then((m) => ({ default: m.GuessRankHub })));
 const WhosThat = lazy(() => import('./pages/WhosThat'));
 const WhosThatHub = lazy(() => import('./pages/WhosThat').then((m) => ({ default: m.WhosThatHub })));
+// The tuning dashboard, under `npm run dev` only: `import.meta.env.DEV` is false in a build, so neither the
+// route nor its code ship (and its API, scripts/admin-server.ts, only exists in the dev server).
+const Admin = import.meta.env.DEV ? lazy(() => import('./admin/AdminPage')) : null;
 
 export default function App() {
   return (
@@ -95,6 +98,7 @@ export default function App() {
         <Route path="map-quiz" element={<MapQuiz />} />
         <Route path="map-quiz/:map" element={<MapQuiz />} />
         <Route path="map-quiz/:map/edit" element={<MapQuiz edit />} />
+        {Admin && <Route path="admin" element={<Admin />} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

@@ -1,0 +1,20 @@
+{
+  "blackHoleChance": 0.1,
+  "absorbChance": 0.12,
+  "anomalies": {
+    "corrupted": {
+      "name": "Corrupted",
+      "icon": "▚",
+      "blurb": "Glitches, colours splitting apart, flickers — and a name that scrambles now and then.",
+      "className": "card-anomaly-corrupted",
+      "scramble": true
+    },
+    "fake": {
+      "name": "Fake Rarity",
+      "icon": "◈",
+      "blurb": "It passes for a Mythic, but its true colours show at the edges.",
+      "className": "card-anomaly-fake",
+      "posesAsMythic": true
+    }
+  }
+}

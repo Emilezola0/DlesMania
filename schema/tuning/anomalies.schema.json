@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "blackHoleChance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Chance a pack opening has a black hole"
+    },
+    "absorbChance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "With a black hole: chance each passing star is pulled in"
+    },
+    "anomalies": {
+      "type": "object",
+      "title": "Anomalies",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "blurb": {
+            "type": "string"
+          },
+          "className": {
+            "type": "string",
+            "pattern": "^card-anomaly-[a-z-]+$",
+            "description": "Class in src/index.css"
+          },
+          "scramble": {
+            "type": "boolean",
+            "description": "Its name scrambles now and then"
+          },
+          "posesAsMythic": {
+            "type": "boolean",
+            "description": "It poses as a Mythic"
+          }
+        },
+        "required": [
+          "name",
+          "icon",
+          "blurb",
+          "className"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "blackHoleChance",
+    "absorbChance",
+    "anomalies"
+  ],
+  "additionalProperties": false,
+  "title": "Anomalies"
+}

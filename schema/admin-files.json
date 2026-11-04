@@ -1,0 +1,97 @@
+{
+  "$comment": "The files the dev-only admin page (#/admin, scripts/admin-server.ts) may read and write: nothing else. policy: \"edit\" (default), \"append-only\" (new keys only, existing values locked), \"read-only\". A schema (JSON Schema, checked by Ajv here and by npm run data:validate) drives the editor; without one the editor follows the data's own shape and the server keeps every value's type.",
+  "sections": [
+    { "id": "economy", "title": "Stats & economy", "icon": "🪙" },
+    { "id": "visuals", "title": "Card visuals", "icon": "🎨" },
+    { "id": "ranks", "title": "Ranks & grades", "icon": "🏅" },
+    { "id": "effects", "title": "Effect cards", "icon": "✨" }
+  ],
+  "files": [
+    {
+      "id": "economy",
+      "section": "economy",
+      "title": "Coins, caps & missions",
+      "file": "src/data/tuning/economy.json",
+      "schema": "schema/tuning/economy.schema.json",
+      "preview": "economy"
+    },
+    {
+      "id": "packs",
+      "section": "economy",
+      "title": "Packs, odds & boosts",
+      "file": "src/data/tuning/packs.json",
+      "schema": "schema/tuning/packs.schema.json",
+      "preview": "odds"
+    },
+    {
+      "id": "difficulties",
+      "section": "economy",
+      "title": "Boss difficulties",
+      "file": "src/data/difficulties.json",
+      "note": "Boss coin rewards are in Coins, caps & missions; this file is the fights' timers, hearts and score multipliers (also checked by npm run data:validate)."
+    },
+    {
+      "id": "settings",
+      "section": "economy",
+      "title": "Connections settings",
+      "file": "src/data/settings.json",
+      "schema": "schema/tuning/settings.schema.json"
+    },
+    {
+      "id": "rarities",
+      "section": "visuals",
+      "title": "Rarity names, gems & light",
+      "file": "src/data/tuning/rarities.json",
+      "schema": "schema/tuning/rarities.schema.json",
+      "preview": "rarities"
+    },
+    {
+      "id": "anomalies",
+      "section": "visuals",
+      "title": "Cosmic anomalies",
+      "file": "src/data/tuning/anomalies.json",
+      "schema": "schema/tuning/anomalies.schema.json",
+      "note": "Chances and texts are live. A new anomaly also needs its id added to AnomalyId (src/gacha/anomalies.ts) and its class in src/index.css."
+    },
+    {
+      "id": "card-art",
+      "section": "visuals",
+      "title": "Card artwork",
+      "file": "src/data/card-art.json",
+      "policy": "append-only",
+      "preview": "images",
+      "note": "Cards keep the picture they were pulled with: existing pictures are locked. You can add a picture for a name (or a franchise) that has none yet."
+    },
+    {
+      "id": "grades",
+      "section": "ranks",
+      "title": "Card grades",
+      "file": "src/data/tuning/grades.json",
+      "schema": "schema/tuning/grades.schema.json",
+      "preview": "grades"
+    },
+    {
+      "id": "ranks",
+      "section": "ranks",
+      "title": "Guess the Rank: ranks & clips",
+      "file": "src/data/ranks.json",
+      "preview": "images"
+    },
+    {
+      "id": "card-rarities",
+      "section": "ranks",
+      "title": "Frozen card rarities",
+      "file": "src/data/card-rarities.json",
+      "policy": "read-only",
+      "note": "A released card's rarity never changes (npm run cards:freeze adds new cards). Shown for reference only."
+    },
+    {
+      "id": "effects",
+      "section": "effects",
+      "title": "Effect cards (proposal)",
+      "file": "src/data/tuning/effects.json",
+      "schema": "schema/tuning/effects.schema.json",
+      "note": "Proposed data shape for buff / debuff / modifier cards (src/gacha/effects.ts). Not played yet: \"enabled\" stays false until the owner approves the design and the hooks are wired into the games."
+    }
+  ]
+}

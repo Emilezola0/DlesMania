@@ -1,0 +1,71 @@
+{
+  "enabled": false,
+  "effects": {
+    "coin-rush": {
+      "name": "Coin Rush",
+      "icon": "🪙",
+      "kind": "buff",
+      "blurb": "Games from the Games page pay a quarter more, for five games.",
+      "modifiers": [
+        {
+          "target": "arcadeCoins",
+          "op": "multiply",
+          "value": 1.25
+        }
+      ],
+      "duration": {
+        "uses": 5
+      },
+      "stacking": "refresh",
+      "rarities": [
+        "epic",
+        "legendary"
+      ]
+    },
+    "lucky-pull": {
+      "name": "Lucky Pull",
+      "icon": "🍀",
+      "kind": "buff",
+      "blurb": "The next pack opens with half a step more luck.",
+      "modifiers": [
+        {
+          "target": "packLuck",
+          "op": "add",
+          "value": 0.5
+        }
+      ],
+      "duration": {
+        "uses": 1
+      },
+      "stacking": "none",
+      "rarities": [
+        "legendary"
+      ]
+    },
+    "short-fuse": {
+      "name": "Short Fuse",
+      "icon": "⏱️",
+      "kind": "mixed",
+      "blurb": "The next boss fight runs on faster clocks, but its win pays half again.",
+      "modifiers": [
+        {
+          "target": "bossClock",
+          "op": "multiply",
+          "value": 0.85
+        },
+        {
+          "target": "bossWinCoins",
+          "op": "multiply",
+          "value": 1.5
+        }
+      ],
+      "duration": {
+        "fights": 1
+      },
+      "stacking": "none",
+      "rarities": [
+        "mythic"
+      ]
+    }
+  }
+}

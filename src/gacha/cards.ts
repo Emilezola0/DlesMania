@@ -17,6 +17,7 @@ import MORE_ROSTERS from '../data/card-rosters.json';
 import UNREAL_ART from '../data/unreal-art.json';
 import JLPT_CARDS from '../data/jlpt-cards.json';
 import CARD_ART from '../data/card-art.json';
+import RARITY_TUNING from '../data/tuning/rarities.json';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
 
@@ -26,17 +27,11 @@ const UFOURIA_ART = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/u
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
 export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
 
-export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: number }> = {
-  common: { name: 'Common', gem: '◆', rank: 0 },
-  rare: { name: 'Rare', gem: '◆◆', rank: 1 },
-  epic: { name: 'Epic', gem: '◆◆◆', rank: 2 },
-  legendary: { name: 'Legendary', gem: '★', rank: 3 },
-  mythic: { name: 'Mythic', gem: '✦', rank: 4 },
-  omni: { name: 'Omni', gem: '✪', rank: 5 },
-};
+/** Names, gems and order: src/data/tuning/rarities.json (edited from the dev-only #/admin page). */
+export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: number }> = RARITY_TUNING.info;
 
 /** Each rarity's light: the glow from a torn pack, the shooting star, the bursts, an icon's ring. */
-export const RARITY_LIGHT: Record<Rarity, string> = { common: '#e2e8f0', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#f0abfc', omni: '#ff3b4e' };
+export const RARITY_LIGHT: Record<Rarity, string> = RARITY_TUNING.light;
 
 export interface Card {
   id: string;

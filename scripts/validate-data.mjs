@@ -6,6 +6,7 @@ import Ajv from 'ajv';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DOMAINS, ROOT, loadWorks } from './lib.mjs';
+import { checkFile, loadRegistry, makeAjv } from './admin-files.mjs';
 
 const schema = JSON.parse(readFileSync(join(ROOT, 'schema', 'work.schema.json'), 'utf8'));
 const ajv = new Ajv({ allErrors: true, strict: false, validateFormats: false });
@@ -345,6 +346,17 @@ for (const c of mcu.characters) {
 console.log(`specialist  marvel: ${mcu.films.length} films, ${mcu.characters.length} characters (${mcu.characters.filter((c) => c.castable).length} for Cast), ${mcu.generated}`);
 console.log(`specialist  lol: ${lol.champions.length} champions (Data Dragon ${lol.version}, ${lol.generated})`);
 console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.fruits.length} fruits, ${op.crews.length} crews, ${op.laughs.length} laughs (${op.generated})`);
+
+// ---------------------------------------------------------------- Tuning (the files the dev-only #/admin page edits)
+{
+  const registry = loadRegistry(ROOT);
+  const tuningAjv = makeAjv();
+  for (const entry of registry.files) {
+    const data = JSON.parse(readFileSync(join(ROOT, entry.file), 'utf8'));
+    for (const e of checkFile(ROOT, entry, data, undefined, tuningAjv)) fail(`${entry.file}${e}`);
+  }
+  console.log(`tuning      ${registry.files.length} admin files checked`);
+}
 
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);

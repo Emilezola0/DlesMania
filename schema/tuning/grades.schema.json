@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "maxGrade": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "hellGrade": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The grade that also asks for the boss beaten on Hell"
+    },
+    "gradeCost": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Spare copies a grade-up takes"
+    },
+    "grades": {
+      "type": "object",
+      "title": "Grades",
+      "propertyNames": {
+        "pattern": "^[1-9]$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "numeral": {
+            "type": "string"
+          },
+          "metal": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "x-widget": "color"
+            },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "Light, mid, dark",
+            "x-widget": "colors"
+          }
+        },
+        "required": [
+          "name",
+          "numeral",
+          "metal"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "rewardShare": {
+      "type": "object",
+      "title": "Reward share",
+      "description": "A grade-up pays the four spares' value times this",
+      "propertyNames": {
+        "pattern": "^[2-9]$"
+      },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    }
+  },
+  "required": [
+    "maxGrade",
+    "hellGrade",
+    "gradeCost",
+    "grades",
+    "rewardShare"
+  ],
+  "additionalProperties": false,
+  "title": "Grades"
+}
