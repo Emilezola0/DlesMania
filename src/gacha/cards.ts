@@ -150,15 +150,15 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   smash: { name: 'Kirby', title: 'The Star Warrior', line: 'Small, round, always hungry — and somehow the last one standing on every stage.', voice: 'Poyo!' },
   genshin: { name: 'Raiden Shogun', title: 'The Eternal Shogun', line: 'One stroke of the Musou no Hitotachi, and the storm itself bows to eternity.', voice: 'Inazuma shines eternal!' },
   wow: { name: 'Thrall', title: 'The World-Shaman', line: 'Born a slave, raised a warchief: the orc who taught the Horde to be free.', voice: 'For the Horde!' },
-  // Toph's picture is her clip's own GIF (Tenor, like the Warden's from the Minecraft wiki), so her avatar
-  // icon moves too; her voice is her own, from the show (myinstants).
+  // Toph grown up, in colour (the Avatar Wiki's portrait of her around 110 AG); her voice is her own, from
+  // the show (myinstants).
   avatar: {
     name: 'Toph',
     title: 'The Blind Bandit',
     line: 'She sees through her feet, wins every fight blindfolded — and invented metalbending at twelve.',
     voice: 'What are you doing, Twinkle Toes?',
     audio: 'https://www.myinstants.com/media/sounds/what-are-you-doing-twinkle-toes.mp3',
-    image: 'https://media.tenor.com/FwNFDMOM2bIAAAAM/toph-avatar-the-last-airbender.gif',
+    image: 'https://static.wikia.nocookie.net/avatar/images/c/c6/Toph_Beifong_smiling.png/revision/latest?cb=20260812204616',
   },
   inazuma: { name: 'Axel Blaze', title: 'The Flame Striker', line: 'He spins, the ball catches fire, and the keeper never sees it coming.', voice: 'Fire Tornado!' },
   balatro: { name: 'Jimbo', title: 'Your Friend at the Table', line: 'He knows every seed, every shop and every hand you should have played, and he will tell you all about it.', voice: 'Hey there, friend!' },
@@ -492,8 +492,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'wow:omni': { voice: 'Frostmourne hungers.' },
   'inazuma:omni': { voice: 'God Hand!' },
   'avatar:omni': { voice: 'Yip yip!' },
-  // Toph's GIF is wider than tall: the round avatar icon frames her.
-  'avatar:mythic-2': { focus: { x: 48, y: 30, zoom: 1 } },
+  // Toph's picture is wider than tall: the round avatar icon frames her face.
+  'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
   // ── Forts: the Armoured Door's only picture is a screenshot — framed on the door. (The rest have the
   // Forts RTS Wiki's own art, in src/data/bosses.json.) ──
   'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },
