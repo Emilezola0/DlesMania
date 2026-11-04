@@ -1863,6 +1863,9 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 .roulette-jackpot { animation: roulette-jackpot 0.9s ease-out 2; }
 @keyframes roulette-jackpot { 50% { box-shadow: 0 0 0 3px #fbbf24, 0 0 40px rgba(251, 191, 36, 0.6); } }
 .roulette-ready { animation: roulette-ready 1.8s ease-in-out infinite; }
+/* One wheel of many that landed on a prize: it lights up on its own. */
+.roulette-win { box-shadow: 0 0 0 3px #2dd4bf, 0 0 18px rgba(45, 212, 191, 0.8), inset 0 0 18px rgba(0, 0, 0, 0.5); }
+.roulette-win-jackpot { box-shadow: 0 0 0 3px #fbbf24, 0 0 26px rgba(251, 191, 36, 0.95), inset 0 0 18px rgba(0, 0, 0, 0.5); animation: roulette-jackpot 0.9s ease-out 3; }
 @keyframes roulette-ready { 50% { box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.35); } }
 @media (prefers-reduced-motion: reduce) {
   .roulette-bulb, .roulette-coin, .roulette-jackpot, .roulette-ready { animation: none; }

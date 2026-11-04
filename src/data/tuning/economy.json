@@ -48,9 +48,9 @@
     "cost": 5,
     "jackpot": 1000,
     "jackpotChance": 0.01,
-    "small": 10,
+    "small": 20,
     "smallChance": 0.1,
-    "dailySpins": 100
+    "dailySpins": 1000
   },
   "duplicateValue": {
     "common": 2,

@@ -146,8 +146,8 @@ interface ProgressState {
   toggleFavorite: (cardId: string) => void;
   /** When each card was last pulled (a pack, Renew, a trade), by card id: the Album's "Newest" sort. */
   pulledAt: Record<string, number>;
-  /** One roulette spin: its prize, or null if it can't (too few coins, no spins left today). */
-  spinRoulette: () => { prize: RoulettePrize; coins: number } | null;
+  /** `times` roulette spins at once (×1, ×5, ×25): each one's prize, or null if it can't (too few coins or spins left today). */
+  spinRoulette: (times?: number) => { prize: RoulettePrize; coins: number }[] | null;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -361,15 +361,19 @@ export const useProgress = create<ProgressState>()(
       anomalies: {},
       favorites: {},
       pulledAt: {},
-      spinRoulette: () => {
+      spinRoulette: (times = 1) => {
         const s = get();
         const e = econToday(s.econ);
         const spins = e.spins ?? 0;
-        if (s.coins < ROULETTE.cost || spins >= ROULETTE.dailySpins) return null;
-        const prize = rouletteRoll();
-        const coins = roulettePay(prize);
-        set({ coins: s.coins - ROULETTE.cost + coins, econ: { ...e, spins: spins + 1, earned: e.earned + coins } });
-        return { prize, coins };
+        const n = Math.max(1, Math.floor(times));
+        if (s.coins < ROULETTE.cost * n || spins + n > ROULETTE.dailySpins) return null;
+        const results = Array.from({ length: n }, () => {
+          const prize = rouletteRoll();
+          return { prize, coins: roulettePay(prize) };
+        });
+        const won = results.reduce((t, r) => t + r.coins, 0);
+        set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won } });
+        return results;
       },
       toggleFavorite: (cardId) =>
         set((s) => {
