@@ -25,6 +25,9 @@
     "setMax": 50,
     "runMax": 200,
     "clearPerAnswer": 10,
+    "clearPressureMax": 1.6,
+    "clearMax": 1500,
+    "clearRepeat": 0.05,
     "dailyCap": 1200,
     "afterCap": 0.5,
     "spacingMs": 8000

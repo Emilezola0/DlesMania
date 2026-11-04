@@ -32,6 +32,21 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = T.bossWeekly;
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
 /** Clearing a whole list (Name Them All, To the Last): this much a name, on top of the usual pay — once a day per list. */
 export const CLEAR_PER_ANSWER = T.arcade.clearPerAnswer;
+/** Lists get 8 seconds a name; one that gives less (the longest are held to ten minutes) is harder. */
+const CLEAR_SECONDS_PER_NAME = 8;
+/**
+ * Clearing a whole list, the first time today: by its length — every name pays — and by its pressure: a
+ * list with less time a name than usual pays more (up to clearPressureMax times), up to clearMax.
+ */
+export function clearReward(answers: number, seconds?: number): number {
+  if (answers <= 0) return 0;
+  const pressure = seconds ? Math.min(T.arcade.clearPressureMax, Math.max(1, (answers * CLEAR_SECONDS_PER_NAME) / seconds)) : 1;
+  return Math.min(T.arcade.clearMax, Math.round(answers * CLEAR_PER_ANSWER * pressure));
+}
+/** The same list cleared again the same day: a token, so replaying one list isn't a farm. */
+export const clearRepeatReward = (full: number) => (full > 0 ? Math.max(1, Math.round(full * T.arcade.clearRepeat)) : 0);
+/** Whether a list was already cleared today (its big reward taken). */
+export const clearedToday = (e: Economy | undefined, key: string, today: string) => !!e && e.date === today && !!e.cleared?.includes(key);
 export const ARCADE_WIN = T.arcade.win;
 export const ARCADE_LOSS = T.arcade.loss;
 export const ARCADE_BEST_BONUS = T.arcade.bestBonus;

@@ -18,7 +18,8 @@ import {
   bestCounts,
   type ArcadeResult,
   ARCADE_CAP,
-  CLEAR_PER_ANSWER,
+  clearReward,
+  clearRepeatReward,
   EXPEDITION_AFTER_CAP,
   EXPEDITION_CAP,
   ARCADE_SPACING_MS,
@@ -210,8 +211,8 @@ interface ProgressState {
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
   recordWhosThat: (key: string, score: number, result: ArcadeResult) => void;
-  /** A whole list cleared: CLEAR_PER_ANSWER a name, once a day per list. Returns what was paid (0 if already today). */
-  payCleared: (key: string, answers: number) => number;
+  /** A whole list cleared: clearReward the first time today, a token after. Returns what was paid. */
+  payCleared: (key: string, answers: number, seconds?: number) => number;
   recordBest: (key: string, score: number, result: ArcadeResult) => void;
   setSpecialRound: (key: string, index: number, record: RoundRecord) => void;
   setRound: (domain: Domain, date: string, index: number, record: RoundRecord) => void;
@@ -585,13 +586,16 @@ export const useProgress = create<ProgressState>()(
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
         }),
-      payCleared: (key, answers) => {
+      payCleared: (key, answers, seconds) => {
         const s = get();
         const e = econToday(s.econ);
-        if (answers <= 0 || e.cleared?.includes(key)) return 0;
-        const amount = answers * CLEAR_PER_ANSWER;
+        const full = clearReward(answers, seconds);
+        if (full <= 0) return 0;
+        // Again today: only a token.
+        const again = !!e.cleared?.includes(key);
+        const amount = again ? clearRepeatReward(full) : full;
         const paid = earn(s, amount);
-        set({ ...paid, econ: { ...paid.econ!, cleared: [...(e.cleared ?? []), key] } });
+        set({ ...paid, econ: { ...paid.econ!, cleared: again ? (e.cleared ?? []) : [...(e.cleared ?? []), key] } });
         return amount;
       },
       recordWhosThat: (key, score, result) =>

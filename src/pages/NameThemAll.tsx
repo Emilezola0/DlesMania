@@ -12,6 +12,9 @@ import { shownName } from '../lib/french';
 import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { Coins } from '../components/DleCoin';
+import { clearedToday, clearRepeatReward, clearReward } from '../gacha/economy';
+import { todayKey } from '../lib/date';
 
 const clock = (s: number) => `${Math.floor(s / 60)}:${String(Math.max(0, s) % 60).padStart(2, '0')}`;
 
@@ -33,6 +36,11 @@ function Game({ list: whole }: { list: NameList }) {
   const best = useProgress((s) => s.bests[key] ?? 0);
   const recordBest = useProgress((s) => s.recordBest);
   const payCleared = useProgress((s) => s.payCleared);
+  // The reward for naming every one of them: in full the first time today, a token after.
+  const reward = clearReward(whole.answers.length, whole.seconds);
+  const doneToday = clearedToday(useProgress((s) => s.econ), key, todayKey());
+  // Whether the reward just paid was a repeat (read before paying).
+  const [repeat, setRepeat] = useState(false);
   // The big reward for a list named in full: paid now, or already today (-1: not cleared).
   const [clearPay, setClearPay] = useState(-1);
   const [state, setState] = useState<'ready' | 'playing' | 'over'>('ready');
@@ -63,7 +71,9 @@ function Game({ list: whole }: { list: NameList }) {
     addUses(whole.id, names);
     // Every one of them, with nothing banned: a big reward on top (once a day per list). A list with bans
     // takes the usual pay only.
-    setClearPay(names.length === total && total > 0 && !banned.length ? payCleared(key, total) : -1);
+    const all = names.length === total && total > 0 && !banned.length;
+    setRepeat(doneToday);
+    setClearPay(all ? payCleared(key, total, list.seconds) : -1);
     if (names.length === total) window.setTimeout(() => (sfx.streak(), celebrateBig()), 300);
     else sfx.wrong();
   };
@@ -124,6 +134,7 @@ function Game({ list: whole }: { list: NameList }) {
             {total} to find in {clock(list.seconds)}. Type a name: it counts as soon as it&apos;s spelled right (Enter forgives a typo).
           </p>
           {best > 0 && <p className="text-sm text-ink-faint">Your best: {best} / {total}</p>}
+          <ClearReward reward={reward} doneToday={doneToday} banned={banned.length > 0} />
           <p className="text-xs text-ink-faint">Names you rarely give are worth more: a new one 3 points, a rare one 2, a usual one 1 — and the DleCoins follow the points.</p>
           <button type="button" onClick={start} disabled={total === 0} className="btn-ink rounded-md px-6 py-3 font-display font-bold tracking-wider disabled:opacity-50">
             Start
@@ -189,8 +200,21 @@ function Game({ list: whole }: { list: NameList }) {
             {found.length}
             <span className="text-xl text-ink-faint"> / {total}</span>
           </p>
-          {clearPay > 0 && <p className="animate-pop font-display text-lg font-bold text-ochre">🏆 +{clearPay} DleCoins for clearing the whole list!</p>}
-          {clearPay === 0 && <p className="text-xs text-ink-faint">The whole list again — its big reward is once a day.</p>}
+          {clearPay > 0 && !repeat && (
+            <p className="animate-pop font-display text-lg font-bold text-ochre">
+              🏆 +<Coins n={clearPay} /> for clearing the whole list!
+            </p>
+          )}
+          {clearPay > 0 && repeat && (
+            <p className="text-sm text-ink-soft">
+              The whole list again today: +<Coins n={clearPay} /> only. Its full reward, <Coins n={reward} />, comes back tomorrow.
+            </p>
+          )}
+          {found.length < total && !banned.length && state === 'over' && (
+            <p className="text-xs text-ink-faint">
+              Every name would have paid <Coins n={doneToday ? clearRepeatReward(reward) : reward} /> on top.
+            </p>
+          )}
           {found.length === total && total > 0 && banned.length > 0 && <p className="text-xs text-ink-faint">Every one of them — but with answers banned, the big reward for a whole list doesn&apos;t apply.</p>}
           <p className="font-display text-sm text-ochre">{points} points{points > found.length ? ` · +${points - found.length} for rare names` : ''}</p>
           {found.length > best ? <p className="font-display text-sm font-bold text-ochre">★ New best</p> : <p className="text-sm text-ink-soft">Best: {best} / {total}</p>}
@@ -220,10 +244,28 @@ function Game({ list: whole }: { list: NameList }) {
   );
 }
 
+/** What clearing the list pays: in full once a day, a token after; nothing with answers banned. */
+function ClearReward({ reward, doneToday, banned }: { reward: number; doneToday: boolean; banned: boolean }) {
+  if (banned) return <p className="text-sm text-ink-faint">With answers banned, clearing the list pays no bonus.</p>;
+  if (doneToday)
+    return (
+      <p className="text-sm text-ink-soft">
+        ✓ Cleared today. Again: +<Coins n={clearRepeatReward(reward)} /> only — the full <Coins n={reward} /> comes back tomorrow.
+      </p>
+    );
+  return (
+    <p className="font-display font-bold text-ochre">
+      🏆 Name every one of them: +<Coins n={reward} />
+    </p>
+  );
+}
+
 /** /name-them-all and /name-them-all/:list */
 export default function NameThemAll() {
   const { list: id } = useParams();
   const bests = useProgress((s) => s.bests);
+  const econ = useProgress((s) => s.econ);
+  const today = todayKey();
   const { picks, setPicks } = useCustomPicks('omnidle-custom-ntl', NTL_OPTIONS);
   if (id) {
     const list = nameList(id);
@@ -267,12 +309,21 @@ export default function NameThemAll() {
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {lists.map((l) => {
               const best = bests[`ntl:${l.id}`] ?? 0;
+              const done = clearedToday(econ, `ntl:${l.id}`, today);
               return (
                 <li key={l.id}>
                   <Link to={`/name-them-all/${l.id}`} className="flex items-center justify-between gap-3 rounded-md border border-rule-strong bg-card px-3 py-2 transition hover:-translate-y-0.5 hover:border-ink">
                     <span className="font-semibold">{l.title}</span>
-                    <span className={`shrink-0 font-display text-xs tabular-nums ${best === l.answers.length ? 'font-bold text-hit' : 'text-ink-faint'}`}>
-                      {best ? `${best}/${l.answers.length}` : l.answers.length}
+                    <span className="flex shrink-0 items-center gap-2">
+                      <span
+                        className={`font-display text-xs tabular-nums ${done ? 'text-ink-faint line-through' : 'text-ochre'}`}
+                        title={done ? 'Cleared today: its full reward comes back tomorrow' : 'Clear the whole list for this'}
+                      >
+                        <Coins n={clearReward(l.answers.length, l.seconds)} />
+                      </span>
+                      <span className={`font-display text-xs tabular-nums ${best === l.answers.length ? 'font-bold text-hit' : 'text-ink-faint'}`}>
+                        {best ? `${best}/${l.answers.length}` : l.answers.length}
+                      </span>
                     </span>
                   </Link>
                 </li>
