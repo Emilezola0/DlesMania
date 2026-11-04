@@ -57,7 +57,7 @@ export function finaleFaces(boss: Boss): BossCard[] {
   // The people already on the list (by the Specialist's names), so another spelling of one isn't added twice.
   const people = new Set([...boss.finale, ...boss.radar.members].flatMap((c) => [c.label, ...(c.aliases ?? [])]).map((n) => personOf(n)?.name ?? nameKey(n)));
   for (const c of CARDS) {
-    if (c.set !== boss.id || taken.has(c.name) || c.name === boss.boss.name) continue;
+    if (c.set !== boss.id || c.place || taken.has(c.name) || c.name === boss.boss.name) continue;
     const who = personOf(c.name)?.name ?? nameKey(c.name);
     if (people.has(who)) continue;
     // Bosses drawn in 2D only: a card's picture may be a 3D model (kept for the cards), so only faces the boss

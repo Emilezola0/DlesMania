@@ -129,7 +129,7 @@ export function Companions() {
   const top = !!icon && RARITY_INFO[icon.rarity].rank >= 4;
   // A top icon brings its franchise along, whichever theme is on.
   const set = top ? icon.set : themeSet;
-  const cast = useMemo(() => (set ? CARDS.filter((c) => c.set === set && cards[c.id] && c.id !== avatarId && c.rarity !== 'mythic' && c.rarity !== 'omni') : []), [set, cards, avatarId]);
+  const cast = useMemo(() => (set ? CARDS.filter((c) => c.set === set && cards[c.id] && c.id !== avatarId && !c.place && c.rarity !== 'mythic' && c.rarity !== 'omni') : []), [set, cards, avatarId]);
   const [talk, setTalk] = useState<{ card: Card; text: string; key: number; side: number } | null>(null);
   const last = useRef(0);
   const timers = useRef<number[]>([]);

@@ -65,6 +65,8 @@ export interface Card {
    * screenshot): zoomed `zoom` times on the point at `x`% / `y`% of it.
    */
   focus?: { x: number; y: number; zoom: number };
+  /** A place, not a character (Inazuma Eleven's stadiums and schools): kept out of the games that name faces. */
+  place?: boolean;
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
@@ -503,7 +505,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
  * Single cards added later, each with an id of its own: a favourite of the franchise again, at a
  * higher rarity, in another pose (the Howitzer, close up and firing, from the studio's art).
  */
-const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description'> & { set: string })[] = [
+const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description' | 'place'> & { set: string })[] = [
   {
     set: 'forts',
     // Swapped with the mythic: this legendary is now Eagle Eye (the id stays, so no one loses a card).
@@ -529,6 +531,23 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
     image: 'https://destiny.wiki.gallery/images/thumb/7/70/OryxInfobox.jpg/600px-OryxInfobox.jpg',
     description: 'He killed his own gods and took their power, then bent whole armies to his will — and his Dreadnaught still drifts in the rings of Saturn.',
   },
+  // Inazuma Eleven's places: its stadiums, schools and the steel tower, in the anime's art (the Inazuma Eleven Wiki).
+  { set: 'inazuma', id: 'inazuma:place-steel-tower-plaza', name: "Steel Tower Plaza", rarity: 'mythic', title: "Where It All Began", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/600?cb=20260628144331', description: "The red steel tower on the hill above Inazuma Town, at sunset: where a boy trained alone with a tyre on a rope until the whole team came to find him." },
+  { set: 'inazuma', id: 'inazuma:place-titanic-stadium', name: "Titanic Stadium", rarity: 'mythic', title: "The World Final", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/3/3b/Titanic_Stadium.png/revision/latest/scale-to-width-down/600?cb=20170113221223', description: "The great stadium of Liocott Island, raised over the sea for the final of the Football Frontier International: the whole world watching one match." },
+  { set: 'inazuma', id: 'inazuma:place-football-frontier-stadium', name: "Football Frontier Stadium", rarity: 'legendary', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/9/93/Football_Frontier_Stadium.png/revision/latest/scale-to-width-down/600?cb=20130530114730', description: "The stage of the national tournament, where every junior high team in Japan dreams of playing the final." },
+  { set: 'inazuma', id: 'inazuma:place-holy-road-stadium', name: "Holy Road Stadium", rarity: 'legendary', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/e/ef/Holy_Road_Stadium.png/revision/latest/scale-to-width-down/600?cb=20171129141014', description: "The great stadium of the Holy Road, where Raimon played for the freedom of soccer itself." },
+  { set: 'inazuma', id: 'inazuma:place-raimon-junior-high', name: "Raimon Junior High", rarity: 'epic', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/0/00/%28IE_%28001%29%29_Raimon%27s_Main_Building.png/revision/latest/scale-to-width-down/600?cb=20260628144235', description: "The school with the lightning bolt over its gate, and a soccer club that once had too few players to field a team." },
+  { set: 'inazuma', id: 'inazuma:place-zeus-stadium', name: "Zeus Stadium", rarity: 'epic', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/7/71/%28IE_%28024%29%29_Zeus_Stadium.png/revision/latest/scale-to-width-down/600?cb=20210302133632', description: "A stadium in the sky, built for Zeus: the Football Frontier final was played up among the clouds." },
+  { set: 'inazuma', id: 'inazuma:place-god-eden', name: "God Eden", rarity: 'epic', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/0/03/God_Eden.png/revision/latest/scale-to-width-down/600?cb=20170504195638', description: "Fifth Sector’s island, far out at sea, where the most dangerous players were trained apart from the world." },
+  { set: 'inazuma', id: 'inazuma:place-liocott-island', name: "Liocott Island", rarity: 'epic', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/4/40/Liocott_Island.png/revision/latest/scale-to-width-down/600?cb=20231025232816', description: "The island built for the Football Frontier International, each of its areas made to look like a team’s home country." },
+  { set: 'inazuma', id: 'inazuma:place-royal-academy', name: "Royal Academy", rarity: 'rare', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/5/5c/%28IE_%28012%29%29_TG%27s_entrance.png/revision/latest/scale-to-width-down/600?cb=20240513175715', description: "Forty years of national titles behind these walls: the champions everyone in Japan had to beat." },
+  { set: 'inazuma', id: 'inazuma:place-alius-academy', name: "Alius Academy", rarity: 'rare', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/b/b3/%28IE_%28060%29%29_Aliea_Gakuen.png/revision/latest/scale-to-width-down/600?cb=20230816163843', description: "The base the “aliens” came from, hidden at the foot of Mount Fuji." },
+  { set: 'inazuma', id: 'inazuma:place-raimon-soccer-clubroom', name: "Raimon Soccer Clubroom", rarity: 'rare', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d8/%28IE_%28001%29%29_Raimon_Soccer_Club.png/revision/latest/scale-to-width-down/600?cb=20240804154302', description: "The old wooden shed behind the school, where a club of almost nobody kept its name on the door." },
+  { set: 'inazuma', id: 'inazuma:place-alpine-junior-high', name: "Alpine Junior High", rarity: 'rare', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/1/18/Hakuren.png/revision/latest/scale-to-width-down/600?cb=20210902122658', description: "A snowy school in Hokkaido, with a pitch in the mountains and the striker who could freeze the ball." },
+  { set: 'inazuma', id: 'inazuma:place-ragnarok-stadium', name: "Ragnarok Stadium", rarity: 'rare', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/2/2a/Ragnarok_Stadium.png/revision/latest/scale-to-width-down/600?cb=20170504200142', description: "The stadium of the future, where the fate of soccer across time was decided." },
+  { set: 'inazuma', id: 'inazuma:place-the-riverbank', name: "The Riverbank", rarity: 'common', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/6b/Riverbank.png/revision/latest/scale-to-width-down/600?cb=20240803110451', description: "The pitch on the river’s edge in Inazuma Town, where the team trains when the school ground is taken." },
+  { set: 'inazuma', id: 'inazuma:place-raimon-ground', name: "Raimon Ground", rarity: 'common', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/7/7d/%28IE_%28001%29%29_Raimon_Ground.png/revision/latest/scale-to-width-down/600?cb=20260628144406', description: "Raimon’s own school ground, where the soccer club had to fight the other clubs for room to train." },
+  { set: 'inazuma', id: 'inazuma:place-inazuma-town', name: "Inazuma Town", rarity: 'common', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/9/91/Inazuma_Town.png/revision/latest/scale-to-width-down/600?cb=20121229234139', description: "The hometown: the river, the steel tower and the school, all in one view." },
 ];
 
 /**
@@ -843,7 +862,7 @@ export const CARDS: Card[] = (() => {
   // Then the single cards added on their own.
   for (const x of EXTRA) {
     const b = CARD_BOSSES.find((y) => y.id === x.set);
-    if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description });
+    if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description, place: x.place });
   }
   // And last: the second mythics, each set's newest card.
   for (const b of CARD_BOSSES) {
