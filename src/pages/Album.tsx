@@ -57,15 +57,18 @@ function useKept<T>(key: string, initial: T, valid: (v: unknown) => boolean): [T
   }, [key, value]);
   return [value, setValue];
 }
-type Sort = 'set' | 'rarity' | 'grade' | 'name' | 'count';
+type Sort = 'set' | 'recent' | 'rarity' | 'grade' | 'name' | 'count';
 
 const SORTS: { id: Sort; label: string }[] = [
   { id: 'set', label: 'Set' },
+  { id: 'recent', label: 'Newest' },
   { id: 'rarity', label: 'Rarity' },
   { id: 'grade', label: 'Grade' },
   { id: 'name', label: 'Name' },
   { id: 'count', label: 'Most pulled' },
 ];
+/** One shared empty record: a selector must not hand back a new object at each call. */
+const NONE: Record<string, never> = {};
 const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 
 /**
@@ -327,8 +330,9 @@ export default function Album() {
   const lastPointer = useRef('mouse');
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
-  const anomalies = useProgress((s) => s.anomalies ?? {});
-  const favorites = useProgress((s) => s.favorites ?? {});
+  const anomalies = useProgress((s) => s.anomalies ?? NONE);
+  const favorites = useProgress((s) => s.favorites ?? NONE);
+  const pulledAt = useProgress((s) => s.pulledAt ?? NONE);
   const bosses = useProgress((s) => s.bosses);
   const coins = useProgress((s) => s.coins);
   const [set, setSet] = useKept('omnidle:album:set', 'all', (v) => v === 'all' || SETS.some((s) => s.id === v));
@@ -400,12 +404,14 @@ export default function Album() {
     // Cards not owned last: they have no grade.
     const byGrade = (c: Card) => (owned[c.id] ? gradeOf(grades, c.id) : 0);
     const byRarity = (a: Card, b: Card) => RARITY_INFO[b.rarity].rank - RARITY_INFO[a.rarity].rank;
+    // Last pulled first; cards pulled before pulls were dated come next, then the cards not owned.
+    const byRecent = (c: Card) => (owned[c.id] ? (pulledAt[c.id] ?? 1) : 0);
     const bySet = (a: Card, b: Card) => (SET_ORDER.get(a.set) ?? 0) - (SET_ORDER.get(b.set) ?? 0) || a.no - b.no;
     const sorted = [...xs].sort(
-      sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
+      sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : sort === 'recent' ? (a, b) => byRecent(b) - byRecent(a) || byRarity(a, b) || bySet(a, b) : bySet,
     );
     return reverse ? sorted.reverse() : sorted;
-  }, [set, rarities, show, sort, reverse, search, owned, grades, anomalies, favorites, bosses]);
+  }, [set, rarities, show, sort, reverse, search, owned, grades, anomalies, favorites, bosses, pulledAt]);
   const filtered = set !== 'all' || rarities.length < RARITIES.length || show !== 'all' || !!query.trim();
   const clearFilters = () => {
     sfx.click();

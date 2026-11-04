@@ -9,6 +9,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
+import { Roulette } from '../gacha/Roulette';
 import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
@@ -347,6 +348,8 @@ export default function Shop() {
           ))}
         </div>
       </section>
+
+      <Roulette />
 
       <DropRates pity={pity} />
 

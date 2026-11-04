@@ -45,6 +45,14 @@
     "dailyCap": 800,
     "afterCap": 0.25
   },
+  "roulette": {
+    "cost": 5,
+    "jackpot": 1000,
+    "jackpotChance": 0.01,
+    "small": 10,
+    "smallChance": 0.1,
+    "dailySpins": 20
+  },
   "duplicateValue": {
     "common": 2,
     "rare": 5,

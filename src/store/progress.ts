@@ -41,6 +41,10 @@ import {
   type LongKind,
   type Period,
   type PeriodBooks,
+  ROULETTE,
+  rouletteRoll,
+  roulettePay,
+  type RoulettePrize,
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
 
@@ -139,6 +143,10 @@ interface ProgressState {
   /** Cards starred in the Album. */
   favorites: Record<string, true>;
   toggleFavorite: (cardId: string) => void;
+  /** When each card was last pulled (a pack, Renew, a trade), by card id: the Album's "Newest" sort. */
+  pulledAt: Record<string, number>;
+  /** One roulette spin: its prize, or null if it can't (too few coins, no spins left today). */
+  spinRoulette: () => { prize: RoulettePrize; coins: number } | null;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -244,6 +252,14 @@ export const bossWeekNow = (b: BossWeek | undefined): BossWeek => (b && b.week =
  * the daily amount, then as a token; a game that saves as it goes pays once per spacing. Mission
  * counters move on.
  */
+/** Cards just pulled, marked with the time (the Album's "Newest" sort). */
+function stamp(pulledAt: Record<string, number> | undefined, ids: string[]): Record<string, number> {
+  const now = Date.now();
+  const out = { ...(pulledAt ?? {}) };
+  for (const id of ids) out[id] = now;
+  return out;
+}
+
 function earn(
   s: Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>,
   amount: number,
@@ -335,7 +351,7 @@ export const useProgress = create<ProgressState>()(
           // Only spare copies go: one of each card always stays.
           for (const [id, n] of Object.entries(spent)) cards[id] = Math.max(1, (cards[id] ?? 0) - n);
           cards[gained] = (cards[gained] ?? 0) + 1;
-          return { cards };
+          return { cards, pulledAt: stamp(s.pulledAt, [gained]) };
         }),
       grades: {},
       gradesPaid: {},
@@ -343,6 +359,17 @@ export const useProgress = create<ProgressState>()(
       elements: {},
       anomalies: {},
       favorites: {},
+      pulledAt: {},
+      spinRoulette: () => {
+        const s = get();
+        const e = econToday(s.econ);
+        const spins = e.spins ?? 0;
+        if (s.coins < ROULETTE.cost || spins >= ROULETTE.dailySpins) return null;
+        const prize = rouletteRoll();
+        const coins = roulettePay(prize);
+        set({ coins: s.coins - ROULETTE.cost + coins, econ: { ...e, spins: spins + 1, earned: e.earned + coins } });
+        return { prize, coins };
+      },
       toggleFavorite: (cardId) =>
         set((s) => {
           const { [cardId]: was, ...rest } = s.favorites ?? {};
@@ -431,7 +458,7 @@ export const useProgress = create<ProgressState>()(
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}) };
+          return { coins: s.coins - cost, cards, pulledAt: stamp(s.pulledAt, cardIds), packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}) };
         });
         return true;
       },
@@ -449,10 +476,11 @@ export const useProgress = create<ProgressState>()(
             if (left > 0) cards[id] = left;
             else delete cards[id];
           }
+          const got = Object.entries(delta).filter(([, n]) => n > 0).map(([id]) => id);
           // A card traded away for good takes its grade with it.
           const grades = { ...(s.grades ?? {}) };
           for (const id of Object.keys(grades)) if (!cards[id]) delete grades[id];
-          return { cards, grades };
+          return { cards, grades, ...(got.length ? { pulledAt: stamp(s.pulledAt, got) } : {}) };
         }),
       earnExpedition: (amount) => {
         const s = get();
@@ -610,7 +638,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {} }),
     }),
     {
       name: 'omnidle-progress',

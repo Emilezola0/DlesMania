@@ -254,6 +254,20 @@
       "additionalProperties": false,
       "title": "Expeditions"
     },
+    "roulette": {
+      "type": "object",
+      "description": "The Card Shop's roulette: pay to spin, a small chance of a jackpot",
+      "properties": {
+        "cost": { "type": "integer", "minimum": 1, "description": "DleCoins a spin" },
+        "jackpot": { "type": "integer", "minimum": 0, "description": "The jackpot" },
+        "jackpotChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance of the jackpot (0.01 = 1 in 100)" },
+        "small": { "type": "integer", "minimum": 0, "description": "The small prize" },
+        "smallChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance of the small prize" },
+        "dailySpins": { "type": "integer", "minimum": 1, "description": "Spins a day" }
+      },
+      "required": ["cost", "jackpot", "jackpotChance", "small", "smallChance", "dailySpins"],
+      "additionalProperties": false
+    },
     "duplicateValue": {
       "type": "object",
       "properties": {
@@ -921,6 +935,7 @@
     "hot",
     "pity",
     "expedition",
+    "roulette",
     "duplicateValue",
     "missions",
     "longMissions"

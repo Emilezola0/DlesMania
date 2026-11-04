@@ -44,6 +44,7 @@ export const SYNCED = [
   'missionBooks',
   'redeemed',
   'favorites',
+  'pulledAt',
   'groups',
   'jlptReview',
 ] as const;
@@ -126,6 +127,7 @@ function mergeEcon(a: Economy | undefined, b: Economy | undefined): Economy | un
     date: a.date,
     arcade: Math.max(a.arcade, b.arcade),
     expedition: Math.max(a.expedition ?? 0, b.expedition ?? 0),
+    spins: Math.max(a.spins ?? 0, b.spins ?? 0),
     bosses: [...new Set([...a.bosses, ...b.bosses])],
     counters,
     claimed: [...new Set([...a.claimed, ...b.claimed])],
@@ -187,6 +189,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     redeemed: [...new Set([...(local.redeemed ?? []), ...(cloud.redeemed ?? [])])],
     // Starred cards: both sides' on a first link; then the latest (a star taken off stays off).
     favorites: firstLink ? { ...(cloud.favorites ?? {}), ...(local.favorites ?? {}) } : (latest.favorites ?? local.favorites ?? {}),
+    // When each card was last pulled: the later of the two.
+    pulledAt: maxBy(local.pulledAt, cloud.pulledAt),
     // Group codes made or joined on either side.
     groups: { ...(cloud.groups ?? {}), ...(local.groups ?? {}) },
     // The same week: every boss paid on either side stays paid. Different weeks: the later one.

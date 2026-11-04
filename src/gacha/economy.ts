@@ -146,6 +146,19 @@ export const EXPEDITION_ROOM_MAX = T.expedition.roomMax;
 export const EXPEDITION_BOSS_MAX = T.expedition.bossMax;
 /** Beating the last act's guardian: on top of its own coins. */
 export const EXPEDITION_COMPLETE_BONUS = T.expedition.completeBonus;
+
+/**
+ * The Card Shop's roulette: a spin costs a few coins, with a small chance of a jackpot and a better one of a
+ * small prize. A few spins a day, so it stays a treat and never a way to farm.
+ */
+export const ROULETTE = T.roulette;
+export type RoulettePrize = 'jackpot' | 'small' | 'none';
+export function rouletteRoll(r: number = Math.random()): RoulettePrize {
+  if (r < ROULETTE.jackpotChance) return 'jackpot';
+  if (r < ROULETTE.jackpotChance + ROULETTE.smallChance) return 'small';
+  return 'none';
+}
+export const roulettePay = (p: RoulettePrize) => (p === 'jackpot' ? ROULETTE.jackpot : p === 'small' ? ROULETTE.small : 0);
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
 export const EXPEDITION_CAP = T.expedition.dailyCap;
 export const EXPEDITION_AFTER_CAP = T.expedition.afterCap;
@@ -179,6 +192,8 @@ export interface Economy {
   arcade: number;
   /** Coins from Expeditions so far today. */
   expedition?: number;
+  /** Roulette spins so far today. */
+  spins?: number;
   /** bossKey()s already paid for today (kept for old saves; bosses now pay by the week, see BossWeek). */
   bosses: string[];
   /** When each game last paid (by its best key), for the spacing between pays. */
