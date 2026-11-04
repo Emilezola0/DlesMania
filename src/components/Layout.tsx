@@ -236,8 +236,13 @@ function useNextKey() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.key !== 'Enter' && e.key !== ' ') || e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return;
+      // Nor with the Enter that sent the last answer: the round ends while the key is still on its way (the field
+      // it was typed in is gone by then), and the answer must stay on screen until the player moves on.
+      const field = 'input, textarea, select, button, a[href], [role="button"]';
+      const t = e.target instanceof HTMLElement ? e.target : null;
+      if (t && t !== document.body && (t.isContentEditable || t.matches(field) || !t.isConnected)) return;
       const a = document.activeElement as HTMLElement | null;
-      if (a && (a.isContentEditable || a.matches('input, textarea, select, button, a[href], [role="button"]'))) return;
+      if (a && (a.isContentEditable || a.matches(field))) return;
       const next = [...document.querySelectorAll<HTMLButtonElement>('[data-next]')].filter((b) => !b.disabled && b.offsetParent !== null).at(-1);
       if (!next) return;
       e.preventDefault();
