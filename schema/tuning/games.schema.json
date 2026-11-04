@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "nameThemAll": {
+      "type": "object",
+      "title": "Name Them All",
+      "description": "Each list’s clock, and what clearing a whole list pays (To the Last too)",
+      "properties": {
+        "secondsPerName": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Time a list gives, per name"
+        },
+        "minSeconds": {
+          "type": "integer",
+          "minimum": 10,
+          "description": "A short list gets at least this many seconds"
+        },
+        "maxSeconds": {
+          "type": "integer",
+          "minimum": 10,
+          "description": "A long list gets at most this many seconds (so the longest are the hardest)"
+        },
+        "clearPerAnswer": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Clearing a whole list: DleCoins per name, the first time each day"
+        },
+        "clearPressureMax": {
+          "type": "number",
+          "minimum": 1,
+          "description": "A list with less time a name than usual pays up to this many times more"
+        },
+        "clearMax": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Clearing a whole list pays at most this"
+        },
+        "clearRepeat": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "The same list cleared again the same day: this share of its reward"
+        }
+      },
+      "required": [
+        "secondsPerName",
+        "minSeconds",
+        "maxSeconds",
+        "clearPerAnswer",
+        "clearPressureMax",
+        "clearMax",
+        "clearRepeat"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "nameThemAll"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,11 @@
+{
+  "nameThemAll": {
+    "secondsPerName": 8,
+    "minSeconds": 90,
+    "maxSeconds": 600,
+    "clearPerAnswer": 10,
+    "clearPressureMax": 1.6,
+    "clearMax": 50000,
+    "clearRepeat": 0.05
+  }
+}

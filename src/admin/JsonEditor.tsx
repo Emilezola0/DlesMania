@@ -18,6 +18,8 @@ export interface EditorCtx {
 }
 
 const pointer = (path: Path) => (path.length ? `/${path.join('/')}` : '/');
+/** The DOM id of a field or group, for the page's "Find a setting" and jump bar. */
+export const fieldId = (path: Path) => `adm:${pointer(path)}`;
 const isObj = (v: unknown): v is Record<string, Json> => !!v && typeof v === 'object' && !Array.isArray(v);
 export const get = (v: Json | undefined, path: Path): Json | undefined => path.reduce<Json | undefined>((o, k) => (o == null || typeof o !== 'object' ? undefined : (o as Record<string, Json>)[k as string]), v);
 
@@ -25,12 +27,12 @@ const COLOR = /^#[0-9a-f]{6}$/i;
 const PICTURE = /^(https?:\/\/|\.?\/|art\/).+\.(png|jpe?g|gif|webp|svg|avif)(\?.*|\/revision\/.*)?$|\/images\/.+\.(png|jpe?g|gif|webp|svg)/i;
 
 /** "bossWin" → "Boss win", "longMissions" → "Long missions". */
-const humanize = (k: string | number) => {
+export const humanize = (k: string | number) => {
   const s = String(k).replace(/[-_]/g, ' ').replace(/([a-z0-9])([A-Z])/g, '$1 $2').toLowerCase();
   return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
-const childSchema = (s: Schema | undefined, k: string | number): Schema | undefined =>
+export const childSchema = (s: Schema | undefined, k: string | number): Schema | undefined =>
   s?.properties?.[k as string] ?? (typeof s?.additionalProperties === 'object' ? s.additionalProperties : undefined) ?? s?.items;
 
 /** A blank value of the same shape: for a new entry copied from an existing one. */
@@ -85,7 +87,7 @@ function Errors({ ctx, path }: { ctx: EditorCtx; path: Path }) {
 function Row({ label, hint, children, path, ctx, onRemove }: { label: ReactNode; hint?: string; children: ReactNode; path: Path; ctx: EditorCtx; onRemove?: () => void }) {
   const bad = ctx.errors.has(pointer(path));
   return (
-    <div className={`grid grid-cols-[minmax(7rem,12rem)_1fr_auto] items-start gap-2 py-1 ${bad ? 'rounded bg-miss/10' : ''}`}>
+    <div id={fieldId(path)} className={`grid scroll-mt-28 grid-cols-[minmax(7rem,12rem)_1fr_auto] items-start gap-2 py-1 ${bad ? 'rounded bg-miss/10' : ''}`}>
       <label className="pt-1 text-sm font-semibold text-ink" title={pointer(path)}>
         {label}
         {hint && <span className="block text-xs font-normal text-ink-faint">{hint}</span>}
@@ -254,7 +256,7 @@ function ObjectNode({ path, value, schema, ctx, depth, name, hint, onRemove }: {
   );
   if (depth === 0) return body;
   return (
-    <details open={depth < 2 && !big} className="py-1">
+    <details id={fieldId(path)} open={depth < 2 && !big} className="scroll-mt-28 py-1">
       <summary className="flex cursor-pointer items-center gap-2 text-sm font-bold text-ink">
         <span title={pointer(path)}>{name}</span>
         <span className="text-xs font-normal text-ink-faint">{keys.length} fields</span>
@@ -302,7 +304,7 @@ function ArrayNode({ path, value, schema, ctx, depth, name, hint, onRemove }: { 
     );
 
   return (
-    <details open={depth < 2 && value.length <= 24} className="py-1">
+    <details id={fieldId(path)} open={depth < 2 && value.length <= 24} className="scroll-mt-28 py-1">
       <summary className="flex cursor-pointer items-center gap-2 text-sm font-bold text-ink">
         <span title={pointer(path)}>{name}</span>
         <span className="text-xs font-normal text-ink-faint">{value.length} items</span>

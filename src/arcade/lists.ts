@@ -1,3 +1,4 @@
+import { listSeconds } from '../gacha/economy';
 import { BOSSES } from '../data/bosses';
 import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
@@ -25,8 +26,8 @@ const titleOf = (prompt: string) => {
   return t[0].toUpperCase() + t.slice(1);
 };
 
-/** Eight seconds a name, between a minute and a half and ten minutes. */
-const timeFor = (n: number) => Math.min(600, Math.max(90, n * 8));
+/** So many seconds a name, between a floor and a ceiling: src/data/tuning/games.json. */
+const timeFor = (n: number) => listSeconds(n);
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 

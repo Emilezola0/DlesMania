@@ -128,27 +128,6 @@
           "minimum": 0,
           "description": "An endless run at most"
         },
-        "clearPerAnswer": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Clearing a whole list: per name, once a day per list"
-        },
-        "clearPressureMax": {
-          "type": "number",
-          "minimum": 1,
-          "description": "Clearing a list with less time a name than usual: up to this many times more"
-        },
-        "clearMax": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Clearing a whole list: at most"
-        },
-        "clearRepeat": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Clearing a list again the same day: this share of its reward"
-        },
         "dailyCap": {
           "type": "integer",
           "minimum": 0,
@@ -172,10 +151,6 @@
         "bestBonus",
         "setMax",
         "runMax",
-        "clearPerAnswer",
-        "clearPressureMax",
-        "clearMax",
-        "clearRepeat",
         "dailyCap",
         "afterCap",
         "spacingMs"
@@ -277,14 +252,47 @@
       "type": "object",
       "description": "The Card Shop's roulette: pay to spin, a small chance of a jackpot",
       "properties": {
-        "cost": { "type": "integer", "minimum": 1, "description": "DleCoins a spin" },
-        "jackpot": { "type": "integer", "minimum": 0, "description": "The jackpot" },
-        "jackpotChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance of the jackpot (0.01 = 1 in 100)" },
-        "small": { "type": "integer", "minimum": 0, "description": "The small prize" },
-        "smallChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance of the small prize" },
-        "dailySpins": { "type": "integer", "minimum": 1, "description": "Spins a day" }
+        "cost": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "DleCoins a spin"
+        },
+        "jackpot": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The jackpot"
+        },
+        "jackpotChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Chance of the jackpot (0.01 = 1 in 100)"
+        },
+        "small": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The small prize"
+        },
+        "smallChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Chance of the small prize"
+        },
+        "dailySpins": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Spins a day"
+        }
       },
-      "required": ["cost", "jackpot", "jackpotChance", "small", "smallChance", "dailySpins"],
+      "required": [
+        "cost",
+        "jackpot",
+        "jackpotChance",
+        "small",
+        "smallChance",
+        "dailySpins"
+      ],
       "additionalProperties": false
     },
     "duplicateValue": {

@@ -10,6 +10,7 @@
 import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
 import T from '../data/tuning/economy.json';
+import G from '../data/tuning/games.json';
 
 /** A finished daily round (category or Specialist): more for a better score. */
 export const roundCoins = (won: boolean, score: number, r: typeof T.round = T.round) => (won ? r.win + r.perTenPoints * Math.floor(Math.max(0, score) / 10) : r.loss);
@@ -30,21 +31,23 @@ export const BOSS_WEEKLY: Record<BossDifficulty, number> = T.bossWeekly;
  * A new best (that isn't a loss) adds a bonus; a best kept in the middle of a run pays nothing.
  */
 export type ArcadeResult = { won: boolean } | { ratio: number } | { reached: number } | { save: true };
+/** Name Them All's clock and reward: src/data/tuning/games.json (its own section of #/admin). */
+export type NameThemAllTuning = typeof G.nameThemAll;
 /** Clearing a whole list (Name Them All, To the Last): this much a name, on top of the usual pay — once a day per list. */
-export const CLEAR_PER_ANSWER = T.arcade.clearPerAnswer;
-/** Lists get 8 seconds a name; one that gives less (the longest are held to ten minutes) is harder. */
-const CLEAR_SECONDS_PER_NAME = 8;
+export const CLEAR_PER_ANSWER = G.nameThemAll.clearPerAnswer;
+/** A list's time: so many seconds a name, between a floor and a ceiling (the longest lists are the hardest). */
+export const listSeconds = (names: number, t: NameThemAllTuning = G.nameThemAll) => Math.round(Math.min(t.maxSeconds, Math.max(t.minSeconds, names * t.secondsPerName)));
 /**
  * Clearing a whole list, the first time today: by its length — every name pays — and by its pressure: a
  * list with less time a name than usual pays more (up to clearPressureMax times), up to clearMax.
  */
-export function clearReward(answers: number, seconds?: number): number {
+export function clearReward(answers: number, seconds?: number, t: NameThemAllTuning = G.nameThemAll): number {
   if (answers <= 0) return 0;
-  const pressure = seconds ? Math.min(T.arcade.clearPressureMax, Math.max(1, (answers * CLEAR_SECONDS_PER_NAME) / seconds)) : 1;
-  return Math.min(T.arcade.clearMax, Math.round(answers * CLEAR_PER_ANSWER * pressure));
+  const pressure = seconds ? Math.min(t.clearPressureMax, Math.max(1, (answers * t.secondsPerName) / seconds)) : 1;
+  return Math.min(t.clearMax, Math.round(answers * t.clearPerAnswer * pressure));
 }
 /** The same list cleared again the same day: a token, so replaying one list isn't a farm. */
-export const clearRepeatReward = (full: number) => (full > 0 ? Math.max(1, Math.round(full * T.arcade.clearRepeat)) : 0);
+export const clearRepeatReward = (full: number, t: NameThemAllTuning = G.nameThemAll) => (full > 0 ? Math.max(1, Math.round(full * t.clearRepeat)) : 0);
 /** Whether a list was already cleared today (its big reward taken). */
 export const clearedToday = (e: Economy | undefined, key: string, today: string) => !!e && e.date === today && !!e.cleared?.includes(key);
 export const ARCADE_WIN = T.arcade.win;

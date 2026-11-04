@@ -1873,3 +1873,11 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 /* Crossroads: the wait at the top, a ring running out (src/pages/Crossroads.tsx). */
 .cross-wait { animation: cross-wait linear forwards; }
 @keyframes cross-wait { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
+
+/* #/admin: the setting "Find a setting" jumped to. */
+.admin-found {
+  outline: 2px solid var(--color-accent, #f59e0b);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+  transition: outline-color 0.3s;
+}

@@ -1,10 +1,31 @@
 {
   "$comment": "The files the dev-only admin page (#/admin, scripts/admin-server.ts) may read and write: nothing else. policy: \"edit\" (default), \"append-only\" (new keys only, existing values locked), \"read-only\". A schema (JSON Schema, checked by Ajv here and by npm run data:validate) drives the editor; without one the editor follows the data's own shape and the server keeps every value's type.",
   "sections": [
-    { "id": "economy", "title": "Stats & economy", "icon": "🪙" },
-    { "id": "visuals", "title": "Card visuals", "icon": "🎨" },
-    { "id": "ranks", "title": "Ranks & grades", "icon": "🏅" },
-    { "id": "effects", "title": "Effect cards", "icon": "✨" }
+    {
+      "id": "economy",
+      "title": "Stats & economy",
+      "icon": "🪙"
+    },
+    {
+      "id": "games",
+      "title": "Games",
+      "icon": "🎮"
+    },
+    {
+      "id": "visuals",
+      "title": "Card visuals",
+      "icon": "🎨"
+    },
+    {
+      "id": "ranks",
+      "title": "Ranks & grades",
+      "icon": "🏅"
+    },
+    {
+      "id": "effects",
+      "title": "Effect cards (draft, not in the game)",
+      "icon": "✨"
+    }
   ],
   "files": [
     {
@@ -25,14 +46,22 @@
     },
     {
       "id": "difficulties",
-      "section": "economy",
+      "section": "games",
       "title": "Boss difficulties",
       "file": "src/data/difficulties.json",
       "note": "Boss coin rewards are in Coins, caps & missions; this file is the fights' timers, hearts and score multipliers (also checked by npm run data:validate)."
     },
     {
+      "id": "games",
+      "section": "games",
+      "title": "Name Them All",
+      "file": "src/data/tuning/games.json",
+      "schema": "schema/tuning/games.schema.json",
+      "preview": "nameThemAll"
+    },
+    {
       "id": "settings",
-      "section": "economy",
+      "section": "games",
       "title": "Connections settings",
       "file": "src/data/settings.json",
       "schema": "schema/tuning/settings.schema.json"

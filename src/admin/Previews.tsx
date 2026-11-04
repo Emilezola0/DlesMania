@@ -1,7 +1,8 @@
 // What a draft looks like before it's saved, with the game's own functions fed the draft's numbers.
 import { Component, type ReactNode } from 'react';
 import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Rarity } from '../gacha/cards';
-import { DUPLICATE_VALUE, PITY_TOP_SHARE, roundCoins } from '../gacha/economy';
+import { clearRepeatReward, clearReward, DUPLICATE_VALUE, listSeconds, PITY_TOP_SHARE, roundCoins, type NameThemAllTuning } from '../gacha/economy';
+import { NAME_LISTS } from '../arcade/lists';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { gradeReward, type GradeInfo } from '../gacha/grades';
 import { lastCardOdds, oddsWith } from '../gacha/packs';
@@ -30,6 +31,7 @@ export function Preview({ kind, data }: { kind?: string; data: Json }) {
   if (kind === 'economy') return <EconomyPreview t={data as unknown as typeof economyJson} />;
   if (kind === 'rarities') return <RarityPreview t={data as unknown as typeof raritiesJson} />;
   if (kind === 'grades') return <GradesPreview t={data as unknown as typeof gradesJson} />;
+  if (kind === 'nameThemAll') return <NameThemAllPreview t={(data as unknown as { nameThemAll: NameThemAllTuning }).nameThemAll} />;
   return null;
 }
 
@@ -238,5 +240,48 @@ function GradesPreview({ t }: { t: typeof gradesJson }) {
         <p className="text-xs text-ink-faint">Spare values from Coins, caps & missions (as saved): {RARITIES.map((r) => DUPLICATE_VALUE[r]).join(' / ')}.</p>
       </Box>
     </div>
+  );
+}
+
+const clock = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
+
+/** Every Name Them All list under the draft: its clock, what clearing it pays, and again the same day. */
+function NameThemAllPreview({ t }: { t: NameThemAllTuning }) {
+  const rows = NAME_LISTS.map((l) => {
+    const seconds = listSeconds(l.answers.length, t);
+    const full = clearReward(l.answers.length, seconds, t);
+    return { id: l.id, title: `${l.franchise} · ${l.title}`, names: l.answers.length, seconds, full, again: clearRepeatReward(full, t) };
+  }).sort((a, b) => b.full - a.full || b.names - a.names);
+  const capped = rows.filter((r) => r.full >= t.clearMax).length;
+  return (
+    <Box title={`Clearing a list (${rows.length} lists)`}>
+      <p className="text-xs text-ink-faint">
+        Biggest first. {capped ? `${capped} list(s) at the cap of ${t.clearMax.toLocaleString()}.` : 'None at the cap.'} Again the same day: the last column.
+      </p>
+      <div className="max-h-[60vh] overflow-y-auto">
+        <table className="w-full text-sm">
+          <thead className="sticky top-0 bg-card">
+            <tr>
+              <th className={th}>List</th>
+              <th className={`${th} text-right`}>Names</th>
+              <th className={`${th} text-right`}>Time</th>
+              <th className={`${th} text-right`}>Pays</th>
+              <th className={`${th} text-right`}>Again</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.id} className="border-t border-rule/60">
+                <td className={`${td} max-w-[12rem] truncate`} title={r.title}>{r.title}</td>
+                <td className={`${td} text-right`}>{r.names}</td>
+                <td className={`${td} text-right`}>{clock(r.seconds)}</td>
+                <td className={`${td} whitespace-nowrap text-right font-semibold`}>🪙 {r.full.toLocaleString()}</td>
+                <td className={`${td} text-right text-ink-faint`}>{r.again.toLocaleString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Box>
   );
 }
