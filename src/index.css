@@ -562,6 +562,60 @@ h1, h2, h3, .font-serif, .font-display {
 }
 .pack-meteor { animation: pack-meteor 0.85s cubic-bezier(0.5, 0, 0.7, 1) forwards; }
 .pack-meteor-slow { animation-duration: 1.3s; }
+/* Deep space behind the shooting stars (src/gacha/PackOpening.tsx, Space). */
+.pack-space { animation: pack-space-in 0.6s ease-out both; }
+@keyframes pack-space-in { from { opacity: 0; } }
+.pack-nebula {
+  background:
+    radial-gradient(ellipse 45% 35% at 22% 30%, rgba(124, 58, 237, 0.28), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 78% 65%, rgba(14, 165, 233, 0.22), transparent 70%),
+    radial-gradient(ellipse 30% 22% at 60% 20%, rgba(236, 72, 153, 0.16), transparent 70%);
+  animation: pack-nebula 18s ease-in-out infinite alternate;
+}
+@keyframes pack-nebula {
+  from { transform: rotate(-3deg) scale(1); }
+  to { transform: rotate(3deg) scale(1.08); }
+}
+.pack-far-star { animation: pack-far-star 3s ease-in-out infinite; }
+@keyframes pack-far-star {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+.pack-planet {
+  right: -6vmin;
+  bottom: -8vmin;
+  width: 34vmin;
+  height: 34vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #6d5bd0, #2a1f5c 55%, #0d0a1f 80%);
+  box-shadow: inset -4vmin -3vmin 6vmin rgba(0, 0, 0, 0.6), 0 0 6vmin rgba(124, 58, 237, 0.35);
+  animation: pack-planet 24s ease-in-out infinite alternate;
+}
+.pack-planet::after {
+  content: '';
+  position: absolute;
+  inset: 38% -28%;
+  border-radius: 50%;
+  border: 0.6vmin solid rgba(196, 181, 253, 0.45);
+  transform: rotate(-16deg);
+}
+@keyframes pack-planet { to { transform: translate(-1.5vmin, -1vmin); } }
+/* A shooting star's blazing head, and the sparkles it sheds. */
+.pack-meteor-head {
+  transform: translate(35%, -50%);
+  background: radial-gradient(circle, #fff 0 18%, var(--glow) 40%, transparent 70%);
+  filter: drop-shadow(0 0 8px var(--glow));
+}
+.pack-meteor-dust {
+  background-image: radial-gradient(1.5px 1.5px at 20% 20%, #fff, transparent), radial-gradient(1.5px 1.5px at 45% 80%, #fff, transparent), radial-gradient(2px 2px at 70% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 75%, #fff, transparent);
+  background-size: 60px 100%;
+  opacity: 0.8;
+  transform: translateY(-6px);
+  height: calc(100% + 12px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-nebula, .pack-far-star, .pack-planet { animation: none; }
+}
 @keyframes pack-twinkle {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }

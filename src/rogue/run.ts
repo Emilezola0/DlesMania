@@ -1,7 +1,7 @@
 // Expedition, the roguelike: a run is a branching map of rooms, each a short challenge borrowed
 // from the other games. Hearts, gold and relics carry from room to room; out of hearts, the run ends.
 // The run is plain data (saved in the store), so a refresh doesn't lose it.
-import { EXPEDITION_BOSS_MAX, EXPEDITION_ROOM_MAX } from '../gacha/economy';
+import { EXPEDITION_BOSS_MAX, EXPEDITION_COMPLETE_BONUS, EXPEDITION_ROOM_MAX } from '../gacha/economy';
 import { mulberry32 } from '../lib/rng';
 import type { Domain } from '../types';
 import { ALL_KEYS, ALL_ROOMS, challengesFor, keysFor, mediaOfKeys } from './pools';
@@ -59,17 +59,19 @@ export interface RunState {
   relicsUntil?: Partial<Record<RelicId, number>>;
 }
 
-/** Acts go on for ever, each harder than the last (see levelOf); the blur alone stops growing at this act. */
+/** The last act: beat its guardian and the expedition is complete. Each act is a little harder (see levelOf). */
+export const LAST_ACT = 5;
+/** The blur stops growing at this act. */
 export const HARDEST_ACT = 4;
 /** A relic works for this many acts: the one it was found in and the next. */
 export const RELIC_ACTS = 2;
 
 /**
- * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — a little more each act, up to
- * a low ceiling, so that a long run never out-earns the other games (see economy.ts).
+ * DleCoins (the shop's money, not the run's gold): a room won, a boss beaten — more each act, up to a
+ * ceiling, and the day's Expedition amount keeps a long day of runs from out-earning the other games (economy.ts).
  */
-export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, 2 * (1 + Math.ceil(act / 2)) * (elite ? 2 : 1));
-export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 10 + 10 * act);
+export const roomCoins = (act: number, elite = false) => Math.min(EXPEDITION_ROOM_MAX, (8 + 4 * (act - 1)) * (elite ? 2 : 1));
+export const bossCoins = (act: number) => Math.min(EXPEDITION_BOSS_MAX, 40 + 30 * act);
 export const ROWS = 6;
 export const START_HEARTS = 3;
 export const MAX_HEARTS_CAP = 6;
@@ -166,12 +168,14 @@ export function describeNode(run: RunState, n: MapNode, heartPrice: number, rest
       return { title: 'Gamble', body: ["A stranger's wager: beat an elite challenge of their choosing — or walk away."], win: 'A relic of your choice', lose: '❤ −1' };
     case 'boss':
       return {
-        title: `Act ${run.act} boss`,
+        title: run.act >= LAST_ACT ? `Act ${run.act} boss: the last one` : `Act ${run.act} boss`,
         body: [
           run.act === 1 ? "A guardian's Knowledge Blitz: name as many answers as you can against the clock." : "A guardian's Final Blow: name the faces before time runs out.",
           'A boss must be beaten: lose and you face it again.',
         ],
-        win: `🪙 ${goldFor(run, 'boss', false)}, a relic, the next act, and up to ${bossCoins(run.act)} DleCoins`,
+        win: run.act >= LAST_ACT
+          ? `🪙 ${goldFor(run, 'boss', false)}, the end of the expedition, and up to ${bossCoins(run.act) + EXPEDITION_COMPLETE_BONUS} DleCoins`
+          : `🪙 ${goldFor(run, 'boss', false)}, a relic, the next act, and up to ${bossCoins(run.act)} DleCoins`,
         lose: '❤ −2',
       };
   }
@@ -195,7 +199,7 @@ export interface Mods {
   keys: string[];
   /** How far into the run this room is, 0 (first row of act 1) to 1 (last row of the last act): rooms get harder. */
   depth: number;
-  /** The same with no ceiling, climbing a little each act (LEVEL_PER_ACT). Every room's limits tighten with it. */
+  /** Climbing a little each act (LEVEL_PER_ACT), up to MAX_LEVEL. Every room's limits tighten with it. */
   level: number;
 }
 
@@ -210,12 +214,14 @@ export const modsFor = (run: RunState, hard: boolean): Mods => ({
   level: levelOf(run),
 });
 
-/** How much harder each act makes the rooms: a little over half a step, so a run lasts. */
-const LEVEL_PER_ACT = 0.6;
+/** How much harder each act makes the rooms: half a step, so the last act is firm but fair. */
+const LEVEL_PER_ACT = 0.5;
+/** The hardest the rooms get (the last act's last row). */
+const MAX_LEVEL = (LAST_ACT - 1 + (ROWS - 1) / ROWS) * LEVEL_PER_ACT;
 
 function levelOf(run: RunState): number {
   const row = run.map.find((n) => n.id === run.at)?.row ?? 0;
-  return (run.act - 1 + Math.min(row, ROWS - 1) / ROWS) * LEVEL_PER_ACT;
+  return Math.min(MAX_LEVEL, (run.act - 1 + Math.min(row, ROWS - 1) / ROWS) * LEVEL_PER_ACT);
 }
 
 function depthOf(run: RunState): number {

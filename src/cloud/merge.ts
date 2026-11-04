@@ -43,6 +43,7 @@ export const SYNCED = [
   'elements',
   'missionBooks',
   'redeemed',
+  'favorites',
   'groups',
   'jlptReview',
 ] as const;
@@ -184,6 +185,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     },
     // A code redeemed on either side stays redeemed.
     redeemed: [...new Set([...(local.redeemed ?? []), ...(cloud.redeemed ?? [])])],
+    // Starred cards: both sides' on a first link; then the latest (a star taken off stays off).
+    favorites: firstLink ? { ...(cloud.favorites ?? {}), ...(local.favorites ?? {}) } : (latest.favorites ?? local.favorites ?? {}),
     // Group codes made or joined on either side.
     groups: { ...(cloud.groups ?? {}), ...(local.groups ?? {}) },
     // The same week: every boss paid on either side stays paid. Different weeks: the later one.

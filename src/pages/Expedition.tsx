@@ -6,7 +6,9 @@ import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
+import { EXPEDITION_COMPLETE_BONUS } from '../gacha/economy';
 import {
+  LAST_ACT,
   RELIC_ACTS,
   relicUntil,
   wearRelics,
@@ -357,7 +359,7 @@ function Hud({ run }: { run: RunState }) {
       </div>
       <p className="font-display text-sm font-bold">🪙 {run.gold}</p>
       <p className="font-display text-sm text-ink-soft">
-        Act {run.act} · {run.cleared} won
+        Act {run.act}/{LAST_ACT} · {run.cleared} won
       </p>
       <div className="flex gap-1">
         {run.relics.map((r) => {
@@ -507,16 +509,21 @@ export default function Expedition() {
     if (res.won) {
       const gold = goldFor(r, boss ? 'boss' : elite ? 'elite' : 'fight', res.perfect);
       // DleCoins for the shop, more the further the run has gone.
-      const coins = earnExpedition(boss ? bossCoins(r.act) : roomCoins(r.act, elite));
+      const complete = boss && r.act >= LAST_ACT;
+      const coins = earnExpedition((boss ? bossCoins(r.act) : roomCoins(r.act, elite)) + (complete ? EXPEDITION_COMPLETE_BONUS : 0));
       r = { ...r, gold: r.gold + gold, cleared: r.cleared + 1, log: [...r.log, `✓ ${res.note} (+${gold} 🪙, +${coins} DleCoins)`] };
-      const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, coins, lost: 0, last: false, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
+      const result: Outcome = { ...base, won: true, perfect: res.perfect, gold, coins, lost: 0, last: complete, line: pickLine(boss ? BOSS_WIN_LINES : res.perfect ? PERFECT_LINES : WIN_LINES) };
       if (boss) (sfx.victory(), celebrateBig());
       else if (res.perfect) (sfx.streak(), celebrate());
       else (sfx.hit(), celebrate());
       let then: Screen = { kind: 'map' };
+      if (complete) {
+        // The last guardian: the expedition is complete.
+        finish(r, true);
+        return setScreen({ kind: 'result', result, then });
+      }
       if (boss) {
         if (has(r, 'bandage')) r.hearts = Math.min(r.maxHearts, r.hearts + 1);
-        // No last act: the expedition goes on, harder, for as long as the hearts last.
         r = { ...r, act: r.act + 1, map: makeMap(r.act + 1, r.seed, picksOf(r), roomsOf(r)), at: null };
         // Relics wear out: the ones found two acts ago go now.
         const worn = wearRelics(r);
@@ -556,9 +563,9 @@ export default function Expedition() {
           </Link>
           <h1 className="text-5xl font-bold">Expedition</h1>
           <p className="max-w-2xl text-ink-soft">
-            An endless run of acts, each a map of short challenges from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
-            I?, Quick Sort, lists to name — and a guardian at the end of each act, harder as you go. Choose your path; win rooms for gold, beat
-            elites for relics (each lasts {RELIC_ACTS} acts, then wears out), spend it all at shops — and every room won pays a few DleCoins, a little more each act, as every act is harder than the last. A lost room costs a heart; lose
+            A run of {LAST_ACT} acts, each a map of short challenges from the other games: blurred portraits, Higher or Lower, Odd One Out, Who Am
+            I?, Quick Sort, lists to name — and a guardian at the end of each act, a little harder as you go. Choose your path; win rooms for gold, beat
+            elites for relics (each lasts {RELIC_ACTS} acts, then wears out), spend it all at shops — and every room won pays DleCoins, more each act, with a bonus of {EXPEDITION_COMPLETE_BONUS} for beating the last guardian. A lost room costs a heart; lose
             them all and the expedition ends. Leave whenever you like: the run waits for you.
           </p>
         </div>
@@ -636,7 +643,7 @@ export default function Expedition() {
 
       {screen.kind === 'map' && (
         <>
-          <p className="text-center font-serif text-lg italic text-ink-soft">{run.at ? 'Choose the next room.' : `Act ${run.act}: choose where to begin.`}</p>
+          <p className="text-center font-serif text-lg italic text-ink-soft">{run.at ? 'Choose the next room.' : `Act ${run.act} of ${LAST_ACT}: choose where to begin.`}</p>
           {run.log.length > 0 && <p className="text-center text-sm text-ink-soft">{run.log.at(-1)}</p>}
           <RunMap run={run} onEnter={enter} />
         </>

@@ -227,6 +227,11 @@
           "minimum": 0,
           "description": "Most for one boss"
         },
+        "completeBonus": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "On top, for beating the last act's guardian"
+        },
         "dailyCap": {
           "type": "integer",
           "minimum": 0,
@@ -242,6 +247,7 @@
       "required": [
         "roomMax",
         "bossMax",
+        "completeBonus",
         "dailyCap",
         "afterCap"
       ],

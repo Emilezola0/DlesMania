@@ -1,22 +1,62 @@
 import { ANOMALIES } from '../gacha/anomalies';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { canHear, playVoice } from '../gacha/voice';
-import { shownName } from '../lib/french';
+import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
 import { bossKey, useProgress } from '../store/progress';
 
-/** Which cards: all, owned, missing, or Altered (back from a black hole with an anomaly). */
-type Show = 'all' | 'owned' | 'missing' | 'altered';
+/** Which cards: all, owned, missing, starred, with spare copies, ready to grade up, or Altered (back from a black hole with an anomaly). */
+type Show = 'all' | 'owned' | 'missing' | 'favorites' | 'spares' | 'upgradable' | 'altered';
+const SHOWS: { id: Show; label: string; title?: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'owned', label: 'Owned' },
+  { id: 'missing', label: 'Missing' },
+  { id: 'favorites', label: '★ Favourites', title: 'Cards you starred (open a card to star it)' },
+  { id: 'spares', label: 'Spares', title: 'Cards you have more than one copy of' },
+  { id: 'upgradable', label: '⬆ Can grade up', title: 'Cards with enough spare copies for their next grade' },
+  { id: 'altered', label: '🕳️ Altered', title: 'Cards back from a black hole, with an anomaly' },
+];
+
+/** Lower case, no accents or punctuation: for the search box. */
+const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+/** What a card can be found by: its name (in English and French), its title and its franchise. */
+/** How many cards of each rarity exist. */
+const RARITY_TOTAL = CARDS.reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
+const SEARCH_TEXT = new Map(CARDS.map((c) => [c.id, fold([c.name, frenchOf(c.name, c.set), c.title, c.franchise].filter(Boolean).join(' '))]));
+/** The sets, by domain (Games, Anime…), for the set picker. */
+const SETS_BY_DOMAIN = DOMAINS.map((d) => ({ domain: d, sets: SETS.filter((s) => s.domain === d.id) })).filter((g) => g.sets.length);
+
+/** A choice kept on this device between visits (the Album's filters). */
+function useKept<T>(key: string, initial: T, valid: (v: unknown) => boolean): [T, (v: T | ((old: T) => T)) => void] {
+  const [value, setValue] = useState<T>(() => {
+    try {
+      const raw = localStorage.getItem(key);
+      const v = raw === null ? undefined : JSON.parse(raw);
+      return v !== undefined && valid(v) ? (v as T) : initial;
+    } catch {
+      return initial;
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch {
+      /* private mode: kept for this visit only */
+    }
+  }, [key, value]);
+  return [value, setValue];
+}
 type Sort = 'set' | 'rarity' | 'grade' | 'name' | 'count';
 
 const SORTS: { id: Sort; label: string }[] = [
@@ -132,6 +172,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
               🔊 Hear “{card.voice}”
             </button>
           )}
+          <FavoriteButton cardId={card.id} />
           <p className="text-sm opacity-80">
             {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
@@ -287,11 +328,15 @@ export default function Album() {
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
   const anomalies = useProgress((s) => s.anomalies ?? {});
+  const favorites = useProgress((s) => s.favorites ?? {});
+  const bosses = useProgress((s) => s.bosses);
   const coins = useProgress((s) => s.coins);
-  const [set, setSet] = useState('all');
-  const [rarities, setRarities] = useState<Rarity[]>(RARITIES);
-  const [show, setShow] = useState<Show>('all');
-  const [sort, setSort] = useState<Sort>('set');
+  const [set, setSet] = useKept('omnidle:album:set', 'all', (v) => v === 'all' || SETS.some((s) => s.id === v));
+  const [rarities, setRarities] = useKept<Rarity[]>('omnidle:album:rarities', RARITIES, (v) => Array.isArray(v) && v.length > 0 && v.every((r) => RARITIES.includes(r as Rarity)));
+  const [show, setShow] = useKept<Show>('omnidle:album:show', 'all', (v) => SHOWS.some((s) => s.id === v));
+  const [sort, setSort] = useKept<Sort>('omnidle:album:sort', 'set', (v) => SORTS.some((s) => s.id === v));
+  const [reverse, setReverse] = useKept('omnidle:album:reverse', false, (v) => typeof v === 'boolean');
+  const [query, setQuery] = useState('');
   const [open, setOpen] = useState<Card | null>(null);
   const [renewing, setRenewing] = useState(false);
   const canRenew = useMemo(() => Object.values(spareByRarity(owned)).some((n) => n >= RENEW_COST), [owned]);
@@ -308,20 +353,69 @@ export default function Album() {
     }
     return { byId, copies, coins };
   }, [owned, grades]);
-  const unique = CARDS.filter((c) => owned[c.id]).length;
+  // Every count the page shows, in one pass over the cards (not one per rarity and per set at each render).
+  const counts = useMemo(() => {
+    const bySet: Record<string, number> = {};
+    const byRarity = {} as Record<Rarity, number>;
+    let unique = 0;
+    for (const c of CARDS) {
+      if (!owned[c.id]) continue;
+      unique++;
+      bySet[c.set] = (bySet[c.set] ?? 0) + 1;
+      byRarity[c.rarity] = (byRarity[c.rarity] ?? 0) + 1;
+    }
+    return { unique, bySet, byRarity };
+  }, [owned]);
+  const unique = counts.unique;
+  // Typing stays smooth: the grid follows the search a moment later.
+  const search = useDeferredValue(query);
   const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
   const list = useMemo(() => {
-    const xs = CARDS.filter(
-      (c) => (set === 'all' || c.set === set) && rarities.includes(c.rarity) && (show === 'all' || (show === 'altered' ? !!owned[c.id] && !!anomalies[c.id] : (show === 'owned') === !!owned[c.id])),
-    );
+    const words = fold(search).split(' ').filter(Boolean);
+    const shown = (c: Card) => {
+      const n = owned[c.id] ?? 0;
+      switch (show) {
+        case 'owned':
+          return n > 0;
+        case 'missing':
+          return n === 0;
+        case 'favorites':
+          return n > 0 && !!favorites[c.id];
+        case 'spares':
+          return n > 1;
+        case 'upgradable':
+          return n > 1 && canGradeUp(n, gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0);
+        case 'altered':
+          return n > 0 && !!anomalies[c.id];
+        default:
+          return true;
+      }
+    };
+    const xs = CARDS.filter((c) => {
+      if ((set !== 'all' && c.set !== set) || !rarities.includes(c.rarity) || !shown(c)) return false;
+      if (!words.length) return true;
+      const text = SEARCH_TEXT.get(c.id) ?? '';
+      return words.every((w) => text.includes(w));
+    });
     // Cards not owned last: they have no grade.
     const byGrade = (c: Card) => (owned[c.id] ? gradeOf(grades, c.id) : 0);
     const byRarity = (a: Card, b: Card) => RARITY_INFO[b.rarity].rank - RARITY_INFO[a.rarity].rank;
     const bySet = (a: Card, b: Card) => (SET_ORDER.get(a.set) ?? 0) - (SET_ORDER.get(b.set) ?? 0) || a.no - b.no;
-    return [...xs].sort(
+    const sorted = [...xs].sort(
       sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : bySet,
     );
-  }, [set, rarities, show, sort, owned, grades, anomalies]);
+    return reverse ? sorted.reverse() : sorted;
+  }, [set, rarities, show, sort, reverse, search, owned, grades, anomalies, favorites, bosses]);
+  const filtered = set !== 'all' || rarities.length < RARITIES.length || show !== 'all' || !!query.trim();
+  const clearFilters = () => {
+    sfx.click();
+    setSet('all');
+    setRarities(RARITIES);
+    setShow('all');
+    setQuery('');
+  };
+  const setInfo = set === 'all' ? null : SETS.find((s) => s.id === set);
+  const setOwned = setInfo ? counts.bySet[setInfo.id] ?? 0 : 0;
   // The grid in blocks of whole rows: only the blocks near the screen hold their cards (see AlbumBlock).
   const blocks = useMemo(() => Array.from({ length: Math.ceil(list.length / BLOCK) }, (_, i) => list.slice(i * BLOCK, (i + 1) * BLOCK)), [list]);
 
@@ -344,6 +438,7 @@ export default function Album() {
         aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}
       >
         <CardFace card={c} count={owned[c.id]} hoverHero hero={armed === c.id} />
+        {favorites[c.id] && <span className="pointer-events-none absolute -left-1.5 -top-1.5 z-20 grid size-6 place-items-center rounded-full bg-[#fbbf24] text-sm text-[#3b2a00] shadow" aria-label="Favourite">★</span>}
         {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">TAP AGAIN TO OPEN</span>}
       </button>
     ) : (
@@ -366,7 +461,7 @@ export default function Album() {
           <h1 className="text-5xl font-bold">Album</h1>
           <p className="text-ink-soft">
             {unique} of {CARDS.length} cards collected · {pulls} pulled in all ·{' '}
-            {RARITIES.map((r) => `${CARDS.filter((c) => c.rarity === r && owned[c.id]).length}/${CARDS.filter((c) => c.rarity === r).length} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
+            {RARITIES.map((r) => `${counts.byRarity[r] ?? 0}/${RARITY_TOTAL[r]} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -396,12 +491,24 @@ export default function Album() {
       </div>
 
       <div className="page flex flex-wrap items-center gap-3 rounded-md p-3">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search a card or franchise…"
+          aria-label="Search"
+          className="min-w-0 flex-1 basis-48 rounded-md border border-rule-strong bg-card px-3 py-1.5 text-sm"
+        />
         <select value={set} onChange={(e) => setSet(e.target.value)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label="Set">
           <option value="all">Every set</option>
-          {SETS.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.franchise} ({CARDS.filter((c) => c.set === s.id && owned[c.id]).length}/{s.size})
-            </option>
+          {SETS_BY_DOMAIN.map((g) => (
+            <optgroup key={g.domain.id} label={`${g.domain.icon} ${g.domain.label}`}>
+              {g.sets.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.franchise} ({counts.bySet[s.id] ?? 0}/{s.size})
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
         <div className="flex flex-wrap gap-1.5">
@@ -411,10 +518,12 @@ export default function Album() {
             </button>
           ))}
         </div>
-        <div className="flex gap-1.5">
-          {(['all', 'owned', 'missing', 'altered'] as Show[]).map((s) => (
-            <button key={s} type="button" aria-pressed={show === s} onClick={() => (sfx.click(), setShow(s))} className={pill(show === s)} title={s === 'altered' ? 'Cards back from a black hole, with an anomaly' : undefined}>
-              {s === 'all' ? 'All' : s === 'owned' ? 'Owned' : s === 'missing' ? 'Missing' : `🕳️ Altered (${Object.keys(anomalies).filter((id) => owned[id]).length})`}
+        <div className="flex flex-wrap gap-1.5">
+          {SHOWS.map((s) => (
+            <button key={s.id} type="button" aria-pressed={show === s.id} onClick={() => (sfx.click(), setShow(s.id))} className={pill(show === s.id)} title={s.title}>
+              {s.label}
+              {s.id === 'altered' && ` (${Object.keys(anomalies).filter((id) => owned[id]).length})`}
+              {s.id === 'favorites' && ` (${Object.keys(favorites).filter((id) => owned[id]).length})`}
             </button>
           ))}
         </div>
@@ -427,7 +536,29 @@ export default function Album() {
               </option>
             ))}
           </select>
+          <button type="button" onClick={() => (sfx.click(), setReverse((r) => !r))} aria-pressed={reverse} title="Reverse the order" className={pill(reverse)}>
+            ⇅
+          </button>
         </label>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3 text-sm text-ink-soft">
+        <span>
+          {list.length} card{list.length === 1 ? '' : 's'} shown
+        </span>
+        {setInfo && (
+          <span className="flex items-center gap-2">
+            <span className="h-2 w-32 overflow-hidden rounded-full bg-rule">
+              <span className="block h-full rounded-full bg-accent" style={{ width: `${(100 * setOwned) / Math.max(1, setInfo.size)}%` }} />
+            </span>
+            {setInfo.franchise}: {setOwned}/{setInfo.size} ({Math.floor((100 * setOwned) / Math.max(1, setInfo.size))}%)
+          </span>
+        )}
+        {filtered && (
+          <button type="button" onClick={clearFilters} className="font-semibold text-accent hover:underline">
+            Clear filters
+          </button>
+        )}
       </div>
 
       {!unique && (
@@ -502,6 +633,22 @@ function AlbumBlock({ cards, render }: { cards: Card[]; render: (c: Card) => Rea
     <div ref={ref} className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
       {cards.map((c, i) => (near && i < drawn ? render(c) : <div key={c.id} className="aspect-[5/7] w-full" />))}
     </div>
+  );
+}
+
+/** Stars a card (or takes its star off): starred cards have their own filter in the Album. */
+function FavoriteButton({ cardId }: { cardId: string }) {
+  const on = useProgress((s) => !!s.favorites?.[cardId]);
+  const toggle = useProgress((s) => s.toggleFavorite);
+  return (
+    <button
+      type="button"
+      onClick={() => (sfx.click(), toggle(cardId))}
+      aria-pressed={on}
+      className={`mt-2 rounded-full border-2 px-3 py-1 text-sm font-bold ${on ? 'border-[#fbbf24] text-[#fbbf24]' : 'border-white/40 hover:border-white'}`}
+    >
+      {on ? '★ Favourite' : '☆ Add to favourites'}
+    </button>
   );
 }
 

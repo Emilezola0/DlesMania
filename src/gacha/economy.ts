@@ -144,6 +144,8 @@ export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * cla
 /** The most an Expedition pays in DleCoins for one room (elites included) and one boss, however deep the run. */
 export const EXPEDITION_ROOM_MAX = T.expedition.roomMax;
 export const EXPEDITION_BOSS_MAX = T.expedition.bossMax;
+/** Beating the last act's guardian: on top of its own coins. */
+export const EXPEDITION_COMPLETE_BONUS = T.expedition.completeBonus;
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
 export const EXPEDITION_CAP = T.expedition.dailyCap;
 export const EXPEDITION_AFTER_CAP = T.expedition.afterCap;

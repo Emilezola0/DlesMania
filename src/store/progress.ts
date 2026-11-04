@@ -136,6 +136,9 @@ interface ProgressState {
   /** Cards that came back from a black hole with an anomaly (src/gacha/anomalies.ts), by card id. */
   anomalies: Record<string, AnomalyId>;
   setAnomaly: (cardId: string, anomaly: AnomalyId | null) => void;
+  /** Cards starred in the Album. */
+  favorites: Record<string, true>;
+  toggleFavorite: (cardId: string) => void;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -339,6 +342,12 @@ export const useProgress = create<ProgressState>()(
       engraved: {},
       elements: {},
       anomalies: {},
+      favorites: {},
+      toggleFavorite: (cardId) =>
+        set((s) => {
+          const { [cardId]: was, ...rest } = s.favorites ?? {};
+          return { favorites: was ? rest : { ...rest, [cardId]: true } };
+        }),
       setAnomaly: (cardId, anomaly) =>
         set((s) => {
           const { [cardId]: _, ...rest } = s.anomalies ?? {};

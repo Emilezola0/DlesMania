@@ -53,14 +53,14 @@ interface Star {
 const EVOLVE_CHANCE = 0.3;
 const STAR_GAP = 260;
 /** The beat of suspense before the last star (the best card's), once every other star has crossed: evolving or not. The screen rumbles meanwhile. */
-const LAST_STAR_PAUSE = 2000;
+const LAST_STAR_PAUSE = 1500;
 /**
  * An evolving star doesn't cross: it and a second star rush in from both sides, crash together in the
  * middle after CLASH_AT ms and burst in the colour of the rarity it becomes (BOOM ms of sparks).
  */
-const CLASH_AT = 950;
-const BOOM = 1000;
-const flight = (r: Rarity) => (prismatic(r) ? 1700 : r === 'legendary' ? 1300 : 850);
+const CLASH_AT = 820;
+const BOOM = 850;
+const flight = (r: Rarity) => (prismatic(r) ? 1400 : r === 'legendary' ? 1100 : 850);
 
 /** Legendary and up: the card spins as it charges, faster and faster — turns in the charge's time (see turn()). */
 const SPIN: Partial<Record<Rarity, React.CSSProperties>> = {
@@ -123,6 +123,38 @@ function starsFor(cards: Card[], hole: boolean, rand: () => number = Math.random
     return star;
   });
 }
+/**
+ * Deep space behind the shooting stars: far stars twinkling at their own pace, a faint nebula drifting,
+ * and a planet on the edge of the sky. Drawn once per pack; it only animates opacity and transform.
+ */
+function Space() {
+  const dots = useMemo(
+    () =>
+      Array.from({ length: 110 }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() < 0.12 ? 2.5 : Math.random() < 0.5 ? 1.5 : 1,
+        color: ['#ffffff', '#ffffff', '#cfe0ff', '#ffe9c4', '#e0d0ff'][Math.floor(Math.random() * 5)],
+        delay: Math.random() * 4,
+        duration: 2 + Math.random() * 3,
+      })),
+    [],
+  );
+  return (
+    <div className="pack-space pointer-events-none absolute inset-0" aria-hidden>
+      <div className="pack-nebula absolute -inset-[15%]" />
+      {dots.map((d, i) => (
+        <span
+          key={i}
+          className="pack-far-star absolute rounded-full"
+          style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.size, height: d.size, background: d.color, boxShadow: d.size > 2 ? `0 0 6px ${d.color}` : undefined, animationDelay: `${d.delay}s`, animationDuration: `${d.duration}s` }}
+        />
+      ))}
+      <div className="pack-planet absolute" />
+    </div>
+  );
+}
+
 /** A star's streak: transparent tail, its colour, a white head (a rainbow for mythics and omnis). */
 const streak = (r: Rarity) => ({
   background: rainbowy(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
@@ -334,8 +366,12 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
 
   const card = deck[i];
   // ── Tearing ─────────────────────────────────────────────────────────
+  // Set at the first tear: a second tap (or a key) while the pack tears by itself must not tear it twice.
+  const tearing = useRef(false);
+  const autoTearing = useRef(false);
   const torn = () => {
-    if (phase !== 'pack') return;
+    if (phase !== 'pack' || tearing.current) return;
+    tearing.current = true;
     sfx.tear();
     setTear(1);
     setPhase('torn');
@@ -370,6 +406,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   };
   /** A tap instead of a swipe: the pack tears by itself, quickly. */
   const autoTear = () => {
+    if (tearing.current || autoTearing.current) return;
+    autoTearing.current = true;
     let p = 0;
     const id = window.setInterval(() => {
       p += 0.12;
@@ -601,6 +639,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+          <Space />
           {cosmos.hole && <BlackHole until={holeEnd} />}
           {stars.map((s, k) => {
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
@@ -612,6 +651,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
               <div key={k} className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
                 <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms`, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
                   <div className="absolute inset-0 rounded-full" style={streak(s.to)} />
+                  <div className="pack-meteor-head absolute right-0 top-1/2 rounded-full" style={{ width: thick * 5, height: thick * 5, ['--glow' as string]: RARITY_LIGHT[s.to] }} />
+                  <div className={`pack-meteor-dust absolute inset-y-0 left-[15%] right-[10%] ${rainbowy(s.to) ? 'pack-twinkle-rainbow' : ''}`} />
                 </div>
               </div>
             );

@@ -39,9 +39,10 @@
     "topShare": 0
   },
   "expedition": {
-    "roomMax": 24,
-    "bossMax": 120,
-    "dailyCap": 300,
+    "roomMax": 40,
+    "bossMax": 200,
+    "completeBonus": 150,
+    "dailyCap": 800,
     "afterCap": 0.25
   },
   "duplicateValue": {
