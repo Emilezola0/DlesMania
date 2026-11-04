@@ -39,7 +39,8 @@ for (const chunk of (await page('https://bunpro.jp/grammar_points')).split('<li 
   const h = /<h4[^>]*>([\s\S]*?)<\/h4>/.exec(chunk);
   const p = /<p class="line-clamp-1 text-secondary-fg">([\s\S]*?)<\/p>/.exec(chunk);
   const lv = /<span>(N[1-5])<\/span>/.exec(chunk);
-  if (h && p) bunpro.push({ title: text(h[1]), meaning: text(p[1]), level: lv?.[1] ?? '', src: 'Bunpro' });
+  const href = /href="(\/grammar_points\/[^"]+)"/.exec(chunk);
+  if (h && p) bunpro.push({ title: text(h[1]), meaning: text(p[1]), level: lv?.[1] ?? '', src: 'Bunpro', url: href ? `https://bunpro.jp${href[1]}` : '' });
 }
 // ── JLPT Sensei: each level's list, page by page ──
 const sensei = [];
@@ -50,11 +51,11 @@ for (const n of [5, 4, 3, 2, 1])
     for (let tries = 0; tries < 4 && !rows.length; tries++) {
       const html = await page(`https://jlptsensei.com/jlpt-n${n}-grammar-list/${p > 1 ? `page/${p}/` : ''}`);
       if (!html) break;
-      rows = [...html.matchAll(/class="jl-td-gj[^"]*"><a[^>]*>([\s\S]*?)<\/a><td class="jl-td-gm[^"]*">([\s\S]*?)(?=<tr|<\/t|$)/g)];
+      rows = [...html.matchAll(/class="jl-td-gj[^"]*"><a[^>]*?href=([^\s>]+)[^>]*>([\s\S]*?)<\/a><td class="jl-td-gm[^"]*">([\s\S]*?)(?=<tr|<\/t|$)/g)];
       if (!rows.length) await new Promise((ok) => setTimeout(ok, 3000));
     }
     if (!rows.length) break;
-    for (const m of rows) sensei.push({ title: text(m[1]), meaning: text(m[2]), level: `N${n}`, src: 'JLPT Sensei' });
+    for (const m of rows) sensei.push({ title: text(m[2]), meaning: text(m[3]), level: `N${n}`, src: 'JLPT Sensei', url: m[1].replace(/^"|"$/g, '') });
   }
 console.log(`Bunpro ${bunpro.length} · JLPT Sensei ${sensei.length} (${[5, 4, 3, 2, 1].map((n) => sensei.filter((x) => x.level === `N${n}`).length).join('/')})`);
 
@@ -159,6 +160,7 @@ const tidy = (m) => {
   for (const p of parts) if (out.join(', ').length + p.length < 70) out.push(p);
   return (out.length ? out : parts.slice(0, 1)).join(', ').replace(/\s+/g, ' ').trim();
 };
+const ref = (x) => ({ src: x.src, title: x.title, url: x.url });
 const levels = {};
 const missing = [];
 for (const L of jlpt.levels) {
@@ -175,7 +177,7 @@ for (const L of jlpt.levels) {
       if (picked.length > 1) {
         // Two entries named: both meanings, one after the other.
         const both = picked.map((t) => all.find((x) => x.title === t)).filter(Boolean);
-        levels[L.level][g] = { en: both.map((x) => tidy(x.meaning)).join(' / '), src: [...new Set(both.map((x) => x.src))].join(', ') };
+        levels[L.level][g] = { en: both.map((x) => tidy(x.meaning)).join(' / '), src: [...new Set(both.map((x) => x.src))].join(', '), pages: both.map(ref) };
         continue;
       }
       let hits = picked.length ? all.filter((x) => x.title === picked[0]) : [];
@@ -186,8 +188,11 @@ for (const L of jlpt.levels) {
       }
       hits.sort((a, b) => (a.level === L.level ? 0 : 1) - (b.level === L.level ? 0 : 1) || (a.src === 'Bunpro' ? 0 : 1) - (b.src === 'Bunpro' ? 0 : 1) || Math.abs((rank[a.level] ?? 0) - rank[L.level]) - Math.abs((rank[b.level] ?? 0) - rank[L.level]));
       hit = hits[0] ?? null;
+      // The entries it was found under, the one the meaning is from first, then the other source's best:
+      // where its example sentences are taken from (scripts/build-jlpt-grammar-examples.mjs).
+      if (hit) hit.pages = [hit, ...['Bunpro', 'JLPT Sensei'].filter((src) => src !== hit.src).map((src) => hits.find((x) => x.src === src)).filter(Boolean)].map(ref);
     }
-    if (hit) levels[L.level][g] = { en: tidy(hit.meaning), src: hit.src };
+    if (hit) levels[L.level][g] = { en: tidy(hit.meaning), src: hit.src, ...(hit.pages ? { pages: hit.pages } : {}) };
     else missing.push(`${L.level} ${g}`);
   }
 }

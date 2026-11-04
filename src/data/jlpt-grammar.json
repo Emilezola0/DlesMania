@@ -4,653 +4,2445 @@
   "N5": {
    "つもりです": {
     "en": "To plan to, To intend to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "つもりだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A4%E3%82%82%E3%82%8A%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "つもり",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a4%e3%82%82%e3%82%8a-tsumori-meaning/"
+     }
+    ]
    },
    "～んです": {
     "en": "Explanatory, Emphasis, The fact is",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～んです・のです",
+      "url": "https://bunpro.jp/grammar_points/-%E3%82%93%E3%81%A7%E3%81%99-%E3%81%AE%E3%81%A7%E3%81%99"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "んです",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%93%e3%81%a7%e3%81%99-ndesu-%e3%82%93%e3%81%a0-nda-meaning/"
+     }
+    ]
    },
    "ので": {
     "en": "Because, So, Since, The reason being",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ので",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ので",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e3%81%a7-node-meaning/"
+     }
+    ]
    },
    "は": {
     "en": "As for... (Highlights sentence topic)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "は",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "は",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%af-wa-topic-marker-meaning/"
+     }
+    ]
    },
    "～ましょう": {
     "en": "Let's, Shall we (Polite volitional)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ましょう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%97%E3%82%87%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ましょう",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%97%e3%82%87%e3%81%86-mashou-meaning/"
+     }
+    ]
    },
    "～のがじょうずです": {
     "en": "To be good at, Proficient",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のがじょうず",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%8C%E3%81%98%E3%82%87%E3%81%86%E3%81%9A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "のが上手（のがじょうず）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e3%81%8c%e4%b8%8a%e6%89%8b-no-ga-jouzu-%e3%81%ae%e3%81%8c%e3%81%98%e3%82%87%e3%81%86%e3%81%9a%e3%81%a7%e3%81%99-meaning/"
+     }
+    ]
    },
    "～まえに": {
     "en": "Before, In front of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まえに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%88%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "前に（まえに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%89%8d%e3%81%ab-%e3%81%be%e3%81%88%e3%81%ab-mae-ni-meaning/"
+     }
+    ]
    },
    "～のほうが～より": {
     "en": "To be more ~ than",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "より～のほうが",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%82%8A-%E3%81%AE%E3%81%BB%E3%81%86%E3%81%8C"
+     }
+    ]
    },
    "～にいく": {
     "en": "To go ~, To go in order to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Verb + にいく",
+      "url": "https://bunpro.jp/grammar_points/verb-%E3%81%AB%E3%81%84%E3%81%8F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に行く（にいく）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%97%e3%81%ab%e3%81%84%e3%81%8f-ni-iku-meaning/"
+     }
+    ]
    },
    "～がいます": {
     "en": "there is, to be, is (living things)",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "がいます",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%84%e3%81%be%e3%81%99-ga-imasu-%e3%81%8c%e3%81%84%e3%82%8b-ga-iru-meaning/"
+     }
+    ]
    },
    "～く/ ～になる": {
     "en": "To become (Adjective)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～になる・～くなる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%AA%E3%82%8B-%E3%81%8F%E3%81%AA%E3%82%8B"
+     }
+    ]
    },
    "～のがへたです": {
     "en": "To be bad at, Poor at, Unskillful",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のがへた",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%8C%E3%81%B8%E3%81%9F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "のが下手（のがへた）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e3%81%8c%e4%b8%8b%e6%89%8b-%e3%81%ae%e3%81%8c%e3%81%b8%e3%81%9f-no-ga-heta-meaning/"
+     }
+    ]
    },
    "～てください": {
     "en": "Please do (Polite request)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てください",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てください",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84-te-kudasai-meaning/"
+     }
+    ]
    },
    "～たり …～たりする": {
     "en": "Things like ~ and",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たり～たりする",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%8A-%E3%81%9F%E3%82%8A%E3%81%99%E3%82%8B"
+     }
+    ]
    },
    "～てもいいです": {
     "en": "is OK to ~, is alright to ~, may I ~?",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "てもいいです",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82%e3%81%84%e3%81%84%e3%81%a7%e3%81%99%e3%81%8b-temo-ii-desu-ka-meaning/"
+     }
+    ]
    },
    "～があります": {
     "en": "there is, is (non-living things)",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "があります",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%82%e3%82%8a%e3%81%be%e3%81%99-ga-arimasu-%e3%81%8c%e3%81%82%e3%82%8b-ga-aru-meaning/"
+     }
+    ]
    },
    "です": {
     "en": "To be, Is",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "です",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A7%E3%81%99"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "だ / です",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a0-da-%e3%81%a7%e3%81%99-desu-meaning/"
+     }
+    ]
    },
    "～なくちゃいけない": {
     "en": "Must do, Have to do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なくちゃ・なきゃ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8F%E3%81%A1%E3%82%83-%E3%81%AA%E3%81%8D%E3%82%83"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なくちゃ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8f%e3%81%a1%e3%82%83-%e3%83%80%e3%83%a1-nakucha-dame-meaning/"
+     }
+    ]
    },
    "～のがすきです": {
     "en": "Like doing, Love doing",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のがすき",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%8C%E3%81%99%E3%81%8D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "のが好き（のがすき）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e3%81%8c%e5%a5%bd%e3%81%8d-no-ga-suki-%e3%81%ae%e3%81%8c%e3%81%99%e3%81%8d%e3%81%a7%e3%81%99-meaning/"
+     }
+    ]
    },
    "～ている": {
     "en": "Is, Am, Are (~ing)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ている①",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%84%E3%82%8B1"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ている",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%84%e3%82%8b-te-iru-meaning/"
+     }
+    ]
    },
    "や": {
     "en": "Things like, And the like",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "や",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "や",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%84-ya-particle-meaning/"
+     }
+    ]
    },
    "を": {
     "en": "Object marking particle",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92-wo-object-marker-meaning/"
+     }
+    ]
    },
    "～てはいけません": {
     "en": "Must not, May not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てはいけない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てはいけない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%af%e3%81%84%e3%81%91%e3%81%aa%e3%81%84-te-wa-ikenai-meaning/"
+     }
+    ]
    },
    "stem +たいです": {
     "en": "Want to do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%84-tai-meaning/"
+     }
+    ]
    },
    "ないでください": {
     "en": "Please don't (Polite request)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないでください",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%81%A7%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ないでください",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%84%e3%81%a7%e3%81%8f%e3%81%a0%e3%81%95%e3%81%84-naide-kudasai-meaning/"
+     }
+    ]
    },
    "でしょう": {
     "en": "Right?, Probably, Isn't it?",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "でしょう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A7%E3%81%97%E3%82%87%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "でしょう",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a7%e3%81%97%e3%82%87%e3%81%86-deshou-meaning/"
+     }
+    ]
    },
    "～ませんか": {
     "en": "Won't you, Would you not, Why don't we",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ませんか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%9B%E3%82%93%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ませんか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b-masen-ka-meaning/"
+     }
+    ]
    },
    "まだ～ていません": {
     "en": "Still haven't done (something)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まだ～ていません",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%A0-%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "まだ～ていません",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%a0%ef%bd%9e%e3%81%a6%e3%81%84%e3%81%be%e3%81%9b%e3%82%93-mada-te-imasen-meaning/"
+     }
+    ]
    },
    "で": {
     "en": "At, In",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "で",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "で",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a7-de-particle-meaning/"
+     }
+    ]
    },
    "～から": {
     "en": "Because, Since",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "から",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%82%89-because"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "から",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%82%89-kara-meaning/"
+     }
+    ]
    },
    "も": {
     "en": "Also, Too, As well, Even, Either, Neither",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "も",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "も",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%82-mo-particle-meaning/"
+     }
+    ]
    },
    "と": {
     "en": "And",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "と",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8-and"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "と",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8-to-particle-meaning/"
+     }
+    ]
    },
    "～すぎる": {
     "en": "Too much, Very",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "すぎる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%99%E3%81%8E%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "すぎる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%99%e3%81%8e%e3%82%8b-sugiru-%e9%81%8e%e3%81%8e%e3%82%8b-meaning/"
+     }
+    ]
    },
    "～ほうがいい": {
     "en": "had better, it'd be better to, should",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ほうがいい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e6%96%b9%e3%81%8c%e3%81%84%e3%81%84-%e3%81%bb%e3%81%86%e3%81%8c%e3%81%84%e3%81%84-hou-ga-ii-meaning/"
+     }
+    ]
    },
    "に": {
     "en": "In, At, To, For, On",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab-ni-destination-particle-meaning/"
+     }
+    ]
    },
    "～のなかで～がいちばん～": {
     "en": "Out of ~, ~ is the best/most",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のなかで～がいちばん～",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%AA%E3%81%8B%E3%81%A7-%E3%81%8C%E3%81%84%E3%81%A1%E3%81%B0%E3%82%93"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "の中で[A]が一番（のなかで[A]がいちばん）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e4%b8%ad%e3%81%a7%e3%81%8c%e4%b8%80%e7%95%aa-%e3%81%ae%e3%81%aa%e3%81%8b%e3%81%a7%e3%81%8c%e3%81%84%e3%81%a1%e3%81%b0%e3%82%93-no-naka-de-ga-ichiban-meaning/"
+     }
+    ]
    },
    "～ましょうか": {
     "en": "Shall we, Shall I",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～ましょうか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%97%E3%82%87%E3%81%86%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ましょうか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%97%e3%82%87%e3%81%86%e3%81%8b-mashouka-meaning/"
+     }
+    ]
    },
    "～てから": {
     "en": "Once...is done, Once...happens, After doing",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てから",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8B%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てから",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%8b%e3%82%89-te-kara-meaning/"
+     }
+    ]
    },
    "～たことがある": {
     "en": "Have done before",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たことがある",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%93%E3%81%A8%E3%81%8C%E3%81%82%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たことがある",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%93%e3%81%a8%e3%81%8c%e3%81%82%e3%82%8b-ta-koto-ga-aru-meaning/"
+     }
+    ]
    },
    "に/へ": {
     "en": "To, Toward",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "へ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B8"
+     }
+    ]
    }
   },
   "N4": {
    "～おう": {
     "en": "Let's, I shall (Casual volitional)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Verb[よう]",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86-%E3%81%8A%E3%81%86"
+     }
+    ]
    },
    "～という～": {
     "en": "called, named, that",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "という",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%84%e3%81%86-to-iu-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "という",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%84%E3%81%86-called"
+     }
+    ]
    },
    "～かどうか": {
     "en": "Whether or not, If...or not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かどうか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%A9%E3%81%86%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かどうか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%a9%e3%81%86%e3%81%8b-ka-dou-ka-meaning/"
+     }
+    ]
    },
    "～のようてほしい": {
     "en": "Want ~ to ~ like ~, Want ~ to be able to ~, Want ~ to ~ in the way of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ように～てほしい",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86%E3%81%AB-%E3%81%A6%E3%81%BB%E3%81%97%E3%81%84"
+     }
+    ]
    },
    "～はずです": {
     "en": "Bound to (be), Expected to (be), Should be (able)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "はずだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF%E3%81%9A%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "はずだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%af%e3%81%9a%e3%81%a0-hazu-da-meaning/"
+     }
+    ]
    },
    "～てある": {
     "en": "Something is done, Has been done, Remaining state",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てある",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%82%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てある",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%82%e3%82%8b-te-aru-meaning/"
+     }
+    ]
    },
    "Dictionary form+と": {
     "en": "If, When, Whenever, And, [Conditional]",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "と",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8-conditional"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "と",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8-to-meaning-whenever/"
+     }
+    ]
    },
    "～がほしい": {
     "en": "To want something, To be in need of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "がほしい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E3%81%BB%E3%81%97%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "がほしい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%bb%e3%81%97%e3%81%84-ga-hoshii-%e3%81%8c%e6%ac%b2%e3%81%97%e3%81%84-meaning/"
+     }
+    ]
    },
    "～なさい": {
     "en": "Command to do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なさい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%95%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なさい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%95%e3%81%84-nasai-meaning/"
+     }
+    ]
    },
    "～てもらう": {
     "en": "To get someone to do, To have someone do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てもらう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%82%E3%82%89%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てもらう",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82%e3%82%89%e3%81%86-te-morau-%e3%81%a6%e3%82%82%e3%82%89%e3%81%84%e3%81%9f%e3%81%84-te-moraitai-meaning/"
+     }
+    ]
    },
    "しか～ない": {
     "en": "No more than, Not exceeding, As few as・as little as, Only",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Number + しか〜ない",
+      "url": "https://bunpro.jp/grammar_points/number-%E3%81%97%E3%81%8B-%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "しかない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%97%e3%81%8b%e3%81%aa%e3%81%84-shika-nai-meaning/"
+     }
+    ]
    },
    "～よう": {
     "en": "Let's, I shall (Casual volitional)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Verb[よう]",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86-%E3%81%8A%E3%81%86"
+     }
+    ]
    },
    "～てあげる": {
     "en": "To do something for someone, As a favor for",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てあげる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%82%E3%81%92%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てあげる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%82%e3%81%92%e3%82%8b-te-ageru-%e3%81%a6%e3%81%82%e3%81%92%e3%81%be%e3%81%99-te-agemasu-meaning/"
+     }
+    ]
    },
    "(period)に(frequency)": {
     "en": "Times (In each time period), Every, Frequency of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に (Frequency)",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB-frequency"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab-ni-destination-particle-meaning/"
+     }
+    ]
    },
    "そうです": {
     "en": "I heard that, it is said that",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "そうだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9d%e3%81%86%e3%81%a0-sou-da-i-heard-that/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "そうだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9D%E3%81%86%E3%81%A0"
+     }
+    ]
    },
    "～ていただけませんか": {
     "en": "Won't you, Could you please (Humble request)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ていただけませんか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%84%E3%81%9F%E3%81%A0%E3%81%91%E3%81%BE%E3%81%9B%E3%82%93%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ていただけませんか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%84%e3%81%9f%e3%81%a0%e3%81%91%e3%81%be%e3%81%9b%e3%82%93%e3%81%8b-te-itadakemasen-ka-meaning/"
+     }
+    ]
    },
    "～やすい": {
     "en": "Easy to, Likely to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "やすい",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%84%E3%81%99%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "やすい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%84%e3%81%99%e3%81%84-yasui-meaning/"
+     }
+    ]
    },
    "～かもしれない": {
     "en": "Might, Maybe, Probably",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かもしれない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%82%82%E3%81%97%E3%82%8C%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かもしれない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%82%82%e3%81%97%e3%82%8c%e3%81%aa%e3%81%84-kamo-shirenai-meaning/"
+     }
+    ]
    },
    "～ば/～れば": {
     "en": "If… then, (Conditional)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ば",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ば",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b0-ba-conditional-form-meaning/"
+     }
+    ]
    },
    "～たらどうですか": {
     "en": "Why don't you...?, What if you did...?",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たらどう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%89%E3%81%A9%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たらどう",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%89%e3%81%a9%e3%81%86-tara-dou-meaning/"
+     }
+    ]
    },
    "～く/ ～にする": {
     "en": "Adjective + する, To make something/someone (more)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～にする・～くする",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%99%E3%82%8B-%E3%81%8F%E3%81%99%E3%82%8B"
+     }
+    ]
    },
    "のに": {
     "en": "Despite, Although, Even though",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%AB-despite"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "のに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ae%e3%81%ab-noni-meaning-even-though/"
+     }
+    ]
    },
    "Number+も": {
     "en": "Emphasis, As ~ as, Not even",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Number + も",
+      "url": "https://bunpro.jp/grammar_points/number-%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "も",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%82-mo-meaning-as-many-as/"
+     }
+    ]
    },
    "てみる": {
     "en": "To try to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てみる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%BF%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てみる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%bf%e3%82%8b-te-miru-%e3%81%a6%e3%81%bf%e3%81%9f%e3%81%84-te-mitai-meaning/"
+     }
+    ]
    },
    "～ばよかった": {
     "en": "Should have, I wish, It would have been better to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ばよかった",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B0%E3%82%88%E3%81%8B%E3%81%A3%E3%81%9F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ばよかった",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b0%e3%82%88%e3%81%8b%e3%81%a3%e3%81%9f-ba-yokatta-meaning/"
+     }
+    ]
    },
    "～てすみません": {
     "en": "I'm sorry for",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てすみません",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%99%E3%81%BF%E3%81%BE%E3%81%9B%E3%82%93"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てすみません",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%99%e3%81%bf%e3%81%be%e3%81%9b%e3%82%93-te-sumimasen-meaning/"
+     }
+    ]
    },
    "～ないで": {
     "en": "Without doing, Not ~ and",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ないで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%84%e3%81%a7-naide-meaning/"
+     }
+    ]
    },
    "～ているあいだに,～": {
     "en": "While, During the time that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ているあいだに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%84%E3%82%8B%E3%81%82%E3%81%84%E3%81%A0%E3%81%AB"
+     }
+    ]
    },
    "～といいです": {
     "en": "I hope, I wish, You should, It would be good",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "といい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%84%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "といい / たらいい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%84%e3%81%84-to-ii-%e3%81%9f%e3%82%89%e3%81%84%e3%81%84-tara-ii-meaning/"
+     }
+    ]
    },
    "～てくれる": {
     "en": "To do something for someone (usually you)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てくれる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8F%E3%82%8C%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てくれる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%8f%e3%82%8c%e3%82%8b-te-kureru-%e3%81%a6%e3%81%8f%e3%82%8c%e3%81%9f-te-kureta-meaning/"
+     }
+    ]
    },
    "～のように": {
     "en": "Like (Noun), Similar to (Noun)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のように・のような",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB-%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA"
+     }
+    ]
    },
    "～させる": {
     "en": "To make/let/have (somebody do something)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "Verb［せる・させる］",
+      "url": "https://bunpro.jp/grammar_points/causative"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "させる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%81%9b%e3%82%8b-saseru-causative-form-meaning/"
+     }
+    ]
    },
    "～させられる": {
     "en": "causative-passive, to be made to do something",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "させられる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%81%9b%e3%82%89%e3%82%8c%e3%82%8b-saserareru-meaning-causative-passive-form/"
+     }
+    ]
    },
    "～し": {
     "en": "and, and what’s more ~ (emphasis)",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "し",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%97-shi-meaning/"
+     }
+    ]
    },
    "なら": {
     "en": "Were it, If, If it's the case, As for (Conditional)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%82%89-nara-meaning/"
+     }
+    ]
    },
    "～ことにする": {
     "en": "to decide on",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ことにする",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%93%e3%81%a8%e3%81%ab%e3%81%99%e3%82%8b-koto-ni-suru-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "ことにする",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%93%E3%81%A8%E3%81%AB%E3%81%99%E3%82%8B"
+     }
+    ]
    },
    "～てくれてありがとう": {
     "en": "Thank you for ~ ing",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てくれてありがとう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%A6%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86"
+     }
+    ]
    },
    "～ておく": {
     "en": "To do something in advance",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ておく",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8A%E3%81%8F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ておく",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%8a%e3%81%8f-te-oku-meaning/"
+     }
+    ]
    },
    "～てしまう": {
     "en": "To do something by accident, To finish completely・totally",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てしまう・ちゃう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86-%E3%81%A1%E3%82%83%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てしまう / ちゃう",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%97%e3%81%be%e3%81%86-te-shimau-%e3%81%a1%e3%82%83%e3%81%86-meaning/"
+     }
+    ]
    },
    "～のような": {
     "en": "Like (Noun), Similar to (Noun)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のように・のような",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB-%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA"
+     }
+    ]
    },
    "～ても": {
     "en": "Even if, Even though",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ても",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ても",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82-temo-meaning/"
+     }
+    ]
    },
    "～みたい": {
     "en": "Like, Similar to, Resembling",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "みたい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BF%E3%81%9F%E3%81%84"
+     }
+    ]
    },
    "～ながら": {
     "en": "While ~ing, During, As",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ながら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8C%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ながら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8c%e3%82%89-nagara-meaning/"
+     }
+    ]
    },
    "～なくてもいい": {
     "en": "Don't have to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なくてもいい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8F%E3%81%A6%E3%82%82%E3%81%84%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なくてもいい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8f%e3%81%a6%e3%82%82%e3%81%84%e3%81%84-naku-temo-ii-meaning/"
+     }
+    ]
    },
    "～てよかった": {
     "en": "I'm glad that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てよかった",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%88%E3%81%8B%E3%81%A3%E3%81%9F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てよかった",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%88%e3%81%8b%e3%81%a3%e3%81%9f-te-yokatta-meaning/"
+     }
+    ]
    },
    "～たら": {
     "en": "When, From when, Just when, If",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%89-tara-meaning/"
+     }
+    ]
    },
    "～にくい": {
     "en": "Difficult to, Hard to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にくい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%8F%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "にくい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%81%8f%e3%81%84-nikui-meaning/"
+     }
+    ]
    },
    "～られる": {
     "en": "passive form, passive voice / potential form, ability or inability to do something",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "受身形（うけみけい）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%8f%97%e8%ba%ab%e5%bd%a2-ukemi-japanese-passive-form/"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "られる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%89%e3%82%8c%e3%82%8b-rareru-japanese-potential-form/"
+     }
+    ]
    },
    "～そうです": {
     "en": "Look like, Appear, Seem, Have a feeling that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "そう",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9D%E3%81%86"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "そうだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9d%e3%81%86%e3%81%a0-sou-da-i-heard-that/"
+     }
+    ]
    },
    "～たがる": {
     "en": "To want to (Third person)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たがる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%8C%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たがる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%8c%e3%82%8b-tagaru-meaning/"
+     }
+    ]
    }
   },
   "N3": {
    "～たび～": {
     "en": "Each time, Every time, Whenever",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たびに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%B3%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たびに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%b3%e3%81%ab-tabi-ni-meaning/"
+     }
+    ]
    },
    "ようにする": {
     "en": "To try to, To make sure to, To endeavor to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ようにする",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ようにする",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b-you-ni-suru-%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b-meaning/"
+     }
+    ]
    },
    "まさか": {
     "en": "I never dreamed, Never, No way, Don't tell me, You don't say",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まさか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%95%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "まさか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%95%e3%81%8b-masaka-meaning/"
+     }
+    ]
    },
    "～げ": {
     "en": "Seemingly, Giving appearance of, [Expresses emotions or feelings]",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "げ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%92"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "げ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%92-ge-meaning/"
+     }
+    ]
    },
    "～始める": {
     "en": "To start, To begin to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "はじめる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "始める（はじめる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%a7%8b%e3%82%81%e3%82%8b-hajimeru-%e5%a7%8b%e3%82%81%e3%81%9f-meaning/"
+     }
+    ]
    },
    "～らしい": {
     "en": "Seems like, Apparently, I heard",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "らしい ①",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%89%E3%81%97%E3%81%841"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "らしい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%89%e3%81%97%e3%81%84-rashii-meaning/"
+     }
+    ]
    },
    "～ぐらい": {
     "en": "approximately, about, around, to the extent",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "くらい / ぐらい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8f%e3%82%89%e3%81%84-kurai-%e3%81%90%e3%82%89%e3%81%84-gurai-meaning/"
+     }
+    ]
    },
    "～ても": {
     "en": "Even if, Even though",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ても",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ても",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82-temo-meaning/"
+     }
+    ]
    },
    "～によると": {
     "en": "According to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "によると・によれば",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%82%88%E3%82%8B%E3%81%A8-%E3%81%AB%E3%82%88%E3%82%8C%E3%81%B0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "によると /によれば",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%82%88%e3%82%8b%e3%81%a8-%e3%81%ab%e3%82%88%e3%82%8c%e3%81%b0-ni-yoru-to-ni-yoreba-meaning/"
+     }
+    ]
    },
    "むしろ": {
     "en": "Rather, Instead, Over",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "むしろ",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%80%E3%81%97%E3%82%8D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "むしろ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%80%e3%81%97%e3%82%8d-mushiro-meaning/"
+     }
+    ]
    },
    "～として": {
     "en": "As (i.e. in the role of), For",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "として",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%97%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "として",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%97%e3%81%a6-toshite-meaning/"
+     }
+    ]
    },
    "N+ばかり": {
     "en": "Just, Only, Nothing but",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ばかり",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B0%E3%81%8B%E3%82%8A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ばかり",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b0%e3%81%8b%e3%82%8a-bakari-meaning/"
+     }
+    ]
    },
    "すぎない（過ぎない）": {
     "en": "No more than, Just, Merely",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にすぎない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%99%E3%81%8E%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に過ぎない（にすぎない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%81%8e%e3%81%8e%e3%81%aa%e3%81%84-ni-suginai-meaning/"
+     }
+    ]
    },
    "～っぽい": {
     "en": "-ish, -like, Characteristic of, Typical of, Tendency to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "っぽい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A3%E3%81%BD%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "っぽい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a3%e3%81%bd%e3%81%84-ppoi-meaning/"
+     }
+    ]
    },
    "すでに（既に）": {
     "en": "Already, Too late",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "すでに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%99%E3%81%A7%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "すでに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%99%e3%81%a7%e3%81%ab-sude-ni-meaning/"
+     }
+    ]
    },
    "おいて（於いて）": {
     "en": "In, On, At, Regarding, In terms of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "において・における",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%8A%E3%81%84%E3%81%A6-%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "において / における",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%81%8a%e3%81%84%e3%81%a6-ni-oite-%e3%81%ab%e3%81%8a%e3%81%91%e3%82%8b-ni-okeru-meaning/"
+     }
+    ]
    },
    "ほど": {
     "en": "The more, About, To the extent that, So much… that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ほど",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BB%E3%81%A9"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ほど",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e7%a8%8b-%e3%81%bb%e3%81%a9-hodo-meaning/"
+     }
+    ]
    },
    "～ないで": {
     "en": "Without doing, Not ~ and",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ないで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%84%e3%81%a7-naide-meaning/"
+     }
+    ]
    },
    "つい": {
     "en": "Accidentally, Unconsciously, Against one's better judgement",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "つい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A4%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "つい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a4%e3%81%84-tsui-meaning/"
+     }
+    ]
    },
    "ふり": {
     "en": "To pretend, To act as if",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ふりをする",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B5%E3%82%8A%E3%82%92%E3%81%99%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ふりをする",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b5%e3%82%8a%e3%82%92%e3%81%99%e3%82%8b-furi-o-suru-meaning/"
+     }
+    ]
    },
    "まま": {
     "en": "As is, While remaining, Left in a state",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まま(に)",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%BE"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "まま",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%be-mama-meaning/"
+     }
+    ]
    },
    "～ために": {
     "en": "Due to, Because of, As a result of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ために",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%81%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ために",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%81%e3%81%ab-tame-ni-meaning/"
+     }
+    ]
    },
    "～ないうちに": {
     "en": "Before it becomes, Before ~ occurs, Without",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないうちに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%81%86%E3%81%A1%E3%81%AB"
+     }
+    ]
    },
    "～としたら": {
     "en": "If it were the case that, Assuming that...",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "としたら・とすれば・とすると",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%97%E3%81%9F%E3%82%89-%E3%81%A8%E3%81%99%E3%82%8C%E3%81%B0-%E3%81%A8%E3%81%99%E3%82%8B%E3%81%A8"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "とすれば・としたら・とすると",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%99%e3%82%8c%e3%81%b0-%e3%81%a8%e3%81%97%e3%81%9f%e3%82%89-%e3%81%a8%e3%81%99%e3%82%8b%e3%81%a8-sureba-shitara-suru-to-meaning/"
+     }
+    ]
    },
    "つもりで": {
     "en": "with the intention of doing",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "つもりで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a4%e3%82%82%e3%82%8a%e3%81%a7-tsumori-de-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "つもりで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A4%E3%82%82%E3%82%8A%E3%81%A7"
+     }
+    ]
    },
    "～に関する": {
     "en": "Related to, About, Regarding",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に関する・に関して",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B-%E3%81%AB%E9%96%A2%E3%81%97%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に関する / に関して（にかんする / にかんして）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b-%e3%81%ab%e9%96%a2%e3%81%97%e3%81%a6-ni-kan-suru-ni-kan-shite-meaning/"
+     }
+    ]
    },
    "～とても～ない": {
     "en": "Not ~ at all, Cannot ~ at all",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "とても～ない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%A6%E3%82%82-%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "とても～ない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%a6%e3%82%82%ef%bd%9e%e3%81%aa%e3%81%84-totemo-nai-meaning/"
+     }
+    ]
    },
    "どうしても": {
     "en": "Regardless of, No matter what",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "どうしても",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A9%E3%81%86%E3%81%97%E3%81%A6%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "どうしても",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a9%e3%81%86%e3%81%97%e3%81%a6%e3%82%82-doushitemo-meaning/"
+     }
+    ]
    },
    "～とともに～": {
     "en": "Together with, At the same time, As well as",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "と共に",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E5%85%B1%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "と共に（とともに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e5%85%b1%e3%81%ab-to-tomo-ni-meaning/"
+     }
+    ]
    },
    "きり": {
     "en": "Only, Just, Since",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "きり",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8D%E3%82%8A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "きり",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8d%e3%82%8a-kiri-meaning/"
+     }
+    ]
    },
    "～によって": {
     "en": "By means of, According to, Depending on, Because of, Due to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "によって・による",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%82%88%E3%81%A3%E3%81%A6-%E3%81%AB%E3%82%88%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "によって / による",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%82%88%e3%81%a3%e3%81%a6-%e3%81%ab%e3%82%88%e3%82%8b-ni-yotte-ni-yoru-meaning/"
+     }
+    ]
    },
    "ように": {
     "en": "in order to, so that",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ように",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%88%e3%81%86%e3%81%ab-you-ni-meaning-in-order-to/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "ように・ような",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86%E3%81%AB-%E3%82%88%E3%81%86%E3%81%AA"
+     }
+    ]
    },
    "～て初めて": {
     "en": "For the first time, Not until, Only after, Only when, Only because",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "て初めて",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E5%88%9D%E3%82%81%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てはじめて",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%af%e3%81%98%e3%82%81%e3%81%a6-te-hajimete-meaning/"
+     }
+    ]
    },
    "～がち": {
     "en": "Apt to do, Tend to do, Prone to do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "がち",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E3%81%A1"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "がち",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%a1-gachi-meaning/"
+     }
+    ]
    },
    "～ず": {
     "en": "Without doing",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ずに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9A%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ずに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9a%e3%81%ab-zuni-meaning/"
+     }
+    ]
    },
    "～ようになる": {
     "en": "To reach the point that, To come to be that, To turn into",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ようになる",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86%E3%81%AB%E3%81%AA%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ようになる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%88%e3%81%86%e3%81%ab%e3%81%aa%e3%82%8b-you-ni-naru-meaning/"
+     }
+    ]
    },
    "せいぜい": {
     "en": "at the most, at best, to the utmost",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "せいぜい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9b%e3%81%84%e3%81%9c%e3%81%84-seizei-meaning/"
+     }
+    ]
    },
    "N+を始め": {
     "en": "Not only...but also..., Starting with",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "をはじめ",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E3%81%AF%E3%81%98%E3%82%81"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "をはじめ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e3%81%af%e3%81%98%e3%82%81%e3%81%a8%e3%81%99%e3%82%8b-o-hajime-to-suru-meaning/"
+     }
+    ]
    },
    "～ば～ほど": {
     "en": "The more…the more",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ば〜ほど",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B0-%E3%81%BB%E3%81%A9"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ば～ほど",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b0%ef%bd%9e%e3%81%bb%e3%81%a9-ba-hodo-meaning/"
+     }
+    ]
    },
    "～たて": {
     "en": "Freshly ~ed, Just ~ed",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たて",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たて",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%a6-tate-meaning/"
+     }
+    ]
    },
    "～は～くらいです": {
     "en": "About the only, To the extent that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "は～くらいです",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF-%E3%81%8F%E3%82%89%E3%81%84%E3%81%A7%E3%81%99"
+     }
+    ]
    },
    "どうやら": {
     "en": "Apparently, Looks Like, Seems like",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "どうやら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A9%E3%81%86%E3%82%84%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "どうやら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a9%e3%81%86%e3%82%84%e3%82%89-dou-yara-meaning/"
+     }
+    ]
    },
    "～は～で有名": {
     "en": "Is famous for",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～は～で有名",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF-%E3%81%A7%E6%9C%89%E5%90%8D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "は～で有名（は～でゆうめい）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%af%ef%bd%9e%e3%81%a7%e6%9c%89%e5%90%8d-wa-de-yuumei-meaning/"
+     }
+    ]
    },
    "～かえって": {
     "en": "All the more, On the contrary, Conversely",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "却って",
+      "url": "https://bunpro.jp/grammar_points/%E5%8D%B4%E3%81%A3%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かえって",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%88%e3%81%a3%e3%81%a6-kaette-meaning/"
+     }
+    ]
    },
    "～さえ～ば": {
     "en": "If only…then, As long as..., Provided...",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "さえ〜ば",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%95%E3%81%88-%E3%81%B0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "さえ～ば",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%81%88%ef%bd%9e%e3%81%b0-sae-ba-meaning/"
+     }
+    ]
    },
    "こそ": {
     "en": "For sure, For certain, Even more so",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "こそ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%93%E3%81%9D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "こそ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%93%e3%81%9d-koso-meaning/"
+     }
+    ]
    },
    "～になれる": {
     "en": "to be used to something",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "に慣れる（になれる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e6%85%a3%e3%82%8c%e3%82%8b-%e3%81%ab%e3%81%aa%e3%82%8c%e3%82%8b-ni-nareru-meaning/"
+     }
+    ]
    },
    "さらに（更に）": {
     "en": "furthermore, again, more and more",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "さらに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%82%89%e3%81%ab-sara-ni-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "更に",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%95%E3%82%89%E3%81%AB"
+     }
+    ]
    },
    "～代わり": {
     "en": "Instead of, In place of, In exchange for",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "代わりに",
+      "url": "https://bunpro.jp/grammar_points/%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "代わりに（かわりに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e4%bb%a3%e3%82%8f%e3%82%8a%e3%81%ab-%e3%81%8b%e3%82%8f%e3%82%8a%e3%81%ab-kawari-ni-meaning/"
+     }
+    ]
    },
    "まい": {
     "en": "Won't, Intend not to, Probably not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "まい",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%84-mai-meaning/"
+     }
+    ]
    },
    "わざわざ": {
     "en": "Expressly, Especially, Go out of one's way, Take the trouble to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "わざわざ",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%8F%E3%81%96%E3%82%8F%E3%81%96"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "わざわざ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%8f%e3%81%96%e3%82%8f%e3%81%96-wazawaza-meaning/"
+     }
+    ]
    },
    "限る": {
     "en": "Nothing better than, There's nothing like, Limited to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に限る",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E9%99%90%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に限る（にかぎる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%99%90%e3%82%8b-ni-kagiru-meaning/"
+     }
+    ]
    },
    "おかげで": {
     "en": "Thanks to, Because of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "おかげで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8A%E3%81%8B%E3%81%92%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "おかげで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8a%e3%81%8b%e3%81%92%e3%81%a7-okage-de-meaning/"
+     }
+    ]
    },
    "さえ": {
     "en": "Even",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "さえ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%95%E3%81%88"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "さえ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%81%88-sae-%e3%81%a7%e3%81%95%e3%81%88%e3%82%82-meaning/"
+     }
+    ]
    },
    "～たものだ": {
     "en": "Used to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たものだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%82%E3%81%AE%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たものだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%82%e3%81%ae%e3%81%a0-ta-mono-da-meaning/"
+     }
+    ]
    },
    "～のような": {
     "en": "Like (Noun), Similar to (Noun)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のように・のような",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%82%88%E3%81%86%E3%81%AB-%E3%81%AE%E3%82%88%E3%81%86%E3%81%AA"
+     }
+    ]
    },
    "的": {
     "en": "~ly・~like・~al, Typical",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "的",
+      "url": "https://bunpro.jp/grammar_points/%E7%9A%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "的（てき）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e7%9a%84-%e3%81%a6%e3%81%8d-teki-meaning/"
+     }
+    ]
    },
    "いったい（一体）": {
     "en": "(What) the heck?, (Who) in the world?, (Where) on earth?",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "一体",
+      "url": "https://bunpro.jp/grammar_points/%E4%B8%80%E4%BD%93"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "一体（いったい）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e4%b8%80%e4%bd%93-%e3%81%84%e3%81%a3%e3%81%9f%e3%81%84-ittai-meaning/"
+     }
+    ]
    },
    "～ことになる": {
     "en": "It will end up being, It is the result of, It has been decided that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ことになる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%93%E3%81%A8%E3%81%AB%E3%81%AA%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ことになる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%93%e3%81%a8%e3%81%ab%e3%81%aa%e3%82%8b-koto-ni-naru-meaning/"
+     }
+    ]
    },
    "～に違いない": {
     "en": "There is no doubt that, I'm sure",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に違いない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E9%81%95%E3%81%84%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に違いない（にちがいない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%81%95%e3%81%84%e3%81%aa%e3%81%84-ni-chigai-nai-meaning/"
+     }
+    ]
    },
    "なかなか": {
     "en": "Very, Quite, Considerably",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なかなか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8B%E3%81%AA%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なかなか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8b%e3%81%aa%e3%81%8b-nakanaka-meaning/"
+     }
+    ]
    },
    "～たばかり": {
     "en": "Just did, Something just happened",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たばかり",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%B0%E3%81%8B%E3%82%8A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たばかり",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%b0%e3%81%8b%e3%82%8a-ta-bakari-meaning/"
+     }
+    ]
    }
   },
   "N2": {
    "～わけです": {
     "en": "For that reason, No wonder, As you'd expect, Naturally, Thus",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "わけだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%8F%E3%81%91%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "わけだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%8f%e3%81%91%e3%81%a0-wake-da-meaning/"
+     }
+    ]
    },
    "何といっても": {
     "en": "By any account, All the same, No doubt",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "何といっても",
+      "url": "https://bunpro.jp/grammar_points/%E4%BD%95%E3%81%A8%E3%81%84%E3%81%A3%E3%81%A6%E3%82%82"
+     }
+    ]
    },
    "～ような気がする": {
     "en": "Have a feeling that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ような気がする",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%81%86%E3%81%AA%E6%B0%97%E3%81%8C%E3%81%99%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ような気がする（ようなきがする）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%88%e3%81%86%e3%81%aa%e6%b0%97%e3%81%8c%e3%81%99%e3%82%8b-you-na-ki-ga-suru-meaning/"
+     }
+    ]
    },
    "～ことにする": {
     "en": "To decide on, Have decided to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ことにする",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%93%E3%81%A8%E3%81%AB%E3%81%99%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ことにする",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%93%e3%81%a8%e3%81%ab%e3%81%99%e3%82%8b-koto-ni-suru-meaning/"
+     }
+    ]
    },
    "以外の": {
     "en": "with the exception of, excepting",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "以外（いがい）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e4%bb%a5%e5%a4%96%e3%81%ae-igai-no-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "いがい",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%84%E3%81%8C%E3%81%84"
+     }
+    ]
    },
    "～に気をつける": {
     "en": "Take care, Be careful, Pay attention, Make sure, Watch out",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に気をつける",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E6%B0%97%E3%82%92%E3%81%A4%E3%81%91%E3%82%8B"
+     }
+    ]
    },
    "別に～ない": {
     "en": "Not really, Not particularly, It's not like...",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "別に〜ない",
+      "url": "https://bunpro.jp/grammar_points/%E5%88%A5%E3%81%AB-%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "別に～ない（べつに～ない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%88%a5%e3%81%ab%ef%bd%9e%e3%81%aa%e3%81%84-betsu-ni-nai-meaning/"
+     }
+    ]
    },
    "～しか～ない": {
     "en": "Have no choice but, Only, Just",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "しかない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%97%E3%81%8B%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "しかない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%97%e3%81%8b%e3%81%aa%e3%81%84-shika-nai-meaning/"
+     }
+    ]
    },
    "～にあたる": {
     "en": "Correspond to, Amounts to, Equals to, Is appropriate",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に当たる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E5%BD%93%E3%81%9F%E3%82%8B"
+     }
+    ]
    },
    "とうてい": {
     "en": "(cannot) possibly, (not) by any means, (not) at all, utterly",
@@ -662,15 +2454,46 @@
    },
    "～ないで済む": {
     "en": "Get by without doing something, To get away with",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ずに済む",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9A%E3%81%AB%E6%B8%88%E3%82%80"
+     }
+    ]
    },
    "がてら": {
     "en": "On the occasion of, While … as well, While … (one is) at it, During",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "がてら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E3%81%A6%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "がてら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%a6%e3%82%89-gatera-meaning/"
+     }
+    ]
    },
    "および": {
     "en": "And, As well as",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "および",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8A%E3%82%88%E3%81%B3"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "及び（および）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%8f%8a%e3%81%b3-%e3%81%8a%e3%82%88%e3%81%b3-oyobi-meaning/"
+     }
+    ]
    },
    "いったんーば": {
     "en": "once",
@@ -678,35 +2501,111 @@
    },
    "よっぽど": {
     "en": "very, greatly, much, to a large extent",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "よほど / よっぽど",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%88%e3%81%bb%e3%81%a9-%e3%82%88%e3%81%a3%e3%81%bd%e3%81%a9-yohodo-yoppodo-meaning/"
+     }
+    ]
    },
    "つうじて（通じて）": {
     "en": "Through, Via, Throughout",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を通じて・を通して",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E9%80%9A%E3%81%98%E3%81%A6-%E3%82%92%E9%80%9A%E3%81%97%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を通じて / を通して（をつうじて / をとおして）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e9%80%9a%e3%81%98%e3%81%a6-%e3%82%92%e9%80%9a%e3%81%97%e3%81%a6-o-tsuujite-o-tooshite-meaning/"
+     }
+    ]
    },
    "思うように": {
     "en": "As one hopes, As desired, As one thought",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "思うように",
+      "url": "https://bunpro.jp/grammar_points/%E6%80%9D%E3%81%86%E3%82%88%E3%81%86%E3%81%AB"
+     }
+    ]
    },
    "いよいよ": {
     "en": "At last, Finally, More and more",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "いよいよ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%84%E3%82%88%E3%81%84%E3%82%88"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "いよいよ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%84%e3%82%88%e3%81%84%e3%82%88-iyoiyo-meaning/"
+     }
+    ]
    },
    "～より仕方がない": {
     "en": "There is no choice but, Can't be helped, Inevitable",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "よりしかたがない",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%88%E3%82%8A%E3%81%97%E3%81%8B%E3%81%9F%E3%81%8C%E3%81%AA%E3%81%84"
+     }
+    ]
    },
    "～ものですから": {
     "en": "Because, My excuse is, My explanation is",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ものですから・もので",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%82%E3%81%AE%E3%81%A7%E3%81%99%E3%81%8B%E3%82%89-%E3%82%82%E3%81%AE%E3%81%A7"
+     }
+    ]
    },
    "～なかなか～ない": {
     "en": "Not really, Hardly, Not easily or readily, By no means, Far from",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なかなか～ない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8B%E3%81%AA%E3%81%8B-%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なかなか～ない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8b%e3%81%aa%e3%81%8b%ef%bd%9e%e3%81%aa%e3%81%84-nakanaka-nai-meaning/"
+     }
+    ]
    },
    "せっかく": {
     "en": "especially, (thank you for) troubling to, going to great pains for",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "せっかく",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9b%e3%81%a3%e3%81%8b%e3%81%8f-sekkaku-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "折角",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9B%E3%81%A3%E3%81%8B%E3%81%8F"
+     }
+    ]
    },
    "やむをえず": {
     "en": "unavoidably, inevitably, necessarily, reluctantly, against one's will",
@@ -718,23 +2617,73 @@
    },
    "かたわら（傍ら）": {
     "en": "While, Besides, In addition to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かたわら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%9F%E3%82%8F%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かたわら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%9f%e3%82%8f%e3%82%89-katawara-meaning/"
+     }
+    ]
    },
    "ろくに": {
     "en": "not well, not enough, improperly, insufficiently, unsatisfactorily​",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ろくに～ない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%8d%e3%81%8f%e3%81%ab%ef%bd%9e%e3%81%aa%e3%81%84-roku-ni-nai-meaning/"
+     }
+    ]
    },
    "なるべく": {
     "en": "As ~ as possible, Wherever practicable",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なるべく",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%82%8B%E3%81%B9%E3%81%8F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なるべく",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%82%8b%e3%81%b9%e3%81%8f-naru-beku-meaning/"
+     }
+    ]
    },
    "かねる": {
     "en": "Cannot, Be unable to, Hard to, Hesitant to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かねる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%AD%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かねる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%ad%e3%82%8b-%e3%81%8b%e3%81%ad%e3%81%be%e3%81%99-kaneru-kanemasu-meaning/"
+     }
+    ]
    },
    "せいか": {
     "en": "perhaps because",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "せいか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9b%e3%81%84%e3%81%8b-sei-ka-meaning/"
+     }
+    ]
    },
    "たしか": {
     "en": "If I'm not mistaken, If I remember correctly, If I remember rightly",
@@ -742,11 +2691,30 @@
    },
    "～ではないだろうか": {
     "en": "I think ... isn't it?, It might be that..., Don't you agree?",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "のではないだろうか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AE%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84%E3%81%A0%E3%82%8D%E3%81%86%E3%81%8B"
+     }
+    ]
    },
    "～わけにはいかない": {
     "en": "Cannot afford to, No way, Impossible to do",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "わけにはいかない",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%8F%E3%81%91%E3%81%AB%E3%81%AF%E3%81%84%E3%81%8B%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "わけにはいかない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%8f%e3%81%91%e3%81%ab%e3%81%af%e3%81%84%e3%81%8b%e3%81%aa%e3%81%84-wake-niwa-ikanai-meaning/"
+     }
+    ]
    },
    "まんいち（万一）": {
     "en": "(if) by some chance, by some possibility, in the unlikely event that",
@@ -754,389 +2722,1386 @@
    },
    "～は～に限る": {
     "en": "is best, nothing is better than",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "に限る（にかぎる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%99%90%e3%82%8b-ni-kagiru-meaning/"
+     },
+     {
+      "src": "Bunpro",
+      "title": "に限る",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E9%99%90%E3%82%8B"
+     }
+    ]
    },
    "ゆえに": {
     "en": "Because, The reason is, Due to, Therefore, So",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ゆえに",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%86%E3%81%88%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ゆえに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e6%95%85%e3%81%ab-%e3%82%86%e3%81%88%e3%81%ab-yue-ni-meaning/"
+     }
+    ]
    },
    "一方では": {
     "en": "on one hand, on the other hand, although",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "一方で（いっぽうで）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e4%b8%80%e6%96%b9%e3%81%a7-ippou-de-meaning/"
+     }
+    ]
    },
    "なにしろ（何しろ）": {
     "en": "No wonder, After all, In fact, Because, At any rate",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "何しろ",
+      "url": "https://bunpro.jp/grammar_points/%E4%BD%95%E3%81%97%E3%82%8D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "何しろ（なにしろ）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e4%bd%95%e3%81%97%e3%82%8d-%e3%81%aa%e3%81%ab%e3%81%97%e3%82%8d-nani-shiro-meaning/"
+     }
+    ]
    },
    "それにしても": {
     "en": "Nevertheless, Even so",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "それにしても",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9D%E3%82%8C%E3%81%AB%E3%81%97%E3%81%A6%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "それにしても",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9d%e3%82%8c%e3%81%ab%e3%81%97%e3%81%a6%e3%82%82-sore-ni-shitemo-meaning/"
+     }
+    ]
    },
    "～を～にまかせる": {
     "en": "Leave 〜 up to, Entrust 〜 to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～を～に任せる",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92-%E3%81%AB%E4%BB%BB%E3%81%9B%E3%82%8B"
+     }
+    ]
    },
    "～というわけではない": {
     "en": "It is not that, It doesn't mean that, It is not always the case",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "というわけではない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%84%E3%81%86%E3%82%8F%E3%81%91%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "というわけではない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%84%e3%81%86%e3%82%8f%e3%81%91%e3%81%a7%e3%81%af%e3%81%aa%e3%81%84-to-iu-wake-dewa-nai-meaning/"
+     }
+    ]
    },
    "かけては": {
     "en": "When it comes to, Regarding, Concerning",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にかけては",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%8B%E3%81%91%E3%81%A6%E3%81%AF"
+     }
+    ]
    },
    "たちまち": {
     "en": "Immediately, Quickly, Suddenly, In a moment or flash",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たちまち",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%A1%E3%81%BE%E3%81%A1"
+     }
+    ]
    },
    "さすがに": {
     "en": "as one would expect, only natural, that is just like..., even",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "さすが",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%95%E3%81%99%E3%81%8C"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "さすが",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%95%e3%81%99%e3%81%8c%e3%81%ab-sasuga-ni-meaning/"
+     }
+    ]
    },
    "～に越したことはない": {
     "en": "There is nothing better than, It is the best, Would be the best",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に越したことはない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E8%B6%8A%E3%81%97%E3%81%9F%E3%81%93%E3%81%A8%E3%81%AF%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に越したことはない（にこしたことはない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e8%b6%8a%e3%81%97%e3%81%9f%e3%81%93%e3%81%a8%e3%81%af%e3%81%aa%e3%81%84-ni-koshita-koto-wa-nai-meaning/"
+     }
+    ]
    },
    "ものの": {
     "en": "Although, But, Even Though",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ものの",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%82%E3%81%AE%E3%81%AE"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ものの",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%82%e3%81%ae%e3%81%ae-monono-meaning/"
+     }
+    ]
    },
    "いつのまにか": {
     "en": "Suddenly, Unnoticed, Without noticing, Too soon",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "いつの間にか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%84%E3%81%A4%E3%81%AE%E9%96%93%E3%81%AB%E3%81%8B"
+     }
+    ]
    },
    "さしつかえない": {
     "en": "can ~, it’s okay if ~ (indicates permission or compromise)",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ても差し支えない（てもさしつかえない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82%e5%b7%ae%e3%81%97%e6%94%af%e3%81%88%e3%81%aa%e3%81%84-%e3%81%a6%e3%82%82%e3%81%95%e3%81%97%e3%81%a4%e3%81%8b%e3%81%88%e3%81%aa%e3%81%84-temo-sashitsukaenai-meaning/"
+     }
+    ]
    },
    "あえて": {
     "en": "dare to, daringly, deliberately, purposely",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "敢えて（あえて）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e6%95%a2%e3%81%88%e3%81%a6-%e3%81%82%e3%81%88%e3%81%a6-aete-meaning/"
+     }
+    ]
    },
    "たまらない": {
     "en": "Can't help but want to, Very, Extremely",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てたまらない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%9F%E3%81%BE%E3%82%89%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てたまらない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%9f%e3%81%be%e3%82%89%e3%81%aa%e3%81%84-te-tamaranai-meaning/"
+     }
+    ]
    },
    "～た上で": {
     "en": "After, Upon",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "上で",
+      "url": "https://bunpro.jp/grammar_points/%E4%B8%8A%E3%81%A7"
+     }
+    ]
    },
    "～ないわけにはいかない": {
     "en": "Can't not, No way to avoid",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないわけにはいかない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%82%8F%E3%81%91%E3%81%AB%E3%81%AF%E3%81%84%E3%81%8B%E3%81%AA%E3%81%84"
+     }
+    ]
    },
    "ごとし（如し）": {
     "en": "Like, Similar to, As if, The same as",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "如く・如き・如し",
+      "url": "https://bunpro.jp/grammar_points/%E5%A6%82%E3%81%8F-%E5%A6%82%E3%81%8D-%E5%A6%82%E3%81%97"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ごとき / ごとく / ごとし",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%94%e3%81%a8%e3%81%8d-%e3%81%94%e3%81%a8%e3%81%8f-%e3%81%94%e3%81%a8%e3%81%97-gotoki-gotoku-gotoshi-meaning/"
+     }
+    ]
    },
    "かねない": {
     "en": "Might, Could be, Capable of, Possible",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かねない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%AD%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かねない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%ad%e3%81%aa%e3%81%84-kanenai-meaning/"
+     }
+    ]
    },
    "ろくに～ない": {
     "en": "not well, not enough, improperly, insufficiently, unsatisfactorily​",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ろくに～ない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%8d%e3%81%8f%e3%81%ab%ef%bd%9e%e3%81%aa%e3%81%84-roku-ni-nai-meaning/"
+     }
+    ]
    },
    "～と言っても～": {
     "en": "Although ~ might say that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "～と言っても",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E8%A8%80%E3%81%A3%E3%81%A6%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "といっても",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%84%e3%81%a3%e3%81%a6%e3%82%82-to-ittemo-meaning/"
+     }
+    ]
    },
    "～が気になる": {
     "en": "To be interested in, To be concerned about",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "が気になる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8B"
+     }
+    ]
    },
    "せめて": {
     "en": "At least",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "せめて",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9B%E3%82%81%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "せめて",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9b%e3%82%81%e3%81%a6-semete-meaning/"
+     }
+    ]
    },
    "くせに": {
     "en": "Even though, And yet, Despite",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "くせに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8F%E3%81%9B%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "くせに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8f%e3%81%9b%e3%81%ab-kuse-ni-meaning/"
+     }
+    ]
    },
    "いたるまで（至るまで）": {
     "en": "(Everything) from...to..., From…up until...",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に至るまで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E8%87%B3%E3%82%8B%E3%81%BE%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に至るまで（にいたるまで）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e8%87%b3%e3%82%8b%e3%81%be%e3%81%a7-%e3%81%ab%e3%81%84%e3%81%9f%e3%82%8b%e3%81%be%e3%81%a7-ni-itaru-made-meaning/"
+     }
+    ]
    }
   },
   "N1": {
    "～めく": {
     "en": "Like, To show signs of, To have the appearance of, Somewhat, An air of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "めく・めいた",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%81%E3%81%8F-%E3%82%81%E3%81%84%E3%81%9F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "めく",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%81%e3%81%8f-meku-meaning/"
+     }
+    ]
    },
    "～かたわら": {
     "en": "While, Besides, In addition to",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かたわら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%9F%E3%82%8F%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かたわら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%9f%e3%82%8f%e3%82%89-katawara-meaning/"
+     }
+    ]
    },
    "～と思いきや": {
     "en": "Thought...but, When...thought that...but, Despite having thought...",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "と思いきや",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E6%80%9D%E3%81%84%E3%81%8D%E3%82%84"
+     }
+    ]
    },
    "～が早いか": {
     "en": "As soon as, No sooner than, The instant that, No sooner had",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "が早いか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E6%97%A9%E3%81%84%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "が早いか（がはやいか）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e6%97%a9%e3%81%84%e3%81%8b-ga-hayai-ka-meaning/"
+     }
+    ]
    },
    "ただ～のみ": {
     "en": "Nothing but, Should, Have to, Only, All that remains",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ただ〜のみ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%A0-%E3%81%AE%E3%81%BF"
+     }
+    ]
    },
    "～なり": {
     "en": "As soon as, The moment, When",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "なり",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%82%8A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "なり",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%82%8a-nari-meaning/"
+     }
+    ]
    },
    "～や否や（いなや）": {
     "en": "As soon as, No sooner than, The minute",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "や否や",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%84%E5%90%A6%E3%82%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "や否や（やいなや）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%84%e5%90%a6%e3%82%84-ya-ina-ya-meaning/"
+     }
+    ]
    },
    "～ごとき": {
     "en": "Like, Similar to, As if, The same as",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "如く・如き・如し",
+      "url": "https://bunpro.jp/grammar_points/%E5%A6%82%E3%81%8F-%E5%A6%82%E3%81%8D-%E5%A6%82%E3%81%97"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ごとき / ごとく / ごとし",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%94%e3%81%a8%e3%81%8d-%e3%81%94%e3%81%a8%e3%81%8f-%e3%81%94%e3%81%a8%e3%81%97-gotoki-gotoku-gotoshi-meaning/"
+     }
+    ]
    },
    "～がてら": {
     "en": "On the occasion of, While … as well, While … (one is) at it, During",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "がてら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8C%E3%81%A6%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "がてら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8c%e3%81%a6%e3%82%89-gatera-meaning/"
+     }
+    ]
    },
    "～を皮切りに": {
     "en": "Beginning of, Starting with",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を皮切りに",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E7%9A%AE%E5%88%87%E3%82%8A%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を皮切りに（をかわきりに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e7%9a%ae%e5%88%87%e3%82%8a%e3%81%ab-%e3%82%92%e3%81%8b%e3%82%8f%e3%81%8d%e3%82%8a%e3%81%ab-o-kawakiri-ni-meaning/"
+     }
+    ]
    },
    "～をもって": {
     "en": "By means of, With, By, Via, In view of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を以て",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E4%BB%A5%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "をもって / をもちまして",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e3%82%82%e3%81%a3%e3%81%a6-%e3%82%92%e3%82%82%e3%81%a1%e3%81%be%e3%81%97%e3%81%a6-o-motte-o-mochimashite-meaning/"
+     }
+    ]
    },
    "～が最後": {
     "en": "if you do... negative result",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "たら最後 / たが最後（たらさいご / たがさいご）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%89%e6%9c%80%e5%be%8c-%e3%81%9f%e3%81%8c%e6%9c%80%e5%be%8c-%e3%81%9f%e3%82%89%e3%81%95%e3%81%84%e3%81%94-tara-saigo-meaning/"
+     }
+    ]
    },
    "～まみれ": {
     "en": "covered with, stained, smeared with",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "まみれ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%bf%e3%82%8c-mamire-meaning/"
+     }
+    ]
    },
    "～とあれば": {
     "en": "(Emphatic) if, If it is the case that, As (you wish)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "とあれば",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%82%E3%82%8C%E3%81%B0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "とあれば",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%82%e3%82%8c%e3%81%b0-to-areba-meaning/"
+     }
+    ]
    },
    "～ともなると": {
     "en": "When, If, Once, As",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ともなると・にもなると",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%82%82%E3%81%AA%E3%82%8B%E3%81%A8-%E3%81%AB%E3%82%82%E3%81%AA%E3%82%8B%E3%81%A8"
+     }
+    ]
    },
    "～なくしては": {
     "en": "cannot do without",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "なくしては",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8f%e3%81%97%e3%81%a6%e3%81%af-nakushite-wa-meaning/"
+     }
+    ]
    },
    "～なしに": {
     "en": "without, without doing",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "なしに / なしで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%97%e3%81%ab-%e3%81%aa%e3%81%97%e3%81%a7-nashi-ni-nashi-de-meaning/"
+     }
+    ]
    },
    "～ならでは": {
     "en": "Unique to, Only, Impossible if not, Expected only of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ならでは",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%82%89%E3%81%A7%E3%81%AF"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ならでは",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%82%89%e3%81%a7%e3%81%af-nara-dewa-meaning/"
+     }
+    ]
    },
    "～に足る": {
     "en": "To be worthy of, To be enough, To be sufficient",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に足る",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E8%B6%B3%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に足る / に足りる（にたる / にたりる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e8%b6%b3%e3%82%8b-%e3%81%ab%e8%b6%b3%e3%82%8a%e3%82%8b-ni-taru-ni-tariru-meaning/"
+     }
+    ]
    },
    "～とあって": {
     "en": "Since...(it is no wonder that), Because...(it is no wonder that)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "とあって",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%82%E3%81%A3%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "とあって",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%82%e3%81%a3%e3%81%a6-to-atte-meaning/"
+     }
+    ]
    },
    "～べく": {
     "en": "For the purpose of, In order to, To ensure",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "べく",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B9%E3%81%8F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "べく",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b9%e3%81%8f-beku-meaning/"
+     }
+    ]
    },
    "～かたがた": {
     "en": "Partly for (the purpose of), In addition to, Along with, By the way",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "かたがた",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%9F%E3%81%8C%E3%81%9F"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "かたがた",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%8b%e3%81%9f%e3%81%8c%e3%81%9f-katagata-meaning/"
+     }
+    ]
    },
    "～たところで": {
     "en": "Even if ~ cannot or will not, Even though ~ not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たところで",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%81%A7"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たところで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%81%a8%e3%81%93%e3%82%8d%e3%81%a7-ta-tokoro-de-meaning/"
+     }
+    ]
    },
    "～であれ": {
     "en": "Even if, Even, No matter",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "であれ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A7%E3%81%82%E3%82%8C"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "であれ / であろうと",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a7%e3%81%82%e3%82%8c-%e3%81%a7%e3%81%82%e3%82%8d%e3%81%86%e3%81%a8-de-are-de-arou-meaning/"
+     }
+    ]
    },
    "～にたえない": {
     "en": "worth doing, can do, cannot bear doing",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "に耐える / に耐えない（にたえる / にたえない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e8%80%90%e3%81%88%e3%82%8b-%e3%81%ab%e8%80%90%e3%81%88%e3%81%aa%e3%81%84-%e3%81%ab%e3%81%9f%e3%81%88%e3%82%8b-%e3%81%ab%e3%81%9f%e3%81%88%e3%81%aa%e3%81%84-ni-taeru-ni-taenai-meaning/"
+     }
+    ]
    },
    "～を限りに": {
     "en": "As of (the end of), (Starting) from, (No longer) after, By (the)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を限りに",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E9%99%90%E3%82%8A%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を限りに（をかぎりに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e9%99%90%e3%82%8a%e3%81%ab-o-kagiri-ni-meaning/"
+     }
+    ]
    },
    "～ところを": {
     "en": "When, While, In spite of (the circumstances)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ところを",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%93%E3%82%8D%E3%82%92"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ところを",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%93%e3%82%8d%e3%82%92-tokoro-o-meaning/"
+     }
+    ]
    },
    "～にそくして": {
     "en": "In line with, Based on, In accordance with",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に即して",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E5%8D%B3%E3%81%97%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に即して（にそくして）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e5%8d%b3%e3%81%97%e3%81%a6-%e3%81%ab%e3%81%9d%e3%81%8f%e3%81%97%e3%81%a6-ni-sokushite-meaning/"
+     }
+    ]
    },
    "～とはいえ": {
     "en": "Though, Although (I admit that), Be that as it may, Nonetheless",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "とはいえ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%AF%E3%81%84%E3%81%88"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "とはいえ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%af%e3%81%84%e3%81%88-towa-ie-meaning/"
+     }
+    ]
    },
    "～ものを": {
     "en": "But, Although, If only, I wish I had",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ものを",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%82%E3%81%AE%E3%82%92"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ものを",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%82%e3%81%ae%e3%82%92-mono-o-meaning/"
+     }
+    ]
    },
    "～ようが": {
     "en": "Even if, No matter what, Whether or not, [Emphatic], Volitional + が",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ようが～まいが",
+      "url": "https://bunpro.jp/grammar_points/-%E3%82%88%E3%81%86--%E3%81%86-%E3%81%BE%E3%81%84-%E3%81%8C-%E3%81%A8"
+     }
+    ]
    },
    "～いかん": {
     "en": "in accordance with, depending on, whether or not",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "いかんだ / いかんでは / いかんによっては",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%84%e3%81%8b%e3%82%93%e3%81%a0-%e3%81%84%e3%81%8b%e3%82%93%e3%81%a7%e3%81%af-%e3%81%84%e3%81%8b%e3%82%93%e3%81%ab%e3%82%88%e3%81%a3%e3%81%a6%e3%81%af-ikan-dewa-meaning/"
+     }
+    ]
    },
    "～と相まって": {
     "en": "together with..., more, because of the influence of..., more",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "と相まって（とあいまって）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e7%9b%b8%e3%81%be%e3%81%a3%e3%81%a6-%e3%81%a8%e3%81%82%e3%81%84%e3%81%be%e3%81%a3%e3%81%a6-to-aimatte-meaning/"
+     }
+    ]
    },
    "～をよそに": {
     "en": "Ignoring, Disregarding, Despite",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "をよそに",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E3%82%88%E3%81%9D%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "をよそに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e3%82%88%e3%81%9d%e3%81%ab-o-yoso-ni-meaning/"
+     }
+    ]
    },
    "～ないまでも": {
     "en": "May not … but (at least), Even though not, Even if not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ないまでも",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%84%E3%81%BE%E3%81%A7%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ないまでも",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%84%e3%81%be%e3%81%a7%e3%82%82-nai-made-mo-meaning/"
+     }
+    ]
    },
    "～てもさしつかえない": {
     "en": "May, Is it a bother if, Do you mind if, Is it a problem if",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ても差し支えない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%82%E5%B7%AE%E3%81%97%E6%94%AF%E3%81%88%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ても差し支えない（てもさしつかえない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%82%e5%b7%ae%e3%81%97%e6%94%af%e3%81%88%e3%81%aa%e3%81%84-%e3%81%a6%e3%82%82%e3%81%95%e3%81%97%e3%81%a4%e3%81%8b%e3%81%88%e3%81%aa%e3%81%84-temo-sashitsukaenai-meaning/"
+     }
+    ]
    },
    "～たる": {
     "en": "To be (in a position of), As a, For",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "たる",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9F%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "たるもの / たる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%8b%e3%82%82%e3%81%ae-%e3%81%9f%e3%82%8b-taru-mono-meaning/"
+     }
+    ]
    },
    "～まじき": {
     "en": "Unbecoming of, Unworthy of, Not proper for, Should not, Must not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "まじき",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%BE%E3%81%98%E3%81%8D"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "まじき",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%be%e3%81%98%e3%81%8d-majiki-meaning/"
+     }
+    ]
    },
    "～極まる": {
     "en": "Extreme, Extremely",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "極まりない・極まる",
+      "url": "https://bunpro.jp/grammar_points/%E6%A5%B5%E3%81%BE%E3%82%8A%E3%81%AA%E3%81%84-%E6%A5%B5%E3%81%BE%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "極まる / 極まりない（きわまる / きわまりない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e6%a5%b5%e3%81%be%e3%82%8b-%e6%a5%b5%e3%81%be%e3%82%8a%e3%81%aa%e3%81%84-kiwamaru-kiwamarinai-meaning/"
+     }
+    ]
    },
    "～にかこつけて": {
     "en": "In the name of, Using the excuse of, To use as a pretext of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にかこつけて",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%8B%E3%81%93%E3%81%A4%E3%81%91%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "にかこつけて",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%81%8b%e3%81%93%e3%81%a4%e3%81%91%e3%81%a6-ni-kako-tsukete-meaning/"
+     }
+    ]
    },
    "～に（は）あたらない": {
     "en": "No need to/for, Cannot, Not worth it to, Not suitable",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "には当たらない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%AF%E5%BD%93%E3%81%9F%E3%82%89%E3%81%AA%E3%81%84"
+     }
+    ]
    },
    "～にかたくない": {
     "en": "Not hard to, Not difficult to, Easy to, Is obvious that",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "に難くない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E9%9B%A3%E3%81%8F%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に難くない（にかたくない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e9%9b%a3%e3%81%8f%e3%81%aa%e3%81%84-%e3%81%ab%e3%81%8b%e3%81%9f%e3%81%8f%e3%81%aa%e3%81%84-ni-katakunai-meaning/"
+     }
+    ]
    },
    "～べからず": {
     "en": "Do not, Must not, Should not, Cannot (べからざる)",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "べからず",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%B9%E3%81%8B%E3%82%89%E3%81%9A"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "べからず / べからざる",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%b9%e3%81%8b%e3%82%89%e3%81%9a-%e3%81%b9%e3%81%8b%e3%82%89%e3%81%96%e3%82%8b-bekarazu-bekarazaru-meaning/"
+     }
+    ]
    },
    "～を禁じ得ない": {
     "en": "Cannot help feeling, Cannot but, Cannot hold back",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を禁じ得ない",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E7%A6%81%E3%81%98%E5%BE%97%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を禁じ得ない（をきんじえない）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e7%a6%81%e3%81%98%e5%be%97%e3%81%aa%e3%81%84-%e3%82%92%e3%81%8d%e3%82%93%e3%81%98%e3%81%88%e3%81%aa%e3%81%84-o-kinji-enai-meaning/"
+     }
+    ]
    },
    "～たりとも": {
     "en": "not even, not any",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "たりとも",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9f%e3%82%8a%e3%81%a8%e3%82%82%ef%bd%9e%e3%81%aa%e3%81%84-tari-tomo-nai-meaning/"
+     }
+    ]
    },
    "～きらいがある": {
     "en": "Have a tendency to, Tend to, Be slightly",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "きらいがある",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%8D%E3%82%89%E3%81%84%E3%81%8C%E3%81%82%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "嫌いがある（きらいがある）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%ab%8c%e3%81%84%e3%81%8c%e3%81%82%e3%82%8b-%e3%81%8d%e3%82%89%e3%81%84%e3%81%8c%e3%81%82%e3%82%8b-kirai-ga-aru-meaning/"
+     }
+    ]
    },
    "～しまつだ": {
     "en": "Ends up, Finally, In the end, (Unfortunately) As a result, To wind up",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "始末だ",
+      "url": "https://bunpro.jp/grammar_points/%E5%A7%8B%E6%9C%AB%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "始末だ（しまつだ）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%a7%8b%e6%9c%ab%e3%81%a0-%e3%81%97%e3%81%be%e3%81%a4%e3%81%a0-shimatsu-da-meaning/"
+     }
+    ]
    },
    "～を余儀なくされる": {
     "en": "To be forced to do something",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を余儀なくされる",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E4%BD%99%E5%84%80%E3%81%AA%E3%81%8F%E3%81%95%E3%82%8C%E3%82%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を余儀なくされる（をよぎなくされる）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e4%bd%99%e5%84%80%e3%81%aa%e3%81%8f%e3%81%95%e3%82%8c%e3%82%8b-%e3%82%92%e3%82%88%e3%81%8e%e3%81%aa%e3%81%8f%e3%81%95%e3%82%8c%e3%82%8b-o-yogi-naku-sareru-meaning/"
+     }
+    ]
    },
    "～てやまない": {
     "en": "Never cease to, Always, Sincerely, Greatly",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てやまない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%82%84%E3%81%BE%E3%81%AA%E3%81%84"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てやまない",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%82%84%e3%81%be%e3%81%aa%e3%81%84-te-yamanai-meaning/"
+     }
+    ]
    },
    "～割りに（は）": {
     "en": "considering ~, for ~, despite",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "割に（わりに）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e5%89%b2%e3%81%ab-%e3%82%8f%e3%82%8a%e3%81%ab-wari-ni-meaning/"
+     }
+    ]
    },
    "～かいもなく": {
     "en": "despite, even though",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "甲斐もなく（かいもなく）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e7%94%b2%e6%96%90%e3%82%82%e3%81%aa%e3%81%8f-%e3%81%8b%e3%81%84%e3%82%82%e3%81%aa%e3%81%8f-kai-mo-naku-meaning/"
+     }
+    ]
    },
    "～だけまし": {
     "en": "At least, It's better than..., One should feel grateful for",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "だけましだ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A0%E3%81%91%E3%81%BE%E3%81%97%E3%81%A0"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "だけましだ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a0%e3%81%91%e3%81%be%e3%81%97%e3%81%a0-dake-mashi-da-meaning/"
+     }
+    ]
    },
    "～ないではすまない": {
     "en": "Won't get away without, Won't get off without, Have to, Can’t not",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ずにはすまない",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9A%E3%81%AB%E3%81%AF%E3%81%99%E3%81%BE%E3%81%AA%E3%81%84"
+     }
+    ]
    },
    "～をふまえて": {
     "en": "Based on, Considering, Keeping in mind, Taking into account, Therefore",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を踏まえて",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E8%B8%8F%E3%81%BE%E3%81%88%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を踏まえて（をふまえて）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e8%b8%8f%e3%81%be%e3%81%88%e3%81%a6-%e3%82%92%e3%81%b5%e3%81%be%e3%81%88%e3%81%a6-o-fumaete-meaning/"
+     }
+    ]
    },
    "～をおして": {
     "en": "to overcome (opposition), to push past",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "を押して / を押し切って（をおして / をおしきって）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e6%8a%bc%e3%81%97%e3%81%a6-%e3%82%92%e6%8a%bc%e3%81%97%e5%88%87%e3%81%a3%e3%81%a6-%e3%82%92%e3%81%8a%e3%81%97%e3%81%8d%e3%81%a3%e3%81%a6-o-oshite-o-oshikitte-meaning/"
+     }
+    ]
    },
    "～を経て": {
     "en": "Via, Through, After (experience at job, university, etc.), Pass through",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "を経て",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%92%E7%B5%8C%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "を経て（をへて）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%82%92%e7%b5%8c%e3%81%a6-%e3%82%92%e3%81%b8%e3%81%a6-o-hete-meaning/"
+     }
+    ]
    },
    "～ゆえ": {
     "en": "Because, The reason is, Due to, Therefore, So",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ゆえに",
+      "url": "https://bunpro.jp/grammar_points/%E3%82%86%E3%81%88%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ゆえに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e6%95%85%e3%81%ab-%e3%82%86%e3%81%88%e3%81%ab-yue-ni-meaning/"
+     }
+    ]
    },
    "～ながらも": {
     "en": "But, Even while, Even though, Despite, Although",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ながらも",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8C%E3%82%89%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ながらも",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8c%e3%82%89%e3%82%82-nagara-mo-meaning/"
+     }
+    ]
    },
    "～ことなしに": {
     "en": "without doing something",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ことなしに",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%93%e3%81%a8%e3%81%aa%e3%81%97%e3%81%ab-koto-nashi-ni-meaning/"
+     }
+    ]
    },
    "～ではあるまいし": {
     "en": "it’s not like, it isn’t as if",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "ではあるまいし",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a7%e3%81%af%e3%81%82%e3%82%8b%e3%81%be%e3%81%84%e3%81%97-dewa-arumai-shi-meaning/"
+     }
+    ]
    },
    "～てからというもの": {
     "en": "After, Since, Ever since then",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "てからというもの",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A6%E3%81%8B%E3%82%89%E3%81%A8%E3%81%84%E3%81%86%E3%82%82%E3%81%AE"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "てからというもの",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a6%e3%81%8b%e3%82%89%e3%81%a8%e3%81%84%e3%81%86%e3%82%82%e3%81%ae-te-kara-to-iu-mono-meaning/"
+     }
+    ]
    },
    "～としたところで": {
     "en": "even if, even supposing that",
-    "src": "JLPT Sensei"
+    "src": "JLPT Sensei",
+    "pages": [
+     {
+      "src": "JLPT Sensei",
+      "title": "にしたところで / としたところで",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%81%97%e3%81%9f%e3%81%a3%e3%81%a6-%e3%81%ab%e3%81%97%e3%81%9f%e3%81%a8%e3%81%93%e3%82%8d%e3%81%a7-ni-shitatte-meaning/"
+     }
+    ]
    },
    "～（で）すら": {
     "en": "Even",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "すら",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%99%E3%82%89"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "すら / ですら",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%99%e3%82%89-%e3%81%a7%e3%81%99%e3%82%89-de-sura-meaning/"
+     }
+    ]
    },
    "～といえども": {
     "en": "Even (if), Although, Even though",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "といえども",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A8%E3%81%84%E3%81%88%E3%81%A9%E3%82%82"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "といえども",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a8%e3%81%84%e3%81%88%e3%81%a9%e3%82%82-to-ie-domo-meaning/"
+     }
+    ]
    },
    "～っぱなし": {
     "en": "Leaving something in a certain state, Left as is, Keep on -ing",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "っぱなし",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%A3%E3%81%B1%E3%81%AA%E3%81%97"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "っぱなし",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%a3%e3%81%b1%e3%81%aa%e3%81%97-ppanashi-meaning/"
+     }
+    ]
    },
    "～ずくめ": {
     "en": "Completely, Entirely, All in, Nothing but, A real streak of",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ずくめ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%9A%E3%81%8F%E3%82%81"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ずくめ",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%9a%e3%81%8f%e3%82%81-zukume-meaning/"
+     }
+    ]
    },
    "～ながらに": {
     "en": "While being, Born (with), As always, While crying or in tears",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "ながらに",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AA%E3%81%8C%E3%82%89%E3%81%AB"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "ながらに / ながらの",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%aa%e3%81%8c%e3%82%89%e3%81%ab-%e3%81%aa%e3%81%8c%e3%82%89%e3%81%ae-nagara-ni-nagara-no-meaning/"
+     }
+    ]
    },
    "～にもまして": {
     "en": "Even -er than, Even more than, More than anything, More than anybody",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にもまして",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%82%82%E3%81%BE%E3%81%97%E3%81%A6"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "にも増して（にもまして）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e3%82%82%e5%a2%97%e3%81%97%e3%81%a6-%e3%81%ab%e3%82%82%e3%81%be%e3%81%97%e3%81%a6-nimo-mashite-meaning/"
+     }
+    ]
    },
    "～にひきかえ": {
     "en": "In stark contrast, In comparison, On the other hand, While",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "にひきかえ",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AB%E3%81%B2%E3%81%8D%E3%81%8B%E3%81%88"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "に引き換え（にひきかえ）",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%ab%e5%bc%95%e3%81%8d%e6%8f%9b%e3%81%88-%e3%81%ab%e3%81%b2%e3%81%8d%e3%81%8b%e3%81%88-ni-hikikae-meaning/"
+     }
+    ]
    },
    "～はおろか": {
     "en": "Let alone, Much less, Needless to say, Not to mention",
-    "src": "Bunpro"
+    "src": "Bunpro",
+    "pages": [
+     {
+      "src": "Bunpro",
+      "title": "はおろか",
+      "url": "https://bunpro.jp/grammar_points/%E3%81%AF%E3%81%8A%E3%82%8D%E3%81%8B"
+     },
+     {
+      "src": "JLPT Sensei",
+      "title": "はおろか",
+      "url": "https://jlptsensei.com/learn-japanese-grammar/%e3%81%af%e3%81%8a%e3%82%8d%e3%81%8b-wa-oroka-meaning/"
+     }
+    ]
    }
   }
  }
