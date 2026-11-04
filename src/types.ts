@@ -202,6 +202,11 @@ export interface Boss {
   finaleSkip?: string[];
   /** Boss Battle shows drawn art only (no 3D models): Final Blow takes no card pictures (scripts/data/boss-2d-art.mjs). */
   drawnOnly?: boolean;
+  /**
+   * Drawn pictures of the faces whose cards show 3D models, by name: the games show these instead
+   * (League of Legends: scripts/data/lol-2d-art.mjs). The cards keep their own.
+   */
+  faceArt?: Record<string, string>;
   /** Its pictures are pixel art, drawn without smoothing. */
   pixelArt?: boolean;
 }

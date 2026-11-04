@@ -60,11 +60,13 @@ export function finaleFaces(boss: Boss): BossCard[] {
     if (c.set !== boss.id || taken.has(c.name) || c.name === boss.boss.name) continue;
     const who = personOf(c.name)?.name ?? nameKey(c.name);
     if (people.has(who)) continue;
-    // Bosses drawn in 2D only: a card's picture may be a 3D model (kept for the cards), so only faces the boss has art for.
-    if (boss.drawnOnly && !known.has(c.name)) continue;
+    // Bosses drawn in 2D only: a card's picture may be a 3D model (kept for the cards), so only faces the boss
+    // has art for — its own, or a drawn picture of the card's face (faceArt).
+    const drawn = boss.faceArt?.[c.name];
+    if (boss.drawnOnly && !known.has(c.name) && !drawn) continue;
     if (!['rare', 'epic', 'legendary'].includes(c.rarity) || !c.image) continue;
     // A card from the radar keeps its spellings (aliases, French name).
-    faces.push(withNames(known.get(c.name) ?? { label: c.name, image: c.image, aliases: SHORT_NAMES[c.name] }));
+    faces.push(withNames(known.get(c.name) ?? { label: c.name, image: drawn ?? c.image, aliases: SHORT_NAMES[c.name] }));
     taken.add(c.name);
     people.add(who);
   }
