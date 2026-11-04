@@ -96,7 +96,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     line: 'The banished prince who lost everything chasing his honour — and found it by choosing his own side.',
     voice: 'Hello, Zuko here.',
     audio: 'https://www.myinstants.com/media/sounds/hello-zuko-here.mp3',
-    image: 'https://static.wikia.nocookie.net/avatar/images/0/05/Zuko_Blu-ray_art.png/revision/latest?cb=20261025210247',
+    // Fire Lord Zuko on his throne (the owner's picture, served with the site).
+    image: `${import.meta.env?.BASE_URL ?? './'}art/avatar/zuko-fire-lord.webp`,
   },
   destiny: {
     name: 'Cayde-6',
@@ -496,6 +497,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'avatar:omni': { voice: 'Yip yip!' },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
+  'avatar:mythic-sokka': { focus: { x: 50, y: 22, zoom: 1 } },
   // ── Forts: the Armoured Door's only picture is a screenshot — framed on the door. (The rest have the
   // Forts RTS Wiki's own art, in src/data/bosses.json.) ──
   'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },
@@ -505,7 +507,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
  * Single cards added later, each with an id of its own: a favourite of the franchise again, at a
  * higher rarity, in another pose (the Howitzer, close up and firing, from the studio's art).
  */
-const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description' | 'place'> & { set: string })[] = [
+const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'description' | 'place' | 'voice' | 'audio'> & { set: string })[] = [
   {
     set: 'forts',
     // Swapped with the mythic: this legendary is now Eagle Eye (the id stays, so no one loses a card).
@@ -530,6 +532,18 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
     title: 'The Taken King',
     image: 'https://destiny.wiki.gallery/images/thumb/7/70/OryxInfobox.jpg/600px-OryxInfobox.jpg',
     description: 'He killed his own gods and took their power, then bent whole armies to his will — and his Dreadnaught still drifts in the rings of Saturn.',
+  },
+  // Avatar's third mythic: Sokka as the Water Tribe's mightiest warrior (the owner's picture, served with the site).
+  {
+    set: 'avatar',
+    id: 'avatar:mythic-sokka',
+    name: 'Sokka',
+    rarity: 'mythic',
+    title: 'The Mightiest Warrior',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/avatar/sokka-mythic.webp`,
+    description: 'No bending, just a boomerang, a sword and a plan for everything — and in the stories told about him, he’s twice the size and three times the hero.',
+    voice: 'It’s the quenchiest!',
+    audio: 'https://www.myinstants.com/media/sounds/cactus-juice-salesman-sokka-of-the-southern-water-tribe.mp3',
   },
   // Inazuma Eleven's places: its stadiums, schools and the steel tower, in the anime's art (the Inazuma Eleven Wiki).
   { set: 'inazuma', id: 'inazuma:place-steel-tower-plaza', name: "Steel Tower Plaza", rarity: 'mythic', title: "Where It All Began", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/600?cb=20260628144331', description: "The red steel tower on the hill above Inazuma Town, at sunset: where a boy trained alone with a tyre on a rope until the whole team came to find him." },
@@ -605,13 +619,15 @@ const CLIPS: Record<string, string> = {
   'forhonor:mythic-2': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
-  'avatar:mythic-2': 'https://media.tenor.com/FwNFDMOM2bIAAAPo/toph-avatar-the-last-airbender.mp4',
+  // Toph and Sokka: the owner's own clips (YouTube, unlisted), played whole.
+  'avatar:mythic-2': 'youtube:i1WQoVDxU98@0-21',
+  'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-14.6',
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
   'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'avatar:mythic-2', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
@@ -862,7 +878,7 @@ export const CARDS: Card[] = (() => {
   // Then the single cards added on their own.
   for (const x of EXTRA) {
     const b = CARD_BOSSES.find((y) => y.id === x.set);
-    if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description, place: x.place });
+    if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description, place: x.place, voice: x.voice, audio: x.audio });
   }
   // And last: the second mythics, each set's newest card.
   for (const b of CARD_BOSSES) {
