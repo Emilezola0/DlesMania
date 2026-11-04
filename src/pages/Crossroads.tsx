@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HeartIcon } from '../boss/BossHeader';
 import {
-  BOTTOM,
   COL_W,
   CROSS_LIVES,
   HEIGHT,
@@ -10,7 +9,6 @@ import {
   TOP,
   boardGoals,
   CROSS_FRANCHISES,
-  crowded,
   fallPoint,
   fallSpeed,
   fallStart,
@@ -18,8 +16,10 @@ import {
   lineX,
   linesFor,
   nextTraveller,
+  planBridges,
   stepFall,
   travellerName,
+  waitFor,
   type Bridge,
   type Fall,
   type Traveller,
@@ -34,11 +34,10 @@ import { useProgress } from '../store/progress';
 
 const BEST_KEY = 'cross:score';
 const CROSS_OPTIONS = franchiseOptions(new Set(CROSS_FRANCHISES));
-/** How close to a line a stroke has to start and end to count, in SVG units. */
-const SNAP = 42;
 const PAUSE_MS = 1100;
 
-type Phase = 'ready' | 'falling' | 'landed' | 'over';
+/** 'waiting': the character at the top, about to fall — time to see who it is and to build. */
+type Phase = 'ready' | 'waiting' | 'falling' | 'landed' | 'over';
 
 interface Board {
   goals: string[];
@@ -65,6 +64,7 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
   const [note, setNote] = useState<string | null>(null);
   const [drag, setDrag] = useState<{ a: { x: number; y: number }; b: { x: number; y: number } } | null>(null);
   const svg = useRef<SVGSVGElement>(null);
+  const gameBox = useRef<HTMLDivElement>(null);
   const recent = useRef<string[]>([]);
   const nextId = useRef(1);
   // The best before this run, for "a new best!" (the store's best moves as the score grows).
@@ -81,6 +81,31 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
   const lines = board.goals.length;
   const width = lines * COL_W;
   const speed = fallSpeed(score);
+  const wait = waitFor(score);
+  // Each round's wait, for its countdown ring.
+  const [round, setRound] = useState(0);
+
+  // The wait at the top: it starts once the face has loaded, so the whole wait is spent seeing them.
+  useEffect(() => {
+    if (phase !== 'waiting' || !ready) return;
+    const t = window.setTimeout(() => setPhase('falling'), wait);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, ready, round]);
+  /** Drop the character now, without waiting. */
+  const dropNow = () => {
+    if (phase !== 'waiting' || !ready) return;
+    sfx.whoosh();
+    setPhase('falling');
+  };
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== ' ' && e.key !== 'Enter') return;
+      if (phase === 'waiting') (e.preventDefault(), dropNow());
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
 
   // The fall itself.
   useEffect(() => {
@@ -140,12 +165,16 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
     setWho(nextTraveller(b.goals, recent.current));
     setFall(fallStart(randomLine(b.goals.length)));
     setLanded(null);
-    setPhase('falling');
+    setRound((r) => r + 1);
+    setPhase('waiting');
   };
 
   const start = () => {
     sfx.click();
-    setPhase('falling');
+    // The whole board in view, from the tops of the lines to the franchises.
+    gameBox.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    setRound((r) => r + 1);
+    setPhase('waiting');
   };
   const restart = () => {
     sfx.click();
@@ -159,7 +188,8 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
     setLives(CROSS_LIVES);
     setLanded(null);
     setNote(null);
-    setPhase('falling');
+    setRound((r) => r + 1);
+    setPhase('waiting');
   };
 
   // ── Drawing ─────────────────────────────────────────────────────────
@@ -167,11 +197,9 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
     const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.current!.getScreenCTM()!.inverse());
     return { x: p.x, y: p.y };
   };
-  const lineNear = (x: number) => {
-    const col = Math.round((x - COL_W / 2) / COL_W);
-    return col >= 0 && col < lines && Math.abs(x - lineX(col)) <= SNAP ? col : null;
-  };
-  const clampY = (y: number) => Math.max(TOP + 14, Math.min(BOTTOM - 14, y));
+  // What the stroke being drawn would build, shown as it's drawn.
+  const longEnough = (d: { a: { x: number; y: number }; b: { x: number; y: number } }) => Math.hypot(d.b.x - d.a.x, d.b.y - d.a.y) >= 14;
+  const plan = drag && longEnough(drag) ? planBridges(drag.a, drag.b, lines, board.bridges) : null;
 
   const onDown = (e: React.PointerEvent) => {
     if (phase === 'over') return;
@@ -185,25 +213,25 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
     setDrag(null);
     const { a, b } = drag;
     const cur = boardRef.current;
-    // A tap does nothing: bridges are there to stay — the board fills up, and that's the game.
-    if (Math.hypot(b.x - a.x, b.y - a.y) < 14) return;
-    const la = lineNear(a.x);
-    const lb = lineNear(b.x);
-    if (la === null || lb === null || la === lb) return setNote('A bridge starts on one line and ends on the next one.');
-    // Only neighbouring lines: from line 1 to line 3 takes two bridges, 1 to 2 and 2 to 3.
-    if (Math.abs(la - lb) !== 1) return (sfx.wrong(), setNote('A bridge only joins two neighbouring lines.'));
-    const ya = clampY(a.y);
-    const yb = clampY(b.y);
-    if (crowded(cur.bridges, la, ya) || crowded(cur.bridges, lb, yb)) return (sfx.wrong(), setNote('Too close to another bridge on that line.'));
+    // A tap builds nothing (bridges are there to stay); a tap on the waiting character drops it.
+    if (!longEnough(drag)) {
+      const at = fallPoint(fall);
+      if (phase === 'waiting' && Math.hypot(a.x - at.x, a.y - at.y) < 40) dropNow();
+      return;
+    }
+    const p = planBridges(a, b, lines, cur.bridges);
+    if (!p.ok) return (sfx.wrong(), setNote(p.reason));
     sfx.click();
     setNote(null);
-    setBoard({ ...cur, bridges: [...cur.bridges, { id: nextId.current++, a: la, ya, b: lb, yb }] });
+    setBoard({ ...cur, bridges: [...cur.bridges, ...p.bridges.map((br) => ({ ...br, id: nextId.current++ }))] });
   };
 
   const at = fallPoint(fall);
   const left = ROUNDS_PER_BOARD - board.played;
   return (
-    <div className="mx-auto space-y-3" style={{ maxWidth: Math.max(360, lines * 104) }}>
+    // The whole game fits the screen's height: no scrolling mid-fall, and the tops of the lines never
+    // slip under the site's header (where a stroke can't reach).
+    <div ref={gameBox} className="mx-auto scroll-mt-16 space-y-3" style={{ maxWidth: `max(260px, min(${Math.max(360, lines * 104)}px, calc((100dvh - 290px) * ${width / HEIGHT})))` }}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-1">
           {Array.from({ length: CROSS_LIVES }, (_, i) => (
@@ -220,9 +248,14 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
 
       <div className="flex items-center justify-center gap-3 rounded-md border border-rule-strong bg-card px-3 py-2">
         {ready ? <img src={who.image} alt="" className="size-10 rounded-full bg-tile object-cover object-top" /> : <span className="grid size-10 place-items-center rounded-full bg-tile"><Spinner /></span>}
-        <p className="font-display font-bold">
+        <p className={`font-display font-bold ${phase === 'waiting' ? 'animate-pop' : ''}`} key={round}>
           Lead <span className="text-accent">{travellerName(who, lang)}</span> home
         </p>
+        {phase === 'waiting' && ready && (
+          <button type="button" onClick={dropNow} className="btn-paper rounded-md px-3 py-1 font-display text-xs font-bold tracking-wider" title="Or tap the character, or press Space">
+            Drop now ⏬
+          </button>
+        )}
       </div>
 
       <svg
@@ -248,14 +281,34 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
           </g>
         ))}
         {drag && Math.hypot(drag.b.x - drag.a.x, drag.b.y - drag.a.y) > 6 && (
-          <line x1={drag.a.x} y1={drag.a.y} x2={drag.b.x} y2={drag.b.y} className="stroke-accent" strokeWidth={4} strokeDasharray="8 6" strokeLinecap="round" opacity={0.7} />
+          <line x1={drag.a.x} y1={drag.a.y} x2={drag.b.x} y2={drag.b.y} className="stroke-ink-faint" strokeWidth={3} strokeDasharray="6 6" strokeLinecap="round" opacity={0.6} />
         )}
+        {/* What the stroke will build, where it will go: green if it can, red if it can't. */}
+        {plan?.bridges.map((br, k) => (
+          <g key={k} opacity={0.75}>
+            <line x1={lineX(br.a)} y1={br.ya} x2={lineX(br.b)} y2={br.yb} className={plan.ok ? 'stroke-hit' : 'stroke-miss'} strokeWidth={6} strokeLinecap="round" />
+            <circle cx={lineX(br.a)} cy={br.ya} r={6} className={plan.ok ? 'fill-hit' : 'fill-miss'} />
+            <circle cx={lineX(br.b)} cy={br.yb} r={6} className={plan.ok ? 'fill-hit' : 'fill-miss'} />
+          </g>
+        ))}
         <defs>
           <clipPath id="cross-face">
             <circle r={21} />
           </clipPath>
         </defs>
         <g transform={`translate(${at.x} ${Math.min(at.y, HEIGHT - 24)})`}>
+          {phase === 'waiting' && ready && (
+            <circle
+              key={round}
+              r={31}
+              className="cross-wait fill-none stroke-accent"
+              strokeWidth={4}
+              pathLength={100}
+              strokeDasharray="100"
+              transform="rotate(-90)"
+              style={{ animationDuration: `${wait}ms` }}
+            />
+          )}
           <circle r={24} className={landed ? (landed.right ? 'fill-hit' : 'fill-miss') : 'fill-accent'} />
           <image href={who.image} x={-21} y={-21} width={42} height={42} clipPath="url(#cross-face)" preserveAspectRatio="xMidYMin slice" />
         </g>
@@ -279,7 +332,7 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
           <button type="button" onClick={start} className="btn-accent rounded-md px-8 py-3 font-display text-lg font-bold tracking-widest">
             Start
           </button>
-          <p className="mt-2 text-xs text-ink-faint">You can draw bridges before you start, too.</p>
+          <p className="mt-2 text-xs text-ink-faint">You can draw bridges before you start, too. Each character waits a moment at the top before falling.</p>
         </div>
       )}
       {phase === 'over' && (
@@ -309,7 +362,8 @@ export default function Crossroads() {
         <h1 className="text-5xl font-bold">Crossroads</h1>
         <p className="text-ink-soft">
           A character falls down one of the lines: lead them to their own franchise at the bottom. Draw a bridge between two neighbouring lines,
-          at any angle — whoever meets its end takes it, across to the other line, and keeps falling. A bridge can&apos;t be taken back: your
+          at any angle — whoever meets its end takes it, across to the other line, and keeps falling. A stroke across several lines builds a
+          bridge over each gap, and you see where it will go as you draw. Each character waits a moment at the top first. A bridge can&apos;t be taken back: your
           bridges stay for the next characters, and are cleared every {ROUNDS_PER_BOARD}; every point makes the fall a little quicker.
         </p>
       </div>

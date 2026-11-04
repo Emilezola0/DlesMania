@@ -556,6 +556,20 @@ h1, h2, h3, .font-serif, .font-display {
   50% { filter: brightness(1.6); }
 }
 .pack-glow { animation: pack-glow 0.45s ease-in-out 2; }
+/* Mythic and Omni: a big halo turning behind the pack (src/gacha/PackOpening.tsx). */
+.pack-halo {
+  width: 190%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  animation: pack-halo 3s linear infinite, pack-halo-pulse 0.9s ease-in-out infinite alternate;
+}
+.pack-halo-mythic { background: conic-gradient(from 0deg, #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
+.pack-halo-omni { background: conic-gradient(from 0deg, #ff3b4e, #ffcd3c, #fff, #ff3b4e, #ffcd3c, #ff3b4e); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
+@keyframes pack-halo { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes pack-halo-pulse { from { filter: blur(18px) brightness(1); } to { filter: blur(14px) brightness(1.5); } }
+@media (prefers-reduced-motion: reduce) { .pack-halo { animation: none; transform: translate(-50%, -50%); } }
 @keyframes pack-meteor {
   from { transform: translateX(-50vw); }
   to { transform: translateX(150vw); }
@@ -1855,3 +1869,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   .roulette-stamp > span { animation-duration: 1.6s; animation-name: roulette-fade; }
   @keyframes roulette-fade { 0%, 100% { opacity: 0; } 15%, 80% { opacity: 1; } }
 }
+
+/* Crossroads: the wait at the top, a ring running out (src/pages/Crossroads.tsx). */
+.cross-wait { animation: cross-wait linear forwards; }
+@keyframes cross-wait { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }

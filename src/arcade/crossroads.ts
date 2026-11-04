@@ -43,12 +43,20 @@ export const HEIGHT = 560;
 export const TOP = 30;
 export const BOTTOM = HEIGHT - 16;
 /** Bridge ends can't sit closer than this on one line (it would be unclear which comes first). */
-export const MIN_GAP = 18;
+export const MIN_GAP = 16;
+/** Bridge ends stay this far inside the top and the bottom of the lines. */
+export const EDGE = 12;
+/** The highest and lowest a bridge end can sit. */
+export const DRAW_TOP = TOP + EDGE;
+export const DRAW_BOTTOM = BOTTOM - EDGE;
 
 export const lineX = (col: number) => col * COL_W + COL_W / 2;
 
-/** Units per second: a gentle fall at first, quicker with every point, up to about three times. */
-export const fallSpeed = (score: number) => Math.min(230, 75 * (1 + 0.07 * score));
+/** Units per second: a gentle fall at first, a little quicker with every point, up to under three times. */
+export const fallSpeed = (score: number) => Math.min(160, 60 * (1 + 0.05 * score));
+
+/** How long a character waits at the top before falling (ms): time to see who it is and to build. */
+export const waitFor = (score: number) => Math.max(1800, 3000 - 40 * score);
 
 /** More lines as the score grows. */
 export const linesFor = (score: number) => (score >= 25 ? 6 : score >= 10 ? 5 : 4);
@@ -98,6 +106,60 @@ export function crowded(bridges: Bridge[], line: number, y: number): boolean {
     const e = endOn(br, line);
     return e !== null && Math.abs(e - y) < MIN_GAP;
   });
+}
+
+/** A bridge being drawn, before it's placed. */
+export type Plan = { ok: true; bridges: Omit<Bridge, 'id'>[] } | { ok: false; reason: string; bridges: Omit<Bridge, 'id'>[] };
+
+/**
+ * The bridges a stroke from `p` to `q` builds, forgivingly: each end goes to the nearest line, however far
+ * from it the stroke starts or stops; a short stroke beside one line reaches for the next line its way;
+ * a stroke across several lines makes a bridge over each gap, along its slant; an end too close to
+ * another one slides a little out of its way; and ends too high or too low come back inside the lines.
+ */
+export function planBridges(p: { x: number; y: number }, q: { x: number; y: number }, lines: number, bridges: Bridge[]): Plan {
+  const clampY = (y: number) => Math.max(DRAW_TOP, Math.min(DRAW_BOTTOM, y));
+  const nearest = (x: number) => Math.max(0, Math.min(lines - 1, Math.round((x - COL_W / 2) / COL_W)));
+  // Left to right, whichever way it was drawn.
+  const [a, b] = p.x <= q.x ? [p, q] : [q, p];
+  let la = nearest(a.x);
+  let lb = nearest(b.x);
+  if (la === lb) {
+    // Both ends by one line: the stroke points at the neighbour on its side.
+    if (b.x - a.x < 24) return { ok: false, reason: 'Draw sideways, from one line to the next.', bridges: [] };
+    const left = (a.x + b.x) / 2 < lineX(la);
+    if ((left && la > 0) || lb === lines - 1) la -= 1;
+    else lb += 1;
+    if (la < 0) return { ok: false, reason: 'Draw sideways, from one line to the next.', bridges: [] };
+    if (la === lb) return { ok: false, reason: 'Draw sideways, from one line to the next.', bridges: [] };
+  }
+  // The stroke's height where it crosses a line (its own ends for the end lines).
+  const yAt = (line: number) => {
+    if (line === la) return a.y;
+    if (line === lb) return b.y;
+    return a.y + ((b.y - a.y) * (lineX(line) - a.x)) / (b.x - a.x || 1);
+  };
+  const placed: Bridge[] = [...bridges];
+  const out: Omit<Bridge, 'id'>[] = [];
+  // Slide an end out of the way of the others on its line, if a little nudge does it.
+  const settle = (line: number, y: number) => {
+    const free = (v: number) => v >= DRAW_TOP && v <= DRAW_BOTTOM && !crowded(placed, line, v);
+    if (free(y)) return y;
+    for (let d = 2; d <= MIN_GAP * 1.5; d += 2) {
+      if (free(y + d)) return y + d;
+      if (free(y - d)) return y - d;
+    }
+    return null;
+  };
+  for (let line = la; line < lb; line++) {
+    const ya = settle(line, clampY(yAt(line)));
+    const yb = settle(line + 1, clampY(yAt(line + 1)));
+    if (ya === null || yb === null) return { ok: false, reason: 'Too close to another bridge on that line.', bridges: out };
+    const br = { a: line, ya, b: line + 1, yb };
+    out.push(br);
+    placed.push({ ...br, id: -1 - line });
+  }
+  return { ok: true, bridges: out };
 }
 
 /** The falling character: going down a line, or across a bridge. */

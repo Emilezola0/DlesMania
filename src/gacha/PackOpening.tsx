@@ -350,6 +350,20 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const tease = stars.find((s) => s.from !== s.to);
   const shownBest = tease && cards.filter((c) => c.rarity === best).length === 1 ? tease.from : best;
   const glow = RARITY_LIGHT[shownBest];
+  // Mythic and Omni can't pass for an Epic: a rainbow (Mythic) or a red and gold (Omni) aura, glows on glows.
+  const special = shownBest === 'mythic' || shownBest === 'omni' ? shownBest : null;
+  const auraFilter = (n: number) =>
+    special === 'mythic'
+      ? `drop-shadow(0 0 ${n}px #ff4fd8) drop-shadow(0 0 ${n * 1.6}px #3cc7ff) drop-shadow(0 0 ${n * 2.2}px #ffcd3c)`
+      : special === 'omni'
+        ? `drop-shadow(0 0 ${n}px #ff3b4e) drop-shadow(0 0 ${n * 1.6}px #ffcd3c) drop-shadow(0 0 ${n * 2.2}px #ff3b4e)`
+        : `drop-shadow(0 0 ${n}px ${glow})`;
+  const beam =
+    special === 'mythic'
+      ? 'linear-gradient(to top, #fff, #ff4fd8 12%, #ffcd3c 28%, #3cff9e 44%, #3cc7ff 60%, #a855f799 74%, transparent 92%)'
+      : special === 'omni'
+        ? 'linear-gradient(to top, #fff, #ff3b4e 14%, #ffcd3c 34%, #ff3b4e99 58%, transparent 90%)'
+        : `linear-gradient(to top, ${glow}, ${glow}55 30%, transparent 85%)`;
   const [phase, setPhase] = useState<Phase>('choose');
   const [chosen, setChosen] = useState<number | null>(null);
   const [tear, setTear] = useState(0);
@@ -560,7 +574,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}22`}, transparent 60%)` }}>
+    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
@@ -604,15 +618,19 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             onPointerUp={onUp}
             onPointerCancel={() => (drag.current = null)}
             className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' ? 'pack-float' : ''}`}
-            style={phase === 'pack' && tear > 0 ? { filter: `drop-shadow(0 0 ${8 + tear * 30}px ${glow})` } : undefined}
+            style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}
             role="button"
             aria-label="Swipe across the pack, or tap it, to tear it open"
           >
+            {/* Mythic and Omni: a halo turning behind the pack as it tears. */}
+            {special && (phase === 'torn' || (phase === 'pack' && tear > 0)) && (
+              <div className={`pack-halo pack-halo-${special} pointer-events-none absolute left-1/2 top-1/2 -z-10`} style={{ opacity: phase === 'torn' ? 1 : 0.3 + tear * 0.7 }} aria-hidden />
+            )}
             {/* The light inside, pouring out of the tear. */}
             {phase === 'torn' && (
               <div
                 className="pack-beam pointer-events-none absolute left-1/2 w-[150%]"
-                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: `linear-gradient(to top, ${glow}, ${glow}55 30%, transparent 85%)`, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
+                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: beam, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
                 aria-hidden
               />
             )}
