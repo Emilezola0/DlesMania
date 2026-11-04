@@ -1,6 +1,6 @@
 import type { AnomalyId } from '../gacha/anomalies';
 import { create } from 'zustand';
-import { canGradeUp, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, type Engraving } from '../gacha/grades';
+import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, isElement, type ElementId, type Engraving } from '../gacha/grades';
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { persist } from 'zustand/middleware';
@@ -129,11 +129,15 @@ interface ProgressState {
   gradesPaid: Record<string, number>;
   /** The cards taken to the last grade: who by (`by`, when signed in) and when. */
   engraved: Record<string, Engraving>;
+  /** The element picked for each card at the element grade (src/gacha/grades.ts), by card id. */
+  elements: Record<string, ElementId>;
+  /** A card's element changed, for ELEMENT_SWITCH_COST coins: false if it can't (not at the element grade, too few coins). */
+  switchElement: (id: string, element: ElementId) => boolean;
   /** Cards that came back from a black hole with an anomaly (src/gacha/anomalies.ts), by card id. */
   anomalies: Record<string, AnomalyId>;
   setAnomaly: (cardId: string, anomaly: AnomalyId | null) => void;
-  /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. */
-  gradeUp: (id: string, rarity: Rarity, by?: string) => boolean;
+  /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
+  gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
   payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
   /** Folds the copies of retired cards into the cards that replace them (see RETIRED): what was folded, and the coins. */
@@ -333,15 +337,17 @@ export const useProgress = create<ProgressState>()(
       grades: {},
       gradesPaid: {},
       engraved: {},
+      elements: {},
       anomalies: {},
       setAnomaly: (cardId, anomaly) =>
         set((s) => {
           const { [cardId]: _, ...rest } = s.anomalies ?? {};
           return { anomalies: anomaly ? { ...rest, [cardId]: anomaly } : rest };
         }),
-      gradeUp: (id, rarity, by) => {
+      gradeUp: (id, rarity, by, element) => {
         const s = get();
         const grade = gradeOf(s.grades, id);
+        if (grade + 1 === ELEMENT_GRADE && !isElement(element)) return false;
         // A card's id starts with its franchise.
         const hellBeaten = (s.bosses[bossKey(id.split(':')[0], 'hell')]?.wins ?? 0) > 0;
         if (!canGradeUp(s.cards[id] ?? 0, grade, hellBeaten)) return false;
@@ -353,8 +359,15 @@ export const useProgress = create<ProgressState>()(
           grades: { ...s.grades, [id]: grade + 1 },
           gradesPaid: { ...s.gradesPaid, [id]: Math.max(paid, grade + 1) },
           ...(grade + 1 === HELL_GRADE ? { engraved: { ...s.engraved, [id]: { by, date: todayKey() } } } : {}),
+          ...(grade + 1 === ELEMENT_GRADE && element ? { elements: { ...s.elements, [id]: element } } : {}),
           ...(coins ? earn(s, coins) : {}),
         });
+        return true;
+      },
+      switchElement: (id, element) => {
+        const s = get();
+        if (gradeOf(s.grades, id) < ELEMENT_GRADE || !isElement(element) || s.elements?.[id] === element || s.coins < ELEMENT_SWITCH_COST) return false;
+        set({ coins: s.coins - ELEMENT_SWITCH_COST, elements: { ...s.elements, [id]: element } });
         return true;
       },
       foldRetiredCards: () => {
@@ -362,6 +375,7 @@ export const useProgress = create<ProgressState>()(
         const cards = { ...s.cards };
         const grades = { ...s.grades };
         const gradesPaid = { ...s.gradesPaid };
+        const elements = { ...s.elements };
         let { avatar, backdrop } = s;
         let coins = 0;
         const folded: { name: string; intoName: string; copies: number }[] = [];
@@ -373,14 +387,16 @@ export const useProgress = create<ProgressState>()(
           // The better grade of the two stays, and is never paid again.
           if (grades[id]) grades[r.into] = Math.max(grades[r.into] ?? 1, grades[id]);
           if (gradesPaid[id]) gradesPaid[r.into] = Math.max(gradesPaid[r.into] ?? 1, gradesPaid[id]);
+          if (elements[id] && !elements[r.into]) elements[r.into] = elements[id];
           delete grades[id];
           delete gradesPaid[id];
+          delete elements[id];
           if (avatar === id) avatar = r.into;
           if (backdrop === id) backdrop = r.into;
           coins += copies * r.coins;
           folded.push({ name: r.name, intoName: r.intoName, copies });
         }
-        if (folded.length) set({ cards, grades, gradesPaid, avatar, backdrop, ...(coins ? earn(s, coins) : {}) });
+        if (folded.length) set({ cards, grades, gradesPaid, elements, avatar, backdrop, ...(coins ? earn(s, coins) : {}) });
         return { folded, coins };
       },
       payGradeBacklog: (rarityOf) => {

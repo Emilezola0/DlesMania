@@ -1,5 +1,5 @@
 {
-  "maxGrade": 7,
+  "maxGrade": 8,
   "hellGrade": 7,
   "gradeCost": 4,
   "grades": {
@@ -65,6 +65,15 @@
         "#1d1533",
         "#000000"
       ]
+    },
+    "8": {
+      "name": "Elemental",
+      "numeral": "VIII",
+      "metal": [
+        "#ffffff",
+        "#a5b4fc",
+        "#312e81"
+      ]
     }
   },
   "rewardShare": {
@@ -73,6 +82,109 @@
     "4": 1.75,
     "5": 2.5,
     "6": 3.5,
-    "7": 5
+    "7": 5,
+    "8": 7
+  },
+  "elementGrade": 8,
+  "switchCost": 50,
+  "resaleBonus": 1.5,
+  "elements": {
+    "water": {
+      "name": "Water",
+      "icon": "🌊",
+      "look": "celestial",
+      "blurb": "Bubbles rising through a deep blue tide.",
+      "metal": [
+        "#e0f7ff",
+        "#38bdf8",
+        "#0c4a6e"
+      ],
+      "colors": [
+        "#bae6fd",
+        "#0ea5e9",
+        "#22d3ee"
+      ]
+    },
+    "air": {
+      "name": "Air",
+      "icon": "🌪️",
+      "look": "celestial",
+      "blurb": "Gusts of wind sweeping across a pale sky.",
+      "metal": [
+        "#f0fdfa",
+        "#99f6e4",
+        "#0f766e"
+      ],
+      "colors": [
+        "#f0fdfa",
+        "#99f6e4",
+        "#bae6fd"
+      ]
+    },
+    "fire": {
+      "name": "Fire",
+      "icon": "🔥",
+      "look": "celestial",
+      "blurb": "Embers flying up from a flickering blaze.",
+      "metal": [
+        "#fff1c2",
+        "#f97316",
+        "#7c2d12"
+      ],
+      "colors": [
+        "#fde68a",
+        "#f97316",
+        "#ef4444"
+      ]
+    },
+    "earth": {
+      "name": "Earth",
+      "icon": "⛰️",
+      "look": "celestial",
+      "overlay": "veins",
+      "blurb": "Veins of gold glowing through the stone, dust settling.",
+      "metal": [
+        "#fef3c7",
+        "#a16207",
+        "#3b2a12"
+      ],
+      "colors": [
+        "#fcd34d",
+        "#65a30d",
+        "#b45309"
+      ]
+    },
+    "light": {
+      "name": "Light",
+      "icon": "☀️",
+      "look": "celestial",
+      "blurb": "Celestial's crown of rays, whiter and brighter still.",
+      "metal": [
+        "#ffffff",
+        "#fff1a8",
+        "#d4a017"
+      ],
+      "colors": [
+        "#ffffff",
+        "#fff1a8",
+        "#fde68a"
+      ]
+    },
+    "darkness": {
+      "name": "Darkness",
+      "icon": "🌑",
+      "look": "singularity",
+      "blurb": "Singularity's black hole, pouring darkness out instead of pulling light in.",
+      "metal": [
+        "#f5d0fe",
+        "#1e1033",
+        "#000000"
+      ],
+      "colors": [
+        "#fda4af",
+        "#7e22ce",
+        "#be123c"
+      ]
+    }
   }
 }

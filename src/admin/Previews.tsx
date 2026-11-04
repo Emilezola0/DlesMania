@@ -188,6 +188,26 @@ function GradesPreview({ t }: { t: typeof gradesJson }) {
           ))}
         </div>
       </Box>
+      <Box title={`Elements (grade ${t.elementGrade})`}>
+        <div className="flex flex-wrap gap-3">
+          {Object.entries(t.elements).map(([id, e]) => (
+            <div key={id} className="flex w-20 flex-col items-center gap-1 text-center">
+              <GradeEmblem grade={t.elementGrade} info={{ name: e.name, numeral: t.grades[String(t.elementGrade) as keyof typeof t.grades]?.numeral ?? '', metal: e.metal as GradeInfo['metal'] }} className="size-14" />
+              <span className="text-xs font-semibold">
+                {e.icon} {e.name}
+              </span>
+              <span className="flex gap-0.5">
+                {e.colors.map((c, i) => (
+                  <i key={i} className="size-3 rounded-full border border-rule" style={{ background: c }} />
+                ))}
+              </span>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-ink-faint">
+          Changing an element costs {t.switchCost} 🪙; spares at this grade fetch ×{t.resaleBonus}.
+        </p>
+      </Box>
       <Box title="Grade-up rewards">
         <table className="w-full text-sm">
           <thead>

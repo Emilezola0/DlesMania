@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
 import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
-import { DUPLICATE_VALUE } from '../gacha/economy';
 import { GradeEmblem } from '../gacha/GradeEmblem';
-import { canGradeUp, GRADE_COST, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE } from '../gacha/grades';
+import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
@@ -41,7 +40,8 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
-  // Bumped on a grade-up: the card flares.
+  const element = useProgress((s) => s.elements?.[card.id]);
+  // Bumped on a grade-up (or a new element): the card flares.
   const [flare, setFlare] = useState(0);
   const [rot, setRot] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -115,7 +115,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === MAX_GRADE ? 'card-grade-collapse' : grade === 6 ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
+            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} depth animate />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
@@ -133,7 +133,7 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
             </button>
           )}
           <p className="text-sm opacity-80">
-            {RARITY_INFO[card.rarity].name} · {GRADES[grade].name} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
+            {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
@@ -154,14 +154,29 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const signedIn = useCloud((s) => s.name ?? s.email?.split('@')[0] ?? undefined);
   const hellBeaten = useProgress((s) => (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
   const ready = canGradeUp(count, grade, hellBeaten);
-  const up = () => {
-    if (!gradeUp(card.id, card.rarity, signedIn)) return;
+  const element = useProgress((s) => s.elements?.[card.id]);
+  const coins = useProgress((s) => s.coins);
+  const switchElement = useProgress((s) => s.switchElement);
+  // The element grade asks for an element: the choice opens first (and again, to change it, once there).
+  const [choosing, setChoosing] = useState(false);
+  const nextIsElement = grade + 1 === ELEMENT_GRADE;
+  const up = (picked?: ElementId) => {
+    if (!gradeUp(card.id, card.rarity, signedIn, picked)) return;
+    setChoosing(false);
     onGradeUp();
     // Singularity: the card collapses to a point, a silence, then the burst (see card-grade-collapse).
     if (grade + 1 === HELL_GRADE) window.setTimeout(() => (sfx.victory(), celebrateBig()), COLLAPSE_BURST_MS);
     else if (grade + 1 >= 4) (sfx.victory(), celebrateBig());
     else (sfx.streak(), celebrate());
   };
+  const pick = (id: ElementId) => {
+    if (grade < ELEMENT_GRADE) return up(id);
+    if (!switchElement(card.id, id)) return sfx.wrong();
+    setChoosing(false);
+    onGradeUp();
+    sfx.victory();
+  };
+  const spare = spareValue(card.rarity, grade);
   const exchange = useProgress((s) => s.exchangeCards);
   const avatar = useProgress((s) => s.avatar);
   const backdrop = useProgress((s) => s.backdrop);
@@ -176,14 +191,16 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
       {grade < MAX_GRADE ? (
         <button
           type="button"
-          onClick={up}
+          onClick={() => (nextIsElement ? setChoosing((c) => !c) : up())}
           disabled={!ready}
           className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${ready ? 'border-[#fde68a] bg-[#fde68a]/15 text-[#fef3c7] hover:bg-[#fde68a]/30' : 'border-dashed border-white/25 text-white/50'}`}
           title={`Merge ${GRADE_COST + 1} copies of this card into one: the card and ${GRADE_COST} spares`}
         >
-          <GradeEmblem grade={grade + 1} className="size-7" />
+          <GradeEmblem grade={grade + 1} info={nextIsElement ? GRADES[grade + 1] : undefined} className="size-7" />
           {ready
-            ? `Upgrade to ${GRADES[grade + 1].name}`
+            ? nextIsElement
+              ? `Ascend to ${GRADES[grade + 1].name}: choose an element`
+              : `Upgrade to ${GRADES[grade + 1].name}`
             : grade + 1 === HELL_GRADE && !hellBeaten
               ? `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares, and beat its boss on Hell`
               : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
@@ -191,9 +208,15 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         </button>
       ) : (
         <span className="flex items-center gap-1.5 rounded-full border-2 border-[#fde68a] px-3 py-1 text-sm font-bold text-[#fef3c7]">
-          <GradeEmblem grade={MAX_GRADE} className="size-7" /> {GRADES[MAX_GRADE].name} — top grade
+          <GradeEmblem grade={MAX_GRADE} element={element} className="size-7" /> {gradeName(MAX_GRADE, element)} — top grade
         </span>
       )}
+      {grade >= ELEMENT_GRADE && (
+        <button type="button" onClick={() => setChoosing((c) => !c)} className={btn(choosing)} title="Pick another element for this card">
+          🔄 Change element ({ELEMENT_SWITCH_COST} 🪙)
+        </button>
+      )}
+      {choosing && <ElementChoice current={grade >= ELEMENT_GRADE ? element : undefined} cost={grade >= ELEMENT_GRADE ? ELEMENT_SWITCH_COST : 0} coins={coins} onPick={pick} />}
       <button type="button" onClick={() => (sfx.select(), setAvatar(isAvatar ? null : card.id))} className={btn(isAvatar)}>
         {isAvatar ? '✓ Your icon' : '👤 Use as my icon'}
       </button>
@@ -207,13 +230,51 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         </span>
       )}
       {count > 1 && (
-        <button type="button" onClick={() => (sfx.correct(), exchange({ [card.id]: 1 }, DUPLICATE_VALUE[card.rarity]))} className={btn(false)} title="One copy always stays in your album">
-          ♻ Exchange a spare copy (+{DUPLICATE_VALUE[card.rarity]} coins)
+        <button
+          type="button"
+          onClick={() => (sfx.correct(), exchange({ [card.id]: 1 }, spare))}
+          className={btn(false)}
+          title={grade >= ELEMENT_GRADE ? `One copy always stays in your album. At ${GRADES[ELEMENT_GRADE].name}, spares fetch ×${RESALE_BONUS}` : 'One copy always stays in your album'}
+        >
+          ♻ Exchange a spare copy (+{spare} coins{grade >= ELEMENT_GRADE ? ` · ×${RESALE_BONUS}` : ''})
         </button>
       )}
       <Link to={`/trades?give=${card.id}`} className={btn(false)}>
         ⇄ Offer in a trade
       </Link>
+    </div>
+  );
+}
+
+/** The six elements to choose from at the element grade (or to change to, for a few coins). */
+function ElementChoice({ current, cost, coins, onPick }: { current?: ElementId; cost: number; coins: number; onPick: (id: ElementId) => void }) {
+  return (
+    <div className="w-full space-y-2 rounded-xl border-2 border-white/20 bg-black/40 p-3 text-white">
+      <p className="text-center text-sm font-bold">{cost ? `Change its element for ${cost} 🪙` : 'Choose its element: it can be changed later'}</p>
+      <div className="grid grid-cols-2 gap-2 min-[420px]:grid-cols-3">
+        {ELEMENT_IDS.map((id) => {
+          const e = ELEMENTS[id];
+          const disabled = id === current || coins < cost;
+          return (
+            <button
+              key={id}
+              type="button"
+              disabled={disabled}
+              onClick={() => onPick(id)}
+              className="flex flex-col items-center gap-1 rounded-lg border-2 p-2 text-center transition enabled:hover:scale-[1.03] disabled:opacity-40"
+              style={{ borderColor: e.colors[1], background: `linear-gradient(160deg, ${e.colors[1]}33, transparent)` }}
+              title={e.blurb}
+            >
+              <GradeEmblem grade={ELEMENT_GRADE} element={id} className="size-10" />
+              <span className="text-sm font-bold">
+                {e.icon} {e.name}
+              </span>
+              <span className="text-[11px] leading-tight opacity-75">{id === current ? 'Its element now' : e.blurb}</span>
+            </button>
+          );
+        })}
+      </div>
+      {cost > 0 && coins < cost && <p className="text-center text-xs text-white/60">Not enough DleCoins ({coins}/{cost}).</p>}
     </div>
   );
 }
@@ -243,10 +304,10 @@ export default function Album() {
     let coins = 0;
     for (const c of CARDS) {
       const n = (owned[c.id] ?? 0) - 1;
-      if (n > 0) (byId[c.id] = n), (copies += n), (coins += n * DUPLICATE_VALUE[c.rarity]);
+      if (n > 0) (byId[c.id] = n), (copies += n), (coins += n * spareValue(c.rarity, gradeOf(grades, c.id)));
     }
     return { byId, copies, coins };
-  }, [owned]);
+  }, [owned, grades]);
   const unique = CARDS.filter((c) => owned[c.id]).length;
   const pulls = Object.values(owned).reduce((a, b) => a + b, 0);
   const list = useMemo(() => {

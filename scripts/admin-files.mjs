@@ -59,6 +59,9 @@ function crossChecks(id, d, root) {
     if (d.hellGrade > d.maxGrade) out.push('/hellGrade: higher than maxGrade');
     for (let g = 1; g <= d.maxGrade; g++) if (!d.grades[g]) out.push(`/grades/${g}: missing (maxGrade is ${d.maxGrade})`);
     for (let g = 2; g <= d.maxGrade; g++) if (d.rewardShare[g] === undefined) out.push(`/rewardShare/${g}: missing`);
+    if (d.elementGrade > d.maxGrade) out.push('/elementGrade: higher than maxGrade');
+    const css = readFileSync(join(root, 'src', 'index.css'), 'utf8');
+    for (const k of Object.keys(d.elements ?? {})) if (!css.includes(`.card-element-${k}`)) out.push(`/elements/${k}: no .card-element-${k} look in src/index.css`);
   }
   if (id === 'packs') {
     const pos = Object.values(d.odds).every((v) => v >= 0);

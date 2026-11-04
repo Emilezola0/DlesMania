@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
 import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
-import { GRADE_REWARD_SHARE, gradeReward } from '../gacha/grades';
+import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
@@ -42,20 +42,28 @@ function chances(odds: Record<Rarity, number>, r: Rarity) {
   return { card: odds[r], pack: pack * 100 };
 }
 
-/** Every rarity's odds: a plain pack, and a franchise pack once its guardian falls on Medium or Hard. */
-function DropRates() {
+/**
+ * Every rarity's odds: a plain pack, and a franchise pack once its guardian falls on Medium, Hard or Hell —
+ * with the player's luck as it is now (it goes up with every pack without a Legendary, back to ×1 after one).
+ */
+function DropRates({ pity }: { pity: number }) {
+  const luck = pityLuck(pity);
   const columns = [
     { label: 'Any pack', boost: 1 },
     { label: 'Guardian beaten on Medium', boost: BOOST.medium },
     { label: 'Guardian beaten on Hard', boost: BOOST.hard },
     { label: 'Guardian beaten on Hell', boost: BOOST.hell },
-  ].map((c) => ({ ...c, odds: oddsWith(c.boost) }));
+  ].map((c) => ({ ...c, odds: oddsWith(c.boost, luck) }));
   return (
     <section className="space-y-3">
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni. Per card, and in brackets the chance of at least one in a pack (without that luck).
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni.
+      </p>
+      <p className={`rounded-md px-3 py-2 text-sm ${luck > 1 ? 'bg-ochre/15 text-ink' : 'bg-tile text-ink-soft'}`}>
+        ✨ With your luck now: <strong>×{luck.toFixed(2)}</strong>
+        {pity > 0 ? ` (${pity} pack${pity === 1 ? '' : 's'} without a Legendary or better)` : ' (it rises with every pack without a Legendary or better)'}. The table follows it: the top number is the chance for each card, the one under it the chance of at least one in a pack of {PACK_SIZE}.
       </p>
       <div className="page overflow-x-auto rounded-md">
         <table className="w-full min-w-[30rem] text-sm">
@@ -79,8 +87,14 @@ function DropRates() {
                   const x = chances(c.odds, r);
                   return (
                     <td key={c.label} className="px-3 py-2 text-right tabular-nums">
-                      <span className="font-semibold text-ink">{pct(x.card)}</span>
-                      {r !== 'common' && <span className="text-ink-faint"> ({pct(x.pack)})</span>}
+                      <span className="block font-semibold text-ink">
+                        {pct(x.card)} <span className="text-xs font-normal text-ink-faint">/ card</span>
+                      </span>
+                      {r !== 'common' && (
+                        <span className="block text-xs text-ink-soft">
+                          {pct(x.pack)} <span className="text-ink-faint">/ pack</span>
+                        </span>
+                      )}
                     </td>
                   );
                 })}
@@ -334,7 +348,7 @@ export default function Shop() {
         </div>
       </section>
 
-      <DropRates />
+      <DropRates pity={pity} />
 
       <section className="page space-y-2 rounded-md p-4 text-sm text-ink-soft">
         <h2 className="flex items-center gap-2 font-display text-base font-bold text-ink">
@@ -360,7 +374,7 @@ export default function Shop() {
             Expeditions: every room won pays, a little more each act, up to {EXPEDITION_ROOM_MAX} a room and {EXPEDITION_BOSS_MAX} a boss. In full up to {EXPEDITION_CAP} a day ({Math.min(econ.expedition ?? 0, EXPEDITION_CAP)}/{EXPEDITION_CAP} today), then a quarter as much.
           </li>
           <li>
-            Every card grade reached: Bronze, Silver, Gold, Radiant, Celestial and Singularity pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}×, {GRADE_REWARD_SHARE[6]}× and {GRADE_REWARD_SHARE[7]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Singularity {gradeReward('legendary', 7)}. Singularity also asks for the card's boss beaten on Hell.
+            Every card grade reached: Bronze, Silver, Gold, Radiant, Celestial, Singularity and Elemental pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}×, {GRADE_REWARD_SHARE[6]}×, {GRADE_REWARD_SHARE[7]}× and {GRADE_REWARD_SHARE[ELEMENT_GRADE]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Singularity {gradeReward('legendary', 7)}. Singularity also asks for the card's boss beaten on Hell. At Elemental you pick the card's element (Water, Air, Fire, Earth, Light or Darkness; changing it later costs {ELEMENT_SWITCH_COST} coins), and its spare copies fetch ×{RESALE_BONUS} traded in.
           </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
         </ul>

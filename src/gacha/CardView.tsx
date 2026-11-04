@@ -5,7 +5,7 @@ import { bossKey, useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
 import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
-import { gradeOf } from './grades';
+import { elementOf, gradeOf, type ElementId } from './grades';
 import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
@@ -104,7 +104,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -122,7 +122,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   // The voice line in the names' language (a French dub's when the card has one).
   const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
   const grade = given ?? owned;
-  const singularity = grade === 7;
+  // Elemental (VIII): the element's colours on Celestial's look, or on Singularity's for Darkness.
+  const ownElement = useProgress((s) => s.elements?.[card.id]);
+  const el = elementOf(grade, elementGiven ?? ownElement);
+  /** The grade whose look the card wears. */
+  const fx = el ? (el.look === 'singularity' ? 7 : 6) : grade;
+  const singularity = fx === 7;
   const st = RARITY_STYLE[look];
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
@@ -160,7 +165,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       onPointerMove={move}
       onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : grade >= 6 ? 'isolate' : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -168,6 +173,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         zIndex: heroOn ? 20 : undefined,
         ['--mx' as string]: `${mx}%`,
         ['--my' as string]: `${my}%`,
+        ...(el ? { ['--e1' as string]: el.colors[0], ['--e2' as string]: el.colors[1], ['--e3' as string]: el.colors[2] } : {}),
       }}
     >
       {/* A mythic's or omni's frame: its rainbow turning (a layer turned whole, so the card isn't redrawn each frame). */}
@@ -214,7 +220,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
               <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full object-cover" />
             </div>
           )}
-          {grade > 1 && <GradeEmblem grade={grade} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
+          {grade > 1 && <GradeEmblem grade={grade} element={el?.id} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}
           {card.voice && (
             <p className="card-voice absolute inset-x-[3cqw] bottom-[2.5cqw] rounded-[2cqw] px-[2.5cqw] py-[1.2cqw] text-center text-[4.4cqw] font-bold italic leading-tight text-white">
               “{voiceLine}”
@@ -246,8 +252,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         )}
         {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
         {grade > 1 && (
-          <div className={`card-grade-fx card-grade-${grade} pointer-events-none absolute inset-0`}>
-            {grade >= 3 && grade <= 6 && (
+          <div className={`card-grade-fx card-grade-${fx} pointer-events-none absolute inset-0`}>
+            {fx >= 3 && fx <= 6 && (
               <>
                 <i className="card-grade-gleam" />
                 <i className="card-grade-edge" />
@@ -263,7 +269,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
             ))}
           </div>
         )}
-        {singularity && engraving && (
+        {(singularity || el) && engraving && (
           <p className="card-singularity-engraving absolute inset-x-[3cqw] bottom-[1.2cqw] z-[7] truncate text-center text-[3.5cqw] font-semibold">
             {engraving.by ? `${engraving.by} · ` : ''}
             {fromKey(engraving.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -285,6 +291,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           <path d="M0 22 L6 26 L4 34 L9 39 M6 26 L11 24 M16 0 L13 5 L19 9 L17 14 M100 58 L94 62 L96 71 L90 75 L92 82 M96 71 L100 74 M84 140 L87 134 L81 129 L83 123 M0 104 L5 100 L3 93 L8 89 M60 0 L58 4 L63 7 M100 118 L95 116 L92 122 L87 121 M30 140 L33 135 L28 131 L31 126" fill="none" vectorEffect="non-scaling-stroke" />
         </svg>
       )}
+      {/* Earth: veins of gold glowing through the frame. */}
+      {el?.overlay === 'veins' && (
+        <svg viewBox="0 0 100 140" preserveAspectRatio="none" className="card-element-veins pointer-events-none absolute inset-0 size-full" aria-hidden>
+          <path d="M0 30 L7 33 L9 41 L15 44 M7 33 L12 28 M22 0 L20 7 L26 11 M100 46 L93 50 L95 58 L89 63 M95 58 L100 61 M76 140 L78 132 L72 127 L75 120 M0 112 L6 108 L5 100 L11 96 M48 0 L50 5 L46 9 M100 124 L94 121 L90 127 M18 140 L21 134 L17 129" fill="none" vectorEffect="non-scaling-stroke" />
+        </svg>
+      )}
       {/* Up close, the picture itself bends. */}
       {singularity && depth && (
         <svg className="absolute size-0" aria-hidden>
@@ -297,18 +309,18 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </svg>
       )}
       {/* Celestial: rays of light turning behind the card. */}
-      {grade === 6 && (
+      {fx === 6 && (
         <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
           <div className="card-grade-crown" />
         </div>
       )}
       {/* Gold and up: a light running round the frame, and a halo. */}
-      {grade >= 4 && (
+      {fx >= 4 && (
         <>
-          <div className={`card-grade-orbit card-grade-orbit-${grade} pointer-events-none absolute inset-0 rounded-[7%]`}>
+          <div className={`card-grade-orbit card-grade-orbit-${fx} pointer-events-none absolute inset-0 rounded-[7%]`}>
             <i />
           </div>
-          <div className={`card-grade-halo card-grade-halo-${grade} pointer-events-none absolute inset-0 rounded-[7%]`} />
+          <div className={`card-grade-halo card-grade-halo-${fx} pointer-events-none absolute inset-0 rounded-[7%]`} />
         </>
       )}
 

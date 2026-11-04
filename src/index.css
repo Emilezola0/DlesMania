@@ -1417,6 +1417,130 @@ h1, h2, h3, .font-serif, .font-display {
 .card-grade-halo-7::before,
 .card-grade-halo-7::after { animation-duration: 3.4s; }
 .grade-emblem-singularity { filter: drop-shadow(0 0 2cqw rgba(196, 181, 253, 0.95)) drop-shadow(0 0 1px #fff); }
+/* Elemental (VIII), the last grade: the player's element. Light, Water, Air, Fire and Earth wear Celestial's look
+   (edge, gleam, turning light, comets, halo, rays behind) in the element's colours — --e1 (edge light), --e2 (body),
+   --e3 (glow), set on the card from src/data/tuning/grades.json — each with its own motion: Water's bubbles and
+   tide, Air's gusts, Fire's embers and flicker, Earth's veins and settling dust, Light's bloom. Darkness wears
+   Singularity's, in its own colours, its motes pouring out of the hole instead of falling in. */
+.card-element .card-grade-6 > .card-grade-edge {
+  box-shadow: inset 0 0 0 1.5cqw var(--e1), inset 0 0 3cqw 1cqw color-mix(in srgb, var(--e1) 55%, transparent), inset 0 0 14cqw color-mix(in srgb, var(--e2) 60%, transparent);
+}
+.card-element .card-grade-6 > .card-grade-gleam::before {
+  background: linear-gradient(105deg, transparent 34%, color-mix(in srgb, var(--e2) 45%, transparent) 44%, color-mix(in srgb, var(--e1) 80%, transparent) 50%, color-mix(in srgb, var(--e2) 45%, transparent) 56%, transparent 66%);
+}
+.card-element .card-grade-6::before {
+  background: conic-gradient(transparent 0 12%, color-mix(in srgb, var(--e1) 30%, transparent) 20%, transparent 30% 45%, color-mix(in srgb, var(--e2) 26%, transparent) 55%, transparent 65% 80%, color-mix(in srgb, var(--e3) 30%, transparent) 90%, transparent 100%);
+}
+.card-element .card-grade-orbit-6 > i {
+  background: conic-gradient(transparent 0 22%, var(--e2) 36%, var(--e1) 48%, transparent 50% 72%, var(--e3) 86%, var(--e1) 98%, transparent 100%);
+}
+.card-element .card-grade-halo-6 { --halo: color-mix(in srgb, var(--e3) 80%, transparent); }
+.card-element .card-grade-crown {
+  background: repeating-conic-gradient(color-mix(in srgb, var(--e1) 75%, transparent) 0 5deg, transparent 5deg 15deg, color-mix(in srgb, var(--e3) 55%, transparent) 15deg 17deg, transparent 17deg 30deg);
+}
+.card-element .card-singularity-engraving { text-shadow: 0 0 2cqw var(--e3), 0 1px 2px #000; }
+
+/* Light: Celestial whiter still, a bloom of light in the middle and soft white motes rising. */
+.card-element-light .card-grade-6 { background: radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.24), transparent 62%); }
+.card-element-light .card-grade-6::after {
+  background-image:
+    radial-gradient(1.4cqw 1.4cqw at 15% 20%, #fff, transparent),
+    radial-gradient(1cqw 1cqw at 70% 45%, #fffbe6, transparent),
+    radial-gradient(1.6cqw 1.6cqw at 40% 75%, #fff, transparent),
+    radial-gradient(1cqw 1cqw at 85% 85%, #fff1a8, transparent);
+  animation-duration: 7s;
+}
+.card-element-light .card-grade-crown { animation-duration: 11s; }
+
+/* Water: a tide rising at the foot of the card, bubbles drifting up, the light turning slowly like caustics. */
+.card-element-water .card-grade-6 { background: linear-gradient(to top, color-mix(in srgb, var(--e2) 38%, transparent), transparent 42%); }
+.card-element-water .card-grade-6::before { animation-duration: 13s; }
+.card-element-water .card-grade-6::after {
+  background-image:
+    radial-gradient(circle 1.6cqw at 20% 80%, transparent 50%, rgba(224, 247, 255, 0.95) 62%, transparent 78%),
+    radial-gradient(circle 1cqw at 65% 55%, transparent 45%, rgba(186, 230, 253, 0.9) 60%, transparent 80%),
+    radial-gradient(circle 2cqw at 45% 30%, transparent 55%, rgba(255, 255, 255, 0.8) 64%, transparent 78%),
+    radial-gradient(circle 1.2cqw at 85% 90%, transparent 45%, rgba(34, 211, 238, 0.9) 60%, transparent 80%);
+  animation: card-grade-stars 8s linear infinite, card-element-sway 3s ease-in-out infinite;
+}
+@keyframes card-element-sway {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(1.5cqw); }
+}
+
+/* Air: gusts of wind sweeping across the card, the light turning fast. */
+.card-element-air .card-grade-6::before { animation-duration: 3.2s; }
+.card-element-air .card-grade-6::after {
+  background-image:
+    linear-gradient(100deg, transparent 0 38%, rgba(255, 255, 255, 0.5) 46%, rgba(255, 255, 255, 0.1) 52%, transparent 58%),
+    linear-gradient(96deg, transparent 0 42%, color-mix(in srgb, var(--e3) 60%, transparent) 48%, transparent 56%);
+  background-size: 160cqw 34cqw, 230cqw 52cqw;
+  animation: card-element-wind 2.4s linear infinite;
+}
+@keyframes card-element-wind {
+  from { background-position: 0 4cqw, 0 30cqw; }
+  to { background-position: 160cqw 4cqw, 230cqw 30cqw; }
+}
+
+/* Fire: a glow from below, embers flying up fast, the edge flickering. */
+.card-element-fire .card-grade-6 { background: linear-gradient(to top, color-mix(in srgb, var(--e3) 34%, transparent), transparent 46%); }
+.card-element-fire .card-grade-6 > .card-grade-edge { animation: card-element-flicker 1.3s ease-in-out infinite; }
+.card-element-fire .card-grade-6::after {
+  background-image:
+    radial-gradient(1cqw 1.5cqw at 20% 80%, #fde68a, transparent),
+    radial-gradient(0.8cqw 1.2cqw at 65% 60%, #fb923c, transparent),
+    radial-gradient(1.2cqw 1.7cqw at 45% 30%, #fff7c2, transparent),
+    radial-gradient(0.9cqw 1.3cqw at 85% 90%, #ef4444, transparent);
+  animation: card-grade-stars 1.9s linear infinite, card-element-flicker 0.7s steps(3) infinite;
+}
+@keyframes card-element-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.68; }
+}
+
+/* Earth: veins of gold through the frame, glowing slowly, and dust settling down the card. */
+.card-element-earth .card-grade-6 { background: linear-gradient(to bottom, transparent 55%, color-mix(in srgb, var(--e3) 26%, transparent)); }
+.card-element-earth .card-grade-6::before { animation-duration: 18s; }
+.card-element-earth .card-grade-6::after {
+  background-image:
+    radial-gradient(0.9cqw 0.9cqw at 15% 20%, #fcd34d, transparent),
+    radial-gradient(0.7cqw 0.7cqw at 70% 45%, #a3e635, transparent),
+    radial-gradient(1.1cqw 1.1cqw at 40% 75%, #fef3c7, transparent),
+    radial-gradient(0.8cqw 0.8cqw at 85% 85%, #d97706, transparent);
+  animation: card-grade-stars 10s linear infinite reverse;
+}
+.card-element-veins { z-index: 6; }
+.card-element-veins path {
+  stroke: var(--e1);
+  stroke-width: 1.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px var(--e3)) drop-shadow(0 0 5px var(--e1));
+  animation: card-element-pulse 3.2s ease-in-out infinite;
+}
+@keyframes card-element-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+/* Darkness: Singularity in its own colours, the motes pouring out of the hole. */
+.card-element-darkness .card-grade-7 {
+  box-shadow: inset 0 0 0 1.6cqw #000, inset 0 0 0 1.9cqw color-mix(in srgb, var(--e1) 85%, transparent), inset 0 0 16cqw 3cqw rgba(0, 0, 0, 0.92);
+}
+.card-element-darkness .card-singularity-ring > i {
+  background: conic-gradient(transparent, var(--e1) 8%, var(--e2) 16%, transparent 34%, var(--e3) 52%, var(--e1) 58%, transparent 74%, var(--e2) 90%, transparent);
+}
+.card-element-darkness .card-singularity-motes i {
+  background: var(--e1);
+  box-shadow: 0 0 2cqw 0.5cqw var(--e3);
+  animation-direction: reverse;
+}
+.card-element-darkness .card-singularity-cracks path { stroke: var(--e1); filter: drop-shadow(0 0 2px var(--e3)) drop-shadow(0 0 5px var(--e2)); }
+.card-element-darkness .card-grade-orbit-7 > i { background: conic-gradient(#000 0 55%, var(--e3) 70%, var(--e2) 82%, var(--e1) 96%, #000 100%); }
+.card-element-darkness .card-grade-halo-7 { --halo: color-mix(in srgb, var(--e2) 70%, #000); }
+@media (prefers-reduced-motion: reduce) {
+  .card-element .card-grade-6::after, .card-element .card-grade-6 > .card-grade-edge, .card-element-veins path { animation: none; }
+}
 /* A grade-up: the card flares. */
 @keyframes card-grade-flare {
   0% { filter: brightness(1); transform: scale(1); }

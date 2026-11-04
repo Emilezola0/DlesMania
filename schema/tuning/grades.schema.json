@@ -63,6 +63,91 @@
         "type": "number",
         "minimum": 0
       }
+    },
+    "elementGrade": {
+      "type": "integer",
+      "minimum": 2,
+      "description": "The grade where the player picks an element"
+    },
+    "switchCost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "DleCoins to change a card's element afterwards"
+    },
+    "resaleBonus": {
+      "type": "number",
+      "minimum": 1,
+      "description": "A spare copy of a card at the element grade trades in for this much more (×)"
+    },
+    "elements": {
+      "type": "object",
+      "title": "Elements",
+      "description": "The choices at the element grade. A new one also needs its look in src/index.css (.card-element-<id>)",
+      "propertyNames": {
+        "pattern": "^[a-z]+$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "look": {
+            "type": "string",
+            "enum": [
+              "celestial",
+              "singularity"
+            ],
+            "description": "The grade look it builds on"
+          },
+          "overlay": {
+            "type": "string",
+            "enum": [
+              "veins"
+            ],
+            "description": "An extra layer on the card"
+          },
+          "blurb": {
+            "type": "string"
+          },
+          "metal": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "x-widget": "color"
+            },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "The emblem's metal: light, mid, dark",
+            "x-widget": "colors"
+          },
+          "colors": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "x-widget": "color"
+            },
+            "minItems": 3,
+            "maxItems": 3,
+            "description": "The card: edge light, body, glow",
+            "x-widget": "colors"
+          }
+        },
+        "required": [
+          "name",
+          "icon",
+          "look",
+          "blurb",
+          "metal",
+          "colors"
+        ],
+        "additionalProperties": false
+      }
     }
   },
   "required": [
@@ -70,7 +155,11 @@
     "hellGrade",
     "gradeCost",
     "grades",
-    "rewardShare"
+    "rewardShare",
+    "elementGrade",
+    "switchCost",
+    "resaleBonus",
+    "elements"
   ],
   "additionalProperties": false,
   "title": "Grades"
