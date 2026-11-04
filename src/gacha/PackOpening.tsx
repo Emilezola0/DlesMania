@@ -5,11 +5,11 @@ import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
-import { RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
+import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
-import type { Pack } from './packs';
+import { clampPity, PITY_MAX, pityLuck, type Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
 const TEAR_AT = 18;
@@ -296,6 +296,77 @@ function AnomalyChoice({ anomaly, kept, onDecide, compact }: { anomaly: AnomalyI
   );
 }
 
+/**
+ * What a pack (or five) leaves behind: how many cards were new and how many spares, each set's bar
+ * filling with the cards just found, and the luck meter — up for the next pack, or back to ×1 after a Legendary.
+ */
+function PackStats({ deck, fresh }: { deck: Card[]; fresh: Set<string> }) {
+  const counts = useProgress((s) => s.cards);
+  const pity = useProgress((s) => clampPity(s.pity));
+  const luck = pityLuck(pity);
+  const newOnes = deck.filter((c) => fresh.has(c.id)).length;
+  const spares = deck.length - newOnes;
+  const gotTop = deck.some((c) => top(c.rarity));
+  // Each set of the pack: what's owned now, what this pack added.
+  const sets = useMemo(() => {
+    const ids = [...new Set(deck.map((c) => c.set))];
+    return ids
+      .map((id) => {
+        const all = CARDS.filter((c) => c.set === id);
+        const owned = all.filter((c) => counts[c.id]).length;
+        const added = new Set(deck.filter((c) => c.set === id && fresh.has(c.id)).map((c) => c.id)).size;
+        return { id, name: SETS.find((x) => x.id === id)?.franchise ?? id, owned, added, size: all.length };
+      })
+      .sort((a, b) => b.added - a.added || b.owned / b.size - a.owned / a.size)
+      .slice(0, 5);
+    // Counted once, as the pack is opened.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deck]);
+  return (
+    <div className="pack-stats mx-auto w-full max-w-2xl space-y-3 rounded-lg border border-white/15 bg-white/5 p-3 text-white">
+      <div className="flex flex-wrap items-center justify-center gap-2 font-display text-sm font-bold tracking-widest">
+        {newOnes > 0 && <span className="pack-chip rounded-full bg-coral/90 px-3 py-0.5 text-[#1b1530]">{newOnes} NEW</span>}
+        {spares > 0 && (
+          <span className="pack-chip rounded-full border border-white/40 px-3 py-0.5 text-white/85" style={{ animationDelay: '0.12s' }} title="Spare copies grade a card up (Album) or trade for others (Renew)">
+            +{spares} SPARE{spares === 1 ? '' : 'S'}
+          </span>
+        )}
+      </div>
+      {/* Each set's bar: what was owned, then what this pack added, filling in. */}
+      <div className="space-y-1.5">
+        {sets.map((s, k) => {
+          const before = ((s.owned - s.added) / s.size) * 100;
+          const now = (s.owned / s.size) * 100;
+          return (
+            <div key={s.id} className="grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-2 text-xs">
+              <span className="truncate text-white/80" title={s.name}>{s.name}</span>
+              <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="absolute inset-y-0 left-0 rounded-full bg-white/45" style={{ width: `${before}%` }} />
+                {s.added > 0 && <div className="pack-bar-fill absolute inset-y-0 rounded-full bg-[#fbbf24]" style={{ left: `${before}%`, width: `${Math.max(0.8, now - before)}%`, animationDelay: `${0.3 + k * 0.12}s` }} />}
+              </div>
+              <span className="tabular-nums text-white/70">
+                {s.owned}/{s.size}
+                {s.added > 0 && <span className="ml-1 font-bold text-[#fbbf24]">+{s.added}</span>}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      {/* The luck meter: it fills with every pack without a Legendary or better. */}
+      <div className="grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-2 text-xs">
+        <span className="text-white/80">✨ Luck</span>
+        <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
+          <div className={`pack-luck absolute inset-y-0 left-0 rounded-full ${luck >= PITY_MAX ? 'pack-luck-full' : ''}`} style={{ width: `${((luck - 1) / (PITY_MAX - 1)) * 100}%` }} />
+        </div>
+        <span className="tabular-nums font-bold text-[#fde68a]">×{luck.toFixed(2)}</span>
+      </div>
+      <p className="text-center text-[11px] text-white/55">
+        {gotTop ? 'A Legendary or better: your luck starts again from ×1.' : luck >= PITY_MAX ? 'Luck at its highest: the next pack has the best odds it can get.' : 'No Legendary this time: the next pack has better odds of one.'}
+      </p>
+    </div>
+  );
+}
+
 /** Light rays turning behind a card (epic and up; a mythic's in rainbow). */
 function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rainbow?: boolean }) {
   return (
@@ -501,6 +572,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       else sfx.pop();
     };
     // A mythic takes a long breath, every colour running through it; a legendary a shorter one.
+    // Legendary and up: time slows — the room goes dark around the card, to a low drone.
+    if (top(c.rarity) && !reducedMotion()) sfx.suspense(c.rarity === 'omni' ? 2.3 : c.rarity === 'mythic' ? 2.1 : 2);
     if (c.rarity === 'omni' && !reducedMotion()) {
       setCharging(true);
       sfx.shimmer(20);
@@ -579,6 +652,14 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
         </button>
+      )}
+      {/* Slow motion: the room darkens around a Legendary or better as it charges. */}
+      {phase === 'reveal' && charging && card && top(card.rarity) && <div className="pack-slowmo pointer-events-none fixed inset-0" aria-hidden />}
+      {/* A Mythic or Omni makes its entrance: its franchise's name sweeps across, in its colours. */}
+      {phase === 'reveal' && charging && card && prismatic(card.rarity) && (
+        <div className="pointer-events-none fixed inset-x-0 top-[12%] z-30 overflow-hidden" aria-hidden>
+          <p className={`pack-banner whitespace-nowrap text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl ${card.rarity === 'omni' ? 'card-omni-name' : 'card-mythic-name'}`}>{card.franchise.toUpperCase()}</p>
+        </div>
       )}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
@@ -680,7 +761,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
 
       {/* 3. One card at a time from the deck. */}
       {phase === 'reveal' && card && style && (
-        <div className="flex w-full max-w-3xl flex-col items-center gap-5">
+        <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-5">
           <p className="font-display text-xs font-bold tracking-[0.35em] text-white/60">
             {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : ''}CARD {i + 1} OF {deck.length}
           </p>
@@ -692,7 +773,11 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
               </div>
             ))}
             {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={rainbowy(card.rarity)} />}
-            <div key={i} className="pack-card-in [perspective:1100px]">
+            <div
+              key={i}
+              className={`pack-card-in [perspective:1100px] ${!flipped && !charging && card.rarity !== 'common' && !reducedMotion() ? 'pack-leak' : ''}`}
+              style={{ ['--leak' as string]: RARITY_LIGHT[card.rarity], ['--leak-size' as string]: `${6 + RARITIES.indexOf(card.rarity) * 7}px`, ['--leak-shake' as string]: `${RARITIES.indexOf(card.rarity) * 0.6}px` }}
+            >
               <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-spin pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && top(card.rarity) ? SPIN[card.rarity] : undefined}>
                 {/* Spinning front over back (Legendary and up): the back shows on both sides, the face stays hidden until the turn. */}
                 <div className={spinning ? '' : '[backface-visibility:hidden]'}>
@@ -737,6 +822,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {/* 4. All five together. */}
       {phase === 'summary' && (
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
+          <PackStats deck={deck} fresh={fresh} />
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
@@ -745,6 +831,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
+                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${0.4 + Math.min(k, 12) * 0.09}s` }}>+1 SPARE</p>}
               </div>
             ))}
           </div>

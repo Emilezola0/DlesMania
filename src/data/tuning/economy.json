@@ -47,9 +47,9 @@
   "roulette": {
     "cost": 5,
     "jackpot": 1000,
-    "jackpotChance": 0.01,
+    "jackpotChance": 0.004,
     "small": 20,
-    "smallChance": 0.1,
+    "smallChance": 0.04,
     "dailySpins": 1000
   },
   "duplicateValue": {

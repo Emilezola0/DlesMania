@@ -687,6 +687,35 @@ h1, h2, h3, .font-serif, .font-display {
   to { transform: scale(1) rotate(-10deg); opacity: 1; }
 }
 .pack-stamp { animation: pack-stamp 0.35s cubic-bezier(0.3, 1.4, 0.5, 1) 0.25s both; background: rgba(0, 0, 0, 0.35); }
+/* A card waiting to be turned leaks its rarity's light round its edges, and trembles (more for rarer ones). */
+.pack-leak { animation: pack-card-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both, pack-leak 1.1s ease-in-out 0.35s infinite; }
+@keyframes pack-leak {
+  0%, 100% { filter: drop-shadow(0 0 calc(var(--leak-size) * 0.4) var(--leak)); transform: translate(0, 0); }
+  20% { transform: translate(var(--leak-shake), 0); }
+  40% { filter: drop-shadow(0 0 var(--leak-size) var(--leak)); transform: translate(calc(var(--leak-shake) * -1), 0); }
+  60% { transform: translate(0, var(--leak-shake)); }
+}
+/* Slow motion: the room goes dark around a charging Legendary or better. */
+.pack-slowmo { background: radial-gradient(circle at 50% 45%, transparent 18%, rgba(0, 0, 0, 0.85) 62%); animation: pack-slowmo 0.6s ease-out both; }
+@keyframes pack-slowmo { from { opacity: 0; } }
+/* A Mythic or Omni's franchise, sweeping across as it charges. */
+.pack-banner { animation: pack-banner 2.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes pack-banner {
+  0% { opacity: 0; transform: translateX(-40%) scaleX(1.4); letter-spacing: 0.8em; }
+  25% { opacity: 1; transform: translateX(0) scaleX(1); letter-spacing: 0.3em; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(8%); }
+}
+/* The summary: chips popping in, set bars filling, the luck meter. */
+.pack-chip { animation: pack-stamp 0.35s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+.pack-bar-fill { animation: pack-bar-fill 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both; transform-origin: left; box-shadow: 0 0 8px #fbbf24; }
+@keyframes pack-bar-fill { from { transform: scaleX(0); } }
+.pack-luck { background: linear-gradient(90deg, #a78bfa, #fbbf24); transition: width 0.8s ease-out; }
+.pack-luck-full { animation: pack-luck-full 1.2s ease-in-out infinite; }
+@keyframes pack-luck-full { 50% { box-shadow: 0 0 10px #fbbf24; filter: brightness(1.3); } }
+@media (prefers-reduced-motion: reduce) {
+  .pack-leak, .pack-banner, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
+}
 @keyframes pack-tray-in {
   from { transform: translateY(-120px) scale(2.5); opacity: 0; }
   to { transform: none; opacity: 1; }
