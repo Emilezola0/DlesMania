@@ -51,7 +51,7 @@
     "jackpotChance": 0.01,
     "small": 10,
     "smallChance": 0.1,
-    "dailySpins": 20
+    "dailySpins": 100
   },
   "duplicateValue": {
     "common": 2,

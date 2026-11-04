@@ -194,6 +194,23 @@ export const sfx = {
         gain: 0.05,
       })),
     ),
+  /** The roulette: a peg clicking past the pointer (a little higher as the wheel slows). */
+  wheelTick: (pitch = 1) => play([{ freq: 1500 * pitch, dur: 0.025, type: 'square', gain: 0.03 }, { freq: 320, dur: 0.03, type: 'triangle', gain: 0.05 }]),
+  /** The roulette: the wheel set spinning. */
+  wheelSpin: () => {
+    noise(0.45, 300, 2400, 0.08);
+    play([{ freq: 220, dur: 0.35, type: 'triangle', gain: 0.06, slide: 660 }]);
+  },
+  /** The roulette: coins pouring out, more of them for a bigger win. */
+  coins: (n = 8) =>
+    play(Array.from({ length: n }, (_, i) => ({ freq: 1900 + ((i * 7) % 5) * 260, at: i * 0.055, dur: 0.09, type: 'triangle' as const, gain: 0.04, slide: 2600 }))),
+  /** The roulette: a miss, a sad trombone. */
+  wahWah: () =>
+    play([
+      { freq: 311, dur: 0.28, type: 'sawtooth', gain: 0.05, slide: 293 },
+      { freq: 293, at: 0.3, dur: 0.28, type: 'sawtooth', gain: 0.05, slide: 277 },
+      { freq: 277, at: 0.6, dur: 0.6, type: 'sawtooth', gain: 0.05, slide: 220 },
+    ]),
 };
 
 /**
