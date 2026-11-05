@@ -205,9 +205,13 @@
         "collision": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack whose best card is Rare or Epic sees two planets embrace: Rare becomes Epic (or Legendary), Epic becomes Legendary" },
         "collisionToLegendary": { "type": "number", "minimum": 0, "maximum": 1, "description": "When a Rare's planets embrace: the chance it goes straight to Legendary instead of Epic" },
         "supernova": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack's best card (below Mythic) is swallowed by a supernova and comes back Mythic" },
-        "bigBang": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack with a Legendary sees a Big Bang: the Legendary is reborn Omni" }
+        "bigBang": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack with a Legendary sees a Big Bang: the Legendary is reborn Omni" },
+        "wish": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a golden comet catches one of a pack's smaller stars (Common or Rare, never its best card) on its way: a Common becomes Rare" },
+        "wishToEpic": { "type": "number", "minimum": 0, "maximum": 1, "description": "When the wish falls on a Rare: the chance it comes true (the Rare becomes Epic)" },
+        "deepFake": { "type": "number", "minimum": 0, "maximum": 1, "description": "Looks only: when a Legendary or better poses as a lower rarity before evolving mid-flight, the chance it poses as two rarities lower (a Legendary tearing the pack open blue)" },
+        "skyMoment": { "type": "number", "minimum": 0, "maximum": 1, "description": "Looks only: the chance a pack's sky has a moment of its own (a comet, a meteor shower, or the planet in the corner catching a moon)" }
       },
-      "required": ["collision", "collisionToLegendary", "supernova", "bigBang"],
+      "required": ["collision", "collisionToLegendary", "supernova", "bigBang", "wish", "wishToEpic", "deepFake", "skyMoment"],
       "additionalProperties": false
     },
     "franchise": {

@@ -158,8 +158,8 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
  * loses nothing): two planets embrace and the best card goes up (Rare to Epic or Legendary, Epic to Legendary),
  * a supernova swallows it and it comes back Mythic, a Big Bang turns a Legendary into an Omni. At most one a pack.
  */
-export type CosmicKind = 'collision' | 'supernova' | 'bigbang';
-export const COSMIC_KINDS: CosmicKind[] = ['collision', 'supernova', 'bigbang'];
+export type CosmicKind = 'wish' | 'collision' | 'supernova' | 'bigbang';
+export const COSMIC_KINDS: CosmicKind[] = ['wish', 'collision', 'supernova', 'bigbang'];
 export const COSMIC = T.cosmic;
 export interface CosmicEvent {
   kind: CosmicKind;
@@ -168,7 +168,7 @@ export interface CosmicEvent {
   to: Card;
 }
 
-/** For testing: localStorage "omnidle-force-cosmic" = "collision", "supernova" or "bigbang" plays it every pack. */
+/** For testing: localStorage "omnidle-force-cosmic" = "wish", "collision", "supernova" or "bigbang" plays it every pack. */
 const forcedCosmic = (): CosmicKind | null => {
   try {
     const f = localStorage.getItem('omnidle-force-cosmic');
@@ -192,7 +192,13 @@ export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.r
   let kind: CosmicKind | null = null;
   let from: Card | undefined;
   let to: Rarity | null = null;
-  if (force) {
+  // A wish: a golden comet catches one of the smaller stars on its way (never the best card's): a Common
+  // becomes Rare, a Rare (now and then) Epic.
+  const small = cards.slice(0, -1).filter((c) => c.rarity === 'common' || c.rarity === 'rare');
+  const wishFor = (c: Card): Rarity => (c.rarity === 'common' ? 'rare' : 'epic');
+  if (force === 'wish') {
+    if (small.length) [kind, from, to] = ['wish', small[0], wishFor(small[0])];
+  } else if (force) {
     kind = force;
     from = force === 'bigbang' ? (legend ?? best) : best;
     to = force === 'bigbang' ? 'omni' : force === 'supernova' ? 'mythic' : best.rarity === 'common' || best.rarity === 'rare' ? 'epic' : 'legendary';
@@ -200,6 +206,11 @@ export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.r
   else if (rank(best.rarity) < rank('mythic') && rand() < COSMIC.supernova) [kind, from, to] = ['supernova', best, 'mythic'];
   else if ((best.rarity === 'rare' || best.rarity === 'epic') && rand() < COSMIC.collision)
     [kind, from, to] = ['collision', best, best.rarity === 'epic' || rand() < COSMIC.collisionToLegendary ? 'legendary' : 'epic'];
+  else if (small.length && rand() < COSMIC.wish) {
+    // Rares are wished up less often than Commons.
+    const c = small[Math.floor(rand() * small.length)];
+    if (c.rarity === 'common' || rand() < COSMIC.wishToEpic) [kind, from, to] = ['wish', c, wishFor(c)];
+  }
   if (!kind || !from || !to) return null;
   const card = pick(to);
   if (!card) return null;

@@ -65,7 +65,11 @@
     "collision": 0.02,
     "collisionToLegendary": 0.15,
     "supernova": 0.0025,
-    "bigBang": 0.015
+    "bigBang": 0.015,
+    "wish": 0.08,
+    "wishToEpic": 0.35,
+    "deepFake": 0.3,
+    "skyMoment": 0.3
   },
   "franchise": {
     "cost": 150,
