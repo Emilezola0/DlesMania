@@ -5,6 +5,7 @@ import { NAME_LISTS } from '../arcade/lists';
 import { DleCoin } from '../components/DleCoin';
 import { CARDS } from '../gacha/cards';
 import { HOT_BONUS, HOT_PLAYS, hotNow } from '../gacha/economy';
+import { Quests } from '../gacha/Quests';
 import { todayKey } from '../lib/date';
 import { RANK_DATA, RANK_ROUNDS } from '../rank/data';
 import { UNIVERSES } from '../specialist/rounds';
@@ -64,12 +65,6 @@ export default function GamesHub() {
     },
   ];
   const arcade: GameCard[] = [
-    {
-      to: '/stick-fight',
-      icon: '🥊',
-      title: 'Stick Fight (test)',
-      blurb: 'A turn-based duel with a mystery Overwatch hero, as a stickman: its moves are the clue, and only its name can finish the fight.',
-    },
     {
       to: '/rail-rush',
       icon: '🚂',
@@ -162,6 +157,18 @@ export default function GamesHub() {
       stat: best('map:') ? `Best: ${best('map:')}` : undefined,
     },
     {
+      to: '/guess-the-year',
+      icon: '📅',
+      title: 'Guess the Year',
+      blurb: 'Five games, anime, films or albums: when did each come out? The closer, the more points.',
+      stat: best('year:') ? `Best: ${best('year:')} / 500` : undefined,
+    },
+  ];
+
+  // Apart from the rest: the games to learn with, and the side games (two players on one screen, a test). They
+  // sit out the Hot Game, the missions and the quests.
+  const learn: GameCard[] = [
+    {
       to: '/jlpt',
       icon: '🇯🇵',
       title: 'JLPT',
@@ -169,17 +176,16 @@ export default function GamesHub() {
       stat: best('jlpt:') ? `Best streak: ${best('jlpt:')}` : undefined,
     },
     {
-      to: '/guess-the-year',
-      icon: '📅',
-      title: 'Guess the Year',
-      blurb: 'Five games, anime, films or albums: when did each come out? The closer, the more points.',
-      stat: best('year:') ? `Best: ${best('year:')} / 500` : undefined,
-    },
-    {
       to: '/curve-clash',
       icon: '📈',
       title: 'Curve Clash',
       blurb: 'Two players, one screen: fire along the curve of a function you write, over the islands, and knock out the other side.',
+    },
+    {
+      to: '/stick-fight',
+      icon: '🥊',
+      title: 'Stick Fight (test)',
+      blurb: 'A turn-based duel with a mystery Overwatch hero, as a stickman: its moves are the clue, and only its name can finish the fight.',
     },
   ];
 
@@ -203,6 +209,8 @@ export default function GamesHub() {
           </span>
         </span>
       </Link>
+
+      <Quests compact />
 
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Adventure</h2>
@@ -257,6 +265,17 @@ export default function GamesHub() {
         <ul className="grid gap-4 sm:grid-cols-2">
           {arcade.map((g) => (
             <Card key={g.to} game={g} hot={hot.game.to} />
+          ))}
+        </ul>
+      </section>
+      <section className="space-y-3">
+        <div>
+          <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Learn &amp; side games</h2>
+          <p className="text-sm text-ink-soft">To learn something (Japanese, functions), or to play apart. They still pay DleCoins, but stay out of the Hot Game, the missions and the quests.</p>
+        </div>
+        <ul className="grid gap-4 sm:grid-cols-2">
+          {learn.map((g) => (
+            <Card key={g.to} game={g} />
           ))}
         </ul>
       </section>

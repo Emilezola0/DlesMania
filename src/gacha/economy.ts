@@ -98,8 +98,14 @@ export const HOT_GAMES = [
   { id: 'memory', to: '/memory', title: 'Memory Pairs', icon: '🃏' },
   { id: 'map', to: '/map-quiz', title: 'Map Quiz', icon: '📍' },
   { id: 'year', to: '/guess-the-year', title: 'Guess the Year', icon: '📅' },
-  { id: 'jlpt', to: '/jlpt', title: 'JLPT', icon: '🇯🇵' },
 ] as const;
+
+/**
+ * The games to learn with (the JLPT's decks, its grammar, To the Last, the Japanese Wordle), by their best keys:
+ * they pay like the others, but sit out the Hot Game and don't count for the missions or the quests — learning
+ * isn't farming. A new learning game adds its keys here.
+ */
+export const isLearnKey = (key: string) => /^jlpt[:-]/.test(key) || key === 'wordle:ja';
 
 /** A player's place in the day's order: how many times the bonus has moved, and the games played of the current one. */
 export interface HotBook {
@@ -124,7 +130,7 @@ export function hotNow(book: HotBook | undefined, date: string) {
 /** A finished game's coins with the bonus if it's the Hot Game, and the book after it. */
 export function payHot(book: HotBook | undefined, date: string, key: string, amount: number): { amount: number; book: HotBook } {
   const now = hotNow(book, date);
-  if (key.split(':')[0] !== now.game.id) return { amount, book: now.book };
+  if (isLearnKey(key) || key.split(':')[0] !== now.game.id) return { amount, book: now.book };
   const played = now.book.played + 1;
   return {
     amount: Math.round(amount * (1 + HOT_BONUS)),
@@ -219,13 +225,43 @@ export interface Economy {
   bosses: string[];
   /** When each game last paid (by its best key), for the spacing between pays. */
   lastPaid?: Record<string, number>;
-  counters: Partial<Record<MissionKind, number>>;
+  counters: Partial<Record<QuestCounter, number>>;
   claimed: MissionKind[];
   /** Coins earned today in all, for the shop's "today" line. */
   earned: number;
   /** Lists cleared in full today (Name Them All, To the Last), each paid its big reward once a day. */
   cleared?: string[];
 }
+
+// ── Quests: three at a time, an Easy, a Medium and a Hard; a claimed one is replaced at once by another of its
+// tier, and all of them change at midnight. Each counts from when it came up (the day's counters, above). The
+// order is drawn from the date, the same for everyone; each player goes through it at their own pace. ──
+
+export type QuestTier = 'easy' | 'medium' | 'hard';
+export const QUEST_TIERS: QuestTier[] = ['easy', 'medium', 'hard'];
+/** What the quests count: the daily missions' goals, and Free Play wins. */
+export type QuestCounter = MissionKind | 'freeplay';
+export type QuestSpec = MissionSpec & { kind: QuestCounter };
+export const QUESTS = T.quests as Record<QuestTier, QuestSpec[]> & { fullPerDay: number; afterFull: number };
+
+/** The n-th quest of a tier on a day: never the same goal twice in a row. */
+export function questAt(date: string, tier: QuestTier, n: number): QuestSpec {
+  const pool = QUESTS[tier];
+  const pick = hashString(`quest:${date}:${tier}:${n}`) % pool.length;
+  if (n <= 0) return pool[pick];
+  return pool[pick].kind === questAt(date, tier, n - 1).kind ? pool[(pick + 1) % pool.length] : pool[pick];
+}
+
+/** A player's quests today: by tier, which quest of the day's order they're on and the counter when it came up, and how many they've claimed. */
+export interface QuestBook {
+  date: string;
+  slots: Record<QuestTier, { n: number; start: number }>;
+  done: Record<QuestTier, number>;
+}
+export const freshQuests = (date: string): QuestBook => ({ date, slots: { easy: { n: 0, start: 0 }, medium: { n: 0, start: 0 }, hard: { n: 0, start: 0 } }, done: { easy: 0, medium: 0, hard: 0 } });
+export const questsNow = (b: QuestBook | undefined, date: string): QuestBook => (b?.date === date ? b : freshQuests(date));
+/** A quest's coins: in full for the first few of its tier today, then a share. */
+export const questReward = (q: QuestSpec, claimedToday: number) => (claimedToday < QUESTS.fullPerDay ? q.reward : Math.max(1, Math.round(q.reward * QUESTS.afterFull)));
 
 export const freshEconomy = (date: string): Economy => ({ date, arcade: 0, bosses: [], counters: {}, claimed: [], earned: 0 });
 

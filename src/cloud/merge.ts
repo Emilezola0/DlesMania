@@ -27,6 +27,7 @@ export const SYNCED = [
   'bossWeek',
   'packsOpened',
   'hotGame',
+  'quests',
   'pity',
   'nameLang',
   'avatar',
@@ -165,6 +166,13 @@ function laterHot(a: SaveData['hotGame'], b: SaveData['hotGame']): SaveData['hot
   return a.moves * 100 + a.played >= b.moves * 100 + b.played ? a : b;
 }
 
+function laterQuests(a: SaveData['quests'], b: SaveData['quests']): SaveData['quests'] {
+  if (!a || !b) return a ?? b;
+  if (a.date !== b.date) return a.date > b.date ? a : b;
+  const sum = (q: NonNullable<SaveData['quests']>) => q.done.easy + q.done.medium + q.done.hard;
+  return sum(a) >= sum(b) ? a : b;
+}
+
 export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer }: { firstLink: boolean; cloudNewer: boolean }): SaveData {
   if (!cloud) return local;
   const latest = cloudNewer ? cloud : local;
@@ -217,6 +225,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     pity: clampPity(firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : (cloudNewer ? cloud.pity : local.pity)),
     // The same day: the further along of the two. Otherwise the later day's.
     hotGame: laterHot(local.hotGame, cloud.hotGame),
+    // Today's quests: the book further on (more claimed), else the latest save's.
+    quests: laterQuests(local.quests, cloud.quests),
     packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
     rogueRun: firstLink ? (cloud.rogueRun ?? local.rogueRun) : latest.rogueRun,

@@ -950,6 +950,170 @@
       ],
       "additionalProperties": false,
       "title": "Weekly & monthly missions"
+    },
+    "quests": {
+      "type": "object",
+      "title": "Quests",
+      "description": "Three quests at a time (Easy, Medium, Hard): a claimed one is replaced by another of its tier, and all of them change every day. Their progress counts from when each quest came up.",
+      "properties": {
+        "fullPerDay": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Quests of each tier a day paid in full"
+        },
+        "afterFull": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Share of the reward after that"
+        },
+        "easy": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "rounds",
+                  "category",
+                  "special",
+                  "boss",
+                  "arcade",
+                  "whos",
+                  "freeplay"
+                ],
+                "description": "What it counts"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "need": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "reward": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "DleCoins"
+              }
+            },
+            "required": [
+              "kind",
+              "icon",
+              "text",
+              "need",
+              "reward"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Easy quests: one is drawn at a time, never the same goal twice in a row"
+        },
+        "medium": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "rounds",
+                  "category",
+                  "special",
+                  "boss",
+                  "arcade",
+                  "whos",
+                  "freeplay"
+                ],
+                "description": "What it counts"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "need": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "reward": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "DleCoins"
+              }
+            },
+            "required": [
+              "kind",
+              "icon",
+              "text",
+              "need",
+              "reward"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Medium quests: one is drawn at a time, never the same goal twice in a row"
+        },
+        "hard": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "rounds",
+                  "category",
+                  "special",
+                  "boss",
+                  "arcade",
+                  "whos",
+                  "freeplay"
+                ],
+                "description": "What it counts"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "need": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "reward": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "DleCoins"
+              }
+            },
+            "required": [
+              "kind",
+              "icon",
+              "text",
+              "need",
+              "reward"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Hard quests: one is drawn at a time, never the same goal twice in a row"
+        }
+      },
+      "required": [
+        "fullPerDay",
+        "afterFull",
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
@@ -965,7 +1129,8 @@
     "roulette",
     "duplicateValue",
     "missions",
-    "longMissions"
+    "longMissions",
+    "quests"
   ],
   "additionalProperties": false,
   "title": "Economy"

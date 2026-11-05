@@ -36,6 +36,13 @@ import {
   type BossWeek,
   type Economy,
   type MissionKind,
+  isLearnKey,
+  questAt,
+  questReward,
+  questsNow,
+  type QuestBook,
+  type QuestCounter,
+  type QuestTier,
   freshBook,
   LONG_MISSIONS,
   longMissionsFor,
@@ -105,6 +112,10 @@ interface ProgressState {
   packsOpened: number;
   /** Where the player is in the day's Hot Games (src/gacha/economy.ts). */
   hotGame?: HotBook;
+  /** Today's quests (an Easy, a Medium, a Hard; see src/gacha/economy.ts). */
+  quests?: QuestBook;
+  /** The quest of a tier claimed, if done: its coins, and the next one comes up. False if it isn't done. */
+  claimQuest: (tier: QuestTier) => number | false;
   /** Packs opened since the last Legendary or better: the luck that raises their odds (see pityLuck). */
   pity: number;
   /** A card shown as the player's icon (any card they own). */
@@ -299,7 +310,7 @@ function stamp(pulledAt: Record<string, number> | undefined, ids: string[]): Rec
 function earn(
   s: Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>,
   amount: number,
-  opts: { arcade?: string; count?: Partial<Record<MissionKind, number>>; boss?: string } = {},
+  opts: { arcade?: string; count?: Partial<Record<QuestCounter, number>>; boss?: string } = {},
 ): Partial<Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>> {
   const e = econToday(s.econ);
   const now = Date.now();
@@ -308,10 +319,10 @@ function earn(
   // Past the daily amount, half: what remains of it in full, the rest at half.
   const paid = opts.arcade ? (left >= amount ? amount : Math.max(1, Math.max(0, left) + Math.round((amount - Math.max(0, left)) * ARCADE_AFTER_CAP))) : amount;
   const counters = { ...e.counters };
-  for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as MissionKind] = (counters[k as MissionKind] ?? 0) + (n ?? 0);
+  for (const [k, n] of Object.entries(opts.count ?? {})) counters[k as QuestCounter] = (counters[k as QuestCounter] ?? 0) + (n ?? 0);
   return {
     coins: (s.coins ?? 0) + paid,
-    ...(opts.count ? { missionBooks: countLong(s.missionBooks, opts.count) } : {}),
+    ...(opts.count ? { missionBooks: countLong(s.missionBooks, opts.count as Partial<Record<LongKind, number>>) } : {}),
     econ: {
       ...e,
       arcade: e.arcade + (opts.arcade ? paid : 0),
@@ -615,6 +626,23 @@ export const useProgress = create<ProgressState>()(
         set({ coins: (s.coins ?? 0) + gift.coins, redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), mark] });
         return { ok: true, coins: gift.coins, note: gift.note };
       },
+      claimQuest: (tier) => {
+        const s = get();
+        const e = econToday(s.econ);
+        const book = questsNow(s.quests, e.date);
+        const slot = book.slots[tier];
+        const q = questAt(e.date, tier, slot.n);
+        const counter = (k: QuestCounter) => e.counters[k] ?? 0;
+        if (counter(q.kind) - slot.start < q.need) return false;
+        const coins = questReward(q, book.done[tier]);
+        const next = questAt(e.date, tier, slot.n + 1);
+        set({
+          coins: (s.coins ?? 0) + coins,
+          econ: { ...e, earned: e.earned + coins },
+          quests: { ...book, slots: { ...book.slots, [tier]: { n: slot.n + 1, start: counter(next.kind) } }, done: { ...book.done, [tier]: book.done[tier] + 1 } },
+        });
+        return coins;
+      },
       claimMission: (kind) =>
         set((s) => {
           const e = econToday(s.econ);
@@ -675,7 +703,7 @@ export const useProgress = create<ProgressState>()(
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
         set((s) => ({
-          ...earn(s, arcadeCoins({ won: record.status === 'won' }), { arcade: 'freeplay' }),
+          ...earn(s, arcadeCoins({ won: record.status === 'won' }), { arcade: 'freeplay', count: { freeplay: record.status === 'won' ? 1 : 0 } }),
           freePlay: {
             played: s.freePlay.played + 1,
             won: s.freePlay.won + (record.status === 'won' ? 1 : 0),
@@ -690,7 +718,8 @@ export const useProgress = create<ProgressState>()(
           if ('save' in result) return { bests };
           const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
           const hot = payHot(s.hotGame, todayKey(), key, arcadeCoins(result) + bonus);
-          const paid = earn(s, hot.amount, { arcade: key, count: { arcade: 1 } });
+          // The games to learn with pay, but don't count for the missions or the quests.
+          const paid = earn(s, hot.amount, { arcade: key, ...(isLearnKey(key) ? {} : { count: { arcade: 1 } }) });
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
         }),
@@ -750,7 +779,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] } }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

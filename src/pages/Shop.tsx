@@ -12,6 +12,7 @@ import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
+import { Quests } from '../gacha/Quests';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
@@ -294,6 +295,8 @@ export default function Shop() {
           </p>
         </div>
       </div>
+
+      <Quests />
 
       <section className="space-y-3">
         <h2 className="font-display text-lg font-bold">Today&apos;s missions</h2>

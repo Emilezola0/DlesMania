@@ -187,5 +187,134 @@
         "reward": 9000
       }
     }
+  },
+  "quests": {
+    "fullPerDay": 3,
+    "afterFull": 0.5,
+    "easy": [
+      {
+        "kind": "arcade",
+        "icon": "🕹️",
+        "text": "Finish a game from the Games page",
+        "need": 1,
+        "reward": 100
+      },
+      {
+        "kind": "rounds",
+        "icon": "📅",
+        "text": "Win 2 daily rounds (any day of the Archive counts)",
+        "need": 2,
+        "reward": 100
+      },
+      {
+        "kind": "special",
+        "icon": "🎯",
+        "text": "Win a Specialist round",
+        "need": 1,
+        "reward": 100
+      },
+      {
+        "kind": "whos",
+        "icon": "👤",
+        "text": "Play a Who's That? run",
+        "need": 1,
+        "reward": 100
+      },
+      {
+        "kind": "freeplay",
+        "icon": "🎲",
+        "text": "Win 2 Free Play rounds",
+        "need": 2,
+        "reward": 100
+      }
+    ],
+    "medium": [
+      {
+        "kind": "arcade",
+        "icon": "🕹️",
+        "text": "Finish 3 games from the Games page",
+        "need": 3,
+        "reward": 250
+      },
+      {
+        "kind": "rounds",
+        "icon": "📅",
+        "text": "Win 5 daily rounds (any day of the Archive counts)",
+        "need": 5,
+        "reward": 250
+      },
+      {
+        "kind": "special",
+        "icon": "🎯",
+        "text": "Win 3 Specialist rounds",
+        "need": 3,
+        "reward": 250
+      },
+      {
+        "kind": "whos",
+        "icon": "👤",
+        "text": "Play 2 Who's That? runs",
+        "need": 2,
+        "reward": 250
+      },
+      {
+        "kind": "freeplay",
+        "icon": "🎲",
+        "text": "Win 5 Free Play rounds",
+        "need": 5,
+        "reward": 250
+      },
+      {
+        "kind": "boss",
+        "icon": "👑",
+        "text": "Beat a boss",
+        "need": 1,
+        "reward": 300
+      }
+    ],
+    "hard": [
+      {
+        "kind": "arcade",
+        "icon": "🕹️",
+        "text": "Finish 8 games from the Games page",
+        "need": 8,
+        "reward": 600
+      },
+      {
+        "kind": "rounds",
+        "icon": "📅",
+        "text": "Win 12 daily rounds (any day of the Archive counts)",
+        "need": 12,
+        "reward": 600
+      },
+      {
+        "kind": "special",
+        "icon": "🎯",
+        "text": "Win 8 Specialist rounds",
+        "need": 8,
+        "reward": 600
+      },
+      {
+        "kind": "category",
+        "icon": "🏁",
+        "text": "Play 2 whole daily categories",
+        "need": 2,
+        "reward": 650
+      },
+      {
+        "kind": "boss",
+        "icon": "👑",
+        "text": "Beat 3 bosses",
+        "need": 3,
+        "reward": 700
+      },
+      {
+        "kind": "freeplay",
+        "icon": "🎲",
+        "text": "Win 12 Free Play rounds",
+        "need": 12,
+        "reward": 600
+      }
+    ]
   }
 }
