@@ -183,10 +183,68 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
   });
 }
 /**
+ * The planet on the edge of the sky, drawn from what the pack shows (its stars' first colours, so a cosmic
+ * event still comes as a surprise): an icy moon for a pack of Commons and Rares, a violet gas giant with a
+ * ring for an Epic, a bigger one with a moon for two or more, a golden giant with two moons and sparkles for a
+ * Legendary, and an iridescent world with double rings for a Mythic or better.
+ */
+type SkyTier = 0 | 1 | 2 | 3 | 4;
+function skyTier(shown: Rarity[]): SkyTier {
+  const rank = (r: Rarity) => RARITIES.indexOf(r);
+  if (shown.some((r) => rank(r) >= rank('mythic'))) return 4;
+  if (shown.some((r) => r === 'legendary')) return 3;
+  const epics = shown.filter((r) => r === 'epic').length;
+  return epics >= 2 ? 2 : epics === 1 ? 1 : 0;
+}
+const SKY: { size: number; light: string; base: string; dark: string; glow: string; bands?: string[]; ring?: string; rings?: number; moons: number; sparkle?: boolean; craters?: boolean; prism?: boolean }[] = [
+  { size: 24, light: '#e0ecff', base: '#6b86b8', dark: '#0f1830', glow: 'rgba(96, 165, 250, 0.22)', moons: 0, craters: true },
+  { size: 31, light: '#f3e8ff', base: '#8b5cf6', dark: '#1a0d40', glow: 'rgba(168, 85, 247, 0.35)', bands: ['#7c3aed', '#a78bfa', '#6d28d9', '#c4b5fd'], ring: 'rgba(216, 180, 254, 0.55)', moons: 0 },
+  { size: 36, light: '#fae8ff', base: '#a855f7', dark: '#1e0b45', glow: 'rgba(192, 132, 252, 0.45)', bands: ['#9333ea', '#d8b4fe', '#7e22ce', '#f0abfc'], ring: 'rgba(240, 171, 252, 0.65)', moons: 1 },
+  { size: 41, light: '#fffbe6', base: '#f59e0b', dark: '#3a1a02', glow: 'rgba(251, 191, 36, 0.5)', bands: ['#d97706', '#fde68a', '#b45309', '#fbbf24'], ring: 'rgba(253, 230, 138, 0.8)', moons: 2, sparkle: true },
+  { size: 46, light: '#ffffff', base: '#ff4fd8', dark: '#1b0b30', glow: 'rgba(255, 79, 216, 0.45)', bands: ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'], ring: 'rgba(255, 255, 255, 0.8)', rings: 2, moons: 2, sparkle: true, prism: true },
+];
+function SkyPlanet({ tier }: { tier: SkyTier }) {
+  const p = SKY[tier];
+  const bands = p.bands && `repeating-linear-gradient(168deg, ${p.bands.map((c, k) => `${c} ${k * 7}% ${k * 7 + 5}%`).join(', ')}, ${p.bands[0]} ${p.bands.length * 7}%)`;
+  const ring = (front: boolean, k: number) =>
+    p.ring && (
+      <div
+        key={`${front}${k}`}
+        className={`sky-ring ${front ? 'sky-ring-front' : ''}`}
+        style={{ borderColor: p.prism ? undefined : p.ring, boxShadow: `0 0 ${2 + tier}vmin ${p.ring}`, ['--ring-scale' as string]: 1 + k * 0.22 }}
+      />
+    );
+  return (
+    <div className={`sky-planet sky-tier-${tier} absolute`} style={{ width: `${p.size}vmin`, height: `${p.size}vmin`, ['--glow' as string]: p.glow }} aria-hidden>
+      {Array.from({ length: p.rings ?? (p.ring ? 1 : 0) }, (_, k) => ring(false, k))}
+      <div className="sky-body" style={{ background: `radial-gradient(circle at 32% 30%, ${p.light} 0%, ${p.base} 30%, ${p.dark} 82%)` }}>
+        {bands && <div className={`sky-bands ${p.prism ? 'sky-bands-prism' : ''}`} style={{ backgroundImage: bands }} />}
+        {p.craters && <div className="sky-craters" />}
+        <div className="sky-shade" />
+        {p.prism && <div className="sky-aurora" />}
+      </div>
+      {Array.from({ length: p.rings ?? (p.ring ? 1 : 0) }, (_, k) => ring(true, k))}
+      {Array.from({ length: p.moons }, (_, k) => (
+        <div key={k} className="sky-moon" style={{ animationDuration: `${9 + k * 5}s`, animationDelay: `${-k * 4}s`, ['--moon' as string]: tier >= 3 ? '#fff4d1' : '#d9d2ff', width: `${3.4 - k * 0.9}vmin`, height: `${3.4 - k * 0.9}vmin` }} />
+      ))}
+      {p.sparkle &&
+        [
+          [-8, 20],
+          [18, -6],
+          [70, -10],
+          [104, 30],
+          [40, -14],
+          [-12, 64],
+        ].map(([x, y], k) => <span key={k} className="sky-sparkle" style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${k * 0.37}s` }} />)}
+    </div>
+  );
+}
+
+/**
  * Deep space behind the shooting stars: far stars twinkling at their own pace, a faint nebula drifting,
  * and a planet on the edge of the sky. Drawn once per pack; it only animates opacity and transform.
  */
-function Space() {
+function Space({ tier }: { tier: SkyTier }) {
   const dots = useMemo(
     () =>
       Array.from({ length: 110 }, () => ({
@@ -209,7 +267,7 @@ function Space() {
           style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.size, height: d.size, background: d.color, boxShadow: d.size > 2 ? `0 0 6px ${d.color}` : undefined, animationDelay: `${d.delay}s`, animationDuration: `${d.duration}s` }}
         />
       ))}
-      <div className="pack-planet absolute" />
+      <SkyPlanet tier={tier} />
     </div>
   );
 }
@@ -791,6 +849,8 @@ export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain,
   // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
   // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
   // A cosmic event's card shows its old colour too: a pack that tears open blue may still hold a Legendary.
+  // The planet on the edge of the sky: how good the pack looks (by the colours its stars show first).
+  const sky = useMemo(() => skyTier(stars.map((s) => s.from)), [stars]);
   const shownBest = stars.reduce<Rarity>((b, s) => (RARITIES.indexOf(s.from) > RARITIES.indexOf(b) ? s.from : b), 'common');
   const glow = RARITY_LIGHT[shownBest];
   // Mythic and Omni can't pass for an Epic: a rainbow (Mythic) or a red and gold (Omni) aura, glows on glows.
@@ -1176,8 +1236,8 @@ export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain,
             {/* The light inside, pouring out of the tear. */}
             {phase === 'torn' && (
               <div
-                className="pack-beam pointer-events-none absolute left-1/2 w-[150%]"
-                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: beam, clipPath: 'polygon(30% 100%, 70% 100%, 100% 0, 0 0)' }}
+                className="pack-beam pointer-events-none absolute left-1/2 w-[260%]"
+                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: beam }}
                 aria-hidden
               />
             )}
@@ -1226,7 +1286,7 @@ export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain,
       {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-          <Space />
+          <Space tier={sky} />
           {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
           {stars.map((s, k) => {
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
