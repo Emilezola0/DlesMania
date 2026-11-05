@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Casino",
+  "properties": {
+    "slots": {
+      "type": "object",
+      "title": "Slot machine",
+      "description": "Three reels, five lines (three rows, two diagonals). A line pays its symbol's prize × the line bet (the spin's cost ÷ 5 × the bet). At the default it pays back about 96%.",
+      "properties": {
+        "cost": { "type": "integer", "minimum": 5, "description": "DleCoins a spin at bet ×1 (all five lines)" },
+        "bets": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 1, "description": "The bets on offer (×1, ×5…): cost and prizes both multiplied" },
+        "dailySpins": { "type": "integer", "minimum": 1, "description": "Spins a day (a bigger bet still counts as one)" },
+        "symbols": {
+          "type": "array",
+          "minItems": 2,
+          "description": "Each symbol: how often it comes up (weight) and what a line of three pays (× the line bet); two counts two from the left",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "enum": ["cherry", "bell", "star", "card", "gem", "coin", "seal"] },
+              "weight": { "type": "number", "minimum": 0 },
+              "three": { "type": "number", "minimum": 0 },
+              "two": { "type": "number", "minimum": 0 }
+            },
+            "required": ["id", "weight", "three"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["cost", "bets", "dailySpins", "symbols"],
+      "additionalProperties": false
+    },
+    "pachinko": {
+      "type": "object",
+      "title": "Pachinko",
+      "description": "A ball bounces down the pegs (one row fewer than pockets) into a pocket, which pays its coins. At the default it pays back about 95%, and the meter adds a free capsule.",
+      "properties": {
+        "cost": { "type": "integer", "minimum": 1, "description": "DleCoins a ball" },
+        "balls": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 1, "description": "Balls a drop (×1, ×10…)" },
+        "dailyBalls": { "type": "integer", "minimum": 1, "description": "Balls a day" },
+        "pockets": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 3, "maxItems": 17, "description": "What each pocket pays, left to right (the middle ones are the likeliest)" },
+        "meter": { "type": "integer", "minimum": 1, "description": "DleCoins played to fill the meter: a free capsule each time" }
+      },
+      "required": ["cost", "balls", "dailyBalls", "pockets", "meter"],
+      "additionalProperties": false
+    },
+    "capsules": {
+      "type": "object",
+      "title": "Capsule machine",
+      "description": "Turn the knob for a capsule with an icon frame inside",
+      "properties": {
+        "cost": { "type": "integer", "minimum": 1, "description": "DleCoins a capsule" },
+        "odds": {
+          "type": "object",
+          "description": "How often each rarity comes out (weights)",
+          "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "legendary": { "type": "number", "minimum": 0 } },
+          "required": ["common", "rare", "epic", "legendary"],
+          "additionalProperties": false
+        },
+        "duplicate": {
+          "type": "object",
+          "description": "DleCoins back for a frame already owned, by rarity",
+          "properties": { "common": { "type": "integer", "minimum": 0 }, "rare": { "type": "integer", "minimum": 0 }, "epic": { "type": "integer", "minimum": 0 }, "legendary": { "type": "integer", "minimum": 0 } },
+          "required": ["common", "rare", "epic", "legendary"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["cost", "odds", "duplicate"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["slots", "pachinko", "capsules"],
+  "additionalProperties": false
+}

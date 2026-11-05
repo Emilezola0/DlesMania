@@ -48,6 +48,8 @@ import {
   type RoulettePrize,
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
+import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, type Ball, type SlotResult } from '../casino/casino';
+import type { Frame } from '../casino/frames';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -148,6 +150,20 @@ interface ProgressState {
   pulledAt: Record<string, number>;
   /** `times` roulette spins at once (×1, ×5, ×25): each one's prize, or null if it can't (too few coins or spins left today). */
   spinRoulette: (times?: number) => { prize: RoulettePrize; coins: number }[] | null;
+  /** A slot spin at a bet (×1, ×5…): what came up and what it paid, or null if it can't (coins, spins left today). */
+  playSlots: (bet: number) => SlotResult | null;
+  /** `n` pachinko balls: each one's way down and pay, or null if it can't. Fills the meter (a free capsule when full). */
+  dropBalls: (n: number) => Ball[] | null;
+  /** DleCoins played at the pachinko towards its meter's next free capsule. */
+  casinoMeter: number;
+  /** Free capsules waiting (from the pachinko meter). */
+  capsuleTokens: number;
+  /** A capsule from the machine (a free one first, if any): the frame inside, or null if it can't. */
+  openCapsule: () => { frame: Frame; duplicate: boolean; coins: number; free: boolean } | null;
+  /** Icon frames won (src/casino/frames.ts), and the one worn around the icon. */
+  frames: string[];
+  frame: string | null;
+  setFrame: (frame: string | null) => void;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -361,6 +377,51 @@ export const useProgress = create<ProgressState>()(
       anomalies: {},
       favorites: {},
       pulledAt: {},
+      playSlots: (bet) => {
+        const s = get();
+        const e = econToday(s.econ);
+        const spins = e.slots ?? 0;
+        const cost = SLOTS.cost * bet;
+        if (!SLOTS.bets.includes(bet) || s.coins < cost || spins >= SLOTS.dailySpins) return null;
+        const r = rollSlots(bet);
+        set({ coins: s.coins - cost + r.coins, econ: { ...e, slots: spins + 1, earned: e.earned + r.coins } });
+        return r;
+      },
+      casinoMeter: 0,
+      capsuleTokens: 0,
+      dropBalls: (n) => {
+        const s = get();
+        const e = econToday(s.econ);
+        const balls = e.balls ?? 0;
+        const cost = PACHINKO.cost * n;
+        if (n < 1 || s.coins < cost || balls + n > PACHINKO.dailyBalls) return null;
+        const out = Array.from({ length: n }, dropBall);
+        const won = out.reduce((t, b) => t + b.coins, 0);
+        const meter = (s.casinoMeter ?? 0) + cost;
+        set({
+          coins: s.coins - cost + won,
+          econ: { ...e, balls: balls + n, earned: e.earned + won },
+          casinoMeter: meter % PACHINKO.meter,
+          capsuleTokens: (s.capsuleTokens ?? 0) + Math.floor(meter / PACHINKO.meter),
+        });
+        return out;
+      },
+      frames: [],
+      frame: null,
+      setFrame: (frame) => set({ frame }),
+      openCapsule: () => {
+        const s = get();
+        const free = (s.capsuleTokens ?? 0) > 0;
+        if (!free && s.coins < CAPSULES.cost) return null;
+        const owned = s.frames ?? [];
+        const r = rollCapsule(owned);
+        set({
+          coins: s.coins - (free ? 0 : CAPSULES.cost) + r.coins,
+          capsuleTokens: free ? s.capsuleTokens - 1 : (s.capsuleTokens ?? 0),
+          frames: r.duplicate ? owned : [...owned, r.frame.id],
+        });
+        return { ...r, free };
+      },
       spinRoulette: (times = 1) => {
         const s = get();
         const e = econToday(s.econ);
@@ -648,7 +709,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {} }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0 }),
     }),
     {
       name: 'omnidle-progress',

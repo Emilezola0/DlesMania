@@ -1978,3 +1978,134 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   border-radius: 0.25rem;
   transition: outline-color 0.3s;
 }
+
+/* ── The Casino (src/pages/Casino.tsx, src/casino/*) ───────────────────────────────────────────────── */
+.casino-title {
+  background: linear-gradient(180deg, #fde68a, #f59e0b 55%, #dc2626);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.25));
+}
+.casino-tile {
+  background: radial-gradient(circle at 15% 50%, #fbbf2433, transparent 40%), linear-gradient(120deg, #7f1d1d, #4c1d95);
+  border: 2px solid #fbbf24aa;
+  box-shadow: 0 6px 18px rgba(76, 29, 149, 0.35);
+}
+/* The cabinets: lacquered, gold-rimmed, a row of bulbs chasing round the edge. */
+.slot-cabinet,
+.pachinko-cabinet,
+.capsule-cabinet {
+  border: 3px solid #fbbf24;
+  box-shadow: 0 0 0 3px #7f1d1d, 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.25);
+}
+.slot-cabinet { background: linear-gradient(180deg, #e11d48, #9f1239 60%, #881337); }
+.pachinko-cabinet { background: linear-gradient(180deg, #2563eb, #1e3a8a); box-shadow: 0 0 0 3px #172554, 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.25); }
+.capsule-cabinet { background: linear-gradient(180deg, #f9a8d4, #db2777 45%, #9d174d); }
+.slot-bulbs {
+  background-image: radial-gradient(circle, #fff 0 1.6px, transparent 2.2px);
+  background-size: 14px 14px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  padding: 4px;
+  animation: slot-bulbs 0.9s steps(2) infinite;
+  opacity: 0.85;
+}
+@keyframes slot-bulbs { 50% { background-position: 7px 7px; } }
+.slot-title {
+  background: linear-gradient(180deg, #fff7c2, #fbbf24 60%, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 #7f1d1d);
+}
+.slot-spin {
+  background: linear-gradient(180deg, #fde68a, #fbbf24 50%, #f59e0b);
+  box-shadow: 0 4px 0 #b45309, inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.slot-spin:not(:disabled):active { transform: translateY(3px); box-shadow: 0 1px 0 #b45309, inset 0 2px 0 rgba(255, 255, 255, 0.6); }
+.slot-win-cell { animation: slot-win-cell 0.7s ease-in-out 3; }
+@keyframes slot-win-cell {
+  50% { transform: scale(1.18); filter: drop-shadow(0 0 8px #fbbf24) brightness(1.15); }
+}
+.slot-line { stroke-dasharray: 6; animation: slot-line 0.6s linear infinite; opacity: 0.9; }
+@keyframes slot-line { to { stroke-dashoffset: -12; } }
+.slot-jackpot { animation: slot-jackpot 0.5s ease-in-out infinite alternate; }
+@keyframes slot-jackpot { to { transform: scale(1.12); filter: drop-shadow(0 0 10px #fbbf24); } }
+.pachinko-meter {
+  background: repeating-linear-gradient(90deg, #fbbf24 0 8px, #f59e0b 8px 12px);
+  box-shadow: 0 0 8px #fbbf24;
+  transition: width 0.4s ease-out;
+}
+.pachinko-pocket-hit { animation: pachinko-pocket 0.6s ease-out; }
+@keyframes pachinko-pocket {
+  30% { transform: scale(1.25) translateY(-3px); filter: brightness(1.5); }
+}
+/* The capsule machine: a glass dome full of capsules, a knob, a chute. */
+.capsule-dome {
+  background: radial-gradient(circle at 50% 60%, #fff3, #fff1 60%), linear-gradient(180deg, #e0f2fe55, #bae6fd33);
+  border: 5px solid #fbcfe8;
+  box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.15), 0 4px 0 #9d174d;
+}
+.capsule-glass { background: radial-gradient(ellipse 30% 18% at 30% 22%, rgba(255, 255, 255, 0.7), transparent 70%); }
+.capsule { overflow: hidden; box-shadow: inset -3px -3px 6px rgba(0, 0, 0, 0.25), 0 2px 3px rgba(0, 0, 0, 0.25); }
+.capsule-top,
+.capsule-bottom { position: absolute; left: 0; right: 0; height: 50%; }
+.capsule-top { top: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--shell) 70%, #fff), var(--shell)); }
+.capsule-bottom { bottom: 0; background: linear-gradient(180deg, #f8fafc, #cbd5e1); border-top: 2px solid rgba(0, 0, 0, 0.12); }
+.capsule-jostle { animation: capsule-jostle 0.25s ease-in-out 4 alternate; }
+@keyframes capsule-jostle { to { translate: 0 -6px; } }
+.capsule-knob {
+  background: radial-gradient(circle at 35% 30%, #fff, #e5e7eb 50%, #9ca3af);
+  box-shadow: 0 3px 0 #4b5563, inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+}
+.capsule-knob:not(:disabled):hover { filter: brightness(1.08); }
+.capsule-knob-bar { background: linear-gradient(180deg, #f43f5e, #9f1239); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); transition: rotate 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+.capsule-chute { background: #1b1033; box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.6); }
+.capsule-drop { animation: capsule-drop 0.6s cubic-bezier(0.3, 0, 0.5, 1.4) both; }
+@keyframes capsule-drop {
+  0% { transform: translateY(-40px) rotate(-90deg); opacity: 0; }
+  60% { transform: translateY(4px) rotate(10deg); opacity: 1; }
+  100% { transform: none; }
+}
+.capsule-drop:hover { animation: capsule-wiggle 0.4s ease-in-out infinite; }
+@keyframes capsule-wiggle { 25% { rotate: -8deg; } 75% { rotate: 8deg; } }
+.capsule-crack { animation: capsule-crack 0.75s ease-in forwards; }
+@keyframes capsule-crack {
+  0% { transform: none; filter: none; }
+  70% { transform: rotate(-14deg) scale(1.15); filter: drop-shadow(0 0 10px var(--glow)) brightness(1.3); }
+  80% { transform: rotate(14deg) scale(1.2); }
+  100% { transform: scale(1.5); opacity: 0; filter: drop-shadow(0 0 20px var(--glow)) brightness(2); }
+}
+.capsule-reveal { animation: capsule-reveal 0.5s ease-out both; box-shadow: 0 0 0 2px var(--glow), 0 0 30px color-mix(in srgb, var(--glow) 50%, transparent); }
+@keyframes capsule-reveal { from { transform: scale(0.85); opacity: 0; } }
+.capsule-open { overflow: visible; box-shadow: none; }
+.capsule-open .capsule-top { animation: capsule-top-off 0.7s ease-out forwards; border-radius: 999px 999px 0 0; }
+.capsule-open .capsule-bottom { animation: capsule-bottom-off 0.7s ease-out forwards; border-radius: 0 0 999px 999px; }
+@keyframes capsule-top-off { to { transform: translate(-60px, -40px) rotate(-60deg); opacity: 0; } }
+@keyframes capsule-bottom-off { to { transform: translate(60px, 30px) rotate(50deg); opacity: 0; } }
+/* Icon frames (src/casino/Frame.tsx): a ring cut out of any background, an ornament on its edge. */
+.avatar-frame-ring {
+  padding: 11%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.avatar-frame-spin { animation: avatar-frame-spin 6s linear infinite; }
+@keyframes avatar-frame-spin { to { rotate: 360deg; } }
+.avatar-frame-pulse { animation: avatar-frame-pulse 1.8s ease-in-out infinite; }
+@keyframes avatar-frame-pulse { 50% { filter: brightness(1.45) saturate(1.3); } }
+.avatar-frame-twinkle { width: 26%; height: 26%; translate: -50% -50%; color: #fff; animation: avatar-frame-twinkle 1.9s ease-in-out infinite; }
+@keyframes avatar-frame-twinkle {
+  0%, 100% { opacity: 0; scale: 0.4; }
+  50% { opacity: 1; scale: 1; }
+}
+.avatar-frame-orn { width: 46%; height: 46%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); color: #fde68a; }
+.avatar-frame-orn-top { left: 50%; top: -34%; translate: -50% 0; }
+.avatar-frame-orn-br { right: -22%; bottom: -20%; }
+.avatar-frame-orn-bl { left: -22%; bottom: -20%; }
+@media (prefers-reduced-motion: reduce) {
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle { animation: none; }
+}

@@ -1,0 +1,28 @@
+{
+  "slots": {
+    "cost": 20,
+    "bets": [1, 5, 10],
+    "dailySpins": 1000,
+    "symbols": [
+      { "id": "cherry", "weight": 30, "three": 8, "two": 2 },
+      { "id": "bell", "weight": 24, "three": 14 },
+      { "id": "star", "weight": 18, "three": 28 },
+      { "id": "card", "weight": 13, "three": 55 },
+      { "id": "gem", "weight": 9, "three": 120 },
+      { "id": "coin", "weight": 5, "three": 400 },
+      { "id": "seal", "weight": 1, "three": 5000 }
+    ]
+  },
+  "pachinko": {
+    "cost": 20,
+    "balls": [1, 10],
+    "dailyBalls": 1000,
+    "pockets": [2000, 400, 100, 30, 18, 9, 6, 9, 18, 30, 100, 400, 2000],
+    "meter": 5000
+  },
+  "capsules": {
+    "cost": 250,
+    "odds": { "common": 60, "rare": 28, "epic": 10, "legendary": 2 },
+    "duplicate": { "common": 40, "rare": 75, "epic": 125, "legendary": 250 }
+  }
+}

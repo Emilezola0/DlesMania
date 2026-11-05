@@ -9,7 +9,6 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { Roulette } from '../gacha/Roulette';
 import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
@@ -349,7 +348,19 @@ export default function Shop() {
         </div>
       </section>
 
-      <Roulette />
+      {/* The roulette lives in the Casino now, with the slots, pachinko and the capsule machine. */}
+      <Link to="/casino" className="casino-tile group flex items-center gap-4 rounded-xl p-4 text-white transition hover:-translate-y-0.5">
+        <span className="text-4xl transition group-hover:rotate-12" aria-hidden>
+          🎰
+        </span>
+        <span className="flex-1">
+          <span className="block font-display text-xl font-black tracking-wider">CASINO</span>
+          <span className="block text-sm text-white/75">Slots, pachinko, the roulette, and a capsule machine full of icon frames.</span>
+        </span>
+        <span className="font-display text-2xl" aria-hidden>
+          →
+        </span>
+      </Link>
 
       <DropRates pity={pity} />
 

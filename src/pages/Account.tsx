@@ -7,6 +7,8 @@ import { mergeSaves, pickSave, type SaveData } from '../cloud/merge';
 import { CARD_BY_ID, SETS, RARITY_INFO } from '../gacha/cards';
 import { THEMES, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
+import { AvatarFrame } from '../casino/Frame';
+import { FRAME_BY_ID } from '../casino/frames';
 import { startCloud, useCloud } from '../cloud/state';
 import { todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
@@ -77,6 +79,8 @@ function Profile() {
   const backdrop = useProgress((s) => (s.backdrop && s.cards[s.backdrop] ? CARD_BY_ID.get(s.backdrop) : undefined));
   const setAvatar = useProgress((s) => s.setAvatar);
   const setBackdrop = useProgress((s) => s.setBackdrop);
+  const frame = useProgress((s) => (s.frame ? FRAME_BY_ID.get(s.frame) : undefined));
+  const setFrame = useProgress((s) => s.setFrame);
   const reactions = useProgress((s) => s.cardReactions ?? true);
   const setReactions = useProgress((s) => s.setCardReactions);
   const aura = useProgress((s) => s.omniAura ?? true);
@@ -110,6 +114,25 @@ function Profile() {
       <h2 className="font-display text-lg font-bold">Your cards on show</h2>
       {row('Icon', avatar, () => setAvatar(null))}
       {row('Background', backdrop, () => setBackdrop(null))}
+      <div className="flex items-center gap-3">
+        <AvatarFrame frame={frame?.id}>
+          {avatar ? <CardAvatar card={avatar} className="size-10" /> : <span className="block size-10 rounded-full bg-tile" />}
+        </AvatarFrame>
+        <div className="min-w-0 flex-1">
+          <p className="text-xs uppercase tracking-widest text-ink-faint">Icon frame</p>
+          <p className="truncate font-semibold">
+            {frame ? frame.name : 'None'} ·{' '}
+            <Link to="/casino" className="text-sm font-normal text-ink-soft underline">
+              win frames at the Casino
+            </Link>
+          </p>
+        </div>
+        {frame && (
+          <button type="button" onClick={() => setFrame(null)} className="btn-paper rounded-md px-3 py-1 text-sm font-semibold">
+            Remove
+          </button>
+        )}
+      </div>
       <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">
         <input type="checkbox" checked={reactions} onChange={(e) => setReactions(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
         <span>

@@ -45,6 +45,14 @@
       "preview": "odds"
     },
     {
+      "id": "casino",
+      "section": "economy",
+      "title": "Casino",
+      "file": "src/data/tuning/casino.json",
+      "schema": "schema/tuning/casino.schema.json",
+      "note": "The slot machine, pachinko and capsule machine (the roulette is in Coins, caps & missions)."
+    },
+    {
       "id": "difficulties",
       "section": "games",
       "title": "Boss difficulties",

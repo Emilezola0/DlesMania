@@ -13,6 +13,8 @@ import { UpdateBanner } from './UpdateBanner';
 import { GradeBackPay } from './GradeBackPay';
 import { RetiredCards } from './RetiredCards';
 import { AlbumNews } from './AlbumNews';
+import { todayKey } from '../lib/date';
+import { AvatarFrame } from '../casino/Frame';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
 export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
@@ -23,8 +25,24 @@ const NAV = [
   { to: '/boss', label: 'Boss Battle', short: 'Boss' },
   { to: '/games', label: 'Games', also: GAME_PATHS },
   { to: '/album', label: 'Album', also: ['/trades'] },
-  { to: '/archive', label: 'Archive' },
-] as { to: string; label: string; short?: string; also?: string[] }[];
+  { to: '/casino', label: 'Casino' },
+  // The archive: a small calendar, today's date on it.
+  { to: '/archive', label: 'Archive', icon: true },
+] as { to: string; label: string; short?: string; also?: string[]; icon?: boolean }[];
+
+/** A little calendar page with today's day on it: the Archive. */
+export function CalendarIcon({ className = 'size-[22px]' }: { className?: string }) {
+  const day = Number(todayKey().slice(8));
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+      <text x="12" y="18.2" textAnchor="middle" fontSize="7.5" fontWeight="800" fill="currentColor" stroke="none" fontFamily="inherit">
+        {day}
+      </text>
+    </svg>
+  );
+}
 
 /** Line-drawn icons in the same ink as the glyphs. */
 export function SpeakerIcon({ on }: { on: boolean }) {
@@ -172,6 +190,7 @@ function PageLoading() {
 function AccountButton() {
   const { status, email, name } = useCloud();
   const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? s.avatar : null));
+  const frame = useProgress((s) => s.frame);
   const signedIn = !!email && status !== 'signedOut';
   const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
   return (
@@ -183,15 +202,24 @@ function AccountButton() {
     >
       {avatar ? (
         <Suspense fallback={<span className="size-6 rounded-full bg-tile min-[420px]:size-7" />}>
-          <AvatarIcon id={avatar} className="size-6 min-[420px]:size-7" />
+          <AvatarFrame frame={frame}>
+            <AvatarIcon id={avatar} className="size-6 min-[420px]:size-7" />
+          </AvatarFrame>
         </Suspense>
       ) : signedIn ? (
-        <span className="grid size-6 place-items-center rounded-full bg-accent font-display text-xs font-bold uppercase text-on-strong">{(name ?? email ?? '?')[0]}</span>
+        <AvatarFrame frame={frame}>
+          <span className="grid size-6 place-items-center rounded-full bg-accent font-display text-xs font-bold uppercase text-on-strong">{(name ?? email ?? '?')[0]}</span>
+        </AvatarFrame>
       ) : (
-        <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
-          <circle cx="12" cy="8.5" r="3.6" />
-          <path d="M4.8 20c1.2-3.6 4-5.4 7.2-5.4s6 1.8 7.2 5.4" />
-        </svg>
+        // No card, not signed in: the plain figure, in its frame if one is worn.
+        <AvatarFrame frame={frame}>
+          <span className="grid size-6 place-items-center">
+            <svg viewBox="0 0 24 24" className="size-[18px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+              <circle cx="12" cy="8.5" r="3.6" />
+              <path d="M4.8 20c1.2-3.6 4-5.4 7.2-5.4s6 1.8 7.2 5.4" />
+            </svg>
+          </span>
+        </AvatarFrame>
       )}
       {signedIn && dot && <span className={`absolute right-0 top-0 size-2.5 rounded-full border-2 border-paper ${dot}`} />}
     </Link>
@@ -325,8 +353,12 @@ export function Layout() {
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`;
                 }}
+                title={n.icon ? n.label : undefined}
+                aria-label={n.icon ? n.label : undefined}
               >
-                {n.short ? (
+                {n.icon ? (
+                  <CalendarIcon className="-my-1 size-[22px]" />
+                ) : n.short ? (
                   <>
                     <span className="xl:hidden">{n.short}</span>
                     <span className="hidden xl:inline">{n.label}</span>
@@ -383,10 +415,11 @@ export function Layout() {
             to={n.to}
             className={({ isActive: exact }) => {
               const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-              return `flex-1 border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
+              return `${n.icon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
             }}
+            aria-label={n.icon ? n.label : undefined}
           >
-            {n.short ?? n.label}
+            {n.icon ? <CalendarIcon className="size-5" /> : (n.short ?? n.label)}
           </NavLink>
         ))}
       </nav>

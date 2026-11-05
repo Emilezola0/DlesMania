@@ -47,6 +47,10 @@ export const SYNCED = [
   'pulledAt',
   'groups',
   'jlptReview',
+  'frames',
+  'frame',
+  'casinoMeter',
+  'capsuleTokens',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -128,6 +132,8 @@ function mergeEcon(a: Economy | undefined, b: Economy | undefined): Economy | un
     arcade: Math.max(a.arcade, b.arcade),
     expedition: Math.max(a.expedition ?? 0, b.expedition ?? 0),
     spins: Math.max(a.spins ?? 0, b.spins ?? 0),
+    slots: Math.max(a.slots ?? 0, b.slots ?? 0),
+    balls: Math.max(a.balls ?? 0, b.balls ?? 0),
     bosses: [...new Set([...a.bosses, ...b.bosses])],
     counters,
     claimed: [...new Set([...a.claimed, ...b.claimed])],
@@ -223,5 +229,10 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     companions: (firstLink ? cloud : latest).companions ?? local.companions ?? true,
     // The JLPT review list: both lists on a first link; then the latest (words learned leave it).
     jlptReview: firstLink ? { ...(cloud.jlptReview ?? {}), ...(local.jlptReview ?? {}) } : (latest.jlptReview ?? local.jlptReview ?? {}),
+    // Icon frames won on either side stay won; the one worn, the meter and free capsules: the latest save's.
+    frames: [...new Set([...(local.frames ?? []), ...(cloud.frames ?? [])])],
+    frame: latest.frame ?? null,
+    casinoMeter: latest.casinoMeter ?? 0,
+    capsuleTokens: latest.capsuleTokens ?? 0,
   };
 }

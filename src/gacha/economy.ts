@@ -212,6 +212,9 @@ export interface Economy {
   expedition?: number;
   /** Roulette spins so far today. */
   spins?: number;
+  /** The Casino's slot spins and pachinko balls so far today. */
+  slots?: number;
+  balls?: number;
   /** bossKey()s already paid for today (kept for old saves; bosses now pay by the week, see BossWeek). */
   bosses: string[];
   /** When each game last paid (by its best key), for the spacing between pays. */

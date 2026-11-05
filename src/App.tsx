@@ -20,6 +20,7 @@ const OddOneOut = lazy(() => import('./pages/OddOneOut'));
 const Crossroads = lazy(() => import('./pages/Crossroads'));
 const Summit = lazy(() => import('./pages/Summit'));
 const Shop = lazy(() => import('./pages/Shop'));
+const Casino = lazy(() => import('./pages/Casino'));
 const Album = lazy(() => import('./pages/Album'));
 const Account = lazy(() => import('./pages/Account'));
 const Trades = lazy(() => import('./pages/Trades'));
@@ -82,6 +83,7 @@ export default function App() {
         <Route path="crossroads" element={<Crossroads />} />
         <Route path="summit" element={<Summit />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="casino" element={<Casino />} />
         <Route path="album" element={<Album />} />
         <Route path="account" element={<Account />} />
         <Route path="trades" element={<Trades />} />
