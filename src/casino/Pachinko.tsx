@@ -56,6 +56,22 @@ export function Pachinko() {
   const drop = useProgress((s) => s.dropBalls);
   const meter = useProgress((s) => s.casinoMeter ?? 0);
   const tokens = useProgress((s) => s.capsuleTokens ?? 0);
+  const freeBalls = useProgress((s) => s.freeBalls ?? 0);
+  // The meter just filled: say so (the free balls are the big news).
+  const [gift, setGift] = useState(false);
+  const lastFree = useRef(freeBalls);
+  useEffect(() => {
+    if (freeBalls > lastFree.current) {
+      setGift(true);
+      sfx.streak();
+      const t = window.setTimeout(() => setGift(false), 3500);
+      lastFree.current = freeBalls;
+      return () => window.clearTimeout(t);
+    }
+    lastFree.current = freeBalls;
+  }, [freeBalls]);
+  /** What a drop of n balls costs: the free ones first. */
+  const paidOf = (n: number) => Math.max(0, n - freeBalls);
   const used = econToday(useProgress((s) => s.econ)).balls ?? 0;
   const left = Math.max(0, PACHINKO.dailyBalls - used);
   const [flying, setFlying] = useState<{ id: number; b: Ball; t0: number }[]>([]);
@@ -66,11 +82,12 @@ export function Pachinko() {
   const pegs = useMemo(() => Array.from({ length: PACHINKO_ROWS }, (_, row) => Array.from({ length: row + 1 }, (_, j) => ({ x: xAt(j, row), y: pegY(row) }))).flat(), []);
 
   const go = (n: number) => {
+    const cost = PACHINKO.cost * paidOf(n);
     const out = drop(n);
     if (!out) return;
     sfx.click();
     const now = performance.now();
-    setTally((t) => ({ spent: (t && flying.length ? t.spent : 0) + PACHINKO.cost * n, won: t && flying.length ? t.won : 0 }));
+    setTally((t) => ({ spent: (t && flying.length ? t.spent : 0) + cost, won: t && flying.length ? t.won : 0 }));
     if (reducedMotion()) {
       out.forEach((b) => land(b));
       return;
@@ -129,7 +146,7 @@ export function Pachinko() {
   return (
     <div className="mx-auto w-full max-w-sm">
       <div className="pachinko-cabinet relative rounded-2xl p-3 text-white">
-        {/* The meter: coins played fill it; full, a free capsule. */}
+        {/* The meter: coins played fill it; full, free balls and a free capsule. */}
         <div className="mb-2 flex items-center gap-2">
           <div className="relative h-5 flex-1 overflow-hidden rounded-full border-2 border-[#fbbf24]/70 bg-[#0b0820]">
             <div className="pachinko-meter absolute inset-y-0 left-0 rounded-full" style={{ width: `${fill * 100}%` }} />
@@ -137,10 +154,11 @@ export function Pachinko() {
               {meter.toLocaleString('en')} / {PACHINKO.meter.toLocaleString('en')}
             </span>
           </div>
-          <span title={tokens ? `${tokens} free capsule${tokens > 1 ? 's' : ''} waiting at the capsule machine` : 'Fill the meter for a free capsule'} className={`relative grid size-9 place-items-center rounded-lg border-2 text-lg ${tokens ? 'animate-pulse border-[#fbbf24] bg-[#3b2a07]' : 'border-white/20 bg-[#0b0820] opacity-70'}`}>
+          <span title={tokens ? `${tokens} free capsule${tokens > 1 ? 's' : ''} waiting at the capsule machine` : `Fill the meter for ${PACHINKO.freeBalls} free balls and a free capsule`} className={`relative grid size-9 place-items-center rounded-lg border-2 text-lg ${tokens ? 'animate-pulse border-[#fbbf24] bg-[#3b2a07]' : 'border-white/20 bg-[#0b0820] opacity-70'}`}>
             🥚{tokens > 1 && <span className="absolute translate-x-3 translate-y-3 text-[10px] font-black">×{tokens}</span>}
           </span>
         </div>
+        {gift && <p className="animate-pop mb-2 rounded-lg bg-[#14532d] py-1.5 text-center font-display text-sm font-black tracking-wide text-[#bbf7d0]">🎁 Meter full: +{PACHINKO.freeBalls} free balls and a free capsule!</p>}
         <div className="relative overflow-hidden rounded-xl border-4 border-[#fbbf24]/80 bg-[#1e1250]">
           <svg viewBox={`0 0 ${W} ${H}`} className="block w-full" role="img" aria-label="Pachinko board">
             <defs>
@@ -200,15 +218,25 @@ export function Pachinko() {
         </div>
         <div className="mt-1 flex items-stretch gap-2">
           {PACHINKO.balls.map((n, i) => (
-            <button key={n} type="button" onClick={() => go(n)} disabled={coins < PACHINKO.cost * n || left < n} className={`flex-1 rounded-lg py-2 font-display disabled:opacity-50 ${i === 0 ? 'slot-spin text-[#3b1d00]' : 'border-2 border-[#f87171] bg-[#7f1d1d] text-white'}`}>
+            <button key={n} type="button" onClick={() => go(n)} disabled={coins < PACHINKO.cost * paidOf(n) || left < paidOf(n)} className={`flex-1 rounded-lg py-2 font-display disabled:opacity-50 ${i === 0 ? 'slot-spin text-[#3b1d00]' : 'border-2 border-[#f87171] bg-[#7f1d1d] text-white'}`}>
               <div className="flex items-center justify-center gap-1 text-[11px] font-bold">
-                <DleCoin className="size-3.5" /> {(PACHINKO.cost * n).toLocaleString('en')}
+                {paidOf(n) === 0 ? (
+                  <span className="text-[#14532d]">🎁 FREE</span>
+                ) : (
+                  <>
+                    <DleCoin className="size-3.5" /> {(PACHINKO.cost * paidOf(n)).toLocaleString('en')}
+                    {paidOf(n) < n && <span>+ {n - paidOf(n)} free</span>}
+                  </>
+                )}
               </div>
               <div className="text-base font-black tracking-widest">{n === 1 ? 'DROP' : `×${n}`}</div>
             </button>
           ))}
         </div>
-        <p className="mt-2 text-center text-[11px] text-white/55">{left.toLocaleString('en')} balls left today</p>
+        <p className="mt-2 text-center text-[11px] text-white/55">
+          {freeBalls > 0 && <span className="mr-2 font-bold text-[#86efac]">🎁 {freeBalls.toLocaleString('en')} free ball{freeBalls === 1 ? '' : 's'}</span>}
+          {left.toLocaleString('en')} balls left today
+        </p>
       </div>
     </div>
   );

@@ -18,7 +18,8 @@
     "balls": [1, 10],
     "dailyBalls": 1000,
     "pockets": [2000, 400, 100, 30, 18, 9, 6, 9, 18, 30, 100, 400, 2000],
-    "meter": 5000
+    "meter": 5000,
+    "freeBalls": 100
   },
   "capsules": {
     "cost": 250,

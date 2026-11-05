@@ -40,9 +40,10 @@
         "balls": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 1, "description": "Balls a drop (×1, ×10…)" },
         "dailyBalls": { "type": "integer", "minimum": 1, "description": "Balls a day" },
         "pockets": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 3, "maxItems": 17, "description": "What each pocket pays, left to right (the middle ones are the likeliest)" },
-        "meter": { "type": "integer", "minimum": 1, "description": "DleCoins played to fill the meter: a free capsule each time" }
+        "meter": { "type": "integer", "minimum": 1, "description": "DleCoins played to fill the meter: a free capsule each time" },
+        "freeBalls": { "type": "integer", "minimum": 0, "description": "Free balls each time the meter fills (they don't fill the meter, earn tokens or count against the day's balls)" }
       },
-      "required": ["cost", "balls", "dailyBalls", "pockets", "meter"],
+      "required": ["cost", "balls", "dailyBalls", "pockets", "meter", "freeBalls"],
       "additionalProperties": false
     },
     "capsules": {

@@ -170,6 +170,8 @@ interface ProgressState {
   casinoMeter: number;
   /** Free capsules waiting (from the pachinko meter). */
   capsuleTokens: number;
+  /** Free pachinko balls waiting (PACHINKO.freeBalls each time the meter fills), dropped before paid ones. */
+  freeBalls?: number;
   /** Casino tokens, one per CARD_SHOP.coinsPerToken DleCoins paid into the casino: the Daily Card Shop's only currency. */
   chips: number;
   /** DleCoins paid into the casino towards the next token. */
@@ -434,16 +436,21 @@ export const useProgress = create<ProgressState>()(
         const s = get();
         const e = econToday(s.econ);
         const balls = e.balls ?? 0;
-        const cost = PACHINKO.cost * n;
-        if (n < 1 || s.coins < cost || balls + n > PACHINKO.dailyBalls) return null;
+        // Free balls first: they cost nothing, fill no meter, earn no tokens and don't count against the day's balls.
+        const free = Math.min(n, Math.max(0, s.freeBalls ?? 0));
+        const paid = n - free;
+        const cost = PACHINKO.cost * paid;
+        if (n < 1 || s.coins < cost || balls + paid > PACHINKO.dailyBalls) return null;
         const out = Array.from({ length: n }, dropBall);
         const won = out.reduce((t, b) => t + b.coins, 0);
         const meter = (s.casinoMeter ?? 0) + cost;
+        const fills = Math.floor(meter / PACHINKO.meter);
         set({
           coins: s.coins - cost + won,
-          econ: { ...e, balls: balls + n, earned: e.earned + won },
+          econ: { ...e, balls: balls + paid, earned: e.earned + won },
           casinoMeter: meter % PACHINKO.meter,
-          capsuleTokens: (s.capsuleTokens ?? 0) + Math.floor(meter / PACHINKO.meter),
+          capsuleTokens: (s.capsuleTokens ?? 0) + fills,
+          freeBalls: (s.freeBalls ?? 0) - free + fills * PACHINKO.freeBalls,
           ...paidIn(s, cost),
         });
         return out;
@@ -779,7 +786,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',
