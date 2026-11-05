@@ -842,6 +842,7 @@ const animeOnly = (c: Omit<Card, 'no'>): Omit<Card, 'no'> => (c.set === 'onepiec
  * Cards added after every set's second mythic, numbered last. ARC Raiders: two more mythics from the
  * machines (the wiki's screenshots), the owner's own Raider (their picture, public/art/arcraiders), and Scrappy
  * the rooster as a second omni, in the cowboy hat (the wiki's outfit art; awakened, the pirate hat).
+ * Deadlock: Seven as a third mythic.
  */
 const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   {
@@ -890,6 +891,17 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
       image: 'https://arcraiders.wiki/w/images/6/62/Pirate_Hat_Scrappy_Outfit.png',
       line: 'Every Raider in Speranza heard of the Queen falling, and Scrappy has a new hat to show for it: the workshop sails under his flag now.',
     },
+  },
+  // Deadlock: Seven as a third mythic (he was the omni before the Doorman), in the wiki's concept art.
+  {
+    set: 'deadlock',
+    id: 'deadlock:mythic-seven',
+    name: 'Seven',
+    rarity: 'mythic',
+    title: 'The Storm Caller',
+    image: 'https://cdn.deadlock.wiki/Seven_concept_art.png',
+    voice: 'The storm is here.',
+    description: 'Lightning in a ball, a static charge that stuns and a storm cloud over a whole fight: the hero every new player is warned about.',
   },
 ];
 

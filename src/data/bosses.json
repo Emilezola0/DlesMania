@@ -22663,64 +22663,179 @@
     },
     "finale": [
       {
-        "label": "Unstoppable",
-        "image": "https://cdn.deadlock.wiki/Unstoppable.png"
+        "label": "Haze",
+        "image": "https://cdn.deadlock.wiki/Haze_card.png"
       },
       {
-        "label": "Boundless Spirit",
-        "image": "https://cdn.deadlock.wiki/Boundless_Spirit.png"
+        "label": "Seven",
+        "image": "https://cdn.deadlock.wiki/Seven_card.png"
       },
       {
-        "label": "Leech",
-        "image": "https://cdn.deadlock.wiki/Leech.png"
+        "label": "Infernus",
+        "image": "https://cdn.deadlock.wiki/Infernus_card.png"
       },
       {
-        "label": "Siphon Bullets",
-        "image": "https://cdn.deadlock.wiki/Siphon_Bullets.png"
+        "label": "Lady Geist",
+        "image": "https://cdn.deadlock.wiki/Lady_Geist_card.png"
       },
       {
-        "label": "Refresher",
-        "image": "https://cdn.deadlock.wiki/Refresher.png"
+        "label": "Abrams",
+        "image": "https://cdn.deadlock.wiki/Abrams_card.png"
       },
       {
-        "label": "Echo Shard",
-        "image": "https://cdn.deadlock.wiki/Echo_Shard.png"
+        "label": "Wraith",
+        "image": "https://cdn.deadlock.wiki/Wraith_card.png"
       },
       {
-        "label": "Knockdown",
-        "image": "https://cdn.deadlock.wiki/Knockdown.png"
+        "label": "Bebop",
+        "image": "https://cdn.deadlock.wiki/Bebop_card.png"
       },
       {
-        "label": "Metal Skin",
-        "image": "https://cdn.deadlock.wiki/Metal_Skin.png"
+        "label": "McGinnis",
+        "image": "https://cdn.deadlock.wiki/McGinnis_card.png"
       },
       {
-        "label": "Glass Cannon",
-        "image": "https://cdn.deadlock.wiki/Glass_Cannon.png"
+        "label": "Vindicta",
+        "image": "https://cdn.deadlock.wiki/Vindicta_card.png"
       },
       {
-        "label": "Crippling Headshot",
-        "image": "https://cdn.deadlock.wiki/Crippling_Headshot.png"
+        "label": "Paradox",
+        "image": "https://cdn.deadlock.wiki/Paradox_card.png"
       },
       {
-        "label": "Ethereal Shift",
-        "image": "https://cdn.deadlock.wiki/Ethereal_Shift.png"
+        "label": "Kelvin",
+        "image": "https://cdn.deadlock.wiki/Kelvin_card.png"
       },
       {
-        "label": "Silencer",
-        "image": "https://cdn.deadlock.wiki/Silencer.png"
+        "label": "Pocket",
+        "image": "https://cdn.deadlock.wiki/Pocket_card.png"
       },
       {
-        "label": "Healing Rite",
-        "image": "https://cdn.deadlock.wiki/Healing_Rite.png"
+        "label": "Mo & Krill",
+        "image": "https://cdn.deadlock.wiki/Mo_%26_Krill_card.png",
+        "aliases": [
+          "Mo and Krill"
+        ]
       },
       {
-        "label": "Vampiric Burst",
-        "image": "https://cdn.deadlock.wiki/Vampiric_Burst.png"
+        "label": "Dynamo",
+        "image": "https://cdn.deadlock.wiki/Dynamo_card.png"
       },
       {
-        "label": "Spirit Snatch",
-        "image": "https://cdn.deadlock.wiki/Spirit_Snatch.png"
+        "label": "Lash",
+        "image": "https://cdn.deadlock.wiki/Lash_card.png"
+      },
+      {
+        "label": "Ivy",
+        "image": "https://cdn.deadlock.wiki/Ivy_card.png"
+      },
+      {
+        "label": "Grey Talon",
+        "image": "https://cdn.deadlock.wiki/Grey_Talon_card.png"
+      },
+      {
+        "label": "Viscous",
+        "image": "https://cdn.deadlock.wiki/Viscous_card.png"
+      },
+      {
+        "label": "Warden",
+        "image": "https://cdn.deadlock.wiki/Warden_card.png"
+      },
+      {
+        "label": "Yamato",
+        "image": "https://cdn.deadlock.wiki/Yamato_card.png"
+      },
+      {
+        "label": "Apollo",
+        "image": "https://cdn.deadlock.wiki/Apollo_card.png"
+      },
+      {
+        "label": "Baba",
+        "image": "https://cdn.deadlock.wiki/Baba_card.png"
+      },
+      {
+        "label": "Billy",
+        "image": "https://cdn.deadlock.wiki/Billy_card.png"
+      },
+      {
+        "label": "Calico",
+        "image": "https://cdn.deadlock.wiki/Calico_card.png"
+      },
+      {
+        "label": "Celeste",
+        "image": "https://cdn.deadlock.wiki/Celeste_card.png"
+      },
+      {
+        "label": "Deadman Danny",
+        "image": "https://cdn.deadlock.wiki/Deadman_Danny_card.png"
+      },
+      {
+        "label": "Drifter",
+        "image": "https://cdn.deadlock.wiki/Drifter_card.png"
+      },
+      {
+        "label": "Graves",
+        "image": "https://cdn.deadlock.wiki/Graves_card.png"
+      },
+      {
+        "label": "Holliday",
+        "image": "https://cdn.deadlock.wiki/Holliday_card.png"
+      },
+      {
+        "label": "Mina",
+        "image": "https://cdn.deadlock.wiki/Mina_card.png"
+      },
+      {
+        "label": "Mirage",
+        "image": "https://cdn.deadlock.wiki/Mirage_card.png"
+      },
+      {
+        "label": "Nurse Harrow",
+        "image": "https://cdn.deadlock.wiki/Nurse_Harrow_card.png"
+      },
+      {
+        "label": "Paige",
+        "image": "https://cdn.deadlock.wiki/Paige_card.png"
+      },
+      {
+        "label": "Rat King",
+        "image": "https://cdn.deadlock.wiki/Rat_King_card.png"
+      },
+      {
+        "label": "Rem",
+        "image": "https://cdn.deadlock.wiki/Rem_card.png"
+      },
+      {
+        "label": "Shiv",
+        "image": "https://cdn.deadlock.wiki/Shiv_card.png"
+      },
+      {
+        "label": "Silver",
+        "image": "https://cdn.deadlock.wiki/Silver_card.png"
+      },
+      {
+        "label": "Sinclair",
+        "image": "https://cdn.deadlock.wiki/Sinclair_card.png"
+      },
+      {
+        "label": "Solomon",
+        "image": "https://cdn.deadlock.wiki/Solomon_card.png"
+      },
+      {
+        "label": "Venator",
+        "image": "https://cdn.deadlock.wiki/Venator_card.png"
+      },
+      {
+        "label": "Victor",
+        "image": "https://cdn.deadlock.wiki/Victor_card.png"
+      },
+      {
+        "label": "Violet",
+        "image": "https://cdn.deadlock.wiki/Violet_card.png"
+      },
+      {
+        "label": "Vyper",
+        "image": "https://cdn.deadlock.wiki/Vyper_card.png"
       }
     ],
     "secret": {
@@ -22967,712 +23082,1769 @@
     "signature": {
       "label": "Abilities",
       "prompt": "Whose ability is this?",
+      "seconds": 30,
+      "hints": true,
       "clues": [
         {
-          "text": "Siphon Life",
+          "image": "https://cdn.deadlock.wiki/Siphon_Life.png",
+          "hints": [
+            "The ability: Siphon Life",
+            "A Brawler hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Abrams"
         },
         {
-          "text": "Shoulder Charge",
+          "image": "https://cdn.deadlock.wiki/Shoulder_Charge.png",
+          "hints": [
+            "The ability: Shoulder Charge",
+            "A Brawler hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Abrams"
         },
         {
-          "text": "Infernal Resilience",
+          "image": "https://cdn.deadlock.wiki/Infernal_Resilience.png",
+          "hints": [
+            "The ability: Infernal Resilience",
+            "A Brawler hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Abrams"
         },
         {
-          "text": "Seismic Impact (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Seismic_Impact.png",
+          "hints": [
+            "The ability: Seismic Impact (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Abrams"
         },
         {
-          "text": "Disengaging Sigil",
+          "image": "https://cdn.deadlock.wiki/Disengaging_Sigil.png",
+          "hints": [
+            "The ability: Disengaging Sigil",
+            "A Assassin hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Apollo"
         },
         {
-          "text": "Riposte",
+          "image": "https://cdn.deadlock.wiki/Riposte.png",
+          "hints": [
+            "The ability: Riposte",
+            "A Assassin hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Apollo"
         },
         {
-          "text": "Flawless Advance",
+          "image": "https://cdn.deadlock.wiki/Flawless_Advance.png",
+          "hints": [
+            "The ability: Flawless Advance",
+            "A Assassin hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Apollo"
         },
         {
-          "text": "Itani Lo Sahn (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Itani_Lo_Sahn.png",
+          "hints": [
+            "The ability: Itani Lo Sahn (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “A”"
+          ],
           "answer": "Apollo"
         },
         {
-          "text": "Threadsap",
+          "image": "https://cdn.deadlock.wiki/Threadsap.png",
+          "hints": [
+            "The ability: Threadsap",
+            "A Mystic hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Baba"
         },
         {
-          "text": "Granny Long Legs",
+          "image": "https://cdn.deadlock.wiki/Granny_Long_Legs.png",
+          "hints": [
+            "The ability: Granny Long Legs",
+            "A Mystic hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Baba"
         },
         {
-          "text": "Baba's Brew",
+          "image": "https://cdn.deadlock.wiki/Baba%27s_Brew.png",
+          "hints": [
+            "The ability: Baba's Brew",
+            "A Mystic hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Baba"
         },
         {
-          "text": "Feed The Birds (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Feed_The_Birds.png",
+          "hints": [
+            "The ability: Feed The Birds (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Baba"
         },
         {
-          "text": "Exploding Uppercut",
+          "image": "https://cdn.deadlock.wiki/Exploding_Uppercut.png",
+          "hints": [
+            "The ability: Exploding Uppercut",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Bebop"
         },
         {
-          "text": "Sticky Bomb",
+          "image": "https://cdn.deadlock.wiki/Sticky_Bomb.png",
+          "hints": [
+            "The ability: Sticky Bomb",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Bebop"
         },
         {
-          "text": "Grapple Arm",
+          "image": "https://cdn.deadlock.wiki/Grapple_Arm.png",
+          "hints": [
+            "The ability: Grapple Arm",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Bebop"
         },
         {
-          "text": "Hyper Beam (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Hyper_Beam.png",
+          "hints": [
+            "The ability: Hyper Beam (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Bebop"
         },
         {
-          "text": "Bashdown",
+          "image": "https://cdn.deadlock.wiki/Bashdown.png",
+          "hints": [
+            "The ability: Bashdown",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Billy"
         },
         {
-          "text": "Rising Ram",
+          "image": "https://cdn.deadlock.wiki/Rising_Ram.png",
+          "hints": [
+            "The ability: Rising Ram",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Billy"
         },
         {
-          "text": "Blasted",
+          "image": "https://cdn.deadlock.wiki/Blasted.png",
+          "hints": [
+            "The ability: Blasted",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Billy"
         },
         {
-          "text": "Chain Gang (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Chain_Gang.png",
+          "hints": [
+            "The ability: Chain Gang (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “B”"
+          ],
           "answer": "Billy"
         },
         {
-          "text": "Gloom Bombs",
+          "image": "https://cdn.deadlock.wiki/Gloom_Bombs.png",
+          "hints": [
+            "The ability: Gloom Bombs",
+            "A Assassin hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Calico"
         },
         {
-          "text": "Leaping Slash",
+          "image": "https://cdn.deadlock.wiki/Leaping_Slash.png",
+          "hints": [
+            "The ability: Leaping Slash",
+            "A Assassin hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Calico"
         },
         {
-          "text": "Ava",
+          "image": "https://cdn.deadlock.wiki/Ava.png",
+          "hints": [
+            "The ability: Ava",
+            "A Assassin hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Calico"
         },
         {
-          "text": "Return to Shadows (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Return_to_Shadows.png",
+          "hints": [
+            "The ability: Return to Shadows (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Calico"
         },
         {
-          "text": "Light Eater",
+          "image": "https://cdn.deadlock.wiki/Light_Eater.png",
+          "hints": [
+            "The ability: Light Eater",
+            "A Mystic hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Celeste"
         },
         {
-          "text": "Dazzling Trick",
+          "image": "https://cdn.deadlock.wiki/Dazzling_Trick.png",
+          "hints": [
+            "The ability: Dazzling Trick",
+            "A Mystic hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Celeste"
         },
         {
-          "text": "Radiant Daggers",
+          "image": "https://cdn.deadlock.wiki/Radiant_Daggers.png",
+          "hints": [
+            "The ability: Radiant Daggers",
+            "A Mystic hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Celeste"
         },
         {
-          "text": "Shining Wonder (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Shining_Wonder.png",
+          "hints": [
+            "The ability: Shining Wonder (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “C”"
+          ],
           "answer": "Celeste"
         },
         {
-          "text": "Strix Salvo",
+          "image": "https://cdn.deadlock.wiki/Strix_Salvo.png",
+          "hints": [
+            "The ability: Strix Salvo",
+            "A Marksman hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Deadman Danny"
         },
         {
-          "text": "Chimera Mk1",
+          "image": "https://cdn.deadlock.wiki/Chimera_Mk1.png",
+          "hints": [
+            "The ability: Chimera Mk1",
+            "A Marksman hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Deadman Danny"
         },
         {
-          "text": "Jettison Fuel",
+          "image": "https://cdn.deadlock.wiki/Jettison_Fuel.png",
+          "hints": [
+            "The ability: Jettison Fuel",
+            "A Marksman hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Deadman Danny"
         },
         {
-          "text": "Close The Deal (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Close_The_Deal.png",
+          "hints": [
+            "The ability: Close The Deal (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Deadman Danny"
         },
         {
-          "text": "Rend",
+          "image": "https://cdn.deadlock.wiki/Rend.png",
+          "hints": [
+            "The ability: Rend",
+            "A Assassin hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Drifter"
         },
         {
-          "text": "Stalker's Mark",
+          "image": "https://cdn.deadlock.wiki/Stalker%27s_Mark.png",
+          "hints": [
+            "The ability: Stalker's Mark",
+            "A Assassin hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Drifter"
         },
         {
-          "text": "Bloodscent",
+          "image": "https://cdn.deadlock.wiki/Bloodscent.png",
+          "hints": [
+            "The ability: Bloodscent",
+            "A Assassin hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Drifter"
         },
         {
-          "text": "Eternal Night (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Eternal_Night.png",
+          "hints": [
+            "The ability: Eternal Night (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Drifter"
         },
         {
-          "text": "Kinetic Pulse",
+          "image": "https://cdn.deadlock.wiki/Kinetic_Pulse.png",
+          "hints": [
+            "The ability: Kinetic Pulse",
+            "A Healer hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Dynamo"
         },
         {
-          "text": "Quantum Entanglement",
+          "image": "https://cdn.deadlock.wiki/Quantum_Entanglement.png",
+          "hints": [
+            "The ability: Quantum Entanglement",
+            "A Healer hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Dynamo"
         },
         {
-          "text": "Rejuvenating Aurora",
+          "image": "https://cdn.deadlock.wiki/Rejuvenating_Aurora.png",
+          "hints": [
+            "The ability: Rejuvenating Aurora",
+            "A Healer hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Dynamo"
         },
         {
-          "text": "Singularity (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Singularity.png",
+          "hints": [
+            "The ability: Singularity (ultimate)",
+            "A Healer hero",
+            "Their name starts with “D”"
+          ],
           "answer": "Dynamo"
         },
         {
-          "text": "Jar of Dead",
+          "image": "https://cdn.deadlock.wiki/Jar_of_Dead.png",
+          "hints": [
+            "The ability: Jar of Dead",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Graves"
         },
         {
-          "text": "Grasping Hands",
+          "image": "https://cdn.deadlock.wiki/Grasping_Hands.png",
+          "hints": [
+            "The ability: Grasping Hands",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Graves"
         },
         {
-          "text": "Essence Theft",
+          "image": "https://cdn.deadlock.wiki/Essence_Theft.png",
+          "hints": [
+            "The ability: Essence Theft",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Graves"
         },
         {
-          "text": "Borrowed Decree (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Borrowed_Decree.png",
+          "hints": [
+            "The ability: Borrowed Decree (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Graves"
         },
         {
-          "text": "Charged Shot",
+          "image": "https://cdn.deadlock.wiki/Charged_Shot.png",
+          "hints": [
+            "The ability: Charged Shot",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Grey Talon"
         },
         {
-          "text": "Rain of Arrows",
+          "image": "https://cdn.deadlock.wiki/Rain_of_Arrows.png",
+          "hints": [
+            "The ability: Rain of Arrows",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Grey Talon"
         },
         {
-          "text": "Spirit Snare",
+          "image": "https://cdn.deadlock.wiki/Spirit_Snare.png",
+          "hints": [
+            "The ability: Spirit Snare",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Grey Talon"
         },
         {
-          "text": "Guided Owl (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Guided_Owl.png",
+          "hints": [
+            "The ability: Guided Owl (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “G”"
+          ],
           "answer": "Grey Talon"
         },
         {
-          "text": "Sleep Dagger",
+          "image": "https://cdn.deadlock.wiki/Sleep_Dagger.png",
+          "hints": [
+            "The ability: Sleep Dagger",
+            "A Assassin hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Haze"
         },
         {
-          "text": "Smoke Bomb",
+          "image": "https://cdn.deadlock.wiki/Smoke_Bomb.png",
+          "hints": [
+            "The ability: Smoke Bomb",
+            "A Assassin hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Haze"
         },
         {
-          "text": "Fixation",
+          "image": "https://cdn.deadlock.wiki/Fixation.png",
+          "hints": [
+            "The ability: Fixation",
+            "A Assassin hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Haze"
         },
         {
-          "text": "Bullet Dance (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Bullet_Dance.png",
+          "hints": [
+            "The ability: Bullet Dance (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Haze"
         },
         {
-          "text": "Powder Keg",
+          "image": "https://cdn.deadlock.wiki/Powder_Keg.png",
+          "hints": [
+            "The ability: Powder Keg",
+            "A Marksman hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Holliday"
         },
         {
-          "text": "Bounce Pad",
+          "image": "https://cdn.deadlock.wiki/Bounce_Pad.png",
+          "hints": [
+            "The ability: Bounce Pad",
+            "A Marksman hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Holliday"
         },
         {
-          "text": "Crackshot",
+          "image": "https://cdn.deadlock.wiki/Crackshot.png",
+          "hints": [
+            "The ability: Crackshot",
+            "A Marksman hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Holliday"
         },
         {
-          "text": "Spirit Lasso (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Spirit_Lasso.png",
+          "hints": [
+            "The ability: Spirit Lasso (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “H”"
+          ],
           "answer": "Holliday"
         },
         {
-          "text": "Napalm",
+          "image": "https://cdn.deadlock.wiki/Napalm.png",
+          "hints": [
+            "The ability: Napalm",
+            "A Mystic hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Infernus"
         },
         {
-          "text": "Flame Dash",
+          "image": "https://cdn.deadlock.wiki/Flame_Dash.png",
+          "hints": [
+            "The ability: Flame Dash",
+            "A Mystic hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Infernus"
         },
         {
-          "text": "Afterburn",
+          "image": "https://cdn.deadlock.wiki/Afterburn.png",
+          "hints": [
+            "The ability: Afterburn",
+            "A Mystic hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Infernus"
         },
         {
-          "text": "Concussive Combustion (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Concussive_Combustion.png",
+          "hints": [
+            "The ability: Concussive Combustion (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Infernus"
         },
         {
-          "text": "Entangling Thorns",
+          "image": "https://cdn.deadlock.wiki/Entangling_Thorns.png",
+          "hints": [
+            "The ability: Entangling Thorns",
+            "A Healer hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Ivy"
         },
         {
-          "text": "Kudzu Connection",
+          "image": "https://cdn.deadlock.wiki/Kudzu_Connection.png",
+          "hints": [
+            "The ability: Kudzu Connection",
+            "A Healer hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Ivy"
         },
         {
-          "text": "Stone Form",
+          "image": "https://cdn.deadlock.wiki/Stone_Form.png",
+          "hints": [
+            "The ability: Stone Form",
+            "A Healer hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Ivy"
         },
         {
-          "text": "Air Drop (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Air_Drop.png",
+          "hints": [
+            "The ability: Air Drop (ultimate)",
+            "A Healer hero",
+            "Their name starts with “I”"
+          ],
           "answer": "Ivy"
         },
         {
-          "text": "Frost Grenade",
+          "image": "https://cdn.deadlock.wiki/Frost_Grenade.png",
+          "hints": [
+            "The ability: Frost Grenade",
+            "A Healer hero",
+            "Their name starts with “K”"
+          ],
           "answer": "Kelvin"
         },
         {
-          "text": "Ice Path",
+          "image": "https://cdn.deadlock.wiki/Ice_Path.png",
+          "hints": [
+            "The ability: Ice Path",
+            "A Healer hero",
+            "Their name starts with “K”"
+          ],
           "answer": "Kelvin"
         },
         {
-          "text": "Arctic Beam",
+          "image": "https://cdn.deadlock.wiki/Arctic_Beam.png",
+          "hints": [
+            "The ability: Arctic Beam",
+            "A Healer hero",
+            "Their name starts with “K”"
+          ],
           "answer": "Kelvin"
         },
         {
-          "text": "Frozen Shelter (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Frozen_Shelter.png",
+          "hints": [
+            "The ability: Frozen Shelter (ultimate)",
+            "A Healer hero",
+            "Their name starts with “K”"
+          ],
           "answer": "Kelvin"
         },
         {
-          "text": "Essence Bomb",
+          "image": "https://cdn.deadlock.wiki/Essence_Bomb.png",
+          "hints": [
+            "The ability: Essence Bomb",
+            "A Mystic hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lady Geist"
         },
         {
-          "text": "Life Drain",
+          "image": "https://cdn.deadlock.wiki/Life_Drain.png",
+          "hints": [
+            "The ability: Life Drain",
+            "A Mystic hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lady Geist"
         },
         {
-          "text": "Malice",
+          "image": "https://cdn.deadlock.wiki/Malice.png",
+          "hints": [
+            "The ability: Malice",
+            "A Mystic hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lady Geist"
         },
         {
-          "text": "Soul Exchange (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Soul_Exchange.png",
+          "hints": [
+            "The ability: Soul Exchange (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lady Geist"
         },
         {
-          "text": "Ground Strike",
+          "image": "https://cdn.deadlock.wiki/Ground_Strike.png",
+          "hints": [
+            "The ability: Ground Strike",
+            "A Assassin hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lash"
         },
         {
-          "text": "Grapple",
+          "image": "https://cdn.deadlock.wiki/Grapple.png",
+          "hints": [
+            "The ability: Grapple",
+            "A Assassin hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lash"
         },
         {
-          "text": "Flog",
+          "image": "https://cdn.deadlock.wiki/Flog.png",
+          "hints": [
+            "The ability: Flog",
+            "A Assassin hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lash"
         },
         {
-          "text": "Death Slam (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Death_Slam.png",
+          "hints": [
+            "The ability: Death Slam (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “L”"
+          ],
           "answer": "Lash"
         },
         {
-          "text": "Mini Turret",
+          "image": "https://cdn.deadlock.wiki/Mini_Turret.png",
+          "hints": [
+            "The ability: Mini Turret",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "McGinnis"
         },
         {
-          "text": "Medicinal Specter",
+          "image": "https://cdn.deadlock.wiki/Medicinal_Specter.png",
+          "hints": [
+            "The ability: Medicinal Specter",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "McGinnis"
         },
         {
-          "text": "Spectral Wall",
+          "image": "https://cdn.deadlock.wiki/Spectral_Wall.png",
+          "hints": [
+            "The ability: Spectral Wall",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "McGinnis"
         },
         {
-          "text": "Heavy Barrage (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Heavy_Barrage.png",
+          "hints": [
+            "The ability: Heavy Barrage (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "McGinnis"
         },
         {
-          "text": "Rake",
+          "image": "https://cdn.deadlock.wiki/Rake.png",
+          "hints": [
+            "The ability: Rake",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mina"
         },
         {
-          "text": "Sanguine Retreat",
+          "image": "https://cdn.deadlock.wiki/Sanguine_Retreat.png",
+          "hints": [
+            "The ability: Sanguine Retreat",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mina"
         },
         {
-          "text": "Love Bites",
+          "image": "https://cdn.deadlock.wiki/Love_Bites.png",
+          "hints": [
+            "The ability: Love Bites",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mina"
         },
         {
-          "text": "Nox Nostra (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Nox_Nostra.png",
+          "hints": [
+            "The ability: Nox Nostra (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mina"
         },
         {
-          "text": "Fire Scarabs",
+          "image": "https://cdn.deadlock.wiki/Fire_Scarabs.png",
+          "hints": [
+            "The ability: Fire Scarabs",
+            "A Assassin hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mirage"
         },
         {
-          "text": "Dust Devil",
+          "image": "https://cdn.deadlock.wiki/Dust_Devil.png",
+          "hints": [
+            "The ability: Dust Devil",
+            "A Assassin hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mirage"
         },
         {
-          "text": "Djinn's Mark",
+          "image": "https://cdn.deadlock.wiki/Djinn%27s_Mark.png",
+          "hints": [
+            "The ability: Djinn's Mark",
+            "A Assassin hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mirage"
         },
         {
-          "text": "Traveler (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Traveler.png",
+          "hints": [
+            "The ability: Traveler (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mirage"
         },
         {
-          "text": "Scorn",
+          "image": "https://cdn.deadlock.wiki/Scorn.png",
+          "hints": [
+            "The ability: Scorn",
+            "A Brawler hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mo & Krill|Mo and Krill"
         },
         {
-          "text": "Burrow",
+          "image": "https://cdn.deadlock.wiki/Burrow.png",
+          "hints": [
+            "The ability: Burrow",
+            "A Brawler hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mo & Krill|Mo and Krill"
         },
         {
-          "text": "Sand Blast",
+          "image": "https://cdn.deadlock.wiki/Sand_Blast.png",
+          "hints": [
+            "The ability: Sand Blast",
+            "A Brawler hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mo & Krill|Mo and Krill"
         },
         {
-          "text": "Combo (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Combo.png",
+          "hints": [
+            "The ability: Combo (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “M”"
+          ],
           "answer": "Mo & Krill|Mo and Krill"
         },
         {
-          "text": "Leech Therapy",
+          "image": "https://cdn.deadlock.wiki/Leech_Therapy.png",
+          "hints": [
+            "The ability: Leech Therapy",
+            "A Healer hero",
+            "Their name starts with “N”"
+          ],
           "answer": "Nurse Harrow"
         },
         {
-          "text": "Wretched Vapors",
+          "image": "https://cdn.deadlock.wiki/Wretched_Vapors.png",
+          "hints": [
+            "The ability: Wretched Vapors",
+            "A Healer hero",
+            "Their name starts with “N”"
+          ],
           "answer": "Nurse Harrow"
         },
         {
-          "text": "Healing Needles",
+          "image": "https://cdn.deadlock.wiki/Healing_Needles.png",
+          "hints": [
+            "The ability: Healing Needles",
+            "A Healer hero",
+            "Their name starts with “N”"
+          ],
           "answer": "Nurse Harrow"
         },
         {
-          "text": "Lurking Terrors (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Lurking_Terrors.png",
+          "hints": [
+            "The ability: Lurking Terrors (ultimate)",
+            "A Healer hero",
+            "Their name starts with “N”"
+          ],
           "answer": "Nurse Harrow"
         },
         {
-          "text": "Bookwyrm",
+          "image": "https://cdn.deadlock.wiki/Bookwyrm.png",
+          "hints": [
+            "The ability: Bookwyrm",
+            "A Healer hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paige"
         },
         {
-          "text": "Plot Armor",
+          "image": "https://cdn.deadlock.wiki/Plot_Armor.png",
+          "hints": [
+            "The ability: Plot Armor",
+            "A Healer hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paige"
         },
         {
-          "text": "Captivating Read",
+          "image": "https://cdn.deadlock.wiki/Captivating_Read.png",
+          "hints": [
+            "The ability: Captivating Read",
+            "A Healer hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paige"
         },
         {
-          "text": "Rallying Charge (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Rallying_Charge.png",
+          "hints": [
+            "The ability: Rallying Charge (ultimate)",
+            "A Healer hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paige"
         },
         {
-          "text": "Pulse Grenade",
+          "image": "https://cdn.deadlock.wiki/Pulse_Grenade.png",
+          "hints": [
+            "The ability: Pulse Grenade",
+            "A Marksman hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paradox"
         },
         {
-          "text": "Time Wall",
+          "image": "https://cdn.deadlock.wiki/Time_Wall.png",
+          "hints": [
+            "The ability: Time Wall",
+            "A Marksman hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paradox"
         },
         {
-          "text": "Kinetic Carbine",
+          "image": "https://cdn.deadlock.wiki/Kinetic_Carbine.png",
+          "hints": [
+            "The ability: Kinetic Carbine",
+            "A Marksman hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paradox"
         },
         {
-          "text": "Paradoxical Swap (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Paradoxical_Swap.png",
+          "hints": [
+            "The ability: Paradoxical Swap (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Paradox"
         },
         {
-          "text": "Barrage",
+          "image": "https://cdn.deadlock.wiki/Barrage.png",
+          "hints": [
+            "The ability: Barrage",
+            "A Assassin hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Pocket"
         },
         {
-          "text": "Flying Cloak",
+          "image": "https://cdn.deadlock.wiki/Flying_Cloak.png",
+          "hints": [
+            "The ability: Flying Cloak",
+            "A Assassin hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Pocket"
         },
         {
-          "text": "Enchanter's Satchel",
+          "image": "https://cdn.deadlock.wiki/Enchanter%27s_Satchel.png",
+          "hints": [
+            "The ability: Enchanter's Satchel",
+            "A Assassin hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Pocket"
         },
         {
-          "text": "Affliction (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Affliction.png",
+          "hints": [
+            "The ability: Affliction (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “P”"
+          ],
           "answer": "Pocket"
         },
         {
-          "text": "Scrap Grenade",
+          "image": "https://cdn.deadlock.wiki/Scrap_Grenade.png",
+          "hints": [
+            "The ability: Scrap Grenade",
+            "A Brawler hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rat King"
         },
         {
-          "text": "Rat Swarm",
+          "image": "https://cdn.deadlock.wiki/Rat_Swarm.png",
+          "hints": [
+            "The ability: Rat Swarm",
+            "A Brawler hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rat King"
         },
         {
-          "text": "Royal Pestments",
+          "image": "https://cdn.deadlock.wiki/Royal_Pestments.png",
+          "hints": [
+            "The ability: Royal Pestments",
+            "A Brawler hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rat King"
         },
         {
-          "text": "Rule, Ratannia! (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Rule,_Ratannia!.png",
+          "hints": [
+            "The ability: Rule, Ratannia! (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rat King"
         },
         {
-          "text": "Pillow Toss",
+          "image": "https://cdn.deadlock.wiki/Pillow_Toss.png",
+          "hints": [
+            "The ability: Pillow Toss",
+            "A Healer hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rem"
         },
         {
-          "text": "Tag Along",
+          "image": "https://cdn.deadlock.wiki/Tag_Along.png",
+          "hints": [
+            "The ability: Tag Along",
+            "A Healer hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rem"
         },
         {
-          "text": "Lil Helpers",
+          "image": "https://cdn.deadlock.wiki/Lil_Helpers.png",
+          "hints": [
+            "The ability: Lil Helpers",
+            "A Healer hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rem"
         },
         {
-          "text": "Naptime (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Naptime.png",
+          "hints": [
+            "The ability: Naptime (ultimate)",
+            "A Healer hero",
+            "Their name starts with “R”"
+          ],
           "answer": "Rem"
         },
         {
-          "text": "Lightning Ball",
+          "image": "https://cdn.deadlock.wiki/Lightning_Ball.png",
+          "hints": [
+            "The ability: Lightning Ball",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Seven"
         },
         {
-          "text": "Static Charge",
+          "image": "https://cdn.deadlock.wiki/Static_Charge.png",
+          "hints": [
+            "The ability: Static Charge",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Seven"
         },
         {
-          "text": "Power Surge",
+          "image": "https://cdn.deadlock.wiki/Power_Surge.png",
+          "hints": [
+            "The ability: Power Surge",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Seven"
         },
         {
-          "text": "Storm Cloud (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Storm_Cloud.png",
+          "hints": [
+            "The ability: Storm Cloud (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Seven"
         },
         {
-          "text": "Serrated Knives",
+          "image": "https://cdn.deadlock.wiki/Serrated_Knives.png",
+          "hints": [
+            "The ability: Serrated Knives",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Shiv"
         },
         {
-          "text": "Slice and Dice",
+          "image": "https://cdn.deadlock.wiki/Slice_and_Dice.png",
+          "hints": [
+            "The ability: Slice and Dice",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Shiv"
         },
         {
-          "text": "Bloodletting",
+          "image": "https://cdn.deadlock.wiki/Bloodletting.png",
+          "hints": [
+            "The ability: Bloodletting",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Shiv"
         },
         {
-          "text": "Killing Blow (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Killing_Blow.png",
+          "hints": [
+            "The ability: Killing Blow (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Shiv"
         },
         {
-          "text": "Slam Fire",
+          "image": "https://cdn.deadlock.wiki/Slam_Fire.png",
+          "hints": [
+            "The ability: Slam Fire",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Silver"
         },
         {
-          "text": "Boot Kick",
+          "image": "https://cdn.deadlock.wiki/Boot_Kick.png",
+          "hints": [
+            "The ability: Boot Kick",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Silver"
         },
         {
-          "text": "Entangling Bola",
+          "image": "https://cdn.deadlock.wiki/Entangling_Bola.png",
+          "hints": [
+            "The ability: Entangling Bola",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Silver"
         },
         {
-          "text": "Lycan Curse (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Lycan_Curse.png",
+          "hints": [
+            "The ability: Lycan Curse (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Silver"
         },
         {
-          "text": "Vexing Bolt",
+          "image": "https://cdn.deadlock.wiki/Vexing_Bolt.png",
+          "hints": [
+            "The ability: Vexing Bolt",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Sinclair"
         },
         {
-          "text": "Spectral Assistant",
+          "image": "https://cdn.deadlock.wiki/Spectral_Assistant.png",
+          "hints": [
+            "The ability: Spectral Assistant",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Sinclair"
         },
         {
-          "text": "Rabbit Hex",
+          "image": "https://cdn.deadlock.wiki/Rabbit_Hex.png",
+          "hints": [
+            "The ability: Rabbit Hex",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Sinclair"
         },
         {
-          "text": "Audience Participation (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Audience_Participation.png",
+          "hints": [
+            "The ability: Audience Participation (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Sinclair"
         },
         {
-          "text": "Setup Bishop",
+          "image": "https://cdn.deadlock.wiki/Setup_Bishop.png",
+          "hints": [
+            "The ability: Setup Bishop",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Solomon"
         },
         {
-          "text": "Kingside Knight",
+          "image": "https://cdn.deadlock.wiki/Kingside_Knight.png",
+          "hints": [
+            "The ability: Kingside Knight",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Solomon"
         },
         {
-          "text": "Rook Battery",
+          "image": "https://cdn.deadlock.wiki/Rook_Battery.png",
+          "hints": [
+            "The ability: Rook Battery",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Solomon"
         },
         {
-          "text": "Develop Queen (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Develop_Queen.png",
+          "hints": [
+            "The ability: Develop Queen (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “S”"
+          ],
           "answer": "Solomon"
         },
         {
-          "text": "Call Bell",
+          "image": "https://cdn.deadlock.wiki/Call_Bell.png",
+          "hints": [
+            "The ability: Call Bell",
+            "A Mystic hero",
+            "Their name starts with “D”"
+          ],
           "answer": "The Doorman|Doorman"
         },
         {
-          "text": "Doorway",
+          "image": "https://cdn.deadlock.wiki/Doorway.png",
+          "hints": [
+            "The ability: Doorway",
+            "A Mystic hero",
+            "Their name starts with “D”"
+          ],
           "answer": "The Doorman|Doorman"
         },
         {
-          "text": "Luggage Cart",
+          "image": "https://cdn.deadlock.wiki/Luggage_Cart.png",
+          "hints": [
+            "The ability: Luggage Cart",
+            "A Mystic hero",
+            "Their name starts with “D”"
+          ],
           "answer": "The Doorman|Doorman"
         },
         {
-          "text": "Hotel Guest (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Hotel_Guest.png",
+          "hints": [
+            "The ability: Hotel Guest (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “D”"
+          ],
           "answer": "The Doorman|Doorman"
         },
         {
-          "text": "Consecrating Grenade",
+          "image": "https://cdn.deadlock.wiki/Consecrating_Grenade.png",
+          "hints": [
+            "The ability: Consecrating Grenade",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Venator"
         },
         {
-          "text": "Gutshot",
+          "image": "https://cdn.deadlock.wiki/Gutshot.png",
+          "hints": [
+            "The ability: Gutshot",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Venator"
         },
         {
-          "text": "Hex-Lined Snap Trap",
+          "image": "https://cdn.deadlock.wiki/Hex-Lined_Snap_Trap.png",
+          "hints": [
+            "The ability: Hex-Lined Snap Trap",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Venator"
         },
         {
-          "text": "Ira Domini (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Ira_Domini.png",
+          "hints": [
+            "The ability: Ira Domini (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Venator"
         },
         {
-          "text": "Pain Battery",
+          "image": "https://cdn.deadlock.wiki/Pain_Battery.png",
+          "hints": [
+            "The ability: Pain Battery",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Victor"
         },
         {
-          "text": "Jumpstart",
+          "image": "https://cdn.deadlock.wiki/Jumpstart.png",
+          "hints": [
+            "The ability: Jumpstart",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Victor"
         },
         {
-          "text": "Aura of Suffering",
+          "image": "https://cdn.deadlock.wiki/Aura_of_Suffering.png",
+          "hints": [
+            "The ability: Aura of Suffering",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Victor"
         },
         {
-          "text": "Shocking Reanimation (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Shocking_Reanimation.png",
+          "hints": [
+            "The ability: Shocking Reanimation (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Victor"
         },
         {
-          "text": "Stake",
+          "image": "https://cdn.deadlock.wiki/Stake.png",
+          "hints": [
+            "The ability: Stake",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vindicta"
         },
         {
-          "text": "Flight",
+          "image": "https://cdn.deadlock.wiki/Flight.png",
+          "hints": [
+            "The ability: Flight",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vindicta"
         },
         {
-          "text": "Crow Familiar",
+          "image": "https://cdn.deadlock.wiki/Crow_Familiar.png",
+          "hints": [
+            "The ability: Crow Familiar",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vindicta"
         },
         {
-          "text": "Assassinate (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Assassinate.png",
+          "hints": [
+            "The ability: Assassinate (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vindicta"
         },
         {
-          "text": "Living Ink",
+          "image": "https://cdn.deadlock.wiki/Living_Ink.png",
+          "hints": [
+            "The ability: Living Ink",
+            "A Mystic hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Violet"
         },
         {
-          "text": "Flow State",
+          "image": "https://cdn.deadlock.wiki/Flow_State.png",
+          "hints": [
+            "The ability: Flow State",
+            "A Mystic hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Violet"
         },
         {
-          "text": "Still Life",
+          "image": "https://cdn.deadlock.wiki/Still_Life.png",
+          "hints": [
+            "The ability: Still Life",
+            "A Mystic hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Violet"
         },
         {
-          "text": "Abstract Landscape (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Abstract_Landscape.png",
+          "hints": [
+            "The ability: Abstract Landscape (ultimate)",
+            "A Mystic hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Violet"
         },
         {
-          "text": "Splatter",
+          "image": "https://cdn.deadlock.wiki/Splatter.png",
+          "hints": [
+            "The ability: Splatter",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Viscous"
         },
         {
-          "text": "The Cube",
+          "image": "https://cdn.deadlock.wiki/The_Cube.png",
+          "hints": [
+            "The ability: The Cube",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Viscous"
         },
         {
-          "text": "Puddle Punch",
+          "image": "https://cdn.deadlock.wiki/Puddle_Punch.png",
+          "hints": [
+            "The ability: Puddle Punch",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Viscous"
         },
         {
-          "text": "Goo Ball (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Goo_Ball.png",
+          "hints": [
+            "The ability: Goo Ball (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Viscous"
         },
         {
-          "text": "Screwjab Dagger",
+          "image": "https://cdn.deadlock.wiki/Screwjab_Dagger.png",
+          "hints": [
+            "The ability: Screwjab Dagger",
+            "A Assassin hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vyper"
         },
         {
-          "text": "Lethal Venom",
+          "image": "https://cdn.deadlock.wiki/Lethal_Venom.png",
+          "hints": [
+            "The ability: Lethal Venom",
+            "A Assassin hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vyper"
         },
         {
-          "text": "Slither",
+          "image": "https://cdn.deadlock.wiki/Slither.png",
+          "hints": [
+            "The ability: Slither",
+            "A Assassin hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vyper"
         },
         {
-          "text": "Petrifying Bola (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Petrifying_Bola.png",
+          "hints": [
+            "The ability: Petrifying Bola (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “V”"
+          ],
           "answer": "Vyper"
         },
         {
-          "text": "Alchemical Flask",
+          "image": "https://cdn.deadlock.wiki/Alchemical_Flask.png",
+          "hints": [
+            "The ability: Alchemical Flask",
+            "A Brawler hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Warden"
         },
         {
-          "text": "Willpower",
+          "image": "https://cdn.deadlock.wiki/Willpower.png",
+          "hints": [
+            "The ability: Willpower",
+            "A Brawler hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Warden"
         },
         {
-          "text": "Binding Word",
+          "image": "https://cdn.deadlock.wiki/Binding_Word.png",
+          "hints": [
+            "The ability: Binding Word",
+            "A Brawler hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Warden"
         },
         {
-          "text": "Last Stand (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Last_Stand.png",
+          "hints": [
+            "The ability: Last Stand (ultimate)",
+            "A Brawler hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Warden"
         },
         {
-          "text": "Card Trick",
+          "image": "https://cdn.deadlock.wiki/Card_Trick.png",
+          "hints": [
+            "The ability: Card Trick",
+            "A Marksman hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Wraith"
         },
         {
-          "text": "Project Mind",
+          "image": "https://cdn.deadlock.wiki/Project_Mind.png",
+          "hints": [
+            "The ability: Project Mind",
+            "A Marksman hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Wraith"
         },
         {
-          "text": "Full Auto",
+          "image": "https://cdn.deadlock.wiki/Full_Auto.png",
+          "hints": [
+            "The ability: Full Auto",
+            "A Marksman hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Wraith"
         },
         {
-          "text": "Telekinesis (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Telekinesis.png",
+          "hints": [
+            "The ability: Telekinesis (ultimate)",
+            "A Marksman hero",
+            "Their name starts with “W”"
+          ],
           "answer": "Wraith"
         },
         {
-          "text": "Power Slash",
+          "image": "https://cdn.deadlock.wiki/Power_Slash.png",
+          "hints": [
+            "The ability: Power Slash",
+            "A Assassin hero",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yamato"
         },
         {
-          "text": "Flying Slash",
+          "image": "https://cdn.deadlock.wiki/Flying_Slash.png",
+          "hints": [
+            "The ability: Flying Slash",
+            "A Assassin hero",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yamato"
         },
         {
-          "text": "Crimson Slash",
+          "image": "https://cdn.deadlock.wiki/Crimson_Slash.png",
+          "hints": [
+            "The ability: Crimson Slash",
+            "A Assassin hero",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yamato"
         },
         {
-          "text": "Shadow Transformation (ultimate)",
+          "image": "https://cdn.deadlock.wiki/Shadow_Transformation.png",
+          "hints": [
+            "The ability: Shadow Transformation (ultimate)",
+            "A Assassin hero",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yamato"
         }
       ]
-    }
+    },
+    "finaleSkip": [
+      "Active Reload",
+      "Alchemical Fire",
+      "Arcane Surge",
+      "Arctic Blast",
+      "Armor Piercer",
+      "Ballistic Enchantment",
+      "Battle Vest",
+      "Berserker",
+      "Blood Tribute",
+      "Boundless Spirit",
+      "Bullet Lifesteal",
+      "Bullet Resilience",
+      "Bullet Resist Shredder",
+      "Burst Fire",
+      "Capacitor",
+      "Celestial Blessing",
+      "Cheat Death",
+      "Cloak of Opportunity",
+      "Close Quarters",
+      "Cold Front",
+      "Colossus",
+      "Compress Cooldown",
+      "Counterspell",
+      "Crippling Headshot",
+      "Crushing Fists",
+      "Cultist Sacrifice",
+      "Cursed Relic",
+      "Debuff Reducer",
+      "Decay",
+      "Disarming Hex",
+      "Dispel Magic",
+      "Divine Barrier",
+      "Diviner's Kevlar",
+      "Duration Extender",
+      "Echo Shard",
+      "Electric Slippers",
+      "Enchanter's Emblem",
+      "Enduring Speed",
+      "Escalating Exposure",
+      "Escalating Resilience",
+      "Eternal Gift",
+      "Ethereal Shift",
+      "Express Shot",
+      "Extended Magazine",
+      "Extra Charge",
+      "Extra Health",
+      "Extra Regen",
+      "Extra Spirit",
+      "Extra Stamina",
+      "Fleetfoot",
+      "Focus Lens",
+      "Fortitude",
+      "Frenzy",
+      "Frostbite Charm",
+      "Fury Trance",
+      "Glass Cannon",
+      "Golden Goose Egg",
+      "Greater Expansion",
+      "Grit",
+      "Guardian Ward",
+      "Haunting Shot",
+      "Headhunter",
+      "Headshot Booster",
+      "Healbane",
+      "Healing Booster",
+      "Healing Nova",
+      "Healing Rite",
+      "Healing Tempo",
+      "Heroic Aura",
+      "High-Velocity Rounds",
+      "Hollow Point",
+      "Hunter's Aura",
+      "Improved Spirit",
+      "Indomitable",
+      "Infinite Rounds",
+      "Infuser",
+      "Inhibitor",
+      "Intensifying Magazine",
+      "Juggernaut",
+      "Kinetic Dash",
+      "Knockdown",
+      "Leech",
+      "Lifestrike",
+      "Lightning Scroll",
+      "Long Range",
+      "Lucky Shot",
+      "Magic Carpet",
+      "Majestic Leap",
+      "Melee Charge",
+      "Melee Lifesteal",
+      "Mercurial Magnum",
+      "Metal Skin",
+      "Monster Rounds",
+      "Mystic Burst",
+      "Mystic Conduit",
+      "Mystic Expansion",
+      "Mystic Regeneration",
+      "Mystic Reverb",
+      "Mystic Shot",
+      "Mystic Slow",
+      "Mystic Vulnerability",
+      "Mystical Piano",
+      "Nullification Burst",
+      "Omnicharge Signet",
+      "Opening Rounds",
+      "Phantom Strike",
+      "Plated Armor",
+      "Point Blank",
+      "Prism Blast",
+      "Quicksilver Reload",
+      "Radiant Regeneration",
+      "Rapid Recharge",
+      "Rapid Rounds",
+      "Reactive Barrier",
+      "Rebuttal",
+      "Recharging Rush",
+      "Refresher",
+      "Rescue Beam",
+      "Restorative Locket",
+      "Restorative Shot",
+      "Return Fire",
+      "Ricochet",
+      "Runed Gauntlets",
+      "Rusted Barrel",
+      "Scourge",
+      "Seraphim Wings",
+      "Shadow Strike",
+      "Shadow Weave",
+      "Sharpshooter",
+      "Shrink Ray",
+      "Silence Wave",
+      "Silencer",
+      "Siphon Bullets",
+      "Slowing Bullets",
+      "Slowing Hex",
+      "Spellbreaker",
+      "Spellslinger",
+      "Spirit Burn",
+      "Spirit Lifesteal",
+      "Spirit Rend",
+      "Spirit Resilience",
+      "Spirit Sap",
+      "Spirit Shielding",
+      "Spirit Shredder",
+      "Spirit Snatch",
+      "Spirit Strike",
+      "Spiritual Overflow",
+      "Split Shot",
+      "Sprint Boots",
+      "Stalker",
+      "Stamina Mastery",
+      "Superior Cooldown",
+      "Superior Duration",
+      "Suppressor",
+      "Surge of Power",
+      "Swift Striker",
+      "Tankbuster",
+      "Tesla Bullets",
+      "Titanic Magazine",
+      "Torment Pulse",
+      "Toxic Bullets",
+      "Transcendent Cooldown",
+      "Trophy Collector",
+      "Unstable Concoction",
+      "Unstoppable",
+      "Vampiric Burst",
+      "Veil Walker",
+      "Vortex Web",
+      "Warp Stone",
+      "Weakening Headshot",
+      "Weapon Shielding",
+      "Weighted Shots",
+      "Witchmail"
+    ]
   }
 ]

@@ -10,7 +10,6 @@ const read = (p) => JSON.parse(readFileSync(new URL(p, ROOT), 'utf8'));
 const D = read('src/data/specialist/deadlock.json');
 
 const hero = new Map(D.heroes.map((h) => [h.name, h]));
-const item = new Map(D.items.map((i) => [i.name, i]));
 const aliasesOf = (name) => [...(name.startsWith('The ') ? [name.slice(4)] : []), ...(name.includes('&') ? [name.replace('&', 'and')] : [])];
 const alias = (name) => [name, ...aliasesOf(name)].join('|');
 const heroesOf = (type) => D.heroes.filter((h) => h.type === type).map((h) => alias(h.name));
@@ -26,15 +25,27 @@ const bosses = read('src/data/bosses.json');
 const lol = bosses.find((b) => b.id === 'lol');
 const impostors = [...lol.radar.members, ...lol.radar.impostors].filter((m) => m.image).slice(0, 14).map(({ label, image }) => ({ label, image }));
 
-// Final Blow: the shop's best-known items, the first an epic card, the next three rare.
-const FINALE = ['Unstoppable', 'Boundless Spirit', 'Curse', 'Leech', 'Siphon Bullets', 'Refresher', 'Echo Shard', 'Knockdown', 'Metal Skin', 'Glass Cannon', 'Crippling Headshot', 'Ethereal Shift', 'Silencer', 'Healing Rite', 'Vampiric Burst', 'Spirit Snatch'];
-const finale = FINALE.filter((n) => item.get(n)).map((n) => ({ label: n, image: item.get(n).image }));
+// Final Blow: the heroes only (the owner's call: no items). They are all Radar members already, so their
+// cards stay what the Radar made them; every item card sits the phase out (finaleSkip) and stays in the roster.
+const finale = members.map(({ label, image, aliases }) => ({ label, image, ...(aliases ? { aliases } : {}) }));
+const finaleSkip = D.items.map((i) => i.name);
 
-// Signature: an ability by its name — whose is it?
+// Signature: an ability's icon — whose is it? Hints as the clock runs down: the ability's name, the hero's type,
+// the first letter.
 const signature = {
   label: 'Abilities',
   prompt: 'Whose ability is this?',
-  clues: D.heroes.flatMap((h) => h.abilities.map((a) => ({ text: `${a.name}${a.slot === 4 ? ' (ultimate)' : ''}`, answer: alias(h.name) }))),
+  seconds: 30,
+  hints: true,
+  clues: D.heroes.flatMap((h) =>
+    h.abilities
+      .filter((a) => a.image)
+      .map((a) => ({
+        image: a.image,
+        hints: [`The ability: ${a.name}${a.slot === 4 ? ' (ultimate)' : ''}`, `A ${h.type} hero`, `Their name starts with “${h.name.replace(/^The /, '')[0]}”`],
+        answer: alias(h.name),
+      })),
+  ),
 };
 
 const boss = {
@@ -77,6 +88,7 @@ const boss = {
     ],
   },
   signature,
+  finaleSkip,
 };
 
 const at = bosses.findIndex((b) => b.id === boss.id);
@@ -84,10 +96,10 @@ if (at >= 0) bosses[at] = boss;
 else bosses.push(boss);
 writeFileSync(new URL('src/data/bosses.json', ROOT), JSON.stringify(bosses, null, 2) + '\n');
 
-// The cards beyond the boss's: every other item of the shop, its rarity from its tier.
+// The cards beyond the boss's: every item of the shop, its rarity from its tier (the fifteen that were once
+// Final Blow cards keep the rarity they were frozen with, src/data/card-rarities.json).
 const RARITY = { 4: 'epic', 3: 'rare' };
-const inFinale = new Set(finale.map((f) => f.label));
-const roster = D.items.filter((i) => !inFinale.has(i.name)).map((i) => ({ name: i.name, image: i.image, rarity: RARITY[i.tier] ?? 'common' }));
+const roster = D.items.map((i) => ({ name: i.name, image: i.image, rarity: RARITY[i.tier] ?? 'common' }));
 const ROSTERS = new URL('src/data/card-rosters.json', ROOT);
 const rosters = read('src/data/card-rosters.json');
 rosters.deadlock = roster;

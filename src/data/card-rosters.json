@@ -7332,6 +7332,11 @@
    "rarity": "rare"
   },
   {
+   "name": "Boundless Spirit",
+   "image": "https://cdn.deadlock.wiki/Boundless_Spirit.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Bullet Lifesteal",
    "image": "https://cdn.deadlock.wiki/Bullet_Lifesteal.png",
    "rarity": "common"
@@ -7397,6 +7402,11 @@
    "rarity": "rare"
   },
   {
+   "name": "Crippling Headshot",
+   "image": "https://cdn.deadlock.wiki/Crippling_Headshot.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Crushing Fists",
    "image": "https://cdn.deadlock.wiki/Crushing_Fists.png",
    "rarity": "epic"
@@ -7447,6 +7457,11 @@
    "rarity": "common"
   },
   {
+   "name": "Echo Shard",
+   "image": "https://cdn.deadlock.wiki/Echo_Shard.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Electric Slippers",
    "image": "https://cdn.deadlock.wiki/Electric_Slippers.png",
    "rarity": "common"
@@ -7475,6 +7490,11 @@
    "name": "Eternal Gift",
    "image": "https://cdn.deadlock.wiki/Eternal_Gift.png",
    "rarity": "common"
+  },
+  {
+   "name": "Ethereal Shift",
+   "image": "https://cdn.deadlock.wiki/Ethereal_Shift.png",
+   "rarity": "epic"
   },
   {
    "name": "Express Shot",
@@ -7542,6 +7562,11 @@
    "rarity": "rare"
   },
   {
+   "name": "Glass Cannon",
+   "image": "https://cdn.deadlock.wiki/Glass_Cannon.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Golden Goose Egg",
    "image": "https://cdn.deadlock.wiki/Golden_Goose_Egg.png",
    "rarity": "common"
@@ -7590,6 +7615,11 @@
    "name": "Healing Nova",
    "image": "https://cdn.deadlock.wiki/Healing_Nova.png",
    "rarity": "rare"
+  },
+  {
+   "name": "Healing Rite",
+   "image": "https://cdn.deadlock.wiki/Healing_Rite.png",
+   "rarity": "common"
   },
   {
    "name": "Healing Tempo",
@@ -7657,6 +7687,16 @@
    "rarity": "common"
   },
   {
+   "name": "Knockdown",
+   "image": "https://cdn.deadlock.wiki/Knockdown.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Leech",
+   "image": "https://cdn.deadlock.wiki/Leech.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Lifestrike",
    "image": "https://cdn.deadlock.wiki/Lifestrike.png",
    "rarity": "rare"
@@ -7700,6 +7740,11 @@
    "name": "Mercurial Magnum",
    "image": "https://cdn.deadlock.wiki/Mercurial_Magnum.png",
    "rarity": "epic"
+  },
+  {
+   "name": "Metal Skin",
+   "image": "https://cdn.deadlock.wiki/Metal_Skin.png",
+   "rarity": "rare"
   },
   {
    "name": "Monster Rounds",
@@ -7822,6 +7867,11 @@
    "rarity": "common"
   },
   {
+   "name": "Refresher",
+   "image": "https://cdn.deadlock.wiki/Refresher.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Rescue Beam",
    "image": "https://cdn.deadlock.wiki/Rescue_Beam.png",
    "rarity": "rare"
@@ -7892,6 +7942,16 @@
    "rarity": "rare"
   },
   {
+   "name": "Silencer",
+   "image": "https://cdn.deadlock.wiki/Silencer.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Siphon Bullets",
+   "image": "https://cdn.deadlock.wiki/Siphon_Bullets.png",
+   "rarity": "epic"
+  },
+  {
    "name": "Slowing Bullets",
    "image": "https://cdn.deadlock.wiki/Slowing_Bullets.png",
    "rarity": "common"
@@ -7945,6 +8005,11 @@
    "name": "Spirit Shredder",
    "image": "https://cdn.deadlock.wiki/Spirit_Shredder.png",
    "rarity": "common"
+  },
+  {
+   "name": "Spirit Snatch",
+   "image": "https://cdn.deadlock.wiki/Spirit_Snatch.png",
+   "rarity": "rare"
   },
   {
    "name": "Spirit Strike",
@@ -8040,6 +8105,16 @@
    "name": "Unstable Concoction",
    "image": "https://cdn.deadlock.wiki/Unstable_Concoction.png",
    "rarity": "common"
+  },
+  {
+   "name": "Unstoppable",
+   "image": "https://cdn.deadlock.wiki/Unstoppable.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Vampiric Burst",
+   "image": "https://cdn.deadlock.wiki/Vampiric_Burst.png",
+   "rarity": "epic"
   },
   {
    "name": "Veil Walker",
