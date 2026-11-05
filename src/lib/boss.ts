@@ -5,6 +5,7 @@ import type { BlitzPrompt, Boss, BossCard, SecretCategory, SecretSettings, Signa
 import { pick, shuffle } from './rng';
 import { compactText, findBestMatch, isFuzzyMatch, namesAnotherWord } from '../utils/textMatcher';
 import { withFrench } from './french';
+import { mediaLoading } from './images';
 
 export const PHASES = [
   { name: 'Knowledge Blitz', roman: 'I', how: 'Type names before the timer runs out — press Enter after each one.' },
@@ -389,12 +390,21 @@ export function formatTime(ms: number) {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
 
+/** The longest a question's clock waits for its pictures and videos to load (ms). */
+const MEDIA_WAIT_MS = 15000;
+
 /**
  * A countdown that runs while `running`, with time penalties. Calls `onExpire` once at zero.
  * Returns the remaining milliseconds (updated every frame) and `penalize(ms)`.
+ *
+ * While a picture or video on screen is still loading the clock waits (`loading` is true), up to
+ * MEDIA_WAIT_MS a question, so a broken picture can't freeze it. `waitForMedia: false` for a clock that
+ * can't wait (one shared with another player).
  */
-export function useCountdown(totalMs: number, running: boolean, onExpire: () => void) {
+export function useCountdown(totalMs: number, running: boolean, onExpire: () => void, waitForMedia = true) {
   const [left, setLeft] = useState(totalMs);
+  const [loading, setLoading] = useState(false);
+  const waited = useRef(0);
   const end = useRef(0);
   const remaining = useRef(totalMs);
   const expire = useRef(onExpire);
@@ -402,6 +412,7 @@ export function useCountdown(totalMs: number, running: boolean, onExpire: () => 
 
   useEffect(() => {
     remaining.current = totalMs;
+    waited.current = 0;
     setLeft(totalMs);
   }, [totalMs]);
 
@@ -409,26 +420,45 @@ export function useCountdown(totalMs: number, running: boolean, onExpire: () => 
     if (!running) return;
     end.current = performance.now() + remaining.current;
     let raf = 0;
+    let last = performance.now();
+    let checked = 0;
+    let waiting = false;
     const loop = () => {
-      const l = Math.max(0, end.current - performance.now());
+      const now = performance.now();
+      // Looking for loading media a few times a second is plenty; while some loads, the end moves on with time.
+      if (waitForMedia && now - checked > 120) {
+        checked = now;
+        const w = waited.current < MEDIA_WAIT_MS && mediaLoading();
+        if (w !== waiting) setLoading((waiting = w));
+      }
+      if (waiting) {
+        end.current += now - last;
+        waited.current += now - last;
+      }
+      last = now;
+      const l = Math.max(0, end.current - now);
       remaining.current = l;
       setLeft(l);
       if (l <= 0) expire.current();
       else raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, [running, totalMs]);
+    return () => {
+      cancelAnimationFrame(raf);
+      setLoading(false);
+    };
+  }, [running, totalMs, waitForMedia]);
 
   const penalize = useCallback((ms: number) => {
     end.current -= ms;
     remaining.current = Math.max(0, remaining.current - ms);
   }, []);
   const reset = useCallback((ms: number) => {
+    waited.current = 0;
     end.current = performance.now() + ms;
     remaining.current = ms;
     setLeft(ms);
   }, []);
 
-  return { left, penalize, reset };
+  return { left, penalize, reset, loading };
 }

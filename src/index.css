@@ -645,6 +645,40 @@ h1, h2, h3, .font-serif, .font-display {
   transform: rotate(-16deg);
 }
 @keyframes pack-planet { to { transform: translate(-1.5vmin, -1vmin); } }
+/* The quiet life behind a pack being opened (PackOpening.tsx, Ambient). */
+.pack-ambient { animation: pack-space-in 0.8s ease-out both; }
+.pack-ambient-rays {
+  translate: -50% -50%;
+  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--tint) 6%, transparent) 0deg 5deg, transparent 6deg 22deg);
+  mask-image: radial-gradient(circle, #000 0%, transparent 34%);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 34%);
+  animation: pack-ambient-rays 70s linear infinite;
+  transition: background 0.6s;
+}
+@keyframes pack-ambient-rays { to { rotate: 360deg; } }
+.pack-mote { opacity: 0; animation: pack-mote 12s linear infinite; }
+@keyframes pack-mote {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 0.7; }
+  80% { opacity: 0.5; }
+  100% { transform: translate(var(--sway), -105vh); opacity: 0; }
+}
+.pack-ambient-shoot {
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--tint) 70%, #fff), #fff);
+  filter: drop-shadow(0 0 4px var(--tint));
+  animation: pack-ambient-shoot 11s ease-out infinite;
+}
+@keyframes pack-ambient-shoot {
+  0% { transform: translateX(-60px); opacity: 0; }
+  1% { opacity: 1; }
+  7% { transform: translateX(260px); opacity: 0; }
+  100% { transform: translateX(260px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-ambient-rays, .pack-mote, .pack-ambient-shoot { animation: none; }
+  .pack-mote, .pack-ambient-shoot { display: none; }
+}
 /* A shooting star's blazing head, and the sparkles it sheds. */
 .pack-meteor-head {
   transform: translate(35%, -50%);

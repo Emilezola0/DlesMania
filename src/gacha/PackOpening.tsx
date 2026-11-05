@@ -184,6 +184,46 @@ function Space() {
   );
 }
 
+/**
+ * The quiet life behind the pack, its cards and the summary: dust rising, faint stars twinkling, now and then
+ * a shooting star, and slow rays turning behind it all — tinted with whatever colour the moment has.
+ */
+function Ambient({ tint }: { tint: string }) {
+  const motes = useMemo(
+    () =>
+      Array.from({ length: 26 }, () => ({
+        x: Math.random() * 100,
+        size: 2 + Math.random() * 3,
+        delay: -Math.random() * 14,
+        duration: 9 + Math.random() * 8,
+        sway: (Math.random() - 0.5) * 60,
+        white: Math.random() < 0.4,
+      })),
+    [],
+  );
+  const stars = useMemo(() => Array.from({ length: 40 }, () => ({ x: Math.random() * 100, y: Math.random() * 100, delay: Math.random() * 4, duration: 2 + Math.random() * 3 })), []);
+  // Three shooting stars on long, out-of-step loops: one crosses every few seconds, never two at once.
+  const shooting = useMemo(() => [0, 1, 2].map((k) => ({ x: 15 + Math.random() * 70, y: 5 + Math.random() * 35, delay: 1.5 + k * 3.7 + Math.random(), angle: 18 + Math.random() * 20 })), []);
+  return (
+    <div className="pack-ambient pointer-events-none fixed inset-0 -z-10 overflow-hidden" style={{ ['--tint' as string]: tint }} aria-hidden>
+      <div className="pack-ambient-rays absolute left-1/2 top-[40%] aspect-square w-[160vmax]" />
+      {stars.map((s, i) => (
+        <span key={`s${i}`} className="pack-far-star absolute size-px rounded-full bg-white" style={{ left: `${s.x}%`, top: `${s.y}%`, animationDelay: `${s.delay}s`, animationDuration: `${s.duration}s` }} />
+      ))}
+      {shooting.map((s, i) => (
+        <span key={`t${i}`} className="pack-ambient-shoot absolute h-px w-32" style={{ left: `${s.x}%`, top: `${s.y}%`, rotate: `${s.angle}deg`, animationDelay: `${s.delay}s` }} />
+      ))}
+      {motes.map((m, i) => (
+        <span
+          key={`m${i}`}
+          className="pack-mote absolute bottom-0 rounded-full"
+          style={{ left: `${m.x}%`, width: m.size, height: m.size, background: m.white ? '#fff' : 'var(--tint)', boxShadow: '0 0 6px var(--tint)', animationDelay: `${m.delay}s`, animationDuration: `${m.duration}s`, ['--sway' as string]: `${m.sway}px` }}
+        />
+      ))}
+    </div>
+  );
+}
+
 /** A star's streak: transparent tail, its colour, a white head (a rainbow for mythics and omnis). */
 const streak = (r: Rarity) => ({
   background: rainbowy(r) ? `linear-gradient(90deg, transparent, ${RAINBOW.join(', ')}, #fff)` : `linear-gradient(90deg, transparent, ${RARITY_LIGHT[r]}88 40%, #fff)`,
@@ -756,6 +796,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
         </button>
       )}
       {/* Slow motion: the room darkens around a Legendary or better as it charges. */}
+      {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' ? glow : PACK_LIGHT} />}
       {phase === 'reveal' && charging && card && top(card.rarity) && <div className="pack-slowmo pointer-events-none fixed inset-0" aria-hidden />}
       {/* A Mythic or Omni makes its entrance: its franchise's name sweeps across, in its colours. */}
       {phase === 'reveal' && charging && card && prismatic(card.rarity) && (

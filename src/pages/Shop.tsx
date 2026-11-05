@@ -157,7 +157,7 @@ function RedeemCode() {
     } else {
       sfx.wrong();
       const daily = giftFor(normalizeCode(code))?.daily;
-      setMsg({ ok: false, text: r.reason === 'used' ? (daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.') : "That code doesn't exist (yet)." });
+      setMsg({ ok: false, text: r.reason === 'expired' ? 'That code was for one day only — it has expired.' : r.reason === 'used' ? (daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.') : "That code doesn't exist (yet)." });
     }
   };
   return (

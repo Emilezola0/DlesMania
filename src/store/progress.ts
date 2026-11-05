@@ -169,7 +169,7 @@ interface ProgressState {
   /** Gift codes already redeemed (normalized). */
   redeemed: string[];
   /** A gift code typed in the Shop: its coins, once per player. */
-  redeemCode: (code: string) => { ok: true; coins: number; note: string } | { ok: false; reason: 'used' | 'unknown' };
+  redeemCode: (code: string) => { ok: true; coins: number; note: string } | { ok: false; reason: 'used' | 'unknown' | 'expired' };
   /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
   /** An Expedition's coins, through its own daily amount: what was really paid. */
   earnExpedition: (amount: number) => number;
@@ -513,6 +513,8 @@ export const useProgress = create<ProgressState>()(
         const code = normalizeCode(raw);
         const gift = giftFor(code);
         if (!gift) return { ok: false, reason: 'unknown' };
+        // A one-day code works on its day only.
+        if (gift.only && gift.only !== todayKey()) return { ok: false, reason: 'expired' };
         const s = get();
         // A daily code is kept with the day it was redeemed: it works again tomorrow.
         const mark = gift.daily ? `${code}@${todayKey()}` : code;

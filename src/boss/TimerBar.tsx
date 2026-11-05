@@ -15,11 +15,13 @@ interface Props {
   intense?: boolean;
   /** Hard mode: no seconds counter, only the bar (the tick still warns at the end). */
   hideSeconds?: boolean;
+  /** Keep running while pictures load (a clock shared with another player can't wait). */
+  noWait?: boolean;
 }
 
 /** A draining bar with the seconds left; it turns red and ticks in the last stretch. */
-export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 0, resetKey, intense, hideSeconds }: Props) {
-  const { left, penalize, reset } = useCountdown(total, running, onExpire);
+export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 0, resetKey, intense, hideSeconds, noWait }: Props) {
+  const { left, penalize, reset, loading } = useCountdown(total, running, onExpire, !noWait);
   const seenPenalties = useRef(penalties);
   const lastTick = useRef(0);
 
@@ -48,8 +50,9 @@ export function TimerBar({ total, running, onExpire, penalties = 0, penaltyMs = 
           style={{ width: `${(left / total) * 100}%` }}
         />
       </div>
-      <span className={`w-10 text-right font-display text-lg font-bold tabular-nums ${low ? 'animate-pulse text-coral' : 'text-ink-soft'}`}>
-        {hideSeconds ? '??' : `${secs}s`}
+      {/* While the picture loads, the clock waits, and says so. */}
+      <span title={loading ? 'Loading — the clock waits' : undefined} className={`w-10 text-right font-display text-lg font-bold tabular-nums ${loading ? 'animate-pulse text-ink-soft' : low ? 'animate-pulse text-coral' : 'text-ink-soft'}`}>
+        {loading ? '⏳' : hideSeconds ? '??' : `${secs}s`}
       </span>
     </div>
   );

@@ -8,6 +8,8 @@ export interface GiftCode {
   note: string;
   /** Redeemable again every day (once a day), not once and for all. */
   daily?: boolean;
+  /** Only works on this day (YYYY-MM-DD, the player's own calendar): a one-day event. */
+  only?: string;
 }
 
 const CODES: Record<string, GiftCode> = {
@@ -16,6 +18,8 @@ const CODES: Record<string, GiftCode> = {
   'd6d9e5b44ffd5a1d622ea6f28e1d618bcd14fb16a9c5860ec4c22c5592f4e24f': { coins: 500, note: 'Because We Love Gamble s love' },
   '343fc0f23e8b0fd743e39f9b56ff6ce8b98587fee55246fae10f5608d3c661f2': { coins: 5000, note: "Have some Fun" },
   '33a0f97d40c9c4890932d4f8935f651a585950fbdda4cbd36fdeef99e72a3b13': { coins: 500, note: "Today's gift — come back tomorrow for another.", daily: true },
+  // 5 November 2026 only: the monthly gift.
+  '011115a3da36c0054879d5e93590a27c4672ff6dcb2d51e5c3ec7a0d342a4713': { coins: 15000, note: 'The monthly gift — enjoy!', only: '2026-11-05' },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');

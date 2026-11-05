@@ -34,6 +34,23 @@ export function preload(src: string | undefined): Promise<void> {
   return p;
 }
 
+/** On screen (at least partly): a picture scrolled away or hidden doesn't hold anything up. */
+function inView(el: Element): boolean {
+  const r = el.getBoundingClientRect();
+  return r.width > 0 && r.height > 0 && r.bottom > 0 && r.right > 0 && r.top < window.innerHeight && r.left < window.innerWidth;
+}
+
+/**
+ * Is a picture or a video on screen still loading? Timers wait while one is (see useCountdown), so a slow
+ * connection never eats a question's time.
+ */
+export function mediaLoading(root: ParentNode | null = document.querySelector('main')): boolean {
+  if (!root) return false;
+  for (const img of root.querySelectorAll('img')) if (!img.complete && inView(img)) return true;
+  for (const v of root.querySelectorAll('video')) if (v.readyState < 2 && !v.error && v.preload !== 'none' && inView(v)) return true;
+  return false;
+}
+
 export const isReady = (src: string | undefined) => !src || done.has(src);
 
 /** True once every picture given is ready (see `preload`); false again when the list changes to new ones. */

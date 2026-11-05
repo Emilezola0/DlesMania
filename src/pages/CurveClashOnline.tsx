@@ -123,7 +123,7 @@ function Game({ code, onLeave }: { code: string; onLeave: () => void }) {
       </div>
       {ready && me !== null && (
         <>
-          <TimerBar key={g.roundAt} total={Math.max(1000, g.roundAt + ROUND_SECONDS * 1000 - Date.now())} running={!sent} resetKey={`${round}`} onExpire={timeUp} />
+          <TimerBar key={g.roundAt} total={Math.max(1000, g.roundAt + ROUND_SECONDS * 1000 - Date.now())} running={!sent} resetKey={`${round}`} onExpire={timeUp} noWait />
           <form
             onSubmit={(e) => {
               e.preventDefault();
