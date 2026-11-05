@@ -121,6 +121,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
   ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', image: UFOURIA_ART('dance-hebe-2.png') },
+  arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -169,6 +170,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   forhonor: { name: 'Commander Ravier', title: 'Sworn to the Cross', line: 'A kite shield, a heavy blade and a vow he never broke: the Blackstone’s fallen knight still stands between you and everyone he guards.', voice: 'Ad profundis!', audio: 'https://www.myinstants.com/media/sounds/ad-profundis.mp3', image: `${import.meta.env?.BASE_URL ?? './'}art/forhonor/black-prior-mythic.jpg` },
   forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
+  arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
 };
 
@@ -189,6 +191,18 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       title: '合格 — Gōkaku',
       line: 'Oni-Sensei bows for the first time: every stroke in its place, every reading known. N1 — passed.',
       image: kanjiPicture('kanji-awake:合格'),
+    },
+  },
+  // ARC Raiders: the Matriarch in the codex's two pictures; on a Hard win, the other one.
+  arcraiders: {
+    name: 'Matriarch',
+    title: 'Mother of the Swarm',
+    line: 'Missiles in swarms, a shield for her brood and twenty-three thousand points of health: the ARC Raiders send whole squads after her, and most come back with nothing.',
+    image: 'https://arcraiders.wiki/w/images/thumb/a/ad/Matriarch_Codex.png/400px-Matriarch_Codex.png.webp',
+    awaken: {
+      title: 'Brought Down',
+      line: 'Her legs give way at last, and her core is open for the taking: the loot every Raider in Speranza dreams of.',
+      image: 'https://arcraiders.wiki/w/images/thumb/4/49/ARC_Matriarch.png/400px-ARC_Matriarch.png.webp',
     },
   },
   // Ufouria: O-Chan cheering (the official site's art); on a Hard win, flying over the Earth (the key art).
@@ -639,9 +653,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders']);
 
 const slug = (s: string) =>
   s

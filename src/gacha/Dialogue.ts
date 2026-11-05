@@ -113,6 +113,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Why did they discard that, {other}?', 'I stopped asking on Ante 2.'], ['High Card.', 'High Card, {other}.']],
     great: [['Look at that Mult!', 'That’s not a number any more, {other}!', 'One more run. Just one.']],
   },
+  arcraiders: {
+    good: [['They made extraction, {other}.', 'With a full backpack, too.'], ['Clean shot on that thruster.', 'The Wasp never saw it coming, {other}.']],
+    bad: [['Downed again, {other}.', 'Was it the Leaper?', 'It is always the Leaper.'], ['They left their loot topside.', 'Someone is going to have a very good day, {other}.']],
+    great: [['Was that a Queen going down?', 'It was, {other}!', 'Everyone in Speranza will hear about this.']],
+  },
   ufouria: {
     good: [['Did you see that butt stomp, {other}?', 'Straight into coins.'], ['Another Bumyon gone.', 'Popoons work wonders, {other}.']],
     bad: [['They got Bumyon’d, {other}.', 'Sticky. Very sticky.'], ['A Kerasu got them.', 'Right on the head, {other}.']],

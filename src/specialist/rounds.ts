@@ -11,8 +11,9 @@ import { simplePools } from './simple';
 import { BLUEPRINT_POOLS } from './blueprint';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import { JLPT_POOLS } from './jlpt';
+import { ARC_POOLS } from './arcraiders';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -81,6 +82,13 @@ export const UNIVERSES = [
     types: ['dance', 'picture', 'clue', 'windows', 'spotlight', 'classic'] as SpType[],
   },
   {
+    id: 'arcraiders',
+    label: 'ARC Raiders',
+    ready: true,
+    blurb: 'Classic on the ARC machines, then the machines, weapons and gear, places, furniture, materials, crafting recipes and robot sounds — from the ARC Raiders Wiki.',
+    types: ['classic', 'mob', 'gear', 'place', 'furniture', 'material', 'recipe', 'sound'] as SpType[],
+  },
+  {
     id: 'avatar',
     label: 'Avatar: The Last Airbender',
     ready: true,
@@ -141,6 +149,13 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   execution: { name: 'Execution', icon: '🗡️', tagline: 'Whose execution is this?', maxAttempts: 6 },
   exotic: { name: 'Exotic', icon: '✦', tagline: 'Which Exotic weapon is this?', maxAttempts: 6 },
   clue: { name: 'Clue', icon: '🔎', tagline: 'Name them from a clue', maxAttempts: 6 },
+  mob: { name: 'Mobs', icon: '🤖', tagline: 'Which ARC machine is this?', maxAttempts: 6 },
+  gear: { name: 'Weapons & Gear', icon: '🔫', tagline: 'Name the weapon or the equipment', maxAttempts: 6 },
+  place: { name: 'Locations', icon: '🗺️', tagline: 'Where is this?', maxAttempts: 6 },
+  furniture: { name: 'Furniture', icon: '🗄️', tagline: 'What would you search here?', maxAttempts: 6 },
+  material: { name: 'Materials', icon: '🔩', tagline: 'Which material is this?', maxAttempts: 6 },
+  recipe: { name: 'Crafting', icon: '🛠️', tagline: 'What does this recipe make?', maxAttempts: 6 },
+  sound: { name: 'Robot Sounds', icon: '🔊', tagline: 'Which ARC makes this sound?', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
 
@@ -168,6 +183,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   overwatch: simplePools('overwatch'),
   forts: simplePools('forts'),
   ufouria: simplePools('ufouria'),
+  arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
   destiny: simplePools('destiny'),
   jlpt: JLPT_POOLS,

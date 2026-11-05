@@ -19703,5 +19703,875 @@
         }
       ]
     }
+  },
+  {
+    "id": "arcraiders",
+    "domain": "games",
+    "franchise": "ARC Raiders",
+    "aliases": [
+      "arc raiders",
+      "arc raider",
+      "arcraiders",
+      "arc"
+    ],
+    "images": "none",
+    "boss": {
+      "name": "Queen",
+      "title": "The Crowned ARC",
+      "color": "#dc2626",
+      "image": "https://arcraiders.wiki/w/images/thumb/1/1d/ARC_Queen.png/400px-ARC_Queen.png.webp"
+    },
+    "lines": {
+      "intro": "Topside belongs to the ARC. Come up from Speranza if you dare, Raider. The Queen is listening.",
+      "phase2": "Half of these machines never fell from the sky. Pick out the real ARC before my swarm finds you!",
+      "phase3": "My hull is opening. Name every scrap you see before the Wasps come home!",
+      "hit": [
+        "Hull breach!",
+        "My leg joint!",
+        "Core exposed!"
+      ],
+      "hurt": [
+        "Downed!",
+        "Shredded!",
+        "Back down the elevator, Raider!",
+        "There goes your loot!"
+      ],
+      "win": "Systems failing… Take your scrap and go. The ARC will be back.",
+      "lose": "Another Raider who never reached extraction. Your loot is mine now.",
+      "secret": "One more round before extraction. I name an ARC, a weapon, a map or a trader. You name another of the same. No repeats!",
+      "secretOk": [
+        "Noted.",
+        "Again.",
+        "Lucky Raider."
+      ],
+      "secretLost": "Nothing? Then you stay topside for good."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 ARC machines",
+        "count": 5,
+        "answers": [
+          "ARC Reclaimer|Reclaimer",
+          "ARC Surveyor|Surveyor",
+          "ARC Turbine|Turbine",
+          "Bastion",
+          "Bombardier",
+          "Bully",
+          "Comet",
+          "Fireball",
+          "Firefly",
+          "Hornet",
+          "Hydra",
+          "Leaper",
+          "Matriarch",
+          "Pop",
+          "Queen",
+          "Rocketeer",
+          "Sentinel",
+          "Shredder",
+          "Skulker",
+          "Snitch",
+          "Spotter",
+          "Tick",
+          "Turret",
+          "Vaporizer",
+          "Wasp"
+        ]
+      },
+      {
+        "prompt": "Name 4 maps",
+        "count": 4,
+        "answers": [
+          "Buried City",
+          "Dam Battlegrounds|Dam",
+          "Pendola Pass",
+          "Practice Range",
+          "Riven Tides",
+          "Spaceport|Acerra Spaceport",
+          "Stella Montis",
+          "The Blue Gate|Blue Gate"
+        ]
+      },
+      {
+        "prompt": "Name 5 weapons",
+        "count": 5,
+        "answers": [
+          "Anvil",
+          "Aphelion",
+          "Arpeggio",
+          "Bantam",
+          "Bettina",
+          "Bobcat",
+          "Burletta",
+          "Canto",
+          "Dolabra",
+          "Equalizer",
+          "Ferro",
+          "Hairpin",
+          "Hullcracker",
+          "Il Toro",
+          "Jupiter",
+          "Kettle",
+          "Osprey",
+          "Rascal",
+          "Rattler",
+          "Renegade",
+          "Stiletto",
+          "Stitcher",
+          "Tempest",
+          "Torrente",
+          "Venator",
+          "Vulcano"
+        ]
+      },
+      {
+        "prompt": "Name 4 traders of Speranza",
+        "count": 4,
+        "answers": [
+          "Apollo",
+          "Celeste",
+          "Lance",
+          "Shani",
+          "Tian Wen"
+        ]
+      },
+      {
+        "prompt": "Name the 3 shields",
+        "count": 3,
+        "answers": [
+          "Light Shield|Light",
+          "Medium Shield|Medium",
+          "Heavy Shield|Heavy"
+        ]
+      },
+      {
+        "prompt": "Name 4 grenades",
+        "count": 4,
+        "answers": [
+          "Blaze Grenade",
+          "Blue Light Stick",
+          "Crash Mat",
+          "Firecracker",
+          "Gas Grenade",
+          "Green Light Stick",
+          "Heavy Fuze Grenade",
+          "Li'l Smoke Grenade",
+          "Light Impact Grenade",
+          "Lure Grenade",
+          "Red Light Stick",
+          "Seeker Grenade",
+          "Showstopper",
+          "Shrapnel Grenade",
+          "Smoke Grenade",
+          "Snap Blast Grenade",
+          "Tagging Grenade",
+          "Trailblazer",
+          "Wolfpack",
+          "Yank Grenade",
+          "Yellow Light Stick"
+        ]
+      },
+      {
+        "prompt": "Name 4 crafting stations",
+        "count": 4,
+        "answers": [
+          "Workbench",
+          "Gunsmith",
+          "Gear Bench",
+          "Medical Lab",
+          "Explosives Station",
+          "Utility Station",
+          "Refiner"
+        ]
+      },
+      {
+        "prompt": "Name 5 basic or refined materials",
+        "count": 5,
+        "answers": [
+          "Advanced Electrical Components",
+          "Advanced Mechanical Components",
+          "Antiseptic",
+          "Chemicals",
+          "Crude Explosives",
+          "Durable Cloth",
+          "Electrical Components",
+          "Explosive Compound",
+          "Fabric",
+          "Magnetic Accelerator",
+          "Mechanical Components",
+          "Metal Parts",
+          "Mod Components",
+          "Planks",
+          "Plastic Parts",
+          "Power Rod",
+          "Rubber Parts",
+          "Sheet Metal",
+          "Stencil Parts"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Leaper",
+          "image": "https://arcraiders.wiki/w/images/thumb/0/06/ARC_Leaper.png/400px-ARC_Leaper.png.webp"
+        },
+        {
+          "label": "Bastion",
+          "image": "https://arcraiders.wiki/w/images/thumb/4/47/ARC_Bastion.png/400px-ARC_Bastion.png.webp"
+        },
+        {
+          "label": "Wasp",
+          "image": "https://arcraiders.wiki/w/images/thumb/f/fe/Wasp_Codex.png/400px-Wasp_Codex.png.webp"
+        },
+        {
+          "label": "Hornet",
+          "image": "https://arcraiders.wiki/w/images/thumb/f/f7/ARC_Hornet.png/400px-ARC_Hornet.png.webp"
+        },
+        {
+          "label": "Rocketeer",
+          "image": "https://arcraiders.wiki/w/images/thumb/5/57/ARC_Rocketeer.png/400px-ARC_Rocketeer.png.webp"
+        },
+        {
+          "label": "Bombardier",
+          "image": "https://arcraiders.wiki/w/images/thumb/7/76/ARC_Bombardier.png/400px-ARC_Bombardier.png.webp"
+        },
+        {
+          "label": "Matriarch",
+          "image": "https://arcraiders.wiki/w/images/thumb/4/49/ARC_Matriarch.png/400px-ARC_Matriarch.png.webp"
+        },
+        {
+          "label": "Shredder",
+          "image": "https://arcraiders.wiki/w/images/thumb/e/e3/ARC_Shredder.png/400px-ARC_Shredder.png.webp"
+        },
+        {
+          "label": "Sentinel",
+          "image": "https://arcraiders.wiki/w/images/thumb/f/f1/ARC_Sentinel.png/400px-ARC_Sentinel.png.webp"
+        },
+        {
+          "label": "Snitch",
+          "image": "https://arcraiders.wiki/w/images/thumb/c/c6/ARC_Snitch.png/400px-ARC_Snitch.png.webp"
+        },
+        {
+          "label": "Tick",
+          "image": "https://arcraiders.wiki/w/images/thumb/1/17/ARC_Tick.png/400px-ARC_Tick.png.webp"
+        },
+        {
+          "label": "Pop",
+          "image": "https://arcraiders.wiki/w/images/thumb/f/ff/ARC_Pop.png/400px-ARC_Pop.png.webp"
+        },
+        {
+          "label": "Spotter",
+          "image": "https://arcraiders.wiki/w/images/thumb/0/02/ARC_Spotter.png/400px-ARC_Spotter.png.webp"
+        },
+        {
+          "label": "Fireball",
+          "image": "https://arcraiders.wiki/w/images/thumb/2/26/ARC_Fireball.png/400px-ARC_Fireball.png.webp"
+        },
+        {
+          "label": "Firefly",
+          "image": "https://arcraiders.wiki/w/images/thumb/b/b8/ARC_Firefly.png/400px-ARC_Firefly.png.webp"
+        },
+        {
+          "label": "Turret",
+          "image": "https://arcraiders.wiki/w/images/thumb/c/c1/ARC_Turret.png/400px-ARC_Turret.png.webp"
+        },
+        {
+          "label": "ARC Surveyor",
+          "image": "https://arcraiders.wiki/w/images/thumb/c/c3/ARC_Surveyor.png/400px-ARC_Surveyor.png.webp",
+          "aliases": [
+            "Surveyor"
+          ]
+        },
+        {
+          "label": "Comet",
+          "image": "https://arcraiders.wiki/w/images/thumb/c/cc/ARC_Comet.png/400px-ARC_Comet.png.webp"
+        },
+        {
+          "label": "Vaporizer",
+          "image": "https://arcraiders.wiki/w/images/thumb/0/0c/ARC_Vaporizer.png/400px-ARC_Vaporizer.png.webp"
+        },
+        {
+          "label": "Bully",
+          "image": "https://arcraiders.wiki/w/images/thumb/9/97/ARC_Bully.png/400px-ARC_Bully.png.webp"
+        },
+        {
+          "label": "Hydra",
+          "image": "https://arcraiders.wiki/w/images/thumb/5/54/ARC_Hydra.png/400px-ARC_Hydra.png.webp"
+        },
+        {
+          "label": "Skulker",
+          "image": "https://arcraiders.wiki/w/images/thumb/2/2c/ARC_Skulker.png/400px-ARC_Skulker.png.webp"
+        },
+        {
+          "label": "Apollo",
+          "image": "https://arcraiders.wiki/w/images/thumb/e/ee/Trader_Apollo_horizontal.png/400px-Trader_Apollo_horizontal.png.webp"
+        },
+        {
+          "label": "Celeste",
+          "image": "https://arcraiders.wiki/w/images/thumb/3/3f/Trader_Celeste_vertical.png/400px-Trader_Celeste_vertical.png.webp"
+        },
+        {
+          "label": "Lance",
+          "image": "https://arcraiders.wiki/w/images/thumb/3/31/Trader_Lance_vertical.png/400px-Trader_Lance_vertical.png.webp"
+        },
+        {
+          "label": "Shani",
+          "image": "https://arcraiders.wiki/w/images/thumb/4/40/Trader_Shani_vertical.png/400px-Trader_Shani_vertical.png.webp"
+        },
+        {
+          "label": "Tian Wen",
+          "image": "https://arcraiders.wiki/w/images/thumb/d/d5/Trader_Tian_Wen_horizontal.png/400px-Trader_Tian_Wen_horizontal.png.webp"
+        },
+        {
+          "label": "Scrappy",
+          "image": "https://arcraiders.wiki/w/images/thumb/7/73/Scrappy.png/400px-Scrappy.png.webp"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Watcher",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/0/04/Watcher-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042110"
+        },
+        {
+          "label": "Thunderjaw",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/a/a9/Thunderjaw-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042329"
+        },
+        {
+          "label": "Sawtooth",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/9/94/Sawtooth-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043043"
+        },
+        {
+          "label": "Tallneck",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/3/34/TallNeck-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042418"
+        },
+        {
+          "label": "Stormbird",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/6/6a/Stormbird-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042041"
+        },
+        {
+          "label": "Grazer",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/4/45/Grazer-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043652"
+        },
+        {
+          "label": "Scrapper",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/e/e3/Scrapper-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042955"
+        },
+        {
+          "label": "Snapmaw",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/5/5e/Snapmaw-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042718"
+        },
+        {
+          "label": "Glinthawk",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/d/d7/Glinthawk-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043725"
+        },
+        {
+          "label": "Ravager",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/c/c7/Ravager-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043305"
+        },
+        {
+          "label": "Stalker",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/6/6e/Stalker-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042607"
+        },
+        {
+          "label": "Shell-Walker",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/8/88/ShellWalker-Render.png/revision/latest/scale-to-width-down/400?cb=20170623042908"
+        },
+        {
+          "label": "Longleg",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/0/08/LongLeg-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043400"
+        },
+        {
+          "label": "Rockbreaker",
+          "image": "https://static.wikia.nocookie.net/horizonzerodawn/images/b/b3/Rockbreaker-Render.png/revision/latest/scale-to-width-down/400?cb=20170623043130"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Ferro",
+        "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Ferro_IV.png/400px-Ferro_IV.png.webp"
+      },
+      {
+        "label": "Kettle",
+        "image": "https://arcraiders.wiki/w/images/thumb/0/0f/Kettle_IV.png/400px-Kettle_IV.png.webp"
+      },
+      {
+        "label": "Stitcher",
+        "image": "https://arcraiders.wiki/w/images/thumb/5/55/Stitcher_IV.png/400px-Stitcher_IV.png.webp"
+      },
+      {
+        "label": "Anvil",
+        "image": "https://arcraiders.wiki/w/images/thumb/2/2d/Anvil_IV.png/400px-Anvil_IV.png.webp"
+      },
+      {
+        "label": "Il Toro",
+        "image": "https://arcraiders.wiki/w/images/thumb/a/ad/Il_Toro_IV.png/400px-Il_Toro_IV.png.webp"
+      },
+      {
+        "label": "Hairpin",
+        "image": "https://arcraiders.wiki/w/images/thumb/b/b8/Hairpin_IV.png/400px-Hairpin_IV.png.webp"
+      },
+      {
+        "label": "Rattler",
+        "image": "https://arcraiders.wiki/w/images/thumb/3/3e/Rattler_IV.png/400px-Rattler_IV.png.webp"
+      },
+      {
+        "label": "Venator",
+        "image": "https://arcraiders.wiki/w/images/thumb/9/9f/Venator_IV.png/400px-Venator_IV.png.webp"
+      },
+      {
+        "label": "Renegade",
+        "image": "https://arcraiders.wiki/w/images/thumb/a/a8/Renegade_IV.png/400px-Renegade_IV.png.webp"
+      },
+      {
+        "label": "Light Shield",
+        "image": "https://arcraiders.wiki/w/images/thumb/4/40/Light_Shield.png/400px-Light_Shield.png.webp",
+        "aliases": [
+          "Light"
+        ]
+      },
+      {
+        "label": "Heavy Shield",
+        "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Heavy_Shield.png/400px-Heavy_Shield.png.webp",
+        "aliases": [
+          "Heavy"
+        ]
+      },
+      {
+        "label": "Zipline",
+        "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Zipline.png/400px-Zipline.png.webp"
+      },
+      {
+        "label": "Wolfpack",
+        "image": "https://arcraiders.wiki/w/images/thumb/2/24/Wolfpack.png/400px-Wolfpack.png.webp"
+      },
+      {
+        "label": "Defibrillator",
+        "image": "https://arcraiders.wiki/w/images/thumb/5/5f/Defibrillator.png/400px-Defibrillator.png.webp"
+      },
+      {
+        "label": "Snap Hook",
+        "image": "https://arcraiders.wiki/w/images/thumb/5/56/Snap_Hook.png/400px-Snap_Hook.png.webp"
+      },
+      {
+        "label": "Photoelectric Cloak",
+        "image": "https://arcraiders.wiki/w/images/thumb/0/06/Photoelectric_Cloak.png/400px-Photoelectric_Cloak.png.webp"
+      },
+      {
+        "label": "Grappling Hook",
+        "image": "https://arcraiders.wiki/w/images/thumb/3/3d/Grappling_Hook.png/400px-Grappling_Hook.png.webp"
+      },
+      {
+        "label": "Bandage",
+        "image": "https://arcraiders.wiki/w/images/thumb/0/0c/Bandage.png/400px-Bandage.png.webp"
+      },
+      {
+        "label": "Speranza",
+        "image": "https://arcraiders.wiki/w/images/thumb/9/98/Speranza.png/400px-Speranza.png.webp"
+      },
+      {
+        "label": "Raider Hatch",
+        "image": "https://arcraiders.wiki/w/images/thumb/9/92/Raider_Hatch.png/400px-Raider_Hatch.png.webp"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "ARC",
+          "entities": [
+            "ARC Reclaimer|Reclaimer",
+            "ARC Surveyor|Surveyor",
+            "ARC Turbine|Turbine",
+            "Bastion",
+            "Bombardier",
+            "Bully",
+            "Comet",
+            "Fireball",
+            "Firefly",
+            "Hornet",
+            "Hydra",
+            "Leaper",
+            "Matriarch",
+            "Pop",
+            "Queen",
+            "Rocketeer",
+            "Sentinel",
+            "Shredder",
+            "Skulker",
+            "Snitch",
+            "Spotter",
+            "Tick",
+            "Turret",
+            "Vaporizer",
+            "Wasp"
+          ]
+        },
+        {
+          "label": "Weapon",
+          "entities": [
+            "Anvil",
+            "Aphelion",
+            "Arpeggio",
+            "Bantam",
+            "Bettina",
+            "Bobcat",
+            "Burletta",
+            "Canto",
+            "Dolabra",
+            "Equalizer",
+            "Ferro",
+            "Hairpin",
+            "Hullcracker",
+            "Il Toro",
+            "Jupiter",
+            "Kettle",
+            "Osprey",
+            "Rascal",
+            "Rattler",
+            "Renegade",
+            "Stiletto",
+            "Stitcher",
+            "Tempest",
+            "Torrente",
+            "Venator",
+            "Vulcano"
+          ]
+        },
+        {
+          "label": "Map",
+          "entities": [
+            "Buried City",
+            "Dam Battlegrounds",
+            "Pendola Pass",
+            "Practice Range",
+            "Riven Tides",
+            "Spaceport",
+            "Stella Montis",
+            "The Blue Gate|Blue Gate"
+          ]
+        },
+        {
+          "label": "Trader",
+          "entities": [
+            "Apollo",
+            "Celeste",
+            "Lance",
+            "Shani",
+            "Tian Wen"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Crafting",
+      "prompt": "What does this recipe make?",
+      "clues": [
+        {
+          "text": "3 Chemicals + 3 Plastic Parts — at the Medical Lab 1",
+          "answer": "Adrenaline Shot"
+        },
+        {
+          "text": "1 Camera Lens + 1 Calculator + 1 Electrical Components — at the Utility Station 1",
+          "answer": "Advanced Camera"
+        },
+        {
+          "text": "1 Agave + 1 Empty Wine Bottle — at the Inventory",
+          "answer": "Agave Juice"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Heavy Gun Parts + 3 Hand Drill — at the Gunsmith 2",
+          "answer": "Anvil"
+        },
+        {
+          "text": "3 Magnetic Accelerator + 3 Complex Gun Parts + 1 Matriarch Reactor — at the Gunsmith 3",
+          "answer": "Aphelion"
+        },
+        {
+          "text": "6 Mechanical Components + 6 Simple Gun Parts — at the Gunsmith 2",
+          "answer": "Arpeggio"
+        },
+        {
+          "text": "4 Simple Gun Parts + 4 Mechanical Components — at the Gunsmith 1",
+          "answer": "Bantam"
+        },
+        {
+          "text": "8 Plastic Parts + 1 Wires — at the Workbench 1",
+          "answer": "Basic Camera"
+        },
+        {
+          "text": "3 Advanced Mechanical Components + 3 Heavy Gun Parts + 3 Canister — at the Gunsmith 3",
+          "answer": "Bettina"
+        },
+        {
+          "text": "1 Explosive Compound + 2 Oil — at the Explosives Station 3",
+          "answer": "Blaze Grenade"
+        },
+        {
+          "text": "1 Wires + 1 Blaze Grenade — at the Workbench 1",
+          "answer": "Blaze Grenade Trap"
+        },
+        {
+          "text": "1 Magnetic Accelerator + 3 Light Gun Parts + 2 Exodus Modules — at the Gunsmith 3",
+          "answer": "Bobcat"
+        },
+        {
+          "text": "3 Mechanical Components + 3 Simple Gun Parts — at the Gunsmith 1",
+          "answer": "Burletta"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 5 Magnet + 3 Medium Gun Parts — at the Gunsmith 3",
+          "answer": "Canto"
+        },
+        {
+          "text": "1 Electrical Components + 1 Durable Cloth — at the Utility Station 1",
+          "answer": "Crash Mat"
+        },
+        {
+          "text": "1 Comet Igniter + 3 Explosive Compound + 2 ARC Circuitry — at the Explosives Station 3",
+          "answer": "Deadline"
+        },
+        {
+          "text": "9 Plastic Parts + 1 Moss — at the Medical Lab 2",
+          "answer": "Defibrillator"
+        },
+        {
+          "text": "3 Shredder Gyro + 3 Magnetic Accelerator + 2 Vaporizer Regulator — at the Gunsmith 3",
+          "answer": "Dolabra"
+        },
+        {
+          "text": "3 Metal Parts + 3 Rubber Parts — at the Utility Station 1",
+          "answer": "Door Blocker"
+        },
+        {
+          "text": "1 Explosive Compound + 1 Sensors — at the Explosives Station 3",
+          "answer": "Explosive Mine"
+        },
+        {
+          "text": "5 Metal Parts + 2 Rubber Parts — at the Workbench",
+          "answer": "Ferro"
+        },
+        {
+          "text": "4 Plastic Parts + 2 Chemicals — at the Utility Station 1",
+          "answer": "Firecracker"
+        },
+        {
+          "text": "1 Explosive Compound + 3 Pop Trigger — at the Explosives Station 2",
+          "answer": "Fireworks Box"
+        },
+        {
+          "text": "1 Air Freshener + 1 Fireball Burner — at the Inventory",
+          "answer": "Flame Spray"
+        },
+        {
+          "text": "1 Lemon + 1 Apricot + 1 Prickly Pear — at the Inventory",
+          "answer": "Fruit Mix"
+        },
+        {
+          "text": "1 Wires + 1 Gas Grenade — at the Workbench 1",
+          "answer": "Gas Grenade Trap"
+        },
+        {
+          "text": "2 Rope + 1 Cable Stripper + 1 Mechanical Components — at the Utility Station 1",
+          "answer": "Grappling Hook"
+        },
+        {
+          "text": "2 Metal Parts + 5 Plastic Parts — at the Workbench",
+          "answer": "Hairpin"
+        },
+        {
+          "text": "1 Explosive Compound + 2 Canister — at the Explosives Station 3",
+          "answer": "Heavy Fuze Grenade"
+        },
+        {
+          "text": "1 Power Rod + 2 Voltage Converter — at the Gear Bench 2",
+          "answer": "Heavy Shield|Heavy"
+        },
+        {
+          "text": "1 Durable Cloth + 1 Great Mullein — at the Medical Lab 1",
+          "answer": "Herbal Bandage"
+        },
+        {
+          "text": "5 Mechanical Components + 6 Simple Gun Parts — at the Gunsmith 1",
+          "answer": "Il Toro"
+        },
+        {
+          "text": "1 Electrical Components + 1 Battery — at the Explosives Station 2",
+          "answer": "Jolt Mine"
+        },
+        {
+          "text": "6 Metal Parts + 8 Rubber Parts — at the Workbench",
+          "answer": "Kettle"
+        },
+        {
+          "text": "5 Chemicals + 1 Plastic Parts — at the Utility Station 1",
+          "answer": "Li'l Smoke Grenade"
+        },
+        {
+          "text": "2 Plastic Parts + 3 Chemicals — at the Explosives Station 1",
+          "answer": "Light Impact Grenade"
+        },
+        {
+          "text": "2 ARC Alloy + 4 Plastic Parts — at the Workbench 1",
+          "answer": "Light Shield|Light"
+        },
+        {
+          "text": "1 Speaker Component + 1 Electrical Components — at the Utility Station 2",
+          "answer": "Lure Grenade"
+        },
+        {
+          "text": "1 Wires + 1 Lure Grenade — at the Workbench 1",
+          "answer": "Lure Grenade Trap"
+        },
+        {
+          "text": "4 Battery + 1 ARC Circuitry — at the Gear Bench 2",
+          "answer": "Medium Shield|Medium"
+        },
+        {
+          "text": "1 Speaker Component + 2 Plastic Parts — at the Inventory",
+          "answer": "Noisemaker"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 7 Wires — at the Gunsmith 2",
+          "answer": "Osprey"
+        },
+        {
+          "text": "2 Advanced Electrical Components + 4 Speaker Component — at the Utility Station 3",
+          "answer": "Photoelectric Cloak"
+        },
+        {
+          "text": "1 Power Rod + 1 Turbine Compressor — at the Utility Station 3",
+          "answer": "Powered Descender"
+        },
+        {
+          "text": "1 Crude Explosives + 1 Wires — at the Explosives Station 1",
+          "answer": "Pulse Mine"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Heavy Gun Parts + 5 Canister — at the Gunsmith 2",
+          "answer": "Rascal"
+        },
+        {
+          "text": "16 Metal Parts + 12 Rubber Parts — at the Gunsmith 1",
+          "answer": "Rattler"
+        },
+        {
+          "text": "2 Chemicals + 4 Rubber Parts — at the Utility Station 1",
+          "answer": "Remote Raider Flare"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 5 Oil — at the Gunsmith 3",
+          "answer": "Renegade"
+        },
+        {
+          "text": "1 Crude Explosives + 2 ARC Alloy — at the Explosives Station 1",
+          "answer": "Seeker Grenade"
+        },
+        {
+          "text": "1 Canister + 7 Assorted Seeds — at the Inventory",
+          "answer": "Shaker"
+        },
+        {
+          "text": "5 Rubber Parts + 1 ARC Powercell — at the Workbench 1",
+          "answer": "Shield Recharger"
+        },
+        {
+          "text": "1 Electrical Components + 1 Hornet Driver + 1 Voltage Converter — at the Explosives Station 3",
+          "answer": "Showstopper"
+        },
+        {
+          "text": "1 Crude Explosives + 2 Steel Spring — at the Explosives Station 2",
+          "answer": "Shrapnel Grenade"
+        },
+        {
+          "text": "14 Chemicals + 1 Canister — at the Utility Station 2",
+          "answer": "Smoke Grenade"
+        },
+        {
+          "text": "1 Wires + 1 Smoke Grenade — at the Workbench 1",
+          "answer": "Smoke Grenade Trap"
+        },
+        {
+          "text": "2 Crude Explosives + 1 Magnet — at the Explosives Station 2",
+          "answer": "Snap Blast Grenade"
+        },
+        {
+          "text": "2 Power Rod + 2 Steel Cable + 1 Exodus Modules — at the Utility Station 3",
+          "answer": "Snap Hook"
+        },
+        {
+          "text": "2 Durable Cloth + 1 Antiseptic — at the Medical Lab 2",
+          "answer": "Sterilized Bandage"
+        },
+        {
+          "text": "4 Mechanical Components + 4 Simple Gun Parts — at the Gunsmith 1",
+          "answer": "Stiletto"
+        },
+        {
+          "text": "8 Metal Parts + 4 Rubber Parts — at the Workbench",
+          "answer": "Stitcher"
+        },
+        {
+          "text": "1 Electrical Components + 1 Sensors + 1 Hornet Driver — at the Explosives Station 3",
+          "answer": "Surge Coil"
+        },
+        {
+          "text": "1 Electrical Components + 1 Advanced ARC Powercell — at the Medical Lab 2",
+          "answer": "Surge Shield Recharger"
+        },
+        {
+          "text": "1 Electrical Components + 1 Sensors — at the Utility Station 3",
+          "answer": "Tagging Grenade"
+        },
+        {
+          "text": "1 Magnetic Accelerator + 3 Medium Gun Parts + 2 Exodus Modules — at the Gunsmith 3",
+          "answer": "Tempest"
+        },
+        {
+          "text": "2 Steel Cable + 1 Advanced Electrical Components + 1 Calculator — at the Utility Station 2",
+          "answer": "Tether Launcher"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 6 Steel Spring — at the Gunsmith 2",
+          "answer": "Torrente"
+        },
+        {
+          "text": "1 Synthesized Fuel + 2 Crude Explosives + 1 Firefly Burner — at the Explosives Station 3",
+          "answer": "Trailblazer"
+        },
+        {
+          "text": "2 Crude Explosives + 1 Processor — at the Explosives Station 2",
+          "answer": "Trigger 'Nade"
+        },
+        {
+          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 5 Magnet — at the Gunsmith 2",
+          "answer": "Venator"
+        },
+        {
+          "text": "2 Antiseptic + 1 Syringe — at the Medical Lab 3",
+          "answer": "Vita Shot"
+        },
+        {
+          "text": "3 Antiseptic + 1 Canister + 1 Tick Pod — at the Medical Lab 3",
+          "answer": "Vita Spray"
+        },
+        {
+          "text": "10 Fabric + 3 Plastic Parts — at the Medical Lab 1",
+          "answer": "White Flag"
+        },
+        {
+          "text": "1 Explosive Compound + 2 ARC Motion Core + 1 Rocketeer Driver — at the Explosives Station 3",
+          "answer": "Wolfpack"
+        },
+        {
+          "text": "1 Rope + 1 Crude Explosives — at the Explosives Station 2",
+          "answer": "Yank Grenade"
+        },
+        {
+          "text": "1 Steel Cable + 1 Mechanical Components — at the Utility Station 2",
+          "answer": "Zipline"
+        }
+      ]
+    }
   }
 ]

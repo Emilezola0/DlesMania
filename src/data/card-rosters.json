@@ -6252,5 +6252,1037 @@
    "image": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20300%2078%22%20width%3D%22300%22%20height%3D%2278%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%220%22%20x2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%2316a34a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2314532d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20x%3D%221%22%20y%3D%221%22%20width%3D%22298%22%20height%3D%2276%22%20rx%3D%2210%22%20fill%3D%22%23151517%22%20fill-opacity%3D%220.94%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20d%3D%22M1%2011%20a10%2010%200%200%201%2010%20-10%20h278%20a10%2010%200%200%201%2010%2010%20v19%20h-298%20z%22%20fill%3D%22url(%23h)%22%2F%3E%3Ctext%20x%3D%2214%22%20y%3D%2221%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2214%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%3ETo%20String%20(Integer)%3C%2Ftext%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%231fe3af%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%2228%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22start%22%3EIn%20Int%3C%2Ftext%3E%3Ccircle%20cx%3D%22284%22%20cy%3D%2252%22%20r%3D%225.5%22%20fill%3D%22%23ff2bd4%22%20stroke%3D%22%230b0b0b%22%20stroke-width%3D%221%22%2F%3E%3Ctext%20x%3D%22272%22%20y%3D%2256%22%20font-family%3D%22Segoe%20UI%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2212%22%20fill%3D%22%23e5e7eb%22%20text-anchor%3D%22end%22%3EReturn%20Value%3C%2Ftext%3E%3C%2Fsvg%3E",
    "rarity": "common"
   }
+ ],
+ "arcraiders": [
+  {
+   "name": "ARC Reclaimer",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a9/ARC_Reclaimer.png/400px-ARC_Reclaimer.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "ARC Surveyor",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c3/ARC_Surveyor.png/400px-ARC_Surveyor.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "ARC Turbine",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/3e/ARC_Turbine.png/400px-ARC_Turbine.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Bastion",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/47/ARC_Bastion.png/400px-ARC_Bastion.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Bombardier",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/76/ARC_Bombardier.png/400px-ARC_Bombardier.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Bully",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/97/ARC_Bully.png/400px-ARC_Bully.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Comet",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/cc/ARC_Comet.png/400px-ARC_Comet.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fireball",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/26/ARC_Fireball.png/400px-ARC_Fireball.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Firefly",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b8/ARC_Firefly.png/400px-ARC_Firefly.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hornet",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f7/ARC_Hornet.png/400px-ARC_Hornet.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hydra",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/54/ARC_Hydra.png/400px-ARC_Hydra.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Leaper",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/06/ARC_Leaper.png/400px-ARC_Leaper.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Matriarch",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/49/ARC_Matriarch.png/400px-ARC_Matriarch.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Pop",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/ff/ARC_Pop.png/400px-ARC_Pop.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Queen",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/1d/ARC_Queen.png/400px-ARC_Queen.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Rocketeer",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/57/ARC_Rocketeer.png/400px-ARC_Rocketeer.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sentinel",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f1/ARC_Sentinel.png/400px-ARC_Sentinel.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shredder",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/e3/ARC_Shredder.png/400px-ARC_Shredder.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Skulker",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/2c/ARC_Skulker.png/400px-ARC_Skulker.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Snitch",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c6/ARC_Snitch.png/400px-ARC_Snitch.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Spotter",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/02/ARC_Spotter.png/400px-ARC_Spotter.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tick",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/17/ARC_Tick.png/400px-ARC_Tick.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Turret",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c1/ARC_Turret.png/400px-ARC_Turret.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vaporizer",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0c/ARC_Vaporizer.png/400px-ARC_Vaporizer.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Wasp",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/fe/Wasp_Codex.png/400px-Wasp_Codex.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Acoustic Guitar",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/50/Acoustic_Guitar.png/400px-Acoustic_Guitar.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Adrenaline Shot",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/1b/Adrenaline_Shot.png/400px-Adrenaline_Shot.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Advanced Camera",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/ed/Advanced_Camera.png/400px-Advanced_Camera.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Agave Juice",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a8/Agave_Juice.png/400px-Agave_Juice.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Anvil",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/2d/Anvil_IV.png/400px-Anvil_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Aphelion",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/88/Aphelion.png/400px-Aphelion.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Arpeggio",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b9/Arpeggio_IV.png/400px-Arpeggio_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Bandage",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0c/Bandage.png/400px-Bandage.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Banjo",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/2b/Banjo.png/400px-Banjo.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bantam",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/7c/Bantam_IV.png/400px-Bantam_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Barricade Kit",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/cb/Barricade_Kit.png/400px-Barricade_Kit.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Basic Camera",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/2d/Basic_Camera.png/400px-Basic_Camera.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Bettina",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/32/Bettina_IV.png/400px-Bettina_IV.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Binoculars",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/74/Binoculars.png/400px-Binoculars.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Blaze Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/24/Blaze_Grenade.png/400px-Blaze_Grenade.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Blaze Grenade Trap",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/af/Blaze_Grenade_Trap.png/400px-Blaze_Grenade_Trap.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Blue Light Stick",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/cc/Blue_Light_Stick.png/400px-Blue_Light_Stick.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Bobcat",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/78/Bobcat_IV.png/400px-Bobcat_IV.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Burletta",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/8c/Burletta_IV.png/400px-Burletta_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Canto",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c7/Canto_IV.png/400px-Canto_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Combat Mk. 1",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/14/Combat_Mk._1.png/400px-Combat_Mk._1.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Combat Mk. 2",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/54/Combat_Mk._2.png/400px-Combat_Mk._2.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Combat Mk. 3 (Aggressive)",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a4/Combat_Mk._3_%28Aggressive%29.png/400px-Combat_Mk._3_%28Aggressive%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Combat Mk. 3 (Flanking)",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/73/Combat_Mk._3_%28Flanking%29.png/400px-Combat_Mk._3_%28Flanking%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Crash Mat",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/75/Crash_Mat.png/400px-Crash_Mat.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Deadline",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c7/Deadline.png/400px-Deadline.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Defibrillator",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5f/Defibrillator.png/400px-Defibrillator.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Dockmaster's Detector",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/41/Dockmaster%27s_Detector.png/400px-Dockmaster%27s_Detector.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Dolabra",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/bc/Dolabra.png/400px-Dolabra.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Door Blocker",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/68/Door_Blocker.png/400px-Door_Blocker.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Emperor Beacon",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/37/Emperor_Beacon.png/400px-Emperor_Beacon.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Equalizer",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/96/Equalizer.png/400px-Equalizer.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Explosive Mine",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/22/Explosive_Mine.png/400px-Explosive_Mine.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ferro",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Ferro_IV.png/400px-Ferro_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Firecracker",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/86/Firecracker.png/400px-Firecracker.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Fireworks Box",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0f/Fireworks_Box.png/400px-Fireworks_Box.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Flame Spray",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/73/Flame_Spray.png/400px-Flame_Spray.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Free Loadout Augment",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/cf/Free_Loadout_Augment.png/400px-Free_Loadout_Augment.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Fruit Mix",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5a/Fruit_Mix.png/400px-Fruit_Mix.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Gas Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/fe/Gas_Grenade.png/400px-Gas_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Gas Grenade Trap",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/33/Gas_Grenade_Trap.png/400px-Gas_Grenade_Trap.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Gas Mine",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/ce/Gas_Mine.png/400px-Gas_Mine.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Grappling Hook",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/3d/Grappling_Hook.png/400px-Grappling_Hook.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Green Light Stick",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/27/Green_Light_Stick.png/400px-Green_Light_Stick.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Hairpin",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b8/Hairpin_IV.png/400px-Hairpin_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Harmonica",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b8/Harmonica.png/400px-Harmonica.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Heavy Fuze Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/ea/Heavy_Fuze_Grenade.png/400px-Heavy_Fuze_Grenade.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Heavy Shield",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Heavy_Shield.png/400px-Heavy_Shield.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Herbal Bandage",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c5/Herbal_Bandage.png/400px-Herbal_Bandage.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Hullcracker",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/ea/Hullcracker_IV.png/400px-Hullcracker_IV.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Il Toro",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/ad/Il_Toro_IV.png/400px-Il_Toro_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Integrated Binoculars",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/74/Binoculars.png/400px-Binoculars.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Integrated Defibrillator",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5f/Defibrillator.png/400px-Defibrillator.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Integrated Shield Recharger",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a7/Integrated_Shield_Recharger.png/400px-Integrated_Shield_Recharger.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Jolt Mine",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5a/Jolt_Mine.png/400px-Jolt_Mine.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jupiter",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/68/Jupiter.png/400px-Jupiter.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kettle",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0f/Kettle_IV.png/400px-Kettle_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Li'l Smoke Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0d/Li%27l_Smoke_Grenade.png/400px-Li%27l_Smoke_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Light Impact Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/4c/Light_Impact_Grenade.png/400px-Light_Impact_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Light Shield",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/40/Light_Shield.png/400px-Light_Shield.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Looting Mk. 1",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/27/Looting_Mk._1.png/400px-Looting_Mk._1.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Looting Mk. 2",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/7c/Looting_Mk._2.png/400px-Looting_Mk._2.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Looting Mk. 3 (Cautious)",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/68/Looting_Mk._3_%28Cautious%29.png/400px-Looting_Mk._3_%28Cautious%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Looting Mk. 3 (Safekeeper)",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c6/Looting_Mk._3_%28Safekeeper%29.png/400px-Looting_Mk._3_%28Safekeeper%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Looting Mk. 3 (Survivor)",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/74/Looting_Mk._3_%28Survivor%29.png/400px-Looting_Mk._3_%28Survivor%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Lure Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/77/Lure_Grenade.png/400px-Lure_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Lure Grenade Trap",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/92/Lure_Grenade_Trap.png/400px-Lure_Grenade_Trap.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Medium Shield",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/41/Medium_Shield.png/400px-Medium_Shield.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mountaineer's Detector",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/6e/Mountaineer%27s_Detector.png/400px-Mountaineer%27s_Detector.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Noisemaker",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5c/Noisemaker.png/400px-Noisemaker.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Osprey",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/ce/Osprey_IV.png/400px-Osprey_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Photoelectric Cloak",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/06/Photoelectric_Cloak.png/400px-Photoelectric_Cloak.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Powered Descender",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/21/Powered_Descender.png/400px-Powered_Descender.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Pulse Mine",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/af/Pulse_Mine.png/400px-Pulse_Mine.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Rascal",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b6/Rascal_IV.png/400px-Rascal_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rattler",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/3e/Rattler_IV.png/400px-Rattler_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Recorder",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/6d/Recorder.png/400px-Recorder.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Red Light Stick",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/93/Red_Light_Stick.png/400px-Red_Light_Stick.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Remote Raider Flare",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/ff/Remote_Raider_Flare.png/400px-Remote_Raider_Flare.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Renegade",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a8/Renegade_IV.png/400px-Renegade_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Seeker Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/35/Seeker_Grenade.png/400px-Seeker_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Shaker",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/22/Shaker.png/400px-Shaker.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Shield Recharger",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/44/Shield_Recharger.png/400px-Shield_Recharger.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Showstopper",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/18/Showstopper.png/400px-Showstopper.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shrapnel Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5f/Shrapnel_Grenade.png/400px-Shrapnel_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Smoke Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/d5/Smoke_Grenade.png/400px-Smoke_Grenade.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Smoke Grenade Trap",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/ac/Smoke_Grenade_Trap.png/400px-Smoke_Grenade_Trap.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Snap Blast Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/77/Snap_Blast_Grenade.png/400px-Snap_Blast_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Snap Hook",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/56/Snap_Hook.png/400px-Snap_Hook.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sterilized Bandage",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/99/Sterilized_Bandage.png/400px-Sterilized_Bandage.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Stiletto",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/78/Stiletto_IV.png/400px-Stiletto_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Stitcher",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/55/Stitcher_IV.png/400px-Stitcher_IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Surge Coil",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5b/Surge_Coil.png/400px-Surge_Coil.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Surge Shield Recharger",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c9/Surge_Shield_Recharger.png/400px-Surge_Shield_Recharger.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tactical Mk. 1",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/18/Tactical_Mk._1.png/400px-Tactical_Mk._1.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Tactical Mk. 2",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/6c/Tactical_Mk._2.png/400px-Tactical_Mk._2.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tactical Mk. 3 (Defensive)",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a9/Tactical_Mk._3_%28Defensive%29.png/400px-Tactical_Mk._3_%28Defensive%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tactical Mk. 3 (Healing)",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/12/Tactical_Mk._3_%28Healing%29.png/400px-Tactical_Mk._3_%28Healing%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tactical Mk. 3 (Revival)",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/e0/Tactical_Mk._3_%28Revival%29.png/400px-Tactical_Mk._3_%28Revival%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tactical Mk. 3 (Smoke)",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/d6/Tactical_Mk._3_%28Smoke%29.png/400px-Tactical_Mk._3_%28Smoke%29.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tagging Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/e5/Tagging_Grenade.png/400px-Tagging_Grenade.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tempest",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b2/Tempest_IV.png/400px-Tempest_IV.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tether Launcher",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/31/Tether_Launcher.png/400px-Tether_Launcher.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Torrente",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/35/Torrente_IV.png/400px-Torrente_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Trailblazer",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/89/Trailblazer.png/400px-Trailblazer.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Trigger 'Nade",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/cc/Trigger_%27Nade.png/400px-Trigger_%27Nade.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Venator",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/9f/Venator_IV.png/400px-Venator_IV.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vita Shot",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/7d/Vita_Shot.png/400px-Vita_Shot.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vita Spray",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/1d/Vita_Spray.png/400px-Vita_Spray.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Vulcano",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5b/Vulcano_IV.png/400px-Vulcano_IV.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "White Flag",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/43/White_Flag.png/400px-White_Flag.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Wolfpack",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/24/Wolfpack.png/400px-Wolfpack.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Yank Grenade",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/20/Yank_Grenade.png/400px-Yank_Grenade.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Yellow Light Stick",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/1f/Yellow_Light_Stick.png/400px-Yellow_Light_Stick.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Zipline",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f9/Zipline.png/400px-Zipline.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Advanced ARC Powercell",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/31/Advanced_ARC_Powercell.png/400px-Advanced_ARC_Powercell.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Advanced Electrical Components",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/9b/Advanced_Electrical_Components.png/400px-Advanced_Electrical_Components.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Advanced Mechanical Components",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/25/Advanced_Mechanical_Components.png/400px-Advanced_Mechanical_Components.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Amplification Module Mk. I",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/33/Amplification_Module_Mk._I.png/400px-Amplification_Module_Mk._I.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplification Module Mk. II",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c7/Amplification_Module_Mk._II.png/400px-Amplification_Module_Mk._II.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplification Module Mk. III",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/37/Amplification_Module_Mk._III.png/400px-Amplification_Module_Mk._III.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplification Module Mk. IV",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c4/Amplification_Module_Mk._IV.png/400px-Amplification_Module_Mk._IV.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplification Module Mk. V",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/7f/Amplification_Module_Mk._V.png/400px-Amplification_Module_Mk._V.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplified Fragments",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/ec/Amplified_Fragments.png/400px-Amplified_Fragments.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Antiseptic",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/f5/Antiseptic.png/400px-Antiseptic.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "ARC Alloy",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a6/ARC_Alloy.png/400px-ARC_Alloy.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "ARC Circuitry",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/dc/ARC_Circuitry.png/400px-ARC_Circuitry.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "ARC Conductive Coupler",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/83/ARC_Conductive_Coupler.png/400px-ARC_Conductive_Coupler.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "ARC Insulated Coupler",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/52/ARC_Insulated_Coupler.png/400px-ARC_Insulated_Coupler.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "ARC Motion Core",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/ad/ARC_Motion_Core.png/400px-ARC_Motion_Core.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "ARC Plated Coupler",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/84/ARC_Plated_Coupler.png/400px-ARC_Plated_Coupler.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "ARC Powercell",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/df/ARC_Powercell.png/400px-ARC_Powercell.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Battery",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/6d/Battery.png/400px-Battery.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Cable Stripper",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/86/Cable_Stripper.png/400px-Cable_Stripper.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Calculator",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/23/Calculator.png/400px-Calculator.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Canister",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5f/Canister.png/400px-Canister.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Chemicals",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/92/Chemicals.png/400px-Chemicals.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Complex Gun Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/3d/Complex_Gun_Parts.png/400px-Complex_Gun_Parts.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Crude Explosives",
+   "image": "https://arcraiders.wiki/w/images/thumb/f/fc/Crude_Explosives.png/400px-Crude_Explosives.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Duct Tape",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/4e/Duct_Tape.png/400px-Duct_Tape.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Durable Cloth",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/25/Durable_Cloth.png/400px-Durable_Cloth.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Electrical Components",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/06/Electrical_Components.png/400px-Electrical_Components.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Emperor Modulator",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/4c/Emperor_Modulator.png/400px-Emperor_Modulator.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Exodus Modules",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/1b/Exodus_Modules.png/400px-Exodus_Modules.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Explosive Compound",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/11/Explosive_Compound.png/400px-Explosive_Compound.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fabric",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/2b/Fabric.png/400px-Fabric.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Fluted Rotor Core",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c6/Fluted_Rotor_Core.png/400px-Fluted_Rotor_Core.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Frigate Inductor",
+   "image": "https://arcraiders.wiki/w/images/thumb/2/22/Frigate_Inductor.png/400px-Frigate_Inductor.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Great Mullein",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0d/Great_Mullein.png/400px-Great_Mullein.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Hand Drill",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/d4/Hand_Drill.png/400px-Hand_Drill.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Heavy Gun Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/33/Heavy_Gun_Parts.png/400px-Heavy_Gun_Parts.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Laser Level",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/31/Laser_Level.png/400px-Laser_Level.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Light Gun Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c9/Light_Gun_Parts.png/400px-Light_Gun_Parts.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Magnet",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/8c/Magnet.png/400px-Magnet.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Magnetic Accelerator",
+   "image": "https://arcraiders.wiki/w/images/thumb/5/5e/Magnetic_Accelerator.png/400px-Magnetic_Accelerator.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Mechanical Components",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/94/Mechanical_Components.png/400px-Mechanical_Components.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Medium Gun Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/9a/Medium_Gun_Parts.png/400px-Medium_Gun_Parts.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Metal Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/89/Metal_Parts.png/400px-Metal_Parts.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Mod Components",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/0f/Mod_Components.png/400px-Mod_Components.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Moss",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/64/Moss.png/400px-Moss.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Oil",
+   "image": "https://arcraiders.wiki/w/images/thumb/0/06/Oil.png/400px-Oil.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Planks",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b9/Planks.png/400px-Planks.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Plastic Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c9/Plastic_Parts.png/400px-Plastic_Parts.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Pneumatic Actuator",
+   "image": "https://arcraiders.wiki/w/images/thumb/a/a8/Pneumatic_Actuator.png/400px-Pneumatic_Actuator.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Power Rod",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/31/Power_Rod.png/400px-Power_Rod.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Pressure Regulator",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/d2/Pressure_Regulator.png/400px-Pressure_Regulator.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Processor",
+   "image": "https://arcraiders.wiki/w/images/thumb/4/4e/Processor.png/400px-Processor.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Propellant Valve Assembly",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/62/Propellant_Valve_Assembly.png/400px-Propellant_Valve_Assembly.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Radial Press",
+   "image": "https://arcraiders.wiki/w/images/thumb/7/7e/Radial_Press.png/400px-Radial_Press.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Rope",
+   "image": "https://arcraiders.wiki/w/images/thumb/b/b4/Rope.png/400px-Rope.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Rubber Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/93/Rubber_Parts.png/400px-Rubber_Parts.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Sensors",
+   "image": "https://arcraiders.wiki/w/images/thumb/9/9c/Sensors.png/400px-Sensors.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sheet Metal",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/85/Sheet_Metal.png/400px-Sheet_Metal.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Simple Gun Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/da/Simple_Gun_Parts.png/400px-Simple_Gun_Parts.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Speaker Component",
+   "image": "https://arcraiders.wiki/w/images/thumb/e/ee/Speaker_Component.png/400px-Speaker_Component.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Steel Spring",
+   "image": "https://arcraiders.wiki/w/images/thumb/d/db/Steel_Spring.png/400px-Steel_Spring.png.webp",
+   "rarity": "common"
+  },
+  {
+   "name": "Stencil Parts",
+   "image": "https://arcraiders.wiki/w/images/thumb/6/67/Stencil_Parts.png/400px-Stencil_Parts.png.webp",
+   "rarity": "epic"
+  },
+  {
+   "name": "Synthesized Fuel",
+   "image": "https://arcraiders.wiki/w/images/thumb/8/8e/Synthesized_Fuel.png/400px-Synthesized_Fuel.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Syringe",
+   "image": "https://arcraiders.wiki/w/images/thumb/1/17/Syringe.png/400px-Syringe.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Voltage Converter",
+   "image": "https://arcraiders.wiki/w/images/thumb/c/c7/Voltage_Converter.png/400px-Voltage_Converter.png.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Wires",
+   "image": "https://arcraiders.wiki/w/images/thumb/3/39/Wires.png/400px-Wires.png.webp",
+   "rarity": "common"
+  }
  ]
 }
