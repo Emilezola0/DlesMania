@@ -51,6 +51,8 @@ export interface Card {
   audio?: string;
   /** Lines it may say instead, one picked at random each time it speaks (`voice` stays the one shown). */
   voices?: string[];
+  /** The same, with the real recording of each line (the hero's own voice from the game's wiki). */
+  voiceClips?: { line: string; audio: string }[];
   /** The French dub's line and recording, heard (and shown) when names are in French. */
   voiceFr?: string;
   audioFr?: string;
@@ -134,7 +136,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
  * Overwatch wiki's file, in French too); the others are read in the browser's voice. (Lines written for these cards;
  * titles and catchphrases from the franchises.)
  */
-const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceFr?: string; audioFr?: string; image?: string }> = {
+const MYTHICS_2: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceClips?: { line: string; audio: string }[]; voiceFr?: string; audioFr?: string; image?: string }> = {
   lol: { name: 'Jinx', title: 'The Loose Cannon', line: 'Two guns, one rocket launcher and zero plans — Piltover has never been so loud.', voice: 'Get excited!' },
   overwatch: {
     name: 'Doomfist',
@@ -174,7 +176,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
-  deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: 'Feel the heat.' },
+  // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
+  deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
 };
 
@@ -184,7 +187,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
  * Perfected Ultra Instinct). `image` left out: the character's own picture. (Lines written for
  * these cards; art from the fan wikis.)
  */
-const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; awaken: { title: string; image: string; line: string } }> = {
+const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; voice?: string; audio?: string; voiceClips?: { line: string; audio: string }[]; awaken: { title: string; image: string; line: string } }> = {
   // 漢字 itself, in gold on black; on a Hard win it wakes as 合格, "passed" (both words from the list).
   jlpt: {
     name: 'Language',
@@ -216,6 +219,10 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     title: 'Concierge of the Cursed Apple',
     line: 'A call bell, a luggage cart and a door to anywhere in the city: every guest of the hotel is welcome, and none of them ever checks out.',
     image: 'https://cdn.deadlock.wiki/Doorman_Gloat.png',
+    // His own voice from the game, a line picked each time he speaks (the wiki's recordings).
+    voice: "I am at your service.",
+    audio: 'https://cdn.deadlock.wiki/Doorman_select_01.mp3',
+    voiceClips: [{ line: "I am at your service.", audio: 'https://cdn.deadlock.wiki/Doorman_select_01.mp3' }, { line: "I think you’ll find the service at The Baroness to be… exemplary.", audio: 'https://cdn.deadlock.wiki/Doorman_select_03.mp3' }, { line: "May your time in New York be unforgettable.", audio: 'https://cdn.deadlock.wiki/Doorman_select_05.mp3' }, { line: "Today will be a day unlike any other, I assure you.", audio: 'https://cdn.deadlock.wiki/Doorman_select_08.mp3' }, { line: "It’s important to never overlook the help.", audio: 'https://cdn.deadlock.wiki/Doorman_select_10.mp3' }, { line: "I’m afraid a doorman’s job is never done.", audio: 'https://cdn.deadlock.wiki/Doorman_unselect_01.mp3' }],
     awaken: {
       title: 'Last Call',
       line: 'The lights of the Cursed Apple go out, his eyes burn blue, and every door in the city opens on the same room.',
@@ -656,9 +663,18 @@ const CLIPS: Record<string, string> = {
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
   'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
+  // Infernus: a fan's painting, the flames around him flickering (Tenor).
+  'deadlock:mythic-2': 'https://media.tenor.com/0cyI_TG7YT0AAAPo/infernus-deadlock-deadlock.mp4',
+};
+/**
+ * An omni's first form, animated too (its `CLIPS` entry is its awakened form's): the Doorman in a fan's
+ * hand-drawn animation, his eyes welling up before he turns away (Tenor).
+ */
+const FIRST_CLIPS: Record<string, string> = {
+  'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
@@ -666,7 +682,10 @@ const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
   const clipLight = !!clip && LIGHT_CLIPS.has(c.id);
   const cutout = CUTOUTS.has(c.id);
-  return c.awaken ? { ...c, cutout, awaken: { ...c.awaken, clip, clipLight, cutout: CUTOUTS_AWAKE.has(c.id) } } : { ...c, clip, clipLight, cutout };
+  const first = FIRST_CLIPS[c.id];
+  return c.awaken
+    ? { ...c, cutout, ...(first ? { clip: first, clipLight: LIGHT_CLIPS.has(c.id) } : {}), awaken: { ...c.awaken, clip, clipLight: !!clip && clipLight, cutout: CUTOUTS_AWAKE.has(c.id) } }
+    : { ...c, clip, clipLight, cutout };
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
@@ -943,7 +962,7 @@ export const CARDS: Card[] = (() => {
     const o = OMNIS[b.id];
     const legend = o && b.radar.members.find((x) => x.label === o.name);
     const oImage = o?.image ?? legend?.image;
-    if (o && oImage) set.push({ id: `${b.id}:omni`, name: o.name, image: oImage, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'omni', title: o.title, description: o.line, awaken: o.awaken });
+    if (o && oImage) set.push({ id: `${b.id}:omni`, name: o.name, image: oImage, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'omni', title: o.title, description: o.line, voice: o.voice, audio: o.audio, voiceClips: o.voiceClips, awaken: o.awaken });
     // More faces from the same franchise (Who's That's rosters): commons, with a rare now and then.
     for (const e of SILHOUETTES.find((x) => x.id === b.id && !x.cutout)?.entries ?? []) {
       const rarity: Rarity = hashString(e.name) % 7 === 0 ? 'rare' : 'common';
@@ -983,7 +1002,7 @@ export const CARDS: Card[] = (() => {
     const set = sets.get(b.id)!;
     const m = MYTHICS_2[b.id];
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
-    if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
+    if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceClips: m.voiceClips, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
   }
   // And last: the cards added after the second mythics (so no released card changes number).
   for (const x of LATER) {

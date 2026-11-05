@@ -217,6 +217,8 @@ export function voiceOf(card: Card, lang = useProgress.getState().nameLang): { l
   const fr = lang === 'fr';
   // A card with several lines says one at random (a recording only goes with its own line).
   if (card.voices?.length && !(fr && card.voiceFr)) return { line: card.voices[Math.floor(Math.random() * card.voices.length)] };
+  // Lines with their recordings: one at random.
+  if (card.voiceClips?.length && !(fr && card.voiceFr)) return card.voiceClips[Math.floor(Math.random() * card.voiceClips.length)];
   return { line: (fr && card.voiceFr) || card.voice, audio: (fr && card.audioFr) || card.audio };
 }
 
