@@ -6,11 +6,11 @@ import { useProgress } from '../store/progress';
 /** How many examples show at first; the rest behind "More examples". */
 const FIRST = 3;
 /**
- * Tatoeba's sentences were matched to the points by their form only, and a form isn't a meaning
- * (止まったらどうなる isn't ～たらどうですか): they stay in the data but aren't shown, only the sources' own
- * examples for each point are.
+ * Tatoeba's sentences (read aloud when a voice recorded them), after the sources' own: only those that
+ * passed the same check as the sources' (the point's form in the part marked; the others are in
+ * jlpt-grammar-examples.json's tatoebaOut). They were matched to the points by form, not chosen by a source.
  */
-const SHOW_TATOEBA = false;
+const SHOW_TATOEBA = true;
 
 /** A sentence read aloud (the effects' volume, never silent on a tap). */
 function playSentence(s: JlptSentence) {
@@ -105,8 +105,8 @@ function Example({ s, lang }: { s: JlptSentence; lang: 'en' | 'fr' }) {
 /**
  * Once a grammar question is answered (right or wrong): what the grammar point means, in the player's
  * language, where the point and its meaning are from, and example sentences that use it — the sources'
- * own (`examples` of them shown, the rest a tap away). Nothing for a point no source translates, or with
- * no sentence.
+ * own, then the checked Tatoeba sentences (`examples` of them shown, the rest a tap away; `not`: the one
+ * already on screen). Nothing for a point no source translates, or with no sentence.
  */
 export function GrammarNote({ level, pattern, not, examples = FIRST }: { level: string; pattern: string; not?: number; examples?: number }) {
   const lang = useProgress((s) => s.nameLang);
