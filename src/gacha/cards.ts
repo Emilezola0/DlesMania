@@ -122,6 +122,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
   ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', image: UFOURIA_ART('dance-hebe-2.png') },
   arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
+  deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -171,6 +172,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
+  deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: 'Feel the heat.' },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
 };
 
@@ -203,6 +205,17 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       title: 'Brought Down',
       line: 'Her legs give way at last, and her core is open for the taking: the loot every Raider in Speranza dreams of.',
       image: 'https://arcraiders.wiki/w/images/thumb/4/49/ARC_Matriarch.png/400px-ARC_Matriarch.png.webp',
+    },
+  },
+  // Deadlock: Seven on his card art; on a Hard win, the concept art of the storm he calls down.
+  deadlock: {
+    name: 'Seven',
+    title: 'The Storm Caller',
+    line: 'Lightning in a ball, a static charge that stuns and a storm cloud over a whole fight: the hero every new player is warned about.',
+    awaken: {
+      title: 'Storm Cloud',
+      line: 'The sky over the city goes dark, and every enemy under it hears the thunder before it lands.',
+      image: 'https://cdn.deadlock.wiki/Seven_concept_art.png',
     },
   },
   // Ufouria: O-Chan cheering (the official site's art); on a Hard win, flying over the Earth (the key art).
@@ -653,9 +666,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock']);
 
 const slug = (s: string) =>
   s

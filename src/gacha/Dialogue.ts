@@ -118,6 +118,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Downed again, {other}.', 'Was it the Leaper?', 'It is always the Leaper.'], ['They left their loot topside.', 'Someone is going to have a very good day, {other}.']],
     great: [['Was that a Queen going down?', 'It was, {other}!', 'Everyone in Speranza will hear about this.']],
   },
+  deadlock: {
+    good: [['They took the Guardian, {other}.', 'In one go, too.'], ['Clean last hit on that trooper.', 'Every soul counts, {other}.']],
+    bad: [['Picked off on the zipline, {other}.', 'Was it Grey Talon?', 'It is always Grey Talon.'], ['They walked into Seven’s storm.', 'Someone always does, {other}.']],
+    great: [['Was that the Patron going down?', 'It was, {other}!', 'The whole hotel heard that one.']],
+  },
   ufouria: {
     good: [['Did you see that butt stomp, {other}?', 'Straight into coins.'], ['Another Bumyon gone.', 'Popoons work wonders, {other}.']],
     bad: [['They got Bumyon’d, {other}.', 'Sticky. Very sticky.'], ['A Kerasu got them.', 'Right on the head, {other}.']],

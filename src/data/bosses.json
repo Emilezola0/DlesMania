@@ -20573,5 +20573,1601 @@
         }
       ]
     }
+  },
+  {
+    "id": "deadlock",
+    "domain": "games",
+    "franchise": "Deadlock",
+    "aliases": [
+      "deadlock",
+      "dead lock"
+    ],
+    "images": "none",
+    "boss": {
+      "name": "The Doorman",
+      "title": "Keeper of the Cursed Apple",
+      "color": "#a3e635",
+      "image": "https://cdn.deadlock.wiki/The_Doorman_card.png"
+    },
+    "lines": {
+      "intro": "Welcome to the Cursed Apple, guest. Every room is taken, every door is mine, and checkout is… not an option.",
+      "phase2": "Some of these faces never checked in. Point out the real guests before I show you the way out!",
+      "phase3": "You found the shop, I see. Name what is on the shelves before the bell rings!",
+      "hit": [
+        "Do not touch the luggage!",
+        "Room service!",
+        "That was rude."
+      ],
+      "hurt": [
+        "Checked out!",
+        "Mind the door!",
+        "Back to spawn with you!",
+        "No refunds!"
+      ],
+      "win": "Very well… Enjoy your stay. While it lasts.",
+      "lose": "Another guest who stayed forever. I will keep the key.",
+      "secret": "One last game before the lights go out. I name a hero or an item, you name another of the same. No repeats!",
+      "secretOk": [
+        "Noted.",
+        "Next.",
+        "Lucky guest."
+      ],
+      "secretLost": "Nothing? Then your room is ready. Permanently."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 heroes",
+        "count": 5,
+        "answers": [
+          "Abrams",
+          "Apollo",
+          "Baba",
+          "Bebop",
+          "Billy",
+          "Calico",
+          "Celeste",
+          "Deadman Danny",
+          "Drifter",
+          "Dynamo",
+          "Graves",
+          "Grey Talon",
+          "Haze",
+          "Holliday",
+          "Infernus",
+          "Ivy",
+          "Kelvin",
+          "Lady Geist",
+          "Lash",
+          "McGinnis",
+          "Mina",
+          "Mirage",
+          "Mo & Krill|Mo and Krill",
+          "Nurse Harrow",
+          "Paige",
+          "Paradox",
+          "Pocket",
+          "Rat King",
+          "Rem",
+          "Seven",
+          "Shiv",
+          "Silver",
+          "Sinclair",
+          "Solomon",
+          "The Doorman|Doorman",
+          "Venator",
+          "Victor",
+          "Vindicta",
+          "Violet",
+          "Viscous",
+          "Vyper",
+          "Warden",
+          "Wraith",
+          "Yamato"
+        ]
+      },
+      {
+        "prompt": "Name 4 Mystic heroes",
+        "count": 4,
+        "answers": [
+          "Baba",
+          "Celeste",
+          "Graves",
+          "Grey Talon",
+          "Infernus",
+          "Lady Geist",
+          "McGinnis",
+          "Mina",
+          "Seven",
+          "Sinclair",
+          "Solomon",
+          "The Doorman|Doorman",
+          "Violet"
+        ]
+      },
+      {
+        "prompt": "Name 4 Brawler heroes",
+        "count": 4,
+        "answers": [
+          "Abrams",
+          "Bebop",
+          "Billy",
+          "Mo & Krill|Mo and Krill",
+          "Rat King",
+          "Shiv",
+          "Silver",
+          "Victor",
+          "Viscous",
+          "Warden"
+        ]
+      },
+      {
+        "prompt": "Name 3 Assassin heroes",
+        "count": 3,
+        "answers": [
+          "Apollo",
+          "Calico",
+          "Drifter",
+          "Haze",
+          "Lash",
+          "Mirage",
+          "Pocket",
+          "Vyper",
+          "Yamato"
+        ]
+      },
+      {
+        "prompt": "Name 3 Marksman heroes",
+        "count": 3,
+        "answers": [
+          "Deadman Danny",
+          "Holliday",
+          "Paradox",
+          "Venator",
+          "Vindicta",
+          "Wraith"
+        ]
+      },
+      {
+        "prompt": "Name 5 Weapon items",
+        "count": 5,
+        "answers": [
+          "Active Reload",
+          "Alchemical Fire",
+          "Armor Piercer",
+          "Ballistic Enchantment",
+          "Berserker",
+          "Blood Tribute",
+          "Burst Fire",
+          "Capacitor",
+          "Close Quarters",
+          "Crippling Headshot",
+          "Crushing Fists",
+          "Cultist Sacrifice",
+          "Escalating Resilience",
+          "Express Shot",
+          "Extended Magazine",
+          "Fleetfoot",
+          "Frenzy",
+          "Glass Cannon",
+          "Haunting Shot",
+          "Headhunter",
+          "Headshot Booster",
+          "Heroic Aura",
+          "High-Velocity Rounds",
+          "Hollow Point",
+          "Hunter's Aura",
+          "Infinite Rounds",
+          "Intensifying Magazine",
+          "Kinetic Dash",
+          "Long Range",
+          "Lucky Shot",
+          "Melee Charge",
+          "Monster Rounds",
+          "Mystic Shot",
+          "Opening Rounds",
+          "Point Blank",
+          "Rapid Rounds",
+          "Recharging Rush",
+          "Restorative Shot",
+          "Ricochet",
+          "Runed Gauntlets",
+          "Shadow Weave",
+          "Sharpshooter",
+          "Silencer",
+          "Slowing Bullets",
+          "Spellslinger",
+          "Spirit Rend",
+          "Spirit Shredder",
+          "Spiritual Overflow",
+          "Split Shot",
+          "Stalker",
+          "Swift Striker",
+          "Tesla Bullets",
+          "Titanic Magazine",
+          "Toxic Bullets",
+          "Weakening Headshot",
+          "Weighted Shots"
+        ]
+      },
+      {
+        "prompt": "Name 5 Vitality items",
+        "count": 5,
+        "answers": [
+          "Battle Vest",
+          "Bullet Lifesteal",
+          "Bullet Resilience",
+          "Celestial Blessing",
+          "Cheat Death",
+          "Cloak of Opportunity",
+          "Colossus",
+          "Counterspell",
+          "Debuff Reducer",
+          "Dispel Magic",
+          "Divine Barrier",
+          "Diviner's Kevlar",
+          "Electric Slippers",
+          "Enchanter's Emblem",
+          "Enduring Speed",
+          "Eternal Gift",
+          "Extra Health",
+          "Extra Regen",
+          "Extra Stamina",
+          "Fortitude",
+          "Fury Trance",
+          "Grit",
+          "Guardian Ward",
+          "Healbane",
+          "Healing Booster",
+          "Healing Nova",
+          "Healing Rite",
+          "Healing Tempo",
+          "Indomitable",
+          "Infuser",
+          "Inhibitor",
+          "Juggernaut",
+          "Leech",
+          "Lifestrike",
+          "Majestic Leap",
+          "Melee Lifesteal",
+          "Metal Skin",
+          "Nullification Burst",
+          "Phantom Strike",
+          "Plated Armor",
+          "Reactive Barrier",
+          "Rebuttal",
+          "Rescue Beam",
+          "Restorative Locket",
+          "Return Fire",
+          "Seraphim Wings",
+          "Shadow Strike",
+          "Siphon Bullets",
+          "Spellbreaker",
+          "Spirit Lifesteal",
+          "Spirit Resilience",
+          "Spirit Shielding",
+          "Sprint Boots",
+          "Stamina Mastery",
+          "Trophy Collector",
+          "Unstoppable",
+          "Vampiric Burst",
+          "Veil Walker",
+          "Warp Stone",
+          "Weapon Shielding",
+          "Witchmail"
+        ]
+      },
+      {
+        "prompt": "Name 5 Spirit items",
+        "count": 5,
+        "answers": [
+          "Arcane Surge",
+          "Arctic Blast",
+          "Boundless Spirit",
+          "Bullet Resist Shredder",
+          "Cold Front",
+          "Compress Cooldown",
+          "Cursed Relic",
+          "Decay",
+          "Disarming Hex",
+          "Duration Extender",
+          "Echo Shard",
+          "Escalating Exposure",
+          "Ethereal Shift",
+          "Extra Charge",
+          "Extra Spirit",
+          "Focus Lens",
+          "Frostbite Charm",
+          "Golden Goose Egg",
+          "Greater Expansion",
+          "Improved Spirit",
+          "Knockdown",
+          "Lightning Scroll",
+          "Magic Carpet",
+          "Mercurial Magnum",
+          "Mystic Burst",
+          "Mystic Conduit",
+          "Mystic Expansion",
+          "Mystic Regeneration",
+          "Mystic Reverb",
+          "Mystic Slow",
+          "Mystic Vulnerability",
+          "Mystical Piano",
+          "Omnicharge Signet",
+          "Prism Blast",
+          "Quicksilver Reload",
+          "Radiant Regeneration",
+          "Rapid Recharge",
+          "Refresher",
+          "Rusted Barrel",
+          "Scourge",
+          "Shrink Ray",
+          "Silence Wave",
+          "Slowing Hex",
+          "Spirit Burn",
+          "Spirit Sap",
+          "Spirit Snatch",
+          "Spirit Strike",
+          "Superior Cooldown",
+          "Superior Duration",
+          "Suppressor",
+          "Surge of Power",
+          "Tankbuster",
+          "Torment Pulse",
+          "Transcendent Cooldown",
+          "Unstable Concoction",
+          "Vortex Web"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Haze",
+          "image": "https://cdn.deadlock.wiki/Haze_card.png"
+        },
+        {
+          "label": "Seven",
+          "image": "https://cdn.deadlock.wiki/Seven_card.png"
+        },
+        {
+          "label": "Infernus",
+          "image": "https://cdn.deadlock.wiki/Infernus_card.png"
+        },
+        {
+          "label": "Lady Geist",
+          "image": "https://cdn.deadlock.wiki/Lady_Geist_card.png"
+        },
+        {
+          "label": "Abrams",
+          "image": "https://cdn.deadlock.wiki/Abrams_card.png"
+        },
+        {
+          "label": "Wraith",
+          "image": "https://cdn.deadlock.wiki/Wraith_card.png"
+        },
+        {
+          "label": "Bebop",
+          "image": "https://cdn.deadlock.wiki/Bebop_card.png"
+        },
+        {
+          "label": "McGinnis",
+          "image": "https://cdn.deadlock.wiki/McGinnis_card.png"
+        },
+        {
+          "label": "Vindicta",
+          "image": "https://cdn.deadlock.wiki/Vindicta_card.png"
+        },
+        {
+          "label": "Paradox",
+          "image": "https://cdn.deadlock.wiki/Paradox_card.png"
+        },
+        {
+          "label": "Kelvin",
+          "image": "https://cdn.deadlock.wiki/Kelvin_card.png"
+        },
+        {
+          "label": "Pocket",
+          "image": "https://cdn.deadlock.wiki/Pocket_card.png"
+        },
+        {
+          "label": "Mo & Krill",
+          "image": "https://cdn.deadlock.wiki/Mo_%26_Krill_card.png",
+          "aliases": [
+            "Mo and Krill"
+          ]
+        },
+        {
+          "label": "Dynamo",
+          "image": "https://cdn.deadlock.wiki/Dynamo_card.png"
+        },
+        {
+          "label": "Lash",
+          "image": "https://cdn.deadlock.wiki/Lash_card.png"
+        },
+        {
+          "label": "Ivy",
+          "image": "https://cdn.deadlock.wiki/Ivy_card.png"
+        },
+        {
+          "label": "Grey Talon",
+          "image": "https://cdn.deadlock.wiki/Grey_Talon_card.png"
+        },
+        {
+          "label": "Viscous",
+          "image": "https://cdn.deadlock.wiki/Viscous_card.png"
+        },
+        {
+          "label": "Warden",
+          "image": "https://cdn.deadlock.wiki/Warden_card.png"
+        },
+        {
+          "label": "Yamato",
+          "image": "https://cdn.deadlock.wiki/Yamato_card.png"
+        },
+        {
+          "label": "Apollo",
+          "image": "https://cdn.deadlock.wiki/Apollo_card.png"
+        },
+        {
+          "label": "Baba",
+          "image": "https://cdn.deadlock.wiki/Baba_card.png"
+        },
+        {
+          "label": "Billy",
+          "image": "https://cdn.deadlock.wiki/Billy_card.png"
+        },
+        {
+          "label": "Calico",
+          "image": "https://cdn.deadlock.wiki/Calico_card.png"
+        },
+        {
+          "label": "Celeste",
+          "image": "https://cdn.deadlock.wiki/Celeste_card.png"
+        },
+        {
+          "label": "Deadman Danny",
+          "image": "https://cdn.deadlock.wiki/Deadman_Danny_card.png"
+        },
+        {
+          "label": "Drifter",
+          "image": "https://cdn.deadlock.wiki/Drifter_card.png"
+        },
+        {
+          "label": "Graves",
+          "image": "https://cdn.deadlock.wiki/Graves_card.png"
+        },
+        {
+          "label": "Holliday",
+          "image": "https://cdn.deadlock.wiki/Holliday_card.png"
+        },
+        {
+          "label": "Mina",
+          "image": "https://cdn.deadlock.wiki/Mina_card.png"
+        },
+        {
+          "label": "Mirage",
+          "image": "https://cdn.deadlock.wiki/Mirage_card.png"
+        },
+        {
+          "label": "Nurse Harrow",
+          "image": "https://cdn.deadlock.wiki/Nurse_Harrow_card.png"
+        },
+        {
+          "label": "Paige",
+          "image": "https://cdn.deadlock.wiki/Paige_card.png"
+        },
+        {
+          "label": "Rat King",
+          "image": "https://cdn.deadlock.wiki/Rat_King_card.png"
+        },
+        {
+          "label": "Rem",
+          "image": "https://cdn.deadlock.wiki/Rem_card.png"
+        },
+        {
+          "label": "Shiv",
+          "image": "https://cdn.deadlock.wiki/Shiv_card.png"
+        },
+        {
+          "label": "Silver",
+          "image": "https://cdn.deadlock.wiki/Silver_card.png"
+        },
+        {
+          "label": "Sinclair",
+          "image": "https://cdn.deadlock.wiki/Sinclair_card.png"
+        },
+        {
+          "label": "Solomon",
+          "image": "https://cdn.deadlock.wiki/Solomon_card.png"
+        },
+        {
+          "label": "Venator",
+          "image": "https://cdn.deadlock.wiki/Venator_card.png"
+        },
+        {
+          "label": "Victor",
+          "image": "https://cdn.deadlock.wiki/Victor_card.png"
+        },
+        {
+          "label": "Violet",
+          "image": "https://cdn.deadlock.wiki/Violet_card.png"
+        },
+        {
+          "label": "Vyper",
+          "image": "https://cdn.deadlock.wiki/Vyper_card.png"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Ahri",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ahri_OriginalLoading.jpg?babce"
+        },
+        {
+          "label": "Yasuo",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Yasuo_OriginalLoading.jpg?ad3bd"
+        },
+        {
+          "label": "Jinx",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Jinx_OriginalLoading.jpg?b2a7e"
+        },
+        {
+          "label": "Teemo",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Teemo_OriginalLoading.jpg?10811"
+        },
+        {
+          "label": "Garen",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Garen_OriginalLoading.jpg?94b72"
+        },
+        {
+          "label": "Lux",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Lux_OriginalLoading.jpg?18bc7"
+        },
+        {
+          "label": "Thresh",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Thresh_OriginalLoading.jpg?2da49"
+        },
+        {
+          "label": "Zed",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Zed_OriginalLoading.jpg?3f9d4"
+        },
+        {
+          "label": "Lee Sin",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Lee_Sin_OriginalLoading.jpg?16baa"
+        },
+        {
+          "label": "Ezreal",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Ezreal_OriginalLoading.jpg?b0439"
+        },
+        {
+          "label": "Darius",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Darius_OriginalLoading.jpg?d1cb4"
+        },
+        {
+          "label": "Annie",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Annie_OriginalLoading.jpg?c9d0a"
+        },
+        {
+          "label": "Miss Fortune",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Miss_Fortune_OriginalLoading.jpg?3045a"
+        },
+        {
+          "label": "Vi",
+          "image": "https://wiki.leagueoflegends.com/en-us/images/Vi_OriginalLoading.jpg?bb26c"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Unstoppable",
+        "image": "https://cdn.deadlock.wiki/Unstoppable.png"
+      },
+      {
+        "label": "Boundless Spirit",
+        "image": "https://cdn.deadlock.wiki/Boundless_Spirit.png"
+      },
+      {
+        "label": "Leech",
+        "image": "https://cdn.deadlock.wiki/Leech.png"
+      },
+      {
+        "label": "Siphon Bullets",
+        "image": "https://cdn.deadlock.wiki/Siphon_Bullets.png"
+      },
+      {
+        "label": "Refresher",
+        "image": "https://cdn.deadlock.wiki/Refresher.png"
+      },
+      {
+        "label": "Echo Shard",
+        "image": "https://cdn.deadlock.wiki/Echo_Shard.png"
+      },
+      {
+        "label": "Knockdown",
+        "image": "https://cdn.deadlock.wiki/Knockdown.png"
+      },
+      {
+        "label": "Metal Skin",
+        "image": "https://cdn.deadlock.wiki/Metal_Skin.png"
+      },
+      {
+        "label": "Glass Cannon",
+        "image": "https://cdn.deadlock.wiki/Glass_Cannon.png"
+      },
+      {
+        "label": "Crippling Headshot",
+        "image": "https://cdn.deadlock.wiki/Crippling_Headshot.png"
+      },
+      {
+        "label": "Ethereal Shift",
+        "image": "https://cdn.deadlock.wiki/Ethereal_Shift.png"
+      },
+      {
+        "label": "Silencer",
+        "image": "https://cdn.deadlock.wiki/Silencer.png"
+      },
+      {
+        "label": "Healing Rite",
+        "image": "https://cdn.deadlock.wiki/Healing_Rite.png"
+      },
+      {
+        "label": "Vampiric Burst",
+        "image": "https://cdn.deadlock.wiki/Vampiric_Burst.png"
+      },
+      {
+        "label": "Spirit Snatch",
+        "image": "https://cdn.deadlock.wiki/Spirit_Snatch.png"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Hero",
+          "entities": [
+            "Abrams",
+            "Apollo",
+            "Baba",
+            "Bebop",
+            "Billy",
+            "Calico",
+            "Celeste",
+            "Deadman Danny",
+            "Drifter",
+            "Dynamo",
+            "Graves",
+            "Grey Talon",
+            "Haze",
+            "Holliday",
+            "Infernus",
+            "Ivy",
+            "Kelvin",
+            "Lady Geist",
+            "Lash",
+            "McGinnis",
+            "Mina",
+            "Mirage",
+            "Mo & Krill|Mo and Krill",
+            "Nurse Harrow",
+            "Paige",
+            "Paradox",
+            "Pocket",
+            "Rat King",
+            "Rem",
+            "Seven",
+            "Shiv",
+            "Silver",
+            "Sinclair",
+            "Solomon",
+            "The Doorman|Doorman",
+            "Venator",
+            "Victor",
+            "Vindicta",
+            "Violet",
+            "Viscous",
+            "Vyper",
+            "Warden",
+            "Wraith",
+            "Yamato"
+          ]
+        },
+        {
+          "label": "Weapon item",
+          "entities": [
+            "Active Reload",
+            "Alchemical Fire",
+            "Armor Piercer",
+            "Ballistic Enchantment",
+            "Berserker",
+            "Blood Tribute",
+            "Burst Fire",
+            "Capacitor",
+            "Close Quarters",
+            "Crippling Headshot",
+            "Crushing Fists",
+            "Cultist Sacrifice",
+            "Escalating Resilience",
+            "Express Shot",
+            "Extended Magazine",
+            "Fleetfoot",
+            "Frenzy",
+            "Glass Cannon",
+            "Haunting Shot",
+            "Headhunter",
+            "Headshot Booster",
+            "Heroic Aura",
+            "High-Velocity Rounds",
+            "Hollow Point",
+            "Hunter's Aura",
+            "Infinite Rounds",
+            "Intensifying Magazine",
+            "Kinetic Dash",
+            "Long Range",
+            "Lucky Shot",
+            "Melee Charge",
+            "Monster Rounds",
+            "Mystic Shot",
+            "Opening Rounds",
+            "Point Blank",
+            "Rapid Rounds",
+            "Recharging Rush",
+            "Restorative Shot",
+            "Ricochet",
+            "Runed Gauntlets",
+            "Shadow Weave",
+            "Sharpshooter",
+            "Silencer",
+            "Slowing Bullets",
+            "Spellslinger",
+            "Spirit Rend",
+            "Spirit Shredder",
+            "Spiritual Overflow",
+            "Split Shot",
+            "Stalker",
+            "Swift Striker",
+            "Tesla Bullets",
+            "Titanic Magazine",
+            "Toxic Bullets",
+            "Weakening Headshot",
+            "Weighted Shots"
+          ]
+        },
+        {
+          "label": "Vitality item",
+          "entities": [
+            "Battle Vest",
+            "Bullet Lifesteal",
+            "Bullet Resilience",
+            "Celestial Blessing",
+            "Cheat Death",
+            "Cloak of Opportunity",
+            "Colossus",
+            "Counterspell",
+            "Debuff Reducer",
+            "Dispel Magic",
+            "Divine Barrier",
+            "Diviner's Kevlar",
+            "Electric Slippers",
+            "Enchanter's Emblem",
+            "Enduring Speed",
+            "Eternal Gift",
+            "Extra Health",
+            "Extra Regen",
+            "Extra Stamina",
+            "Fortitude",
+            "Fury Trance",
+            "Grit",
+            "Guardian Ward",
+            "Healbane",
+            "Healing Booster",
+            "Healing Nova",
+            "Healing Rite",
+            "Healing Tempo",
+            "Indomitable",
+            "Infuser",
+            "Inhibitor",
+            "Juggernaut",
+            "Leech",
+            "Lifestrike",
+            "Majestic Leap",
+            "Melee Lifesteal",
+            "Metal Skin",
+            "Nullification Burst",
+            "Phantom Strike",
+            "Plated Armor",
+            "Reactive Barrier",
+            "Rebuttal",
+            "Rescue Beam",
+            "Restorative Locket",
+            "Return Fire",
+            "Seraphim Wings",
+            "Shadow Strike",
+            "Siphon Bullets",
+            "Spellbreaker",
+            "Spirit Lifesteal",
+            "Spirit Resilience",
+            "Spirit Shielding",
+            "Sprint Boots",
+            "Stamina Mastery",
+            "Trophy Collector",
+            "Unstoppable",
+            "Vampiric Burst",
+            "Veil Walker",
+            "Warp Stone",
+            "Weapon Shielding",
+            "Witchmail"
+          ]
+        },
+        {
+          "label": "Spirit item",
+          "entities": [
+            "Arcane Surge",
+            "Arctic Blast",
+            "Boundless Spirit",
+            "Bullet Resist Shredder",
+            "Cold Front",
+            "Compress Cooldown",
+            "Cursed Relic",
+            "Decay",
+            "Disarming Hex",
+            "Duration Extender",
+            "Echo Shard",
+            "Escalating Exposure",
+            "Ethereal Shift",
+            "Extra Charge",
+            "Extra Spirit",
+            "Focus Lens",
+            "Frostbite Charm",
+            "Golden Goose Egg",
+            "Greater Expansion",
+            "Improved Spirit",
+            "Knockdown",
+            "Lightning Scroll",
+            "Magic Carpet",
+            "Mercurial Magnum",
+            "Mystic Burst",
+            "Mystic Conduit",
+            "Mystic Expansion",
+            "Mystic Regeneration",
+            "Mystic Reverb",
+            "Mystic Slow",
+            "Mystic Vulnerability",
+            "Mystical Piano",
+            "Omnicharge Signet",
+            "Prism Blast",
+            "Quicksilver Reload",
+            "Radiant Regeneration",
+            "Rapid Recharge",
+            "Refresher",
+            "Rusted Barrel",
+            "Scourge",
+            "Shrink Ray",
+            "Silence Wave",
+            "Slowing Hex",
+            "Spirit Burn",
+            "Spirit Sap",
+            "Spirit Snatch",
+            "Spirit Strike",
+            "Superior Cooldown",
+            "Superior Duration",
+            "Suppressor",
+            "Surge of Power",
+            "Tankbuster",
+            "Torment Pulse",
+            "Transcendent Cooldown",
+            "Unstable Concoction",
+            "Vortex Web"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Abilities",
+      "prompt": "Whose ability is this?",
+      "clues": [
+        {
+          "text": "Siphon Life",
+          "answer": "Abrams"
+        },
+        {
+          "text": "Shoulder Charge",
+          "answer": "Abrams"
+        },
+        {
+          "text": "Infernal Resilience",
+          "answer": "Abrams"
+        },
+        {
+          "text": "Seismic Impact (ultimate)",
+          "answer": "Abrams"
+        },
+        {
+          "text": "Disengaging Sigil",
+          "answer": "Apollo"
+        },
+        {
+          "text": "Riposte",
+          "answer": "Apollo"
+        },
+        {
+          "text": "Flawless Advance",
+          "answer": "Apollo"
+        },
+        {
+          "text": "Itani Lo Sahn (ultimate)",
+          "answer": "Apollo"
+        },
+        {
+          "text": "Threadsap",
+          "answer": "Baba"
+        },
+        {
+          "text": "Granny Long Legs",
+          "answer": "Baba"
+        },
+        {
+          "text": "Baba's Brew",
+          "answer": "Baba"
+        },
+        {
+          "text": "Feed The Birds (ultimate)",
+          "answer": "Baba"
+        },
+        {
+          "text": "Exploding Uppercut",
+          "answer": "Bebop"
+        },
+        {
+          "text": "Sticky Bomb",
+          "answer": "Bebop"
+        },
+        {
+          "text": "Grapple Arm",
+          "answer": "Bebop"
+        },
+        {
+          "text": "Hyper Beam (ultimate)",
+          "answer": "Bebop"
+        },
+        {
+          "text": "Bashdown",
+          "answer": "Billy"
+        },
+        {
+          "text": "Rising Ram",
+          "answer": "Billy"
+        },
+        {
+          "text": "Blasted",
+          "answer": "Billy"
+        },
+        {
+          "text": "Chain Gang (ultimate)",
+          "answer": "Billy"
+        },
+        {
+          "text": "Gloom Bombs",
+          "answer": "Calico"
+        },
+        {
+          "text": "Leaping Slash",
+          "answer": "Calico"
+        },
+        {
+          "text": "Ava",
+          "answer": "Calico"
+        },
+        {
+          "text": "Return to Shadows (ultimate)",
+          "answer": "Calico"
+        },
+        {
+          "text": "Light Eater",
+          "answer": "Celeste"
+        },
+        {
+          "text": "Dazzling Trick",
+          "answer": "Celeste"
+        },
+        {
+          "text": "Radiant Daggers",
+          "answer": "Celeste"
+        },
+        {
+          "text": "Shining Wonder (ultimate)",
+          "answer": "Celeste"
+        },
+        {
+          "text": "Strix Salvo",
+          "answer": "Deadman Danny"
+        },
+        {
+          "text": "Chimera Mk1",
+          "answer": "Deadman Danny"
+        },
+        {
+          "text": "Jettison Fuel",
+          "answer": "Deadman Danny"
+        },
+        {
+          "text": "Close The Deal (ultimate)",
+          "answer": "Deadman Danny"
+        },
+        {
+          "text": "Rend",
+          "answer": "Drifter"
+        },
+        {
+          "text": "Stalker's Mark",
+          "answer": "Drifter"
+        },
+        {
+          "text": "Bloodscent",
+          "answer": "Drifter"
+        },
+        {
+          "text": "Eternal Night (ultimate)",
+          "answer": "Drifter"
+        },
+        {
+          "text": "Kinetic Pulse",
+          "answer": "Dynamo"
+        },
+        {
+          "text": "Quantum Entanglement",
+          "answer": "Dynamo"
+        },
+        {
+          "text": "Rejuvenating Aurora",
+          "answer": "Dynamo"
+        },
+        {
+          "text": "Singularity (ultimate)",
+          "answer": "Dynamo"
+        },
+        {
+          "text": "Jar of Dead",
+          "answer": "Graves"
+        },
+        {
+          "text": "Grasping Hands",
+          "answer": "Graves"
+        },
+        {
+          "text": "Essence Theft",
+          "answer": "Graves"
+        },
+        {
+          "text": "Borrowed Decree (ultimate)",
+          "answer": "Graves"
+        },
+        {
+          "text": "Charged Shot",
+          "answer": "Grey Talon"
+        },
+        {
+          "text": "Rain of Arrows",
+          "answer": "Grey Talon"
+        },
+        {
+          "text": "Spirit Snare",
+          "answer": "Grey Talon"
+        },
+        {
+          "text": "Guided Owl (ultimate)",
+          "answer": "Grey Talon"
+        },
+        {
+          "text": "Sleep Dagger",
+          "answer": "Haze"
+        },
+        {
+          "text": "Smoke Bomb",
+          "answer": "Haze"
+        },
+        {
+          "text": "Fixation",
+          "answer": "Haze"
+        },
+        {
+          "text": "Bullet Dance (ultimate)",
+          "answer": "Haze"
+        },
+        {
+          "text": "Powder Keg",
+          "answer": "Holliday"
+        },
+        {
+          "text": "Bounce Pad",
+          "answer": "Holliday"
+        },
+        {
+          "text": "Crackshot",
+          "answer": "Holliday"
+        },
+        {
+          "text": "Spirit Lasso (ultimate)",
+          "answer": "Holliday"
+        },
+        {
+          "text": "Napalm",
+          "answer": "Infernus"
+        },
+        {
+          "text": "Flame Dash",
+          "answer": "Infernus"
+        },
+        {
+          "text": "Afterburn",
+          "answer": "Infernus"
+        },
+        {
+          "text": "Concussive Combustion (ultimate)",
+          "answer": "Infernus"
+        },
+        {
+          "text": "Entangling Thorns",
+          "answer": "Ivy"
+        },
+        {
+          "text": "Kudzu Connection",
+          "answer": "Ivy"
+        },
+        {
+          "text": "Stone Form",
+          "answer": "Ivy"
+        },
+        {
+          "text": "Air Drop (ultimate)",
+          "answer": "Ivy"
+        },
+        {
+          "text": "Frost Grenade",
+          "answer": "Kelvin"
+        },
+        {
+          "text": "Ice Path",
+          "answer": "Kelvin"
+        },
+        {
+          "text": "Arctic Beam",
+          "answer": "Kelvin"
+        },
+        {
+          "text": "Frozen Shelter (ultimate)",
+          "answer": "Kelvin"
+        },
+        {
+          "text": "Essence Bomb",
+          "answer": "Lady Geist"
+        },
+        {
+          "text": "Life Drain",
+          "answer": "Lady Geist"
+        },
+        {
+          "text": "Malice",
+          "answer": "Lady Geist"
+        },
+        {
+          "text": "Soul Exchange (ultimate)",
+          "answer": "Lady Geist"
+        },
+        {
+          "text": "Ground Strike",
+          "answer": "Lash"
+        },
+        {
+          "text": "Grapple",
+          "answer": "Lash"
+        },
+        {
+          "text": "Flog",
+          "answer": "Lash"
+        },
+        {
+          "text": "Death Slam (ultimate)",
+          "answer": "Lash"
+        },
+        {
+          "text": "Mini Turret",
+          "answer": "McGinnis"
+        },
+        {
+          "text": "Medicinal Specter",
+          "answer": "McGinnis"
+        },
+        {
+          "text": "Spectral Wall",
+          "answer": "McGinnis"
+        },
+        {
+          "text": "Heavy Barrage (ultimate)",
+          "answer": "McGinnis"
+        },
+        {
+          "text": "Rake",
+          "answer": "Mina"
+        },
+        {
+          "text": "Sanguine Retreat",
+          "answer": "Mina"
+        },
+        {
+          "text": "Love Bites",
+          "answer": "Mina"
+        },
+        {
+          "text": "Nox Nostra (ultimate)",
+          "answer": "Mina"
+        },
+        {
+          "text": "Fire Scarabs",
+          "answer": "Mirage"
+        },
+        {
+          "text": "Dust Devil",
+          "answer": "Mirage"
+        },
+        {
+          "text": "Djinn's Mark",
+          "answer": "Mirage"
+        },
+        {
+          "text": "Traveler (ultimate)",
+          "answer": "Mirage"
+        },
+        {
+          "text": "Scorn",
+          "answer": "Mo & Krill|Mo and Krill"
+        },
+        {
+          "text": "Burrow",
+          "answer": "Mo & Krill|Mo and Krill"
+        },
+        {
+          "text": "Sand Blast",
+          "answer": "Mo & Krill|Mo and Krill"
+        },
+        {
+          "text": "Combo (ultimate)",
+          "answer": "Mo & Krill|Mo and Krill"
+        },
+        {
+          "text": "Leech Therapy",
+          "answer": "Nurse Harrow"
+        },
+        {
+          "text": "Wretched Vapors",
+          "answer": "Nurse Harrow"
+        },
+        {
+          "text": "Healing Needles",
+          "answer": "Nurse Harrow"
+        },
+        {
+          "text": "Lurking Terrors (ultimate)",
+          "answer": "Nurse Harrow"
+        },
+        {
+          "text": "Bookwyrm",
+          "answer": "Paige"
+        },
+        {
+          "text": "Plot Armor",
+          "answer": "Paige"
+        },
+        {
+          "text": "Captivating Read",
+          "answer": "Paige"
+        },
+        {
+          "text": "Rallying Charge (ultimate)",
+          "answer": "Paige"
+        },
+        {
+          "text": "Pulse Grenade",
+          "answer": "Paradox"
+        },
+        {
+          "text": "Time Wall",
+          "answer": "Paradox"
+        },
+        {
+          "text": "Kinetic Carbine",
+          "answer": "Paradox"
+        },
+        {
+          "text": "Paradoxical Swap (ultimate)",
+          "answer": "Paradox"
+        },
+        {
+          "text": "Barrage",
+          "answer": "Pocket"
+        },
+        {
+          "text": "Flying Cloak",
+          "answer": "Pocket"
+        },
+        {
+          "text": "Enchanter's Satchel",
+          "answer": "Pocket"
+        },
+        {
+          "text": "Affliction (ultimate)",
+          "answer": "Pocket"
+        },
+        {
+          "text": "Scrap Grenade",
+          "answer": "Rat King"
+        },
+        {
+          "text": "Rat Swarm",
+          "answer": "Rat King"
+        },
+        {
+          "text": "Royal Pestments",
+          "answer": "Rat King"
+        },
+        {
+          "text": "Rule, Ratannia! (ultimate)",
+          "answer": "Rat King"
+        },
+        {
+          "text": "Pillow Toss",
+          "answer": "Rem"
+        },
+        {
+          "text": "Tag Along",
+          "answer": "Rem"
+        },
+        {
+          "text": "Lil Helpers",
+          "answer": "Rem"
+        },
+        {
+          "text": "Naptime (ultimate)",
+          "answer": "Rem"
+        },
+        {
+          "text": "Lightning Ball",
+          "answer": "Seven"
+        },
+        {
+          "text": "Static Charge",
+          "answer": "Seven"
+        },
+        {
+          "text": "Power Surge",
+          "answer": "Seven"
+        },
+        {
+          "text": "Storm Cloud (ultimate)",
+          "answer": "Seven"
+        },
+        {
+          "text": "Serrated Knives",
+          "answer": "Shiv"
+        },
+        {
+          "text": "Slice and Dice",
+          "answer": "Shiv"
+        },
+        {
+          "text": "Bloodletting",
+          "answer": "Shiv"
+        },
+        {
+          "text": "Killing Blow (ultimate)",
+          "answer": "Shiv"
+        },
+        {
+          "text": "Slam Fire",
+          "answer": "Silver"
+        },
+        {
+          "text": "Boot Kick",
+          "answer": "Silver"
+        },
+        {
+          "text": "Entangling Bola",
+          "answer": "Silver"
+        },
+        {
+          "text": "Lycan Curse (ultimate)",
+          "answer": "Silver"
+        },
+        {
+          "text": "Vexing Bolt",
+          "answer": "Sinclair"
+        },
+        {
+          "text": "Spectral Assistant",
+          "answer": "Sinclair"
+        },
+        {
+          "text": "Rabbit Hex",
+          "answer": "Sinclair"
+        },
+        {
+          "text": "Audience Participation (ultimate)",
+          "answer": "Sinclair"
+        },
+        {
+          "text": "Setup Bishop",
+          "answer": "Solomon"
+        },
+        {
+          "text": "Kingside Knight",
+          "answer": "Solomon"
+        },
+        {
+          "text": "Rook Battery",
+          "answer": "Solomon"
+        },
+        {
+          "text": "Develop Queen (ultimate)",
+          "answer": "Solomon"
+        },
+        {
+          "text": "Call Bell",
+          "answer": "The Doorman|Doorman"
+        },
+        {
+          "text": "Doorway",
+          "answer": "The Doorman|Doorman"
+        },
+        {
+          "text": "Luggage Cart",
+          "answer": "The Doorman|Doorman"
+        },
+        {
+          "text": "Hotel Guest (ultimate)",
+          "answer": "The Doorman|Doorman"
+        },
+        {
+          "text": "Consecrating Grenade",
+          "answer": "Venator"
+        },
+        {
+          "text": "Gutshot",
+          "answer": "Venator"
+        },
+        {
+          "text": "Hex-Lined Snap Trap",
+          "answer": "Venator"
+        },
+        {
+          "text": "Ira Domini (ultimate)",
+          "answer": "Venator"
+        },
+        {
+          "text": "Pain Battery",
+          "answer": "Victor"
+        },
+        {
+          "text": "Jumpstart",
+          "answer": "Victor"
+        },
+        {
+          "text": "Aura of Suffering",
+          "answer": "Victor"
+        },
+        {
+          "text": "Shocking Reanimation (ultimate)",
+          "answer": "Victor"
+        },
+        {
+          "text": "Stake",
+          "answer": "Vindicta"
+        },
+        {
+          "text": "Flight",
+          "answer": "Vindicta"
+        },
+        {
+          "text": "Crow Familiar",
+          "answer": "Vindicta"
+        },
+        {
+          "text": "Assassinate (ultimate)",
+          "answer": "Vindicta"
+        },
+        {
+          "text": "Living Ink",
+          "answer": "Violet"
+        },
+        {
+          "text": "Flow State",
+          "answer": "Violet"
+        },
+        {
+          "text": "Still Life",
+          "answer": "Violet"
+        },
+        {
+          "text": "Abstract Landscape (ultimate)",
+          "answer": "Violet"
+        },
+        {
+          "text": "Splatter",
+          "answer": "Viscous"
+        },
+        {
+          "text": "The Cube",
+          "answer": "Viscous"
+        },
+        {
+          "text": "Puddle Punch",
+          "answer": "Viscous"
+        },
+        {
+          "text": "Goo Ball (ultimate)",
+          "answer": "Viscous"
+        },
+        {
+          "text": "Screwjab Dagger",
+          "answer": "Vyper"
+        },
+        {
+          "text": "Lethal Venom",
+          "answer": "Vyper"
+        },
+        {
+          "text": "Slither",
+          "answer": "Vyper"
+        },
+        {
+          "text": "Petrifying Bola (ultimate)",
+          "answer": "Vyper"
+        },
+        {
+          "text": "Alchemical Flask",
+          "answer": "Warden"
+        },
+        {
+          "text": "Willpower",
+          "answer": "Warden"
+        },
+        {
+          "text": "Binding Word",
+          "answer": "Warden"
+        },
+        {
+          "text": "Last Stand (ultimate)",
+          "answer": "Warden"
+        },
+        {
+          "text": "Card Trick",
+          "answer": "Wraith"
+        },
+        {
+          "text": "Project Mind",
+          "answer": "Wraith"
+        },
+        {
+          "text": "Full Auto",
+          "answer": "Wraith"
+        },
+        {
+          "text": "Telekinesis (ultimate)",
+          "answer": "Wraith"
+        },
+        {
+          "text": "Power Slash",
+          "answer": "Yamato"
+        },
+        {
+          "text": "Flying Slash",
+          "answer": "Yamato"
+        },
+        {
+          "text": "Crimson Slash",
+          "answer": "Yamato"
+        },
+        {
+          "text": "Shadow Transformation (ultimate)",
+          "answer": "Yamato"
+        }
+      ]
+    }
   }
 ]

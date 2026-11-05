@@ -7284,5 +7284,797 @@
    "image": "https://arcraiders.wiki/w/images/thumb/3/39/Wires.png/400px-Wires.png.webp",
    "rarity": "common"
   }
+ ],
+ "deadlock": [
+  {
+   "name": "Active Reload",
+   "image": "https://cdn.deadlock.wiki/Active_Reload.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Alchemical Fire",
+   "image": "https://cdn.deadlock.wiki/Alchemical_Fire.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Arcane Surge",
+   "image": "https://cdn.deadlock.wiki/Arcane_Surge.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Arctic Blast",
+   "image": "https://cdn.deadlock.wiki/Arctic_Blast.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Armor Piercer",
+   "image": "https://cdn.deadlock.wiki/Armor_Piercer.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Ballistic Enchantment",
+   "image": "https://cdn.deadlock.wiki/Ballistic_Enchantment.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Battle Vest",
+   "image": "https://cdn.deadlock.wiki/Battle_Vest.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Berserker",
+   "image": "https://cdn.deadlock.wiki/Berserker.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Blood Tribute",
+   "image": "https://cdn.deadlock.wiki/Blood_Tribute.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bullet Lifesteal",
+   "image": "https://cdn.deadlock.wiki/Bullet_Lifesteal.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bullet Resilience",
+   "image": "https://cdn.deadlock.wiki/Bullet_Resilience.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bullet Resist Shredder",
+   "image": "https://cdn.deadlock.wiki/Bullet_Resist_Shredder.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Burst Fire",
+   "image": "https://cdn.deadlock.wiki/Burst_Fire.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Capacitor",
+   "image": "https://cdn.deadlock.wiki/Capacitor.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Celestial Blessing",
+   "image": "https://cdn.deadlock.wiki/Celestial_Blessing.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Cheat Death",
+   "image": "https://cdn.deadlock.wiki/Cheat_Death.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Cloak of Opportunity",
+   "image": "https://cdn.deadlock.wiki/Cloak_of_Opportunity.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Close Quarters",
+   "image": "https://cdn.deadlock.wiki/Close_Quarters.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Cold Front",
+   "image": "https://cdn.deadlock.wiki/Cold_Front.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Colossus",
+   "image": "https://cdn.deadlock.wiki/Colossus.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Compress Cooldown",
+   "image": "https://cdn.deadlock.wiki/Compress_Cooldown.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Counterspell",
+   "image": "https://cdn.deadlock.wiki/Counterspell.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Crushing Fists",
+   "image": "https://cdn.deadlock.wiki/Crushing_Fists.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Cultist Sacrifice",
+   "image": "https://cdn.deadlock.wiki/Cultist_Sacrifice.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cursed Relic",
+   "image": "https://cdn.deadlock.wiki/Cursed_Relic.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Debuff Reducer",
+   "image": "https://cdn.deadlock.wiki/Debuff_Reducer.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Decay",
+   "image": "https://cdn.deadlock.wiki/Decay.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Disarming Hex",
+   "image": "https://cdn.deadlock.wiki/Disarming_Hex.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Dispel Magic",
+   "image": "https://cdn.deadlock.wiki/Dispel_Magic.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Divine Barrier",
+   "image": "https://cdn.deadlock.wiki/Divine_Barrier.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Diviner's Kevlar",
+   "image": "https://cdn.deadlock.wiki/Diviner%27s_Kevlar.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Duration Extender",
+   "image": "https://cdn.deadlock.wiki/Duration_Extender.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Electric Slippers",
+   "image": "https://cdn.deadlock.wiki/Electric_Slippers.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Enchanter's Emblem",
+   "image": "https://cdn.deadlock.wiki/Enchanter%27s_Emblem.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Enduring Speed",
+   "image": "https://cdn.deadlock.wiki/Enduring_Speed.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Escalating Exposure",
+   "image": "https://cdn.deadlock.wiki/Escalating_Exposure.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Escalating Resilience",
+   "image": "https://cdn.deadlock.wiki/Escalating_Resilience.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Eternal Gift",
+   "image": "https://cdn.deadlock.wiki/Eternal_Gift.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Express Shot",
+   "image": "https://cdn.deadlock.wiki/Express_Shot.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Extended Magazine",
+   "image": "https://cdn.deadlock.wiki/Extended_Magazine.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Extra Charge",
+   "image": "https://cdn.deadlock.wiki/Extra_Charge.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Extra Health",
+   "image": "https://cdn.deadlock.wiki/Extra_Health.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Extra Regen",
+   "image": "https://cdn.deadlock.wiki/Extra_Regen.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Extra Spirit",
+   "image": "https://cdn.deadlock.wiki/Extra_Spirit.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Extra Stamina",
+   "image": "https://cdn.deadlock.wiki/Extra_Stamina.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Fleetfoot",
+   "image": "https://cdn.deadlock.wiki/Fleetfoot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Focus Lens",
+   "image": "https://cdn.deadlock.wiki/Focus_Lens.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fortitude",
+   "image": "https://cdn.deadlock.wiki/Fortitude.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Frenzy",
+   "image": "https://cdn.deadlock.wiki/Frenzy.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Frostbite Charm",
+   "image": "https://cdn.deadlock.wiki/Frostbite_Charm.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Fury Trance",
+   "image": "https://cdn.deadlock.wiki/Fury_Trance.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Golden Goose Egg",
+   "image": "https://cdn.deadlock.wiki/Golden_Goose_Egg.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Greater Expansion",
+   "image": "https://cdn.deadlock.wiki/Greater_Expansion.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Grit",
+   "image": "https://cdn.deadlock.wiki/Grit.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Guardian Ward",
+   "image": "https://cdn.deadlock.wiki/Guardian_Ward.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Haunting Shot",
+   "image": "https://cdn.deadlock.wiki/Haunting_Shot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Headhunter",
+   "image": "https://cdn.deadlock.wiki/Headhunter.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Headshot Booster",
+   "image": "https://cdn.deadlock.wiki/Headshot_Booster.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Healbane",
+   "image": "https://cdn.deadlock.wiki/Healbane.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Healing Booster",
+   "image": "https://cdn.deadlock.wiki/Healing_Booster.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Healing Nova",
+   "image": "https://cdn.deadlock.wiki/Healing_Nova.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Healing Tempo",
+   "image": "https://cdn.deadlock.wiki/Healing_Tempo.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Heroic Aura",
+   "image": "https://cdn.deadlock.wiki/Heroic_Aura.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "High-Velocity Rounds",
+   "image": "https://cdn.deadlock.wiki/High-Velocity_Rounds.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hollow Point",
+   "image": "https://cdn.deadlock.wiki/Hollow_Point.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hunter's Aura",
+   "image": "https://cdn.deadlock.wiki/Hunter%27s_Aura.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Improved Spirit",
+   "image": "https://cdn.deadlock.wiki/Improved_Spirit.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Indomitable",
+   "image": "https://cdn.deadlock.wiki/Indomitable.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Infinite Rounds",
+   "image": "https://cdn.deadlock.wiki/Infinite_Rounds.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Infuser",
+   "image": "https://cdn.deadlock.wiki/Infuser.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Inhibitor",
+   "image": "https://cdn.deadlock.wiki/Inhibitor.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Intensifying Magazine",
+   "image": "https://cdn.deadlock.wiki/Intensifying_Magazine.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Juggernaut",
+   "image": "https://cdn.deadlock.wiki/Juggernaut.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Kinetic Dash",
+   "image": "https://cdn.deadlock.wiki/Kinetic_Dash.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Lifestrike",
+   "image": "https://cdn.deadlock.wiki/Lifestrike.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Lightning Scroll",
+   "image": "https://cdn.deadlock.wiki/Lightning_Scroll.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Long Range",
+   "image": "https://cdn.deadlock.wiki/Long_Range.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Lucky Shot",
+   "image": "https://cdn.deadlock.wiki/Lucky_Shot.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Magic Carpet",
+   "image": "https://cdn.deadlock.wiki/Magic_Carpet.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Majestic Leap",
+   "image": "https://cdn.deadlock.wiki/Majestic_Leap.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Melee Charge",
+   "image": "https://cdn.deadlock.wiki/Melee_Charge.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Melee Lifesteal",
+   "image": "https://cdn.deadlock.wiki/Melee_Lifesteal.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mercurial Magnum",
+   "image": "https://cdn.deadlock.wiki/Mercurial_Magnum.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Monster Rounds",
+   "image": "https://cdn.deadlock.wiki/Monster_Rounds.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Burst",
+   "image": "https://cdn.deadlock.wiki/Mystic_Burst.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Conduit",
+   "image": "https://cdn.deadlock.wiki/Mystic_Conduit.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Expansion",
+   "image": "https://cdn.deadlock.wiki/Mystic_Expansion.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Regeneration",
+   "image": "https://cdn.deadlock.wiki/Mystic_Regeneration.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Reverb",
+   "image": "https://cdn.deadlock.wiki/Mystic_Reverb.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Mystic Shot",
+   "image": "https://cdn.deadlock.wiki/Mystic_Shot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Slow",
+   "image": "https://cdn.deadlock.wiki/Mystic_Slow.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystic Vulnerability",
+   "image": "https://cdn.deadlock.wiki/Mystic_Vulnerability.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mystical Piano",
+   "image": "https://cdn.deadlock.wiki/Mystical_Piano.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Nullification Burst",
+   "image": "https://cdn.deadlock.wiki/Nullification_Burst.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Omnicharge Signet",
+   "image": "https://cdn.deadlock.wiki/Omnicharge_Signet.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Opening Rounds",
+   "image": "https://cdn.deadlock.wiki/Opening_Rounds.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Phantom Strike",
+   "image": "https://cdn.deadlock.wiki/Phantom_Strike.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Plated Armor",
+   "image": "https://cdn.deadlock.wiki/Plated_Armor.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Point Blank",
+   "image": "https://cdn.deadlock.wiki/Point_Blank.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Prism Blast",
+   "image": "https://cdn.deadlock.wiki/Prism_Blast.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Quicksilver Reload",
+   "image": "https://cdn.deadlock.wiki/Quicksilver_Reload.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Radiant Regeneration",
+   "image": "https://cdn.deadlock.wiki/Radiant_Regeneration.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rapid Recharge",
+   "image": "https://cdn.deadlock.wiki/Rapid_Recharge.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rapid Rounds",
+   "image": "https://cdn.deadlock.wiki/Rapid_Rounds.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Reactive Barrier",
+   "image": "https://cdn.deadlock.wiki/Reactive_Barrier.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Rebuttal",
+   "image": "https://cdn.deadlock.wiki/Rebuttal.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Recharging Rush",
+   "image": "https://cdn.deadlock.wiki/Recharging_Rush.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Rescue Beam",
+   "image": "https://cdn.deadlock.wiki/Rescue_Beam.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Restorative Locket",
+   "image": "https://cdn.deadlock.wiki/Restorative_Locket.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Restorative Shot",
+   "image": "https://cdn.deadlock.wiki/Restorative_Shot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Return Fire",
+   "image": "https://cdn.deadlock.wiki/Return_Fire.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Ricochet",
+   "image": "https://cdn.deadlock.wiki/Ricochet.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Runed Gauntlets",
+   "image": "https://cdn.deadlock.wiki/Runed_Gauntlets.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Rusted Barrel",
+   "image": "https://cdn.deadlock.wiki/Rusted_Barrel.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Scourge",
+   "image": "https://cdn.deadlock.wiki/Scourge.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Seraphim Wings",
+   "image": "https://cdn.deadlock.wiki/Seraphim_Wings.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shadow Strike",
+   "image": "https://cdn.deadlock.wiki/Shadow_Strike.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shadow Weave",
+   "image": "https://cdn.deadlock.wiki/Shadow_Weave.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sharpshooter",
+   "image": "https://cdn.deadlock.wiki/Sharpshooter.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shrink Ray",
+   "image": "https://cdn.deadlock.wiki/Shrink_Ray.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Silence Wave",
+   "image": "https://cdn.deadlock.wiki/Silence_Wave.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Slowing Bullets",
+   "image": "https://cdn.deadlock.wiki/Slowing_Bullets.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Slowing Hex",
+   "image": "https://cdn.deadlock.wiki/Slowing_Hex.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spellbreaker",
+   "image": "https://cdn.deadlock.wiki/Spellbreaker.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Spellslinger",
+   "image": "https://cdn.deadlock.wiki/Spellslinger.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Spirit Burn",
+   "image": "https://cdn.deadlock.wiki/Spirit_Burn.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Spirit Lifesteal",
+   "image": "https://cdn.deadlock.wiki/Spirit_Lifesteal.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spirit Rend",
+   "image": "https://cdn.deadlock.wiki/Spirit_Rend.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Spirit Resilience",
+   "image": "https://cdn.deadlock.wiki/Spirit_Resilience.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Spirit Sap",
+   "image": "https://cdn.deadlock.wiki/Spirit_Sap.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spirit Shielding",
+   "image": "https://cdn.deadlock.wiki/Spirit_Shielding.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spirit Shredder",
+   "image": "https://cdn.deadlock.wiki/Spirit_Shredder.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spirit Strike",
+   "image": "https://cdn.deadlock.wiki/Spirit_Strike.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Spiritual Overflow",
+   "image": "https://cdn.deadlock.wiki/Spiritual_Overflow.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Split Shot",
+   "image": "https://cdn.deadlock.wiki/Split_Shot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sprint Boots",
+   "image": "https://cdn.deadlock.wiki/Sprint_Boots.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Stalker",
+   "image": "https://cdn.deadlock.wiki/Stalker.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Stamina Mastery",
+   "image": "https://cdn.deadlock.wiki/Stamina_Mastery.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Superior Cooldown",
+   "image": "https://cdn.deadlock.wiki/Superior_Cooldown.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Superior Duration",
+   "image": "https://cdn.deadlock.wiki/Superior_Duration.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Suppressor",
+   "image": "https://cdn.deadlock.wiki/Suppressor.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Surge of Power",
+   "image": "https://cdn.deadlock.wiki/Surge_of_Power.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Swift Striker",
+   "image": "https://cdn.deadlock.wiki/Swift_Striker.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Tankbuster",
+   "image": "https://cdn.deadlock.wiki/Tankbuster.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Tesla Bullets",
+   "image": "https://cdn.deadlock.wiki/Tesla_Bullets.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Titanic Magazine",
+   "image": "https://cdn.deadlock.wiki/Titanic_Magazine.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Torment Pulse",
+   "image": "https://cdn.deadlock.wiki/Torment_Pulse.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Toxic Bullets",
+   "image": "https://cdn.deadlock.wiki/Toxic_Bullets.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Transcendent Cooldown",
+   "image": "https://cdn.deadlock.wiki/Transcendent_Cooldown.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Trophy Collector",
+   "image": "https://cdn.deadlock.wiki/Trophy_Collector.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Unstable Concoction",
+   "image": "https://cdn.deadlock.wiki/Unstable_Concoction.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Veil Walker",
+   "image": "https://cdn.deadlock.wiki/Veil_Walker.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vortex Web",
+   "image": "https://cdn.deadlock.wiki/Vortex_Web.png",
+   "rarity": "epic"
+  },
+  {
+   "name": "Warp Stone",
+   "image": "https://cdn.deadlock.wiki/Warp_Stone.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Weakening Headshot",
+   "image": "https://cdn.deadlock.wiki/Weakening_Headshot.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Weapon Shielding",
+   "image": "https://cdn.deadlock.wiki/Weapon_Shielding.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Weighted Shots",
+   "image": "https://cdn.deadlock.wiki/Weighted_Shots.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Witchmail",
+   "image": "https://cdn.deadlock.wiki/Witchmail.png",
+   "rarity": "epic"
+  }
  ]
 }

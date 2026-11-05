@@ -26,6 +26,8 @@ import { GameHostFx } from '../games/GameHost';
 import { classicRoundFor, clueRoundFor, danceRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
 import { ARC_FURNITURE, ARC_GEAR, ARC_MACHINES, ARC_MATERIALS, ARC_PLACES, ARC_RECIPES, ARC_SOUNDS } from '../specialist/arcraiders';
+import { DL_ABILITIES, DL_HEROES, DL_ITEMS, DL_VOICES } from '../specialist/deadlock';
+import { DlAbilityRound, DlClassicRound, DlItemRound, DlPictureRound, DlVoiceRound, DlWindowsRound } from '../specialist/games/DeadlockRounds';
 import { ArcClassicRound, ArcFurnitureRound, ArcGearRound, ArcMaterialRound, ArcMobRound, ArcPlaceRound, ArcRecipeRound, ArcSoundRound } from '../specialist/games/ArcRounds';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
 import { JLPT_KANJI, JLPT_WORDS } from '../specialist/jlpt';
@@ -45,6 +47,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch'), ultcost: ultCostRoundFor('overwatch'), classic: classicRoundFor('overwatch', 'hero') },
   ufouria: { dance: danceRoundFor('ufouria'), picture: pictureRoundFor('ufouria'), clue: clueRoundFor('ufouria', 'Who or what is this?'), windows: windowsRoundFor('ufouria'), spotlight: spotlightRoundFor('ufouria'), classic: classicRoundFor('ufouria', 'character') },
   arcraiders: { classic: ArcClassicRound, mob: ArcMobRound, gear: ArcGearRound, place: ArcPlaceRound, furniture: ArcFurnitureRound, material: ArcMaterialRound, recipe: ArcRecipeRound, sound: ArcSoundRound },
+  deadlock: { classic: DlClassicRound, picture: DlPictureRound, windows: DlWindowsRound, ability: DlAbilityRound, voice: DlVoiceRound, item: DlItemRound },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
   destiny: { classic: classicRoundFor('destiny', 'character'), picture: pictureRoundFor('destiny'), clue: clueRoundFor('destiny', 'Who is this?'), windows: windowsRoundFor('destiny'), exotic: itemRoundFor('destiny', 'Which Exotic weapon is this?') },
@@ -63,6 +66,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   overwatch: `${SIMPLE.overwatch.characters.length} heroes · ${SIMPLE.overwatch.voices?.length ?? 0} voice lines · ${SIMPLE.overwatch.clues.length} ultimates — Overwatch wiki`,
   ufouria: `${SIMPLE.ufouria.characters.length} heroes, enemies and things · ${SIMPLE.ufouria.dances?.length ?? 0} dances · ${SIMPLE.ufouria.clues.length} clues — Sunsoft (official site, store pages and trailers)`,
   arcraiders: `${ARC_MACHINES.length} ARC machines · ${ARC_GEAR.length} weapons and gear · ${ARC_PLACES.length} places · ${ARC_FURNITURE.length} containers · ${ARC_MATERIALS.length} materials · ${ARC_RECIPES.length} recipes · ${ARC_SOUNDS.length} sounds — ARC Raiders Wiki`,
+  deadlock: `${DL_HEROES.length} heroes · ${DL_ABILITIES.length} abilities · ${DL_VOICES.length} voice lines · ${DL_ITEMS.length} items — The Deadlock Wiki`,
   forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
   avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues · ${SIMPLE.avatar.voices?.length ?? 0} voice lines — Avatar Wiki, myinstants`,
   destiny: `${SIMPLE.destiny.characters.length} characters · ${SIMPLE.destiny.clues.length} clues · ${SIMPLE.destiny.items?.length ?? 0} Exotic weapons — Destinypedia, Bungie (via godroll.tv)`,

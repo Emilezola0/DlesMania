@@ -10,6 +10,7 @@ import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, 
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
+import { GradeAllDialog, SellDialog } from '../gacha/BulkActions';
 import { canHear, playVoice } from '../gacha/voice';
 import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
@@ -343,9 +344,9 @@ export default function Album() {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState<Card | null>(null);
   const [renewing, setRenewing] = useState(false);
+  const [bulk, setBulk] = useState<'grade' | 'sell' | null>(null);
   const canRenew = useMemo(() => Object.values(spareByRarity(owned)).some((n) => n >= RENEW_COST), [owned]);
 
-  const exchange = useProgress((s) => s.exchangeCards);
   // Every spare copy (beyond the first of each card), and what they're worth together.
   const spare = useMemo(() => {
     const byId: Record<string, number> = {};
@@ -357,6 +358,8 @@ export default function Album() {
     }
     return { byId, copies, coins };
   }, [owned, grades]);
+  // Cards ready for their next grade now (the element grade counts: it opens in the dialog).
+  const upgradable = useMemo(() => CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && canGradeUp(owned[c.id], gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0)).length, [owned, grades, bosses]);
   // Every count the page shows, in one pass over the cards (not one per rarity and per set at each render).
   const counts = useMemo(() => {
     const bySet: Record<string, number> = {};
@@ -471,17 +474,14 @@ export default function Album() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {upgradable > 0 && (
+            <button type="button" onClick={() => (sfx.click(), setBulk('grade'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold ring-2 ring-accent" title="Grade up every card that has enough spares, at once">
+              ⬆ Grade up all ({upgradable})
+            </button>
+          )}
           {spare.copies > 0 && (
-            <button
-              type="button"
-              onClick={() => {
-                if (!window.confirm(`Exchange ${spare.copies} spare cop${spare.copies === 1 ? 'y' : 'ies'} for ${spare.coins} DleCoins? One copy of each card stays in your album.`)) return;
-                sfx.streak();
-                exchange(spare.byId, spare.coins);
-              }}
-              className="btn-paper rounded-md px-4 py-2.5 font-display font-bold"
-            >
-              ♻ Exchange {spare.copies} spare{spare.copies === 1 ? '' : 's'} · <Coins n={spare.coins} />
+            <button type="button" onClick={() => (sfx.click(), setBulk('sell'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title="Choose which spare copies to sell, and how many">
+              ♻ Sell spares ({spare.copies}) · <Coins n={spare.coins} />
             </button>
           )}
           <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={`${RENEW_COST} spare copies of a rarity for a new card of it`}>
@@ -586,6 +586,8 @@ export default function Album() {
 
       {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
       {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
+      {bulk === 'grade' && <GradeAllDialog onClose={() => setBulk(null)} />}
+      {bulk === 'sell' && <SellDialog onClose={() => setBulk(null)} />}
     </div>
   );
 }

@@ -1,0 +1,3391 @@
+{
+ "generated": "2026-11-05",
+ "heroes": [
+  {
+   "name": "Abrams",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 800,
+   "speed": 6.4,
+   "stamina": 3,
+   "clip": 9,
+   "pellets": 9,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Siphon Life",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Siphon_Life.png"
+    },
+    {
+     "name": "Shoulder Charge",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Shoulder_Charge.png"
+    },
+    {
+     "name": "Infernal Resilience",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Infernal_Resilience.png"
+    },
+    {
+     "name": "Seismic Impact",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Seismic_Impact.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "The only way to face a problem is head-on.",
+     "audio": "https://cdn.deadlock.wiki/Atlas_upgrade_power1_10.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Atlas_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Atlas_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Abrams_card.png"
+  },
+  {
+   "name": "Apollo",
+   "gender": "Male",
+   "type": "Assassin",
+   "health": 770,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 15,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Disengaging Sigil",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Disengaging_Sigil.png"
+    },
+    {
+     "name": "Riposte",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Riposte.png"
+    },
+    {
+     "name": "Flawless Advance",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Flawless_Advance.png"
+    },
+    {
+     "name": "Itani Lo Sahn",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Itani_Lo_Sahn.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Our victory is assured. Unless, of course, the Patron pairs me with a bunch of malcontents who refuse to pull their own weight. In which case, victory depends on how much extra burden I need to bear.",
+     "audio": "https://cdn.deadlock.wiki/Fencer_select_07.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Fencer_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Fencer_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Fencer_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Apollo_card.png"
+  },
+  {
+   "name": "Baba",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 780,
+   "speed": 6.5,
+   "stamina": 2,
+   "clip": 15,
+   "pellets": 3,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Threadsap",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Threadsap.png"
+    },
+    {
+     "name": "Granny Long Legs",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Granny_Long_Legs.png"
+    },
+    {
+     "name": "Baba's Brew",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Baba%27s_Brew.png"
+    },
+    {
+     "name": "Feed The Birds",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Feed_The_Birds.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "They think they know magic? Oh... I'll show 'em some magic..",
+     "audio": "https://cdn.deadlock.wiki/Baba_select_08.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Baba_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Baba_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Baba_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Baba_card.png"
+  },
+  {
+   "name": "Bebop",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 880,
+   "speed": 6.45,
+   "stamina": 3,
+   "clip": 66,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Exploding Uppercut",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Exploding_Uppercut.png"
+    },
+    {
+     "name": "Sticky Bomb",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Sticky_Bomb.png"
+    },
+    {
+     "name": "Grapple Arm",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Grapple_Arm.png"
+    },
+    {
+     "name": "Hyper Beam",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Hyper_Beam.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Bebop_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Bebop_ping_retreat_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Bebop_card.png"
+  },
+  {
+   "name": "Billy",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 820,
+   "speed": 7,
+   "stamina": 3,
+   "clip": 30,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Bashdown",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Bashdown.png"
+    },
+    {
+     "name": "Rising Ram",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Rising_Ram.png"
+    },
+    {
+     "name": "Blasted",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Blasted.png"
+    },
+    {
+     "name": "Chain Gang",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Chain_Gang.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Smash the bottle, smash their heads, smash the ritual!",
+     "audio": "https://cdn.deadlock.wiki/Punkgoat_upgrade_power3_05.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Punkgoat_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Punkgoat_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Punkgoat_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Billy_card.png"
+  },
+  {
+   "name": "Calico",
+   "gender": "Female",
+   "type": "Assassin",
+   "health": 730,
+   "speed": 6.8,
+   "stamina": 3,
+   "clip": 12,
+   "pellets": 9,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Gloom Bombs",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Gloom_Bombs.png"
+    },
+    {
+     "name": "Leaping Slash",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Leaping_Slash.png"
+    },
+    {
+     "name": "Ava",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Ava.png"
+    },
+    {
+     "name": "Return to Shadows",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Return_to_Shadows.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "I decide when, and where, I strike.",
+     "audio": "https://cdn.deadlock.wiki/Nano_upgrade_power4_04.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Nano_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Nano_ping_retreat_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Calico_card.png"
+  },
+  {
+   "name": "Celeste",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 690,
+   "speed": 6.2,
+   "stamina": 4,
+   "clip": 8,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Light Eater",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Light_Eater.png"
+    },
+    {
+     "name": "Dazzling Trick",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Dazzling_Trick.png"
+    },
+    {
+     "name": "Radiant Daggers",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Radiant_Daggers.png"
+    },
+    {
+     "name": "Shining Wonder",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Shining_Wonder.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Unicorn_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Unicorn_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Unicorn_upgrade_power1_01_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Celeste_card.png"
+  },
+  {
+   "name": "Deadman Danny",
+   "gender": "Male",
+   "type": "Marksman",
+   "health": 730,
+   "speed": 6.4,
+   "stamina": 3,
+   "clip": 14,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Strix Salvo",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Strix_Salvo.png"
+    },
+    {
+     "name": "Chimera Mk1",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Chimera_Mk1.png"
+    },
+    {
+     "name": "Jettison Fuel",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Jettison_Fuel.png"
+    },
+    {
+     "name": "Close The Deal",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Close_The_Deal.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Deadpack_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Deadpack_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Deadpack_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Deadman_Danny_card.png"
+  },
+  {
+   "name": "Drifter",
+   "gender": "Male",
+   "type": "Assassin",
+   "health": 755,
+   "speed": 6.9,
+   "stamina": 3,
+   "clip": 12,
+   "pellets": 3,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Rend",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Rend.png"
+    },
+    {
+     "name": "Stalker's Mark",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Stalker%27s_Mark.png"
+    },
+    {
+     "name": "Bloodscent",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Bloodscent.png"
+    },
+    {
+     "name": "Eternal Night",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Eternal_Night.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "If I find someone on their own, God himself couldn't save 'em.",
+     "audio": "https://cdn.deadlock.wiki/Drifter_upgrade_power3_06.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Drifter_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Drifter_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Drifter_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Drifter_card.png"
+  },
+  {
+   "name": "Dynamo",
+   "gender": "Male",
+   "type": "Healer",
+   "health": 880,
+   "speed": 6.7,
+   "stamina": 3,
+   "clip": 20,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Kinetic Pulse",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Kinetic_Pulse.png"
+    },
+    {
+     "name": "Quantum Entanglement",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Quantum_Entanglement.png"
+    },
+    {
+     "name": "Rejuvenating Aurora",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Rejuvenating_Aurora.png"
+    },
+    {
+     "name": "Singularity",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Singularity.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "One black hole can make all the difference.",
+     "audio": "https://cdn.deadlock.wiki/Dynamo_upgrade_power4_04.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Dynamo_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Dynamo_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Dynamo_card.png"
+  },
+  {
+   "name": "Graves",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 730,
+   "speed": 6.7,
+   "stamina": 2,
+   "clip": 40,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Jar of Dead",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Jar_of_Dead.png"
+    },
+    {
+     "name": "Grasping Hands",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Grasping_Hands.png"
+    },
+    {
+     "name": "Essence Theft",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Essence_Theft.png"
+    },
+    {
+     "name": "Borrowed Decree",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Borrowed_Decree.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Necro_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Necro_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Graves_card.png"
+  },
+  {
+   "name": "Grey Talon",
+   "gender": "Male",
+   "type": "Mystic",
+   "health": 780,
+   "speed": 6.3,
+   "stamina": 4,
+   "clip": 17,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Charged Shot",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Charged_Shot.png"
+    },
+    {
+     "name": "Rain of Arrows",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Rain_of_Arrows.png"
+    },
+    {
+     "name": "Spirit Snare",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Spirit_Snare.png"
+    },
+    {
+     "name": "Guided Owl",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Guided_Owl.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "I don't have to be the fastest: just the most clever.",
+     "audio": "https://cdn.deadlock.wiki/Orion_upgrade_power4_04.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Orion_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Orion_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Grey_Talon_card.png"
+  },
+  {
+   "name": "Haze",
+   "gender": "Female",
+   "type": "Assassin",
+   "health": 730,
+   "speed": 8.2,
+   "stamina": 3,
+   "clip": 25,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Sleep Dagger",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Sleep_Dagger.png"
+    },
+    {
+     "name": "Smoke Bomb",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Smoke_Bomb.png"
+    },
+    {
+     "name": "Fixation",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Fixation.png"
+    },
+    {
+     "name": "Bullet Dance",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Bullet_Dance.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Haze_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Haze_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Haze_card.png"
+  },
+  {
+   "name": "Holliday",
+   "gender": "Female",
+   "type": "Marksman",
+   "health": 780,
+   "speed": 8.2,
+   "stamina": 2,
+   "clip": 10,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Powder Keg",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Powder_Keg.png"
+    },
+    {
+     "name": "Bounce Pad",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Bounce_Pad.png"
+    },
+    {
+     "name": "Crackshot",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Crackshot.png"
+    },
+    {
+     "name": "Spirit Lasso",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Spirit_Lasso.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Simple plan: I grab 'em, you shoot 'em.",
+     "audio": "https://cdn.deadlock.wiki/Astro_ping_pre_game_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Astro_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Astro_ping_retreat_02.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Astro_upgrade_power1_10.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Holliday_card.png"
+  },
+  {
+   "name": "Infernus",
+   "gender": "Male",
+   "type": "Mystic",
+   "health": 830,
+   "speed": 6.7,
+   "stamina": 3,
+   "clip": 27,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Napalm",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Napalm.png"
+    },
+    {
+     "name": "Flame Dash",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Flame_Dash.png"
+    },
+    {
+     "name": "Afterburn",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Afterburn.png"
+    },
+    {
+     "name": "Concussive Combustion",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Concussive_Combustion.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "They'll be nothin' but ash when I'm through.",
+     "audio": "https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Inferno_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Inferno_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Infernus_card.png"
+  },
+  {
+   "name": "Ivy",
+   "gender": "Female",
+   "type": "Healer",
+   "health": 755,
+   "speed": 7.2,
+   "stamina": 4,
+   "clip": 33,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Entangling Thorns",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Entangling_Thorns.png"
+    },
+    {
+     "name": "Kudzu Connection",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Kudzu_Connection.png"
+    },
+    {
+     "name": "Stone Form",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Stone_Form.png"
+    },
+    {
+     "name": "Air Drop",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Air_Drop.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Tengu_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Tengu_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Ivy_card.png"
+  },
+  {
+   "name": "Kelvin",
+   "gender": "Male",
+   "type": "Healer",
+   "health": 880,
+   "speed": 6.7,
+   "stamina": 3,
+   "clip": 14,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Frost Grenade",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Frost_Grenade.png"
+    },
+    {
+     "name": "Ice Path",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Ice_Path.png"
+    },
+    {
+     "name": "Arctic Beam",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Arctic_Beam.png"
+    },
+    {
+     "name": "Frozen Shelter",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Frozen_Shelter.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Kelvin_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Kelvin_ping_retreat_02.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Kelvin_upgrade_power3_07.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Kelvin_card.png"
+  },
+  {
+   "name": "Lady Geist",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 880,
+   "speed": 6.3,
+   "stamina": 3,
+   "clip": 9,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Essence Bomb",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Essence_Bomb.png"
+    },
+    {
+     "name": "Life Drain",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Life_Drain.png"
+    },
+    {
+     "name": "Malice",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Malice.png"
+    },
+    {
+     "name": "Soul Exchange",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Soul_Exchange.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "The lives of the weak are meant to sustain the lives of the strong.",
+     "audio": "https://cdn.deadlock.wiki/Ghost_upgrade_power2_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Ghost_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Ghost_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Lady_Geist_card.png"
+  },
+  {
+   "name": "Lash",
+   "gender": "Male",
+   "type": "Assassin",
+   "health": 780,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 29,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Ground Strike",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Ground_Strike.png"
+    },
+    {
+     "name": "Grapple",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Grapple.png"
+    },
+    {
+     "name": "Flog",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Flog.png"
+    },
+    {
+     "name": "Death Slam",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Death_Slam.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Lash_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Lash_ping_retreat_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Lash_card.png"
+  },
+  {
+   "name": "McGinnis",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 780,
+   "speed": 6.7,
+   "stamina": 2,
+   "clip": 66,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Mini Turret",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Mini_Turret.png"
+    },
+    {
+     "name": "Medicinal Specter",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Medicinal_Specter.png"
+    },
+    {
+     "name": "Spectral Wall",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Spectral_Wall.png"
+    },
+    {
+     "name": "Heavy Barrage",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Heavy_Barrage.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Time to reshape the battlefield.",
+     "audio": "https://cdn.deadlock.wiki/Forge_upgrade_power3_02.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Forge_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Forge_ping_retreat.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Forge_upgrade_power3_04.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/McGinnis_card.png"
+  },
+  {
+   "name": "Mina",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 660,
+   "speed": 6.5,
+   "stamina": 2,
+   "clip": 12,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Rake",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Rake.png"
+    },
+    {
+     "name": "Sanguine Retreat",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Sanguine_Retreat.png"
+    },
+    {
+     "name": "Love Bites",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Love_Bites.png"
+    },
+    {
+     "name": "Nox Nostra",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Nox_Nostra.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Vampirebat_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Vampirebat_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Vampirebat_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Mina_card.png"
+  },
+  {
+   "name": "Mirage",
+   "gender": "Male",
+   "type": "Assassin",
+   "health": 730,
+   "speed": 7,
+   "stamina": 3,
+   "clip": 16,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Fire Scarabs",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Fire_Scarabs.png"
+    },
+    {
+     "name": "Dust Devil",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Dust_Devil.png"
+    },
+    {
+     "name": "Djinn's Mark",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Djinn%27s_Mark.png"
+    },
+    {
+     "name": "Traveler",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Traveler.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Mirage_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Mirage_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Mirage_card.png"
+  },
+  {
+   "name": "Mo & Krill",
+   "gender": "Other",
+   "type": "Brawler",
+   "health": 930,
+   "speed": 8,
+   "stamina": 3,
+   "clip": 20,
+   "pellets": 4,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Scorn",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Scorn.png"
+    },
+    {
+     "name": "Burrow",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Burrow.png"
+    },
+    {
+     "name": "Sand Blast",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Sand_Blast.png"
+    },
+    {
+     "name": "Combo",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Combo.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Krill_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Krill_ping_retreat_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Mo_%26_Krill_card.png"
+  },
+  {
+   "name": "Nurse Harrow",
+   "gender": "Female",
+   "type": "Healer",
+   "health": 730,
+   "speed": 6.8,
+   "stamina": 3,
+   "clip": 11,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Leech Therapy",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Leech_Therapy.png"
+    },
+    {
+     "name": "Wretched Vapors",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Wretched_Vapors.png"
+    },
+    {
+     "name": "Healing Needles",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Healing_Needles.png"
+    },
+    {
+     "name": "Lurking Terrors",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Lurking_Terrors.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Nurse_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Nurse_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Nurse_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Nurse_Harrow_card.png"
+  },
+  {
+   "name": "Paige",
+   "gender": "Female",
+   "type": "Healer",
+   "health": 680,
+   "speed": 6.9,
+   "stamina": 3,
+   "clip": 14,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Bookwyrm",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Bookwyrm.png"
+    },
+    {
+     "name": "Plot Armor",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Plot_Armor.png"
+    },
+    {
+     "name": "Captivating Read",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Captivating_Read.png"
+    },
+    {
+     "name": "Rallying Charge",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Rallying_Charge.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Bookworm_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Bookworm_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Bookworm_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Paige_card.png"
+  },
+  {
+   "name": "Paradox",
+   "gender": "Female",
+   "type": "Marksman",
+   "health": 730,
+   "speed": 6.7,
+   "stamina": 3,
+   "clip": 40,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Pulse Grenade",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Pulse_Grenade.png"
+    },
+    {
+     "name": "Time Wall",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Time_Wall.png"
+    },
+    {
+     "name": "Kinetic Carbine",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Kinetic_Carbine.png"
+    },
+    {
+     "name": "Paradoxical Swap",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Paradoxical_Swap.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Chrono_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Chrono_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Paradox_card.png"
+  },
+  {
+   "name": "Pocket",
+   "gender": "Other",
+   "type": "Assassin",
+   "health": 780,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 11,
+   "pellets": 7,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Barrage",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Barrage.png"
+    },
+    {
+     "name": "Flying Cloak",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Flying_Cloak.png"
+    },
+    {
+     "name": "Enchanter's Satchel",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Enchanter%27s_Satchel.png"
+    },
+    {
+     "name": "Affliction",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Affliction.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Synth_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Synth_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Pocket_card.png"
+  },
+  {
+   "name": "Rat King",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 800,
+   "speed": 6.8,
+   "stamina": 3,
+   "clip": 26,
+   "pellets": 2,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Scrap Grenade",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Scrap_Grenade.png"
+    },
+    {
+     "name": "Rat Swarm",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Rat_Swarm.png"
+    },
+    {
+     "name": "Royal Pestments",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Royal_Pestments.png"
+    },
+    {
+     "name": "Rule, Ratannia!",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Rule,_Ratannia!.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Ratking_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Ratking_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Ratking_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Rat_King_card.png"
+  },
+  {
+   "name": "Rem",
+   "gender": "Male",
+   "type": "Healer",
+   "health": 680,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 13,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Pillow Toss",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Pillow_Toss.png"
+    },
+    {
+     "name": "Tag Along",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Tag_Along.png"
+    },
+    {
+     "name": "Lil Helpers",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Lil_Helpers.png"
+    },
+    {
+     "name": "Naptime",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Naptime.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Familiar_asleep_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Familiar_asleep_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Familiar_asleep_upgrade_power1_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Familiar_ping_affermative_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Rem_card.png"
+  },
+  {
+   "name": "Seven",
+   "gender": "Male",
+   "type": "Mystic",
+   "health": 730,
+   "speed": 6.7,
+   "stamina": 3,
+   "clip": 29,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Lightning Ball",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Lightning_Ball.png"
+    },
+    {
+     "name": "Static Charge",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Static_Charge.png"
+    },
+    {
+     "name": "Power Surge",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Power_Surge.png"
+    },
+    {
+     "name": "Storm Cloud",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Storm_Cloud.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Gigawatt_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Gigawatt_ping_retreat_02.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Seven_card.png"
+  },
+  {
+   "name": "Shiv",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 830,
+   "speed": 6.5,
+   "stamina": 3,
+   "clip": 10,
+   "pellets": 6,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Serrated Knives",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Serrated_Knives.png"
+    },
+    {
+     "name": "Slice and Dice",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Slice_and_Dice.png"
+    },
+    {
+     "name": "Bloodletting",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Bloodletting.png"
+    },
+    {
+     "name": "Killing Blow",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Killing_Blow.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "There's a whole lotta people that don't got enough ''knives'' stuck in 'em.",
+     "audio": "https://cdn.deadlock.wiki/Shiv_leave_base_04.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Shiv_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Shiv_ping_retreat_02.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Shiv_upgrade_power3_07.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Shiv_card.png"
+  },
+  {
+   "name": "Silver",
+   "gender": "Female",
+   "type": "Brawler",
+   "health": 830,
+   "speed": 6.7,
+   "stamina": 2,
+   "clip": 7,
+   "pellets": 7,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Slam Fire",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Slam_Fire.png"
+    },
+    {
+     "name": "Boot Kick",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Boot_Kick.png"
+    },
+    {
+     "name": "Entangling Bola",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Entangling_Bola.png"
+    },
+    {
+     "name": "Lycan Curse",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Lycan_Curse.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Werewolf_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Werewolf_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Werewolf_upgrade_power1_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Werewolf_wolf_ping_affermative_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Silver_card.png"
+  },
+  {
+   "name": "Sinclair",
+   "gender": "Other",
+   "type": "Mystic",
+   "health": 730,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 16,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Vexing Bolt",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Vexing_Bolt.png"
+    },
+    {
+     "name": "Spectral Assistant",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Spectral_Assistant.png"
+    },
+    {
+     "name": "Rabbit Hex",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Rabbit_Hex.png"
+    },
+    {
+     "name": "Audience Participation",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Audience_Participation.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Time for some misdirection.",
+     "audio": "https://cdn.deadlock.wiki/Magician_henry_use_power1_08.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Magician_henry_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Magician_henry_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Magician_savannah_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Magician_savannah_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Sinclair_card.png"
+  },
+  {
+   "name": "Solomon",
+   "gender": "Male",
+   "type": "Mystic",
+   "health": 780,
+   "speed": 6.7,
+   "stamina": 2,
+   "clip": 8,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Setup Bishop",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Setup_Bishop.png"
+    },
+    {
+     "name": "Kingside Knight",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Kingside_Knight.png"
+    },
+    {
+     "name": "Rook Battery",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Rook_Battery.png"
+    },
+    {
+     "name": "Develop Queen",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Develop_Queen.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Chessmaster_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Chessmaster_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Chessmaster_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Solomon_card.png"
+  },
+  {
+   "name": "The Doorman",
+   "gender": "Male",
+   "type": "Mystic",
+   "health": 755,
+   "speed": 7.9,
+   "stamina": 3,
+   "clip": 8,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Call Bell",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Call_Bell.png"
+    },
+    {
+     "name": "Doorway",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Doorway.png"
+    },
+    {
+     "name": "Luggage Cart",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Luggage_Cart.png"
+    },
+    {
+     "name": "Hotel Guest",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Hotel_Guest.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "Hurting them is fine, but ''vexing'' them is even better.",
+     "audio": "https://cdn.deadlock.wiki/Doorman_upgrade_power1_04.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Doorman_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Doorman_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Doorman_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/The_Doorman_card.png"
+  },
+  {
+   "name": "Venator",
+   "gender": "Male",
+   "type": "Marksman",
+   "health": 820,
+   "speed": 6.4,
+   "stamina": 3,
+   "clip": 33,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Consecrating Grenade",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Consecrating_Grenade.png"
+    },
+    {
+     "name": "Gutshot",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Gutshot.png"
+    },
+    {
+     "name": "Hex-Lined Snap Trap",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Hex-Lined_Snap_Trap.png"
+    },
+    {
+     "name": "Ira Domini",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Ira_Domini.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Priest_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Priest_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Venator_card.png"
+  },
+  {
+   "name": "Victor",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 800,
+   "speed": 6.3,
+   "stamina": 3,
+   "clip": 24,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Pain Battery",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Pain_Battery.png"
+    },
+    {
+     "name": "Jumpstart",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Jumpstart.png"
+    },
+    {
+     "name": "Aura of Suffering",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Aura_of_Suffering.png"
+    },
+    {
+     "name": "Shocking Reanimation",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Shocking_Reanimation.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "I don't fear pain. I weaponize it.",
+     "audio": "https://cdn.deadlock.wiki/Frank_upgrade_power1_06.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Frank_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Frank_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Victor_card.png"
+  },
+  {
+   "name": "Vindicta",
+   "gender": "Female",
+   "type": "Marksman",
+   "health": 755,
+   "speed": 7.9,
+   "stamina": 2,
+   "clip": 19,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Stake",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Stake.png"
+    },
+    {
+     "name": "Flight",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Flight.png"
+    },
+    {
+     "name": "Crow Familiar",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Crow_Familiar.png"
+    },
+    {
+     "name": "Assassinate",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Assassinate.png"
+    }
+   ],
+   "voices": [
+    {
+     "text": "If they don't have an Achilles' heel, I'll make one.",
+     "audio": "https://cdn.deadlock.wiki/Hornet_upgrade_power3_05.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Hornet_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Hornet_ping_retreat_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Vindicta_card.png"
+  },
+  {
+   "name": "Violet",
+   "gender": "Female",
+   "type": "Mystic",
+   "health": 710,
+   "speed": 6.9,
+   "stamina": 3,
+   "clip": 15,
+   "pellets": 1,
+   "year": 2026,
+   "abilities": [
+    {
+     "name": "Living Ink",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Living_Ink.png"
+    },
+    {
+     "name": "Flow State",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Flow_State.png"
+    },
+    {
+     "name": "Still Life",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Still_Life.png"
+    },
+    {
+     "name": "Abstract Landscape",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Abstract_Landscape.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Artist_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Artist_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Artist_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Violet_card.png"
+  },
+  {
+   "name": "Viscous",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 780,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 20,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Splatter",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Splatter.png"
+    },
+    {
+     "name": "The Cube",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/The_Cube.png"
+    },
+    {
+     "name": "Puddle Punch",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Puddle_Punch.png"
+    },
+    {
+     "name": "Goo Ball",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Goo_Ball.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Viscous_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Viscous_ping_retreat_02.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Viscous_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Viscous_card.png"
+  },
+  {
+   "name": "Vyper",
+   "gender": "Female",
+   "type": "Assassin",
+   "health": 780,
+   "speed": 6.9,
+   "stamina": 4,
+   "clip": 24,
+   "pellets": 1,
+   "year": 2025,
+   "abilities": [
+    {
+     "name": "Screwjab Dagger",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Screwjab_Dagger.png"
+    },
+    {
+     "name": "Lethal Venom",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Lethal_Venom.png"
+    },
+    {
+     "name": "Slither",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Slither.png"
+    },
+    {
+     "name": "Petrifying Bola",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Petrifying_Bola.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Viper_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Viper_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Viper_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Vyper_card.png"
+  },
+  {
+   "name": "Warden",
+   "gender": "Male",
+   "type": "Brawler",
+   "health": 805,
+   "speed": 6.3,
+   "stamina": 3,
+   "clip": 17,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Alchemical Flask",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Alchemical_Flask.png"
+    },
+    {
+     "name": "Willpower",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Willpower.png"
+    },
+    {
+     "name": "Binding Word",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Binding_Word.png"
+    },
+    {
+     "name": "Last Stand",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Last_Stand.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Warden_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Warden_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Warden_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Warden_card.png"
+  },
+  {
+   "name": "Wraith",
+   "gender": "Female",
+   "type": "Marksman",
+   "health": 730,
+   "speed": 7.2,
+   "stamina": 3,
+   "clip": 52,
+   "pellets": 1,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Card Trick",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Card_Trick.png"
+    },
+    {
+     "name": "Project Mind",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Project_Mind.png"
+    },
+    {
+     "name": "Full Auto",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Full_Auto.png"
+    },
+    {
+     "name": "Telekinesis",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Telekinesis.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Wraith_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Wraith_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Wraith_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Wraith_card.png"
+  },
+  {
+   "name": "Yamato",
+   "gender": "Unknown",
+   "type": "Assassin",
+   "health": 730,
+   "speed": 8.2,
+   "stamina": 3,
+   "clip": 12,
+   "pellets": 5,
+   "year": 2024,
+   "abilities": [
+    {
+     "name": "Power Slash",
+     "slot": 1,
+     "image": "https://cdn.deadlock.wiki/Power_Slash.png"
+    },
+    {
+     "name": "Flying Slash",
+     "slot": 2,
+     "image": "https://cdn.deadlock.wiki/Flying_Slash.png"
+    },
+    {
+     "name": "Crimson Slash",
+     "slot": 3,
+     "image": "https://cdn.deadlock.wiki/Crimson_Slash.png"
+    },
+    {
+     "name": "Shadow Transformation",
+     "slot": 4,
+     "image": "https://cdn.deadlock.wiki/Shadow_Transformation.png"
+    }
+   ],
+   "voices": [
+    {
+     "audio": "https://cdn.deadlock.wiki/Yamato_ping_affermative_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Yamato_ping_retreat_01.mp3"
+    },
+    {
+     "audio": "https://cdn.deadlock.wiki/Yamato_upgrade_power1_01.mp3"
+    }
+   ],
+   "image": "https://cdn.deadlock.wiki/Yamato_card.png"
+  }
+ ],
+ "items": [
+  {
+   "name": "Active Reload",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Active_Reload.png"
+  },
+  {
+   "name": "Alchemical Fire",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Alchemical_Fire.png"
+  },
+  {
+   "name": "Arcane Surge",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Arcane_Surge.png"
+  },
+  {
+   "name": "Arctic Blast",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Arctic_Blast.png"
+  },
+  {
+   "name": "Armor Piercer",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Armor_Piercer.png"
+  },
+  {
+   "name": "Ballistic Enchantment",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Ballistic_Enchantment.png"
+  },
+  {
+   "name": "Battle Vest",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Battle_Vest.png"
+  },
+  {
+   "name": "Berserker",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Berserker.png"
+  },
+  {
+   "name": "Blood Tribute",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Blood_Tribute.png"
+  },
+  {
+   "name": "Boundless Spirit",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Boundless_Spirit.png"
+  },
+  {
+   "name": "Bullet Lifesteal",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Bullet_Lifesteal.png"
+  },
+  {
+   "name": "Bullet Resilience",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Bullet_Resilience.png"
+  },
+  {
+   "name": "Bullet Resist Shredder",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Bullet_Resist_Shredder.png"
+  },
+  {
+   "name": "Burst Fire",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Burst_Fire.png"
+  },
+  {
+   "name": "Capacitor",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Capacitor.png"
+  },
+  {
+   "name": "Celestial Blessing",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Celestial_Blessing.png"
+  },
+  {
+   "name": "Cheat Death",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Cheat_Death.png"
+  },
+  {
+   "name": "Cloak of Opportunity",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Cloak_of_Opportunity.png"
+  },
+  {
+   "name": "Close Quarters",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Close_Quarters.png"
+  },
+  {
+   "name": "Cold Front",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Cold_Front.png"
+  },
+  {
+   "name": "Colossus",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Colossus.png"
+  },
+  {
+   "name": "Compress Cooldown",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Compress_Cooldown.png"
+  },
+  {
+   "name": "Counterspell",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Counterspell.png"
+  },
+  {
+   "name": "Crippling Headshot",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Crippling_Headshot.png"
+  },
+  {
+   "name": "Crushing Fists",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Crushing_Fists.png"
+  },
+  {
+   "name": "Cultist Sacrifice",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Cultist_Sacrifice.png"
+  },
+  {
+   "name": "Cursed Relic",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Cursed_Relic.png"
+  },
+  {
+   "name": "Debuff Reducer",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Debuff_Reducer.png"
+  },
+  {
+   "name": "Decay",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Decay.png"
+  },
+  {
+   "name": "Disarming Hex",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Disarming_Hex.png"
+  },
+  {
+   "name": "Dispel Magic",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Dispel_Magic.png"
+  },
+  {
+   "name": "Divine Barrier",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Divine_Barrier.png"
+  },
+  {
+   "name": "Diviner's Kevlar",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Diviner%27s_Kevlar.png"
+  },
+  {
+   "name": "Duration Extender",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Duration_Extender.png"
+  },
+  {
+   "name": "Echo Shard",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Echo_Shard.png"
+  },
+  {
+   "name": "Electric Slippers",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Electric_Slippers.png"
+  },
+  {
+   "name": "Enchanter's Emblem",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Enchanter%27s_Emblem.png"
+  },
+  {
+   "name": "Enduring Speed",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Enduring_Speed.png"
+  },
+  {
+   "name": "Escalating Exposure",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Escalating_Exposure.png"
+  },
+  {
+   "name": "Escalating Resilience",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Escalating_Resilience.png"
+  },
+  {
+   "name": "Eternal Gift",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Eternal_Gift.png"
+  },
+  {
+   "name": "Ethereal Shift",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Ethereal_Shift.png"
+  },
+  {
+   "name": "Express Shot",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Express_Shot.png"
+  },
+  {
+   "name": "Extended Magazine",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extended_Magazine.png"
+  },
+  {
+   "name": "Extra Charge",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extra_Charge.png"
+  },
+  {
+   "name": "Extra Health",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extra_Health.png"
+  },
+  {
+   "name": "Extra Regen",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extra_Regen.png"
+  },
+  {
+   "name": "Extra Spirit",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extra_Spirit.png"
+  },
+  {
+   "name": "Extra Stamina",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Extra_Stamina.png"
+  },
+  {
+   "name": "Fleetfoot",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Fleetfoot.png"
+  },
+  {
+   "name": "Focus Lens",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Focus_Lens.png"
+  },
+  {
+   "name": "Fortitude",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Fortitude.png"
+  },
+  {
+   "name": "Frenzy",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Frenzy.png"
+  },
+  {
+   "name": "Frostbite Charm",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Frostbite_Charm.png"
+  },
+  {
+   "name": "Fury Trance",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Fury_Trance.png"
+  },
+  {
+   "name": "Glass Cannon",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Glass_Cannon.png"
+  },
+  {
+   "name": "Golden Goose Egg",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Golden_Goose_Egg.png"
+  },
+  {
+   "name": "Greater Expansion",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Greater_Expansion.png"
+  },
+  {
+   "name": "Grit",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Grit.png"
+  },
+  {
+   "name": "Guardian Ward",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Guardian_Ward.png"
+  },
+  {
+   "name": "Haunting Shot",
+   "slot": "Weapon",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Haunting_Shot.png"
+  },
+  {
+   "name": "Headhunter",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Headhunter.png"
+  },
+  {
+   "name": "Headshot Booster",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Headshot_Booster.png"
+  },
+  {
+   "name": "Healbane",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Healbane.png"
+  },
+  {
+   "name": "Healing Booster",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Healing_Booster.png"
+  },
+  {
+   "name": "Healing Nova",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Healing_Nova.png"
+  },
+  {
+   "name": "Healing Rite",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Healing_Rite.png"
+  },
+  {
+   "name": "Healing Tempo",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Healing_Tempo.png"
+  },
+  {
+   "name": "Heroic Aura",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Heroic_Aura.png"
+  },
+  {
+   "name": "High-Velocity Rounds",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/High-Velocity_Rounds.png"
+  },
+  {
+   "name": "Hollow Point",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Hollow_Point.png"
+  },
+  {
+   "name": "Hunter's Aura",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Hunter%27s_Aura.png"
+  },
+  {
+   "name": "Improved Spirit",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Improved_Spirit.png"
+  },
+  {
+   "name": "Indomitable",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Indomitable.png"
+  },
+  {
+   "name": "Infinite Rounds",
+   "slot": "Weapon",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Infinite_Rounds.png"
+  },
+  {
+   "name": "Infuser",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Infuser.png"
+  },
+  {
+   "name": "Inhibitor",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Inhibitor.png"
+  },
+  {
+   "name": "Intensifying Magazine",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Intensifying_Magazine.png"
+  },
+  {
+   "name": "Juggernaut",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Juggernaut.png"
+  },
+  {
+   "name": "Kinetic Dash",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Kinetic_Dash.png"
+  },
+  {
+   "name": "Knockdown",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Knockdown.png"
+  },
+  {
+   "name": "Leech",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Leech.png"
+  },
+  {
+   "name": "Lifestrike",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Lifestrike.png"
+  },
+  {
+   "name": "Lightning Scroll",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Lightning_Scroll.png"
+  },
+  {
+   "name": "Long Range",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Long_Range.png"
+  },
+  {
+   "name": "Lucky Shot",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Lucky_Shot.png"
+  },
+  {
+   "name": "Magic Carpet",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Magic_Carpet.png"
+  },
+  {
+   "name": "Majestic Leap",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Majestic_Leap.png"
+  },
+  {
+   "name": "Melee Charge",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Melee_Charge.png"
+  },
+  {
+   "name": "Melee Lifesteal",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Melee_Lifesteal.png"
+  },
+  {
+   "name": "Mercurial Magnum",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mercurial_Magnum.png"
+  },
+  {
+   "name": "Metal Skin",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Metal_Skin.png"
+  },
+  {
+   "name": "Monster Rounds",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Monster_Rounds.png"
+  },
+  {
+   "name": "Mystic Burst",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Burst.png"
+  },
+  {
+   "name": "Mystic Conduit",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Conduit.png"
+  },
+  {
+   "name": "Mystic Expansion",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Expansion.png"
+  },
+  {
+   "name": "Mystic Regeneration",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Regeneration.png"
+  },
+  {
+   "name": "Mystic Reverb",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Reverb.png"
+  },
+  {
+   "name": "Mystic Shot",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Shot.png"
+  },
+  {
+   "name": "Mystic Slow",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Slow.png"
+  },
+  {
+   "name": "Mystic Vulnerability",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Mystic_Vulnerability.png"
+  },
+  {
+   "name": "Mystical Piano",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Mystical_Piano.png"
+  },
+  {
+   "name": "Nullification Burst",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Nullification_Burst.png"
+  },
+  {
+   "name": "Omnicharge Signet",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Omnicharge_Signet.png"
+  },
+  {
+   "name": "Opening Rounds",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Opening_Rounds.png"
+  },
+  {
+   "name": "Phantom Strike",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Phantom_Strike.png"
+  },
+  {
+   "name": "Plated Armor",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Plated_Armor.png"
+  },
+  {
+   "name": "Point Blank",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Point_Blank.png"
+  },
+  {
+   "name": "Prism Blast",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Prism_Blast.png"
+  },
+  {
+   "name": "Quicksilver Reload",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Quicksilver_Reload.png"
+  },
+  {
+   "name": "Radiant Regeneration",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Radiant_Regeneration.png"
+  },
+  {
+   "name": "Rapid Recharge",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Rapid_Recharge.png"
+  },
+  {
+   "name": "Rapid Rounds",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Rapid_Rounds.png"
+  },
+  {
+   "name": "Reactive Barrier",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Reactive_Barrier.png"
+  },
+  {
+   "name": "Rebuttal",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Rebuttal.png"
+  },
+  {
+   "name": "Recharging Rush",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Recharging_Rush.png"
+  },
+  {
+   "name": "Refresher",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Refresher.png"
+  },
+  {
+   "name": "Rescue Beam",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Rescue_Beam.png"
+  },
+  {
+   "name": "Restorative Locket",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Restorative_Locket.png"
+  },
+  {
+   "name": "Restorative Shot",
+   "slot": "Weapon",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Restorative_Shot.png"
+  },
+  {
+   "name": "Return Fire",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Return_Fire.png"
+  },
+  {
+   "name": "Ricochet",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Ricochet.png"
+  },
+  {
+   "name": "Runed Gauntlets",
+   "slot": "Weapon",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Runed_Gauntlets.png"
+  },
+  {
+   "name": "Rusted Barrel",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Rusted_Barrel.png"
+  },
+  {
+   "name": "Scourge",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Scourge.png"
+  },
+  {
+   "name": "Seraphim Wings",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Seraphim_Wings.png"
+  },
+  {
+   "name": "Shadow Strike",
+   "slot": "Vitality",
+   "tier": 5,
+   "cost": 9999,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Shadow_Strike.png"
+  },
+  {
+   "name": "Shadow Weave",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Shadow_Weave.png"
+  },
+  {
+   "name": "Sharpshooter",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Sharpshooter.png"
+  },
+  {
+   "name": "Shrink Ray",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Shrink_Ray.png"
+  },
+  {
+   "name": "Silence Wave",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Silence_Wave.png"
+  },
+  {
+   "name": "Silencer",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Silencer.png"
+  },
+  {
+   "name": "Siphon Bullets",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Siphon_Bullets.png"
+  },
+  {
+   "name": "Slowing Bullets",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Slowing_Bullets.png"
+  },
+  {
+   "name": "Slowing Hex",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Slowing_Hex.png"
+  },
+  {
+   "name": "Spellbreaker",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spellbreaker.png"
+  },
+  {
+   "name": "Spellslinger",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spellslinger.png"
+  },
+  {
+   "name": "Spirit Burn",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Burn.png"
+  },
+  {
+   "name": "Spirit Lifesteal",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Lifesteal.png"
+  },
+  {
+   "name": "Spirit Rend",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Rend.png"
+  },
+  {
+   "name": "Spirit Resilience",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Resilience.png"
+  },
+  {
+   "name": "Spirit Sap",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Spirit_Sap.png"
+  },
+  {
+   "name": "Spirit Shielding",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Shielding.png"
+  },
+  {
+   "name": "Spirit Shredder",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Shredder.png"
+  },
+  {
+   "name": "Spirit Snatch",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Snatch.png"
+  },
+  {
+   "name": "Spirit Strike",
+   "slot": "Spirit",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spirit_Strike.png"
+  },
+  {
+   "name": "Spiritual Overflow",
+   "slot": "Weapon",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Spiritual_Overflow.png"
+  },
+  {
+   "name": "Split Shot",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Split_Shot.png"
+  },
+  {
+   "name": "Sprint Boots",
+   "slot": "Vitality",
+   "tier": 1,
+   "cost": 800,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Sprint_Boots.png"
+  },
+  {
+   "name": "Stalker",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Stalker.png"
+  },
+  {
+   "name": "Stamina Mastery",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Stamina_Mastery.png"
+  },
+  {
+   "name": "Superior Cooldown",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Superior_Cooldown.png"
+  },
+  {
+   "name": "Superior Duration",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Superior_Duration.png"
+  },
+  {
+   "name": "Suppressor",
+   "slot": "Spirit",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Suppressor.png"
+  },
+  {
+   "name": "Surge of Power",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Surge_of_Power.png"
+  },
+  {
+   "name": "Swift Striker",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Swift_Striker.png"
+  },
+  {
+   "name": "Tankbuster",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Tankbuster.png"
+  },
+  {
+   "name": "Tesla Bullets",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Tesla_Bullets.png"
+  },
+  {
+   "name": "Titanic Magazine",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Titanic_Magazine.png"
+  },
+  {
+   "name": "Torment Pulse",
+   "slot": "Spirit",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Torment_Pulse.png"
+  },
+  {
+   "name": "Toxic Bullets",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Toxic_Bullets.png"
+  },
+  {
+   "name": "Transcendent Cooldown",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Transcendent_Cooldown.png"
+  },
+  {
+   "name": "Trophy Collector",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Trophy_Collector.png"
+  },
+  {
+   "name": "Unstable Concoction",
+   "slot": "Spirit",
+   "tier": 5,
+   "cost": 9999,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Unstable_Concoction.png"
+  },
+  {
+   "name": "Unstoppable",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Unstoppable.png"
+  },
+  {
+   "name": "Vampiric Burst",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Vampiric_Burst.png"
+  },
+  {
+   "name": "Veil Walker",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Veil_Walker.png"
+  },
+  {
+   "name": "Vortex Web",
+   "slot": "Spirit",
+   "tier": 4,
+   "cost": 6400,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Vortex_Web.png"
+  },
+  {
+   "name": "Warp Stone",
+   "slot": "Vitality",
+   "tier": 3,
+   "cost": 3200,
+   "active": true,
+   "image": "https://cdn.deadlock.wiki/Warp_Stone.png"
+  },
+  {
+   "name": "Weakening Headshot",
+   "slot": "Weapon",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Weakening_Headshot.png"
+  },
+  {
+   "name": "Weapon Shielding",
+   "slot": "Vitality",
+   "tier": 2,
+   "cost": 1600,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Weapon_Shielding.png"
+  },
+  {
+   "name": "Weighted Shots",
+   "slot": "Weapon",
+   "tier": 3,
+   "cost": 3200,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Weighted_Shots.png"
+  },
+  {
+   "name": "Witchmail",
+   "slot": "Vitality",
+   "tier": 4,
+   "cost": 6400,
+   "active": false,
+   "image": "https://cdn.deadlock.wiki/Witchmail.png"
+  }
+ ]
+}

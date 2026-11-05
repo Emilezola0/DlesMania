@@ -12,8 +12,9 @@ import { BLUEPRINT_POOLS } from './blueprint';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import { JLPT_POOLS } from './jlpt';
 import { ARC_POOLS } from './arcraiders';
+import { DL_POOLS } from './deadlock';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -96,6 +97,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'clue', 'windows', 'voice'] as SpType[],
   },
   {
+    id: 'deadlock',
+    label: 'Deadlock',
+    ready: true,
+    blurb: 'Classic by type, gender, health, clip and speed, the heroes by their card art and behind windows, their abilities, their own voice lines, and every item of the shop by its icon — from The Deadlock Wiki.',
+    types: ['classic', 'picture', 'windows', 'ability', 'voice', 'item'] as SpType[],
+  },
+  {
     id: 'destiny',
     label: 'Destiny',
     ready: true,
@@ -156,6 +164,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   material: { name: 'Materials', icon: '🔩', tagline: 'Which material is this?', maxAttempts: 6 },
   recipe: { name: 'Crafting', icon: '🛠️', tagline: 'What does this recipe make?', maxAttempts: 6 },
   sound: { name: 'Robot Sounds', icon: '🔊', tagline: 'Which ARC makes this sound?', maxAttempts: 6 },
+  item: { name: 'Items', icon: '🛒', tagline: 'Which item of the shop is this?', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
 
@@ -185,6 +194,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   ufouria: simplePools('ufouria'),
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
+  deadlock: DL_POOLS,
   destiny: simplePools('destiny'),
   jlpt: JLPT_POOLS,
   unreal: BLUEPRINT_POOLS,
