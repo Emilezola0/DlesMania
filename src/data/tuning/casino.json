@@ -24,5 +24,11 @@
     "cost": 250,
     "odds": { "common": 60, "rare": 28, "epic": 10, "legendary": 2 },
     "duplicate": { "common": 40, "rare": 75, "epic": 125, "legendary": 250 }
+  },
+  "cardShop": {
+    "coinsPerToken": 20,
+    "prices": { "rare": 40, "epic": 150, "legendary": 1500, "mythic": 8000 },
+    "slots": { "legendary": 3, "epic": 2, "rare": 1 },
+    "luckyDayChance": 0.07
   }
 }

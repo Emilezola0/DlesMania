@@ -68,8 +68,33 @@
       },
       "required": ["cost", "odds", "duplicate"],
       "additionalProperties": false
+    },
+    "cardShop": {
+      "type": "object",
+      "title": "Daily Card Shop",
+      "description": "Every DleCoin paid into the machines (slots, pachinko, capsules, roulette) earns casino tokens, the only currency of the Daily Card Shop: a few cards a day, the same for everyone, each bought once a day.",
+      "properties": {
+        "coinsPerToken": { "type": "integer", "minimum": 1, "description": "DleCoins paid into the casino for one token" },
+        "prices": {
+          "type": "object",
+          "description": "Tokens a card costs, by rarity",
+          "properties": { "rare": { "type": "integer", "minimum": 1 }, "epic": { "type": "integer", "minimum": 1 }, "legendary": { "type": "integer", "minimum": 1 }, "mythic": { "type": "integer", "minimum": 1 } },
+          "required": ["rare", "epic", "legendary", "mythic"],
+          "additionalProperties": false
+        },
+        "slots": {
+          "type": "object",
+          "description": "Cards on the shelf each day, by rarity (a mythic joins them on special occasions)",
+          "properties": { "rare": { "type": "integer", "minimum": 0 }, "epic": { "type": "integer", "minimum": 0 }, "legendary": { "type": "integer", "minimum": 3 } },
+          "required": ["rare", "epic", "legendary"],
+          "additionalProperties": false
+        },
+        "luckyDayChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a day is a lucky day (a mythic on the shelf), besides the fixed occasions" }
+      },
+      "required": ["coinsPerToken", "prices", "slots", "luckyDayChance"],
+      "additionalProperties": false
     }
   },
-  "required": ["slots", "pachinko", "capsules"],
+  "required": ["slots", "pachinko", "capsules", "cardShop"],
   "additionalProperties": false
 }

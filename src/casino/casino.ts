@@ -6,6 +6,14 @@ import { FRAMES, type Frame, type FrameRarity } from './frames';
 export const SLOTS = T.slots;
 export const PACHINKO = T.pachinko;
 export const CAPSULES = T.capsules;
+/** The Daily Card Shop (src/casino/cardShop.ts): tokens per DleCoins paid, prices and shelves by rarity. */
+export const CARD_SHOP = T.cardShop as { coinsPerToken: number; prices: Record<string, number>; slots: Record<string, number>; luckyDayChance: number };
+
+/** Tokens a casino payment of `paid` DleCoins gives, with what was left over last time: [tokens, left over]. */
+export function tokensFor(paid: number, leftOver = 0): [number, number] {
+  const total = Math.max(0, leftOver) + Math.max(0, paid);
+  return [Math.floor(total / CARD_SHOP.coinsPerToken), total % CARD_SHOP.coinsPerToken];
+}
 
 export type SlotSymbol = 'cherry' | 'bell' | 'star' | 'card' | 'gem' | 'coin' | 'seal';
 type SymbolSpec = { id: string; weight: number; three: number; two?: number };

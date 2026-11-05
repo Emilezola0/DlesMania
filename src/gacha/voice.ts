@@ -215,6 +215,8 @@ export function playVoice(card: Card, asked = false) {
 /** A card's line and recording in the language names are shown in (the French dub's when it has one). */
 export function voiceOf(card: Card, lang = useProgress.getState().nameLang): { line?: string; audio?: string } {
   const fr = lang === 'fr';
+  // A card with several lines says one at random (a recording only goes with its own line).
+  if (card.voices?.length && !(fr && card.voiceFr)) return { line: card.voices[Math.floor(Math.random() * card.voices.length)] };
   return { line: (fr && card.voiceFr) || card.voice, audio: (fr && card.audioFr) || card.audio };
 }
 

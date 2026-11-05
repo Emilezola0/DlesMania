@@ -52,6 +52,9 @@ export const SYNCED = [
   'frame',
   'casinoMeter',
   'capsuleTokens',
+  'chips',
+  'chipCoins',
+  'cardShop',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -237,5 +240,9 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     frame: latest.frame ?? null,
     casinoMeter: latest.casinoMeter ?? 0,
     capsuleTokens: latest.capsuleTokens ?? 0,
+    // Casino tokens and the day's shop purchases: the latest save's.
+    chips: latest.chips ?? 0,
+    chipCoins: latest.chipCoins ?? 0,
+    cardShop: latest.cardShop ?? { day: '', bought: [] },
   };
 }

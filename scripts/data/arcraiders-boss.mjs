@@ -151,10 +151,12 @@ writeFileSync(FILE, JSON.stringify(bosses, null, 2) + '\n');
 
 // The cards beyond the boss's: every other machine, weapon, piece of gear and material, their rarity from the wiki's.
 const RARITY = { Legendary: 'epic', Epic: 'epic', Rare: 'rare' };
+// Raised to legendary by the owner (src/data/card-rarities.json holds the same).
+const LEGENDARY = new Set(['Equalizer', 'Jupiter', 'Aphelion', 'Dolabra', 'Hydra', 'Rocketeer']);
 const BIG = new Set(['Queen', 'Matriarch', 'Bastion', 'Bombardier', 'Leaper', 'Rocketeer', 'ARC Turbine', 'Hydra', 'Bully', 'Shredder']);
 const roster = [
-  ...D.arcs.map((a) => ({ name: a.name, image: a.image, rarity: BIG.has(a.name) ? 'epic' : 'rare' })),
-  ...D.gear.map((g) => ({ name: g.name, image: g.image, rarity: RARITY[g.rarity] ?? 'common' })),
+  ...D.arcs.map((a) => ({ name: a.name, image: a.image, rarity: LEGENDARY.has(a.name) ? 'legendary' : BIG.has(a.name) ? 'epic' : 'rare' })),
+  ...D.gear.map((g) => ({ name: g.name, image: g.image, rarity: LEGENDARY.has(g.name) ? 'legendary' : (RARITY[g.rarity] ?? 'common') })),
   ...D.materials.map((m) => ({ name: m.name, image: m.image, rarity: RARITY[m.rarity] ?? 'common' })),
 ];
 const ROSTERS = new URL('src/data/card-rosters.json', ROOT);

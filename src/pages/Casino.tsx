@@ -1,9 +1,10 @@
 // The Casino: a chill corner to play some DleCoins — the slots, pachinko, the capsule machine (icon frames)
-// and the roulette. On average everything pays back a little less than it takes (src/data/tuning/casino.json).
+// the roulette, and the Daily Card Shop (cards for the tokens the machines give). On average everything pays back a little less than it takes (src/data/tuning/casino.json).
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DleCoin } from '../components/DleCoin';
 import { Capsules } from '../casino/Capsules';
+import { CardShop, TokenCount } from '../casino/DailyCardShop';
 import { Pachinko } from '../casino/Pachinko';
 import { Slots } from '../casino/Slots';
 import { Roulette } from '../gacha/Roulette';
@@ -15,6 +16,7 @@ const TABS = [
   { id: 'pachinko', label: 'Pachinko', icon: '⚪' },
   { id: 'capsules', label: 'Capsules', icon: '🥚' },
   { id: 'roulette', label: 'Roulette', icon: '🎡' },
+  { id: 'shop', label: 'Daily Shop', icon: '🃏' },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];
 const KEY = 'omnidle:casino:tab';
@@ -49,11 +51,16 @@ export default function Casino() {
             <span aria-hidden>🎰 </span>
             <span className="casino-title">Casino</span>
           </h1>
-          <p className="text-sm text-ink-soft">A little chill zone. Play a few DleCoins, win a few back — on average every machine keeps a little of what it takes.</p>
+          <p className="text-sm text-ink-soft">A little chill zone. Play a few DleCoins, win a few back — on average every machine keeps a little of what it takes, but every coin you put in earns casino tokens for the Daily Card Shop.</p>
         </div>
-        <Link to="/shop" className="flex items-center gap-1.5 rounded-full border border-ochre/60 bg-ochre/10 px-3 py-1 font-bold tabular-nums">
-          <DleCoin className="size-4" /> {coins.toLocaleString('en')}
-        </Link>
+        <div className="flex items-center gap-2">
+          <button type="button" onClick={() => pick('shop')} aria-label="Casino tokens: open the Daily Card Shop">
+            <TokenCount />
+          </button>
+          <Link to="/shop" className="flex items-center gap-1.5 rounded-full border border-ochre/60 bg-ochre/10 px-3 py-1 font-bold tabular-nums">
+            <DleCoin className="size-4" /> {coins.toLocaleString('en')}
+          </Link>
+        </div>
       </header>
       <nav className="flex gap-1 rounded-lg border border-rule bg-tile p-1" aria-label="Casino machines">
         {TABS.map((t) => (
@@ -75,6 +82,7 @@ export default function Casino() {
         {tab === 'pachinko' && <Pachinko />}
         {tab === 'capsules' && <Capsules />}
         {tab === 'roulette' && <Roulette />}
+        {tab === 'shop' && <CardShop />}
       </div>
     </div>
   );

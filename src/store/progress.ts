@@ -49,7 +49,7 @@ import {
   type RoulettePrize,
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
-import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, type Ball, type SlotResult } from '../casino/casino';
+import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import type { Frame } from '../casino/frames';
 
 type DayRounds = Record<number, RoundRecord>;
@@ -159,6 +159,14 @@ interface ProgressState {
   casinoMeter: number;
   /** Free capsules waiting (from the pachinko meter). */
   capsuleTokens: number;
+  /** Casino tokens, one per CARD_SHOP.coinsPerToken DleCoins paid into the casino: the Daily Card Shop's only currency. */
+  chips: number;
+  /** DleCoins paid into the casino towards the next token. */
+  chipCoins: number;
+  /** The Daily Card Shop: the day, and the cards bought from it that day. */
+  cardShop: { day: string; bought: string[] };
+  /** A card from today's Daily Card Shop for `price` tokens: false if it can't (too few tokens, bought already today). */
+  buyShopCard: (id: string, price: number) => boolean;
   /** A capsule from the machine (a free one first, if any): the frame inside, or null if it can't. */
   openCapsule: () => { frame: Frame; duplicate: boolean; coins: number; free: boolean } | null;
   /** Icon frames won (src/casino/frames.ts), and the one worn around the icon. */
@@ -275,6 +283,12 @@ export const bossWeekNow = (b: BossWeek | undefined): BossWeek => (b && b.week =
  * counters move on.
  */
 /** Cards just pulled, marked with the time (the Album's "Newest" sort). */
+/** What a casino payment of `paid` DleCoins adds to the tokens. */
+function paidIn(s: { chips?: number; chipCoins?: number }, paid: number) {
+  const [tokens, left] = tokensFor(paid, s.chipCoins ?? 0);
+  return { chips: (s.chips ?? 0) + tokens, chipCoins: left };
+}
+
 function stamp(pulledAt: Record<string, number> | undefined, ids: string[]): Record<string, number> {
   const now = Date.now();
   const out = { ...(pulledAt ?? {}) };
@@ -389,11 +403,22 @@ export const useProgress = create<ProgressState>()(
         const cost = SLOTS.cost * bet;
         if (!SLOTS.bets.includes(bet) || s.coins < cost || spins >= SLOTS.dailySpins) return null;
         const r = rollSlots(bet);
-        set({ coins: s.coins - cost + r.coins, econ: { ...e, slots: spins + 1, earned: e.earned + r.coins } });
+        set({ coins: s.coins - cost + r.coins, econ: { ...e, slots: spins + 1, earned: e.earned + r.coins }, ...paidIn(s, cost) });
         return r;
       },
       casinoMeter: 0,
       capsuleTokens: 0,
+      chips: 0,
+      chipCoins: 0,
+      cardShop: { day: '', bought: [] },
+      buyShopCard: (id, price) => {
+        const s = get();
+        const day = todayKey();
+        const bought = s.cardShop?.day === day ? s.cardShop.bought : [];
+        if (bought.includes(id) || (s.chips ?? 0) < price || price <= 0) return false;
+        set({ chips: s.chips - price, cards: { ...s.cards, [id]: (s.cards[id] ?? 0) + 1 }, pulledAt: stamp(s.pulledAt, [id]), cardShop: { day, bought: [...bought, id] } });
+        return true;
+      },
       dropBalls: (n) => {
         const s = get();
         const e = econToday(s.econ);
@@ -408,6 +433,7 @@ export const useProgress = create<ProgressState>()(
           econ: { ...e, balls: balls + n, earned: e.earned + won },
           casinoMeter: meter % PACHINKO.meter,
           capsuleTokens: (s.capsuleTokens ?? 0) + Math.floor(meter / PACHINKO.meter),
+          ...paidIn(s, cost),
         });
         return out;
       },
@@ -424,6 +450,7 @@ export const useProgress = create<ProgressState>()(
           coins: s.coins - (free ? 0 : CAPSULES.cost) + r.coins,
           capsuleTokens: free ? s.capsuleTokens - 1 : (s.capsuleTokens ?? 0),
           frames: r.duplicate ? owned : [...owned, r.frame.id],
+          ...paidIn(s, free ? 0 : CAPSULES.cost),
         });
         return { ...r, free };
       },
@@ -438,7 +465,7 @@ export const useProgress = create<ProgressState>()(
           return { prize, coins: roulettePay(prize) };
         });
         const won = results.reduce((t, r) => t + r.coins, 0);
-        set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won } });
+        set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won }, ...paidIn(s, ROULETTE.cost * n) });
         return results;
       },
       toggleFavorite: (cardId) =>
@@ -723,7 +750,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0 }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] } }),
     }),
     {
       name: 'omnidle-progress',

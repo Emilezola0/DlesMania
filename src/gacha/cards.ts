@@ -49,6 +49,8 @@ export interface Card {
   voice?: string;
   /** The real recording of it, when there is one; else the browser reads it. */
   audio?: string;
+  /** Lines it may say instead, one picked at random each time it speaks (`voice` stays the one shown). */
+  voices?: string[];
   /** The French dub's line and recording, heard (and shown) when names are in French. */
   voiceFr?: string;
   audioFr?: string;
@@ -834,6 +836,61 @@ const OP_ANIME = (() => {
 })();
 const animeOnly = (c: Omit<Card, 'no'>): Omit<Card, 'no'> => (c.set === 'onepiece' && GAME_RENDER.test(c.image) ? { ...c, image: OP_ANIME.get(OP_KEY(c.name)) ?? c.image } : c);
 
+/**
+ * Cards added after every set's second mythic, numbered last. ARC Raiders: two more mythics from the
+ * machines (the wiki's screenshots), the owner's own Raider (their picture, public/art/arcraiders), and Scrappy
+ * the rooster as a second omni, in the cowboy hat (the wiki's outfit art; awakened, the pirate hat).
+ */
+const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
+  {
+    set: 'arcraiders',
+    id: 'arcraiders:mythic-matriarch',
+    name: 'Matriarch',
+    rarity: 'mythic',
+    title: 'Shadow over the Street',
+    image: 'https://arcraiders.wiki/w/images/thumb/1/17/Matriarch_from_below.jpg/800px-Matriarch_from_below.jpg.webp',
+    focus: { x: 30, y: 30, zoom: 1.15 },
+    voice: 'The swarm answers to me.',
+    description: 'Seen from the street she is all legs and engines, and the sky behind her fills with missiles before the first Raider can run.',
+  },
+  {
+    set: 'arcraiders',
+    id: 'arcraiders:mythic-queen',
+    name: 'Queen',
+    rarity: 'mythic',
+    title: 'Core Exposed',
+    image: 'https://arcraiders.wiki/w/images/thumb/4/41/Queen_with_Exposed_Core.jpg/800px-Queen_with_Exposed_Core.jpg.webp',
+    voice: 'Kneel, Raider.',
+    description: 'Her plates are open and her core is glowing: the one moment a whole squad has been waiting for, and the moment she is most dangerous.',
+  },
+  {
+    set: 'arcraiders',
+    id: 'arcraiders:mythic-raider',
+    name: 'Raider',
+    rarity: 'mythic',
+    title: 'Topside Veteran',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/arcraiders/raider.webp`,
+    voice: 'Hello, Raider!',
+    voices: ['Awoooooo!', 'Hello, Raider!', "Don't shoot!"],
+    description: 'Fur collar, a conductor’s cap and a belt of shells: back up the elevator for one more run, with a howl for friends and a wave for strangers.',
+  },
+  {
+    set: 'arcraiders',
+    id: 'arcraiders:omni-scrappy',
+    name: 'Scrappy',
+    rarity: 'omni',
+    title: 'Sheriff of the Workshop',
+    image: 'https://arcraiders.wiki/w/images/9/9a/Cowboy_Hat_Scrappy_Outfit.png',
+    voice: 'Cock-a-doodle-doo!',
+    description: 'The rooster who lives in your workshop and brings back whatever he finds topside — today in a cowboy hat, and nobody dares say a thing.',
+    awaken: {
+      title: 'Captain Scrappy',
+      image: 'https://arcraiders.wiki/w/images/6/62/Pirate_Hat_Scrappy_Outfit.png',
+      line: 'Every Raider in Speranza heard of the Queen falling, and Scrappy has a new hat to show for it: the workshop sails under his flag now.',
+    },
+  },
+];
+
 export const CARDS: Card[] = (() => {
   // Each name once across all sets: the first set to build it keeps it. The order below is the
   // order cards were added over time — a later addition can never take a name an earlier card has,
@@ -907,12 +964,17 @@ export const CARDS: Card[] = (() => {
     const b = CARD_BOSSES.find((y) => y.id === x.set);
     if (b) sets.get(b.id)!.push({ id: x.id, name: x.name, image: x.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: x.rarity, title: x.title, description: x.description, place: x.place, voice: x.voice, audio: x.audio });
   }
-  // And last: the second mythics, each set's newest card.
+  // Then the second mythics, each set's newest card.
   for (const b of CARD_BOSSES) {
     const set = sets.get(b.id)!;
     const m = MYTHICS_2[b.id];
     const image = m && (m.image ?? set.find((c) => c.name === m.name)?.image ?? (b.boss.name === m.name ? b.boss.image : undefined));
     if (m && image) set.push({ id: `${b.id}:mythic-2`, name: m.name, image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
+  }
+  // And last: the cards added after the second mythics (so no released card changes number).
+  for (const x of LATER) {
+    const b = CARD_BOSSES.find((y) => y.id === x.set);
+    if (b) sets.get(b.id)!.push({ ...x, set: b.id, franchise: b.franchise, domain: b.domain });
   }
   return CARD_BOSSES.flatMap((b) => sets.get(b.id)!.map((c, i) => withClip({ ...animeOnly(c), ...STRONG[c.id], rarity: FROZEN[c.id] ?? c.rarity, no: i + 1 })));
 })();
