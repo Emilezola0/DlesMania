@@ -142,6 +142,22 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           <div className="grid place-items-center py-2">
             <img src={clue.image} alt="" draggable={false} onContextMenu={(e) => e.preventDefault()} className="size-40 select-none rounded-md border-2 border-rule-strong object-cover shadow-lg" />
           </div>
+        ) : clue.ingredients ? (
+          <div className="mx-auto flex max-w-md flex-col items-center gap-3 py-2 text-center">
+            <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Recipe</p>
+            <ul className="flex flex-wrap justify-center gap-2">
+              {clue.ingredients.map((x, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  {i > 0 && <span className="font-bold text-ink-faint">+</span>}
+                  <span className="rounded-md border border-rule bg-tile px-3 py-2 font-semibold">{x}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-2xl" aria-hidden>
+              ⬇
+            </p>
+            <p className="rounded-md border-2 border-dashed border-rule px-6 py-3 font-display text-2xl font-black">?</p>
+          </div>
         ) : clue.audio ? (
           <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} />
         ) : (

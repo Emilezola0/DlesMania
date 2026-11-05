@@ -69,13 +69,34 @@ const finale = [
   ...D.placePictures.filter((p, i, all) => all.findIndex((x) => x.answer === p.answer) === i && ['Speranza', 'Raider Hatch'].includes(p.answer)).map((p) => ({ label: p.answer, image: p.image })),
 ];
 
-// Signature: a weapon or a piece of gear from its recipe — the most specific side of the game.
-const gearRecipes = D.recipes.filter((r) => gear.has(r.name) && r.ingredients.length >= 2);
+// Signature: as in the Specialist's Crafting round — every recipe, its ingredients side by side, and hints
+// as the clock runs down (where it is crafted, what kind of thing it is, its length, its first letter).
+const kindOf = new Map([...D.gear.map((g) => [g.name, g.kind]), ...D.materials.map((m) => [m.name, `${m.kind} material`])]);
+const words = (name) => {
+  const n = name.split(/s+/).length;
+  return `${n} word${n === 1 ? '' : 's'}`;
+};
 const signature = {
   label: 'Crafting',
-  prompt: 'What does this recipe make?',
-  clues: gearRecipes.map((r) => ({ text: `${r.ingredients.join(' + ')} — at the ${r.station.split(',')[0].trim()}`, answer: alias(r.name) })),
+  prompt: 'What do you craft with this?',
+  seconds: 30,
+  hints: true,
+  clues: D.recipes.map((r) => ({
+    ingredients: r.ingredients,
+    hints: [`Crafted at: ${r.station}`, ...(kindOf.get(r.name) ? [`Kind: ${kindOf.get(r.name)}`] : []), words(r.name), `Its name starts with “${r.name[0]}”`],
+    answer: alias(r.name),
+  })),
 };
+
+// Kept out of the Final Blow (their cards stay): the two places, the augments, and parts nobody names on sight.
+const finaleSkip = [
+  'Speranza',
+  'Raider Hatch',
+  ...D.gear.map((g) => g.name).filter((n) => /^(Combat|Tactical|Looting) Mk./.test(n)),
+  ...['ARC Conductive Coupler', 'ARC Insulated Coupler', 'ARC Plated Coupler', 'Speaker Component', 'Voltage Converter'],
+];
+// The weapons are wide pictures: shown whole in the Final Blow, not cropped to the square.
+const wholeFaces = WEAPONS;
 
 const boss = {
   id: 'arcraiders',
@@ -117,6 +138,8 @@ const boss = {
     ],
   },
   signature,
+  finaleSkip,
+  wholeFaces,
 };
 
 const FILE = new URL('src/data/bosses.json', ROOT);

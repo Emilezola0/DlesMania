@@ -148,6 +148,8 @@ export interface BossCard {
   fr?: string;
   /** JLPT: the kanji's readings, shown once the card is answered (the games are there to learn). */
   reading?: string;
+  /** Shown whole (zoomed out, not cropped to the square): wide pictures such as weapons. */
+  whole?: boolean;
 }
 
 /** Phase 1: "Name 5 champions from Demacia". */
@@ -200,6 +202,8 @@ export interface Boss {
   signature?: Signature;
   /** Faces kept out of the Final Blow (too obscure to name), though their cards stay. */
   finaleSkip?: string[];
+  /** Final Blow faces shown whole rather than cropped to the square (wide pictures: weapons), by name. */
+  wholeFaces?: string[];
   /** Boss Battle shows drawn art only (no 3D models): Final Blow takes no card pictures (scripts/data/boss-2d-art.mjs). */
   drawnOnly?: boolean;
   /**
@@ -236,6 +240,8 @@ export interface SignatureClue {
   hints?: string[];
   /** Or a picture (an item's icon) to name. */
   image?: string;
+  /** Or a recipe: its ingredients, shown side by side (ARC Raiders: what does it make?). */
+  ingredients?: string[];
   /** Or a sound: a clip played in full. */
   audio?: { youtubeId: string; start?: number };
   answer: { name: string; aliases: string[] };

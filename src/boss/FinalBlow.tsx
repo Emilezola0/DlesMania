@@ -144,7 +144,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
               src={target.image}
               alt=""
               draggable={false}
-              className={`size-full select-none object-cover object-top transition-[filter] duration-300 ${solved ? '' : 'boss-flicker'}`}
+              className={`size-full select-none ${target.whole ? 'object-contain p-3' : 'object-cover object-top'} transition-[filter] duration-300 ${solved ? '' : 'boss-flicker'}`}
               style={{
                 filter: `blur(${blur}px) contrast(1.1)${still && !clear ? ` ${pictureStyle(still[index]).filter}` : ''}`,
               }}

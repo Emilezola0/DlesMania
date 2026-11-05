@@ -10052,486 +10052,993 @@
     "signature": {
       "label": "Constellation",
       "prompt": "Whose constellation is this?",
+      "seconds": 30,
+      "hints": true,
       "clues": [
         {
           "text": "✦ Lepus ✦",
+          "hints": [
+            "Pyro · Bow · 4★",
+            "From Mondstadt",
+            "Their title: “Gliding Champion”",
+            "Their name starts with “A”"
+          ],
           "answer": "Amber"
         },
         {
           "text": "✦ Crater ✦",
+          "hints": [
+            "Hydro · Catalyst · 4★",
+            "From Mondstadt",
+            "Their title: “Shining Idol”",
+            "Their name starts with “B”"
+          ],
           "answer": "Barbara|Barbara Pegg"
         },
         {
           "text": "✦ Victor Mare ✦",
+          "hints": [
+            "Electro · Claymore · 4★",
+            "From Liyue",
+            "Their title: “Uncrowned Lord of the Ocean”",
+            "Their name starts with “B”"
+          ],
           "answer": "Beidou"
         },
         {
           "text": "✦ Rota Calamitas ✦",
+          "hints": [
+            "Pyro · Sword · 4★",
+            "From Mondstadt",
+            "Their title: “Trial by Fire”",
+            "Their name starts with “B”"
+          ],
           "answer": "Bennett"
         },
         {
           "text": "✦ Nubis Caesor ✦",
+          "hints": [
+            "Cryo · Claymore · 4★",
+            "From Liyue",
+            "Their title: “Frozen Ardor”",
+            "Their name starts with “C”"
+          ],
           "answer": "Chongyun"
         },
         {
           "text": "✦ Noctua ✦",
+          "hints": [
+            "Pyro · Claymore · 5★",
+            "From Mondstadt",
+            "Their title: “The Dark Side of Dawn”",
+            "Their name starts with “D”"
+          ],
           "answer": "Diluc|Diluc Ragnvindr"
         },
         {
           "text": "✦ Corvus ✦",
+          "hints": [
+            "Electro · Bow · 4★",
+            "From Mondstadt",
+            "Their title: “Prinzessin der Verurteilung!”",
+            "Their name starts with “F”"
+          ],
           "answer": "Fischl|Amy"
         },
         {
           "text": "✦ Leo Minor ✦",
+          "hints": [
+            "Anemo · Sword · 5★",
+            "From Mondstadt",
+            "Their title: “Dandelion Knight”",
+            "Their name starts with “J”"
+          ],
           "answer": "Jean|Jean Gunnhildr"
         },
         {
           "text": "✦ Pavo Ocellus ✦",
+          "hints": [
+            "Cryo · Sword · 4★",
+            "From Mondstadt",
+            "Their title: “Frostwind Swordsman”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kaeya|Kaeya Alberich"
         },
         {
           "text": "✦ Trulla Cementarii ✦",
+          "hints": [
+            "Electro · Sword · 5★",
+            "From Liyue",
+            "Their title: “Driving Thunder”",
+            "Their name starts with “K”"
+          ],
           "answer": "Keqing"
         },
         {
           "text": "✦ Tempus Fugit ✦",
+          "hints": [
+            "Electro · Catalyst · 4★",
+            "From Mondstadt",
+            "Their title: “Witch of Purple Rose”",
+            "Their name starts with “L”"
+          ],
           "answer": "Lisa|Lisa Minci"
         },
         {
           "text": "✦ Astrolabos ✦",
+          "hints": [
+            "Hydro · Catalyst · 5★",
+            "From Mondstadt",
+            "Their title: “Astral Reflection”",
+            "Their name starts with “M”"
+          ],
           "answer": "Mona|Astrologist Mona Megistus"
         },
         {
           "text": "✦ Opus Aequilibrium ✦",
+          "hints": [
+            "Geo · Catalyst · 4★",
+            "From Liyue",
+            "Their name starts with “N”"
+          ],
           "answer": "Ningguang"
         },
         {
           "text": "✦ Parma Cordis ✦",
+          "hints": [
+            "Geo · Claymore · 4★",
+            "From Mondstadt",
+            "Their title: “Chivalric Blossom”",
+            "Their name starts with “N”"
+          ],
           "answer": "Noelle"
         },
         {
           "text": "✦ Pristina Nola ✦",
+          "hints": [
+            "Cryo · Sword · 5★",
+            "From Liyue",
+            "Their title: “Icy Resurrection”",
+            "Their name starts with “Q”"
+          ],
           "answer": "Qiqi"
         },
         {
           "text": "✦ Lupus Minor ✦",
+          "hints": [
+            "Electro · Claymore · 4★",
+            "From Mondstadt",
+            "Their title: “Wolf Boy”",
+            "Their name starts with “R”"
+          ],
           "answer": "Razor"
         },
         {
           "text": "✦ Ampulla ✦",
+          "hints": [
+            "Anemo · Catalyst · 4★",
+            "From Mondstadt",
+            "Their title: “Harmless Sweetie”",
+            "Their name starts with “S”"
+          ],
           "answer": "Sucrose"
         },
         {
           "text": "✦ Carmen Dei ✦",
+          "hints": [
+            "Anemo · Bow · 5★",
+            "From Mondstadt",
+            "Their title: “Windborne Bard”",
+            "Their name starts with “V”"
+          ],
           "answer": "Venti"
         },
         {
           "text": "✦ Trulla ✦",
+          "hints": [
+            "Pyro · Polearm · 4★",
+            "From Liyue",
+            "Their title: “Exquisite Delicacy”",
+            "Their name starts with “X”"
+          ],
           "answer": "Xiangling|Mao Xiangling"
         },
         {
           "text": "✦ Fabulae Textile ✦",
+          "hints": [
+            "Hydro · Sword · 4★",
+            "From Liyue",
+            "Their title: “Juvenile Galant”",
+            "Their name starts with “X”"
+          ],
           "answer": "Xingqiu"
         },
         {
           "text": "✦ Trifolium ✦",
+          "hints": [
+            "Pyro · Catalyst · 5★",
+            "From Mondstadt",
+            "Their title: “Fleeing Sunlight”",
+            "Their name starts with “K”"
+          ],
           "answer": "Klee"
         },
         {
           "text": "✦ Cistellula Mira ✦",
+          "hints": [
+            "Hydro · Claymore · 4★",
+            "From Nod-Krai",
+            "Their title: “Clinky-Clank Gadgets-A-Gogo”",
+            "Their name starts with “A”"
+          ],
           "answer": "Aino"
         },
         {
           "text": "✦ Cerva Nivea ✦",
+          "hints": [
+            "Dendro · Catalyst · 5★",
+            "From Nod-Krai",
+            "Their title: “Evermoon's Sacrament Song”",
+            "Their name starts with “L”"
+          ],
           "answer": "Lauma"
         },
         {
           "text": "✦ Laterna Vigilis ✦",
+          "hints": [
+            "Electro · Polearm · 5★",
+            "From Nod-Krai",
+            "Their title: “Shadowy Lights, Stranger Wights”",
+            "Their name starts with “F”"
+          ],
           "answer": "Flins|Kyryll Chudomirovich Flins"
         },
         {
           "text": "✦ Ludus Latrunculorum ✦",
+          "hints": [
+            "Dendro · Catalyst · 5★",
+            "From Nod-Krai",
+            "Their title: “Secret Beneath the Sands”",
+            "Their name starts with “N”"
+          ],
           "answer": "Nefer"
         },
         {
           "text": "✦ Draco Rubedo ✦",
+          "hints": [
+            "Pyro · Sword · 5★",
+            "From Mondstadt",
+            "Their title: “\"The Undying Fire\"”",
+            "Their name starts with “D”"
+          ],
           "answer": "Durin"
         },
         {
           "text": "✦ Fragum ✦",
+          "hints": [
+            "Anemo · Bow · 4★",
+            "From Nod-Krai",
+            "Their title: “Windthreading Shadow”",
+            "Their name starts with “J”"
+          ],
           "answer": "Jahoda"
         },
         {
           "text": "✦ Columbina Hyposelenia ✦",
+          "hints": [
+            "Hydro · Catalyst · 5★",
+            "From Nod-Krai",
+            "Their title: “Welkin Moon's Homecoming”",
+            "Their name starts with “C”"
+          ],
           "answer": "Columbina|Columbina Hyposelenia"
         },
         {
           "text": "✦ Oriolus ✦",
+          "hints": [
+            "Geo · Polearm · 4★",
+            "From Nod-Krai",
+            "Their title: “Nightmare's Burning Heart”",
+            "Their name starts with “I”"
+          ],
           "answer": "Illuga"
         },
         {
           "text": "✦ Equa Alba ✦",
+          "hints": [
+            "Geo · Sword · 5★",
+            "From Liyue",
+            "Their title: “White Horse's Fleeting Spring”",
+            "Their name starts with “Z”"
+          ],
           "answer": "Zibai"
         },
         {
           "text": "✦ Lupus Majoris ✦",
+          "hints": [
+            "Anemo · Claymore · 5★",
+            "From Mondstadt",
+            "Their title: “Knight of Boreas”",
+            "Their name starts with “V”"
+          ],
           "answer": "Varka"
         },
         {
           "text": "✦ Alcyon ✦",
+          "hints": [
+            "Geo · Bow · 5★",
+            "From Nod-Krai",
+            "Their title: “Augur of Wonders”",
+            "Their name starts with “L”"
+          ],
           "answer": "Linnea"
         },
         {
           "text": "✦ Reliquiarium ✦",
+          "hints": [
+            "Pyro · Catalyst · 5★",
+            "From None",
+            "Their title: “Clamor Within”",
+            "Their name starts with “N”"
+          ],
           "answer": "Nicole|Nicole Reeyn"
         },
         {
           "text": "✦ Turris Venefica ✦",
+          "hints": [
+            "Anemo · Catalyst · 4★",
+            "From Mondstadt",
+            "Their title: “Childlike Dreams Cherished”",
+            "Their name starts with “P”"
+          ],
           "answer": "Prune"
         },
         {
           "text": "✦ Lepus Miles ✦",
+          "hints": [
+            "Cryo · Polearm · 5★",
+            "From Mondstadt",
+            "Their title: “Sharpened Arrowhead”",
+            "Their name starts with “L”"
+          ],
           "answer": "Lohen"
         },
         {
           "text": "✦ Narcissorolegium ✦",
+          "hints": [
+            "Cryo · Claymore · 5★",
+            "From Snezhnaya",
+            "Their name starts with “S”"
+          ],
           "answer": "Sandrone|Marionette Guillotin"
         },
         {
           "text": "✦ Feles ✦",
+          "hints": [
+            "Cryo · Bow · 4★",
+            "From Mondstadt",
+            "Their name starts with “D”"
+          ],
           "answer": "Diona"
         },
         {
           "text": "✦ Monoceros Caeli ✦",
+          "hints": [
+            "Hydro · Bow · 4★",
+            "From Snezhnaya",
+            "Their name starts with “T”"
+          ],
           "answer": "Tartaglia"
         },
         {
           "text": "✦ Fila Ignium ✦",
+          "hints": [
+            "Pyro · Claymore · 4★",
+            "From Liyue",
+            "Their title: “Blazing Riff”",
+            "Their name starts with “X”"
+          ],
           "answer": "Xinyan"
         },
         {
           "text": "✦ Lapis Dei ✦",
+          "hints": [
+            "Geo · Polearm · 5★",
+            "From Liyue",
+            "Their title: “Vago Mundo”",
+            "Their name starts with “Z”"
+          ],
           "answer": "Zhongli"
         },
         {
           "text": "✦ Princeps Cretaceus ✦",
+          "hints": [
+            "Geo · Sword · 5★",
+            "From Mondstadt",
+            "Their title: “Kreideprinz”",
+            "Their name starts with “A”"
+          ],
           "answer": "Albedo"
         },
         {
           "text": "✦ Sinae Unicornis ✦",
+          "hints": [
+            "Cryo · Bow · 5★",
+            "From Liyue",
+            "Their title: “Plenilune Gaze”",
+            "Their name starts with “G”"
+          ],
           "answer": "Ganyu"
         },
         {
           "text": "✦ Alatus Nemeseos ✦",
+          "hints": [
+            "Anemo · Polearm · 5★",
+            "From Liyue",
+            "Their title: “Vigilant Yaksha”",
+            "Their name starts with “X”"
+          ],
           "answer": "Xiao"
         },
         {
           "text": "✦ Papilio Charontis ✦",
+          "hints": [
+            "Pyro · Polearm · 5★",
+            "From Liyue",
+            "Their title: “Fragrance in Thaw”",
+            "Their name starts with “H”"
+          ],
           "answer": "Hu Tao"
         },
         {
           "text": "✦ Spinea Corona ✦",
+          "hints": [
+            "Cryo · Polearm · 4★",
+            "From Mondstadt",
+            "Their title: “Thorny Benevolence”",
+            "Their name starts with “R”"
+          ],
           "answer": "Rosaria"
         },
         {
           "text": "✦ Bestia Iustitia ✦",
+          "hints": [
+            "Pyro · Catalyst · 4★",
+            "From Liyue",
+            "Their title: “Wise Innocence”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yanfei"
         },
         {
           "text": "✦ Aphros Delos ✦",
+          "hints": [
+            "Cryo · Claymore · 5★",
+            "From Mondstadt",
+            "Their title: “Dance of the Shimmering Wave”",
+            "Their name starts with “E”"
+          ],
           "answer": "Eula|Eula Lawrence"
         },
         {
           "text": "✦ Acer Palmatum ✦",
+          "hints": [
+            "Anemo · Sword · 5★",
+            "From Inazuma",
+            "Their title: “Scarlet Leaves Pursue Wild Waves”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kaedehara Kazuha"
         },
         {
           "text": "✦ Grus Nivis ✦",
+          "hints": [
+            "Cryo · Sword · 5★",
+            "From Inazuma",
+            "Their title: “Frostflake Heron”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kamisato Ayaka"
         },
         {
           "text": "✦ Nyctereutes Minor ✦",
+          "hints": [
+            "Anemo · Claymore · 4★",
+            "From Inazuma",
+            "Their title: “Mujina Ninja”",
+            "Their name starts with “S”"
+          ],
           "answer": "Sayu"
         },
         {
           "text": "✦ Carassius Auratus ✦",
+          "hints": [
+            "Pyro · Bow · 5★",
+            "From Inazuma",
+            "Their title: “Frolicking Flames”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yoimiya|Naganohara Yoimiya"
         },
         {
           "text": "✦ Nora Fortis ✦",
+          "hints": [
+            "Cryo · Bow · 5★",
+            "From None",
+            "Their title: “Savior From Another World”",
+            "Their name starts with “A”"
+          ],
           "answer": "Aloy"
         },
         {
           "text": "✦ Flabellum ✦",
+          "hints": [
+            "Electro · Bow · 4★",
+            "From Inazuma",
+            "Their title: “Crowfeather Kaburaya”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kujou Sara"
         },
         {
           "text": "✦ Imperatrix Umbrosa ✦",
+          "hints": [
+            "Electro · Polearm · 5★",
+            "From Inazuma",
+            "Their title: “Plane of Euthymia”",
+            "Their name starts with “R”"
+          ],
           "answer": "Raiden Shogun|Raiden Ei"
         },
         {
           "text": "✦ Dracaena Somnolenta ✦",
+          "hints": [
+            "Hydro · Catalyst · 5★",
+            "From Inazuma",
+            "Their title: “Pearl of Wisdom”",
+            "Their name starts with “S”"
+          ],
           "answer": "Sangonomiya Kokomi"
         },
         {
           "text": "✦ Rubeum Scutum ✦",
+          "hints": [
+            "Pyro · Polearm · 4★",
+            "From Inazuma",
+            "Their title: “Protector From Afar”",
+            "Their name starts with “T”"
+          ],
           "answer": "Thoma"
         },
         {
           "text": "✦ Taurus Iracundus ✦",
+          "hints": [
+            "Geo · Claymore · 5★",
+            "From Inazuma",
+            "Their title: “Hanamizaka Heroics”",
+            "Their name starts with “A”"
+          ],
           "answer": "Arataki Itto"
         },
         {
           "text": "✦ Canis Bellatoris ✦",
+          "hints": [
+            "Geo · Bow · 4★",
+            "From Inazuma",
+            "Their title: “Canine Warrior”",
+            "Their name starts with “G”"
+          ],
           "answer": "Gorou"
         },
         {
           "text": "✦ Crista Doloris ✦",
+          "hints": [
+            "Cryo · Polearm · 5★",
+            "From Liyue",
+            "Their title: “Lonesome Transcendence”",
+            "Their name starts with “S”"
+          ],
           "answer": "Shenhe"
         },
         {
           "text": "✦ Opera Grandis ✦",
+          "hints": [
+            "Geo · Polearm · 4★",
+            "From Liyue",
+            "Their title: “Stage Lucida”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yun Jin"
         },
         {
           "text": "✦ Divina Vulpes ✦",
+          "hints": [
+            "Electro · Catalyst · 5★",
+            "From Inazuma",
+            "Their title: “Astute Amusement”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yae Miko"
         },
         {
           "text": "✦ Cypressus Custos ✦",
+          "hints": [
+            "Hydro · Sword · 5★",
+            "From Inazuma",
+            "Their title: “Pillar of Fortitude”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kamisato Ayato"
         },
         {
           "text": "✦ Umbrabilis Orchis ✦",
+          "hints": [
+            "Hydro · Bow · 5★",
+            "From Liyue",
+            "Their title: “Valley Orchid”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yelan"
         },
         {
           "text": "✦ Tribulatio Demptio ✦",
+          "hints": [
+            "Electro · Sword · 4★",
+            "From Inazuma",
+            "Their title: “Mender of Tribulations”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kuki Shinobu"
         },
         {
           "text": "✦ Cervus Minor ✦",
+          "hints": [
+            "Anemo · Catalyst · 4★",
+            "From Inazuma",
+            "Their title: “Analytical Harmony”",
+            "Their name starts with “S”"
+          ],
           "answer": "Shikanoin Heizou"
         },
         {
           "text": "✦ Leptailurus Cervarius ✦",
+          "hints": [
+            "Dendro · Bow · 4★",
+            "From Sumeru",
+            "Their title: “Sprout of Rebirth”",
+            "Their name starts with “C”"
+          ],
           "answer": "Collei"
         },
         {
           "text": "✦ Vulpes Zerda ✦",
+          "hints": [
+            "Dendro · Bow · 5★",
+            "From Sumeru",
+            "Their title: “Verdant Strider”",
+            "Their name starts with “T”"
+          ],
           "answer": "Tighnari"
         },
         {
           "text": "✦ Magicae Lucerna ✦",
+          "hints": [
+            "Electro · Claymore · 4★",
+            "From Sumeru",
+            "Their title: “Treasure of Dream Garden”",
+            "Their name starts with “D”"
+          ],
           "answer": "Dori|Dori Sangemah Bay"
         },
         {
           "text": "✦ Sagitta Scutum ✦",
+          "hints": [
+            "Hydro · Polearm · 4★",
+            "From Sumeru",
+            "Their title: “Golden Vow”",
+            "Their name starts with “C”"
+          ],
           "answer": "Candace"
         },
         {
           "text": "✦ Lupus Aureus ✦",
+          "hints": [
+            "Electro · Polearm · 5★",
+            "From Sumeru",
+            "Their title: “Judicator of Secrets”",
+            "Their name starts with “C”"
+          ],
           "answer": "Cyno"
         },
         {
           "text": "✦ Lotos Somno ✦",
+          "hints": [
+            "Hydro · Sword · 5★",
+            "From Sumeru",
+            "Their title: “Dance of Lotuslight”",
+            "Their name starts with “N”"
+          ],
           "answer": "Nilou"
         },
         {
           "text": "✦ Sapientia Oromasdis ✦",
+          "hints": [
+            "Dendro · Catalyst · 5★",
+            "From Sumeru",
+            "Their title: “Physic of Purity”",
+            "Their name starts with “N”"
+          ],
           "answer": "Nahida"
         },
         {
           "text": "✦ Luscinia ✦",
+          "hints": [
+            "Cryo · Sword · 4★",
+            "From Sumeru",
+            "Their title: “Fantastical Evening Star”",
+            "Their name starts with “L”"
+          ],
           "answer": "Layla"
         },
         {
           "text": "✦ Flosculi Implexi ✦",
+          "hints": [
+            "Anemo · Bow · 4★",
+            "From Sumeru",
+            "Their title: “Enigmatic Machinist”",
+            "Their name starts with “F”"
+          ],
           "answer": "Faruzan"
         },
         {
           "text": "✦ Peregrinus ✦",
+          "hints": [
+            "Anemo · Catalyst · 4★",
+            "From Sumeru",
+            "Their title: “Eons Adrift”",
+            "Their name starts with “W”"
+          ],
           "answer": "Wanderer"
         },
         {
           "text": "✦ Vultur Volans ✦",
+          "hints": [
+            "Dendro · Sword · 5★",
+            "From Sumeru",
+            "Their title: “Admonishing Instruction”",
+            "Their name starts with “A”"
+          ],
           "answer": "Alhaitham"
         },
         {
           "text": "✦ Osmanthus ✦",
+          "hints": [
+            "Dendro · Polearm · 4★",
+            "From Liyue",
+            "Their title: “Burgeoning Grace”",
+            "Their name starts with “Y”"
+          ],
           "answer": "Yaoyao"
         },
         {
           "text": "✦ Mantichora ✦",
+          "hints": [
+            "Pyro · Claymore · 5★",
+            "From Sumeru",
+            "Their title: “Flame-Mane”",
+            "Their name starts with “D”"
+          ],
           "answer": "Dehya"
         },
         {
           "text": "✦ Palumbus ✦",
+          "hints": [
+            "Cryo · Polearm · 4★",
+            "From Mondstadt",
+            "Their title: “Coordinates of Clear Frost”",
+            "Their name starts with “M”"
+          ],
           "answer": "Mika|Mika Schmidt"
         },
         {
           "text": "✦ Lagenaria ✦",
+          "hints": [
+            "Dendro · Catalyst · 5★",
+            "From Liyue",
+            "Their title: “Beyond Mortality”",
+            "Their name starts with “B”"
+          ],
           "answer": "Baizhu"
         },
         {
           "text": "✦ Paradisaea ✦",
+          "hints": [
+            "Dendro · Claymore · 4★",
+            "From Sumeru",
+            "Their title: “Empyrean Reflection”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kaveh"
         },
         {
           "text": "✦ Arcella ✦",
+          "hints": [
+            "Dendro · Sword · 4★",
+            "From Inazuma",
+            "Their title: “Cat Upon the Eaves”",
+            "Their name starts with “K”"
+          ],
           "answer": "Kirara"
         },
         {
           "text": "✦ Felis Alba ✦",
+          "hints": [
+            "Anemo · Sword · 4★",
+            "From Fontaine",
+            "Their title: “Elegance in the Shadows”",
+            "Their name starts with “L”"
+          ],
           "answer": "Lynette"
         },
         {
           "text": "✦ Felis Fuscus ✦",
+          "hints": [
+            "Pyro · Bow · 5★",
+            "From Fontaine",
+            "Their title: “Spectacle of Phantasmagoria”",
+            "Their name starts with “L”"
+          ],
           "answer": "Lyney"
         },
         {
           "text": "✦ Automaton (Constellation) ✦",
+          "hints": [
+            "Cryo · Claymore · 4★",
+            "From Fontaine",
+            "Their title: “Yearning for Unseen Depths”",
+            "Their name starts with “F”"
+          ],
           "answer": "Freminet"
         },
         {
           "text": "✦ Leviathan Judicator ✦",
+          "hints": [
+            "Hydro · Catalyst · 5★",
+            "From Fontaine",
+            "Their title: “Ordainer of Inexorable Judgment”",
+            "Their name starts with “N”"
+          ],
           "answer": "Neuvillette"
         },
         {
           "text": "✦ Cerberus ✦",
+          "hints": [
+            "Cryo · Catalyst · 5★",
+            "From Fontaine",
+            "Their title: “Emissary of Solitary Iniquity”",
+            "Their name starts with “W”"
+          ],
           "answer": "Wriothesley"
         },
         {
           "text": "✦ Hualina Veritas ✦",
+          "hints": [
+            "Cryo · Catalyst · 4★",
+            "From Fontaine",
+            "Their title: “Lens of Verity”",
+            "Their name starts with “C”"
+          ],
           "answer": "Charlotte"
         },
         {
           "text": "✦ Animula Choragi ✦",
+          "hints": [
+            "Hydro · Sword · 5★",
+            "From Fontaine",
+            "Their title: “Endless Solo of Solitude”",
+            "Their name starts with “F”"
+          ],
           "answer": "Furina|Furina de Fontaine"
         },
         {
           "text": "✦ Rosa Multiflora ✦",
+          "hints": [
+            "Geo · Claymore · 5★",
+            "From Fontaine",
+            "Their title: “Helm of the Radiant Rose”",
+            "Their name starts with “N”"
+          ],
           "answer": "Navia|Navia Caspar"
         },
         {
           "text": "✦ Sclopetum Ensiferum ✦",
+          "hints": [
+            "Pyro · Polearm · 4★",
+            "From Fontaine",
+            "Their title: “Executor of Justice”",
+            "Their name starts with “C”"
+          ],
           "answer": "Chevreuse"
         },
         {
           "text": "✦ Leo Expergiscens ✦",
+          "hints": [
+            "Pyro · Claymore · 4★",
+            "From Liyue",
+            "Their title: “Leonine Vanguard”",
+            "Their name starts with “G”"
+          ],
           "answer": "Gaming|Yip Gaming"
         },
         {
           "text": "✦ Grus Serena ✦",
+          "hints": [
+            "Anemo · Catalyst · 5★",
+            "From Liyue",
+            "Their title: “Passerine Herald”",
+            "Their name starts with “X”"
+          ],
           "answer": "Xianyun"
         },
         {
           "text": "✦ Cisoria ✦",
+          "hints": [
+            "Geo · Sword · 5★",
+            "From Inazuma",
+            "Their title: “The Thundering Seamstress”",
+            "Their name starts with “C”"
+          ],
           "answer": "Chiori"
         },
         {
           "text": "✦ Ignis Purgatorius ✦",
+          "hints": [
+            "Pyro · Polearm · 5★",
+            "From Snezhnaya",
+            "Their title: “Dire Balemoon”",
+            "Their name starts with “A”"
+          ],
           "answer": "Arlecchino|Peruere"
         },
         {
           "text": "✦ Rapperia ✦",
+          "hints": [
+            "Electro · Sword · 5★",
+            "From Fontaine",
+            "Their title: “Candlebearer, Shadowhunter”",
+            "Their name starts with “C”"
+          ],
           "answer": "Clorinde"
         },
         {
           "text": "✦ Basileos Delta ✦",
+          "hints": [
+            "Electro · Bow · 4★",
+            "From Sumeru",
+            "Their title: “Wisdom's Measure”",
+            "Their name starts with “S”"
+          ],
           "answer": "Sethos"
         },
         {
           "text": "✦ Nereides ✦",
+          "hints": [
+            "Hydro · Bow · 5★",
+            "From Fontaine",
+            "Their title: “Wondrous Dragonheir”",
+            "Their name starts with “S”"
+          ],
           "answer": "Sigewinne"
         },
         {
           "text": "✦ Pomum de Ambra ✦",
+          "hints": [
+            "Dendro · Polearm · 5★",
+            "From Fontaine",
+            "Their name starts with “E”"
+          ],
           "answer": "Emilie"
-        },
-        {
-          "text": "✦ Ochotona Princeps ✦",
-          "answer": "Kachina"
-        },
-        {
-          "text": "✦ Phoca Neomonachus ✦",
-          "answer": "Mualani"
-        },
-        {
-          "text": "✦ Chimaera Alebriius ✦",
-          "answer": "Kinich"
-        },
-        {
-          "text": "✦ Panthera Ocelota ✦",
-          "answer": "Xilonen"
-        },
-        {
-          "text": "✦ Vultur Gryphus ✦",
-          "answer": "Chasca"
-        },
-        {
-          "text": "✦ Vampyrum Spectrum ✦",
-          "answer": "Ororon"
-        },
-        {
-          "text": "✦ Patina Anavatlaca ✦",
-          "answer": "Citlali"
-        },
-        {
-          "text": "✦ Sol Invictus ✦",
-          "answer": "Mavuika"
-        },
-        {
-          "text": "✦ Hirundo Lazuli ✦",
-          "answer": "Lan Yan"
-        },
-        {
-          "text": "✦ Tapirus Somniator ✦",
-          "answer": "Yumemizuki Mizuki"
-        },
-        {
-          "text": "✦ Carnotaurus ✦",
-          "answer": "Iansan"
-        },
-        {
-          "text": "✦ Mascara Luctatori ✦",
-          "answer": "Varesa"
-        },
-        {
-          "text": "✦ Dulciaria Structura ✦",
-          "answer": "Escoffier"
-        },
-        {
-          "text": "✦ Catena Opele ✦",
-          "answer": "Ifa"
-        },
-        {
-          "text": "✦ Cantus Choralis ✦",
-          "answer": "Dahlia"
-        },
-        {
-          "text": "✦ Crystallina ✦",
-          "answer": "Skirk"
-        },
-        {
-          "text": "✦ Vanilla Planifolia ✦",
-          "answer": "Ineffa"
-        },
-        {
-          "text": "✦ Canis Borzoides ✦",
-          "answer": "Alyosha"
-        },
-        {
-          "text": "✦ Cygnus Olor ✦",
-          "answer": "Odette|Odette Spessiva"
-        },
-        {
-          "text": "✦ Amentum Vernum ✦",
-          "answer": "Vesna|Vesna Strivozha"
-        },
-        {
-          "text": "✦ Piscicula Aurea ✦",
-          "answer": "Vodyanitsa"
         }
       ]
     }
@@ -20265,314 +20772,1312 @@
     },
     "signature": {
       "label": "Crafting",
-      "prompt": "What does this recipe make?",
+      "prompt": "What do you craft with this?",
+      "seconds": 30,
+      "hints": true,
       "clues": [
         {
-          "text": "3 Chemicals + 3 Plastic Parts — at the Medical Lab 1",
+          "ingredients": [
+            "3 Chemicals",
+            "3 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Adrenaline Shot"
         },
         {
-          "text": "1 Camera Lens + 1 Calculator + 1 Electrical Components — at the Utility Station 1",
+          "ingredients": [
+            "1 Camera Lens",
+            "1 Calculator",
+            "1 Electrical Components"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Advanced Camera"
         },
         {
-          "text": "1 Agave + 1 Empty Wine Bottle — at the Inventory",
+          "ingredients": [
+            "3 Wires",
+            "2 Electrical Components"
+          ],
+          "hints": [
+            "Crafted at: Refiner 2",
+            "Kind: Refined material",
+            "2 words",
+            "Its name starts with “A”"
+          ],
+          "answer": "Advanced Electrical Components"
+        },
+        {
+          "ingredients": [
+            "1 Agave",
+            "1 Empty Wine Bottle"
+          ],
+          "hints": [
+            "Crafted at: Inventory",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Agave Juice"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Heavy Gun Parts + 3 Hand Drill — at the Gunsmith 2",
+          "ingredients": [
+            "10 Chemicals",
+            "2 Great Mullein"
+          ],
+          "hints": [
+            "Crafted at: Refiner 2",
+            "Kind: Refined material",
+            "2 words",
+            "Its name starts with “A”"
+          ],
+          "answer": "Antiseptic"
+        },
+        {
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Heavy Gun Parts",
+            "3 Hand Drill"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Anvil"
         },
         {
-          "text": "3 Magnetic Accelerator + 3 Complex Gun Parts + 1 Matriarch Reactor — at the Gunsmith 3",
+          "ingredients": [
+            "3 Magnetic Accelerator",
+            "3 Complex Gun Parts",
+            "1 Matriarch Reactor"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Aphelion"
         },
         {
-          "text": "6 Mechanical Components + 6 Simple Gun Parts — at the Gunsmith 2",
+          "ingredients": [
+            "6 Mechanical Components",
+            "6 Simple Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “A”"
+          ],
           "answer": "Arpeggio"
         },
         {
-          "text": "4 Simple Gun Parts + 4 Mechanical Components — at the Gunsmith 1",
+          "ingredients": [
+            "5 Fabric"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 1, Workbench 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “B”"
+          ],
+          "answer": "Bandage"
+        },
+        {
+          "ingredients": [
+            "4 Simple Gun Parts",
+            "4 Mechanical Components"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Bantam"
         },
         {
-          "text": "8 Plastic Parts + 1 Wires — at the Workbench 1",
+          "ingredients": [
+            "1 Mechanical Components"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “B”"
+          ],
+          "answer": "Barricade Kit"
+        },
+        {
+          "ingredients": [
+            "8 Plastic Parts",
+            "1 Wires"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1",
+            "Kind: Gadget",
+            "2 words",
+            "Its name starts with “B”"
+          ],
           "answer": "Basic Camera"
         },
         {
-          "text": "3 Advanced Mechanical Components + 3 Heavy Gun Parts + 3 Canister — at the Gunsmith 3",
+          "ingredients": [
+            "3 Advanced Mechanical Components",
+            "3 Heavy Gun Parts",
+            "3 Canister"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Bettina"
         },
         {
-          "text": "1 Explosive Compound + 2 Oil — at the Explosives Station 3",
+          "ingredients": [
+            "1 Explosive Compound",
+            "2 Oil"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Blaze Grenade"
         },
         {
-          "text": "1 Wires + 1 Blaze Grenade — at the Workbench 1",
+          "ingredients": [
+            "1 Wires",
+            "1 Blaze Grenade"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Inventory",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Blaze Grenade Trap"
         },
         {
-          "text": "1 Magnetic Accelerator + 3 Light Gun Parts + 2 Exodus Modules — at the Gunsmith 3",
+          "ingredients": [
+            "1 Magnetic Accelerator",
+            "3 Light Gun Parts",
+            "2 Exodus Modules"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Bobcat"
         },
         {
-          "text": "3 Mechanical Components + 3 Simple Gun Parts — at the Gunsmith 1",
+          "ingredients": [
+            "3 Mechanical Components",
+            "3 Simple Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “B”"
+          ],
           "answer": "Burletta"
         },
         {
-          "text": "2 Advanced Mechanical Components + 5 Magnet + 3 Medium Gun Parts — at the Gunsmith 3",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "5 Magnet",
+            "3 Medium Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “C”"
+          ],
           "answer": "Canto"
         },
         {
-          "text": "1 Electrical Components + 1 Durable Cloth — at the Utility Station 1",
+          "ingredients": [
+            "2 Light Gun Parts",
+            "2 Medium Gun Parts",
+            "2 Heavy Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Refiner 3",
+            "Kind: Topside material",
+            "2 words",
+            "Its name starts with “C”"
+          ],
+          "answer": "Complex Gun Parts"
+        },
+        {
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Durable Cloth"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Grenade",
+            "2 words",
+            "Its name starts with “C”"
+          ],
           "answer": "Crash Mat"
         },
         {
-          "text": "1 Comet Igniter + 3 Explosive Compound + 2 ARC Circuitry — at the Explosives Station 3",
+          "ingredients": [
+            "6 Chemicals"
+          ],
+          "hints": [
+            "Crafted at: Refiner 1",
+            "Kind: Refined material",
+            "3 words",
+            "Its name starts with “C”"
+          ],
+          "answer": "Crude Explosives"
+        },
+        {
+          "ingredients": [
+            "1 Comet Igniter",
+            "3 Explosive Compound",
+            "2 ARC Circuitry"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “D”"
+          ],
           "answer": "Deadline"
         },
         {
-          "text": "9 Plastic Parts + 1 Moss — at the Medical Lab 2",
+          "ingredients": [
+            "9 Plastic Parts",
+            "1 Moss"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 2",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “D”"
+          ],
           "answer": "Defibrillator"
         },
         {
-          "text": "3 Shredder Gyro + 3 Magnetic Accelerator + 2 Vaporizer Regulator — at the Gunsmith 3",
+          "ingredients": [
+            "3 Shredder Gyro",
+            "3 Magnetic Accelerator",
+            "2 Vaporizer Regulator"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “D”"
+          ],
           "answer": "Dolabra"
         },
         {
-          "text": "3 Metal Parts + 3 Rubber Parts — at the Utility Station 1",
+          "ingredients": [
+            "3 Metal Parts",
+            "3 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “D”"
+          ],
           "answer": "Door Blocker"
         },
         {
-          "text": "1 Explosive Compound + 1 Sensors — at the Explosives Station 3",
+          "ingredients": [
+            "14 Fabric"
+          ],
+          "hints": [
+            "Crafted at: Refiner 1",
+            "Kind: Refined material",
+            "1 word",
+            "Its name starts with “D”"
+          ],
+          "answer": "Durable Cloth"
+        },
+        {
+          "ingredients": [
+            "1 ARC Insulated Coupler",
+            "1 ARC Conductive Coupler",
+            "1 ARC Plated Coupler"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1",
+            "1 word",
+            "Its name starts with “E”"
+          ],
+          "answer": "Emperor Gateway Conduit"
+        },
+        {
+          "ingredients": [
+            "1 Advanced ARC Powercell",
+            "2 Battery"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1",
+            "1 word",
+            "Its name starts with “E”"
+          ],
+          "answer": "Energy Clip"
+        },
+        {
+          "ingredients": [
+            "2 Crude Explosives",
+            "2 Oil"
+          ],
+          "hints": [
+            "Crafted at: Refiner 2",
+            "Kind: Refined material",
+            "2 words",
+            "Its name starts with “E”"
+          ],
+          "answer": "Explosive Compound"
+        },
+        {
+          "ingredients": [
+            "1 Explosive Compound",
+            "1 Sensors"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Trap",
+            "2 words",
+            "Its name starts with “E”"
+          ],
           "answer": "Explosive Mine"
         },
         {
-          "text": "5 Metal Parts + 2 Rubber Parts — at the Workbench",
+          "ingredients": [
+            "6 Metal Parts",
+            "3 Wires"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "1 word",
+            "Its name starts with “E”"
+          ],
+          "answer": "Extended Barrel"
+        },
+        {
+          "ingredients": [
+            "5 Metal Parts",
+            "2 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Workbench, Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “F”"
+          ],
           "answer": "Ferro"
         },
         {
-          "text": "4 Plastic Parts + 2 Chemicals — at the Utility Station 1",
+          "ingredients": [
+            "4 Plastic Parts",
+            "2 Chemicals"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “F”"
+          ],
           "answer": "Firecracker"
         },
         {
-          "text": "1 Explosive Compound + 3 Pop Trigger — at the Explosives Station 2",
+          "ingredients": [
+            "1 Explosive Compound",
+            "3 Pop Trigger"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Quick use",
+            "2 words",
+            "Its name starts with “F”"
+          ],
           "answer": "Fireworks Box"
         },
         {
-          "text": "1 Air Freshener + 1 Fireball Burner — at the Inventory",
+          "ingredients": [
+            "1 Air Freshener",
+            "1 Fireball Burner"
+          ],
+          "hints": [
+            "Crafted at: Inventory",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “F”"
+          ],
           "answer": "Flame Spray"
         },
         {
-          "text": "1 Lemon + 1 Apricot + 1 Prickly Pear — at the Inventory",
+          "ingredients": [
+            "1 Lemon",
+            "1 Apricot",
+            "1 Prickly Pear"
+          ],
+          "hints": [
+            "Crafted at: Inventory",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “F”"
+          ],
           "answer": "Fruit Mix"
         },
         {
-          "text": "1 Wires + 1 Gas Grenade — at the Workbench 1",
+          "ingredients": [
+            "1 Wires",
+            "1 Gas Grenade"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Inventory",
+            "Kind: Trap",
+            "2 words",
+            "Its name starts with “G”"
+          ],
           "answer": "Gas Grenade Trap"
         },
         {
-          "text": "2 Rope + 1 Cable Stripper + 1 Mechanical Components — at the Utility Station 1",
+          "ingredients": [
+            "2 Rope",
+            "1 Cable Stripper",
+            "1 Mechanical Components"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “G”"
+          ],
           "answer": "Grappling Hook"
         },
         {
-          "text": "2 Metal Parts + 5 Plastic Parts — at the Workbench",
+          "ingredients": [
+            "2 Metal Parts",
+            "5 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Workbench, Gunsmith I",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “H”"
+          ],
           "answer": "Hairpin"
         },
         {
-          "text": "1 Explosive Compound + 2 Canister — at the Explosives Station 3",
+          "ingredients": [
+            "1 Explosive Compound",
+            "2 Canister"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “H”"
+          ],
           "answer": "Heavy Fuze Grenade"
         },
         {
-          "text": "1 Power Rod + 2 Voltage Converter — at the Gear Bench 2",
+          "ingredients": [
+            "1 Power Rod",
+            "2 Voltage Converter"
+          ],
+          "hints": [
+            "Crafted at: Gear Bench 2",
+            "Kind: Shield",
+            "1 word",
+            "Its name starts with “H”"
+          ],
           "answer": "Heavy Shield|Heavy"
         },
         {
-          "text": "1 Durable Cloth + 1 Great Mullein — at the Medical Lab 1",
+          "ingredients": [
+            "1 Durable Cloth",
+            "1 Great Mullein"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “H”"
+          ],
           "answer": "Herbal Bandage"
         },
         {
-          "text": "5 Mechanical Components + 6 Simple Gun Parts — at the Gunsmith 1",
+          "ingredients": [
+            "5 Mechanical Components",
+            "6 Simple Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “I”"
+          ],
           "answer": "Il Toro"
         },
         {
-          "text": "1 Electrical Components + 1 Battery — at the Explosives Station 2",
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Battery"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “J”"
+          ],
           "answer": "Jolt Mine"
         },
         {
-          "text": "6 Metal Parts + 8 Rubber Parts — at the Workbench",
+          "ingredients": [
+            "6 Metal Parts",
+            "8 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Workbench, Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “K”"
+          ],
           "answer": "Kettle"
         },
         {
-          "text": "5 Chemicals + 1 Plastic Parts — at the Utility Station 1",
+          "ingredients": [
+            "1 ARC Motion Core",
+            "2 Crude Explosives"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1",
+            "1 word",
+            "Its name starts with “L”"
+          ],
+          "answer": "Launcher Ammo"
+        },
+        {
+          "ingredients": [
+            "5 Chemicals",
+            "1 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “L”"
+          ],
           "answer": "Li'l Smoke Grenade"
         },
         {
-          "text": "2 Plastic Parts + 3 Chemicals — at the Explosives Station 1",
+          "ingredients": [
+            "2 Plastic Parts",
+            "3 Chemicals"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 1, Workbench",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “L”"
+          ],
           "answer": "Light Impact Grenade"
         },
         {
-          "text": "2 ARC Alloy + 4 Plastic Parts — at the Workbench 1",
+          "ingredients": [
+            "2 ARC Alloy",
+            "4 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Gear Bench 1",
+            "Kind: Shield",
+            "1 word",
+            "Its name starts with “L”"
+          ],
           "answer": "Light Shield|Light"
         },
         {
-          "text": "1 Speaker Component + 1 Electrical Components — at the Utility Station 2",
+          "ingredients": [
+            "1 Speaker Component",
+            "1 Electrical Components"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 2",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “L”"
+          ],
           "answer": "Lure Grenade"
         },
         {
-          "text": "1 Wires + 1 Lure Grenade — at the Workbench 1",
+          "ingredients": [
+            "1 Wires",
+            "1 Lure Grenade"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Inventory",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “L”"
+          ],
           "answer": "Lure Grenade Trap"
         },
         {
-          "text": "4 Battery + 1 ARC Circuitry — at the Gear Bench 2",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "2 ARC Motion Core"
+          ],
+          "hints": [
+            "Crafted at: Refiner 3",
+            "Kind: Refined material",
+            "1 word",
+            "Its name starts with “M”"
+          ],
+          "answer": "Magnetic Accelerator"
+        },
+        {
+          "ingredients": [
+            "7 Metal Parts",
+            "3 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Refiner 1",
+            "Kind: Refined material",
+            "2 words",
+            "Its name starts with “M”"
+          ],
+          "answer": "Mechanical Components"
+        },
+        {
+          "ingredients": [
+            "4 Battery",
+            "1 ARC Circuitry"
+          ],
+          "hints": [
+            "Crafted at: Gear Bench 2",
+            "Kind: Shield",
+            "1 word",
+            "Its name starts with “M”"
+          ],
           "answer": "Medium Shield|Medium"
         },
         {
-          "text": "1 Speaker Component + 2 Plastic Parts — at the Inventory",
+          "ingredients": [
+            "1 Speaker Component",
+            "2 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Inventory",
+            "Kind: Gadget",
+            "2 words",
+            "Its name starts with “N”"
+          ],
           "answer": "Noisemaker"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 7 Wires — at the Gunsmith 2",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Medium Gun Parts",
+            "7 Wires"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "2 words",
+            "Its name starts with “O”"
+          ],
           "answer": "Osprey"
         },
         {
-          "text": "2 Advanced Electrical Components + 4 Speaker Component — at the Utility Station 3",
+          "ingredients": [
+            "2 Advanced Electrical Components",
+            "4 Speaker Component"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 3",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “P”"
+          ],
           "answer": "Photoelectric Cloak"
         },
         {
-          "text": "1 Power Rod + 1 Turbine Compressor — at the Utility Station 3",
+          "ingredients": [
+            "2 Advanced Electrical Components",
+            "2 ARC Circuitry"
+          ],
+          "hints": [
+            "Crafted at: Refiner 3",
+            "Kind: Refined material",
+            "1 word",
+            "Its name starts with “P”"
+          ],
+          "answer": "Power Rod"
+        },
+        {
+          "ingredients": [
+            "1 Power Rod",
+            "1 Turbine Compressor"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 3",
+            "Kind: Gadget",
+            "2 words",
+            "Its name starts with “P”"
+          ],
           "answer": "Powered Descender"
         },
         {
-          "text": "1 Crude Explosives + 1 Wires — at the Explosives Station 1",
+          "ingredients": [
+            "1 Crude Explosives",
+            "1 Wires"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 1",
+            "Kind: Trap",
+            "2 words",
+            "Its name starts with “P”"
+          ],
           "answer": "Pulse Mine"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Heavy Gun Parts + 5 Canister — at the Gunsmith 2",
+          "ingredients": [
+            "1 Advanced Electrical Components",
+            "3 Sensors"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 2, Inventory",
+            "1 word",
+            "Its name starts with “R”"
+          ],
+          "answer": "Raider Hatch Key"
+        },
+        {
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Heavy Gun Parts",
+            "5 Canister"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "2 words",
+            "Its name starts with “R”"
+          ],
           "answer": "Rascal"
         },
         {
-          "text": "16 Metal Parts + 12 Rubber Parts — at the Gunsmith 1",
+          "ingredients": [
+            "16 Metal Parts",
+            "12 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “R”"
+          ],
           "answer": "Rattler"
         },
         {
-          "text": "2 Chemicals + 4 Rubber Parts — at the Utility Station 1",
+          "ingredients": [
+            "2 Chemicals",
+            "4 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “R”"
+          ],
           "answer": "Remote Raider Flare"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 5 Oil — at the Gunsmith 3",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Medium Gun Parts",
+            "5 Oil"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “R”"
+          ],
           "answer": "Renegade"
         },
         {
-          "text": "1 Crude Explosives + 2 ARC Alloy — at the Explosives Station 1",
+          "ingredients": [
+            "1 Crude Explosives",
+            "2 ARC Alloy"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 1",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Seeker Grenade"
         },
         {
-          "text": "1 Canister + 7 Assorted Seeds — at the Inventory",
+          "ingredients": [
+            "1 Canister",
+            "7 Assorted Seeds"
+          ],
+          "hints": [
+            "Crafted at: Inventory",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Shaker"
         },
         {
-          "text": "5 Rubber Parts + 1 ARC Powercell — at the Workbench 1",
+          "ingredients": [
+            "5 Rubber Parts",
+            "1 ARC Powercell"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Medical Lab 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Shield Recharger"
         },
         {
-          "text": "1 Electrical Components + 1 Hornet Driver + 1 Voltage Converter — at the Explosives Station 3",
+          "ingredients": [
+            "2 Mod Components",
+            "8 Wires"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "1 word",
+            "Its name starts with “S”"
+          ],
+          "answer": "Shotgun Silencer"
+        },
+        {
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Hornet Driver",
+            "1 Voltage Converter"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Grenade",
+            "2 words",
+            "Its name starts with “S”"
+          ],
           "answer": "Showstopper"
         },
         {
-          "text": "1 Crude Explosives + 2 Steel Spring — at the Explosives Station 2",
+          "ingredients": [
+            "1 Crude Explosives",
+            "2 Steel Spring"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Shrapnel Grenade"
         },
         {
-          "text": "14 Chemicals + 1 Canister — at the Utility Station 2",
+          "ingredients": [
+            "2 Mechanical Components",
+            "4 Wires"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "1 word",
+            "Its name starts with “S”"
+          ],
+          "answer": "Silencer"
+        },
+        {
+          "ingredients": [
+            "14 Chemicals",
+            "1 Canister"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 2",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Smoke Grenade"
         },
         {
-          "text": "1 Wires + 1 Smoke Grenade — at the Workbench 1",
+          "ingredients": [
+            "1 Wires",
+            "1 Smoke Grenade"
+          ],
+          "hints": [
+            "Crafted at: Workbench 1, Inventory",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Smoke Grenade Trap"
         },
         {
-          "text": "2 Crude Explosives + 1 Magnet — at the Explosives Station 2",
+          "ingredients": [
+            "2 Crude Explosives",
+            "1 Magnet"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Grenade",
+            "2 words",
+            "Its name starts with “S”"
+          ],
           "answer": "Snap Blast Grenade"
         },
         {
-          "text": "2 Power Rod + 2 Steel Cable + 1 Exodus Modules — at the Utility Station 3",
+          "ingredients": [
+            "2 Power Rod",
+            "2 Steel Cable",
+            "1 Exodus Modules"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 3",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Snap Hook"
         },
         {
-          "text": "2 Durable Cloth + 1 Antiseptic — at the Medical Lab 2",
+          "ingredients": [
+            "6 Rubber Parts",
+            "1 Duct Tape"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "1 word",
+            "Its name starts with “S”"
+          ],
+          "answer": "Stable Stock"
+        },
+        {
+          "ingredients": [
+            "2 Durable Cloth",
+            "1 Antiseptic"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 2",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Sterilized Bandage"
         },
         {
-          "text": "4 Mechanical Components + 4 Simple Gun Parts — at the Gunsmith 1",
+          "ingredients": [
+            "4 Mechanical Components",
+            "4 Simple Gun Parts"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Stiletto"
         },
         {
-          "text": "8 Metal Parts + 4 Rubber Parts — at the Workbench",
+          "ingredients": [
+            "8 Metal Parts",
+            "4 Rubber Parts"
+          ],
+          "hints": [
+            "Crafted at: Workbench, Gunsmith 1",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Stitcher"
         },
         {
-          "text": "1 Electrical Components + 1 Sensors + 1 Hornet Driver — at the Explosives Station 3",
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Sensors",
+            "1 Hornet Driver"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Surge Coil"
         },
         {
-          "text": "1 Electrical Components + 1 Advanced ARC Powercell — at the Medical Lab 2",
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Advanced ARC Powercell"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 2",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “S”"
+          ],
           "answer": "Surge Shield Recharger"
         },
         {
-          "text": "1 Electrical Components + 1 Sensors — at the Utility Station 3",
+          "ingredients": [
+            "1 Electrical Components",
+            "1 Sensors"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 3",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “T”"
+          ],
           "answer": "Tagging Grenade"
         },
         {
-          "text": "1 Magnetic Accelerator + 3 Medium Gun Parts + 2 Exodus Modules — at the Gunsmith 3",
+          "ingredients": [
+            "1 Magnetic Accelerator",
+            "3 Medium Gun Parts",
+            "2 Exodus Modules"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 3",
+            "Kind: Weapon",
+            "2 words",
+            "Its name starts with “T”"
+          ],
           "answer": "Tempest"
         },
         {
-          "text": "2 Steel Cable + 1 Advanced Electrical Components + 1 Calculator — at the Utility Station 2",
+          "ingredients": [
+            "2 Steel Cable",
+            "1 Advanced Electrical Components",
+            "1 Calculator"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 2",
+            "Kind: Gadget",
+            "1 word",
+            "Its name starts with “T”"
+          ],
           "answer": "Tether Launcher"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 6 Steel Spring — at the Gunsmith 2",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Medium Gun Parts",
+            "6 Steel Spring"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “T”"
+          ],
           "answer": "Torrente"
         },
         {
-          "text": "1 Synthesized Fuel + 2 Crude Explosives + 1 Firefly Burner — at the Explosives Station 3",
+          "ingredients": [
+            "1 Synthesized Fuel",
+            "2 Crude Explosives",
+            "1 Firefly Burner"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “T”"
+          ],
           "answer": "Trailblazer"
         },
         {
-          "text": "2 Crude Explosives + 1 Processor — at the Explosives Station 2",
+          "ingredients": [
+            "2 Crude Explosives",
+            "1 Processor"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Trap",
+            "1 word",
+            "Its name starts with “T”"
+          ],
           "answer": "Trigger 'Nade"
         },
         {
-          "text": "2 Advanced Mechanical Components + 3 Medium Gun Parts + 5 Magnet — at the Gunsmith 2",
+          "ingredients": [
+            "2 Advanced Mechanical Components",
+            "3 Medium Gun Parts",
+            "5 Magnet"
+          ],
+          "hints": [
+            "Crafted at: Gunsmith 2",
+            "Kind: Weapon",
+            "1 word",
+            "Its name starts with “V”"
+          ],
           "answer": "Venator"
         },
         {
-          "text": "2 Antiseptic + 1 Syringe — at the Medical Lab 3",
+          "ingredients": [
+            "2 Antiseptic",
+            "1 Syringe"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 3",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “V”"
+          ],
           "answer": "Vita Shot"
         },
         {
-          "text": "3 Antiseptic + 1 Canister + 1 Tick Pod — at the Medical Lab 3",
+          "ingredients": [
+            "3 Antiseptic",
+            "1 Canister",
+            "1 Tick Pod"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 3",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “V”"
+          ],
           "answer": "Vita Spray"
         },
         {
-          "text": "10 Fabric + 3 Plastic Parts — at the Medical Lab 1",
+          "ingredients": [
+            "10 Fabric",
+            "3 Plastic Parts"
+          ],
+          "hints": [
+            "Crafted at: Medical Lab 1",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “W”"
+          ],
           "answer": "White Flag"
         },
         {
-          "text": "1 Explosive Compound + 2 ARC Motion Core + 1 Rocketeer Driver — at the Explosives Station 3",
+          "ingredients": [
+            "1 Explosive Compound",
+            "2 ARC Motion Core",
+            "1 Rocketeer Driver"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 3",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “W”"
+          ],
           "answer": "Wolfpack"
         },
         {
-          "text": "1 Rope + 1 Crude Explosives — at the Explosives Station 2",
+          "ingredients": [
+            "1 Rope",
+            "1 Crude Explosives"
+          ],
+          "hints": [
+            "Crafted at: Explosives Station 2",
+            "Kind: Grenade",
+            "1 word",
+            "Its name starts with “Y”"
+          ],
           "answer": "Yank Grenade"
         },
         {
-          "text": "1 Steel Cable + 1 Mechanical Components — at the Utility Station 2",
+          "ingredients": [
+            "1 Steel Cable",
+            "1 Mechanical Components"
+          ],
+          "hints": [
+            "Crafted at: Utility Station 2",
+            "Kind: Quick use",
+            "1 word",
+            "Its name starts with “Z”"
+          ],
           "answer": "Zipline"
         }
       ]
-    }
+    },
+    "finaleSkip": [
+      "Speranza",
+      "Raider Hatch",
+      "Combat Mk. 1",
+      "Combat Mk. 2",
+      "Combat Mk. 3 (Aggressive)",
+      "Combat Mk. 3 (Flanking)",
+      "Looting Mk. 1",
+      "Looting Mk. 2",
+      "Looting Mk. 3 (Cautious)",
+      "Looting Mk. 3 (Safekeeper)",
+      "Looting Mk. 3 (Survivor)",
+      "Tactical Mk. 1",
+      "Tactical Mk. 2",
+      "Tactical Mk. 3 (Defensive)",
+      "Tactical Mk. 3 (Healing)",
+      "Tactical Mk. 3 (Revival)",
+      "Tactical Mk. 3 (Smoke)",
+      "ARC Conductive Coupler",
+      "ARC Insulated Coupler",
+      "ARC Plated Coupler",
+      "Speaker Component",
+      "Voltage Converter"
+    ],
+    "wholeFaces": [
+      "Anvil",
+      "Aphelion",
+      "Arpeggio",
+      "Bantam",
+      "Bettina",
+      "Bobcat",
+      "Burletta",
+      "Canto",
+      "Dolabra",
+      "Equalizer",
+      "Ferro",
+      "Hairpin",
+      "Hullcracker",
+      "Il Toro",
+      "Jupiter",
+      "Kettle",
+      "Osprey",
+      "Rascal",
+      "Rattler",
+      "Renegade",
+      "Stiletto",
+      "Stitcher",
+      "Tempest",
+      "Torrente",
+      "Venator",
+      "Vulcano"
+    ]
   },
   {
     "id": "deadlock",

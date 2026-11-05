@@ -52,6 +52,7 @@ export function finaleFaces(boss: Boss): BossCard[] {
     const p = personOf(c.label);
     return p ? { ...c, aliases: [...new Set([...(c.aliases ?? []), ...p.spellings.filter((n) => n !== c.label)])] } : c;
   };
+  const whole = new Set(boss.wholeFaces ?? []);
   const faces = boss.finale.filter((c) => !skip.has(c.label)).map(withNames);
   const taken = new Set([...boss.finale.map((c) => c.label), ...skip]);
   // The people already on the list (by the Specialist's names), so another spelling of one isn't added twice.
@@ -70,6 +71,7 @@ export function finaleFaces(boss: Boss): BossCard[] {
     taken.add(c.name);
     people.add(who);
   }
-  cache.set(boss.id, faces);
-  return faces;
+  const out = whole.size ? faces.map((c) => (whole.has(c.label) ? { ...c, whole: true } : c)) : faces;
+  cache.set(boss.id, out);
+  return out;
 }

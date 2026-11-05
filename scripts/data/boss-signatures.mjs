@@ -28,9 +28,18 @@ function onePiece() {
     });
 }
 
-/** Genshin: the name of a character's constellation. */
+/**
+ * Genshin: the name of a character's constellation — only characters out before version 5 (the newest are
+ * too little known), with hints as the clock runs down: element and weapon, region, title, first letter.
+ */
 function genshin() {
-  return read('genshin.json').characters.filter((c) => c.constellation).map((c) => ({ text: `✦ ${c.constellation} ✦`, answer: [c.name, ...c.aliases].join('|') }));
+  return read('genshin.json')
+    .characters.filter((c) => c.constellation && Number.parseFloat(c.version) < 5)
+    .map((c) => ({
+      text: `✦ ${c.constellation} ✦`,
+      hints: [`${c.element} · ${c.weapon} · ${c.rarity}★`, `From ${c.region}`, ...(c.title ? [`Their title: “${c.title}”`] : []), `Their name starts with “${c.name[0]}”`],
+      answer: [c.name, ...c.aliases].join('|'),
+    }));
 }
 
 /** MCU: the actor, for roles one actor clearly owns. */
@@ -173,15 +182,18 @@ const HAND = {
 // ── Write ────────────────────────────────────────────────────────────────────────
 
 const GENERATED = {
-  onepiece: { label: 'Laugh', prompt: 'Whose laugh is this?', clues: onePiece() },
-  genshin: { label: 'Constellation', prompt: 'Whose constellation is this?', clues: genshin() },
-  mcu: { label: 'Cast', prompt: 'Which character does this actor play?', clues: mcu() },
-  lol: { label: 'Item', prompt: 'Which item has these stats?', clues: await league() },
+  onepiece: () => ({ label: 'Laugh', prompt: 'Whose laugh is this?', clues: onePiece() }),
+  genshin: () => ({ label: 'Constellation', prompt: 'Whose constellation is this?', seconds: 30, hints: true, clues: genshin() }),
+  mcu: () => ({ label: 'Cast', prompt: 'Which character does this actor play?', clues: mcu() }),
+  lol: async () => ({ label: 'Item', prompt: 'Which item has these stats?', clues: await league() }),
 };
+// --only=genshin,mcu: rewrite just these bosses' Signatures (the others are left as they are).
+const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
 
 const bosses = JSON.parse(readFileSync(FILE, 'utf8'));
 for (const b of bosses) {
-  const sig = GENERATED[b.id] ?? HAND[b.id];
+  if (ONLY && !ONLY.includes(b.id)) continue;
+  const sig = GENERATED[b.id] ? await GENERATED[b.id]() : HAND[b.id];
   if (!sig) {
     console.log(`  ✗ ${b.id}: no Signature written yet`);
     continue;
