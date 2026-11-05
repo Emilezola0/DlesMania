@@ -2,7 +2,7 @@ import { SETS } from './cards';
 import type { Pack } from './packs';
 
 /** A pack's wrapper: its colours, a torn top edge, a shine — and for a franchise pack, its guardian. */
-export function PackArt({ pack, className = '' }: { pack: Pack; className?: string }) {
+export function PackArt({ pack, className = '', shine = false }: { pack: Pack; className?: string; shine?: boolean }) {
   const set = pack.boss ? SETS.find((s) => s.id === pack.boss) : undefined;
   return (
     <div
@@ -16,6 +16,8 @@ export function PackArt({ pack, className = '' }: { pack: Pack; className?: stri
         <p className="mt-[2cqw] font-display text-[6cqw] font-semibold tracking-[0.3em] opacity-80">5 CARDS</p>
       </div>
       <div className="card-sheen pointer-events-none absolute inset-0" />
+      {/* A foil's shine, following the pointer (the pack being torn sets --sx / --sy). */}
+      {shine && <div className="pack-shine pointer-events-none absolute inset-0" aria-hidden />}
     </div>
   );
 }

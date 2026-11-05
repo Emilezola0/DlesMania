@@ -556,6 +556,37 @@ h1, h2, h3, .font-serif, .font-display {
   50% { filter: brightness(1.6); }
 }
 .pack-glow { animation: pack-glow 0.45s ease-in-out 2; }
+/* The strip torn off flies away, spinning, off the top of the screen. */
+@keyframes pack-flap-fly {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(150px, -110vh) rotate(-140deg); opacity: 0.6; }
+}
+.pack-flap-fly { animation: pack-flap-fly 0.9s cubic-bezier(0.35, 0.1, 0.6, 1) forwards; transform-origin: 70% 50%; }
+/* Sparks off the tear, from where the finger is. */
+.pack-tear-spark { transform: translate(-50%, -50%); animation: pack-tear-spark 0.6s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; }
+@keyframes pack-tear-spark {
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 40px)) scale(0.2); opacity: 0; }
+}
+/* Let go halfway: the pack wobbles back. */
+.pack-wobble { animation: pack-wobble 0.5s ease-out; }
+@keyframes pack-wobble {
+  25% { transform: rotate(-3deg); }
+  50% { transform: rotate(2deg); }
+  75% { transform: rotate(-1deg); }
+}
+/* Torn far enough: the breath it holds before it gives. */
+.pack-hold { animation: pack-hold 0.24s ease-in forwards; }
+@keyframes pack-hold { to { transform: scale(1.06); filter: brightness(1.35); } }
+/* The foil's shine: a soft light where the pointer is, and a holographic band moving with it. */
+.pack-shine {
+  background:
+    radial-gradient(circle at var(--sx, 30%) var(--sy, 25%), rgba(255, 255, 255, 0.45), transparent 38%),
+    linear-gradient(115deg, transparent calc(var(--sx, 30%) - 25%), rgba(255, 120, 220, 0.18) calc(var(--sx, 30%) - 8%), rgba(120, 220, 255, 0.22) var(--sx, 30%), rgba(255, 230, 120, 0.18) calc(var(--sx, 30%) + 8%), transparent calc(var(--sx, 30%) + 25%));
+  mix-blend-mode: overlay;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-flap-fly, .pack-tear-spark, .pack-wobble, .pack-hold { animation: none; }
+}
 /* Mythic and Omni: a big halo turning behind the pack (src/gacha/PackOpening.tsx). */
 .pack-halo {
   width: 190%;

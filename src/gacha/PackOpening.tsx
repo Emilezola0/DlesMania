@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Coins } from '../components/DleCoin';
 import { celebrate, celebrateBig, rumble, shake } from '../lib/fx';
 import { shownName } from '../lib/french';
-import { sfx } from '../lib/sfx';
+import { sfx, type TearSound } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
@@ -15,6 +15,35 @@ import { clampPity, PITY_MAX, pityLuck, type Pack } from './packs';
 const TEAR_AT = 18;
 /** The share of the width a swipe has to cross to tear the pack. */
 const TEAR_ENOUGH = 0.8;
+/** The tear's teeth across the pack, and how far up and down of TEAR_AT they bite (% of its height). */
+const TEETH = 18;
+/** The breath the pack holds once torn far enough, before it gives (ms). */
+const HOLD_MS = 240;
+/** A finger this fast (px per ms) rips at full volume. */
+const FAST_SWIPE = 1.4;
+
+/** The jagged line of the tear, as [x%, y%] points left to right (a little different every pack). */
+function tearLine(): [number, number][] {
+  return Array.from({ length: TEETH + 1 }, (_, k) => [(k / TEETH) * 100, TEAR_AT + (k % 2 ? 1.4 : -1.1) + (Math.random() - 0.5) * 1.2]);
+}
+const pts = (line: [number, number][]) => line.map(([x, y]) => `${x}% ${y}%`).join(', ');
+/** A phone buzzes along (where it can): a few ms a pulse. */
+const buzz = (pattern: number | number[]) => {
+  try {
+    if (!reducedMotion()) navigator.vibrate?.(pattern);
+  } catch {
+    // No vibration here.
+  }
+};
+
+/** A spark flying off the tear where the finger is, in the best card's colour. */
+interface TearSpark {
+  id: number;
+  x: number;
+  dx: number;
+  dy: number;
+  size: number;
+}
 
 type Phase = 'choose' | 'pack' | 'torn' | 'meteor' | 'reveal' | 'summary';
 
@@ -451,14 +480,56 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
 
   const card = deck[i];
   // ── Tearing ─────────────────────────────────────────────────────────
+  // The tear's live sound (the best card's tone, or the one it poses as), its jagged line, its sparks.
+  const toneLevel = RARITIES.indexOf(shownBest);
+  const tearSnd = useRef<TearSound | null>(null);
+  const line = useMemo(tearLine, []);
+  const [sparks, setSparks] = useState<TearSpark[]>([]);
+  const lastSpark = useRef(0);
+  const lastBuzz = useRef(0);
+  const [lean, setLean] = useState(0);
+  const [wobble, setWobble] = useState(0);
+  const [holding, setHolding] = useState(false);
+  const still = useRef<number>();
+  const move = useRef<{ x: number; t: number } | null>(null);
+  useEffect(() => () => tearSnd.current?.stop(), []);
+  const sound = () => (tearSnd.current ??= sfx.tearStart(toneLevel));
+  /** The tear reached `p`: sparks fly from there, and the phone ticks every tenth. */
+  const tearTo = (p: number) => {
+    if (reducedMotion()) return;
+    if (p - lastSpark.current >= 0.025) {
+      lastSpark.current = p;
+      const born = Array.from({ length: toneLevel >= 3 ? 3 : 2 }, () => ({ id: Math.random(), x: p * 100, dx: (Math.random() - 0.3) * 60, dy: -20 - Math.random() * 70, size: 2 + Math.random() * (toneLevel >= 3 ? 5 : 3) }));
+      setSparks((s) => [...s.slice(-40), ...born]);
+    }
+    if (p - lastBuzz.current >= 0.1) ((lastBuzz.current = p), buzz(6));
+  };
   // Set at the first tear: a second tap (or a key) while the pack tears by itself must not tear it twice.
   const tearing = useRef(false);
   const autoTearing = useRef(false);
   const torn = () => {
     if (phase !== 'pack' || tearing.current) return;
     tearing.current = true;
-    sfx.tear();
     setTear(1);
+    window.clearTimeout(still.current);
+    // The last moment holds its breath — the rip goes quiet, the tone swells — then it snaps open.
+    if (reducedMotion()) return open();
+    sound()?.hold();
+    setHolding(true);
+    later(open, HOLD_MS);
+  };
+  const open = () => {
+    const snd = sound();
+    if (snd) snd.snap();
+    else sfx.tear();
+    tearSnd.current = null;
+    setHolding(false);
+    setLean(0);
+    buzz([30, 40, 70]);
+    if (!reducedMotion()) {
+      shake(box.current, 10, 340);
+      setFlash({ color: glow, key: Date.now(), rainbow: special === 'mythic' });
+    }
     setPhase('torn');
     later(() => {
       if (reducedMotion()) return toReveal();
@@ -494,9 +565,13 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     if (tearing.current || autoTearing.current) return;
     autoTearing.current = true;
     let p = 0;
+    sfx.crinkle();
     const id = window.setInterval(() => {
-      p += 0.12;
-      setTear(Math.min(1, p));
+      p += 0.07;
+      const at = Math.min(1, p);
+      setTear(at);
+      sound()?.update(at, 0.85);
+      tearTo(at);
       if (p >= 1) (window.clearInterval(id), torn());
     }, 30);
     timers.current.push(id);
@@ -505,27 +580,54 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     const r = packRef.current?.getBoundingClientRect();
     return r ? Math.max(0, Math.min(1, (clientX - r.left) / r.width)) : 0;
   };
+  /** The foil's shine follows the pointer, held or not. */
+  const shineAt = (e: React.PointerEvent) => {
+    const r = packRef.current?.getBoundingClientRect();
+    if (!r || !packRef.current) return;
+    packRef.current.style.setProperty('--sx', `${((e.clientX - r.left) / r.width) * 100}%`);
+    packRef.current.style.setProperty('--sy', `${((e.clientY - r.top) / r.height) * 100}%`);
+  };
   const onDown = (e: React.PointerEvent) => {
-    if (phase !== 'pack') return;
+    if (phase !== 'pack' || tearing.current) return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
     drag.current = { x: e.clientX, moved: false };
+    move.current = { x: e.clientX, t: performance.now() };
+    // Picked up: the foil crinkles, and the tear's sound gets ready.
+    sfx.crinkle();
+    sound();
   };
   const onMove = (e: React.PointerEvent) => {
+    shineAt(e);
     const d = drag.current;
-    if (!d || phase !== 'pack') return;
+    if (!d || phase !== 'pack' || tearing.current) return;
     if (Math.abs(e.clientX - d.x) > 8) d.moved = true;
     if (!d.moved) return;
     // The tear follows the finger, from whichever side it started.
     const p = Math.abs(progressAt(e.clientX) - progressAt(d.x));
-    if (p > tear + 0.08) sfx.tick();
+    const now = performance.now();
+    const last = move.current ?? { x: e.clientX, t: now };
+    const v = (e.clientX - last.x) / Math.max(1, now - last.t);
+    move.current = { x: e.clientX, t: now };
+    // The rip as loud as the finger is fast, the tone as high as the tear is far; the pack leans with the pull.
+    const reach = Math.max(tear, p);
+    sound()?.update(reach / TEAR_ENOUGH, Math.abs(v) / FAST_SWIPE);
+    setLean(Math.max(-6, Math.min(6, v * 5)));
+    tearTo(p);
     setTear((t) => Math.max(t, p));
+    // A finger that stops: the rip goes quiet, the pack settles.
+    window.clearTimeout(still.current);
+    still.current = window.setTimeout(() => (tearSnd.current?.update(reach / TEAR_ENOUGH, 0), setLean(0)), 70);
     if (p >= TEAR_ENOUGH) ((drag.current = null), torn());
   };
   const onUp = () => {
     const d = drag.current;
     drag.current = null;
-    if (phase !== 'pack') return;
-    if (!d?.moved) autoTear();
+    if (phase !== 'pack' || tearing.current) return;
+    if (!d?.moved) return autoTear();
+    // Let go halfway: the rip stops, and the pack wobbles back.
+    tearSnd.current?.update(tear / TEAR_ENOUGH, 0);
+    setLean(0);
+    setWobble((w) => w + 1);
   };
 
   // ── Revealing ───────────────────────────────────────────────────────
@@ -697,12 +799,13 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             onPointerDown={onDown}
             onPointerMove={onMove}
             onPointerUp={onUp}
-            onPointerCancel={() => (drag.current = null)}
-            className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' ? 'pack-float' : ''}`}
+            onPointerCancel={() => ((drag.current = null), tearSnd.current?.update(tear, 0))}
+            className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' && !holding ? 'pack-float' : ''}`}
             style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}
             role="button"
             aria-label="Swipe across the pack, or tap it, to tear it open"
           >
+            <div key={`w${wobble}`} className={`relative ${holding ? 'pack-hold' : wobble ? 'pack-wobble' : ''}`} style={{ transform: holding ? undefined : `rotate(${lean}deg) skewX(${lean * -0.6}deg)`, transition: 'transform 0.12s ease-out' }}>
             {/* Mythic and Omni: a halo turning behind the pack as it tears. */}
             {special && (phase === 'torn' || (phase === 'pack' && tear > 0)) && (
               <div className={`pack-halo pack-halo-${special} pointer-events-none absolute left-1/2 top-1/2 -z-10`} style={{ opacity: phase === 'torn' ? 1 : 0.3 + tear * 0.7 }} aria-hidden />
@@ -715,21 +818,43 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 aria-hidden
               />
             )}
-            <div style={{ clipPath: `inset(${TEAR_AT}% 0 0 0)` }} className={phase === 'torn' ? 'pack-glow' : ''}>
-              <PackArt pack={pack} />
+            {/* The pack below the cut, and the strip above it: they part along the same jagged line. */}
+            <div style={{ clipPath: `polygon(${pts(line)}, 100% 100%, 0 100%)` }} className={phase === 'torn' ? 'pack-glow' : ''}>
+              <PackArt pack={pack} shine />
             </div>
-            <div className={`absolute inset-0 ${phase === 'torn' ? 'pack-flap' : ''}`} style={{ clipPath: `inset(0 0 ${100 - TEAR_AT}% 0)`, transform: phase === 'pack' ? `rotate(${-tear * 6}deg) translateY(${-tear * 6}px)` : undefined, transformOrigin: '100% 100%' }}>
-              <PackArt pack={pack} />
+            <div className={`absolute inset-0 ${phase === 'torn' ? 'pack-flap-fly' : ''}`} style={{ clipPath: `polygon(0 0, 100% 0, ${pts([...line].reverse())})`, transform: phase === 'pack' ? `rotate(${-tear * 7}deg) translateY(${-tear * 7}px)` : undefined, transformOrigin: '100% 100%' }}>
+              <PackArt pack={pack} shine />
             </div>
-            {/* The tear, glowing along the cut. */}
-            {phase === 'pack' && (
-              <div className="pointer-events-none absolute left-0 h-[3px] rounded-full" style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, background: '#fff', boxShadow: `0 0 10px #fff, 0 0 22px ${glow}` }} />
+            {/* The light inside, shining through the cut as it opens. */}
+            {phase === 'pack' && tear > 0 && (
+              <div
+                className="pointer-events-none absolute left-0 -translate-y-1/2 rounded-full mix-blend-screen"
+                style={{ top: `${TEAR_AT}%`, width: `${tear * 100}%`, height: 6 + tear * 34, opacity: 0.45 + tear * 0.55, background: `linear-gradient(to bottom, transparent, ${glow}aa 35%, #fff 50%, ${glow}aa 65%, transparent)`, filter: `blur(${3 + tear * 4}px)` }}
+                aria-hidden
+              />
             )}
+            {/* The cut itself, jagged and white-hot, as far as the finger has gone. */}
+            {phase === 'pack' && tear > 0 && (
+              <svg className="pointer-events-none absolute inset-0 size-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden style={{ filter: `drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px ${glow})` }}>
+                <polyline points={line.filter(([x]) => x <= tear * 100 + 0.01).concat(tear < 1 ? [[tear * 100, TEAR_AT]] : []).map(([x, y]) => `${x},${y}`).join(' ')} fill="none" stroke="#fff" strokeWidth={2.5} vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+              </svg>
+            )}
+            {/* Sparks off the tear, where the finger is. */}
+            {sparks.map((s) => (
+              <span
+                key={s.id}
+                className="pack-tear-spark pointer-events-none absolute rounded-full"
+                onAnimationEnd={() => setSparks((all) => all.filter((x) => x.id !== s.id))}
+                style={{ left: `${s.x}%`, top: `${TEAR_AT}%`, width: s.size, height: s.size, background: special === 'mythic' ? RAINBOW[Math.floor(s.x) % RAINBOW.length] : '#fff', boxShadow: `0 0 8px ${glow}, 0 0 3px #fff`, ['--dx' as string]: `${s.dx}px`, ['--dy' as string]: `${s.dy}px` }}
+                aria-hidden
+              />
+            ))}
             {phase === 'pack' && tear === 0 && (
               <div className="pack-hint pointer-events-none absolute left-[8%] font-display text-2xl text-white drop-shadow" style={{ top: `calc(${TEAR_AT}% - 1.2rem)` }}>
                 ✂
               </div>
             )}
+            </div>
           </div>
           {phase === 'pack' && <p className="animate-pulse text-center font-display text-sm font-bold tracking-widest text-white/90">SWIPE ACROSS THE TOP TO TEAR · OR TAP</p>}
         </div>

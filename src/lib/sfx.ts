@@ -108,7 +108,108 @@ function drone(dur: number, base = 0.035) {
   lfo.stop(t0 + dur + 0.02);
 }
 
+/** A pack being torn by hand, live: the rip follows the finger, a tone rises with the tear. */
+export interface TearSound {
+  /** How far the tear has gone (0–1) and how fast the finger moves now (0 = still, 1 = fast). */
+  update: (progress: number, speed: number) => void;
+  /** The breath before it gives: the rip goes quiet, the tone swells. */
+  hold: () => void;
+  /** It gives: a loud rip, a thump and the tone's chord ringing out. */
+  snap: () => void;
+  /** Let go without tearing it all (or the pack closed): everything fades. */
+  stop: () => void;
+}
+
+/**
+ * The tone under the tear, by the best card inside (0 = Common … 5 = Omni): one plain note, then a fifth,
+ * a bright triad, a full chord with its octave, and for Mythic and Omni a choir of detuned voices.
+ */
+const TEAR_CHORDS: number[][] = [[220], [220, 330], [262, 330, 392], [330, 415, 494, 660], [262, 330, 392, 523, 659], [220, 277, 330, 440, 554, 659]];
+
+function tearSound(level: number): TearSound | null {
+  const ac = audio();
+  const vol = useProgress.getState().sfxVolume / 100;
+  if (!ac || vol <= 0) return null;
+  const chord = TEAR_CHORDS[Math.max(0, Math.min(TEAR_CHORDS.length - 1, level))];
+  const choir = level >= 4;
+  // The rip: noise on a loop, its band and its volume following the finger.
+  const buf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
+  const data = buf.getChannelData(0);
+  // Paper is crackly, not smooth: the noise comes in grains.
+  for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (Math.random() < 0.3 ? 1 : 0.35);
+  const src = ac.createBufferSource();
+  src.buffer = buf;
+  src.loop = true;
+  const band = ac.createBiquadFilter();
+  band.type = 'bandpass';
+  band.Q.value = 0.9;
+  band.frequency.value = 900;
+  const rip = ac.createGain();
+  rip.gain.value = 0.0001;
+  src.connect(band).connect(rip).connect(ac.destination);
+  src.start();
+  // The tone: the chord, low and quiet at first, rising and swelling with the tear.
+  const lp = ac.createBiquadFilter();
+  lp.type = 'lowpass';
+  lp.frequency.value = choir ? 2400 : 1800;
+  const tone = ac.createGain();
+  tone.gain.value = 0.0001;
+  tone.connect(lp).connect(ac.destination);
+  const oscs = chord.flatMap((f) => (choir ? [f * 0.996, f * 1.004] : [f])).map((f) => {
+    const osc = ac.createOscillator();
+    osc.type = choir ? 'sawtooth' : 'triangle';
+    osc.frequency.value = f * 0.8;
+    osc.connect(tone);
+    osc.start();
+    return { osc, f };
+  });
+  const toneLevel = (choir ? 0.022 : 0.05) * vol;
+  let done = false;
+  const end = (release: number) => {
+    if (done) return;
+    done = true;
+    const now = ac.currentTime;
+    rip.gain.setTargetAtTime(0.0001, now, release / 4);
+    tone.gain.setTargetAtTime(0.0001, now, release / 4);
+    src.stop(now + release + 0.1);
+    for (const o of oscs) o.osc.stop(now + release + 0.1);
+  };
+  return {
+    update(progress, speed) {
+      if (done) return;
+      const now = ac.currentTime;
+      const s = Math.max(0, Math.min(1, speed));
+      rip.gain.setTargetAtTime(s > 0.02 ? (0.03 + 0.22 * s) * vol : 0.0001, now, 0.03);
+      band.frequency.setTargetAtTime(700 + 2800 * s, now, 0.05);
+      tone.gain.setTargetAtTime(Math.max(0.0001, toneLevel * Math.max(0, Math.min(1, progress))), now, 0.08);
+      for (const o of oscs) o.osc.frequency.setTargetAtTime(o.f * (0.8 + 0.2 * progress), now, 0.08);
+    },
+    hold() {
+      if (done) return;
+      const now = ac.currentTime;
+      rip.gain.setTargetAtTime(0.0001, now, 0.02);
+      tone.gain.setTargetAtTime(toneLevel * 1.5, now, 0.06);
+      for (const o of oscs) o.osc.frequency.setTargetAtTime(o.f, now, 0.05);
+    },
+    snap() {
+      end(0.35);
+      noise(0.38, 3200, 650, 0.22);
+      play([{ freq: 95, dur: 0.28, type: 'sine', gain: 0.28, slide: 38 }]);
+      play(chord.map((f, i) => ({ freq: f * 2, at: 0.04 + i * 0.035, dur: choir ? 1.2 : 0.7, type: 'triangle' as const, gain: choir ? 0.03 : 0.045 })));
+    },
+    stop() {
+      end(0.15);
+    },
+  };
+}
+
 export const sfx = {
+  /** Tearing a pack by hand (see TearSound); null when sound is off. */
+  tearStart: (level: number) => tearSound(level),
+  /** The foil wrapper crinkling as it's picked up: a handful of tiny dry crackles. */
+  crinkle: () => {
+    for (let i = 0; i < 6; i++) window.setTimeout(() => noise(0.025 + Math.random() * 0.035, 6000, 2500 + Math.random() * 2000, 0.05), i * 32 + Math.random() * 22);
+  },
   /** The wait before the best card's star: a quiet drone rising, its pulse quickening. */
   suspense: (seconds: number) => drone(seconds),
   /** A black hole opening: a deep hum swelling under everything. */
