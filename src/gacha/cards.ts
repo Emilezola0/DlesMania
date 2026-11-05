@@ -209,15 +209,17 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       image: 'https://arcraiders.wiki/w/images/thumb/4/49/ARC_Matriarch.png/400px-ARC_Matriarch.png.webp',
     },
   },
-  // Deadlock: Seven on his card art; on a Hard win, the concept art of the storm he calls down.
+  // Deadlock: the Doorman (the owner's pick; it was Seven, the id stays, so no one loses a card), grinning
+  // in the wiki's painted portrait; on a Hard win, the blue fire of his critical portrait.
   deadlock: {
-    name: 'Seven',
-    title: 'The Storm Caller',
-    line: 'Lightning in a ball, a static charge that stuns and a storm cloud over a whole fight: the hero every new player is warned about.',
+    name: 'The Doorman',
+    title: 'Concierge of the Cursed Apple',
+    line: 'A call bell, a luggage cart and a door to anywhere in the city: every guest of the hotel is welcome, and none of them ever checks out.',
+    image: 'https://cdn.deadlock.wiki/Doorman_Gloat.png',
     awaken: {
-      title: 'Storm Cloud',
-      line: 'The sky over the city goes dark, and every enemy under it hears the thunder before it lands.',
-      image: 'https://cdn.deadlock.wiki/Seven_concept_art.png',
+      title: 'Last Call',
+      line: 'The lights of the Cursed Apple go out, his eyes burn blue, and every door in the city opens on the same room.',
+      image: 'https://cdn.deadlock.wiki/Doorman_Critical.png',
     },
   },
   // Ufouria: O-Chan cheering (the official site's art); on a Hard win, flying over the Earth (the key art).
