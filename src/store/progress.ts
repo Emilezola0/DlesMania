@@ -4,6 +4,7 @@ import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, g
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { persist } from 'zustand/middleware';
+import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
 import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
@@ -221,6 +222,10 @@ interface ProgressState {
   /** Puts entries on the list (`keep`: added by hand — a right answer elsewhere doesn't count against it). */
   addJlptReview: (ids: string[]) => void;
   removeJlptReview: (id: string) => void;
+  /** The words the player added to the list themselves (src/arcade/jlptCustom.ts), by their id ("Custom:word:…"). */
+  jlptCustom: Record<string, CustomWord>;
+  /** A word of the player's own, put on the review list: its id. */
+  addJlptCustom: (w: Omit<CustomWord, 'at'>) => string;
   /** A Review answer: right ones add up (until it's learned and leaves), a wrong one starts over. */
   reviewJlpt: (id: string, right: boolean) => void;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
@@ -604,8 +609,17 @@ export const useProgress = create<ProgressState>()(
       removeJlptReview: (id) =>
         set((s) => {
           const { [id]: _, ...rest } = s.jlptReview;
-          return { jlptReview: rest };
+          // A word of the player's own taken off the list goes with it.
+          if (!isCustomId(id)) return { jlptReview: rest };
+          const { [id]: __, ...words } = s.jlptCustom;
+          return { jlptReview: rest, jlptCustom: words };
         }),
+      jlptCustom: {},
+      addJlptCustom: (w) => {
+        const id = newCustomId();
+        set((s) => ({ jlptCustom: { ...s.jlptCustom, [id]: { ...w, at: Date.now() } }, jlptReview: { ...s.jlptReview, [id]: 0 } }));
+        return id;
+      },
       reviewJlpt: (id, right) =>
         set((s) => {
           if (!(id in s.jlptReview)) return {};
@@ -735,6 +749,10 @@ export const useProgress = create<ProgressState>()(
     },
   ),
 );
+
+// The player's own JLPT words, known to the JLPT data as they are now and whenever they change.
+setCustomWords(useProgress.getState().jlptCustom);
+useProgress.subscribe((s, before) => s.jlptCustom !== before.jlptCustom && setCustomWords(s.jlptCustom));
 
 export interface DaySummary {
   finished: number;

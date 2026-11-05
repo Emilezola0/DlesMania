@@ -11,6 +11,8 @@ import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { JLPT_LEARNED, useProgress } from '../store/progress';
 import { KeepButton } from '../components/JlptKeep';
+import { CUSTOM_LEVEL } from '../arcade/jlptCustom';
+import { kanaFromRomaji, toHiragana } from '../lib/romaji';
 import { GrammarPage } from './JlptGrammarGame';
 
 /** How long a right answer stays shown before the next question. */
@@ -51,7 +53,7 @@ function RunWords({ entries }: { entries: JlptEntry[] }) {
             </span>
             <span className="min-w-0 flex-1 text-sm">
               <span lang="ja" className="block text-ink-soft">
-                {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+                {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level === CUSTOM_LEVEL ? 'added by me' : e.level}</span>
               </span>
               <span className="block">{shortMeaning(e.meaning, 4)}</span>
             </span>
@@ -214,7 +216,7 @@ function Game({ deck }: { deck: JlptDeck }) {
         <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
       )}
       <div ref={arena} className="page relative flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
-        {deck.level === 'All' && <span className="absolute left-3 top-3 rounded-full border border-rule-strong px-2 py-0.5 font-display text-xs text-ink-faint">{q.entry.level}</span>}
+        {deck.level === 'All' && <span className="absolute left-3 top-3 rounded-full border border-rule-strong px-2 py-0.5 font-display text-xs text-ink-faint">{q.entry.level === CUSTOM_LEVEL ? 'added by me' : q.entry.level}</span>}
         {review && (
           <span className="absolute right-3 top-3 font-display text-xs text-ink-faint" title={`${JLPT_LEARNED} right in a row and it's learned`}>
             {'●'.repeat(learning)}
@@ -318,11 +320,98 @@ function Game({ deck }: { deck: JlptDeck }) {
   );
 }
 
-/** The review list: every word kept, to look over or take off. */
+/**
+ * A word of the player's own for the review list: how it's written (kanji, kana or both), its reading
+ * (kana, or romaji turned into kana) and its meaning. The kanji the JLPT list knows are shown as it's typed.
+ */
+function AddWord({ onDone }: { onDone: () => void }) {
+  const add = useProgress((s) => s.addJlptCustom);
+  const lang = useProgress((s) => s.nameLang);
+  const fr = lang === 'fr';
+  const [text, setText] = useState('');
+  const [reading, setReading] = useState('');
+  const [meaning, setMeaning] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const kana = (t: string) => toHiragana(kanaFromRomaji(t.normalize('NFKC').trim().toLowerCase(), true));
+  const onlyKana = (t: string) => /^[\u3040-\u30ffー\s]+$/.test(t);
+  // The reading as it'll be kept: kana as typed, romaji as kana; a word written in kana alone reads as written.
+  const read = reading.trim() ? (onlyKana(reading.trim()) ? reading.trim() : kana(reading)) : onlyKana(text.trim()) ? text.trim() : '';
+  const kanji = kanjiOfWord(text);
+  const submit = () => {
+    const t = text.trim();
+    if (!t) return setError(fr ? 'Écris le mot (en kanji ou en kana).' : 'Write the word (in kanji or kana).');
+    if (!/[\u3040-\u30ff\u3400-\u9fff々]/.test(t)) return setError(fr ? 'Le mot doit être en japonais.' : 'The word must be in Japanese.');
+    if (!read || !onlyKana(read)) return setError(fr ? 'Écris sa lecture, en kana ou en romaji.' : 'Write its reading, in kana or romaji.');
+    if (!meaning.trim()) return setError(fr ? 'Écris son sens.' : 'Write what it means.');
+    add({ text: t, reading: read, meaning: meaning.trim() });
+    sfx.correct();
+    onDone();
+  };
+  const field = 'w-full rounded-md border-2 border-rule-strong bg-card px-3 py-2 outline-none focus:border-ink';
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        submit();
+      }}
+      className="space-y-3 rounded-md border border-rule p-4"
+    >
+      <div className="grid gap-3 sm:grid-cols-3">
+        <label className="space-y-1 text-sm">
+          <span className="font-display text-xs font-bold uppercase tracking-widest text-ink-faint">{fr ? 'Mot (kanji)' : 'Word (kanji)'}</span>
+          <input name="jlpt-add-text" value={text} onChange={(e) => (setText(e.target.value), setError(null))} lang="ja" placeholder="勉強" autoComplete="off" className={`${field} font-serif text-xl`} autoFocus />
+        </label>
+        <label className="space-y-1 text-sm">
+          <span className="font-display text-xs font-bold uppercase tracking-widest text-ink-faint">{fr ? 'Lecture' : 'Reading'}</span>
+          <input name="jlpt-add-reading" value={reading} onChange={(e) => (setReading(e.target.value), setError(null))} lang="ja" placeholder={fr ? 'べんきょう ou benkyou' : 'べんきょう or benkyou'} autoComplete="off" autoCapitalize="off" spellCheck={false} className={`${field} text-lg`} />
+          {reading.trim() && read !== reading.trim() && (
+            <span lang="ja" className="block text-xs text-ink-soft">
+              → {read}
+            </span>
+          )}
+        </label>
+        <label className="space-y-1 text-sm">
+          <span className="font-display text-xs font-bold uppercase tracking-widest text-ink-faint">{fr ? 'Sens' : 'Meaning'}</span>
+          <input name="jlpt-add-meaning" value={meaning} onChange={(e) => (setMeaning(e.target.value), setError(null))} placeholder={fr ? 'étudier' : 'to study'} autoComplete="off" className={`${field} text-lg`} />
+        </label>
+      </div>
+      {/* Its kanji, as the JLPT list reads them and what they mean. */}
+      {kanji.length > 0 && (
+        <ul className="space-y-1 border-t border-rule pt-2 text-sm">
+          {kanji.map((k) => (
+            <li key={k.id} className="flex items-baseline gap-3">
+              <span lang="ja" className="font-serif text-2xl font-bold">
+                {k.text}
+              </span>
+              <span lang="ja" className="text-ink-soft">
+                {k.reading}
+              </span>
+              <span className="min-w-0 flex-1 truncate text-ink-faint">{shortMeaning(k.meaning)}</span>
+              <span className="text-xs text-ink-faint">{k.level}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {error && <p className="text-sm font-semibold text-coral">{error}</p>}
+      <div className="flex gap-2">
+        <button type="submit" className="btn-accent rounded-md px-5 py-2 font-display font-bold tracking-wider">
+          {fr ? 'Ajouter à ma liste' : 'Add to my list'}
+        </button>
+        <button type="button" onClick={onDone} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
+          {fr ? 'Annuler' : 'Cancel'}
+        </button>
+      </div>
+    </form>
+  );
+}
+
+/** The review list: every word kept, to look over or take off, and words of the player's own to add. */
 function ReviewList() {
   const list = useProgress((s) => s.jlptReview);
   const remove = useProgress((s) => s.removeJlptReview);
+  const lang = useProgress((s) => s.nameLang);
   const [open, setOpen] = useState(false);
+  const [adding, setAdding] = useState(false);
   const ids = Object.keys(list).filter((id) => jlptEntry(id));
   return (
     <section className="page space-y-4 rounded-md p-5 ring-2 ring-ochre/50">
@@ -336,6 +425,11 @@ function ReviewList() {
               : 'Empty for now: the words you miss land here, and so do the ones you star (☆) while playing.'}
           </p>
         </div>
+        {!adding && (
+          <button type="button" onClick={() => (sfx.click(), setAdding(true))} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
+            {lang === 'fr' ? '＋ Ajouter un mot' : '＋ Add a word'}
+          </button>
+        )}
         {ids.length > 0 && (
           <>
             <button type="button" onClick={() => setOpen(!open)} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
@@ -347,6 +441,7 @@ function ReviewList() {
           </>
         )}
       </div>
+      {adding && <AddWord onDone={() => (setAdding(false), setOpen(true))} />}
       {open && (
         <ul className="grid gap-2 sm:grid-cols-2">
           {ids.map((id) => {
@@ -358,7 +453,7 @@ function ReviewList() {
                 </span>
                 <span className="min-w-0 flex-1 text-sm">
                   <span lang="ja" className="block text-ink-soft">
-                    {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level}</span>
+                    {e.reading !== e.text && e.reading} <span className="text-xs text-ink-faint">· {e.level === CUSTOM_LEVEL ? 'added by me' : e.level}</span>
                   </span>
                   <span className="block truncate text-ink-faint">{shortMeaning(e.meaning)}</span>
                 </span>

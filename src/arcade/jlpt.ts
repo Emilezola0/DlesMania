@@ -2,6 +2,7 @@ import data from '../data/jlpt.json';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32, shuffle } from '../lib/rng';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
+import { CUSTOM_LEVEL, customWord, isCustomId } from './jlptCustom';
 
 /** A word or a kanji: what's written, how it's read, what it means. */
 export interface JlptEntry {
@@ -104,7 +105,12 @@ export const KANA_DECKS: JlptDeck[] = [kanaDeck('hiragana'), kanaDeck('katakana'
 
 export const JLPT_DECKS = [...JLPT_LEVELS.flatMap((l) => l.decks), ...JLPT_THEMES, ...KANA_DECKS];
 const ENTRY_BY_ID = new Map(JLPT_DECKS.flatMap((d) => d.entries.map((e) => [e.id, e] as const)));
-export const jlptEntry = (id: string) => ENTRY_BY_ID.get(id);
+/** An entry by its id: the list's, or a word the player added to their review list (src/arcade/jlptCustom.ts). */
+export const jlptEntry = (id: string): JlptEntry | undefined => {
+  if (!isCustomId(id)) return ENTRY_BY_ID.get(id);
+  const w = customWord(id);
+  return w && { id, text: w.text, reading: w.reading, meaning: w.meaning, level: CUSTOM_LEVEL };
+};
 
 /**
  * The review deck: the words and kanji the player keeps in their list (missed ones go in by themselves).
@@ -116,7 +122,8 @@ export function reviewDeck(ids: string[]): JlptDeck {
 
 export const jlptDeck = (id: string) => JLPT_DECKS.find((d) => d.id === id);
 /** The deck an entry comes from ("N3:vocab:12" → N3 Vocabulary). */
-export const homeDeck = (e: JlptEntry) => JLPT_DECKS.find((d) => d.id === `${e.level.toLowerCase()}-${e.id.split(':')[1]}`)!;
+// (A word the player added has no deck: its wrong answers come from the N5 words.)
+export const homeDeck = (e: JlptEntry) => JLPT_DECKS.find((d) => d.id === `${e.level.toLowerCase()}-${e.id.split(':')[1]}`) ?? JLPT_DECKS.find((d) => d.id === 'n5-vocab')!;
 
 /** The first few senses only: some entries list a dozen. */
 export const shortMeaning = (m: string, senses = 3) => m.split(/;\s*|,\s*/).slice(0, senses).join(', ');
