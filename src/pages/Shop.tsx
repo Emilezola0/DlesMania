@@ -9,7 +9,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type Pack } from '../gacha/packs';
+import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 import { Quests } from '../gacha/Quests';
@@ -195,7 +195,7 @@ export default function Shop() {
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));
-  const [opening, setOpening] = useState<{ pack: Pack; cards: Card[]; fresh: Set<string>; key: number } | null>(null);
+  const [opening, setOpening] = useState<{ pack: Pack; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; key: number } | null>(null);
   const missions = missionsFor(econ.date);
   const collected = useMemo(() => CARDS.filter((c) => owned[c.id]).length, [owned]);
 
@@ -208,7 +208,7 @@ export default function Shop() {
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, cards, fresh, key: Date.now() });
+    setOpening({ pack: p, cards, events: pull.events, fresh, key: Date.now() });
   };
   /** Five packs at once: 25 cards in one opening, the rarest last. */
   const MANY = 5;
@@ -223,7 +223,7 @@ export default function Shop() {
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, cards, fresh, key: Date.now() });
+    setOpening({ pack: p, cards, events: pull.events, fresh, key: Date.now() });
   };
 
   const general = PACKS.filter((p) => !p.boss);
@@ -394,6 +394,7 @@ export default function Shop() {
             Every card grade reached: Bronze, Silver, Gold, Radiant, Celestial, Singularity and Elemental pay {GRADE_REWARD_SHARE[2]}×, {GRADE_REWARD_SHARE[3]}×, {GRADE_REWARD_SHARE[4]}×, {GRADE_REWARD_SHARE[5]}×, {GRADE_REWARD_SHARE[6]}×, {GRADE_REWARD_SHARE[7]}× and {GRADE_REWARD_SHARE[ELEMENT_GRADE]}× what the four spares would fetch traded in — a Common's Bronze {gradeReward('common', 2)}, a Legendary's Singularity {gradeReward('legendary', 7)}. Singularity also asks for the card's boss beaten on Hell. At Elemental you pick the card's element (Water, Air, Fire, Earth, Light or Darkness; changing it later costs {ELEMENT_SWITCH_COST} coins), and its spare copies fetch ×{RESALE_BONUS} traded in.
           </li>
           <li>Three missions a day, three a week and three a month, a bonus each.</li>
+          <li>Watch the sky as a pack opens: now and then two planets embrace and its best card goes up (a Rare to Epic or even Legendary, an Epic to Legendary), a supernova turns it Mythic, a Big Bang turns a Legendary Omni. Whatever colour the pack tears open in, it may still hold more.</li>
         </ul>
         <p className="pt-1 text-xs">Every rarity's odds, per card and per pack: see Drop rates above.</p>
       </section>
@@ -403,6 +404,7 @@ export default function Shop() {
           key={opening.key}
           pack={opening.pack}
           cards={opening.cards}
+          events={opening.events}
           fresh={opening.fresh}
           canAgain={coins >= opening.pack.cost}
           onAgain={() => buy(opening.pack)}

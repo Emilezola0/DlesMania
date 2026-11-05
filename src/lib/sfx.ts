@@ -222,6 +222,54 @@ export const sfx = {
     noise(0.7, 2600, 120, 0.12);
     play([{ freq: 1800, dur: 0.7, type: 'sine', gain: 0.04, slide: 80 }]);
   },
+  /** Two planets drawn together: a low hum rising, their two tones closing in on one. */
+  planets: (seconds: number) => {
+    drone(seconds, 0.03);
+    play([
+      { freq: 110, dur: seconds, type: 'sine', gain: 0.07, slide: 220 },
+      { freq: 330, dur: seconds, type: 'triangle', gain: 0.02, slide: 220 },
+    ]);
+  },
+  /** Two planets becoming one: a soft impact, then a bright major chord. */
+  embrace: () => {
+    noise(0.6, 1800, 200, 0.12);
+    play([
+      { freq: 220, dur: 0.6, type: 'sine', gain: 0.16, slide: 110 },
+      { freq: 523, at: 0.1, dur: 0.9, type: 'triangle', gain: 0.05 },
+      { freq: 659, at: 0.18, dur: 0.9, type: 'triangle', gain: 0.05 },
+      { freq: 784, at: 0.26, dur: 1.1, type: 'triangle', gain: 0.05 },
+      { freq: 1047, at: 0.34, dur: 1.2, type: 'sine', gain: 0.04 },
+    ]);
+  },
+  /** A star swelling before it blows: a rising, unsteady roar. */
+  swell: (seconds: number) => {
+    drone(seconds, 0.045);
+    noise(seconds, 200, 1400, 0.05);
+    play([{ freq: 70, dur: seconds, type: 'sawtooth', gain: 0.03, slide: 180 }]);
+  },
+  /** A supernova: a huge crack, a long falling boom, glittering after. */
+  supernova: () => {
+    noise(1.4, 5000, 80, 0.22);
+    play([
+      { freq: 90, dur: 1.6, type: 'sine', gain: 0.22, slide: 30 },
+      { freq: 180, dur: 0.8, type: 'square', gain: 0.03, slide: 50 },
+      ...[1568, 1976, 2349, 2637, 3136].map((freq, k) => ({ freq, at: 0.25 + k * 0.09, dur: 0.4, type: 'triangle' as const, gain: 0.025 })),
+    ]);
+  },
+  /** Before the Big Bang: everything drawn in to a point, a deep falling hum, then silence. */
+  collapse: (seconds: number) => {
+    play([{ freq: 160, dur: seconds, type: 'sine', gain: 0.09, slide: 30 }]);
+    noise(seconds * 0.8, 3000, 60, 0.05);
+  },
+  /** The Big Bang: the deepest boom of all, a rush outward, a choir of high tones. */
+  bigBang: () => {
+    noise(2.2, 6000, 60, 0.26);
+    play([
+      { freq: 45, dur: 2.4, type: 'sine', gain: 0.26, slide: 25 },
+      { freq: 90, dur: 1.4, type: 'sawtooth', gain: 0.04, slide: 40 },
+      ...[523, 659, 784, 1047, 1319, 1568].map((freq, k) => ({ freq, at: 0.4 + k * 0.12, dur: 1.6, type: 'sine' as const, gain: 0.035 })),
+    ]);
+  },
   /** Two stars crashing together and bursting: a crack, a low boom, and sparkles. */
   clash: () => {
     noise(0.5, 3500, 250, 0.16);

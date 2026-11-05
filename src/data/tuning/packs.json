@@ -61,6 +61,12 @@
       }
     ]
   },
+  "cosmic": {
+    "collision": 0.02,
+    "collisionToLegendary": 0.15,
+    "supernova": 0.0025,
+    "bigBang": 0.015
+  },
   "franchise": {
     "cost": 150,
     "icon": "👑",

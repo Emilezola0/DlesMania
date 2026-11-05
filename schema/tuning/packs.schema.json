@@ -197,6 +197,19 @@
       "additionalProperties": false,
       "title": "Domain packs"
     },
+    "cosmic": {
+      "type": "object",
+      "title": "Cosmic events",
+      "description": "Rolled per pack as it is bought (so skipping the animation loses nothing): two planets embrace and its best card goes up a rarity or two, a supernova turns it Mythic, a Big Bang turns a Legendary Omni.",
+      "properties": {
+        "collision": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack whose best card is Rare or Epic sees two planets embrace: Rare becomes Epic (or Legendary), Epic becomes Legendary" },
+        "collisionToLegendary": { "type": "number", "minimum": 0, "maximum": 1, "description": "When a Rare's planets embrace: the chance it goes straight to Legendary instead of Epic" },
+        "supernova": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack's best card (below Mythic) is swallowed by a supernova and comes back Mythic" },
+        "bigBang": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a pack with a Legendary sees a Big Bang: the Legendary is reborn Omni" }
+      },
+      "required": ["collision", "collisionToLegendary", "supernova", "bigBang"],
+      "additionalProperties": false
+    },
     "franchise": {
       "type": "object",
       "properties": {
@@ -230,6 +243,7 @@
     }
   },
   "required": [
+    "cosmic",
     "packSize",
     "odds",
     "topCap",

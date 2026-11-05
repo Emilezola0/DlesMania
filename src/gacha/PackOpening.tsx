@@ -9,7 +9,7 @@ import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarit
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
-import { clampPity, PITY_MAX, pityLuck, type Pack } from './packs';
+import { clampPity, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
 const TEAR_AT = 18;
@@ -74,6 +74,10 @@ interface Star {
   duration: number;
   top: number;
   tilt: number;
+  /** A cosmic event its card went through (rolled at the pull: two planets embracing, a supernova, a Big Bang). */
+  event?: CosmicKind;
+  /** The sky holds its breath before it (the best card's star, and every cosmic event). */
+  climax?: boolean;
 }
 /**
  * How often a pack plays a fake-out: its best card, when Epic or better, poses as one rarity lower — its
@@ -89,6 +93,22 @@ const LAST_STAR_PAUSE = 1500;
  */
 const CLASH_AT = 820;
 const BOOM = 850;
+/** How long each cosmic event plays (ms), and when, in it, the card's new colour bursts out. */
+const COSMIC_MS: Record<CosmicKind, number> = { collision: 4200, supernova: 5000, bigbang: 5800 };
+const COSMIC_BOOM: Record<CosmicKind, number> = { collision: 2900, supernova: 3300, bigbang: 3500 };
+const COSMIC_NAME: Record<CosmicKind, { icon: string; name: string }> = {
+  collision: { icon: '🪐', name: 'TWO PLANETS EMBRACE' },
+  supernova: { icon: '💥', name: 'SUPERNOVA' },
+  bigbang: { icon: '🌌', name: 'BIG BANG' },
+};
+/** What each event did, said under the card. */
+const COSMIC_DONE: Record<CosmicKind, string> = {
+  collision: 'Two planets embraced',
+  supernova: 'Reborn from a supernova',
+  bigbang: 'Born in the Big Bang',
+};
+/** The order the events play in, the greatest last. */
+const COSMIC_KINDS_ORDER: CosmicKind[] = ['collision', 'supernova', 'bigbang'];
 const flight = (r: Rarity) => (prismatic(r) ? 1400 : r === 'legendary' ? 1100 : 850);
 
 /** Legendary and up: the card spins as it charges, faster and faster — turns in the charge's time (see turn()). */
@@ -111,7 +131,7 @@ const ORBIT_GAP = 420;
  * last star comes as usual (evolving or not). A swallowed star's card comes last, with an anomaly to keep or not.
  * For testing, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
  */
-function cosmosFor(cards: Card[], rand: () => number = Math.random): { hole: boolean; stars: Star[]; swallowed: Map<number, AnomalyId> } {
+function cosmosFor(cards: Card[], events: Map<number, CosmicEvent>, rand: () => number = Math.random): { hole: boolean; stars: Star[]; swallowed: Map<number, AnomalyId> } {
   let force: string | null = null;
   try {
     force = localStorage.getItem('omnidle-force-anomaly');
@@ -121,30 +141,40 @@ function cosmosFor(cards: Card[], rand: () => number = Math.random): { hole: boo
   // "1": a black hole and a swallowed star; or the name of an anomaly, to get that one.
   const forced = force === '1' || (ANOMALY_IDS as string[]).includes(force ?? '');
   const roll = () => ((ANOMALY_IDS as string[]).includes(force ?? '') ? (force as AnomalyId) : rollAnomaly(rand));
-  const hole = cards.length > 1 && (forced || rand() < BLACK_HOLE_CHANCE);
-  const stars = starsFor(cards, hole, rand);
+  const regular = cards.length - events.size;
+  const hole = regular > 1 && (forced || rand() < BLACK_HOLE_CHANCE);
+  const stars = starsFor(cards, hole, events, rand);
   const swallowed = new Map<number, AnomalyId>();
   if (!hole) return { hole, stars, swallowed };
-  const candidates = stars.slice(0, -1).map((_, k) => k);
+  // Never the last ordinary star (the best card's) nor a cosmic event's.
+  const candidates = stars.slice(0, regular - 1).map((_, k) => k);
   for (const k of candidates) if (rand() < ABSORB_CHANCE) swallowed.set(k, roll());
   if (forced && !swallowed.size && candidates.length) swallowed.set(candidates[Math.floor(rand() * candidates.length)], roll());
   return { hole, stars, swallowed };
 }
 
-function starsFor(cards: Card[], hole: boolean, rand: () => number = Math.random): Star[] {
+function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>, rand: () => number = Math.random): Star[] {
   // Now and then the best card (Epic or better: the smallest fake-out is Rare → Epic) shows a rarity lower,
-  // and evolves on the way. The cards come sorted, the best last.
-  const last = cards.length - 1;
+  // and evolves on the way. The cards come sorted, the best last — then the cosmic events' cards, each its own scene.
+  const last = cards.length - events.size - 1;
   const evolving = last >= 0 && RARITIES.indexOf(cards[last].rarity) >= 2 && rand() < EVOLVE_CHANCE ? last : -1;
   let at = 0;
   let clear = 0;
   return cards.map((c, i) => {
+    const ev = events.get(i);
+    if (ev) {
+      // A cosmic event: once the sky is empty, a breath, then its scene (the star first in the card's old colour).
+      const delay = Math.max(at, clear) + LAST_STAR_PAUSE;
+      const star: Star = { to: c.rarity, from: ev.from.rarity, delay, duration: COSMIC_MS[ev.kind], top: 40, tilt: -12 - rand() * 10, event: ev.kind, climax: true };
+      at = clear = delay + star.duration;
+      return star;
+    }
     // The last star waits for the sky to empty, then a moment more.
     if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
     const from = i === evolving ? RARITIES[RARITIES.indexOf(c.rarity) - 1] : c.rarity;
     // With a black hole, every star but the last circles it first: a longer way.
     const orbit = hole && i !== last;
-    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16 };
+    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0 };
     // Many cards (five packs at once): the stars come closer together.
     const gap = orbit ? ORBIT_GAP : STAR_GAP;
     at += (cards.length > 5 ? gap / 2.5 : gap) + (top(c.rarity) && !orbit ? 250 : 0);
@@ -287,13 +317,55 @@ function Clash({ star, thick }: { star: Star; thick: number }) {
   );
 }
 
-/** The black hole: a disc of darkness ringed with light, bending what's behind it; it opens, then closes at `until` ms. */
-function BlackHole({ until }: { until: number }) {
+/**
+ * The black hole: a disc of darkness ringed with light, bending what's behind it. Hot dust spirals into it
+ * (in the colours of the pack's stars), its disc streams across in front, a photon ring glows round its edge;
+ * each star it swallows (at the times in `gulps`) makes it flare and spit two jets. It opens, then closes at `until` ms.
+ */
+function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; tints: string[] }) {
+  const dust = useMemo(
+    () =>
+      Array.from({ length: 42 }, (_, i) => ({
+        angle: Math.random() * 360,
+        r: 16 + Math.random() * 26,
+        duration: 1.4 + Math.random() * 1.8,
+        delay: -Math.random() * 3.2,
+        size: 1.5 + Math.random() * 3,
+        color: i % 3 ? (tints[i % tints.length] ?? '#fff') : '#ffd9a0',
+      })),
+    // Drawn once a pack.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  const [gulp, setGulp] = useState(0);
+  useEffect(() => {
+    const ts = gulps.map((t) => window.setTimeout(() => setGulp((g) => g + 1), t));
+    return () => ts.forEach((t) => window.clearTimeout(t));
+  }, [gulps]);
   return (
     <div className="pack-hole pointer-events-none absolute z-10" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, ['--hole-life' as string]: `${until + 600}ms` }} aria-hidden>
+      <div className="pack-hole-glow" />
       <div className="pack-hole-lens" />
       <div className="pack-hole-disc" />
+      <div className="pack-hole-band" />
+      {dust.map((d, i) => (
+        <div key={i} className="pack-hole-arm" style={{ rotate: `${d.angle}deg` }}>
+          <span
+            className="pack-hole-dust"
+            style={{ width: d.size * 2.4, height: d.size, marginLeft: -d.size, marginTop: -d.size / 2, background: d.color, boxShadow: `0 0 ${d.size * 3}px ${d.color}`, ['--r' as string]: `${d.r}vmin`, animationDuration: `${d.duration}s`, animationDelay: `${d.delay}s` }}
+          />
+        </div>
+      ))}
       <div className="pack-hole-core" />
+      <div className="pack-hole-photon" />
+      <div className="pack-hole-band pack-hole-band-front" />
+      {gulp > 0 && (
+        <div key={gulp}>
+          <div className="pack-hole-flare" />
+          <div className="pack-hole-jet" />
+          <div className="pack-hole-jet pack-hole-jet-down" />
+        </div>
+      )}
     </div>
   );
 }
@@ -325,10 +397,14 @@ function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: 
   }, [swallowed, star]);
   return (
     <>
-      <div
-        className={`${swallowed ? 'pack-orbit-in' : 'pack-orbit'} absolute left-0 top-0 rounded-full`}
-        style={{ width: top(star.to) ? 90 : 64, height: thick + 1, offsetPath: `path('${path}')`, offsetRotate: 'auto', animationDuration: `${star.duration}ms`, animationDelay: `${star.delay}ms`, ...streak(star.to) }}
-      />
+      {/* Its afterglow, a beat behind on the same way, then the star itself (stretched thin as it's pulled in). */}
+      {[110, 0].map((lag) => (
+        <div
+          key={lag}
+          className={`${swallowed ? 'pack-orbit-in' : 'pack-orbit'} ${lag ? 'pack-orbit-ghost' : ''} absolute left-0 top-0 rounded-full`}
+          style={{ width: (top(star.to) ? 90 : 64) * (lag ? 1.8 : 1), height: thick + 1, offsetPath: `path('${path}')`, offsetRotate: 'auto', animationDuration: `${star.duration}ms`, animationDelay: `${star.delay + lag}ms`, ...streak(star.to) }}
+        />
+      ))}
       {/* Swallowed: a spark where it went in. */}
       {spark && (
         <div className="absolute" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, width: 0, height: 0 }}>
@@ -339,6 +415,206 @@ function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: 
         </div>
       )}
     </>
+  );
+}
+
+/** A state that turns true `ms` after the scene mounts (the scenes count from the meteor phase's start). */
+function useAt(ms: number) {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setOn(true), ms);
+    return () => window.clearTimeout(t);
+  }, [ms]);
+  return on;
+}
+
+/** Specks rushing in from all around to the middle of the screen (the Big Bang's gathering; a supernova's feeding). */
+function Converge({ colors, count, delay, spread }: { colors: string[]; count: number; delay: number; spread: number }) {
+  const specks = useMemo(
+    () =>
+      Array.from({ length: count }, (_, i) => {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = spread * (0.6 + Math.random() * 0.6);
+        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 2 + Math.random() * 4, delay: delay + Math.random() * 1600, color: colors[i % colors.length] };
+      }),
+    // Drawn once a scene.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+  return (
+    <>
+      {specks.map((p, i) => (
+        <span key={i} className="pack-converge absolute rounded-full" style={{ width: p.size, height: p.size, background: p.color, boxShadow: `0 0 10px ${p.color}`, ['--dx' as string]: `${p.dx}vmin`, ['--dy' as string]: `${p.dy}vmin`, animationDelay: `${p.delay}ms` }} />
+      ))}
+    </>
+  );
+}
+
+/** The name of a cosmic event across the top as it starts, and what it made of the card once it bursts. */
+function CosmicTitle({ star, boom }: { star: Star; boom: boolean }) {
+  const ev = COSMIC_NAME[star.event!];
+  const on = useAt(star.delay);
+  if (!on) return null;
+  const name = (r: Rarity) => RARITY_INFO[r].name.toUpperCase();
+  return (
+    <div className="absolute inset-x-0 top-[9%] z-30 px-4 text-center">
+      <p className="pack-cosmic-title font-display text-2xl font-black tracking-[0.3em] text-white sm:text-4xl">
+        {ev.icon} {ev.name}
+      </p>
+      {boom && (
+        <p className="pack-cosmic-result mt-2 font-display text-lg font-black tracking-[0.25em] sm:text-2xl">
+          <span style={{ color: RARITY_LIGHT[star.from] }}>{name(star.from)}</span>
+          <span className="text-white"> → </span>
+          <span className={star.to === 'omni' ? 'card-omni-name' : star.to === 'mythic' ? 'card-mythic-name' : ''} style={prismatic(star.to) ? undefined : { color: RARITY_LIGHT[star.to] }}>
+            {name(star.to)}
+          </span>
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** A planet, lit from the top left, in a colour (a ring round it if `ringed`). */
+function Planet({ color, size, ringed }: { color: string; size: string; ringed?: boolean }) {
+  return (
+    <div className="absolute rounded-full" style={{ width: size, height: size, translate: '-50% -50%', background: `radial-gradient(circle at 32% 28%, #fff 0%, ${color} 22%, ${color}cc 45%, #120a24 88%)`, boxShadow: `0 0 40px ${color}aa, inset -8px -10px 24px #0008` }}>
+      {ringed && <div className="pack-cosmic-ring absolute left-1/2 top-1/2 rounded-[50%] border-[3px]" style={{ borderColor: `${color}cc`, boxShadow: `0 0 16px ${color}` }} />}
+    </div>
+  );
+}
+
+/**
+ * Two planets embrace: the card's star and another, as two planets in its old colour, are drawn together in a
+ * tightening spiral, faster and faster, a halo growing between them — then meet, and one planet is born in the
+ * rarity the card became, ringed and blazing.
+ */
+function Embrace({ star }: { star: Star }) {
+  const boom = useAt(star.delay + COSMIC_BOOM.collision);
+  const old = RARITY_LIGHT[star.from];
+  const now = RARITY_LIGHT[star.to];
+  const dance = { animationDuration: `${COSMIC_BOOM.collision}ms`, animationDelay: `${star.delay}ms` };
+  return (
+    <div className="absolute inset-0">
+      <CosmicTitle star={star} boom={boom} />
+      <div className="absolute left-1/2 top-[50%] h-0 w-0">
+        {!boom && (
+          <>
+            <div className="pack-embrace-halo absolute left-0 top-0 rounded-full" style={{ ...dance, background: `radial-gradient(circle, #fff8, ${old}66 30%, transparent 70%)` }} />
+            <div className="pack-embrace absolute left-0 top-0 h-0 w-0" style={dance}>
+              {[1, -1].map((side) => (
+                <div key={side} className="pack-embrace-arm absolute left-0 top-0 h-0 w-0" style={{ ...dance, ['--side' as string]: side }}>
+                  <Planet color={old} size={side > 0 ? '12vmin' : '9vmin'} ringed={side > 0} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {boom && (
+          <>
+            <div className="pack-clash-boom absolute left-0 top-0 size-60 rounded-full" style={{ background: `radial-gradient(circle, #fff 10%, ${now} 40%, transparent 70%)` }} />
+            {[0, 160, 320].map((d) => (
+              <div key={d} className="pack-shock absolute left-0 top-0 size-40 rounded-full border-4" style={{ borderColor: now, boxShadow: `0 0 30px ${now}`, animationDelay: `${d}ms` }} />
+            ))}
+            <div className="pack-planet-born absolute left-0 top-0 h-0 w-0" style={{ animationDuration: `${COSMIC_MS.collision - COSMIC_BOOM.collision}ms` }}>
+              <Planet color={now} size="17vmin" ringed />
+            </div>
+            <Burst color={now} count={top(star.to) ? 80 : 56} />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** The card's star flying in from the left to the middle of the screen (fed to a supernova, or to the Big Bang). */
+function Feed({ star, r }: { star: Star; r: Rarity }) {
+  return (
+    <div className="absolute left-0 top-[50%] w-1/2" style={{ transform: `rotate(${star.tilt * 0.4}deg)`, transformOrigin: '100% 50%' }}>
+      <div className="pack-nova-feed relative ml-auto h-[7px] w-[35vw] rounded-full" style={{ animationDelay: `${star.delay}ms`, ...streak(r) }} />
+    </div>
+  );
+}
+
+/**
+ * A supernova: a giant star burns in the middle; the card's star flies into it and is swallowed; the giant
+ * swells, red and trembling, collapses to a point — and explodes in every colour, rings of light racing out,
+ * a rainbow nebula left behind.
+ */
+function Supernova({ star }: { star: Star }) {
+  const boom = useAt(star.delay + COSMIC_BOOM.supernova);
+  const old = RARITY_LIGHT[star.from];
+  const life = { animationDuration: `${COSMIC_BOOM.supernova}ms`, animationDelay: `${star.delay}ms` };
+  return (
+    <div className="absolute inset-0">
+      <CosmicTitle star={star} boom={boom} />
+      {!boom && <Feed star={star} r={star.from} />}
+      <div className="absolute left-1/2 top-[50%] h-0 w-0">
+        {!boom && (
+          <>
+            <div className="pack-nova-star absolute left-0 top-0 rounded-full" style={{ ...life, ['--fed' as string]: old }}>
+              <div className="pack-nova-corona absolute -inset-[60%] rounded-full" />
+            </div>
+            <Converge colors={['#ffd27a', old, '#ff7a3c']} count={30} delay={star.delay + 1000} spread={40} />
+          </>
+        )}
+        {boom && (
+          <>
+            <div className="pack-nova-nebula absolute left-0 top-0 rounded-full" />
+            <div className="pack-clash-boom absolute left-0 top-0 size-72 rounded-full" style={{ background: `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 72%)` }} />
+            {RAINBOW.slice(0, 4).map((c, k) => (
+              <div key={c} className="pack-shock pack-shock-wide absolute left-0 top-0 size-40 rounded-full border-[6px]" style={{ borderColor: c, boxShadow: `0 0 40px ${c}`, animationDelay: `${k * 140}ms` }} />
+            ))}
+            <Burst color="#fff" rainbow count={100} />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The Big Bang: the sky goes dark; the Legendary's star flies to the middle and shrinks to a single point while
+ * every last speck of light is drawn into it; a breath of perfect stillness — then everything is born at once:
+ * a white flash, a red and gold wave filling the screen, new stars flung out across a new sky.
+ */
+function BigBang({ star }: { star: Star }) {
+  const boom = useAt(star.delay + COSMIC_BOOM.bigbang);
+  const gold = RARITY_LIGHT.legendary;
+  const newborn = useMemo(
+    () =>
+      Array.from({ length: 70 }, (_, i) => {
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 15 + Math.random() * 70;
+        return { dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist, size: 1.5 + Math.random() * 3, delay: Math.random() * 300, color: ['#fff', '#ffcd3c', '#ff3b4e', '#ffe9c4'][i % 4] };
+      }),
+    [],
+  );
+  return (
+    <div className="absolute inset-0">
+      <div className="pack-bb-veil absolute inset-0 bg-black" style={{ animationDelay: `${star.delay}ms`, animationDuration: `${COSMIC_MS.bigbang}ms` }} />
+      <CosmicTitle star={star} boom={boom} />
+      {!boom && <Feed star={star} r={star.from} />}
+      <div className="absolute left-1/2 top-[50%] h-0 w-0">
+        {!boom && (
+          <>
+            <div className="pack-bb-seed absolute left-0 top-0 rounded-full" style={{ animationDelay: `${star.delay}ms`, animationDuration: `${COSMIC_BOOM.bigbang}ms`, ['--glow' as string]: gold }} />
+            <Converge colors={['#fff', gold, '#ffe9c4', '#cfe0ff']} count={60} delay={star.delay + 900} spread={70} />
+          </>
+        )}
+        {boom && (
+          <>
+            <div className="pack-bb-wave absolute left-0 top-0 rounded-full" />
+            {['#fff', '#ffcd3c', '#ff3b4e'].map((c, k) => (
+              <div key={c} className="pack-shock pack-shock-huge absolute left-0 top-0 size-40 rounded-full border-[8px]" style={{ borderColor: c, boxShadow: `0 0 50px ${c}`, animationDelay: `${k * 180}ms` }} />
+            ))}
+            {newborn.map((p, i) => (
+              <span key={i} className="pack-bb-newborn absolute left-0 top-0 rounded-full" style={{ width: p.size, height: p.size, background: p.color, boxShadow: `0 0 8px ${p.color}`, ['--dx' as string]: `${p.dx}vmax`, ['--dy' as string]: `${p.dy}vmax`, animationDelay: `${p.delay}ms` }} />
+            ))}
+            <Burst color="#ffcd3c" count={120} />
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -458,22 +734,46 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
  * the best card inside — or of the rarity it poses as, when its star is about to evolve), a shooting star crosses the screen per card, the cards come one at a time from
  * the deck — rarer ones charge up before they turn, then burst — and the five are laid out together.
  */
-export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: { pack: Pack; cards: Card[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
+export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain, canAgain }: { pack: Pack; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
   const counts = useProgress((s) => s.cards);
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
   // …with a black hole now and then, and the stars it swallows (their cards come last, with an anomaly to keep or not).
-  const cosmos = useMemo(() => cosmosFor(cards), [cards]);
+  // The cards a cosmic event made (rolled at the pull: they're already the player's) come after the others,
+  // the greatest event last: each its own scene once the ordinary stars have crossed.
+  const { ordered, evAt } = useMemo(() => {
+    const used = new Set<number>();
+    const found: [number, CosmicEvent][] = [];
+    for (const e of events) {
+      const k = cards.findIndex((c, j) => c === e.to && !used.has(j));
+      if (k >= 0) (used.add(k), found.push([k, e]));
+    }
+    found.sort((a, b) => COSMIC_KINDS_ORDER.indexOf(a[1].kind) - COSMIC_KINDS_ORDER.indexOf(b[1].kind) || RARITIES.indexOf(a[1].to.rarity) - RARITIES.indexOf(b[1].to.rarity));
+    const rest = cards.filter((_, j) => !used.has(j));
+    return { ordered: [...rest, ...found.map(([k]) => cards[k])], evAt: new Map(found.map(([, e], j) => [rest.length + j, e])) };
+  }, [cards, events]);
+  const regular = ordered.length - evAt.size;
+  const cosmos = useMemo(() => cosmosFor(ordered, evAt), [ordered, evAt]);
   const stars = cosmos.stars;
-  const deck = useMemo(() => [...cards.filter((_, k) => !cosmos.swallowed.has(k)), ...cards.filter((_, k) => cosmos.swallowed.has(k))], [cards, cosmos]);
+  // The deck: the ordinary cards, those back from the black hole, then the cosmic events'.
+  const order = useMemo(() => {
+    const ks = ordered.map((_, k) => k).filter((k) => !evAt.has(k));
+    return [...ks.filter((k) => !cosmos.swallowed.has(k)), ...ks.filter((k) => cosmos.swallowed.has(k)), ...evAt.keys()];
+  }, [ordered, evAt, cosmos]);
+  const deck = useMemo(() => order.map((k) => ordered[k]), [order, ordered]);
   /** The anomaly each card of the deck came back with (by its place in the deck), and what the player said. */
   const pending = useMemo(() => {
     const m = new Map<number, AnomalyId>();
-    const back = [...cosmos.swallowed.entries()];
-    back.forEach(([, a], j) => m.set(deck.length - back.length + j, a));
+    order.forEach((k, p) => cosmos.swallowed.has(k) && m.set(p, cosmos.swallowed.get(k)!));
     return m;
-  }, [cosmos, deck]);
+  }, [cosmos, order]);
+  /** The cosmic event each card of the deck went through (by its place in the deck). */
+  const cosmicAt = useMemo(() => {
+    const m = new Map<number, CosmicEvent>();
+    order.forEach((k, p) => evAt.has(k) && m.set(p, evAt.get(k)!));
+    return m;
+  }, [evAt, order]);
   const [kept, setKept] = useState<Record<number, boolean>>({});
   const setAnomaly = useProgress((s) => s.setAnomaly);
   const decide = (k: number, keep: boolean) => {
@@ -484,11 +784,14 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
     else sfx.click();
   };
   // When the black hole closes: once every star round it has flown on or gone in (the last star comes after).
-  const holeEnd = Math.max(0, ...stars.slice(0, -1).map((s) => s.delay + s.duration));
+  const holeEnd = Math.max(0, ...stars.slice(0, regular - 1).map((s) => s.delay + s.duration));
+  /** When the black hole swallows each star it takes (it flares). */
+  const gulps = useMemo(() => [...cosmos.swallowed.keys()].map((k) => stars[k].delay + stars[k].duration - 80), [cosmos, stars]);
+  const tints = useMemo(() => [...new Set(stars.map((s) => RARITY_LIGHT[s.to]))], [stars]);
   // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
   // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
-  const tease = stars.find((s) => s.from !== s.to);
-  const shownBest = tease && cards.filter((c) => c.rarity === best).length === 1 ? tease.from : best;
+  // A cosmic event's card shows its old colour too: a pack that tears open blue may still hold a Legendary.
+  const shownBest = stars.reduce<Rarity>((b, s) => (RARITIES.indexOf(s.from) > RARITIES.indexOf(b) ? s.from : b), 'common');
   const glow = RARITY_LIGHT[shownBest];
   // Mythic and Omni can't pass for an Epic: a rainbow (Mythic) or a red and gold (Omni) aura, glows on glows.
   const special = shownBest === 'mythic' || shownBest === 'omni' ? shownBest : null;
@@ -580,7 +883,8 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       // A star it pulls in: a rush of air, and a jolt as it goes.
       for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), shake(box.current, 7, 400)), stars[k].delay + stars[k].duration - 300);
       stars.forEach((s, k) => {
-        later(() => (k === stars.length - 1 ? sfx.meteor(top(best)) : sfx.whoosh()), s.delay);
+        if (s.event) return cosmicCues(s);
+        later(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
         // An evolving star: the crash, a hard shake and the burst in its new colour.
         if (s.from !== s.to)
           later(() => {
@@ -590,15 +894,33 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
             setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
           }, s.delay + CLASH_AT);
       });
-      // The wait before the last star: the screen trembles, harder and harder, to a quiet rising drone.
-      if (stars.length > 1) {
-        const wait = stars[stars.length - 1].delay - LAST_STAR_PAUSE;
-        later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), wait);
-      }
+      // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
+      for (const s of stars) if (s.climax) later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), s.delay - LAST_STAR_PAUSE);
       const end = Math.max(...stars.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
     }, 950);
+  };
+  /** A cosmic event's sounds, jolts and flashes, timed to its scene. */
+  const cosmicCues = (s: Star) => {
+    const boom = s.delay + COSMIC_BOOM[s.event!];
+    const color = RARITY_LIGHT[s.to];
+    later(() => sfx.shimmer(6), s.delay);
+    if (s.event === 'collision') {
+      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(box.current, COSMIC_BOOM.collision, 0.2, 6)), s.delay);
+      later(() => (sfx.embrace(), shake(box.current, 16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
+    } else if (s.event === 'supernova') {
+      later(() => sfx.whoosh(), s.delay);
+      later(() => (sfx.swallow(), shake(box.current, 8, 300)), s.delay + 900);
+      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(box.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), s.delay + 1000);
+      later(() => (sfx.supernova(), shake(box.current, 24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
+      later(() => celebrate(), boom + 300);
+    } else {
+      later(() => sfx.meteor(true), s.delay);
+      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(box.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), s.delay + 900);
+      later(() => (sfx.bigBang(), shake(box.current, 30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
+      later(() => celebrateBig(), boom + 250);
+    }
   };
   /** A tap instead of a swipe: the pack tears by itself, quickly. */
   const autoTear = () => {
@@ -905,11 +1227,15 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {phase === 'meteor' && (
         <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
           <Space />
-          {cosmos.hole && <BlackHole until={holeEnd} />}
+          {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
           {stars.map((s, k) => {
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
             // A black hole: every star but the last circles it (and some go in).
-            if (cosmos.hole && k < stars.length - 1) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} />;
+            // A cosmic event: its own scene.
+            if (s.event === 'collision') return <Embrace key={k} star={s} />;
+            if (s.event === 'supernova') return <Supernova key={k} star={s} />;
+            if (s.event === 'bigbang') return <BigBang key={k} star={s} />;
+            if (cosmos.hole && k < regular - 1) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} />;
             // An evolving star crashes into another and bursts in its true colour.
             if (s.from !== s.to) return <Clash key={k} star={s} thick={thick} />;
             return (
@@ -929,7 +1255,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
       {phase === 'reveal' && card && style && (
         <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-5">
           <p className="font-display text-xs font-bold tracking-[0.35em] text-white/60">
-            {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : ''}CARD {i + 1} OF {deck.length}
+            {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : cosmicAt.has(i) ? `${COSMIC_NAME[cosmicAt.get(i)!.kind].icon} ${COSMIC_NAME[cosmicAt.get(i)!.kind].name} · ` : ''}CARD {i + 1} OF {deck.length}
           </p>
           <button type="button" onClick={act} className="relative isolate w-52 outline-none sm:w-60" aria-label={flipped ? `${card.name} — next` : 'Turn the card'}>
             {/* The rest of the deck, underneath. */}
@@ -965,6 +1291,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                     ? '✦ MYTHIC ✦'
                     : card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
                 </p>
+                {cosmicAt.has(i) && <p className="text-xs font-bold tracking-widest text-white/70">{COSMIC_DONE[cosmicAt.get(i)!.kind]} — it was {RARITY_INFO[cosmicAt.get(i)!.from.rarity].name}</p>}
                 {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
               </div>
@@ -997,6 +1324,7 @@ export function PackOpening({ pack, cards, fresh, onClose, onAgain, canAgain }: 
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
+                {cosmicAt.has(k) && <p className="text-center text-[10px] font-bold tracking-widest text-white/70" title={COSMIC_DONE[cosmicAt.get(k)!.kind]}>{COSMIC_NAME[cosmicAt.get(k)!.kind].icon} was {RARITY_INFO[cosmicAt.get(k)!.from.rarity].name}</p>}
                 {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${0.4 + Math.min(k, 12) * 0.09}s` }}>+1 SPARE</p>}
               </div>
             ))}

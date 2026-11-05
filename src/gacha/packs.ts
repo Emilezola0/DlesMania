@@ -153,13 +153,71 @@ export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random
   }).sort((a, b) => RARITIES.indexOf(a.rarity) - RARITIES.indexOf(b.rarity));
 }
 
-/** `count` packs in a row, each with the luck the packs before it left: the cards, and the pity after them. */
-export function pullPacks(pack: Pack, count: number, boost: number, pity: number): { packs: Card[][]; pity: number } {
+/**
+ * The sky's surprises, rolled as a pack is bought (its cards are final before the animation, so skipping it
+ * loses nothing): two planets embrace and the best card goes up (Rare to Epic or Legendary, Epic to Legendary),
+ * a supernova swallows it and it comes back Mythic, a Big Bang turns a Legendary into an Omni. At most one a pack.
+ */
+export type CosmicKind = 'collision' | 'supernova' | 'bigbang';
+export const COSMIC_KINDS: CosmicKind[] = ['collision', 'supernova', 'bigbang'];
+export const COSMIC = T.cosmic;
+export interface CosmicEvent {
+  kind: CosmicKind;
+  /** The card the pack held, and the one it became (now in the pack instead). */
+  from: Card;
+  to: Card;
+}
+
+/** For testing: localStorage "omnidle-force-cosmic" = "collision", "supernova" or "bigbang" plays it every pack. */
+const forcedCosmic = (): CosmicKind | null => {
+  try {
+    const f = localStorage.getItem('omnidle-force-cosmic');
+    return (COSMIC_KINDS as string[]).includes(f ?? '') ? (f as CosmicKind) : null;
+  } catch {
+    return null;
+  }
+};
+
+/** Rolls a pack's cosmic event and swaps its card in place (the pack stays sorted, the rarest last). */
+export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.random, force: CosmicKind | null = forcedCosmic()): CosmicEvent | null {
+  if (!cards.length) return null;
+  const pool = CARDS.filter(pack.pool);
+  const rank = (r: Rarity) => RARITIES.indexOf(r);
+  const best = cards[cards.length - 1];
+  const legend = [...cards].reverse().find((c) => c.rarity === 'legendary');
+  const pick = (r: Rarity) => {
+    const cands = pool.filter((c) => c.rarity === r && !cards.some((x) => x.id === c.id));
+    return cands.length ? drawFairly(cands, rand) : null;
+  };
+  let kind: CosmicKind | null = null;
+  let from: Card | undefined;
+  let to: Rarity | null = null;
+  if (force) {
+    kind = force;
+    from = force === 'bigbang' ? (legend ?? best) : best;
+    to = force === 'bigbang' ? 'omni' : force === 'supernova' ? 'mythic' : best.rarity === 'common' || best.rarity === 'rare' ? 'epic' : 'legendary';
+  } else if (legend && rand() < COSMIC.bigBang) [kind, from, to] = ['bigbang', legend, 'omni'];
+  else if (rank(best.rarity) < rank('mythic') && rand() < COSMIC.supernova) [kind, from, to] = ['supernova', best, 'mythic'];
+  else if ((best.rarity === 'rare' || best.rarity === 'epic') && rand() < COSMIC.collision)
+    [kind, from, to] = ['collision', best, best.rarity === 'epic' || rand() < COSMIC.collisionToLegendary ? 'legendary' : 'epic'];
+  if (!kind || !from || !to) return null;
+  const card = pick(to);
+  if (!card) return null;
+  cards.splice(cards.indexOf(from), 1, card);
+  cards.sort((a, b) => rank(a.rarity) - rank(b.rarity));
+  return { kind, from, to: card };
+}
+
+/** `count` packs in a row, each with the luck the packs before it left: the cards, their cosmic events, and the pity after them. */
+export function pullPacks(pack: Pack, count: number, boost: number, pity: number): { packs: Card[][]; events: CosmicEvent[]; pity: number } {
   const packs: Card[][] = [];
+  const events: CosmicEvent[] = [];
   for (let i = 0; i < count; i++) {
     const cards = pullPack(pack, boost, Math.random, pityLuck(pity));
+    const event = cosmicFor(pack, cards);
+    if (event) events.push(event);
     packs.push(cards);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
   }
-  return { packs, pity: clampPity(pity) };
+  return { packs, events, pity: clampPity(pity) };
 }
