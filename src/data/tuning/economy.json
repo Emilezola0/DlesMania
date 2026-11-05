@@ -65,82 +65,82 @@
       "icon": "📅",
       "text": "Win 5 daily rounds",
       "need": 5,
-      "reward": 80
+      "reward": 400
     },
     "category": {
       "icon": "🏁",
       "text": "Play a whole daily category",
       "need": 1,
-      "reward": 100
+      "reward": 500
     },
     "special": {
       "icon": "🎯",
       "text": "Win 3 Specialist rounds",
       "need": 3,
-      "reward": 80
+      "reward": 400
     },
     "boss": {
       "icon": "👑",
       "text": "Beat a boss",
       "need": 1,
-      "reward": 120
+      "reward": 600
     },
     "arcade": {
       "icon": "🕹️",
       "text": "Finish 3 games from the Games page",
       "need": 3,
-      "reward": 60
+      "reward": 300
     },
     "whos": {
       "icon": "👤",
       "text": "Play a Who's That? run",
       "need": 1,
-      "reward": 50
+      "reward": 250
     }
   },
   "longMissions": {
     "week": {
       "rounds": {
         "icon": "📅",
-        "text": "Win 25 daily rounds",
-        "need": 25,
-        "reward": 300
+        "text": "Win 28 daily rounds",
+        "need": 28,
+        "reward": 3000
       },
       "category": {
         "icon": "🏁",
-        "text": "Play 4 whole daily categories",
-        "need": 4,
-        "reward": 360
+        "text": "Play 5 whole daily categories",
+        "need": 5,
+        "reward": 3600
       },
       "special": {
         "icon": "🎯",
-        "text": "Win 12 Specialist rounds",
-        "need": 12,
-        "reward": 300
+        "text": "Win 13 Specialist rounds",
+        "need": 13,
+        "reward": 3000
       },
       "boss": {
         "icon": "👑",
-        "text": "Beat 4 bosses",
-        "need": 4,
-        "reward": 440
+        "text": "Beat 5 bosses",
+        "need": 5,
+        "reward": 4400
       },
       "arcade": {
         "icon": "🕹️",
-        "text": "Finish 15 games from the Games page",
-        "need": 15,
-        "reward": 240
+        "text": "Finish 16 games from the Games page",
+        "need": 16,
+        "reward": 2400
       },
       "whos": {
         "icon": "👤",
-        "text": "Play 5 Who's That? runs",
-        "need": 5,
-        "reward": 200
+        "text": "Play 6 Who's That? runs",
+        "need": 6,
+        "reward": 2000
       },
       "packs": {
         "icon": "🎴",
-        "text": "Open 4 card packs",
-        "need": 4,
-        "reward": 300
+        "text": "Open 5 card packs",
+        "need": 5,
+        "reward": 3000
       }
     },
     "month": {
@@ -148,43 +148,43 @@
         "icon": "📅",
         "text": "Win 80 daily rounds",
         "need": 80,
-        "reward": 1000
+        "reward": 10000
       },
       "category": {
         "icon": "🏁",
         "text": "Play 12 whole daily categories",
         "need": 12,
-        "reward": 1200
+        "reward": 12000
       },
       "special": {
         "icon": "🎯",
-        "text": "Win 40 Specialist rounds",
-        "need": 40,
-        "reward": 900
+        "text": "Win 120 Specialist rounds",
+        "need": 120,
+        "reward": 9000
       },
       "boss": {
         "icon": "👑",
-        "text": "Beat 12 bosses",
-        "need": 12,
-        "reward": 1400
+        "text": "Beat 30 bosses",
+        "need": 30,
+        "reward": 14000
       },
       "arcade": {
         "icon": "🕹️",
-        "text": "Finish 50 games from the Games page",
-        "need": 50,
-        "reward": 800
+        "text": "Finish 150 games from the Games page",
+        "need": 150,
+        "reward": 8000
       },
       "whos": {
         "icon": "👤",
-        "text": "Play 15 Who's That? runs",
-        "need": 15,
-        "reward": 700
+        "text": "Play 60 Who's That? runs",
+        "need": 60,
+        "reward": 7000
       },
       "packs": {
         "icon": "🎴",
-        "text": "Open 15 card packs",
-        "need": 15,
-        "reward": 900
+        "text": "Open 40 card packs",
+        "need": 40,
+        "reward": 9000
       }
     }
   }
