@@ -66,9 +66,75 @@ const prismatic = (r: Rarity) => r === 'mythic' || r === 'omni';
 /** Only the mythic is a rainbow: the omni burns in its own colours. */
 const rainbowy = (r: Rarity) => r === 'mythic';
 
-/** A pack's shooting stars: one per card, in its colour, the rarest last. */
+/**
+ * The golden rule of a pack opening: its cards are drawn before it starts, and nothing shown before a card
+ * turns may tell what it is. The effects build up step by step (an escalation), each step a little more
+ * intense, and stop at the tier the card really is — never higher (no false hope), never jumping to the top
+ * at once (no tell): the player only knows how far it goes at the pulse where it stops.
+ *
+ * The pack's tease: the colour its tear glows, its planet's, its last star's and its clash's. Drawn at random,
+ * but never above the pack's best card, and never above Epic (a golden pack's: Legendary, as it's known to
+ * hold three top cards): the pack only hints; the cards' own build-ups do the rest.
+ */
+const TEASE: [Rarity, number][] = [['common', 30], ['rare', 40], ['epic', 30], ['legendary', 12]];
+function teaseFor(best: Rarity, golden: boolean, rand: () => number = Math.random): Rarity {
+  const cap = Math.min(RARITIES.indexOf(best), RARITIES.indexOf(golden ? 'legendary' : 'epic'));
+  const pool = TEASE.filter(([r]) => RARITIES.indexOf(r) <= cap);
+  let x = rand() * pool.reduce((t, [, w]) => t + w, 0);
+  for (const [r, w] of pool) if ((x -= w) < 0) return r;
+  return pool[pool.length - 1][0];
+}
+/**
+ * A card's turn builds up in steps, each more intense — 1: it trembles and glows violet; 2: time slows, the
+ * room goes dark, it spins in gold to a drone and a heartbeat; 3: every colour runs through it and its
+ * franchise's name sweeps across; 4: red and gold, the screen shaking. It climbs exactly as far as its rarity
+ * (Epic 1, Legendary 2, Mythic 3, Omni 4), a pulse at the end of each step deciding whether it climbs on.
+ * Now and then (NEAR_MISS) the next step flickers into life at that pulse — and cracks: a near-miss.
+ */
+type Step = 0 | 1 | 2 | 3 | 4;
+const stepOf = (r: Rarity): Step => (r === 'omni' ? 4 : r === 'mythic' ? 3 : r === 'legendary' ? 2 : r === 'epic' ? 1 : 0);
+const NEAR_MISS: Record<Step, number> = { 0: 0.12, 1: 0.25, 2: 0.3, 3: 0.3, 4: 0 };
+/** Each step's colour, when it starts (ms from the tap), and the pulse where a card that stops there turns. */
+const STEP_LIGHT: Rarity[] = ['common', 'epic', 'legendary', 'mythic', 'omni'];
+const STEP_AT: Record<Step, number> = { 0: 0, 1: 0, 2: 700, 3: 1900, 4: 3000 };
+const TURN_AT: Record<Step, number> = { 0: 300, 1: 700, 2: 1900, 3: 3000, 4: 4400 };
+/** A near-miss: how long the next step flickers before it cracks, and the breath after the crack. */
+const FLICKER_MS = 550;
+const CRACK_MS = 320;
+/** The swipe that tears the pack sets the wait before the last star: up to this much longer, the faster it was. */
+const TEAR_PAUSE_MAX = 1500;
+/**
+ * The cosmic events escalate too: every one opens as two planets embracing; a supernova grows out of their
+ * meeting, and a Big Bang out of the supernova's collapse. Each scene is cut where it would burst when the
+ * event goes further, so the player only learns how far it goes at the pulse where it stops.
+ */
+const CHAIN: Record<Exclude<CosmicKind, 'wish'>, Exclude<CosmicKind, 'wish'>[]> = {
+  collision: ['collision'],
+  supernova: ['collision', 'supernova'],
+  bigbang: ['collision', 'supernova', 'bigbang'],
+};
+/** The scenes of an event star, when each starts, and whether it's the last (the one that bursts). */
+function stagesOf(s: Star): { kind: CosmicKind; at: number; final: boolean }[] {
+  if (s.event === 'wish' || !s.event) return s.event ? [{ kind: s.event, at: s.delay, final: true }] : [];
+  let at = s.delay;
+  return CHAIN[s.event].map((kind, j, all) => {
+    const stage = { kind, at, final: j === all.length - 1 };
+    at += COSMIC_BOOM[kind];
+    return stage;
+  });
+}
+/** When an event star finally bursts, and how long its whole chain plays. */
+const finalBoom = (s: Star) => {
+  const st = stagesOf(s);
+  const last = st[st.length - 1];
+  return last.at + COSMIC_BOOM[last.kind];
+};
+const chainMs = (kind: CosmicKind) =>
+  kind === 'wish' ? COSMIC_MS.wish : CHAIN[kind].slice(0, -1).reduce((t, k) => t + COSMIC_BOOM[k], 0) + COSMIC_MS[kind];
+
+/** A pack's shooting stars: one per card, the best last, all silver (`veil`): they never show what the cards are. */
 interface Star {
-  /** The card's rarity, and the one the star shows first (a rarity lower when it evolves on the way). */
+  /** Its card's rarity, and the one before a cosmic event (never shown as such: the stars are veiled). */
   to: Rarity;
   from: Rarity;
   /** When it starts and how long it flies, in ms; its height and tilt on screen. */
@@ -80,18 +146,20 @@ interface Star {
   event?: CosmicKind;
   /** The sky holds its breath before it (the best card's star, and every cosmic event). */
   climax?: boolean;
+  /** It crashes into a second star and bursts (pure theatre: any pack, whatever is inside). */
+  clash?: boolean;
 }
 /**
- * How often a pack plays a fake-out: its best card, when Epic or better, poses as one rarity lower — its
- * star shows Rare for an Epic, Epic for a Legendary… — until it evolves mid-flight.
+ * How often the last star crashes into a second one and bursts, as if something were evolving: any pack,
+ * whatever is inside (the stars never show what the cards are; see `veil`).
  */
-const EVOLVE_CHANCE = 0.3;
+const CLASH_CHANCE = 0.3;
 const STAR_GAP = 260;
-/** The beat of suspense before the last star (the best card's), once every other star has crossed: evolving or not. The screen rumbles meanwhile. */
+/** The beat of suspense before the last star (the best card's), once every other star has crossed. The screen rumbles meanwhile. */
 const LAST_STAR_PAUSE = 1500;
 /**
- * An evolving star doesn't cross: it and a second star rush in from both sides, crash together in the
- * middle after CLASH_AT ms and burst in the colour of the rarity it becomes (BOOM ms of sparks).
+ * A clashing star doesn't cross: it and a second star rush in from both sides, crash together in the
+ * middle after CLASH_AT ms and burst (BOOM ms of sparks).
  */
 const CLASH_AT = 820;
 const BOOM = 850;
@@ -121,8 +189,8 @@ const COSMIC_DONE: Record<CosmicKind, string> = {
 /** The order the events play in, the greatest last. */
 const COSMIC_KINDS_ORDER: CosmicKind[] = ['wish', 'collision', 'supernova', 'bigbang'];
 /** When a star shows its true colour (ms from the meteor phase's start): its crash, wish or cosmic burst; null if it never changes. */
-const boomOf = (s: Star) => (s.from === s.to ? null : s.event ? s.delay + COSMIC_BOOM[s.event] : s.delay + CLASH_AT);
-const flight = (r: Rarity) => (prismatic(r) ? 1400 : r === 'legendary' ? 1100 : 850);
+/** The last star (the best card's) crosses slower than the rest, whatever it holds. */
+const flight = (last: boolean) => (last ? 1300 : 850);
 
 /** Legendary and up: the card spins as it charges, faster and faster — turns in the charge's time (see turn()). */
 const SPIN: Partial<Record<Rarity, React.CSSProperties>> = {
@@ -141,7 +209,7 @@ const ORBIT_GAP = 420;
  * Now and then (BLACK_HOLE_CHANCE, 5%) a black hole opens in the middle of the screen: the stars come in from
  * the left as ever, but circle round it; after a while, those it doesn't keep fly on to the right, and the ones
  * it pulls in (ABSORB_CHANCE each; never the last star, the best card's) vanish into it in a spark. Then the
- * last star comes as usual (evolving or not). A swallowed star's card comes last, with an anomaly to keep or not.
+ * last star comes as usual (clashing or not). A swallowed star's card comes last, with an anomaly to keep or not.
  * For testing, in dev only, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
  */
 function cosmosFor(cards: Card[], events: Map<number, CosmicEvent>, wishes: Map<number, CosmicEvent>, rand: () => number = Math.random): { hole: boolean; stars: Star[]; swallowed: Map<number, AnomalyId> } {
@@ -168,10 +236,10 @@ function cosmosFor(cards: Card[], events: Map<number, CosmicEvent>, wishes: Map<
 }
 
 function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>, wishes: Map<number, CosmicEvent>, rand: () => number = Math.random): Star[] {
-  // Now and then the best card (Epic or better: the smallest fake-out is Rare → Epic) shows a rarity lower,
-  // and evolves on the way. The cards come sorted, the best last — then the cosmic events' cards, each its own scene.
+  // The cards come sorted, the best last — then the cosmic events' cards, each its own scene. Nothing in a
+  // star's timing depends on its card: now and then the last one crashes into another and bursts, whatever it holds.
   const last = cards.length - events.size - 1;
-  const evolving = last >= 0 && RARITIES.indexOf(cards[last].rarity) >= 2 && rand() < EVOLVE_CHANCE ? last : -1;
+  const clashing = last > 0 && rand() < CLASH_CHANCE ? last : -1;
   let at = 0;
   let clear = 0;
   return cards.map((c, i) => {
@@ -179,7 +247,7 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     if (ev) {
       // A cosmic event: once the sky is empty, a breath, then its scene (the star first in the card's old colour).
       const delay = Math.max(at, clear) + LAST_STAR_PAUSE;
-      const star: Star = { to: c.rarity, from: ev.from.rarity, delay, duration: COSMIC_MS[ev.kind], top: 40, tilt: -12 - rand() * 10, event: ev.kind, climax: true };
+      const star: Star = { to: c.rarity, from: ev.from.rarity, delay, duration: chainMs(ev.kind), top: 40, tilt: -12 - rand() * 10, event: ev.kind, climax: true };
       at = clear = delay + star.duration;
       return star;
     }
@@ -193,25 +261,21 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     }
     // The last star waits for the sky to empty, then a moment more.
     if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
-    // An evolving star poses as a rarity lower — or, now and then, a Legendary or better as two lower
-    // (a Legendary's pack tearing open blue).
-    const rank = RARITIES.indexOf(c.rarity);
-    const from = i === evolving ? RARITIES[rank >= 3 && rand() < COSMIC.deepFake ? rank - 2 : rank - 1] : c.rarity;
     // With a black hole, every star but the last circles it first: a longer way.
     const orbit = hole && i !== last;
-    const star: Star = { to: c.rarity, from, delay: at, duration: from !== c.rarity ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0 };
+    const clash = i === clashing;
+    const star: Star = { to: c.rarity, from: c.rarity, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(i === last), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash };
     // Many cards (five packs at once): the stars come closer together.
     const gap = orbit ? ORBIT_GAP : STAR_GAP;
-    at += (cards.length > 5 ? gap / 2.5 : gap) + (top(c.rarity) && !orbit ? 250 : 0);
+    at += cards.length > 5 ? gap / 2.5 : gap;
     clear = Math.max(clear, star.delay + star.duration);
     return star;
   });
 }
 /**
- * The planet on the edge of the sky, drawn from what the pack shows (its stars' first colours, so a cosmic
- * event still comes as a surprise): an icy moon for a pack of Commons and Rares, a violet gas giant with a
- * ring for an Epic, a bigger one with a moon for two or more, a golden giant with two moons and sparkles for a
- * Legendary, and an iridescent world with double rings for a Mythic or better.
+ * The planet on the edge of the sky, drawn from the pack's tease (never from what it holds): an icy moon, a
+ * violet gas giant with a ring, a bigger one with a moon, a golden giant with two moons and sparkles, an
+ * iridescent world with double rings.
  */
 type SkyTier = 0 | 1 | 2 | 3 | 4;
 function skyTier(shown: Rarity[]): SkyTier {
@@ -229,9 +293,8 @@ const SKY: { size: number; light: string; base: string; dark: string; glow: stri
   { size: 46, light: '#ffffff', base: '#ff4fd8', dark: '#1b0b30', glow: 'rgba(255, 79, 216, 0.45)', bands: ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'], ring: 'rgba(255, 255, 255, 0.8)', rings: 2, moons: 2, sparkle: true, prism: true },
 ];
 /**
- * The planet on the edge of the sky. It changes as the pack shows better than it looked: each time a star
- * turns out rarer (a fake-out evolving, a wish, a cosmic event), a spark flies to the planet and it grows into
- * the next world, with a flash. With a sky moment "capture", it catches a passing moon and keeps it in orbit.
+ * The planet on the edge of the sky. At each burst (a clash, a cosmic event) a spark flies to it and it grows into
+ * the next world, with a flash — as if the pack were getting better, which it may not be. With a sky moment "capture", it catches a passing moon and keeps it in orbit.
  */
 function SkyPlanet({ tier, evolved, captureAt }: { tier: SkyTier; evolved: number; captureAt: number | null }) {
   const p = SKY[tier];
@@ -291,11 +354,11 @@ function skyMomentFor(rand: () => number = Math.random): SkyMoment | null {
   return rand() < COSMIC.skyMoment ? SKY_MOMENTS[Math.floor(rand() * SKY_MOMENTS.length)] : null;
 }
 
-/** A great comet crossing the top of the sky, slow, its tail streaming behind. */
-function Comet() {
+/** A great comet crossing the top of the sky, slow, its tail streaming behind in the tease's colour (theatre: it changes nothing). */
+function Comet({ at, color }: { at: number; color: string }) {
   return (
     <div className="sky-comet-way absolute left-0 top-[14%] w-full">
-      <div className="sky-comet">
+      <div className="sky-comet" style={{ animationDelay: `${at}ms`, ['--comet' as string]: color }}>
         <div className="sky-comet-tail" />
         <div className="sky-comet-head" />
       </div>
@@ -319,7 +382,7 @@ function Shower() {
  * Deep space behind the shooting stars: far stars twinkling at their own pace, a faint nebula drifting,
  * and a planet on the edge of the sky. Drawn once per pack; it only animates opacity and transform.
  */
-function Space({ tier, evolved, feed, moment }: { tier: SkyTier; evolved: number; feed: number; moment: SkyMoment | null }) {
+function Space({ tier, evolved, feed, moment, cometAt, cometColor }: { tier: SkyTier; evolved: number; feed: number; moment: SkyMoment | null; cometAt: number; cometColor: string }) {
   const dots = useMemo(
     () =>
       Array.from({ length: 110 }, () => ({
@@ -342,7 +405,7 @@ function Space({ tier, evolved, feed, moment }: { tier: SkyTier; evolved: number
           style={{ left: `${d.x}%`, top: `${d.y}%`, width: d.size, height: d.size, background: d.color, boxShadow: d.size > 2 ? `0 0 6px ${d.color}` : undefined, animationDelay: `${d.delay}s`, animationDuration: `${d.duration}s` }}
         />
       ))}
-      {moment === 'comet' && <Comet />}
+      {moment === 'comet' && <Comet at={cometAt} color={cometColor} />}
       {moment === 'shower' && <Shower />}
       <SkyPlanet tier={tier} evolved={evolved} captureAt={moment === 'capture' ? 900 : null} />
       {/* The spark that flies from a star turning rarer to the planet, which grows with it. */}
@@ -424,8 +487,8 @@ function Burst({ color, count, rainbow }: { color: string; count: number; rainbo
 }
 
 /**
- * An evolving star: two stars in its first colour rush in from both sides, crash in the middle of the
- * screen and burst in the colour of the rarity it turns out to be.
+ * A clash: two silver stars rush in from both sides, crash in the middle of the screen and burst in the
+ * tease's colour (theatre: it changes nothing).
  */
 function Clash({ star, thick }: { star: Star; thick: number }) {
   const [boom, setBoom] = useState(false);
@@ -565,6 +628,26 @@ function useAt(ms: number) {
   return on;
 }
 
+/** Its children until `ms`, then nothing (a cosmic scene cut where the next takes over). */
+function Until({ ms, children }: { ms: number; children: React.ReactNode }) {
+  const gone = useAt(ms);
+  return gone ? null : <>{children}</>;
+}
+
+/** An event's scenes, one after the other, each cut at its burst but the last (see CHAIN). */
+function Chain({ star }: { star: Star }) {
+  const stages = stagesOf(star);
+  return (
+    <>
+      {stages.map((st, j) => {
+        const s = { ...star, delay: st.at, event: st.kind };
+        const scene = st.kind === 'collision' ? <Embrace star={s} /> : st.kind === 'supernova' ? <Supernova star={s} /> : <BigBang star={s} />;
+        return st.final ? <div key={j}>{scene}</div> : <Until key={j} ms={st.at + COSMIC_BOOM[st.kind]}>{scene}</Until>;
+      })}
+    </>
+  );
+}
+
 /** Specks rushing in from all around to the middle of the screen (the Big Bang's gathering; a supernova's feeding). */
 function Converge({ colors, count, delay, spread }: { colors: string[]; count: number; delay: number; spread: number }) {
   const specks = useMemo(
@@ -587,25 +670,18 @@ function Converge({ colors, count, delay, spread }: { colors: string[]; count: n
   );
 }
 
-/** The name of a cosmic event across the top as it starts, and what it made of the card once it bursts. */
+/** The name of a cosmic event across the top as it starts; once it bursts, only that the card changed (what into: its turn tells). */
 function CosmicTitle({ star, boom }: { star: Star; boom: boolean }) {
   const ev = COSMIC_NAME[star.event!];
   const on = useAt(star.delay);
   if (!on) return null;
-  const name = (r: Rarity) => RARITY_INFO[r].name.toUpperCase();
   return (
     <div className="absolute inset-x-0 top-[9%] z-30 px-4 text-center">
       <p className="pack-cosmic-title font-display text-2xl font-black tracking-[0.3em] text-white sm:text-4xl">
         {ev.icon} {ev.name}
       </p>
       {boom && (
-        <p className="pack-cosmic-result mt-2 font-display text-lg font-black tracking-[0.25em] sm:text-2xl">
-          <span style={{ color: RARITY_LIGHT[star.from] }}>{name(star.from)}</span>
-          <span className="text-white"> → </span>
-          <span className={star.to === 'omni' ? 'card-omni-name' : star.to === 'mythic' ? 'card-mythic-name' : ''} style={prismatic(star.to) ? undefined : { color: RARITY_LIGHT[star.to] }}>
-            {name(star.to)}
-          </span>
-        </p>
+        <p className="pack-cosmic-result mt-2 font-display text-lg font-black tracking-[0.25em] text-white sm:text-2xl">A CARD HAS CHANGED… INTO WHAT?</p>
       )}
     </div>
   );
@@ -762,7 +838,6 @@ function BigBang({ star }: { star: Star }) {
 function Wish({ star, thick }: { star: Star; thick: number }) {
   const boom = useAt(star.delay + WISH_BOOM);
   const timing = { animationDuration: `${star.duration}ms`, animationDelay: `${star.delay}ms` };
-  const name = (r: Rarity) => RARITY_INFO[r].name.toUpperCase();
   return (
     <div className="absolute left-0 w-full" style={{ top: `${star.top}%`, transform: `rotate(${star.tilt}deg)` }}>
       <div className="pack-wish-star absolute left-0 top-0 rounded-full" style={{ ...timing, width: '24vw', height: thick + 1, ...streak(boom ? star.to : star.from) }} />
@@ -774,7 +849,7 @@ function Wish({ star, thick }: { star: Star; thick: number }) {
             <div className="pack-clash-boom absolute left-0 top-0 size-28 rounded-full" style={{ background: `radial-gradient(circle, #fff 10%, #ffd86b 35%, ${RARITY_LIGHT[star.to]} 55%, transparent 72%)` }} />
             <Burst color="#ffd86b" count={34} />
             <p className="pack-wish-label absolute left-0 top-0 whitespace-nowrap font-display text-sm font-black tracking-[0.25em] sm:text-base" style={{ rotate: `${-star.tilt}deg` }}>
-              🌠 WISH · <span style={{ color: RARITY_LIGHT[star.from] }}>{name(star.from)}</span> → <span style={{ color: RARITY_LIGHT[star.to] }}>{name(star.to)}</span>
+              🌠 A WISH…
             </p>
           </>
         )}
@@ -908,9 +983,10 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
 }
 
 /**
- * Opening a pack, in four beats: swipe across the pack to tear it (light pours out, in the colour of
- * the best card inside — or of the rarity it poses as, when its star is about to evolve), a shooting star crosses the screen per card, the cards come one at a time from
- * the deck — rarer ones charge up before they turn, then burst — and the five are laid out together.
+ * Opening a pack, in four beats: swipe across the pack to tear it (light pours out, in the pack's tease), a
+ * silver shooting star crosses the screen per card, the cards come one at a time from the deck — each builds up
+ * as far as it climbs before it turns, then bursts — and the five are laid out together. The cards are drawn
+ * before any of it, and nothing before a card turns tells what it is (see TEASE and Step).
  */
 export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain, golden = false }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean; golden?: boolean }) {
   // A golden pack's own light, gold where an ordinary pack's is lilac.
@@ -946,13 +1022,24 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   }, [events, ordered, evAt]);
   const regular = ordered.length - evAt.size;
   const cosmos = useMemo(() => cosmosFor(ordered, evAt, wishAt), [ordered, evAt, wishAt]);
-  const stars = cosmos.stars;
+  // The swipe's speed sets the wait before the last star (TEAR_PAUSE_MAX): every star from it on comes later.
+  const [pauseExtra, setPauseExtra] = useState(0);
+  const extraRef = useRef(0);
+  const peakSwipe = useRef(0);
+  const shifted = (extra: number) => {
+    const climaxAt = cosmos.stars.find((st) => st.climax)?.delay ?? Infinity;
+    return extra ? cosmos.stars.map((st) => (st.delay >= climaxAt ? { ...st, delay: st.delay + extra } : st)) : cosmos.stars;
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stars = useMemo(() => shifted(pauseExtra), [cosmos, pauseExtra]);
   // The deck: the ordinary cards, those back from the black hole, then the cosmic events'.
   const order = useMemo(() => {
     const ks = ordered.map((_, k) => k).filter((k) => !evAt.has(k));
     return [...ks.filter((k) => !cosmos.swallowed.has(k)), ...ks.filter((k) => cosmos.swallowed.has(k)), ...evAt.keys()];
   }, [ordered, evAt, cosmos]);
   const deck = useMemo(() => order.map((k) => ordered[k]), [order, ordered]);
+  /** How each card of the deck builds up as it turns: as far as its rarity, and whether it near-misses the next step. */
+  const plans = useMemo(() => deck.map((c) => ({ step: stepOf(c.rarity), near: Math.random() < NEAR_MISS[stepOf(c.rarity)] })), [deck]);
   /** The anomaly each card of the deck came back with (by its place in the deck), and what the player said. */
   const pending = useMemo(() => {
     const m = new Map<number, AnomalyId>();
@@ -968,26 +1055,28 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     });
     return m;
   }, [evAt, wishAt, order]);
-  // The planet in the corner: how good the pack looks at first, then better each time a star turns out
-  // rarer than it showed (it evolves a moment after the burst).
-  const skySteps = useMemo(() => {
-    const shown = stars.map((s) => s.from);
+  // The pack's tease (TEASE): its glow, its last star's colour, its bursts', and the planet in the corner.
+  const tease = useMemo(() => teaseFor(best, golden), [best, golden]);
+  // The planet starts from the tease, and grows a world at each burst (a clash, a cosmic event's last one).
+  const skyStepsOf = (list: Star[]) => {
+    let now = skyTier([tease]);
     const steps: { at: number; tier: SkyTier }[] = [];
-    let now = skyTier(shown);
-    const first = now;
-    stars
-      .map((s, k) => ({ k, at: boomOf(s) }))
-      .filter((x): x is { k: number; at: number } => x.at !== null)
-      .sort((a, b) => a.at - b.at)
-      .forEach(({ k, at }) => {
-        shown[k] = stars[k].to;
-        const t = skyTier(shown);
-        if (t > now) steps.push({ at: at + 450, tier: (now = t) });
-      });
-    return { first, steps };
-  }, [stars]);
-  const [skyNow, setSkyNow] = useState<{ tier: SkyTier; n: number }>({ tier: skySteps.first, n: 0 });
+    list
+      .map((st) => (st.event ? finalBoom(st) : st.clash ? st.delay + CLASH_AT : null))
+      .filter((at): at is number => at !== null)
+      .sort((a, b) => a - b)
+      .forEach((at) => now < 4 && steps.push({ at: at + 450, tier: (now = (now + 1) as SkyTier) }));
+    return steps;
+  };
+  // The great comet (a sky moment) crosses during the wait before the last star: as if it brought something.
+  const cometAt = Math.max(0, (stars.find((st) => st.climax)?.delay ?? 1500) - LAST_STAR_PAUSE - pauseExtra - 900);
+  const [skyNow, setSkyNow] = useState<{ tier: SkyTier; n: number }>(() => ({ tier: skyTier([tease]), n: 0 }));
   const [feed, setFeed] = useState(0);
+  /**
+   * What a star shows: silver; the last one and a clash's burst in the tease's colour; a cosmic event silver at
+   * first, bursting at the end of its chain in what its card truly became (the effects stop at the true tier).
+   */
+  const veil = (st: Star): Star => ({ ...st, from: 'common', to: st.event ? st.to : st.climax || st.clash ? tease : 'common' });
   const moment = useMemo(() => skyMomentFor(), []);
   const [kept, setKept] = useState<Record<number, boolean>>({});
   const setAnomaly = useProgress((s) => s.setAnomaly);
@@ -1002,11 +1091,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const holeEnd = Math.max(0, ...stars.slice(0, regular - 1).map((s) => s.delay + s.duration));
   /** When the black hole swallows each star it takes (it flares). */
   const gulps = useMemo(() => [...cosmos.swallowed.keys()].map((k) => stars[k].delay + stars[k].duration - 80), [cosmos, stars]);
-  const tints = useMemo(() => [...new Set(stars.map((s) => RARITY_LIGHT[s.to]))], [stars]);
-  // The tear glows in the colour of the best card inside — or, when its star is going to evolve, of the
-  // rarity it pretends to be until then (an Epic about to become Legendary tears open purple).
-  // A cosmic event's card shows its old colour too: a pack that tears open blue may still hold a Legendary.
-  const shownBest = stars.reduce<Rarity>((b, s) => (RARITIES.indexOf(s.from) > RARITIES.indexOf(b) ? s.from : b), 'common');
+  const tints = useMemo(() => [RARITY_LIGHT.common, RARITY_LIGHT[tease]], [tease]);
+  // The tear glows in the tease's colour: a pack that tears open in a rainbow may hold only Commons, a blue one an Omni.
+  const shownBest = tease;
   const glow = RARITY_LIGHT[shownBest];
   // Mythic and Omni can't pass for an Epic: a rainbow (Mythic) or a red and gold (Omni) aura, glows on glows.
   const special = shownBest === 'mythic' || shownBest === 'omni' ? shownBest : null;
@@ -1028,6 +1115,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [charging, setCharging] = useState(false);
+  /** How far the card turning now has climbed (Step): what its build-up shows. */
+  const [step, setStep] = useState<Step>(0);
   const [flash, setFlash] = useState<{ color: string; key: number; rainbow?: boolean } | null>(null);
   const box = useRef<HTMLDivElement>(null);
   // What shakes: the stage inside the overlay (the pack, the stars, the card), never the overlay itself, so the
@@ -1043,7 +1132,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
 
   const card = deck[i];
   // ── Tearing ─────────────────────────────────────────────────────────
-  // The tear's live sound (the best card's tone, or the one it poses as), its jagged line, its sparks.
+  // The tear's live sound (in the tease's tone), its jagged line, its sparks.
   const toneLevel = RARITIES.indexOf(shownBest);
   const tearSnd = useRef<TearSound | null>(null);
   const line = useMemo(tearLine, []);
@@ -1074,6 +1163,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     if (phase !== 'pack' || tearing.current) return;
     tearing.current = true;
     setTear(1);
+    // The faster the swipe, the longer the sky holds its breath before the last star (a tap: no longer).
+    extraRef.current = Math.round(Math.min(1, peakSwipe.current / FAST_SWIPE) * TEAR_PAUSE_MAX);
+    setPauseExtra(extraRef.current);
     window.clearTimeout(still.current);
     // The last moment holds its breath — the rip goes quiet, the tone swells — then it snaps open.
     if (reducedMotion()) return open();
@@ -1097,65 +1189,83 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     later(() => {
       if (reducedMotion()) return toReveal();
       setPhase('meteor');
-      // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
+      // A star a card: each its own whoosh, the last the long one; a clash crashes and bursts.
       // The black hole: it opens with a hum as the first star flies.
       if (cosmos.hole) later(() => (sfx.blackHole(), rumble(stage.current, 1800, 0.3, 3)), 0);
       // A star it pulls in: a rush of air, and a jolt as it goes.
-      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), jolt(7, 400)), stars[k].delay + stars[k].duration - 300);
-      stars.forEach((s, k) => {
+      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), jolt(7, 400)), cosmos.stars[k].delay + cosmos.stars[k].duration - 300);
+      // The stars as they now fly (the swipe may have pushed the last one back).
+      const ss = shifted(extraRef.current);
+      ss.forEach((s, k) => {
         if (s.event) return cosmicCues(s);
-        later(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
-        // An evolving star: the crash, a hard shake and the burst in its new colour.
-        if (s.from !== s.to)
+        later(() => (k === regular - 1 ? sfx.meteor(true) : sfx.whoosh()), s.delay);
+        // A clash: the crash, a hard shake and the burst in the tease's colour.
+        if (s.clash)
           later(() => {
             sfx.clash();
             sfx.shimmer(5);
             jolt(14, 520);
-            setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
+            setFlash({ color: RARITY_LIGHT[tease], key: Date.now(), rainbow: rainbowy(tease) });
           }, s.delay + CLASH_AT);
       });
       // The planet evolving: a chime as it grows.
-      skySteps.steps.forEach(({ at, tier }, j) => {
+      skyStepsOf(ss).forEach(({ at, tier }, j) => {
         later(() => setFeed(j + 1), at - 450);
         later(() => (setSkyNow({ tier, n: j + 1 }), sfx.shimmer(4 + tier * 2)), at);
       });
       // A sky moment: its own sound.
-      if (moment === 'comet') later(() => sfx.shimmer(10), 500);
+      if (moment === 'comet') later(() => (sfx.shimmer(10), sfx.suspense(2)), cometAt + 400);
       if (moment === 'shower') for (let t = 400; t < 3000; t += 450) later(() => sfx.shimmer(2), t);
       if (moment === 'capture') later(() => sfx.shimmer(6), 3300);
       // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
-      for (const s of stars) if (s.climax) later(() => (rumble(stage.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), s.delay - LAST_STAR_PAUSE);
-      const end = Math.max(...stars.map((s) => s.delay + s.duration));
+      // The first wait is longer the faster the pack was torn (its heartbeat with it).
+      ss.filter((s) => s.climax).forEach((s, j) => {
+        const pause = LAST_STAR_PAUSE + (j === 0 ? extraRef.current : 0);
+        later(() => (rumble(stage.current, pause, 0.5, 7), sfx.suspense(pause / 1000)), s.delay - pause);
+        if (j === 0) heartbeat(s.delay - pause, s.delay);
+      });
+      const end = Math.max(...ss.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: packLight, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
     }, 950);
   };
   /** A cosmic event's sounds, jolts and flashes, timed to its scene. */
   const cosmicCues = (s: Star) => {
-    const boom = s.delay + COSMIC_BOOM[s.event!];
-    const color = RARITY_LIGHT[s.to];
-    if (s.event === 'wish') {
-      later(() => sfx.whoosh(), s.delay);
+    for (const st of stagesOf(s)) stageCues(st.kind, st.at, st.final, RARITY_LIGHT[s.to]);
+  };
+  /** One scene of an event: its build-up, then its burst — or, when the event goes further, the pulse that carries it on. */
+  const stageCues = (kind: CosmicKind, at: number, final: boolean, color: string) => {
+    const boom = at + COSMIC_BOOM[kind];
+    if (!final) later(() => (sfx.shimmer(12), sfx.clash(), jolt(10, 420), buzz([30, 40, 30]), setFlash({ color: '#fff', key: Date.now() })), boom);
+    if (kind === 'wish') {
+      later(() => sfx.whoosh(), at);
       later(() => sfx.shimmer(8), boom - 500);
       later(() => (sfx.streak(), jolt(6, 300), buzz(25), setFlash({ color: '#ffd86b', key: Date.now() })), boom);
       return;
     }
-    later(() => sfx.shimmer(6), s.delay);
-    if (s.event === 'collision') {
-      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(stage.current, COSMIC_BOOM.collision, 0.2, 6)), s.delay);
-      later(() => (sfx.embrace(), jolt(16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
-    } else if (s.event === 'supernova') {
-      later(() => sfx.whoosh(), s.delay);
-      later(() => (sfx.swallow(), jolt(8, 300)), s.delay + 900);
-      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(stage.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), s.delay + 1000);
-      later(() => (sfx.supernova(), jolt(24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
-      later(() => celebrate(), boom + 300);
+    later(() => sfx.shimmer(6), at);
+    if (kind === 'collision') {
+      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(stage.current, COSMIC_BOOM.collision, 0.2, 6)), at);
+      if (final) later(() => (sfx.embrace(), jolt(16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
+    } else if (kind === 'supernova') {
+      later(() => sfx.whoosh(), at);
+      later(() => (sfx.swallow(), jolt(8, 300)), at + 900);
+      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(stage.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), at + 1000);
+      if (final) {
+        later(() => (sfx.supernova(), jolt(24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
+        later(() => celebrate(), boom + 300);
+      }
     } else {
-      later(() => sfx.meteor(true), s.delay);
-      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(stage.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), s.delay + 900);
+      later(() => sfx.meteor(true), at);
+      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(stage.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), at + 900);
       later(() => (sfx.bigBang(), jolt(30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
       later(() => celebrateBig(), boom + 250);
     }
+  };
+  /** A heartbeat from `from` to `to` (ms from now), quicker and quicker, felt too (haptics). */
+  const heartbeat = (from: number, to: number) => {
+    let gap = 680;
+    for (let t = from; t < to; t += gap, gap = Math.max(260, gap * 0.86)) later(() => (sfx.heartbeat(), buzz(16)), t);
   };
   /** A tap instead of a swipe: the pack tears by itself, quickly. */
   const autoTear = () => {
@@ -1205,6 +1315,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     const last = move.current ?? { x: e.clientX, t: now };
     const v = (e.clientX - last.x) / Math.max(1, now - last.t);
     move.current = { x: e.clientX, t: now };
+    peakSwipe.current = Math.max(peakSwipe.current, Math.abs(v));
     // The rip as loud as the finger is fast, the tone as high as the tear is far; the pack leans with the pull.
     const reach = Math.max(tear, p);
     sound()?.update(reach / TEAR_ENOUGH, Math.abs(v) / FAST_SWIPE);
@@ -1232,23 +1343,33 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setPhase('reveal');
     setI(0);
     setFlipped(false);
-    cue(deck[0]);
+    cue(0);
   };
-  /** A card arriving on top of the deck: rarer ones hum. */
-  const cue = (c: Card | undefined) => {
-    if (!c) return;
-    if (c.rarity === 'omni') sfx.shimmer(16);
-    else if (c.rarity === 'mythic') sfx.shimmer(12);
-    else if (c.rarity === 'legendary') sfx.shimmer(8);
-    else if (c.rarity === 'epic') sfx.shimmer(5);
-    else if (c.rarity === 'rare') sfx.shimmer(3);
+  /**
+   * A card arriving on top of the deck: the same soft hum for all (a hum by rarity would tell it before its
+   * turn). The last card, every pack: the room dims and a low drone rises — the best is always kept for last.
+   */
+  const cue = (k: number) => {
+    if (!deck[k]) return;
+    sfx.shimmer(3);
+    if (k === deck.length - 1 && deck.length > 1 && !reducedMotion()) (sfx.suspense(1.4), buzz([20, 80, 20]));
   };
-  /** The turn in progress (a Legendary or better charging): a skip lands it at once. */
+  /** The turn in progress (a card building up): a skip lands it at once. */
   const landing = useRef<(() => void) | null>(null);
-  const turn = (c: Card = card) => {
+  /** A near-miss: the next step flickering before it cracks. */
+  const [flicker, setFlicker] = useState(false);
+  /**
+   * Turning the card at `k`: it builds up step by step, exactly as far as its rarity (Step), a pulse at the end
+   * of each step — now and then the next one flickers and cracks (a near-miss) — and only then shows its face.
+   */
+  const turn = (k: number = i) => {
+    const c = deck[k];
+    const plan = plans[k];
     const go = () => {
       landing.current = null;
       setCharging(false);
+      setStep(0);
+      setFlicker(false);
       setFlipped(true);
       if (reducedMotion()) return;
       setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now(), rainbow: rainbowy(c.rarity) });
@@ -1272,26 +1393,35 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       else if (c.rarity === 'rare') sfx.correct();
       else sfx.pop();
     };
-    // A mythic takes a long breath, every colour running through it; a legendary a shorter one.
-    // Legendary and up: time slows — the room goes dark around the card, to a low drone.
     landing.current = go;
-    if (top(c.rarity) && !reducedMotion()) sfx.suspense(c.rarity === 'omni' ? 2.3 : c.rarity === 'mythic' ? 2.1 : 2);
-    if (c.rarity === 'omni' && !reducedMotion()) {
-      setCharging(true);
-      sfx.shimmer(20);
-      later(go, 2300);
-    } else if (c.rarity === 'mythic' && !reducedMotion()) {
-      setCharging(true);
-      sfx.shimmer(16);
-      later(go, 2100);
-    } else if (c.rarity === 'legendary' && !reducedMotion()) {
-      setCharging(true);
-      sfx.shimmer(10);
-      later(go, 2000);
-    } else if (c.rarity === 'epic' && !reducedMotion()) {
-      setCharging(true);
-      later(go, 380);
-    } else go();
+    if ((plan.step === 0 && !plan.near) || reducedMotion()) return go();
+    setCharging(true);
+    // Each step a little more: a hum, then a drone and a heartbeat, then a jolt, then the screen shaking.
+    const enter = (st: Step) => {
+      setStep(st);
+      if (st === 1) (sfx.shimmer(6), buzz(10));
+      if (st === 2) (sfx.shimmer(10), buzz(20));
+      if (st === 3) (sfx.shimmer(18), jolt(6, 400), buzz([20, 30, 20]));
+      if (st === 4) (sfx.shimmer(24), jolt(12, 700), buzz([40, 30, 60]), rumble(stage.current, 1200, 0.4, 8));
+    };
+    for (let st = 1 as Step; st <= plan.step; st++) {
+      const at = STEP_AT[st];
+      const now = st;
+      later(() => enter(now), at);
+    }
+    let end = TURN_AT[plan.step];
+    if (plan.near) {
+      // The next step bursts into life… flickers… and cracks.
+      const next = (plan.step + 1) as Step;
+      later(() => (setStep(next), setFlicker(true), sfx.shimmer(10), buzz(25)), end);
+      later(() => (setFlicker(false), setStep(plan.step), sfx.near(), jolt(5, 220), buzz([15, 30, 15])), end + FLICKER_MS);
+      end += FLICKER_MS + CRACK_MS;
+    }
+    if (plan.step >= 2 || (plan.near && plan.step === 1)) {
+      later(() => sfx.suspense((end - STEP_AT[2]) / 1000), STEP_AT[2]);
+      heartbeat(STEP_AT[2], end);
+    }
+    later(go, end);
   };
   /** One of the three: the others drop away, the chosen one comes forward to be torn. */
   const choose = (k: number) => {
@@ -1306,19 +1436,19 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     if (phase === 'choose') return choose(1);
     if (phase === 'pack') return autoTear();
     if (phase !== 'reveal' || charging) return;
-    if (!flipped) return turn();
+    if (!flipped) return turn(i);
     // A card back from the black hole waits for the player's choice.
     if (pending.has(i) && !(i in kept)) return;
     if (i + 1 >= deck.length) return setPhase('summary');
     sfx.whoosh();
     setI(i + 1);
     setFlipped(false);
-    cue(deck[i + 1]);
+    cue(i + 1);
   };
   /**
-   * Skip never skips past a top card: it goes straight to the next Legendary or better still face down and
-   * turns it (a quick skipper still sees it come). Pressed again while it charges, it lands at once; on a
-   * card already turned, it goes on to the next top card, and to the summary once there's none left.
+   * Skip never skips past a top card: it goes straight to the next Legendary or better and turns it, with its
+   * build-up (so where it stops says "a top card", never which). Pressed again while it builds up, it lands at
+   * once; on a card already turned, it goes on to the next top card, and to the summary once there's none left.
    */
   const skip = () => {
     timers.current.forEach((t) => window.clearTimeout(t));
@@ -1329,8 +1459,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     // A top card charging: its turn now, without the wait.
     if (phase === 'reveal' && charging && landing.current) return landing.current();
     const from = phase === 'reveal' ? (flipped ? i + 1 : i) : 0;
-    const next = deck.findIndex((c, k) => k >= from && top(c.rarity));
+    const next = deck.findIndex((_, k) => k >= from && plans[k].step >= 2);
     setCharging(false);
+    setStep(0);
     if (next < 0) {
       setPhase('summary');
       // A pack with a top card already seen doesn't celebrate twice.
@@ -1341,7 +1472,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setI(next);
     setFlipped(false);
     sfx.whoosh();
-    turn(deck[next]);
+    turn(next);
   };
 
   useEffect(() => {
@@ -1365,26 +1496,43 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     };
   }, []);
 
+  /** A finger held on the card: where (in the card), to draw the light under it. */
+  const [press, setPress] = useState<{ x: number; y: number; key: number } | null>(null);
+  /** The card was turned by its press: the click that follows it must not turn the page on. */
+  const pressTurned = useRef(false);
+  const pressDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    // A press that never became a click (the finger slid off) must not swallow the next tap.
+    pressTurned.current = false;
+    if (phase !== 'reveal' || flipped) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    setPress({ x: e.clientX - r.left, y: e.clientY - r.top, key: Date.now() });
+    if (charging) return;
+    pressTurned.current = true;
+    if (!(pending.has(i) && !(i in kept))) turn(i);
+  };
   const style = card ? RARITY_STYLE[card.rarity] : null;
-  // A Legendary or better charging: it spins front over back.
-  const spinning = charging && !!card && top(card.rarity);
-  const big = card && (card.rarity === 'epic' || top(card.rarity));
+  // Time slowing (step 2 and up): it spins front over back.
+  const spinning = charging && step >= 2;
+  // Rays behind the card: in its build-up's colour, then its own once turned.
+  const rays = !card ? null : flipped ? (card.rarity === 'epic' || top(card.rarity) ? card.rarity : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
     <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
-          {/* What a skip does now: land the card charging, go to the next top card, or to the end. */}
-          {phase === 'reveal' && charging && card && top(card.rarity) ? 'SKIP ✦' : deck.some((c, k) => k >= (phase === 'reveal' ? (flipped ? i + 1 : i) : 0) && top(c.rarity)) ? 'SKIP TO ★' : 'SKIP ⏭'}
+          {/* Always the same: a label that changed with what's left would tell it. */}
+          SKIP ⏭
         </button>
       )}
       {/* Slow motion: the room darkens around a Legendary or better as it charges. */}
       {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' ? glow : packLight} />}
-      {phase === 'reveal' && charging && card && top(card.rarity) && <div className="pack-slowmo pointer-events-none fixed inset-0" aria-hidden />}
-      {/* A Mythic or Omni makes its entrance: its franchise's name sweeps across, in its colours. */}
-      {phase === 'reveal' && charging && card && prismatic(card.rarity) && (
+      {phase === 'reveal' && charging && step >= 2 && <div className={`pack-slowmo pointer-events-none fixed inset-0 ${flicker ? 'pack-flicker' : ''}`} aria-hidden />}
+      {/* The last card, every pack: the room dims before it's turned. */}
+      {phase === 'reveal' && !flipped && i === deck.length - 1 && deck.length > 1 && <div className="pack-lastcard pointer-events-none fixed inset-0" aria-hidden />}
+      {/* Step 3 and up: its franchise's name sweeps across, in every colour (red and gold at step 4). */}
+      {phase === 'reveal' && charging && card && step >= 3 && (
         <div className="pointer-events-none fixed inset-x-0 top-[12%] z-30 overflow-hidden" aria-hidden>
-          <p className={`pack-banner whitespace-nowrap text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl ${card.rarity === 'omni' ? 'card-omni-name' : 'card-mythic-name'}`}>{card.franchise.toUpperCase()}</p>
+          <p className={`pack-banner ${step >= 4 ? 'card-omni-name' : 'card-mythic-name'} ${flicker ? 'pack-flicker' : ''} whitespace-nowrap text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl`}>{card.franchise.toUpperCase()}</p>
         </div>
       )}
       {/* A golden pack: gold rays turning slowly behind everything, from the pick to the summary. */}
@@ -1494,25 +1642,25 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         </div>
       )}
 
-      {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
+      {/* 2. The shooting stars: one per card, silver, the best last in the tease's colour — now and then it crashes into another and bursts. */}
       {phase === 'meteor' && (
         <div className="pointer-events-none absolute -inset-16 overflow-hidden" aria-hidden>
-          <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={moment} />
+          <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={moment} cometAt={cometAt} cometColor={RARITY_LIGHT[tease]} />
           {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
-          {stars.map((s, k) => {
-            const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
+          {stars.map((real, k) => {
+            // What the star shows (silver, or the tease's colour), never what its card is.
+            const s = veil(real);
+            const thick = s.climax || s.event ? 7 : 4;
             // A black hole: every star but the last circles it (and some go in).
             // A cosmic event: its own scene.
             if (s.event === 'wish') return <Wish key={k} star={s} thick={thick} />;
-            if (s.event === 'collision') return <Embrace key={k} star={s} />;
-            if (s.event === 'supernova') return <Supernova key={k} star={s} />;
-            if (s.event === 'bigbang') return <BigBang key={k} star={s} />;
+            if (s.event) return <Chain key={k} star={s} />;
             if (cosmos.hole && k < regular - 1) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} />;
-            // An evolving star crashes into another and bursts in its true colour.
-            if (s.from !== s.to) return <Clash key={k} star={s} thick={thick} />;
+            // A clash: it crashes into another and bursts.
+            if (s.clash) return <Clash key={k} star={s} thick={thick} />;
             return (
               <div key={k} className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
-                <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms`, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
+                <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms`, width: `${s.climax ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
                   <div className="absolute inset-0 rounded-full" style={streak(s.to)} />
                   <div className="pack-meteor-head absolute right-0 top-1/2 rounded-full" style={{ width: thick * 5, height: thick * 5, ['--glow' as string]: RARITY_LIGHT[s.to] }} />
                   <div className={`pack-meteor-dust absolute inset-y-0 left-[15%] right-[10%] ${rainbowy(s.to) ? 'pack-twinkle-rainbow' : ''}`} />
@@ -1527,25 +1675,35 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {phase === 'reveal' && card && style && (
         <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-5">
           <p className="font-display text-xs font-bold tracking-[0.35em] text-white/60">
-            {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : cosmicAt.has(i) ? `${COSMIC_NAME[cosmicAt.get(i)!.kind].icon} ${COSMIC_NAME[cosmicAt.get(i)!.kind].name} · ` : ''}CARD {i + 1} OF {deck.length}
+            {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : cosmicAt.has(i) && flipped ? `${COSMIC_NAME[cosmicAt.get(i)!.kind].icon} ${COSMIC_NAME[cosmicAt.get(i)!.kind].name} · ` : ''}CARD {i + 1} OF {deck.length}
           </p>
-          <button type="button" onClick={act} className="relative isolate w-52 outline-none sm:w-60" aria-label={flipped ? `${card.name} — next` : 'Turn the card'}>
+          <button
+            type="button"
+            onClick={() => (pressTurned.current ? (pressTurned.current = false) : act())}
+            onPointerDown={pressDown}
+            onPointerUp={() => setPress(null)}
+            onPointerLeave={() => setPress(null)}
+            onPointerCancel={() => setPress(null)}
+            className="relative isolate w-52 touch-none outline-none sm:w-60"
+            aria-label={flipped ? `${card.name} — next` : 'Turn the card'}
+          >
             {/* The rest of the deck, underneath. */}
             {Array.from({ length: Math.min(3, deck.length - i - 1) }, (_, k) => (
               <div key={k} className="absolute inset-0 opacity-70" style={{ transform: `translate(${(k + 1) * 6}px, ${(k + 1) * 6}px)`, zIndex: -1 - k }}>
                 <CardBack />
               </div>
             ))}
-            {big && <Rays color={RARITY_LIGHT[card.rarity]} strong={top(card.rarity) && (charging || flipped)} rainbow={rainbowy(card.rarity)} />}
-            <div
-              key={i}
-              className={`pack-card-in [perspective:1100px] ${!flipped && !charging && card.rarity !== 'common' && !reducedMotion() ? 'pack-leak' : ''}`}
-              style={{ ['--leak' as string]: RARITY_LIGHT[card.rarity], ['--leak-size' as string]: `${6 + RARITIES.indexOf(card.rarity) * 7}px`, ['--leak-shake' as string]: `${RARITIES.indexOf(card.rarity) * 0.6}px` }}
-            >
-              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (card.rarity === 'mythic' ? 'pack-charge-spin pack-charge-prism' : card.rarity === 'omni' || card.rarity === 'legendary' ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && top(card.rarity) ? SPIN[card.rarity] : undefined}>
-                {/* Spinning front over back (Legendary and up): the back shows on both sides, the face stays hidden until the turn. */}
+            {rays && (
+              <div className={flicker ? 'pack-flicker' : ''}>
+                <Rays color={RARITY_LIGHT[rays]} strong={flipped ? top(card.rarity) : step >= 2} rainbow={rainbowy(rays)} />
+              </div>
+            )}
+            {/* Face down, every card looks the same: no glow, no tremble, nothing to read before its turn. */}
+            <div key={i} className="pack-card-in [perspective:1100px]">
+              <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (step === 3 ? 'pack-charge-spin pack-charge-prism' : step >= 2 ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && step >= 2 ? SPIN[step >= 4 ? 'omni' : step === 3 ? 'mythic' : 'legendary'] : undefined}>
+                {/* Spinning front over back (time slowing): the back shows on both sides, the face stays hidden until the turn. */}
                 <div className={spinning ? '' : '[backface-visibility:hidden]'}>
-                  <CardBack rarity={card.rarity === 'common' ? undefined : card.rarity} />
+                  <CardBack rarity={charging && step >= 1 ? STEP_LIGHT[step] : undefined} />
                 </div>
                 <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${spinning ? 'opacity-0' : ''}`}>
                   <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
@@ -1553,6 +1711,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               </div>
             </div>
             {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} rainbow={rainbowy(card.rarity)} count={card.rarity === 'omni' ? 100 : card.rarity === 'mythic' ? 70 : card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
+            {/* Held: a light grows under the finger, in the build-up's colour — pushing it on (or so it feels). */}
+            {press && !flipped && <span key={press.key} className="pack-press pointer-events-none absolute z-20 rounded-full" style={{ left: press.x, top: press.y, ['--press' as string]: RARITY_LIGHT[STEP_LIGHT[step]] }} />}
             {flipped && fresh.has(card.id) && <span className="pack-stamp absolute -right-6 top-6 z-30 rounded-md border-4 border-coral px-2 py-0.5 font-display text-xl font-black tracking-widest text-coral">NEW!</span>}
           </button>
           <div className="min-h-14 text-center">
@@ -1568,7 +1728,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
               </div>
             ) : (
-              <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? '…' : 'TAP TO TURN'}</p>
+              <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? (press ? 'HOLD…' : '…') : i === deck.length - 1 && deck.length > 1 ? 'THE LAST CARD · HOLD TO TURN' : 'TAP OR HOLD TO TURN'}</p>
             )}
           </div>
           {/* Back from the black hole: keep its anomaly, or let the card be. */}

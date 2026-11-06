@@ -210,6 +210,12 @@ export const sfx = {
   crinkle: () => {
     for (let i = 0; i < 6; i++) window.setTimeout(() => noise(0.025 + Math.random() * 0.035, 6000, 2500 + Math.random() * 2000, 0.05), i * 32 + Math.random() * 22);
   },
+  /** A heartbeat: two low thumps (lub-dub). */
+  heartbeat: () =>
+    play([
+      { freq: 72, dur: 0.09, type: 'sine', gain: 0.32, slide: 46 },
+      { freq: 64, at: 0.15, dur: 0.11, type: 'sine', gain: 0.24, slide: 40 },
+    ]),
   /** The wait before the best card's star: a quiet drone rising, its pulse quickening. */
   suspense: (seconds: number) => drone(seconds),
   /** A black hole opening: a deep hum swelling under everything. */
