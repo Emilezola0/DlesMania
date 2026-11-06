@@ -18318,8 +18318,8 @@
   {
     "id": "jlpt",
     "domain": "anime",
-    "category": "other",
-    "franchise": "JLPT",
+    "category": "language",
+    "franchise": "Japanese",
     "aliases": [
       "jlpt",
       "japanese",

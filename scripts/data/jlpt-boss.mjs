@@ -126,8 +126,8 @@ const blitz = Object.keys(TOPICS)
 const boss = {
   id: 'jlpt',
   domain: 'anime',
-  category: 'other',
-  franchise: 'JLPT',
+  category: 'language',
+  franchise: 'Japanese',
   aliases: ['jlpt', 'japanese', 'japonais', 'kanji', '漢字'],
   images: 'none',
   boss: { name: 'Oni-Sensei', title: 'Keeper of the Kanji', color: '#b91c1c', image: 'kanji:鬼' },

@@ -112,7 +112,7 @@ export const UNIVERSES = [
   },
   {
     id: 'jlpt',
-    label: 'JLPT',
+    label: 'Japanese',
     ready: true,
     blurb: "Japanese from Coto Academy's JLPT list, N5 to N1: a kanji's meaning, a word's reading, a meaning back into Japanese.",
     types: ['kanji', 'reading', 'word'] as SpType[],

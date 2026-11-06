@@ -4,7 +4,7 @@ import { HeartIcon } from '../boss/BossHeader';
 import { DleCoin } from '../components/DleCoin';
 import { celebrate, celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
-import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
+import { ALL_KEYS, ALL_MEDIA, ALL_ROOMS, FRANCHISES, MEDIA, type Media, bossesFor, challengesFor, hasBoss, keysFor, mediaOfKeys, roomsOf as franchiseRooms } from '../rogue/pools';
 import { BossRoom, HigherLowerRoom, Name5Room, OddRoom, PortraitRoom, SortRoom, WhoAmIRoom, type RoomResult } from '../rogue/Rooms';
 import { EXPEDITION_COMPLETE_BONUS } from '../gacha/economy';
 import {
@@ -36,7 +36,6 @@ import {
   type RunState,
 } from '../rogue/run';
 import { useProgress } from '../store/progress';
-import type { Domain } from '../types';
 
 const ROOMS: Record<ChallengeKind, typeof PortraitRoom> = {
   portrait: PortraitRoom,
@@ -58,10 +57,13 @@ interface Setup {
   rooms: ChallengeKind[];
 }
 
+/** The kinds of work (not the languages). */
+const WORKS_MEDIA = ALL_MEDIA.filter((m) => m !== 'language');
+
 const sameSet = (a: string[], b: string[]) => a.length === b.length && a.every((x) => b.includes(x));
 
 /** A setup that's just "these kinds of work, every room" (what the quick buttons make), or null for a hand-picked one. */
-function plainMedia(picks: string[], rooms: ChallengeKind[]): Domain[] | null {
+function plainMedia(picks: string[], rooms: ChallengeKind[]): Media[] | null {
   const media = mediaOfKeys(picks);
   return sameSet(picks, keysFor(media)) && sameSet(rooms, ALL_ROOMS) ? media : null;
 }
@@ -70,7 +72,8 @@ function plainMedia(picks: string[], rooms: ChallengeKind[]): Domain[] | null {
 function bestKey(picks: string[], rooms: ChallengeKind[]) {
   const media = plainMedia(picks, rooms);
   if (!media) return 'rogue:custom';
-  return ALL_MEDIA.every((m) => media.includes(m)) ? 'rogue:mixed' : `rogue:${[...media].sort().join('+')}`;
+  // Every kind of work (with Japanese or not) is "mixed", as before Language came.
+  return WORKS_MEDIA.every((m) => media.includes(m)) ? 'rogue:mixed' : `rogue:${[...media].sort().join('+')}`;
 }
 
 function setupLabel(picks: string[], rooms: ChallengeKind[]) {

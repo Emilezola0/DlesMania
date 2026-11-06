@@ -622,7 +622,7 @@ function DayCard({ kind, entry }: { kind: 'word' | 'kanji'; entry: JlptEntry }) 
         </div>
       )}
       <p className="font-display text-lg font-semibold">{shortMeaning(entry.meaning, 5)}</p>
-      <p className="text-xs text-ink-faint">JLPT {entry.level}</p>
+      <p className="text-xs text-ink-faint">{entry.level}</p>
       {/* A word written with kanji: what each of them means (the ones the list has). */}
       {kind === 'word' && kanjiOfWord(entry.text).length > 0 && (
         <ul className="mt-1 w-full space-y-1 border-t border-rule pt-2 text-left text-sm">
@@ -691,7 +691,7 @@ function LevelList({ level }: { level: string }) {
     <div className="mx-auto max-w-3xl space-y-5">
       <div>
         <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-          ← JLPT
+          ← Japanese
         </Link>
         <h1 className="text-4xl font-bold">{level} — everything on the list</h1>
         <p className="text-sm text-ink-soft">
@@ -768,7 +768,7 @@ function LevelList({ level }: { level: string }) {
 /** Name Them All, in Japanese: a whole level (its words, kanji or grammar) or every word of a theme, against the clock (src/arcade/lists.ts). */
 function NameThemAllRow() {
   const bests = useProgress((s) => s.bests);
-  const lists = NAME_LISTS.filter((l) => l.franchise === 'JLPT');
+  const lists = NAME_LISTS.filter((l) => l.franchise === 'Japanese');
   const levelList = (level: string, kind: string) => lists.find((l) => l.id === `jlpt-${level.toLowerCase()}-${kind}`);
   const themes = lists.filter((l) => !/^jlpt-n\d-/.test(l.id));
   const score = (id: string, n: number) => `${bests[`ntl:${id}`] ? `${bests[`ntl:${id}`]}/` : ''}${n}`;
@@ -889,6 +889,7 @@ export default function Jlpt() {
   const { deck: id, level } = useParams();
   const { picks, setPicks } = useCustomPicks('omnidle-custom-jlpt', JLPT_OPTIONS);
   const [grammar, setGrammar] = useState<string | null>(null);
+  const japaneseTitle = useProgress((s) => s.nameLang) === 'fr' ? 'Japonais' : 'Japanese';
   if (level) {
     const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
@@ -898,7 +899,7 @@ export default function Jlpt() {
       <div className="mx-auto max-w-2xl space-y-6">
         <div>
           <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-            ← JLPT
+            ← Japanese
           </Link>
           <h1 className="text-4xl font-bold">🔁 Grammar Review</h1>
           <p className="text-sm text-ink-soft">The grammar points you kept, with gaps. No clock, and a miss doesn&apos;t end it. {JLPT_LEARNED} right in a row and a point is learned.</p>
@@ -916,7 +917,7 @@ export default function Jlpt() {
       <div className="mx-auto max-w-2xl space-y-6">
         <div>
           <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-            ← JLPT
+            ← Japanese
           </Link>
           <h1 className="text-4xl font-bold">✍️ {base.kind === 'kana' ? `Write ${base.label}` : `${base.level} · Write the kanji`}</h1>
           <p className="text-sm text-ink-soft">
@@ -938,7 +939,7 @@ export default function Jlpt() {
       <div className="mx-auto max-w-2xl space-y-6">
         <div>
           <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-            ← JLPT
+            ← Japanese
           </Link>
           <h1 className="text-4xl font-bold">
             {deck.icon && `${deck.icon} `}
@@ -956,7 +957,7 @@ export default function Jlpt() {
         <Link to="/games" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
           ← Games
         </Link>
-        <h1 className="text-5xl font-bold">JLPT</h1>
+        <h1 className="text-5xl font-bold">{japaneseTitle}</h1>
         <p className="max-w-xl text-ink-soft">
           Japanese from N5 to N1: a word or a kanji, four answers — its meaning or its reading. Faster and faster, until the first mistake. Keys 1–4 answer.
         </p>

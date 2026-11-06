@@ -57,7 +57,7 @@ function jlptSort(a: string, b: string, icon: string): SortDeck {
   return {
     id: `jlpt-${a}-${b}`,
     domain: 'anime',
-    label: `JLPT: ${ta.label.toLowerCase()} or ${tb.label.toLowerCase()}?`,
+    label: `Japanese: ${ta.label.toLowerCase()} or ${tb.label.toLowerCase()}?`,
     icon,
     left: ta.label,
     right: tb.label,

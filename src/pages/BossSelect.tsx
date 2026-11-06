@@ -55,7 +55,7 @@ export default function BossSelect() {
           <p className="mb-2 font-display text-xs uppercase tracking-widest text-ink-faint">I · Domain</p>
           <div className="flex flex-wrap gap-2">
             {BOSS_TABS.map((id) => {
-              const d = id === 'other' ? { label: 'Other', tone: 'text-ink-soft' } : domainInfo(id);
+              const d = id === 'other' ? { label: 'Other', tone: 'text-ink-soft' } : id === 'language' ? { label: 'Language', tone: 'text-coral' } : domainInfo(id);
               const active = domain === id && !query;
               return (
                 <button

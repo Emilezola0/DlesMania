@@ -6,6 +6,6 @@ import { BOSSES } from '../data/bosses';
 export function franchiseOptions(ids: Set<string>): CustomOption[] {
   return BOSSES.filter((b) => ids.has(b.id)).map((b) => {
     const d = DOMAINS.find((x) => x.id === b.domain)!;
-    return { key: b.id, label: b.franchise, group: b.category === 'other' ? '✨ Other' : `${d.icon} ${d.label}` };
+    return { key: b.id, label: b.franchise, group: b.category === 'other' ? '✨ Other' : b.category === 'language' ? '🗣️ Language' : `${d.icon} ${d.label}` };
   });
 }

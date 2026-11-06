@@ -53,7 +53,7 @@ export default function GamesHub() {
       to: '/specialist',
       icon: '🎯',
       title: 'Specialist',
-      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch, JLPT and more, each with its own rounds.',
+      blurb: 'One universe, every angle: One Piece, League, Marvel, Genshin, Warcraft, Overwatch, Japanese and more, each with its own rounds.',
       stat: universesDone ? `Today: ${universesDone}/${UNIVERSES.length} universes done` : undefined,
     },
     {
@@ -171,7 +171,7 @@ export default function GamesHub() {
     {
       to: '/jlpt',
       icon: '🇯🇵',
-      title: 'JLPT',
+      title: 'Japanese',
       blurb: `Japanese from N5 to N1, by level or by theme (animals, food, the body…): the meaning or the reading of a word or a kanji, with a review list of the ones that give you trouble. ${JLPT_DECKS.length} decks.`,
       stat: best('jlpt:') ? `Best streak: ${best('jlpt:')}` : undefined,
     },

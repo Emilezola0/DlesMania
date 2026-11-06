@@ -3,8 +3,7 @@
 // The run is plain data (saved in the store), so a refresh doesn't lose it.
 import { EXPEDITION_BOSS_MAX, EXPEDITION_COMPLETE_BONUS, EXPEDITION_ROOM_MAX } from '../gacha/economy';
 import { mulberry32 } from '../lib/rng';
-import type { Domain } from '../types';
-import { ALL_KEYS, ALL_ROOMS, challengesFor, keysFor, mediaOfKeys } from './pools';
+import { ALL_KEYS, ALL_ROOMS, challengesFor, keysFor, mediaOfKeys, type Media } from './pools';
 
 export type RelicId = 'hourglass' | 'lantern' | 'secondwind' | 'loupe' | 'vitality' | 'greedy' | 'luckycoin' | 'bandage';
 
@@ -50,7 +49,7 @@ export interface RunState {
   over: boolean;
   won: boolean;
   /** The kinds of work the rooms draw from (runs saved before the choice existed: all of them). */
-  media?: Domain[];
+  media?: Media[];
   /** The franchises the rooms draw from (runs saved before: every franchise of `media`). */
   picks?: string[];
   /** The kinds of room the map is made of (runs saved before: all of them). */

@@ -68,7 +68,7 @@ export function onKun(reading: string) {
   return { on: parts.filter((p) => /^[゠-ヿ]/.test(p)).join('・'), kun: parts.filter((p) => !/^[゠-ヿ]/.test(p)).join('・') };
 }
 
-export const wordDetail = (w: JlptWord) => `${w.entry.text} — ${w.entry.reading} · ${shortMeaning(w.entry.meaning, 4)} · JLPT ${w.entry.level}`;
+export const wordDetail = (w: JlptWord) => `${w.entry.text} — ${w.entry.reading} · ${shortMeaning(w.entry.meaning, 4)} · ${w.entry.level}`;
 
 /** What each round draws from: a word for Reading only when it's written with kanji (else the reading is on screen). */
 export const JLPT_POOLS = {

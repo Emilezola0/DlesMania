@@ -87,7 +87,7 @@ export const RAIL_LINES: RailLine[] = [
   // JLPT: N5 and N4 words written in kanji on the signs — switch tracks by typing their reading (romaji or kana).
   // The stations are the list's own places. Every crash shows the readings of the signs it passed.
   {
-    id: 'jlpt', label: 'JLPT', icon: '🈴', palette: ['#7f1d1d', '#fbcfe8', '#3f6212', '#a8a29e'],
+    id: 'jlpt', label: 'Japanese', icon: '🈴', palette: ['#7f1d1d', '#fbcfe8', '#3f6212', '#a8a29e'],
     characters: JLPT_LEVELS.filter((l) => l.level === 'N5' || l.level === 'N4')
       .flatMap((l) => l.decks.find((d) => d.kind === 'vocab')!.entries)
       .filter((e) => /[\u3400-\u9fff]/.test(e.text) && !/[/／\s]/.test(e.text) && [...e.text].length <= 4)

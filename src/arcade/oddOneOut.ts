@@ -60,7 +60,7 @@ const JLPT_BANK: ThemeBank = (() => {
     kind: 'thing' as const,
     items: t.entries.filter((e) => (e.level === 'N5' || e.level === 'N4') && !seen.has(e.text) && seen.add(e.text)).map((e) => e.text),
   })).filter((c) => c.items.length >= ODD_CARDS);
-  return { id: 'jlpt', domain: 'anime', theme: 'JLPT words', images: 'none', cards: categories.flatMap((c) => c.items.map((label) => ({ label, image: kanjiPicture(`kanji:${label}`) }))), categories };
+  return { id: 'jlpt', domain: 'anime', theme: 'Japanese words', images: 'none', cards: categories.flatMap((c) => c.items.map((label) => ({ label, image: kanjiPicture(`kanji:${label}`) }))), categories };
 })();
 
 /** A round from one theme, or from any theme when `themeId` is "all" (those `keep` keeps, when given). */
@@ -74,4 +74,4 @@ export function oddRound(themeId: string, rand: () => number = Math.random, keep
   throw new Error(`No fair Odd One Out round for ${themeId}`);
 }
 
-export const ODD_THEMES = [{ id: 'all', theme: 'Every theme' }, ...connectionThemes.map((t) => ({ id: t.id, theme: t.theme })), { id: 'jlpt', theme: '🈴 JLPT words' }];
+export const ODD_THEMES = [{ id: 'all', theme: 'Every theme' }, ...connectionThemes.map((t) => ({ id: t.id, theme: t.theme })), { id: 'jlpt', theme: '🈴 Japanese words' }];

@@ -68,9 +68,9 @@ export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
 
 /** Music has no franchises to fight. */
 export const BOSS_DOMAINS: Domain[] = ['games', 'anime', 'cinema'];
-/** Boss Battle's tabs: the three domains, then Other (bosses marked with category "other"). */
-export type BossTab = Domain | 'other';
-export const BOSS_TABS: BossTab[] = [...BOSS_DOMAINS, 'other'];
-export const inTab = (b: { domain: Domain; category?: 'other' }, tab: BossTab) => (tab === 'other' ? b.category === 'other' : !b.category && b.domain === tab);
+/** Boss Battle's tabs: the three domains, then Language (category "language": Japanese) and Other (category "other"). */
+export type BossTab = Domain | 'language' | 'other';
+export const BOSS_TABS: BossTab[] = [...BOSS_DOMAINS, 'language', 'other'];
+export const inTab = (b: { domain: Domain; category?: 'other' | 'language' }, tab: BossTab) => (tab === 'other' || tab === 'language' ? b.category === tab : !b.category && b.domain === tab);
 
 export const getBoss = (id: string | undefined) => BOSSES.find((b) => b.id === id);

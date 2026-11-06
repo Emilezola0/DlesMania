@@ -225,7 +225,7 @@ function Game({ list: whole }: { list: NameList }) {
       )}
 
       {/* A JLPT list over: the words, kanji or grammar points missed, onto the review lists in one go. */}
-      {state === 'over' && list.franchise === 'JLPT' && <KeepMissed answers={list.answers.filter((a) => !found.includes(a.name))} />}
+      {state === 'over' && list.franchise === 'Japanese' && <KeepMissed answers={list.answers.filter((a) => !found.includes(a.name))} />}
       {state !== 'ready' && (
         <ul className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4">
           {list.answers.map((a, i) => {

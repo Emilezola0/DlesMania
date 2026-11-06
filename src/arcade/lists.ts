@@ -124,7 +124,7 @@ const jlptLevels: NameList[] = JLPT_LEVELS.flatMap((l) =>
   (['vocab', 'kanji', 'grammar'] as const).map((kind) => {
     const deck = l.decks.find((d) => d.kind === kind);
     const answers = kind === 'grammar' ? grammarAnswers(l.level, l.grammar) : kind === 'kanji' ? kanjiAnswers(deck!.entries) : wordAnswers(deck!.entries);
-    return { id: `jlpt-${l.level.toLowerCase()}-${kind}`, title: `${l.level} ${KIND_LABEL[kind]}`, franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+    return { id: `jlpt-${l.level.toLowerCase()}-${kind}`, title: `${l.level} ${KIND_LABEL[kind]}`, franchise: 'Japanese', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
   }),
 );
 
@@ -133,7 +133,7 @@ const kanaLists: NameList[] = (['hiragana', 'katakana'] as const).map((script) =
   // ん is "nn" here (as typed on a Japanese keyboard): "n" alone would name it before "na", "ni"… are typed out.
   const romaji = (k: string) => (toHiragana(k) === 'ん' ? ['nn', "n'"] : kanaRomaji(k));
   const answers = BASIC_KANA[script].map((e) => ({ jlpt: e.id, name: `${e.text} (${toHiragana(e.text) === 'ん' ? 'nn' : e.meaning})`, aliases: [...new Set([e.text, toHiragana(e.text), ...romaji(e.text)])] }));
-  return { id: `jlpt-kana-${script}`, title: script === 'hiragana' ? 'あ Hiragana' : 'ア Katakana', franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+  return { id: `jlpt-kana-${script}`, title: script === 'hiragana' ? 'あ Hiragana' : 'ア Katakana', franchise: 'Japanese', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
 });
 
 const jlpt: NameList[] = [
@@ -141,7 +141,7 @@ const jlpt: NameList[] = [
   ...jlptLevels,
   ...JLPT_THEMES.map((t) => {
     const answers = wordAnswers(t.entries);
-    return { id: `jlpt-${t.id.replace(/^theme-/, '')}`, title: `${t.icon} ${t.label} in Japanese`, franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+    return { id: `jlpt-${t.id.replace(/^theme-/, '')}`, title: `${t.icon} ${t.label} in Japanese`, franchise: 'Japanese', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
   }),
 ];
 

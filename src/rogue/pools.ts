@@ -9,22 +9,25 @@ import { connectionThemes, type ThemeBank } from '../data';
 import { BOSSES } from '../data/bosses';
 import type { Domain } from '../types';
 import type { ChallengeKind } from './run';
+import { JLPT_HL_DECKS, JLPT_UNIVERSE } from './jlptRooms';
 
-/** The kinds of work an Expedition can be made of. */
-export const MEDIA: { id: Domain; label: string; icon: string }[] = [
+/** What an Expedition can be made of: kinds of work, and languages (Japanese). */
+export type Media = Domain | 'language';
+export const MEDIA: { id: Media; label: string; icon: string }[] = [
   { id: 'games', label: 'Video games', icon: '🎮' },
   { id: 'anime', label: 'Anime', icon: '🌸' },
   { id: 'cinema', label: 'Movies', icon: '🎬' },
+  { id: 'language', label: 'Language', icon: '🗣️' },
 ];
 
-export const ALL_MEDIA: Domain[] = MEDIA.map((m) => m.id);
+export const ALL_MEDIA: Media[] = MEDIA.map((m) => m.id);
 export const ALL_ROOMS: ChallengeKind[] = ['portrait', 'higherlower', 'odd', 'whoami', 'sort', 'name5'];
 
 /** A franchise rooms can be drawn from. `works:<domain>` is every title of a kind (the release-year decks). */
 export interface Franchise {
   key: string;
   label: string;
-  domain: Domain;
+  domain: Media;
 }
 
 /** Sources that go by another id than their franchise's. */
@@ -61,6 +64,8 @@ const DECK_KEY: Record<string, string> = {
   'avatar-nation': 'avatar',
   'fh-faction': 'forhonor',
   'destiny-side': 'destiny',
+  // Japanese: its Higher or Lower and Quick Sort decks.
+  ...Object.fromEntries([...JLPT_HL_DECKS.map((d) => d.id), ...SORT_DECKS.filter((d) => d.id.startsWith('jlpt-')).map((d) => d.id)].map((id) => [id, 'jlpt'])),
 };
 
 /** Name lists go by franchise name: the boss franchises, plus the whole-roster lists. */
@@ -76,18 +81,19 @@ const WORKS_LABEL = 'Release years (every title)';
 /** Every franchise with something to play, grouped by kind of work. */
 export const FRANCHISES: Franchise[] = (() => {
   const out = new Map<string, Franchise>();
-  const add = (key: string, label: string, domain: Domain) => !out.has(key) && out.set(key, { key, label, domain });
-  for (const b of BOSSES) add(canon(b.id), b.franchise, b.domain);
+  const add = (key: string, label: string, domain: Media) => !out.has(key) && out.set(key, { key, label, domain });
+  for (const b of BOSSES) add(canon(b.id), b.franchise, b.category === 'language' ? 'language' : b.domain);
   for (const t of connectionThemes) add(canon(t.id), t.theme, t.domain);
   for (const u of WHO_UNIVERSES) add(canon(u.id), u.label, u.domain);
-  for (const d of ALL_MEDIA) add(`works:${d}`, WORKS_LABEL, d);
+  // (Every title of a kind of work: no such deck for a language.)
+  for (const d of ALL_MEDIA) if (d !== 'language') add(`works:${d}`, WORKS_LABEL, d);
   return [...out.values()].sort((a, b) => ALL_MEDIA.indexOf(a.domain) - ALL_MEDIA.indexOf(b.domain) || (a.key.startsWith('works:') ? 1 : 0) - (b.key.startsWith('works:') ? 1 : 0) || a.label.localeCompare(b.label));
 })();
 
 export const franchise = (key: string) => FRANCHISES.find((f) => f.key === key);
 
 /** Every franchise of these kinds of work. */
-export const keysFor = (media: Domain[]) => FRANCHISES.filter((f) => media.includes(f.domain)).map((f) => f.key);
+export const keysFor = (media: Media[]) => FRANCHISES.filter((f) => media.includes(f.domain)).map((f) => f.key);
 export const ALL_KEYS = keysFor(ALL_MEDIA);
 
 /** The kinds of work a set of franchises covers. */
@@ -96,10 +102,10 @@ export const mediaOfKeys = (keys: string[]) => ALL_MEDIA.filter((d) => keys.some
 /** A deck of every title keeps only the picked kinds' cards; it needs this many left to be played. */
 const MIN_MIXED = 15;
 
-export const universesFor = (keys: string[]) => WHO_UNIVERSES.filter((u) => keys.includes(canon(u.id)));
+export const universesFor = (keys: string[]) => [...WHO_UNIVERSES, JLPT_UNIVERSE].filter((u) => keys.includes(canon(u.id)));
 
 export function hlDecksFor(keys: string[]): HlDeck[] {
-  return HL_DECKS.flatMap((d) => {
+  return [...HL_DECKS, ...JLPT_HL_DECKS].flatMap((d) => {
     if (d.domain !== 'mixed') return keys.includes(DECK_KEY[d.id]) ? [d] : [];
     const items = d.items.filter((x) => x.domain && keys.includes(`works:${x.domain}`));
     return items.length >= MIN_MIXED ? [{ ...d, items }] : [];
@@ -129,7 +135,8 @@ function roomsWith(keys: string[]): ChallengeKind[] {
     whoami: universesFor(keys).length > 0,
     higherlower: hlDecksFor(keys).length > 0,
     sort: sortDecksFor(keys).length > 0,
-    odd: connectionThemes.some(themeFilter(keys)),
+    // (Japanese has its own board: oddOneOut.ts's JLPT words.)
+    odd: connectionThemes.some(themeFilter(keys)) || keys.includes('jlpt'),
     name5: listsFor(keys).length > 0,
   };
   return ALL_ROOMS.filter((k) => has[k]);

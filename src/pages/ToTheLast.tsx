@@ -90,7 +90,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
     <div className="mx-auto max-w-2xl space-y-5">
       <div>
         <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-          ← JLPT
+          ← Japanese
         </Link>
         <h1 className="text-5xl font-bold leading-tight sm:text-6xl">To the Last</h1>
         <p className="mt-1 flex flex-wrap items-center gap-2">

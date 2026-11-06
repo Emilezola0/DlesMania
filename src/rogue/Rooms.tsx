@@ -81,7 +81,7 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
   }
   return (
     <div className="space-y-4">
-      <Header title={`${u.icon} ${u.label}`} rule="Who is this?" />
+      <Header title={`${u.icon} ${u.label}`} rule={u.id === 'jlpt' ? 'Which kanji is this?' : 'Who is this?'} />
       <div className="relative mx-auto aspect-square w-56 overflow-hidden rounded-xl bg-tile shadow-lg">
         {!ready && (
           <span className="absolute inset-0 grid place-items-center text-ink-faint">
@@ -92,7 +92,7 @@ export function PortraitRoom({ mods, onDone }: RoomProps) {
       </div>
       {mods.lantern && !over && <p className="text-center font-display font-bold">🏮 Starts with “{target.name[0]}”</p>}
       <TimerBar total={seconds * 1000} running={!over && ready} onExpire={() => end(false, `Time's up — it was ${shownName(target.name)}${tried(wrong.map(nameOf))}`)} />
-      {!over && <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder="Who is it?" showImages={false} />}
+      {!over && <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder={u.id === 'jlpt' ? 'Its meaning or a reading (romaji or kana)…' : 'Who is it?'} showImages={false} />}
       <p className="text-center text-xs text-ink-faint">{allowance(tries, mods) - wrong.length} tries left</p>
     </div>
   );
@@ -233,7 +233,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
   };
   return (
     <div className="space-y-4">
-      <Header title={`${u.icon} ${u.label}`} rule={`Who am I? Clue ${shown} of ${max}`} />
+      <Header title={`${u.icon} ${u.label}`} rule={`${u.id === 'jlpt' ? 'Which kanji am I?' : 'Who am I?'} Clue ${shown} of ${max}`} />
       <ol className="page space-y-1 rounded-md p-4">
         {clues.slice(0, shown).map((c, i) => (
           <li key={i} className="animate-pop">
@@ -244,7 +244,7 @@ export function WhoAmIRoom({ mods, onDone }: RoomProps) {
       </ol>
       {!over && (
         <>
-          <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder="Who is it?" />
+          <GuessInput pool={u.pool} exclude={wrong} onGuess={guess} placeholder={u.id === 'jlpt' ? 'Its meaning or a reading (romaji or kana)…' : 'Who is it?'} />
           {shown < max && (
             <button type="button" onClick={() => setShown((s) => s + 1)} className="btn-paper mx-auto block rounded-md px-4 py-1.5 text-sm font-semibold">
               Next clue

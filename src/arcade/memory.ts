@@ -185,7 +185,7 @@ export function jlptPairs(picks: string[]): MemoryPair[] {
 export const JLPT_MEMORY_DEFAULT = ['N5', 'N4', ...JLPT_PAIR_TYPES.map((t) => t.key)];
 MEMORY_DECKS.push({
   id: 'jlpt',
-  label: 'JLPT',
+  label: 'Japanese',
   icon: '🈴',
   rule: 'Match each kanji or word to its meaning — or a kanji to a word written with it.',
   pairs: jlptPairs(JLPT_MEMORY_DEFAULT),

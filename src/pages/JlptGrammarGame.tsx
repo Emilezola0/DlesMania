@@ -180,7 +180,7 @@ export function GrammarPage({ level }: { level: string }) {
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
         <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-          ← JLPT
+          ← Japanese
         </Link>
         <h1 className="text-4xl font-bold">文 {level} Grammar</h1>
         <p className="text-sm text-ink-soft">

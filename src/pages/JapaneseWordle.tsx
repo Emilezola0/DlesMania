@@ -32,7 +32,7 @@ const plainKana = (k: string) => {
 /** The aids: each one tells something more, and takes a fifth off the win's DleCoins. */
 type Aid = 'level' | 'meaning' | 'kanji' | 'sound';
 const AIDS: { id: Aid; label: string; blurb: string }[] = [
-  { id: 'level', label: 'Level', blurb: 'its JLPT level' },
+  { id: 'level', label: 'Level', blurb: 'its level (N5 to N1)' },
   { id: 'meaning', label: 'Meaning', blurb: 'what it means' },
   { id: 'kanji', label: 'Kanji', blurb: 'how many kanji it is written with' },
   { id: 'sound', label: 'Sound marks', blurb: 'a ゛ on a tile whose right kana is the same sound with another mark or size (か/が, は/ぱ, つ/っ)' },
@@ -123,7 +123,7 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
       return sfx.wrong();
     }
     if (!isJaWord(g)) {
-      setNote('Not a word of the JLPT list.');
+      setNote('Not a word of the Japanese list.');
       shake(document.getElementById('wordle-ja-row'), 6, 300);
       return sfx.wrong();
     }
@@ -171,7 +171,7 @@ function JaGame({ date, word, custom, children }: { date: string; word: JaWord; 
           🇯🇵 <span lang="ja">日本語</span> Wordle
         </h1>
         <p className="text-sm text-ink-soft">
-          {formatLong(date)} · a new word every day, the same for everyone{custom ? ' who picks the same lengths' : ''} · {JA_WORDS.length} words of the JLPT list
+          {formatLong(date)} · a new word every day, the same for everyone{custom ? ' who picks the same lengths' : ''} · {JA_WORDS.length} words of the Japanese list
         </p>
         <p className="mt-2 max-w-xl text-sm text-ink-soft">
           Find the word in six tries — today it&apos;s {wordLen} kana long. Every kana is a tile, small ones too: a contracted sound like きゃ or しょ takes two,
