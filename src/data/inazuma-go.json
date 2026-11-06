@@ -1,0 +1,493 @@
+[
+ {
+  "id": "inazuma:arion-sherwind",
+  "name": "Arion Sherwind",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b6/Matsukaze_Tenma.png/revision/latest/scale-to-width-down/600?cb=20220427175732",
+  "description": "Raimon’s new captain in GO, a wind-element midfielder who only wants soccer to be free again — and whose keshin, Pegasus, carries the whole team."
+ },
+ {
+  "id": "inazuma:riccardo-di-rigo",
+  "name": "Riccardo Di Rigo",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/01/Shindou_Takuto.png/revision/latest/scale-to-width-down/600?cb=20190504192415",
+  "description": "Raimon’s captain and playmaker when GO begins: the “maestro” of the pitch, who reads a match like a score and conducts his team through it."
+ },
+ {
+  "id": "inazuma:fei-rune",
+  "name": "Fei Rune",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Fei_Rune.png/revision/latest/scale-to-width-down/600?cb=20130105020003",
+  "description": "A boy from the future who joins Raimon in Chrono Stones, to save soccer from the agents who want it erased from history."
+ },
+ {
+  "id": "inazuma:gabriel-garcia",
+  "name": "Gabriel Garcia",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e8/Kirino_Ranmaru.png/revision/latest/scale-to-width-down/600?cb=20171029220352",
+  "description": "Raimon’s defender with the pink twin tails, Riccardo’s oldest friend and the calm at the back of the team."
+ },
+ {
+  "id": "inazuma:bailong",
+  "name": "Bailong",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7b/Hakuryuu.png/revision/latest/scale-to-width-down/600?cb=20130809001640",
+  "description": "The white-haired prodigy of God Eden, the Fifth Sector’s strongest Seed — and a rival who ends up fighting alongside Arion."
+ },
+ {
+  "id": "inazuma:simeon-ayp",
+  "name": "Simeon Ayp",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b8/Saryuu_Evan.png/revision/latest/scale-to-width-down/600?cb=20171125221326",
+  "description": "Captain of Feida, the gifted children of the future who stand against the world in the last arc of Chrono Stones."
+ },
+ {
+  "id": "inazuma:zanark-avalonic",
+  "name": "Zanark Avalonic",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/62/Zanark_Avalonic.png/revision/latest/scale-to-width-down/600?cb=20170605113321",
+  "description": "The wild time traveller of Chrono Stones, who plays soccer by his own rules and answers to no one."
+ },
+ {
+  "id": "inazuma:alpha",
+  "name": "Alpha",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a8/Alpha.png/revision/latest/scale-to-width-down/600?cb=20181105134832",
+  "description": "Captain of Protocol Omega, the cold agent sent from the future to wipe soccer out of history."
+ },
+ {
+  "id": "inazuma:aitor-cazador",
+  "name": "Aitor Cazador",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fa/Kariya_Masaki.png/revision/latest/scale-to-width-down/600?cb=20250822210717",
+  "description": "A new defender who turned up at Raimon during the Holy Road, with a smile that hides more than it shows."
+ },
+ {
+  "id": "inazuma:sol-daystar",
+  "name": "Sol Daystar",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f4/Amemiya_Taiyou.png/revision/latest/scale-to-width-down/600?cb=20240707115112",
+  "description": "The sun-bright ace of Arakumo Gakuen, a boy who left his hospital bed to face Arion in the Holy Road."
+ },
+ {
+  "id": "inazuma:tezcat",
+  "name": "Tezcat",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ac/Shuu.png/revision/latest/scale-to-width-down/600?cb=20161113205809",
+  "description": "The mysterious boy of God Eden’s forest, who plays soccer for a promise made long ago."
+ },
+ {
+  "id": "inazuma:jean-pierre-lapin",
+  "name": "Jean-Pierre Lapin",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/43/Nishizono_Shinsuke.png/revision/latest?cb=20130919170441",
+  "description": "Raimon’s smallest player, Arion’s first friend in the club, who can jump higher than anyone — and becomes a keeper."
+ },
+ {
+  "id": "inazuma:vladimir-blade",
+  "name": "Vladimir Blade",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d3/Tsurugi_Yuuichi.png/revision/latest/scale-to-width-down/600?cb=20131015013539",
+  "description": "Victor’s older brother, whose injured legs are the reason Victor joined the Fifth Sector."
+ },
+ {
+  "id": "inazuma:beta",
+  "name": "Beta",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/3f/Beta.png/revision/latest/scale-to-width-down/600?cb=20170111213011",
+  "description": "Captain of Protocol Omega 2.0: all sweet smiles, until the match turns against her."
+ },
+ {
+  "id": "inazuma:gamma",
+  "name": "Gamma",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4d/Gamma.png/revision/latest/scale-to-width-down/600?cb=20170621204848",
+  "description": "Captain of Protocol Omega 3.0, the proud agent who never forgives a defeat."
+ },
+ {
+  "id": "inazuma:goldie-lemmon",
+  "name": "Goldie Lemmon",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/da/Nanobana_Kinako.png/revision/latest/scale-to-width-down/600?cb=20160831200827",
+  "description": "A cheerful girl who joins Raimon on its journey through time in Chrono Stones."
+ },
+ {
+  "id": "inazuma:clark-von-wunderbar",
+  "name": "Clark von Wunderbar",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0b/Clark_Wonderbot.png/revision/latest/scale-to-width-down/600?cb=20240104152536",
+  "description": "The talking blue teddy bear from the future who coaches Raimon through time in Chrono Stones."
+ },
+ {
+  "id": "inazuma:skie-blue",
+  "name": "Skie Blue",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b3/Sorano_Aoi_%28Galaxy%29.png/revision/latest/scale-to-width-down/600?cb=20171130210047",
+  "description": "Raimon’s manager in GO and Arion’s childhood friend."
+ },
+ {
+  "id": "inazuma:samguk-han",
+  "name": "Samguk Han",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/67/Sangoku_Taichi.png/revision/latest?cb=20131007193917",
+  "description": "Raimon’s goalkeeper when GO begins, the steady senior in the goal."
+ },
+ {
+  "id": "inazuma:michael-ballzack",
+  "name": "Michael Ballzack",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/49/Kurama_Norihito.png/revision/latest/scale-to-width-down/600?cb=20250610205826",
+  "description": "Raimon’s sharp-tongued forward in GO."
+ },
+ {
+  "id": "inazuma:wanli-changcheng",
+  "name": "Wanli Changcheng",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/23/Amagi_Daichi.png/revision/latest/scale-to-width-down/600?cb=20171111132417",
+  "description": "Raimon’s big defender in GO, a wall at the back."
+ },
+ {
+  "id": "inazuma:ade-kebe",
+  "name": "Adé Kébé",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/1a/Hamano_Kaiji.png/revision/latest/scale-to-width-down/600?cb=20171217130558",
+  "description": "One of Raimon’s players in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:eugene-peabody",
+  "name": "Eugene Peabody",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/5a/Hayami_Tsurumasa.png/revision/latest/scale-to-width-down/600?cb=20130323085005",
+  "description": "One of Raimon’s players in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:subaru-honda",
+  "name": "Subaru Honda",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/51/Kurumada_Gouichi.png/revision/latest/scale-to-width-down/600?cb=20171217124036",
+  "description": "One of Raimon’s defenders in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:doug-mcarthur",
+  "name": "Doug McArthur",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/bf/Minamisawa_Atsushi.png/revision/latest/scale-to-width-down/600?cb=20170621200635",
+  "description": "Raimon’s forward when Inazuma Eleven GO begins."
+ },
+ {
+  "id": "inazuma:jade-greene",
+  "name": "Jade Greene",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c5/Seto_Midori.png/revision/latest/scale-to-width-down/600?cb=20130626080030",
+  "description": "One of Raimon’s managers in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:rosie-redd",
+  "name": "Rosie Redd",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/eb/Yamana_Akane.png/revision/latest?cb=20190418121956",
+  "description": "One of Raimon’s managers in Inazuma Eleven GO, never without her camera."
+ },
+ {
+  "id": "inazuma:hugues-baudet",
+  "name": "Hugues Baudet",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/33/Ichino_Nanasuke.png/revision/latest/scale-to-width-down/600?cb=20171217124057",
+  "description": "One of Raimon’s players in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:shunsuke-aoyama",
+  "name": "Shunsuke Aoyama",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/14/Aoyama_Shunsuke.png/revision/latest/scale-to-width-down/600?cb=20171217124451",
+  "description": "One of Raimon’s players in Inazuma Eleven GO."
+ },
+ {
+  "id": "inazuma:tech-god-hand",
+  "name": "God Hand",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/ef/%28IE%29_Shin_God_Hand_4.png/revision/latest/scale-to-width-down/600?cb=20190106120416",
+  "description": "Mark Evans’s catch: with spirit and guts, a huge golden hand that stops any shot. His grandfather’s technique, found in an old notebook.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-fire-tornado",
+  "name": "Fire Tornado",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b3/Fire_Tornado.jpg/revision/latest/scale-to-width-down/600?cb=20221014124731",
+  "description": "Axel Blaze’s shot: he spins up into the air and kicks down a ball wrapped in fierce flame.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-the-earth",
+  "name": "The Earth",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a9/%28IE%29_The_Earth_7.png/revision/latest/scale-to-width-down/600?cb=20160829115354",
+  "description": "A combination shot that gathers the power of the whole Earth into one ball.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-majin-pegasus-arc",
+  "name": "Majin Pegasus Arc",
+  "rarity": "legendary",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/75/Majin_Pegasus_Arc.png/revision/latest/scale-to-width-down/600?cb=20171201130729",
+  "description": "Arion’s keshin grown into its true form: the winged horse, spreading its red wings over the pitch.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-majin-the-hand",
+  "name": "Majin The Hand",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/23/%28IE%29_Majin_The_Hand_5.png/revision/latest/scale-to-width-down/600?cb=20130618185840",
+  "description": "Mark Evans’s catch that calls forth the giant from his own heart: the legend of Inazuma, reborn.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-eternal-blizzard",
+  "name": "Eternal Blizzard",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4a/%28GO%29_Eternal_Blizzard_8.png/revision/latest/scale-to-width-down/600?cb=20181113220032",
+  "description": "Shawn Froste’s shot, with such destructive power that it freezes everything in its path.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-death-zone",
+  "name": "Death Zone",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/eb/%28IE%29_Death_Zone_4.png/revision/latest/scale-to-width-down/600?cb=20240516120414",
+  "description": "Three players leap into a triangle of death and shoot together: Royal Academy’s signature.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-emperor-penguin-no-2",
+  "name": "Emperor Penguin No. 2",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c9/%28IE%29_Koutei_Penguin_2gou_10.png/revision/latest/scale-to-width-down/600?cb=20210311145122",
+  "description": "A cute name and a fearsome shot: penguins burst out of the ground and fly with the ball into the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-inazuma-break",
+  "name": "Inazuma Break",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/df/Inazuma_Break.png/revision/latest/scale-to-width-down/600?cb=20240731134205",
+  "description": "Mark, Axel and Jude together: one shot, charged with lightning.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-wolf-legend",
+  "name": "Wolf Legend",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/47/%28IE%29_Wolf_Legend_8.png/revision/latest/scale-to-width-down/600?cb=20190310123945",
+  "description": "Shawn Froste’s howling shot, the ice wolf charging at the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-kensei-lancelot",
+  "name": "Kensei Lancelot",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/05/Kensei_Lancelot.png/revision/latest/scale-to-width-down/600?cb=20160721111626",
+  "description": "Victor Blade’s keshin: the armoured swordsman, whose blade cuts through any defence.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-saikyou-eleven-hadou",
+  "name": "Saikyou Eleven Hadou",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c2/%28CS%29_Saikyou_Eleven_Hadou_9.png/revision/latest/scale-to-width-down/600?cb=20130426130831",
+  "description": "The strongest wind shot of GO, Riccardo and Victor striking as one.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-last-resort",
+  "name": "Last Resort",
+  "rarity": "epic",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4b/%28OK%29_Last_Resort_11.png/revision/latest/scale-to-width-down/600?cb=20181013114846",
+  "description": "The ball snakes over the pitch like a dragon, shaking the ground around it on its way to the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-mugen-the-hand",
+  "name": "Mugen The Hand",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/%28IE%29_Mugen_The_Hand_G5_6.png/revision/latest/scale-to-width-down/600?cb=20190209130900",
+  "description": "Darren LaChance’s catch, the secret technique said to be a myth: countless hands that stop the ball dead.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-ijigen-the-hand",
+  "name": "Ijigen The Hand",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d1/%28IE%29_Shin_Ijigen_The_Hand_6.png/revision/latest/scale-to-width-down/600?cb=20170104203440",
+  "description": "Mark Evans’s catch that wraps the goal in a dome of energy and turns the ball away.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-bakunetsu-screw",
+  "name": "Bakunetsu Screw",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/21/%28IE%29_Shin_Bakunetsu_Screw_8.png/revision/latest/scale-to-width-down/600?cb=20170104204850",
+  "description": "Axel Blaze’s burning screw shot, drilling through the air to the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-dragon-tornado",
+  "name": "Dragon Tornado",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a5/%28IE%29_Dragon_Tornado_4.png/revision/latest/scale-to-width-down/600?cb=20181213133104",
+  "description": "Kevin Dragonfly’s dragon and Axel Blaze’s fire in one shot.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-grand-fire",
+  "name": "Grand Fire",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/9d/%28IE%29_Grand_Fire_G2_4.png/revision/latest/scale-to-width-down/600?cb=20170609112009",
+  "description": "Three strikers, one blazing shot: a fireball as big as the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-heaven-drive",
+  "name": "Heaven Drive",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7e/%28IE%29_Heaven_Drive_7.png/revision/latest/scale-to-width-down/600?cb=20130524034924",
+  "description": "Byron Love’s shot from the heavens, struck with wings of light.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-chaos-break",
+  "name": "Chaos Break",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/21/%28IE%29_Chaos_Break_7.png/revision/latest/scale-to-width-down/600?cb=20181107133225",
+  "description": "Claude Beacons’s fire and Bryce Whitingale’s ice, kicked together into chaos.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-fire-blizzard",
+  "name": "Fire Blizzard",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/cf/%28IE%29_Fire_Blizzard_9.png/revision/latest/scale-to-width-down/600?cb=20181025125235",
+  "description": "Axel Blaze and Shawn Froste: fire and ice in a single shot.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-tenkuu-otoshi",
+  "name": "Tenkuu Otoshi",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/06/%28IE%29_Tenkuu_Otoshi_8.png/revision/latest/scale-to-width-down/600?cb=20160829113326",
+  "description": "Xavier Foster’s shot: not a shooting star — the whole starry sky falling onto the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-fortissimo",
+  "name": "Fortissimo",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0e/%28GO%29_Fortissimo_7.png/revision/latest/scale-to-width-down/600?cb=20201027053545",
+  "description": "Riccardo Di Rigo’s shot, struck as loud as the last note of a symphony.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-death-drop",
+  "name": "Death Drop",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/63/%28CS%29_Death_Drop_G3_9.png/revision/latest/scale-to-width-down/600?cb=20160721191756",
+  "description": "Victor Blade’s overhead kick, the ball wrapped in a jet-black aura.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-bakunetsu-storm",
+  "name": "Bakunetsu Storm",
+  "rarity": "rare",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/8b/Bakunetsu_Storm.png/revision/latest/scale-to-width-down/600?cb=20130617193441",
+  "description": "A storm of fire blowing everything over: Axel Blaze’s scorching shot.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-the-wall",
+  "name": "The Wall",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/95/%28IE%29_The_Wall_5.png/revision/latest/scale-to-width-down/600?cb=20190315123213",
+  "description": "Jack Wallside jumps and lands as a wall of rock in front of the goal.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-spinning-cut",
+  "name": "Spinning Cut",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/9d/%28IE%29_Spinning_Cut_4.png/revision/latest/scale-to-width-down/600?cb=20170102132240",
+  "description": "A sharp roundhouse kick at the opponent’s feet, the shock wave stealing the ball.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-illusion-ball",
+  "name": "Illusion Ball",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a3/%28IE%29_Shin_Illusion_Ball_5.png/revision/latest/scale-to-width-down/600?cb=20190310123259",
+  "description": "Jude Sharp’s trick: the ball splits into many, and only he knows which one is real.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-twin-boost",
+  "name": "Twin Boost",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/69/%28IE%29_Twin_Boost_8.png/revision/latest/scale-to-width-down/600?cb=20190317140055",
+  "description": "Jude Sharp and Axel Blaze: one kicks, the other sends it on twice as hard.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-ice-ground",
+  "name": "Ice Ground",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b2/%28IE%29_Ice_Ground_4.png/revision/latest/scale-to-width-down/600?cb=20190116141223",
+  "description": "Shawn Froste’s block: the ground freezes, and the opponent with it.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-soyokaze-step",
+  "name": "Soyokaze Step",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4e/%28CS%29_Soyokaze_Step_S_7.png/revision/latest/scale-to-width-down/600?cb=20160721120550",
+  "description": "Arion’s dribble, slipping past like a gentle breeze.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-mach-wind",
+  "name": "Mach Wind",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0e/%28GX%29_Shin_Mach_Wind_7.png/revision/latest/scale-to-width-down/600?cb=20180606205834",
+  "description": "Arion’s shot, the ball carried on a howling wind.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-jet-stream",
+  "name": "Jet Stream",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fd/%28IE%29_Jet_Stream_8.png/revision/latest/scale-to-width-down/600?cb=20160829115358",
+  "description": "A combination shot fired along a jet of air, faster with every touch.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-tiger-storm",
+  "name": "Tiger Storm",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c0/%28IE%29_Tiger_Storm_9.png/revision/latest/scale-to-width-down/600?cb=20181108222119",
+  "description": "Bakunetsu Storm and Tiger Drive combined: the power of two shots in one.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-death-sword",
+  "name": "Death Sword",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6a/%28GO%29_Death_Sword_10.png/revision/latest/scale-to-width-down/600?cb=20160721111131",
+  "description": "Victor Blade’s first shot, the ball cutting like a black blade.",
+  "technique": true
+ },
+ {
+  "id": "inazuma:tech-pegasus-shot",
+  "name": "Pegasus Shot",
+  "rarity": "common",
+  "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0d/%28IE%29_Pegasus_Shot_4.png/revision/latest/scale-to-width-down/600?cb=20181113214422",
+  "description": "A soaring shot that takes wing like Pegasus.",
+  "technique": true
+ }
+]

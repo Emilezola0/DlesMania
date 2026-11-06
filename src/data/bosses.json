@@ -12119,7 +12119,25 @@
           "Manchot Empereur N°2|Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin|Manchot Empereur",
           "Mains de l'Infini|Mugen The Hand|Infinite Hand",
           "Tir Céleste|Heaven Drive",
-          "Gungnir"
+          "Gungnir",
+          "Death Drop",
+          "Death Sword",
+          "Mach Wind",
+          "Soyokaze Step",
+          "Fortissimo",
+          "Saikyou Eleven Hadou",
+          "The Earth",
+          "Wolf Legend|Legendary Wolf",
+          "Last Resort",
+          "Bakunetsu Storm|Fireball Storm",
+          "Tenkuu Otoshi|Celestial Smash",
+          "Ijigen The Hand|Dimensional Hand",
+          "Ice Ground|Land of Ice",
+          "Tiger Storm",
+          "Jet Stream",
+          "Pegasus Shot",
+          "Majin Pegasus|Pegasus|Majin Pegasus Arc|Pegasus Arc",
+          "Kensei Lancelot|Lancelot"
         ]
       },
       {
@@ -12190,6 +12208,38 @@
           "Camellia Travis|Kudou Fuyuka|Fuyuka",
           "David Evans|Endou Daisuke",
           "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
+        ]
+      },
+      {
+        "prompt": "Name 5 Raimon players from GO",
+        "count": 5,
+        "answers": [
+          "Arion Sherwind|Matsukaze Tenma|Tenma|Arion",
+          "Victor Blade|Tsurugi Kyousuke|Tsurugi",
+          "Riccardo Di Rigo|Shindou Takuto|Shindou",
+          "Gabriel Garcia|Kirino Ranmaru|Kirino",
+          "Jean-Pierre Lapin|Nishizono Shinsuke|Shinsuke",
+          "Samguk Han|Sangoku Taichi|Sangoku",
+          "Wanli Changcheng|Amagi Daichi|Amagi",
+          "Michael Ballzack|Kurama Norihito|Kurama",
+          "Aitor Cazador|Kariya Masaki|Kariya",
+          "Eugene Peabody|Hayami Tsurumasa|Hayami",
+          "Adé Kébé|Ade Kebe|Hamano Kaiji|Hamano",
+          "Subaru Honda|Kurumada Gouichi|Kurumada",
+          "Doug McArthur|Minamisawa Atsushi|Minamisawa",
+          "Hugues Baudet|Ichino Nanasuke|Ichino",
+          "Shunsuke Aoyama|Aoyama Shunsuke|Aoyama",
+          "Fei Rune|Fei",
+          "Goldie Lemmon|Nanobana Kinako|Kinako"
+        ]
+      },
+      {
+        "prompt": "Name the 3 Protocol Omega captains",
+        "count": 3,
+        "answers": [
+          "Alpha",
+          "Beta",
+          "Gamma"
         ]
       }
     ],
@@ -12338,6 +12388,78 @@
           ],
           "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Raimon_Natsumi.png/revision/latest/scale-to-width-down/354?cb=20240521114554",
           "src": "fandom:inazuma-eleven:Raimon Natsumi"
+        },
+        {
+          "label": "Arion Sherwind",
+          "aliases": [
+            "Matsukaze Tenma",
+            "Tenma",
+            "Arion"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b6/Matsukaze_Tenma.png/revision/latest/scale-to-width-down/400?cb=20220427175732",
+          "src": "fandom:inazuma-eleven:Matsukaze Tenma"
+        },
+        {
+          "label": "Victor Blade",
+          "aliases": [
+            "Tsurugi Kyousuke",
+            "Tsurugi",
+            "Victor"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/67/Tsurugi_Kyousuke.png/revision/latest/scale-to-width-down/400?cb=20131211190709",
+          "src": "fandom:inazuma-eleven:Tsurugi Kyousuke"
+        },
+        {
+          "label": "Riccardo Di Rigo",
+          "aliases": [
+            "Shindou Takuto",
+            "Shindou",
+            "Riccardo"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/01/Shindou_Takuto.png/revision/latest/scale-to-width-down/400?cb=20190504192415",
+          "src": "fandom:inazuma-eleven:Shindou Takuto"
+        },
+        {
+          "label": "Fei Rune",
+          "aliases": [
+            "Fei"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Fei_Rune.png/revision/latest/scale-to-width-down/400?cb=20130105020003",
+          "src": "fandom:inazuma-eleven:Fei Rune"
+        },
+        {
+          "label": "Gabriel Garcia",
+          "aliases": [
+            "Kirino Ranmaru",
+            "Kirino",
+            "Gabriel"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e8/Kirino_Ranmaru.png/revision/latest/scale-to-width-down/400?cb=20171029220352",
+          "src": "fandom:inazuma-eleven:Kirino Ranmaru"
+        },
+        {
+          "label": "Jean-Pierre Lapin",
+          "aliases": [
+            "Nishizono Shinsuke",
+            "Shinsuke",
+            "JP"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/43/Nishizono_Shinsuke.png/revision/latest?cb=20130919170441",
+          "src": "fandom:inazuma-eleven:Nishizono Shinsuke"
+        },
+        {
+          "label": "Bailong",
+          "aliases": [
+            "Hakuryuu"
+          ],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/7/7b/Hakuryuu.png/revision/latest/scale-to-width-down/400?cb=20130809001640",
+          "src": "fandom:inazuma-eleven:Hakuryuu"
+        },
+        {
+          "label": "Alpha",
+          "aliases": [],
+          "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/a8/Alpha.png/revision/latest/scale-to-width-down/400?cb=20181105134832",
+          "src": "fandom:inazuma-eleven:Alpha"
         }
       ],
       "impostors": [
@@ -12560,6 +12682,136 @@
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/8/88/Kudou_Michiya.png/revision/latest/scale-to-width-down/320?cb=20170611105509",
         "src": "fandom:inazuma-eleven:Kudou Michiya"
+      },
+      {
+        "label": "Aitor Cazador",
+        "aliases": [
+          "Kariya Masaki",
+          "Kariya",
+          "Aitor"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/fa/Kariya_Masaki.png/revision/latest/scale-to-width-down/400?cb=20250822210717",
+        "src": "fandom:inazuma-eleven:Kariya Masaki"
+      },
+      {
+        "label": "Sol Daystar",
+        "aliases": [
+          "Amemiya Taiyou",
+          "Taiyou",
+          "Amemiya",
+          "Sol"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/f/f4/Amemiya_Taiyou.png/revision/latest/scale-to-width-down/400?cb=20240707115112",
+        "src": "fandom:inazuma-eleven:Amemiya Taiyou"
+      },
+      {
+        "label": "Zanark Avalonic",
+        "aliases": [
+          "Zanark"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/62/Zanark_Avalonic.png/revision/latest/scale-to-width-down/400?cb=20170605113321",
+        "src": "fandom:inazuma-eleven:Zanark Avalonic"
+      },
+      {
+        "label": "Simeon Ayp",
+        "aliases": [
+          "Saryuu Evan",
+          "SARU",
+          "Saru",
+          "Simeon"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b8/Saryuu_Evan.png/revision/latest/scale-to-width-down/400?cb=20171125221326",
+        "src": "fandom:inazuma-eleven:Saryuu Evan"
+      },
+      {
+        "label": "Tezcat",
+        "aliases": [
+          "Shuu"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/a/ac/Shuu.png/revision/latest/scale-to-width-down/400?cb=20161113205809",
+        "src": "fandom:inazuma-eleven:Shuu"
+      },
+      {
+        "label": "Vladimir Blade",
+        "aliases": [
+          "Tsurugi Yuuichi",
+          "Yuuichi",
+          "Vladimir"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/d3/Tsurugi_Yuuichi.png/revision/latest/scale-to-width-down/400?cb=20131015013539",
+        "src": "fandom:inazuma-eleven:Tsurugi Yuuichi"
+      },
+      {
+        "label": "Beta",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/3/3f/Beta.png/revision/latest/scale-to-width-down/400?cb=20170111213011",
+        "src": "fandom:inazuma-eleven:Beta"
+      },
+      {
+        "label": "Gamma",
+        "aliases": [],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/4d/Gamma.png/revision/latest/scale-to-width-down/400?cb=20170621204848",
+        "src": "fandom:inazuma-eleven:Gamma"
+      },
+      {
+        "label": "Samguk Han",
+        "aliases": [
+          "Sangoku Taichi",
+          "Sangoku",
+          "Samguk"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/67/Sangoku_Taichi.png/revision/latest?cb=20131007193917",
+        "src": "fandom:inazuma-eleven:Sangoku Taichi"
+      },
+      {
+        "label": "Wanli Changcheng",
+        "aliases": [
+          "Amagi Daichi",
+          "Amagi",
+          "Wanli"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/23/Amagi_Daichi.png/revision/latest/scale-to-width-down/400?cb=20171111132417",
+        "src": "fandom:inazuma-eleven:Amagi Daichi"
+      },
+      {
+        "label": "Michael Ballzack",
+        "aliases": [
+          "Kurama Norihito",
+          "Kurama",
+          "Michael"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/49/Kurama_Norihito.png/revision/latest/scale-to-width-down/400?cb=20250610205826",
+        "src": "fandom:inazuma-eleven:Kurama Norihito"
+      },
+      {
+        "label": "Skie Blue",
+        "aliases": [
+          "Sorano Aoi",
+          "Aoi",
+          "Skie"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/b/b3/Sorano_Aoi_%28Galaxy%29.png/revision/latest/scale-to-width-down/400?cb=20171130210047",
+        "src": "fandom:inazuma-eleven:Sorano Aoi"
+      },
+      {
+        "label": "Clark von Wunderbar",
+        "aliases": [
+          "Wonderbot",
+          "Clark Wonderbot",
+          "Clark"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0b/Clark_Wonderbot.png/revision/latest/scale-to-width-down/400?cb=20240104152536",
+        "src": "fandom:inazuma-eleven:Clark Wonderbot"
+      },
+      {
+        "label": "Goldie Lemmon",
+        "aliases": [
+          "Nanobana Kinako",
+          "Kinako",
+          "Goldie"
+        ],
+        "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/d/da/Nanobana_Kinako.png/revision/latest/scale-to-width-down/400?cb=20160831200827",
+        "src": "fandom:inazuma-eleven:Nanobana Kinako"
       }
     ],
     "secret": {
@@ -12587,7 +12839,25 @@
             "Manchot Empereur N°2|Koutei Penguin 2gou|Emperor Penguin No. 2|Emperor Penguin|Manchot Empereur",
             "Mains de l'Infini|Mugen The Hand|Infinite Hand",
             "Tir Céleste|Heaven Drive",
-            "Gungnir"
+            "Gungnir",
+            "Death Drop",
+            "Death Sword",
+            "Mach Wind",
+            "Soyokaze Step",
+            "Fortissimo",
+            "Saikyou Eleven Hadou",
+            "The Earth",
+            "Wolf Legend|Legendary Wolf",
+            "Last Resort",
+            "Bakunetsu Storm|Fireball Storm",
+            "Tenkuu Otoshi|Celestial Smash",
+            "Ijigen The Hand|Dimensional Hand",
+            "Ice Ground|Land of Ice",
+            "Tiger Storm",
+            "Jet Stream",
+            "Pegasus Shot",
+            "Majin Pegasus|Pegasus|Majin Pegasus Arc|Pegasus Arc",
+            "Kensei Lancelot|Lancelot"
           ]
         },
         {
@@ -12609,7 +12879,13 @@
             "Big Waves",
             "Lions du Désert|Desert Lion",
             "Kirkwood",
-            "Otaku|Shuuyou Meito"
+            "Otaku|Shuuyou Meito",
+            "Protocol Omega",
+            "Chrono Storm",
+            "Feida",
+            "Zanark Domain",
+            "Arakumo Gakuen|Arakumo",
+            "Kuro no Kishidan|Black Knights"
           ]
         },
         {
@@ -12652,7 +12928,35 @@
             "Seymour Hillman|Hibiki Seigou|Hibiki",
             "Camellia Travis|Kudou Fuyuka|Fuyuka",
             "David Evans|Endou Daisuke",
-            "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
+            "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller",
+            "Arion Sherwind|Matsukaze Tenma|Tenma|Arion",
+            "Victor Blade|Tsurugi Kyousuke|Tsurugi",
+            "Riccardo Di Rigo|Shindou Takuto|Shindou",
+            "Gabriel Garcia|Kirino Ranmaru|Kirino",
+            "Jean-Pierre Lapin|Nishizono Shinsuke|Shinsuke",
+            "Samguk Han|Sangoku Taichi|Sangoku",
+            "Wanli Changcheng|Amagi Daichi|Amagi",
+            "Michael Ballzack|Kurama Norihito|Kurama",
+            "Aitor Cazador|Kariya Masaki|Kariya",
+            "Eugene Peabody|Hayami Tsurumasa|Hayami",
+            "Adé Kébé|Ade Kebe|Hamano Kaiji|Hamano",
+            "Subaru Honda|Kurumada Gouichi|Kurumada",
+            "Doug McArthur|Minamisawa Atsushi|Minamisawa",
+            "Hugues Baudet|Ichino Nanasuke|Ichino",
+            "Shunsuke Aoyama|Aoyama Shunsuke|Aoyama",
+            "Fei Rune|Fei",
+            "Goldie Lemmon|Nanobana Kinako|Kinako",
+            "Bailong|Hakuryuu",
+            "Alpha",
+            "Beta",
+            "Gamma",
+            "Zanark Avalonic|Zanark",
+            "Simeon Ayp|Saryuu Evan|SARU",
+            "Sol Daystar|Amemiya Taiyou|Taiyou",
+            "Tezcat|Shuu",
+            "Vladimir Blade|Tsurugi Yuuichi|Yuuichi",
+            "Skie Blue|Sorano Aoi|Aoi",
+            "Clark von Wunderbar|Wonderbot"
           ]
         }
       ]
@@ -12696,9 +13000,45 @@
         {
           "text": "Tir Céleste (Heaven Drive)",
           "answer": "Byron Love|Afuro Terumi|Afuro"
+        },
+        {
+          "text": "Soyokaze Step",
+          "answer": "Arion Sherwind|Matsukaze Tenma|Tenma|Arion"
+        },
+        {
+          "text": "Mach Wind",
+          "answer": "Arion Sherwind|Matsukaze Tenma|Tenma|Arion"
+        },
+        {
+          "text": "Death Sword",
+          "answer": "Victor Blade|Tsurugi Kyousuke|Tsurugi"
+        },
+        {
+          "text": "Death Drop",
+          "answer": "Victor Blade|Tsurugi Kyousuke|Tsurugi"
+        },
+        {
+          "text": "Fortissimo",
+          "answer": "Riccardo Di Rigo|Shindou Takuto|Shindou"
+        },
+        {
+          "text": "Wolf Legend",
+          "answer": "Shawn Froste|Fubuki Shirou|Fubuki"
+        },
+        {
+          "text": "Tenkuu Otoshi (Celestial Smash)",
+          "answer": "Xavier Foster|Kiyama Hiroto|Kiyama|Hiroto"
+        },
+        {
+          "text": "Mugen The Hand",
+          "answer": "Darren LaChance|Tachimukai Yuuki|Tachimukai"
         }
       ]
-    }
+    },
+    "finaleCardsFrom": "epic",
+    "finaleSkip": [
+      "Paul Peabody"
+    ]
   },
   {
     "id": "forts",

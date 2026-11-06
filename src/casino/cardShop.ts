@@ -35,9 +35,9 @@ export interface ShopOffer {
   price: number;
 }
 
-/** What can be sold: no omnis (they stay in packs), no places. */
+/** What can be sold: no omnis (they stay in packs), no places or techniques. */
 const POOL: Partial<Record<Rarity, Card[]>> = {};
-for (const c of CARDS) if (!c.place && c.rarity !== 'omni') (POOL[c.rarity] ??= []).push(c);
+for (const c of CARDS) if (!c.place && !c.technique && c.rarity !== 'omni') (POOL[c.rarity] ??= []).push(c);
 
 /** The day's shelf: the same cards for everyone that day, from different sets where it can. */
 export function shopFor(day: string): { offers: ShopOffer[]; occasion: string | null } {

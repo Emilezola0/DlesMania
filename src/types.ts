@@ -202,6 +202,8 @@ export interface Boss {
   signature?: Signature;
   /** Faces kept out of the Final Blow (too obscure to name), though their cards stay. */
   finaleSkip?: string[];
+  /** The Final Blow adds the franchise's cards from this rarity up only (its own lists stay whole): 'epic' leaves its rares out. */
+  finaleCardsFrom?: 'epic';
   /** Final Blow faces shown whole rather than cropped to the square (wide pictures: weapons), by name. */
   wholeFaces?: string[];
   /** Boss Battle shows drawn art only (no 3D models): Final Blow takes no card pictures (scripts/data/boss-2d-art.mjs). */

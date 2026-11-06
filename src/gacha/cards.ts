@@ -16,6 +16,7 @@ import FROZEN_RARITIES from '../data/card-rarities.json';
 import MORE_ROSTERS from '../data/card-rosters.json';
 import UNREAL_ART from '../data/unreal-art.json';
 import JLPT_CARDS from '../data/jlpt-cards.json';
+import INAZUMA_GO from '../data/inazuma-go.json';
 import CARD_ART from '../data/card-art.json';
 import RARITY_TUNING from '../data/tuning/rarities.json';
 import { kanjiPicture } from '../lib/kanji';
@@ -71,6 +72,8 @@ export interface Card {
   focus?: { x: number; y: number; zoom: number };
   /** A place, not a character (Inazuma Eleven's stadiums and schools): kept out of the games that name faces. */
   place?: boolean;
+  /** A technique, not a character (Inazuma Eleven's hissatsu and keshins): kept out of the games that name faces too. */
+  technique?: boolean;
   /** Number within its set, for the "12 / 35" corner. */
   no: number;
 }
@@ -926,7 +929,27 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     voice: 'The storm is here.',
     description: 'Lightning in a ball, a static charge that stuns and a storm cloud over a whole fight: the hero every new player is warned about.',
   },
+  // Inazuma Eleven's third mythic, from GO (a fan favourite never on a card before, so no one's a duplicate):
+  // Victor Blade in the armour of his keshin, Lancelot (Chrono Stones, the Inazuma Eleven Wiki).
+  {
+    set: 'inazuma',
+    id: 'inazuma:mythic-victor-blade',
+    name: 'Victor Blade',
+    rarity: 'mythic',
+    title: 'Keshin Armed',
+    image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/9/91/%28CS_%28013%29%29_KA_Tsurugi.png/revision/latest/scale-to-width-down/600?cb=20160721111806',
+    description: 'Sent by the Fifth Sector to crush Raimon’s soccer club, he ended up its ace striker — and here he wears his keshin, the swordsman Lancelot, as armour.',
+  },
+  // Inazuma Eleven GO and Chrono Stones (their cast, by how loved they are), and the series' techniques: hissatsu
+  // and keshins, the famous ones rarest (src/data/inazuma-go.json, from the Inazuma Eleven Wiki).
+  ...(INAZUMA_GO as { id: string; name: string; rarity: Rarity; image: string; description: string; technique?: boolean }[]).map((c) => ({ ...c, set: 'inazuma' })),
 ];
+
+/**
+ * Faces put in a boss's Radar or Final Blow after its cards were released, whose cards come in LATER (by set and
+ * name): the boss lists build no early copy of them. Add a name here whenever a boss list gains a face.
+ */
+const LATE_FACES = new Set([...INAZUMA_GO.map((c) => `inazuma:${c.name}`), 'inazuma:Victor Blade']);
 
 export const CARDS: Card[] = (() => {
   // Each name once across all sets: the first set to build it keeps it. The order below is the
@@ -941,6 +964,9 @@ export const CARDS: Card[] = (() => {
     // take one from another (Forts' Phantom isn't Minecraft's).
     const own = LATE_SETS.has(b.id);
     const add = (name: string, image: string | undefined, rarity: Rarity, description: string) => {
+      // A face added to the boss after its cards were released, whose card comes later (LATER): no early copy,
+      // which would shift the numbers of the cards after it (Inazuma Eleven GO's cast in the Radar and Final Blow).
+      if (LATE_FACES.has(`${b.id}:${name}`)) return;
       if (!image || (own ? set.some((c) => c.name === name) : seen.has(name))) return;
       // Nor can they keep a name from the rosters added after (Destiny's Ghost must leave Marvel's be).
       if (!KEEP_OUT_OF_SEEN.has(b.id)) seen.add(name);

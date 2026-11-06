@@ -15,6 +15,10 @@ Rules the owner set; keep to them in every change.
 - A card's **animated clip** may be anything that looks good and stylish: game footage (3D), effects, GIFs, fan animation. Its **still picture** stays drawn (2D).
 - Cards keep the picture they were pulled with (`src/data/card-art.json`).
 
+## Cards
+- **Rarity follows what fans love.** For each franchise, research who people's favourites are (popularity polls, well-known tier lists) before setting rarities: Legendary, Mythic and Omni go to the favourites and the coolest picks; lesser-known faces stay Common or Rare.
+- **No duplicates at the top:** never give a Mythic or Omni to a character who already has a card at Mythic or Omni in that set; pick another favourite. Duplicates that already exist stay as they are.
+
 ## Music
 - Music is **song titles only**: never an album or an artist as an answer. Artists and albums may be clues (Classic's Artist column, the Quote round's clues). Video game and anime songs belong in Music too.
 

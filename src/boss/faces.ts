@@ -58,7 +58,7 @@ export function finaleFaces(boss: Boss): BossCard[] {
   // The people already on the list (by the Specialist's names), so another spelling of one isn't added twice.
   const people = new Set([...boss.finale, ...boss.radar.members].flatMap((c) => [c.label, ...(c.aliases ?? [])]).map((n) => personOf(n)?.name ?? nameKey(n)));
   for (const c of CARDS) {
-    if (c.set !== boss.id || c.place || taken.has(c.name) || c.name === boss.boss.name) continue;
+    if (c.set !== boss.id || c.place || c.technique || taken.has(c.name) || c.name === boss.boss.name) continue;
     const who = personOf(c.name)?.name ?? nameKey(c.name);
     if (people.has(who)) continue;
     // Bosses drawn in 2D only: a card's picture may be a 3D model (kept for the cards), so only faces the boss
@@ -66,6 +66,8 @@ export function finaleFaces(boss: Boss): BossCard[] {
     const drawn = boss.faceArt?.[c.name];
     if (boss.drawnOnly && !known.has(c.name) && !drawn) continue;
     if (!['rare', 'epic', 'legendary'].includes(c.rarity) || !c.image) continue;
+    // A boss may take only its better-known cards (Inazuma Eleven: its rares are mostly faces few remember).
+    if (boss.finaleCardsFrom === 'epic' && c.rarity === 'rare') continue;
     // A card from the radar keeps its spellings (aliases, French name).
     faces.push(withNames(known.get(c.name) ?? { label: c.name, image: drawn ?? c.image, aliases: SHORT_NAMES[c.name] }));
     taken.add(c.name);
