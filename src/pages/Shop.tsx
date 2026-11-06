@@ -9,7 +9,7 @@ import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
-import { BOOST, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampPity, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
+import { BOOST, GOLDEN, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampGolden, clampPity, goldenNext, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 import { Quests } from '../gacha/Quests';
@@ -43,11 +43,48 @@ function chances(odds: Record<Rarity, number>, r: Rarity) {
   return { card: odds[r], pack: pack * 100 };
 }
 
+/** The chance a golden pack holds at least one card of this rarity or better ('mythic' or 'omni'). */
+function goldenTop(r: 'mythic' | 'omni'): number {
+  const p = (o: { mythic: number; omni: number }) => (r === 'omni' ? o.omni : o.mythic + o.omni) / 100;
+  return 1 - (1 - p(GOLDEN.last)) * Math.pow(1 - p(GOLDEN.others), GOLDEN.slots - 1);
+}
+
+/** The golden pack's counter: the packs opened since the last golden one, filling up to the next. */
+function GoldenMeter({ golden, compact }: { golden: number; compact?: boolean }) {
+  const ready = goldenNext(golden);
+  // Packs opened since the last golden one, out of the packs it takes: the next one after them is golden.
+  const need = GOLDEN.packs - 1;
+  const left = need - golden + 1;
+  const text = ready ? 'Your next pack is GOLDEN!' : `Golden pack in ${left} pack${left === 1 ? '' : 's'}`;
+  if (compact)
+    return (
+      <p className={`text-xs font-semibold ${ready ? 'golden-text' : 'text-ink-faint'}`} title={`Every ${GOLDEN.packs}th pack is golden: ${GOLDEN.slots} cards Legendary or better, the last one most often Mythic.`}>
+        🌟 {text}
+      </p>
+    );
+  return (
+    <div className={`page flex items-center gap-3 rounded-md px-3 py-2 ${ready ? 'golden-ready' : ''}`}>
+      <span className="text-xl" aria-hidden>
+        🌟
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className={`text-sm font-bold ${ready ? 'golden-text' : ''}`}>{text}</p>
+        <div className="mt-1 h-2 overflow-hidden rounded-full bg-tile" role="progressbar" aria-valuemin={0} aria-valuemax={need} aria-valuenow={golden} aria-label="Golden pack">
+          <div className="golden-fill h-full rounded-full transition-[width]" style={{ width: `${(golden / need) * 100}%` }} />
+        </div>
+      </div>
+      <span className="font-display text-sm font-bold tabular-nums text-ink-soft">
+        {golden}/{need}
+      </span>
+    </div>
+  );
+}
+
 /**
  * Every rarity's odds: a plain pack, and a franchise pack once its guardian falls on Medium, Hard or Hell —
  * with the player's luck as it is now (it goes up with every pack without a Legendary, back to ×1 after one).
  */
-function DropRates({ pity }: { pity: number }) {
+function DropRates({ pity, golden }: { pity: number; golden: number }) {
   const luck = pityLuck(pity);
   const columns = [
     { label: 'Any pack', boost: 1 },
@@ -61,6 +98,9 @@ function DropRates({ pity }: { pity: number }) {
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
         {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni.
+      </p>
+      <p className="text-sm text-ink-soft">
+        🌟 <strong className="text-ink">Golden pack:</strong> every {GOLDEN.packs}th pack you open (any pack) comes golden — {golden} of {GOLDEN.packs - 1} packs since the last one. Its last {GOLDEN.slots} cards are Legendary or better: the very last one is Mythic {GOLDEN.last.mythic}% of the time and Omni {GOLDEN.last.omni}%, the {GOLDEN.slots - 1} before it Legendary with a {GOLDEN.others.mythic}% chance of Mythic and {GOLDEN.others.omni}% of Omni each. That's a Mythic or better in {Math.round(goldenTop('mythic') * 100)}% of golden packs, an Omni in {Math.round(goldenTop('omni') * 100)}%.
       </p>
       <p className={`rounded-md px-3 py-2 text-sm ${luck > 1 ? 'bg-ochre/15 text-ink' : 'bg-tile text-ink-soft'}`}>
         ✨ With your luck now: <strong>×{luck.toFixed(2)}</strong>
@@ -192,10 +232,11 @@ export default function Shop() {
   const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
   const pity = useProgress((s) => clampPity(s.pity));
+  const golden = useProgress((s) => clampGolden(s.golden));
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));
-  const [opening, setOpening] = useState<{ pack: Pack; times: number; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; key: number } | null>(null);
+  const [opening, setOpening] = useState<{ pack: Pack; times: number; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; golden: boolean; key: number } | null>(null);
   const missions = missionsFor(econ.date);
   const collected = useMemo(() => CARDS.filter((c) => owned[c.id]).length, [owned]);
 
@@ -203,12 +244,12 @@ export default function Shop() {
   const buy = (p: Pack) => {
     const best = boostOf(p);
     if (p.boss && !best) return;
-    const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity);
+    const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity, golden);
     const cards = pull.packs[0];
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity)) return sfx.wrong();
+    if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, key: Date.now() });
+    setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
   /** Five packs at once: 25 cards in one opening, the rarest last. */
   const MANY = 5;
@@ -216,14 +257,15 @@ export default function Shop() {
     const best = boostOf(p);
     if (p.boss && !best) return;
     // One pack after another, each with the luck the ones before it left.
-    const pull = pullPacks(p, MANY, best ? BOOST[best] : 1, pity);
+    const pull = pullPacks(p, MANY, best ? BOOST[best] : 1, pity, golden);
     const cards = pull.packs
       .flat()
       .sort((a, b) => RARITY_INFO[a.rarity].rank - RARITY_INFO[b.rarity].rank);
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity)) return sfx.wrong();
+    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity, pull.golden)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, times: MANY, cards, events: pull.events, fresh, key: Date.now() });
+    // One of the five golden: the whole opening wears gold.
+    setOpening({ pack: p, times: MANY, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
 
   const general = PACKS.filter((p) => !p.boss);
@@ -236,7 +278,7 @@ export default function Shop() {
     return (
       <div className={`page flex flex-col gap-2 rounded-md p-3 ${locked ? 'opacity-70' : ''}`}>
         <div className={locked ? 'grayscale' : ''}>
-          <PackArt pack={p} />
+          <PackArt pack={p} golden={!locked && goldenNext(golden)} />
         </div>
         <p className="font-display text-sm font-bold leading-tight">{p.name}</p>
         <p className="text-xs text-ink-soft">{p.blurb}</p>
@@ -293,6 +335,7 @@ export default function Shop() {
           >
             ✨ Luck ×{pityLuck(pity).toFixed(2)}{pity > 0 ? ` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary` : ''}
           </p>
+          <GoldenMeter golden={golden} compact />
         </div>
       </div>
 
@@ -337,6 +380,7 @@ export default function Shop() {
 
       <section className="space-y-3">
         <h2 className="font-display text-lg font-bold">Packs</h2>
+        <GoldenMeter golden={golden} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {general.map((p) => (
             <PackTile key={p.id} p={p} />
@@ -365,7 +409,7 @@ export default function Shop() {
         </span>
       </Link>
 
-      <DropRates pity={pity} />
+      <DropRates pity={pity} golden={golden} />
 
       <section className="page space-y-2 rounded-md p-4 text-sm text-ink-soft">
         <h2 className="flex items-center gap-2 font-display text-base font-bold text-ink">
@@ -409,6 +453,7 @@ export default function Shop() {
           // Again, as many as were just opened (one, or five at once).
           times={opening.times}
           canAgain={coins >= opening.pack.cost * opening.times}
+          golden={opening.golden}
           onAgain={() => (opening.times > 1 ? buyMany(opening.pack) : buy(opening.pack))}
           onClose={() => setOpening(null)}
         />

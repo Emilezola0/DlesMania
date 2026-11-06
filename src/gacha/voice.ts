@@ -84,6 +84,8 @@ let playing: HTMLAudioElement | null = null;
 export const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
 /** The same on TikTok: "tiktok:POST_ID@9-13". */
 export const TT_CLIP = /^tiktok:(\d+)@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
+/** A moment of an audio or video file, as a media fragment at the end of its URL: "#t=start,end" (seconds). */
+const FRAGMENT = /#t=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/;
 let ytVoice: { host: HTMLElement; player?: YTPlayer; timer?: number } | null = null;
 let ttVoice: { host: HTMLElement; player?: TikTokPlayer; timer?: number } | null = null;
 
@@ -208,6 +210,10 @@ export function playVoice(card: Card, asked = false) {
   if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(line!, card.set));
   const a = new Audio(audio);
   a.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
+  // A moment of a longer file ("…#t=8.3,10.6", a media fragment): browsers start there and stop at the end;
+  // the guard stops it at the end in one that only honours the start.
+  const frag = FRAGMENT.exec(audio);
+  if (frag) a.ontimeupdate = () => a.currentTime >= Number(frag[2]) && a.pause();
   playing = a;
   a.play().catch(() => say(line!, card.set));
   a.onerror = () => say(line!, card.set);

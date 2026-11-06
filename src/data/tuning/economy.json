@@ -37,6 +37,18 @@
     "max": 3,
     "topShare": 0
   },
+  "golden": {
+    "packs": 150,
+    "slots": 3,
+    "last": {
+      "mythic": 80,
+      "omni": 3
+    },
+    "others": {
+      "mythic": 6,
+      "omni": 0.5
+    }
+  },
   "expedition": {
     "roomMax": 40,
     "bossMax": 200,

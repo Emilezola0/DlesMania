@@ -10,6 +10,7 @@ import { addDays, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
+  clampGolden,
   clampPity,
   ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
@@ -118,6 +119,8 @@ interface ProgressState {
   claimQuest: (tier: QuestTier) => number | false;
   /** Packs opened since the last Legendary or better: the luck that raises their odds (see pityLuck). */
   pity: number;
+  /** Packs opened since the last golden one: at GOLDEN.packs - 1, the next pack is golden (see GOLDEN). */
+  golden?: number;
   /** A card shown as the player's icon (any card they own). */
   avatar: string | null;
   /** A card shown behind the pages (Rare or better). */
@@ -197,7 +200,7 @@ interface ProgressState {
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   /** `packs`: how many packs that was (five opened at once count as five). */
-  openPack: (cost: number, cardIds: string[], packs?: number, pity?: number) => boolean;
+  openPack: (cost: number, cardIds: string[], packs?: number, pity?: number, golden?: number) => boolean;
   claimMission: (kind: MissionKind) => void;
   /** This week's and this month's missions (see src/gacha/economy.ts). */
   missionBooks: PeriodBooks;
@@ -385,6 +388,7 @@ export const useProgress = create<ProgressState>()(
       bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
       pity: 0,
+      golden: 0,
       missionBooks: booksNow(undefined),
       redeemed: [],
       groups: {},
@@ -579,12 +583,12 @@ export const useProgress = create<ProgressState>()(
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
-      openPack: (cost, cardIds, packs = 1, pity) => {
+      openPack: (cost, cardIds, packs = 1, pity, golden) => {
         if (get().coins < cost) return false;
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, pulledAt: stamp(s.pulledAt, cardIds), packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}) };
+          return { coins: s.coins - cost, cards, pulledAt: stamp(s.pulledAt, cardIds), packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}), ...(golden !== undefined ? { golden: clampGolden(golden) } : {}) };
         });
         return true;
       },

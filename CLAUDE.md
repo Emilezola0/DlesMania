@@ -13,6 +13,8 @@ Rules the owner set; keep to them in every change.
 ## Pictures
 - **3D models only for silhouettes** (Who's That? and silhouette rounds). Boss Battle and every other picture use drawn (2D) art. Bosses marked `drawnOnly` take no card pictures in Final Blow (`scripts/data/boss-2d-art.mjs`).
 - A card's **animated clip** may be anything that looks good and stylish: game footage (3D), effects, GIFs, fan animation. Its **still picture** stays drawn (2D).
+- An **Omni's voice line matches its video**: the line the character says in the moment the clip shows. A clip with no voice of its own (like the Doorman's) gets the voice lines played on top.
+- A **GIF** clip may loop in the background (icons, backdrops). A **video** clip plays when the player succeeds at something, not on a loop in a corner.
 - Cards keep the picture they were pulled with (`src/data/card-art.json`).
 
 ## Cards

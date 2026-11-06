@@ -553,7 +553,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'mcu:omni': { voice: 'I am Iron Man.', audio: 'https://www.myinstants.com/media/sounds/ironman_Qaec4ow.mp3' },
   'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
   'wow:omni': { voice: 'Frostmourne hungers.' },
-  'inazuma:omni': { voice: 'God Hand!' },
+  // Mark Evans awakened: his clip is God Catch (the golden god rising out of the clouds), so is his voice — the anime's shout of it (episode 127, from the Inazuma Eleven Wiki's own video of the technique).
+  'inazuma:omni': { voice: 'God Catch!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/%28IE_%28127%29%29_God_Catch_G5.mp4/revision/latest?cb=20241015044228#t=8.3,10.6' },
   'avatar:omni': { voice: 'Yip yip!' },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },

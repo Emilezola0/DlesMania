@@ -4,7 +4,7 @@
 import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
 import { CARDS, RARITIES, type Card, type Rarity } from './cards';
-import { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
+import { clampGolden, clampPity, GOLDEN, goldenNext, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
 // The numbers and the packs' looks live in src/data/tuning/packs.json (edited from the dev-only #/admin page).
 import T from '../data/tuning/packs.json';
 
@@ -16,6 +16,8 @@ export const ODDS: Record<Rarity, number> = T.odds;
 
 /** The luck (pity) lives with the economy, which the store reads without the card catalogue. */
 export { clampPity, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck };
+/** The golden pack, every GOLDEN.packs-th: it lives with the economy too. */
+export { clampGolden, GOLDEN, goldenNext };
 export const isTopRarity = (r: Rarity) => RARITIES.indexOf(r) >= RARITIES.indexOf('legendary');
 
 /**
@@ -133,13 +135,23 @@ function drawFairly(cards: Card[], rand: () => number): Card {
   return own[Math.floor(rand() * own.length)];
 }
 
-/** Five cards from a pack; the last one is at least rare. A rarity the pool lacks falls to the next one down. */
-export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1): Card[] {
+/** A golden pack's top card: Omni, Mythic or else Legendary, by these chances (in percent). */
+const rollGolden = (o: { mythic: number; omni: number }, rand: () => number): Rarity => {
+  const x = rand() * 100;
+  return x < o.omni ? 'omni' : x < o.omni + o.mythic ? 'mythic' : 'legendary';
+};
+
+/**
+ * Five cards from a pack; the last one is at least rare. A rarity the pool lacks falls to the next one down.
+ * A golden pack: its last GOLDEN.slots cards are Legendary or better (see GOLDEN).
+ */
+export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false): Card[] {
   const pool = CARDS.filter(pack.pool);
   const odds = oddsWith(boost, luck);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
-    let r = rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
+    const goldSlot = golden && i >= PACK_SIZE - GOLDEN.slots;
+    let r = goldSlot ? rollGolden(i === PACK_SIZE - 1 ? GOLDEN.last : GOLDEN.others, rand) : rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
     // Five different cards: one already in this pack isn't drawn again.
     const of = (x: Rarity) => pool.filter((c) => c.rarity === x && !taken.has(c.id));
     let cands = of(r);
@@ -223,16 +235,33 @@ export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.r
   return { kind, from, to: card };
 }
 
-/** `count` packs in a row, each with the luck the packs before it left: the cards, their cosmic events, and the pity after them. */
-export function pullPacks(pack: Pack, count: number, boost: number, pity: number): { packs: Card[][]; events: CosmicEvent[]; pity: number } {
+/**
+ * `count` packs in a row, each with the luck the packs before it left: the cards, their cosmic events, and the
+ * pity after them; and the golden counter after them, with which of the packs came golden (`goldenAt`).
+ */
+export function pullPacks(pack: Pack, count: number, boost: number, pity: number, golden = 0): { packs: Card[][]; events: CosmicEvent[]; pity: number; golden: number; goldenAt: number[] } {
   const packs: Card[][] = [];
   const events: CosmicEvent[] = [];
+  const goldenAt: number[] = [];
   for (let i = 0; i < count; i++) {
-    const cards = pullPack(pack, boost, Math.random, pityLuck(pity));
+    const gold = goldenNext(golden) || forcedGolden();
+    if (gold) goldenAt.push(i);
+    golden = gold ? 0 : clampGolden(golden + 1);
+    const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold);
     const event = cosmicFor(pack, cards);
     if (event) events.push(event);
     packs.push(cards);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
   }
-  return { packs, events, pity: clampPity(pity) };
+  return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt };
 }
+
+/** For testing, in dev only: localStorage "omnidle-force-golden" = "1" makes every pack golden. The live site ignores it. */
+const forcedGolden = (): boolean => {
+  if (!import.meta.env.DEV) return false;
+  try {
+    return localStorage.getItem('omnidle-force-golden') === '1';
+  } catch {
+    return false;
+  }
+};

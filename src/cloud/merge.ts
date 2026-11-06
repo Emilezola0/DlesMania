@@ -3,7 +3,7 @@
 // each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
 // the save changed last; except the first time a device joins an account, when its coins and cards
 // are added to the account's (they were earned apart).
-import { clampPity } from '../gacha/economy';
+import { clampGolden, clampPity } from '../gacha/economy';
 import type { Economy, PeriodBook } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
 import type { RoundRecord, RoundSpec } from '../types';
@@ -29,6 +29,7 @@ export const SYNCED = [
   'hotGame',
   'quests',
   'pity',
+  'golden',
   'nameLang',
   'avatar',
   'backdrop',
@@ -225,6 +226,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
     // The luck of the latest save (pulled apart on a first link: the lower, so it's never doubled).
     pity: clampPity(firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : (cloudNewer ? cloud.pity : local.pity)),
+    // The golden pack's counter, the same way: the latest save's (the lower on a first link, so one isn't had twice).
+    golden: clampGolden(firstLink ? Math.min(local.golden ?? 0, cloud.golden ?? 0) : (cloudNewer ? cloud.golden : local.golden)),
     // The same day: the further along of the two. Otherwise the later day's.
     hotGame: laterHot(local.hotGame, cloud.hotGame),
     // Today's quests: the book further on (more claimed), else the latest save's.

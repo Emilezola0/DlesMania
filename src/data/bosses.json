@@ -12086,12 +12086,12 @@
           "Hurley Kane|Tsunami Jousuke|Tsunami",
           "Darren LaChance|Tachimukai Yuuki|Tachimukai",
           "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
-          "William Glass|Megane Kakeru|Megane|Willy Glass",
+          "William Glass|Megane Kakeru|Megane|Willy Glass|Willy",
           "Sam Kincaid|Shishido Sakichi|Shishido",
           "Tod Ironside|Kurimatsu Teppei|Kurimatsu",
-          "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson",
+          "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson|Max",
           "Steve Grim|Handa Shinichi|Handa",
-          "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders",
+          "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders|Timmy|Shourin",
           "Jim Wraith|Kageno Jin|Kageno"
         ]
       },
@@ -12176,13 +12176,13 @@
           "Darren LaChance|Tachimukai Yuuki|Tachimukai",
           "Jack Wallside|Kabeyama Heigorou|Kabeyama",
           "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
-          "Xavier Foster|Kiyama Hiroto|Kiyama",
-          "Jordan Greenway|Midorikawa Ryuuji|Midorikawa",
+          "Xavier Foster|Kiyama Hiroto|Kiyama|Xene|Gran|Hiroto",
+          "Jordan Greenway|Midorikawa Ryuuji|Midorikawa|Janus|Reize",
           "Caleb Stonewall|Fudou Akio|Fudou",
           "David Samford|Sakuma Jirou|Sakuma",
           "Austin Hobbes|Utsunomiya Toramaru|Utsunomiya",
           "Kevin Dragonfly|Someoka Ryuugo|Someoka",
-          "Thor Stoutberg|Hijikata Raiden|Hijikata"
+          "Thor Stoutberg|Hijikata Raiden|Hijikata|Raiden"
         ]
       },
       {
@@ -12205,9 +12205,9 @@
           "Celia Hills|Otonashi Haruna|Otonashi",
           "Percival Travis|Kudou Michiya|Kudou",
           "Seymour Hillman|Hibiki Seigou|Hibiki",
-          "Camellia Travis|Kudou Fuyuka|Fuyuka",
-          "David Evans|Endou Daisuke",
-          "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller"
+          "Camellia Travis|Kudou Fuyuka|Fuyuka|Cammy|Fuyuppe",
+          "David Evans|Endou Daisuke|Daisuke",
+          "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller|Lina"
         ]
       },
       {
@@ -12217,16 +12217,16 @@
           "Arion Sherwind|Matsukaze Tenma|Tenma|Arion",
           "Victor Blade|Tsurugi Kyousuke|Tsurugi",
           "Riccardo Di Rigo|Shindou Takuto|Shindou",
-          "Gabriel Garcia|Kirino Ranmaru|Kirino",
+          "Gabriel Garcia|Kirino Ranmaru|Kirino|Gabi",
           "Jean-Pierre Lapin|Nishizono Shinsuke|Shinsuke",
           "Samguk Han|Sangoku Taichi|Sangoku",
           "Wanli Changcheng|Amagi Daichi|Amagi",
-          "Michael Ballzack|Kurama Norihito|Kurama",
+          "Michael Ballzack|Kurama Norihito|Kurama|Kaiser",
           "Aitor Cazador|Kariya Masaki|Kariya",
           "Eugene Peabody|Hayami Tsurumasa|Hayami",
           "Adé Kébé|Ade Kebe|Hamano Kaiji|Hamano",
-          "Subaru Honda|Kurumada Gouichi|Kurumada",
-          "Doug McArthur|Minamisawa Atsushi|Minamisawa",
+          "Subaru Honda|Kurumada Gouichi|Kurumada|Rusty",
+          "Doug McArthur|Minamisawa Atsushi|Minamisawa|Dodge",
           "Hugues Baudet|Ichino Nanasuke|Ichino",
           "Shunsuke Aoyama|Aoyama Shunsuke|Aoyama",
           "Fei Rune|Fei",
@@ -12348,7 +12348,10 @@
           "label": "Xavier Foster",
           "aliases": [
             "Kiyama Hiroto",
-            "Kiyama"
+            "Kiyama",
+            "Xene",
+            "Gran",
+            "Hiroto"
           ],
           "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e3/Kiyama_Hiroto.png/revision/latest/scale-to-width-down/255?cb=20230722172508",
           "src": "fandom:inazuma-eleven:Kiyama Hiroto"
@@ -12366,7 +12369,9 @@
           "label": "Byron Love",
           "aliases": [
             "Afuro Terumi",
-            "Afuro"
+            "Afuro",
+            "Aphrodi",
+            "Aphrodite"
           ],
           "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6e/Afuro_Terumi.png/revision/latest/scale-to-width-down/325?cb=20190504144713",
           "src": "fandom:inazuma-eleven:Afuro Terumi"
@@ -12432,7 +12437,8 @@
           "aliases": [
             "Kirino Ranmaru",
             "Kirino",
-            "Gabriel"
+            "Gabriel",
+            "Gabi"
           ],
           "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e8/Kirino_Ranmaru.png/revision/latest/scale-to-width-down/400?cb=20171029220352",
           "src": "fandom:inazuma-eleven:Kirino Ranmaru"
@@ -12531,7 +12537,8 @@
         "aliases": [
           "Megane Kakeru",
           "Megane",
-          "Willy Glass"
+          "Willy Glass",
+          "Willy"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/2/2f/Megane_Kakeru.png/revision/latest/scale-to-width-down/400?cb=20140505005410",
         "src": "fandom:inazuma-eleven:Megane Kakeru"
@@ -12559,7 +12566,8 @@
         "aliases": [
           "Matsuno Kuusuke",
           "Matsuno",
-          "Max Carson"
+          "Max Carson",
+          "Max"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/9/94/Matsuno_Kuusuke.png/revision/latest/scale-to-width-down/301?cb=20190516142940",
         "src": "fandom:inazuma-eleven:Matsuno Kuusuke"
@@ -12578,7 +12586,9 @@
         "aliases": [
           "Shourinji Ayumu",
           "Shourinji",
-          "Timmy Saunders"
+          "Timmy Saunders",
+          "Timmy",
+          "Shourin"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/c/c1/Shourinji_Ayumu.png/revision/latest/scale-to-width-down/272?cb=20230703080607",
         "src": "fandom:inazuma-eleven:Shourinji Ayumu"
@@ -12606,7 +12616,8 @@
         "label": "Joseph King",
         "aliases": [
           "Genda Koujirou",
-          "Genda"
+          "Genda",
+          "Genou"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/e/e2/Genda_Koujirou.png/revision/latest/scale-to-width-down/400?cb=20240813130949",
         "src": "fandom:inazuma-eleven:Genda Koujirou"
@@ -12624,7 +12635,9 @@
         "label": "Jordan Greenway",
         "aliases": [
           "Midorikawa Ryuuji",
-          "Midorikawa"
+          "Midorikawa",
+          "Janus",
+          "Reize"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/5/59/Midorikawa_Ryuuji.png/revision/latest/scale-to-width-down/279?cb=20240112143852",
         "src": "fandom:inazuma-eleven:Midorikawa Ryuuji"
@@ -12633,7 +12646,9 @@
         "label": "Bryce Whitingale",
         "aliases": [
           "Suzuno Fuusuke",
-          "Suzuno"
+          "Suzuno",
+          "Gazelle",
+          "Gazel"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/6/6c/Gazel.png/revision/latest/scale-to-width-down/400?cb=20230809121920",
         "src": "fandom:inazuma-eleven:Suzuno Fuusuke"
@@ -12642,7 +12657,9 @@
         "label": "Claude Beacons",
         "aliases": [
           "Nagumo Haruya",
-          "Nagumo"
+          "Nagumo",
+          "Torch",
+          "Burn"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/1/13/Nagumo_Haruya.png/revision/latest/scale-to-width-down/400?cb=20261004121944",
         "src": "fandom:inazuma-eleven:Nagumo Haruya"
@@ -12660,7 +12677,8 @@
         "label": "Thor Stoutberg",
         "aliases": [
           "Hijikata Raiden",
-          "Hijikata"
+          "Hijikata",
+          "Raiden"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/44/Hijikata_Raiden.png/revision/latest/scale-to-width-down/400?cb=20230722171748",
         "src": "fandom:inazuma-eleven:Hijikata Raiden"
@@ -12778,7 +12796,8 @@
         "aliases": [
           "Kurama Norihito",
           "Kurama",
-          "Michael"
+          "Michael",
+          "Kaiser"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/4/49/Kurama_Norihito.png/revision/latest/scale-to-width-down/400?cb=20250610205826",
         "src": "fandom:inazuma-eleven:Kurama Norihito"
@@ -12798,7 +12817,8 @@
         "aliases": [
           "Wonderbot",
           "Clark Wonderbot",
-          "Clark"
+          "Clark",
+          "Wandaba"
         ],
         "image": "https://static.wikia.nocookie.net/inazuma-eleven/images/0/0b/Clark_Wonderbot.png/revision/latest/scale-to-width-down/400?cb=20240104152536",
         "src": "fandom:inazuma-eleven:Clark Wonderbot"
@@ -12902,46 +12922,46 @@
             "Erik Eagle|Ichinose Kazuya|Ichinose",
             "Hurley Kane|Tsunami Jousuke|Tsunami",
             "Darren LaChance|Tachimukai Yuuki|Tachimukai",
-            "Xavier Foster|Kiyama Hiroto|Kiyama",
+            "Xavier Foster|Kiyama Hiroto|Kiyama|Xene|Gran|Hiroto",
             "Caleb Stonewall|Fudou Akio|Fudou",
-            "Byron Love|Afuro Terumi|Afuro",
+            "Byron Love|Afuro Terumi|Afuro|Aphrodi|Aphrodite",
             "Silvia Woods|Kino Aki|Kino",
             "Nelly Raimon|Raimon Natsumi|Raimon",
-            "William Glass|Megane Kakeru|Megane|Willy Glass",
+            "William Glass|Megane Kakeru|Megane|Willy Glass|Willy",
             "Sam Kincaid|Shishido Sakichi|Shishido",
             "Tod Ironside|Kurimatsu Teppei|Kurimatsu",
-            "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson",
+            "Maxwell Carson|Matsuno Kuusuke|Matsuno|Max Carson|Max",
             "Steve Grim|Handa Shinichi|Handa",
-            "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders",
+            "Tim Saunders|Shourinji Ayumu|Shourinji|Timmy Saunders|Timmy|Shourin",
             "Jim Wraith|Kageno Jin|Kageno",
             "Scott Banyan|Kogure Yuuya|Kogure|Scotty Banyan",
-            "Joseph King|Genda Koujirou|Genda",
+            "Joseph King|Genda Koujirou|Genda|Genou",
             "David Samford|Sakuma Jirou|Sakuma",
-            "Jordan Greenway|Midorikawa Ryuuji|Midorikawa",
-            "Bryce Whitingale|Suzuno Fuusuke|Suzuno",
-            "Claude Beacons|Nagumo Haruya|Nagumo",
+            "Jordan Greenway|Midorikawa Ryuuji|Midorikawa|Janus|Reize",
+            "Bryce Whitingale|Suzuno Fuusuke|Suzuno|Gazelle|Gazel",
+            "Claude Beacons|Nagumo Haruya|Nagumo|Torch|Burn",
             "Austin Hobbes|Utsunomiya Toramaru|Utsunomiya",
-            "Thor Stoutberg|Hijikata Raiden|Hijikata",
+            "Thor Stoutberg|Hijikata Raiden|Hijikata|Raiden",
             "Celia Hills|Otonashi Haruna|Otonashi",
             "Percival Travis|Kudou Michiya|Kudou",
             "Dvalin|Desarm|Dave Quagmire|Saginuma Osamu",
             "Seymour Hillman|Hibiki Seigou|Hibiki",
-            "Camellia Travis|Kudou Fuyuka|Fuyuka",
-            "David Evans|Endou Daisuke",
-            "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller",
+            "Camellia Travis|Kudou Fuyuka|Fuyuka|Cammy|Fuyuppe",
+            "David Evans|Endou Daisuke|Daisuke",
+            "Aquilina Schiller|Hitomiko Kira|Hitomiko|Lina Schiller|Lina",
             "Arion Sherwind|Matsukaze Tenma|Tenma|Arion",
             "Victor Blade|Tsurugi Kyousuke|Tsurugi",
             "Riccardo Di Rigo|Shindou Takuto|Shindou",
-            "Gabriel Garcia|Kirino Ranmaru|Kirino",
+            "Gabriel Garcia|Kirino Ranmaru|Kirino|Gabi",
             "Jean-Pierre Lapin|Nishizono Shinsuke|Shinsuke",
             "Samguk Han|Sangoku Taichi|Sangoku",
             "Wanli Changcheng|Amagi Daichi|Amagi",
-            "Michael Ballzack|Kurama Norihito|Kurama",
+            "Michael Ballzack|Kurama Norihito|Kurama|Kaiser",
             "Aitor Cazador|Kariya Masaki|Kariya",
             "Eugene Peabody|Hayami Tsurumasa|Hayami",
             "Adé Kébé|Ade Kebe|Hamano Kaiji|Hamano",
-            "Subaru Honda|Kurumada Gouichi|Kurumada",
-            "Doug McArthur|Minamisawa Atsushi|Minamisawa",
+            "Subaru Honda|Kurumada Gouichi|Kurumada|Rusty",
+            "Doug McArthur|Minamisawa Atsushi|Minamisawa|Dodge",
             "Hugues Baudet|Ichino Nanasuke|Ichino",
             "Shunsuke Aoyama|Aoyama Shunsuke|Aoyama",
             "Fei Rune|Fei",

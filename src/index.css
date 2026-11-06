@@ -928,6 +928,20 @@ h1, h2, h3, .font-serif, .font-display {
 @media (prefers-reduced-motion: reduce) {
   .pack-leak, .pack-banner, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
 }
+/* The golden pack: a gold foil wrapper with a light sweeping across, its meter, its own backdrop as it opens. */
+.golden-fill { background: linear-gradient(90deg, #b45309, #fbbf24, #fff7cc, #fbbf24); background-size: 200% 100%; animation: golden-sweep 2.4s linear infinite; }
+.golden-text { background: linear-gradient(90deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: golden-sweep 2.4s linear infinite; }
+.golden-ready { box-shadow: 0 0 0 2px #f59e0b, 0 0 18px #fbbf2466; }
+@keyframes golden-sweep { to { background-position: -200% 0; } }
+.golden-foil { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, #fff8 45%, #fff3 50%, transparent 62%); background-size: 250% 100%; mix-blend-mode: overlay; animation: golden-foil 2.8s ease-in-out infinite; }
+@keyframes golden-foil { from { background-position: 150% 0; } to { background-position: -100% 0; } }
+.golden-backdrop { background: radial-gradient(circle at 50% 42%, #fbbf2433, transparent 55%), repeating-conic-gradient(from 0deg at 50% 42%, #fbbf2414 0deg 6deg, transparent 6deg 18deg); animation: golden-turn 40s linear infinite; }
+@keyframes golden-turn { to { transform: rotate(360deg); } }
+.golden-banner { animation: golden-banner 0.6s cubic-bezier(0.3, 1.4, 0.5, 1) both, golden-sweep 2.4s linear infinite; filter: drop-shadow(0 0 14px #f59e0b88); }
+@keyframes golden-banner { from { transform: scale(2.2); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .golden-fill, .golden-text, .golden-foil, .golden-backdrop, .golden-banner { animation: none; }
+}
 @keyframes pack-tray-in {
   from { transform: translateY(-120px) scale(2.5); opacity: 0; }
   to { transform: none; opacity: 1; }

@@ -9,7 +9,7 @@ import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarit
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
-import { clampPity, COSMIC, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
+import { clampGolden, clampPity, COSMIC, GOLDEN, goldenNext, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
 const TEAR_AT = 18;
@@ -56,6 +56,8 @@ const LINEUP = [
 
 /** The pack's own light before it's torn, and the flash as the cards come (the tear itself glows in the best card's colour). */
 const PACK_LIGHT = '#c4b5fd';
+/** A golden pack's light. */
+const GOLDEN_LIGHT = '#fbbf24';
 /** A mythic's light is every colour at once. */
 const RAINBOW = ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7'];
 const top = (r: Rarity) => r === 'legendary' || r === 'mythic' || r === 'omni';
@@ -808,8 +810,10 @@ function AnomalyChoice({ anomaly, kept, onDecide, compact }: { anomaly: AnomalyI
  * What a pack (or five) leaves behind: how many cards were new and how many spares, each set's bar
  * filling with the cards just found, and the luck meter — up for the next pack, or back to ×1 after a Legendary.
  */
-function PackStats({ deck, fresh }: { deck: Card[]; fresh: Set<string> }) {
+function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; golden: boolean }) {
   const counts = useProgress((s) => s.cards);
+  const goldenCount = useProgress((s) => clampGolden(s.golden));
+  const goldenLeft = GOLDEN.packs - 1 - goldenCount + 1;
   const pity = useProgress((s) => clampPity(s.pity));
   const luck = pityLuck(pity);
   const newOnes = deck.filter((c) => fresh.has(c.id)).length;
@@ -868,7 +872,18 @@ function PackStats({ deck, fresh }: { deck: Card[]; fresh: Set<string> }) {
         </div>
         <span className="tabular-nums font-bold text-[#fde68a]">×{luck.toFixed(2)}</span>
       </div>
+      {/* The golden meter: the packs since the last golden one. */}
+      <div className="grid grid-cols-[minmax(0,9rem)_1fr_auto] items-center gap-2 text-xs">
+        <span className="text-white/80">🌟 Golden</span>
+        <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
+          <div className="golden-fill absolute inset-y-0 left-0 rounded-full" style={{ width: `${(goldenCount / (GOLDEN.packs - 1)) * 100}%` }} />
+        </div>
+        <span className="tabular-nums font-bold text-[#fde68a]">
+          {goldenCount}/{GOLDEN.packs - 1}
+        </span>
+      </div>
       <p className="text-center text-[11px] text-white/55">
+        {golden ? 'A golden pack! The count to the next one starts again. ' : goldenNext(goldenCount) ? 'Your next pack is golden! ' : `A golden pack in ${goldenLeft} pack${goldenLeft === 1 ? '' : 's'}. `}
         {gotTop ? 'A Legendary or better: your luck starts again from ×1.' : luck >= PITY_MAX ? 'Luck at its highest: the next pack has the best odds it can get.' : 'No Legendary this time: the next pack has better odds of one.'}
       </p>
     </div>
@@ -897,7 +912,9 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
  * the best card inside — or of the rarity it poses as, when its star is about to evolve), a shooting star crosses the screen per card, the cards come one at a time from
  * the deck — rarer ones charge up before they turn, then burst — and the five are laid out together.
  */
-export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
+export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain, golden = false }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean; golden?: boolean }) {
+  // A golden pack's own light, gold where an ordinary pack's is lilac.
+  const packLight = golden ? GOLDEN_LIGHT : PACK_LIGHT;
   const counts = useProgress((s) => s.cards);
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
@@ -1109,7 +1126,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
       for (const s of stars) if (s.climax) later(() => (rumble(stage.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), s.delay - LAST_STAR_PAUSE);
       const end = Math.max(...stars.map((s) => s.delay + s.duration));
-      later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
+      later(() => setFlash({ color: packLight, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
     }, 950);
   };
@@ -1226,9 +1243,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     else if (c.rarity === 'epic') sfx.shimmer(5);
     else if (c.rarity === 'rare') sfx.shimmer(3);
   };
-  const turn = () => {
-    const c = card;
+  /** The turn in progress (a Legendary or better charging): a skip lands it at once. */
+  const landing = useRef<(() => void) | null>(null);
+  const turn = (c: Card = card) => {
     const go = () => {
+      landing.current = null;
       setCharging(false);
       setFlipped(true);
       if (reducedMotion()) return;
@@ -1255,6 +1274,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     };
     // A mythic takes a long breath, every colour running through it; a legendary a shorter one.
     // Legendary and up: time slows — the room goes dark around the card, to a low drone.
+    landing.current = go;
     if (top(c.rarity) && !reducedMotion()) sfx.suspense(c.rarity === 'omni' ? 2.3 : c.rarity === 'mythic' ? 2.1 : 2);
     if (c.rarity === 'omni' && !reducedMotion()) {
       setCharging(true);
@@ -1295,11 +1315,33 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setFlipped(false);
     cue(deck[i + 1]);
   };
+  /**
+   * Skip never skips past a top card: it goes straight to the next Legendary or better still face down and
+   * turns it (a quick skipper still sees it come). Pressed again while it charges, it lands at once; on a
+   * card already turned, it goes on to the next top card, and to the summary once there's none left.
+   */
   const skip = () => {
     timers.current.forEach((t) => window.clearTimeout(t));
+    timers.current = [];
+    tearSnd.current?.stop();
+    tearSnd.current = null;
+    setHolding(false);
+    // A top card charging: its turn now, without the wait.
+    if (phase === 'reveal' && charging && landing.current) return landing.current();
+    const from = phase === 'reveal' ? (flipped ? i + 1 : i) : 0;
+    const next = deck.findIndex((c, k) => k >= from && top(c.rarity));
     setCharging(false);
-    setPhase('summary');
-    if (deck.some((c) => top(c.rarity))) celebrateBig();
+    if (next < 0) {
+      setPhase('summary');
+      // A pack with a top card already seen doesn't celebrate twice.
+      if (phase !== 'reveal' && deck.some((c) => top(c.rarity))) celebrateBig();
+      return;
+    }
+    setPhase('reveal');
+    setI(next);
+    setFlipped(false);
+    sfx.whoosh();
+    turn(deck[next]);
   };
 
   useEffect(() => {
@@ -1329,19 +1371,27 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
-          SKIP ⏭
+          {/* What a skip does now: land the card charging, go to the next top card, or to the end. */}
+          {phase === 'reveal' && charging && card && top(card.rarity) ? 'SKIP ✦' : deck.some((c, k) => k >= (phase === 'reveal' ? (flipped ? i + 1 : i) : 0) && top(c.rarity)) ? 'SKIP TO ★' : 'SKIP ⏭'}
         </button>
       )}
       {/* Slow motion: the room darkens around a Legendary or better as it charges. */}
-      {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' ? glow : PACK_LIGHT} />}
+      {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' ? glow : packLight} />}
       {phase === 'reveal' && charging && card && top(card.rarity) && <div className="pack-slowmo pointer-events-none fixed inset-0" aria-hidden />}
       {/* A Mythic or Omni makes its entrance: its franchise's name sweeps across, in its colours. */}
       {phase === 'reveal' && charging && card && prismatic(card.rarity) && (
         <div className="pointer-events-none fixed inset-x-0 top-[12%] z-30 overflow-hidden" aria-hidden>
           <p className={`pack-banner whitespace-nowrap text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl ${card.rarity === 'omni' ? 'card-omni-name' : 'card-mythic-name'}`}>{card.franchise.toUpperCase()}</p>
+        </div>
+      )}
+      {/* A golden pack: gold rays turning slowly behind everything, from the pick to the summary. */}
+      {/* (Clipped in a box of its own: bigger than the screen to turn without corners, it must not make the overlay scroll.) */}
+      {golden && (
+        <div className="pointer-events-none fixed inset-0 overflow-clip" aria-hidden>
+          <div className="golden-backdrop absolute -inset-1/2" />
         </div>
       )}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
@@ -1351,7 +1401,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-8">
-          <p className="font-display text-sm font-bold tracking-[0.35em] text-white/80">CHOOSE YOUR PACK</p>
+          {golden && <p className="golden-banner golden-text text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl">★ GOLDEN PACK ★</p>}
+          <p className="font-display text-sm font-bold tracking-[0.35em] text-white/80">{golden ? `${GOLDEN.slots} LEGENDARY OR BETTER INSIDE · CHOOSE YOUR PACK` : 'CHOOSE YOUR PACK'}</p>
           <div className="flex items-end justify-center gap-3 sm:gap-8">
             {LINEUP.map((l, k) => (
               <button
@@ -1364,7 +1415,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               >
                 <div className={chosen === null ? 'pack-float' : ''} style={{ animationDelay: `${k * -1}s` }}>
                   <div style={{ transform: `rotate(${l.tilt}deg)` }}>
-                    <PackArt pack={pack} />
+                    <PackArt pack={pack} golden={golden} />
                   </div>
                 </div>
               </button>
@@ -1403,10 +1454,10 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             )}
             {/* The pack below the cut, and the strip above it: they part along the same jagged line. */}
             <div style={{ clipPath: `polygon(${pts(line)}, 100% 100%, 0 100%)` }} className={phase === 'torn' ? 'pack-glow' : ''}>
-              <PackArt pack={pack} shine />
+              <PackArt pack={pack} shine golden={golden} />
             </div>
             <div className={`absolute inset-0 ${phase === 'torn' ? 'pack-flap-fly' : ''}`} style={{ clipPath: `polygon(0 0, 100% 0, ${pts([...line].reverse())})`, transform: phase === 'pack' ? `rotate(${-tear * 7}deg) translateY(${-tear * 7}px)` : undefined, transformOrigin: '100% 100%' }}>
-              <PackArt pack={pack} shine />
+              <PackArt pack={pack} shine golden={golden} />
             </div>
             {/* The light inside, shining through the cut as it opens. */}
             {phase === 'pack' && tear > 0 && (
@@ -1536,7 +1587,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {/* 4. All five together. */}
       {phase === 'summary' && (
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
-          <PackStats deck={deck} fresh={fresh} />
+          <PackStats deck={deck} fresh={fresh} golden={golden} />
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>

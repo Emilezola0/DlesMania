@@ -208,6 +208,74 @@
       "additionalProperties": false,
       "title": "Luck (pity)"
     },
+    "golden": {
+      "type": "object",
+      "properties": {
+        "packs": {
+          "type": "integer",
+          "minimum": 2,
+          "description": "Every this many packs, one is golden (the counter shown in the Shop)"
+        },
+        "slots": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Cards of a golden pack that are Legendary or better (the last ones)"
+        },
+        "last": {
+          "type": "object",
+          "properties": {
+            "mythic": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "The last card: chance of a Mythic (%)"
+            },
+            "omni": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "The last card: chance of an Omni (%)"
+            }
+          },
+          "required": [
+            "mythic",
+            "omni"
+          ],
+          "additionalProperties": false
+        },
+        "others": {
+          "type": "object",
+          "properties": {
+            "mythic": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "The other top cards: chance of a Mythic (%)"
+            },
+            "omni": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "The other top cards: chance of an Omni (%)"
+            }
+          },
+          "required": [
+            "mythic",
+            "omni"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "packs",
+        "slots",
+        "last",
+        "others"
+      ],
+      "additionalProperties": false,
+      "title": "Golden pack"
+    },
     "expedition": {
       "type": "object",
       "properties": {
@@ -1138,6 +1206,7 @@
     "arcade",
     "hot",
     "pity",
+    "golden",
     "expedition",
     "roulette",
     "duplicateValue",
