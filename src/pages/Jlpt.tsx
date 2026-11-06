@@ -622,7 +622,7 @@ function DayCard({ kind, entry }: { kind: 'word' | 'kanji'; entry: JlptEntry }) 
         </div>
       )}
       <p className="font-display text-lg font-semibold">{shortMeaning(entry.meaning, 5)}</p>
-      <p className="text-xs text-ink-faint">{entry.level}</p>
+      <p className="text-xs text-ink-faint">JLPT {entry.level}</p>
       {/* A word written with kanji: what each of them means (the ones the list has). */}
       {kind === 'word' && kanjiOfWord(entry.text).length > 0 && (
         <ul className="mt-1 w-full space-y-1 border-t border-rule pt-2 text-left text-sm">

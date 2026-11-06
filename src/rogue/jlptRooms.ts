@@ -27,7 +27,7 @@ const KANJI: WhoTarget[] = [...deck('N5', 'kanji'), ...deck('N4', 'kanji')].map(
     aliases: [...new Set([e.text, ...senses, ...kana, ...kana.flatMap(romajiSpellings)])],
     image: kanjiPicture(`kanji:${e.text}`),
     clues: [
-      `An ${e.level} kanji`,
+      `A JLPT ${e.level} kanji`,
       kun.length ? `Its kun reading: ${kun.join('・')}` : 'It has no kun reading',
       on.length ? `Its on reading: ${on.join('・')}` : 'It has no on reading',
       `It means “${shortMeaning(e.meaning, 3)}”`,
@@ -43,12 +43,12 @@ const levelValue = (l: string) => 6 - Number(l.slice(1));
 const hl = (id: string, label: string, entries: JlptEntry[], icon: string): HlDeck => ({
   id,
   label,
-  question: 'Which is from the harder level (N5 → N1)?',
+  question: 'Which is from the harder JLPT level (N5 → N1)?',
   higher: 'Harder',
   lower: 'Easier',
   icon,
   domain: 'anime',
-  items: entries.map((e) => ({ id: e.id, name: `${e.text} · ${e.reading} (${shortMeaning(e.meaning, 1)})`, image: kanjiPicture(`kanji:${e.text}`), value: levelValue(e.level), shown: e.level })),
+  items: entries.map((e) => ({ id: e.id, name: `${e.text} · ${e.reading} (${shortMeaning(e.meaning, 1)})`, image: kanjiPicture(`kanji:${e.text}`), value: levelValue(e.level), shown: `JLPT ${e.level}` })),
 });
 const sample = <T,>(xs: T[], n: number) => xs.filter((_, i) => i % Math.max(1, Math.floor(xs.length / n)) === 0).slice(0, n);
 export const JLPT_HL_DECKS: HlDeck[] = [

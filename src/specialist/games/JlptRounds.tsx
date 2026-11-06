@@ -40,10 +40,10 @@ export function JlptKanjiRound({ round, record, onChange }: Props) {
       question="What does this kanji mean? (Its reading counts too.)"
       pool={JLPT_KANJI}
       targetId={k.id}
-      hints={[`Level ${k.entry.level}`, ...(on ? [`On reading: ${on}`] : []), ...(kun ? [`Kun reading: ${kun}`] : []), `Its meaning starts with “${k.name[0]}”`]}
+      hints={[`JLPT ${k.entry.level}`, ...(on ? [`On reading: ${on}`] : []), ...(kun ? [`Kun reading: ${kun}`] : []), `Its meaning starts with “${k.name[0]}”`]}
       record={record}
       onChange={onChange}
-      answer={{ name: k.name, image: kanjiPicture(`kanji:${k.entry.text}`), detail: `${k.entry.text} — ${shown} · ${shortMeaning(k.entry.meaning, 4)} · ${k.entry.level}` }}
+      answer={{ name: k.name, image: kanjiPicture(`kanji:${k.entry.text}`), detail: `${k.entry.text} — ${shown} · ${shortMeaning(k.entry.meaning, 4)} · JLPT ${k.entry.level}` }}
       noPictures
       clue={(_, done) => <Character text={k.entry.text} reading={shown} done={done} id={k.entry.id} />}
     />
@@ -60,7 +60,7 @@ export function JlptReadingRound({ round, record, onChange }: Props) {
       question="How is this word read? (Kana or romaji.)"
       pool={JLPT_READINGS}
       targetId={`r:${h}`}
-      hints={[`It means “${shortMeaning(w.entry.meaning, 3)}”`, `Level ${w.entry.level}`, `${[...h].length} kana`, `It starts with “${[...h][0]}” (${romajiSpellings([...h][0])[0]})`]}
+      hints={[`It means “${shortMeaning(w.entry.meaning, 3)}”`, `JLPT ${w.entry.level}`, `${[...h].length} kana`, `It starts with “${[...h][0]}” (${romajiSpellings([...h][0])[0]})`]}
       record={record}
       onChange={onChange}
       answer={{ name: `${w.entry.text} · ${w.entry.reading}`, detail: wordDetail(w) }}
@@ -79,7 +79,7 @@ export function JlptWordRound({ round, record, onChange }: Props) {
       question="Which Japanese word means this? (Kanji, kana or romaji.)"
       pool={JLPT_WORDS}
       targetId={w.id}
-      hints={[`Level ${w.entry.level}`, `${[...w.kana].length} kana`, `It starts with “${[...w.kana][0]}” (${romajiSpellings([...w.kana][0])[0]})`, `Written ${w.entry.text}`]}
+      hints={[`JLPT ${w.entry.level}`, `${[...w.kana].length} kana`, `It starts with “${[...w.kana][0]}” (${romajiSpellings([...w.kana][0])[0]})`, `Written ${w.entry.text}`]}
       record={record}
       onChange={onChange}
       answer={{ name: w.name, detail: wordDetail(w) }}

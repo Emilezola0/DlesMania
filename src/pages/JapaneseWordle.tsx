@@ -32,7 +32,7 @@ const plainKana = (k: string) => {
 /** The aids: each one tells something more, and takes a fifth off the win's DleCoins. */
 type Aid = 'level' | 'meaning' | 'kanji' | 'sound';
 const AIDS: { id: Aid; label: string; blurb: string }[] = [
-  { id: 'level', label: 'Level', blurb: 'its level (N5 to N1)' },
+  { id: 'level', label: 'Level', blurb: 'its JLPT level (N5 to N1)' },
   { id: 'meaning', label: 'Meaning', blurb: 'what it means' },
   { id: 'kanji', label: 'Kanji', blurb: 'how many kanji it is written with' },
   { id: 'sound', label: 'Sound marks', blurb: 'a ゛ on a tile whose right kana is the same sound with another mark or size (か/が, は/ぱ, つ/っ)' },
