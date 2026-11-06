@@ -1,0 +1,10 @@
+{
+  "birthday": { "coins": 10000 },
+  "windowDays": 7,
+  "dates": [
+    { "id": "newyear", "month": 1, "day": 1, "coins": 2000, "emoji": "🎆", "name": { "en": "New Year's Day", "fr": "le Nouvel An" } },
+    { "id": "omnidle", "month": 10, "day": 18, "coins": 2000, "emoji": "🎂", "name": { "en": "Omnidle's birthday", "fr": "l'anniversaire d'Omnidle" } },
+    { "id": "halloween", "month": 10, "day": 31, "coins": 2000, "emoji": "🎃", "name": { "en": "Halloween", "fr": "Halloween" } },
+    { "id": "christmas", "month": 12, "day": 25, "coins": 2000, "emoji": "🎄", "name": { "en": "Christmas", "fr": "Noël" } }
+  ]
+}

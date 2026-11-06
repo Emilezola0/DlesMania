@@ -10,6 +10,8 @@ import { CardAvatar } from '../gacha/Perks';
 import { AvatarFrame } from '../casino/Frame';
 import { FRAME_BY_ID } from '../casino/frames';
 import { startCloud, useCloud } from '../cloud/state';
+import { birthdayLabel } from '../components/BirthdayReward';
+import { BIRTHDAY_COINS } from '../lib/rewards';
 import { todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -192,6 +194,30 @@ function Profile() {
   );
 }
 
+/** The account's birthday: set for good, or a button to set it. */
+function BirthdayLine() {
+  const birthday = useCloud((c) => c.birthday);
+  const fr = useProgress((s) => s.nameLang) === 'fr';
+  if (birthday === undefined) return null;
+  return (
+    <p className="flex flex-wrap items-center gap-2 text-sm">
+      <span aria-hidden>🎂</span>
+      {birthday ? (
+        <>
+          <span>
+            {fr ? 'Anniversaire' : 'Birthday'}: <b>{birthdayLabel(birthday, fr ? 'fr' : 'en')}</b>
+          </span>
+          <span className="text-ink-faint">· {fr ? `${BIRTHDAY_COINS.toLocaleString('fr')} DleCoins chaque année` : `${BIRTHDAY_COINS.toLocaleString('en')} DleCoins every year`}</span>
+        </>
+      ) : (
+        <button type="button" onClick={() => useCloud.setState({ askBirthday: true })} className="font-semibold underline hover:text-accent">
+          {fr ? 'Indique ton anniversaire' : 'Set your birthday'}
+        </button>
+      )}
+    </p>
+  );
+}
+
 /** /account */
 export default function Account() {
   const { status, email, name, lastSync, error, actions } = useCloud();
@@ -241,6 +267,7 @@ export default function Account() {
             {status === 'synced' && lastSync && <span className="font-normal text-ink-faint">· {new Date(lastSync).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}
           </p>
           {error && <p className="text-sm text-coral">{error}</p>}
+          <BirthdayLine />
           <div className="flex flex-wrap gap-2">
             <button type="button" disabled={busy} onClick={() => go(actions.syncNow)} className="btn-accent rounded-md px-4 py-2 font-semibold disabled:opacity-50">
               ⟳ Sync now

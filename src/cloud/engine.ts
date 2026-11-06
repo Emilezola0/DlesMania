@@ -262,7 +262,7 @@ export async function start() {
     else {
       stopWatching?.();
       store.set(SIGNED_IN_FLAG, null);
-      useCloud.setState({ status: 'signedOut', email: null, name: null });
+      useCloud.setState({ status: 'signedOut', email: null, name: null, birthday: undefined, askBirthday: false });
     }
   });
 }

@@ -74,5 +74,63 @@ service cloud.firestore {
         && request.resource.data.joined == resource.data.joined + 1
         && request.resource.data.joined <= 12;
     }
+
+    // Birthday and special-date rewards (src/cloud/rewards.ts). The birthday is written once and can
+    // never be changed or removed; each reward is a claim document that can only be created once
+    // (birthday-2026, christmas-2026...), at the server's time (the device's clock can't be faked in).
+    // The coins are only added to the save after the claim was accepted. The dates here must match
+    // src/data/rewards.json (npm run data:validate checks it).
+    function rewardDates() {
+      return { 'newyear': [1, 1], 'omnidle': [10, 18], 'halloween': [10, 31], 'christmas': [12, 25] };
+    }
+    // Days a special date's reward stays open (the day itself and the 6 after), as in rewards.json.
+    function rewardWindowDays() {
+      return 7;
+    }
+    // A day starts at UTC midnight; 14 hours early and 12 hours late cover every time zone.
+    function hasBegun(t) {
+      return request.time > t - duration.value(14, 'h');
+    }
+    function notOver(t) {
+      return request.time < t + duration.value(12, 'h');
+    }
+    // A 29 February birthday falls on the 28th in other years.
+    function birthdayIn(y, b) {
+      return timestamp.date(y, b.month, (b.month == 2 && b.day == 29 && y % 4 != 0) ? 28 : b.day);
+    }
+    function birthdayClaimOk(uid, y) {
+      return exists(/databases/$(database)/documents/rewards/$(uid))
+        && hasBegun(birthdayIn(y, get(/databases/$(database)/documents/rewards/$(uid)).data))
+        && notOver(timestamp.date(y + 1, 1, 1));
+    }
+    function dateClaimOk(name, y) {
+      return name in rewardDates()
+        && hasBegun(timestamp.date(y, rewardDates()[name][0], rewardDates()[name][1]))
+        && notOver(timestamp.date(y, rewardDates()[name][0], rewardDates()[name][1]) + duration.value(rewardWindowDays(), 'd'));
+    }
+    function claimOk(uid, id) {
+      return id.matches('[a-z]+-[0-9]{4}')
+        && (id.split('-')[0] == 'birthday'
+          ? birthdayClaimOk(uid, int(id.split('-')[1]))
+          : dateClaimOk(id.split('-')[0], int(id.split('-')[1])));
+    }
+    match /rewards/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['month', 'day', 'at'])
+        && request.resource.data.month is int && request.resource.data.month >= 1 && request.resource.data.month <= 12
+        && request.resource.data.day is int && request.resource.data.day >= 1
+        && request.resource.data.day <= [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][request.resource.data.month - 1]
+        && request.resource.data.at == request.time;
+      // No update, no delete: the birthday is for good.
+    }
+    match /rewards/{uid}/claims/{id} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['at'])
+        && request.resource.data.at == request.time
+        && claimOk(uid, id);
+      // No update, no delete: a reward claimed stays claimed.
+    }
   }
 }

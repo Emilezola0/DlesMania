@@ -22,9 +22,13 @@ interface CloudState {
   lastSync: number | null;
   error: string | null;
   actions: CloudActions | null;
+  /** The account's birthday (src/cloud/rewards.ts): undefined until known, null when not set yet. */
+  birthday: { month: number; day: number } | null | undefined;
+  /** The birthday question is open (asked once signed in, or from the account page). */
+  askBirthday: boolean;
 }
 
-export const useCloud = create<CloudState>()(() => ({ status: 'off', email: null, name: null, lastSync: null, error: null, actions: null }));
+export const useCloud = create<CloudState>()(() => ({ status: 'off', email: null, name: null, lastSync: null, error: null, actions: null, birthday: undefined, askBirthday: false }));
 
 /** Set when this device has an account signed in: Firebase loads at start to keep the save in step. */
 export const SIGNED_IN_FLAG = 'omnidle:cloud';

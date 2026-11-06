@@ -358,5 +358,31 @@ console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.frui
   console.log(`tuning      ${registry.files.length} admin files checked`);
 }
 
+// ---------------------------------------------------------------- Rewards (src/data/rewards.json)
+// The database rules (firestore.rules) keep their own copy of the special dates and the window:
+// they must say the same, or a reward would be shown and then refused (or allowed when it shouldn't).
+{
+  const rewards = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'rewards.json'), 'utf8'));
+  const rules = readFileSync(join(ROOT, 'firestore.rules'), 'utf8');
+  const dim = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const inRules = new Map([...(rules.match(/function rewardDates\(\)\s*\{\s*return\s*\{([^}]*)\}/)?.[1] ?? '').matchAll(/'([a-z]+)':\s*\[(\d+),\s*(\d+)\]/g)].map((m) => [m[1], `${m[2]}-${m[3]}`]));
+  const days = Number(rules.match(/function rewardWindowDays\(\)\s*\{\s*return\s*(\d+)/)?.[1]);
+  if (!Number.isInteger(rewards.birthday?.coins) || rewards.birthday.coins <= 0) fail('rewards.json: birthday.coins must be a positive whole number');
+  if (days !== rewards.windowDays) fail(`rewards.json: windowDays ${rewards.windowDays}, but firestore.rules says ${days}`);
+  const seenIds = new Set();
+  for (const d of rewards.dates) {
+    const at = `rewards.json/${d.id}`;
+    if (!/^[a-z]+$/.test(d.id) || d.id === 'birthday') fail(`${at}: the id must be lowercase letters only (and not "birthday")`);
+    if (seenIds.has(d.id)) fail(`${at}: listed twice`);
+    seenIds.add(d.id);
+    if (!(d.month >= 1 && d.month <= 12 && d.day >= 1 && d.day <= dim[d.month - 1])) fail(`${at}: ${d.day}/${d.month} isn't a date`);
+    if (!Number.isInteger(d.coins) || d.coins <= 0) fail(`${at}: coins must be a positive whole number`);
+    if (!d.name?.en || !d.name?.fr) fail(`${at}: needs an English and a French name`);
+    if (inRules.get(d.id) !== `${d.month}-${d.day}`) fail(`${at}: firestore.rules (rewardDates) says ${inRules.get(d.id) ?? 'nothing'}`);
+  }
+  for (const id of inRules.keys()) if (!seenIds.has(id)) fail(`firestore.rules: reward date "${id}" isn't in rewards.json`);
+  console.log(`rewards     birthday ${rewards.birthday.coins} coins, ${rewards.dates.length} special dates (open ${rewards.windowDays} days)`);
+}
+
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);
