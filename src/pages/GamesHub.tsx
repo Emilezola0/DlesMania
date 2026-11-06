@@ -133,7 +133,7 @@ export default function GamesHub() {
       icon: '🌉',
       title: 'Crossroads',
       blurb: 'A character falls down the lines: draw bridges at any angle to steer them to their own franchise. Faster with every point.',
-      stat: bests['cross:score'] ? `Best: ${bests['cross:score']} brought home` : undefined,
+      stat: bests['cross:score'] ? `Best: ${bests['cross:score']} points` : undefined,
     },
     {
       to: '/odd-one-out',

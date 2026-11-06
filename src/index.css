@@ -2316,6 +2316,8 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 /* Crossroads: the wait at the top, a ring running out (src/pages/Crossroads.tsx). */
 .cross-wait { animation: cross-wait linear forwards; }
 @keyframes cross-wait { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 100; } }
+.cross-bonus { animation: cross-bonus 1s ease-out forwards; }
+@keyframes cross-bonus { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-40px); } }
 
 /* #/admin: the setting "Find a setting" jumped to. */
 .admin-found {

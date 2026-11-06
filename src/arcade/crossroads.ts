@@ -1,8 +1,9 @@
 // Crossroads: vertical lines, a character falling down one of them, franchises at the bottom.
 // The player draws bridges between neighbouring lines, at any angle, and the character takes every bridge
 // whose end it meets — along the slant, to the other line — then keeps falling. Lead it to its
-// own franchise. Bridges stay from one character to the next and are cleared every few rounds,
-// when the franchises at the bottom change.
+// own franchise. Bridges stay from one character to the next and are cleared every ten rounds,
+// when the franchises at the bottom change. Later on, two characters fall at once, a moment apart; and a
+// falling character can be sped up, for a bonus point if it lands home.
 import { BOSSES } from '../data/bosses';
 import { shuffle } from '../lib/rng';
 import type { NameLang } from '../store/progress';
@@ -35,8 +36,13 @@ export interface Bridge {
 }
 
 export const CROSS_LIVES = 3;
-/** The franchises change, and the bridges are cleared, every this many characters. */
-export const ROUNDS_PER_BOARD = 5;
+/** The franchises change, and the bridges are cleared, every this many rounds. */
+export const ROUNDS_PER_BOARD = 10;
+/** The fewest franchises (lines) a board can have. */
+export const MIN_LINES = 3;
+/** A sped-up character falls this many times faster, and is worth this many more points if it lands home. */
+export const FAST_FACTOR = 2.4;
+export const FAST_BONUS = 1;
 /** Ladder geometry, in SVG units: lines COL_W apart, falling from TOP to BOTTOM. */
 export const COL_W = 100;
 export const HEIGHT = 560;
@@ -60,6 +66,11 @@ export const waitFor = (score: number) => Math.max(1800, 3000 - 40 * score);
 
 /** More lines as the score grows. */
 export const linesFor = (score: number) => (score >= 25 ? 6 : score >= 10 ? 5 : 4);
+
+/** How often a round drops two characters instead of one: from 12 home, now and then; from 30, always. */
+export const pairChance = (home: number) => (home >= 30 ? 1 : home >= 20 ? 0.6 : home >= 12 ? 0.35 : 0);
+/** How long the second of a pair waits after the first (ms): a clear gap at first, tighter as the score grows. */
+export const pairGap = (home: number) => Math.max(450, 1400 - 25 * Math.max(0, home - 12));
 
 /** Smash Bros. members belong to other franchises too: they'd make two right answers. */
 const SKIP = new Set(['smash']);
