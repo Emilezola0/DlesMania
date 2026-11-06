@@ -25179,5 +25179,1444 @@
       "Weighted Shots",
       "Witchmail"
     ]
+  },
+  {
+    "id": "hsr",
+    "domain": "games",
+    "franchise": "Honkai: Star Rail",
+    "aliases": [
+      "honkai star rail",
+      "star rail",
+      "hsr",
+      "honkai"
+    ],
+    "images": "fandom:honkai-star-rail",
+    "boss": {
+      "name": "Nanook",
+      "title": "Aeon of Destruction",
+      "color": "#f59e0b",
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/Aeon_Nanook.png/revision/latest/scale-to-width-down/500?cb=20230501000013"
+    },
+    "lines": {
+      "intro": "Another train between the stars. Every world it reaches, I have already judged — and found wanting.",
+      "phase2": "Some of these faces never rode the Express. Point out the true travellers before the Legion takes the rest!",
+      "phase3": "You still stand. Then name them all, before Destruction reaches the last station.",
+      "hit": [
+        "A spark, nothing more.",
+        "The Legion felt that.",
+        "Hm. Defiance."
+      ],
+      "hurt": [
+        "Back to the void!",
+        "Destroyed, as all things are.",
+        "Your journey ends here.",
+        "Ash and starlight."
+      ],
+      "win": "So the rails hold, this once. Ride on, Trailblazer… I will be waiting at the end of the line.",
+      "lose": "One more world gone dark. The Antimatter Legion marches on.",
+      "secret": "One last ride before the stars go out. I name a character, a Path or an Aeon — you name another of the same. No repeats!",
+      "secretOk": [
+        "Noted.",
+        "Next stop.",
+        "The rails hold."
+      ],
+      "secretLost": "Nothing? Then this is the last station."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 characters",
+        "count": 5,
+        "answers": [
+          "Arlan",
+          "Asta",
+          "Bailu",
+          "Bronya",
+          "Clara",
+          "Dan Heng",
+          "Gepard",
+          "Herta",
+          "Himeko",
+          "Hook",
+          "March 7th|March 7|March",
+          "Natasha",
+          "Pela",
+          "Qingque",
+          "Sampo",
+          "Seele",
+          "Serval",
+          "Sushang",
+          "Tingyun",
+          "Welt",
+          "Yanqing",
+          "Jing Yuan|Jingyuan",
+          "Silver Wolf",
+          "Luocha",
+          "Yukong",
+          "Blade",
+          "Kafka",
+          "Luka",
+          "Dan Heng • Imbibitor Lunae|Imbibitor Lunae|Dan Heng Imbibitor Lunae|DHIL",
+          "Fu Xuan",
+          "Lynx",
+          "Jingliu",
+          "Guinaifen",
+          "Topaz & Numby|Topaz|Topaz and Numby",
+          "Huohuo",
+          "Argenti",
+          "Hanya",
+          "Ruan Mei",
+          "Xueyi",
+          "Dr. Ratio|Ratio|Dr Ratio|Veritas Ratio",
+          "Black Swan",
+          "Misha",
+          "Sparkle",
+          "Acheron",
+          "Gallagher",
+          "Aventurine",
+          "Robin",
+          "Boothill",
+          "Firefly",
+          "Jade",
+          "Yunli",
+          "Jiaoqiu",
+          "Feixiao",
+          "Moze",
+          "Lingsha",
+          "Rappa",
+          "Sunday",
+          "Fugue",
+          "The Herta",
+          "Aglaea",
+          "Tribbie",
+          "Mydei",
+          "Castorice",
+          "Anaxa",
+          "Hyacine",
+          "Cipher",
+          "Phainon",
+          "Archer",
+          "Saber",
+          "Hysilens",
+          "Cerydra",
+          "Evernight",
+          "Dan Heng • Permansor Terrae|Permansor Terrae|Dan Heng Permansor Terrae",
+          "Cyrene",
+          "The Dahlia|Dahlia",
+          "Yao Guang",
+          "Sparxie",
+          "Ashveil",
+          "Silver Wolf LV.999|Silver Wolf LV999",
+          "Evanescia",
+          "Mortenax Blade",
+          "Himeko • Nova|Himeko Nova",
+          "Gilgamesh",
+          "Rin Tohsaka",
+          "Robin • Summeretto|Robin Summeretto",
+          "Aventurine • Waveflair|Aventurine Waveflair",
+          "Pearl"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of the Destruction",
+        "count": 5,
+        "answers": [
+          "Arlan",
+          "Clara",
+          "Hook",
+          "Blade",
+          "Dan Heng • Imbibitor Lunae|Imbibitor Lunae|Dan Heng Imbibitor Lunae|DHIL",
+          "Jingliu",
+          "Xueyi",
+          "Misha",
+          "Firefly",
+          "Yunli",
+          "Mydei",
+          "Phainon",
+          "Saber",
+          "Gilgamesh"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of the Nihility",
+        "count": 5,
+        "answers": [
+          "Pela",
+          "Sampo",
+          "Welt",
+          "Silver Wolf",
+          "Kafka",
+          "Luka",
+          "Guinaifen",
+          "Black Swan",
+          "Acheron",
+          "Jiaoqiu",
+          "Fugue",
+          "Cipher",
+          "Hysilens",
+          "The Dahlia|Dahlia",
+          "Mortenax Blade"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of the Harmony",
+        "count": 5,
+        "answers": [
+          "Asta",
+          "Bronya",
+          "Tingyun",
+          "Yukong",
+          "Hanya",
+          "Ruan Mei",
+          "Sparkle",
+          "Robin",
+          "Sunday",
+          "Tribbie",
+          "Cerydra"
+        ]
+      },
+      {
+        "prompt": "Name 5 Lightning characters",
+        "count": 5,
+        "answers": [
+          "Arlan",
+          "Bailu",
+          "Serval",
+          "Tingyun",
+          "Jing Yuan|Jingyuan",
+          "Kafka",
+          "Acheron",
+          "Moze",
+          "Aglaea",
+          "Ashveil",
+          "Gilgamesh"
+        ]
+      },
+      {
+        "prompt": "Name 5 Quantum characters",
+        "count": 5,
+        "answers": [
+          "Qingque",
+          "Seele",
+          "Silver Wolf",
+          "Fu Xuan",
+          "Lynx",
+          "Xueyi",
+          "Sparkle",
+          "Jade",
+          "Tribbie",
+          "Castorice",
+          "Cipher",
+          "Archer",
+          "Rin Tohsaka",
+          "Aventurine • Waveflair|Aventurine Waveflair"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters from the Xianzhou",
+        "count": 5,
+        "answers": [
+          "Bailu",
+          "Qingque",
+          "Sushang",
+          "Tingyun",
+          "Yanqing",
+          "Jing Yuan|Jingyuan",
+          "Luocha",
+          "Yukong",
+          "Dan Heng • Imbibitor Lunae|Imbibitor Lunae|Dan Heng Imbibitor Lunae|DHIL",
+          "Fu Xuan",
+          "Jingliu",
+          "Guinaifen",
+          "Huohuo",
+          "Hanya",
+          "Xueyi",
+          "Yunli",
+          "Jiaoqiu",
+          "Feixiao",
+          "Moze",
+          "Lingsha",
+          "Fugue",
+          "Yao Guang"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters from Amphoreus",
+        "count": 5,
+        "answers": [
+          "Aglaea",
+          "Tribbie",
+          "Mydei",
+          "Castorice",
+          "Anaxa",
+          "Hyacine",
+          "Cipher",
+          "Phainon",
+          "Hysilens",
+          "Cerydra",
+          "Evernight",
+          "Dan Heng • Permansor Terrae|Permansor Terrae|Dan Heng Permansor Terrae",
+          "Cyrene"
+        ]
+      },
+      {
+        "prompt": "Name 4 characters from Jarilo-VI",
+        "count": 4,
+        "answers": [
+          "Bronya",
+          "Clara",
+          "Gepard",
+          "Hook",
+          "Natasha",
+          "Pela",
+          "Sampo",
+          "Seele",
+          "Serval",
+          "Luka",
+          "Lynx"
+        ]
+      },
+      {
+        "prompt": "Name 4 Stellaron Hunters",
+        "count": 4,
+        "answers": [
+          "Kafka",
+          "Blade",
+          "Silver Wolf",
+          "Firefly|Sam",
+          "Elio",
+          "Silver Wolf LV.999",
+          "Mortenax Blade"
+        ]
+      },
+      {
+        "prompt": "Name 4 Aeons",
+        "count": 4,
+        "answers": [
+          "Akivili",
+          "Nanook",
+          "Lan",
+          "Nous",
+          "Xipe",
+          "IX",
+          "Qlipoth",
+          "Yaoshi",
+          "Fuli",
+          "Aha",
+          "Tayzzyronth",
+          "Oroboros",
+          "Long",
+          "Idrila",
+          "Mythus",
+          "HooH",
+          "Ena",
+          "Terminus"
+        ]
+      },
+      {
+        "prompt": "Name 5 Paths",
+        "count": 5,
+        "answers": [
+          "Destruction",
+          "The Hunt|Hunt",
+          "Erudition",
+          "Harmony",
+          "Nihility",
+          "Preservation",
+          "Abundance",
+          "Remembrance",
+          "Elation",
+          "Trailblaze",
+          "Propagation",
+          "Enigmata",
+          "Beauty",
+          "Permanence",
+          "Equilibrium",
+          "Order",
+          "Gluttony",
+          "Finality"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Dan Heng • Imbibitor Lunae",
+          "aliases": [
+            "Imbibitor Lunae",
+            "Dan Heng Imbibitor Lunae",
+            "DHIL"
+          ],
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2a/Character_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Icon.png/revision/latest?cb=20240326111321"
+        },
+        {
+          "label": "Aventurine",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/da/Character_Aventurine_Icon.png/revision/latest?cb=20240327022115"
+        },
+        {
+          "label": "Kafka",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8c/Character_Kafka_Icon.png/revision/latest?cb=20230723081234"
+        },
+        {
+          "label": "Firefly",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9e/Character_Firefly_Icon.png/revision/latest?cb=20240619072408"
+        },
+        {
+          "label": "Acheron",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/Character_Acheron_Icon.png/revision/latest?cb=20240605043757"
+        },
+        {
+          "label": "Castorice",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/da/Character_Castorice_Icon.png/revision/latest?cb=20250328124417"
+        },
+        {
+          "label": "March 7th",
+          "aliases": [
+            "March 7",
+            "March"
+          ],
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d3/Character_March_7th_Icon.png/revision/latest?cb=20230723081458"
+        },
+        {
+          "label": "Dan Heng",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png/revision/latest?cb=20230723080807"
+        },
+        {
+          "label": "Silver Wolf",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a3/Character_Silver_Wolf_Icon.png/revision/latest?cb=20230723081754"
+        },
+        {
+          "label": "Robin",
+          "fr": "Robin",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/72/Character_Robin_Icon.png/revision/latest?cb=20240525031318"
+        },
+        {
+          "label": "Phainon",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ef/Character_Phainon_Icon.png/revision/latest?cb=20250620124711"
+        },
+        {
+          "label": "Herta",
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bf/Character_Herta_Icon.png/revision/latest?cb=20230723081012"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Diluc",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/3d/Diluc_Icon.png/revision/latest/scale-to-width-down/160?cb=20231215092341"
+        },
+        {
+          "label": "Jean",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/6/64/Jean_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040810"
+        },
+        {
+          "label": "Keqing",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/52/Keqing_Icon.png/revision/latest/scale-to-width-down/160?cb=20210213162751"
+        },
+        {
+          "label": "Mona",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/4/41/Mona_Icon.png/revision/latest/scale-to-width-down/160?cb=20260304040909"
+        },
+        {
+          "label": "Qiqi",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/b3/Qiqi_Icon.png/revision/latest/scale-to-width-down/160?cb=20220316020612"
+        },
+        {
+          "label": "Venti",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/f/f1/Venti_Icon.png/revision/latest/scale-to-width-down/160?cb=20210214011949"
+        },
+        {
+          "label": "Klee",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/9c/Klee_Icon.png/revision/latest/scale-to-width-down/160?cb=20210214011911"
+        },
+        {
+          "label": "Lauma",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/27/Lauma_Icon.png/revision/latest/scale-to-width-down/160?cb=20250910024154"
+        },
+        {
+          "label": "Flins",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/a/af/Flins_Icon.png/revision/latest/scale-to-width-down/160?cb=20250910175819"
+        },
+        {
+          "label": "Nefer",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/5/5b/Nefer_Icon.png/revision/latest/scale-to-width-down/160?cb=20250911005040"
+        },
+        {
+          "label": "Durin",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/b/ba/Durin_Icon.png/revision/latest/scale-to-width-down/160?cb=20251203043105"
+        },
+        {
+          "label": "Columbina",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/3/35/Columbina_Icon.png/revision/latest/scale-to-width-down/160?cb=20260114031143"
+        },
+        {
+          "label": "Zibai",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/2/22/Zibai_Icon.png/revision/latest/scale-to-width-down/160?cb=20260203100351"
+        },
+        {
+          "label": "Varka",
+          "image": "https://static.wikia.nocookie.net/gensin-impact/images/9/98/Varka_Icon.png/revision/latest/scale-to-width-down/160?cb=20260119061922"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Clara",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/Character_Clara_Icon.png/revision/latest?cb=20230723080716"
+      },
+      {
+        "label": "Hook",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d5/Character_Hook_Icon.png/revision/latest?cb=20230723081051"
+      },
+      {
+        "label": "Sampo",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/53/Character_Sampo_Icon.png/revision/latest?cb=20230723081700"
+      },
+      {
+        "label": "Qingque",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/Character_Qingque_Icon.png/revision/latest?cb=20230723081644"
+      },
+      {
+        "label": "Arlan",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a9/Character_Arlan_Icon.png/revision/latest?cb=20230723080444"
+      },
+      {
+        "label": "Asta",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9f/Character_Asta_Icon.png/revision/latest?cb=20230723080506"
+      },
+      {
+        "label": "Natasha",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/61/Character_Natasha_Icon.png/revision/latest?cb=20230723081534"
+      },
+      {
+        "label": "Pela",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c2/Character_Pela_Icon.png/revision/latest?cb=20230723081559"
+      },
+      {
+        "label": "Serval",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7c/Character_Serval_Icon.png/revision/latest?cb=20230723081736"
+      },
+      {
+        "label": "Sushang",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/97/Character_Sushang_Icon.png/revision/latest?cb=20230723081849"
+      },
+      {
+        "label": "Tingyun",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/Character_Tingyun_Icon.png/revision/latest?cb=20230723081906"
+      },
+      {
+        "label": "Yukong",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/32/Character_Yukong_Icon.png/revision/latest?cb=20230723082209"
+      },
+      {
+        "label": "Luka",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Character_Luka_Icon.png/revision/latest?cb=20230723081255"
+      },
+      {
+        "label": "Lynx",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6c/Character_Lynx_Icon.png/revision/latest?cb=20231031113034"
+      },
+      {
+        "label": "Guinaifen",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/98/Character_Guinaifen_Icon.png/revision/latest?cb=20231030000303"
+      },
+      {
+        "label": "Hanya",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Hanya_Icon.png/revision/latest?cb=20231209094526"
+      },
+      {
+        "label": "Xueyi",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/23/Character_Xueyi_Icon.png/revision/latest?cb=20231227130429"
+      },
+      {
+        "label": "Misha",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4d/Character_Misha_Icon.png/revision/latest?cb=20240206104846"
+      },
+      {
+        "label": "Gallagher",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/12/Character_Gallagher_Icon.png/revision/latest?cb=20240325014209"
+      },
+      {
+        "label": "Moze",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/25/Character_Moze_Icon.png/revision/latest?cb=20240910183040"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Character",
+          "entities": [
+            "Arlan",
+            "Asta",
+            "Bailu",
+            "Bronya",
+            "Clara",
+            "Dan Heng",
+            "Gepard",
+            "Herta",
+            "Himeko",
+            "Hook",
+            "March 7th|March 7|March",
+            "Natasha",
+            "Pela",
+            "Qingque",
+            "Sampo",
+            "Seele",
+            "Serval",
+            "Sushang",
+            "Tingyun",
+            "Welt",
+            "Yanqing",
+            "Jing Yuan|Jingyuan",
+            "Silver Wolf",
+            "Luocha",
+            "Yukong",
+            "Blade",
+            "Kafka",
+            "Luka",
+            "Dan Heng • Imbibitor Lunae|Imbibitor Lunae|Dan Heng Imbibitor Lunae|DHIL",
+            "Fu Xuan",
+            "Lynx",
+            "Jingliu",
+            "Guinaifen",
+            "Topaz & Numby|Topaz|Topaz and Numby",
+            "Huohuo",
+            "Argenti",
+            "Hanya",
+            "Ruan Mei",
+            "Xueyi",
+            "Dr. Ratio|Ratio|Dr Ratio|Veritas Ratio",
+            "Black Swan",
+            "Misha",
+            "Sparkle",
+            "Acheron",
+            "Gallagher",
+            "Aventurine",
+            "Robin",
+            "Boothill",
+            "Firefly",
+            "Jade",
+            "Yunli",
+            "Jiaoqiu",
+            "Feixiao",
+            "Moze",
+            "Lingsha",
+            "Rappa",
+            "Sunday",
+            "Fugue",
+            "The Herta",
+            "Aglaea",
+            "Tribbie",
+            "Mydei",
+            "Castorice",
+            "Anaxa",
+            "Hyacine",
+            "Cipher",
+            "Phainon",
+            "Archer",
+            "Saber",
+            "Hysilens",
+            "Cerydra",
+            "Evernight",
+            "Dan Heng • Permansor Terrae|Permansor Terrae|Dan Heng Permansor Terrae",
+            "Cyrene",
+            "The Dahlia|Dahlia",
+            "Yao Guang",
+            "Sparxie",
+            "Ashveil",
+            "Silver Wolf LV.999|Silver Wolf LV999",
+            "Evanescia",
+            "Mortenax Blade",
+            "Himeko • Nova|Himeko Nova",
+            "Gilgamesh",
+            "Rin Tohsaka",
+            "Robin • Summeretto|Robin Summeretto",
+            "Aventurine • Waveflair|Aventurine Waveflair",
+            "Pearl"
+          ]
+        },
+        {
+          "label": "Path",
+          "entities": [
+            "Destruction",
+            "The Hunt|Hunt",
+            "Erudition",
+            "Harmony",
+            "Nihility",
+            "Preservation",
+            "Abundance",
+            "Remembrance",
+            "Elation",
+            "Trailblaze",
+            "Propagation",
+            "Enigmata",
+            "Beauty",
+            "Permanence",
+            "Equilibrium",
+            "Order",
+            "Gluttony",
+            "Finality"
+          ]
+        },
+        {
+          "label": "Combat Type",
+          "entities": [
+            "Physical",
+            "Fire",
+            "Ice",
+            "Lightning",
+            "Wind",
+            "Quantum",
+            "Imaginary"
+          ]
+        },
+        {
+          "label": "Aeon",
+          "entities": [
+            "Akivili",
+            "Nanook",
+            "Lan",
+            "Nous",
+            "Xipe",
+            "IX",
+            "Qlipoth",
+            "Yaoshi",
+            "Fuli",
+            "Aha",
+            "Tayzzyronth",
+            "Oroboros",
+            "Long",
+            "Idrila",
+            "Mythus",
+            "HooH",
+            "Ena",
+            "Terminus"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Light Cone",
+      "prompt": "Whose Light Cone is this?",
+      "seconds": 30,
+      "hints": true,
+      "clues": [
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Time_Waits_for_No_One.png/revision/latest?cb=20230719030642",
+          "hints": [
+            "Abundance · Lightning · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Time Waits for No One”",
+            "Their name starts with “B”"
+          ],
+          "answer": "Bailu"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/29/Light_Cone_But_the_Battle_Isn%27t_Over.png/revision/latest?cb=20230719030450",
+          "hints": [
+            "Harmony · Wind · 5★",
+            "From Belobog",
+            "The Light Cone: “But the Battle Isn't Over”",
+            "Their name starts with “B”"
+          ],
+          "answer": "Bronya"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7a/Light_Cone_Something_Irreplaceable.png/revision/latest?cb=20230719030434",
+          "hints": [
+            "Destruction · Physical · 5★",
+            "From Belobog",
+            "The Light Cone: “Something Irreplaceable”",
+            "Their name starts with “C”"
+          ],
+          "answer": "Clara"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Moment_of_Victory.png/revision/latest?cb=20230719030522",
+          "hints": [
+            "Preservation · Ice · 5★",
+            "From Belobog",
+            "The Light Cone: “Moment of Victory”",
+            "Their name starts with “G”"
+          ],
+          "answer": "Gepard"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d4/Light_Cone_Night_on_the_Milky_Way.png/revision/latest?cb=20230719030401",
+          "hints": [
+            "Erudition · Fire · 5★",
+            "From Astral Express",
+            "The Light Cone: “Night on the Milky Way”",
+            "Their name starts with “H”"
+          ],
+          "answer": "Himeko"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Light_Cone_In_the_Night.png/revision/latest?cb=20230719030418",
+          "hints": [
+            "The Hunt · Quantum · 5★",
+            "From Belobog",
+            "The Light Cone: “In the Night”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Seele"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_In_the_Name_of_the_World.png/revision/latest?cb=20230719030506",
+          "hints": [
+            "Nihility · Imaginary · 5★",
+            "From Astral Express",
+            "The Light Cone: “In the Name of the World”",
+            "Their name starts with “W”"
+          ],
+          "answer": "Welt"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2d/Light_Cone_Sleep_Like_the_Dead.png/revision/latest?cb=20230719030626",
+          "hints": [
+            "The Hunt · Ice · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Sleep Like the Dead”",
+            "Their name starts with “Y”"
+          ],
+          "answer": "Yanqing"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/26/Light_Cone_Before_Dawn.png/revision/latest?cb=20230719030610",
+          "hints": [
+            "Erudition · Lightning · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Before Dawn”",
+            "Their name starts with “J”"
+          ],
+          "answer": "Jing Yuan|Jingyuan"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/Light_Cone_Incessant_Rain.png/revision/latest?cb=20230719030538",
+          "hints": [
+            "Nihility · Quantum · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “Incessant Rain”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Silver Wolf"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Light_Cone_Echoes_of_the_Coffin.png/revision/latest?cb=20230719030554",
+          "hints": [
+            "Abundance · Imaginary · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Echoes of the Coffin”",
+            "Their name starts with “L”"
+          ],
+          "answer": "Luocha"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_The_Unreachable_Side.png/revision/latest?cb=20230719023309",
+          "hints": [
+            "Destruction · Wind · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “The Unreachable Side”",
+            "Their name starts with “B”"
+          ],
+          "answer": "Blade"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/Light_Cone_Patience_Is_All_You_Need.png/revision/latest?cb=20230809041852",
+          "hints": [
+            "Nihility · Lightning · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “Patience Is All You Need”",
+            "Their name starts with “K”"
+          ],
+          "answer": "Kafka"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d0/Light_Cone_Brighter_Than_the_Sun.png/revision/latest?cb=20230830022603",
+          "hints": [
+            "Destruction · Imaginary · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Brighter Than the Sun”",
+            "Their name starts with “D”"
+          ],
+          "answer": "Dan Heng • Imbibitor Lunae|Imbibitor Lunae|Dan Heng Imbibitor Lunae|DHIL"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0a/Light_Cone_She_Already_Shut_Her_Eyes.png/revision/latest?cb=20230920055423",
+          "hints": [
+            "Preservation · Quantum · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “She Already Shut Her Eyes”",
+            "Their name starts with “F”"
+          ],
+          "answer": "Fu Xuan"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_I_Shall_Be_My_Own_Sword.png/revision/latest?cb=20231011030715",
+          "hints": [
+            "Destruction · Ice · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “I Shall Be My Own Sword”",
+            "Their name starts with “J”"
+          ],
+          "answer": "Jingliu"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Worrisome%2C_Blissful.png/revision/latest?cb=20231029050253",
+          "hints": [
+            "The Hunt · Fire · 5★",
+            "From Interastral Peace Corporation",
+            "The Light Cone: “Worrisome, Blissful”",
+            "Their name starts with “T”"
+          ],
+          "answer": "Topaz & Numby|Topaz|Topaz and Numby"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/df/Light_Cone_Night_of_Fright.png/revision/latest?cb=20231115024040",
+          "hints": [
+            "Abundance · Wind · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Night of Fright”",
+            "Their name starts with “H”"
+          ],
+          "answer": "Huohuo"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/Light_Cone_An_Instant_Before_A_Gaze.png/revision/latest?cb=20231206040430",
+          "hints": [
+            "Erudition · Physical · 5★",
+            "From Knights of Beauty",
+            "The Light Cone: “An Instant Before A Gaze”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Argenti"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/Light_Cone_Past_Self_in_Mirror.png/revision/latest?cb=20231227021316",
+          "hints": [
+            "Harmony · Ice · 5★",
+            "From Herta Space Station",
+            "The Light Cone: “Past Self in Mirror”",
+            "Their name starts with “R”"
+          ],
+          "answer": "Ruan Mei"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5a/Light_Cone_Baptism_of_Pure_Thought.png/revision/latest?cb=20240117041243",
+          "hints": [
+            "The Hunt · Imaginary · 5★",
+            "From Intelligentsia Guild",
+            "The Light Cone: “Baptism of Pure Thought”",
+            "Their name starts with “D”"
+          ],
+          "answer": "Dr. Ratio|Ratio|Dr Ratio|Veritas Ratio"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f7/Light_Cone_Reforged_Remembrance.png/revision/latest?cb=20240206022354",
+          "hints": [
+            "Nihility · Wind · 5★",
+            "From Garden of Recollection",
+            "The Light Cone: “Reforged Remembrance”",
+            "Their name starts with “B”"
+          ],
+          "answer": "Black Swan"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5b/Light_Cone_Earthly_Escapade.png/revision/latest?cb=20240206022523",
+          "hints": [
+            "Harmony · Quantum · 5★",
+            "From Masked Fools",
+            "The Light Cone: “Earthly Escapade”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Sparkle"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/08/Light_Cone_Along_the_Passing_Shore.png/revision/latest?cb=20240327025150",
+          "hints": [
+            "Nihility · Lightning · 5★",
+            "From Self-Annihilators",
+            "The Light Cone: “Along the Passing Shore”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Acheron"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/Light_Cone_Inherently_Unjust_Destiny.png/revision/latest?cb=20240417060129",
+          "hints": [
+            "Preservation · Imaginary · 5★",
+            "From Interastral Peace Corporation",
+            "The Light Cone: “Inherently Unjust Destiny”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Aventurine"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f2/Light_Cone_Flowing_Nightglow.png/revision/latest?cb=20240508030636",
+          "hints": [
+            "Harmony · Physical · 5★",
+            "From Penacony",
+            "The Light Cone: “Flowing Nightglow”",
+            "Their name starts with “R”"
+          ],
+          "answer": "Robin"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Sailing_Towards_a_Second_Life.png/revision/latest?cb=20240603054042",
+          "hints": [
+            "The Hunt · Physical · 5★",
+            "From Galaxy Rangers",
+            "The Light Cone: “Sailing Towards a Second Life”",
+            "Their name starts with “B”"
+          ],
+          "answer": "Boothill"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0e/Light_Cone_Whereabouts_Should_Dreams_Rest.png/revision/latest/scale-to-width-down/400?cb=20240607171003",
+          "hints": [
+            "Destruction · Fire · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “Whereabouts Should Dreams Rest”",
+            "Their name starts with “F”"
+          ],
+          "answer": "Firefly"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/52/Light_Cone_Yet_Hope_Is_Priceless.png/revision/latest/scale-to-width-down/400?cb=20240607171006",
+          "hints": [
+            "Erudition · Quantum · 5★",
+            "From Interastral Peace Corporation",
+            "The Light Cone: “Yet Hope Is Priceless”",
+            "Their name starts with “J”"
+          ],
+          "answer": "Jade"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/Light_Cone_Dance_at_Sunset.png/revision/latest?cb=20240802010821",
+          "hints": [
+            "Destruction · Physical · 5★",
+            "From The Xianzhou Zhuming",
+            "The Light Cone: “Dance at Sunset”",
+            "Their name starts with “Y”"
+          ],
+          "answer": "Yunli"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/Light_Cone_Those_Many_Springs.png/revision/latest?cb=20240821090652",
+          "hints": [
+            "Nihility · Fire · 5★",
+            "From The Xianzhou Yaoqing",
+            "The Light Cone: “Those Many Springs”",
+            "Their name starts with “J”"
+          ],
+          "answer": "Jiaoqiu"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/13/Light_Cone_I_Venture_Forth_to_Hunt.png/revision/latest?cb=20240910183947",
+          "hints": [
+            "The Hunt · Wind · 5★",
+            "From The Xianzhou Yaoqing",
+            "The Light Cone: “I Venture Forth to Hunt”",
+            "Their name starts with “F”"
+          ],
+          "answer": "Feixiao"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Scent_Alone_Stays_True.png/revision/latest?cb=20241002192322",
+          "hints": [
+            "Abundance · Fire · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Scent Alone Stays True”",
+            "Their name starts with “L”"
+          ],
+          "answer": "Lingsha"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ac/Light_Cone_Ninjutsu_Inscription_Dazzling_Evilbreaker.png/revision/latest?cb=20241025210738",
+          "hints": [
+            "Erudition · Imaginary · 5★",
+            "From Galaxy Rangers",
+            "The Light Cone: “Ninjutsu Inscription: Dazzling Evilbreaker”",
+            "Their name starts with “R”"
+          ],
+          "answer": "Rappa"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/27/Light_Cone_A_Grounded_Ascent.png/revision/latest?cb=20241205031402",
+          "hints": [
+            "Harmony · Imaginary · 5★",
+            "From Astral Express",
+            "The Light Cone: “A Grounded Ascent”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Sunday"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Long_Road_Leads_Home.png/revision/latest?cb=20241225050057",
+          "hints": [
+            "Nihility · Fire · 5★",
+            "From The Xianzhou Luofu",
+            "The Light Cone: “Long Road Leads Home”",
+            "Their name starts with “F”"
+          ],
+          "answer": "Fugue"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Light_Cone_Into_the_Unreachable_Veil.png/revision/latest?cb=20250116180930",
+          "hints": [
+            "Erudition · Ice · 5★",
+            "From Herta Space Station",
+            "The Light Cone: “Into the Unreachable Veil”",
+            "Their name starts with “T”"
+          ],
+          "answer": "The Herta"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/15/Light_Cone_Time_Woven_Into_Gold.png/revision/latest?cb=20250123125415",
+          "hints": [
+            "Remembrance · Lightning · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Time Woven Into Gold”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Aglaea"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8d/Light_Cone_If_Time_Were_a_Flower.png/revision/latest?cb=20250226072139",
+          "hints": [
+            "Harmony · Quantum · 5★",
+            "From Amphoreus",
+            "The Light Cone: “If Time Were a Flower”",
+            "Their name starts with “T”"
+          ],
+          "answer": "Tribbie"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Flame_of_Blood%2C_Blaze_My_Path.png/revision/latest?cb=20250226133127",
+          "hints": [
+            "Destruction · Imaginary · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Flame of Blood, Blaze My Path”",
+            "Their name starts with “M”"
+          ],
+          "answer": "Mydei"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/58/Light_Cone_Make_Farewells_More_Beautiful.png/revision/latest?cb=20250409035459",
+          "hints": [
+            "Remembrance · Quantum · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Make Farewells More Beautiful”",
+            "Their name starts with “C”"
+          ],
+          "answer": "Castorice"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Life_Should_Be_Cast_to_Flames.png/revision/latest?cb=20250409035428",
+          "hints": [
+            "Erudition · Wind · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Life Should Be Cast to Flames”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Anaxa"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Light_Cone_Long_May_Rainbows_Adorn_the_Sky.png/revision/latest?cb=20250521031952",
+          "hints": [
+            "Remembrance · Wind · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Long May Rainbows Adorn the Sky”",
+            "Their name starts with “H”"
+          ],
+          "answer": "Hyacine"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Light_Cone_Lies_Dance_on_the_Breeze.png/revision/latest?cb=20250611051742",
+          "hints": [
+            "Nihility · Quantum · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Lies Dance on the Breeze”",
+            "Their name starts with “C”"
+          ],
+          "answer": "Cipher"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/Light_Cone_Thus_Burns_the_Dawn.png/revision/latest?cb=20250702033437",
+          "hints": [
+            "Destruction · Physical · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Thus Burns the Dawn”",
+            "Their name starts with “P”"
+          ],
+          "answer": "Phainon"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/66/Light_Cone_The_Hell_Where_Ideals_Burn.png/revision/latest?cb=20250702131433",
+          "hints": [
+            "The Hunt · Quantum · 5★",
+            "From Another World",
+            "The Light Cone: “The Hell Where Ideals Burn”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Archer"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f3/Light_Cone_A_Thankless_Coronation.png/revision/latest?cb=20250711042759",
+          "hints": [
+            "Destruction · Wind · 5★",
+            "From Another World",
+            "The Light Cone: “A Thankless Coronation”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Saber"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Light_Cone_Why_Does_the_Ocean_Sing.png/revision/latest?cb=20250813023643",
+          "hints": [
+            "Nihility · Physical · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Why Does the Ocean Sing”",
+            "Their name starts with “H”"
+          ],
+          "answer": "Hysilens"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/Light_Cone_Epoch_Etched_in_Golden_Blood.png/revision/latest?cb=20250902044754",
+          "hints": [
+            "Harmony · Wind · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Epoch Etched in Golden Blood”",
+            "Their name starts with “C”"
+          ],
+          "answer": "Cerydra"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/34/Light_Cone_To_Evernight%27s_Stars.png/revision/latest?cb=20250924033925",
+          "hints": [
+            "Remembrance · Ice · 5★",
+            "From Amphoreus",
+            "The Light Cone: “To Evernight's Stars”",
+            "Their name starts with “E”"
+          ],
+          "answer": "Evernight"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Though_Worlds_Apart.png/revision/latest?cb=20251015044937",
+          "hints": [
+            "Preservation · Physical · 5★",
+            "From Amphoreus",
+            "The Light Cone: “Though Worlds Apart”",
+            "Their name starts with “D”"
+          ],
+          "answer": "Dan Heng • Permansor Terrae|Permansor Terrae|Dan Heng Permansor Terrae"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/Light_Cone_This_Love%2C_Forever.png/revision/latest?cb=20251105032834",
+          "hints": [
+            "Remembrance · Ice · 5★",
+            "From Amphoreus",
+            "The Light Cone: “This Love, Forever”",
+            "Their name starts with “C”"
+          ],
+          "answer": "Cyrene"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/03/Light_Cone_Never_Forget_Her_Flame.png/revision/latest?cb=20251217041152",
+          "hints": [
+            "Nihility · Fire · 5★",
+            "From The Cremators",
+            "The Light Cone: “Never Forget Her Flame”",
+            "Their name starts with “T”"
+          ],
+          "answer": "The Dahlia|Dahlia"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/Light_Cone_When_She_Decided_to_See.png/revision/latest?cb=20260213052858",
+          "hints": [
+            "Elation · Physical · 5★",
+            "From The Xianzhou Yuque",
+            "The Light Cone: “When She Decided to See”",
+            "Their name starts with “Y”"
+          ],
+          "answer": "Yao Guang"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/82/Light_Cone_Dazzled_by_a_Flowery_World.png/revision/latest?cb=20260303043027",
+          "hints": [
+            "Elation · Fire · 5★",
+            "From Masked Fools",
+            "The Light Cone: “Dazzled by a Flowery World”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Sparxie"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Light_Cone_The_Finale_of_a_Lie.png/revision/latest?cb=20260325055255",
+          "hints": [
+            "The Hunt · Lightning · 5★",
+            "From Galaxy Rangers",
+            "The Light Cone: “The Finale of a Lie”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Ashveil"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/Light_Cone_Welcome_to_the_Cosmic_City.png/revision/latest?cb=20260422040136",
+          "hints": [
+            "Elation · Imaginary · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “Welcome to the Cosmic City”",
+            "Their name starts with “S”"
+          ],
+          "answer": "Silver Wolf LV.999|Silver Wolf LV999"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3d/Light_Cone_Until_the_Flowers_Bloom_Again.png/revision/latest?cb=20260513082026",
+          "hints": [
+            "Elation · Physical · 5★",
+            "From Planarcadia",
+            "The Light Cone: “Until the Flowers Bloom Again”",
+            "Their name starts with “E”"
+          ],
+          "answer": "Evanescia"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/Light_Cone_Reforged_in_Hellfire.png/revision/latest?cb=20260601030512",
+          "hints": [
+            "Nihility · Fire · 5★",
+            "From Stellaron Hunters",
+            "The Light Cone: “Reforged in Hellfire”",
+            "Their name starts with “M”"
+          ],
+          "answer": "Mortenax Blade"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/01/Light_Cone_A_Star_That_Lights_the_Night.png/revision/latest?cb=20260715025907",
+          "hints": [
+            "Erudition · Fire · 5★",
+            "From Astral Express",
+            "The Light Cone: “A Star That Lights the Night”",
+            "Their name starts with “H”"
+          ],
+          "answer": "Himeko • Nova|Himeko Nova"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e6/Light_Cone_I_Am_As_You_Behold.png/revision/latest?cb=20260715084402",
+          "hints": [
+            "Destruction · Lightning · 5★",
+            "From Another World",
+            "The Light Cone: “I Am As You Behold”",
+            "Their name starts with “G”"
+          ],
+          "answer": "Gilgamesh"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/Light_Cone_Flickering_Stars.png/revision/latest?cb=20260724041949",
+          "hints": [
+            "Erudition · Quantum · 5★",
+            "From Another World",
+            "The Light Cone: “Flickering Stars”",
+            "Their name starts with “R”"
+          ],
+          "answer": "Rin Tohsaka"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d7/Light_Cone_Rise_and_Sing.png/revision/latest?cb=20260826034026",
+          "hints": [
+            "Remembrance · Wind · 5★",
+            "From Penacony",
+            "The Light Cone: “Rise and Sing”",
+            "Their name starts with “R”"
+          ],
+          "answer": "Robin • Summeretto|Robin Summeretto"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/Light_Cone_Summer_Rides_the_Surf.png/revision/latest?cb=20260912040858",
+          "hints": [
+            "Elation · Quantum · 5★",
+            "From Interastral Peace Corporation",
+            "The Light Cone: “Summer Rides the Surf”",
+            "Their name starts with “A”"
+          ],
+          "answer": "Aventurine • Waveflair|Aventurine Waveflair"
+        },
+        {
+          "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Colors_for_Tomorrow.png/revision/latest?cb=20260928030418",
+          "hints": [
+            "Elation · Ice · 5★",
+            "From Interastral Peace Corporation",
+            "The Light Cone: “Colors for Tomorrow”",
+            "Their name starts with “P”"
+          ],
+          "answer": "Pearl"
+        }
+      ]
+    },
+    "finaleSkip": [
+      "Time Waits for No One",
+      "But the Battle Isn't Over",
+      "Something Irreplaceable",
+      "Moment of Victory",
+      "Night on the Milky Way",
+      "In the Night",
+      "In the Name of the World",
+      "Sleep Like the Dead",
+      "Before Dawn",
+      "Incessant Rain",
+      "Echoes of the Coffin",
+      "The Unreachable Side",
+      "Patience Is All You Need",
+      "Brighter Than the Sun",
+      "She Already Shut Her Eyes",
+      "I Shall Be My Own Sword",
+      "Worrisome, Blissful",
+      "Night of Fright",
+      "An Instant Before A Gaze",
+      "Past Self in Mirror",
+      "Baptism of Pure Thought",
+      "Reforged Remembrance",
+      "Earthly Escapade",
+      "Along the Passing Shore",
+      "Inherently Unjust Destiny",
+      "Flowing Nightglow",
+      "Sailing Towards a Second Life",
+      "Whereabouts Should Dreams Rest",
+      "Yet Hope Is Priceless",
+      "Dance at Sunset",
+      "Those Many Springs",
+      "I Venture Forth to Hunt",
+      "Scent Alone Stays True",
+      "Ninjutsu Inscription: Dazzling Evilbreaker",
+      "A Grounded Ascent",
+      "Long Road Leads Home",
+      "Into the Unreachable Veil",
+      "Time Woven Into Gold",
+      "If Time Were a Flower",
+      "Flame of Blood, Blaze My Path",
+      "Make Farewells More Beautiful",
+      "Life Should Be Cast to Flames",
+      "Long May Rainbows Adorn the Sky",
+      "Lies Dance on the Breeze",
+      "Thus Burns the Dawn",
+      "The Hell Where Ideals Burn",
+      "A Thankless Coronation",
+      "Why Does the Ocean Sing",
+      "Epoch Etched in Golden Blood",
+      "To Evernight's Stars",
+      "Though Worlds Apart",
+      "This Love, Forever",
+      "Never Forget Her Flame",
+      "When She Decided to See",
+      "Dazzled by a Flowery World",
+      "The Finale of a Lie",
+      "Welcome to the Cosmic City",
+      "Until the Flowers Bloom Again",
+      "Reforged in Hellfire",
+      "A Star That Lights the Night",
+      "I Am As You Behold",
+      "Flickering Stars",
+      "Rise and Sing",
+      "Summer Rides the Surf",
+      "Colors for Tomorrow"
+    ]
   }
 ]

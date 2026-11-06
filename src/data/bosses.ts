@@ -59,7 +59,9 @@ export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
     sets.set(name, (sets.get(name) ?? new Set()).add(b.id));
   }
   for (const b of BOSSES) {
-    const pairs: [string, string, boolean][] = [...b.radar.members, ...b.finale].filter((c) => c.fr && c.fr !== c.label).map((c) => [c.label, c.fr!, (sets.get(c.label)?.size ?? 0) <= 1]);
+    // A French name the same as the English one ("fr": "Robin") only keeps another franchise's off this one (Honkai's
+    // Robin isn't Smash's Daraen): it stays with its own set and never goes in the shared dictionary.
+    const pairs: [string, string, boolean][] = [...b.radar.members, ...b.finale].filter((c) => c.fr).map((c) => [c.label, c.fr!, c.fr !== c.label && (sets.get(c.label)?.size ?? 0) <= 1]);
     if (pairs.length) addFrench(b.id, pairs);
   }
   // Names more than one franchise uses: each keeps to its own French name, if any.

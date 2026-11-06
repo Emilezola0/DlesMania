@@ -8151,5 +8151,607 @@
    "image": "https://cdn.deadlock.wiki/Witchmail.png",
    "rarity": "epic"
   }
+ ],
+ "hsr": [
+  {
+   "name": "Bailu",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Character_Bailu_Icon.png/revision/latest?cb=20230723080553",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bronya",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/Character_Bronya_Icon.png/revision/latest?cb=20230723080648",
+   "rarity": "epic"
+  },
+  {
+   "name": "Gepard",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/75/Character_Gepard_Icon.png/revision/latest?cb=20230723080948",
+   "rarity": "rare"
+  },
+  {
+   "name": "Himeko",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/00/Character_Himeko_Icon.png/revision/latest?cb=20230723081029",
+   "rarity": "epic"
+  },
+  {
+   "name": "Seele",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/Character_Seele_Icon.png/revision/latest?cb=20230723081718",
+   "rarity": "epic"
+  },
+  {
+   "name": "Welt",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Character_Welt_Icon.png/revision/latest?cb=20230723082022",
+   "rarity": "epic"
+  },
+  {
+   "name": "Yanqing",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/Character_Yanqing_Icon.png/revision/latest?cb=20230723082139",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jing Yuan",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/88/Character_Jing_Yuan_Icon.png/revision/latest?cb=20230723081207",
+   "rarity": "epic"
+  },
+  {
+   "name": "Luocha",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/20/Character_Luocha_Icon.png/revision/latest?cb=20230723081416",
+   "rarity": "rare"
+  },
+  {
+   "name": "Blade",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/90/Character_Blade_Icon.png/revision/latest?cb=20230723080612",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fu Xuan",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Fu_Xuan_Icon.png/revision/latest?cb=20230723080902",
+   "rarity": "epic"
+  },
+  {
+   "name": "Jingliu",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/Character_Jingliu_Icon.png/revision/latest?cb=20230723081213",
+   "rarity": "epic"
+  },
+  {
+   "name": "Topaz & Numby",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/Character_Topaz_%26_Numby_Icon.png/revision/latest?cb=20231030000030",
+   "rarity": "epic"
+  },
+  {
+   "name": "Huohuo",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/68/Character_Huohuo_Icon.png/revision/latest?cb=20231209094156",
+   "rarity": "epic"
+  },
+  {
+   "name": "Argenti",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Argenti_Icon.png/revision/latest?cb=20231209093828",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ruan Mei",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/Character_Ruan_Mei_Icon.png/revision/latest?cb=20231227130539",
+   "rarity": "epic"
+  },
+  {
+   "name": "Dr. Ratio",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Character_Dr._Ratio_Icon.png/revision/latest?cb=20231227130912",
+   "rarity": "epic"
+  },
+  {
+   "name": "Black Swan",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/90/Character_Black_Swan_Icon.png/revision/latest?cb=20240206104620",
+   "rarity": "epic"
+  },
+  {
+   "name": "Sparkle",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6b/Character_Sparkle_Icon.png/revision/latest?cb=20240326110835",
+   "rarity": "epic"
+  },
+  {
+   "name": "Boothill",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Boothill_Icon.png/revision/latest?cb=20240525031219",
+   "rarity": "epic"
+  },
+  {
+   "name": "Jade",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fd/Character_Jade_Icon.png/revision/latest?cb=20240619072848",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yunli",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/43/Character_Yunli_Icon.png/revision/latest?cb=20240724122212",
+   "rarity": "rare"
+  },
+  {
+   "name": "Jiaoqiu",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/Character_Jiaoqiu_Icon.png/revision/latest?cb=20240910182738",
+   "rarity": "rare"
+  },
+  {
+   "name": "Feixiao",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/75/Character_Feixiao_Icon.png/revision/latest?cb=20240910182925",
+   "rarity": "epic"
+  },
+  {
+   "name": "Lingsha",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ab/Character_Lingsha_Icon.png/revision/latest?cb=20240719042259",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rappa",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/84/Character_Rappa_Icon.png/revision/latest?cb=20240827130309",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sunday",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Character_Sunday_Icon.png/revision/latest?cb=20241122130945",
+   "rarity": "epic"
+  },
+  {
+   "name": "Fugue",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Fugue_Icon.png/revision/latest?cb=20241122131000",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Herta",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/Character_The_Herta_Icon.png/revision/latest?cb=20250101123319",
+   "rarity": "epic"
+  },
+  {
+   "name": "Aglaea",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f8/Character_Aglaea_Icon.png/revision/latest?cb=20250101123357",
+   "rarity": "epic"
+  },
+  {
+   "name": "Tribbie",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f3/Character_Tribbie_Icon.png/revision/latest?cb=20250214124656",
+   "rarity": "epic"
+  },
+  {
+   "name": "Mydei",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/Character_Mydei_Icon.png/revision/latest?cb=20250214124624",
+   "rarity": "epic"
+  },
+  {
+   "name": "Anaxa",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f0/Character_Anaxa_Icon.png/revision/latest?cb=20250328124329",
+   "rarity": "epic"
+  },
+  {
+   "name": "Hyacine",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Hyacine_Icon.png/revision/latest?cb=20250509121044",
+   "rarity": "epic"
+  },
+  {
+   "name": "Cipher",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Cipher_Icon.png/revision/latest?cb=20250509121146",
+   "rarity": "epic"
+  },
+  {
+   "name": "Archer",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8f/Character_Archer_Icon.png/revision/latest?cb=20250620124531",
+   "rarity": "rare"
+  },
+  {
+   "name": "Saber",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/43/Character_Saber_Icon.png/revision/latest?cb=20250620124608",
+   "rarity": "epic"
+  },
+  {
+   "name": "Hysilens",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/19/Character_Hysilens_Icon.png/revision/latest?cb=20250802130317",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cerydra",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Character_Cerydra_Icon.png/revision/latest?cb=20250802130229",
+   "rarity": "rare"
+  },
+  {
+   "name": "Evernight",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Character_Evernight_Icon.png/revision/latest?cb=20250912121500",
+   "rarity": "epic"
+  },
+  {
+   "name": "Dan Heng • Permansor Terrae",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Dan_Heng_%E2%80%A2_Permansor_Terrae_Icon.png/revision/latest?cb=20250912121518",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cyrene",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Cyrene_Icon.png/revision/latest?cb=20251024130639",
+   "rarity": "epic"
+  },
+  {
+   "name": "The Dahlia",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Character_The_Dahlia_Icon.png/revision/latest?cb=20251205121527",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yao Guang",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1e/Character_Yao_Guang_Icon.png/revision/latest?cb=20260206123914",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sparxie",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/46/Character_Sparxie_Icon.png/revision/latest?cb=20260206123951",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ashveil",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/88/Character_Ashveil_Icon.png/revision/latest?cb=20260313122242",
+   "rarity": "rare"
+  },
+  {
+   "name": "Silver Wolf LV.999",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/03/Character_Silver_Wolf_LV.999_Icon.png/revision/latest?cb=20260410125943",
+   "rarity": "epic"
+  },
+  {
+   "name": "Evanescia",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c3/Character_Evanescia_Icon.png/revision/latest?cb=20260410130019",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mortenax Blade",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4a/Character_Mortenax_Blade_Icon.png/revision/latest?cb=20260601025954",
+   "rarity": "rare"
+  },
+  {
+   "name": "Himeko • Nova",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/80/Character_Himeko_%E2%80%A2_Nova_Icon.png/revision/latest?cb=20260703122022",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gilgamesh",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d6/Character_Gilgamesh_Icon.png/revision/latest?cb=20260703122145",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rin Tohsaka",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f8/Character_Rin_Tohsaka_Icon.png/revision/latest?cb=20260703122106",
+   "rarity": "rare"
+  },
+  {
+   "name": "Robin • Summeretto",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Character_Robin_%E2%80%A2_Summeretto_Icon.png/revision/latest?cb=20260814121759",
+   "rarity": "rare"
+  },
+  {
+   "name": "Aventurine • Waveflair",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Aventurine_%E2%80%A2_Waveflair_Icon.png/revision/latest?cb=20260814121832",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pearl",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3e/Character_Pearl_Icon.png/revision/latest?cb=20260920120918",
+   "rarity": "rare"
+  },
+  {
+   "name": "Time Waits for No One",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Time_Waits_for_No_One.png/revision/latest?cb=20230719030642",
+   "rarity": "common"
+  },
+  {
+   "name": "But the Battle Isn't Over",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/29/Light_Cone_But_the_Battle_Isn%27t_Over.png/revision/latest?cb=20230719030450",
+   "rarity": "common"
+  },
+  {
+   "name": "Something Irreplaceable",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7a/Light_Cone_Something_Irreplaceable.png/revision/latest?cb=20230719030434",
+   "rarity": "common"
+  },
+  {
+   "name": "Moment of Victory",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Moment_of_Victory.png/revision/latest?cb=20230719030522",
+   "rarity": "common"
+  },
+  {
+   "name": "Night on the Milky Way",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d4/Light_Cone_Night_on_the_Milky_Way.png/revision/latest?cb=20230719030401",
+   "rarity": "common"
+  },
+  {
+   "name": "In the Night",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Light_Cone_In_the_Night.png/revision/latest?cb=20230719030418",
+   "rarity": "common"
+  },
+  {
+   "name": "In the Name of the World",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_In_the_Name_of_the_World.png/revision/latest?cb=20230719030506",
+   "rarity": "common"
+  },
+  {
+   "name": "Sleep Like the Dead",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2d/Light_Cone_Sleep_Like_the_Dead.png/revision/latest?cb=20230719030626",
+   "rarity": "common"
+  },
+  {
+   "name": "Before Dawn",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/26/Light_Cone_Before_Dawn.png/revision/latest?cb=20230719030610",
+   "rarity": "common"
+  },
+  {
+   "name": "Incessant Rain",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/Light_Cone_Incessant_Rain.png/revision/latest?cb=20230719030538",
+   "rarity": "common"
+  },
+  {
+   "name": "Echoes of the Coffin",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Light_Cone_Echoes_of_the_Coffin.png/revision/latest?cb=20230719030554",
+   "rarity": "common"
+  },
+  {
+   "name": "The Unreachable Side",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_The_Unreachable_Side.png/revision/latest?cb=20230719023309",
+   "rarity": "common"
+  },
+  {
+   "name": "Patience Is All You Need",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/Light_Cone_Patience_Is_All_You_Need.png/revision/latest?cb=20230809041852",
+   "rarity": "common"
+  },
+  {
+   "name": "Brighter Than the Sun",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d0/Light_Cone_Brighter_Than_the_Sun.png/revision/latest?cb=20230830022603",
+   "rarity": "common"
+  },
+  {
+   "name": "She Already Shut Her Eyes",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0a/Light_Cone_She_Already_Shut_Her_Eyes.png/revision/latest?cb=20230920055423",
+   "rarity": "common"
+  },
+  {
+   "name": "I Shall Be My Own Sword",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_I_Shall_Be_My_Own_Sword.png/revision/latest?cb=20231011030715",
+   "rarity": "common"
+  },
+  {
+   "name": "Worrisome, Blissful",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Worrisome%2C_Blissful.png/revision/latest?cb=20231029050253",
+   "rarity": "common"
+  },
+  {
+   "name": "Night of Fright",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/df/Light_Cone_Night_of_Fright.png/revision/latest?cb=20231115024040",
+   "rarity": "common"
+  },
+  {
+   "name": "An Instant Before A Gaze",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/Light_Cone_An_Instant_Before_A_Gaze.png/revision/latest?cb=20231206040430",
+   "rarity": "common"
+  },
+  {
+   "name": "Past Self in Mirror",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/Light_Cone_Past_Self_in_Mirror.png/revision/latest?cb=20231227021316",
+   "rarity": "common"
+  },
+  {
+   "name": "Baptism of Pure Thought",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5a/Light_Cone_Baptism_of_Pure_Thought.png/revision/latest?cb=20240117041243",
+   "rarity": "common"
+  },
+  {
+   "name": "Reforged Remembrance",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f7/Light_Cone_Reforged_Remembrance.png/revision/latest?cb=20240206022354",
+   "rarity": "common"
+  },
+  {
+   "name": "Earthly Escapade",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5b/Light_Cone_Earthly_Escapade.png/revision/latest?cb=20240206022523",
+   "rarity": "common"
+  },
+  {
+   "name": "Along the Passing Shore",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/08/Light_Cone_Along_the_Passing_Shore.png/revision/latest?cb=20240327025150",
+   "rarity": "common"
+  },
+  {
+   "name": "Inherently Unjust Destiny",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/Light_Cone_Inherently_Unjust_Destiny.png/revision/latest?cb=20240417060129",
+   "rarity": "common"
+  },
+  {
+   "name": "Flowing Nightglow",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f2/Light_Cone_Flowing_Nightglow.png/revision/latest?cb=20240508030636",
+   "rarity": "common"
+  },
+  {
+   "name": "Sailing Towards a Second Life",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Sailing_Towards_a_Second_Life.png/revision/latest?cb=20240603054042",
+   "rarity": "common"
+  },
+  {
+   "name": "Whereabouts Should Dreams Rest",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0e/Light_Cone_Whereabouts_Should_Dreams_Rest.png/revision/latest/scale-to-width-down/400?cb=20240607171003",
+   "rarity": "common"
+  },
+  {
+   "name": "Yet Hope Is Priceless",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/52/Light_Cone_Yet_Hope_Is_Priceless.png/revision/latest/scale-to-width-down/400?cb=20240607171006",
+   "rarity": "common"
+  },
+  {
+   "name": "Dance at Sunset",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/Light_Cone_Dance_at_Sunset.png/revision/latest?cb=20240802010821",
+   "rarity": "common"
+  },
+  {
+   "name": "Those Many Springs",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/Light_Cone_Those_Many_Springs.png/revision/latest?cb=20240821090652",
+   "rarity": "common"
+  },
+  {
+   "name": "I Venture Forth to Hunt",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/13/Light_Cone_I_Venture_Forth_to_Hunt.png/revision/latest?cb=20240910183947",
+   "rarity": "common"
+  },
+  {
+   "name": "Scent Alone Stays True",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Scent_Alone_Stays_True.png/revision/latest?cb=20241002192322",
+   "rarity": "common"
+  },
+  {
+   "name": "Ninjutsu Inscription: Dazzling Evilbreaker",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ac/Light_Cone_Ninjutsu_Inscription_Dazzling_Evilbreaker.png/revision/latest?cb=20241025210738",
+   "rarity": "common"
+  },
+  {
+   "name": "A Grounded Ascent",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/27/Light_Cone_A_Grounded_Ascent.png/revision/latest?cb=20241205031402",
+   "rarity": "common"
+  },
+  {
+   "name": "Long Road Leads Home",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Long_Road_Leads_Home.png/revision/latest?cb=20241225050057",
+   "rarity": "common"
+  },
+  {
+   "name": "Into the Unreachable Veil",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Light_Cone_Into_the_Unreachable_Veil.png/revision/latest?cb=20250116180930",
+   "rarity": "common"
+  },
+  {
+   "name": "Time Woven Into Gold",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/15/Light_Cone_Time_Woven_Into_Gold.png/revision/latest?cb=20250123125415",
+   "rarity": "common"
+  },
+  {
+   "name": "If Time Were a Flower",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8d/Light_Cone_If_Time_Were_a_Flower.png/revision/latest?cb=20250226072139",
+   "rarity": "common"
+  },
+  {
+   "name": "Flame of Blood, Blaze My Path",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Flame_of_Blood%2C_Blaze_My_Path.png/revision/latest?cb=20250226133127",
+   "rarity": "common"
+  },
+  {
+   "name": "Make Farewells More Beautiful",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/58/Light_Cone_Make_Farewells_More_Beautiful.png/revision/latest?cb=20250409035459",
+   "rarity": "common"
+  },
+  {
+   "name": "Life Should Be Cast to Flames",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Life_Should_Be_Cast_to_Flames.png/revision/latest?cb=20250409035428",
+   "rarity": "common"
+  },
+  {
+   "name": "Long May Rainbows Adorn the Sky",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Light_Cone_Long_May_Rainbows_Adorn_the_Sky.png/revision/latest?cb=20250521031952",
+   "rarity": "common"
+  },
+  {
+   "name": "Lies Dance on the Breeze",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Light_Cone_Lies_Dance_on_the_Breeze.png/revision/latest?cb=20250611051742",
+   "rarity": "common"
+  },
+  {
+   "name": "Thus Burns the Dawn",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/Light_Cone_Thus_Burns_the_Dawn.png/revision/latest?cb=20250702033437",
+   "rarity": "common"
+  },
+  {
+   "name": "The Hell Where Ideals Burn",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/66/Light_Cone_The_Hell_Where_Ideals_Burn.png/revision/latest?cb=20250702131433",
+   "rarity": "common"
+  },
+  {
+   "name": "A Thankless Coronation",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f3/Light_Cone_A_Thankless_Coronation.png/revision/latest?cb=20250711042759",
+   "rarity": "common"
+  },
+  {
+   "name": "Why Does the Ocean Sing",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Light_Cone_Why_Does_the_Ocean_Sing.png/revision/latest?cb=20250813023643",
+   "rarity": "common"
+  },
+  {
+   "name": "Epoch Etched in Golden Blood",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/Light_Cone_Epoch_Etched_in_Golden_Blood.png/revision/latest?cb=20250902044754",
+   "rarity": "common"
+  },
+  {
+   "name": "To Evernight's Stars",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/34/Light_Cone_To_Evernight%27s_Stars.png/revision/latest?cb=20250924033925",
+   "rarity": "common"
+  },
+  {
+   "name": "Though Worlds Apart",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Though_Worlds_Apart.png/revision/latest?cb=20251015044937",
+   "rarity": "common"
+  },
+  {
+   "name": "This Love, Forever",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/Light_Cone_This_Love%2C_Forever.png/revision/latest?cb=20251105032834",
+   "rarity": "common"
+  },
+  {
+   "name": "Never Forget Her Flame",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/03/Light_Cone_Never_Forget_Her_Flame.png/revision/latest?cb=20251217041152",
+   "rarity": "common"
+  },
+  {
+   "name": "When She Decided to See",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/Light_Cone_When_She_Decided_to_See.png/revision/latest?cb=20260213052858",
+   "rarity": "common"
+  },
+  {
+   "name": "Dazzled by a Flowery World",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/82/Light_Cone_Dazzled_by_a_Flowery_World.png/revision/latest?cb=20260303043027",
+   "rarity": "common"
+  },
+  {
+   "name": "The Finale of a Lie",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Light_Cone_The_Finale_of_a_Lie.png/revision/latest?cb=20260325055255",
+   "rarity": "common"
+  },
+  {
+   "name": "Welcome to the Cosmic City",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/Light_Cone_Welcome_to_the_Cosmic_City.png/revision/latest?cb=20260422040136",
+   "rarity": "common"
+  },
+  {
+   "name": "Until the Flowers Bloom Again",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3d/Light_Cone_Until_the_Flowers_Bloom_Again.png/revision/latest?cb=20260513082026",
+   "rarity": "common"
+  },
+  {
+   "name": "Reforged in Hellfire",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/Light_Cone_Reforged_in_Hellfire.png/revision/latest?cb=20260601030512",
+   "rarity": "common"
+  },
+  {
+   "name": "A Star That Lights the Night",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/01/Light_Cone_A_Star_That_Lights_the_Night.png/revision/latest?cb=20260715025907",
+   "rarity": "common"
+  },
+  {
+   "name": "I Am As You Behold",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e6/Light_Cone_I_Am_As_You_Behold.png/revision/latest?cb=20260715084402",
+   "rarity": "common"
+  },
+  {
+   "name": "Flickering Stars",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/Light_Cone_Flickering_Stars.png/revision/latest?cb=20260724041949",
+   "rarity": "common"
+  },
+  {
+   "name": "Rise and Sing",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d7/Light_Cone_Rise_and_Sing.png/revision/latest?cb=20260826034026",
+   "rarity": "common"
+  },
+  {
+   "name": "Summer Rides the Surf",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/Light_Cone_Summer_Rides_the_Surf.png/revision/latest?cb=20260912040858",
+   "rarity": "common"
+  },
+  {
+   "name": "Colors for Tomorrow",
+   "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Colors_for_Tomorrow.png/revision/latest?cb=20260928030418",
+   "rarity": "common"
+  }
  ]
 }

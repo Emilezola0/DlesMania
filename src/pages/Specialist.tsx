@@ -27,6 +27,8 @@ import { classicRoundFor, clueRoundFor, danceRoundFor, executionRoundFor, ultCos
 import { SIMPLE } from '../specialist/simple';
 import { ARC_FURNITURE, ARC_GEAR, ARC_MACHINES, ARC_MATERIALS, ARC_PLACES, ARC_RECIPES, ARC_SOUNDS } from '../specialist/arcraiders';
 import { DL_ABILITIES, DL_HEROES, DL_ITEMS, DL_VOICES } from '../specialist/deadlock';
+import { HSR_CHARACTERS, HSR_CONES, HSR_GENERATED, HSR_VOICES, versionValue } from '../specialist/hsr';
+import { HsrClassicRound, HsrConeRound, HsrSplashRound, HsrVoiceRound, HsrWindowsRound } from '../specialist/games/HsrRounds';
 import { DlAbilityRound, DlClassicRound, DlItemRound, DlPictureRound, DlVoiceRound, DlWindowsRound } from '../specialist/games/DeadlockRounds';
 import { ArcClassicRound, ArcFurnitureRound, ArcGearRound, ArcMaterialRound, ArcMobRound, ArcPlaceRound, ArcRecipeRound, ArcSoundRound } from '../specialist/games/ArcRounds';
 import { BLUEPRINT_NODES } from '../specialist/blueprint';
@@ -47,6 +49,7 @@ const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<R
   overwatch: { voice: voiceRoundFor('overwatch'), clue: clueRoundFor('overwatch', 'Whose ultimate is this?'), picture: pictureRoundFor('overwatch'), windows: windowsRoundFor('overwatch'), ultcost: ultCostRoundFor('overwatch'), classic: classicRoundFor('overwatch', 'hero') },
   ufouria: { dance: danceRoundFor('ufouria'), picture: pictureRoundFor('ufouria'), clue: clueRoundFor('ufouria', 'Who or what is this?'), windows: windowsRoundFor('ufouria'), spotlight: spotlightRoundFor('ufouria'), classic: classicRoundFor('ufouria', 'character') },
   arcraiders: { classic: ArcClassicRound, mob: ArcMobRound, gear: ArcGearRound, place: ArcPlaceRound, furniture: ArcFurnitureRound, material: ArcMaterialRound, recipe: ArcRecipeRound, sound: ArcSoundRound },
+  hsr: { classic: HsrClassicRound, splash: HsrSplashRound, windows: HsrWindowsRound, lightcone: HsrConeRound, voice: HsrVoiceRound },
   deadlock: { classic: DlClassicRound, picture: DlPictureRound, windows: DlWindowsRound, ability: DlAbilityRound, voice: DlVoiceRound, item: DlItemRound },
   forts: { picture: pictureRoundFor('forts'), clue: clueRoundFor('forts', 'Which commander has this ability?'), windows: windowsRoundFor('forts'), silhouette: silhouetteRoundFor('forts') },
   avatar: { classic: classicRoundFor('avatar', 'character'), picture: pictureRoundFor('avatar'), clue: clueRoundFor('avatar', 'Who is this?'), windows: windowsRoundFor('avatar'), voice: voiceRoundFor('avatar') },
@@ -66,6 +69,7 @@ const DATA_LINE: Record<UniverseId, string> = {
   overwatch: `${SIMPLE.overwatch.characters.length} heroes · ${SIMPLE.overwatch.voices?.length ?? 0} voice lines · ${SIMPLE.overwatch.clues.length} ultimates — Overwatch wiki`,
   ufouria: `${SIMPLE.ufouria.characters.length} heroes, enemies and things · ${SIMPLE.ufouria.dances?.length ?? 0} dances · ${SIMPLE.ufouria.clues.length} clues — Sunsoft (official site, store pages and trailers)`,
   arcraiders: `${ARC_MACHINES.length} ARC machines · ${ARC_GEAR.length} weapons and gear · ${ARC_PLACES.length} places · ${ARC_FURNITURE.length} containers · ${ARC_MATERIALS.length} materials · ${ARC_RECIPES.length} recipes · ${ARC_SOUNDS.length} sounds — ARC Raiders Wiki`,
+  hsr: `${HSR_CHARACTERS.length} characters, up to version ${HSR_CHARACTERS.reduce((v, c) => (versionValue(c.version) > versionValue(v) ? c.version : v), '1.0')} · ${HSR_CONES.length} Light Cones · ${HSR_VOICES.length} voice lines — Honkai: Star Rail Wiki data from ${HSR_GENERATED}`,
   deadlock: `${DL_HEROES.length} heroes · ${DL_ABILITIES.length} abilities · ${DL_VOICES.length} voice lines · ${DL_ITEMS.length} items — The Deadlock Wiki`,
   forts: `${SIMPLE.forts.characters.length} commanders, weapons and devices · ${SIMPLE.forts.clues.length} abilities — Forts wiki and EarthWork Games`,
   avatar: `${SIMPLE.avatar.characters.length} characters · ${SIMPLE.avatar.clues.length} clues · ${SIMPLE.avatar.voices?.length ?? 0} voice lines — Avatar Wiki, myinstants`,

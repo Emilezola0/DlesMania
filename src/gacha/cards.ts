@@ -129,6 +129,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
   ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', image: UFOURIA_ART('dance-hebe-2.png') },
   arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
+  hsr: { name: 'Kafka', title: 'The Stellaron Hunter', line: 'A violin, two pistols and a voice that tells you what to do: by the time you remember the order, you have already obeyed it.', voice: 'Good times never last.', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Kafka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325085121', image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20230809042240' },
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
@@ -179,6 +180,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
+  // Acheron in her splash art, a line picked each time she speaks (her own recordings from the wiki).
+  hsr: { name: 'Acheron', title: 'The Rain at Dusk', line: 'One red blade, still sheathed, and a rain that never lets up: when she finally draws it, a whole world falls quiet.', voice: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125', voiceClips: [{ line: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125' }, { line: "Dusk's rain... it too shall fall.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/VO_Acheron_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240327083613' }], image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20240327021325' },
   // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
   deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
@@ -230,6 +233,22 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       title: 'Last Call',
       line: 'The lights of the Cursed Apple go out, his eyes burn blue, and every door in the city opens on the same room.',
       image: 'https://cdn.deadlock.wiki/Doorman_Critical.png',
+    },
+  },
+  // Honkai: Star Rail: Firefly in her splash art, in her own voice; on a Hard win, SAM, the armour she burns in
+  // (the wiki's drawn art of the Stellaron Hunter).
+  hsr: {
+    name: 'Firefly',
+    title: 'Glamoth’s Last Firefly',
+    line: 'Born a weapon with a short life ahead, she wants one thing before it ends: to see what it is like to live a dream of her own.',
+    image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Character_Firefly_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20241007220547',
+    voice: 'Like fireflies to a flame... life begets death.',
+    audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/VO_Firefly_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240619054242',
+    voiceClips: [{ line: 'Like fireflies to a flame... life begets death.', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/VO_Firefly_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240619054242' }, { line: 'I will fight for myself, until everything... burns to ashes!', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/VO_Firefly_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240619054245' }, { line: 'Prime, detonate!', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/VO_Firefly_Skill_02.ogg/revision/latest?cb=20240619054206' }],
+    awaken: {
+      title: 'Stellaron Hunter: SAM',
+      line: 'The armour closes, the green flame catches, and for a few minutes she burns brighter than anything Destruction ever made.',
+      image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Enemy_Stellaron_Hunter_Sam.png/revision/latest/scale-to-width-down/600?cb=20260725083218',
     },
   },
   // Ufouria: O-Chan cheering (the official site's art); on a Hard win, flying over the Earth (the key art).
@@ -696,9 +715,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr']);
 
 const slug = (s: string) =>
   s

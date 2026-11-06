@@ -13,8 +13,9 @@ import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import { JLPT_POOLS } from './jlpt';
 import { ARC_POOLS } from './arcraiders';
 import { DL_POOLS } from './deadlock';
+import { HSR_POOLS } from './hsr';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -111,6 +112,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'clue', 'windows', 'exotic'] as SpType[],
   },
   {
+    id: 'hsr',
+    label: 'Honkai: Star Rail',
+    ready: true,
+    blurb: 'Classic by Path, Combat Type, rarity, faction and version, the characters by their splash art and behind windows, their own Light Cones and their own voices — from the Honkai: Star Rail Wiki.',
+    types: ['classic', 'splash', 'windows', 'lightcone', 'voice'] as SpType[],
+  },
+  {
     id: 'jlpt',
     label: 'Japanese',
     ready: true,
@@ -164,6 +172,7 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   material: { name: 'Materials', icon: '🔩', tagline: 'Which material is this?', maxAttempts: 6 },
   recipe: { name: 'Crafting', icon: '🛠️', tagline: 'What does this recipe make?', maxAttempts: 6 },
   sound: { name: 'Robot Sounds', icon: '🔊', tagline: 'Which ARC makes this sound?', maxAttempts: 6 },
+  lightcone: { name: 'Light Cone', icon: '🎞️', tagline: 'Whose Light Cone is this?', maxAttempts: 6 },
   item: { name: 'Items', icon: '🛒', tagline: 'Which item of the shop is this?', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
@@ -195,6 +204,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
   deadlock: DL_POOLS,
+  hsr: HSR_POOLS,
   destiny: simplePools('destiny'),
   jlpt: JLPT_POOLS,
   unreal: BLUEPRINT_POOLS,

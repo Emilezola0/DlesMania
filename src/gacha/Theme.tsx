@@ -41,6 +41,7 @@ export const THEMES: Record<string, FranchiseTheme> = {
   jlpt: { accent: '#b91c1c', strong: '#8f1515', glyphs: ['漢', '字', '⛩️', '🌸'] },
   balatro: { accent: '#c9352c', strong: '#a12a23', glyphs: ['♠️', '♥️', '♣️', '♦️', '🃏'] },
   arcraiders: { accent: '#d97706', strong: '#b45309', glyphs: ['🤖', '🔩', '🎒', '📡'] },
+  hsr: { accent: '#d4a017', strong: '#a87c0c', glyphs: ['🚂', '✨', '🌌', '🎫'] },
   deadlock: { accent: '#65a30d', strong: '#4d7c0f', glyphs: ['🚪', '🔫', '🗝️', '⚡'] },
   ufouria: { accent: '#2563eb', strong: '#1d4ed8', glyphs: ['🐧', '🛸', '🌙', '☀️', '🚽'] },
 };

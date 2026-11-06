@@ -303,6 +303,22 @@ for (const c of gi.characters) {
   }
 }
 console.log(`specialist  genshin: ${gi.characters.length} characters (${gi.generated})`);
+const hsr = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'hsr.json'), 'utf8'));
+const hsrNames = new Map();
+for (const c of hsr.characters) {
+  const at = `specialist/hsr/${c.name}`;
+  for (const k of ['image', 'splash', 'path', 'element', 'faction', 'version']) if (!c[k]) fail(`${at}: no ${k}`);
+  if (!['Male', 'Female'].includes(c.gender)) fail(`${at}: gender unknown — add it to GENDER_FIX in scripts/build-specialist-hsr.mjs`);
+  if (!(c.rarity === 4 || c.rarity === 5)) fail(`${at}: rarity ${c.rarity} isn't 4 or 5`);
+  if (c.rarity === 5 && !c.lightcone) warn(`${at}: no Light Cone (left out of the Light Cone round)`);
+  for (const v of c.voices) if (!v.audio || !v.text) fail(`${at}: a voice line has no recording or no words`);
+  for (const s of [c.name, ...c.aliases].map((n) => n.toLowerCase())) {
+    if (hsrNames.has(s) && hsrNames.get(s) !== c.id) fail(`${at}: "${s}" is also a name of ${hsrNames.get(s)}`);
+    hsrNames.set(s, c.id);
+  }
+}
+if (hsr.characters.length < 60) warn(`specialist/hsr: only ${hsr.characters.length} characters`);
+console.log(`specialist  hsr: ${hsr.characters.length} characters, ${hsr.characters.filter((c) => c.lightcone).length} Light Cones, ${hsr.characters.reduce((n, c) => n + c.voices.length, 0)} voice lines (${hsr.generated})`);
 const wowData = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'specialist', 'wow.json'), 'utf8'));
 const wowNames = new Map();
 for (const c of wowData.characters) {

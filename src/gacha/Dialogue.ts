@@ -118,6 +118,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Downed again, {other}.', 'Was it the Leaper?', 'It is always the Leaper.'], ['They left their loot topside.', 'Someone is going to have a very good day, {other}.']],
     great: [['Was that a Queen going down?', 'It was, {other}!', 'Everyone in Speranza will hear about this.']],
   },
+  hsr: {
+    good: [['They broke Nanook’s Legion, {other}.', 'In one ride, too.'], ['Clean Weakness Break on that Voidranger.', 'The rails hold, {other}.']],
+    bad: [['Their whole team went down, {other}.', 'Was it the Legion?', 'It is always the Legion.'], ['They spent their Trailblaze Power on nothing.', 'Someone always does, {other}.']],
+    great: [['Was that an Aeon going down?', 'It was, {other}!', 'The whole Express heard about it.']],
+  },
   deadlock: {
     good: [['They took the Guardian, {other}.', 'In one go, too.'], ['Clean last hit on that trooper.', 'Every soul counts, {other}.']],
     bad: [['Picked off on the zipline, {other}.', 'Was it Grey Talon?', 'It is always Grey Talon.'], ['They walked into Seven’s storm.', 'Someone always does, {other}.']],

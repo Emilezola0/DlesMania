@@ -38,6 +38,7 @@ const SPEAKERS: Record<string, Speaker> = {
   balatro: { pitch: 1.15, rate: 1.05, lang: 'en-US' },
   jlpt: { pitch: 0.9, rate: 0.95, lang: 'ja-JP' },
   arcraiders: { pitch: 0.6, rate: 0.95, lang: 'en-US' },
+  hsr: { pitch: 1.05, rate: 1, lang: 'en-US' },
   deadlock: { pitch: 0.75, rate: 0.9, lang: 'en-US' },
   ufouria: { pitch: 1.4, rate: 1.1, lang: 'en-US' },
   avatar: { pitch: 1.2, rate: 1.05, lang: 'en-US' },

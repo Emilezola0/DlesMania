@@ -1,0 +1,3147 @@
+{
+  "generated": "2026-11-06",
+  "characters": [
+    {
+      "id": "arlan",
+      "name": "Arlan",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a9/Character_Arlan_Icon.png/revision/latest?cb=20230723080444",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5b/Character_Arlan_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216231038",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "Destruction",
+      "element": "Lightning",
+      "faction": "Herta Space Station",
+      "world": "Herta Space Station",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Is that all you got?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0d/VO_Arlan_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614233651"
+        },
+        {
+          "text": "Let me pay you back — tenfold!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/VO_Arlan_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614233653"
+        },
+        {
+          "text": "As you wish.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/VO_Arlan_Skill_01.ogg/revision/latest?cb=20230614233636"
+        },
+        {
+          "text": "Be silent.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ad/VO_Arlan_Skill_02.ogg/revision/latest?cb=20230614233638"
+        }
+      ]
+    },
+    {
+      "id": "asta",
+      "name": "Asta",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9f/Character_Asta_Icon.png/revision/latest?cb=20230723080506",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bd/Character_Asta_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216231122",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Harmony",
+      "element": "Fire",
+      "faction": "Herta Space Station",
+      "world": "Herta Space Station",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Everything is ordained by the stars.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/de/VO_Asta_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614233730"
+        },
+        {
+          "text": "Who's the lucky one today?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/02/VO_Asta_Skill_01.ogg/revision/latest?cb=20230614233717"
+        },
+        {
+          "text": "A gift from the stars~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/VO_Asta_Skill_02.ogg/revision/latest?cb=20230614233719"
+        },
+        {
+          "text": "Hm. Scared yet?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2d/VO_Asta_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614233659"
+        }
+      ]
+    },
+    {
+      "id": "bailu",
+      "name": "Bailu",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Character_Bailu_Icon.png/revision/latest?cb=20230723080553",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e9/Character_Bailu_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210120736",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Abundance",
+      "element": "Lightning",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Vidyadhara",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "Time Waits for No One",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Time_Waits_for_No_One.png/revision/latest?cb=20230719030642"
+      },
+      "voices": [
+        {
+          "text": "Time to show you...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a2/VO_Bailu_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614233813"
+        },
+        {
+          "text": "What's in your... prescription!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/80/VO_Bailu_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614233816"
+        },
+        {
+          "text": "Say \"ahhhh!\"",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c4/VO_Bailu_Skill_01.ogg/revision/latest?cb=20230614233756"
+        },
+        {
+          "text": "Gotta get those vitamins.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/12/VO_Bailu_Skill_02.ogg/revision/latest?cb=20230614233758"
+        }
+      ]
+    },
+    {
+      "id": "bronya",
+      "name": "Bronya",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/Character_Bronya_Icon.png/revision/latest?cb=20230723080648",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7c/Character_Bronya_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240121130128",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Wind",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "But the Battle Isn't Over",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/29/Light_Cone_But_the_Battle_Isn%27t_Over.png/revision/latest?cb=20230719030450"
+      },
+      "voices": [
+        {
+          "text": "We've entered the storm.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bd/VO_Bronya_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614233855"
+        },
+        {
+          "text": "To guard and defend, crush them!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7e/VO_Bronya_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614233857"
+        },
+        {
+          "text": "The time is now. Lend me your strength!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/17/VO_Bronya_Skill_01.ogg/revision/latest?cb=20230614233839"
+        },
+        {
+          "text": "It's now or never. Fight with me!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6a/VO_Bronya_Skill_02.ogg/revision/latest?cb=20230614233841"
+        }
+      ]
+    },
+    {
+      "id": "clara",
+      "name": "Clara",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/Character_Clara_Icon.png/revision/latest?cb=20230723080716",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c2/Character_Clara_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216231958",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Physical",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "Something Irreplaceable",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7a/Light_Cone_Something_Irreplaceable.png/revision/latest?cb=20230719030434"
+      },
+      "voices": [
+        {
+          "text": "Clara: I want to protect everyone, too...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/14/VO_Clara_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614233928"
+        },
+        {
+          "text": "Clara: Help me, Mr. Svarog!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/VO_Clara_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614233930"
+        }
+      ]
+    },
+    {
+      "id": "dan-heng",
+      "name": "Dan Heng",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Dan_Heng_Icon.png/revision/latest?cb=20230723080807",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e5/Character_Dan_Heng_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090149",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "The Hunt",
+      "element": "Wind",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Vidyadhara",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "The truth of life and death, revealed in an instant.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/VO_Dan_Heng_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234005"
+        },
+        {
+          "text": "This sanctuary, is but a vision... Break!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/VO_Dan_Heng_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234007"
+        },
+        {
+          "text": "It's too late to repent.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/50/VO_Dan_Heng_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614233935"
+        },
+        {
+          "text": "Past victories don't guarantee future ones.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/35/VO_Dan_Heng_Battle_Won_01.ogg/revision/latest?cb=20230614233937"
+        }
+      ]
+    },
+    {
+      "id": "gepard",
+      "name": "Gepard",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/75/Character_Gepard_Icon.png/revision/latest?cb=20230723080948",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/96/Character_Gepard_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216232354",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Preservation",
+      "element": "Ice",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "Moment of Victory",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Moment_of_Victory.png/revision/latest?cb=20230719030522"
+      },
+      "voices": [
+        {
+          "text": "In the name of Landau.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fa/VO_Gepard_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234044"
+        },
+        {
+          "text": "Years of cold hardens the will. We shall never fall!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fa/VO_Gepard_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234046"
+        },
+        {
+          "text": "I'm here to the end.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/VO_Gepard_Talent_01.ogg/revision/latest?cb=20230615004201"
+        },
+        {
+          "text": "This ends here.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6f/VO_Gepard_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614234013"
+        }
+      ]
+    },
+    {
+      "id": "herta",
+      "name": "Herta",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bf/Character_Herta_Icon.png/revision/latest?cb=20230723081012",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8c/Character_Herta_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216231220",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Erudition",
+      "element": "Ice",
+      "faction": "Herta Space Station",
+      "world": "Herta Space Station",
+      "species": "Puppet",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Do you know who I am?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e7/VO_Herta_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234126"
+        },
+        {
+          "text": "Ever see a diamond this big? It's all yours~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/VO_Herta_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234128"
+        },
+        {
+          "text": "Maybe you can keep it down!?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/be/VO_Herta_Skill_01.ogg/revision/latest?cb=20230614234109"
+        },
+        {
+          "text": "Time to twirl~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/00/VO_Herta_Talent_01.ogg/revision/latest?cb=20230614234113"
+        }
+      ]
+    },
+    {
+      "id": "himeko",
+      "name": "Himeko",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/00/Character_Himeko_Icon.png/revision/latest?cb=20230723081029",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8e/Character_Himeko_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090036",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Fire",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "Night on the Milky Way",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d4/Light_Cone_Night_on_the_Milky_Way.png/revision/latest?cb=20230719030401"
+      },
+      "voices": [
+        {
+          "text": "Perhaps you still don't understand...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1b/VO_Himeko_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234207"
+        },
+        {
+          "text": "Humanity never conceals its desire to control the heavens... And I'm no exception.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/VO_Himeko_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234209"
+        },
+        {
+          "text": "Come one, come all.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5f/VO_Himeko_Skill_01.ogg/revision/latest?cb=20230614234151"
+        },
+        {
+          "text": "You won't get away!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/VO_Himeko_Talent_01.ogg/revision/latest?cb=20230614234155"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "name": "Hook",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d5/Character_Hook_Icon.png/revision/latest?cb=20230723081051",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ec/Character_Hook_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090126",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Destruction",
+      "element": "Fire",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Follow Hook if you wanna win!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3d/VO_Hook_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234249"
+        },
+        {
+          "text": "Pitch-Dark Hook the Great has arrived — make way, make way... Woo-hoo~ BANG!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/74/VO_Hook_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234251"
+        },
+        {
+          "text": "Eh—hehe... Didn't expect that, right?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6d/VO_Hook_Skill_01.ogg/revision/latest?cb=20230614234233"
+        },
+        {
+          "text": "Now you see me... now you don't~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e8/VO_Hook_Skill_02.ogg/revision/latest?cb=20230614234235"
+        }
+      ]
+    },
+    {
+      "id": "march-7th",
+      "name": "March 7th",
+      "aliases": [
+        "March 7",
+        "March"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d3/Character_March_7th_Icon.png/revision/latest?cb=20230723081458",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Character_March_7th_%28Preservation%29_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090156",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Preservation",
+      "element": "Ice",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Gotta try hard sometimes.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8b/VO_March_7th_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234414"
+        },
+        {
+          "text": "Time to show you what I can really do!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8b/VO_March_7th_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234414"
+        },
+        {
+          "text": "Check out this awesome move~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8f/VO_March_7th_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234416"
+        },
+        {
+          "text": "Azure Dragon, White Tiger, eating less carbs — watch this!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8f/VO_March_7th_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234416"
+        }
+      ]
+    },
+    {
+      "id": "natasha",
+      "name": "Natasha",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/61/Character_Natasha_Icon.png/revision/latest?cb=20230723081534",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7e/Character_Natasha_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240525042421",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Abundance",
+      "element": "Physical",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Just in time.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/VO_Natasha_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234459"
+        },
+        {
+          "text": "Just a little something. Think nothing of it.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/VO_Natasha_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234501"
+        },
+        {
+          "text": "Here comes the medicine.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d8/VO_Natasha_Skill_01.ogg/revision/latest?cb=20230614234443"
+        },
+        {
+          "text": "All better now?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b0/VO_Natasha_Skill_02.ogg/revision/latest?cb=20230614234445"
+        }
+      ]
+    },
+    {
+      "id": "pela",
+      "name": "Pela",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c2/Character_Pela_Icon.png/revision/latest?cb=20230723081559",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Character_Pela_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090100",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Nihility",
+      "element": "Ice",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Enemy data secured.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9c/VO_Pela_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234543"
+        },
+        {
+          "text": "Net markers activated — time for a good old counterattack.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7e/VO_Pela_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234545"
+        },
+        {
+          "text": "This... that... Oh!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/VO_Pela_Skill_01.ogg/revision/latest?cb=20230614234530"
+        },
+        {
+          "text": "Inputting commands... Oh!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e6/VO_Pela_Skill_02.ogg/revision/latest?cb=20230614234532"
+        }
+      ]
+    },
+    {
+      "id": "qingque",
+      "name": "Qingque",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/Character_Qingque_Icon.png/revision/latest?cb=20230723081644",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d1/Character_Qingque_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210115335",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Erudition",
+      "element": "Quantum",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Luck of the draw...!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/97/VO_Qingque_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234638"
+        },
+        {
+          "text": "Please, please, please, please, please... ah! Looks like... victory!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/66/VO_Qingque_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234640"
+        },
+        {
+          "text": "Gotcha!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/41/VO_Qingque_Skill_01.ogg/revision/latest?cb=20230614234611"
+        },
+        {
+          "text": "Stay calm~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/83/VO_Qingque_Skill_02.ogg/revision/latest?cb=20230614234613"
+        }
+      ]
+    },
+    {
+      "id": "sampo",
+      "name": "Sampo",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/53/Character_Sampo_Icon.png/revision/latest?cb=20230723081700",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/65/Character_Sampo_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090046",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "Nihility",
+      "element": "Wind",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "What are you waiting for?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/VO_Sampo_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234713"
+        },
+        {
+          "text": "Try this on for size?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/VO_Sampo_Skill_01.ogg/revision/latest?cb=20230614234701"
+        },
+        {
+          "text": "We're just having fun.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f2/VO_Sampo_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230615002517"
+        },
+        {
+          "text": "How're you gonna win if you don't take any risks?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/VO_Sampo_Battle_Won_01.ogg/revision/latest?cb=20230614234646"
+        }
+      ]
+    },
+    {
+      "id": "seele",
+      "name": "Seele",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/Character_Seele_Icon.png/revision/latest?cb=20230723081718",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/58/Character_Seele_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240121123334",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Quantum",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "In the Night",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Light_Cone_In_the_Night.png/revision/latest?cb=20230719030418"
+      },
+      "voices": [
+        {
+          "text": "I'll free you from your chains.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/44/VO_Seele_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234750"
+        },
+        {
+          "text": "Disappear among the sea of butterflies, illusions of the past!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3f/VO_Seele_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234752"
+        },
+        {
+          "text": "Let me end your misery.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e9/VO_Seele_Talent_01.ogg/revision/latest?cb=20230614234740"
+        },
+        {
+          "text": "So you are afraid of me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/61/VO_Seele_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614234721"
+        }
+      ]
+    },
+    {
+      "id": "serval",
+      "name": "Serval",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7c/Character_Serval_Icon.png/revision/latest?cb=20230723081736",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8a/Character_Serval_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090108",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Erudition",
+      "element": "Lightning",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Ready to lose yourself?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/VO_Serval_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234831"
+        },
+        {
+          "text": "Fight it or rock with it... my music conquers all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d7/VO_Serval_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234833"
+        },
+        {
+          "text": "Keep up with my tempo!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/VO_Serval_Skill_01.ogg/revision/latest?cb=20230614234815"
+        },
+        {
+          "text": "Turn up the volume!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3c/VO_Serval_Skill_02.ogg/revision/latest?cb=20230614234817"
+        }
+      ]
+    },
+    {
+      "id": "sushang",
+      "name": "Sushang",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/97/Character_Sushang_Icon.png/revision/latest?cb=20230723081849",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/72/Character_Sushang_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210115023",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "The Hunt",
+      "element": "Physical",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "Take this — Shape of Taixu!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6d/VO_Sushang_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234946"
+        },
+        {
+          "text": "Rise, phoenix!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/34/VO_Sushang_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234948"
+        },
+        {
+          "text": "Dodge this.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/VO_Sushang_Skill_01.ogg/revision/latest?cb=20230614234934"
+        },
+        {
+          "text": "No more playing nice!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/VO_Sushang_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614234916"
+        }
+      ]
+    },
+    {
+      "id": "tingyun",
+      "name": "Tingyun",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/Character_Tingyun_Icon.png/revision/latest?cb=20230723081906",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5b/Character_Tingyun_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210115502",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Harmony",
+      "element": "Lightning",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "voices": [
+        {
+          "text": "A thousand wonders, to raise your spirits~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d0/VO_Tingyun_Ultimate_-_Activate_01.ogg/revision/latest?cb=20241208122548"
+        },
+        {
+          "text": "Good omens, fight as one!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d9/VO_Tingyun_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20241208122549"
+        },
+        {
+          "text": "Evils begone~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/cd/VO_Tingyun_Skill_01.ogg/revision/latest?cb=20241208122539"
+        },
+        {
+          "text": "All the best~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d4/VO_Tingyun_Skill_02.ogg/revision/latest?cb=20241208122540"
+        }
+      ]
+    },
+    {
+      "id": "welt",
+      "name": "Welt",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Character_Welt_Icon.png/revision/latest?cb=20230723082022",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/11/Character_Welt_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230525090017",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Imaginary",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Human",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "In the Name of the World",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_In_the_Name_of_the_World.png/revision/latest?cb=20230719030506"
+      },
+      "voices": [
+        {
+          "text": "You know nothing of the weight behind this power.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/12/VO_Welt_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260601173039"
+        },
+        {
+          "text": "Witness the stars shatter before you... Survive or be destroyed, there is no other choice.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0e/VO_Welt_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260601173043"
+        },
+        {
+          "text": "Calm your body and mind.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/VO_Welt_Skill_01.ogg/revision/latest?cb=20260601173016"
+        },
+        {
+          "text": "I won't go easy on you!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/93/VO_Welt_Skill_02.ogg/revision/latest?cb=20260601173020"
+        }
+      ]
+    },
+    {
+      "id": "yanqing",
+      "name": "Yanqing",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/Character_Yanqing_Icon.png/revision/latest?cb=20230723082139",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6d/Character_Yanqing_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210121516",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Ice",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Unknown",
+      "version": "1.0",
+      "released": "2023-04-26",
+      "lightcone": {
+        "name": "Sleep Like the Dead",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2d/Light_Cone_Sleep_Like_the_Dead.png/revision/latest?cb=20230719030626"
+      },
+      "voices": [
+        {
+          "text": "Practice is over.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/VO_Yanqing_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614235200"
+        },
+        {
+          "text": "Swords, descend!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/02/VO_Yanqing_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614235202"
+        },
+        {
+          "text": "Blade, in flight.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/36/VO_Yanqing_Skill_01.ogg/revision/latest?cb=20230614235144"
+        },
+        {
+          "text": "Strike... with heart!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/VO_Yanqing_Skill_02.ogg/revision/latest?cb=20230614235146"
+        }
+      ]
+    },
+    {
+      "id": "jing-yuan",
+      "name": "Jing Yuan",
+      "aliases": [
+        "Jingyuan"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/88/Character_Jing_Yuan_Icon.png/revision/latest?cb=20230723081207",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/Character_Jing_Yuan_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230210115809",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Lightning",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.0",
+      "released": "2023-05-17",
+      "lightcone": {
+        "name": "Before Dawn",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/26/Light_Cone_Before_Dawn.png/revision/latest?cb=20230719030610"
+      },
+      "voices": [
+        {
+          "text": "Time for the masterstroke.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/26/VO_Jing_Yuan_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234329"
+        },
+        {
+          "text": "Radiant spirit, heed my word. Show no mercy!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/VO_Jing_Yuan_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234331"
+        },
+        {
+          "text": "Conflict is pitiless!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c6/VO_Jing_Yuan_Skill_01.ogg/revision/latest?cb=20230614234314"
+        },
+        {
+          "text": "Hear this thunder!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/VO_Jing_Yuan_Skill_02.ogg/revision/latest?cb=20230614234315"
+        }
+      ]
+    },
+    {
+      "id": "silver-wolf",
+      "name": "Silver Wolf",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a3/Character_Silver_Wolf_Icon.png/revision/latest?cb=20230723081754",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/60/Character_Silver_Wolf_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230216230911",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Quantum",
+      "faction": "Stellaron Hunters",
+      "world": "Punklorde",
+      "species": "Unknown",
+      "version": "1.1",
+      "released": "2023-06-07",
+      "lightcone": {
+        "name": "Incessant Rain",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/Light_Cone_Incessant_Rain.png/revision/latest?cb=20230719030538"
+      },
+      "voices": [
+        {
+          "text": "This combat needs optimizing.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f4/VO_Silver_Wolf_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230614234908"
+        },
+        {
+          "text": "Hmph, at this speed? Too slow!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/30/VO_Silver_Wolf_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230614234910"
+        },
+        {
+          "text": "Time for a buzz.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5e/VO_Silver_Wolf_Skill_01.ogg/revision/latest?cb=20230614234854"
+        },
+        {
+          "text": "You took the bait just like that?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/dc/VO_Silver_Wolf_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20230614234837"
+        }
+      ]
+    },
+    {
+      "id": "luocha",
+      "name": "Luocha",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/20/Character_Luocha_Icon.png/revision/latest?cb=20230723081416",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a5/Character_Luocha_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230628091054",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Abundance",
+      "element": "Imaginary",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Unknown",
+      "version": "1.1",
+      "released": "2023-06-28",
+      "lightcone": {
+        "name": "Echoes of the Coffin",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Light_Cone_Echoes_of_the_Coffin.png/revision/latest?cb=20230719030554"
+      },
+      "voices": [
+        {
+          "text": "Eternal sleep is not the end...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/VO_Luocha_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230628143358"
+        },
+        {
+          "text": "The dead will return!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/65/VO_Luocha_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230628143400"
+        },
+        {
+          "text": "Abyss Flower, bloom.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5a/VO_Luocha_Skill_01.ogg/revision/latest?cb=20230628143341"
+        },
+        {
+          "text": "Receive divinity!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d9/VO_Luocha_Skill_02.ogg/revision/latest?cb=20230628143343"
+        }
+      ]
+    },
+    {
+      "id": "yukong",
+      "name": "Yukong",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/32/Character_Yukong_Icon.png/revision/latest?cb=20230723082209",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/Character_Yukong_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230628090836",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Harmony",
+      "element": "Imaginary",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "1.1",
+      "released": "2023-06-28",
+      "voices": [
+        {
+          "text": "The wind is rising.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a5/VO_Yukong_Ultimate_-_Activate_01.ogg/revision/latest?cb=20230628144235"
+        },
+        {
+          "text": "Cloudkites, formation! Bolt from the blue!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7c/VO_Yukong_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20230628144237"
+        },
+        {
+          "text": "Galeforce!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/94/VO_Yukong_Skill_01.ogg/revision/latest?cb=20230628144220"
+        },
+        {
+          "text": "To the clouds!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/VO_Yukong_Skill_02.ogg/revision/latest?cb=20230628144222"
+        }
+      ]
+    },
+    {
+      "id": "blade",
+      "name": "Blade",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/90/Character_Blade_Icon.png/revision/latest?cb=20230723080612",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/Character_Blade_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230501004859",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Wind",
+      "faction": "Stellaron Hunters",
+      "world": "Unknown",
+      "species": "Long-Life Species",
+      "version": "1.2",
+      "released": "2023-07-19",
+      "lightcone": {
+        "name": "The Unreachable Side",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Light_Cone_The_Unreachable_Side.png/revision/latest?cb=20230719023309"
+      },
+      "voices": [
+        {
+          "text": "That paradise may be unreachable for me ...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/05/VO_Blade_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325082347"
+        },
+        {
+          "text": "Savor it in my place... Hmph!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/74/VO_Blade_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240203222430"
+        },
+        {
+          "text": "The fight... is set!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ac/VO_Blade_Skill_01.ogg/revision/latest?cb=20240325082333"
+        },
+        {
+          "text": "Your end... approaches!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/98/VO_Blade_Skill_02.ogg/revision/latest?cb=20240325082334"
+        }
+      ]
+    },
+    {
+      "id": "kafka",
+      "name": "Kafka",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8c/Character_Kafka_Icon.png/revision/latest?cb=20230723081234",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230809042240",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Lightning",
+      "faction": "Stellaron Hunters",
+      "world": "Pteruges-V",
+      "species": "Human",
+      "version": "1.2",
+      "released": "2023-08-09",
+      "lightcone": {
+        "name": "Patience Is All You Need",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/Light_Cone_Patience_Is_All_You_Need.png/revision/latest?cb=20230809041852"
+      },
+      "voices": [
+        {
+          "text": "Good times never last.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Kafka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325085121"
+        },
+        {
+          "text": "Time to say bye. BOOM.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/19/VO_Kafka_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240325085123"
+        },
+        {
+          "text": "Relax.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ab/VO_Kafka_Talent_01.ogg/revision/latest?cb=20240325085112"
+        },
+        {
+          "text": "Stand still.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/64/VO_Kafka_Talent_02.ogg/revision/latest?cb=20240325085113"
+        }
+      ]
+    },
+    {
+      "id": "luka",
+      "name": "Luka",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Character_Luka_Icon.png/revision/latest?cb=20230723081255",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/51/Character_Luka_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230809042157",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "Nihility",
+      "element": "Physical",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.2",
+      "released": "2023-08-09",
+      "voices": [
+        {
+          "text": "Where's the applause?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/VO_Luka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240324125237"
+        },
+        {
+          "text": "An opponent worth their salt... Let's see some sparks fly!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0b/VO_Luka_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240324125238"
+        },
+        {
+          "text": "Don't get cocky now!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/64/VO_Luka_Skill_01.ogg/revision/latest?cb=20240324125227"
+        },
+        {
+          "text": "Snap out of it!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/VO_Luka_Skill_02.ogg/revision/latest?cb=20240324125228"
+        }
+      ]
+    },
+    {
+      "id": "dan-heng-imbibitor-lunae",
+      "name": "Dan Heng • Imbibitor Lunae",
+      "aliases": [
+        "Imbibitor Lunae",
+        "Dan Heng Imbibitor Lunae",
+        "DHIL"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2a/Character_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Icon.png/revision/latest?cb=20240326111321",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/Character_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230818234313",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Imaginary",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Vidyadhara",
+      "version": "1.3",
+      "released": "2023-08-30",
+      "lightcone": {
+        "name": "Brighter Than the Sun",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d0/Light_Cone_Brighter_Than_the_Sun.png/revision/latest?cb=20230830022603"
+      },
+      "voices": [
+        {
+          "text": "Awaken, dormant scales.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d0/VO_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240121172842"
+        },
+        {
+          "text": "Delve-hidden moon, world-cleansing dragon!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/dd/VO_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240220162757"
+        },
+        {
+          "text": "The times are changed beyond recognition.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/VO_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20240220162736"
+        },
+        {
+          "text": "The consequences are mine to bear.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a7/VO_Dan_Heng_%E2%80%A2_Imbibitor_Lunae_Battle_Won_01.ogg/revision/latest?cb=20240220162737"
+        }
+      ]
+    },
+    {
+      "id": "fu-xuan",
+      "name": "Fu Xuan",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1a/Character_Fu_Xuan_Icon.png/revision/latest?cb=20230723080902",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3e/Character_Fu_Xuan_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230928224921",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Preservation",
+      "element": "Quantum",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.3",
+      "released": "2023-09-20",
+      "lightcone": {
+        "name": "She Already Shut Her Eyes",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0a/Light_Cone_She_Already_Shut_Her_Eyes.png/revision/latest?cb=20230920055423"
+      },
+      "voices": [
+        {
+          "text": "All things in this world have their laws...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7c/VO_Fu_Xuan_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240121173032"
+        },
+        {
+          "text": "Yet stratagems, constellations... are human creations!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/cc/VO_Fu_Xuan_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240217212132"
+        },
+        {
+          "text": "Together as one.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/84/VO_Fu_Xuan_Skill_01.ogg/revision/latest?cb=20240217212123"
+        },
+        {
+          "text": "Converge and awaken.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/VO_Fu_Xuan_Skill_02.ogg/revision/latest?cb=20240217212124"
+        }
+      ]
+    },
+    {
+      "id": "lynx",
+      "name": "Lynx",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6c/Character_Lynx_Icon.png/revision/latest?cb=20231031113034",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3c/Character_Lynx_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20230719101506",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Abundance",
+      "element": "Quantum",
+      "faction": "Belobog",
+      "world": "Jarilo-VI",
+      "species": "Unknown",
+      "version": "1.3",
+      "released": "2023-09-20",
+      "voices": [
+        {
+          "text": "To travel far away...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f4/VO_Lynx_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240324130037"
+        },
+        {
+          "text": "For a tough case like yours, we're gonna try them all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/06/VO_Lynx_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240324130038"
+        },
+        {
+          "text": "Relax, deep breaths.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a0/VO_Lynx_Skill_01.ogg/revision/latest?cb=20240121103133"
+        },
+        {
+          "text": "Time for something savory.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Lynx_Skill_02.ogg/revision/latest?cb=20240324130030"
+        }
+      ]
+    },
+    {
+      "id": "jingliu",
+      "name": "Jingliu",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/Character_Jingliu_Icon.png/revision/latest?cb=20230723081213",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/97/Character_Jingliu_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240525000314",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Ice",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.4",
+      "released": "2023-10-11",
+      "lightcone": {
+        "name": "I Shall Be My Own Sword",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_I_Shall_Be_My_Own_Sword.png/revision/latest?cb=20231011030715"
+      },
+      "voices": [
+        {
+          "text": "All will be revealed...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/32/VO_Jingliu_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240203224628"
+        },
+        {
+          "text": "...in lunar flame!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/22/VO_Jingliu_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240203224629"
+        },
+        {
+          "text": "Fleeting light, roaring flood!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/VO_Jingliu_Skill_01.ogg/revision/latest?cb=20240203224443"
+        },
+        {
+          "text": "A blade of moonlight.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4d/VO_Jingliu_Talent_01.ogg/revision/latest?cb=20240203224445"
+        }
+      ]
+    },
+    {
+      "id": "guinaifen",
+      "name": "Guinaifen",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/98/Character_Guinaifen_Icon.png/revision/latest?cb=20231030000303",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/33/Character_Guinaifen_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231030040741",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Nihility",
+      "element": "Fire",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Short-Life Species",
+      "version": "1.4",
+      "released": "2023-10-27",
+      "voices": [
+        {
+          "text": "Come feast your eyes!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/VO_Guinaifen_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240226184645"
+        },
+        {
+          "text": "It's never too early... for a Happy New Year!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/32/VO_Guinaifen_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240226184646"
+        },
+        {
+          "text": "Wealth and wisdom!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/06/VO_Guinaifen_Skill_01.ogg/revision/latest?cb=20240226184638"
+        },
+        {
+          "text": "Don't throw the game!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e5/VO_Guinaifen_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20240226184630"
+        }
+      ]
+    },
+    {
+      "id": "topaz-and-numby",
+      "name": "Topaz & Numby",
+      "aliases": [
+        "Topaz",
+        "Topaz and Numby"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/Character_Topaz_%26_Numby_Icon.png/revision/latest?cb=20231030000030",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9d/Character_Topaz_and_Numby_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231030040101",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Fire",
+      "faction": "Interastral Peace Corporation",
+      "world": "Unknown",
+      "species": "Human",
+      "version": "1.4",
+      "released": "2023-10-27",
+      "lightcone": {
+        "name": "Worrisome, Blissful",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Worrisome%2C_Blissful.png/revision/latest?cb=20231029050253"
+      },
+      "voices": []
+    },
+    {
+      "id": "huohuo",
+      "name": "Huohuo",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/68/Character_Huohuo_Icon.png/revision/latest?cb=20231209094156",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/82/Character_Huohuo_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250604025217",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Abundance",
+      "element": "Wind",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "1.5",
+      "released": "2023-11-15",
+      "lightcone": {
+        "name": "Night of Fright",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/df/Light_Cone_Night_of_Fright.png/revision/latest?cb=20231115024040"
+      },
+      "voices": [
+        {
+          "text": "Huohuo: D—Don't come any closer...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/VO_Huohuo_Ultimate_-_Activate_01.ogg/revision/latest?cb=20241011084835"
+        },
+        {
+          "text": "Tail: Move aside, amateurs...Fiends or devils, I'll crush them all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e5/VO_Huohuo_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20241011084836"
+        },
+        {
+          "text": "Huohuo: Demons... depart...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/VO_Huohuo_Skill_01.ogg/revision/latest?cb=20241011084822"
+        },
+        {
+          "text": "Huohuo: Give me... strength...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/VO_Huohuo_Skill_02.ogg/revision/latest?cb=20241011084824"
+        }
+      ]
+    },
+    {
+      "id": "argenti",
+      "name": "Argenti",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Argenti_Icon.png/revision/latest?cb=20231209093828",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/90/Character_Argenti_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231206232011",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Physical",
+      "faction": "Knights of Beauty",
+      "world": "Unknown",
+      "species": "Unknown",
+      "version": "1.5",
+      "released": "2023-12-06",
+      "lightcone": {
+        "name": "An Instant Before A Gaze",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/Light_Cone_An_Instant_Before_A_Gaze.png/revision/latest?cb=20231206040430"
+      },
+      "voices": [
+        {
+          "text": "Until I see that light once more...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d9/VO_Argenti_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240731180259"
+        },
+        {
+          "text": "...I will protect all beauty in the universe.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/VO_Argenti_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240731180300"
+        },
+        {
+          "text": "(Enhanced) ...For Idrila.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/20/VO_Argenti_Ultimate_-_Unleash_02.ogg/revision/latest?cb=20240731180302"
+        },
+        {
+          "text": "The Beauty... is eternal.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b2/VO_Argenti_Skill_01.ogg/revision/latest?cb=20240731180239"
+        }
+      ]
+    },
+    {
+      "id": "hanya",
+      "name": "Hanya",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Hanya_Icon.png/revision/latest?cb=20231209094526",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e8/Character_Hanya_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231206232120",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Harmony",
+      "element": "Physical",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.5",
+      "released": "2023-12-06",
+      "voices": [
+        {
+          "text": "By the will of the Ten Lords...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/02/VO_Hanya_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240217190626"
+        },
+        {
+          "text": "The Ten Lords decree — hereby ordained!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/dc/VO_Hanya_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240217190627"
+        },
+        {
+          "text": "I shall judge you for the Ten Lords.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3b/VO_Hanya_Skill_01.ogg/revision/latest?cb=20240217190617"
+        },
+        {
+          "text": "Recount your sins.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/dd/VO_Hanya_Skill_02.ogg/revision/latest?cb=20240217190618"
+        }
+      ]
+    },
+    {
+      "id": "ruan-mei",
+      "name": "Ruan Mei",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/Character_Ruan_Mei_Icon.png/revision/latest?cb=20231227130539",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d5/Character_Ruan_Mei_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231227021137",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Ice",
+      "faction": "Herta Space Station",
+      "world": "Herta Space Station",
+      "species": "Unknown",
+      "version": "1.6",
+      "released": "2023-12-27",
+      "lightcone": {
+        "name": "Past Self in Mirror",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/Light_Cone_Past_Self_in_Mirror.png/revision/latest?cb=20231227021316"
+      },
+      "voices": [
+        {
+          "text": "Every petal in life's garden...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0c/VO_Ruan_Mei_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240123114652"
+        },
+        {
+          "text": "Will be swept away... by the wind of time.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/58/VO_Ruan_Mei_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240123114654"
+        },
+        {
+          "text": "Eternal melody.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/VO_Ruan_Mei_Skill_01.ogg/revision/latest?cb=20240123114531"
+        },
+        {
+          "text": "All things are as one.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/42/VO_Ruan_Mei_Skill_02.ogg/revision/latest?cb=20240123114532"
+        }
+      ]
+    },
+    {
+      "id": "xueyi",
+      "name": "Xueyi",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/23/Character_Xueyi_Icon.png/revision/latest?cb=20231227130429",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bc/Character_Xueyi_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231227045314",
+      "gender": "Female",
+      "rarity": 4,
+      "path": "Destruction",
+      "element": "Quantum",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "1.6",
+      "released": "2023-12-27",
+      "voices": [
+        {
+          "text": "By order of the Ten-Lords...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/VO_Xueyi_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240123125418"
+        },
+        {
+          "text": "Execute the Mara-struck!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8e/VO_Xueyi_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240123125420"
+        },
+        {
+          "text": "Yield!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d6/VO_Xueyi_Skill_01.ogg/revision/latest?cb=20240123125340"
+        },
+        {
+          "text": "No amnesty... for the Mara-struck.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/45/VO_Xueyi_Talent_01.ogg/revision/latest?cb=20240123125343"
+        }
+      ]
+    },
+    {
+      "id": "dr-ratio",
+      "name": "Dr. Ratio",
+      "aliases": [
+        "Ratio",
+        "Dr Ratio",
+        "Veritas Ratio"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Character_Dr._Ratio_Icon.png/revision/latest?cb=20231227130912",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/56/Character_Dr._Ratio_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20231227132629",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Imaginary",
+      "faction": "Intelligentsia Guild",
+      "world": "Unknown",
+      "species": "Unknown",
+      "version": "1.6",
+      "released": "2024-01-17",
+      "lightcone": {
+        "name": "Baptism of Pure Thought",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5a/Light_Cone_Baptism_of_Pure_Thought.png/revision/latest?cb=20240117041243"
+      },
+      "voices": [
+        {
+          "text": "Esse est percipi...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a4/VO_Dr._Ratio_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240123121731"
+        },
+        {
+          "text": "Knowledge is the measure of all things. It reveals truth... and falsehood.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d5/VO_Dr._Ratio_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240123121733"
+        },
+        {
+          "text": "Let's test your knowledge.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e3/VO_Dr._Ratio_Skill_01.ogg/revision/latest?cb=20240123121644"
+        },
+        {
+          "text": "Never stop thinking.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1e/VO_Dr._Ratio_Skill_02.ogg/revision/latest?cb=20240123121721"
+        }
+      ]
+    },
+    {
+      "id": "black-swan",
+      "name": "Black Swan",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/90/Character_Black_Swan_Icon.png/revision/latest?cb=20240206104620",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fd/Character_Black_Swan_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240220023547",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Wind",
+      "faction": "Garden of Recollection",
+      "world": "Unknown",
+      "species": "Memetic Entity",
+      "version": "2.0",
+      "released": "2024-02-06",
+      "lightcone": {
+        "name": "Reforged Remembrance",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f7/Light_Cone_Reforged_Remembrance.png/revision/latest?cb=20240206022354"
+      },
+      "voices": [
+        {
+          "text": "Memories are ever-changing.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/23/VO_Black_Swan_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240208054607"
+        },
+        {
+          "text": "Beneath the silent waters lies an endless abyss.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a6/VO_Black_Swan_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240208054608"
+        },
+        {
+          "text": "Again, the ill tidings manifest.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b0/VO_Black_Swan_Skill_01.ogg/revision/latest?cb=20240208054507"
+        },
+        {
+          "text": "The seal of ill fate descends!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/VO_Black_Swan_Skill_02.ogg/revision/latest?cb=20240208054510"
+        }
+      ]
+    },
+    {
+      "id": "misha",
+      "name": "Misha",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4d/Character_Misha_Icon.png/revision/latest?cb=20240206104846",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5c/Character_Misha_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240206022717",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "Destruction",
+      "element": "Ice",
+      "faction": "Penacony",
+      "world": "Penacony",
+      "species": "Memetic Entity",
+      "version": "2.0",
+      "released": "2024-02-06",
+      "voices": [
+        {
+          "text": "How much time do I have...?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/82/VO_Misha_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240208061537"
+        },
+        {
+          "text": "Not again! I'm running late, ahhh...! Sorry...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3b/VO_Misha_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240725054207"
+        },
+        {
+          "text": "Uh, I'm on it — cleaning up now!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ca/VO_Misha_Skill_01.ogg/revision/latest?cb=20240208061505"
+        },
+        {
+          "text": "Gotta keep things neat and tidy!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/VO_Misha_Skill_02.ogg/revision/latest?cb=20240208061506"
+        }
+      ]
+    },
+    {
+      "id": "sparkle",
+      "name": "Sparkle",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6b/Character_Sparkle_Icon.png/revision/latest?cb=20240326110835",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Sparkle_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240327022635",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Quantum",
+      "faction": "Masked Fools",
+      "world": "Unknown",
+      "species": "Unknown",
+      "version": "2.0",
+      "released": "2024-02-29",
+      "lightcone": {
+        "name": "Earthly Escapade",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5b/Light_Cone_Earthly_Escapade.png/revision/latest?cb=20240206022523"
+      },
+      "voices": [
+        {
+          "text": "Let's play hide and seek.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e5/VO_Sparkle_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240229040511"
+        },
+        {
+          "text": "A thousand faces in a thousand places... can you find the answer?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a6/VO_Sparkle_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240229040512"
+        },
+        {
+          "text": "Don't move, okay?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d3/VO_Sparkle_Skill_01.ogg/revision/latest?cb=20240229040502"
+        },
+        {
+          "text": "Let's kick it up a notch.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c8/VO_Sparkle_Skill_02.ogg/revision/latest?cb=20240229040503"
+        }
+      ]
+    },
+    {
+      "id": "acheron",
+      "name": "Acheron",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/Character_Acheron_Icon.png/revision/latest?cb=20240605043757",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240327021325",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Lightning",
+      "faction": "Self-Annihilators",
+      "world": "Izumo",
+      "species": "Oni",
+      "version": "2.1",
+      "released": "2024-03-27",
+      "lightcone": {
+        "name": "Along the Passing Shore",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/08/Light_Cone_Along_the_Passing_Shore.png/revision/latest?cb=20240327025150"
+      },
+      "voices": [
+        {
+          "text": "I weep for the departed...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125"
+        },
+        {
+          "text": "Dusk's rain... it too shall fall.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/VO_Acheron_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240327083613"
+        },
+        {
+          "text": "Existence is fleeting as the dawn's dew, destined for oblivion.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Acheron_Skill_01.ogg/revision/latest?cb=20240327083116"
+        },
+        {
+          "text": "On the still waters of oblivion, I guide the wandering souls.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/db/VO_Acheron_Skill_02.ogg/revision/latest?cb=20240327083117"
+        }
+      ]
+    },
+    {
+      "id": "gallagher",
+      "name": "Gallagher",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/12/Character_Gallagher_Icon.png/revision/latest?cb=20240325014209",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2d/Character_Gallagher_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240327022011",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "Abundance",
+      "element": "Fire",
+      "faction": "Penacony",
+      "world": "Penacony",
+      "species": "\"Virtual Character\"",
+      "version": "2.1",
+      "released": "2024-03-27",
+      "voices": [
+        {
+          "text": "Life's like a good brew &ndash; full-bodied and sweet.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6c/VO_Gallagher_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327092810"
+        },
+        {
+          "text": "My friends, indulge yourselves!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/91/VO_Gallagher_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240327092811"
+        },
+        {
+          "text": "Time to mix things up.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/VO_Gallagher_Skill_01.ogg/revision/latest?cb=20240327092801"
+        },
+        {
+          "text": "How's this taste?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/VO_Gallagher_Skill_02.ogg/revision/latest?cb=20240327092802"
+        }
+      ]
+    },
+    {
+      "id": "aventurine",
+      "name": "Aventurine",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/da/Character_Aventurine_Icon.png/revision/latest?cb=20240327022115",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a9/Character_Aventurine_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240327104723",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Preservation",
+      "element": "Imaginary",
+      "faction": "Interastral Peace Corporation",
+      "world": "Sigonia-IV",
+      "species": "Avgin",
+      "version": "2.1",
+      "released": "2024-04-17",
+      "lightcone": {
+        "name": "Inherently Unjust Destiny",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/Light_Cone_Inherently_Unjust_Destiny.png/revision/latest?cb=20240417060129"
+      },
+      "voices": [
+        {
+          "text": "The dice have been cast.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/55/VO_Aventurine_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240417043038"
+        },
+        {
+          "text": "Bust? Or maybe I'll take it all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/VO_Aventurine_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240417043039"
+        },
+        {
+          "text": "Going all in. Tab's on me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ea/VO_Aventurine_Skill_01.ogg/revision/latest?cb=20240417043026"
+        },
+        {
+          "text": "Don't ask. Just spend.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4e/VO_Aventurine_Skill_02.ogg/revision/latest?cb=20240417043027"
+        }
+      ]
+    },
+    {
+      "id": "robin",
+      "name": "Robin",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/72/Character_Robin_Icon.png/revision/latest?cb=20240525031318",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/92/Character_Robin_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240508021256",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Physical",
+      "faction": "Penacony",
+      "world": "Penacony",
+      "species": "Halovian",
+      "version": "2.2",
+      "released": "2024-05-08",
+      "lightcone": {
+        "name": "Flowing Nightglow",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f2/Light_Cone_Flowing_Nightglow.png/revision/latest?cb=20240508030636"
+      },
+      "voices": [
+        {
+          "text": "Tonight, souls shall embrace.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a5/VO_Robin_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240508041753"
+        },
+        {
+          "text": "Tonight, the stars echo because of me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/VO_Robin_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240508041755"
+        },
+        {
+          "text": "The harmony will soon play in unison.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a3/VO_Robin_Skill_01.ogg/revision/latest?cb=20240508041739"
+        },
+        {
+          "text": "All together, resonate once more.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/ba/VO_Robin_Skill_02.ogg/revision/latest?cb=20240508041741"
+        }
+      ]
+    },
+    {
+      "id": "boothill",
+      "name": "Boothill",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Boothill_Icon.png/revision/latest?cb=20240525031219",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bb/Character_Boothill_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240624231026",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Physical",
+      "faction": "Galaxy Rangers",
+      "world": "Aeragan-Epharshel",
+      "species": "Human",
+      "version": "2.2",
+      "released": "2024-05-29",
+      "lightcone": {
+        "name": "Sailing Towards a Second Life",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Sailing_Towards_a_Second_Life.png/revision/latest?cb=20240603054042"
+      },
+      "voices": [
+        {
+          "text": "There's no reasoning with you bunch anymore.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3b/VO_Boothill_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240529054744"
+        },
+        {
+          "text": "Let's duel, fair and square!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/5d/VO_Boothill_Skill_01.ogg/revision/latest?cb=20240529054731"
+        },
+        {
+          "text": "Bring it on, forker!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9e/VO_Boothill_Skill_02.ogg/revision/latest?cb=20240529054732"
+        },
+        {
+          "text": "Don't worry! This one's on me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/VO_Boothill_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20240529054707"
+        }
+      ]
+    },
+    {
+      "id": "firefly",
+      "name": "Firefly",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9e/Character_Firefly_Icon.png/revision/latest?cb=20240619072408",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Character_Firefly_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241007220547",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Fire",
+      "faction": "Stellaron Hunters",
+      "world": "Glamoth",
+      "species": "Human",
+      "version": "2.3",
+      "released": "2024-06-19",
+      "lightcone": {
+        "name": "Whereabouts Should Dreams Rest",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0e/Light_Cone_Whereabouts_Should_Dreams_Rest.png/revision/latest/scale-to-width-down/400?cb=20240607171003"
+      },
+      "voices": [
+        {
+          "text": "Like fyreflies to a flame... life begets death.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/VO_Firefly_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240619054242"
+        },
+        {
+          "text": "I will fight for myself, until everything... burns to ashes!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/VO_Firefly_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240619054245"
+        },
+        {
+          "text": "Executing attack.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/VO_Firefly_Skill_01.ogg/revision/latest?cb=20240619054157"
+        },
+        {
+          "text": "Prime, detonate!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/VO_Firefly_Skill_02.ogg/revision/latest?cb=20240619054206"
+        }
+      ]
+    },
+    {
+      "id": "jade",
+      "name": "Jade",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fd/Character_Jade_Icon.png/revision/latest?cb=20240619072848",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6d/Character_Jade_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240706170539",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Quantum",
+      "faction": "Interastral Peace Corporation",
+      "world": "Unknown",
+      "species": "Unknown",
+      "version": "2.3",
+      "released": "2024-07-10",
+      "lightcone": {
+        "name": "Yet Hope Is Priceless",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/52/Light_Cone_Yet_Hope_Is_Priceless.png/revision/latest/scale-to-width-down/400?cb=20240607171006"
+      },
+      "voices": [
+        {
+          "text": "We have a deal.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/19/VO_Jade_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240710040826"
+        },
+        {
+          "text": "There's no backing out now, for me... or for you.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/VO_Jade_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240710040828"
+        },
+        {
+          "text": "Don't let me down now.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4b/VO_Jade_Skill_01.ogg/revision/latest?cb=20240710040807"
+        },
+        {
+          "text": "I always make good on my promises.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/VO_Jade_Skill_02.ogg/revision/latest?cb=20240710040808"
+        }
+      ]
+    },
+    {
+      "id": "yunli",
+      "name": "Yunli",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/43/Character_Yunli_Icon.png/revision/latest?cb=20240724122212",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/72/Character_Yunli_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241007221656",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Physical",
+      "faction": "The Xianzhou Zhuming",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "2.4",
+      "released": "2024-07-31",
+      "lightcone": {
+        "name": "Dance at Sunset",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/ce/Light_Cone_Dance_at_Sunset.png/revision/latest?cb=20240802010821"
+      },
+      "voices": [
+        {
+          "text": "I'll melt you all down!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e8/VO_Yunli_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240731191821"
+        },
+        {
+          "text": "(\"Intuit: Slash\") Splitting clouds, severing mountains!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1d/VO_Yunli_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240731191825"
+        },
+        {
+          "text": "(\"Intuit: Slash\") Blade drawn, mountains fall!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7e/VO_Yunli_Ultimate_-_Unleash_02.ogg/revision/latest?cb=20240731191827"
+        },
+        {
+          "text": "(\"Intuit: Cull\") Through the clouds, it cleaves a path, Hah!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/91/VO_Yunli_Ultimate_-_Unleash_03.ogg/revision/latest?cb=20240731191830"
+        }
+      ]
+    },
+    {
+      "id": "jiaoqiu",
+      "name": "Jiaoqiu",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/Character_Jiaoqiu_Icon.png/revision/latest?cb=20240910182738",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/be/Character_Jiaoqiu_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240911023034",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Fire",
+      "faction": "The Xianzhou Yaoqing",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "2.4",
+      "released": "2024-08-21",
+      "lightcone": {
+        "name": "Those Many Springs",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/40/Light_Cone_Those_Many_Springs.png/revision/latest?cb=20240821090652"
+      },
+      "voices": [
+        {
+          "text": "I'm honored by your presence...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4a/VO_Jiaoqiu_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240821040241"
+        },
+        {
+          "text": "Since you're already here, why not have a meal before you leave?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/VO_Jiaoqiu_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240821040243"
+        },
+        {
+          "text": "Needs a little more heat.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/63/VO_Jiaoqiu_Skill_01.ogg/revision/latest?cb=20240821040226"
+        },
+        {
+          "text": "Let's add more seasoning.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/73/VO_Jiaoqiu_Skill_02.ogg/revision/latest?cb=20240821040227"
+        }
+      ]
+    },
+    {
+      "id": "feixiao",
+      "name": "Feixiao",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/75/Character_Feixiao_Icon.png/revision/latest?cb=20240910182925",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/61/Character_Feixiao_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241007220552",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Wind",
+      "faction": "The Xianzhou Yaoqing",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "2.5",
+      "released": "2024-09-10",
+      "lightcone": {
+        "name": "I Venture Forth to Hunt",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/13/Light_Cone_I_Venture_Forth_to_Hunt.png/revision/latest?cb=20240910183947"
+      },
+      "voices": [
+        {
+          "text": "I venture forth to hunt.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b3/VO_Feixiao_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240910183319"
+        },
+        {
+          "text": "Always soaring, forever triumphant!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fd/VO_Feixiao_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240910183320"
+        },
+        {
+          "text": "(Final Hit) Victory is inevitable!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a2/VO_Feixiao_Ultimate_-_Unleash_02.ogg/revision/latest?cb=20240910183321"
+        },
+        {
+          "text": "Never back down, never hesitate!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9b/VO_Feixiao_Skill_01.ogg/revision/latest?cb=20240910183308"
+        }
+      ]
+    },
+    {
+      "id": "moze",
+      "name": "Moze",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/25/Character_Moze_Icon.png/revision/latest?cb=20240910183040",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/Character_Moze_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20240910181952",
+      "gender": "Male",
+      "rarity": 4,
+      "path": "The Hunt",
+      "element": "Lightning",
+      "faction": "The Xianzhou Yaoqing",
+      "world": "Xianzhou Alliance",
+      "species": "Unknown",
+      "version": "2.5",
+      "released": "2024-09-10",
+      "voices": [
+        {
+          "text": "Time to reap.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/VO_Moze_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240910183935"
+        },
+        {
+          "text": "Where the wind whispers... you cannot hide!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e7/VO_Moze_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240910183935"
+        },
+        {
+          "text": "The moment of opportunity comes.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/VO_Moze_Skill_01.ogg/revision/latest?cb=20240910183925"
+        },
+        {
+          "text": "The night follows you like a shadow.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/24/VO_Moze_Skill_02.ogg/revision/latest?cb=20240910183926"
+        }
+      ]
+    },
+    {
+      "id": "lingsha",
+      "name": "Lingsha",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ab/Character_Lingsha_Icon.png/revision/latest?cb=20240719042259",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c1/Character_Lingsha_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241120224130",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Abundance",
+      "element": "Fire",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Vidyadhara",
+      "version": "2.5",
+      "released": "2024-10-02",
+      "lightcone": {
+        "name": "Scent Alone Stays True",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Light_Cone_Scent_Alone_Stays_True.png/revision/latest?cb=20241002192322"
+      },
+      "voices": [
+        {
+          "text": "The truth burns clear as a flame.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/36/VO_Lingsha_Ultimate_-_Activate_01.ogg/revision/latest?cb=20241002040622"
+        },
+        {
+          "text": "Everything in this world... is merely fleeting.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1e/VO_Lingsha_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20241002040623"
+        },
+        {
+          "text": "Time to cleanse the filth, wouldn't you agree?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/61/VO_Lingsha_Skill_01.ogg/revision/latest?cb=20241002040613"
+        },
+        {
+          "text": "Both body and mind must be pure.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/VO_Lingsha_Skill_02.ogg/revision/latest?cb=20241002040614"
+        }
+      ]
+    },
+    {
+      "id": "rappa",
+      "name": "Rappa",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/84/Character_Rappa_Icon.png/revision/latest?cb=20240827130309",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1c/Character_Rappa_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241120154734",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Imaginary",
+      "faction": "Galaxy Rangers",
+      "world": "Unknown",
+      "species": "Human",
+      "version": "2.6",
+      "released": "2024-10-23",
+      "lightcone": {
+        "name": "Ninjutsu Inscription: Dazzling Evilbreaker",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ac/Light_Cone_Ninjutsu_Inscription_Dazzling_Evilbreaker.png/revision/latest?cb=20241025210738"
+      },
+      "voices": [
+        {
+          "text": "Cosmic Ninjutsu is ever-changing.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6d/VO_Rappa_Ultimate_-_Activate_01.ogg/revision/latest?cb=20241023202813"
+        },
+        {
+          "text": "This is... Ninjutsu Secret Technique: Dazzling Obliteration!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/26/VO_Rappa_Ultimate_-_Activate_02.ogg/revision/latest?cb=20241023202814"
+        },
+        {
+          "text": "Slash! Cut! Cleave!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3b/VO_Rappa_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20241023202815"
+        },
+        {
+          "text": "Dazzling: Brocade Ink Painting!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/51/VO_Rappa_Skill_01.ogg/revision/latest?cb=20241023202752"
+        }
+      ]
+    },
+    {
+      "id": "sunday",
+      "name": "Sunday",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Character_Sunday_Icon.png/revision/latest?cb=20241122130945",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/21/Character_Sunday_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241224161538",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Imaginary",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Halovian",
+      "version": "2.7",
+      "released": "2024-12-04",
+      "lightcone": {
+        "name": "A Grounded Ascent",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/27/Light_Cone_A_Grounded_Ascent.png/revision/latest?cb=20241205031402"
+      },
+      "voices": [
+        {
+          "text": "In this mortal form...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d9/VO_Sunday_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250227123744"
+        },
+        {
+          "text": "I will walk with you, watch over you, and guide you on your path.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/92/VO_Sunday_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20241204074328"
+        },
+        {
+          "text": "Torment and doubt, I bid you farewell.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/VO_Sunday_Skill_01.ogg/revision/latest?cb=20241204074320"
+        },
+        {
+          "text": "Serenity stands clear before me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/63/VO_Sunday_Skill_02.ogg/revision/latest?cb=20241204074320"
+        }
+      ]
+    },
+    {
+      "id": "fugue",
+      "name": "Fugue",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Fugue_Icon.png/revision/latest?cb=20241122131000",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/Character_Fugue_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20241122125941",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Fire",
+      "faction": "The Xianzhou Luofu",
+      "world": "Xianzhou Alliance",
+      "species": "Foxian",
+      "version": "2.7",
+      "released": "2024-12-25",
+      "lightcone": {
+        "name": "Long Road Leads Home",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/Light_Cone_Long_Road_Leads_Home.png/revision/latest?cb=20241225050057"
+      },
+      "voices": [
+        {
+          "text": "Dreams of a past life are now all gone.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ec/VO_Fugue_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250204001612"
+        },
+        {
+          "text": "Though life is as a speck of dust, it dances still in grace.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/VO_Fugue_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250204001614"
+        },
+        {
+          "text": "There's no harm in sharing good fortunes.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0f/VO_Fugue_Skill_01.ogg/revision/latest?cb=20250204001559"
+        },
+        {
+          "text": "Shall we unite our goals?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a2/VO_Fugue_Skill_02.ogg/revision/latest?cb=20250204001601"
+        }
+      ]
+    },
+    {
+      "id": "the-herta",
+      "name": "The Herta",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/Character_The_Herta_Icon.png/revision/latest?cb=20250101123319",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/42/Character_The_Herta_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250121214107",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Ice",
+      "faction": "Herta Space Station",
+      "world": "Herta Space Station",
+      "species": "Human",
+      "version": "3.0",
+      "released": "2025-01-15",
+      "lightcone": {
+        "name": "Into the Unreachable Veil",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/aa/Light_Cone_Into_the_Unreachable_Veil.png/revision/latest?cb=20250116180930"
+      },
+      "voices": [
+        {
+          "text": "Curiosity... is a dangerous thing, you know.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/86/VO_The_Herta_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250204003251"
+        },
+        {
+          "text": "Endless riddles, but the answer... is nothing but a void.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/bc/VO_The_Herta_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250204003252"
+        },
+        {
+          "text": "The door to a whole new world~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0d/VO_The_Herta_Skill_01.ogg/revision/latest?cb=20250204003235"
+        },
+        {
+          "text": "You've just got to expand your thinking~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/79/VO_The_Herta_Skill_02.ogg/revision/latest?cb=20250204003239"
+        }
+      ]
+    },
+    {
+      "id": "aglaea",
+      "name": "Aglaea",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f8/Character_Aglaea_Icon.png/revision/latest?cb=20250101123357",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/Character_Aglaea_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250117063425",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Lightning",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.0",
+      "released": "2025-02-05",
+      "lightcone": {
+        "name": "Time Woven Into Gold",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/15/Light_Cone_Time_Woven_Into_Gold.png/revision/latest?cb=20250123125415"
+      },
+      "voices": [
+        {
+          "text": "Countless threads, all within my grasp.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b8/VO_Aglaea_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250205040537"
+        },
+        {
+          "text": "Thus, your fate and mine become one.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/cd/VO_Aglaea_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250205040538"
+        },
+        {
+          "text": "''(Summon Garmentmaker 1)'' Time for resolution.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9c/VO_Aglaea_Skill_01.ogg/revision/latest?cb=20250205040521"
+        },
+        {
+          "text": "''(Summon Garmentmaker 2)'' Care to dance?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/VO_Aglaea_Skill_02.ogg/revision/latest?cb=20250205040522"
+        }
+      ]
+    },
+    {
+      "id": "tribbie",
+      "name": "Tribbie",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f3/Character_Tribbie_Icon.png/revision/latest?cb=20250214124656",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/eb/Character_Tribbie_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250309185506",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Quantum",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.1",
+      "released": "2025-02-26",
+      "lightcone": {
+        "name": "If Time Were a Flower",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8d/Light_Cone_If_Time_Were_a_Flower.png/revision/latest?cb=20250226072139"
+      },
+      "voices": [
+        {
+          "text": "Tribbie: Is it coming?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/55/VO_Tribbie_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250227121504"
+        },
+        {
+          "text": "Trianne: It's co-ming!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/33/VO_Tribbie_Ultimate_-_Activate_02.ogg/revision/latest?cb=20250227121505"
+        },
+        {
+          "text": "Trinnon: It's coming...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/72/VO_Tribbie_Ultimate_-_Activate_03.ogg/revision/latest?cb=20250227121506"
+        },
+        {
+          "text": "Tribbie: Ready, set—Tribbie, Trianne, & Trinnon: Riding the west wind, away we go~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/VO_Tribbie_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250227121507"
+        }
+      ]
+    },
+    {
+      "id": "mydei",
+      "name": "Mydei",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/Character_Mydei_Icon.png/revision/latest?cb=20250214124624",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/Character_Mydei_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250725220512",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Imaginary",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.1",
+      "released": "2025-03-19",
+      "lightcone": {
+        "name": "Flame of Blood, Blaze My Path",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Light_Cone_Flame_of_Blood%2C_Blaze_My_Path.png/revision/latest?cb=20250226133127"
+      },
+      "voices": [
+        {
+          "text": "Dying soul, face me!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0d/VO_Mydei_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250320093727"
+        },
+        {
+          "text": "I allow you to accept your punishment!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Mydei_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250320093728"
+        },
+        {
+          "text": "Burn it all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a3/VO_Mydei_Skill_01.ogg/revision/latest?cb=20250320093715"
+        },
+        {
+          "text": "Forever doomed!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/05/VO_Mydei_Skill_02.ogg/revision/latest?cb=20250320093716"
+        }
+      ]
+    },
+    {
+      "id": "castorice",
+      "name": "Castorice",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/da/Character_Castorice_Icon.png/revision/latest?cb=20250328124417",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/94/Character_Castorice_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250409035111",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Quantum",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.2",
+      "released": "2025-04-09",
+      "lightcone": {
+        "name": "Make Farewells More Beautiful",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/58/Light_Cone_Make_Farewells_More_Beautiful.png/revision/latest?cb=20250409035459"
+      },
+      "voices": [
+        {
+          "text": "Embrace \"new life,\" Pollux.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e0/VO_Castorice_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250413053957"
+        },
+        {
+          "text": "I only wish that Death... may protect us!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1b/VO_Castorice_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250413053958"
+        },
+        {
+          "text": "Please, wilt here.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6f/VO_Castorice_Skill_01.ogg/revision/latest?cb=20250413053946"
+        },
+        {
+          "text": "I grant you this, as you wish.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b8/VO_Castorice_Skill_02.ogg/revision/latest?cb=20250413053947"
+        }
+      ]
+    },
+    {
+      "id": "anaxa",
+      "name": "Anaxa",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f0/Character_Anaxa_Icon.png/revision/latest?cb=20250328124329",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/73/Character_Anaxa_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250409035048",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Wind",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.2",
+      "released": "2025-04-30",
+      "lightcone": {
+        "name": "Life Should Be Cast to Flames",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/Light_Cone_Life_Should_Be_Cast_to_Flames.png/revision/latest?cb=20250409035428"
+      },
+      "voices": [
+        {
+          "text": "Look. The show has begun...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/VO_Anaxa_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250430110018"
+        },
+        {
+          "text": "With this divine power, I extract the world's purity to reforge all things!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e4/VO_Anaxa_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250430110020"
+        },
+        {
+          "text": "Sink into insanity!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/46/VO_Anaxa_Skill_01.ogg/revision/latest?cb=20250430110007"
+        },
+        {
+          "text": "Straight to the soul!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b1/VO_Anaxa_Skill_02.ogg/revision/latest?cb=20250430110008"
+        }
+      ]
+    },
+    {
+      "id": "hyacine",
+      "name": "Hyacine",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/Character_Hyacine_Icon.png/revision/latest?cb=20250509121044",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Character_Hyacine_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250521031729",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Wind",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Skyfolk",
+      "version": "3.3",
+      "released": "2025-05-21",
+      "lightcone": {
+        "name": "Long May Rainbows Adorn the Sky",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Light_Cone_Long_May_Rainbows_Adorn_the_Sky.png/revision/latest?cb=20250521031952"
+      },
+      "voices": [
+        {
+          "text": "May this faint light...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9c/VO_Hyacine_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250522030223"
+        },
+        {
+          "text": "Dispel the gloom and restore clear skies once more!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3d/VO_Hyacine_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250522030226"
+        },
+        {
+          "text": "We do need some sunshine~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b9/VO_Hyacine_Skill_01.ogg/revision/latest?cb=20250522030213"
+        },
+        {
+          "text": "Everyone's been waiting for us~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/VO_Hyacine_Skill_02.ogg/revision/latest?cb=20250522030214"
+        }
+      ]
+    },
+    {
+      "id": "cipher",
+      "name": "Cipher",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Cipher_Icon.png/revision/latest?cb=20250509121146",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/0d/Character_Cipher_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250725220236",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Quantum",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.3",
+      "released": "2025-06-11",
+      "lightcone": {
+        "name": "Lies Dance on the Breeze",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Light_Cone_Lies_Dance_on_the_Breeze.png/revision/latest?cb=20250611051742"
+      },
+      "voices": [
+        {
+          "text": "Our cute play session is over.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/13/VO_Cipher_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250611041138"
+        },
+        {
+          "text": "A lie that everyone believes in becomes a reality. Gotcha~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/75/VO_Cipher_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250611041139"
+        },
+        {
+          "text": "Treasure~ Come to me!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c0/VO_Cipher_Skill_01.ogg/revision/latest?cb=20250611041125"
+        },
+        {
+          "text": "This cat~ Will take it all!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/de/VO_Cipher_Skill_02.ogg/revision/latest?cb=20250611041127"
+        }
+      ]
+    },
+    {
+      "id": "phainon",
+      "name": "Phainon",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/ef/Character_Phainon_Icon.png/revision/latest?cb=20250620124711",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/47/Character_Phainon_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250622125151",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Physical",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.4",
+      "released": "2025-07-02",
+      "lightcone": {
+        "name": "Thus Burns the Dawn",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2c/Light_Cone_Thus_Burns_the_Dawn.png/revision/latest?cb=20250702033437"
+      },
+      "voices": [
+        {
+          "text": "The fury of innumerable Coreflames, consume me!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6f/VO_Phainon_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250703031741"
+        },
+        {
+          "text": "I grant you a dawn where all stars burn to ash.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7a/VO_Phainon_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250703031743"
+        },
+        {
+          "text": "The new world will arrive!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/31/VO_Phainon_Skill_01.ogg/revision/latest?cb=20250703031725"
+        },
+        {
+          "text": "For the next tomorrow!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/VO_Phainon_Skill_02.ogg/revision/latest?cb=20250703031726"
+        }
+      ]
+    },
+    {
+      "id": "archer",
+      "name": "Archer",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8f/Character_Archer_Icon.png/revision/latest?cb=20250620124531",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/25/Character_Archer_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250620172923",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Quantum",
+      "faction": "Another World",
+      "world": "Another World",
+      "species": "Human",
+      "version": "3.4",
+      "released": "2025-07-11",
+      "lightcone": {
+        "name": "The Hell Where Ideals Burn",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/66/Light_Cone_The_Hell_Where_Ideals_Burn.png/revision/latest?cb=20250702131433"
+      },
+      "voices": []
+    },
+    {
+      "id": "saber",
+      "name": "Saber",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/43/Character_Saber_Icon.png/revision/latest?cb=20250620124608",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/Character_Saber_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250620172940",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Wind",
+      "faction": "Another World",
+      "world": "Another World",
+      "species": "Human",
+      "version": "3.4",
+      "released": "2025-07-11",
+      "lightcone": {
+        "name": "A Thankless Coronation",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f3/Light_Cone_A_Thankless_Coronation.png/revision/latest?cb=20250711042759"
+      },
+      "voices": []
+    },
+    {
+      "id": "hysilens",
+      "name": "Hysilens",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/19/Character_Hysilens_Icon.png/revision/latest?cb=20250802130317",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/60/Character_Hysilens_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250720121134",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Physical",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Sea Siren",
+      "version": "3.5",
+      "released": "2025-08-13",
+      "lightcone": {
+        "name": "Why Does the Ocean Sing",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Light_Cone_Why_Does_the_Ocean_Sing.png/revision/latest?cb=20250813023643"
+      },
+      "voices": [
+        {
+          "text": "Shhh, stay here and listen...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/df/VO_Hysilens_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250815232842"
+        },
+        {
+          "text": "In this endless revel of the abyss, your cries rise.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/10/VO_Hysilens_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250815232844"
+        },
+        {
+          "text": "Tides, sink with me.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/VO_Hysilens_Skill_01.ogg/revision/latest?cb=20250815232826"
+        },
+        {
+          "text": "Feasts, be intoxicated.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1e/VO_Hysilens_Skill_02.ogg/revision/latest?cb=20250815232828"
+        }
+      ]
+    },
+    {
+      "id": "cerydra",
+      "name": "Cerydra",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c9/Character_Cerydra_Icon.png/revision/latest?cb=20250802130229",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/ba/Character_Cerydra_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250725220412",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Harmony",
+      "element": "Wind",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Unknown",
+      "version": "3.5",
+      "released": "2025-09-02",
+      "lightcone": {
+        "name": "Epoch Etched in Golden Blood",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/Light_Cone_Epoch_Etched_in_Golden_Blood.png/revision/latest?cb=20250902044754"
+      },
+      "voices": [
+        {
+          "text": "To the defeated, oblivion. To the victor, the throne...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8e/VO_Cerydra_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250902040735"
+        },
+        {
+          "text": "In the name of Law, I declare: Your downfall is absolute!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/50/VO_Cerydra_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250902040737"
+        },
+        {
+          "text": "Come now, step onto the board!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/57/VO_Cerydra_Skill_01.ogg/revision/latest?cb=20250902040716"
+        },
+        {
+          "text": "Press the attack.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/79/VO_Cerydra_Skill_02.ogg/revision/latest?cb=20250902040718"
+        }
+      ]
+    },
+    {
+      "id": "evernight",
+      "name": "Evernight",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b7/Character_Evernight_Icon.png/revision/latest?cb=20250912121500",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/68/Character_Evernight_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250912143541",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Ice",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Memetic Entity",
+      "version": "3.6",
+      "released": "2025-09-24",
+      "lightcone": {
+        "name": "To Evernight's Stars",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/34/Light_Cone_To_Evernight%27s_Stars.png/revision/latest?cb=20250924033925"
+      },
+      "voices": [
+        {
+          "text": "Don't worry... Just close your eyes...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ae/VO_Evernight_Ultimate_-_Activate_01.ogg/revision/latest?cb=20250925031250"
+        },
+        {
+          "text": "The night will soon fall... Shh. Good night.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6a/VO_Evernight_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20250925031251"
+        },
+        {
+          "text": "Go on. Treat our guests nicely~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/49/VO_Evernight_Skill_01.ogg/revision/latest?cb=20250925031234"
+        },
+        {
+          "text": "Be good now... It's your time to shine~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/79/VO_Evernight_Skill_02.ogg/revision/latest?cb=20250925031235"
+        }
+      ]
+    },
+    {
+      "id": "dan-heng-permansor-terrae",
+      "name": "Dan Heng • Permansor Terrae",
+      "aliases": [
+        "Permansor Terrae",
+        "Dan Heng Permansor Terrae"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Dan_Heng_%E2%80%A2_Permansor_Terrae_Icon.png/revision/latest?cb=20250912121518",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/Character_Dan_Heng_%E2%80%A2_Permansor_Terrae_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20250912143415",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Preservation",
+      "element": "Physical",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Vidyadhara",
+      "version": "3.6",
+      "released": "2025-10-15",
+      "lightcone": {
+        "name": "Though Worlds Apart",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Though_Worlds_Apart.png/revision/latest?cb=20251015044937"
+      },
+      "voices": [
+        {
+          "text": "Dragons, obey this order.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e0/VO_Dan_Heng_%E2%80%A2_Permansor_Terrae_Ultimate_-_Activate_01.ogg/revision/latest?cb=20251015040332"
+        },
+        {
+          "text": "Calamity undone. Soaring above the lands. This is permanence!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d1/VO_Dan_Heng_%E2%80%A2_Permansor_Terrae_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20251015040335"
+        },
+        {
+          "text": "Mountains roar. Dragons rise!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/VO_Dan_Heng_%E2%80%A2_Permansor_Terrae_Skill_01.ogg/revision/latest?cb=20251015040317"
+        },
+        {
+          "text": "Earth shatters. Heaven trembles!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b0/VO_Dan_Heng_%E2%80%A2_Permansor_Terrae_Skill_02.ogg/revision/latest?cb=20251015040319"
+        }
+      ]
+    },
+    {
+      "id": "cyrene",
+      "name": "Cyrene",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/99/Character_Cyrene_Icon.png/revision/latest?cb=20251024130639",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/8b/Character_Cyrene_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20251105032126",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Ice",
+      "faction": "Amphoreus",
+      "world": "Amphoreus",
+      "species": "Memetic Entity",
+      "version": "3.7",
+      "released": "2025-11-05",
+      "lightcone": {
+        "name": "This Love, Forever",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/Light_Cone_This_Love%2C_Forever.png/revision/latest?cb=20251105032834"
+      },
+      "voices": [
+        {
+          "text": "Endless flowers, please bloom for tomorrow.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b4/VO_Cyrene_Skill_01.ogg/revision/latest?cb=20251108081056"
+        },
+        {
+          "text": "Countless stars, please shine for the heroes.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/05/VO_Cyrene_Skill_02.ogg/revision/latest?cb=20251108081059"
+        },
+        {
+          "text": "Let's start the second movement.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/db/VO_Cyrene_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20251108080946"
+        }
+      ]
+    },
+    {
+      "id": "the-dahlia",
+      "name": "The Dahlia",
+      "aliases": [
+        "Dahlia"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/71/Character_The_Dahlia_Icon.png/revision/latest?cb=20251205121527",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/92/Character_The_Dahlia_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20251205121609",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Fire",
+      "faction": "The Cremators",
+      "world": "Unknown",
+      "species": "Memetic Entity",
+      "version": "3.8",
+      "released": "2025-12-17",
+      "lightcone": {
+        "name": "Never Forget Her Flame",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/03/Light_Cone_Never_Forget_Her_Flame.png/revision/latest?cb=20251217041152"
+      },
+      "voices": [
+        {
+          "text": "Memory's tomb has opened its maw...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/35/VO_The_Dahlia_Ultimate_-_Activate_01.ogg/revision/latest?cb=20251220084325"
+        },
+        {
+          "text": "The moment when it all dies... is so beautiful.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/14/VO_The_Dahlia_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20251220084328"
+        },
+        {
+          "text": "Immolate yourself in my dance!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/59/VO_The_Dahlia_Skill_01.ogg/revision/latest?cb=20251220084307"
+        },
+        {
+          "text": "Etch me into your bones!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/6f/VO_The_Dahlia_Skill_02.ogg/revision/latest?cb=20251220084309"
+        }
+      ]
+    },
+    {
+      "id": "yao-guang",
+      "name": "Yao Guang",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1e/Character_Yao_Guang_Icon.png/revision/latest?cb=20260206123914",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e1/Character_Yao_Guang_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260213053032",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Physical",
+      "faction": "The Xianzhou Yuque",
+      "world": "Xianzhou Alliance",
+      "species": "Xianzhou Native",
+      "version": "4.0",
+      "released": "2026-02-13",
+      "lightcone": {
+        "name": "When She Decided to See",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/39/Light_Cone_When_She_Decided_to_See.png/revision/latest?cb=20260213052858"
+      },
+      "voices": [
+        {
+          "text": "People always say that the will of heaven can't be overturned...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/VO_Yao_Guang_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260213193855"
+        },
+        {
+          "text": "But I wish to observe the heavens with my divinations.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/13/VO_Yao_Guang_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260213193857"
+        },
+        {
+          "text": "Stars of fortune favor us.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Yao_Guang_Skill_01.ogg/revision/latest?cb=20260213193840"
+        },
+        {
+          "text": "Baneful clouds, scatter!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Yao_Guang_Skill_02.ogg/revision/latest?cb=20260424031657"
+        }
+      ]
+    },
+    {
+      "id": "sparxie",
+      "name": "Sparxie",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/46/Character_Sparxie_Icon.png/revision/latest?cb=20260206123951",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/ab/Character_Sparxie_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260206131556",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Fire",
+      "faction": "Masked Fools",
+      "world": "Planarcadia",
+      "species": "Imagenae",
+      "version": "4.0",
+      "released": "2026-03-03",
+      "lightcone": {
+        "name": "Dazzled by a Flowery World",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/82/Light_Cone_Dazzled_by_a_Flowery_World.png/revision/latest?cb=20260303043027"
+      },
+      "voices": [
+        {
+          "text": "Dear viewers, I've kept you waiting~",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/VO_Sparxie_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260303040608"
+        },
+        {
+          "text": "Come and party with Sparxie till the end of the world!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/89/VO_Sparxie_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260303040609"
+        }
+      ]
+    },
+    {
+      "id": "ashveil",
+      "name": "Ashveil",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/88/Character_Ashveil_Icon.png/revision/latest?cb=20260313122242",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d4/Character_Ashveil_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260313174406",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "The Hunt",
+      "element": "Lightning",
+      "faction": "Galaxy Rangers",
+      "world": "Planarcadia",
+      "species": "Unknown",
+      "version": "4.0",
+      "released": "2026-03-25",
+      "lightcone": {
+        "name": "The Finale of a Lie",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Light_Cone_The_Finale_of_a_Lie.png/revision/latest?cb=20260325055255"
+      },
+      "voices": [
+        {
+          "text": "I offer my blood to consume this injustice...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e3/VO_Ashveil_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260326041103"
+        },
+        {
+          "text": "Beasts, come... and slaughter each other!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9a/VO_Ashveil_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260326041106"
+        },
+        {
+          "text": "Riddled with holes.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d1/VO_Ashveil_Skill_01.ogg/revision/latest?cb=20260326041049"
+        },
+        {
+          "text": "I... see through you.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f9/VO_Ashveil_Skill_02.ogg/revision/latest?cb=20260326041051"
+        }
+      ]
+    },
+    {
+      "id": "silver-wolf-lv-999",
+      "name": "Silver Wolf LV.999",
+      "aliases": [
+        "Silver Wolf LV999"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/03/Character_Silver_Wolf_LV.999_Icon.png/revision/latest?cb=20260410125943",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f0/Character_Silver_Wolf_LV.999_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260417164013",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Imaginary",
+      "faction": "Stellaron Hunters",
+      "world": "Punklorde",
+      "species": "Unknown",
+      "version": "4.2",
+      "released": "2026-04-22",
+      "lightcone": {
+        "name": "Welcome to the Cosmic City",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/Light_Cone_Welcome_to_the_Cosmic_City.png/revision/latest?cb=20260422040136"
+      },
+      "voices": [
+        {
+          "text": "No more messing around. This next round: real gaming!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/VO_Silver_Wolf_LV.999_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260424020732"
+        },
+        {
+          "text": "Let me teach you some moves. Get all that?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/86/VO_Silver_Wolf_LV.999_Skill_01.ogg/revision/latest?cb=20260424020713"
+        },
+        {
+          "text": "Here it comes, unlimited firepower!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fb/VO_Silver_Wolf_LV.999_Skill_02.ogg/revision/latest?cb=20260424020716"
+        },
+        {
+          "text": "So, who's the real boss here?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/VO_Silver_Wolf_LV.999_Battle_Begins_-_Weakness_Break_01.ogg/revision/latest?cb=20260424020616"
+        }
+      ]
+    },
+    {
+      "id": "evanescia",
+      "name": "Evanescia",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c3/Character_Evanescia_Icon.png/revision/latest?cb=20260410130019",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/Character_Evanescia_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260506070712",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Physical",
+      "faction": "Planarcadia",
+      "world": "Planarcadia",
+      "species": "Imagenae",
+      "version": "4.2",
+      "released": "2026-05-13",
+      "lightcone": {
+        "name": "Until the Flowers Bloom Again",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3d/Light_Cone_Until_the_Flowers_Bloom_Again.png/revision/latest?cb=20260513082026"
+      },
+      "voices": [
+        {
+          "text": "Do your worst, Master Fox.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1b/VO_Evanescia_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260513041630"
+        },
+        {
+          "text": "I decide the rules of the game... And you're out!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/9d/VO_Evanescia_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260513041635"
+        },
+        {
+          "text": "See you later, everyone!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4b/VO_Evanescia_Skill_01.ogg/revision/latest?cb=20260513041610"
+        },
+        {
+          "text": "By the Phantasmoon I'll vanquish you!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a8/VO_Evanescia_Skill_02.ogg/revision/latest?cb=20260513041613"
+        }
+      ]
+    },
+    {
+      "id": "mortenax-blade",
+      "name": "Mortenax Blade",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4a/Character_Mortenax_Blade_Icon.png/revision/latest?cb=20260601025954",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4b/Character_Mortenax_Blade_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260601025859",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Nihility",
+      "element": "Fire",
+      "faction": "Stellaron Hunters",
+      "world": "Unknown",
+      "species": "Long-Life Species",
+      "version": "4.3",
+      "released": "2026-06-01",
+      "lightcone": {
+        "name": "Reforged in Hellfire",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/Light_Cone_Reforged_in_Hellfire.png/revision/latest?cb=20260601030512"
+      },
+      "voices": [
+        {
+          "text": "Torn flesh, tempered a thousand times into a blade.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/VO_Mortenax_Blade_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260603041436"
+        },
+        {
+          "text": "Returned from death a thousandfold...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e8/VO_Mortenax_Blade_Ultimate_-_Activate_02.ogg/revision/latest?cb=20260603041438"
+        },
+        {
+          "text": "Burn this broken shell, you will serve as the tempering fire!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/33/VO_Mortenax_Blade_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260603041441"
+        },
+        {
+          "text": "Purgatory... take hold!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/60/VO_Mortenax_Blade_Skill_01.ogg/revision/latest?cb=20260603041413"
+        }
+      ]
+    },
+    {
+      "id": "himeko-nova",
+      "name": "Himeko • Nova",
+      "aliases": [
+        "Himeko Nova"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/80/Character_Himeko_%E2%80%A2_Nova_Icon.png/revision/latest?cb=20260703122022",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b9/Character_Himeko_%E2%80%A2_Nova_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260715025512",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Fire",
+      "faction": "Astral Express",
+      "world": "Astral Express",
+      "species": "Unknown",
+      "version": "4.4",
+      "released": "2026-07-15",
+      "lightcone": {
+        "name": "A Star That Lights the Night",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/01/Light_Cone_A_Star_That_Lights_the_Night.png/revision/latest?cb=20260715025907"
+      },
+      "voices": [
+        {
+          "text": "The fire carries on. Together... we are the Trailblaze!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d3/VO_Himeko_%E2%80%A2_Nova_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260928012147"
+        },
+        {
+          "text": "I'll safeguard your path ahead!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/07/VO_Himeko_%E2%80%A2_Nova_Skill_01.ogg/revision/latest?cb=20260928012127"
+        },
+        {
+          "text": "This journey leads us starward!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/64/VO_Himeko_%E2%80%A2_Nova_Skill_02.ogg/revision/latest?cb=20260928012130"
+        },
+        {
+          "text": "Starblazer, set forth.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/81/VO_Himeko_%E2%80%A2_Nova_Talent_01.ogg/revision/latest?cb=20260928012134"
+        }
+      ]
+    },
+    {
+      "id": "gilgamesh",
+      "name": "Gilgamesh",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d6/Character_Gilgamesh_Icon.png/revision/latest?cb=20260703122145",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/4/4f/Character_Gilgamesh_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260724102153",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Destruction",
+      "element": "Lightning",
+      "faction": "Another World",
+      "world": "Another World",
+      "species": "Human",
+      "version": "4.4",
+      "released": "2026-07-24",
+      "lightcone": {
+        "name": "I Am As You Behold",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e6/Light_Cone_I_Am_As_You_Behold.png/revision/latest?cb=20260715084402"
+      },
+      "voices": []
+    },
+    {
+      "id": "rin-tohsaka",
+      "name": "Rin Tohsaka",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/f8/Character_Rin_Tohsaka_Icon.png/revision/latest?cb=20260703122106",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/Character_Rin_Tohsaka_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260724102152",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Erudition",
+      "element": "Quantum",
+      "faction": "Another World",
+      "world": "Another World",
+      "species": "Human",
+      "version": "4.4",
+      "released": "2026-07-24",
+      "lightcone": {
+        "name": "Flickering Stars",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/1f/Light_Cone_Flickering_Stars.png/revision/latest?cb=20260724041949"
+      },
+      "voices": []
+    },
+    {
+      "id": "robin-summeretto",
+      "name": "Robin • Summeretto",
+      "aliases": [
+        "Robin Summeretto"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Character_Robin_%E2%80%A2_Summeretto_Icon.png/revision/latest?cb=20260814121759",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c4/Character_Robin_%E2%80%A2_Summeretto_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260826032839",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Remembrance",
+      "element": "Wind",
+      "faction": "Penacony",
+      "world": "Penacony",
+      "species": "Halovian",
+      "version": "4.5",
+      "released": "2026-08-26",
+      "lightcone": {
+        "name": "Rise and Sing",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/d/d7/Light_Cone_Rise_and_Sing.png/revision/latest?cb=20260826034026"
+      },
+      "voices": [
+        {
+          "text": "Let the voice of our hearts converge!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/6/67/VO_Robin_%E2%80%A2_Summeretto_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260906150921"
+        },
+        {
+          "text": "In this moment, you make the summer sky sparkle.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/e/e3/VO_Robin_%E2%80%A2_Summeretto_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260906150924"
+        },
+        {
+          "text": "''(Bessie 1)'' Pluck our heartstrings, Bessie!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/8/87/VO_Robin_%E2%80%A2_Summeretto_Skill_01.ogg/revision/latest?cb=20260906150850"
+        },
+        {
+          "text": "''(Drummie 1)'' Give us a rhythm, Drummie!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c4/VO_Robin_%E2%80%A2_Summeretto_Skill_02.ogg/revision/latest?cb=20260906150853"
+        }
+      ]
+    },
+    {
+      "id": "aventurine-waveflair",
+      "name": "Aventurine • Waveflair",
+      "aliases": [
+        "Aventurine Waveflair"
+      ],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Aventurine_%E2%80%A2_Waveflair_Icon.png/revision/latest?cb=20260814121832",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2b/Character_Aventurine_%E2%80%A2_Waveflair_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260912040648",
+      "gender": "Male",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Quantum",
+      "faction": "Interastral Peace Corporation",
+      "world": "Sigonia-IV",
+      "species": "Avgin",
+      "version": "4.5",
+      "released": "2026-09-12",
+      "lightcone": {
+        "name": "Summer Rides the Surf",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/Light_Cone_Summer_Rides_the_Surf.png/revision/latest?cb=20260912040858"
+      },
+      "voices": [
+        {
+          "text": "Ready to turn the tide?",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/b/b5/VO_Aventurine_%E2%80%A2_Waveflair_Ultimate_-_Activate_01.ogg/revision/latest?cb=20260912050817"
+        },
+        {
+          "text": "Get ahead of the waves, and the winner takes all.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/77/VO_Aventurine_%E2%80%A2_Waveflair_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20260912050819"
+        },
+        {
+          "text": "Crash incoming!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/a/a1/VO_Aventurine_%E2%80%A2_Waveflair_Skill_01.ogg/revision/latest?cb=20260912050801"
+        },
+        {
+          "text": "Hard landing!",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/7/7b/VO_Aventurine_%E2%80%A2_Waveflair_Skill_02.ogg/revision/latest?cb=20260912050803"
+        }
+      ]
+    },
+    {
+      "id": "pearl",
+      "name": "Pearl",
+      "aliases": [],
+      "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/3/3e/Character_Pearl_Icon.png/revision/latest?cb=20260920120918",
+      "splash": "https://static.wikia.nocookie.net/houkai-star-rail/images/9/96/Character_Pearl_Splash_Art.png/revision/latest/scale-to-width-down/700?cb=20260928030033",
+      "gender": "Female",
+      "rarity": 5,
+      "path": "Elation",
+      "element": "Ice",
+      "faction": "Interastral Peace Corporation",
+      "world": "Planarcadia",
+      "species": "Intellitron",
+      "version": "4.6",
+      "released": "2026-09-28",
+      "lightcone": {
+        "name": "Colors for Tomorrow",
+        "image": "https://static.wikia.nocookie.net/houkai-star-rail/images/c/c7/Light_Cone_Colors_for_Tomorrow.png/revision/latest?cb=20260928030418"
+      },
+      "voices": [
+        {
+          "text": "I dive into the sea and salvage the lost pearls...",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/19/VO_Pearl_Ultimate_-_Activate_01.ogg/revision/latest?cb=20261018212548"
+        },
+        {
+          "text": "In analysis, imitation, and restoration... I reforge their perfection.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/5/53/VO_Pearl_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20261018212551"
+        },
+        {
+          "text": "With this brushstroke, I preserve beauty.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/2/2e/VO_Pearl_Skill_01.ogg/revision/latest?cb=20261018212529"
+        },
+        {
+          "text": "The world will fade, but art is forever.",
+          "audio": "https://static.wikia.nocookie.net/houkai-star-rail/images/1/17/VO_Pearl_Skill_02.ogg/revision/latest?cb=20261018212532"
+        }
+      ]
+    }
+  ]
+}
