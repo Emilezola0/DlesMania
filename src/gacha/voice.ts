@@ -40,7 +40,6 @@ const SPEAKERS: Record<string, Speaker> = {
   arcraiders: { pitch: 0.6, rate: 0.95, lang: 'en-US' },
   hsr: { pitch: 1.05, rate: 1, lang: 'en-US' },
   deadlock: { pitch: 0.75, rate: 0.9, lang: 'en-US' },
-  ufouria: { pitch: 1.4, rate: 1.1, lang: 'en-US' },
   avatar: { pitch: 1.2, rate: 1.05, lang: 'en-US' },
   unreal: { pitch: 0.7, rate: 1.1, lang: 'en-US' },
 };
@@ -60,9 +59,12 @@ function pickVoice(sp: Speaker): SpeechSynthesisVoice | undefined {
 
 export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window;
 
+/** Franchises never read by the browser's voice: their cards have their own sounds only. */
+const NO_BROWSER_VOICE = new Set(['ufouria']);
+
 /** Reads a line aloud in a star's voice. */
 function say(line: string, set: string) {
-  if (!canSpeak()) return;
+  if (!canSpeak() || NO_BROWSER_VOICE.has(set)) return;
   const synth = window.speechSynthesis;
   synth.cancel();
   const sp = SPEAKERS[set] ?? { pitch: 1, rate: 1 };
@@ -230,4 +232,4 @@ export function voiceOf(card: Card, lang = useProgress.getState().nameLang): { l
 }
 
 /** Whether a card can be heard at all (a recording, or a browser that speaks). */
-export const canHear = (card: Card) => !!card.voice && (!!card.audio || canSpeak());
+export const canHear = (card: Card) => !!card.voice && (!!card.audio || (canSpeak() && !NO_BROWSER_VOICE.has(card.set)));

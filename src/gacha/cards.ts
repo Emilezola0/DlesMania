@@ -25,6 +25,9 @@ import { VAULTED } from './upgrades';
 
 /** Ufouria's pictures, served with the site (public/art/ufouria): the game's wikis don't let others show theirs. */
 const UFOURIA_ART = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/ufouria/${file}`;
+/** Hebe's and O-Chan's sounds and clips, from the owner's own game captures (public/audio/ufouria, public/clips/ufouria). */
+const UFOURIA_SOUND = (name: string) => `${import.meta.env?.BASE_URL ?? './'}audio/ufouria/${name}.mp3`;
+const UFOURIA_CLIP = (names: string[]) => names.map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/ufouria/${n}.mp4`).join('|');
 
 export type Rarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'omni';
 export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'omni'];
@@ -84,7 +87,7 @@ export interface Card {
  * voice line: their catchphrase in their voice actor's own voice — the games' voice files (hosted
  * by the fan wikis), the anime's Japanese voices and the films' actors (clips from myinstants). (Lines written for these cards; titles and catchphrases from the franchises.)
  */
-const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceFr?: string; audioFr?: string; image?: string }> = {
+const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceClips?: { line: string; audio: string }[]; voiceFr?: string; audioFr?: string; image?: string }> = {
   lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "A clever fox is never caught.", audio: "https://static.wikia.nocookie.net/leagueoflegends/images/5/5e/Ahri_Select.ogg/revision/latest?cb=20230110210107" },
   overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000" },
   minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…", audio: "https://minecraft.wiki/images/Creeper_fuse.ogg?2ff0e" },
@@ -128,7 +131,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
-  ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', image: UFOURIA_ART('dance-hebe-2.png') },
+  // His own sound from the owner's game captures (his clips: see CLIPS), one at random — never the browser's voice.
+  ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', audio: UFOURIA_SOUND('hebe-idle'), voiceClips: ['hebe-idle', 'hebe-dancing'].map((f) => ({ line: 'Uppo!', audio: UFOURIA_SOUND(f) })), image: UFOURIA_ART('dance-hebe-2.png') },
   arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
   hsr: { name: 'Kafka', title: 'The Stellaron Hunter', line: 'A violin, two pistols and a voice that tells you what to do: by the time you remember the order, you have already obeyed it.', voice: 'Good times never last.', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Kafka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325085121', image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20230809042240' },
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
@@ -258,6 +262,10 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     title: 'The Cat-Suit Friend',
     line: 'The first friend Utsujin’s Bumyon took over, and the first one Hebe had to fight to bring back. She can’t hold back any longer!',
     image: UFOURIA_ART('dance-o-chan.png'),
+    // Her own sound from the owner's game captures (her clips: see CLIPS), one at random — never the browser's voice.
+    voice: '♪',
+    audio: UFOURIA_SOUND('o-chan-singing'),
+    voiceClips: ['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun'].map((f) => ({ line: '♪', audio: UFOURIA_SOUND(f) })),
     awaken: {
       title: 'Over the Earth',
       line: 'Saucer gone, Bumyon cleaned up: O-Chan floats above the whole world, Hebe and the others beside her.',
@@ -681,6 +689,8 @@ const CLIPS: Record<string, string> = {
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
   'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
+  // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
+  'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
   'forhonor:mythic-2': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
@@ -702,10 +712,12 @@ const CLIPS: Record<string, string> = {
  * hand-drawn animation, his eyes welling up before he turns away (Tenor).
  */
 const FIRST_CLIPS: Record<string, string> = {
+  // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
+  'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
@@ -1046,7 +1058,7 @@ export const CARDS: Card[] = (() => {
     // The mythic: the star's special edition, numbered after the rest of the set.
     const m = MYTHICS[b.id];
     const star = m && b.radar.members.find((x) => x.label === m.name);
-    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: m.image ?? star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
+    if (m && star?.image) set.push({ id: `${b.id}:mythic`, name: m.name, image: m.image ?? star.image, set: b.id, franchise: b.franchise, domain: b.domain, rarity: 'mythic', title: m.title, voice: m.voice, audio: m.audio, voiceClips: m.voiceClips, voiceFr: m.voiceFr, audioFr: m.audioFr, description: m.line });
     // The omni: the legend in its first form, its second waiting for a Hard win.
     const o = OMNIS[b.id];
     const legend = o && b.radar.members.find((x) => x.label === o.name);
