@@ -1012,6 +1012,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const [charging, setCharging] = useState(false);
   const [flash, setFlash] = useState<{ color: string; key: number; rainbow?: boolean } | null>(null);
   const box = useRef<HTMLDivElement>(null);
+  // What shakes: the stage inside the overlay (the pack, the stars, the card), never the overlay itself, so the
+  // backdrop stays put and no edge of the page shows at the screen's borders.
+  const stage = useRef<HTMLDivElement>(null);
+  // A hit: the stage swells a little, then settles in jolts that die away.
+  const jolt = (px: number, ms: number) => shake(stage.current, px * 0.6, ms, { punch: Math.min(0.035, px / 900) });
   const packRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{ x: number; moved: boolean } | null>(null);
   const timers = useRef<number[]>([]);
@@ -1067,7 +1072,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setLean(0);
     buzz([30, 40, 70]);
     if (!reducedMotion()) {
-      shake(box.current, 10, 340);
+      jolt(10, 340);
       setFlash({ color: glow, key: Date.now(), rainbow: special === 'mythic' });
     }
     setPhase('torn');
@@ -1076,9 +1081,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       setPhase('meteor');
       // A star a card: each its own whoosh, the rarest the long one; an evolving star chimes as it changes.
       // The black hole: it opens with a hum as the first star flies.
-      if (cosmos.hole) later(() => (sfx.blackHole(), rumble(box.current, 1800, 0.3, 3)), 0);
+      if (cosmos.hole) later(() => (sfx.blackHole(), rumble(stage.current, 1800, 0.3, 3)), 0);
       // A star it pulls in: a rush of air, and a jolt as it goes.
-      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), shake(box.current, 7, 400)), stars[k].delay + stars[k].duration - 300);
+      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), jolt(7, 400)), stars[k].delay + stars[k].duration - 300);
       stars.forEach((s, k) => {
         if (s.event) return cosmicCues(s);
         later(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
@@ -1087,7 +1092,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           later(() => {
             sfx.clash();
             sfx.shimmer(5);
-            shake(box.current, 14, 520);
+            jolt(14, 520);
             setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
           }, s.delay + CLASH_AT);
       });
@@ -1101,7 +1106,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       if (moment === 'shower') for (let t = 400; t < 3000; t += 450) later(() => sfx.shimmer(2), t);
       if (moment === 'capture') later(() => sfx.shimmer(6), 3300);
       // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
-      for (const s of stars) if (s.climax) later(() => (rumble(box.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), s.delay - LAST_STAR_PAUSE);
+      for (const s of stars) if (s.climax) later(() => (rumble(stage.current, LAST_STAR_PAUSE, 0.5, 7), sfx.suspense(LAST_STAR_PAUSE / 1000)), s.delay - LAST_STAR_PAUSE);
       const end = Math.max(...stars.map((s) => s.delay + s.duration));
       later(() => setFlash({ color: PACK_LIGHT, key: Date.now() }), end - 100);
       later(toReveal, end + 300);
@@ -1114,23 +1119,23 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     if (s.event === 'wish') {
       later(() => sfx.whoosh(), s.delay);
       later(() => sfx.shimmer(8), boom - 500);
-      later(() => (sfx.streak(), shake(box.current, 6, 300), buzz(25), setFlash({ color: '#ffd86b', key: Date.now() })), boom);
+      later(() => (sfx.streak(), jolt(6, 300), buzz(25), setFlash({ color: '#ffd86b', key: Date.now() })), boom);
       return;
     }
     later(() => sfx.shimmer(6), s.delay);
     if (s.event === 'collision') {
-      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(box.current, COSMIC_BOOM.collision, 0.2, 6)), s.delay);
-      later(() => (sfx.embrace(), shake(box.current, 16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
+      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(stage.current, COSMIC_BOOM.collision, 0.2, 6)), s.delay);
+      later(() => (sfx.embrace(), jolt(16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
     } else if (s.event === 'supernova') {
       later(() => sfx.whoosh(), s.delay);
-      later(() => (sfx.swallow(), shake(box.current, 8, 300)), s.delay + 900);
-      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(box.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), s.delay + 1000);
-      later(() => (sfx.supernova(), shake(box.current, 24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
+      later(() => (sfx.swallow(), jolt(8, 300)), s.delay + 900);
+      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(stage.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), s.delay + 1000);
+      later(() => (sfx.supernova(), jolt(24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
       later(() => celebrate(), boom + 300);
     } else {
       later(() => sfx.meteor(true), s.delay);
-      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(box.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), s.delay + 900);
-      later(() => (sfx.bigBang(), shake(box.current, 30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
+      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(stage.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), s.delay + 900);
+      later(() => (sfx.bigBang(), jolt(30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
       later(() => celebrateBig(), boom + 250);
     }
   };
@@ -1235,15 +1240,15 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         later(() => (celebrateBig(), sfx.victory()), 1700);
         // Then the legend speaks, once the fanfare has passed.
         if (c.voice) later(() => playVoice(c), 2400);
-        shake(box.current, 22, 1000);
+        jolt(22, 1000);
       } else if (c.rarity === 'mythic') {
         sfx.victory();
         celebrateBig();
         later(() => (celebrateBig(), sfx.streak()), 900);
         if (c.voice) later(() => playVoice(c), 1300);
-        shake(box.current, 18, 800);
-      } else if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), shake(box.current, 14, 600));
-      else if (c.rarity === 'epic') (sfx.streak(), celebrate(), shake(box.current, 6, 300));
+        jolt(18, 800);
+      } else if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), jolt(14, 600));
+      else if (c.rarity === 'epic') (sfx.streak(), celebrate(), jolt(6, 300));
       else if (c.rarity === 'rare') sfx.correct();
       else sfx.pop();
     };
@@ -1323,7 +1328,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const big = card && (card.rarity === 'epic' || top(card.rarity));
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className={`fixed inset-0 z-50 bg-[#07060c]/90 p-4 backdrop-blur-sm ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center overflow-hidden'}`} style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : PACK_LIGHT}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           SKIP ⏭
@@ -1340,6 +1345,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       )}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
+      {/* The stage: everything that shakes. Not clipped itself (the overlay clips), so the star field's bleed covers the borders mid-shake. */}
+      <div ref={stage} className={`absolute inset-0 p-4 ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-8">
@@ -1437,7 +1444,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
 
       {/* 2. The shooting stars: one per card, in its colour, the rarest last — now and then one crashes into another and evolves. */}
       {phase === 'meteor' && (
-        <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
+        <div className="pointer-events-none absolute -inset-16 overflow-hidden" aria-hidden>
           <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={moment} />
           {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
           {stars.map((s, k) => {
@@ -1554,6 +1561,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

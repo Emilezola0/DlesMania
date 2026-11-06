@@ -22,7 +22,6 @@ export function celebrateBig() {
   frame();
 }
 
-/** Jolts an element (screen shake). `strength` is the peak offset in pixels. */
 /**
  * A rumble: the element trembles for `duration` ms, in small random jolts that grow from `from` to `to`
  * pixels (an earthquake building up), then settles.
@@ -41,9 +40,29 @@ export function rumble(el: HTMLElement | null, duration: number, from = 1, to = 
   el.animate(frames, { duration, easing: 'linear' });
 }
 
-export function shake(el: HTMLElement | null, strength = 8, duration = 420) {
+/**
+ * Jolts an element (screen shake). `strength` is the peak offset in pixels.
+ * With `punch` (e.g. 0.03), it's a hit instead: the element swells by that much at once, then settles back
+ * in a few quick jolts that die away — punchy, and it lands exactly where it started.
+ */
+export function shake(el: HTMLElement | null, strength = 8, duration = 420, { punch = 0 }: { punch?: number } = {}) {
   if (!el || reducedMotion() || !el.animate) return;
   const s = strength;
+  if (punch > 0) {
+    const steps = 7;
+    const frames: Keyframe[] = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const decay = (1 - t) * (1 - t);
+      const side = i % 2 ? 1 : -1;
+      const x = i === 0 || i === steps ? 0 : side * s * decay * (0.7 + Math.random() * 0.3);
+      const y = i === 0 || i === steps ? 0 : (Math.random() * 2 - 1) * s * 0.35 * decay;
+      const scale = 1 + punch * (1 - t) ** 3;
+      frames.push({ transform: `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${scale.toFixed(4)})` });
+    }
+    el.animate(frames, { duration, easing: 'cubic-bezier(.2,.7,.3,1)' });
+    return;
+  }
   el.animate(
     [
       { transform: 'translate(0, 0)' },
