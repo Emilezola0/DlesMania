@@ -343,6 +343,101 @@ function skyMomentFor(rand: () => number = Math.random): SkyMoment | null {
   return rand() < COSMIC.skyMoment ? SKY_MOMENTS[Math.floor(rand() * SKY_MOMENTS.length)] : null;
 }
 
+/**
+ * The fly-by: now and then the pack's own cards drift across the sky as small glowing tokens before the last
+ * star — only cards really in the pack (never one that isn't: no false hope), out of focus, haloed in the colour
+ * their star shows, the best one last, slowest and half lost in its own glow: the player glimpses who, not quite
+ * how rare. Likelier the better the pack (FLYBY_CHANCE by its best card); never a cosmic event's card or a
+ * wish's (their scenes are the surprise). In a franchise or kind-of-work pack, its icon twinkles among them.
+ * At most FLYBY_MAX tokens (five packs at once). For testing, in dev only: localStorage "omnidle-force-flyby" = "1".
+ */
+const FLYBY_CHANCE: Record<Rarity, number> = { common: 0.15, rare: 0.15, epic: 0.3, legendary: 0.5, mythic: 0.8, omni: 0.8 };
+const FLYBY_MAX = 8;
+interface Flyer {
+  card: Card;
+  /** The colour of its halo: what its star shows (an evolving star's first colour). */
+  color: Rarity;
+  delay: number;
+  duration: number;
+  top: number;
+  size: number;
+  /** The best card's: last, slowest, deepest in its glow. */
+  best: boolean;
+  tilt: number;
+}
+function flybyFor(ordered: Card[], shown: Rarity[], regular: number, wishes: Map<number, CosmicEvent>, from: number, until: number, best: Rarity, rand: () => number = Math.random): Flyer[] {
+  let force = false;
+  try {
+    if (import.meta.env.DEV) force = localStorage.getItem('omnidle-force-flyby') === '1';
+  } catch {
+    // No storage: chance alone.
+  }
+  if (regular < 2 || until - from < 1500 || !(force || rand() < FLYBY_CHANCE[best])) return [];
+  // The ordinary cards with a picture (no wish: its comet is the surprise), the best last.
+  const pool = ordered.slice(0, regular).map((card, k) => ({ card, k })).filter(({ card, k }) => card.image && !wishes.has(k));
+  if (pool.length < 2) return [];
+  const top = pool[pool.length - 1];
+  const rest = pool.slice(0, -1).sort(() => rand() - 0.5).slice(0, FLYBY_MAX - 1).sort((a, b) => a.k - b.k);
+  const bestMs = Math.min(3600, until - from);
+  const others = Math.max(1200, Math.min(2600, until - from - 400));
+  const flyers: Flyer[] = rest.map(({ card, k }, j) => ({
+    card,
+    color: shown[k],
+    delay: from + ((until - bestMs - from) * j) / Math.max(1, rest.length) + rand() * 120,
+    duration: others + rand() * 400,
+    top: 14 + rand() * 62,
+    size: 40 + RARITIES.indexOf(shown[k]) * 4 + rand() * 6,
+    best: false,
+    tilt: -14 + rand() * 28,
+  }));
+  flyers.push({ card: top.card, color: shown[top.k], delay: until - bestMs, duration: bestMs, top: 30 + rand() * 30, size: 76, best: true, tilt: -6 + rand() * 12 });
+  return flyers;
+}
+/** The fly-by's tokens drifting across the sky (and the pack's icon twinkling among them). */
+function Flyby({ flyers, glyph }: { flyers: Flyer[]; glyph?: string }) {
+  if (!flyers.length) return null;
+  const start = flyers[0].delay;
+  const end = Math.max(...flyers.map((f) => f.delay + f.duration));
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      {flyers.map((f, k) => {
+        const c = RARITY_LIGHT[f.color];
+        const focus = f.card.focus;
+        return (
+          <div key={k} className="absolute left-0 w-full" style={{ top: `${f.top}%`, transform: `rotate(${f.tilt * 0.3}deg)` }}>
+            <div className={`pack-flyby ${f.best ? 'pack-flyby-best' : ''}`} style={{ animationDelay: `${f.delay}ms`, animationDuration: `${f.duration}ms`, ['--fly-tilt' as string]: `${f.tilt}deg` }}>
+              <div
+                className={`relative overflow-hidden rounded-full border-2 ${rainbowy(f.color) ? 'pack-twinkle-rainbow' : ''}`}
+                style={{ width: f.size, height: f.size, borderColor: c, boxShadow: `0 0 ${f.best ? 34 : 14}px ${c}, 0 0 ${f.best ? 70 : 26}px ${c}88`, background: '#0b0618' }}
+              >
+                <img
+                  src={f.card.image}
+                  alt=""
+                  draggable={false}
+                  className="size-full object-cover"
+                  style={{ objectPosition: focus ? `${focus.x}% ${focus.y}%` : '50% 25%', filter: f.best ? 'blur(3px) brightness(1.15)' : 'blur(1.2px)' }}
+                />
+                {/* Lost in its own light: a glow over the picture, thicker on the best one. */}
+                <div className="absolute inset-0 rounded-full" style={{ background: `radial-gradient(circle, transparent ${f.best ? 25 : 45}%, ${c}${f.best ? 'cc' : '77'} 100%)` }} />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+      {glyph &&
+        Array.from({ length: 6 }, (_, k) => (
+          <span
+            key={`g${k}`}
+            className="pack-flyby-glyph absolute text-2xl"
+            style={{ left: `${10 + k * 15 + (k % 2) * 4}%`, top: `${18 + ((k * 29) % 58)}%`, animationDelay: `${start + ((end - start) * k) / 6}ms` }}
+          >
+            {glyph}
+          </span>
+        ))}
+    </div>
+  );
+}
+
 /** A great comet crossing the top of the sky, slow, its tail streaming behind in the best colour the stars show. */
 function Comet({ at, color }: { at: number; color: string }) {
   return (
@@ -1129,6 +1224,14 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const [skyNow, setSkyNow] = useState<{ tier: SkyTier; n: number }>(() => ({ tier: skyTier(cosmos.stars.map((st) => st.from)), n: 0 }));
   const [feed, setFeed] = useState(0);
   const moment = useMemo(() => skyMomentFor(), []);
+  // The fly-by (FLYBY_CHANCE): from soon after the first star to just before the last one (a fast tear's longer
+  // wait included — the best token drifts by in it).
+  const flyers = useMemo(() => {
+    const climax = stars.find((st) => st.climax)?.delay;
+    if (climax === undefined) return [];
+    return flybyFor(ordered, cosmos.stars.map((st) => st.from), regular, wishAt, 400, climax - 250, best);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cosmos, pauseExtra]);
   const [kept, setKept] = useState<Record<number, boolean>>({});
   const setAnomaly = useProgress((s) => s.setAnomaly);
   const decide = (k: number, keep: boolean) => {
@@ -1699,6 +1802,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         <div className="pointer-events-none absolute -inset-16 overflow-hidden" aria-hidden>
           {/* A nebula behind it all, in the pack's colours, glowing brighter as the planet grows. */}
           <Nebula colors={tints} tier={skyNow.tier} />
+          {/* The fly-by: the pack's own cards drifting across, out of focus, before the last star. */}
+          <Flyby flyers={flyers} glyph={pack.id === 'general' ? undefined : pack.icon} />
           <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={moment} cometAt={cometAt} cometColor={RARITY_LIGHT[tease]} />
           {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
           {stars.map((s, k) => {

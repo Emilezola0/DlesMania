@@ -916,6 +916,18 @@ h1, h2, h3, .font-serif, .font-display {
 @keyframes pack-fusion-in { from { transform: translate(var(--fx), var(--fy)) scale(1); opacity: 0; } 25% { opacity: 1; } to { transform: translate(0, 0) scale(0.2); opacity: 0; } }
 .pack-fusion-core { width: 220px; height: 220px; translate: -50% -50%; mix-blend-mode: screen; animation: pack-fusion-core 1.2s ease-in-out infinite alternate; }
 @keyframes pack-fusion-core { from { transform: scale(calc(var(--core) * 0.75)); opacity: 0.55; } to { transform: scale(var(--core)); opacity: 0.95; } }
+/* The fly-by: the pack's cards drifting across the sky as glowing tokens, turning slowly as they pass. */
+.pack-flyby { position: absolute; left: 0; transform: translateX(-12vw); opacity: 0; animation: pack-flyby linear both; }
+@keyframes pack-flyby {
+  0% { transform: translateX(-12vw) translateY(0) rotate(calc(var(--fly-tilt) * -1)) scale(0.7); opacity: 0; }
+  12% { opacity: 0.9; }
+  50% { transform: translateX(50vw) translateY(-3vh) rotate(0deg) scale(1); }
+  88% { opacity: 0.9; }
+  100% { transform: translateX(112vw) translateY(1vh) rotate(var(--fly-tilt)) scale(0.8); opacity: 0; }
+}
+.pack-flyby-best { animation-timing-function: cubic-bezier(0.25, 0.6, 0.75, 0.4); }
+.pack-flyby-glyph { opacity: 0; filter: drop-shadow(0 0 6px #fff8); animation: pack-flyby-glyph 1.6s ease-in-out both; }
+@keyframes pack-flyby-glyph { 0%, 100% { opacity: 0; transform: scale(0.4) rotate(-20deg); } 50% { opacity: 0.85; transform: scale(1) rotate(10deg); } }
 /* A near-miss: the next step flickering before it cracks. */
 .pack-flicker { animation: pack-flicker 0.55s steps(1, end) both; }
 @keyframes pack-flicker { 0% { opacity: 1; } 18% { opacity: 0.25; } 30% { opacity: 1; } 52% { opacity: 0.15; } 64% { opacity: 0.9; } 82% { opacity: 0.1; } 100% { opacity: 0; } }
@@ -943,7 +955,7 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-luck-full { animation: pack-luck-full 1.2s ease-in-out infinite; }
 @keyframes pack-luck-full { 50% { box-shadow: 0 0 10px #fbbf24; filter: brightness(1.3); } }
 @media (prefers-reduced-motion: reduce) {
-  .pack-leak, .pack-nebula-cloud, .pack-fusion-spark, .pack-fusion-core, .pack-banner, .pack-flicker, .pack-press, .pack-lastcard, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
+  .pack-flyby, .pack-flyby-glyph, .pack-leak, .pack-nebula-cloud, .pack-fusion-spark, .pack-fusion-core, .pack-banner, .pack-flicker, .pack-press, .pack-lastcard, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
 }
 /* The golden pack: a gold foil wrapper with a light sweeping across, its meter, its own backdrop as it opens. */
 .golden-fill { background: linear-gradient(90deg, #b45309, #fbbf24, #fff7cc, #fbbf24); background-size: 200% 100%; animation: golden-sweep 2.4s linear infinite; }
