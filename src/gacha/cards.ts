@@ -665,8 +665,8 @@ const CLIPS: Record<string, string> = {
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
   // Infernus: a fan's painting, the flames around him flickering (Tenor).
   'deadlock:mythic-2': 'https://media.tenor.com/0cyI_TG7YT0AAAPo/infernus-deadlock-deadlock.mp4',
-  // The Doorman awakened: a fan's painted close-up, his head turning with a sly look before the picture glitches out (Tenor; his first form has its own clip in FIRST_CLIPS).
-  'deadlock:omni': 'https://media.tenor.com/s-l__1MmLb8AAAPo/doorman-deadlock.mp4',
+  // The Doorman awakened: his ultimate in the game, the bell rung and the heroes round him sent flying (Klipy; his first form has its own clip in FIRST_CLIPS).
+  'deadlock:omni': 'https://static2.klipy.com/ii/6b3a6ab13999af763b4db87b91ee67d0/ed/04/r20uJhAyqTlyYVebcr.mp4',
 };
 /**
  * An omni's first form, animated too (its `CLIPS` entry is its awakened form's): the Doorman in a fan's

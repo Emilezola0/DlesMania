@@ -12,6 +12,7 @@ Rules the owner set; keep to them in every change.
 
 ## Pictures
 - **3D models only for silhouettes** (Who's That? and silhouette rounds). Boss Battle and every other picture use drawn (2D) art. Bosses marked `drawnOnly` take no card pictures in Final Blow (`scripts/data/boss-2d-art.mjs`).
+- A card's **animated clip** may be anything that looks good and stylish: game footage (3D), effects, GIFs, fan animation. Its **still picture** stays drawn (2D).
 - Cards keep the picture they were pulled with (`src/data/card-art.json`).
 
 ## Music
