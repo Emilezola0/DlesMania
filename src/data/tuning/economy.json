@@ -41,12 +41,12 @@
     "packs": 150,
     "slots": 3,
     "last": {
-      "mythic": 80,
-      "omni": 3
+      "mythic": 35,
+      "omni": 1
     },
     "others": {
-      "mythic": 6,
-      "omni": 0.5
+      "mythic": 3,
+      "omni": 0.25
     }
   },
   "expedition": {

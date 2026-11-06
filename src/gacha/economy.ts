@@ -167,11 +167,11 @@ export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * cla
 
 /**
  * The golden pack: every GOLDEN.packs-th pack opened (any pack, whatever it held) comes golden. Its last
- * GOLDEN.slots cards are Legendary or better: the very last one Mythic most of the time (GOLDEN.last), the
+ * GOLDEN.slots cards are Legendary or better: the very last one now and then Mythic (GOLDEN.last), the
  * others Legendary with a small chance of better (GOLDEN.others), in percent. With the live numbers (150
- * packs; 80% / 3% on the last, 6% / 0.5% on the two before): a Mythic or better in 85% of golden packs and
- * an Omni in 4%, so the endgame stays far away — a pack with a Mythic or better about every 100 packs
- * instead of 250, one with an Omni about every 1,450 instead of 2,300. The counter is the packs opened since the last golden one.
+ * packs; 35% / 1% on the last, 3% / 0.25% on the two before): a Mythic or better in about 40% of golden
+ * packs and an Omni in 1.5%, so the endgame stays far away (retuned 6 November 2026: at 80% / 3% the golden
+ * packs alone gave half of all Mythics). The counter is the packs opened since the last golden one.
  */
 export const GOLDEN = T.golden;
 export const clampGolden = (n: number | undefined) => (Number.isFinite(n) ? Math.min(GOLDEN.packs - 1, Math.max(0, Math.floor(n as number))) : 0);

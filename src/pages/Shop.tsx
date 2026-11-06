@@ -58,7 +58,7 @@ function GoldenMeter({ golden, compact }: { golden: number; compact?: boolean })
   const text = ready ? 'Your next pack is GOLDEN!' : `Golden pack in ${left} pack${left === 1 ? '' : 's'}`;
   if (compact)
     return (
-      <p className={`text-xs font-semibold ${ready ? 'golden-text' : 'text-ink-faint'}`} title={`Every ${GOLDEN.packs}th pack is golden: ${GOLDEN.slots} cards Legendary or better, the last one most often Mythic.`}>
+      <p className={`text-xs font-semibold ${ready ? 'golden-text' : 'text-ink-faint'}`} title={`Every ${GOLDEN.packs}th pack is golden: ${GOLDEN.slots} cards Legendary or better, the last one sometimes Mythic.`}>
         🌟 {text}
       </p>
     );
