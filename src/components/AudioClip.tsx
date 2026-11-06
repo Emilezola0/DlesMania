@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { sfx } from '../lib/sfx';
-import { YT_ENDED as ENDED, YT_PLAYING as PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { YT_BUFFERING as BUFFERING, YT_ENDED as ENDED, YT_PLAYING as PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
 import { Spinner } from './Spinner';
 import { useProgress } from '../store/progress';
 
@@ -23,6 +23,11 @@ interface Props {
   onUnavailable: () => void;
   /** Play the whole clip from `start` every time, instead of growing snippets (short clips like a laugh). */
   full?: boolean;
+  /**
+   * Told whenever the clip starts or stops loading: the player not ready yet, or the sound asked for and
+   * still buffering. A round against the clock stops its timer meanwhile.
+   */
+  onLoading?: (loading: boolean) => void;
 }
 
 /** Intros are often silent or ambient, so default to ~40% in, leaving room for the longest snippet. */
@@ -31,7 +36,7 @@ function autoStart(duration: number): number {
   return Math.floor(Math.min(duration * 0.4, duration - SNIPPETS[SNIPPETS.length - 1] - 5));
 }
 
-export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS, full = false }: Props) {
+export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengths = SNIPPETS, full = false, onLoading }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YTPlayer | null>(null);
   const timer = useRef<number>();
@@ -42,6 +47,21 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
   /** Asked to play, still buffering before the sound starts. */
   const [starting, setStarting] = useState(false);
   const [playing, setPlaying] = useState(false);
+  /** Stalled mid-play, waiting for more of the clip. */
+  const [buffering, setBuffering] = useState(false);
+  const loading = !revealed && (!ready || starting || buffering);
+  const tell = useRef(onLoading);
+  tell.current = onLoading;
+  useEffect(() => {
+    tell.current?.(loading);
+  }, [loading]);
+  // Gone (the round moved on): nothing is loading any more.
+  useEffect(
+    () => () => {
+      tell.current?.(false);
+    },
+    [],
+  );
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   // A full clip runs to its end; otherwise the snippet unlocked so far.
@@ -79,6 +99,7 @@ export function AudioClip({ videoId, start, step, revealed, onUnavailable, lengt
             onError: () => onUnavailable(),
             onStateChange: (e) => {
               // The clip ran out before the timer did (a full clip, or a short video).
+              setBuffering(e.data === BUFFERING && pending.current === null);
               if (e.data === ENDED) {
                 setStarting(false);
                 window.clearInterval(timer.current);

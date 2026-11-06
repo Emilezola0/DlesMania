@@ -49,6 +49,9 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   const clue = clues[Math.min(index, clues.length - 1)];
   // A picture clue: the clock waits for it, and the next one loads ahead.
   const pictureReady = useImagesReady([clue.image]);
+  // A sound clue: the clock stops while the clip loads or buffers (a slow connection costs no time).
+  const [clipLoading, setClipLoading] = useState(false);
+  const clueReady = pictureReady && !(clue.audio && clipLoading);
   useEffect(() => {
     const next = clues[index + 1]?.image;
     if (next) new Image().src = next;
@@ -62,14 +65,14 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
   const hints = (signature.hints && clue.hints) || [];
   useEffect(() => {
     setHintsShown(0);
-    if (!hints.length || seconds <= 20 || state !== 'answer' || !pictureReady) return;
+    if (!hints.length || seconds <= 20 || state !== 'answer' || !clueReady) return;
     const first = 10;
     const last = seconds - 10;
     const ts = hints.map((_, i) => window.setTimeout(() => setHintsShown((n) => Math.max(n, i + 1)), (first + ((last - first) * i) / Math.max(1, hints.length - 1)) * 1000));
     return () => ts.forEach(clearTimeout);
     // A new clue starts them over.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index, pictureReady, signature.hints, seconds]);
+  }, [index, clueReady, signature.hints, seconds]);
 
   const end = (won: boolean, reason: string, score: number) => {
     setState('over');
@@ -159,7 +162,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
             <p className="rounded-md border-2 border-dashed border-rule px-6 py-3 font-display text-2xl font-black">?</p>
           </div>
         ) : clue.audio ? (
-          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} />
+          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} onLoading={setClipLoading} />
         ) : (
           <div className="py-4 text-center">
             <p className="font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
@@ -181,7 +184,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
       {seconds > 0 && (
         <TimerBar
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
-          running={state === 'answer' && pictureReady}
+          running={state === 'answer' && clueReady}
           resetKey={index}
           onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`)}
           hideSeconds
