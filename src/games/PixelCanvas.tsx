@@ -1,27 +1,35 @@
 import { useEffect, useRef, useState } from 'react';
+import { Spinner } from '../components/Spinner';
 
 /** Block size in pixels for each wrong-guess step; the last value is the clean image. */
 const STEPS = [36, 26, 18, 12, 8, 4, 1];
 const SIZE = 320;
 
 interface Props {
-  /** Real cover art. Falls back to the generated glyph cover if missing or it fails to load. */
-  src?: string;
-  icon: string;
-  colors: [string, string];
+  /**
+   * The pictures to pixelate, best first (the cover, then stand-ins): each tried in turn until one loads. No
+   * emoji ever stands in for a picture: while one loads the square stays dark, and if none loads, `onFail`.
+   */
+  srcs: string[];
   step: number;
+  /** Which of `srcs` is shown, once one has loaded. */
+  onShown?: (index: number) => void;
+  onFail?: () => void;
 }
 
-function drawGlyph(s: CanvasRenderingContext2D, icon: string, colors: [string, string]) {
-  const grad = s.createLinearGradient(0, 0, SIZE, SIZE);
-  grad.addColorStop(0, colors[0]);
-  grad.addColorStop(1, colors[1]);
-  s.fillStyle = grad;
-  s.fillRect(0, 0, SIZE, SIZE);
-  s.font = `${SIZE * 0.7}px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif`;
-  s.textAlign = 'center';
-  s.textBaseline = 'middle';
-  s.fillText(icon, SIZE / 2, SIZE / 2 + SIZE * 0.04);
+/**
+ * Wikimedia sometimes turns a busy hotlink away; its thumbnail of the same file is served from another cache.
+ * "…/wikipedia/en/a/a1/X.jpg" → "…/wikipedia/en/thumb/a/a1/X.jpg/250px-X.jpg" (one of the sizes it serves).
+ */
+export function withThumbs(srcs: (string | undefined)[]): string[] {
+  const out: string[] = [];
+  for (const src of srcs) {
+    if (!src) continue;
+    out.push(src);
+    const m = /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/[^/]+)\/([0-9a-f]\/[0-9a-f]{2})\/([^/?#]+)$/.exec(src);
+    if (m) out.push(`${m[1]}/thumb/${m[2]}/${m[3]}/250px-${m[3]}`);
+  }
+  return [...new Set(out)];
 }
 
 /** Draws `img` like CSS object-fit: cover into the square. */
@@ -33,26 +41,45 @@ function drawCover(s: CanvasRenderingContext2D, img: HTMLImageElement) {
 }
 
 /** Renders a cover and pixelates it progressively. */
-export function PixelCanvas({ src, icon, colors, step }: Props) {
+export function PixelCanvas({ srcs, step, onShown, onFail }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [img, setImg] = useState<HTMLImageElement | null>(null);
+  const [failed, setFailed] = useState(false);
+  const key = srcs.join('|');
 
   useEffect(() => {
     setImg(null);
-    if (!src) return;
-    const i = new Image();
-    i.onload = () => setImg(i);
-    i.src = src;
-  }, [src]);
+    setFailed(false);
+    let cancelled = false;
+    const tryAt = (k: number) => {
+      if (cancelled) return;
+      if (k >= srcs.length) return void (setFailed(true), onFail?.());
+      const i = new Image();
+      i.onload = () => {
+        if (cancelled) return;
+        setImg(i);
+        onShown?.(k);
+      };
+      i.onerror = () => tryAt(k + 1);
+      i.src = srcs[k];
+    };
+    tryAt(0);
+    return () => {
+      cancelled = true;
+    };
+    // The same list of pictures: the same attempt.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, SIZE, SIZE);
+    if (!img) return;
     const src2d = document.createElement('canvas');
     src2d.width = src2d.height = SIZE;
-    const s = src2d.getContext('2d')!;
-    if (img) drawCover(s, img);
-    else drawGlyph(s, icon, colors);
+    drawCover(src2d.getContext('2d')!, img);
 
     const block = STEPS[Math.min(step, STEPS.length - 1)];
     const small = Math.max(1, Math.round(SIZE / block));
@@ -60,19 +87,24 @@ export function PixelCanvas({ src, icon, colors, step }: Props) {
     tmp.width = tmp.height = small;
     tmp.getContext('2d')!.drawImage(src2d, 0, 0, small, small);
 
-    const ctx = canvas.getContext('2d')!;
     ctx.imageSmoothingEnabled = false;
-    ctx.clearRect(0, 0, SIZE, SIZE);
     ctx.drawImage(tmp, 0, 0, small, small, 0, 0, SIZE, SIZE);
-  }, [img, icon, colors, step]);
+  }, [img, step]);
 
   return (
-    <canvas
-      ref={ref}
-      width={SIZE}
-      height={SIZE}
-      className="mx-auto aspect-square w-full max-w-72 rounded-xl shadow-2xl shadow-ink/30 transition-transform duration-300"
-      style={{ imageRendering: 'pixelated' }}
-    />
+    <div className="relative mx-auto aspect-square w-full max-w-72">
+      <canvas
+        ref={ref}
+        width={SIZE}
+        height={SIZE}
+        className="size-full rounded-xl bg-tile shadow-2xl shadow-ink/30 transition-transform duration-300"
+        style={{ imageRendering: 'pixelated' }}
+      />
+      {!img && !failed && (
+        <span className="absolute inset-0 grid place-items-center text-ink-faint">
+          <Spinner className="size-8" />
+        </span>
+      )}
+    </div>
   );
 }

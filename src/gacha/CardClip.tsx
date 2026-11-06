@@ -1,10 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { createTikTokPlayer, type TikTokPlayer } from '../lib/tiktok';
-import { YT_ENDED, YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { YT_BUFFERING, YT_CUED, YT_ENDED, YT_PAUSED, YT_PLAYING, YT_UNSTARTED, loadYouTube, type YTPlayer } from '../lib/youtube';
 import { TT_CLIP, YT_VOICE } from './voice';
 
 /** How often a YouTube clip checks whether it has reached its end (ms): its moments can be under a second. */
 const LOOP_CHECK_MS = 50;
+/** How long a YouTube clip waits after it starts playing before it shows: YouTube's play button takes that to fade. */
+const REVEAL_MS = 1200;
+/** The first time, longer: YouTube shows its controls for a few seconds once it starts, whatever `controls` says. */
+const FIRST_REVEAL_MS = 4500;
+/** An end at least this far ("@0-999") means the whole video. */
+const WHOLE = 900;
 
 /** A moment of a YouTube video on a silent loop, hidden until it really plays (no title, no loading screen). */
 function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: string; start: number; end: number; onFail: () => void; onPlaying?: () => void; className?: string }) {
@@ -14,6 +20,10 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: str
     let cancelled = false;
     let player: YTPlayer | null = null;
     let timer: number | undefined;
+    let reveal: number | undefined;
+    let shown = false;
+    // A clip played whole ("@0-999") loops by YouTube's own loop: every seek makes it flash its play button.
+    const whole = start === 0 && end >= WHOLE;
     loadYouTube()
       .then((YT) => {
         if (cancelled || !host.current) return;
@@ -23,12 +33,13 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: str
           videoId: id,
           width: '100%',
           height: '100%',
-          playerVars: { autoplay: 1, mute: 1, controls: 0, disablekb: 1, modestbranding: 1, rel: 0, playsinline: 1, iv_load_policy: 3, fs: 0, start: Math.floor(start) },
+          playerVars: { autoplay: 1, mute: 1, controls: 0, disablekb: 1, modestbranding: 1, rel: 0, playsinline: 1, iv_load_policy: 3, fs: 0, start: Math.floor(start), ...(whole ? { loop: 1, playlist: id } : {}) },
           events: {
             onReady: () => {
               player?.mute();
-              player?.seekTo(start, true);
+              if (!whole) player?.seekTo(start, true);
               player?.playVideo();
+              if (whole) return;
               // An end past the video's own (a clip played whole: "@0-999") loops at the video's end.
               const length = player?.getDuration() ?? 0;
               const stop = length > 0 ? Math.min(end, length - 0.3) : end;
@@ -40,10 +51,33 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: str
             onError: () => onFail(),
             onStateChange: (e) => {
               // Ended anyway (the length wasn't known yet): from the start again.
-              if (e.data === YT_ENDED) return void (player?.seekTo(start, true), player?.playVideo());
+              if (e.data === YT_ENDED) {
+                window.clearTimeout(reveal);
+                setPlaying(false);
+                if (!whole) player?.seekTo(start, true);
+                return void player?.playVideo();
+              }
+              // Paused, cued or not started: YouTube draws its big play button, so hide (and play on, if paused).
+              if (e.data === YT_PAUSED || e.data === YT_CUED || e.data === YT_UNSTARTED) {
+                window.clearTimeout(reveal);
+                setPlaying(false);
+                if (e.data === YT_PAUSED) player?.playVideo();
+                return;
+              }
+              // Loading: YouTube draws its spinner, so the picture comes back until it plays again.
+              if (e.data === YT_BUFFERING) {
+                window.clearTimeout(reveal);
+                return void setPlaying(false);
+              }
               if (e.data !== YT_PLAYING) return;
-              setPlaying(true);
-              onPlaying?.();
+              // Its play button and controls fade out a while after playback starts: show the clip once they have gone.
+              window.clearTimeout(reveal);
+              reveal = window.setTimeout(() => {
+                if (cancelled) return;
+                shown = true;
+                setPlaying(true);
+                onPlaying?.();
+              }, shown ? REVEAL_MS : FIRST_REVEAL_MS);
             },
           },
         });
@@ -52,6 +86,7 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: str
     return () => {
       cancelled = true;
       window.clearInterval(timer);
+      window.clearTimeout(reveal);
       player?.destroy();
     };
     // One player per clip: `onFail` doesn't change what it plays.

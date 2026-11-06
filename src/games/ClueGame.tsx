@@ -9,7 +9,7 @@ import { hintsFor } from '../lib/hints';
 import { scoreFor } from '../lib/scoring';
 import type { GameProps, GameType, Work } from '../types';
 import { GAME_META } from './meta';
-import { PixelCanvas } from './PixelCanvas';
+import { PixelCanvas, withThumbs } from './PixelCanvas';
 
 function Label({ children }: { children: ReactNode }) {
   return <p className="text-center text-xs font-display uppercase tracking-widest text-ink-faint">{children}</p>;
@@ -34,6 +34,7 @@ interface ClueProps {
 export function textClueShown(type: GameType, w: Work, broken: Set<string>): boolean {
   if (type === 'item') return !w.item?.image || broken.has('item');
   if (type === 'location') return !w.location?.image || broken.has('location');
+  if (type === 'visual') return broken.has('visual');
   if (type === 'audio') {
     const clip = !!w.audio?.youtubeId && !broken.has('clip');
     const coverZoom = !!w.cover?.image && !broken.has('cover');
@@ -160,7 +161,22 @@ function Clue({ type, w, seed, wrong, done, broken, onBroken }: ClueProps) {
     }
 
     case 'visual':
-      return <PixelCanvas src={w.cover?.image} icon={w.visual?.icon ?? '❔'} colors={w.visual?.colors ?? ['#27272a', '#52525b']} step={done ? 99 : wrong} />;
+      // The cover, pixelated; if it won't load, a scene from the work (never an emoji standing in for a picture).
+      if (!broken.has('visual')) {
+        return (
+          <PixelCanvas
+            srcs={withThumbs([w.cover?.image, w.location?.image, w.item?.image])}
+            step={done ? 99 : wrong}
+            onFail={() => onBroken('visual')}
+          />
+        );
+      }
+      return (
+        <div className="space-y-2">
+          <Label>Which work is this?</Label>
+          <TextClue>{w.location?.description ?? w.item?.description ?? w.audio?.clue ?? w.credits[0]}</TextClue>
+        </div>
+      );
 
     case 'item':
       if (w.item?.image && !broken.has('item')) {

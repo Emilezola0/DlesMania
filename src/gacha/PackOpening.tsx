@@ -5,7 +5,7 @@ import { shownName } from '../lib/french';
 import { sfx, type TearSound } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
-import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
+import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
@@ -824,7 +824,7 @@ function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; 
     const ids = [...new Set(deck.map((c) => c.set))];
     return ids
       .map((id) => {
-        const all = CARDS.filter((c) => c.set === id);
+        const all = COLLECTIBLE.filter((c) => c.set === id);
         const owned = all.filter((c) => counts[c.id]).length;
         const added = new Set(deck.filter((c) => c.set === id && fresh.has(c.id)).map((c) => c.id)).size;
         return { id, name: SETS.find((x) => x.id === id)?.franchise ?? id, owned, added, size: all.length };

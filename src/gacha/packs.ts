@@ -3,7 +3,7 @@
 // odds the harder the difficulty it was won at.
 import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
-import { CARDS, RARITIES, type Card, type Rarity } from './cards';
+import { COLLECTIBLE, RARITIES, type Card, type Rarity } from './cards';
 import { clampGolden, clampPity, GOLDEN, goldenNext, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
 // The numbers and the packs' looks live in src/data/tuning/packs.json (edited from the dev-only #/admin page).
 import T from '../data/tuning/packs.json';
@@ -146,7 +146,7 @@ const rollGolden = (o: { mythic: number; omni: number }, rand: () => number): Ra
  * A golden pack: its last GOLDEN.slots cards are Legendary or better (see GOLDEN).
  */
 export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false): Card[] {
-  const pool = CARDS.filter(pack.pool);
+  const pool = COLLECTIBLE.filter(pack.pool);
   const odds = oddsWith(boost, luck);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
@@ -197,7 +197,7 @@ const forcedCosmic = (): CosmicKind | null => {
 /** Rolls a pack's cosmic event and swaps its card in place (the pack stays sorted, the rarest last). */
 export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.random, force: CosmicKind | null = forcedCosmic()): CosmicEvent | null {
   if (!cards.length) return null;
-  const pool = CARDS.filter(pack.pool);
+  const pool = COLLECTIBLE.filter(pack.pool);
   const rank = (r: Rarity) => RARITIES.indexOf(r);
   const best = cards[cards.length - 1];
   const legend = [...cards].reverse().find((c) => c.rarity === 'legendary');

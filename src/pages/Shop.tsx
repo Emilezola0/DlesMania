@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
-import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
+import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
 import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
@@ -145,7 +145,7 @@ function DropRates({ pity, golden }: { pity: number; golden: number }) {
         </table>
       </div>
       <p className="text-xs text-ink-faint">
-        {RARITIES.map((r) => `${RARITY_INFO[r].name}: ${CARDS.filter((c) => c.rarity === r).length}`).join(' · ')} cards in all — when a pack has none of a rarity left to give, the
+        {RARITIES.map((r) => `${RARITY_INFO[r].name}: ${COLLECTIBLE.filter((c) => c.rarity === r).length}`).join(' · ')} cards in all — when a pack has none of a rarity left to give, the
         card drops to the rarity below.
       </p>
     </section>
@@ -238,7 +238,7 @@ export default function Shop() {
   const books = booksNow(useProgress((s) => s.missionBooks));
   const [opening, setOpening] = useState<{ pack: Pack; times: number; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; golden: boolean; key: number } | null>(null);
   const missions = missionsFor(econ.date);
-  const collected = useMemo(() => CARDS.filter((c) => owned[c.id]).length, [owned]);
+  const collected = useMemo(() => COLLECTIBLE.filter((c) => owned[c.id]).length, [owned]);
 
   const boostOf = (p: Pack) => (p.boss ? bossBest(bosses, p.boss) : null);
   const buy = (p: Pack) => {
@@ -317,7 +317,7 @@ export default function Shop() {
           </Link>
           <h1 className="text-5xl font-bold">Card Shop</h1>
           <p className="max-w-xl text-ink-soft">
-            Play to earn DleCoins, then open packs of cards from every franchise. {collected} of {CARDS.length} collected —{' '}
+            Play to earn DleCoins, then open packs of cards from every franchise. {collected} of {COLLECTIBLE.length} collected —{' '}
             <Link to="/album" className="font-semibold text-accent underline-offset-2 hover:underline">
               see your album
             </Link>

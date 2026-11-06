@@ -58,19 +58,24 @@ export const DRAW_BOTTOM = BOTTOM - EDGE;
 
 export const lineX = (col: number) => col * COL_W + COL_W / 2;
 
-/** Units per second: a gentle fall at first, a little quicker with every point, up to under three times. */
-export const fallSpeed = (score: number) => Math.min(160, 60 * (1 + 0.05 * score));
+// The difficulty never stops growing, by characters brought home (`home`): quick at first, then slower and
+// slower, but always a little harder — there's no level where it settles.
 
-/** How long a character waits at the top before falling (ms): time to see who it is and to build. */
-export const waitFor = (score: number) => Math.max(1800, 3000 - 40 * score);
+/** Units per second: a gentle fall at first, 5% quicker with every character home up to 160 (33 home), then on and on, ever more slowly. */
+export const fallSpeed = (home: number) => (home <= 100 / 3 ? 60 * (1 + 0.05 * home) : 160 + 14 * Math.sqrt(home - 100 / 3));
 
-/** More lines as the score grows. */
-export const linesFor = (score: number) => (score >= 25 ? 6 : score >= 10 ? 5 : 4);
+/** How long a character waits at the top before falling (ms): time to see who it is and to build — shorter and shorter, never under 800. */
+export const waitFor = (home: number) => (home <= 30 ? 3000 - 40 * home : 800 + 1000 * Math.exp(-(home - 30) / 40));
+
+/** More lines as the score grows: 4, 5 from 10 home, 6 from 25, 7 from 50, 8 from 90 (a phone's width can't take more). */
+export const linesFor = (home: number) => (home >= 90 ? 8 : home >= 50 ? 7 : home >= 25 ? 6 : home >= 10 ? 5 : 4);
 
 /** How often a round drops two characters instead of one: from 12 home, now and then; from 30, always. */
 export const pairChance = (home: number) => (home >= 30 ? 1 : home >= 20 ? 0.6 : home >= 12 ? 0.35 : 0);
-/** How long the second of a pair waits after the first (ms): a clear gap at first, tighter as the score grows. */
-export const pairGap = (home: number) => Math.max(450, 1400 - 25 * Math.max(0, home - 12));
+/** And three: from 45 home, now and then, more and more often, always from 105. */
+export const tripleChance = (home: number) => Math.max(0, Math.min(1, (home - 45) / 60));
+/** How long each of a pair (or three) waits after the one before (ms): a clear gap at first, tighter and tighter, never under 300. */
+export const pairGap = (home: number) => (home <= 50 ? Math.max(450, 1400 - 25 * Math.max(0, home - 12)) : 300 + 150 * Math.exp(-(home - 50) / 40));
 
 /** Smash Bros. members belong to other franchises too: they'd make two right answers. */
 const SKIP = new Set(['smash']);

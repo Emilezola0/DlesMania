@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, gradeRewards, GRADE_COST, HELL_GRADE, isElement, type ElementId, type Engraving } from '../gacha/grades';
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
+import { UPGRADES } from '../gacha/upgrades';
 import { persist } from 'zustand/middleware';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -73,6 +74,8 @@ export interface BossRecord {
 export const EMPTY_BOSS_RECORD: BossRecord = { plays: 0, wins: 0, bestScore: 0, bestTime: null };
 
 export type BossDifficulty = 'easy' | 'medium' | 'hard' | 'hell';
+/** The difficulties, easiest first: a win at one validates every one before it. */
+export const DIFFICULTY_ORDER: BossDifficulty[] = ['easy', 'medium', 'hard', 'hell'];
 
 /** Records are kept per boss and difficulty; Easy keeps the plain id that records had before difficulties. */
 export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty === 'easy' ? id : `${id}:${difficulty}`);
@@ -196,6 +199,11 @@ interface ProgressState {
   payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
   /** Folds the copies of retired cards into the cards that replace them (see RETIRED): what was folded, and the coins. */
   foldRetiredCards: () => { folded: { name: string; intoName: string; copies: number }[]; coins: number };
+  /**
+   * A vaulted card raised to its new rarity (see UPGRADES) for its price in DleCoins, paid once: every copy, the
+   * grade, element, anomaly and star go over to the new card. False (and nothing done) without the card or the coins.
+   */
+  upgradeCard: (id: string) => boolean;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
@@ -536,6 +544,40 @@ export const useProgress = create<ProgressState>()(
         set({ coins: s.coins - ELEMENT_SWITCH_COST, elements: { ...s.elements, [id]: element } });
         return true;
       },
+      upgradeCard: (id) => {
+        const s = get();
+        const up = UPGRADES[id];
+        const copies = s.cards[id] ?? 0;
+        if (!up || !copies || s.coins < up.coins) return false;
+        const into = up.into;
+        const cards = { ...s.cards, [into]: (s.cards[into] ?? 0) + copies };
+        delete cards[id];
+        const grades = { ...s.grades };
+        const gradesPaid = { ...s.gradesPaid };
+        const elements = { ...s.elements };
+        const anomalies = { ...s.anomalies };
+        const favorites = { ...s.favorites };
+        // The better grade of the two stays, and is never paid again.
+        if (grades[id]) grades[into] = Math.max(grades[into] ?? 1, grades[id]);
+        if (gradesPaid[id]) gradesPaid[into] = Math.max(gradesPaid[into] ?? 1, gradesPaid[id]);
+        if (elements[id] && !elements[into]) elements[into] = elements[id];
+        if (anomalies[id] && !anomalies[into]) anomalies[into] = anomalies[id];
+        if (favorites[id]) favorites[into] = true;
+        for (const x of [grades, gradesPaid, elements, anomalies, favorites]) delete x[id];
+        set({
+          coins: s.coins - up.coins,
+          cards,
+          grades,
+          gradesPaid,
+          elements,
+          anomalies,
+          favorites,
+          pulledAt: stamp(s.pulledAt, [into]),
+          avatar: s.avatar === id ? into : s.avatar,
+          backdrop: s.backdrop === id ? into : s.backdrop,
+        });
+        return true;
+      },
       foldRetiredCards: () => {
         const s = get();
         const cards = { ...s.cards };
@@ -795,13 +837,26 @@ export const useProgress = create<ProgressState>()(
           // Every fight pays: a win by difficulty (plus the week's first win over this boss at this difficulty), a loss a token.
           const difficulty = (key.split(':')[1] ?? 'easy') as BossDifficulty;
           const week = bossWeekNow(s.bossWeek);
-          const weekly = won && !week.keys.includes(key);
-          const coins = earn(s, won ? BOSS_WIN[difficulty] + (weekly ? BOSS_WEEKLY[difficulty] : 0) : BOSS_LOSS, { count: { boss: won ? 1 : 0 } });
+          // A win at a difficulty validates every one below it: each counts as beaten too (what it unlocks, a
+          // franchise pack, an awakening, comes with it) and pays its own first win of the week if not yet taken.
+          const id = key.split(':')[0];
+          const below = won ? DIFFICULTY_ORDER.slice(0, DIFFICULTY_ORDER.indexOf(difficulty)) : [];
+          const weeklyKeys = [key, ...below.map((d) => bossKey(id, d))].filter((k) => won && !week.keys.includes(k));
+          const weeklyCoins = weeklyKeys.reduce((n, k) => n + BOSS_WEEKLY[(k.split(':')[1] ?? 'easy') as BossDifficulty], 0);
+          const coins = earn(s, won ? BOSS_WIN[difficulty] + weeklyCoins : BOSS_LOSS, { count: { boss: won ? 1 : 0 } });
+          const lower = Object.fromEntries(
+            below.map((d) => {
+              const k = bossKey(id, d);
+              const x = s.bosses[k] ?? EMPTY_BOSS_RECORD;
+              return [k, { ...x, plays: x.plays + 1, wins: x.wins + 1 }];
+            }),
+          );
           return {
             ...coins,
-            bossWeek: weekly ? { ...week, keys: [...week.keys, key] } : week,
+            bossWeek: weeklyKeys.length ? { ...week, keys: [...week.keys, ...weeklyKeys] } : week,
             bosses: {
               ...s.bosses,
+              ...lower,
               [key]: {
                 plays: r.plays + 1,
                 wins: r.wins + (won ? 1 : 0),

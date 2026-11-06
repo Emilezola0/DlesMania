@@ -21,6 +21,7 @@ import {
   nextTraveller,
   pairChance,
   pairGap,
+  tripleChance,
   planBridges,
   stepFall,
   travellerName,
@@ -75,7 +76,14 @@ function newRunners(goals: string[], recent: string[], home: number): Runner[] {
   const runners: Runner[] = [{ who: first, fall: fallStart(line), delay: 0, fast: false, landed: null }];
   if (Math.random() < pairChance(home)) {
     const second = nextTraveller(goals, [first.name, ...recent]);
-    if (second.name !== first.name) runners.push({ who: second, fall: fallStart(randomLine(goals.length, line)), delay: pairGap(home), fast: false, landed: null });
+    const line2 = randomLine(goals.length, line);
+    if (second.name !== first.name) runners.push({ who: second, fall: fallStart(line2), delay: pairGap(home), fast: false, landed: null });
+    // Later still, a third, on a line of its own.
+    if (runners.length === 2 && goals.length >= 3 && Math.random() < tripleChance(home)) {
+      const third = nextTraveller(goals, [first.name, second.name, ...recent]);
+      const free = Array.from({ length: goals.length }, (_, k) => k).filter((k) => k !== line && k !== line2);
+      if (third.name !== first.name && third.name !== second.name) runners.push({ who: third, fall: fallStart(free[Math.floor(Math.random() * free.length)]), delay: 2 * pairGap(home), fast: false, landed: null });
+    }
   }
   return runners;
 }
@@ -209,8 +217,8 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
     if (livesRef.current > 0) return void window.setTimeout(nextRound, PAUSE_MS);
     window.setTimeout(() => {
       setPhase('over');
-      // The run's end: a coin a couple of characters home (bonus points add none).
-      recordBest(bestKey, scoreRef.current, { reached: homeRef.current / 2 });
+      // The run's end: a step for every character home, half a step for each bonus point (a sped-up landing).
+      recordBest(bestKey, scoreRef.current, { reached: homeRef.current + (scoreRef.current - homeRef.current) / 2 });
       if (scoreRef.current > bestBefore.current) (sfx.streak(), celebrateBig());
     }, PAUSE_MS);
   };
@@ -326,13 +334,13 @@ function Game({ allowed, bestKey }: { allowed: string[]; bestKey: string }) {
           )}
         </span>
         <p className={`font-display font-bold ${phase === 'waiting' ? 'animate-pop' : ''}`} key={round}>
-          Lead <span className="text-accent">{names[0]}</span>
-          {names[1] && (
-            <>
-              {' '}
-              and <span className="text-accent">{names[1]}</span>
-            </>
-          )}{' '}
+          Lead{' '}
+          {names.map((n, k) => (
+            <span key={k}>
+              {k > 0 && (k === names.length - 1 ? ' and ' : ', ')}
+              <span className="text-accent">{n}</span>
+            </span>
+          ))}{' '}
           home
         </p>
         {phase === 'waiting' && ready && (

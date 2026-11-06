@@ -3,7 +3,8 @@ import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
-import { CARDS, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { isVaulted, UPGRADES } from '../gacha/upgrades';
+import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
@@ -33,7 +34,7 @@ const SHOWS: { id: Show; label: string; title?: string }[] = [
 const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 /** What a card can be found by: its name (in English and French), its title and its franchise. */
 /** How many cards of each rarity exist. */
-const RARITY_TOTAL = CARDS.reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
+const RARITY_TOTAL = COLLECTIBLE.reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
 const SEARCH_TEXT = new Map(CARDS.map((c) => [c.id, fold([c.name, frenchOf(c.name, c.set), c.title, c.franchise].filter(Boolean).join(' '))]));
 /** The sets, by domain (Games, Anime…), for the set picker. */
 const SETS_BY_DOMAIN = DOMAINS.map((d) => ({ domain: d, sets: SETS.filter((s) => s.domain === d.id) })).filter((g) => g.sets.length);
@@ -80,7 +81,7 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 /** When the burst comes in the card's collapse (see card-grade-collapse in index.css: 55% of 2.6s). */
 const COLLAPSE_BURST_MS = 1430;
 
-function Inspect({ card, count, onClose }: { card: Card; count: number; onClose: () => void }) {
+function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: number; onClose: () => void; onUpgraded: (into: Card) => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
@@ -183,8 +184,47 @@ function Inspect({ card, count, onClose }: { card: Card; count: number; onClose:
           <AnomalyNote cardId={card.id} />
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
+        <UpgradeOffer card={card} onUpgraded={onUpgraded} />
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
       </div>
+    </div>
+  );
+}
+
+/**
+ * A vaulted card (no longer given out) raised to its new rarity for DleCoins: every copy, its grade and element go
+ * over (src/gacha/upgrades.ts). Two taps: the offer, then the confirmation, as the price is high.
+ */
+function UpgradeOffer({ card, onUpgraded }: { card: Card; onUpgraded: (into: Card) => void }) {
+  const up = UPGRADES[card.id];
+  const into = up && CARD_BY_ID.get(up.into);
+  const coins = useProgress((s) => s.coins);
+  const upgradeCard = useProgress((s) => s.upgradeCard);
+  const [sure, setSure] = useState(false);
+  if (!up || !into) return null;
+  const enough = coins >= up.coins;
+  const go = () => {
+    if (!sure) return void (sfx.select(), setSure(true));
+    if (!upgradeCard(card.id)) return void sfx.wrong();
+    sfx.victory();
+    celebrateBig();
+    onUpgraded(into);
+  };
+  return (
+    <div className="space-y-2 rounded-xl border-2 border-[#fde68a]/60 bg-gradient-to-br from-[#fde68a]/15 to-[#a78bfa]/15 p-3 text-center text-white">
+      <p className="text-sm">
+        <b>{shownName(card.name, card.set)}</b> is now an <b>{RARITY_INFO[into.rarity].name}</b> card: packs no longer give this {RARITY_INFO[card.rarity].name.toLowerCase()} version. Yours can go up.
+      </p>
+      <button
+        type="button"
+        onClick={go}
+        disabled={!enough}
+        className={`rounded-full border-2 px-4 py-1.5 text-sm font-bold transition ${enough ? (sure ? 'border-white bg-white text-black' : 'border-[#fde68a] bg-[#fde68a]/20 text-[#fef3c7] hover:bg-[#fde68a]/35') : 'border-dashed border-white/30 text-white/50'}`}
+      >
+        {sure ? `Confirm: pay ${up.coins.toLocaleString('en')} 🪙` : `✪ Upgrade to ${RARITY_INFO[into.rarity].name} — ${up.coins.toLocaleString('en')} 🪙`}
+      </button>
+      {!enough && <p className="text-xs text-white/60">Not enough DleCoins ({coins.toLocaleString('en')}/{up.coins.toLocaleString('en')}).</p>}
+      {sure && <p className="text-xs text-white/70">Every copy, its grade and element go over to the {RARITY_INFO[into.rarity].name} card.</p>}
     </div>
   );
 }
@@ -365,7 +405,7 @@ export default function Album() {
     const bySet: Record<string, number> = {};
     const byRarity = {} as Record<Rarity, number>;
     let unique = 0;
-    for (const c of CARDS) {
+    for (const c of COLLECTIBLE) {
       if (!owned[c.id]) continue;
       unique++;
       bySet[c.set] = (bySet[c.set] ?? 0) + 1;
@@ -400,6 +440,8 @@ export default function Album() {
     };
     const xs = CARDS.filter((c) => {
       if ((set !== 'all' && c.set !== set) || !rarities.includes(c.rarity) || !shown(c)) return false;
+      // A vaulted card is no longer given out: only its owners see it.
+      if (isVaulted(c.id) && !owned[c.id]) return false;
       if (!words.length) return true;
       const text = SEARCH_TEXT.get(c.id) ?? '';
       return words.every((w) => text.includes(w));
@@ -469,7 +511,7 @@ export default function Album() {
           </Link>
           <h1 className="text-5xl font-bold">Album</h1>
           <p className="text-ink-soft">
-            {unique} of {CARDS.length} cards collected · {pulls} pulled in all ·{' '}
+            {unique} of {COLLECTIBLE.length} cards collected · {pulls} pulled in all ·{' '}
             {RARITIES.map((r) => `${counts.byRarity[r] ?? 0}/${RARITY_TOTAL[r]} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
           </p>
         </div>
@@ -584,7 +626,7 @@ export default function Album() {
       </div>
       {!list.length && <p className="text-center text-ink-soft">No card fits these filters.</p>}
 
-      {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} />}
+      {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} onUpgraded={setOpen} />}
       {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
       {bulk === 'grade' && <GradeAllDialog onClose={() => setBulk(null)} />}
       {bulk === 'sell' && <SellDialog onClose={() => setBulk(null)} />}

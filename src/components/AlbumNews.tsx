@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FIREBASE_CONFIG } from '../cloud/config';
 import { useCloud } from '../cloud/state';
-import { CARDS } from '../gacha/cards';
+import { COLLECTIBLE } from '../gacha/cards';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
@@ -63,14 +63,14 @@ export function AlbumNews() {
   const [news, setNews] = useState<Completion[]>([]);
 
   // This player's album complete, signed in, not told yet for this album: everyone is told.
-  const complete = useMemo(() => CARDS.every((c) => (owned[c.id] ?? 0) > 0), [owned]);
+  const complete = useMemo(() => COLLECTIBLE.every((c) => (owned[c.id] ?? 0) > 0), [owned]);
   useEffect(() => {
-    if (!complete || (status !== 'synced' && status !== 'syncing') || read(ANNOUNCED_KEY) === String(CARDS.length)) return;
+    if (!complete || (status !== 'synced' && status !== 'syncing') || read(ANNOUNCED_KEY) === String(COLLECTIBLE.length)) return;
     void import('../cloud/albums')
-      .then((m) => m.announceAlbum(CARDS.length))
+      .then((m) => m.announceAlbum(COLLECTIBLE.length))
       .then((uid) => {
         if (!uid) return;
-        write(ANNOUNCED_KEY, String(CARDS.length));
+        write(ANNOUNCED_KEY, String(COLLECTIBLE.length));
         write(ME_KEY, uid);
       })
       .catch(() => {

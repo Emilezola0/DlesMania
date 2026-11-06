@@ -7,13 +7,13 @@ import { celebrate, celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardBack, CardFace } from './CardView';
-import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
+import { CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from './cards';
 
 export const RENEW_COST = 5;
 
 /** The card a renewal gives: one of the rarity not owned yet if there's any, else any other of it. */
 export function renewalCard(rarity: Rarity, owned: Record<string, number>, spent: string[], rand: () => number = Math.random): Card | undefined {
-  const pool = CARDS.filter((c) => c.rarity === rarity);
+  const pool = COLLECTIBLE.filter((c) => c.rarity === rarity);
   const fresh = pool.filter((c) => !owned[c.id]);
   const from = fresh.length ? fresh : pool.filter((c) => !spent.includes(c.id));
   const list = from.length ? from : pool;

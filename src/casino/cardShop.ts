@@ -2,7 +2,7 @@
 // for every CARD_SHOP.coinsPerToken DleCoins paid into the casino's machines). At least three legendaries,
 // an epic or two and a rare; on a special occasion, a mythic too. Each card can be bought once a day.
 // The numbers live in src/data/tuning/casino.json (`cardShop`).
-import { CARDS, type Card, type Rarity } from '../gacha/cards';
+import { COLLECTIBLE, type Card, type Rarity } from '../gacha/cards';
 import { fromKey } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 import { CARD_SHOP } from './casino';
@@ -35,9 +35,9 @@ export interface ShopOffer {
   price: number;
 }
 
-/** What can be sold: no omnis (they stay in packs), no places or techniques. */
+/** What can be sold: no omnis (they stay in packs), no places or techniques, nothing vaulted. */
 const POOL: Partial<Record<Rarity, Card[]>> = {};
-for (const c of CARDS) if (!c.place && !c.technique && c.rarity !== 'omni') (POOL[c.rarity] ??= []).push(c);
+for (const c of COLLECTIBLE) if (!c.place && !c.technique && c.rarity !== 'omni') (POOL[c.rarity] ??= []).push(c);
 
 /** The day's shelf: the same cards for everyone that day, from different sets where it can. */
 export function shopFor(day: string): { offers: ShopOffer[]; occasion: string | null } {

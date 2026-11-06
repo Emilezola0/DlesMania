@@ -3,7 +3,7 @@ import { HL_DECKS } from '../arcade/higherLower';
 import { JLPT_DECKS } from '../arcade/jlpt';
 import { NAME_LISTS } from '../arcade/lists';
 import { DleCoin } from '../components/DleCoin';
-import { CARDS } from '../gacha/cards';
+import { COLLECTIBLE } from '../gacha/cards';
 import { HOT_BONUS, HOT_PLAYS, hotNow } from '../gacha/economy';
 import { Quests } from '../gacha/Quests';
 import { todayKey } from '../lib/date';
@@ -38,7 +38,7 @@ function Card({ game, hot }: { game: GameCard; hot?: string }) {
 export default function GamesHub() {
   const { special, whosThat, bests, rogueRun, coins, cards, hotGame } = useProgress();
   const hot = hotNow(hotGame, todayKey());
-  const collected = CARDS.filter((c) => cards[c.id]).length;
+  const collected = COLLECTIBLE.filter((c) => cards[c.id]).length;
   const today = todayKey();
   const doneToday = (key: string, rounds: number) => Object.values(special[`${key}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length >= rounds;
   const universesDone = UNIVERSES.filter((u) => doneToday(u.id, u.types.length)).length;
@@ -246,7 +246,7 @@ export default function GamesHub() {
               <span className="block text-sm text-ink-soft">Every card you have pulled, sorted your way — and how many times.</span>
             </span>
             <span className="text-xs font-bold text-ink-faint">
-              {collected}/{CARDS.length}
+              {collected}/{COLLECTIBLE.length}
             </span>
           </Link>
         </div>

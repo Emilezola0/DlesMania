@@ -21,6 +21,7 @@ import CARD_ART from '../data/card-art.json';
 import RARITY_TUNING from '../data/tuning/rarities.json';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
+import { VAULTED } from './upgrades';
 
 /** Ufouria's pictures, served with the site (public/art/ufouria): the game's wikis don't let others show theirs. */
 const UFOURIA_ART = (file: string) => `${import.meta.env?.BASE_URL ?? './'}art/ufouria/${file}`;
@@ -673,6 +674,8 @@ const CLIPS: Record<string, string> = {
   'inazuma:mythic': 'https://media.tenor.com/s0u-malnHkoAAAP1/mark-evans-endou-mamoru.mp4',
   'inazuma:omni': 'https://media.tenor.com/WW2B3R_iirIAAAP1/inazuma-eleven-inazuma-eleven-3.mp4',
   'inazuma:mythic-2': 'https://media.tenor.com/BfiOzlRAU2QAAAPo/shuuya-gouenji-tsurugi-kyousuke-fire-tornado-double-drive.mp4',
+  // Arion awakened: Saikyou Eleven Hadou, Mixi Maxed with Arthur, to its title (a silent loop: his voice is the anime's shout of it).
+  'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
   'forts:mythic': 'tiktok:7367350882020625670@1-5',
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
@@ -685,6 +688,7 @@ const CLIPS: Record<string, string> = {
   'avatar:mythic-2': 'youtube:i1WQoVDxU98@0-21',
   // (Sokka's whole clip, with its own sound as his voice line, below.)
   'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-999',
+  'avatar:omni-sokka': 'youtube:R3nvPGzfaCc@0-999',
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
   'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
@@ -963,6 +967,41 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   // Inazuma Eleven GO and Chrono Stones (their cast, by how loved they are), and the series' techniques: hissatsu
   // and keshins, the famous ones rarest (src/data/inazuma-go.json, from the Inazuma Eleven Wiki).
   ...(INAZUMA_GO as { id: string; name: string; rarity: Rarity; image: string; description: string; technique?: boolean }[]).map((c) => ({ ...c, set: 'inazuma' })),
+  // Inazuma Eleven's second omni, from GO and Chrono Stones: Arion Sherwind (Matsukaze Tenma), the GO hero, never
+  // a Mythic or an Omni before. Mixi Maxed with King Arthur, then awakened in his team's ultimate shot, all eleven
+  // at once: Saikyou Eleven Hadou ("Ultimate Eleven Assault"; "Attaque Équipe Ultime" in French). Its clip (CLIPS)
+  // is that shot, and so is his voice: the anime's shout of it (the Inazuma Eleven Wiki's video of its first use).
+  {
+    set: 'inazuma',
+    id: 'inazuma:omni-arion',
+    name: 'Arion Sherwind',
+    rarity: 'omni',
+    title: 'Captain of Chrono Storm',
+    image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/a/ad/%28CS%29_Saikyou_Eleven_Hadou_3.png/revision/latest/scale-to-width-down/800?cb=20130426130829',
+    focus: { x: 55, y: 30, zoom: 1 },
+    voice: 'Saikyou Eleven Hadou!',
+    audio: 'youtube:upwq-NjKGiY@13.4-18',
+    description: 'The wind that saved soccer: he crossed the ages with Chrono Storm, Mixi Maxed with King Arthur himself, his hair gone gold and the legend’s sword in his kick.',
+    awaken: {
+      title: 'Ultimate Eleven Assault',
+      image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d6/%28CS%29_Saikyou_Eleven_Hadou_5.png/revision/latest/scale-to-width-down/800?cb=20130426130830',
+      line: 'Saikyou Eleven Hadou — “Attaque Équipe Ultime” in French: the shot that only works when all eleven give everything, a rainbow that makes the impossible possible.',
+    },
+  },
+  // Sokka, the Mightiest Warrior, raised to Omni (players loved his Mythic): the same picture and clip, now an Omni.
+  // His Mythic is vaulted — no pack gives it any more — and its owners can pay to upgrade it (src/gacha/upgrades.ts).
+  {
+    set: 'avatar',
+    id: 'avatar:omni-sokka',
+    name: 'Sokka',
+    rarity: 'omni',
+    title: 'The Mightiest Warrior',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/avatar/sokka-mythic.webp`,
+    focus: { x: 50, y: 22, zoom: 1 },
+    description: 'No bending, just a boomerang, a sword and a plan for everything — and in the stories told about him, he’s twice the size and three times the hero.',
+    voice: 'It’s the quenchiest!',
+    audio: 'youtube:R3nvPGzfaCc@0-999',
+  },
 ];
 
 /**
@@ -1064,6 +1103,9 @@ export const CARDS: Card[] = (() => {
 
 export const CARD_BY_ID = new Map(CARDS.map((c) => [c.id, c]));
 
+/** The cards still given out, the ones a complete set or album needs: all but the vaulted (src/gacha/upgrades.ts). */
+export const COLLECTIBLE: Card[] = CARDS.filter((c) => !VAULTED.has(c.id));
+
 /** The sets, in Boss Battle order: id, franchise, kind of work, size. */
-export const SETS = CARD_BOSSES.map((b) => ({ id: b.id, franchise: b.franchise, domain: b.domain, size: CARDS.filter((c) => c.set === b.id).length, guardian: b.boss }));
+export const SETS = CARD_BOSSES.map((b) => ({ id: b.id, franchise: b.franchise, domain: b.domain, size: COLLECTIBLE.filter((c) => c.set === b.id).length, guardian: b.boss }));
 export const setSize = (id: string) => SETS.find((s) => s.id === id)?.size ?? 0;

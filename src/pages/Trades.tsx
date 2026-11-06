@@ -4,7 +4,7 @@ import { Spinner } from '../components/Spinner';
 import { startCloud, useCloud } from '../cloud/state';
 import type { Trade } from '../cloud/trades';
 import { CardFace } from '../gacha/CardView';
-import { CARDS, CARD_BY_ID, RARITY_INFO, type Card } from '../gacha/cards';
+import { CARDS, CARD_BY_ID, COLLECTIBLE, RARITY_INFO, type Card } from '../gacha/cards';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -54,7 +54,7 @@ function MyCards({ only, selected, onPick }: { only?: string | null; selected: s
 /** Any card of the game, to say which one you want. */
 function AnyCard({ selected, onPick }: { selected: string | null; onPick: (id: string | null) => void }) {
   const [q, setQ] = useState('');
-  const list = useMemo(() => (q.trim().length < 2 ? [] : CARDS.filter((c) => searchScore(q, c.name) !== null).slice(0, 12)), [q]);
+  const list = useMemo(() => (q.trim().length < 2 ? [] : COLLECTIBLE.filter((c) => searchScore(q, c.name) !== null).slice(0, 12)), [q]);
   return (
     <div className="space-y-2">
       <div className="flex flex-wrap gap-2">
