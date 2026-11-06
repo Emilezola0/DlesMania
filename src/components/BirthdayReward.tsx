@@ -234,14 +234,24 @@ function Gifts({ gifts, lang, onClose }: { gifts: DueReward[]; lang: Lang; onClo
       {gifts.map((g) => (
         <div key={g.id} className="flex items-center gap-3">
           <span className="grid size-8 shrink-0 place-items-center rounded-full bg-ochre text-base" aria-hidden>
-            {g.date?.emoji ?? '🎂'}
+            {g.date?.emoji ?? (g.daily ? '🎁' : '🎂')}
           </span>
           <p className="min-w-0 flex-1 text-sm">
             <b className="inline-flex items-center gap-1 font-display tracking-wider">
               +{g.coins.toLocaleString(lang)} <DleCoin className="size-4" /> DleCoins
             </b>
             <span className="block text-ink-soft">
-              {g.date ? (fr ? `Un cadeau pour ${g.date.name.fr} !` : `A gift for ${g.date.name.en}!`) : fr ? 'Joyeux anniversaire !' : 'Happy birthday!'}
+              {g.date
+                ? fr
+                  ? `Un cadeau pour ${g.date.name.fr} !`
+                  : `A gift for ${g.date.name.en}!`
+                : g.daily
+                  ? fr
+                    ? 'Ton cadeau du jour, à demain !'
+                    : 'Your gift for today: see you tomorrow!'
+                  : fr
+                    ? 'Joyeux anniversaire !'
+                    : 'Happy birthday!'}
             </span>
           </p>
         </div>

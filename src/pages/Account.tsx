@@ -12,6 +12,7 @@ import { FRAME_BY_ID } from '../casino/frames';
 import { startCloud, useCloud } from '../cloud/state';
 import { birthdayLabel } from '../components/BirthdayReward';
 import { BIRTHDAY_COINS } from '../lib/rewards';
+import { DevCode } from '../components/DevCode';
 import { todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
@@ -344,6 +345,7 @@ export default function Account() {
       </section>
 
       <Backup />
+      {import.meta.env.DEV && <DevCode />}
     </div>
   );
 }

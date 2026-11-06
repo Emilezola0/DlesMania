@@ -5,12 +5,15 @@ import { Glyph } from '../components/Glyph';
 import { DOMAINS } from '../data';
 import { EPOCH, LAUNCH, dayNumber, fromKey, isBirthday, toKey, todayKey } from '../lib/date';
 import { isDomain } from '../lib/rounds';
+import { BIRTHDAY_COINS, REWARD_DATES, REWARD_WINDOW_DAYS, rewardsOn } from '../lib/rewards';
+import { useCloud } from '../cloud/state';
 import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 export default function Archive() {
   const days = useProgress((s) => s.days);
+  const myBirthday = useCloud((c) => c.birthday);
   const [params, setParams] = useSearchParams();
   const param = params.get('domain') ?? undefined;
   const domain = isDomain(param) ? param : 'games';
@@ -94,9 +97,19 @@ export default function Archive() {
             const dayLabel = fromKey(key).getDate();
             // Omnidle's birthday: the day it went online, and every anniversary.
             const birthday = isBirthday(key);
-            const cake = birthday ? (
-              <span className="pointer-events-none absolute -right-1 -top-2 text-base" title={key === LAUNCH ? 'Omnidle went online this day' : "Omnidle's birthday"} aria-label="Omnidle's birthday">
-                🎂
+            // The days that bring DleCoins to signed-in players: a holiday (its own symbol; Omnidle's birthday keeps its cake), and the player's birthday.
+            const gift = rewardsOn(key, myBirthday);
+            const marks = [
+              birthday && { icon: '🎂', label: key === LAUNCH ? 'Omnidle went online this day' : `Omnidle's birthday${gift.date ? `: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` : ''}` },
+              gift.date && gift.date.id !== 'omnidle' && { icon: gift.date.emoji, label: `${gift.date.name.en}: ${gift.date.coins.toLocaleString()} DleCoins, open ${REWARD_WINDOW_DAYS} days` },
+              gift.birthday && { icon: '🎈', label: `Your birthday: ${BIRTHDAY_COINS.toLocaleString()} DleCoins` },
+            ].filter((m): m is { icon: string; label: string } => !!m);
+            const special = marks.length > 0;
+            const cake = special ? (
+              <span className="pointer-events-none absolute right-0.5 top-0.5 flex text-sm leading-none sm:right-1 sm:top-1 sm:text-base" title={marks.map((m) => m.label).join(' · ')} aria-label={marks.map((m) => m.label).join(' · ')}>
+                {marks.map((m) => (
+                  <span key={m.icon}>{m.icon}</span>
+                ))}
               </span>
             ) : null;
             if (!playable) {
@@ -111,9 +124,9 @@ export default function Archive() {
               <Link
                 key={key}
                 to={`/daily/${domain}/${key}`}
-                title={birthday ? (key === LAUNCH ? 'Omnidle went online this day 🎂' : "Omnidle's birthday 🎂") : undefined}
+                title={special ? marks.map((m) => `${m.icon} ${m.label}`).join('\n') : undefined}
                 className={`relative flex aspect-square flex-col items-center justify-center rounded-xl border text-sm transition hover:border-ink-faint ${tone} ${
-                  key === today ? 'ring-2 ring-accent' : birthday ? 'ring-2 ring-ochre/70' : ''
+                  key === today ? 'ring-2 ring-accent' : special ? 'ring-2 ring-ochre/70' : ''
                 }`}
               >
                 {cake}
@@ -124,12 +137,16 @@ export default function Archive() {
           })}
         </div>
 
-        <div className="mt-4 flex justify-center gap-4 text-xs text-ink-soft">
+        <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-ink-soft">
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit/60" /> Completed</span>
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near/60" /> In progress</span>
           <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-tile-strong" /> Not started</span>
           <span className="flex items-center gap-1.5">🎂 Omnidle&apos;s birthday</span>
         </div>
+        <p className="mt-2 text-center text-xs text-ink-faint">
+          Signed in, come by on these days for DleCoins: {REWARD_DATES.filter((d) => d.id !== 'omnidle').map((d) => `${d.emoji} ${d.name.en}`).join(', ')}, 🎂 Omnidle&apos;s birthday
+          {' '}({REWARD_DATES[0].coins.toLocaleString()} each, open {REWARD_WINDOW_DAYS} days){myBirthday ? `, and 🎈 your birthday (${BIRTHDAY_COINS.toLocaleString()})` : ''} — plus a gift every day you come by.
+        </p>
       </div>
     </div>
   );

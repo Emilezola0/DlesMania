@@ -384,6 +384,8 @@ console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.frui
   const inRules = new Map([...(rules.match(/function rewardDates\(\)\s*\{\s*return\s*\{([^}]*)\}/)?.[1] ?? '').matchAll(/'([a-z]+)':\s*\[(\d+),\s*(\d+)\]/g)].map((m) => [m[1], `${m[2]}-${m[3]}`]));
   const days = Number(rules.match(/function rewardWindowDays\(\)\s*\{\s*return\s*(\d+)/)?.[1]);
   if (!Number.isInteger(rewards.birthday?.coins) || rewards.birthday.coins <= 0) fail('rewards.json: birthday.coins must be a positive whole number');
+  if (!Number.isInteger(rewards.daily?.coins) || rewards.daily.coins <= 0) fail('rewards.json: daily.coins must be a positive whole number');
+  if (!/function dailyClaimOk\(/.test(rules)) fail('firestore.rules: no dailyClaimOk (the daily gift would be refused)');
   if (days !== rewards.windowDays) fail(`rewards.json: windowDays ${rewards.windowDays}, but firestore.rules says ${days}`);
   const seenIds = new Set();
   for (const d of rewards.dates) {
@@ -397,7 +399,7 @@ console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.frui
     if (inRules.get(d.id) !== `${d.month}-${d.day}`) fail(`${at}: firestore.rules (rewardDates) says ${inRules.get(d.id) ?? 'nothing'}`);
   }
   for (const id of inRules.keys()) if (!seenIds.has(id)) fail(`firestore.rules: reward date "${id}" isn't in rewards.json`);
-  console.log(`rewards     birthday ${rewards.birthday.coins} coins, ${rewards.dates.length} special dates (open ${rewards.windowDays} days)`);
+  console.log(`rewards     daily ${rewards.daily.coins}, birthday ${rewards.birthday.coins} coins, ${rewards.dates.length} special dates (open ${rewards.windowDays} days)`);
 }
 
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);

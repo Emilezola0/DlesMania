@@ -75,7 +75,7 @@ service cloud.firestore {
         && request.resource.data.joined <= 12;
     }
 
-    // Birthday and special-date rewards (src/cloud/rewards.ts). The birthday is written once and can
+    // The daily gift, birthday and special-date rewards (src/cloud/rewards.ts). The birthday is written once and can
     // never be changed or removed; each reward is a claim document that can only be created once
     // (birthday-2026, christmas-2026...), at the server's time (the device's clock can't be faked in).
     // The coins are only added to the save after the claim was accepted. The dates here must match
@@ -108,11 +108,18 @@ service cloud.firestore {
         && hasBegun(timestamp.date(y, rewardDates()[name][0], rewardDates()[name][1]))
         && notOver(timestamp.date(y, rewardDates()[name][0], rewardDates()[name][1]) + duration.value(rewardWindowDays(), 'd'));
     }
+    // The daily gift (daily-2026-11-07): only on that day (by the server's clock, any time zone).
+    function dailyClaimOk(id) {
+      return id.matches('daily-[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && hasBegun(timestamp.date(int(id.split('-')[1]), int(id.split('-')[2]), int(id.split('-')[3])))
+        && notOver(timestamp.date(int(id.split('-')[1]), int(id.split('-')[2]), int(id.split('-')[3])) + duration.value(1, 'd'));
+    }
     function claimOk(uid, id) {
-      return id.matches('[a-z]+-[0-9]{4}')
-        && (id.split('-')[0] == 'birthday'
-          ? birthdayClaimOk(uid, int(id.split('-')[1]))
-          : dateClaimOk(id.split('-')[0], int(id.split('-')[1])));
+      return dailyClaimOk(id)
+        || (id.matches('[a-z]+-[0-9]{4}')
+          && (id.split('-')[0] == 'birthday'
+            ? birthdayClaimOk(uid, int(id.split('-')[1]))
+            : dateClaimOk(id.split('-')[0], int(id.split('-')[1]))));
     }
     match /rewards/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;

@@ -1,5 +1,6 @@
 {
   "birthday": { "coins": 10000 },
+  "daily": { "coins": 1000 },
   "windowDays": 7,
   "dates": [
     { "id": "newyear", "month": 1, "day": 1, "coins": 2000, "emoji": "🎆", "name": { "en": "New Year's Day", "fr": "le Nouvel An" } },
