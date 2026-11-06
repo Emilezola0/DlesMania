@@ -7,6 +7,7 @@ import { isVaulted, UPGRADES } from '../gacha/upgrades';
 import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
+import { SellSpares } from '../gacha/SellSpares';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
@@ -324,6 +325,8 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
           ♻ Exchange a spare copy (+{spare} coins{grade >= ELEMENT_GRADE ? ` · ×${RESALE_BONUS}` : ''})
         </button>
       )}
+      {/* Every spare at once (asked twice). */}
+      {count > 2 && <SellSpares card={card} dark />}
       <Link to={`/trades?give=${card.id}`} className={btn(false)}>
         ⇄ Offer in a trade
       </Link>

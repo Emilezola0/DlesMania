@@ -2,6 +2,7 @@
 // CARD_SHOP.coinsPerToken DleCoins paid into the machines. The same shelf for everyone, new every midnight.
 import { useEffect, useMemo, useState } from 'react';
 import { CardFace } from '../gacha/CardView';
+import { SellSpares } from '../gacha/SellSpares';
 import { RARITY_INFO, RARITY_LIGHT } from '../gacha/cards';
 import { todayKey } from '../lib/date';
 import { celebrate, celebrateBig } from '../lib/fx';
@@ -103,6 +104,8 @@ export function CardShop() {
               >
                 {sold ? '✓ Bought today' : `🎟️ ${price.toLocaleString('en')}`}
               </button>
+              {/* Spares of a card already owned: sold at once. */}
+              <SellSpares card={card} className="self-center text-xs" />
             </li>
           );
         })}
