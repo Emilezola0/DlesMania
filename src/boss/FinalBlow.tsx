@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { withFrench, shownName } from '../lib/french';
-import { useImagesReady } from '../lib/images';
+import { isBroken, preload, useImagesReady } from '../lib/images';
 import { drawPictureFx, escalated, finaleSeconds, namesCard, pictureStyle, type DifficultySpec } from '../lib/boss';
 import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
@@ -63,7 +63,16 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   // the first loop's spotlight, blur, turning and flicker.
   const still = useMemo(() => (esc ? targets.map(() => drawPictureFx(esc, Math.random)) : null), [esc, targets]);
 
-  useEffect(() => targets.forEach((t) => t.image && (new Image().src = t.image)), [targets]);
+  useEffect(() => targets.forEach((t) => void preload(t.image)), [targets]);
+  // A face whose picture won't load is skipped (no black square to name): it counts as named, without a point lost.
+  useEffect(() => {
+    if (!ready || over || solved || !target || !isBroken(target.image)) return;
+    if (index + 1 >= targets.length) {
+      setOver(true);
+      onDone({ won: true, correct: targets.length, wrong, tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
+    } else setIndex(index + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, index, over, solved, target]);
   useEffect(() => input.current?.focus({ preventScroll: true }), [index]);
 
   // The picture clears up as the clock runs: blur and spotlight follow the elapsed share.

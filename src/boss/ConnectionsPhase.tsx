@@ -16,10 +16,10 @@ interface Props {
 }
 
 /** Where a word sits: under a face (face, slot) or still in the bank. */
-type Spot = { face: number; slot: 0 | 1 } | null;
+type Spot = { face: number; slot: number } | null;
 
 /**
- * Phase V (Hell), Connections: five faces, two empty slots under each, and the ten words that fill them —
+ * Phase V (Hell), Connections: five faces, up to four empty slots under each, and the words that fill them —
  * every word fits one face only. Tap a word, then a slot (or drag it there); tap a placed word to send it
  * back. Submit when every slot is full: right, the phase is won; wrong, a heart is lost and the board stays,
  * with how many words are right. The clock running out loses the round.
@@ -30,13 +30,16 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
   const [misses, setMisses] = useState(0);
   const [note, setNote] = useState<{ text: string; key: number } | null>(null);
   const [over, setOver] = useState(false);
-  const seconds = d.connections?.seconds ?? 100;
+  // The clock is set for ten words: more words, more time.
+  const seconds = ((d.connections?.seconds ?? 100) * board.bank.length) / 10;
 
-  const wordAt = (face: number, slot: 0 | 1) => [...spots].find(([, s]) => s?.face === face && s.slot === slot)?.[0] ?? null;
+  const wordAt = (face: number, slot: number) => [...spots].find(([, s]) => s?.face === face && s.slot === slot)?.[0] ?? null;
+  /** A face's slots, as they're filled. */
+  const slotsOf = (face: number) => board.pairs[face].words.map((_, slot) => wordAt(face, slot));
   const bank = board.bank.filter((w) => !spots.get(w));
   const full = bank.length === 0;
 
-  const place = (word: string, face: number, slot: 0 | 1) => {
+  const place = (word: string, face: number, slot: number) => {
     if (over) return;
     sfx.click();
     const next = new Map(spots);
@@ -47,7 +50,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
     setSpots(next);
     setHeld(null);
   };
-  const tapSlot = (face: number, slot: 0 | 1) => {
+  const tapSlot = (face: number, slot: number) => {
     const there = wordAt(face, slot);
     if (held) return place(held, face, slot);
     if (there) {
@@ -60,10 +63,10 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
   const finish = (won: boolean) => {
     if (over) return;
     setOver(true);
-    const right = board.pairs.filter((p, i) => pairRight(p, [wordAt(i, 0), wordAt(i, 1)])).length;
+    const right = board.pairs.filter((p, i) => pairRight(p, slotsOf(i))).reduce((n, p) => n + p.words.length, 0);
     onDone({
       won,
-      correct: right * 2,
+      correct: right,
       wrong: misses,
       missed: won ? undefined : board.pairs.map((p) => `${shownName(p.card.label)}: ${p.words.join(' · ')}`),
     });
@@ -71,7 +74,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
 
   const submit = () => {
     if (!full || over) return;
-    const right = board.pairs.reduce((n, p, i) => n + (pairRight(p, [wordAt(i, 0), wordAt(i, 1)]) ? 2 : [wordAt(i, 0), wordAt(i, 1)].filter((w) => w && p.words.includes(w)).length), 0);
+    const right = board.pairs.reduce((n, p, i) => n + slotsOf(i).filter((w) => w && p.words.includes(w)).length, 0);
     if (right === board.bank.length) {
       sfx.streak();
       onEvent(true);
@@ -92,7 +95,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
             <div className="aspect-square overflow-hidden rounded bg-tile">
               <img src={p.card.image} alt="" draggable={false} className="size-full object-contain" />
             </div>
-            {([0, 1] as const).map((slot) => {
+            {p.words.map((_, slot) => {
               const w = wordAt(i, slot);
               return (
                 <button

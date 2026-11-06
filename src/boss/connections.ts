@@ -1,4 +1,5 @@
-// Hell's fifth phase, Connections: five faces of the franchise, and ten words to place, two under each.
+// Hell's fifth phase, Connections: five faces of the franchise, and their words to place, up to four under
+// each (two for a face that knows fewer links of its own).
 // The words are each face's name or what links it to the franchise — a Blitz list it belongs to ("Straw
 // Hats"), its Name Chain category, a short Signature clue (an ultimate, an ability), a Specialist trait
 // (a role, a faction, a class). Every word fits one face of the five and no other, so the board has one
@@ -9,16 +10,18 @@ import type { Boss, BossCard } from '../types';
 import { shuffle } from '../lib/rng';
 
 export const CONNECTION_FACES = 5;
+/** Words under each face, at most (its name and three links, or four links and no name). */
+export const CONNECTION_WORDS = 4;
 
 export interface ConnectionPair {
   card: BossCard;
-  /** Its two words (order doesn't matter). */
-  words: [string, string];
+  /** Its words, two to four (order doesn't matter). */
+  words: string[];
 }
 
 export interface ConnectionsBoard {
   pairs: ConnectionPair[];
-  /** The ten words, mixed. */
+  /** Every word of the board, mixed. */
   bank: string[];
 }
 
@@ -82,7 +85,11 @@ export function drawConnections(boss: Boss, rand: () => number = Math.random): C
   };
   const faces = [...boss.radar.members, ...(boss.cardMembers ?? []), ...boss.finale].filter((c) => c.image && !seen.has(key(c.label)) && seen.add(key(c.label)) && linkSet(c).size > 0);
   if (faces.length < CONNECTION_FACES) return null;
-  for (let attempt = 0; attempt < 60; attempt++) {
+  // As many words under each face as the franchise allows: four under every face if it can, then three,
+  // then each face as many as it has (two to four), then two (the last tries are the two-word board, so a
+  // franchise that had one keeps it).
+  for (let attempt = 0; attempt < 160; attempt++) {
+    const [per, least] = attempt < 30 ? [CONNECTION_WORDS, CONNECTION_WORDS] : attempt < 60 ? [3, 3] : attempt < 100 ? [CONNECTION_WORDS, 2] : [2, 2];
     const picked: ConnectionPair[] = [];
     // Every link and name already on the board, by key.
     const taken = new Set<string>();
@@ -95,10 +102,15 @@ export function drawConnections(boss: Boss, rand: () => number = Math.random): C
       const own = mine.filter((l) => !picked.some((p) => [...linkSet(p.card)].some((x) => key(x) === key(l))));
       if (!own.length) continue;
       const choice = shuffle(own, rand);
-      // Now and then two links and no name (Hell): only when it has two of its own.
-      // A kanji (JLPT): its meaning and its reading, to learn them together.
+      // A kanji (JLPT): its meaning and its reading first, to learn them together, then its other links.
       const reading = c.reading?.split('・')[0].replace(/[.\-]/g, '');
-      const words: [string, string] = reading ? [c.label, reading] : choice.length >= 2 && rand() < 0.35 ? [choice[0], choice[1]] : [c.label, choice[0]];
+      // Now and then only links and no name (Hell): only when it has enough of its own.
+      const words = reading
+        ? [c.label, reading, ...choice.filter((l) => key(l) !== key(reading))].slice(0, per)
+        : choice.length >= per && rand() < 0.35
+          ? choice.slice(0, per)
+          : [c.label, ...choice].slice(0, per);
+      if (words.length < least) continue;
       picked.push({ card: c, words });
       for (const w of words) taken.add(key(w));
       taken.add(key(c.label));
@@ -111,5 +123,5 @@ export function drawConnections(boss: Boss, rand: () => number = Math.random): C
   return null;
 }
 
-/** Whether a face's two slots hold its two words (in any order). */
-export const pairRight = (p: ConnectionPair, slots: (string | null)[]) => slots.length === 2 && slots.every((w) => w && p.words.includes(w)) && slots[0] !== slots[1];
+/** Whether a face's slots hold its words (in any order). */
+export const pairRight = (p: ConnectionPair, slots: (string | null)[]) => slots.length === p.words.length && slots.every((w) => w && p.words.includes(w)) && new Set(slots).size === slots.length;

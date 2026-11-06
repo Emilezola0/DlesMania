@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createTikTokPlayer, type TikTokPlayer } from '../lib/tiktok';
-import { YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
+import { YT_ENDED, YT_PLAYING, loadYouTube, type YTPlayer } from '../lib/youtube';
 import { TT_CLIP, YT_VOICE } from './voice';
 
 /** How often a YouTube clip checks whether it has reached its end (ms): its moments can be under a second. */
@@ -29,13 +29,18 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className }: { id: str
               player?.mute();
               player?.seekTo(start, true);
               player?.playVideo();
+              // An end past the video's own (a clip played whole: "@0-999") loops at the video's end.
+              const length = player?.getDuration() ?? 0;
+              const stop = length > 0 ? Math.min(end, length - 0.3) : end;
               timer = window.setInterval(() => {
                 const at = player?.getCurrentTime() ?? start;
-                if (at >= end || at < start - 0.5) player?.seekTo(start, true);
+                if (at >= stop || at < start - 0.5) player?.seekTo(start, true);
               }, LOOP_CHECK_MS);
             },
             onError: () => onFail(),
             onStateChange: (e) => {
+              // Ended anyway (the length wasn't known yet): from the start again.
+              if (e.data === YT_ENDED) return void (player?.seekTo(start, true), player?.playVideo());
               if (e.data !== YT_PLAYING) return;
               setPlaying(true);
               onPlaying?.();

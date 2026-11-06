@@ -39,6 +39,7 @@ import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress } from '../store/
 import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
 import { Connections } from '../boss/ConnectionsPhase';
+import { isBroken, preloadAll } from '../lib/images';
 import { drawConnections } from '../boss/connections';
 
 /**
@@ -113,11 +114,19 @@ function BossBattle({ boss }: { boss: Boss }) {
   const say = (text: string, mood: Line['mood']) => setLine((l) => ({ text, key: l.key + 1, mood }));
   const total = totalRounds(d);
 
-  // Fresh content for every round and attempt.
+  const bossIn = boss;
+  // Every picture of the fight starts loading as soon as the boss is opened, so the radar and the Final Blow
+  // never wait for theirs (a few at a time, the radar's first).
+  useEffect(() => void preloadAll([...boss.radar.members, ...boss.radar.impostors, ...finaleFaces(boss)].map((c) => c.image)), [boss]);
+
+  // Fresh content for every round and attempt — leaving out the cards whose picture would not load.
   const content = useMemo(() => {
     const rand = Math.random;
+    const ok = (c: { image?: string }) => !isBroken(c.image);
+    const keep = <T extends { image?: string }>(xs: T[], min: number) => (xs.filter(ok).length >= min ? xs.filter(ok) : xs);
+    const boss = { ...bossIn, radar: { ...bossIn.radar, members: keep(bossIn.radar.members, d.radarCards), impostors: keep(bossIn.radar.impostors, d.radarImpostors) }, finale: keep(bossIn.finale, 1) };
     const blitz = drawBlitz(boss, d, rand, recentlySeen(seenOf('prompts'), boss.blitz.length), round);
-    const faces = finaleFaces(boss);
+    const faces = keep(finaleFaces(bossIn), d.finaleTargets);
     const finale = drawFinale(boss, d, rand, recentlySeen(seenOf('faces'), faces.length, d.finaleTargets), round, faces);
     const seen = new Set<string>();
     const pool = [...faces, ...boss.radar.members]
@@ -130,7 +139,7 @@ function BossBattle({ boss }: { boss: Boss }) {
     const connections = phase === CONNECT_PHASE ? drawConnections(boss, rand) : null;
     return { blitz, radar, finale, pool, chain, connections };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [boss, difficulty, phase, round, attempt, run]);
+  }, [bossIn, difficulty, phase, round, attempt, run]);
 
   // Small feedback inside a phase: a jolt on mistakes.
   const onEvent = (good: boolean) => {

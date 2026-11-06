@@ -48,7 +48,10 @@ const REJECTED = new Set([
   'scHVJttTEnU', // Doflamingo in three languages, not Mjosgard
   'sM8tPIush1k', // "Bartolomeo makes me laugh": not his laugh
   'fQOoo1x0U90', // Gerd laughing at Loki
+  'Ljcg0s7nnFE', // "Jango Laugh": not his laugh, over a Sonic picture
 ]);
+/** Laughs with no clip worth playing (searched and wrong): left out of the round. */
+const NO_CLIP = new Set(['jango']);
 
 const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 /** Several characters in one video, or not the original voice. */
@@ -72,7 +75,7 @@ const data = JSON.parse(readFileSync(FILE, 'utf8'));
 const byId = new Map(data.characters.map((c) => [c.id, c]));
 const used = new Set([...REJECTED, ...data.laughs.map((l) => l.youtubeId).filter(Boolean)]);
 let found = 0;
-const todo = data.laughs.filter((l) => flags.force || !l.youtubeId);
+const todo = data.laughs.filter((l) => !NO_CLIP.has(l.character) && (flags.force || !l.youtubeId));
 for (const [i, l] of todo.entries()) {
   const c = byId.get(l.character);
   const short = c.aliases.find((a) => a.split(' ').length === 1) ?? c.name;

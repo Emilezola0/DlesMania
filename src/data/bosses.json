@@ -4325,13 +4325,6 @@
         },
         {
           "audio": {
-            "youtubeId": "Ljcg0s7nnFE",
-            "start": 0
-          },
-          "answer": "Jango|Django"
-        },
-        {
-          "audio": {
             "youtubeId": "i0WNdgEP2XI",
             "start": 0
           },
@@ -14046,7 +14039,7 @@
         },
         {
           "label": "Bumi",
-          "image": "https://static.wikia.nocookie.net/avatar/images/0/06/Bumi.png/revision/latest/scale-to-width-down/400?cb=20140318090248",
+          "image": "https://static.wikia.nocookie.net/avatar/images/e/e8/King_Bumi.png/revision/latest/scale-to-width-down/400?cb=20140106141303",
           "aliases": [
             "King Bumi"
           ]

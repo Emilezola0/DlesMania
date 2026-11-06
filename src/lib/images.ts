@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 const READY_AFTER_MS = 6000;
 
 const done = new Set<string>();
+/** Pictures that would not load (a dead link, a site refusing them): games leave them out. */
+const failed = new Set<string>();
 const loading = new Map<string, Promise<void>>();
 const elements = new Map<string, HTMLImageElement>();
 
@@ -25,7 +27,7 @@ export function preload(src: string | undefined): Promise<void> {
     p = new Promise<void>((resolve) => {
       const finish = () => (done.add(src), loading.delete(src), resolve());
       img.onload = finish;
-      img.onerror = finish;
+      img.onerror = () => (failed.add(src), finish());
       window.setTimeout(finish, READY_AFTER_MS);
     });
     img.src = src;
@@ -52,6 +54,17 @@ export function mediaLoading(root: ParentNode | null = document.querySelector('m
 }
 
 export const isReady = (src: string | undefined) => !src || done.has(src);
+/** A picture that failed to load (known only once it was tried). */
+export const isBroken = (src: string | undefined) => !!src && failed.has(src);
+/** Starts loading many pictures at once, a few at a time, so the first ones aren't held up by the rest. */
+export async function preloadAll(srcs: (string | undefined)[], atOnce = 6): Promise<void> {
+  const list = [...new Set(srcs.filter((s): s is string => !!s))];
+  let next = 0;
+  const worker = async () => {
+    while (next < list.length) await preload(list[next++]);
+  };
+  await Promise.all(Array.from({ length: Math.min(atOnce, list.length) }, worker));
+}
 
 /** True once every picture given is ready (see `preload`); false again when the list changes to new ones. */
 export function useImagesReady(srcs: (string | undefined)[]): boolean {

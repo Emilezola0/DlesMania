@@ -581,7 +581,8 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
     image: `${import.meta.env?.BASE_URL ?? './'}art/avatar/sokka-mythic.webp`,
     description: 'No bending, just a boomerang, a sword and a plan for everything — and in the stories told about him, he’s twice the size and three times the hero.',
     voice: 'It’s the quenchiest!',
-    audio: 'https://www.myinstants.com/media/sounds/cactus-juice-salesman-sokka-of-the-southern-water-tribe.mp3',
+    // His clip's own sound (a ticket: the cactus-juice line wasn't his clip's).
+    audio: 'youtube:R3nvPGzfaCc@0-999',
   },
   // Inazuma Eleven's places: its stadiums, schools and the steel tower, in the anime's art (the Inazuma Eleven Wiki).
   { set: 'inazuma', id: 'inazuma:place-steel-tower-plaza', name: "Steel Tower Plaza", rarity: 'mythic', title: "Where It All Began", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/600?cb=20260628144331', description: "The red steel tower on the hill above Inazuma Town, at sunset: where a boy trained alone with a tyre on a rope until the whole team came to find him." },
@@ -659,7 +660,8 @@ const CLIPS: Record<string, string> = {
   'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
   // Toph and Sokka: the owner's own clips (YouTube, unlisted), played whole.
   'avatar:mythic-2': 'youtube:i1WQoVDxU98@0-21',
-  'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-14.6',
+  // (Sokka's whole clip, with its own sound as his voice line, below.)
+  'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-999',
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
   'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
