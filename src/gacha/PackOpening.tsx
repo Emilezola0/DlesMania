@@ -896,7 +896,7 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
  * the best card inside — or of the rarity it poses as, when its star is about to evolve), a shooting star crosses the screen per card, the cards come one at a time from
  * the deck — rarer ones charge up before they turn, then burst — and the five are laid out together.
  */
-export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain, canAgain }: { pack: Pack; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
+export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean }) {
   const counts = useProgress((s) => s.cards);
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
@@ -1545,7 +1545,7 @@ export function PackOpening({ pack, cards, events = [], fresh, onClose, onAgain,
           <div className="flex flex-wrap justify-center gap-3">
             {canAgain && (
               <button type="button" onClick={onAgain} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
-                Open another · <Coins n={pack.cost} />
+                {times > 1 ? `Open ×${times} again` : 'Open another'} · <Coins n={pack.cost * times} />
               </button>
             )}
             <button type="button" onClick={onClose} className="btn-paper rounded-md px-6 py-2.5 font-display font-bold tracking-wider">

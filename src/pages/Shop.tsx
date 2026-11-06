@@ -195,7 +195,7 @@ export default function Shop() {
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));
-  const [opening, setOpening] = useState<{ pack: Pack; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; key: number } | null>(null);
+  const [opening, setOpening] = useState<{ pack: Pack; times: number; cards: Card[]; events: CosmicEvent[]; fresh: Set<string>; key: number } | null>(null);
   const missions = missionsFor(econ.date);
   const collected = useMemo(() => CARDS.filter((c) => owned[c.id]).length, [owned]);
 
@@ -208,7 +208,7 @@ export default function Shop() {
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, cards, events: pull.events, fresh, key: Date.now() });
+    setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, key: Date.now() });
   };
   /** Five packs at once: 25 cards in one opening, the rarest last. */
   const MANY = 5;
@@ -223,7 +223,7 @@ export default function Shop() {
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity)) return sfx.wrong();
     sfx.click();
-    setOpening({ pack: p, cards, events: pull.events, fresh, key: Date.now() });
+    setOpening({ pack: p, times: MANY, cards, events: pull.events, fresh, key: Date.now() });
   };
 
   const general = PACKS.filter((p) => !p.boss);
@@ -406,8 +406,10 @@ export default function Shop() {
           cards={opening.cards}
           events={opening.events}
           fresh={opening.fresh}
-          canAgain={coins >= opening.pack.cost}
-          onAgain={() => buy(opening.pack)}
+          // Again, as many as were just opened (one, or five at once).
+          times={opening.times}
+          canAgain={coins >= opening.pack.cost * opening.times}
+          onAgain={() => (opening.times > 1 ? buyMany(opening.pack) : buy(opening.pack))}
           onClose={() => setOpening(null)}
         />
       )}
