@@ -140,12 +140,13 @@ const ORBIT_GAP = 420;
  * the left as ever, but circle round it; after a while, those it doesn't keep fly on to the right, and the ones
  * it pulls in (ABSORB_CHANCE each; never the last star, the best card's) vanish into it in a spark. Then the
  * last star comes as usual (evolving or not). A swallowed star's card comes last, with an anomaly to keep or not.
- * For testing, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
+ * For testing, in dev only, localStorage "omnidle-force-anomaly" = "1" (or "corrupted", "fake") opens one every time and swallows a star.
  */
 function cosmosFor(cards: Card[], events: Map<number, CosmicEvent>, wishes: Map<number, CosmicEvent>, rand: () => number = Math.random): { hole: boolean; stars: Star[]; swallowed: Map<number, AnomalyId> } {
   let force: string | null = null;
   try {
-    force = localStorage.getItem('omnidle-force-anomaly');
+    // Dev only: the live site ignores it (anomalies are kept, so it would be a cheat).
+    if (import.meta.env.DEV) force = localStorage.getItem('omnidle-force-anomaly');
   } catch {
     // No storage: chance alone.
   }

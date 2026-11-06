@@ -168,8 +168,12 @@ export interface CosmicEvent {
   to: Card;
 }
 
-/** For testing: localStorage "omnidle-force-cosmic" = "wish", "collision", "supernova" or "bigbang" plays it every pack. */
+/**
+ * For testing, in dev only (`npm run dev`): localStorage "omnidle-force-cosmic" = "wish", "collision", "supernova" or
+ * "bigbang" plays it every pack. The live site ignores it (it would hand out an Omni a pack).
+ */
 const forcedCosmic = (): CosmicKind | null => {
+  if (!import.meta.env.DEV) return null;
   try {
     const f = localStorage.getItem('omnidle-force-cosmic');
     return (COSMIC_KINDS as string[]).includes(f ?? '') ? (f as CosmicKind) : null;
