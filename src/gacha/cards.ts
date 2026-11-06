@@ -131,8 +131,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
   jlpt: { name: 'Spirit', title: 'Ki, the Breath of Things', line: 'In 元気, in 天気, in 気持ち: one little kanji for the air, the mood and the life in everything — no word gets far in Japanese without it.', voice: 'Genki desu ka?', image: kanjiPicture('kanji:気') },
-  // His own sound from the owner's game captures (his clips: see CLIPS), one at random — never the browser's voice.
-  ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', audio: UFOURIA_SOUND('hebe-idle'), voiceClips: ['hebe-idle', 'hebe-dancing'].map((f) => ({ line: 'Uppo!', audio: UFOURIA_SOUND(f) })), image: UFOURIA_ART('dance-hebe-2.png') },
+  // His voice: his singing as he dances, from the owner's game captures (his clips: see CLIPS) — never the browser's voice.
+  ufouria: { name: 'Hebe', title: 'Hero of Ufouria', line: 'A blue woolly hat, a fluffy round body and a butt stomp that turns enemies into coins: he went to sleep in his own bed and woke up to save the world.', voice: 'Uppo!', audio: UFOURIA_SOUND('hebe-dancing'), image: UFOURIA_ART('dance-hebe-2.png') },
   arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
   hsr: { name: 'Kafka', title: 'The Stellaron Hunter', line: 'A violin, two pistols and a voice that tells you what to do: by the time you remember the order, you have already obeyed it.', voice: 'Good times never last.', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Kafka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325085121', image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20230809042240' },
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
@@ -262,10 +262,9 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     title: 'The Cat-Suit Friend',
     line: 'The first friend Utsujin’s Bumyon took over, and the first one Hebe had to fight to bring back. She can’t hold back any longer!',
     image: UFOURIA_ART('dance-o-chan.png'),
-    // Her own sound from the owner's game captures (her clips: see CLIPS), one at random — never the browser's voice.
+    // Her voice: her singing, from the owner's game captures (her clips: see FIRST_CLIPS) — never the browser's voice.
     voice: '♪',
     audio: UFOURIA_SOUND('o-chan-singing'),
-    voiceClips: ['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun'].map((f) => ({ line: '♪', audio: UFOURIA_SOUND(f) })),
     awaken: {
       title: 'Over the Earth',
       line: 'Saucer gone, Bumyon cleaned up: O-Chan floats above the whole world, Hebe and the others beside her.',
