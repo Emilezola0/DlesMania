@@ -1,7 +1,8 @@
 // The Casino's machines (src/pages/Casino.tsx): what a spin, a ball or a capsule gives. The numbers live in
 // src/data/tuning/casino.json (edited from the admin page); the roulette's are in economy.json.
 import T from '../data/tuning/casino.json';
-import { FRAMES, type Frame, type FrameRarity } from './frames';
+import { FRAMES, inSeason, type Frame, type FrameRarity } from './frames';
+import { todayKey } from '../lib/date';
 
 export const SLOTS = T.slots;
 export const PACHINKO = T.pachinko;
@@ -88,12 +89,16 @@ export function dropBall(): Ball {
 }
 
 /** A capsule: a frame drawn by rarity (then any of that rarity), and the coins back if it's one already owned. */
-export function rollCapsule(owned: string[]): { frame: Frame; duplicate: boolean; coins: number } {
+/** What the machine holds today: every capsule frame, a seasonal one only in its season. */
+export const machineFrames = (today: string = todayKey()) => FRAMES.filter((f) => inSeason(f, today));
+
+export function rollCapsule(owned: string[], today: string = todayKey()): { frame: Frame; duplicate: boolean; coins: number } {
   const odds = CAPSULES.odds as Record<FrameRarity, number>;
-  const rarities = (Object.keys(odds) as FrameRarity[]).filter((r) => odds[r] > 0 && FRAMES.some((f) => f.rarity === r));
+  const inMachine = machineFrames(today);
+  const rarities = (Object.keys(odds) as FrameRarity[]).filter((r) => odds[r] > 0 && inMachine.some((f) => f.rarity === r));
   let x = Math.random() * rarities.reduce((t, r) => t + odds[r], 0);
   const rarity = rarities.find((r) => (x -= odds[r]) < 0) ?? rarities[0];
-  const pool = FRAMES.filter((f) => f.rarity === rarity);
+  const pool = inMachine.filter((f) => f.rarity === rarity);
   const frame = pool[Math.floor(Math.random() * pool.length)];
   const duplicate = owned.includes(frame.id);
   return { frame, duplicate, coins: duplicate ? (CAPSULES.duplicate as Record<FrameRarity, number>)[rarity] : 0 };

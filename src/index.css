@@ -2519,10 +2519,40 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   0%, 100% { opacity: 0; scale: 0.4; }
   50% { opacity: 1; scale: 1; }
 }
+.avatar-frame-flicker { animation: avatar-frame-flicker 2.6s steps(1) infinite; }
+@keyframes avatar-frame-flicker { 0%, 100% { filter: none; } 8% { filter: brightness(1.9) saturate(1.4); } 11% { filter: none; } 14% { filter: brightness(1.6); } 17% { filter: none; } 61% { filter: brightness(1.8) hue-rotate(-20deg); } 64% { filter: none; } }
+.avatar-frame-spark { width: 24%; height: 24%; translate: -50% -50%; color: #fde047; opacity: 0; animation: avatar-frame-spark 1.6s steps(1) infinite; }
+@keyframes avatar-frame-spark { 0% { opacity: 1; scale: 1.2; } 12% { opacity: 0; scale: 0.8; } }
+.avatar-frame-drift { width: 24%; height: 24%; translate: -50% -50%; opacity: 0; animation: avatar-frame-drift 3.6s ease-in infinite; }
+@keyframes avatar-frame-drift { 0% { opacity: 0; transform: translate(0, 0) rotate(0deg); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(-40%, 160%) rotate(160deg); } }
+.avatar-frame-blackhole { animation-duration: 3s; }
+.avatar-frame-halo { background: radial-gradient(circle, transparent 58%, rgba(251, 146, 60, 0.55) 66%, transparent 74%); animation: avatar-frame-halo 2.4s ease-in-out infinite; }
+@keyframes avatar-frame-halo { 50% { transform: scale(1.12) rotate(8deg); opacity: 0.55; } }
+.avatar-frame-supernova { animation: avatar-frame-supernova 3.2s ease-in-out infinite; }
+@keyframes avatar-frame-supernova { 0%, 100% { filter: brightness(1) saturate(1); scale: 1; } 70% { filter: brightness(1.25) saturate(1.3) hue-rotate(40deg); scale: 1.04; } 78% { filter: brightness(2.2) saturate(1.6) hue-rotate(120deg); scale: 1.1; } }
+.avatar-frame-shock { border: 2px solid rgba(255, 255, 255, 0.9); opacity: 0; animation: avatar-frame-shock 3.2s ease-out infinite; }
+@keyframes avatar-frame-shock { 0%, 76% { opacity: 0; transform: scale(1); } 78% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
+/* Name styles (the Casino's Boutique, src/casino/cosmetics.ts). */
+.name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni { -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: card-name-shimmer 4s linear infinite; }
+.name-style-gold { background-image: linear-gradient(90deg, #a16207, #fde68a, #f59e0b, #fff7c2, #a16207); }
+.name-style-frost { background-image: linear-gradient(90deg, #0369a1, #e0f2fe, #7dd3fc, #ffffff, #0369a1); }
+.name-style-rainbow { background-image: linear-gradient(90deg, #ff4fd8, #ffcd3c, #4ade80, #3cc7ff, #a855f7, #ff4fd8); animation-duration: 3s; }
+.name-style-omni { background-image: linear-gradient(90deg, #ff3b4e, #ffffff, #ff7a18, #fde68a, #ff3b4e); filter: drop-shadow(0 0 6px rgba(255, 59, 78, 0.55)); animation-duration: 2.5s; }
+/* Pack wrappers (the Boutique): the wrapper replaces the pack's colours; its layer adds what moves. */
+.pack-wrap-obsidian { background: radial-gradient(ellipse at 30% 20%, #3f3f46, #09090b 60%) !important; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.12), 0 20px 25px -5px rgba(0, 0, 0, 0.4); }
+.pack-wrap-sakura { background: linear-gradient(160deg, #fdf2f8, #f9a8d4 45%, #be185d) !important; }
+.pack-wrap-sakura .pack-wrap-layer { background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8) 0 2%, transparent 3%), radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.7) 0 2%, transparent 3%), radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.6) 0 1.5%, transparent 2.5%); animation: pack-wrap-petals 6s linear infinite; }
+@keyframes pack-wrap-petals { from { transform: translateY(-30%); } to { transform: translateY(30%); } }
+.pack-wrap-holo { background: linear-gradient(160deg, #c7d2fe, #f5d0fe 30%, #a5f3fc 60%, #fef9c3) !important; }
+.pack-wrap-holo .pack-wrap-layer { background: linear-gradient(115deg, transparent 20%, rgba(255, 79, 216, 0.45), rgba(60, 199, 255, 0.45), rgba(255, 205, 60, 0.45), transparent 80%); background-size: 250% 250%; mix-blend-mode: overlay; animation: pack-wrap-holo 4s ease-in-out infinite alternate; }
+@keyframes pack-wrap-holo { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+.pack-wrap-galaxy { background: radial-gradient(ellipse at 70% 20%, #6d28d9, transparent 55%), radial-gradient(ellipse at 20% 80%, #db2777, transparent 50%), #0b0420 !important; }
+.pack-wrap-galaxy .pack-wrap-layer { background-image: radial-gradient(circle at 15% 25%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 75% 15%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 60% 70%, #fff 0 1.2px, transparent 2px), radial-gradient(circle at 30% 85%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 88% 55%, #fff 0 1px, transparent 1.5px); animation: pack-wrap-twinkle 2.4s ease-in-out infinite; }
+@keyframes pack-wrap-twinkle { 50% { opacity: 0.45; } }
 .avatar-frame-orn { width: 46%; height: 46%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); color: #fde68a; }
 .avatar-frame-orn-top { left: 50%; top: -34%; translate: -50% 0; }
 .avatar-frame-orn-br { right: -22%; bottom: -20%; }
 .avatar-frame-orn-bl { left: -22%; bottom: -20%; }
 @media (prefers-reduced-motion: reduce) {
-  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle { animation: none; }
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }

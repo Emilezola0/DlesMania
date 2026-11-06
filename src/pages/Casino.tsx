@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DleCoin } from '../components/DleCoin';
+import { Boutique } from '../casino/Boutique';
 import { Capsules } from '../casino/Capsules';
 import { CardShop, TokenCount } from '../casino/DailyCardShop';
 import { Pachinko } from '../casino/Pachinko';
@@ -17,6 +18,7 @@ const TABS = [
   { id: 'capsules', label: 'Capsules', icon: '🥚' },
   { id: 'roulette', label: 'Roulette', icon: '🎡' },
   { id: 'shop', label: 'Daily Shop', icon: '🃏' },
+  { id: 'boutique', label: 'Boutique', icon: '🎀' },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];
 const KEY = 'omnidle:casino:tab';
@@ -83,6 +85,7 @@ export default function Casino() {
         {tab === 'capsules' && <Capsules />}
         {tab === 'roulette' && <Roulette />}
         {tab === 'shop' && <CardShop />}
+        {tab === 'boutique' && <Boutique />}
       </div>
     </div>
   );

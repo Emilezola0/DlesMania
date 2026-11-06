@@ -193,6 +193,17 @@ interface ProgressState {
   frames: string[];
   frame: string | null;
   setFrame: (frame: string | null) => void;
+  /** The Boutique's cosmetics bought (src/casino/cosmetics.ts: name styles, pack wrappers), and the ones in use. */
+  cosmetics: string[];
+  nameStyle: string | null;
+  wrapper: string | null;
+  /** The title shown under the player's name (src/casino/unlocks.ts TITLES). */
+  title: string | null;
+  setNameStyle: (id: string | null) => void;
+  setWrapper: (id: string | null) => void;
+  setTitle: (id: string | null) => void;
+  /** Buys a cosmetic for `price` DleCoins (and puts it on): false if it can't (too few coins, owned already). */
+  buyCosmetic: (id: string, price: number) => boolean;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -479,6 +490,21 @@ export const useProgress = create<ProgressState>()(
       frames: [],
       frame: null,
       setFrame: (frame) => set({ frame }),
+      cosmetics: [],
+      nameStyle: null,
+      wrapper: null,
+      title: null,
+      setNameStyle: (nameStyle) => set({ nameStyle }),
+      setWrapper: (wrapper) => set({ wrapper }),
+      setTitle: (title) => set({ title }),
+      buyCosmetic: (id, price) => {
+        const s = get();
+        const owned = s.cosmetics ?? [];
+        if (owned.includes(id) || !(price > 0) || s.coins < price) return false;
+        const kind = id.split(':')[0];
+        set({ coins: s.coins - price, cosmetics: [...owned, id], ...(kind === 'name' ? { nameStyle: id } : kind === 'wrap' ? { wrapper: id } : {}) });
+        return true;
+      },
       openCapsule: () => {
         const s = get();
         const free = (s.capsuleTokens ?? 0) > 0;
@@ -870,7 +896,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

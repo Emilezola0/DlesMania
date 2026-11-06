@@ -8,7 +8,10 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CAPSULES } from './casino';
 import { FrameRing } from './Frame';
-import { FRAMES, FRAME_RARITIES, FRAME_RARITY_COLOR, FRAME_RARITY_NAME, type Frame } from './frames';
+import { EARNED_FRAMES, FRAMES, FRAME_RARITIES, FRAME_RARITY_COLOR, FRAME_RARITY_NAME, albumFrame, inSeason, nextSeason, type Frame } from './frames';
+import { earnedFrames, useFeats } from './unlocks';
+import { SETS } from '../gacha/cards';
+import { fromKey, todayKey } from '../lib/date';
 
 const SHELLS = ['#f87171', '#60a5fa', '#34d399', '#fbbf24', '#c084fc', '#f472b6', '#22d3ee'];
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -121,7 +124,7 @@ export function Capsules() {
 }
 
 /** How many taps a capsule takes to crack open: the rarer, the more it fights back. */
-const TAPS: Record<Frame['rarity'], number> = { common: 3, rare: 3, epic: 3, legendary: 4 };
+const TAPS: Record<Frame['rarity'], number> = { common: 3, rare: 3, epic: 3, legendary: 4, mythic: 5 };
 
 /**
  * The capsule, up close: tap and it shakes, cracks, and lets out more and more light in its frame's colour
@@ -278,22 +281,53 @@ function Revealed({ got, again }: { got: Got; again?: () => void }) {
   );
 }
 
-/** Every frame: the ones won to wear (tap), the others still a mystery. */
+/** One frame of the collection: worn on a tap when it's yours; otherwise a mystery, or how to get it. */
+function FrameTile({ f, mine, worn, onWear, label, hint }: { f: Frame; mine: boolean; worn: boolean; onWear: () => void; label?: string; hint: string }) {
+  return (
+    <button
+      type="button"
+      disabled={!mine}
+      onClick={onWear}
+      title={hint}
+      className={`flex flex-col items-center gap-1 rounded-md p-1 ${worn ? 'bg-tile ring-2 ring-accent' : mine ? 'hover:bg-tile' : 'cursor-default'}`}
+    >
+      <span className={`grid size-12 place-items-center ${mine ? '' : 'opacity-30 grayscale'}`}>
+        <FrameRing frame={f}>
+          {mine ? <YourIcon className="size-10" /> : <span className="grid size-10 place-items-center rounded-full bg-tile font-display font-bold text-ink-faint">?</span>}
+        </FrameRing>
+      </span>
+      <span className="max-w-full truncate text-[10px] font-semibold" style={{ color: FRAME_RARITY_COLOR[f.rarity] }}>
+        {mine ? f.name : (label ?? '???')}
+      </span>
+    </button>
+  );
+}
+
+const dayMonth = (key: string) => fromKey(key).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+
+/** Every frame: the machine's (won to wear, the others a mystery; seasonal ones say when they're back), then the trophies, earned by playing. */
 function FrameCollection({ hide }: { hide?: string }) {
   const owned = useProgress((s) => s.frames ?? []).filter((id) => id !== hide);
   const worn = useProgress((s) => s.frame);
   const setFrame = useProgress((s) => s.setFrame);
+  const feats = useFeats();
+  const earned = earnedFrames(feats);
+  const today = todayKey();
+  const wear = (id: string | null) => (sfx.select(), setFrame(id));
+  // A frame for each set completed; one locked to show the way while none is.
+  const albums = feats.sets.map((id) => albumFrame(id, SETS.find((s) => s.id === id)?.franchise ?? 'Album'));
+  const trophies = [...EARNED_FRAMES, ...(albums.length ? albums : [albumFrame('?', 'Full set')])];
   return (
     <section className="page mt-3 space-y-2 rounded-md p-3">
       <div className="flex items-baseline justify-between">
         <h3 className="font-display font-bold">Your icon frames</h3>
         <span className="text-xs text-ink-soft">
-          {owned.length} / {FRAMES.length}
+          {FRAMES.filter((f) => owned.includes(f.id)).length} / {FRAMES.length}
         </span>
       </div>
-      <p className="text-xs text-ink-soft">Worn around your icon (the card you picked in the Album). Tap one to wear it.</p>
+      <p className="text-xs text-ink-soft">Worn around your icon (the card you picked in the Album). Tap one to wear it. Seasonal frames are in the machine only around their day.</p>
       <div className="grid grid-cols-4 gap-x-2 gap-y-3 pt-2">
-        <button type="button" onClick={() => (sfx.select(), setFrame(null))} className={`flex flex-col items-center gap-1 rounded-md p-1 ${!worn ? 'bg-tile ring-2 ring-accent' : 'hover:bg-tile'}`}>
+        <button type="button" onClick={() => wear(null)} className={`flex flex-col items-center gap-1 rounded-md p-1 ${!worn ? 'bg-tile ring-2 ring-accent' : 'hover:bg-tile'}`}>
           <span className="grid size-12 place-items-center">
             <YourIcon className="size-10" />
           </span>
@@ -301,25 +335,29 @@ function FrameCollection({ hide }: { hide?: string }) {
         </button>
         {FRAMES.map((f) => {
           const mine = owned.includes(f.id);
+          const now = inSeason(f, today);
+          const back = f.season && !now ? nextSeason(f, today) : null;
           return (
-            <button
+            <FrameTile
               key={f.id}
-              type="button"
-              disabled={!mine}
-              onClick={() => (sfx.select(), setFrame(f.id))}
-              title={mine ? `${f.name} (${FRAME_RARITY_NAME[f.rarity]})` : `A ${FRAME_RARITY_NAME[f.rarity]} frame — still in the machine`}
-              className={`flex flex-col items-center gap-1 rounded-md p-1 ${worn === f.id ? 'bg-tile ring-2 ring-accent' : mine ? 'hover:bg-tile' : 'cursor-default'}`}
-            >
-              <span className={`grid size-12 place-items-center ${mine ? '' : 'opacity-30 grayscale'}`}>
-                <FrameRing frame={f}>
-                  {mine ? <YourIcon className="size-10" /> : <span className="grid size-10 place-items-center rounded-full bg-tile font-display font-bold text-ink-faint">?</span>}
-                </FrameRing>
-              </span>
-              <span className="truncate text-[10px] font-semibold" style={{ color: FRAME_RARITY_COLOR[f.rarity] }}>
-                {mine ? f.name : '???'}
-              </span>
-            </button>
+              f={f}
+              mine={mine}
+              worn={worn === f.id}
+              onWear={() => wear(f.id)}
+              label={f.season ? (now ? 'In now!' : back ? `Back ${dayMonth(back)}` : '???') : undefined}
+              hint={mine ? `${f.name} (${FRAME_RARITY_NAME[f.rarity]})` : f.season ? `A seasonal ${FRAME_RARITY_NAME[f.rarity]} frame — ${now ? 'in the machine now, for a few days only' : back ? `back in the machine on ${dayMonth(back)}` : 'back next year'}` : `A ${FRAME_RARITY_NAME[f.rarity]} frame — still in the machine`}
+            />
           );
+        })}
+      </div>
+      <div className="flex items-baseline justify-between pt-3">
+        <h3 className="font-display font-bold">Trophies</h3>
+        <span className="text-xs text-ink-soft">earned by playing, never in the machine</span>
+      </div>
+      <div className="grid grid-cols-4 gap-x-2 gap-y-3 pt-1">
+        {trophies.map((f) => {
+          const mine = earned.has(f.id);
+          return <FrameTile key={f.id} f={f} mine={mine} worn={worn === f.id} onWear={() => wear(f.id)} label={f.earn} hint={mine ? `${f.name} — ${f.earn}` : `To earn: ${f.earn}`} />;
         })}
       </div>
     </section>

@@ -9,6 +9,9 @@ import { THEMES, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
 import { AvatarFrame } from '../casino/Frame';
 import { FRAME_BY_ID } from '../casino/frames';
+import { COSMETIC_BY_ID, NAME_STYLES } from '../casino/cosmetics';
+import { TITLES, TITLE_BY_ID, useFeats } from '../casino/unlocks';
+import { useShownName } from '../casino/Boutique';
 import { startCloud, useCloud } from '../cloud/state';
 import { birthdayLabel } from '../components/BirthdayReward';
 import { BIRTHDAY_COINS } from '../lib/rewards';
@@ -76,6 +79,71 @@ function Backup() {
   );
 }
 
+/**
+ * The player as others would see them: their icon in its frame, their name in its style, their title under it
+ * (titles are earned by playing; name styles are bought in the Casino's Boutique).
+ */
+function ProfileCard() {
+  const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? CARD_BY_ID.get(s.avatar) : undefined));
+  const frame = useProgress((s) => s.frame);
+  const name = useShownName();
+  const nameStyle = useProgress((s) => s.nameStyle);
+  const setNameStyle = useProgress((s) => s.setNameStyle);
+  const cosmetics = useProgress((s) => s.cosmetics ?? []);
+  const title = useProgress((s) => s.title);
+  const setTitle = useProgress((s) => s.setTitle);
+  const feats = useFeats();
+  const earned = TITLES.filter((t) => t.has(feats));
+  const picked = TITLE_BY_ID.get(title ?? '');
+  const shownTitle = picked && picked.has(feats) ? picked : TITLES[0];
+  const styles = NAME_STYLES.filter((c) => cosmetics.includes(c.id));
+  return (
+    <div className="space-y-3 rounded-md border border-rule-strong bg-card p-4">
+      <div className="flex items-center gap-4">
+        <AvatarFrame frame={frame}>
+          {avatar ? <CardAvatar card={avatar} className="size-16" /> : <span className="block size-16 rounded-full bg-tile" />}
+        </AvatarFrame>
+        <div className="min-w-0">
+          <p className={`truncate font-display text-2xl font-bold ${COSMETIC_BY_ID.get(nameStyle ?? '')?.className ?? ''}`}>{name}</p>
+          <p className="text-sm font-semibold tracking-wider text-ink-soft">« {shownTitle.name} »</p>
+        </div>
+      </div>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <label className="block text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-ink-faint">
+            Title ({earned.length} / {TITLES.length})
+          </span>
+          <select value={shownTitle.id} onChange={(e) => setTitle(e.target.value)} className="w-full rounded-md border border-rule-strong bg-card px-3 py-2 font-semibold">
+            {TITLES.map((t) => (
+              <option key={t.id} value={t.id} disabled={!t.has(feats)}>
+                {t.has(feats) ? t.name : `🔒 ${t.name} — ${t.how}`}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-ink-faint">Name style</span>
+          <select value={nameStyle ?? ''} onChange={(e) => setNameStyle(e.target.value || null)} className="w-full rounded-md border border-rule-strong bg-card px-3 py-2 font-semibold">
+            <option value="">Plain</option>
+            {styles.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p className="text-xs text-ink-faint">
+        Titles and trophy frames are earned by playing; name styles and pack wrappers are in the Casino&apos;s{' '}
+        <Link to="/casino" className="font-semibold text-accent">
+          Boutique
+        </Link>
+        .
+      </p>
+    </div>
+  );
+}
+
 /** The cards the player shows: their icon and their background, picked in the album. */
 function Profile() {
   const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? CARD_BY_ID.get(s.avatar) : undefined));
@@ -114,6 +182,7 @@ function Profile() {
   );
   return (
     <section className="page space-y-3 rounded-md p-5">
+      <ProfileCard />
       <h2 className="font-display text-lg font-bold">Your cards on show</h2>
       {row('Icon', avatar, () => setAvatar(null))}
       {row('Background', backdrop, () => setBackdrop(null))}
