@@ -314,6 +314,39 @@ function useImageRetry() {
   }, []);
 }
 
+/**
+ * The top bar slips away while the page scrolls down (more room to play) and comes back as soon as it scrolls
+ * up, wherever that is: no need to go all the way back to the top. Near the top, and while it has focus, it stays.
+ */
+function useHeaderHidden(): boolean {
+  const [hidden, setHidden] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => setHidden(false), [pathname]);
+  useEffect(() => {
+    let last = window.scrollY;
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const y = window.scrollY;
+        const dy = y - last;
+        // A few pixels either way are a jitter, not a scroll.
+        if (Math.abs(dy) < 6) return;
+        last = y;
+        const inside = document.querySelector('header')?.contains(document.activeElement);
+        setHidden(dy > 0 && y > 120 && !inside);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  return hidden;
+}
+
 export function Layout() {
   useNextKey();
   useImageRetry();
@@ -326,6 +359,7 @@ export function Layout() {
   const openRules = useUi((s) => s.openRules);
   const { pathname } = useLocation();
   const onBoss = pathname.startsWith('/boss');
+  const headerHidden = useHeaderHidden();
   useApplyTheme(theme);
   // A card on show, or a franchise's theme picked outright.
   const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off')));
@@ -337,7 +371,7 @@ export function Layout() {
           <CardLayers />
         </Suspense>
       )}
-      <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur">
+      <header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />

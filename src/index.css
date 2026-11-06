@@ -1450,7 +1450,6 @@ h1, h2, h3, .font-serif, .font-display {
   background-size: 200% 200%, 200% 200%, 100% 100%;
   animation: omni-aurora 18s ease-in-out infinite;
 }
-.omni-aura header { position: relative; }
 .omni-aura header::after {
   content: '';
   position: absolute;
