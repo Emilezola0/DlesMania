@@ -103,6 +103,20 @@ const kanaDeck = (script: 'hiragana' | 'katakana'): JlptDeck => {
 };
 export const KANA_DECKS: JlptDeck[] = [kanaDeck('hiragana'), kanaDeck('katakana')];
 
+/** The basic syllabary alone: the 46 plain signs of each script (no dakuten, no combined ones), for To the Last and Name Them All. */
+const PLAIN = new Set([...HIRAGANA].slice(0, 46));
+export const BASIC_KANA: Record<'hiragana' | 'katakana', JlptEntry[]> = {
+  hiragana: KANA_DECKS[0].entries.filter((e) => PLAIN.has(toHiragana(e.reading))),
+  katakana: KANA_DECKS[1].entries.filter((e) => PLAIN.has(toHiragana(e.reading))),
+};
+
+/** A kana's romaji, every way it's spelled: Hepburn (shi, tsu, fu, sha) and the other way (si, tu, hu, sya). */
+export function kanaRomaji(kana: string): string[] {
+  const own = romajiSpellings(toHiragana(kana));
+  const ALT: [RegExp, string][] = [[/^shi/, 'si'], [/^chi/, 'ti'], [/^tsu/, 'tu'], [/^fu/, 'hu'], [/^ji/, 'zi'], [/^sh/, 'sy'], [/^ch/, 'ty'], [/^j(?=[auo])/, 'zy'], [/^j(?=[auo])/, 'jy']];
+  return [...new Set([...own, ...own.flatMap((r) => ALT.filter(([re]) => re.test(r)).map(([re, to]) => r.replace(re, to)))])];
+}
+
 export const JLPT_DECKS = [...JLPT_LEVELS.flatMap((l) => l.decks), ...JLPT_THEMES, ...KANA_DECKS];
 const ENTRY_BY_ID = new Map(JLPT_DECKS.flatMap((d) => d.entries.map((e) => [e.id, e] as const)));
 /** An entry by its id: the list's, or a word the player added to their review list (src/arcade/jlptCustom.ts). */
@@ -212,13 +226,7 @@ export const typedRight = (e: JlptEntry, ask: JlptAsk, typed: string) => {
   const k = typedKey(typed);
   if (!k) return false;
   // A kana: its romaji, any way it's spelled (し: shi or si; ふ: fu or hu), or the kana itself.
-  if (e.level === 'Kana') {
-    const own = romajiSpellings(toHiragana(e.reading));
-    // The other way of writing them (Kunrei and its like): si, ti, tu, hu, zi, sya, tya, zya, jya…
-    const ALT: [RegExp, string][] = [[/^shi/, 'si'], [/^chi/, 'ti'], [/^tsu/, 'tu'], [/^fu/, 'hu'], [/^ji/, 'zi'], [/^sh/, 'sy'], [/^ch/, 'ty'], [/^j(?=[auo])/, 'zy'], [/^j(?=[auo])/, 'jy']];
-    const more = own.flatMap((r) => ALT.filter(([re]) => re.test(r)).map(([re, to]) => r.replace(re, to)));
-    return new Set([...own, ...more, toHiragana(e.reading)].map(typedKey)).has(k);
-  }
+  if (e.level === 'Kana') return new Set([...kanaRomaji(e.reading), toHiragana(e.reading)].map(typedKey)).has(k);
   return (ask === 'reading' ? readingSpellings(e) : meaningSpellings(e)).has(k);
 };
 

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { shortMeaning } from '../arcade/jlpt';
-import { LAST_KINDS, LAST_KIND_LABEL, afterAnswer, askFor, freshLast, lastItems, lastRight, loadLast, maskPattern, saveLast, type LastKind } from '../arcade/toTheLast';
+import { LAST_KIND_LABEL, lastValid, afterAnswer, askFor, freshLast, lastItems, lastRight, loadLast, maskPattern, saveLast, type LastKind } from '../arcade/toTheLast';
 import { hashString } from '../lib/rng';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -21,7 +21,7 @@ export default function ToTheLast() {
 }
 
 function LastGame({ level, kind }: { level: string; kind: string }) {
-  const valid = /^N[1-5]$/.test(level) && (LAST_KINDS as string[]).includes(kind);
+  const valid = lastValid(level, kind);
   const items = useMemo(() => (valid ? lastItems(level, kind as LastKind) : []), [valid, level, kind]);
   const byId = useMemo(() => new Map(items.map((e) => [e.id, e])), [items]);
   const recordBest = useProgress((s) => s.recordBest);
@@ -98,7 +98,9 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
           <span className="rounded-full border-2 border-ink px-3 py-0.5 font-display text-lg font-bold">{LAST_KIND_LABEL[k]}</span>
         </p>
         <p className="text-sm text-ink-soft">
-          Every {k === 'vocab' ? 'word' : k === 'kanji' ? 'kanji' : 'grammar point'} of {level}, one at a time. Right, and it&apos;s gone for good; wrong, and it comes back a
+          {level === 'Kana'
+            ? `Every sign of the basic ${k} (the 46, no dakuten or combined ones), one at a time: type how it reads, in romaji.`
+            : `Every ${k === 'vocab' ? 'word' : k === 'kanji' ? 'kanji' : 'grammar point'} of ${level}, one at a time.`} Right, and it&apos;s gone for good; wrong, and it comes back a
           little later. Clear them all to finish — your progress is kept on this device.
         </p>
       </div>
@@ -174,7 +176,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
               onChange={(e) => setTyped(e.target.value)}
               disabled={state !== 'guess'}
               lang={ask === 'meaning' ? 'en' : 'ja'}
-              placeholder={PLACEHOLDER[ask]}
+              placeholder={level === 'Kana' ? 'How it reads, in romaji (ka, shi, tsu…)' : PLACEHOLDER[ask]}
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"

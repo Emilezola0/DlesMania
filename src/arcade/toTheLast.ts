@@ -3,14 +3,19 @@
 // device, so a level can be learned over many sittings.
 import { hashString, mulberry32, shuffle } from '../lib/rng';
 import { kanaFromRomaji, romajiSpellings, toHiragana } from '../lib/romaji';
-import { JLPT_LEVELS, typedRight, type JlptAsk, type JlptEntry } from './jlpt';
+import { BASIC_KANA, JLPT_LEVELS, typedRight, type JlptAsk, type JlptEntry } from './jlpt';
 
-export type LastKind = 'vocab' | 'kanji' | 'grammar';
+export type LastKind = 'vocab' | 'kanji' | 'grammar' | 'hiragana' | 'katakana';
+/** A level's kinds (N5…N1); the kana are a "level" of their own ("Kana"), the basic syllabary of each script. */
 export const LAST_KINDS: LastKind[] = ['vocab', 'kanji', 'grammar'];
-export const LAST_KIND_LABEL: Record<LastKind, string> = { vocab: '語 Words', kanji: '字 Kanji', grammar: '文 Grammar' };
+export const KANA_KINDS: LastKind[] = ['hiragana', 'katakana'];
+export const LAST_KIND_LABEL: Record<LastKind, string> = { vocab: '語 Words', kanji: '字 Kanji', grammar: '文 Grammar', hiragana: 'あ Hiragana', katakana: 'ア Katakana' };
+/** Whether a level and kind make a To the Last. */
+export const lastValid = (level: string, kind: string) => (/^N[1-5]$/.test(level) && (LAST_KINDS as string[]).includes(kind)) || (level === 'Kana' && (KANA_KINDS as string[]).includes(kind));
 
 /** A level's items of one kind. Grammar points have no reading or meaning in the list: only their pattern. */
 export function lastItems(level: string, kind: LastKind): JlptEntry[] {
+  if (kind === 'hiragana' || kind === 'katakana') return BASIC_KANA[kind];
   const l = JLPT_LEVELS.find((x) => x.level === level);
   if (!l) return [];
   if (kind === 'grammar') return l.grammar.map((g, i) => ({ id: `${l.level}:grammar:${i}`, text: g, reading: '', meaning: '', level: l.level }));

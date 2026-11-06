@@ -4,7 +4,7 @@ import { GENSHIN } from '../specialist/genshin';
 import { LOL } from '../specialist/lol';
 import { MARVEL } from '../specialist/marvel';
 import { DRAGON_BALL, HARRY_POTTER, MINECRAFT, NARUTO, STAR_WARS } from '../specialist/extra';
-import { JLPT_LEVELS, JLPT_THEMES, type JlptEntry } from './jlpt';
+import { BASIC_KANA, JLPT_LEVELS, JLPT_THEMES, kanaRomaji, type JlptEntry } from './jlpt';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import type { BlitzPrompt, Domain } from '../types';
 
@@ -128,7 +128,16 @@ const jlptLevels: NameList[] = JLPT_LEVELS.flatMap((l) =>
   }),
 );
 
+/** The kana: the 46 signs of the basic syllabary of each script, named by their romaji (or typed as kana). */
+const kanaLists: NameList[] = (['hiragana', 'katakana'] as const).map((script) => {
+  // ん is "nn" here (as typed on a Japanese keyboard): "n" alone would name it before "na", "ni"… are typed out.
+  const romaji = (k: string) => (toHiragana(k) === 'ん' ? ['nn', "n'"] : kanaRomaji(k));
+  const answers = BASIC_KANA[script].map((e) => ({ jlpt: e.id, name: `${e.text} (${toHiragana(e.text) === 'ん' ? 'nn' : e.meaning})`, aliases: [...new Set([e.text, toHiragana(e.text), ...romaji(e.text)])] }));
+  return { id: `jlpt-kana-${script}`, title: script === 'hiragana' ? 'あ Hiragana' : 'ア Katakana', franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
+});
+
 const jlpt: NameList[] = [
+  ...kanaLists,
   ...jlptLevels,
   ...JLPT_THEMES.map((t) => {
     const answers = wordAnswers(t.entries);

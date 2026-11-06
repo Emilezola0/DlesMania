@@ -5,7 +5,7 @@ import { FlameIcon } from '../components/Layout';
 import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
-import { LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
+import { KANA_KINDS, LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
 import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
@@ -848,6 +848,24 @@ function ToTheLastRow() {
                 })}
               </tr>
             ))}
+            {/* The kana: the basic syllabary of each script. */}
+            <tr>
+              <th className="pr-3 text-left font-display">Kana</th>
+              {KANA_KINDS.map((kind) => {
+                const p = loadLast('Kana', kind);
+                const total = lastItems('Kana', kind).length;
+                return (
+                  <td key={kind} className="p-1">
+                    <Link to={`/jlpt-last/Kana/${kind}`} className="btn-paper inline-flex w-full items-center justify-between gap-2 rounded-full px-3 py-1.5 font-display font-bold">
+                      {LAST_KIND_LABEL[kind]}
+                      <span className="text-xs font-normal text-ink-faint">
+                        {total - p.left.length}/{total}
+                      </span>
+                    </Link>
+                  </td>
+                );
+              })}
+            </tr>
           </tbody>
         </table>
       </div>
