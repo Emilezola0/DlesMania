@@ -49,6 +49,7 @@ export const SYNCED = [
   'groups',
   'jlptReview',
   'jlptCustom',
+  'jlptGrammarReview',
   'frames',
   'frame',
   'casinoMeter',
@@ -245,6 +246,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // The JLPT review list: both lists on a first link; then the latest (words learned leave it).
     jlptReview: firstLink ? { ...(cloud.jlptReview ?? {}), ...(local.jlptReview ?? {}) } : (latest.jlptReview ?? local.jlptReview ?? {}),
     // The player's own words: every one either side has (a word is never changed, only added or taken off).
+    jlptGrammarReview: firstLink ? { ...(cloud.jlptGrammarReview ?? {}), ...(local.jlptGrammarReview ?? {}) } : (latest.jlptGrammarReview ?? local.jlptGrammarReview ?? {}),
     jlptCustom: firstLink ? { ...(cloud.jlptCustom ?? {}), ...(local.jlptCustom ?? {}) } : (latest.jlptCustom ?? local.jlptCustom ?? {}),
     // Icon frames won on either side stay won; the one worn, the meter and free capsules: the latest save's.
     frames: [...new Set([...(local.frames ?? []), ...(cloud.frames ?? [])])],

@@ -5,6 +5,7 @@ import type { RoundRecord } from '../../types';
 import { JLPT_KANJI, JLPT_READINGS, JLPT_WORDS, jlptKanji, jlptWord, onKun, wordDetail } from '../jlpt';
 import type { SpRound } from '../rounds';
 import { SpGuessRound } from './SpGuessRound';
+import { KeepButton } from '../../components/JlptKeep';
 
 interface Props {
   round: SpRound;
@@ -13,7 +14,7 @@ interface Props {
 }
 
 /** The character big, with its reading under it once the round is over (the point is to learn). */
-function Character({ text, reading, done, size = 'text-8xl' }: { text: string; reading?: string; done: boolean; size?: string }) {
+function Character({ text, reading, done, size = 'text-8xl', id }: { text: string; reading?: string; done: boolean; size?: string; id?: string }) {
   return (
     <div className="flex flex-col items-center gap-3 py-2 text-center">
       <p lang="ja" className={`font-serif font-bold leading-none ${size}`}>
@@ -22,6 +23,8 @@ function Character({ text, reading, done, size = 'text-8xl' }: { text: string; r
       <p lang="ja" className={`min-h-8 text-xl text-ink-soft ${done ? 'animate-pop' : 'invisible'}`}>
         {reading}
       </p>
+      {/* Once over: onto the review list. */}
+      {done && id && <KeepButton id={id} />}
     </div>
   );
 }
@@ -42,7 +45,7 @@ export function JlptKanjiRound({ round, record, onChange }: Props) {
       onChange={onChange}
       answer={{ name: k.name, image: kanjiPicture(`kanji:${k.entry.text}`), detail: `${k.entry.text} — ${shown} · ${shortMeaning(k.entry.meaning, 4)} · JLPT ${k.entry.level}` }}
       noPictures
-      clue={(_, done) => <Character text={k.entry.text} reading={shown} done={done} />}
+      clue={(_, done) => <Character text={k.entry.text} reading={shown} done={done} id={k.entry.id} />}
     />
   );
 }
@@ -62,7 +65,7 @@ export function JlptReadingRound({ round, record, onChange }: Props) {
       onChange={onChange}
       answer={{ name: `${w.entry.text} · ${w.entry.reading}`, detail: wordDetail(w) }}
       noPictures
-      clue={(_, done) => <Character text={w.entry.text} reading={w.entry.reading} done={done} size="text-7xl" />}
+      clue={(_, done) => <Character text={w.entry.text} reading={w.entry.reading} done={done} size="text-7xl" id={w.entry.id} />}
     />
   );
 }
@@ -84,7 +87,7 @@ export function JlptWordRound({ round, record, onChange }: Props) {
       clue={(_, done) => (
         <div className="space-y-3 text-center">
           <p className="font-serif text-3xl font-bold italic">“{shortMeaning(w.entry.meaning, 4)}”</p>
-          {done && <Character text={w.entry.text} reading={w.entry.reading !== w.entry.text ? w.entry.reading : ''} done size="text-6xl" />}
+          {done && <Character text={w.entry.text} reading={w.entry.reading !== w.entry.text ? w.entry.reading : ''} done size="text-6xl" id={w.entry.id} />}
         </div>
       )}
     />

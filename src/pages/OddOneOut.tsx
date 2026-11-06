@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ODD_THEMES, oddRound, type OddRound } from '../arcade/oddOneOut';
 import { jlptWord, shortMeaning } from '../arcade/jlpt';
+import { KeepRow } from '../components/JlptKeep';
 import { Customise, useCustomPicks } from '../components/Customise';
 
 /** Themes to mix in "Your mix". */
@@ -89,6 +90,8 @@ function Run({ themeId, label, onExit, mix }: { themeId: string; label: string; 
           <p className="text-lg">
             The others are all <span className="font-bold">{round.link}</span> — <span className="font-bold">{round.odd}</span> isn&apos;t.
           </p>
+          {/* JLPT words: each one onto the review list. */}
+          <KeepRow ids={round.cards.flatMap((c) => jlptWord(c.label)?.id ?? [])} />
           {right ? (
             <button type="button" data-next onClick={next} className="btn-ink rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
               Next →

@@ -13,7 +13,9 @@ import { JLPT_LEARNED, useProgress } from '../store/progress';
 import { KeepButton } from '../components/JlptKeep';
 import { CUSTOM_LEVEL } from '../arcade/jlptCustom';
 import { kanaFromRomaji, toHiragana } from '../lib/romaji';
-import { GrammarPage } from './JlptGrammarGame';
+import { GrammarPage, GrammarReview } from './JlptGrammarGame';
+import { WriteCard, WriteGame } from './JlptWrite';
+import { grammarMeaning } from '../arcade/jlptGrammar';
 
 /** How long a right answer stays shown before the next question. */
 const REVEAL_MS = 900;
@@ -95,8 +97,9 @@ function Game({ deck }: { deck: JlptDeck }) {
   const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const arena = useRef<HTMLDivElement>(null);
-  // Review only: type the reading or the meaning instead of picking it (no list, no suggestions).
-  const [typing, setTyping] = useState(() => review && readTyping());
+  // Review and the kana: type the reading or the meaning instead of picking it (no list, no suggestions).
+  const canType = review || deck.kind === 'kana';
+  const [typing, setTyping] = useState(() => canType && readTyping());
   const [typed, setTyped] = useState('');
   const field = useRef<HTMLInputElement>(null);
   const toggleTyping = (on: boolean) => {
@@ -233,7 +236,7 @@ function Game({ deck }: { deck: JlptDeck }) {
         {state !== 'guess' && <p className="animate-pop text-sm text-ink-faint">{shortMeaning(q.entry.meaning, 6)}</p>}
         <KeepButton id={q.entry.id} />
       </div>
-      {review && (
+      {canType && (
         <div className="flex items-center justify-center gap-2 text-sm">
           <span className="text-ink-faint">Answer by</span>
           {[false, true].map((on) => (
@@ -258,7 +261,7 @@ function Game({ deck }: { deck: JlptDeck }) {
               onChange={(e) => setTyped(e.target.value)}
               disabled={state !== 'guess'}
               lang={q.ask === 'reading' ? 'ja' : 'en'}
-              placeholder={q.ask === 'reading' ? 'The reading, in kana or romaji…' : 'The meaning, in English…'}
+              placeholder={deck.kind === 'kana' ? 'How it reads, in romaji (ka, shi, tsu…)' : q.ask === 'reading' ? 'The reading, in kana or romaji…' : 'The meaning, in English…'}
               autoComplete="off"
               autoCorrect="off"
               autoCapitalize="off"
@@ -462,6 +465,69 @@ function ReviewList() {
                   {'○'.repeat(Math.max(0, JLPT_LEARNED - list[id]))}
                 </span>
                 <button type="button" onClick={() => remove(id)} aria-label={`Take ${e.text} off the list`} className="px-1 text-ink-faint hover:text-miss">
+                  ✕
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+/** The grammar review list: every grammar point kept, to look over or take off, and its Review. */
+function GrammarReviewList() {
+  const list = useProgress((s) => s.jlptGrammarReview);
+  const remove = useProgress((s) => s.removeJlptGrammarReview);
+  const lang = useProgress((s) => s.nameLang);
+  const [open, setOpen] = useState(false);
+  const keys = Object.keys(list);
+  return (
+    <section className="page space-y-4 rounded-md p-5 ring-2 ring-accent/40">
+      <div className="flex flex-wrap items-center gap-4">
+        <span lang="ja" className="font-serif text-4xl font-bold">
+          文
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="font-display text-xl font-bold">My grammar review list</p>
+          <p className="text-sm text-ink-soft">
+            {keys.length
+              ? `${keys.length} grammar point${keys.length === 1 ? '' : 's'} to work on. Get one right ${JLPT_LEARNED} times in a row in Grammar Review and it's learned.`
+              : 'Empty for now: star (☆) a grammar point once you have answered it, in Grammar or To the Last.'}
+          </p>
+        </div>
+        {keys.length > 0 && (
+          <>
+            <button type="button" onClick={() => setOpen(!open)} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
+              {open ? 'Hide the list' : 'See the list'}
+            </button>
+            <Link to="/jlpt/grammar-review" className="btn-accent rounded-md px-5 py-2 font-display font-bold tracking-wider">
+              Review
+            </Link>
+          </>
+        )}
+      </div>
+      {open && keys.length > 0 && (
+        <ul className="grid gap-2 sm:grid-cols-2">
+          {keys.map((k) => {
+            const [level, ...rest] = k.split('|');
+            const pattern = rest.join('|');
+            const m = grammarMeaning(level, pattern, lang);
+            return (
+              <li key={k} className="flex items-center gap-3 rounded-md border border-rule px-3 py-2">
+                <span lang="ja" className="font-serif text-xl font-bold">
+                  {pattern}
+                </span>
+                <span className="min-w-0 flex-1 text-sm">
+                  <span className="block text-xs text-ink-faint">{level}</span>
+                  {m && <span className="block truncate text-ink-faint">{m.text}</span>}
+                </span>
+                <span className="font-display text-xs text-ink-faint">
+                  {'●'.repeat(list[k])}
+                  {'○'.repeat(Math.max(0, JLPT_LEARNED - list[k]))}
+                </span>
+                <button type="button" onClick={() => remove(k)} aria-label={`Take ${pattern} off the list`} className="px-1 text-ink-faint hover:text-miss">
                   ✕
                 </button>
               </li>
@@ -809,6 +875,41 @@ export default function Jlpt() {
     const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
   }
+  if (id === 'grammar-review') {
+    return (
+      <div className="mx-auto max-w-2xl space-y-6">
+        <div>
+          <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
+            ← JLPT
+          </Link>
+          <h1 className="text-4xl font-bold">🔁 Grammar Review</h1>
+          <p className="text-sm text-ink-soft">The grammar points you kept, with gaps. No clock, and a miss doesn&apos;t end it. {JLPT_LEARNED} right in a row and a point is learned.</p>
+        </div>
+        <GrammarReview />
+      </div>
+    );
+  }
+  // Write: a level's kanji (n5-write…) or a kana script (kana-hiragana-write), drawn.
+  const write = id && /^(.+)-write$/.exec(id);
+  if (write) {
+    const base = jlptDeck(/^n[1-5]$/.test(write[1]) ? `${write[1]}-kanji` : write[1]);
+    if (!base || (base.kind !== 'kanji' && base.kind !== 'kana')) return <Navigate to="/jlpt" replace />;
+    return (
+      <div className="mx-auto max-w-2xl space-y-6">
+        <div>
+          <Link to="/jlpt" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
+            ← JLPT
+          </Link>
+          <h1 className="text-4xl font-bold">✍️ {base.kind === 'kana' ? `Write ${base.label}` : `${base.level} · Write the kanji`}</h1>
+          <p className="text-sm text-ink-soft">
+            {base.kind === 'kana' ? 'Its romaji is given: draw the kana' : 'Its meaning and readings are given: draw the kanji'} with your finger or the mouse, then see it over your drawing and say
+            whether you had it. No clock.
+          </p>
+        </div>
+        <WriteGame key={base.id} deck={base} />
+      </div>
+    );
+  }
   if (id) {
     // A level's grammar: its patterns with gaps to fill (the old sentence game's address leads there too).
     const grammar = /^(n[1-5])-(grammar|sentences)$/.exec(id);
@@ -846,9 +947,12 @@ export default function Jlpt() {
       {/* For beginners: the two kana scripts, read in romaji. */}
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Start here · the kana</h2>
-        <ul className="grid gap-4 sm:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {KANA_DECKS.map((d) => (
             <DeckCard key={d.id} deck={d} glyph={d.icon!} title={d.label} />
+          ))}
+          {KANA_DECKS.map((d) => (
+            <WriteCard key={`${d.id}-write`} deck={d} title={`Write ${d.label}`} />
           ))}
         </ul>
       </section>
@@ -877,6 +981,7 @@ export default function Jlpt() {
         )}
       </section>
       <ReviewList />
+      <GrammarReviewList />
       <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Themes · every level</h2>
         <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -890,10 +995,11 @@ export default function Jlpt() {
       {JLPT_LEVELS.map((l) => (
         <section key={l.level} className="space-y-3">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{l.level}</h2>
-          <ul className="grid gap-4 sm:grid-cols-3">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {l.decks.map((d) => (
               <DeckCard key={d.id} deck={d} glyph={d.kind === 'vocab' ? '語' : '字'} title={d.kind === 'vocab' ? 'Vocabulary' : 'Kanji'} />
             ))}
+            <WriteCard deck={l.decks.find((d) => d.kind === 'kanji')!} title="Write the kanji" />
             <GrammarCard level={l.level} points={l.grammar.length} open={grammar === l.level} onToggle={() => setGrammar(grammar === l.level ? null : l.level)} />
           </ul>
           {grammar === l.level && (

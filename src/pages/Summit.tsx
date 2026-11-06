@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ANGLE_INFO,
@@ -419,9 +419,18 @@ function MissedList({ faces }: { faces: Face[] }) {
           </li>
         ))}
       </ul>
+      {/* JLPT kanji: each onto the review list. */}
+      {faces.some((f) => kanjiOf(f.image)) && (
+        <Suspense fallback={null}>
+          <JlptTextKeep texts={faces.flatMap((f) => kanjiOf(f.image) ?? [])} />
+        </Suspense>
+      )}
     </div>
   );
 }
+
+/** The review stars for JLPT kanji (the Japanese loaded only when there are some). */
+const JlptTextKeep = lazy(() => import('../components/JlptTextKeep'));
 
 function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
   const best = useProgress((s) => s.bests[bestKey] ?? 0);

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { BossHeader, HeartIcon } from '../boss/BossHeader';
 import { FinalBlow } from '../boss/FinalBlow';
@@ -469,7 +469,7 @@ function BossBattle({ boss }: { boss: Boss }) {
                 {round > 0 ? 'A blow lands — again!' : 'Phase broken — the guardian staggers!'}
               </p>
             )}
-            {last && <RoundReview missed={last.won ? undefined : last.missed} tries={last.tries} onBook={() => setBook(true)} />}
+            {last && <RoundReview boss={boss} missed={last.won ? undefined : last.missed} tries={last.tries} onBook={() => setBook(true)} />}
             <p className="font-display text-xs uppercase tracking-[0.4em] text-ink-faint">{attempt > 0 ? 'Again —' : 'Now entering'}</p>
             <h2 className="boss-phase-title font-display text-6xl font-bold tracking-[0.15em] sm:text-7xl">PHASE {info.roman}</h2>
             <p className="font-display text-xl font-semibold tracking-wider">
@@ -553,7 +553,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             {stage === 'lost' && last && !last.won && (
               <div className="space-y-1">
                 {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
-                <RoundReview missed={last.missed} tries={last.tries} onBook={() => setBook(true)} />
+                <RoundReview boss={boss} missed={last.missed} tries={last.tries} onBook={() => setBook(true)} />
               </div>
             )}
             {signature && secretResult && (
@@ -586,7 +586,10 @@ const REVIEW_MAX = 12;
  * After a round: the answers that were there to give (when it was lost) and what the player got wrong —
  * every name typed that didn't count, or the cards misjudged — so a miss is never a mystery.
  */
-function RoundReview({ missed, tries, onBook }: { missed?: string[]; tries?: string[]; onBook: () => void }) {
+/** The JLPT boss's review stars (its Japanese loaded only for it). */
+const JlptBossKeep = lazy(() => import('../boss/JlptBossKeep'));
+
+function RoundReview({ missed, tries, onBook, boss }: { missed?: string[]; tries?: string[]; onBook: () => void; boss: Boss }) {
   if (!missed?.length && !tries?.length) return null;
   const more = (missed?.length ?? 0) - REVIEW_MAX;
   return (
@@ -608,6 +611,11 @@ function RoundReview({ missed, tries, onBook }: { missed?: string[]; tries?: str
         <p className="text-ink-soft">
           <b className="text-coral">You tried:</b> {tries.join(' · ')}
         </p>
+      ) : null}
+      {boss.id === 'jlpt' && missed?.length ? (
+        <Suspense fallback={null}>
+          <JlptBossKeep boss={boss} names={missed} />
+        </Suspense>
       ) : null}
     </div>
   );

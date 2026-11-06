@@ -211,6 +211,14 @@ export function meaningSpellings(e: JlptEntry): Set<string> {
 export const typedRight = (e: JlptEntry, ask: JlptAsk, typed: string) => {
   const k = typedKey(typed);
   if (!k) return false;
+  // A kana: its romaji, any way it's spelled (し: shi or si; ふ: fu or hu), or the kana itself.
+  if (e.level === 'Kana') {
+    const own = romajiSpellings(toHiragana(e.reading));
+    // The other way of writing them (Kunrei and its like): si, ti, tu, hu, zi, sya, tya, zya, jya…
+    const ALT: [RegExp, string][] = [[/^shi/, 'si'], [/^chi/, 'ti'], [/^tsu/, 'tu'], [/^fu/, 'hu'], [/^ji/, 'zi'], [/^sh/, 'sy'], [/^ch/, 'ty'], [/^j(?=[auo])/, 'zy'], [/^j(?=[auo])/, 'jy']];
+    const more = own.flatMap((r) => ALT.filter(([re]) => re.test(r)).map(([re, to]) => r.replace(re, to)));
+    return new Set([...own, ...more, toHiragana(e.reading)].map(typedKey)).has(k);
+  }
   return (ask === 'reading' ? readingSpellings(e) : meaningSpellings(e)).has(k);
 };
 
@@ -240,3 +248,5 @@ export const kanjiOfWord = (word: string) => [...new Set([...word])].flatMap((c)
 const WORD_BY_TEXT = new Map<string, JlptEntry>();
 for (const e of ALL_VOCAB) if (!WORD_BY_TEXT.has(e.text)) WORD_BY_TEXT.set(e.text, e);
 export const jlptWord = (text: string) => WORD_BY_TEXT.get(text);
+/** The entry a text is: a kanji of the list (one character) or a word of it. */
+export const jlptIdOfText = (text: string) => (([...text].length === 1 && KANJI_BY_CHAR.get(text)) || WORD_BY_TEXT.get(text))?.id;

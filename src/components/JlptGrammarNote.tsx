@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { allGrammarExamples, grammarMeaning, type SourceExample } from '../arcade/jlptGrammar';
 import { audioUrl, pieces, tatoebaUrl, type JlptSentence } from '../arcade/jlptSentences';
 import { useProgress } from '../store/progress';
+import { GrammarKeepButton } from './JlptKeep';
 
 /** How many examples show at first; the rest behind "More examples". */
 const FIRST = 3;
@@ -124,10 +125,10 @@ export function GrammarNote({ level, pattern, not, examples = FIRST }: { level: 
   }, [key, level, pattern, not]);
   const here = found?.key === key ? found : null;
   const list: ReactNode[] = [...(here?.source ?? []).map((s, i) => <SourceSentence key={`s${i}`} s={s} />), ...(SHOW_TATOEBA ? (here?.tatoeba ?? []) : []).map((s) => <Example key={s.id} s={s} lang={lang} />)];
-  if (!meaning && !list.length) return null;
   const fr = lang === 'fr';
   return (
     <div className="animate-pop space-y-2 text-left">
+      <GrammarKeepButton level={level} pattern={pattern} />
       {meaning && (
         <p className="text-sm">
           <span className="font-display font-bold">{fr ? 'Sens' : 'Meaning'}</span> · {meaning.text}{' '}

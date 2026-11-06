@@ -7,6 +7,7 @@ import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { GrammarNote } from '../components/JlptGrammarNote';
+import { KeepButton } from '../components/JlptKeep';
 import { grammarMeaning } from '../arcade/jlptGrammar';
 
 const REVEAL_MS = 1100;
@@ -145,6 +146,7 @@ function LastGame({ level, kind }: { level: string; kind: string }) {
                   </p>
                 )}
                 <p className="animate-pop text-sm text-ink-faint">{shortMeaning(entry.meaning, 6)}</p>
+                <KeepButton id={entry.id} />
               </>
             )}
             {/* A grammar point's hint: what it means (a one-kana particle, all hidden, can't be guessed without it). */}

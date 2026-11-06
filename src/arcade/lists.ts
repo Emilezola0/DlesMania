@@ -74,12 +74,13 @@ const rosters: NameList[] = [
  */
 /** Words to name: each once, shown with its kana and romaji, named by any of them (or in kanji). */
 function wordAnswers(entries: JlptEntry[]) {
-  const words = new Map<string, { name: string; aliases: string[] }>();
+  const words = new Map<string, { jlpt: string; name: string; aliases: string[] }>();
   for (const e of entries) {
     if (words.has(e.text)) continue;
     const readings = e.reading.split(/[/／・、\s]+/).filter(Boolean);
     const forms = e.text.split(/[/／\s]+/).filter(Boolean);
     words.set(e.text, {
+      jlpt: e.id,
       // The word, its kana and its romaji: every name named shows how it's read.
       name: readings[0] && readings[0] !== e.text ? `${e.text} · ${readings[0]} (${romajiSpellings(readings[0])[0]})` : `${e.text} (${romajiSpellings(e.text)[0]})`,
       aliases: [...new Set([...forms, ...readings, ...readings.map(toHiragana), ...readings.flatMap(romajiSpellings)])],
@@ -99,27 +100,30 @@ function kanjiAnswers(entries: JlptEntry[]) {
       .flatMap((r) => [r.replace(/[.\-～~]/g, ''), r.split('.')[0].replace(/[-～~]/g, '')])
       .map(toHiragana)
       .filter(Boolean);
-    return [{ name: `${e.text} · ${e.reading}`, aliases: [...new Set([e.text, ...readings, ...readings.flatMap(romajiSpellings)])] }];
+    return [{ jlpt: e.id, name: `${e.text} · ${e.reading}`, aliases: [...new Set([e.text, ...readings, ...readings.flatMap(romajiSpellings)])] }];
   });
 }
 
 /** Grammar points to name: as the list writes them, without the ～ (and a reading in brackets as another way). */
-function grammarAnswers(points: string[]) {
+function grammarAnswers(level: string, points: string[]) {
   return points.map((g) => {
     const bare = g.replace(/[～~]/g, '').trim();
     const inBrackets = /[（(]([^）)]+)[）)]/.exec(bare)?.[1];
     const outside = bare.replace(/[（(][^）)]*[）)]/g, '').trim();
     const kana = [outside, inBrackets].filter((x): x is string => !!x && /^[ぁ-ゖァ-ヶー\s]+$/.test(x));
-    return { name: g, aliases: [...new Set([bare, outside, ...(inBrackets ? [inBrackets] : []), ...kana.map(toHiragana), ...kana.flatMap((k) => romajiSpellings(k.replace(/\s/g, '')))].filter(Boolean))] };
+    return { grammar: `${level}|${g}`, name: g, aliases: [...new Set([bare, outside, ...(inBrackets ? [inBrackets] : []), ...kana.map(toHiragana), ...kana.flatMap((k) => romajiSpellings(k.replace(/\s/g, '')))].filter(Boolean))] };
   });
 }
+
+/** What a JLPT list's answer is, to put it on a review list: its entry (a word or kanji), or its grammar point ("N4|～ばよかった"). */
+export const jlptKeyOf = (a: BlitzPrompt['answers'][number]) => a as { jlpt?: string; grammar?: string };
 
 /** Whole levels: every word, every kanji or every grammar point of N5 … N1. */
 const KIND_LABEL = { vocab: 'Vocabulary', kanji: 'Kanji', grammar: 'Grammar' } as const;
 const jlptLevels: NameList[] = JLPT_LEVELS.flatMap((l) =>
   (['vocab', 'kanji', 'grammar'] as const).map((kind) => {
     const deck = l.decks.find((d) => d.kind === kind);
-    const answers = kind === 'grammar' ? grammarAnswers(l.grammar) : kind === 'kanji' ? kanjiAnswers(deck!.entries) : wordAnswers(deck!.entries);
+    const answers = kind === 'grammar' ? grammarAnswers(l.level, l.grammar) : kind === 'kanji' ? kanjiAnswers(deck!.entries) : wordAnswers(deck!.entries);
     return { id: `jlpt-${l.level.toLowerCase()}-${kind}`, title: `${l.level} ${KIND_LABEL[kind]}`, franchise: 'JLPT', domain: 'anime' as Domain, answers, seconds: timeFor(answers.length) };
   }),
 );

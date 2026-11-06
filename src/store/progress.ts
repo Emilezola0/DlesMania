@@ -250,6 +250,14 @@ interface ProgressState {
   addJlptCustom: (w: Omit<CustomWord, 'at'>) => string;
   /** A Review answer: right ones add up (until it's learned and leaves), a wrong one starts over. */
   reviewJlpt: (id: string, right: boolean) => void;
+  /**
+   * The grammar points kept for review, their own list: "N4|～ばよかった" (level and pattern, as the list
+   * writes it) -> right answers in a row in Grammar Review; JLPT_LEARNED in a row and it leaves the list.
+   */
+  jlptGrammarReview: Record<string, number>;
+  addJlptGrammarReview: (keys: string[]) => void;
+  removeJlptGrammarReview: (key: string) => void;
+  reviewJlptGrammar: (key: string, right: boolean) => void;
   recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
@@ -691,6 +699,21 @@ export const useProgress = create<ProgressState>()(
           if (n < JLPT_LEARNED) return { jlptReview: { ...s.jlptReview, [id]: n } };
           const { [id]: _, ...rest } = s.jlptReview;
           return { jlptReview: rest };
+        }),
+      jlptGrammarReview: {},
+      addJlptGrammarReview: (keys) => set((s) => ({ jlptGrammarReview: { ...s.jlptGrammarReview, ...Object.fromEntries(keys.filter((k) => !(k in s.jlptGrammarReview)).map((k) => [k, 0])) } })),
+      removeJlptGrammarReview: (key) =>
+        set((s) => {
+          const { [key]: _, ...rest } = s.jlptGrammarReview;
+          return { jlptGrammarReview: rest };
+        }),
+      reviewJlptGrammar: (key, right) =>
+        set((s) => {
+          if (!(key in s.jlptGrammarReview)) return {};
+          const n = right ? s.jlptGrammarReview[key] + 1 : 0;
+          if (n < JLPT_LEARNED) return { jlptGrammarReview: { ...s.jlptGrammarReview, [key]: n } };
+          const { [key]: _, ...rest } = s.jlptGrammarReview;
+          return { jlptGrammarReview: rest };
         }),
       seen: {},
       markSeen: (scope, ids) =>

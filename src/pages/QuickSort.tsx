@@ -8,6 +8,8 @@ import { useImagesReady } from '../lib/images';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
+import { jlptEntry } from '../arcade/jlpt';
+import { KeepButton } from '../components/JlptKeep';
 
 function Game({ deck }: { deck: SortDeck }) {
   const key = `sort:${deck.id}`;
@@ -160,6 +162,12 @@ function Game({ deck }: { deck: SortDeck }) {
         {last && (
           <span key={last.card.id + score + lives} className={`animate-pop inline-block ${last.ok ? 'text-hit' : 'text-coral'}`}>
             {last.ok ? '✓' : '✗'} {shownName(last.card.name)}: {last.card.fact}
+          </span>
+        )}
+        {/* A JLPT word: onto the review list. */}
+        {last && jlptEntry(last.card.id) && (
+          <span className="ml-2 inline-block align-middle">
+            <KeepButton id={last.card.id} label={last.card.name} />
           </span>
         )}
       </p>

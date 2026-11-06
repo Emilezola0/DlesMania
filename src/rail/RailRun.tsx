@@ -9,6 +9,7 @@ import { useProgress } from '../store/progress';
 import { compactText, findBestMatch } from '../utils/textMatcher';
 import { LANE, TRAIN_Z, drawScene, stepParticles, wheelPoint, type Gate, type Scene } from './draw';
 import { GATES_PER_STATION, MAX_WAGONS, NEW_LINE_BONUS, RAIL_ITEMS, stationOffer, type RailItemId } from './items';
+import { KeepButton } from '../components/JlptKeep';
 import { RAIL_LINES, type RailCharacter, type RailLine } from './rosters';
 
 export type RailDifficulty = 'easy' | 'normal' | 'hard';
@@ -583,6 +584,8 @@ export function RailRun({ line: startLine, difficulty, onExit }: { line: RailLin
                       <div className="min-w-0 text-sm">
                         <p className="font-semibold">{shownName(x.name)}</p>
                         {x.aliases.length > 0 && <p className="text-xs text-ink-soft">also: {x.aliases.join(', ')}</p>}
+                        {/* A JLPT word: onto the review list. */}
+                        {x.id.startsWith('jlpt-') && <KeepButton id={x.id.slice(5)} />}
                       </div>
                     </div>
                   ))}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTypeToFocus } from '../lib/focus';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { NAME_LISTS, listsByFranchise, nameList, type NameList } from '../arcade/lists';
+import { NAME_LISTS, jlptKeyOf, listsByFranchise, nameList, type NameList } from '../arcade/lists';
 import { RARE_LABEL, addUses, bannedOf, pointsFor, setBanned, usesOf } from '../arcade/nameUses';
 import { Customise, useCustomPicks } from '../components/Customise';
 
@@ -224,6 +224,8 @@ function Game({ list: whole }: { list: NameList }) {
         </div>
       )}
 
+      {/* A JLPT list over: the words, kanji or grammar points missed, onto the review lists in one go. */}
+      {state === 'over' && list.franchise === 'JLPT' && <KeepMissed answers={list.answers.filter((a) => !found.includes(a.name))} />}
       {state !== 'ready' && (
         <ul className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 lg:grid-cols-4">
           {list.answers.map((a, i) => {
@@ -245,6 +247,29 @@ function Game({ list: whole }: { list: NameList }) {
 }
 
 /** What clearing the list pays: in full once a day, a token after; nothing with answers banned. */
+/** The JLPT answers missed, put on the review list (words and kanji) or the grammar review list (grammar points). */
+function KeepMissed({ answers }: { answers: NameList['answers'] }) {
+  const addWords = useProgress((s) => s.addJlptReview);
+  const addGrammar = useProgress((s) => s.addJlptGrammarReview);
+  const [done, setDone] = useState(false);
+  const words = answers.flatMap((a) => jlptKeyOf(a).jlpt ?? []);
+  const grammar = answers.flatMap((a) => jlptKeyOf(a).grammar ?? []);
+  const n = words.length + grammar.length;
+  if (!n) return null;
+  return (
+    <div className="text-center">
+      <button
+        type="button"
+        disabled={done}
+        onClick={() => (sfx.click(), addWords(words), addGrammar(grammar), setDone(true))}
+        className={`rounded-full border px-4 py-1.5 font-display text-sm font-bold ${done ? 'border-ochre bg-ochre/15 text-ochre' : 'border-rule-strong text-ink-soft hover:text-ink'}`}
+      >
+        {done ? `★ ${n} on my ${grammar.length ? 'grammar ' : ''}review list` : `☆ Put the ${n} missed on my ${grammar.length ? 'grammar ' : ''}review list`}
+      </button>
+    </div>
+  );
+}
+
 function ClearReward({ reward, doneToday, banned }: { reward: number; doneToday: boolean; banned: boolean }) {
   if (banned) return <p className="text-sm text-ink-faint">With answers banned, clearing the list pays no bonus.</p>;
   if (doneToday)
