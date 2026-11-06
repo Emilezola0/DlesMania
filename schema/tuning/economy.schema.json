@@ -279,13 +279,26 @@
           "maximum": 1,
           "description": "Chance of the small prize"
         },
+        "freeChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 0.5,
+          "description": "Chance of the free-spin slice: the wheel spins again by itself, for nothing (not counted against the day's spins)"
+        },
+        "maxFree": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The most free spins in a row from one paid spin"
+        },
         "dailySpins": {
           "type": "integer",
           "minimum": 1,
-          "description": "Spins a day"
+          "description": "Paid spins a day"
         }
       },
       "required": [
+        "freeChance",
+        "maxFree",
         "cost",
         "jackpot",
         "jackpotChance",

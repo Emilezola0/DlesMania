@@ -51,7 +51,7 @@ import {
   type Period,
   type PeriodBooks,
   ROULETTE,
-  rouletteRoll,
+  rouletteChain,
   roulettePay,
   type RoulettePrize,
 } from '../gacha/economy';
@@ -161,7 +161,8 @@ interface ProgressState {
   /** When each card was last pulled (a pack, Renew, a trade), by card id: the Album's "Newest" sort. */
   pulledAt: Record<string, number>;
   /** `times` roulette spins at once (×1, ×5, ×25): each one's prize, or null if it can't (too few coins or spins left today). */
-  spinRoulette: (times?: number) => { prize: RoulettePrize; coins: number }[] | null;
+  /** Each paid spin lands on `chain` in turn (free spins set it off again by themselves); the last landing pays. */
+  spinRoulette: (times?: number) => { prize: RoulettePrize; chain: RoulettePrize[]; coins: number }[] | null;
   /** A slot spin at a bet (×1, ×5…): what came up and what it paid, or null if it can't (coins, spins left today). */
   playSlots: (bet: number) => SlotResult | null;
   /** `n` pachinko balls: each one's way down and pay, or null if it can't. Fills the meter (a free capsule when full). */
@@ -479,8 +480,9 @@ export const useProgress = create<ProgressState>()(
         const n = Math.max(1, Math.floor(times));
         if (s.coins < ROULETTE.cost * n || spins + n > ROULETTE.dailySpins) return null;
         const results = Array.from({ length: n }, () => {
-          const prize = rouletteRoll();
-          return { prize, coins: roulettePay(prize) };
+          const chain = rouletteChain();
+          const prize = chain[chain.length - 1];
+          return { prize, chain, coins: roulettePay(prize) };
         });
         const won = results.reduce((t, r) => t + r.coins, 0);
         set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won }, ...paidIn(s, ROULETTE.cost * n) });

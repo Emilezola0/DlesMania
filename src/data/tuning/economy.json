@@ -45,12 +45,14 @@
     "afterCap": 0.25
   },
   "roulette": {
-    "cost": 5,
-    "jackpot": 1000,
-    "jackpotChance": 0.004,
-    "small": 20,
+    "cost": 10,
+    "jackpot": 5000,
+    "jackpotChance": 0.0015,
+    "small": 50,
     "smallChance": 0.04,
-    "dailySpins": 1000
+    "freeChance": 0.1,
+    "maxFree": 5,
+    "dailySpins": 250
   },
   "duplicateValue": {
     "common": 2,

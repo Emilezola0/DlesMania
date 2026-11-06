@@ -1,5 +1,5 @@
 // The Casino: a chill corner to play some DleCoins — the slots, pachinko, the capsule machine (icon frames)
-// the roulette, and the Daily Card Shop (cards for the tokens the machines give). On average everything pays back a little less than it takes (src/data/tuning/casino.json).
+// the roulette, and the Daily Card Shop (cards for the tokens the machines give). On average the machines pay back a little less than they take (src/data/tuning/casino.json); the roulette a little more, capped by its daily spins (economy.json).
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DleCoin } from '../components/DleCoin';
@@ -51,7 +51,7 @@ export default function Casino() {
             <span aria-hidden>🎰 </span>
             <span className="casino-title">Casino</span>
           </h1>
-          <p className="text-sm text-ink-soft">A little chill zone. Play a few DleCoins, win a few back — on average every machine keeps a little of what it takes, but every coin you put in earns casino tokens for the Daily Card Shop.</p>
+          <p className="text-sm text-ink-soft">A little chill zone. Play a few DleCoins, win a few back — on average the machines keep a little of what they take (the roulette gives a little back, if you play it a lot), and every coin you put in earns casino tokens for the Daily Card Shop.</p>
         </div>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => pick('shop')} aria-label="Casino tokens: open the Daily Card Shop">

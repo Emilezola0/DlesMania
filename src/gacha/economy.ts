@@ -172,16 +172,32 @@ export const EXPEDITION_BOSS_MAX = T.expedition.bossMax;
 export const EXPEDITION_COMPLETE_BONUS = T.expedition.completeBonus;
 
 /**
- * The Card Shop's roulette: a spin costs a few coins, with a small chance of a jackpot and a better one of a
- * small prize. A few spins a day, so it stays a treat and never a way to farm.
+ * The Casino's roulette: a spin costs a few coins, with a small chance of a big jackpot, a better one of a small
+ * prize, and a free-spin slice that sets the wheel turning again by itself. At the defaults it pays back a
+ * little more than it takes (about 105%, nearly all of it through the jackpot): a player who puts in a lot
+ * comes out ahead on average, and the daily spins cap what anyone can make of it.
  */
 export const ROULETTE = T.roulette;
-export type RoulettePrize = 'jackpot' | 'small' | 'none';
+export type RoulettePrize = 'jackpot' | 'small' | 'free' | 'none';
 export function rouletteRoll(r: number = Math.random()): RoulettePrize {
   if (r < ROULETTE.jackpotChance) return 'jackpot';
   if (r < ROULETTE.jackpotChance + ROULETTE.smallChance) return 'small';
+  if (r < ROULETTE.jackpotChance + ROULETTE.smallChance + ROULETTE.freeChance) return 'free';
   return 'none';
 }
+/** One paid spin and the free spins it sets off: every landing in order, the last one what it pays. */
+export function rouletteChain(rand: () => number = Math.random): RoulettePrize[] {
+  const chain: RoulettePrize[] = [];
+  for (;;) {
+    let p = rouletteRoll(rand());
+    // Past the most free spins in a row, the wheel lands on something else.
+    while (p === 'free' && chain.length >= ROULETTE.maxFree) p = rouletteRoll(rand());
+    chain.push(p);
+    if (p !== 'free') return chain;
+  }
+}
+/** What a spin pays back on average, for each coin put in (free spins included). */
+export const rouletteReturn = () => (ROULETTE.jackpot * ROULETTE.jackpotChance + ROULETTE.small * ROULETTE.smallChance) / (1 - ROULETTE.freeChance) / ROULETTE.cost;
 export const roulettePay = (p: RoulettePrize) => (p === 'jackpot' ? ROULETTE.jackpot : p === 'small' ? ROULETTE.small : 0);
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
 export const EXPEDITION_CAP = T.expedition.dailyCap;

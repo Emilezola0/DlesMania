@@ -3,17 +3,20 @@ import { Coins } from '../components/DleCoin';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { econToday, useProgress } from '../store/progress';
-import { ROULETTE, type RoulettePrize } from './economy';
+import { ROULETTE, rouletteReturn, type RoulettePrize } from './economy';
 
-/** The wheel's slices, clockwise from the pointer: one jackpot, two small prizes, the rest empty. */
-const SLICES: RoulettePrize[] = Array.from({ length: 20 }, (_, i) => (i === 0 ? 'jackpot' : i === 5 || i === 15 ? 'small' : 'none'));
+/** The wheel's slices, clockwise from the pointer: one jackpot, two small prizes, two free spins, the rest empty. */
+const SLICES: RoulettePrize[] = Array.from({ length: 20 }, (_, i) => (i === 0 ? 'jackpot' : i === 5 || i === 15 ? 'small' : i === 9 || i === 12 ? 'free' : 'none'));
 const SLICE = 360 / SLICES.length;
 const COLOR: Record<RoulettePrize, [string, string]> = {
   jackpot: ['#fbbf24', '#fbbf24'],
   small: ['#2dd4bf', '#2dd4bf'],
+  free: ['#f472b6', '#f472b6'],
   none: ['#3b2d7a', '#241a52'],
 };
-const ICON: Record<RoulettePrize, string> = { jackpot: '💎', small: '🪙', none: '' };
+const ICON: Record<RoulettePrize, string> = { jackpot: '💎', small: '🪙', free: '🔄', none: '' };
+/** The pause on a free-spin slice before the wheel sets off again by itself (ms). */
+const FREE_PAUSE = 900;
 const WHEEL = `conic-gradient(${SLICES.map((p, i) => `${COLOR[p][i % 2]} ${i * SLICE}deg ${(i + 1) * SLICE}deg`).join(', ')})`;
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -28,6 +31,7 @@ const STAMP = {
   en: { win: 'COOL!', miss: 'NOT COOL' },
   fr: { win: 'COOL !', miss: 'PAS COOL' },
 };
+const FREE_STAMP = { en: 'FREE SPIN!', fr: 'TOUR GRATUIT !' };
 
 /** The wheel's turn now (0–360), read from the transform the transition is moving. */
 function angleOf(el: HTMLElement): number {
@@ -37,7 +41,8 @@ function angleOf(el: HTMLElement): number {
 
 /** One spin of one wheel: where it must land, for how long, and whether it ticks aloud. */
 interface Turn {
-  prize: RoulettePrize;
+  /** Where it lands, in order: each free spin sets it turning again, the last landing is the prize. */
+  chain: RoulettePrize[];
   duration: number;
   /** Only one wheel ticks when many turn: twenty-five clicking at once is noise. */
   ticks: boolean;
@@ -45,8 +50,11 @@ interface Turn {
 }
 
 /** A wheel: it turns when given a turn, and says when it has stopped. */
-function Wheel({ size, bulbs, turn, onStop }: { size: number; bulbs: number; turn: Turn | null; onStop: (prize: RoulettePrize) => void }) {
+function Wheel({ size, bulbs, turn, onStop, lang }: { size: number; bulbs: number; turn: Turn | null; onStop: (prize: RoulettePrize, free: number) => void; lang: 'en' | 'fr' }) {
   const [angle, setAngle] = useState(0);
+  // Which landing of the turn's chain it's heading for (free spins move it on by themselves).
+  const [run, setRun] = useState<{ turn: Turn; step: number } | null>(null);
+  useEffect(() => setRun(turn ? { turn, step: 0 } : null), [turn]);
   const [spinning, setSpinning] = useState(false);
   const [landed, setLanded] = useState<{ prize: RoulettePrize; key: number } | null>(null);
   const wheel = useRef<HTMLDivElement>(null);
@@ -56,9 +64,14 @@ function Wheel({ size, bulbs, turn, onStop }: { size: number; bulbs: number; tur
   stop.current = onStop;
 
   useEffect(() => {
-    if (!turn) return;
+    if (!run) return;
+    const { turn, step } = run;
+    const prize = turn.chain[step];
+    const last = step === turn.chain.length - 1;
+    // A free spin turns a little quicker than the paid one.
+    const duration = step ? Math.round(turn.duration * 0.75) : turn.duration;
     // Land on a slice of the prize that came up, somewhere inside it (never near its edge, so the rock at the end stays inside).
-    const matches = SLICES.flatMap((p, i) => (p === turn.prize ? [i] : []));
+    const matches = SLICES.flatMap((p, i) => (p === prize ? [i] : []));
     const i = matches[Math.floor(Math.random() * matches.length)];
     const target = 360 - (i * SLICE + (0.3 + Math.random() * 0.4) * SLICE);
     setAngle((a) => a - (a % 360) + 360 * 6 + target);
@@ -68,34 +81,46 @@ function Wheel({ size, bulbs, turn, onStop }: { size: number; bulbs: number; tur
     let raf = 0;
     if (turn.ticks && !reducedMotion()) {
       const start = performance.now();
-      let last = -1;
+      let seen = -1;
       const frame = (now: number) => {
         const el = wheel.current;
         if (!el) return;
         const slice = Math.floor(((360 - angleOf(el)) % 360) / SLICE);
-        if (last !== -1 && slice !== last) {
-          sfx.wheelTick(1 + Math.min(1, (now - start) / turn.duration) * 0.6);
+        if (seen !== -1 && slice !== seen) {
+          sfx.wheelTick(1 + Math.min(1, (now - start) / duration) * 0.6);
           pointer.current?.animate([{ transform: 'translateX(-50%) rotate(-22deg)' }, { transform: 'translateX(-50%) rotate(0deg)' }], { duration: 140, easing: 'ease-out' });
         }
-        last = slice;
-        if (now - start < turn.duration) raf = requestAnimationFrame(frame);
+        seen = slice;
+        if (now - start < duration) raf = requestAnimationFrame(frame);
       };
       raf = requestAnimationFrame(frame);
     }
-    const t = window.setTimeout(() => {
-      setSpinning(false);
-      setLanded({ prize: turn.prize, key: turn.key });
-      // The wheel rocks back a little as it stops.
-      if (!reducedMotion()) settle.current?.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(-3deg)' }, { transform: 'rotate(1.5deg)' }, { transform: 'rotate(0deg)' }], { duration: 520, easing: 'ease-out' });
-      stop.current(turn.prize);
-    }, turn.duration);
+    const timers: number[] = [];
+    timers.push(
+      window.setTimeout(() => {
+        setSpinning(false);
+        setLanded({ prize, key: turn.key + step });
+        // The wheel rocks back a little as it stops.
+        if (!reducedMotion()) settle.current?.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(-3deg)' }, { transform: 'rotate(1.5deg)' }, { transform: 'rotate(0deg)' }], { duration: 520, easing: 'ease-out' });
+        if (last) return stop.current(prize, turn.chain.length - 1);
+        // A free spin: a chime, the slice lights up — and off it goes again, for nothing.
+        if (turn.ticks) sfx.shimmer(6);
+        timers.push(
+          window.setTimeout(() => {
+            if (turn.ticks) sfx.wheelSpin();
+            setRun({ turn, step: step + 1 });
+          }, reducedMotion() ? 150 : FREE_PAUSE),
+        );
+      }, duration),
+    );
     return () => {
-      window.clearTimeout(t);
+      timers.forEach((t) => window.clearTimeout(t));
       cancelAnimationFrame(raf);
     };
-  }, [turn]);
+  }, [run]);
 
-  const won = !!landed && landed.prize !== 'none';
+  const free = !!landed && landed.prize === 'free';
+  const won = !!landed && landed.prize !== 'none' && !free;
   // Coins bursting out of the wheel on a win, each its own way.
   const burst = useMemo(
     () =>
@@ -133,7 +158,7 @@ function Wheel({ size, bulbs, turn, onStop }: { size: number; bulbs: number; tur
         <div
           ref={wheel}
           className={`relative size-full rounded-full border-[#fbbf24]/80 shadow-[0_0_28px_rgba(251,191,36,0.3),inset_0_0_18px_rgba(0,0,0,0.5)] ${small ? 'border-2' : 'border-4'} ${won ? (landed.prize === 'jackpot' ? 'roulette-win-jackpot' : 'roulette-win') : ''}`}
-          style={{ background: WHEEL, transform: `rotate(${angle}deg)`, transition: spinning && turn ? `transform ${turn.duration}ms cubic-bezier(0.1, 0.75, 0.1, 1)` : undefined }}
+          style={{ background: WHEEL, transform: `rotate(${angle}deg)`, transition: spinning && run ? `transform ${run.step ? Math.round(run.turn.duration * 0.75) : run.turn.duration}ms cubic-bezier(0.1, 0.75, 0.1, 1)` : undefined }}
           aria-hidden
         >
           {!small && SLICES.map((_, i) => <span key={i} className="absolute left-1/2 top-1/2 h-[46%] w-px origin-top bg-[#fbbf24]/25" style={{ transform: `rotate(${i * SLICE + 180}deg)` }} />)}
@@ -147,6 +172,14 @@ function Wheel({ size, bulbs, turn, onStop }: { size: number; bulbs: number; tur
           <div className={`absolute inset-[36%] grid place-items-center rounded-full border-[#fbbf24]/80 bg-[radial-gradient(circle_at_35%_30%,#4c3a9a,#1d1640)] ${small ? 'border text-[8px]' : 'border-2 text-lg'}`}>✦</div>
         </div>
       </div>
+      {/* A free spin: it says so before it sets off again. */}
+      {free && (
+        <div key={`f${landed.key}`} className="roulette-free pointer-events-none absolute inset-0 z-20 grid place-items-center" aria-hidden>
+          <span className={`whitespace-nowrap rounded-md border-2 border-[#f472b6] bg-[#0d0a1f]/85 font-display font-black text-[#f9a8d4] shadow-lg ${small ? 'px-0.5 text-[7px]' : size > 120 ? 'px-2 py-0.5 text-base' : 'px-1 text-[10px]'}`}>
+            🔄 {small ? 'FREE' : FREE_STAMP[lang]}
+          </span>
+        </div>
+      )}
       {won && (
         <div className="pointer-events-none absolute inset-0" key={`b${landed.key}`} aria-hidden>
           {burst.map((c, k) => (
@@ -169,9 +202,9 @@ export function Roulette() {
   const [mode, setMode] = useState<Mode>(1);
   const [turns, setTurns] = useState<(Turn | null)[]>([null]);
   const [spinning, setSpinning] = useState(false);
-  const [result, setResult] = useState<{ prizes: RoulettePrize[]; coins: number; key: number } | null>(null);
+  const [result, setResult] = useState<{ prizes: RoulettePrize[]; coins: number; free: number; key: number } | null>(null);
   const stopped = useRef(0);
-  const pending = useRef<{ prizes: RoulettePrize[]; coins: number } | null>(null);
+  const pending = useRef<{ prizes: RoulettePrize[]; coins: number; free: number } | null>(null);
 
   const left = Math.max(0, ROULETTE.dailySpins - spins);
   const can = (n: number) => !spinning && left >= n && coins >= ROULETTE.cost * n;
@@ -195,14 +228,14 @@ export function Roulette() {
     // One wheel takes its time; many stop one after another, so each result lands on its own.
     setTurns(
       r.map((x, i) => ({
-        prize: x.prize,
+        chain: x.chain,
         duration: quick ? 400 : mode === 1 ? 3600 : 2600 + Math.random() * 1800,
         ticks: i === 0,
-        key: now + i,
+        key: now + i * 100,
       })),
     );
     stopped.current = 0;
-    pending.current = { prizes: r.map((x) => x.prize), coins: r.reduce((t, x) => t + x.coins, 0) };
+    pending.current = { prizes: r.map((x) => x.prize), coins: r.reduce((t, x) => t + x.coins, 0), free: r.reduce((t, x) => t + x.chain.length - 1, 0) };
     setResult(null);
     setSpinning(true);
   };
@@ -235,7 +268,7 @@ export function Roulette() {
             style={mode === 1 ? { width: look.size, height: look.size } : undefined}
           >
             {turns.map((t, i) => (
-              <Wheel key={`${mode}-${i}`} size={look.size} bulbs={look.bulbs} turn={t} onStop={onStop} />
+              <Wheel key={`${mode}-${i}`} size={look.size} bulbs={look.bulbs} turn={t} onStop={onStop} lang={lang} />
             ))}
           </div>
           {result && (
@@ -252,10 +285,11 @@ export function Roulette() {
             <Coins n={ROULETTE.cost} /> a spin. A 1 in {Math.round(1 / ROULETTE.jackpotChance)} chance of the 💎 jackpot, <Coins n={ROULETTE.jackpot} />
             {ROULETTE.small > 0 && ROULETTE.smallChance > 0 && (
               <>
-                , and a 1 in {Math.round(1 / ROULETTE.smallChance)} chance of 🪙 <Coins n={ROULETTE.small} />
+                , a 1 in {Math.round(1 / ROULETTE.smallChance)} chance of 🪙 <Coins n={ROULETTE.small} />
               </>
             )}
-            . {ROULETTE.dailySpins.toLocaleString()} spins a day.
+            {ROULETTE.freeChance > 0 && <>, and 1 in {Math.round(1 / ROULETTE.freeChance)} lands on 🔄: the wheel spins again for free</>}. {ROULETTE.dailySpins.toLocaleString()} paid spins a day.
+            {rouletteReturn() > 1 && <span className="block text-xs text-ink-faint">On average it pays back about {Math.round(rouletteReturn() * 100)}% of what goes in, mostly through the jackpot: the more you play, the better your odds of it.</span>}
           </p>
           {/* One wheel, or five or twenty-five at once (each a spin of its own). */}
           <div className="flex gap-1" role="group" aria-label="Wheels at once">
@@ -293,6 +327,7 @@ export function Roulette() {
               </span>
             )}
             {result && !won && <span className="text-ink-soft">{mode === 1 ? 'Nothing this time.' : `Nothing on all ${mode} wheels.`}</span>}
+            {result && result.free > 0 && <span className="ml-2 text-sm font-normal text-[#f9a8d4]">🔄 {result.free} free spin{result.free === 1 ? '' : 's'}</span>}
             {!result && !spinning && left < mode && <span className="text-ink-soft">{left === 0 ? 'No spins left: come back tomorrow.' : `Only ${left} spin${left === 1 ? '' : 's'} left today.`}</span>}
             {!result && !spinning && left >= mode && coins < cost && <span className="text-ink-soft">Not enough DleCoins.</span>}
           </p>
