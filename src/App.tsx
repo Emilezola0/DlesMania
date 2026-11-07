@@ -24,6 +24,7 @@ const Casino = lazy(() => import('./pages/Casino'));
 const Album = lazy(() => import('./pages/Album'));
 const Account = lazy(() => import('./pages/Account'));
 const Trades = lazy(() => import('./pages/Trades'));
+const Friends = lazy(() => import('./pages/Friends'));
 const WhoAmI = lazy(() => import('./pages/WhoAmI'));
 const CurveClash = lazy(() => import('./pages/CurveClash'));
 const FranchiseWordle = lazy(() => import('./pages/FranchiseWordle'));
@@ -86,6 +87,7 @@ export default function App() {
         <Route path="summit" element={<Summit />} />
         <Route path="shop" element={<Shop />} />
         <Route path="casino" element={<Casino />} />
+        <Route path="friends" element={<Friends />} />
         <Route path="album" element={<Album />} />
         <Route path="account" element={<Account />} />
         <Route path="trades" element={<Trades />} />

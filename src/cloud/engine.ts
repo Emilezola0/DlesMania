@@ -98,6 +98,14 @@ let lastPushed: SaveData | null = null;
 let lastMain = '';
 
 /** Writes what changed since the last write (everything when `all`). */
+const friendsOn = (uid: string) => {
+  try {
+    return localStorage.getItem(`omnidle:friends:${uid}`) === '1';
+  } catch {
+    return false;
+  }
+};
+
 async function push(uid: string, all = false) {
   const data = pickSave(useProgress.getState());
   const json = mainJson(data);
@@ -121,6 +129,9 @@ async function push(uid: string, all = false) {
   lastPushed = data;
   lastMain = json;
   useCloud.setState({ status: 'synced', lastSync: Date.now(), error: null });
+  // Today's collection score for friends to see (once a day, for players who opened Friends).
+  // (The flag is checked first: the card catalogue the score needs is only fetched for them.)
+  if (friendsOn(uid)) void import('./friends').then((m) => m.logToday(uid)).catch(() => undefined);
 }
 
 let applying = false;

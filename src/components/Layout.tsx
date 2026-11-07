@@ -27,9 +27,23 @@ const NAV = [
   { to: '/games', label: 'Games', also: GAME_PATHS },
   { to: '/album', label: 'Album', also: ['/trades'] },
   { to: '/casino', label: 'Casino' },
+  // Two small figures, as the Archive is a calendar: the bars have no room for one more word.
+  { to: '/friends', label: 'Friends', phoneIcon: true },
   // The archive: a small calendar, today's date on it.
   { to: '/archive', label: 'Archive', icon: true },
-] as { to: string; label: string; short?: string; also?: string[]; icon?: boolean }[];
+] as { to: string; label: string; short?: string; also?: string[]; icon?: boolean; phoneIcon?: boolean }[];
+
+/** Two small figures, side by side: Friends, in the phones' bottom bar. */
+function FriendsIcon({ className = 'size-5' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" aria-hidden>
+      <circle cx="9" cy="8.5" r="3.2" />
+      <path d="M3 19.5c.9-3.2 3.2-4.9 6-4.9s5.1 1.7 6 4.9" />
+      <circle cx="16.5" cy="9.5" r="2.6" />
+      <path d="M16.2 14.6c2.3.1 4 1.6 4.8 4.4" />
+    </svg>
+  );
+}
 
 /** A little calendar page with today's day on it: the Archive. */
 export function CalendarIcon({ className = 'size-[22px]' }: { className?: string }) {
@@ -379,22 +393,24 @@ export function Layout() {
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
             <span data-logo className="hidden font-display text-lg font-bold tracking-[0.18em] min-[560px]:inline sm:hidden lg:inline">OMNIDLE</span>
           </NavLink>
-          <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex">
+          <nav className="ml-auto hidden items-center gap-1 text-sm sm:flex sm:gap-0 lg:gap-1">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
                 to={n.to}
                 className={({ isActive: exact }) => {
                   const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-                  return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-1 lg:px-2 ${
+                  return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-1 sm:tracking-normal lg:px-[7px] lg:tracking-wider ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   }`;
                 }}
-                title={n.icon ? n.label : undefined}
-                aria-label={n.icon ? n.label : undefined}
+                title={n.icon || n.phoneIcon ? n.label : undefined}
+                aria-label={n.icon || n.phoneIcon ? n.label : undefined}
               >
                 {n.icon ? (
                   <CalendarIcon className="-my-1 size-[22px]" />
+                ) : n.phoneIcon ? (
+                  <FriendsIcon className="-my-1 size-[22px]" />
                 ) : n.short ? (
                   <>
                     <span className="xl:hidden">{n.short}</span>
@@ -455,11 +471,11 @@ export function Layout() {
             to={n.to}
             className={({ isActive: exact }) => {
               const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-              return `${n.icon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
+              return `${n.icon || n.phoneIcon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
             }}
-            aria-label={n.icon ? n.label : undefined}
+            aria-label={n.icon || n.phoneIcon ? n.label : undefined}
           >
-            {n.icon ? <CalendarIcon className="size-5" /> : (n.short ?? n.label)}
+            {n.icon ? <CalendarIcon className="size-5" /> : n.phoneIcon ? <FriendsIcon /> : (n.short ?? n.label)}
           </NavLink>
         ))}
       </nav>

@@ -1,0 +1,227 @@
+// Friends and their collection scores (src/pages/Friends.tsx). Each player who opens Friends gets:
+//   friendcodes/<CODE>        { uid }: their friend code, so anyone who has it can find them;
+//   scores/<uid>              their name, icon, code, friends and score log (one entry a day they come by).
+// Friends are mutual: typing a code adds each player to the other's list (the one adding proves they had
+// the code by leaving a note under it, friendcodes/<CODE>/joins/<uid>); removing a friend takes each off
+// the other's list. A score can only be read by its player and the players on their list
+// (firestore.rules): only friends see each other. A new code stops the old one working.
+import { arrayRemove, arrayUnion, deleteDoc, doc, FieldPath, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { scoreOf } from '../friends/score';
+import { todayKey } from '../lib/date';
+import { useProgress } from '../store/progress';
+import { auth, db } from './firebase';
+
+/** At most this many friends. */
+export const MAX_FRIENDS = 30;
+/** Days kept in a score log (older ones are dropped). */
+const KEEP_DAYS = 400;
+
+/** One day in a log: [score, cards, common, rare, epic, legendary, mythic, omni, grades]. */
+export type DayEntry = number[];
+
+export interface ScoreDoc {
+  uid: string;
+  name: string;
+  avatar: string | null;
+  frame: string | null;
+  code: string;
+  friends: string[];
+  log: Record<string, DayEntry>;
+  at: number;
+}
+
+/** Letters and digits that can't be misread (no O/0, I/1/L); eight of them, too many to guess. */
+const CODE_CHARS = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const makeCode = () => Array.from({ length: 8 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join('');
+export const cleanFriendCode = (s: string) =>
+  s
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '')
+    .slice(0, 8);
+/** K7QXM3TP → K7QX-M3TP. */
+export const showCode = (c: string) => (c.length === 8 ? `${c.slice(0, 4)}-${c.slice(4)}` : c);
+
+const scoreRef = (uid: string) => doc(db, 'scores', uid);
+const codeRef = (code: string) => doc(db, 'friendcodes', code);
+
+function me() {
+  const u = auth.currentUser;
+  if (!u) throw new Error('Sign in to see your friends.');
+  return {
+    uid: u.uid,
+    name: (u.displayName ?? u.email?.split('@')[0] ?? 'A player').trim().slice(0, 40) || 'A player',
+  };
+}
+
+/** Firebase refusing means the database's rules don't have the friends section yet: said plainly. */
+function explain(e: unknown): Error {
+  if ((e as { code?: string })?.code === 'permission-denied') return new Error("Friends aren't switched on in the database yet: its rules need the friends section (firestore.rules) published.");
+  return e instanceof Error ? e : new Error(String(e));
+}
+
+/** Today's entry, from this device's save. */
+function today(): DayEntry {
+  const s = useProgress.getState();
+  const info = scoreOf(s.cards, s.grades);
+  return [info.score, info.cards, ...info.byRarity, info.grades];
+}
+
+/** The icon worn: the card picked as icon (if still owned) and the frame. */
+function looks() {
+  const s = useProgress.getState();
+  return {
+    avatar: s.avatar && s.cards[s.avatar] ? s.avatar : null,
+    frame: s.frame ?? null,
+  };
+}
+
+/** Takes a free code for this player (a transaction: two players can never get the same one). */
+async function claimCode(uid: string): Promise<string> {
+  for (let tries = 0; tries < 5; tries++) {
+    const code = makeCode();
+    const ok = await runTransaction(db, async (tx) => {
+      if ((await tx.get(codeRef(code))).exists()) return false;
+      tx.set(codeRef(code), { uid });
+      return true;
+    });
+    if (ok) return code;
+  }
+  throw new Error('Could not make a friend code. Try again.');
+}
+
+/** This player's score document: made (with a friend code) the first time, today's score written. */
+export async function openMine(): Promise<ScoreDoc> {
+  const { uid, name } = me();
+  try {
+    const snap = await getDoc(scoreRef(uid));
+    const day = todayKey();
+    if (!snap.exists()) {
+      const code = await claimCode(uid);
+      const fresh: ScoreDoc = {
+        uid,
+        name,
+        ...looks(),
+        code,
+        friends: [],
+        log: { [day]: today() },
+        at: Date.now(),
+      };
+      await setDoc(scoreRef(uid), fresh);
+      return fresh;
+    }
+    const mine = snap.data() as ScoreDoc;
+    const entry = today();
+    const days = Object.keys(mine.log ?? {}).sort();
+    const { avatar, frame } = looks();
+    if (days.length >= KEEP_DAYS) {
+      // Too long: the oldest days go, the whole log rewritten once.
+      const log = Object.fromEntries(days.slice(-(KEEP_DAYS - 1)).map((d) => [d, mine.log[d]]));
+      log[day] = entry;
+      await updateDoc(scoreRef(uid), {
+        log,
+        name,
+        avatar,
+        frame,
+        at: Date.now(),
+      });
+      return { ...mine, log, name, avatar, frame };
+    }
+    await updateDoc(scoreRef(uid), new FieldPath('log', day), entry, 'name', name, 'avatar', avatar, 'frame', frame, 'at', Date.now());
+    return { ...mine, name, avatar, frame, log: { ...mine.log, [day]: entry } };
+  } catch (e) {
+    throw explain(e);
+  }
+}
+
+/**
+ * Today's score, written once a day when the save syncs (src/cloud/engine.ts), only for players who opened
+ * Friends: their friends see them move even on days they don't open it.
+ */
+export async function logToday(uid: string): Promise<void> {
+  const key = `omnidle:score-day:${uid}`;
+  const day = todayKey();
+  try {
+    if (localStorage.getItem(key) === day || localStorage.getItem(`omnidle:friends:${uid}`) !== '1') return;
+    await updateDoc(scoreRef(uid), new FieldPath('log', day), today(), 'at', Date.now());
+    localStorage.setItem(key, day);
+  } catch {
+    // No storage, no score document yet, or offline: tomorrow, or when Friends opens.
+  }
+}
+
+/** Remembers that this device's player uses Friends (for logToday). */
+export function markFriendsOn(uid: string) {
+  try {
+    localStorage.setItem(`omnidle:friends:${uid}`, '1');
+    localStorage.setItem(`omnidle:score-day:${uid}`, todayKey());
+  } catch {
+    // No storage: the score is only written when Friends opens.
+  }
+}
+
+/** The friends' score documents (one read each); a friend who can't be read any more is left out. */
+export async function loadFriends(mine: ScoreDoc): Promise<ScoreDoc[]> {
+  const docs = await Promise.all(
+    mine.friends.map((f) =>
+      getDoc(scoreRef(f))
+        .then((s) => (s.exists() ? (s.data() as ScoreDoc) : null))
+        .catch(() => null),
+    ),
+  );
+  return docs.filter((d): d is ScoreDoc => !!d);
+}
+
+/** Adds the player whose code this is, and adds this player to theirs. */
+export async function addFriend(mine: ScoreDoc, raw: string): Promise<ScoreDoc> {
+  const { uid } = me();
+  const code = cleanFriendCode(raw);
+  if (code.length !== 8) throw new Error('A friend code has 8 letters and digits.');
+  try {
+    const found = await getDoc(codeRef(code));
+    if (!found.exists()) throw new Error('No player has that code (it may have been changed).');
+    const them = (found.data() as { uid: string }).uid;
+    if (them === uid) throw new Error("That's your own code.");
+    if (mine.friends.includes(them)) throw new Error("You're already friends.");
+    if (mine.friends.length >= MAX_FRIENDS) throw new Error(`You have ${MAX_FRIENDS} friends already: remove one first.`);
+    const batch = writeBatch(db);
+    batch.set(doc(db, 'friendcodes', code, 'joins', uid), { at: Date.now() });
+    batch.update(scoreRef(them), { friends: arrayUnion(uid) });
+    batch.update(scoreRef(uid), { friends: arrayUnion(them) });
+    await batch.commit();
+    return { ...mine, friends: [...mine.friends, them] };
+  } catch (e) {
+    throw explain(e);
+  }
+}
+
+/** Removes a friend: each leaves the other's list. */
+export async function removeFriend(mine: ScoreDoc, them: string): Promise<ScoreDoc> {
+  const { uid } = me();
+  try {
+    const batch = writeBatch(db);
+    batch.update(scoreRef(uid), { friends: arrayRemove(them) });
+    batch.update(scoreRef(them), { friends: arrayRemove(uid) });
+    await batch.commit().catch(async () => {
+      // Their document gone or already without us: take them off ours at least.
+      await updateDoc(scoreRef(uid), { friends: arrayRemove(them) });
+    });
+    return { ...mine, friends: mine.friends.filter((f) => f !== them) };
+  } catch (e) {
+    throw explain(e);
+  }
+}
+
+/** A new friend code: the old one stops working (friends already added stay). */
+export async function changeCode(mine: ScoreDoc): Promise<ScoreDoc> {
+  const { uid } = me();
+  try {
+    const code = await claimCode(uid);
+    await updateDoc(scoreRef(uid), { code });
+    await deleteDoc(codeRef(mine.code)).catch(() => undefined);
+    return { ...mine, code };
+  } catch (e) {
+    throw explain(e);
+  }
+}
+
+export const myUid = () => auth.currentUser?.uid ?? null;
