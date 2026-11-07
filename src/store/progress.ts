@@ -197,6 +197,12 @@ interface ProgressState {
   freePacks?: number;
   /** The plush shown next to the player's name for friends (src/casino/plushies.ts); null: the best one. */
   shownPlush?: string | null;
+  /** The Daily Doodle's rewards paid (src/friends/Doodle.tsx): "g:<drawing>" a guess paid (its coins), "a:<drawing>" the friends who guessed one of this player's drawings, paid for. */
+  doodle?: Record<string, number>;
+  /** A right guess at a friend's drawing: `coins` once per drawing. What was paid (0 if it was already). */
+  rewardDoodleGuess: (id: string, coins: number) => number;
+  /** This player's drawing guessed by `solvers` friends: `each` coins for every one not paid for yet. What was paid. */
+  rewardDoodleArt: (id: string, solvers: number, each: number) => number;
   setShownPlush: (id: string | null) => void;
   /** The day's claw box, set the first time the machine is opened that day (the tries start again). */
   clawDay: (day: string, box: ClawItem[]) => void;
@@ -326,6 +332,12 @@ interface ProgressState {
 
 /** Today's earnings book (a new one each day). */
 const CLAW_T = CASINO_T.claw;
+
+/** The Daily Doodle's paid rewards, keeping only the last two weeks' (a key ends with its drawing's day). */
+function pruneDoodle(d: Record<string, number>): Record<string, number> {
+  const keep = addDays(todayKey(), -14);
+  return Object.fromEntries(Object.entries(d).filter(([k]) => k.slice(-10) >= keep));
+}
 
 export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
 
@@ -509,6 +521,22 @@ export const useProgress = create<ProgressState>()(
       claw: undefined,
       freePacks: 0,
       shownPlush: null,
+      doodle: {},
+      rewardDoodleGuess: (id, coins) => {
+        const s = get();
+        const d = s.doodle ?? {};
+        if (d[`g:${id}`] !== undefined || coins <= 0) return 0;
+        set({ coins: s.coins + coins, doodle: pruneDoodle({ ...d, [`g:${id}`]: coins }) });
+        return coins;
+      },
+      rewardDoodleArt: (id, solvers, each) => {
+        const s = get();
+        const d = s.doodle ?? {};
+        const fresh = solvers - (d[`a:${id}`] ?? 0);
+        if (fresh <= 0) return 0;
+        set({ coins: s.coins + fresh * each, doodle: pruneDoodle({ ...d, [`a:${id}`]: solvers }) });
+        return fresh * each;
+      },
       setShownPlush: (shownPlush) => set({ shownPlush }),
       clawDay: (day, box) => {
         const c = get().claw;
@@ -1025,7 +1053,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, doodle: {}, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

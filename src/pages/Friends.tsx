@@ -8,6 +8,7 @@ import { TITLE_BY_ID } from '../casino/unlocks';
 import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
 import { RARITIES, RARITY_INFO } from '../gacha/cards';
+import { DailyDoodle } from '../friends/Doodle';
 import { GRADE_BONUS, RARITY_POINTS } from '../friends/score';
 import { addDays, fromKey, todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
@@ -430,6 +431,8 @@ export default function Friends() {
               </p>
             </section>
           )}
+
+          {mine && <DailyDoodle me={mine} friends={list.filter((d) => mine.friends.includes(d.uid))} demo={demo} />}
 
           {mine && (
             <div className="grid gap-6 md:grid-cols-2">

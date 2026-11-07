@@ -114,6 +114,42 @@ service cloud.firestore {
       );
     }
 
+    // The Daily Doodle (src/cloud/doodles.ts): doodles/<uid>_<day>. Its artist posts it once; only they and
+    // their friends (their scores document's list) can read it. A friend guesses up to 3 times (their own
+    // note under guesses/); a right guess adds them, and only them, to its solvers, in the same write.
+    match /doodles/{id} {
+      function artist() {
+        return id.split('_')[0];
+      }
+      function isFriend() {
+        return request.auth.uid in get(/databases/$(database)/documents/scores/$(artist())).data.friends;
+      }
+      allow get: if request.auth != null && (request.auth.uid == artist() || isFriend());
+      allow create: if request.auth != null && request.auth.uid == artist()
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'answer', 'strokes', 'solvers', 'at'])
+        && request.resource.data.uid == artist()
+        && id == artist() + '_' + request.resource.data.day
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.answer is string && request.resource.data.answer.size() <= 64
+        && request.resource.data.strokes is list && request.resource.data.strokes.size() <= 400
+        && request.resource.data.solvers.size() == 0;
+      allow update: if request.auth != null && request.auth.uid != artist() && isFriend()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['solvers'])
+        && request.resource.data.solvers.toSet() == resource.data.solvers.toSet().union([request.auth.uid].toSet())
+        && getAfter(/databases/$(database)/documents/doodles/$(id)/guesses/$(request.auth.uid)).data.right == true;
+      match /guesses/{uid} {
+        allow get: if request.auth != null && request.auth.uid == uid;
+        allow create: if request.auth != null && request.auth.uid == uid && uid != artist() && isFriend()
+          && request.resource.data.keys().hasOnly(['tries', 'right', 'at'])
+          && request.resource.data.tries == 1 && request.resource.data.right is bool;
+        allow update: if request.auth != null && request.auth.uid == uid
+          && resource.data.right == false
+          && request.resource.data.keys().hasOnly(['tries', 'right', 'at'])
+          && request.resource.data.tries == resource.data.tries + 1
+          && request.resource.data.tries <= 3;
+      }
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

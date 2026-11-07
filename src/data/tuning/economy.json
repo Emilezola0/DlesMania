@@ -330,5 +330,12 @@
         "reward": 600
       }
     ]
+  },
+  "doodle": {
+    "seconds": 10,
+    "tries": 3,
+    "guess": [50, 35, 20],
+    "artist": 80,
+    "days": 2
   }
 }

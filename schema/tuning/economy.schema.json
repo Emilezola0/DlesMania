@@ -1195,6 +1195,20 @@
         "hard"
       ],
       "additionalProperties": false
+    },
+    "doodle": {
+      "type": "object",
+      "title": "Daily Doodle",
+      "description": "Friends → Daily Doodle: each player draws a character in a few seconds, their friends guess who it is.",
+      "properties": {
+        "seconds": { "type": "integer", "minimum": 3, "maximum": 60, "description": "Seconds to draw" },
+        "tries": { "type": "integer", "minimum": 1, "maximum": 3, "description": "Guesses a friend gets at each drawing (the database rules allow 3 at most)" },
+        "guess": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 1, "description": "DleCoins for a right guess, by the try it came on" },
+        "artist": { "type": "integer", "minimum": 0, "description": "DleCoins the artist gets for each friend who guesses right" },
+        "days": { "type": "integer", "minimum": 1, "maximum": 7, "description": "Days a drawing can be guessed (today counts)" }
+      },
+      "required": ["seconds", "tries", "guess", "artist", "days"],
+      "additionalProperties": false
     }
   },
   "required": [
