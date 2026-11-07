@@ -1020,6 +1020,41 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     voice: 'It’s the quenchiest!',
     audio: 'youtube:R3nvPGzfaCc@0-999',
   },
+  // Dragon Ball's fusions and the Legendary Super Saiyan of the Dragon Ball Super film (a ticket), in the anime's
+  // and the film's art (Dragon Ball Wiki). Goku and Vegeta already hold the set's Mythics and Omni; these are new faces.
+  {
+    set: 'dbz',
+    id: 'dbz:omni-gogeta',
+    name: 'Gogeta',
+    rarity: 'omni',
+    title: 'Super Saiyan Blue',
+    image: 'https://static.wikia.nocookie.net/dragonball/images/9/96/Gogeta_Blue.jpeg/revision/latest/scale-to-width-down/800?cb=20190106144050',
+    focus: { x: 55, y: 30, zoom: 1 },
+    description: 'Goku and Vegeta, fused by the Fusion Dance with every step in time, then turned Blue: the one warrior who could stand up to Broly at full power — and win.',
+    voice: 'I am Gogeta!',
+  },
+  {
+    set: 'dbz',
+    id: 'dbz:mythic-broly',
+    name: 'Broly',
+    rarity: 'mythic',
+    title: 'Legendary Super Saiyan',
+    image: 'https://static.wikia.nocookie.net/dragonball/images/7/7e/LSSJ_Broly.png/revision/latest/scale-to-width-down/800?cb=20181108055423',
+    focus: { x: 50, y: 22, zoom: 1 },
+    description: 'Raised alone on Vampa with only his anger, he grows stronger with every blow he takes — and when his rage boils over, the Legendary Super Saiyan has no ceiling.',
+    voice: 'RAAAAAAAAAAH!',
+  },
+  {
+    set: 'dbz',
+    id: 'dbz:mythic-vegito',
+    name: 'Vegito',
+    rarity: 'mythic',
+    title: 'Super Saiyan Blue',
+    image: 'https://static.wikia.nocookie.net/dragonball/images/4/4a/SSGSS_Barrier.png/revision/latest/scale-to-width-down/800?cb=20200929203029',
+    focus: { x: 80, y: 30, zoom: 1 },
+    description: 'Goku and Vegeta joined by the Potara earrings, then turned Blue to face Fused Zamasu: so strong that the fusion burned out before the fight could end.',
+    voice: 'Final Kamehameha!',
+  },
 ];
 
 /**
