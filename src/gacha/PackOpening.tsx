@@ -628,6 +628,13 @@ function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; ti
     const ts = gulps.map((t) => window.setTimeout(() => setGulp((g) => g + 1), t));
     return () => ts.forEach((t) => window.clearTimeout(t));
   }, [gulps]);
+  // Closed: gone from the page, not left spinning, invisible.
+  const [gone, setGone] = useState(false);
+  useEffect(() => {
+    const t = window.setTimeout(() => setGone(true), until + 800);
+    return () => window.clearTimeout(t);
+  }, [until]);
+  if (gone) return null;
   return (
     <div className="pack-hole pointer-events-none absolute z-10" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, ['--hole-life' as string]: `${until + 600}ms` }} aria-hidden>
       <div className="pack-hole-glow" />
@@ -1889,7 +1896,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
                   <CardBack rarity={charging && step >= 1 ? STEP_LIGHT[step] : card.rarity === 'common' ? undefined : card.rarity} />
                 </div>
                 <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${spinning ? 'opacity-0' : ''}`}>
-                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
+                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate={flipped} anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
                 </div>
               </div>
             </div>
@@ -1919,8 +1926,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           {/* The tray: the cards already turned. */}
           <div className="flex h-20 items-end justify-center gap-2">
             {deck.slice(0, flipped ? i + 1 : i).map((c, k) => (
-              <div key={k} className="pack-tray-in w-12 sm:w-14" style={{ filter: `drop-shadow(0 0 6px ${RARITY_LIGHT[c.rarity]}88)` }}>
-                <CardFace card={c} tilt={false} anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+              <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[c.rarity]}88` }}>
+                <CardFace card={c} tilt={false} still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
               </div>
             ))}
           </div>
@@ -1934,7 +1941,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
-                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}

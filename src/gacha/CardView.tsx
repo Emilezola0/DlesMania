@@ -104,7 +104,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, still, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -152,12 +152,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
-    if (animate || !motion || !form.clipLight || !el) return;
+    if (animate || still || !motion || !form.clipLight || !el) return;
     const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), { rootMargin: '100px' });
     io.observe(el);
     return () => io.disconnect();
-  }, [animate, motion, form.clipLight]);
-  const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (motion && !!form.clipLight && inView));
+  }, [animate, still, motion, form.clipLight]);
+  const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (!still && motion && !!form.clipLight && inView));
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   return (
     <div

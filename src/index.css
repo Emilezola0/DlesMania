@@ -604,7 +604,7 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-halo-mythic { background: conic-gradient(from 0deg, #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
 .pack-halo-omni { background: conic-gradient(from 0deg, #ff3b4e, #ffcd3c, #fff, #ff3b4e, #ffcd3c, #ff3b4e); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
 @keyframes pack-halo { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes pack-halo-pulse { from { filter: blur(18px) brightness(1); } to { filter: blur(14px) brightness(1.5); } }
+@keyframes pack-halo-pulse { from { opacity: 0.7; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .pack-halo { animation: none; transform: translate(-50%, -50%); } }
 @keyframes pack-meteor {
   from { transform: translateX(-50vw); }
@@ -647,8 +647,7 @@ h1, h2, h3, .font-serif, .font-display {
   animation: sky-bands 40s linear infinite;
 }
 @keyframes sky-bands { to { transform: translateX(-50%); } }
-.sky-bands-prism { opacity: 0.75; mix-blend-mode: screen; animation: sky-bands 26s linear infinite, sky-prism 7s linear infinite; }
-@keyframes sky-prism { to { filter: blur(0.35vmin) hue-rotate(360deg); } }
+.sky-bands-prism { opacity: 0.75; mix-blend-mode: screen; animation: sky-bands 26s linear infinite; }
 /* Night side: the planet lit from the top left. */
 .sky-shade { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 28%, transparent 38%, rgba(0, 0, 0, 0.45) 68%, rgba(0, 0, 0, 0.8) 92%); box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.15); }
 /* An icy moon's craters. */
@@ -675,8 +674,7 @@ h1, h2, h3, .font-serif, .font-display {
   translate: -50% -50%; rotate: -16deg; scale: var(--ring-scale, 1);
   border-radius: 50%; border: 0.7vmin solid;
 }
-.sky-tier-4 .sky-ring { border-color: #fff; animation: sky-prism-ring 6s linear infinite; }
-@keyframes sky-prism-ring { from { filter: drop-shadow(0 0 1vmin #ff4fd8); } 33% { filter: drop-shadow(0 0 1vmin #ffcd3c); } 66% { filter: drop-shadow(0 0 1vmin #3cc7ff); } to { filter: drop-shadow(0 0 1vmin #ff4fd8); } }
+.sky-tier-4 .sky-ring { border-color: #fff; box-shadow: 0 0 1vmin #ff4fd8, inset 0 0 1vmin #3cc7ff, 0 0 2vmin #ffcd3c66; }
 .sky-ring-front { -webkit-mask: linear-gradient(to bottom, transparent 50%, #000 50%); mask: linear-gradient(to bottom, transparent 50%, #000 50%); }
 /* Moons on a flattened orbit: in front on the way down, behind on the way up. */
 .sky-moon {
@@ -902,14 +900,21 @@ h1, h2, h3, .font-serif, .font-display {
 /* A card waiting to be turned leaks its rarity's light round its edges, and trembles (more for rarer ones). */
 .pack-leak { animation: pack-card-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both, pack-leak 1.1s ease-in-out 0.35s infinite; }
 @keyframes pack-leak {
-  0%, 100% { filter: drop-shadow(0 0 calc(var(--leak-size) * 0.4) var(--leak)); transform: translate(0, 0); }
+  0%, 100% { transform: translate(0, 0); }
   20% { transform: translate(var(--leak-shake), 0); }
-  40% { filter: drop-shadow(0 0 var(--leak-size) var(--leak)); transform: translate(calc(var(--leak-shake) * -1), 0); }
+  40% { transform: translate(calc(var(--leak-shake) * -1), 0); }
   60% { transform: translate(0, var(--leak-shake)); }
 }
+.pack-leak { position: relative; }
+.pack-leak::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 7%; pointer-events: none;
+  box-shadow: 0 0 var(--leak-size) calc(var(--leak-size) * 0.25) var(--leak);
+  animation: pack-leak-glow 1.1s ease-in-out 0.35s infinite;
+}
+@keyframes pack-leak-glow { 0%, 100% { opacity: 0.4; } 40% { opacity: 1; } }
 /* A nebula behind the stars: soft clouds in the pack's colours, drifting and turning. */
 .pack-nebula { mix-blend-mode: screen; }
-.pack-nebula-cloud { position: absolute; width: 60vmax; height: 42vmax; translate: -20% -20%; filter: blur(4vmax); animation: pack-nebula 18s ease-in-out infinite alternate; }
+.pack-nebula-cloud { position: absolute; width: 60vmax; height: 42vmax; translate: -20% -20%; border-radius: 50%; animation: pack-nebula 18s ease-in-out infinite alternate; }
 @keyframes pack-nebula { from { transform: rotate(0deg) scale(1); } to { transform: rotate(25deg) scale(1.25); } }
 /* A fusion: sparks streaming into a card building up, a glowing core swelling behind it. */
 .pack-fusion-spark { translate: -50% -50%; animation: pack-fusion-in 900ms cubic-bezier(0.55, 0, 0.9, 0.4) infinite; mix-blend-mode: screen; }
@@ -955,7 +960,7 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-luck-full { animation: pack-luck-full 1.2s ease-in-out infinite; }
 @keyframes pack-luck-full { 50% { box-shadow: 0 0 10px #fbbf24; filter: brightness(1.3); } }
 @media (prefers-reduced-motion: reduce) {
-  .pack-flyby, .pack-flyby-glyph, .pack-leak, .pack-nebula-cloud, .pack-fusion-spark, .pack-fusion-core, .pack-banner, .pack-flicker, .pack-press, .pack-lastcard, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
+  .pack-flyby, .pack-flyby-glyph, .pack-leak, .pack-leak::before, .pack-nebula-cloud, .pack-fusion-spark, .pack-fusion-core, .pack-banner, .pack-flicker, .pack-press, .pack-lastcard, .pack-chip, .pack-bar-fill, .pack-luck-full, .pack-slowmo { animation: none; }
 }
 /* The golden pack: a gold foil wrapper with a light sweeping across, its meter, its own backdrop as it opens. */
 .golden-fill { background: linear-gradient(90deg, #b45309, #fbbf24, #fff7cc, #fbbf24); background-size: 200% 100%; animation: golden-sweep 2.4s linear infinite; }
@@ -2078,7 +2083,6 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   background: conic-gradient(from 0deg, #ffb86b, #ff4fd8 20%, transparent 32%, #7c3aed 50%, #3cc7ff 64%, transparent 76%, #ffd27a 90%, #ffb86b);
   mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
   -webkit-mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
-  filter: blur(1.5px) drop-shadow(0 0 18px #a855f7);
   animation: pack-hole-spin 1.6s linear infinite;
 }
 .pack-hole-core { width: 15vmin; height: 15vmin; background: radial-gradient(circle, #000 62%, #12061f 72%, transparent 76%); box-shadow: 0 0 30px 8px #000, 0 0 60px 20px rgba(124, 58, 237, 0.35); }
@@ -2118,7 +2122,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   background-size: 200% 100%;
   mask: radial-gradient(closest-side, transparent 40%, #000 56%, #000 76%, transparent 100%);
   -webkit-mask: radial-gradient(closest-side, transparent 40%, #000 56%, #000 76%, transparent 100%);
-  filter: blur(1px) drop-shadow(0 0 14px #ff9d4d);
+
   animation: pack-hole-stream 1.1s linear infinite;
 }
 /* Its near half crosses in front of the darkness. */
@@ -2150,7 +2154,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
 .pack-hole-jet {
   position: absolute; left: 0; top: 0; width: 2.2vmin; height: 70vmin; translate: -50% -100%; transform-origin: 50% 100%;
   background: linear-gradient(to top, #fff, #a5f3fc 18%, #818cf8aa 50%, transparent);
-  border-radius: 9999px; filter: blur(2px) drop-shadow(0 0 12px #67e8f9);
+  border-radius: 9999px; box-shadow: 0 0 12px #67e8f9;
   animation: pack-hole-jet 1s cubic-bezier(0.1, 0.8, 0.3, 1) both; mix-blend-mode: screen;
 }
 .pack-hole-jet-down { rotate: 180deg; }
@@ -2167,7 +2171,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   100% { offset-distance: 100%; opacity: 0; scale: 3.4 0.08; }
 }
 /* Its afterglow, a beat behind: fainter and blurred. */
-.pack-orbit-ghost { filter: blur(3px) opacity(0.45); mix-blend-mode: screen; }
+.pack-orbit-ghost { opacity: 0.45; mix-blend-mode: screen; }
 
 /* ── Cosmic events in a pack opening (src/gacha/PackOpening.tsx): two planets embracing, a supernova, the Big Bang. ── */
 .pack-cosmic-title { animation: pack-cosmic-title 0.9s cubic-bezier(0.2, 0.8, 0.3, 1.2) both; text-shadow: 0 0 18px #fff8, 0 0 40px #a78bfa; }
