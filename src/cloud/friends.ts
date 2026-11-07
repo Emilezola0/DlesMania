@@ -83,7 +83,8 @@ function looks() {
     frame: s.frame ?? null,
     nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? s.nameStyle : null,
     title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? title.id : null,
-    plush: bestPlush(s.claw?.plush)?.id ?? null,
+    // The plush picked on the Account page (if still owned), else the best one.
+    plush: s.shownPlush && s.claw?.plush?.[s.shownPlush] ? s.shownPlush : (bestPlush(s.claw?.plush)?.id ?? null),
   };
 }
 type Looks = ReturnType<typeof looks>;

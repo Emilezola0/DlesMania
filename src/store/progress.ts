@@ -195,6 +195,9 @@ interface ProgressState {
   claw?: { day: string; tries: number; credits: number; meter: number; box: ClawItem[]; plush: Record<string, number>; wins: number };
   /** Free card packs (won at the claw), opened in the Shop for nothing. */
   freePacks?: number;
+  /** The plush shown next to the player's name for friends (src/casino/plushies.ts); null: the best one. */
+  shownPlush?: string | null;
+  setShownPlush: (id: string | null) => void;
   /** The day's claw box, set the first time the machine is opened that day (the tries start again). */
   clawDay: (day: string, box: ClawItem[]) => void;
   /** Tries for the claw, in casino tokens: one, or the bundle. False if it can't (too few tokens, past the day's tries). */
@@ -505,6 +508,8 @@ export const useProgress = create<ProgressState>()(
       },
       claw: undefined,
       freePacks: 0,
+      shownPlush: null,
+      setShownPlush: (shownPlush) => set({ shownPlush }),
       clawDay: (day, box) => {
         const c = get().claw;
         if (c?.day === day) return;
@@ -1020,7 +1025,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

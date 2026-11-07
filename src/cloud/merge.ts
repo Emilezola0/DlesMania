@@ -66,6 +66,7 @@ export const SYNCED = [
   'scratch',
   'claw',
   'freePacks',
+  'shownPlush',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -285,5 +286,6 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // The claw: the latest save's day, tries and box; the plushies won either side, each at the most won.
     claw: latest.claw ? { ...latest.claw, plush: mergeMax(local.claw?.plush, cloud.claw?.plush), wins: Math.max(local.claw?.wins ?? 0, cloud.claw?.wins ?? 0) } : (local.claw ?? cloud.claw),
     freePacks: latest.freePacks ?? 0,
+    shownPlush: latest.shownPlush ?? null,
   };
 }

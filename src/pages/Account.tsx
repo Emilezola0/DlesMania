@@ -13,7 +13,7 @@ import { COSMETIC_BY_ID, NAME_STYLES } from '../casino/cosmetics';
 import { TITLES, TITLE_BY_ID, useFeats } from '../casino/unlocks';
 import { useShownName } from '../casino/Boutique';
 import { PrizeArt } from '../casino/Claw';
-import { PLUSH_RARITY, PLUSHIES } from '../casino/plushies';
+import { bestPlush, PLUSH_BY_ID, PLUSH_RARITY, PLUSHIES } from '../casino/plushies';
 import { startCloud, useCloud } from '../cloud/state';
 import { birthdayLabel } from '../components/BirthdayReward';
 import { BIRTHDAY_COINS } from '../lib/rewards';
@@ -84,7 +84,11 @@ function Backup() {
 /** The plushies won at the claw machine (Casino → Claw), missing ones as shadows. */
 function PlushShelf() {
   const owned = useProgress((s) => s.claw?.plush ?? {});
+  const picked = useProgress((s) => s.shownPlush ?? null);
+  const setShown = useProgress((s) => s.setShownPlush);
   const have = PLUSHIES.filter((p) => owned[p.id]).length;
+  // The one friends see: the one picked, if still owned, else the best.
+  const shown = picked && owned[picked] ? PLUSH_BY_ID.get(picked) : bestPlush(owned);
   return (
     <div className="space-y-2 rounded-md border border-rule-strong bg-card p-4">
       <div className="flex items-baseline justify-between gap-2">
@@ -96,15 +100,23 @@ function PlushShelf() {
       <div className="grid grid-cols-5 gap-2 sm:grid-cols-10">
         {PLUSHIES.map((p) =>
           owned[p.id] ? (
-            <div key={p.id} className="flex flex-col items-center gap-0.5 text-center" title={`${p.name} (${PLUSH_RARITY[p.rarity].name})`}>
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => (sfx.select(), setShown(shown?.id === p.id && picked ? null : p.id))}
+              aria-pressed={shown?.id === p.id}
+              className={`flex flex-col items-center gap-0.5 rounded-md p-0.5 text-center transition hover:bg-tile ${shown?.id === p.id ? 'bg-tile ring-2 ring-accent' : ''}`}
+              title={`${p.name} (${PLUSH_RARITY[p.rarity].name}): ${shown?.id === p.id ? 'shown to your friends' : 'show this one to your friends'}`}
+            >
               <span className="relative">
                 <PrizeArt prize={`plush:${p.id}`} className="size-11" style={{ fontSize: '2.75rem' }} />
                 {owned[p.id] > 1 && <span className="absolute -right-1 -top-1 rounded-full bg-ink px-1 text-[10px] font-bold text-paper">×{owned[p.id]}</span>}
+                {shown?.id === p.id && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-accent px-1 text-[9px] font-bold text-white">★</span>}
               </span>
               <span className="w-full truncate text-[10px] font-semibold" style={{ color: PLUSH_RARITY[p.rarity].color }}>
                 {p.name}
               </span>
-            </div>
+            </button>
           ) : (
             <div key={p.id} className="flex flex-col items-center gap-0.5" title="Not won yet">
               <span className="grid size-11 place-items-center rounded-[46%] bg-tile text-lg text-ink-faint">?</span>
@@ -118,7 +130,15 @@ function PlushShelf() {
         <Link to="/casino" className="font-semibold text-accent">
           Casino&apos;s claw machine
         </Link>
-        . Your best one shows next to your name for your friends.
+        .{' '}
+        {shown ? (
+          <>
+            Tap one to show it next to your name for your friends: now <b className="text-ink">{shown.name}</b>
+            {picked && owned[picked] ? '' : ' (your best, until you pick one)'}.
+          </>
+        ) : (
+          'The one you pick shows next to your name for your friends.'
+        )}
       </p>
     </div>
   );
