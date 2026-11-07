@@ -5,7 +5,9 @@
 // the code by leaving a note under it, friendcodes/<CODE>/joins/<uid>); removing a friend takes each off
 // the other's list. A score can only be read by its player and the players on their list
 // (firestore.rules): only friends see each other. A new code stops the old one working.
-import { arrayRemove, arrayUnion, deleteDoc, doc, FieldPath, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { COSMETIC_BY_ID } from '../casino/cosmetics';
+import { featsOf, TITLE_BY_ID } from '../casino/unlocks';
 import { scoreOf } from '../friends/score';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
@@ -24,6 +26,9 @@ export interface ScoreDoc {
   name: string;
   avatar: string | null;
   frame: string | null;
+  /** The name style worn (src/casino/cosmetics.ts), and the title (src/casino/unlocks.ts TITLES); missing in older documents. */
+  nameStyle?: string | null;
+  title?: string | null;
   code: string;
   friends: string[];
   log: Record<string, DayEntry>;
@@ -66,13 +71,29 @@ function today(): DayEntry {
   return [info.score, info.cards, ...info.byRarity, info.grades];
 }
 
-/** The icon worn: the card picked as icon (if still owned) and the frame. */
+/** What friends see: the icon card (if still owned), the frame, the name style (if bought) and the title (if earned). */
 function looks() {
   const s = useProgress.getState();
+  const title = TITLE_BY_ID.get(s.title ?? '');
   return {
     avatar: s.avatar && s.cards[s.avatar] ? s.avatar : null,
     frame: s.frame ?? null,
+    nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? s.nameStyle : null,
+    title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? title.id : null,
   };
+}
+type Looks = ReturnType<typeof looks>;
+
+/** Database rules from before name styles and titles refuse those two fields: tried with them, then without. */
+const refused = (e: unknown) => (e as { code?: string })?.code === 'permission-denied';
+async function withLooks<T>(write: (l: Partial<Looks>) => Promise<T>): Promise<T> {
+  const l = looks();
+  try {
+    return await write(l);
+  } catch (e) {
+    if (!refused(e)) throw e;
+    return write({ avatar: l.avatar, frame: l.frame });
+  }
 }
 
 /** Takes a free code for this player (a transaction: two players can never get the same one). */
@@ -97,37 +118,28 @@ export async function openMine(): Promise<ScoreDoc> {
     const day = todayKey();
     if (!snap.exists()) {
       const code = await claimCode(uid);
-      const fresh: ScoreDoc = {
-        uid,
-        name,
-        ...looks(),
-        code,
-        friends: [],
-        log: { [day]: today() },
-        at: Date.now(),
-      };
-      await setDoc(scoreRef(uid), fresh);
-      return fresh;
+      return await withLooks(async (l) => {
+        const fresh: ScoreDoc = { uid, name, avatar: null, frame: null, ...l, code, friends: [], log: { [day]: today() }, at: Date.now() };
+        await setDoc(scoreRef(uid), fresh);
+        return fresh;
+      });
     }
     const mine = snap.data() as ScoreDoc;
     const entry = today();
     const days = Object.keys(mine.log ?? {}).sort();
-    const { avatar, frame } = looks();
     if (days.length >= KEEP_DAYS) {
       // Too long: the oldest days go, the whole log rewritten once.
       const log = Object.fromEntries(days.slice(-(KEEP_DAYS - 1)).map((d) => [d, mine.log[d]]));
       log[day] = entry;
-      await updateDoc(scoreRef(uid), {
-        log,
-        name,
-        avatar,
-        frame,
-        at: Date.now(),
+      return await withLooks(async (l) => {
+        await updateDoc(scoreRef(uid), { log, name, ...l, at: Date.now() });
+        return { ...mine, log, name, ...l };
       });
-      return { ...mine, log, name, avatar, frame };
     }
-    await updateDoc(scoreRef(uid), new FieldPath('log', day), entry, 'name', name, 'avatar', avatar, 'frame', frame, 'at', Date.now());
-    return { ...mine, name, avatar, frame, log: { ...mine.log, [day]: entry } };
+    return await withLooks(async (l) => {
+      await updateDoc(scoreRef(uid), { [`log.${day}`]: entry, name, ...l, at: Date.now() });
+      return { ...mine, name, ...l, log: { ...mine.log, [day]: entry } };
+    });
   } catch (e) {
     throw explain(e);
   }
@@ -142,7 +154,8 @@ export async function logToday(uid: string): Promise<void> {
   const day = todayKey();
   try {
     if (localStorage.getItem(key) === day || localStorage.getItem(`omnidle:friends:${uid}`) !== '1') return;
-    await updateDoc(scoreRef(uid), new FieldPath('log', day), today(), 'at', Date.now());
+    // The looks too, so friends see a new name style or title without this player opening Friends.
+    await withLooks((l) => updateDoc(scoreRef(uid), { [`log.${day}`]: today(), ...l, at: Date.now() }));
     localStorage.setItem(key, day);
   } catch {
     // No storage, no score document yet, or offline: tomorrow, or when Friends opens.

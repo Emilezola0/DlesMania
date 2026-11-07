@@ -1,7 +1,9 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Spinner } from '../components/Spinner';
+import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { AvatarFrame } from '../casino/Frame';
+import { TITLE_BY_ID } from '../casino/unlocks';
 import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
 import { RARITIES, RARITY_INFO } from '../gacha/cards';
@@ -30,6 +32,23 @@ interface Player {
   doc: ScoreDoc;
   color: string;
   me: boolean;
+}
+
+/** A player's name in the style they bought, their title under it (when they wear one other than Newcomer). */
+function PlayerName({ p, you = false, className = '' }: { p: Player; you?: boolean; className?: string }) {
+  const style = COSMETIC_BY_ID.get(p.doc.nameStyle ?? '')?.className;
+  const title = TITLE_BY_ID.get(p.doc.title ?? '');
+  return (
+    <span className={`flex min-w-0 flex-col leading-tight ${className}`}>
+      <span className="flex min-w-0 items-baseline gap-1">
+        <span className={`truncate font-semibold ${style ?? ''}`} style={style ? undefined : { color: p.color }}>
+          {p.doc.name}
+        </span>
+        {you && <span className="shrink-0 text-xs text-ink-faint">(you)</span>}
+      </span>
+      {title && title.id !== 'newcomer' && <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-ink-faint">« {title.name} »</span>}
+    </span>
+  );
 }
 
 /** A player's icon: their icon card in their frame, else their initial. */
@@ -214,10 +233,10 @@ function ScoreChart({ players }: { players: Player[] }) {
                   transform: y(shown.entry[0]) > H / 2 ? 'translateY(-100%)' : undefined,
                 }}
               >
-                <p className="flex items-center gap-2 font-display text-sm font-bold">
+                <div className="flex items-center gap-2 font-display text-sm font-bold">
                   <Face p={players[hover.p]} size="size-5" />
-                  <span className="truncate">{players[hover.p].doc.name}</span>
-                </p>
+                  <PlayerName p={players[hover.p]} you={players[hover.p].me} />
+                </div>
                 <p className="mt-0.5 text-ink-faint">{long(days[hover.d])}</p>
                 <p className="mt-1.5 font-display text-2xl font-bold tabular-nums" style={{ color: players[hover.p].color }}>
                   {shown.entry[0].toLocaleString('en-GB')}
@@ -240,6 +259,7 @@ function ScoreChart({ players }: { players: Player[] }) {
 /** Dev only (#/friends?demo): made-up friends with a few weeks of scores, to try the chart without an account. */
 function demoDocs(): ScoreDoc[] {
   const names = ['You', 'Sora', 'Mika', 'Jules', 'Noa'];
+  const looks: [string | null, string | null][] = [[null, null], ['name:neon', 'high-roller'], ['name:gold', 'collector'], [null, 'lucky-star'], ['name:glitch', null]];
   const today = todayKey();
   return names.map((name, k) => {
     const log: Record<string, DayEntry> = {};
@@ -255,6 +275,8 @@ function demoDocs(): ScoreDoc[] {
       name,
       avatar: null,
       frame: null,
+      nameStyle: looks[k][0],
+      title: looks[k][1],
       code: 'DEMO1234',
       friends: k ? ['demo-0'] : names.slice(1).map((_, i) => `demo-${i + 1}`),
       log,
@@ -478,9 +500,8 @@ export default function Friends() {
                       <li key={p.doc.uid} className="flex items-center gap-3">
                         <span className="w-5 text-right font-display text-sm font-bold text-ink-faint">{k + 1}</span>
                         <Face p={p} />
-                        <span className="min-w-0 flex-1 truncate font-semibold" style={{ color: p.color }}>
-                          {p.me ? `${p.doc.name} (you)` : p.doc.name}
-                        </span>
+                        <span className="size-2.5 shrink-0 rounded-full" style={{ background: p.color }} title="Their line on the chart" aria-hidden />
+                        <PlayerName p={p} you={p.me} className="flex-1" />
                         <span className="font-display font-bold tabular-nums">{score.toLocaleString('en-GB')}</span>
                         {!p.me &&
                           (removing === p.doc.uid ? (
