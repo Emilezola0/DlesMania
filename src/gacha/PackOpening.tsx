@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Coins } from '../components/DleCoin';
 import { celebrate, celebrateBig, rumble, shake } from '../lib/fx';
 import { shownName } from '../lib/french';
@@ -608,6 +608,43 @@ function Clash({ star, thick }: { star: Star; thick: number }) {
  * (in the colours of the pack's stars), its disc streams across in front, a photon ring glows round its edge;
  * each star it swallows (at the times in `gulps`) makes it flare and spit two jets. It opens, then closes at `until` ms.
  */
+/**
+ * Soft light painted once into a small canvas, stretched by the graphics card. As CSS gradients the size of the
+ * screen, the black hole's glows and the nebula took the browser several frames to draw the first time: the
+ * black hole showing late or in pieces, pale squares where the screen wasn't drawn yet.
+ */
+function Painted({ className, size, paint, w = size, h = size }: { className: string; size: number; paint: (ctx: CanvasRenderingContext2D, w: number, h: number) => void; w?: number; h?: number }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useLayoutEffect(() => {
+    const ctx = ref.current?.getContext('2d');
+    if (!ctx) return;
+    ctx.clearRect(0, 0, w, h);
+    paint(ctx, w, h);
+  });
+  return <canvas ref={ref} width={w} height={h} className={className} aria-hidden />;
+}
+/** A CSS `radial-gradient(circle, …)` (its stops reach the farthest corner) painted over the whole square canvas. */
+const paintRadial = (stops: [number, string][]) => (ctx: CanvasRenderingContext2D, s: number) => {
+  const g = ctx.createRadialGradient(s / 2, s / 2, 0, s / 2, s / 2, (s / 2) * Math.SQRT2);
+  for (const [at, color] of stops) g.addColorStop(at, color);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, s, s);
+};
+const HOLE_GLOW = paintRadial([[0, 'rgba(124,58,237,0.35)'], [0.18, 'rgba(124,58,237,0.35)'], [0.38, 'rgba(236,72,153,0.12)'], [0.66, 'rgba(236,72,153,0)']]);
+const HOLE_LENS = paintRadial([[0, 'rgba(255,220,170,0)'], [0.3, 'rgba(255,220,170,0)'], [0.37, 'rgba(255,220,170,0.16)'], [0.46, 'rgba(196,181,253,0.12)'], [0.56, 'rgba(124,58,237,0.06)'], [0.68, 'rgba(124,58,237,0)']]);
+/** The accretion disc: hot light round the dark, in a ring (it turns whole). */
+const HOLE_DISC = (ctx: CanvasRenderingContext2D, s: number) => {
+  const c = ctx.createConicGradient(-Math.PI / 2, s / 2, s / 2);
+  const stops: [number, string][] = [[0, '#ffb86b'], [0.2, '#ff4fd8'], [0.32, 'rgba(255,79,216,0)'], [0.5, '#7c3aed'], [0.64, '#3cc7ff'], [0.76, 'rgba(60,199,255,0)'], [0.9, '#ffd27a'], [1, '#ffb86b']];
+  for (const [at, color] of stops) c.addColorStop(at, color);
+  ctx.fillStyle = c;
+  ctx.fillRect(0, 0, s, s);
+  // Its ring: a radial mask, as the CSS one was.
+  ctx.globalCompositeOperation = 'destination-in';
+  paintRadial([[0, 'rgba(0,0,0,0)'], [0.4, 'rgba(0,0,0,0)'], [0.46, '#000'], [0.58, '#000'], [0.7, 'rgba(0,0,0,0)']])(ctx, s);
+  ctx.globalCompositeOperation = 'source-over';
+};
+
 function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; tints: string[] }) {
   const dust = useMemo(
     () =>
@@ -637,9 +674,9 @@ function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; ti
   if (gone) return null;
   return (
     <div className="pack-hole pointer-events-none absolute z-10" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, ['--hole-life' as string]: `${until + 600}ms` }} aria-hidden>
-      <div className="pack-hole-glow" />
-      <div className="pack-hole-lens" />
-      <div className="pack-hole-disc" />
+      <Painted className="pack-hole-glow" size={96} paint={HOLE_GLOW} />
+      <Painted className="pack-hole-lens" size={96} paint={HOLE_LENS} />
+      <Painted className="pack-hole-disc" size={192} paint={HOLE_DISC} />
       <div className="pack-hole-band" />
       {dust.map((d, i) => (
         <div key={i} className="pack-hole-arm" style={{ rotate: `${d.angle}deg` }}>
@@ -793,12 +830,33 @@ function CosmicTitle({ star, boom }: { star: Star; boom: boolean }) {
  */
 function Nebula({ colors, tier }: { colors: string[]; tier: SkyTier }) {
   const c = (k: number) => colors[k % colors.length] ?? '#a78bfa';
+  // Clouds 60 × 42 vmax, set at (left, top) of the scene and pulled back a fifth of their size; alpha in hex.
+  const clouds: [number, number, string, string][] = [[8, 12, c(0), '66'], [55, 4, c(1), '55'], [30, 48, c(2), '4d'], ...(tier >= 3 ? [[62, 52, c(colors.length - 1), '66'] as [number, number, string, string]] : [])];
+  // A canvas a tenth of the screen's size, enough for light this soft.
+  const W = 192;
+  const H = Math.max(60, Math.round((W * window.innerHeight) / Math.max(1, window.innerWidth)));
+  const vmax = Math.max(W, H) / 100;
+  const paint = (ctx: CanvasRenderingContext2D) => {
+    for (const [left, top, color, alpha] of clouds) {
+      const hex = /^#[0-9a-f]{6}$/i.test(color) ? color : '#a78bfa';
+      const rx = 30 * vmax;
+      const ry = 21 * vmax;
+      const cx = (left / 100) * W - 12 * vmax + rx;
+      const cy = (top / 100) * H - 8.4 * vmax + ry;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(rx, ry);
+      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+      g.addColorStop(0, hex + alpha);
+      g.addColorStop(1, hex + '00');
+      ctx.fillStyle = g;
+      ctx.fillRect(-1, -1, 2, 2);
+      ctx.restore();
+    }
+  };
   return (
     <div className="pointer-events-none absolute inset-0" style={{ opacity: 0.28 + tier * 0.13, transition: 'opacity 0.9s ease-out' }}>
-      <div className="pack-nebula-cloud" style={{ left: '8%', top: '12%', background: `radial-gradient(closest-side, ${c(0)}66, transparent)` }} />
-      <div className="pack-nebula-cloud" style={{ left: '55%', top: '4%', background: `radial-gradient(closest-side, ${c(1)}55, transparent)`, animationDelay: '-6s' }} />
-      <div className="pack-nebula-cloud" style={{ left: '30%', top: '48%', background: `radial-gradient(closest-side, ${c(2)}4d, transparent)`, animationDelay: '-11s' }} />
-      {tier >= 3 && <div className="pack-nebula-cloud" style={{ left: '62%', top: '52%', background: `radial-gradient(closest-side, ${c(colors.length - 1)}66, transparent)`, animationDelay: '-3s' }} />}
+      <Painted className="absolute inset-0 size-full" size={W} w={W} h={H} paint={paint} />
     </div>
   );
 }
@@ -1148,6 +1206,16 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     document.documentElement.classList.add('pack-open');
     return () => document.documentElement.classList.remove('pack-open');
   }, []);
+  // Its pictures, fetched and decoded as the pack is torn: the fly-by and the cards then show at once, not loading in.
+  useEffect(() => {
+    for (const c of cards) {
+      if (!c.image) continue;
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = c.image;
+      img.decode?.().catch(() => {});
+    }
+  }, [cards]);
   // A golden pack's own light, gold where an ordinary pack's is lilac.
   const packLight = golden ? GOLDEN_LIGHT : PACK_LIGHT;
   const counts = useProgress((s) => s.cards);

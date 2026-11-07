@@ -908,7 +908,7 @@ h1, h2, h3, .font-serif, .font-display {
 }
 @keyframes pack-leak-glow { 0%, 100% { opacity: 0.4; } 40% { opacity: 1; } }
 /* A nebula behind the stars: soft clouds in the pack's colours, drifting and turning. */
-.pack-nebula-cloud { position: absolute; width: 60vmax; height: 42vmax; translate: -20% -20%; border-radius: 50%; }
+
 /* A fusion: sparks streaming into a card building up, a glowing core swelling behind it. */
 .pack-fusion-spark { translate: -50% -50%; animation: pack-fusion-in 900ms cubic-bezier(0.55, 0, 0.9, 0.4) infinite; mix-blend-mode: screen; }
 @keyframes pack-fusion-in { from { transform: translate(var(--fx), var(--fy)) scale(1); opacity: 0; } 25% { opacity: 1; } to { transform: translate(0, 0) scale(0.2); opacity: 0; } }
@@ -2072,15 +2072,11 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
    a backdrop filter inside the shaking, scaling stage flickered and tore.) */
 .pack-hole-lens {
   width: 46vmin; height: 46vmin;
-  background: radial-gradient(circle, transparent 30%, rgba(255, 220, 170, 0.16) 37%, rgba(196, 181, 253, 0.12) 46%, rgba(124, 58, 237, 0.06) 56%, transparent 68%);
   animation: pack-hole-breathe 2.4s ease-in-out infinite;
 }
 /* The accretion disc: hot light turning round it. */
 .pack-hole-disc {
   width: 30vmin; height: 30vmin;
-  background: conic-gradient(from 0deg, #ffb86b, #ff4fd8 20%, transparent 32%, #7c3aed 50%, #3cc7ff 64%, transparent 76%, #ffd27a 90%, #ffb86b);
-  mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
-  -webkit-mask: radial-gradient(circle, transparent 40%, #000 46%, #000 58%, transparent 70%);
   animation: pack-hole-spin 1.6s linear infinite;
 }
 .pack-hole-core { width: 15vmin; height: 15vmin; background: radial-gradient(circle, #000 62%, #12061f 72%, transparent 76%); box-shadow: 0 0 30px 8px #000, 0 0 60px 20px rgba(124, 58, 237, 0.35); }
@@ -2111,7 +2107,6 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-hole-glow, .pack-hole-band, .pack-hole-photon, .pack-hole-flare { position: absolute; left: 0; top: 0; translate: -50% -50%; border-radius: 9999px; }
 .pack-hole-glow {
   width: 80vmin; height: 80vmin;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.35) 18%, rgba(236, 72, 153, 0.12) 38%, transparent 66%);
   animation: pack-hole-breathe 3.2s ease-in-out infinite;
 }
 .pack-hole-band {
