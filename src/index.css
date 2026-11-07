@@ -1439,7 +1439,7 @@ h1, h2, h3, .font-serif, .font-display {
   background-size: 200% 200%, 200% 200%, 100% 100%;
   animation: omni-aurora 18s ease-in-out infinite;
 }
-.omni-aura header::after {
+.omni-aura [data-site-header]::after {
   content: '';
   position: absolute;
   inset: auto 0 -1px 0;
@@ -1470,7 +1470,7 @@ h1, h2, h3, .font-serif, .font-display {
   animation: omni-spark 0.8s ease-out forwards;
 }
 @media (prefers-reduced-motion: reduce) {
-  .omni-aura body::before, .omni-aura header::after, .omni-aura [data-logo] { animation: none; }
+  .omni-aura body::before, .omni-aura [data-site-header]::after, .omni-aura [data-logo] { animation: none; }
 }
 
 /* ── Card grades II–VII (src/gacha/grades.ts): on top of the rarity's look, a little more each grade. ── */
@@ -1936,7 +1936,7 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-clash-ring { animation: pack-clash-ring 0.8s cubic-bezier(0.1, 0.7, 0.3, 1) both; }
 
 /* ── A franchise's theme (src/gacha/Theme.tsx): its colour on the header and panels, its symbols drifting up. ── */
-.ui-themed header { box-shadow: 0 1px 0 var(--theme), 0 6px 24px -14px var(--theme); }
+.ui-themed [data-site-header] { box-shadow: 0 1px 0 var(--theme), 0 6px 24px -14px var(--theme); }
 .ui-themed .page { box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme) 28%, transparent); }
 .ui-themed body::after {
   content: '';
@@ -2053,7 +2053,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   92% { transform: scale(1); opacity: 1; }
   100% { transform: scale(0); opacity: 0; }
 }
-html.pack-open header, html.pack-open footer { visibility: hidden; }
+html.pack-open [data-site-header], html.pack-open footer { visibility: hidden; }
 .pack-scene, .pack-scene * { mix-blend-mode: normal !important; }
 html.pack-open body::before, html.pack-open body::after { animation-play-state: paused; }
 .pack-hole-lens, .pack-hole-disc, .pack-hole-core { position: absolute; left: 0; top: 0; border-radius: 9999px; translate: -50% -50%; }

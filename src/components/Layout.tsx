@@ -387,7 +387,7 @@ export function Layout() {
           <CardLayers />
         </Suspense>
       )}
-      <header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
+      <header data-site-header className={`sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur transition-transform duration-300 motion-reduce:transition-none ${headerHidden ? '-translate-y-full' : ''}`}>
         <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2.5 min-[420px]:gap-2 min-[420px]:px-4">
           <NavLink to="/" className="group flex items-center gap-2.5">
             <GlyphSeal seed="omnidle" size={36} className="transition-transform duration-500 group-hover:rotate-90" />
