@@ -59,6 +59,9 @@ import {
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
 import { rollScratch, SCRATCH_BY_ID, type ScratchTicket } from '../casino/scratchCards';
+import type { ClawItem } from '../casino/clawMachine';
+import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
+import CASINO_T from '../data/tuning/casino.json';
 import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import type { Frame } from '../casino/frames';
 
@@ -187,7 +190,21 @@ interface ProgressState {
   /** The Daily Card Shop: the day, and the cards bought from it that day. */
   cardShop: { day: string; bought: string[] };
   /** Scratch cards (src/casino/scratchCards.ts): the day and how many of each were bought that day, the one being scratched, the best win. */
-  scratch?: { day: string; bought: Record<string, number>; pending: ScratchTicket | null; best: number };
+  scratch?: { day: string; bought: Record<string, number>; pending: ScratchTicket | null; best: number; free?: string[] };
+  /** The claw machine (src/casino/clawMachine.ts): the day, tries played that day, tries paid for, the meter (tries without a win), the box, the plushies won, prizes won in all. */
+  claw?: { day: string; tries: number; credits: number; meter: number; box: ClawItem[]; plush: Record<string, number>; wins: number };
+  /** Free card packs (won at the claw), opened in the Shop for nothing. */
+  freePacks?: number;
+  /** The day's claw box, set the first time the machine is opened that day (the tries start again). */
+  clawDay: (day: string, box: ClawItem[]) => void;
+  /** Tries for the claw, in casino tokens: one, or the bundle. False if it can't (too few tokens, past the day's tries). */
+  buyClaw: (bundle: boolean) => boolean;
+  /** A try starts: one paid try used. False if there's none. */
+  startClaw: () => boolean;
+  /** A try ends: the box as it now lies and, if something was won, the prize (and the card, for a capsule). What a plush won again paid. */
+  endClaw: (box: ClawItem[], prize: string | null, cardId?: string) => { duplicate: number };
+  /** A free pack used: false if there's none. */
+  useFreePack: () => boolean;
   /** Buys a scratch card: the ticket, or null if it can't (too few coins, none left today, one still being scratched). */
   buyScratch: (id: string) => ScratchTicket | null;
   /** Cashes in the card being scratched: what it won (paid in DleCoins), or null if there's none. */
@@ -305,6 +322,8 @@ interface ProgressState {
 }
 
 /** Today's earnings book (a new one each day). */
+const CLAW_T = CASINO_T.claw;
+
 export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
 
 /** This week's and this month's missions books (new ones each Monday and each 1st). */
@@ -470,10 +489,83 @@ export const useProgress = create<ProgressState>()(
         const day = todayKey();
         const sc = s.scratch ?? { day: '', bought: {}, pending: null, best: 0 };
         const bought = sc.day === day ? sc.bought : {};
+        const free = sc.free ?? [];
+        // A free card (won at the claw): no coins, and the day's limit untouched.
+        if (card && !sc.pending && free.includes(id)) {
+          const ticket = rollScratch(card);
+          const rest = [...free];
+          rest.splice(rest.indexOf(id), 1);
+          set({ scratch: { ...sc, day, bought, free: rest, pending: ticket } });
+          return ticket;
+        }
         if (!card || sc.pending || s.coins < card.cost || (bought[id] ?? 0) >= card.perDay) return null;
         const ticket = rollScratch(card);
         set({ coins: s.coins - card.cost, scratch: { ...sc, day, bought: { ...bought, [id]: (bought[id] ?? 0) + 1 }, pending: ticket } });
         return ticket;
+      },
+      claw: undefined,
+      freePacks: 0,
+      clawDay: (day, box) => {
+        const c = get().claw;
+        if (c?.day === day) return;
+        set({ claw: { credits: 0, meter: 0, plush: {}, wins: 0, ...c, day, tries: 0, box } });
+      },
+      buyClaw: (bundle) => {
+        const s = get();
+        const c = s.claw;
+        if (!c) return false;
+        const n = bundle ? CLAW_T.bundle.tries : 1;
+        const cost = bundle ? CLAW_T.bundle.cost : CLAW_T.cost;
+        if ((s.chips ?? 0) < cost || c.tries + c.credits + n > CLAW_T.dailyTries) return false;
+        set({ chips: s.chips - cost, claw: { ...c, credits: c.credits + n } });
+        return true;
+      },
+      startClaw: () => {
+        const c = get().claw;
+        if (!c || c.credits <= 0) return false;
+        set({ claw: { ...c, credits: c.credits - 1, tries: c.tries + 1 } });
+        return true;
+      },
+      endClaw: (box, prize, cardId) => {
+        const s = get();
+        const c = s.claw;
+        if (!c) return { duplicate: 0 };
+        const claw = { ...c, box, meter: prize ? 0 : Math.min(CLAW_T.meter, c.meter + 1), wins: c.wins + (prize ? 1 : 0) };
+        if (!prize) {
+          set({ claw });
+          return { duplicate: 0 };
+        }
+        const [kind, ...rest] = prize.split(':');
+        const arg = rest.join(':');
+        let duplicate = 0;
+        const more: Partial<ProgressState> = {};
+        if (kind === 'plush') {
+          const had = c.plush?.[arg] ?? 0;
+          if (had) duplicate = PLUSH_RARITY[PLUSH_BY_ID.get(arg)?.rarity ?? 'common'].duplicate;
+          claw.plush = { ...(c.plush ?? {}), [arg]: had + 1 };
+        } else if (kind === 'coins') more.coins = s.coins + Number(arg);
+        else if (kind === 'tokens') more.chips = (s.chips ?? 0) + Number(arg);
+        else if (kind === 'pack') more.freePacks = (s.freePacks ?? 0) + 1;
+        else if (kind === 'scratch') {
+          const sc = s.scratch ?? { day: '', bought: {}, pending: null, best: 0 };
+          more.scratch = { ...sc, free: [...(sc.free ?? []), 'chest'] };
+        } else if (kind === 'capsule' && cardId) {
+          more.cards = { ...s.cards, [cardId]: (s.cards[cardId] ?? 0) + 1 };
+          more.pulledAt = stamp(s.pulledAt, [cardId]);
+        } else if (kind === 'cosmetic') {
+          const owned = s.cosmetics ?? [];
+          if (owned.includes(arg)) duplicate = 500;
+          else more.cosmetics = [...owned, arg];
+        }
+        if (duplicate) more.coins = (more.coins ?? s.coins) + duplicate;
+        set({ ...more, claw });
+        return { duplicate };
+      },
+      useFreePack: () => {
+        const n = get().freePacks ?? 0;
+        if (n <= 0) return false;
+        set({ freePacks: n - 1 });
+        return true;
       },
       claimScratch: () => {
         const s = get();
@@ -928,7 +1020,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

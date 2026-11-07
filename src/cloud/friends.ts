@@ -7,6 +7,7 @@
 // (firestore.rules): only friends see each other. A new code stops the old one working.
 import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
+import { bestPlush } from '../casino/plushies';
 import { featsOf, TITLE_BY_ID } from '../casino/unlocks';
 import { scoreOf } from '../friends/score';
 import { todayKey } from '../lib/date';
@@ -29,6 +30,8 @@ export interface ScoreDoc {
   /** The name style worn (src/casino/cosmetics.ts), and the title (src/casino/unlocks.ts TITLES); missing in older documents. */
   nameStyle?: string | null;
   title?: string | null;
+  /** The best plush won at the claw machine (src/casino/plushies.ts); missing in older documents. */
+  plush?: string | null;
   code: string;
   friends: string[];
   log: Record<string, DayEntry>;
@@ -80,19 +83,22 @@ function looks() {
     frame: s.frame ?? null,
     nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? s.nameStyle : null,
     title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? title.id : null,
+    plush: bestPlush(s.claw?.plush)?.id ?? null,
   };
 }
 type Looks = ReturnType<typeof looks>;
 
-/** Database rules from before name styles and titles refuse those two fields: tried with them, then without. */
+/** Database rules from before the plush (or the name style and title) refuse those fields: tried with them all, then with fewer. */
 const refused = (e: unknown) => (e as { code?: string })?.code === 'permission-denied';
 async function withLooks<T>(write: (l: Partial<Looks>) => Promise<T>): Promise<T> {
   const l = looks();
-  try {
-    return await write(l);
-  } catch (e) {
-    if (!refused(e)) throw e;
-    return write({ avatar: l.avatar, frame: l.frame });
+  const tries: Partial<Looks>[] = [l, { avatar: l.avatar, frame: l.frame, nameStyle: l.nameStyle, title: l.title }, { avatar: l.avatar, frame: l.frame }];
+  for (let k = 0; ; k++) {
+    try {
+      return await write(tries[k]);
+    } catch (e) {
+      if (!refused(e) || k === tries.length - 1) throw e;
+    }
   }
 }
 

@@ -231,6 +231,8 @@ export default function Shop() {
   const econ = econToday(useProgress((s) => s.econ));
   const bossWeek = bossWeekNow(useProgress((s) => s.bossWeek));
   const openPack = useProgress((s) => s.openPack);
+  const freePacks = useProgress((s) => s.freePacks ?? 0);
+  const useFreePack = useProgress((s) => s.useFreePack);
   const pity = useProgress((s) => clampPity(s.pity));
   const golden = useProgress((s) => clampGolden(s.golden));
   const claim = useProgress((s) => s.claimMission);
@@ -241,13 +243,16 @@ export default function Shop() {
   const collected = useMemo(() => COLLECTIBLE.filter((c) => owned[c.id]).length, [owned]);
 
   const boostOf = (p: Pack) => (p.boss ? bossBest(bosses, p.boss) : null);
-  const buy = (p: Pack) => {
+  /** `free`: a free pack (won at the claw) pays for it. */
+  const buy = (p: Pack, free = false) => {
     const best = boostOf(p);
     if (p.boss && !best) return;
+    if (free && (useProgress.getState().freePacks ?? 0) <= 0) return sfx.wrong();
     const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity, golden);
     const cards = pull.packs[0];
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden)) return sfx.wrong();
+    if (!openPack(free ? 0 : p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden)) return sfx.wrong();
+    if (free) useFreePack();
     sfx.click();
     setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
@@ -293,6 +298,11 @@ export default function Shop() {
           </Link>
         ) : (
           <div className="mt-auto flex flex-col gap-1.5">
+            {freePacks > 0 && (
+              <button type="button" onClick={() => buy(p, true)} className="rounded-md border border-coral/60 bg-coral/15 px-3 py-2 font-display text-sm font-bold hover:bg-coral/25">
+                🎁 Open free ({freePacks})
+              </button>
+            )}
             <button type="button" disabled={!afford} onClick={() => buy(p)} className="btn-accent rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
               Open · <Coins n={p.cost} />
             </button>

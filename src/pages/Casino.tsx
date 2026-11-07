@@ -1,10 +1,11 @@
 // The Casino: a chill corner to play some DleCoins — the slots, pachinko, the capsule machine (icon frames)
-// the roulette, scratch cards (a few a day, paying back more than they cost), and the Daily Card Shop (cards for the tokens the machines give). On average the machines pay back a little less than they take (src/data/tuning/casino.json); the roulette a little more, capped by its daily spins (economy.json).
+// the roulette, scratch cards (a few a day, paying back more than they cost), the claw machine (paid in tokens: plushies and prizes), and the Daily Card Shop (cards for the tokens the machines give). On average the machines pay back a little less than they take (src/data/tuning/casino.json); the roulette a little more, capped by its daily spins (economy.json).
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DleCoin } from '../components/DleCoin';
 import { Boutique } from '../casino/Boutique';
 import { Capsules } from '../casino/Capsules';
+import { Claw } from '../casino/Claw';
 import { CardShop, TokenCount } from '../casino/DailyCardShop';
 import { Pachinko } from '../casino/Pachinko';
 import { Scratch } from '../casino/Scratch';
@@ -19,6 +20,7 @@ const TABS = [
   { id: 'capsules', label: 'Capsules', icon: '🥚' },
   { id: 'roulette', label: 'Roulette', icon: '🎡' },
   { id: 'scratch', label: 'Scratch', icon: '🎫' },
+  { id: 'claw', label: 'Claw', icon: '🕹️' },
   { id: 'shop', label: 'Daily Shop', icon: '🃏' },
   { id: 'boutique', label: 'Boutique', icon: '🎀' },
 ] as const;
@@ -87,6 +89,7 @@ export default function Casino() {
         {tab === 'capsules' && <Capsules />}
         {tab === 'roulette' && <Roulette />}
         {tab === 'scratch' && <Scratch />}
+        {tab === 'claw' && <Claw />}
         {tab === 'shop' && <CardShop />}
         {tab === 'boutique' && <Boutique />}
       </div>

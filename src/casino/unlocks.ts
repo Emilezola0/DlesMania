@@ -100,7 +100,7 @@ export const TITLES: { id: string; name: string; how: string; has: (f: Feats) =>
   { id: 'conqueror', name: 'Conqueror', how: 'Beat every boss on Hard', has: (f) => f.hardAll },
   { id: 'hell-walker', name: 'Hell Walker', how: 'Beat a boss on Hell', has: (f) => f.hellWins >= 1 },
   { id: 'frame-hoarder', name: 'Frame Hoarder', how: "Win every frame in the capsule machine (seasonal ones aside)", has: (f) => f.allFrames },
-  ...TITLE_ITEMS.map((t) => ({ id: t.id.slice('title:'.length), name: t.name, how: "Sold in the Casino's Boutique", has: (f: Feats) => f.bought.includes(t.id) })),
+  ...TITLE_ITEMS.map((t) => ({ id: t.id.slice('title:'.length), name: t.name, how: t.price || t.tokens ? "Sold in the Casino's Boutique" : 'Won at the claw machine', has: (f: Feats) => f.bought.includes(t.id) })),
 ];
 export const TITLE_BY_ID = new Map(TITLES.map((t) => [t.id, t]));
 

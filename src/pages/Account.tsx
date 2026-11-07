@@ -12,6 +12,8 @@ import { FRAME_BY_ID } from '../casino/frames';
 import { COSMETIC_BY_ID, NAME_STYLES } from '../casino/cosmetics';
 import { TITLES, TITLE_BY_ID, useFeats } from '../casino/unlocks';
 import { useShownName } from '../casino/Boutique';
+import { PrizeArt } from '../casino/Claw';
+import { PLUSH_RARITY, PLUSHIES } from '../casino/plushies';
 import { startCloud, useCloud } from '../cloud/state';
 import { birthdayLabel } from '../components/BirthdayReward';
 import { BIRTHDAY_COINS } from '../lib/rewards';
@@ -76,6 +78,49 @@ function Backup() {
       </div>
       {note && <p className="text-sm font-semibold">{note}</p>}
     </section>
+  );
+}
+
+/** The plushies won at the claw machine (Casino → Claw), missing ones as shadows. */
+function PlushShelf() {
+  const owned = useProgress((s) => s.claw?.plush ?? {});
+  const have = PLUSHIES.filter((p) => owned[p.id]).length;
+  return (
+    <div className="space-y-2 rounded-md border border-rule-strong bg-card p-4">
+      <div className="flex items-baseline justify-between gap-2">
+        <h2 className="font-display text-lg font-bold">🧸 Plushies</h2>
+        <span className="text-sm tabular-nums text-ink-soft">
+          {have} / {PLUSHIES.length}
+        </span>
+      </div>
+      <div className="grid grid-cols-5 gap-2 sm:grid-cols-10">
+        {PLUSHIES.map((p) =>
+          owned[p.id] ? (
+            <div key={p.id} className="flex flex-col items-center gap-0.5 text-center" title={`${p.name} (${PLUSH_RARITY[p.rarity].name})`}>
+              <span className="relative">
+                <PrizeArt prize={`plush:${p.id}`} className="size-11" style={{ fontSize: '2.75rem' }} />
+                {owned[p.id] > 1 && <span className="absolute -right-1 -top-1 rounded-full bg-ink px-1 text-[10px] font-bold text-paper">×{owned[p.id]}</span>}
+              </span>
+              <span className="w-full truncate text-[10px] font-semibold" style={{ color: PLUSH_RARITY[p.rarity].color }}>
+                {p.name}
+              </span>
+            </div>
+          ) : (
+            <div key={p.id} className="flex flex-col items-center gap-0.5" title="Not won yet">
+              <span className="grid size-11 place-items-center rounded-[46%] bg-tile text-lg text-ink-faint">?</span>
+              <span className="text-[10px] text-ink-faint">???</span>
+            </div>
+          ),
+        )}
+      </div>
+      <p className="text-xs text-ink-faint">
+        Won at the{' '}
+        <Link to="/casino" className="font-semibold text-accent">
+          Casino&apos;s claw machine
+        </Link>
+        . Your best one shows next to your name for your friends.
+      </p>
+    </div>
   );
 }
 
@@ -183,6 +228,7 @@ function Profile() {
   return (
     <section className="page space-y-3 rounded-md p-5">
       <ProfileCard />
+      <PlushShelf />
       <h2 className="font-display text-lg font-bold">Your cards on show</h2>
       {row('Icon', avatar, () => setAvatar(null))}
       {row('Background', backdrop, () => setBackdrop(null))}

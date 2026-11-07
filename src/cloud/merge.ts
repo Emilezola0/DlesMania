@@ -64,6 +64,8 @@ export const SYNCED = [
   'chipCoins',
   'cardShop',
   'scratch',
+  'claw',
+  'freePacks',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -71,6 +73,13 @@ export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 export const BY_MONTH = ['days', 'special', 'specs'] as const;
 /** "games:2026-10-18", "rank-lol:2026-10-18" → "2026-10". */
 export const monthOf = (key: string) => key.slice(-10, -3);
+
+/** Two counts by key: the larger of each. */
+const mergeMax = (a: Record<string, number> | undefined, b: Record<string, number> | undefined) => {
+  const out = { ...(a ?? {}) };
+  for (const [k, v] of Object.entries(b ?? {})) out[k] = Math.max(out[k] ?? 0, v);
+  return out;
+};
 
 export const pickSave = (s: Progress): SaveData => Object.fromEntries(SYNCED.map((k) => [k, s[k]])) as SaveData;
 
@@ -273,5 +282,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     cardShop: latest.cardShop ?? { day: '', bought: [] },
     // Scratch cards: the latest save's day and card being scratched; the best win either side has.
     scratch: { ...(latest.scratch ?? { day: '', bought: {}, pending: null }), best: Math.max(local.scratch?.best ?? 0, cloud.scratch?.best ?? 0) },
+    // The claw: the latest save's day, tries and box; the plushies won either side, each at the most won.
+    claw: latest.claw ? { ...latest.claw, plush: mergeMax(local.claw?.plush, cloud.claw?.plush), wins: Math.max(local.claw?.wins ?? 0, cloud.claw?.wins ?? 0) } : (local.claw ?? cloud.claw),
+    freePacks: latest.freePacks ?? 0,
   };
 }

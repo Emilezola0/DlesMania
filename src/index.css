@@ -2573,10 +2573,29 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @keyframes scratch-hit { from { transform: scale(1); } to { transform: scale(1.06); } }
 .scratch-big { animation: scratch-big 0.5s ease-in-out 3; }
 @keyframes scratch-big { 0%, 100% { transform: none; } 25% { transform: rotate(-1.5deg) scale(1.02); } 75% { transform: rotate(1.5deg) scale(1.02); } }
+
+/* The claw machine (src/casino/Claw.tsx): a pink and white cabinet, its glass box, the chute, the big button. */
+.claw-cabinet { background: linear-gradient(180deg, #f472b6, #db2777 60%, #9d174d); border: 3px solid #fbcfe8; }
+.claw-marquee { background: linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b, #ec4899, #7c3aed); background-size: 200% 100%; text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.5); animation: claw-marquee 6s linear infinite; }
+@keyframes claw-marquee { from { background-position: 0 0; } to { background-position: 200% 0; } }
+.claw-glass { background: linear-gradient(180deg, #fdf4ff 0%, #fae8ff 34%, #f5d0fe 36%, #e9d5ff 100%); }
+.claw-glass::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255, 255, 255, 0.55) 0 8%, transparent 9% 70%, rgba(255, 255, 255, 0.25) 71% 74%, transparent 75%); pointer-events: none; }
+.claw-chute { background: linear-gradient(180deg, #1f2937, #030712); box-shadow: inset 0 0 0 0.8cqw #fbbf24, inset 0 0 0 1.4cqw #111827; }
+.claw-button { background: radial-gradient(circle at 35% 30%, #fca5a5, #dc2626 60%, #7f1d1d); box-shadow: 0 6px 0 #7f1d1d, 0 8px 14px rgba(0, 0, 0, 0.35); transition: transform 0.08s, box-shadow 0.08s; }
+.claw-button:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 #7f1d1d, 0 3px 6px rgba(0, 0, 0, 0.3); }
+.claw-button-live { animation: claw-button-live 0.8s ease-in-out infinite; }
+@keyframes claw-button-live { 50% { filter: brightness(1.25); } }
+.claw-plush-golden > span:last-child { box-shadow: 0 0 0 2px #fde68a, 0 0 14px rgba(251, 191, 36, 0.9) !important; }
+.claw-meter-full { animation: claw-button-live 0.8s ease-in-out infinite; }
+
+/* The claw machine's own cosmetics (src/casino/cosmetics.ts). */
+.name-style-candy { -webkit-background-clip: text; background-clip: text; color: transparent; background-image: repeating-linear-gradient(115deg, #f472b6 0 8px, #fdf2f8 8px 12px, #6ee7b7 12px 20px, #fdf2f8 20px 24px); background-size: 200% 100%; animation: card-name-shimmer 6s linear infinite; filter: drop-shadow(0 1px 0 rgba(157, 23, 77, 0.45)); }
+.pack-wrap-plush { background: linear-gradient(160deg, #fbcfe8, #c4b5fd 50%, #a7f3d0) !important; }
+.pack-wrap-plush .pack-wrap-layer { background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 1.5px); background-size: 5px 5px; box-shadow: inset 0 0 0 4px transparent, inset 0 0 0 6px rgba(255, 255, 255, 0.75); outline: 2px dashed rgba(255, 255, 255, 0.85); outline-offset: -9px; }
 .avatar-frame-orn { width: 46%; height: 46%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); color: #fde68a; }
 .avatar-frame-orn-top { left: 50%; top: -34%; translate: -50% 0; }
 .avatar-frame-orn-br { right: -22%; bottom: -20%; }
 .avatar-frame-orn-bl { left: -22%; bottom: -20%; }
 @media (prefers-reduced-motion: reduce) {
-  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .claw-marquee, .claw-button-live, .claw-meter-full, .name-style-candy, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }

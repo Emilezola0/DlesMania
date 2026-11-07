@@ -30,6 +30,7 @@ function useBoughtToday() {
 function Shelf({ c, onBuy, busy }: { c: ScratchCard; onBuy: () => void; busy: boolean }) {
   const coins = useProgress((s) => s.coins);
   const bought = useBoughtToday()[c.id] ?? 0;
+  const free = useProgress((s) => (s.scratch?.free ?? []).filter((id) => id === c.id).length);
   const left = Math.max(0, c.perDay - bought);
   const look = lookOf(c.id);
   const total = c.prizes.reduce((t, [, w]) => t + w, 0);
@@ -54,9 +55,14 @@ function Shelf({ c, onBuy, busy }: { c: ScratchCard; onBuy: () => void; busy: bo
         <span className="text-ink-soft">{left ? `${left} left today` : 'Back tomorrow'}</span>
       </div>
       <p className="text-xs text-ink-soft">{Math.round(atLeastBack * 100)}% of these win their price back or more.</p>
+      {free > 0 && (
+        <button type="button" disabled={busy} onClick={onBuy} className="w-full rounded-md border border-coral/60 bg-coral/15 px-3 py-2 font-semibold hover:bg-coral/25 disabled:opacity-50">
+          🎁 Scratch a free one ({free})
+        </button>
+      )}
       <button
         type="button"
-        disabled={busy || !left || coins < c.cost}
+        disabled={busy || !left || coins < c.cost || free > 0}
         onClick={onBuy}
         className="btn-accent flex w-full items-center justify-center gap-1 rounded-md px-3 py-2 font-semibold tabular-nums disabled:opacity-50"
       >

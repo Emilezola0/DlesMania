@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { Spinner } from '../components/Spinner';
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { AvatarFrame } from '../casino/Frame';
+import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import { TITLE_BY_ID } from '../casino/unlocks';
 import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
@@ -38,12 +39,18 @@ interface Player {
 function PlayerName({ p, you = false, className = '' }: { p: Player; you?: boolean; className?: string }) {
   const style = COSMETIC_BY_ID.get(p.doc.nameStyle ?? '')?.className;
   const title = TITLE_BY_ID.get(p.doc.title ?? '');
+  const plush = PLUSH_BY_ID.get(p.doc.plush ?? '');
   return (
     <span className={`flex min-w-0 flex-col leading-tight ${className}`}>
       <span className="flex min-w-0 items-baseline gap-1">
         <span className={`truncate font-semibold ${style ?? ''}`} style={style ? undefined : { color: p.color }}>
           {p.doc.name}
         </span>
+        {plush && (
+          <span className="shrink-0 text-sm leading-none" title={`Best plush: ${plush.name} (${PLUSH_RARITY[plush.rarity].name})`} aria-label={`Best plush: ${plush.name}`}>
+            {plush.face}
+          </span>
+        )}
         {you && <span className="shrink-0 text-xs text-ink-faint">(you)</span>}
       </span>
       {title && title.id !== 'newcomer' && <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-ink-faint">« {title.name} »</span>}
@@ -259,7 +266,7 @@ function ScoreChart({ players }: { players: Player[] }) {
 /** Dev only (#/friends?demo): made-up friends with a few weeks of scores, to try the chart without an account. */
 function demoDocs(): ScoreDoc[] {
   const names = ['You', 'Sora', 'Mika', 'Jules', 'Noa'];
-  const looks: [string | null, string | null][] = [[null, null], ['name:neon', 'high-roller'], ['name:gold', 'collector'], [null, 'lucky-star'], ['name:glitch', null]];
+  const looks: [string | null, string | null, string | null][] = [[null, null, 'kuma'], ['name:neon', 'high-roller', 'omni-star'], ['name:gold', 'collector', null], [null, 'lucky-star', 'kitsune'], ['name:glitch', null, 'yume']];
   const today = todayKey();
   return names.map((name, k) => {
     const log: Record<string, DayEntry> = {};
@@ -277,6 +284,7 @@ function demoDocs(): ScoreDoc[] {
       frame: null,
       nameStyle: looks[k][0],
       title: looks[k][1],
+      plush: looks[k][2],
       code: 'DEMO1234',
       friends: k ? ['demo-0'] : names.slice(1).map((_, i) => `demo-${i + 1}`),
       log,

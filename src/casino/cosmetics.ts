@@ -2,7 +2,7 @@
 // player's name on their profile; pack wrappers dress every pack before it's torn (looks only: the cards inside
 // are drawn the same; a golden pack keeps its gold whatever the wrapper); titles go under the player's name.
 // Each is paid in DleCoins or in casino tokens (the tokens the machines give, one per 20 coins played): most take
-// either, a few only tokens.
+// either, a few only tokens, and a few are never sold: they're won at the claw machine.
 
 export interface Cosmetic {
   /** "name:gold", "wrap:galaxy", "title:high-roller"... */
@@ -27,6 +27,7 @@ export const NAME_STYLES: Cosmetic[] = [
   { id: 'name:rainbow', name: 'Rainbow', price: 6000, tokens: 300, className: 'name-style-rainbow', blurb: 'Every colour, flowing, like a Mythic card.' },
   { id: 'name:omni', name: 'Omni', price: 15000, tokens: 750, className: 'name-style-omni', blurb: "An Omni's red and gold, glowing." },
   { id: 'name:glitch', name: 'Glitch', price: 0, tokens: 400, className: 'name-style-glitch', blurb: 'Your name breaking up in red and cyan, now and then.' },
+  { id: 'name:candy', name: 'Candy', price: 0, tokens: 0, className: 'name-style-candy', blurb: 'Pink and mint stripes, like a sweet from the arcade.' },
   { id: 'name:jackpot', name: 'Jackpot', price: 0, tokens: 1200, className: 'name-style-jackpot', blurb: 'Gold and ruby, casino lights chasing along it.' },
 ];
 
@@ -41,6 +42,7 @@ export const WRAPPERS: Cosmetic[] = [
   { id: 'wrap:galaxy', name: 'Galaxy', price: 5000, tokens: 250, className: 'pack-wrap-galaxy', blurb: 'Deep space and its stars, twinkling.' },
   { id: 'wrap:aurora', name: 'Aurora', price: 5500, tokens: 275, className: 'pack-wrap-aurora', blurb: 'Northern lights, green and violet, slowly waving.' },
   { id: 'wrap:felt', name: 'Casino Felt', price: 0, tokens: 500, className: 'pack-wrap-felt', blurb: 'Green table felt, card suits stamped in gold.' },
+  { id: 'wrap:plush', name: 'Plush', price: 0, tokens: 0, className: 'pack-wrap-plush', blurb: 'Soft pastel fabric, stitched at the seams.' },
   { id: 'wrap:marquee', name: 'Marquee', price: 0, tokens: 900, className: 'pack-wrap-marquee', blurb: 'Ruby red, framed in casino bulbs that chase round it.' },
 ];
 
@@ -50,7 +52,12 @@ export const TITLE_ITEMS: Cosmetic[] = [
   { id: 'title:high-roller', name: 'High Roller', price: 8000, tokens: 400, className: '', blurb: 'Big bets, bigger smile.' },
   { id: 'title:big-spender', name: 'Big Spender', price: 20000, tokens: 1000, className: '', blurb: 'Money is no object.' },
   { id: 'title:lucky-star', name: 'Lucky Star', price: 0, tokens: 300, className: '', blurb: 'The machines just like you.' },
+  { id: 'title:claw-champion', name: 'Claw Champion', price: 0, tokens: 0, className: '', blurb: 'Nothing escapes the claw.' },
   { id: 'title:jackpot-hunter', name: 'Jackpot Hunter', price: 0, tokens: 1500, className: '', blurb: 'One more spin. Always one more spin.' },
 ];
+
+/** Neither price: won only at the claw machine (src/casino/clawMachine.ts), never sold. */
+export const isClawOnly = (c: Cosmetic) => !c.price && !c.tokens;
+export const CLAW_COSMETICS = [...NAME_STYLES, ...WRAPPERS, ...TITLE_ITEMS].filter(isClawOnly);
 
 export const COSMETIC_BY_ID = new Map([...NAME_STYLES, ...WRAPPERS, ...TITLE_ITEMS].map((c) => [c.id, c]));

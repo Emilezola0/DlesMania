@@ -7,7 +7,7 @@ import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CARD_SHOP } from './casino';
-import { NAME_STYLES, TITLE_ITEMS, WRAPPERS, type Cosmetic } from './cosmetics';
+import { isClawOnly, NAME_STYLES, TITLE_ITEMS, WRAPPERS, type Cosmetic } from './cosmetics';
 import { useShownName } from './ProfileTag';
 export { useShownName };
 
@@ -21,8 +21,10 @@ function Item({ c, children, worn, onWear }: { c: Cosmetic; children: React.Reac
     if (buy(c.id, inTokens ? c.tokens : c.price, inTokens)) (sfx.coins(3), celebrate());
   };
   const tokensOnly = !c.price && c.tokens > 0;
+  const claw = isClawOnly(c);
   return (
     <div className={`relative flex flex-col items-center gap-2 rounded-md border p-3 text-center ${worn ? 'border-accent bg-tile' : tokensOnly ? 'border-coral/60 bg-coral/5' : 'border-rule'}`}>
+      {claw && !owned && <span className="absolute -top-2 right-2 rounded-full bg-fuchsia-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">🕹️ Claw prize</span>}
       {tokensOnly && !owned && <span className="absolute -top-2 right-2 rounded-full bg-coral px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">🎟️ Tokens only</span>}
       <div className="grid min-h-16 w-full place-items-center">{children}</div>
       <p className="font-display font-bold">{c.name}</p>
@@ -31,6 +33,8 @@ function Item({ c, children, worn, onWear }: { c: Cosmetic; children: React.Reac
         <button type="button" onClick={() => (sfx.select(), onWear(!worn))} className={`${worn ? 'btn-paper' : 'btn-accent'} mt-auto w-full rounded-md px-3 py-1.5 text-sm font-semibold`}>
           {worn ? 'Take off' : 'Use'}
         </button>
+      ) : claw ? (
+        <p className="mt-auto w-full rounded-md border border-dashed border-rule-strong px-3 py-1.5 text-xs font-semibold text-ink-soft">Not sold: win it at the claw machine</p>
       ) : (
         <div className="mt-auto flex w-full flex-col gap-1.5">
           {c.price > 0 && (
@@ -90,7 +94,7 @@ export function Boutique() {
   return (
     <div className="space-y-4">
       <p className="rounded-md border border-coral/40 bg-coral/5 px-4 py-2.5 text-sm text-ink-soft">
-        Pay in DleCoins <DleCoin className="inline size-3.5 align-[-2px]" /> or in casino tokens 🎟️ (one for every {CARD_SHOP.coinsPerToken} coins you put into the machines, win or lose). A few pieces are sold for tokens only. You own{' '}
+        Pay in DleCoins <DleCoin className="inline size-3.5 align-[-2px]" /> or in casino tokens 🎟️ (one for every {CARD_SHOP.coinsPerToken} coins you put into the machines, win or lose). A few pieces are sold for tokens only, and a few are won only at the claw machine. You own{' '}
         <b className="text-ink">
           {mine} of {all}
         </b>

@@ -125,6 +125,28 @@
       },
       "required": ["cards"],
       "additionalProperties": false
+    },
+    "claw": {
+      "type": "object",
+      "title": "Claw machine",
+      "description": "The claw machine, paid in casino tokens (a reward for playing the other machines). Its box holds plushies and other prizes, a new mix every day; a grab holds better the closer the claw is to a prize's centre, and every miss fills a meter towards a grab that can't slip.",
+      "properties": {
+        "cost": { "type": "integer", "minimum": 1, "description": "Tokens a try costs" },
+        "bundle": { "type": "object", "properties": { "tries": { "type": "integer", "minimum": 2 }, "cost": { "type": "integer", "minimum": 1 } }, "required": ["tries", "cost"], "additionalProperties": false, "description": "Several tries at once, for less" },
+        "dailyTries": { "type": "integer", "minimum": 1, "description": "Tries a player can play each day" },
+        "meter": { "type": "integer", "minimum": 1, "description": "Failed tries before a sure grab" },
+        "boxSize": { "type": "integer", "minimum": 4, "maximum": 14, "description": "Prizes in the box when it's full" },
+        "restockBelow": { "type": "integer", "minimum": 1, "description": "The box is filled up again when it holds fewer prizes than this" },
+        "reach": { "type": "number", "minimum": 0.05, "maximum": 0.3, "description": "How far from a prize's centre the claw can still catch it (the box is 1 wide)" },
+        "slip": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a badly-aimed prize slips on the way to the chute (less the better the aim)" },
+        "plushOdds": { "type": "object", "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "golden": { "type": "number", "minimum": 0 } }, "required": ["common", "rare", "epic", "golden"], "additionalProperties": false },
+        "grip": { "type": "object", "description": "How well each kind of prize holds in the claw (1: always, if well aimed)", "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 } },
+        "coinBags": { "type": "array", "items": { "type": "array", "minItems": 2, "maxItems": 2 }, "description": "[DleCoins, weight]" },
+        "ticketRolls": { "type": "array", "items": { "type": "array", "minItems": 2, "maxItems": 2 }, "description": "[tokens, weight]" },
+        "capsuleOdds": { "type": "object", "properties": { "epic": { "type": "number", "minimum": 0 }, "legendary": { "type": "number", "minimum": 0 } }, "required": ["epic", "legendary"], "additionalProperties": false }
+      },
+      "required": ["cost", "bundle", "dailyTries", "meter", "boxSize", "restockBelow", "reach", "slip", "plushOdds", "grip", "coinBags", "ticketRolls", "capsuleOdds"],
+      "additionalProperties": false
     }
   },
   "required": ["slots", "pachinko", "capsules", "cardShop"],

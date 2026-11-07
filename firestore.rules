@@ -81,10 +81,11 @@ service cloud.firestore {
     // only adds themselves to its friends (with a note under its current code, made in the same
     // write) or takes themselves off: friends are mutual.
     function scoreShapeOk(d) {
-      return d.keys().hasOnly(['uid', 'name', 'avatar', 'frame', 'nameStyle', 'title', 'code', 'friends', 'log', 'at'])
+      return d.keys().hasOnly(['uid', 'name', 'avatar', 'frame', 'nameStyle', 'title', 'plush', 'code', 'friends', 'log', 'at'])
         && d.name is string && d.name.size() <= 40
         && (!('nameStyle' in d) || d.nameStyle == null || (d.nameStyle is string && d.nameStyle.size() <= 40))
         && (!('title' in d) || d.title == null || (d.title is string && d.title.size() <= 40))
+        && (!('plush' in d) || d.plush == null || (d.plush is string && d.plush.size() <= 40))
         && d.code is string && d.code.size() == 8
         && d.friends is list && d.friends.size() <= 30
         && d.log is map;
