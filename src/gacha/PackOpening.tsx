@@ -671,6 +671,40 @@ const paintHalo = (colors: string[]) => (ctx: CanvasRenderingContext2D, s: numbe
   ctx.fillRect(0, 0, s, s);
   maskRadial(ctx, s, s, [[0, 0], [0.28, 0], [0.42, 1], [0.7, 0]], Math.SQRT2);
 };
+/**
+ * The cone of light out of a torn pack: as wide as the pack at the bottom, widening upward, its sides and top
+ * feathered well inside the canvas, so it has no edge whatever the screen's shape (a CSS mask set from a point
+ * below it clipped the light against its box on some screens: a pale rectangle round the beam).
+ */
+const paintBeam = (stops: [number, string][]) => (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+  const g = ctx.createLinearGradient(0, h, 0, 0);
+  for (const [at, c] of stops) g.addColorStop(at, c);
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, w, h);
+  // The cone, drawn row by row on its own canvas, then kept from the light in one go (destination-in on each
+  // row would wipe the rows already kept).
+  const cone = document.createElement('canvas');
+  cone.width = w;
+  cone.height = h;
+  const m = cone.getContext('2d');
+  if (!m) return;
+  for (let y = 0; y < h; y++) {
+    const up = 1 - y / h; // 0 at the tear, 1 at the top
+    const half = w * (0.2 + 0.24 * up); // the pack is ~38% of the width
+    const soft = w * (0.04 + 0.14 * up);
+    const row = m.createLinearGradient(w / 2 - half, 0, w / 2 + half, 0);
+    const f = Math.min(0.5, soft / (2 * half));
+    row.addColorStop(0, 'rgba(0,0,0,0)');
+    row.addColorStop(f, '#000');
+    row.addColorStop(1 - f, '#000');
+    row.addColorStop(1, 'rgba(0,0,0,0)');
+    m.fillStyle = row;
+    m.fillRect(0, y, w, 1);
+  }
+  ctx.globalCompositeOperation = 'destination-in';
+  ctx.drawImage(cone, 0, 0);
+  ctx.globalCompositeOperation = 'source-over';
+};
 /** The black hole's band of hot light, flattened, crossing it. */
 const HOLE_BAND = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
   const g = ctx.createLinearGradient(0, 0, w, 0);
@@ -1381,12 +1415,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       : special === 'omni'
         ? `drop-shadow(0 0 ${n}px #ff3b4e) drop-shadow(0 0 ${n * 1.6}px #ffcd3c) drop-shadow(0 0 ${n * 2.2}px #ff3b4e)`
         : `drop-shadow(0 0 ${n}px ${glow})`;
-  const beam =
+  // The light pouring out of the tear, from the bottom up: [where, colour].
+  const beam: [number, string][] =
     special === 'mythic'
-      ? 'linear-gradient(to top, #fff, #ff4fd8 12%, #ffcd3c 28%, #3cff9e 44%, #3cc7ff 60%, #a855f799 74%, transparent 92%)'
+      ? [[0, '#ffffff'], [0.12, '#ff4fd8'], [0.28, '#ffcd3c'], [0.44, '#3cff9e'], [0.6, '#3cc7ff'], [0.74, '#a855f799'], [0.92, '#a855f700']]
       : special === 'omni'
-        ? 'linear-gradient(to top, #fff, #ff3b4e 14%, #ffcd3c 34%, #ff3b4e99 58%, transparent 90%)'
-        : `linear-gradient(to top, ${glow}, ${glow}55 30%, transparent 85%)`;
+        ? [[0, '#ffffff'], [0.14, '#ff3b4e'], [0.34, '#ffcd3c'], [0.58, '#ff3b4e99'], [0.9, '#ff3b4e00']]
+        : [[0, glow], [0.3, hexA(glow, '55')], [0.85, hexA(glow, '00')]];
   const [phase, setPhase] = useState<Phase>('choose');
   const [chosen, setChosen] = useState<number | null>(null);
   const [tear, setTear] = useState(0);
@@ -1891,10 +1926,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             )}
             {/* The light inside, pouring out of the tear. */}
             {phase === 'torn' && (
-              <div
+              <Painted
                 className="pack-beam pointer-events-none absolute left-1/2 w-[260%]"
-                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh', background: beam }}
-                aria-hidden
+                style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh' }}
+                size={128}
+                w={128}
+                h={256}
+                paint={paintBeam(beam)}
               />
             )}
             {/* The pack below the cut, and the strip above it: they part along the same jagged line. */}

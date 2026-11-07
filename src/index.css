@@ -551,10 +551,8 @@ h1, h2, h3, .font-serif, .font-display {
   100% { transform: translateX(-50%) scaleY(1); opacity: 0.85; }
 }
 .pack-beam {
-  transform: translateX(-50%); transform-origin: 50% 100%; animation: pack-beam 0.8s ease-out forwards; mix-blend-mode: screen;
-  /* A cone of light from below the tear, its sides feathered: nothing near the box's own edges (a hard clip left a seam there). */
-  -webkit-mask: conic-gradient(from -18deg at 50% 165%, transparent 0deg, #000 6deg, #000 30deg, transparent 36deg, transparent 360deg);
-  mask: conic-gradient(from -18deg at 50% 165%, transparent 0deg, #000 6deg, #000 30deg, transparent 36deg, transparent 360deg);
+  transform: translateX(-50%); transform-origin: 50% 100%; animation: pack-beam 0.8s ease-out forwards;
+  /* Its cone is painted (PackOpening.tsx, paintBeam). */
 }
 @keyframes pack-glow {
   0%, 100% { filter: brightness(1); }
