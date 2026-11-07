@@ -621,8 +621,9 @@ h1, h2, h3, .font-serif, .font-display {
   50% { opacity: 1; }
 }
 @keyframes pack-planet { to { transform: translate(-1.5vmin, -1vmin); } }
-/* The planet on the edge of a pack's sky (PackOpening.tsx, SkyPlanet): it shows how good the pack looks. */
-.sky-planet { right: -5vmin; bottom: -6vmin; animation: pack-planet 24s ease-in-out infinite alternate, sky-in 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) both; }
+/* The planet on the edge of a pack's sky (PackOpening.tsx, SkyPlanet): it shows how good the pack looks. Its sky reaches 4rem past
+   each edge of the screen (room for the camera to shake), so it is set 4rem in to sit on the screen. */
+.sky-planet { right: calc(4rem - 3vmin); bottom: calc(4rem + 5vmin); animation: pack-planet 24s ease-in-out infinite alternate, sky-in 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) both; }
 @keyframes sky-in { from { translate: 12vmin 12vmin; opacity: 0; } to { translate: 0 0; opacity: 1; } }
 .sky-body {
   position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
