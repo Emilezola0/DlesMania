@@ -10,7 +10,7 @@ import { COSMIC_KINDS, FORCE_DRAW, FORCE_DRAW_ONCE, PACK_SIZE } from '../gacha/p
 import { ANOMALIES, ANOMALY_IDS, type AnomalyId } from '../gacha/anomalies';
 import { ELEMENT_IDS, ELEMENTS, MAX_GRADE, GRADES, ELEMENT_GRADE, type ElementId } from '../gacha/grades';
 import { FRAMES } from '../casino/frames';
-import { NAME_STYLES, WRAPPERS } from '../casino/cosmetics';
+import { NAME_STYLES, TITLE_ITEMS, WRAPPERS } from '../casino/cosmetics';
 import { DEV_ALL_FEATS, TITLES, useFeats } from '../casino/unlocks';
 import { useProgress } from '../store/progress';
 
@@ -340,15 +340,15 @@ export default function TestLab() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-sm">
-            Frames {frames.length}/{FRAMES.length} · Cosmetics {cosmetics.length}/{NAME_STYLES.length + WRAPPERS.length}
+            Frames {frames.length}/{FRAMES.length} · Cosmetics {cosmetics.length}/{NAME_STYLES.length + WRAPPERS.length + TITLE_ITEMS.length}
           </span>
           <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: FRAMES.map((f) => f.id) }), say('Every capsule frame (seasonal ones too) is yours.'))}>
             Give every frame
           </button>
-          <button type="button" className={btn} onClick={() => (useProgress.setState({ cosmetics: [...NAME_STYLES, ...WRAPPERS].map((c) => c.id) }), say('Every name style and wrapper is yours.'))}>
+          <button type="button" className={btn} onClick={() => (useProgress.setState({ cosmetics: [...NAME_STYLES, ...WRAPPERS, ...TITLE_ITEMS].map((c) => c.id) }), say('Every name style, wrapper and Boutique title is yours.'))}>
             Give every cosmetic
           </button>
-          <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null }), say('Frames and cosmetics taken back.'))}>
+          <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null }), say('Frames and cosmetics taken back.'))}>
             Take them all back
           </button>
         </div>

@@ -6,6 +6,7 @@ import { useMemo } from 'react';
 import { BOSSES } from '../data/bosses';
 import { COLLECTIBLE, SETS } from '../gacha/cards';
 import { bossKey, computeStreak, useProgress } from '../store/progress';
+import { TITLE_ITEMS } from './cosmetics';
 import { FRAMES } from './frames';
 
 type Save = ReturnType<typeof useProgress.getState>;
@@ -29,6 +30,8 @@ export interface Feats {
   hellWins: number;
   /** Every frame of the machine won (seasonal ones aside). */
   allFrames: boolean;
+  /** The Boutique's cosmetics bought (bought titles among them). */
+  bought: string[];
 }
 
 /** Dev only (the Test lab): localStorage "omnidle-dev-all-feats" = "1" counts every feat as done (titles, earned frames). */
@@ -42,9 +45,9 @@ const allFeats = (): boolean => {
   }
 };
 
-export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened' | 'frames'>): Feats {
+export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened' | 'frames' | 'cosmetics'>): Feats {
   if (allFeats())
-    return { bestStreak: 999, sets: SETS.map((set) => set.id), packs: 9999, mythic: true, omni: true, hardWins: HARD_BOSSES.length, hardAll: true, hellWins: HARD_BOSSES.length, allFrames: true };
+    return { bestStreak: 999, sets: SETS.map((set) => set.id), packs: 9999, mythic: true, omni: true, hardWins: HARD_BOSSES.length, hardAll: true, hellWins: HARD_BOSSES.length, allFrames: true, bought: TITLE_ITEMS.map((t) => t.id) };
   const owned = s.cards ?? {};
   const wonOn = (id: string, d: 'hard' | 'hell') => (s.bosses?.[bossKey(id, d)]?.wins ?? 0) > 0;
   // A win counts for every lower difficulty too: Hell beats Hard.
@@ -67,6 +70,7 @@ export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened
     hardAll: hard.length === HARD_BOSSES.length,
     hellWins: HARD_BOSSES.filter((b) => wonOn(b.id, 'hell')).length,
     allFrames: FRAMES.filter((f) => !f.season).every((f) => frames.has(f.id)),
+    bought: s.cosmetics ?? [],
   };
 }
 
@@ -81,7 +85,7 @@ export function earnedFrames(f: Feats): Set<string> {
   return out;
 }
 
-/** Profile titles, shown under the player's name: each earned by playing. */
+/** Profile titles, shown under the player's name: earned by playing, or bought in the Casino's Boutique. */
 export const TITLES: { id: string; name: string; how: string; has: (f: Feats) => boolean }[] = [
   { id: 'newcomer', name: 'Newcomer', how: 'Everyone starts here', has: () => true },
   { id: 'regular', name: 'Regular', how: 'A 7-day streak', has: (f) => f.bestStreak >= 7 },
@@ -96,6 +100,7 @@ export const TITLES: { id: string; name: string; how: string; has: (f: Feats) =>
   { id: 'conqueror', name: 'Conqueror', how: 'Beat every boss on Hard', has: (f) => f.hardAll },
   { id: 'hell-walker', name: 'Hell Walker', how: 'Beat a boss on Hell', has: (f) => f.hellWins >= 1 },
   { id: 'frame-hoarder', name: 'Frame Hoarder', how: "Win every frame in the capsule machine (seasonal ones aside)", has: (f) => f.allFrames },
+  ...TITLE_ITEMS.map((t) => ({ id: t.id.slice('title:'.length), name: t.name, how: "Sold in the Casino's Boutique", has: (f: Feats) => f.bought.includes(t.id) })),
 ];
 export const TITLE_BY_ID = new Map(TITLES.map((t) => [t.id, t]));
 
@@ -106,5 +111,6 @@ export function useFeats(): Feats {
   const bosses = useProgress((s) => s.bosses);
   const packsOpened = useProgress((s) => s.packsOpened);
   const frames = useProgress((s) => s.frames);
-  return useMemo(() => featsOf({ days, cards, bosses, packsOpened, frames }), [days, cards, bosses, packsOpened, frames]);
+  const cosmetics = useProgress((s) => s.cosmetics);
+  return useMemo(() => featsOf({ days, cards, bosses, packsOpened, frames, cosmetics }), [days, cards, bosses, packsOpened, frames, cosmetics]);
 }

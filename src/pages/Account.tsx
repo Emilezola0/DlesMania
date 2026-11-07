@@ -134,7 +134,7 @@ function ProfileCard() {
         </label>
       </div>
       <p className="text-xs text-ink-faint">
-        Titles and trophy frames are earned by playing; name styles and pack wrappers are in the Casino&apos;s{' '}
+        Trophy frames and most titles are earned by playing; name styles, pack wrappers and a few titles are in the Casino&apos;s{' '}
         <Link to="/casino" className="font-semibold text-accent">
           Boutique
         </Link>

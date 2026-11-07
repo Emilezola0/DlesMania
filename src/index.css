@@ -2529,10 +2529,46 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-wrap-galaxy { background: radial-gradient(ellipse at 70% 20%, #6d28d9, transparent 55%), radial-gradient(ellipse at 20% 80%, #db2777, transparent 50%), #0b0420 !important; }
 .pack-wrap-galaxy .pack-wrap-layer { background-image: radial-gradient(circle at 15% 25%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 75% 15%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 60% 70%, #fff 0 1.2px, transparent 2px), radial-gradient(circle at 30% 85%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 88% 55%, #fff 0 1px, transparent 1.5px); animation: pack-wrap-twinkle 2.4s ease-in-out infinite; }
 @keyframes pack-wrap-twinkle { 50% { opacity: 0.45; } }
+/* The Boutique's newer name styles (src/casino/cosmetics.ts). */
+.name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot { -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: card-name-shimmer 4s linear infinite; }
+.name-style-ember { background-image: linear-gradient(90deg, #b91c1c, #f97316, #fde047, #f97316, #b91c1c); filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.45)); animation-duration: 2.2s; }
+.name-style-toxic { background-image: linear-gradient(90deg, #166534, #a3e635, #4ade80, #ecfccb, #166534); filter: drop-shadow(0 0 4px rgba(163, 230, 53, 0.5)); }
+.name-style-royal { background-image: linear-gradient(90deg, #6b21a8, #c084fc, #fbbf24, #fef3c7, #6b21a8); animation-duration: 5s; }
+.name-style-jackpot { background-image: linear-gradient(90deg, #b45309, #fde68a 20%, #e11d48 35%, #fff 45%, #fbbf24 60%, #be123c 80%, #b45309); background-size: 300% 100%; filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.55)); animation-duration: 1.8s; }
+.name-style-neon { color: #ffe4f5; text-shadow: 0 0 2px #fff, 0 0 6px #ff4fd8, 0 0 12px #ff4fd8, 0 0 20px #d946ef; animation: name-neon-buzz 4s steps(1, end) infinite; }
+@keyframes name-neon-buzz { 0%, 100% { opacity: 1; } 91% { opacity: 1; } 92% { opacity: 0.55; } 93% { opacity: 1; } 95% { opacity: 0.7; } 96% { opacity: 1; } }
+.name-style-glitch { color: inherit; text-shadow: 1px 0 rgba(255, 59, 78, 0.8), -1px 0 rgba(60, 199, 255, 0.8); animation: name-glitch 3.5s steps(1, end) infinite; }
+@keyframes name-glitch {
+  0%, 100% { text-shadow: 1px 0 rgba(255, 59, 78, 0.8), -1px 0 rgba(60, 199, 255, 0.8); transform: none; }
+  88% { text-shadow: 3px 0 rgba(255, 59, 78, 0.9), -3px 0 rgba(60, 199, 255, 0.9); transform: translateX(1px) skewX(-6deg); }
+  90% { text-shadow: -3px 1px rgba(255, 59, 78, 0.9), 3px -1px rgba(60, 199, 255, 0.9); transform: translateX(-2px); }
+  92% { text-shadow: 1px 0 rgba(255, 59, 78, 0.8), -1px 0 rgba(60, 199, 255, 0.8); transform: none; }
+}
+
+/* The Boutique's newer pack wrappers. */
+.pack-wrap-lava { background: radial-gradient(ellipse at 50% 110%, #f97316, transparent 55%), linear-gradient(170deg, #1c1917, #292524 55%, #431407) !important; }
+.pack-wrap-lava .pack-wrap-layer { background: linear-gradient(118deg, transparent 30%, rgba(251, 146, 60, 0.9) 31%, transparent 32.5%), linear-gradient(62deg, transparent 55%, rgba(253, 224, 71, 0.8) 56%, transparent 57%), linear-gradient(150deg, transparent 70%, rgba(249, 115, 22, 0.85) 71%, transparent 72.5%); animation: pack-wrap-glow 2.6s ease-in-out infinite; }
+@keyframes pack-wrap-glow { 50% { opacity: 0.45; } }
+.pack-wrap-ocean { background: linear-gradient(180deg, #38bdf8, #0369a1 45%, #082f49) !important; }
+.pack-wrap-ocean .pack-wrap-layer { background: repeating-linear-gradient(100deg, transparent 0 14px, rgba(255, 255, 255, 0.16) 14px 18px, transparent 18px 34px); background-size: 200% 100%; animation: pack-wrap-caustics 5s linear infinite; }
+@keyframes pack-wrap-caustics { from { background-position: 0 0; } to { background-position: 100% 0; } }
+.pack-wrap-circuit { background: linear-gradient(160deg, #064e3b, #022c22) !important; }
+.pack-wrap-circuit .pack-wrap-layer { background-image: linear-gradient(rgba(52, 211, 153, 0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(52, 211, 153, 0.35) 1px, transparent 1px), linear-gradient(180deg, transparent 40%, rgba(110, 231, 183, 0.55) 50%, transparent 60%); background-size: 12px 12px, 12px 12px, 100% 300%; animation: pack-wrap-pulse 3s linear infinite; }
+@keyframes pack-wrap-pulse { from { background-position: 0 0, 0 0, 0 100%; } to { background-position: 0 0, 0 0, 0 -200%; } }
+.pack-wrap-synthwave { background: linear-gradient(180deg, #1e1b4b, #7e22ce 38%, #f472b6 52%, #0f0524 53%) !important; }
+.pack-wrap-synthwave .pack-wrap-layer { background: radial-gradient(circle at 50% 30%, #fde047 0 12%, #fb923c 13% 15%, transparent 16%) 0 0 / 100% 100% no-repeat, repeating-linear-gradient(0deg, transparent 0 9px, rgba(244, 114, 182, 0.7) 9px 10px) 0 0 / 100% 47% no-repeat; background-position: 0 0, 0 100%; animation: pack-wrap-glow 3s ease-in-out infinite; }
+.pack-wrap-aurora { background: linear-gradient(180deg, #020617, #0f172a 60%, #1e1b4b) !important; }
+.pack-wrap-aurora .pack-wrap-layer { background: linear-gradient(170deg, transparent 15%, rgba(74, 222, 128, 0.55) 30%, rgba(45, 212, 191, 0.4) 40%, rgba(167, 139, 250, 0.5) 52%, transparent 68%); background-size: 100% 200%; animation: pack-wrap-aurora 6s ease-in-out infinite alternate; }
+@keyframes pack-wrap-aurora { from { background-position: 0 0%; transform: skewY(-4deg); } to { background-position: 0 100%; transform: skewY(4deg); } }
+.pack-wrap-felt { background: radial-gradient(ellipse at 50% 40%, #15803d, #14532d 70%, #052e16) !important; box-shadow: inset 0 0 0 3px #b45309, inset 0 0 0 5px rgba(253, 230, 138, 0.6); }
+.pack-wrap-felt .pack-wrap-layer { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23fbbf24' fill-opacity='0.28' font-size='14' font-family='serif'%3E%3Ctext x='3' y='16'%3E%E2%99%A0%3C/text%3E%3Ctext x='25' y='16'%3E%E2%99%A5%3C/text%3E%3Ctext x='3' y='38'%3E%E2%99%A6%3C/text%3E%3Ctext x='25' y='38'%3E%E2%99%A3%3C/text%3E%3C/g%3E%3C/svg%3E"); }
+.pack-wrap-marquee { background: radial-gradient(ellipse at 50% 35%, #e11d48, #881337 65%, #4c0519) !important; }
+.pack-wrap-marquee .pack-wrap-layer { inset: 4px; border-radius: 6px; background: radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 100% / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-y, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 100% 0 / 12px 12px repeat-y; animation: pack-wrap-bulbs 0.9s steps(2, end) infinite; }
+@keyframes pack-wrap-bulbs { 50% { filter: brightness(0.55); } }
 .avatar-frame-orn { width: 46%; height: 46%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); color: #fde68a; }
 .avatar-frame-orn-top { left: 50%; top: -34%; translate: -50% 0; }
 .avatar-frame-orn-br { right: -22%; bottom: -20%; }
 .avatar-frame-orn-bl { left: -22%; bottom: -20%; }
 @media (prefers-reduced-motion: reduce) {
-  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }

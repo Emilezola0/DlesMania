@@ -179,7 +179,7 @@ interface ProgressState {
   capsuleTokens: number;
   /** Free pachinko balls waiting (PACHINKO.freeBalls each time the meter fills), dropped before paid ones. */
   freeBalls?: number;
-  /** Casino tokens, one per CARD_SHOP.coinsPerToken DleCoins paid into the casino: the Daily Card Shop's only currency. */
+  /** Casino tokens, one per CARD_SHOP.coinsPerToken DleCoins paid into the casino: spent in the Daily Card Shop and the Boutique. */
   chips: number;
   /** DleCoins paid into the casino towards the next token. */
   chipCoins: number;
@@ -202,8 +202,8 @@ interface ProgressState {
   setNameStyle: (id: string | null) => void;
   setWrapper: (id: string | null) => void;
   setTitle: (id: string | null) => void;
-  /** Buys a cosmetic for `price` DleCoins (and puts it on): false if it can't (too few coins, owned already). */
-  buyCosmetic: (id: string, price: number) => boolean;
+  /** Buys a cosmetic for `price` DleCoins, or `price` casino tokens with `inTokens` (and puts it on): false if it can't (too few, owned already). */
+  buyCosmetic: (id: string, price: number, inTokens?: boolean) => boolean;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
@@ -497,12 +497,17 @@ export const useProgress = create<ProgressState>()(
       setNameStyle: (nameStyle) => set({ nameStyle }),
       setWrapper: (wrapper) => set({ wrapper }),
       setTitle: (title) => set({ title }),
-      buyCosmetic: (id, price) => {
+      buyCosmetic: (id, price, inTokens = false) => {
         const s = get();
         const owned = s.cosmetics ?? [];
-        if (owned.includes(id) || !(price > 0) || s.coins < price) return false;
+        const have = inTokens ? (s.chips ?? 0) : s.coins;
+        if (owned.includes(id) || !(price > 0) || have < price) return false;
         const kind = id.split(':')[0];
-        set({ coins: s.coins - price, cosmetics: [...owned, id], ...(kind === 'name' ? { nameStyle: id } : kind === 'wrap' ? { wrapper: id } : {}) });
+        set({
+          ...(inTokens ? { chips: have - price } : { coins: s.coins - price }),
+          cosmetics: [...owned, id],
+          ...(kind === 'name' ? { nameStyle: id } : kind === 'wrap' ? { wrapper: id } : kind === 'title' ? { title: id.slice('title:'.length) } : {}),
+        });
         return true;
       },
       openCapsule: () => {

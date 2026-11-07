@@ -22,7 +22,7 @@ function untilMidnight() {
 export function TokenCount({ className = '' }: { className?: string }) {
   const chips = useProgress((s) => s.chips ?? 0);
   return (
-    <span className={`flex items-center gap-1.5 rounded-full border border-coral/50 bg-coral/10 px-3 py-1 font-bold tabular-nums ${className}`} title="Casino tokens: spend them in the Daily Card Shop">
+    <span className={`flex items-center gap-1.5 rounded-full border border-coral/50 bg-coral/10 px-3 py-1 font-bold tabular-nums ${className}`} title="Casino tokens: spend them in the Daily Card Shop and the Boutique">
       <span aria-hidden>🎟️</span> {chips.toLocaleString('en')}
     </span>
   );
