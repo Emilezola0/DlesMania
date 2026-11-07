@@ -10,7 +10,7 @@ import { sfx } from '../lib/sfx';
 import { bossKey, useProgress } from '../store/progress';
 import { CARDS, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
-import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENTS, GRADE_COST, GRADES, gradeName, gradeOf, gradeReward, spareValue, type ElementId } from './grades';
+import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENTS, GRADE_COST, GRADES, gradeName, gradeOf, gradeReward, MAX_GRADE, spareValue, type ElementId } from './grades';
 
 function Dialog({ title, intro, onClose, children }: { title: string; intro: ReactNode; onClose: () => void; children: ReactNode }) {
   useEffect(() => {
@@ -223,53 +223,110 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
   );
 }
 
-/** What to keep of each card's spares when filling the sale in one go. */
-const KEEPS = [
-  { id: 0, label: 'Sell every spare' },
-  { id: GRADE_COST, label: `Keep ${GRADE_COST} spares (one grade-up)` },
-] as const;
+/** Spares no grade can use any more: past the last grade, or the few left over once every grade-up is taken. */
+const leftovers = (spares: number, grade: number) => spares - Math.floor(Math.min(spares, Math.max(0, MAX_GRADE - grade) * GRADE_COST) / GRADE_COST) * GRADE_COST;
+
+/** Rarities worth asking twice about before they go. */
+const PRECIOUS: Rarity[] = ['legendary', 'mythic', 'omni'];
+
+type SortBy = 'value' | 'spares' | 'rarity' | 'name';
+const SORTS: { id: SortBy; label: string }[] = [
+  { id: 'value', label: 'Most coins' },
+  { id: 'spares', label: 'Most spares' },
+  { id: 'rarity', label: 'Rarest' },
+  { id: 'name', label: 'Name' },
+];
 
 export function SellDialog({ onClose }: { onClose: () => void }) {
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
   const exchange = useProgress((s) => s.exchangeCards);
   const spares = useMemo(() => CARDS.filter((c) => (owned[c.id] ?? 0) > 1), [owned]);
-  const { shown, bar } = useFilter(spares);
   const [qty, setQty] = useState<Record<string, number>>({});
   const [sold, setSold] = useState<{ copies: number; coins: number } | null>(null);
+  const [rarities, setRarities] = useState<Set<Rarity>>(new Set());
+  const [setId, setSetId] = useState('all');
+  const [q, setQ] = useState('');
+  const [sort, setSort] = useState<SortBy>('value');
+  const [sure, setSure] = useState(false);
+
   const max = (c: Card) => Math.max(0, (owned[c.id] ?? 0) - 1);
-  const set = (c: Card, n: number) => setQty((q) => ({ ...q, [c.id]: Math.max(0, Math.min(max(c), Math.floor(n) || 0)) }));
-  const fill = (keep: number) => {
-    sfx.click();
-    setQty((q) => {
-      const next = { ...q };
-      for (const c of shown) next[c.id] = Math.max(0, max(c) - keep);
-      return next;
-    });
-  };
-  const clear = () => {
-    sfx.click();
-    setQty((q) => {
-      const next = { ...q };
-      for (const c of shown) delete next[c.id];
-      return next;
-    });
-  };
   const value = (c: Card) => spareValue(c.rarity, gradeOf(grades, c.id));
+  const left = (c: Card) => leftovers(max(c), gradeOf(grades, c.id));
+  const sets = useMemo(() => SETS.filter((st) => spares.some((c) => c.set === st.id)), [spares]);
+
+  // Everything there is to sell, by rarity: the chips on top (a tap shows only that rarity).
+  const byRarity = RARITIES.map((r) => {
+    const of = spares.filter((c) => c.rarity === r);
+    return { r, copies: of.reduce((a, c) => a + max(c), 0), coins: of.reduce((a, c) => a + max(c) * value(c), 0) };
+  }).filter((x) => x.copies > 0);
+  const all = byRarity.reduce((a, x) => ({ copies: a.copies + x.copies, coins: a.coins + x.coins }), { copies: 0, coins: 0 });
+
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const shown = spares
+    .filter((c) => (!rarities.size || rarities.has(c.rarity)) && (setId === 'all' || c.set === setId) && words.every((w) => `${c.name} ${c.franchise}`.toLowerCase().includes(w)))
+    .sort((a, b) =>
+      sort === 'value'
+        ? max(b) * value(b) - max(a) * value(a)
+        : sort === 'spares'
+          ? max(b) - max(a)
+          : sort === 'rarity'
+            ? RARITIES.indexOf(b.rarity) - RARITIES.indexOf(a.rarity)
+            : a.name.localeCompare(b.name),
+    );
+
+  const set = (c: Card, n: number) => {
+    setSure(false);
+    setQty((cur) => ({ ...cur, [c.id]: Math.max(0, Math.min(max(c), Math.floor(n) || 0)) }));
+  };
+  /** Fills the sale for these cards: how many of each (from its spares). Nothing is sold until the button. */
+  const fill = (of: Card[], take: (c: Card) => number) => {
+    sfx.click();
+    setSure(false);
+    setQty((cur) => {
+      const next = { ...cur };
+      for (const c of of) next[c.id] = Math.max(0, Math.min(max(c), take(c)));
+      return next;
+    });
+  };
+  const toggleRarity = (r: Rarity) => {
+    sfx.click();
+    setRarities((cur) => {
+      const next = new Set(cur);
+      if (next.has(r)) next.delete(r);
+      else next.add(r);
+      return next;
+    });
+  };
+
   const chosen = spares.filter((c) => (qty[c.id] ?? 0) > 0);
   const copies = chosen.reduce((a, c) => a + Math.min(qty[c.id], max(c)), 0);
   const coins = chosen.reduce((a, c) => a + Math.min(qty[c.id], max(c)) * value(c), 0);
+  const precious = chosen.filter((c) => PRECIOUS.includes(c.rarity)).reduce((a, c) => a + Math.min(qty[c.id], max(c)), 0);
   const go = () => {
     if (!copies) return;
+    // Legendary and up: a second tap to be sure.
+    if (precious && !sure) {
+      sfx.click();
+      setSure(true);
+      return;
+    }
     const byId = Object.fromEntries(chosen.map((c) => [c.id, Math.min(qty[c.id], max(c))]));
     exchange(byId, coins);
     sfx.streak();
     setSold({ copies, coins });
     setQty({});
+    setSure(false);
   };
 
+  const quick = [
+    { label: 'Commons & Rares', of: spares.filter((c) => c.rarity === 'common' || c.rarity === 'rare'), take: max },
+    { label: 'Leftovers only', of: spares, take: left },
+    { label: 'Every spare', of: spares, take: max },
+  ].map((x) => ({ ...x, copies: x.of.reduce((a, c) => a + x.take(c), 0), coins: x.of.reduce((a, c) => a + x.take(c) * value(c), 0) }));
+
   return (
-    <Dialog title="♻ Sell spares" intro="Choose the cards and how many spare copies of each to exchange for DleCoins. The first copy of every card always stays in your album." onClose={onClose}>
+    <Dialog title="♻ Sell spares" intro="Spare copies become DleCoins. The first copy of every card always stays in your album." onClose={onClose}>
       {sold && (
         <p className="animate-pop rounded-md border border-hit/50 bg-hit/15 px-4 py-2 text-sm font-semibold">
           Sold {sold.copies} cop{sold.copies === 1 ? 'y' : 'ies'} · <Coins n={sold.coins} />
@@ -279,56 +336,153 @@ export function SellDialog({ onClose }: { onClose: () => void }) {
         <p className="py-6 text-center text-ink-soft">You have no spare copies to sell.</p>
       ) : (
         <>
-          {bar}
-          <div className="flex flex-wrap gap-1.5 text-sm">
-            <span className="self-center text-xs text-ink-faint">For the cards shown:</span>
-            {KEEPS.map((k) => (
-              <button key={k.id} type="button" onClick={() => fill(k.id)} className="rounded-full border-2 border-rule-strong px-3 py-1 font-semibold hover:border-ink">
-                {k.label}
+          {/* What there is, by rarity: a tap shows only those. */}
+          <div className="space-y-2">
+            <p className="text-sm">
+              <b>{all.copies.toLocaleString('en')}</b> spare{all.copies === 1 ? '' : 's'} on <b>{spares.length}</b> card{spares.length === 1 ? '' : 's'}, worth <Coins n={all.coins} /> in all.
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {byRarity.map(({ r, copies: n }) => {
+                const on = rarities.has(r);
+                return (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => toggleRarity(r)}
+                    aria-pressed={on}
+                    className="rounded-full border-2 px-3 py-1 text-sm font-semibold transition hover:brightness-110"
+                    style={on ? { background: RARITY_LIGHT[r], borderColor: RARITY_LIGHT[r], color: '#14121a' } : { borderColor: RARITY_LIGHT[r] }}
+                    title={on ? `Show every rarity again` : `Show only ${RARITY_INFO[r].name} cards`}
+                  >
+                    {RARITY_INFO[r].gem} {RARITY_INFO[r].name} · {n}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* A tap fills the sale; nothing is sold until the button at the bottom. */}
+          <div className="grid gap-2 sm:grid-cols-3">
+            {quick.map((x) => (
+              <button
+                key={x.label}
+                type="button"
+                disabled={!x.copies}
+                onClick={() => fill(x.of, x.take)}
+                className="rounded-md border-2 border-rule-strong bg-card px-3 py-2 text-left transition hover:border-ink disabled:opacity-40"
+              >
+                <span className="block font-display text-sm font-bold">{x.label}</span>
+                <span className="block text-xs text-ink-soft">
+                  {x.copies} cop{x.copies === 1 ? 'y' : 'ies'} · <Coins n={x.coins} />
+                </span>
               </button>
             ))}
-            <button type="button" onClick={clear} className="rounded-full border-2 border-rule-strong px-3 py-1 font-semibold hover:border-ink">
-              Sell none
-            </button>
           </div>
-          <ul className="max-h-[45vh] space-y-1.5 overflow-y-auto pr-1">
+          <p className="-mt-2 text-xs text-ink-faint">
+            A tap fills the sale below; nothing is sold until you confirm. <b>Leftovers</b>: spares no grade-up can use ({GRADE_COST} spares make a grade).
+          </p>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search…" aria-label="Search" className="min-w-0 flex-1 basis-32 rounded-md border border-rule-strong bg-card px-3 py-1.5 text-sm" />
+            <select value={setId} onChange={(e) => setSetId(e.target.value)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label="Set">
+              <option value="all">Every set</option>
+              {sets.map((st) => (
+                <option key={st.id} value={st.id}>
+                  {st.franchise}
+                </option>
+              ))}
+            </select>
+            <select value={sort} onChange={(e) => setSort(e.target.value as SortBy)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label="Sort by">
+              {SORTS.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <span className="text-ink-faint">
+              The {shown.length} card{shown.length === 1 ? '' : 's'} shown:
+            </span>
+            <button type="button" className="font-semibold underline" onClick={() => fill(shown, max)}>
+              every spare
+            </button>
+            <button type="button" className="font-semibold underline" onClick={() => fill(shown, left)}>
+              leftovers
+            </button>
+            <button type="button" className="font-semibold underline" onClick={() => fill(shown, (c) => max(c) - GRADE_COST)}>
+              keep {GRADE_COST} each
+            </button>
+            <button type="button" className="font-semibold underline" onClick={() => fill(shown, () => 0)}>
+              none
+            </button>
+            {chosen.length > 0 && (
+              <button
+                type="button"
+                className="ml-auto font-semibold text-coral underline"
+                onClick={() => {
+                  sfx.click();
+                  setQty({});
+                  setSure(false);
+                }}
+              >
+                Clear the whole sale
+              </button>
+            )}
+          </div>
+
+          <ul className="max-h-[42vh] space-y-1.5 overflow-y-auto pr-1">
+            {shown.length === 0 && <li className="py-4 text-center text-sm text-ink-soft">No card matches.</li>}
             {shown.map((c) => {
               const n = Math.min(qty[c.id] ?? 0, max(c));
               const btn = 'grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40';
+              const lo = left(c);
               return (
-                <Row
+                <li
                   key={c.id}
-                  card={c}
-                  right={
-                    <div className="flex shrink-0 items-center gap-1">
-                      <button type="button" className={btn} disabled={n <= 0} onClick={() => set(c, n - 1)} aria-label={`One fewer ${c.name}`}>
-                        −
-                      </button>
-                      <input
-                        type="number"
-                        min={0}
-                        max={max(c)}
-                        value={n}
-                        onChange={(e) => set(c, Number(e.target.value))}
-                        className="w-12 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
-                        aria-label={`Copies of ${c.name} to sell`}
-                      />
-                      <button type="button" className={btn} disabled={n >= max(c)} onClick={() => set(c, n + 1)} aria-label={`One more ${c.name}`}>
-                        +
-                      </button>
-                      <button type="button" className="rounded-md border border-rule-strong px-2 py-1 text-xs font-semibold hover:border-ink" onClick={() => set(c, max(c))}>
-                        Max
-                      </button>
-                    </div>
-                  }
+                  className={`flex cursor-pointer items-center gap-3 rounded-md border px-2 py-1.5 transition ${n ? 'border-accent bg-accent/10' : 'border-rule bg-card hover:border-rule-strong'}`}
+                  onClick={() => set(c, n ? 0 : max(c))}
+                  title={n ? 'Tap to sell none of it' : 'Tap to sell all its spares'}
                 >
-                  {' '}· {max(c)} spare{max(c) === 1 ? '' : 's'} · {value(c)} each
-                </Row>
+                  <img src={c.image} alt="" loading="lazy" className="size-10 shrink-0 rounded object-cover object-top" style={{ boxShadow: `0 0 0 2px ${RARITY_LIGHT[c.rarity]}` }} />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-semibold">{shownName(c.name, c.set)}</p>
+                    <p className="truncate text-xs text-ink-faint">
+                      {RARITY_INFO[c.rarity].gem} {c.franchise} · {max(c)} spare{max(c) === 1 ? '' : 's'}
+                      {lo > 0 && lo < max(c) && <> ({lo} leftover)</>} · {value(c)} each
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                    <button type="button" className={btn} disabled={n <= 0} onClick={() => set(c, n - 1)} aria-label={`One fewer ${c.name}`}>
+                      −
+                    </button>
+                    <input
+                      type="number"
+                      min={0}
+                      max={max(c)}
+                      value={n}
+                      onChange={(e) => set(c, Number(e.target.value))}
+                      className="w-11 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
+                      aria-label={`Copies of ${c.name} to sell`}
+                    />
+                    <button type="button" className={btn} disabled={n >= max(c)} onClick={() => set(c, n + 1)} aria-label={`One more ${c.name}`}>
+                      +
+                    </button>
+                    <span className="hidden w-14 text-right text-xs font-semibold tabular-nums text-ink-soft sm:block">{n ? `+${(n * value(c)).toLocaleString('en')}` : ''}</span>
+                  </div>
+                </li>
               );
             })}
           </ul>
-          <button type="button" disabled={!copies} onClick={go} className="btn-accent w-full rounded-md px-5 py-2.5 font-display font-bold disabled:opacity-50">
-            ♻ Sell {copies} cop{copies === 1 ? 'y' : 'ies'} · <Coins n={coins} />
+          <button type="button" disabled={!copies} onClick={go} className={`w-full rounded-md px-5 py-2.5 font-display font-bold disabled:opacity-50 ${sure ? 'btn-ink' : 'btn-accent'}`}>
+            {sure ? (
+              <>Sure? It sells {precious} Legendary-or-rarer cop{precious === 1 ? 'y' : 'ies'}: tap again</>
+            ) : (
+              <>
+                ♻ Sell {copies} cop{copies === 1 ? 'y' : 'ies'}
+                {chosen.length > 0 && <> from {chosen.length} card{chosen.length === 1 ? '' : 's'}</>} · <Coins n={coins} />
+              </>
+            )}
           </button>
         </>
       )}
