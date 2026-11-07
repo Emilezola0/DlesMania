@@ -145,11 +145,41 @@ const rollGolden = (o: { mythic: number; omni: number }, rand: () => number): Ra
  * Five cards from a pack; the last one is at least rare. A rarity the pool lacks falls to the next one down.
  * A golden pack: its last GOLDEN.slots cards are Legendary or better (see GOLDEN).
  */
-export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false): Card[] {
+/**
+ * For testing, in dev only (the Test lab, /test-lab): localStorage "omnidle-force-draw" = a JSON list, one entry a
+ * slot: a card id (that card, from any set), a rarity (a card of it), or "" (drawn as usual). The live site ignores it.
+ */
+export const FORCE_DRAW = 'omnidle-force-draw';
+/** With it: the forced draw is used by one purchase (its packs), then cleared. */
+export const FORCE_DRAW_ONCE = 'omnidle-force-draw-once';
+const forcedDraw = (): string[] => {
+  if (!import.meta.env.DEV) return [];
+  try {
+    const v: unknown = JSON.parse(localStorage.getItem(FORCE_DRAW) ?? '[]');
+    return Array.isArray(v) ? v.map((x) => (typeof x === 'string' ? x : '')) : [];
+  } catch {
+    return [];
+  }
+};
+
+export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false, force: string[] = []): Card[] {
   const pool = COLLECTIBLE.filter(pack.pool);
   const odds = oddsWith(boost, luck);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
+    // A rigged slot (dev only): that card, or a card of that rarity (from the pack, else from any set).
+    const rigged = force[i] ?? '';
+    const exact = rigged && COLLECTIBLE.find((c) => c.id === rigged);
+    if (exact) return (taken.add(exact.id), exact);
+    if ((RARITIES as string[]).includes(rigged)) {
+      const of = (list: Card[]) => list.filter((c) => c.rarity === rigged && !taken.has(c.id));
+      const cands = of(pool).length ? of(pool) : of(COLLECTIBLE);
+      if (cands.length) {
+        const card = drawFairly(cands, rand);
+        taken.add(card.id);
+        return card;
+      }
+    }
     const goldSlot = golden && i >= PACK_SIZE - GOLDEN.slots;
     let r = goldSlot ? rollGolden(i === PACK_SIZE - 1 ? GOLDEN.last : GOLDEN.others, rand) : rollRarity(i === PACK_SIZE - 1 ? lastCardOdds(odds) : odds, rand);
     // Five different cards: one already in this pack isn't drawn again.
@@ -243,15 +273,23 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
   const packs: Card[][] = [];
   const events: CosmicEvent[] = [];
   const goldenAt: number[] = [];
+  const forced = forcedDraw();
   for (let i = 0; i < count; i++) {
     const gold = goldenNext(golden) || forcedGolden();
     if (gold) goldenAt.push(i);
     golden = gold ? 0 : clampGolden(golden + 1);
-    const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold);
+    const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced);
     const event = cosmicFor(pack, cards);
     if (event) events.push(event);
     packs.push(cards);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
+  }
+  if (import.meta.env.DEV) {
+    try {
+      if (localStorage.getItem(FORCE_DRAW_ONCE) === '1') (localStorage.removeItem(FORCE_DRAW), localStorage.removeItem(FORCE_DRAW_ONCE));
+    } catch {
+      // No storage: nothing was forced.
+    }
   }
   return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt };
 }

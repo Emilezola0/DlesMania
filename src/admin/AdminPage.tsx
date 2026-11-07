@@ -3,7 +3,7 @@
 // from its schema or its shape, see a preview, save: the file is written in the workspace and Vite
 // reloads the running app with it. The files and their rules: schema/admin-files.json.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { checkFile, listFiles, loadFile, saveFile, type AdminRegistry, type Json, type LoadedFile, type Schema } from './api';
 import { childSchema, fieldId, humanize, JsonEditor, setIn, type EditorCtx, type Path } from './JsonEditor';
 import { Preview, PreviewBoundary } from './Previews';
@@ -250,7 +250,12 @@ export default function AdminPage() {
         <h1 className="font-display text-2xl font-bold">
           Admin <span className="rounded bg-coral px-1.5 py-0.5 align-middle text-xs font-bold text-on-strong">DEV ONLY</span>
         </h1>
-        <p className="text-xs text-ink-faint">Edits are written to the workspace files; the dev server reloads the app. Never in a build.</p>
+        <p className="text-xs text-ink-faint">
+          Edits are written to the workspace files; the dev server reloads the app. Never in a build.{' '}
+          <Link to="/test-lab" className="font-semibold text-accent">
+            🧪 Test lab →
+          </Link>
+        </p>
       </header>
 
       {registry && (

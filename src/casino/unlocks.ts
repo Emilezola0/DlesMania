@@ -31,7 +31,20 @@ export interface Feats {
   allFrames: boolean;
 }
 
+/** Dev only (the Test lab): localStorage "omnidle-dev-all-feats" = "1" counts every feat as done (titles, earned frames). */
+export const DEV_ALL_FEATS = 'omnidle-dev-all-feats';
+const allFeats = (): boolean => {
+  if (!import.meta.env.DEV) return false;
+  try {
+    return localStorage.getItem(DEV_ALL_FEATS) === '1';
+  } catch {
+    return false;
+  }
+};
+
 export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened' | 'frames'>): Feats {
+  if (allFeats())
+    return { bestStreak: 999, sets: SETS.map((set) => set.id), packs: 9999, mythic: true, omni: true, hardWins: HARD_BOSSES.length, hardAll: true, hellWins: HARD_BOSSES.length, allFrames: true };
   const owned = s.cards ?? {};
   const wonOn = (id: string, d: 'hard' | 'hell') => (s.bosses?.[bossKey(id, d)]?.wins ?? 0) > 0;
   // A win counts for every lower difficulty too: Hell beats Hard.

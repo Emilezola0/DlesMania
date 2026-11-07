@@ -44,6 +44,8 @@ const WhosThatHub = lazy(() => import('./pages/WhosThat').then((m) => ({ default
 // The tuning dashboard, under `npm run dev` only: `import.meta.env.DEV` is false in a build, so neither the
 // route nor its code ship (and its API, scripts/admin-server.ts, only exists in the dev server).
 const Admin = import.meta.env.DEV ? lazy(() => import('./admin/AdminPage')) : null;
+// The Test lab (rigged packs, cards, frames, titles…): dev only too.
+const TestLab = import.meta.env.DEV ? lazy(() => import('./admin/TestLab')) : null;
 
 export default function App() {
   return (
@@ -101,6 +103,7 @@ export default function App() {
         <Route path="map-quiz/:map" element={<MapQuiz />} />
         <Route path="map-quiz/:map/edit" element={<MapQuiz edit />} />
         {Admin && <Route path="admin" element={<Admin />} />}
+        {TestLab && <Route path="test-lab" element={<TestLab />} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
