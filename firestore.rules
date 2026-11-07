@@ -126,10 +126,11 @@ service cloud.firestore {
       }
       allow get: if request.auth != null && (request.auth.uid == artist() || isFriend());
       allow create: if request.auth != null && request.auth.uid == artist()
-        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'answer', 'strokes', 'solvers', 'at'])
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'secs', 'answer', 'strokes', 'solvers', 'at'])
         && request.resource.data.uid == artist()
         && id == artist() + '_' + request.resource.data.day
         && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.secs in [10, 20, 30]
         && request.resource.data.answer is string && request.resource.data.answer.size() <= 64
         && request.resource.data.strokes is list && request.resource.data.strokes.size() <= 400
         && request.resource.data.solvers.size() == 0;

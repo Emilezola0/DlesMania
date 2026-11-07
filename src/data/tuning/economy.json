@@ -332,10 +332,12 @@
     ]
   },
   "doodle": {
-    "seconds": 10,
+    "times": [
+      { "seconds": 10, "guess": [100, 70, 40], "artist": 160 },
+      { "seconds": 20, "guess": [75, 50, 30], "artist": 120 },
+      { "seconds": 30, "guess": [50, 35, 20], "artist": 80 }
+    ],
     "tries": 3,
-    "guess": [50, 35, 20],
-    "artist": 80,
     "days": 2
   }
 }

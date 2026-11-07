@@ -1,4 +1,4 @@
-// Friends → Daily Doodle: pick a franchise and one of its characters, draw them in 10 seconds; friends see the
+// Friends → Daily Doodle: pick a franchise and one of its characters, draw them in 10, 20 or 30 seconds (the less time, the more it pays); friends see the
 // drawing (played back stroke by stroke) and guess who it is, 3 tries each. A right guess pays the guesser, and
 // the artist more for every friend who got it (src/cloud/doodles.ts, the numbers in economy.json `doodle`).
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -13,6 +13,9 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 
 const D = T.doodle;
+type DoodleTime = (typeof D.times)[number];
+/** A drawing's time and what it pays (a drawing from before there was a choice: the first, 10 seconds). */
+const timeOf = (secs?: number): DoodleTime => D.times.find((t) => t.seconds === secs) ?? D.times[0];
 const cloud = () => import('../cloud/doodles');
 
 /** The pens: colours and widths (a share of the drawing's width). */
@@ -104,7 +107,8 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
   const [who, setWho] = useState('');
   const [step, setStep] = useState<DrawStep>(posted ? 'posted' : 'pick');
   const [count, setCount] = useState(3);
-  const [left, setLeft] = useState(D.seconds);
+  const [secs, setSecs] = useState(D.times[0].seconds);
+  const [left, setLeft] = useState(secs);
   const [ink, setInk] = useState(0);
   const [width, setWidth] = useState(1);
   const [busy, setBusy] = useState(false);
@@ -130,7 +134,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
     if (count <= 0) {
       strokes.current = [];
       if (canvas.current) paint(canvas.current, []);
-      setLeft(D.seconds);
+      setLeft(secs);
       setStep('drawing');
       sfx.whoosh();
       return;
@@ -138,10 +142,11 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
     sfx.tick();
     const t = window.setTimeout(() => setCount((c) => c - 1), 700);
     return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step, count]);
   useEffect(() => {
     if (step !== 'drawing') return;
-    const end = Date.now() + D.seconds * 1000;
+    const end = Date.now() + secs * 1000;
     const t = window.setInterval(() => {
       const s = Math.max(0, (end - Date.now()) / 1000);
       setLeft(s);
@@ -153,6 +158,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
       }
     }, 100);
     return () => window.clearInterval(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
   useEffect(() => {
     if ((step === 'drawing' || step === 'done') && canvas.current) paint(canvas.current, strokes.current);
@@ -187,8 +193,8 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
       const c = await cloud();
       const packed: Stroke[] = strokes.current.map((s) => ({ c: s.c, w: s.w, p: c.pack(s.pts) }));
       const d = demo
-        ? { uid: 'demo-0', name: 'You', day: todayKey(), set, answer: await c.answerHash(`demo-0_${todayKey()}`, who), strokes: packed, solvers: [], at: Date.now() }
-        : await c.postDoodle(todayKey(), set, who, packed);
+        ? { uid: 'demo-0', name: 'You', day: todayKey(), set, secs, answer: await c.answerHash(`demo-0_${todayKey()}`, who), strokes: packed, solvers: [], at: Date.now() }
+        : await c.postDoodle(todayKey(), set, who, packed, secs);
       sfx.victory();
       celebrate();
       onPosted(d);
@@ -241,10 +247,23 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
           <div className="flex items-center gap-3 rounded-md bg-tile p-2">
             <CardPic card={card} className="h-20 w-16" />
             <p className="text-sm">
-              <b>{card.name}</b>: you&apos;ll have <b>{D.seconds} seconds</b> to draw them. Your friends see only the drawing and the franchise.
+              <b>{card.name}</b>: you&apos;ll have <b>{secs} seconds</b> to draw them. Your friends see only the drawing and the franchise.
             </p>
           </div>
         )}
+        <div className="text-sm">
+          <span className="mb-1 block text-xs uppercase tracking-widest text-ink-faint">3 · Your time: the less, the more it pays</span>
+          <div className="grid grid-cols-3 gap-1.5">
+            {D.times.map((t) => (
+              <button key={t.seconds} type="button" onClick={() => (sfx.select(), setSecs(t.seconds))} aria-pressed={secs === t.seconds} className={`rounded-md border px-2 py-1.5 text-center ${secs === t.seconds ? 'border-accent bg-accent text-white' : 'border-rule-strong hover:bg-tile'}`}>
+                <span className="block font-display text-lg font-black">{t.seconds} s</span>
+                <span className={`block text-[11px] leading-tight ${secs === t.seconds ? 'text-white/85' : 'text-ink-soft'}`}>
+                  you {t.artist} a friend · them up to {t.guess[0]}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
         <button
           type="button"
           disabled={!names.includes(who)}
@@ -266,7 +285,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
         <div className="min-w-0 flex-1">
           <p className="truncate font-display font-bold">{who}</p>
           <div className="mt-1 h-2 overflow-hidden rounded-full bg-tile">
-            <div className={`h-full rounded-full ${left < 3 ? 'bg-coral' : 'bg-accent'}`} style={{ width: `${(step === 'drawing' ? left / D.seconds : step === 'count' ? 1 : 0) * 100}%`, transition: 'width 0.1s linear' }} />
+            <div className={`h-full rounded-full ${left < 3 ? 'bg-coral' : 'bg-accent'}`} style={{ width: `${(step === 'drawing' ? left / secs : step === 'count' ? 1 : 0) * 100}%`, transition: 'width 0.1s linear' }} />
           </div>
         </div>
         <span className="w-12 text-right font-display text-2xl font-black tabular-nums">{step === 'count' ? count : Math.ceil(left)}</span>
@@ -315,14 +334,14 @@ function MyDrawing({ d }: { d: DoodleDoc }) {
         Today&apos;s drawing is up ({franchiseOf(d.set)}).{' '}
         {d.solvers.length ? (
           <>
-            <b>{d.solvers.length}</b> {d.solvers.length === 1 ? 'friend has' : 'friends have'} guessed it: +{(d.solvers.length * D.artist).toLocaleString('en')} <DleCoin className="inline size-3.5 align-[-2px]" />
+            <b>{d.solvers.length}</b> {d.solvers.length === 1 ? 'friend has' : 'friends have'} guessed it: +{(d.solvers.length * timeOf(d.secs).artist).toLocaleString('en')} <DleCoin className="inline size-3.5 align-[-2px]" />
           </>
         ) : (
           'Nobody has guessed it yet.'
         )}
       </p>
       <p className="text-center text-xs text-ink-faint">
-        You get {D.artist} DleCoins for every friend who guesses it right. Come back tomorrow to draw another.
+        Drawn in {timeOf(d.secs).seconds} seconds: you get {timeOf(d.secs).artist} DleCoins for every friend who guesses it right. Come back tomorrow to draw another.
       </p>
     </div>
   );
@@ -339,6 +358,7 @@ function GuessCard({ d, artist, demo }: { d: DoodleDoc; artist?: ScoreDoc; demo:
   const [busy, setBusy] = useState(false);
   const [paid, setPaid] = useState(0);
   const reward = useProgress((s) => s.rewardDoodleGuess);
+  const pays = timeOf(d.secs);
   const done = !!guess && (guess.right || guess.tries >= D.tries);
 
   useEffect(() => {
@@ -365,7 +385,7 @@ function GuessCard({ d, artist, demo }: { d: DoodleDoc; artist?: ScoreDoc; demo:
       setGuess(next);
       setText('');
       if (next.right) {
-        const coins = D.guess[Math.min(next.tries, D.guess.length) - 1] ?? 0;
+        const coins = pays.guess[Math.min(next.tries, pays.guess.length) - 1] ?? 0;
         if (!demo) setPaid(reward(c.doodleId(d.uid, d.day), coins));
         else setPaid(coins);
         setAnswer(name);
@@ -390,7 +410,9 @@ function GuessCard({ d, artist, demo }: { d: DoodleDoc; artist?: ScoreDoc; demo:
         <p className="truncate font-display font-bold">{artist?.name ?? d.name}</p>
         <p className="shrink-0 text-xs text-ink-faint">{d.day === todayKey() ? 'Today' : 'Yesterday'}</p>
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wider text-accent">{franchiseOf(d.set)}</p>
+      <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+        {franchiseOf(d.set)} <span className="text-ink-faint">· drawn in {pays.seconds} s</span>
+      </p>
       <Replay strokes={d.strokes} />
       <p className="text-xs text-ink-faint">Guessed by {d.solvers.length} so far</p>
       {!loaded ? null : done ? (
@@ -402,7 +424,7 @@ function GuessCard({ d, artist, demo }: { d: DoodleDoc; artist?: ScoreDoc; demo:
               <p className="text-ink-soft">
                 {paid ? (
                   <>
-                    +{paid} <DleCoin className="inline size-3.5 align-[-2px]" />, and {D.artist} for {artist?.name ?? d.name}
+                    +{paid} <DleCoin className="inline size-3.5 align-[-2px]" />, and {pays.artist} for {artist?.name ?? d.name}
                   </>
                 ) : (
                   'Got it.'
@@ -434,7 +456,7 @@ function GuessCard({ d, artist, demo }: { d: DoodleDoc; artist?: ScoreDoc; demo:
             </button>
           </div>
           <p className="text-xs text-ink-soft">
-            {triesLeft} {triesLeft === 1 ? 'guess' : 'guesses'} left · right on the {['first', 'second', 'third'][(guess?.tries ?? 0)] ?? 'next'} try: +{D.guess[guess?.tries ?? 0] ?? 0} DleCoins
+            {triesLeft} {triesLeft === 1 ? 'guess' : 'guesses'} left · right on the {['first', 'second', 'third'][(guess?.tries ?? 0)] ?? 'next'} try: +{pays.guess[guess?.tries ?? 0] ?? 0} DleCoins
             {wrong.length > 0 && <span className="text-coral"> · not {wrong.join(', not ')}</span>}
           </p>
         </div>
@@ -457,7 +479,7 @@ async function demoDoodles(friends: ScoreDoc[]): Promise<DoodleDoc[]> {
       return { c: i % INKS.length, w: i % 3, p: c.pack(pts) };
     });
     const answer = namesOf(set)[3];
-    out.push({ uid: f.uid, name: f.name, day, set, answer: await c.answerHash(c.doodleId(f.uid, day), answer), strokes, solvers: k ? ['demo-3'] : [], at: Date.now() - k * 1000 });
+    out.push({ uid: f.uid, name: f.name, day, set, secs: k ? 30 : 10, answer: await c.answerHash(c.doodleId(f.uid, day), answer), strokes, solvers: k ? ['demo-3'] : [], at: Date.now() - k * 1000 });
   }
   return out;
 }
@@ -487,7 +509,7 @@ export function DailyDoodle({ me, friends, demo }: { me: ScoreDoc; friends: Scor
         // My drawings of the last days: what friends who guessed them have earned me.
         const own = await Promise.all(days.map((d) => getMine(c, d)));
         let got = 0;
-        for (const d of own) if (d) got += rewardArt(c.doodleId(d.uid, d.day), d.solvers.length, D.artist);
+        for (const d of own) if (d) got += rewardArt(c.doodleId(d.uid, d.day), d.solvers.length, timeOf(d.secs).artist);
         if (!live) return;
         setMine(own[0]);
         setEarned(got);
@@ -509,7 +531,7 @@ export function DailyDoodle({ me, friends, demo }: { me: ScoreDoc; friends: Scor
         <div>
           <h2 className="font-display text-lg font-bold">🎨 Daily Doodle</h2>
           <p className="text-sm text-ink-soft">
-            Draw a character in {D.seconds} seconds; your friends guess who it is ({D.tries} tries). A right guess pays them up to {D.guess[0]}, and you {D.artist} for each friend who got it.
+            Draw a character in {D.times.map((t) => t.seconds).join(', ').replace(/, (?=[^,]*$)/, ' or ')} seconds; your friends guess who it is ({D.tries} tries). The quicker the drawing, the more a right guess pays: them up to {D.times[0].guess[0]}, and you up to {D.times[0].artist} for each friend who got it.
           </p>
         </div>
         <div className="flex gap-1 rounded-lg border border-rule bg-tile p-1">

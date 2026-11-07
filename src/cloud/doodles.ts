@@ -19,6 +19,8 @@ export interface DoodleDoc {
   day: string;
   /** The franchise (a card set): the hint everyone gets. */
   set: string;
+  /** Seconds it was drawn in (10, 20 or 30): what a right guess pays. Missing on the first drawings: 10. */
+  secs?: number;
   /** The character's name, hashed (see answerHash). */
   answer: string;
   strokes: Stroke[];
@@ -91,10 +93,10 @@ export async function myDoodle(day: string): Promise<DoodleDoc | null> {
 }
 
 /** Posts the day's drawing (once a day). */
-export async function postDoodle(day: string, set: string, character: string, strokes: Stroke[]): Promise<DoodleDoc> {
+export async function postDoodle(day: string, set: string, character: string, strokes: Stroke[], secs: number): Promise<DoodleDoc> {
   const { uid, name } = me();
   const id = doodleId(uid, day);
-  const d: DoodleDoc = { uid, name, day, set, answer: await answerHash(id, character), strokes, solvers: [], at: Date.now() };
+  const d: DoodleDoc = { uid, name, day, set, secs, answer: await answerHash(id, character), strokes, solvers: [], at: Date.now() };
   await setDoc(doodleRef(id), d);
   return d;
 }
