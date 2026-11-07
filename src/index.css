@@ -597,12 +597,8 @@ h1, h2, h3, .font-serif, .font-display {
   width: 190%;
   aspect-ratio: 1;
   border-radius: 50%;
-  filter: blur(18px);
-  mix-blend-mode: screen;
   animation: pack-halo 3s linear infinite, pack-halo-pulse 0.9s ease-in-out infinite alternate;
 }
-.pack-halo-mythic { background: conic-gradient(from 0deg, #ff4fd8, #ffcd3c, #3cff9e, #3cc7ff, #a855f7, #ff4fd8); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
-.pack-halo-omni { background: conic-gradient(from 0deg, #ff3b4e, #ffcd3c, #fff, #ff3b4e, #ffcd3c, #ff3b4e); -webkit-mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); mask: radial-gradient(circle, transparent 28%, #000 42%, transparent 70%); }
 @keyframes pack-halo { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 @keyframes pack-halo-pulse { from { opacity: 0.7; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .pack-halo { animation: none; transform: translate(-50%, -50%); } }
@@ -637,8 +633,7 @@ h1, h2, h3, .font-serif, .font-display {
 /* Cloud bands drifting slowly round the planet (a gas giant). */
 .sky-bands {
   position: absolute; inset: -10% -60%;
-  opacity: 0.55; mix-blend-mode: overlay;
-  filter: blur(0.35vmin);
+  opacity: 0.35;
   animation: sky-bands 40s linear infinite;
 }
 @keyframes sky-bands { to { transform: translateX(-50%); } }
@@ -659,7 +654,6 @@ h1, h2, h3, .font-serif, .font-display {
 .sky-aurora {
   position: absolute; inset: -10% 10% 55% 10%; border-radius: 50%;
   background: conic-gradient(from 90deg, transparent, #3cff9e88, #3cc7ff88, #ff4fd888, transparent 60%);
-  filter: blur(1.4vmin); mix-blend-mode: screen;
   animation: sky-aurora 5s ease-in-out infinite alternate;
 }
 @keyframes sky-aurora { from { transform: rotate(-8deg) scaleX(0.9); opacity: 0.6; } to { transform: rotate(8deg) scaleX(1.1); opacity: 1; } }
@@ -670,7 +664,7 @@ h1, h2, h3, .font-serif, .font-display {
   border-radius: 50%; border: 0.7vmin solid;
 }
 .sky-tier-4 .sky-ring { border-color: #fff; box-shadow: 0 0 1vmin #ff4fd8, inset 0 0 1vmin #3cc7ff, 0 0 2vmin #ffcd3c66; }
-.sky-ring-front { -webkit-mask: linear-gradient(to bottom, transparent 50%, #000 50%); mask: linear-gradient(to bottom, transparent 50%, #000 50%); }
+.sky-ring-front { clip-path: inset(50% -5% -5% -5%); }
 /* Moons on a flattened orbit: in front on the way down, behind on the way up. */
 .sky-moon {
   position: absolute; left: 50%; top: 50%; border-radius: 50%;
@@ -733,7 +727,6 @@ h1, h2, h3, .font-serif, .font-display {
 .sky-comet-tail {
   position: absolute; inset: 0; border-radius: 9999px;
   background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--comet, #7dd3fc) 14%, transparent) 30%, color-mix(in srgb, var(--comet, #a5f3fc) 55%, transparent) 75%, #fff);
-  filter: blur(0.5vmin);
   -webkit-mask: linear-gradient(to bottom, transparent, #000 35%, #000 65%, transparent);
   mask: linear-gradient(to bottom, transparent, #000 35%, #000 65%, transparent);
 }
@@ -789,11 +782,7 @@ h1, h2, h3, .font-serif, .font-display {
 .pack-ambient { animation: pack-space-in 0.8s ease-out both; }
 .pack-ambient-rays {
   translate: -50% -50%;
-  background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--tint) 6%, transparent) 0deg 5deg, transparent 6deg 22deg);
-  mask-image: radial-gradient(circle, #000 0%, transparent 34%);
-  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 34%);
   animation: pack-ambient-rays 70s linear infinite;
-  transition: background 0.6s;
 }
 @keyframes pack-ambient-rays { to { rotate: 360deg; } }
 .pack-mote { opacity: 0; animation: pack-mote 12s linear infinite; }
@@ -2066,6 +2055,7 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   100% { transform: scale(0); opacity: 0; }
 }
 html.pack-open header, html.pack-open footer { visibility: hidden; }
+.pack-scene, .pack-scene * { mix-blend-mode: normal !important; }
 html.pack-open body::before, html.pack-open body::after { animation-play-state: paused; }
 .pack-hole-lens, .pack-hole-disc, .pack-hole-core { position: absolute; left: 0; top: 0; border-radius: 9999px; translate: -50% -50%; }
 /* The light bent around it: a soft ring of light round the dark. (Drawn, not a live blur of what's behind:
@@ -2111,14 +2101,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 }
 .pack-hole-band {
   width: 66vmin; height: 13vmin; rotate: -9deg;
-  overflow: hidden;
-  mask: radial-gradient(closest-side, transparent 40%, #000 56%, #000 76%, transparent 100%);
-  -webkit-mask: radial-gradient(closest-side, transparent 40%, #000 56%, #000 76%, transparent 100%);
-}
-.pack-hole-band::before {
-  content: ''; position: absolute; inset: 0 auto 0 0; width: 200%;
-  background: linear-gradient(90deg, #ff9d4d, #fff1d0, #ff6a3d, #ffd27a, #ff4fd8, #ffb86b, #fff1d0, #ff9d4d, #fff1d0, #ff6a3d, #ffd27a, #ff4fd8, #ffb86b, #fff1d0, #ff9d4d);
-  animation: pack-hole-stream 1.1s linear infinite;
+  animation: pack-hole-breathe 1.7s ease-in-out infinite;
 }
 /* Its near half crosses in front of the darkness. */
 .pack-hole-band-front { clip-path: inset(50% 0 0 0); }
@@ -2251,8 +2234,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   background: conic-gradient(from 30deg, #ff4fd8aa, #ffcd3c88, #3cff9e77, #3cc7ffaa, #a855f799, #ff4fd8aa);
   mask: radial-gradient(circle, transparent 8%, #000 30%, #000 45%, transparent 70%);
   -webkit-mask: radial-gradient(circle, transparent 8%, #000 30%, #000 45%, transparent 70%);
-  filter: blur(14px);
-  animation: pack-nova-nebula 1.8s ease-out both; mix-blend-mode: screen;
+  animation: pack-nova-nebula 1.8s ease-out both;
 }
 @keyframes pack-nova-nebula {
   from { scale: 0.1; rotate: 0deg; opacity: 1; }
@@ -2302,7 +2284,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))); opacity: 0.2; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pack-hole-band::before, .pack-hole-photon, .pack-hole-dust, .pack-hole-glow, .pack-nova-corona { animation: none; }
+  .pack-hole-band, .pack-hole-photon, .pack-hole-dust, .pack-hole-glow, .pack-nova-corona { animation: none; }
 }
 
 /* The album's cards off screen (src/pages/Album.tsx): their animations wait, still, until they scroll back in. */

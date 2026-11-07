@@ -522,7 +522,11 @@ function Ambient({ tint }: { tint: string }) {
   const shooting = useMemo(() => [0, 1, 2].map((k) => ({ x: 15 + Math.random() * 70, y: 5 + Math.random() * 35, delay: 1.5 + k * 3.7 + Math.random(), angle: 18 + Math.random() * 20 })), []);
   return (
     <div className="pack-ambient pointer-events-none fixed inset-0 -z-10 overflow-hidden" style={{ ['--tint' as string]: tint }} aria-hidden>
-      <div className="pack-ambient-rays absolute left-1/2 top-[40%] aspect-square w-[160vmax]" />
+      <Painted
+        className="pack-ambient-rays absolute left-1/2 top-[40%] aspect-square w-[80vmax]"
+        size={384}
+        paint={(ctx, s) => (paintWedges(ctx, s, [[hexA(tint, '10'), 0, 5]], 22), maskRadial(ctx, s, s, [[0, 1], [0.96, 0]]))}
+      />
       {stars.map((s, i) => (
         <span key={`s${i}`} className="pack-far-star absolute size-px rounded-full bg-white" style={{ left: `${s.x}%`, top: `${s.y}%`, animationDelay: `${s.delay}s`, animationDuration: `${s.duration}s` }} />
       ))}
@@ -613,7 +617,7 @@ function Clash({ star, thick }: { star: Star; thick: number }) {
  * screen, the black hole's glows and the nebula took the browser several frames to draw the first time: the
  * black hole showing late or in pieces, pale squares where the screen wasn't drawn yet.
  */
-function Painted({ className, size, paint, w = size, h = size }: { className: string; size: number; paint: (ctx: CanvasRenderingContext2D, w: number, h: number) => void; w?: number; h?: number }) {
+function Painted({ className, size, paint, w = size, h = size, style }: { className: string; size: number; paint: (ctx: CanvasRenderingContext2D, w: number, h: number) => void; w?: number; h?: number; style?: React.CSSProperties }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useLayoutEffect(() => {
     const ctx = ref.current?.getContext('2d');
@@ -621,7 +625,7 @@ function Painted({ className, size, paint, w = size, h = size }: { className: st
     ctx.clearRect(0, 0, w, h);
     paint(ctx, w, h);
   });
-  return <canvas ref={ref} width={w} height={h} className={className} aria-hidden />;
+  return <canvas ref={ref} width={w} height={h} className={className} style={style} aria-hidden />;
 }
 /** A CSS `radial-gradient(circle, …)` (its stops reach the farthest corner) painted over the whole square canvas. */
 const paintRadial = (stops: [number, string][]) => (ctx: CanvasRenderingContext2D, s: number) => {
@@ -632,6 +636,50 @@ const paintRadial = (stops: [number, string][]) => (ctx: CanvasRenderingContext2
 };
 const HOLE_GLOW = paintRadial([[0, 'rgba(124,58,237,0.35)'], [0.18, 'rgba(124,58,237,0.35)'], [0.38, 'rgba(236,72,153,0.12)'], [0.66, 'rgba(236,72,153,0)']]);
 const HOLE_LENS = paintRadial([[0, 'rgba(255,220,170,0)'], [0.3, 'rgba(255,220,170,0)'], [0.37, 'rgba(255,220,170,0.16)'], [0.46, 'rgba(196,181,253,0.12)'], [0.56, 'rgba(124,58,237,0.06)'], [0.68, 'rgba(124,58,237,0)']]);
+/** Keeps what's painted only where a radial fade allows it: alpha along the radius (1 = half the canvas × k). */
+const maskRadial = (ctx: CanvasRenderingContext2D, w: number, h: number, stops: [number, number][], k = 1) => {
+  ctx.save();
+  ctx.globalCompositeOperation = 'destination-in';
+  ctx.translate(w / 2, h / 2);
+  ctx.scale((w / 2) * k, (h / 2) * k);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+  for (const [at, a] of stops) g.addColorStop(at, `rgba(0,0,0,${a})`);
+  ctx.fillStyle = g;
+  ctx.fillRect(-10, -10, 20, 20);
+  ctx.restore();
+};
+/** Wedges of light turning round the middle: each [colour, from°, to°], repeated every `period` degrees. */
+const paintWedges = (ctx: CanvasRenderingContext2D, s: number, wedges: [string, number, number][], period: number) => {
+  const c = s / 2;
+  for (let base = 0; base < 360; base += period)
+    for (const [color, a, b] of wedges) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(c, c);
+      ctx.arc(c, c, s, ((base + a - 90) * Math.PI) / 180, ((base + b - 90) * Math.PI) / 180);
+      ctx.closePath();
+      ctx.fill();
+    }
+};
+const hexA = (color: string, alpha: string) => (/^#[0-9a-f]{6}$/i.test(color) ? color + alpha : color);
+/** A Mythic's or Omni's halo round the pack: its colours turning in a soft ring. */
+const HALO_COLORS = { mythic: ['#ff4fd8', '#ffcd3c', '#3cff9e', '#3cc7ff', '#a855f7', '#ff4fd8'], omni: ['#ff3b4e', '#ffcd3c', '#ffffff', '#ff3b4e', '#ffcd3c', '#ff3b4e'] };
+const paintHalo = (colors: string[]) => (ctx: CanvasRenderingContext2D, s: number) => {
+  const g = ctx.createConicGradient(-Math.PI / 2, s / 2, s / 2);
+  colors.forEach((c, i) => g.addColorStop(i / (colors.length - 1), c));
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, s, s);
+  maskRadial(ctx, s, s, [[0, 0], [0.28, 0], [0.42, 1], [0.7, 0]], Math.SQRT2);
+};
+/** The black hole's band of hot light, flattened, crossing it. */
+const HOLE_BAND = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
+  const g = ctx.createLinearGradient(0, 0, w, 0);
+  ['#ff9d4d', '#fff1d0', '#ff6a3d', '#ffd27a', '#ff4fd8', '#ffb86b', '#fff1d0', '#ff9d4d'].forEach((c, i, all) => g.addColorStop(i / (all.length - 1), c));
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, w, h);
+  maskRadial(ctx, w, h, [[0, 0], [0.4, 0], [0.56, 1], [0.76, 1], [1, 0]]);
+};
+
 /** The accretion disc: hot light round the dark, in a ring (it turns whole). */
 const HOLE_DISC = (ctx: CanvasRenderingContext2D, s: number) => {
   const c = ctx.createConicGradient(-Math.PI / 2, s / 2, s / 2);
@@ -677,7 +725,7 @@ function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; ti
       <Painted className="pack-hole-glow" size={96} paint={HOLE_GLOW} />
       <Painted className="pack-hole-lens" size={96} paint={HOLE_LENS} />
       <Painted className="pack-hole-disc" size={192} paint={HOLE_DISC} />
-      <div className="pack-hole-band" />
+      <Painted className="pack-hole-band" size={256} w={256} h={52} paint={HOLE_BAND} />
       {dust.map((d, i) => (
         <div key={i} className="pack-hole-arm" style={{ rotate: `${d.angle}deg` }}>
           <span
@@ -688,7 +736,7 @@ function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; ti
       ))}
       <div className="pack-hole-core" />
       <div className="pack-hole-photon" />
-      <div className="pack-hole-band pack-hole-band-front" />
+      <Painted className="pack-hole-band pack-hole-band-front" size={256} w={256} h={52} paint={HOLE_BAND} />
       {gulp > 0 && (
         <div key={gulp}>
           <div className="pack-hole-flare" />
@@ -1179,19 +1227,13 @@ function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; 
 
 /** Light rays turning behind a card (epic and up; a mythic's in rainbow). */
 function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rainbow?: boolean }) {
-  return (
-    <div
-      className="pack-rays pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[220%] rounded-full"
-      style={{
-        background: rainbow
-          ? `repeating-conic-gradient(from 0deg, #ff4fd877 0deg 6deg, transparent 6deg 12deg, #ffcd3c77 12deg 18deg, transparent 18deg 24deg, #3cc7ff77 24deg 30deg, transparent 30deg 36deg)`
-          : `repeating-conic-gradient(from 0deg, ${color}${strong ? '66' : '33'} 0deg 8deg, transparent 8deg 24deg)`,
-        maskImage: 'radial-gradient(circle, #000 20%, transparent 65%)',
-        WebkitMaskImage: 'radial-gradient(circle, #000 20%, transparent 65%)',
-      }}
-      aria-hidden
-    />
-  );
+  // Painted once (a masked, turning gradient was redrawn by the graphics card every frame).
+  const paint = (ctx: CanvasRenderingContext2D, s: number) => {
+    if (rainbow) paintWedges(ctx, s, [['#ff4fd877', 0, 6], ['#ffcd3c77', 12, 18], ['#3cc7ff77', 24, 30]], 36);
+    else paintWedges(ctx, s, [[hexA(color, strong ? '66' : '33'), 0, 8]], 24);
+    maskRadial(ctx, s, s, [[0, 1], [0.2, 1], [0.65, 0]], Math.SQRT2);
+  };
+  return <Painted className="pack-rays pointer-events-none absolute left-1/2 top-1/2 -z-10 aspect-square w-[220%] rounded-full" size={256} paint={paint} />;
 }
 
 /**
@@ -1773,7 +1815,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const rays = !card ? null : flipped ? (card.rarity === 'epic' || top(card.rarity) ? card.rarity : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="pack-scene fixed inset-0 z-50 overflow-hidden bg-[#07060c]" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           {/* Always the same: a label that changed with what's left would tell it. */}
@@ -1839,14 +1881,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             onPointerUp={onUp}
             onPointerCancel={() => ((drag.current = null), tearSnd.current?.update(tear, 0))}
             className={`relative w-56 cursor-grab touch-none select-none sm:w-64 ${phase === 'pack' && !holding ? 'pack-float' : ''}`}
-            style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}
             role="button"
             aria-label="Swipe across the pack, or tap it, to tear it open"
           >
             <div key={`w${wobble}`} className={`relative ${holding ? 'pack-hold' : wobble ? 'pack-wobble' : ''}`} style={{ transform: holding ? undefined : `rotate(${lean}deg) skewX(${lean * -0.6}deg)`, transition: 'transform 0.12s ease-out' }}>
             {/* Mythic and Omni: a halo turning behind the pack as it tears. */}
             {special && (phase === 'torn' || (phase === 'pack' && tear > 0)) && (
-              <div className={`pack-halo pack-halo-${special} pointer-events-none absolute left-1/2 top-1/2 -z-10`} style={{ opacity: phase === 'torn' ? 1 : 0.3 + tear * 0.7 }} aria-hidden />
+              <Painted className="pack-halo pointer-events-none absolute left-1/2 top-1/2 -z-10" style={{ opacity: phase === 'torn' ? 1 : 0.3 + tear * 0.7 }} size={256} paint={paintHalo(HALO_COLORS[special])} />
             )}
             {/* The light inside, pouring out of the tear. */}
             {phase === 'torn' && (
@@ -1857,11 +1898,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               />
             )}
             {/* The pack below the cut, and the strip above it: they part along the same jagged line. */}
+            <div className="relative" style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}>
             <div style={{ clipPath: `polygon(${pts(line)}, 100% 100%, 0 100%)` }} className={phase === 'torn' ? 'pack-glow' : ''}>
               <PackArt pack={pack} shine golden={golden} />
             </div>
             <div className={`absolute inset-0 ${phase === 'torn' ? 'pack-flap-fly' : ''}`} style={{ clipPath: `polygon(0 0, 100% 0, ${pts([...line].reverse())})`, transform: phase === 'pack' ? `rotate(${-tear * 7}deg) translateY(${-tear * 7}px)` : undefined, transformOrigin: '100% 100%' }}>
               <PackArt pack={pack} shine golden={golden} />
+            </div>
             </div>
             {/* The light inside, shining through the cut as it opens. */}
             {phase === 'pack' && tear > 0 && (
