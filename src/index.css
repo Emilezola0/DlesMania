@@ -2065,13 +2065,11 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   100% { transform: scale(0); opacity: 0; }
 }
 .pack-hole-lens, .pack-hole-disc, .pack-hole-core { position: absolute; left: 0; top: 0; border-radius: 9999px; translate: -50% -50%; }
-/* The light bent around it: what's behind blurs and swells into a ring. */
+/* The light bent around it: a soft ring of light round the dark. (Drawn, not a live blur of what's behind:
+   a backdrop filter inside the shaking, scaling stage flickered and tore.) */
 .pack-hole-lens {
   width: 46vmin; height: 46vmin;
-  backdrop-filter: blur(3px) saturate(1.6) brightness(1.15);
-  -webkit-backdrop-filter: blur(3px) saturate(1.6) brightness(1.15);
-  mask: radial-gradient(circle, transparent 28%, #000 36%, #000 52%, transparent 70%);
-  -webkit-mask: radial-gradient(circle, transparent 28%, #000 36%, #000 52%, transparent 70%);
+  background: radial-gradient(circle, transparent 30%, rgba(255, 220, 170, 0.16) 37%, rgba(196, 181, 253, 0.12) 46%, rgba(124, 58, 237, 0.06) 56%, transparent 68%);
   animation: pack-hole-breathe 2.4s ease-in-out infinite;
 }
 /* The accretion disc: hot light turning round it. */
@@ -2130,9 +2128,10 @@ body:has(input:not([type="checkbox"]):focus, textarea:focus) .phone-tabs { displ
   width: 16.5vmin; height: 16.5vmin;
   border: 2px solid #fff3d6;
   box-shadow: 0 0 12px 2px #ffd27a, 0 0 30px 6px #ff4fd855, inset 0 0 14px 2px #ffd27a88;
-  animation: pack-hole-flicker 0.18s steps(2) infinite;
+  animation: pack-hole-photon 2.2s ease-in-out infinite;
 }
-@keyframes pack-hole-flicker { 50% { opacity: 0.82; } }
+/* It breathes (a strobe here read as the screen glitching). */
+@keyframes pack-hole-photon { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: 0.85; scale: 1.025; } }
 /* Dust: each speck on its own arm, turning round and falling in, gone at the edge of the dark. */
 .pack-hole-arm { position: absolute; left: 0; top: 0; width: 0; height: 0; }
 .pack-hole-dust { position: absolute; left: 0; top: 0; border-radius: 9999px; opacity: 0; animation: pack-hole-dust linear infinite; }

@@ -93,6 +93,8 @@ const TURN_AT: Record<Step, number> = { 0: 300, 1: 700, 2: 1900, 3: 3000, 4: 440
 /** A near-miss: how long the next step flickers before it cracks, and the breath after the crack. */
 const FLICKER_MS = 550;
 const CRACK_MS = 320;
+/** A press on a card longer than this is a hold: it turns over the moment it's let go. */
+const CARD_HOLD_MS = 220;
 /** The swipe that tears the pack sets the wait before the last star: up to this much longer, the faster it was. */
 const TEAR_PAUSE_MAX = 1500;
 /**
@@ -1655,15 +1657,34 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const [press, setPress] = useState<{ x: number; y: number; key: number } | null>(null);
   /** The card was turned by its press: the click that follows it must not turn the page on. */
   const pressTurned = useRef(false);
+  /** When the finger went down on the card (a hold, once it's been down CARD_HOLD_MS). */
+  const pressStart = useRef<number | null>(null);
   const pressDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     // A press that never became a click (the finger slid off) must not swallow the next tap.
     pressTurned.current = false;
     if (phase !== 'reveal' || flipped) return;
+    // The release comes back here even if the finger slides off the card.
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+    pressStart.current = Date.now();
     const r = e.currentTarget.getBoundingClientRect();
     setPress({ x: e.clientX - r.left, y: e.clientY - r.top, key: Date.now() });
     if (charging) return;
     pressTurned.current = true;
-    if (!(pending.has(i) && !(i in kept))) turn(i);
+    // Every card turns on a press, one back from the black hole too (its anomaly is chosen once it's face up).
+    turn(i);
+  };
+  /**
+   * Let go: a card held (however long) turns over at once, wherever its build-up was. A quick tap leaves the
+   * build-up to play out on its own.
+   */
+  const pressUp = () => {
+    setPress(null);
+    const held = pressStart.current !== null && Date.now() - pressStart.current >= CARD_HOLD_MS;
+    pressStart.current = null;
+    if (!held || phase !== 'reveal' || flipped || !charging || !landing.current) return;
+    timers.current.forEach((t) => window.clearTimeout(t));
+    timers.current = [];
+    landing.current();
   };
   const style = card ? RARITY_STYLE[card.rarity] : null;
   // Time slowing (step 2 and up): it spins front over back.
@@ -1700,7 +1721,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
       {/* The stage: everything that shakes. Not clipped itself (the overlay clips), so the star field's bleed covers the borders mid-shake. */}
-      <div ref={stage} className={`absolute inset-0 p-4 ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
+      <div ref={stage} className={`absolute inset-0 isolate p-4 [will-change:transform] ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-8">
@@ -1838,9 +1859,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             type="button"
             onClick={() => (pressTurned.current ? (pressTurned.current = false) : act())}
             onPointerDown={pressDown}
-            onPointerUp={() => setPress(null)}
-            onPointerLeave={() => setPress(null)}
-            onPointerCancel={() => setPress(null)}
+            onPointerUp={pressUp}
+            onPointerCancel={() => ((pressStart.current = null), setPress(null))}
             className="relative isolate w-52 touch-none outline-none sm:w-60"
             aria-label={flipped ? `${card.name} — next` : 'Turn the card'}
           >
@@ -1891,7 +1911,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
               </div>
             ) : (
-              <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? (press ? 'HOLD…' : '…') : i === deck.length - 1 && deck.length > 1 ? 'THE LAST CARD · HOLD TO TURN' : 'TAP OR HOLD TO TURN'}</p>
+              <p className="font-display text-sm font-bold tracking-widest text-white/70">{charging ? (press ? 'LET GO TO TURN' : '…') : i === deck.length - 1 && deck.length > 1 ? 'THE LAST CARD · HOLD TO TURN' : 'TAP OR HOLD TO TURN'}</p>
             )}
           </div>
           {/* Back from the black hole: keep its anomaly, or let the card be. */}
