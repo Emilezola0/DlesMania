@@ -771,11 +771,11 @@ function CosmicTitle({ star, boom }: { star: Star; boom: boolean }) {
   if (!on) return null;
   return (
     <div className="absolute inset-x-0 top-[9%] z-30 px-4 text-center">
-      <p className="pack-cosmic-title font-display text-2xl font-black tracking-[0.3em] text-white sm:text-4xl">
+      <p className="pack-cosmic-title text-balance font-display text-xl font-black tracking-[0.18em] text-white sm:text-4xl sm:tracking-[0.3em]">
         {ev.icon} {ev.name}
       </p>
       {boom && (
-        <p className="pack-cosmic-result mt-2 font-display text-lg font-black tracking-[0.25em] sm:text-2xl">
+        <p className="pack-cosmic-result mt-2 font-display text-base font-black tracking-[0.18em] sm:text-2xl sm:tracking-[0.25em]">
           <span style={{ color: RARITY_LIGHT[star.from] }}>{rarityName(star.from)}</span>
           <span className="text-white"> → </span>
           <span className={star.to === 'omni' ? 'card-omni-name' : star.to === 'mythic' ? 'card-mythic-name' : ''} style={prismatic(star.to) ? undefined : { color: RARITY_LIGHT[star.to] }}>
@@ -794,7 +794,7 @@ function CosmicTitle({ star, boom }: { star: Star; boom: boolean }) {
 function Nebula({ colors, tier }: { colors: string[]; tier: SkyTier }) {
   const c = (k: number) => colors[k % colors.length] ?? '#a78bfa';
   return (
-    <div className="pack-nebula pointer-events-none absolute inset-0" style={{ opacity: 0.28 + tier * 0.13, transition: 'opacity 0.9s ease-out' }}>
+    <div className="pointer-events-none absolute inset-0" style={{ opacity: 0.28 + tier * 0.13, transition: 'opacity 0.9s ease-out' }}>
       <div className="pack-nebula-cloud" style={{ left: '8%', top: '12%', background: `radial-gradient(closest-side, ${c(0)}66, transparent)` }} />
       <div className="pack-nebula-cloud" style={{ left: '55%', top: '4%', background: `radial-gradient(closest-side, ${c(1)}55, transparent)`, animationDelay: '-6s' }} />
       <div className="pack-nebula-cloud" style={{ left: '30%', top: '48%', background: `radial-gradient(closest-side, ${c(2)}4d, transparent)`, animationDelay: '-11s' }} />
@@ -1143,6 +1143,11 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
  * laid out together. The cards are drawn before any of it; the show only dresses them (see EVOLVE_CHANCE, Step).
  */
 export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain, golden = false }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean; golden?: boolean }) {
+  // While it's open, the page underneath stops drawing what can't be seen (see html.pack-open in index.css).
+  useEffect(() => {
+    document.documentElement.classList.add('pack-open');
+    return () => document.documentElement.classList.remove('pack-open');
+  }, []);
   // A golden pack's own light, gold where an ordinary pack's is lilac.
   const packLight = golden ? GOLDEN_LIGHT : PACK_LIGHT;
   const counts = useProgress((s) => s.cards);
@@ -1700,7 +1705,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const rays = !card ? null : flipped ? (card.rarity === 'epic' || top(card.rarity) ? card.rarity : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/95" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           {/* Always the same: a label that changed with what's left would tell it. */}
@@ -1728,7 +1733,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
       {/* The stage: everything that shakes. Not clipped itself (the overlay clips), so the star field's bleed covers the borders mid-shake. */}
-      <div ref={stage} className={`absolute inset-0 isolate p-4 [will-change:transform] ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
+      <div ref={stage} className={`absolute inset-0 isolate p-4 ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-8">

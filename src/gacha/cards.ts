@@ -286,7 +286,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     name: 'Goku',
     title: 'The Legendary Super Saiyan',
     line: 'Golden hair, green eyes, a fury born on Namek — the legend everyone said was a myth.',
-    image: 'https://static.wikia.nocookie.net/dragonball/images/c/c1/Super_Saiyan_Goku.png/revision/latest/scale-to-width-down/500?cb=20251228192049',
+    image: 'https://static.wikia.nocookie.net/dragonball/images/8/81/Sparkling_Super_Saiyan_Goku.png/revision/latest/scale-to-width-down/500?cb=20180902154929',
     awaken: {
       title: 'Perfected Ultra Instinct',
       line: 'Silver light, a silent mind: the technique even the gods struggle to master, finally his.',
@@ -711,6 +711,13 @@ const CLIPS: Record<string, string> = {
  * hand-drawn animation, his eyes welling up before he turns away (Tenor).
  */
 const FIRST_CLIPS: Record<string, string> = {
+  // Each to its voice line: Goku's Super Saiyan Kamehameha, Anakin on Mustafar ("You underestimate my power!"),
+  // Aang's "Yip yip!" on Appa, the Witness stepping out (no line), and Arion's Saikyou Eleven Hadou (Tenor).
+  'dbz:omni': 'https://media.tenor.com/Hq39Deua0rQAAAPo/kamehameha-goku.mp4',
+  'starwars:omni': 'https://media.tenor.com/0nl9L3UFEQcAAAPo/anakin-vader.mp4',
+  'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
+  'destiny:omni': 'https://media.tenor.com/KOVrUEWcvLQAAAPo/the-witness.mp4',
+  'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
