@@ -2565,10 +2565,18 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-wrap-marquee { background: radial-gradient(ellipse at 50% 35%, #e11d48, #881337 65%, #4c0519) !important; }
 .pack-wrap-marquee .pack-wrap-layer { inset: 4px; border-radius: 6px; background: radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 100% / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-y, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 100% 0 / 12px 12px repeat-y; animation: pack-wrap-bulbs 0.9s steps(2, end) infinite; }
 @keyframes pack-wrap-bulbs { 50% { filter: brightness(0.55); } }
+
+/* Scratch cards (src/casino/Scratch.tsx): a light sweeping across the ticket, the winning cells glowing. */
+.scratch-shine { background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%); background-size: 300% 100%; animation: scratch-shine 3.5s ease-in-out infinite; }
+@keyframes scratch-shine { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.scratch-hit { box-shadow: 0 0 0 3px #fbbf24, 0 0 18px rgba(251, 191, 36, 0.9); animation: scratch-hit 0.9s ease-in-out infinite alternate; }
+@keyframes scratch-hit { from { transform: scale(1); } to { transform: scale(1.06); } }
+.scratch-big { animation: scratch-big 0.5s ease-in-out 3; }
+@keyframes scratch-big { 0%, 100% { transform: none; } 25% { transform: rotate(-1.5deg) scale(1.02); } 75% { transform: rotate(1.5deg) scale(1.02); } }
 .avatar-frame-orn { width: 46%; height: 46%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5)); color: #fde68a; }
 .avatar-frame-orn-top { left: 50%; top: -34%; translate: -50% 0; }
 .avatar-frame-orn-br { right: -22%; bottom: -20%; }
 .avatar-frame-orn-bl { left: -22%; bottom: -20%; }
 @media (prefers-reduced-motion: reduce) {
-  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }

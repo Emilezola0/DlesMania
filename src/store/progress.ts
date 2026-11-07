@@ -58,6 +58,7 @@ import {
   type RoulettePrize,
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
+import { rollScratch, SCRATCH_BY_ID, type ScratchTicket } from '../casino/scratchCards';
 import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import type { Frame } from '../casino/frames';
 
@@ -185,6 +186,12 @@ interface ProgressState {
   chipCoins: number;
   /** The Daily Card Shop: the day, and the cards bought from it that day. */
   cardShop: { day: string; bought: string[] };
+  /** Scratch cards (src/casino/scratchCards.ts): the day and how many of each were bought that day, the one being scratched, the best win. */
+  scratch?: { day: string; bought: Record<string, number>; pending: ScratchTicket | null; best: number };
+  /** Buys a scratch card: the ticket, or null if it can't (too few coins, none left today, one still being scratched). */
+  buyScratch: (id: string) => ScratchTicket | null;
+  /** Cashes in the card being scratched: what it won (paid in DleCoins), or null if there's none. */
+  claimScratch: () => number | null;
   /** A card from today's Daily Card Shop for `price` tokens: false if it can't (too few tokens, bought already today). */
   buyShopCard: (id: string, price: number) => boolean;
   /** A capsule from the machine (a free one first, if any): the frame inside, or null if it can't. */
@@ -456,6 +463,26 @@ export const useProgress = create<ProgressState>()(
       chips: 0,
       chipCoins: 0,
       cardShop: { day: '', bought: [] },
+      scratch: { day: '', bought: {}, pending: null, best: 0 },
+      buyScratch: (id) => {
+        const s = get();
+        const card = SCRATCH_BY_ID.get(id);
+        const day = todayKey();
+        const sc = s.scratch ?? { day: '', bought: {}, pending: null, best: 0 };
+        const bought = sc.day === day ? sc.bought : {};
+        if (!card || sc.pending || s.coins < card.cost || (bought[id] ?? 0) >= card.perDay) return null;
+        const ticket = rollScratch(card);
+        set({ coins: s.coins - card.cost, scratch: { ...sc, day, bought: { ...bought, [id]: (bought[id] ?? 0) + 1 }, pending: ticket } });
+        return ticket;
+      },
+      claimScratch: () => {
+        const s = get();
+        const sc = s.scratch;
+        if (!sc?.pending) return null;
+        const won = sc.pending.prize;
+        set({ coins: s.coins + won, scratch: { ...sc, pending: null, best: Math.max(sc.best ?? 0, won) } });
+        return won;
+      },
       buyShopCard: (id, price) => {
         const s = get();
         const day = todayKey();
@@ -901,7 +928,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

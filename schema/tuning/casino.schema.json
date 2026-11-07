@@ -94,6 +94,37 @@
       },
       "required": ["coinsPerToken", "prices", "slots", "luckyDayChance"],
       "additionalProperties": false
+    },
+    "scratch": {
+      "type": "object",
+      "title": "Scratch cards",
+      "description": "A few scratch cards a day. Unlike the machines they pay back more than they cost on average (about x1.2), a reward for players who farmed the DleCoins. Three of the same prize in the 3x3 grid win it.",
+      "properties": {
+        "cards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+              "name": { "type": "string" },
+              "icon": { "type": "string" },
+              "cost": { "type": "integer", "minimum": 1, "description": "DleCoins a card costs" },
+              "perDay": { "type": "integer", "minimum": 1, "description": "Cards of this kind a player can buy each day" },
+              "prizes": {
+                "type": "array",
+                "minItems": 6,
+                "description": "[prize in DleCoins, weight]: 0 is no win. Needs at least 5 prizes above 0 to fill a losing grid.",
+                "items": { "type": "array", "prefixItems": [{ "type": "integer", "minimum": 0 }, { "type": "number", "exclusiveMinimum": 0 }], "minItems": 2, "maxItems": 2 }
+              }
+            },
+            "required": ["id", "name", "icon", "cost", "perDay", "prizes"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["cards"],
+      "additionalProperties": false
     }
   },
   "required": ["slots", "pachinko", "capsules", "cardShop"],

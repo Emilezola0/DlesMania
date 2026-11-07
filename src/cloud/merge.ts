@@ -63,6 +63,7 @@ export const SYNCED = [
   'chips',
   'chipCoins',
   'cardShop',
+  'scratch',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -270,5 +271,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     chips: latest.chips ?? 0,
     chipCoins: latest.chipCoins ?? 0,
     cardShop: latest.cardShop ?? { day: '', bought: [] },
+    // Scratch cards: the latest save's day and card being scratched; the best win either side has.
+    scratch: { ...(latest.scratch ?? { day: '', bought: {}, pending: null }), best: Math.max(local.scratch?.best ?? 0, cloud.scratch?.best ?? 0) },
   };
 }
