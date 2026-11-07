@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { DleCoin } from '../components/DleCoin';
-import { useCloud } from '../cloud/state';
 import { PackArt } from '../gacha/PackArt';
 import { SETS } from '../gacha/cards';
 import { packsFor } from '../gacha/packs';
@@ -8,13 +7,8 @@ import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { NAME_STYLES, WRAPPERS, type Cosmetic } from './cosmetics';
-
-/** The name shown on the profile: the account's, else "You". */
-export const useShownName = () => {
-  const name = useCloud((c) => c.name);
-  const email = useCloud((c) => c.email);
-  return name ?? email?.split('@')[0] ?? 'You';
-};
+import { useShownName } from './ProfileTag';
+export { useShownName };
 
 /** One cosmetic: its look, and buy / use / take off. */
 function Item({ c, children, worn, onWear }: { c: Cosmetic; children: React.ReactNode; worn: boolean; onWear: (on: boolean) => void }) {

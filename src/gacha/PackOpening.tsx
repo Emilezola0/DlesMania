@@ -1700,7 +1700,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const rays = !card ? null : flipped ? (card.rarity === 'epic' || top(card.rarity) ? card.rarity : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/90 backdrop-blur-sm" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="fixed inset-0 z-50 overflow-hidden bg-[#07060c]/95" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           {/* Always the same: a label that changed with what's left would tell it. */}

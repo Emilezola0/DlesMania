@@ -177,6 +177,8 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
 const cardLayers = () => import('../gacha/LayoutCards');
 const CardLayers = lazy(() => cardLayers().then((m) => ({ default: m.CardLayers })));
 const AvatarIcon = lazy(() => cardLayers().then((m) => ({ default: m.AvatarIcon })));
+// The name (in its Boutique style) and title beside the icon: lazy, as titles need the cards.
+const ProfileTag = lazy(() => import('../casino/ProfileTag').then((m) => ({ default: m.ProfileTag })));
 
 /** While a page's code arrives: a quiet spinner where the page will be. */
 function PageLoading() {
@@ -434,6 +436,9 @@ export function Layout() {
           </span>
           <CoinChip />
           <AccountButton />
+          <Suspense fallback={null}>
+            <ProfileTag className="hidden max-w-[5.5rem] min-[380px]:max-sm:flex xl:flex xl:max-w-[8.5rem]" />
+          </Suspense>
         </div>
       </header>
 

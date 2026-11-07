@@ -132,7 +132,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
   const move = (e: React.PointerEvent) => {
-    if (!tilt || !ref.current) return;
+    if (!tilt || !ref.current || e.pointerType !== 'mouse') return;
     const r = ref.current.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
@@ -159,6 +159,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   }, [animate, still, motion, form.clipLight]);
   const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (!still && motion && !!form.clipLight && inView));
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
+  const tilted = depth || t.x !== 0 || t.y !== 0;
+  const hop = heroOn ? ' translateY(-5%) scale(1.1)' : '';
   return (
     <div
       ref={ref}
@@ -169,7 +171,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
-        transform: tilt ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${heroOn ? ' translateY(-5%) scale(1.1)' : ''}` : heroOn ? 'translateY(-5%) scale(1.1)' : undefined,
+        transform: tilt && tilted ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${hop}` : hop ? hop.trim() : undefined,
         zIndex: heroOn ? 20 : undefined,
         ['--mx' as string]: `${mx}%`,
         ['--my' as string]: `${my}%`,

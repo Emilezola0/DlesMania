@@ -1327,19 +1327,22 @@ h1, h2, h3, .font-serif, .font-display {
   pointer-events: none;
 }
 /* Sparks drifting up (mythic: rainbow, omni: gold and white). */
-@keyframes card-sparks { to { background-position: 0 -200%, 30% -260%, 70% -180%, 50% -240%; } }
-.card-sparks {
-  background:
+@keyframes card-sparks { to { transform: translateY(-50%); } }
+.card-sparks { overflow: hidden; opacity: 0.85; }
+.card-sparks::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -100% 0;
+  background-size: 100% 50%;
+  animation: card-sparks 6s linear infinite;
+  background-image:
     radial-gradient(2px 2px at 20% 80%, #ff9ff3, transparent),
     radial-gradient(2px 2px at 60% 90%, #9fdcff, transparent),
     radial-gradient(1.5px 1.5px at 80% 70%, #ffe58f, transparent),
     radial-gradient(2px 2px at 40% 95%, #b9fbc0, transparent);
-  background-size: 100% 100%, 100% 120%, 100% 90%, 100% 110%;
-  animation: card-sparks 6s linear infinite;
-  opacity: 0.85;
 }
-.card-sparks-gold {
-  background:
+.card-sparks-gold::before {
+  background-image:
     radial-gradient(2.5px 2.5px at 20% 80%, #ff7a18, transparent),
     radial-gradient(2px 2px at 60% 90%, #fff, transparent),
     radial-gradient(2px 2px at 80% 70%, #ff3b4e, transparent),
@@ -1347,7 +1350,7 @@ h1, h2, h3, .font-serif, .font-display {
   animation-duration: 4s;
 }
 @media (prefers-reduced-motion: reduce) {
-  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks, .card-omni-back, .card-omni-ring, .card-omni-ember, .card-frame-turn > i { animation: none; }
+  .card-omni-frame, .card-omni-awake, .card-omni-sky, .card-omni-name, .card-sparks::before, .card-omni-back, .card-omni-ring, .card-omni-ember, .card-frame-turn > i { animation: none; }
   .card-omni-pulse { display: none; }
 }
 
