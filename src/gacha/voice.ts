@@ -64,7 +64,7 @@ const NO_BROWSER_VOICE = new Set(['ufouria']);
 
 /** Reads a line aloud in a star's voice. */
 function say(line: string, set: string) {
-  if (!canSpeak() || NO_BROWSER_VOICE.has(set)) return;
+  if (!canSpeak() || NO_BROWSER_VOICE.has(set)) return voiceEnded();
   const synth = window.speechSynthesis;
   synth.cancel();
   const sp = SPEAKERS[set] ?? { pitch: 1, rate: 1 };
@@ -77,10 +77,19 @@ function say(line: string, set: string) {
   u.pitch = 1 + (sp.pitch - 1) * k;
   u.rate = 1 + (sp.rate - 1) * k;
   u.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
+  u.onend = voiceEnded;
+  u.onerror = voiceEnded;
   synth.speak(u);
 }
 
 let playing: HTMLAudioElement | null = null;
+/** Told once when the voice line playing now is over (ended, stopped, cut by another, or never started). */
+let onVoiceEnd: (() => void) | null = null;
+const voiceEnded = () => {
+  const f = onVoiceEnd;
+  onVoiceEnd = null;
+  f?.();
+};
 
 /** A voice line kept on YouTube: "youtube:VIDEO_ID@54-57" plays seconds 54 to 57 of that video. */
 export const YT_VOICE = /^youtube:([\w-]{11})@(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)$/;
@@ -93,6 +102,7 @@ let ttVoice: { host: HTMLElement; player?: TikTokPlayer; timer?: number } | null
 
 function stopTikTokVoice() {
   if (!ttVoice) return;
+  window.setTimeout(voiceEnded);
   window.clearTimeout(ttVoice.timer);
   ttVoice.player?.destroy();
   ttVoice.host.remove();
@@ -144,6 +154,7 @@ function playTikTokVoice(id: string, start: number, end: number, fallback: () =>
 
 function stopYouTubeVoice() {
   if (!ytVoice) return;
+  window.setTimeout(voiceEnded);
   window.clearTimeout(ytVoice.timer);
   ytVoice.player?.destroy();
   ytVoice.host.remove();
@@ -198,12 +209,15 @@ function playYouTubeVoice(id: string, start: number, end: number, volume: number
  * A card's voice line, heard: its recording if it has one, else the browser's voice. Silent when the
  * sound is off, or when voice lines are (Account page) unless the player asked for it (`asked`: the 🔊 button).
  */
-export function playVoice(card: Card, asked = false) {
+export function playVoice(card: Card, asked = false, onEnd?: () => void) {
   const st = useProgress.getState();
-  if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return;
+  if (!card.voice || !st.sound || (!asked && st.voiceLines === false)) return void onEnd?.();
   playing?.pause();
   stopYouTubeVoice();
   stopTikTokVoice();
+  // The one before is over now; this one says when it is (see onVoiceEnd).
+  voiceEnded();
+  onVoiceEnd = onEnd ?? null;
   const { line, audio } = voiceOf(card, st.nameLang);
   if (!audio) return say(line!, card.set);
   const tt = TT_CLIP.exec(audio);
@@ -217,6 +231,7 @@ export function playVoice(card: Card, asked = false) {
   const frag = FRAGMENT.exec(audio);
   if (frag) a.ontimeupdate = () => a.currentTime >= Number(frag[2]) && a.pause();
   playing = a;
+  a.onended = voiceEnded;
   a.play().catch(() => say(line!, card.set));
   a.onerror = () => say(line!, card.set);
 }

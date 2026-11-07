@@ -11,7 +11,7 @@ import { celebrateBig, shake } from '../lib/fx';
 import { shuffle } from '../lib/rng';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
-import { compactText, isFuzzyMatch } from '../utils/textMatcher';
+import { isFuzzyMatch } from '../utils/textMatcher';
 import { prepareCutout, useCutout } from '../lib/cutout';
 import { Spinner } from '../components/Spinner';
 
@@ -411,11 +411,9 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               ref={input}
               value={text}
               disabled={reveal === 'miss'}
-              onChange={(e) => {
-                setText(e.target.value);
-                // An exact name (accents, case and punctuation aside) counts as soon as it's typed.
-                if (!reveal && spellings(card).some((s) => compactText(s) === compactText(e.target.value))) right();
-              }}
+              // A name counts only once sent (Enter): counted as it's typed, one could type name after name
+              // until the right one clicked in, wrong ones costing nothing.
+              onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') submit(text);
               }}

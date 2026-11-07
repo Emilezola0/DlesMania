@@ -16,7 +16,8 @@ import { compactText } from '../utils/textMatcher';
 function Tile({ label, image, tone = '', small = false }: { label: string; image?: string; tone?: string; small?: boolean }) {
   return (
     <span className={`flex flex-col overflow-hidden rounded-md border-2 bg-card ${tone} ${small ? 'w-16 sm:w-20' : 'w-20 sm:w-24'}`}>
-      <span className="aspect-square bg-tile">{image && <img src={image} alt="" draggable={false} className="size-full object-cover object-top" />}</span>
+      {/* A square whatever the picture's size (a tall one used to stretch the tile and push its name down). */}
+      <span className="relative block aspect-square overflow-hidden bg-tile">{image && <img src={image} alt="" draggable={false} className="absolute inset-0 size-full object-cover object-top" />}</span>
       <span className="truncate px-1 py-0.5 text-center text-[10px] font-semibold sm:text-xs">{shownName(label)}</span>
     </span>
   );

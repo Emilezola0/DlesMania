@@ -145,9 +145,13 @@ export function CardReactions() {
   const momentTimer = useRef(0);
   const clipWait = useRef(false);
   const failedClips = useRef(new Set<string>());
+  /** Until when the card's voice line keeps the moment going (0: not speaking): a long line (Sokka's whole clip) isn't cut. */
+  const voiceUntil = useRef(0);
   const endMoment = (after: number) => {
     window.clearTimeout(momentTimer.current);
-    momentTimer.current = window.setTimeout(() => {
+    momentTimer.current = window.setTimeout(function close() {
+      // Still speaking: the background plays on with it, checked again in a moment (a minute at most).
+      if (Date.now() < voiceUntil.current) return void (momentTimer.current = window.setTimeout(close, 300));
       clipWait.current = false;
       setMoment((m) => m && { ...m, waiting: false, leaving: true });
       momentTimer.current = window.setTimeout(() => setMoment(null), MOMENT_OUT_MS);
@@ -178,7 +182,11 @@ export function CardReactions() {
       const text = kind === 'great' && avatar.voice ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
       setBubble({ kind, text, key: now });
       // A mythic's big moment: its voice line, heard.
-      if (kind === 'great' && avatar.voice) playVoice(avatar);
+      // While it speaks, the moment's background (below) stays: they end together.
+      if (kind === 'great' && avatar.voice) {
+        voiceUntil.current = Date.now() + 60_000;
+        playVoice(avatar, false, () => (voiceUntil.current = 0));
+      }
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
       const own = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
