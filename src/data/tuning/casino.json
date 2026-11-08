@@ -2,6 +2,7 @@
   "slots": {
     "cost": 20,
     "bets": [1, 5, 10],
+    "machines": [1, 5, 10],
     "luck": [
       { "nudge": 0, "cost": 1 },
       { "nudge": 0.25, "cost": 1.8 },

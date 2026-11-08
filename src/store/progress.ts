@@ -176,8 +176,8 @@ interface ProgressState {
   /** Each paid spin lands on `chain` in turn (free spins set it off again by themselves); the last landing pays. */
   spinRoulette: (times?: number) => { prize: RoulettePrize; chain: RoulettePrize[]; coins: number }[] | null;
   /** A slot spin at a bet (×1, ×5…): what came up and what it paid, or null if it can't (coins, spins left today). */
-  /** A spin at a bet and a luck level (an index into SLOT_LUCK): null if it can't. */
-  playSlots: (bet: number, luck?: number) => SlotResult | null;
+  /** A spin of 1, 5 or 10 machines at once, at a bet and a luck level (an index into SLOT_LUCK): each machine's result, or null if it can't. */
+  playSlots: (bet: number, luck?: number, machines?: number) => SlotResult[] | null;
   /** `n` pachinko balls: each one's way down and pay, or null if it can't. Fills the meter (a free capsule when full). */
   dropBalls: (n: number) => Ball[] | null;
   /** DleCoins played at the pachinko towards its meter's next free capsule. */
@@ -485,15 +485,17 @@ export const useProgress = create<ProgressState>()(
       anomalies: {},
       favorites: {},
       pulledAt: {},
-      playSlots: (bet, luck = 0) => {
+      playSlots: (bet, luck = 0, machines = 1) => {
         const s = get();
         const e = econToday(s.econ);
         const spins = e.slots ?? 0;
-        const cost = slotCost(bet, luck);
-        if (!SLOTS.bets.includes(bet) || !SLOTS.luck[luck] || s.coins < cost || spins >= SLOTS.dailySpins) return null;
-        const r = rollSlots(bet, luck);
-        set({ coins: s.coins - cost + r.coins, econ: { ...e, slots: spins + 1, earned: e.earned + r.coins }, ...paidIn(s, cost) });
-        return r;
+        // Each machine is a spin of its own: its cost, and one of the day's spins.
+        const cost = slotCost(bet, luck) * machines;
+        if (!SLOTS.bets.includes(bet) || !SLOTS.luck[luck] || !SLOTS.machines.includes(machines) || s.coins < cost || spins + machines > SLOTS.dailySpins) return null;
+        const rs = Array.from({ length: machines }, () => rollSlots(bet, luck));
+        const won = rs.reduce((t, r) => t + r.coins, 0);
+        set({ coins: s.coins - cost + won, econ: { ...e, slots: spins + machines, earned: e.earned + won }, ...paidIn(s, cost) });
+        return rs;
       },
       casinoMeter: 0,
       capsuleTokens: 0,
