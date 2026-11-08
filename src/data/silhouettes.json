@@ -31,13 +31,6 @@
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/5/5a/Alistar_Render.png/revision/latest/scale-to-width-down/360?cb=20200324143400"
       },
       {
-        "name": "Ambessa",
-        "aliases": [
-          "Ambessa Medarda"
-        ],
-        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/d/d8/Ambessa_Render.png/revision/latest/scale-to-width-down/360?cb=20250304155737"
-      },
-      {
         "name": "Amumu",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/1/17/Amumu_Render.png/revision/latest/scale-to-width-down/360?cb=20200324143252"
@@ -421,13 +414,6 @@
         "name": "Master Yi",
         "aliases": [],
         "image": "https://static.wikia.nocookie.net/leagueoflegends/images/e/e7/Master_Yi_Render.png/revision/latest/scale-to-width-down/360?cb=20210110231715"
-      },
-      {
-        "name": "Mel",
-        "aliases": [
-          "Mel Medarda"
-        ],
-        "image": "https://static.wikia.nocookie.net/leagueoflegends/images/4/4d/Mel_Render.png/revision/latest/scale-to-width-down/360?cb=20250304155903"
       },
       {
         "name": "Milio",

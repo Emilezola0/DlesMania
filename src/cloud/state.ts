@@ -13,6 +13,7 @@ export interface CloudActions {
   resetPassword: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
   syncNow: () => Promise<void>;
+  setName: (name: string) => Promise<void>;
 }
 
 interface CloudState {

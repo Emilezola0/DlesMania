@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { playVoice, voiceOf } from './voice';
+import { playVoice, voiceOf, YT_VOICE } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -140,7 +140,12 @@ export function CardReactions() {
   const [bubble, setBubble] = useState<{ kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
   /** The icon's animation, on a big moment now and then. */
-  const [moment, setMoment] = useState<{ clip?: string; key: number; waiting: boolean; leaving: boolean } | null>(null);
+  const [moment, setMoment] = useState<{ clip?: string; key: number; waiting: boolean; leaving: boolean; heard?: boolean } | null>(null);
+  /** The clip couldn't be heard after all (its sound blocked, or it failed): the voice from its own player, once. */
+  const voiceApart = () => {
+    setMoment((m) => m && { ...m, heard: false });
+    if (avatar) playVoice(avatar, false, () => (voiceUntil.current = 0));
+  };
   const lastMoment = useRef(0);
   const momentTimer = useRef(0);
   const clipWait = useRef(false);
@@ -183,18 +188,23 @@ export function CardReactions() {
       setBubble({ kind, text, key: now });
       // A mythic's big moment: its voice line, heard.
       // While it speaks, the moment's background (below) stays: they end together.
-      if (kind === 'great' && avatar.voice) {
-        voiceUntil.current = Date.now() + 60_000;
-        playVoice(avatar, false, () => (voiceUntil.current = 0));
-      }
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
       const own = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
-      if (kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const showMoment = kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // A clip that is also the voice (the same YouTube moment): heard from the clip itself, so they start together.
+      const st = useProgress.getState();
+      const voiced = kind === 'great' && !!avatar.voice && st.sound && st.voiceLines !== false;
+      const heard = showMoment && voiced && !!clip && YT_VOICE.test(clip) && voiceOf(avatar).audio === clip;
+      if (kind === 'great' && avatar.voice) {
+        voiceUntil.current = Date.now() + 60_000;
+        if (!heard) playVoice(avatar, false, () => (voiceUntil.current = 0));
+      }
+      if (showMoment) {
         lastMoment.current = now;
         // A clip can be slow to start (above all one kept on YouTube or TikTok): the light glows until it does, and it still plays.
         clipWait.current = !!clip;
-        setMoment({ clip, key: now, waiting: !!clip, leaving: false });
+        setMoment({ clip, key: now, waiting: !!clip, leaving: false, heard });
         endMoment(clip ? MOMENT_WAIT_MS : MOMENT_MS - MOMENT_OUT_MS);
       }
       window.clearTimeout(timer);
@@ -222,7 +232,9 @@ export function CardReactions() {
             <div className="moment-clip">
               <CardClip
                 src={moment.clip}
+                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
                 onFail={() => {
+                  if (moment.heard) voiceApart();
                   failedClips.current.add(moment.clip!);
                   clipSettled();
                   setMoment((m) => m && { ...m, clip: undefined });

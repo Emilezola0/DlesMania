@@ -15,6 +15,7 @@ import {
   signInWithPopup,
   signInWithRedirect,
   signOut as fbSignOut,
+  updateProfile,
   type User,
 } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, writeBatch } from 'firebase/firestore';
@@ -249,6 +250,15 @@ const actions = {
     run(async () => {
       const uid = auth.currentUser?.uid;
       if (uid) await pull(uid);
+    }),
+  /** The name shown to others (friends, trades, album news): the account's own, changed here. */
+  setName: (name: string) =>
+    run(async () => {
+      const u = auth.currentUser;
+      const clean = name.replace(/\s+/g, ' ').trim().slice(0, 40);
+      if (!u || !clean) return;
+      await updateProfile(u, { displayName: clean });
+      useCloud.setState({ name: clean });
     }),
 };
 

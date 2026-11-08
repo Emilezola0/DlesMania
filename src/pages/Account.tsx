@@ -354,6 +354,42 @@ function BirthdayLine() {
   );
 }
 
+/** The name other players see (friends, trades, album news): changed here. */
+function NameForm({ name, busy, save }: { name: string; busy: boolean; save: (n: string) => Promise<boolean> }) {
+  const [open, setOpen] = useState(false);
+  const [text, setText] = useState(name);
+  const [done, setDone] = useState(false);
+  if (!open)
+    return (
+      <p className="text-sm">
+        <button type="button" onClick={() => (setText(name), setDone(false), setOpen(true))} className="font-semibold underline hover:text-accent">
+          ✎ Change my name
+        </button>
+        {done && <span className="ml-2 font-semibold text-hit">✓ Saved</span>}
+      </p>
+    );
+  const clean = text.replace(/\s+/g, ' ').trim();
+  return (
+    <form
+      className="flex flex-wrap items-center gap-2"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!clean) return;
+        void save(clean).then((ok) => ok && (setOpen(false), setDone(true)));
+      }}
+    >
+      <input autoFocus maxLength={40} value={text} onChange={(e) => setText(e.target.value)} placeholder="Your name" aria-label="Your name" className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2 outline-none focus:border-accent" />
+      <button type="submit" disabled={busy || !clean || clean === name} className="btn-accent rounded-md px-4 py-2 font-semibold disabled:opacity-50">
+        Save
+      </button>
+      <button type="button" onClick={() => setOpen(false)} className="text-sm font-semibold text-ink-soft underline-offset-2 hover:underline">
+        Cancel
+      </button>
+      <p className="w-full text-xs text-ink-faint">What friends, trades and album news show (40 characters at most).</p>
+    </form>
+  );
+}
+
 /** /account */
 export default function Account() {
   const { status, email, name, lastSync, error, actions } = useCloud();
@@ -398,6 +434,7 @@ export default function Account() {
             <p className="text-xl font-bold">{name ?? email}</p>
             {name && <p className="text-sm text-ink-soft">{email}</p>}
           </div>
+          <NameForm name={name ?? ''} busy={busy} save={(n) => go(() => actions.setName(n))} />
           <p className={`flex items-center gap-2 text-sm font-semibold ${status === 'error' ? 'text-coral' : status === 'synced' ? 'text-hit' : 'text-ink-soft'}`}>
             {status === 'syncing' ? <Spinner /> : status === 'synced' ? '✓' : status === 'error' ? '⚠' : '•'} {STATUS[status]}
             {status === 'synced' && lastSync && <span className="font-normal text-ink-faint">· {new Date(lastSync).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>}

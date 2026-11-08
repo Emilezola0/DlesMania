@@ -159,6 +159,52 @@ const ATLA: [string, string, string, string, string][] = [
   ['Koh', 'Spirit World', 'None', 'Male', 'Spirit'],
   ['Hei Bai', 'Spirit World', 'None', 'Unknown', 'Spirit'],
 ];
+/**
+ * More traits, so characters stop sharing all of them (a ticket): their side for most of the show (Team Avatar,
+ * an ally, an enemy, or neither), the book they first appear in (in person or in a flashback), and how old they look
+ * for most of it (Unknown for animals and spirits).
+ */
+const ATLA_MORE: Record<string, [string, string, string]> = {
+  'Aang': ['Team Avatar', 'Book 1', 'Child'],
+  'Katara': ['Team Avatar', 'Book 1', 'Teen'],
+  'Sokka': ['Team Avatar', 'Book 1', 'Teen'],
+  'Toph': ['Team Avatar', 'Book 2', 'Child'],
+  'Zuko': ['Team Avatar', 'Book 1', 'Teen'],
+  'Iroh': ['Ally', 'Book 1', 'Elder'],
+  'Azula': ['Enemy', 'Book 2', 'Teen'],
+  'Ozai': ['Enemy', 'Book 1', 'Adult'],
+  'Appa': ['Team Avatar', 'Book 1', 'Unknown'],
+  'Momo': ['Team Avatar', 'Book 1', 'Unknown'],
+  'Suki': ['Team Avatar', 'Book 1', 'Teen'],
+  'Ty Lee': ['Enemy', 'Book 2', 'Teen'],
+  'Mai': ['Enemy', 'Book 2', 'Teen'],
+  'Roku': ['Ally', 'Book 1', 'Elder'],
+  'Kyoshi': ['Ally', 'Book 2', 'Adult'],
+  'Kuruk': ['Ally', 'Book 1', 'Adult'],
+  'Yangchen': ['Ally', 'Book 3', 'Adult'],
+  'Bumi': ['Ally', 'Book 1', 'Elder'],
+  'Jet': ['Neutral', 'Book 1', 'Teen'],
+  'Zhao': ['Enemy', 'Book 1', 'Adult'],
+  'Yue': ['Ally', 'Book 1', 'Teen'],
+  'Hakoda': ['Ally', 'Book 2', 'Adult'],
+  'Pakku': ['Ally', 'Book 1', 'Elder'],
+  'Hama': ['Enemy', 'Book 3', 'Elder'],
+  'Long Feng': ['Enemy', 'Book 2', 'Adult'],
+  'Haru': ['Ally', 'Book 1', 'Teen'],
+  'Kuei': ['Ally', 'Book 2', 'Adult'],
+  'Cabbage merchant': ['Neutral', 'Book 1', 'Adult'],
+  'Smellerbee': ['Neutral', 'Book 1', 'Teen'],
+  'Teo': ['Ally', 'Book 1', 'Teen'],
+  'Combustion Man': ['Enemy', 'Book 3', 'Adult'],
+  'Sozin': ['Enemy', 'Book 3', 'Elder'],
+  'Ursa': ['Neutral', 'Book 2', 'Adult'],
+  'Jeong Jeong': ['Ally', 'Book 1', 'Elder'],
+  'Piandao': ['Ally', 'Book 3', 'Elder'],
+  'Gyatso': ['Ally', 'Book 1', 'Elder'],
+  'Wan Shi Tong': ['Neutral', 'Book 2', 'Unknown'],
+  'Koh': ['Neutral', 'Book 1', 'Unknown'],
+  'Hei Bai': ['Neutral', 'Book 1', 'Unknown'],
+};
 const ATLA_ALIASES: Record<string, string[]> = { Toph: ['Toph Beifong'], Iroh: ['Uncle Iroh'], Ozai: ['Fire Lord Ozai'], Roku: ['Avatar Roku'], Kyoshi: ['Avatar Kyoshi'], Bumi: ['King Bumi'], Zhao: ['Admiral Zhao'], Yue: ['Princess Yue'], Kuei: ['Earth King'], 'Cabbage merchant': ['Cabbage man'], Gyatso: ['Monk Gyatso'] };
 
 function avatar(): SimpleUniverse {
@@ -166,8 +212,11 @@ function avatar(): SimpleUniverse {
   const pics = new Map([b.boss, ...b.radar.members, ...b.finale].map((c) => ['label' in c ? c.label : c.name, c.image ?? '']));
   return {
     id: 'avatar',
-    columns: ['Nation', 'Bending', 'Gender', 'Kind'],
-    characters: ATLA.map(([name, nation, bending, gender, kind]) => ({ id: slug(name), name, aliases: ATLA_ALIASES[name] ?? [], image: pics.get(name) ?? '', traits: { Nation: nation, Bending: bending, Gender: gender, Kind: kind } })),
+    columns: ['Nation', 'Bending', 'Gender', 'Kind', 'Side', 'Debut', 'Age'],
+    characters: ATLA.map(([name, nation, bending, gender, kind]) => {
+      const [side, debut, age] = ATLA_MORE[name] ?? ['Unknown', 'Unknown', 'Unknown'];
+      return { id: slug(name), name, aliases: ATLA_ALIASES[name] ?? [], image: pics.get(name) ?? '', traits: { Nation: nation, Bending: bending, Gender: gender, Kind: kind, Side: side, Debut: debut, Age: age } };
+    }),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
     // The original English voices (clips from myinstants); a French dub's recording goes in `fr` when found.
     voices: [

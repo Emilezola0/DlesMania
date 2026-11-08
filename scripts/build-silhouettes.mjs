@@ -150,6 +150,12 @@ async function pokemon() {
   return entries;
 }
 
+/**
+ * Champions whose wiki "Render.png" is an in-game screenshot on the map, not a cut-out: their silhouette
+ * would be a black rectangle (a ticket), so they stay out until the wiki has a transparent render.
+ */
+const LOL_NO_CUTOUT = new Set(['Ambessa', 'Mel']);
+
 async function league() {
   const version = (await getJson('https://ddragon.leagueoflegends.com/api/versions.json'))[0];
   const champs = Object.values((await getJson(`https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`)).data);
@@ -162,7 +168,7 @@ async function league() {
       const aliases = [c.id !== c.name.replace(/[^A-Za-z]/g, '') ? c.id : null, c.name.includes('&') ? c.name.split('&')[0].trim() : null].filter(Boolean);
       return { name: c.name, aliases, image };
     })
-    .filter((e) => e.image);
+    .filter((e) => e.image && !LOL_NO_CUTOUT.has(e.name));
 }
 
 async function minecraft() {
