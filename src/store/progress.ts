@@ -64,7 +64,7 @@ import { rollScratch, SCRATCH_BY_ID, type ScratchTicket } from '../casino/scratc
 import type { ClawItem } from '../casino/clawMachine';
 import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import CASINO_T from '../data/tuning/casino.json';
-import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, tokensFor, type Ball, type SlotResult } from '../casino/casino';
+import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, slotCost, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import type { Frame } from '../casino/frames';
 
 type DayRounds = Record<number, RoundRecord>;
@@ -176,7 +176,8 @@ interface ProgressState {
   /** Each paid spin lands on `chain` in turn (free spins set it off again by themselves); the last landing pays. */
   spinRoulette: (times?: number) => { prize: RoulettePrize; chain: RoulettePrize[]; coins: number }[] | null;
   /** A slot spin at a bet (×1, ×5…): what came up and what it paid, or null if it can't (coins, spins left today). */
-  playSlots: (bet: number) => SlotResult | null;
+  /** A spin at a bet and a luck level (an index into SLOT_LUCK): null if it can't. */
+  playSlots: (bet: number, luck?: number) => SlotResult | null;
   /** `n` pachinko balls: each one's way down and pay, or null if it can't. Fills the meter (a free capsule when full). */
   dropBalls: (n: number) => Ball[] | null;
   /** DleCoins played at the pachinko towards its meter's next free capsule. */
@@ -484,13 +485,13 @@ export const useProgress = create<ProgressState>()(
       anomalies: {},
       favorites: {},
       pulledAt: {},
-      playSlots: (bet) => {
+      playSlots: (bet, luck = 0) => {
         const s = get();
         const e = econToday(s.econ);
         const spins = e.slots ?? 0;
-        const cost = SLOTS.cost * bet;
-        if (!SLOTS.bets.includes(bet) || s.coins < cost || spins >= SLOTS.dailySpins) return null;
-        const r = rollSlots(bet);
+        const cost = slotCost(bet, luck);
+        if (!SLOTS.bets.includes(bet) || !SLOTS.luck[luck] || s.coins < cost || spins >= SLOTS.dailySpins) return null;
+        const r = rollSlots(bet, luck);
         set({ coins: s.coins - cost + r.coins, econ: { ...e, slots: spins + 1, earned: e.earned + r.coins }, ...paidIn(s, cost) });
         return r;
       },

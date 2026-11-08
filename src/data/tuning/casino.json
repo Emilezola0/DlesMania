@@ -2,6 +2,11 @@
   "slots": {
     "cost": 20,
     "bets": [1, 5, 10],
+    "luck": [
+      { "nudge": 0, "cost": 1 },
+      { "nudge": 0.25, "cost": 1.8 },
+      { "nudge": 0.5, "cost": 3 }
+    ],
     "dailySpins": 1000,
     "symbols": [
       { "id": "cherry", "weight": 30, "three": 8, "two": 2 },

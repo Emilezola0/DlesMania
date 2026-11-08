@@ -10,6 +10,20 @@
       "properties": {
         "cost": { "type": "integer", "minimum": 5, "description": "DleCoins a spin at bet ×1 (all five lines)" },
         "bets": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 1, "description": "The bets on offer (×1, ×5…): cost and prizes both multiplied" },
+        "luck": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The luck levels on offer, the first the plain machine. Luck: on each of reels 2 and 3, with chance nudge, a symbol lines up with the reel before it on a random line (wins come more often, big ones much more). It costs the spin × cost; prizes stay. Simulated: nudge 0.25 pays back about 1.77× the plain machine, 0.5 about 2.97× — keep cost at or above that, or the machine pays out more than it takes",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nudge": { "type": "number", "minimum": 0, "maximum": 1 },
+              "cost": { "type": "number", "minimum": 1 }
+            },
+            "required": ["nudge", "cost"],
+            "additionalProperties": false
+          }
+        },
         "dailySpins": { "type": "integer", "minimum": 1, "description": "Spins a day (a bigger bet still counts as one)" },
         "symbols": {
           "type": "array",
@@ -28,7 +42,7 @@
           }
         }
       },
-      "required": ["cost", "bets", "dailySpins", "symbols"],
+      "required": ["cost", "bets", "luck", "dailySpins", "symbols"],
       "additionalProperties": false
     },
     "pachinko": {

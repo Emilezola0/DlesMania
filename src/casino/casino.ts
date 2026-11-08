@@ -48,6 +48,8 @@ export interface SlotWin {
 export interface SlotResult {
   /** [reel][row]: three reels of three. */
   grid: SlotSymbol[][];
+  /** The cells luck lined up ([reel, row]). */
+  lucky: [number, number][];
   wins: SlotWin[];
   coins: number;
 }
@@ -69,10 +71,24 @@ export function slotWins(grid: SlotSymbol[][], bet: number): SlotWin[] {
   return wins;
 }
 
-export function rollSlots(bet: number): SlotResult {
+/** The luck levels: how often a reel lines up with the one before it, and what that does to the spin's cost. */
+export const SLOT_LUCK = SLOTS.luck;
+/** A spin's cost at a bet and a luck level. */
+export const slotCost = (bet: number, luck = 0) => Math.round(SLOTS.cost * bet * (SLOT_LUCK[luck]?.cost ?? 1));
+
+export function rollSlots(bet: number, luck = 0): SlotResult {
   const grid = [0, 1, 2].map(() => [0, 1, 2].map(() => slotSymbol()));
+  // Luck: reels 2 and 3, each now and then, line a symbol up with the reel before it on a random line.
+  const nudge = SLOT_LUCK[luck]?.nudge ?? 0;
+  const lucky: [number, number][] = [];
+  for (const reel of [1, 2])
+    if (Math.random() < nudge) {
+      const line = LINES[Math.floor(Math.random() * LINES.length)];
+      grid[reel][line[reel]] = grid[reel - 1][line[reel - 1]];
+      lucky.push([reel, line[reel]]);
+    }
   const wins = slotWins(grid, bet);
-  return { grid, wins, coins: wins.reduce((t, w) => t + w.coins, 0) };
+  return { grid, lucky, wins, coins: wins.reduce((t, w) => t + w.coins, 0) };
 }
 
 /** Pachinko: a ball's way down (0 = left, 1 = right at each row), the pocket it ends in, what it pays. */
