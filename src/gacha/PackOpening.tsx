@@ -81,11 +81,32 @@ const EVOLVE_CHANCE = 0.3;
  * room goes dark, it spins in gold to a drone and a heartbeat; 3: every colour runs through it and its
  * franchise's name sweeps across; 4: red and gold, the screen shaking. It climbs exactly as far as its rarity
  * (Epic 1, Legendary 2, Mythic 3, Omni 4), a pulse at the end of each step deciding whether it climbs on.
- * Now and then (NEAR_MISS) the next step flickers into life at that pulse — and cracks: a near-miss.
+ * Now and then (NEAR_MISS, rarely: it must stay a surprise) the next step flickers into life at that pulse — and
+ * cracks: a near-miss.
  */
 type Step = 0 | 1 | 2 | 3 | 4;
 const stepOf = (r: Rarity): Step => (r === 'omni' ? 4 : r === 'mythic' ? 3 : r === 'legendary' ? 2 : r === 'epic' ? 1 : 0);
-const NEAR_MISS: Record<Step, number> = { 0: 0.12, 1: 0.25, 2: 0.3, 3: 0.3, 4: 0 };
+const NEAR_MISS: Record<Step, number> = { 0: 0.04, 1: 0.08, 2: 0.07, 3: 0.06, 4: 0 };
+/**
+ * The late bloom: now and then (BLOOM_CHANCE) a Legendary or a Mythic builds up and turns over as one rarity
+ * lower — an Epic, a Legendary — and the player takes it for that. Then, BLOOM_WAIT ms on, a wink from the sky:
+ * a comet or a meteor shower in its true colour, falling onto the card (BLOOM_HIT ms), and it blooms into what it
+ * really is. Like every effect, it only ever climbs to the truth: a wink always pays off.
+ * For testing, in dev only: localStorage "omnidle-force-bloom" = "1" (every Legendary and Mythic).
+ */
+const BLOOM_CHANCE: Partial<Record<Rarity, number>> = { legendary: 0.15, mythic: 0.1 };
+const BLOOM_WAIT = 1100;
+const BLOOM_HIT = 1500;
+/** The rarity just below. */
+const lower = (r: Rarity): Rarity => RARITIES[Math.max(0, RARITIES.indexOf(r) - 1)];
+type WinkKind = 'comet' | 'shower';
+function bloomForced() {
+  try {
+    return import.meta.env.DEV && localStorage.getItem('omnidle-force-bloom') === '1';
+  } catch {
+    return false;
+  }
+}
 /** Each step's colour, when it starts (ms from the tap), and the pulse where a card that stops there turns. */
 const STEP_LIGHT: Rarity[] = ['common', 'epic', 'legendary', 'mythic', 'omni'];
 const STEP_AT: Record<Step, number> = { 0: 0, 1: 0, 2: 700, 3: 1900, 4: 3000 };
@@ -346,15 +367,17 @@ function skyMomentFor(rand: () => number = Math.random): SkyMoment | null {
 }
 
 /**
- * The fly-by: now and then the pack's own cards drift across the sky as small glowing tokens before the last
- * star — only cards really in the pack (never one that isn't: no false hope), out of focus, haloed in the colour
- * their star shows, the best one last, slowest and half lost in its own glow: the player glimpses who, not quite
- * how rare. Likelier the better the pack (FLYBY_CHANCE by its best card); never a cosmic event's card or a
- * wish's (their scenes are the surprise). In a franchise or kind-of-work pack, its icon twinkles among them.
- * At most FLYBY_MAX tokens (five packs at once). For testing, in dev only: localStorage "omnidle-force-flyby" = "1".
+ * The fly-by: now and then a few of the pack's own cards drift across the sky as small glowing tokens before the
+ * last star — only cards really in the pack (never one that isn't: no false hope), out of focus, haloed in the
+ * colour their star shows. Never all of them, so it spoils nothing: one to FLYBY_MAX, the last slowest and half
+ * lost in its own glow — the best card only now and then (FLYBY_BEST), else another of the pack's. Likelier the
+ * better the pack (FLYBY_CHANCE by its best card); never a cosmic event's card or a wish's (their scenes are the
+ * surprise). In a franchise or kind-of-work pack, its icon twinkles among them.
+ * For testing, in dev only: localStorage "omnidle-force-flyby" = "1".
  */
 const FLYBY_CHANCE: Record<Rarity, number> = { common: 0.15, rare: 0.15, epic: 0.3, legendary: 0.5, mythic: 0.8, omni: 0.8 };
-const FLYBY_MAX = 8;
+const FLYBY_MAX = 3;
+const FLYBY_BEST = 0.35;
 interface Flyer {
   card: Card;
   /** The colour of its halo: what its star shows (an evolving star's first colour). */
@@ -378,8 +401,10 @@ function flybyFor(ordered: Card[], shown: Rarity[], regular: number, wishes: Map
   // The ordinary cards with a picture (no wish: its comet is the surprise), the best last.
   const pool = ordered.slice(0, regular).map((card, k) => ({ card, k })).filter(({ card, k }) => card.image && !wishes.has(k));
   if (pool.length < 2) return [];
-  const top = pool[pool.length - 1];
-  const rest = pool.slice(0, -1).sort(() => rand() - 0.5).slice(0, FLYBY_MAX - 1).sort((a, b) => a.k - b.k);
+  // The big, slow one: the best card now and then, else another of the pack's; one or two more before it.
+  const shuffled = pool.slice(0, -1).sort(() => rand() - 0.5);
+  const top = rand() < FLYBY_BEST ? pool[pool.length - 1] : shuffled.pop()!;
+  const rest = shuffled.slice(0, 1 + Math.floor(rand() * (FLYBY_MAX - 1))).sort((a, b) => a.k - b.k);
   const bestMs = Math.min(3600, until - from);
   const others = Math.max(1200, Math.min(2600, until - from - 400));
   const flyers: Flyer[] = rest.map(({ card, k }, j) => ({
@@ -447,6 +472,32 @@ function Comet({ at, color }: { at: number; color: string }) {
       <div className="sky-comet" style={{ animationDelay: `${at}ms`, ['--comet' as string]: color }}>
         <div className="sky-comet-tail" />
         <div className="sky-comet-head" />
+      </div>
+    </div>
+  );
+}
+
+/** The late bloom's wink: a comet (with a meteor shower, now and then) in the card's true colour, falling onto it. */
+function BloomWink({ kind, rarity }: { kind: WinkKind; rarity: Rarity }) {
+  const colors = rainbowy(rarity) ? RAINBOW : [RARITY_LIGHT[rarity]];
+  const streaks = useMemo(
+    () =>
+      kind === 'shower'
+        ? Array.from({ length: 20 }, (_, k) => ({ x: -10 + Math.random() * 100, y: -10 + Math.random() * 55, delay: Math.random() * (BLOOM_HIT - 600), len: 8 + Math.random() * 12, color: colors[k % colors.length] }))
+        : [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [kind],
+  );
+  return (
+    <div className="pointer-events-none fixed inset-0 z-30 overflow-hidden" aria-hidden>
+      {streaks.map((s, k) => (
+        <span key={k} className="bloom-streak absolute" style={{ left: `${s.x}%`, top: `${s.y}%`, width: `${s.len}vmin`, animationDelay: `${s.delay}ms`, ['--bloom' as string]: s.color }} />
+      ))}
+      <div className="bloom-comet-way">
+        <div className={`bloom-comet ${kind === 'comet' ? 'bloom-comet-big' : ''}`} style={{ animationDuration: `${BLOOM_HIT}ms`, ['--comet' as string]: colors[0] }}>
+          <div className="sky-comet-tail" />
+          <div className="sky-comet-head" />
+        </div>
       </div>
     </div>
   );
@@ -1342,7 +1393,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   }, [ordered, evAt, cosmos]);
   const deck = useMemo(() => order.map((k) => ordered[k]), [order, ordered]);
   /** How each card of the deck builds up as it turns: as far as its rarity, and whether it near-misses the next step. */
-  const plans = useMemo(() => deck.map((c) => ({ step: stepOf(c.rarity), near: Math.random() < NEAR_MISS[stepOf(c.rarity)] })), [deck]);
+  const plans = useMemo(() => {
+    const forced = bloomForced();
+    return deck.map((c) => {
+      const bloom = (forced && !!BLOOM_CHANCE[c.rarity]) || Math.random() < (BLOOM_CHANCE[c.rarity] ?? 0);
+      return { step: stepOf(c.rarity), near: !bloom && Math.random() < NEAR_MISS[stepOf(c.rarity)], bloom };
+    });
+  }, [deck]);
   /** The anomaly each card of the deck came back with (by its place in the deck), and what the player said. */
   const pending = useMemo(() => {
     const m = new Map<number, AnomalyId>();
@@ -1652,6 +1709,16 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   };
 
   // ── Revealing ───────────────────────────────────────────────────────
+  /** The late bloom: the cards that have bloomed already, the wink playing, and how to end it at once (a skip). */
+  const [bloomed, setBloomed] = useState<ReadonlySet<number>>(() => new Set());
+  const [wink, setWink] = useState<{ k: number; kind: WinkKind } | null>(null);
+  const blooming = useRef<(() => void) | null>(null);
+  useEffect(() => setBloomed(new Set()), [deck]);
+  /** Does the card at `k` bloom late (never one back from the black hole, nor a cosmic event's: they have their own show)? */
+  const bloomy = (k: number) => !!plans[k]?.bloom && !pending.has(k) && !cosmicAt.has(k) && !reducedMotion();
+  /** The rarity the card at `k` shows: one lower until it has bloomed. */
+  const looks = (k: number): Rarity => (bloomy(k) && !bloomed.has(k) ? lower(deck[k].rarity) : deck[k].rarity);
+  const asShown = (k: number): Card => (looks(k) === deck[k].rarity ? deck[k] : { ...deck[k], rarity: looks(k) });
   const toReveal = () => {
     setPhase('reveal');
     setI(0);
@@ -1665,7 +1732,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const cue = (k: number) => {
     const c = deck[k];
     if (!c) return;
-    sfx.shimmer([2, 3, 5, 8, 12, 16][RARITIES.indexOf(c.rarity)]);
+    sfx.shimmer([2, 3, 5, 8, 12, 16][RARITIES.indexOf(looks(k))]);
     if (k === deck.length - 1 && deck.length > 1 && !reducedMotion()) (sfx.suspense(1.4), buzz([20, 80, 20]));
   };
   /** The turn in progress (a card building up): a skip lands it at once. */
@@ -1676,18 +1743,10 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
    * Turning the card at `k`: it builds up step by step, exactly as far as its rarity (Step), a pulse at the end
    * of each step — now and then the next one flickers and cracks (a near-miss) — and only then shows its face.
    */
-  const turn = (k: number = i) => {
-    const c = deck[k];
-    const plan = plans[k];
-    const go = () => {
-      landing.current = null;
-      setCharging(false);
-      setStep(0);
-      setFlicker(false);
-      setFlipped(true);
-      if (reducedMotion()) return;
-      setFlash({ color: RARITY_LIGHT[c.rarity], key: Date.now(), rainbow: rainbowy(c.rarity) });
-      if (c.rarity === 'omni') {
+  /** A card face up, in this rarity: its flash, sounds, confetti and shake. */
+  const cheer = (c: Card, r: Rarity) => {
+    setFlash({ color: RARITY_LIGHT[r], key: Date.now(), rainbow: rainbowy(r) });
+    if (r === 'omni') {
         // The rarest pull of all: three showers, the strongest shake.
         sfx.victory();
         celebrateBig();
@@ -1696,19 +1755,45 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         // Then the legend speaks, once the fanfare has passed.
         if (c.voice) later(() => playVoice(c), 2400);
         jolt(22, 1000);
-      } else if (c.rarity === 'mythic') {
+      } else if (r === 'mythic') {
         sfx.victory();
         celebrateBig();
         later(() => (celebrateBig(), sfx.streak()), 900);
         if (c.voice) later(() => playVoice(c), 1300);
         jolt(18, 800);
-      } else if (c.rarity === 'legendary') (sfx.victory(), celebrateBig(), jolt(14, 600));
-      else if (c.rarity === 'epic') (sfx.streak(), celebrate(), jolt(6, 300));
-      else if (c.rarity === 'rare') sfx.correct();
+      } else if (r === 'legendary') (sfx.victory(), celebrateBig(), jolt(14, 600));
+      else if (r === 'epic') (sfx.streak(), celebrate(), jolt(6, 300));
+      else if (r === 'rare') sfx.correct();
       else sfx.pop();
+  };
+  const turn = (k: number = i) => {
+    const c = deck[k];
+    const plan = plans[k];
+    const bloom = bloomy(k) && !bloomed.has(k);
+    // A late bloom builds up only as far as the rarity it passes for.
+    const build = (bloom ? plan.step - 1 : plan.step) as Step;
+    const go = () => {
+      landing.current = null;
+      setCharging(false);
+      setStep(0);
+      setFlicker(false);
+      setFlipped(true);
+      if (reducedMotion()) return;
+      if (!bloom) return cheer(c, c.rarity);
+      // It passes for one rarity lower… a beat… a wink from the sky, and it blooms.
+      cheer(c, lower(c.rarity));
+      const finish = () => {
+        blooming.current = null;
+        setWink(null);
+        setBloomed((s) => new Set(s).add(k));
+        cheer(c, c.rarity);
+      };
+      blooming.current = finish;
+      later(() => (setWink({ k, kind: Math.random() < 0.5 ? 'comet' : 'shower' }), sfx.whoosh(), sfx.shimmer(14), buzz(15)), BLOOM_WAIT);
+      later(finish, BLOOM_WAIT + BLOOM_HIT);
     };
     landing.current = go;
-    if ((plan.step === 0 && !plan.near) || reducedMotion()) return go();
+    if ((build === 0 && !plan.near) || reducedMotion()) return go();
     setCharging(true);
     // Each step a little more: a hum, then a drone and a heartbeat, then a jolt, then the screen shaking.
     const enter = (st: Step) => {
@@ -1718,20 +1803,20 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       if (st === 3) (sfx.shimmer(18), jolt(6, 400), buzz([20, 30, 20]));
       if (st === 4) (sfx.shimmer(24), jolt(12, 700), buzz([40, 30, 60]), rumble(stage.current, 1200, 0.4, 8));
     };
-    for (let st = 1 as Step; st <= plan.step; st++) {
+    for (let st = 1 as Step; st <= build; st++) {
       const at = STEP_AT[st];
       const now = st;
       later(() => enter(now), at);
     }
-    let end = TURN_AT[plan.step];
+    let end = TURN_AT[build];
     if (plan.near) {
       // The next step bursts into life… flickers… and cracks.
-      const next = (plan.step + 1) as Step;
+      const next = (build + 1) as Step;
       later(() => (setStep(next), setFlicker(true), sfx.shimmer(10), buzz(25)), end);
-      later(() => (setFlicker(false), setStep(plan.step), sfx.near(), jolt(5, 220), buzz([15, 30, 15])), end + FLICKER_MS);
+      later(() => (setFlicker(false), setStep(build), sfx.near(), jolt(5, 220), buzz([15, 30, 15])), end + FLICKER_MS);
       end += FLICKER_MS + CRACK_MS;
     }
-    if (plan.step >= 2 || (plan.near && plan.step === 1)) {
+    if (build >= 2 || (plan.near && build === 1)) {
       later(() => sfx.suspense((end - STEP_AT[2]) / 1000), STEP_AT[2]);
       heartbeat(STEP_AT[2], end);
     }
@@ -1749,7 +1834,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   const act = () => {
     if (phase === 'choose') return choose(1);
     if (phase === 'pack') return autoTear();
-    if (phase !== 'reveal' || charging) return;
+    if (phase !== 'reveal' || charging || blooming.current) return;
     if (!flipped) return turn(i);
     // A card back from the black hole waits for the player's choice.
     if (pending.has(i) && !(i in kept)) return;
@@ -1770,6 +1855,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     tearSnd.current?.stop();
     tearSnd.current = null;
     setHolding(false);
+    // A late bloom on its way: it blooms now.
+    if (blooming.current) return blooming.current();
     // A top card charging: its turn now, without the wait.
     if (phase === 'reveal' && charging && landing.current) return landing.current();
     const from = phase === 'reveal' ? (flipped ? i + 1 : i) : 0;
@@ -1844,13 +1931,16 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     landing.current();
   };
   const style = card ? RARITY_STYLE[card.rarity] : null;
+  /** What the card on top shows (a late bloom: one rarity lower, until it blooms). */
+  const shown = card ? looks(i) : null;
+  const winking = !!wink && wink.k === i;
   // Time slowing (step 2 and up): it spins front over back.
   const spinning = charging && step >= 2;
   // Rays behind the card: in its build-up's colour, then its own once turned.
-  const rays = !card ? null : flipped ? (card.rarity === 'epic' || top(card.rarity) ? card.rarity : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
+  const rays = !card || !shown ? null : flipped ? (shown === 'epic' || top(shown) ? shown : null) : charging && step >= 1 ? STEP_LIGHT[step] : null;
   return (
     // The summary of five packs is taller than the screen: it scrolls inside the overlay (the page behind stays still).
-    <div ref={box} className="pack-scene fixed inset-0 z-50 overflow-hidden bg-[#07060c]" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
+    <div ref={box} className="pack-scene fixed inset-0 z-50 overflow-hidden bg-[#07060c]" style={{ backgroundImage: `radial-gradient(circle at 50% 40%, ${phase === 'pack' ? '#1e1b4b66' : `${phase === 'summary' ? light : phase === 'reveal' && flipped && shown ? RARITY_LIGHT[shown] : phase === 'torn' || phase === 'meteor' ? glow : packLight}${special && (phase === 'torn' || phase === 'meteor') ? '55' : '22'}`}, transparent 60%)` }}>
       {phase !== 'summary' && (
         <button type="button" onClick={skip} className="absolute right-4 top-4 z-30 rounded-full border border-white/30 px-3 py-1 text-xs font-bold tracking-widest text-white/80 hover:bg-white/10">
           {/* Always the same: a label that changed with what's left would tell it. */}
@@ -1858,7 +1948,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         </button>
       )}
       {/* Slow motion: the room darkens around a Legendary or better as it charges. */}
-      {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && card ? RARITY_LIGHT[card.rarity] : phase === 'torn' ? glow : packLight} />}
+      {phase !== 'meteor' && <Ambient tint={phase === 'summary' ? light : phase === 'reveal' && flipped && shown ? RARITY_LIGHT[shown] : phase === 'torn' ? glow : packLight} />}
       {phase === 'reveal' && charging && step >= 2 && <div className={`pack-slowmo pointer-events-none fixed inset-0 ${flicker ? 'pack-flicker' : ''}`} aria-hidden />}
       {/* The last card, every pack: the room dims before it's turned. */}
       {phase === 'reveal' && !flipped && i === deck.length - 1 && deck.length > 1 && <div className="pack-lastcard pointer-events-none fixed inset-0" aria-hidden />}
@@ -1875,6 +1965,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <div className="golden-backdrop absolute -inset-1/2" />
         </div>
       )}
+      {/* A late bloom's wink: falling onto the card, in its true colour. */}
+      {phase === 'reveal' && winking && card && <BloomWink kind={wink!.kind} rarity={card.rarity} />}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
       {/* The stage: everything that shakes. Not clipped itself (the overlay clips), so the star field's bleed covers the borders mid-shake. */}
@@ -2011,7 +2103,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       )}
 
       {/* 3. One card at a time from the deck. */}
-      {phase === 'reveal' && card && style && (
+      {phase === 'reveal' && card && style && shown && (
         <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-5">
           <p className="font-display text-xs font-bold tracking-[0.35em] text-white/60">
             {pending.has(i) ? 'BACK FROM THE BLACK HOLE · ' : cosmicAt.has(i) ? `${COSMIC_NAME[cosmicAt.get(i)!.kind].icon} ${COSMIC_NAME[cosmicAt.get(i)!.kind].name} · ` : ''}CARD {i + 1} OF {deck.length}
@@ -2033,7 +2125,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             ))}
             {rays && (
               <div className={flicker ? 'pack-flicker' : ''}>
-                <Rays color={RARITY_LIGHT[rays]} strong={flipped ? top(card.rarity) : step >= 2} rainbow={rainbowy(rays)} />
+                <Rays color={RARITY_LIGHT[rays]} strong={flipped ? top(shown) : step >= 2} rainbow={rainbowy(rays)} />
               </div>
             )}
             {/* Building up: light pours into the card from all around, in the step's colours (a fusion). */}
@@ -2041,20 +2133,20 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             {/* Face down, a card leaks its colour round its edges and trembles, the rarer the more. */}
             <div
               key={i}
-              className={`pack-card-in [perspective:1100px] ${!flipped && !charging && card.rarity !== 'common' && !reducedMotion() ? 'pack-leak' : ''}`}
-              style={{ ['--leak' as string]: RARITY_LIGHT[card.rarity], ['--leak-size' as string]: `${6 + RARITIES.indexOf(card.rarity) * 7}px`, ['--leak-shake' as string]: `${RARITIES.indexOf(card.rarity) * 0.6}px` }}
+              className={`pack-card-in [perspective:1100px] ${!flipped && !charging && shown !== 'common' && !reducedMotion() ? 'pack-leak' : ''} ${winking ? 'pack-bloom-charge' : ''}`}
+              style={{ ['--leak' as string]: RARITY_LIGHT[shown], ['--leak-size' as string]: `${6 + RARITIES.indexOf(shown) * 7}px`, ['--leak-shake' as string]: `${RARITIES.indexOf(shown) * 0.6}px`, ['--bloom' as string]: RARITY_LIGHT[card.rarity] }}
             >
               <div className={`relative transition-transform ${flipped ? 'duration-700 [transform:rotateY(180deg)]' : 'duration-300'} [transform-style:preserve-3d] ${charging ? (step === 3 ? 'pack-charge-spin pack-charge-prism' : step >= 2 ? 'pack-charge-spin' : 'pack-charge') : ''}`} style={charging && step >= 2 ? SPIN[step >= 4 ? 'omni' : step === 3 ? 'mythic' : 'legendary'] : undefined}>
                 {/* Spinning front over back (time slowing): the back shows on both sides, the face stays hidden until the turn. */}
                 <div className={spinning ? '' : '[backface-visibility:hidden]'}>
-                  <CardBack rarity={charging && step >= 1 ? STEP_LIGHT[step] : card.rarity === 'common' ? undefined : card.rarity} />
+                  <CardBack rarity={charging && step >= 1 ? STEP_LIGHT[step] : shown === 'common' ? undefined : shown} />
                 </div>
-                <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${spinning ? 'opacity-0' : ''}`}>
-                  <CardFace card={card} count={counts[card.id]} isNew={fresh.has(card.id)} animate={flipped} anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
+                <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] ${spinning ? 'opacity-0' : ''} ${flipped && bloomed.has(i) ? 'pack-bloom' : ''}`}>
+                  <CardFace key={shown} card={asShown(i)} count={counts[card.id]} isNew={fresh.has(card.id)} animate={flipped} anomaly={pending.has(i) && kept[i] !== false ? pending.get(i) : undefined} />
                 </div>
               </div>
             </div>
-            {flipped && !reducedMotion() && <Burst key={`b${i}`} color={RARITY_LIGHT[card.rarity]} rainbow={rainbowy(card.rarity)} count={card.rarity === 'omni' ? 100 : card.rarity === 'mythic' ? 70 : card.rarity === 'legendary' ? 46 : card.rarity === 'epic' ? 32 : card.rarity === 'rare' ? 18 : 10} />}
+            {flipped && !reducedMotion() && <Burst key={`b${i}${shown}`} color={RARITY_LIGHT[shown]} rainbow={rainbowy(shown)} count={shown === 'omni' ? 100 : shown === 'mythic' ? 70 : shown === 'legendary' ? 46 : shown === 'epic' ? 32 : shown === 'rare' ? 18 : 10} />}
             {/* Held: a light grows under the finger, in the build-up's colour — pushing it on (or so it feels). */}
             {press && !flipped && <span key={press.key} className="pack-press pointer-events-none absolute z-20 rounded-full" style={{ left: press.x, top: press.y, ['--press' as string]: RARITY_LIGHT[STEP_LIGHT[step]] }} />}
             {flipped && fresh.has(card.id) && <span className="pack-stamp absolute -right-6 top-6 z-30 rounded-md border-4 border-coral px-2 py-0.5 font-display text-xl font-black tracking-widest text-coral">NEW!</span>}
@@ -2062,11 +2154,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <div className="min-h-14 text-center">
             {flipped ? (
               <div className="animate-pop">
-                <p className={`font-display text-sm font-bold tracking-[0.35em] ${card.rarity === 'omni' ? 'card-omni-name text-lg' : card.rarity === 'mythic' ? 'card-mythic-name text-base' : ''}`} style={prismatic(card.rarity) ? undefined : { color: RARITY_LIGHT[card.rarity] }}>
+                <p key={shown} className={`font-display text-sm font-bold tracking-[0.35em] ${bloomed.has(i) ? 'animate-pop' : ''} ${shown === 'omni' ? 'card-omni-name text-lg' : shown === 'mythic' ? 'card-mythic-name text-base' : ''}`} style={prismatic(shown) ? undefined : { color: RARITY_LIGHT[shown] }}>
                   {pending.get(i) === 'fake' && kept[i] !== false
                     ? '✦ MYTHIC ✦'
-                    : card.rarity === 'omni' ? '✪ OMNI ✪' : card.rarity === 'mythic' ? '✦ MYTHIC ✦' : card.rarity === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[card.rarity].name.toUpperCase()}
+                    : shown === 'omni' ? '✪ OMNI ✪' : shown === 'mythic' ? '✦ MYTHIC ✦' : shown === 'legendary' ? '★ LEGENDARY ★' : RARITY_INFO[shown].name.toUpperCase()}
                 </p>
+                {winking && <p className="pack-bloom-hint text-xs font-bold tracking-widest" style={{ color: RARITY_LIGHT[card.rarity] }}>✨ wait… something&apos;s coming</p>}
+                {bloomed.has(i) && <p className="text-xs font-bold tracking-widest text-white/70">✨ A late bloom — it looked {RARITY_INFO[lower(card.rarity)].name}</p>}
                 {cosmicAt.has(i) && <p className="text-xs font-bold tracking-widest text-white/70">{COSMIC_DONE[cosmicAt.get(i)!.kind]} — it was {RARITY_INFO[cosmicAt.get(i)!.from.rarity].name}</p>}
                 {card.title && <p className="text-sm italic text-white/80">{card.title}</p>}
                 <p className="font-serif text-2xl font-bold text-white">{shownName(card.name, card.set)}</p>
@@ -2079,9 +2173,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           {flipped && pending.has(i) && <AnomalyChoice anomaly={pending.get(i)!} kept={kept[i]} onDecide={(keep) => decide(i, keep)} />}
           {/* The tray: the cards already turned. */}
           <div className="flex h-20 items-end justify-center gap-2">
-            {deck.slice(0, flipped ? i + 1 : i).map((c, k) => (
-              <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[c.rarity]}88` }}>
-                <CardFace card={c} tilt={false} still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+            {deck.slice(0, flipped ? i + 1 : i).map((_, k) => (
+              <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[looks(k)]}88` }}>
+                <CardFace key={looks(k)} card={asShown(k)} tilt={false} still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
               </div>
             ))}
           </div>

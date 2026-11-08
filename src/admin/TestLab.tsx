@@ -91,7 +91,8 @@ export default function TestLab() {
   const [sky, setSky] = useSwitch('omnidle-force-sky');
   const [golden, setGolden] = useSwitch('omnidle-force-golden');
   const [flyby, setFlyby] = useSwitch('omnidle-force-flyby');
-  const clearRig = () => (setDraw(Array(PACK_SIZE).fill('')), setOnce(''), setCosmic(''), setHole(''), setSky(''), setGolden(''), setFlyby(''));
+  const [bloom, setBloom] = useSwitch('omnidle-force-bloom');
+  const clearRig = () => (setDraw(Array(PACK_SIZE).fill('')), setOnce(''), setCosmic(''), setHole(''), setSky(''), setGolden(''), setFlyby(''), setBloom(''));
 
   // ── A card: found, previewed, given ──
   const [q, setQ] = useState('');
@@ -236,6 +237,9 @@ export default function TestLab() {
           </label>
           <label className="flex items-center gap-2">
             <input type="checkbox" checked={flyby === '1'} onChange={(e) => setFlyby(e.target.checked ? '1' : '')} /> Fly-by every time
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={bloom === '1'} onChange={(e) => setBloom(e.target.checked ? '1' : '')} /> Late bloom on every Legendary and Mythic
           </label>
           <label className="flex items-center gap-2">
             <input type="checkbox" checked={once === '1'} onChange={(e) => setOnce(e.target.checked ? '1' : '')} /> Rigged cards for the next purchase only

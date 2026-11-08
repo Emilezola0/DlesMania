@@ -734,6 +734,35 @@ h1, h2, h3, .font-serif, .font-display {
   background: radial-gradient(circle, #fff 30%, var(--comet, #a5f3fc) 60%, transparent 72%);
   box-shadow: 0 0 3vmin var(--comet, #a5f3fc), 0 0 7vmin var(--comet, #38bdf8);
 }
+/* The late bloom (PackOpening): a card turned up one rarity short, a wink from the sky falling onto it, and it blooms. */
+.bloom-comet-way { position: absolute; left: 50%; top: 40%; width: 0; height: 0; rotate: 32deg; }
+.bloom-comet { position: absolute; right: 0; top: 0; width: 34vmin; height: 2vmin; translate: 0 -50%; opacity: 0; animation: bloom-comet 1500ms cubic-bezier(0.55, 0, 0.85, 0.55) both; }
+.bloom-comet-big { width: 46vmin; height: 3vmin; }
+@keyframes bloom-comet {
+  from { transform: translateX(-120vmin); opacity: 0; }
+  12% { opacity: 1; }
+  96% { opacity: 1; }
+  to { transform: translateX(1vmin); opacity: 0; }
+}
+.bloom-streak { height: 2px; border-radius: 9999px; background: linear-gradient(90deg, transparent, var(--bloom) 65%, #fff); box-shadow: 0 0 8px var(--bloom); rotate: 32deg; opacity: 0; animation: bloom-streak 0.75s ease-in both; }
+@keyframes bloom-streak {
+  from { transform: translateX(-25vmin); opacity: 0; }
+  25% { opacity: 1; }
+  to { transform: translateX(25vmin); opacity: 0; }
+}
+.pack-bloom-charge { animation: pack-bloom-charge 0.45s ease-in-out infinite alternate; }
+@keyframes pack-bloom-charge {
+  from { filter: drop-shadow(0 0 4px var(--bloom)); }
+  to { filter: drop-shadow(0 0 24px var(--bloom)) brightness(1.12); }
+}
+.pack-bloom { animation: pack-bloom 0.7s cubic-bezier(0.2, 1.6, 0.4, 1) both; }
+@keyframes pack-bloom {
+  from { scale: 0.88; filter: brightness(2.4); }
+  to { scale: 1; filter: none; }
+}
+.pack-bloom-hint { animation: pack-bloom-hint 0.5s ease-in-out infinite alternate; }
+@keyframes pack-bloom-hint { from { opacity: 0.4; } to { opacity: 1; } }
+
 /* A meteor shower: streaks falling down to the left. */
 .sky-shower {
   background: linear-gradient(90deg, transparent, #fff);
