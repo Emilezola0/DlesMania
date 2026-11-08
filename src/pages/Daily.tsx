@@ -12,7 +12,9 @@ import { buildDaily, isDomain } from '../lib/rounds';
 import { MAX_DAILY_SCORE } from '../lib/scoring';
 import { sfx } from '../lib/sfx';
 import { roundEmoji, shareText } from '../lib/share';
-import { computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
+import { computeStreak, DAILY_DOMAINS, dayKey, summarizeDay, useProgress } from '../store/progress';
+import { CATEGORY_BONUS, DAILY_COMPLETE, dailyCompleteCoins } from '../gacha/economy';
+import { DleCoin } from '../components/DleCoin';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
 import { RulesButton } from '../components/RulesModal';
 import { GroupHost, GroupJoin } from '../components/GroupCode';
@@ -99,6 +101,36 @@ export function DailyHub() {
   );
 }
 
+/** What finishing this category paid: today's by its score, and how far along the all-four bonus is. */
+function DailyReward({ date, score, days }: { date: string; score: number; days: ReturnType<typeof useProgress.getState>['days'] }) {
+  if (date !== todayKey())
+    return (
+      <p className="text-sm text-ink-soft">
+        +{CATEGORY_BONUS} <DleCoin className="inline size-4 align-[-3px]" /> for a past day · today&apos;s dailies pay {DAILY_COMPLETE.min.toLocaleString('en')} to {DAILY_COMPLETE.max.toLocaleString('en')}
+      </p>
+    );
+  const done = DAILY_DOMAINS.filter((d) => summarizeDay(days[dayKey(d, date)]).complete).length;
+  return (
+    <div className="mx-auto w-fit space-y-1 rounded-md border border-rule bg-card/70 px-5 py-3">
+      <p className="font-display text-2xl font-black">
+        +{dailyCompleteCoins(score).toLocaleString('en')} <DleCoin className="inline size-6 align-[-4px]" />
+      </p>
+      <p className="text-xs text-ink-soft">
+        for finishing it ({DAILY_COMPLETE.min.toLocaleString('en')} to {DAILY_COMPLETE.max.toLocaleString('en')}, by your score)
+      </p>
+      <p className={`text-sm font-semibold ${done >= DAILY_DOMAINS.length ? 'text-hit' : ''}`}>
+        {done >= DAILY_DOMAINS.length ? (
+          <>🏆 All four done today: +{DAILY_COMPLETE.allFour.toLocaleString('en')} bonus</>
+        ) : (
+          <>
+            {done}/{DAILY_DOMAINS.length} today · finish all four for +{DAILY_COMPLETE.allFour.toLocaleString('en')}
+          </>
+        )}
+      </p>
+    </div>
+  );
+}
+
 function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date: string; specs: RoundSpec[]; rounds: Record<number, RoundRecord>; onPick: (i: number) => void }) {
   const days = useProgress((s) => s.days);
   const sum = summarizeDay(rounds);
@@ -131,6 +163,7 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
           </span>
         )}
       </p>
+      <DailyReward date={date} score={sum.score} days={days} />
       <Ornament />
       <div className="grid grid-cols-5 gap-2">
         {specs.map((s, i) => {

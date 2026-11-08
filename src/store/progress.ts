@@ -30,6 +30,8 @@ import {
   BOSS_WEEKLY,
   BOSS_WIN,
   CATEGORY_BONUS,
+  DAILY_COMPLETE,
+  dailyCompleteCoins,
   MISSIONS,
   freshEconomy,
   missionsFor,
@@ -956,10 +958,17 @@ export const useProgress = create<ProgressState>()(
           const day = { ...s.days[key], [index]: record };
           const update = { days: { ...s.days, [key]: day } };
           if (!justFinished(s.days[key]?.[index], record)) return update;
-          // Coins for the round, and a bonus once all ten are played.
+          // Coins for the round, and a bonus once all ten are played: today's, by its score (and more once all
+          // four of today's are done); a past day's (the Archive), a small one.
           const won = record.status === 'won';
           const complete = summarizeDay(day).finished >= ROUNDS_PER_DAY && summarizeDay(s.days[key]).finished < ROUNDS_PER_DAY;
-          return { ...update, ...earn(s, roundCoins(won, record.score) + (complete ? CATEGORY_BONUS : 0), { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
+          let bonus = 0;
+          if (complete && date === todayKey()) {
+            bonus = dailyCompleteCoins(summarizeDay(day).score);
+            const days = update.days;
+            if (DAILY_DOMAINS.every((d) => summarizeDay(days[dayKey(d, date)]).complete)) bonus += DAILY_COMPLETE.allFour;
+          } else if (complete) bonus = CATEGORY_BONUS;
+          return { ...update, ...earn(s, roundCoins(won, record.score) + bonus, { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
         }),
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
@@ -1083,6 +1092,9 @@ export const useProgress = create<ProgressState>()(
 // The player's own JLPT words, known to the JLPT data as they are now and whenever they change.
 setCustomWords(useProgress.getState().jlptCustom);
 useProgress.subscribe((s, before) => s.jlptCustom !== before.jlptCustom && setCustomWords(s.jlptCustom));
+
+/** The four category dailies (as in src/data DOMAINS, kept here so the store stays light). */
+export const DAILY_DOMAINS: Domain[] = ['games', 'anime', 'cinema', 'music'];
 
 export interface DaySummary {
   finished: number;

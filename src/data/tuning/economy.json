@@ -5,6 +5,11 @@
     "loss": 4
   },
   "categoryBonus": 50,
+  "dailyComplete": {
+    "min": 1000,
+    "max": 2500,
+    "allFour": 2500
+  },
   "bossWin": {
     "easy": 24,
     "medium": 50,

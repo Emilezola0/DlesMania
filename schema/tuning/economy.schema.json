@@ -32,7 +32,19 @@
     "categoryBonus": {
       "type": "integer",
       "minimum": 0,
-      "description": "All ten rounds of a category played"
+      "description": "All ten rounds of a category played, on a past day (the Archive)"
+    },
+    "dailyComplete": {
+      "type": "object",
+      "title": "Today's dailies finished",
+      "description": "All ten rounds of one of today's four category dailies played: from min (a score of 0) to max (a perfect 1000), by its score; allFour once all four of today's are done",
+      "properties": {
+        "min": { "type": "integer", "minimum": 0, "description": "DleCoins for a category finished with a score of 0" },
+        "max": { "type": "integer", "minimum": 0, "description": "DleCoins for a category finished with a perfect score" },
+        "allFour": { "type": "integer", "minimum": 0, "description": "Bonus once all four of today's categories are finished" }
+      },
+      "required": ["min", "max", "allFour"],
+      "additionalProperties": false
     },
     "bossWin": {
       "type": "object",
@@ -1226,6 +1238,7 @@
   "required": [
     "round",
     "categoryBonus",
+    "dailyComplete",
     "bossWin",
     "bossLoss",
     "bossWeekly",

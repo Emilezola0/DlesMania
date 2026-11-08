@@ -11,11 +11,23 @@ import { hashString } from '../lib/rng';
 import type { BossDifficulty } from '../store/progress';
 import T from '../data/tuning/economy.json';
 import G from '../data/tuning/games.json';
+import { MAX_DAILY_SCORE } from '../lib/scoring';
 
 /** A finished daily round (category or Specialist): more for a better score. */
 export const roundCoins = (won: boolean, score: number, r: typeof T.round = T.round) => (won ? r.win + r.perTenPoints * Math.floor(Math.max(0, score) / 10) : r.loss);
-/** All ten rounds of a category's daily played. */
+/** A daily round's coins (the numbers). */
+export const ROUND = T.round;
+/** All ten rounds of a category's daily played, on a past day (the Archive). */
 export const CATEGORY_BONUS = T.categoryBonus;
+/**
+ * One of today's four category dailies finished: from DAILY_COMPLETE.min (a score of 0) to .max (a perfect
+ * score), by its score, to the nearest 10; and DAILY_COMPLETE.allFour once all four of today's are done.
+ */
+export const DAILY_COMPLETE = T.dailyComplete;
+export const dailyCompleteCoins = (score: number) => {
+  const share = Math.min(1, Math.max(0, score / MAX_DAILY_SCORE));
+  return Math.round((DAILY_COMPLETE.min + (DAILY_COMPLETE.max - DAILY_COMPLETE.min) * share) / 10) * 10;
+};
 
 /** Every boss fight: a win by difficulty, a token for a loss. */
 export const BOSS_WIN: Record<BossDifficulty, number> = T.bossWin;

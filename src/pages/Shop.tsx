@@ -3,7 +3,7 @@ import { giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
 import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -426,7 +426,9 @@ export default function Shop() {
           <DleCoin /> Earning DleCoins
         </h2>
         <ul className="list-inside list-disc space-y-1">
-          <li>Every daily round you finish: 6 to 16 coins, the better your score the more (2 for a lost round); +{CATEGORY_BONUS} for playing all ten of a category.</li>
+          <li>
+            Every daily round you finish: {ROUND.win} to {ROUND.win + ROUND.perTenPoints * 10} coins, the better your score the more ({ROUND.loss} for a lost round). Finishing one of today&apos;s four dailies: {DAILY_COMPLETE.min.toLocaleString('en')} to {DAILY_COMPLETE.max.toLocaleString('en')}, by its score, and +{DAILY_COMPLETE.allFour.toLocaleString('en')} once all four are done (a past day from the Archive: +{CATEGORY_BONUS}).
+          </li>
           <li>Specialist dailies: the same per round.</li>
           <li>
             Every Boss Battle: {BOSS_WIN.easy} for a win on Easy, {BOSS_WIN.medium} on Medium, {BOSS_WIN.hard} on Hard, {BOSS_WIN.hell} on Hell ({BOSS_LOSS} for a loss) — and the first win over each boss at each difficulty
