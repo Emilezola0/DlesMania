@@ -1,7 +1,7 @@
 // Summit: climb a wall one hand at a time. Every hold within reach shows a face; type the name to
 // grab it. Stamina drains all the while — faster on poor holds, steep walls and awkward positions
-// (hands far apart or crossed) — and comes back on the ledges every few metres. Out of stamina, you
-// fall to the last ledge (or piton) and lose a rope. The score is the height reached.
+// (hands far apart or crossed) — and comes back on the ledges, further and further apart. Out of stamina,
+// you fall: one rope, so the run is over. The score is the height reached.
 import { BOSSES } from '../data/bosses';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import { withFrench } from '../lib/french';
@@ -45,9 +45,12 @@ export const WALL_W = 4;
 export const REACH = 1.55;
 /** A long reach: possible when nothing nearer is up there, but it costs. */
 export const FAR_REACH = 1.95;
+/** The first ledge's height; each one after is LEDGE_GROWS metres further than the one before (6, 14, 24, 36…). */
 export const LEDGE_EVERY = 6;
+export const LEDGE_GROWS = 2;
 export const MAX_STAMINA = 100;
-export const ROPES = 3;
+/** One rope: a fall ends the run (a ticket: no second and third tries). */
+export const ROPES = 1;
 /** Lit holds show their name after this long, at a price: the clock kept running. */
 export const REVEAL_MS = 4500;
 /** A wrong name: the hand slips. */
@@ -104,8 +107,20 @@ export const FACES: Face[] = (() => {
     );
 })();
 
-export const sectionOf = (y: number) => Math.floor(y / LEDGE_EVERY);
-export const ledgeAbove = (y: number) => (sectionOf(y + 0.01) + 1) * LEDGE_EVERY;
+/** The height of the k-th ledge (0: the ground): the gaps grow by LEDGE_GROWS each time. */
+export const ledgeAt = (k: number) => k * LEDGE_EVERY + (LEDGE_GROWS * k * (k - 1)) / 2;
+/** Which section (between ledge k and k+1) a height is in. */
+export function sectionOf(y: number): number {
+  if (y <= 0) return 0;
+  // Solved for k, then nudged: rounding at a ledge's very height.
+  const a = LEDGE_GROWS / 2;
+  const b = LEDGE_EVERY - a;
+  let k = Math.floor((-b + Math.sqrt(b * b + 4 * a * y)) / (2 * a));
+  while (ledgeAt(k + 1) <= y) k++;
+  while (k > 0 && ledgeAt(k) > y) k--;
+  return k;
+}
+export const ledgeAbove = (y: number) => ledgeAt(sectionOf(y + 0.01) + 1);
 
 export function angleOf(section: number, seed: number): WallAngle {
   if (section === 0) return 'vertical';
@@ -128,10 +143,11 @@ function kindFor(section: number, r: number): HoldKind {
 export function makeSection(section: number, seed: number, firstId: number, faces: Face[] = FACES): Hold[] {
   const rand = mulberry32(seed * 977 + section * 7919);
   const holds: Hold[] = [];
-  const base = section * LEDGE_EVERY;
+  const base = ledgeAt(section);
+  const top = ledgeAt(section + 1);
   const recent: string[] = [];
   let id = firstId;
-  for (let y = base + 0.45; y < base + LEDGE_EVERY - 0.35; y += 0.42 + rand() * 0.18) {
+  for (let y = base + 0.45; y < top - 0.35; y += 0.42 + rand() * 0.18) {
     const n = rand() < 0.4 ? 3 : 2;
     const xs: number[] = [];
     for (let tries = 0; xs.length < n && tries < 40; tries++) {

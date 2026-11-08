@@ -7,6 +7,8 @@ import {
   HOLD_INFO,
   ITEM_INFO,
   LEDGE_EVERY,
+  LEDGE_GROWS,
+  ledgeAt,
   MAX_STAMINA,
   REACH,
   REVEAL_MS,
@@ -48,7 +50,8 @@ const SUMMIT_OPTIONS = franchiseOptions(new Set(FACES.map((f) => f.set)));
 const HAND_MS = 220;
 const FALL_MS = 1300;
 const KIND_COLOR: Record<HoldKind, string> = { jug: '#34d399', pinch: '#60a5fa', crimp: '#fb923c', sloper: '#f472b6' };
-const ITEMS: Item[] = ['chalk', 'piton', 'bar'];
+// No piton: with one rope, there is no next fall for it to stop.
+const ITEMS: Item[] = ['chalk', 'bar'];
 
 type Hand = 'L' | 'R';
 type Phase = 'ready' | 'climb' | 'rest' | 'fell' | 'over';
@@ -218,8 +221,8 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
   const hi = g.camY + h / s;
   for (let k = Math.max(0, sectionOf(lo)); k <= sectionOf(hi); k++) {
     const angle = angleOf(k, g.seed);
-    const top = Y((k + 1) * LEDGE_EVERY);
-    const bottom = Y(k * LEDGE_EVERY);
+    const top = Y(ledgeAt(k + 1));
+    const bottom = Y(ledgeAt(k));
     ctx.fillStyle = tile;
     ctx.fillRect(0, top, w, bottom - top);
     if (angle !== 'vertical') {
@@ -247,13 +250,13 @@ function draw(ctx: CanvasRenderingContext2D, g: State, w: number, h: number, now
   ctx.globalAlpha = 1;
   // Ledges.
   for (let k = Math.max(1, sectionOf(lo)); k <= sectionOf(hi) + 1; k++) {
-    const y = Y(k * LEDGE_EVERY);
+    const y = Y(ledgeAt(k));
     ctx.fillStyle = cssVar('--color-rule-strong', '#888');
     ctx.fillRect(0, y - 0.04 * s, w, 0.14 * s);
     ctx.fillStyle = ink;
     ctx.textAlign = 'center';
     ctx.font = '700 11px system-ui, sans-serif';
-    ctx.fillText(`LEDGE · ${k * LEDGE_EVERY} m`, w / 2, y - 0.08 * s);
+    ctx.fillText(`LEDGE · ${ledgeAt(k)} m`, w / 2, y - 0.08 * s);
   }
 
   const climbing = g.phase === 'climb' && !g.anim;
@@ -447,8 +450,8 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
   const bestBefore = useRef(best);
   useTypeToFocus(input, g.current.phase === 'climb');
 
-  // Kept at every fall and ledge; paid once, when the last rope's gone: a coin every few metres.
-  const save = () => recordBest(bestKey, Math.round(g.current.maxH * 10), g.current.phase === 'over' ? { reached: g.current.maxH / 4 } : { save: true });
+  // Kept at every ledge; paid once, at the fall: more and more DleCoins the higher (one rope, so a metre pays more than it did).
+  const save = () => recordBest(bestKey, Math.round(g.current.maxH * 10), g.current.phase === 'over' ? { reached: g.current.maxH / 3 } : { save: true });
 
   // The loop: stamina, the camera, the wall ahead, and the picture.
   useEffect(() => {
@@ -666,7 +669,7 @@ function Game({ faces, bestKey }: { faces: Face[]; bestKey: string }) {
         <p className="font-display text-sm text-ink-soft">
           <span className="font-serif text-4xl font-bold text-ink">{height}</span> m · top {st.maxH.toFixed(1)} m · best {(Math.max(best, Math.round(st.maxH * 10)) / 10).toFixed(1)} m
         </p>
-        <p className="font-display text-sm" title="Ropes: a fall costs one">
+        <p className="font-display text-sm" title="One rope: a fall ends the climb">
           {Array.from({ length: ROPES }, (_, i) => (
             <span key={i} className={i < st.ropes ? '' : 'opacity-25 grayscale'}>
               🪢
@@ -782,8 +785,8 @@ export default function Summit() {
         <p className="text-ink-soft">
           Climb one hand at a time: the holds within reach show a face — type the name to grab it (the name shows if you wait, but the clock
           runs). Stamina drains all the time, faster on crimps and slopers, on overhangs, and with your arms wide or crossed. Pull up onto
-          a ledge every {LEDGE_EVERY} m to rest and pick an item. Out of stamina, you fall back to the last ledge and lose a rope. Your score is
-          the height you reach.
+          a ledge to rest and pick an item: the first at {LEDGE_EVERY} m, then each one {LEDGE_GROWS} m further than the last. One rope only: out of
+          stamina, you fall and the climb is over. Your score is the height you reach, and the higher you get, the more DleCoins it pays.
         </p>
       </div>
       <div className="mx-auto max-w-xl">
