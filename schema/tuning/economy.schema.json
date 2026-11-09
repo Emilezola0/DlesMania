@@ -1233,6 +1233,17 @@
       },
       "required": ["times", "tries", "days"],
       "additionalProperties": false
+    },
+    "trades": {
+      "type": "object",
+      "title": "Trades",
+      "description": "What one trade offer can hold on each side (src/cloud/trades.ts); firestore.rules allow 5 cards and 500,000 DleCoins at most",
+      "properties": {
+        "maxCards": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Cards on each side of an offer" },
+        "maxCoins": { "type": "integer", "minimum": 0, "maximum": 500000, "description": "DleCoins on each side of an offer" }
+      },
+      "required": ["maxCards", "maxCoins"],
+      "additionalProperties": false
     }
   },
   "required": [

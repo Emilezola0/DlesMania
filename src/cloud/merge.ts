@@ -68,6 +68,7 @@ export const SYNCED = [
   'freePacks',
   'shownPlush',
   'doodle',
+  'tradeLock',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -290,5 +291,10 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     shownPlush: latest.shownPlush ?? null,
     // The Daily Doodle's rewards paid on either side stay paid.
     doodle: mergeMax(local.doodle, cloud.doodle),
+    // What was earned without an account stays locked: both sides' on a first link (the cards and coins add up
+    // too), then the latest save's, with its cards.
+    tradeLock: firstLink
+      ? { cards: sumBy(local.tradeLock?.cards, cloud.tradeLock?.cards), coins: (local.tradeLock?.coins ?? 0) + (cloud.tradeLock?.coins ?? 0) }
+      : (latest.tradeLock ?? { cards: {}, coins: 0 }),
   };
 }

@@ -344,5 +344,9 @@
     ],
     "tries": 3,
     "days": 2
+  },
+  "trades": {
+    "maxCards": 5,
+    "maxCoins": 500000
   }
 }

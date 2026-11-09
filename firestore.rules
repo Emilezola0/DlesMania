@@ -9,27 +9,44 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == uid;
     }
 
-    // Card trades (src/cloud/trades.ts). Any signed-in player can look an offer up by its code;
-    // only its maker can open or cancel it and collect what came back; only someone else can take it.
+    // Trades (src/cloud/trades.ts). Any signed-in player can look an offer up by its code; only its
+    // maker can open or cancel it and collect what came back; only someone else can take it. An offer holds
+    // up to 5 cards and 500,000 DleCoins a side (economy.json trades). Offers made before coins came in hold
+    // one card each way (give a string, want a string or null) and are still taken the old way.
     match /trades/{code} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
         && request.resource.data.from == request.auth.uid
-        && request.resource.data.status == 'open';
-      allow update: if request.auth != null
-        && request.resource.data.from == resource.data.from
-        && request.resource.data.give == resource.data.give
-        && request.resource.data.want == resource.data.want
-        && (
-          // The maker cancels an offer nobody took, or collects what came back.
-          (resource.data.from == request.auth.uid && resource.data.status == 'open' && request.resource.data.status == 'cancelled')
-          || (resource.data.from == request.auth.uid && resource.data.status == 'accepted' && request.resource.data.status == 'claimed')
-          // Someone else takes an open offer, with the card it asks for (if it asks for one).
-          || (resource.data.from != request.auth.uid && resource.data.status == 'open'
-              && request.resource.data.status == 'accepted'
-              && request.resource.data.to == request.auth.uid
+        && request.resource.data.status == 'open'
+        && request.resource.data.give is list && request.resource.data.give.size() <= 5
+        && request.resource.data.want is list && request.resource.data.want.size() <= 5
+        && request.resource.data.wantAny is bool
+        && request.resource.data.giveCoins is int && request.resource.data.giveCoins >= 0 && request.resource.data.giveCoins <= 500000
+        && request.resource.data.wantCoins is int && request.resource.data.wantCoins >= 0 && request.resource.data.wantCoins <= 500000
+        && (request.resource.data.give.size() > 0 || request.resource.data.giveCoins > 0)
+        && (request.resource.data.want.size() > 0 || request.resource.data.wantAny || request.resource.data.wantCoins > 0);
+      allow update: if request.auth != null && (
+        // The maker cancels an offer nobody took, or collects what came back.
+        (resource.data.from == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+          && ((resource.data.status == 'open' && request.resource.data.status == 'cancelled')
+              || (resource.data.status == 'accepted' && request.resource.data.status == 'claimed')))
+        // Someone else takes an open offer, with the cards it asks for.
+        || (resource.data.from != request.auth.uid && resource.data.status == 'open'
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'to', 'toName', 'got'])
+          && request.resource.data.status == 'accepted'
+          && request.resource.data.to == request.auth.uid
+          && (
+            (resource.data.give is string
+              && request.resource.data.got is string
               && (resource.data.want == null || request.resource.data.got == resource.data.want))
-        );
+            || (resource.data.give is list
+              && request.resource.data.got is list
+              && request.resource.data.got.hasAll(resource.data.want)
+              && ((resource.data.wantAny && request.resource.data.got.size() == resource.data.want.size() + 1)
+                  || (!resource.data.wantAny && request.resource.data.got.size() == resource.data.want.size())))
+          ))
+      );
     }
 
     // Curve Clash online (src/cloud/clash.ts): any signed-in player can look a game up and join it

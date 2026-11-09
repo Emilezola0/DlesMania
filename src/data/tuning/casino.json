@@ -63,6 +63,6 @@
   "blackMarket": {
     "give": 2,
     "rarities": ["mythic", "omni"],
-    "price": { "mythic": 40000, "omni": 120000 }
+    "price": { "mythic": 25000, "omni": 100000 }
   }
 }

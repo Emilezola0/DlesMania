@@ -29,6 +29,9 @@ export const dailyCompleteCoins = (score: number) => {
   return Math.round((DAILY_COMPLETE.min + (DAILY_COMPLETE.max - DAILY_COMPLETE.min) * share) / 10) * 10;
 };
 
+/** What one trade offer can hold on each side (src/cloud/trades.ts; firestore.rules keeps the same limits). */
+export const TRADE_LIMITS = T.trades;
+
 /** Every boss fight: a win by difficulty, a token for a loss. */
 export const BOSS_WIN: Record<BossDifficulty, number> = T.bossWin;
 export const BOSS_LOSS = T.bossLoss;

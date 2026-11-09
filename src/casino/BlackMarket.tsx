@@ -1,7 +1,7 @@
 // The Black Market (Casino → Black Market): two Mythic (or Omni) cards of a franchise handed over for one other card
 // of that franchise and rarity, picked by the player. The cards handed over go on the player's stall, where their
 // friends can buy them for DleCoins (dear) for a week (src/cloud/blackmarket.ts). The numbers: casino.json blackMarket.
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DleCoin } from '../components/DleCoin';
 import { CardFace } from '../gacha/CardView';
 import { CARD_BY_ID, COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from '../gacha/cards';
@@ -11,7 +11,7 @@ import type { Stall } from '../cloud/blackmarket';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
-import { useProgress } from '../store/progress';
+import { tradableCopies, useProgress } from '../store/progress';
 
 const BM = T.blackMarket as { give: number; rarities: Rarity[]; price: Record<string, number> };
 const cloud = () => import('../cloud/blackmarket');
@@ -42,6 +42,9 @@ function Mini({ card, count, onClick, picked, dim, note }: { card: Card; count?:
 
 export function BlackMarket() {
   const owned = useProgress((s) => s.cards);
+  const tradeLock = useProgress((s) => s.tradeLock);
+  // Only copies earned with an account signed in go on a stall (tradeLock, src/store/progress.ts).
+  const free = useCallback((id: string) => tradableCopies({ cards: owned, tradeLock }, id), [owned, tradeLock]);
   const coins = useProgress((s) => s.coins);
   const moveCards = useProgress((s) => s.moveCards);
   const buyStallCard = useProgress((s) => s.buyStallCard);
@@ -57,12 +60,12 @@ export function BlackMarket() {
       const key = `${c.franchise}|${c.rarity}`;
       const g = by.get(key) ?? { key, franchise: c.franchise, rarity: c.rarity, all: [], mine: [], copies: 0 };
       g.all.push(c);
-      if ((owned[c.id] ?? 0) > 0) (g.mine.push(c), (g.copies += owned[c.id]));
+      if (free(c.id) > 0) (g.mine.push(c), (g.copies += free(c.id)));
       by.set(key, g);
     }
     // Enough to hand over, and something else to get for them.
     return [...by.values()].filter((g) => g.copies >= BM.give && g.all.length >= 2).sort((a, b) => b.copies - a.copies || a.franchise.localeCompare(b.franchise));
-  }, [owned]);
+  }, [free]);
 
   const [picked, setPicked] = useState<string[]>([]);
   const [target, setTarget] = useState<string | null>(null);
@@ -78,7 +81,7 @@ export function BlackMarket() {
     // Another franchise or rarity: start again with this card.
     if (!group || group.key !== g.key) return setPicked([c.id]);
     if (picked.length >= BM.give) return setPicked([...picked.slice(1), c.id]);
-    if (times(c.id) >= (owned[c.id] ?? 0)) return setPicked(picked.filter((p) => p !== c.id));
+    if (times(c.id) >= free(c.id)) return setPicked(picked.filter((p) => p !== c.id));
     setPicked([...picked, c.id]);
   };
   const lastCopies = [...new Set(picked)].filter((id) => (owned[id] ?? 0) - times(id) <= 0).map((id) => CARD_BY_ID.get(id)!);
@@ -174,7 +177,7 @@ export function BlackMarket() {
         <h3 className="font-display text-lg font-bold">1 · Pick {BM.give} cards to hand over</h3>
         {groups.length === 0 ? (
           <p className="page rounded-md p-4 text-sm text-ink-soft">
-            You need {BM.give} {BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ')} cards (copies count) of the same franchise. Keep opening packs: duplicates of a franchise&apos;s Mythics will do.
+            You need {BM.give} {BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ')} cards (copies count) of the same franchise. Keep opening packs: duplicates of a franchise&apos;s Mythics will do. Only cards earned with your account signed in count: they go to your friends' stalls.
           </p>
         ) : (
           groups.map((g) => (
@@ -187,7 +190,7 @@ export function BlackMarket() {
               </p>
               <div className="-mx-1 flex gap-3 overflow-x-auto px-2 pb-2 pt-4">
                 {g.mine.map((c) => (
-                  <Mini key={c.id} card={c} count={owned[c.id]} picked={group?.key === g.key ? times(c.id) : 0} onClick={() => pick(c, g)} />
+                  <Mini key={c.id} card={c} count={free(c.id)} picked={group?.key === g.key ? times(c.id) : 0} onClick={() => pick(c, g)} />
                 ))}
               </div>
             </div>

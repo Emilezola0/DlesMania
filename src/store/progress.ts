@@ -202,6 +202,12 @@ interface ProgressState {
   shownPlush?: string | null;
   /** The Daily Doodle's rewards paid (src/friends/Doodle.tsx): "g:<drawing>" a guess paid (its coins), "a:<drawing>" the friends who guessed one of this player's drawings, paid for. */
   doodle?: Record<string, number>;
+  /**
+   * What this save earned while no account was signed in on this device: those copies and coins stay the player's,
+   * but can't be traded (src/cloud/trades.ts, the Black Market) — so a save farmed without an account can't be
+   * linked to a throwaway account and handed over. Kept up to date below the store; undefined until first set.
+   */
+  tradeLock?: TradeLock;
   /** A right guess at a friend's drawing: `coins` once per drawing. What was paid (0 if it was already). */
   rewardDoodleGuess: (id: string, coins: number) => number;
   /** This player's drawing guessed by `solvers` friends: `each` coins for every one not paid for yet. What was paid. */
@@ -1102,6 +1108,62 @@ export const useProgress = create<ProgressState>()(
 
 // The player's own JLPT words, known to the JLPT data as they are now and whenever they change.
 setCustomWords(useProgress.getState().jlptCustom);
+
+// ── The trade lock (tradeLock above) ─────────────────────────────────────
+export interface TradeLock {
+  cards: Record<string, number>;
+  coins: number;
+}
+const flagOf = (k: string) => {
+  try {
+    return localStorage.getItem(k);
+  } catch {
+    return null;
+  }
+};
+/** An account is signed in on this device (src/cloud/state.ts SIGNED_IN_FLAG, kept here so the store stays light). */
+const accountHere = () => flagOf('omnidle:cloud') === '1';
+/** Copies of a card the player can trade: those not earned before their account was linked. */
+export const tradableCopies = (s: Pick<ProgressState, 'cards' | 'tradeLock'>, id: string) => Math.max(0, (s.cards[id] ?? 0) - (s.tradeLock?.cards[id] ?? 0));
+/** DleCoins the player can trade. */
+export const tradableCoins = (s: Pick<ProgressState, 'coins' | 'tradeLock'>) => Math.max(0, (s.coins ?? 0) - (s.tradeLock?.coins ?? 0));
+/** How many copies and coins are locked (only what the player still has). */
+export function lockedCount(s: Pick<ProgressState, 'cards' | 'coins' | 'tradeLock'>) {
+  let cards = 0;
+  for (const [id, n] of Object.entries(s.tradeLock?.cards ?? {})) cards += Math.min(n, s.cards[id] ?? 0);
+  return { cards, coins: Math.min(s.tradeLock?.coins ?? 0, s.coins ?? 0) };
+}
+// First time: a save that never had an account on this device is locked whole; one that did starts free.
+if (!useProgress.getState().tradeLock) {
+  const s = useProgress.getState();
+  const linked = accountHere() || !!flagOf('omnidle:cloud:linked');
+  useProgress.setState({ tradeLock: linked ? { cards: {}, coins: 0 } : { cards: { ...s.cards }, coins: s.coins ?? 0 } });
+}
+// Then: what comes in with no account signed in is locked; what goes out leaves the lock no bigger than what's left.
+useProgress.subscribe((s, before) => {
+  if (s.cards === before.cards && s.coins === before.coins) return;
+  const lock = s.tradeLock ?? { cards: {}, coins: 0 };
+  const away = !accountHere();
+  const cards = { ...lock.cards };
+  let changed = false;
+  for (const id of new Set([...Object.keys(s.cards), ...Object.keys(before.cards), ...Object.keys(cards)])) {
+    const now = s.cards[id] ?? 0;
+    const was = before.cards[id] ?? 0;
+    let n = cards[id] ?? 0;
+    if (away && now > was) n += now - was;
+    n = Math.min(n, now);
+    if (n !== (cards[id] ?? 0)) {
+      changed = true;
+      if (n > 0) cards[id] = n;
+      else delete cards[id];
+    }
+  }
+  let coins = lock.coins;
+  if (away && s.coins > before.coins) coins += s.coins - before.coins;
+  coins = Math.max(0, Math.min(coins, s.coins ?? 0));
+  if (coins !== lock.coins) changed = true;
+  if (changed) useProgress.setState({ tradeLock: { cards, coins } });
+});
 useProgress.subscribe((s, before) => s.jlptCustom !== before.jlptCustom && setCustomWords(s.jlptCustom));
 
 /** The four category dailies (as in src/data DOMAINS, kept here so the store stays light). */
