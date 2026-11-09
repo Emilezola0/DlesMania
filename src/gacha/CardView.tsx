@@ -350,7 +350,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       )}
       {omni && (
         <span className="card-omni-crown absolute left-1/2 top-[-4.5cqw] -translate-x-1/2 whitespace-nowrap rounded-full px-[4.5cqw] py-[1.2cqw] font-display text-[5.2cqw] font-black tracking-[0.3em] shadow-lg" style={lift(50)}>
-          ✪ {form.awakened ? 'AWAKENED' : 'OMNI'}
+          ✪ OMNI
         </span>
       )}
       {/* Above the name bar (z-10) and the grade sheen (z-5), which they overlap at the corners. */}
