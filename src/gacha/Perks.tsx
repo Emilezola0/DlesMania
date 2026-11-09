@@ -16,22 +16,23 @@ const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legenda
 const loops = (clip?: string): clip is string => !!clip && !/^(youtube|tiktok):/.test(clip) && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** The card as the player has it (its awakened form once awake), its clip playing if it has one, else its picture. */
-function ShownPicture({ card, className, style }: { card: Card; className: string | ((awake: boolean) => string); style?: (awake: boolean) => CSSProperties | undefined }) {
+function ShownPicture({ card, className, style, still }: { card: Card; className: string | ((awake: boolean) => string); style?: (awake: boolean) => CSSProperties | undefined; still?: boolean }) {
   const form = useCardForm(card);
   const cls = typeof className === 'string' ? className : className(form.awakened);
   const [failed, setFailed] = useState<string | null>(null);
-  if (loops(form.clip) && failed !== form.clip) return <CardClip src={form.clip} poster={form.image} onFail={() => setFailed(form.clip!)} className={cls} />;
+  if (!still && loops(form.clip) && failed !== form.clip) return <CardClip src={form.clip} poster={form.image} onFail={() => setFailed(form.clip!)} className={cls} />;
   return <img src={form.image} alt="" draggable={false} className={cls} style={style?.(form.awakened)} />;
 }
 
-/** A card as a round icon, ringed in its rarity's colour. */
+/** A card as a round icon, ringed in its rarity's colour: always its still picture (an icon never moves). */
 export function CardAvatar({ card, className = 'size-6' }: { card: Card; className?: string }) {
   // The framing measured for the first form's still picture only.
-  const framed = (awake: boolean) => (!awake && !loops(card.clip) ? card.focus : undefined);
+  const framed = (awake: boolean) => (!awake ? card.focus : undefined);
   return (
     <span className={`block overflow-hidden rounded-full bg-[#0f0d16] ${className}`} style={{ boxShadow: `0 0 0 2px ${RARITY_LIGHT[card.rarity]}` }}>
       <ShownPicture
         card={card}
+        still
         className={(awake) => `size-full object-cover ${framed(awake) ? '' : 'scale-125 object-top'}`}
         // A framed picture: its subject in the circle.
         style={(awake) => {
