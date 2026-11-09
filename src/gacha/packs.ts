@@ -273,24 +273,81 @@ export function cosmicFor(pack: Pack, cards: Card[], rand: () => number = Math.r
   return { kind, from, to: card };
 }
 
+/** Legendary, Mythic and Omni cards: counted in a pack, or expected of one. */
+export interface TopCount {
+  legendary: number;
+  mythic: number;
+  omni: number;
+}
+export const topOf = (cards: Card[]): TopCount => ({
+  legendary: cards.filter((c) => c.rarity === 'legendary').length,
+  mythic: cards.filter((c) => c.rarity === 'mythic').length,
+  omni: cards.filter((c) => c.rarity === 'omni').length,
+});
+
+/**
+ * The Legendary, Mythic and Omni cards a pack gives on average, with the odds it is rolled with (boost, pity luck,
+ * golden): every slot's chances added up, then the cosmic events that lift a card (a Big Bang, a supernova, a
+ * collision), closely reckoned. For the luck report (src/cloud/luck.ts): what a player pulled against this.
+ */
+export function expectedTop(boost: number, luck: number, golden: boolean): TopCount {
+  const odds = oddsWith(boost, luck);
+  const slots = Array.from({ length: PACK_SIZE }, (_, i) => {
+    const last = i === PACK_SIZE - 1;
+    if (golden && i >= PACK_SIZE - GOLDEN.slots) {
+      const o = last ? GOLDEN.last : GOLDEN.others;
+      return { low: 0, epic: 0, l: 1 - (o.mythic + o.omni) / 100, m: o.mythic / 100, o: o.omni / 100 };
+    }
+    const p = last ? lastCardOdds(odds) : odds;
+    return { low: (p.common + p.rare) / 100, epic: p.epic / 100, l: p.legendary / 100, m: p.mythic / 100, o: p.omni / 100 };
+  });
+  type Slot = (typeof slots)[number];
+  const sum = (f: (s: Slot) => number) => slots.reduce((n, s) => n + f(s), 0);
+  const all = (f: (s: Slot) => number) => slots.reduce((n, s) => n * f(s), 1);
+  let legendary = sum((s) => s.l);
+  let mythic = sum((s) => s.m);
+  let omni = sum((s) => s.o);
+  // The pack's best card: below Mythic, below Legendary, Rare or less.
+  const belowMythic = all((s) => 1 - s.m - s.o);
+  const noTop = all((s) => 1 - s.l - s.m - s.o);
+  const rareBest = all((s) => s.low);
+  // A Big Bang: a Legendary becomes an Omni.
+  const bigBang = (1 - all((s) => 1 - s.l)) * COSMIC.bigBang;
+  // A supernova (no Big Bang): the best card, below Mythic, becomes a Mythic.
+  const legendBest = belowMythic - noTop;
+  const supernova = (noTop + legendBest * (1 - COSMIC.bigBang)) * COSMIC.supernova;
+  // A collision (neither): the best card, Rare or Epic, becomes Epic or Legendary.
+  const collision = (1 - COSMIC.supernova) * COSMIC.collision * (noTop - rareBest + rareBest * COSMIC.collisionToLegendary);
+  omni += bigBang;
+  mythic += supernova;
+  legendary += collision - bigBang - legendBest * (1 - COSMIC.bigBang) * COSMIC.supernova;
+  return { legendary: Math.max(0, legendary), mythic, omni };
+}
+
 /**
  * `count` packs in a row, each with the luck the packs before it left: the cards, their cosmic events, and the
- * pity after them; and the golden counter after them, with which of the packs came golden (`goldenAt`).
+ * pity after them; and the golden counter after them, with which of the packs came golden (`goldenAt`). With the
+ * Legendary, Mythic and Omni cards they gave (`top`) and the ones their odds promised (`expected`), for the luck report.
  */
-export function pullPacks(pack: Pack, count: number, boost: number, pity: number, golden = 0): { packs: Card[][]; events: CosmicEvent[]; pity: number; golden: number; goldenAt: number[] } {
+export function pullPacks(pack: Pack, count: number, boost: number, pity: number, golden = 0): { packs: Card[][]; events: CosmicEvent[]; pity: number; golden: number; goldenAt: number[]; top: TopCount; expected: TopCount } {
   const packs: Card[][] = [];
   const events: CosmicEvent[] = [];
   const goldenAt: number[] = [];
   const forced = forcedDraw();
+  const top: TopCount = { legendary: 0, mythic: 0, omni: 0 };
+  const expected: TopCount = { legendary: 0, mythic: 0, omni: 0 };
   for (let i = 0; i < count; i++) {
     const gold = goldenNext(golden) || forcedGolden();
     if (gold) goldenAt.push(i);
     golden = gold ? 0 : clampGolden(golden + 1);
+    const e = expectedTop(boost, pityLuck(pity), gold);
     const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced);
     // A forced event (dev only): the first pack of the purchase, or every one when asked; the others roll as usual.
     const event = cosmicFor(pack, cards, Math.random, i === 0 || cosmicOnAll() ? forcedCosmic() : null);
     if (event) events.push(event);
     packs.push(cards);
+    const t = topOf(cards);
+    for (const k of ['legendary', 'mythic', 'omni'] as const) (top[k] += t[k]), (expected[k] += e[k]);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
   }
   if (import.meta.env.DEV) {
@@ -300,7 +357,7 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
       // No storage: nothing was forced.
     }
   }
-  return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt };
+  return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt, top, expected };
 }
 
 /** For testing, in dev only: localStorage "omnidle-force-golden" = "1" makes every pack golden. The live site ignores it. */

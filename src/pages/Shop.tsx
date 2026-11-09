@@ -11,6 +11,7 @@ import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, GOLDEN, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampGolden, clampPity, goldenNext, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
+import { SIGNED_IN_FLAG } from '../cloud/state';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 import { Quests } from '../gacha/Quests';
 
@@ -243,6 +244,16 @@ export default function Shop() {
   const collected = useMemo(() => COLLECTIBLE.filter((c) => owned[c.id]).length, [owned]);
 
   const boostOf = (p: Pack) => (p.boss ? bossBest(bosses, p.boss) : null);
+  /** Signed in: the opening goes into the player's luck report (src/cloud/luck.ts), quietly. */
+  const logLuck = (pull: ReturnType<typeof pullPacks>, n: number) => {
+    let on = false;
+    try {
+      on = localStorage.getItem(SIGNED_IN_FLAG) === '1';
+    } catch {
+      // No storage: no account here.
+    }
+    if (on) void import('../cloud/luck').then((m) => m.logPacks(n, pull.top, pull.expected)).catch(() => undefined);
+  };
   /** `free`: a free pack (won at the claw) pays for it. */
   const buy = (p: Pack, free = false) => {
     const best = boostOf(p);
@@ -253,6 +264,7 @@ export default function Shop() {
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(free ? 0 : p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden)) return sfx.wrong();
     if (free) useFreePack();
+    logLuck(pull, 1);
     sfx.click();
     setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
@@ -268,6 +280,7 @@ export default function Shop() {
       .sort((a, b) => RARITY_INFO[a.rarity].rank - RARITY_INFO[b.rarity].rank);
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
     if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity, pull.golden)) return sfx.wrong();
+    logLuck(pull, MANY);
     sfx.click();
     // One of the five golden: the whole opening wears gold.
     setOpening({ pack: p, times: MANY, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });

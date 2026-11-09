@@ -192,6 +192,37 @@ service cloud.firestore {
         && request.resource.data.boughtAt == request.time;
     }
 
+    // The luck report (src/cloud/luck.ts): luck/<uid>, the Legendary, Mythic and Omni cards a player's packs gave
+    // and the ones their odds promised. Only they and their friends read it. Only they add to it, an opening at a
+    // time (1 to 5 packs, 5 cards a pack at most), never taking anything back, at the server's time.
+    match /luck/{uid} {
+      function luckShapeOk(d) {
+        return d.keys().hasOnly(['packs', 'legendary', 'mythic', 'omni', 'eLegendary', 'eMythic', 'eOmni', 'since', 'at'])
+          && d.packs is int && d.legendary is int && d.mythic is int && d.omni is int
+          && d.eLegendary is number && d.eMythic is number && d.eOmni is number
+          && d.at == request.time;
+      }
+      // What one opening added: `n` packs, cards and expected cards that only grow, within the pack's five cards.
+      function addedOk(d, o, n) {
+        return n >= 1 && n <= 5
+          && d.legendary >= o.legendary && d.mythic >= o.mythic && d.omni >= o.omni
+          && (d.legendary - o.legendary) + (d.mythic - o.mythic) + (d.omni - o.omni) <= n * 5
+          && d.eLegendary >= o.eLegendary && d.eLegendary - o.eLegendary <= n * 5
+          && d.eMythic >= o.eMythic && d.eMythic - o.eMythic <= n * 5
+          && d.eOmni >= o.eOmni && d.eOmni - o.eOmni <= n * 5;
+      }
+      allow read: if request.auth != null
+        && (request.auth.uid == uid || request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends);
+      allow create: if request.auth != null && request.auth.uid == uid
+        && luckShapeOk(request.resource.data)
+        && request.resource.data.since == request.time
+        && addedOk(request.resource.data, { 'legendary': 0, 'mythic': 0, 'omni': 0, 'eLegendary': 0, 'eMythic': 0, 'eOmni': 0 }, request.resource.data.packs);
+      allow update: if request.auth != null && request.auth.uid == uid
+        && luckShapeOk(request.resource.data)
+        && request.resource.data.since == resource.data.since
+        && addedOk(request.resource.data, resource.data, request.resource.data.packs - resource.data.packs);
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

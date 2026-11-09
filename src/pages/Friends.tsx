@@ -9,6 +9,8 @@ import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
 import { RARITIES, RARITY_INFO } from '../gacha/cards';
 import { DailyDoodle } from '../friends/Doodle';
+import { LuckReport } from '../friends/LuckReport';
+import type { Luck } from '../cloud/luck';
 import { GRADE_BONUS, RARITY_POINTS } from '../friends/score';
 import { addDays, fromKey, todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
@@ -262,6 +264,22 @@ function ScoreChart({ players }: { players: Player[] }) {
       </div>
     </div>
   );
+}
+
+/** Dev only (#/friends?demo): made-up luck for the made-up friends — one of them far beyond the odds. */
+function demoLuck(docs: ScoreDoc[]): Record<string, Luck> {
+  const out: Record<string, Luck> = {};
+  const runs = [
+    [420, 31, 3, 0, 29.5, 3.1, 0.6],
+    [380, 34, 9, 4, 27.2, 2.8, 0.55],
+    [12, 1, 0, 0, 0.8, 0.1, 0.02],
+    [610, 33, 2, 0, 44.1, 4.6, 0.9],
+  ];
+  docs.slice(0, runs.length).forEach((d, k) => {
+    const [packs, l, m, o, el, em, eo] = runs[k];
+    out[d.uid] = { uid: d.uid, packs, got: { legendary: l, mythic: m, omni: o }, expected: { legendary: el, mythic: em, omni: eo }, since: Date.now() - 40 * 86_400_000, at: Date.now() };
+  });
+  return out;
 }
 
 /** Dev only (#/friends?demo): made-up friends with a few weeks of scores, to try the chart without an account. */
@@ -556,6 +574,8 @@ export default function Friends() {
               </section>
             </div>
           )}
+
+          {mine && <LuckReport players={players.map((p) => ({ uid: p.doc.uid, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo ? demoLuck(players.map((p) => p.doc)) : undefined} />}
         </>
       )}
     </div>
