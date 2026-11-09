@@ -272,6 +272,8 @@ interface ProgressState {
   earnExpedition: (amount: number) => number;
   /** Spare copies traded in for coins: card id -> how many (one copy of each always stays), and the coins they're worth. */
   exchangeCards: (copies: Record<string, number>, coins: number) => void;
+  /** A card bought off a friend's Black Market stall (src/casino/BlackMarket.tsx): false if there aren't enough coins. */
+  buyStallCard: (id: string, price: number) => boolean;
   /** Cards in or out by trading (src/cloud/trades.ts): card id -> +1 or -1. */
   moveCards: (delta: Record<string, number>) => void;
   /** The Expedition run in progress (src/rogue/run.ts), kept across refreshes. */
@@ -828,6 +830,12 @@ export const useProgress = create<ProgressState>()(
           for (const [id, n] of Object.entries(copies)) cards[id] = Math.max(1, (cards[id] ?? 0) - n);
           return { cards, coins: (s.coins ?? 0) + coins };
         }),
+      buyStallCard: (id, price) => {
+        const s = get();
+        if (price <= 0 || s.coins < price) return false;
+        set({ coins: s.coins - price, cards: { ...s.cards, [id]: (s.cards[id] ?? 0) + 1 }, pulledAt: stamp(s.pulledAt, [id]) });
+        return true;
+      },
       moveCards: (delta) =>
         set((s) => {
           const cards = { ...s.cards };

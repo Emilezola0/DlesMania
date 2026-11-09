@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DleCoin } from '../components/DleCoin';
+import { BlackMarket } from '../casino/BlackMarket';
 import { Boutique } from '../casino/Boutique';
 import { Capsules } from '../casino/Capsules';
 import { Claw } from '../casino/Claw';
@@ -23,6 +24,7 @@ const TABS = [
   { id: 'claw', label: 'Claw', icon: '🕹️' },
   { id: 'shop', label: 'Daily Shop', icon: '🃏' },
   { id: 'boutique', label: 'Boutique', icon: '🎀' },
+  { id: 'black', label: 'Black Market', short: 'Market', icon: '🕶️' },
 ] as const;
 type Tab = (typeof TABS)[number]['id'];
 const KEY = 'omnidle:casino:tab';
@@ -51,13 +53,13 @@ export default function Casino() {
   };
   return (
     <div className="casino-floor space-y-5">
-      <header className="flex flex-wrap items-end justify-between gap-3">
+      <header className="flex flex-wrap items-end justify-between gap-3 max-sm:gap-2">
         <div>
           <h1 className="font-display text-3xl font-black tracking-wider">
             <span aria-hidden>🎰 </span>
             <span className="casino-title">Casino</span>
           </h1>
-          <p className="text-sm text-ink-soft">A little chill zone. Play a few DleCoins, win a few back — on average the machines keep a little of what they take (the roulette gives a little back, if you play it a lot), and every coin you put in earns casino tokens 🎟️ for the Daily Card Shop and the Boutique.</p>
+          <p className="text-sm text-ink-soft max-sm:text-xs">A little chill zone. Play a few DleCoins, win a few back — on average the machines keep a little of what they take (the roulette gives a little back, if you play it a lot), and every coin you put in earns casino tokens 🎟️ for the Daily Card Shop and the Boutique.</p>
         </div>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => pick('shop')} aria-label="Casino tokens: open the Daily Card Shop">
@@ -68,17 +70,18 @@ export default function Casino() {
           </Link>
         </div>
       </header>
-      <nav className="flex gap-1 rounded-lg border border-rule bg-tile p-1" aria-label="Casino machines">
+      {/* A grid on a phone (three across), two rows on a tablet, one row on a wide screen: every tab in reach. */}
+      <nav className="grid grid-cols-3 gap-1 rounded-lg border border-rule bg-tile p-1 sm:grid-cols-5 lg:flex" aria-label="Casino machines">
         {TABS.map((t) => (
           <button
             key={t.id}
             type="button"
             onClick={() => pick(t.id)}
             aria-pressed={tab === t.id}
-            className={`relative flex flex-1 items-center justify-center gap-1.5 rounded-md py-2 font-display text-sm font-bold transition ${tab === t.id ? 'bg-paper text-ink shadow' : 'text-ink-soft hover:text-ink'}`}
+            className={`relative flex min-w-0 flex-1 items-center justify-center gap-1 rounded-md px-1 py-2 font-display text-xs font-bold transition sm:gap-1.5 sm:text-sm ${tab === t.id ? 'bg-paper text-ink shadow' : 'text-ink-soft hover:text-ink'}`}
           >
             <span aria-hidden>{t.icon}</span>
-            <span className="max-[380px]:hidden">{t.label}</span>
+            <span className="truncate">{'short' in t ? <><span className="sm:hidden">{t.short}</span><span className="max-sm:hidden">{t.label}</span></> : t.label}</span>
             {t.id === 'capsules' && tokens > 0 && <span className="absolute right-1 top-1 size-2 rounded-full bg-coral" title="A free capsule is waiting" />}
           </button>
         ))}
@@ -92,6 +95,7 @@ export default function Casino() {
         {tab === 'claw' && <Claw />}
         {tab === 'shop' && <CardShop />}
         {tab === 'boutique' && <Boutique />}
+        {tab === 'black' && <BlackMarket />}
       </div>
     </div>
   );

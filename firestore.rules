@@ -151,6 +151,30 @@ service cloud.firestore {
       }
     }
 
+    // The Black Market's stalls (src/cloud/blackmarket.ts): blackmarket/<uid>/stalls/<id>, the Mythic and Omni
+    // cards a player handed over in a trade. Only they and their friends can see them; they put them up (at the
+    // server's time); a friend buys one within the week by writing their name on it, once.
+    match /blackmarket/{uid}/stalls/{item} {
+      function friendOf() {
+        return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
+      }
+      allow read: if request.auth != null && (request.auth.uid == uid || friendOf());
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['seller', 'card', 'rarity', 'at', 'buyer', 'buyerName'])
+        && request.resource.data.seller is string && request.resource.data.seller.size() <= 40
+        && request.resource.data.card is string && request.resource.data.card.size() <= 80
+        && request.resource.data.rarity in ['mythic', 'omni']
+        && request.resource.data.at == request.time
+        && request.resource.data.buyer == null && request.resource.data.buyerName == null;
+      allow update: if request.auth != null && request.auth.uid != uid && friendOf()
+        && resource.data.buyer == null
+        && request.time < resource.data.at + duration.value(7, 'd')
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['buyer', 'buyerName', 'boughtAt'])
+        && request.resource.data.buyer == request.auth.uid
+        && request.resource.data.buyerName is string && request.resource.data.buyerName.size() <= 40
+        && request.resource.data.boughtAt == request.time;
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

@@ -141,6 +141,24 @@
       "required": ["cards"],
       "additionalProperties": false
     },
+    "blackMarket": {
+      "type": "object",
+      "title": "Black Market",
+      "description": "Cards of the same franchise and rarity, handed over for one other card of that franchise and rarity; the cards handed over go on the player's stall, where their friends can buy them for a week (firestore.rules keeps the week and the rarities)",
+      "properties": {
+        "give": { "type": "integer", "minimum": 2, "maximum": 5, "description": "Cards handed over for one" },
+        "rarities": { "type": "array", "items": { "type": "string", "enum": ["mythic", "omni"] }, "minItems": 1, "description": "The rarities the Black Market deals in" },
+        "price": {
+          "type": "object",
+          "description": "DleCoins a friend pays for a card off a stall, by rarity",
+          "properties": { "mythic": { "type": "integer", "minimum": 1 }, "omni": { "type": "integer", "minimum": 1 } },
+          "required": ["mythic", "omni"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["give", "rarities", "price"],
+      "additionalProperties": false
+    },
     "claw": {
       "type": "object",
       "title": "Claw machine",

@@ -59,5 +59,10 @@
     "coinBags": [[200, 60], [500, 30], [2000, 10]],
     "ticketRolls": [[10, 70], [25, 30]],
     "capsuleOdds": { "epic": 85, "legendary": 15 }
+  },
+  "blackMarket": {
+    "give": 2,
+    "rarities": ["mythic", "omni"],
+    "price": { "mythic": 40000, "omni": 120000 }
   }
 }
