@@ -654,7 +654,8 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
-  'dbz:omni-gogeta': 'youtube:cEFwbZg-xGA@0-999',
+  // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 640 px, silent.
+  'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -1029,7 +1030,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     name: 'Gogeta',
     rarity: 'omni',
     title: 'Super Saiyan Blue',
-    // The owner's picks: the wallpaper (4kwallpapers), the clip (his Kamehameha, NnahoyTV, in CLIPS) and, apart from
+    // The owner's picks: the wallpaper (4kwallpapers), the clip (his Kamehameha, the owner's capture, in CLIPS) and, apart from
     // it, his voice when the card is inspected ("Ore wa Gogeta", NnahoyTV): the clip itself stays silent.
     image: 'https://4kwallpapers.com/images/wallpapers/super-saiyan-blue-3440x1440-17113.jpeg',
     focus: { x: 50, y: 50, zoom: 1.85 },
