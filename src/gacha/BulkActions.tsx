@@ -249,8 +249,13 @@ export function SellDialog({ onClose }: { onClose: () => void }) {
   const [q, setQ] = useState('');
   const [sort, setSort] = useState<SortBy>('value');
   const [sure, setSure] = useState(false);
+  // Only the cards at the last grade (their spares have no grade-up left), and how many spares of each to keep.
+  const [maxedOnly, setMaxedOnly] = useState(false);
+  const [keep, setKeep] = useState(0);
 
   const max = (c: Card) => Math.max(0, (owned[c.id] ?? 0) - 1);
+  const maxed = (c: Card) => gradeOf(grades, c.id) >= MAX_GRADE;
+  const maxedCards = spares.filter(maxed);
   const value = (c: Card) => spareValue(c.rarity, gradeOf(grades, c.id));
   const left = (c: Card) => leftovers(max(c), gradeOf(grades, c.id));
   const sets = useMemo(() => SETS.filter((st) => spares.some((c) => c.set === st.id)), [spares]);
@@ -264,7 +269,7 @@ export function SellDialog({ onClose }: { onClose: () => void }) {
 
   const words = q.toLowerCase().split(/\s+/).filter(Boolean);
   const shown = spares
-    .filter((c) => (!rarities.size || rarities.has(c.rarity)) && (setId === 'all' || c.set === setId) && words.every((w) => `${c.name} ${c.franchise}`.toLowerCase().includes(w)))
+    .filter((c) => (!rarities.size || rarities.has(c.rarity)) && (!maxedOnly || maxed(c)) && (setId === 'all' || c.set === setId) && words.every((w) => `${c.name} ${c.franchise}`.toLowerCase().includes(w)))
     .sort((a, b) =>
       sort === 'value'
         ? max(b) * value(b) - max(a) * value(a)
@@ -358,6 +363,17 @@ export function SellDialog({ onClose }: { onClose: () => void }) {
                   </button>
                 );
               })}
+              {maxedCards.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => (sfx.click(), setMaxedOnly((v) => !v))}
+                  aria-pressed={maxedOnly}
+                  className={`flex items-center gap-1 rounded-full border-2 px-3 py-1 text-sm font-semibold transition ${maxedOnly ? 'border-ink bg-ink text-paper' : 'border-rule-strong hover:border-ink'}`}
+                  title={maxedOnly ? 'Show every card again' : `Show only the cards graded to ${gradeName(MAX_GRADE)}: no grade-up can use their spares`}
+                >
+                  <GradeEmblem grade={MAX_GRADE} className="size-5" /> Maxed only · {maxedCards.reduce((a, c) => a + max(c), 0)}
+                </button>
+              )}
             </div>
           </div>
 
@@ -410,9 +426,21 @@ export function SellDialog({ onClose }: { onClose: () => void }) {
             <button type="button" className="font-semibold underline" onClick={() => fill(shown, left)}>
               leftovers
             </button>
-            <button type="button" className="font-semibold underline" onClick={() => fill(shown, (c) => max(c) - GRADE_COST)}>
-              keep {GRADE_COST} each
-            </button>
+            <span className="flex items-center gap-1">
+              keep
+              <input
+                type="number"
+                min={0}
+                value={keep}
+                onChange={(e) => setKeep(Math.max(0, Math.floor(Number(e.target.value)) || 0))}
+                className="w-12 rounded-md border border-rule-strong bg-paper px-1 py-0.5 text-center tabular-nums"
+                aria-label="Spares to keep of each card"
+              />
+              each,
+              <button type="button" className="font-semibold underline" onClick={() => fill(shown, (c) => max(c) - keep)} title={`Sell every spare of the cards shown but ${keep} of each`}>
+                sell the rest
+              </button>
+            </span>
             <button type="button" className="font-semibold underline" onClick={() => fill(shown, () => 0)}>
               none
             </button>
