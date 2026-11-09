@@ -185,7 +185,7 @@ export function BlackMarket() {
                   {RARITY_INFO[g.rarity].name} · {g.copies} cop{g.copies === 1 ? 'y' : 'ies'}
                 </span>
               </p>
-              <div className="flex gap-3 overflow-x-auto pb-1">
+              <div className="-mx-1 flex gap-3 overflow-x-auto px-2 pb-2 pt-4">
                 {g.mine.map((c) => (
                   <Mini key={c.id} card={c} count={owned[c.id]} picked={group?.key === g.key ? times(c.id) : 0} onClick={() => pick(c, g)} />
                 ))}
@@ -203,7 +203,7 @@ export function BlackMarket() {
           {offers.length === 0 ? (
             <p className="page rounded-md p-4 text-sm text-ink-soft">{group.franchise} has no other {RARITY_INFO[group.rarity].name} card to give you for these.</p>
           ) : (
-            <div className="flex gap-3 overflow-x-auto pb-1">
+            <div className="-mx-1 flex gap-3 overflow-x-auto px-2 pb-2 pt-4">
               {offers.map((c) => (
                 <Mini key={c.id} card={c} picked={target === c.id ? 1 : 0} note={(owned[c.id] ?? 0) > 0 ? `you have ${owned[c.id]}` : 'new for you'} onClick={() => (sfx.select(), setTarget(c.id))} />
               ))}
@@ -245,7 +245,7 @@ export function BlackMarket() {
         ) : theirs.filter((s) => !s.buyer).length === 0 ? (
           <p className="page rounded-md p-4 text-sm text-ink-soft">Nothing on your friends&apos; stalls this week.</p>
         ) : (
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 pt-3">
             {theirs
               .filter((s) => !s.buyer && CARD_BY_ID.has(s.card))
               .map((s) => {
@@ -266,7 +266,7 @@ export function BlackMarket() {
         {signedIn && mine && mine.length > 0 && (
           <div className="space-y-2">
             <h4 className="font-display font-bold">Your stall</h4>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 pt-3">
               {mine
                 .filter((s) => CARD_BY_ID.has(s.card))
                 .map((s) => (
