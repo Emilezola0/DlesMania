@@ -654,6 +654,7 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
+  'dbz:omni-gogeta': 'youtube:cEFwbZg-xGA@0-999',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -1028,10 +1029,13 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     name: 'Gogeta',
     rarity: 'omni',
     title: 'Super Saiyan Blue',
-    image: 'https://static.wikia.nocookie.net/dragonball/images/9/96/Gogeta_Blue.jpeg/revision/latest/scale-to-width-down/800?cb=20190106144050',
-    focus: { x: 55, y: 30, zoom: 1 },
+    // The owner's picks: the wallpaper (4kwallpapers), the clip (his Kamehameha, NnahoyTV, in CLIPS) and, apart from
+    // it, his voice when the card is inspected ("Ore wa Gogeta", NnahoyTV): the clip itself stays silent.
+    image: 'https://4kwallpapers.com/images/wallpapers/super-saiyan-blue-3440x1440-17113.jpeg',
+    focus: { x: 50, y: 50, zoom: 1.45 },
     description: 'Goku and Vegeta, fused by the Fusion Dance with every step in time, then turned Blue: the one warrior who could stand up to Broly at full power — and win.',
     voice: 'I am Gogeta!',
+    audio: 'youtube:1wKNCRysSXY@0-6',
   },
   {
     set: 'dbz',
