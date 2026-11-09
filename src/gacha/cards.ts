@@ -1055,6 +1055,31 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'Goku and Vegeta joined by the Potara earrings, then turned Blue to face Fused Zamasu: so strong that the fusion burned out before the fight could end.',
     voice: 'Final Kamehameha!',
   },
+  // Acheron, raised to Omni (one of Honkai: Star Rail's best-loved characters): her splash art, and the Light Cone
+  // drawn for her when she awakens. Her Mythic (hsr:mythic-2) is vaulted, and its owners can pay to upgrade it
+  // (src/gacha/upgrades.ts). Her voice lines are the game's (Honkai: Star Rail Wiki).
+  {
+    set: 'hsr',
+    id: 'hsr:omni-acheron',
+    name: 'Acheron',
+    rarity: 'omni',
+    title: 'The Galaxy Ranger',
+    image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20240327021325',
+    description: 'A wanderer who calls herself a Galaxy Ranger, with a red blade she almost never draws, walking the Path of Nihility: where she passes, the rain falls, and whole worlds go quiet behind her.',
+    voice: 'Stream forth... the gleam of old blades.',
+    audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Acheron_Technique_01.ogg/revision/latest?cb=20240327083612',
+    voiceClips: [
+      { line: "Stream forth... the gleam of old blades.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Acheron_Technique_01.ogg/revision/latest?cb=20240327083612' },
+      { line: "Existence is fleeting as the dawn's dew, destined for oblivion.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/48/VO_Acheron_Skill_01.ogg/revision/latest?cb=20240327083116' },
+      { line: "On the still waters of oblivion, I guide the wandering souls.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/d/db/VO_Acheron_Skill_02.ogg/revision/latest?cb=20240327083117' },
+      { line: "Another blood debt repaid.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/VO_Acheron_Battle_Won_01.ogg/revision/latest?cb=20240327083108' },
+    ],
+    awaken: {
+      title: 'Along the Passing Shore',
+      image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Light_Cone_Along_the_Passing_Shore_Artwork.png/revision/latest/scale-to-width-down/600?cb=20240327025329',
+      line: 'The blade leaves its sheath at last. One stroke, a red flash across the sky, and the rain stops — for everything in front of her, it is the end of the story.',
+    },
+  },
 ];
 
 /**

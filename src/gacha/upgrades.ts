@@ -13,6 +13,8 @@ export interface Upgrade {
 export const UPGRADES: Record<string, Upgrade> = {
   // Sokka's Mythic, the Mightiest Warrior: 10,000 DleCoins (the price of 100 Omnidle packs) to raise him to Omni.
   'avatar:mythic-sokka': { into: 'avatar:omni-sokka', coins: 10_000 },
+  // Acheron's Mythic, the Rain at Dusk: the same price to raise her to Omni.
+  'hsr:mythic-2': { into: 'hsr:omni-acheron', coins: 10_000 },
 };
 
 /** Cards no longer given out (see UPGRADES): kept by their owners, upgradable, not needed to complete a set. */
