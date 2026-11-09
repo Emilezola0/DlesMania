@@ -144,6 +144,8 @@ export function CardReactions() {
   /** The clip couldn't be heard after all (its sound blocked, or it failed): the voice from its own player, once. */
   const voiceApart = () => {
     setMoment((m) => m && { ...m, heard: false });
+    // A clip with a sound of its own doesn't hand over to the voice line: the moment just goes on silent.
+    if (avatar?.clipSound) return void (voiceUntil.current = 0);
     if (avatar) playVoice(avatar, false, () => (voiceUntil.current = 0));
   };
   const lastMoment = useRef(0);
@@ -195,7 +197,9 @@ export function CardReactions() {
       // A clip that is also the voice (the same YouTube moment): heard from the clip itself, so they start together.
       const st = useProgress.getState();
       const voiced = kind === 'great' && !!avatar.voice && st.sound && st.voiceLines !== false;
-      const heard = showMoment && voiced && !!clip && YT_VOICE.test(clip) && voiceOf(avatar).audio === clip;
+      // A clip with its own sound (Gogeta's): that sound is heard behind the win, and the voice line isn't.
+      const ownSound = !!clip && clip === avatar.clip && !!avatar.clipSound;
+      const heard = showMoment && voiced && !!clip && (ownSound || (YT_VOICE.test(clip) && voiceOf(avatar).audio === clip));
       if (kind === 'great' && avatar.voice) {
         voiceUntil.current = Date.now() + 60_000;
         if (!heard) playVoice(avatar, false, () => (voiceUntil.current = 0));

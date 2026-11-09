@@ -180,6 +180,44 @@ function Mp4Series({ srcs, poster, onFail, onPlaying, className }: { srcs: strin
 }
 
 /**
+ * An MP4 heard, once through (its sound is the moment's): its end ends the sound. If the browser won't let it play
+ * with sound (no tap on the page yet), it plays on silent and says so.
+ */
+function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound: ClipSound }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    let over = false;
+    const end = (heard: boolean) => {
+      if (over) return;
+      over = true;
+      if (heard) sound.onEnded();
+      else sound.onNoSound();
+    };
+    v.volume = Math.max(0, Math.min(1, sound.volume / 100));
+    v.muted = false;
+    v.play().catch((e: unknown) => {
+      // Taken away meanwhile (its pause cut the play short): nothing to do.
+      if (over) return;
+      if ((e as { name?: string })?.name !== 'NotAllowedError') return onFail();
+      v.muted = true;
+      end(false);
+      v.play().catch(onFail);
+    });
+    v.onended = () => end(true);
+    // Taken away (the moment over, or React trying the effect twice in development): silent, nothing more to say.
+    return () => {
+      over = true;
+      v.pause();
+    };
+    // One play per clip.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src]);
+  return <video ref={ref} key={src} src={src} poster={poster} playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
+}
+
+/**
  * A card's clip: an MP4, several MP4s played in turn ("a.mp4|b.mp4|c.mp4"), or a moment of a video kept
  * elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once.
  */
@@ -189,5 +227,6 @@ export function CardClip({ src, poster, onFail, onPlaying, className, sound }: {
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
   if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
+  if (sound) return <HeardVideo src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} />;
   return <video key={src} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
 }

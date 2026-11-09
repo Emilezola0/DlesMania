@@ -65,6 +65,8 @@ export interface Card {
   awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean; cutout?: boolean };
   /** A short looping clip (MP4) of a mythic, played instead of its picture where the card is seen up close. */
   clip?: string;
+  /** Its clip (an MP4) has a sound of its own: heard when it plays behind a win, instead of the card's voice line. */
+  clipSound?: boolean;
   /** Its picture has a transparent background: it can step out of the frame on hover. */
   cutout?: boolean;
   /** A clip so small it can run all the time, in the album too (the player can turn that off). */
@@ -654,7 +656,7 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
-  // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 640 px, silent.
+  // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 640 px, with its sound (heard behind a win).
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
@@ -1037,6 +1039,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'Goku and Vegeta, fused by the Fusion Dance with every step in time, then turned Blue: the one warrior who could stand up to Broly at full power — and win.',
     voice: 'I am Gogeta!',
     audio: 'youtube:1wKNCRysSXY@0-6',
+    clipSound: true,
   },
   {
     set: 'dbz',
