@@ -87,12 +87,13 @@ export default function TestLab() {
   const setSlot = (i: number, v: string) => setDraw(draw.map((s, k) => (k === i ? v : s)));
   const [once, setOnce] = useSwitch(FORCE_DRAW_ONCE);
   const [cosmic, setCosmic] = useSwitch('omnidle-force-cosmic');
+  const [cosmicAll, setCosmicAll] = useSwitch('omnidle-force-cosmic-all');
   const [hole, setHole] = useSwitch('omnidle-force-anomaly');
   const [sky, setSky] = useSwitch('omnidle-force-sky');
   const [golden, setGolden] = useSwitch('omnidle-force-golden');
   const [flyby, setFlyby] = useSwitch('omnidle-force-flyby');
   const [bloom, setBloom] = useSwitch('omnidle-force-bloom');
-  const clearRig = () => (setDraw(Array(PACK_SIZE).fill('')), setOnce(''), setCosmic(''), setHole(''), setSky(''), setGolden(''), setFlyby(''), setBloom(''));
+  const clearRig = () => (setDraw(Array(PACK_SIZE).fill('')), setOnce(''), setCosmic(''), setCosmicAll(''), setHole(''), setSky(''), setGolden(''), setFlyby(''), setBloom(''));
 
   // ── A card: found, previewed, given ──
   const [q, setQ] = useState('');
@@ -240,6 +241,9 @@ export default function TestLab() {
           </label>
           <label className="flex items-center gap-2">
             <input type="checkbox" checked={bloom === '1'} onChange={(e) => setBloom(e.target.checked ? '1' : '')} /> Late bloom on every Legendary and Mythic
+          </label>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={cosmicAll === '1'} onChange={(e) => setCosmicAll(e.target.checked ? '1' : '')} /> Cosmic event on every pack of a purchase (else the first pack only)
           </label>
           <label className="flex items-center gap-2">
             <input type="checkbox" checked={once === '1'} onChange={(e) => setOnce(e.target.checked ? '1' : '')} /> Rigged cards for the next purchase only

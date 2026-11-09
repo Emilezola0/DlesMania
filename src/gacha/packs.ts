@@ -212,8 +212,16 @@ export interface CosmicEvent {
 
 /**
  * For testing, in dev only (`npm run dev`): localStorage "omnidle-force-cosmic" = "wish", "collision", "supernova" or
- * "bigbang" plays it every pack. The live site ignores it (it would hand out an Omni a pack).
+ * "bigbang" plays it on the first pack of a purchase (one Omni from a Big Bang, not five), or on every pack with
+ * "omnidle-force-cosmic-all" = "1". The live site ignores it (it would hand out an Omni a pack).
  */
+const cosmicOnAll = () => {
+  try {
+    return localStorage.getItem('omnidle-force-cosmic-all') === '1';
+  } catch {
+    return false;
+  }
+};
 const forcedCosmic = (): CosmicKind | null => {
   if (!import.meta.env.DEV) return null;
   try {
@@ -279,7 +287,8 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
     if (gold) goldenAt.push(i);
     golden = gold ? 0 : clampGolden(golden + 1);
     const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced);
-    const event = cosmicFor(pack, cards);
+    // A forced event (dev only): the first pack of the purchase, or every one when asked; the others roll as usual.
+    const event = cosmicFor(pack, cards, Math.random, i === 0 || cosmicOnAll() ? forcedCosmic() : null);
     if (event) events.push(event);
     packs.push(cards);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
