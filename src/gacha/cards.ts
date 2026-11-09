@@ -658,6 +658,8 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
   // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 720p at 60 fps, with its sound (heard behind a win).
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
+  // Broly's scream (the owner's BrolyScream): the same moment is his voice, heard from the clip.
+  'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-999',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -1047,10 +1049,13 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     name: 'Broly',
     rarity: 'mythic',
     title: 'Legendary Super Saiyan',
-    image: 'https://static.wikia.nocookie.net/dragonball/images/7/7e/LSSJ_Broly.png/revision/latest/scale-to-width-down/800?cb=20181108055423',
-    focus: { x: 50, y: 22, zoom: 1 },
+    // The owner's picks: the picture (kept in the site), and his scream (BrolyScream, NnahoyTV) as both his clip and his
+    // voice: one YouTube moment, its sound heard with its picture.
+    image: `${import.meta.env?.BASE_URL ?? './'}art/dbz/broly-mythic.webp`,
+    focus: { x: 55, y: 30, zoom: 1.55 },
     description: 'Raised alone on Vampa with only his anger, he grows stronger with every blow he takes — and when his rage boils over, the Legendary Super Saiyan has no ceiling.',
     voice: 'RAAAAAAAAAAH!',
+    audio: 'youtube:-Dk7SdXjYD8@0-999',
   },
   {
     set: 'dbz',
