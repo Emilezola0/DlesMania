@@ -1032,7 +1032,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     // The owner's picks: the wallpaper (4kwallpapers), the clip (his Kamehameha, NnahoyTV, in CLIPS) and, apart from
     // it, his voice when the card is inspected ("Ore wa Gogeta", NnahoyTV): the clip itself stays silent.
     image: 'https://4kwallpapers.com/images/wallpapers/super-saiyan-blue-3440x1440-17113.jpeg',
-    focus: { x: 50, y: 50, zoom: 1.45 },
+    focus: { x: 50, y: 50, zoom: 1.85 },
     description: 'Goku and Vegeta, fused by the Fusion Dance with every step in time, then turned Blue: the one warrior who could stand up to Broly at full power — and win.',
     voice: 'I am Gogeta!',
     audio: 'youtube:1wKNCRysSXY@0-6',
