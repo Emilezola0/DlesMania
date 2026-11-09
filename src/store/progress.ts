@@ -83,6 +83,12 @@ export type BossDifficulty = 'easy' | 'medium' | 'hard' | 'hell';
 /** The difficulties, easiest first: a win at one validates every one before it. */
 export const DIFFICULTY_ORDER: BossDifficulty[] = ['easy', 'medium', 'hard', 'hell'];
 
+/** What a boss fight paid: one line per difficulty it validated (the one fought last), and the total. */
+export interface BossPay {
+  total: number;
+  lines: { difficulty: BossDifficulty; win: number; weekly: number; loss?: boolean }[];
+}
+
 /** Records are kept per boss and difficulty; Easy keeps the plain id that records had before difficulties. */
 export const bossKey = (id: string, difficulty: BossDifficulty) => (difficulty === 'easy' ? id : `${id}:${difficulty}`);
 
@@ -324,7 +330,8 @@ interface ProgressState {
   addJlptGrammarReview: (keys: string[]) => void;
   removeJlptGrammarReview: (key: string) => void;
   reviewJlptGrammar: (key: string, right: boolean) => void;
-  recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => void;
+  /** Records a fight and pays it; returns what it paid, line by line (the end screen lists them). */
+  recordBoss: (key: string, result: { won: boolean; score: number; time: number }) => BossPay;
   setBossDifficulty: (d: BossDifficulty) => void;
   /** A finished run's score, and how it went (src/gacha/economy.ts' ArcadeResult): what it pays. */
   recordWhosThat: (key: string, score: number, result: ArcadeResult) => void;
@@ -1040,21 +1047,32 @@ export const useProgress = create<ProgressState>()(
           const won = record.status === 'won';
           return { ...update, ...earn(s, roundCoins(won, record.score), { count: { special: won ? 1 : 0 } }) };
         }),
-      recordBoss: (key, { won, score, time }) =>
+      recordBoss: (key, { won, score, time }) => {
+        let pay: BossPay = { total: 0, lines: [] };
         set((s) => {
           const r = s.bosses[key] ?? EMPTY_BOSS_RECORD;
           // Every fight pays: a win by difficulty (plus the week's first win over this boss at this difficulty), a loss a token.
           const difficulty = (key.split(':')[1] ?? 'easy') as BossDifficulty;
           const week = bossWeekNow(s.bossWeek);
-          // A win at a difficulty validates every one below it: each counts as beaten too (what it unlocks, a
-          // franchise pack, an awakening, comes with it) and pays its own first win of the week if not yet taken.
+          // A win at a difficulty validates every one below it: each one never beaten counts as beaten now and pays
+          // its own win (what it unlocks, a franchise pack, an awakening, comes with it), and each pays its first win
+          // of the week if not yet taken. A difficulty beaten before pays no win again.
           const id = key.split(':')[0];
           const below = won ? DIFFICULTY_ORDER.slice(0, DIFFICULTY_ORDER.indexOf(difficulty)) : [];
-          const weeklyKeys = [key, ...below.map((d) => bossKey(id, d))].filter((k) => won && !week.keys.includes(k));
-          const weeklyCoins = weeklyKeys.reduce((n, k) => n + BOSS_WEEKLY[(k.split(':')[1] ?? 'easy') as BossDifficulty], 0);
-          const coins = earn(s, won ? BOSS_WIN[difficulty] + weeklyCoins : BOSS_LOSS, { count: { boss: won ? 1 : 0 } });
+          const fresh = below.filter((d) => (s.bosses[bossKey(id, d)]?.wins ?? 0) === 0);
+          const weeklyKeys = won ? [...below.map((d) => bossKey(id, d)), key].filter((k) => !week.keys.includes(k)) : [];
+          const weeklyOf = (d: BossDifficulty) => (weeklyKeys.includes(bossKey(id, d)) ? BOSS_WEEKLY[d] : 0);
+          const lines: BossPay['lines'] = won
+            ? [
+                ...below.map((d) => ({ difficulty: d, win: fresh.includes(d) ? BOSS_WIN[d] : 0, weekly: weeklyOf(d) })).filter((l) => l.win + l.weekly > 0),
+                { difficulty, win: BOSS_WIN[difficulty], weekly: weeklyOf(difficulty) },
+              ]
+            : [{ difficulty, win: BOSS_LOSS, weekly: 0, loss: true }];
+          const total = lines.reduce((n, l) => n + l.win + l.weekly, 0);
+          pay = { total, lines };
+          const coins = earn(s, total, { count: { boss: won ? 1 : 0 } });
           const lower = Object.fromEntries(
-            below.map((d) => {
+            fresh.map((d) => {
               const k = bossKey(id, d);
               const x = s.bosses[k] ?? EMPTY_BOSS_RECORD;
               return [k, { ...x, plays: x.plays + 1, wins: x.wins + 1 }];
@@ -1074,7 +1092,9 @@ export const useProgress = create<ProgressState>()(
               },
             },
           };
-        }),
+        });
+        return pay;
+      },
       toggleSound: () => set((s) => ({ sound: !s.sound })),
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),

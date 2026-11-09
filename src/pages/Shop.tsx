@@ -432,7 +432,7 @@ export default function Shop() {
           <li>Specialist dailies: the same per round.</li>
           <li>
             Every Boss Battle: {BOSS_WIN.easy} for a win on Easy, {BOSS_WIN.medium} on Medium, {BOSS_WIN.hard} on Hard, {BOSS_WIN.hell} on Hell ({BOSS_LOSS} for a loss) — and the first win over each boss at each difficulty
-            this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium}, +{BOSS_WEEKLY.hard} or +{BOSS_WEEKLY.hell} more ({bossWeek.keys.length} of {SETS.length * 4} taken this week; they come back every Monday).
+            this week pays +{BOSS_WEEKLY.easy}, +{BOSS_WEEKLY.medium}, +{BOSS_WEEKLY.hard} or +{BOSS_WEEKLY.hell} more ({bossWeek.keys.length} of {SETS.length * 4} taken this week; they come back every Monday). A win counts for every easier difficulty too: each one never beaten pays its own win, and each its first win of the week.
           </li>
           <li>
             Every game from the Games page, Free Play and Who&apos;s That?, by how it went: a win {ARCADE_WIN} coins, a loss {ARCADE_LOSS}; a set of rounds up to {ARCADE_SET_MAX} by your score; an

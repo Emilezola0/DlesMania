@@ -8,6 +8,7 @@ import { RadarDefense } from '../boss/RadarDefense';
 import { NameChain, type ChainResult } from '../boss/NameChain';
 import { Signature } from '../boss/Signature';
 import { AnswerBook, AnswerBookButton } from '../boss/AnswerBook';
+import { DleCoin } from '../components/DleCoin';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
@@ -35,7 +36,7 @@ import { shownName } from '../lib/french';
 import { celebrateBig, flash, shake } from '../lib/fx';
 import { pick } from '../lib/rng';
 import { sfx } from '../lib/sfx';
-import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress } from '../store/progress';
+import { EMPTY_BOSS_RECORD, bossKey, recentlySeen, useProgress, type BossPay } from '../store/progress';
 import { useUi } from '../store/ui';
 import type { Boss, PhaseResult } from '../types';
 import { Connections } from '../boss/ConnectionsPhase';
@@ -95,7 +96,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   const [line, setLine] = useState<Line>({ text: boss.lines.intro, key: 0, mood: 'taunt' });
   const [last, setLast] = useState<{ won: boolean; missed?: string[]; reason?: string; tries?: string[] } | null>(null);
   const [tally, setTally] = useState({ correct: 0, wrong: 0 });
-  const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean } | null>(null);
+  const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean; pay: BossPay } | null>(null);
   /** Hard's secret phase, set up when the main life bar empties. */
   const [signature, setSignature] = useState<SignaturePhase | null>(null);
   const [secretResult, setSecretResult] = useState<ChainResult | null>(null);
@@ -259,8 +260,8 @@ function BossBattle({ boss }: { boss: Boss }) {
     const timeMs = performance.now() - startedAt.current;
     const score = battleScore({ roundsWon, hearts: heartsLeft, ...t, timeMs, bonus }, d);
     const best = score > record.bestScore;
-    recordBoss(bossKey(boss.id, difficulty), { won, score, time: timeMs });
-    setResult({ score, timeMs, best });
+    const pay = recordBoss(bossKey(boss.id, difficulty), { won, score, time: timeMs });
+    setResult({ score, timeMs, best, pay });
     window.setTimeout(() => {
       setStage(won ? 'won' : 'lost');
       if (won) {
@@ -559,6 +560,7 @@ function BossBattle({ boss }: { boss: Boss }) {
               ))}
               {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">★ New best score</span>}
             </p>
+            <BossReward pay={result.pay} />
             {stage === 'lost' && last && !last.won && (
               <div className="space-y-1">
                 {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
@@ -584,6 +586,36 @@ function BossBattle({ boss }: { boss: Boss }) {
         )}
       </div>
       {book && <AnswerBook boss={boss} onClose={() => setBook(false)} />}
+    </div>
+  );
+}
+
+/**
+ * What the fight paid, line by line: a win also validates every lower difficulty, and those never beaten before
+ * pay their own win (and each its first win of the week) on top.
+ */
+function BossReward({ pay }: { pay: BossPay }) {
+  const many = pay.lines.length > 1;
+  return (
+    <div className="mx-auto w-full max-w-sm rounded-md border border-rule bg-card/70 px-4 py-3 text-sm">
+      <p className="flex items-center justify-center gap-1.5 font-display text-lg font-bold tabular-nums">
+        +{pay.total.toLocaleString()} <DleCoin className="size-5" /> DleCoins
+      </p>
+      {(many || pay.lines[0]?.weekly > 0) && (
+        <ul className="mt-2 space-y-0.5 text-left text-ink-soft">
+          {pay.lines.map((l) => (
+            <li key={l.difficulty} className="flex justify-between gap-3">
+              <span>
+                <span className={`font-display font-bold ${DIFFICULTY_TONE[l.difficulty]}`}>{DIFFICULTIES[l.difficulty].label}</span>
+                {l.win > 0 ? (l.loss ? ' · fought' : ' · win') : ''}
+                {l.weekly > 0 ? `${l.win > 0 ? ' + ' : ' · '}first this week` : ''}
+              </span>
+              <span className="tabular-nums">+{(l.win + l.weekly).toLocaleString()}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {many && <p className="mt-2 text-xs text-ink-faint">A win counts for every easier difficulty too.</p>}
     </div>
   );
 }
