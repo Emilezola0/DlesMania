@@ -165,6 +165,20 @@ interface Star {
   clash?: boolean;
 }
 const STAR_GAP = 260;
+/** Many packs at once: the closest two stars come (ms), and over how many cards before the first top card they slow back down. */
+const STAR_GAP_MIN = 25;
+const SLOW_DOWN = 5;
+/**
+ * Many packs at once, in the reveal: the cards below Legendary turn and move on by themselves, quicker the more
+ * packs (ms a step, between AUTO_MIN and AUTO_MAX), slowing down over the last SLOW_DOWN before the first top card,
+ * which waits for the player (its build-up in full).
+ */
+const AUTO_MIN = 40;
+const AUTO_MAX = 450;
+const AUTO_NEAR_TOP = 650;
+/** The summary deals its cards quickly: all of them within SUMMARY_DEAL ms (a single pack a little slower, card by card). */
+const SUMMARY_DEAL = 700;
+const dealAt = (k: number, n: number) => Math.round(n <= 5 ? k * 70 : (k * SUMMARY_DEAL) / Math.max(1, n - 1));
 /** The beat of suspense before the last star (the best card's), once every other star has crossed. The screen rumbles meanwhile. */
 const LAST_STAR_PAUSE = 1500;
 /**
@@ -250,6 +264,16 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
   // best card (Epic or better) shows a rarity lower, and evolves on the way.
   const last = cards.length - events.size - 1;
   const evolving = last >= 0 && RARITIES.indexOf(cards[last].rarity) >= 2 && rand() < EVOLVE_CHANCE ? last : -1;
+  // Many packs at once: the more cards, the closer the stars come — then, over the last few before the first
+  // Legendary or better, back to their own pace, so the top cards' stars take their time.
+  const firstTop = cards.findIndex((c, k) => !events.has(k) && top(c.rarity));
+  const gapAt = (k: number, gap: number) => {
+    if (cards.length <= 5) return gap;
+    const fast = Math.max(STAR_GAP_MIN, (gap / 2.5) * Math.min(1, 25 / cards.length));
+    if (top(cards[k].rarity) || firstTop < 0) return top(cards[k].rarity) ? gap : fast;
+    const toTop = firstTop - k;
+    return toTop > 0 && toTop <= SLOW_DOWN ? fast + ((gap - fast) * (SLOW_DOWN + 1 - toTop)) / (SLOW_DOWN + 1) : fast;
+  };
   let at = 0;
   let clear = 0;
   return cards.map((c, i) => {
@@ -265,7 +289,7 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     if (wish) {
       // A wish: among the other stars, a little slower, caught by a golden comet on the way.
       const star: Star = { to: c.rarity, from: wish.from.rarity, delay: at, duration: WISH_MS, top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -6 - rand() * 10, event: 'wish' };
-      at += (cards.length > 5 ? STAR_GAP / 2.5 : STAR_GAP) + 500;
+      at += gapAt(i, STAR_GAP) + 500;
       clear = Math.max(clear, star.delay + star.duration);
       return star;
     }
@@ -277,9 +301,8 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     const from = i === evolving ? RARITIES[rank >= 3 && rand() < COSMIC.deepFake ? rank - 2 : rank - 1] : c.rarity;
     const clash = from !== c.rarity;
     const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash };
-    // Many cards (five packs at once): the stars come closer together; a top card's star leaves a little room.
-    const gap = orbit ? ORBIT_GAP : STAR_GAP;
-    at += (cards.length > 5 ? gap / 2.5 : gap) + (top(c.rarity) && !orbit ? 250 : 0);
+    // Many cards (several packs at once): the stars come closer together; a top card's star leaves a little room.
+    at += gapAt(i, orbit ? ORBIT_GAP : STAR_GAP) + (top(c.rarity) && !orbit ? 250 : 0);
     clear = Math.max(clear, star.delay + star.duration);
     return star;
   });
@@ -1274,7 +1297,7 @@ function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; 
               <span className="truncate text-white/80" title={s.name}>{s.name}</span>
               <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
                 <div className="absolute inset-y-0 left-0 rounded-full bg-white/45" style={{ width: `${before}%` }} />
-                {s.added > 0 && <div className="pack-bar-fill absolute inset-y-0 rounded-full bg-[#fbbf24]" style={{ left: `${before}%`, width: `${Math.max(0.8, now - before)}%`, animationDelay: `${0.3 + k * 0.12}s` }} />}
+                {s.added > 0 && <div className="pack-bar-fill absolute inset-y-0 rounded-full bg-[#fbbf24]" style={{ left: `${before}%`, width: `${Math.max(0.8, now - before)}%`, animationDelay: `${0.1 + Math.min(k * 0.04, 0.5)}s` }} />}
               </div>
               <span className="tabular-nums text-white/70">
                 {s.owned}/{s.size}
@@ -1844,6 +1867,20 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setFlipped(false);
     cue(i + 1);
   };
+  // Several packs at once: the cards below Legendary turn and move on by themselves (a tap still goes quicker),
+  // faster the more packs, slowing down as the top cards come near; a top card waits for the player.
+  const firstTop = useMemo(() => plans.findIndex((p) => p.step >= 2), [plans]);
+  useEffect(() => {
+    if (times <= 1 || phase !== 'reveal' || charging || blooming.current || !plans[i] || plans[i].step >= 2) return;
+    if (flipped && pending.has(i) && !(i in kept)) return;
+    const pace = Math.max(AUTO_MIN, Math.min(AUTO_MAX, 1200 / times));
+    const toTop = firstTop - i;
+    const ms = firstTop >= 0 && toTop > 0 && toTop <= SLOW_DOWN ? pace + ((AUTO_NEAR_TOP - pace) * (SLOW_DOWN + 1 - toTop)) / (SLOW_DOWN + 1) : pace;
+    const t = window.setTimeout(act, ms);
+    return () => window.clearTimeout(t);
+    // act reads this render's state; the effect runs again whenever it changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [times, phase, charging, i, flipped, kept, bloomed, firstTop]);
   /**
    * Skip never skips past a top card: it goes straight to the next Legendary or better and turns it, with its
    * build-up (so where it stops says "a top card", never which). Pressed again while it builds up, it lands at
@@ -2188,14 +2225,14 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <PackStats deck={deck} fresh={fresh} golden={golden} />
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
-              <div key={k} className="animate-card-deal" style={{ animationDelay: `${Math.min(k, 12) * 90 + Math.max(0, k - 12) * 30}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
+              <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k, deck.length)}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
                 <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
                 {cosmicAt.has(k) && <p className="text-center text-[10px] font-bold tracking-widest text-white/70" title={COSMIC_DONE[cosmicAt.get(k)!.kind]}>{COSMIC_NAME[cosmicAt.get(k)!.kind].icon} was {RARITY_INFO[cosmicAt.get(k)!.from.rarity].name}</p>}
-                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${0.4 + Math.min(k, 12) * 0.09}s` }}>+1 SPARE</p>}
+                {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(k, deck.length) + 250}ms` }}>+1 SPARE</p>}
               </div>
             ))}
           </div>
