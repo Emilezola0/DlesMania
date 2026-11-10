@@ -741,7 +741,7 @@ const CLIPS: Record<string, string> = {
   // plays over it; the other three Omnis' clips are their voices too, each a moment of the game heard with its sound.
   // Hornet: the owner's pick, 7:07 to 7:24 of this video (her own voice lines play over it).
   'hollowknight:omni': 'youtube:wjo-dICMPmM@427-444',
-  'hollowknight:omni-hollow-knight': 'youtube:Htz7ZSyiovU@14-34',
+  'hollowknight:omni-hollow-knight': 'youtube:2m_j6Ziz3vQ@8-25',
   'hollowknight:omni-radiance': 'youtube:9rg8UBKtt1o@14-28',
   'hollowknight:omni-grimm': 'youtube:GxHlWoMlBfQ@49-57',
   'hollowknight:omni-nightmare-king-grimm': 'youtube:7JWQ9KjwPyE@8-19',
@@ -1227,10 +1227,13 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     name: 'The Hollow Knight',
     rarity: 'omni',
     title: 'The Pure Vessel',
-    image: 'https://cdn.wikimg.net/en/hkwiki/images/1/12/B_Hollow_Knight.png',
+    // The owner's picks: the Pure Vessel in chains (Wallpaper Cave, kept in the site), and 0:08 to 0:25 of its fight
+    // (CrankyTemplar's Radiant run) as its clip and its voice, one moment heard.
+    image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/the-hollow-knight.webp`,
+    focus: { x: 50, y: 30, zoom: 1 },
     description: 'The vessel the Pale King raised to be perfectly empty, sealed in the Black Egg Temple with a god inside it: chained, cracked, still holding on.',
-    voice: 'GRAAAAAH!',
-    audio: 'youtube:Htz7ZSyiovU@14-34',
+    voice: '*The Pure Vessel strikes*',
+    audio: 'youtube:2m_j6Ziz3vQ@8-25',
   },
   {
     set: 'hollowknight',
