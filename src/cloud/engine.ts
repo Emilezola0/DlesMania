@@ -203,6 +203,22 @@ async function signedIn(user: User) {
   }
 }
 
+/**
+ * Signing out: the account's progress leaves this browser, which starts again as a new guest. (It stayed
+ * before, and the next account signed in here had it added to its own: a way to copy coins and cards.)
+ * Settings that aren't synced (sound, theme, volumes) stay.
+ */
+function leaveAccount() {
+  const fresh = useProgress.getInitialState();
+  applying = true;
+  useProgress.setState({ ...Object.fromEntries(SYNCED.map((k) => [k, fresh[k]])), tradeLock: { cards: {}, coins: 0 } });
+  applying = false;
+  store.set(LINKED_KEY, null);
+  store.set(CHANGED_KEY, null);
+  lastPushed = null;
+  lastMain = '';
+}
+
 // ── Signing in and out ────────────────────────────────────────────────
 const here = () => `${window.location.origin}${window.location.pathname}#/account`;
 
@@ -245,6 +261,7 @@ const actions = {
       if (uid) await push(uid).catch(() => {});
       await fbSignOut(auth);
       store.set(SIGNED_IN_FLAG, null);
+      leaveAccount();
     }),
   syncNow: () =>
     run(async () => {

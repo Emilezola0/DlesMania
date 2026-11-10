@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { giftFor, normalizeCode } from '../gacha/codes';
+import { codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
@@ -11,7 +11,7 @@ import { PackArt } from '../gacha/PackArt';
 import { PackOpening } from '../gacha/PackOpening';
 import { BOOST, GOLDEN, PACK_SIZE, PITY_MAX, PITY_STEP, TOP_CAP, bossBest, clampGolden, clampPity, goldenNext, lastCardOdds, oddsWith, packsFor, pityLuck, pullPacks, type CosmicEvent, type Pack } from '../gacha/packs';
 import { sfx } from '../lib/sfx';
-import { SIGNED_IN_FLAG } from '../cloud/state';
+import { SIGNED_IN_FLAG, useCloud } from '../cloud/state';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 import { Quests } from '../gacha/Quests';
 
@@ -181,24 +181,41 @@ function Mission({ m, n, done, onClaim }: { m: { icon: string; text: string; nee
   );
 }
 
-/** A box for gift codes: each pays once. */
+/** A box for gift codes: each pays once per account (a daily one once a day), checked with the database. */
 function RedeemCode() {
   const redeem = useProgress((s) => s.redeemCode);
+  const { email, status } = useCloud();
+  const signedIn = !!email && status !== 'signedOut';
   const [code, setCode] = useState('');
+  const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
-  const submit = (e: React.FormEvent) => {
+  const no = (text: string) => (sfx.wrong(), setMsg({ ok: false, text }));
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!code.trim()) return;
-    const r = redeem(code);
-    if (r.ok) {
+    const c = normalizeCode(code);
+    if (!c || busy) return;
+    const gift = giftFor(c);
+    if (!gift) return no("That code doesn't exist (yet).");
+    const day = todayKey();
+    if (gift.only && gift.only !== day) return no('That code was for one day only — it has expired.');
+    if (!signedIn) return no('Gift codes need an account, so each one is redeemed once: sign in first (Account).');
+    const usedMsg = gift.daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.';
+    if ((useProgress.getState().redeemed ?? []).includes(gift.daily ? `${c}@${day}` : c)) return no(usedMsg);
+    setBusy(true);
+    try {
+      const claimed = await import('../cloud/rewards').then((m) => m.claimCode(codeId(c), gift.daily ? day : null));
+      if (claimed === 'used') return no(usedMsg);
+      if (claimed === 'refused') return no("Your device's date doesn't match today's: set it right to redeem this code.");
+      const r = redeem(c);
+      if (!r.ok) return no(usedMsg);
       sfx.streak();
       celebrate();
       setMsg({ ok: true, text: `+${r.coins} DleCoins! ${r.note}` });
       setCode('');
-    } else {
-      sfx.wrong();
-      const daily = giftFor(normalizeCode(code))?.daily;
-      setMsg({ ok: false, text: r.reason === 'expired' ? 'That code was for one day only — it has expired.' : r.reason === 'used' ? (daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.') : "That code doesn't exist (yet)." });
+    } catch {
+      no('No connection: try again once you are online.');
+    } finally {
+      setBusy(false);
     }
   };
   return (
@@ -214,8 +231,8 @@ function RedeemCode() {
           spellCheck={false}
           className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2 font-display font-bold uppercase tracking-widest placeholder:font-sans placeholder:font-normal placeholder:normal-case placeholder:tracking-normal"
         />
-        <button type="submit" disabled={!code.trim()} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
-          Redeem
+        <button type="submit" disabled={!code.trim() || busy} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
+          {busy ? '…' : 'Redeem'}
         </button>
         {msg && <p className={`w-full text-sm font-semibold ${msg.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{msg.text}</p>}
       </form>

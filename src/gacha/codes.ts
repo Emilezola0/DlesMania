@@ -1,4 +1,6 @@
-// Gift codes: typed in the Shop, each once per player. A code is matched without caring about case or
+// Gift codes: typed in the Shop, each once per account (a daily one once a day), by a claim the database keeps
+// (src/cloud/rewards.ts claimCode, firestore.rules): a reset browser, another device or a moved clock can't
+// redeem one twice. A code is matched without caring about case or
 // spaces. Only each code's fingerprint (SHA-256) ships with the site, not the word itself: to add one,
 // run scripts/hash-code.mjs and paste the line it prints here.
 
@@ -66,6 +68,9 @@ function sha256(text: string): string {
   }
   return H.map((v) => (v >>> 0).toString(16).padStart(8, '0')).join('');
 }
+
+/** A code's id in the database's claims (part of its fingerprint: never the code itself). */
+export const codeId = (code: string) => sha256(`omnidle:${code}`).slice(0, 16);
 
 /** The gift behind a typed (normalized) code, if there is one. */
 export const giftFor = (code: string): GiftCode | undefined => CODES[sha256(`omnidle:${code}`)];

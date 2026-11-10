@@ -37,6 +37,25 @@ export async function setBirthday(b: Birthday): Promise<Birthday> {
   });
 }
 
+/**
+ * Claims a gift code for this account (code-<id>, or code-<id>-<day> for a daily code): 'fresh' the first time,
+ * 'used' when it was already, 'refused' when the database won't take it (the device's date is off from the
+ * server's, for a daily code). Throws when there's no connection.
+ */
+export async function claimCode(id: string, day: string | null): Promise<'fresh' | 'used' | 'refused'> {
+  const ref = doc(db, 'rewards', uid(), 'claims', day ? `code-${id}-${day}` : `code-${id}`);
+  try {
+    return await runTransaction(db, async (tx) => {
+      if ((await tx.get(ref)).exists()) return 'used' as const;
+      tx.set(ref, { at: serverTimestamp() });
+      return 'fresh' as const;
+    });
+  } catch (e) {
+    if ((e as { code?: string })?.code === 'permission-denied') return 'refused';
+    throw e;
+  }
+}
+
 /** Claims already seen this session (taken here or on another device): not asked about again. */
 const seen = new Set<string>();
 

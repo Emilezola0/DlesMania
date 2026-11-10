@@ -274,8 +274,17 @@ service cloud.firestore {
         && hasBegun(timestamp.date(int(id.split('-')[1]), int(id.split('-')[2]), int(id.split('-')[3])))
         && notOver(timestamp.date(int(id.split('-')[1]), int(id.split('-')[2]), int(id.split('-')[3])) + duration.value(1, 'd'));
     }
+    // A gift code (src/cloud/rewards.ts claimCode): code-<id> once for good; a daily one, code-<id>-<YYYY-MM-DD>,
+    // only on that day (by the server's clock, any time zone).
+    function codeClaimOk(id) {
+      return id.matches('code-[0-9a-f]{16}')
+        || (id.matches('code-[0-9a-f]{16}-[0-9]{4}-[0-9]{2}-[0-9]{2}')
+          && hasBegun(timestamp.date(int(id.split('-')[2]), int(id.split('-')[3]), int(id.split('-')[4])))
+          && notOver(timestamp.date(int(id.split('-')[2]), int(id.split('-')[3]), int(id.split('-')[4])) + duration.value(1, 'd')));
+    }
     function claimOk(uid, id) {
       return dailyClaimOk(id)
+        || codeClaimOk(id)
         || (id.matches('[a-z]+-[0-9]{4}')
           && (id.split('-')[0] == 'birthday'
             ? birthdayClaimOk(uid, int(id.split('-')[1]))

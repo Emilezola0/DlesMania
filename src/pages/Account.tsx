@@ -449,7 +449,7 @@ export default function Account() {
               Sign out
             </button>
           </div>
-          <p className="text-xs text-ink-faint">Signing out keeps your progress in this browser; signing in again on any device brings it all back.</p>
+          <p className="text-xs text-ink-faint">Signing out clears your progress from this browser (it stays safe in your account); signing in again on any device brings it all back.</p>
         </section>
       ) : (
         <section className="page space-y-4 rounded-md p-5">
@@ -502,7 +502,7 @@ export default function Account() {
           </form>
           {sent && <p className="text-sm font-semibold text-hit">✉ Sent to {form.email} — open the email on this device and follow the link{mode === 'password' ? ' to choose a new password' : ''}. Check the spam folder if it isn&apos;t there in a minute.</p>}
           {error && <p className="text-sm font-semibold text-coral">{error}</p>}
-          <p className="text-xs text-ink-faint">Your progress in this browser comes with you: the first time you sign in here, it&apos;s added to your account.</p>
+          <p className="text-xs text-ink-faint">Your progress in this browser comes with you into a new account. Signing in to an account that already has a save keeps that account&apos;s coins and cards (your scores and history here are added to it). Signing out clears this browser.</p>
         </section>
       )}
 

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { CardFace } from '../gacha/CardView';
 import { SellSpares } from '../gacha/SellSpares';
 import { RARITY_INFO, RARITY_LIGHT } from '../gacha/cards';
-import { todayKey } from '../lib/date';
+import { msUntilTomorrow, todayKey } from '../lib/date';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
@@ -13,9 +13,7 @@ import { CARD_SHOP, shopFor } from './cardShop';
 
 /** Time left until midnight, as "5 h 12 min". */
 function untilMidnight() {
-  const now = new Date();
-  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-  const min = Math.max(1, Math.round((next.getTime() - now.getTime()) / 60000));
+  const min = Math.max(1, Math.round(msUntilTomorrow() / 60000));
   return min >= 60 ? `${Math.floor(min / 60)} h ${min % 60} min` : `${min} min`;
 }
 

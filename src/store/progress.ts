@@ -7,7 +7,7 @@ import { UPGRADES } from '../gacha/upgrades';
 import { persist } from 'zustand/middleware';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
-import { addDays, todayKey } from '../lib/date';
+import { addDays, now as realNow, todayKey } from '../lib/date';
 import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
@@ -405,7 +405,7 @@ function earn(
   opts: { arcade?: string; count?: Partial<Record<QuestCounter, number>>; boss?: string } = {},
 ): Partial<Pick<ProgressState, 'coins' | 'econ' | 'missionBooks'>> {
   const e = econToday(s.econ);
-  const now = Date.now();
+  const now = realNow();
   if (opts.arcade && now - (e.lastPaid?.[opts.arcade] ?? 0) < ARCADE_SPACING_MS) return {};
   const left = ARCADE_CAP - e.arcade;
   // Past the daily amount, half: what remains of it in full, the rest at half.

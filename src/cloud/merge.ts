@@ -1,8 +1,10 @@
 // What a cloud save holds, and how two saves (this device's and the account's) become one.
 // Nothing played is ever lost: days and rounds, bosses and bests are combined, keeping the better of
 // each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
-// the save changed last; except the first time a device joins an account, when its coins and cards
-// are added to the account's (they were earned apart).
+// the save changed last. The first time a device joins an account that already has a save, the account's
+// coins, cards and everything bought or won with them stay as they are: the device's aren't added (they
+// could have been farmed without an account, or copied in from another account). A brand-new account
+// takes the device's save whole.
 import { clampGolden, clampPity } from '../gacha/economy';
 import type { Economy, PeriodBook } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
@@ -125,12 +127,6 @@ const maxBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) =
   return out;
 };
 
-const sumBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) => {
-  const out = { ...a };
-  for (const [k, v] of Object.entries(b)) out[k] = (out[k] ?? 0) + v;
-  return out;
-};
-
 function mergeBosses(a: SaveData['bosses'] = {}, b: SaveData['bosses'] = {}): SaveData['bosses'] {
   const out = { ...a };
   for (const [k, r] of Object.entries(b)) {
@@ -195,7 +191,8 @@ function laterQuests(a: SaveData['quests'], b: SaveData['quests']): SaveData['qu
 
 export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer }: { firstLink: boolean; cloudNewer: boolean }): SaveData {
   if (!cloud) return local;
-  const latest = cloudNewer ? cloud : local;
+  // Joining an account (firstLink): the account's save is the one that counts for all that can be spent.
+  const latest = firstLink || cloudNewer ? cloud : local;
   return {
     days: mergeDays(local.days, cloud.days),
     special: mergeDays(local.special, cloud.special),
@@ -208,16 +205,15 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     bosses: mergeBosses(local.bosses, cloud.bosses),
     whosThat: maxBy(local.whosThat, cloud.whosThat),
     bests: maxBy(local.bests, cloud.bests),
-    // Cards pulled apart add up; once in step, the latest save is the true one (cards also go — traded,
-    // exchanged for coins — so the higher count isn't).
-    cards: firstLink ? sumBy(local.cards, cloud.cards) : (latest.cards ?? {}),
-    // Grades go with the cards: the higher of the two on a first link, then the latest save's.
-    grades: firstLink ? maxBy(local.grades, cloud.grades) : (latest.grades ?? {}),
+    // The latest save's cards (the account's on a first link: cards also go — traded, exchanged for coins —
+    // so the higher count isn't the true one), and their grades with them.
+    cards: latest.cards ?? {},
+    grades: latest.grades ?? {},
     // A grade paid on either side stays paid (never twice).
     gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),
     engraved: { ...cloud.engraved, ...local.engraved },
-    // Elements go with the grades (and can be changed): both sides' on a first link, then the latest save's.
-    elements: firstLink ? { ...cloud.elements, ...local.elements } : (latest.elements ?? {}),
+    // Elements go with the grades (and can be changed): the latest save's.
+    elements: latest.elements ?? {},
     econ: mergeEcon(local.econ, cloud.econ)!,
     missionBooks: {
       week: mergeBook(local.missionBooks?.week, cloud.missionBooks?.week)!,
@@ -240,16 +236,15 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
           : local.bossWeek.week > cloud.bossWeek.week
             ? local.bossWeek
             : cloud.bossWeek,
-    coins: firstLink ? (local.coins ?? 0) + (cloud.coins ?? 0) : (latest.coins ?? 0),
-    // The luck of the latest save (pulled apart on a first link: the lower, so it's never doubled).
-    pity: clampPity(firstLink ? Math.min(local.pity ?? 0, cloud.pity ?? 0) : (cloudNewer ? cloud.pity : local.pity)),
-    // The golden pack's counter, the same way: the latest save's (the lower on a first link, so one isn't had twice).
-    golden: clampGolden(firstLink ? Math.min(local.golden ?? 0, cloud.golden ?? 0) : (cloudNewer ? cloud.golden : local.golden)),
+    coins: latest.coins ?? 0,
+    // The luck and the golden pack's counter of the latest save.
+    pity: clampPity(latest.pity),
+    golden: clampGolden(latest.golden),
     // The same day: the further along of the two. Otherwise the later day's.
     hotGame: laterHot(local.hotGame, cloud.hotGame),
     // Today's quests: the book further on (more claimed), else the latest save's.
     quests: laterQuests(local.quests, cloud.quests),
-    packsOpened: firstLink ? (local.packsOpened ?? 0) + (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
+    packsOpened: firstLink ? (cloud.packsOpened ?? 0) : Math.max(local.packsOpened ?? 0, cloud.packsOpened ?? 0),
     // A run in progress: the latest one (on a first link, the account's if it has one).
     rogueRun: firstLink ? (cloud.rogueRun ?? local.rogueRun) : latest.rogueRun,
     bossDifficulty: (firstLink ? cloud : latest).bossDifficulty ?? local.bossDifficulty,
@@ -269,10 +264,11 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     jlptGrammarReview: firstLink ? { ...(cloud.jlptGrammarReview ?? {}), ...(local.jlptGrammarReview ?? {}) } : (latest.jlptGrammarReview ?? local.jlptGrammarReview ?? {}),
     jlptCustom: firstLink ? { ...(cloud.jlptCustom ?? {}), ...(local.jlptCustom ?? {}) } : (latest.jlptCustom ?? local.jlptCustom ?? {}),
     // Icon frames won on either side stay won; the one worn, the meter and free capsules: the latest save's.
-    frames: [...new Set([...(local.frames ?? []), ...(cloud.frames ?? [])])],
+    // (On a first link, the account's: they're bought or won with coins.)
+    frames: firstLink ? (cloud.frames ?? []) : [...new Set([...(local.frames ?? []), ...(cloud.frames ?? [])])],
     frame: latest.frame ?? null,
     // Cosmetics bought on either side stay bought; the ones in use, and the title: the latest save's.
-    cosmetics: [...new Set([...(local.cosmetics ?? []), ...(cloud.cosmetics ?? [])])],
+    cosmetics: firstLink ? (cloud.cosmetics ?? []) : [...new Set([...(local.cosmetics ?? []), ...(cloud.cosmetics ?? [])])],
     nameStyle: latest.nameStyle ?? null,
     wrapper: latest.wrapper ?? null,
     title: latest.title ?? null,
@@ -286,15 +282,12 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // Scratch cards: the latest save's day and card being scratched; the best win either side has.
     scratch: { ...(latest.scratch ?? { day: '', bought: {}, pending: null }), best: Math.max(local.scratch?.best ?? 0, cloud.scratch?.best ?? 0) },
     // The claw: the latest save's day, tries and box; the plushies won either side, each at the most won.
-    claw: latest.claw ? { ...latest.claw, plush: mergeMax(local.claw?.plush, cloud.claw?.plush), wins: Math.max(local.claw?.wins ?? 0, cloud.claw?.wins ?? 0) } : (local.claw ?? cloud.claw),
+    claw: firstLink ? cloud.claw : latest.claw ? { ...latest.claw, plush: mergeMax(local.claw?.plush, cloud.claw?.plush), wins: Math.max(local.claw?.wins ?? 0, cloud.claw?.wins ?? 0) } : (local.claw ?? cloud.claw),
     freePacks: latest.freePacks ?? 0,
     shownPlush: latest.shownPlush ?? null,
     // The Daily Doodle's rewards paid on either side stay paid.
     doodle: mergeMax(local.doodle, cloud.doodle),
-    // What was earned without an account stays locked: both sides' on a first link (the cards and coins add up
-    // too), then the latest save's, with its cards.
-    tradeLock: firstLink
-      ? { cards: sumBy(local.tradeLock?.cards, cloud.tradeLock?.cards), coins: (local.tradeLock?.coins ?? 0) + (cloud.tradeLock?.coins ?? 0) }
-      : (latest.tradeLock ?? { cards: {}, coins: 0 }),
+    // What was earned without an account stays locked: the latest save's, with its cards.
+    tradeLock: latest.tradeLock ?? { cards: {}, coins: 0 },
   };
 }
