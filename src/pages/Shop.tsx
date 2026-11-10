@@ -3,7 +3,7 @@ import { codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period, clampOmniPity, omniLuck, OMNI_PITY } from '../gacha/economy';
+import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period, clampOmniPity, OMNI_PITY } from '../gacha/economy';
 import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -400,12 +400,6 @@ export default function Shop() {
             title={`Every pack without a Legendary or better: +${Math.round(PITY_STEP * 100)}% to Legendary odds, up to ×${PITY_MAX}. Back to ×1 when one drops.`}
           >
             ✨ Luck ×{pityLuck(pity).toFixed(2)}{pity > 0 ? ` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary` : ''}
-          </p>
-          <p
-            className={`text-xs font-semibold ${omniPity > 0 ? 'text-[#f472b6]' : 'text-ink-faint'}`}
-            title={`Every pack without an Omni: +${Math.round(OMNI_PITY.step * 100)}% to Omni odds, up to ×${OMNI_PITY.max}. Only an Omni sets it back.`}
-          >
-            ✪ Omni luck ×{omniLuck(omniPity).toFixed(2)}{omniPity > 0 ? ` · ${omniPity} pack${omniPity === 1 ? '' : 's'} without an Omni` : ''}
           </p>
           <GoldenMeter golden={golden} compact />
         </div>
