@@ -1280,7 +1280,7 @@ function AnomalyChoice({ anomaly, kept, onDecide, compact }: { anomaly: AnomalyI
  * What a pack (or five) leaves behind: how many cards were new and how many spares, each set's bar
  * filling with the cards just found, and the luck meter — up for the next pack, or back to ×1 after a Legendary.
  */
-function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; golden: boolean }) {
+function PackStats({ deck, fresh, golden, packs = 1 }: { deck: Card[]; fresh: Set<string>; golden: boolean; packs?: number }) {
   const counts = useProgress((s) => s.cards);
   const goldenCount = useProgress((s) => clampGolden(s.golden));
   const goldenLeft = GOLDEN.packs - 1 - goldenCount + 1;
@@ -1353,7 +1353,7 @@ function PackStats({ deck, fresh, golden }: { deck: Card[]; fresh: Set<string>; 
         </span>
       </div>
       <p className="text-center text-[11px] text-white/55">
-        {golden ? 'A golden pack! The count to the next one starts again. ' : goldenNext(goldenCount) ? 'Your next pack is golden! ' : `A golden pack in ${goldenLeft} pack${goldenLeft === 1 ? '' : 's'}. `}
+        {golden ? (packs > 1 ? `One of the ${packs} packs was golden! The count to the next one starts again. ` : 'A golden pack! The count to the next one starts again. ') : goldenNext(goldenCount) ? 'Your next pack is golden! ' : `A golden pack in ${goldenLeft} pack${goldenLeft === 1 ? '' : 's'}. `}
         {gotTop ? 'A Legendary or better: your luck starts again from ×1.' : luck >= PITY_MAX ? 'Luck at its highest: the next pack has the best odds it can get.' : 'No Legendary this time: the next pack has better odds of one.'}
       </p>
     </div>
@@ -2133,8 +2133,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {/* 0. Three packs: pick one. */}
       {phase === 'choose' && (
         <div className="flex w-full max-w-3xl flex-col items-center gap-8">
-          {golden && <p className="golden-banner golden-text text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl">★ GOLDEN PACK ★</p>}
-          <p className="font-display text-sm font-bold tracking-[0.35em] text-white/80">{golden ? `${GOLDEN.slots} LEGENDARY OR BETTER INSIDE · CHOOSE YOUR PACK` : 'CHOOSE YOUR PACK'}</p>
+          {/* Several packs at once: only one of them is golden (its odds are its own, the others' are as ever). */}
+          {golden && <p className="golden-banner golden-text text-center font-display text-3xl font-black tracking-[0.3em] sm:text-5xl">{times > 1 ? '★ A GOLDEN PACK INSIDE ★' : '★ GOLDEN PACK ★'}</p>}
+          <p className="text-center font-display text-sm font-bold tracking-[0.35em] text-white/80">
+            {golden ? (times > 1 ? `1 OF THE ${times} PACKS IS GOLDEN: ${GOLDEN.slots} LEGENDARY OR BETTER IN IT · CHOOSE YOUR PACK` : `${GOLDEN.slots} LEGENDARY OR BETTER INSIDE · CHOOSE YOUR PACK`) : 'CHOOSE YOUR PACK'}
+          </p>
           <div className="flex items-end justify-center gap-3 sm:gap-8">
             {LINEUP.map((l, k) => (
               <button
@@ -2365,7 +2368,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {/* 4. All five together. */}
       {phase === 'summary' && (
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
-          <PackStats deck={deck} fresh={fresh} golden={golden} />
+          <PackStats deck={deck} fresh={fresh} golden={golden} packs={times} />
           {allChoice}
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
