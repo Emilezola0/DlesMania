@@ -266,6 +266,11 @@ interface ProgressState {
   buyCosmetic: (id: string, price: number, inTokens?: boolean) => boolean;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
+  /**
+   * Many cards graded up at once (the Album's Grade up all), each as far as `to`, by the same rules as gradeUp:
+   * one change to the store (one save, one redraw) however many grades. What it did.
+   */
+  gradeUpMany: (plan: { id: string; rarity: Rarity; to: number }[], by?: string, element?: ElementId) => { cards: number; grades: number; coins: number };
   /** Pays every grade reached and not paid for yet (rarityOf: a card id's rarity): the coins and grades paid. */
   payGradeBacklog: (rarityOf: (id: string) => Rarity | undefined) => { coins: number; grades: number };
   /** Folds the copies of retired cards into the cards that replace them (see RETIRED): what was folded, and the coins. */
@@ -766,6 +771,40 @@ export const useProgress = create<ProgressState>()(
           ...(coins ? earn(s, coins) : {}),
         });
         return true;
+      },
+      gradeUpMany: (plan, by, element) => {
+        const s = get();
+        const cards = { ...s.cards };
+        const grades = { ...s.grades };
+        const gradesPaid = { ...s.gradesPaid };
+        const engraved = { ...s.engraved };
+        const elements = { ...s.elements };
+        let coins = 0;
+        let ups = 0;
+        let touched = 0;
+        let tagged = false;
+        let elemental = false;
+        for (const { id, rarity, to } of plan) {
+          const hellBeaten = (s.bosses[bossKey(id.split(':')[0], 'hell')]?.wins ?? 0) > 0;
+          let any = false;
+          for (let grade = gradeOf(grades, id); grade < to; grade++) {
+            if (grade + 1 === ELEMENT_GRADE && !isElement(element)) break;
+            if (!canGradeUp(cards[id] ?? 0, grade, hellBeaten)) break;
+            const paid = gradesPaid[id] ?? 1;
+            if (grade + 1 > paid) coins += gradeReward(rarity, grade + 1);
+            cards[id] -= GRADE_COST;
+            grades[id] = grade + 1;
+            gradesPaid[id] = Math.max(paid, grade + 1);
+            if (grade + 1 === HELL_GRADE) (engraved[id] = { by, date: todayKey() }), (tagged = true);
+            if (grade + 1 === ELEMENT_GRADE && element) (elements[id] = element), (elemental = true);
+            ups++;
+            any = true;
+          }
+          if (any) touched++;
+        }
+        if (!ups) return { cards: 0, grades: 0, coins: 0 };
+        set({ cards, grades, gradesPaid, ...(tagged ? { engraved } : {}), ...(elemental ? { elements } : {}), ...(coins ? earn(s, coins) : {}) });
+        return { cards: touched, grades: ups, coins };
       },
       switchElement: (id, element) => {
         const s = get();

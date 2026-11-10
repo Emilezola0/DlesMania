@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Coins } from '../components/DleCoin';
 import { celebrate, celebrateBig, rumble, shake } from '../lib/fx';
 import { shownName } from '../lib/french';
@@ -177,6 +177,10 @@ const AUTO_MIN = 40;
 const AUTO_MAX = 450;
 const AUTO_NEAR_TOP = 650;
 /** The summary deals its cards quickly: all of them within SUMMARY_DEAL ms (a single pack a little slower, card by card). */
+/** The tray under a card being turned: the last ones turned, no more. */
+const TRAY_MAX = 10;
+/** A shooting star is drawn this long before it sets off, and kept this long after it has crossed. */
+const STAR_EARLY = 400;
 const SUMMARY_DEAL = 700;
 /** The summary scrolls down by itself (px a second): faster the more packs, up to SUMMARY_SCROLL_MAX. */
 const SUMMARY_SCROLL_BASE = 100;
@@ -658,6 +662,25 @@ function Burst({ color, count, rainbow }: { color: string; count: number; rainbo
  * An evolving star: two stars in its first colour rush in from both sides, crash in the middle of the
  * screen and burst in the colour of the rarity it truly is.
  */
+/**
+ * A shooting star drawn only while it flies (from `from` to `to` ms after it's placed): fifty packs fly two hundred
+ * and fifty, and each one waiting its turn kept its glowing layers alive all show long. `children` gets how late it
+ * came in, to take off its CSS delay (counted from when it's drawn, not from the show's start).
+ */
+function InFlight({ from, to, children }: { from: number; to: number; children: (late: number) => ReactNode }) {
+  const placed = useRef(performance.now());
+  const [late, setLate] = useState<number | null>(() => (from <= 0 ? 0 : null));
+  const [gone, setGone] = useState(false);
+  useEffect(() => {
+    // Counted from when it was placed: a star pushed back (the last one, held for suspense) keeps its place in time.
+    const since = performance.now() - placed.current;
+    const on = from > since ? window.setTimeout(() => setLate(performance.now() - placed.current), from - since) : (setLate((l) => l ?? since), 0);
+    const off = window.setTimeout(() => setGone(true), Math.max(0, to - since));
+    return () => (window.clearTimeout(on), window.clearTimeout(off));
+  }, [from, to]);
+  return late === null || gone ? null : <>{children(late)}</>;
+}
+
 function Clash({ star, thick }: { star: Star; thick: number }) {
   const [boom, setBoom] = useState(false);
   useEffect(() => {
@@ -2204,13 +2227,17 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             // An evolving star crashes into another and bursts in its true colour.
             if (s.clash) return <Clash key={k} star={s} thick={thick} />;
             return (
-              <div key={k} className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
-                <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay}ms`, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
-                  <div className="absolute inset-0 rounded-full" style={streak(s.to)} />
-                  <div className="pack-meteor-head absolute right-0 top-1/2 rounded-full" style={{ width: thick * 5, height: thick * 5, ['--glow' as string]: RARITY_LIGHT[s.to] }} />
-                  <div className={`pack-meteor-dust absolute inset-y-0 left-[15%] right-[10%] ${rainbowy(s.to) ? 'pack-twinkle-rainbow' : ''}`} />
-                </div>
-              </div>
+              <InFlight key={`${k}:${flownFrom}`} from={s.delay - STAR_EARLY} to={s.delay + s.duration + STAR_EARLY}>
+                {(late) => (
+                  <div className="absolute left-0 w-full" style={{ top: `${s.top}%`, transform: `rotate(${s.tilt}deg)` }}>
+                    <div className="pack-meteor relative rounded-full" style={{ animationDuration: `${s.duration}ms`, animationDelay: `${s.delay - late}ms`, width: `${top(s.to) ? 45 : 30}vw`, height: thick, transform: 'translateX(-60vw)' }}>
+                      <div className="absolute inset-0 rounded-full" style={streak(s.to)} />
+                      <div className="pack-meteor-head absolute right-0 top-1/2 rounded-full" style={{ width: thick * 5, height: thick * 5, ['--glow' as string]: RARITY_LIGHT[s.to] }} />
+                      <div className={`pack-meteor-dust absolute inset-y-0 left-[15%] right-[10%] ${rainbowy(s.to) ? 'pack-twinkle-rainbow' : ''}`} />
+                    </div>
+                  </div>
+                )}
+              </InFlight>
             );
           })}
         </div>
@@ -2286,12 +2313,25 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           {/* Back from the black hole: keep its anomaly, or let the card be. */}
           {flipped && pending.has(i) && <AnomalyChoice anomaly={pending.get(i)!} kept={kept[i]} onDecide={(keep) => decide(i, keep)} />}
           {/* The tray: the cards already turned. */}
+          {/* Only the last ones (all a screen holds): fifty packs would line up two hundred cards, all redrawn at each turn. */}
           <div className="flex h-20 items-end justify-center gap-2">
-            {deck.slice(0, flipped ? i + 1 : i).map((_, k) => (
-              <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[looks(k)]}88` }}>
-                <CardFace key={looks(k)} card={asShown(k)} tilt={false} still anomaly={kept[k] === true ? pending.get(k) : undefined} />
-              </div>
-            ))}
+            {(() => {
+              const turned = flipped ? i + 1 : i;
+              const from = Math.max(0, turned - TRAY_MAX);
+              return (
+                <>
+                  {from > 0 && <span className="self-center font-display text-xs font-bold tracking-widest text-white/60">+{from}</span>}
+                  {deck.slice(from, turned).map((_, j) => {
+                    const k = from + j;
+                    return (
+                      <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[looks(k)]}88` }}>
+                        <CardFace key={looks(k)} card={asShown(k)} tilt={false} still anomaly={kept[k] === true ? pending.get(k) : undefined} />
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            })()}
           </div>
         </div>
       )}

@@ -39,7 +39,7 @@ function Dialog({ title, intro, onClose, children }: { title: string; intro: Rea
 /** A card's row: its picture, name, rarity and what's said about it. */
 function Row({ card, children, right }: { card: Card; children?: ReactNode; right: ReactNode }) {
   return (
-    <li className="flex items-center gap-3 rounded-md border border-rule bg-card px-2 py-1.5">
+    <li className="flex items-center gap-3 rounded-md border border-rule bg-card px-2 py-1.5 [contain-intrinsic-size:auto_54px] [content-visibility:auto]">
       <img src={card.image} alt="" loading="lazy" className="size-10 shrink-0 rounded object-cover object-top" style={{ boxShadow: `0 0 0 2px ${RARITY_LIGHT[card.rarity]}` }} />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-semibold">{shownName(card.name, card.set)}</p>
@@ -101,7 +101,7 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
   const grades = useProgress((s) => s.grades);
   const paid = useProgress((s) => s.gradesPaid);
   const bosses = useProgress((s) => s.bosses);
-  const gradeUp = useProgress((s) => s.gradeUp);
+  const gradeUpMany = useProgress((s) => s.gradeUpMany);
   const signedIn = useCloud((s) => s.name ?? s.email?.split('@')[0] ?? undefined);
   const [element, setElement] = useState<ElementId | null>(null);
   const [skip, setSkip] = useState<Set<string>>(new Set());
@@ -126,21 +126,18 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
   const waiting = useMemo(() => (element ? 0 : CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && planFor(owned[c.id], gradeOf(grades, c.id), hell(c), 'fire') >= ELEMENT_GRADE).length),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [owned, grades, bosses, element]);
-  const { shown, bar } = useFilter(ready.map((r) => r.card));
+  const readyCards = useMemo(() => ready.map((r) => r.card), [ready]);
+  const byId = useMemo(() => new Map(ready.map((r) => [r.card.id, r])), [ready]);
+  const { shown, bar } = useFilter(readyCards);
   const picked = ready.filter((r) => !skip.has(r.card.id));
   const total = picked.reduce((a, r) => ({ grades: a.grades + r.to - r.from, coins: a.coins + r.coins }), { grades: 0, coins: 0 });
 
+  // Every grade in one change to the store: graded one at a time, hundreds of cards saved and redrawn the Album hundreds of times.
   const go = () => {
-    let gradesUp = 0;
-    let cards = 0;
     const before = useProgress.getState().coins;
-    for (const r of picked) {
-      let any = false;
-      while (gradeOf(useProgress.getState().grades, r.card.id) < r.to && gradeUp(r.card.id, r.card.rarity, signedIn, element ?? undefined)) (gradesUp++, (any = true));
-      if (any) cards++;
-    }
-    if (!gradesUp) return sfx.wrong();
-    setDone({ cards, grades: gradesUp, coins: useProgress.getState().coins - before });
+    const did = gradeUpMany(picked.map((r) => ({ id: r.card.id, rarity: r.card.rarity, to: r.to })), signedIn, element ?? undefined);
+    if (!did.grades) return sfx.wrong();
+    setDone({ cards: did.cards, grades: did.grades, coins: useProgress.getState().coins - before });
     setSkip(new Set());
     if (picked.some((r) => r.to >= 4)) (sfx.victory(), celebrateBig());
     else (sfx.streak(), celebrate());
@@ -184,7 +181,7 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
           </div>
           <ul className="max-h-[45vh] space-y-1.5 overflow-y-auto pr-1">
             {shown.map((c) => {
-              const r = ready.find((x) => x.card.id === c.id)!;
+              const r = byId.get(c.id)!;
               const on = !skip.has(c.id);
               return (
                 <Row
