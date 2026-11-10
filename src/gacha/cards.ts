@@ -1192,12 +1192,12 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     // His voice lines: the film's, the owner's picks, cut from "Minecraft Movie but only THE MEMES" (one at random).
     // His clip (CLIPS: Steve's Lava Chicken) is heard with its own sound behind a win, not these.
     voice: 'I am Steve.',
-    audio: 'youtube:54D5u8DnfvE@23.6-26.4',
+    audio: 'youtube:54D5u8DnfvE@22.6-26.4',
     voiceClips: [
       { line: 'Flint and steel.', audio: 'youtube:54D5u8DnfvE@10.9-12.9' },
       { line: 'The Nether.', audio: 'youtube:54D5u8DnfvE@18.7-21' },
-      { line: 'I am Steve.', audio: 'youtube:54D5u8DnfvE@23.6-26.4' },
-      { line: 'First we mine, then we craft. Let’s Minecraft!', audio: 'youtube:54D5u8DnfvE@118.2-125.5' },
+      { line: 'I am Steve.', audio: 'youtube:54D5u8DnfvE@22.6-26.4' },
+      { line: 'First we mine, then we craft. Let’s Minecraft!', audio: 'youtube:54D5u8DnfvE@118.2-124.5' },
     ],
     clipSound: true,
   },
