@@ -2246,7 +2246,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <div className="flex h-20 items-end justify-center gap-2">
             {deck.slice(0, flipped ? i + 1 : i).map((_, k) => (
               <div key={k} data-still className="pack-tray-in w-12 rounded-[7%] sm:w-14" style={{ boxShadow: `0 0 6px ${RARITY_LIGHT[looks(k)]}88` }}>
-                <CardFace key={looks(k)} card={asShown(k)} tilt={false} still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+                <CardFace key={looks(k)} card={asShown(k)} tilt={false} still anomaly={kept[k] === true ? pending.get(k) : undefined} />
               </div>
             ))}
           </div>
@@ -2260,10 +2260,10 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k, deck.length)}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
-                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still anomaly={pending.has(k) && kept[k] !== false ? pending.get(k) : undefined} />
+                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still anomaly={kept[k] === true ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
-                  {pending.get(k) === 'fake' && kept[k] !== false ? 'Mythic' : RARITY_INFO[c.rarity].name}
+                  {pending.get(k) === 'fake' && kept[k] === true ? 'Mythic' : RARITY_INFO[c.rarity].name}
                 </p>
                 {cosmicAt.has(k) && <p className="text-center text-[10px] font-bold tracking-widest text-white/70" title={COSMIC_DONE[cosmicAt.get(k)!.kind]}>{COSMIC_NAME[cosmicAt.get(k)!.kind].icon} was {RARITY_INFO[cosmicAt.get(k)!.from.rarity].name}</p>}
                 {!fresh.has(c.id) && <p className="pack-chip mt-0.5 text-center font-display text-[10px] font-bold tracking-widest text-white/60" style={{ animationDelay: `${dealAt(k, deck.length) + 250}ms` }}>+1 SPARE</p>}
