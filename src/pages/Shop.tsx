@@ -17,6 +17,8 @@ import { Quests } from '../gacha/Quests';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
+/** The most packs opened at once (each 5 cards): an opening stays one you can follow. */
+const MAX_OPEN = 20;
 
 /** Days until a period's missions change: next Monday, or the 1st of next month. */
 function daysLeft(p: Period): number {
@@ -285,9 +287,8 @@ export default function Shop() {
     sfx.click();
     setOpening({ pack: p, times: 1, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
-  /** Five packs at once: 25 cards in one opening, the rarest last. */
-  const MANY = 5;
-  const buyMany = (p: Pack) => {
+  /** Several packs at once (as many as the player picks, up to MAX_OPEN): all their cards in one opening, the rarest last. */
+  const buyMany = (p: Pack, MANY: number) => {
     const best = boostOf(p);
     if (p.boss && !best) return;
     // One pack after another, each with the luck the ones before it left.
@@ -299,9 +300,13 @@ export default function Shop() {
     if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity, pull.golden)) return sfx.wrong();
     logLuck(pull, MANY);
     sfx.click();
-    // One of the five golden: the whole opening wears gold.
+    // One of them golden: the whole opening wears gold.
     setOpening({ pack: p, times: MANY, cards, events: pull.events, fresh, golden: pull.goldenAt.length > 0, key: Date.now() });
   };
+
+  /** Packs picked to open at once, by pack. */
+  const [counts, setCounts] = useState<Record<string, number>>({});
+  const setCount = (p: Pack, n: number) => setCounts((c) => ({ ...c, [p.id]: Math.max(1, Math.min(MAX_OPEN, Math.floor(n) || 1)) }));
 
   const general = PACKS.filter((p) => !p.boss);
   const franchise = PACKS.filter((p) => p.boss);
@@ -310,6 +315,9 @@ export default function Shop() {
     const locked = !!p.boss && !best;
     const afford = coins >= p.cost;
     const set = p.boss ? SETS.find((s) => s.id === p.boss) : undefined;
+    // How many the coins allow (up to MAX_OPEN), and how many are picked (kept in the page: this tile is rebuilt on every render).
+    const canOpen = Math.max(1, Math.min(MAX_OPEN, Math.floor(coins / p.cost)));
+    const n = Math.min(counts[p.id] ?? 1, canOpen);
     return (
       <div className={`page flex flex-col gap-2 rounded-md p-3 ${locked ? 'opacity-70' : ''}`}>
         <div className={locked ? 'grayscale' : ''}>
@@ -333,15 +341,32 @@ export default function Shop() {
                 🎁 Open free ({freePacks})
               </button>
             )}
-            <button type="button" disabled={!afford} onClick={() => buy(p)} className="btn-accent rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
-              Open · <Coins n={p.cost} />
-            </button>
-            {/* Five at once, when the coins are there. */}
-            {coins >= p.cost * MANY && (
-              <button type="button" onClick={() => buyMany(p)} className="btn-paper rounded-md px-3 py-1.5 font-display text-xs font-bold">
-                Open ×{MANY} · <Coins n={p.cost * MANY} />
-              </button>
+            {/* How many to open at once: as many as the coins allow, up to MAX_OPEN. */}
+            {canOpen > 1 && (
+              <div className="flex items-center justify-center gap-1" aria-label={`How many ${p.name} to open`}>
+                <button type="button" disabled={n <= 1} onClick={() => setCount(p, n - 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One fewer pack">
+                  −
+                </button>
+                <input
+                  type="number"
+                  min={1}
+                  max={canOpen}
+                  value={n}
+                  onChange={(e) => setCount(p, Number(e.target.value))}
+                  className="w-12 rounded-md border border-rule-strong bg-paper px-1 py-1 text-center text-sm tabular-nums"
+                  aria-label="Packs to open"
+                />
+                <button type="button" disabled={n >= canOpen} onClick={() => setCount(p, n + 1)} className="grid size-7 place-items-center rounded-md border border-rule-strong font-bold hover:border-ink disabled:opacity-40" aria-label="One more pack">
+                  +
+                </button>
+                <button type="button" disabled={n >= canOpen} onClick={() => setCount(p, canOpen)} className="rounded-md border border-rule-strong px-1.5 py-1 text-xs font-semibold hover:border-ink disabled:opacity-40">
+                  Max
+                </button>
+              </div>
             )}
+            <button type="button" disabled={!afford} onClick={() => (n > 1 ? buyMany(p, n) : buy(p))} className="btn-accent rounded-md px-3 py-2 font-display text-sm font-bold disabled:opacity-40">
+              Open{n > 1 ? ` ×${n}` : ''} · <Coins n={p.cost * n} />
+            </button>
           </div>
         )}
       </div>
@@ -496,7 +521,7 @@ export default function Shop() {
           times={opening.times}
           canAgain={coins >= opening.pack.cost * opening.times}
           golden={opening.golden}
-          onAgain={() => (opening.times > 1 ? buyMany(opening.pack) : buy(opening.pack))}
+          onAgain={() => (opening.times > 1 ? buyMany(opening.pack, opening.times) : buy(opening.pack))}
           onClose={() => setOpening(null)}
         />
       )}
