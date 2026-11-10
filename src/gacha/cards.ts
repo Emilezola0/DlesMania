@@ -559,7 +559,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
   'naruto:mythic': { image: 'https://static.wikia.nocookie.net/naruto/images/4/42/Naruto_Part_III.png/revision/latest/scale-to-width-down/500?cb=20180117103539' },
   'genshin:mythic': { title: 'Red Dead of Night', image: 'https://static.wikia.nocookie.net/gensin-impact/images/2/29/Character_Diluc_Red_Dead_of_Night_Full_Wish.png/revision/latest/scale-to-width-down/500?cb=20220801021754' },
-  'inazuma:mythic': { image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/a/a7/Endou_Mamoru_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20210926134601' },
+  'inazuma:mythic': { voice: 'God Hand!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/0/02/%28IE%29_God_Hand.mp4/revision/latest?cb=20240420164350', image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/a/a7/Endou_Mamoru_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20210926134601' },
   // ── Second mythics ──
   'lol:mythic-2': { title: 'Star Guardian', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ea/Jinx_StarGuardianLoading.jpg/revision/latest?cb=20200424235449', voice: 'Get excited!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/3/3a/VO_Jinx_spell_resolve_ally_GetExcited_01.ogg/revision/latest?cb=20210715230517' },
   'minecraft:mythic-2': { voice: 'Sniff… sniff…', audio: 'https://minecraft.wiki/images/Warden_sniff1.ogg?b4ff6' },
@@ -572,8 +572,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'mcu:mythic-2': { title: 'Stormbreaker', image: 'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/e/ed/Avengers_Infinity_War_Thor_concept_art_3.jpg/revision/latest/scale-to-width-down/500?cb=20181106193641', voice: 'Bring me Thanos!', audio: 'https://www.myinstants.com/media/sounds/bring_me_thanos.mp3' },
   'smash:mythic-2': { voice: 'Poyo!', audio: 'https://www.myinstants.com/media/sounds/poyo.mp3' },
   'genshin:mythic-2': { voice: 'Inabikari, sunawachi eien nari!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/VO_JA_Raiden_Shogun_Elemental_Burst_03.ogg/revision/latest?cb=20221112234607' },
-  'wow:mythic-2': { image: 'https://warcraft.wiki.gg/images/thumb/Thrall_HotS_World-Shaman.jpg/500px-Thrall_HotS_World-Shaman.jpg?543732' },
-  'inazuma:mythic-2': { image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d0/Gouenji_Shuuya_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20190912000534' },
+  'wow:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/for-the-horde-orc.mp3', image: 'https://warcraft.wiki.gg/images/thumb/Thrall_HotS_World-Shaman.jpg/500px-Thrall_HotS_World-Shaman.jpg?543732' },
+  'inazuma:mythic-2': { audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/4/48/%28IE_%28007%29%29_Fire_Tornado.mp4/revision/latest?cb=20240602210604', image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d0/Gouenji_Shuuya_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20190912000534' },
   // ── Omnis: their voices ──
   'lol:omni': { voice: 'A chase, then!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ef/Ahri_SpiritBlossom_R_1.ogg/revision/latest?cb=20200726232639' },
   'overwatch:omni': { voice: 'Heroes never die!', audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913' },
@@ -586,10 +586,22 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'lotr:omni': { voice: 'You shall not pass!', audio: 'https://www.myinstants.com/media/sounds/gandalf_shallnotpass.mp3' },
   'mcu:omni': { voice: 'I am Iron Man.', audio: 'https://www.myinstants.com/media/sounds/ironman_Qaec4ow.mp3' },
   'genshin:omni': { voice: 'Tiān dòng wàn xiàng!', audio: 'https://static.wikia.nocookie.net/gensin-impact/images/d/d0/VO_ZH_Zhongli_Elemental_Burst_03.ogg/revision/latest?cb=20221113225313' },
-  'wow:omni': { voice: 'Frostmourne hungers.' },
+  'wow:omni': { voice: 'Frostmourne hungers.', audio: 'https://www.myinstants.com/media/sounds/evilarthasyes2.mp3' },
   // Mark Evans awakened: his clip is God Catch (the golden god rising out of the clouds), so is his voice — the anime's shout of it (episode 127, from the Inazuma Eleven Wiki's own video of the technique).
   'inazuma:omni': { voice: 'God Catch!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/%28IE_%28127%29%29_God_Catch_G5.mp4/revision/latest?cb=20241015044228#t=8.3,10.6' },
   'avatar:omni': { voice: 'Yip yip!' },
+  // ── Recordings added to the Mythics and Omnis that only had a written line (the browser read it) ──
+  // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
+  // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
+  'smash:omni': { voice: 'Hyaah!', audio: 'https://www.myinstants.com/media/sounds/ww_link_hwah.mp3' },
+  'forts:omni': { voice: '*BOOM*', audio: 'https://www.myinstants.com/media/sounds/cannon-soundbible_5xh1Wvy.mp3' },
+  'deadlock:mythic': { voice: 'Sleep well.', audio: 'https://cdn.deadlock.wiki/Haze_unselect_05.mp3' },
+  'balatro:mythic': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
+  'balatro:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
+  'arcraiders:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/arc-raiders-bastion-lock-on.mp3' },
+  'hollowknight:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/zote-war-cry.mp3' },
+  'destiny:mythic-2': { voice: 'Indeed.', audio: 'https://www.myinstants.com/media/sounds/indeed_zavala_boosted.mp3' },
+  'arcraiders:omni': { voice: '*The Matriarch roars*', audio: 'youtube:pkJyYZ7KYwM@72-90' },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
   'avatar:mythic-sokka': { focus: { x: 50, y: 22, zoom: 1 } },
@@ -643,7 +655,7 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
   },
   // Inazuma Eleven's places: its stadiums, schools and the steel tower, in the anime's art (the Inazuma Eleven Wiki).
   { set: 'inazuma', id: 'inazuma:place-steel-tower-plaza', name: "Steel Tower Plaza", rarity: 'mythic', title: "Where It All Began", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/600?cb=20260628144331', description: "The red steel tower on the hill above Inazuma Town, at sunset: where a boy trained alone with a tyre on a rope until the whole team came to find him." },
-  { set: 'inazuma', id: 'inazuma:place-titanic-stadium', name: "Titanic Stadium", rarity: 'mythic', title: "The World Final", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/3/3b/Titanic_Stadium.png/revision/latest/scale-to-width-down/600?cb=20170113221223', description: "The great stadium of Liocott Island, raised over the sea for the final of the Football Frontier International: the whole world watching one match." },
+  { set: 'inazuma', id: 'inazuma:place-titanic-stadium', name: "Titanic Stadium", rarity: 'mythic', title: "The World Final", place: true, voice: '*The crowd roars*', audio: 'https://www.myinstants.com/media/sounds/crowd-chanting-at-stadium.mp3', image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/3/3b/Titanic_Stadium.png/revision/latest/scale-to-width-down/600?cb=20170113221223', description: "The great stadium of Liocott Island, raised over the sea for the final of the Football Frontier International: the whole world watching one match." },
   { set: 'inazuma', id: 'inazuma:place-football-frontier-stadium', name: "Football Frontier Stadium", rarity: 'legendary', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/9/93/Football_Frontier_Stadium.png/revision/latest/scale-to-width-down/600?cb=20130530114730', description: "The stage of the national tournament, where every junior high team in Japan dreams of playing the final." },
   { set: 'inazuma', id: 'inazuma:place-holy-road-stadium', name: "Holy Road Stadium", rarity: 'legendary', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/e/ef/Holy_Road_Stadium.png/revision/latest/scale-to-width-down/600?cb=20171129141014', description: "The great stadium of the Holy Road, where Raimon played for the freedom of soccer itself." },
   { set: 'inazuma', id: 'inazuma:place-raimon-junior-high', name: "Raimon Junior High", rarity: 'epic', place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/0/00/%28IE_%28001%29%29_Raimon%27s_Main_Building.png/revision/latest/scale-to-width-down/600?cb=20260628144235', description: "The school with the lightning bolt over its gate, and a soccer club that once had too few players to field a team." },
@@ -674,6 +686,23 @@ const CLIPS: Record<string, string> = {
   'minecraft:mythic': 'https://media.tenor.com/G7ryB6dOXCsAAAPo/creeper-creeper-explosion.mp4',
   'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
   'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
+  // Movie Steve: "Steve's Lava Chicken", the whole scene (it's his voice too: heard from the clip).
+  'minecraft:omni-steve': 'youtube:41O_MydqxTU@0-51',
+  // ── Clips for the Mythics that had none (Tenor; ARC Raiders from YouTube: its official launch trailer, and a
+  // showcase of the Matriarch; Victor Blade from the Inazuma Eleven Wiki, heard with its sound) ──
+  'dbz:mythic-vegito': 'https://media.tenor.com/gn-zNRi495MAAAPo/vegetto-ssj-blue-final-kamehameha.mp4',
+  'inazuma:mythic-victor-blade': 'https://static.wikia.nocookie.net/inazuma-eleven/images/8/83/%28GO_%28001%29%29_Death_Sword.mp4/revision/latest?cb=20240323211654',
+  'arcraiders:mythic': 'https://media.tenor.com/dv19A6pPFuUAAAPo/leaper-jump.mp4',
+  // The Bastion's red targeting laser sweeping the Raiders (launch trailer, 0:57).
+  'arcraiders:mythic-2': 'youtube:IpeJjQDXNAE@57-66',
+  'arcraiders:mythic-matriarch': 'youtube:pkJyYZ7KYwM@30-45',
+  'arcraiders:mythic-queen': 'https://media.tenor.com/qkK_T04llkEAAAPo/arc-raiders.mp4',
+  'arcraiders:mythic-raider': 'https://media.tenor.com/wMVUVb4SmycAAAPo/arc-raiders-arc-raider.mp4',
+  'deadlock:mythic-seven': 'https://media.tenor.com/3l3u2YdpidAAAAPo/seven-ultimate-seven-deadlock.mp4',
+  'balatro:mythic': 'https://media.tenor.com/3fCNP48JN4kAAAPo/balatro-perkeo.mp4',
+  'balatro:mythic-2': 'https://media.tenor.com/vyL0YDXO34sAAAPo/balatro-jimbo.mp4',
+  'unreal:mythic': 'https://media.tenor.com/ldSMvl-h61wAAAPo/unreal-engine-editor.mp4',
+  'jlpt:mythic': 'https://media.tenor.com/6y_x59L0fNEAAAPo/pixel-art.mp4',
   'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
   'onepiece:omni': 'https://media.tenor.com/S9Xo7A1m3_EAAAP1/one-piece-onigashima-arc.mp4',
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
@@ -758,6 +787,13 @@ const FIRST_CLIPS: Record<string, string> = {
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
+  // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
+  'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
+  'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
+  'jlpt:omni': 'https://media.tenor.com/9Y05zW6LxLIAAAPo/shodoo-calligraphy.mp4',
+  // The Matriarch striding in on the Raiders (a showcase of her, 1:12), heard: it's her voice too.
+  'arcraiders:omni': 'youtube:pkJyYZ7KYwM@72-90',
+  'arcraiders:omni-scrappy': 'https://media.tenor.com/QPXtzw2HKG0AAAPo/scrappy-rooster.mp4',
 };
 /** The clips under 150 KB. */
 const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
@@ -993,6 +1029,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     title: 'Sheriff of the Workshop',
     image: 'https://arcraiders.wiki/w/images/9/9a/Cowboy_Hat_Scrappy_Outfit.png',
     voice: 'Cock-a-doodle-doo!',
+    audio: 'https://www.myinstants.com/media/sounds/village-rooster-crowing-call-3.mp3',
     description: 'The rooster who lives in your workshop and brings back whatever he finds topside — today in a cowboy hat, and nobody dares say a thing.',
     awaken: {
       title: 'Captain Scrappy',
@@ -1008,7 +1045,9 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     rarity: 'mythic',
     title: 'The Storm Caller',
     image: 'https://cdn.deadlock.wiki/Seven_concept_art.png',
-    voice: 'The storm is here.',
+    // His own voice as he calls his Storm Cloud (the Deadlock Wiki's file: Seven is "Gigawatt" in the game's files).
+    voice: 'The storm gathers.',
+    audio: 'https://cdn.deadlock.wiki/Gigawatt_use_power4_04.mp3',
     description: 'Lightning in a ball, a static charge that stuns and a storm cloud over a whole fight: the hero every new player is warned about.',
   },
   // Inazuma Eleven's third mythic, from GO (a fan favourite never on a card before, so no one's a duplicate):
@@ -1021,6 +1060,11 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     title: 'Keshin Armed',
     image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/9/91/%28CS_%28013%29%29_KA_Tsurugi.png/revision/latest/scale-to-width-down/600?cb=20160721111806',
     description: 'Sent by the Fifth Sector to crush Raimon’s soccer club, he ended up its ace striker — and here he wears his keshin, the swordsman Lancelot, as armour.',
+    // His Death Sword in the first episode of GO (the Inazuma Eleven Wiki's clip, 720p), heard with its own sound: his
+    // clip (CLIPS) and his voice are the one moment.
+    voice: 'Death Sword!',
+    audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/8/83/%28GO_%28001%29%29_Death_Sword.mp4/revision/latest?cb=20240323211654',
+    clipSound: true,
   },
   // Inazuma Eleven GO and Chrono Stones (their cast, by how loved they are), and the series' techniques: hissatsu
   // and keshins, the famous ones rarest (src/data/inazuma-go.json, from the Inazuma Eleven Wiki).
@@ -1102,6 +1146,22 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 80, y: 30, zoom: 1 },
     description: 'Goku and Vegeta joined by the Potara earrings, then turned Blue to face Fused Zamasu: so strong that the fusion burned out before the fight could end.',
     voice: 'Final Kamehameha!',
+    audio: 'https://www.myinstants.com/media/sounds/tmpd5y55__3.mp3',
+  },
+  // Steve as A Minecraft Movie has him (Jack Black), the owner's pick: the film's character poster (Minecraft Wiki),
+  // and "Steve's Lava Chicken" as his clip and his voice, one YouTube moment heard with its picture (the official
+  // music video, WaterTower Music). The set's other Omni and Mythics are the Creeper and the Warden: a new face.
+  {
+    set: 'minecraft',
+    id: 'minecraft:omni-steve',
+    name: 'Steve',
+    rarity: 'omni',
+    title: 'A Minecraft Movie',
+    image: 'https://minecraft.wiki/images/AMCM_Character_poster_Steve.jpg',
+    focus: { x: 72, y: 45, zoom: 1 },
+    description: 'A doorknob salesman who yearned for the mines as a child, then found the portal and stayed: years in the Overworld, a wolf called Dennis, and one song about chicken, lava and a lava chicken.',
+    voice: '♪ Lava chicken! ♪',
+    audio: 'youtube:41O_MydqxTU@0-51',
   },
   // Acheron, raised to Omni (one of Honkai: Star Rail's best-loved characters): her splash art, and the Light Cone
   // drawn for her when she awakens. Her Mythic (hsr:mythic-2) is vaulted, and its owners can pay to upgrade it
