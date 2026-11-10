@@ -43,6 +43,10 @@
     "max": 3,
     "topShare": 0
   },
+  "omniPity": {
+    "step": 0.01,
+    "max": 5
+  },
   "golden": {
     "packs": 150,
     "slots": 3,

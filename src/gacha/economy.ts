@@ -187,6 +187,16 @@ export const clampPity = (pity: number | undefined) => (Number.isFinite(pity) ? 
 export const pityLuck = (pity: number) => Math.min(PITY_MAX, 1 + PITY_STEP * clampPity(pity));
 
 /**
+ * Omni luck, for the unlucky: every pack opened without an Omni raises the Omni odds by OMNI_PITY.step (+1%), up to
+ * OMNI_PITY.max times (still under the Omni cap); only an Omni pulled from a pack sets it back to the start.
+ */
+export const OMNI_PITY = T.omniPity;
+/** The packs it takes to reach the most Omni luck: the counter never goes past it. */
+export const OMNI_PITY_PACKS = Math.round((OMNI_PITY.max - 1) / OMNI_PITY.step);
+export const clampOmniPity = (n: number | undefined) => (Number.isFinite(n) ? Math.min(OMNI_PITY_PACKS, Math.max(0, Math.floor(n as number))) : 0);
+export const omniLuck = (n: number | undefined) => Math.min(OMNI_PITY.max, 1 + OMNI_PITY.step * clampOmniPity(n));
+
+/**
  * The golden pack: every GOLDEN.packs-th pack opened (any pack, whatever it held) comes golden. Its last
  * GOLDEN.slots cards are Legendary or better: the very last one now and then Mythic (GOLDEN.last), the
  * others Legendary with a small chance of better (GOLDEN.others), in percent. With the live numbers (150

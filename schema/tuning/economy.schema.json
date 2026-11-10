@@ -226,6 +226,25 @@
       "additionalProperties": false,
       "title": "Luck (pity)"
     },
+    "omniPity": {
+      "type": "object",
+      "description": "Omni luck: every pack opened without an Omni raises the Omni odds a little, up to a most; only an Omni from a pack sets it back",
+      "properties": {
+        "step": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Omni odds added per pack without an Omni (0.01 = +1%)"
+        },
+        "max": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Most Omni luck (×), still kept under the Omni cap (packs.json topCap)"
+        }
+      },
+      "required": ["step", "max"],
+      "additionalProperties": false,
+      "title": "Omni luck"
+    },
     "golden": {
       "type": "object",
       "properties": {
@@ -1290,6 +1309,7 @@
     "arcade",
     "hot",
     "pity",
+    "omniPity",
     "golden",
     "expedition",
     "roulette",

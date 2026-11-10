@@ -1581,47 +1581,70 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setPhase('torn');
     later(() => {
       if (reducedMotion()) return toReveal();
-      setPhase('meteor');
-      // A star a card: each its own whoosh, the last the long one; a clash crashes and bursts.
-      // The black hole: it opens with a hum as the first star flies.
-      if (cosmos.hole) later(() => (sfx.blackHole(), rumble(stage.current, 1800, 0.3, 3)), 0);
-      // A star it pulls in: a rush of air, and a jolt as it goes.
-      for (const k of cosmos.swallowed.keys()) later(() => (sfx.swallow(), jolt(7, 400)), cosmos.stars[k].delay + cosmos.stars[k].duration - 300);
-      // The stars as they now fly (the swipe may have pushed the last one back).
-      const ss = shifted(extraRef.current);
-      ss.forEach((s, k) => {
-        if (s.event) return cosmicCues(s);
-        later(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
-        // An evolving star: the crash, a hard shake and the burst in its true colour.
-        if (s.clash)
-          later(() => {
-            sfx.clash();
-            sfx.shimmer(5);
-            jolt(14, 520);
-            setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
-          }, s.delay + CLASH_AT);
-      });
-      // The planet evolving: a chime as it grows.
-      skyStepsOf(ss).forEach(({ at, tier }, j) => {
-        later(() => setFeed(j + 1), at - 450);
-        later(() => (setSkyNow({ tier, n: j + 1 }), sfx.shimmer(4 + tier * 2)), at);
-      });
-      // A sky moment: its own sound.
-      if (moment === 'comet') later(() => (sfx.shimmer(10), sfx.suspense(2)), cometAt + 400);
-      if (moment === 'shower') for (let t = 400; t < 3000; t += 450) later(() => sfx.shimmer(2), t);
-      if (moment === 'capture') later(() => sfx.shimmer(6), 3300);
-      // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
-      // The first wait is longer the faster the pack was torn (its heartbeat with it).
-      ss.filter((s) => s.climax).forEach((s, j) => {
-        const pause = LAST_STAR_PAUSE + (j === 0 ? extraRef.current : 0);
-        later(() => (rumble(stage.current, pause, 0.5, 7), sfx.suspense(pause / 1000)), s.delay - pause);
-        if (j === 0) heartbeat(s.delay - pause, s.delay);
-      });
-      const end = Math.max(...ss.map((s) => s.delay + s.duration));
-      later(() => setFlash({ color: packLight, key: Date.now() }), end - 100);
-      later(toReveal, end + 300);
+      fly(0);
     }, 950);
   };
+  /**
+   * The shooting stars, from `from` ms into their show: 0 is all of it; a skip to a rare scene (a cosmic event)
+   * starts just before it, the stars already gone and the sky as it would be by then.
+   */
+  const fly = (from: number) => {
+    flyFrom.current = from;
+    setFlownFrom(from);
+    meteorStart.current = Date.now() - from;
+    setPhase('meteor');
+    // A star a card: each its own whoosh, the last the long one; a clash crashes and bursts.
+    // The black hole: it opens with a hum as the first star flies.
+    if (cosmos.hole) laterIn(() => (sfx.blackHole(), rumble(stage.current, 1800, 0.3, 3)), 0);
+    // A star it pulls in: a rush of air, and a jolt as it goes.
+    for (const k of cosmos.swallowed.keys()) laterIn(() => (sfx.swallow(), jolt(7, 400)), cosmos.stars[k].delay + cosmos.stars[k].duration - 300);
+    // The stars as they now fly (the swipe may have pushed the last one back).
+    const ss = shifted(extraRef.current);
+    ss.forEach((s, k) => {
+      if (s.event) return cosmicCues(s);
+      laterIn(() => (k === regular - 1 ? sfx.meteor(top(s.to)) : sfx.whoosh()), s.delay);
+      // An evolving star: the crash, a hard shake and the burst in its true colour.
+      if (s.clash)
+        laterIn(() => {
+          sfx.clash();
+          sfx.shimmer(5);
+          jolt(14, 520);
+          setFlash({ color: RARITY_LIGHT[s.to], key: Date.now(), rainbow: rainbowy(s.to) });
+        }, s.delay + CLASH_AT);
+    });
+    // The planet evolving: a chime as it grows (already grown, for the steps a skip went past).
+    skyStepsOf(ss).forEach(({ at, tier }, j) => {
+      if (at < from) return (setFeed(j + 1), setSkyNow({ tier, n: j + 1 }));
+      laterIn(() => setFeed(j + 1), at - 450);
+      laterIn(() => (setSkyNow({ tier, n: j + 1 }), sfx.shimmer(4 + tier * 2)), at);
+    });
+    // A sky moment: its own sound.
+    if (moment === 'comet') laterIn(() => (sfx.shimmer(10), sfx.suspense(2)), cometAt + 400);
+    if (moment === 'shower') for (let t = 400; t < 3000; t += 450) laterIn(() => sfx.shimmer(2), t);
+    if (moment === 'capture') laterIn(() => sfx.shimmer(6), 3300);
+    // The wait before the last star (and each cosmic event): the screen trembles, harder and harder, to a quiet rising drone.
+    // The first wait is longer the faster the pack was torn (its heartbeat with it).
+    ss.filter((s) => s.climax).forEach((s, j) => {
+      const pause = LAST_STAR_PAUSE + (j === 0 ? extraRef.current : 0);
+      if (s.delay - pause < from) return;
+      laterIn(() => (rumble(stage.current, pause, 0.5, 7), sfx.suspense(pause / 1000)), s.delay - pause);
+      if (j === 0) heartbeat(s.delay - pause - from, s.delay - from);
+    });
+    const end = Math.max(...ss.map((s) => s.delay + s.duration));
+    laterIn(() => setFlash({ color: packLight, key: Date.now() }), end - 100);
+    laterIn(toReveal, end + 300);
+  };
+  /** The stars' show began this long before now (a skip into it): what's scheduled for before then doesn't play. */
+  const flyFrom = useRef(0);
+  const [flownFrom, setFlownFrom] = useState(0);
+  const meteorStart = useRef(0);
+  /** Something at `ms` into the stars' show, shifted by where it began. */
+  const laterIn = (f: () => void, ms: number) => {
+    const d = ms - flyFrom.current;
+    if (d >= 0) later(f, d);
+  };
+  /** The first rare scene (two planets, a supernova, a Big Bang): a skip stops just before it. */
+  const rareAt = useMemo(() => stars.find((st) => st.event && st.event !== 'wish')?.delay ?? null, [stars]);
   /** A cosmic event's sounds, jolts and flashes, timed to its scene. */
   const cosmicCues = (s: Star) => {
     for (const st of stagesOf(s)) stageCues(st.kind, st.at, st.final, RARITY_LIGHT[s.to]);
@@ -1629,30 +1652,30 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   /** One scene of an event: its build-up, then its burst — or, when the event goes further, the pulse that carries it on. */
   const stageCues = (kind: CosmicKind, at: number, final: boolean, color: string) => {
     const boom = at + COSMIC_BOOM[kind];
-    if (!final) later(() => (sfx.shimmer(12), sfx.clash(), jolt(10, 420), buzz([30, 40, 30]), setFlash({ color: '#fff', key: Date.now() })), boom);
+    if (!final) laterIn(() => (sfx.shimmer(12), sfx.clash(), jolt(10, 420), buzz([30, 40, 30]), setFlash({ color: '#fff', key: Date.now() })), boom);
     if (kind === 'wish') {
-      later(() => sfx.whoosh(), at);
-      later(() => sfx.shimmer(8), boom - 500);
-      later(() => (sfx.streak(), jolt(6, 300), buzz(25), setFlash({ color: '#ffd86b', key: Date.now() })), boom);
+      laterIn(() => sfx.whoosh(), at);
+      laterIn(() => sfx.shimmer(8), boom - 500);
+      laterIn(() => (sfx.streak(), jolt(6, 300), buzz(25), setFlash({ color: '#ffd86b', key: Date.now() })), boom);
       return;
     }
-    later(() => sfx.shimmer(6), at);
+    laterIn(() => sfx.shimmer(6), at);
     if (kind === 'collision') {
-      later(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(stage.current, COSMIC_BOOM.collision, 0.2, 6)), at);
-      if (final) later(() => (sfx.embrace(), jolt(16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
+      laterIn(() => (sfx.planets(COSMIC_BOOM.collision / 1000), rumble(stage.current, COSMIC_BOOM.collision, 0.2, 6)), at);
+      if (final) laterIn(() => (sfx.embrace(), jolt(16, 600), buzz([40, 30, 90]), setFlash({ color, key: Date.now() })), boom);
     } else if (kind === 'supernova') {
-      later(() => sfx.whoosh(), at);
-      later(() => (sfx.swallow(), jolt(8, 300)), at + 900);
-      later(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(stage.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), at + 1000);
+      laterIn(() => sfx.whoosh(), at);
+      laterIn(() => (sfx.swallow(), jolt(8, 300)), at + 900);
+      laterIn(() => (sfx.swell((COSMIC_BOOM.supernova - 1000) / 1000), rumble(stage.current, COSMIC_BOOM.supernova - 1000, 0.3, 11)), at + 1000);
       if (final) {
-        later(() => (sfx.supernova(), jolt(24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
-        later(() => celebrate(), boom + 300);
+        laterIn(() => (sfx.supernova(), jolt(24, 900), buzz([60, 40, 120]), setFlash({ color: '#fff', key: Date.now(), rainbow: true })), boom);
+        laterIn(() => celebrate(), boom + 300);
       }
     } else {
-      later(() => sfx.meteor(true), at);
-      later(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(stage.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), at + 900);
-      later(() => (sfx.bigBang(), jolt(30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
-      later(() => celebrateBig(), boom + 250);
+      laterIn(() => sfx.meteor(true), at);
+      laterIn(() => (sfx.collapse((COSMIC_BOOM.bigbang - 900) / 1000), rumble(stage.current, COSMIC_BOOM.bigbang - 1400, 0.2, 9)), at + 900);
+      laterIn(() => (sfx.bigBang(), jolt(30, 1300), buzz([90, 50, 200]), setFlash({ color: '#ffcd3c', key: Date.now() })), boom);
+      laterIn(() => celebrateBig(), boom + 250);
     }
   };
   /** A heartbeat from `from` to `to` (ms from now), quicker and quicker, felt too (haptics). */
@@ -1887,11 +1910,18 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
    * once; on a card already turned, it goes on to the next top card, and to the summary once there's none left.
    */
   const skip = () => {
+    // A rare scene still to come (two planets, a supernova, a Big Bang): the skip goes only as far as just before
+    // it, and it plays in full. A black hole: the skip goes to the stars, which it opens with.
+    const rareFrom = rareAt === null || reducedMotion() ? null : Math.max(0, rareAt - LAST_STAR_PAUSE);
+    const early = phase === 'choose' || phase === 'pack' || phase === 'torn';
+    const toRare = rareFrom !== null && (early || (phase === 'meteor' && Date.now() - meteorStart.current < rareFrom));
+    const toHole = !toRare && early && cosmos.hole && !reducedMotion();
     timers.current.forEach((t) => window.clearTimeout(t));
     timers.current = [];
     tearSnd.current?.stop();
     tearSnd.current = null;
     setHolding(false);
+    if (toRare || toHole) return fly(toRare ? rareFrom! : 0);
     // A late bloom on its way: it blooms now.
     if (blooming.current) return blooming.current();
     // A top card charging: its turn now, without the wait.
@@ -2114,10 +2144,14 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           {/* A nebula behind it all, in the pack's colours, glowing brighter as the planet grows. */}
           <Nebula colors={tints} tier={skyNow.tier} />
           {/* The fly-by: the pack's own cards drifting across, out of focus, before the last star. */}
-          <Flyby flyers={flyers} glyph={pack.id === 'general' ? undefined : pack.icon} />
-          <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={moment} cometAt={cometAt} cometColor={RARITY_LIGHT[tease]} />
-          {cosmos.hole && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
-          {stars.map((s, k) => {
+          {/* Skipped to a rare scene: the fly-by, the black hole and the sky's moment were before it. */}
+          {!flownFrom && <Flyby flyers={flyers} glyph={pack.id === 'general' ? undefined : pack.icon} />}
+          <Space tier={skyNow.tier} evolved={skyNow.n} feed={feed} moment={flownFrom ? null : moment} cometAt={cometAt} cometColor={RARITY_LIGHT[tease]} />
+          {cosmos.hole && !flownFrom && <BlackHole until={holeEnd} gulps={gulps} tints={tints} />}
+          {stars.map((star, k) => {
+            // Skipped into the show: the stars already gone aren't drawn, the others come that much sooner.
+            if (flownFrom && star.delay + star.duration <= flownFrom) return null;
+            const s = flownFrom ? { ...star, delay: star.delay - flownFrom } : star;
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
             // A black hole: every star but the last circles it (and some go in).
             // A cosmic event: its own scene.

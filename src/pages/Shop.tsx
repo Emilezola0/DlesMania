@@ -3,7 +3,7 @@ import { codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
-import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period } from '../gacha/economy';
+import { CLEAR_PER_ANSWER, HOT_BONUS, HOT_PLAYS, hotNow, EXPEDITION_BOSS_MAX, EXPEDITION_CAP, EXPEDITION_ROOM_MAX, ARCADE_BEST_BONUS, ARCADE_CAP, ARCADE_LOSS, ARCADE_RUN_MAX, ARCADE_SET_MAX, ARCADE_WIN, BOSS_LOSS, BOSS_WEEKLY, BOSS_WIN, CATEGORY_BONUS, DAILY_COMPLETE, ROUND, LONG_MISSIONS, longMissionsFor, MISSIONS, missionsFor, type Period, clampOmniPity, omniLuck, OMNI_PITY } from '../gacha/economy';
 import { ELEMENT_GRADE, ELEMENT_SWITCH_COST, GRADE_REWARD_SHARE, gradeReward, RESALE_BONUS } from '../gacha/grades';
 import { addDays, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
@@ -100,7 +100,7 @@ function DropRates({ pity, golden }: { pity: number; golden: number }) {
       <h2 className="font-display text-lg font-bold">Drop rates</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
-        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni.
+        {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. And every pack without an Omni raises the Omni odds by {Math.round(OMNI_PITY.step * 100)}% (up to ×{OMNI_PITY.max}): only an Omni sets them back. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni.
       </p>
       <p className="text-sm text-ink-soft">
         🌟 <strong className="text-ink">Golden pack:</strong> every {GOLDEN.packs}th pack you open (any pack) comes golden — {golden} of {GOLDEN.packs - 1} packs since the last one. Its last {GOLDEN.slots} cards are Legendary or better: the very last one is Mythic {GOLDEN.last.mythic}% of the time and Omni {GOLDEN.last.omni}%, the {GOLDEN.slots - 1} before it Legendary with a {GOLDEN.others.mythic}% chance of Mythic and {GOLDEN.others.omni}% of Omni each. That's a Mythic or better in {Math.round(goldenTop('mythic') * 100)}% of golden packs, an Omni in {Math.round(goldenTop('omni') * 100)}%.
@@ -255,6 +255,7 @@ export default function Shop() {
   const useFreePack = useProgress((s) => s.useFreePack);
   const pity = useProgress((s) => clampPity(s.pity));
   const golden = useProgress((s) => clampGolden(s.golden));
+  const omniPity = useProgress((s) => clampOmniPity(s.omniPity));
   const claim = useProgress((s) => s.claimMission);
   const claimLong = useProgress((s) => s.claimLongMission);
   const books = booksNow(useProgress((s) => s.missionBooks));
@@ -278,10 +279,10 @@ export default function Shop() {
     const best = boostOf(p);
     if (p.boss && !best) return;
     if (free && (useProgress.getState().freePacks ?? 0) <= 0) return sfx.wrong();
-    const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity, golden);
+    const pull = pullPacks(p, 1, best ? BOOST[best] : 1, pity, golden, omniPity);
     const cards = pull.packs[0];
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(free ? 0 : p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden)) return sfx.wrong();
+    if (!openPack(free ? 0 : p.cost, cards.map((c) => c.id), 1, pull.pity, pull.golden, pull.omniPity)) return sfx.wrong();
     if (free) useFreePack();
     logLuck(pull, 1);
     sfx.click();
@@ -292,12 +293,12 @@ export default function Shop() {
     const best = boostOf(p);
     if (p.boss && !best) return;
     // One pack after another, each with the luck the ones before it left.
-    const pull = pullPacks(p, MANY, best ? BOOST[best] : 1, pity, golden);
+    const pull = pullPacks(p, MANY, best ? BOOST[best] : 1, pity, golden, omniPity);
     const cards = pull.packs
       .flat()
       .sort((a, b) => RARITY_INFO[a.rarity].rank - RARITY_INFO[b.rarity].rank);
     const fresh = new Set(cards.filter((c) => !owned[c.id]).map((c) => c.id));
-    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity, pull.golden)) return sfx.wrong();
+    if (!openPack(p.cost * MANY, cards.map((c) => c.id), MANY, pull.pity, pull.golden, pull.omniPity)) return sfx.wrong();
     logLuck(pull, MANY);
     sfx.click();
     // One of them golden: the whole opening wears gold.
@@ -399,6 +400,12 @@ export default function Shop() {
             title={`Every pack without a Legendary or better: +${Math.round(PITY_STEP * 100)}% to Legendary odds, up to ×${PITY_MAX}. Back to ×1 when one drops.`}
           >
             ✨ Luck ×{pityLuck(pity).toFixed(2)}{pity > 0 ? ` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary` : ''}
+          </p>
+          <p
+            className={`text-xs font-semibold ${omniPity > 0 ? 'text-[#f472b6]' : 'text-ink-faint'}`}
+            title={`Every pack without an Omni: +${Math.round(OMNI_PITY.step * 100)}% to Omni odds, up to ×${OMNI_PITY.max}. Only an Omni sets it back.`}
+          >
+            ✪ Omni luck ×{omniLuck(omniPity).toFixed(2)}{omniPity > 0 ? ` · ${omniPity} pack${omniPity === 1 ? '' : 's'} without an Omni` : ''}
           </p>
           <GoldenMeter golden={golden} compact />
         </div>

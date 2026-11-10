@@ -12,6 +12,7 @@ import { ROUNDS_PER_DAY } from '../lib/rounds';
 import type { Domain, RoundRecord, RoundSpec } from '../types';
 import {
   clampGolden,
+  clampOmniPity,
   clampPity,
   ARCADE_AFTER_CAP,
   ARCADE_BEST_BONUS,
@@ -207,6 +208,8 @@ interface ProgressState {
   claw?: { day: string; tries: number; credits: number; meter: number; box: ClawItem[]; plush: Record<string, number>; wins: number };
   /** Free card packs (won at the claw or the roulette), opened in the Shop for nothing. */
   freePacks?: number;
+  /** Packs opened since the last Omni from one (each raises the Omni odds a little: omniLuck in src/gacha/economy.ts). */
+  omniPity?: number;
   /** The roulette's lucky streak: empty landings in a row (each raises the next spin's odds), 0 after a win. */
   rouletteStreak?: number;
   /** The plush shown next to the player's name for friends (src/casino/plushies.ts); null: the best one. */
@@ -272,7 +275,7 @@ interface ProgressState {
   setBackdrop: (cardId: string | null) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   /** `packs`: how many packs that was (five opened at once count as five). */
-  openPack: (cost: number, cardIds: string[], packs?: number, pity?: number, golden?: number) => boolean;
+  openPack: (cost: number, cardIds: string[], packs?: number, pity?: number, golden?: number, omniPity?: number) => boolean;
   claimMission: (kind: MissionKind) => void;
   /** This week's and this month's missions (see src/gacha/economy.ts). */
   missionBooks: PeriodBooks;
@@ -837,12 +840,12 @@ export const useProgress = create<ProgressState>()(
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
-      openPack: (cost, cardIds, packs = 1, pity, golden) => {
+      openPack: (cost, cardIds, packs = 1, pity, golden, omniPity) => {
         if (get().coins < cost) return false;
         set((s) => {
           const cards = { ...s.cards };
           for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
-          return { coins: s.coins - cost, cards, pulledAt: stamp(s.pulledAt, cardIds), packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}), ...(golden !== undefined ? { golden: clampGolden(golden) } : {}) };
+          return { coins: s.coins - cost, cards, pulledAt: stamp(s.pulledAt, cardIds), packsOpened: (s.packsOpened ?? 0) + packs, missionBooks: countLong(s.missionBooks, { packs }), ...(pity !== undefined ? { pity: clampPity(pity) } : {}), ...(golden !== undefined ? { golden: clampGolden(golden) } : {}), ...(omniPity !== undefined ? { omniPity: clampOmniPity(omniPity) } : {}) };
         });
         return true;
       },

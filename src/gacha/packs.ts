@@ -4,7 +4,7 @@
 import { bossKey, type BossDifficulty } from '../store/progress';
 import type { Domain } from '../types';
 import { COLLECTIBLE, RARITIES, type Card, type Rarity } from './cards';
-import { clampGolden, clampPity, GOLDEN, goldenNext, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
+import { clampGolden, clampOmniPity, clampPity, GOLDEN, goldenNext, omniLuck, PITY_MAX, PITY_PACKS, PITY_STEP, PITY_TOP_SHARE, pityLuck } from './economy';
 // The numbers and the packs' looks live in src/data/tuning/packs.json (edited from the dev-only #/admin page).
 import T from '../data/tuning/packs.json';
 
@@ -91,7 +91,7 @@ export interface OddsTuning {
 /** The odds in play (the admin page previews others). */
 const LIVE_ODDS: OddsTuning = { odds: ODDS, topCap: TOP_CAP, topShare: PITY_TOP_SHARE };
 
-export function oddsWith(boost: number, luck = 1, t: OddsTuning = LIVE_ODDS): Record<Rarity, number> {
+export function oddsWith(boost: number, luck = 1, t: OddsTuning = LIVE_ODDS, omni = 1): Record<Rarity, number> {
   const half = 1 + (boost - 1) / 2;
   const quarter = 1 + (boost - 1) / 4;
   const rare = t.odds.rare * half;
@@ -99,8 +99,9 @@ export function oddsWith(boost: number, luck = 1, t: OddsTuning = LIVE_ODDS): Re
   const legendary = Math.min(t.topCap.legendary!, t.odds.legendary * half * luck);
   const topLuck = 1 + (luck - 1) * t.topShare;
   const mythic = Math.min(t.topCap.mythic!, t.odds.mythic * quarter * topLuck);
-  const omni = Math.min(t.topCap.omni!, t.odds.omni * quarter * topLuck);
-  return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omni), rare, epic, legendary, mythic, omni };
+  // `omni`: the Omni luck of a player who hasn't had one for a while (see omniLuck), on the Omni odds alone.
+  const omniOdds = Math.min(t.topCap.omni!, t.odds.omni * quarter * topLuck * omni);
+  return { common: Math.max(0, 100 - rare - epic - legendary - mythic - omniOdds), rare, epic, legendary, mythic, omni: omniOdds };
 }
 
 
@@ -162,9 +163,9 @@ const forcedDraw = (): string[] => {
   }
 };
 
-export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false, force: string[] = []): Card[] {
+export function pullPack(pack: Pack, boost = 1, rand: () => number = Math.random, luck = 1, golden = false, force: string[] = [], omni = 1): Card[] {
   const pool = COLLECTIBLE.filter(pack.pool);
-  const odds = oddsWith(boost, luck);
+  const odds = oddsWith(boost, luck, LIVE_ODDS, omni);
   const taken = new Set<string>();
   return Array.from({ length: PACK_SIZE }, (_, i) => {
     // A rigged slot (dev only): that card, or a card of that rarity (from the pack, else from any set).
@@ -290,8 +291,8 @@ export const topOf = (cards: Card[]): TopCount => ({
  * golden): every slot's chances added up, then the cosmic events that lift a card (a Big Bang, a supernova, a
  * collision), closely reckoned. For the luck report (src/cloud/luck.ts): what a player pulled against this.
  */
-export function expectedTop(boost: number, luck: number, golden: boolean): TopCount {
-  const odds = oddsWith(boost, luck);
+export function expectedTop(boost: number, luck: number, golden: boolean, omniBoost = 1): TopCount {
+  const odds = oddsWith(boost, luck, LIVE_ODDS, omniBoost);
   const slots = Array.from({ length: PACK_SIZE }, (_, i) => {
     const last = i === PACK_SIZE - 1;
     if (golden && i >= PACK_SIZE - GOLDEN.slots) {
@@ -329,7 +330,7 @@ export function expectedTop(boost: number, luck: number, golden: boolean): TopCo
  * pity after them; and the golden counter after them, with which of the packs came golden (`goldenAt`). With the
  * Legendary, Mythic and Omni cards they gave (`top`) and the ones their odds promised (`expected`), for the luck report.
  */
-export function pullPacks(pack: Pack, count: number, boost: number, pity: number, golden = 0): { packs: Card[][]; events: CosmicEvent[]; pity: number; golden: number; goldenAt: number[]; top: TopCount; expected: TopCount } {
+export function pullPacks(pack: Pack, count: number, boost: number, pity: number, golden = 0, omniPity = 0): { packs: Card[][]; events: CosmicEvent[]; pity: number; golden: number; goldenAt: number[]; omniPity: number; top: TopCount; expected: TopCount } {
   const packs: Card[][] = [];
   const events: CosmicEvent[] = [];
   const goldenAt: number[] = [];
@@ -340,8 +341,8 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
     const gold = goldenNext(golden) || forcedGolden();
     if (gold) goldenAt.push(i);
     golden = gold ? 0 : clampGolden(golden + 1);
-    const e = expectedTop(boost, pityLuck(pity), gold);
-    const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced);
+    const e = expectedTop(boost, pityLuck(pity), gold, omniLuck(omniPity));
+    const cards = pullPack(pack, boost, Math.random, pityLuck(pity), gold, forced, omniLuck(omniPity));
     // A forced event (dev only): the first pack of the purchase, or every one when asked; the others roll as usual.
     const event = cosmicFor(pack, cards, Math.random, i === 0 || cosmicOnAll() ? forcedCosmic() : null);
     if (event) events.push(event);
@@ -349,6 +350,8 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
     const t = topOf(cards);
     for (const k of ['legendary', 'mythic', 'omni'] as const) (top[k] += t[k]), (expected[k] += e[k]);
     pity = cards.some((c) => isTopRarity(c.rarity)) ? 0 : clampPity(pity + 1);
+    // The Omni luck: only an Omni sets it back (a cosmic event's too).
+    omniPity = cards.some((c) => c.rarity === 'omni') || event?.to.rarity === 'omni' ? 0 : clampOmniPity(omniPity + 1);
   }
   if (import.meta.env.DEV) {
     try {
@@ -357,7 +360,7 @@ export function pullPacks(pack: Pack, count: number, boost: number, pity: number
       // No storage: nothing was forced.
     }
   }
-  return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt, top, expected };
+  return { packs, events, pity: clampPity(pity), golden: clampGolden(golden), goldenAt, omniPity: clampOmniPity(omniPity), top, expected };
 }
 
 /** For testing, in dev only: localStorage "omnidle-force-golden" = "1" makes every pack golden. The live site ignores it. */
