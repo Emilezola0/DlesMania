@@ -3548,6 +3548,69 @@
     }
   },
   {
+    "id": "g-kirby",
+    "name": "Kirby's Dream Land",
+    "aliases": [
+      "kirby"
+    ],
+    "domain": "games",
+    "year": 1992,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "HAL Laboratory",
+    "creator": "Masahiro Sakurai",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Kirby",
+      "King Dedede",
+      "Whispy Woods"
+    ],
+    "themes": [
+      "Food",
+      "Cuteness"
+    ],
+    "credits": [
+      "Creator & director: Masahiro Sakurai",
+      "Composer: Jun Ishikawa",
+      "Game Boy debut"
+    ],
+    "fandom": "kirby",
+    "cover": {
+      "wiki": "Kirby's Dream Land",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Kirbys-dream-land-gameboy-boxart.png"
+    },
+    "audio": {
+      "clue": "A bright, bouncy Game Boy melody for a green, grassy first level.",
+      "query": "Kirby's Dream Land Green Greens",
+      "youtubeId": "twPSaCABakA"
+    },
+    "emoji": "🩷🌟🍰🎈👑",
+    "item": {
+      "name": "Warp Star",
+      "description": "A yellow star a pink puffball rides between levels.",
+      "src": "fandom:kirby:Warp Star",
+      "image": "https://static.wikia.nocookie.net/kirby/images/b/bd/KARs_Kirby_Warpstar_Artwork.png/revision/latest/scale-to-width-down/640?cb=20250402151715&path-prefix=en"
+    },
+    "location": {
+      "name": "Dream Land",
+      "description": "A peaceful land whose food was stolen by a greedy penguin king.",
+      "src": "fandom:kirby:Dream Land",
+      "image": "https://static.wikia.nocookie.net/kirby/images/d/d8/KRtDLDX_Dream_Land.jpg/revision/latest/scale-to-width-down/640?cb=20230601110014&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🩷",
+      "colors": [
+        "#f9a8d4",
+        "#fde047"
+      ]
+    }
+  },
+  {
     "id": "g-odyssey",
     "name": "Super Mario Odyssey",
     "domain": "games",
@@ -5119,8 +5182,7 @@
     },
     "location": {
       "name": "Baldur's Gate",
-      "description": "A great walled port city of the Sword Coast.",
-      "image": "https://static.wikia.nocookie.net/baldursgategame/images/0/09/Baldur%27s_Gate_box.jpg/revision/latest?cb=20180521111438"
+      "description": "A great walled port city of the Sword Coast."
     },
     "visual": {
       "icon": "🎲",
@@ -6351,6 +6413,66 @@
     }
   },
   {
+    "id": "g-megaman2",
+    "name": "Mega Man 2",
+    "domain": "games",
+    "year": 1988,
+    "genres": [
+      "Platformer",
+      "Action"
+    ],
+    "studio": "Capcom",
+    "creator": "Akira Kitamura",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo",
+      "PlayStation",
+      "Mobile"
+    ],
+    "characters": [
+      "Mega Man",
+      "Dr. Wily",
+      "Dr. Light"
+    ],
+    "themes": [
+      "Robot masters",
+      "Weapons"
+    ],
+    "credits": [
+      "Director: Akira Kitamura",
+      "Composer: Takashi Tateishi"
+    ],
+    "fandom": "megaman",
+    "cover": {
+      "wiki": "Mega Man 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/be/Megaman2_box.jpg"
+    },
+    "audio": {
+      "clue": "A blazing, heroic chiptune for the villain's fortress — one of the most famous NES tracks.",
+      "query": "Mega Man 2 Dr. Wily Stage 1",
+      "youtubeId": "RHqPVcMBKlc"
+    },
+    "emoji": "🤖🔵🔫👨‍🔬🏰",
+    "item": {
+      "name": "Mega Buster",
+      "description": "An arm cannon that fires plasma pellets.",
+      "image": "https://static.wikia.nocookie.net/megaman/images/1/1a/MM8Shot.jpg/revision/latest?cb=20220303063646"
+    },
+    "location": {
+      "name": "Dr. Wily's Castle",
+      "description": "A skull-fronted fortress built by a mad roboticist.",
+      "image": "https://static.wikia.nocookie.net/megaman/images/7/72/WilyCastle5.png/revision/latest?cb=20180710195352"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#1d4ed8",
+        "#38bdf8"
+      ]
+    }
+  },
+  {
     "id": "g-sotn",
     "name": "Castlevania: Symphony of the Night",
     "aliases": [
@@ -7312,6 +7434,65 @@
       "colors": [
         "#991b1b",
         "#525252"
+      ]
+    }
+  },
+  {
+    "id": "g-braid",
+    "name": "Braid",
+    "domain": "games",
+    "year": 2008,
+    "genres": [
+      "Puzzle",
+      "Platformer"
+    ],
+    "studio": "Number None",
+    "creator": "Jonathan Blow",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Tim",
+      "The Princess",
+      "Monstar"
+    ],
+    "themes": [
+      "Time",
+      "Regret"
+    ],
+    "credits": [
+      "Creator: Jonathan Blow",
+      "Art: David Hellman"
+    ],
+    "fandom": "braid",
+    "cover": {
+      "wiki": "Braid (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Braidlogo.jpg"
+    },
+    "audio": {
+      "clue": "Soft, licensed violin and cello pieces.",
+      "query": "Braid soundtrack Maenam",
+      "youtubeId": "5kWo8N4QNXM"
+    },
+    "emoji": "⏪🧩👑🏰🗝️",
+    "item": {
+      "name": "Puzzle pieces",
+      "description": "Painting fragments collected in each world."
+    },
+    "location": {
+      "name": "The house with the attic",
+      "description": "Where a man in a tie reads about his lost princess.",
+      "image": "https://static.wikia.nocookie.net/braid/images/d/dc/Painting-World-2.png/revision/latest?cb=20110906114856"
+    },
+    "visual": {
+      "icon": "⏪",
+      "colors": [
+        "#ca8a04",
+        "#065f46"
       ]
     }
   },
@@ -8769,6 +8950,522 @@
     }
   },
   {
+    "id": "g-deusex",
+    "name": "Deus Ex",
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "Action RPG",
+      "Immersive sim"
+    ],
+    "studio": "Ion Storm",
+    "creator": "Warren Spector",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "JC Denton",
+      "Paul Denton",
+      "Bob Page"
+    ],
+    "themes": [
+      "Conspiracy",
+      "Transhumanism"
+    ],
+    "credits": [
+      "Director: Warren Spector",
+      "Music: Alexander Brandon"
+    ],
+    "fandom": "deusex",
+    "cover": {
+      "wiki": "Deus Ex (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Deus_Ex_%28game_box_art%29.jpg"
+    },
+    "quote": {
+      "text": "A bomb!",
+      "speaker": "An agent in sunglasses"
+    },
+    "audio": {
+      "clue": "A thumping techno main theme.",
+      "query": "Deus Ex main theme",
+      "youtubeId": "Rm9PJNF3sE0"
+    },
+    "voice": {
+      "speaker": "JC Denton",
+      "query": "JC Denton Deus Ex voice lines",
+      "youtubeId": "KOwN7m1zHU0",
+      "start": 2
+    },
+    "emoji": "🕶️🗽🧬💉🕵️",
+    "item": {
+      "name": "JC's sunglasses",
+      "description": "Worn by an augmented agent, even at night.",
+      "image": "https://static.wikia.nocookie.net/deusex/images/5/5c/AnnaNavarre.jpg/revision/latest/scale-to-width-down/437?cb=20110705202040&path-prefix=en"
+    },
+    "location": {
+      "name": "Liberty Island",
+      "description": "Where the Statue of Liberty lies headless, under terrorist control.",
+      "image": "https://static.wikia.nocookie.net/deusex/images/b/b6/Liberty_Island_aerial.png/revision/latest/scale-to-width-down/640?cb=20150115012023&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🕶️",
+      "colors": [
+        "#065f46",
+        "#0f172a"
+      ]
+    }
+  },
+  {
+    "id": "g-grimfandango",
+    "name": "Grim Fandango",
+    "domain": "games",
+    "year": 1998,
+    "genres": [
+      "Adventure",
+      "Point-and-click"
+    ],
+    "studio": "LucasArts",
+    "creator": "Tim Schafer",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Manny Calavera",
+      "Glottis",
+      "Meche"
+    ],
+    "themes": [
+      "Death",
+      "Film noir"
+    ],
+    "credits": [
+      "Director: Tim Schafer",
+      "Music: Peter McConnell"
+    ],
+    "fandom": "grim-fandango",
+    "cover": {
+      "wiki": "Grim Fandango",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/76/Grim_Fandango_artwork.jpg"
+    },
+    "audio": {
+      "clue": "Smoky swing jazz.",
+      "query": "Grim Fandango Swanky Maximino",
+      "youtubeId": "nzF7fC-F3V4"
+    },
+    "voice": {
+      "speaker": "Manny Calavera",
+      "query": "Manny Calavera Grim Fandango voice lines"
+    },
+    "emoji": "💀🚗🌹🎷🌎",
+    "item": {
+      "name": "The scythe",
+      "description": "A travel agent of the dead's working tool.",
+      "image": "https://static.wikia.nocookie.net/grim-fandango/images/1/11/ScytheInventory.jpg/revision/latest/scale-to-width-down/640?cb=20210527060535"
+    },
+    "location": {
+      "name": "Rubacava",
+      "description": "A port city in the Land of the Dead.",
+      "image": "https://static.wikia.nocookie.net/grim-fandango/images/a/ab/Cafeabove.png/revision/latest?cb=20230217051835"
+    },
+    "visual": {
+      "icon": "💀",
+      "colors": [
+        "#ca8a04",
+        "#1c1917"
+      ]
+    }
+  },
+  {
+    "id": "g-monkeyisland",
+    "name": "The Secret of Monkey Island",
+    "domain": "games",
+    "year": 1990,
+    "genres": [
+      "Adventure",
+      "Point-and-click"
+    ],
+    "studio": "Lucasfilm Games",
+    "creator": "Ron Gilbert",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Sega",
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Guybrush Threepwood",
+      "LeChuck",
+      "Elaine Marley"
+    ],
+    "themes": [
+      "Piracy",
+      "Comedy"
+    ],
+    "credits": [
+      "Creator: Ron Gilbert",
+      "Writers: Tim Schafer and Dave Grossman"
+    ],
+    "fandom": "monkeyisland",
+    "cover": {
+      "wiki": "The Secret of Monkey Island",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a8/The_Secret_of_Monkey_Island_artwork.jpg"
+    },
+    "quote": {
+      "text": "You fight like a dairy farmer!",
+      "speaker": "An insulting swordfighter"
+    },
+    "audio": {
+      "clue": "A reggae-tinged Caribbean theme.",
+      "query": "Monkey Island theme",
+      "youtubeId": "FoT5qK6hpbw"
+    },
+    "voice": {
+      "speaker": "Guybrush Threepwood",
+      "query": "Guybrush Threepwood The Secret of Monkey Island voice lines"
+    },
+    "emoji": "🏴‍☠️🐒🗡️🍗👻",
+    "item": {
+      "name": "The rubber chicken with a pulley",
+      "description": "An absurd inventory item used to cross a zipline."
+    },
+    "location": {
+      "name": "Mêlée Island",
+      "description": "A Caribbean island where a wannabe pirate starts his quest.",
+      "image": "https://static.wikia.nocookie.net/monkeyisland/images/8/8c/Melee_Island.png/revision/latest/scale-to-width-down/640?cb=20140211200308"
+    },
+    "visual": {
+      "icon": "🏴‍☠️",
+      "colors": [
+        "#1e3a8a",
+        "#f59e0b"
+      ]
+    }
+  },
+  {
+    "id": "g-myst",
+    "name": "Myst",
+    "domain": "games",
+    "year": 1993,
+    "genres": [
+      "Puzzle",
+      "Adventure"
+    ],
+    "studio": "Cyan",
+    "creator": "Rand Miller and Robyn Miller",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Sega",
+      "Mobile",
+      "Nintendo",
+      "Xbox"
+    ],
+    "characters": [
+      "Atrus",
+      "Sirrus",
+      "Achenar"
+    ],
+    "themes": [
+      "Mystery",
+      "Linking books"
+    ],
+    "credits": [
+      "Creators: Rand and Robyn Miller"
+    ],
+    "cover": {
+      "wiki": "Myst",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/MystCover.png"
+    },
+    "audio": {
+      "clue": "Ambient, mysterious synth.",
+      "query": "Myst theme",
+      "youtubeId": "hS3HVYHOSis"
+    },
+    "emoji": "📘🏝️🔍⚙️🌀",
+    "item": {
+      "name": "The linking books",
+      "description": "Books that transport readers to other worlds, called Ages."
+    },
+    "location": {
+      "name": "Myst Island",
+      "description": "A quiet island full of strange machines and a library."
+    },
+    "visual": {
+      "icon": "📘",
+      "colors": [
+        "#1e3a8a",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "g-ico",
+    "name": "Ico",
+    "domain": "games",
+    "year": 2001,
+    "genres": [
+      "Action-Adventure",
+      "Puzzle"
+    ],
+    "studio": "Team Ico",
+    "creator": "Fumito Ueda",
+    "origin": "Japan",
+    "format": "PlayStation",
+    "platforms": [
+      "PlayStation"
+    ],
+    "characters": [
+      "Ico",
+      "Yorda",
+      "The Queen"
+    ],
+    "themes": [
+      "Companionship",
+      "Escape"
+    ],
+    "credits": [
+      "Director: Fumito Ueda",
+      "Music: Michiru Ōshima"
+    ],
+    "fandom": "teamico",
+    "cover": {
+      "wiki": "Ico",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/40/Ico_cover_-_EU%2BJP.jpg"
+    },
+    "audio": {
+      "clue": "A soft, wordless ending song.",
+      "query": "Ico You Were There",
+      "youtubeId": "XWVij6r4QBw"
+    },
+    "emoji": "🐂👦🏰🫱🌅",
+    "item": {
+      "name": "The stick",
+      "description": "A plank a horned boy uses to fight shadow creatures.",
+      "image": "https://static.wikia.nocookie.net/t__/images/b/b1/WoodICO.png/revision/latest?cb=20230203191247&path-prefix=teamico"
+    },
+    "location": {
+      "name": "The Castle in the Mist",
+      "description": "A vast fortress where a horned boy is left to die."
+    },
+    "visual": {
+      "icon": "🏰",
+      "colors": [
+        "#e7e5e4",
+        "#713f12"
+      ]
+    }
+  },
+  {
+    "id": "g-psychonauts",
+    "name": "Psychonauts",
+    "domain": "games",
+    "year": 2005,
+    "genres": [
+      "Platformer",
+      "Action-Adventure"
+    ],
+    "studio": "Double Fine Productions",
+    "creator": "Tim Schafer",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "Razputin Aquato",
+      "Sasha Nein",
+      "Milla Vodello"
+    ],
+    "themes": [
+      "The mind",
+      "Summer camp"
+    ],
+    "credits": [
+      "Director: Tim Schafer",
+      "Music: Peter McConnell"
+    ],
+    "fandom": "psychonauts",
+    "cover": {
+      "wiki": "Psychonauts",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Psychonautsbox.png"
+    },
+    "audio": {
+      "clue": "A quirky, jazzy summer-camp theme.",
+      "query": "Psychonauts main theme",
+      "youtubeId": "kDpHj5SqIFI"
+    },
+    "voice": {
+      "speaker": "Razputin Aquato",
+      "query": "Razputin Aquato Psychonauts voice lines"
+    },
+    "emoji": "🧠🏕️🥽🔥🦑",
+    "item": {
+      "name": "Raz's goggles",
+      "description": "Psychic goggles worn by a runaway circus kid."
+    },
+    "location": {
+      "name": "Whispering Rock",
+      "description": "A psychic summer camp for training secret agents.",
+      "image": "https://static.wikia.nocookie.net/psychonauts/images/d/d4/CampOverveiw.jpg/revision/latest/scale-to-width-down/640?cb=20171027084900"
+    },
+    "visual": {
+      "icon": "🧠",
+      "colors": [
+        "#7c3aed",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-bge",
+    "name": "Beyond Good & Evil",
+    "domain": "games",
+    "year": 2003,
+    "genres": [
+      "Action-Adventure",
+      "Stealth"
+    ],
+    "studio": "Ubisoft Montpellier",
+    "creator": "Michel Ancel",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Jade",
+      "Pey'j",
+      "Double H"
+    ],
+    "themes": [
+      "Propaganda",
+      "Journalism"
+    ],
+    "credits": [
+      "Director: Michel Ancel",
+      "Music: Christophe Héral"
+    ],
+    "fandom": "beyondgoodandevil",
+    "cover": {
+      "wiki": "Beyond Good & Evil (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/BGE-cover.jpg"
+    },
+    "audio": {
+      "clue": "Eclectic world music with whistles and chants.",
+      "query": "Beyond Good and Evil Hillys theme",
+      "youtubeId": "jTdcJWDNsao"
+    },
+    "voice": {
+      "speaker": "Jade",
+      "query": "Jade Beyond Good & Evil voice lines"
+    },
+    "emoji": "📸🐷🛸🌊🦎",
+    "item": {
+      "name": "Jade's camera",
+      "description": "A photojournalist's camera used to expose a conspiracy.",
+      "image": "https://static.wikia.nocookie.net/theirisnetwork/images/6/6a/Camera.jpg/revision/latest/scale-to-width-down/640?cb=20130526173218"
+    },
+    "location": {
+      "name": "Hillys",
+      "description": "An ocean planet under alien attack.",
+      "image": "https://static.wikia.nocookie.net/theirisnetwork/images/1/18/Hillysfromouterspaceintro.png/revision/latest/scale-to-width-down/640?cb=20121106153443"
+    },
+    "visual": {
+      "icon": "📸",
+      "colors": [
+        "#0f766e",
+        "#a3e635"
+      ]
+    }
+  },
+  {
+    "id": "g-jetsetradio",
+    "name": "Jet Set Radio",
+    "domain": "games",
+    "year": 2000,
+    "genres": [
+      "Action",
+      "Sports"
+    ],
+    "studio": "Smilebit",
+    "creator": "Masayoshi Kikuchi",
+    "origin": "Japan",
+    "format": "Sega",
+    "platforms": [
+      "Sega",
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Mobile"
+    ],
+    "characters": [
+      "Beat",
+      "Gum",
+      "Professor K"
+    ],
+    "themes": [
+      "Graffiti",
+      "Rebellion"
+    ],
+    "credits": [
+      "Director: Masayoshi Kikuchi",
+      "Music: Hideki Naganuma"
+    ],
+    "fandom": "jetsetradio",
+    "cover": {
+      "wiki": "Jet Set Radio",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Jetsetradiopalboxart.jpg"
+    },
+    "audio": {
+      "clue": "Funky breakbeats by Hideki Naganuma.",
+      "query": "Jet Set Radio Let Mom Sleep",
+      "youtubeId": "t9eAg7Nhq-o"
+    },
+    "voice": {
+      "speaker": "Beat",
+      "query": "Beat Jet Set Radio voice lines",
+      "youtubeId": "pTESEDx84es",
+      "start": 2
+    },
+    "emoji": "🛼🎨📻🚓🏙️",
+    "item": {
+      "name": "Spray cans",
+      "description": "Collected to tag rival gangs' territory.",
+      "image": "https://static.wikia.nocookie.net/jetsetradio/images/1/1b/Spray_Can.png/revision/latest?cb=20241101072137"
+    },
+    "location": {
+      "name": "Tokyo-to",
+      "description": "A stylised city ruled by rollerblading gangs.",
+      "image": "https://static.wikia.nocookie.net/jetsetradio/images/e/e6/Tokyo-to_map.png/revision/latest/scale-to-width-down/640?cb=20230716060802"
+    },
+    "visual": {
+      "icon": "🎨",
+      "colors": [
+        "#16a34a",
+        "#facc15"
+      ]
+    }
+  },
+  {
     "id": "g-katamari",
     "name": "Katamari Damacy",
     "domain": "games",
@@ -8889,6 +9586,64 @@
       "icon": "📜",
       "colors": [
         "#dc2626",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-earthbound",
+    "name": "EarthBound",
+    "domain": "games",
+    "year": 1994,
+    "genres": [
+      "RPG",
+      "Turn-based"
+    ],
+    "studio": "Ape and HAL Laboratory",
+    "creator": "Shigesato Itoi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Ness",
+      "Paula",
+      "Giygas"
+    ],
+    "themes": [
+      "Suburbia",
+      "Cosmic horror"
+    ],
+    "credits": [
+      "Director: Shigesato Itoi",
+      "Music: Keiichi Suzuki and Hirokazu Tanaka"
+    ],
+    "fandom": "earthbound",
+    "cover": {
+      "wiki": "EarthBound",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/EarthBound_Box.jpg"
+    },
+    "audio": {
+      "clue": "A quirky, chiptune suburban melody.",
+      "query": "EarthBound Onett theme",
+      "youtubeId": "XKfXsTkA71I"
+    },
+    "emoji": "🧢⚾🐶👽🌀",
+    "item": {
+      "name": "The Franklin Badge",
+      "description": "A badge that bounces lightning back at its caster.",
+      "src": "none"
+    },
+    "location": {
+      "name": "Onett",
+      "description": "A small American suburb where a meteorite lands.",
+      "image": "https://static.wikia.nocookie.net/earthbound/images/a/a3/Onett_location.png/revision/latest?cb=20241214233400"
+    },
+    "visual": {
+      "icon": "🧢",
+      "colors": [
+        "#ef4444",
         "#facc15"
       ]
     }
