@@ -8,7 +8,19 @@ import music from './works/music.json';
 
 
 /** JSON shape is enforced by `npm run data:validate` (schema/work.schema.json). */
-export const WORKS = [...games, ...anime, ...cinema, ...music] as unknown as Work[];
+export const WORKS = ([...games, ...anime, ...cinema, ...music] as unknown as Work[]).map(withLocalPictures);
+
+/** "local:art/…": a picture served with the site (public/art), as for bosses (Pierre Qui Roule's, from its team's portfolio). */
+function withLocalPictures(w: Work): Work {
+  const local = (image?: string) => (image?.startsWith('local:') ? `${import.meta.env?.BASE_URL ?? './'}${image.slice(6)}` : image);
+  if (![w.cover?.image, w.item?.image, w.location?.image].some((i) => i?.startsWith('local:'))) return w;
+  return {
+    ...w,
+    ...(w.cover ? { cover: { ...w.cover, image: local(w.cover.image) } } : {}),
+    ...(w.item ? { item: { ...w.item, image: local(w.item.image) } } : {}),
+    ...(w.location ? { location: { ...w.location, image: local(w.location.image) } } : {}),
+  };
+}
 
 /**
  * In connections.json a tile is either a plain label or `{ label, src?, image? }`

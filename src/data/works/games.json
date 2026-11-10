@@ -12308,5 +12308,71 @@
         "#f59e0b"
       ]
     }
+  },
+  {
+    "id": "g-pierrequiroule",
+    "name": "Pierre Qui Roule",
+    "aliases": [
+      "pierrequiroule",
+      "pqr"
+    ],
+    "domain": "games",
+    "year": 2026,
+    "genres": [
+      "Platformer",
+      "3D physics"
+    ],
+    "studio": "LISAA (student team)",
+    "creator": "The LISAA team",
+    "origin": "France",
+    "format": "PC",
+    "platforms": [
+      "PC",
+      "Steam Deck"
+    ],
+    "characters": [
+      "The Rock Tax Collector",
+      "The King of Rouleroche",
+      "The Boss"
+    ],
+    "themes": [
+      "Taxes",
+      "Moss"
+    ],
+    "credits": [
+      "Team: Joseph Issa, Lucian Virolle, Pierre Delpit, Romaric Zhou, Tatiana Sevanche, Victor Touroul, Yohann Perrette, Clément Le Merrer",
+      "Music: Antoine Martre & Yi Yang"
+    ],
+    "cover": {
+      "wiki": "none",
+      "image": "local:art/games/pqr-cover.webp"
+    },
+    "quote": {
+      "text": "Will you continue to serve obediently, or fight back and take what is rightfully yours?",
+      "speaker": "A narrator to a tax collector"
+    },
+    "audio": {
+      "clue": "Cheerful adventure music for a rolling stone.",
+      "query": "Pierre Qui Roule trailer",
+      "youtubeId": "bgnM90MWV-c"
+    },
+    "emoji": "🪨🌿👑💰🍄",
+    "item": {
+      "name": "The Cannon Lighthouse",
+      "description": "A tower that fires you into each level.",
+      "image": "local:art/games/pqr-lighthouse.webp"
+    },
+    "location": {
+      "name": "The Shrooms",
+      "description": "A cave of giant glowing mushrooms where you learn to roll and bounce.",
+      "image": "local:art/games/pqr-shrooms.webp"
+    },
+    "visual": {
+      "icon": "🪨",
+      "colors": [
+        "#4d7c0f",
+        "#ea580c"
+      ]
+    }
   }
 ]
