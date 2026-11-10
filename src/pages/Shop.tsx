@@ -18,6 +18,7 @@ import { Quests } from '../gacha/Quests';
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
 /** The most packs opened at once (each 5 cards): an opening stays one you can follow. */
+/** The most packs opened at once. firestore.rules (luck/{uid}) takes an opening of up to as many: raise both together. */
 const MAX_OPEN = 50;
 
 /** Days until a period's missions change: next Monday, or the 1st of next month. */

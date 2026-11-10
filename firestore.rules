@@ -194,7 +194,7 @@ service cloud.firestore {
 
     // The luck report (src/cloud/luck.ts): luck/<uid>, the Legendary, Mythic and Omni cards a player's packs gave
     // and the ones their odds promised. Only they and their friends read it. Only they add to it, an opening at a
-    // time (1 to 5 packs, 5 cards a pack at most), never taking anything back, at the server's time.
+    // time (1 to 50 packs, the Shop's most at once: MAX_OPEN in src/pages/Shop.tsx; 5 cards a pack at most), never taking anything back, at the server's time.
     match /luck/{uid} {
       function luckShapeOk(d) {
         return d.keys().hasOnly(['packs', 'legendary', 'mythic', 'omni', 'eLegendary', 'eMythic', 'eOmni', 'since', 'at'])
@@ -204,7 +204,7 @@ service cloud.firestore {
       }
       // What one opening added: `n` packs, cards and expected cards that only grow, within the pack's five cards.
       function addedOk(d, o, n) {
-        return n >= 1 && n <= 5
+        return n >= 1 && n <= 50
           && d.legendary >= o.legendary && d.mythic >= o.mythic && d.omni >= o.omni
           && (d.legendary - o.legendary) + (d.mythic - o.mythic) + (d.omni - o.omni) <= n * 5
           && d.eLegendary >= o.eLegendary && d.eLegendary - o.eLegendary <= n * 5

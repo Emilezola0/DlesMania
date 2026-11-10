@@ -374,6 +374,16 @@ console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.frui
   console.log(`tuning      ${registry.files.length} admin files checked`);
 }
 
+// The luck report: the rules take an opening of as many packs as the Shop opens at once (MAX_OPEN), or a bigger
+// opening is refused and never counted.
+{
+  const rules = readFileSync(join(ROOT, 'firestore.rules'), 'utf8');
+  const shop = readFileSync(join(ROOT, 'src', 'pages', 'Shop.tsx'), 'utf8');
+  const most = Number(shop.match(/const MAX_OPEN = (\d+);/)?.[1]);
+  const cap = Number(rules.match(/function addedOk\(d, o, n\)\s*\{\s*return n >= 1 && n <= (\d+)/)?.[1]);
+  if (most !== cap) fail(`firestore.rules: the luck report takes ${cap} packs at once, but the Shop opens up to ${most} (MAX_OPEN)`);
+}
+
 // ---------------------------------------------------------------- Rewards (src/data/rewards.json)
 // The database rules (firestore.rules) keep their own copy of the special dates and the window:
 // they must say the same, or a reward would be shown and then refused (or allowed when it shouldn't).

@@ -168,14 +168,6 @@ const STAR_GAP = 260;
 /** Many packs at once: the closest two stars come (ms), and over how many cards before the first top card they slow back down. */
 const STAR_GAP_MIN = 25;
 const SLOW_DOWN = 5;
-/**
- * Many packs at once, in the reveal: the cards below Legendary turn and move on by themselves, quicker the more
- * packs (ms a step, between AUTO_MIN and AUTO_MAX), slowing down over the last SLOW_DOWN before the first top card,
- * which waits for the player (its build-up in full).
- */
-const AUTO_MIN = 40;
-const AUTO_MAX = 450;
-const AUTO_NEAR_TOP = 650;
 /** The summary deals its cards quickly: all of them within SUMMARY_DEAL ms (a single pack a little slower, card by card). */
 /** The tray under a card being turned: the last ones turned, no more. */
 const TRAY_MAX = 10;
@@ -1949,22 +1941,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     setFlipped(false);
     cue(i + 1);
   };
-  // Several packs at once: the cards below Legendary turn and move on by themselves (a tap still goes quicker),
-  // faster the more packs, slowing down as the top cards come near; a top card waits for the player.
-  const firstTop = useMemo(() => plans.findIndex((p) => p.step >= 2), [plans]);
-  /** Skipped to a rare scene (or the black hole): the player wanted to see it, and then turns the cards themself. */
-  const [byHand, setByHand] = useState(false);
-  useEffect(() => {
-    if (byHand || times <= 1 || phase !== 'reveal' || charging || blooming.current || !plans[i] || plans[i].step >= 2) return;
-    if (flipped && pending.has(i) && !(i in kept)) return;
-    const pace = Math.max(AUTO_MIN, Math.min(AUTO_MAX, 1200 / times));
-    const toTop = firstTop - i;
-    const ms = firstTop >= 0 && toTop > 0 && toTop <= SLOW_DOWN ? pace + ((AUTO_NEAR_TOP - pace) * (SLOW_DOWN + 1 - toTop)) / (SLOW_DOWN + 1) : pace;
-    const t = window.setTimeout(act, ms);
-    return () => window.clearTimeout(t);
-    // act reads this render's state; the effect runs again whenever it changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [byHand, times, phase, charging, i, flipped, kept, bloomed, firstTop]);
+  // The cards turn by hand only, a tap each (or Skip, to the next top card): none turns by itself.
   /**
    * Skip never skips past a top card: it goes straight to the next Legendary or better and turns it, with its
    * build-up (so where it stops says "a top card", never which). Pressed again while it builds up, it lands at
@@ -1982,7 +1959,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     tearSnd.current?.stop();
     tearSnd.current = null;
     setHolding(false);
-    if (toRare || toHole) return setByHand(true), fly(toRare ? rareFrom! : 0);
+    if (toRare || toHole) return fly(toRare ? rareFrom! : 0);
     // A late bloom on its way: it blooms now.
     if (blooming.current) return blooming.current();
     // A top card charging: its turn now, without the wait.
@@ -2016,6 +1993,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+  /** Stops the summary's own scrolling (the Bottom button takes over). */
+  const stopAutoScroll = useRef<() => void>(() => undefined);
   // The summary scrolls down by itself, quicker the more packs were opened, once its cards are dealt; a wheel, a
   // touch or a key from the player stops it (they take over).
   useEffect(() => {
@@ -2034,6 +2013,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     };
     const start = window.setTimeout(() => (raf = requestAnimationFrame(step)), SUMMARY_DEAL + 500);
     const stop = () => (window.clearTimeout(start), cancelAnimationFrame(raf));
+    stopAutoScroll.current = stop;
     const opts = { passive: true } as const;
     el.addEventListener('wheel', stop, opts);
     el.addEventListener('touchstart', stop, opts);
@@ -2128,6 +2108,17 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {phase === 'reveal' && winking && card && <BloomWink kind={wink!.kind} rarity={card.rarity} />}
       {flash && <div key={flash.key} className="pack-flash pointer-events-none fixed inset-0 z-40" style={{ background: flash.rainbow ? `radial-gradient(circle, #fff, ${RAINBOW.join(', ')}, transparent 85%)` : `radial-gradient(circle, #fff, ${flash.color} 45%, transparent 80%)` }} />}
 
+      {/* The summary: straight to its end (Done, Open again), past fifty packs' worth of cards. */}
+      {phase === 'summary' && (
+        <button
+          type="button"
+          onClick={() => (stopAutoScroll.current(), stage.current?.scrollTo({ top: stage.current.scrollHeight, behavior: 'smooth' }))}
+          className="fixed bottom-4 right-4 z-50 rounded-full border border-white/40 bg-black/70 px-4 py-2 font-display text-sm font-bold tracking-wider text-white backdrop-blur hover:border-white"
+          aria-label="Scroll to the end of the summary"
+        >
+          ⬇ Bottom
+        </button>
+      )}
       {/* The stage: everything that shakes. Not clipped itself (the overlay clips), so the star field's bleed covers the borders mid-shake. */}
       <div ref={stage} className={`absolute inset-0 isolate p-4 ${phase === 'summary' ? 'flex justify-center overflow-y-auto' : 'grid place-items-center'}`}>
       {/* 0. Three packs: pick one. */}
