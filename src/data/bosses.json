@@ -26644,5 +26644,955 @@
       "Summer Rides the Surf",
       "Colors for Tomorrow"
     ]
+  },
+  {
+    "id": "hollowknight",
+    "domain": "games",
+    "franchise": "Hollow Knight",
+    "aliases": [
+      "hollow knight",
+      "hollow knight silksong",
+      "silksong",
+      "hk",
+      "hallownest",
+      "pharloom"
+    ],
+    "images": "hollowknight.wiki",
+    "boss": {
+      "name": "The Radiance",
+      "title": "The Old Light",
+      "color": "#facc15",
+      "image": "https://cdn.wikimg.net/en/hkwiki/images/5/52/B_Radiance.png"
+    },
+    "lines": {
+      "intro": "Sleep, little vessel. In the dream, everything is light — and the light is mine.",
+      "phase2": "Some of these faces never walked Hallownest or Pharloom. Find the true bugs before my light swallows them!",
+      "phase3": "You still stand in my dream. Name them all, before the light takes the last of them.",
+      "hit": [
+        "A shadow…",
+        "The void stirs!",
+        "You dare?"
+      ],
+      "hurt": [
+        "Into the light!",
+        "Infected, like the rest.",
+        "Your mask breaks!",
+        "Dream no more."
+      ],
+      "win": "The light… fades. Go, little shadow. For now, the kingdom sleeps without me.",
+      "lose": "Another vessel, another dream. Hallownest is mine again.",
+      "secret": "One last dream before the dawn. I name a boss or a place of Hallownest or Pharloom — you name another of the same. No repeats!",
+      "secretOk": [
+        "Hm.",
+        "Again.",
+        "The light remembers."
+      ],
+      "secretLost": "Nothing? Then the dream is mine."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 bosses of Hollow Knight",
+        "count": 5,
+        "answers": [
+          "Bosses",
+          "Absolute Radiance",
+          "Broken Vessel",
+          "Brooding Mawlek",
+          "Brothers Oro & Mato|Oro and Mato|Oro & Mato",
+          "The Collector",
+          "Crystal Guardian",
+          "Dung Defender|Ogrim|Isma",
+          "Elder Hu",
+          "Enraged Guardian",
+          "Failed Champion",
+          "False Knight",
+          "Flukemarm",
+          "Galien",
+          "God Tamer",
+          "Gorb",
+          "Great Nailsage Sly",
+          "Grey Prince Zote",
+          "Gruz Mother",
+          "Hive Knight",
+          "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel",
+          "Hornet Protector",
+          "Hornet Sentinel",
+          "The Hunter",
+          "Lost Kin",
+          "Mantis Lords|Sisters of Battle",
+          "Markoth",
+          "Marmu",
+          "Massive Moss Charger",
+          "Nightmare King Grimm",
+          "No Eyes",
+          "Nosk",
+          "Oblobbles",
+          "Paintmaster Sheo",
+          "Pure Vessel",
+          "The Radiance|Radiance|Absolute Radiance|The Old Light",
+          "Sisters of Battle",
+          "Soul Master|Soul Tyrant",
+          "Soul Tyrant",
+          "Soul Warrior",
+          "Tiso",
+          "Traitor Lord",
+          "Troupe Master Grimm",
+          "Uumuu",
+          "Vengefly King",
+          "Watcher Knight",
+          "White Defender|Ogrim",
+          "Winged Nosk",
+          "Xero",
+          "Zote the Mighty"
+        ]
+      },
+      {
+        "prompt": "Name 5 bosses of Silksong",
+        "count": 5,
+        "answers": [
+          "Bell Beast",
+          "Bell Eater",
+          "Broodmother",
+          "Clover Dancers",
+          "Cogwork Dancers",
+          "Crawfather",
+          "Crust King Khann",
+          "Disgraced Chef Lugoli",
+          "Father of the Flame",
+          "First Sinner",
+          "Forebrothers Signis & Gron",
+          "Fourth Chorus",
+          "Garmond and Zaza|Garmond & Zaza|Garmond|Zaza",
+          "Grand Mother Silk|Grand Mother|Mother Silk",
+          "Great Conchflies",
+          "Groal the Great",
+          "Gurr the Outcast",
+          "Lace",
+          "Last Judge",
+          "Lost Garmond",
+          "Lost Lace",
+          "Moorwing",
+          "Moss Mother",
+          "Nyleth",
+          "Palestag",
+          "Phantom",
+          "Pinstress",
+          "Plasmified Zango",
+          "Raging Conchfly",
+          "Savage Beastfly",
+          "Second Sentinel",
+          "Shakra",
+          "Shrine Guardian Seth",
+          "Sister Splinter",
+          "Skarrsinger Karmelita",
+          "Skull Tyrant",
+          "Summoned Saviour",
+          "The Unravelled",
+          "Tormented Trobbio",
+          "Trobbio",
+          "Voltvyrm",
+          "Watcher at the Edge",
+          "Widow"
+        ]
+      },
+      {
+        "prompt": "Name the 3 Dreamers",
+        "count": 3,
+        "answers": [
+          "Monomon|Monomon the Teacher",
+          "Lurien|Lurien the Watcher",
+          "Herrah|Herrah the Beast"
+        ]
+      },
+      {
+        "prompt": "Name the 4 Nailmasters and their master",
+        "count": 4,
+        "answers": [
+          "Oro",
+          "Mato",
+          "Sheo|Paintmaster Sheo",
+          "Sly|Great Nailsage Sly"
+        ]
+      },
+      {
+        "prompt": "Name 5 places of Hallownest",
+        "count": 5,
+        "answers": [
+          "The Abyss",
+          "Ancient Basin",
+          "City of Tears",
+          "Colosseum of Fools",
+          "Crystal Peak",
+          "Deepnest",
+          "Dirtmouth",
+          "Fog Canyon",
+          "Forgotten Crossroads",
+          "Fungal Wastes",
+          "Godhome",
+          "Greenpath",
+          "The Hive",
+          "Howling Cliffs",
+          "Kingdom's Edge",
+          "Queen's Gardens",
+          "Resting Grounds",
+          "Royal Waterways",
+          "White Palace"
+        ]
+      },
+      {
+        "prompt": "Name 5 places of Pharloom",
+        "count": 5,
+        "answers": [
+          "The Abyss",
+          "Bellhart",
+          "Bilewater",
+          "Blasted Steps",
+          "Bone Bottom",
+          "Choral Chambers",
+          "The Citadel",
+          "Cogwork Core",
+          "The Cradle",
+          "Deep Docks",
+          "Far Fields",
+          "Grand Gate",
+          "Greymoor",
+          "High Halls",
+          "Hunter's March",
+          "The Marrow",
+          "Memorium",
+          "The Mist",
+          "Moss Grotto",
+          "Mosslands",
+          "Mount Fay",
+          "Putrified Ducts",
+          "Red Memory",
+          "Sands of Karak",
+          "Shellwood",
+          "Sinner's Road",
+          "The Slab",
+          "Underworks",
+          "Verdania",
+          "Weavenest Atla",
+          "Whispering Vaults",
+          "Whiteward",
+          "Wisp Thicket",
+          "Wormways"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of Hollow Knight",
+        "count": 5,
+        "answers": [
+          "NPCs",
+          "Bardoon",
+          "Blue Child Joni",
+          "Bretta",
+          "Brumm",
+          "Charm Lover Salubra",
+          "Cloth",
+          "Confessor Jiji",
+          "Cornifer",
+          "Divine",
+          "Dung Defender|Ogrim|Isma",
+          "Elderbug",
+          "Eternal Emilitia",
+          "Fluke Hermit",
+          "Godseeker",
+          "Grey Mourner",
+          "Grub",
+          "Grubfather",
+          "Herrah the Beast",
+          "Hive Queen Vespa",
+          "Hornet",
+          "The Hunter",
+          "Iselda",
+          "Last Stag",
+          "Leg Eater",
+          "Little Fool",
+          "Lurien the Watcher",
+          "Marissa",
+          "Mask Maker",
+          "Midwife",
+          "Millibelle the Banker",
+          "Mister Mushroom",
+          "Monomon the Teacher",
+          "Moss Prophet",
+          "Myla",
+          "Nailmaster Mato",
+          "Nailmaster Oro",
+          "Nailmaster Sheo",
+          "Nailsmith",
+          "Nymm",
+          "Quirrel",
+          "Relic Seeker Lemm",
+          "Revek",
+          "Seer",
+          "Sly",
+          "Snail Shaman",
+          "Steel Soul Jinn",
+          "Thistlewind",
+          "Tiso",
+          "The Traitors' Child",
+          "Troupe Master Grimm",
+          "Tuk",
+          "White Lady",
+          "Willoh",
+          "Zote the Mighty"
+        ]
+      },
+      {
+        "prompt": "Name 5 characters of Silksong",
+        "count": 5,
+        "answers": [
+          "Aged Pilgrim",
+          "Alchemist Zylotol",
+          "Ballow",
+          "Beastlings",
+          "Bell Beast",
+          "Bell Hermit",
+          "Broodling",
+          "Caretaker",
+          "Chapel Maid",
+          "Cogwork Statues",
+          "Conductor Ballador",
+          "Couriers Tipp & Pill",
+          "Creige",
+          "Crull and Benjin",
+          "Dejected Pilgrim",
+          "Eva",
+          "Exhausted Pilgrim",
+          "Fayforn",
+          "Fearful Pilgrim",
+          "Flea",
+          "Flea Caravan",
+          "Fleamaster Mooshka",
+          "Flick the Fixer",
+          "Forge Daughter",
+          "Frey",
+          "Garmond and Zaza|Garmond & Zaza|Garmond|Zaza",
+          "Gilly",
+          "Great Gourmand",
+          "Green Prince",
+          "Greyroot",
+          "Grindle",
+          "Grishkin",
+          "Horned Pilgrim",
+          "Humble Pilgrim",
+          "Huntress",
+          "Jubilana",
+          "Kratt",
+          "Lace",
+          "Loam",
+          "Loddie",
+          "Loyal Mergwin",
+          "Lumble the Lucky",
+          "Mask Maker",
+          "Mister Mushroom",
+          "Mort",
+          "Moss Druid",
+          "Mottled Skarr",
+          "Nuu",
+          "Old Penitent",
+          "Pavo",
+          "Pebb",
+          "Pilby",
+          "Pilgrim Preacher",
+          "Pinmaster Plinney",
+          "Pious Isamor",
+          "Pondcatcher Reed",
+          "Quiet Pilgrim",
+          "Relic Seeker Scrounge",
+          "Runt",
+          "Scared Pilgrim",
+          "Seamstress",
+          "Second Sentinel",
+          "Shakra",
+          "Sherma",
+          "Shrine Guardian Seth",
+          "Skarrsinger Karmelita",
+          "Skynx",
+          "Snail Shamans",
+          "Solemn Pilgrim",
+          "Sprintmaster Swift",
+          "Steel Seer Zi",
+          "Styx",
+          "Sula",
+          "Tall Pilgrim",
+          "Tormented Trobbio",
+          "Twelfth Architect",
+          "Varga",
+          "Vaultkeeper Cardinius",
+          "Vog",
+          "Weary Pilgrim",
+          "Worried Pilgrim",
+          "Yarnaby"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Hornet",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/thumb/4/4a/Hornet_%28Hollow_Knight%29.png/700px-Hornet_%28Hollow_Knight%29.png"
+        },
+        {
+          "label": "The Knight",
+          "aliases": [
+            "Knight",
+            "Ghost",
+            "The Ghost",
+            "Little Ghost",
+            "The Vessel"
+          ],
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/4/47/The_Knight_Idle.png"
+        },
+        {
+          "label": "Grimm",
+          "aliases": [
+            "Troupe Master Grimm",
+            "Nightmare King Grimm",
+            "Nightmare King",
+            "NKG"
+          ],
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/5/5b/B_Grimm.png"
+        },
+        {
+          "label": "Quirrel",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/c/cd/Quirrel_Idle.png"
+        },
+        {
+          "label": "Zote",
+          "aliases": [
+            "Zote the Mighty",
+            "Grey Prince Zote"
+          ],
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/5/5a/B_Zote.png"
+        },
+        {
+          "label": "Lace",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/e/e6/B_Lace.png"
+        },
+        {
+          "label": "Myla",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/b/b0/Myla.png"
+        },
+        {
+          "label": "Cloth",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/8/84/Cloth_Idle.png"
+        },
+        {
+          "label": "Sherma",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/e/e1/Sherma_Idle.png"
+        },
+        {
+          "label": "Shakra",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/1/1f/Shakra_Crouching.png"
+        },
+        {
+          "label": "Tiso",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/e/e3/Tiso_Bench.png"
+        },
+        {
+          "label": "Cornifer",
+          "image": "https://cdn.wikimg.net/en/hkwiki/images/f/ff/Cornifer.png"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Kirby",
+          "image": "https://ssb.wiki.gallery/images/3/3c/Kirby_%28Super_Star%29.png"
+        },
+        {
+          "label": "Mario",
+          "image": "https://mario.wiki.gallery/images/1/11/MarioSMB2NES.png"
+        },
+        {
+          "label": "Link",
+          "image": "https://ssb.wiki.gallery/images/e/e4/Link_OoT.png"
+        },
+        {
+          "label": "Samus",
+          "image": "https://ssb.wiki.gallery/images/6/68/Samus_Other_M_Artwork.png"
+        },
+        {
+          "label": "Pikachu",
+          "image": "https://ssb.wiki.gallery/images/a/a1/PikachuArtworkRB.png"
+        },
+        {
+          "label": "Sonic",
+          "image": "https://static.wikia.nocookie.net/sonic/images/4/4a/Ultimate_Genesis_Collection_Sonic_art.png/revision/latest?cb=20251219085537"
+        },
+        {
+          "label": "Yoshi",
+          "image": "https://ssb.wiki.gallery/images/2/22/Yoshi_%28Super_Mario_World%29.jpg"
+        },
+        {
+          "label": "Pac-Man",
+          "image": "https://ssb.wiki.gallery/images/0/00/Pac-Man.png"
+        },
+        {
+          "label": "Isabelle",
+          "image": "https://ssb.wiki.gallery/images/4/43/Villager_and_Isabelle_artwork.jpg"
+        },
+        {
+          "label": "Olimar",
+          "image": "https://ssb.wiki.gallery/images/c/ca/OlimarP.jpg"
+        },
+        {
+          "label": "Inkling",
+          "image": "https://cdn.wikimg.net/en/splatoonwiki/images/e/eb/S2_Inkling_Girl_with_Dualies_2D_art_with_background.jpg"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "The Pale King",
+        "aliases": [
+          "Pale King",
+          "Wyrm"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/3/32/Pale-King.png"
+      },
+      {
+        "label": "White Lady",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/5/55/White_Lady_Cut.png"
+      },
+      {
+        "label": "Mantis Lords",
+        "aliases": [
+          "Sisters of Battle"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/d/d6/B_Mantis_Lords.png"
+      },
+      {
+        "label": "Dung Defender",
+        "aliases": [
+          "Ogrim",
+          "Isma"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/0/0e/B_Dung_Defender.png"
+      },
+      {
+        "label": "Elderbug",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/4/40/Elderbug.png"
+      },
+      {
+        "label": "Bretta",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/9/96/Bretta.png"
+      },
+      {
+        "label": "Iselda",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/5/50/Iselda.png"
+      },
+      {
+        "label": "Sly",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/d/d9/Sly_Cashier.png"
+      },
+      {
+        "label": "Salubra",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/e/ea/Salubra.png"
+      },
+      {
+        "label": "Nailsmith",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/f/f6/Nailsmith_2.png"
+      },
+      {
+        "label": "Seer",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/e/ee/Seer.png"
+      },
+      {
+        "label": "Monomon",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/1/14/Monomon.png"
+      },
+      {
+        "label": "Lurien",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/1/13/Lurien_limbs.png"
+      },
+      {
+        "label": "Herrah",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/8/89/Herrah_Red_Memory.png"
+      },
+      {
+        "label": "Traitor Lord",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/2/2c/B_Traitor_Lord.png"
+      },
+      {
+        "label": "Soul Master",
+        "aliases": [
+          "Soul Tyrant"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/7/72/B_Soul_Master.png"
+      },
+      {
+        "label": "False Knight",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/9/98/B_False_Knight.png"
+      },
+      {
+        "label": "Broken Vessel",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/3/30/B_Broken_Vessel-2.png"
+      },
+      {
+        "label": "Nosk",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/a/a8/B_Nosk.png"
+      },
+      {
+        "label": "Collector",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/d/d5/B_Collector.png"
+      },
+      {
+        "label": "Uumuu",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/4/49/B_Uumuu.png"
+      },
+      {
+        "label": "Hive Knight",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/f/fd/Hive_Knight.png"
+      },
+      {
+        "label": "Bell Beast",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/8/84/B_Bell_Beast.png"
+      },
+      {
+        "label": "Moss Mother",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/1/1e/B_Moss_Mother.png"
+      },
+      {
+        "label": "Widow",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/a/aa/B_Widow.png"
+      },
+      {
+        "label": "Last Judge",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/4/45/B_Last_Judge.png"
+      },
+      {
+        "label": "Trobbio",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/3/32/B_Trobbio.png"
+      },
+      {
+        "label": "Garmond and Zaza",
+        "aliases": [
+          "Garmond & Zaza",
+          "Garmond",
+          "Zaza"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/3/36/Garmond_%26_Zaza_Idle.png"
+      },
+      {
+        "label": "Pinstress",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/3/38/Pinstress_Idle.png"
+      },
+      {
+        "label": "Sister Splinter",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/5/5c/B_Sister_Splinter.png"
+      },
+      {
+        "label": "Grand Mother Silk",
+        "aliases": [
+          "Grand Mother",
+          "Mother Silk"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/7/7f/B_Grand_Mother_Silk.png"
+      },
+      {
+        "label": "First Sinner",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/6/64/First_Sinner_weaving_outfit.png"
+      },
+      {
+        "label": "Seth",
+        "aliases": [
+          "Shrine Guardian Seth"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/2/25/B_Shrine_Guardian_Seth.png"
+      },
+      {
+        "label": "Karmelita",
+        "aliases": [
+          "Skarrsinger Karmelita"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/7/71/B_Skarrsinger_Karmelita.png"
+      },
+      {
+        "label": "Lugoli",
+        "aliases": [
+          "Disgraced Chef Lugoli"
+        ],
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/1/12/B_Disgraced_Chef_Lugoli.png"
+      },
+      {
+        "label": "Phantom",
+        "image": "https://cdn.wikimg.net/en/hkwiki/images/2/23/B_Phantom.png"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Boss of Hollow Knight",
+          "entities": [
+            "Bosses",
+            "Absolute Radiance",
+            "Broken Vessel",
+            "Brooding Mawlek",
+            "Brothers Oro & Mato|Oro and Mato|Oro & Mato",
+            "The Collector",
+            "Crystal Guardian",
+            "Dung Defender|Ogrim|Isma",
+            "Elder Hu",
+            "Enraged Guardian",
+            "Failed Champion",
+            "False Knight",
+            "Flukemarm",
+            "Galien",
+            "God Tamer",
+            "Gorb",
+            "Great Nailsage Sly",
+            "Grey Prince Zote",
+            "Gruz Mother",
+            "Hive Knight",
+            "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel",
+            "Hornet Protector",
+            "Hornet Sentinel",
+            "The Hunter",
+            "Lost Kin",
+            "Mantis Lords|Sisters of Battle",
+            "Markoth",
+            "Marmu",
+            "Massive Moss Charger",
+            "Nightmare King Grimm",
+            "No Eyes",
+            "Nosk",
+            "Oblobbles",
+            "Paintmaster Sheo",
+            "Pure Vessel",
+            "The Radiance|Radiance|Absolute Radiance|The Old Light",
+            "Sisters of Battle",
+            "Soul Master|Soul Tyrant",
+            "Soul Tyrant",
+            "Soul Warrior",
+            "Tiso",
+            "Traitor Lord",
+            "Troupe Master Grimm",
+            "Uumuu",
+            "Vengefly King",
+            "Watcher Knight",
+            "White Defender|Ogrim",
+            "Winged Nosk",
+            "Xero",
+            "Zote the Mighty"
+          ]
+        },
+        {
+          "label": "Boss of Silksong",
+          "entities": [
+            "Bell Beast",
+            "Bell Eater",
+            "Broodmother",
+            "Clover Dancers",
+            "Cogwork Dancers",
+            "Crawfather",
+            "Crust King Khann",
+            "Disgraced Chef Lugoli",
+            "Father of the Flame",
+            "First Sinner",
+            "Forebrothers Signis & Gron",
+            "Fourth Chorus",
+            "Garmond and Zaza|Garmond & Zaza|Garmond|Zaza",
+            "Grand Mother Silk|Grand Mother|Mother Silk",
+            "Great Conchflies",
+            "Groal the Great",
+            "Gurr the Outcast",
+            "Lace",
+            "Last Judge",
+            "Lost Garmond",
+            "Lost Lace",
+            "Moorwing",
+            "Moss Mother",
+            "Nyleth",
+            "Palestag",
+            "Phantom",
+            "Pinstress",
+            "Plasmified Zango",
+            "Raging Conchfly",
+            "Savage Beastfly",
+            "Second Sentinel",
+            "Shakra",
+            "Shrine Guardian Seth",
+            "Sister Splinter",
+            "Skarrsinger Karmelita",
+            "Skull Tyrant",
+            "Summoned Saviour",
+            "The Unravelled",
+            "Tormented Trobbio",
+            "Trobbio",
+            "Voltvyrm",
+            "Watcher at the Edge",
+            "Widow"
+          ]
+        },
+        {
+          "label": "Place of Hallownest",
+          "entities": [
+            "The Abyss",
+            "Ancient Basin",
+            "City of Tears",
+            "Colosseum of Fools",
+            "Crystal Peak",
+            "Deepnest",
+            "Dirtmouth",
+            "Fog Canyon",
+            "Forgotten Crossroads",
+            "Fungal Wastes",
+            "Godhome",
+            "Greenpath",
+            "The Hive",
+            "Howling Cliffs",
+            "Kingdom's Edge",
+            "Queen's Gardens",
+            "Resting Grounds",
+            "Royal Waterways",
+            "White Palace"
+          ]
+        },
+        {
+          "label": "Place of Pharloom",
+          "entities": [
+            "The Abyss",
+            "Bellhart",
+            "Bilewater",
+            "Blasted Steps",
+            "Bone Bottom",
+            "Choral Chambers",
+            "The Citadel",
+            "Cogwork Core",
+            "The Cradle",
+            "Deep Docks",
+            "Far Fields",
+            "Grand Gate",
+            "Greymoor",
+            "High Halls",
+            "Hunter's March",
+            "The Marrow",
+            "Memorium",
+            "The Mist",
+            "Moss Grotto",
+            "Mosslands",
+            "Mount Fay",
+            "Putrified Ducts",
+            "Red Memory",
+            "Sands of Karak",
+            "Shellwood",
+            "Sinner's Road",
+            "The Slab",
+            "Underworks",
+            "Verdania",
+            "Weavenest Atla",
+            "Whispering Vaults",
+            "Whiteward",
+            "Wisp Thicket",
+            "Wormways"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Hallownest & Pharloom",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "The princess-protector of Hallownest, needle and thread in hand — then the heroine of her own song",
+          "answer": "Hornet"
+        },
+        {
+          "text": "Master of a travelling troupe who gathers the flame of a nightmare",
+          "answer": "Grimm|Troupe Master Grimm|Nightmare King Grimm|Nightmare King|NKG"
+        },
+        {
+          "text": "A cheerful wanderer in a pale mask who keeps turning up to admire the view",
+          "answer": "Quirrel"
+        },
+        {
+          "text": "A self-proclaimed knight with 57 precepts and no victories",
+          "answer": "Zote|Zote the Mighty|Grey Prince Zote"
+        },
+        {
+          "text": "A playful, deadly duellist in white who guards the Citadel of Pharloom",
+          "answer": "Lace"
+        },
+        {
+          "text": "A small vessel of void, silent, sent down to the old kingdom with a nail",
+          "answer": "The Knight|Knight|Ghost|The Ghost|Little Ghost|The Vessel"
+        },
+        {
+          "text": "A miner who sings while she works in the Crystal Peak",
+          "answer": "Myla"
+        },
+        {
+          "text": "A brave warrior who dreams of a glorious battle in the Fungal Wastes",
+          "answer": "Cloth"
+        },
+        {
+          "text": "A little pilgrim who rings his bells as he walks the roads of Pharloom",
+          "answer": "Sherma"
+        },
+        {
+          "text": "A fierce mapper who marks the land with her rings and her hammer",
+          "answer": "Shakra"
+        },
+        {
+          "text": "A cocky adventurer who wants to win the Colosseum of Fools",
+          "answer": "Tiso"
+        },
+        {
+          "text": "A cartographer who hums as he maps the kingdom, his wife waiting in Dirtmouth",
+          "answer": "Cornifer"
+        },
+        {
+          "text": "The god of light, once worshipped by the moths, who spread the Infection through dreams",
+          "answer": "The Radiance|Radiance|Absolute Radiance|The Old Light"
+        },
+        {
+          "text": "The pure vessel, chained in the Black Egg Temple to hold the light inside",
+          "answer": "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel"
+        },
+        {
+          "text": "A shining king who built a kingdom and sealed a god away",
+          "answer": "The Pale King|Pale King|Wyrm"
+        },
+        {
+          "text": "A queen of root who waits in the Queen's Gardens",
+          "answer": "White Lady"
+        },
+        {
+          "text": "Three warrior sisters who duel only the worthy",
+          "answer": "Mantis Lords|Sisters of Battle"
+        },
+        {
+          "text": "A cheerful knight of dung who guards the Royal Waterways",
+          "answer": "Dung Defender|Ogrim|Isma"
+        },
+        {
+          "text": "The last bug left in Dirtmouth, who greets every traveller",
+          "answer": "Elderbug"
+        },
+        {
+          "text": "A shopkeeper who was once a great nailsage",
+          "answer": "Sly"
+        },
+        {
+          "text": "A great beast with a bell on its back, that Hornet frees and rides",
+          "answer": "Bell Beast"
+        },
+        {
+          "text": "The ruler of Pharloom's silk, who called Hornet to the kingdom",
+          "answer": "Grand Mother Silk|Grand Mother|Mother Silk"
+        },
+        {
+          "text": "A puppeteer who puts on a show of fire and lights in the Grand Gate",
+          "answer": "Trobbio"
+        },
+        {
+          "text": "A wandering knight and his small partner who share the road with Hornet",
+          "answer": "Garmond and Zaza|Garmond & Zaza|Garmond|Zaza"
+        }
+      ]
+    }
   }
 ]

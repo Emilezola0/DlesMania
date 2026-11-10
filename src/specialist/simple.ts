@@ -20,7 +20,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -460,7 +460,80 @@ function ufouria(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria() };
+// ── Hollow Knight and Silksong: the bugs of both games, by the game they are in, what they are (a boss, a character
+// met along the way, or both) and gender; their drawn art (the cards); the boss's clues; and their own voices (the
+// games' recordings: myinstants, and the Hollow Knight Wiki for Lace's song). ──
+const HK: [string, 'Hollow Knight' | 'Silksong' | 'Hollow Knight / Silksong', 'Boss' | 'Character' | 'Boss / Character', 'Male' | 'Female' | 'Unknown'][] = [
+  ['Hornet', 'Hollow Knight / Silksong', 'Boss / Character', 'Female'],
+  ['The Knight', 'Hollow Knight', 'Character', 'Unknown'],
+  ['Grimm', 'Hollow Knight', 'Boss / Character', 'Male'],
+  ['Quirrel', 'Hollow Knight', 'Character', 'Male'],
+  ['Zote', 'Hollow Knight', 'Boss / Character', 'Male'],
+  ['Myla', 'Hollow Knight', 'Character', 'Female'],
+  ['Cloth', 'Hollow Knight', 'Character', 'Female'],
+  ['Tiso', 'Hollow Knight', 'Character', 'Male'],
+  ['Cornifer', 'Hollow Knight', 'Character', 'Male'],
+  ['Sly', 'Hollow Knight', 'Boss / Character', 'Male'],
+  ['Elderbug', 'Hollow Knight', 'Character', 'Male'],
+  ['Bretta', 'Hollow Knight', 'Character', 'Female'],
+  ['Iselda', 'Hollow Knight', 'Character', 'Female'],
+  ['Salubra', 'Hollow Knight', 'Character', 'Female'],
+  ['Nailsmith', 'Hollow Knight', 'Character', 'Male'],
+  ['Seer', 'Hollow Knight', 'Character', 'Female'],
+  ['Monomon', 'Hollow Knight', 'Character', 'Female'],
+  ['Lurien', 'Hollow Knight', 'Character', 'Male'],
+  ['Herrah', 'Hollow Knight', 'Character', 'Female'],
+  ['The Pale King', 'Hollow Knight', 'Character', 'Male'],
+  ['White Lady', 'Hollow Knight', 'Character', 'Female'],
+  ['The Radiance', 'Hollow Knight', 'Boss', 'Female'],
+  ['Mantis Lords', 'Hollow Knight', 'Boss', 'Female'],
+  ['Dung Defender', 'Hollow Knight', 'Boss / Character', 'Male'],
+  ['Traitor Lord', 'Hollow Knight', 'Boss', 'Male'],
+  ['Soul Master', 'Hollow Knight', 'Boss', 'Male'],
+  ['False Knight', 'Hollow Knight', 'Boss', 'Male'],
+  ['Lace', 'Silksong', 'Boss / Character', 'Female'],
+  ['Sherma', 'Silksong', 'Character', 'Male'],
+  ['Shakra', 'Silksong', 'Character', 'Female'],
+  ['Garmond and Zaza', 'Silksong', 'Boss / Character', 'Male'],
+  ['Grand Mother Silk', 'Silksong', 'Boss', 'Female'],
+  ['Trobbio', 'Silksong', 'Boss', 'Male'],
+  ['Widow', 'Silksong', 'Boss', 'Female'],
+  ['Moss Mother', 'Silksong', 'Boss', 'Female'],
+  ['Seth', 'Silksong', 'Boss', 'Male'],
+  ['Karmelita', 'Silksong', 'Boss', 'Female'],
+  ['Pinstress', 'Silksong', 'Boss / Character', 'Female'],
+  ['First Sinner', 'Silksong', 'Boss', 'Female'],
+];
+const HK_VOICE = (file: string) => `https://www.myinstants.com/media/sounds/${file}.mp3`;
+
+function hollowKnight(): SimpleUniverse {
+  const b = boss('hollowknight');
+  const aliases = new Map([b.boss, ...b.radar.members, ...b.finale].map((c) => ['label' in c ? c.label : c.name, ('aliases' in c ? c.aliases : undefined) ?? []]));
+  const traits = new Map(HK.map(([name, game, role, gender]) => [name, { Game: game, Role: role, Gender: gender }]));
+  const cards = CARDS.filter((c) => c.set === 'hollowknight' && c.rarity !== 'mythic' && c.rarity !== 'omni');
+  return {
+    id: 'hollowknight',
+    columns: ['Game', 'Role', 'Gender'],
+    lists: ['Game', 'Role'],
+    characters: cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: traits.get(c.name) ?? { Game: 'Unknown', Role: 'Unknown', Gender: 'Unknown' } })),
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+    voices: [
+      { answer: 'hornet', en: HK_VOICE('hollow-knight-hornet-voice-11') },
+      { answer: 'hornet', en: HK_VOICE('hornet_edino') },
+      { answer: 'hornet', en: HK_VOICE('hornet_gitgud') },
+      { answer: 'hornet', en: HK_VOICE('silksong-hornet-vren-variant-1') },
+      { answer: 'grimm', en: HK_VOICE('hooseh-hollow-knight-grimm') },
+      { answer: 'grimm', en: HK_VOICE('teh-hollow-knight-grimm') },
+      { answer: 'the-radiance', en: HK_VOICE('radiance') },
+      { answer: 'sherma', en: HK_VOICE('sherma-song') },
+      { answer: 'trobbio', en: HK_VOICE('trobbio') },
+      { answer: 'grand-mother-silk', en: HK_VOICE('garama-grand-mother-silk') },
+      { answer: 'lace', en: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg' },
+    ],
+  };
+}
+
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 

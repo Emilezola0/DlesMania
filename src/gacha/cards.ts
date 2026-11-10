@@ -141,6 +141,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   arcraiders: { name: 'Leaper', title: 'The Pounce', line: 'Four long legs, one red eye and a jump that covers half a street: by the time you hear it land, it is already on top of you.', voice: 'Thud. Thud. THUD.', image: 'https://arcraiders.wiki/w/images/thumb/e/ed/Leaper_Codex.png/400px-Leaper_Codex.png.webp' },
   hsr: { name: 'Kafka', title: 'The Stellaron Hunter', line: 'A violin, two pistols and a voice that tells you what to do: by the time you remember the order, you have already obeyed it.', voice: 'Good times never last.', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/f1/VO_Kafka_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240325085121', image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/9/95/Character_Kafka_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20230809042240' },
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
+  // Lace in Silksong's own art, singing (her voice from the game, Hollow Knight Wiki).
+  hollowknight: { name: 'Lace', title: 'The Citadel’s Duellist', line: 'Small, white and laughing as she lunges: she guards the way to Pharloom’s Citadel, and every duel with her feels like a dance she has already won.', voice: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg', voiceClips: [{ line: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg' }, { line: '♪♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/8/86/Lace_Sing_02.ogg' }], image: 'https://cdn.wikimg.net/en/hkwiki/images/thumb/2/25/Lace.png/600px-Lace.png' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -192,6 +194,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
   // Acheron in her splash art, a line picked each time she speaks (her own recordings from the wiki).
   hsr: { name: 'Acheron', title: 'The Rain at Dusk', line: 'One red blade, still sheathed, and a rain that never lets up: when she finally draws it, a whole world falls quiet.', voice: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125', voiceClips: [{ line: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125' }, { line: "Dusk's rain... it too shall fall.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/VO_Acheron_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240327083613' }], image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20240327021325' },
+  // Zote, in his dream (Hollow Knight Wiki): the knight of 57 precepts, and the fans' favourite joke.
+  hollowknight: { name: 'Zote', title: 'The Mighty', line: 'Fifty-seven precepts, one broken nail and not a single victory — and still the greatest knight in all of Hallownest, if you ask him.', voice: 'Precept One: Always Win Your Battles.', image: 'https://cdn.wikimg.net/en/hkwiki/images/c/c1/Zote_Dream.png' },
   // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
   deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
@@ -203,7 +207,7 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
  * Perfected Ultra Instinct). `image` left out: the character's own picture. (Lines written for
  * these cards; art from the fan wikis.)
  */
-const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; voice?: string; audio?: string; voiceClips?: { line: string; audio: string }[]; awaken: { title: string; image: string; line: string } }> = {
+const OMNIS: Record<string, { name: string; title: string; line: string; image?: string; voice?: string; audio?: string; voiceClips?: { line: string; audio: string }[]; awaken?: { title: string; image: string; line: string } }> = {
   // 漢字 itself, in gold on black; on a Hard win it wakes as 合格, "passed" (both words from the list).
   jlpt: {
     name: 'Language',
@@ -275,6 +279,23 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       line: 'Saucer gone, Bumyon cleaned up: O-Chan floats above the whole world, Hebe and the others beside her.',
       image: UFOURIA_ART('o-chan-space.jpg'),
     },
+  },
+  // Hollow Knight and Silksong: Hornet in Silksong's own art (Hollow Knight Wiki), in her own voice — a line picked
+  // each time she speaks (the game's recordings, from myinstants). Her clip (CLIPS) has no voice of its own: hers
+  // plays over it. No second form, so her clip plays behind a win from the start.
+  hollowknight: {
+    name: 'Hornet',
+    title: 'Princess-Protector',
+    line: 'Needle, thread and a cry no bug forgets: she guarded the ruins of Hallownest, then was taken to Pharloom and climbed the whole kingdom to its Citadel.',
+    image: 'https://cdn.wikimg.net/en/hkwiki/images/thumb/e/ed/Hornet_%28Silksong%29.png/700px-Hornet_%28Silksong%29.png',
+    voice: 'Shaw!',
+    audio: 'https://www.myinstants.com/media/sounds/hollow-knight-hornet-voice-11.mp3',
+    voiceClips: [
+      { line: 'Shaw!', audio: 'https://www.myinstants.com/media/sounds/hollow-knight-hornet-voice-11.mp3' },
+      { line: 'Edino!', audio: 'https://www.myinstants.com/media/sounds/hornet_edino.mp3' },
+      { line: 'Git gud!', audio: 'https://www.myinstants.com/media/sounds/hornet_gitgud.mp3' },
+      { line: 'Garama!', audio: 'https://www.myinstants.com/media/sounds/hollow-knight-hornet-voice-2-3.mp3' },
+    ],
   },
   onepiece: {
     name: 'Monkey D. Luffy',
@@ -664,6 +685,12 @@ const CLIPS: Record<string, string> = {
   // Broly's scream (the owner's BrolyScream): the same moment is his voice, heard from the clip. It stops before the
   // video's end (10.2 s), where YouTube would show its end screen.
   'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-9.7',
+  // Hollow Knight and Silksong: Hornet in Silksong (a 4K capture of the Bellhart scene, Sirloin), silent — her own voice
+  // plays over it; the other three Omnis' clips are their voices too, each a moment of the game heard with its sound.
+  'hollowknight:omni': 'youtube:3Us4NeJiaCw@4.5-9.5',
+  'hollowknight:omni-hollow-knight': 'youtube:Htz7ZSyiovU@14-34',
+  'hollowknight:omni-radiance': 'youtube:mtRdWP62HMg@9-15',
+  'hollowknight:omni-grimm': 'youtube:cw48nntk1AI@0-14.6',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -751,9 +778,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight']);
 
 const slug = (s: string) =>
   s
@@ -1100,6 +1127,44 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
       image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/7d/Light_Cone_Along_the_Passing_Shore_Artwork.png/revision/latest/scale-to-width-down/600?cb=20240327025329',
       line: 'The blade leaves its sheath at last. One stroke, a red flash across the sky, and the rain stops — for everything in front of her, it is the end of the story.',
     },
+  },
+  // Hollow Knight and Silksong (one set): three more Omnis beside Hornet (the set's own). Their pictures are the
+  // game's drawn art (Hollow Knight Wiki); each clip is a moment of the game heard with its own sound (the clip is
+  // its voice too, so they play as one): the Hollow Knight breaking its chains with a scream (Hold To Reset's video
+  // of the fight), the Radiance rising with its shriek (Spleebis), Grimm's bow in a fan animation with its own voice
+  // and sound design (Grimm Troupe Animated, by @mmh_szns).
+  {
+    set: 'hollowknight',
+    id: 'hollowknight:omni-hollow-knight',
+    name: 'The Hollow Knight',
+    rarity: 'omni',
+    title: 'The Pure Vessel',
+    image: 'https://cdn.wikimg.net/en/hkwiki/images/1/12/B_Hollow_Knight.png',
+    description: 'The vessel the Pale King raised to be perfectly empty, sealed in the Black Egg Temple with a god inside it: chained, cracked, still holding on.',
+    voice: 'GRAAAAAH!',
+    audio: 'youtube:Htz7ZSyiovU@14-34',
+  },
+  {
+    set: 'hollowknight',
+    id: 'hollowknight:omni-radiance',
+    name: 'The Radiance',
+    rarity: 'omni',
+    title: 'The Old Light',
+    image: 'https://cdn.wikimg.net/en/hkwiki/images/a/aa/Radiance_Idle.png',
+    description: 'A god of light the moths once worshipped, forgotten by a king and his kingdom — and her answer was a plague of dreams that turned every bug of Hallownest to her.',
+    voice: 'AAAAAAAAH!',
+    audio: 'youtube:mtRdWP62HMg@9-15',
+  },
+  {
+    set: 'hollowknight',
+    id: 'hollowknight:omni-grimm',
+    name: 'Grimm',
+    rarity: 'omni',
+    title: 'Troupe Master',
+    image: 'https://cdn.wikimg.net/en/hkwiki/images/5/5b/B_Grimm.png',
+    description: 'Master of a troupe that follows the Nightmare Lantern from kingdom to kingdom: a bow, a swirl of red cape, and the scarlet flame of a ritual older than Hallownest.',
+    voice: 'Hooseh!',
+    audio: 'youtube:cw48nntk1AI@0-14.6',
   },
 ];
 

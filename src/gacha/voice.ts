@@ -39,6 +39,7 @@ const SPEAKERS: Record<string, Speaker> = {
   jlpt: { pitch: 0.9, rate: 0.95, lang: 'ja-JP' },
   arcraiders: { pitch: 0.6, rate: 0.95, lang: 'en-US' },
   hsr: { pitch: 1.05, rate: 1, lang: 'en-US' },
+  hollowknight: { pitch: 0.9, rate: 0.95, lang: 'en-US' },
   deadlock: { pitch: 0.75, rate: 0.9, lang: 'en-US' },
   avatar: { pitch: 1.2, rate: 1.05, lang: 'en-US' },
   unreal: { pitch: 0.7, rate: 1.1, lang: 'en-US' },

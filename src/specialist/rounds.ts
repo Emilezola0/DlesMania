@@ -84,6 +84,13 @@ export const UNIVERSES = [
     types: ['dance', 'picture', 'clue', 'windows', 'spotlight', 'classic'] as SpType[],
   },
   {
+    id: 'hollowknight',
+    label: 'Hollow Knight & Silksong',
+    ready: true,
+    blurb: 'The bugs of Hallownest and Pharloom: Classic by game, role and gender, their drawn art up close and behind windows, clues, and their own cries and songs.',
+    types: ['classic', 'picture', 'windows', 'clue', 'voice'] as SpType[],
+  },
+  {
     id: 'arcraiders',
     label: 'ARC Raiders',
     ready: true,
@@ -201,6 +208,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   overwatch: simplePools('overwatch'),
   forts: simplePools('forts'),
   ufouria: simplePools('ufouria'),
+  hollowknight: simplePools('hollowknight'),
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
   deadlock: DL_POOLS,
