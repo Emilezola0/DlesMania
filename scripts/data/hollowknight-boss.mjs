@@ -57,16 +57,15 @@ async function pictures(titles) {
   }
   return out;
 }
-
 const answers = (list) => list.map((n) => [n, ...(ALIASES[n] ?? [])].join('|'));
 /** Other names players type. */
 const ALIASES = {
-  'The Radiance': ['Radiance', 'Absolute Radiance', 'The Old Light'],
-  'The Hollow Knight': ['Hollow Knight', 'Pure Vessel', 'The Pure Vessel'],
+  'The Radiance': ['Radiance', 'The Old Light'],
+  'The Hollow Knight': ['Hollow Knight'],
   'The Knight': ['Knight', 'Ghost', 'The Ghost', 'Little Ghost', 'The Vessel'],
   'The Pale King': ['Pale King', 'Wyrm'],
-  'Grimm': ['Troupe Master Grimm', 'Nightmare King Grimm', 'Nightmare King', 'NKG'],
-  'Zote': ['Zote the Mighty', 'Grey Prince Zote'],
+  'Grimm': ['Troupe Master Grimm'],
+  'Zote': ['Zote the Mighty'],
   'Brothers Oro & Mato': ['Oro and Mato', 'Oro & Mato'],
   'Garmond and Zaza': ['Garmond & Zaza', 'Garmond', 'Zaza'],
   'Seth': ['Shrine Guardian Seth'],
@@ -74,12 +73,8 @@ const ALIASES = {
   'Lugoli': ['Disgraced Chef Lugoli'],
   'Signis & Gron': ['Forebrothers Signis & Gron', 'Signis and Gron'],
   'Dung Defender': ['Ogrim', 'Isma'],
-  'White Defender': ['Ogrim'],
-  'Mantis Lords': ['Sisters of Battle'],
-  'Soul Master': ['Soul Tyrant'],
   'Grand Mother Silk': ['Grand Mother', 'Mother Silk'],
 };
-
 // The fan favourites, best-known first (the ones every Hollow Knight community talks about: Hornet of both games, the
 // Troupe Master, Quirrel, Zote, Silksong's Lace, then the beloved side characters): the first two are legendary cards,
 // the next four epic, then rare; the last a common.
@@ -129,7 +124,8 @@ const DREAMERS = ['Monomon|Monomon the Teacher', 'Lurien|Lurien the Watcher', 'H
 const hkBosses = answers(HK_BOSSES.map(clean));
 const ssBosses = answers(SS_BOSSES.map(clean));
 const hkAreas = HK_AREAS.map(clean);
-const ssAreas = SS_AREAS.map(clean);
+// A place both games have (the Abyss) counts once, in Hallownest.
+const ssAreas = SS_AREAS.map(clean).filter((a) => !hkAreas.includes(a));
 
 // Signature: who is it, from what they are and do (written for Omnidle from the games and the wiki).
 const CLUES = [

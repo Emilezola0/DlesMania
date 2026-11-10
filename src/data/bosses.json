@@ -26714,12 +26714,12 @@
           "Grey Prince Zote",
           "Gruz Mother",
           "Hive Knight",
-          "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel",
+          "The Hollow Knight|Hollow Knight",
           "Hornet Protector",
           "Hornet Sentinel",
           "The Hunter",
           "Lost Kin",
-          "Mantis Lords|Sisters of Battle",
+          "Mantis Lords",
           "Markoth",
           "Marmu",
           "Massive Moss Charger",
@@ -26729,9 +26729,9 @@
           "Oblobbles",
           "Paintmaster Sheo",
           "Pure Vessel",
-          "The Radiance|Radiance|Absolute Radiance|The Old Light",
+          "The Radiance|Radiance|The Old Light",
           "Sisters of Battle",
-          "Soul Master|Soul Tyrant",
+          "Soul Master",
           "Soul Tyrant",
           "Soul Warrior",
           "Tiso",
@@ -26740,7 +26740,7 @@
           "Uumuu",
           "Vengefly King",
           "Watcher Knight",
-          "White Defender|Ogrim",
+          "White Defender",
           "Winged Nosk",
           "Xero",
           "Zote the Mighty"
@@ -26843,7 +26843,6 @@
         "prompt": "Name 5 places of Pharloom",
         "count": 5,
         "answers": [
-          "The Abyss",
           "Bellhart",
           "Bilewater",
           "Blasted Steps",
@@ -27049,10 +27048,7 @@
         {
           "label": "Grimm",
           "aliases": [
-            "Troupe Master Grimm",
-            "Nightmare King Grimm",
-            "Nightmare King",
-            "NKG"
+            "Troupe Master Grimm"
           ],
           "image": "https://cdn.wikimg.net/en/hkwiki/images/5/5b/B_Grimm.png"
         },
@@ -27063,8 +27059,7 @@
         {
           "label": "Zote",
           "aliases": [
-            "Zote the Mighty",
-            "Grey Prince Zote"
+            "Zote the Mighty"
           ],
           "image": "https://cdn.wikimg.net/en/hkwiki/images/5/5a/B_Zote.png"
         },
@@ -27159,9 +27154,6 @@
       },
       {
         "label": "Mantis Lords",
-        "aliases": [
-          "Sisters of Battle"
-        ],
         "image": "https://cdn.wikimg.net/en/hkwiki/images/d/d6/B_Mantis_Lords.png"
       },
       {
@@ -27218,9 +27210,6 @@
       },
       {
         "label": "Soul Master",
-        "aliases": [
-          "Soul Tyrant"
-        ],
         "image": "https://cdn.wikimg.net/en/hkwiki/images/7/72/B_Soul_Master.png"
       },
       {
@@ -27347,12 +27336,12 @@
             "Grey Prince Zote",
             "Gruz Mother",
             "Hive Knight",
-            "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel",
+            "The Hollow Knight|Hollow Knight",
             "Hornet Protector",
             "Hornet Sentinel",
             "The Hunter",
             "Lost Kin",
-            "Mantis Lords|Sisters of Battle",
+            "Mantis Lords",
             "Markoth",
             "Marmu",
             "Massive Moss Charger",
@@ -27362,9 +27351,9 @@
             "Oblobbles",
             "Paintmaster Sheo",
             "Pure Vessel",
-            "The Radiance|Radiance|Absolute Radiance|The Old Light",
+            "The Radiance|Radiance|The Old Light",
             "Sisters of Battle",
-            "Soul Master|Soul Tyrant",
+            "Soul Master",
             "Soul Tyrant",
             "Soul Warrior",
             "Tiso",
@@ -27373,7 +27362,7 @@
             "Uumuu",
             "Vengefly King",
             "Watcher Knight",
-            "White Defender|Ogrim",
+            "White Defender",
             "Winged Nosk",
             "Xero",
             "Zote the Mighty"
@@ -27454,7 +27443,6 @@
         {
           "label": "Place of Pharloom",
           "entities": [
-            "The Abyss",
             "Bellhart",
             "Bilewater",
             "Blasted Steps",
@@ -27502,7 +27490,7 @@
         },
         {
           "text": "Master of a travelling troupe who gathers the flame of a nightmare",
-          "answer": "Grimm|Troupe Master Grimm|Nightmare King Grimm|Nightmare King|NKG"
+          "answer": "Grimm|Troupe Master Grimm"
         },
         {
           "text": "A cheerful wanderer in a pale mask who keeps turning up to admire the view",
@@ -27510,7 +27498,7 @@
         },
         {
           "text": "A self-proclaimed knight with 57 precepts and no victories",
-          "answer": "Zote|Zote the Mighty|Grey Prince Zote"
+          "answer": "Zote|Zote the Mighty"
         },
         {
           "text": "A playful, deadly duellist in white who guards the Citadel of Pharloom",
@@ -27546,11 +27534,11 @@
         },
         {
           "text": "The god of light, once worshipped by the moths, who spread the Infection through dreams",
-          "answer": "The Radiance|Radiance|Absolute Radiance|The Old Light"
+          "answer": "The Radiance|Radiance|The Old Light"
         },
         {
           "text": "The pure vessel, chained in the Black Egg Temple to hold the light inside",
-          "answer": "The Hollow Knight|Hollow Knight|Pure Vessel|The Pure Vessel"
+          "answer": "The Hollow Knight|Hollow Knight"
         },
         {
           "text": "A shining king who built a kingdom and sealed a god away",
@@ -27562,7 +27550,7 @@
         },
         {
           "text": "Three warrior sisters who duel only the worthy",
-          "answer": "Mantis Lords|Sisters of Battle"
+          "answer": "Mantis Lords"
         },
         {
           "text": "A cheerful knight of dung who guards the Royal Waterways",
