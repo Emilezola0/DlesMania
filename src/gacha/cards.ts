@@ -18,6 +18,7 @@ import UNREAL_ART from '../data/unreal-art.json';
 import JLPT_CARDS from '../data/jlpt-cards.json';
 import INAZUMA_GO from '../data/inazuma-go.json';
 import CARD_ART from '../data/card-art.json';
+import CARD_OPAQUE from '../data/card-opaque.json';
 import RARITY_TUNING from '../data/tuning/rarities.json';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
@@ -62,13 +63,15 @@ export interface Card {
   voiceFr?: string;
   audioFr?: string;
   /** An omni's second form: what it becomes once its franchise's guardian is beaten on Hard (its clip: see `clip`). */
-  awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean; cutout?: boolean };
+  awaken?: { title: string; image: string; line: string; clip?: string; clipLight?: boolean; cutout?: boolean; opaque?: boolean };
   /** A short looping clip (MP4) of a mythic, played instead of its picture where the card is seen up close. */
   clip?: string;
   /** Its clip (an MP4) has a sound of its own: heard when it plays behind a win, instead of the card's voice line. */
   clipSound?: boolean;
   /** Its picture has a transparent background: it can step out of the frame on hover. */
   cutout?: boolean;
+  /** Its picture has no transparency at all (a rectangle: art, a screenshot): it fills its frame. */
+  opaque?: boolean;
   /** A clip so small it can run all the time, in the album too (the player can turn that off). */
   clipLight?: boolean;
   /**
@@ -658,8 +661,9 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
   // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 720p at 60 fps, with its sound (heard behind a win).
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
-  // Broly's scream (the owner's BrolyScream): the same moment is his voice, heard from the clip.
-  'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-999',
+  // Broly's scream (the owner's BrolyScream): the same moment is his voice, heard from the clip. It stops before the
+  // video's end (10.2 s), where YouTube would show its end screen.
+  'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-9.7',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -733,14 +737,17 @@ const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
+/** The pictures measured as opaque, no transparency at all (npm run cards:measure): "id", or "id@awake" for an omni's second form. */
+const OPAQUE = new Set(CARD_OPAQUE as string[]);
 const withClip = (c: Card): Card => {
   const clip = CLIPS[c.id];
   const clipLight = !!clip && LIGHT_CLIPS.has(c.id);
   const cutout = CUTOUTS.has(c.id);
+  const opaque = !cutout && OPAQUE.has(c.id);
   const first = FIRST_CLIPS[c.id];
   return c.awaken
-    ? { ...c, cutout, ...(first ? { clip: first, clipLight: LIGHT_CLIPS.has(c.id) } : {}), awaken: { ...c.awaken, clip, clipLight: !!clip && clipLight, cutout: CUTOUTS_AWAKE.has(c.id) } }
-    : { ...c, clip, clipLight, cutout };
+    ? { ...c, cutout, opaque, ...(first ? { clip: first, clipLight: LIGHT_CLIPS.has(c.id) } : {}), awaken: { ...c.awaken, clip, clipLight: !!clip && clipLight, cutout: CUTOUTS_AWAKE.has(c.id), opaque: !CUTOUTS_AWAKE.has(c.id) && OPAQUE.has(`${c.id}@awake`) } }
+    : { ...c, clip, clipLight, cutout, opaque };
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
@@ -1055,7 +1062,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 55, y: 30, zoom: 1.55 },
     description: 'Raised alone on Vampa with only his anger, he grows stronger with every blow he takes — and when his rage boils over, the Legendary Super Saiyan has no ceiling.',
     voice: 'RAAAAAAAAAAH!',
-    audio: 'youtube:-Dk7SdXjYD8@0-999',
+    audio: 'youtube:-Dk7SdXjYD8@0-9.7',
   },
   {
     set: 'dbz',

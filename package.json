@@ -13,6 +13,7 @@
     "data:import": "node scripts/import.mjs",
     "data:seed": "node scripts/seed-database.mjs",
     "cards:freeze": "node scripts/freeze-card-rarities.mjs",
+    "cards:measure": "node scripts/measure-card-pictures.mjs",
     "code:hash": "node scripts/hash-code.mjs"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "ajv": "^8.17.1",
+    "sharp": "^0.34.4",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.7.2",
     "vite": "^6.0.7"

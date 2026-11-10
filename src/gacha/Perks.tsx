@@ -62,20 +62,20 @@ function FullBackdrop({ card }: { card: Card }) {
   );
 }
 
-/** Whether the card, as the player has it, shows a cut-out picture (transparent around its subject). */
-function useCutout(card: Card | undefined) {
+/** Whether the card, as the player has it, shows a picture measured as opaque (a rectangle, no transparency). */
+function useOpaque(card: Card | undefined) {
   const awake = useProgress((s) => !!card && isAwake(card, s.bosses));
-  return !!card && (awake ? !!card.awaken?.cutout : !!card.cutout);
+  return !!card && (awake ? !!card.awaken?.opaque : !!card.opaque);
 }
 
-/** The chosen card behind the pages: a cut-out faded into the corner, any other picture across the whole screen, with its rarity's glow. */
+/** The chosen card behind the pages: an opaque picture across the whole screen, any other (a cut-out) faded into the corner, with its rarity's glow. */
 export function CardBackdrop() {
   const id = useProgress((s) => s.backdrop);
   const owned = useProgress((s) => (id ? s.cards[id] : 0));
   const card = id ? CARD_BY_ID.get(id) : undefined;
   // A Legendary or Mythic background reacts to the play: it lights up, winces, or bursts.
   const cue = useBackdropCue(owned ? card : undefined);
-  const cutout = useCutout(card);
+  const cutout = !useOpaque(card);
   if (!card || !owned || !canBeBackdrop(card)) return null;
   const light = RARITY_LIGHT[card.rarity];
   const glow = Math.round(GLOW[card.rarity] * 255)

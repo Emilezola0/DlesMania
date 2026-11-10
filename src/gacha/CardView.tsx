@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react';
 import { fromKey } from '../lib/date';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
@@ -39,11 +39,31 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
 /** Whether an omni has woken: its guardian beaten on Hard or Hell. */
 export const isAwake = (card: Card, bosses: Record<string, { wins: number }>) => !!card.awaken && ((bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
 
-export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean; cutout?: boolean } {
+export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean; cutout?: boolean; opaque?: boolean } {
   const awake = useProgress((s) => isAwake(card, s.bosses));
   return awake && card.awaken
-    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip, clipLight: card.awaken.clipLight, cutout: card.awaken.cutout }
-    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight, cutout: card.cutout };
+    ? { image: card.awaken.image, title: card.awaken.title, description: card.awaken.line, awakened: true, clip: card.awaken.clip, clipLight: card.awaken.clipLight, cutout: card.awaken.cutout, opaque: card.awaken.opaque }
+    : { image: card.image, title: card.title, description: card.description, awakened: false, clip: card.clip, clipLight: card.clipLight, cutout: card.cutout, opaque: card.opaque };
+}
+
+/**
+ * An opaque picture filling its frame (cover), on its subject. A framed picture's zoom (measured for a whole
+ * picture) is kept only for what goes beyond filling the frame.
+ */
+function useFill(focus: Card['focus'] | undefined) {
+  const [cover, setCover] = useState(1);
+  const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
+    const i = e.currentTarget;
+    if (!i.naturalWidth || !i.offsetWidth || !i.offsetHeight) return;
+    const a = i.naturalWidth / i.naturalHeight;
+    const b = i.offsetWidth / i.offsetHeight;
+    setCover(Math.max(a / b, b / a));
+  };
+  const x = focus?.x ?? 50;
+  const y = focus?.y ?? 20;
+  const extra = focus ? focus.zoom / cover : 1;
+  const style: CSSProperties = { objectPosition: `${x}% ${y}%`, ...(extra > 1.02 ? { transform: `scale(${extra})`, transformOrigin: `${x}% ${y}%` } : {}) };
+  return { style, onLoad };
 }
 
 /** The embers floating around an Omni up close: where, and how far off the card (px). */
@@ -147,6 +167,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   // Mythics and omnis share the prism; omnis add a cosmos, a crown, and a second form.
   const prism = mythic || omni;
   const form = useCardForm(card);
+  const fill = useFill(form.awakened ? undefined : card.focus);
   const motion = useProgress((s) => s.cardMotion ?? true);
   // A light clip only loads once its card is on screen.
   const [inView, setInView] = useState(false);
@@ -211,9 +232,11 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
             alt=""
             draggable={false}
             loading="lazy"
-            className={`relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''} ${singularity ? (depth ? 'card-singularity-warp' : 'card-singularity-picture') : ''}`}
+            // An opaque picture (a rectangle) fills the frame; a cut-out one shows whole, on the rarity's tint.
+            className={`relative size-full ${form.opaque ? 'object-cover' : `object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)] ${prism && !form.cutout ? 'card-feather' : ''}`} ${singularity ? (depth ? 'card-singularity-warp' : 'card-singularity-picture') : ''}`}
+            onLoad={form.opaque ? fill.onLoad : undefined}
             // A framed picture (group shot, title banner…): zoomed on its subject. Not an omni's other form.
-            style={card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
+            style={form.opaque ? fill.style : card.focus && !form.awakened ? { transform: `scale(${card.focus.zoom})`, transformOrigin: `${card.focus.x}% ${card.focus.y}%` } : undefined}
           />
           )}
           {/* Its clip (up close, or a light clip once on screen) takes the picture's place as soon as it plays; until then, or if it can't, the picture stays. */}
