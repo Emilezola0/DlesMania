@@ -192,7 +192,8 @@ export function CardReactions() {
       // A mythic's big moment: its voice line, heard.
       // While it speaks, the moment's background (below) stays: they end together.
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
-      const own = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.awaken ? undefined : avatar.clip;
+      // The form the player has: awakened, its own clip; otherwise the card's (an Omni's first-form clip, FIRST_CLIPS).
+      const own = isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : avatar.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
       const showMoment = kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       // A clip that is also the voice (the same YouTube moment): heard from the clip itself, so they start together.
