@@ -183,9 +183,9 @@ const TRAY_MAX = 10;
 const STAR_EARLY = 400;
 const SUMMARY_DEAL = 700;
 /** The summary scrolls down by itself (px a second): faster the more packs, up to SUMMARY_SCROLL_MAX. */
-const SUMMARY_SCROLL_BASE = 100;
-const SUMMARY_SCROLL_PER_PACK = 40;
-const SUMMARY_SCROLL_MAX = 1800;
+const SUMMARY_SCROLL_BASE = 200;
+const SUMMARY_SCROLL_PER_PACK = 80;
+const SUMMARY_SCROLL_MAX = 3600;
 const dealAt = (k: number, n: number) => Math.round(n <= 5 ? k * 70 : (k * SUMMARY_DEAL) / Math.max(1, n - 1));
 /** The beat of suspense before the last star (the best card's), once every other star has crossed. The screen rumbles meanwhile. */
 const LAST_STAR_PAUSE = 1500;
