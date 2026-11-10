@@ -305,7 +305,8 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     awaken: {
       title: 'Gear Fifth: Joy Boy',
       line: 'The drums of liberation, at last: he laughs, and the whole world bends like rubber with him.',
-      image: 'https://static.wikia.nocookie.net/onepiece/images/8/8d/Luffy_Activates_Gear_5.png/revision/latest/scale-to-width-down/500?cb=20231011132639',
+      // The owner's pick: Gear 5, laughing (uhdpaper, kept in the site).
+      image: `${import.meta.env?.BASE_URL ?? './'}art/onepiece/luffy-gear-5.webp`,
     },
   },
   dbz: {
@@ -724,7 +725,8 @@ const CLIPS: Record<string, string> = {
   'hsr:omni': 'https://media.tenor.com/V2G-sDi8ZhIAAAPo/firefly-honkai.mp4',
   'hsr:omni-acheron': 'https://media.tenor.com/pglpLmfus3cAAAPo/acheron-ultimate.mp4',
   'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
-  'onepiece:omni': 'https://media.tenor.com/S9Xo7A1m3_EAAAP1/one-piece-onigashima-arc.mp4',
+  // Luffy awakened: the owner's pick, Gear 5's Gum Gum lightning (Crunchyroll FR), its first 32 s. His voice line stays his own.
+  'onepiece:omni': 'youtube:IbO2Kzxdfn0@0-32',
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
