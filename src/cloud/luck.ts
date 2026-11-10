@@ -2,7 +2,7 @@
 // (Legendary, Mythic and Omni cards) and what its odds promised (src/gacha/packs.ts expectedTop), at the server's
 // time. Only the player and their friends can read it (firestore.rules). It can't stop a cheat — the packs are
 // rolled on the player's device — but it shows how far anyone's pulls are from the odds, and since when.
-import { doc, getDoc, runTransaction, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, runTransaction, serverTimestamp, Timestamp } from 'firebase/firestore';
 import type { TopCount } from '../gacha/packs';
 import { auth, db } from './firebase';
 
@@ -53,6 +53,17 @@ export async function logPacks(packs: number, got: TopCount, expected: TopCount)
     if (snap.exists()) tx.update(ref(uid), next);
     else tx.set(ref(uid), { ...next, since: serverTimestamp() });
   });
+}
+
+/**
+ * Clears the signed-in player's luck report (the Test Lab, after testing with rigged packs): it starts again from
+ * the next pack, with a new "since" date that friends see. False when no account is signed in.
+ */
+export async function resetLuck(): Promise<boolean> {
+  const uid = auth.currentUser?.uid;
+  if (!uid) return false;
+  await deleteDoc(ref(uid));
+  return true;
 }
 
 /** These players' luck (none for a player who hasn't opened a pack signed in, or whose luck can't be read). */

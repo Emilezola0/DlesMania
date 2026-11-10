@@ -221,6 +221,8 @@ service cloud.firestore {
         && luckShapeOk(request.resource.data)
         && request.resource.data.since == resource.data.since
         && addedOk(request.resource.data, resource.data, request.resource.data.packs - resource.data.packs);
+      // Its player can clear it (the Test Lab's reset): it starts again, with a new "since" date friends see.
+      allow delete: if request.auth != null && request.auth.uid == uid;
     }
 
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no

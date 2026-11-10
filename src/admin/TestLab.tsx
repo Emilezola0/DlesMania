@@ -178,6 +178,23 @@ export default function TestLab() {
         </div>
       </Section>
 
+      <Section title="Luck report" note="Rigged packs count in your luck report on the Friends page like real ones (when signed in). Clear it once testing is done: it starts again from the next pack.">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            className={btn}
+            onClick={() =>
+              void import('../cloud/luck')
+                .then((m) => m.resetLuck())
+                .then((done) => say(done ? 'Luck report cleared: it starts again from the next pack.' : 'Sign in first: the luck report belongs to the account.'))
+                .catch((e) => say(`Couldn't clear the luck report: ${e instanceof Error ? e.message : String(e)}`))
+            }
+          >
+            🍀 Reset my luck report
+          </button>
+        </div>
+      </Section>
+
       <Section title="Rig the next packs" note="Applies to every pack bought in the Card Shop until cleared (or to the next purchase only). Cards drawn are added to the save like real ones.">
         <div className="grid gap-2 sm:grid-cols-5">
           {draw.map((slot, i) => (
