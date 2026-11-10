@@ -732,10 +732,12 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-9.7',
   // Hollow Knight and Silksong: Hornet in Silksong (a 4K capture of the Bellhart scene, Sirloin), silent — her own voice
   // plays over it; the other three Omnis' clips are their voices too, each a moment of the game heard with its sound.
-  'hollowknight:omni': 'youtube:3Us4NeJiaCw@4.5-9.5',
+  // Hornet: the owner's pick, 7:07 to 7:24 of this video (her own voice lines play over it).
+  'hollowknight:omni': 'youtube:wjo-dICMPmM@427-444',
   'hollowknight:omni-hollow-knight': 'youtube:Htz7ZSyiovU@14-34',
-  'hollowknight:omni-radiance': 'youtube:mtRdWP62HMg@9-15',
-  'hollowknight:omni-grimm': 'youtube:cw48nntk1AI@0-14.6',
+  'hollowknight:omni-radiance': 'youtube:9rg8UBKtt1o@14-28',
+  'hollowknight:omni-grimm': 'youtube:GxHlWoMlBfQ@49-57',
+  'hollowknight:omni-nightmare-king-grimm': 'youtube:7JWQ9KjwPyE@8-19',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -1225,24 +1227,40 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   {
     set: 'hollowknight',
     id: 'hollowknight:omni-radiance',
-    name: 'The Radiance',
+    name: 'Absolute Radiance',
     rarity: 'omni',
     title: 'The Old Light',
     image: 'https://cdn.wikimg.net/en/hkwiki/images/a/aa/Radiance_Idle.png',
     description: 'A god of light the moths once worshipped, forgotten by a king and his kingdom — and her answer was a plague of dreams that turned every bug of Hallownest to her.',
     voice: 'AAAAAAAAH!',
-    audio: 'youtube:mtRdWP62HMg@9-15',
+    // The owner's pick: 0:14 to 0:28 of this video, its clip and its voice (one moment, heard).
+    audio: 'youtube:9rg8UBKtt1o@14-28',
   },
   {
     set: 'hollowknight',
     id: 'hollowknight:omni-grimm',
     name: 'Grimm',
-    rarity: 'omni',
+    // Was the set's fourth Omni; the owner made him a Mythic, his Nightmare King form the Omni (below). The id stays, for
+    // the players who already have him. His picture and clip are the owner's picks (the picture kept in the site).
+    rarity: 'mythic',
     title: 'Troupe Master',
-    image: 'https://cdn.wikimg.net/en/hkwiki/images/5/5b/B_Grimm.png',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/grimm-mythic.webp`,
     description: 'Master of a troupe that follows the Nightmare Lantern from kingdom to kingdom: a bow, a swirl of red cape, and the scarlet flame of a ritual older than Hallownest.',
     voice: 'Hooseh!',
-    audio: 'youtube:cw48nntk1AI@0-14.6',
+    audio: 'youtube:GxHlWoMlBfQ@49-57',
+  },
+  // Nightmare King Grimm, the owner's pick for the set's Omni: the picture (kept in the site; its host refuses other
+  // sites) and 0:08 to 0:19 of this video, its clip and its voice.
+  {
+    set: 'hollowknight',
+    id: 'hollowknight:omni-nightmare-king-grimm',
+    name: 'Nightmare King Grimm',
+    rarity: 'omni',
+    title: 'Heart of the Nightmare',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/nightmare-king-grimm.webp`,
+    description: 'The troupe master as the ritual really made him: the Nightmare King, all scarlet flame and swirling cape, dancing a fight no one leaves unburnt.',
+    voice: '*The Nightmare King roars*',
+    audio: 'youtube:7JWQ9KjwPyE@8-19',
   },
 ];
 
