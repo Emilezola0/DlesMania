@@ -299,9 +299,10 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
   },
   onepiece: {
     name: 'Monkey D. Luffy',
-    title: 'Gear Fourth: Boundman',
-    line: 'Rubber muscle swollen with Haki, bouncing like a war drum — and this is not even his final form.',
-    image: 'https://static.wikia.nocookie.net/onepiece/images/5/56/Gear_4_Infobox.png/revision/latest/scale-to-width-down/500?cb=20170830213511',
+    // The owner's call: Gear 5 in both forms (his first form was Gear 4): the same picture and clip.
+    title: 'Gear Fifth',
+    line: 'The drums of liberation beat in his chest: he laughs, and the fight turns into a cartoon only he can draw.',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/onepiece/luffy-gear-5.webp`,
     awaken: {
       title: 'Gear Fifth: Joy Boy',
       line: 'The drums of liberation, at last: he laughs, and the whole world bends like rubber with him.',
@@ -811,6 +812,7 @@ const FIRST_CLIPS: Record<string, string> = {
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
+  'onepiece:omni': 'youtube:IbO2Kzxdfn0@0-32',
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
   'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
