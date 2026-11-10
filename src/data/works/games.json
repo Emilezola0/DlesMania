@@ -3548,69 +3548,6 @@
     }
   },
   {
-    "id": "g-kirby",
-    "name": "Kirby's Dream Land",
-    "aliases": [
-      "kirby"
-    ],
-    "domain": "games",
-    "year": 1992,
-    "genres": [
-      "Platformer"
-    ],
-    "studio": "HAL Laboratory",
-    "creator": "Masahiro Sakurai",
-    "origin": "Japan",
-    "format": "Nintendo",
-    "platforms": [
-      "Nintendo"
-    ],
-    "characters": [
-      "Kirby",
-      "King Dedede",
-      "Whispy Woods"
-    ],
-    "themes": [
-      "Food",
-      "Cuteness"
-    ],
-    "credits": [
-      "Creator & director: Masahiro Sakurai",
-      "Composer: Jun Ishikawa",
-      "Game Boy debut"
-    ],
-    "fandom": "kirby",
-    "cover": {
-      "wiki": "Kirby's Dream Land",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Kirbys-dream-land-gameboy-boxart.png"
-    },
-    "audio": {
-      "clue": "A bright, bouncy Game Boy melody for a green, grassy first level.",
-      "query": "Kirby's Dream Land Green Greens",
-      "youtubeId": "twPSaCABakA"
-    },
-    "emoji": "🩷🌟🍰🎈👑",
-    "item": {
-      "name": "Warp Star",
-      "description": "A yellow star a pink puffball rides between levels.",
-      "src": "fandom:kirby:Warp Star",
-      "image": "https://static.wikia.nocookie.net/kirby/images/b/bd/KARs_Kirby_Warpstar_Artwork.png/revision/latest/scale-to-width-down/640?cb=20250402151715&path-prefix=en"
-    },
-    "location": {
-      "name": "Dream Land",
-      "description": "A peaceful land whose food was stolen by a greedy penguin king.",
-      "src": "fandom:kirby:Dream Land",
-      "image": "https://static.wikia.nocookie.net/kirby/images/d/d8/KRtDLDX_Dream_Land.jpg/revision/latest/scale-to-width-down/640?cb=20230601110014&path-prefix=en"
-    },
-    "visual": {
-      "icon": "🩷",
-      "colors": [
-        "#f9a8d4",
-        "#fde047"
-      ]
-    }
-  },
-  {
     "id": "g-odyssey",
     "name": "Super Mario Odyssey",
     "domain": "games",
@@ -5182,7 +5119,8 @@
     },
     "location": {
       "name": "Baldur's Gate",
-      "description": "A great walled port city of the Sword Coast."
+      "description": "A great walled port city of the Sword Coast.",
+      "image": "https://static.wikia.nocookie.net/baldursgategame/images/0/09/Baldur%27s_Gate_box.jpg/revision/latest?cb=20180521111438"
     },
     "visual": {
       "icon": "🎲",
@@ -6413,66 +6351,6 @@
     }
   },
   {
-    "id": "g-megaman2",
-    "name": "Mega Man 2",
-    "domain": "games",
-    "year": 1988,
-    "genres": [
-      "Platformer",
-      "Action"
-    ],
-    "studio": "Capcom",
-    "creator": "Akira Kitamura",
-    "origin": "Japan",
-    "format": "Nintendo",
-    "platforms": [
-      "Nintendo",
-      "PlayStation",
-      "Mobile"
-    ],
-    "characters": [
-      "Mega Man",
-      "Dr. Wily",
-      "Dr. Light"
-    ],
-    "themes": [
-      "Robot masters",
-      "Weapons"
-    ],
-    "credits": [
-      "Director: Akira Kitamura",
-      "Composer: Takashi Tateishi"
-    ],
-    "fandom": "megaman",
-    "cover": {
-      "wiki": "Mega Man 2",
-      "image": "https://upload.wikimedia.org/wikipedia/en/b/be/Megaman2_box.jpg"
-    },
-    "audio": {
-      "clue": "A blazing, heroic chiptune for the villain's fortress — one of the most famous NES tracks.",
-      "query": "Mega Man 2 Dr. Wily Stage 1",
-      "youtubeId": "RHqPVcMBKlc"
-    },
-    "emoji": "🤖🔵🔫👨‍🔬🏰",
-    "item": {
-      "name": "Mega Buster",
-      "description": "An arm cannon that fires plasma pellets.",
-      "image": "https://static.wikia.nocookie.net/megaman/images/1/1a/MM8Shot.jpg/revision/latest?cb=20220303063646"
-    },
-    "location": {
-      "name": "Dr. Wily's Castle",
-      "description": "A skull-fronted fortress built by a mad roboticist.",
-      "image": "https://static.wikia.nocookie.net/megaman/images/7/72/WilyCastle5.png/revision/latest?cb=20180710195352"
-    },
-    "visual": {
-      "icon": "🤖",
-      "colors": [
-        "#1d4ed8",
-        "#38bdf8"
-      ]
-    }
-  },
-  {
     "id": "g-sotn",
     "name": "Castlevania: Symphony of the Night",
     "aliases": [
@@ -7434,65 +7312,6 @@
       "colors": [
         "#991b1b",
         "#525252"
-      ]
-    }
-  },
-  {
-    "id": "g-braid",
-    "name": "Braid",
-    "domain": "games",
-    "year": 2008,
-    "genres": [
-      "Puzzle",
-      "Platformer"
-    ],
-    "studio": "Number None",
-    "creator": "Jonathan Blow",
-    "origin": "USA",
-    "format": "Multi-platform",
-    "platforms": [
-      "PC",
-      "Xbox",
-      "PlayStation"
-    ],
-    "characters": [
-      "Tim",
-      "The Princess",
-      "Monstar"
-    ],
-    "themes": [
-      "Time",
-      "Regret"
-    ],
-    "credits": [
-      "Creator: Jonathan Blow",
-      "Art: David Hellman"
-    ],
-    "fandom": "braid",
-    "cover": {
-      "wiki": "Braid (video game)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/Braidlogo.jpg"
-    },
-    "audio": {
-      "clue": "Soft, licensed violin and cello pieces.",
-      "query": "Braid soundtrack Maenam",
-      "youtubeId": "5kWo8N4QNXM"
-    },
-    "emoji": "⏪🧩👑🏰🗝️",
-    "item": {
-      "name": "Puzzle pieces",
-      "description": "Painting fragments collected in each world."
-    },
-    "location": {
-      "name": "The house with the attic",
-      "description": "Where a man in a tie reads about his lost princess.",
-      "image": "https://static.wikia.nocookie.net/braid/images/d/dc/Painting-World-2.png/revision/latest?cb=20110906114856"
-    },
-    "visual": {
-      "icon": "⏪",
-      "colors": [
-        "#ca8a04",
-        "#065f46"
       ]
     }
   },
@@ -8950,522 +8769,6 @@
     }
   },
   {
-    "id": "g-deusex",
-    "name": "Deus Ex",
-    "domain": "games",
-    "year": 2000,
-    "genres": [
-      "Action RPG",
-      "Immersive sim"
-    ],
-    "studio": "Ion Storm",
-    "creator": "Warren Spector",
-    "origin": "USA",
-    "format": "Multi-platform",
-    "platforms": [
-      "PC",
-      "PlayStation"
-    ],
-    "characters": [
-      "JC Denton",
-      "Paul Denton",
-      "Bob Page"
-    ],
-    "themes": [
-      "Conspiracy",
-      "Transhumanism"
-    ],
-    "credits": [
-      "Director: Warren Spector",
-      "Music: Alexander Brandon"
-    ],
-    "fandom": "deusex",
-    "cover": {
-      "wiki": "Deus Ex (video game)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/b/ba/Deus_Ex_%28game_box_art%29.jpg"
-    },
-    "quote": {
-      "text": "A bomb!",
-      "speaker": "An agent in sunglasses"
-    },
-    "audio": {
-      "clue": "A thumping techno main theme.",
-      "query": "Deus Ex main theme",
-      "youtubeId": "Rm9PJNF3sE0"
-    },
-    "voice": {
-      "speaker": "JC Denton",
-      "query": "JC Denton Deus Ex voice lines",
-      "youtubeId": "KOwN7m1zHU0",
-      "start": 2
-    },
-    "emoji": "🕶️🗽🧬💉🕵️",
-    "item": {
-      "name": "JC's sunglasses",
-      "description": "Worn by an augmented agent, even at night.",
-      "image": "https://static.wikia.nocookie.net/deusex/images/5/5c/AnnaNavarre.jpg/revision/latest/scale-to-width-down/437?cb=20110705202040&path-prefix=en"
-    },
-    "location": {
-      "name": "Liberty Island",
-      "description": "Where the Statue of Liberty lies headless, under terrorist control.",
-      "image": "https://static.wikia.nocookie.net/deusex/images/b/b6/Liberty_Island_aerial.png/revision/latest/scale-to-width-down/640?cb=20150115012023&path-prefix=en"
-    },
-    "visual": {
-      "icon": "🕶️",
-      "colors": [
-        "#065f46",
-        "#0f172a"
-      ]
-    }
-  },
-  {
-    "id": "g-grimfandango",
-    "name": "Grim Fandango",
-    "domain": "games",
-    "year": 1998,
-    "genres": [
-      "Adventure",
-      "Point-and-click"
-    ],
-    "studio": "LucasArts",
-    "creator": "Tim Schafer",
-    "origin": "USA",
-    "format": "PC",
-    "platforms": [
-      "PC",
-      "PlayStation",
-      "Xbox",
-      "Nintendo",
-      "Mobile"
-    ],
-    "characters": [
-      "Manny Calavera",
-      "Glottis",
-      "Meche"
-    ],
-    "themes": [
-      "Death",
-      "Film noir"
-    ],
-    "credits": [
-      "Director: Tim Schafer",
-      "Music: Peter McConnell"
-    ],
-    "fandom": "grim-fandango",
-    "cover": {
-      "wiki": "Grim Fandango",
-      "image": "https://upload.wikimedia.org/wikipedia/en/7/76/Grim_Fandango_artwork.jpg"
-    },
-    "audio": {
-      "clue": "Smoky swing jazz.",
-      "query": "Grim Fandango Swanky Maximino",
-      "youtubeId": "nzF7fC-F3V4"
-    },
-    "voice": {
-      "speaker": "Manny Calavera",
-      "query": "Manny Calavera Grim Fandango voice lines"
-    },
-    "emoji": "💀🚗🌹🎷🌎",
-    "item": {
-      "name": "The scythe",
-      "description": "A travel agent of the dead's working tool.",
-      "image": "https://static.wikia.nocookie.net/grim-fandango/images/1/11/ScytheInventory.jpg/revision/latest/scale-to-width-down/640?cb=20210527060535"
-    },
-    "location": {
-      "name": "Rubacava",
-      "description": "A port city in the Land of the Dead.",
-      "image": "https://static.wikia.nocookie.net/grim-fandango/images/a/ab/Cafeabove.png/revision/latest?cb=20230217051835"
-    },
-    "visual": {
-      "icon": "💀",
-      "colors": [
-        "#ca8a04",
-        "#1c1917"
-      ]
-    }
-  },
-  {
-    "id": "g-monkeyisland",
-    "name": "The Secret of Monkey Island",
-    "domain": "games",
-    "year": 1990,
-    "genres": [
-      "Adventure",
-      "Point-and-click"
-    ],
-    "studio": "Lucasfilm Games",
-    "creator": "Ron Gilbert",
-    "origin": "USA",
-    "format": "PC",
-    "platforms": [
-      "PC",
-      "Sega",
-      "PlayStation",
-      "Xbox",
-      "Mobile"
-    ],
-    "characters": [
-      "Guybrush Threepwood",
-      "LeChuck",
-      "Elaine Marley"
-    ],
-    "themes": [
-      "Piracy",
-      "Comedy"
-    ],
-    "credits": [
-      "Creator: Ron Gilbert",
-      "Writers: Tim Schafer and Dave Grossman"
-    ],
-    "fandom": "monkeyisland",
-    "cover": {
-      "wiki": "The Secret of Monkey Island",
-      "image": "https://upload.wikimedia.org/wikipedia/en/a/a8/The_Secret_of_Monkey_Island_artwork.jpg"
-    },
-    "quote": {
-      "text": "You fight like a dairy farmer!",
-      "speaker": "An insulting swordfighter"
-    },
-    "audio": {
-      "clue": "A reggae-tinged Caribbean theme.",
-      "query": "Monkey Island theme",
-      "youtubeId": "FoT5qK6hpbw"
-    },
-    "voice": {
-      "speaker": "Guybrush Threepwood",
-      "query": "Guybrush Threepwood The Secret of Monkey Island voice lines"
-    },
-    "emoji": "🏴‍☠️🐒🗡️🍗👻",
-    "item": {
-      "name": "The rubber chicken with a pulley",
-      "description": "An absurd inventory item used to cross a zipline."
-    },
-    "location": {
-      "name": "Mêlée Island",
-      "description": "A Caribbean island where a wannabe pirate starts his quest.",
-      "image": "https://static.wikia.nocookie.net/monkeyisland/images/8/8c/Melee_Island.png/revision/latest/scale-to-width-down/640?cb=20140211200308"
-    },
-    "visual": {
-      "icon": "🏴‍☠️",
-      "colors": [
-        "#1e3a8a",
-        "#f59e0b"
-      ]
-    }
-  },
-  {
-    "id": "g-myst",
-    "name": "Myst",
-    "domain": "games",
-    "year": 1993,
-    "genres": [
-      "Puzzle",
-      "Adventure"
-    ],
-    "studio": "Cyan",
-    "creator": "Rand Miller and Robyn Miller",
-    "origin": "USA",
-    "format": "PC",
-    "platforms": [
-      "PC",
-      "PlayStation",
-      "Sega",
-      "Mobile",
-      "Nintendo",
-      "Xbox"
-    ],
-    "characters": [
-      "Atrus",
-      "Sirrus",
-      "Achenar"
-    ],
-    "themes": [
-      "Mystery",
-      "Linking books"
-    ],
-    "credits": [
-      "Creators: Rand and Robyn Miller"
-    ],
-    "cover": {
-      "wiki": "Myst",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/6a/MystCover.png"
-    },
-    "audio": {
-      "clue": "Ambient, mysterious synth.",
-      "query": "Myst theme",
-      "youtubeId": "hS3HVYHOSis"
-    },
-    "emoji": "📘🏝️🔍⚙️🌀",
-    "item": {
-      "name": "The linking books",
-      "description": "Books that transport readers to other worlds, called Ages."
-    },
-    "location": {
-      "name": "Myst Island",
-      "description": "A quiet island full of strange machines and a library."
-    },
-    "visual": {
-      "icon": "📘",
-      "colors": [
-        "#1e3a8a",
-        "#a3e635"
-      ]
-    }
-  },
-  {
-    "id": "g-ico",
-    "name": "Ico",
-    "domain": "games",
-    "year": 2001,
-    "genres": [
-      "Action-Adventure",
-      "Puzzle"
-    ],
-    "studio": "Team Ico",
-    "creator": "Fumito Ueda",
-    "origin": "Japan",
-    "format": "PlayStation",
-    "platforms": [
-      "PlayStation"
-    ],
-    "characters": [
-      "Ico",
-      "Yorda",
-      "The Queen"
-    ],
-    "themes": [
-      "Companionship",
-      "Escape"
-    ],
-    "credits": [
-      "Director: Fumito Ueda",
-      "Music: Michiru Ōshima"
-    ],
-    "fandom": "teamico",
-    "cover": {
-      "wiki": "Ico",
-      "image": "https://upload.wikimedia.org/wikipedia/en/4/40/Ico_cover_-_EU%2BJP.jpg"
-    },
-    "audio": {
-      "clue": "A soft, wordless ending song.",
-      "query": "Ico You Were There",
-      "youtubeId": "XWVij6r4QBw"
-    },
-    "emoji": "🐂👦🏰🫱🌅",
-    "item": {
-      "name": "The stick",
-      "description": "A plank a horned boy uses to fight shadow creatures.",
-      "image": "https://static.wikia.nocookie.net/t__/images/b/b1/WoodICO.png/revision/latest?cb=20230203191247&path-prefix=teamico"
-    },
-    "location": {
-      "name": "The Castle in the Mist",
-      "description": "A vast fortress where a horned boy is left to die."
-    },
-    "visual": {
-      "icon": "🏰",
-      "colors": [
-        "#e7e5e4",
-        "#713f12"
-      ]
-    }
-  },
-  {
-    "id": "g-psychonauts",
-    "name": "Psychonauts",
-    "domain": "games",
-    "year": 2005,
-    "genres": [
-      "Platformer",
-      "Action-Adventure"
-    ],
-    "studio": "Double Fine Productions",
-    "creator": "Tim Schafer",
-    "origin": "USA",
-    "format": "Multi-platform",
-    "platforms": [
-      "PC",
-      "Xbox",
-      "PlayStation"
-    ],
-    "characters": [
-      "Razputin Aquato",
-      "Sasha Nein",
-      "Milla Vodello"
-    ],
-    "themes": [
-      "The mind",
-      "Summer camp"
-    ],
-    "credits": [
-      "Director: Tim Schafer",
-      "Music: Peter McConnell"
-    ],
-    "fandom": "psychonauts",
-    "cover": {
-      "wiki": "Psychonauts",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/Psychonautsbox.png"
-    },
-    "audio": {
-      "clue": "A quirky, jazzy summer-camp theme.",
-      "query": "Psychonauts main theme",
-      "youtubeId": "kDpHj5SqIFI"
-    },
-    "voice": {
-      "speaker": "Razputin Aquato",
-      "query": "Razputin Aquato Psychonauts voice lines"
-    },
-    "emoji": "🧠🏕️🥽🔥🦑",
-    "item": {
-      "name": "Raz's goggles",
-      "description": "Psychic goggles worn by a runaway circus kid."
-    },
-    "location": {
-      "name": "Whispering Rock",
-      "description": "A psychic summer camp for training secret agents.",
-      "image": "https://static.wikia.nocookie.net/psychonauts/images/d/d4/CampOverveiw.jpg/revision/latest/scale-to-width-down/640?cb=20171027084900"
-    },
-    "visual": {
-      "icon": "🧠",
-      "colors": [
-        "#7c3aed",
-        "#facc15"
-      ]
-    }
-  },
-  {
-    "id": "g-bge",
-    "name": "Beyond Good & Evil",
-    "domain": "games",
-    "year": 2003,
-    "genres": [
-      "Action-Adventure",
-      "Stealth"
-    ],
-    "studio": "Ubisoft Montpellier",
-    "creator": "Michel Ancel",
-    "origin": "France",
-    "format": "Multi-platform",
-    "platforms": [
-      "PC",
-      "PlayStation",
-      "Xbox",
-      "Nintendo"
-    ],
-    "characters": [
-      "Jade",
-      "Pey'j",
-      "Double H"
-    ],
-    "themes": [
-      "Propaganda",
-      "Journalism"
-    ],
-    "credits": [
-      "Director: Michel Ancel",
-      "Music: Christophe Héral"
-    ],
-    "fandom": "beyondgoodandevil",
-    "cover": {
-      "wiki": "Beyond Good & Evil (video game)",
-      "image": "https://upload.wikimedia.org/wikipedia/en/c/ce/BGE-cover.jpg"
-    },
-    "audio": {
-      "clue": "Eclectic world music with whistles and chants.",
-      "query": "Beyond Good and Evil Hillys theme",
-      "youtubeId": "jTdcJWDNsao"
-    },
-    "voice": {
-      "speaker": "Jade",
-      "query": "Jade Beyond Good & Evil voice lines"
-    },
-    "emoji": "📸🐷🛸🌊🦎",
-    "item": {
-      "name": "Jade's camera",
-      "description": "A photojournalist's camera used to expose a conspiracy.",
-      "image": "https://static.wikia.nocookie.net/theirisnetwork/images/6/6a/Camera.jpg/revision/latest/scale-to-width-down/640?cb=20130526173218"
-    },
-    "location": {
-      "name": "Hillys",
-      "description": "An ocean planet under alien attack.",
-      "image": "https://static.wikia.nocookie.net/theirisnetwork/images/1/18/Hillysfromouterspaceintro.png/revision/latest/scale-to-width-down/640?cb=20121106153443"
-    },
-    "visual": {
-      "icon": "📸",
-      "colors": [
-        "#0f766e",
-        "#a3e635"
-      ]
-    }
-  },
-  {
-    "id": "g-jetsetradio",
-    "name": "Jet Set Radio",
-    "domain": "games",
-    "year": 2000,
-    "genres": [
-      "Action",
-      "Sports"
-    ],
-    "studio": "Smilebit",
-    "creator": "Masayoshi Kikuchi",
-    "origin": "Japan",
-    "format": "Sega",
-    "platforms": [
-      "Sega",
-      "PC",
-      "PlayStation",
-      "Xbox",
-      "Mobile"
-    ],
-    "characters": [
-      "Beat",
-      "Gum",
-      "Professor K"
-    ],
-    "themes": [
-      "Graffiti",
-      "Rebellion"
-    ],
-    "credits": [
-      "Director: Masayoshi Kikuchi",
-      "Music: Hideki Naganuma"
-    ],
-    "fandom": "jetsetradio",
-    "cover": {
-      "wiki": "Jet Set Radio",
-      "image": "https://upload.wikimedia.org/wikipedia/en/7/7b/Jetsetradiopalboxart.jpg"
-    },
-    "audio": {
-      "clue": "Funky breakbeats by Hideki Naganuma.",
-      "query": "Jet Set Radio Let Mom Sleep",
-      "youtubeId": "t9eAg7Nhq-o"
-    },
-    "voice": {
-      "speaker": "Beat",
-      "query": "Beat Jet Set Radio voice lines",
-      "youtubeId": "pTESEDx84es",
-      "start": 2
-    },
-    "emoji": "🛼🎨📻🚓🏙️",
-    "item": {
-      "name": "Spray cans",
-      "description": "Collected to tag rival gangs' territory.",
-      "image": "https://static.wikia.nocookie.net/jetsetradio/images/1/1b/Spray_Can.png/revision/latest?cb=20241101072137"
-    },
-    "location": {
-      "name": "Tokyo-to",
-      "description": "A stylised city ruled by rollerblading gangs.",
-      "image": "https://static.wikia.nocookie.net/jetsetradio/images/e/e6/Tokyo-to_map.png/revision/latest/scale-to-width-down/640?cb=20230716060802"
-    },
-    "visual": {
-      "icon": "🎨",
-      "colors": [
-        "#16a34a",
-        "#facc15"
-      ]
-    }
-  },
-  {
     "id": "g-katamari",
     "name": "Katamari Damacy",
     "domain": "games",
@@ -9586,64 +8889,6 @@
       "icon": "📜",
       "colors": [
         "#dc2626",
-        "#facc15"
-      ]
-    }
-  },
-  {
-    "id": "g-earthbound",
-    "name": "EarthBound",
-    "domain": "games",
-    "year": 1994,
-    "genres": [
-      "RPG",
-      "Turn-based"
-    ],
-    "studio": "Ape and HAL Laboratory",
-    "creator": "Shigesato Itoi",
-    "origin": "Japan",
-    "format": "Nintendo",
-    "platforms": [
-      "Nintendo"
-    ],
-    "characters": [
-      "Ness",
-      "Paula",
-      "Giygas"
-    ],
-    "themes": [
-      "Suburbia",
-      "Cosmic horror"
-    ],
-    "credits": [
-      "Director: Shigesato Itoi",
-      "Music: Keiichi Suzuki and Hirokazu Tanaka"
-    ],
-    "fandom": "earthbound",
-    "cover": {
-      "wiki": "EarthBound",
-      "image": "https://upload.wikimedia.org/wikipedia/en/1/1f/EarthBound_Box.jpg"
-    },
-    "audio": {
-      "clue": "A quirky, chiptune suburban melody.",
-      "query": "EarthBound Onett theme",
-      "youtubeId": "XKfXsTkA71I"
-    },
-    "emoji": "🧢⚾🐶👽🌀",
-    "item": {
-      "name": "The Franklin Badge",
-      "description": "A badge that bounces lightning back at its caster.",
-      "src": "none"
-    },
-    "location": {
-      "name": "Onett",
-      "description": "A small American suburb where a meteorite lands.",
-      "image": "https://static.wikia.nocookie.net/earthbound/images/a/a3/Onett_location.png/revision/latest?cb=20241214233400"
-    },
-    "visual": {
-      "icon": "🧢",
-      "colors": [
-        "#ef4444",
         "#facc15"
       ]
     }
@@ -10698,6 +9943,1614 @@
       "colors": [
         "#38bdf8",
         "#f472b6"
+      ]
+    }
+  },
+  {
+    "id": "g-deltarune",
+    "name": "Deltarune",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "RPG"
+    ],
+    "studio": "Toby Fox",
+    "creator": "Toby Fox",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation"
+    ],
+    "characters": [
+      "Kris",
+      "Susie",
+      "Ralsei"
+    ],
+    "themes": [
+      "Choice",
+      "Friendship"
+    ],
+    "credits": [
+      "Creator and composer: Toby Fox"
+    ],
+    "fandom": "deltarune",
+    "cover": {
+      "wiki": "Deltarune"
+    },
+    "audio": {
+      "clue": "A bouncy, upbeat battle theme.",
+      "query": "Deltarune Rude Buster",
+      "youtubeId": "GPL5Hkl11IQ"
+    },
+    "emoji": "💙🗡️🧣🌑⭐",
+    "item": {
+      "name": "The Dark Candy",
+      "description": "A sweet that heals the party in the Dark World.",
+      "image": "https://static.wikia.nocookie.net/deltarune/images/b/b0/Dark_Candy_item.png/revision/latest?cb=20220109173637"
+    },
+    "location": {
+      "name": "Castle Town",
+      "description": "A hub town that grows as Kris recruits Darkners.",
+      "image": "https://static.wikia.nocookie.net/deltarune/images/f/f4/Castle_Town_location.png/revision/latest/scale-to-width-down/640?cb=20181103005617"
+    },
+    "visual": {
+      "icon": "🗡️",
+      "colors": [
+        "#1e1b4b",
+        "#22d3ee"
+      ]
+    }
+  },
+  {
+    "id": "g-omori",
+    "name": "Omori",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "RPG",
+      "Psychological horror"
+    ],
+    "studio": "Omocat",
+    "creator": "Omocat",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Omori",
+      "Aubrey",
+      "Kel",
+      "Hero",
+      "Basil"
+    ],
+    "themes": [
+      "Grief",
+      "Friendship"
+    ],
+    "credits": [
+      "Creator: Omocat",
+      "Music: Pedro Silva, Jami Lynne & Bo En"
+    ],
+    "fandom": "omori",
+    "cover": {
+      "wiki": "Omori (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/cd/Omori_cover.jpg"
+    },
+    "audio": {
+      "clue": "A soft, dreamy piano melody.",
+      "query": "Omori soundtrack",
+      "youtubeId": "o6n7Poqvxh8"
+    },
+    "emoji": "🔪🌳🛏️📷🌻",
+    "item": {
+      "name": "The photo album",
+      "description": "Pictures of a group of friends, from before everything changed.",
+      "image": "https://static.wikia.nocookie.net/omori/images/6/63/DW_ALBUM_01.png/revision/latest?cb=20210410075139"
+    },
+    "location": {
+      "name": "White Space",
+      "description": "An empty white room with a laptop, a blanket and a door.",
+      "image": "https://static.wikia.nocookie.net/omori/images/e/ed/WHITE_SPACE.png/revision/latest/scale-to-width-down/640?cb=20220610201024"
+    },
+    "visual": {
+      "icon": "🔪",
+      "colors": [
+        "#f5f5f4",
+        "#0a0a0a"
+      ]
+    }
+  },
+  {
+    "id": "g-heavyrain",
+    "name": "Heavy Rain",
+    "domain": "games",
+    "year": 2010,
+    "genres": [
+      "Interactive drama",
+      "Thriller"
+    ],
+    "studio": "Quantic Dream",
+    "creator": "David Cage",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Ethan Mars",
+      "Norman Jayden",
+      "Madison Paige",
+      "Scott Shelby"
+    ],
+    "themes": [
+      "Fatherhood",
+      "Murder mystery"
+    ],
+    "credits": [
+      "Writer and director: David Cage",
+      "Music: Normand Corbeil"
+    ],
+    "fandom": "heavyrain",
+    "cover": {
+      "wiki": "Heavy Rain",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/Heavy_Rain_Cover_Art.jpg"
+    },
+    "quote": {
+      "text": "Jason!",
+      "speaker": "A desperate father in a crowded mall"
+    },
+    "audio": {
+      "clue": "A mournful solo piano theme.",
+      "query": "Heavy Rain Ethan Mars theme",
+      "youtubeId": "2tSaWMrRlx4"
+    },
+    "voice": {
+      "speaker": "Ethan Mars",
+      "query": "Heavy Rain Ethan Mars voice lines"
+    },
+    "emoji": "🌧️👦🧸📐🔍",
+    "item": {
+      "name": "The origami figure",
+      "description": "A paper animal left with every victim of a serial killer.",
+      "image": "https://static.wikia.nocookie.net/heavyrain/images/f/ff/Heavy_Rain_silver_crane_trophy.png/revision/latest?cb=20100721023824"
+    },
+    "location": {
+      "name": "The Mars family house",
+      "description": "A bright suburban home before the rain sets in."
+    },
+    "visual": {
+      "icon": "🌧️",
+      "colors": [
+        "#1f2937",
+        "#9ca3af"
+      ]
+    }
+  },
+  {
+    "id": "g-silksong",
+    "name": "Hollow Knight: Silksong",
+    "aliases": [
+      "silksong"
+    ],
+    "domain": "games",
+    "year": 2025,
+    "genres": [
+      "Metroidvania",
+      "Action"
+    ],
+    "studio": "Team Cherry",
+    "creator": "Ari Gibson & William Pellen",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Hornet",
+      "Lace",
+      "Sherma"
+    ],
+    "themes": [
+      "Pilgrimage",
+      "Silk"
+    ],
+    "credits": [
+      "Directors: Ari Gibson & William Pellen",
+      "Music: Christopher Larkin"
+    ],
+    "fandom": "hollowknight",
+    "cover": {
+      "wiki": "Hollow Knight: Silksong",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/05/Silksong.jpg"
+    },
+    "audio": {
+      "clue": "Sweeping strings and harpsichord.",
+      "query": "Hollow Knight Silksong soundtrack Christopher Larkin",
+      "youtubeId": "Q6is6K8jbho"
+    },
+    "emoji": "🕷️🧵🔔🗡️🏰",
+    "item": {
+      "name": "The Needle",
+      "description": "A slender blade the heroine throws and pulls back with silk."
+    },
+    "location": {
+      "name": "The Citadel",
+      "description": "A gilded city at the top of a kingdom of silk.",
+      "image": "https://static.wikia.nocookie.net/hollowknight/images/7/7a/Silksong_Early_012.png/revision/latest/scale-to-width-down/640?cb=20190608112014"
+    },
+    "visual": {
+      "icon": "🧵",
+      "colors": [
+        "#7f1d1d",
+        "#e5e7eb"
+      ]
+    }
+  },
+  {
+    "id": "g-detroit",
+    "name": "Detroit: Become Human",
+    "aliases": [
+      "detroit"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Interactive drama"
+    ],
+    "studio": "Quantic Dream",
+    "creator": "David Cage",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Connor",
+      "Kara",
+      "Markus"
+    ],
+    "themes": [
+      "Artificial intelligence",
+      "Freedom"
+    ],
+    "credits": [
+      "Writer and director: David Cage"
+    ],
+    "fandom": "detroit-become-human",
+    "cover": {
+      "wiki": "Detroit: Become Human",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/ee/Detroit_Become_Human.jpg"
+    },
+    "audio": {
+      "clue": "Tense electronic strings.",
+      "query": "Detroit Become Human soundtrack",
+      "youtubeId": "ZnwMpHIhqxY"
+    },
+    "voice": {
+      "speaker": "Connor",
+      "query": "Detroit Become Human Connor voice lines"
+    },
+    "emoji": "🤖🔵🏙️🗳️🦾",
+    "item": {
+      "name": "The coin",
+      "description": "A coin an android detective rolls across his knuckles.",
+      "image": "https://static.wikia.nocookie.net/detroit-become-human/images/a/aa/Connor%27s_Coin.jpg/revision/latest/scale-to-width-down/640?cb=20180603193121"
+    },
+    "location": {
+      "name": "Jericho",
+      "description": "A rusted ship where runaway androids hide.",
+      "image": "https://static.wikia.nocookie.net/detroit-become-human/images/f/f5/Jericho_Detroit_Become_Human.jpg/revision/latest/scale-to-width-down/640?cb=20180604205607"
+    },
+    "visual": {
+      "icon": "🤖",
+      "colors": [
+        "#0ea5e9",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "g-cultofthelamb",
+    "name": "Cult of the Lamb",
+    "aliases": [
+      "cult of the lamb"
+    ],
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Roguelike",
+      "Management"
+    ],
+    "studio": "Massive Monster",
+    "creator": "Julian Wilton",
+    "origin": "Australia",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Nintendo",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Lamb",
+      "The One Who Waits",
+      "Ratau"
+    ],
+    "themes": [
+      "Cults",
+      "Faith"
+    ],
+    "credits": [
+      "Developer: Massive Monster",
+      "Music: River Boy"
+    ],
+    "fandom": "cult-of-the-lamb",
+    "cover": {
+      "wiki": "Cult of the Lamb",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d4/Cult_of_the_Lamb_Key_Art.png"
+    },
+    "audio": {
+      "clue": "Chanting choir over thumping drums.",
+      "query": "Cult of the Lamb soundtrack River Boy",
+      "youtubeId": "hD7t3CqXtkE"
+    },
+    "emoji": "🐑👑⛪🔥🍄",
+    "item": {
+      "name": "The Red Crown",
+      "description": "A living crown that gives a little lamb its powers.",
+      "image": "https://static.wikia.nocookie.net/cult-of-the-lamb/images/0/00/Crown_%28Big%29-animation.gif/revision/latest?cb=20221120144000"
+    },
+    "location": {
+      "name": "The cult base",
+      "description": "A clearing where followers worship, farm and sleep.",
+      "image": "https://static.wikia.nocookie.net/cult-of-the-lamb/images/8/8e/Cultofthelamb.png/revision/latest/scale-to-width-down/640?cb=20240822192222"
+    },
+    "visual": {
+      "icon": "🐑",
+      "colors": [
+        "#7f1d1d",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-lethalcompany",
+    "name": "Lethal Company",
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Survival horror",
+      "Co-op"
+    ],
+    "studio": "Zeekerss",
+    "creator": "Zeekerss",
+    "origin": "USA",
+    "format": "PC",
+    "platforms": [
+      "PC"
+    ],
+    "characters": [
+      "The Employee",
+      "The Coil-Head",
+      "The Bracken"
+    ],
+    "themes": [
+      "Corporate horror",
+      "Scavenging"
+    ],
+    "credits": [
+      "Creator: Zeekerss"
+    ],
+    "fandom": "lethal-company",
+    "cover": {
+      "wiki": "Lethal Company",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Lethal_Company_Steam_cover.jpg"
+    },
+    "audio": {
+      "clue": "An eerie hum on a dead moon.",
+      "query": "Lethal Company soundtrack",
+      "youtubeId": "TgcE-0NcfP0"
+    },
+    "emoji": "🚀📦👻🔦💰",
+    "item": {
+      "name": "The scrap",
+      "description": "Junk you haul back to meet the Company's quota.",
+      "image": "https://static.wikia.nocookie.net/lethalcompanyzeekerss/images/d/d3/ScrapInTrailer.png/revision/latest/scale-to-width-down/640?cb=20260413130029"
+    },
+    "location": {
+      "name": "The ship",
+      "description": "A small ship that takes the crew from moon to moon.",
+      "image": "https://static.wikia.nocookie.net/lethalcompanyzeekerss/images/f/f4/CompanyShip_Cel.png/revision/latest/scale-to-width-down/640?cb=20240117111538"
+    },
+    "visual": {
+      "icon": "📦",
+      "colors": [
+        "#0c0a09",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-helldivers2",
+    "name": "Helldivers 2",
+    "aliases": [
+      "helldivers"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Shooter",
+      "Co-op"
+    ],
+    "studio": "Arrowhead Game Studios",
+    "creator": "Johan Pilestedt",
+    "origin": "Sweden",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC",
+      "Xbox"
+    ],
+    "characters": [
+      "The Helldiver",
+      "Super Earth"
+    ],
+    "themes": [
+      "Satire",
+      "War"
+    ],
+    "credits": [
+      "Developer: Arrowhead Game Studios",
+      "Music: Wilbert Roget II"
+    ],
+    "fandom": "helldivers",
+    "cover": {
+      "wiki": "Helldivers 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/96/Helldivers_2_cover_art.jpg"
+    },
+    "quote": {
+      "text": "For Super Earth!",
+      "speaker": "A soldier diving from orbit"
+    },
+    "audio": {
+      "clue": "A bombastic patriotic orchestral anthem.",
+      "query": "Helldivers 2 soundtrack",
+      "youtubeId": "R5hCkh2AH58"
+    },
+    "voice": {
+      "speaker": "The Helldiver",
+      "query": "Helldivers 2 voice lines"
+    },
+    "emoji": "🪖🌍🐛🤖💥",
+    "item": {
+      "name": "The Hellpod",
+      "description": "The drop pod soldiers ride down from orbit.",
+      "image": "https://static.wikia.nocookie.net/helldivers_gamepedia/images/4/43/Helldivers-2-Bug-Nests_1.png/revision/latest/scale-to-width-down/640?cb=20240821141127"
+    },
+    "location": {
+      "name": "Super Earth",
+      "description": "The managed democracy every soldier fights for.",
+      "image": "https://static.wikia.nocookie.net/helldivers_gamepedia/images/a/ae/Super_Earth_Landscape.png/revision/latest?cb=20250528145747"
+    },
+    "visual": {
+      "icon": "🪖",
+      "colors": [
+        "#facc15",
+        "#111827"
+      ]
+    }
+  },
+  {
+    "id": "g-wukong",
+    "name": "Black Myth: Wukong",
+    "aliases": [
+      "wukong",
+      "black myth"
+    ],
+    "domain": "games",
+    "year": 2024,
+    "genres": [
+      "Action RPG",
+      "Soulslike"
+    ],
+    "studio": "Game Science",
+    "creator": "Feng Ji",
+    "origin": "China",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Destined One",
+      "Zhu Bajie",
+      "Erlang Shen"
+    ],
+    "themes": [
+      "Mythology",
+      "Journey to the West"
+    ],
+    "credits": [
+      "Director: Feng Ji",
+      "Producer: Yang Qi"
+    ],
+    "fandom": "black-myth-wukong",
+    "cover": {
+      "wiki": "Black Myth: Wukong",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a6/Black_Myth_Wukong_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Mighty Chinese instruments and drums.",
+      "query": "Black Myth Wukong soundtrack",
+      "youtubeId": "V3YUHk56zYo"
+    },
+    "voice": {
+      "speaker": "The Destined One",
+      "query": "Black Myth Wukong voice lines"
+    },
+    "emoji": "🐒🪄☁️🏯🔥",
+    "item": {
+      "name": "The Jingubang",
+      "description": "A staff that grows and shrinks at its master's will.",
+      "image": "https://static.wikia.nocookie.net/blackmythwukong/images/6/6a/Jingubang.png/revision/latest?cb=20240909202623"
+    },
+    "location": {
+      "name": "Black Wind Mountain",
+      "description": "A misty forest of temples ruled by a black bear."
+    },
+    "visual": {
+      "icon": "🐒",
+      "colors": [
+        "#7c2d12",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-subnautica",
+    "name": "Subnautica",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Survival",
+      "Exploration"
+    ],
+    "studio": "Unknown Worlds Entertainment",
+    "creator": "Charlie Cleveland",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Ryley Robinson",
+      "The Sea Emperor"
+    ],
+    "themes": [
+      "Ocean",
+      "Isolation"
+    ],
+    "credits": [
+      "Director: Charlie Cleveland",
+      "Music: Simon Chylinski"
+    ],
+    "fandom": "subnautica",
+    "cover": {
+      "wiki": "Subnautica",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6d/Subnautica_cover_art.png"
+    },
+    "audio": {
+      "clue": "Ambient synths drifting underwater.",
+      "query": "Subnautica soundtrack",
+      "youtubeId": "aT9_-P7N950"
+    },
+    "voice": {
+      "speaker": "Ryley Robinson",
+      "query": "Subnautica PDA voice lines"
+    },
+    "emoji": "🌊🐠🦑🚀🫧",
+    "item": {
+      "name": "The Seaglide",
+      "description": "A handheld propeller that pulls you through the water.",
+      "image": "https://static.wikia.nocookie.net/subnautica/images/8/81/Seaglide_%28BZ%29.png/revision/latest?cb=20210807031847"
+    },
+    "location": {
+      "name": "The Safe Shallows",
+      "description": "Bright, calm waters around a crashed ship.",
+      "image": "https://static.wikia.nocookie.net/subnautica/images/e/e5/SafeShallowsTrue.png/revision/latest/scale-to-width-down/640?cb=20190313204711"
+    },
+    "visual": {
+      "icon": "🌊",
+      "colors": [
+        "#0e7490",
+        "#a5f3fc"
+      ]
+    }
+  },
+  {
+    "id": "g-phasmophobia",
+    "name": "Phasmophobia",
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Horror",
+      "Co-op"
+    ],
+    "studio": "Kinetic Games",
+    "creator": "Kinetic Games",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "The Ghost Hunter"
+    ],
+    "themes": [
+      "Ghosts",
+      "Investigation"
+    ],
+    "credits": [
+      "Developer: Kinetic Games"
+    ],
+    "fandom": "phasmophobia",
+    "cover": {
+      "wiki": "Phasmophobia",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Phasmophobia_VG.jpg"
+    },
+    "audio": {
+      "clue": "A creaking, silent house.",
+      "query": "Phasmophobia ambience",
+      "youtubeId": "pcaZyJU0Alc"
+    },
+    "emoji": "👻📻🕯️🔦📓",
+    "item": {
+      "name": "The Spirit Box",
+      "description": "A radio that lets you ask the ghost questions.",
+      "image": "https://static.wikia.nocookie.net/phasmophobia/images/a/ae/SpiritBox090_T1.png/revision/latest?cb=20230822153548"
+    },
+    "location": {
+      "name": "Tanglewood Drive",
+      "description": "A small suburban house, the first haunt most players visit.",
+      "image": "https://static.wikia.nocookie.net/phasmophobia/images/a/a4/Tanglewood_Front.png/revision/latest/scale-to-width-down/640?cb=20260303141434"
+    },
+    "visual": {
+      "icon": "👻",
+      "colors": [
+        "#111827",
+        "#86efac"
+      ]
+    }
+  },
+  {
+    "id": "g-fnaf",
+    "name": "Five Nights at Freddy's",
+    "aliases": [
+      "fnaf",
+      "five nights at freddys"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Survival horror"
+    ],
+    "studio": "Scott Cawthon",
+    "creator": "Scott Cawthon",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo",
+      "Mobile"
+    ],
+    "characters": [
+      "Freddy Fazbear",
+      "Bonnie",
+      "Chica",
+      "Foxy"
+    ],
+    "themes": [
+      "Animatronics",
+      "Night shift"
+    ],
+    "credits": [
+      "Creator: Scott Cawthon"
+    ],
+    "fandom": "freddy-fazbears-pizza",
+    "cover": {
+      "wiki": "Five Nights at Freddy's (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/1/12/FNAF1logo.jpg"
+    },
+    "quote": {
+      "text": "Uh, hello? Hello, hello?",
+      "speaker": "A cheerful voice on the phone"
+    },
+    "audio": {
+      "clue": "A tinny music-box tune in the dark.",
+      "query": "Five Nights at Freddys Toreador March",
+      "youtubeId": "tdD57sinnT0"
+    },
+    "voice": {
+      "speaker": "Freddy Fazbear",
+      "query": "Five Nights at Freddys Phone Guy voice lines"
+    },
+    "emoji": "🐻🍕🚪📹⚡",
+    "item": {
+      "name": "The security camera",
+      "description": "A monitor to watch the animatronics move from room to room.",
+      "image": "https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/b/bb/FNAF2TheMonitor.gif/revision/latest?cb=20141127001759"
+    },
+    "location": {
+      "name": "Freddy Fazbear's Pizza",
+      "description": "A family pizzeria with a night watchman's office."
+    },
+    "visual": {
+      "icon": "🐻",
+      "colors": [
+        "#1c1917",
+        "#facc15"
+      ]
+    }
+  },
+  {
+    "id": "g-ddlc",
+    "name": "Doki Doki Literature Club!",
+    "aliases": [
+      "ddlc",
+      "doki doki literature club"
+    ],
+    "domain": "games",
+    "year": 2017,
+    "genres": [
+      "Visual novel",
+      "Psychological horror"
+    ],
+    "studio": "Team Salvato",
+    "creator": "Dan Salvato",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Monika",
+      "Sayori",
+      "Natsuki",
+      "Yuri"
+    ],
+    "themes": [
+      "Meta-fiction",
+      "Romance"
+    ],
+    "credits": [
+      "Creator: Dan Salvato"
+    ],
+    "fandom": "doki-doki-literature-club",
+    "cover": {
+      "wiki": "Doki Doki Literature Club!",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/7c/Doki_Doki_Literature_Club_Cover.jpg"
+    },
+    "quote": {
+      "text": "Just Monika.",
+      "speaker": "The club president"
+    },
+    "audio": {
+      "clue": "A sweet, bouncy school-day tune.",
+      "query": "Doki Doki Literature Club Doki Doki Forever",
+      "youtubeId": "BUWuDdfe7v4"
+    },
+    "emoji": "📚💕✏️🎀🖥️",
+    "item": {
+      "name": "The poem",
+      "description": "A poem you write each day by picking words.",
+      "image": "https://static.wikia.nocookie.net/doki-doki-literature-club/images/b/b5/Poem_special1.png/revision/latest/scale-to-width-down/640?cb=20171203174924"
+    },
+    "location": {
+      "name": "The literature clubroom",
+      "description": "A classroom where the club meets after school.",
+      "image": "https://static.wikia.nocookie.net/doki-doki-literature-club/images/5/50/Club.png/revision/latest/scale-to-width-down/640?cb=20171231181915"
+    },
+    "visual": {
+      "icon": "📚",
+      "colors": [
+        "#fbcfe8",
+        "#ec4899"
+      ]
+    }
+  },
+  {
+    "id": "g-isaac",
+    "name": "The Binding of Isaac: Rebirth",
+    "aliases": [
+      "binding of isaac",
+      "the binding of isaac",
+      "isaac"
+    ],
+    "domain": "games",
+    "year": 2014,
+    "genres": [
+      "Roguelike",
+      "Shooter"
+    ],
+    "studio": "Nicalis",
+    "creator": "Edmund McMillen",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Isaac",
+      "Magdalene",
+      "Cain",
+      "Azazel"
+    ],
+    "themes": [
+      "Religion",
+      "Childhood"
+    ],
+    "credits": [
+      "Creator: Edmund McMillen",
+      "Music: Ridiculon"
+    ],
+    "fandom": "bindingofisaacrebirth",
+    "cover": {
+      "wiki": "The Binding of Isaac: Rebirth",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/The_Binding_of_Issac_Rebirth_cover.jpg"
+    },
+    "audio": {
+      "clue": "A dark choir in a basement.",
+      "query": "Binding of Isaac Rebirth soundtrack",
+      "youtubeId": "lXdfAiMj7fQ"
+    },
+    "emoji": "😢🗝️💣🩸👶",
+    "item": {
+      "name": "Brimstone",
+      "description": "An item that turns tears into a blood laser.",
+      "image": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/f/f2/Azazal%27s_Brimstone.png/revision/latest?cb=20210821075543"
+    },
+    "location": {
+      "name": "The Basement",
+      "description": "The first floor under a frightened boy's house.",
+      "image": "https://static.wikia.nocookie.net/bindingofisaacre_gamepedia/images/d/dc/Stage_Basement_room.png/revision/latest/scale-to-width-down/640?cb=20210825014053"
+    },
+    "visual": {
+      "icon": "😢",
+      "colors": [
+        "#7f1d1d",
+        "#d6d3d1"
+      ]
+    }
+  },
+  {
+    "id": "g-portal2",
+    "name": "Portal 2",
+    "aliases": [
+      "portal two"
+    ],
+    "domain": "games",
+    "year": 2011,
+    "genres": [
+      "Puzzle"
+    ],
+    "studio": "Valve",
+    "creator": "Valve",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "GLaDOS",
+      "Chell",
+      "Wheatley"
+    ],
+    "themes": [
+      "Science",
+      "Humour"
+    ],
+    "credits": [
+      "Writers: Erik Wolpaw, Jay Pinkerton & Chet Faliszek",
+      "Music: Mike Morasky"
+    ],
+    "fandom": "half-life",
+    "cover": {
+      "wiki": "Portal 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg"
+    },
+    "audio": {
+      "clue": "Bouncy electronic science music.",
+      "query": "Portal 2 soundtrack",
+      "youtubeId": "y_gknRMZ-OU"
+    },
+    "voice": {
+      "speaker": "GLaDOS",
+      "query": "Portal 2 GLaDOS voice lines"
+    },
+    "emoji": "🔵🟠🤖🥔🧪",
+    "item": {
+      "name": "The Portal Gun",
+      "description": "A device that opens two linked portals.",
+      "image": "https://static.wikia.nocookie.net/half-life/images/b/bb/Aperture_Science_Handheld_Portal_Device_Portal.jpg/revision/latest/scale-to-width-down/640?cb=20110519012833&path-prefix=en"
+    },
+    "location": {
+      "name": "Aperture Science",
+      "description": "A vast underground laboratory of test chambers.",
+      "image": "https://static.wikia.nocookie.net/half-life/images/f/f0/Aperture_Science_grey.svg/revision/latest?cb=20210830194333&path-prefix=en"
+    },
+    "visual": {
+      "icon": "🔵",
+      "colors": [
+        "#0ea5e9",
+        "#f97316"
+      ]
+    }
+  },
+  {
+    "id": "g-totk",
+    "name": "The Legend of Zelda: Tears of the Kingdom",
+    "aliases": [
+      "totk",
+      "tears of the kingdom",
+      "zelda totk"
+    ],
+    "domain": "games",
+    "year": 2023,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Nintendo",
+    "creator": "Hidemaro Fujibayashi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Link",
+      "Princess Zelda",
+      "Ganondorf"
+    ],
+    "themes": [
+      "Sky islands",
+      "Building"
+    ],
+    "credits": [
+      "Director: Hidemaro Fujibayashi",
+      "Producer: Eiji Aonuma"
+    ],
+    "fandom": "zelda",
+    "cover": {
+      "wiki": "The Legend of Zelda: Tears of the Kingdom",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/The_Legend_of_Zelda_Tears_of_the_Kingdom_cover.jpg"
+    },
+    "audio": {
+      "clue": "A soaring piano theme above the clouds.",
+      "query": "Tears of the Kingdom main theme",
+      "youtubeId": "jW7LEygnsDc"
+    },
+    "voice": {
+      "speaker": "Link",
+      "query": "Tears of the Kingdom Ganondorf voice lines"
+    },
+    "emoji": "🗡️🏝️☁️💚🔧",
+    "item": {
+      "name": "Ultrahand",
+      "description": "A power that glues objects together into machines.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/b/be/Ultrahand_Icon.png/revision/latest?cb=20230418202257"
+    },
+    "location": {
+      "name": "The Sky Islands",
+      "description": "Ancient ruins floating high above the kingdom.",
+      "image": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/c/cf/TotK_Sky_Hyrule_Map.png/revision/latest/scale-to-width-down/640?cb=20230516053007"
+    },
+    "visual": {
+      "icon": "☁️",
+      "colors": [
+        "#14b8a6",
+        "#fde68a"
+      ]
+    }
+  },
+  {
+    "id": "g-spiderman",
+    "name": "Marvel's Spider-Man",
+    "aliases": [
+      "spider-man",
+      "spiderman",
+      "spider-man ps4"
+    ],
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Action-Adventure"
+    ],
+    "studio": "Insomniac Games",
+    "creator": "Bryan Intihar",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Peter Parker",
+      "Mary Jane Watson",
+      "Otto Octavius",
+      "Miles Morales"
+    ],
+    "themes": [
+      "Superheroes",
+      "New York"
+    ],
+    "credits": [
+      "Creative director: Bryan Intihar",
+      "Music: John Paesano"
+    ],
+    "fandom": "marvel",
+    "cover": {
+      "wiki": "Spider-Man (2018 video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e1/Spider-Man_PS4_cover.jpg"
+    },
+    "audio": {
+      "clue": "A heroic orchestral theme.",
+      "query": "Marvels Spider-Man PS4 main theme",
+      "youtubeId": "6XpU86QsZj0"
+    },
+    "voice": {
+      "speaker": "Peter Parker",
+      "query": "Marvels Spider-Man Peter Parker voice lines"
+    },
+    "emoji": "🕷️🕸️🏙️📸🦾",
+    "item": {
+      "name": "The web-shooters",
+      "description": "Wrist devices that fire webs.",
+      "image": "https://static.wikia.nocookie.net/marveldatabase/images/5/5d/Marvel_Duel_Card_0117.png/revision/latest/scale-to-width-down/440?cb=20260612050020"
+    },
+    "location": {
+      "name": "F.E.A.S.T.",
+      "description": "A homeless shelter run by the hero's aunt.",
+      "image": "https://static.wikia.nocookie.net/marveldatabase/images/7/7a/Food%2C_Emergency_Aid%2C_Shelter_and_Training_%28Earth-199999%29_from_Spider-Man_No_Way_Home_001.png/revision/latest/scale-to-width-down/640?cb=20250524091852"
+    },
+    "visual": {
+      "icon": "🕸️",
+      "colors": [
+        "#dc2626",
+        "#1e3a8a"
+      ]
+    }
+  },
+  {
+    "id": "g-lifeisstrange",
+    "name": "Life Is Strange",
+    "aliases": [
+      "life is strange"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Adventure",
+      "Interactive drama"
+    ],
+    "studio": "Dontnod Entertainment",
+    "creator": "Raoul Barbet & Michel Koch",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Max Caulfield",
+      "Chloe Price"
+    ],
+    "themes": [
+      "Time",
+      "Friendship"
+    ],
+    "credits": [
+      "Directors: Raoul Barbet & Michel Koch",
+      "Music: Jonathan Morali"
+    ],
+    "fandom": "life-is-strange",
+    "cover": {
+      "wiki": "Life Is Strange (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/0/0d/Life_Is_Strange_cover_art.png"
+    },
+    "audio": {
+      "clue": "Soft indie folk guitar.",
+      "query": "Life is Strange Obstacles Syd Matters",
+      "youtubeId": "jb1SkDjaXk8"
+    },
+    "voice": {
+      "speaker": "Max Caulfield",
+      "query": "Life is Strange Max voice lines"
+    },
+    "emoji": "📸🦋⏪🌪️🏫",
+    "item": {
+      "name": "The instant camera",
+      "description": "The camera a shy photography student takes everywhere.",
+      "image": "https://static.wikia.nocookie.net/life-is-strange/images/6/66/Maxcamera-old.png/revision/latest/scale-to-width-down/640?cb=20171001085344"
+    },
+    "location": {
+      "name": "Arcadia Bay",
+      "description": "A small coastal town in Oregon with a lighthouse.",
+      "image": "https://static.wikia.nocookie.net/life-is-strange/images/5/52/Arcadia_Bay.jpg/revision/latest/scale-to-width-down/640?cb=20150623212003"
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#60a5fa",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-untildawn",
+    "name": "Until Dawn",
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Interactive drama",
+      "Horror"
+    ],
+    "studio": "Supermassive Games",
+    "creator": "Will Byles",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PlayStation",
+      "PC"
+    ],
+    "characters": [
+      "Sam",
+      "Mike",
+      "Josh",
+      "Ashley"
+    ],
+    "themes": [
+      "Butterfly effect",
+      "Slasher"
+    ],
+    "credits": [
+      "Director: Will Byles",
+      "Music: Jason Graves"
+    ],
+    "fandom": "until-dawn",
+    "cover": {
+      "wiki": "Until Dawn",
+      "image": "https://upload.wikimedia.org/wikipedia/en/d/d7/Until_Dawn_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A creepy piano over howling wind.",
+      "query": "Until Dawn soundtrack",
+      "youtubeId": "9DpdyXLJiiw"
+    },
+    "voice": {
+      "speaker": "Sam",
+      "query": "Until Dawn voice lines"
+    },
+    "emoji": "🏔️🦋🔦🪓❄️",
+    "item": {
+      "name": "The totems",
+      "description": "Carvings that show a glimpse of the future.",
+      "image": "https://static.wikia.nocookie.net/until-dawn/images/8/8e/Totems_menu_screen_remake.png/revision/latest/scale-to-width-down/640?cb=20241013172022"
+    },
+    "location": {
+      "name": "Blackwood Mountain",
+      "description": "A snowy mountain lodge where friends gather a year later.",
+      "image": "https://static.wikia.nocookie.net/until-dawn/images/5/5d/BlackwoodMountain.png/revision/latest/scale-to-width-down/640?cb=20160913120059"
+    },
+    "visual": {
+      "icon": "🦋",
+      "colors": [
+        "#0f172a",
+        "#e2e8f0"
+      ]
+    }
+  },
+  {
+    "id": "g-riskofrain2",
+    "name": "Risk of Rain 2",
+    "aliases": [
+      "risk of rain",
+      "ror2"
+    ],
+    "domain": "games",
+    "year": 2020,
+    "genres": [
+      "Roguelike",
+      "Shooter"
+    ],
+    "studio": "Hopoo Games",
+    "creator": "Duncan Drummond & Paul Morse",
+    "origin": "USA",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "Commando",
+      "Huntress",
+      "Mithrix"
+    ],
+    "themes": [
+      "Survival",
+      "Alien planet"
+    ],
+    "credits": [
+      "Developers: Duncan Drummond & Paul Morse",
+      "Music: Chris Christodoulou"
+    ],
+    "fandom": "riskofrain2",
+    "cover": {
+      "wiki": "Risk of Rain 2",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c1/Risk_of_Rain_2.jpg"
+    },
+    "audio": {
+      "clue": "Pounding electronic rock.",
+      "query": "Risk of Rain 2 soundtrack Chris Christodoulou",
+      "youtubeId": "RUN6Kqd9xgs"
+    },
+    "emoji": "🌧️🔫👾🛸📦",
+    "item": {
+      "name": "The Soldier's Syringe",
+      "description": "A first item that speeds up attacks."
+    },
+    "location": {
+      "name": "Titanic Plains",
+      "description": "Green fields where every run starts.",
+      "image": "https://static.wikia.nocookie.net/riskofrain2_gamepedia_en/images/6/68/Titanic_Plains_NA_1.jpg/revision/latest/scale-to-width-down/569?cb=20200327132526"
+    },
+    "visual": {
+      "icon": "🌧️",
+      "colors": [
+        "#4338ca",
+        "#e0e7ff"
+      ]
+    }
+  },
+  {
+    "id": "g-mariogalaxy",
+    "name": "Super Mario Galaxy",
+    "aliases": [
+      "mario galaxy"
+    ],
+    "domain": "games",
+    "year": 2007,
+    "genres": [
+      "Platformer"
+    ],
+    "studio": "Nintendo",
+    "creator": "Yoshiaki Koizumi",
+    "origin": "Japan",
+    "format": "Nintendo",
+    "platforms": [
+      "Nintendo"
+    ],
+    "characters": [
+      "Mario",
+      "Rosalina",
+      "Bowser",
+      "Luma"
+    ],
+    "themes": [
+      "Space",
+      "Gravity"
+    ],
+    "credits": [
+      "Director: Yoshiaki Koizumi",
+      "Music: Mahito Yokota & Koji Kondo"
+    ],
+    "fandom": "mario",
+    "cover": {
+      "wiki": "Super Mario Galaxy",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/76/SuperMarioGalaxy.jpg"
+    },
+    "audio": {
+      "clue": "A sweeping orchestral space waltz.",
+      "query": "Super Mario Galaxy Gusty Garden Galaxy",
+      "youtubeId": "1bvDHAUv2ak"
+    },
+    "emoji": "🌌⭐🍄🪐👑",
+    "item": {
+      "name": "The Power Star",
+      "description": "The star the hero collects on every planet.",
+      "image": "https://static.wikia.nocookie.net/mario/images/7/77/Power_Star_SMG.png/revision/latest?cb=20230528055846"
+    },
+    "location": {
+      "name": "The Comet Observatory",
+      "description": "A floating ship among the stars.",
+      "image": "https://static.wikia.nocookie.net/mario/images/6/6e/Comet_Observatory_NS.png/revision/latest?cb=20250912204254"
+    },
+    "visual": {
+      "icon": "🌌",
+      "colors": [
+        "#1e1b4b",
+        "#fde047"
+      ]
+    }
+  },
+  {
+    "id": "g-dbd",
+    "name": "Dead by Daylight",
+    "aliases": [
+      "dbd"
+    ],
+    "domain": "games",
+    "year": 2016,
+    "genres": [
+      "Survival horror",
+      "Multiplayer"
+    ],
+    "studio": "Behaviour Interactive",
+    "creator": "Behaviour Interactive",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Trapper",
+      "Dwight Fairfield",
+      "The Entity"
+    ],
+    "themes": [
+      "Slasher",
+      "Survival"
+    ],
+    "credits": [
+      "Developer: Behaviour Interactive"
+    ],
+    "fandom": "deadbydaylight",
+    "cover": {
+      "wiki": "Dead by Daylight",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/Dead_by_Daylight_Steam_header.jpg"
+    },
+    "audio": {
+      "clue": "A pounding heartbeat getting closer.",
+      "query": "Dead by Daylight main theme",
+      "youtubeId": "nc2yOLMCOhs"
+    },
+    "emoji": "🔪🪝🔦⚙️🏃",
+    "item": {
+      "name": "The hook",
+      "description": "Where the killer hangs survivors for a dark god.",
+      "image": "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/c/c9/Hook_antiCampMeter_empty.png/revision/latest/scale-to-width-down/640?cb=20231016100421"
+    },
+    "location": {
+      "name": "The generators",
+      "description": "Old machines survivors repair to open the exit gates.",
+      "image": "https://static.wikia.nocookie.net/deadbydaylight_gamepedia_en/images/7/75/IconFavors_bbqInvitation.png/revision/latest?cb=20180714211917"
+    },
+    "visual": {
+      "icon": "🪝",
+      "colors": [
+        "#111827",
+        "#dc2626"
+      ]
+    }
+  },
+  {
+    "id": "g-r6siege",
+    "name": "Tom Clancy's Rainbow Six Siege",
+    "aliases": [
+      "rainbow six siege",
+      "r6",
+      "r6 siege"
+    ],
+    "domain": "games",
+    "year": 2015,
+    "genres": [
+      "Tactical shooter"
+    ],
+    "studio": "Ubisoft Montreal",
+    "creator": "Ubisoft Montreal",
+    "origin": "Canada",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox"
+    ],
+    "characters": [
+      "Ash",
+      "Thermite",
+      "Rook"
+    ],
+    "themes": [
+      "Counter-terrorism",
+      "Destruction"
+    ],
+    "credits": [
+      "Developer: Ubisoft Montreal"
+    ],
+    "fandom": "rainbowsix",
+    "cover": {
+      "wiki": "Tom Clancy's Rainbow Six Siege",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/47/Tom_Clancy%27s_Rainbow_Six_Siege_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Tense electronic beats.",
+      "query": "Rainbow Six Siege theme",
+      "youtubeId": "McDARzZIw_I"
+    },
+    "voice": {
+      "speaker": "Ash",
+      "query": "Rainbow Six Siege operator voice lines"
+    },
+    "emoji": "🛡️💣🚪📷🔫",
+    "item": {
+      "name": "The breaching charge",
+      "description": "An explosive that blows through walls and doors.",
+      "image": "https://static.wikia.nocookie.net/rainbowsix/images/3/3a/Breach_Charge_IRL.jpg/revision/latest?cb=20160101171625"
+    },
+    "location": {
+      "name": "House",
+      "description": "A small suburban home and the first map many players learn.",
+      "image": "https://static.wikia.nocookie.net/rainbowsix/images/4/4f/House_Rework.png/revision/latest/scale-to-width-down/640?cb=20200519190340"
+    },
+    "visual": {
+      "icon": "🛡️",
+      "colors": [
+        "#1f2937",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-seaofthieves",
+    "name": "Sea of Thieves",
+    "domain": "games",
+    "year": 2018,
+    "genres": [
+      "Adventure",
+      "Multiplayer"
+    ],
+    "studio": "Rare",
+    "creator": "Rare",
+    "origin": "United Kingdom",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "Xbox",
+      "PlayStation"
+    ],
+    "characters": [
+      "The Pirate",
+      "The Pirate Lord"
+    ],
+    "themes": [
+      "Piracy",
+      "Sailing"
+    ],
+    "credits": [
+      "Developer: Rare",
+      "Music: Robin Beanland"
+    ],
+    "fandom": "seaofthieves",
+    "cover": {
+      "wiki": "Sea of Thieves",
+      "image": "https://upload.wikimedia.org/wikipedia/en/7/77/Sea_of_thieves_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "A jolly sea shanty on a hurdy-gurdy.",
+      "query": "Sea of Thieves shanty",
+      "youtubeId": "7imlhmPBfcE"
+    },
+    "voice": {
+      "speaker": "The Pirate",
+      "query": "Sea of Thieves voice lines"
+    },
+    "emoji": "🏴‍☠️⛵🗺️💰🦜",
+    "item": {
+      "name": "The treasure chest",
+      "description": "A chest you dig up and sail back to an outpost.",
+      "image": "https://static.wikia.nocookie.net/seaofthieves_gamepedia/images/f/f4/Collectors_Chest_with_Gold.png/revision/latest/scale-to-width-down/640?cb=20191123175543"
+    },
+    "location": {
+      "name": "The outposts",
+      "description": "Small island towns where pirates sell their loot.",
+      "image": "https://static.wikia.nocookie.net/seaofthieves_gamepedia/images/a/a5/Sanctuary_Outpost.png/revision/latest/scale-to-width-down/640?cb=20180325041326"
+    },
+    "visual": {
+      "icon": "⛵",
+      "colors": [
+        "#0e7490",
+        "#fbbf24"
+      ]
+    }
+  },
+  {
+    "id": "g-stray",
+    "name": "Stray",
+    "domain": "games",
+    "year": 2022,
+    "genres": [
+      "Adventure"
+    ],
+    "studio": "BlueTwelve Studio",
+    "creator": "BlueTwelve Studio",
+    "origin": "France",
+    "format": "Multi-platform",
+    "platforms": [
+      "PC",
+      "PlayStation",
+      "Xbox",
+      "Nintendo"
+    ],
+    "characters": [
+      "The Cat",
+      "B-12"
+    ],
+    "themes": [
+      "Cats",
+      "Cyberpunk"
+    ],
+    "credits": [
+      "Developer: BlueTwelve Studio",
+      "Music: Yann van der Cruyssen"
+    ],
+    "fandom": "stray",
+    "cover": {
+      "wiki": "Stray (video game)",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f1/Stray_cover_art.jpg"
+    },
+    "audio": {
+      "clue": "Mellow synths in a neon city.",
+      "query": "Stray soundtrack",
+      "youtubeId": "nLa3dAYzkHo"
+    },
+    "emoji": "🐈🤖🌃🎒🔦",
+    "item": {
+      "name": "The backpack",
+      "description": "A little harness the cat wears to carry its drone friend.",
+      "image": "https://static.wikia.nocookie.net/stray/images/9/99/Backpacks.jpg/revision/latest/scale-to-width-down/640?cb=20220828070026"
+    },
+    "location": {
+      "name": "The Slums",
+      "description": "A walled city of robots under neon lights.",
+      "image": "https://static.wikia.nocookie.net/stray/images/a/a4/The_Slums_1.jpg/revision/latest/scale-to-width-down/640?cb=20220720172336"
+    },
+    "visual": {
+      "icon": "🐈",
+      "colors": [
+        "#0f172a",
+        "#f59e0b"
       ]
     }
   }

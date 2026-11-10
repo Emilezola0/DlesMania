@@ -18,9 +18,17 @@ const NO_VOICE = new Set([
   'g-cuphead', 'g-doom', 'g-pikmin', 'g-ori', 'g-supermetroid', 'g-megaman2', 'g-kirby', 'g-dkc', 'g-smw', 'g-alttp', 'g-smb', 'g-sims',
   'g-chronotrigger', 'g-pokemon-rb', 'g-pokemon-gs', 'g-ff6', 'g-ff7', 'g-diablo2', 'g-sotc', 'g-ico', 'g-okami', 'g-banjo', 'g-spyro',
   'g-crash', 'g-goldeneye', 'g-rocketleague', 'g-tf2', 'g-halflife', 'g-hl2', 'g-portal', 'g-sf2', 'g-tetris', 'g-minecraft', 'g-myst',
+  'g-deltarune', 'g-omori', 'g-silksong', 'g-cultofthelamb', 'g-lethalcompany', 'g-phasmophobia', 'g-ddlc', 'g-isaac', 'g-riskofrain2',
+  'g-mariogalaxy', 'g-dbd', 'g-stray',
 ]);
 // Half-Life's Gordon never talks, but Portal has GLaDOS: put Portal back in.
 NO_VOICE.delete('g-portal');
+
+/**
+ * Games taken out of the daily (November 2026, the owner's call: old and too little known to guess). Their rows stay
+ * in scripts/data/new-games.mjs for the record, but are never added back.
+ */
+const RETIRED = new Set(['g-grimfandango', 'g-monkeyisland', 'g-myst', 'g-ico', 'g-jetsetradio', 'g-bge', 'g-deusex', 'g-earthbound', 'g-kirby', 'g-megaman2', 'g-psychonauts', 'g-braid']);
 
 function anime([id, name, year, genres, studio, creator, format, source, characters, themes, credits, fandom, coverWiki, quote, au, emoji, item, location, visual, voice]) {
   return {
@@ -47,7 +55,7 @@ for (const [domain, rows, build] of [['anime', NEW_ANIME, anime], ['games', NEW_
   let added = 0;
   for (const row of rows) {
     const w = build(row);
-    if (ids.has(w.id) || names.has(w.name.toLowerCase())) continue;
+    if (RETIRED.has(w.id) || ids.has(w.id) || names.has(w.name.toLowerCase())) continue;
     works.push(w);
     ids.add(w.id);
     added++;
