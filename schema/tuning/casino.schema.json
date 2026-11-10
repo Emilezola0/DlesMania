@@ -6,7 +6,7 @@
     "slots": {
       "type": "object",
       "title": "Slot machine",
-      "description": "Three reels, five lines (three rows, two diagonals). A line pays its symbol's prize × the line bet (the spin's cost ÷ 5 × the bet). At the default it pays back about 96%.",
+      "description": "Three reels, five lines (three rows, two diagonals). A line pays its symbol's prize × the line bet (the spin's cost ÷ 5 × the bet). At the default it pays back about 143%, and about two spins in three win something.",
       "properties": {
         "cost": { "type": "integer", "minimum": 5, "description": "DleCoins a spin at bet ×1 (all five lines)" },
         "bets": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 1, "description": "The bets on offer (×1, ×5…): cost and prizes both multiplied" },

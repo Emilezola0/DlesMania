@@ -57,7 +57,9 @@ import {
   type PeriodBooks,
   ROULETTE,
   rouletteChain,
+  rouletteLuck,
   roulettePay,
+  rouletteWins,
   type RoulettePrize,
 } from '../gacha/economy';
 import { giftFor, normalizeCode } from '../gacha/codes';
@@ -203,8 +205,10 @@ interface ProgressState {
   scratch?: { day: string; bought: Record<string, number>; pending: ScratchTicket | null; best: number; free?: string[] };
   /** The claw machine (src/casino/clawMachine.ts): the day, tries played that day, tries paid for, the meter (tries without a win), the box, the plushies won, prizes won in all. */
   claw?: { day: string; tries: number; credits: number; meter: number; box: ClawItem[]; plush: Record<string, number>; wins: number };
-  /** Free card packs (won at the claw), opened in the Shop for nothing. */
+  /** Free card packs (won at the claw or the roulette), opened in the Shop for nothing. */
   freePacks?: number;
+  /** The roulette's lucky streak: empty landings in a row (each raises the next spin's odds), 0 after a win. */
+  rouletteStreak?: number;
   /** The plush shown next to the player's name for friends (src/casino/plushies.ts); null: the best one. */
   shownPlush?: string | null;
   /** The Daily Doodle's rewards paid (src/friends/Doodle.tsx): "g:<drawing>" a guess paid (its coins), "a:<drawing>" the friends who guessed one of this player's drawings, paid for. */
@@ -703,13 +707,17 @@ export const useProgress = create<ProgressState>()(
         const spins = e.spins ?? 0;
         const n = Math.max(1, Math.floor(times));
         if (s.coins < ROULETTE.cost * n || spins + n > ROULETTE.dailySpins) return null;
+        // The lucky streak: each spin's odds rise with the empty landings before it, back to normal after a win.
+        let streak = s.rouletteStreak ?? 0;
         const results = Array.from({ length: n }, () => {
-          const chain = rouletteChain();
+          const chain = rouletteChain(Math.random, rouletteLuck(streak));
           const prize = chain[chain.length - 1];
+          streak = rouletteWins(prize) ? 0 : streak + 1;
           return { prize, chain, coins: roulettePay(prize) };
         });
         const won = results.reduce((t, r) => t + r.coins, 0);
-        set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won }, ...paidIn(s, ROULETTE.cost * n) });
+        const packs = results.filter((r) => r.prize === 'pack').length;
+        set({ coins: s.coins - ROULETTE.cost * n + won, econ: { ...e, spins: spins + n, earned: e.earned + won }, rouletteStreak: streak, ...(packs ? { freePacks: (s.freePacks ?? 0) + packs } : {}), ...paidIn(s, ROULETTE.cost * n) });
         return results;
       },
       toggleFavorite: (cardId) =>

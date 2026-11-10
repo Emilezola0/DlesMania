@@ -376,6 +376,34 @@
           "minimum": 0,
           "description": "The most free spins in a row from one paid spin"
         },
+        "mega": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The mega jackpot (👑), far rarer than the jackpot"
+        },
+        "megaChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Chance of the mega jackpot (0.0002 = 1 in 5000)"
+        },
+        "packChance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Chance of the 🎁 slice: a free pack, opened in the Card Shop"
+        },
+        "streakStep": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Lucky streak: each empty landing in a row raises the odds of every prize by this much (0.05 = +5%), back to normal after a win"
+        },
+        "streakMax": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Lucky streak: the most the odds can be raised (2 = doubled)"
+        },
         "dailySpins": {
           "type": "integer",
           "minimum": 1,

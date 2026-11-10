@@ -68,6 +68,7 @@ export const SYNCED = [
   'scratch',
   'claw',
   'freePacks',
+  'rouletteStreak',
   'shownPlush',
   'doodle',
   'tradeLock',
@@ -284,6 +285,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     // The claw: the latest save's day, tries and box; the plushies won either side, each at the most won.
     claw: firstLink ? cloud.claw : latest.claw ? { ...latest.claw, plush: mergeMax(local.claw?.plush, cloud.claw?.plush), wins: Math.max(local.claw?.wins ?? 0, cloud.claw?.wins ?? 0) } : (local.claw ?? cloud.claw),
     freePacks: latest.freePacks ?? 0,
+    rouletteStreak: latest.rouletteStreak ?? 0,
     shownPlush: latest.shownPlush ?? null,
     // The Daily Doodle's rewards paid on either side stay paid.
     doodle: mergeMax(local.doodle, cloud.doodle),

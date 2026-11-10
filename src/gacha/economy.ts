@@ -212,27 +212,34 @@ export const EXPEDITION_COMPLETE_BONUS = T.expedition.completeBonus;
  * comes out ahead on average, and the daily spins cap what anyone can make of it.
  */
 export const ROULETTE = T.roulette;
-export type RoulettePrize = 'jackpot' | 'small' | 'free' | 'none';
-export function rouletteRoll(r: number = Math.random()): RoulettePrize {
-  if (r < ROULETTE.jackpotChance) return 'jackpot';
-  if (r < ROULETTE.jackpotChance + ROULETTE.smallChance) return 'small';
-  if (r < ROULETTE.jackpotChance + ROULETTE.smallChance + ROULETTE.freeChance) return 'free';
+/** 👑 the mega jackpot, 💎 the jackpot, 🪙 a small prize, 🎁 a free pack, 🔄 a free spin, or nothing. */
+export type RoulettePrize = 'mega' | 'jackpot' | 'small' | 'pack' | 'free' | 'none';
+/** A prize that pays (coins or a pack): it ends a lucky streak. */
+export const rouletteWins = (p: RoulettePrize) => p !== 'none' && p !== 'free';
+/** The lucky streak: every empty landing in a row raises the odds of every prize a little, up to a cap. */
+export const rouletteLuck = (streak: number | undefined) => Math.min(ROULETTE.streakMax, 1 + ROULETTE.streakStep * Math.max(0, streak ?? 0));
+/** `luck` raises the odds of every prize (the lucky streak); the free spin's stay as they are. */
+export function rouletteRoll(r: number = Math.random(), luck = 1): RoulettePrize {
+  let at = 0;
+  for (const [prize, chance] of [['mega', ROULETTE.megaChance * luck], ['jackpot', ROULETTE.jackpotChance * luck], ['small', ROULETTE.smallChance * luck], ['pack', ROULETTE.packChance * luck], ['free', ROULETTE.freeChance]] as const) {
+    if (r < (at += chance)) return prize;
+  }
   return 'none';
 }
 /** One paid spin and the free spins it sets off: every landing in order, the last one what it pays. */
-export function rouletteChain(rand: () => number = Math.random): RoulettePrize[] {
+export function rouletteChain(rand: () => number = Math.random, luck = 1): RoulettePrize[] {
   const chain: RoulettePrize[] = [];
   for (;;) {
-    let p = rouletteRoll(rand());
+    let p = rouletteRoll(rand(), luck);
     // Past the most free spins in a row, the wheel lands on something else.
-    while (p === 'free' && chain.length >= ROULETTE.maxFree) p = rouletteRoll(rand());
+    while (p === 'free' && chain.length >= ROULETTE.maxFree) p = rouletteRoll(rand(), luck);
     chain.push(p);
     if (p !== 'free') return chain;
   }
 }
-/** What a spin pays back on average, for each coin put in (free spins included). */
-export const rouletteReturn = () => (ROULETTE.jackpot * ROULETTE.jackpotChance + ROULETTE.small * ROULETTE.smallChance) / (1 - ROULETTE.freeChance) / ROULETTE.cost;
-export const roulettePay = (p: RoulettePrize) => (p === 'jackpot' ? ROULETTE.jackpot : p === 'small' ? ROULETTE.small : 0);
+/** What a spin pays back on average in coins, for each coin put in (free spins included; packs and the lucky streak aside). */
+export const rouletteReturn = () => (ROULETTE.mega * ROULETTE.megaChance + ROULETTE.jackpot * ROULETTE.jackpotChance + ROULETTE.small * ROULETTE.smallChance) / (1 - ROULETTE.freeChance) / ROULETTE.cost;
+export const roulettePay = (p: RoulettePrize) => (p === 'mega' ? ROULETTE.mega : p === 'jackpot' ? ROULETTE.jackpot : p === 'small' ? ROULETTE.small : 0);
 /** Expeditions have a daily amount of their own: in full up to this, then a quarter (at least a coin). */
 export const EXPEDITION_CAP = T.expedition.dailyCap;
 export const EXPEDITION_AFTER_CAP = T.expedition.afterCap;

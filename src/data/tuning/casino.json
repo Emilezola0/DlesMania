@@ -10,13 +10,13 @@
     ],
     "dailySpins": 1000,
     "symbols": [
-      { "id": "cherry", "weight": 30, "three": 8, "two": 2 },
-      { "id": "bell", "weight": 24, "three": 14 },
-      { "id": "star", "weight": 18, "three": 28 },
-      { "id": "card", "weight": 13, "three": 55 },
-      { "id": "gem", "weight": 9, "three": 120 },
-      { "id": "coin", "weight": 5, "three": 400 },
-      { "id": "seal", "weight": 1, "three": 5000 }
+      { "id": "cherry", "weight": 28, "three": 8, "two": 2 },
+      { "id": "bell", "weight": 24, "three": 14, "two": 3 },
+      { "id": "star", "weight": 18, "three": 28, "two": 5 },
+      { "id": "card", "weight": 13, "three": 55, "two": 8 },
+      { "id": "gem", "weight": 10, "three": 120, "two": 10 },
+      { "id": "coin", "weight": 6, "three": 400 },
+      { "id": "seal", "weight": 1.5, "three": 5000 }
     ]
   },
   "pachinko": {

@@ -3,18 +3,24 @@ import { Coins } from '../components/DleCoin';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { econToday, useProgress } from '../store/progress';
-import { ROULETTE, rouletteReturn, type RoulettePrize } from './economy';
+import { ROULETTE, rouletteLuck, rouletteReturn, type RoulettePrize } from './economy';
 
-/** The wheel's slices, clockwise from the pointer: one jackpot, two small prizes, two free spins, the rest empty. */
-const SLICES: RoulettePrize[] = Array.from({ length: 20 }, (_, i) => (i === 0 ? 'jackpot' : i === 5 || i === 15 ? 'small' : i === 9 || i === 12 ? 'free' : 'none'));
+/**
+ * The wheel's slices, clockwise from the pointer: the jackpot and, opposite it, the mega jackpot; four small prizes,
+ * a free pack, two free spins, the rest empty. (Where it lands comes from the odds in economy.json, not the slices' size.)
+ */
+const SLICE_OF: Record<number, RoulettePrize> = { 0: 'jackpot', 3: 'small', 5: 'free', 7: 'small', 10: 'mega', 13: 'small', 15: 'free', 17: 'small', 18: 'pack' };
+const SLICES: RoulettePrize[] = Array.from({ length: 20 }, (_, i) => SLICE_OF[i] ?? 'none');
 const SLICE = 360 / SLICES.length;
 const COLOR: Record<RoulettePrize, [string, string]> = {
+  mega: ['#e879f9', '#e879f9'],
   jackpot: ['#fbbf24', '#fbbf24'],
   small: ['#2dd4bf', '#2dd4bf'],
+  pack: ['#60a5fa', '#60a5fa'],
   free: ['#f472b6', '#f472b6'],
   none: ['#3b2d7a', '#241a52'],
 };
-const ICON: Record<RoulettePrize, string> = { jackpot: '💎', small: '🪙', free: '🔄', none: '' };
+const ICON: Record<RoulettePrize, string> = { mega: '👑', jackpot: '💎', small: '🪙', pack: '🎁', free: '🔄', none: '' };
 /** The pause on a free-spin slice before the wheel sets off again by itself (ms). */
 const FREE_PAUSE = 900;
 const WHEEL = `conic-gradient(${SLICES.map((p, i) => `${COLOR[p][i % 2]} ${i * SLICE}deg ${(i + 1) * SLICE}deg`).join(', ')})`;
@@ -124,7 +130,7 @@ function Wheel({ size, bulbs, turn, onStop, lang }: { size: number; bulbs: numbe
   // Coins bursting out of the wheel on a win, each its own way.
   const burst = useMemo(
     () =>
-      Array.from({ length: !landed ? 0 : landed.prize === 'jackpot' ? (size > 100 ? 22 : 12) : size > 100 ? 10 : 4 }, () => {
+      Array.from({ length: !landed ? 0 : landed.prize === 'jackpot' || landed.prize === 'mega' ? (size > 100 ? 22 : 12) : size > 100 ? 10 : 4 }, () => {
         const a = Math.random() * Math.PI * 2;
         const d = (0.35 + Math.random() * 0.35) * size;
         return { x: Math.cos(a) * d, y: Math.sin(a) * d - size * 0.15, delay: Math.random() * 0.15, spin: (Math.random() - 0.5) * 720 };
@@ -157,7 +163,7 @@ function Wheel({ size, bulbs, turn, onStop, lang }: { size: number; bulbs: numbe
       <div ref={settle} className="size-full">
         <div
           ref={wheel}
-          className={`relative size-full rounded-full border-[#fbbf24]/80 shadow-[0_0_28px_rgba(251,191,36,0.3),inset_0_0_18px_rgba(0,0,0,0.5)] ${small ? 'border-2' : 'border-4'} ${won ? (landed.prize === 'jackpot' ? 'roulette-win-jackpot' : 'roulette-win') : ''}`}
+          className={`relative size-full rounded-full border-[#fbbf24]/80 shadow-[0_0_28px_rgba(251,191,36,0.3),inset_0_0_18px_rgba(0,0,0,0.5)] ${small ? 'border-2' : 'border-4'} ${won ? (landed.prize === 'jackpot' || landed.prize === 'mega' ? 'roulette-win-jackpot' : 'roulette-win') : ''}`}
           style={{ background: WHEEL, transform: `rotate(${angle}deg)`, transition: spinning && run ? `transform ${run.step ? Math.round(run.turn.duration * 0.75) : run.turn.duration}ms cubic-bezier(0.1, 0.75, 0.1, 1)` : undefined }}
           aria-hidden
         >
@@ -244,24 +250,27 @@ export function Roulette() {
   const onStop = (prize: RoulettePrize) => {
     stopped.current += 1;
     const all = pending.current;
-    if (mode > 1 && prize !== 'none') (prize === 'jackpot' ? sfx.victory() : sfx.coins(2));
+    if (mode > 1 && prize !== 'none') (prize === 'jackpot' || prize === 'mega' ? sfx.victory() : sfx.coins(2));
     if (!all || stopped.current < all.prizes.length) return;
     setSpinning(false);
     setResult({ ...all, key: Date.now() });
-    const jackpots = all.prizes.filter((p) => p === 'jackpot').length;
+    const jackpots = all.prizes.filter((p) => p === 'jackpot' || p === 'mega').length;
     if (jackpots) (mode === 1 && sfx.victory(), sfx.coins(18), celebrateBig());
-    else if (all.coins > 0) (mode === 1 && sfx.correct(), sfx.coins(7), celebrate());
+    else if (all.coins > 0 || all.prizes.includes('pack')) (mode === 1 && sfx.correct(), sfx.coins(7), celebrate());
     else sfx.wahWah();
   };
 
-  const won = !!result && result.coins > 0;
   const count = (p: RoulettePrize) => result?.prizes.filter((x) => x === p).length ?? 0;
+  const won = !!result && (result.coins > 0 || count('pack') > 0);
   const cost = ROULETTE.cost * mode;
+  const streak = useProgress((s) => s.rouletteStreak ?? 0);
+  const luck = rouletteLuck(streak);
+  const odds = (chance: number) => Math.round(1 / chance).toLocaleString('en');
 
   return (
     <section className="space-y-3">
       <h2 className="font-display text-lg font-bold">🎰 Roulette</h2>
-      <div className={`page roulette-box flex flex-wrap items-center gap-6 rounded-md p-4 ${count('jackpot') ? 'roulette-jackpot' : ''}`}>
+      <div className={`page roulette-box flex flex-wrap items-center gap-6 rounded-md p-4 ${count('jackpot') || count('mega') ? 'roulette-jackpot' : ''}`}>
         <div className="relative mx-auto shrink-0 sm:mx-0">
           <div
             className={`grid place-items-center ${mode === 1 ? '' : mode === 5 ? 'grid-cols-3 gap-x-5 gap-y-6 p-2 sm:grid-cols-5' : 'grid-cols-5 gap-2.5 p-1'}`}
@@ -282,15 +291,33 @@ export function Roulette() {
         </div>
         <div className="min-w-0 flex-1 basis-56 space-y-3">
           <p className="text-sm text-ink-soft">
-            <Coins n={ROULETTE.cost} /> a spin. A 1 in {Math.round(1 / ROULETTE.jackpotChance)} chance of the 💎 jackpot, <Coins n={ROULETTE.jackpot} />
+            <Coins n={ROULETTE.cost} /> a spin.
+            {ROULETTE.megaChance > 0 && (
+              <>
+                {' '}A 1 in {odds(ROULETTE.megaChance)} chance of the 👑 mega jackpot, <Coins n={ROULETTE.mega} />;
+              </>
+            )}{' '}
+            1 in {odds(ROULETTE.jackpotChance)} of the 💎 jackpot, <Coins n={ROULETTE.jackpot} />
             {ROULETTE.small > 0 && ROULETTE.smallChance > 0 && (
               <>
-                , a 1 in {Math.round(1 / ROULETTE.smallChance)} chance of 🪙 <Coins n={ROULETTE.small} />
+                ; 1 in {odds(ROULETTE.smallChance)} of 🪙 <Coins n={ROULETTE.small} />
               </>
             )}
-            {ROULETTE.freeChance > 0 && <>, and 1 in {Math.round(1 / ROULETTE.freeChance)} lands on 🔄: the wheel spins again for free</>}. {ROULETTE.dailySpins.toLocaleString()} paid spins a day.
-            {rouletteReturn() > 1 && <span className="block text-xs text-ink-faint">On average it pays back about {Math.round(rouletteReturn() * 100)}% of what goes in, mostly through the jackpot: the more you play, the better your odds of it.</span>}
+            {ROULETTE.packChance > 0 && <>; 1 in {odds(ROULETTE.packChance)} of 🎁 a free pack (opened in the Card Shop)</>}
+            {ROULETTE.freeChance > 0 && <>; and 1 in {odds(ROULETTE.freeChance)} lands on 🔄: the wheel spins again for free</>}. {ROULETTE.dailySpins.toLocaleString()} paid spins a day.
+            {ROULETTE.streakStep > 0 && (
+              <span className="block text-xs text-ink-faint">
+                🍀 Lucky streak: every empty landing in a row raises the odds of every prize by {Math.round(ROULETTE.streakStep * 100)}% (up to ×{ROULETTE.streakMax}), back to normal after a win.
+              </span>
+            )}
+            {rouletteReturn() > 1 && <span className="block text-xs text-ink-faint">On average it pays back about {Math.round(rouletteReturn() * 100)}% of what goes in, packs and lucky streaks aside.</span>}
           </p>
+          {ROULETTE.streakStep > 0 && (
+            <p className={`text-sm font-semibold ${streak > 0 ? 'text-hit' : 'text-ink-faint'}`} title={`${streak} empty landing${streak === 1 ? '' : 's'} in a row`}>
+              🍀 Luck ×{luck.toFixed(2)}
+              {streak > 0 && <span className="font-normal text-ink-soft"> · {streak} empty in a row</span>}
+            </p>
+          )}
           {/* One wheel, or five or twenty-five at once (each a spin of its own). */}
           <div className="flex gap-1" role="group" aria-label="Wheels at once">
             {MODES.map((m) => (
@@ -315,18 +342,24 @@ export function Roulette() {
             </span>
           </div>
           <p className="min-h-6 font-display font-bold" aria-live="polite">
-            {result && count('jackpot') > 0 && (
+            {result && count('mega') > 0 && (
+              <span className="animate-pop text-[#e879f9]">
+                👑 MEGA JACKPOT{count('mega') > 1 ? ` ×${count('mega')}` : ''}!{count('jackpot') > 0 ? ` 💎 ×${count('jackpot')}` : ''}{mode > 1 && count('small') > 0 ? ` 🪙 ×${count('small')}` : ''} +<Coins n={result.coins} />
+              </span>
+            )}
+            {result && !count('mega') && count('jackpot') > 0 && (
               <span className="animate-pop text-[#fbbf24]">
                 💎 JACKPOT{count('jackpot') > 1 ? ` ×${count('jackpot')}` : ''}!{mode > 1 && count('small') > 0 ? ` 🪙 ×${count('small')}` : ''} +<Coins n={result.coins} />
               </span>
             )}
-            {result && !count('jackpot') && count('small') > 0 && (
+            {result && !count('mega') && !count('jackpot') && count('small') > 0 && (
               <span className="animate-pop text-hit">
                 🪙{count('small') > 1 ? ` ×${count('small')}` : ''} +<Coins n={result.coins} />
                 {mode > 1 && <span className="ml-1 text-sm font-normal text-ink-soft">for {cost} spent</span>}
               </span>
             )}
             {result && !won && <span className="text-ink-soft">{mode === 1 ? 'Nothing this time.' : `Nothing on all ${mode} wheels.`}</span>}
+            {result && count('pack') > 0 && <span className="ml-2 animate-pop text-[#93c5fd]">🎁 {count('pack') > 1 ? `${count('pack')} free packs` : 'A free pack'}, waiting in the Card Shop</span>}
             {result && result.free > 0 && <span className="ml-2 text-sm font-normal text-[#f9a8d4]">🔄 {result.free} free spin{result.free === 1 ? '' : 's'}</span>}
             {!result && !spinning && left < mode && <span className="text-ink-soft">{left === 0 ? 'No spins left: come back tomorrow.' : `Only ${left} spin${left === 1 ? '' : 's'} left today.`}</span>}
             {!result && !spinning && left >= mode && coins < cost && <span className="text-ink-soft">Not enough DleCoins.</span>}

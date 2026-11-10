@@ -59,7 +59,7 @@ export default function Casino() {
             <span aria-hidden>🎰 </span>
             <span className="casino-title">Casino</span>
           </h1>
-          <p className="text-sm text-ink-soft max-sm:text-xs">A little chill zone. Play a few DleCoins, win a few back — on average the machines keep a little of what they take (the roulette gives a little back, if you play it a lot), and every coin you put in earns casino tokens 🎟️ for the Daily Card Shop and the Boutique.</p>
+          <p className="text-sm text-ink-soft max-sm:text-xs">A little chill zone. Play a few DleCoins, win a few back — on average most machines keep a little of what they take, but Omni Slots and the roulette give back more than they take, and every coin you put in earns casino tokens 🎟️ for the Daily Card Shop and the Boutique.</p>
         </div>
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => pick('shop')} aria-label="Casino tokens: open the Daily Card Shop">
