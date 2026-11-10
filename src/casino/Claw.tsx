@@ -63,6 +63,29 @@ export function PrizeArt({ prize, className = '', style }: { prize: string; clas
   );
 }
 
+/**
+ * A shadow on the box's floor, to read depth and distance: centred at (x, y) in cqw, `w` wide; darker and sharper
+ * the closer what casts it (`near`, 0 far above to 1 on the floor).
+ */
+function FloorShadow({ x, y, w, near, over }: { x: number; y: number; w: number; near: number; over?: boolean }) {
+  return (
+    <div
+      className={`pointer-events-none absolute rounded-[50%] ${over ? 'mix-blend-multiply' : ''}`}
+      style={{
+        // A little to the right and in front: the light comes from the top left, behind the glass.
+        left: `${x - w / 2 + w * 0.06}cqw`,
+        top: `${y - w * 0.1}cqw`,
+        width: `${w}cqw`,
+        height: `${w * 0.34}cqw`,
+        background: 'radial-gradient(closest-side, rgba(40,0,30,0.85), rgba(40,0,30,0.45) 60%, transparent)',
+        opacity: 0.5 + 0.35 * near,
+        filter: `blur(${(2.2 - 1.4 * near).toFixed(2)}px)`,
+      }}
+      aria-hidden
+    />
+  );
+}
+
 /** The claw: a hub and two arms, open (1) to shut (0). */
 function ClawHead({ open }: { open: number }) {
   const a = 8 + open * 26;
@@ -97,7 +120,7 @@ interface View {
   /** The prize in the claw, if any. */
   held: string | null;
   /** A prize falling (out of the claw), from where to where. */
-  fall: { uid: string; prize: string; fromX: number; fromY: number; toX: number; toY: number; p: number; chute: boolean } | null;
+  fall: { uid: string; prize: string; fromX: number; fromY: number; toX: number; toY: number; p: number; chute: boolean; z: number } | null;
 }
 
 /** Plays a step of the animation: `frame(p)` from 0 to 1 over `ms`. */
@@ -242,7 +265,7 @@ export function Claw() {
     const fromY = clawTop(v) + CLAW_W * depth(v.cz) * 0.55;
     const toX = screenX(x, z);
     const toY = chute ? 75 : floorY(z) - prizeSize(item.prize, z);
-    setView((w) => ({ ...w, fall: { uid: item.uid, prize: item.prize, fromX, fromY, toX, toY, p: 0, chute } }));
+    setView((w) => ({ ...w, fall: { uid: item.uid, prize: item.prize, fromX, fromY, toX, toY, p: 0, chute, z } }));
     await tween(chute ? 520 : 420, (p) => setView((w) => (w.fall ? { ...w, fall: { ...w.fall, p: p * p } } : w)), isAlive);
     sfx.pop();
   };
@@ -310,10 +333,10 @@ export function Claw() {
           <div className="claw-chute absolute bottom-0 left-0 grid place-items-end rounded-tr-lg" style={{ width: '21cqw', height: '19cqw' }} aria-hidden>
             <span className="w-full pb-[1cqw] text-center font-display text-[2.4cqw] font-black uppercase tracking-widest text-amber-200">Prize ⬇</span>
           </div>
-          {/* The aim: where the claw would drop. */}
-          {(phase === 'across' || phase === 'back') && (
-            <div className="absolute rounded-[50%] bg-black/35 blur-[1px]" style={{ left: `${X - 4 * depth(view.cz)}cqw`, top: `${floorY(view.cz) - 1.4}cqw`, width: `${8 * depth(view.cz)}cqw`, height: `${2.8 * depth(view.cz)}cqw` }} aria-hidden />
-          )}
+          {/* The shadows on the floor, under everything: each prize's, and the claw's (where it would drop; wider and
+              fainter high up, smaller and darker as it comes down; as wide as what it holds: drawn over the prizes, below). */}
+          {sorted.map((it) => (it.uid === lifted ? null : <FloorShadow key={`s-${it.uid}`} x={screenX(it.x, it.z)} y={floorY(it.z)} w={prizeSize(it.prize, it.z) * 1.2} near={1} />))}
+          {view.fall && !view.fall.chute && <FloorShadow x={view.fall.toX} y={floorY(view.fall.z)} w={prizeSize(view.fall.prize, view.fall.z) * (0.6 + 0.6 * view.fall.p)} near={view.fall.p} />}
           {/* The prizes, back ones first. */}
           {sorted.map((it) =>
             it.uid === lifted ? null : (
@@ -325,6 +348,8 @@ export function Claw() {
               />
             ),
           )}
+          {/* The claw's shadow, over the prizes it passes above (where it would drop). */}
+          <FloorShadow x={X} y={floorY(view.cz)} w={Math.max(8 * depth(view.cz) * (1.25 - 0.35 * view.h), view.held ? prizeSize(view.held, view.cz) * 1.2 : 0)} near={view.h} over />
           {/* A prize falling. */}
           {view.fall && (
             <PrizeArt
