@@ -1476,6 +1476,14 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   }, [cosmos, pauseExtra]);
   const [kept, setKept] = useState<Record<number, boolean>>({});
   const setAnomaly = useProgress((s) => s.setAnomaly);
+  const addAnomalyOption = useProgress((s) => s.addAnomalyOption);
+  // An anomaly left undecided as the opening ends (skipped past, never chosen): the card keeps what it wore, and this
+  // one waits among its others, to switch to in the Album.
+  const leaveUndecided = () => {
+    for (const [at, a] of pending) if (!(at in kept) && deck[at]) addAnomalyOption(deck[at].id, a);
+  };
+  const close = () => (leaveUndecided(), onClose());
+  const again = () => (leaveUndecided(), onAgain());
   const decide = (k: number, keep: boolean) => {
     const a = pending.get(k);
     if (!a || k in kept) return;
@@ -1949,11 +1957,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') return phase === 'summary' ? onClose() : skip();
+      if (e.key === 'Escape') return phase === 'summary' ? close() : skip();
       if (phase === 'choose' && /^[1-3]$/.test(e.key)) return choose(Number(e.key) - 1);
       if (e.key !== 'Enter' && e.key !== ' ') return;
       e.preventDefault();
-      if (phase === 'summary') onClose();
+      if (phase === 'summary') close();
       else act();
     };
     window.addEventListener('keydown', onKey);
@@ -2307,11 +2315,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {canAgain && (
-              <button type="button" onClick={onAgain} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
+              <button type="button" onClick={again} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
                 {times > 1 ? `Open ×${times} again` : 'Open another'} · <Coins n={pack.cost * times} />
               </button>
             )}
-            <button type="button" onClick={onClose} className="btn-paper rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
+            <button type="button" onClick={close} className="btn-paper rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
               Done
             </button>
           </div>

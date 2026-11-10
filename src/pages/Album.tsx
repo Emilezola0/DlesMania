@@ -375,6 +375,7 @@ export default function Album() {
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
   const anomalies = useProgress((s) => s.anomalies ?? NONE);
+  const anomalyOptions = useProgress((s) => s.anomalyOptions ?? NONE);
   const favorites = useProgress((s) => s.favorites ?? NONE);
   const pulledAt = useProgress((s) => s.pulledAt ?? NONE);
   const bosses = useProgress((s) => s.bosses);
@@ -436,7 +437,7 @@ export default function Album() {
         case 'upgradable':
           return n > 1 && canGradeUp(n, gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0);
         case 'altered':
-          return n > 0 && !!anomalies[c.id];
+          return n > 0 && (!!anomalies[c.id] || !!anomalyOptions[c.id]?.length);
         default:
           return true;
       }
@@ -459,7 +460,7 @@ export default function Album() {
       sort === 'rarity' ? (a, b) => byRarity(a, b) || bySet(a, b) : sort === 'grade' ? (a, b) => byGrade(b) - byGrade(a) || byRarity(a, b) || bySet(a, b) : sort === 'name' ? (a, b) => a.name.localeCompare(b.name) : sort === 'count' ? (a, b) => (owned[b.id] ?? 0) - (owned[a.id] ?? 0) || byRarity(a, b) : sort === 'recent' ? (a, b) => byRecent(b) - byRecent(a) || byRarity(a, b) || bySet(a, b) : bySet,
     );
     return reverse ? sorted.reverse() : sorted;
-  }, [set, rarities, show, sort, reverse, search, owned, grades, anomalies, favorites, bosses, pulledAt]);
+  }, [set, rarities, show, sort, reverse, search, owned, grades, anomalies, anomalyOptions, favorites, bosses, pulledAt]);
   const filtered = set !== 'all' || rarities.length < RARITIES.length || show !== 'all' || !!query.trim();
   const clearFilters = () => {
     sfx.click();
@@ -573,7 +574,7 @@ export default function Album() {
           {SHOWS.map((s) => (
             <button key={s.id} type="button" aria-pressed={show === s.id} onClick={() => (sfx.click(), setShow(s.id))} className={pill(show === s.id)} title={s.title}>
               {s.label}
-              {s.id === 'altered' && ` (${Object.keys(anomalies).filter((id) => owned[id]).length})`}
+              {s.id === 'altered' && ` (${[...new Set([...Object.keys(anomalies), ...Object.keys(anomalyOptions)])].filter((id) => owned[id]).length})`}
               {s.id === 'favorites' && ` (${Object.keys(favorites).filter((id) => owned[id]).length})`}
             </button>
           ))}
@@ -705,18 +706,33 @@ function FavoriteButton({ cardId }: { cardId: string }) {
   );
 }
 
-/** A card back from a black hole: its anomaly, and a way to let it go (it can't be got back). */
+/**
+ * A card back from a black hole: its anomaly, and a way to let it go (it can't be got back); and the other anomalies
+ * it got but doesn't wear (skipped past in an opening, or replaced), to switch to — the one it wore waits in turn.
+ */
 function AnomalyNote({ cardId }: { cardId: string }) {
   const id = useProgress((s) => s.anomalies?.[cardId]);
+  const others = useProgress((s) => s.anomalyOptions?.[cardId]);
   const setAnomaly = useProgress((s) => s.setAnomaly);
-  if (!id) return null;
-  const a = ANOMALIES[id];
+  if (!id && !others?.length) return null;
+  const a = id ? ANOMALIES[id] : null;
   return (
     <p className="mt-1 text-xs text-[#c4b5fd]">
-      {a.icon} {a.name} — back from a black hole.{' '}
-      <button type="button" onClick={() => window.confirm(`Remove ${a.name} from this card for good?`) && setAnomaly(cardId, null)} className="underline opacity-80 hover:opacity-100">
-        Remove it
-      </button>
+      {a ? (
+        <>
+          {a.icon} {a.name} — back from a black hole.{' '}
+          <button type="button" onClick={() => window.confirm(`Remove ${a.name} from this card for good?`) && setAnomaly(cardId, null)} className="underline opacity-80 hover:opacity-100">
+            Remove it
+          </button>
+        </>
+      ) : (
+        <>🕳️ Back from a black hole, wearing nothing yet.</>
+      )}
+      {(others ?? []).map((o) => (
+        <button key={o} type="button" onClick={() => setAnomaly(cardId, o)} className="ml-2 rounded-full border border-[#c4b5fd]/60 px-2 py-0.5 font-semibold hover:bg-[#c4b5fd]/15" title={ANOMALIES[o].name}>
+          {a ? 'Switch to' : 'Wear'} {ANOMALIES[o].icon} {ANOMALIES[o].name}
+        </button>
+      ))}
     </p>
   );
 }

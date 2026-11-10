@@ -176,7 +176,11 @@ interface ProgressState {
   switchElement: (id: string, element: ElementId) => boolean;
   /** Cards that came back from a black hole with an anomaly (src/gacha/anomalies.ts), by card id. */
   anomalies: Record<string, AnomalyId>;
+  /** Set (null: removed for good). One it replaces is kept among the card's other anomalies, to switch back to in the Album. */
   setAnomaly: (cardId: string, anomaly: AnomalyId | null) => void;
+  /** Anomalies a card got from a black hole but doesn't wear (skipped past, or replaced): the Album can switch to one. */
+  anomalyOptions?: Record<string, AnomalyId[]>;
+  addAnomalyOption: (cardId: string, anomaly: AnomalyId) => void;
   /** Cards starred in the Album. */
   favorites: Record<string, true>;
   toggleFavorite: (cardId: string) => void;
@@ -730,8 +734,18 @@ export const useProgress = create<ProgressState>()(
         }),
       setAnomaly: (cardId, anomaly) =>
         set((s) => {
-          const { [cardId]: _, ...rest } = s.anomalies ?? {};
-          return { anomalies: anomaly ? { ...rest, [cardId]: anomaly } : rest };
+          const { [cardId]: was, ...rest } = s.anomalies ?? {};
+          // Switching: the one it wore goes among its others; the one it now wears leaves them. Removing: gone for good.
+          const others = (s.anomalyOptions?.[cardId] ?? []).filter((a) => a !== anomaly);
+          const options = anomaly && was && was !== anomaly && !others.includes(was) ? [...others, was] : others;
+          const { [cardId]: _, ...otherCards } = s.anomalyOptions ?? {};
+          return { anomalies: anomaly ? { ...rest, [cardId]: anomaly } : rest, anomalyOptions: options.length ? { ...otherCards, [cardId]: options } : otherCards };
+        }),
+      addAnomalyOption: (cardId, anomaly) =>
+        set((s) => {
+          const have = s.anomalyOptions?.[cardId] ?? [];
+          if (s.anomalies?.[cardId] === anomaly || have.includes(anomaly)) return {};
+          return { anomalyOptions: { ...(s.anomalyOptions ?? {}), [cardId]: [...have, anomaly] } };
         }),
       gradeUp: (id, rarity, by, element) => {
         const s = get();
