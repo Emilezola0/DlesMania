@@ -178,6 +178,10 @@ const AUTO_MAX = 450;
 const AUTO_NEAR_TOP = 650;
 /** The summary deals its cards quickly: all of them within SUMMARY_DEAL ms (a single pack a little slower, card by card). */
 const SUMMARY_DEAL = 700;
+/** The summary scrolls down by itself (px a second): faster the more packs, up to SUMMARY_SCROLL_MAX. */
+const SUMMARY_SCROLL_BASE = 50;
+const SUMMARY_SCROLL_PER_PACK = 20;
+const SUMMARY_SCROLL_MAX = 900;
 const dealAt = (k: number, n: number) => Math.round(n <= 5 ? k * 70 : (k * SUMMARY_DEAL) / Math.max(1, n - 1));
 /** The beat of suspense before the last star (the best card's), once every other star has crossed. The screen rumbles meanwhile. */
 const LAST_STAR_PAUSE = 1500;
@@ -1955,6 +1959,37 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+  // The summary scrolls down by itself, quicker the more packs were opened, once its cards are dealt; a wheel, a
+  // touch or a key from the player stops it (they take over).
+  useEffect(() => {
+    const el = stage.current;
+    if (phase !== 'summary' || !el || reducedMotion()) return;
+    const speed = Math.min(SUMMARY_SCROLL_MAX, SUMMARY_SCROLL_BASE + times * SUMMARY_SCROLL_PER_PACK);
+    let raf = 0;
+    let last = 0;
+    let at = el.scrollTop;
+    const step = (now: number) => {
+      if (last) at += (speed * (now - last)) / 1000;
+      last = now;
+      const end = el.scrollHeight - el.clientHeight;
+      el.scrollTop = Math.min(at, end);
+      if (at < end) raf = requestAnimationFrame(step);
+    };
+    const start = window.setTimeout(() => (raf = requestAnimationFrame(step)), SUMMARY_DEAL + 500);
+    const stop = () => (window.clearTimeout(start), cancelAnimationFrame(raf));
+    const opts = { passive: true } as const;
+    el.addEventListener('wheel', stop, opts);
+    el.addEventListener('touchstart', stop, opts);
+    el.addEventListener('pointerdown', stop, opts);
+    window.addEventListener('keydown', stop);
+    return () => {
+      stop();
+      el.removeEventListener('wheel', stop);
+      el.removeEventListener('touchstart', stop);
+      el.removeEventListener('pointerdown', stop);
+      window.removeEventListener('keydown', stop);
+    };
+  }, [phase, times]);
   // Keep the page behind still while the pack is open: only the overlay scrolls.
   useEffect(() => {
     const overflow = document.body.style.overflow;
