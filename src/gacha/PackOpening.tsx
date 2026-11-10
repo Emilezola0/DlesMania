@@ -1952,8 +1952,10 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   // Several packs at once: the cards below Legendary turn and move on by themselves (a tap still goes quicker),
   // faster the more packs, slowing down as the top cards come near; a top card waits for the player.
   const firstTop = useMemo(() => plans.findIndex((p) => p.step >= 2), [plans]);
+  /** Skipped to a rare scene (or the black hole): the player wanted to see it, and then turns the cards themself. */
+  const [byHand, setByHand] = useState(false);
   useEffect(() => {
-    if (times <= 1 || phase !== 'reveal' || charging || blooming.current || !plans[i] || plans[i].step >= 2) return;
+    if (byHand || times <= 1 || phase !== 'reveal' || charging || blooming.current || !plans[i] || plans[i].step >= 2) return;
     if (flipped && pending.has(i) && !(i in kept)) return;
     const pace = Math.max(AUTO_MIN, Math.min(AUTO_MAX, 1200 / times));
     const toTop = firstTop - i;
@@ -1962,7 +1964,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     return () => window.clearTimeout(t);
     // act reads this render's state; the effect runs again whenever it changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [times, phase, charging, i, flipped, kept, bloomed, firstTop]);
+  }, [byHand, times, phase, charging, i, flipped, kept, bloomed, firstTop]);
   /**
    * Skip never skips past a top card: it goes straight to the next Legendary or better and turns it, with its
    * build-up (so where it stops says "a top card", never which). Pressed again while it builds up, it lands at
@@ -1980,7 +1982,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     tearSnd.current?.stop();
     tearSnd.current = null;
     setHolding(false);
-    if (toRare || toHole) return fly(toRare ? rareFrom! : 0);
+    if (toRare || toHole) return setByHand(true), fly(toRare ? rareFrom! : 0);
     // A late bloom on its way: it blooms now.
     if (blooming.current) return blooming.current();
     // A top card charging: its turn now, without the wait.
