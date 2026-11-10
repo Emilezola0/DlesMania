@@ -1514,6 +1514,30 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     if (keep) (setAnomaly(deck[k].id, a), sfx.streak());
     else sfx.click();
   };
+  /** The black hole's cards still waiting on a choice (the summary's Keep all / Leave all). */
+  const undecided = [...pending.keys()].filter((k) => !(k in kept));
+  const decideAll = (keep: boolean) => {
+    if (!undecided.length) return;
+    setKept((x) => ({ ...x, ...Object.fromEntries(undecided.map((k) => [k, keep])) }));
+    if (keep) {
+      for (const k of undecided) setAnomaly(deck[k].id, pending.get(k)!);
+      sfx.streak();
+    } else sfx.click();
+  };
+  // Several cards back from the black hole and not chosen yet: all at once (at the top of the summary and at its end).
+  const allChoice = undecided.length > 1 && (
+    <div className="mx-auto flex max-w-md flex-col items-center gap-2 rounded-md border border-[#a78bfa]/60 bg-[#1b1530]/90 p-3 text-center text-white">
+      <p className="font-display text-xs font-bold tracking-widest">🕳️ {undecided.length} CARDS CAME BACK CHANGED</p>
+      <div className="flex justify-center gap-2">
+        <button type="button" onClick={() => decideAll(true)} className="rounded-md bg-[#a78bfa] px-3 py-1 font-display text-sm font-bold text-[#1b1530]">
+          Keep all
+        </button>
+        <button type="button" onClick={() => decideAll(false)} className="rounded-md border border-white/40 px-3 py-1 font-display text-sm font-bold">
+          Leave all
+        </button>
+      </div>
+    </div>
+  );
   // When the black hole closes: once every star round it has flown on or gone in (the last star comes after).
   const holeEnd = Math.max(0, ...stars.slice(0, regular - 1).map((s) => s.delay + s.duration));
   /** When the black hole swallows each star it takes (it flares). */
@@ -2340,6 +2364,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       {phase === 'summary' && (
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
           <PackStats deck={deck} fresh={fresh} golden={golden} />
+          {allChoice}
           <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k, deck.length)}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
@@ -2353,6 +2378,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               </div>
             ))}
           </div>
+          {/* Again at the end: fifty packs' worth of cards scroll the first one far away. */}
+          {allChoice}
           <div className="flex flex-wrap justify-center gap-3">
             {canAgain && (
               <button type="button" onClick={again} className="btn-accent rounded-md px-6 py-2.5 font-display font-bold tracking-wider">
