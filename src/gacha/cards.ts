@@ -601,7 +601,6 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'arcraiders:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/arc-raiders-bastion-lock-on.mp3' },
   'hollowknight:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/zote-war-cry.mp3' },
   'destiny:mythic-2': { voice: 'Indeed.', audio: 'https://www.myinstants.com/media/sounds/indeed_zavala_boosted.mp3' },
-  'arcraiders:omni': { voice: '*The Matriarch roars*', audio: 'youtube:pkJyYZ7KYwM@72-90' },
   'balatro:omni': { voice: '♪', audio: 'youtube:9agt18c_V1U@38-56' },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
@@ -807,9 +806,6 @@ const FIRST_CLIPS: Record<string, string> = {
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
   'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
-  'jlpt:omni': 'https://media.tenor.com/9Y05zW6LxLIAAAPo/shodoo-calligraphy.mp4',
-  // The Matriarch striding in on the Raiders (a showcase of her, 1:12), heard: it's her voice too.
-  'arcraiders:omni': 'youtube:pkJyYZ7KYwM@72-90',
   'arcraiders:omni-scrappy': 'https://media.tenor.com/QPXtzw2HKG0AAAPo/scrappy-rooster.mp4',
   // Firefly's green-flame wings at sunset; Acheron's slash among the red petals.
   'hsr:omni': 'https://media.tenor.com/umLyC7Vmbu0AAAPo/firefly-honkai-starrail.mp4',

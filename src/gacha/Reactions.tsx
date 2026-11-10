@@ -105,6 +105,8 @@ const MOMENT_MS = 6000;
 const MOMENT_WAIT_MS = 20_000;
 const MOMENT_OUT_MS = 1200;
 const MOMENT_GAP_MS = 45_000;
+/** Omnis whose first form plays no clip behind a win (only awakened): the Creeper, Aang, the Doorman. */
+const FIRST_FORM_STILL = new Set(['minecraft:omni', 'avatar:omni', 'deadlock:omni']);
 
 const pick = <T,>(xs: T[]) => xs[Math.floor(Math.random() * xs.length)];
 /** Legendary or better, and in the album. */
@@ -194,7 +196,9 @@ export function CardReactions() {
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
       // The form the player has: awakened, its own clip; otherwise the card's (an Omni's first-form clip, FIRST_CLIPS).
       // An awakened form with no clip of its own (O-Chan over the Earth) plays its first form's.
-      const own = (isAwake(avatar, useProgress.getState().bosses) ? avatar.awaken?.clip : undefined) ?? avatar.clip;
+      const awake = isAwake(avatar, useProgress.getState().bosses);
+      // The owner's call: these Omnis' first forms play nothing behind a win (awakened, their awakened clip).
+      const own = awake ? (avatar.awaken?.clip ?? avatar.clip) : FIRST_FORM_STILL.has(avatar.id) ? undefined : avatar.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
       const showMoment = kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       // A clip that is also the voice (the same YouTube moment): heard from the clip itself, so they start together.
