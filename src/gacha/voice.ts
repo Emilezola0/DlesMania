@@ -4,10 +4,14 @@
 // Silent when the sound is off; a recording that can't play (some browsers can't read .ogg) falls
 // back to the browser's voice. A recording can also be a moment of a YouTube video:
 // "youtube:VIDEO_ID@start-end" (seconds), played in a hidden player; or of a TikTok: "tiktok:POST_ID@start-end".
+import { setLoudness } from '../lib/loud';
 import { createTikTokPlayer, TT_PLAYING, type TikTokPlayer } from '../lib/tiktok';
 import { loadYouTube, YT_ENDED, YT_PLAYING, type YTPlayer } from '../lib/youtube';
 import { useProgress } from '../store/progress';
 import type { Card } from './cards';
+
+/** A card's own volume for its voice line or its video (the card's options, on a Mythic or Omni): 1 as it comes, up to 2. */
+export const cardVolumeOf = (id: string, kind: 'voice' | 'clip') => (useProgress.getState().cardVolume?.[id]?.[kind] ?? 100) / 100;
 
 interface Speaker {
   pitch: number;
@@ -64,7 +68,7 @@ export const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis'
 const NO_BROWSER_VOICE = new Set(['ufouria']);
 
 /** Reads a line aloud in a star's voice. */
-function say(line: string, set: string) {
+function say(line: string, set: string, gain = 1) {
   if (!canSpeak() || NO_BROWSER_VOICE.has(set)) return voiceEnded();
   const synth = window.speechSynthesis;
   synth.cancel();
@@ -77,7 +81,7 @@ function say(line: string, set: string) {
   const k = voice && QUALITY(voice.name) > 1 ? 0.5 : 1;
   u.pitch = 1 + (sp.pitch - 1) * k;
   u.rate = 1 + (sp.rate - 1) * k;
-  u.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
+  u.volume = Math.min(1, (Math.min(1, useProgress.getState().sfxVolume / 100)) * gain);
   u.onend = voiceEnded;
   u.onerror = voiceEnded;
   synth.speak(u);
@@ -220,21 +224,22 @@ export function playVoice(card: Card, asked = false, onEnd?: () => void) {
   voiceEnded();
   onVoiceEnd = onEnd ?? null;
   const { line, audio } = voiceOf(card, st.nameLang);
-  if (!audio) return say(line!, card.set);
+  const gain = cardVolumeOf(card.id, 'voice');
+  if (!audio) return say(line!, card.set, gain);
   const tt = TT_CLIP.exec(audio);
-  if (tt) return playTikTokVoice(tt[1], Number(tt[2]), Number(tt[3]), () => say(line!, card.set));
+  if (tt) return playTikTokVoice(tt[1], Number(tt[2]), Number(tt[3]), () => say(line!, card.set, gain));
   const yt = YT_VOICE.exec(audio);
-  if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, st.sfxVolume), () => say(line!, card.set));
+  if (yt) return playYouTubeVoice(yt[1], Number(yt[2]), Number(yt[3]), Math.min(100, Math.min(100, st.sfxVolume) * gain), () => say(line!, card.set, gain));
   const a = new Audio(audio);
-  a.volume = Math.min(1, useProgress.getState().sfxVolume / 100);
+  setLoudness(a, Math.min(1, st.sfxVolume / 100) * gain);
   // A moment of a longer file ("…#t=8.3,10.6", a media fragment): browsers start there and stop at the end;
   // the guard stops it at the end in one that only honours the start.
   const frag = FRAGMENT.exec(audio);
   if (frag) a.ontimeupdate = () => a.currentTime >= Number(frag[2]) && a.pause();
   playing = a;
   a.onended = voiceEnded;
-  a.play().catch(() => say(line!, card.set));
-  a.onerror = () => say(line!, card.set);
+  a.play().catch(() => say(line!, card.set, gain));
+  a.onerror = () => say(line!, card.set, gain);
 }
 
 /** A card's line and recording in the language names are shown in (the French dub's when it has one). */

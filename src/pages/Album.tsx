@@ -179,6 +179,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             </button>
           )}
           <FavoriteButton cardId={card.id} />
+          <CardVolume card={card} />
           <p className="text-sm opacity-80">
             {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
@@ -691,6 +692,46 @@ function AlbumBlock({ cards, render }: { cards: Card[]; render: (c: Card) => Rea
 }
 
 /** Stars a card (or takes its star off): starred cards have their own filter in the Album. */
+/**
+ * A Mythic's or Omni's own volumes: its voice line, and its video's sound behind a win (a video with a sound of its
+ * own, like Gogeta's). 100% is as it comes; up to 200% (louder only for the sounds the site keeps itself).
+ */
+function CardVolume({ card }: { card: Card }) {
+  const volume = useProgress((s) => s.cardVolume?.[card.id]);
+  const setCardVolume = useProgress((s) => s.setCardVolume);
+  if (card.rarity !== 'mythic' && card.rarity !== 'omni') return null;
+  const rows = [
+    ...(card.voice ? [{ kind: 'voice' as const, label: '🗣️ Voice line' }] : []),
+    ...(card.clipSound ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
+  ];
+  if (!rows.length) return null;
+  return (
+    <div className="mx-auto mt-2 max-w-xs space-y-1.5 rounded-md border border-white/20 bg-white/5 px-3 py-2 text-left text-xs">
+      <p className="font-display font-bold tracking-widest text-white/70">VOLUME</p>
+      {rows.map(({ kind, label }) => {
+        const v = volume?.[kind] ?? 100;
+        return (
+          <label key={kind} className="flex items-center gap-2">
+            <span className="w-36 shrink-0">{label}</span>
+            <input
+              type="range"
+              min={0}
+              max={200}
+              step={5}
+              value={v}
+              onChange={(e) => setCardVolume(card.id, kind, Number(e.target.value))}
+              onPointerUp={() => kind === 'voice' && playVoice(card, true)}
+              className="min-w-0 flex-1 accent-[#a78bfa]"
+              aria-label={`${label} volume`}
+            />
+            <span className="w-10 text-right tabular-nums">{v}%</span>
+          </label>
+        );
+      })}
+    </div>
+  );
+}
+
 function FavoriteButton({ cardId }: { cardId: string }) {
   const on = useProgress((s) => !!s.favorites?.[cardId]);
   const toggle = useProgress((s) => s.toggleFavorite);

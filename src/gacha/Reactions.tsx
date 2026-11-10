@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { playVoice, voiceOf, YT_VOICE } from './voice';
+import { cardVolumeOf, playVoice, voiceOf, YT_VOICE } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -239,7 +239,7 @@ export function CardReactions() {
             <div className="moment-clip">
               <CardClip
                 src={moment.clip}
-                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
+                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume) * cardVolumeOf(avatar.id, moment.clip === avatar.clip && avatar.clipSound ? 'clip' : 'voice'), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
                 onFail={() => {
                   if (moment.heard) voiceApart();
                   failedClips.current.add(moment.clip!);

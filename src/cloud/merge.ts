@@ -73,6 +73,7 @@ export const SYNCED = [
   'shownPlush',
   'doodle',
   'tradeLock',
+  'cardVolume',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -293,5 +294,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     doodle: mergeMax(local.doodle, cloud.doodle),
     // What was earned without an account stays locked: the latest save's, with its cards.
     tradeLock: latest.tradeLock ?? { cards: {}, coins: 0 },
+    // Each card's own volumes: as last set (with the save changed last).
+    cardVolume: latest.cardVolume ?? local.cardVolume ?? {},
   };
 }

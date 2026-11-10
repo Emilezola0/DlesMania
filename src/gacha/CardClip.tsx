@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { setLoudness } from '../lib/loud';
 import { createTikTokPlayer, type TikTokPlayer } from '../lib/tiktok';
 import { YT_BUFFERING, YT_CUED, YT_ENDED, YT_PAUSED, YT_PLAYING, YT_UNSTARTED, loadYouTube, type YTPlayer } from '../lib/youtube';
 import { TT_CLIP, YT_VOICE } from './voice';
@@ -63,7 +64,7 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
             onReady: () => {
               if (sound) {
                 player?.unMute();
-                player?.setVolume(sound.volume);
+                player?.setVolume(Math.min(100, sound.volume));
                 soundTimer = window.setTimeout(() => {
                   silence(false);
                   player?.playVideo();
@@ -195,7 +196,7 @@ function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src:
       if (heard) sound.onEnded();
       else sound.onNoSound();
     };
-    v.volume = Math.max(0, Math.min(1, sound.volume / 100));
+    setLoudness(v, sound.volume / 100);
     v.muted = false;
     v.play().catch((e: unknown) => {
       // Taken away meanwhile (its pause cut the play short): nothing to do.

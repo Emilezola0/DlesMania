@@ -161,6 +161,9 @@ interface ProgressState {
   companions: boolean;
   setCompanions: (on: boolean) => void;
   setCardMotion: (on: boolean) => void;
+  /** A Mythic's or Omni's own volumes, by card id, in percent (100: as it comes; up to 200): its voice line, and its video's sound behind a win. */
+  cardVolume?: Record<string, { voice?: number; clip?: number }>;
+  setCardVolume: (id: string, kind: 'voice' | 'clip', percent: number) => void;
   setVoiceLines: (on: boolean) => void;
   /** Five spare copies of one rarity traded for one new card of it (card id -> copies given). */
   renewCards: (spent: Record<string, number>, gained: string) => void;
@@ -501,6 +504,8 @@ export const useProgress = create<ProgressState>()(
       companions: true,
       setCompanions: (companions) => set({ companions }),
       setCardMotion: (cardMotion) => set({ cardMotion }),
+      setCardVolume: (id, kind, percent) =>
+        set((s) => ({ cardVolume: { ...s.cardVolume, [id]: { ...s.cardVolume?.[id], [kind]: Math.max(0, Math.min(200, Math.round(percent))) } } })),
       setVoiceLines: (voiceLines) => set({ voiceLines }),
       renewCards: (spent, gained) =>
         set((s) => {
