@@ -31,7 +31,8 @@
     "runMax": 200,
     "dailyCap": 1200,
     "afterCap": 0.5,
-    "spacingMs": 8000
+    "spacingMs": 8000,
+    "minRun": 2
   },
   "hot": {
     "bonus": 1,
@@ -112,7 +113,7 @@
     },
     "whos": {
       "icon": "👤",
-      "text": "Play a Who's That? run",
+      "text": "Play a Who's That? run (4 names or more)",
       "need": 1,
       "reward": 250
     }
@@ -151,7 +152,7 @@
       },
       "whos": {
         "icon": "👤",
-        "text": "Play 6 Who's That? runs",
+        "text": "Play 6 Who's That? runs (4 names or more)",
         "need": 6,
         "reward": 2000
       },
@@ -195,7 +196,7 @@
       },
       "whos": {
         "icon": "👤",
-        "text": "Play 60 Who's That? runs",
+        "text": "Play 60 Who's That? runs (4 names or more)",
         "need": 60,
         "reward": 7000
       },
@@ -235,7 +236,7 @@
       {
         "kind": "whos",
         "icon": "👤",
-        "text": "Play a Who's That? run",
+        "text": "Play a Who's That? run (4 names or more)",
         "need": 1,
         "reward": 100
       },
@@ -272,7 +273,7 @@
       {
         "kind": "whos",
         "icon": "👤",
-        "text": "Play 2 Who's That? runs",
+        "text": "Play 2 Who's That? runs (4 names or more)",
         "need": 2,
         "reward": 250
       },

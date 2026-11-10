@@ -19,6 +19,7 @@ import {
   payHot,
   type HotBook,
   bestCounts,
+  countsAsPlayed,
   type ArcadeResult,
   ARCADE_CAP,
   clearReward,
@@ -1013,7 +1014,7 @@ export const useProgress = create<ProgressState>()(
           const bonus = bestCounts(result) && score > 0 && score > (s.bests[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
           const hot = payHot(s.hotGame, todayKey(), key, arcadeCoins(result) + bonus);
           // The games to learn with pay, but don't count for the missions or the quests.
-          const paid = earn(s, hot.amount, { arcade: key, ...(isLearnKey(key) ? {} : { count: { arcade: 1 } }) });
+          const paid = earn(s, hot.amount, { arcade: key, ...(isLearnKey(key) || !countsAsPlayed(result) ? {} : { count: { arcade: 1 } }) });
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
           return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
         }),
@@ -1033,7 +1034,8 @@ export const useProgress = create<ProgressState>()(
         set((s) => {
           const bonus = bestCounts(result) && score > 0 && score > (s.whosThat[key] ?? 0) ? ARCADE_BEST_BONUS : 0;
           const hot = payHot(s.hotGame, todayKey(), `whos:${key}`, arcadeCoins(result) + bonus);
-          const paid = earn(s, hot.amount, { arcade: `whos:${key}`, count: { whos: 1 } });
+          // A run lost at once pays its token but counts for no quest or mission.
+          const paid = earn(s, hot.amount, { arcade: `whos:${key}`, ...(countsAsPlayed(result) ? { count: { whos: 1 } } : {}) });
           return {
             whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
             ...paid,

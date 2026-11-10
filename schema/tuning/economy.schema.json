@@ -155,6 +155,11 @@
           "type": "integer",
           "minimum": 0,
           "description": "A game pays at most once per this many ms"
+        },
+        "minRun": {
+          "type": "number",
+          "minimum": 0,
+          "description": "An endless run (Who's That?, Higher or Lower...) counts for the quests and missions only from this many steps (a Who's That? step is 2 names), so runs lost at once can't fill them"
         }
       },
       "required": [
@@ -165,7 +170,8 @@
         "runMax",
         "dailyCap",
         "afterCap",
-        "spacingMs"
+        "spacingMs",
+        "minRun"
       ],
       "additionalProperties": false,
       "title": "Games page"

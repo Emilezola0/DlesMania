@@ -82,6 +82,12 @@ export function arcadeCoins(r: ArcadeResult): number {
   const u = Math.max(0, r.reached);
   return Math.min(ARCADE_RUN_MAX, 4 + 2 * Math.floor(2 * u + (u * u) / 15));
 }
+/**
+ * Whether a finished game counts for the quests and missions: a game won or lost, a set with something right,
+ * an endless run that got somewhere (T.arcade.minRun steps). A run lost at once (and the page refreshed, again
+ * and again) counts for nothing: it was a way to fill the Who's That? missions in minutes.
+ */
+export const countsAsPlayed = (r: ArcadeResult) => !('save' in r) && ('won' in r ? true : 'ratio' in r ? r.ratio > 0 : r.reached >= T.arcade.minRun);
 /** Whether a result earns the new-best bonus: not a loss, not a mid-run save. */
 export const bestCounts = (r: ArcadeResult) => !('save' in r) && !('won' in r && !r.won) && !('ratio' in r && r.ratio < 0.4);
 export const ARCADE_CAP = T.arcade.dailyCap;
