@@ -493,7 +493,11 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     name: 'The Witness',
     title: "Salvation's Edge",
     line: 'At the summit of its Monolith it waits for the fireteam that came this far: a god of the Darkness, stepping out of its shroud to fight in person.',
-    image: 'https://destiny.wiki.gallery/images/thumb/2/25/Witness_true_battle_dewey_bonczyk.jpg/600px-Witness_true_battle_dewey_bonczyk.jpg',
+    // The owner's picks: the picture (Dexerto, kept in the site) and 12:44 to 13:13 of Lightfall's cutscenes, its
+    // clip in both forms and its voice (it speaks there).
+    image: `${import.meta.env?.BASE_URL ?? './'}art/destiny/the-witness.webp`,
+    voice: '*The Witness speaks*',
+    audio: 'youtube:EHYkm8X0JTw@764-793',
     awaken: {
       title: 'The Final Shape',
       line: 'Its arm comes down on the platform with the weight of a collapsing universe — the last thing between the Light and the end of everything.',
@@ -783,7 +787,7 @@ const CLIPS: Record<string, string> = {
   'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-999',
   'avatar:omni-sokka': 'youtube:R3nvPGzfaCc@0-999',
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
-  'destiny:omni': 'https://media.tenor.com/s0PgNUUj9mAAAAP1/the-witness-destiny-2.mp4',
+  'destiny:omni': 'youtube:EHYkm8X0JTw@764-793',
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
   // Infernus: a fan's painting, the flames around him flickering (Tenor).
   'deadlock:mythic-2': 'https://media.tenor.com/0cyI_TG7YT0AAAPo/infernus-deadlock-deadlock.mp4',
@@ -800,7 +804,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'dbz:omni': 'https://media.tenor.com/Hq39Deua0rQAAAPo/kamehameha-goku.mp4',
   'starwars:omni': 'https://media.tenor.com/0nl9L3UFEQcAAAPo/anakin-vader.mp4',
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
-  'destiny:omni': 'https://media.tenor.com/KOVrUEWcvLQAAAPo/the-witness.mp4',
+  'destiny:omni': 'youtube:EHYkm8X0JTw@764-793',
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
