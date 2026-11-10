@@ -1179,8 +1179,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     audio: 'https://www.myinstants.com/media/sounds/tmpd5y55__3.mp3',
   },
   // Steve as A Minecraft Movie has him (Jack Black), the owner's pick: the film's character poster (Minecraft Wiki),
-  // and "Steve's Lava Chicken" as his clip and his voice, one YouTube moment heard with its picture (the official
-  // music video, WaterTower Music). The set's other Omni and Mythics are the Creeper and the Warden: a new face.
+  // and "Steve's Lava Chicken" as his clip, heard with its own sound (the official music video, WaterTower Music). The set's other Omni and Mythics are the Creeper and the Warden: a new face.
   {
     set: 'minecraft',
     id: 'minecraft:omni-steve',
@@ -1190,8 +1189,17 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     image: 'https://minecraft.wiki/images/AMCM_Character_poster_Steve.jpg',
     focus: { x: 72, y: 45, zoom: 1 },
     description: 'A doorknob salesman who yearned for the mines as a child, then found the portal and stayed: years in the Overworld, a wolf called Dennis, and one song about chicken, lava and a lava chicken.',
-    voice: '♪ Lava chicken! ♪',
-    audio: 'youtube:41O_MydqxTU@23-42',
+    // His voice lines: the film's, the owner's picks, cut from "Minecraft Movie but only THE MEMES" (one at random).
+    // His clip (CLIPS: Steve's Lava Chicken) is heard with its own sound behind a win, not these.
+    voice: 'I am Steve.',
+    audio: 'youtube:54D5u8DnfvE@23.6-26.4',
+    voiceClips: [
+      { line: 'Flint and steel.', audio: 'youtube:54D5u8DnfvE@10.9-12.9' },
+      { line: 'The Nether.', audio: 'youtube:54D5u8DnfvE@18.7-21' },
+      { line: 'I am Steve.', audio: 'youtube:54D5u8DnfvE@23.6-26.4' },
+      { line: 'First we mine, then we craft. Let’s Minecraft!', audio: 'youtube:54D5u8DnfvE@118.2-125.5' },
+    ],
+    clipSound: true,
   },
   // Acheron, raised to Omni (one of Honkai: Star Rail's best-loved characters): her splash art, and the Light Cone
   // drawn for her when she awakens. Her Mythic (hsr:mythic-2) is vaulted, and its owners can pay to upgrade it
