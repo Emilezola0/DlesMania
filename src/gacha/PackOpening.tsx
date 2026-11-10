@@ -276,6 +276,9 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
   };
   let at = 0;
   let clear = 0;
+  // A big drop (a Legendary or better's star, a wish, a star evolving) waits for the one before it to be over:
+  // packed close together (many packs at once), they played on top of each other. Ordinary stars still crowd in.
+  let bigClear = 0;
   return cards.map((c, i) => {
     const ev = events.get(i);
     if (ev) {
@@ -288,9 +291,10 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     const wish = wishes.get(i);
     if (wish) {
       // A wish: among the other stars, a little slower, caught by a golden comet on the way.
-      const star: Star = { to: c.rarity, from: wish.from.rarity, delay: at, duration: WISH_MS, top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -6 - rand() * 10, event: 'wish' };
-      at += gapAt(i, STAR_GAP) + 500;
+      const star: Star = { to: c.rarity, from: wish.from.rarity, delay: Math.max(at, bigClear), duration: WISH_MS, top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -6 - rand() * 10, event: 'wish' };
+      at = star.delay + gapAt(i, STAR_GAP) + 500;
       clear = Math.max(clear, star.delay + star.duration);
+      bigClear = star.delay + star.duration;
       return star;
     }
     // The last star waits for the sky to empty, then a moment more.
@@ -300,10 +304,13 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     const rank = RARITIES.indexOf(c.rarity);
     const from = i === evolving ? RARITIES[rank >= 3 && rand() < COSMIC.deepFake ? rank - 2 : rank - 1] : c.rarity;
     const clash = from !== c.rarity;
+    const big = !orbit && (top(c.rarity) || clash);
+    if (big) at = Math.max(at, bigClear);
     const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash };
     // Many cards (several packs at once): the stars come closer together; a top card's star leaves a little room.
     at += gapAt(i, orbit ? ORBIT_GAP : STAR_GAP) + (top(c.rarity) && !orbit ? 250 : 0);
     clear = Math.max(clear, star.delay + star.duration);
+    if (big) bigClear = star.delay + star.duration;
     return star;
   });
 }
