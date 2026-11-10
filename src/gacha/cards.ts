@@ -281,8 +281,8 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     },
   },
   // Hollow Knight and Silksong: Hornet in Silksong's own art (Hollow Knight Wiki), in her own voice — a line picked
-  // each time she speaks (the game's recordings, from myinstants). Her clip (CLIPS) has no voice of its own: hers
-  // plays over it. No second form, so her clip plays behind a win from the start.
+  // each time she speaks (the game's recordings, from myinstants: the 🔊 button). Her clip (CLIPS) is heard with its
+  // own sound behind a win (clipSound, in STRONG). No second form, so her clip plays behind a win from the start.
   hollowknight: {
     name: 'Hornet',
     title: 'Princess-Protector',
@@ -559,7 +559,7 @@ const JLPT_LINE = new Map([...(JLPT_CARDS.described as JlptRow[]), ...JLPT_ROSTE
  * and Inazuma in Japanese), from the wikis' voice files and myinstants. A card left out keeps its
  * own picture, and its line is read by the browser's voice.
  */
-const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'focus'>>> = {
+const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'focus' | 'clipSound'>>> = {
   // ── First mythics ──
   'lol:mythic': { title: 'Prestige K/DA', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/f/fc/Ahri_PrestigeKDALoading.jpg/revision/latest?cb=20230110233703' },
   'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
@@ -604,6 +604,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'deadlock:mythic': { voice: 'Sleep well.', audio: 'https://cdn.deadlock.wiki/Haze_unselect_05.mp3' },
   'balatro:mythic': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
   'balatro:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
+  // Hornet: her clip is heard with its own sound behind a win (the owner's call); her voice lines stay for the 🔊 button.
+  'hollowknight:omni': { clipSound: true },
   'arcraiders:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/arc-raiders-bastion-lock-on.mp3' },
   'hollowknight:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/zote-war-cry.mp3' },
   'destiny:mythic-2': { voice: 'Indeed.', audio: 'https://www.myinstants.com/media/sounds/indeed_zavala_boosted.mp3' },
@@ -739,7 +741,7 @@ const CLIPS: Record<string, string> = {
   'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-9.7',
   // Hollow Knight and Silksong: Hornet in Silksong (a 4K capture of the Bellhart scene, Sirloin), silent — her own voice
   // plays over it; the other three Omnis' clips are their voices too, each a moment of the game heard with its sound.
-  // Hornet: the owner's pick, 7:07 to 7:24 of this video (her own voice lines play over it).
+  // Hornet: the owner's pick, 7:07 to 7:24 of this video, heard with its own sound (clipSound, in STRONG).
   'hollowknight:omni': 'youtube:wjo-dICMPmM@427-444',
   'hollowknight:omni-hollow-knight': 'youtube:2m_j6Ziz3vQ@8-25',
   'hollowknight:omni-radiance': 'youtube:9rg8UBKtt1o@14-28',
