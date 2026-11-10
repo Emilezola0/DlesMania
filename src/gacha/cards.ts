@@ -602,6 +602,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'hollowknight:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/zote-war-cry.mp3' },
   'destiny:mythic-2': { voice: 'Indeed.', audio: 'https://www.myinstants.com/media/sounds/indeed_zavala_boosted.mp3' },
   'arcraiders:omni': { voice: '*The Matriarch roars*', audio: 'youtube:pkJyYZ7KYwM@72-90' },
+  'balatro:omni': { voice: '♪', audio: 'youtube:9agt18c_V1U@38-56' },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
   'avatar:mythic-sokka': { focus: { x: 50, y: 22, zoom: 1 } },
@@ -703,6 +704,22 @@ const CLIPS: Record<string, string> = {
   'balatro:mythic-2': 'https://media.tenor.com/vyL0YDXO34sAAAPo/balatro-jimbo.mp4',
   'unreal:mythic': 'https://media.tenor.com/ldSMvl-h61wAAAPo/unreal-engine-editor.mp4',
   'jlpt:mythic': 'https://media.tenor.com/6y_x59L0fNEAAAPo/pixel-art.mp4',
+  'jlpt:mythic-2': 'https://media.tenor.com/LVV2rkspHvYAAAPo/oni-mask.mp4',
+  'unreal:mythic-2': 'https://media.tenor.com/kxZgL7zPf0EAAAPo/hello-world.mp4',
+  'forts:mythic-2': 'https://media.tenor.com/Z5O1lUnK9e0AAAPo/forts-forts-game.mp4',
+  'hsr:mythic': 'https://media.tenor.com/v-XMz_8voHIAAAPo/kafka-honkai-star-rail.mp4',
+  'hsr:mythic-2': 'https://media.tenor.com/kEOuplrdMIAAAAPo/acheron-honkai-star-rail.mp4',
+  'hollowknight:mythic': 'https://media.tenor.com/bm0FsIEEUjsAAAPo/silksong-lace.mp4',
+  'hollowknight:mythic-2': 'https://media.tenor.com/ws4DOxdUm0wAAAPo/zote-hollow-knight.mp4',
+  // Haze's Bullet Dance (a player's capture, no interface on screen) and Oryx's Taken sweeping over the Cabal (The
+  // Taken King's official cinematic trailer, 0:50).
+  'deadlock:mythic': 'youtube:YP7usUQ_bg0@0-15',
+  'destiny:mythic-oryx': 'youtube:NXNx_GDqeOQ@50-62',
+  'inazuma:place-steel-tower-plaza': 'https://media.tenor.com/AzaMQlLah0oAAAPo/inazuma-eleven.mp4',
+  'inazuma:place-titanic-stadium': 'https://media.tenor.com/2dDRZieIXqQAAAPo/inazuma-eleven-stadium.mp4',
+  // Awakened Omnis: Firefly as SAM, blazing; Acheron's blade drawn at last.
+  'hsr:omni': 'https://media.tenor.com/V2G-sDi8ZhIAAAPo/firefly-honkai.mp4',
+  'hsr:omni-acheron': 'https://media.tenor.com/pglpLmfus3cAAAPo/acheron-ultimate.mp4',
   'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
   'onepiece:omni': 'https://media.tenor.com/S9Xo7A1m3_EAAAP1/one-piece-onigashima-arc.mp4',
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
@@ -794,6 +811,11 @@ const FIRST_CLIPS: Record<string, string> = {
   // The Matriarch striding in on the Raiders (a showcase of her, 1:12), heard: it's her voice too.
   'arcraiders:omni': 'youtube:pkJyYZ7KYwM@72-90',
   'arcraiders:omni-scrappy': 'https://media.tenor.com/QPXtzw2HKG0AAAPo/scrappy-rooster.mp4',
+  // Firefly's green-flame wings at sunset; Acheron's slash among the red petals.
+  'hsr:omni': 'https://media.tenor.com/umLyC7Vmbu0AAAPo/firefly-honkai-starrail.mp4',
+  'hsr:omni-acheron': 'https://media.tenor.com/G_mwHD_2v78AAAPo/acheron-honkai-star-rail.mp4',
+  // The Soul: Balatro's own short trailer (LocalThunk), a big score then its logo, heard with its music.
+  'balatro:omni': 'youtube:9agt18c_V1U@38-56',
 };
 /** The clips under 150 KB. */
 const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
