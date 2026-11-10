@@ -686,8 +686,8 @@ const CLIPS: Record<string, string> = {
   'minecraft:mythic': 'https://media.tenor.com/G7ryB6dOXCsAAAPo/creeper-creeper-explosion.mp4',
   'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
   'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
-  // Movie Steve: "Steve's Lava Chicken", the whole scene (it's his voice too: heard from the clip).
-  'minecraft:omni-steve': 'youtube:41O_MydqxTU@0-51',
+  // Movie Steve: "Steve's Lava Chicken", 0:23 to 0:42 (the owner's cut; it's his voice too: heard from the clip).
+  'minecraft:omni-steve': 'youtube:41O_MydqxTU@23-42',
   // ── Clips for the Mythics that had none (Tenor; ARC Raiders from YouTube: its official launch trailer, and a
   // showcase of the Matriarch; Victor Blade from the Inazuma Eleven Wiki, heard with its sound) ──
   'dbz:mythic-vegito': 'https://media.tenor.com/gn-zNRi495MAAAPo/vegetto-ssj-blue-final-kamehameha.mp4',
@@ -1179,7 +1179,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 72, y: 45, zoom: 1 },
     description: 'A doorknob salesman who yearned for the mines as a child, then found the portal and stayed: years in the Overworld, a wolf called Dennis, and one song about chicken, lava and a lava chicken.',
     voice: '♪ Lava chicken! ♪',
-    audio: 'youtube:41O_MydqxTU@0-51',
+    audio: 'youtube:41O_MydqxTU@23-42',
   },
   // Acheron, raised to Omni (one of Honkai: Star Rail's best-loved characters): her splash art, and the Light Cone
   // drawn for her when she awakens. Her Mythic (hsr:mythic-2) is vaulted, and its owners can pay to upgrade it
