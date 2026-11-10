@@ -72,10 +72,10 @@ const ALIASES = {
   'Karmelita': ['Skarrsinger Karmelita'],
   'Lugoli': ['Disgraced Chef Lugoli'],
   'Signis & Gron': ['Forebrothers Signis & Gron', 'Signis and Gron'],
-  'Dung Defender': ['Ogrim', 'Isma'],
+  'Dung Defender': ['Ogrim'],
   'Grand Mother Silk': ['Grand Mother', 'Mother Silk'],
 };
-// The fan favourites, best-known first (the ones every Hollow Knight community talks about: Hornet of both games, the
+// The fan favourites, best-known first (the ones every Hollow Knight community talks about: Hornet of both games, the Knight, the
 // Troupe Master, Quirrel, Zote, Silksong's Lace, then the beloved side characters): the first two are legendary cards,
 // the next four epic, then rare; the last a common.
 const FAVOURITES = ['Hornet', 'The Knight', 'Grimm', 'Quirrel', 'Zote', 'Lace', 'Myla', 'Cloth', 'Sherma', 'Shakra', 'Tiso', 'Cornifer'];

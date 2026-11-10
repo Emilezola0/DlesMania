@@ -26701,7 +26701,7 @@
           "Brothers Oro & Mato|Oro and Mato|Oro & Mato",
           "The Collector",
           "Crystal Guardian",
-          "Dung Defender|Ogrim|Isma",
+          "Dung Defender|Ogrim",
           "Elder Hu",
           "Enraged Guardian",
           "Failed Champion",
@@ -26892,7 +26892,7 @@
           "Confessor Jiji",
           "Cornifer",
           "Divine",
-          "Dung Defender|Ogrim|Isma",
+          "Dung Defender|Ogrim",
           "Elderbug",
           "Eternal Emilitia",
           "Fluke Hermit",
@@ -27159,8 +27159,7 @@
       {
         "label": "Dung Defender",
         "aliases": [
-          "Ogrim",
-          "Isma"
+          "Ogrim"
         ],
         "image": "https://cdn.wikimg.net/en/hkwiki/images/0/0e/B_Dung_Defender.png"
       },
@@ -27323,7 +27322,7 @@
             "Brothers Oro & Mato|Oro and Mato|Oro & Mato",
             "The Collector",
             "Crystal Guardian",
-            "Dung Defender|Ogrim|Isma",
+            "Dung Defender|Ogrim",
             "Elder Hu",
             "Enraged Guardian",
             "Failed Champion",
@@ -27554,7 +27553,7 @@
         },
         {
           "text": "A cheerful knight of dung who guards the Royal Waterways",
-          "answer": "Dung Defender|Ogrim|Isma"
+          "answer": "Dung Defender|Ogrim"
         },
         {
           "text": "The last bug left in Dirtmouth, who greets every traveller",
