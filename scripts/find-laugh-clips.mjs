@@ -49,6 +49,11 @@ const REJECTED = new Set([
   'sM8tPIush1k', // "Bartolomeo makes me laugh": not his laugh
   'fQOoo1x0U90', // Gerd laughing at Loki
   'Ljcg0s7nnFE', // "Jango Laugh": not his laugh, over a Sonic picture
+  '2GE2jwcJERk', // a VTuber impersonating Perona
+  'cuvlvSiBckY', // Caribou Coffee, not Caribou
+  'laNRE_BsUkY', // David Brent (The Office), not Road
+  '1nD1SsmN0yM', // Tom Hiddleston's Loki, not One Piece's
+  'VHi7Eu83g_8', // Garp in three languages (dubs included)
 ]);
 /** Laughs with no clip worth playing (searched and wrong): left out of the round. */
 const NO_CLIP = new Set(['jango']);
