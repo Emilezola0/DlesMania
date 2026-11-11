@@ -229,7 +229,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       onPointerMove={move}
       onPointerEnter={(e) => (hoverHero || calm) && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,

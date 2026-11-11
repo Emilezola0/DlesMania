@@ -2730,3 +2730,11 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   html.card-video-playing *::before,
   html.card-video-playing *::after { animation-play-state: paused !important; }
 }
+
+/* Firefox: the face of a card up close stays flat (the card itself still turns in 3D, edge and back included). With
+   the face in 3D, Firefox lost what stands out of it — the Omni crown wasn't drawn at all, the rings were cut off at
+   the sides — and doesn't sort crossing planes anyway; the rings keep their halves (OmniRings), behind and in front.
+   Found with scripts/firefox-check.mjs (the crown came back once the face was flat). */
+@supports (-moz-appearance: none) {
+  .card-3d { transform-style: flat !important; }
+}
