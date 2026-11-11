@@ -7,6 +7,7 @@ import { mergeSaves, pickSave, type SaveData } from '../cloud/merge';
 import { CARD_BY_ID, SETS, RARITY_INFO } from '../gacha/cards';
 import { THEMES, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
+import { RotationSettings } from '../gacha/RotationSettings';
 import { AvatarFrame } from '../casino/Frame';
 import { FRAME_BY_ID } from '../casino/frames';
 import { COSMETIC_BY_ID, NAME_STYLES } from '../casino/cosmetics';
@@ -252,6 +253,7 @@ function Profile() {
       <h2 className="font-display text-lg font-bold">Your cards on show</h2>
       {row('Icon', avatar, () => setAvatar(null))}
       {row('Background', backdrop, () => setBackdrop(null))}
+      <RotationSettings />
       <div className="flex items-center gap-3">
         <AvatarFrame frame={frame?.id}>
           {avatar ? <CardAvatar card={avatar} className="size-10" /> : <span className="block size-10 rounded-full bg-tile" />}

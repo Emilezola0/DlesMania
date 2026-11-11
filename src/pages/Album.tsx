@@ -269,6 +269,9 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const backdrop = useProgress((s) => s.backdrop);
   const setAvatar = useProgress((s) => s.setAvatar);
   const setBackdrop = useProgress((s) => s.setBackdrop);
+  const inIconTurns = useProgress((s) => !!s.rotation?.avatar?.cards.includes(card.id));
+  const inBackdropTurns = useProgress((s) => !!s.rotation?.backdrop?.cards.includes(card.id));
+  const toggleTurn = useProgress((s) => s.toggleInRotation);
   const isAvatar = avatar === card.id;
   const isBackdrop = backdrop === card.id;
   const btn = (on: boolean) => `rounded-full border-2 px-3 py-1.5 text-sm font-bold transition ${on ? 'border-white bg-white text-black' : 'border-white/40 text-white hover:border-white'}`;
@@ -315,6 +318,14 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         <span className="rounded-full border-2 border-dashed border-white/25 px-3 py-1.5 text-sm font-semibold text-white/50" title="Only Rare cards and better can be a background">
           🖼 Background: Rare or better
         </span>
+      )}
+      <button type="button" onClick={() => (sfx.select(), toggleTurn('avatar', card.id))} className={btn(inIconTurns)} title="Your icon takes turns between the cards in this list (Account page)">
+        {inIconTurns ? '✓ In icon turns' : '🔄 Icon turns'}
+      </button>
+      {canBeBackdrop(card) && (
+        <button type="button" onClick={() => (sfx.select(), toggleTurn('backdrop', card.id))} className={btn(inBackdropTurns)} title="Your background takes turns between the cards in this list (Account page)">
+          {inBackdropTurns ? '✓ In background turns' : '🔄 Background turns'}
+        </button>
       )}
       {count > 1 && (
         <button

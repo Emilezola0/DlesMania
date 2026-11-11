@@ -14,7 +14,8 @@
     "data:seed": "node scripts/seed-database.mjs",
     "cards:freeze": "node scripts/freeze-card-rarities.mjs",
     "cards:measure": "node scripts/measure-card-pictures.mjs",
-    "code:hash": "node scripts/hash-code.mjs"
+    "code:hash": "node scripts/hash-code.mjs",
+    "media:sheet": "node scripts/media-sheet.mjs"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",
@@ -32,6 +33,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "ajv": "^8.17.1",
+    "exceljs": "^4.4.0",
     "sharp": "^0.34.4",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.7.2",

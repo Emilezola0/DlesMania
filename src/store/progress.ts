@@ -148,6 +148,8 @@ interface ProgressState {
   avatar: string | null;
   /** A card shown behind the pages (Rare or better). */
   backdrop: string | null;
+  /** Icons and backgrounds taking turns (src/gacha/Rotation.tsx): the cards, when and in what order. */
+  rotation?: Rotation;
   /** Legendary and Mythic icons and backgrounds react to the play (on unless turned off). */
   cardReactions: boolean;
   setCardReactions: (on: boolean) => void;
@@ -289,6 +291,10 @@ interface ProgressState {
   upgradeCard: (id: string) => boolean;
   setAvatar: (cardId: string | null) => void;
   setBackdrop: (cardId: string | null) => void;
+  /** Changes how the icon or the background takes turns (the cards, when, the order). */
+  setRotation: (slot: RotationSlot, patch: Partial<RotationPlan>) => void;
+  /** Puts a card in, or takes it out of, the icon's or the background's turns. */
+  toggleInRotation: (slot: RotationSlot, cardId: string) => void;
   /** Pays for a pack and adds its cards; false (and nothing done) when the coins aren't there. */
   /** `packs`: how many packs that was (five opened at once count as five). */
   openPack: (cost: number, cardIds: string[], packs?: number, pity?: number, golden?: number, omniPity?: number) => boolean;
@@ -854,6 +860,7 @@ export const useProgress = create<ProgressState>()(
           pulledAt: stamp(s.pulledAt, [into]),
           avatar: s.avatar === id ? into : s.avatar,
           backdrop: s.backdrop === id ? into : s.backdrop,
+          ...(s.rotation ? { rotation: renameInRotation(s.rotation, id, into) } : {}),
         });
         return true;
       },
@@ -904,6 +911,13 @@ export const useProgress = create<ProgressState>()(
       },
       setAvatar: (avatar) => set({ avatar }),
       setBackdrop: (backdrop) => set({ backdrop }),
+      setRotation: (slot, patch) => set((s) => ({ rotation: { ...rotationOf(s), [slot]: { ...rotationOf(s)[slot], ...patch } } })),
+      toggleInRotation: (slot, cardId) =>
+        set((s) => {
+          const plan = rotationOf(s)[slot];
+          const cards = plan.cards.includes(cardId) ? plan.cards.filter((c) => c !== cardId) : [...plan.cards, cardId];
+          return { rotation: { ...rotationOf(s), [slot]: { ...plan, cards } } };
+        }),
       openPack: (cost, cardIds, packs = 1, pity, golden, omniPity) => {
         if (get().coins < cost) return false;
         set((s) => {
@@ -1207,6 +1221,30 @@ export const useProgress = create<ProgressState>()(
 setCustomWords(useProgress.getState().jlptCustom);
 
 // ── The trade lock (tradeLock above) ─────────────────────────────────────
+export type RotationSlot = 'avatar' | 'backdrop';
+/** When the next card comes: never, after some wins, once a win's clip has played, each time Omnidle is opened. */
+export type RotationWhen = 'off' | 'win' | 'clip' | 'visit';
+export interface RotationPlan {
+  /** The cards taking turns (the ones no longer owned are skipped). */
+  cards: string[];
+  when: RotationWhen;
+  /** In the list's order, or at random. */
+  order: 'order' | 'random';
+  /** With `when: 'win'`: how many wins between two changes. */
+  every: number;
+}
+export interface Rotation {
+  avatar: RotationPlan;
+  backdrop: RotationPlan;
+}
+const NO_PLAN: RotationPlan = { cards: [], when: 'off', order: 'order', every: 1 };
+export const rotationOf = (s: { rotation?: Rotation }): Rotation => ({ avatar: { ...NO_PLAN, ...s.rotation?.avatar }, backdrop: { ...NO_PLAN, ...s.rotation?.backdrop } });
+/** A card upgraded into another: the new one takes its place in the turns. */
+const renameInRotation = (r: Rotation, id: string, into: string): Rotation => {
+  const ren = (p: RotationPlan) => ({ ...p, cards: [...new Set(p.cards.map((c) => (c === id ? into : c)))] });
+  return { avatar: ren({ ...NO_PLAN, ...r.avatar }), backdrop: ren({ ...NO_PLAN, ...r.backdrop }) };
+};
+
 export interface TradeLock {
   cards: Record<string, number>;
   coins: number;

@@ -4,6 +4,7 @@ import { CARD_BY_ID } from './cards';
 import { OmniAura } from './OmniAura';
 import { CardAvatar, CardBackdrop } from './Perks';
 import { CardReactions } from './Reactions';
+import { CardRotation } from './Rotation';
 import { Companions, FranchiseTheme } from './Theme';
 
 export function CardLayers() {
@@ -11,6 +12,7 @@ export function CardLayers() {
     <>
       <CardBackdrop />
       <CardReactions />
+      <CardRotation />
       <OmniAura />
       <FranchiseTheme />
       <Companions />

@@ -378,7 +378,7 @@ export function Layout() {
   const headerHidden = useHeaderHidden();
   useApplyTheme(theme);
   // A card on show, or a franchise's theme picked outright.
-  const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off')));
+  const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off') || s.rotation?.avatar?.cards.length || s.rotation?.backdrop?.cards.length));
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip max-sm:pb-14">
