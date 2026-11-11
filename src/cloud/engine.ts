@@ -19,7 +19,7 @@ import {
   type User,
 } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, writeBatch } from 'firebase/firestore';
-import { useProgress } from '../store/progress';
+import { coinWatch, useProgress } from '../store/progress';
 import { auth, db } from './firebase';
 import { BY_MONTH, SYNCED, mergeSaves, monthOf, pickSave, type SaveData } from './merge';
 import { SIGNED_IN_FLAG, useCloud } from './state';
@@ -145,7 +145,9 @@ async function pull(uid: string) {
   const cloudNewer = !!cloud && cloud.updatedAt > Number(store.get(CHANGED_KEY) ?? 0);
   const merged = mergeSaves(pickSave(useProgress.getState()), cloud?.data ?? null, { firstLink, cloudNewer });
   applying = true;
+  coinWatch.paused = true;
   useProgress.setState(merged);
+  coinWatch.paused = false;
   applying = false;
   store.set(LINKED_KEY, uid);
   if (firstLink || !cloudNewer) store.set(CHANGED_KEY, String(Date.now()));
@@ -211,7 +213,9 @@ async function signedIn(user: User) {
 function leaveAccount() {
   const fresh = useProgress.getInitialState();
   applying = true;
+  coinWatch.paused = true;
   useProgress.setState({ ...Object.fromEntries(SYNCED.map((k) => [k, fresh[k]])), tradeLock: { cards: {}, coins: 0 } });
+  coinWatch.paused = false;
   applying = false;
   store.set(LINKED_KEY, null);
   store.set(CHANGED_KEY, null);

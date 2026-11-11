@@ -24,6 +24,8 @@ export const SYNCED = [
   'bests',
   'rogueRun',
   'coins',
+  'coinPeak',
+  'coinsSpent',
   'cards',
   'econ',
   'bossWeek',
@@ -240,6 +242,9 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
             ? local.bossWeek
             : cloud.bossWeek,
     coins: latest.coins ?? 0,
+    // The most ever held and all ever spent: the higher of the two (each only grows).
+    coinPeak: Math.max(local.coinPeak ?? 0, cloud.coinPeak ?? 0),
+    coinsSpent: Math.max(local.coinsSpent ?? 0, cloud.coinsSpent ?? 0),
     // The luck and the golden pack's counter of the latest save.
     pity: clampPity(latest.pity),
     golden: clampGolden(latest.golden),

@@ -5,7 +5,7 @@
 import { useMemo } from 'react';
 import { BOSSES } from '../data/bosses';
 import { COLLECTIBLE, SETS } from '../gacha/cards';
-import { bossKey, computeStreak, useProgress } from '../store/progress';
+import { DAILY_DOMAINS, bossKey, computeStreak, dayKey, summarizeDay, useProgress } from '../store/progress';
 import { TITLE_ITEMS } from './cosmetics';
 import { FRAMES } from './frames';
 
@@ -32,7 +32,17 @@ export interface Feats {
   allFrames: boolean;
   /** The Boutique's cosmetics bought (bought titles among them). */
   bought: string[];
+  /** Every card of the Album owned. */
+  album: boolean;
+  /** A perfect day (1000 points) at least once in each of the four dailies. */
+  perfectDailies: boolean;
+  /** The most DleCoins ever held at once, and all ever spent. */
+  coinPeak: number;
+  coinsSpent: number;
 }
+
+/** A perfect day of a daily: every round won at full marks. */
+const PERFECT_DAY = 1000;
 
 /** Dev only (the Test lab): localStorage "omnidle-dev-all-feats" = "1" counts every feat as done (titles, earned frames). */
 export const DEV_ALL_FEATS = 'omnidle-dev-all-feats';
@@ -45,9 +55,9 @@ const allFeats = (): boolean => {
   }
 };
 
-export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened' | 'frames' | 'cosmetics'>): Feats {
+export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened' | 'frames' | 'cosmetics' | 'coins' | 'coinPeak' | 'coinsSpent'>): Feats {
   if (allFeats())
-    return { bestStreak: 999, sets: SETS.map((set) => set.id), packs: 9999, mythic: true, omni: true, hardWins: HARD_BOSSES.length, hardAll: true, hellWins: HARD_BOSSES.length, allFrames: true, bought: TITLE_ITEMS.map((t) => t.id) };
+    return { bestStreak: 999, sets: SETS.map((set) => set.id), packs: 9999, mythic: true, omni: true, hardWins: HARD_BOSSES.length, hardAll: true, hellWins: HARD_BOSSES.length, allFrames: true, bought: TITLE_ITEMS.map((t) => t.id), album: true, perfectDailies: true, coinPeak: 1e10, coinsSpent: 1e10 };
   const owned = s.cards ?? {};
   const wonOn = (id: string, d: 'hard' | 'hell') => (s.bosses?.[bossKey(id, d)]?.wins ?? 0) > 0;
   // A win counts for every lower difficulty too: Hell beats Hard.
@@ -71,6 +81,10 @@ export function featsOf(s: Pick<Save, 'days' | 'cards' | 'bosses' | 'packsOpened
     hellWins: HARD_BOSSES.filter((b) => wonOn(b.id, 'hell')).length,
     allFrames: FRAMES.filter((f) => !f.season).every((f) => frames.has(f.id)),
     bought: s.cosmetics ?? [],
+    album: COLLECTIBLE.every((c) => owned[c.id]),
+    perfectDailies: DAILY_DOMAINS.every((d) => Object.keys(s.days ?? {}).some((k) => k.startsWith(`${d}:`) && k === dayKey(d, k.slice(d.length + 1)) && summarizeDay(s.days[k]).score >= PERFECT_DAY)),
+    coinPeak: Math.max(s.coinPeak ?? 0, s.coins ?? 0),
+    coinsSpent: s.coinsSpent ?? 0,
   };
 }
 
@@ -100,6 +114,15 @@ export const TITLES: { id: string; name: string; how: string; has: (f: Feats) =>
   { id: 'conqueror', name: 'Conqueror', how: 'Beat every boss on Hard', has: (f) => f.hardAll },
   { id: 'hell-walker', name: 'Hell Walker', how: 'Beat a boss on Hell', has: (f) => f.hellWins >= 1 },
   { id: 'frame-hoarder', name: 'Frame Hoarder', how: "Win every frame in the capsule machine (seasonal ones aside)", has: (f) => f.allFrames },
+  { id: 'completionist', name: 'Completionist', how: 'Own every card of the Album', has: (f) => f.album },
+  { id: 'perfectionist', name: 'Perfectionist', how: 'Score 1000 points on each of the four dailies (once each)', has: (f) => f.perfectDailies },
+  { id: 'saver', name: 'Saver', how: 'Hold 100,000 DleCoins at once', has: (f) => f.coinPeak >= 100_000 },
+  { id: 'millionaire', name: 'Millionaire', how: 'Hold 1,000,000 DleCoins at once', has: (f) => f.coinPeak >= 1_000_000 },
+  { id: 'billionaire', name: 'Billionaire', how: 'Hold 1,000,000,000 DleCoins at once', has: (f) => f.coinPeak >= 1_000_000_000 },
+  { id: 'spendthrift', name: 'Spendthrift', how: 'Spend 1,000,000 DleCoins in all', has: (f) => f.coinsSpent >= 1_000_000 },
+  { id: 'money-burner', name: 'Money Burner', how: 'Spend 1,000,000,000 DleCoins in all', has: (f) => f.coinsSpent >= 1_000_000_000 },
+  // A title for each franchise whose set is complete in the Album: its name.
+  ...SETS.map((set) => ({ id: `set-${set.id}`, name: set.franchise, how: `Complete the ${set.franchise} set in the Album`, has: (f: Feats) => f.sets.includes(set.id) })),
   ...TITLE_ITEMS.map((t) => ({ id: t.id.slice('title:'.length), name: t.name, how: t.price || t.tokens ? "Sold in the Casino's Boutique" : 'Won at the claw machine', has: (f: Feats) => f.bought.includes(t.id) })),
 ];
 export const TITLE_BY_ID = new Map(TITLES.map((t) => [t.id, t]));
@@ -112,5 +135,11 @@ export function useFeats(): Feats {
   const packsOpened = useProgress((s) => s.packsOpened);
   const frames = useProgress((s) => s.frames);
   const cosmetics = useProgress((s) => s.cosmetics);
-  return useMemo(() => featsOf({ days, cards, bosses, packsOpened, frames, cosmetics }), [days, cards, bosses, packsOpened, frames, cosmetics]);
+  const coins = useProgress((s) => s.coins);
+  const coinPeak = useProgress((s) => s.coinPeak);
+  const coinsSpent = useProgress((s) => s.coinsSpent);
+  return useMemo(
+    () => featsOf({ days, cards, bosses, packsOpened, frames, cosmetics, coins, coinPeak, coinsSpent }),
+    [days, cards, bosses, packsOpened, frames, cosmetics, coins, coinPeak, coinsSpent],
+  );
 }

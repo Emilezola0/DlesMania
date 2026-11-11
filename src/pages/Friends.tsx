@@ -11,7 +11,7 @@ import { RARITIES, RARITY_INFO } from '../gacha/cards';
 import { DailyDoodle } from '../friends/Doodle';
 import { LuckReport } from '../friends/LuckReport';
 import type { Luck } from '../cloud/luck';
-import { GRADE_BONUS, RARITY_POINTS } from '../friends/score';
+import { ALTERED_FACTOR, GRADE_BONUS, RARITY_POINTS } from '../friends/score';
 import { addDays, fromKey, todayKey } from '../lib/date';
 import { sfx } from '../lib/sfx';
 
@@ -444,7 +444,7 @@ export default function Friends() {
               )}
               <ScoreChart players={players} />
               <p className="text-xs text-ink-faint">
-                The score: each card owned is worth {RARITIES.map((r) => `${RARITY_POINTS[r]} (${RARITY_INFO[r].name})`).join(', ')}, and each grade above the first adds {GRADE_BONUS * 100}% of that.
+                The score: each card owned is worth {RARITIES.map((r) => `${RARITY_POINTS[r]} (${RARITY_INFO[r].name})`).join(', ')}, and each grade above the first adds {GRADE_BONUS * 100}% of that. An Altered card (back from a black hole) counts ×{ALTERED_FACTOR}.
                 A score is noted each day a player comes by; a hollow dot is a day they didn't (their last score carried on).
               </p>
             </section>

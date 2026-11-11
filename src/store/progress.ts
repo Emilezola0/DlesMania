@@ -123,6 +123,10 @@ interface ProgressState {
   bests: Record<string, number>;
   /** DleCoins, to spend on card packs (src/gacha). */
   coins: number;
+  /** The most DleCoins ever held at once (titles: src/casino/unlocks.ts). */
+  coinPeak?: number;
+  /** Every DleCoin ever spent (or traded away), all told (titles). */
+  coinsSpent?: number;
   /** Cards collected: card id -> how many times it was pulled. */
   cards: Record<string, number>;
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
@@ -481,6 +485,8 @@ export const useProgress = create<ProgressState>()(
       whosThat: {},
       bests: {},
       coins: 0,
+      coinPeak: 0,
+      coinsSpent: 0,
       cards: {},
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
@@ -1256,6 +1262,18 @@ useProgress.subscribe((s, before) => {
   if (changed) useProgress.setState({ tradeLock: { cards, coins } });
 });
 useProgress.subscribe((s, before) => s.jlptCustom !== before.jlptCustom && setCustomWords(s.jlptCustom));
+
+/** Set while the cloud puts a save in place (src/cloud/engine.ts): its coins coming or going aren't earned or spent here. */
+export const coinWatch = { paused: false };
+// The most ever held, and all that was spent: kept from every change of the balance (titles).
+useProgress.subscribe((s, before) => {
+  if (s.coins === before.coins && s.coinPeak === before.coinPeak) return;
+  const peak = Math.max(s.coinPeak ?? 0, s.coins ?? 0);
+  const spent = !coinWatch.paused && s.coins < before.coins ? (s.coinsSpent ?? 0) + (before.coins - s.coins) : (s.coinsSpent ?? 0);
+  if (peak !== (s.coinPeak ?? 0) || spent !== (s.coinsSpent ?? 0)) useProgress.setState({ coinPeak: peak, coinsSpent: spent });
+});
+// A save from before these counters: its balance is the peak so far.
+if ((useProgress.getState().coinPeak ?? 0) < useProgress.getState().coins) useProgress.setState({ coinPeak: useProgress.getState().coins });
 
 /** The four category dailies (as in src/data DOMAINS, kept here so the store stays light). */
 export const DAILY_DOMAINS: Domain[] = ['games', 'anime', 'cinema', 'music'];

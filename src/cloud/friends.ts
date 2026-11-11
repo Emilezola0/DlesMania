@@ -70,7 +70,8 @@ function explain(e: unknown): Error {
 /** Today's entry, from this device's save. */
 function today(): DayEntry {
   const s = useProgress.getState();
-  const info = scoreOf(s.cards, s.grades);
+  const altered = new Set([...Object.keys(s.anomalies ?? {}), ...Object.entries(s.anomalyOptions ?? {}).filter(([, o]) => o?.length).map(([id]) => id)]);
+  const info = scoreOf(s.cards, s.grades, altered);
   return [info.score, info.cards, ...info.byRarity, info.grades];
 }
 
