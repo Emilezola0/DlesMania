@@ -164,6 +164,35 @@ export const UNIVERSES = [
 export type UniverseId = (typeof UNIVERSES)[number]['id'];
 
 export const universe = (id: string) => UNIVERSES.find((u) => u.id === id);
+
+const localBanner = (id: string) => `${import.meta.env?.BASE_URL ?? './'}art/specialist/${id}.webp`;
+const wikiBanner = (path: string) => `https://static.wikia.nocookie.net/${path}/revision/latest/scale-to-width-down/960`;
+/**
+ * Each universe's banner, blurred behind its card on the Specialist page: the game's Steam key art, a splash or
+ * official wallpaper (from the wikis, which only let a browser fetch them), Mount Fuji for Japanese; none for
+ * Unreal's Blueprints, drawn as a blueprint grid instead.
+ */
+export const UNIVERSE_BANNER: Record<UniverseId, string | null> = {
+  onepiece: localBanner('onepiece'),
+  lol: localBanner('lol'),
+  marvel: wikiBanner('marvelcinematicuniverse/images/d/d4/Endgame_Banner.jpg'),
+  genshin: wikiBanner('gensin-impact/images/9/96/Version_1.2_Wallpaper_1.webp'),
+  wow: wikiBanner('wowpedia/images/3/38/Jeremy_Sun_wow_wallpaper.jpg'),
+  forhonor: localBanner('forhonor'),
+  overwatch: localBanner('overwatch'),
+  forts: localBanner('forts'),
+  ufouria: localBanner('ufouria'),
+  hollowknight: localBanner('hollowknight'),
+  mha: localBanner('mha'),
+  bg3: localBanner('bg3'),
+  arcraiders: localBanner('arcraiders'),
+  avatar: localBanner('avatar'),
+  deadlock: localBanner('deadlock'),
+  destiny: localBanner('destiny'),
+  hsr: wikiBanner('houkai-star-rail/images/6/62/First_Closed_Beta_Wallpaper.png'),
+  jlpt: localBanner('jlpt'),
+  unreal: null,
+};
 /** The universes shown in gold (the owner's three most important). */
 export const isFeatured = (id: string) => UNIVERSES.some((u) => u.id === id && 'featured' in u && u.featured);
 

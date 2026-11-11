@@ -21,7 +21,7 @@ import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/
 import { EmojiFilmRound, FilmRound, VoiceRound } from '../specialist/games/MarvelRounds';
 import { AbilityRound, LolEmojiRound, LolQuoteRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
-import { SP_META, UNIVERSES, buildSpecialistDaily, isFeatured, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
+import { SP_META, UNIVERSES, UNIVERSE_BANNER, buildSpecialistDaily, isFeatured, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
 import { classicRoundFor, clueRoundFor, danceRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
@@ -117,8 +117,18 @@ export function SpecialistHub() {
         {group.map((u) => {
           const today = Object.values(special[`${u.id}:${todayKey()}`] ?? {}).filter((r) => r.status !== 'playing').length;
           const streak = specialStreak(special, u.id, u.types.length);
+          const banner = UNIVERSE_BANNER[u.id];
           const body = (
             <>
+              {/* The universe's banner, slightly blurred, inside the frame (the corner diamonds stay on top of it). */}
+              <span aria-hidden className="pointer-events-none absolute inset-[6px] -z-10 overflow-hidden rounded-sm">
+                {banner ? (
+                  <img src={banner} alt="" loading="lazy" draggable={false} className="size-full scale-110 object-cover opacity-60 blur-[3px]" />
+                ) : (
+                  <span className="block size-full bg-[#0d3b66] opacity-60 [background-image:linear-gradient(#ffffff22_1px,transparent_1px),linear-gradient(90deg,#ffffff22_1px,transparent_1px)] [background-size:16px_16px] blur-[1px]" />
+                )}
+                <span className="absolute inset-0 bg-gradient-to-br from-card/85 via-card/60 to-card/35" />
+              </span>
               <span className={`font-display text-xl font-bold ${isFeatured(u.id) ? 'golden-text' : ''}`}>{isFeatured(u.id) ? `★ ${u.label}` : u.label}</span>
               <span className="text-sm text-ink-soft">{u.blurb}</span>
               <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
@@ -134,11 +144,11 @@ export function SpecialistHub() {
           return (
             <li key={u.id}>
               {u.ready ? (
-                <Link to={`/specialist/${u.id}`} className={`page flex h-full flex-col gap-1 rounded-md p-5 transition hover:-translate-y-0.5 ${isFeatured(u.id) ? 'golden-ready bg-gradient-to-br from-[#fde68a]/15 to-transparent' : 'ring-2 ring-accent/40'}`}>
+                <Link to={`/specialist/${u.id}`} className={`page isolate flex h-full flex-col gap-1 rounded-md p-5 transition hover:-translate-y-0.5 ${isFeatured(u.id) ? 'golden-ready bg-gradient-to-br from-[#fde68a]/15 to-transparent' : 'ring-2 ring-accent/40'}`}>
                   {body}
                 </Link>
               ) : (
-                <div className="page flex h-full flex-col gap-1 rounded-md p-5 opacity-60">{body}</div>
+                <div className="page isolate flex h-full flex-col gap-1 rounded-md p-5 opacity-60">{body}</div>
               )}
             </li>
           );
