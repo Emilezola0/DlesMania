@@ -486,6 +486,7 @@ const HK: [string, 'Hollow Knight' | 'Silksong' | 'Hollow Knight / Silksong', 'B
   ['The Pale King', 'Hollow Knight', 'Character', 'Male'],
   ['White Lady', 'Hollow Knight', 'Character', 'Female'],
   ['The Radiance', 'Hollow Knight', 'Boss', 'Female'],
+  ['The Hollow Knight', 'Hollow Knight', 'Boss', 'Unknown'],
   ['Mantis Lords', 'Hollow Knight', 'Boss', 'Female'],
   ['Dung Defender', 'Hollow Knight', 'Boss / Character', 'Male'],
   ['Traitor Lord', 'Hollow Knight', 'Boss', 'Male'],
@@ -503,6 +504,7 @@ const HK: [string, 'Hollow Knight' | 'Silksong' | 'Hollow Knight / Silksong', 'B
   ['Karmelita', 'Silksong', 'Boss', 'Female'],
   ['Pinstress', 'Silksong', 'Boss / Character', 'Female'],
   ['First Sinner', 'Silksong', 'Boss', 'Female'],
+  ['Bell Beast', 'Silksong', 'Boss / Character', 'Unknown'],
 ];
 const HK_VOICE = (file: string) => `https://www.myinstants.com/media/sounds/${file}.mp3`;
 
@@ -513,9 +515,12 @@ function hollowKnight(): SimpleUniverse {
   const cards = CARDS.filter((c) => c.set === 'hollowknight' && c.rarity !== 'mythic' && c.rarity !== 'omni');
   return {
     id: 'hollowknight',
-    columns: ['Game', 'Role', 'Gender'],
+    columns: ['Game', 'Role', 'Gender', 'Rarity'],
     lists: ['Game', 'Role'],
-    characters: cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: traits.get(c.name) ?? { Game: 'Unknown', Role: 'Unknown', Gender: 'Unknown' } })),
+    // Only the bugs with their traits (a ticket: no "Unknown" clues, and no little-known faces); their card's rarity as a fourth trait.
+    characters: cards
+      .filter((c) => traits.has(c.name))
+      .map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } })),
     clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
     voices: [
       { answer: 'hornet', en: HK_VOICE('hollow-knight-hornet-voice-11') },
