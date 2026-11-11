@@ -1,5 +1,5 @@
 import { ANOMALIES } from '../gacha/anomalies';
-import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
@@ -94,12 +94,17 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const isVideo = !!form.clip && !form.clipLight && !GIF_CLIP.test(form.clip);
   const [started, setStarted] = useState<string | null>(null);
   const clipHeld = isVideo && started !== form.clip;
+  // Tapped, and its video not showing yet (still getting ready): said under the card.
+  const [showing, setShowing] = useState<string | null>(null);
+  const onClipPlaying = useCallback(() => setShowing(form.clip ?? null), [form.clip]);
+  const clipComing = isVideo && started === form.clip && showing !== form.clip;
   const sfxVolume = useProgress((s) => s.sfxVolume);
   const clipSound = useMemo(
-    () => (card.clipSound && started === form.clip ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, 'clip'), onEnded: () => {}, onNoSound: () => {} } : undefined),
-    // The volume as it was when started: a new one would restart the clip.
+    // Given while it waits too: a YouTube clip gets ready unheard, and is heard from the moment it's let go.
+    () => (card.clipSound ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, 'clip'), onEnded: () => {}, onNoSound: () => {} } : undefined),
+    // The volume as it was when opened: a new one would restart the clip.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [card.id, card.clipSound, started, form.clip],
+    [card.id, card.clipSound, form.clip],
   );
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
   const element = useProgress((s) => s.elements?.[card.id]);
@@ -189,7 +194,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
             <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
-              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate clipHeld={clipHeld} clipSound={clipSound} />
+              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
@@ -200,6 +205,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name, card.set)}</p>
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
+          {clipComing && <p className="mt-2 animate-pulse text-sm font-bold opacity-80">▶ Its video is on its way…</p>}
           {clipHeld && (
             <button type="button" onClick={spinThenPlay}className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               ▶ Play its video

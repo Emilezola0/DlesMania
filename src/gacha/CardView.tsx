@@ -144,7 +144,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, clipHeld, clipSound, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, clipHeld, clipSound, onClipPlaying, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap; a YouTube one gets ready unseen meanwhile). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** Its clip has started (up close). */ onClipPlaying?: () => void; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -201,7 +201,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
     io.observe(el);
     return () => io.disconnect();
   }, [animate, still, motion, form.clipLight]);
-  const clipOn = !lost && !!form.clip && clipFailed !== form.clip && ((animate && !clipHeld) || heroOn || (!still && motion && !!form.clipLight && inView));
+  const clipOn = !lost && !!form.clip && clipFailed !== form.clip && (animate || heroOn || (!still && motion && !!form.clipLight && inView));
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   const tilted = depth || t.x !== 0 || t.y !== 0;
   const hop = heroOn ? ' translateY(-5%) scale(1.1)' : '';
@@ -267,7 +267,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           {/* Its clip (up close, or a light clip once on screen) takes the picture's place as soon as it plays; until then, or if it can't, the picture stays. */}
           {clipOn && (
             <div className="absolute inset-0 overflow-hidden">
-              <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full object-cover" sound={animate ? clipSound : undefined} />
+              <CardClip src={form.clip!} onFail={() => setClipFailed(form.clip!)} className="size-full object-cover" sound={animate ? clipSound : undefined} hold={animate && clipHeld} onPlaying={animate ? onClipPlaying : undefined} />
             </div>
           )}
           {grade > 1 && <GradeEmblem grade={grade} element={el?.id} className="absolute left-[1.5cqw] top-[1.5cqw] w-[17cqw] drop-shadow-[0_2px_3px_rgba(0,0,0,.6)]" />}

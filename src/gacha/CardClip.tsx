@@ -27,17 +27,35 @@ export interface ClipSound {
  * A moment of a YouTube video on a silent loop, hidden until it really plays (no title, no loading screen).
  * With `sound` (a clip that is also its card's voice): heard, once through, its picture and sound from one player, in time.
  */
-function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { id: string; start: number; end: number; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound }) {
+function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound, hold }: { id: string; start: number; end: number; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound; hold?: boolean }) {
   const host = useRef<HTMLDivElement>(null);
   const [playing, setPlaying] = useState(false);
+  const holdRef = useRef(hold);
+  const soundRef = useRef(sound);
+  const goRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    holdRef.current = hold;
+    soundRef.current = sound;
+    if (!hold) goRef.current();
+  }, [hold, sound]);
   useEffect(() => {
     let cancelled = false;
     let player: YTPlayer | null = null;
     let timer: number | undefined;
     let reveal: number | undefined;
     let shown = false;
+    // Held (waiting for a tap): it plays hidden and silent meanwhile, so YouTube's buttons are gone by the time it's let go.
+    const wasHeld = !!hold;
+    let went = false;
+    let settling = false;
+    // Sought back to its start: it may land on a keyframe a little before it — not a reason to seek again (that never ends).
+    let landing = false;
+    const toStart = () => {
+      landing = true;
+      player?.seekTo(start, true);
+    };
     // Heard: once through, then silent on a loop like any clip. Not started in time (its sound blocked): silent, voice played apart.
-    let heard = !!sound;
+    let heard = !!sound && !wasHeld;
     let soundTimer: number | undefined;
     const silence = (ended: boolean) => {
       if (!heard) return;
@@ -50,6 +68,24 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
     // A clip played whole ("@0-999") loops by YouTube's own loop: every seek makes it flash its play button.
     // Heard, it plays once through and is seeked like a moment, so its end is known.
     const whole = start === 0 && end >= WHOLE && !sound;
+    /** Let go once its buttons have faded: from the start, heard and shown at once — picture and sound together. */
+    const go = () => {
+      if (!wasHeld || went || holdRef.current || !shown || !player) return;
+      went = true;
+      settling = true;
+      const s = soundRef.current;
+      if (s) {
+        heard = true;
+        sound = s;
+        player.unMute();
+        player.setVolume(Math.min(100, s.volume));
+      }
+      toStart();
+      player.playVideo();
+      setPlaying(true);
+      onPlaying?.();
+    };
+    goRef.current = go;
     loadYouTube()
       .then((YT) => {
         if (cancelled || !host.current) return;
@@ -62,7 +98,7 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
           playerVars: { autoplay: 1, mute: sound ? 0 : 1, controls: 0, disablekb: 1, modestbranding: 1, rel: 0, playsinline: 1, iv_load_policy: 3, fs: 0, start: Math.floor(start), ...(whole ? { loop: 1, playlist: id } : {}) },
           events: {
             onReady: () => {
-              if (sound) {
+              if (heard && sound) {
                 player?.unMute();
                 player?.setVolume(Math.min(100, sound.volume));
                 soundTimer = window.setTimeout(() => {
@@ -70,7 +106,7 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
                   player?.playVideo();
                 }, SOUND_START_MS);
               } else player?.mute();
-              if (!whole) player?.seekTo(start, true);
+              if (!whole) toStart();
               player?.playVideo();
               if (whole) return;
               // An end past the video's own (a clip played whole: "@0-999") loops at the video's end.
@@ -78,18 +114,25 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
               const stop = length > 0 ? Math.min(end, length - 0.3) : end;
               timer = window.setInterval(() => {
                 const at = player?.getCurrentTime() ?? start;
+                if (at >= start) landing = false;
                 if (at >= stop) silence(true);
-                if (at >= stop || at < start - 0.5) player?.seekTo(start, true);
+                if (at >= stop || (at < start - 0.5 && !landing)) toStart();
               }, LOOP_CHECK_MS);
             },
             onError: () => onFail(),
             onStateChange: (e) => {
+              // Just let go: the seek back to its start buffers a moment; it stays shown (its buttons are long gone).
+              if (settling) {
+                if (e.data === YT_BUFFERING) return;
+                if (e.data === YT_PLAYING) return void (settling = false);
+                settling = false;
+              }
               // Ended anyway (the length wasn't known yet): from the start again.
               if (e.data === YT_ENDED) {
                 silence(true);
                 window.clearTimeout(reveal);
                 setPlaying(false);
-                if (!whole) player?.seekTo(start, true);
+                if (!whole) toStart();
                 return void player?.playVideo();
               }
               // Paused, cued or not started: YouTube draws its big play button, so hide (and play on, if paused).
@@ -111,10 +154,12 @@ function YouTubeLoop({ id, start, end, onFail, onPlaying, className, sound }: { 
               reveal = window.setTimeout(() => {
                 if (cancelled) return;
                 shown = true;
+                // Held: stays hidden until let go (and if it already was, it goes now).
+                if (wasHeld && !went) return go();
                 setPlaying(true);
                 onPlaying?.();
                 // Heard from its first moment: shown sooner (its sound and picture are one).
-              }, shown || sound ? REVEAL_MS : FIRST_REVEAL_MS);
+              }, shown || (sound && !wasHeld) ? REVEAL_MS : FIRST_REVEAL_MS);
             },
           },
         });
@@ -222,9 +267,10 @@ function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src:
  * A card's clip: an MP4, several MP4s played in turn ("a.mp4|b.mp4|c.mp4"), or a moment of a video kept
  * elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once.
  */
-export function CardClip({ src, poster, onFail, onPlaying, className, sound }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound }) {
+export function CardClip({ src, poster, onFail, onPlaying, className, sound, hold }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound; /** Not yet: a YouTube clip readies itself unseen and unheard, anything else waits. */ hold?: boolean }) {
   const yt = YT_VOICE.exec(src);
-  if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} />;
+  if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} hold={hold} />;
+  if (hold) return null;
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
   if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
