@@ -100,11 +100,15 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const clipComing = isVideo && started === form.clip && showing !== form.clip;
   const sfxVolume = useProgress((s) => s.sfxVolume);
   const clipSound = useMemo(
-    // Given while it waits too: a YouTube clip gets ready unheard, and is heard from the moment it's let go.
-    () => (card.clipSound ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, 'clip'), onEnded: () => {}, onNoSound: () => {} } : undefined),
+    // Heard: a clip with its own sound, or one that is its voice line too (the same file). Given while it waits too: a
+    // YouTube clip gets ready unheard, and is heard from the moment it's let go.
+    () =>
+      card.clipSound || (!!form.clip && card.audio === form.clip)
+        ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, card.clipSound ? 'clip' : 'voice'), onEnded: () => {}, onNoSound: () => {} }
+        : undefined,
     // The volume as it was when opened: a new one would restart the clip.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [card.id, card.clipSound, form.clip],
+    [card.id, card.clipSound, card.audio, form.clip],
   );
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
   const element = useProgress((s) => s.elements?.[card.id]);

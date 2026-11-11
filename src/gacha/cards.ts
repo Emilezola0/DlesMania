@@ -525,7 +525,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     // clip in both forms and its voice (it speaks there).
     image: `${import.meta.env?.BASE_URL ?? './'}art/destiny/the-witness.webp`,
     voice: '*The Witness speaks*',
-    audio: 'youtube:EHYkm8X0JTw@764-793',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
     awaken: {
       title: 'The Final Shape',
       line: 'Its arm comes down on the platform with the weight of a collapsing universe — the last thing between the Light and the end of everything.',
@@ -637,7 +637,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'arcraiders:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/arc-raiders-bastion-lock-on.mp3' },
   'hollowknight:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/zote-war-cry.mp3' },
   'destiny:mythic-2': { voice: 'Indeed.', audio: 'https://www.myinstants.com/media/sounds/indeed_zavala_boosted.mp3' },
-  'balatro:omni': { voice: '♪', audio: 'youtube:9agt18c_V1U@38-56' },
+  'balatro:omni': { voice: '♪', audio: `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4` },
   // Toph's picture is wider than tall: the round avatar icon frames her face.
   'avatar:mythic-2': { focus: { x: 40, y: 32, zoom: 1 } },
   'avatar:mythic-sokka': { focus: { x: 50, y: 22, zoom: 1 } },
@@ -687,7 +687,7 @@ const EXTRA: (Pick<Card, 'id' | 'name' | 'image' | 'rarity' | 'title' | 'descrip
     description: 'No bending, just a boomerang, a sword and a plan for everything — and in the stories told about him, he’s twice the size and three times the hero.',
     voice: 'It’s the quenchiest!',
     // His clip's own sound (a ticket: the cactus-juice line wasn't his clip's).
-    audio: 'youtube:R3nvPGzfaCc@0-999',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
   },
   // Inazuma Eleven's places: its stadiums, schools and the steel tower, in the anime's art (the Inazuma Eleven Wiki).
   { set: 'inazuma', id: 'inazuma:place-steel-tower-plaza', name: "Steel Tower Plaza", rarity: 'mythic', title: "Where It All Began", place: true, image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/6/65/%28IE_%28001%29%29_Steel_Tower.png/revision/latest/scale-to-width-down/600?cb=20260628144331', description: "The red steel tower on the hill above Inazuma Town, at sunset: where a boy trained alone with a tyre on a rope until the whole team came to find him." },
@@ -723,15 +723,15 @@ const CLIPS: Record<string, string> = {
   'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
   'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
   // Movie Steve: "Steve's Lava Chicken", 0:23 to 0:42 (the owner's cut; it's his voice too: heard from the clip).
-  'minecraft:omni-steve': 'youtube:41O_MydqxTU@23-42',
+  'minecraft:omni-steve': `${import.meta.env?.BASE_URL ?? './'}clips/minecraft/steve.mp4`,
   // ── Clips for the Mythics that had none (Tenor; ARC Raiders from YouTube: its official launch trailer, and a
   // showcase of the Matriarch; Victor Blade from the Inazuma Eleven Wiki, heard with its sound) ──
   'dbz:mythic-vegito': 'https://media.tenor.com/gn-zNRi495MAAAPo/vegetto-ssj-blue-final-kamehameha.mp4',
   'inazuma:mythic-victor-blade': 'https://static.wikia.nocookie.net/inazuma-eleven/images/8/83/%28GO_%28001%29%29_Death_Sword.mp4/revision/latest?cb=20240323211654',
   'arcraiders:mythic': 'https://media.tenor.com/dv19A6pPFuUAAAPo/leaper-jump.mp4',
   // The Bastion's red targeting laser sweeping the Raiders (launch trailer, 0:57).
-  'arcraiders:mythic-2': 'youtube:IpeJjQDXNAE@57-66',
-  'arcraiders:mythic-matriarch': 'youtube:pkJyYZ7KYwM@30-45',
+  'arcraiders:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/arcraiders/bastion.mp4`,
+  'arcraiders:mythic-matriarch': `${import.meta.env?.BASE_URL ?? './'}clips/arcraiders/matriarch.mp4`,
   'arcraiders:mythic-queen': 'https://media.tenor.com/qkK_T04llkEAAAPo/arc-raiders.mp4',
   'arcraiders:mythic-raider': 'https://media.tenor.com/wMVUVb4SmycAAAPo/arc-raiders-arc-raider.mp4',
   'deadlock:mythic-seven': 'https://media.tenor.com/3l3u2YdpidAAAAPo/seven-ultimate-seven-deadlock.mp4',
@@ -748,8 +748,8 @@ const CLIPS: Record<string, string> = {
   'hollowknight:mythic-2': 'https://media.tenor.com/ws4DOxdUm0wAAAPo/zote-hollow-knight.mp4',
   // Haze's Bullet Dance (a player's capture, no interface on screen) and Oryx's Taken sweeping over the Cabal (The
   // Taken King's official cinematic trailer, 0:50).
-  'deadlock:mythic': 'youtube:YP7usUQ_bg0@0-15',
-  'destiny:mythic-oryx': 'youtube:NXNx_GDqeOQ@50-62',
+  'deadlock:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/deadlock/haze.mp4`,
+  'destiny:mythic-oryx': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/oryx.mp4`,
   'inazuma:place-steel-tower-plaza': 'https://media.tenor.com/AzaMQlLah0oAAAPo/inazuma-eleven.mp4',
   'inazuma:place-titanic-stadium': 'https://media.tenor.com/2dDRZieIXqQAAAPo/inazuma-eleven-stadium.mp4',
   // Awakened Omnis: Firefly as SAM, blazing; Acheron's blade drawn at last.
@@ -757,7 +757,7 @@ const CLIPS: Record<string, string> = {
   'hsr:omni-acheron': 'https://media.tenor.com/pglpLmfus3cAAAPo/acheron-ultimate.mp4',
   'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
   // Luffy awakened: the owner's pick, Gear 5's Gum Gum lightning (Crunchyroll FR), its first 32 s, heard with its own sound.
-  'onepiece:omni': 'youtube:IbO2Kzxdfn0@0-32',
+  'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
@@ -766,15 +766,15 @@ const CLIPS: Record<string, string> = {
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
   // Broly's scream (the owner's BrolyScream): the same moment is his voice, heard from the clip. It stops before the
   // video's end (10.2 s), where YouTube would show its end screen.
-  'dbz:mythic-broly': 'youtube:-Dk7SdXjYD8@0-9.7',
+  'dbz:mythic-broly': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/broly.mp4`,
   // Hollow Knight and Silksong: Hornet in Silksong (a 4K capture of the Bellhart scene, Sirloin), silent — her own voice
   // plays over it; the other three Omnis' clips are their voices too, each a moment of the game heard with its sound.
   // Hornet: the owner's pick, 7:07 to 7:24 of this video, heard with its own sound (clipSound, in STRONG).
-  'hollowknight:omni': 'youtube:wjo-dICMPmM@427-444',
-  'hollowknight:omni-hollow-knight': 'youtube:2m_j6Ziz3vQ@8-25',
-  'hollowknight:omni-radiance': 'youtube:9rg8UBKtt1o@14-28',
-  'hollowknight:omni-grimm': 'youtube:GxHlWoMlBfQ@49-57',
-  'hollowknight:omni-nightmare-king-grimm': 'youtube:7JWQ9KjwPyE@8-19',
+  'hollowknight:omni': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/hornet.mp4`,
+  'hollowknight:omni-hollow-knight': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/the-hollow-knight.mp4`,
+  'hollowknight:omni-radiance': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/radiance.mp4`,
+  'hollowknight:omni-grimm': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/grimm.mp4`,
+  'hollowknight:omni-nightmare-king-grimm': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/nightmare-king-grimm.mp4`,
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -815,12 +815,12 @@ const CLIPS: Record<string, string> = {
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
   // Toph and Sokka: the owner's own clips (YouTube, unlisted), played whole.
-  'avatar:mythic-2': 'youtube:i1WQoVDxU98@0-21',
+  'avatar:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/toph.mp4`,
   // (Sokka's whole clip, with its own sound as his voice line, below.)
-  'avatar:mythic-sokka': 'youtube:R3nvPGzfaCc@0-999',
-  'avatar:omni-sokka': 'youtube:R3nvPGzfaCc@0-999',
+  'avatar:mythic-sokka': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
+  'avatar:omni-sokka': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
-  'destiny:omni': 'youtube:EHYkm8X0JTw@764-793',
+  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
   // Infernus: a fan's painting, the flames around him flickering (Tenor).
   'deadlock:mythic-2': 'https://media.tenor.com/0cyI_TG7YT0AAAPo/infernus-deadlock-deadlock.mp4',
@@ -837,12 +837,12 @@ const FIRST_CLIPS: Record<string, string> = {
   'dbz:omni': 'https://media.tenor.com/Hq39Deua0rQAAAPo/kamehameha-goku.mp4',
   'starwars:omni': 'https://media.tenor.com/0nl9L3UFEQcAAAPo/anakin-vader.mp4',
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
-  'destiny:omni': 'youtube:EHYkm8X0JTw@764-793',
+  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
-  'onepiece:omni': 'youtube:IbO2Kzxdfn0@0-32',
+  'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
   'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
@@ -851,10 +851,10 @@ const FIRST_CLIPS: Record<string, string> = {
   'hsr:omni': 'https://media.tenor.com/umLyC7Vmbu0AAAPo/firefly-honkai-starrail.mp4',
   'hsr:omni-acheron': 'https://media.tenor.com/G_mwHD_2v78AAAPo/acheron-honkai-star-rail.mp4',
   // The Soul: Balatro's own short trailer (LocalThunk), a big score then its logo, heard with its music.
-  'balatro:omni': 'youtube:9agt18c_V1U@38-56',
+  'balatro:omni': `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4`,
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:omni', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
@@ -1160,7 +1160,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 50, y: 22, zoom: 1 },
     description: 'No bending, just a boomerang, a sword and a plan for everything — and in the stories told about him, he’s twice the size and three times the hero.',
     voice: 'It’s the quenchiest!',
-    audio: 'youtube:R3nvPGzfaCc@0-999',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
   },
   // Dragon Ball's fusions and the Legendary Super Saiyan of the Dragon Ball Super film (a ticket), in the anime's
   // and the film's art (Dragon Ball Wiki). Goku and Vegeta already hold the set's Mythics and Omni; these are new faces.
@@ -1192,7 +1192,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 55, y: 30, zoom: 1.55 },
     description: 'Raised alone on Vampa with only his anger, he grows stronger with every blow he takes — and when his rage boils over, the Legendary Super Saiyan has no ceiling.',
     voice: 'RAAAAAAAAAAH!',
-    audio: 'youtube:-Dk7SdXjYD8@0-9.7',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/dbz/broly.mp4`,
   },
   {
     set: 'dbz',
@@ -1271,7 +1271,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     focus: { x: 50, y: 30, zoom: 1 },
     description: 'The vessel the Pale King raised to be perfectly empty, sealed in the Black Egg Temple with a god inside it: chained, cracked, still holding on.',
     voice: '*The Pure Vessel strikes*',
-    audio: 'youtube:2m_j6Ziz3vQ@8-25',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/the-hollow-knight.mp4`,
   },
   {
     set: 'hollowknight',
@@ -1283,7 +1283,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'A god of light the moths once worshipped, forgotten by a king and his kingdom — and her answer was a plague of dreams that turned every bug of Hallownest to her.',
     voice: 'AAAAAAAAH!',
     // The owner's pick: 0:14 to 0:28 of this video, its clip and its voice (one moment, heard).
-    audio: 'youtube:9rg8UBKtt1o@14-28',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/radiance.mp4`,
   },
   {
     set: 'hollowknight',
@@ -1296,7 +1296,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/grimm-mythic.webp`,
     description: 'Master of a troupe that follows the Nightmare Lantern from kingdom to kingdom: a bow, a swirl of red cape, and the scarlet flame of a ritual older than Hallownest.',
     voice: 'Hooseh!',
-    audio: 'youtube:GxHlWoMlBfQ@49-57',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/grimm.mp4`,
   },
   // Nightmare King Grimm, the owner's pick for the set's Omni: the picture (kept in the site; its host refuses other
   // sites) and 0:08 to 0:19 of this video, its clip and its voice.
@@ -1309,7 +1309,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/nightmare-king-grimm.webp`,
     description: 'The troupe master as the ritual really made him: the Nightmare King, all scarlet flame and swirling cape, dancing a fight no one leaves unburnt.',
     voice: '*The Nightmare King roars*',
-    audio: 'youtube:7JWQ9KjwPyE@8-19',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/nightmare-king-grimm.mp4`,
   },
 ];
 

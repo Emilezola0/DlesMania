@@ -10,7 +10,7 @@ import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
-import { cardVolumeOf, playVoice, voiceOf, YT_VOICE } from './voice';
+import { cardVolumeOf, playVoice, voiceOf } from './voice';
 
 /**
  * Each legendary character in their own voice (written for Omnidle, nods to their catchphrases
@@ -203,12 +203,12 @@ export function CardReactions() {
       const own = awake ? (avatar.awaken?.clip ?? avatar.clip) : FIRST_FORM_STILL.has(avatar.id) ? undefined : avatar.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
       const showMoment = kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      // A clip that is also the voice (the same YouTube moment): heard from the clip itself, so they start together.
+      // A clip that is also the voice (the same YouTube moment, or the same MP4): heard from the clip itself, so they start together.
       const st = useProgress.getState();
       const voiced = kind === 'great' && !!avatar.voice && st.sound && st.voiceLines !== false;
       // A clip with its own sound (Gogeta's): that sound is heard behind the win, and the voice line isn't.
       const ownSound = !!clip && clip === avatar.clip && !!avatar.clipSound;
-      const heard = showMoment && voiced && !!clip && (ownSound || (YT_VOICE.test(clip) && voiceOf(avatar).audio === clip));
+      const heard = showMoment && voiced && !!clip && (ownSound || voiceOf(avatar).audio === clip);
       if (kind === 'great' && avatar.voice) {
         voiceUntil.current = Date.now() + 60_000;
         if (!heard) playVoice(avatar, false, () => (voiceUntil.current = 0));

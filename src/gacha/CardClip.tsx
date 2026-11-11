@@ -267,10 +267,11 @@ function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src:
  * A card's clip: an MP4, several MP4s played in turn ("a.mp4|b.mp4|c.mp4"), or a moment of a video kept
  * elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once.
  */
-export function CardClip({ src, poster, onFail, onPlaying, className, sound, hold }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound; /** Not yet: a YouTube clip readies itself unseen and unheard, anything else waits. */ hold?: boolean }) {
+export function CardClip({ src, poster, onFail, onPlaying, className, sound, hold }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound; /** Not yet: a YouTube clip readies itself unseen and unheard, an MP4 loads unseen. */ hold?: boolean }) {
   const yt = YT_VOICE.exec(src);
   if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} hold={hold} />;
-  if (hold) return null;
+  // An MP4 waiting for a tap: loaded meanwhile, unseen, so the tap starts it at once.
+  if (hold) return src.includes('|') || TT_CLIP.test(src) ? null : <video src={src} preload="auto" muted playsInline aria-hidden className={`${className ?? ''} opacity-0`} />;
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
   if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
