@@ -7811,26 +7811,44 @@
       "members": [
         {
           "label": "Iron Man",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Iron_Man_Infobox.jpg/revision/latest/scale-to-width-down/258?cb=20240802142023"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Iron_Man_Infobox.jpg/revision/latest/scale-to-width-down/258?cb=20240802142023",
+          "aliases": [
+            "Tony Stark",
+            "Stark"
+          ]
         },
         {
           "label": "Captain America",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Captain_America_Infobox.jpg/revision/latest/scale-to-width-down/281?cb=20250117164205"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9d/Captain_America_Infobox.jpg/revision/latest/scale-to-width-down/281?cb=20250117164205",
+          "aliases": [
+            "Steve Rogers",
+            "Cap"
+          ]
         },
         {
           "label": "Thor",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/2b/Thor_Infobox.jpg/revision/latest/scale-to-width-down/260?cb=20231021012616"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/2b/Thor_Infobox.jpg/revision/latest/scale-to-width-down/260?cb=20231021012616",
+          "aliases": [
+            "Thor Odinson"
+          ]
         },
         {
           "label": "Hulk",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/29/Hulk_Infobox.jpg/revision/latest/scale-to-width-down/288?cb=20260925124237"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/29/Hulk_Infobox.jpg/revision/latest/scale-to-width-down/288?cb=20260925124237",
+          "aliases": [
+            "Bruce Banner",
+            "The Hulk"
+          ]
         },
         {
           "label": "Black Widow",
           "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/8e/Yelena_Belova_Infobox.jpg/revision/latest/scale-to-width-down/305?cb=20261017030110",
           "fr": "Veuve Noire",
           "aliases": [
-            "Veuve Noire"
+            "Veuve Noire",
+            "Natasha Romanoff",
+            "Natasha Romanova",
+            "Natasha"
           ]
         },
         {
@@ -7838,7 +7856,9 @@
           "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/41/Spider-Man_Infobox.jpg/revision/latest/scale-to-width-down/300?cb=20261016004855",
           "fr": "L'Homme-Araignée",
           "aliases": [
-            "L'Homme-Araignée"
+            "L'Homme-Araignée",
+            "Peter Parker",
+            "Spiderman"
           ]
         },
         {
@@ -7847,14 +7867,18 @@
         },
         {
           "label": "Loki",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b5/Loki_Infobox.png/revision/latest/scale-to-width-down/299?cb=20250203204518"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b5/Loki_Infobox.png/revision/latest/scale-to-width-down/299?cb=20250203204518",
+          "aliases": [
+            "Loki Laufeyson"
+          ]
         },
         {
           "label": "Black Panther",
           "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/93/Black_Panther_Infobox.jpg/revision/latest/scale-to-width-down/282?cb=20261012121856",
           "fr": "Panthère Noire",
           "aliases": [
-            "Panthère Noire"
+            "Panthère Noire",
+            "T'Challa"
           ]
         },
         {
@@ -7862,16 +7886,26 @@
           "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/b/b2/Doctor_Strange_MoM_Profile.jpeg/revision/latest/scale-to-width-down/314?cb=20231021153337",
           "fr": "Docteur Strange",
           "aliases": [
-            "Docteur Strange"
+            "Docteur Strange",
+            "Stephen Strange",
+            "Dr Strange",
+            "Dr. Strange"
           ]
         },
         {
           "label": "Captain Marvel",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/3d/Captain_Marvel_Profile.png/revision/latest/scale-to-width-down/337?cb=20240120054800"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/3d/Captain_Marvel_Profile.png/revision/latest/scale-to-width-down/337?cb=20240120054800",
+          "aliases": [
+            "Carol Danvers"
+          ]
         },
         {
           "label": "Ant-Man",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/46/Ant-Man_Infobox.png/revision/latest/scale-to-width-down/265?cb=20231021014114"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/4/46/Ant-Man_Infobox.png/revision/latest/scale-to-width-down/265?cb=20231021014114",
+          "aliases": [
+            "Scott Lang",
+            "Antman"
+          ]
         },
         {
           "label": "Scarlet Witch",
@@ -7879,12 +7913,17 @@
           "fr": "Sorcière Rouge",
           "aliases": [
             "Sorcière Rouge",
-            "La Sorcière Rouge"
+            "La Sorcière Rouge",
+            "Wanda Maximoff",
+            "Wanda"
           ]
         },
         {
           "label": "Mjølnir",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c9/Reformed_Mjolnir.png/revision/latest/scale-to-width-down/400?cb=20221026062139"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c9/Reformed_Mjolnir.png/revision/latest/scale-to-width-down/400?cb=20221026062139",
+          "aliases": [
+            "Mjolnir"
+          ]
         },
         {
           "label": "Thanos",
@@ -7892,7 +7931,11 @@
         },
         {
           "label": "Star-Lord",
-          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6c/Star-Lord_Infobox.jpg/revision/latest/scale-to-width-down/307?cb=20241126002144"
+          "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6c/Star-Lord_Infobox.jpg/revision/latest/scale-to-width-down/307?cb=20241126002144",
+          "aliases": [
+            "Peter Quill",
+            "Starlord"
+          ]
         },
         {
           "label": "Gamora",
@@ -7984,18 +8027,25 @@
       },
       {
         "label": "Hela",
-        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ae/Hela_Infobox.png/revision/latest/scale-to-width-down/271?cb=20231021034457"
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ae/Hela_Infobox.png/revision/latest/scale-to-width-down/271?cb=20231021034457",
+        "aliases": [
+          "Hela Odinsdottir"
+        ]
       },
       {
         "label": "Red Skull",
         "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/6/6d/Red_Skull_Infobox.png/revision/latest/scale-to-width-down/276?cb=20190808103105",
         "aliases": [
-          "Crâne Rouge"
+          "Crâne Rouge",
+          "Johann Schmidt"
         ]
       },
       {
         "label": "Yondu Udonta",
-        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Yondu_Infobox.png/revision/latest/scale-to-width-down/290?cb=20250204003244"
+        "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/Yondu_Infobox.png/revision/latest/scale-to-width-down/290?cb=20250204003244",
+        "aliases": [
+          "Yondu"
+        ]
       },
       {
         "label": "Korg",
@@ -8051,7 +8101,8 @@
       {
         "label": "Phil Coulson",
         "aliases": [
-          "coulson"
+          "coulson",
+          "Agent Coulson"
         ],
         "image": "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/98/Phil_Coulson_Infobox.jpg/revision/latest/scale-to-width-down/279?cb=20250203215516"
       }
@@ -8224,7 +8275,7 @@
         },
         {
           "text": "Played by Tom Holland",
-          "answer": "Spider-Man"
+          "answer": "Spider-Man|Peter Parker|Spiderman|L'Homme-Araignée"
         },
         {
           "text": "Played by Charlie Cox",
