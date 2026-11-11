@@ -1197,7 +1197,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
       { line: 'Flint and steel.', audio: 'youtube:54D5u8DnfvE@10.9-11.7' },
       { line: 'The Nether.', audio: 'youtube:54D5u8DnfvE@18.7-21' },
       { line: 'I am Steve.', audio: 'youtube:54D5u8DnfvE@22.6-26.4' },
-      { line: 'First we mine, then we craft. Let’s Minecraft!', audio: 'youtube:54D5u8DnfvE@118.2-122' },
+      { line: 'First we mine, then we craft. Let’s Minecraft!', audio: 'youtube:54D5u8DnfvE@118.2-122.3' },
     ],
     clipSound: true,
   },
