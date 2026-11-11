@@ -13,7 +13,7 @@ import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { GradeAllDialog, SellDialog } from '../gacha/BulkActions';
-import { canHear, playVoice } from '../gacha/voice';
+import { canHear, cardVolumeOf, playVoice } from '../gacha/voice';
 import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
@@ -82,9 +82,23 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 /** When the burst comes in the card's collapse (see card-grade-collapse in index.css: 55% of 2.6s). */
 const COLLAPSE_BURST_MS = 1430;
 
+/** A clip that is a GIF (from a GIF site, or a .gif): it loops on its own, no tap needed. */
+const GIF_CLIP = /media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)/i;
+
 function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: number; onClose: () => void; onUpgraded: (into: Card) => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
+  // Its clip: a GIF loops at once; a video waits for a tap on the card (then heard, if its sound is the moment's).
+  const isVideo = !!form.clip && !form.clipLight && !GIF_CLIP.test(form.clip);
+  const [started, setStarted] = useState<string | null>(null);
+  const clipHeld = isVideo && started !== form.clip;
+  const sfxVolume = useProgress((s) => s.sfxVolume);
+  const clipSound = useMemo(
+    () => (card.clipSound && started === form.clip ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, 'clip'), onEnded: () => {}, onNoSound: () => {} } : undefined),
+    // The volume as it was when started: a new one would restart the clip.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [card.id, card.clipSound, started, form.clip],
+  );
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
   const element = useProgress((s) => s.elements?.[card.id]);
   // Bumped on a grade-up (or a new element): the card flares.
@@ -133,8 +147,11 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     start.current = null;
     setDragging(false);
     setRot({ x: 0, y: 0 });
-    // A tap, not a drag: a full spin.
-    if (s && !s.moved) (sfx.whoosh(), setSpin((n) => n + 360));
+    if (!s || s.moved) return;
+    // A tap, not a drag: its video starts if it's waiting, else a full spin.
+    if (clipHeld) return setStarted(form.clip!);
+    sfx.whoosh();
+    setSpin((n) => n + 360);
   };
 
   // Held, the card goes where the hand takes it; let go, it sways.
@@ -162,7 +179,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
             <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
-              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate />
+              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate clipHeld={clipHeld} clipSound={clipSound} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
@@ -173,6 +190,11 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name, card.set)}</p>
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
+          {clipHeld && (
+            <button type="button" onClick={() => setStarted(form.clip!)} className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
+              ▶ Play its video
+            </button>
+          )}
           {canHear(card) && (
             <button type="button" onClick={() => playVoice(card, true)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               🔊 Hear “{card.voice}”
@@ -184,7 +206,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
-          <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
+          <p className="mt-1 text-xs opacity-60">Drag to turn it · {clipHeld ? 'tap to play its video' : 'tap to spin it'} · Esc to close</p>
         </div>
         <UpgradeOffer card={card} onUpgraded={onUpgraded} />
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
