@@ -344,7 +344,8 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     awaken: {
       title: 'Perfected Ultra Instinct',
       line: 'Silver light, a silent mind: the technique even the gods struggle to master, finally his.',
-      image: 'https://static.wikia.nocookie.net/dragonball/images/5/55/Perfected_Ultra_Instinct_Goku_cloaked_in_aura.jpg/revision/latest/scale-to-width-down/500?cb=20210510004359',
+      // The owner's pick: Mastered Ultra Instinct in his aura (wallpapercave, kept in the site).
+      image: `${import.meta.env?.BASE_URL ?? './'}art/dbz/goku-ultra-instinct.webp`,
     },
   },
   naruto: {
