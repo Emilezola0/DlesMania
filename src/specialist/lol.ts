@@ -1,4 +1,6 @@
 import lol from '../data/specialist/lol.json';
+import lolQuotes from '../data/specialist/lol-quotes.json';
+import lolEmoji from '../data/specialist/lol-emoji.json';
 import { SILHOUETTES } from '../data/silhouettes';
 
 /** A League of Legends champion, as built by scripts/build-specialist-lol.mjs (Data Dragon + the League wiki). */
@@ -42,11 +44,21 @@ export const LOL_SILHOUETTE_OF: Map<string, string> = (() => {
   return new Map(LOL.champions.filter((c) => byName.has(c.name)).map((c) => [c.id, byName.get(c.name)!]));
 })();
 
+/**
+ * Each champion's own lines (scripts/build-specialist-lol-quotes.mjs, from the League wiki): the champion select
+ * line every player knows, then the ban line and lines said while moving, as later clues. Its name is masked.
+ */
+export const LOL_QUOTES = (lolQuotes as { generated: string; quotes: Record<string, { pick: string; ban?: string; more: string[] }> }).quotes;
+/** A champion told in five emojis, vaguest first, one more shown with each miss (written for Omnidle). */
+export const LOL_EMOJI = lolEmoji as Record<string, string[]>;
+
 export const LOL_POOLS = {
   classic: LOL.champions.filter((c) => c.complete).map((c) => c.id),
   ability: LOL.champions.map((c) => c.id),
   splash: LOL.champions.map((c) => c.id),
   silhouette: [...LOL_SILHOUETTE_OF.keys()],
+  quote: LOL.champions.filter((c) => LOL_QUOTES[c.id]).map((c) => c.id),
+  emoji: LOL.champions.filter((c) => LOL_EMOJI[c.id]).map((c) => c.id),
 };
 
 export const ABILITY_KEY_NAME = { P: 'passive', Q: 'Q', W: 'W', E: 'E', R: 'ultimate (R)' } as const;

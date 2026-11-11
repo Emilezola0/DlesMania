@@ -1,0 +1,1619 @@
+{
+  "generated": "2026-11-11",
+  "quotes": {
+    "Aatrox": {
+      "pick": "Now, hear the silence of Annihilation",
+      "ban": "Let me end this!",
+      "more": [
+        "The true sound of my blade can only be heard when they loathe re-incarnation.",
+        "The only peace I seek... is death!",
+        "They will call me villain... Come, let me earn their hatred, again and forever.",
+        "I am doom!"
+      ]
+    },
+    "Ahri": {
+      "pick": "A clever fox is never caught.",
+      "ban": "You don't have to be afraid of me.",
+      "more": [
+        "I'm older than all of you combined.",
+        "I know this place... Some part of me remembers.",
+        "I'm not alone anymore. I can trust in others, and in myself.",
+        "I've fought alongside some of the best, you know. So... try to keep up."
+      ]
+    },
+    "Akali": {
+      "pick": "Fear the assassin with no master.",
+      "ban": "You're scared, good to know.",
+      "more": [
+        "Take one life at a time. Fast. Clean.",
+        "Time to do what's gotta be done.",
+        "The rules hold you back! Leave 'em for someone who needs 'em.",
+        "Let's make this quick."
+      ]
+    },
+    "Akshan": {
+      "pick": "Fixing the world, one scoundrel at a time!",
+      "ban": "I'm going to remember this.",
+      "more": [
+        "Shadya would approve of this. I think. You never could tell with her.",
+        "So... this is what it's like to have friends.",
+        "This cape is not up to Sentinel Code. But, neither is the grappling hook, nor the boomerang.",
+        "We are not helpless. We are the ones who shape our destinies. Now, let's go shoot these villains in the face."
+      ]
+    },
+    "Alistar": {
+      "pick": "Nothing can hold me back!",
+      "ban": "Now I'm angry.",
+      "more": []
+    },
+    "Amumu": {
+      "pick": "I thought you'd never pick me.",
+      "ban": "Aww.",
+      "more": [
+        "Where are we going?",
+        "Let's find some friends.",
+        "Come play with me.",
+        "Okay."
+      ]
+    },
+    "Anivia": {
+      "pick": "On my wings.",
+      "ban": "I shall endure.",
+      "more": [
+        "Meaning, in every snowflake.",
+        "Something ancient stirs.",
+        "I am neither the first, nor the last.",
+        "What change will this wind bring?"
+      ]
+    },
+    "Annie": {
+      "pick": "You wanna play too? It'll be fun!",
+      "ban": "I want a turn!",
+      "more": [
+        "♪ Come out, come out, wherever you are! ♪",
+        "Don't be a scaredy cat!",
+        "Try to keep up!",
+        "Are we there yet?"
+      ]
+    },
+    "Aphelios": {
+      "pick": "So many weapons, ▢▢▢. The deadliest is your faith.",
+      "ban": "Condemned to darkness, where our power grows.",
+      "more": [
+        "With every step, two steps. With every breath, two breaths.",
+        "Even from across the celestial veil… I will be with you, brother.",
+        "It always starts with pain. We can only do this together, ▢▢▢.",
+        "Your life upon the altar, brother… I will not betray it."
+      ]
+    },
+    "Ashe": {
+      "pick": "All the world on one arrow.",
+      "ban": "Coward! May you die with your eyes closed.",
+      "more": [
+        "Form up on me. Attack pattern Epsilon.",
+        "Stay frosty.",
+        "Be careful out there.",
+        "Let's move out, team."
+      ]
+    },
+    "AurelionSol": {
+      "pick": "Naturally.",
+      "ban": "Hmph. Tragic.",
+      "more": [
+        "In a constantly shifting cosmos, a world this static is... refreshing.",
+        "Cower, worship, beg, they're all valid reactions.",
+        "There simply are no other dragons like me.",
+        "Hope. Wonder. Insignificance. Imagine what they'll feel when I complete the stars."
+      ]
+    },
+    "Aurora": {
+      "pick": "See with eyes unclouded.",
+      "ban": "I'd rather be home anyway.",
+      "more": [
+        "Unless you know anything about spirits or the Spirit Realm, you'd do well to let me focus on my work.",
+        "Do any of you wanna talk about spirits? ...I'll assume that's a yes!",
+        "I have my book, my wand, my starting supplies... Do I need anything else? Okay... Let's go!",
+        "This region is teeming with wayward spirits. I'll find and help them all."
+      ]
+    },
+    "Azir": {
+      "pick": "Shurima! Your emperor has returned!",
+      "ban": "Your emperor shall return.",
+      "more": [
+        "The world is a desert. I am the oasis.",
+        "Shurima will once again stretch to the horizon.",
+        "It is my time. Put your faith in me.",
+        "Shurima is where all paths converge."
+      ]
+    },
+    "Belveth": {
+      "pick": "I am the voice of the silence.",
+      "ban": "We will be waiting.",
+      "more": [
+        "Let my first steps mark the end of this world.",
+        "You call us nothing, yet we are everything. Every place, every time... we are you.",
+        "All your lives, you have chased your own destruction. At long last, I am here.",
+        "My hunger is endless. It cannot be sated, and it will not be stopped."
+      ]
+    },
+    "Blitzcrank": {
+      "pick": "Fired up and ready to serve.",
+      "ban": "Bone is a poor alternative.",
+      "more": [
+        "Initializing… Blitz, did you forget to fix the sforzandotron?",
+        "The what?",
+        "Blitz! Back on the controls! It's time to conquer the galaxy!",
+        "Aw, but I wanted to dance!"
+      ]
+    },
+    "Brand": {
+      "pick": "Ready to set the world on fire? Heheheh...",
+      "ban": "Going.",
+      "more": [
+        "This body is just one of many!",
+        "You can't contain me, summoner!",
+        "After millennia, I am free!",
+        "Yes..."
+      ]
+    },
+    "Braum": {
+      "pick": "The heart is the strongest muscle.",
+      "ban": "Think carefully, my friend.",
+      "more": [
+        "Good times, good friends... what could be better?",
+        "Shall we begin?",
+        "Ah, new beginnings.",
+        "Is it the moustache? Who knows?"
+      ]
+    },
+    "Briar": {
+      "pick": "Nice to meet you! I'm hungry. I mean... ▢▢▢!",
+      "ban": "Ahh... Is this what people call 'strategy'?",
+      "more": [
+        "Remember. You can choose. Don't need to cut loose right away... You. Can. Choose.",
+        "Let's see! Today, I'm going to... Climb a tree, learn the Noxian anthem, kill my enemies, and... Oh! Make a baby laugh.",
+        "Okay... so, I can go that way... oh, that way, or... that way. Ugh, so many choices! How do you all get anything done?!",
+        "Whose blood are we gonna spill today! I mean... drink. No... share? Ugh, what else do you do with blood..."
+      ]
+    },
+    "Caitlyn": {
+      "pick": "I'm on the case.",
+      "ban": "Shall I turn in my badge and rifle as well?",
+      "more": [
+        "My duty is to protect the citizens of Piltover, and I will see that through.",
+        "So close to a breakthrough. All I must do is connect the dots.",
+        "I'm placing my trust in you lot. Let's see this case through... and try not to disappoint me.",
+        "It's easy to overlook the rust beneath the gilding, but I never miss a detail."
+      ]
+    },
+    "Camille": {
+      "pick": "Precision is the difference between a butcher and a surgeon.",
+      "ban": "I will wait for you to be better.",
+      "more": [
+        "Progress should never be kept waiting.",
+        "I go where the work leads.",
+        "I remain human... for the most part.",
+        "Targets acquired."
+      ]
+    },
+    "Cassiopeia": {
+      "pick": "There is no antidote for me.",
+      "ban": "Think what I could offer.",
+      "more": [
+        "Who will have the 'fortune' of facing me today?",
+        "So many strings waiting to be pulled.",
+        "Another game of snake and mice.",
+        "Careful, now. I bite."
+      ]
+    },
+    "Chogath": {
+      "pick": "You'd wish the world you know to end! Yeeeesssss...",
+      "ban": "Afraid of the dark? Wise!",
+      "more": [
+        "Initializing battle sequence: Annihilation!",
+        "The world of humans is ending!",
+        "Enemy analysis aborted. Subjects unworthy.",
+        "You... are a scourge upon the world."
+      ]
+    },
+    "Corki": {
+      "pick": "I'm up to snuff, and gots me an ace machine!",
+      "ban": "That just goes to show you you're nothin' but a Whiskey Delta!",
+      "more": [
+        "Zoooom...!",
+        "This is Major Tom to ground control!",
+        "Another fine sortie!",
+        "Speed of heat!"
+      ]
+    },
+    "Darius": {
+      "pick": "They will regret opposing me.",
+      "ban": "I do not tolerate cowardice.",
+      "more": [
+        "The dunk prophecies are true. ▢▢▢ has arrived.",
+        "I don't need a buzzer to tell me when to start dominating.",
+        "Autographs after the game.",
+        "Never retreat!"
+      ]
+    },
+    "Diana": {
+      "pick": "A new moon is rising.",
+      "ban": "Ignorant thralls!",
+      "more": [
+        "The Aurora lights the way. I see that it is followed.",
+        "This shall be my last winter.",
+        "Everyone believes they can tilt the scales, but the balance has already been set.",
+        "Let me tell you the deeds of the Aurora's subjects."
+      ]
+    },
+    "DrMundo": {
+      "pick": "The doctor is... uh... in!",
+      "ban": "Me charge cancellation fee.",
+      "more": [
+        "Dear medical journal. First day in new hospital. Already have... uh... five patients.",
+        "Syringes... check. Bandages... check. Dr._Mundo... uh... check.",
+        "Paging Dr._Mundo. Ooh, this is Dr._Mundo! You're wanted in the sick people place. Stat.",
+        "Could someone tell Mundo if there a knife in Mundo's head?"
+      ]
+    },
+    "Draven": {
+      "pick": "Welcome to the League of ▢▢▢.",
+      "ban": "▢▢▢ out!",
+      "more": [
+        "Welcome, ladies and gentlemen, to another exciting edition of the League of ▢▢▢ Championship Series!",
+        "Should've banned ▢▢▢!",
+        "Smooth.",
+        "Man, I'm good."
+      ]
+    },
+    "Ekko": {
+      "pick": "It's not how much time you have, it's how you use it.",
+      "ban": "You used to be cool.",
+      "more": [
+        "Someone's day's about to get wrecked.",
+        "Time to start some trouble.",
+        "Ah… that fresh start smell.",
+        "Zaun is the future."
+      ]
+    },
+    "Elise": {
+      "pick": "Only the spider is safe in her web.",
+      "ban": "Weak-willed fools!",
+      "more": [
+        "I know the true path.",
+        "We must all make sacrifices.",
+        "I know what lurks in the shadows.",
+        "I can show them the way to divinity."
+      ]
+    },
+    "Evelynn": {
+      "pick": "You know you want me.",
+      "ban": "Once again, a woman's left unsatisfied.",
+      "more": [
+        "The moment they think they have me... *laughs* Yeah, that's what I live for.",
+        "Show me the man who has everything, and I'll show you my next victim.",
+        "This craving will soon be sated.",
+        "Drink the pain, toss away the rest."
+      ]
+    },
+    "Ezreal": {
+      "pick": "Quest accepted! ...Wait, where are we going?",
+      "ban": "Hey, your loss. But I get it.",
+      "more": [
+        "Yeah, yeah, yeah. World. Peril. Save it. I got it, I got it.",
+        "Huh, could've sworn there was a hidden entrance around here somewhere...",
+        "Where there's treasure, there's glory. And where there's glory... girls are watching.",
+        "Stick with me and you'll be fine. That's not a guarantee, by the way."
+      ]
+    },
+    "Fiddlesticks": {
+      "pick": "Fear...",
+      "ban": "Afraid...",
+      "more": [
+        "It's hunting us. It knows what we're afraid of.",
+        "Don't be scared. It can't hurt you.",
+        "To our end.",
+        "Come closer. Closer..."
+      ]
+    },
+    "Fiora": {
+      "pick": "I long for a worthy opponent.",
+      "ban": "Poor form!",
+      "more": [
+        "Precision, and grace.",
+        "I have no equal.",
+        "Do not hesitate!",
+        "Sharp blade, sharp mind."
+      ]
+    },
+    "Fizz": {
+      "pick": "Let me at 'em!",
+      "ban": "To the briny deep.",
+      "more": [
+        "I'm ready.",
+        "Swimmingly!",
+        "Come on, let's go!",
+        "Wanna see a trick?"
+      ]
+    },
+    "Galio": {
+      "pick": "Time to make an impact!",
+      "ban": "Back to sleep, then...",
+      "more": [
+        "You know what's hard about fighting? Nothing! Come on, I'm made of stone.",
+        "I've got a high tolerance for magic. Takes a lot for me to feel it.",
+        "As a symbol of this great nation, I say... let's go mess up some mages!",
+        "Know of any battles? Just looking to get my wings dirty."
+      ]
+    },
+    "Gangplank": {
+      "pick": "Neither the flames nor the depths could claim me.",
+      "ban": "I'll come back stronger.",
+      "more": [
+        "They took my ship, I'll take their lives.",
+        "With sword and shot I'll take my island back.",
+        "My flesh will never burn.",
+        "Never trust a bilgerat!"
+      ]
+    },
+    "Garen": {
+      "pick": "My heart and sword always for Demacia.",
+      "ban": "Fear is the first of many foes.",
+      "more": [
+        "The power of the one.",
+        "My will be done.",
+        "For my people, for Demacia, forever!",
+        "The heart of a lion, the might of a god!"
+      ]
+    },
+    "Gnar": {
+      "pick": "▢▢▢ gada!",
+      "ban": "Shubbanuffa.",
+      "more": [
+        "Oga manni maxa.",
+        "Reeshoova!",
+        "Hursh, rao!",
+        "Okalanno mata."
+      ]
+    },
+    "Gragas": {
+      "pick": "If you're buying, I'm in!",
+      "ban": "Yeah, yeah...",
+      "more": [
+        "Don't get pushy!",
+        "Need some grog...",
+        "Oh yeah!",
+        "Get some!"
+      ]
+    },
+    "Graves": {
+      "pick": "Dead man walkin'.",
+      "ban": "End of the line.",
+      "more": [
+        "The best part of being a hero is holding someone up at gunpoint in a dark alley. Or, no, wait, let me try that again.",
+        "I fight on the side of the Light. And ya know what catches light? Gold! Everybody, empty yer pockets!",
+        "Sentinel ▢▢▢ here, doin' hero stuff and... aw, screw it. I'm robbin' everybody!",
+        "I ain't got time to bleed."
+      ]
+    },
+    "Gwen": {
+      "pick": "Head high, chin up, scissors ready!",
+      "ban": "Why not? My scissors don't bite.",
+      "more": [
+        "Scissors, needles, thread; tools of Isolde. She'll always be with me, and I with her.",
+        "What a strange, wonderful world. I must make sure it stays that way.",
+        "Back when I was a doll, I really wanted to fight. This is my chance, my only one.",
+        "Alright everyone. First, we must win. After, I'll be glad to fix any clothes, hair, or broken spirits."
+      ]
+    },
+    "Hecarim": {
+      "pick": "Behold, the might of the Shadow Isles.",
+      "ban": "I do not rest.",
+      "more": [
+        "War is eternal.",
+        "Ride out.",
+        "Their souls beg for release.",
+        "Send me to battle."
+      ]
+    },
+    "Heimerdinger": {
+      "pick": "Indeed, a wise choice.",
+      "ban": "How befuddling!",
+      "more": [
+        "Your first real battle! Are you ready, Pythagoras?",
+        "Alright, everyone! Remember your training and do your best out there!",
+        "Our first live-fire lesson will be conducted in the field.",
+        "Now to apply the foundations of dragonography."
+      ]
+    },
+    "Hwei": {
+      "pick": "A painter meets their subject eye to eye.",
+      "ban": "Art can shed light on our fears.",
+      "more": [
+        "Leave everything to my imagination.",
+        "None of us will leave unchanged. I'll make sense of our suffering.",
+        "There's no secret to art... just begin and keep going. That's all we can do.",
+        "Every question, every burden, every vision: I'll lay them out, here."
+      ]
+    },
+    "Illaoi": {
+      "pick": "I'm not big on sermons—broken bones teach better lessons.",
+      "ban": "Life is too short for fear.",
+      "more": [
+        "It is my burden to carry an eye of god. It is my privilege to see the truth.",
+        "To die is to drown, so I will swim well, till I can swim no more.",
+        "We cannot comprehend the design. A raindrop cannot comprehend a river valley.",
+        "How could I love only one man? They break too easily."
+      ]
+    },
+    "Irelia": {
+      "pick": "Fight for the First Lands!",
+      "ban": "Tyrant!",
+      "more": [
+        "We will live on... Either in victory, or in the scars we leave on them!",
+        "Let them come! This land will be their graveyard!",
+        "They await my words... What should I tell them...?",
+        "I have but one life to give for Ionia. I must make it count."
+      ]
+    },
+    "Ivern": {
+      "pick": "My favorite color is spring.",
+      "ban": "Happy to sit this one out.",
+      "more": [
+        "Live each day as if it's your first.",
+        "The sunshine tastes so good today.",
+        "Feels good to stretch the ole beanstalks!",
+        "What a wonderful day! Gooseberries would love it."
+      ]
+    },
+    "Janna": {
+      "pick": "The tempest is at your command.",
+      "ban": "As you wish.",
+      "more": [
+        "Upon the wind.",
+        "With ease.",
+        "In harmony.",
+        "Breathlessly."
+      ]
+    },
+    "JarvanIV": {
+      "pick": "By my will, this shall be finished.",
+      "ban": "Who dares defy my will?",
+      "more": [
+        "Protect the faithful.",
+        "For my father, the king.",
+        "No quarter for the wicked.",
+        "Find me greater foes."
+      ]
+    },
+    "Jax": {
+      "pick": "Let's do this.",
+      "ban": "Let me at 'em.",
+      "more": [
+        "Listen here, people: I'm not here to clean up your messes! This is a lamp, not a mop!",
+        "If you get lost, look for my light! Unless, of course, it's lodged in somebody's skull.",
+        "Bearing the Light of in a run-of-the-mill lantern? Just my style.",
+        "A battle, here? Huh, I thought they'd never ask!"
+      ]
+    },
+    "Jayce": {
+      "pick": "I fight for a brighter tomorrow.",
+      "ban": "Never look back.",
+      "more": [
+        "I'm always ready.",
+        "Pave the way!",
+        "Powering up!",
+        "Our future will be bright."
+      ]
+    },
+    "Jhin": {
+      "pick": "In carnage, I bloom, like a flower in the dawn.",
+      "ban": "My genius will be understood—eventually.",
+      "more": [
+        "And now, the curtain rises.",
+        "This stage is beneath my talent, but I shall elevate it.",
+        "The stage is set.",
+        "Our performance begins."
+      ]
+    },
+    "Jinx": {
+      "pick": "Rules are made to be broken... like buildings! Or people!",
+      "ban": "Aww, c'mon, what's the worst that could happen?",
+      "more": [
+        "Let's get the sparkle party started.",
+        "To infinity and—uh, oops. Wrong catchphrase!",
+        "You're not dreaming—I'm a Star Guardian now.",
+        "Slogan, catchphrase, tagline!"
+      ]
+    },
+    "KSante": {
+      "pick": "Better to fight, than to live in fear.",
+      "ban": "Only prey flee.",
+      "more": [
+        "Some of us won't see the end. Remember the fallen, as you draw the enemy's blood.",
+        "Hehe, we don't have to be friends. But we do have to fight, together.",
+        "As much as I wish, a single head can't hold counsel. So please, march with me.",
+        "▢▢▢. Hear my name, and know my strength."
+      ]
+    },
+    "Kaisa": {
+      "pick": "Are you the hunter... or the prey?",
+      "ban": "You wouldn't last a day in the Void.",
+      "more": [
+        "My appearance may frighten you, but make no mistake: I am on your side, and we fight to the bitter end.",
+        "This suit lives on me. It calls me home. We survive together...",
+        "Stay with me, and we live.",
+        "When memories fade and darkness surrounds you... find the strength inside."
+      ]
+    },
+    "Kalista": {
+      "pick": "Death to all betrayers.",
+      "ban": "All things have consequence.",
+      "more": [
+        "The blood of kith and kin stains their hands.",
+        "Turncoats, oath breakers and betrayers... we hate them all.",
+        "There can be no justice. Only revenge.",
+        "Promises must be kept."
+      ]
+    },
+    "Karma": {
+      "pick": "Always trust your spirit.",
+      "ban": "We must all make our choices.",
+      "more": [
+        "A battle's end is nigh when royal power is brought to bear.",
+        "The fae all kneel before my crown. Will you?",
+        "Nature's will demands a queen.",
+        "I am the Faerie Queen. Long may I reign."
+      ]
+    },
+    "Karthus": {
+      "pick": "Agony, ecstasy, peace. Every passing has a beauty all its own.",
+      "ban": "Ah, the kiss of death.",
+      "more": [
+        "So many souls await.",
+        "We all have a place among the divine. We have only to accept it.",
+        "My pilgrimage begins.",
+        "Solace comes with a still heart."
+      ]
+    },
+    "Kassadin": {
+      "pick": "The balance of power must be preserved.",
+      "ban": "As you wish.",
+      "more": []
+    },
+    "Katarina": {
+      "pick": "Violence solves everything.",
+      "ban": "Is that fear I smell?",
+      "more": [
+        "They fear the power of my crest and the majesty of my blades.",
+        "Let the coronation bloodbath begin!",
+        "Ready for trouble?",
+        "I've made my choice."
+      ]
+    },
+    "Kayle": {
+      "pick": "They shall tremble at my perfection.",
+      "ban": "I see you lack judgement.",
+      "more": [
+        "With the just hand of law I enter the fray, unbound by this mortal pettiness.",
+        "In me will rise the strength of a thousands swords... The fury of a thousand flames...",
+        "When I looked into my mother's eyes, I saw a paradise for the just and glorious. It is for that world I fight.",
+        "These endless mortal cycles... Cruelty begets suffering. Suffering begets cruelty... It ends with me."
+      ]
+    },
+    "Kayn": {
+      "pick": "Will you prove worthy?",
+      "ban": "The weak fear the shadows.",
+      "more": [
+        "The child is gone. The killer will remain...",
+        "I will survive eternity. They will die today.",
+        "The blood of the fallen will annoint me the new master.",
+        "Everyone does look better in red."
+      ]
+    },
+    "Kennen": {
+      "pick": "The eyes never lie.",
+      "ban": "A silent death!",
+      "more": [
+        "I am the wind!",
+        "Steady...",
+        "Yes yes yes!",
+        "Balance in all things."
+      ]
+    },
+    "Khazix": {
+      "pick": "Change... is good.",
+      "ban": "They fear me.",
+      "more": [
+        "Consume and adapt.",
+        "Position for ambush.",
+        "A different view.",
+        "I sense worthy prey."
+      ]
+    },
+    "Kindred": {
+      "pick": "Never one...",
+      "ban": "You overstep.",
+      "more": [
+        "Every life...",
+        "...ends with us.",
+        "...without the other.",
+        "Have they forgotten us yet, little Lamb?"
+      ]
+    },
+    "Kled": {
+      "pick": "I find courage unpredictable. It's total insanity you can rely on!",
+      "ban": "Oh, I knew you was all yeller!",
+      "more": [
+        "Them's humans!",
+        "Naw, they're good eatin'.",
+        "What was that? Oh, I should go for the decakill? Uh, if you say so.",
+        "It's my property! All sixty gazillion acres of it!"
+      ]
+    },
+    "KogMaw": {
+      "pick": "Time to feast!",
+      "ban": "Hungry never sleep.",
+      "more": [
+        "No rest.",
+        "We go.",
+        "Getting hungry...",
+        "Oblivion come."
+      ]
+    },
+    "Leblanc": {
+      "pick": "The Black Rose shall bloom once more.",
+      "ban": "Are you certain?",
+      "more": [
+        "Where next?",
+        "It's all smoke and mirrors.",
+        "Patience, summoner.",
+        "Tricky, aren't you?"
+      ]
+    },
+    "LeeSin": {
+      "pick": "Your will, my hands.",
+      "ban": "I return to my training.",
+      "more": [
+        "Many monks live in peace. I do not envy them.",
+        "The weight of this power, it will not hold me back.",
+        "My sight may be gone, but my vision holds true.",
+        "I will struggle, I will fail, but to surrender is a privilege I do not have."
+      ]
+    },
+    "Leona": {
+      "pick": "The dawn has arrived.",
+      "ban": "I must not fall.",
+      "more": [
+        "I will protect thee from the ever darkness.",
+        "The sun has gone. But I am here.",
+        "Stand firm in thy faith. This day, we fight as one.",
+        "In the savage twilight, I will be our shield."
+      ]
+    },
+    "Lillia": {
+      "pick": "Me? A dream come true.",
+      "ban": "They're scampering from me?",
+      "more": [
+        "Humans cast a spell every night. Every time they fall asleep.",
+        "The garden is filled with burls. The burls, with nightmares... Mother Tree, I'll remind them how to dream.",
+        "You can do this, ▢▢▢. You are a strong, capable dream fawn. A-and you have a big stick. A-and you hit people with it but don't really mean it! Sorry.",
+        "Where are you, little lost dreams? I'll bring you to your home in the Dreaming Tree."
+      ]
+    },
+    "Lissandra": {
+      "pick": "I will bury the world in ice.",
+      "ban": "Foolish child.",
+      "more": [
+        "All will kneel... in time.",
+        "I see things clearly.",
+        "I will restore Freljord's greatness.",
+        "Plans within plans."
+      ]
+    },
+    "Lucian": {
+      "pick": "Everybody dies. Some just need a little help.",
+      "ban": "You don't have the heart for this.",
+      "more": [
+        "The Mist awaits us all. Say goodbye to whatever you care about.",
+        "I got two guns. One's for what's in front of me, and one's for what's chasin'.",
+        "Ain't enough bullets in the world for all the killin' I'm about to do.",
+        "Look at 'em all. Not even knowin' they're following me to hell."
+      ]
+    },
+    "Lulu": {
+      "pick": "Pleased to meet you!",
+      "ban": "I recommend skipping.",
+      "more": [
+        "Just a pinch!",
+        "Yup, that tasted purple.",
+        "You'll see more with your eyes closed.",
+        "Whoa... dizzy."
+      ]
+    },
+    "Lux": {
+      "pick": "Let's light it up!",
+      "ban": "But all my light puns would've brightened your day.",
+      "more": [
+        "Demacia must lead by example.",
+        "I've been hiding my light long enough.",
+        "The sun is shining; we should too.",
+        "Together! For Demacia!"
+      ]
+    },
+    "Malphite": {
+      "pick": "Rock solid.",
+      "ban": "You will lose.",
+      "more": [
+        "Okay.",
+        "Sure.",
+        "Uh-huh.",
+        "Got it."
+      ]
+    },
+    "Malzahar": {
+      "pick": "Oblivion awaits!",
+      "ban": "It is done.",
+      "more": [
+        "At once.",
+        "Without question.",
+        "It is in motion.",
+        "In due course."
+      ]
+    },
+    "Maokai": {
+      "pick": "The Isles will bloom again!",
+      "ban": "Your reckoning will come either way.",
+      "more": [
+        "Life can come back, once the earth is turned.",
+        "Hold tight, my sapling.",
+        "Beset by spirits, my home laid to waste!... And they call me twisted.",
+        "The water of life succumbed to death. The mortals will follow."
+      ]
+    },
+    "MasterYi": {
+      "pick": "My blade is yours.",
+      "ban": "Doubt is the greatest enemy.",
+      "more": [
+        "Those who would harm us shall be corrected.",
+        "The air carries... a familiar scent.",
+        "Death has marked our enemies. Let us show them.",
+        "A true master is an eternal student."
+      ]
+    },
+    "Milio": {
+      "pick": "Stick with me! I'll keep you warm.",
+      "ban": "What's wrong? Can't take the heat?",
+      "more": [
+        "You guys all look so strong. You can count on me though, I got this!",
+        "This is so cool. My next letter home is gonna be legendary! Tomasín will be so jealous.",
+        "Come on, fuemigos! We got a lot of work to do. Let's start...oh! Over here!",
+        "My fuemigos aren't just cute, they're also helpful. Just wait, I'll show you guys."
+      ]
+    },
+    "MissFortune": {
+      "pick": "Fortune doesn't favor fools.",
+      "ban": "Not a problem.",
+      "more": [
+        "A girl, a galaxy, and some names on a list. Isn't that how it always starts?",
+        "Watch and learn... but mostly just watch.",
+        "Greetings! Your arsenal of death is now available.",
+        "Hmm, no one's walking away from this clean."
+      ]
+    },
+    "Mordekaiser": {
+      "pick": "Destiny. Domination. Deceit.",
+      "ban": "None can escape me.",
+      "more": [
+        "Naive men pray to the gods; they will learn to pray to me.",
+        "I carve my kingdom beyond, from the ashes of nothing, no mortals, not even gods, will stop me from claiming what is mine.",
+        "The world has tried to forget my existence, time to remind them why they fear.",
+        "I have bent the realm of the dead to my will, this world shall be next."
+      ]
+    },
+    "Morgana": {
+      "pick": "I am bound, but I will not break.",
+      "ban": "Your worst decisions will haunt you.",
+      "more": [
+        "They shall feel my pain, and fear for their souls.",
+        "They are not ready for the reflections within my darkness.",
+        "Humans are inherently flawed, and yet I trust them more than the divine.",
+        "With each step I forge my fate in the fires of pain."
+      ]
+    },
+    "Naafiri": {
+      "pick": "We give chase!",
+      "ban": "We won't be muzzled.",
+      "more": [
+        "Let the world hear our howls and know that death awaits.",
+        "One mind, spread among many vessels; this, is the way of the pack.",
+        "The Darkin rise. Five sets of teeth in a ravenous maw.",
+        "What chance will the world have, when the Darkin hunt as one?"
+      ]
+    },
+    "Nami": {
+      "pick": "I decide what the tide will bring.",
+      "ban": "There's always another wave.",
+      "more": [
+        "The Leviathan slumbers in a trench far beneath the waves... the and her knights could ne'er reach them.",
+        "'Heretic' to some, 'apostate' to mine own: the witch ▢▢▢ am I!",
+        "Shrouded by the bottomless sea, we in wait... Now, we strike!",
+        "My pilgrimage begins—out of the shadows, and down upon a path of sacrilege."
+      ]
+    },
+    "Nasus": {
+      "pick": "The cycle of life and death continues,we will live,they will die.",
+      "ban": "Do not try my patience.",
+      "more": [
+        "Burdens sleep best in their tombs.",
+        "For centuries, I have watched.",
+        "Errant words may fell empires.",
+        "There, for grace, I go."
+      ]
+    },
+    "Nautilus": {
+      "pick": "Beware the depths.",
+      "ban": "I will not rest.",
+      "more": [
+        "The tide ebbs.",
+        "Do you hear them calling?",
+        "Lost and forgotten.",
+        "Find the guilty."
+      ]
+    },
+    "Neeko": {
+      "pick": "▢▢▢ is best decision!",
+      "ban": "They cannot handle ▢▢▢.",
+      "more": [
+        "This place tastes like many emotions. Excitement, anger, joy and... salty? Is salty a feeling?",
+        "Co-'om se-henna. Oh, it means like, um... 'we smile forever.' Friends! That is the word! Friends!",
+        "I want to become everybody! Who says I cannot? I will prove them wrong! Then, I will become them. Last laugh? ▢▢▢!",
+        "Sharing memories, colors, feelings is magic! Magic connects people."
+      ]
+    },
+    "Nidalee": {
+      "pick": "The wild calls. I answer.",
+      "ban": "You are right to fear me!",
+      "more": [
+        "I delight in this silence. The quiet before the hunt.",
+        "I am never alone. My tribe lives in my heart, and in my spear.",
+        "Prey hide in the sounds of the wild—listen, then strike.",
+        "The think they can conquer the wilderness, but nature cannot be tamed."
+      ]
+    },
+    "Nilah": {
+      "pick": "Joy, unceasing and forever!",
+      "ban": "I don't blame you. I'm quite strong.",
+      "more": [
+        "I am unbound from the world, mighty and joyous. May evil tremble before me.",
+        "In death, , my spirit is yours. But in life, your strength and joy belong to me.",
+        "Ashlesh, Lord of Joy, for stealing my name and my fate, I claim your power.",
+        "When you flow as water, nothing can harm you."
+      ]
+    },
+    "Nocturne": {
+      "pick": "Embrace the darkness.",
+      "ban": "Afraid of the dark?",
+      "more": [
+        "Ancient was our kind when this world began.",
+        "A dark cloud descends.",
+        "Beyond time we exist.",
+        "This place disgusts me."
+      ]
+    },
+    "Olaf": {
+      "pick": "Leave nothing behind!",
+      "ban": "C'mon, I won't hurt you. I promise!",
+      "more": [
+        "Urge to kill, rising!",
+        "To plunder!",
+        "To action!",
+        "The might of Lokfar approaches!"
+      ]
+    },
+    "Orianna": {
+      "pick": "We will kill your enemies. That will be fun.",
+      "ban": "The ball is angry.",
+      "more": [
+        "We go.",
+        "I hear soft things.",
+        "The ball is impatient.",
+        "Motivating."
+      ]
+    },
+    "Ornn": {
+      "pick": "Fine, we go.",
+      "ban": "Back to the forge.",
+      "more": [
+        "I have fur. It is soft. Do not hug me.",
+        "If all goes well, our paths will never cross again. It never goes well.",
+        "The best meal is a herd of cattle, with dark beer, and cherries... mmm.",
+        "I made this hammer. It was so good I named it... 'Hammer.'"
+      ]
+    },
+    "Pantheon": {
+      "pick": "In battle, we are reborn.",
+      "ban": "Flee, and the spear will find your back.",
+      "more": [
+        "I fight until the blood takes the spear from my grasp, until I can only crawl. And even then, you will not defeat me, even then, I will spit in your face!",
+        "The heavens do not fear me because I am a god, they fear me because I am a man!",
+        "Let this day be legend.",
+        "My name is Soldier. By my spear, they will know war."
+      ]
+    },
+    "Poppy": {
+      "pick": "I'm no hero—just a Yordle with a hammer.",
+      "ban": "Seems you left your brave pants at home. Want me to wait while you go get them?",
+      "more": [
+        "The hammer isn't mine, just keeping it until the real guy shows up.",
+        "I've heard a lot about this hero with a hammer, can't wait to meet him.",
+        "Not coming back 'til I find that hero.",
+        "One time I thought I found the hero... but he died."
+      ]
+    },
+    "Pyke": {
+      "pick": "Sink 'em all.",
+      "ban": "My list just got longer.",
+      "more": [
+        "Hard day's killin' ahead.",
+        "Ain't no high ground high enough, not for the storm that's brewin'.",
+        "I was born where monsters die, I died where monsters are born.",
+        "I've killed a lot of monsters, none of them lived in the sea."
+      ]
+    },
+    "Qiyana": {
+      "pick": "You may now appreciate me.",
+      "ban": "You are right to fear my greatness.",
+      "more": [
+        "Oh, good, servants. Carry my panoply to the battle, would you?",
+        "Cover the ground behind me. None may tread where I have stepped.",
+        "I would say 'watch and learn,' but unfortunately you cannot learn this.",
+        "Is that all they brought to face us? My omele could defeat them, and she is 85."
+      ]
+    },
+    "Quinn": {
+      "pick": "Justice takes wing.",
+      "ban": "I'd keep my head down if I were you.",
+      "more": [
+        "Stay alert.",
+        "Sometimes I swear that bird is just showing off.",
+        "There's always a trail.",
+        "We've got this covered."
+      ]
+    },
+    "Rakan": {
+      "pick": "Let's dance.",
+      "ban": "Seriously? Seriously? Lame.",
+      "more": [
+        "You see this cape? Ha! I say goddamn I'm sexy!",
+        "Nothing important should be taken seriously.",
+        "We are seen dancing and thought insane... by those who can't hear the music.",
+        "Okay, everybody, I'm here, I'm here... the party starts now!"
+      ]
+    },
+    "Rell": {
+      "pick": "Nothing gets in, no one gets out.",
+      "ban": "Weak.",
+      "more": [
+        "Fight like you mean it. Die for something that matters!",
+        "This 'little girl' is about to crush some heads.",
+        "Run 'em all down! We're good, they're bad, and that's all you need to know.",
+        "Memories suck."
+      ]
+    },
+    "Renata": {
+      "pick": "It's 'Miss Glasc'... if you value your life.",
+      "ban": "I won't hold my breath.",
+      "more": [
+        "Ah, my favorite part of the job: product testing.",
+        "Every fashionable Piltovan owns at least one of my products. So trusting, so naive.",
+        "Work for me or work against me, it doesn't matter. Everyone comes to my side eventually.",
+        "Alright, I've got companies to buy and a city to crush, so let's make this quick."
+      ]
+    },
+    "Renekton": {
+      "pick": "As I live, all will die!",
+      "ban": "Chaos will follow.",
+      "more": [
+        "All will suffer as I have!",
+        "Make this hurt...",
+        "Shred their fragile bodies!",
+        "They will feel pain they've never imagined!"
+      ]
+    },
+    "Rengar": {
+      "pick": "Tonight, we hunt!",
+      "ban": "A true hunter never rests.",
+      "more": [
+        "Monsters can be made to fear.",
+        "I seek only the strongest.",
+        "Walk the killer's path.",
+        "Strike when ready."
+      ]
+    },
+    "Riven": {
+      "pick": "What is broken can be reforged.",
+      "ban": "Learn from your mistakes.",
+      "more": [
+        "The universe waits and trembles.",
+        "And all that's best of dark and bright...",
+        "There is no grey; only light and dark.",
+        "I am the conquering light."
+      ]
+    },
+    "Rumble": {
+      "pick": "Let's get in the fight!",
+      "ban": "Alright... I'm going.",
+      "more": [
+        "Who wants a piece of this?",
+        "Who you callin' little?",
+        "You don't have to tell me twice.",
+        "Revved up!"
+      ]
+    },
+    "Ryze": {
+      "pick": "A step ahead of cataclysm.",
+      "ban": "Fine.",
+      "more": [
+        "The things I've seen in the dark corners of Runeterra are better left unseen.",
+        "If I sound rude, it's because I've got a world to save.",
+        "I find the runes so they won't be found by someone else... or some thing.",
+        "Things to do today: find food, build shelter, fix the world."
+      ]
+    },
+    "Samira": {
+      "pick": "You want style? You've found her.",
+      "ban": "Eh, I could do better.",
+      "more": [
+        "Name's ▢▢▢. Try not to slow me down.",
+        "If you can't keep up don't step up. I don't have time for fools.",
+        "Listen up, you sorry lot! Only one rule for this mission: take no prisoners.",
+        "I've got two rules for every fight. Don't ask for permission, don't ask for forgiveness."
+      ]
+    },
+    "Sejuani": {
+      "pick": "Trust nothing but your strength.",
+      "ban": "I won't be denied!",
+      "more": [
+        "You own what you take.",
+        "Fight or make room for those who will.",
+        "Deeds, not words.",
+        "We fight while cowards talk."
+      ]
+    },
+    "Senna": {
+      "pick": "No one fights alone in the Mist.",
+      "ban": "Fine. I don't need more enemies.",
+      "more": [
+        "The mist knows my name. It howled it for years... but it was only asking for help.",
+        "Where I'm going, you don't want to go. Seriously—you don't.",
+        "I'm not running from them anymore. They're running from me.",
+        "When there's no more light, I'll carry their darkness."
+      ]
+    },
+    "Seraphine": {
+      "pick": "Let's change the world!",
+      "ban": "Oookay!",
+      "more": [
+        "I sing to help them find themselves. The stage just makes it easier.",
+        "Everything sings to me! I've gotta sing it all back.",
+        "It can't be as simple as us versus them. I know if I sing loud enough, they'll listen!",
+        "Wow. All these songs sound amazing. I'll bring them into harmony!"
+      ]
+    },
+    "Sett": {
+      "pick": "I'm undisputed.",
+      "ban": "'Ey, never pick a fight you can't win.",
+      "more": [
+        "Wait, hold up. Are we gettin' paid for this?",
+        "Five versus five? Heh. What kinda sicko is runnin' this rumble?",
+        "Okay, everyone here knows how to throw a punch, right? 'Cause I don't have time for lessons.",
+        "Listen up, if any o' you don't die out there, I might have work for ya."
+      ]
+    },
+    "Shaco": {
+      "pick": "How about a magic trick?",
+      "ban": "The joke's on you!",
+      "more": []
+    },
+    "Shen": {
+      "pick": "A demonstration of superior judgement.",
+      "ban": "So I go.",
+      "more": [
+        "With balanced steps.",
+        "Our wills align.",
+        "Press on.",
+        "From the shadows."
+      ]
+    },
+    "Shyvana": {
+      "pick": "They are nothing before me.",
+      "ban": "I smell fear.",
+      "more": [
+        "I go.",
+        "The dragon nears.",
+        "On wings of fury.",
+        "The enemies of Demacia will fall."
+      ]
+    },
+    "Singed": {
+      "pick": "How about a drink?",
+      "ban": "I hear you.",
+      "more": [
+        "Mix, mix, swirl, mix.",
+        "To shake, or not to shake.",
+        "On my way.",
+        "It's nearly time."
+      ]
+    },
+    "Sion": {
+      "pick": "Rest is for the living.",
+      "ban": "You reek of fear!",
+      "more": [
+        "Battle... yes!",
+        "When does the killing start?",
+        "It's been too long.",
+        "I hate this waiting."
+      ]
+    },
+    "Sivir": {
+      "pick": "I always take my toll; blood, or gold.",
+      "ban": "It's just business.",
+      "more": [
+        "You can't tame the desert.",
+        "I make my own fortune.",
+        "I've got values - they stack up nicely.",
+        "Heroes go hungry."
+      ]
+    },
+    "Skarner": {
+      "pick": "I am the vanguard of Ixtal's protection.",
+      "ban": "You've already lost.",
+      "more": [
+        "I have seen the rise and fall of countless civilizations. This is but one moment among many.",
+        "War is a weapon of the weak. I rupture the earth and bring devastation.",
+        "For generations, I have defended Ixtal. I will defend this land, too.",
+        "You want my protection? Prove yourself worthy, and it is yours."
+      ]
+    },
+    "Smolder": {
+      "pick": "I bring the heat!",
+      "ban": "What did I do?",
+      "more": [
+        "I heard that the royal family of Camaroar used to offer rings to my ancestors. Ha, those things must've been humongous.",
+        "My name's Ignacarious Gigantareno Rex Le Spes Offerentis, but my human friend named me ▢▢▢.",
+        "Here he is! The most splendiferous prize of ! Me!",
+        "My wings flap, my sneezes are flame-nados, and my super fire beam breaths are only getting stronger! No more getting treated like a hatchling!"
+      ]
+    },
+    "Sona": {
+      "pick": "What masterpiece shall we play today?",
+      "more": [
+        "Haha. I can never shake the nerves before a big performance.",
+        "I never could refuse an empty stage. Not even this one.",
+        "Curtains up. I'm ready.",
+        "A wrong note is just...a happy little accident."
+      ]
+    },
+    "Soraka": {
+      "pick": "Let me guide you.",
+      "ban": "What must be done.",
+      "more": [
+        "The storm of conflict between the gods has raged for far too long. I will be the light that pierces the clouds.",
+        "I bring the light to burn away the falsehoods of chaos.",
+        "Awaken! Hope and order!",
+        "This is my path."
+      ]
+    },
+    "Swain": {
+      "pick": "Fear the power you do not see.",
+      "ban": "Do not confuse cowardice for wisdom.",
+      "more": [
+        "You can sit on a throne, that doesn't make you a ruler. It only means you have an arse.",
+        "I have seen this place... A vision... A battle.",
+        "The outcome was decided when they brought an army; and I brought a demon.",
+        "If they already call me a villain, what will they call me when I succeed?"
+      ]
+    },
+    "Sylas": {
+      "pick": "No more cages!",
+      "ban": "You can't cage me for long.",
+      "more": [
+        "So... who wants to kill the king?",
+        "The great mage rebellion starts now!",
+        "See the remnants of my bondage, and know you can be free!",
+        "Breaking out was nothing! Watch me break a kingdom."
+      ]
+    },
+    "Syndra": {
+      "pick": "So much untapped power!",
+      "ban": "People fear what they cannot understand.",
+      "more": [
+        "My potential is limitless!",
+        "By force of will.",
+        "Easily.",
+        "Let them try to stop me."
+      ]
+    },
+    "TahmKench": {
+      "pick": "Call me king, call me demon. Water forgets the names of the drowned.",
+      "ban": "You're duller than a broken sandwich.",
+      "more": [
+        "Let us peruse this establishment's fare.",
+        "It is the heart from which the darkest water flows.",
+        "This buffet exceeds repugnance!",
+        "It is my mouth into which all travels end."
+      ]
+    },
+    "Taliyah": {
+      "pick": "Know the loom. Be the stone.",
+      "ban": "Grounded?!",
+      "more": [
+        "The ground here conceals a mighty power.",
+        "Every tapestry begins with a single stitch.",
+        "Time to apply what I've learned.",
+        "Time to roll up my sleeves."
+      ]
+    },
+    "Talon": {
+      "pick": "Live and die by the blade.",
+      "ban": "Pathetic!",
+      "more": [
+        "They won't survive.",
+        "Only fools pledge life to honor.",
+        "On the razor's edge.",
+        "I never compromise."
+      ]
+    },
+    "Taric": {
+      "pick": "That glimmer of hope you see, that's me.",
+      "ban": "Your judgement is clouded. Seek clarity.",
+      "more": [
+        "There is great power in the stars. Great danger as well.",
+        "Crash the mountain upon them.",
+        "The most precious jewel is the one we hold in our heart.",
+        "There's nowhere left to go but up."
+      ]
+    },
+    "Teemo": {
+      "pick": "Captain ▢▢▢ on duty.",
+      "ban": "Yes, sir!",
+      "more": [
+        "Survive here a week, then you get a name.",
+        "There's a mushroom out there with your name on it.",
+        "The war never ends, the battlefield just changes.",
+        "Survival ain't pretty."
+      ]
+    },
+    "Thresh": {
+      "pick": "What delightful agony we shall inflict.",
+      "ban": "It's over when I say.",
+      "more": [
+        "No weapon in any reality can harm us.",
+        "Stars cold of life. Silent in the darkness.",
+        "I will guide them beyond the brink of infinity.",
+        "Torment comes in so many flavors."
+      ]
+    },
+    "Tristana": {
+      "pick": "Once a Bandle gunner, always a Bandle gunner!",
+      "ban": "Let me get in there!",
+      "more": [
+        "I call frontline.",
+        "I bravely volunteer to charge in recklessly!",
+        "Locked, loaded, and ready to rocket!",
+        "Walking tall."
+      ]
+    },
+    "Trundle": {
+      "pick": "Time to troll!",
+      "ban": "Pathetic!",
+      "more": [
+        "I'm troll judge, troll jury, and execu... troll!",
+        "The Freljord is mine!",
+        "King of trolls, coming through.",
+        "I'm the troll with the plan."
+      ]
+    },
+    "Tryndamere": {
+      "pick": "This'll be a slaughter.",
+      "ban": "As you wish.",
+      "more": [
+        "No salvation.",
+        "There is no going back.",
+        "Soon all will join me.",
+        "Must... go."
+      ]
+    },
+    "TwistedFate": {
+      "pick": "Lady Luck is smilin'.",
+      "ban": "I reckon.",
+      "more": [
+        "Charmed, I'm sure.",
+        "Doin' it.",
+        "I'm one of a kind.",
+        "It's my lucky day."
+      ]
+    },
+    "Twitch": {
+      "pick": "What doesn't kill you just isn't finished yet.",
+      "ban": "I'm on to you!",
+      "more": [
+        "Hey, what did I step in?",
+        "From out of the sewers comes... doom.",
+        "Who let all these plants survive?",
+        "Ohoho, yes, yes..."
+      ]
+    },
+    "Udyr": {
+      "pick": "Conflict feeds the Freljord.",
+      "ban": "Gutless.",
+      "more": [
+        "The spirits at the heart of the Freljord have need of me. I answer their call.",
+        "Hear me, spirits. I pray for struggle. I pray for growth.",
+        "I can taste our enemies' hunger for victory. Let them starve.",
+        "For many years I thought I was cursed. I still wonder."
+      ]
+    },
+    "Urgot": {
+      "pick": "You cannot know strength... Until you are broken.",
+      "ban": "Cling to hope... It is all you have.",
+      "more": [
+        "If they could only comprehend the truth of the Dredge... I wouldn't need to drive it into their skulls.",
+        "Enjoy this final moment... before your trial begins.",
+        "It is time... for them to die.",
+        "Controlling them will be simple... with my hand around their throats."
+      ]
+    },
+    "Varus": {
+      "pick": "The guilty will know agony.",
+      "ban": "I have no grace to give.",
+      "more": [
+        "No mercy, no forgiveness. Mortal or monster, all will fall.",
+        "Every step forward...",
+        "...is stolen.",
+        "I move toward the vengeance I deserve."
+      ]
+    },
+    "Vayne": {
+      "pick": "Let us hunt those who have fallen to darkness.",
+      "ban": "Impure fools.",
+      "more": [
+        "Hunting directive: active.",
+        "Delete the past. I am the future.",
+        "Only one protocol remains: the hunt.",
+        "The hunt is the same, only the weapons have changed."
+      ]
+    },
+    "Veigar": {
+      "pick": "Know that if the tables were turned, I would show you no mercy!",
+      "ban": "Your commands tire me.",
+      "more": [
+        "My every victory symbolizes the crumbling of justice!",
+        "Unimaginable is the power of ▢▢▢!",
+        "Welcome to your doom!",
+        "Champions! Welcome to die!"
+      ]
+    },
+    "Velkoz": {
+      "pick": "Knowledge through... disintegration.",
+      "ban": "That's unexpected.",
+      "more": [
+        "My presence causes them... distress.",
+        "A land rich with information...",
+        "What else can I discover?",
+        "The light here is harsh."
+      ]
+    },
+    "Vex": {
+      "pick": "'Kay. See if I care.",
+      "ban": "'Kay. See if I care.",
+      "more": [
+        "And then I told her, 'Get outta my room!' And she said, 'This is my house, young lady and'... Oh, hang on, Shadow. I'll finish this later.",
+        "Blegh, just got here: already over it.",
+        "Other people are here? Ugggh, great.",
+        "This is going to be... awful, in a very good way. A good, awful way. You know what I mean!"
+      ]
+    },
+    "Vi": {
+      "pick": "Punch first. Ask questions while punching.",
+      "ban": "If I want your opinion, I'll beat it out of you.",
+      "more": [
+        "Here I come to save the day... or wreck it.",
+        "I'm doing this my way.",
+        "I let my hands do the talking.",
+        "Piltover's finest."
+      ]
+    },
+    "Viego": {
+      "pick": "Love ruins all.",
+      "ban": "My heart was already broken.",
+      "more": [
+        "She waits for me beyond the mist. My queen. My love. My black and broken heart.",
+        "No price is too great. No atrocity beyond my reach. For her, I will do anything.",
+        "Submission or death for all who live. In the end, it matters not. I will see her face again.",
+        "It hurts, my heart. It hurts so much."
+      ]
+    },
+    "Viktor": {
+      "pick": "Join the glorious evolution.",
+      "ban": "Inferior constructs.",
+      "more": [
+        "Function over form.",
+        "All will soon change.",
+        "Metal is perfection.",
+        "Embrace progress."
+      ]
+    },
+    "Vladimir": {
+      "pick": "The rivers will run red.",
+      "ban": "I'm absolutely livid.",
+      "more": [
+        "Wonderful.",
+        "My cup is half empty.",
+        "The clot thickens.",
+        "Please, let it all out."
+      ]
+    },
+    "Volibear": {
+      "pick": "Feel the power of the wild.",
+      "ban": "You have the heart of a weakling.",
+      "more": [
+        "The land will exist far longer than warm-bloods.",
+        "The land belongs to the wild. Today, we reclaim it with tooth and claw.",
+        "Their bones are ash and soil. Mine rumble with wild thunder.",
+        "Follow me and we will bring down sky!"
+      ]
+    },
+    "Warwick": {
+      "pick": "Blood runs... they all run.",
+      "ban": "They fear me. They should.",
+      "more": [
+        "The chains are broken... the beast is free.",
+        "The blood you spilled calls to me.",
+        "Oh, what a day. What a bloody day.",
+        "Violence supercharged!"
+      ]
+    },
+    "MonkeyKing": {
+      "pick": "I will be the best.",
+      "ban": "Who questions my ability?",
+      "more": []
+    },
+    "Xayah": {
+      "pick": "I can never resist an invitation to dance.",
+      "ban": "Fine, I'll just be over here... sharpening my feathers.",
+      "more": [
+        "Let's cut 'em to ribbons.",
+        "Ah, silence, so golden. Like Rakan. Kind of miss him. Even if he is... noisy.",
+        "The vastaya named the world. We named the trees, the wind, the mountains. We know their power.",
+        "If love is feeling so deeply for another that you want to chew your way under their skin, then I love Rakan..."
+      ]
+    },
+    "Xerath": {
+      "pick": "I will be free.",
+      "ban": "Simple fools.",
+      "more": [
+        "The world may crumble, but I shall remain.",
+        "I am eternal.",
+        "I will show you true power.",
+        "I will be their undoing."
+      ]
+    },
+    "XinZhao": {
+      "pick": "To the arena!",
+      "ban": "The warrior's spirit is never broken.",
+      "more": [
+        "My king commands.",
+        "It shall be done!",
+        "To triumph!",
+        "A Demacian does not retreat."
+      ]
+    },
+    "Yasuo": {
+      "pick": "Death is like the wind—always by my side.",
+      "ban": "No cure for fools.",
+      "more": [
+        "Whispers on the wind speak of a masked swordsman with two blades.",
+        "My brother returned. Seems dying was the easy part.",
+        "This story is not yet finished.",
+        "Justice. That's a pretty word."
+      ]
+    },
+    "Yone": {
+      "pick": "One to cut, one to seal.",
+      "ban": "You think I am the one to fear? Hmph.",
+      "more": [
+        "Before, I chased a wayward gale. Now I hunt a storm of darkness.",
+        "Many mistake me for the nightmares I slay. Hmph, let them.",
+        "In this cursed second life, where does the mask end, and I begin?",
+        "They look at me and see only the mask."
+      ]
+    },
+    "Yorick": {
+      "pick": "Fear not... I will make use of your corpse.",
+      "ban": "It's your funeral.",
+      "more": [
+        "I once had honor... before the Ruination.",
+        "This land will never heal. But I will lay it to rest.",
+        "Tired, ancient, and half-dead. Still, I come for you.",
+        "I am the rift between life and death. The thin divide between breath and grave."
+      ]
+    },
+    "Yuumi": {
+      "pick": "You and me, we got this!",
+      "ban": "More of a dog person, huh?",
+      "more": [
+        "Cats make great companions! Just ask my master... who disappeared under mysterious circumstances.",
+        "Alright! Which one of you's got great aim, and is good at chin scritches?",
+        "Who's ready to risk our lives, defeat our foes, and maybe knock over some cups?",
+        "Tell me the game plan again. Wait. Fish! Someone has fish! Where is it?"
+      ]
+    },
+    "Zac": {
+      "pick": "I was made for this... literally.",
+      "ban": "Well, now I'm just mad.",
+      "more": [
+        "I should get a suit.",
+        "Let's bounce!",
+        "I may bend, but I don't break.",
+        "Just another day on the job."
+      ]
+    },
+    "Zed": {
+      "pick": "The unseen blade is the deadliest.",
+      "ban": "Do not deny me.",
+      "more": [
+        "We are life, perfected.",
+        "What we have seen... what we have done... you are all part of it.",
+        "We will cure the galaxy of conflict. We will cure the galaxy of ignorance.",
+        "We once bowed before the Templars. Now, we are the truth they deny."
+      ]
+    },
+    "Zeri": {
+      "pick": "A spark is all I need!",
+      "ban": "No spark between us anyway.",
+      "more": [
+        "You know what? We might die here. Let's make sure we go down swinging.",
+        "Yell if you need backup. I'll be there in no time.",
+        "Zaun's with me every fight. This time's no different.",
+        "Sweet, we're here. Whoa, crazy weapons! This team's great. Let's go!"
+      ]
+    },
+    "Ziggs": {
+      "pick": "This'll be a blast!",
+      "ban": "I'm going, I'm going.",
+      "more": [
+        "Right-o!",
+        "Anyone got a... match?",
+        "Come on... come on, come on!",
+        "Let's blow this joint."
+      ]
+    },
+    "Zilean": {
+      "pick": "I knew you would do that...",
+      "ban": "Inevitably.",
+      "more": []
+    },
+    "Zoe": {
+      "pick": "Yes! This'll be fun! Right?",
+      "ban": "No, that's not nice!",
+      "more": [
+        "There are holes in reality. And... in donuts.",
+        "When the beings here look up, do they think we're looking back?! We really aren't.",
+        "♪ Here we go on an adventure, through this place! Even though we don't know the name of it! ♪ It doesn't matter!",
+        "There are so many weirdos here... It's awesome!"
+      ]
+    },
+    "Zyra": {
+      "pick": "Feel the thorns' embrace.",
+      "ban": "Soon...",
+      "more": [
+        "Come closer.",
+        "Such a busy world.",
+        "Just a harmless flower.",
+        "Take careful steps."
+      ]
+    }
+  }
+}

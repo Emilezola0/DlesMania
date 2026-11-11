@@ -19,9 +19,9 @@ import { WowArtRound, WowSilhouetteRound, WowTitlesRound } from '../specialist/g
 import { ClassicRound, GenshinClassicRound, LolClassicRound, MarvelClassicRound, WowClassicRound } from '../specialist/games/ClassicRound';
 import { ConstellationRound, GiSilhouetteRound, WishRound } from '../specialist/games/GenshinRounds';
 import { EmojiFilmRound, FilmRound, VoiceRound } from '../specialist/games/MarvelRounds';
-import { AbilityRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
+import { AbilityRound, LolEmojiRound, LolQuoteRound, LolSilhouetteRound, SplashRound } from '../specialist/games/LolRounds';
 import { FlagRound, FruitRound, LaughRound, WantedRound } from '../specialist/games/OnePieceRounds';
-import { SP_META, UNIVERSES, buildSpecialistDaily, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
+import { SP_META, UNIVERSES, buildSpecialistDaily, isFeatured, maxScore, poolSize, randomRound, universe, type SpRound, type SpType, type UniverseId } from '../specialist/rounds';
 import { GameHostFx } from '../games/GameHost';
 import { classicRoundFor, clueRoundFor, danceRoundFor, executionRoundFor, ultCostRoundFor, pictureRoundFor, itemRoundFor, silhouetteRoundFor, spotlightRoundFor, voiceRoundFor, windowsRoundFor } from '../specialist/games/SimpleRounds';
 import { SIMPLE } from '../specialist/simple';
@@ -41,7 +41,7 @@ type RoundProps = { round: SpRound; record: RoundRecord; onChange: (r: RoundReco
 /** Which component plays each round type, per universe. */
 const ROUND_COMPONENT: Record<UniverseId, Partial<Record<SpType, ComponentType<RoundProps>>>> = {
   onepiece: { classic: ClassicRound, fruit: FruitRound, laugh: LaughRound, flag: FlagRound, wanted: WantedRound, timeline: timelineRoundFor('onepiece') },
-  lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound, timeline: timelineRoundFor('lol') },
+  lol: { classic: LolClassicRound, ability: AbilityRound, splash: SplashRound, silhouette: LolSilhouetteRound, timeline: timelineRoundFor('lol'), quote: LolQuoteRound, emoji: LolEmojiRound },
   marvel: { classic: MarvelClassicRound, film: FilmRound, emoji: EmojiFilmRound, voice: VoiceRound, timeline: timelineRoundFor('marvel') },
   genshin: { classic: GenshinClassicRound, wish: WishRound, silhouette: GiSilhouetteRound, constellation: ConstellationRound, timeline: timelineRoundFor('genshin') },
   wow: { classic: WowClassicRound, art: WowArtRound, silhouette: WowSilhouetteRound, titles: WowTitlesRound, timeline: timelineRoundFor('wow') },
@@ -115,7 +115,7 @@ export function SpecialistHub() {
           const streak = specialStreak(special, u.id, u.types.length);
           const body = (
             <>
-              <span className="font-display text-xl font-bold">{u.label}</span>
+              <span className={`font-display text-xl font-bold ${isFeatured(u.id) ? 'golden-text' : ''}`}>{isFeatured(u.id) ? `★ ${u.label}` : u.label}</span>
               <span className="text-sm text-ink-soft">{u.blurb}</span>
               <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
                 {u.ready ? (today >= u.types.length ? 'Today: done' : today ? `Today: ${today}/${u.types.length}` : 'Today: not started') : 'Coming soon'}
@@ -130,7 +130,7 @@ export function SpecialistHub() {
           return (
             <li key={u.id}>
               {u.ready ? (
-                <Link to={`/specialist/${u.id}`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
+                <Link to={`/specialist/${u.id}`} className={`page flex h-full flex-col gap-1 rounded-md p-5 transition hover:-translate-y-0.5 ${isFeatured(u.id) ? 'golden-ready bg-gradient-to-br from-[#fde68a]/15 to-transparent' : 'ring-2 ring-accent/40'}`}>
                   {body}
                 </Link>
               ) : (

@@ -15,12 +15,14 @@ import { ARC_POOLS } from './arcraiders';
 import { DL_POOLS } from './deadlock';
 import { HSR_POOLS } from './hsr';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
   {
     id: 'onepiece',
+    // One of the three that matter most (the owner's call): shown in gold.
+    featured: true,
     label: 'One Piece',
     ready: true,
     blurb: 'Classic, Devil Fruits, laughs, Jolly Rogers and wanted posters — 220 characters from the anime.',
@@ -28,10 +30,13 @@ export const UNIVERSES = [
   },
   {
     id: 'lol',
+    // One of the three that matter most (the owner's call): shown in gold.
+    featured: true,
     label: 'League of Legends',
     ready: true,
-    blurb: 'Classic, abilities, splash arts and silhouettes — every champion, from Data Dragon.',
-    types: ['classic', 'ability', 'splash', 'silhouette', 'timeline'] as SpType[],
+    blurb: 'Classic, abilities, splash arts, silhouettes, their champion select quotes and champions told in emojis — every champion, from Data Dragon and the League wiki.',
+    // Quote and Emoji came later: added last, so the days already played keep their rounds.
+    types: ['classic', 'ability', 'splash', 'silhouette', 'timeline', 'quote', 'emoji'] as SpType[],
   },
   {
     id: 'marvel',
@@ -64,6 +69,8 @@ export const UNIVERSES = [
   },
   {
     id: 'overwatch',
+    // One of the three that matter most (the owner's call): shown in gold.
+    featured: true,
     label: 'Overwatch',
     ready: true,
     blurb: "Classic by role, sub-role, nationality, health and age, voice lines from the wiki's recordings, ultimates and their charge cost, pictures and windows — every hero.",
@@ -157,6 +164,8 @@ export const UNIVERSES = [
 export type UniverseId = (typeof UNIVERSES)[number]['id'];
 
 export const universe = (id: string) => UNIVERSES.find((u) => u.id === id);
+/** The universes shown in gold (the owner's three most important). */
+export const isFeatured = (id: string) => UNIVERSES.some((u) => u.id === id && 'featured' in u && u.featured);
 
 export const SP_META: Record<SpType, { name: string; icon: string; tagline: string; maxAttempts: number }> = {
   classic: { name: 'Classic', icon: '🧩', tagline: 'Find them from their traits', maxAttempts: 12 },
@@ -168,7 +177,8 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   ability: { name: 'Ability', icon: '✨', tagline: 'Whose ability is this?', maxAttempts: 6 },
   splash: { name: 'Splash Art', icon: '🖼️', tagline: 'Whose splash art is this?', maxAttempts: 6 },
   film: { name: 'Film', icon: '🎬', tagline: 'Which film is this poster from?', maxAttempts: 6 },
-  emoji: { name: 'Emoji', icon: '😎', tagline: 'A film told in emojis', maxAttempts: 6 },
+  emoji: { name: 'Emoji', icon: '😎', tagline: 'Told in emojis', maxAttempts: 6 },
+  quote: { name: 'Quote', icon: '💬', tagline: 'Who says this in game?', maxAttempts: 6 },
   voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (original English voice)', maxAttempts: 6 },
   wish: { name: 'Wish Art', icon: '🌠', tagline: 'Whose wish art is this?', maxAttempts: 6 },
   art: { name: 'Art', icon: '🖼️', tagline: 'Who is in this picture?', maxAttempts: 6 },

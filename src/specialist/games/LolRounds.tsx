@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ZoomImage } from '../../components/ZoomImage';
 import { mulberry32 } from '../../lib/rng';
 import type { RoundRecord } from '../../types';
-import { ABILITY_KEY_NAME, LOL, LOL_SILHOUETTE_OF, championById, type LolChampion } from '../lol';
+import { ABILITY_KEY_NAME, LOL, LOL_EMOJI, LOL_QUOTES, LOL_SILHOUETTE_OF, championById, type LolChampion } from '../lol';
 import type { SpRound } from '../rounds';
 import { SpGuessRound } from './SpGuessRound';
 
@@ -120,6 +120,70 @@ export function LolSilhouetteRound({ round, record, onChange }: Props) {
           />
         </div>
       )}
+    />
+  );
+}
+
+/** Quote: the champion's champion select line; each miss adds one of their other lines (ban, then moving). */
+export function LolQuoteRound({ round, record, onChange }: Props) {
+  const c = championById.get(round.targetId)!;
+  const q = LOL_QUOTES[c.id];
+  const lines = [q.pick, ...(q.ban ? [q.ban] : []), ...q.more];
+  return (
+    <SpGuessRound
+      type="quote"
+      question="Which champion says this in game?"
+      pool={LOL.champions}
+      targetId={c.id}
+      hints={championHints(c)}
+      record={record}
+      onChange={onChange}
+      answer={{ name: c.name, image: c.image, detail: c.title }}
+      clue={(wrong, done) => (
+        <div className="space-y-3">
+          {lines.slice(0, done ? lines.length : Math.min(lines.length, 1 + wrong)).map((l, i) => (
+            <blockquote key={i} className={`animate-pop text-center font-serif italic ${i === 0 ? 'text-3xl font-bold sm:text-4xl' : 'text-lg text-ink-soft'}`}>
+              “{l}”
+            </blockquote>
+          ))}
+          <p className="text-center font-display text-[11px] tracking-wider text-ink-faint">{done ? 'THEIR LINES' : linesLeftNote(lines.length, wrong)}</p>
+        </div>
+      )}
+    />
+  );
+}
+
+const linesLeftNote = (total: number, wrong: number) => (1 + wrong < total ? 'ANOTHER OF THEIR LINES WITH EACH MISS' : 'NO MORE LINES — GO BY THE HINTS');
+
+/** Emoji: the champion told in five emojis, one more with each miss. */
+export function LolEmojiRound({ round, record, onChange }: Props) {
+  const c = championById.get(round.targetId)!;
+  const emojis = LOL_EMOJI[c.id];
+  return (
+    <SpGuessRound
+      type="emoji"
+      question="Which champion do these emojis tell?"
+      pool={LOL.champions}
+      targetId={c.id}
+      hints={championHints(c)}
+      record={record}
+      onChange={onChange}
+      answer={{ name: c.name, image: c.image, detail: c.title }}
+      clue={(wrong, done) => {
+        const shown = done ? emojis.length : Math.min(emojis.length, 1 + wrong);
+        return (
+          <div className="space-y-2">
+            <p className="flex justify-center gap-3 py-6 text-5xl sm:text-6xl">
+              {emojis.map((e, i) => (
+                <span key={i} className={i < shown ? 'animate-pop' : 'opacity-20 grayscale'}>
+                  {i < shown ? e : '❔'}
+                </span>
+              ))}
+            </p>
+            <p className="text-center font-display text-[11px] tracking-wider text-ink-faint">{done ? c.name.toUpperCase() : 'ONE MORE EMOJI WITH EACH MISS'}</p>
+          </div>
+        );
+      }}
     />
   );
 }
