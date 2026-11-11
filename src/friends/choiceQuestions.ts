@@ -7,7 +7,7 @@ import { COLLECTIBLE, type Card } from '../gacha/cards';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 
-export const CHOICE = DATA as { coins: number; perDay: number; skipSets: string[]; rarities: string[]; questions: { text: string; options: number }[] };
+export const CHOICE = DATA as { coins: number; perDay: number; skipSets: string[]; rarities: string[]; launchSets: string[]; since: Record<string, string>; questions: { text: string; options: number }[] };
 
 export interface ChoiceQuestion {
   /** 0, 1, 2: its place in the day. */
@@ -16,9 +16,13 @@ export interface ChoiceQuestion {
   options: Card[];
 }
 
-/** The characters a question can ask about: Legendary or better, one card a name, no places, techniques or objects. */
+/**
+ * The characters a question can ask about: Legendary or better, one card a name, no places, techniques or objects.
+ * A set added after the Daily Choice launched joins only from its "since" day (daily-choice.json): votes are stored by
+ * card id, so a past day must keep drawing the very same characters for its results to show.
+ */
 let pool: Card[] | null = null;
-function characters(): Card[] {
+function allCharacters(): Card[] {
   if (pool) return pool;
   const seen = new Set<string>();
   pool = COLLECTIBLE.filter((c) => {
@@ -27,6 +31,9 @@ function characters(): Card[] {
     return true;
   });
   return pool;
+}
+function characters(day: string): Card[] {
+  return allCharacters().filter((c) => CHOICE.launchSets.includes(c.set) || (CHOICE.since[c.set] !== undefined && CHOICE.since[c.set] <= day));
 }
 
 /**
@@ -71,7 +78,7 @@ function templatesOf(day: string): number[] {
 export function questionsOf(day: string): ChoiceQuestion[] {
   const rand = mulberry32(hashString(`daily-choice:${day}`));
   const picks = templatesOf(day);
-  const cards = [...characters()];
+  const cards = characters(day);
   return picks.map((k, i) => {
     const q = CHOICE.questions[k];
     const options: Card[] = [];

@@ -412,5 +412,14 @@ console.log(`specialist  onepiece: ${op.characters.length} characters, ${op.frui
   console.log(`rewards     daily ${rewards.daily.coins}, birthday ${rewards.birthday.coins} coins, ${rewards.dates.length} special dates (open ${rewards.windowDays} days)`);
 }
 
+// Daily Choice: a card set joins the questions only from its "since" day (the day after it ships), so past days keep
+// the characters they asked about and their votes (stored by card id) still show. Every card set needs one or the other.
+{
+  const dc = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'daily-choice.json'), 'utf8'));
+  const sets = new Set(Object.keys(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'card-rarities.json'), 'utf8'))).map((k) => k.split(':')[0]));
+  for (const s of sets) if (!dc.launchSets.includes(s) && !dc.since?.[s]) fail(`daily-choice.json: card set "${s}" needs a "since" date (the day after it ships), or past days' Daily Choice questions change`);
+  for (const [s, d] of Object.entries(dc.since ?? {})) if (!/^\d{4}-\d{2}-\d{2}$/.test(d) || dc.launchSets.includes(s)) fail(`daily-choice.json: since.${s} must be a YYYY-MM-DD date, for a set not in launchSets`);
+}
+
 console.log(`\n${ids.size} works, ${errors} error(s), ${warnings} warning(s)`);
 process.exit(errors ? 1 : 0);
