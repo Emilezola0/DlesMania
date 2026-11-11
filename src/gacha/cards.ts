@@ -762,7 +762,7 @@ const CLIPS: Record<string, string> = {
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
   // Goku awakened (Perfected Ultra Instinct): the owner's pick, Mastered Ultra Instinct against Jiren (0:19–0:41), heard.
-  'dbz:omni': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/goku-ultra-instinct.mp4`,
+  'dbz:omni': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/goku-ultra-instinct-30fps.mp4`,
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
   // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 720p at 60 fps, with its sound (heard behind a win).
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
