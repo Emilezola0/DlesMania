@@ -131,7 +131,7 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
     title: 'The Big Gun',
     line: 'Hazard stripes, a crew in a tin hat and a muzzle flash you can see across the map: the heaviest shell in the game, on its way.',
     voice: 'BOOM!',
-    audio: 'tiktok:7367350882020625670@9-13',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/forts/howitzer-boom.m4a`,
     image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/weaponimage-howitzer.png',
   },
   inazuma: { name: 'Mark Evans', title: 'Captain of Raimon', line: 'A headband, a ball and a hand that stops anything. Let’s play some soccer!', voice: "Let's play some soccer!" },
@@ -784,7 +784,7 @@ const CLIPS: Record<string, string> = {
   'harrypotter:mythic': 'https://media.tenor.com/wt7eXX5sQxoAAAP1/hp-harry-potter.mp4',
   'harrypotter:omni': 'https://media.tenor.com/_Po2TZKmqLkAAAPo/elder-wand-harry-potter.mp4',
   'harrypotter:mythic-2': 'https://media.tenor.com/i0J9xP3hu8QAAAPo/stupefy-hermione-granger.mp4',
-  'lotr:mythic': 'https://media.tenor.com/MuVqoWRdyp8AAAP1/lord-of-the-rings-ring.mp4',
+  'lotr:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/lotr-mythic.mp4`,
   'lotr:omni': 'https://media.tenor.com/aKR7BgooK-UAAAPo/gandalf-the-white-gandalf.mp4',
   'lotr:mythic-2': 'https://media.tenor.com/LtGe_1jolSwAAAPo/lord-of-the-rings-return-of-the-king.mp4',
   'mcu:mythic': 'https://media.tenor.com/X65SdRy9nbwAAAP1/iron-man.mp4',
@@ -805,9 +805,9 @@ const CLIPS: Record<string, string> = {
   // Arion awakened: Saikyou Eleven Hadou, Mixi Maxed with Arthur, to its title (a silent loop: his voice is the anime's shout of it).
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
-  'forts:mythic': 'tiktok:7367350882020625670@1-5',
+  'forts:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forts/howitzer.mp4`,
   'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
-  'forhonor:mythic': 'https://media.tenor.com/kgk2JUYxtUQAAAPo/for-honor-centurion.mp4',
+  'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/forhonor-mythic.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
   // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
   'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
@@ -835,7 +835,7 @@ const FIRST_CLIPS: Record<string, string> = {
   // Each to its voice line: Goku's Super Saiyan Kamehameha, Anakin on Mustafar ("You underestimate my power!"),
   // Aang's "Yip yip!" on Appa, the Witness stepping out (no line), and Arion's Saikyou Eleven Hadou (Tenor).
   'dbz:omni': 'https://media.tenor.com/Hq39Deua0rQAAAPo/kamehameha-goku.mp4',
-  'starwars:omni': 'https://media.tenor.com/0nl9L3UFEQcAAAPo/anakin-vader.mp4',
+  'starwars:omni': `${import.meta.env?.BASE_URL ?? './'}clips/gif/starwars-omni.mp4`,
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
   'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
@@ -846,7 +846,7 @@ const FIRST_CLIPS: Record<string, string> = {
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
   'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
-  'arcraiders:omni-scrappy': 'https://media.tenor.com/QPXtzw2HKG0AAAPo/scrappy-rooster.mp4',
+  'arcraiders:omni-scrappy': `${import.meta.env?.BASE_URL ?? './'}clips/gif/arcraiders-scrappy.mp4`,
   // Firefly's green-flame wings at sunset; Acheron's slash among the red petals.
   'hsr:omni': 'https://media.tenor.com/umLyC7Vmbu0AAAPo/firefly-honkai-starrail.mp4',
   'hsr:omni-acheron': 'https://media.tenor.com/G_mwHD_2v78AAAPo/acheron-honkai-star-rail.mp4',

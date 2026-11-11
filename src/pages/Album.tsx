@@ -13,7 +13,7 @@ import { celebrate, celebrateBig } from '../lib/fx';
 import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { GradeAllDialog, SellDialog } from '../gacha/BulkActions';
-import { canHear, cardVolumeOf, playVoice } from '../gacha/voice';
+import { cardVolumeOf, playVoice } from '../gacha/voice';
 import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
@@ -85,12 +85,13 @@ const COLLAPSE_BURST_MS = 1430;
 /** A clip that is a GIF (from a GIF site, or a .gif): it loops on its own, no tap needed. */
 /** How long the card's spin lasts (its `duration-500`). */
 const SPIN_MS = 500;
-const GIF_CLIP =/media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)/i;
+/** A clip that is a GIF (from a GIF site, a .gif, or one of ours cropped from one: clips/gif/): it loops on its own, no button needed. */
+const GIF_CLIP = /media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)|\/clips\/gif\//i;
 
 function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: number; onClose: () => void; onUpgraded: (into: Card) => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
   const form = useCardForm(card);
-  // Its clip: a GIF loops at once; a video waits for a tap on the card (then heard, if its sound is the moment's).
+  // Its clip: a GIF loops at once; a video (and its sound) only plays from its button.
   const isVideo = !!form.clip && !form.clipLight && !GIF_CLIP.test(form.clip);
   const [started, setStarted] = useState<string | null>(null);
   const clipHeld = isVideo && started !== form.clip;
@@ -156,11 +157,17 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   // The spin takes SPIN_MS (its transition): a waiting video starts as it ends.
   const playTimer = useRef<number | undefined>(undefined);
   useEffect(() => () => window.clearTimeout(playTimer.current), []);
-  const spinThenPlay = () => {
+  const spinCard = () => {
     sfx.whoosh();
     setSpin((n) => n + 360);
-    if (!clipHeld) return;
+  };
+  /** Its button: the card spins, then its video plays from the start (again, if it already has). */
+  const playVideo = () => {
+    if (!isVideo) return;
     const clip = form.clip!;
+    spinCard();
+    setStarted(null);
+    setShowing(null);
     window.clearTimeout(playTimer.current);
     playTimer.current = window.setTimeout(() => setStarted(clip), SPIN_MS);
   };
@@ -169,8 +176,8 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     start.current = null;
     setDragging(false);
     setRot({ x: 0, y: 0 });
-    // A tap, not a drag: a full spin (and its video, if it's waiting, once the spin is over).
-    if (s && !s.moved) spinThenPlay();
+    // A tap, not a drag: a full spin.
+    if (s && !s.moved) spinCard();
   };
 
   // Held, the card goes where the hand takes it; let go, it sways.
@@ -210,12 +217,13 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
           {clipComing && <p className="mt-2 animate-pulse text-sm font-bold opacity-80">▶ Its video is on its way…</p>}
-          {clipHeld && (
-            <button type="button" onClick={spinThenPlay}className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
-              ▶ Play its video
+          {isVideo && (
+            <button type="button" onClick={playVideo} className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
+              {clipHeld ? '▶ Play its video' : '↺ Play it again'}
             </button>
           )}
-          {canHear(card) && (
+          {/* Only a recorded voice line (not the browser's voice reading it). */}
+          {!!card.voice && (!!card.audio || !!card.voiceClips?.length) && (
             <button type="button" onClick={() => playVoice(card, true)} className="mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               🔊 Hear “{card.voice}”
             </button>
@@ -226,7 +234,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
-          <p className="mt-1 text-xs opacity-60">Drag to turn it · {clipHeld ? 'tap to spin it and play its video' : 'tap to spin it'} · Esc to close</p>
+          <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
         <UpgradeOffer card={card} onUpgraded={onUpgraded} />
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
