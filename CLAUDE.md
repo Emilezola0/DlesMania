@@ -15,6 +15,7 @@ Rules the owner set; keep to them in every change.
 - A card's **animated clip** may be anything that looks good and stylish: game footage (3D), effects, GIFs, fan animation. Its **still picture** stays drawn (2D).
 - An **Omni's voice line matches its video**: the line the character says in the moment the clip shows. A clip with no voice of its own (like the Doorman's) gets the voice lines played on top.
 - A **GIF** clip may loop in the background (icons, backdrops). A **video** clip plays when the player succeeds at something, not on a loop in a corner.
+- On a **win**, only the **background card's** video plays behind the page, never the icon's (the icon keeps its still picture and says its line).
 - Cards keep the picture they were pulled with (`src/data/card-art.json`).
 - **Card videos are MP4s hosted in `public/clips/`, never YouTube or TikTok embeds** (their pause button and titles can't be hidden). Make them with `node scripts/card-clip.mjs` (1080p, CRF 24, constant 30 fps, AAC 128k; the method is in the README, "Card videos"): they must look good full screen behind a win, so don't compress harder. A re-encoded clip gets a new file name (browser caches).
 

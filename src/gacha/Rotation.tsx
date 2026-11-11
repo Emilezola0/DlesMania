@@ -1,5 +1,5 @@
 // Icons and backgrounds taking turns (picked on the Account page and in the album): after some wins, once a
-// win's clip has played (the icon's big moment, src/gacha/Reactions.tsx), or each time Omnidle is opened —
+// win's clip has played (the page's big moment, the background card's video: src/gacha/Reactions.tsx), or each time Omnidle is opened —
 // in the list's order or at random. A card changes only once the page is calm again: never in the middle of
 // its own clip or burst. Cards no longer owned (or a Common as a background) are skipped.
 import { useEffect } from 'react';
@@ -88,7 +88,7 @@ export function CardRotation() {
         timer = window.setTimeout(flush, SETTLE_MS);
       }
     });
-    // A big moment (the icon's clip over the page) ending: the "after its clip" slots change, and any waiting.
+    // A big moment (the background card's video over the page) ending: the "after its clip" slots change, and any waiting.
     let wasOn = momentOn();
     const watch = new MutationObserver(() => {
       const on = momentOn();

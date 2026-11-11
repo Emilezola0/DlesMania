@@ -139,19 +139,31 @@ export function useBackdropCue(card: Card | undefined): { kind: Cue; key: number
   return cue;
 }
 
-/** The icon's reaction: a bubble by the header, the card's face and a word. */
+/** The background card, if it can stand behind the page (Rare or better, and in the album). */
+const backdropOf = (id: string | null, cards: Record<string, number>): Card | undefined => {
+  const c = id && cards[id] ? CARD_BY_ID.get(id) : undefined;
+  return c && c.rarity !== 'common' ? c : undefined;
+};
+
+/**
+ * The icon's reaction: a bubble by the header, the card's face and a word. On a win, the page's big moment: the light
+ * turns, and the video behind it is the background card's (the owner's call: only the card behind the page plays its
+ * video, never the icon's); with no background card, or one with no clip, the light alone.
+ */
 export function CardReactions() {
   const enabled = useProgress((s) => s.cardReactions ?? true);
   const avatar = useProgress((s) => showy(s.avatar, s.cards));
+  const backdrop = useProgress((s) => backdropOf(s.backdrop, s.cards));
   const [bubble, setBubble] = useState<{ kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
-  /** The icon's animation, on a big moment now and then. */
-  const [moment, setMoment] = useState<{ clip?: string; key: number; waiting: boolean; leaving: boolean; heard?: boolean } | null>(null);
-  /** The clip couldn't be heard after all (its sound blocked, or it failed): the voice from its own player, once. */
+  /** The page's big moment, now and then on a win: the background card's video (card) behind the light. */
+  const [moment, setMoment] = useState<{ card?: Card; clip?: string; key: number; waiting: boolean; leaving: boolean; heard?: boolean } | null>(null);
+  /** The clip couldn't be heard after all (its sound blocked, or it failed): the icon's voice from its own player, once. */
   const voiceApart = () => {
-    setMoment((m) => m && { ...m, heard: false });
+    const m = moment;
+    setMoment((x) => x && { ...x, heard: false });
     // A clip with a sound of its own doesn't hand over to the voice line: the moment just goes on silent.
-    if (avatar?.clipSound) return void (voiceUntil.current = 0);
+    if (m?.card?.clipSound && m.clip === m.card.clip) return void (voiceUntil.current = 0);
     if (avatar) playVoice(avatar, false, () => (voiceUntil.current = 0));
   };
   const lastMoment = useRef(0);
@@ -184,41 +196,47 @@ export function CardReactions() {
     return () => document.documentElement.classList.remove('moment-on');
   }, [moment]);
   useEffect(() => {
-    if (!enabled || !avatar) return;
+    if (!enabled || (!avatar && !backdrop)) return;
     let timer = 0;
     const off = onCue((kind) => {
       const now = Date.now();
       // Big moments always; otherwise now and then, so fast games don't drown in bubbles.
       if (kind !== 'great' && (now - last.current < 6000 || Math.random() > 0.45)) return;
       last.current = now;
-      const lines = CHARACTER_LINES[avatar.name] ?? REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
-      const text = kind === 'great' && avatar.voice ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
-      setBubble({ kind, text, key: now });
-      // A mythic's big moment: its voice line, heard.
-      // While it speaks, the moment's background (below) stays: they end together.
+      if (avatar) {
+        const lines = CHARACTER_LINES[avatar.name] ?? REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
+        const text = kind === 'great' && avatar.voice ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
+        setBubble({ kind, text, key: now });
+      }
       // A win, a finished game: the page's background comes alive, now and then. Not where cards already show theirs.
-      // The form the player has: awakened, its own clip; otherwise the card's (an Omni's first-form clip, FIRST_CLIPS).
-      // An awakened form with no clip of its own (O-Chan over the Earth) plays its first form's.
-      const awake = isAwake(avatar, useProgress.getState().bosses);
+      // Its video is the background card's, never the icon's (the owner's call). The form the player has: awakened, its
+      // own clip; otherwise the card's (an Omni's first-form clip, FIRST_CLIPS). An awakened form with no clip of its
+      // own (O-Chan over the Earth) plays its first form's.
+      const st = useProgress.getState();
+      const card = backdrop;
+      const awake = !!card && isAwake(card, st.bosses);
       // The owner's call: these Omnis' first forms play nothing behind a win (awakened, their awakened clip).
-      const own = awake ? (avatar.awaken?.clip ?? avatar.clip) : FIRST_FORM_STILL.has(avatar.id) ? undefined : avatar.clip;
+      const own = !card ? undefined : awake ? (card.awaken?.clip ?? card.clip) : FIRST_FORM_STILL.has(card.id) ? undefined : card.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
       const showMoment = kind === 'great' && now - lastMoment.current > MOMENT_GAP_MS && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      // A clip that is also the voice (the same YouTube moment, or the same MP4): heard from the clip itself, so they start together.
-      const st = useProgress.getState();
-      const voiced = kind === 'great' && !!avatar.voice && st.sound && st.voiceLines !== false;
-      // A clip with its own sound (Gogeta's): that sound is heard behind the win, and the voice line isn't.
-      const ownSound = !!clip && clip === avatar.clip && !!avatar.clipSound;
-      const heard = showMoment && voiced && !!clip && (ownSound || voiceOf(avatar).audio === clip);
-      if (kind === 'great' && avatar.voice) {
+      const soundOn = st.sound && st.voiceLines !== false;
+      // A clip with its own sound (Gogeta's): that sound is heard behind the win, and the icon's voice line isn't.
+      const ownSound = !!card && !!clip && clip === card.clip && !!card.clipSound;
+      // The icon behind the page too, its clip being its voice (the same MP4): heard from the clip, so they start together.
+      const sameVoice = !!avatar && !!card && avatar.id === card.id && !!avatar.voice && voiceOf(avatar).audio === clip;
+      const heard = showMoment && soundOn && !!clip && (ownSound || sameVoice);
+      // The icon's big moment: its voice line, heard. While it speaks, the moment's background (below) stays: they end together.
+      // A clip heard (its own sound, or the icon's voice) keeps the moment until it ends.
+      if (heard) voiceUntil.current = Date.now() + 60_000;
+      else if (kind === 'great' && avatar?.voice) {
         voiceUntil.current = Date.now() + 60_000;
-        if (!heard) playVoice(avatar, false, () => (voiceUntil.current = 0));
+        playVoice(avatar, false, () => (voiceUntil.current = 0));
       }
       if (showMoment) {
         lastMoment.current = now;
         // A clip can be slow to start (above all one kept on YouTube or TikTok): the light glows until it does, and it still plays.
         clipWait.current = !!clip;
-        setMoment({ clip, key: now, waiting: !!clip, leaving: false, heard });
+        setMoment({ card, clip, key: now, waiting: !!clip, leaving: false, heard });
         endMoment(clip ? MOMENT_WAIT_MS : MOMENT_MS - MOMENT_OUT_MS);
       }
       window.clearTimeout(timer);
@@ -231,10 +249,13 @@ export function CardReactions() {
       clipWait.current = false;
       setMoment(null);
     };
-  }, [enabled, avatar]);
+  }, [enabled, avatar, backdrop]);
 
-  if ((!bubble && !moment) || !avatar) return null;
-  const light = RARITY_LIGHT[avatar.rarity];
+  if (!bubble && !moment) return null;
+  // The moment glows in its video's card's colour (the background card), else the icon's.
+  const lit = moment?.card ?? avatar ?? backdrop;
+  if (!lit) return null;
+  const light = RARITY_LIGHT[lit.rarity];
   return (
     <>
       {/* The whole page's background comes alive: light turning in the card's colour, its clip playing behind. */}
@@ -246,7 +267,7 @@ export function CardReactions() {
             <div className="moment-clip">
               <CardClip
                 src={moment.clip}
-                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume) * cardVolumeOf(avatar.id, moment.clip === avatar.clip && avatar.clipSound ? 'clip' : 'voice'), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
+                sound={moment.heard && moment.card ? { volume: Math.min(100, useProgress.getState().sfxVolume) * cardVolumeOf(moment.card.id, moment.clip === moment.card.clip && moment.card.clipSound ? 'clip' : 'voice'), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
                 onFail={() => {
                   if (moment.heard) voiceApart();
                   failedClips.current.add(moment.clip!);
@@ -260,12 +281,12 @@ export function CardReactions() {
           )}
         </div>
       )}
-      {bubble && (
+      {bubble && avatar && (
     <div key={`bubble-${bubble.key}`} className="react-in pointer-events-none fixed right-3 top-14 z-40 flex max-w-[16rem] items-center gap-2" aria-live="polite">
-      <p className="rounded-2xl rounded-tr-sm border-2 bg-card px-3 py-1.5 text-sm font-bold shadow-xl" style={{ borderColor: bubble.kind === 'bad' ? '#f87171' : light }}>
+      <p className="rounded-2xl rounded-tr-sm border-2 bg-card px-3 py-1.5 text-sm font-bold shadow-xl" style={{ borderColor: bubble.kind === 'bad' ? '#f87171' : RARITY_LIGHT[avatar.rarity] }}>
         <span className={avatar.rarity === 'mythic' && bubble.kind === 'great' ? 'card-mythic-name' : ''}>{bubble.text}</span>
       </p>
-      <span className={`react-${bubble.kind} shrink-0 rounded-full`} style={{ ['--glow' as string]: light }}>
+      <span className={`react-${bubble.kind} shrink-0 rounded-full`} style={{ ['--glow' as string]: RARITY_LIGHT[avatar.rarity] }}>
         <CardAvatar card={avatar} className="size-12" />
       </span>
     </div>
