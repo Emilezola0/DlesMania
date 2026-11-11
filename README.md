@@ -143,6 +143,21 @@ npm run data:validate
 
 `enrich-media` looks up `cover.wiki` / `item.wiki` / `location.wiki` with the MediaWiki API (50 titles per request). Item and location clues can instead carry `src` (`fandom:<wiki>:<Title>`, `wp:<Title>` or a URL), or inherit the work's `fandom` wiki, which is then searched by the clue's `name`. Images whose file name looks like a logo, box art, cover or poster — or equal to the work's cover — are rejected so a clue never shows the title. It also and rejects images when a title redirects to a different subject (e.g. "Hyrule" → the franchise page, whose image would give the answer away). Works without `cover.wiki` get one by search — check those. `--force` re-resolves everything; `--dry` writes nothing.
 
+### Card videos
+
+A card's video (a Mythic's or an Omni's: up close with the **▶ Play its video** button, and full screen behind a win) is an MP4 hosted with the site in `public/clips/<set>/`, never a YouTube or TikTok embed: those players show their own buttons (a pause button for ~4 s after any seek, the title, "More videos") and nothing in the page can hide them. GIF-like loops (Tenor, Giphy, Klipy, or ours cropped from one in `public/clips/gif/`) play on their own and need no button; everything else waits for it.
+
+```bash
+# One moment of a video: downloaded, black bars cropped, encoded for the card and the full-screen win
+node scripts/card-clip.mjs --url=https://youtu.be/BAQvCB3Fnm0 --from=19 --to=41 --out=dbz/goku-ultra-instinct
+node scripts/card-clip.mjs --url=... --from=0 --to=5 --out=forts/howitzer --mute    # no sound track
+node scripts/card-clip.mjs --url=... --from=0 --to=3 --out=lotr-mythic --gif        # a GIF: clips/gif/, silent loop
+```
+
+The settings were chosen side by side on Luffy's Gear 5 (540p at CRF 31 was visibly blocky full screen): **1080p max, H.264 CRF 24 (preset slow), a constant 30 fps, AAC 128 kb/s, `+faststart`** — about 0.3–0.7 MB per second of video. An odd frame rate (Goku's source ran at 29.376 fps) froze the picture in some browsers while the sound went on, hence the constant rate. `cropdetect` mistakes dark scenes for bars: look at a frame before keeping a crop. A re-encoded clip gets a new file name (e.g. `-30fps`), or browsers keep playing the cached old one.
+
+Then, in `src/gacha/cards.ts`: `CLIPS` (the card, or an Omni's awakened form), `FIRST_CLIPS` (an Omni's first form); `clipSound: true` in `STRONG` when the clip's own sound should be heard; a clip that is also the voice line uses the same path as `audio` (heard together). `LIGHT_CLIPS` is for small GIF loops only (they also play in the album grid); a full video there would autoplay. Up close, a video heard once through goes back to the card's picture. The script needs `yt-dlp`, `ffmpeg` and `deno` (`winget install yt-dlp.yt-dlp` brings ffmpeg; `winget install DenoLand.Deno` — without a JavaScript runtime yt-dlp only gets 360p from YouTube).
+
 ### Media notice
 
-Cover art and many item images are hot-linked from Wikipedia/Wikimedia and are often non-free (used there under fair use). Clips are third-party YouTube uploads played through the official embed. That's fine for a personal fan project; for a public or commercial release, replace them with licensed assets (`image` accepts any URL) and verify each clip.
+Cover art and many item images are hot-linked from Wikipedia/Wikimedia and are often non-free (used there under fair use). Game clips (Soundtrack, Voice Line…) are third-party YouTube uploads played through the official embed; card videos are short moments cut from third-party uploads and hosted with the site (`public/clips/`). That's fine for a personal fan project; for a public or commercial release, replace them with licensed assets (`image` accepts any URL) and verify each clip.
