@@ -109,8 +109,12 @@ export function SpecialistHub() {
           Fruits, signature laughs and Jolly Rogers for One Piece, abilities and splash arts for League, posters and voice lines for Marvel, wish arts and constellations for Genshin, art and titles for World of Warcraft — and in every universe, a Timeline of who came first. A new daily every day, and practice whenever you like.
         </p>
       </div>
+      {/* The owner's three most important, in gold, on their own above the rest. */}
+      {[UNIVERSES.filter((u) => isFeatured(u.id)), UNIVERSES.filter((u) => !isFeatured(u.id))].map((group, g) => (
+      <section key={g} className="space-y-3">
+      {g === 1 && <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">More universes</p>}
       <ul className="grid gap-4 sm:grid-cols-3">
-        {UNIVERSES.map((u) => {
+        {group.map((u) => {
           const today = Object.values(special[`${u.id}:${todayKey()}`] ?? {}).filter((r) => r.status !== 'playing').length;
           const streak = specialStreak(special, u.id, u.types.length);
           const body = (
@@ -140,6 +144,8 @@ export function SpecialistHub() {
           );
         })}
       </ul>
+      </section>
+      ))}
     </div>
   );
 }
