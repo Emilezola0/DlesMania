@@ -192,6 +192,8 @@ export const UNIVERSE_BANNER: Record<UniverseId, string | null> = {
   hollowknight: localBanner('hollowknight'),
   mha: localBanner('mha'),
   bg3: localBanner('bg3'),
+  // The leads on the 2023 mobile game's main visual (Hunterpedia).
+  hxh: wikiBanner('hunterxhunter/images/e/e5/DeNA_2023_HxH_Mobage_Main_Visual.png'),
   arcraiders: localBanner('arcraiders'),
   avatar: localBanner('avatar'),
   deadlock: localBanner('deadlock'),
