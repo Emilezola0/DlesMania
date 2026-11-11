@@ -2632,3 +2632,8 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @media (prefers-reduced-motion: reduce) {
   .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .claw-marquee, .claw-button-live, .claw-meter-full, .name-style-candy, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }
+
+/* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards. Each keeps
+   still (no shines, glitches or twinkles; its anomaly's colours stay) and only the ones on screen are drawn. */
+.pack-summary-big > div { content-visibility: auto; contain-intrinsic-size: auto 280px; }
+.pack-summary-big > div *, .pack-summary-big > div *::before, .pack-summary-big > div *::after { animation: none !important; }

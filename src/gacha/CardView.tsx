@@ -124,14 +124,14 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, still, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
   const anomaly = anomalyId ? ANOMALIES[anomalyId] : undefined;
   // What the card looks like: a Fake Rarity passes for a Mythic.
   const look = shownRarity(card.rarity, anomalyId);
-  const name = useScramble(shownName(card.name, card.set), !!anomaly?.scramble);
+  const name = useScramble(shownName(card.name, card.set), !!anomaly?.scramble && !calm);
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
   const heroOn = (hero || hovered) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;

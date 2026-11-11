@@ -163,7 +163,16 @@ interface Star {
   climax?: boolean;
   /** It evolves mid-flight: crashes into a second star and bursts into its card's true colour. */
   clash?: boolean;
+  /** A black hole is open and this star circles it (and maybe goes in). */
+  orbit?: boolean;
 }
+/**
+ * A big opening (over five packs): lighter, or 250 cards' stars and faces lag. With a black hole, only the first
+ * ORBIT_FEW stars and the ones it swallows circle it (the rest fly by); the summary's cards keep still
+ * (no shines, no glitches: index.css .pack-summary-big) and only the ones on screen are drawn.
+ */
+const BIG_OPENING = 25;
+const ORBIT_FEW = 8;
 const STAR_GAP = 260;
 /** Many packs at once: the closest two stars come (ms), and over how many cards before the first top card they slow back down. */
 const STAR_GAP_MIN = 25;
@@ -249,17 +258,18 @@ function cosmosFor(cards: Card[], events: Map<number, CosmicEvent>, wishes: Map<
   const roll = () => ((ANOMALY_IDS as string[]).includes(force ?? '') ? (force as AnomalyId) : rollAnomaly(rand));
   const regular = cards.length - events.size;
   const hole = regular > 1 && (forced || rand() < BLACK_HOLE_CHANCE);
-  const stars = starsFor(cards, hole, events, wishes, rand);
   const swallowed = new Map<number, AnomalyId>();
-  if (!hole) return { hole, stars, swallowed };
-  // Never the last ordinary star (the best card's), a wish's, nor a cosmic event's.
-  const candidates = stars.slice(0, regular - 1).map((_, k) => k).filter((k) => !wishes.has(k));
-  for (const k of candidates) if (rand() < ABSORB_CHANCE) swallowed.set(k, roll());
-  if (forced && !swallowed.size && candidates.length) swallowed.set(candidates[Math.floor(rand() * candidates.length)], roll());
+  if (hole) {
+    // Never the last ordinary star (the best card's), a wish's, nor a cosmic event's.
+    const candidates = cards.slice(0, regular - 1).map((_, k) => k).filter((k) => !wishes.has(k));
+    for (const k of candidates) if (rand() < ABSORB_CHANCE) swallowed.set(k, roll());
+    if (forced && !swallowed.size && candidates.length) swallowed.set(candidates[Math.floor(rand() * candidates.length)], roll());
+  }
+  const stars = starsFor(cards, hole ? swallowed : null, events, wishes, rand);
   return { hole, stars, swallowed };
 }
 
-function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>, wishes: Map<number, CosmicEvent>, rand: () => number = Math.random): Star[] {
+function starsFor(cards: Card[], hole: Map<number, AnomalyId> | null, events: Map<number, CosmicEvent>, wishes: Map<number, CosmicEvent>, rand: () => number = Math.random): Star[] {
   // The cards come sorted, the best last — then the cosmic events' cards, each its own scene. Now and then the
   // best card (Epic or better) shows a rarity lower, and evolves on the way.
   const last = cards.length - events.size - 1;
@@ -299,14 +309,15 @@ function starsFor(cards: Card[], hole: boolean, events: Map<number, CosmicEvent>
     }
     // The last star waits for the sky to empty, then a moment more.
     if (i === last && i > 0) at = Math.max(at, clear) + LAST_STAR_PAUSE;
-    // With a black hole, every star but the last circles it first: a longer way.
-    const orbit = hole && i !== last;
+    // With a black hole, every star but the last circles it first: a longer way. A big opening: only the first few
+    // and the ones it swallows (BIG_OPENING).
+    const orbit = !!hole && i !== last && (cards.length <= BIG_OPENING || i < ORBIT_FEW || hole.has(i));
     const rank = RARITIES.indexOf(c.rarity);
     const from = i === evolving ? RARITIES[rank >= 3 && rand() < COSMIC.deepFake ? rank - 2 : rank - 1] : c.rarity;
     const clash = from !== c.rarity;
     const big = !orbit && (top(c.rarity) || clash);
     if (big) at = Math.max(at, bigClear);
-    const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash };
+    const star: Star = { to: c.rarity, from, delay: at, duration: clash ? CLASH_AT + BOOM : orbit ? ORBIT_MS : flight(c.rarity), top: 16 + ((i * 37) % 48) + rand() * 6, tilt: -10 - rand() * 16, climax: i === last && i > 0, clash, orbit };
     // Many cards (several packs at once): the stars come closer together; a top card's star leaves a little room.
     at += gapAt(i, orbit ? ORBIT_GAP : STAR_GAP) + (top(c.rarity) && !orbit ? 250 : 0);
     clear = Math.max(clear, star.delay + star.duration);
@@ -886,7 +897,7 @@ function BlackHole({ until, gulps, tints }: { until: number; gulps: number[]; ti
  * A star round the black hole: in from the left, a turn and a half around it, then out to the right — or,
  * pulled in, spiralling ever closer until it's gone in a spark. Its way is a path across the screen.
  */
-function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: number; swallowed: boolean }) {
+function Orbiter({ star, k, thick, swallowed, light }: { star: Star; k: number; thick: number; swallowed: boolean; /** A big opening: a smaller spark. */ light?: boolean }) {
   const path = useMemo(() => {
     const W = window.innerWidth;
     const H = window.innerHeight;
@@ -904,8 +915,11 @@ function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: 
   const [spark, setSpark] = useState(false);
   useEffect(() => {
     if (!swallowed) return;
-    const t = window.setTimeout(() => setSpark(true), star.delay + star.duration - 80);
-    return () => window.clearTimeout(t);
+    // The spark, then gone (dozens of them in a big opening stayed drawn).
+    const at = star.delay + star.duration - 80;
+    const t = window.setTimeout(() => setSpark(true), at);
+    const off = window.setTimeout(() => setSpark(false), at + 1400);
+    return () => (window.clearTimeout(t), window.clearTimeout(off));
   }, [swallowed, star]);
   return (
     <>
@@ -922,7 +936,7 @@ function Orbiter({ star, k, thick, swallowed }: { star: Star; k: number; thick: 
         <div className="absolute" style={{ left: `${HOLE.x}%`, top: `${HOLE.y}%`, width: 0, height: 0 }}>
           <div className="pack-spark-flash absolute size-16 rounded-full" style={{ background: `radial-gradient(circle, #fff, ${RARITY_LIGHT[star.to]} 45%, transparent 70%)` }} />
           <div className="absolute left-0 top-0">
-            <Burst color={RARITY_LIGHT[star.to]} count={16} rainbow={rainbowy(star.to)} />
+            <Burst color={RARITY_LIGHT[star.to]} count={light ? 7 : 16} rainbow={rainbowy(star.to)} />
           </div>
         </div>
       )}
@@ -2250,7 +2264,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             // A cosmic event: its own scene.
             if (s.event === 'wish') return <Wish key={k} star={s} thick={thick} />;
             if (s.event) return <Chain key={k} star={s} />;
-            if (cosmos.hole && k < regular - 1) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} />;
+            if (cosmos.hole && s.orbit) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} light={stars.length > BIG_OPENING} />;
             // An evolving star crashes into another and bursts in its true colour.
             if (s.clash) return <Clash key={k} star={s} thick={thick} />;
             return (
@@ -2368,10 +2382,10 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
         <div className="my-auto w-full max-w-4xl space-y-6 py-4">
           <PackStats deck={deck} fresh={fresh} golden={golden} packs={times} />
           {allChoice}
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4">
+          <div className={`grid grid-cols-3 gap-3 sm:grid-cols-5 sm:gap-4 ${deck.length > BIG_OPENING ? 'pack-summary-big' : ''}`}>
             {deck.map((c, k) => (
               <div key={k} className="animate-card-deal" style={{ animationDelay: `${dealAt(k, deck.length)}ms`, ['--deal-rot' as string]: `${((k % 5) - 2) * 6}deg` }}>
-                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still anomaly={kept[k] === true ? pending.get(k) : undefined} />
+                <CardFace card={c} count={counts[c.id]} isNew={fresh.has(c.id)} hoverHero still calm={deck.length > BIG_OPENING} anomaly={kept[k] === true ? pending.get(k) : undefined} />
                 {pending.has(k) && !(k in kept) && <AnomalyChoice compact anomaly={pending.get(k)!} onDecide={(keep) => decide(k, keep)} />}
                 <p className="mt-2 text-center font-display text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_STYLE[c.rarity].text }}>
                   {pending.get(k) === 'fake' && kept[k] === true ? 'Mythic' : RARITY_INFO[c.rarity].name}
