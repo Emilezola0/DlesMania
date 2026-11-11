@@ -584,7 +584,9 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'lol:omni': { voice: 'A chase, then!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ef/Ahri_SpiritBlossom_R_1.ogg/revision/latest?cb=20200726232639' },
   'overwatch:omni': { voice: 'Heroes never die!', audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913' },
   'minecraft:omni': { voice: '*BOOM*', audio: 'https://minecraft.wiki/images/Explosion1.ogg?6ed29' },
-  'onepiece:omni': { voice: 'Gomu Gomu no…!', audio: 'https://www.myinstants.com/media/sounds/gomu-gomu-no.mp3' },
+  // Luffy: his clip (Gear 5's Gum Gum lightning) is heard with its own sound behind a win (the owner's call); his voice
+  // line stays for the card's 🔊 button.
+  'onepiece:omni': { voice: 'Gomu Gomu no…!', audio: 'https://www.myinstants.com/media/sounds/gomu-gomu-no.mp3', clipSound: true },
   'dbz:omni': { voice: 'Kamehameha!', audio: 'https://www.myinstants.com/media/sounds/kamehameha_qWZSJCi.mp3' },
   'naruto:omni': { voice: 'Rasengan!', audio: 'https://www.myinstants.com/media/sounds/naruto-rasengan-voice.mp3' },
   'starwars:omni': { voice: 'You underestimate my power!', audio: 'https://www.myinstants.com/media/sounds/you-underestimate-my-power_cN70zP4.mp3' },
@@ -728,7 +730,7 @@ const CLIPS: Record<string, string> = {
   'hsr:omni': 'https://media.tenor.com/V2G-sDi8ZhIAAAPo/firefly-honkai.mp4',
   'hsr:omni-acheron': 'https://media.tenor.com/pglpLmfus3cAAAPo/acheron-ultimate.mp4',
   'onepiece:mythic': 'https://media.tenor.com/E-EofnlEKOYAAAP1/egghead-one-piece.mp4',
-  // Luffy awakened: the owner's pick, Gear 5's Gum Gum lightning (Crunchyroll FR), its first 32 s. His voice line stays his own.
+  // Luffy awakened: the owner's pick, Gear 5's Gum Gum lightning (Crunchyroll FR), its first 32 s, heard with its own sound.
   'onepiece:omni': 'youtube:IbO2Kzxdfn0@0-32',
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
