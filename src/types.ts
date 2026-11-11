@@ -218,6 +218,8 @@ export interface Boss {
    * 3D models from Ultimate, as in the game (the owner's call). The cards keep their drawn pictures.
    */
   gameArt?: Record<string, string>;
+  /** Its phase IV is a quiz instead of the Name Chain: who was snapped (Marvel: Thanos's snap, the owner's call). */
+  snapQuiz?: { name: string; snapped: boolean }[];
   /** Its pictures are pixel art, drawn without smoothing. */
   pixelArt?: boolean;
 }

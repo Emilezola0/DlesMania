@@ -6,6 +6,7 @@ import { finaleFaces, withGameArt } from '../boss/faces';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
 import { NameChain, type ChainResult } from '../boss/NameChain';
+import { SnapQuiz } from '../boss/SnapQuiz';
 import { Signature } from '../boss/Signature';
 import { AnswerBook, AnswerBookButton } from '../boss/AnswerBook';
 import { DleCoin } from '../components/DleCoin';
@@ -507,7 +508,19 @@ function BossBattle({ boss }: { boss: Boss }) {
             {phase === 0 && <KnowledgeBlitz prompt={content.blitz} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 1 && <RadarDefense cards={content.radar} franchise={boss.franchise} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
             {phase === 2 && <FinalBlow targets={content.finale} pool={content.pool} difficulty={d} loop={round} onEvent={onEvent} onDone={onPhaseDone} />}
-            {phase === CHAIN_PHASE && content.chain && (
+            {phase === CHAIN_PHASE && content.chain && boss.snapQuiz && (
+              <SnapQuiz
+                quiz={boss.snapQuiz}
+                secret={content.chain}
+                set={boss.id}
+                bossName={boss.boss.name}
+                cards={[...boss.radar.members, ...boss.finale]}
+                okLines={boss.lines.secretOk ?? []}
+                onSay={say}
+                onDone={(r) => onPhaseDone({ won: r.won, correct: r.score, wrong: r.won ? 0 : 1, reason: r.won ? undefined : r.reason })}
+              />
+            )}
+            {phase === CHAIN_PHASE && content.chain && !boss.snapQuiz && (
               <NameChain
                 secret={content.chain}
                 bossName={boss.boss.name}

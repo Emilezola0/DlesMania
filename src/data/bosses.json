@@ -8261,6 +8261,160 @@
         }
       ]
     },
+    "snapQuiz": [
+      {
+        "name": "Spider-Man",
+        "snapped": true
+      },
+      {
+        "name": "Black Panther",
+        "snapped": true
+      },
+      {
+        "name": "Doctor Strange",
+        "snapped": true
+      },
+      {
+        "name": "Groot",
+        "snapped": true
+      },
+      {
+        "name": "Star-Lord",
+        "snapped": true
+      },
+      {
+        "name": "Drax the Destroyer",
+        "snapped": true
+      },
+      {
+        "name": "Mantis",
+        "snapped": true
+      },
+      {
+        "name": "Scarlet Witch",
+        "snapped": true
+      },
+      {
+        "name": "Winter Soldier",
+        "snapped": true
+      },
+      {
+        "name": "Sam Wilson",
+        "snapped": true
+      },
+      {
+        "name": "Nick Fury",
+        "snapped": true
+      },
+      {
+        "name": "Maria Hill",
+        "snapped": true
+      },
+      {
+        "name": "Shuri",
+        "snapped": true
+      },
+      {
+        "name": "Hope van Dyne",
+        "snapped": true
+      },
+      {
+        "name": "Hank Pym",
+        "snapped": true
+      },
+      {
+        "name": "Janet van Dyne",
+        "snapped": true
+      },
+      {
+        "name": "May Parker",
+        "snapped": true
+      },
+      {
+        "name": "Ned Leeds",
+        "snapped": true
+      },
+      {
+        "name": "Laura Barton",
+        "snapped": true
+      },
+      {
+        "name": "Iron Man",
+        "snapped": false
+      },
+      {
+        "name": "Captain America",
+        "snapped": false
+      },
+      {
+        "name": "Thor",
+        "snapped": false
+      },
+      {
+        "name": "Hulk",
+        "snapped": false
+      },
+      {
+        "name": "Black Widow",
+        "snapped": false
+      },
+      {
+        "name": "Rocket Raccoon",
+        "snapped": false
+      },
+      {
+        "name": "Nebula",
+        "snapped": false
+      },
+      {
+        "name": "Okoye",
+        "snapped": false
+      },
+      {
+        "name": "M'Baku",
+        "snapped": false
+      },
+      {
+        "name": "War Machine",
+        "snapped": false
+      },
+      {
+        "name": "Ant-Man",
+        "snapped": false
+      },
+      {
+        "name": "Captain Marvel",
+        "snapped": false
+      },
+      {
+        "name": "Valkyrie",
+        "snapped": false
+      },
+      {
+        "name": "Korg",
+        "snapped": false
+      },
+      {
+        "name": "Wong",
+        "snapped": false
+      },
+      {
+        "name": "Clint Barton",
+        "snapped": false
+      },
+      {
+        "name": "Pepper Potts",
+        "snapped": false
+      },
+      {
+        "name": "Happy Hogan",
+        "snapped": false
+      },
+      {
+        "name": "Cassie Lang",
+        "snapped": false
+      }
+    ],
     "signature": {
       "label": "Cast",
       "prompt": "Which character does this actor play?",
