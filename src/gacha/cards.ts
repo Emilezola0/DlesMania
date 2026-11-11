@@ -143,12 +143,14 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
   // Lace in Silksong's own art, singing (her voice from the game, Hollow Knight Wiki).
   hollowknight: { name: 'Lace', title: 'The Citadel’s Duellist', line: 'Small, white and laughing as she lunges: she guards the way to Pharloom’s Citadel, and every duel with her feels like a dance she has already won.', voice: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg', voiceClips: [{ line: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg' }, { line: '♪♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/8/86/Lace_Sing_02.ogg' }], image: 'https://cdn.wikimg.net/en/hkwiki/images/thumb/2/25/Lace.png/600px-Lace.png' },
-  // Bakugo in his hero costume (the anime's 10th-anniversary profile art, My Hero Academia Wiki).
-  mha: { name: 'Katsuki Bakugo', title: 'Ground Zero', line: 'Sweat like nitroglycerin and a temper to match: he swore he would be number one, and every explosion since has been a step towards it.', voice: 'Howitzer Impact!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Katsuki_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest?cb=20260509022123' },
-  // Karlach on her Steam trading card (Larian's painted art, bg3.wiki).
-  // Gon grown up all at once, the price of his vow against Pitou (the 2011 anime, Hunterpedia).
+  // Bakugo in his hero costume (the anime's 10th-anniversary profile art, My Hero Academia Wiki); his line from the
+  // anime (myinstants), his clip his Howitzer Impact (Tenor, in CLIPS).
+  mha: { name: 'Katsuki Bakugo', title: 'Ground Zero', line: 'Sweat like nitroglycerin and a temper to match: he swore he would be number one, and every explosion since has been a step towards it.', voice: 'Choke on my smoke!', audio: 'https://www.myinstants.com/media/sounds/choke-on-my-smoke-katsuki-bakugo.mp3', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Katsuki_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest?cb=20260509022123' },
+  // Gon grown up all at once, the price of his vow against Pitou (the 2011 anime, Hunterpedia). No recording of his
+  // line yet: the browser reads it.
   hxh: { name: 'Gon Freecss', title: 'The Price of a Vow', line: 'He gave away every bit of Nen he would ever have, all at once, to become the man who could avenge Kite: one fight, and nothing left after it.', voice: 'First comes rock!', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/d/d6/Adult_Gon_Anime.png/revision/latest/scale-to-width-down/600?cb=20140527193545' },
-  bg3: { name: 'Karlach', title: 'The Hellfire Heart', line: 'An infernal engine where her heart should be, an axe in each hand and the biggest smile in camp: she ran from Avernus, and she is not going back.', voice: "Let's crack some skulls, soldier!", image: 'https://bg3.wiki/w/images/thumb/4/4b/Karlach_SteamCard.jpg/600px-Karlach_SteamCard.jpg.webp' },
+  // Karlach on her Steam trading card (Larian's painted art, bg3.wiki); her lines from the game (myinstants).
+  bg3: { name: 'Karlach', title: 'The Hellfire Heart', line: 'An infernal engine where her heart should be, an axe in each hand and the biggest smile in camp: she ran from Avernus, and she is not going back.', voice: 'Hey, soldier!', audio: 'https://www.myinstants.com/media/sounds/karlach-hey-soldier.mp3', voiceClips: [{ line: 'Hey, soldier!', audio: 'https://www.myinstants.com/media/sounds/karlach-hey-soldier.mp3' }, { line: 'Hell yes!', audio: 'https://www.myinstants.com/media/sounds/karlach-hell-yes.mp3' }, { line: 'Eat dirt!', audio: 'https://www.myinstants.com/media/sounds/karlach-eat-dirt.mp3' }], image: 'https://bg3.wiki/w/images/thumb/4/4b/Karlach_SteamCard.jpg/600px-Karlach_SteamCard.jpg.webp' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -204,10 +206,11 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   hollowknight: { name: 'Zote', title: 'The Mighty', line: 'Fifty-seven precepts, one broken nail and not a single victory — and still the greatest knight in all of Hallownest, if you ask him.', voice: 'Precept One: Always Win Your Battles.', image: 'https://cdn.wikimg.net/en/hkwiki/images/c/c1/Zote_Dream.png' },
   // Todoroki's Flashfreeze Heatwave, ice and fire at once (the anime, My Hero Academia Wiki).
   mha: { name: 'Shoto Todoroki', title: 'Half-Cold Half-Hot', line: 'Ice on the right, fire on the left, and a father he swore never to become: the day he used both sides at once, the whole stadium felt the cold and the heat.', voice: 'Flashfreeze Heatwave!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/0/01/Flashfreeze_Heatwave.png/revision/latest/scale-to-width-down/600?cb=20260823031708' },
-  // Shadowheart on her Steam trading card (Larian's painted art, bg3.wiki).
-  // Hisoka and his Bungee Gum (the 2011 anime, Hunterpedia).
+  // Hisoka and his Bungee Gum (the 2011 anime, Hunterpedia). No recording of his line yet: the browser reads it.
   hxh: { name: 'Hisoka', title: 'The Magician', line: 'A card trick, a smile and an aura that sticks like gum and stretches like rubber: he spares the strong so they can ripen, and comes back for them.', voice: 'Bungee Gum has the properties of both rubber and gum.', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/8/81/Hisoka%27s_Bungee_Gum.png/revision/latest/scale-to-width-down/600?cb=20230524024239' },
-  bg3: { name: 'Shadowheart', title: 'The Moonlit Cleric', line: 'A cleric with a secret, a wound that will not heal and an artefact she would die before giving up: what she believes, she has never been allowed to choose.', voice: 'Who wants to die first?', image: 'https://bg3.wiki/w/images/thumb/d/dd/Shadowheart_SteamCard.jpg/600px-Shadowheart_SteamCard.jpg.webp' },
+  // Shadowheart on her Steam trading card (Larian's painted art, bg3.wiki); her lines are the game's own recordings
+  // (bg3.wiki).
+  bg3: { name: 'Shadowheart', title: 'The Moonlit Cleric', line: 'A cleric with a secret, a wound that will not heal and an artefact she would die before giving up: what she believes, she has never been allowed to choose.', voice: 'My faith protects me.', audio: 'https://bg3.wiki/w/images/f/f7/Shadowheart_Remark_Selected_My_faith_protects_me.wav', voiceClips: [{ line: 'My faith protects me.', audio: 'https://bg3.wiki/w/images/f/f7/Shadowheart_Remark_Selected_My_faith_protects_me.wav' }, { line: 'Wits and blade, always sharp.', audio: 'https://bg3.wiki/w/images/2/2c/Shadowheart_Remark_Selected_Wits_and_blade_always_sharp.wav' }, { line: "Whatever comes, I'm ready.", audio: 'https://bg3.wiki/w/images/7/74/Shadowheart_Remark_Selected_Whatever_comes_I%27m_ready.wav' }], image: 'https://bg3.wiki/w/images/thumb/d/dd/Shadowheart_SteamCard.jpg/600px-Shadowheart_SteamCard.jpg.webp' },
   // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
   deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
@@ -310,16 +313,23 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     ],
   },
   // My Hero Academia: All Might's United States of Smash, his last blow against All For One (the anime, My Hero
-  // Academia Wiki). His line is read by the browser's voice; no clip yet.
+  // Academia Wiki). His clip is that very blow (Tenor, silent, in CLIPS), so his voice line is its cry, "United States
+  // of Smash!" (myinstants); his other lines for the 🔊 button.
   mha: {
     name: 'All Might',
     title: 'The Symbol of Peace',
     line: 'A smile that tells everyone they are safe, and a fist that moves the weather: he carried a whole society on his back, then passed the torch to a Quirkless boy.',
     image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a5/United_States_of_Smash.png/revision/latest/scale-to-width-down/600?cb=20260824033549',
-    voice: 'Fear not! Why? Because I am here!',
+    voice: 'United States of Smash!',
+    audio: 'https://www.myinstants.com/media/sounds/united-states-of-smash-my-hero-academia-mp3cut.mp3',
+    voiceClips: [
+      { line: 'United States of Smash!', audio: 'https://www.myinstants.com/media/sounds/united-states-of-smash-my-hero-academia-mp3cut.mp3' },
+      { line: 'I am here!', audio: 'https://www.myinstants.com/media/sounds/all_might_i_am_here.mp3' },
+      { line: 'Go beyond! Plus Ultra!', audio: 'https://www.myinstants.com/media/sounds/plus-ultrrraaaaaaaaaaaaaaaaaaa-dub.mp3' },
+    ],
   },
-  // Hunter x Hunter: Killua in Godspeed, against Youpi (the 2011 anime, Hunterpedia). His line is read by the
-  // browser's voice; no clip yet.
+  // Hunter x Hunter: Killua in Godspeed, against Youpi (the 2011 anime, Hunterpedia); his clip is Godspeed too (Tenor,
+  // silent, in CLIPS). No recording of his line yet: the browser reads it.
   hxh: {
     name: 'Killua Zoldyck',
     title: 'Godspeed',
@@ -327,14 +337,15 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     image: 'https://static.wikia.nocookie.net/hunterxhunter/images/d/d0/2011_EP119_Killua_Godspeed.png/revision/latest/scale-to-width-down/600?cb=20230821203012',
     voice: 'Gon, you are light.',
   },
-  // Baldur's Gate 3: Astarion on his Steam trading card (Larian's painted art, bg3.wiki). His line is read by the
-  // browser's voice; no clip yet.
+  // Baldur's Gate 3: Astarion on his Steam trading card (Larian's painted art, bg3.wiki). His clip is the game's
+  // footage of him (Tenor, silent, in CLIPS), with his "Darling." from the game on top (myinstants).
   bg3: {
     name: 'Astarion',
     title: 'The Vampire Spawn',
     line: 'Two centuries a slave to Cazador, and one tadpole later he can walk in the sun: a smile, a dagger and a hunger he no longer has to hide, darling.',
     image: 'https://bg3.wiki/w/images/thumb/0/00/Astarion_SteamCard.jpg/600px-Astarion_SteamCard.jpg.webp',
-    voice: 'Darling, you have no idea what I am capable of.',
+    voice: 'Darling.',
+    audio: 'https://www.myinstants.com/media/sounds/darling-astarion.mp3',
   },
   onepiece: {
     name: 'Monkey D. Luffy',
@@ -790,6 +801,18 @@ const CLIPS: Record<string, string> = {
   'hollowknight:omni-radiance': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/radiance.mp4`,
   'hollowknight:omni-grimm': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/grimm.mp4`,
   'hollowknight:omni-nightmare-king-grimm': `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/nightmare-king-grimm.mp4`,
+  // My Hero Academia, Baldur's Gate 3 and Hunter x Hunter (Tenor, silent loops; their voice lines play on top):
+  // Bakugo's Howitzer Impact, Todoroki's fire, All Might's United States of Smash; Karlach in a fight, Shadowheart by
+  // candlelight, Astarion with his sword; Gon grown up in his aura, Hisoka's Bungee Gum, Killua in Godspeed.
+  'mha:mythic': 'https://media.tenor.com/PCfS-zIaquAAAAPo/katsuki-bakugo-howitzer-impact.mp4',
+  'mha:mythic-2': 'https://media.tenor.com/pPAHY9q0PqAAAAPo/anime-todoroki.mp4',
+  'mha:omni': 'https://media.tenor.com/ZRDPXCwLXcIAAAPo/all-might-united-states-of-smash.mp4',
+  'bg3:mythic': 'https://media.tenor.com/PKXMDZh5R5sAAAPo/baldurs-gate-3-karlach.mp4',
+  'bg3:mythic-2': 'https://media.tenor.com/12wZ7IQ7hnkAAAPo/shadowheart-baldurs-gate-3.mp4',
+  'bg3:omni': 'https://media.tenor.com/tPOQ-U0y--sAAAPo/astarion-baldurs-gate-3.mp4',
+  'hxh:mythic': 'https://media.tenor.com/P_8hJLKYGEsAAAPo/adult-gon.mp4',
+  'hxh:mythic-2': 'https://media.tenor.com/xD1ikFO7Fx4AAAPo/hisoka-hunter-x-hunter.mp4',
+  'hxh:omni': 'https://media.tenor.com/6cu5bNft-XMAAAPo/killua-godspeed.mp4',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -870,7 +893,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'balatro:omni': `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4`,
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 /** Light first forms whose awakened clip is a full video, not a light one. */
