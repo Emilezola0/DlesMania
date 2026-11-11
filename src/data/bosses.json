@@ -30419,5 +30419,866 @@
         }
       ]
     }
+  },
+  {
+    "id": "hxh",
+    "domain": "anime",
+    "franchise": "Hunter x Hunter",
+    "aliases": [
+      "hunter x hunter",
+      "hunter hunter",
+      "hxh",
+      "hunterxhunter",
+      "hunter × hunter"
+    ],
+    "images": "fandom:hunterxhunter",
+    "boss": {
+      "name": "Meruem",
+      "title": "The King of the Chimera Ants",
+      "color": "#3f6212",
+      "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/58/Meruem_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190419124312"
+    },
+    "lines": {
+      "intro": "I am the King. Everything that lives is mine to rule — you included. Show me why you should not be food.",
+      "phase2": "Some of these faces have never held a Hunter License. Tell me which ones belong, human.",
+      "phase3": "You are still breathing. Then name them all, before my patience ends.",
+      "hit": [
+        "Interesting.",
+        "Hm. Again.",
+        "You have teeth."
+      ],
+      "hurt": [
+        "Weak.",
+        "Kneel.",
+        "That is all a human can do?",
+        "Predictable."
+      ],
+      "win": "So this is defeat… Komugi, would you play one more game with me?",
+      "lose": "As I thought. Humans are food, nothing more.",
+      "secret": "A game, then — like Gungi. I name a Hunter, a Spider, a Zoldyck or one of my ants; you answer with another of the same kind. No repeats.",
+      "secretOk": [
+        "Hm.",
+        "Again.",
+        "Not bad."
+      ],
+      "secretLost": "No move left? Then I win, as always."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 members of the Phantom Troupe",
+        "count": 5,
+        "answers": [
+          "Bonolenov Ndongo",
+          "Chrollo Lucilfer|Chrollo|Kuroro|Kuroro Lucifer|Chrollo Lucifer",
+          "Feitan Portor|Feitan|Feitan Pootaa",
+          "Franklin|Franklin Bordeau|Franklin Bordeaux",
+          "Hisoka|Hisoka Morow|Hisoka Morou",
+          "Illumi Zoldyck|Illumi|Irumi",
+          "Kalluto Zoldyck|Kalluto|Karuto",
+          "Kortopi",
+          "Machi Komacine|Machi",
+          "Nobunaga Hazama|Nobunaga",
+          "Omokage",
+          "Pakunoda|Paku",
+          "Phinks Magcub|Phinks|Finks",
+          "Shalnark|Shal|Sharnalk",
+          "Shizuku Murasaki|Shizuku",
+          "Uvogin|Uvo|Ubogin"
+        ]
+      },
+      {
+        "prompt": "Name 5 Zoldycks",
+        "count": 5,
+        "answers": [
+          "Alluka Zoldyck|Alluka|Arukka",
+          "Illumi Zoldyck|Illumi|Irumi",
+          "Kalluto Zoldyck|Kalluto|Karuto",
+          "Kikyo Zoldyck|Kikyo",
+          "Killua Zoldyck|Killua|Kirua",
+          "Maha Zoldyck",
+          "Milluki Zoldyck|Milluki|Miruki",
+          "Silva Zoldyck|Silva|Silver Zoldyck",
+          "Zeno Zoldyck|Zeno",
+          "Zigg Zoldyck"
+        ]
+      },
+      {
+        "prompt": "Name the six Nen types",
+        "count": 6,
+        "answers": [
+          "Enhancement|Enhancer",
+          "Transmutation|Transmuter",
+          "Emission|Emitter",
+          "Conjuration|Conjurer",
+          "Manipulation|Manipulator",
+          "Specialization|Specialist"
+        ]
+      },
+      {
+        "prompt": "Name the King's three Royal Guards",
+        "count": 3,
+        "answers": [
+          "Neferpitou|Pitou|Neferpito",
+          "Shaiapouf|Pouf|Shaiapuf",
+          "Menthuthuyoupi|Youpi|Yupi"
+        ]
+      },
+      {
+        "prompt": "Name 5 Chimera Ants",
+        "count": 5,
+        "answers": [
+          "Baital",
+          "Baro",
+          "Bihorn",
+          "Bloster",
+          "Cheetu",
+          "Chiona",
+          "Colt",
+          "Flutter",
+          "Gaftz",
+          "Goran",
+          "Gyro",
+          "Hina",
+          "Hollow",
+          "Ikalgo",
+          "Inzagi",
+          "Kite|Kaito",
+          "Leol",
+          "Maenole",
+          "Meleoron",
+          "Menthuthuyoupi|Youpi|Yupi",
+          "Meruem|The King|King Meruem|Merueme",
+          "Neferpitou|Pitou|Neferpito",
+          "Palm Siberia|Palm",
+          "Peggy",
+          "Pell",
+          "Pike",
+          "Pokoro",
+          "Rammot",
+          "Reikei",
+          "Remora",
+          "Shaiapouf|Pouf|Shaiapuf",
+          "Shidore",
+          "Taragetter",
+          "Welfin",
+          "Yunju",
+          "Zazan",
+          "Zem"
+        ]
+      },
+      {
+        "prompt": "Name 5 Zodiacs",
+        "count": 5,
+        "answers": [
+          "Botobai Gigante",
+          "Cheadle Yorkshire|Cheadle",
+          "Cluck",
+          "Gel",
+          "Ging Freecss|Ging|Jin Freecss",
+          "Ginta",
+          "Kanzai",
+          "Kurapika|Kurapica",
+          "Leorio Paradinight|Leorio",
+          "Mizaistom Nana|Mizaistom",
+          "Pariston Hill|Pariston",
+          "Pyon",
+          "Saccho Kobayakawa",
+          "Saiyu"
+        ]
+      },
+      {
+        "prompt": "Name 5 examinees of a Hunter Exam",
+        "count": 5,
+        "answers": [
+          "Agon",
+          "Amori",
+          "Anita",
+          "Bodoro",
+          "Bourbon",
+          "Cherry",
+          "Danjin",
+          "Erikkusu",
+          "Geretta",
+          "Gon Freecss|Gon|Gon Freaks",
+          "Goz",
+          "Hanzo",
+          "Hisoka|Hisoka Morow|Hisoka Morou",
+          "Illumi Zoldyck|Illumi|Irumi",
+          "Imori",
+          "Juhnde",
+          "Kenmi",
+          "Killua Zoldyck|Killua|Kirua",
+          "Kurapika|Kurapica",
+          "Kyu",
+          "Leorio Paradinight|Leorio",
+          "Matthew",
+          "Moritonio",
+          "Muhahahasare",
+          "Muherr",
+          "Myuhan",
+          "Nicholas",
+          "Pokkle",
+          "Ponzu",
+          "Ryu",
+          "Salkov",
+          "Shishito",
+          "Siper",
+          "Sommy",
+          "Theta",
+          "Todo",
+          "Tonpa",
+          "Umori",
+          "Zepile",
+          "Zomeesa"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Killua Zoldyck",
+          "aliases": [
+            "Killua",
+            "Kirua"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bd/HxH2011_EP147_Killua_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230904181904"
+        },
+        {
+          "label": "Gon Freecss",
+          "aliases": [
+            "Gon",
+            "Gon Freaks"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3e/HxH2011_EP147_Gon_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230904181801"
+        },
+        {
+          "label": "Kurapika",
+          "aliases": [
+            "Kurapica"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d9/Kurapika_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20170704123336"
+        },
+        {
+          "label": "Hisoka",
+          "aliases": [
+            "Hisoka Morow",
+            "Hisoka Morou"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/29/Hisoka_Morow_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190123172039"
+        },
+        {
+          "label": "Chrollo Lucilfer",
+          "aliases": [
+            "Chrollo",
+            "Kuroro",
+            "Kuroro Lucifer",
+            "Chrollo Lucifer"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/78/Chrollo_Lucilfer_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130502190618"
+        },
+        {
+          "label": "Leorio Paradinight",
+          "aliases": [
+            "Leorio"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/73/HxH2011_EP145_Leorio_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230902193715"
+        },
+        {
+          "label": "Illumi Zoldyck",
+          "aliases": [
+            "Illumi",
+            "Irumi"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/72/Illumi_Zoldyck_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181227022223"
+        },
+        {
+          "label": "Netero",
+          "aliases": [
+            "Isaac Netero",
+            "Chairman Netero"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/88/Isaac_Netero_HE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230314041500"
+        },
+        {
+          "label": "Feitan Portor",
+          "aliases": [
+            "Feitan",
+            "Feitan Pootaa"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/86/HxH2011_EP50_Feitan_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230121061055"
+        },
+        {
+          "label": "Neferpitou",
+          "aliases": [
+            "Pitou",
+            "Neferpito"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/20/109_-_Neferpitou_portrait.png/revision/latest/scale-to-width-down/400?cb=20131218034405"
+        },
+        {
+          "label": "Ging Freecss",
+          "aliases": [
+            "Ging",
+            "Jin Freecss"
+          ],
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3d/GingAv.png/revision/latest/scale-to-width-down/400?cb=20181125230438"
+        },
+        {
+          "label": "Komugi",
+          "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f1/Komugi_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20131121184842"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Izuku Midoriya",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2b/Izuku_Midoriya_Costume_Databook.png/revision/latest/scale-to-width-down/400?cb=20250409215213"
+        },
+        {
+          "label": "Katsuki Bakugo",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b3/Katsuki_Bakugo_Winter_Costume_2_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250602032029"
+        },
+        {
+          "label": "Shoto Todoroki",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d8/Shoto_Todoroki_Action_5.png/revision/latest/scale-to-width-down/400?cb=20250602031513"
+        },
+        {
+          "label": "Dabi",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d9/Post-War_Dabi_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615215314"
+        },
+        {
+          "label": "Himiko Toga",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e0/Himiko_Toga_Anime_Action_5.png/revision/latest/scale-to-width-down/400?cb=20240615230138"
+        },
+        {
+          "label": "Tomura Shigaraki",
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/25/Final_War_Tomura_Shigaraki.png/revision/latest/scale-to-width-down/400?cb=20251225225936"
+        },
+        {
+          "label": "Naruto Uzumaki",
+          "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest/scale-to-width-down/400?cb=20251228135525"
+        },
+        {
+          "label": "Sasuke Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest/scale-to-width-down/400?cb=20170716092103"
+        },
+        {
+          "label": "Kakashi Hatake",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest/scale-to-width-down/400?cb=20251019002845"
+        },
+        {
+          "label": "Itachi Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/e/e9/Itachi_Child_OL.png/revision/latest/scale-to-width-down/274?cb=20210415223303"
+        },
+        {
+          "label": "Gaara",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/20/Gaara_in_Part_I.png/revision/latest/scale-to-width-down/400?cb=20221010023824"
+        },
+        {
+          "label": "Rock Lee",
+          "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest/scale-to-width-down/400?cb=20181229065526"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Biscuit Krueger",
+        "aliases": [
+          "Bisky",
+          "Biscuit",
+          "Bisuke"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/cd/Biscuit_Krueger_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190630140152"
+      },
+      {
+        "label": "Kite",
+        "aliases": [
+          "Kaito"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1d/Kite_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190127155247"
+      },
+      {
+        "label": "Knuckle Bine",
+        "aliases": [
+          "Knuckle",
+          "Knov"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6f/Knuckle_Bine_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230613232331"
+      },
+      {
+        "label": "Zeno Zoldyck",
+        "aliases": [
+          "Zeno"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4f/Zeno_Zoldyck_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190123184544"
+      },
+      {
+        "label": "Silva Zoldyck",
+        "aliases": [
+          "Silva",
+          "Silver Zoldyck"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0a/HxH2011_EP117_Silva_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230215181043"
+      },
+      {
+        "label": "Alluka Zoldyck",
+        "aliases": [
+          "Alluka",
+          "Arukka"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/07/147_-_Alluka_face.png/revision/latest/scale-to-width-down/400?cb=20170804080459"
+      },
+      {
+        "label": "Shaiapouf",
+        "aliases": [
+          "Pouf",
+          "Shaiapuf"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a2/109_-_Shaiapouf_portrait.png/revision/latest/scale-to-width-down/400?cb=20150902224149"
+      },
+      {
+        "label": "Menthuthuyoupi",
+        "aliases": [
+          "Youpi",
+          "Yupi"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/79/109_-_Menthuthuyoupi_portrait.png/revision/latest/scale-to-width-down/400?cb=20131218033843"
+      },
+      {
+        "label": "Machi Komacine",
+        "aliases": [
+          "Machi"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4c/Machi_Komacine_HA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20131116122706"
+      },
+      {
+        "label": "Nobunaga Hazama",
+        "aliases": [
+          "Nobunaga"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/46/HxH2011_EP50_Nobunaga_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230122183803"
+      },
+      {
+        "label": "Phinks Magcub",
+        "aliases": [
+          "Phinks",
+          "Finks"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/88/HxH2011_EP41_Phinks_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221008055432"
+      },
+      {
+        "label": "Uvogin",
+        "aliases": [
+          "Uvo",
+          "Ubogin"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/60/HxH2011_EP41_Uvogin_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230122192913"
+      },
+      {
+        "label": "Shalnark",
+        "aliases": [
+          "Shal",
+          "Sharnalk"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c3/HxH2011_EP53_Shalnark_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221008053250"
+      },
+      {
+        "label": "Pakunoda",
+        "aliases": [
+          "Paku"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/da/Pakunoda_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190124184929"
+      },
+      {
+        "label": "Shizuku Murasaki",
+        "aliases": [
+          "Shizuku"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9e/HxH2011_EP53_Shizuku_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230122061315"
+      },
+      {
+        "label": "Franklin",
+        "aliases": [
+          "Franklin Bordeau",
+          "Franklin Bordeaux"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/62/HxH2011_EP58_Franklin_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230122063251"
+      },
+      {
+        "label": "Kalluto Zoldyck",
+        "aliases": [
+          "Kalluto",
+          "Karuto"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bb/HxH2011_EP97_Kalluto_Close_Up.png/revision/latest/scale-to-width-down/400?cb=20221123201432"
+      },
+      {
+        "label": "Milluki Zoldyck",
+        "aliases": [
+          "Milluki",
+          "Miruki"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1a/Milluki_Zoldyck_2011.png/revision/latest/scale-to-width-down/400?cb=20150111053829"
+      },
+      {
+        "label": "Kikyo Zoldyck",
+        "aliases": [
+          "Kikyo"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/80/Kikyo_Zoldyck_HE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190630232207"
+      },
+      {
+        "label": "Shoot McMahon",
+        "aliases": [
+          "Shoot"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/17/2011_EP90_Shoot_McMahon_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230616231327"
+      },
+      {
+        "label": "Morel Mackernasey",
+        "aliases": [
+          "Morel",
+          "Morau"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/5c/Morel_Mackernasey_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190127155510"
+      },
+      {
+        "label": "Ikalgo",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9c/HxH2011_EP119_Ikalgo_IMG.png/revision/latest/scale-to-width-down/400?cb=20220810174247"
+      },
+      {
+        "label": "Meleoron",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7f/EP127_Meleoron_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230701134947"
+      },
+      {
+        "label": "Palm Siberia",
+        "aliases": [
+          "Palm"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/75/Palm_Siberia_%28Ant%29_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20140620234253"
+      },
+      {
+        "label": "Pariston Hill",
+        "aliases": [
+          "Pariston"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/15/Pariston_Hill_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20150816022835"
+      },
+      {
+        "label": "Cheadle Yorkshire",
+        "aliases": [
+          "Cheadle"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/01/Cheadle_Yorkshire_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181224123712"
+      },
+      {
+        "label": "Mizaistom Nana",
+        "aliases": [
+          "Mizaistom"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e1/Mizaistom_Nana_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181211010802"
+      },
+      {
+        "label": "Senritsu",
+        "aliases": [
+          "Melody"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c6/Melody-11.png/revision/latest/scale-to-width-down/400?cb=20230511035813"
+      },
+      {
+        "label": "Wing",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1a/Wing_HxH_2011.PNG/revision/latest/scale-to-width-down/400?cb=20230407170040"
+      },
+      {
+        "label": "Zushi",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8b/Zushi_HA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190530161818"
+      },
+      {
+        "label": "Neon Nostrade",
+        "aliases": [
+          "Neon"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/de/Neon_Nostrade_main.png/revision/latest/scale-to-width-down/400?cb=20131101182811"
+      },
+      {
+        "label": "Tonpa",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9f/Tonpa_HE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130503200318"
+      },
+      {
+        "label": "Satotz",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/83/Satotz_HxH_11.PNG/revision/latest/scale-to-width-down/400?cb=20120321071228"
+      },
+      {
+        "label": "Menchi",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f7/Menchi_%28HxH%29.png/revision/latest/scale-to-width-down/400?cb=20210415111358"
+      },
+      {
+        "label": "Razor",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/27/RazorFullbody.png/revision/latest/scale-to-width-down/400?cb=20170724201543"
+      },
+      {
+        "label": "Genthru",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0f/Genthru_Portrait_2011.png/revision/latest/scale-to-width-down/400?cb=20230521235202"
+      },
+      {
+        "label": "Gotoh",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8e/Gotoh_HxH_2011.PNG/revision/latest/scale-to-width-down/400?cb=20230321201151"
+      },
+      {
+        "label": "Canary",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f3/2011_canary.png/revision/latest/scale-to-width-down/400?cb=20120319045502"
+      },
+      {
+        "label": "Beyond Netero",
+        "aliases": [
+          "Beyond"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bf/Chap_341_-_Beyond.png/revision/latest/scale-to-width-down/400?cb=20241009205936"
+      },
+      {
+        "label": "Tserriednich Hui Guo Rou",
+        "aliases": [
+          "Tserriednich",
+          "Tserriednich Hoi-Gwor-Roux"
+        ],
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e6/Chap_362_-_Tserriednich.png/revision/latest/scale-to-width-down/400?cb=20260513045952"
+      },
+      {
+        "label": "Hanzo",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/aa/HxH2011_EP3_Hanzo_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221007164354"
+      },
+      {
+        "label": "Pokkle",
+        "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0a/Pokkle_HxH_11.PNG/revision/latest/scale-to-width-down/400?cb=20120323055002"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Zoldyck",
+          "entities": [
+            "Alluka Zoldyck|Alluka|Arukka",
+            "Illumi Zoldyck|Illumi|Irumi",
+            "Kalluto Zoldyck|Kalluto|Karuto",
+            "Kikyo Zoldyck|Kikyo",
+            "Killua Zoldyck|Killua|Kirua",
+            "Maha Zoldyck",
+            "Milluki Zoldyck|Milluki|Miruki",
+            "Silva Zoldyck|Silva|Silver Zoldyck",
+            "Zeno Zoldyck|Zeno",
+            "Zigg Zoldyck"
+          ]
+        },
+        {
+          "label": "Member of the Phantom Troupe",
+          "entities": [
+            "Bonolenov Ndongo",
+            "Chrollo Lucilfer|Chrollo|Kuroro|Kuroro Lucifer|Chrollo Lucifer",
+            "Feitan Portor|Feitan|Feitan Pootaa",
+            "Franklin|Franklin Bordeau|Franklin Bordeaux",
+            "Hisoka|Hisoka Morow|Hisoka Morou",
+            "Kortopi",
+            "Machi Komacine|Machi",
+            "Nobunaga Hazama|Nobunaga",
+            "Omokage",
+            "Pakunoda|Paku",
+            "Phinks Magcub|Phinks|Finks",
+            "Shalnark|Shal|Sharnalk",
+            "Shizuku Murasaki|Shizuku",
+            "Uvogin|Uvo|Ubogin"
+          ]
+        },
+        {
+          "label": "Chimera Ant",
+          "entities": [
+            "Baital",
+            "Baro",
+            "Bihorn",
+            "Bloster",
+            "Cheetu",
+            "Chiona",
+            "Colt",
+            "Flutter",
+            "Gaftz",
+            "Goran",
+            "Gyro",
+            "Hina",
+            "Hollow",
+            "Ikalgo",
+            "Inzagi",
+            "Kite|Kaito",
+            "Leol",
+            "Maenole",
+            "Meleoron",
+            "Menthuthuyoupi|Youpi|Yupi",
+            "Meruem|The King|King Meruem|Merueme",
+            "Neferpitou|Pitou|Neferpito",
+            "Palm Siberia|Palm",
+            "Peggy",
+            "Pell",
+            "Pike",
+            "Pokoro",
+            "Rammot",
+            "Reikei",
+            "Remora",
+            "Shaiapouf|Pouf|Shaiapuf",
+            "Shidore",
+            "Taragetter",
+            "Welfin",
+            "Yunju",
+            "Zazan",
+            "Zem"
+          ]
+        },
+        {
+          "label": "Zodiac",
+          "entities": [
+            "Botobai Gigante",
+            "Cheadle Yorkshire|Cheadle",
+            "Cluck",
+            "Gel",
+            "Ging Freecss|Ging|Jin Freecss",
+            "Ginta",
+            "Kanzai",
+            "Kurapika|Kurapica",
+            "Leorio Paradinight|Leorio",
+            "Mizaistom Nana|Mizaistom",
+            "Pariston Hill|Pariston",
+            "Pyon",
+            "Saccho Kobayakawa",
+            "Saiyu"
+          ]
+        },
+        {
+          "label": "Kakin prince",
+          "entities": [
+            "Benjamin Hui Guo Rou",
+            "Camilla Hui Guo Rou",
+            "Duazul Hui Guo Rou",
+            "Fugetsu Hui Guo Rou",
+            "Halkenburg Hui Guo Rou",
+            "Kacho Hui Guo Rou",
+            "Katrono Hui Guo Rou",
+            "Luzurus Hui Guo Rou",
+            "Marayam Hui Guo Rou",
+            "Momoze Hui Guo Rou",
+            "Nasubi Hui Guo Rou",
+            "Oito Hui Guo Rou",
+            "Salé-salé Hui Guo Rou",
+            "Seiko Hui Guo Rou",
+            "Sevanti Hui Guo Rou",
+            "Swinko-swinko Hui Guo Rou",
+            "Tang Zhao Li Hui Guo Rou",
+            "Tserriednich Hui Guo Rou|Tserriednich|Tserriednich Hoi-Gwor-Roux",
+            "Tubeppa Hui Guo Rou",
+            "Tyson Hui Guo Rou",
+            "Unma Hui Guo Rou",
+            "Woble Hui Guo Rou",
+            "Zhang Lei Hui Guo Rou"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Hunters & Villains",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "The heir of a family of assassins, who ran away from home to become a Hunter with his best friend",
+          "answer": "Killua Zoldyck|Killua|Kirua"
+        },
+        {
+          "text": "A boy from Whale Island who became a Hunter to find the father who left him",
+          "answer": "Gon Freecss|Gon|Gon Freaks"
+        },
+        {
+          "text": "The last of his clan, whose eyes turn scarlet, hunting the thieves who took his people",
+          "answer": "Kurapika|Kurapica"
+        },
+        {
+          "text": "A magician who loves ripe fruit and strong opponents; his aura has the properties of rubber and gum",
+          "answer": "Hisoka|Hisoka Morow|Hisoka Morou"
+        },
+        {
+          "text": "The head of the Spider, who steals other people's abilities into his book",
+          "answer": "Chrollo Lucilfer|Chrollo|Kuroro|Kuroro Lucifer|Chrollo Lucifer"
+        },
+        {
+          "text": "Studied to become a doctor so that no one would die for want of money, like his friend did",
+          "answer": "Leorio Paradinight|Leorio"
+        },
+        {
+          "text": "The eldest Zoldyck brother, who plants needles in people's heads",
+          "answer": "Illumi Zoldyck|Illumi|Irumi"
+        },
+        {
+          "text": "The twelfth Chairman of the Hunter Association, who prayed with a hundred hands",
+          "answer": "Netero|Isaac Netero|Chairman Netero"
+        },
+        {
+          "text": "A short Troupe member who tortures, and whose pain turns into a sun",
+          "answer": "Feitan Portor|Feitan|Feitan Pootaa"
+        },
+        {
+          "text": "A cat-like Royal Guard who healed the King, and whose En stretches for kilometres",
+          "answer": "Neferpitou|Pitou|Neferpito"
+        },
+        {
+          "text": "One of the five best Nen users in the world, and a father who never came home",
+          "answer": "Ging Freecss|Ging|Jin Freecss"
+        },
+        {
+          "text": "A blind girl who never loses at Gungi, and the last person the King asked for",
+          "answer": "Komugi"
+        },
+        {
+          "text": "Looks like a young girl, is over fifty, and trained two boys on Greed Island",
+          "answer": "Biscuit Krueger|Bisky|Biscuit|Bisuke"
+        },
+        {
+          "text": "The Hunter who saved a boy from a Foxbear, and came back as a girl ant",
+          "answer": "Kite|Kaito"
+        },
+        {
+          "text": "A Hunter who lends his aura with interest, and is softer than his face",
+          "answer": "Knuckle Bine|Knuckle|Knov"
+        },
+        {
+          "text": "The Zoldyck grandfather whose aura becomes dragons",
+          "answer": "Zeno Zoldyck|Zeno"
+        },
+        {
+          "text": "A Zoldyck girl who grants wishes, if you grant her three requests first",
+          "answer": "Alluka Zoldyck|Alluka|Arukka"
+        },
+        {
+          "text": "The Troupe's strongest fist, who took on the mafia's Shadow Beasts bare-handed and would not tell where his friends were",
+          "answer": "Uvogin|Uvo|Ubogin"
+        },
+        {
+          "text": "A Troupe member who remembers nothing and whose vacuum cleaner swallows everything",
+          "answer": "Shizuku Murasaki|Shizuku"
+        },
+        {
+          "text": "A Troupe member who reads memories with a touch and loads them into a gun",
+          "answer": "Pakunoda|Paku"
+        },
+        {
+          "text": "The King of the Chimera Ants, who learned the name he was given from a blind girl",
+          "answer": "Meruem|The King|King Meruem|Merueme"
+        },
+        {
+          "text": "The Vice Chairman who smiles at every disaster he causes",
+          "answer": "Pariston Hill|Pariston"
+        },
+        {
+          "text": "A Nostrade bodyguard whose flute and hearing tell lies from truths",
+          "answer": "Senritsu|Melody"
+        },
+        {
+          "text": "Netero's son, who wants to take mankind to the Dark Continent",
+          "answer": "Beyond Netero|Beyond"
+        }
+      ]
+    }
   }
 ]

@@ -1,0 +1,437 @@
+{
+ "source": "Hunterpedia (hunterxhunter.fandom.com)",
+ "characters": [
+  {
+   "name": "Killua Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Transmutation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Gon Freecss",
+   "group": "Hunter",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 1
+  },
+  {
+   "name": "Kurapika",
+   "group": "Hunter",
+   "nen": "Conjuration",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2
+  },
+  {
+   "name": "Hisoka",
+   "group": "Phantom Troupe",
+   "nen": "Transmutation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Chrollo Lucilfer",
+   "group": "Phantom Troupe",
+   "nen": "Specialization",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Leorio Paradinight",
+   "group": "Hunter",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2
+  },
+  {
+   "name": "Illumi Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Netero",
+   "group": "Hunter",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 12
+  },
+  {
+   "name": "Feitan Portor",
+   "group": "Phantom Troupe",
+   "nen": "Transmutation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Neferpitou",
+   "group": "Chimera Ant",
+   "nen": "Specialization",
+   "gender": "Unknown",
+   "status": "Deceased",
+   "debut": 197
+  },
+  {
+   "name": "Ging Freecss",
+   "group": "Zodiac",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 66
+  },
+  {
+   "name": "Komugi",
+   "group": "Civilian",
+   "nen": "Enhancement",
+   "gender": "Female",
+   "status": "Deceased",
+   "debut": 244
+  },
+  {
+   "name": "Biscuit Krueger",
+   "group": "Hunter",
+   "nen": "Transmutation",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 125
+  },
+  {
+   "name": "Kite",
+   "group": "Hunter",
+   "nen": "Conjuration",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 1
+  },
+  {
+   "name": "Knuckle Bine",
+   "group": "Hunter",
+   "nen": "Conjuration",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 200
+  },
+  {
+   "name": "Zeno Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 42
+  },
+  {
+   "name": "Silva Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 42
+  },
+  {
+   "name": "Alluka Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Specialization",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 321
+  },
+  {
+   "name": "Shaiapouf",
+   "group": "Chimera Ant",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 202
+  },
+  {
+   "name": "Menthuthuyoupi",
+   "group": "Chimera Ant",
+   "nen": "Transmutation",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 206
+  },
+  {
+   "name": "Machi Komacine",
+   "group": "Phantom Troupe",
+   "nen": "Transmutation",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 55
+  },
+  {
+   "name": "Nobunaga Hazama",
+   "group": "Phantom Troupe",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Phinks Magcub",
+   "group": "Phantom Troupe",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Uvogin",
+   "group": "Phantom Troupe",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 71
+  },
+  {
+   "name": "Shalnark",
+   "group": "Phantom Troupe",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 71
+  },
+  {
+   "name": "Pakunoda",
+   "group": "Phantom Troupe",
+   "nen": "Specialization",
+   "gender": "Female",
+   "status": "Deceased",
+   "debut": 71
+  },
+  {
+   "name": "Shizuku Murasaki",
+   "group": "Phantom Troupe",
+   "nen": "Conjuration",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Franklin",
+   "group": "Phantom Troupe",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 71
+  },
+  {
+   "name": "Kalluto Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 41
+  },
+  {
+   "name": "Milluki Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 42
+  },
+  {
+   "name": "Kikyo Zoldyck",
+   "group": "Zoldyck",
+   "nen": "Manipulation",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 41
+  },
+  {
+   "name": "Shoot McMahon",
+   "group": "Hunter",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 200
+  },
+  {
+   "name": "Morel Mackernasey",
+   "group": "Hunter",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 199
+  },
+  {
+   "name": "Ikalgo",
+   "group": "Chimera Ant",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 236
+  },
+  {
+   "name": "Meleoron",
+   "group": "Chimera Ant",
+   "nen": "Specialization",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 189
+  },
+  {
+   "name": "Palm Siberia",
+   "group": "Hunter",
+   "nen": "Enhancement",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 200
+  },
+  {
+   "name": "Pariston Hill",
+   "group": "Zodiac",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 319
+  },
+  {
+   "name": "Cheadle Yorkshire",
+   "group": "Zodiac",
+   "nen": "Unknown",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 318
+  },
+  {
+   "name": "Mizaistom Nana",
+   "group": "Zodiac",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 318
+  },
+  {
+   "name": "Senritsu",
+   "group": "Hunter",
+   "nen": "Emission",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 67
+  },
+  {
+   "name": "Wing",
+   "group": "Hunter",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 45
+  },
+  {
+   "name": "Zushi",
+   "group": "Hunter",
+   "nen": "Manipulation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 44
+  },
+  {
+   "name": "Neon Nostrade",
+   "group": "Mafia",
+   "nen": "Specialization",
+   "gender": "Female",
+   "status": "Unknown",
+   "debut": 70
+  },
+  {
+   "name": "Tonpa",
+   "group": "Examinee",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Satotz",
+   "group": "Hunter",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Menchi",
+   "group": "Hunter",
+   "nen": "Unknown",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 10
+  },
+  {
+   "name": "Razor",
+   "group": "Greed Island",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 145
+  },
+  {
+   "name": "Genthru",
+   "group": "Greed Island",
+   "nen": "Conjuration",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 130
+  },
+  {
+   "name": "Gotoh",
+   "group": "Zoldyck",
+   "nen": "Enhancement",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 40
+  },
+  {
+   "name": "Canary",
+   "group": "Zoldyck",
+   "nen": "Unknown",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 41
+  },
+  {
+   "name": "Beyond Netero",
+   "group": "Hunter",
+   "nen": "Unknown",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 340
+  },
+  {
+   "name": "Tserriednich Hui Guo Rou",
+   "group": "Kakin",
+   "nen": "Specialization",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 345
+  },
+  {
+   "name": "Hanzo",
+   "group": "Hunter",
+   "nen": "Transmutation",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Pokkle",
+   "group": "Hunter",
+   "nen": "Emission",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 22
+  }
+ ]
+}

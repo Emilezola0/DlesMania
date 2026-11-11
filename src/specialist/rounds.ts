@@ -112,6 +112,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
   },
   {
+    id: 'hxh',
+    label: 'Hunter x Hunter',
+    ready: true,
+    blurb: 'The Hunters, the Phantom Troupe, the Zoldycks and the Chimera Ants: Classic by group, Nen type, gender, status and debut chapter, their anime art up close and behind windows, and clues.',
+    types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
+  },
+  {
     id: 'arcraiders',
     label: 'ARC Raiders',
     ready: true,
@@ -264,6 +271,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   hollowknight: simplePools('hollowknight'),
   mha: simplePools('mha'),
   bg3: simplePools('bg3'),
+  hxh: simplePools('hxh'),
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
   deadlock: DL_POOLS,

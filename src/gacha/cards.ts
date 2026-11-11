@@ -146,6 +146,8 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   // Bakugo in his hero costume (the anime's 10th-anniversary profile art, My Hero Academia Wiki).
   mha: { name: 'Katsuki Bakugo', title: 'Ground Zero', line: 'Sweat like nitroglycerin and a temper to match: he swore he would be number one, and every explosion since has been a step towards it.', voice: 'Howitzer Impact!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Katsuki_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest?cb=20260509022123' },
   // Karlach on her Steam trading card (Larian's painted art, bg3.wiki).
+  // Gon grown up all at once, the price of his vow against Pitou (the 2011 anime, Hunterpedia).
+  hxh: { name: 'Gon Freecss', title: 'The Price of a Vow', line: 'He gave away every bit of Nen he would ever have, all at once, to become the man who could avenge Kite: one fight, and nothing left after it.', voice: 'First comes rock!', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/d/d6/Adult_Gon_Anime.png/revision/latest/scale-to-width-down/600?cb=20140527193545' },
   bg3: { name: 'Karlach', title: 'The Hellfire Heart', line: 'An infernal engine where her heart should be, an axe in each hand and the biggest smile in camp: she ran from Avernus, and she is not going back.', voice: "Let's crack some skulls, soldier!", image: 'https://bg3.wiki/w/images/thumb/4/4b/Karlach_SteamCard.jpg/600px-Karlach_SteamCard.jpg.webp' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
@@ -203,6 +205,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   // Todoroki's Flashfreeze Heatwave, ice and fire at once (the anime, My Hero Academia Wiki).
   mha: { name: 'Shoto Todoroki', title: 'Half-Cold Half-Hot', line: 'Ice on the right, fire on the left, and a father he swore never to become: the day he used both sides at once, the whole stadium felt the cold and the heat.', voice: 'Flashfreeze Heatwave!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/0/01/Flashfreeze_Heatwave.png/revision/latest/scale-to-width-down/600?cb=20260823031708' },
   // Shadowheart on her Steam trading card (Larian's painted art, bg3.wiki).
+  // Hisoka and his Bungee Gum (the 2011 anime, Hunterpedia).
+  hxh: { name: 'Hisoka', title: 'The Magician', line: 'A card trick, a smile and an aura that sticks like gum and stretches like rubber: he spares the strong so they can ripen, and comes back for them.', voice: 'Bungee Gum has the properties of both rubber and gum.', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/8/81/Hisoka%27s_Bungee_Gum.png/revision/latest/scale-to-width-down/600?cb=20230524024239' },
   bg3: { name: 'Shadowheart', title: 'The Moonlit Cleric', line: 'A cleric with a secret, a wound that will not heal and an artefact she would die before giving up: what she believes, she has never been allowed to choose.', voice: 'Who wants to die first?', image: 'https://bg3.wiki/w/images/thumb/d/dd/Shadowheart_SteamCard.jpg/600px-Shadowheart_SteamCard.jpg.webp' },
   // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
   deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
@@ -313,6 +317,15 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     line: 'A smile that tells everyone they are safe, and a fist that moves the weather: he carried a whole society on his back, then passed the torch to a Quirkless boy.',
     image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a5/United_States_of_Smash.png/revision/latest/scale-to-width-down/600?cb=20260824033549',
     voice: 'Fear not! Why? Because I am here!',
+  },
+  // Hunter x Hunter: Killua in Godspeed, against Youpi (the 2011 anime, Hunterpedia). His line is read by the
+  // browser's voice; no clip yet.
+  hxh: {
+    name: 'Killua Zoldyck',
+    title: 'Godspeed',
+    line: 'Raised to kill, he turned his aura into lightning and his body into a reflex faster than thought: Whirlwind, Speed of Lightning, and a best friend he would cross the world for.',
+    image: 'https://static.wikia.nocookie.net/hunterxhunter/images/d/d0/2011_EP119_Killua_Godspeed.png/revision/latest/scale-to-width-down/600?cb=20230821203012',
+    voice: 'Gon, you are light.',
   },
   // Baldur's Gate 3: Astarion on his Steam trading card (Larian's painted art, bg3.wiki). His line is read by the
   // browser's voice; no clip yet.
@@ -877,9 +890,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh']);
 
 const slug = (s: string) =>
   s

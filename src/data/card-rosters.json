@@ -11049,5 +11049,1287 @@
    "image": "https://bg3.wiki/w/images/b/b9/Woe_Unfaded.png",
    "rarity": "common"
   }
+ ],
+ "hxh": [
+  {
+   "name": "Bonolenov Ndongo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/fc/HxH2011_EP96_Bonolenov_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230123153232",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kortopi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8c/HxH2011_EP56_Kortopi_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230123004840",
+   "rarity": "rare"
+  },
+  {
+   "name": "Omokage",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/69/Omokage.png/revision/latest/scale-to-width-down/400?cb=20121103015148",
+   "rarity": "rare"
+  },
+  {
+   "name": "Maha Zoldyck",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/25/Maha_1999_Full_Body_Design.png/revision/latest/scale-to-width-down/400?cb=20230529211128",
+   "rarity": "rare"
+  },
+  {
+   "name": "Zigg Zoldyck",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/ca/344_-_Zzigg_Zoldyck.png/revision/latest/scale-to-width-down/400?cb=20250828024132",
+   "rarity": "rare"
+  },
+  {
+   "name": "Baital",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/03/Epis_88_%282011%29_-_Baital_portrait_-09.01-.png/revision/latest/scale-to-width-down/400?cb=20230613223430",
+   "rarity": "common"
+  },
+  {
+   "name": "Baro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/64/Baro_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240307180116",
+   "rarity": "common"
+  },
+  {
+   "name": "Bihorn",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/61/2011_EP81_Bihorn_portrait.png/revision/latest/scale-to-width-down/400?cb=20230604233505",
+   "rarity": "common"
+  },
+  {
+   "name": "Bloster",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ac/Burovuda.png/revision/latest/scale-to-width-down/400?cb=20131212062912",
+   "rarity": "common"
+  },
+  {
+   "name": "Cheetu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a4/Cheetu_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181219190314",
+   "rarity": "rare"
+  },
+  {
+   "name": "Colt",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4d/Colt_main.png/revision/latest/scale-to-width-down/400?cb=20130424054211",
+   "rarity": "rare"
+  },
+  {
+   "name": "Flutter",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/99/Flutter_anime.png/revision/latest/scale-to-width-down/400?cb=20130519034636",
+   "rarity": "common"
+  },
+  {
+   "name": "Gyro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7d/Gyro_2011.png/revision/latest/scale-to-width-down/400?cb=20140610224441",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hina",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/64/Hina_anime.png/revision/latest/scale-to-width-down/400?cb=20130519034618",
+   "rarity": "common"
+  },
+  {
+   "name": "Hollow",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b1/Horrow.png/revision/latest/scale-to-width-down/400?cb=20230706180320",
+   "rarity": "common"
+  },
+  {
+   "name": "Inzagi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/66/105_-_Inzagi.png/revision/latest/scale-to-width-down/400?cb=20240222192844",
+   "rarity": "common"
+  },
+  {
+   "name": "Leol",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/47/Leol_anime.png/revision/latest/scale-to-width-down/400?cb=20130519034558",
+   "rarity": "rare"
+  },
+  {
+   "name": "Maenole",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d1/Maenole_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190905092213",
+   "rarity": "common"
+  },
+  {
+   "name": "Peggy",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/89/Peggy2011.png/revision/latest/scale-to-width-down/400?cb=20230603160920",
+   "rarity": "common"
+  },
+  {
+   "name": "Pell",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/de/96_-_Pell_full_body.png/revision/latest/scale-to-width-down/400?cb=20180928040327",
+   "rarity": "common"
+  },
+  {
+   "name": "Pike",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/17/Pike_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230604010743",
+   "rarity": "common"
+  },
+  {
+   "name": "Rammot",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/25/Rammot_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20220723200407",
+   "rarity": "rare"
+  },
+  {
+   "name": "Remora",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/46/Remora.png/revision/latest/scale-to-width-down/400?cb=20181128063213",
+   "rarity": "common"
+  },
+  {
+   "name": "Shidore",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7c/ShidoreAv.png/revision/latest/scale-to-width-down/400?cb=20140620234033",
+   "rarity": "common"
+  },
+  {
+   "name": "Taragetter",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1c/106_-_Taragette.png/revision/latest/scale-to-width-down/400?cb=20131213064423",
+   "rarity": "common"
+  },
+  {
+   "name": "Welfin",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a6/HxH2011_EP136_Welfin_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230215222130",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yunju",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/5b/Yunju_anime.png/revision/latest/scale-to-width-down/400?cb=20230603185656",
+   "rarity": "common"
+  },
+  {
+   "name": "Zazan",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a5/Zazan.png/revision/latest/scale-to-width-down/400?cb=20130418040230",
+   "rarity": "rare"
+  },
+  {
+   "name": "Botobai Gigante",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9c/Botobai_Gigante_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181225161429",
+   "rarity": "rare"
+  },
+  {
+   "name": "Cluck",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/ca/Cluck_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181225080029",
+   "rarity": "common"
+  },
+  {
+   "name": "Gel",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e6/HxH2011_EP137_-_Gel_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230509185744",
+   "rarity": "common"
+  },
+  {
+   "name": "Ginta",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3e/Ginta_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20150722202806",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kanzai",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/71/Kanzai_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20150722203324",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pyon",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3b/Pyon_HCE_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181225154252",
+   "rarity": "common"
+  },
+  {
+   "name": "Saccho Kobayakawa",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/75/Saccho_Portrait_-_Episode_143.png/revision/latest/scale-to-width-down/400?cb=20230608202802",
+   "rarity": "common"
+  },
+  {
+   "name": "Saiyu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/cf/HxH2011_EP137_Saiyu_Portrait.png/revision/latest/scale-to-width-down/400?cb=20220805024815",
+   "rarity": "rare"
+  },
+  {
+   "name": "Benjamin Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/fe/Chap_410_-_Benjamin.png/revision/latest/scale-to-width-down/400?cb=20260507201921",
+   "rarity": "rare"
+  },
+  {
+   "name": "Camilla Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/39/Camilla_Hui_Guo_Rou.png/revision/latest/scale-to-width-down/400?cb=20260507182051",
+   "rarity": "rare"
+  },
+  {
+   "name": "Duazul Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/ba/Duazul_Manga.png/revision/latest/scale-to-width-down/400?cb=20200825075102",
+   "rarity": "common"
+  },
+  {
+   "name": "Fugetsu Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ae/Chap_382_-_Fugetsu.png/revision/latest/scale-to-width-down/400?cb=20240106202033",
+   "rarity": "common"
+  },
+  {
+   "name": "Halkenburg Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4e/Halkenburg_Hui_Guo_Rou_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20250903123849",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kacho Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8c/Chap_382_-_Kacho.png/revision/latest/scale-to-width-down/400?cb=20240104022555",
+   "rarity": "common"
+  },
+  {
+   "name": "Katrono Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0f/Katrono_Hui_Guo_Rou_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221114094256",
+   "rarity": "common"
+  },
+  {
+   "name": "Luzurus Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/70/Chap_414_Luzurus.png/revision/latest/scale-to-width-down/400?cb=20260731170109",
+   "rarity": "common"
+  },
+  {
+   "name": "Marayam Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/96/Marayam.png/revision/latest/scale-to-width-down/400?cb=20210828224358",
+   "rarity": "common"
+  },
+  {
+   "name": "Momoze Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/01/Chap_361_-_Prince_Momoze.png/revision/latest/scale-to-width-down/400?cb=20240512014305",
+   "rarity": "common"
+  },
+  {
+   "name": "Nasubi Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/17/Chap_363_-_Nasubi.png/revision/latest/scale-to-width-down/400?cb=20240103221907",
+   "rarity": "common"
+  },
+  {
+   "name": "Oito Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6b/Oito_Hui_Guo_Rou_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20241222204549",
+   "rarity": "common"
+  },
+  {
+   "name": "Salé-salé Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7a/Sale-sale_Hui_Guo_Rou_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181015024729",
+   "rarity": "common"
+  },
+  {
+   "name": "Seiko Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e4/372_-_Queen_Seiko.png/revision/latest/scale-to-width-down/400?cb=20240401021803",
+   "rarity": "common"
+  },
+  {
+   "name": "Sevanti Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/83/Chap_361_-_Sevanchi_and_Marayam.png/revision/latest/scale-to-width-down/400?cb=20200528092146",
+   "rarity": "common"
+  },
+  {
+   "name": "Swinko-swinko Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/84/Swinko-swinko.png/revision/latest/scale-to-width-down/400?cb=20240513045639",
+   "rarity": "common"
+  },
+  {
+   "name": "Tang Zhao Li Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/88/Tang_Zhao_Li_Hui_Guo_Rou_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221114093725",
+   "rarity": "common"
+  },
+  {
+   "name": "Tubeppa Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/63/Chap_362_-_Tubeppa.png/revision/latest/scale-to-width-down/400?cb=20260514004056",
+   "rarity": "common"
+  },
+  {
+   "name": "Tyson Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/23/Tyson_Manga.png/revision/latest/scale-to-width-down/400?cb=20180930033906",
+   "rarity": "common"
+  },
+  {
+   "name": "Unma Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bf/403_-_Unma.png/revision/latest/scale-to-width-down/400?cb=20241020205002",
+   "rarity": "common"
+  },
+  {
+   "name": "Woble Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/77/Chap_350_-_Woble.png/revision/latest/scale-to-width-down/400?cb=20161017070415",
+   "rarity": "rare"
+  },
+  {
+   "name": "Zhang Lei Hui Guo Rou",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/12/Chap_390_-_Zhang_Lei.png/revision/latest/scale-to-width-down/400?cb=20260507220020",
+   "rarity": "common"
+  },
+  {
+   "name": "Agon",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3b/Agon_EP15.png/revision/latest/scale-to-width-down/400?cb=20230311053236",
+   "rarity": "common"
+  },
+  {
+   "name": "Amori",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/82/Amori_2011.PNG/revision/latest/scale-to-width-down/400?cb=20111225060852",
+   "rarity": "common"
+  },
+  {
+   "name": "Anita",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/03/Anita.png/revision/latest/scale-to-width-down/400?cb=20221205062043",
+   "rarity": "common"
+  },
+  {
+   "name": "Bodoro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e5/Bodoro_2011.PNG/revision/latest/scale-to-width-down/400?cb=20120110031330",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bourbon",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/27/HxH2011_EP3_Bourbon_Portrait.png/revision/latest/scale-to-width-down/400?cb=20221123202925",
+   "rarity": "common"
+  },
+  {
+   "name": "Cherry",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/fb/HxH2011_EP5_Cherry_Portrait.png/revision/latest/scale-to-width-down/400?cb=20220703012019",
+   "rarity": "common"
+  },
+  {
+   "name": "Danjin",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a4/Danjin_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181226025529",
+   "rarity": "common"
+  },
+  {
+   "name": "Erikkusu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b2/Erikkusu_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190629154341",
+   "rarity": "common"
+  },
+  {
+   "name": "Geretta",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a1/Geretta_2011.PNG/revision/latest/scale-to-width-down/400?cb=20120110031636",
+   "rarity": "common"
+  },
+  {
+   "name": "Goz",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/50/HxH2011_EP12_Goz_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230310075249",
+   "rarity": "common"
+  },
+  {
+   "name": "Imori",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f9/Imori_HxH_11.PNG/revision/latest/scale-to-width-down/400?cb=20230311183523",
+   "rarity": "common"
+  },
+  {
+   "name": "Juhnde",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/94/Yunde.png/revision/latest/scale-to-width-down/400?cb=20240103231504",
+   "rarity": "common"
+  },
+  {
+   "name": "Kenmi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/13/Kenmi_Examinee_362_2011.PNG/revision/latest/scale-to-width-down/400?cb=20231010013343",
+   "rarity": "common"
+  },
+  {
+   "name": "Kyu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9c/Kyu_2011.PNG/revision/latest/scale-to-width-down/400?cb=20120108064905",
+   "rarity": "common"
+  },
+  {
+   "name": "Matthew",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/54/HxH2011_EP2_Matthew_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230308035639",
+   "rarity": "common"
+  },
+  {
+   "name": "Moritonio",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a8/Moritonio.png/revision/latest/scale-to-width-down/400?cb=20160606235008",
+   "rarity": "common"
+  },
+  {
+   "name": "Muhahahasare",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d9/Muhahahasare_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190629190241",
+   "rarity": "common"
+  },
+  {
+   "name": "Muherr",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4b/Muherr_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240901235835",
+   "rarity": "common"
+  },
+  {
+   "name": "Myuhan",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1b/Myuhan_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181226124052",
+   "rarity": "common"
+  },
+  {
+   "name": "Nicholas",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b7/HxH2011_EP3_Nicholas_portrait.png/revision/latest/scale-to-width-down/400?cb=20230308061218",
+   "rarity": "common"
+  },
+  {
+   "name": "Ponzu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/13/Ponzu_CA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130506101012",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ryu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/cb/Ryu_2011_Examinee_34.PNG/revision/latest/scale-to-width-down/400?cb=20120110031429",
+   "rarity": "common"
+  },
+  {
+   "name": "Salkov",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6d/Chap_385_-_Salkov_close_up.png/revision/latest/scale-to-width-down/400?cb=20240106223851",
+   "rarity": "common"
+  },
+  {
+   "name": "Shishito",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f8/Shishito_Examinee_89_2011.PNG/revision/latest/scale-to-width-down/400?cb=20190107230226",
+   "rarity": "common"
+  },
+  {
+   "name": "Siper",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3f/Sniper_HxH_11.PNG/revision/latest/scale-to-width-down/400?cb=20120323054948",
+   "rarity": "common"
+  },
+  {
+   "name": "Sommy",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/62/Sommy_HxH_14.PNG/revision/latest/scale-to-width-down/400?cb=20120323055013",
+   "rarity": "common"
+  },
+  {
+   "name": "Theta",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c4/Theta.png/revision/latest/scale-to-width-down/400?cb=20260824014901",
+   "rarity": "common"
+  },
+  {
+   "name": "Todo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/46/HxH_Todo_2011_hunter_exam_287.png/revision/latest/scale-to-width-down/400?cb=20160421230705",
+   "rarity": "common"
+  },
+  {
+   "name": "Umori",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/71/HxH2011_EP5_Umori_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230308213719",
+   "rarity": "common"
+  },
+  {
+   "name": "Zepile",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/27/You_can_count_on_Zepile.png/revision/latest/scale-to-width-down/400?cb=20240307184508",
+   "rarity": "common"
+  },
+  {
+   "name": "Zomeesa",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/39/Zomeesa_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190629154342",
+   "rarity": "common"
+  },
+  {
+   "name": "Buhara",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f2/HxH2011_EP6_Buhara_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230309030834",
+   "rarity": "rare"
+  },
+  {
+   "name": "Khara",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f6/Khara_%282011%29.PNG/revision/latest/scale-to-width-down/400?cb=20230308024601",
+   "rarity": "common"
+  },
+  {
+   "name": "Lippo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/be/Lippo_%282011%29.PNG/revision/latest/scale-to-width-down/400?cb=20120108064856",
+   "rarity": "common"
+  },
+  {
+   "name": "Luis",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4d/HxH99_EP29_RM_Luis_IMG.png/revision/latest/scale-to-width-down/400?cb=20221123200006",
+   "rarity": "common"
+  },
+  {
+   "name": "Masta",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/86/HxH2011_EP19_Masta_during_the_final_phase.png/revision/latest/scale-to-width-down/400?cb=20230314035028",
+   "rarity": "common"
+  },
+  {
+   "name": "Michael",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d4/Michael_2011.png/revision/latest/scale-to-width-down/400?cb=20130320054727",
+   "rarity": "common"
+  },
+  {
+   "name": "Togari",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/cf/HxH2011_EP10_Togari_close-up.png/revision/latest/scale-to-width-down/400?cb=20230310005523",
+   "rarity": "common"
+  },
+  {
+   "name": "Zegin Highline",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/02/Zegin.png/revision/latest/scale-to-width-down/400?cb=20181112211547",
+   "rarity": "common"
+  },
+  {
+   "name": "Bushidora Ambitious",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/43/Bushidora_Ambitious_ranked_at_13_in_voting.png/revision/latest/scale-to-width-down/400?cb=20140806144916",
+   "rarity": "common"
+  },
+  {
+   "name": "Cutie Beauty",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1f/Cutie_-_Episode_141.png/revision/latest/scale-to-width-down/400?cb=20230605050144",
+   "rarity": "common"
+  },
+  {
+   "name": "Ickshonpe Katocha",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b9/Ickshonpe_Katocha_ranked_at_6_in_voting.png/revision/latest/scale-to-width-down/400?cb=20140806143402",
+   "rarity": "common"
+  },
+  {
+   "name": "Sanbica Norton",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/45/Sanbica_Norton_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20240327183947",
+   "rarity": "common"
+  },
+  {
+   "name": "Tsezguerra",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/00/2011_EP59_Tsezguerra_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240324165921",
+   "rarity": "rare"
+  },
+  {
+   "name": "Linne Horsdoeuvre",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/40/Linne_Horsdoeuvre_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20141201185057",
+   "rarity": "common"
+  },
+  {
+   "name": "Teradein Neutral",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0e/Teradein_Neutral_ranked_at_7_in_voting.png/revision/latest/scale-to-width-down/400?cb=20140806143650",
+   "rarity": "common"
+  },
+  {
+   "name": "Baise",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/16/Baise2011-crop.png/revision/latest/scale-to-width-down/400?cb=20230510200018",
+   "rarity": "common"
+  },
+  {
+   "name": "Barry",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9f/Barry_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190128110204",
+   "rarity": "common"
+  },
+  {
+   "name": "Basho",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/2c/Basho_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181210233824",
+   "rarity": "rare"
+  },
+  {
+   "name": "Belerainte",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f6/Belerainte_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20241222203449",
+   "rarity": "common"
+  },
+  {
+   "name": "Bill",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/ec/Bill_Manga.png/revision/latest/scale-to-width-down/400?cb=20181121002854",
+   "rarity": "common"
+  },
+  {
+   "name": "Cuzco",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3d/Cuzco_Manga.png/revision/latest/scale-to-width-down/400?cb=20200916034419",
+   "rarity": "common"
+  },
+  {
+   "name": "Doster",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b7/Doster_2011.png/revision/latest/scale-to-width-down/400?cb=20170731052046",
+   "rarity": "common"
+  },
+  {
+   "name": "Dwun",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4e/Dwun_2011.png/revision/latest/scale-to-width-down/400?cb=20230528200843",
+   "rarity": "common"
+  },
+  {
+   "name": "Gashta Bellam",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/ca/2011_EP75_Gashta_Close_up.png/revision/latest/scale-to-width-down/400?cb=20230528195255",
+   "rarity": "common"
+  },
+  {
+   "name": "Giuliano",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/fa/Giulianoface.png/revision/latest/scale-to-width-down/400?cb=20230514000918",
+   "rarity": "common"
+  },
+  {
+   "name": "Goreinu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7e/Goreinu_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190123171404",
+   "rarity": "common"
+  },
+  {
+   "name": "Grachan",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3b/Inamura_2011.png/revision/latest/scale-to-width-down/400?cb=20240229064740",
+   "rarity": "common"
+  },
+  {
+   "name": "Hagakushi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/31/HxH2011_EP137_Hagakushi_Close_Up.png/revision/latest/scale-to-width-down/400?cb=20221128040907",
+   "rarity": "common"
+  },
+  {
+   "name": "Izunavi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/29/HxH2011_EP47_Izunavi_Portrait_IMG.png/revision/latest/scale-to-width-down/400?cb=20220925211153",
+   "rarity": "common"
+  },
+  {
+   "name": "Jed",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bf/Jed_Last_Mission.png/revision/latest/scale-to-width-down/400?cb=20131015131237",
+   "rarity": "common"
+  },
+  {
+   "name": "Jeitsari",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/68/Jeitsari_2011.png/revision/latest/scale-to-width-down/400?cb=20240325032438",
+   "rarity": "common"
+  },
+  {
+   "name": "Keeney",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6b/Keeni_Infobox.png/revision/latest/scale-to-width-down/400?cb=20180309120646",
+   "rarity": "common"
+  },
+  {
+   "name": "Kenzaki",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/ca/Teradein_trying_to_phone_Latune_and_Kenzaki.png/revision/latest/scale-to-width-down/400?cb=20230831025432",
+   "rarity": "common"
+  },
+  {
+   "name": "Kess",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6a/Kess_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190124183518",
+   "rarity": "common"
+  },
+  {
+   "name": "Knov",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/ff/Knov148.png/revision/latest/scale-to-width-down/400?cb=20240307181052",
+   "rarity": "rare"
+  },
+  {
+   "name": "Kurton",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4c/Kurton_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20241222204107",
+   "rarity": "common"
+  },
+  {
+   "name": "Linssen",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/78/Linsen2011.png/revision/latest/scale-to-width-down/400?cb=20230511201706",
+   "rarity": "common"
+  },
+  {
+   "name": "List",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b2/List_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130502150856",
+   "rarity": "common"
+  },
+  {
+   "name": "Mamen Beans",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/be/HxH2011_EP8_Beans_Profile_IMG.png/revision/latest/scale-to-width-down/400?cb=20221117204915",
+   "rarity": "common"
+  },
+  {
+   "name": "Redwood",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ab/Redwood_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130505142421",
+   "rarity": "common"
+  },
+  {
+   "name": "Ridge",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c0/Ridge_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20260720153631",
+   "rarity": "common"
+  },
+  {
+   "name": "Rodriot",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8a/Rodriot_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190128110339",
+   "rarity": "common"
+  },
+  {
+   "name": "Sayird",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ae/Sayird_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20160702184819",
+   "rarity": "common"
+  },
+  {
+   "name": "Scairt",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/06/Scairt_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181116110622",
+   "rarity": "common"
+  },
+  {
+   "name": "Shachmono Tocino",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/27/Tocino2011-crop.png/revision/latest/scale-to-width-down/400?cb=20230511035935",
+   "rarity": "common"
+  },
+  {
+   "name": "Tokarine",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/44/Tokyarine.png/revision/latest/scale-to-width-down/400?cb=20221107033846",
+   "rarity": "common"
+  },
+  {
+   "name": "Zenju",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0a/Epis_60_%282011%29_-_Zenju_portrait_-07.34-.png/revision/latest/scale-to-width-down/400?cb=20181120041246",
+   "rarity": "common"
+  },
+  {
+   "name": "Zetsk Bellam",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/10/2011_EP61_Zetsk_close_up.png/revision/latest/scale-to-width-down/400?cb=20230528195913",
+   "rarity": "common"
+  },
+  {
+   "name": "Curly",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d2/340_-_Curly%27s_appearance.png/revision/latest/scale-to-width-down/400?cb=20221111213404",
+   "rarity": "common"
+  },
+  {
+   "name": "Golem",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c3/Golem_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240901232105",
+   "rarity": "common"
+  },
+  {
+   "name": "Marione",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e9/Marione_Infobox.png/revision/latest/scale-to-width-down/400?cb=20210901050702",
+   "rarity": "common"
+  },
+  {
+   "name": "Mascher",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bb/A_close-up_on_Mascher.png/revision/latest/scale-to-width-down/400?cb=20210901192048",
+   "rarity": "common"
+  },
+  {
+   "name": "Pekotero",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7e/Pekotero_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240901232022",
+   "rarity": "common"
+  },
+  {
+   "name": "Usamen",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f9/Usamen_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240901232053",
+   "rarity": "common"
+  },
+  {
+   "name": "Dalzollene",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bc/Dalzollene_2011.png/revision/latest/scale-to-width-down/400?cb=20230510204036",
+   "rarity": "rare"
+  },
+  {
+   "name": "Eliza",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/99/Eliza2011.png/revision/latest/scale-to-width-down/400?cb=20120729040025",
+   "rarity": "common"
+  },
+  {
+   "name": "Ivlenkov",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/ea/Ivlenkov_2011.png/revision/latest/scale-to-width-down/400?cb=20120805042631",
+   "rarity": "common"
+  },
+  {
+   "name": "Light Nostrade",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9e/Light_Nostrade_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181031132853",
+   "rarity": "rare"
+  },
+  {
+   "name": "Squala",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/14/Squala_YC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20170719225128",
+   "rarity": "rare"
+  },
+  {
+   "name": "Amoeba",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a3/Ameha.png/revision/latest/scale-to-width-down/400?cb=20240324175405",
+   "rarity": "common"
+  },
+  {
+   "name": "Dani",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ae/Dani_TLM_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240324214008",
+   "rarity": "common"
+  },
+  {
+   "name": "Dorado",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/01/Dorado1999.png/revision/latest/scale-to-width-down/400?cb=20230513181752",
+   "rarity": "common"
+  },
+  {
+   "name": "Ga",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/be/Ga_TLM_Portrait.png/revision/latest/scale-to-width-down/400?cb=20170703083805",
+   "rarity": "common"
+  },
+  {
+   "name": "Gama",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f0/Kama.png/revision/latest/scale-to-width-down/400?cb=20240324174614",
+   "rarity": "common"
+  },
+  {
+   "name": "Gido",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/68/Gido_HA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190530162016",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hae",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3f/Hae.png/revision/latest/scale-to-width-down/400?cb=20140818141133",
+   "rarity": "common"
+  },
+  {
+   "name": "Kamakiri",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a7/Kamakiri.png/revision/latest/scale-to-width-down/400?cb=20140818140741",
+   "rarity": "common"
+  },
+  {
+   "name": "Kanjiru",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a1/Kanjiru_TLM_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240324212752",
+   "rarity": "common"
+  },
+  {
+   "name": "Kastro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/35/Kastro-2011.png/revision/latest/scale-to-width-down/400?cb=20230410000810",
+   "rarity": "rare"
+  },
+  {
+   "name": "Maita",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/61/Maita.png/revision/latest/scale-to-width-down/400?cb=20231231011055",
+   "rarity": "common"
+  },
+  {
+   "name": "Mukade",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/70/Mukade_TLM_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240324215435",
+   "rarity": "common"
+  },
+  {
+   "name": "Riehlvelt",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/da/Riehlvelt_HA_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190630232321",
+   "rarity": "rare"
+  },
+  {
+   "name": "Sadaso",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9b/Sadaso_HxH_2011.PNG/revision/latest/scale-to-width-down/400?cb=20230408180314",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yamanezumi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0a/Yamanezumi_TLM_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240324210227",
+   "rarity": "common"
+  },
+  {
+   "name": "Babimyna",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/15/Chap_386_-_Babimyna.png/revision/latest/scale-to-width-down/400?cb=20240107173853",
+   "rarity": "common"
+  },
+  {
+   "name": "Balsamilco Might",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c0/Chap_388_-_Balsalmico_close-up.png/revision/latest/scale-to-width-down/400?cb=20240417014145",
+   "rarity": "common"
+  },
+  {
+   "name": "Bara",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b6/Bara_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190126105451",
+   "rarity": "common"
+  },
+  {
+   "name": "Bendot",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/54/HxH2011_EP8_Bendot_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230309213020",
+   "rarity": "common"
+  },
+  {
+   "name": "Bille",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f4/Bille_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20180316152425",
+   "rarity": "common"
+  },
+  {
+   "name": "Brocco Li",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/bb/Brocco_Li_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20180316151714",
+   "rarity": "common"
+  },
+  {
+   "name": "Cashew",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c2/Chap_379_-_Cashew.png/revision/latest/scale-to-width-down/400?cb=20240403035340",
+   "rarity": "common"
+  },
+  {
+   "name": "Chiffon Toto",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6c/Chiffon_Toto_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230304183625",
+   "rarity": "common"
+  },
+  {
+   "name": "Daemon",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1b/Daemon_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20180316152437",
+   "rarity": "common"
+  },
+  {
+   "name": "Dogman",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/78/Chap_405_-_Dogman_Infobox_Image.png/revision/latest/scale-to-width-down/400?cb=20241117002402",
+   "rarity": "common"
+  },
+  {
+   "name": "Don Gappai",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/dd/Don_Gappai_Each_One%E2%80%99s_Determination_sprite.png/revision/latest/scale-to-width-down/400?cb=20240330211519",
+   "rarity": "common"
+  },
+  {
+   "name": "Donal",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a5/Each_One%27s_Determination_donal_attack_sprite.png/revision/latest/scale-to-width-down/400?cb=20240221234446",
+   "rarity": "common"
+  },
+  {
+   "name": "Doro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/20/Each_One%27s_Determination_Doro.png/revision/latest/scale-to-width-down/400?cb=20231104011050",
+   "rarity": "common"
+  },
+  {
+   "name": "Furykov",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/45/Hurikoa.png/revision/latest/scale-to-width-down/400?cb=20240104001658",
+   "rarity": "common"
+  },
+  {
+   "name": "Gaki",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f6/Gaki_TLM.png/revision/latest/scale-to-width-down/400?cb=20140818162255",
+   "rarity": "common"
+  },
+  {
+   "name": "Gateaume",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f8/Chap_393_-_Gateaume.png/revision/latest/scale-to-width-down/400?cb=20240322163223",
+   "rarity": "common"
+  },
+  {
+   "name": "Gelato",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/16/Chapter_407_-_Gelato.png/revision/latest/scale-to-width-down/400?cb=20241117214456",
+   "rarity": "common"
+  },
+  {
+   "name": "Johness",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/59/HxH2011_EP11_Johness_reveals_himself.png/revision/latest/scale-to-width-down/400?cb=20230310034953",
+   "rarity": "common"
+  },
+  {
+   "name": "Ken'i Wang",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c4/Chap_378_-_Ou_Ken%27i.png/revision/latest/scale-to-width-down/400?cb=20240325025229",
+   "rarity": "common"
+  },
+  {
+   "name": "Leroute",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/5e/HxH2011_EP11_Leroute_reveals_her_appearance.png/revision/latest/scale-to-width-down/400?cb=20230310032204",
+   "rarity": "common"
+  },
+  {
+   "name": "Luini",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9d/Chap_379_-_Luini.png/revision/latest/scale-to-width-down/400?cb=20240404033526",
+   "rarity": "common"
+  },
+  {
+   "name": "Majtani",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/de/HxH2011_EP9_Majitani_during_his_match_with_Kurapika.png/revision/latest/scale-to-width-down/400?cb=20230309232338",
+   "rarity": "common"
+  },
+  {
+   "name": "Matvere",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/00/Chap_394_-_Matvere.png/revision/latest/scale-to-width-down/400?cb=20241117223304",
+   "rarity": "common"
+  },
+  {
+   "name": "Montblanc Toto",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/fe/Montblanc_Toto_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230304183710",
+   "rarity": "common"
+  },
+  {
+   "name": "Morena Prudo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/95/Chap_405_-_Morena_close-up.png/revision/latest/scale-to-width-down/400?cb=20241106190041",
+   "rarity": "common"
+  },
+  {
+   "name": "Nino",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/aa/Each_One%27s_Determination_Nino_Fight_Sprite.png/revision/latest/scale-to-width-down/400?cb=20240221171321",
+   "rarity": "common"
+  },
+  {
+   "name": "Notre",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/34/Notre_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20240321202550",
+   "rarity": "common"
+  },
+  {
+   "name": "Onior Longbao",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/29/Onior_Longbao_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20180316151526",
+   "rarity": "common"
+  },
+  {
+   "name": "Orarge",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9f/Chap_394_-_Orarge.png/revision/latest/scale-to-width-down/400?cb=20240321014403",
+   "rarity": "common"
+  },
+  {
+   "name": "Padaille",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/04/Chap_391_-_Padaille_2.png/revision/latest/scale-to-width-down/400?cb=20240318031901",
+   "rarity": "common"
+  },
+  {
+   "name": "Perigord",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/60/Chap_390_-_Perigord.png/revision/latest/scale-to-width-down/400?cb=20240320031836",
+   "rarity": "common"
+  },
+  {
+   "name": "Quorolle",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b9/Chap_391_-_Quorolle.png/revision/latest/scale-to-width-down/400?cb=20240107175830",
+   "rarity": "common"
+  },
+  {
+   "name": "Rorgo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c2/Each_One%27s_Determination_Rorgo_Sprite.png/revision/latest/scale-to-width-down/400?cb=20211225012219",
+   "rarity": "common"
+  },
+  {
+   "name": "Sabaki",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/dd/Sabaki.png/revision/latest/scale-to-width-down/400?cb=20181112211547",
+   "rarity": "common"
+  },
+  {
+   "name": "Sansho",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/db/Each_One%27s_Determination_Sansho.png/revision/latest/scale-to-width-down/400?cb=20211130180421",
+   "rarity": "common"
+  },
+  {
+   "name": "Sedokan",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/de/HxH2011_EP9_Sedokan_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230309220234",
+   "rarity": "common"
+  },
+  {
+   "name": "Shives",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9c/Each_One%27s_Determination_Shives.png/revision/latest/scale-to-width-down/400?cb=20231104181151",
+   "rarity": "common"
+  },
+  {
+   "name": "Shura",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7f/Shura_Last_Mission.png/revision/latest/scale-to-width-down/400?cb=20131015131509",
+   "rarity": "common"
+  },
+  {
+   "name": "Sodom",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/ba/Chap_394_-_Sodom.png/revision/latest/scale-to-width-down/400?cb=20241117231506",
+   "rarity": "common"
+  },
+  {
+   "name": "Soufflé",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4c/Souffl%C3%A9_SC_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230304183302",
+   "rarity": "common"
+  },
+  {
+   "name": "Sub",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7c/HxH2011_EP65_Sub_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230521233123",
+   "rarity": "common"
+  },
+  {
+   "name": "Surirao",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1e/Each_One%27s_Determination_Surirao.png/revision/latest/scale-to-width-down/400?cb=20231104181210",
+   "rarity": "common"
+  },
+  {
+   "name": "Terebellum",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/67/Chap_399_-_Terebellum_2.png/revision/latest/scale-to-width-down/400?cb=20240322015637",
+   "rarity": "common"
+  },
+  {
+   "name": "Tevelares",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/a5/Chap_391_-_Tevelares.png/revision/latest/scale-to-width-down/400?cb=20241117233430",
+   "rarity": "common"
+  },
+  {
+   "name": "Tuffdy",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/50/372_-_Tuffdy.png/revision/latest/scale-to-width-down/400?cb=20180203035900",
+   "rarity": "common"
+  },
+  {
+   "name": "Vincent",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c6/Chap_363_-_Vincent.png/revision/latest/scale-to-width-down/400?cb=20200429031732",
+   "rarity": "common"
+  },
+  {
+   "name": "Voconte",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/75/Chap_407_-_Voconte.png/revision/latest/scale-to-width-down/400?cb=20241117215901",
+   "rarity": "common"
+  },
+  {
+   "name": "Yokotani",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/07/Chap_399_-_Yokotani_2.png/revision/latest/scale-to-width-down/400?cb=20240321165633",
+   "rarity": "common"
+  },
+  {
+   "name": "Zenji",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/5b/Zenji_2011.png/revision/latest/scale-to-width-down/400?cb=20240327203257",
+   "rarity": "common"
+  },
+  {
+   "name": "Abengane",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/86/Abengane2011.png/revision/latest/scale-to-width-down/400?cb=20121223051318",
+   "rarity": "rare"
+  },
+  {
+   "name": "Amana",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/63/Amana_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522034210",
+   "rarity": "common"
+  },
+  {
+   "name": "Arka",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/f8/Arka.png/revision/latest/scale-to-width-down/400?cb=20221220234951",
+   "rarity": "common"
+  },
+  {
+   "name": "Assam",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/cd/Assam1.png/revision/latest/scale-to-width-down/400?cb=20130106152529",
+   "rarity": "common"
+  },
+  {
+   "name": "Asta",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/75/Asta_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20190124183240",
+   "rarity": "common"
+  },
+  {
+   "name": "Binolt",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/1a/Binolt_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130503075810",
+   "rarity": "common"
+  },
+  {
+   "name": "Contarch",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/7/7f/Contarch_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20251202205552",
+   "rarity": "common"
+  },
+  {
+   "name": "Degiro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3c/Dojiro.png/revision/latest/scale-to-width-down/400?cb=20221220235922",
+   "rarity": "common"
+  },
+  {
+   "name": "Erbier Mano",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0a/Erbier_Mano_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20251122230016",
+   "rarity": "common"
+  },
+  {
+   "name": "Hanse",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/4f/Hanse_2011.png/revision/latest/scale-to-width-down/400?cb=20230522021344",
+   "rarity": "common"
+  },
+  {
+   "name": "Isaac",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/d/d2/HxH2011_EP61_Isaac_Appearance.png/revision/latest/scale-to-width-down/400?cb=20230516174842",
+   "rarity": "common"
+  },
+  {
+   "name": "Ivona Kawski",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/46/Ivona_Kawski_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522042717",
+   "rarity": "common"
+  },
+  {
+   "name": "Jeet",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8c/Jeet.png/revision/latest/scale-to-width-down/400?cb=20220125124632",
+   "rarity": "common"
+  },
+  {
+   "name": "Jikono",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/34/Jikono11.png/revision/latest/scale-to-width-down/400?cb=20130628113340",
+   "rarity": "common"
+  },
+  {
+   "name": "Jispa",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/30/Jispa_2011.png/revision/latest/scale-to-width-down/400?cb=20121223054020",
+   "rarity": "common"
+  },
+  {
+   "name": "Kazsule",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/10/Kazsule_2011.png/revision/latest/scale-to-width-down/400?cb=20130113084328",
+   "rarity": "common"
+  },
+  {
+   "name": "Kosofftro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/69/Kozufutoro.png/revision/latest/scale-to-width-down/400?cb=20221213055816",
+   "rarity": "common"
+  },
+  {
+   "name": "Latarza",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/4/47/Latarza_2011_Appearance.png/revision/latest/scale-to-width-down/400?cb=20230516172142",
+   "rarity": "common"
+  },
+  {
+   "name": "Linn",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/3e/Linn_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20251122230002",
+   "rarity": "common"
+  },
+  {
+   "name": "Luciart",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9c/Luciart11.png/revision/latest/scale-to-width-down/400?cb=20130628120314",
+   "rarity": "common"
+  },
+  {
+   "name": "Manheim",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/3/34/Manheim_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20130504133739",
+   "rarity": "common"
+  },
+  {
+   "name": "Michiro",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/a/ae/Michirou_%282011%29.png/revision/latest/scale-to-width-down/400?cb=20230522033158",
+   "rarity": "common"
+  },
+  {
+   "name": "Mikli",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/9/9a/Mikli_2011.png/revision/latest/scale-to-width-down/400?cb=20121223060727",
+   "rarity": "common"
+  },
+  {
+   "name": "Montreux",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/80/Montreux_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230523013434",
+   "rarity": "common"
+  },
+  {
+   "name": "Motaricke",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8b/Motaricke_2011.png/revision/latest/scale-to-width-down/400?cb=20240628022623",
+   "rarity": "common"
+  },
+  {
+   "name": "Mukanaki",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e3/Mukanaki11.png/revision/latest/scale-to-width-down/400?cb=20190127013513",
+   "rarity": "common"
+  },
+  {
+   "name": "Nick Cue",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/0/0e/Nick_Cue_2011.png/revision/latest/scale-to-width-down/400?cb=20230522022110",
+   "rarity": "common"
+  },
+  {
+   "name": "Nickes",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/6c/Nickes1.png/revision/latest/scale-to-width-down/400?cb=20230516173152",
+   "rarity": "common"
+  },
+  {
+   "name": "Nomdieu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/20/Nomdieu1.png/revision/latest/scale-to-width-down/400?cb=20130106153821",
+   "rarity": "common"
+  },
+  {
+   "name": "Ogyu",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/e5/Ogyu.png/revision/latest/scale-to-width-down/400?cb=20230218192140",
+   "rarity": "common"
+  },
+  {
+   "name": "Pisac",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/13/Pisac.png/revision/latest/scale-to-width-down/400?cb=20130918203750",
+   "rarity": "common"
+  },
+  {
+   "name": "Pongo",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c3/Pongo11.png/revision/latest/scale-to-width-down/400?cb=20130628113542",
+   "rarity": "common"
+  },
+  {
+   "name": "Puhat",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/e/ea/Puhat_main.png/revision/latest/scale-to-width-down/400?cb=20131101170105",
+   "rarity": "common"
+  },
+  {
+   "name": "Richard Hackett",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/11/Richard_Hackett_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522042136",
+   "rarity": "common"
+  },
+  {
+   "name": "Sakisuke Njiji",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/6/69/Epis_60_%282011%29_-_Sakisuke_Njiji_portrait_-7.31~07.34-.png/revision/latest/scale-to-width-down/400?cb=20181122053239",
+   "rarity": "common"
+  },
+  {
+   "name": "Shihael",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/c/c2/Shihael_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20181120090439",
+   "rarity": "common"
+  },
+  {
+   "name": "Soffman",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/5/5b/Soffman_2011_Anime.png/revision/latest/scale-to-width-down/400?cb=20251122232350",
+   "rarity": "common"
+  },
+  {
+   "name": "Souheil",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/2e/Souheil_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230523010832",
+   "rarity": "common"
+  },
+  {
+   "name": "Tokharone",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/8/8d/Tokharone_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20251115180658",
+   "rarity": "common"
+  },
+  {
+   "name": "Vice",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/f/ff/Vice_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20191125182723",
+   "rarity": "common"
+  },
+  {
+   "name": "Wong Ho",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b4/Wong_Ho_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522041621",
+   "rarity": "common"
+  },
+  {
+   "name": "Wong Li",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/b/b0/Wong_Li_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522035857",
+   "rarity": "common"
+  },
+  {
+   "name": "Yabibi",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/2/2e/Yabibi_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230522044132",
+   "rarity": "common"
+  },
+  {
+   "name": "Zeho",
+   "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/14/Zeho_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230523010233",
+   "rarity": "common"
+  }
  ]
 }

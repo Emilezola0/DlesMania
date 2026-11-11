@@ -128,6 +128,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Their arm is broken again, {other}.', 'Was it a hundred percent Smash?', 'It is always a hundred percent Smash.'], ['They forgot to name their move.', 'Someone always does, {other}.']],
     great: [['Was that All For One going down?', 'It was, {other}!', 'The Symbol of Peace lives on.']],
   },
+  hxh: {
+    good: [['They passed the Hunter Exam, {other}.', 'First try, too.'], ['Clean Jajanken.', 'Rock, every time, {other}.']],
+    bad: [['They ran out of aura, {other}.', 'Was it the Nen exam?', 'It is always the Nen exam.'], ['They forgot to train their Ten.', 'Someone always does, {other}.']],
+    great: [['Was that the King going down?', 'It was, {other}!', 'Even the Royal Guards saw it.']],
+  },
   bg3: {
     good: [['They passed the persuasion check, {other}.', 'First roll, too.'], ['Clean shove off that ledge.', 'The goblins never saw it, {other}.']],
     bad: [['A natural one, {other}.', 'Was it the dialogue check?', 'It is always the dialogue check.'], ['They skipped the long rest.', 'Someone always does, {other}.']],

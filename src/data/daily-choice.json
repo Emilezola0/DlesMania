@@ -4,7 +4,7 @@
   "skipSets": ["jlpt", "unreal", "balatro", "forts"],
   "rarities": ["legendary", "mythic", "omni"],
   "launchSets": ["arcraiders", "avatar", "balatro", "dbz", "deadlock", "destiny", "forhonor", "forts", "genshin", "harrypotter", "hollowknight", "hsr", "inazuma", "jlpt", "lol", "lotr", "mcu", "minecraft", "naruto", "onepiece", "overwatch", "smash", "starwars", "ufouria", "unreal", "wow"],
-  "since": { "mha": "2026-11-12", "bg3": "2026-11-12" },
+  "since": { "mha": "2026-11-12", "bg3": "2026-11-12", "hxh": "2026-11-12" },
   "questions": [
     { "text": "Who wins in a one-on-one fight?", "options": 2 },
     { "text": "Who would you rather fight?", "options": 2 },
