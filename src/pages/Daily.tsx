@@ -12,7 +12,8 @@ import { buildDaily, isDomain } from '../lib/rounds';
 import { MAX_DAILY_SCORE } from '../lib/scoring';
 import { sfx } from '../lib/sfx';
 import { roundEmoji, shareText } from '../lib/share';
-import { computeStreak, DAILY_DOMAINS, dayKey, summarizeDay, useProgress } from '../store/progress';
+import { computeStreak, DAILY_DOMAINS, dayKey, specialStreak, summarizeDay, useProgress } from '../store/progress';
+import { UNIVERSES, isFeatured } from '../specialist/rounds';
 import { CATEGORY_BONUS, DAILY_COMPLETE, dailyCompleteCoins } from '../gacha/economy';
 import { DleCoin } from '../components/DleCoin';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
@@ -97,7 +98,51 @@ export function DailyHub() {
         <RulesButton tab="daily" label="How to play" />
       </div>
       <DailyCards />
+      <SpecialistCard />
     </div>
+  );
+}
+
+/**
+ * The Specialist under the four categories: its own daily in each universe, the owner's three most important (League
+ * of Legends, One Piece, Overwatch) in gold with today's progress, and the way to every universe.
+ */
+function SpecialistCard() {
+  const special = useProgress((s) => s.special);
+  const today = todayKey();
+  const featured = UNIVERSES.filter((u) => isFeatured(u.id));
+  return (
+    <section className="page space-y-4 rounded-md p-6">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="font-display text-[11px] tracking-[0.25em] text-ink-faint">ONE UNIVERSE, EVERY ANGLE</p>
+          <h2 className="font-serif text-3xl font-bold leading-tight">Specialist</h2>
+          <p className="text-sm text-ink-soft">A daily of its own in each of {UNIVERSES.length} universes: rounds made only from it.</p>
+        </div>
+        <Link to="/specialist" className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
+          Every universe →
+        </Link>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {featured.map((u) => {
+          const done = Object.values(special[`${u.id}:${today}`] ?? {}).filter((r) => r.status !== 'playing').length;
+          const streak = specialStreak(special, u.id, u.types.length);
+          return (
+            <Link key={u.id} to={`/specialist/${u.id}`} className="golden-ready flex flex-col gap-1 rounded-md bg-gradient-to-br from-[#fde68a]/15 to-transparent p-4 transition hover:-translate-y-0.5">
+              <span className="golden-text font-display text-lg font-bold">★ {u.label}</span>
+              <span className="flex items-center justify-between text-xs text-ink-faint">
+                {done >= u.types.length ? 'Today: done' : done ? `Today: ${done}/${u.types.length}` : 'Today: not started'}
+                {streak > 0 && (
+                  <span className="inline-flex items-center gap-1 font-bold text-coral">
+                    <FlameIcon /> {streak}
+                  </span>
+                )}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
