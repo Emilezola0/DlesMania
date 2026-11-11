@@ -277,7 +277,7 @@ function Profile() {
         <input type="checkbox" checked={reactions} onChange={(e) => setReactions(e.target.checked)} className="mt-1 size-4 accent-[var(--color-accent)]" />
         <span>
           <span className="block font-semibold">Cards react while you play</span>
-          <span className="block text-sm text-ink-soft">A Legendary or Mythic icon pops up with a word on a right answer, a mistake or a big win (a Mythic says its voice line); a Legendary or Mythic background lights up, winces or bursts.</span>
+          <span className="block text-sm text-ink-soft">A Legendary or Mythic icon pops up with a word on a right answer, a mistake or a big win; a Legendary or Mythic background lights up, winces or bursts, and on a win plays its video and says its voice line.</span>
         </span>
       </label>
       <label className="flex cursor-pointer items-start gap-3 rounded-md border border-rule p-3">

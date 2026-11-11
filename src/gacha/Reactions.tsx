@@ -103,11 +103,11 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   inazuma: { good: ['GOAL!', "That's teamwork!", 'What a save!'], bad: ['Offside!', 'The keeper got that one…', 'Back to practice!'] },
 };
 
-/** A big moment's animation: how long it stays once playing, how long its clip may take to start, its fade out, and at least how long between two. */
+/** A big moment's animation: how long it stays once playing, how long its clip may take to start, its fade out. Every win
+ * has one (none over one still playing: a streak and its victory are one win). */
 const MOMENT_MS = 6000;
 const MOMENT_WAIT_MS = 20_000;
 const MOMENT_OUT_MS = 1200;
-const MOMENT_GAP_MS = 45_000;
 /** A win's video plays once through, but no longer than this (a long one is cut). */
 const MOMENT_MAX_MS = 40_000;
 /** Omnis whose first form plays no clip behind a win (only awakened): the Creeper, Aang, the Doorman. */
@@ -162,9 +162,9 @@ export function useMomentOn(): boolean {
 
 /**
  * The equipped cards reacting to the play, each to its own part (the owner's call):
- * - the **icon** is the face and the voice: a bubble by the header with a word, its voice line on a win;
- * - the **background** is the win's moment: the light turning over the page and, behind it, the background card's video,
- *   played once through (a short loop at least MOMENT_MS, a long video cut at MOMENT_MAX_MS). Never the icon's video.
+ * - the **icon** is the face and the talk: a bubble by the header with a word (its voice line on a win only with no background);
+ * - the **background** is the win's moment, every win: the light turning over the page and, behind it, the background
+ *   card's video with its voice line (never the icon's), the video played once through (a short loop at least MOMENT_MS, a long video cut at MOMENT_MAX_MS). Never the icon's video.
  * The cards are read when a cue comes, not held by the listener: a card changed meanwhile (by hand, or by its rotation:
  * src/gacha/Rotation.tsx) never cuts a moment short. The moment plays on with the card it started with, the page's
  * background picture waits for its end too (CardBackdrop, useMomentOn), and the next win plays the new card's video.
@@ -177,17 +177,16 @@ export function CardReactions() {
   cardsNow.current = { avatar, backdrop };
   const [bubble, setBubble] = useState<{ card: Card; kind: Cue; text: string; key: number } | null>(null);
   const last = useRef(0);
-  /** The page's big moment: the background card (card), its video, and the icon then speaking (speaker). */
-  const [moment, setMoment] = useState<{ card: Card; speaker?: Card; clip?: string; key: number; waiting: boolean; leaving: boolean; heard?: boolean } | null>(null);
-  /** The clip couldn't be heard after all (its sound blocked, or it failed): the icon's voice from its own player, once. */
+  /** The page's big moment: the background card (card) and its video. */
+  const [moment, setMoment] = useState<{ card: Card; clip?: string; key: number; waiting: boolean; leaving: boolean; heard?: boolean } | null>(null);
+  /** The clip couldn't be heard after all (its sound blocked, or it failed): the background card's voice from its own player, once. */
   const voiceApart = () => {
     const m = moment;
     setMoment((x) => x && { ...x, heard: false });
     // A clip with a sound of its own doesn't hand over to the voice line: the moment just goes on silent.
-    if (!m?.speaker || (m.card.clipSound && m.clip === m.card.clip)) return void (voiceUntil.current = 0);
-    playVoice(m.speaker, false, () => (voiceUntil.current = 0));
+    if (!m || (m.card.clipSound && m.clip === m.card.clip)) return void (voiceUntil.current = 0);
+    playVoice(m.card, false, () => (voiceUntil.current = 0));
   };
-  const lastMoment = useRef(0);
   const momentTimer = useRef(0);
   const clipWait = useRef(false);
   const failedClips = useRef(new Set<string>());
@@ -230,42 +229,47 @@ export function CardReactions() {
       // Big moments always; otherwise now and then, so fast games don't drown in bubbles.
       if (kind !== 'great' && (now - last.current < 6000 || Math.random() > 0.45)) return;
       last.current = now;
+      // A win over a moment still playing (a streak, then its victory): one win, already under way.
+      if (kind === 'great' && momentPlaying()) return;
+      // The background, on a win, speaks (its voice line, with its video): the icon then says a word of its own, not a voice line.
+      const backSpeaks = kind === 'great' && !!backdrop?.voice;
       // The icon: its face and a word.
       if (avatar) {
         const lines = CHARACTER_LINES[avatar.name] ?? REACTIONS[avatar.set] ?? { good: ['Nice!'], bad: ['Oops…'] };
-        const text = kind === 'great' && avatar.voice ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
+        const text = kind === 'great' && avatar.voice && !backSpeaks ? (voiceOf(avatar).line ?? avatar.voice) : pick(kind === 'bad' ? lines.bad : lines.good);
         setBubble({ card: avatar, kind, text, key: now });
         window.clearTimeout(timer);
         timer = window.setTimeout(() => setBubble(null), 2600);
       }
       if (kind !== 'great') return;
-      // A win: the background comes alive, now and then — not where cards already show theirs, nor over a moment still
-      // playing. The form the player has: awakened, its own clip (or its first form's if it has none); otherwise the card's.
+      // A win: the background comes alive — its video and its voice line, both the background card's (the owner's call), never
+      // the icon's. Not where cards already show theirs (the shop, the album): there, its voice alone. The form the player
+      // has: awakened, its own clip (or its first form's if it has none); otherwise the card's.
       const st = useProgress.getState();
       const card = backdrop;
       const awake = !!card && isAwake(card, st.bosses);
       // The owner's call: these Omnis' first forms play nothing behind a win (awakened, their awakened clip).
       const own = !card ? undefined : awake ? (card.awaken?.clip ?? card.clip) : FIRST_FORM_STILL.has(card.id) ? undefined : card.clip;
       const clip = own && !failedClips.current.has(own) ? own : undefined;
-      const showMoment = !!card && now - lastMoment.current > MOMENT_GAP_MS && !momentPlaying() && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const showMoment = !!card && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const soundOn = st.sound && st.voiceLines !== false;
-      // A clip with its own sound (Gogeta's): that sound is heard behind the win, and the icon's voice line isn't.
+      // Heard from the clip itself: a clip with its own sound (Steve's song, Gogeta's), or a clip that is one of the card's
+      // voice recordings (the same MP4): then the voice and the video are one, starting together.
       const ownSound = !!card && !!clip && clip === card.clip && !!card.clipSound;
-      // The icon behind the page too, its clip being its voice (the same MP4): heard from the clip, so they start together.
-      const sameVoice = !!avatar && !!card && avatar.id === card.id && !!avatar.voice && voiceOf(avatar).audio === clip;
-      const heard = showMoment && soundOn && !!clip && (ownSound || sameVoice);
-      // The icon's voice line, heard. While it speaks, the moment stays: they end together.
+      const clipIsVoice = !!card && !!clip && (card.audio === clip || !!card.voiceClips?.some((v) => v.audio === clip));
+      const heard = showMoment && soundOn && !!clip && (ownSound || clipIsVoice);
+      // Who speaks: the background card (the icon only with no background behind the page). While it speaks, the moment stays: they end together.
+      const speaker = card ?? avatar;
       if (heard) voiceUntil.current = Date.now() + 60_000;
-      else if (avatar?.voice) {
+      else if (speaker?.voice) {
         voiceUntil.current = Date.now() + 60_000;
-        playVoice(avatar, false, () => (voiceUntil.current = 0));
+        playVoice(speaker, false, () => (voiceUntil.current = 0));
       }
       if (showMoment && card) {
-        lastMoment.current = now;
         // A clip can be slow to start (above all one kept on YouTube or TikTok): the light glows until it does, and it still plays.
         clipWait.current = !!clip;
         clipUntil.current = 0;
-        setMoment({ card, speaker: avatar, clip, key: now, waiting: !!clip, leaving: false, heard });
+        setMoment({ card, clip, key: now, waiting: !!clip, leaving: false, heard });
         endMoment(clip ? MOMENT_WAIT_MS : MOMENT_MS - MOMENT_OUT_MS);
       }
     });
