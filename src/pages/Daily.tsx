@@ -105,9 +105,9 @@ export function DailyHub() {
 
 /**
  * The Specialist under the four categories: its own daily in each universe, the owner's three most important (League
- * of Legends, One Piece, Overwatch) in gold with today's progress, and the way to every universe.
+ * of Legends, One Piece, Overwatch) in gold with today's progress, and the way to every universe. On the home page too.
  */
-function SpecialistCard() {
+export function SpecialistCard() {
   const special = useProgress((s) => s.special);
   const today = todayKey();
   const featured = UNIVERSES.filter((u) => isFeatured(u.id));

@@ -6,7 +6,7 @@ import { DOMAINS, WORKS } from '../data';
 import { GAME_META, GAME_TYPES } from '../games/meta';
 import { dayNumber, formatLong, todayKey } from '../lib/date';
 import { computeStreak, summarizeDay, useProgress } from '../store/progress';
-import { DailyCards } from './Daily';
+import { DailyCards, SpecialistCard } from './Daily';
 
 export default function Home() {
   const days = useProgress((s) => s.days);
@@ -74,6 +74,7 @@ export default function Home() {
       <section className="space-y-5">
         <ChapterHeading numeral="I" title="Today’s trials" link={{ to: '/archive', label: 'Archive →' }} />
         <DailyCards />
+        <SpecialistCard />
       </section>
 
       <section className="space-y-5">
