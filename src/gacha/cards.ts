@@ -623,7 +623,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'wow:omni': { voice: 'Frostmourne hungers.', audio: 'https://www.myinstants.com/media/sounds/evilarthasyes2.mp3' },
   // Mark Evans awakened: his clip is God Catch (the golden god rising out of the clouds), so is his voice — the anime's shout of it (episode 127, from the Inazuma Eleven Wiki's own video of the technique).
   'inazuma:omni': { voice: 'God Catch!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/%28IE_%28127%29%29_God_Catch_G5.mp4/revision/latest?cb=20241015044228#t=8.3,10.6' },
-  'avatar:omni': { voice: 'Yip yip!' },
+  'avatar:omni': { voice: 'Yip yip!', clipSound: true },
   // ── Recordings added to the Mythics and Omnis that only had a written line (the browser read it) ──
   // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
   // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
@@ -814,7 +814,8 @@ const CLIPS: Record<string, string> = {
   'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
   'forhonor:mythic-2': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
-  'avatar:omni': 'https://media.tenor.com/oPuyveLpr8AAAAP1/fire-anime.mp4',
+  // Aang awakened (Avatar State): the owner's pick, Aang Goes Super Saiyan from the 2026 film (Movieclips, 0:00–0:26), heard.
+  'avatar:omni': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/aang-avatar-state.mp4`,
   // Toph and Sokka: the owner's own clips (YouTube, unlisted), played whole.
   'avatar:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/toph.mp4`,
   // (Sokka's whole clip, with its own sound as his voice line, below.)
