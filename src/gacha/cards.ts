@@ -1308,7 +1308,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   {
     set: 'hollowknight',
     id: 'hollowknight:omni-nightmare-king-grimm',
-    name: 'Nightmare King Grimm',
+    name: 'Grimm',
     rarity: 'omni',
     title: 'Heart of the Nightmare',
     image: `${import.meta.env?.BASE_URL ?? './'}art/hollowknight/nightmare-king-grimm.webp`,
