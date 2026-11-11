@@ -41,6 +41,14 @@ for (const c of ONE_PIECE.characters) {
 }
 const personOf = (name: string) => PERSON.get(nameKey(name));
 
+/** A boss as its fight shows it: the radar's and the Final Blow's faces in its game art (gameArt), when it has some. */
+export function withGameArt(boss: Boss): Boss {
+  const art = boss.gameArt;
+  if (!art) return boss;
+  const swap = <T extends { label: string; image?: string }>(c: T): T => (art[c.label] ? { ...c, image: art[c.label] } : c);
+  return { ...boss, radar: { ...boss.radar, members: boss.radar.members.map(swap), impostors: boss.radar.impostors.map(swap) }, finale: boss.finale.map(swap) };
+}
+
 export function finaleFaces(boss: Boss): BossCard[] {
   const hit = cache.get(boss.id);
   if (hit) return hit;
@@ -73,7 +81,9 @@ export function finaleFaces(boss: Boss): BossCard[] {
     taken.add(c.name);
     people.add(who);
   }
-  const out = whole.size ? faces.map((c) => (whole.has(c.label) ? { ...c, whole: true } : c)) : faces;
+  const art = boss.gameArt ?? {};
+  const shown = faces.map((c) => (art[c.label] ? { ...c, image: art[c.label] } : c));
+  const out = whole.size ? shown.map((c) => (whole.has(c.label) ? { ...c, whole: true } : c)) : shown;
   cache.set(boss.id, out);
   return out;
 }

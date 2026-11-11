@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { BossHeader, HeartIcon } from '../boss/BossHeader';
 import { FinalBlow } from '../boss/FinalBlow';
-import { finaleFaces } from '../boss/faces';
+import { finaleFaces, withGameArt } from '../boss/faces';
 import { KnowledgeBlitz } from '../boss/KnowledgeBlitz';
 import { RadarDefense } from '../boss/RadarDefense';
 import { NameChain, type ChainResult } from '../boss/NameChain';
@@ -62,7 +62,8 @@ interface Line {
 
 export default function BossBattlePage() {
   const { id } = useParams();
-  const boss = getBoss(id);
+  const found = getBoss(id);
+  const boss = useMemo(() => found && withGameArt(found), [found]);
   if (!boss) return <Navigate to="/boss" replace />;
   return <BossBattle key={boss.id} boss={boss} />;
 }

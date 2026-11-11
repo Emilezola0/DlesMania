@@ -213,6 +213,11 @@ export interface Boss {
    * (League of Legends: scripts/data/lol-2d-art.mjs). The cards keep their own.
    */
   faceArt?: Record<string, string>;
+  /**
+   * The pictures the fight itself shows (radar and Final Blow), by name, in place of the faces' own: Smash's
+   * 3D models from Ultimate, as in the game (the owner's call). The cards keep their drawn pictures.
+   */
+  gameArt?: Record<string, string>;
   /** Its pictures are pixel art, drawn without smoothing. */
   pixelArt?: boolean;
 }
