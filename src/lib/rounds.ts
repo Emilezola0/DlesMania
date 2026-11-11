@@ -28,9 +28,9 @@ function weightedPick(pool: Work[], type: GameType, rand: () => number): Work {
 }
 
 /** Four works from different years, the least recently used first when `lastUsed` is given. */
-function timelineWorks(domain: Domain | undefined, rand: () => number, lastUsed?: Map<string, number>): string[] {
+function timelineWorks(domain: Domain | undefined, rand: () => number, lastUsed?: Map<string, number>, only?: (w: Work) => boolean): string[] {
   const chosen: Work[] = [];
-  const order = shuffle(candidates('timeline', domain), rand);
+  const order = shuffle(candidates('timeline', domain).filter((w) => !only || only(w)), rand);
   if (lastUsed) order.sort((x, y) => (lastUsed.get(x.id) ?? -1) - (lastUsed.get(y.id) ?? -1));
   for (const w of order) {
     if (chosen.every((c) => c.year !== w.year)) chosen.push(w);
@@ -69,6 +69,7 @@ export function buildRound(
   rand: () => number,
   avoid: Set<string> = new Set(),
   lastUsed?: Map<string, number>,
+  only?: (w: Work) => boolean,
 ): RoundSpec | null {
   const seed = Math.floor(rand() * 2 ** 31);
   if (type === 'connections') {
@@ -82,11 +83,12 @@ export function buildRound(
     return { type, domain: p.domain, seed, puzzleId: p.id };
   }
   if (type === 'timeline') {
-    const ids = timelineWorks(domain, rand, lastUsed);
+    const ids = timelineWorks(domain, rand, lastUsed, only);
     return ids.length === 4 ? { type, domain: domain ?? 'mixed', seed, workIds: ids } : null;
   }
-  let pool = candidates(type, domain).filter((w) => !avoid.has(w.id));
-  if (!pool.length) pool = candidates(type, domain);
+  const all = candidates(type, domain).filter((w) => !only || only(w));
+  let pool = all.filter((w) => !avoid.has(w.id));
+  if (!pool.length) pool = all;
   if (!pool.length) return null;
   const target = weightedPick(leastRecent(pool, (w) => w.id, lastUsed), type, rand);
   return { type, domain: target.domain, seed, targetId: target.id };
@@ -96,6 +98,13 @@ export function buildRound(
  * Deterministic 10-round challenge for one category on one calendar day.
  * The seed is a hash of the date and the category, so every player gets the same rounds.
  */
+/**
+ * From this day on, the daily Music draws only video game and anime songs (the owner's call, a ticket); the
+ * other songs stay in Free Play. Days before it keep the rounds they always had.
+ */
+export const MUSIC_GAMES_ANIME_FROM = '2026-11-12';
+const gameOrAnimeSong = (w: Work) => /^(video game|anime|console)/i.test(w.format ?? '');
+
 export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   const key = `${domain}:${dateKey}`;
   const cached = dailyCache.get(key);
@@ -108,8 +117,9 @@ export function buildDaily(dateKey: string, domain: Domain): RoundSpec[] {
   // anime and games, so those categories rotate one game out each day).
   const types = shuffle(GAME_TYPES.filter((t) => isAvailable(t, domain)), rand).slice(0, ROUNDS_PER_DAY);
   while (types.length < ROUNDS_PER_DAY) types.push('classic');
+  const only = domain === 'music' && dateKey >= MUSIC_GAMES_ANIME_FROM ? gameOrAnimeSong : undefined;
   const specs = types.map((type) => {
-    const spec = buildRound(type, domain, rand, used, lastUsed) ?? buildRound('classic', domain, rand, used, lastUsed)!;
+    const spec = buildRound(type, domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed, only) ?? buildRound('classic', domain, rand, used, lastUsed)!;
     if (spec.targetId) used.add(spec.targetId);
     return spec;
   });
