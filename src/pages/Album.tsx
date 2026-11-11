@@ -175,6 +175,8 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const ry = (dragging ? rot.y : 0) + spin;
   // Held, the foil takes its light from the turn: a few degrees move it across the whole card (let go, the sway's light).
   const face = ((((ry % 360) + 540) % 360) - 180) as number;
+  // Turned round (its back towards you): Firefox's rings swap their halves (OmniRingsAround).
+  const facingAway = Math.cos((ry * Math.PI) / 180) * Math.cos((rx * Math.PI) / 180) < 0;
   const foil = dragging ? { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) } : undefined;
   return (
     <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
@@ -198,14 +200,14 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             ))}
             {/* Firefox's Omni rings, beside the card in its 3D space: under it, then over it (see OmniRingsAround). Not
                 inside the face's own layer: Firefox doesn't draw 3D layers inside a hidden-backface one. */}
-            {card.rarity === 'omni' && <OmniRingsAround half="back" />}
+            {card.rarity === 'omni' && <OmniRingsAround layer="under" flipped={facingAway} />}
             <div key={flare} className={`relative [backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} cssLight depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
             </div>
-            {card.rarity === 'omni' && <OmniRingsAround half="front" />}
+            {card.rarity === 'omni' && <OmniRingsAround layer="over" flipped={facingAway} />}
             </div>
             </div>
           </div>
