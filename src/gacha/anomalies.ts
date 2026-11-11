@@ -13,7 +13,7 @@ export const BLACK_HOLE_CHANCE = T.blackHoleChance;
 /** With a black hole open: the chance each passing star is pulled in (never the best card's evolving star). */
 export const ABSORB_CHANCE = T.absorbChance;
 
-export type AnomalyId = 'corrupted' | 'fake';
+export type AnomalyId = 'corrupted' | 'fake' | 'inverted' | 'mirror' | 'timelost' | 'void';
 
 export interface Anomaly {
   id: AnomalyId;
@@ -27,6 +27,12 @@ export interface Anomaly {
   scramble?: boolean;
   /** It poses as a Mythic: the mythic's frame and light, its own rarity showing through. */
   posesAsMythic?: boolean;
+  /** Its picture flipped, its name written backwards. */
+  mirror?: boolean;
+  /** Now and then it shows another character of its set (src/gacha/CardView.tsx useTimeLost). */
+  timeLost?: boolean;
+  /** Dark, but for a light that wanders, or follows the mouse. */
+  void?: boolean;
 }
 
 export const ANOMALIES = Object.fromEntries(Object.entries(T.anomalies).map(([id, a]) => [id, { ...a, id }])) as Record<AnomalyId, Anomaly>;

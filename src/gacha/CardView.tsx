@@ -3,7 +3,7 @@ import { fromKey } from '../lib/date';
 import { shownName } from '../lib/french';
 import { bossKey, useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
-import { RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
+import { COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
 import { elementOf, gradeOf, type ElementId } from './grades';
 import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
@@ -106,6 +106,26 @@ function StillGif({ src, className }: { src: string; className: string }) {
  * `depth` lifts the name, badges and text off the card (for the 3D big view). Above grade I, the
  * card wears its grade's emblem and shine (`grade`: the player's own when not given).
  */
+/** Time-Lost: every few seconds, for an instant, another character of the card's set (one with a picture). */
+function useTimeLost(card: Card, on: boolean): Card | null {
+  const [lost, setLost] = useState<Card | null>(null);
+  useEffect(() => {
+    setLost(null);
+    if (!on || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const faces = COLLECTIBLE.filter((c) => c.set === card.set && c.id !== card.id && c.name !== card.name && c.image && !c.place && !c.technique);
+    if (!faces.length) return;
+    let t: number;
+    const loop = () =>
+      (t = window.setTimeout(() => {
+        setLost(faces[Math.floor(Math.random() * faces.length)]);
+        t = window.setTimeout(() => (setLost(null), loop()), 1300);
+      }, 4500 + Math.random() * 4500));
+    loop();
+    return () => window.clearTimeout(t);
+  }, [card, on]);
+  return lost;
+}
+
 /** A name that scrambles for an instant every few seconds (a Corrupted card's). */
 function useScramble(name: string, on: boolean) {
   const [shown, setShown] = useState(name);
@@ -131,7 +151,10 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const anomaly = anomalyId ? ANOMALIES[anomalyId] : undefined;
   // What the card looks like: a Fake Rarity passes for a Mythic.
   const look = shownRarity(card.rarity, anomalyId);
-  const name = useScramble(shownName(card.name, card.set), !!anomaly?.scramble && !calm);
+  // Time-Lost: now and then another face of its set, for an instant.
+  const lost = useTimeLost(card, !!anomaly?.timeLost && !calm);
+  const scrambledName = useScramble(lost ? shownName(lost.name, lost.set) : shownName(card.name, card.set), !!anomaly?.scramble && !calm);
+  const name = anomaly?.mirror ? [...scrambledName].reverse().join('') : scrambledName;
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
   const heroOn = (hero || hovered) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -178,7 +201,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
     io.observe(el);
     return () => io.disconnect();
   }, [animate, still, motion, form.clipLight]);
-  const clipOn = !!form.clip && clipFailed !== form.clip && (animate || heroOn || (!still && motion && !!form.clipLight && inView));
+  const clipOn = !lost && !!form.clip && clipFailed !== form.clip && (animate || heroOn || (!still && motion && !!form.clipLight && inView));
   const lift = (z: number) => (depth ? { transform: `translateZ(${z}px)` } : undefined);
   const tilted = depth || t.x !== 0 || t.y !== 0;
   const hop = heroOn ? ' translateY(-5%) scale(1.1)' : '';
@@ -220,10 +243,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
         </div>
         {/* The picture, whole (renders, items and portraits all fit), on the rarity's tint. */}
-        <div className={`relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
+        <div className={`card-picture relative mx-[3cqw] overflow-hidden rounded-[3cqw] ${form.title ? 'h-[50%]' : 'h-[56%]'}`} style={{ background: omni ? 'radial-gradient(circle at 50% 35%, rgba(255,255,255,.35), rgba(255,59,78,.35) 40%, rgba(10,5,8,.3) 75%)' : mythic ? 'radial-gradient(circle at 50% 35%, rgba(168,85,247,.55), rgba(15,10,40,.2) 70%)' : st.tint }}>
           {/* A mythic's or omni's background moves: light turning behind the picture. */}
           {prism && <div className={`card-backdrop ${omni ? 'card-backdrop-omni' : 'card-backdrop-mythic'} ${motion || animate || heroOn ? '' : 'card-backdrop-still'}`} />}
-          {!motion && !animate && /\.gif/i.test(form.image) ? (
+          {lost ? (
+            <img key={`lost-${lost.id}`} src={lost.image} alt="" draggable={false} className="card-timelost-shift relative size-full object-contain drop-shadow-[0_6px_10px_rgba(0,0,0,.5)]" />
+          ) : !motion && !animate && /\.gif/i.test(form.image) ? (
             <StillGif src={form.image} className="relative size-full object-contain" />
           ) : (
           <img
@@ -358,6 +383,14 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       {anomaly?.posesAsMythic && <div className="card-anomaly-remnant pointer-events-none absolute inset-0 z-[8] rounded-[7%]" style={{ background: RARITY_STYLE[card.rarity].frame }} />}
       {/* Corrupted: a scanline glitch running over the card. */}
       {anomaly?.scramble && <div className="card-anomaly-glitch pointer-events-none absolute inset-0 z-[9] rounded-[7%]" />}
+      {/* Void-Touched: the dark over it all, but for a light — under the mouse, or wandering on its own. */}
+      {anomaly?.void && (
+        <div
+          className={`card-void-veil pointer-events-none absolute inset-[3%] z-[9] rounded-[5%] ${mx === 50 && my === 50 ? 'card-void-wander' : ''}`}
+          style={mx === 50 && my === 50 ? undefined : { ['--vx' as string]: `${mx}%`, ['--vy' as string]: `${my}%` }}
+          aria-hidden
+        />
+      )}
       {/* Coming to life: light turning behind the card, and a cut-out picture stepping out of the frame. */}
       {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[look] }} />}
       {heroOn && form.cutout && <img src={form.image} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}

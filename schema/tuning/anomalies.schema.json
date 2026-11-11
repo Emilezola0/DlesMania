@@ -41,6 +41,18 @@
           "posesAsMythic": {
             "type": "boolean",
             "description": "It poses as a Mythic"
+          },
+          "mirror": {
+            "type": "boolean",
+            "description": "Its picture is flipped and its name written backwards"
+          },
+          "timeLost": {
+            "type": "boolean",
+            "description": "Now and then it shows another character of its set"
+          },
+          "void": {
+            "type": "boolean",
+            "description": "Dark, but for a light that wanders or follows the mouse"
           }
         },
         "required": [

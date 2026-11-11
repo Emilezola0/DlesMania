@@ -2633,6 +2633,52 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .claw-marquee, .claw-button-live, .claw-meter-full, .name-style-candy, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
 }
 
+/* Inverted: the picture as a photo negative. */
+.card-anomaly-inverted .card-picture img,
+.card-anomaly-inverted .card-picture video,
+.card-anomaly-inverted .card-picture iframe { filter: invert(1); }
+.card-anomaly-inverted .card-picture { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35); }
+/* Mirror: the picture flipped (the scale property, on top of any framing), a silver sheen over the glass. */
+.card-anomaly-mirror .card-picture img,
+.card-anomaly-mirror .card-picture video,
+.card-anomaly-mirror .card-picture iframe { scale: -1 1; }
+.card-anomaly-mirror .card-picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 30%, rgba(220, 235, 255, 0.28) 45%, transparent 55%, rgba(220, 235, 255, 0.12) 70%, transparent 80%);
+}
+/* Time-Lost: an old photograph's tint, and a flash each time it slips into another face. */
+.card-anomaly-timelost .card-picture img { filter: sepia(0.55) saturate(0.8) contrast(1.05); }
+.card-anomaly-timelost .card-picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 18px rgba(120, 80, 20, 0.55);
+}
+.card-timelost-shift { animation: timelost-shift 1.3s ease-in-out both; }
+@keyframes timelost-shift {
+  0% { opacity: 0; filter: sepia(1) blur(6px) brightness(1.8); transform: scale(1.08); }
+  20% { opacity: 1; filter: sepia(0.8) blur(0) brightness(1); transform: scale(1); }
+  80% { opacity: 1; filter: sepia(0.8) blur(0); }
+  100% { opacity: 0; filter: sepia(1) blur(6px) brightness(1.8); transform: scale(0.96); }
+}
+/* Void-Touched: dark over the whole card but for a light, at --vx/--vy: the mouse's place, or wandering. */
+@property --vx { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --vy { syntax: '<percentage>'; inherits: false; initial-value: 45%; }
+.card-void-veil { background: radial-gradient(circle at var(--vx) var(--vy), transparent 0, transparent 12%, rgba(4, 2, 10, 0.75) 26%, rgba(4, 2, 10, 0.94) 42%); }
+.card-void-wander { animation: void-wander 9s ease-in-out infinite; }
+@keyframes void-wander {
+  0%, 100% { --vx: 50%; --vy: 45%; }
+  25% { --vx: 28%; --vy: 30%; }
+  50% { --vx: 70%; --vy: 55%; }
+  75% { --vx: 35%; --vy: 70%; }
+}
+.card-anomaly-void { box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.5), 0 0 22px rgba(76, 29, 149, 0.6) !important; }
+@media (prefers-reduced-motion: reduce) { .card-void-wander, .card-timelost-shift { animation: none; } }
+
 /* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards. Each keeps
    still (no shines, glitches or twinkles; its anomaly's colours stay) and only the ones on screen are drawn. */
 .pack-summary-big > div { content-visibility: auto; contain-intrinsic-size: auto 280px; }

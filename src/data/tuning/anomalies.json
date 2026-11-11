@@ -15,6 +15,33 @@
       "blurb": "It passes for a Mythic, but its true colours show at the edges.",
       "className": "card-anomaly-fake",
       "posesAsMythic": true
+    },
+    "inverted": {
+      "name": "Inverted",
+      "icon": "◐",
+      "blurb": "Its colours turned inside out, like a photo negative.",
+      "className": "card-anomaly-inverted"
+    },
+    "mirror": {
+      "name": "Mirror",
+      "icon": "⇋",
+      "blurb": "Seen from the other side of the glass: the picture flipped, the name written backwards.",
+      "className": "card-anomaly-mirror",
+      "mirror": true
+    },
+    "timelost": {
+      "name": "Time-Lost",
+      "icon": "⌛",
+      "blurb": "Lost in time: now and then it slips into another face of its world, then comes back.",
+      "className": "card-anomaly-timelost",
+      "timeLost": true
+    },
+    "void": {
+      "name": "Void-Touched",
+      "icon": "●",
+      "blurb": "Swallowed by the dark: only a small light shows it, wandering — or under your mouse.",
+      "className": "card-anomaly-void",
+      "void": true
     }
   }
 }
