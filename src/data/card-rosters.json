@@ -9510,5 +9510,1544 @@
    "image": "https://cdn.wikimg.net/en/hkwiki/images/b/b9/Yarnaby.png",
    "rarity": "common"
   }
+ ],
+ "mha": [
+  {
+   "name": "Koji Koda",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/27/Koji_Koda_Action_3.png/revision/latest/scale-to-width-down/400?cb=20240615225055",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mashirao Ojiro",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/24/Mashirao_Ojiro_Hero_Costume_3_Action.png/revision/latest/scale-to-width-down/400?cb=20240615224429",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mezo Shoji",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/48/Mezo_Shoji_Action_3.png/revision/latest/scale-to-width-down/400?cb=20240615223851",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rikido Sato",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/27/Rikido_Sato_Action_3.png/revision/latest/scale-to-width-down/400?cb=20240615225102",
+   "rarity": "rare"
+  },
+  {
+   "name": "Toru Hagakure",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c2/Toru_Hagakure_Action_2.png/revision/latest/scale-to-width-down/400?cb=20240615225042",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yuga Aoyama",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/72/Yuga_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest/scale-to-width-down/400?cb=20260509022123",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hiryu Rin",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/90/Hiryu_Rin_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506004652",
+   "rarity": "common"
+  },
+  {
+   "name": "Ibara Shiozaki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/91/Ibara_Shiozaki_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210201032807",
+   "rarity": "common"
+  },
+  {
+   "name": "Jurota Shishida",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/cc/Jurota_Shishida_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506002731",
+   "rarity": "common"
+  },
+  {
+   "name": "Juzo Honenuki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/80/Juzo_Honenuki_Hero_Costume_Anime.png/revision/latest/scale-to-width-down/400?cb=20210506002058",
+   "rarity": "common"
+  },
+  {
+   "name": "Kinoko Komori",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/ae/Kinoko_Komori_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210201020824",
+   "rarity": "common"
+  },
+  {
+   "name": "Kojiro Bondo",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/64/Kojiro_Bondo_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506003053",
+   "rarity": "common"
+  },
+  {
+   "name": "Kosei Tsuburaba",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0d/Kosei_Tsuburaba_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506004408",
+   "rarity": "common"
+  },
+  {
+   "name": "Manga Fukidashi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/76/Manga_Fukidashi_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506004835",
+   "rarity": "common"
+  },
+  {
+   "name": "Nirengeki Shoda",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/91/Nirengeki_Shoda_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506002239",
+   "rarity": "common"
+  },
+  {
+   "name": "Pony Tsunotori",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e3/Pony_Tsunotori_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506003711",
+   "rarity": "common"
+  },
+  {
+   "name": "Reiko Yanagi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/55/Reiko_Yanagi_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506002619",
+   "rarity": "common"
+  },
+  {
+   "name": "Sen Kaibara",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/67/Sen_Kaibara_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506002421",
+   "rarity": "common"
+  },
+  {
+   "name": "Setsuna Tokage",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a5/Setsuna_Tokage_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506004242",
+   "rarity": "common"
+  },
+  {
+   "name": "Shihai Kuroiro",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/21/Shihai_Kuroiro_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210201014743",
+   "rarity": "common"
+  },
+  {
+   "name": "Togaru Kamakiri",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/1e/Togaru_Kamakiri_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506004928",
+   "rarity": "common"
+  },
+  {
+   "name": "Yosetsu Awase",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b4/Yosetsu_Awase_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506003000",
+   "rarity": "common"
+  },
+  {
+   "name": "Yui Kodai",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0d/Yui_Kodai_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20210506002113",
+   "rarity": "common"
+  },
+  {
+   "name": "Thirteen",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/06/Thirteen_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115175412",
+   "rarity": "rare"
+  },
+  {
+   "name": "Ectoplasm",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/15/Ectoplasm_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115174632",
+   "rarity": "rare"
+  },
+  {
+   "name": "Higari Maijima",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d6/Higari_Maijima_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20260925034940",
+   "rarity": "common"
+  },
+  {
+   "name": "Ken Ishiyama",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/06/Ken_Ishiyama_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115175505",
+   "rarity": "common"
+  },
+  {
+   "name": "Lunch Rush",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b5/Lunch_Rush_Work_Uniform_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20190829075915",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hound Dog",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/06/Ryo_Inui_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251020013517",
+   "rarity": "rare"
+  },
+  {
+   "name": "Vlad King",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/3c/Sekijiro_Kan_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115174848",
+   "rarity": "rare"
+  },
+  {
+   "name": "Snipe",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f1/Snipe_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115175230",
+   "rarity": "rare"
+  },
+  {
+   "name": "Airjet",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/48/Airjet_Hero_Costume_%28Rising%29.png/revision/latest/scale-to-width-down/400?cb=20191226084628",
+   "rarity": "common"
+  },
+  {
+   "name": "Astro",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/ac/Astro_from_Barrage.png/revision/latest/scale-to-width-down/400?cb=20260731030800",
+   "rarity": "common"
+  },
+  {
+   "name": "Backdraft",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/9c/Backdraft_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115181331",
+   "rarity": "common"
+  },
+  {
+   "name": "Bee Hero",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/fa/Unnamed_Bee_Hero.png/revision/latest/scale-to-width-down/400?cb=20251103122729",
+   "rarity": "common"
+  },
+  {
+   "name": "Big Red Dot",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/fc/Big_Red_Dot_Fullbody_Profile.png/revision/latest/scale-to-width-down/400?cb=20211108055057",
+   "rarity": "common"
+  },
+  {
+   "name": "Bigshot",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c8/Bigshot_Anime_Visual.png/revision/latest/scale-to-width-down/400?cb=20250429164658",
+   "rarity": "common"
+  },
+  {
+   "name": "Blackbelt",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/1f/Blackbelt.png/revision/latest/scale-to-width-down/400?cb=20231105203441",
+   "rarity": "common"
+  },
+  {
+   "name": "Briareos",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/31/Briareos_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251110022632",
+   "rarity": "common"
+  },
+  {
+   "name": "Cargirl",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d2/Cargirl_in_Movie.png/revision/latest/scale-to-width-down/400?cb=20251011125647",
+   "rarity": "common"
+  },
+  {
+   "name": "Christopher Skyline",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/70/Christopher_Skyline_Profile_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250520123546",
+   "rarity": "common"
+  },
+  {
+   "name": "Clair Voyance",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/50/Clair_Voyance_Fullbody_Profile.png/revision/latest/scale-to-width-down/400?cb=20211108054046",
+   "rarity": "common"
+  },
+  {
+   "name": "Composer Hero",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/7b/Composer_Hero.png/revision/latest/scale-to-width-down/400?cb=20251201055400",
+   "rarity": "common"
+  },
+  {
+   "name": "Cow Lady",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d1/Cow_Lady.png/revision/latest/scale-to-width-down/400?cb=20180829203044",
+   "rarity": "common"
+  },
+  {
+   "name": "Crimson Riot",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/af/Crimson_Riot_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251014054046",
+   "rarity": "common"
+  },
+  {
+   "name": "Crust",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/dd/Crust_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251020032247",
+   "rarity": "rare"
+  },
+  {
+   "name": "Daigoro Banjo",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/98/Daigoro_Banjo_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240616013216",
+   "rarity": "common"
+  },
+  {
+   "name": "Death Arms",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0a/Death_Arms_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115175752",
+   "rarity": "common"
+  },
+  {
+   "name": "Eel Boy",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/18/Eel_Boy_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251103025107",
+   "rarity": "common"
+  },
+  {
+   "name": "Elecplant",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/38/Elecplant.png/revision/latest/scale-to-width-down/400?cb=20190213020248",
+   "rarity": "common"
+  },
+  {
+   "name": "Ms. Joke",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5e/Emi_Fukukado_Anime_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20251115183526",
+   "rarity": "common"
+  },
+  {
+   "name": "En Tayutai",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f6/En_Full_Body_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240616013350",
+   "rarity": "common"
+  },
+  {
+   "name": "Enigma",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/97/Enigma_Full_Body.png/revision/latest/scale-to-width-down/400?cb=20191114204452",
+   "rarity": "common"
+  },
+  {
+   "name": "Majestic",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d9/Majestic_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251101061245",
+   "rarity": "common"
+  },
+  {
+   "name": "Fourth Kind",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0b/Fourth_Kind_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115182112",
+   "rarity": "common"
+  },
+  {
+   "name": "Funkman",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/74/Funkman.png/revision/latest/scale-to-width-down/400?cb=20251105020729",
+   "rarity": "common"
+  },
+  {
+   "name": "Gatling Hero",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/62/Gatling_Hero.png/revision/latest/scale-to-width-down/400?cb=20260726024923",
+   "rarity": "common"
+  },
+  {
+   "name": "Godzillo",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/06/Godzillo_Full_Body_Profile.png/revision/latest/scale-to-width-down/400?cb=20180713152149",
+   "rarity": "common"
+  },
+  {
+   "name": "Gunhead",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e9/Gunhead_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115182150",
+   "rarity": "common"
+  },
+  {
+   "name": "Gyges",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/77/Gyges_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251110022651",
+   "rarity": "common"
+  },
+  {
+   "name": "Hitchcock-A-Doodle",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/61/Hitchcock-A-Doodle_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20261011030156",
+   "rarity": "common"
+  },
+  {
+   "name": "Hokuto Hario",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a4/Compass_Kid.png/revision/latest/scale-to-width-down/400?cb=20200508195249",
+   "rarity": "common"
+  },
+  {
+   "name": "Iwao Oguro",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/89/Iwao_Oguro_Vigilante_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250424223730",
+   "rarity": "common"
+  },
+  {
+   "name": "Juzo Moashi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/21/Juzo_Moashi_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115181053",
+   "rarity": "common"
+  },
+  {
+   "name": "Kaoruko Awata",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Bubble_Girl_Anime.png/revision/latest/scale-to-width-down/400?cb=20251115180951",
+   "rarity": "common"
+  },
+  {
+   "name": "Ken Takagi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/da/Ken_Takagi_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20220319084111",
+   "rarity": "common"
+  },
+  {
+   "name": "Kesagiri Man",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/07/Kesagiri_Man_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251013003239",
+   "rarity": "common"
+  },
+  {
+   "name": "Kido",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5d/Kido_Profile.png/revision/latest/scale-to-width-down/400?cb=20250427165840",
+   "rarity": "common"
+  },
+  {
+   "name": "Koichi Haimawari",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Koichi_Haimawari_2nd_Vigilante_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250424224558",
+   "rarity": "common"
+  },
+  {
+   "name": "Gang Orca",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/71/Kugo_Sakamata_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115181417",
+   "rarity": "rare"
+  },
+  {
+   "name": "Manual",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Masaki_Mizushima_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20220323215041",
+   "rarity": "common"
+  },
+  {
+   "name": "Master Driller",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/22/Master_Driller.png/revision/latest/scale-to-width-down/400?cb=20251109030243",
+   "rarity": "common"
+  },
+  {
+   "name": "Mick",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/57/Mick.png/revision/latest/scale-to-width-down/400?cb=20250709014241",
+   "rarity": "common"
+  },
+  {
+   "name": "Mirai Sasaki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a6/Sir_Nighteye_Anime.png/revision/latest/scale-to-width-down/400?cb=20251115180040",
+   "rarity": "common"
+  },
+  {
+   "name": "Moe Kamiji",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5c/Moe_Kamiji_Hero_Costume_Full_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115180351",
+   "rarity": "common"
+  },
+  {
+   "name": "Mr. Brave",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/89/Mr._Brave_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251013021754",
+   "rarity": "common"
+  },
+  {
+   "name": "Mr. Plastic",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a9/Mr._Plastic.png/revision/latest/scale-to-width-down/400?cb=20190320165347",
+   "rarity": "common"
+  },
+  {
+   "name": "Nyikang",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0c/Nyikang.png/revision/latest/scale-to-width-down/400?cb=20190322124959",
+   "rarity": "common"
+  },
+  {
+   "name": "Odd-Eye",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f1/Odd-Eye.png/revision/latest/scale-to-width-down/400?cb=20210609081725",
+   "rarity": "common"
+  },
+  {
+   "name": "Onemu Shinya",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/8a/Onemu_Shinya_Anime_Visual.png/revision/latest/scale-to-width-down/400?cb=20250429164531",
+   "rarity": "common"
+  },
+  {
+   "name": "Onima",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/ff/Onima_Profile.png/revision/latest/scale-to-width-down/400?cb=20250427165838",
+   "rarity": "common"
+  },
+  {
+   "name": "Pankration",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/28/Pankration_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20210421234116",
+   "rarity": "common"
+  },
+  {
+   "name": "Ryuko Tatsuma",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/20/Ryuko_Tatsuma_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20211206211456",
+   "rarity": "common"
+  },
+  {
+   "name": "Ryuko Tsuchikawa",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/82/Ryuko_Tsuchikawa_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115181647",
+   "rarity": "common"
+  },
+  {
+   "name": "Saguri-chan",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/37/Saguri-chan.png/revision/latest/scale-to-width-down/400?cb=20240730210920",
+   "rarity": "common"
+  },
+  {
+   "name": "Snatch",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/29/Sajin_Higawara_Appearance_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251016053630",
+   "rarity": "common"
+  },
+  {
+   "name": "Salaam",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/7f/Salaam_Fullbody_Profile.png/revision/latest/scale-to-width-down/400?cb=20210706165746",
+   "rarity": "common"
+  },
+  {
+   "name": "Selkie",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/44/Selkie_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20211204085113",
+   "rarity": "common"
+  },
+  {
+   "name": "Sensoji",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/85/Sensoji_Profile_%28Vigilantes_Anime%29_1.png/revision/latest/scale-to-width-down/400?cb=20260209174335",
+   "rarity": "common"
+  },
+  {
+   "name": "Kamui Woods",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/7e/Shinji_Nishiya_Second_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251123031340",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shino Sosaki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/61/Shino_Sosaki_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115181531",
+   "rarity": "common"
+  },
+  {
+   "name": "Edgeshot",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/09/Shinya_Kamihara_S7_Visual.png/revision/latest/scale-to-width-down/400?cb=20240615232138",
+   "rarity": "rare"
+  },
+  {
+   "name": "Shishido",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/bb/Shishido_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20220805061752",
+   "rarity": "common"
+  },
+  {
+   "name": "Sirius",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a9/Sirius_Profile.png/revision/latest/scale-to-width-down/400?cb=20251115175941",
+   "rarity": "common"
+  },
+  {
+   "name": "Slugger",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/7b/Slugger_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250617225218",
+   "rarity": "common"
+  },
+  {
+   "name": "Wash",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2f/Wash_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251020030909",
+   "rarity": "rare"
+  },
+  {
+   "name": "Takahiro",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/73/Takahiro_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20210411154252",
+   "rarity": "common"
+  },
+  {
+   "name": "Takeshita",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/70/Takeshita_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251019023741",
+   "rarity": "common"
+  },
+  {
+   "name": "Tatsuyuki Tokoname",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/36/Volume_23_Sleeve_Slidin%27_Go.png/revision/latest/scale-to-width-down/400?cb=20190508054430",
+   "rarity": "common"
+  },
+  {
+   "name": "Tenma Nakaoji",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/65/Tenma_Nakaoji_Profile_%28Vigilantes_Anime%29.png/revision/latest/scale-to-width-down/400?cb=20260202184446",
+   "rarity": "common"
+  },
+  {
+   "name": "Ingenium",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e6/Tensei_Ida_Hero_Costume_%28Vigilantes_Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250129094322",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Fly",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d5/The_Fly_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250706201933",
+   "rarity": "common"
+  },
+  {
+   "name": "Tomoko Shiretoko",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/52/Post-War_Tomoko_Shiretoko_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251120044408",
+   "rarity": "common"
+  },
+  {
+   "name": "Tough Grab",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/6e/Tough_Grab_Anime_Visual.png/revision/latest/scale-to-width-down/400?cb=20250624211407",
+   "rarity": "common"
+  },
+  {
+   "name": "Toy-Toy",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e4/Toy-Toy.png/revision/latest/scale-to-width-down/400?cb=20250626033903",
+   "rarity": "common"
+  },
+  {
+   "name": "Uwabami",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/de/Uwabami_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115182252",
+   "rarity": "common"
+  },
+  {
+   "name": "Watchbird",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e8/Watchbird_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250513015255",
+   "rarity": "common"
+  },
+  {
+   "name": "Water Hose",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/35/Water_Hose_2.png/revision/latest/scale-to-width-down/400?cb=20250713222642",
+   "rarity": "common"
+  },
+  {
+   "name": "X-Less",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a4/X-Less%27_Current_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20251103045214",
+   "rarity": "common"
+  },
+  {
+   "name": "Yawara Chatora",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0d/Yawara_Chatora_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115182002",
+   "rarity": "common"
+  },
+  {
+   "name": "Yoroi Musha",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/1e/Yoroi_Musha_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251020032605",
+   "rarity": "common"
+  },
+  {
+   "name": "Mt. Lady",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/98/Yu_Takeyama_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615232532",
+   "rarity": "rare"
+  },
+  {
+   "name": "Yuyu Haya",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/93/Yuyu_Haya_anime.png/revision/latest/scale-to-width-down/400?cb=20251018043930",
+   "rarity": "common"
+  },
+  {
+   "name": "Axer",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/00/Axer.png/revision/latest/scale-to-width-down/400?cb=20250616133351",
+   "rarity": "common"
+  },
+  {
+   "name": "Berserker",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0f/Berseker.png/revision/latest/scale-to-width-down/400?cb=20250616145659",
+   "rarity": "common"
+  },
+  {
+   "name": "Bye-Bites",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e9/Sharkyonara.png/revision/latest/scale-to-width-down/400?cb=20250616022553",
+   "rarity": "common"
+  },
+  {
+   "name": "Chomper",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f0/Chomper.png/revision/latest/scale-to-width-down/400?cb=20250616014814",
+   "rarity": "common"
+  },
+  {
+   "name": "Dozaemon",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/fc/Hanzo_Suiden.png/revision/latest/scale-to-width-down/400?cb=20250616025330",
+   "rarity": "common"
+  },
+  {
+   "name": "Giant Palm",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/40/Giant_Palm.png/revision/latest/scale-to-width-down/400?cb=20250617022740",
+   "rarity": "common"
+  },
+  {
+   "name": "Gigantomachia",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f8/Gigantomachia_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20250505184705",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gorilla",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/84/Gorilla.png/revision/latest/scale-to-width-down/400?cb=20250616020727",
+   "rarity": "common"
+  },
+  {
+   "name": "Goto Imasuji",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0f/Goto_Imasuji_Villain_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20180212134717",
+   "rarity": "common"
+  },
+  {
+   "name": "Gravitational Spring",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/48/Gravitational_Spring.png/revision/latest/scale-to-width-down/400?cb=20250616133119",
+   "rarity": "common"
+  },
+  {
+   "name": "Hard Head",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b0/Hard_Head.png/revision/latest/scale-to-width-down/400?cb=20250616132826",
+   "rarity": "common"
+  },
+  {
+   "name": "Invisible Wall",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c3/Invisible_Wall.png/revision/latest/scale-to-width-down/400?cb=20250616150004",
+   "rarity": "common"
+  },
+  {
+   "name": "Kagero Okuta",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5a/Giran_art.png/revision/latest/scale-to-width-down/400?cb=20191005160014",
+   "rarity": "common"
+  },
+  {
+   "name": "Kenji Hikiishi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a7/Magne_TV_Animation_Design.png/revision/latest/scale-to-width-down/400?cb=20180313230730",
+   "rarity": "common"
+  },
+  {
+   "name": "Kyudai Garaki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a1/Kyudai_Garaki_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251027000954",
+   "rarity": "rare"
+  },
+  {
+   "name": "Martial Hair",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/de/Martial_Hair.png/revision/latest/scale-to-width-down/400?cb=20250616020549",
+   "rarity": "common"
+  },
+  {
+   "name": "Minotaurus",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/ba/Minotaurus_2.png/revision/latest/scale-to-width-down/400?cb=20250617010216",
+   "rarity": "common"
+  },
+  {
+   "name": "Moonfish",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/21/Moonfish_TV_Animation_Design.png/revision/latest/scale-to-width-down/400?cb=20200625035243",
+   "rarity": "common"
+  },
+  {
+   "name": "Muscle Man",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5a/Muscle_Man.png/revision/latest/scale-to-width-down/400?cb=20250616021136",
+   "rarity": "common"
+  },
+  {
+   "name": "Mustard",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/3e/Mustard_TV_Animation_Design.png/revision/latest/scale-to-width-down/400?cb=20180212134337",
+   "rarity": "common"
+  },
+  {
+   "name": "Needle Hair",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0c/Needle_Hair.png/revision/latest/scale-to-width-down/400?cb=20250616014630",
+   "rarity": "common"
+  },
+  {
+   "name": "One-Eyed Green Dragon",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f9/OneEyedGreenDragon.png/revision/latest/scale-to-width-down/400?cb=20250617022356",
+   "rarity": "common"
+  },
+  {
+   "name": "Oxy-Man",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/61/Oxy-Man.png/revision/latest/scale-to-width-down/400?cb=20250616023306",
+   "rarity": "common"
+  },
+  {
+   "name": "Sharp Blade",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/01/Sharp_Blade.png/revision/latest/scale-to-width-down/400?cb=20250616150701",
+   "rarity": "common"
+  },
+  {
+   "name": "Sickle Claw",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e5/Sickle_Claw.png/revision/latest/scale-to-width-down/400?cb=20250616020836",
+   "rarity": "common"
+  },
+  {
+   "name": "Stitched Giant",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2f/Stitched_Giant.png/revision/latest/scale-to-width-down/400?cb=20250616021045",
+   "rarity": "common"
+  },
+  {
+   "name": "Tesla",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e1/Denki_captured_by_Tesla.png/revision/latest/scale-to-width-down/400?cb=20250617015533",
+   "rarity": "common"
+  },
+  {
+   "name": "Thousand Eyes",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c9/Thousand_Eyes.png/revision/latest/scale-to-width-down/400?cb=20250616021307",
+   "rarity": "common"
+  },
+  {
+   "name": "Varanus",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2e/Varanus.png/revision/latest/scale-to-width-down/400?cb=20250616020622",
+   "rarity": "common"
+  },
+  {
+   "name": "Victor",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/90/Victor.png/revision/latest/scale-to-width-down/400?cb=20250616014502",
+   "rarity": "common"
+  },
+  {
+   "name": "Yashamaru",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/93/Yashamaru.png/revision/latest/scale-to-width-down/400?cb=20250617022824",
+   "rarity": "common"
+  },
+  {
+   "name": "Amplivolt",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a3/Amplivolt_Profile.png/revision/latest/scale-to-width-down/400?cb=20251103001307",
+   "rarity": "common"
+  },
+  {
+   "name": "Dictator",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/76/Dictator_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115025042",
+   "rarity": "common"
+  },
+  {
+   "name": "Eleph",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/49/High-End_Eleph.png/revision/latest/scale-to-width-down/400?cb=20251102235319",
+   "rarity": "common"
+  },
+  {
+   "name": "Gashly Eijiju",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/77/Gashly_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20260730004747",
+   "rarity": "common"
+  },
+  {
+   "name": "Geten",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d2/Geten_Anime.png/revision/latest/scale-to-width-down/400?cb=20210703085357",
+   "rarity": "common"
+  },
+  {
+   "name": "Koku Hanabata",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b6/Koku_Hanabata_Anime.png/revision/latest/scale-to-width-down/400?cb=20210703085331",
+   "rarity": "common"
+  },
+  {
+   "name": "Kunieda",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b8/Kunieda_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250502145048",
+   "rarity": "common"
+  },
+  {
+   "name": "Mihaera",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/1f/Mihaera_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251121022913",
+   "rarity": "common"
+  },
+  {
+   "name": "Rikiya Yotsubashi",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/58/Rikiya_Yotsubashi_Anime.png/revision/latest/scale-to-width-down/400?cb=20240329175419",
+   "rarity": "common"
+  },
+  {
+   "name": "Starservant",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/ac/Starservant_preaching.png/revision/latest/scale-to-width-down/400?cb=20251024032336",
+   "rarity": "common"
+  },
+  {
+   "name": "Tajima",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/25/Tajima_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251121022845",
+   "rarity": "common"
+  },
+  {
+   "name": "Takaie Kanigumo",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/55/Takaie_Kanigumo_Profile.png/revision/latest/scale-to-width-down/400?cb=20251118024144",
+   "rarity": "common"
+  },
+  {
+   "name": "Tomoyasu Chikazoku",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/ea/Tomoyasu_Chikazoku_Anime.png/revision/latest/scale-to-width-down/400?cb=20240329175642",
+   "rarity": "common"
+  },
+  {
+   "name": "Deidoro Sakaki",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/fc/Deidoro_Sakaki_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102050952",
+   "rarity": "common"
+  },
+  {
+   "name": "Eight Bullets",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b7/Eight_Bullets.png/revision/latest/scale-to-width-down/400?cb=20180201210526",
+   "rarity": "common"
+  },
+  {
+   "name": "Hari Kurono",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/bc/Chronostasis_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102041150",
+   "rarity": "rare"
+  },
+  {
+   "name": "Hekiji Tengai",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b3/Hekiji_Tengai_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102050802",
+   "rarity": "common"
+  },
+  {
+   "name": "Joi Irinaka",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/95/Mimic_Profile_Anime.png/revision/latest/scale-to-width-down/400?cb=20220202171600",
+   "rarity": "common"
+  },
+  {
+   "name": "Kendo Rappa",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/cc/Kendo_Rappa_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102050737",
+   "rarity": "rare"
+  },
+  {
+   "name": "Rikiya Katsukame",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/90/Rikiya_Katsukame_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102043821",
+   "rarity": "common"
+  },
+  {
+   "name": "Shin Nemoto",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/7d/Shin_Nemoto_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102050833",
+   "rarity": "common"
+  },
+  {
+   "name": "Soramitsu Tabe",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/9/92/Soramitsu_Tabe_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102050714",
+   "rarity": "common"
+  },
+  {
+   "name": "Toya Setsuno",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/8b/Toya_Setsuno_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102043901",
+   "rarity": "common"
+  },
+  {
+   "name": "Yu Hojo",
+   "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/82/Yu_Hojo_Anime_Profile.png/revision/latest/scale-to-width-down/400?cb=20191102043925",
+   "rarity": "rare"
+  }
+ ],
+ "bg3": [
+  {
+   "name": "Balduran's Giantslayer",
+   "image": "https://bg3.wiki/w/images/5/57/Balduran_Giantslayer_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Bloodthirst",
+   "image": "https://bg3.wiki/w/images/d/d6/Bloodthirst_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Caution Before the Seelie",
+   "image": "https://bg3.wiki/w/images/a/ab/Book_Special_C_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Crimson Mischief",
+   "image": "https://bg3.wiki/w/images/d/d4/Crimson_Mischief_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Devotee's Mace",
+   "image": "https://bg3.wiki/w/images/a/a8/Devotee%27s_Mace_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Duellist's Prerogative",
+   "image": "https://bg3.wiki/w/images/8/8a/Duellist%27s_Prerogative_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Envoys at Table",
+   "image": "https://bg3.wiki/w/images/f/f1/Envoys_at_Table_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fake Portrait of a Noble Before His Death",
+   "image": "https://bg3.wiki/w/images/8/80/Portrait_of_a_Noble_Before_His_Death_Oval_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gloves of Soul Catching",
+   "image": "https://bg3.wiki/w/images/3/38/Gloves_of_Soul_Catching_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Gontr Mael",
+   "image": "https://bg3.wiki/w/images/c/c5/Gontr_Mael_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Helldusk Armour",
+   "image": "https://bg3.wiki/w/images/c/c1/Helldusk_Armour_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Helm of Balduran",
+   "image": "https://bg3.wiki/w/images/b/bb/Helm_of_Balduran_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Markoheshkir",
+   "image": "https://bg3.wiki/w/images/4/49/Markoheshkir_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Mask of the Shapeshifter",
+   "image": "https://bg3.wiki/w/images/5/57/Mask_of_the_Shapeshifter_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Netherstone-Pommelled Bloodthirst",
+   "image": "https://bg3.wiki/w/images/a/a7/Netherstone-Pommelled_Bloodthirst_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Nyrulna",
+   "image": "https://bg3.wiki/w/images/4/4b/Nyrulna_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Orphic Hammer",
+   "image": "https://bg3.wiki/w/images/a/ac/Orphic_Hammer_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Personal Portrait",
+   "image": "https://bg3.wiki/w/images/8/84/Personal_Portrait_Unfaded.webp",
+   "rarity": "rare"
+  },
+  {
+   "name": "Scarab of Protection",
+   "image": "https://bg3.wiki/w/images/9/9e/Scarab_of_Protection_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Selûne's Spear of Night",
+   "image": "https://bg3.wiki/w/images/c/c1/Sel%C3%BBne%27s_Spear_of_Night_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Silver Sword of the Astral Plane",
+   "image": "https://bg3.wiki/w/images/5/5c/Githyanki_Greatsword_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Annals of Karsus",
+   "image": "https://bg3.wiki/w/images/c/cf/Book_Special_A_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Blood of Lathander",
+   "image": "https://bg3.wiki/w/images/a/ae/The_Blood_of_Lathander_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Clover",
+   "image": "https://bg3.wiki/w/images/e/eb/The_Clover_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Red Knight's Final Strategem",
+   "image": "https://bg3.wiki/w/images/4/42/Book_Special_B_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "The Tharchiate Codex",
+   "image": "https://bg3.wiki/w/images/d/d6/Book_Tome_A_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Viconia's Walking Fortress",
+   "image": "https://bg3.wiki/w/images/7/76/Viconia%27s_Walking_Fortress_Unfaded.png",
+   "rarity": "rare"
+  },
+  {
+   "name": "Abdel's Trusted Shield",
+   "image": "https://bg3.wiki/w/images/2/24/Abdel%27s_Trusted_Shield_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Abyss Beckoners",
+   "image": "https://bg3.wiki/w/images/8/8b/Gloves_Leather_F_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Adamantine Scale Mail",
+   "image": "https://bg3.wiki/w/images/7/7b/Adamantine_Scale_Mail_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Adamantine Splint Armour",
+   "image": "https://bg3.wiki/w/images/7/7a/Adamantine_Splint_Mail_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Amulet of Greater Health",
+   "image": "https://bg3.wiki/w/images/2/24/Amulet_of_Greater_Health_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Amulet of the Devout",
+   "image": "https://bg3.wiki/w/images/a/af/Amulet_of_the_devout_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Amulet of Windrider",
+   "image": "https://bg3.wiki/w/images/a/a3/Amulet_Necklace_D_Gold_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Arcane Absorption Dagger",
+   "image": "https://bg3.wiki/w/images/a/af/Dagger_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Armour of Agility",
+   "image": "https://bg3.wiki/w/images/0/09/Armour_of_Agility_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Armour of Landfall",
+   "image": "https://bg3.wiki/w/images/e/ec/Armour_of_Landfall_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Armour of Persistence",
+   "image": "https://bg3.wiki/w/images/4/46/Armour_of_Persistence_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Assassin of Bhaal Cowl",
+   "image": "https://bg3.wiki/w/images/e/e5/Assassin_of_Bhaal_Cowl_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bhaalist Armour",
+   "image": "https://bg3.wiki/w/images/f/ff/Bhaalist_Armour_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bhaalist Gloves",
+   "image": "https://bg3.wiki/w/images/6/66/Gloves_Leather_G_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Birthright",
+   "image": "https://bg3.wiki/w/images/2/2f/Birthright_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Blackguard's Plate",
+   "image": "https://bg3.wiki/w/images/a/a2/Plate_Armour_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Blightbringer",
+   "image": "https://bg3.wiki/w/images/0/08/Shortbow_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bonespike Boots",
+   "image": "https://bg3.wiki/w/images/6/67/Bonespike_Boots_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bonespike Garb",
+   "image": "https://bg3.wiki/w/images/3/3f/Bonespike_Garb_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bonespike Gloves",
+   "image": "https://bg3.wiki/w/images/c/cf/Gloves_Barbarian_Magic_B_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Bonespike Helmet",
+   "image": "https://bg3.wiki/w/images/7/76/Bonespike_Helmet_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Boots of Persistence",
+   "image": "https://bg3.wiki/w/images/c/c6/Boots_of_Persistence_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Boots of Psionic Movement",
+   "image": "https://bg3.wiki/w/images/6/6c/Boots_Metal_Githyanki_B_Magic_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Burnished Ring",
+   "image": "https://bg3.wiki/w/images/9/9c/Ring_A_Gem_A_Gold_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Circlet of Hunting",
+   "image": "https://bg3.wiki/w/images/4/43/Circlet_of_Blasting_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Cloak of the Weave",
+   "image": "https://bg3.wiki/w/images/4/4e/Cloak_of_the_Weave_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Corvid Token",
+   "image": "https://bg3.wiki/w/images/9/9c/Amulet_Necklace_F_Bronze_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Crypt Lord Ring",
+   "image": "https://bg3.wiki/w/images/d/db/Ring_I_Gold_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Dark Justiciar Helmet",
+   "image": "https://bg3.wiki/w/images/b/b0/Dark_Justiciar_Helmet_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Dwarven Thrower",
+   "image": "https://bg3.wiki/w/images/c/c8/Warhammer_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Elegant Studded Leather",
+   "image": "https://bg3.wiki/w/images/0/0d/Elegant_Studded_Leather_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Emblazoned Plate of the Marshal",
+   "image": "https://bg3.wiki/w/images/a/a7/Emblazoned_Plate_of_the_Marshal_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Fabricated Arbalest",
+   "image": "https://bg3.wiki/w/images/8/89/Heavy_Crossbow_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Fey Semblance Amulet",
+   "image": "https://bg3.wiki/w/images/c/cd/Amulet_Necklace_C_Gold_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Flame Enamelled Armour",
+   "image": "https://bg3.wiki/w/images/4/4d/Half_Plate_Armour_Flaming_Fist_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Flashblinder",
+   "image": "https://bg3.wiki/w/images/9/99/GRN_Flashblinder_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Foebreaker",
+   "image": "https://bg3.wiki/w/images/d/d4/Maul_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gargoyle Boots",
+   "image": "https://bg3.wiki/w/images/a/ab/Gargoyle_Boots_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gauntlet of the Tyrant",
+   "image": "https://bg3.wiki/w/images/3/30/Gauntlet_of_the_Tyrant_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gauntlets of Hill Giant Strength",
+   "image": "https://bg3.wiki/w/images/e/ec/Gauntlets_of_Hill_Giant_Strength_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gauntlets of the Warmaster",
+   "image": "https://bg3.wiki/w/images/4/4f/Gloves_of_Metal_E_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gemini Gloves",
+   "image": "https://bg3.wiki/w/images/8/89/Gemini_Gloves_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Gloves of Dexterity",
+   "image": "https://bg3.wiki/w/images/2/2a/Gloves_Leather_2_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Grymskull Helm",
+   "image": "https://bg3.wiki/w/images/d/db/Grymskull_Helm_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Halberd of Vigilance",
+   "image": "https://bg3.wiki/w/images/6/66/Halberd_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Handmaiden's Mace",
+   "image": "https://bg3.wiki/w/images/7/7e/Mace_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Helldusk Boots",
+   "image": "https://bg3.wiki/w/images/3/36/Helldusk_Boots_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Helldusk Gloves",
+   "image": "https://bg3.wiki/w/images/5/56/Helldusk_Gloves_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Helldusk Helmet",
+   "image": "https://bg3.wiki/w/images/5/52/Helldusk_Helmet_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hellfire Engine Crossbow",
+   "image": "https://bg3.wiki/w/images/c/c8/Hellfire_Engine_Crossbow_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hellfire Greataxe",
+   "image": "https://bg3.wiki/w/images/4/4a/Greataxe_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hellfire Hand Crossbow",
+   "image": "https://bg3.wiki/w/images/b/b1/Hand_Crossbow_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Helmet of Grit",
+   "image": "https://bg3.wiki/w/images/d/d5/Helmet_of_Grit_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hood of the Weave",
+   "image": "https://bg3.wiki/w/images/4/4b/Hood_of_the_Weave_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Horns of the Berserker",
+   "image": "https://bg3.wiki/w/images/d/d9/Horns_of_the_Berserker_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Hr'a'cknir Bracers",
+   "image": "https://bg3.wiki/w/images/8/85/Hr%27a%27cknir_Bracers_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Incandescent Staff",
+   "image": "https://bg3.wiki/w/images/5/5d/Quarterstaff_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Infernal Rapier",
+   "image": "https://bg3.wiki/w/images/0/06/Infernal_Rapier_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Infernal Robe",
+   "image": "https://bg3.wiki/w/images/2/29/Infernal_Robe_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Jannath's Hat",
+   "image": "https://bg3.wiki/w/images/f/f8/Jannath%27s_Hat_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Justiciar's Scimitar",
+   "image": "https://bg3.wiki/w/images/b/bc/Justiciar%27s_Scimitar_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Khalid's Gift",
+   "image": "https://bg3.wiki/w/images/f/f7/Amulet_Necklace_A_Bronze_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Knife of the Undermountain King",
+   "image": "https://bg3.wiki/w/images/9/9e/Knife_of_the_Undermountain_King_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Legacy of the Masters",
+   "image": "https://bg3.wiki/w/images/6/62/Gloves_Metal_C_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Lofty Sorcerer's Amulet",
+   "image": "https://bg3.wiki/w/images/f/fa/Amulet_Necklace_F_Gold_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mantle of the Holy Warrior",
+   "image": "https://bg3.wiki/w/images/c/c8/Mantle_of_the_Holy_Warrior_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mask of Soul Perception",
+   "image": "https://bg3.wiki/w/images/0/05/Mask_of_Soul_Perception_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Moon Devotion Robe",
+   "image": "https://bg3.wiki/w/images/1/1b/Moon_Devotion_Robe_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Mourning Frost",
+   "image": "https://bg3.wiki/w/images/1/13/Mourning_Frost_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Netherstone-Studded Gauntlet",
+   "image": "https://bg3.wiki/w/images/a/ad/Netherstone-Studded_Gauntlet_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Nymph Cloak",
+   "image": "https://bg3.wiki/w/images/1/18/Nymph_Cloak_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Orphic Ring",
+   "image": "https://bg3.wiki/w/images/3/36/Ring_B_Gem_B_Gold_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Pale Widow Gloves",
+   "image": "https://bg3.wiki/w/images/f/fd/Gloves_Leather_Drow_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Pelorsun Blade",
+   "image": "https://bg3.wiki/w/images/8/8b/Rapier_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Potent Robe",
+   "image": "https://bg3.wiki/w/images/6/6c/Potent_Robe_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Pyroquickness Hat",
+   "image": "https://bg3.wiki/w/images/9/94/Pyroquickness_Hat_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Quickspell Gloves",
+   "image": "https://bg3.wiki/w/images/f/f9/Gloves_Leather_D_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Reaper's Embrace",
+   "image": "https://bg3.wiki/w/images/6/6e/Reaper%27s_Embrace_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Rhapsody",
+   "image": "https://bg3.wiki/w/images/b/bd/Rhapsody_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Ring of Evasion",
+   "image": "https://bg3.wiki/w/images/4/4d/Ring_of_Evasion_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Ring of Feywild Sparks",
+   "image": "https://bg3.wiki/w/images/0/01/Ring_H_Gold_A_1_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Ring of Regeneration",
+   "image": "https://bg3.wiki/w/images/1/12/Ring_of_Regeneration_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Robe of Supreme Defences",
+   "image": "https://bg3.wiki/w/images/1/17/Robe_of_Supreme_Defences_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Robe of the Weave",
+   "image": "https://bg3.wiki/w/images/0/0e/Robe_of_the_Weave_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sarevok's Horned Helmet",
+   "image": "https://bg3.wiki/w/images/0/0f/Sarevok%27s_Horned_Helmet_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sarevok's Wretched Armour",
+   "image": "https://bg3.wiki/w/images/a/a2/Sarevok%27s_Wretched_Armour_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shade-Slayer Cloak",
+   "image": "https://bg3.wiki/w/images/2/27/The_Deathstalker_Mantle_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shapeshifter Hat",
+   "image": "https://bg3.wiki/w/images/d/d3/Shapeshifter_Hat_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sharpened Snare Cuirass",
+   "image": "https://bg3.wiki/w/images/b/b9/Hide_Armour_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shield of Devotion",
+   "image": "https://bg3.wiki/w/images/a/a3/Shield_of_Devotion_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shield of Returning",
+   "image": "https://bg3.wiki/w/images/4/49/Safeguard_Shield_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Shield of the Undevout",
+   "image": "https://bg3.wiki/w/images/9/92/Shield_of_the_Undevout_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Staff of Cherished Necromancy",
+   "image": "https://bg3.wiki/w/images/f/f4/Staff_of_Cherished_Necromancy_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Stillmaker",
+   "image": "https://bg3.wiki/w/images/8/8f/Stillmaker_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Swires' Sledboard",
+   "image": "https://bg3.wiki/w/images/b/ba/Swires_sledboard_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sword of Chaos",
+   "image": "https://bg3.wiki/w/images/b/b5/Greatsword_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Sword of Life Stealing",
+   "image": "https://bg3.wiki/w/images/c/c3/Shortsword_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "The Dancing Breeze",
+   "image": "https://bg3.wiki/w/images/b/b0/Glaive_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "The Dead Shot",
+   "image": "https://bg3.wiki/w/images/7/7a/Longbow_PlusOne_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "The Impaler",
+   "image": "https://bg3.wiki/w/images/3/34/Pike_%2B2_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "The Reviving Hands",
+   "image": "https://bg3.wiki/w/images/8/80/Gloves_Metal_D_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "The Sacred Star",
+   "image": "https://bg3.wiki/w/images/c/cc/Morningstar_PlusTwo_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Thisobald's Brewed-Up Bellyglummer",
+   "image": "https://bg3.wiki/w/images/8/86/COAT_Thisobald%27s_Brewed-Up_Bellyglummer_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Trident of the Waves",
+   "image": "https://bg3.wiki/w/images/7/73/Allandra%27s_Whelm_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Unflinching Protector Amulet",
+   "image": "https://bg3.wiki/w/images/f/f5/Keepsake_Locket_A_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Vampiric Gloves",
+   "image": "https://bg3.wiki/w/images/4/4c/Gloves_Leather_I_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Veil of the Morning",
+   "image": "https://bg3.wiki/w/images/6/6a/Veil_of_the_Morning_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Vest of Soul Rejuvenation",
+   "image": "https://bg3.wiki/w/images/3/39/Vest_of_Soul_Rejuvenation_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Vicious Shortsword",
+   "image": "https://bg3.wiki/w/images/5/54/Githyanki_Shortsword_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Voss' Silver Sword",
+   "image": "https://bg3.wiki/w/images/9/9c/Voss%27_Silver_Sword_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Wavemother's Robe",
+   "image": "https://bg3.wiki/w/images/2/20/Wavemother%27s_Robe_Unfaded.png",
+   "rarity": "common"
+  },
+  {
+   "name": "Woe",
+   "image": "https://bg3.wiki/w/images/b/b9/Woe_Unfaded.png",
+   "rarity": "common"
+  }
  ]
 }

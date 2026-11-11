@@ -143,6 +143,10 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   deadlock: { name: 'Haze', title: 'The Sleeping Dagger', line: 'A sleep dagger, a smoke bomb and two pistols that never stop: by the time the lane wakes up, she is already dancing through it.', voice: 'Sweet dreams.' },
   // Lace in Silksong's own art, singing (her voice from the game, Hollow Knight Wiki).
   hollowknight: { name: 'Lace', title: 'The Citadel’s Duellist', line: 'Small, white and laughing as she lunges: she guards the way to Pharloom’s Citadel, and every duel with her feels like a dance she has already won.', voice: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg', voiceClips: [{ line: '♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/4/4b/Lace_Sing.ogg' }, { line: '♪♪', audio: 'https://cdn.wikimg.net/en/hkwiki/images/8/86/Lace_Sing_02.ogg' }], image: 'https://cdn.wikimg.net/en/hkwiki/images/thumb/2/25/Lace.png/600px-Lace.png' },
+  // Bakugo in his hero costume (the anime's 10th-anniversary profile art, My Hero Academia Wiki).
+  mha: { name: 'Katsuki Bakugo', title: 'Ground Zero', line: 'Sweat like nitroglycerin and a temper to match: he swore he would be number one, and every explosion since has been a step towards it.', voice: 'Howitzer Impact!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Katsuki_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest?cb=20260509022123' },
+  // Karlach on her Steam trading card (Larian's painted art, bg3.wiki).
+  bg3: { name: 'Karlach', title: 'The Hellfire Heart', line: 'An infernal engine where her heart should be, an axe in each hand and the biggest smile in camp: she ran from Avernus, and she is not going back.', voice: "Let's crack some skulls, soldier!", image: 'https://bg3.wiki/w/images/thumb/4/4b/Karlach_SteamCard.jpg/600px-Karlach_SteamCard.jpg.webp' },
   unreal: { name: 'Event BeginPlay', title: 'Where It All Begins', line: 'Every game ever shipped on the engine woke up right here: one red node, one white wire, and the whole world starts to run.', voice: 'Begin play.', image: UNREAL_ART.beginPlay },
 };
 
@@ -196,6 +200,10 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   hsr: { name: 'Acheron', title: 'The Rain at Dusk', line: 'One red blade, still sheathed, and a rain that never lets up: when she finally draws it, a whole world falls quiet.', voice: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125', voiceClips: [{ line: 'I weep for the departed...', audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/VO_Acheron_Ultimate_-_Activate_01.ogg/revision/latest?cb=20240327083125' }, { line: "Dusk's rain... it too shall fall.", audio: 'https://static.wikia.nocookie.net/houkai-star-rail/images/e/ed/VO_Acheron_Ultimate_-_Unleash_01.ogg/revision/latest?cb=20240327083613' }], image: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/78/Character_Acheron_Splash_Art.png/revision/latest/scale-to-width-down/600?cb=20240327021325' },
   // Zote, in his dream (Hollow Knight Wiki): the knight of 57 precepts, and the fans' favourite joke.
   hollowknight: { name: 'Zote', title: 'The Mighty', line: 'Fifty-seven precepts, one broken nail and not a single victory — and still the greatest knight in all of Hallownest, if you ask him.', voice: 'Precept One: Always Win Your Battles.', image: 'https://cdn.wikimg.net/en/hkwiki/images/c/c1/Zote_Dream.png' },
+  // Todoroki's Flashfreeze Heatwave, ice and fire at once (the anime, My Hero Academia Wiki).
+  mha: { name: 'Shoto Todoroki', title: 'Half-Cold Half-Hot', line: 'Ice on the right, fire on the left, and a father he swore never to become: the day he used both sides at once, the whole stadium felt the cold and the heat.', voice: 'Flashfreeze Heatwave!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/0/01/Flashfreeze_Heatwave.png/revision/latest/scale-to-width-down/600?cb=20260823031708' },
+  // Shadowheart on her Steam trading card (Larian's painted art, bg3.wiki).
+  bg3: { name: 'Shadowheart', title: 'The Moonlit Cleric', line: 'A cleric with a secret, a wound that will not heal and an artefact she would die before giving up: what she believes, she has never been allowed to choose.', voice: 'Who wants to die first?', image: 'https://bg3.wiki/w/images/thumb/d/dd/Shadowheart_SteamCard.jpg/600px-Shadowheart_SteamCard.jpg.webp' },
   // His own voice (Phil Morris), a line picked each time he speaks: the wiki's recordings.
   deadlock: { name: 'Infernus', title: 'The Afterburn', line: 'Napalm, a flaming dash and a burst of fire that stuns a whole team: wherever he walks, the street keeps burning behind him.', voice: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3', voiceClips: [{ line: "They don't need a bouncer when I'm tending bar!", audio: 'https://cdn.deadlock.wiki/Inferno_select_05.mp3' }, { line: "What'll it be today?", audio: 'https://cdn.deadlock.wiki/Inferno_select_01.mp3' }, { line: "Don't you worry, I got you.", audio: 'https://cdn.deadlock.wiki/Inferno_select_06.mp3' }, { line: "You're one of my regulars, aren't you?", audio: 'https://cdn.deadlock.wiki/Inferno_select_07.mp3' }, { line: "You got an eye for talent, I give you that.", audio: 'https://cdn.deadlock.wiki/Inferno_select_10.mp3' }, { line: "They'll be nothin' but ash when I'm through.", audio: 'https://cdn.deadlock.wiki/Inferno_upgrade_power3_03.mp3' }] },
   unreal: { name: 'Print String', title: 'Hello', line: 'The oldest debugger in the engine: when nothing else makes sense, it writes one cyan word in the corner and the truth comes out.', voice: 'Hello', image: UNREAL_ART.printString },
@@ -296,6 +304,24 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       { line: 'Git gud!', audio: 'https://www.myinstants.com/media/sounds/hornet_gitgud.mp3' },
       { line: 'Garama!', audio: 'https://www.myinstants.com/media/sounds/hollow-knight-hornet-voice-2-3.mp3' },
     ],
+  },
+  // My Hero Academia: All Might's United States of Smash, his last blow against All For One (the anime, My Hero
+  // Academia Wiki). His line is read by the browser's voice; no clip yet.
+  mha: {
+    name: 'All Might',
+    title: 'The Symbol of Peace',
+    line: 'A smile that tells everyone they are safe, and a fist that moves the weather: he carried a whole society on his back, then passed the torch to a Quirkless boy.',
+    image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a5/United_States_of_Smash.png/revision/latest/scale-to-width-down/600?cb=20260824033549',
+    voice: 'Fear not! Why? Because I am here!',
+  },
+  // Baldur's Gate 3: Astarion on his Steam trading card (Larian's painted art, bg3.wiki). His line is read by the
+  // browser's voice; no clip yet.
+  bg3: {
+    name: 'Astarion',
+    title: 'The Vampire Spawn',
+    line: 'Two centuries a slave to Cazador, and one tadpole later he can walk in the sun: a smile, a dagger and a hunger he no longer has to hide, darling.',
+    image: 'https://bg3.wiki/w/images/thumb/0/00/Astarion_SteamCard.jpg/600px-Astarion_SteamCard.jpg.webp',
+    voice: 'Darling, you have no idea what I am capable of.',
   },
   onepiece: {
     name: 'Monkey D. Luffy',
@@ -846,9 +872,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3']);
 
 const slug = (s: string) =>
   s

@@ -1,0 +1,405 @@
+{
+ "source": "My Hero Academia Wiki (myheroacademia.fandom.com)",
+ "characters": [
+  {
+   "name": "Izuku Midoriya",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 1
+  },
+  {
+   "name": "Katsuki Bakugo",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 1
+  },
+  {
+   "name": "Shoto Todoroki",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "All Might",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 1
+  },
+  {
+   "name": "Hawks",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 184
+  },
+  {
+   "name": "Shota Aizawa",
+   "gender": "Male",
+   "role": "Teacher",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Eijiro Kirishima",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Dabi",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 39
+  },
+  {
+   "name": "Ochaco Uraraka",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Himiko Toga",
+   "gender": "Female",
+   "role": "Villain",
+   "quirk": "Transformation",
+   "status": "Deceased",
+   "debut": 57
+  },
+  {
+   "name": "Tomura Shigaraki",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 11
+  },
+  {
+   "name": "Fumikage Tokoyami",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Endeavor",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 1
+  },
+  {
+   "name": "Mirio Togata",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 121
+  },
+  {
+   "name": "Hitoshi Shinso",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 23
+  },
+  {
+   "name": "Tenya Ida",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Tsuyu Asui",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Momo Yaoyorozu",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Denki Kaminari",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Tamaki Amajiki",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 122
+  },
+  {
+   "name": "Kyoka Jiro",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Mina Ashido",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Stain",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 41
+  },
+  {
+   "name": "Twice",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 77
+  },
+  {
+   "name": "Overhaul",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 115
+  },
+  {
+   "name": "Mirko",
+   "gender": "Female",
+   "role": "Pro Hero",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 184
+  },
+  {
+   "name": "Best Jeanist",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Present Mic",
+   "gender": "Male",
+   "role": "Teacher",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Nejire Hado",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 122
+  },
+  {
+   "name": "Neito Monoma",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 26
+  },
+  {
+   "name": "Itsuka Kendo",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 26
+  },
+  {
+   "name": "Tetsutetsu Tetsutetsu",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 23
+  },
+  {
+   "name": "Minoru Mineta",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 5
+  },
+  {
+   "name": "Hanta Sero",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 6
+  },
+  {
+   "name": "Gran Torino",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 46
+  },
+  {
+   "name": "Recovery Girl",
+   "gender": "Female",
+   "role": "Teacher",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 4
+  },
+  {
+   "name": "Nezu",
+   "gender": "Male",
+   "role": "Teacher",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 3
+  },
+  {
+   "name": "Fat Gum",
+   "gender": "Male",
+   "role": "Pro Hero",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 132
+  },
+  {
+   "name": "Midnight",
+   "gender": "Female",
+   "role": "Teacher",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 3
+  },
+  {
+   "name": "Mr. Compress",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 80
+  },
+  {
+   "name": "Spinner",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 57
+  },
+  {
+   "name": "Kurogiri",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 11
+  },
+  {
+   "name": "Gentle Criminal",
+   "gender": "Male",
+   "role": "Villain",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 169
+  },
+  {
+   "name": "Lady Nagant",
+   "gender": "Female",
+   "role": "Villain",
+   "quirk": "Transformation",
+   "status": "Alive",
+   "debut": 297
+  },
+  {
+   "name": "Star and Stripe",
+   "gender": "Female",
+   "role": "Pro Hero",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 303
+  },
+  {
+   "name": "Eri",
+   "gender": "Female",
+   "role": "Civilian",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 128
+  },
+  {
+   "name": "Nana Shimura",
+   "gender": "Female",
+   "role": "Pro Hero",
+   "quirk": "Emitter",
+   "status": "Deceased",
+   "debut": 33
+  },
+  {
+   "name": "Mei Hatsume",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Mutant",
+   "status": "Alive",
+   "debut": 25
+  },
+  {
+   "name": "Inasa Yoarashi",
+   "gender": "Male",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 102
+  },
+  {
+   "name": "Camie Utsushimi",
+   "gender": "Female",
+   "role": "Student",
+   "quirk": "Emitter",
+   "status": "Alive",
+   "debut": 102
+  }
+ ]
+}

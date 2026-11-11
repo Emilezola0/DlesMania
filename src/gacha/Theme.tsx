@@ -43,6 +43,8 @@ export const THEMES: Record<string, FranchiseTheme> = {
   arcraiders: { accent: '#d97706', strong: '#b45309', glyphs: ['🤖', '🔩', '🎒', '📡'] },
   hsr: { accent: '#d4a017', strong: '#a87c0c', glyphs: ['🚂', '✨', '🌌', '🎫'] },
   hollowknight: { accent: '#9ca3af', strong: '#4b5563', glyphs: ['🪲', '🗡️', '🕯️', '🧵'] },
+  mha: { accent: '#16a34a', strong: '#15803d', glyphs: ['💥', '🦸', '⚡', '🧊', '🔥'] },
+  bg3: { accent: '#7c3aed', strong: '#5b21b6', glyphs: ['🎲', '🦑', '🧛', '🔥', '🐻'] },
   deadlock: { accent: '#65a30d', strong: '#4d7c0f', glyphs: ['🚪', '🔫', '🗝️', '⚡'] },
   ufouria: { accent: '#2563eb', strong: '#1d4ed8', glyphs: ['🐧', '🛸', '🌙', '☀️', '🚽'] },
 };

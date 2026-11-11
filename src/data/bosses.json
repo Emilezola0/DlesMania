@@ -27824,5 +27824,2600 @@
         }
       ]
     }
+  },
+  {
+    "id": "mha",
+    "domain": "anime",
+    "franchise": "My Hero Academia",
+    "aliases": [
+      "my hero academia",
+      "boku no hero academia",
+      "mha",
+      "bnha",
+      "hero academia",
+      "my hero"
+    ],
+    "images": "fandom:myheroacademia",
+    "boss": {
+      "name": "All For One",
+      "title": "The Symbol of Evil",
+      "color": "#7f1d1d",
+      "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/ae/Post-War_All_For_One_Action.png/revision/latest/scale-to-width-down/400?cb=20240615225342"
+    },
+    "lines": {
+      "intro": "Welcome, young hero. Your Quirk, your friends, your future… I will take them all, one for me.",
+      "phase2": "Some of these faces never set foot in U.A. Pick out the real heroes and villains — if you can tell them apart.",
+      "phase3": "Still standing? Then name them all, before I steal the last of them.",
+      "hit": [
+        "Impressive.",
+        "A spark of One For All…",
+        "You dare?"
+      ],
+      "hurt": [
+        "I will take that.",
+        "Your Quirk is mine.",
+        "Plus Ultra? How tiresome.",
+        "Like taking candy."
+      ],
+      "win": "So the torch passes again… Remember my name, child. Evil never stays down for long.",
+      "lose": "Another hero who couldn't go beyond. Society will never know your name.",
+      "secret": "One more game, for old times' sake. I name a hero, a villain or a Quirk — you name another of the same kind. No repeats.",
+      "secretOk": [
+        "Hm.",
+        "Again.",
+        "Not bad."
+      ],
+      "secretLost": "Nothing left? Then your Quirk is mine."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 students of Class 1-A",
+        "count": 5,
+        "answers": [
+          "Denki Kaminari|Kaminari|Denki|Chargebolt",
+          "Eijiro Kirishima|Kirishima|Red Riot|Eijirou Kirishima",
+          "Fumikage Tokoyami|Tokoyami|Tsukuyomi",
+          "Hanta Sero|Sero|Cellophane",
+          "Izuku Midoriya|Deku|Midoriya|Izuku",
+          "Katsuki Bakugo|Bakugo|Bakugou|Katsuki Bakugou|Kacchan|Ground Zero|Dynamight",
+          "Koji Koda",
+          "Kyoka Jiro|Jiro|Jirou|Kyouka Jirou",
+          "Mashirao Ojiro",
+          "Mezo Shoji",
+          "Mina Ashido|Mina|Ashido|Pinky",
+          "Minoru Mineta|Mineta|Grape Juice",
+          "Momo Yaoyorozu|Momo|Yaoyorozu|Creati",
+          "Ochaco Uraraka|Uraraka|Uravity|Ochako Uraraka|Ochaco",
+          "Rikido Sato",
+          "Shoto Todoroki|Todoroki|Shoto|Shouto Todoroki",
+          "Tenya Ida|Iida|Tenya Iida|Ida",
+          "Toru Hagakure",
+          "Tsuyu Asui|Tsuyu|Froppy|Asui",
+          "Yuga Aoyama"
+        ]
+      },
+      {
+        "prompt": "Name 5 students of Class 1-B",
+        "count": 5,
+        "answers": [
+          "Hiryu Rin",
+          "Ibara Shiozaki",
+          "Itsuka Kendo|Kendo|Battle Fist",
+          "Jurota Shishida",
+          "Juzo Honenuki",
+          "Kinoko Komori",
+          "Kojiro Bondo",
+          "Kosei Tsuburaba",
+          "Manga Fukidashi",
+          "Neito Monoma|Monoma",
+          "Nirengeki Shoda",
+          "Pony Tsunotori",
+          "Reiko Yanagi",
+          "Sen Kaibara",
+          "Setsuna Tokage",
+          "Shihai Kuroiro",
+          "Tetsutetsu Tetsutetsu|Tetsutetsu|Real Steel",
+          "Togaru Kamakiri",
+          "Yosetsu Awase",
+          "Yui Kodai"
+        ]
+      },
+      {
+        "prompt": "Name 5 Pro Heroes",
+        "count": 5,
+        "answers": [
+          "Airjet",
+          "Anan Kurose|Thirteen",
+          "Astro",
+          "Backdraft",
+          "Bee Hero",
+          "Big Red Dot",
+          "Bigshot",
+          "Blackbelt",
+          "Briareos",
+          "Cargirl",
+          "Cathleen Bate",
+          "Chiyo Shuzenji|Recovery Girl",
+          "Christopher Skyline",
+          "Clair Voyance",
+          "Composer Hero",
+          "Cow Lady",
+          "Crimson Riot",
+          "Crust",
+          "Daigoro Banjo",
+          "Death Arms",
+          "Ectoplasm",
+          "Eel Boy",
+          "Elecplant",
+          "Emi Fukukado|Ms. Joke",
+          "En Tayutai",
+          "Enigma",
+          "Enji Todoroki|Endeavor",
+          "Enma Kannagi|Majestic",
+          "Fourth Kind",
+          "Funkman",
+          "Gatling Hero",
+          "Godzillo",
+          "Gunhead",
+          "Gyges",
+          "Higari Maijima",
+          "Hitchcock-A-Doodle",
+          "Hitoshi Shinso|NightHide",
+          "Hizashi Yamada|Present Mic",
+          "Hokuto Hario",
+          "Iwao Oguro",
+          "Juzo Moashi",
+          "Kaina Tsutsumi",
+          "Kaoruko Awata",
+          "Keigo Takami|Hawks",
+          "Ken Ishiyama",
+          "Ken Takagi",
+          "Kesagiri Man",
+          "Kido",
+          "Koichi Haimawari",
+          "Kugo Sakamata|Gang Orca",
+          "Lunch Rush",
+          "Masaki Mizushima|Manual",
+          "Master Driller",
+          "Mick",
+          "Mirai Sasaki",
+          "Mirio Togata|Lemillion",
+          "Moe Kamiji",
+          "Mr. Brave",
+          "Mr. Plastic",
+          "Nana Shimura",
+          "Native",
+          "Nejire Hado|Nejire Chan",
+          "Nemuri Kayama|Midnight",
+          "Nezu",
+          "Number 6",
+          "Nyikang",
+          "Odd-Eye",
+          "Onemu Shinya",
+          "Onima",
+          "Pankration",
+          "Rumi Usagiyama|Mirko",
+          "Ryo Inui|Hound Dog",
+          "Ryuko Tatsuma",
+          "Ryuko Tsuchikawa",
+          "Saguri-chan",
+          "Sajin Higawara|Snatch",
+          "Salaam",
+          "Sekijiro Kan|Vlad King",
+          "Selkie",
+          "Sensoji",
+          "Shinji Nishiya|Kamui Woods",
+          "Shino Sosaki",
+          "Shinya Kamihara|Edgeshot",
+          "Shishido",
+          "Shota Aizawa|Eraser Head",
+          "Sidekicks",
+          "Sirius",
+          "Slugger|\"Slugger\"",
+          "Snipe",
+          "Sorahiko Torino",
+          "Susugu Mitarai|Wash",
+          "Taishiro Toyomitsu|Fat Gum",
+          "Takahiro",
+          "Takeshita",
+          "Tamaki Amajiki|Suneater",
+          "Tatsuyuki Tokoname",
+          "Tenma Nakaoji",
+          "Tensei Ida|Ingenium",
+          "The Fly",
+          "Tomoko Shiretoko",
+          "Toshinori Yagi",
+          "Tough Grab",
+          "Toy-Toy",
+          "Tsunagu Hakamada|Best Jeanist",
+          "Uwabami",
+          "Watchbird",
+          "Water Hose",
+          "X-Less",
+          "Yawara Chatora",
+          "Yoroi Musha",
+          "Yu Takeyama|Mt. Lady",
+          "Yuyu Haya"
+        ]
+      },
+      {
+        "prompt": "Name 5 villains",
+        "count": 5,
+        "answers": [
+          "All For One",
+          "Mr. Compress|Atsuhiro Sako",
+          "Axer",
+          "Berserker",
+          "Bye-Bites",
+          "Chomper",
+          "Dabi",
+          "Dozaemon",
+          "Giant Palm",
+          "Gigantomachia",
+          "Gorilla",
+          "Goto Imasuji",
+          "Gravitational Spring",
+          "Hard Head",
+          "Himiko Toga",
+          "Invisible Wall",
+          "Twice|Jin Bubaigawara",
+          "Kagero Okuta",
+          "Kenji Hikiishi",
+          "Kurogiri",
+          "Kyudai Garaki",
+          "Martial Hair",
+          "Minotaurus",
+          "Moonfish",
+          "Muscle Man",
+          "Mustard",
+          "Needle Hair",
+          "One-Eyed Green Dragon",
+          "Oxy-Man",
+          "Sharp Blade",
+          "Spinner|Shuichi Iguchi",
+          "Sickle Claw",
+          "Stitched Giant",
+          "Tesla",
+          "Thousand Eyes",
+          "Tomura Shigaraki",
+          "Varanus",
+          "Victor",
+          "Yashamaru",
+          "Amplivolt",
+          "Dictator",
+          "Eleph",
+          "Gashly Eijiju",
+          "Geten",
+          "Koku Hanabata",
+          "Kunieda",
+          "Mihaera",
+          "Rikiya Yotsubashi",
+          "Starservant",
+          "Tajima",
+          "Takaie Kanigumo",
+          "Tatsuyuki Tokoname",
+          "Tomoyasu Chikazoku",
+          "Deidoro Sakaki",
+          "Eight Bullets",
+          "Hari Kurono",
+          "Hekiji Tengai",
+          "Joi Irinaka",
+          "Overhaul|Kai Chisaki",
+          "Kendo Rappa",
+          "Rikiya Katsukame",
+          "Shin Nemoto",
+          "Soramitsu Tabe",
+          "Toya Setsuno",
+          "Yu Hojo"
+        ]
+      },
+      {
+        "prompt": "Name the Big Three of U.A.",
+        "count": 3,
+        "answers": [
+          "Mirio Togata|Lemillion|Mirio",
+          "Tamaki Amajiki|Suneater|Tamaki",
+          "Nejire Hado|Nejire"
+        ]
+      },
+      {
+        "prompt": "Name 5 holders of One For All",
+        "count": 5,
+        "answers": [
+          "Yoichi Shigaraki|Yoichi",
+          "Toshitsugu Kudo|Kudo",
+          "Hikage Shinomori|Shinomori",
+          "Daigoro Banjo|Banjo",
+          "En Tayutai|En",
+          "Nana Shimura|Nana",
+          "All Might|Toshinori Yagi",
+          "Izuku Midoriya|Deku"
+        ]
+      },
+      {
+        "prompt": "Name 5 Quirks",
+        "count": 5,
+        "answers": [
+          "2D-ify",
+          "Absorption and Release",
+          "Accelerator Rings",
+          "Acid",
+          "Acid Sweat",
+          "Air Cannon",
+          "Air Walk",
+          "Air Wall",
+          "Alchemy",
+          "All For One",
+          "Amplivolt",
+          "Anivoice",
+          "Anthropomorph",
+          "Antigen Swap",
+          "Arbor",
+          "Assault Dust",
+          "Attraction of Small Objects",
+          "Barrier",
+          "Bat",
+          "Beams From His Eyes",
+          "Beast",
+          "Big Fist",
+          "Big Horn",
+          "Big Monkey",
+          "Binging Ball",
+          "Black",
+          "Black Hole",
+          "Blackwhip",
+          "Blade-Tooth",
+          "Blast",
+          "Blazing Hair",
+          "Blood Control",
+          "Bloodcurdle",
+          "Bloodlet",
+          "Blueflame",
+          "Body Bulk",
+          "Body Morph",
+          "Bombify",
+          "Boomerang",
+          "Brainwashing",
+          "Brawn Boost",
+          "Bristle",
+          "Brown Bear",
+          "Bruiser",
+          "Bubble",
+          "Bull Head",
+          "Bullet Laser",
+          "Bullhorn",
+          "Burst",
+          "Cell Activation",
+          "Cemedine",
+          "Cement",
+          "Centipede",
+          "Chameleon",
+          "Charging Muscles",
+          "Chart",
+          "Chest Hair",
+          "Chimera",
+          "Chronostasis",
+          "Clean Bubbler",
+          "Cleaning",
+          "Clones",
+          "Cloud",
+          "Comic",
+          "Compress",
+          "Confession",
+          "Conjure",
+          "Control Glass",
+          "Control Horn",
+          "Copy",
+          "Cow",
+          "Creation",
+          "Crystallize",
+          "Cubism",
+          "Curse",
+          "Danger Sense",
+          "Dark Ball",
+          "Dark Shadow",
+          "Darkness",
+          "Day Dream",
+          "Decay",
+          "Deform",
+          "Delay Spot",
+          "Despot",
+          "Diesel Engine",
+          "Dog",
+          "Double",
+          "Dragon",
+          "Dragon Breath",
+          "Dupli-Arms",
+          "Dust",
+          "Eagle",
+          "Earphone Jack",
+          "Earth Flow",
+          "Eel",
+          "Elasticity",
+          "Electric Charge",
+          "Electric Eel",
+          "Electricity Generation",
+          "Electrification",
+          "Electromagnetic Bullets",
+          "Endurance",
+          "Energy Saver",
+          "Energy Suck",
+          "Enfeeble",
+          "Engine",
+          "Erasure",
+          "Erasure Spot",
+          "Eruption",
+          "Explosion",
+          "Extend-o-Hair",
+          "Extra Arms",
+          "Fa Jin",
+          "Fan",
+          "Fast Fist",
+          "Fat Absorption",
+          "Fiber Master",
+          "Fierce Gains",
+          "Fierce Wings",
+          "Fire Cracker",
+          "Flash Bang Sweat",
+          "Flight",
+          "Float",
+          "Fly Swatter",
+          "Flying Squirrel",
+          "Foldabody",
+          "Food",
+          "Forced Quirk Activation",
+          "Foresight",
+          "Free Walker",
+          "Frog",
+          "Frost",
+          "Gale Gale",
+          "Gas",
+          "Gatling",
+          "Gearshift",
+          "Gecko",
+          "Gigantic Spinning Flying Turtle",
+          "Gigantification",
+          "Glamour",
+          "Glide and Slide",
+          "Glycerin",
+          "Good Ear",
+          "Grasshopper",
+          "Gyrate",
+          "Hair Control",
+          "Hair-Raiser",
+          "Half-Cold Half-Hot",
+          "Hardening",
+          "Hardflame Fan",
+          "Heal",
+          "Heavy Payload",
+          "Helical Scythe",
+          "Hellflame",
+          "High Specs",
+          "Hologram",
+          "Homing",
+          "Horn Cannon",
+          "Hula Hoop",
+          "Hydra",
+          "Hypertrophy",
+          "Ice Ply",
+          "Ignition",
+          "Impact Recoil",
+          "Impure Beam",
+          "Incite",
+          "Infrared",
+          "Invisibility",
+          "IQ",
+          "Iron Ball",
+          "Iron Claws",
+          "Iron Club",
+          "Jet",
+          "Kaiju",
+          "Kinetic Booster",
+          "King Slam",
+          "Landmine",
+          "Larceny",
+          "Laser",
+          "Leafipulation",
+          "Leap",
+          "Life Force",
+          "Lion",
+          "Liquification",
+          "Lizard",
+          "Lizard Tail Splitter",
+          "Lock Down",
+          "Longbow",
+          "Longleg",
+          "Love",
+          "Luminescence",
+          "Mad Gluttony",
+          "Magic",
+          "Magnetism",
+          "Manifest",
+          "Mantis",
+          "Meatball",
+          "Metal Manipulation",
+          "Mimicry",
+          "Mind Reaper",
+          "Mole",
+          "Monster Cat",
+          "Monster Summon",
+          "Muddied",
+          "Multiplier",
+          "Mummification",
+          "Muscle Augmentation",
+          "Muscle Expansion",
+          "Mushroom",
+          "Mutant Bovini",
+          "Navel Laser",
+          "Neutralization",
+          "New Order",
+          "Octopus",
+          "Octopus (Squid)",
+          "One For All",
+          "Orcinus",
+          "Outburst",
+          "Overclock",
+          "Overhaul",
+          "Overmodification",
+          "Pain Blocker",
+          "Papyrus",
+          "Permeation",
+          "Physical Enhancement",
+          "Plant",
+          "Playtime",
+          "Pliabody",
+          "Pointer",
+          "Poison Gas",
+          "Poltergeist",
+          "Polygraph",
+          "Pop Off",
+          "Power",
+          "Power Stock",
+          "Propagation",
+          "Quad Arms",
+          "Queen Beam",
+          "Queen Bee",
+          "Quirk",
+          "Quirk Bestowal",
+          "Quirk Singularity",
+          "Quirkless",
+          "Rabbit",
+          "Radio Waves",
+          "Radio Waves (Bombers)",
+          "Razor Sharp",
+          "Reflect (Flect Turn)",
+          "Reflect (Tomura Shigaraki)",
+          "Rewind",
+          "Rifle",
+          "Rivet",
+          "Rivet Stab",
+          "Rocket Thrust",
+          "Rupture",
+          "Saber",
+          "Sandstorm",
+          "Scalemail",
+          "Scales",
+          "Scanning",
+          "Scatter",
+          "Search",
+          "Self-Detonation",
+          "Serpentress",
+          "Shame",
+          "Shield",
+          "Shock Absorption",
+          "Shoulder-Mounted Jets",
+          "Size",
+          "Slice",
+          "Slide and Glide",
+          "Sloshed",
+          "Smile",
+          "Smoke",
+          "Smokescreen",
+          "Snip Clip",
+          "Soccer",
+          "Softening",
+          "Solid Air",
+          "Somnambulist",
+          "Soul",
+          "Spatial Excursion",
+          "Spear Hand Missiles",
+          "Spearlike Bones",
+          "Spike",
+          "Spotted Seal",
+          "Spray Art",
+          "Spring",
+          "Springlike Limbs",
+          "Squirmy Fingers",
+          "Static",
+          "Steel",
+          "Stiffening",
+          "Stock",
+          "Storage",
+          "Stress",
+          "Strongarm",
+          "Sugar Rush",
+          "Suicide Bomb",
+          "Super Regeneration",
+          "Swan",
+          "Sword Kill",
+          "Tail",
+          "Tank Engine",
+          "Tape",
+          "Telekinesis",
+          "Telepath",
+          "Teleportation",
+          "Telescopic",
+          "Tidal Bore",
+          "Toho",
+          "Tongue Tank",
+          "Tool Arms",
+          "Traject",
+          "Transform",
+          "Transforming Arms",
+          "Trap Flex",
+          "Trash Body",
+          "Tree Frog",
+          "Tripod",
+          "Twin Impact",
+          "Vibrate",
+          "Vibration Detection",
+          "Vines",
+          "Viral Cosmos",
+          "Voice",
+          "Voyance",
+          "Warp Gate",
+          "Warping",
+          "Water Control",
+          "Water Gun",
+          "Water Pump",
+          "Wave Motion",
+          "Weather Manipulation",
+          "Weld",
+          "Whale",
+          "Whirlwind",
+          "Whiteline",
+          "Whole-Body Lens",
+          "Wing",
+          "Wooden Swords From His Hands",
+          "Zero Gravity",
+          "Zombie Virus",
+          "Zoom"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Izuku Midoriya",
+          "aliases": [
+            "Deku",
+            "Midoriya",
+            "Izuku"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2b/Izuku_Midoriya_Costume_Databook.png/revision/latest/scale-to-width-down/400?cb=20250409215213"
+        },
+        {
+          "label": "Katsuki Bakugo",
+          "aliases": [
+            "Bakugo",
+            "Bakugou",
+            "Katsuki Bakugou",
+            "Kacchan",
+            "Ground Zero",
+            "Dynamight"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b3/Katsuki_Bakugo_Winter_Costume_2_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250602032029"
+        },
+        {
+          "label": "Shoto Todoroki",
+          "aliases": [
+            "Todoroki",
+            "Shoto",
+            "Shouto Todoroki"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d8/Shoto_Todoroki_Action_5.png/revision/latest/scale-to-width-down/400?cb=20250602031513"
+        },
+        {
+          "label": "All Might",
+          "aliases": [
+            "Toshinori Yagi",
+            "Toshinori"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/cd/Toshinori_Yagi_Golden_Age_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250602032423"
+        },
+        {
+          "label": "Hawks",
+          "aliases": [
+            "Keigo Takami"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/6b/Post-War_Keigo_Takami_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240615231746"
+        },
+        {
+          "label": "Shota Aizawa",
+          "aliases": [
+            "Aizawa",
+            "Eraser Head",
+            "Eraserhead",
+            "Shouta Aizawa"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/dc/Eraser_Head_Profile_2_%2810th_Anniversary%29.png/revision/latest/scale-to-width-down/400?cb=20260509022122"
+        },
+        {
+          "label": "Eijiro Kirishima",
+          "aliases": [
+            "Kirishima",
+            "Red Riot",
+            "Eijirou Kirishima"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/31/Eijiro_Kirishima_Action_5.png/revision/latest/scale-to-width-down/400?cb=20250602032140"
+        },
+        {
+          "label": "Dabi",
+          "aliases": [
+            "Toya Todoroki",
+            "Touya Todoroki"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d9/Post-War_Dabi_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615215314"
+        },
+        {
+          "label": "Ochaco Uraraka",
+          "aliases": [
+            "Uraraka",
+            "Uravity",
+            "Ochako Uraraka",
+            "Ochaco"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/f/f8/Ochaco_Uraraka_Action_5.png/revision/latest/scale-to-width-down/400?cb=20250602031334"
+        },
+        {
+          "label": "Himiko Toga",
+          "aliases": [
+            "Toga"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e0/Himiko_Toga_Anime_Action_5.png/revision/latest/scale-to-width-down/400?cb=20240615230138"
+        },
+        {
+          "label": "Tomura Shigaraki",
+          "aliases": [
+            "Shigaraki",
+            "Tomura",
+            "Tenko Shimura"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/25/Final_War_Tomura_Shigaraki.png/revision/latest/scale-to-width-down/400?cb=20251225225936"
+        },
+        {
+          "label": "Fumikage Tokoyami",
+          "aliases": [
+            "Tokoyami",
+            "Tsukuyomi"
+          ],
+          "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/39/Fumikage_Tokoyami_Action_4.png/revision/latest/scale-to-width-down/400?cb=20240615222003"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Naruto Uzumaki",
+          "image": "https://static.wikia.nocookie.net/naruto/images/d/d6/Naruto_Part_I.png/revision/latest/scale-to-width-down/400?cb=20251228135525"
+        },
+        {
+          "label": "Sasuke Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest/scale-to-width-down/400?cb=20170716092103"
+        },
+        {
+          "label": "Kakashi Hatake",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest/scale-to-width-down/400?cb=20251019002845"
+        },
+        {
+          "label": "Itachi Uchiha",
+          "image": "https://static.wikia.nocookie.net/naruto/images/e/e9/Itachi_Child_OL.png/revision/latest/scale-to-width-down/274?cb=20210415223303"
+        },
+        {
+          "label": "Gaara",
+          "image": "https://static.wikia.nocookie.net/naruto/images/2/20/Gaara_in_Part_I.png/revision/latest/scale-to-width-down/400?cb=20221010023824"
+        },
+        {
+          "label": "Rock Lee",
+          "image": "https://static.wikia.nocookie.net/naruto/images/9/97/Rock_Lee_Part_I.png/revision/latest/scale-to-width-down/400?cb=20181229065526"
+        },
+        {
+          "label": "Monkey D. Luffy",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/6d/Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/191?cb=20260611004637"
+        },
+        {
+          "label": "Roronoa Zoro",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/5/52/Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/150?cb=20241029161719"
+        },
+        {
+          "label": "Sanji",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/b/b6/Sanji_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/133?cb=20240122012744"
+        },
+        {
+          "label": "Portgas D. Ace",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/4/4f/Portgas_D._Ace_Anime_Infobox.png/revision/latest/scale-to-width-down/239?cb=20240629132600"
+        },
+        {
+          "label": "Trafalgar D. Water Law",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/4/4d/Trafalgar_D._Water_Law_Anime_Post_Timeskip_Infobox.png/revision/latest/scale-to-width-down/177?cb=20230124163510"
+        },
+        {
+          "label": "Shanks",
+          "image": "https://static.wikia.nocookie.net/onepiece/images/6/66/Shanks_Anime_Infobox.png/revision/latest/scale-to-width-down/279?cb=20240829145447"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Endeavor",
+        "aliases": [
+          "Enji Todoroki"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d4/Enji_Todoroki_S7_Visual.png/revision/latest/scale-to-width-down/400?cb=20240615231526"
+      },
+      {
+        "label": "Mirio Togata",
+        "aliases": [
+          "Mirio",
+          "Lemillion",
+          "Togata"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2e/Mirio_Togata_Action_2.png/revision/latest/scale-to-width-down/400?cb=20240525123552"
+      },
+      {
+        "label": "Hitoshi Shinso",
+        "aliases": [
+          "Shinso",
+          "Shinsou",
+          "Hitoshi Shinsou"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/17/Hitoshi_Shinso%27s_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20260602012311"
+      },
+      {
+        "label": "Tenya Ida",
+        "aliases": [
+          "Iida",
+          "Tenya Iida",
+          "Ida"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b8/Tenya_Ida_Action_5.png/revision/latest/scale-to-width-down/400?cb=20250602032320"
+      },
+      {
+        "label": "Tsuyu Asui",
+        "aliases": [
+          "Tsuyu",
+          "Froppy",
+          "Asui"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a9/Tsuyu_Asui_Action_4.png/revision/latest/scale-to-width-down/400?cb=20250602031715"
+      },
+      {
+        "label": "Momo Yaoyorozu",
+        "aliases": [
+          "Momo",
+          "Yaoyorozu",
+          "Creati"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/8/8f/Momo_Yaoyorozu_Action_2.png/revision/latest/scale-to-width-down/400?cb=20250602031925"
+      },
+      {
+        "label": "Denki Kaminari",
+        "aliases": [
+          "Kaminari",
+          "Denki",
+          "Chargebolt"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d0/Denki_Kaminari_Action_5.png/revision/latest/scale-to-width-down/400?cb=20240615222129"
+      },
+      {
+        "label": "Tamaki Amajiki",
+        "aliases": [
+          "Tamaki",
+          "Suneater",
+          "Amajiki"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/7/76/Tamaki_Amajiki_Action_2.png/revision/latest/scale-to-width-down/400?cb=20240525123553"
+      },
+      {
+        "label": "Kyoka Jiro",
+        "aliases": [
+          "Jiro",
+          "Jirou",
+          "Kyouka Jirou"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/2b/Kyoka_Jiro_Action_4.png/revision/latest/scale-to-width-down/400?cb=20240615223202"
+      },
+      {
+        "label": "Mina Ashido",
+        "aliases": [
+          "Mina",
+          "Ashido",
+          "Pinky"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/de/Mina_Ashido_Action_2.png/revision/latest/scale-to-width-down/400?cb=20240615223425"
+      },
+      {
+        "label": "Stain",
+        "aliases": [
+          "Chizome Akaguro",
+          "Hero Killer",
+          "Hero Killer Stain"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c2/Stain_New_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20250505184505"
+      },
+      {
+        "label": "Twice",
+        "aliases": [
+          "Jin Bubaigawara"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/6f/Twice_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615230921"
+      },
+      {
+        "label": "Overhaul",
+        "aliases": [
+          "Kai Chisaki",
+          "Chisaki"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/4d/Kai_Chisaki_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240616012228"
+      },
+      {
+        "label": "Mirko",
+        "aliases": [
+          "Rumi Usagiyama"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/6b/Post-War_Rumi_Usagiyama_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240615232231"
+      },
+      {
+        "label": "Best Jeanist",
+        "aliases": [
+          "Tsunagu Hakamada",
+          "Tsunagu Hakamata"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d4/Tsunagu_Hakamada_Third_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240615231937"
+      },
+      {
+        "label": "Present Mic",
+        "aliases": [
+          "Hizashi Yamada"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/64/Hizashi_Yamada_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20190520065131"
+      },
+      {
+        "label": "Nejire Hado",
+        "aliases": [
+          "Nejire",
+          "Nejire Chan"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/28/Nejire_Hado_Post-War_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240525123551"
+      },
+      {
+        "label": "Neito Monoma",
+        "aliases": [
+          "Monoma"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/57/Neito_Monoma_Hero_Costume_Action.png/revision/latest/scale-to-width-down/400?cb=20240615122324"
+      },
+      {
+        "label": "Itsuka Kendo",
+        "aliases": [
+          "Kendo",
+          "Battle Fist"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/0/0d/Itsuka_Kendo_Anime_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20240515054246"
+      },
+      {
+        "label": "Tetsutetsu Tetsutetsu",
+        "aliases": [
+          "Tetsutetsu",
+          "Real Steel"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/e/e3/Tetsutetsu_Tetsutetsu_Anime_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20240515054225"
+      },
+      {
+        "label": "Minoru Mineta",
+        "aliases": [
+          "Mineta",
+          "Grape Juice"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a6/Minoru_Mineta_Action_3.png/revision/latest/scale-to-width-down/400?cb=20250602032233"
+      },
+      {
+        "label": "Hanta Sero",
+        "aliases": [
+          "Sero",
+          "Cellophane"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/2/25/Hanta_Sero_Action_3.png/revision/latest/scale-to-width-down/400?cb=20240615224622"
+      },
+      {
+        "label": "Gran Torino",
+        "aliases": [
+          "Sorahiko Torino"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/4/4e/Sorahiko_Torino_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115180227"
+      },
+      {
+        "label": "Recovery Girl",
+        "aliases": [
+          "Chiyo Shuzenji"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/65/Chiyo_Shuzenji_Work_Uniform_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115174955"
+      },
+      {
+        "label": "Nezu",
+        "aliases": [
+          "Principal Nezu"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/1/11/Nezu_Principle_Uniform_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20251115175113"
+      },
+      {
+        "label": "Fat Gum",
+        "aliases": [
+          "Taishiro Toyomitsu"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/c/c1/Taishiro_Toyomitsu_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20251115180655"
+      },
+      {
+        "label": "Midnight",
+        "aliases": [
+          "Nemuri Kayama"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d5/Nemuri_Kayama_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20220808034301"
+      },
+      {
+        "label": "Mr. Compress",
+        "aliases": [
+          "Atsuhiro Sako",
+          "Mr Compress"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/5d/Mr._Compress_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615231007"
+      },
+      {
+        "label": "Spinner",
+        "aliases": [
+          "Shuichi Iguchi"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b9/Spinner_Anime_Action.png/revision/latest/scale-to-width-down/400?cb=20240615231308"
+      },
+      {
+        "label": "Kurogiri",
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/b/b6/Kurogiri_Villain_Costume.png/revision/latest/scale-to-width-down/400?cb=20240515054436"
+      },
+      {
+        "label": "Gentle Criminal",
+        "aliases": [
+          "Danjuro Tobita",
+          "Gentle"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/a/a4/Danjuro_Tobita_S7_Profile.png/revision/latest/scale-to-width-down/400?cb=20241117050310"
+      },
+      {
+        "label": "Lady Nagant",
+        "aliases": [
+          "Kaina Tsutsumi"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/65/Kaina_Tsutsumi_Villain_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240615230825"
+      },
+      {
+        "label": "Star and Stripe",
+        "aliases": [
+          "Cathleen Bate",
+          "Star & Stripe"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d6/Star_and_Stripe_Hero_Costume_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240427123805"
+      },
+      {
+        "label": "Eri",
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/6/61/Eri_Anime_Fullbody_Casual.png/revision/latest/scale-to-width-down/400?cb=20200904064620"
+      },
+      {
+        "label": "Nana Shimura",
+        "aliases": [
+          "Nana"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/51/Nana_Shimura_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240616013412"
+      },
+      {
+        "label": "Mei Hatsume",
+        "aliases": [
+          "Hatsume",
+          "Mei"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/d/d0/Mei_Hatsume_Workshop_%28Anime%29.png/revision/latest/scale-to-width-down/400?cb=20240802173802"
+      },
+      {
+        "label": "Inasa Yoarashi",
+        "aliases": [
+          "Inasa",
+          "Yoarashi"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/3/3b/Inasa_Yoarashi_Anime_Hero_Costume.png/revision/latest/scale-to-width-down/400?cb=20251115182800"
+      },
+      {
+        "label": "Camie Utsushimi",
+        "aliases": [
+          "Camie"
+        ],
+        "image": "https://static.wikia.nocookie.net/bokunoheroacademia/images/5/51/Camie_Utsushimi_Anime_Costume.png/revision/latest/scale-to-width-down/400?cb=20251115182736"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Student of Class 1-A",
+          "entities": [
+            "Denki Kaminari|Kaminari|Denki|Chargebolt",
+            "Eijiro Kirishima|Kirishima|Red Riot|Eijirou Kirishima",
+            "Fumikage Tokoyami|Tokoyami|Tsukuyomi",
+            "Hanta Sero|Sero|Cellophane",
+            "Izuku Midoriya|Deku|Midoriya|Izuku",
+            "Katsuki Bakugo|Bakugo|Bakugou|Katsuki Bakugou|Kacchan|Ground Zero|Dynamight",
+            "Koji Koda",
+            "Kyoka Jiro|Jiro|Jirou|Kyouka Jirou",
+            "Mashirao Ojiro",
+            "Mezo Shoji",
+            "Mina Ashido|Mina|Ashido|Pinky",
+            "Minoru Mineta|Mineta|Grape Juice",
+            "Momo Yaoyorozu|Momo|Yaoyorozu|Creati",
+            "Ochaco Uraraka|Uraraka|Uravity|Ochako Uraraka|Ochaco",
+            "Rikido Sato",
+            "Shoto Todoroki|Todoroki|Shoto|Shouto Todoroki",
+            "Tenya Ida|Iida|Tenya Iida|Ida",
+            "Toru Hagakure",
+            "Tsuyu Asui|Tsuyu|Froppy|Asui",
+            "Yuga Aoyama"
+          ]
+        },
+        {
+          "label": "Student of Class 1-B",
+          "entities": [
+            "Hiryu Rin",
+            "Ibara Shiozaki",
+            "Itsuka Kendo|Kendo|Battle Fist",
+            "Jurota Shishida",
+            "Juzo Honenuki",
+            "Kinoko Komori",
+            "Kojiro Bondo",
+            "Kosei Tsuburaba",
+            "Manga Fukidashi",
+            "Neito Monoma|Monoma",
+            "Nirengeki Shoda",
+            "Pony Tsunotori",
+            "Reiko Yanagi",
+            "Sen Kaibara",
+            "Setsuna Tokage",
+            "Shihai Kuroiro",
+            "Tetsutetsu Tetsutetsu|Tetsutetsu|Real Steel",
+            "Togaru Kamakiri",
+            "Yosetsu Awase",
+            "Yui Kodai"
+          ]
+        },
+        {
+          "label": "Pro Hero",
+          "entities": [
+            "Airjet",
+            "Anan Kurose|Thirteen",
+            "Astro",
+            "Backdraft",
+            "Bee Hero",
+            "Big Red Dot",
+            "Bigshot",
+            "Blackbelt",
+            "Briareos",
+            "Cargirl",
+            "Cathleen Bate",
+            "Chiyo Shuzenji|Recovery Girl",
+            "Christopher Skyline",
+            "Clair Voyance",
+            "Composer Hero",
+            "Cow Lady",
+            "Crimson Riot",
+            "Crust",
+            "Daigoro Banjo",
+            "Death Arms",
+            "Ectoplasm",
+            "Eel Boy",
+            "Elecplant",
+            "Emi Fukukado|Ms. Joke",
+            "En Tayutai",
+            "Enigma",
+            "Enji Todoroki|Endeavor",
+            "Enma Kannagi|Majestic",
+            "Fourth Kind",
+            "Funkman",
+            "Gatling Hero",
+            "Godzillo",
+            "Gunhead",
+            "Gyges",
+            "Higari Maijima",
+            "Hitchcock-A-Doodle",
+            "Hitoshi Shinso|NightHide",
+            "Hizashi Yamada|Present Mic",
+            "Hokuto Hario",
+            "Iwao Oguro",
+            "Juzo Moashi",
+            "Kaina Tsutsumi",
+            "Kaoruko Awata",
+            "Keigo Takami|Hawks",
+            "Ken Ishiyama",
+            "Ken Takagi",
+            "Kesagiri Man",
+            "Kido",
+            "Koichi Haimawari",
+            "Kugo Sakamata|Gang Orca",
+            "Lunch Rush",
+            "Masaki Mizushima|Manual",
+            "Master Driller",
+            "Mick",
+            "Mirai Sasaki",
+            "Mirio Togata|Lemillion",
+            "Moe Kamiji",
+            "Mr. Brave",
+            "Mr. Plastic",
+            "Nana Shimura",
+            "Native",
+            "Nejire Hado|Nejire Chan",
+            "Nemuri Kayama|Midnight",
+            "Nezu",
+            "Number 6",
+            "Nyikang",
+            "Odd-Eye",
+            "Onemu Shinya",
+            "Onima",
+            "Pankration",
+            "Rumi Usagiyama|Mirko",
+            "Ryo Inui|Hound Dog",
+            "Ryuko Tatsuma",
+            "Ryuko Tsuchikawa",
+            "Saguri-chan",
+            "Sajin Higawara|Snatch",
+            "Salaam",
+            "Sekijiro Kan|Vlad King",
+            "Selkie",
+            "Sensoji",
+            "Shinji Nishiya|Kamui Woods",
+            "Shino Sosaki",
+            "Shinya Kamihara|Edgeshot",
+            "Shishido",
+            "Shota Aizawa|Eraser Head",
+            "Sidekicks",
+            "Sirius",
+            "Slugger|\"Slugger\"",
+            "Snipe",
+            "Sorahiko Torino",
+            "Susugu Mitarai|Wash",
+            "Taishiro Toyomitsu|Fat Gum",
+            "Takahiro",
+            "Takeshita",
+            "Tamaki Amajiki|Suneater",
+            "Tatsuyuki Tokoname",
+            "Tenma Nakaoji",
+            "Tensei Ida|Ingenium",
+            "The Fly",
+            "Tomoko Shiretoko",
+            "Toshinori Yagi",
+            "Tough Grab",
+            "Toy-Toy",
+            "Tsunagu Hakamada|Best Jeanist",
+            "Uwabami",
+            "Watchbird",
+            "Water Hose",
+            "X-Less",
+            "Yawara Chatora",
+            "Yoroi Musha",
+            "Yu Takeyama|Mt. Lady",
+            "Yuyu Haya"
+          ]
+        },
+        {
+          "label": "Quirk",
+          "entities": [
+            "2D-ify",
+            "Absorption and Release",
+            "Accelerator Rings",
+            "Acid",
+            "Acid Sweat",
+            "Air Cannon",
+            "Air Walk",
+            "Air Wall",
+            "Alchemy",
+            "Anivoice",
+            "Anthropomorph",
+            "Antigen Swap",
+            "Arbor",
+            "Assault Dust",
+            "Attraction of Small Objects",
+            "Barrier",
+            "Bat",
+            "Beams From His Eyes",
+            "Beast",
+            "Big Fist",
+            "Big Horn",
+            "Big Monkey",
+            "Binging Ball",
+            "Black",
+            "Black Hole",
+            "Blackwhip",
+            "Blade-Tooth",
+            "Blast",
+            "Blazing Hair",
+            "Blood Control",
+            "Bloodcurdle",
+            "Bloodlet",
+            "Blueflame",
+            "Body Bulk",
+            "Body Morph",
+            "Bombify",
+            "Boomerang",
+            "Brainwashing",
+            "Brawn Boost",
+            "Bristle",
+            "Brown Bear",
+            "Bruiser",
+            "Bubble",
+            "Bull Head",
+            "Bullet Laser",
+            "Bullhorn",
+            "Burst",
+            "Cell Activation",
+            "Cemedine",
+            "Cement",
+            "Centipede",
+            "Chameleon",
+            "Charging Muscles",
+            "Chart",
+            "Chest Hair",
+            "Chimera",
+            "Chronostasis",
+            "Clean Bubbler",
+            "Cleaning",
+            "Clones",
+            "Cloud",
+            "Comic",
+            "Compress",
+            "Confession",
+            "Conjure",
+            "Control Glass",
+            "Control Horn",
+            "Copy",
+            "Cow",
+            "Creation",
+            "Crystallize",
+            "Cubism",
+            "Curse",
+            "Danger Sense",
+            "Dark Ball",
+            "Dark Shadow",
+            "Darkness",
+            "Day Dream",
+            "Decay",
+            "Deform",
+            "Delay Spot",
+            "Despot",
+            "Diesel Engine",
+            "Dog",
+            "Double",
+            "Dragon",
+            "Dragon Breath",
+            "Dupli-Arms",
+            "Dust",
+            "Eagle",
+            "Earphone Jack",
+            "Earth Flow",
+            "Eel",
+            "Elasticity",
+            "Electric Charge",
+            "Electric Eel",
+            "Electricity Generation",
+            "Electrification",
+            "Electromagnetic Bullets",
+            "Endurance",
+            "Energy Saver",
+            "Energy Suck",
+            "Enfeeble",
+            "Engine",
+            "Erasure",
+            "Erasure Spot",
+            "Eruption",
+            "Explosion",
+            "Extend-o-Hair",
+            "Extra Arms",
+            "Fa Jin",
+            "Fan",
+            "Fast Fist",
+            "Fat Absorption",
+            "Fiber Master",
+            "Fierce Gains",
+            "Fierce Wings",
+            "Fire Cracker",
+            "Flash Bang Sweat",
+            "Flight",
+            "Float",
+            "Fly Swatter",
+            "Flying Squirrel",
+            "Foldabody",
+            "Food",
+            "Forced Quirk Activation",
+            "Foresight",
+            "Free Walker",
+            "Frog",
+            "Frost",
+            "Gale Gale",
+            "Gas",
+            "Gatling",
+            "Gearshift",
+            "Gecko",
+            "Gigantic Spinning Flying Turtle",
+            "Gigantification",
+            "Glamour",
+            "Glide and Slide",
+            "Glycerin",
+            "Good Ear",
+            "Grasshopper",
+            "Gyrate",
+            "Hair Control",
+            "Hair-Raiser",
+            "Half-Cold Half-Hot",
+            "Hardening",
+            "Hardflame Fan",
+            "Heal",
+            "Heavy Payload",
+            "Helical Scythe",
+            "Hellflame",
+            "High Specs",
+            "Hologram",
+            "Homing",
+            "Horn Cannon",
+            "Hula Hoop",
+            "Hydra",
+            "Hypertrophy",
+            "Ice Ply",
+            "Ignition",
+            "Impact Recoil",
+            "Impure Beam",
+            "Incite",
+            "Infrared",
+            "Invisibility",
+            "IQ",
+            "Iron Ball",
+            "Iron Claws",
+            "Iron Club",
+            "Jet",
+            "Kaiju",
+            "Kinetic Booster",
+            "King Slam",
+            "Landmine",
+            "Larceny",
+            "Laser",
+            "Leafipulation",
+            "Leap",
+            "Life Force",
+            "Lion",
+            "Liquification",
+            "Lizard",
+            "Lizard Tail Splitter",
+            "Lock Down",
+            "Longbow",
+            "Longleg",
+            "Love",
+            "Luminescence",
+            "Mad Gluttony",
+            "Magic",
+            "Magnetism",
+            "Manifest",
+            "Mantis",
+            "Meatball",
+            "Metal Manipulation",
+            "Mimicry",
+            "Mind Reaper",
+            "Mole",
+            "Monster Cat",
+            "Monster Summon",
+            "Muddied",
+            "Multiplier",
+            "Mummification",
+            "Muscle Augmentation",
+            "Muscle Expansion",
+            "Mushroom",
+            "Mutant Bovini",
+            "Navel Laser",
+            "Neutralization",
+            "New Order",
+            "Octopus",
+            "Octopus (Squid)",
+            "One For All",
+            "Orcinus",
+            "Outburst",
+            "Overclock",
+            "Overhaul",
+            "Overmodification",
+            "Pain Blocker",
+            "Papyrus",
+            "Permeation",
+            "Physical Enhancement",
+            "Plant",
+            "Playtime",
+            "Pliabody",
+            "Pointer",
+            "Poison Gas",
+            "Poltergeist",
+            "Polygraph",
+            "Pop Off",
+            "Power",
+            "Power Stock",
+            "Propagation",
+            "Quad Arms",
+            "Queen Beam",
+            "Queen Bee",
+            "Quirk",
+            "Quirk Bestowal",
+            "Quirk Singularity",
+            "Quirkless",
+            "Rabbit",
+            "Radio Waves",
+            "Radio Waves (Bombers)",
+            "Razor Sharp",
+            "Reflect (Flect Turn)",
+            "Reflect (Tomura Shigaraki)",
+            "Rewind",
+            "Rifle",
+            "Rivet",
+            "Rivet Stab",
+            "Rocket Thrust",
+            "Rupture",
+            "Saber",
+            "Sandstorm",
+            "Scalemail",
+            "Scales",
+            "Scanning",
+            "Scatter",
+            "Search",
+            "Self-Detonation",
+            "Serpentress",
+            "Shame",
+            "Shield",
+            "Shock Absorption",
+            "Shoulder-Mounted Jets",
+            "Size",
+            "Slice",
+            "Slide and Glide",
+            "Sloshed",
+            "Smile",
+            "Smoke",
+            "Smokescreen",
+            "Snip Clip",
+            "Soccer",
+            "Softening",
+            "Solid Air",
+            "Somnambulist",
+            "Soul",
+            "Spatial Excursion",
+            "Spear Hand Missiles",
+            "Spearlike Bones",
+            "Spike",
+            "Spotted Seal",
+            "Spray Art",
+            "Spring",
+            "Springlike Limbs",
+            "Squirmy Fingers",
+            "Static",
+            "Steel",
+            "Stiffening",
+            "Stock",
+            "Storage",
+            "Stress",
+            "Strongarm",
+            "Sugar Rush",
+            "Suicide Bomb",
+            "Super Regeneration",
+            "Swan",
+            "Sword Kill",
+            "Tail",
+            "Tank Engine",
+            "Tape",
+            "Telekinesis",
+            "Telepath",
+            "Teleportation",
+            "Telescopic",
+            "Tidal Bore",
+            "Toho",
+            "Tongue Tank",
+            "Tool Arms",
+            "Traject",
+            "Transform",
+            "Transforming Arms",
+            "Trap Flex",
+            "Trash Body",
+            "Tree Frog",
+            "Tripod",
+            "Twin Impact",
+            "Vibrate",
+            "Vibration Detection",
+            "Vines",
+            "Viral Cosmos",
+            "Voice",
+            "Voyance",
+            "Warp Gate",
+            "Warping",
+            "Water Control",
+            "Water Gun",
+            "Water Pump",
+            "Wave Motion",
+            "Weather Manipulation",
+            "Weld",
+            "Whale",
+            "Whirlwind",
+            "Whiteline",
+            "Whole-Body Lens",
+            "Wing",
+            "Wooden Swords From His Hands",
+            "Zero Gravity",
+            "Zombie Virus",
+            "Zoom"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Heroes & Villains",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "Born without a Quirk, he inherited the power of the Symbol of Peace",
+          "answer": "Izuku Midoriya|Deku|Midoriya|Izuku"
+        },
+        {
+          "text": "His sweat explodes, and he swears he will be number one",
+          "answer": "Katsuki Bakugo|Bakugo|Bakugou|Katsuki Bakugou|Kacchan|Ground Zero|Dynamight"
+        },
+        {
+          "text": "Ice on his right side, fire on his left, the son of the Flame Hero",
+          "answer": "Shoto Todoroki|Todoroki|Shoto|Shouto Todoroki"
+        },
+        {
+          "text": "The Symbol of Peace, who smiles so that people know they are safe",
+          "answer": "All Might|Toshinori Yagi|Toshinori"
+        },
+        {
+          "text": "A Pro Hero with crimson wings, too fast for anyone, who was a spy for the Commission",
+          "answer": "Hawks|Keigo Takami"
+        },
+        {
+          "text": "A tired teacher with scarf and goggles who erases Quirks with a look",
+          "answer": "Shota Aizawa|Aizawa|Eraser Head|Eraserhead|Shouta Aizawa"
+        },
+        {
+          "text": "Hardens his whole body and wants to be a manly hero",
+          "answer": "Eijiro Kirishima|Kirishima|Red Riot|Eijirou Kirishima"
+        },
+        {
+          "text": "Blue flames, burnt skin and stapled scars: the eldest son of the Todoroki family",
+          "answer": "Dabi|Toya Todoroki|Touya Todoroki"
+        },
+        {
+          "text": "Makes anything she touches float, and dreams of earning money for her parents",
+          "answer": "Ochaco Uraraka|Uraraka|Uravity|Ochako Uraraka|Ochaco"
+        },
+        {
+          "text": "A cheerful girl who drinks blood to become the people she loves",
+          "answer": "Himiko Toga|Toga"
+        },
+        {
+          "text": "Turns everything he touches to dust, the leader of the League of Villains",
+          "answer": "Tomura Shigaraki|Shigaraki|Tomura|Tenko Shimura"
+        },
+        {
+          "text": "A bird-headed student whose shadow fights beside him",
+          "answer": "Fumikage Tokoyami|Tokoyami|Tsukuyomi"
+        },
+        {
+          "text": "The Flame Hero, number one after All Might retired",
+          "answer": "Endeavor|Enji Todoroki"
+        },
+        {
+          "text": "Passes through walls, and was once the closest to the top of the Big Three",
+          "answer": "Mirio Togata|Mirio|Lemillion|Togata"
+        },
+        {
+          "text": "Brainwashes anyone who answers him, and trains with Eraser Head's capture scarf",
+          "answer": "Hitoshi Shinso|Shinso|Shinsou|Hitoshi Shinsou"
+        },
+        {
+          "text": "The class president with engines in his calves",
+          "answer": "Tenya Ida|Iida|Tenya Iida|Ida"
+        },
+        {
+          "text": "A frog-like girl who always says what she thinks, ribbit",
+          "answer": "Tsuyu Asui|Tsuyu|Froppy|Asui"
+        },
+        {
+          "text": "Creates any non-living thing from her body, the vice-president of her class",
+          "answer": "Momo Yaoyorozu|Momo|Yaoyorozu|Creati"
+        },
+        {
+          "text": "The Hero Killer, who hunted the heroes he called fakes",
+          "answer": "Stain|Chizome Akaguro|Hero Killer|Hero Killer Stain"
+        },
+        {
+          "text": "Copies anyone, himself too, and fears which one is the real him",
+          "answer": "Twice|Jin Bubaigawara"
+        },
+        {
+          "text": "A Yakuza boss with a plague mask who takes apart and restores anything he touches",
+          "answer": "Overhaul|Kai Chisaki|Chisaki"
+        },
+        {
+          "text": "The Rabbit Hero, who fights with her legs alone",
+          "answer": "Mirko|Rumi Usagiyama"
+        },
+        {
+          "text": "A little girl whose horn can rewind a person's body",
+          "answer": "Eri"
+        },
+        {
+          "text": "All Might's teacher, the seventh holder of One For All",
+          "answer": "Nana Shimura|Nana"
+        },
+        {
+          "text": "A mouse, a bear or a dog — the principal of U.A. High School",
+          "answer": "Nezu|Principal Nezu"
+        },
+        {
+          "text": "The Number One hero of America, whose Quirk makes new rules",
+          "answer": "Star and Stripe|Cathleen Bate|Star & Stripe"
+        }
+      ]
+    }
+  },
+  {
+    "id": "bg3",
+    "domain": "games",
+    "franchise": "Baldur's Gate 3",
+    "aliases": [
+      "baldur's gate 3",
+      "baldurs gate 3",
+      "baldur gate 3",
+      "bg3",
+      "baldur's gate",
+      "larian"
+    ],
+    "images": "bg3.wiki",
+    "boss": {
+      "name": "The Netherbrain",
+      "title": "The Absolute",
+      "color": "#7c3aed",
+      "image": "https://bg3.wiki/w/images/thumb/9/90/Elder_Brain_Concept_Art.png/600px-Elder_Brain_Concept_Art.png.webp"
+    },
+    "lines": {
+      "intro": "We are the Absolute. The tadpole in your head has been listening to us all along — kneel, and become one with us.",
+      "phase2": "Not all these minds belong to the Sword Coast. Find the true ones before we take them all.",
+      "phase3": "Still you resist? Then name them all — every mind we will swallow when the city falls.",
+      "hit": [
+        "Insolent…",
+        "Your will is… strong.",
+        "We felt that."
+      ],
+      "hurt": [
+        "Submit.",
+        "Your mind is ours.",
+        "Ceremorphosis begins.",
+        "Kneel!"
+      ],
+      "win": "Impossible… We were the Absolute… The city… was ours…",
+      "lose": "Another mind joins the hive. Baldur's Gate is ours.",
+      "secret": "One last test, little mind. We name a class, a race, a legendary item, a cantrip or a place — you name another of the same. No repeats.",
+      "secretOk": [
+        "Hm.",
+        "Again.",
+        "We see."
+      ],
+      "secretLost": "Nothing left? Then your mind is ours."
+    },
+    "blitz": [
+      {
+        "prompt": "Name 5 companions",
+        "count": 5,
+        "answers": [
+          "Astarion",
+          "Shadowheart",
+          "Karlach",
+          "Lae'zel|Laezel",
+          "Gale|Gale of Waterdeep",
+          "Wyll|Wyll Ravengard",
+          "Halsin",
+          "Minthara",
+          "Jaheira",
+          "Minsc"
+        ]
+      },
+      {
+        "prompt": "Name the 3 Chosen of the Dead Three",
+        "count": 3,
+        "answers": [
+          "Enver Gortash|Gortash",
+          "Ketheric Thorm|Ketheric",
+          "Orin|Orin the Red"
+        ]
+      },
+      {
+        "prompt": "Name the Dead Three",
+        "count": 3,
+        "answers": [
+          "Bhaal",
+          "Bane",
+          "Myrkul"
+        ]
+      },
+      {
+        "prompt": "Name 5 classes",
+        "count": 5,
+        "answers": [
+          "Barbarian",
+          "Bard",
+          "Cleric",
+          "Druid",
+          "Fighter",
+          "Monk",
+          "Paladin",
+          "Ranger",
+          "Rogue",
+          "Sorcerer",
+          "Warlock",
+          "Wizard"
+        ]
+      },
+      {
+        "prompt": "Name 5 playable races",
+        "count": 5,
+        "answers": [
+          "Human",
+          "Elf",
+          "Drow",
+          "Half-Elf",
+          "Half-Orc",
+          "Halfling",
+          "Dwarf",
+          "Gnome",
+          "Tiefling",
+          "Githyanki",
+          "Dragonborn"
+        ]
+      },
+      {
+        "prompt": "Name 5 bosses",
+        "count": 5,
+        "answers": [
+          "Aelis Siryasius",
+          "Ansur",
+          "Apostle of Myrkul",
+          "Auntie Ethel",
+          "Balthazar",
+          "Bernard",
+          "Bulette (creature)",
+          "Cazador Szarr|Cazador",
+          "Dominated Red Dragon",
+          "Dror Ragzlin",
+          "Enver Gortash",
+          "Flind",
+          "Gerringothe Thorm",
+          "Grym",
+          "Gut|Priestess Gut",
+          "Har'rak",
+          "Kagha",
+          "Kar'niss",
+          "Ketheric Thorm",
+          "Lorroakan",
+          "Malus Thorm",
+          "Marcus Falgor",
+          "Minthara",
+          "Mystic Carrion",
+          "Nere",
+          "Nine-Fingers Keene",
+          "Oliver",
+          "Orin",
+          "Owlbear|Owlbear Cub",
+          "Owlbear Mate",
+          "Phase Spider Matriarch",
+          "Raphael",
+          "Sarevok Anchev|Sarevok",
+          "Shadow-Cursed Shambling Mound",
+          "Spectator",
+          "Steel Watcher Titan",
+          "The Netherbrain",
+          "Thisobald Thorm",
+          "Tska'an",
+          "Viconia DeVir|Viconia",
+          "W'wargaz",
+          "Yurgir",
+          "Z'rell",
+          "Zhalk"
+        ]
+      },
+      {
+        "prompt": "Name 5 legendary items",
+        "count": 5,
+        "answers": [
+          "Balduran's Giantslayer",
+          "Bloodthirst",
+          "Caution Before the Seelie",
+          "Crimson Mischief",
+          "Devotee's Mace",
+          "Duellist's Prerogative",
+          "Envoys at Table",
+          "Fake Portrait of a Noble Before His Death",
+          "Gloves of Soul Catching",
+          "Gontr Mael",
+          "Helldusk Armour",
+          "Helm of Balduran",
+          "Markoheshkir",
+          "Mask of the Shapeshifter",
+          "Netherstone-Pommelled Bloodthirst",
+          "Nyrulna",
+          "Orphic Hammer",
+          "Personal Portrait",
+          "Scarab of Protection",
+          "Selûne's Spear of Night",
+          "Shar's Spear of Evening",
+          "Silver Sword of the Astral Plane",
+          "The Annals of Karsus",
+          "The Blood of Lathander",
+          "The Clover",
+          "The Red Knight's Final Strategem",
+          "The Tharchiate Codex",
+          "Viconia's Walking Fortress"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Astarion",
+          "image": "https://bg3.wiki/w/images/thumb/3/3b/Edward-vanderghote-astarion-portrait.png/600px-Edward-vanderghote-astarion-portrait.png.webp"
+        },
+        {
+          "label": "Shadowheart",
+          "image": "https://bg3.wiki/w/images/thumb/f/ff/Edward-vanderghote-shadowheart-portrait.png/600px-Edward-vanderghote-shadowheart-portrait.png.webp"
+        },
+        {
+          "label": "Karlach",
+          "aliases": [
+            "Karlach Cliffgate"
+          ],
+          "image": "https://bg3.wiki/w/images/thumb/8/8c/Edward-vanderghote-karlach-portrait.png/600px-Edward-vanderghote-karlach-portrait.png.webp"
+        },
+        {
+          "label": "Lae'zel",
+          "aliases": [
+            "Laezel",
+            "Lae zel"
+          ],
+          "image": "https://bg3.wiki/w/images/thumb/2/29/Edward-vanderghote-laezel-portrait.png/600px-Edward-vanderghote-laezel-portrait.png.webp"
+        },
+        {
+          "label": "Gale",
+          "aliases": [
+            "Gale of Waterdeep",
+            "Gale Dekarios"
+          ],
+          "image": "https://bg3.wiki/w/images/thumb/c/c0/Edward-vanderghote-gale-portrait.png/600px-Edward-vanderghote-gale-portrait.png.webp"
+        },
+        {
+          "label": "Wyll",
+          "aliases": [
+            "Wyll Ravengard",
+            "The Blade of Frontiers",
+            "Blade of Frontiers"
+          ],
+          "image": "https://bg3.wiki/w/images/thumb/1/12/Edward-vanderghote-wyll-portrait.png/600px-Edward-vanderghote-wyll-portrait.png.webp"
+        },
+        {
+          "label": "Halsin",
+          "image": "https://bg3.wiki/w/images/thumb/b/b0/Edward-vanderghote-halsin-portrait.png/600px-Edward-vanderghote-halsin-portrait.png.webp"
+        },
+        {
+          "label": "Minthara",
+          "image": "https://bg3.wiki/w/images/thumb/6/68/Edward-vanderghote-minthara-portrait.png/600px-Edward-vanderghote-minthara-portrait.png.webp"
+        },
+        {
+          "label": "Jaheira",
+          "image": "https://bg3.wiki/w/images/thumb/2/25/Edward-vanderghote-jaheira-portrait.png/600px-Edward-vanderghote-jaheira-portrait.png.webp"
+        },
+        {
+          "label": "Minsc",
+          "image": "https://bg3.wiki/w/images/thumb/1/1e/Edward-vanderghote-minsc-portrait.png/600px-Edward-vanderghote-minsc-portrait.png.webp"
+        },
+        {
+          "label": "The Dark Urge",
+          "aliases": [
+            "Dark Urge",
+            "Durge"
+          ],
+          "image": "https://bg3.wiki/w/images/5/5e/Dark-Urge-promotion-art.png"
+        },
+        {
+          "label": "Withers",
+          "aliases": [
+            "Jergal"
+          ],
+          "image": "https://bg3.wiki/w/images/thumb/2/21/Withers_Jergal_Concept.png/600px-Withers_Jergal_Concept.png.webp"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Illidan Stormrage",
+          "image": "https://warcraft.wiki.gg/images/thumb/Illidan_the_Betrayer.jpg/160px-Illidan_the_Betrayer.jpg?1e6975"
+        },
+        {
+          "label": "Tyrande Whisperwind",
+          "image": "https://warcraft.wiki.gg/images/thumb/Tyrande_Mercenaries_3.jpg/160px-Tyrande_Mercenaries_3.jpg?bc0904"
+        },
+        {
+          "label": "Uther the Lightbringer",
+          "image": "https://warcraft.wiki.gg/images/thumb/Uther_Mercenaries_3.jpg/160px-Uther_Mercenaries_3.jpg?d18530"
+        },
+        {
+          "label": "Medivh",
+          "image": "https://warcraft.wiki.gg/images/thumb/Medivh_Cropped.jpg/160px-Medivh_Cropped.jpg?f81da1"
+        },
+        {
+          "label": "Thrall",
+          "image": "https://warcraft.wiki.gg/images/thumb/Thrall_-_The_War_Within.png/160px-Thrall_-_The_War_Within.png?5f0b41"
+        },
+        {
+          "label": "Sylvanas Windrunner",
+          "image": "https://warcraft.wiki.gg/images/thumb/Sylvanas_9.2.png/160px-Sylvanas_9.2.png?800be2"
+        },
+        {
+          "label": "Jaina Proudmoore",
+          "image": "https://warcraft.wiki.gg/images/thumb/HSKT_Jaina.jpg/160px-HSKT_Jaina.jpg?d11e7e"
+        },
+        {
+          "label": "Varian Wrynn",
+          "image": "https://warcraft.wiki.gg/images/thumb/Varian_Wei.jpg/160px-Varian_Wei.jpg?d75da1"
+        },
+        {
+          "label": "Garrosh Hellscream",
+          "image": "https://warcraft.wiki.gg/images/thumb/Garrosh_Glowei_-_cropped.jpg/160px-Garrosh_Glowei_-_cropped.jpg?d54104"
+        },
+        {
+          "label": "Valeera Sanguinar",
+          "image": "https://warcraft.wiki.gg/images/thumb/Valeera_HoW.png/160px-Valeera_HoW.png?411834"
+        },
+        {
+          "label": "Antonidas",
+          "image": "https://warcraft.wiki.gg/images/thumb/Antonidas-WH.jpg/160px-Antonidas-WH.jpg?cdcb1f"
+        },
+        {
+          "label": "Kel'Thuzad",
+          "image": "https://warcraft.wiki.gg/images/thumb/Ashbringer4CoverSampleA.jpg/160px-Ashbringer4CoverSampleA.jpg?79027f"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Raphael",
+        "image": "https://bg3.wiki/w/images/thumb/8/85/Jane-katsubo-paintings-raphael-portrait.jpg/600px-Jane-katsubo-paintings-raphael-portrait.jpg.webp"
+      },
+      {
+        "label": "Enver Gortash",
+        "aliases": [
+          "Gortash",
+          "Lord Gortash"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/f/ff/Edward-vanderghote-gortash.webp/600px-Edward-vanderghote-gortash.webp"
+      },
+      {
+        "label": "Orin",
+        "aliases": [
+          "Orin the Red"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/9/90/Edward-vanderghote-orin.webp/600px-Edward-vanderghote-orin.webp"
+      },
+      {
+        "label": "Ketheric Thorm",
+        "aliases": [
+          "Ketheric",
+          "General Thorm"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/d/d2/Edward-vanderghote-ketheric.webp/600px-Edward-vanderghote-ketheric.webp"
+      },
+      {
+        "label": "Cazador",
+        "aliases": [
+          "Cazador Szarr"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/2/28/Edward-vanderghote-cazador.webp/600px-Edward-vanderghote-cazador.webp"
+      },
+      {
+        "label": "The Emperor",
+        "aliases": [
+          "Emperor",
+          "Balduran"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/2/2f/Edward-vanderghote-emperor.webp/600px-Edward-vanderghote-emperor.webp"
+      },
+      {
+        "label": "Elminster",
+        "aliases": [
+          "Elminster Aumar"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/2/2b/Edward-vanderghote-elminster.webp/600px-Edward-vanderghote-elminster.webp"
+      },
+      {
+        "label": "Sarevok",
+        "aliases": [
+          "Sarevok Anchev"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/7/70/Edward-vanderghote-sarevok.webp/600px-Edward-vanderghote-sarevok.webp"
+      },
+      {
+        "label": "Viconia",
+        "aliases": [
+          "Viconia DeVir"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/3/38/Edward-vanderghote-viconia.webp/600px-Edward-vanderghote-viconia.webp"
+      },
+      {
+        "label": "Volo",
+        "aliases": [
+          "Volothamp Geddarm",
+          "Volothamp"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/9/90/Sticker_Emoji_Volo_Hmm.webp/600px-Sticker_Emoji_Volo_Hmm.webp"
+      },
+      {
+        "label": "Ansur",
+        "image": "https://bg3.wiki/w/images/thumb/a/a6/Edward-vanderghote-ansur.webp/600px-Edward-vanderghote-ansur.webp"
+      },
+      {
+        "label": "Myrkul",
+        "image": "https://bg3.wiki/w/images/thumb/8/83/Myrkul-alex-boca-10.jpg/600px-Myrkul-alex-boca-10.jpg.webp"
+      },
+      {
+        "label": "Vlaakith",
+        "aliases": [
+          "Vlaakith the Lich Queen",
+          "Lich Queen"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/5/54/Vlaakith_Concept_Art.png/600px-Vlaakith_Concept_Art.png.webp"
+      },
+      {
+        "label": "Balthazar",
+        "image": "https://bg3.wiki/w/images/thumb/2/2b/Balthazar_Face_Concept_Art.jpg/600px-Balthazar_Face_Concept_Art.jpg.webp"
+      },
+      {
+        "label": "Priestess Gut",
+        "aliases": [
+          "Gut",
+          "True Soul Gut"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/a/a4/Konstantin-porubov-priestess-gut.jpg/600px-Konstantin-porubov-priestess-gut.jpg.webp"
+      },
+      {
+        "label": "Us",
+        "aliases": [
+          "The intellect devourer"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/9/99/Sticker_CE_Sticker_Us.webp/600px-Sticker_CE_Sticker_Us.webp"
+      },
+      {
+        "label": "Owlbear Cub",
+        "aliases": [
+          "Owlbear"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/a/a4/Sticker_CE_Sticker_Owl_Bear.webp/600px-Sticker_CE_Sticker_Owl_Bear.webp"
+      },
+      {
+        "label": "Boo",
+        "aliases": [
+          "Miniature giant space hamster"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/c/c9/Sticker_CE_Sticker_Boo.webp/600px-Sticker_CE_Sticker_Boo.webp"
+      },
+      {
+        "label": "Dribbles the Clown",
+        "aliases": [
+          "Dribbles"
+        ],
+        "image": "https://bg3.wiki/w/images/thumb/c/ca/Sticker_Emoji_Dribbles_Clown.webp/600px-Sticker_Emoji_Dribbles_Clown.webp"
+      },
+      {
+        "label": "Steel Watcher",
+        "image": "https://bg3.wiki/w/images/thumb/5/50/Sticker_CE_Sticker_Steel_Watcher.webp/600px-Sticker_CE_Sticker_Steel_Watcher.webp"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Class",
+          "entities": [
+            "Barbarian",
+            "Bard",
+            "Cleric",
+            "Druid",
+            "Fighter",
+            "Monk",
+            "Paladin",
+            "Ranger",
+            "Rogue",
+            "Sorcerer",
+            "Warlock",
+            "Wizard"
+          ]
+        },
+        {
+          "label": "Playable race",
+          "entities": [
+            "Human",
+            "Elf",
+            "Drow",
+            "Half-Elf",
+            "Half-Orc",
+            "Halfling",
+            "Dwarf",
+            "Gnome",
+            "Tiefling",
+            "Githyanki",
+            "Dragonborn"
+          ]
+        },
+        {
+          "label": "Legendary item",
+          "entities": [
+            "Balduran's Giantslayer",
+            "Bloodthirst",
+            "Caution Before the Seelie",
+            "Crimson Mischief",
+            "Devotee's Mace",
+            "Duellist's Prerogative",
+            "Envoys at Table",
+            "Fake Portrait of a Noble Before His Death",
+            "Gloves of Soul Catching",
+            "Gontr Mael",
+            "Helldusk Armour",
+            "Helm of Balduran",
+            "Markoheshkir",
+            "Mask of the Shapeshifter",
+            "Netherstone-Pommelled Bloodthirst",
+            "Nyrulna",
+            "Orphic Hammer",
+            "Personal Portrait",
+            "Scarab of Protection",
+            "Selûne's Spear of Night",
+            "Shar's Spear of Evening",
+            "Silver Sword of the Astral Plane",
+            "The Annals of Karsus",
+            "The Blood of Lathander",
+            "The Clover",
+            "The Red Knight's Final Strategem",
+            "The Tharchiate Codex",
+            "Viconia's Walking Fortress"
+          ]
+        },
+        {
+          "label": "Cantrip",
+          "entities": [
+            "Acid Splash",
+            "Blade Ward",
+            "Bone Chill",
+            "Booming Blade",
+            "Bursting Sinew",
+            "Curse of Terror",
+            "Dancing Lights",
+            "Debilitating Infusion",
+            "Eldritch Blast",
+            "Ensnaring Shock",
+            "Fiery Bolt",
+            "Fire Bolt",
+            "Friends",
+            "Guidance",
+            "Hellflame Cleave",
+            "Howl of the Dead",
+            "Light",
+            "Mage Hand",
+            "Minor Illusion",
+            "Moonmote",
+            "Poison Spray",
+            "Produce Flame",
+            "Psychic Rend",
+            "Pulling Web",
+            "Ray of Frost",
+            "Reach from Beyond",
+            "Sacred Flame",
+            "Shillelagh",
+            "Shocking Grasp",
+            "Sorrowful Lash",
+            "Stand Like Stone",
+            "Thaumaturgy",
+            "Thorn Whip",
+            "Toll the Dead",
+            "True Strike",
+            "Veil of the Weird",
+            "Vicious Mockery"
+          ]
+        },
+        {
+          "label": "Place",
+          "entities": [
+            "Abandoned Cistern",
+            "Abandoned Refuge",
+            "Abandoned Windmill",
+            "Ancient Lair",
+            "Ancient Mausoleum",
+            "Ancient Temple",
+            "Apothecary's Cellar",
+            "Arcane Tower",
+            "Arfur's Mansion",
+            "Armbrust's Home",
+            "Astral Plane",
+            "Avernus",
+            "Baldur's Gate",
+            "Baldur's Mouth",
+            "Barren's Coop",
+            "Basilisk Gate Barracks",
+            "Beehive General Goods",
+            "Bhaal Temple",
+            "Blighted Village",
+            "Bloodied Shrine",
+            "Bloomridge Park",
+            "Bonecloak's Apothecary",
+            "Bruc and Pishe's Emporium",
+            "Candulhallow's Tombstones",
+            "Carm's Garms",
+            "Cazador's Dungeon",
+            "Central Watch Tower",
+            "Chromatic Scale",
+            "Circus of the Last Days",
+            "Cloister of Sombre Embrace",
+            "Crimson Draughts",
+            "Crèche Y'llek",
+            "Danthelon's Dancing Axe",
+            "Decrepit Village",
+            "Defiled Temple",
+            "Devil's Den",
+            "Devil's Fee",
+            "Dread Hollow",
+            "Durinbold Mausoleum",
+            "Ebonlake Grotto",
+            "Elerrathin's Home",
+            "Elfsong Tavern",
+            "Elminster's Library",
+            "Emerald Grove",
+            "Facemaker's Boutique",
+            "Felogyr's Fireworks",
+            "Flymm Cargo",
+            "Flymm's Cobblers",
+            "Forge of the Nine",
+            "Fraygo's Flophouse",
+            "Gauntlet of Shar",
+            "Goblin Camp",
+            "Goblin Celebration",
+            "Golbraith's Cellar",
+            "Gorion Mausoleum",
+            "Grand Mausoleum",
+            "Grey Harbour Docks",
+            "Grymforge",
+            "Guildhall",
+            "Gur Camp",
+            "Hhune Mausoleum",
+            "High Hall",
+            "Highberry's Home",
+            "House in Deep Shadows",
+            "House of Grief",
+            "House of Healing",
+            "House of Hope",
+            "Inner Sanctum",
+            "Iron Throne",
+            "Jungle",
+            "Knights of the Shield Hideout",
+            "Lady Jannath's Estate",
+            "Last Light Inn",
+            "Lavernica's Home",
+            "Lora's House",
+            "Lower City",
+            "Lower City Sewers",
+            "Lustrous Lass",
+            "Mapping of the Heart",
+            "Mason's Guild",
+            "Mind Flayer Colony",
+            "Moonrise Towers",
+            "Moonrise Towers Prison",
+            "Moonrise Towers Rooftop",
+            "Morphic Pool",
+            "Mountain Pass",
+            "Murder Tribunal",
+            "Nautiloid",
+            "Necrotic Laboratory",
+            "Nine Hells",
+            "Nortale's Hostel",
+            "Nymph's Grotto",
+            "Old Garlow's Place",
+            "Old Jol's",
+            "Open Hand Temple",
+            "Open Hand Temple Underground Area",
+            "Oubliette",
+            "Overgrown Ruins",
+            "Overgrown Tunnel",
+            "Owlbear Nest",
+            "Peartree House",
+            "Philgrave's Mansion",
+            "Rainforest's Home",
+            "Ramazith's Tower",
+            "Ravaged Beach",
+            "Reithwin Tollhouse",
+            "Reithwin Town",
+            "Requisitioned Barn",
+            "River Chionthar",
+            "Rivington",
+            "Rivington General",
+            "Rosymorn Monastery",
+            "Rosymorn Monastery Trail",
+            "Ruined Battlefield",
+            "Sacred Pool",
+            "Secluded Cove",
+            "Secret Chamber",
+            "Selûnite Outpost",
+            "Shadow-Cursed Lands",
+            "Shadowfell",
+            "Sharess' Caress",
+            "Sharran Sanctuary",
+            "Shattered Sanctum",
+            "Sorcerous Sundries",
+            "Sorcerous Vault",
+            "South Span Checkpoint",
+            "Steel Watch Foundry",
+            "Storehouse",
+            "Stormshore Armoury",
+            "Stormshore Tabernacle",
+            "Submersible",
+            "Sunlit Wetlands",
+            "Sword Coast",
+            "Sword Coast Couriers",
+            "Szarr Palace",
+            "Tadpoling Centre",
+            "The Bibliophile",
+            "The Blushing Mermaid",
+            "The Counting House",
+            "The Dragon's Sanctum",
+            "The Festering Cove",
+            "The Glitter Gala",
+            "The Hollow",
+            "The Lodge",
+            "The Risen Road",
+            "The Singing Lute",
+            "The Velveteen Elixir",
+            "The Waning Moon",
+            "The Wyrmway",
+            "Tiefling Hideout",
+            "Tiefling Refugee Celebration",
+            "Toril",
+            "Undercity",
+            "Undercity Ruins",
+            "Underdark",
+            "Underdark Pleasures",
+            "Underground Passage",
+            "Upper City",
+            "Upper City Gate Checkpoint",
+            "Vonayn's Home",
+            "Water Queen's House",
+            "Waterdeep",
+            "Waukeen's Rest",
+            "Western Beach",
+            "Whispering Depths",
+            "Wilderness",
+            "Worg Pens",
+            "Wyrm's Crossing",
+            "Wyrm's Rock Fortress",
+            "Wyrm's Rock Prison",
+            "Zhentarim Basement"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "The Sword Coast",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "A vampire spawn who has served his master for two hundred years, and smiles a little too much",
+          "answer": "Astarion"
+        },
+        {
+          "text": "A cleric of Shar with a secret artefact and no memory of her past",
+          "answer": "Shadowheart"
+        },
+        {
+          "text": "A tiefling with an infernal engine for a heart, who escaped Zariel's army in Avernus",
+          "answer": "Karlach|Karlach Cliffgate"
+        },
+        {
+          "text": "A githyanki warrior who answers to her queen, and has no patience for weakness",
+          "answer": "Lae'zel|Laezel|Lae zel"
+        },
+        {
+          "text": "A wizard of Waterdeep with a Netherese orb in his chest, and a cat who is not quite a cat",
+          "answer": "Gale|Gale of Waterdeep|Gale Dekarios"
+        },
+        {
+          "text": "The Blade of Frontiers, with a horn on his head and a pact with a devil",
+          "answer": "Wyll|Wyll Ravengard|The Blade of Frontiers|Blade of Frontiers"
+        },
+        {
+          "text": "An archdruid who spent much of the last centuries as a bear",
+          "answer": "Halsin"
+        },
+        {
+          "text": "A drow paladin of the Absolute who leads the raid on the grove",
+          "answer": "Minthara"
+        },
+        {
+          "text": "A Harper, a druid, and a very old friend from Baldur's Gates past",
+          "answer": "Jaheira"
+        },
+        {
+          "text": "A ranger who swears by his hamster, and the hamster is a miniature giant space one",
+          "answer": "Minsc"
+        },
+        {
+          "text": "A bloodthirsty origin with no memory and a butler who never leaves his side",
+          "answer": "The Dark Urge|Dark Urge|Durge"
+        },
+        {
+          "text": "A skeleton in a robe who shows up at camp and raises the fallen for a few gold",
+          "answer": "Withers|Jergal"
+        },
+        {
+          "text": "A cambion in a fine suit who offers deals, and always keeps a contract handy",
+          "answer": "Raphael"
+        },
+        {
+          "text": "The Chosen of Bane, a former slave of Raphael, who rules Baldur's Gate from Wyrm's Rock",
+          "answer": "Enver Gortash|Gortash|Lord Gortash"
+        },
+        {
+          "text": "The Chosen of Bhaal, a shapeshifter who wears other people's faces",
+          "answer": "Orin|Orin the Red"
+        },
+        {
+          "text": "The Chosen of Myrkul, who rules Moonrise Towers and cannot die",
+          "answer": "Ketheric Thorm|Ketheric|General Thorm"
+        },
+        {
+          "text": "A vampire lord of the Upper City who wants seven thousand souls for his ritual",
+          "answer": "Cazador|Cazador Szarr"
+        },
+        {
+          "text": "A mind flayer who once was a famous adventurer, and helps from inside the prism",
+          "answer": "The Emperor|Emperor|Balduran"
+        },
+        {
+          "text": "The Chosen of Mystra, an old wizard who pays a visit to the camp",
+          "answer": "Elminster|Elminster Aumar"
+        },
+        {
+          "text": "A Bhaalspawn in a horned helmet, raised from death to serve the Murder Lord",
+          "answer": "Sarevok|Sarevok Anchev"
+        },
+        {
+          "text": "A drow priestess of Shar who raised Shadowheart in the House of Night",
+          "answer": "Viconia|Viconia DeVir"
+        },
+        {
+          "text": "A famous travelling author who lays down his eye for a book",
+          "answer": "Volo|Volothamp Geddarm|Volothamp"
+        },
+        {
+          "text": "The lich-queen of the githyanki, who rules from the Astral Plane",
+          "answer": "Vlaakith|Vlaakith the Lich Queen|Lich Queen"
+        },
+        {
+          "text": "A necromancer who serves Ketheric Thorm in the Shadow-Cursed Lands",
+          "answer": "Balthazar"
+        },
+        {
+          "text": "A goblin priestess of the Absolute who offers to remove your tadpole",
+          "answer": "Priestess Gut|Gut|True Soul Gut"
+        }
+      ]
+    }
   }
 ]

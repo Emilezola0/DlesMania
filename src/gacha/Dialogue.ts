@@ -123,6 +123,16 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['They lost their shade again, {other}.', 'Was it the Path of Pain?', 'It is always the Path of Pain.'], ['They sat on the wrong bench.', 'Someone always does, {other}.']],
     great: [['Was that the Radiance going down?', 'It was, {other}!', 'The whole kingdom can sleep now.']],
   },
+  mha: {
+    good: [['They passed the practical exam, {other}.', 'Top of the class, too.'], ['Clean Full Cowl.', 'All Might would be proud, {other}.']],
+    bad: [['Their arm is broken again, {other}.', 'Was it a hundred percent Smash?', 'It is always a hundred percent Smash.'], ['They forgot to name their move.', 'Someone always does, {other}.']],
+    great: [['Was that All For One going down?', 'It was, {other}!', 'The Symbol of Peace lives on.']],
+  },
+  bg3: {
+    good: [['They passed the persuasion check, {other}.', 'First roll, too.'], ['Clean shove off that ledge.', 'The goblins never saw it, {other}.']],
+    bad: [['A natural one, {other}.', 'Was it the dialogue check?', 'It is always the dialogue check.'], ['They skipped the long rest.', 'Someone always does, {other}.']],
+    great: [['Was that the Netherbrain going down?', 'It was, {other}!', 'The whole city of Baldur’s Gate heard it.']],
+  },
   hsr: {
     good: [['They broke Nanook’s Legion, {other}.', 'In one ride, too.'], ['Clean Weakness Break on that Voidranger.', 'The rails hold, {other}.']],
     bad: [['Their whole team went down, {other}.', 'Was it the Legion?', 'It is always the Legion.'], ['They spent their Trailblaze Power on nothing.', 'Someone always does, {other}.']],

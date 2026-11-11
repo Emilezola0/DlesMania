@@ -91,6 +91,8 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
   balatro: { good: ['Nice hand!', 'That one scored!', 'Mult go brrr!'], bad: ['Bust!', 'Not enough chips…', 'Should have discarded that.'] },
   hsr: { good: ['Weakness Break!', 'Next stop, the stars!', 'Ultimate ready!'], bad: ['Downed…', 'Back to the Express…', 'Out of Trailblaze Power!'] },
   hollowknight: { good: ['Shaw!', 'Soul gathered!', 'Geo secured!'], bad: ['Mask broken…', 'Back to the bench…', 'Your shade remains…'] },
+  mha: { good: ['Plus Ultra!', 'Smash!', 'Go beyond!'], bad: ['Quirk erased…', 'Back to class…', 'Not hero material… yet.'] },
+  bg3: { good: ['Natural 20!', 'Critical hit!', 'Inspiration gained!'], bad: ['Natural 1…', 'Back to camp…', 'Long rest needed…'] },
   deadlock: { good: ['Souls secured!', 'Guardian down!', 'Clean last hit!'], bad: ['Picked off…', 'Back to spawn…', 'Out of souls!'] },
   arcraiders: { good: ['Extracted!', 'Thruster down!', 'Loot secured!'], bad: ['Downed…', 'Shredded!', 'Back to Speranza…'] },
   ufouria: { good: ['Uppo!', 'Butt stomp!', 'Bumyon cleaned up!'], bad: ['Bumyon’d…', 'Splat!', 'Back to bed, Hebe.'] },

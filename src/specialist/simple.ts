@@ -8,6 +8,7 @@ import OW_VOICES from '../data/overwatch-voices.json';
 import OW_ULTS from '../data/overwatch-ults.json';
 import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import CLASSIC_TRAITS from '../data/specialist/classic-traits.json';
+import MHA from '../data/specialist/mha.json';
 
 export interface SimpleCharacter {
   id: string;
@@ -20,7 +21,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight' | 'mha' | 'bg3';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -538,7 +539,66 @@ function hollowKnight(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight() };
+// ── My Hero Academia: the heroes, students and villains of the boss's Radar and Final Blow, by what they are, their
+// Quirk's kind, gender, whether they are still alive and the manga chapter they first appear in (their infoboxes on the
+// My Hero Academia Wiki: scripts/data/mha-boss.mjs), and their card's rarity; their anime art; the boss's clues. ──
+function mha(): SimpleUniverse {
+  const b = boss('mha');
+  const aliases = new Map([...b.radar.members, ...b.finale].map((c) => [c.label, c.aliases ?? []]));
+  const traits = new Map(MHA.characters.map((c) => [c.name, { Role: c.role, Quirk: c.quirk, Gender: c.gender, Status: c.status, 'Debut chapter': String(c.debut) }]));
+  const cards = CARDS.filter((c) => c.set === 'mha' && c.rarity !== 'mythic' && c.rarity !== 'omni' && traits.has(c.name));
+  return {
+    id: 'mha',
+    columns: ['Role', 'Quirk', 'Gender', 'Status', 'Debut chapter', 'Rarity'],
+    numeric: ['Debut chapter'],
+    characters: cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } })),
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+  };
+}
+
+// ── Baldur's Gate 3: the companions, villains and allies with drawn art, by race (bg3.wiki's infoboxes), what they are
+// to the party, gender and their card's rarity; Larian's painted portraits and concept art; the boss's clues. The Dark
+// Urge (the player's own race and class), the Emperor and the creatures stay out of Classic. ──
+const BG3: [string, string, 'Companion' | 'Ally' | 'Villain', 'Male' | 'Female'][] = [
+  ['Astarion', 'Elf', 'Companion', 'Male'],
+  ['Shadowheart', 'Half-Elf', 'Companion', 'Female'],
+  ['Karlach', 'Tiefling', 'Companion', 'Female'],
+  ["Lae'zel", 'Githyanki', 'Companion', 'Female'],
+  ['Gale', 'Human', 'Companion', 'Male'],
+  ['Wyll', 'Human', 'Companion', 'Male'],
+  ['Halsin', 'Elf', 'Companion', 'Male'],
+  ['Minthara', 'Drow', 'Companion', 'Female'],
+  ['Jaheira', 'Half-Elf', 'Companion', 'Female'],
+  ['Minsc', 'Human', 'Companion', 'Male'],
+  ['Withers', 'Skeleton', 'Ally', 'Male'],
+  ['Raphael', 'Cambion', 'Villain', 'Male'],
+  ['Enver Gortash', 'Human', 'Villain', 'Male'],
+  ['Orin', 'Changeling', 'Villain', 'Female'],
+  ['Ketheric Thorm', 'Undead', 'Villain', 'Male'],
+  ['Cazador', 'Vampire', 'Villain', 'Male'],
+  ['Elminster', 'Human', 'Ally', 'Male'],
+  ['Sarevok', 'Human', 'Villain', 'Male'],
+  ['Viconia', 'Drow', 'Villain', 'Female'],
+  ['Volo', 'Human', 'Ally', 'Male'],
+  ['Vlaakith', 'Undead', 'Villain', 'Female'],
+  ['Balthazar', 'Undead', 'Villain', 'Male'],
+  ['Priestess Gut', 'Goblin', 'Villain', 'Female'],
+];
+
+function bg3(): SimpleUniverse {
+  const b = boss('bg3');
+  const aliases = new Map([...b.radar.members, ...b.finale].map((c) => [c.label, c.aliases ?? []]));
+  const traits = new Map(BG3.map(([name, race, role, gender]) => [name, { Race: race, Role: role, Gender: gender }]));
+  const cards = CARDS.filter((c) => c.set === 'bg3' && c.rarity !== 'mythic' && c.rarity !== 'omni' && traits.has(c.name));
+  return {
+    id: 'bg3',
+    columns: ['Race', 'Role', 'Gender', 'Rarity'],
+    characters: cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } })),
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+  };
+}
+
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight(), mha: mha(), bg3: bg3() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 
