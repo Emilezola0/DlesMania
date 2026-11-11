@@ -83,7 +83,9 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 const COLLAPSE_BURST_MS = 1430;
 
 /** A clip that is a GIF (from a GIF site, or a .gif): it loops on its own, no tap needed. */
-const GIF_CLIP = /media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)/i;
+/** How long the card's spin lasts (its `duration-500`). */
+const SPIN_MS = 500;
+const GIF_CLIP =/media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)/i;
 
 function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: number; onClose: () => void; onUpgraded: (into: Card) => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
@@ -142,16 +144,24 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     if (Math.abs(dx) + Math.abs(dy) > 6) s.moved = true;
     setRot({ x: Math.max(-40, Math.min(40, -dy * 0.35)), y: dx * 0.6 });
   };
+  // The spin takes SPIN_MS (its transition): a waiting video starts as it ends.
+  const playTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(playTimer.current), []);
+  const spinThenPlay = () => {
+    sfx.whoosh();
+    setSpin((n) => n + 360);
+    if (!clipHeld) return;
+    const clip = form.clip!;
+    window.clearTimeout(playTimer.current);
+    playTimer.current = window.setTimeout(() => setStarted(clip), SPIN_MS);
+  };
   const up = () => {
     const s = start.current;
     start.current = null;
     setDragging(false);
     setRot({ x: 0, y: 0 });
-    if (!s || s.moved) return;
-    // A tap, not a drag: its video starts if it's waiting, else a full spin.
-    if (clipHeld) return setStarted(form.clip!);
-    sfx.whoosh();
-    setSpin((n) => n + 360);
+    // A tap, not a drag: a full spin (and its video, if it's waiting, once the spin is over).
+    if (s && !s.moved) spinThenPlay();
   };
 
   // Held, the card goes where the hand takes it; let go, it sways.
@@ -191,7 +201,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
           {clipHeld && (
-            <button type="button" onClick={() => setStarted(form.clip!)} className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
+            <button type="button" onClick={spinThenPlay}className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               ▶ Play its video
             </button>
           )}
@@ -206,7 +216,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
-          <p className="mt-1 text-xs opacity-60">Drag to turn it · {clipHeld ? 'tap to play its video' : 'tap to spin it'} · Esc to close</p>
+          <p className="mt-1 text-xs opacity-60">Drag to turn it · {clipHeld ? 'tap to spin it and play its video' : 'tap to spin it'} · Esc to close</p>
         </div>
         <UpgradeOffer card={card} onUpgraded={onUpgraded} />
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
