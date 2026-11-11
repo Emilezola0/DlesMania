@@ -225,6 +225,45 @@ service cloud.firestore {
       allow delete: if request.auth != null && request.auth.uid == uid;
     }
 
+    // The Daily Choice (src/cloud/choices.ts): choices/<uid>_<day>, the card a player picked for each of the day's
+    // questions. Only on that day (by the server's clock, any time zone); a pick is made once and never changed or
+    // taken back (it's what pays). Its player reads it; their friends too, once that day is over everywhere.
+    match /choices/{id} {
+      function voter() {
+        return id.split('_')[0];
+      }
+      function dayOf() {
+        return id.split('_')[1];
+      }
+      function dayStart() {
+        return timestamp.date(int(dayOf().split('-')[0]), int(dayOf().split('-')[1]), int(dayOf().split('-')[2]));
+      }
+      function picksOk(p) {
+        return p is map && p.size() <= 3 && p.keys().hasOnly(['0', '1', '2'])
+          && (!('0' in p) || (p['0'] is string && p['0'].size() <= 80))
+          && (!('1' in p) || (p['1'] is string && p['1'].size() <= 80))
+          && (!('2' in p) || (p['2'] is string && p['2'].size() <= 80));
+      }
+      function onItsDay() {
+        return dayOf().matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+          && request.time > dayStart() - duration.value(14, 'h')
+          && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h');
+      }
+      allow get: if request.auth != null && (request.auth.uid == voter()
+        || (request.time > dayStart() + duration.value(1, 'd') - duration.value(14, 'h')
+          && request.auth.uid in get(/databases/$(database)/documents/scores/$(voter())).data.friends));
+      allow create: if request.auth != null && request.auth.uid == voter() && onItsDay()
+        && request.resource.data.keys().hasOnly(['uid', 'day', 'picks'])
+        && request.resource.data.uid == voter() && request.resource.data.day == dayOf()
+        && picksOk(request.resource.data.picks) && request.resource.data.picks.size() >= 1;
+      allow update: if request.auth != null && request.auth.uid == voter() && onItsDay()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks'])
+        && picksOk(request.resource.data.picks)
+        && request.resource.data.picks.diff(resource.data.picks).changedKeys().size() == 0
+        && request.resource.data.picks.diff(resource.data.picks).removedKeys().size() == 0
+        && request.resource.data.picks.diff(resource.data.picks).addedKeys().size() == 1;
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

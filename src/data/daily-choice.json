@@ -1,0 +1,32 @@
+{
+  "coins": 1000,
+  "perDay": 3,
+  "skipSets": ["jlpt", "unreal", "balatro", "forts"],
+  "rarities": ["legendary", "mythic", "omni"],
+  "questions": [
+    { "text": "Who wins in a one-on-one fight?", "options": 2 },
+    { "text": "Who would you rather fight?", "options": 2 },
+    { "text": "Who wins a staring contest?", "options": 2 },
+    { "text": "Who's the coolest?", "options": 3 },
+    { "text": "Who would you like to see disappear?", "options": 3 },
+    { "text": "Who's the most overrated?", "options": 3 },
+    { "text": "Who would you take on a road trip?", "options": 3 },
+    { "text": "Who would you trust with your deepest secret?", "options": 3 },
+    { "text": "Who has the best style?", "options": 3 },
+    { "text": "Who's the worst roommate?", "options": 3 },
+    { "text": "Who wins a cooking contest?", "options": 3 },
+    { "text": "Who's the funniest?", "options": 3 },
+    { "text": "Who would rule the world best?", "options": 3 },
+    { "text": "Who lasts longest on a desert island?", "options": 3 },
+    { "text": "Who's the scariest?", "options": 3 },
+    { "text": "Who would you want as your teacher?", "options": 3 },
+    { "text": "Who's secretly the nicest?", "options": 3 },
+    { "text": "Who would you invite to your birthday party?", "options": 3 },
+    { "text": "Who cheats at board games?", "options": 3 },
+    { "text": "Who would make the best pet?", "options": 3 },
+    { "text": "Who survives a zombie apocalypse?", "options": 4 },
+    { "text": "Who would you pick as your partner in a tournament?", "options": 4 },
+    { "text": "Who wins a battle royale?", "options": 4 },
+    { "text": "Who would you save first?", "options": 4 }
+  ]
+}

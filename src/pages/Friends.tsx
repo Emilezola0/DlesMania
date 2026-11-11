@@ -8,6 +8,7 @@ import { TITLE_BY_ID } from '../casino/unlocks';
 import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
 import { RARITIES, RARITY_INFO } from '../gacha/cards';
+import { DailyChoice } from '../friends/DailyChoice';
 import { DailyDoodle } from '../friends/Doodle';
 import { LuckReport } from '../friends/LuckReport';
 import type { Luck } from '../cloud/luck';
@@ -316,6 +317,7 @@ function demoDocs(): ScoreDoc[] {
 const TABS = [
   { id: 'friends', name: 'Friends', icon: '👥' },
   { id: 'doodle', name: 'Daily Doodle', icon: '🎨' },
+  { id: 'choice', name: 'Daily Choice', icon: '🗳️' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
 
@@ -603,6 +605,8 @@ export default function Friends() {
               </section>
             </div>
           )}
+
+          {mine && tab === 'choice' && <DailyChoice people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} demo={demo} />}
 
           {mine && tab === 'friends' && <LuckReport players={players.map((p) => ({ uid: p.doc.uid, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo ? demoLuck(players.map((p) => p.doc)) : undefined} />}
         </>
