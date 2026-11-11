@@ -105,7 +105,12 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     // YouTube clip gets ready unheard, and is heard from the moment it's let go.
     () =>
       card.clipSound || (!!form.clip && card.audio === form.clip)
-        ? { volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, card.clipSound ? 'clip' : 'voice'), onEnded: () => {}, onNoSound: () => {} }
+        ? {
+            volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, card.clipSound ? 'clip' : 'voice'),
+            // Heard once through: back to its picture (not frozen on its last frame), ready to play again.
+            onEnded: () => (setStarted(null), setShowing(null)),
+            onNoSound: () => {},
+          }
         : undefined,
     // The volume as it was when opened: a new one would restart the clip.
     // eslint-disable-next-line react-hooks/exhaustive-deps
