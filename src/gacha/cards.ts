@@ -550,7 +550,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     // clip in both forms and its voice (it speaks there).
     image: `${import.meta.env?.BASE_URL ?? './'}art/destiny/the-witness.webp`,
     voice: '*The Witness speaks*',
-    audio: `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness-30fps.mp4`,
     awaken: {
       title: 'The Final Shape',
       line: 'Its arm comes down on the platform with the weight of a collapsing universe — the last thing between the Light and the end of everything.',
@@ -748,7 +748,7 @@ const CLIPS: Record<string, string> = {
   'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
   'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
   // Movie Steve: "Steve's Lava Chicken", 0:23 to 0:42 (the owner's cut; it's his voice too: heard from the clip).
-  'minecraft:omni-steve': `${import.meta.env?.BASE_URL ?? './'}clips/minecraft/steve.mp4`,
+  'minecraft:omni-steve': `${import.meta.env?.BASE_URL ?? './'}clips/minecraft/steve-30fps.mp4`,
   // ── Clips for the Mythics that had none (Tenor; ARC Raiders from YouTube: its official launch trailer, and a
   // showcase of the Matriarch; Victor Blade from the Inazuma Eleven Wiki, heard with its sound) ──
   'dbz:mythic-vegito': 'https://media.tenor.com/gn-zNRi495MAAAPo/vegetto-ssj-blue-final-kamehameha.mp4',
@@ -859,7 +859,7 @@ const CLIPS: Record<string, string> = {
   'avatar:mythic-sokka': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
   'avatar:omni-sokka': `${import.meta.env?.BASE_URL ?? './'}clips/avatar/sokka.mp4`,
   'destiny:mythic': 'https://media.tenor.com/NLIpsly4D30AAAP1/cayde6-nicecock.mp4',
-  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
+  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness-30fps.mp4`,
   'destiny:mythic-2': 'https://media.tenor.com/9SO8-ZvgS3UAAAP1/twab-where-twab.mp4',
   // Infernus: a fan's painting, the flames around him flickering (Tenor).
   'deadlock:mythic-2': 'https://media.tenor.com/0cyI_TG7YT0AAAPo/infernus-deadlock-deadlock.mp4',
@@ -876,7 +876,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'dbz:omni': 'https://media.tenor.com/Hq39Deua0rQAAAPo/kamehameha-goku.mp4',
   'starwars:omni': `${import.meta.env?.BASE_URL ?? './'}clips/gif/starwars-omni.mp4`,
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
-  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness.mp4`,
+  'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness-30fps.mp4`,
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
   'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
