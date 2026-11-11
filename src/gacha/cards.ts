@@ -613,7 +613,7 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // Luffy: his clip (Gear 5's Gum Gum lightning) is heard with its own sound behind a win (the owner's call); his voice
   // line stays for the card's 🔊 button.
   'onepiece:omni': { voice: 'Gomu Gomu no…!', audio: 'https://www.myinstants.com/media/sounds/gomu-gomu-no.mp3', clipSound: true },
-  'dbz:omni': { voice: 'Kamehameha!', audio: 'https://www.myinstants.com/media/sounds/kamehameha_qWZSJCi.mp3' },
+  'dbz:omni': { voice: 'Kamehameha!', audio: 'https://www.myinstants.com/media/sounds/kamehameha_qWZSJCi.mp3', clipSound: true },
   'naruto:omni': { voice: 'Rasengan!', audio: 'https://www.myinstants.com/media/sounds/naruto-rasengan-voice.mp3' },
   'starwars:omni': { voice: 'You underestimate my power!', audio: 'https://www.myinstants.com/media/sounds/you-underestimate-my-power_cN70zP4.mp3' },
   'harrypotter:omni': { voice: 'Expelliarmus!' },
@@ -760,7 +760,8 @@ const CLIPS: Record<string, string> = {
   'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   'onepiece:mythic-2': 'https://media.tenor.com/1Rie5-nbCN8AAAPo/king-of-hell-zoro-zoro-one-piece.mp4',
   'dbz:mythic': 'https://media.tenor.com/6KICR9VojUkAAAP1/son-goku.mp4',
-  'dbz:omni': 'https://media.tenor.com/ysUrLHpqeJYAAAP1/vergil675.mp4',
+  // Goku awakened (Perfected Ultra Instinct): the owner's pick, Mastered Ultra Instinct against Jiren (0:19–0:41), heard.
+  'dbz:omni': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/goku-ultra-instinct.mp4`,
   'dbz:mythic-2': 'https://media.tenor.com/z496xO1AN8kAAAP1/vegeta-ultra-ego-vegeta.mp4',
   // The owner's own capture of his Kamehameha (YouTube won't embed it): H.264, 720p at 60 fps, with its sound (heard behind a win).
   'dbz:omni-gogeta': `${import.meta.env?.BASE_URL ?? './'}clips/dbz/gogeta-kamehameha.mp4`,
@@ -857,6 +858,8 @@ const FIRST_CLIPS: Record<string, string> = {
 const LIGHT_CLIPS = new Set(['ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
+/** Light first forms whose awakened clip is a full video, not a light one. */
+const HEAVY_AWAKE = new Set(['dbz:omni']);
 const CUTOUTS_AWAKE = new Set(['minecraft:omni', 'starwars:omni', 'smash:omni']);
 /** The pictures measured as opaque, no transparency at all (npm run cards:measure): "id", or "id@awake" for an omni's second form. */
 const OPAQUE = new Set(CARD_OPAQUE as string[]);
@@ -867,7 +870,7 @@ const withClip = (c: Card): Card => {
   const opaque = !cutout && OPAQUE.has(c.id);
   const first = FIRST_CLIPS[c.id];
   return c.awaken
-    ? { ...c, cutout, opaque, ...(first ? { clip: first, clipLight: LIGHT_CLIPS.has(c.id) } : {}), awaken: { ...c.awaken, clip, clipLight: !!clip && clipLight, cutout: CUTOUTS_AWAKE.has(c.id), opaque: !CUTOUTS_AWAKE.has(c.id) && OPAQUE.has(`${c.id}@awake`) } }
+    ? { ...c, cutout, opaque, ...(first ? { clip: first, clipLight: LIGHT_CLIPS.has(c.id) } : {}), awaken: { ...c.awaken, clip, clipLight: !!clip && clipLight && !HEAVY_AWAKE.has(c.id), cutout: CUTOUTS_AWAKE.has(c.id), opaque: !CUTOUTS_AWAKE.has(c.id) && OPAQUE.has(`${c.id}@awake`) } }
     : { ...c, clip, clipLight, cutout, opaque };
 };
 
