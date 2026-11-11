@@ -83,6 +83,23 @@ function OmniRings({ half }: { half: 'full' | 'back' | 'front' }) {
   return half === 'back' ? <div className="card-omni-ring-flat">{rings}</div> : <>{rings}</>;
 }
 
+/**
+ * Firefox's rings, around a card up close (the big view puts them beside the card, in its turning 3D space): there the
+ * card's face is flat (it loses what stands out of a 3D face), so rings inside it would be painted on it and turn
+ * with it, not float around it. `back` goes before the card (under it), `front` after it (over it, in 3D).
+ */
+export function OmniRingsAround({ half }: { half: 'back' | 'front' }) {
+  return half === 'back' ? (
+    <div className="omni-rings-around pointer-events-none absolute inset-0">
+      <OmniRings half="back" />
+    </div>
+  ) : (
+    <div className="omni-rings-around pointer-events-none absolute inset-0 [transform-style:preserve-3d]">
+      <OmniRings half="front" />
+    </div>
+  );
+}
+
 const EMBERS = [
   { x: 6, y: 18, z: 70 },
   { x: 90, y: 12, z: 110 },

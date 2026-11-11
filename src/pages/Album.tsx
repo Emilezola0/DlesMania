@@ -2,7 +2,7 @@ import { ANOMALIES } from '../gacha/anomalies';
 import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
-import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
+import { CardBack, CardFace, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
 import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
@@ -196,12 +196,16 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
+            {/* Firefox's Omni rings, beside the card in its 3D space: under it, then over it (see OmniRingsAround). Not
+                inside the face's own layer: Firefox doesn't draw 3D layers inside a hidden-backface one. */}
+            {card.rarity === 'omni' && <OmniRingsAround half="back" />}
+            <div key={flare} className={`relative [backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} cssLight depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
             </div>
+            {card.rarity === 'omni' && <OmniRingsAround half="front" />}
             </div>
             </div>
           </div>

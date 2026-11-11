@@ -2738,3 +2738,11 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @supports (-moz-appearance: none) {
   .card-3d { transform-style: flat !important; }
 }
+/* So in Firefox the big view's rings float beside the card, in its 3D space (OmniRingsAround), instead of the face's
+   own, which a flat face would paint on itself. */
+.omni-rings-around { display: none; }
+@supports (-moz-appearance: none) {
+  .omni-rings-around { display: block; }
+  .card-3d .card-omni-ring-flat,
+  .card-3d .card-omni-ring-front { display: none !important; }
+}
