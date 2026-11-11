@@ -2679,10 +2679,15 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .card-anomaly-void { box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.5), 0 0 22px rgba(76, 29, 149, 0.6) !important; }
 @media (prefers-reduced-motion: reduce) { .card-void-wander, .card-timelost-shift { animation: none; } }
 
-/* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards. Each keeps
-   still (no shines, glitches or twinkles; its anomaly's colours stay) and only the ones on screen are drawn. */
+/* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards, only the ones
+   on screen drawn. Each card there is calm (CardFace's calm): its moving lights (comet, halo, gleam, sparks, glitch,
+   the void's wandering light) aren't drawn at all, rather than frozen mid-move; what it keeps stays still — its grade's
+   edge and emblem, its anomaly's colours. Under the mouse it comes back to life, the whole show. */
 .pack-summary-big > div { content-visibility: auto; contain-intrinsic-size: auto 280px; }
-.pack-summary-big > div *, .pack-summary-big > div *::before, .pack-summary-big > div *::after { animation: none !important; }
+.card-calm, .card-calm *, .card-calm *::before, .card-calm *::after { animation: none !important; }
+.card-grade-calm::before, .card-grade-calm::after { display: none; }
+/* Void-Touched, calm: the dark at the edges only, the face still seen. */
+.card-void-calm { background: radial-gradient(ellipse at 50% 42%, transparent 0, transparent 34%, rgba(4, 2, 10, 0.55) 62%, rgba(4, 2, 10, 0.85) 90%); }
 /* The Daily link while today's dailies aren't done (src/components/Layout.tsx): in the accent colour, glowing, with a dot. */
 .nav-daily-left { position: relative; color: var(--color-coral, #ef6f5e) !important; text-shadow: 0 0 10px rgb(239 111 94 / 0.55); }
 .nav-daily-left::after { content: ''; position: absolute; top: 2px; right: -2px; width: 7px; height: 7px; border-radius: 9999px; background: var(--color-coral, #ef6f5e); box-shadow: 0 0 6px var(--color-coral, #ef6f5e); animation: nav-daily-pulse 1.6s ease-in-out infinite; }

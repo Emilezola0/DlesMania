@@ -157,7 +157,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const name = anomaly?.mirror ? [...scrambledName].reverse().join('') : scrambledName;
   // A mythic or omni comes to life: under the mouse (`hoverHero`), or when told to (`hero`: a first tap on a phone).
   const [hovered, setHovered] = useState(false);
-  const heroOn = (hero || hovered) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const heroOn = (hero || (hoverHero && hovered)) && (look === 'mythic' || look === 'omni') && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
@@ -172,6 +172,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const fx = el ? (el.look === 'singularity' ? 7 : 6) : grade;
   const singularity = fx === 7;
   const st = RARITY_STYLE[look];
+  // A calm card (a big summary) keeps still: its moving lights only come on under the mouse.
+  const live = !calm || hovered;
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
   const move = (e: React.PointerEvent) => {
@@ -209,9 +211,9 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
     <div
       ref={ref}
       onPointerMove={move}
-      onPointerEnter={(e) => hoverHero && e.pointerType === 'mouse' && setHovered(true)}
+      onPointerEnter={(e) => (hoverHero || calm) && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? '[transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -295,24 +297,24 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         {prism && (
           <>
             <div className={`${omni ? 'card-omni-foil' : 'card-prism'} pointer-events-none absolute inset-0`} />
-            <div className="card-glitter pointer-events-none absolute inset-0" />
+            {live && <div className="card-glitter pointer-events-none absolute inset-0" />}
             {/* Sparks drifting up through the card. */}
-            <div className={`card-sparks pointer-events-none absolute inset-0 ${omni ? 'card-sparks-gold' : ''}`} />
+            {live && <div className={`card-sparks pointer-events-none absolute inset-0 ${omni ? 'card-sparks-gold' : ''}`} />}
           </>
         )}
         {/* The grade's shine: an edge of its metal, then a passing gleam, then specks of light. */}
         {grade > 1 && (
-          <div className={`card-grade-fx card-grade-${fx} pointer-events-none absolute inset-0`}>
+          <div className={`card-grade-fx card-grade-${fx} ${live ? '' : 'card-grade-calm'} pointer-events-none absolute inset-0`}>
             {fx >= 3 && fx <= 6 && (
               <>
-                <i className="card-grade-gleam" />
+                {live && <i className="card-grade-gleam" />}
                 <i className="card-grade-edge" />
               </>
             )}
           </div>
         )}
         {/* Singularity: motes of light spiralling into the middle, and who took it there. */}
-        {singularity && (
+        {singularity && live && (
           <div className="card-singularity-motes pointer-events-none absolute inset-0 z-[6]" aria-hidden>
             {MOTES.map((m) => (
               <i key={m.a} style={{ ['--a' as string]: `${m.a}deg`, animationDelay: `${m.delay}s` }} />
@@ -359,13 +361,13 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </svg>
       )}
       {/* Celestial: rays of light turning behind the card. */}
-      {fx === 6 && (
+      {fx === 6 && live && (
         <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)}>
           <div className="card-grade-crown" />
         </div>
       )}
       {/* Gold and up: a light running round the frame, and a halo. */}
-      {fx >= 4 && (
+      {fx >= 4 && live && (
         <>
           <div className={`card-grade-orbit card-grade-orbit-${fx} pointer-events-none absolute inset-0 rounded-[7%]`}>
             <i />
@@ -382,11 +384,11 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       {/* A Fake Rarity: its true colours showing through at the edges of the mythic frame. */}
       {anomaly?.posesAsMythic && <div className="card-anomaly-remnant pointer-events-none absolute inset-0 z-[8] rounded-[7%]" style={{ background: RARITY_STYLE[card.rarity].frame }} />}
       {/* Corrupted: a scanline glitch running over the card. */}
-      {anomaly?.scramble && <div className="card-anomaly-glitch pointer-events-none absolute inset-0 z-[9] rounded-[7%]" />}
+      {anomaly?.scramble && live && <div className="card-anomaly-glitch pointer-events-none absolute inset-0 z-[9] rounded-[7%]" />}
       {/* Void-Touched: the dark over it all, but for a light — under the mouse, or wandering on its own. */}
       {anomaly?.void && (
         <div
-          className={`card-void-veil pointer-events-none absolute inset-[3%] z-[9] rounded-[5%] ${mx === 50 && my === 50 ? 'card-void-wander' : ''}`}
+          className={`card-void-veil pointer-events-none absolute inset-[3%] z-[9] rounded-[5%] ${!live ? 'card-void-calm' : mx === 50 && my === 50 ? 'card-void-wander' : ''}`}
           style={mx === 50 && my === 50 ? undefined : { ['--vx' as string]: `${mx}%`, ['--vy' as string]: `${my}%` }}
           aria-hidden
         />
