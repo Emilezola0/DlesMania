@@ -1310,20 +1310,36 @@ h1, h2, h3, .font-serif, .font-display {
   animation: card-spin 2.5s linear infinite;
 }
 /* Up close, in 3D: two rings of fire orbiting the card, passing in front and behind, and embers at every depth. */
-@keyframes card-omni-orbit { to { transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(360deg); } }
-.card-omni-ring {
+/* Each ring: a tilted plane (.card-omni-ring-tilt) with the ring turning inside it; in Firefox, cut in half (see OmniRings):
+   its far half before the card, its near half after it, so it passes behind and in front there too. */
+@keyframes card-omni-orbit { to { transform: rotate(360deg); } }
+.card-omni-ring-tilt {
   position: absolute;
   inset: -3% -12%;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  pointer-events: none;
+}
+/* Firefox only: the halves (see OmniRings). The top half is the far one (tilted away); the cut leaves room for the glow. */
+.card-omni-ring-flat { position: absolute; inset: 0; pointer-events: none; }
+.card-omni-ring-back { clip-path: inset(-25% -25% 50% -25%); }
+.card-omni-ring-front { clip-path: inset(50% -25% -25% -25%); }
+.card-omni-ring-flat, .card-omni-ring-front { display: none; }
+@supports (-moz-appearance: none) {
+  .card-omni-ring-full { display: none; }
+  .card-omni-ring-flat, .card-omni-ring-front { display: block; }
+}
+.card-omni-ring {
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
   border: 2px solid rgba(255, 59, 78, 0.9);
   border-top-color: #fff;
   border-bottom-color: #ff7a18;
   box-shadow: 0 0 14px rgba(255, 59, 78, 0.85), inset 0 0 14px rgba(255, 122, 24, 0.5);
-  transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(0deg);
   animation: card-omni-orbit 7s linear infinite;
-  pointer-events: none;
 }
-.card-omni-ring-2 { --rx: 74deg; --ry: 18deg; inset: -8% -20%; animation-duration: 11s; animation-direction: reverse; opacity: 0.75; }
+.card-omni-ring-2 { --rx: 74deg; --ry: 18deg; inset: -8% -20%; opacity: 0.75; }
+.card-omni-ring-2 .card-omni-ring { animation-duration: 11s; animation-direction: reverse; }
 .card-omni-ring-1 { --rx: 78deg; --ry: -14deg; }
 .card-omni-awake .card-omni-ring { animation-duration: 3.5s; }
 @keyframes card-omni-ember {

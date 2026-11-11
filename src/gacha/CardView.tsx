@@ -67,6 +67,22 @@ function useFill(focus: Card['focus'] | undefined) {
 }
 
 /** The embers floating around an Omni up close: where, and how far off the card (px). */
+/**
+ * An omni's two rings of fire, tilted around the card up close. A ring crosses the card: half of it behind, half in front.
+ * Chrome sorts that out in 3D (`full`: the whole ring). Firefox doesn't: it paints the card's flat layers first and
+ * every 3D-turned one over them, whole rings included. So for Firefox (index.css picks) each ring is also cut in two
+ * along its tilted plane: the far half (the top one, tilted away) inside a flat layer before the card — painted with
+ * it, so under it — and the near half in 3D after it. Each turns inside its cut.
+ */
+function OmniRings({ half }: { half: 'full' | 'back' | 'front' }) {
+  const rings = [1, 2].map((n) => (
+    <div key={n} className={`card-omni-ring-tilt card-omni-ring-${n} card-omni-ring-${half}`} aria-hidden>
+      <i className="card-omni-ring" />
+    </div>
+  ));
+  return half === 'back' ? <div className="card-omni-ring-flat">{rings}</div> : <>{rings}</>;
+}
+
 const EMBERS = [
   { x: 6, y: 18, z: 70 },
   { x: 90, y: 12, z: 110 },
@@ -224,6 +240,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         ...(el ? { ['--e1' as string]: el.colors[0], ['--e2' as string]: el.colors[1], ['--e3' as string]: el.colors[2] } : {}),
       }}
     >
+      {/* Up close, an omni's rings of fire: their far halves first, behind the card (see the near halves below). */}
+      {omni && depth && <OmniRings half="back" />}
       {/* A mythic's or omni's frame: its rainbow turning (a layer turned whole, so the card isn't redrawn each frame). */}
       {prism && !singularity && (
         <div className="card-frame-turn pointer-events-none absolute inset-0 overflow-hidden rounded-[7%]" aria-hidden>
@@ -396,11 +414,11 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       {/* Coming to life: light turning behind the card, and a cut-out picture stepping out of the frame. */}
       {heroOn && <div className="card-hero-rays pointer-events-none absolute -inset-[16%] -z-10 rounded-full" style={{ ['--glow' as string]: RARITY_LIGHT[look] }} />}
       {heroOn && form.cutout && <img src={form.image} alt="" draggable={false} className="card-hero-pop pointer-events-none absolute -left-[8%] -top-[16%] z-[15] h-[86%] w-[116%] max-w-none object-contain object-bottom" />}
-      {/* Up close, in 3D: rings of fire orbiting the card, in front and behind, and embers at every depth. */}
+      {/* Up close, in 3D: the near halves of the rings, in front of the card, and embers at every depth. */}
       {omni && depth && (
         <>
-          <div className="card-omni-ring card-omni-ring-1" />
-          <div className="card-omni-ring card-omni-ring-2" />
+          <OmniRings half="full" />
+          <OmniRings half="front" />
           {EMBERS.map((e, i) => (
             <span key={i} className="card-omni-ember" style={{ left: `${e.x}%`, top: `${e.y}%`, transform: `translateZ(${e.z}px)`, animationDelay: `${i * -0.6}s` }} />
           ))}
