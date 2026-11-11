@@ -491,7 +491,14 @@ function ResultText({ r }: { r: Result }) {
       </div>
     );
   }
-  const text = o.kind === 'lost' ? ['So close!', 'It fell as the claw lifted: a little nearer the chute now.'] : o.kind === 'slip' ? ['It slipped!', 'It landed nearer the chute: easier next time.'] : ['Nothing under the claw', 'Aim for the middle of a prize.'];
+  // How good the aim was: a good one still pays off (the prize moved well towards the chute).
+  const aimNote = o.kind === 'lost' || o.kind === 'slip' ? (o.aim >= 0.7 ? 'Great aim' : o.aim >= 0.4 ? 'Fair aim' : 'Off-centre') : '';
+  const text =
+    o.kind === 'lost'
+      ? ['So close!', `${aimNote}: ${o.aim >= 0.4 ? 'it fell as the claw lifted, but it was dragged well towards the chute.' : 'the claw barely gripped it. Aim for the middle of a prize to hold it (or drag it much closer).'}`]
+      : o.kind === 'slip'
+        ? ['It slipped!', `${aimNote}: it landed nearer the chute, easier next time.`]
+        : ['Nothing under the claw', 'Aim for the middle of a prize.'];
   return (
     <div className="animate-pop space-y-1">
       <p className="font-display text-lg font-black">{text[0]}</p>

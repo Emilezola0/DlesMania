@@ -312,9 +312,24 @@ function demoDocs(): ScoreDoc[] {
   });
 }
 
+/** The page's tabs: the friends themselves (scores, codes, luck), then the games played with them. More games go here. */
+const TABS = [
+  { id: 'friends', name: 'Friends', icon: '👥' },
+  { id: 'doodle', name: 'Daily Doodle', icon: '🎨' },
+] as const;
+type FriendsTab = (typeof TABS)[number]['id'];
+
 export default function Friends() {
   const { status, email, actions } = useCloud();
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
+  const tab: FriendsTab = TABS.some((x) => x.id === params.get('tab')) ? (params.get('tab') as FriendsTab) : 'friends';
+  const openTab = (id: FriendsTab) => {
+    sfx.select();
+    const next = new URLSearchParams(params);
+    if (id === 'friends') next.delete('tab');
+    else next.set('tab', id);
+    setParams(next, { replace: true });
+  };
   const demo = import.meta.env.DEV && params.has('demo');
   const signedIn = demo || (!!email && status !== 'signedOut' && !!actions);
   const [mine, setMine] = useState<ScoreDoc | null>(null);
@@ -423,9 +438,23 @@ export default function Friends() {
         </p>
       ) : (
         <>
+          <nav className="flex gap-1 overflow-x-auto rounded-md border border-rule bg-tile/60 p-1" aria-label="Friends">
+            {TABS.map((x) => (
+              <button
+                key={x.id}
+                type="button"
+                onClick={() => openTab(x.id)}
+                aria-current={tab === x.id ? 'page' : undefined}
+                className={`shrink-0 rounded-md px-4 py-2 font-display text-sm font-bold transition ${tab === x.id ? 'bg-card text-ink shadow' : 'text-ink-soft hover:text-ink'}`}
+              >
+                {x.icon} {x.name}
+              </button>
+            ))}
+          </nav>
+
           {note && <p className={`rounded-md border p-3 text-sm font-semibold ${note.good ? 'border-hit/50 bg-hit/10' : 'border-coral/50 bg-coral/10 text-coral'}`}>{note.text}</p>}
 
-          {mine && (
+          {mine && tab === 'friends' && (
             <section className="page space-y-4 rounded-md p-5">
               {/* Who leads. */}
               {players.length > 1 && leader ? (
@@ -450,9 +479,9 @@ export default function Friends() {
             </section>
           )}
 
-          {mine && <DailyDoodle me={mine} friends={list.filter((d) => mine.friends.includes(d.uid))} demo={demo} />}
+          {mine && tab === 'doodle' && <DailyDoodle me={mine} friends={list.filter((d) => mine.friends.includes(d.uid))} demo={demo} />}
 
-          {mine && (
+          {mine && tab === 'friends' && (
             <div className="grid gap-6 md:grid-cols-2">
               <section className="page space-y-3 rounded-md p-5">
                 <h2 className="font-display text-lg font-bold">Your friend code</h2>
@@ -575,7 +604,7 @@ export default function Friends() {
             </div>
           )}
 
-          {mine && <LuckReport players={players.map((p) => ({ uid: p.doc.uid, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo ? demoLuck(players.map((p) => p.doc)) : undefined} />}
+          {mine && tab === 'friends' && <LuckReport players={players.map((p) => ({ uid: p.doc.uid, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo ? demoLuck(players.map((p) => p.doc)) : undefined} />}
         </>
       )}
     </div>

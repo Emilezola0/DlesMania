@@ -1,8 +1,10 @@
 // The claw machine (Casino → Claw), paid in casino tokens. Its box holds plushies (src/casino/plushies.ts),
 // coin bags, ticket rolls, pack vouchers, card capsules, free scratch cards and a claw-only cosmetic: a new mix
 // every day, the same for everyone, filled up again when it runs low. The player stops the claw twice (across,
-// then front to back); it drops, closes and lifts. It holds better the closer it is to a prize's centre and the
-// lighter the prize; a prize can slip on the way to the chute, and lands closer to it (sometimes right in it).
+// then front to back); it drops, closes and lifts. Aim matters most: dead on a prize's centre, the claw nearly
+// always holds (a light prize all the more); and when it doesn't, a good aim still drags the prize well towards
+// the chute (or carries it most of the way before it slips), so a well-aimed try is never wasted. Off-centre,
+// the claw rarely holds and barely moves it.
 // Every try that wins nothing fills a meter; when it's full the next grab can't slip.
 // The numbers live in src/data/tuning/casino.json (`claw`).
 import T from '../data/tuning/casino.json';
@@ -143,10 +145,10 @@ export function restock(box: ClawItem[], cosmetics: string[], rand = Math.random
 export type GrabOutcome =
   /** Nothing under the claw. */
   | { kind: 'miss' }
-  /** Caught, but it fell as the claw lifted: nudged a little towards the chute. */
-  | { kind: 'lost'; uid: string; x: number; z: number }
+  /** Caught, but it fell as the claw lifted: nudged towards the chute, further the better the aim (`aim`, 0 to 1). */
+  | { kind: 'lost'; uid: string; x: number; z: number; aim: number }
   /** Carried part of the way (`at`, 0 to 1), then it slipped and landed nearer the chute. */
-  | { kind: 'slip'; uid: string; x: number; z: number; at: number }
+  | { kind: 'slip'; uid: string; x: number; z: number; at: number; aim: number }
   /** In the chute: won (`lucky`: it slipped right into it). */
   | { kind: 'win'; uid: string; prize: string; at?: number; lucky?: boolean };
 
@@ -162,6 +164,13 @@ export function under(box: ClawItem[], x: number, z: number): { item: ClawItem; 
   return best && d <= reach ? { item: best, aim: 1 - d / reach } : null;
 }
 
+/**
+ * The chance the claw holds a prize as it lifts: its grip, scaled by the aim, plus a bonus that only a good
+ * aim earns. Dead centre on a common plush (grip 0.8): 97%; half-way to its edge: about 57%; near its edge: 25%.
+ * A golden plush (grip 0.4): 85%, 34%, 13%.
+ */
+export const holdChance = (grip: number, aim: number) => Math.min(0.97, grip * (0.15 + 0.85 * aim) + 0.45 * aim * aim);
+
 /** A grab at (x, z): `sure` when the meter is full (it holds and can't slip). */
 export function grab(box: ClawItem[], x: number, z: number, sure: boolean, rand = Math.random): GrabOutcome {
   const hit = under(box, x, z);
@@ -169,17 +178,18 @@ export function grab(box: ClawItem[], x: number, z: number, sure: boolean, rand 
   const { item, aim } = hit;
   const grip = prizeLook(item.prize).grip;
   const toward = (f: number) => ({ x: item.x + (CHUTE.x - item.x) * f, z: item.z + (CHUTE.z - item.z) * f });
-  if (!sure && rand() >= grip * (0.3 + 0.7 * aim)) {
-    // It fell as the claw lifted: a little closer to the chute.
-    const p = toward(0.05 + rand() * 0.12);
-    return { kind: 'lost', uid: item.uid, x: Math.max(AREA.x0 - 0.04, p.x + (rand() - 0.5) * 0.04), z: Math.min(AREA.z1, Math.max(AREA.z0, p.z)) };
+  if (!sure && rand() >= holdChance(grip, aim)) {
+    // It fell as the claw lifted: dragged towards the chute, from a nudge (off-centre) to a third of the way (dead on).
+    const p = toward(0.04 + 0.3 * aim + rand() * 0.05);
+    return { kind: 'lost', uid: item.uid, x: Math.max(CHUTE.edge + 0.03, AREA.x0 - 0.04, p.x + (rand() - 0.5) * 0.03), z: Math.min(AREA.z1, Math.max(AREA.z0, p.z)), aim };
   }
-  if (!sure && rand() < CLAW.slip * (1 - aim) * (1.25 - grip)) {
-    const at = 0.25 + rand() * 0.7;
+  if (!sure && rand() < CLAW.slip * (1 - aim) ** 1.5 * (1.25 - grip)) {
+    // The better the aim, the further it's carried before it slips.
+    const at = Math.min(0.97, 0.3 + 0.55 * aim + rand() * 0.12);
     const p = toward(at);
     // It slipped over the chute: in!
     if (p.x <= CHUTE.edge) return { kind: 'win', uid: item.uid, prize: item.prize, at, lucky: true };
-    return { kind: 'slip', uid: item.uid, x: p.x, z: Math.min(AREA.z1, Math.max(AREA.z0, p.z)), at };
+    return { kind: 'slip', uid: item.uid, x: p.x, z: Math.min(AREA.z1, Math.max(AREA.z0, p.z)), at, aim };
   }
   return { kind: 'win', uid: item.uid, prize: item.prize };
 }
