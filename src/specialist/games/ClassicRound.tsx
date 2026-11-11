@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { GuessInput } from '../../components/GuessInput';
 import { shownName } from '../../lib/french';
 import type { RoundRecord } from '../../types';
@@ -98,6 +99,59 @@ const WOW_COLUMNS: Column<WowCharacter>[] = [
   { label: 'Status', show: (c) => c.status, judge: same((c) => c.status) },
 ];
 
+/** The hint "Describe a character": it takes up a guess (fewer points), once per round. */
+export const DESCRIBE = '__describe';
+
+/** A trait's values, one by one (a list "Top, Mid" counts as Top and Mid). */
+const valuesOf = (shown: string) => shown.split(/,\s*/).filter(Boolean);
+
+/**
+ * The hint (a ticket, the owner's call): pick traits, see every one who has them all, and guess one with a
+ * click. Opening it takes up one guess.
+ */
+function Describe<T extends { id: string; name: string }>({ pool, columns, exclude, onGuess }: { pool: T[]; columns: Column<T>[]; exclude: string[]; onGuess: (id: string) => void }) {
+  const [picked, setPicked] = useState<Record<string, string>>({});
+  const options = columns.map((c) => [...new Set(pool.flatMap((x) => valuesOf(c.show(x))))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true })));
+  const chosen = Object.entries(picked).filter(([, v]) => v);
+  const matches = chosen.length
+    ? pool.filter((x) => chosen.every(([label, v]) => valuesOf(columns.find((c) => c.label === label)!.show(x)).includes(v)) && !exclude.includes(x.id))
+    : [];
+  return (
+    <div className="space-y-3 rounded-md border border-rule-strong bg-card/70 p-3">
+      <p className="text-center text-sm font-semibold">🔎 Describe them: pick what you know, see who matches.</p>
+      <div className="flex flex-wrap justify-center gap-2">
+        {columns.map((c, i) => (
+          <label key={c.label} className="flex flex-col text-[11px] uppercase tracking-wider text-ink-faint">
+            {c.label}
+            <select value={picked[c.label] ?? ''} onChange={(e) => setPicked({ ...picked, [c.label]: e.target.value })} className="mt-0.5 rounded-md border border-rule-strong bg-card px-2 py-1 text-sm normal-case tracking-normal text-ink">
+              <option value="">Any</option>
+              {options[i].map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </label>
+        ))}
+      </div>
+      {chosen.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-1.5">
+          {matches.length ? (
+            matches.slice(0, 40).map((x) => (
+              <button key={x.id} type="button" onClick={() => onGuess(x.id)} className="rounded-full border border-rule-strong px-2.5 py-0.5 text-sm hover:border-accent">
+                {shownName(x.name)}
+              </button>
+            ))
+          ) : (
+            <span className="text-sm text-ink-faint">No one matches all of these.</span>
+          )}
+          {matches.length > 40 && <span className="text-sm text-ink-faint">+{matches.length - 40} more: pick another trait.</span>}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const VERDICT_CLASS: Record<Verdict, string> = {
   hit: 'bg-hit border-hit text-on-strong',
   near: 'bg-near border-near text-on-pastel',
@@ -128,6 +182,8 @@ export function ClassicGrid<T extends { id: string; name: string; aliases: strin
     const status = won ? 'won' : guesses.length >= max ? 'lost' : 'playing';
     onChange({ status, guesses, score: won ? spScore('classic', guesses.length) : 0 });
   };
+  const described = record.guesses.includes(DESCRIBE);
+  const tried = record.guesses.filter((id) => id !== DESCRIBE);
 
   return (
     <div className="space-y-5">
@@ -135,9 +191,18 @@ export function ClassicGrid<T extends { id: string; name: string; aliases: strin
       {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Type a ${noun}…`} />}
       <p className="text-center text-xs text-ink-faint">
         {record.guesses.length} / {max} guesses
+        {!done && !described && record.guesses.length < max - 1 && (
+          <>
+            {' · '}
+            <button type="button" onClick={() => guess(DESCRIBE)} className="font-semibold text-accent underline-offset-2 hover:underline" title="Takes up one guess">
+              🔎 Describe a {noun} (costs a guess)
+            </button>
+          </>
+        )}
       </p>
+      {!done && described && <Describe pool={pool} columns={columns} exclude={tried} onGuess={guess} />}
 
-      {record.guesses.length > 0 && (
+      {tried.length > 0 && (
         <div className="overflow-x-auto pb-2">
           <div className="space-y-2" style={{ minWidth: 160 + columns.length * 92 }}>
             <div className="grid gap-2 px-1 text-[11px] uppercase tracking-wider text-ink-faint" style={grid}>
