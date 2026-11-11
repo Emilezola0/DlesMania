@@ -2695,11 +2695,12 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .card-anomaly-void { box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.5), 0 0 22px rgba(76, 29, 149, 0.6) !important; }
 @media (prefers-reduced-motion: reduce) { .card-void-wander, .card-timelost-shift { animation: none; } }
 
-/* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards, only the ones
-   on screen drawn. Each card there is calm (CardFace's calm): its moving lights (comet, halo, gleam, sparks, glitch,
+/* A big opening's summary (over five packs, src/gacha/PackOpening.tsx BIG_OPENING): hundreds of cards.
+   Each card there is calm (CardFace's calm): its moving lights (comet, halo, gleam, sparks, glitch,
    the void's wandering light) aren't drawn at all, rather than frozen mid-move; what it keeps stays still — its grade's
    edge and emblem, its anomaly's colours. Under the mouse it comes back to life, the whole show. */
-.pack-summary-big > div { content-visibility: auto; contain-intrinsic-size: auto 280px; }
+/* No content-visibility on these cards: it clips whatever a card draws past its box (its ×count and NEW badges, a
+   ribbon, the glow, the hover pop-out). Calm, they cost nothing once drawn. */
 .card-calm, .card-calm *, .card-calm *::before, .card-calm *::after { animation: none !important; }
 .card-grade-calm::before, .card-grade-calm::after { display: none; }
 /* Void-Touched, calm: the dark at the edges only, the face still seen. */
