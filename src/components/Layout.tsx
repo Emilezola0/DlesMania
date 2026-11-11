@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { computeStreak, useProgress, type ThemeChoice } from '../store/progress';
+import { computeStreak, dayKey, summarizeDay, useProgress, type ThemeChoice } from '../store/progress';
 import { useUi } from '../store/ui';
 import { NameLangSwitch } from './NameLangSwitch';
 import { DleCoin } from './DleCoin';
@@ -374,6 +374,8 @@ export function Layout() {
   const { current } = computeStreak(days);
   const openRules = useUi((s) => s.openRules);
   const { pathname } = useLocation();
+  // Today's dailies not all done (Music doesn't count, the owner's call): the Daily link stands out.
+  const dailyLeft = (['games', 'anime', 'cinema'] as const).some((d) => !summarizeDay(days[dayKey(d, todayKey())]).complete);
   const onBoss = pathname.startsWith('/boss');
   const headerHidden = useHeaderHidden();
   useApplyTheme(theme);
@@ -402,7 +404,7 @@ export function Layout() {
                   const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
                   return `whitespace-nowrap border-b-2 px-1 py-1.5 font-display text-[12px] font-semibold tracking-normal transition min-[420px]:px-2 min-[420px]:text-[13px] min-[420px]:tracking-wider sm:px-1 sm:tracking-normal lg:px-[7px] lg:tracking-wider ${
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
-                  }`;
+                  } ${n.to === '/daily' && dailyLeft ? 'nav-daily-left' : ''}`;
                 }}
                 title={n.icon || n.phoneIcon ? n.label : undefined}
                 aria-label={n.icon || n.phoneIcon ? n.label : undefined}
@@ -471,7 +473,7 @@ export function Layout() {
             to={n.to}
             className={({ isActive: exact }) => {
               const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
-              return `${n.icon || n.phoneIcon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'}`;
+              return `${n.icon || n.phoneIcon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'} ${n.to === '/daily' && dailyLeft ? 'nav-daily-left' : ''}`;
             }}
             aria-label={n.icon || n.phoneIcon ? n.label : undefined}
           >
