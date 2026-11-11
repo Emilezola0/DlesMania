@@ -160,7 +160,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, depth, grade: given, animate, clipHeld, clipSound, onClipPlaying, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap; a YouTube one gets ready unseen meanwhile). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** Its clip has started (up close). */ onClipPlaying?: () => void; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, cssLight, depth, grade: given, animate, clipHeld, clipSound, onClipPlaying, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; /** No foil given: its light (--mx/--my) comes from around it, animated in CSS (the big view's sway). */ cssLight?: boolean; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap; a YouTube one gets ready unseen meanwhile). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** Its clip has started (up close). */ onClipPlaying?: () => void; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -235,8 +235,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         boxShadow: st.glow,
         transform: tilt && tilted ? `perspective(700px) rotateX(${t.x}deg) rotateY(${t.y}deg)${hop}` : hop ? hop.trim() : undefined,
         zIndex: heroOn ? 20 : undefined,
-        ['--mx' as string]: `${mx}%`,
-        ['--my' as string]: `${my}%`,
+        ...(cssLight && !foil ? {} : { ['--mx' as string]: `${mx}%`, ['--my' as string]: `${my}%` }),
         ...(el ? { ['--e1' as string]: el.colors[0], ['--e2' as string]: el.colors[1], ['--e3' as string]: el.colors[2] } : {}),
       }}
     >

@@ -19,6 +19,9 @@ Rules the owner set; keep to them in every change.
 - Cards keep the picture they were pulled with (`src/data/card-art.json`).
 - **Card videos are MP4s hosted in `public/clips/`, never YouTube or TikTok embeds** (their pause button and titles can't be hidden). Make them with `node scripts/card-clip.mjs` (1080p, CRF 24, constant 30 fps, AAC 128k; the method is in the README, "Card videos"): they must look good full screen behind a win, so don't compress harder. A re-encoded clip gets a new file name (browser caches).
 
+## Browsers
+- The site must work in **Firefox** as well as Chrome. For anything Firefox-only, test it there with `node scripts/firefox-check.mjs` (README, "Checking in Firefox"): it drives the installed Firefox headless and measures, it's allowed to run without asking.
+
 ## Cards
 - **Rarity follows what fans love.** For each franchise, research who people's favourites are (popularity polls, well-known tier lists) before setting rarities: Legendary, Mythic and Omni go to the favourites and the coolest picks; lesser-known faces stay Common or Rare.
 - **No duplicates at the top:** never give a Mythic or Omni to a character who already has a card at Mythic or Omni in that set; pick another favourite. Duplicates that already exist stay as they are.

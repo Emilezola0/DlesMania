@@ -2710,3 +2710,23 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .nav-daily-left::after { content: ''; position: absolute; top: 2px; right: -2px; width: 7px; height: 7px; border-radius: 9999px; background: var(--color-coral, #ef6f5e); box-shadow: 0 0 6px var(--color-coral, #ef6f5e); animation: nav-daily-pulse 1.6s ease-in-out infinite; }
 @keyframes nav-daily-pulse { 50% { transform: scale(0.6); opacity: 0.5; } }
 @media (prefers-reduced-motion: reduce) { .nav-daily-left::after { animation: none; } }
+
+/* The big view's idle sway: a slow figure of eight (±6° up and down, ±10° side to side, at two speeds), and the
+   foil's light following it (--mx/--my, read by the card's foil layers). In CSS, not script: a script redrew the
+   whole card every frame, and Firefox then dropped most of the frames of a video playing on it. */
+@property --mx { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@property --my { syntax: '<percentage>'; inherits: true; initial-value: 50%; }
+@keyframes inspect-sway-x { from { transform: rotateX(-6deg); --my: 63%; } to { transform: rotateX(6deg); --my: 37%; } }
+@keyframes inspect-sway-y { from { transform: rotateY(-10deg); --mx: 34%; } to { transform: rotateY(10deg); --mx: 66%; } }
+@media (prefers-reduced-motion: no-preference) {
+  .inspect-sway-x { animation: inspect-sway-x 3.5s ease-in-out -1.75s infinite alternate; }
+  .inspect-sway-y { animation: inspect-sway-y 5.2s ease-in-out -2.6s infinite alternate; }
+}
+
+/* Firefox: while a card video plays (up close or behind a win), the page's decorative animations pause — it repaints
+   many of them on the CPU every frame and then drops most of the video's frames (see usePausesPage in CardClip). */
+@supports (-moz-appearance: none) {
+  html.card-video-playing *,
+  html.card-video-playing *::before,
+  html.card-video-playing *::after { animation-play-state: paused !important; }
+}

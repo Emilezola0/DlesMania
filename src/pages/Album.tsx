@@ -3,6 +3,7 @@ import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, use
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
+import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
 import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
 import { DOMAINS } from '../data';
@@ -82,11 +83,8 @@ const SET_ORDER = new Map(SETS.map((s, i) => [s.id, i]));
 /** When the burst comes in the card's collapse (see card-grade-collapse in index.css: 55% of 2.6s). */
 const COLLAPSE_BURST_MS = 1430;
 
-/** A clip that is a GIF (from a GIF site, or a .gif): it loops on its own, no tap needed. */
 /** How long the card's spin lasts (its `duration-500`). */
 const SPIN_MS = 500;
-/** A clip that is a GIF (from a GIF site, a .gif, or one of ours cropped from one: clips/gif/): it loops on its own, no button needed. */
-const GIF_CLIP = /media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)|\/clips\/gif\//i;
 
 function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: number; onClose: () => void; onUpgraded: (into: Card) => void }) {
   // An omni shows the form it has reached (its title changes once awakened).
@@ -123,22 +121,9 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const [rot, setRot] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const [spin, setSpin] = useState(0);
-  const [sway, setSway] = useState({ x: 0, y: 0 });
   const start = useRef<{ x: number; y: number; moved: boolean } | null>(null);
-
-  // The idle sway: a slow figure of eight, a few degrees each way.
-  useEffect(() => {
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-    let id = 0;
-    const t0 = performance.now();
-    const frame = (now: number) => {
-      const t = (now - t0) / 1000;
-      setSway({ x: Math.sin(t * 0.9) * 6, y: Math.sin(t * 0.6) * 10 });
-      id = requestAnimationFrame(frame);
-    };
-    id = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(id);
-  }, []);
+  // The idle sway (a slow figure of eight, a few degrees each way) is CSS (.inspect-sway-x/-y in index.css), its foil
+  // light too: driven from script, it redrew the whole card every frame, and Firefox dropped most of a video's frames.
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -185,12 +170,12 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     if (s && !s.moved) spinCard();
   };
 
-  // Held, the card goes where the hand takes it; let go, it sways.
-  const rx = dragging ? rot.x : sway.x;
-  const ry = (dragging ? rot.y : sway.y) + spin;
-  // The foil takes its light from the turn: a few degrees move it across the whole card.
+  // Held, the card goes where the hand takes it (the sway stops where it is); let go, it sways.
+  const rx = dragging ? rot.x : 0;
+  const ry = (dragging ? rot.y : 0) + spin;
+  // Held, the foil takes its light from the turn: a few degrees move it across the whole card (let go, the sway's light).
   const face = ((((ry % 360) + 540) % 360) - 180) as number;
-  const foil = { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) };
+  const foil = dragging ? { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) } : undefined;
   return (
     <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
       <div className="my-auto w-full space-y-4 py-6" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
@@ -205,15 +190,19 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             className={`relative [transform-style:preserve-3d] ${dragging ? '' : 'transition-transform duration-500 ease-out'}`}
             style={{ transform: `rotateX(${rx}deg) rotateY(${ry}deg)` }}
           >
+            <div className={`inspect-sway-x [transform-style:preserve-3d] ${dragging ? '[animation-play-state:paused]' : ''}`}>
+            <div className={`inspect-sway-y relative [transform-style:preserve-3d] ${dragging ? '[animation-play-state:paused]' : ''}`}>
             {/* The card's thickness: its edge, layer by layer, between the two faces. */}
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
             <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
-              <CardFace card={card} count={count} tilt={false} foil={foil} depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
+              <CardFace card={card} count={count} tilt={false} foil={foil} cssLight depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
+            </div>
+            </div>
             </div>
           </div>
         </div>

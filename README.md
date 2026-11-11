@@ -159,6 +159,19 @@ The settings were chosen side by side on Luffy's Gear 5 (540p at CRF 31 was visi
 
 Then, in `src/gacha/cards.ts`: `CLIPS` (the card, or an Omni's awakened form), `FIRST_CLIPS` (an Omni's first form); `clipSound: true` in `STRONG` when the clip's own sound should be heard; a clip that is also the voice line uses the same path as `audio` (heard together). `LIGHT_CLIPS` is for small GIF loops only (they also play in the album grid); a full video there would autoplay. Up close, a video heard once through goes back to the card's picture. The script needs `yt-dlp`, `ffmpeg` and `deno` (`winget install yt-dlp.yt-dlp` brings ffmpeg; `winget install DenoLand.Deno` — without a JavaScript runtime yt-dlp only gets 360p from YouTube).
 
+### Checking in Firefox
+
+Some things only go wrong in Firefox (it paints 3D and animations differently from Chrome). `node scripts/firefox-check.mjs` drives the Firefox installed on the machine (through its WebDriver BiDi remote control, with `puppeteer-core`), headless and in a throwaway profile, against the dev server (`npm run dev`): it can fill the save, open a card up close, play its video and report the frames actually drawn, run any steps you give it, and save screenshots (in the temp folder's `omnidle-firefox/`).
+
+```bash
+node scripts/firefox-check.mjs --give=minecraft:omni-steve --card=Steve --play --seconds=5
+node scripts/firefox-check.mjs --give=dbz:omni --awake=dbz --card=Goku --play
+node scripts/firefox-check.mjs --path=/#/specialist --shot
+node scripts/firefox-check.mjs --card=Steve --give=minecraft:omni-steve --steps=my-steps.mjs   # export default async (page, h) => { … }
+```
+
+`--reduced-motion` turns on Firefox's "reduce motion" setting, to tell whether an animation is to blame. What it found so far: Firefox paints a 3D context's flat layers first and every 3D-turned layer over them (no depth sorting: the Omni rings are cut in halves for it, see `OmniRings`), and with the page's animations running it drew 12 of a video's frames in 3 s (75 with them stopped): in Firefox the decorative animations pause while a card video plays (`usePausesPage`). Its "dropped frames" count isn't reliable headless; count the frames drawn (`requestVideoFrameCallback`). It plays videos without a graphics card, so a fault that only comes from a machine's own settings or extensions won't show.
+
 ### Media notice
 
 Cover art and many item images are hot-linked from Wikipedia/Wikimedia and are often non-free (used there under fair use). Game clips (Soundtrack, Voice Line…) are third-party YouTube uploads played through the official embed; card videos are short moments cut from third-party uploads and hosted with the site (`public/clips/`). That's fine for a personal fan project; for a public or commercial release, replace them with licensed assets (`image` accepts any URL) and verify each clip.
