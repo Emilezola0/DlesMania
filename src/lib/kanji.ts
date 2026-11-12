@@ -41,6 +41,10 @@ ${awake ? '<circle cx="200" cy="200" r="186" fill="none" stroke="#f5c542" stroke
 
 const SEALS = new Set(['鬼']);
 
+/** A kanji alone on nothing (Who's That?): blacked out, the character itself is the silhouette. */
+export const kanjiGlyph = (k: string) =>
+  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><text x="200" y="208" font-family="${FONT}" font-size="300" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917">${k}</text></svg>`)}`;
+
 /** "kanji:山" → the picture's data URL; anything else is returned as it is. */
 export function kanjiPicture(image: string): string;
 export function kanjiPicture(image: string | undefined): string | undefined;

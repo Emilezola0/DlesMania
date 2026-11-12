@@ -14,9 +14,13 @@ import { useProgress } from '../store/progress';
 import { isFuzzyMatch } from '../utils/textMatcher';
 import { prepareCutout, useCutout } from '../lib/cutout';
 import { Spinner } from '../components/Spinner';
+import { KANJI_SERIES, isKanji } from '../data/kanjiSilhouettes';
+import { shortMeaning, typedRight } from '../arcade/jlpt';
 
 /** How long a named silhouette stays revealed, and how long the one that ended the run does. */
 const REVEAL_MS = 650;
+/** A kanji named stays longer: its reading and meaning are shown under it, to learn them (CLAUDE.md, JLPT). */
+const KANJI_REVEAL_MS = 1800;
 const MISS_MS = 1600;
 /** Rising mode: the silhouette gets harder every this many names, up to MAX_LEVEL. */
 const LEVEL_EVERY = 4;
@@ -49,8 +53,25 @@ const bestKey = (mode: Mode, key: string) => `${mode}:${key}`;
 
 const spellings = (c: Card) => withFrench([c.name, ...c.aliases]);
 
-/** "champions", "mobs" — but "Pokémon" stays the same in the plural. */
-const plural = (noun: string, n: number) => (n === 1 || /mon$|s$/.test(noun) ? noun : `${noun}s`);
+/** A kanji is named by its reading (kana or romaji) or its English meaning, as /jlpt's typed answers; anything else by a name. */
+const isRight = (c: Card, typed: string) =>
+  isKanji(c) ? typedRight(c.kanji, 'reading', typed) || typedRight(c.kanji, 'meaning', typed) : isFuzzyMatch(typed, spellings(c));
+
+/** "champions", "mobs" — but "Pokémon" and "kanji" stay the same in the plural. */
+const plural = (noun: string, n: number) => (n === 1 || /mon$|s$|kanji$/.test(noun) ? noun : `${noun}s`);
+
+/** Every series: the domains' silhouettes, then the JLPT kanji. */
+const ALL_SERIES = [...SILHOUETTES, ...KANJI_SERIES];
+
+/** A kanji's reading and meaning, under it once its question is over. */
+function KanjiNote({ c, className }: { c: Card; className?: string }) {
+  if (!isKanji(c)) return null;
+  return (
+    <span className={className}>
+      <span lang="ja">{c.kanji.reading}</span> · {shortMeaning(c.kanji.meaning)}
+    </span>
+  );
+}
 
 /** How one silhouette is shown at a Rising level (0 = plain). */
 interface Look {
@@ -94,7 +115,11 @@ function hellLook(step: number, rand: () => number): Look {
 
 /** Series to mix in "Your mix" (Customise), by kind of work. */
 const WHO_KEY = 'omnidle-custom-whosthat';
-const WHO_OPTIONS = SILHOUETTES.map((s) => ({ key: s.id, label: s.label, group: domainInfo(s.domain).label }));
+const WHO_OPTIONS = [
+  ...SILHOUETTES.map((s) => ({ key: s.id, label: s.label, group: domainInfo(s.domain).label })),
+  // The levels only: "All kanji" would put each kanji in the mix twice.
+  ...KANJI_SERIES.filter((s) => s.id !== 'kanji-all').map((s) => ({ key: s.id, label: s.label, group: 'Japanese' })),
+];
 
 /** Picker: one card per series, plus "All" for each domain. */
 export function WhosThatHub() {
@@ -117,7 +142,7 @@ export function WhosThatHub() {
       {picks.length > 0 && (
         <Link to="/whos-that/custom" className="page flex flex-col rounded-md p-4 ring-2 ring-coral/60 transition hover:-translate-y-0.5 sm:w-1/3">
           <span className="font-display text-lg font-bold">🎛 Your mix</span>
-          <span className="text-sm text-ink-soft">{SILHOUETTES.filter((s) => picks.includes(s.id)).map((s) => s.label).join(' · ')}</span>
+          <span className="text-sm text-ink-soft">{ALL_SERIES.filter((s) => picks.includes(s.id)).map((s) => s.label).join(' · ')}</span>
           <span className="mt-auto pt-2 text-xs text-ink-faint">
             {MODE_IDS.some((m) => best[bestKey(m, 'custom')]) ? MODE_IDS.map((m) => `${MODES[m].label}: ${best[bestKey(m, 'custom')] ?? 0}`).join(' · ') : 'Not played yet'}
           </span>
@@ -154,6 +179,25 @@ export function WhosThatHub() {
           </section>
         );
       })}
+      <section className="space-y-3">
+        <h2 className="flex items-center gap-2 font-display text-sm uppercase tracking-widest text-ink-faint">
+          <span lang="ja" className="text-base">漢字</span> Japanese — JLPT kanji
+        </h2>
+        <p className="text-sm text-ink-soft">Name each kanji by its reading (kana or romaji) or its meaning in English. Once it&apos;s over, its readings and meaning show under it.</p>
+        <ul className="grid gap-3 sm:grid-cols-3">
+          {KANJI_SERIES.map((s, i) => (
+            <li key={s.id}>
+              <Link to={`/whos-that/${s.id}`} className={`page flex h-full flex-col rounded-md p-4 transition hover:-translate-y-0.5 ${i === 0 ? 'ring-2 ring-accent/40' : ''}`}>
+                <span className="font-display text-lg font-bold">{s.label}</span>
+                <span className="text-sm text-ink-soft">{`${s.entries.length} ${plural(s.noun, s.entries.length)}`}</span>
+                <span className="mt-auto pt-2 text-xs text-ink-faint">
+                  {MODE_IDS.some((m) => best[bestKey(m, s.id)]) ? MODE_IDS.map((m) => `${MODES[m].label}: ${best[bestKey(m, s.id)] ?? 0}`).join(' · ') : 'Not played yet'}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
@@ -162,7 +206,12 @@ export default function WhosThatPage() {
   const { key = '' } = useParams();
   const { picks } = useCustomPicks(WHO_KEY, WHO_OPTIONS);
   // "Your mix" (Customise): every picked series together.
-  const deck = useMemo(() => (key === 'custom' ? SILHOUETTES.filter((s) => picks.includes(s.id)).flatMap((s) => s.entries.map((e) => ({ ...e, series: s }))) : deckFor(key)), [key, picks]);
+  const deck = useMemo(() => {
+    const of = (list: typeof ALL_SERIES) => list.flatMap((s) => s.entries.map((e) => ({ ...e, series: s })));
+    if (key === 'custom') return of(ALL_SERIES.filter((s) => picks.includes(s.id)));
+    const kanji = KANJI_SERIES.find((s) => s.id === key);
+    return kanji ? of([kanji]) : deckFor(key);
+  }, [key, picks]);
   if (!deck?.length) return <Navigate to="/whos-that" replace />;
   return <WhosThatGame key={key} playKey={key} deck={deck} />;
 }
@@ -258,7 +307,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
       // Named every silhouette: a perfect run.
       if (index + 1 >= order.length) return finish(now.length, null);
       setIndex((i) => i + 1);
-    }, REVEAL_MS);
+    }, isKanji(card) ? KANJI_REVEAL_MS : REVEAL_MS);
   };
 
   /** A wrong name, a pass or a time-out: show the answer, then the results. */
@@ -274,7 +323,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
 
   const submit = (value: string) => {
     if (stage !== 'playing' || reveal || !value.trim()) return;
-    if (isFuzzyMatch(value, spellings(card))) right();
+    if (isRight(card, value)) right();
     else fail(value.trim());
   };
 
@@ -294,6 +343,8 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   };
 
   const title = isAll ? `All ${domainInfo(order[0].series.domain).label}` : order[0].series.label;
+  // Kanji only (a JLPT series, or a mix of them): asked for a reading or a meaning, not a name.
+  const allKanji = deck.every(isKanji);
   const modeBest = (m: Mode) => bests[bestKey(m, playKey)] ?? 0;
 
   return (
@@ -313,8 +364,17 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
           <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Who&apos;s That?</p>
           <h1 className="text-4xl font-bold">{title}</h1>
           <p className="text-ink-soft">
-            {deck.length} silhouettes. Name them one after another — a wrong name or a pass ends the run, and your score is your streak. English and French
-            names both count, typos are forgiven.
+            {allKanji ? (
+              <>
+                {deck.length} kanji. Name them one after another by their reading (kana or romaji) or their meaning in English — a wrong answer or a pass ends
+                the run, and your score is your streak. Each one&apos;s readings and meaning show under it once it&apos;s over.
+              </>
+            ) : (
+              <>
+                {deck.length} silhouettes. Name them one after another — a wrong name or a pass ends the run, and your score is your streak. English and French
+                names both count, typos are forgiven.
+              </>
+            )}
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {MODE_IDS.map((m) => (
@@ -401,6 +461,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               >
                 {reveal === 'right' ? '✓' : miss?.timedOut ? "⏱ Time's up — it was" : '✗ It was'} {shownName(card.name)}
                 {isAll && <span className="ml-2 text-xs opacity-80">· {card.series.label}</span>}
+                <KanjiNote c={card} className="block text-sm font-semibold opacity-90" />
               </span>
             )}
             {reveal === 'miss' && <span className="boss-hit-flash pointer-events-none absolute inset-0 bg-coral/60" />}
@@ -417,7 +478,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') submit(text);
               }}
-              placeholder={`Name this ${isAll ? 'one' : card.series.noun}…`}
+              placeholder={isKanji(card) ? 'Its reading (kana or romaji) or meaning…' : `Name this ${isAll ? 'one' : card.series.noun}…`}
               autoComplete="off"
               autoCapitalize="off"
               spellCheck={false}
@@ -449,7 +510,11 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
           )}
           {miss && (
             <div className="flex items-center gap-4 rounded-md border border-coral/50 bg-coral/10 p-3 text-left">
-              <img src={miss.card.image} alt="" className="size-20 shrink-0 object-contain" />
+              {isKanji(miss.card) ? (
+                <span lang="ja" className="grid size-20 shrink-0 place-items-center font-display text-6xl font-bold">{miss.card.name}</span>
+              ) : (
+                <img src={miss.card.image} alt="" className="size-20 shrink-0 object-contain" />
+              )}
               <div className="min-w-0">
                 <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">The one that got you</p>
                 <p className="font-display text-xl font-bold">
@@ -457,6 +522,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
                   {isAll && <span className="ml-2 text-xs font-normal text-ink-soft">{miss.card.series.label}</span>}
                 </p>
                 {miss.card.aliases.length > 0 && <p className="text-xs text-ink-soft">Also: {miss.card.aliases.join(', ')}</p>}
+                <KanjiNote c={miss.card} className="block text-sm text-ink-soft" />
                 <p className="text-sm text-coral">{miss.typed ? `You answered “${miss.typed}”` : miss.timedOut ? "Time's up" : 'You passed'}</p>
               </div>
             </div>
@@ -465,8 +531,18 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
             <ul className="flex flex-wrap justify-center gap-1.5">
               {named.map((c, i) => (
                 <li key={i} className="flex items-center gap-1 rounded-md border border-hit/50 bg-hit/10 px-1.5 py-1 text-xs font-semibold">
-                  <img src={c.image} alt="" className="size-6 object-contain" />
-                  {shownName(c.name)}
+                  {isKanji(c) ? (
+                    // A kanji named: the character, its reading and its meaning (the list is there to learn from).
+                    <>
+                      <span lang="ja" className="text-base">{c.name}</span>
+                      <KanjiNote c={c} className="font-normal text-ink-soft" />
+                    </>
+                  ) : (
+                    <>
+                      <img src={c.image} alt="" className="size-6 object-contain" />
+                      {shownName(c.name)}
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
