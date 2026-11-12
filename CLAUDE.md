@@ -3,7 +3,7 @@
 Rules the owner set; keep to them in every change.
 
 ## Git
-- Work on the **`Eva`** branch; push to `main` only when asked.
+- Work on **`main`**, for everyone (the `Eva` branch is no longer used). Push only when asked.
 
 ## JLPT (`/jlpt`, the JLPT boss, its cards, Name Them All in Japanese)
 - **The point of the JLPT games is to learn Japanese.** Once a question is over (right, wrong or timed out), always show the **reading under the character** (kana for a word, on/kun readings for a kanji), with its meaning. Any new JLPT game or round must do the same.
