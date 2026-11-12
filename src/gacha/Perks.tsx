@@ -1,11 +1,11 @@
 // What cards do besides sitting in the album: any card can be the player's icon; a Rare or better
 // one can stand behind every page, its glow growing with its rarity (a legendary's shimmers).
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { isAwake, useCardForm } from './CardView';
-import { useBackdropCue } from './Reactions';
+import { useBackdropCue, useMomentOn } from './Reactions';
 
 /** Rare or better: a common card isn't one to show off. */
 export const canBeBackdrop = (c: Card) => c.rarity !== 'common';
@@ -70,7 +70,13 @@ function useOpaque(card: Card | undefined) {
 
 /** The chosen card behind the pages: an opaque picture across the whole screen, any other (a cut-out) faded into the corner, with its rarity's glow. */
 export function CardBackdrop() {
-  const id = useProgress((s) => s.backdrop);
+  // A background changed during a win's moment (by hand or by its rotation) shows once the moment's video is over: never cut.
+  const chosen = useProgress((s) => s.backdrop);
+  const momentOn = useMomentOn();
+  const [id, setId] = useState(chosen);
+  useEffect(() => {
+    if (!momentOn) setId(chosen);
+  }, [chosen, momentOn]);
   const owned = useProgress((s) => (id ? s.cards[id] : 0));
   const card = id ? CARD_BY_ID.get(id) : undefined;
   // A Legendary or Mythic background reacts to the play: it lights up, winces, or bursts.

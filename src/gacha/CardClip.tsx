@@ -53,9 +53,11 @@ function usePausesPage(ref: React.RefObject<HTMLVideoElement | null>) {
 }
 
 /** A video clip on a silent loop (not a GIF: those leave the page's animations alone). */
-function LoopVideo({ src, poster, onFail, onPlaying, className }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string }) {
+function LoopVideo({ src, poster, onFail, onPlaying, onOnce, className }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; onOnce?: () => void; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   usePausesPage(ref);
+  // Told when it has played once through: no loop attribute (which never ends), started again by hand at its end.
+  if (onOnce) return <video ref={ref} src={src} poster={poster} autoPlay muted playsInline onEnded={(e) => (onOnce(), void e.currentTarget.play().catch(() => {}))} onError={onFail} onPlaying={onPlaying} className={className} />;
   return <video ref={ref} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
 }
 
@@ -263,16 +265,16 @@ function TikTokLoop({ id, start, end, onFail, onPlaying, className }: { id: stri
 }
 
 /** Several MP4s, one after the other and round again (each one a different moment): a random one first. */
-function Mp4Series({ srcs, poster, onFail, onPlaying, className }: { srcs: string[]; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string }) {
+function Mp4Series({ srcs, poster, onFail, onPlaying, onOnce, className }: { srcs: string[]; poster?: string; onFail: () => void; onPlaying?: () => void; onOnce?: () => void; className?: string }) {
   const [at, setAt] = useState(() => Math.floor(Math.random() * srcs.length));
-  return <video key={srcs[at]} src={srcs[at]} poster={poster} autoPlay muted playsInline onEnded={() => setAt((i) => (i + 1) % srcs.length)} onError={onFail} onPlaying={onPlaying} className={className} />;
+  return <video key={srcs[at]} src={srcs[at]} poster={poster} autoPlay muted playsInline onEnded={() => (onOnce?.(), setAt((i) => (i + 1) % srcs.length))} onError={onFail} onPlaying={onPlaying} className={className} />;
 }
 
 /**
  * An MP4 heard, once through (its sound is the moment's): its end ends the sound. If the browser won't let it play
  * with sound (no tap on the page yet), it plays on silent and says so.
  */
-function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound: ClipSound }) {
+function HeardVideo({ src, poster, onFail, onPlaying, onOnce, className, sound }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; onOnce?: () => void; className?: string; sound: ClipSound }) {
   const ref = useRef<HTMLVideoElement>(null);
   usePausesPage(ref);
   useEffect(() => {
@@ -295,7 +297,7 @@ function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src:
       end(false);
       v.play().catch(onFail);
     });
-    v.onended = () => end(true);
+    v.onended = () => (end(true), onOnce?.());
     // Taken away (the moment over, or React trying the effect twice in development): silent, nothing more to say.
     return () => {
       over = true;
@@ -311,15 +313,16 @@ function HeardVideo({ src, poster, onFail, onPlaying, className, sound }: { src:
  * A card's clip: an MP4, several MP4s played in turn ("a.mp4|b.mp4|c.mp4"), or a moment of a video kept
  * elsewhere ("youtube:VIDEO_ID@55-55.9", "tiktok:POST_ID@1-5", as for voices). `onPlaying` may be called more than once.
  */
-export function CardClip({ src, poster, onFail, onPlaying, className, sound, hold }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; className?: string; sound?: ClipSound; /** Not yet: a YouTube clip readies itself unseen and unheard, an MP4 loads unseen. */ hold?: boolean }) {
+export function CardClip({ src, poster, onFail, onPlaying, onOnce, className, sound, hold }: { src: string; poster?: string; onFail: () => void; onPlaying?: () => void; /** An MP4 has played once through (it plays on, looping): a win's moment lasts that long. Not called for YouTube or TikTok. */ onOnce?: () => void; className?: string; sound?: ClipSound; /** Not yet: a YouTube clip readies itself unseen and unheard, an MP4 loads unseen. */ hold?: boolean }) {
   const yt = YT_VOICE.exec(src);
   if (yt) return <YouTubeLoop id={yt[1]} start={Number(yt[2])} end={Number(yt[3])} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} hold={hold} />;
   // An MP4 waiting for a tap: loaded meanwhile, unseen, so the tap starts it at once.
   if (hold) return src.includes('|') || TT_CLIP.test(src) ? null : <video src={src} preload="auto" muted playsInline aria-hidden className={`${className ?? ''} opacity-0`} />;
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
-  if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
-  if (sound) return <HeardVideo src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} sound={sound} />;
-  if (!GIF_CLIP.test(src)) return <LoopVideo key={src} src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} className={className} />;
-  return <video key={src} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
+  if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} />;
+  if (sound) return <HeardVideo src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} sound={sound} />;
+  if (!GIF_CLIP.test(src)) return <LoopVideo key={src} src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} />;
+  // A GIF told when it has played once through: no loop attribute (which never ends), started again by hand at its end.
+  if (onOnce) return <video key={src} src={src} poster={poster} autoPlay muted playsInline onEnded={(e) => (onOnce(), void e.currentTarget.play().catch(() => {}))} onError={onFail} onPlaying={onPlaying} className={className} />;  return <video key={src} src={src} poster={poster} autoPlay muted loop playsInline onError={onFail} onPlaying={onPlaying} className={className} />;
 }

@@ -1,14 +1,16 @@
 import { shownName } from '../lib/french';
+import { useT } from './lang';
 
 /**
  * "Did you mean…?": the names a partial answer could stand for ("Kakashi" → Kakashi Hatake), as
  * buttons — picking one answers with it. No penalty for the half-name that brought them up.
  */
 export function DidYouMean({ names, onPick }: { names: string[]; onPick: (name: string) => void }) {
+  const t = useT();
   if (!names.length) return null;
   return (
     <div className="animate-pop flex flex-wrap items-center justify-center gap-2 text-sm" aria-live="polite">
-      <span className="font-semibold text-ink-soft">Did you mean</span>
+      <span className="font-semibold text-ink-soft">{t('Did you mean', 'Tu voulais dire')}</span>
       {names.map((n) => (
         <button
           key={n}
@@ -19,7 +21,7 @@ export function DidYouMean({ names, onPick }: { names: string[]; onPick: (name: 
           {shownName(n)}
         </button>
       ))}
-      <span className="font-semibold text-ink-soft">?</span>
+      <span className="font-semibold text-ink-soft">{t('?', ' ?')}</span>
     </div>
   );
 }

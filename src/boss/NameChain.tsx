@@ -8,6 +8,7 @@ import { findBestMatch, isFuzzyMatch, namesAnotherWord, suggestNames } from '../
 import { DidYouMean } from './DidYouMean';
 import type { BossCard } from '../types';
 import { TimerBar } from './TimerBar';
+import { isFr, tr, useBossText, useT } from './lang';
 
 export interface ChainResult {
   won: boolean;
@@ -48,6 +49,8 @@ const spellings = (e: Entity) => withFrench([e.name, ...e.aliases]);
  * remember the chain. Only the reason for a loss is shown.
  */
 export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: Props) {
+  const t = useT();
+  const bt = useBossText();
   const { categories, picksToWin, turnSeconds } = secret;
   const all = useMemo<Entity[]>(
     () => categories.flatMap((c, cat) => c.entities.map((e) => ({ ...e, cat, key: `${cat}:${e.name}` }))),
@@ -81,8 +84,8 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     if (!eligible.length) {
       sfx.streak();
       setTurn('over');
-      onSay('Hmph… I have nothing left to name.', 'hit');
-      return finish({ won: true, score: scoreNow, reason: `${bossName} ran out of names` });
+      onSay(tr('Hmph… I have nothing left to name.', 'Hmph… Je n’ai plus rien à nommer.'), 'hit');
+      return finish({ won: true, score: scoreNow, reason: tr(`${bossName} ran out of names`, `${bossName} n’avait plus de noms`) });
     }
     const varied = eligible.length > 1 ? eligible.filter((c) => c !== last) : eligible;
     const cat = varied[Math.floor(Math.random() * varied.length)];
@@ -116,8 +119,13 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     setText('');
     setNote(null);
     setMaybe([]);
-    if (used.has(e.key)) return lose(`${shownName(e.name)} was already named`);
-    if (e.cat !== call.cat) return lose(`${shownName(e.name)} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`);
+    if (used.has(e.key)) return lose(tr(`${shownName(e.name)} was already named`, `${shownName(e.name)} a déjà été nommé`));
+    if (e.cat !== call.cat)
+      return lose(
+        isFr()
+          ? `${shownName(e.name)} est dans « ${bt(categories[e.cat].label)} », pas dans « ${bt(categories[call.cat].label)} »`
+          : `${shownName(e.name)} is ${withArticle(categories[e.cat].label)}, not ${withArticle(categories[call.cat].label)}`,
+      );
     const next = new Set(used).add(e.key);
     const nextScore = score + 1;
     setUsed(next);
@@ -125,10 +133,10 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
     sfx.correct();
     if (nextScore >= picksToWin) {
       sfx.streak();
-      return finish({ won: true, score: nextScore, reason: `${nextScore} good answers in a row` });
+      return finish({ won: true, score: nextScore, reason: tr(`${nextScore} good answers in a row`, `${nextScore} bonnes réponses d’affilée`) });
     }
     setTurn('ok');
-    onSay(okLines[(nextScore - 1) % Math.max(1, okLines.length)] ?? 'Next.', 'hit');
+    onSay(okLines[(nextScore - 1) % Math.max(1, okLines.length)] ?? tr('Next.', 'Au suivant.'), 'hit');
     later(900, () => bossTurn(next, call.cat, nextScore));
   };
 
@@ -144,7 +152,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
       setText('');
       return;
     }
-    setNote({ text: `“${text.trim()}” — ${bossName} doesn't know that one. Try another name.`, key: Date.now() });
+    setNote({ text: tr(`“${text.trim()}” — ${bossName} doesn't know that one. Try another name.`, `« ${text.trim()} » — ${bossName} ne connaît pas celui-là. Essaie un autre nom.`), key: Date.now() });
     setText('');
   };
 
@@ -153,11 +161,11 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-accent">Phase IV · Name Chain</p>
-        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">Answer with another of the same kind — never repeat a name.</h3>
+        <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-accent">{t('Phase IV · Name Chain', 'Phase IV · Chaîne de noms')}</p>
+        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{t('Answer with another of the same kind — never repeat a name.', 'Réponds par un autre du même genre — ne répète jamais un nom.')}</h3>
       </div>
 
-      <div className="flex items-center justify-center gap-1.5" aria-label={`${score} of ${picksToWin} answers`}>
+      <div className="flex items-center justify-center gap-1.5" aria-label={t(`${score} of ${picksToWin} answers`, `${score} réponses sur ${picksToWin}`)}>
         {Array.from({ length: picksToWin }, (_, i) => (
           <span
             key={i}
@@ -172,11 +180,11 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
           {portrait ? <img src={portrait} alt="" className="size-full object-cover object-top" /> : <span className="font-display text-2xl text-ink-faint">?</span>}
         </span>
         <div className="min-w-0">
-          <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{bossName} names a…</p>
+          <p className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{t(`${bossName} names a…`, `${bossName} nomme…`)}</p>
           {call ? (
             <p key={call.key} className="animate-pop">
               <span className="mr-2 inline-block rounded-sm bg-coral px-2 py-0.5 align-middle font-display text-xs font-bold uppercase tracking-widest text-on-strong">
-                {categories[call.cat].label}
+                {bt(categories[call.cat].label)}
               </span>
               <span className="align-middle font-display text-xl font-bold sm:text-2xl">{shownName(call.name)}</span>
             </p>
@@ -186,7 +194,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
         </div>
       </div>
 
-      {turnSeconds > 0 && <TimerBar total={turnSeconds * 1000} running={turn === 'answer'} resetKey={round} onExpire={() => lose("Time's up")} hideSeconds />}
+      {turnSeconds > 0 && <TimerBar total={turnSeconds * 1000} running={turn === 'answer'} resetKey={round} onExpire={() => lose(tr("Time's up", 'Temps écoulé'))} hideSeconds />}
 
       <div>
         <input
@@ -201,7 +209,11 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
             else if (maybe[0]) answer(maybe[0]);
           }}
           placeholder={
-            turn === 'answer' && call ? `Another ${categories[call.cat].label.toLowerCase()}…` : turn === 'boss' ? `${bossName} is thinking…` : ''
+            turn === 'answer' && call
+              ? t(`Another ${categories[call.cat].label.toLowerCase()}…`, `Un autre : ${bt(categories[call.cat].label).toLowerCase()}…`)
+              : turn === 'boss'
+                ? t(`${bossName} is thinking…`, `${bossName} réfléchit…`)
+                : ''
           }
           autoComplete="off"
           autoCapitalize="off"
@@ -214,7 +226,7 @@ export function NameChain({ secret, bossName, cards, okLines, onSay, onDone }: P
 
       <p className="min-h-5 text-center text-sm font-semibold" aria-live="polite">
         {lost && <span className="animate-pop inline-block text-coral">✗ {lost}.</span>}
-        {!lost && turn === 'ok' && <span className="animate-pop inline-block text-hit">✓ Good answer.</span>}
+        {!lost && turn === 'ok' && <span className="animate-pop inline-block text-hit">{t('✓ Good answer.', '✓ Bonne réponse.')}</span>}
         {!lost && turn === 'answer' && note && (
           <span key={note.key} className="animate-pop inline-block text-ochre">
             {note.text}

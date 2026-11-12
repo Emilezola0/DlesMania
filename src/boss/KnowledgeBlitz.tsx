@@ -7,6 +7,7 @@ import type { BlitzPrompt, PhaseResult } from '../types';
 import { suggestNames } from '../utils/textMatcher';
 import { DidYouMean } from './DidYouMean';
 import { TimerBar } from './TimerBar';
+import { tr, useBossText, useT } from './lang';
 
 interface Props {
   prompt: BlitzPrompt;
@@ -19,6 +20,8 @@ interface Props {
 
 /** Phase I: name N things before the timer runs out. Each answer counts when Enter is pressed. */
 export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }: Props) {
+  const t = useT();
+  const bt = useBossText();
   const esc = escalated(d, loop) ? d.secondLoop!.blitz : null;
   const total = blitzSeconds(prompt, d, loop) * 1000;
   // Hard: no list of what you've already named, and no seconds counter.
@@ -54,7 +57,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     const next = [...found, name];
     setFound(next);
     setText('');
-    setNote({ text: typo ? `${shownName(name)} (typo forgiven)` : shownName(name), good: true, key: Date.now() });
+    setNote({ text: typo ? `${shownName(name)} ${tr('(typo forgiven)', '(faute pardonnée)')}` : shownName(name), good: true, key: Date.now() });
     sfx.correct();
     onEvent(true);
     if (next.length >= prompt.count) finish(true, next);
@@ -65,7 +68,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     if (!value.trim()) return;
     const m = matchAnswer(prompt, value, new Set(found), true);
     if (m?.already) {
-      setNote({ text: `${shownName(m.name)} — already named`, good: false, key: Date.now() });
+      setNote({ text: `${shownName(m.name)} — ${tr('already named', 'déjà nommé')}`, good: false, key: Date.now() });
       setText('');
       return;
     }
@@ -82,7 +85,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     {
       setWrong((w) => w + 1);
       tries.current = [...tries.current, value.trim()];
-      setNote({ text: `“${value.trim()}” isn't on the list`, good: false, key: Date.now() });
+      setNote({ text: tr(`“${value.trim()}” isn't on the list`, `« ${value.trim()} » n’est pas dans la liste`), good: false, key: Date.now() });
       sfx.wrong();
       onEvent(false);
       setText('');
@@ -93,16 +96,16 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
     <div className="space-y-5">
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
-          The guardian demands{esc && <span className="ml-2 font-bold text-coral">· Escalation</span>}
+          {t('The guardian demands', 'Le gardien exige')}{esc && <span className="ml-2 font-bold text-coral">{t('· Escalation', '· Escalade')}</span>}
         </p>
         <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">
-          {prompt.prompt}
+          {bt(prompt.prompt)}
         </h3>
       </div>
 
       <TimerBar total={total} running={!over} onExpire={() => finish(false)} hideSeconds={hidden} />
 
-      <div className="flex justify-center gap-2" aria-label={`${found.length} of ${prompt.count} named`}>
+      <div className="flex justify-center gap-2" aria-label={t(`${found.length} of ${prompt.count} named`, `${found.length} sur ${prompt.count} nommés`)}>
         {Array.from({ length: prompt.count }, (_, i) => (
           <span
             key={i}
@@ -122,7 +125,7 @@ export function KnowledgeBlitz({ prompt, difficulty: d, loop, onEvent, onDone }:
         onChange={(e) => (setText(e.target.value), setMaybe([]))}
         // Enter on an empty box takes the first "Did you mean".
         onKeyDown={(e) => e.key === 'Enter' && (!text.trim() && maybe[0] ? accept(maybe[0]) : submit(text))}
-        placeholder="Type a name, then Enter…"
+        placeholder={t('Type a name, then Enter…', 'Tape un nom, puis Entrée…')}
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}

@@ -190,6 +190,17 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
 // downloaded once a card is equipped.
 const cardLayers = () => import('../gacha/LayoutCards');
 const CardLayers = lazy(() => cardLayers().then((m) => ({ default: m.CardLayers })));
+/** Whether a win's moment is playing (html.moment-on): read here without loading the card catalogue. */
+function useMomentOn(): boolean {
+  const [on, setOn] = useState(() => document.documentElement.classList.contains('moment-on'));
+  useEffect(() => {
+    const html = document.documentElement;
+    const watch = new MutationObserver(() => setOn(html.classList.contains('moment-on')));
+    watch.observe(html, { attributes: true, attributeFilter: ['class'] });
+    return () => watch.disconnect();
+  }, []);
+  return on;
+}
 const AvatarIcon = lazy(() => cardLayers().then((m) => ({ default: m.AvatarIcon })));
 // The name (in its Boutique style) and title beside the icon: lazy, as titles need the cards.
 const ProfileTag = lazy(() => import('../casino/ProfileTag').then((m) => ({ default: m.ProfileTag })));
@@ -381,10 +392,13 @@ export function Layout() {
   useApplyTheme(theme);
   // A card on show, or a franchise's theme picked outright.
   const equipped = useProgress((s) => !!(s.avatar || s.backdrop || (s.uiTheme && s.uiTheme !== 'icon' && s.uiTheme !== 'off') || s.rotation?.avatar?.cards.length || s.rotation?.backdrop?.cards.length));
+  // A win's video still playing keeps the card layers there, though the last card was just taken off: only a refresh
+  // stops one (html.moment-on, set by CardReactions while it lasts).
+  const momentOn = useMomentOn();
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip max-sm:pb-14">
-      {equipped && (
+      {(equipped || momentOn) && (
         <Suspense fallback={null}>
           <CardLayers />
         </Suspense>

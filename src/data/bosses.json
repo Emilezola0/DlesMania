@@ -31280,5 +31280,1085 @@
         }
       ]
     }
+  },
+  {
+    "id": "shrek",
+    "domain": "cinema",
+    "franchise": "Shrek",
+    "aliases": [
+      "shrek",
+      "shrek the ogre",
+      "puss in boots",
+      "le chat potté",
+      "chat potte",
+      "far far away"
+    ],
+    "images": "fandom:shrek",
+    "boss": {
+      "name": "Lord Farquaad",
+      "title": "Ruler of Duloc",
+      "color": "#b91c1c",
+      "image": "https://static.wikia.nocookie.net/shrek/images/2/2d/Farquaad_portrait.png/revision/latest/scale-to-width-down/400?cb=20260904102001"
+    },
+    "lines": {
+      "intro": "Welcome to Duloc, the most perfect kingdom there is. Prove you know its subjects — and not one word about my height.",
+      "phase2": "Fairy-tale trash, the lot of them, and some aren't even from my kingdom. Tell me which ones belong.",
+      "phase3": "Still standing? Then name them all, before I send my knights.",
+      "hit": [
+        "Hmph.",
+        "Lucky.",
+        "Guards!"
+      ],
+      "hurt": [
+        "Wrong. To the dungeon.",
+        "Pathetic.",
+        "Next!",
+        "Is that the best you can do?"
+      ],
+      "win": "This is not how my fairy tale was supposed to end… I was going to be king.",
+      "lose": "Another peasant out of my perfect kingdom. Next!",
+      "secret": "A game for the court: I name an ogre, a royal, a fairy-tale creature or a face from Puss in Boots; you name another of the same kind. No repeats, or it's the dungeon.",
+      "secretOk": [
+        "Very well.",
+        "Again.",
+        "Acceptable."
+      ],
+      "secretLost": "Nothing left? Then you are banished from Duloc."
+    },
+    "blitz": [
+      {
+        "prompt": "Name the four Shrek films",
+        "count": 4,
+        "answers": [
+          "Shrek|Shrek 1",
+          "Shrek 2",
+          "Shrek the Third|Shrek 3|Shrek le troisième",
+          "Shrek Forever After|Shrek 4|Shrek 4, il était une fin|Shrek il était une fin"
+        ]
+      },
+      {
+        "prompt": "Name the four princesses who fight beside Fiona",
+        "count": 4,
+        "answers": [
+          "Snow White|Blanche-Neige|Blanche Neige",
+          "Cinderella|Cendrillon",
+          "Rapunzel|Raiponce",
+          "Sleeping Beauty|La Belle au Bois Dormant|Belle au Bois Dormant",
+          "Doris"
+        ]
+      },
+      {
+        "prompt": "Name the Three Bears of The Last Wish",
+        "count": 3,
+        "answers": [
+          "Mama Bear|Maman Ours",
+          "Papa Bear|Papa Ours",
+          "Baby Bear|Bébé Ours|Bebe Ours"
+        ]
+      },
+      {
+        "prompt": "Name Shrek and Fiona's three children",
+        "count": 3,
+        "answers": [
+          "Farkle",
+          "Fergus",
+          "Felicia"
+        ]
+      },
+      {
+        "prompt": "Name 5 ogres",
+        "count": 5,
+        "answers": [
+          "Baby Shrek",
+          "Bloodnut the Flatulent",
+          "Brogan",
+          "Cookie|Cookie the Ogre",
+          "Farkle",
+          "Felicia",
+          "Fergus",
+          "Fiona|Princess Fiona|Princesse Fiona",
+          "Gerald the Pear-Shaped",
+          "Gnimrach",
+          "Gretched",
+          "Krekraw",
+          "Mama Ogre",
+          "Naysayer",
+          "Ogre",
+          "Ogre Claus",
+          "Papa Ogre",
+          "Pvt. Jammy",
+          "Snowflake",
+          "Snowgre",
+          "Sprinkles",
+          "Tranche"
+        ]
+      },
+      {
+        "prompt": "Name 5 fairy-tale or nursery-rhyme characters of the films",
+        "count": 5,
+        "answers": [
+          "Big Bad Wolf|Le Grand Méchant Loup|The Big Bad Wolf|Grand Méchant Loup",
+          "Bridge Troll",
+          "Cinderella|Cendrillon",
+          "Gingy|Gingerbread Man|Ti Biscuit|Ti-Biscuit|Tibiscuit|Gingerbread",
+          "Golden Goose",
+          "Great Terror",
+          "Little Red Riding Hood",
+          "Pied Piper",
+          "Pinocchio",
+          "Princess of Duloc",
+          "Puss in Boots|Le Chat Potté|Puss|Chat Potté|Le Chat Potte|Chat Potte",
+          "Rose Red",
+          "Shoemaker's Elf",
+          "Simpleton",
+          "Sleeping Beauty|La Belle au Bois Dormant|Belle au Bois Dormant",
+          "Snow White|Blanche-Neige|Blanche Neige",
+          "The Bear",
+          "The Cruel Stepmother",
+          "The Emperor without clothes",
+          "The Giant",
+          "The Little Mermaid",
+          "The Sea Witch",
+          "The Soldier",
+          "The Ugly Duckling",
+          "The Wicked Dwarf",
+          "Three Billy Goats",
+          "Three Little Pigs|Les Trois Petits Cochons|The Three Little Pigs|Trois Petits Cochons|Pigs",
+          "Tin Soldier",
+          "Tom Thumb and Thumbelina",
+          "Ugly Duckling",
+          "Big Jack Horner|\"Big\" Jack Horner|Jack Horner|Grand Jack Horner",
+          "All the king's horses and all the king's men",
+          "Baa Baa Black Sheep",
+          "Bo Peep",
+          "Clock Mouse",
+          "Farmer's Wife",
+          "Georgie Porgie",
+          "Humpty Dumpty|Humpty|Humpty Alexander Dumpty|Humpty Alexandre Dumpty|The Egg",
+          "Itsy Bitsy Spider",
+          "Jack and Jill",
+          "Jack Sprat",
+          "Knave of Hearts",
+          "Little Boy Blue",
+          "Little Miss Muffet",
+          "Mary & her Lamb",
+          "Mother Goose",
+          "Mrs. Sprat",
+          "Muffin Man",
+          "Old MacDonald",
+          "Old Woman in the Shoe",
+          "Peter-Peter Pumpkin Eater",
+          "The Cow who Jumped over the Moon",
+          "The Dish and the Spoon",
+          "The King of Hearts",
+          "The Man in the Moon",
+          "The Queen of Hearts",
+          "Three Blind Mice|The Three Blind Mice|Les Trois Souris Aveugles|Trois Souris Aveugles|Blind Mice",
+          "Three Little Kittens",
+          "Tweedledum and Tweedledee"
+        ]
+      },
+      {
+        "prompt": "Name 5 villains of the films",
+        "count": 5,
+        "answers": [
+          "Baby Bear|Bébé Ours|Bebe Ours",
+          "Don Manolo",
+          "Don Manolo's Wife",
+          "Goldilocks|Boucle d’Or|Boucle d'Or|Boucles d’Or|Boucles d'Or",
+          "Mama Bear|Maman Ours",
+          "Papa Bear|Papa Ours",
+          "Santa Claus",
+          "The Comandante",
+          "Three Blind Mice|The Three Blind Mice|Les Trois Souris Aveugles|Trois Souris Aveugles|Blind Mice",
+          "The Wicked Dwarf",
+          "Big Jack Horner|\"Big\" Jack Horner|Jack Horner|Grand Jack Horner",
+          "Baba",
+          "Ben Yay",
+          "Betsy Crocker",
+          "Black Horse",
+          "Black Knight",
+          "Black Rabbits",
+          "Bloodwolf",
+          "Brandt",
+          "Broomsy Witch",
+          "Butter Scott",
+          "Cackling Witch",
+          "Captain Hook|Capitaine Crochet|Hook|Crochet",
+          "Chad",
+          "Chef",
+          "Cinnaman",
+          "Crustina",
+          "Cyclops",
+          "Death|La Mort|The Wolf|Wolf|Lobo|Le Loup|Grim Reaper",
+          "Dom",
+          "Ebenezer Scrooge",
+          "Eulalie Hyacinth \"Goody\" Gumdrop",
+          "Evil Queen|La Méchante Reine|Méchante Reine",
+          "Fairy Godmother|La Bonne Fée Marraine|Godmother|Bonne Fée Marraine|Marraine la Bonne Fée|Marraine",
+          "Ferret",
+          "Fifi",
+          "Frankendrop",
+          "Frankenstein's Monster",
+          "Friar Crunchy Pants",
+          "Friar Tuck",
+          "Gargoyles",
+          "Giovanna",
+          "Griselda",
+          "Guard Witch",
+          "Headless Horseman|Le Cavalier sans tête|Cavalier sans tête",
+          "Humpty Dumpty|Humpty|Humpty Alexander Dumpty|Humpty Alexandre Dumpty|The Egg",
+          "Ice Dragon",
+          "Jack and Jill",
+          "Jerry Cobbler",
+          "Jiminy Cricket",
+          "Lamarr",
+          "Little Boy Blue",
+          "Little John",
+          "Little Red Riding Hood",
+          "Lord Farquaad|Farquaad|Lord Farquad|Farquad",
+          "Luna",
+          "Mabel",
+          "Meleagant of Hellus",
+          "Melty Witch",
+          "Robin Hood|Monsieur Hood|Robin des Bois",
+          "Nutmegan",
+          "Old Witch",
+          "Palace Witch",
+          "Papa Ogre",
+          "Patrol Witch",
+          "Pete Cobbler",
+          "Pied Piper",
+          "Prince Charming|Prince Charmant|Charming|Charmant",
+          "Principal Pynchley",
+          "Rapunzel|Raiponce",
+          "Rat King",
+          "Rhu-Barb",
+          "Royalty of Duloc",
+          "Rumpelstiltskin|Tracassin|Rumple|Rumplestiltskin",
+          "Singing Witch",
+          "Sir Thomas Brady Fingers",
+          "Sleeping Giant of Del Mar",
+          "Steve and Ed",
+          "Stevia",
+          "Stone Dragon",
+          "Storybook Dragon",
+          "Stromboli",
+          "Sugar",
+          "Sumo Wrestler",
+          "Susan",
+          "Tabatha",
+          "Taranis",
+          "Terror-Misu",
+          "The Cruel Stepmother",
+          "The Ice Cream Queen",
+          "The Mugger",
+          "The Wicked Ice Queen",
+          "The Wicked Witch of the East",
+          "The Wicked Witch of the West",
+          "Thelonious",
+          "TNT Guy",
+          "Tommy Lee Scones",
+          "Vampire witch",
+          "Vesuvius",
+          "Victor Frankenstein",
+          "Waffle Man",
+          "Wagon Witch 2",
+          "Whisperer",
+          "Witch who cursed Fiona",
+          "Wolf the Knight"
+        ]
+      }
+    ],
+    "radar": {
+      "members": [
+        {
+          "label": "Shrek",
+          "aliases": [
+            "Shrek the Ogre"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/9/9b/GoodShrekImage.png/revision/latest/scale-to-width-down/400?cb=20201220080410"
+        },
+        {
+          "label": "Donkey",
+          "fr": "L’Âne",
+          "aliases": [
+            "L’Âne",
+            "L'Ane",
+            "Âne",
+            "Ane"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/b/b4/Donkey_%28Shrek_2%29.png/revision/latest/scale-to-width-down/400?cb=20230605032710"
+        },
+        {
+          "label": "Puss in Boots",
+          "fr": "Le Chat Potté",
+          "aliases": [
+            "Puss",
+            "Le Chat Potté",
+            "Chat Potté",
+            "Le Chat Potte",
+            "Chat Potte"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/c/c6/PussInBoots2022.webp/revision/latest/scale-to-width-down/400?cb=20230118194020"
+        },
+        {
+          "label": "Fiona",
+          "aliases": [
+            "Princess Fiona",
+            "Princesse Fiona"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/5/5a/Fiona_Ogre_Forever_After_Portrait.png/revision/latest/scale-to-width-down/400?cb=20201111033809"
+        },
+        {
+          "label": "Gingy",
+          "fr": "Ti Biscuit",
+          "aliases": [
+            "Gingerbread Man",
+            "Ti Biscuit",
+            "Ti-Biscuit",
+            "Tibiscuit",
+            "Gingerbread"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/6/61/GingerbreadManTransparent.png/revision/latest/scale-to-width-down/400?cb=20171218193006"
+        },
+        {
+          "label": "Dragon",
+          "fr": "Dragonne",
+          "aliases": [
+            "Dragonne",
+            "The Dragon"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/1/19/Dragon_Forever_After_transparent.png/revision/latest/scale-to-width-down/400?cb=20210624203030"
+        },
+        {
+          "label": "Fairy Godmother",
+          "fr": "La Bonne Fée Marraine",
+          "aliases": [
+            "Godmother",
+            "La Bonne Fée Marraine",
+            "Bonne Fée Marraine",
+            "Marraine la Bonne Fée",
+            "Marraine"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/f/f9/Fairygodmother.png/revision/latest/scale-to-width-down/400?cb=20250806054324"
+        },
+        {
+          "label": "Prince Charming",
+          "fr": "Prince Charmant",
+          "aliases": [
+            "Charming",
+            "Prince Charmant",
+            "Charmant"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/0/0d/Prince_Charming_transparent.png/revision/latest/scale-to-width-down/400?cb=20210715065334"
+        },
+        {
+          "label": "Humpty Dumpty",
+          "aliases": [
+            "Humpty",
+            "Humpty Alexander Dumpty",
+            "Humpty Alexandre Dumpty",
+            "The Egg"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/5/56/Humpty_Dumpty.png/revision/latest/scale-to-width-down/400?cb=20230601225256"
+        },
+        {
+          "label": "Kitty Softpaws",
+          "fr": "Kitty Pattes de Velours",
+          "aliases": [
+            "Kitty",
+            "Kitty Pattes de Velours",
+            "Kitty Pattes-de-Velours"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/0/0b/Kitty..webp/revision/latest/scale-to-width-down/400?cb=20230321115626"
+        },
+        {
+          "label": "Death",
+          "fr": "La Mort",
+          "aliases": [
+            "The Wolf",
+            "Wolf",
+            "Lobo",
+            "La Mort",
+            "Le Loup",
+            "Grim Reaper"
+          ],
+          "image": "https://static.wikia.nocookie.net/shrek/images/1/16/Death_%28Puss_in_Boots_The_Last_Wish%29_-_render.webp/revision/latest/scale-to-width-down/400?cb=20230923084111"
+        },
+        {
+          "label": "Pinocchio",
+          "image": "https://static.wikia.nocookie.net/shrek/images/b/b7/PinocchioTransparent.png/revision/latest/scale-to-width-down/400?cb=20171219222542"
+        }
+      ],
+      "impostors": [
+        {
+          "label": "Gollum",
+          "image": "https://static.wikia.nocookie.net/lotr/images/7/7d/Gollum%2C_R_V.jpg/revision/latest/scale-to-width-down/240?cb=20230621011547"
+        },
+        {
+          "label": "Gimli",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/2e/Forty-Two.jpg/revision/latest/scale-to-width-down/400?cb=20230510233809"
+        },
+        {
+          "label": "Treebeard",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/23/TreebeardatIsengard.png/revision/latest/scale-to-width-down/400?cb=20210117035345"
+        },
+        {
+          "label": "Gandalf",
+          "image": "https://static.wikia.nocookie.net/lotr/images/4/47/Gandalf_by_Damiani.png/revision/latest/scale-to-width-down/264?cb=20230617183640"
+        },
+        {
+          "label": "Legolas",
+          "image": "https://static.wikia.nocookie.net/lotr/images/b/be/Legolas%2C_Giancola.jpg/revision/latest/scale-to-width-down/224?cb=20231003014314"
+        },
+        {
+          "label": "Samwise Gamgee",
+          "image": "https://static.wikia.nocookie.net/lotr/images/2/20/Sam.jpg/revision/latest/scale-to-width-down/279?cb=20070623123241"
+        },
+        {
+          "label": "Dobby",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/8/82/Dobby.jpg/revision/latest/scale-to-width-down/358?cb=20230712061949"
+        },
+        {
+          "label": "Rubeus Hagrid",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/f/fe/Rubeus_Hagrid.png/revision/latest/scale-to-width-down/300?cb=20221014184333"
+        },
+        {
+          "label": "Albus Dumbledore",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/7/75/Albus_Dumbledore_%28HBPF_promo%29.jpg/revision/latest/scale-to-width-down/300?cb=20150822232849"
+        },
+        {
+          "label": "Hedwig",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/1/1e/Hedwig_Snowy_Owl_PM.png/revision/latest/scale-to-width-down/329?cb=20161123234010"
+        },
+        {
+          "label": "Severus Snape",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/a/a3/Severus_Snape.jpg/revision/latest/scale-to-width-down/268?cb=20150307193047"
+        },
+        {
+          "label": "Draco Malfoy",
+          "image": "https://static.wikia.nocookie.net/harrypotter/images/7/7e/Draco_Malfoy_TDH.png/revision/latest/scale-to-width-down/300?cb=20180116013508"
+        }
+      ]
+    },
+    "finale": [
+      {
+        "label": "Perrito",
+        "aliases": [
+          "Perro",
+          "Pero"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/9/9c/Perrito.png/revision/latest/scale-to-width-down/400?cb=20230120052758"
+      },
+      {
+        "label": "Goldilocks",
+        "fr": "Boucle d’Or",
+        "aliases": [
+          "Boucle d'Or",
+          "Boucle d’Or",
+          "Boucles d’Or",
+          "Boucles d'Or"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/0/07/Goldilocks_%28Puss_in_Boots_The_Last_Wish%29.png/revision/latest/scale-to-width-down/400?cb=20230505055814"
+      },
+      {
+        "label": "Big Jack Horner",
+        "aliases": [
+          "Jack Horner",
+          "Grand Jack Horner"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/3/3a/Jack_Horner_%28Puss_in_Boots_The_Last_Wish%29.png/revision/latest/scale-to-width-down/400?cb=20230428005325"
+      },
+      {
+        "label": "Rumpelstiltskin",
+        "fr": "Tracassin",
+        "aliases": [
+          "Rumple",
+          "Tracassin",
+          "Rumplestiltskin"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/3/33/Stiltskin.png/revision/latest/scale-to-width-down/400?cb=20210101093212"
+      },
+      {
+        "label": "Three Little Pigs",
+        "fr": "Les Trois Petits Cochons",
+        "aliases": [
+          "The Three Little Pigs",
+          "Les Trois Petits Cochons",
+          "Trois Petits Cochons",
+          "Pigs"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/e/e6/ThreePigsTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163741"
+      },
+      {
+        "label": "Big Bad Wolf",
+        "fr": "Le Grand Méchant Loup",
+        "aliases": [
+          "The Big Bad Wolf",
+          "Le Grand Méchant Loup",
+          "Grand Méchant Loup"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/7/7f/Png-clipart-shrek-s-adventure-the-three-little-pigs-gray-wolf-big-bad-wolf-the-three-little-pigs-shrek-adventure_copy.png/revision/latest/scale-to-width-down/400?cb=20201221212743"
+      },
+      {
+        "label": "Three Blind Mice",
+        "fr": "Les Trois Souris Aveugles",
+        "aliases": [
+          "The Three Blind Mice",
+          "Les Trois Souris Aveugles",
+          "Trois Souris Aveugles",
+          "Blind Mice"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/0/0a/ThreeBlindMiceTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163740"
+      },
+      {
+        "label": "Magic Mirror",
+        "fr": "Le Miroir Magique",
+        "aliases": [
+          "Mirror",
+          "Le Miroir Magique",
+          "Miroir Magique"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/8/8d/MagicMirrorTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163704"
+      },
+      {
+        "label": "King Harold",
+        "fr": "Le Roi Harold",
+        "aliases": [
+          "Harold",
+          "Le Roi Harold",
+          "Roi Harold"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/f/fe/HaroldTransparent.png/revision/latest/scale-to-width-down/400?cb=20250505174506"
+      },
+      {
+        "label": "Queen Lillian",
+        "fr": "La Reine Lillian",
+        "aliases": [
+          "Lillian",
+          "La Reine Lillian",
+          "Reine Lillian"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/c/c5/LillianTransparent.png/revision/latest/scale-to-width-down/400?cb=20260522220539"
+      },
+      {
+        "label": "Doris",
+        "image": "https://static.wikia.nocookie.net/shrek/images/f/ff/DorisTransparent.png/revision/latest/scale-to-width-down/400?cb=20231216141533"
+      },
+      {
+        "label": "Mongo",
+        "image": "https://static.wikia.nocookie.net/shrek/images/3/3b/MongoTransparent.png/revision/latest/scale-to-width-down/400?cb=20171219175850"
+      },
+      {
+        "label": "Arthur Pendragon",
+        "aliases": [
+          "Artie",
+          "Arthur"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/8/80/Arthur_transparent.png/revision/latest/scale-to-width-down/400?cb=20250110173626"
+      },
+      {
+        "label": "Merlin",
+        "image": "https://static.wikia.nocookie.net/shrek/images/0/06/MerlinTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163704"
+      },
+      {
+        "label": "Dronkeys",
+        "image": "https://static.wikia.nocookie.net/shrek/images/3/31/DronkeysTransparent.png/revision/latest/scale-to-width-down/400?cb=20171219175849"
+      },
+      {
+        "label": "Cookie",
+        "image": "https://static.wikia.nocookie.net/shrek/images/b/b2/CookieTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163702"
+      },
+      {
+        "label": "Brogan",
+        "image": "https://static.wikia.nocookie.net/shrek/images/7/7b/Brogan01.png/revision/latest/scale-to-width-down/400?cb=20261017163249"
+      },
+      {
+        "label": "Gretched",
+        "image": "https://static.wikia.nocookie.net/shrek/images/2/26/GretchedTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163702"
+      },
+      {
+        "label": "Mama Luna",
+        "image": "https://static.wikia.nocookie.net/shrek/images/d/da/Mama_Luna.jpg/revision/latest/scale-to-width-down/400?cb=20221030135623"
+      },
+      {
+        "label": "Cyclops",
+        "image": "https://static.wikia.nocookie.net/shrek/images/9/98/0225682F-3376-4693-92E2-141F1BCBBF7C.png/revision/latest/scale-to-width-down/400?cb=20210617124325"
+      },
+      {
+        "label": "Captain Hook",
+        "fr": "Capitaine Crochet",
+        "aliases": [
+          "Hook",
+          "Capitaine Crochet",
+          "Crochet"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/d/d4/CaptainHookTransparent.png/revision/latest/scale-to-width-down/400?cb=20210627195038"
+      },
+      {
+        "label": "Evil Queen",
+        "fr": "La Méchante Reine",
+        "aliases": [
+          "La Méchante Reine",
+          "Méchante Reine"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/f/f7/B371CA33-E28F-48A3-8A58-E0E6CB346472.png/revision/latest/scale-to-width-down/400?cb=20210617185051"
+      },
+      {
+        "label": "Cinderella",
+        "fr": "Cendrillon",
+        "aliases": [
+          "Cendrillon"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/2/25/Cinderella_render_transparent.png/revision/latest/scale-to-width-down/400?cb=20201220080956"
+      },
+      {
+        "label": "Snow White",
+        "fr": "Blanche-Neige",
+        "aliases": [
+          "Blanche-Neige",
+          "Blanche Neige"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/7/77/SnowWhiteTransparent.png/revision/latest/scale-to-width-down/400?cb=20210303172227"
+      },
+      {
+        "label": "Rapunzel",
+        "fr": "Raiponce",
+        "aliases": [
+          "Raiponce"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/4/4a/Rapunzel_render_transparent.png/revision/latest/scale-to-width-down/400?cb=20201220081002"
+      },
+      {
+        "label": "Sleeping Beauty",
+        "fr": "La Belle au Bois Dormant",
+        "aliases": [
+          "La Belle au Bois Dormant",
+          "Belle au Bois Dormant"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/7/70/SleepingBeautyTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163738"
+      },
+      {
+        "label": "Muffin Man",
+        "image": "https://static.wikia.nocookie.net/shrek/images/f/fd/MuffinManTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163737"
+      },
+      {
+        "label": "Robin Hood",
+        "fr": "Robin des Bois",
+        "aliases": [
+          "Monsieur Hood",
+          "Robin des Bois"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/7/74/RobinHoodTransparent.png/revision/latest/scale-to-width-down/400?cb=20231216141021"
+      },
+      {
+        "label": "Thelonious",
+        "image": "https://static.wikia.nocookie.net/shrek/images/c/cf/TheloniusTransparent.png/revision/latest/scale-to-width-down/400?cb=20201207083742"
+      },
+      {
+        "label": "Headless Horseman",
+        "fr": "Le Cavalier sans tête",
+        "aliases": [
+          "Le Cavalier sans tête",
+          "Cavalier sans tête"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/4/46/Headless_Horseman_closeu.JPG/revision/latest/scale-to-width-down/400?cb=20170530123403"
+      },
+      {
+        "label": "Mabel",
+        "image": "https://static.wikia.nocookie.net/shrek/images/f/fd/MabelTransparent.png/revision/latest/scale-to-width-down/400?cb=20171222163703"
+      },
+      {
+        "label": "Lancelot",
+        "image": "https://static.wikia.nocookie.net/shrek/images/a/a3/LancelotTransparent.png/revision/latest/scale-to-width-down/400?cb=20210204012959"
+      },
+      {
+        "label": "Mama Bear",
+        "fr": "Maman Ours",
+        "aliases": [
+          "Maman Ours"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/2/2c/Mama_Bear_Puss.png/revision/latest/scale-to-width-down/400?cb=20221215225935"
+      },
+      {
+        "label": "Papa Bear",
+        "fr": "Papa Ours",
+        "aliases": [
+          "Papa Ours"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/b/bb/Papa_Bear_Puss.png/revision/latest/scale-to-width-down/400?cb=20221215225943"
+      },
+      {
+        "label": "Baby Bear",
+        "fr": "Bébé Ours",
+        "aliases": [
+          "Bébé Ours",
+          "Bebe Ours"
+        ],
+        "image": "https://static.wikia.nocookie.net/shrek/images/4/41/Baby_Bear_Puss.png/revision/latest/scale-to-width-down/400?cb=20221215225928"
+      },
+      {
+        "label": "Ethical Bug",
+        "image": "https://static.wikia.nocookie.net/shrek/images/1/14/Ethical_Bug_-_HQ.png/revision/latest/scale-to-width-down/400?cb=20230903061402"
+      },
+      {
+        "label": "Imelda",
+        "image": "https://static.wikia.nocookie.net/shrek/images/5/5e/Char_62700.jpg/revision/latest/scale-to-width-down/400?cb=20120621022244"
+      },
+      {
+        "label": "Golden Goose",
+        "image": "https://static.wikia.nocookie.net/shrek/images/5/5e/Goose.jpg/revision/latest/scale-to-width-down/400?cb=20171209070223"
+      }
+    ],
+    "secret": {
+      "categories": [
+        {
+          "label": "Ogre",
+          "entities": [
+            "Baby Shrek",
+            "Bloodnut the Flatulent",
+            "Brogan",
+            "Cookie|Cookie the Ogre",
+            "Farkle",
+            "Felicia",
+            "Fergus",
+            "Fiona|Princess Fiona|Princesse Fiona",
+            "Gerald the Pear-Shaped",
+            "Gnimrach",
+            "Gretched",
+            "Krekraw",
+            "Mama Ogre",
+            "Naysayer",
+            "Ogre",
+            "Ogre Claus",
+            "Papa Ogre",
+            "Pvt. Jammy",
+            "Snowflake",
+            "Snowgre",
+            "Sprinkles",
+            "Tranche"
+          ]
+        },
+        {
+          "label": "Royal",
+          "entities": [
+            "Arthur Pendragon|Artie|Arthur",
+            "Captain Nemo",
+            "Cinderella|Cendrillon",
+            "Crown of the King of Far Far Away",
+            "Crown of the Queen of Far Far Away",
+            "Crown Princess",
+            "Donkey|L’Âne|L'Ane|Âne|Ane",
+            "Elaine",
+            "Enid",
+            "Evil Queen|La Méchante Reine|Méchante Reine",
+            "Gareth",
+            "Guinevere",
+            "Isolde of Ireland",
+            "King Harold|Le Roi Harold|Harold|Roi Harold",
+            "Lancelot",
+            "Lord Farquaad|Farquaad|Lord Farquad|Farquad",
+            "Neptune",
+            "Niniane",
+            "Odysseus",
+            "Palamedes",
+            "Pendragon",
+            "Pendragon family",
+            "Prince Charming|Prince Charmant|Charming|Charmant",
+            "Princess Alessandra Belagomba",
+            "Princess of Duloc",
+            "Puss in Boots|Le Chat Potté|Puss|Chat Potté|Le Chat Potte|Chat Potte",
+            "Queen Lillian|La Reine Lillian|Lillian|Reine Lillian",
+            "Rapunzel|Raiponce",
+            "Rat King",
+            "Romulus and Remus",
+            "Rumpelstiltskin|Tracassin|Rumple|Rumplestiltskin",
+            "Safir",
+            "Segwaridies",
+            "Sleeping Beauty|La Belle au Bois Dormant|Belle au Bois Dormant",
+            "Snow White|Blanche-Neige|Blanche Neige",
+            "Teen Fiona",
+            "Teen Mermaid",
+            "The Ice Cream Queen",
+            "The King of Hearts",
+            "The Queen of Hearts",
+            "The Wicked Ice Queen",
+            "Tristan",
+            "Young Fiona"
+          ]
+        },
+        {
+          "label": "Fairy-tale or nursery-rhyme character",
+          "entities": [
+            "Big Bad Wolf|Le Grand Méchant Loup|The Big Bad Wolf|Grand Méchant Loup",
+            "Bridge Troll",
+            "Gingy|Gingerbread Man|Ti Biscuit|Ti-Biscuit|Tibiscuit|Gingerbread",
+            "Golden Goose",
+            "Great Terror",
+            "Little Red Riding Hood",
+            "Pied Piper",
+            "Pinocchio",
+            "Rose Red",
+            "Shoemaker's Elf",
+            "Simpleton",
+            "The Bear",
+            "The Cruel Stepmother",
+            "The Emperor without clothes",
+            "The Giant",
+            "The Little Mermaid",
+            "The Sea Witch",
+            "The Soldier",
+            "The Ugly Duckling",
+            "The Wicked Dwarf",
+            "Three Billy Goats",
+            "Three Little Pigs|Les Trois Petits Cochons|The Three Little Pigs|Trois Petits Cochons|Pigs",
+            "Tin Soldier",
+            "Tom Thumb and Thumbelina",
+            "Ugly Duckling",
+            "Big Jack Horner|\"Big\" Jack Horner|Jack Horner|Grand Jack Horner",
+            "All the king's horses and all the king's men",
+            "Baa Baa Black Sheep",
+            "Bo Peep",
+            "Clock Mouse",
+            "Farmer's Wife",
+            "Georgie Porgie",
+            "Humpty Dumpty|Humpty|Humpty Alexander Dumpty|Humpty Alexandre Dumpty|The Egg",
+            "Itsy Bitsy Spider",
+            "Jack and Jill",
+            "Jack Sprat",
+            "Knave of Hearts",
+            "Little Boy Blue",
+            "Little Miss Muffet",
+            "Mary & her Lamb",
+            "Mother Goose",
+            "Mrs. Sprat",
+            "Muffin Man",
+            "Old MacDonald",
+            "Old Woman in the Shoe",
+            "Peter-Peter Pumpkin Eater",
+            "The Cow who Jumped over the Moon",
+            "The Dish and the Spoon",
+            "The Man in the Moon",
+            "Three Blind Mice|The Three Blind Mice|Les Trois Souris Aveugles|Trois Souris Aveugles|Blind Mice",
+            "Three Little Kittens",
+            "Tweedledum and Tweedledee"
+          ]
+        },
+        {
+          "label": "Villain",
+          "entities": [
+            "Baby Bear|Bébé Ours|Bebe Ours",
+            "Don Manolo",
+            "Don Manolo's Wife",
+            "Goldilocks|Boucle d’Or|Boucle d'Or|Boucles d’Or|Boucles d'Or",
+            "Mama Bear|Maman Ours",
+            "Papa Bear|Papa Ours",
+            "Santa Claus",
+            "The Comandante",
+            "Baba",
+            "Ben Yay",
+            "Betsy Crocker",
+            "Black Horse",
+            "Black Knight",
+            "Black Rabbits",
+            "Bloodwolf",
+            "Brandt",
+            "Broomsy Witch",
+            "Butter Scott",
+            "Cackling Witch",
+            "Captain Hook|Capitaine Crochet|Hook|Crochet",
+            "Chad",
+            "Chef",
+            "Cinnaman",
+            "Crustina",
+            "Cyclops",
+            "Death|La Mort|The Wolf|Wolf|Lobo|Le Loup|Grim Reaper",
+            "Dom",
+            "Ebenezer Scrooge",
+            "Eulalie Hyacinth \"Goody\" Gumdrop",
+            "Fairy Godmother|La Bonne Fée Marraine|Godmother|Bonne Fée Marraine|Marraine la Bonne Fée|Marraine",
+            "Ferret",
+            "Fifi",
+            "Frankendrop",
+            "Frankenstein's Monster",
+            "Friar Crunchy Pants",
+            "Friar Tuck",
+            "Gargoyles",
+            "Giovanna",
+            "Griselda",
+            "Guard Witch",
+            "Headless Horseman|Le Cavalier sans tête|Cavalier sans tête",
+            "Ice Dragon",
+            "Jerry Cobbler",
+            "Jiminy Cricket",
+            "Lamarr",
+            "Little John",
+            "Luna",
+            "Mabel",
+            "Meleagant of Hellus",
+            "Melty Witch",
+            "Robin Hood|Monsieur Hood|Robin des Bois",
+            "Nutmegan",
+            "Old Witch",
+            "Palace Witch",
+            "Patrol Witch",
+            "Pete Cobbler",
+            "Principal Pynchley",
+            "Rhu-Barb",
+            "Royalty of Duloc",
+            "Singing Witch",
+            "Sir Thomas Brady Fingers",
+            "Sleeping Giant of Del Mar",
+            "Steve and Ed",
+            "Stevia",
+            "Stone Dragon",
+            "Storybook Dragon",
+            "Stromboli",
+            "Sugar",
+            "Sumo Wrestler",
+            "Susan",
+            "Tabatha",
+            "Taranis",
+            "Terror-Misu",
+            "The Mugger",
+            "The Wicked Witch of the East",
+            "The Wicked Witch of the West",
+            "Thelonious",
+            "TNT Guy",
+            "Tommy Lee Scones",
+            "Vampire witch",
+            "Vesuvius",
+            "Victor Frankenstein",
+            "Waffle Man",
+            "Wagon Witch 2",
+            "Whisperer",
+            "Witch who cursed Fiona",
+            "Wolf the Knight"
+          ]
+        },
+        {
+          "label": "Face of the Puss in Boots films",
+          "entities": [
+            "Ali Baba",
+            "Andy \"Jack\" Beanstalk",
+            "Bastet",
+            "Bean Club",
+            "Dulcinea",
+            "Ethical Bug",
+            "Hamhock",
+            "Huntsman",
+            "Imelda",
+            "Kitty Softpaws|Kitty Pattes de Velours|Kitty|Kitty Pattes-de-Velours",
+            "Luis",
+            "Mama Luna",
+            "Margherita",
+            "Mister Geppetto",
+            "Ohhhh Cat",
+            "Perrito|Perro|Pero",
+            "Posies",
+            "Rosa",
+            "Señorita",
+            "She-Puss",
+            "The Phoenix",
+            "Thriffith"
+          ]
+        }
+      ]
+    },
+    "signature": {
+      "label": "Ogres & Fairy Tales",
+      "prompt": "Who is this?",
+      "clues": [
+        {
+          "text": "An ogre who wanted his swamp back, and came home with a wife, a talking donkey and a houseful of children",
+          "answer": "Shrek|Shrek the Ogre"
+        },
+        {
+          "text": "A talking donkey who never stops talking, married a dragon and became a father of flying foals",
+          "answer": "Donkey|L’Âne|L’Âne|L'Ane|Âne|Ane"
+        },
+        {
+          "text": "A cat in a feathered hat and boots, a sword in his paw and enormous eyes that disarm anyone",
+          "answer": "Puss in Boots|Le Chat Potté|Puss|Le Chat Potté|Chat Potté|Le Chat Potte|Chat Potte"
+        },
+        {
+          "text": "A princess in a tower guarded by a dragon, human by day and an ogre by night — until true love's kiss chose for her",
+          "answer": "Fiona|Princess Fiona|Princesse Fiona"
+        },
+        {
+          "text": "A biscuit who lost his legs to a lord, and still told him where to go: not my gumdrop buttons",
+          "answer": "Gingy|Ti Biscuit|Gingerbread Man|Ti Biscuit|Ti-Biscuit|Tibiscuit|Gingerbread"
+        },
+        {
+          "text": "She guarded a tower with fire, then fell for the donkey who talked his way past her",
+          "answer": "Dragon|Dragonne|Dragonne|The Dragon"
+        },
+        {
+          "text": "She grants wishes in Far Far Away, for a price — and wanted her son to marry the princess",
+          "answer": "Fairy Godmother|La Bonne Fée Marraine|Godmother|La Bonne Fée Marraine|Bonne Fée Marraine|Marraine la Bonne Fée|Marraine"
+        },
+        {
+          "text": "A prince who arrived too late to rescue the princess, and blamed an ogre for it ever after",
+          "answer": "Prince Charming|Prince Charmant|Charming|Prince Charmant|Charmant"
+        },
+        {
+          "text": "An egg, an inventor and a thief, who grew up in an orphanage with a cat and dreamed of magic beans",
+          "answer": "Humpty Dumpty|Humpty|Humpty Alexander Dumpty|Humpty Alexandre Dumpty|The Egg"
+        },
+        {
+          "text": "A cat thief with paws so soft that no one hears her steal",
+          "answer": "Kitty Softpaws|Kitty Pattes de Velours|Kitty|Kitty Pattes de Velours|Kitty Pattes-de-Velours"
+        },
+        {
+          "text": "A white wolf in a black cloak, who whistles before he comes for a cat who wasted eight lives",
+          "answer": "Death|La Mort|The Wolf|Wolf|Lobo|La Mort|Le Loup|Grim Reaper"
+        },
+        {
+          "text": "A puppet whose nose grows when he lies — so he answers questions very, very carefully",
+          "answer": "Pinocchio"
+        },
+        {
+          "text": "A little dog dressed as a cat, who only wants to be a therapy dog and sees the good in everyone",
+          "answer": "Perrito|Perro|Pero"
+        },
+        {
+          "text": "She and her three bears run a crime family, after the wish that will give them a home",
+          "answer": "Goldilocks|Boucle d’Or|Boucle d'Or|Boucle d’Or|Boucles d’Or|Boucles d'Or"
+        },
+        {
+          "text": "A baker who ate the magic of a whole bag of enchanted things and wanted the rest",
+          "answer": "Big Jack Horner|Jack Horner|Grand Jack Horner"
+        },
+        {
+          "text": "A little man who signs contracts, and once made an ogre trade a day of his life away",
+          "answer": "Rumpelstiltskin|Tracassin|Rumple|Tracassin|Rumplestiltskin"
+        },
+        {
+          "text": "The short ruler of Duloc, who wanted a perfect kingdom with no fairy-tale creatures in it, and a princess to make him king",
+          "answer": "Lord Farquaad|Farquaad|Lord Farquad|Farquad"
+        },
+        {
+          "text": "Fiona's father, a king who was a frog before he was a man",
+          "answer": "King Harold|Le Roi Harold|Harold|Le Roi Harold|Roi Harold"
+        },
+        {
+          "text": "A mirror on the wall who shows the princesses Farquaad can marry, like a dating show",
+          "answer": "Magic Mirror|Le Miroir Magique|Mirror|Le Miroir Magique|Miroir Magique"
+        },
+        {
+          "text": "A gingerbread giant baked to storm a castle",
+          "answer": "Mongo"
+        },
+        {
+          "text": "A teenager at Worcestershire Academy who did not want to be king of Far Far Away",
+          "answer": "Arthur Pendragon|Artie|Arthur"
+        },
+        {
+          "text": "Three brothers whose houses were blown down, who now say everything in German",
+          "answer": "Three Little Pigs|Les Trois Petits Cochons|The Three Little Pigs|Les Trois Petits Cochons|Trois Petits Cochons|Pigs"
+        }
+      ]
+    }
   }
 ]

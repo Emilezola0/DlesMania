@@ -2,10 +2,10 @@ import { ANOMALIES } from '../gacha/anomalies';
 import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
-import { CardBack, CardFace, CardMissing, useCardForm } from '../gacha/CardView';
+import { CardBack, CardFace, CardLifts, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
-import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
 import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { SellSpares } from '../gacha/SellSpares';
@@ -102,9 +102,9 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     // Heard: a clip with its own sound, or one that is its voice line too (the same file). Given while it waits too: a
     // YouTube clip gets ready unheard, and is heard from the moment it's let go.
     () =>
-      card.clipSound || (!!form.clip && card.audio === form.clip)
+      clipHasSound(card, form.clip) || (!!form.clip && card.audio === form.clip)
         ? {
-            volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, card.clipSound ? 'clip' : 'voice'),
+            volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, clipHasSound(card, form.clip) ? 'clip' : 'voice'),
             // Heard once through: back to its picture (not frozen on its last frame), ready to play again.
             onEnded: () => (setStarted(null), setShowing(null)),
             onNoSound: () => {},
@@ -175,9 +175,11 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const ry = (dragging ? rot.y : 0) + spin;
   // Held, the foil takes its light from the turn: a few degrees move it across the whole card (let go, the sway's light).
   const face = ((((ry % 360) + 540) % 360) - 180) as number;
+  // Turned round (its back towards you): Firefox's rings swap their halves (OmniRingsAround).
+  const facingAway = Math.cos((ry * Math.PI) / 180) * Math.cos((rx * Math.PI) / 180) < 0;
   const foil = dragging ? { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) } : undefined;
   return (
-    <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
+    <div className="card-inspect fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
       <div className="my-auto w-full space-y-4 py-6" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
         <div
           className="cursor-grab touch-none select-none [perspective:1000px] active:cursor-grabbing"
@@ -196,12 +198,19 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {[1, 2, 3, 4, 5].map((z) => (
               <div key={z} className="absolute inset-0 rounded-[7%]" style={{ transform: `translateZ(-${z}px)`, background: card.rarity === 'mythic' ? '#7e22ce' : card.rarity === 'legendary' ? '#b45309' : '#2a2438' }} />
             ))}
-            <div key={flare} className={`[backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
+            {/* Firefox's Omni rings, beside the card in its 3D space: under it, then over it (see OmniRingsAround). Not
+                inside the face's own layer: Firefox doesn't draw 3D layers inside a hidden-backface one. */}
+            {card.rarity === 'omni' && <OmniRingsAround layer="under" flipped={facingAway} />}
+            <div key={flare} className={`relative [backface-visibility:hidden] [transform-style:preserve-3d] ${flare ? (grade === HELL_GRADE ? 'card-grade-collapse' : grade === 6 || grade >= ELEMENT_GRADE ? 'card-grade-flare-top' : 'card-grade-flare') : ''}`}>
               <CardFace card={card} count={count} tilt={false} foil={foil} cssLight depth animate clipHeld={clipHeld} clipSound={clipSound} onClipPlaying={onClipPlaying} />
             </div>
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
             </div>
+            {/* Firefox: the crown and embers, standing out beside the flat face (see CardLifts); out of the face's hidden-back
+                layer, which cuts off in 3D whatever goes past its edges. */}
+            <CardLifts card={card} />
+            {card.rarity === 'omni' && <OmniRingsAround layer="over" flipped={facingAway} />}
             </div>
             </div>
           </div>
@@ -757,7 +766,7 @@ function CardVolume({ card }: { card: Card }) {
   if (card.rarity !== 'mythic' && card.rarity !== 'omni') return null;
   const rows = [
     ...(card.voice ? [{ kind: 'voice' as const, label: '🗣️ Voice line' }] : []),
-    ...(card.clipSound ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
+    ...(clipHasSound(card, card.clip) || clipHasSound(card, card.awaken?.clip) ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
   ];
   if (!rows.length) return null;
   return (

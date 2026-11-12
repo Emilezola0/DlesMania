@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { GAME_META, GAME_TYPES } from '../games/meta';
-import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, totalRounds } from '../lib/boss';
+import { DIFFICULTIES, DIFFICULTY_IDS, PHASES, difficultyIn, phaseIn, totalRounds } from '../lib/boss';
+import { useT } from '../boss/lang';
+import { useProgress } from '../store/progress';
 import { useUi, type RulesTab } from '../store/ui';
 import { Glyph } from './Glyph';
 import { ClassicDemo, FinalDemo, SwipeDemo, TilesDemo, TypingDemo } from './RulesDemos';
@@ -28,7 +30,15 @@ function Step({ n, title, children, demo }: { n: string; title: string; children
 }
 
 /** A note shared by both tabs: how typed answers are judged. */
-function Forgiving() {
+function Forgiving({ fr = false }: { fr?: boolean }) {
+  if (fr)
+    return (
+      <p className="rounded-md border border-rule bg-card/70 px-3 py-2 text-sm text-ink-soft">
+        <b className="text-ink">La frappe est indulgente.</b> Majuscules, accents et ponctuation ne comptent pas (<i>chateau</i> = <i>Château</i>), les noms
+        anglais comptent autant que les français (<i>Spirited Away</i>, <i>Severus Snape</i>, <i>Iron Ingot</i>), et les petites fautes passent — une
+        pour les mots de 3 à 5 lettres, deux pour les plus longs.
+      </p>
+    );
   return (
     <p className="rounded-md border border-rule bg-card/70 px-3 py-2 text-sm text-ink-soft">
       <b className="text-ink">Typing is forgiving.</b> Capitals, accents and punctuation don't matter (<i>chateau</i> = <i>Château</i>), French names
@@ -76,40 +86,53 @@ function DailyRules() {
 
 function BossRules() {
   const demos = [<TypingDemo key="1" />, <SwipeDemo key="2" />, <FinalDemo key="3" />];
+  const fr = useProgress((s) => s.nameLang) === 'fr';
+  const t = useT();
   return (
     <div className="space-y-6">
-      <Step n="⚔" title="The fight">
+      <Step n="⚔" title={t('The fight', 'Le combat')}>
         <p>
-          Pick a domain, a franchise and a difficulty, then face its guardian. Its life bar has one segment per round: win a round to break one. Lose
-          a round and the boss strikes — you lose one of your three hearts and retry with new content. Lose all three and the fight is over.
+          {t(
+            'Pick a domain, a franchise and a difficulty, then face its guardian. Its life bar has one segment per round: win a round to break one. Lose a round and the boss strikes — you lose one of your three hearts and retry with new content. Lose all three and the fight is over.',
+            'Choisis un domaine, une franchise et une difficulté, puis affronte son gardien. Sa barre de vie a un segment par manche : gagne une manche pour en briser un. Perds une manche et le boss frappe — tu perds un de tes trois cœurs et tu recommences avec un nouveau contenu. Perds-les tous les trois et le combat est fini.',
+          )}
         </p>
       </Step>
-      <Step n="◆" title="Three difficulties">
+      <Step n="◆" title={t('The difficulties', 'Les difficultés')}>
         <ul className="space-y-1.5">
           {DIFFICULTY_IDS.map((id) => {
             const d = DIFFICULTIES[id];
             return (
               <li key={id}>
-                <b className="text-ink">{d.label}</b> — {totalRounds(d)} rounds, ×{d.scoreMultiplier} points. {d.blurb}
+                <b className="text-ink">{difficultyIn(id, fr).label}</b> — {totalRounds(d)} {t('rounds', 'manches')}, ×{d.scoreMultiplier} points. {difficultyIn(id, fr).blurb}
               </li>
             );
           })}
         </ul>
-        <p>
-          On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
-          and a swipe made before a card has settled counts as a mistake. Medium and Hard add a fourth phase, the Name Chain: the guardian names something, you name another of the same kind, and nothing can come back. And on Hard, when the life bar runs dry… one last test: the guardian's Signature, a clue on one very specific side of its world (a laugh, an item's stats, a Patronus…). Name it right and it falls; a wrong answer takes every heart, with one last chance.
-        </p>
+        {fr ? (
+          <p>
+            En Difficile, certaines cartes inversent les zones (un bandeau affiche <i>⇄ zones inversées</i> et les étiquettes changent de côté), des zones peuvent s’allumer pour te leurrer,
+            et un glissement fait avant qu’une carte se soit posée compte comme une erreur. Moyen et Difficile ajoutent une quatrième phase, la Chaîne de noms : le gardien nomme quelque chose, tu en nommes un autre du même genre, et rien ne peut revenir. Et en Difficile, quand la barre de vie est vide… une dernière épreuve : la Signature du gardien, un indice sur un aspect très précis de son monde (un rire, les statistiques d’un objet, un Patronus…). Trouve le bon nom et il tombe ; une mauvaise réponse prend tous tes cœurs, avec une dernière chance.
+          </p>
+        ) : (
+          <p>
+            On Hard, some cards swap the zones (a banner flashes <i>⇄ zones reversed</i> and the labels change sides), zones may glow as a decoy,
+            and a swipe made before a card has settled counts as a mistake. Medium and Hard add a fourth phase, the Name Chain: the guardian names something, you name another of the same kind, and nothing can come back. And on Hard, when the life bar runs dry… one last test: the guardian's Signature, a clue on one very specific side of its world (a laugh, an item's stats, a Patronus…). Name it right and it falls; a wrong answer takes every heart, with one last chance.
+          </p>
+        )}
       </Step>
       {PHASES.map((p, i) => (
-        <Step key={p.name} n={p.roman} title={p.name} demo={demos[i]}>
-          <p>{p.how}</p>
-          {i === 0 && <p>Exact names count the moment you type them; a name with a typo counts when you press Enter or pause.</p>}
-          {i === 1 && <p>Cards show only a picture: impostors come from look-alike franchises. Each card has its own short timer.</p>}
-          {i === 2 && <p>Pick from the suggestions or type the name yourself. The picture clears up as the clock runs down.</p>}
+        <Step key={p.name} n={p.roman} title={phaseIn(i, fr).name} demo={demos[i]}>
+          <p>{phaseIn(i, fr).how}</p>
+          {i === 0 && <p>{t('Exact names count the moment you type them; a name with a typo counts when you press Enter or pause.', 'Les noms exacts comptent dès que tu les tapes ; un nom avec une faute compte quand tu appuies sur Entrée ou que tu marques une pause.')}</p>}
+          {i === 1 && <p>{t('Cards show only a picture: impostors come from look-alike franchises. Each card has its own short timer.', 'Les cartes ne montrent qu’une image : les imposteurs viennent de franchises qui se ressemblent. Chaque carte a son propre petit chrono.')}</p>}
+          {i === 2 && <p>{t('Pick from the suggestions or type the name yourself. The picture clears up as the clock runs down.', 'Choisis parmi les suggestions ou tape le nom toi-même. L’image s’éclaircit à mesure que le chrono s’écoule.')}</p>}
         </Step>
       ))}
-      <p className="text-sm text-ink-soft">Your score adds phases won, hearts kept, accuracy and speed. Best scores and times are saved per boss.</p>
-      <Forgiving />
+      <p className="text-sm text-ink-soft">
+        {t('Your score adds phases won, hearts kept, accuracy and speed. Best scores and times are saved per boss.', 'Ton score additionne les phases gagnées, les cœurs gardés, la précision et la vitesse. Les meilleurs scores et temps sont gardés pour chaque boss.')}
+      </p>
+      <Forgiving fr={fr} />
     </div>
   );
 }
@@ -120,6 +143,7 @@ export function RulesModal() {
   const open = useUi((s) => s.openRules);
   const close = useUi((s) => s.closeRules);
   const closeBtn = useRef<HTMLButtonElement>(null);
+  const t = useT();
 
   useEffect(() => {
     if (!tab) return;
@@ -149,14 +173,14 @@ export function RulesModal() {
           <div>
             <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Règles du jeu</p>
             <h2 id="rules-title" className="text-3xl font-bold sm:text-4xl">
-              How to Play
+              {t('How to Play', 'Comment jouer')}
             </h2>
           </div>
           <button
             ref={closeBtn}
             type="button"
             onClick={close}
-            aria-label="Close the rules"
+            aria-label={t('Close the rules', 'Fermer les règles')}
             className="rounded-md p-2 text-2xl leading-none text-ink-soft transition hover:bg-tile hover:text-ink"
           >
             ×
@@ -164,18 +188,18 @@ export function RulesModal() {
         </div>
 
         <div className="mt-4 flex gap-1 border-b border-rule" role="tablist">
-          {TABS.map((t) => (
+          {TABS.map((x) => (
             <button
-              key={t.id}
+              key={x.id}
               type="button"
               role="tab"
-              aria-selected={tab === t.id}
-              onClick={() => open(t.id)}
+              aria-selected={tab === x.id}
+              onClick={() => open(x.id)}
               className={`-mb-px border-b-2 px-3 py-2 font-display text-sm font-semibold tracking-wider transition ${
-                tab === t.id ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
+                tab === x.id ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
               }`}
             >
-              {t.label}
+              {x.id === 'daily' ? t(x.label, 'Quotidien et partie libre') : x.label}
             </button>
           ))}
         </div>
@@ -185,7 +209,7 @@ export function RulesModal() {
         </div>
 
         <button type="button" onClick={close} className="btn-ink mt-6 w-full rounded-md py-3 font-display font-bold tracking-widest">
-          Got it
+          {t('Got it', 'Compris')}
         </button>
       </div>
     </div>
@@ -195,12 +219,13 @@ export function RulesModal() {
 /** A small "?" / "How to play" button that opens the rules on a given tab. */
 export function RulesButton({ tab, label, className = '' }: { tab: RulesTab; label?: string; className?: string }) {
   const open = useUi((s) => s.openRules);
+  const t = useT();
   return (
     <button
       type="button"
       onClick={() => open(tab)}
-      title="How to play"
-      aria-label={label ?? 'How to play'}
+      title={t('How to play', 'Comment jouer')}
+      aria-label={label ?? t('How to play', 'Comment jouer')}
       className={`inline-flex items-center gap-1.5 rounded-md border border-rule-strong px-2.5 py-1.5 font-display text-xs font-semibold tracking-wider text-ink-soft transition hover:border-ink hover:text-ink ${className}`}
     >
       <span className="grid size-5 place-items-center rounded-full border border-current text-[11px] font-bold">?</span>

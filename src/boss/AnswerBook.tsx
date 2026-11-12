@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { frenchOf } from '../lib/french';
 import type { Boss } from '../types';
 import { finaleFaces } from './faces';
+import { bossTextIn, useT } from './lang';
+import { useProgress } from '../store/progress';
 
 /** One accepted answer: its name, every other spelling the fight takes, and a picture when it has one. */
 interface Entry {
@@ -20,7 +22,7 @@ const key = (s: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '');
 
-function entry(name: string, spellings: (string | undefined)[], set: string, extra: Partial<Entry> = {}): Entry {
+function entryOf(name: string, spellings: (string | undefined)[], set: string, extra: Partial<Entry> = {}): Entry {
   const seen = new Set([key(name)]);
   const also = [...spellings, frenchOf(name, set)].filter((s): s is string => !!s && !seen.has(key(s)) && !!seen.add(key(s)));
   return { name, also, ...extra };
@@ -33,45 +35,54 @@ interface Section {
   groups: { label?: string; entries: Entry[] }[];
 }
 
-function sectionsOf(boss: Boss): Section[] {
+function sectionsOf(boss: Boss, lang: string): Section[] {
   const set = boss.id;
+  const fr = lang === 'fr';
+  const t = (en: string, f: string) => (fr ? f : en);
+  const bt = (s: string) => bossTextIn(boss, s, lang);
+  // In French, an entry's French name comes first (its English one among the other spellings).
+  const entry = (name: string, spellings: (string | undefined)[], extra: Partial<Entry> = {}) => {
+    const e = entryOf(name, spellings, set, extra);
+    const own = fr ? frenchOf(name, set) : undefined;
+    return own ? { ...e, name: own, also: [name, ...e.also.filter((s) => s !== own)] } : e;
+  };
   const out: Section[] = [
     {
       id: 'blitz',
-      title: 'I · Knowledge Blitz',
-      groups: boss.blitz.map((p) => ({ label: p.prompt, entries: p.answers.map((a) => entry(a.name, a.aliases, set)) })),
+      title: t('I · Knowledge Blitz', 'I · Blitz de savoir'),
+      groups: boss.blitz.map((p) => ({ label: bt(p.prompt), entries: p.answers.map((a) => entry(a.name, a.aliases)) })),
     },
     {
       id: 'radar',
       title: 'II · Radar',
-      note: 'Cards from the franchise, and the look-alikes from elsewhere.',
+      note: t('Cards from the franchise, and the look-alikes from elsewhere.', 'Les cartes de la franchise, et les sosies venus d’ailleurs.'),
       groups: [
-        { label: `From ${boss.franchise}`, entries: boss.radar.members.map((c) => entry(c.label, [...(c.aliases ?? []), c.fr], set, { image: c.image })) },
-        { label: 'Impostors', entries: boss.radar.impostors.map((c) => entry(c.label, [], set, { image: c.image })) },
+        { label: t(`From ${boss.franchise}`, `De ${boss.franchise}`), entries: boss.radar.members.map((c) => entry(c.label, [...(c.aliases ?? []), c.fr], { image: c.image })) },
+        { label: t('Impostors', 'Imposteurs'), entries: boss.radar.impostors.map((c) => entry(c.label, [], { image: c.image })) },
       ],
     },
     {
       id: 'finale',
-      title: 'III · Final Blow',
-      note: 'Every face the Final Blow can show.',
-      groups: [{ entries: finaleFaces(boss).map((c) => entry(c.label, [...(c.aliases ?? []), c.fr], set, { image: c.image })) }],
+      title: t('III · Final Blow', 'III · Coup de grâce'),
+      note: t('Every face the Final Blow can show.', 'Chaque visage que le Coup de grâce peut montrer.'),
+      groups: [{ entries: finaleFaces(boss).map((c) => entry(c.label, [...(c.aliases ?? []), c.fr], { image: c.image })) }],
     },
   ];
   if (boss.secret?.categories.length)
     out.push({
       id: 'chain',
-      title: 'Secret · Name Chain',
-      groups: boss.secret.categories.map((c) => ({ label: c.label, entries: c.entities.map((e) => entry(e.name, e.aliases, set)) })),
+      title: t('Secret · Name Chain', 'Secret · Chaîne de noms'),
+      groups: boss.secret.categories.map((c) => ({ label: bt(c.label), entries: c.entities.map((e) => entry(e.name, e.aliases)) })),
     });
   if (boss.signature)
     out.push({
       id: 'signature',
       title: `Secret · Signature`,
-      note: boss.signature.prompt,
+      note: bt(boss.signature.prompt),
       groups: [
         {
           entries: boss.signature.clues.map((c) =>
-            entry(c.answer.name, c.answer.aliases, set, c.image ? { image: c.image } : { clue: c.text ? [c.text, c.effect].filter(Boolean).join(' — ') : c.ingredients ? c.ingredients.join(' + ') : '🔊 A sound clip' }),
+            entry(c.answer.name, c.answer.aliases, c.image ? { image: c.image } : { clue: c.text ? [c.text, c.effect].filter((x): x is string => !!x).map(bt).join(' — ') : c.ingredients ? c.ingredients.join(' + ') : t('🔊 A sound clip', '🔊 Un extrait sonore') }),
           ),
         },
       ],
@@ -84,7 +95,9 @@ function sectionsOf(boss: Boss): Section[] {
  * answer wasn't accepted, or learn the ones missed. A button at the top of every fight opens it.
  */
 export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void }) {
-  const sections = useMemo(() => sectionsOf(boss), [boss]);
+  const lang = useProgress((s) => s.nameLang);
+  const t = useT();
+  const sections = useMemo(() => sectionsOf(boss, lang), [boss, lang]);
   const [tab, setTab] = useState(sections[0].id);
   const [query, setQuery] = useState('');
   const closeBtn = useRef<HTMLButtonElement>(null);
@@ -119,11 +132,11 @@ export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void 
           <div>
             <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{boss.franchise}</p>
             <h2 id="answers-title" className="text-3xl font-bold sm:text-4xl">
-              Every accepted answer
+              {t('Every accepted answer', 'Toutes les réponses acceptées')}
             </h2>
-            <p className="mt-1 text-sm text-ink-soft">Grey names are other spellings that count too. Small typos are forgiven.</p>
+            <p className="mt-1 text-sm text-ink-soft">{t('Grey names are other spellings that count too. Small typos are forgiven.', 'Les noms en gris sont d’autres écritures qui comptent aussi. Les petites fautes sont pardonnées.')}</p>
           </div>
-          <button ref={closeBtn} type="button" onClick={onClose} aria-label="Close" className="rounded-md p-2 text-2xl leading-none text-ink-soft transition hover:bg-tile hover:text-ink">
+          <button ref={closeBtn} type="button" onClick={onClose} aria-label={t('Close', 'Fermer')} className="rounded-md p-2 text-2xl leading-none text-ink-soft transition hover:bg-tile hover:text-ink">
             ×
           </button>
         </div>
@@ -132,7 +145,7 @@ export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void 
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search every phase…"
+          placeholder={t('Search every phase…', 'Chercher dans toutes les phases…')}
           className="mt-4 w-full rounded-md border border-rule-strong bg-card px-3 py-2 text-sm outline-none focus:border-ink"
         />
 
@@ -187,7 +200,7 @@ export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void 
               </section>
             );
           })}
-          {q && shown.every((s) => !s.groups.some((g) => g.entries.some(matches))) && <p className="text-center text-sm text-ink-soft">Not an answer anywhere in this fight.</p>}
+          {q && shown.every((s) => !s.groups.some((g) => g.entries.some(matches))) && <p className="text-center text-sm text-ink-soft">{t('Not an answer anywhere in this fight.', 'Ce n’est une réponse nulle part dans ce combat.')}</p>}
         </div>
       </div>
     </div>
@@ -196,12 +209,13 @@ export function AnswerBook({ boss, onClose }: { boss: Boss; onClose: () => void 
 
 /** The 📖 button that opens the book. */
 export function AnswerBookButton({ onClick, label }: { onClick: () => void; label?: string }) {
+  const t = useT();
   return (
     <button
       type="button"
       onClick={onClick}
-      title="Every accepted answer"
-      aria-label={label ?? 'Every accepted answer'}
+      title={t('Every accepted answer', 'Toutes les réponses acceptées')}
+      aria-label={label ?? t('Every accepted answer', 'Toutes les réponses acceptées')}
       className="inline-flex items-center gap-1.5 rounded-md border border-rule-strong px-2.5 py-1.5 font-display text-xs font-semibold tracking-wider text-ink-soft transition hover:border-ink hover:text-ink"
     >
       <span aria-hidden>📖</span>
