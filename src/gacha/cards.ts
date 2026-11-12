@@ -671,9 +671,10 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // Mark Evans awakened: his clip is God Catch (the golden god rising out of the clouds), so is his voice — the anime's shout of it (episode 127, from the Inazuma Eleven Wiki's own video of the technique).
   'inazuma:omni': { voice: 'God Catch!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/%28IE_%28127%29%29_God_Catch_G5.mp4/revision/latest?cb=20241015044228#t=8.3,10.6' },
   'avatar:omni': { voice: 'Yip yip!', clipSound: true },
-  // Puss in Boots's and Lord Farquaad's clips are heard: the opening's song for one, the Muffin Man questioning for the other.
+  // Shrek's Omnis' clips are heard: Puss in Boots's opening song, Lord Farquaad's Muffin Man questioning, Death's duel.
   'shrek:omni': { clipSound: true },
   'shrek:omni-farquaad': { clipSound: true },
+  'shrek:omni-death': { clipSound: true },
   // ── Recordings added to the Mythics and Omnis that only had a written line (the browser read it) ──
   // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
   // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
@@ -840,7 +841,8 @@ const CLIPS: Record<string, string> = {
   'hxh:omni': 'https://media.tenor.com/6cu5bNft-XMAAAPo/killua-godspeed.mp4',
   'shrek:omni': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/puss-in-boots.mp4`,
   'shrek:omni-farquaad': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/lord-farquaad.mp4`,
-  'shrek:omni-death': 'https://media.tenor.com/XkFN0dDrPWwAAAPo/death-puss-in-boots-death-whistle.mp4',
+  // Death: the owner's pick, Puss in Boots against Death (Rotten Tomatoes Family, 0:07–0:33), heard.
+  'shrek:omni-death': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/death.mp4`,
   'shrek:mythic': 'https://media.tenor.com/Y3dIFWLmGv0AAAPo/shrek-gingerbread.mp4',
   'shrek:mythic-2': 'https://media.tenor.com/cxsbEBVwz28AAAPo/shrek-roar.mp4',
   'shrek:mythic-dragon': 'https://media.tenor.com/jf9C41vNdrwAAAPo/shrek-dragon.mp4',
@@ -1407,7 +1409,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   },
   // Death, the Wolf of The Last Wish (the Shrek Wiki's render, hood down, sickles out). The owner's pick: his whistle, the
   // one Puss hears before every sight of him, and back at the end of the film, when Death lets him go — for now. The
-  // whistle is his voice (myinstants), his clip the whistle too (Tenor, silent).
+  // whistle is his voice (myinstants), his clip the owner's pick, his duel with Puss (in CLIPS).
   {
     set: 'shrek',
     id: 'shrek:omni-death',
