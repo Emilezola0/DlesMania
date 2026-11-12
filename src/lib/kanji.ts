@@ -42,19 +42,15 @@ ${awake ? '<circle cx="200" cy="200" r="186" fill="none" stroke="#f5c542" stroke
 const SEALS = new Set(['鬼']);
 
 /**
- * A kanji alone on nothing (Who's That?). `swollen`: its strokes thickened until they run into one another, then
- * the gaps inside closed (grown, then shrunk back as much: the outline stays, the middle fills), so blacked out
- * only its outline shows, the inside one dark mass (the owner's call); plain, it's the answer shown.
+ * A kanji alone on nothing (Who's That?). `swollen`: its strokes thickened until they run into one another; Who's
+ * That? then fills it solid inside its outline (src/lib/cutout.ts, 'fill'), so blacked out only its outer shape
+ * shows (the owner's call). Plain, it's the answer shown.
  */
-const CLOSE = 16;
 export const kanjiGlyph = (k: string, swollen = false) =>
   `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">${
-      swollen
-        ? `<defs><filter id="c" x="-10%" y="-10%" width="120%" height="120%"><feMorphology operator="dilate" radius="${CLOSE}"/><feMorphology operator="erode" radius="${CLOSE}"/></filter></defs>`
-        : ''
-    }<text x="200" y="208" font-family="${FONT}" font-size="${swollen ? 270 : 300}" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917"${
-      swollen ? ' stroke="#1c1917" stroke-width="34" stroke-linejoin="round" stroke-linecap="round" filter="url(#c)"' : ''
+    // A size of its own: drawn on a canvas to be filled, an SVG without one has none in Firefox.
+    `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><text x="200" y="208" font-family="${FONT}" font-size="${swollen ? 270 : 300}" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917"${
+      swollen ? ' stroke="#1c1917" stroke-width="34" stroke-linejoin="round" stroke-linecap="round"' : ''
     }>${k}</text></svg>`,
   )}`;
 

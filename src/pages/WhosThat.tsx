@@ -250,7 +250,8 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   // requests) before the run moves on without it.
   const [retried, setRetried] = useState<string | null>(null);
   const source = card && retried === card.image ? `${card.image}${card.image.includes('?') ? '&' : '?'}retry=1` : card?.image;
-  const picture = useCutout(source, !!card?.series.cutout);
+  // A kanji is filled solid inside its outline: only its outer shape to go by (the owner's call).
+  const picture = useCutout(source, !!card && (!!card.series.cutout || isKanji(card)), card && isKanji(card) ? 'fill' : 'white');
   const isAll = playKey.startsWith(ALL_PREFIX);
   const score = named.length;
   const level = mode === 'rising' ? Math.min(MAX_LEVEL, Math.floor(score / LEVEL_EVERY)) : 0;
@@ -274,7 +275,7 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
   useEffect(() => {
     for (let k = 1; k <= 3; k++) {
       const next = order[index + k];
-      if (next) (next.series.cutout ? prepareCutout(next.image) : (new Image().src = next.image));
+      if (next) (isKanji(next) ? prepareCutout(next.image, 'fill') : next.series.cutout ? prepareCutout(next.image) : (new Image().src = next.image));
     }
   }, [index, order]);
 
