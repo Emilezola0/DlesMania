@@ -1,7 +1,8 @@
 // The Defence Deck's battle (Friends → Defence Deck), with no imports so scripts/defence-sim.mjs can run it as is.
 // Two teams of five cards, each in its order, within a points budget. Their first cards duel; the loser is out, the
 // winner stays (a little tired) and meets the other side's next card. A team with no card left loses.
-// A duel: the element first (a weakness beats any power), then the power; equal power, both are out.
+// A duel: the higher power wins (equal power, both are out); a card with the element's edge over the other gets
+// DEFENCE.edge power for that duel. Before EDGE_FROM, the element alone decided (a weakness beat any power).
 // Characters fight; a technique hits the card it meets as it arrives; a place, once out, lifts every card after it.
 // An Altered card's anomaly gives it a twist. Each day an arena rule changes something for everyone.
 
@@ -19,7 +20,7 @@ export const DEFENCE = {
   /** Power for every two grades above the first (grades go to 8: +3 at most). */
   perGrade: 1,
   /** The defence fights at home: each of its cards gets this. */
-  home: 3,
+  home: 1,
   /** Light shines: Light cards get this. */
   light: 0,
   /** Every two points of the budget left unspent: each card of the team gets this. */
@@ -34,6 +35,8 @@ export const DEFENCE = {
   kindMalus: 3,
   /** What each of a team's places lifts the cards after it, once it is out. */
   placeLift: 2,
+  /** A card whose element beats the other's gets this much power for that duel. */
+  edge: 6,
   /** A winner stays, this much weaker for each duel it has won. */
   fatigue: 2,
   /** What a battle pays: the attacker for a win, the defender for each attack held off. */
@@ -113,17 +116,32 @@ export function arenaOf(day: string): Arena {
 export const costOf = (team: { rarity: Rarity }[]) => team.reduce((n, c) => n + DEFENCE.cost[c.rarity], 0);
 export const teamOk = (team: { rarity: Rarity; id: string }[]) => team.length === DEFENCE.size && costOf(team) <= DEFENCE.budget && new Set(team.map((c) => c.id)).size === team.length;
 
-/** A card's power before the battle's own changes: rarity, grade, kind, crew, arena. */
-export function basePower(c: Fighter, team: Fighter[], arena: Arena): number {
-  let p = DEFENCE.power[c.rarity] + DEFENCE.perGrade * Math.floor(Math.max(0, Math.min(7, c.grade - 1)) / 2);
-  if (c.kind !== 'fighter') p -= DEFENCE.kindMalus;
-  if (team.filter((t) => t.set === c.set).length >= DEFENCE.crewSize) p += arena.crew ?? DEFENCE.crew;
-  if (c.element === 'light') p += DEFENCE.light;
+/** The day the element became a power bonus (DEFENCE.edge) instead of a sure win: battles of earlier days replay as they were. */
+export const EDGE_FROM = '2026-11-12';
+
+/** What a card's power in a duel is made of, piece by piece (shown as its power bar). */
+export type PartKey = 'rarity' | 'grade' | 'kind' | 'crew' | 'light' | 'spare' | 'arena' | 'home' | 'lift' | 'hit' | 'fatigue' | 'timelost' | 'underdog' | 'edge';
+export type Part = [PartKey, number];
+export const sumParts = (parts: Part[]) => parts.reduce((n, [, v]) => n + v, 0);
+
+/** A card's power before the battle's own changes, piece by piece: rarity, grade, kind, crew, unspent points, arena. */
+export function powerParts(c: Fighter, team: Fighter[], arena: Arena): Part[] {
+  const parts: Part[] = [['rarity', DEFENCE.power[c.rarity]]];
+  const add = (k: PartKey, v: number) => {
+    if (v) parts.push([k, v]);
+  };
+  add('grade', DEFENCE.perGrade * Math.floor(Math.max(0, Math.min(7, c.grade - 1)) / 2));
+  if (c.kind !== 'fighter') add('kind', -DEFENCE.kindMalus);
+  if (team.filter((t) => t.set === c.set).length >= DEFENCE.crewSize) add('crew', arena.crew ?? DEFENCE.crew);
+  if (c.element === 'light') add('light', DEFENCE.light);
   // Unspent points count once the team is whole (not while it's being made).
-  if (team.length === DEFENCE.size) p += DEFENCE.spare * Math.floor(Math.max(0, DEFENCE.budget - costOf(team)) / 2);
-  if ((arena.element && arena.element === c.element) || (arena.rarity && arena.rarity === c.rarity)) p += arena.bonus ?? 0;
-  return p;
+  if (team.length === DEFENCE.size) add('spare', DEFENCE.spare * Math.floor(Math.max(0, DEFENCE.budget - costOf(team)) / 2));
+  if ((arena.element && arena.element === c.element) || (arena.rarity && arena.rarity === c.rarity)) add('arena', arena.bonus ?? 0);
+  return parts;
 }
+
+/** A card's power before the battle's own changes. */
+export const basePower = (c: Fighter, team: Fighter[], arena: Arena) => sumParts(powerParts(c, team, arena));
 
 export type Side = 'a' | 'd';
 export type Reason = 'element' | 'power' | 'tie';
@@ -131,7 +149,23 @@ export type BattleEvent =
   | { t: 'enter'; side: Side; i: number }
   | { t: 'technique'; side: Side; i: number; hit: number }
   | { t: 'element'; side: Side; i: number; element: Element; why: 'mirror' | 'corrupted' }
-  | { t: 'duel'; a: number; d: number; pa: number; pd: number; ea: Element; ed: Element; winner: Side | 'both'; reason: Reason; inverted?: boolean }
+  | {
+      t: 'duel';
+      a: number;
+      d: number;
+      /** Each card's power this duel, the element's edge included, and what it's made of. */
+      pa: number;
+      pd: number;
+      parts: Record<Side, Part[]>;
+      ea: Element;
+      ed: Element;
+      /** The side with the element's edge (after an inverted card turned it over). */
+      edge: Side | null;
+      winner: Side | 'both';
+      /** 'element': the edge alone decided (battles before EDGE_FROM). */
+      reason: Reason;
+      inverted?: boolean;
+    }
   | { t: 'out'; side: Side; i: number }
   | { t: 'timelost'; side: Side; i: number }
   | { t: 'place'; side: Side; i: number; lift: number };
@@ -161,11 +195,12 @@ function seeded(seed: string): () => number {
  * The battle of an attacking team against a defence, both in their order. `seed` fixes the corrupted cards' luck (the
  * attacker, the defender and the day: the same attack always ends the same).
  */
-export function fight(attack: Fighter[], defence: Fighter[], arena: Arena, seed: string): Battle {
+export function fight(attack: Fighter[], defence: Fighter[], arena: Arena, seed: string, day?: string): Battle {
   const rand = seeded(seed);
+  const oldRules = !!day && day < EDGE_FROM;
   const events: BattleEvent[] = [];
   const teams: Record<Side, Fighter[]> = { a: attack, d: defence };
-  const base: Record<Side, number[]> = { a: attack.map((c) => basePower(c, attack, arena)), d: defence.map((c) => basePower(c, defence, arena) + DEFENCE.home) };
+  const base: Record<Side, Part[][]> = { a: attack.map((c) => powerParts(c, attack, arena)), d: defence.map((c) => [...powerParts(c, defence, arena), ['home', DEFENCE.home] as Part]) };
   const queue: Record<Side, number[]> = { a: attack.map((_, i) => i), d: defence.map((_, i) => i) };
   const lift: Record<Side, number> = { a: 0, d: 0 };
   const field: Record<Side, { i: number; wins: number; hit: number; fresh: boolean } | null> = { a: null, d: null };
@@ -210,22 +245,31 @@ export function fight(attack: Fighter[], defence: Fighter[], arena: Arena, seed:
     };
     const ea = elementOf('a', ca, cd);
     const ed = elementOf('d', cd, ca);
-    const powerOf = (s: Side, c: Fighter, vs: Fighter) => {
-      const f = field[s]!;
-      let p = base[s][f.i] + lift[s] - f.hit - (arena.noFatigue ? 0 : DEFENCE.fatigue * f.wins) - (timeUsed.has(`${s}${f.i}`) ? DEFENCE.timelost : 0);
-      if (arena.underdog && DEFENCE.cost[c.rarity] < DEFENCE.cost[vs.rarity]) p += arena.underdog;
-      return p;
-    };
-    const pa = powerOf('a', ca, cd);
-    const pd = powerOf('d', cd, ca);
     const wins = (x: Element, y: Element) => beats(x, y) || (!!arena.darkExposed && BASIC.includes(x) && y === 'darkness');
-    let winner: Side | 'both';
-    let reason: Reason;
     let elementSide: Side | null = wins(ea, ed) ? 'a' : wins(ed, ea) ? 'd' : null;
     // An inverted card turns the element's verdict over in its duels (two of them cancel out).
     const inverted = (ca.anomaly === 'inverted') !== (cd.anomaly === 'inverted');
     if (elementSide && inverted) elementSide = other(elementSide);
-    if (elementSide) {
+    const partsOf = (s: Side, c: Fighter, vs: Fighter): Part[] => {
+      const f = field[s]!;
+      const parts = [...base[s][f.i]];
+      const add = (k: PartKey, v: number) => {
+        if (v) parts.push([k, v]);
+      };
+      add('lift', lift[s]);
+      add('hit', -f.hit);
+      add('fatigue', arena.noFatigue ? 0 : -DEFENCE.fatigue * f.wins);
+      add('timelost', timeUsed.has(`${s}${f.i}`) ? -DEFENCE.timelost : 0);
+      if (arena.underdog && DEFENCE.cost[c.rarity] < DEFENCE.cost[vs.rarity]) add('underdog', arena.underdog);
+      if (!oldRules && elementSide === s) add('edge', DEFENCE.edge);
+      return parts;
+    };
+    const parts = { a: partsOf('a', ca, cd), d: partsOf('d', cd, ca) };
+    const pa = sumParts(parts.a);
+    const pd = sumParts(parts.d);
+    let winner: Side | 'both';
+    let reason: Reason;
+    if (oldRules && elementSide) {
       winner = elementSide;
       reason = 'element';
     } else if (pa !== pd) {
@@ -235,7 +279,7 @@ export function fight(attack: Fighter[], defence: Fighter[], arena: Arena, seed:
       winner = 'both';
       reason = 'tie';
     }
-    events.push({ t: 'duel', a: field.a.i, d: field.d.i, pa, pd, ea, ed, winner, reason, inverted: inverted && reason === 'element' ? true : undefined });
+    events.push({ t: 'duel', a: field.a.i, d: field.d.i, pa, pd, parts, ea, ed, edge: elementSide, winner, reason, inverted: inverted && elementSide ? true : undefined });
 
     for (const s of ['a', 'd'] as Side[]) {
       if (winner === s) {

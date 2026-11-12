@@ -6,6 +6,8 @@ import { readFileSync } from 'node:fs';
 import { ARENAS, BASIC, DEFENCE, costOf, fight } from '../src/friends/defence.ts';
 
 const N = Number(process.argv[2] ?? 40000);
+// Trying other numbers without editing the game: DEF_EDGE=8 DEF_HOME=1 node ...
+for (const k of ["edge", "home", "fatigue"]) if (process.env[`DEF_${k.toUpperCase()}`]) DEFENCE[k] = Number(process.env[`DEF_${k.toUpperCase()}`]);
 const ELEMENTS = JSON.parse(readFileSync(new URL('../src/data/card-elements.json', import.meta.url), 'utf8'));
 
 let seed = 12345;

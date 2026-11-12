@@ -2758,3 +2758,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .card-3d .card-omni-ring-flat,
   .card-3d .card-omni-ring-front { display: none !important; }
 }
+/* Defence Deck element wheel: the lit arrows flow towards the element beaten. */
+@keyframes dd-flow { to { stroke-dashoffset: -20; } }
+.dd-flow { animation: dd-flow 0.8s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .dd-flow { animation: none; } }

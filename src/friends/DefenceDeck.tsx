@@ -12,7 +12,8 @@ import { celebrate } from '../lib/fx';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
-import { arenaOf, basePower, costOf, DEFENCE, fight, LIGHT_BEATS, LIGHT_WEAK, teamOk, type Battle, type BattleEvent, type Element, type Side } from './defence';
+import { arenaOf, basePower, costOf, DEFENCE, fight, teamOk, type Battle, type BattleEvent, type Element, type Side } from './defence';
+import { DefenceRules, DuelBars, verdict } from './DefenceRules';
 import { cardElement, ELEMENT_INFO, fighterOf, fighters, teamCardOf, type TeamCard } from './defenceCards';
 import { thisMonday } from './league';
 
@@ -168,15 +169,6 @@ function TeamBuilder({ team, onChange, demo = false }: { team: TeamCard[]; onCha
   );
 }
 
-/** Why a duel went as it did, in a few words. */
-function verdict(e: Extract<BattleEvent, { t: 'duel' }>): string {
-  if (e.reason === 'tie') return `Equal power (${e.pa}): both are out`;
-  const w = e.winner === 'a' ? e.ea : e.ed;
-  const l = e.winner === 'a' ? e.ed : e.ea;
-  if (e.reason === 'element') return `${ELEMENT_INFO[w].icon} ${ELEMENT_INFO[w].name} beats ${ELEMENT_INFO[l].icon} ${ELEMENT_INFO[l].name}${e.inverted ? ' (inverted!)' : ''}`;
-  return `⚡ ${Math.max(e.pa, e.pd)} beats ${Math.min(e.pa, e.pd)}`;
-}
-
 /** A battle played back duel by duel. */
 function BattleView({ attack, defence, battle, names, mine, prize = 0 }: { attack: TeamCard[]; defence: TeamCard[]; battle: Battle; names: { a: string; d: string }; mine: Side; prize?: number }) {
   const duels = battle.events.map((e, k) => [e, k] as const).filter(([e]) => e.t === 'duel');
@@ -184,7 +176,7 @@ function BattleView({ attack, defence, battle, names, mine, prize = 0 }: { attac
   const [auto, setAuto] = useState(true);
   useEffect(() => {
     if (!auto || step >= duels.length) return;
-    const t = window.setTimeout(() => setStep((s) => s + 1), step === 0 ? 600 : 1600);
+    const t = window.setTimeout(() => setStep((s) => s + 1), step === 0 ? 600 : 2600);
     return () => window.clearTimeout(t);
   }, [auto, step, duels.length]);
   useEffect(() => {
@@ -259,6 +251,10 @@ function BattleView({ attack, defence, battle, names, mine, prize = 0 }: { attac
       </div>
     );
   };
+  const shortName = (side: Side, i: number) => {
+    const c = cardOf((side === 'a' ? attack : defence)[i]);
+    return c ? shownName(c.name, c.set) : '';
+  };
   const done = step >= duels.length;
   return (
     <div className="space-y-3 rounded-lg border border-rule p-3">
@@ -272,7 +268,10 @@ function BattleView({ attack, defence, battle, names, mine, prize = 0 }: { attac
               <span className="self-center font-display text-xl font-black text-ink-faint">VS</span>
               {fighterCard('d')}
             </div>
-            <p className="text-center font-display font-bold">{verdict(current)}</p>
+            <DuelBars key={step} e={current} names={{ a: shortName('a', current.a), d: shortName('d', current.d) }} />
+            <p key={`v${step}`} className="animate-round-in text-center font-display font-bold">
+              {verdict(current)}
+            </p>
             {notes.length > 0 && <ul className="space-y-0.5 text-center text-xs text-ink-soft">{notes.map(note)}</ul>}
           </div>
         ) : (
@@ -324,30 +323,6 @@ function demoTeam(seed: number): TeamCard[] {
   }
 }
 
-const rulesText = (
-  <details className="rounded-md border border-rule p-3 text-sm">
-    <summary className="cursor-pointer font-display font-bold">How a battle works</summary>
-    <ul className="mt-2 list-disc space-y-1 pl-5 text-ink-soft">
-      <li>
-        Each team: {DEFENCE.size} cards in order, at most {DEFENCE.budget} points. The first cards duel; the loser is out, the winner stays (−{DEFENCE.fatigue} power for each duel it has won) and meets the next card. A team with no card left loses; if both run out at once, the cheaper team wins (the defence on a tie).
-      </li>
-      <li>
-        A duel: the <b>element</b> first, a weakness beats any power. 🔥 Fire beats 🌪️ Air, Air beats ⛰️ Earth, Earth beats 🌊 Water, Water beats Fire. ☀️ Light beats {LIGHT_BEATS.map((e) => ELEMENT_INFO[e].name).join(' and ')} and 🌑 Darkness, and falls to {LIGHT_WEAK.map((e) => ELEMENT_INFO[e].name).join(' and ')}. Darkness falls only to Light. Otherwise the higher <b>power</b> wins; equal power, both are out.
-      </li>
-      <li>
-        Power: {RARITIES.map((r) => `${RARITY_INFO[r].name} ${DEFENCE.power[r]}`).join(', ')}; +{DEFENCE.perGrade} for every two grades; +{DEFENCE.crew} each with {DEFENCE.crewSize} cards of one franchise; +{DEFENCE.spare} each for every 2 points left unspent; the defence +{DEFENCE.home} at home.
-      </li>
-      <li>
-        A <b>technique</b> (−{DEFENCE.kindMalus} power) hits the card it meets as it arrives: −{DEFENCE.techniqueHit}. A <b>place</b> (−{DEFENCE.kindMalus}) once out lifts every card after it: +{DEFENCE.placeLift}.
-      </li>
-      <li>
-        Altered cards: {ANOMALIES.inverted.icon} Inverted turns the element&apos;s verdict over; {ANOMALIES.mirror.icon} Mirror takes the element of the card it meets; {ANOMALIES.corrupted.icon} Corrupted takes a random one each duel; {ANOMALIES.timelost.icon} Time-Lost slips away once instead of falling (back at the end, −{DEFENCE.timelost});{' '}
-        {ANOMALIES.void.icon} Void-Touched is hidden from attackers; {ANOMALIES.fake.icon} Fake Rarity looks like a Mythic to them.
-      </li>
-      <li>Legendaries, Mythics and Omnis have their own element; other cards one of the four basic ones. A card at the element grade fights with the element you chose for it.</li>
-    </ul>
-  </details>
-);
 
 type View = 'defence' | 'attack' | 'reports';
 
@@ -433,7 +408,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
     setBusy(true);
     setNote(null);
     try {
-      const result = fight(atk, def, arena, seedOf(me, target.uid, today));
+      const result = fight(atk, def, arena, seedOf(me, target.uid, today), today);
       const won = result.winner === 'a';
       const a = demo ? { uid: me, name: 'You', day: today, won, team, def: target.team, at: null } : await (await cloud()).recordAttack(target.uid, today, won, team, target.team);
       setDone((m) => new Map(m).set(target.uid, a));
@@ -459,7 +434,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
     if (!onMe?.length) return null;
     const wins = new Map<string, number>();
     for (const a of onMe) {
-      const r = fight(fighters(a.team), fighters(a.def), arenaOf(a.day), seedOf(a.uid, me, a.day));
+      const r = fight(fighters(a.team), fighters(a.def), arenaOf(a.day), seedOf(a.uid, me, a.day), a.day);
       for (const e of r.events) if (e.t === 'duel' && e.winner === 'd') wins.set(a.def[e.d].id, (wins.get(a.def[e.d].id) ?? 0) + 1);
     }
     const best = [...wins].sort((x, y) => y[1] - x[1])[0];
@@ -534,7 +509,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
                 <span className={`font-bold ${a.won ? 'text-coral' : 'text-hit'}`}>{a.won ? 'Broke through' : 'Held ✓'}</span>
                 <button
                   type="button"
-                  onClick={() => setBattle({ attack: a.team, defence: a.def, result: fight(fighters(a.team), fighters(a.def), arenaOf(a.day), seedOf(a.uid, me, a.day)), names: { a: byUid.get(a.uid)?.name ?? a.name, d: 'Your defence' }, mine: 'd' })}
+                  onClick={() => setBattle({ attack: a.team, defence: a.def, result: fight(fighters(a.team), fighters(a.def), arenaOf(a.day), seedOf(a.uid, me, a.day), a.day), names: { a: byUid.get(a.uid)?.name ?? a.name, d: 'Your defence' }, mine: 'd' })}
                   className="btn-paper rounded-md px-2 py-1 text-xs font-semibold"
                 >
                   ▶ Watch
@@ -590,7 +565,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
                   {a ? (
                     <button
                       type="button"
-                      onClick={() => setBattle({ attack: a.team, defence: a.def, result: fight(fighters(a.team), fighters(a.def), arena, seedOf(me, d.uid, today)), names: { a: 'You', d: byUid.get(d.uid)?.name ?? d.name }, mine: 'a' })}
+                      onClick={() => setBattle({ attack: a.team, defence: a.def, result: fight(fighters(a.team), fighters(a.def), arena, seedOf(me, d.uid, today), today), names: { a: 'You', d: byUid.get(d.uid)?.name ?? d.name }, mine: 'a' })}
                       className={`rounded-md px-3 py-1 text-sm font-bold ${a.won ? 'text-hit' : 'text-coral'}`}
                     >
                       {a.won ? '✓ Won' : '✗ Held'} · ▶
@@ -606,7 +581,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
           )}
         </div>
       )}
-      {rulesText}
+      <DefenceRules arena={arena} />
     </section>
   );
 }
