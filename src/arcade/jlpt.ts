@@ -165,6 +165,11 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
   const entry = pool[Math.floor(Math.random() * pool.length)];
   const readable = entry.reading && entry.reading !== entry.text;
   const ask: JlptAsk = readable && Math.random() < 0.4 ? 'reading' : 'meaning';
+  return questionOn(entry, ask, deck, Math.random);
+}
+
+/** A question on this entry, its three wrong answers drawn from `deck` (or where the entry comes from) with `rand`. */
+function questionOn(entry: JlptEntry, ask: JlptAsk, deck: JlptDeck, rand: () => number): JlptQuestion {
   const answer = shown(entry, ask);
   // Two answers that mean the same are a duplicate, whatever the case or a bracket ("five" and "Five",
   // "sky" and "sky, heavens"): one sense in common is enough.
@@ -174,7 +179,7 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
   const wrong = new Set<string>();
   // A small deck (a short review list) borrows its wrong answers from where the entry comes from.
   const others = deck.entries.length >= 12 ? deck.entries : [...deck.entries, ...homeDeck(entry).entries];
-  for (const e of shuffle(others, Math.random)) {
+  for (const e of shuffle(others, rand)) {
     if (wrong.size >= 3) break;
     const s = shown(e, ask);
     if (!s || e.text === entry.text || clash(s)) continue;
@@ -182,7 +187,20 @@ export function nextQuestion(deck: JlptDeck, recent: Set<string>): JlptQuestion 
     wrong.add(s);
     for (const x of sensesOf(s)) taken.add(x);
   }
-  return { entry, ask, answer, options: shuffle([answer, ...wrong], Math.random) };
+  return { entry, ask, answer, options: shuffle([answer, ...wrong], rand) };
+}
+
+/**
+ * "Do you remember?": the kanji of these days, each asked twice — its meaning, then its reading — with four answers
+ * drawn once for the day (`date`), the same on every visit. The kanji's wrong answers come from its own level.
+ */
+export function recallQuiz(days: string[], date: string): JlptQuestion[] {
+  const rand = mulberry32(hashString(`omnidle:jlpt:recall:${date}:${days.join(',')}`));
+  return days.flatMap((day) => {
+    const kanji = ofTheDay(day).kanji;
+    const deck = homeDeck(kanji);
+    return (['meaning', 'reading'] as const).map((ask) => questionOn(kanji, ask, deck, rand));
+  });
 }
 
 // ── Typed answers (Review, "Type it"): no list to pick from, the reading or the meaning written out. ──
