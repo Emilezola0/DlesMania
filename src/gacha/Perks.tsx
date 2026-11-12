@@ -4,7 +4,7 @@ import { useEffect, useState, type CSSProperties } from 'react';
 import { useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
 import { CARD_BY_ID, RARITY_LIGHT, type Card, type Rarity } from './cards';
-import { isAwake, useCardForm } from './CardView';
+import { useCardForm } from './CardView';
 import { useBackdropCue, useMomentOn } from './Reactions';
 
 /** Rare or better: a common card isn't one to show off. */
@@ -45,8 +45,8 @@ export function CardAvatar({ card, className = 'size-6' }: { card: Card; classNa
 }
 
 /**
- * A picture with a background of its own (no transparency) behind the whole page: its still picture (a video only
- * plays on a win), covering the screen, on its subject.
+ * The background card behind the whole page: its still picture (its video only plays on a win — the owner's rule),
+ * covering the screen, on its subject. A cut-out one too (it used to sit in a corner, its clip looping).
  */
 function FullBackdrop({ card }: { card: Card }) {
   const form = useCardForm(card);
@@ -62,13 +62,7 @@ function FullBackdrop({ card }: { card: Card }) {
   );
 }
 
-/** Whether the card, as the player has it, shows a picture measured as opaque (a rectangle, no transparency). */
-function useOpaque(card: Card | undefined) {
-  const awake = useProgress((s) => !!card && isAwake(card, s.bosses));
-  return !!card && (awake ? !!card.awaken?.opaque : !!card.opaque);
-}
-
-/** The chosen card behind the pages: an opaque picture across the whole screen, any other (a cut-out) faded into the corner, with its rarity's glow. */
+/** The chosen card behind the pages: its still picture across the whole screen, with its rarity's glow. */
 export function CardBackdrop() {
   // A background changed during a win's moment (by hand or by its rotation) shows once the moment's video is over: never cut.
   const chosen = useProgress((s) => s.backdrop);
@@ -81,7 +75,6 @@ export function CardBackdrop() {
   const card = id ? CARD_BY_ID.get(id) : undefined;
   // A Legendary or Mythic background reacts to the play: it lights up, winces, or bursts.
   const cue = useBackdropCue(owned ? card : undefined);
-  const cutout = !useOpaque(card);
   if (!card || !owned || !canBeBackdrop(card)) return null;
   const light = RARITY_LIGHT[card.rarity];
   const glow = Math.round(GLOW[card.rarity] * 255)
@@ -89,16 +82,8 @@ export function CardBackdrop() {
     .padStart(2, '0');
   return (
     <div key={cue?.key} className={`pointer-events-none fixed inset-0 -z-10 overflow-hidden ${cue ? `backdrop-${cue.kind}` : ''}`} style={{ ['--glow' as string]: light }} aria-hidden>
-      {!cutout && <FullBackdrop card={card} />}
+      <FullBackdrop card={card} />
       <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 85% 90%, ${light}${glow}, transparent 60%)` }} />
-      {cutout && (
-        <div
-          className="absolute -right-[4vw] bottom-0 h-[62vh] max-w-[70vw] opacity-[0.14] sm:h-[85vh] sm:max-w-[55vw]"
-          style={{ maskImage: 'linear-gradient(to left, #000 45%, transparent)', WebkitMaskImage: 'linear-gradient(to left, #000 45%, transparent)' }}
-        >
-          <ShownPicture card={card} className="h-full max-w-full object-contain" />
-        </div>
-      )}
       {card.rarity === 'legendary' && <div className="backdrop-holo absolute inset-0" />}
     </div>
   );
