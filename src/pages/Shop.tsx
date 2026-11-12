@@ -312,16 +312,18 @@ export default function Shop() {
 
   const general = PACKS.filter((p) => !p.boss);
   const franchise = PACKS.filter((p) => p.boss);
-  const PackTile = ({ p }: { p: Pack }) => {
+  // A pack's tile, drawn in place (called, not a component: one defined in here was a new kind of component on
+  // every render, so each click rebuilt every tile — the page shrank for an instant and scrolled back up).
+  const packTile = (p: Pack) => {
     const best = boostOf(p);
     const locked = !!p.boss && !best;
     const afford = coins >= p.cost;
     const set = p.boss ? SETS.find((s) => s.id === p.boss) : undefined;
-    // How many the coins allow (up to MAX_OPEN), and how many are picked (kept in the page: this tile is rebuilt on every render).
+    // How many the coins allow (up to MAX_OPEN), and how many are picked (kept in the page).
     const canOpen = Math.max(1, Math.min(MAX_OPEN, Math.floor(coins / p.cost)));
     const n = Math.min(counts[p.id] ?? 1, canOpen);
     return (
-      <div className={`page flex flex-col gap-2 rounded-md p-3 ${locked ? 'opacity-70' : ''}`}>
+      <div key={p.id} className={`page flex flex-col gap-2 rounded-md p-3 ${locked ? 'opacity-70' : ''}`}>
         <div className={locked ? 'grayscale' : ''}>
           <PackArt pack={p} golden={!locked && goldenNext(golden)} />
         </div>
@@ -450,14 +452,14 @@ export default function Shop() {
         <GoldenMeter golden={golden} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {general.map((p) => (
-            <PackTile key={p.id} p={p} />
+            packTile(p)
           ))}
         </div>
         <h3 className="pt-2 font-display font-bold">Franchise packs</h3>
         <p className="text-sm text-ink-soft">Beat a franchise&apos;s Boss Battle to unlock its pack. Win it on Medium or Hard and its rare cards come more often.</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5">
           {franchise.map((p) => (
-            <PackTile key={p.id} p={p} />
+            packTile(p)
           ))}
         </div>
       </section>
