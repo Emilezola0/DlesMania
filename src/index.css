@@ -2727,11 +2727,12 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
    many of them on the CPU every frame and then drops most of the video's frames (see usePausesPage in CardClip). Not
    the card up close itself (.card-inspect): it keeps turning, swaying and burning while its video plays — measured in a
    real Firefox window (firefox-check --headful), its animations cost the video no frames (headless, drawn without the
-   graphics card, they do: don't trust a headless count for this). Nor the mouse's sparks (OmniAura): they follow the hand. */
+   graphics card, they do: don't trust a headless count for this). Nor the mouse's sparks (OmniAura): they follow the hand.
+   Nor a win's background (.moment-bg): paused, its fade-in froze halfway and its video stayed see-through. */
 @supports (-moz-appearance: none) {
-  html.card-video-playing :not(.card-inspect, .card-inspect *, .omni-spark),
-  html.card-video-playing :not(.card-inspect *)::before,
-  html.card-video-playing :not(.card-inspect *)::after { animation-play-state: paused !important; }
+  html.card-video-playing :not(.card-inspect, .card-inspect *, .moment-bg, .moment-bg *, .omni-spark),
+  html.card-video-playing :not(.card-inspect *, .moment-bg *, .moment-bg)::before,
+  html.card-video-playing :not(.card-inspect *, .moment-bg *, .moment-bg)::after { animation-play-state: paused !important; }
 }
 
 /* Firefox: the face of a card up close stays flat (the card itself still turns in 3D, edge and back included). Firefox
