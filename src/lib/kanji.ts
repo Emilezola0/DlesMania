@@ -46,11 +46,13 @@ const SEALS = new Set(['鬼']);
  * That? then fills it solid inside its outline (src/lib/cutout.ts, 'fill'), so blacked out only its outer shape
  * shows (the owner's call). Plain, it's the answer shown.
  */
-export const kanjiGlyph = (k: string, swollen = false) =>
+/** How thick the strokes are drawn (px): 34 at first, then a little finer (the owner's call). */
+const SWELL = 22;
+export const kanjiGlyph = (k: string, swollen = false, stroke = SWELL) =>
   `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
     // A size of its own: drawn on a canvas to be filled, an SVG without one has none in Firefox.
     `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><text x="200" y="208" font-family="${FONT}" font-size="${swollen ? 270 : 300}" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917"${
-      swollen ? ' stroke="#1c1917" stroke-width="34" stroke-linejoin="round" stroke-linecap="round"' : ''
+      swollen ? ` stroke="#1c1917" stroke-width="${stroke}" stroke-linejoin="round" stroke-linecap="round"` : ''
     }>${k}</text></svg>`,
   )}`;
 
