@@ -1457,7 +1457,7 @@ h1, h2, h3, .font-serif, .font-display {
   background: repeating-conic-gradient(transparent 0deg, color-mix(in srgb, var(--glow) 80%, transparent) 6deg, transparent 14deg, transparent 30deg);
   animation: card-backdrop-turn 16s linear infinite;
 }
-.moment-clip { position: absolute; inset: 0; opacity: 0.8; }
+.moment-clip { position: absolute; inset: 0; opacity: 0.95; }
 .moment-clip video { position: absolute; inset: 0; }
 /* A YouTube clip covers the screen, not the zoom it has on a card. */
 .moment-clip .card-clip-yt iframe { left: 50%; width: max(100vw, 177.78vh); transform: translate(-50%, -50%); }

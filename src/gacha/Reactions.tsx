@@ -109,8 +109,9 @@ export const REACTIONS: Record<string, { good: string[]; bad: string[] }> = {
 const MOMENT_MS = 6000;
 const MOMENT_WAIT_MS = 20_000;
 const MOMENT_OUT_MS = 1200;
-/** A win's video plays once through, but no longer than this (a long one is cut). */
-const MOMENT_MAX_MS = 40_000;
+/** A win's video plays once through, to its very end (the owner's call: never cut). This only keeps a video that never
+ * says it has ended (stalled) from holding the page for ever. */
+const MOMENT_MAX_MS = 10 * 60_000;
 /** Omnis whose first form plays no clip behind a win (only awakened): the Creeper, Aang, the Doorman. */
 const FIRST_FORM_STILL = new Set(['minecraft:omni', 'avatar:omni', 'deadlock:omni']);
 
@@ -165,7 +166,7 @@ export function useMomentOn(): boolean {
  * The equipped cards reacting to the play, each to its own part (the owner's call):
  * - the **icon** is the face and the talk: a bubble by the header with a word (its voice line on a win only with no background);
  * - the **background** is the win's moment, every win: the light turning over the page and, behind it, the background
- *   card's video with its own sound (a silent one with the card's voice line; never the icon's), the video played once through (a short loop at least MOMENT_MS, a long video cut at MOMENT_MAX_MS). Never the icon's video.
+ *   card's video with its own sound (a silent one with the card's voice line; never the icon's), the video played once through (a short loop at least MOMENT_MS, a long video to its end too). Never the icon's video.
  * The cards are read when a cue comes, not held by the listener: a card changed meanwhile (by hand, or by its rotation:
  * src/gacha/Rotation.tsx) never cuts a moment short. The moment plays on with the card it started with, the page's
  * background picture waits for its end too (CardBackdrop, useMomentOn), and the next win plays the new card's video.
@@ -262,7 +263,7 @@ export function CardReactions() {
       const heard = showMoment && soundOn && !!clip && (ownSound || clipIsVoice);
       // Who speaks: the background card (the icon only with no background behind the page). While it speaks, the moment stays: they end together.
       const speaker = card ?? avatar;
-      if (heard) voiceUntil.current = Date.now() + 60_000;
+      if (heard) voiceUntil.current = Date.now() + MOMENT_MAX_MS;
       else if (speaker?.voice) {
         voiceUntil.current = Date.now() + 60_000;
         playVoice(speaker, false, () => (voiceUntil.current = 0));
