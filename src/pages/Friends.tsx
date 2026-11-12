@@ -319,13 +319,13 @@ function demoDocs(): ScoreDoc[] {
 
 /** The page's tabs: the friends themselves (scores, codes, luck), then the games played with them. More games go here. */
 const TABS = [
-  { id: 'friends', name: 'Friends', icon: '👥' },
-  { id: 'league', name: 'Weekly League', icon: '🏅' },
-  { id: 'raid', name: 'Raid Boss', icon: '⚔️' },
-  { id: 'defence', name: 'Defence Deck', icon: '🛡️' },
-  { id: 'doodle', name: 'Daily Doodle', icon: '🎨' },
-  { id: 'phone', name: 'Telephone', icon: '📞' },
-  { id: 'choice', name: 'Daily Choice', icon: '🗳️' },
+  { id: 'friends', name: 'Friends', icon: '👥', blurb: 'Scores & codes' },
+  { id: 'league', name: 'Weekly League', icon: '🏅', blurb: 'This week’s ranks' },
+  { id: 'raid', name: 'Raid Boss', icon: '⚔️', blurb: 'Hit it together' },
+  { id: 'defence', name: 'Defence Deck', icon: '🛡️', blurb: 'Card duels' },
+  { id: 'doodle', name: 'Daily Doodle', icon: '🎨', blurb: 'Draw, they guess' },
+  { id: 'phone', name: 'Telephone', icon: '📞', blurb: 'Pass it on' },
+  { id: 'choice', name: 'Daily Choice', icon: '🗳️', blurb: 'Pick a side' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
 
@@ -448,16 +448,21 @@ export default function Friends() {
         </p>
       ) : (
         <>
-          <nav className="flex gap-1 overflow-x-auto rounded-md border border-rule bg-tile/60 p-1" aria-label="Friends">
+          {/* Every game at a glance, no scrolling: a grid of tiles that wraps (4 a row on phones, all 7 on wide screens). */}
+          <nav className="grid grid-cols-4 gap-1.5 rounded-md border border-rule bg-tile/60 p-1.5 lg:grid-cols-7" aria-label="Friends">
             {TABS.map((x) => (
               <button
                 key={x.id}
                 type="button"
                 onClick={() => openTab(x.id)}
                 aria-current={tab === x.id ? 'page' : undefined}
-                className={`shrink-0 rounded-md px-4 py-2 font-display text-sm font-bold transition ${tab === x.id ? 'bg-card text-ink shadow' : 'text-ink-soft hover:text-ink'}`}
+                className={`flex min-w-0 flex-col items-center gap-0.5 rounded-md border px-1 py-2 text-center transition ${tab === x.id ? 'border-accent bg-card text-ink shadow' : 'border-transparent text-ink-soft hover:bg-card/60 hover:text-ink'}`}
               >
-                {x.icon} {x.name}
+                <span className="text-2xl leading-none" aria-hidden>
+                  {x.icon}
+                </span>
+                <span className="font-display text-[11px] font-bold leading-tight sm:text-sm">{x.name}</span>
+                <span className="hidden text-[11px] leading-tight text-ink-faint sm:block">{x.blurb}</span>
               </button>
             ))}
           </nav>

@@ -1,8 +1,9 @@
 // Friends → Telephone: a drawing chain played turn by turn, whenever each friend comes by (src/cloud/phones.ts). You
 // start one with a character; a friend sees only that name and draws it; the next sees only the drawing and guesses
-// who it is; the next draws that guess… Once it's full (TELEPHONE.steps) or TELEPHONE.days have passed, everyone sees
-// the whole chain from start to end. Each step pays its maker, and everyone in it gets a bonus if the last guess is the
-// character it started with.
+// who it is; the next draws that guess… Every turn is sealed (a wax seal): nobody sees what's inside until they break
+// it, and breaking it takes the turn (TELEPHONE.claimMinutes to play it, once per chain). Once it's full
+// (TELEPHONE.steps) or TELEPHONE.days have passed, everyone sees the whole chain from start to end. Each step pays its
+// maker, and everyone in it gets a bonus if the last guess is the character it started with.
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { Stroke } from '../cloud/doodles';
 import type { PhoneDoc, Step } from '../cloud/phones';
@@ -37,10 +38,12 @@ const norm = (s: string) =>
 
 /** When a chain started (just started here: now). */
 const startOf = (p: PhoneDoc) => (p.at ? p.at.toMillis() : now());
-/** Full, or open too long: everyone sees it whole. */
-const isDone = (p: PhoneDoc) => p.steps.length >= P.steps || now() > startOf(p) + P.days * DAY_MS;
+/** Full, or open too long: the seals are off and everyone sees it whole (as phoneDone in src/cloud/phones.ts). */
+const isDone = (p: PhoneDoc) => p.kinds.length >= P.steps || now() > startOf(p) + P.days * DAY_MS;
+/** Someone else holds the next turn right now (they broke its seal). */
+const heldBy = (p: PhoneDoc, me: string) => (p.claim && p.claim.u !== me && (!p.claim.at || now() < p.claim.at.toMillis() + P.claimMinutes * 60_000) ? p.claim.u : null);
 /** The last guess, if there was one. */
-const lastGuess = (p: PhoneDoc) => [...p.steps].reverse().find((s) => s.k === 'g');
+const lastGuess = (p: PhoneDoc) => [...p.steps].reverse().find((s) => s?.k === 'g');
 /** Whether the chain's word made it to the end. */
 const madeIt = (p: PhoneDoc) => {
   const g = lastGuess(p);
@@ -48,11 +51,35 @@ const madeIt = (p: PhoneDoc) => {
 };
 /** What a finished chain pays this player: each of their steps, and the bonus if it made it. */
 function payOf(p: PhoneDoc, uid: string): number {
-  const mine = p.steps.filter((s) => s.u === uid).length;
-  if (!mine || p.steps.length < 2) return 0;
+  const mine = p.people.filter((u) => u === uid).length;
+  if (!mine || p.kinds.length < 2) return 0;
   return mine * P.perStep + (madeIt(p) ? P.bonus : 0);
 }
 const hoursLeft = (p: PhoneDoc) => Math.max(0, Math.ceil((startOf(p) + P.days * DAY_MS - now()) / 3_600_000));
+
+/** A wax seal: a sealed turn nobody has seen. It cracks away when broken. */
+export function WaxSeal({ broken, size = 64, label = '📞' }: { broken?: boolean; size?: number; label?: string }) {
+  return (
+    <span
+      aria-hidden
+      className="relative inline-grid shrink-0 place-items-center transition-all duration-500"
+      style={{
+        width: size,
+        height: size,
+        background: 'radial-gradient(circle at 35% 30%, #e0565b 0%, #b3262c 45%, #7a1418 100%)',
+        boxShadow: 'inset 0 0 0 3px rgba(0,0,0,0.18), inset 0 0 0 6px rgba(255,255,255,0.08), 0 2px 6px rgba(0,0,0,0.35)',
+        borderRadius: '48% 52% 50% 50% / 50% 47% 53% 50%',
+        transform: broken ? 'scale(1.3) rotate(18deg)' : undefined,
+        opacity: broken ? 0 : 1,
+        fontSize: size * 0.36,
+      }}
+    >
+      <span className="grid place-items-center rounded-full" style={{ width: size * 0.66, height: size * 0.66, boxShadow: 'inset 0 0 0 2px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.12)' }}>
+        <span style={{ filter: 'grayscale(1) brightness(0.55) sepia(1) hue-rotate(-40deg) saturate(3)' }}>{label}</span>
+      </span>
+    </span>
+  );
+}
 
 /** A drawing pad against the clock (the Doodle's pens), its strokes handed over when time's up. */
 function DrawPad({ word, set, onDone, busy }: { word: string; set: string; onDone: (strokes: Stroke[]) => void; busy: boolean }) {
@@ -218,7 +245,7 @@ function WholeChain({ p, me, people }: { p: PhoneDoc; me: string; people: Map<st
           {p.uid === me ? 'Your chain' : `${people.get(p.uid)?.name ?? p.name}'s chain`} <span className="text-xs font-semibold uppercase tracking-wider text-accent">{franchiseOf(p.set)}</span>
         </p>
         <p className={`text-sm font-bold ${ok ? 'text-hit' : 'text-ink-soft'}`}>
-          {p.steps.length < 2 ? 'Nobody took it 😢' : ok ? '✅ It made it through!' : '🌀 Lost along the way'}
+          {p.kinds.length < 2 ? 'Nobody took it 😢' : ok ? '✅ It made it through!' : '🌀 Lost along the way'}
           {pays > 0 && (
             <span className="ml-2 font-semibold text-ink-soft">
               you: +{pays.toLocaleString('en')} {coin}
@@ -227,50 +254,88 @@ function WholeChain({ p, me, people }: { p: PhoneDoc; me: string; people: Map<st
         </p>
       </div>
       <ol className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-        {p.steps.map((s, k) => (
-          <li key={k} className="space-y-1 rounded-md bg-tile p-2">
-            <p className="text-xs text-ink-faint">
-              {k + 1}. {people.get(s.u)?.face} <b>{s.u === me ? 'You' : (people.get(s.u)?.name ?? s.n)}</b> {s.k === 'w' ? 'started with' : s.k === 'd' ? 'drew' : 'guessed'}
-            </p>
-            {s.k === 'd' ? (
-              <Replay strokes={s.s ?? []} />
-            ) : (
-              <div className="flex items-center gap-2">
-                <CardPic card={cardNamed(p.set, s.t ?? '')} className="h-12 w-9" />
-                <p className="font-display text-lg font-bold">{s.t}</p>
-              </div>
-            )}
-          </li>
-        ))}
+        {p.kinds.map((kind, k) => {
+          const s = p.steps[k];
+          const u = p.people[k];
+          return (
+            <li key={k} className="space-y-1 rounded-md bg-tile p-2">
+              <p className="text-xs text-ink-faint">
+                {k + 1}. {people.get(u)?.face} <b>{u === me ? 'You' : (people.get(u)?.name ?? s?.n ?? 'A friend')}</b> {kind === 'w' ? 'started with' : kind === 'd' ? 'drew' : 'guessed'}
+              </p>
+              {!s ? (
+                <p className="text-sm text-ink-soft">Couldn&apos;t load this step.</p>
+              ) : s.k === 'd' ? (
+                <Replay strokes={s.s ?? []} />
+              ) : (
+                <div className="flex items-center gap-2">
+                  <CardPic card={cardNamed(p.set, s.t ?? '')} className="h-12 w-9" />
+                  <p className="font-display text-lg font-bold">{s.t}</p>
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </div>
   );
 }
 
-/** A friend's chain waiting for this player's turn. */
-function Turn({ p, people, onTaken, demo }: { p: PhoneDoc; people: Map<string, PhonePerson>; onTaken: (p: PhoneDoc, note: string) => void; demo: boolean }) {
+/** A friend's chain waiting for this player's turn: sealed until they break the seal, which takes the turn. */
+function Turn({ p, me, people, onTaken, onOpened, demo }: { p: PhoneDoc; me: string; people: Map<string, PhonePerson>; onTaken: (p: PhoneDoc, note: string) => void; onOpened: (p: PhoneDoc) => void; demo: boolean }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const before = p.steps[p.steps.length - 1];
-  const kind = before.k === 'd' ? 'g' : 'd';
+  const [cracking, setCracking] = useState(false);
+  const last = p.kinds.length - 1;
+  const before = p.steps[last];
+  const kind = p.kinds[last] === 'd' ? 'g' : 'd';
+  const open = p.claim?.u === me;
+  const holder = heldBy(p, me);
+
+  const breakSeal = async () => {
+    setBusy(true);
+    setError(null);
+    sfx.whoosh();
+    setCracking(true);
+    try {
+      const pause = new Promise((r) => window.setTimeout(r, 450));
+      if (demo) {
+        await pause;
+        onOpened({ ...p, claim: { u: me, at: null }, seen: [...p.seen, me] });
+        return;
+      }
+      const [{ result, doc }] = await Promise.all([(await cloud()).breakSeal(p), pause]);
+      if (result === 'refused') {
+        setCracking(false);
+        setError("This seal can't be broken: Telephone's rules need publishing, the chain has closed, or you already broke it once.");
+        return;
+      }
+      if (result !== 'fresh') setCracking(false);
+      if (doc) onOpened(doc);
+    } catch {
+      setCracking(false);
+      setError('No connection: try again once you are online.');
+    } finally {
+      setBusy(false);
+    }
+  };
 
   const take = async (step: Omit<Step, 'u' | 'n'>) => {
     setBusy(true);
     setError(null);
     try {
       if (demo) {
-        onTaken({ ...p, steps: [...p.steps, { u: 'demo-0', n: 'You', ...step }], people: [...p.people, 'demo-0'] }, 'Passed on (demo).');
+        onTaken({ ...p, kinds: [...p.kinds, step.k], steps: [...p.steps, { u: me, n: 'You', ...step }], people: [...p.people, me], claim: null }, 'Passed on and sealed (demo).');
         return;
       }
       const { result, doc } = await (await cloud()).takeStep(p, step);
       if (result === 'refused') return setError("Telephone isn't switched on in the database yet (its rules need publishing), or this chain has closed.");
       if (result === 'taken') {
         sfx.wrong();
-        if (doc) onTaken(doc, 'Someone took that turn just before you: here is the chain as it stands now.');
+        if (doc) onTaken(doc, `Your ${P.claimMinutes} minutes ran out and another friend took that turn.`);
         return;
       }
       sfx.correct();
-      if (doc) onTaken(doc, 'Passed on! You will see the whole chain once it is finished.');
+      if (doc) onTaken(doc, 'Passed on and sealed! You will see the whole chain once it is finished.');
     } catch {
       setError('No connection: try again once you are online.');
     } finally {
@@ -285,11 +350,36 @@ function Turn({ p, people, onTaken, demo }: { p: PhoneDoc; people: Map<string, P
           {people.get(p.uid)?.name ?? p.name}&apos;s chain <span className="text-xs font-semibold uppercase tracking-wider text-accent">{franchiseOf(p.set)}</span>
         </p>
         <p className="text-xs text-ink-faint">
-          Step {p.steps.length + 1} of {P.steps} · {hoursLeft(p)} h left
+          Step {p.kinds.length + 1} of {P.steps} · {hoursLeft(p)} h left
         </p>
       </div>
       {error && <p className="rounded-md border border-coral/50 bg-coral/10 p-2 text-sm font-semibold text-coral">{error}</p>}
-      {kind === 'd' ? <DrawPad word={before.t ?? ''} set={p.set} busy={busy} onDone={(s) => void take({ k: 'd', s })} /> : <GuessPad step={before} set={p.set} busy={busy} onGuess={(t) => void take({ k: 'g', t })} />}
+      {open && before ? (
+        kind === 'd' ? (
+          <DrawPad word={before.t ?? ''} set={p.set} busy={busy} onDone={(s) => void take({ k: 'd', s })} />
+        ) : (
+          <GuessPad step={before} set={p.set} busy={busy} onGuess={(t) => void take({ k: 'g', t })} />
+        )
+      ) : open ? (
+        <p className="text-sm text-ink-soft">Couldn&apos;t open the seal: reload the page to try again.</p>
+      ) : (
+        <div className="flex flex-col items-center gap-2 rounded-md border border-dashed border-rule-strong bg-tile/60 px-3 py-4 text-center">
+          <WaxSeal broken={cracking} />
+          <p className="text-sm">
+            Sealed: {kind === 'd' ? <>a <b>name to draw</b> in {P.seconds} seconds</> : <>a <b>drawing to guess</b></>}.
+          </p>
+          {holder ? (
+            <p className="text-xs font-semibold text-ink-soft">{people.get(holder)?.name ?? 'A friend'} broke the seal and is playing this turn…</p>
+          ) : (
+            <>
+              <p className="text-xs text-ink-faint">Breaking it gives you the turn for {P.claimMinutes} minutes: only you see what&apos;s inside, and you can&apos;t hand it back.</p>
+              <button type="button" disabled={busy} onClick={() => void breakSeal()} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
+                Break the seal
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -353,14 +443,18 @@ async function demoPhones(people: PhonePerson[]): Promise<PhoneDoc[]> {
   const [n1, n2] = namesOf(set);
   const day = todayKey();
   return [
-    { uid: a.uid, name: a.name, day, set, at: null, steps: [{ u: a.uid, n: a.name, k: 'w', t: n1 }], people: [a.uid] },
-    { uid: b.uid, name: b.name, day, set, at: null, steps: [{ u: b.uid, n: b.name, k: 'w', t: n2 }, { u: d.uid, n: d.name, k: 'd', s: scribble() }], people: [b.uid, d.uid] },
+    { uid: a.uid, name: a.name, day, set, at: null, kinds: ['w'], seen: [], claim: null, steps: [{ u: a.uid, n: a.name, k: 'w', t: n1 }], people: [a.uid] },
+    { uid: b.uid, name: b.name, day, set, at: null, kinds: ['w', 'd'], seen: [d.uid], claim: null, steps: [{ u: b.uid, n: b.name, k: 'w', t: n2 }, { u: d.uid, n: d.name, k: 'd', s: scribble() }], people: [b.uid, d.uid] },
+    { uid: d.uid, name: d.name, day, set, at: null, kinds: ['w'], seen: [a.uid], claim: { u: a.uid, at: null }, steps: [{ u: d.uid, n: d.name, k: 'w', t: n2 }], people: [d.uid] },
     {
       uid: d.uid,
       name: d.name,
       day: addDays(day, -1),
       set,
       at: null,
+      kinds: ['w', 'd', 'g', 'd', 'g', 'd', 'g'],
+      seen: [],
+      claim: null,
       steps: [
         { u: d.uid, n: d.name, k: 'w', t: n1 },
         { u: 'demo-0', n: 'You', k: 'd', s: scribble() },
@@ -409,11 +503,15 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uids, today, demo, me]);
 
-  const replace = (p: PhoneDoc, text: string) => {
-    setChains((cs) => [...(cs ?? []).filter((c) => !(c.uid === p.uid && c.day === p.day)), p]);
+  const put = (p: PhoneDoc) => setChains((cs) => (cs ?? []).map((c) => (c.uid === p.uid && c.day === p.day ? p : c)));
+  const replace = async (p: PhoneDoc, text: string) => {
+    put(p);
     setNote({ text, good: true });
     if (isDone(p) && !demo) {
-      const got = pay(`phone:${p.uid}_${p.day}`, payOf(p, me));
+      // The last step: the seals come off, the whole chain is read.
+      const whole = await (await cloud()).revealPhone(p).catch(() => p);
+      put(whole);
+      const got = pay(`phone:${p.uid}_${p.day}`, payOf(whole, me));
       if (got) {
         celebrate();
         setNote({ text: <>{text} It was the last step: +{got.toLocaleString('en')} {coin}</>, good: true });
@@ -425,7 +523,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
     setBusy(true);
     setNote(null);
     try {
-      const p: PhoneDoc = demo ? { uid: me, name: 'You', day: today, set, at: null, steps: [{ u: me, n: 'You', k: 'w', t: word }], people: [me] } : await (await cloud()).startPhone(today, set, word);
+      const p: PhoneDoc = demo ? { uid: me, name: 'You', day: today, set, at: null, kinds: ['w'], seen: [], claim: null, steps: [{ u: me, n: 'You', k: 'w', t: word }], people: [me] } : await (await cloud()).startPhone(today, set, word);
       sfx.correct();
       setChains((cs) => [...(cs ?? []), p]);
       setNote({ text: 'Your chain is out: your friends take it from here.', good: true });
@@ -439,7 +537,9 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
 
   const all = chains ?? [];
   const mineToday = all.find((p) => p.uid === me && p.day === today);
-  const toPlay = all.filter((p) => !isDone(p) && !p.people.includes(me)).sort((a, b) => a.steps.length - b.steps.length);
+  // Turns to play: not played yet, and either still sealed or broken by this player and still theirs.
+  const toPlay = all.filter((p) => !isDone(p) && !p.people.includes(me) && (!p.seen.includes(me) || p.claim?.u === me)).sort((a, b) => a.kinds.length - b.kinds.length);
+  const missed = all.filter((p) => !isDone(p) && !p.people.includes(me) && p.seen.includes(me) && p.claim?.u !== me);
   const waiting = all.filter((p) => !isDone(p) && p.people.includes(me));
   const finished = all.filter((p) => isDone(p) && (p.people.includes(me) || p.steps.length >= 2)).sort((a, b) => startOf(b) - startOf(a));
 
@@ -448,7 +548,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
       <div>
         <h2 className="font-display text-lg font-bold">📞 Telephone</h2>
         <p className="text-sm text-ink-soft">
-          Start a chain with a character. A friend sees only the name and draws it in {P.seconds} seconds; the next sees only the drawing and guesses who it is; the next draws that guess… Everyone plays once per chain, whenever they come by. After {P.steps} steps or {P.days} days, the whole chain is revealed. Each step pays {P.perStep} {coin}, and if the
+          Start a chain with a character. A friend sees only the name and draws it in {P.seconds} seconds; the next sees only the drawing and guesses who it is; the next draws that guess… Every turn is sealed: break the seal to see it and take the turn ({P.claimMinutes} minutes to play it). Everyone plays once per chain, whenever they come by. After {P.steps} steps or {P.days} days, the seals come off and the whole chain is revealed. Each step pays {P.perStep} {coin}, and if the
           last guess is the character it started with, {P.bonus.toLocaleString('en')} more for everyone in it.
         </p>
       </div>
@@ -463,7 +563,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
             {toPlay.length ? (
               <div className="grid gap-3 md:grid-cols-2">
                 {toPlay.map((p) => (
-                  <Turn key={`${p.uid}-${p.day}-${p.steps.length}`} p={p} people={byUid} onTaken={replace} demo={demo} />
+                  <Turn key={`${p.uid}-${p.day}-${p.kinds.length}`} p={p} me={me} people={byUid} onTaken={(q, t) => void replace(q, t)} onOpened={put} demo={demo} />
                 ))}
               </div>
             ) : (
@@ -475,7 +575,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
             <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Your chain today</p>
             {mineToday ? (
               <p className="rounded-md bg-tile p-3 text-sm">
-                You started with <b>{mineToday.steps[0]?.t}</b> ({franchiseOf(mineToday.set)}): {mineToday.steps.length - 1} friend{mineToday.steps.length === 2 ? '' : 's'} played it so far. Come back tomorrow to start another.
+                You started with <b>{mineToday.steps[0]?.t}</b> ({franchiseOf(mineToday.set)}): {mineToday.kinds.length - 1} friend{mineToday.kinds.length === 2 ? '' : 's'} played it so far, each step sealed until the end. Come back tomorrow to start another.
               </p>
             ) : (
               <div className="mx-auto max-w-md">
@@ -484,16 +584,23 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
             )}
           </div>
 
-          {waiting.filter((p) => p !== mineToday).length > 0 && (
+          {(waiting.filter((p) => p !== mineToday).length > 0 || missed.length > 0) && (
             <div className="space-y-1">
-              <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Played, waiting for the end</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Sealed, waiting for the end</p>
               {waiting
                 .filter((p) => p !== mineToday)
                 .map((p) => (
-                  <p key={`${p.uid}-${p.day}`} className="text-sm text-ink-soft">
-                    {p.uid === me ? 'Your chain' : `${byUid.get(p.uid)?.name ?? p.name}'s chain`} ({franchiseOf(p.set)}): step {p.steps.length} of {P.steps}, {hoursLeft(p)} h left.
+                  <p key={`${p.uid}-${p.day}`} className="flex items-center gap-2 text-sm text-ink-soft">
+                    <WaxSeal size={20} label="" />
+                    {p.uid === me ? 'Your chain' : `${byUid.get(p.uid)?.name ?? p.name}'s chain`} ({franchiseOf(p.set)}): step {p.kinds.length} of {P.steps}, {hoursLeft(p)} h left.
                   </p>
                 ))}
+              {missed.map((p) => (
+                <p key={`${p.uid}-${p.day}`} className="flex items-center gap-2 text-sm text-ink-soft">
+                  <WaxSeal size={20} label="" />
+                  {byUid.get(p.uid)?.name ?? p.name}&apos;s chain ({franchiseOf(p.set)}): your {P.claimMinutes} minutes ran out and the turn went on without you.
+                </p>
+              ))}
             </div>
           )}
 

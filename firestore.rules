@@ -311,9 +311,11 @@ service cloud.firestore {
     }
 
     // Telephone (src/cloud/phones.ts): phones/<uid>_<day>, a drawing chain a player starts on its day with a name (the
-    // server's clock); only they and their friends read it. A friend adds one step, once per chain, at its end, while
-    // it's open (7 steps, 3 days from its start): a drawing after a name, a guess after a drawing. Nothing before it
-    // changes, and it can't be taken back.
+    // server's clock); only they and their friends read it. It holds only each step's kind and maker: the steps are
+    // sealed away in steps/<n>. A friend breaks the seal of the next turn once per chain (claim: theirs for 10 minutes,
+    // TELEPHONE.claimMinutes) and only then reads the step before; they add theirs at the end while the chain is open
+    // (7 steps, 3 days from its start): a drawing after a name, a guess after a drawing. Nothing before it changes, and
+    // it can't be taken back. Once it's finished, the starter and their friends read every step.
     match /phones/{id} {
       function starter() {
         return id.split('_')[0];
@@ -331,28 +333,75 @@ service cloud.firestore {
             ? (s.s is list && s.s.size() <= 400 && !('t' in s))
             : (s.t is string && s.t.size() > 0 && s.t.size() <= 64 && !('s' in s)));
       }
+      function chainPath() {
+        return /databases/$(database)/documents/phones/$(id);
+      }
+      // Full, or 3 days old: the seals are off.
+      function done(c) {
+        return c.kinds.size() >= 7 || request.time > c.at + duration.value(3, 'd');
+      }
+      // The kind of the step that comes after n steps: a drawing after a name or a guess, a guess after a drawing.
+      function nextKind(n) {
+        return n % 2 == 1 ? 'd' : 'g';
+      }
       allow get: if request.auth != null && (request.auth.uid == starter() || friendOfStarter());
       allow create: if request.auth != null && request.auth.uid == starter()
         && id.split('_')[1].matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
         && request.time > dayStart() - duration.value(14, 'h')
         && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
-        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'steps', 'people'])
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'kinds', 'people', 'seen', 'claim'])
         && request.resource.data.uid == starter() && request.resource.data.day == id.split('_')[1]
         && request.resource.data.name is string && request.resource.data.name.size() <= 40
         && request.resource.data.set is string && request.resource.data.set.size() <= 40
         && request.resource.data.at == request.time
+        && request.resource.data.kinds == ['w']
         && request.resource.data.people == [starter()]
-        && request.resource.data.steps is list && request.resource.data.steps.size() == 1
-        && stepOk(request.resource.data.steps[0], 'w');
+        && request.resource.data.seen == [] && request.resource.data.claim == null
+        && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/0);
       allow update: if request.auth != null && request.auth.uid != starter() && friendOfStarter()
         && !(request.auth.uid in resource.data.people)
-        && request.time < resource.data.at + duration.value(3, 'd')
-        && resource.data.steps.size() < 7
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['steps', 'people'])
-        && request.resource.data.people == resource.data.people.concat([request.auth.uid])
-        && request.resource.data.steps.size() == resource.data.steps.size() + 1
-        && request.resource.data.steps[0:resource.data.steps.size()] == resource.data.steps
-        && stepOk(request.resource.data.steps[resource.data.steps.size()], resource.data.steps.size() % 2 == 1 ? 'd' : 'g');
+        && !done(resource.data)
+        && (
+          // Breaking the seal: the turn is theirs (nobody holds it, or the one who did ran out of time), once per chain.
+          (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['claim', 'seen'])
+            && !(request.auth.uid in resource.data.seen) && resource.data.seen.size() < 40
+            && (resource.data.claim == null || request.time > resource.data.claim.at + duration.value(10, 'm'))
+            && request.resource.data.claim.keys().hasOnly(['u', 'at'])
+            && request.resource.data.claim.u == request.auth.uid && request.resource.data.claim.at == request.time
+            && request.resource.data.seen == resource.data.seen.concat([request.auth.uid]))
+          // Playing it: their step, written under steps/ in the same write, at the end.
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['kinds', 'people', 'claim'])
+            && resource.data.claim != null && resource.data.claim.u == request.auth.uid
+            && request.resource.data.claim == null
+            && request.resource.data.people == resource.data.people.concat([request.auth.uid])
+            && request.resource.data.kinds == resource.data.kinds.concat([nextKind(resource.data.kinds.size())])
+            && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/$(string(resource.data.kinds.size()))))
+        );
+      match /steps/{n} {
+        function chain() {
+          return get(chainPath()).data;
+        }
+        function canSeeAll() {
+          return (request.auth.uid == starter() || friendOfStarter()) && done(chain());
+        }
+        // Its maker; whoever broke the seal of the turn after it (the last step); everyone once the chain is finished.
+        allow get: if request.auth != null && (resource.data.u == request.auth.uid
+          || (chain().claim != null && chain().claim.u == request.auth.uid && !(request.auth.uid in chain().people)
+            && int(n) == chain().kinds.size() - 1)
+          || canSeeAll());
+        allow list: if request.auth != null && canSeeAll();
+        allow create: if request.auth != null && (
+          // The first step, made with its chain.
+          (n == '0' && request.auth.uid == starter() && !exists(chainPath())
+            && getAfter(chainPath()).data.kinds == ['w']
+            && stepOk(request.resource.data, 'w'))
+          // A turn: by whoever holds it, right at the end, made with the chain's update.
+          || (exists(chainPath()) && chain().claim != null && chain().claim.u == request.auth.uid
+            && n == string(chain().kinds.size())
+            && getAfter(chainPath()).data.kinds.size() == chain().kinds.size() + 1
+            && stepOk(request.resource.data, nextKind(chain().kinds.size())))
+        );
+      }
     }
 
     // The Defence Deck (src/cloud/defences.ts): defences/<uid>, a player's five cards in order, set on its day (the
