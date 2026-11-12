@@ -521,14 +521,14 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     },
   },
   forts: {
-    name: 'Howitzer',
+    name: 'Core Swing',
     title: 'Core Swing',
-    // The owner's text: FPL Season 5, Pile Rouillée's "La Spéciale".
+    // The owner's text: FPL Season 5, Pile Rouillée's "La Spéciale" (on both forms: an Omni shows its awakened one).
     line: 'FPL Season 5. As the battle rages on, Pile Rouillée launches his ultimate offensive: "La Spéciale". At the cost of his own base, he catapults his Core straight into Nils. A devastating impact. An instant elimination. A legendary sacrifice.',
     image: 'https://www.earthworkgames.com/wp-content/uploads/2022/02/forts-landing-page.png',
     awaken: {
       title: 'Pile Rouillée',
-      line: 'One gunner, one tin hat, one shell left — and it is going straight through the enemy reactor.',
+      line: 'FPL Season 5. As the battle rages on, Pile Rouillée launches his ultimate offensive: "La Spéciale". At the cost of his own base, he catapults his Core straight into Nils. A devastating impact. An instant elimination. A legendary sacrifice.',
       image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
     },
   },
