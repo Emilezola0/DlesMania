@@ -889,6 +889,9 @@ const CLIPS: Record<string, string> = {
   'forts:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forts/howitzer.mp4`,
   // The owner's pick: 8:35–8:50 of mnmhN-7Q4SA (FPL Season 5, Pile Rouillée's Core Swing), cut --mute: "La Spéciale" plays over it.
   'forts:omni': `${import.meta.env?.BASE_URL ?? './'}clips/forts/core-swing.mp4`,
+  // The owner's pick: 0:17–2:28 of zFUymXnQ5z8, cut in 15 s clips played one after another (--mute: her voice plays over them).
+  // Here, not in FIRST_CLIPS: an Omni always shows its awakened form now, and that form only takes its clip from CLIPS.
+  'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-${n}.mp4`).join('|'),
   'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/forhonor-mythic.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
   // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
@@ -927,8 +930,6 @@ const FIRST_CLIPS: Record<string, string> = {
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
   'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
-  // The owner's pick: 0:17–2:28 of zFUymXnQ5z8, cut in 15 s clips played one after another (--mute: her voice plays over them).
-  'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-${n}.mp4`).join('|'),
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
   'arcraiders:omni-scrappy': `${import.meta.env?.BASE_URL ?? './'}clips/gif/arcraiders-scrappy.mp4`,
   // Firefly's green-flame wings at sunset; Acheron's slash among the red petals.
