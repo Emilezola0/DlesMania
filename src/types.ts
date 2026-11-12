@@ -222,6 +222,18 @@ export interface Boss {
   snapQuiz?: { name: string; snapped: boolean }[];
   /** Its pictures are pixel art, drawn without smoothing. */
   pixelArt?: boolean;
+  /** Its fight in French (src/data/bosses-fr.json): shown when the game is in French (`bossIn`). */
+  fr?: BossFrench;
+}
+
+/** A boss's fight in French: the boss's title and lines, and every other text and name, English → French. */
+export interface BossFrench {
+  title?: string;
+  lines?: Partial<Boss['lines']>;
+  /** Blitz prompts, list titles, Name Chain categories, the Signature's label, question and clues, Connections words. */
+  texts?: Record<string, string>;
+  /** The names the fight shows (its answers), where the French one differs: also accepted as answers. */
+  names?: Record<string, string>;
 }
 
 /**

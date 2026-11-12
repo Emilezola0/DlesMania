@@ -9,6 +9,7 @@ import { isFuzzyMatch, suggestNames } from '../utils/textMatcher';
 import { DidYouMean } from './DidYouMean';
 import type { ChainResult } from './NameChain';
 import { TimerBar } from './TimerBar';
+import { tr, useBossText, useT } from './lang';
 
 interface Props {
   signature: SignaturePhase;
@@ -30,6 +31,8 @@ const AUDIO_EXTRA_SECONDS = 8;
  * loses. No suggestions — the name has to be known.
  */
 export function Signature({ signature, bossName, okLines, onSay, onLastChance, onDone }: Props) {
+  const t = useT();
+  const bt = useBossText();
   const { clues, toWin, chances, seconds, label, prompt } = signature;
   const [index, setIndex] = useState(0);
   const [right, setRight] = useState(0);
@@ -111,7 +114,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         setText('');
         return setMaybe(answer.name);
       }
-      return miss(`“${value.trim()}” — it was ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`);
+      return miss(`« ${value.trim()} » — ${tr('it was', 'c’était')} ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`);
     }
     setText('');
     sfx.correct();
@@ -120,26 +123,31 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
     setMessage({ text: `${shownName(answer.name)}${clue.reading ? ` — ${clue.reading}` : ''}`, good: true });
     if (got >= toWin) {
       sfx.streak();
-      return end(true, toWin === 1 ? `named ${shownName(answer.name)}` : `${toWin} ${label.toLowerCase()} clues answered`, got);
+      return end(true, toWin === 1 ? tr(`named ${shownName(answer.name)}`, `${shownName(answer.name)} trouvé`) : tr(`${toWin} ${label.toLowerCase()} clues answered`, `${toWin} indices trouvés`), got);
     }
-    onSay(okLines[got % Math.max(1, okLines.length)] ?? 'Next.', 'hit');
+    onSay(okLines[got % Math.max(1, okLines.length)] ?? tr('Next.', 'Au suivant.'), 'hit');
     nextClue('ok');
   };
 
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="boss-secret-title font-display text-xs font-bold uppercase tracking-[0.4em] text-coral">Secret phase · Signature — {label}</p>
-        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{prompt}</h3>
+        <p className="boss-secret-title font-display text-xs font-bold uppercase tracking-[0.4em] text-coral">{t('Secret phase', 'Phase secrète')} · Signature — {bt(label)}</p>
+        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{bt(prompt)}</h3>
       </div>
 
       <p className={`text-center font-display text-xs font-bold uppercase tracking-widest ${lastChance ? 'animate-pop text-coral' : 'text-ink-faint'}`}>
-        {lastChance ? 'Last chance — no hearts left!' : `${toWin === 1 ? 'One right answer wins' : `${right} of ${toWin} answered`} · ${chances - missed} ${chances - missed === 1 ? 'try' : 'tries'} left`}
+        {lastChance
+          ? t('Last chance — no hearts left!', 'Dernière chance — plus de cœurs !')
+          : t(
+              `${toWin === 1 ? 'One right answer wins' : `${right} of ${toWin} answered`} · ${chances - missed} ${chances - missed === 1 ? 'try' : 'tries'} left`,
+              `${toWin === 1 ? 'Une bonne réponse suffit' : `${right} sur ${toWin} trouvés`} · ${chances - missed} essai${chances - missed === 1 ? '' : 's'} restant${chances - missed === 1 ? '' : 's'}`,
+            )}
       </p>
 
       <div key={index} className="animate-pop rounded-md border-2 border-coral/60 bg-card/70 p-4">
         <p className="mb-2 text-center font-display text-[11px] uppercase tracking-widest text-ink-faint">
-          {bossName} · clue {index + 1}
+          {bossName} · {t('clue', 'indice')} {index + 1}
         </p>
         {clue.image ? (
           <div className="grid place-items-center py-2">
@@ -147,7 +155,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           </div>
         ) : clue.ingredients ? (
           <div className="mx-auto flex max-w-md flex-col items-center gap-3 py-2 text-center">
-            <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Recipe</p>
+            <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{t('Recipe', 'Recette')}</p>
             <ul className="flex flex-wrap justify-center gap-2">
               {clue.ingredients.map((x, i) => (
                 <li key={i} className="flex items-center gap-2">
@@ -162,11 +170,11 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
             <p className="rounded-md border-2 border-dashed border-rule px-6 py-3 font-display text-2xl font-black">?</p>
           </div>
         ) : clue.audio ? (
-          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss('The clip would not play')} onLoading={setClipLoading} />
+          <AudioClip videoId={clue.audio.youtubeId} start={clue.audio.start ?? 0} step={0} full revealed={false} onUnavailable={() => miss(tr('The clip would not play', 'L’extrait ne voulait pas se lancer'))} onLoading={setClipLoading} />
         ) : (
           <div className="py-4 text-center">
-            <p className="font-serif text-2xl font-bold sm:text-3xl">{clue.text}</p>
-            {clue.effect && (!hints.length || state !== 'answer') && <p className="mx-auto mt-2 max-w-md font-serif text-base italic text-ink-soft">{clue.effect}</p>}
+            <p className="font-serif text-2xl font-bold sm:text-3xl">{bt(clue.text)}</p>
+            {clue.effect && (!hints.length || state !== 'answer') && <p className="mx-auto mt-2 max-w-md font-serif text-base italic text-ink-soft">{bt(clue.effect)}</p>}
           </div>
         )}
       </div>
@@ -175,7 +183,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
         <ul className="space-y-1 rounded-md border border-ochre/50 bg-ochre/10 p-3 text-sm">
           {hints.slice(0, hintsShown).map((h, i) => (
             <li key={i} className="animate-pop">
-              💡 {h}
+              💡 {bt(h)}
             </li>
           ))}
         </ul>
@@ -186,7 +194,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           total={(seconds + (clue.audio ? AUDIO_EXTRA_SECONDS : 0)) * 1000}
           running={state === 'answer' && clueReady}
           resetKey={index}
-          onExpire={() => miss(`Time's up — it was ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`)}
+          onExpire={() => miss(`${tr("Time's up — it was", 'Temps écoulé — c’était')} ${shownName(answer.name)}${clue.reading ? ` (${clue.reading})` : ''}`)}
           hideSeconds
         />
       )}
@@ -200,7 +208,7 @@ export function Signature({ signature, bossName, okLines, onSay, onLastChance, o
           // Enter on an empty box takes the "Did you mean".
           if (e.key === 'Enter') submit(!text.trim() && maybe ? maybe : text);
         }}
-        placeholder={state === 'answer' ? 'Type the name…' : ''}
+        placeholder={state === 'answer' ? t('Type the name…', 'Tape le nom…') : ''}
         autoComplete="off"
         autoCapitalize="off"
         spellCheck={false}

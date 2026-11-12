@@ -23,6 +23,26 @@ export const PHASES = [
   },
 ] as const;
 
+/** The phases in French (the EN/FR setting), in the same order. */
+export const PHASES_FR = [
+  { name: 'Blitz de savoir', how: 'Tape des noms avant la fin du chrono — appuie sur Entrée après chacun.' },
+  { name: 'Défense radar', how: 'Glisse ou appuie sur → quand une carte fait partie de la franchise. Renvoie les imposteurs avec ←. Trop d’erreurs et le bouclier se brise.' },
+  { name: 'Coup de grâce', how: 'Nomme chaque visage qui clignote avant que le chrono ne brûle. Une mauvaise réponse coûte du temps.' },
+  { name: 'Chaîne de noms', how: 'Le gardien nomme quelque chose — réponds par un autre du même genre. Ne répète jamais un nom, le tien ou le sien, et tiens la chaîne pour gagner.' },
+  { name: 'Connexions', how: 'Cinq visages, dix mots : place-en deux sous chacun — un nom ou ce qui le relie à la franchise. Valide quand tu penses avoir juste : une mauvaise grille coûte un cœur.' },
+] as const;
+
+/** The difficulties in French: their names and what they hold. */
+export const DIFFICULTY_FR: Record<BossDifficulty, { label: string; blurb: string }> = {
+  easy: { label: 'Facile', blurb: 'Trois phases courtes, des cartes nettes, des chronos généreux — un peu plus rapides à chaque manche gagnée.' },
+  medium: { label: 'Moyen', blurb: 'Quatre phases, une manche chacune : des chronos plus serrés, des couleurs qui changent, des cartes qui tournent et une courte Chaîne de noms contre le gardien.' },
+  hard: { label: 'Difficile', blurb: 'Quatre phases à pleine vitesse : zones inversées, leurres, boucliers à une seule erreur, visages déformés et chrono caché. Chaîne de noms comprise — puis la Signature du gardien : une seule bonne réponse pour gagner.' },
+  hell: { label: 'Enfer', blurb: 'Les quatre phases du Difficile avec deux cœurs seulement, des chronos qui rétrécissent sans cesse et une longue Chaîne de noms — puis une cinquième phase, Connexions : cinq visages, dix mots, deux sous chacun. Une erreur coûte un cœur. La Signature à la fin.' },
+};
+/** A phase's name and rules, and a difficulty's, in the player's language. */
+export const phaseIn = (i: number, fr: boolean) => ({ ...PHASES[i], ...(fr ? PHASES_FR[i] : {}) });
+export const difficultyIn = (id: BossDifficulty, fr: boolean) => (fr ? DIFFICULTY_FR[id] : { label: DIFFICULTIES[id].label, blurb: DIFFICULTIES[id].blurb });
+
 /** Phase index of the Name Chain (Medium and Hard). */
 export const CHAIN_PHASE = 3;
 /** Phase index of Connections (Hell). */

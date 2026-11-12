@@ -1,5 +1,6 @@
-import type { BlitzPrompt, Boss, BossCard, Domain } from '../types';
+import type { BlitzPrompt, Boss, BossCard, BossFrench, Domain } from '../types';
 import raw from './bosses.json';
+import frenchRaw from './bosses-fr.json';
 import { BLUEPRINT_NODES, nodeImage } from '../specialist/blueprint';
 import { addFrench } from '../lib/french';
 import { kanjiPicture } from '../lib/kanji';
@@ -35,20 +36,62 @@ const spelling = (a: string) => {
   return { name, aliases };
 };
 
-const prompt = (p: RawBoss['blitz'][number]): BlitzPrompt => ({ prompt: p.prompt, count: p.count, answers: p.answers.map(spelling) });
+/** The bosses' fights in French (src/data/bosses-fr.json), by boss. */
+const FRENCH = frenchRaw as Record<string, BossFrench>;
 
-export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
-  ...b,
-  boss: { ...b.boss, image: picture(b.boss.image) },
-  aliases: b.aliases ?? [],
-  blitz: b.blitz.map(prompt),
-  // Faces with no drawn art leave the Radar (`radarSkip`), but keep their cards (`cardMembers`).
-  radar: { members: b.radar.members.filter((c) => !b.radarSkip?.includes(typeof c === 'string' ? c : c.label)).map(card), impostors: b.radar.impostors.map(card) },
-  cardMembers: b.radarSkip?.length ? b.radar.members.map(card) : undefined,
-  finale: b.finale.map(card),
-  secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ label: c.label, entities: c.entities.map(spelling) })) },
-  signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, image: picture(c.image), answer: spelling(c.answer) })) },
-}));
+export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => {
+  // Its French names are accepted answers too, and a card's French name is shown when names are in French.
+  const names = FRENCH[b.id]?.names ?? {};
+  const spell = (a: string) => {
+    const s = spelling(a);
+    const fr = names[s.name];
+    if (fr && !s.aliases.includes(fr)) s.aliases.push(fr);
+    return s;
+  };
+  const face = (c: RawCard): BossCard => {
+    const x = card(c);
+    const fr = names[x.label];
+    return fr && !x.fr ? { ...x, fr, aliases: [...(x.aliases ?? []), fr] } : x;
+  };
+  return {
+    ...b,
+    boss: { ...b.boss, image: picture(b.boss.image) },
+    aliases: b.aliases ?? [],
+    blitz: b.blitz.map((p): BlitzPrompt => ({ prompt: p.prompt, count: p.count, answers: p.answers.map(spell) })),
+    // Faces with no drawn art leave the Radar (`radarSkip`), but keep their cards (`cardMembers`).
+    radar: { members: b.radar.members.filter((c) => !b.radarSkip?.includes(typeof c === 'string' ? c : c.label)).map(face), impostors: b.radar.impostors.map(face) },
+    cardMembers: b.radarSkip?.length ? b.radar.members.map(face) : undefined,
+    finale: b.finale.map(face),
+    secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ label: c.label, entities: c.entities.map(spell) })) },
+    signature: b.signature && { ...b.signature, clues: b.signature.clues.map((c) => ({ ...c, image: picture(c.image), answer: spell(c.answer) })) },
+    fr: FRENCH[b.id],
+  };
+});
+
+/**
+ * A boss's fight in the player's language: in French, its title, its lines and every text it has a French one for
+ * (Blitz prompts, Name Chain categories, the Signature) from src/data/bosses-fr.json. Names go through the French
+ * dictionary as everywhere (its French names are handed to it below).
+ */
+export function bossIn(b: Boss, lang: string): Boss {
+  const f = b.fr;
+  if (lang !== 'fr' || !f) return b;
+  const t = (s: string) => f.texts?.[s] ?? s;
+  return {
+    ...b,
+    boss: { ...b.boss, title: f.title ?? b.boss.title },
+    lines: { ...b.lines, ...f.lines },
+    blitz: b.blitz.map((p) => ({ ...p, prompt: t(p.prompt) })),
+    secret: b.secret && { ...b.secret, categories: b.secret.categories.map((c) => ({ ...c, label: t(c.label) })) },
+    signature: b.signature && {
+      ...b.signature,
+      label: t(b.signature.label),
+      prompt: t(b.signature.prompt),
+      clues: b.signature.clues.map((c) => ({ ...c, text: c.text && t(c.text), effect: c.effect && t(c.effect), hints: c.hints?.map(t) })),
+    },
+  };
+}
+
 
 // The bosses' own French spellings (Overwatch's Mercy is Ange), each kept to its franchise, and shared with
 // the whole dictionary only when no other franchise has something by that name (For Honor has a Mercy too).
@@ -58,10 +101,16 @@ export const BOSSES: Boss[] = (raw as unknown as RawBoss[]).map((b) => ({
     const name = 'label' in c ? c.label : c.name;
     sets.set(name, (sets.get(name) ?? new Set()).add(b.id));
   }
+  /** Every name each boss's lists use (Blitz, Name Chain, faces), by name: the bosses that use it. */
+  const named = new Map<string, Set<string>>([...sets].map(([n, s]) => [n, new Set(s)]));
+  for (const b of BOSSES) for (const n of [...b.blitz.flatMap((p) => p.answers), ...(b.secret?.categories.flatMap((c) => c.entities) ?? [])].map((x) => x.name)) named.set(n, (named.get(n) ?? new Set()).add(b.id));
   for (const b of BOSSES) {
     // A French name the same as the English one ("fr": "Robin") only keeps another franchise's off this one (Honkai's
     // Robin isn't Smash's Daraen): it stays with its own set and never goes in the shared dictionary.
     const pairs: [string, string, boolean][] = [...b.radar.members, ...b.finale].filter((c) => c.fr).map((c) => [c.label, c.fr!, c.fr !== c.label && (sets.get(c.label)?.size ?? 0) <= 1]);
+    // The rest of its French names (Blitz answers, Name Chain entities): shared with the dictionary (the fight's lists
+    // show names without their franchise) unless another boss names something the same.
+    for (const [en, fr] of Object.entries(b.fr?.names ?? {})) if (!pairs.some(([n]) => n === en)) pairs.push([en, fr, (named.get(en)?.size ?? 0) <= 1]);
     if (pairs.length) addFrench(b.id, pairs);
   }
   // Names more than one franchise uses: each keeps to its own French name, if any.

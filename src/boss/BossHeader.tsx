@@ -1,5 +1,6 @@
-import { PHASES } from '../lib/boss';
+import { PHASES, phaseIn } from '../lib/boss';
 import type { Boss } from '../types';
+import { useT } from './lang';
 
 interface Props {
   boss: Boss;
@@ -29,6 +30,8 @@ export function HeartIcon({ full, className = '' }: { full: boolean; className?:
 
 /** The boss portrait, its segmented life bar, the player's hearts and the boss's latest line. */
 export function BossHeader({ boss, hp, rounds, hearts, maxHearts, secret, line }: Props) {
+  const t = useT();
+  const fr = t('en', 'fr') === 'fr';
   const total = rounds.reduce((a, b) => a + b, 0);
   // Segments follow the phases left to right, so they break from the left.
   let segment = 0;
@@ -49,9 +52,9 @@ export function BossHeader({ boss, hp, rounds, hearts, maxHearts, secret, line }
             <p className="shrink-0 font-display text-[11px] uppercase tracking-widest text-ink-faint">{boss.boss.title}</p>
           </div>
           {/* One segment per round to win, grouped by phase. */}
-          <div className="mt-1.5 flex gap-1.5" role="meter" aria-label="Boss health" aria-valuemin={0} aria-valuemax={total} aria-valuenow={hp}>
+          <div className="mt-1.5 flex gap-1.5" role="meter" aria-label={t('Boss health', 'Vie du boss')} aria-valuemin={0} aria-valuemax={total} aria-valuenow={hp}>
             {PHASES.map((p, phase) => (
-              <div key={p.name} className="flex flex-1 gap-0.5" title={p.name}>
+              <div key={p.name} className="flex flex-1 gap-0.5" title={phaseIn(phase, fr).name}>
                 {Array.from({ length: rounds[phase] }, () => {
                   const alive = segment++ >= total - hp;
                   return (
@@ -68,7 +71,7 @@ export function BossHeader({ boss, hp, rounds, hearts, maxHearts, secret, line }
             ))}
             {secret && (
               <div
-                title="Secret phase"
+                title={t('Secret phase', 'Phase secrète')}
                 className={`animate-pop relative grid h-4 w-8 place-items-center overflow-hidden rounded-sm border border-coral font-display text-[10px] font-bold sm:h-5 ${
                   secret === 'active' ? 'boss-segment-secret bg-coral text-on-strong' : 'bg-tile text-ink-faint'
                 }`}
@@ -78,9 +81,9 @@ export function BossHeader({ boss, hp, rounds, hearts, maxHearts, secret, line }
             )}
           </div>
           <div className="mt-1.5 flex items-center justify-between">
-            <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{secret === 'active' ? '???' : `${Math.round((hp / total) * 100)}%`} HP</span>
-            <span className="flex items-center gap-0.5" aria-label={`${hearts} of ${maxHearts} hearts`}>
-              <span className="mr-1 font-display text-[11px] uppercase tracking-widest text-ink-faint">You</span>
+            <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{secret === 'active' ? '???' : t(`${Math.round((hp / total) * 100)}%`, `${Math.round((hp / total) * 100)} %`)} {t('HP', 'PV')}</span>
+            <span className="flex items-center gap-0.5" aria-label={t(`${hearts} of ${maxHearts} hearts`, `${hearts} cœurs sur ${maxHearts}`)}>
+              <span className="mr-1 font-display text-[11px] uppercase tracking-widest text-ink-faint">{t('You', 'Toi')}</span>
               {Array.from({ length: maxHearts }, (_, i) => (
                 <HeartIcon key={i} full={i < hearts} className={i === hearts ? 'animate-pop' : ''} />
               ))}

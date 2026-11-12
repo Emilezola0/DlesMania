@@ -7,6 +7,7 @@ import { shuffle } from '../lib/rng';
 import type { BossCard } from '../types';
 import type { ChainResult } from './NameChain';
 import { TimerBar } from './TimerBar';
+import { tr, useT } from './lang';
 
 interface Props {
   /** The boss's own: who was snapped (true) and who was spared (false). */
@@ -29,6 +30,7 @@ type Turn = 'answer' | 'shown' | 'over';
  * on the spot; `picksToWin` right answers win. The answer shows after each one, to learn it.
  */
 export function SnapQuiz({ quiz, secret, set, bossName, cards, okLines, onSay, onDone }: Props) {
+  const t = useT();
   const { picksToWin, turnSeconds } = secret;
   const order = useMemo(() => shuffle(quiz, Math.random), [quiz]);
   const toWin = Math.min(picksToWin, order.length);
@@ -59,8 +61,13 @@ export function SnapQuiz({ quiz, secret, set, bossName, cards, okLines, onSay, o
       } else later(1100, () => (setI(score), setLastRight(null), setTurn('answer')));
     } else {
       sfx.wrong();
-      onSay(snapped === null ? 'Too slow. Perfectly balanced, as all things should be.' : 'Wrong. Reality is often disappointing.', 'taunt');
-      const reason = snapped === null ? "Time's up" : `${shownName(who.name)} was ${who.snapped ? 'snapped' : 'spared'}`;
+      onSay(
+        snapped === null
+          ? tr('Too slow. Perfectly balanced, as all things should be.', 'Trop lent. Parfaitement équilibré, comme toute chose devrait l’être.')
+          : tr('Wrong. Reality is often disappointing.', 'Faux. La réalité est souvent décevante.'),
+        'taunt',
+      );
+      const reason = snapped === null ? tr("Time's up", 'Temps écoulé') : tr(`${shownName(who.name)} was ${who.snapped ? 'snapped' : 'spared'}`, `${shownName(who.name)} a été ${who.snapped ? 'effacé' : 'épargné'}`);
       later(1600, () => (setTurn('over'), onDone({ won: false, score: i, reason })));
     }
   };
@@ -80,11 +87,11 @@ export function SnapQuiz({ quiz, secret, set, bossName, cards, okLines, onSay, o
   return (
     <div className="space-y-4">
       <div className="text-center">
-        <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-accent">Phase IV · The Snap</p>
-        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{bossName} snapped his fingers. Did they turn to dust?</h3>
+        <p className="font-display text-xs font-bold uppercase tracking-[0.4em] text-accent">{t('Phase IV · The Snap', 'Phase IV · Le claquement')}</p>
+        <h3 className="mt-1 font-display text-lg font-bold sm:text-xl">{t(`${bossName} snapped his fingers. Did they turn to dust?`, `${bossName} a claqué des doigts. Est-il tombé en poussière ?`)}</h3>
       </div>
 
-      <div className="flex items-center justify-center gap-1.5" aria-label={`${i} of ${toWin} answers`}>
+      <div className="flex items-center justify-center gap-1.5" aria-label={t(`${i} of ${toWin} answers`, `${i} réponses sur ${toWin}`)}>
         {Array.from({ length: toWin }, (_, k) => (
           <span key={k} className={`h-2 w-6 rounded-full transition ${k < i || (k === i && lastRight) ? 'bg-hit' : k === i && lastRight === false ? 'animate-pop bg-coral' : 'bg-rule-strong'}`} />
         ))}
@@ -98,7 +105,7 @@ export function SnapQuiz({ quiz, secret, set, bossName, cards, okLines, onSay, o
         <p className="min-h-6 text-sm font-semibold" aria-live="polite">
           {turn !== 'answer' && (
             <span className={lastRight ? 'text-hit' : 'text-coral'}>
-              {lastRight ? '✓' : '✗'} {who.snapped ? 'Snapped — turned to dust' : 'Spared by the snap'}
+              {lastRight ? '✓' : '✗'} {who.snapped ? t('Snapped — turned to dust', 'Effacé — tombé en poussière') : t('Spared by the snap', 'Épargné par le claquement')}
             </span>
           )}
         </p>
@@ -108,10 +115,10 @@ export function SnapQuiz({ quiz, secret, set, bossName, cards, okLines, onSay, o
 
       <div className="grid grid-cols-2 gap-3">
         <button type="button" disabled={turn !== 'answer'} onClick={() => answer(true)} className="rounded-md border border-coral bg-coral/15 px-4 py-3 font-display font-bold disabled:opacity-50">
-          🫰 Snapped <span className="text-xs text-ink-faint">(S)</span>
+          🫰 {t('Snapped', 'Effacé')} <span className="text-xs text-ink-faint">(S)</span>
         </button>
         <button type="button" disabled={turn !== 'answer'} onClick={() => answer(false)} className="rounded-md border border-hit bg-hit/15 px-4 py-3 font-display font-bold disabled:opacity-50">
-          🛡️ Spared <span className="text-xs text-ink-faint">(K)</span>
+          🛡️ {t('Spared', 'Épargné')} <span className="text-xs text-ink-faint">(K)</span>
         </button>
       </div>
     </div>

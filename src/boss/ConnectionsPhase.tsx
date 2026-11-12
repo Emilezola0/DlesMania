@@ -5,6 +5,7 @@ import type { DifficultySpec } from '../lib/boss';
 import type { PhaseResult } from '../types';
 import { pairRight, type ConnectionsBoard } from './connections';
 import { TimerBar } from './TimerBar';
+import { tr, useBossText, useT } from './lang';
 
 interface Props {
   board: ConnectionsBoard;
@@ -25,6 +26,10 @@ type Spot = { face: number; slot: number } | null;
  * with how many words are right. The clock running out loses the round.
  */
 export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: Props) {
+  const t = useT();
+  const bt = useBossText();
+  /** A word as shown: built from the English lists, in the player's language (a list title, a category, a name). */
+  const word = (w: string) => shownName(bt(w));
   const [spots, setSpots] = useState<Map<string, Spot>>(() => new Map(board.bank.map((w) => [w, null])));
   const [held, setHeld] = useState<string | null>(null);
   const [misses, setMisses] = useState(0);
@@ -68,7 +73,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
       won,
       correct: right,
       wrong: misses,
-      missed: won ? undefined : board.pairs.map((p) => `${shownName(p.card.label)}: ${p.words.join(' · ')}`),
+      missed: won ? undefined : board.pairs.map((p) => `${shownName(p.card.label)}${tr(':', ' :')} ${p.words.map(word).join(' · ')}`),
     });
   };
 
@@ -82,7 +87,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
     }
     // Wrong: a heart, and how many words are right (not which).
     setMisses((m) => m + 1);
-    setNote({ text: `${right} of ${board.bank.length} words in the right place — not yet.`, key: Date.now() });
+    setNote({ text: tr(`${right} of ${board.bank.length} words in the right place — not yet.`, `${right} mots sur ${board.bank.length} à la bonne place — pas encore.`), key: Date.now() });
     if (!onMiss()) setOver(true);
   };
 
@@ -111,7 +116,7 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
                   }}
                   className={`flex min-h-10 w-full items-center justify-center rounded border-2 px-1.5 py-1 text-center text-xs font-semibold leading-tight ${w ? 'border-ink bg-paper' : held ? 'border-dashed border-accent bg-accent/10' : 'border-dashed border-rule'}`}
                 >
-                  {w ? shownName(w) : <span className="text-ink-faint">—</span>}
+                  {w ? word(w) : <span className="text-ink-faint">—</span>}
                 </button>
               );
             })}
@@ -128,21 +133,21 @@ export function Connections({ board, difficulty: d, onEvent, onMiss, onDone }: P
             onClick={() => (sfx.select(), setHeld(held === w ? null : w))}
             className={`rounded-full border-2 px-3 py-1.5 text-sm font-semibold ${held === w ? 'border-ink bg-ink text-paper' : 'border-rule-strong bg-card hover:border-ink'}`}
           >
-            {shownName(w)}
+            {word(w)}
           </button>
         ))}
-        {full && <span className="self-center text-sm text-ink-faint">Every word is placed.</span>}
+        {full && <span className="self-center text-sm text-ink-faint">{t('Every word is placed.', 'Tous les mots sont placés.')}</span>}
       </div>
       <div className="flex flex-col items-center gap-2">
         <button type="button" onClick={submit} disabled={!full || over} className="btn-accent rounded-md px-8 py-3 font-display text-lg font-bold tracking-wider disabled:opacity-40">
-          Submit
+          {t('Submit', 'Valider')}
         </button>
         {note && (
           <p key={note.key} className="animate-pop text-sm font-semibold text-coral">
             {note.text} {misses > 0 && `(−${misses} ♥)`}
           </p>
         )}
-        <p className="text-xs text-ink-faint">Tap a word, then a slot (or drag it) · tap a placed word to take it back · a wrong board costs a heart.</p>
+        <p className="text-xs text-ink-faint">{t('Tap a word, then a slot (or drag it) · tap a placed word to take it back · a wrong board costs a heart.', 'Touche un mot, puis une case (ou fais-le glisser) · touche un mot placé pour le reprendre · une mauvaise grille coûte un cœur.')}</p>
       </div>
     </div>
   );

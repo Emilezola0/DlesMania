@@ -7,6 +7,7 @@ import { sfx } from '../lib/sfx';
 import { useUi } from '../store/ui';
 import type { PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
+import { tr, useT } from './lang';
 
 interface Props {
   cards: RadarCard[];
@@ -62,6 +63,7 @@ function Clutter({ seeds, fast }: { seeds: number[]; fast: boolean }) {
  * some cards, flashes decoy zones, penalises swipes made before a card has settled, and hides the seconds.
  */
 export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, onDone }: Props) {
+  const t = useT();
   const [index, setIndex] = useState(0);
   const [errors, setErrors] = useState(0);
   /** The cards misjudged, for the list after the round. */
@@ -112,11 +114,11 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
     const nextCorrect = correct + (ok ? 1 : 0);
     setErrors(nextErrors);
     setCorrect(nextCorrect);
-    const nextTries = ok ? tries : [...tries, `${shownName(card.label)} ${card.belongs ? 'belonged' : 'was an impostor'}${early ? ' (too early)' : zone === null ? ' (too slow)' : ''}`];
+    const nextTries = ok ? tries : [...tries, `${shownName(card.label)} ${card.belongs ? tr('belonged', 'en faisait partie') : tr('was an impostor', 'était un imposteur')}${early ? tr(' (too early)', ' (trop tôt)') : zone === null ? tr(' (too slow)', ' (trop lent)') : ''}`];
     setTries(nextTries);
     // On a timeout the card leaves the way it should have gone.
     const shownZone: Zone = zone ?? (card.belongs ? belongsZone(card) : belongsZone(card) === 'right' ? 'left' : 'right');
-    setFling({ card, zone: shownZone, correct: ok, note: early ? 'Too early!' : zone === null ? 'Too slow!' : undefined });
+    setFling({ card, zone: shownZone, correct: ok, note: early ? tr('Too early!', 'Trop tôt !') : zone === null ? tr('Too slow!', 'Trop lent !') : undefined });
     setDrag(0);
     if (ok) sfx.whoosh();
     else sfx.wrong();
@@ -159,7 +161,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
     const lit = leaning === side || fling?.zone === side;
     const fake = !lit && decoy === side;
     const tone = lit ? (belongs ? 'border-hit bg-hit/10 text-hit' : 'border-coral bg-coral/10 text-coral') : fake ? 'boss-decoy border-hit bg-hit/15 text-hit' : 'border-rule text-ink-faint';
-    const label = belongs ? (side === 'right' ? 'Belongs ▶' : '◀ Belongs') : side === 'left' ? '◀ Reflect impostor' : 'Reflect impostor ▶';
+    const label = belongs ? (side === 'right' ? t('Belongs ▶', 'En fait partie ▶') : t('◀ Belongs', '◀ En fait partie')) : side === 'left' ? t('◀ Reflect impostor', '◀ Renvoyer l’imposteur') : t('Reflect impostor ▶', 'Renvoyer l’imposteur ▶');
     return (
       <div className={`flex h-full items-center justify-center rounded-md border-2 border-dashed font-display text-xs font-bold uppercase tracking-widest transition ${tone}`}>
         <span className={`[writing-mode:vertical-rl] ${side === 'left' ? 'rotate-180' : ''}`}>{label}</span>
@@ -171,18 +173,18 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
     <div className="space-y-4 overflow-x-clip">
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">
-          Card {Math.min(index + 1, cards.length)} / {cards.length}
-          {esc && <span className="ml-2 font-bold text-coral">· Escalation</span>}
+          {t('Card', 'Carte')} {Math.min(index + 1, cards.length)} / {cards.length}
+          {esc && <span className="ml-2 font-bold text-coral">{t('· Escalation', '· Escalade')}</span>}
         </p>
         <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">
-          Does it belong to <span className="text-accent">{franchise}</span>?
+          {t('Does it belong to', 'Fait-il partie de')} <span className="text-accent">{franchise}</span>{t('?', ' ?')}
         </h3>
       </div>
 
       <TimerBar total={ms} running={!over && !fling && ready} resetKey={index} onExpire={() => decide(null)} hideSeconds={d.distortion === 2} />
 
-      <div className="flex items-center justify-center gap-2" aria-label={`Shield: ${maxErrors + 1 - errors} left`}>
-        <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">Shield</span>
+      <div className="flex items-center justify-center gap-2" aria-label={t(`Shield: ${maxErrors + 1 - errors} left`, `Bouclier : ${maxErrors + 1 - errors} restants`)}>
+        <span className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{t('Shield', 'Bouclier')}</span>
         {Array.from({ length: maxErrors + 1 }, (_, i) => (
           <span
             key={i}
@@ -197,14 +199,14 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
         <div className="relative h-full w-48 sm:w-60">
           {warnReversed && (
             <span className="boss-reversed absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-ochre px-3 py-1 font-display text-xs font-bold tracking-widest text-on-pastel shadow">
-              ⇄ ZONES REVERSED
+              {t('⇄ ZONES REVERSED', '⇄ ZONES INVERSÉES')}
             </span>
           )}
           {shown && (
             <div
               key={`${index}-${shown.label}`}
               role="img"
-              aria-label="Card to sort"
+              aria-label={t('Card to sort', 'Carte à trier')}
               onPointerDown={(e) => {
                 if (fling || over) return;
                 start.current = e.clientX;
@@ -273,7 +275,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
                         {fling.card.reading}
                       </span>
                     )}
-                    {!fling.card.belongs && ' · impostor'}
+                    {!fling.card.belongs && t(' · impostor', ' · imposteur')}
                   </span>
                 )}
               </div>
@@ -287,7 +289,7 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
       <div className="grid grid-cols-2 gap-3">
         {(['left', 'right'] as const).map((side) => {
           const belongs = side === bz;
-          const label = belongs ? (side === 'left' ? '◀ Belongs' : 'Belongs ▶') : side === 'left' ? '◀ Reflect' : 'Reflect ▶';
+          const label = belongs ? (side === 'left' ? t('◀ Belongs', '◀ En fait partie') : t('Belongs ▶', 'En fait partie ▶')) : side === 'left' ? t('◀ Reflect', '◀ Renvoyer') : t('Reflect ▶', 'Renvoyer ▶');
           return (
             <button
               key={side}
@@ -302,9 +304,9 @@ export function RadarDefense({ cards, franchise, difficulty: d, loop, onEvent, o
         })}
       </div>
       <p className="text-center text-xs text-ink-faint">
-        Swipe the card, use the buttons, or press ← / →.
-        {d.distortion === 2 && !esc && ' Watch for reversed zones — and wait for each card to settle.'}
-        {esc && ' Escalation: fewer, faster cards — pictures zoomed in, recoloured and sometimes upside down.'}
+        {t('Swipe the card, use the buttons, or press ← / →.', 'Glisse la carte, utilise les boutons, ou appuie sur ← / →.')}
+        {d.distortion === 2 && !esc && t(' Watch for reversed zones — and wait for each card to settle.', ' Attention aux zones inversées — et attends que chaque carte se pose.')}
+        {esc && t(' Escalation: fewer, faster cards — pictures zoomed in, recoloured and sometimes upside down.', ' Escalade : moins de cartes, plus rapides — images zoomées, recolorées et parfois à l’envers.')}
       </p>
     </div>
   );

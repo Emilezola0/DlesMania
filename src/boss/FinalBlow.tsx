@@ -7,6 +7,7 @@ import { sfx } from '../lib/sfx';
 import { isFuzzyMatch, rankBySearch } from '../utils/textMatcher';
 import type { BossCard, PhaseResult } from '../types';
 import { TimerBar } from './TimerBar';
+import { tr, useT } from './lang';
 
 interface Props {
   targets: BossCard[];
@@ -39,6 +40,7 @@ function useSpotlight(active: boolean, every: number) {
 
 /** Phase III: name flickering, half-hidden faces before the timer burns out. */
 export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone }: Props) {
+  const t = useT();
   const esc = escalated(d, loop) ? d.secondLoop!.finale : null;
   const total = finaleSeconds(d, loop) * 1000;
   const look = LOOK[d.distortion];
@@ -69,7 +71,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
     if (!ready || over || solved || !target || !isBroken(target.image)) return;
     if (index + 1 >= targets.length) {
       setOver(true);
-      onDone({ won: true, correct: targets.length, wrong, tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
+      onDone({ won: true, correct: targets.length, wrong, tries: tries.map((x) => `${x.name} ${tr(`(it was ${shownName(x.face)})`, `(c’était ${shownName(x.face)})`)}`) });
     } else setIndex(index + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, index, over, solved, target]);
@@ -101,7 +103,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
         setSolved(null);
         if (index + 1 >= targets.length) {
           setOver(true);
-          onDone({ won: true, correct: targets.length, wrong, tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
+          onDone({ won: true, correct: targets.length, wrong, tries: tries.map((x) => `${x.name} ${tr(`(it was ${shownName(x.face)})`, `(c’était ${shownName(x.face)})`)}`) });
         } else setIndex(index + 1);
       }, 900);
     } else {
@@ -117,7 +119,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
   const expire = () => {
     if (over || solved) return;
     setOver(true);
-    onDone({ won: false, correct: index, wrong, missed: [target.label], tries: tries.map((t) => `${t.name} (it was ${shownName(t.face)})`) });
+    onDone({ won: false, correct: index, wrong, missed: [target.label], tries: tries.map((x) => `${x.name} ${tr(`(it was ${shownName(x.face)})`, `(c’était ${shownName(x.face)})`)}`) });
   };
 
   const clear = solved || over;
@@ -129,10 +131,10 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
     <div className="space-y-4">
       <div className="text-center">
         <p className="font-display text-xs uppercase tracking-[0.3em] text-coral">
-          Final blow · {index + 1} / {targets.length}
-          {esc && <span className="ml-2 font-bold">· Escalation</span>}
+          {t('Final blow', 'Coup de grâce')} · {index + 1} / {targets.length}
+          {esc && <span className="ml-2 font-bold">{t('· Escalation', '· Escalade')}</span>}
         </p>
-        <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">Who — or what — is this?</h3>
+        <h3 className="mt-1 font-display text-xl font-bold sm:text-2xl">{t('Who — or what — is this?', 'Qui — ou quoi — est-ce ?')}</h3>
       </div>
 
       <TimerBar total={total} running={!over && !solved && ready} resetKey={index} penalties={penalties} penaltyMs={d.finalePenaltyMs} onExpire={expire} intense hideSeconds={d.distortion === 2} />
@@ -197,7 +199,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
               guess(typedHits ? text : (suggestions[active] ?? text));
             }
           }}
-          placeholder={`Name it — a wrong answer burns ${d.finalePenaltyMs / 1000} seconds`}
+          placeholder={t(`Name it — a wrong answer burns ${d.finalePenaltyMs / 1000} seconds`, `Nomme-le — une mauvaise réponse brûle ${d.finalePenaltyMs / 1000} secondes`)}
           autoComplete="off"
           autoCapitalize="off"
           spellCheck={false}
@@ -213,7 +215,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
                   onClick={() => guess(n)}
                   className={`w-full px-4 py-2.5 text-left font-medium ${i === active ? 'bg-accent-soft' : 'hover:bg-tile'}`}
                 >
-                  {n}
+                  {shownName(n)}
                 </button>
               </li>
             ))}
@@ -223,7 +225,7 @@ export function FinalBlow({ targets, pool, difficulty: d, loop, onEvent, onDone 
       {/* What was tried for this face, so a miss is never a mystery. */}
       {tries.some((t) => t.face === target?.label) && (
         <p className="text-center text-sm text-ink-soft">
-          Not it: {tries.filter((t) => t.face === target.label).map((t, i) => <span key={i} className="mx-1 font-semibold text-coral line-through">{t.name}</span>)}
+          {t('Not it:', 'Pas ça :')} {tries.filter((x) => x.face === target.label).map((x, i) => <span key={i} className="mx-1 font-semibold text-coral line-through">{x.name}</span>)}
         </p>
       )}
     </div>

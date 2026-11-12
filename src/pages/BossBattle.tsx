@@ -13,7 +13,8 @@ import { DleCoin } from '../components/DleCoin';
 import { Glyph } from '../components/Glyph';
 import { RulesButton } from '../components/RulesModal';
 import { domainInfo } from '../data';
-import { getBoss } from '../data/bosses';
+import { bossIn as inLang, getBoss } from '../data/bosses';
+import { BossContext, bossTextIn, useT } from '../boss/lang';
 import {
   DIFFICULTIES,
   CHAIN_PHASE,
@@ -26,6 +27,8 @@ import {
   drawRadar,
   drawSecret,
   drawSignature,
+  difficultyIn,
+  phaseIn,
   signatureKey,
   formatTime,
   paceFactor,
@@ -72,6 +75,14 @@ export default function BossBattlePage() {
 const DIFFICULTY_TONE = { easy: 'text-hit', medium: 'text-ochre', hard: 'text-coral', hell: 'text-red-600' } as const;
 
 function BossBattle({ boss }: { boss: Boss }) {
+  const lang = useProgress((s) => s.nameLang);
+  const fr = lang === 'fr';
+  const t = useT();
+  const bt = (s: string | undefined) => bossTextIn(boss, s, lang);
+  /** The boss's title and lines in the player's language (its fight itself is drawn from the English, so a change of
+   * language never reshuffles a round). */
+  const said = useMemo(() => inLang(boss, lang), [boss, lang]);
+  const label = (id: typeof difficulty) => difficultyIn(id, fr).label;
   const recordBoss = useProgress((s) => s.recordBoss);
   const difficulty = useProgress((s) => s.bossDifficulty);
   const setDifficulty = useProgress((s) => s.setBossDifficulty);
@@ -95,7 +106,7 @@ function BossBattle({ boss }: { boss: Boss }) {
   const d = useMemo(() => paced(base, pace), [base, pace]);
   const [attempt, setAttempt] = useState(0);
   const [hearts, setHearts] = useState(d.hearts);
-  const [line, setLine] = useState<Line>({ text: boss.lines.intro, key: 0, mood: 'taunt' });
+  const [line, setLine] = useState<Line>({ text: said.lines.intro, key: 0, mood: 'taunt' });
   const [last, setLast] = useState<{ won: boolean; missed?: string[]; reason?: string; tries?: string[] } | null>(null);
   const [tally, setTally] = useState({ correct: 0, wrong: 0 });
   const [result, setResult] = useState<{ score: number; timeMs: number; best: boolean; pay: BossPay } | null>(null);
@@ -115,6 +126,11 @@ function BossBattle({ boss }: { boss: Boss }) {
   const sigShown = useRef(0);
 
   const say = (text: string, mood: Line['mood']) => setLine((l) => ({ text, key: l.key + 1, mood }));
+  // Before the fight, the guardian's greeting follows the language (switched on this page).
+  useEffect(() => {
+    if (stage === 'intro') setLine((l) => ({ ...l, text: said.lines.intro }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [said]);
   const total = totalRounds(d);
 
   const bossIn = boss;
@@ -150,8 +166,8 @@ function BossBattle({ boss }: { boss: Boss }) {
   };
 
   const onPhaseDone = (r: PhaseResult) => {
-    const t = { correct: tally.correct + r.correct, wrong: tally.wrong + r.wrong };
-    setTally(t);
+    const t2 = { correct: tally.correct + r.correct, wrong: tally.wrong + r.wrong };
+    setTally(t2);
     setLast({ won: r.won, missed: r.missed, reason: r.reason, tries: r.tries });
     if (phase === 0) markSeen(scope('prompts'), [content.blitz.prompt]);
     if (phase === 1) markSeen(scope('radar'), content.radar.filter((c) => c.belongs).map((c) => c.label));
@@ -173,15 +189,15 @@ function BossBattle({ boss }: { boss: Boss }) {
           setPhase(SECRET);
           setRound(0);
           setAttempt(0);
-          window.setTimeout(() => say('You think it is over? One last test…', 'taunt'), 1200);
+          window.setTimeout(() => say(t('You think it is over? One last test…', 'Tu crois que c’est fini ? Une dernière épreuve…'), 'taunt'), 1200);
           setStage('card');
           return;
         }
-        say(boss.lines.win, 'hit');
-        finish(true, won, hearts, t);
+        say(said.lines.win, 'hit');
+        finish(true, won, hearts, t2);
         return;
       }
-      say(pick(boss.lines.hit, Math.random), 'hit');
+      say(pick(said.lines.hit, Math.random), 'hit');
       setAttempt(0);
       if (round + 1 < d.rounds[phase]) setRound(round + 1);
       else {
@@ -191,7 +207,13 @@ function BossBattle({ boss }: { boss: Boss }) {
         setPhase(next);
         setRound(0);
         const intro =
-          next === 1 ? boss.lines.phase2 : next === 2 ? boss.lines.phase3 : next === CONNECT_PHASE ? 'Five of mine, ten words. Put each where it belongs — and every mistake will cost you.' : (boss.lines.secret ?? 'One more game: I name something, you name another of the same kind.');
+          next === 1
+            ? said.lines.phase2
+            : next === 2
+              ? said.lines.phase3
+              : next === CONNECT_PHASE
+                ? t('Five of mine, ten words. Put each where it belongs — and every mistake will cost you.', 'Cinq des miens, dix mots. Mets chacun à sa place — et chaque erreur te coûtera cher.')
+                : (said.lines.secret ?? t('One more game: I name something, you name another of the same kind.', 'Encore un jeu : je nomme quelque chose, tu en nommes un autre du même genre.'));
         window.setTimeout(() => say(intro, 'taunt'), 1400);
       }
     } else {
@@ -201,11 +223,11 @@ function BossBattle({ boss }: { boss: Boss }) {
       const left = hearts - 1;
       setHearts(left);
       if (left <= 0) {
-        say(boss.lines.lose, 'hurt');
-        finish(false, cleared, 0, t);
+        say(said.lines.lose, 'hurt');
+        finish(false, cleared, 0, t2);
         return;
       }
-      say(pick(boss.lines.hurt, Math.random), 'hurt');
+      say(pick(said.lines.hurt, Math.random), 'hurt');
       setAttempt((a) => a + 1);
     }
     setStage('card');
@@ -220,11 +242,11 @@ function BossBattle({ boss }: { boss: Boss }) {
     setHearts(left);
     setTally((t) => ({ ...t, wrong: t.wrong + 1 }));
     if (left <= 0) {
-      say(boss.lines.lose, 'hurt');
+      say(said.lines.lose, 'hurt');
       finish(false, cleared, 0, { ...tally, wrong: tally.wrong + 1 });
       return false;
     }
-    say(pick(boss.lines.hurt, Math.random), 'hurt');
+    say(pick(said.lines.hurt, Math.random), 'hurt');
     return true;
   };
 
@@ -236,7 +258,7 @@ function BossBattle({ boss }: { boss: Boss }) {
     shake(arena.current, 18, 560);
     flash(flashLayer.current, 'rgb(220 60 60)');
     setHearts(0);
-    say(boss.lines.secretLost ?? 'Wrong! One last chance…', 'hurt');
+    say(said.lines.secretLost ?? t('Wrong! One last chance…', 'Faux ! Une dernière chance…'), 'hurt');
   };
 
   const onSecretDone = (r: ChainResult) => {
@@ -245,14 +267,14 @@ function BossBattle({ boss }: { boss: Boss }) {
       sfx.hit();
       shake(arena.current, 14, 520);
       flash(flashLayer.current, 'white');
-      say(boss.lines.win, 'hit');
+      say(said.lines.win, 'hit');
       finish(true, total, hearts, tally, signature?.bonus ?? 0);
     } else {
       // The last chance missed: the fight is lost.
       shake(arena.current, 24, 700);
       flash(flashLayer.current, 'rgb(220 60 60)');
       setHearts(0);
-      say(boss.lines.secretLost ?? 'Wrong. You lose.', 'hurt');
+      say(said.lines.secretLost ?? t('Wrong. You lose.', 'Faux. Tu as perdu.'), 'hurt');
       finish(false, total, 0, tally, -1);
     }
   };
@@ -294,7 +316,7 @@ function BossBattle({ boss }: { boss: Boss }) {
     setResult(null);
     setSignature(null);
     setSecretResult(null);
-    say(boss.lines.intro, 'taunt');
+    say(said.lines.intro, 'taunt');
     setStage('intro');
   };
 
@@ -307,31 +329,32 @@ function BossBattle({ boss }: { boss: Boss }) {
   });
 
   const secretPhase = phase === SECRET;
-  const info = PHASES[Math.min(phase, PHASES.length - 1)];
+  const info = phaseIn(Math.min(phase, PHASES.length - 1), fr);
   const rounds = secretPhase ? 1 : d.rounds[phase];
   const accuracy = tally.correct + tally.wrong ? Math.round((tally.correct / (tally.correct + tally.wrong)) * 100) : 0;
 
   return (
     // Pixel art (Minecraft's faces and textures) stays sharp when it's blown up.
+    <BossContext.Provider value={boss}>
     <div className={`mx-auto max-w-2xl space-y-5 ${boss.pixelArt ? '[&_img]:[image-rendering:pixelated]' : ''}`}>
       <div className="flex items-center justify-between gap-2">
         <Link to={`/boss?domain=${boss.domain}`} className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-          ← All bosses
+          {t('← All bosses', '← Tous les boss')}
         </Link>
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5 font-display text-xs uppercase tracking-widest text-ink-faint">
             <Glyph seed={boss.domain} size={14} className={domainInfo(boss.domain).tone} /> {boss.franchise}
-            {stage !== 'intro' && <span className={`ml-1 font-bold ${DIFFICULTY_TONE[difficulty]}`}>· {d.label}</span>}
+            {stage !== 'intro' && <span className={`ml-1 font-bold ${DIFFICULTY_TONE[difficulty]}`}>· {label(difficulty)}</span>}
           </span>
           {/* Every answer this fight takes, any time: to learn them, or see why one wasn't accepted. */}
-          <AnswerBookButton onClick={() => setBook(true)} label="Answers" />
+          <AnswerBookButton onClick={() => setBook(true)} label={t('Answers', 'Réponses')} />
         </div>
       </div>
 
       <div ref={arena} className={`page relative space-y-6 rounded-md p-4 sm:p-6 ${phase >= 2 && stage === 'fight' ? 'boss-arena-final' : ''}`}>
         <div ref={flashLayer} className="pointer-events-none absolute inset-0 z-30 rounded-md opacity-0" aria-hidden />
         <BossHeader
-          boss={boss}
+          boss={said}
           hp={total - cleared}
           rounds={d.rounds}
           hearts={hearts}
@@ -346,6 +369,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             if (!d.rounds[i]) return null;
             const done = i < phase || stage === 'won';
             const won = done ? d.rounds[i] : i === phase ? round : 0;
+            const pName = phaseIn(i, fr).name;
             return (
               <li key={p.name} className="flex items-start gap-2">
                 {i > 0 && <span className="mt-4 h-px w-6 bg-rule-strong sm:w-10" />}
@@ -354,12 +378,12 @@ function BossBattle({ boss }: { boss: Boss }) {
                     className={`grid size-8 place-items-center rounded-full border-2 font-display text-xs font-bold ${
                       done ? 'border-hit bg-hit text-on-strong' : i === phase ? 'border-ink bg-ink text-paper' : 'border-rule-strong text-ink-faint'
                     }`}
-                    title={p.name}
+                    title={pName}
                   >
                     {done ? '✓' : p.roman}
                   </span>
                   {d.rounds[i] > 1 && (
-                    <span className="flex gap-0.5" aria-label={`${won} of ${d.rounds[i]} rounds`}>
+                    <span className="flex gap-0.5" aria-label={t(`${won} of ${d.rounds[i]} rounds`, `${won} manches sur ${d.rounds[i]}`)}>
                       {Array.from({ length: d.rounds[i] }, (_, k) => (
                         <span key={k} className={`size-1.5 rounded-full ${k < won ? 'bg-hit' : 'bg-rule-strong'}`} />
                       ))}
@@ -373,7 +397,7 @@ function BossBattle({ boss }: { boss: Boss }) {
             <li className="animate-pop flex items-start gap-2">
               <span className="mt-4 h-px w-6 bg-coral sm:w-10" />
               <span
-                title="Secret phase"
+                title={t('Secret phase', 'Phase secrète')}
                 className={`boss-secret-title grid size-8 place-items-center rounded-full border-2 font-display text-xs font-bold ${
                   secretResult?.won ? 'border-hit bg-hit text-on-strong' : 'border-coral bg-coral text-on-strong'
                 }`}
@@ -390,13 +414,13 @@ function BossBattle({ boss }: { boss: Boss }) {
               {boss.boss.image && <img src={boss.boss.image} alt={boss.boss.name} className="boss-breathe size-full object-cover object-top" />}
             </div>
             <div>
-              <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">A guardian blocks the way</p>
+              <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{t('A guardian blocks the way', 'Un gardien barre la route')}</p>
               <h1 className="text-4xl font-bold">{boss.boss.name}</h1>
             </div>
 
             {/* Difficulty */}
             <div className="space-y-2">
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="radiogroup" aria-label="Difficulty">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="radiogroup" aria-label={t('Difficulty', 'Difficulté')}>
                 {DIFFICULTY_IDS.map((id) => {
                   const spec = DIFFICULTIES[id];
                   const r = records[bossKey(boss.id, id)];
@@ -413,15 +437,15 @@ function BossBattle({ boss }: { boss: Boss }) {
                       }}
                       className={`rounded-md border-2 px-2 py-2.5 transition ${active ? 'border-ink bg-ink text-paper' : 'border-rule bg-card text-ink-soft hover:border-rule-strong'}`}
                     >
-                      <span className={`block font-display text-base font-bold tracking-widest ${active ? '' : DIFFICULTY_TONE[id]}`}>{spec.label.toUpperCase()}</span>
+                      <span className={`block font-display text-base font-bold tracking-widest ${active ? '' : DIFFICULTY_TONE[id]}`}>{label(id).toUpperCase()}</span>
                       <span className="block text-[11px] opacity-80">
-                        {totalRounds(spec)} rounds · ×{spec.scoreMultiplier} pts{r?.wins ? ' · ✓' : ''}
+                        {totalRounds(spec)} {t('rounds', 'manches')} · ×{spec.scoreMultiplier} pts{r?.wins ? ' · ✓' : ''}
                       </span>
                     </button>
                   );
                 })}
               </div>
-              <p className="mx-auto max-w-md text-sm text-ink-soft">{d.blurb}</p>
+              <p className="mx-auto max-w-md text-sm text-ink-soft">{difficultyIn(difficulty, fr).blurb}</p>
             </div>
 
             <ul className="mx-auto max-w-md space-y-1.5 text-left text-sm text-ink-soft">
@@ -430,40 +454,52 @@ function BossBattle({ boss }: { boss: Boss }) {
                   <span className="w-6 shrink-0 font-display font-bold text-ink">{p.roman}</span>
                   <span>
                     <b className="text-ink">
-                      {p.name}
+                      {phaseIn(i, fr).name}
                       {d.rounds[i] > 1 ? ` ×${d.rounds[i]}` : ''}.
                     </b>{' '}
-                    {p.how}
+                    {phaseIn(i, fr).how}
                   </span>
                 </li>
               ))}
             </ul>
             {record.plays > 0 && (
               <p className="text-xs text-ink-faint">
-                {d.label} record: {record.wins}/{record.plays} won · best {record.bestScore} pts
-                {record.bestTime != null && ` · fastest ${formatTime(record.bestTime)}`}
+                {fr
+                  ? `Record en ${label(difficulty)} : ${record.wins}/${record.plays} gagnés · meilleur ${record.bestScore} pts`
+                  : `${label(difficulty)} record: ${record.wins}/${record.plays} won · best ${record.bestScore} pts`}
+                {record.bestTime != null && t(` · fastest ${formatTime(record.bestTime)}`, ` · plus rapide ${formatTime(record.bestTime)}`)}
               </p>
             )}
             <button type="button" onClick={begin} className="btn-accent w-full rounded-md py-3.5 font-display text-lg font-bold tracking-[0.2em]">
-              FIGHT
+              {t('FIGHT', 'COMBATTRE')}
             </button>
-            <RulesButton tab="boss" label="See the rules, with demos" />
+            <RulesButton tab="boss" label={t('See the rules, with demos', 'Voir les règles, avec démos')} />
           </div>
         )}
 
         {stage === 'card' && secretPhase && signature && (
           <div key="signature" className="boss-phase-card space-y-4 py-4 text-center">
-            <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">The guardian's life bar is empty…</p>
-            <p className="font-display text-xs uppercase tracking-[0.4em] text-coral">…but it has one last trick</p>
-            <h2 className="boss-phase-title boss-secret-title font-display text-5xl font-bold tracking-[0.12em] text-coral sm:text-6xl">SECRET PHASE</h2>
-            <p className="font-display text-xl font-semibold tracking-wider">Signature — {signature.label}</p>
+            <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">{t('The guardian’s life bar is empty…', 'La barre de vie du gardien est vide…')}</p>
+            <p className="font-display text-xs uppercase tracking-[0.4em] text-coral">{t('…but it has one last trick', '…mais il lui reste un dernier tour')}</p>
+            <h2 className="boss-phase-title boss-secret-title font-display text-5xl font-bold tracking-[0.12em] text-coral sm:text-6xl">{t('SECRET PHASE', 'PHASE SECRÈTE')}</h2>
+            <p className="font-display text-xl font-semibold tracking-wider">Signature — {bt(signature.label)}</p>
             <p className="mx-auto max-w-md text-sm text-ink-soft">
-              {signature.prompt} <b className="text-ink">{signature.toWin === 1 ? 'Name it right and the guardian falls' : `Answer ${signature.toWin} clues to win`}</b>
-              {signature.seconds > 0 && ` — ${signature.seconds} seconds per clue`}, and type the name: there are no suggestions.{' '}
-              {signature.chances > 1 && <b className="text-coral">A wrong answer takes all your hearts — but you get one last chance on a new clue.</b>}
+              {bt(signature.prompt)}{' '}
+              <b className="text-ink">
+                {signature.toWin === 1
+                  ? t('Name it right and the guardian falls', 'Trouve le bon nom et le gardien tombe')
+                  : t(`Answer ${signature.toWin} clues to win`, `Réponds à ${signature.toWin} indices pour gagner`)}
+              </b>
+              {signature.seconds > 0 && t(` — ${Math.round(signature.seconds)} seconds per clue`, ` — ${Math.round(signature.seconds)} secondes par indice`)}
+              {t(', and type the name: there are no suggestions.', ', et tape le nom : il n’y a pas de suggestions.')}{' '}
+              {signature.chances > 1 && (
+                <b className="text-coral">
+                  {t('A wrong answer takes all your hearts — but you get one last chance on a new clue.', 'Une mauvaise réponse te prend tous tes cœurs — mais tu as une dernière chance sur un nouvel indice.')}
+                </b>
+              )}
             </p>
             <button type="button" onClick={begin} className="btn-accent rounded-md px-8 py-3 font-display font-bold tracking-widest">
-              I'm ready
+              {t('I’m ready', 'Je suis prêt')}
             </button>
           </div>
         )}
@@ -472,31 +508,31 @@ function BossBattle({ boss }: { boss: Boss }) {
           <div key={`${phase}-${round}-${attempt}`} className="boss-phase-card space-y-4 py-4 text-center">
             {last && !last.won && (
               <div className="space-y-1">
-                <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">You took a hit — {hearts} heart{hearts === 1 ? '' : 's'} left</p>
+                <p className="font-display text-sm font-bold uppercase tracking-widest text-coral">{fr ? `Touché — ${hearts} cœur${hearts === 1 ? '' : 's'} restant${hearts === 1 ? '' : 's'}` : `You took a hit — ${hearts} heart${hearts === 1 ? '' : 's'} left`}</p>
                 {last.reason ? <p className="text-sm text-ink-soft">{last.reason}.</p> : null}
               </div>
             )}
             {last?.won && (
               <p className="font-display text-sm font-bold uppercase tracking-widest text-hit">
-                {round > 0 ? 'A blow lands — again!' : 'Phase broken — the guardian staggers!'}
+                {round > 0 ? t('A blow lands — again!', 'Un coup porte — encore !') : t('Phase broken — the guardian staggers!', 'Phase brisée — le gardien vacille !')}
               </p>
             )}
             {last && <RoundReview boss={boss} missed={last.won ? undefined : last.missed} tries={last.tries} onBook={() => setBook(true)} />}
-            <p className="font-display text-xs uppercase tracking-[0.4em] text-ink-faint">{attempt > 0 ? 'Again —' : 'Now entering'}</p>
+            <p className="font-display text-xs uppercase tracking-[0.4em] text-ink-faint">{attempt > 0 ? t('Again —', 'Encore —') : t('Now entering', 'Voici la')}</p>
             <h2 className="boss-phase-title font-display text-6xl font-bold tracking-[0.15em] sm:text-7xl">PHASE {info.roman}</h2>
             <p className="font-display text-xl font-semibold tracking-wider">
               {info.name}
-              {rounds > 1 && <span className="text-ink-faint"> · round {round + 1} of {rounds}</span>}
+              {rounds > 1 && <span className="text-ink-faint">{t(` · round ${round + 1} of ${rounds}`, ` · manche ${round + 1} sur ${rounds}`)}</span>}
             </p>
             <p className="mx-auto max-w-md text-sm text-ink-soft">{info.how}</p>
             {pace < 1 && (
-              <p className="font-display text-sm font-bold text-coral" title="Every round won, and every earlier win over this guardian, shortens the clocks">
-                ⏱ Clocks at {Math.round(pace * 100)}% — the guardian is speeding up
+              <p className="font-display text-sm font-bold text-coral" title={t('Every round won, and every earlier win over this guardian, shortens the clocks', 'Chaque manche gagnée, et chaque victoire passée contre ce gardien, raccourcit les chronos')}>
+                {t(`⏱ Clocks at ${Math.round(pace * 100)}% — the guardian is speeding up`, `⏱ Chronos à ${Math.round(pace * 100)} % — le gardien accélère`)}
               </p>
             )}
             <div className="flex items-center justify-center gap-3">
               <button type="button" onClick={begin} className="btn-ink rounded-md px-8 py-3 font-display font-bold tracking-widest">
-                Ready
+                {t('Ready', 'Prêt')}
               </button>
               <RulesButton tab="boss" />
             </div>
@@ -515,7 +551,7 @@ function BossBattle({ boss }: { boss: Boss }) {
                 set={boss.id}
                 bossName={boss.boss.name}
                 cards={[...boss.radar.members, ...boss.finale]}
-                okLines={boss.lines.secretOk ?? []}
+                okLines={said.lines.secretOk ?? []}
                 onSay={say}
                 onDone={(r) => onPhaseDone({ won: r.won, correct: r.score, wrong: r.won ? 0 : 1, reason: r.won ? undefined : r.reason })}
               />
@@ -525,7 +561,7 @@ function BossBattle({ boss }: { boss: Boss }) {
                 secret={content.chain}
                 bossName={boss.boss.name}
                 cards={[...boss.radar.members, ...boss.finale, ...boss.radar.impostors]}
-                okLines={boss.lines.secretOk ?? []}
+                okLines={said.lines.secretOk ?? []}
                 onSay={say}
                 onDone={(r) => onPhaseDone({ won: r.won, correct: r.score, wrong: r.won ? 0 : 1, reason: r.won ? undefined : r.reason })}
               />
@@ -537,7 +573,7 @@ function BossBattle({ boss }: { boss: Boss }) {
               <Signature
                 signature={signature}
                 bossName={boss.boss.name}
-                okLines={boss.lines.secretOk ?? []}
+                okLines={said.lines.secretOk ?? []}
                 onSay={say}
                 onLastChance={onLastChance}
                 onDone={onSecretDone}
@@ -550,16 +586,16 @@ function BossBattle({ boss }: { boss: Boss }) {
           <div className="animate-round-in space-y-5 text-center">
             <div>
               <p className={`font-display text-xs uppercase tracking-[0.4em] ${stage === 'won' ? 'text-hit' : 'text-coral'}`}>
-                {stage === 'won' ? `Guardian defeated · ${d.label}` : `You have fallen · ${d.label}`}
+                {stage === 'won' ? t(`Guardian defeated · ${label(difficulty)}`, `Gardien vaincu · ${label(difficulty)}`) : t(`You have fallen · ${label(difficulty)}`, `Tu es tombé · ${label(difficulty)}`)}
               </p>
-              <h2 className="boss-phase-title font-display text-5xl font-bold tracking-[0.12em] sm:text-6xl">{stage === 'won' ? 'VICTORY' : 'DEFEAT'}</h2>
+              <h2 className="boss-phase-title font-display text-5xl font-bold tracking-[0.12em] sm:text-6xl">{stage === 'won' ? t('VICTORY', 'VICTOIRE') : t('DEFEAT', 'DÉFAITE')}</h2>
             </div>
             <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {[
-                ['Score', `${result.score}`],
-                ['Time', formatTime(result.timeMs)],
-                ['Rounds', `${cleared}/${total}`],
-                ['Accuracy', `${accuracy}%`],
+                [t('Score', 'Score'), `${result.score}`],
+                [t('Time', 'Temps'), formatTime(result.timeMs)],
+                [t('Rounds', 'Manches'), `${cleared}/${total}`],
+                [t('Accuracy', 'Précision'), `${accuracy}%`],
               ].map(([k, v]) => (
                 <div key={k} className="rounded-md border border-rule bg-card/70 px-3 py-2.5">
                   <dt className="font-display text-[11px] uppercase tracking-widest text-ink-faint">{k}</dt>
@@ -568,11 +604,11 @@ function BossBattle({ boss }: { boss: Boss }) {
               ))}
             </dl>
             <p className="flex items-center justify-center gap-1 text-sm text-ink-soft">
-              Hearts left:
+              {t('Hearts left:', 'Cœurs restants :')}
               {Array.from({ length: d.hearts }, (_, i) => (
                 <HeartIcon key={i} full={i < hearts} className="size-5" />
               ))}
-              {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">★ New best score</span>}
+              {result.best && <span className="ml-2 font-display font-bold tracking-wider text-ochre">{t('★ New best score', '★ Nouveau meilleur score')}</span>}
             </p>
             <BossReward pay={result.pay} />
             {stage === 'lost' && last && !last.won && (
@@ -584,16 +620,16 @@ function BossBattle({ boss }: { boss: Boss }) {
             {signature && secretResult && (
               <p className={`font-display text-sm font-bold tracking-wider ${secretResult.won ? 'text-hit' : 'text-coral'}`}>
                 {secretResult.won
-                  ? `Signature won — ${secretResult.reason} (+${Math.round(signature.bonus * d.scoreMultiplier)} pts)`
-                  : `Signature failed: ${secretResult.reason}`}
+                  ? t(`Signature won — ${secretResult.reason} (+${Math.round(signature.bonus * d.scoreMultiplier)} pts)`, `Signature réussie — ${secretResult.reason} (+${Math.round(signature.bonus * d.scoreMultiplier)} pts)`)
+                  : t(`Signature failed: ${secretResult.reason}`, `Signature ratée : ${secretResult.reason}`)}
               </p>
             )}
             <div className="flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={rematch} className="btn-accent flex-1 rounded-md py-3 font-display font-bold tracking-widest">
-                {stage === 'won' ? 'Fight again' : 'Rematch'}
+                {stage === 'won' ? t('Fight again', 'Rejouer') : t('Rematch', 'Revanche')}
               </button>
               <Link to={`/boss?domain=${boss.domain}`} className="btn-paper flex-1 rounded-md py-3 text-center font-display font-bold tracking-widest">
-                Choose another boss
+                {t('Choose another boss', 'Choisir un autre boss')}
               </Link>
             </div>
           </div>
@@ -601,6 +637,7 @@ function BossBattle({ boss }: { boss: Boss }) {
       </div>
       {book && <AnswerBook boss={boss} onClose={() => setBook(false)} />}
     </div>
+    </BossContext.Provider>
   );
 }
 
@@ -610,6 +647,8 @@ function BossBattle({ boss }: { boss: Boss }) {
  */
 function BossReward({ pay }: { pay: BossPay }) {
   const many = pay.lines.length > 1;
+  const t = useT();
+  const fr = useProgress((s) => s.nameLang) === 'fr';
   return (
     <div className="mx-auto w-full max-w-sm rounded-md border border-rule bg-card/70 px-4 py-3 text-sm">
       <p className="flex items-center justify-center gap-1.5 font-display text-lg font-bold tabular-nums">
@@ -620,16 +659,16 @@ function BossReward({ pay }: { pay: BossPay }) {
           {pay.lines.map((l) => (
             <li key={l.difficulty} className="flex justify-between gap-3">
               <span>
-                <span className={`font-display font-bold ${DIFFICULTY_TONE[l.difficulty]}`}>{DIFFICULTIES[l.difficulty].label}</span>
-                {l.win > 0 ? (l.loss ? ' · fought' : ' · win') : ''}
-                {l.weekly > 0 ? `${l.win > 0 ? ' + ' : ' · '}first this week` : ''}
+                <span className={`font-display font-bold ${DIFFICULTY_TONE[l.difficulty]}`}>{difficultyIn(l.difficulty, fr).label}</span>
+                {l.win > 0 ? (l.loss ? t(' · fought', ' · combattu') : t(' · win', ' · victoire')) : ''}
+                {l.weekly > 0 ? `${l.win > 0 ? ' + ' : ' · '}${t('first this week', 'première de la semaine')}` : ''}
               </span>
               <span className="tabular-nums">+{(l.win + l.weekly).toLocaleString()}</span>
             </li>
           ))}
         </ul>
       )}
-      {many && <p className="mt-2 text-xs text-ink-faint">A win counts for every easier difficulty too.</p>}
+      {many && <p className="mt-2 text-xs text-ink-faint">{t('A win counts for every easier difficulty too.', 'Une victoire compte aussi pour chaque difficulté plus facile.')}</p>}
     </div>
   );
 }
@@ -645,18 +684,19 @@ const REVIEW_MAX = 12;
 const JlptBossKeep = lazy(() => import('../boss/JlptBossKeep'));
 
 function RoundReview({ missed, tries, onBook, boss }: { missed?: string[]; tries?: string[]; onBook: () => void; boss: Boss }) {
+  const t = useT();
   if (!missed?.length && !tries?.length) return null;
   const more = (missed?.length ?? 0) - REVIEW_MAX;
   return (
     <div className="mx-auto max-w-lg space-y-1 text-sm">
       {missed?.length ? (
         <p className="text-ink-soft">
-          <b className="text-ink">The answer{missed.length === 1 ? '' : 's'}:</b> {missed.slice(0, REVIEW_MAX).map((n) => shownName(n)).join(', ')}
+          <b className="text-ink">{missed.length === 1 ? t('The answer:', 'La réponse :') : t('The answers:', 'Les réponses :')}</b> {missed.slice(0, REVIEW_MAX).map((n) => shownName(n)).join(', ')}
           {more > 0 && (
             <>
               {' '}
               <button type="button" onClick={onBook} className="underline hover:text-ink">
-                and {more} more
+                {t(`and ${more} more`, `et ${more} de plus`)}
               </button>
             </>
           )}
@@ -664,7 +704,7 @@ function RoundReview({ missed, tries, onBook, boss }: { missed?: string[]; tries
       ) : null}
       {tries?.length ? (
         <p className="text-ink-soft">
-          <b className="text-coral">You tried:</b> {tries.join(' · ')}
+          <b className="text-coral">{t('You tried:', 'Tu as essayé :')}</b> {tries.join(' · ')}
         </p>
       ) : null}
       {boss.id === 'jlpt' && missed?.length ? (
