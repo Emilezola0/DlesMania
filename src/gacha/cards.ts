@@ -1407,7 +1407,7 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
   // Shrek: two more Omnis beside Puss in Boots (the set's own), the owner's picks. Lord Farquaad, the guardian, with the
   // Magic Mirror (Shrek, the Shrek Wiki). His clip and first line are the owner's picks, from the film's French dub
   // (Boxoffice Animation, "C'est Farquaad qui pose les questions"): the Muffin Man questioning (1:15–1:30, heard, cropped
-  // of the subtitles and logo burnt into it) and his taunt to Gingy (0:39–0:45). His English line stays as his second.
+  // of the subtitles and logo burnt into it) and his taunt to Gingy (0:39–0:45), his only line (the owner's call: no other).
   {
     set: 'shrek',
     id: 'shrek:omni-farquaad',
@@ -1419,10 +1419,6 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'The ruler of Duloc, a kingdom so perfect it has a song: he banished every fairy-tale creature, picked a princess off a mirror\'s dating show and sent someone else to rescue her.',
     voice: 'Cours, cours, aussi vite que tu peux ! Tu ne m’attraperas pas, je suis le ’Tit Biscuit !',
     audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/farquaad-cours-cours.m4a`,
-    voiceClips: [
-      { line: 'Cours, cours, aussi vite que tu peux ! Tu ne m’attraperas pas, je suis le ’Tit Biscuit !', audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/farquaad-cours-cours.m4a` },
-      { line: 'Some of you may die, but that is a sacrifice I am willing to make.', audio: 'https://www.myinstants.com/media/sounds/some-of-you-may-die.mp3' },
-    ],
   },
   // Death, the Wolf of The Last Wish (the Shrek Wiki's render, hood down, sickles out). The owner's pick: his whistle, the
   // one Puss hears before every sight of him, and back at the end of the film, when Death lets him go — for now. The
