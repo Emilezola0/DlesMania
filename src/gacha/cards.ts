@@ -675,6 +675,9 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'shrek:omni': { clipSound: true },
   'shrek:omni-farquaad': { clipSound: true },
   'shrek:omni-death': { clipSound: true },
+  // Ohhhh Cat (made Mythic, the owner's call): his clip is his moment, "Ohhhh!" in Puss in Boots (2011, Movieclips' Cat
+  // Dance Fight, 3:24.5–3:28.9, framed on him), and it is his voice too.
+  'shrek:ohhhh-cat': { voice: 'Ohhhh!', audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/ohhhh-cat.mp4`, clipSound: true },
   // ── Recordings added to the Mythics and Omnis that only had a written line (the browser read it) ──
   // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
   // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
@@ -848,6 +851,7 @@ const CLIPS: Record<string, string> = {
   'shrek:mythic-dragon': 'https://media.tenor.com/jf9C41vNdrwAAAPo/shrek-dragon.mp4',
   'shrek:mythic-humpty-dumpty': 'https://media.tenor.com/xw7LBbHxk40AAAPo/humpty-dumpty-puss-in-boots.mp4',
   'shrek:mythic-donkey': 'https://media.tenor.com/MEVTdE93QGsAAAPo/shrek2-dreamworks.mp4',
+  'shrek:ohhhh-cat': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/ohhhh-cat.mp4`,
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
