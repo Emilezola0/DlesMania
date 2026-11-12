@@ -2008,6 +2008,9 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       if (phase === 'choose' && /^[1-3]$/.test(e.key)) return choose(Number(e.key) - 1);
       if (e.key !== 'Enter' && e.key !== ' ') return;
       e.preventDefault();
+      // A focused button (Skip, just clicked; the pack) would also be clicked when the key comes up — in Firefox, stopping
+      // the key doesn't stop that, and the step was done twice (two scenes on screen at once): it loses the focus first.
+      if (document.activeElement instanceof HTMLButtonElement) document.activeElement.blur();
       if (phase === 'summary') close();
       else act();
     };
@@ -2262,11 +2265,21 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             const thick = top(s.to) ? 7 : RARITIES.indexOf(s.to) >= 2 ? 5 : 3;
             // A black hole: every star but the last circles it (and some go in).
             // A cosmic event: its own scene.
-            if (s.event === 'wish') return <Wish key={k} star={s} thick={thick} />;
-            if (s.event) return <Chain key={k} star={s} />;
-            if (cosmos.hole && s.orbit) return <Orbiter key={k} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} light={stars.length > BIG_OPENING} />;
+            // Each keyed by the skip too (as the plain stars below): skipped into the show, a scene starts afresh on its new
+            // timing — kept, it held on to what it had already shown (its title, its burst) and two scenes overlapped.
+            const at = `${k}:${flownFrom}`;
+            if (s.event === 'wish') return <Wish key={at} star={s} thick={thick} />;
+            // Over once its whole chain has played: its last scene (the planet born, its title) stayed on screen, under the
+            // next event's (several in a big opening, one after the other).
+            if (s.event)
+              return (
+                <Until key={at} ms={s.delay + s.duration}>
+                  <Chain star={s} />
+                </Until>
+              );
+            if (cosmos.hole && s.orbit) return <Orbiter key={at} star={s} k={k} thick={thick} swallowed={cosmos.swallowed.has(k)} light={stars.length > BIG_OPENING} />;
             // An evolving star crashes into another and bursts in its true colour.
-            if (s.clash) return <Clash key={k} star={s} thick={thick} />;
+            if (s.clash) return <Clash key={at} star={s} thick={thick} />;
             return (
               <InFlight key={`${k}:${flownFrom}`} from={s.delay - STAR_EARLY} to={s.delay + s.duration + STAR_EARLY}>
                 {(late) => (
