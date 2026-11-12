@@ -276,14 +276,13 @@ export function CardReactions() {
         endMoment(clip ? MOMENT_WAIT_MS : MOMENT_MS - MOMENT_OUT_MS);
       }
     });
+    // Turned off: no new reactions — but a win's video already playing plays on to its end (only a refresh stops one).
     return () => {
       off();
       window.clearTimeout(timer);
-      window.clearTimeout(momentTimer.current);
-      clipWait.current = false;
-      setMoment(null);
     };
   }, [enabled]);
+  useEffect(() => () => window.clearTimeout(momentTimer.current), []);
 
   if (!bubble && !moment) return null;
   return (
