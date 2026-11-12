@@ -522,11 +522,12 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
   },
   forts: {
     name: 'Howitzer',
-    title: 'Full Barrage',
-    line: 'The howitzer gives the signal and every gun on the fort answers — rockets, cannons, lasers — until the sky over the enemy turns to fire.',
+    title: 'Core Swing',
+    // The owner's text: FPL Season 5, Pile Rouillée's "La Spéciale".
+    line: 'FPL Season 5. As the battle rages on, Pile Rouillée launches his ultimate offensive: "La Spéciale". At the cost of his own base, he catapults his Core straight into Nils. A devastating impact. An instant elimination. A legendary sacrifice.',
     image: 'https://www.earthworkgames.com/wp-content/uploads/2022/02/forts-landing-page.png',
     awaken: {
-      title: 'The Last Shell',
+      title: 'Pile Rouillée',
       line: 'One gunner, one tin hat, one shell left — and it is going straight through the enemy reactor.',
       image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
     },
@@ -682,7 +683,10 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
   // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
   'smash:omni': { voice: 'Hyaah!', audio: 'https://www.myinstants.com/media/sounds/ww_link_hwah.mp3' },
-  'forts:omni': { voice: '*BOOM*', audio: 'https://www.myinstants.com/media/sounds/cannon-soundbible_5xh1Wvy.mp3' },
+  // The owner's picks: "La Spéciale" (0:50–1:05 of ZMEoZ07MnZc), heard over the silent Core Swing clip (CLIPS).
+  'forts:omni': { voice: 'La Spéciale', audio: `${import.meta.env?.BASE_URL ?? './'}clips/forts/la-speciale-voice.mp4` },
+  // The owner's picks: Apollyon's "War… I am war" (11:42–11:47 of WomoIywubm4), heard over her silent clips (CLIPS).
+  'forhonor:omni': { voice: 'WAR ... I AM WAR', audio: `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-voice.mp4` },
   'deadlock:mythic': { voice: 'Sleep well.', audio: 'https://cdn.deadlock.wiki/Haze_unselect_05.mp3' },
   'balatro:mythic': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
   'balatro:mythic-2': { audio: 'https://www.myinstants.com/media/sounds/jimbo-voice-balatro.mp3' },
@@ -883,7 +887,8 @@ const CLIPS: Record<string, string> = {
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
   'forts:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forts/howitzer.mp4`,
-  'forts:omni': 'https://media.tenor.com/nLDwdFO48t0AAAP1/get-on-forts-forts.mp4',
+  // The owner's pick: 8:35–8:50 of mnmhN-7Q4SA (FPL Season 5, Pile Rouillée's Core Swing), cut --mute: "La Spéciale" plays over it.
+  'forts:omni': `${import.meta.env?.BASE_URL ?? './'}clips/forts/core-swing.mp4`,
   'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/forhonor-mythic.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
   // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
@@ -922,7 +927,8 @@ const FIRST_CLIPS: Record<string, string> = {
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
   'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
-  'forhonor:omni': 'https://media.tenor.com/4boSdb4jMlQAAAPo/for-honor-apollyon.mp4',
+  // The owner's pick: 0:17–2:28 of zFUymXnQ5z8, cut in 15 s clips played one after another (--mute: her voice plays over them).
+  'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-${n}.mp4`).join('|'),
   'unreal:omni': 'https://media.tenor.com/Y-8Qtpt5Z4EAAAPo/unreal-engine.mp4',
   'arcraiders:omni-scrappy': `${import.meta.env?.BASE_URL ?? './'}clips/gif/arcraiders-scrappy.mp4`,
   // Firefly's green-flame wings at sunset; Acheron's slash among the red petals.
@@ -932,7 +938,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'balatro:omni': `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4`,
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'shrek:mythic-2', 'shrek:mythic-dragon', 'shrek:mythic-humpty-dumpty', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'shrek:mythic-2', 'shrek:mythic-dragon', 'shrek:mythic-humpty-dumpty', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 /** Light first forms whose awakened clip is a full video, not a light one. */
@@ -952,7 +958,7 @@ const withClip = (c: Card): Card => {
 };
 
 /** The clips hosted with the site that have no sound track (GIFs, the game captures, the ones cut --mute). */
-const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/forts\/howitzer\.mp4/;
+const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/(black-prior-ad-profundis|apollyon-war-\d)|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
 /**
  * Whether a card's clip is heard (the owner's rule: a video that has sound always plays with it, behind a win too,
  * never under a voice line): every clip hosted with the site that has a sound track, and the ones marked `clipSound`.
