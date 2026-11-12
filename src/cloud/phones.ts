@@ -6,7 +6,7 @@
 // themselves are in phones/<id>/steps/<n>, and the database lets a player read the last one only once they break its
 // seal (claim the turn: nobody else can take it for TELEPHONE.claimMinutes, and they can't break it again). Its maker
 // reads their own step; the starter and their friends read them all once the chain is finished (firestore.rules).
-import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, writeBatch, type Timestamp } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, Timestamp, writeBatch } from 'firebase/firestore';
 import T from '../data/tuning/friends.json';
 import type { Stroke } from './doodles';
 import { auth, db } from './firebase';
@@ -31,8 +31,15 @@ export interface PhoneDoc {
   day: string;
   /** The franchise (a card set): every name in the chain is one of its characters. */
   set: string;
-  /** When it started (the server's time): it stays open TELEPHONE.days from then. */
+  /** When it started (the server's time). */
   at: Timestamp | null;
+  /**
+   * When its day ends (midnight where its starter is): it's played that day, then the seals come off. Chains from
+   * before this was kept end when the day is over everywhere (dayEnd).
+   */
+  ends?: Timestamp | null;
+  /** A chain from before the seals (its steps were inside it), shown as it is: nothing in it is lost. */
+  legacy?: boolean;
   /** Each step's kind, in order (their content is sealed away). */
   kinds: StepKind[];
   /** Who made each step, in order (the starter first): each player once. */
@@ -57,8 +64,14 @@ function me() {
   return { uid: u.uid, name: (u.displayName ?? u.email?.split('@')[0] ?? 'A player').trim().slice(0, 40) || 'A player' };
 }
 
-/** Full, or open too long: the seals are off and everyone sees it whole. */
-export const phoneDone = (p: Pick<PhoneDoc, 'kinds' | 'at'>, nowMs: number) => p.kinds.length >= P.steps || (!!p.at && nowMs > p.at.toMillis() + P.days * DAY_MS);
+/** A day's end everywhere on Earth (its UTC start, a day, and 12 hours more): as the rules count it for a chain with no `ends`. */
+const dayEnd = (day: string) => Date.UTC(+day.slice(0, 4), +day.slice(5, 7) - 1, +day.slice(8, 10)) + DAY_MS + 12 * 3_600_000;
+/** When a chain closes: its day's end. */
+export const phoneEnd = (p: Pick<PhoneDoc, 'day' | 'ends'>) => (p.ends ? p.ends.toMillis() : dayEnd(p.day));
+/** Full, or its day is over: the seals are off and everyone sees it whole. */
+export const phoneDone = (p: Pick<PhoneDoc, 'kinds' | 'day' | 'ends'>, nowMs: number) => p.kinds.length >= P.steps || nowMs > phoneEnd(p);
+/** Midnight at the end of this day, here (where the player is). */
+const localEnd = (day: string) => Timestamp.fromDate(new Date(+day.slice(0, 4), +day.slice(5, 7) - 1, +day.slice(8, 10) + 1));
 /** Whether someone else holds the next turn right now. */
 export const heldByOther = (p: PhoneDoc, uid: string, nowMs: number) =>
   !!p.claim && p.claim.u !== uid && (!p.claim.at || nowMs < p.claim.at.toMillis() + P.claimMinutes * 60_000);
@@ -69,10 +82,11 @@ export async function startPhone(day: string, set: string, word: string): Promis
   const id = phoneId(uid, day);
   const first: Step = { u: uid, n: name, k: 'w', t: word };
   const b = writeBatch(db);
-  b.set(ref(id), { uid, name, day, set, at: serverTimestamp(), kinds: ['w'], people: [uid], seen: [], claim: null });
+  const ends = localEnd(day);
+  b.set(ref(id), { uid, name, day, set, at: serverTimestamp(), ends, kinds: ['w'], people: [uid], seen: [], claim: null });
   b.set(stepRef(id, 0), first);
   await b.commit();
-  return { uid, name, day, set, at: null, kinds: ['w'], people: [uid], seen: [], claim: null, steps: [first] };
+  return { uid, name, day, set, at: null, ends, kinds: ['w'], people: [uid], seen: [], claim: null, steps: [first] };
 }
 
 const readStep = (id: string, n: number) =>
@@ -97,19 +111,55 @@ async function stepsOf(p: Omit<PhoneDoc, 'steps'>, uid: string): Promise<(Step |
 
 const fromDb = (d: Record<string, unknown>) => d as unknown as Omit<PhoneDoc, 'steps'>;
 
-/** These players' chains of these days, with what this player may read of them (a day with none is left out). */
+/** A chain from before the seals, as it is: its steps (drawings and all) were inside it, readable by its friends. */
+function legacyOf(d: Record<string, unknown>): PhoneDoc {
+  const steps = d.steps as Step[];
+  return { ...(d as unknown as PhoneDoc), kinds: steps.map((s) => s.k), people: (d.people as string[]) ?? steps.map((s) => s.u), seen: [], claim: null, steps, legacy: true };
+}
+
+/**
+ * Brings a chain from before the seals into today's shape, so it can go on being played: the chain keeps its start,
+ * its players and every step exactly as made (the rules check each is a true copy), sealed from now on.
+ */
+async function migrate(p: PhoneDoc): Promise<void> {
+  const id = phoneId(p.uid, p.day);
+  const b = writeBatch(db);
+  b.set(ref(id), { uid: p.uid, name: p.name, day: p.day, set: p.set, at: p.at, ends: localEnd(p.day), kinds: p.kinds, people: p.people, seen: [], claim: null });
+  p.steps.forEach((s, n) => s && b.set(stepRef(id, n), s));
+  await b.commit();
+}
+
+/**
+ * These players' chains of these days, with what this player may read of them (a day with none is left out). A chain
+ * from before the seals is kept: still open today, it's brought into the sealed shape (drawings and all) and goes on;
+ * over, it's shown whole as it was.
+ */
 export async function phonesOf(uids: string[], days: string[]): Promise<PhoneDoc[]> {
   const { uid } = me();
-  const docs = await Promise.all(
-    uids.flatMap((u) =>
-      days.map(async (day) => {
-        const s = await getDoc(ref(phoneId(u, day))).catch(() => null);
-        if (!s?.exists() || !Array.isArray(s.data().kinds)) return null;
-        const p = fromDb(s.data());
+  const load = async (u: string, day: string): Promise<PhoneDoc | null> => {
+    const s = await getDoc(ref(phoneId(u, day))).catch(() => null);
+    if (!s?.exists()) return null;
+    const d = s.data();
+    if (Array.isArray(d.kinds)) {
+      const p = fromDb(d);
+      return { ...p, steps: await stepsOf(p, uid) };
+    }
+    if (!Array.isArray(d.steps)) return null;
+    const old = legacyOf(d);
+    if (phoneDone(old, Date.now())) return old;
+    try {
+      await migrate(old);
+      const again = await getDoc(ref(phoneId(u, day)));
+      if (again.exists() && Array.isArray(again.data().kinds)) {
+        const p = fromDb(again.data());
         return { ...p, steps: await stepsOf(p, uid) };
-      }),
-    ),
-  );
+      }
+    } catch {
+      // Not brought over (a friend may have just done it, or the rules aren't published): shown as it is.
+    }
+    return old;
+  };
+  const docs = await Promise.all(uids.flatMap((u) => days.map((day) => load(u, day))));
   return docs.filter((d): d is PhoneDoc => !!d);
 }
 

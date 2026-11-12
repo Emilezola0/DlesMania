@@ -31,40 +31,119 @@ export const cardNamed = (set: string, name: string) => (BY_SET.get(set) ?? []).
 export const FRANCHISES = SETS.filter((s) => s.id !== 'jlpt' && namesOf(s.id).length >= 8).sort((a, b) => a.franchise.localeCompare(b.franchise));
 export const franchiseOf = (set: string) => SETS.find((s) => s.id === set)?.franchise ?? set;
 
-/** Paints strokes on a canvas, up to `upTo` points in all (Infinity: the whole drawing). */
-export function paint(canvas: HTMLCanvasElement, strokes: { c: number; w: number; pts: [number, number][] }[], upTo = Infinity) {
+type Raw = { c: number; w: number; pts: [number, number][] };
+/** A stroke's width index that means "fill": the bucket, poured at its one point (a stroke like any other, so drawings keep their shape). */
+export const FILL = 9;
+
+const rgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+
+/**
+ * The bucket: fills the area around (x, y) (0 to 1) that has the colour found there, up to the lines around it, then
+ * one pixel more so the soft edges of the lines leave no pale ring.
+ */
+export function floodFill(canvas: HTMLCanvasElement, x: number, y: number, color: string) {
   const g = canvas.getContext('2d')!;
   const W = canvas.width;
-  g.fillStyle = '#fffdf7';
-  g.fillRect(0, 0, W, W);
+  const H = canvas.height;
+  const img = g.getImageData(0, 0, W, H);
+  const d = img.data;
+  const sx = Math.min(W - 1, Math.max(0, Math.round(x * W)));
+  const sy = Math.min(H - 1, Math.max(0, Math.round(y * H)));
+  const i0 = (sy * W + sx) * 4;
+  const [tr, tg, tb] = [d[i0], d[i0 + 1], d[i0 + 2]];
+  const [fr, fg, fb] = rgb(color);
+  if (Math.abs(fr - tr) + Math.abs(fg - tg) + Math.abs(fb - tb) < 8) return;
+  const near = (k: number) => Math.abs(d[k * 4] - tr) + Math.abs(d[k * 4 + 1] - tg) + Math.abs(d[k * 4 + 2] - tb) <= 90;
+  const mask = new Uint8Array(W * H);
+  const stack = [sx, sy];
+  while (stack.length) {
+    const py = stack.pop()!;
+    let px = stack.pop()!;
+    if (mask[py * W + px]) continue;
+    while (px > 0 && !mask[py * W + px - 1] && near(py * W + px - 1)) px--;
+    let up = false;
+    let down = false;
+    for (; px < W && !mask[py * W + px] && near(py * W + px); px++) {
+      mask[py * W + px] = 1;
+      if (py > 0) {
+        const k = (py - 1) * W + px;
+        const open = !mask[k] && near(k);
+        if (open && !up) stack.push(px, py - 1);
+        up = open;
+      }
+      if (py < H - 1) {
+        const k = (py + 1) * W + px;
+        const open = !mask[k] && near(k);
+        if (open && !down) stack.push(px, py + 1);
+        down = open;
+      }
+    }
+  }
+  const paintPx = (j: number) => {
+    d[j * 4] = fr;
+    d[j * 4 + 1] = fg;
+    d[j * 4 + 2] = fb;
+    d[j * 4 + 3] = 255;
+  };
+  for (let k = 0; k < W * H; k++) {
+    if (!mask[k]) continue;
+    const px = k % W;
+    paintPx(k);
+    if (px > 0) paintPx(k - 1);
+    if (px < W - 1) paintPx(k + 1);
+    if (k >= W) paintPx(k - W);
+    if (k < W * H - W) paintPx(k + W);
+  }
+  g.putImageData(img, 0, 0);
+}
+
+/** Draws the points numbered `from` to `to` (counting every stroke's points in order) on top of what's there. */
+export function paintRange(canvas: HTMLCanvasElement, strokes: Raw[], from: number, to: number) {
+  const g = canvas.getContext('2d')!;
+  const W = canvas.width;
   g.lineCap = 'round';
   g.lineJoin = 'round';
-  let left = upTo;
+  let o = 0;
   for (const s of strokes) {
-    if (left <= 0) break;
-    const pts = s.pts.slice(0, Math.max(1, Math.min(s.pts.length, left)));
-    left -= s.pts.length;
-    g.strokeStyle = INKS[s.c] ?? INKS[0];
-    g.fillStyle = g.strokeStyle;
-    g.lineWidth = (WIDTHS[s.w] ?? WIDTHS[1]) * W;
-    if (pts.length === 1) {
-      g.beginPath();
-      g.arc(pts[0][0] * W, pts[0][1] * W, g.lineWidth / 2, 0, Math.PI * 2);
-      g.fill();
+    if (o >= to) break;
+    const color = INKS[s.c] ?? INKS[0];
+    if (s.w === FILL) {
+      if (o >= from && s.pts[0]) floodFill(canvas, s.pts[0][0], s.pts[0][1], color);
+      o += s.pts.length;
       continue;
     }
-    g.beginPath();
-    g.moveTo(pts[0][0] * W, pts[0][1] * W);
-    for (const [x, y] of pts.slice(1)) g.lineTo(x * W, y * W);
-    g.stroke();
+    g.strokeStyle = color;
+    g.fillStyle = color;
+    g.lineWidth = (WIDTHS[s.w] ?? WIDTHS[1]) * W;
+    for (let k = Math.max(0, from - o); k < s.pts.length && o + k < to; k++) {
+      g.beginPath();
+      if (k === 0) {
+        if (s.pts.length > 1) continue;
+        g.arc(s.pts[0][0] * W, s.pts[0][1] * W, g.lineWidth / 2, 0, Math.PI * 2);
+        g.fill();
+        continue;
+      }
+      g.moveTo(s.pts[k - 1][0] * W, s.pts[k - 1][1] * W);
+      g.lineTo(s.pts[k][0] * W, s.pts[k][1] * W);
+      g.stroke();
+    }
+    o += s.pts.length;
   }
 }
 
-/** A drawing played back stroke by stroke, as it was drawn (again on a tap). */
+/** Paints strokes on a blank canvas, up to `upTo` points in all (Infinity: the whole drawing). */
+export function paint(canvas: HTMLCanvasElement, strokes: Raw[], upTo = Infinity) {
+  const g = canvas.getContext('2d')!;
+  g.fillStyle = '#fffdf7';
+  g.fillRect(0, 0, canvas.width, canvas.height);
+  paintRange(canvas, strokes, 0, upTo);
+}
+
+/** A drawing played back stroke by stroke, as it was drawn (again on a tap); the bucket's fills pour in their turn. */
 export function Replay({ strokes, className = '' }: { strokes: Stroke[]; className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [run, setRun] = useState(0);
-  const [unpacked, setUnpacked] = useState<{ c: number; w: number; pts: [number, number][] }[]>([]);
+  const [unpacked, setUnpacked] = useState<Raw[]>([]);
   useEffect(() => {
     void cloud().then((c) => setUnpacked(strokes.map((s) => ({ c: s.c, w: s.w, pts: c.unpack(s.p) }))));
   }, [strokes]);
@@ -72,22 +151,101 @@ export function Replay({ strokes, className = '' }: { strokes: Stroke[]; classNa
     const c = ref.current;
     if (!c || !unpacked.length) return;
     const total = unpacked.reduce((t, s) => t + s.pts.length, 0);
+    paint(c, []);
+    let done = 0;
     const t0 = performance.now();
     let raf = 0;
     const step = (now: number) => {
-      const n = Math.ceil((total * (now - t0)) / 2600);
-      paint(c, unpacked, n);
+      const n = Math.min(total, Math.ceil((total * (now - t0)) / 2600));
+      if (n > done) paintRange(c, unpacked, done, n);
+      done = Math.max(done, n);
       if (n < total) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
     // Shown whole at once if animation frames don't come (a hidden tab).
-    const fallback = window.setTimeout(() => paint(c, unpacked), 3000);
+    const fallback = window.setTimeout(() => {
+      if (done < total) {
+        done = total;
+        paint(c, unpacked);
+      }
+    }, 3000);
     return () => (cancelAnimationFrame(raf), window.clearTimeout(fallback));
   }, [unpacked, run]);
   return (
     <button type="button" onClick={() => setRun((r) => r + 1)} title="Play it again" className={`block overflow-hidden rounded-md border border-rule-strong ${className}`}>
       <canvas ref={ref} width={480} height={480} className="block aspect-square w-full" />
     </button>
+  );
+}
+
+/** A drawing pad's pens and strokes: draws as the finger moves (only what's new), or pours the bucket on a tap. */
+export function usePad(limit = 380) {
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const strokes = useRef<Raw[]>([]);
+  const drawing = useRef(false);
+  const [ink, setInk] = useState(0);
+  const [width, setWidth] = useState(1);
+  const [bucket, setBucket] = useState(false);
+  const total = () => strokes.current.reduce((t, s) => t + s.pts.length, 0);
+  const at = (e: React.PointerEvent<HTMLCanvasElement>): [number, number] => {
+    const r = e.currentTarget.getBoundingClientRect();
+    return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))];
+  };
+  /** The canvas's pointer handlers; nothing happens unless `active` (the clock is running). */
+  const handlers = (active: boolean) => ({
+    onPointerDown: (e: React.PointerEvent<HTMLCanvasElement>) => {
+      if (!active || strokes.current.length >= limit) return;
+      const n = total();
+      if (bucket) {
+        strokes.current.push({ c: ink, w: FILL, pts: [at(e)] });
+        paintRange(e.currentTarget, strokes.current, n, n + 1);
+        return;
+      }
+      e.currentTarget.setPointerCapture(e.pointerId);
+      drawing.current = true;
+      strokes.current.push({ c: ink, w: width, pts: [at(e)] });
+      paintRange(e.currentTarget, strokes.current, n, n + 1);
+    },
+    onPointerMove: (e: React.PointerEvent<HTMLCanvasElement>) => {
+      if (!drawing.current || !active) return;
+      const s = strokes.current[strokes.current.length - 1];
+      const p = at(e);
+      const last = s.pts[s.pts.length - 1];
+      if (Math.hypot(p[0] - last[0], p[1] - last[1]) < 0.004) return;
+      s.pts.push(p);
+      const n = total();
+      paintRange(e.currentTarget, strokes.current, n - 1, n);
+    },
+    onPointerUp: () => void (drawing.current = false),
+    onPointerCancel: () => void (drawing.current = false),
+  });
+  /** A blank page. */
+  const reset = () => {
+    strokes.current = [];
+    drawing.current = false;
+    if (canvas.current) paint(canvas.current, []);
+  };
+  const stop = () => void (drawing.current = false);
+  return { canvas, strokes, handlers, reset, stop, ink, setInk, width, setWidth, bucket, setBucket };
+}
+
+/** The pad's tools: colours, the pen's widths, and the bucket. */
+export function PenBar({ pad }: { pad: ReturnType<typeof usePad> }) {
+  return (
+    <div className="flex flex-wrap items-center gap-1.5">
+      {INKS.map((c, k) => (
+        <button key={c} type="button" onClick={() => pad.setInk(k)} aria-label={`Colour ${k + 1}`} aria-pressed={pad.ink === k} className={`size-7 rounded-full border-2 ${pad.ink === k ? 'scale-110 border-accent' : 'border-rule-strong'}`} style={{ background: c }} />
+      ))}
+      <span className="mx-1 h-6 w-px bg-rule" />
+      {WIDTHS.map((w, k) => (
+        <button key={w} type="button" onClick={() => (pad.setWidth(k), pad.setBucket(false))} aria-label={['Thin pen', 'Medium pen', 'Thick pen'][k]} aria-pressed={!pad.bucket && pad.width === k} className={`grid size-8 place-items-center rounded-md border ${!pad.bucket && pad.width === k ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
+          <span className="rounded-full bg-ink" style={{ width: 4 + k * 5, height: 4 + k * 5 }} />
+        </button>
+      ))}
+      <button type="button" onClick={() => pad.setBucket(true)} aria-label="Bucket: fill an area" title="Bucket: tap inside a shape to fill it" aria-pressed={pad.bucket} className={`grid size-8 place-items-center rounded-md border text-base ${pad.bucket ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
+        🪣
+      </button>
+    </div>
   );
 }
 
@@ -109,13 +267,10 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
   const [count, setCount] = useState(3);
   const [secs, setSecs] = useState(D.times[0].seconds);
   const [left, setLeft] = useState(secs);
-  const [ink, setInk] = useState(0);
-  const [width, setWidth] = useState(1);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const strokes = useRef<{ c: number; w: number; pts: [number, number][] }[]>([]);
-  const canvas = useRef<HTMLCanvasElement>(null);
-  const drawing = useRef(false);
+  const pad = usePad();
+  const { strokes, canvas } = pad;
 
   useEffect(() => {
     if (posted) setStep('posted');
@@ -132,8 +287,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
   useEffect(() => {
     if (step !== 'count') return;
     if (count <= 0) {
-      strokes.current = [];
-      if (canvas.current) paint(canvas.current, []);
+      pad.reset();
       setLeft(secs);
       setStep('drawing');
       sfx.whoosh();
@@ -152,7 +306,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
       setLeft(s);
       if (s <= 0) {
         window.clearInterval(t);
-        drawing.current = false;
+        pad.stop();
         sfx.wrong();
         setStep('done');
       }
@@ -164,27 +318,6 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
     if ((step === 'drawing' || step === 'done') && canvas.current) paint(canvas.current, strokes.current);
   }, [step]);
 
-  const at = (e: React.PointerEvent<HTMLCanvasElement>): [number, number] => {
-    const r = e.currentTarget.getBoundingClientRect();
-    return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))];
-  };
-  const down = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (step !== 'drawing' || strokes.current.length >= 380) return;
-    e.currentTarget.setPointerCapture(e.pointerId);
-    drawing.current = true;
-    strokes.current.push({ c: ink, w: width, pts: [at(e)] });
-    paint(e.currentTarget, strokes.current);
-  };
-  const move = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!drawing.current || step !== 'drawing') return;
-    const s = strokes.current[strokes.current.length - 1];
-    const p = at(e);
-    const last = s.pts[s.pts.length - 1];
-    if (Math.hypot(p[0] - last[0], p[1] - last[1]) < 0.004) return;
-    s.pts.push(p);
-    paint(e.currentTarget, strokes.current);
-  };
-  const up = () => (drawing.current = false);
 
   const post = async () => {
     setBusy(true);
@@ -291,22 +424,10 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
         <span className="w-12 text-right font-display text-2xl font-black tabular-nums">{step === 'count' ? count : Math.ceil(left)}</span>
       </div>
       <div className="relative">
-        <canvas ref={canvas} width={480} height={480} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} className="block aspect-square w-full touch-none rounded-md border-2 border-rule-strong bg-[#fffdf7]" />
+        <canvas ref={canvas} width={480} height={480} {...pad.handlers(step === 'drawing')} className="block aspect-square w-full touch-none rounded-md border-2 border-rule-strong bg-[#fffdf7]" />
         {step === 'count' && <div className="absolute inset-0 grid place-items-center rounded-md bg-black/40 font-display text-7xl font-black text-white">{count}</div>}
       </div>
-      {step === 'drawing' && (
-        <div className="flex flex-wrap items-center gap-1.5">
-          {INKS.map((c, k) => (
-            <button key={c} type="button" onClick={() => setInk(k)} aria-label={`Colour ${k + 1}`} aria-pressed={ink === k} className={`size-7 rounded-full border-2 ${ink === k ? 'scale-110 border-accent' : 'border-rule-strong'}`} style={{ background: c }} />
-          ))}
-          <span className="mx-1 h-6 w-px bg-rule" />
-          {WIDTHS.map((w, k) => (
-            <button key={w} type="button" onClick={() => setWidth(k)} aria-label={['Thin', 'Medium', 'Thick'][k]} aria-pressed={width === k} className={`grid size-8 place-items-center rounded-md border ${width === k ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
-              <span className="rounded-full bg-ink" style={{ width: 4 + k * 5, height: 4 + k * 5 }} />
-            </button>
-          ))}
-        </div>
-      )}
+      {step === 'drawing' && <PenBar pad={pad} />}
       {step === 'done' && (
         <div className="space-y-2">
           <p className="text-center font-display text-lg font-bold">⏰ Time&apos;s up!</p>

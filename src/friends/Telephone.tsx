@@ -1,10 +1,11 @@
 // Friends → Telephone: a drawing chain played turn by turn, whenever each friend comes by (src/cloud/phones.ts). You
 // start one with a character; a friend sees only that name and draws it; the next sees only the drawing and guesses
 // who it is; the next draws that guess… Every turn is sealed (a wax seal): nobody sees what's inside until they break
-// it, and breaking it takes the turn (TELEPHONE.claimMinutes to play it, once per chain). Once it's full
-// (TELEPHONE.steps) or TELEPHONE.days have passed, everyone sees the whole chain from start to end. Each step pays its
-// maker, and everyone in it gets a bonus if the last guess is the character it started with.
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+// it, and breaking it takes the turn (TELEPHONE.claimMinutes to play it, once per chain). A chain is a daily one: it's
+// played the day it starts, and once it's full (TELEPHONE.steps) or its day ends (midnight where its starter is),
+// everyone sees the whole chain from start to end. Each step pays its maker, and everyone in it gets a bonus if the
+// last guess is the character it started with. Chains of the last TELEPHONE.showDays days stay on show.
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Stroke } from '../cloud/doodles';
 import type { PhoneDoc, Step } from '../cloud/phones';
 import { DleCoin } from '../components/DleCoin';
@@ -13,7 +14,7 @@ import { addDays, now, todayKey } from '../lib/date';
 import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
-import { CardPic, cardNamed, FRANCHISES, franchiseOf, INKS, namesOf, paint, Replay, WIDTHS } from './Doodle';
+import { CardPic, cardNamed, FRANCHISES, franchiseOf, INKS, namesOf, paint as paintAll, PenBar, Replay, usePad } from './Doodle';
 
 const P = T.telephone;
 const cloud = () => import('../cloud/phones');
@@ -38,8 +39,10 @@ const norm = (s: string) =>
 
 /** When a chain started (just started here: now). */
 const startOf = (p: PhoneDoc) => (p.at ? p.at.toMillis() : now());
+/** When a chain's day ends (as phoneEnd in src/cloud/phones.ts): its starter's midnight, or the day's end everywhere. */
+const endOf = (p: PhoneDoc) => (p.ends ? p.ends.toMillis() : Date.UTC(+p.day.slice(0, 4), +p.day.slice(5, 7) - 1, +p.day.slice(8, 10)) + DAY_MS + 12 * 3_600_000);
 /** Full, or open too long: the seals are off and everyone sees it whole (as phoneDone in src/cloud/phones.ts). */
-const isDone = (p: PhoneDoc) => p.kinds.length >= P.steps || now() > startOf(p) + P.days * DAY_MS;
+const isDone = (p: PhoneDoc) => p.kinds.length >= P.steps || now() > endOf(p);
 /** Someone else holds the next turn right now (they broke its seal). */
 const heldBy = (p: PhoneDoc, me: string) => (p.claim && p.claim.u !== me && (!p.claim.at || now() < p.claim.at.toMillis() + P.claimMinutes * 60_000) ? p.claim.u : null);
 /** The last guess, if there was one. */
@@ -55,7 +58,11 @@ function payOf(p: PhoneDoc, uid: string): number {
   if (!mine || p.kinds.length < 2) return 0;
   return mine * P.perStep + (madeIt(p) ? P.bonus : 0);
 }
-const hoursLeft = (p: PhoneDoc) => Math.max(0, Math.ceil((startOf(p) + P.days * DAY_MS - now()) / 3_600_000));
+/** How long until a chain's day ends ("5 h", "40 min"). */
+const timeLeft = (p: PhoneDoc) => {
+  const min = Math.max(0, Math.ceil((endOf(p) - now()) / 60_000));
+  return min >= 60 ? `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, '0')}` : `${min} min`;
+};
 
 /** A wax seal: a sealed turn nobody has seen. It cracks away when broken. */
 export function WaxSeal({ broken, size = 64, label = '📞' }: { broken?: boolean; size?: number; label?: string }) {
@@ -86,18 +93,14 @@ function DrawPad({ word, set, onDone, busy }: { word: string; set: string; onDon
   const [step, setStep] = useState<'ready' | 'count' | 'drawing' | 'done'>('ready');
   const [count, setCount] = useState(3);
   const [left, setLeft] = useState(P.seconds);
-  const [ink, setInk] = useState(0);
-  const [width, setWidth] = useState(1);
-  const strokes = useRef<{ c: number; w: number; pts: [number, number][] }[]>([]);
-  const canvas = useRef<HTMLCanvasElement>(null);
-  const drawing = useRef(false);
+  const pad = usePad();
+  const { strokes, canvas } = pad;
   const card = cardNamed(set, word);
 
   useEffect(() => {
     if (step !== 'count') return;
     if (count <= 0) {
-      strokes.current = [];
-      if (canvas.current) paint(canvas.current, []);
+      pad.reset();
       setStep('drawing');
       sfx.whoosh();
       return;
@@ -114,7 +117,7 @@ function DrawPad({ word, set, onDone, busy }: { word: string; set: string; onDon
       setLeft(s);
       if (s <= 0) {
         window.clearInterval(t);
-        drawing.current = false;
+        pad.stop();
         sfx.wrong();
         setStep('done');
       }
@@ -122,30 +125,9 @@ function DrawPad({ word, set, onDone, busy }: { word: string; set: string; onDon
     return () => window.clearInterval(t);
   }, [step]);
   useEffect(() => {
-    if ((step === 'drawing' || step === 'done') && canvas.current) paint(canvas.current, strokes.current);
+    if ((step === 'drawing' || step === 'done') && canvas.current) paintAll(canvas.current, strokes.current);
   }, [step]);
 
-  const at = (e: React.PointerEvent<HTMLCanvasElement>): [number, number] => {
-    const r = e.currentTarget.getBoundingClientRect();
-    return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))];
-  };
-  const down = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (step !== 'drawing' || strokes.current.length >= 380) return;
-    e.currentTarget.setPointerCapture(e.pointerId);
-    drawing.current = true;
-    strokes.current.push({ c: ink, w: width, pts: [at(e)] });
-    paint(e.currentTarget, strokes.current);
-  };
-  const move = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (!drawing.current || step !== 'drawing') return;
-    const s = strokes.current[strokes.current.length - 1];
-    const p = at(e);
-    const last = s.pts[s.pts.length - 1];
-    if (Math.hypot(p[0] - last[0], p[1] - last[1]) < 0.004) return;
-    s.pts.push(p);
-    paint(e.currentTarget, strokes.current);
-  };
-  const up = () => (drawing.current = false);
   const send = async () => {
     const c = await doodles();
     onDone(strokes.current.map((s) => ({ c: s.c, w: s.w, p: c.pack(s.pts) })));
@@ -182,22 +164,10 @@ function DrawPad({ word, set, onDone, busy }: { word: string; set: string; onDon
         <span className="w-10 text-right font-display text-2xl font-black tabular-nums">{step === 'count' ? count : Math.ceil(left)}</span>
       </div>
       <div className="relative">
-        <canvas ref={canvas} width={480} height={480} onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up} className="block aspect-square w-full touch-none rounded-md border-2 border-rule-strong bg-[#fffdf7]" />
+        <canvas ref={canvas} width={480} height={480} {...pad.handlers(step === 'drawing')} className="block aspect-square w-full touch-none rounded-md border-2 border-rule-strong bg-[#fffdf7]" />
         {step === 'count' && <div className="absolute inset-0 grid place-items-center rounded-md bg-black/40 font-display text-7xl font-black text-white">{count}</div>}
       </div>
-      {step === 'drawing' && (
-        <div className="flex flex-wrap items-center gap-1.5">
-          {INKS.map((c, k) => (
-            <button key={c} type="button" onClick={() => setInk(k)} aria-label={`Colour ${k + 1}`} aria-pressed={ink === k} className={`size-7 rounded-full border-2 ${ink === k ? 'scale-110 border-accent' : 'border-rule-strong'}`} style={{ background: c }} />
-          ))}
-          <span className="mx-1 h-6 w-px bg-rule" />
-          {WIDTHS.map((w, k) => (
-            <button key={w} type="button" onClick={() => setWidth(k)} aria-label={['Thin', 'Medium', 'Thick'][k]} aria-pressed={width === k} className={`grid size-8 place-items-center rounded-md border ${width === k ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
-              <span className="rounded-full bg-ink" style={{ width: 4 + k * 5, height: 4 + k * 5 }} />
-            </button>
-          ))}
-        </div>
-      )}
+      {step === 'drawing' && <PenBar pad={pad} />}
       {step === 'done' && (
         <button type="button" disabled={busy} onClick={() => void send()} className="btn-accent w-full rounded-md px-3 py-2 font-display font-bold disabled:opacity-40">
           {busy ? 'Passing it on…' : '⏰ Time’s up! Pass it on'}
@@ -350,7 +320,7 @@ function Turn({ p, me, people, onTaken, onOpened, demo }: { p: PhoneDoc; me: str
           {people.get(p.uid)?.name ?? p.name}&apos;s chain <span className="text-xs font-semibold uppercase tracking-wider text-accent">{franchiseOf(p.set)}</span>
         </p>
         <p className="text-xs text-ink-faint">
-          Step {p.kinds.length + 1} of {P.steps} · {hoursLeft(p)} h left
+          Step {p.kinds.length + 1} of {P.steps} · ends in {timeLeft(p)}
         </p>
       </div>
       {error && <p className="rounded-md border border-coral/50 bg-coral/10 p-2 text-sm font-semibold text-coral">{error}</p>}
@@ -471,7 +441,7 @@ async function demoPhones(people: PhonePerson[]): Promise<PhoneDoc[]> {
 
 export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: string; demo: boolean }) {
   const today = todayKey();
-  const days = useMemo(() => Array.from({ length: P.days + 1 }, (_, k) => addDays(today, -k)), [today]);
+  const days = useMemo(() => Array.from({ length: P.showDays + 1 }, (_, k) => addDays(today, -k)), [today]);
   const [chains, setChains] = useState<PhoneDoc[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ text: ReactNode; good?: boolean } | null>(null);
@@ -538,17 +508,18 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
   const all = chains ?? [];
   const mineToday = all.find((p) => p.uid === me && p.day === today);
   // Turns to play: not played yet, and either still sealed or broken by this player and still theirs.
-  const toPlay = all.filter((p) => !isDone(p) && !p.people.includes(me) && (!p.seen.includes(me) || p.claim?.u === me)).sort((a, b) => a.kinds.length - b.kinds.length);
-  const missed = all.filter((p) => !isDone(p) && !p.people.includes(me) && p.seen.includes(me) && p.claim?.u !== me);
-  const waiting = all.filter((p) => !isDone(p) && p.people.includes(me));
-  const finished = all.filter((p) => isDone(p) && (p.people.includes(me) || p.steps.length >= 2)).sort((a, b) => startOf(b) - startOf(a));
+  // A chain from before the seals that couldn't be brought over is shown whole, as it was (its drawings kept).
+  const toPlay = all.filter((p) => !p.legacy && !isDone(p) && !p.people.includes(me) && (!p.seen.includes(me) || p.claim?.u === me)).sort((a, b) => a.kinds.length - b.kinds.length);
+  const missed = all.filter((p) => !p.legacy && !isDone(p) && !p.people.includes(me) && p.seen.includes(me) && p.claim?.u !== me);
+  const waiting = all.filter((p) => !p.legacy && !isDone(p) && p.people.includes(me));
+  const finished = all.filter((p) => (p.legacy || isDone(p)) && (p.people.includes(me) || p.kinds.length >= 2)).sort((a, b) => startOf(b) - startOf(a));
 
   return (
     <section className="page space-y-5 rounded-md p-5">
       <div>
         <h2 className="font-display text-lg font-bold">📞 Telephone</h2>
         <p className="text-sm text-ink-soft">
-          Start a chain with a character. A friend sees only the name and draws it in {P.seconds} seconds; the next sees only the drawing and guesses who it is; the next draws that guess… Every turn is sealed: break the seal to see it and take the turn ({P.claimMinutes} minutes to play it). Everyone plays once per chain, whenever they come by. After {P.steps} steps or {P.days} days, the seals come off and the whole chain is revealed. Each step pays {P.perStep} {coin}, and if the
+          Start a chain with a character. A friend sees only the name and draws it in {P.seconds} seconds; the next sees only the drawing and guesses who it is; the next draws that guess… Every turn is sealed: break the seal to see it and take the turn ({P.claimMinutes} minutes to play it). Everyone plays once per chain, whenever they come by that day. At the end of the day (or after {P.steps} steps), the seals come off and the whole chain is revealed. Each step pays {P.perStep} {coin}, and if the
           last guess is the character it started with, {P.bonus.toLocaleString('en')} more for everyone in it.
         </p>
       </div>
@@ -575,7 +546,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
             <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Your chain today</p>
             {mineToday ? (
               <p className="rounded-md bg-tile p-3 text-sm">
-                You started with <b>{mineToday.steps[0]?.t}</b> ({franchiseOf(mineToday.set)}): {mineToday.kinds.length - 1} friend{mineToday.kinds.length === 2 ? '' : 's'} played it so far, each step sealed until the end. Come back tomorrow to start another.
+                You started with <b>{mineToday.steps[0]?.t}</b> ({franchiseOf(mineToday.set)}): {mineToday.kinds.length - 1} friend{mineToday.kinds.length === 2 ? '' : 's'} played it so far, each step sealed until the end of the day. Come back tomorrow to start another.
               </p>
             ) : (
               <div className="mx-auto max-w-md">
@@ -592,7 +563,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
                 .map((p) => (
                   <p key={`${p.uid}-${p.day}`} className="flex items-center gap-2 text-sm text-ink-soft">
                     <WaxSeal size={20} label="" />
-                    {p.uid === me ? 'Your chain' : `${byUid.get(p.uid)?.name ?? p.name}'s chain`} ({franchiseOf(p.set)}): step {p.kinds.length} of {P.steps}, {hoursLeft(p)} h left.
+                    {p.uid === me ? 'Your chain' : `${byUid.get(p.uid)?.name ?? p.name}'s chain`} ({franchiseOf(p.set)}): step {p.kinds.length} of {P.steps}, revealed in {timeLeft(p)}.
                   </p>
                 ))}
               {missed.map((p) => (

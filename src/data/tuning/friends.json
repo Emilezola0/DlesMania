@@ -19,7 +19,7 @@
   },
   "telephone": {
     "steps": 7,
-    "days": 3,
+    "showDays": 3,
     "seconds": 20,
     "perStep": 300,
     "bonus": 1000,

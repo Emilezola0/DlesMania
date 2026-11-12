@@ -310,12 +310,14 @@ service cloud.firestore {
         && hitOk(request.resource.data, request.resource.data.last);
     }
 
-    // Telephone (src/cloud/phones.ts): phones/<uid>_<day>, a drawing chain a player starts on its day with a name (the
-    // server's clock); only they and their friends read it. It holds only each step's kind and maker: the steps are
+    // Telephone (src/cloud/phones.ts): phones/<uid>_<day>, a daily drawing chain a player starts on its day with a name
+    // (the server's clock); only they and their friends read it. It holds only each step's kind and maker: the steps are
     // sealed away in steps/<n>. A friend breaks the seal of the next turn once per chain (claim: theirs for 10 minutes,
     // TELEPHONE.claimMinutes) and only then reads the step before; they add theirs at the end while the chain is open
-    // (7 steps, 3 days from its start): a drawing after a name, a guess after a drawing. Nothing before it changes, and
-    // it can't be taken back. Once it's finished, the starter and their friends read every step.
+    // (7 steps, until its day ends: `ends`, midnight where its starter is): a drawing after a name, a guess after a
+    // drawing. Nothing before it changes, and it can't be taken back. Once it's finished, the starter and their friends
+    // read every step. A chain from before the seals (its steps inside it) is brought into this shape by its starter or a
+    // friend, every step copied exactly, so nothing drawn is lost.
     match /phones/{id} {
       function starter() {
         return id.split('_')[0];
@@ -336,24 +338,40 @@ service cloud.firestore {
       function chainPath() {
         return /databases/$(database)/documents/phones/$(id);
       }
-      // Full, or 3 days old: the seals are off.
+      // When its day ends: `ends` (its starter's midnight); for a chain without it, when the day is over everywhere.
+      function endOf(c) {
+        return ('ends' in c) ? c.ends : dayStart() + duration.value(1, 'd') + duration.value(12, 'h');
+      }
+      // A midnight at the end of the chain's day, in some time zone (UTC+14 to UTC-12).
+      function endsOk(e) {
+        return e is timestamp
+          && e >= dayStart() + duration.value(1, 'd') - duration.value(14, 'h')
+          && e <= dayStart() + duration.value(1, 'd') + duration.value(12, 'h');
+      }
+      // Full, or its day is over: the seals are off.
       function done(c) {
-        return c.kinds.size() >= 7 || request.time > c.at + duration.value(3, 'd');
+        return c.kinds.size() >= 7 || request.time > endOf(c);
+      }
+      // A step of a chain from before the seals, brought over: the same kind, its copy written in the same write.
+      function migratedStep(i) {
+        return i >= resource.data.steps.size()
+          || (request.resource.data.kinds[i] == resource.data.steps[i].k
+            && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/$(string(i))));
       }
       // The kind of the step that comes after n steps: a drawing after a name or a guess, a guess after a drawing.
       function nextKind(n) {
         return n % 2 == 1 ? 'd' : 'g';
       }
       allow get: if request.auth != null && (request.auth.uid == starter() || friendOfStarter());
-      // A new chain, with its first step: created, or written over one of the day's chains in the old shape (its steps
-      // inside it, from before the seals), which can't be played any more.
+      // A new chain, with its first step.
       function newChainOk() {
         return request.auth.uid == starter()
           && id.split('_')[1].matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
           && request.time > dayStart() - duration.value(14, 'h')
           && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
-          && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'kinds', 'people', 'seen', 'claim'])
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'ends', 'kinds', 'people', 'seen', 'claim'])
           && request.resource.data.uid == starter() && request.resource.data.day == id.split('_')[1]
+          && endsOk(request.resource.data.ends)
           && request.resource.data.name is string && request.resource.data.name.size() <= 40
           && request.resource.data.set is string && request.resource.data.set.size() <= 40
           && request.resource.data.at == request.time
@@ -363,7 +381,19 @@ service cloud.firestore {
           && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/0);
       }
       allow create: if request.auth != null && newChainOk();
-      allow update: if request.auth != null && !('kinds' in resource.data) && newChainOk();
+      // Bringing a chain from before the seals over (its starter or a friend): the same chain, its steps sealed away.
+      allow update: if request.auth != null && (request.auth.uid == starter() || friendOfStarter())
+        && !('kinds' in resource.data) && resource.data.steps is list && resource.data.steps.size() <= 7
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'ends', 'kinds', 'people', 'seen', 'claim'])
+        && request.resource.data.uid == resource.data.uid && request.resource.data.name == resource.data.name
+        && request.resource.data.day == resource.data.day && request.resource.data.set == resource.data.set
+        && request.resource.data.at == resource.data.at
+        && endsOk(request.resource.data.ends)
+        && request.resource.data.people == resource.data.people
+        && request.resource.data.seen == [] && request.resource.data.claim == null
+        && request.resource.data.kinds.size() == resource.data.steps.size()
+        && migratedStep(0) && migratedStep(1) && migratedStep(2) && migratedStep(3)
+        && migratedStep(4) && migratedStep(5) && migratedStep(6);
       allow update: if request.auth != null && request.auth.uid != starter() && friendOfStarter()
         && !(request.auth.uid in resource.data.people)
         && !done(resource.data)
@@ -398,9 +428,15 @@ service cloud.firestore {
         allow list: if request.auth != null && canSeeAll();
         allow create: if request.auth != null && (
           // The first step, made with its chain.
-          (n == '0' && request.auth.uid == starter() && (!exists(chainPath()) || !('kinds' in get(chainPath()).data))
+          (n == '0' && request.auth.uid == starter() && !exists(chainPath())
             && getAfter(chainPath()).data.kinds == ['w']
             && stepOk(request.resource.data, 'w'))
+          // A step of a chain from before the seals, brought over: an exact copy of it, made with the chain's update.
+          || ((request.auth.uid == starter() || friendOfStarter())
+            && exists(chainPath()) && !('kinds' in chain()) && chain().steps is list
+            && int(n) < chain().steps.size()
+            && request.resource.data == chain().steps[int(n)]
+            && 'kinds' in getAfter(chainPath()).data)
           // A turn: by whoever holds it, right at the end, made with the chain's update.
           || (exists(chainPath()) && chain().claim != null && chain().claim.u == request.auth.uid
             && n == string(chain().kinds.size())
