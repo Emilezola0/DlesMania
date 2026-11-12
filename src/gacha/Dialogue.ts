@@ -128,6 +128,11 @@ export const DIALOGUE: Record<string, Talk> = {
     bad: [['Their arm is broken again, {other}.', 'Was it a hundred percent Smash?', 'It is always a hundred percent Smash.'], ['They forgot to name their move.', 'Someone always does, {other}.']],
     great: [['Was that All For One going down?', 'It was, {other}!', 'The Symbol of Peace lives on.']],
   },
+  shrek: {
+    good: [['They knew the Muffin Man, {other}.', 'On Drury Lane, too.'], ['Clean rescue.', 'Not even the Dragon saw it, {other}.']],
+    bad: [['They woke the ogre, {other}.', 'Was it the swamp again?', 'It is always the swamp.'], ['They forgot the onion has layers.', 'Someone always does, {other}.']],
+    great: [['Was that Lord Farquaad going down?', 'It was, {other}!', 'Even the Magic Mirror saw it coming.']],
+  },
   hxh: {
     good: [['They passed the Hunter Exam, {other}.', 'First try, too.'], ['Clean Jajanken.', 'Rock, every time, {other}.']],
     bad: [['They ran out of aura, {other}.', 'Was it the Nen exam?', 'It is always the Nen exam.'], ['They forgot to train their Ten.', 'Someone always does, {other}.']],

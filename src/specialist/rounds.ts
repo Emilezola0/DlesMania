@@ -119,6 +119,13 @@ export const UNIVERSES = [
     types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
   },
   {
+    id: 'shrek',
+    label: 'Shrek',
+    ready: true,
+    blurb: 'The ogres, the fairy-tale creatures and the royals of Far Far Away, and the faces of Puss in Boots: Classic by species, gender, status and the year of their first film, the films\' renders up close and behind windows, and clues.',
+    types: ['classic', 'picture', 'windows', 'clue'] as SpType[],
+  },
+  {
     id: 'arcraiders',
     label: 'ARC Raiders',
     ready: true,
@@ -194,6 +201,7 @@ export const UNIVERSE_BANNER: Record<UniverseId, string | null> = {
   bg3: localBanner('bg3'),
   // The leads on the 2023 mobile game's main visual (Hunterpedia).
   hxh: wikiBanner('hunterxhunter/images/e/e5/DeNA_2023_HxH_Mobage_Main_Visual.png'),
+  shrek: wikiBanner('shrek/images/a/a3/Shrek_group_windmill_render.jpg'),
   arcraiders: localBanner('arcraiders'),
   avatar: localBanner('avatar'),
   deadlock: localBanner('deadlock'),
@@ -274,6 +282,7 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   mha: simplePools('mha'),
   bg3: simplePools('bg3'),
   hxh: simplePools('hxh'),
+  shrek: simplePools('shrek'),
   arcraiders: ARC_POOLS,
   avatar: simplePools('avatar'),
   deadlock: DL_POOLS,

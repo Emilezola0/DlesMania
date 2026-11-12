@@ -1,0 +1,362 @@
+{
+ "source": "Shrek Wiki (shrek.fandom.com)",
+ "characters": [
+  {
+   "name": "Shrek",
+   "species": "Ogre",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Donkey",
+   "species": "Donkey",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Puss in Boots",
+   "species": "Cat",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Fiona",
+   "species": "Ogre",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Gingy",
+   "species": "Gingerbread",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Dragon",
+   "species": "Dragon",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Fairy Godmother",
+   "species": "Fairy",
+   "gender": "Female",
+   "status": "Deceased",
+   "debut": 2004
+  },
+  {
+   "name": "Prince Charming",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Humpty Dumpty",
+   "species": "Egg",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 2011
+  },
+  {
+   "name": "Kitty Softpaws",
+   "species": "Cat",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2011
+  },
+  {
+   "name": "Death",
+   "species": "Wolf",
+   "gender": "Male",
+   "status": "Immortal",
+   "debut": 2022
+  },
+  {
+   "name": "Pinocchio",
+   "species": "Puppet",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Perrito",
+   "species": "Dog",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Goldilocks",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Big Jack Horner",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 2022
+  },
+  {
+   "name": "Rumpelstiltskin",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2010
+  },
+  {
+   "name": "Three Little Pigs",
+   "species": "Pig",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Big Bad Wolf",
+   "species": "Wolf",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Three Blind Mice",
+   "species": "Mouse",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Magic Mirror",
+   "species": "Mirror",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "King Harold",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 2004
+  },
+  {
+   "name": "Queen Lillian",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Doris",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Mongo",
+   "species": "Gingerbread",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 2004
+  },
+  {
+   "name": "Arthur Pendragon",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2007
+  },
+  {
+   "name": "Merlin",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2007
+  },
+  {
+   "name": "Dronkeys",
+   "species": "Dronkey",
+   "gender": "Mixed",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Cookie",
+   "species": "Ogre",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2010
+  },
+  {
+   "name": "Brogan",
+   "species": "Ogre",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2010
+  },
+  {
+   "name": "Gretched",
+   "species": "Ogre",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2010
+  },
+  {
+   "name": "Mama Luna",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Cyclops",
+   "species": "Cyclops",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Captain Hook",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Evil Queen",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2007
+  },
+  {
+   "name": "Cinderella",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Snow White",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Rapunzel",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Sleeping Beauty",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Muffin Man",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Robin Hood",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Thelonious",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2001
+  },
+  {
+   "name": "Headless Horseman",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2004
+  },
+  {
+   "name": "Mabel",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2007
+  },
+  {
+   "name": "Lancelot",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2007
+  },
+  {
+   "name": "Mama Bear",
+   "species": "Bear",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Papa Bear",
+   "species": "Bear",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Baby Bear",
+   "species": "Bear",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Ethical Bug",
+   "species": "Insect",
+   "gender": "Male",
+   "status": "Alive",
+   "debut": 2022
+  },
+  {
+   "name": "Imelda",
+   "species": "Human",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2011
+  },
+  {
+   "name": "Golden Goose",
+   "species": "Goose",
+   "gender": "Female",
+   "status": "Alive",
+   "debut": 2011
+  },
+  {
+   "name": "Lord Farquaad",
+   "species": "Human",
+   "gender": "Male",
+   "status": "Deceased",
+   "debut": 2001
+  }
+ ]
+}

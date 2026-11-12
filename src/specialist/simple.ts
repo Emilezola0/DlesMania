@@ -10,6 +10,7 @@ import FH_EXECUTIONS from '../data/specialist/forhonor-executions.json';
 import CLASSIC_TRAITS from '../data/specialist/classic-traits.json';
 import MHA from '../data/specialist/mha.json';
 import HXH from '../data/specialist/hxh.json';
+import SHREK from '../data/specialist/shrek.json';
 
 export interface SimpleCharacter {
   id: string;
@@ -22,7 +23,7 @@ export interface SimpleCharacter {
 }
 
 export interface SimpleUniverse {
-  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight' | 'mha' | 'bg3' | 'hxh';
+  id: 'forhonor' | 'forts' | 'avatar' | 'destiny' | 'overwatch' | 'ufouria' | 'hollowknight' | 'mha' | 'bg3' | 'hxh' | 'shrek';
   characters: SimpleCharacter[];
   /** Columns of the Classic grid (empty: no Classic round). */
   columns: string[];
@@ -574,6 +575,24 @@ function hxh(): SimpleUniverse {
   };
 }
 
+// ── Shrek: the ogres, fairy-tale creatures, royals and Puss in Boots faces of the boss's Radar and Final Blow (and its
+// guardian), by species, gender, whether they are still alive and the year of the first film they appear in (the Shrek
+// Wiki's infoboxes and film categories: scripts/data/shrek-boss.mjs), and their card's rarity; the films' renders; the
+// boss's clues. ──
+function shrek(): SimpleUniverse {
+  const b = boss('shrek');
+  const aliases = new Map([...b.radar.members, ...b.finale].map((c) => [c.label, c.aliases ?? []]));
+  const traits = new Map(SHREK.characters.map((c) => [c.name, { Species: c.species, Gender: c.gender, Status: c.status, 'First film': String(c.debut) }]));
+  const cards = CARDS.filter((c) => c.set === 'shrek' && c.rarity !== 'mythic' && c.rarity !== 'omni' && traits.has(c.name));
+  return {
+    id: 'shrek',
+    columns: ['Species', 'Gender', 'Status', 'First film', 'Rarity'],
+    numeric: ['First film'],
+    characters: cards.map((c) => ({ id: slug(c.name), name: c.name, aliases: aliases.get(c.name) ?? [], image: c.image, traits: { ...traits.get(c.name)!, Rarity: c.rarity[0].toUpperCase() + c.rarity.slice(1) } })),
+    clues: (b.signature?.clues ?? []).flatMap((c) => (c.text ? [{ text: c.text, answer: slug(c.answer.name) }] : [])),
+  };
+}
+
 // ── Baldur's Gate 3: the companions, villains and allies with drawn art, by race (bg3.wiki's infoboxes), what they are
 // to the party, gender and their card's rarity; Larian's painted portraits and concept art; the boss's clues. The Dark
 // Urge (the player's own race and class), the Emperor and the creatures stay out of Classic. ──
@@ -616,7 +635,7 @@ function bg3(): SimpleUniverse {
   };
 }
 
-export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight(), mha: mha(), bg3: bg3(), hxh: hxh() };
+export const SIMPLE: Record<SimpleUniverse['id'], SimpleUniverse> = { forhonor: forHonor(), forts: forts(), avatar: avatar(), destiny: destinyUniverse(), overwatch: overwatch(), ufouria: ufouria(), hollowknight: hollowKnight(), mha: mha(), bg3: bg3(), hxh: hxh(), shrek: shrek() };
 
 export const simpleCharacter = (u: SimpleUniverse['id'], id: string) => SIMPLE[u].characters.find((c) => c.id === id);
 

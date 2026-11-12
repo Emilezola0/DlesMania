@@ -146,6 +146,9 @@ const MYTHICS: Record<string, { name: string; title: string; line: string; voice
   // Bakugo in his hero costume (the anime's 10th-anniversary profile art, My Hero Academia Wiki); his line from the
   // anime (myinstants), his clip his Howitzer Impact (Tenor, in CLIPS).
   mha: { name: 'Katsuki Bakugo', title: 'Ground Zero', line: 'Sweat like nitroglycerin and a temper to match: he swore he would be number one, and every explosion since has been a step towards it.', voice: 'Choke on my smoke!', audio: 'https://www.myinstants.com/media/sounds/choke-on-my-smoke-katsuki-bakugo.mp3', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/1/19/Katsuki_Hero_Costume_Profile_%2810th_Anniversary%29.png/revision/latest?cb=20260509022123' },
+  // Gingy ("Ti Biscuit" in French), in Farquaad's torture chamber, the scene fans quote most (Shrek, the Shrek Wiki). His
+  // line from the film (myinstants); his clip is that scene (Tenor, silent).
+  shrek: { name: 'Gingy', title: 'Not the Gumdrop Buttons', line: 'A biscuit with his legs snapped off by a lord, dunked in milk and threatened with the oven, who still told the lord where to go — then came back as a giant to storm a castle.', voice: 'Not my gumdrop buttons!', audio: 'https://www.myinstants.com/media/sounds/not-my-gumdrop-buttons.mp3', image: 'https://static.wikia.nocookie.net/shrek/images/8/84/Gingy_1.jpg/revision/latest/scale-to-width-down/800' },
   // Gon grown up all at once, the price of his vow against Pitou (the 2011 anime, Hunterpedia). No recording of his
   // line yet: the browser reads it.
   hxh: { name: 'Gon Freecss', title: 'The Price of a Vow', line: 'He gave away every bit of Nen he would ever have, all at once, to become the man who could avenge Kite: one fight, and nothing left after it.', voice: 'First comes rock!', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/d/d6/Adult_Gon_Anime.png/revision/latest/scale-to-width-down/600?cb=20140527193545' },
@@ -206,6 +209,9 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   hollowknight: { name: 'Zote', title: 'The Mighty', line: 'Fifty-seven precepts, one broken nail and not a single victory — and still the greatest knight in all of Hallownest, if you ask him.', voice: 'Precept One: Always Win Your Battles.', image: 'https://cdn.wikimg.net/en/hkwiki/images/c/c1/Zote_Dream.png' },
   // Todoroki's Flashfreeze Heatwave, ice and fire at once (the anime, My Hero Academia Wiki).
   mha: { name: 'Shoto Todoroki', title: 'Half-Cold Half-Hot', line: 'Ice on the right, fire on the left, and a father he swore never to become: the day he used both sides at once, the whole stadium felt the cold and the heat.', voice: 'Flashfreeze Heatwave!', image: 'https://static.wikia.nocookie.net/bokunoheroacademia/images/0/01/Flashfreeze_Heatwave.png/revision/latest/scale-to-width-down/600?cb=20260823031708' },
+  // Shrek roaring at the intruders in his swamp (Shrek, the Shrek Wiki's render). His line from the film (myinstants);
+  // his clip, the roar (Tenor, silent).
+  shrek: { name: 'Shrek', title: 'Ogres Are Like Onions', line: 'Layers, not cakes: a green ogre who wanted to be left alone in his swamp, and ended up saving a princess, marrying her and raising three babies — roaring all the way.', voice: 'What are you doing in my swamp?!', audio: 'https://www.myinstants.com/media/sounds/what-are-you-doing-in-my-swamp-.mp3', image: 'https://static.wikia.nocookie.net/shrek/images/c/cc/Shrek_staring_down_render.png/revision/latest/scale-to-width-down/800' },
   // Hisoka and his Bungee Gum (the 2011 anime, Hunterpedia). No recording of his line yet: the browser reads it.
   hxh: { name: 'Hisoka', title: 'The Magician', line: 'A card trick, a smile and an aura that sticks like gum and stretches like rubber: he spares the strong so they can ripen, and comes back for them.', voice: 'Bungee Gum has the properties of both rubber and gum.', image: 'https://static.wikia.nocookie.net/hunterxhunter/images/8/81/Hisoka%27s_Bungee_Gum.png/revision/latest/scale-to-width-down/600?cb=20230524024239' },
   // Shadowheart on her Steam trading card (Larian's painted art, bg3.wiki); her lines are the game's own recordings
@@ -327,6 +333,16 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       { line: 'I am here!', audio: 'https://www.myinstants.com/media/sounds/all_might_i_am_here.mp3' },
       { line: 'Go beyond! Plus Ultra!', audio: 'https://www.myinstants.com/media/sounds/plus-ultrrraaaaaaaaaaaaaaaaaaa-dub.mp3' },
     ],
+  },
+  // Shrek: Puss in Boots as The Last Wish draws him, sword out (the film's still, the Shrek Wiki); his clip is the film too
+  // (Tenor, silent, in CLIPS). No recording of his line yet: the browser reads it. The set's other Omnis (LATER) are Lord
+  // Farquaad and Death.
+  shrek: {
+    name: 'Puss in Boots',
+    title: 'The Last Wish',
+    line: 'A legend with a feathered hat, a sword and nine lives — eight of them spent laughing at danger. On his last, he learned to fear, and to fight for the one life he has left.',
+    image: 'https://static.wikia.nocookie.net/shrek/images/8/88/Puss_in_Boots_The_Last_Wish_Still_05.jpg/revision/latest/scale-to-width-down/1000',
+    voice: 'Fear me, if you dare!',
   },
   // Hunter x Hunter: Killua in Godspeed, against Youpi (the 2011 anime, Hunterpedia); his clip is Godspeed too (Tenor,
   // silent, in CLIPS). No recording of his line yet: the browser reads it.
@@ -813,6 +829,14 @@ const CLIPS: Record<string, string> = {
   'hxh:mythic': 'https://media.tenor.com/P_8hJLKYGEsAAAPo/adult-gon.mp4',
   'hxh:mythic-2': 'https://media.tenor.com/xD1ikFO7Fx4AAAPo/hisoka-hunter-x-hunter.mp4',
   'hxh:omni': 'https://media.tenor.com/6cu5bNft-XMAAAPo/killua-godspeed.mp4',
+  'shrek:omni': 'https://media.tenor.com/wy5x4cAScU8AAAPo/puss-in-boots-the-last-wish.mp4',
+  'shrek:omni-farquaad': 'https://media.tenor.com/-xptYENv0NMAAAPo/lord-maximus-farquaad-shrek.mp4',
+  'shrek:omni-death': 'https://media.tenor.com/XkFN0dDrPWwAAAPo/death-puss-in-boots-death-whistle.mp4',
+  'shrek:mythic': 'https://media.tenor.com/Y3dIFWLmGv0AAAPo/shrek-gingerbread.mp4',
+  'shrek:mythic-2': 'https://media.tenor.com/cxsbEBVwz28AAAPo/shrek-roar.mp4',
+  'shrek:mythic-dragon': 'https://media.tenor.com/jf9C41vNdrwAAAPo/shrek-dragon.mp4',
+  'shrek:mythic-humpty-dumpty': 'https://media.tenor.com/xw7LBbHxk40AAAPo/humpty-dumpty-puss-in-boots.mp4',
+  'shrek:mythic-donkey': 'https://media.tenor.com/MEVTdE93QGsAAAPo/shrek2-dreamworks.mp4',
   'naruto:mythic': 'https://media.tenor.com/wXznpWHYodIAAAPo/hokage-good.mp4',
   'naruto:omni': 'https://media.tenor.com/uiGaKw6MQuMAAAP1/hh.mp4',
   'naruto:mythic-2': 'https://media.tenor.com/-fuuxopk9WwAAAPo/sasuke-susano.mp4',
@@ -893,7 +917,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'balatro:omni': `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4`,
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'shrek:mythic-2', 'shrek:mythic-dragon', 'shrek:mythic-humpty-dumpty', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'forts:omni', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 /** Light first forms whose awakened clip is a full video, not a light one. */
@@ -913,9 +937,9 @@ const withClip = (c: Card): Card => {
 };
 
 /** Franchises added after the first fourteen (see CARDS). */
-const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh']);
+const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh', 'shrek']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */
-const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh']);
+const KEEP_OUT_OF_SEEN = new Set(['destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh', 'shrek']);
 
 const slug = (s: string) =>
   s
@@ -1351,6 +1375,66 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'The troupe master as the ritual really made him: the Nightmare King, all scarlet flame and swirling cape, dancing a fight no one leaves unburnt.',
     voice: '*The Nightmare King roars*',
     audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/nightmare-king-grimm.mp4`,
+  },
+  // Shrek: two more Omnis beside Puss in Boots (the set's own), the owner's picks. Lord Farquaad, the guardian, with the
+  // Magic Mirror (Shrek, the Shrek Wiki), his line and his clip the same moment (myinstants; Tenor, silent).
+  {
+    set: 'shrek',
+    id: 'shrek:omni-farquaad',
+    name: 'Lord Farquaad',
+    rarity: 'omni',
+    title: 'The Perfect King',
+    image: 'https://static.wikia.nocookie.net/shrek/images/5/5c/Lord_Farquaad_and_mirror.png/revision/latest/scale-to-width-down/1000',
+    focus: { x: 30, y: 40, zoom: 1 },
+    description: 'The ruler of Duloc, a kingdom so perfect it has a song: he banished every fairy-tale creature, picked a princess off a mirror\'s dating show and sent someone else to rescue her.',
+    voice: 'Some of you may die, but that is a sacrifice I am willing to make.',
+    audio: 'https://www.myinstants.com/media/sounds/some-of-you-may-die.mp3',
+  },
+  // Death, the Wolf of The Last Wish (the Shrek Wiki's render, hood down, sickles out). The owner's pick: his whistle, the
+  // one Puss hears before every sight of him, and back at the end of the film, when Death lets him go — for now. The
+  // whistle is his voice (myinstants), his clip the whistle too (Tenor, silent).
+  {
+    set: 'shrek',
+    id: 'shrek:omni-death',
+    name: 'Death',
+    rarity: 'omni',
+    title: 'The Wolf',
+    image: 'https://static.wikia.nocookie.net/shrek/images/8/88/Death_%2C_Without_Hood_%28Puss_in_Boots_The_Last_Wish%29_-_render.webp/revision/latest',
+    description: 'Not a bounty hunter: Death, straight up, come for a cat who laughed at him through eight lives. He whistles before he strikes, and at the end, he lets Puss go — for now.',
+    voice: '*whistles*',
+    audio: 'https://www.myinstants.com/media/sounds/deaths-whistle-puss-in-boots-2-the-last-wish.mp3',
+  },
+  // And three more Mythics: the Dragon, Humpty Dumpty (the egg of Puss in Boots) and Donkey as the noble steed of Shrek 2.
+  {
+    set: 'shrek',
+    id: 'shrek:mythic-dragon',
+    name: 'Dragon',
+    rarity: 'mythic',
+    title: 'Guardian of the Keep',
+    image: 'https://static.wikia.nocookie.net/shrek/images/b/bb/Dragon.jpg/revision/latest/scale-to-width-down/800',
+    description: 'She guarded the tallest tower of the keep with fire and teeth, until a talking donkey talked his way into her heart. Now there are dronkeys.',
+  },
+  {
+    set: 'shrek',
+    id: 'shrek:mythic-humpty-dumpty',
+    name: 'Humpty Dumpty',
+    rarity: 'mythic',
+    title: 'Humpty Alexander Dumpty',
+    // The DreamWorks Wiki's portrait of him from the film.
+    image: 'https://static.wikia.nocookie.net/dreamworks/images/9/98/Humpty_Dumpty_Profile.jpg/revision/latest/scale-to-width-down/800',
+    description: 'An egg, an inventor and an orphan who grew up with a cat: they swore to find the magic beans together, until one of them took the wrong road. He came back as a golden egg.',
+    voice: 'We were brothers, Puss!',
+  },
+  {
+    set: 'shrek',
+    id: 'shrek:mythic-donkey',
+    name: 'Donkey',
+    rarity: 'mythic',
+    title: 'The Noble Steed',
+    image: 'https://static.wikia.nocookie.net/shrek/images/3/3e/Donkey_horse_render.jpg/revision/latest/scale-to-width-down/800',
+    description: 'One drink of a potion and the talking donkey became a white stallion, mane in the wind — and he still would not stop talking.',
+    voice: 'You definitely need some Tic Tacs or something.',
+    audio: 'https://www.myinstants.com/media/sounds/you-definitely-need-some-tic-tacs-or-something.mp3',
   },
 ];
 

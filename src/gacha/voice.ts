@@ -46,6 +46,7 @@ const SPEAKERS: Record<string, Speaker> = {
   hollowknight: { pitch: 0.9, rate: 0.95, lang: 'en-US' },
   mha: { pitch: 1.2, rate: 1.1, lang: 'en-US' },
   hxh: { pitch: 1.15, rate: 1.05, lang: 'en-US' },
+  shrek: { pitch: 0.9, rate: 1, lang: 'en-GB' },
   bg3: { pitch: 0.95, rate: 0.95, lang: 'en-GB' },
   deadlock: { pitch: 0.75, rate: 0.9, lang: 'en-US' },
   avatar: { pitch: 1.2, rate: 1.05, lang: 'en-US' },

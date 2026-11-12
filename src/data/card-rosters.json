@@ -12331,5 +12331,662 @@
    "image": "https://static.wikia.nocookie.net/hunterxhunter/images/1/14/Zeho_GI_Portrait.png/revision/latest/scale-to-width-down/400?cb=20230523010233",
    "rarity": "common"
   }
+ ],
+ "shrek": [
+  {
+   "name": "Bloodnut the Flatulent",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/53/Bloodnut_flatulent_book.png/revision/latest/scale-to-width-down/400?cb=20220301180753",
+   "rarity": "common"
+  },
+  {
+   "name": "Don Quixote",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/3f/Puss_in_Boots_-_Don_Quixote_and_Sancho_Concept_Art.png/revision/latest/scale-to-width-down/400?cb=20240714031341",
+   "rarity": "common"
+  },
+  {
+   "name": "Friar Tuck",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/ce/Friar_Tuck.png/revision/latest/scale-to-width-down/400?cb=20220719213612",
+   "rarity": "common"
+  },
+  {
+   "name": "Grumpy",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/e0/Grumpy_-_Shrek_the_Third.png/revision/latest/scale-to-width-down/400?cb=20231211082117",
+   "rarity": "common"
+  },
+  {
+   "name": "Little John",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/04/Merry_Man_%28Matthew_Gonder%29.jpg/revision/latest/scale-to-width-down/400?cb=20230123034221",
+   "rarity": "common"
+  },
+  {
+   "name": "Mama Ogre",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/6f/628541_1296099138867_full.jpg/revision/latest/scale-to-width-down/400?cb=20140412132551",
+   "rarity": "common"
+  },
+  {
+   "name": "Mister Geppetto",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/0a/Mister_Geppetto.jpg/revision/latest/scale-to-width-down/400?cb=20220628063422",
+   "rarity": "common"
+  },
+  {
+   "name": "Old Woman in the Shoe",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/4a/1.png/revision/latest/scale-to-width-down/400?cb=20201207073226",
+   "rarity": "common"
+  },
+  {
+   "name": "Peter Pan",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/16/Peter_Pan.jpg/revision/latest/scale-to-width-down/400?cb=20210615062639",
+   "rarity": "rare"
+  },
+  {
+   "name": "Pied Piper",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a9/Pied_Piper_Transparent.png/revision/latest/scale-to-width-down/400?cb=20210714185629",
+   "rarity": "rare"
+  },
+  {
+   "name": "Storybook Dragon",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/ee/Storybook_Dragon.jpeg/revision/latest/scale-to-width-down/400?cb=20201206082233",
+   "rarity": "common"
+  },
+  {
+   "name": "The Man in the Moon",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/ff/Shrek_2_Moon.jpg/revision/latest/scale-to-width-down/400?cb=20260818192322",
+   "rarity": "common"
+  },
+  {
+   "name": "Tinker Bell",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/5b/Tinkerbell_profile.png/revision/latest/scale-to-width-down/400?cb=20210627194148",
+   "rarity": "rare"
+  },
+  {
+   "name": "Unicorn",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/c3/Unicorn_1.png/revision/latest/scale-to-width-down/400?cb=20210729014456",
+   "rarity": "common"
+  },
+  {
+   "name": "Cedric",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/8c/ThIK6UHZ3S.jpg/revision/latest/scale-to-width-down/400?cb=20210729011929",
+   "rarity": "common"
+  },
+  {
+   "name": "Chicken Little",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/64/Chicken_Little_higher_quality.png/revision/latest/scale-to-width-down/400?cb=20181121221155",
+   "rarity": "common"
+  },
+  {
+   "name": "Farmer's Wife",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a2/Farmer%27s_Wife_higher_quality.png/revision/latest/scale-to-width-down/400?cb=20181122181446",
+   "rarity": "common"
+  },
+  {
+   "name": "Georgie Porgie",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/94/Georgie_Porgie_higher_quality.png/revision/latest/scale-to-width-down/400?cb=20181122181144",
+   "rarity": "common"
+  },
+  {
+   "name": "Hansel and Gretel",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/81/2894556_249px.jpg/revision/latest/scale-to-width-down/400?cb=20201205233055",
+   "rarity": "common"
+  },
+  {
+   "name": "Humphries",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/6b/Humphries-shrek-2-6.61.jpg/revision/latest/scale-to-width-down/400?cb=20180113043554",
+   "rarity": "common"
+  },
+  {
+   "name": "Jerome the Receptionist",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/23/Jerome-shrek-2-8.81.jpg/revision/latest/scale-to-width-down/400?cb=20220627183229",
+   "rarity": "common"
+  },
+  {
+   "name": "Knave of Hearts",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/83/Knave_of_Hearts.jpg/revision/latest/scale-to-width-down/400?cb=20181121221234",
+   "rarity": "common"
+  },
+  {
+   "name": "Kyle",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f8/Char_38705.jpg/revision/latest/scale-to-width-down/400?cb=20230610045712",
+   "rarity": "common"
+  },
+  {
+   "name": "Little Red Riding Hood",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/60/Little_red_portrait.jpg/revision/latest/scale-to-width-down/400?cb=20231221005738",
+   "rarity": "rare"
+  },
+  {
+   "name": "Piggasus",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/77/FLYING_PIGGY.png/revision/latest/scale-to-width-down/400?cb=20210925190708",
+   "rarity": "common"
+  },
+  {
+   "name": "Priscilla",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/b6/Priscilla.png/revision/latest/scale-to-width-down/400?cb=20230103074604",
+   "rarity": "common"
+  },
+  {
+   "name": "Reggie",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/e5/REGGIR.png/revision/latest/scale-to-width-down/400?cb=20230610044736",
+   "rarity": "common"
+  },
+  {
+   "name": "Roy the Save Fairy",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/91/Roy.jpg/revision/latest/scale-to-width-down/400?cb=20140712200720",
+   "rarity": "common"
+  },
+  {
+   "name": "Sir Justin",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/32/Sir_Justin_poster_portrait.png/revision/latest/scale-to-width-down/400?cb=20210819211800",
+   "rarity": "common"
+  },
+  {
+   "name": "Steve and Ed",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a6/Steve%26ed.png/revision/latest/scale-to-width-down/400?cb=20210731104133",
+   "rarity": "common"
+  },
+  {
+   "name": "Tabatha",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/93/Wicked_Witch_of_the_West.png/revision/latest/scale-to-width-down/400?cb=20210925191303",
+   "rarity": "common"
+  },
+  {
+   "name": "The Gruff Brothers",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/73/William_Gruff.png/revision/latest/scale-to-width-down/400?cb=20190128034643",
+   "rarity": "common"
+  },
+  {
+   "name": "The Hare",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/4c/The_Hare_higher_quality.png/revision/latest/scale-to-width-down/400?cb=20181121221216",
+   "rarity": "common"
+  },
+  {
+   "name": "The Little Mermaid",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/ee/Shrek_kissing_Ariel.jpg/revision/latest/scale-to-width-down/400?cb=20210308194912",
+   "rarity": "common"
+  },
+  {
+   "name": "Theo",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/71/Theo_new_picture.png/revision/latest/scale-to-width-down/400?cb=20210629205228",
+   "rarity": "common"
+  },
+  {
+   "name": "Tom Thumb and Thumbelina",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/22/Tom_Thumb_and_Thumbelina_.PNG/revision/latest/scale-to-width-down/400?cb=20230207205954",
+   "rarity": "common"
+  },
+  {
+   "name": "Wolf the Knight",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/6f/Wolf_the_Knight.octet-stream.jpg/revision/latest/scale-to-width-down/400?cb=20190618004847",
+   "rarity": "common"
+  },
+  {
+   "name": "\"Wendy\"",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/60/Portrait_Wendy.png/revision/latest/scale-to-width-down/400?cb=20210204012234",
+   "rarity": "common"
+  },
+  {
+   "name": "Annowre",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/ed/Annowre.png/revision/latest/scale-to-width-down/400?cb=20190702210204",
+   "rarity": "common"
+  },
+  {
+   "name": "Anwas",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/3e/Anwas_the_Winged.png/revision/latest/scale-to-width-down/400?cb=20190702213021",
+   "rarity": "common"
+  },
+  {
+   "name": "Bohort the Younger",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/5b/Bohort_the_Younger.png/revision/latest/scale-to-width-down/400?cb=20190702201142",
+   "rarity": "common"
+  },
+  {
+   "name": "Britanny of Britanny",
+   "image": "https://static.wikia.nocookie.net/shrek/images/6/61/Britanny_of_Britanny.png/revision/latest/scale-to-width-down/400?cb=20190702204513",
+   "rarity": "common"
+  },
+  {
+   "name": "Camille Ipswitch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/cb/Camille.png/revision/latest/scale-to-width-down/400?cb=20190702205725",
+   "rarity": "common"
+  },
+  {
+   "name": "Dagonet",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/2a/Dagonet.png/revision/latest/scale-to-width-down/400?cb=20181213061644",
+   "rarity": "common"
+  },
+  {
+   "name": "Elaine",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/51/Elaine.png/revision/latest/scale-to-width-down/400?cb=20190702205415",
+   "rarity": "common"
+  },
+  {
+   "name": "Enid",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/fb/Enid.png/revision/latest/scale-to-width-down/400?cb=20190702210655",
+   "rarity": "common"
+  },
+  {
+   "name": "Farkle",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/18/FarkleAdult.png/revision/latest/scale-to-width-down/400?cb=20260619025903",
+   "rarity": "rare"
+  },
+  {
+   "name": "Felicia",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f8/Felicia_in_teaser.jpeg/revision/latest/scale-to-width-down/400?cb=20260616182008",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fergus",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/8b/Fergus_Adult.webp/revision/latest/scale-to-width-down/400?cb=20260919213235",
+   "rarity": "rare"
+  },
+  {
+   "name": "Fiddlesworth",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/32/Fiddlesworth2.png/revision/latest/scale-to-width-down/400?cb=20221030034752",
+   "rarity": "common"
+  },
+  {
+   "name": "Gareth",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/39/Gareth.png/revision/latest/scale-to-width-down/400?cb=20190702213601",
+   "rarity": "common"
+  },
+  {
+   "name": "Gary",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/8c/Gary-shrek-the-third-37.3_thumb.jpg/revision/latest/scale-to-width-down/400?cb=20210926013655",
+   "rarity": "common"
+  },
+  {
+   "name": "Genvissa of Rome",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/71/Genvissa.png/revision/latest/scale-to-width-down/400?cb=20190702205021",
+   "rarity": "common"
+  },
+  {
+   "name": "Guinevere",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/04/Home-coming_Guin.jpg/revision/latest/scale-to-width-down/400?cb=20240714021449",
+   "rarity": "common"
+  },
+  {
+   "name": "Hector",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/31/Hector.png/revision/latest/scale-to-width-down/400?cb=20190702201613",
+   "rarity": "common"
+  },
+  {
+   "name": "Inogen",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/e7/Inogen.png/revision/latest/scale-to-width-down/400?cb=20211011021449",
+   "rarity": "common"
+  },
+  {
+   "name": "Isolde of Ireland",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/15/Isolde.png/revision/latest/scale-to-width-down/400?cb=20190702203033",
+   "rarity": "common"
+  },
+  {
+   "name": "Lady of the Lake",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/41/Lady_of_the_Lake.png/revision/latest/scale-to-width-down/400?cb=20181118172216",
+   "rarity": "common"
+  },
+  {
+   "name": "Lionel",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/be/Lionel.png/revision/latest/scale-to-width-down/400?cb=20190702200431",
+   "rarity": "common"
+  },
+  {
+   "name": "Lucius",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/5d/Lucius.png/revision/latest/scale-to-width-down/400?cb=20190702202314",
+   "rarity": "common"
+  },
+  {
+   "name": "Meleagant of Hellus",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/ec/Meleagant.png/revision/latest/scale-to-width-down/400?cb=20190702212647",
+   "rarity": "common"
+  },
+  {
+   "name": "Morgan le Fay",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/19/Untitled-1.png/revision/latest/scale-to-width-down/400?cb=20211011020602",
+   "rarity": "common"
+  },
+  {
+   "name": "Niniane",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/0d/Niniane.png/revision/latest/scale-to-width-down/400?cb=20190702203841",
+   "rarity": "common"
+  },
+  {
+   "name": "One Eye",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/33/Capture4.png/revision/latest/scale-to-width-down/400?cb=20121013162454",
+   "rarity": "common"
+  },
+  {
+   "name": "Palamedes",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/16/Palamedes.png/revision/latest/scale-to-width-down/400?cb=20190702211239",
+   "rarity": "common"
+  },
+  {
+   "name": "Percival",
+   "image": "https://static.wikia.nocookie.net/shrek/images/d/de/Percival.png/revision/latest/scale-to-width-down/400?cb=20190702220930",
+   "rarity": "common"
+  },
+  {
+   "name": "Principal Pynchley",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/26/PrincipalPynchley.jpg/revision/latest/scale-to-width-down/400?cb=20100802031111",
+   "rarity": "common"
+  },
+  {
+   "name": "Safir",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/1d/Safir.png/revision/latest/scale-to-width-down/400?cb=20190702212231",
+   "rarity": "common"
+  },
+  {
+   "name": "Segwaridies",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/5a/Segwarides.png/revision/latest/scale-to-width-down/400?cb=20190702211740",
+   "rarity": "common"
+  },
+  {
+   "name": "Singing Witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/7a/SingingWitch.jpg/revision/latest/scale-to-width-down/400?cb=20210804204058",
+   "rarity": "common"
+  },
+  {
+   "name": "Stromboli",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/b5/Puppetmaster.jpg/revision/latest/scale-to-width-down/400?cb=20111111211035",
+   "rarity": "common"
+  },
+  {
+   "name": "Suzy",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/87/Suzy_Cookie_-_Shrek_the_Halls.png/revision/latest/scale-to-width-down/400?cb=20250823052509",
+   "rarity": "common"
+  },
+  {
+   "name": "Tiffany",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/31/Tiffany.jpg/revision/latest/scale-to-width-down/400?cb=20231229035306",
+   "rarity": "common"
+  },
+  {
+   "name": "Tiffany Brangaine",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/54/Tiffany_Brangaine.png/revision/latest/scale-to-width-down/400?cb=20211011013359",
+   "rarity": "common"
+  },
+  {
+   "name": "Tristan",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f1/Tristan.png/revision/latest/scale-to-width-down/400?cb=20190702202654",
+   "rarity": "common"
+  },
+  {
+   "name": "Viviane",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/91/Viviane.png/revision/latest/scale-to-width-down/400?cb=20190702203444",
+   "rarity": "common"
+  },
+  {
+   "name": "Xavier",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/ce/Xavier_profile.png/revision/latest/scale-to-width-down/400?cb=20211011021846",
+   "rarity": "common"
+  },
+  {
+   "name": "Baba",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/ba/PicsArt_01-30-08.14.06.jpg/revision/latest/scale-to-width-down/400?cb=20210804193042",
+   "rarity": "common"
+  },
+  {
+   "name": "Broomsy Witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/ea/PicsArt_01-30-09.50.59.jpg/revision/latest/scale-to-width-down/400?cb=20210804203514",
+   "rarity": "common"
+  },
+  {
+   "name": "Butter Pants",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/98/Images-0.jpeg/revision/latest/scale-to-width-down/400?cb=20210729011541",
+   "rarity": "common"
+  },
+  {
+   "name": "Cackling Witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/cf/CacklingWitch.jpg/revision/latest/scale-to-width-down/400?cb=20210804203252",
+   "rarity": "common"
+  },
+  {
+   "name": "Fifi",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/01/Fifi.png/revision/latest/scale-to-width-down/400?cb=20120110230954",
+   "rarity": "rare"
+  },
+  {
+   "name": "Giovanna",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/57/Giovanna_witch.jpg/revision/latest/scale-to-width-down/400?cb=20210801215124",
+   "rarity": "common"
+  },
+  {
+   "name": "Griselda",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/12/Dancing-witch-shrek-forever-after-9.68.jpg/revision/latest/scale-to-width-down/400?cb=20211107202449",
+   "rarity": "common"
+  },
+  {
+   "name": "King Midas",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/7c/MidasTouch.png/revision/latest/scale-to-width-down/400?cb=20230108012849",
+   "rarity": "common"
+  },
+  {
+   "name": "Krekraw",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/ab/Krekraw.png/revision/latest/scale-to-width-down/400?cb=20110907000540",
+   "rarity": "common"
+  },
+  {
+   "name": "Lemke",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a2/--Butter_Pants_Father.png/revision/latest/scale-to-width-down/400?cb=20100804080103",
+   "rarity": "common"
+  },
+  {
+   "name": "Melty Witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/9/93/Witchlady4.png/revision/latest/scale-to-width-down/400?cb=20210804203413",
+   "rarity": "common"
+  },
+  {
+   "name": "Palace Witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/33/Default_guard-witch-2.jpg/revision/latest/scale-to-width-down/400?cb=20210806002940",
+   "rarity": "common"
+  },
+  {
+   "name": "The Emperor without clothes",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/4d/Emperor_without_Clothes_-_Shrek_DVD_Game.png/revision/latest/scale-to-width-down/400?cb=20230628203714",
+   "rarity": "common"
+  },
+  {
+   "name": "Troll",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f3/Troll.png/revision/latest/scale-to-width-down/400?cb=20180815135015",
+   "rarity": "common"
+  },
+  {
+   "name": "Vampire witch",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/2c/Vampire_chick.png/revision/latest/scale-to-width-down/400?cb=20210804203040",
+   "rarity": "common"
+  },
+  {
+   "name": "Walt the Tour Guide",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/81/Walt_the_Tour_Guide.png/revision/latest/scale-to-width-down/400?cb=20190808224044",
+   "rarity": "common"
+  },
+  {
+   "name": "Ali Baba",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a9/Ali_Baba_-_Shrek_DVD_Game_HQ.png/revision/latest/scale-to-width-down/400?cb=20231121041956",
+   "rarity": "common"
+  },
+  {
+   "name": "Andy \"Jack\" Beanstalk",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f6/Jack.jpg/revision/latest/scale-to-width-down/400?cb=20120314162739",
+   "rarity": "common"
+  },
+  {
+   "name": "Bastet",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/49/Bastet_Concept_Art.png/revision/latest/scale-to-width-down/400?cb=20230514062709",
+   "rarity": "common"
+  },
+  {
+   "name": "Ben Yay",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/35/Ben-Yay.png/revision/latest/scale-to-width-down/400?cb=20230907183524",
+   "rarity": "common"
+  },
+  {
+   "name": "Betsy Crocker",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/71/BETSY_CROCKER.png/revision/latest/scale-to-width-down/400?cb=20230907211825",
+   "rarity": "common"
+  },
+  {
+   "name": "Bloodwolf",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f7/The_Blood_Wolf.jpeg/revision/latest/scale-to-width-down/400?cb=20210223034704",
+   "rarity": "common"
+  },
+  {
+   "name": "Butter Scott",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/e1/Butter-Scott.png/revision/latest/scale-to-width-down/400?cb=20230907184849",
+   "rarity": "common"
+  },
+  {
+   "name": "Cinnaman",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/86/CINNAMAN.png/revision/latest/scale-to-width-down/400?cb=20230907211440",
+   "rarity": "common"
+  },
+  {
+   "name": "Crustina",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/3f/CRUSTELLA.png/revision/latest/scale-to-width-down/400?cb=20230907211208",
+   "rarity": "common"
+  },
+  {
+   "name": "Don Manolo",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/56/Don_Manolo.jpg/revision/latest/scale-to-width-down/400?cb=20241117065329",
+   "rarity": "common"
+  },
+  {
+   "name": "Don Manolo's Wife",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/22/Don_Manolo%27s_Wife.jpg/revision/latest/scale-to-width-down/400?cb=20241117065838",
+   "rarity": "common"
+  },
+  {
+   "name": "Dulcinea",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/e5/PIB_TV_DULCINEA_01.jpg/revision/latest/scale-to-width-down/400?cb=20150821124600",
+   "rarity": "common"
+  },
+  {
+   "name": "Great Terror",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/1d/ThHJRN9QA4.jpg/revision/latest/scale-to-width-down/400?cb=20171209070525",
+   "rarity": "common"
+  },
+  {
+   "name": "Hamhock",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/b8/Hamhock.png/revision/latest/scale-to-width-down/400?cb=20190306035358",
+   "rarity": "common"
+  },
+  {
+   "name": "Huntsman",
+   "image": "https://static.wikia.nocookie.net/shrek/images/4/4b/2715760ffd2fe7138_w.jpg/revision/latest/scale-to-width-down/400?cb=20150926135155",
+   "rarity": "common"
+  },
+  {
+   "name": "Jack and Jill",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/37/276476_235320839822695_4088121_n.jpg/revision/latest/scale-to-width-down/400?cb=20111108011605",
+   "rarity": "common"
+  },
+  {
+   "name": "Jerry Cobbler",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/39/Jerry_the_Baker.png/revision/latest/scale-to-width-down/400?cb=20230303213630",
+   "rarity": "common"
+  },
+  {
+   "name": "Little Boy Blue",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/a6/Little_Boy_Blue_closeu.JPG/revision/latest/scale-to-width-down/400?cb=20170528223153",
+   "rarity": "rare"
+  },
+  {
+   "name": "Luis",
+   "image": "https://static.wikia.nocookie.net/shrek/images/7/7a/DocHudson.webp/revision/latest/scale-to-width-down/400?cb=20240412020819",
+   "rarity": "common"
+  },
+  {
+   "name": "Mary & her Lamb",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/31/Mary_and_her_lamb.jpg/revision/latest/scale-to-width-down/400?cb=20260913010302",
+   "rarity": "common"
+  },
+  {
+   "name": "Nutmegan",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f9/Buzzsaw_Baker_3.png/revision/latest/scale-to-width-down/400?cb=20230109213746",
+   "rarity": "common"
+  },
+  {
+   "name": "Ohhhh Cat",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/ae/Ohhhh_cat.png/revision/latest/scale-to-width-down/400?cb=20190106081236",
+   "rarity": "common"
+  },
+  {
+   "name": "Pete Cobbler",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/fe/Pete-cobbler-baker.png/revision/latest/scale-to-width-down/400?cb=20230907172542",
+   "rarity": "common"
+  },
+  {
+   "name": "Rhu-Barb",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/fa/RHU_BARB.png/revision/latest/scale-to-width-down/400?cb=20230907212450",
+   "rarity": "common"
+  },
+  {
+   "name": "Señorita",
+   "image": "https://static.wikia.nocookie.net/shrek/images/b/b2/Senorita.png/revision/latest/scale-to-width-down/400?cb=20230608211426",
+   "rarity": "common"
+  },
+  {
+   "name": "She-Puss",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/ca/She-Me.webp/revision/latest/scale-to-width-down/400?cb=20240419015510",
+   "rarity": "common"
+  },
+  {
+   "name": "Sir Thomas Brady Fingers",
+   "image": "https://static.wikia.nocookie.net/shrek/images/3/3c/BRADY_FINGERS.png/revision/latest/scale-to-width-down/400?cb=20230907211630",
+   "rarity": "common"
+  },
+  {
+   "name": "Sleeping Giant of Del Mar",
+   "image": "https://static.wikia.nocookie.net/shrek/images/0/07/Sleeping_Giant_of_Del_Mar.png/revision/latest/scale-to-width-down/400?cb=20230123044655",
+   "rarity": "common"
+  },
+  {
+   "name": "Stevia",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/52/Stevia.png/revision/latest/scale-to-width-down/400?cb=20230907210718",
+   "rarity": "common"
+  },
+  {
+   "name": "Taranis",
+   "image": "https://static.wikia.nocookie.net/shrek/images/e/eb/Taranis.png/revision/latest/scale-to-width-down/400?cb=20230803083950",
+   "rarity": "common"
+  },
+  {
+   "name": "Terror-Misu",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/8b/TERROR--MIISU.png/revision/latest/scale-to-width-down/400?cb=20230907184518",
+   "rarity": "common"
+  },
+  {
+   "name": "The Comandante",
+   "image": "https://static.wikia.nocookie.net/shrek/images/5/5b/The_Commandante_-_Puss_in_Boots.png/revision/latest/scale-to-width-down/400?cb=20231115073746",
+   "rarity": "common"
+  },
+  {
+   "name": "The Giant",
+   "image": "https://static.wikia.nocookie.net/shrek/images/f/f2/The_Giant.png/revision/latest/scale-to-width-down/400?cb=20181121221622",
+   "rarity": "common"
+  },
+  {
+   "name": "The Phoenix",
+   "image": "https://static.wikia.nocookie.net/shrek/images/a/aa/OH_MY_WORD_ITS_THE_NOBLE_PHOENIX.png/revision/latest/scale-to-width-down/400?cb=20221228114149",
+   "rarity": "common"
+  },
+  {
+   "name": "Thriffith",
+   "image": "https://static.wikia.nocookie.net/shrek/images/c/c0/Char_144400.jpg/revision/latest/scale-to-width-down/400?cb=20150709031103",
+   "rarity": "common"
+  },
+  {
+   "name": "Tommy Lee Scones",
+   "image": "https://static.wikia.nocookie.net/shrek/images/8/80/TOMMY-LEE-SCONES.png/revision/latest/scale-to-width-down/400?cb=20230907211000",
+   "rarity": "common"
+  },
+  {
+   "name": "Tranche",
+   "image": "https://static.wikia.nocookie.net/shrek/images/2/26/Og454.png/revision/latest/scale-to-width-down/400?cb=20161222140919",
+   "rarity": "common"
+  },
+  {
+   "name": "Whisperer",
+   "image": "https://static.wikia.nocookie.net/shrek/images/1/19/The_Whisperer.png/revision/latest/scale-to-width-down/400?cb=20120221023740",
+   "rarity": "common"
+  }
  ]
 }
