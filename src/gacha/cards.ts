@@ -334,15 +334,21 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
       { line: 'Go beyond! Plus Ultra!', audio: 'https://www.myinstants.com/media/sounds/plus-ultrrraaaaaaaaaaaaaaaaaaa-dub.mp3' },
     ],
   },
-  // Shrek: Puss in Boots as The Last Wish draws him, sword out (the film's still, the Shrek Wiki); his clip is the film too
-  // (Tenor, silent, in CLIPS). No recording of his line yet: the browser reads it. The set's other Omnis (LATER) are Lord
-  // Farquaad and Death.
+  // Shrek: Puss in Boots riding a firework at his fiesta, The Last Wish's opening (the owner's pick, Variety's still); his
+  // clip is that opening too (the owner's pick, "Fearless Hero", 4:12–4:30, heard with its song). His lines
+  // are the film's: "Welcome to my fiesta!" from that same opening (0:07), and "Say hello to my gatito blade!" against
+  // Death (Movieclips, 2:27). The set's other Omnis (LATER) are Lord Farquaad and Death.
   shrek: {
     name: 'Puss in Boots',
     title: 'The Last Wish',
     line: 'A legend with a feathered hat, a sword and nine lives — eight of them spent laughing at danger. On his last, he learned to fear, and to fight for the one life he has left.',
-    image: 'https://static.wikia.nocookie.net/shrek/images/8/88/Puss_in_Boots_The_Last_Wish_Still_05.jpg/revision/latest/scale-to-width-down/1000',
-    voice: 'Fear me, if you dare!',
+    image: `${import.meta.env?.BASE_URL ?? './'}art/shrek/puss-in-boots.webp`,
+    voice: 'Say hello to my gatito blade!',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/gatito-blade.m4a`,
+    voiceClips: [
+      { line: 'Say hello to my gatito blade!', audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/gatito-blade.m4a` },
+      { line: 'Welcome to my fiesta!', audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/welcome-to-my-fiesta.m4a` },
+    ],
   },
   // Hunter x Hunter: Killua in Godspeed, against Youpi (the 2011 anime, Hunterpedia); his clip is Godspeed too (Tenor,
   // silent, in CLIPS). No recording of his line yet: the browser reads it.
@@ -665,6 +671,9 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // Mark Evans awakened: his clip is God Catch (the golden god rising out of the clouds), so is his voice — the anime's shout of it (episode 127, from the Inazuma Eleven Wiki's own video of the technique).
   'inazuma:omni': { voice: 'God Catch!', audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/f/f9/%28IE_%28127%29%29_God_Catch_G5.mp4/revision/latest?cb=20241015044228#t=8.3,10.6' },
   'avatar:omni': { voice: 'Yip yip!', clipSound: true },
+  // Puss in Boots's and Lord Farquaad's clips are heard: the opening's song for one, the Muffin Man questioning for the other.
+  'shrek:omni': { clipSound: true },
+  'shrek:omni-farquaad': { clipSound: true },
   // ── Recordings added to the Mythics and Omnis that only had a written line (the browser read it) ──
   // Shouts and cries as each game has them: myinstants (labelled), the Deadlock Wiki's own voice files, and the
   // Inazuma Eleven Wiki's clips of the anime (a special move named as it's used).
@@ -829,8 +838,8 @@ const CLIPS: Record<string, string> = {
   'hxh:mythic': 'https://media.tenor.com/P_8hJLKYGEsAAAPo/adult-gon.mp4',
   'hxh:mythic-2': 'https://media.tenor.com/xD1ikFO7Fx4AAAPo/hisoka-hunter-x-hunter.mp4',
   'hxh:omni': 'https://media.tenor.com/6cu5bNft-XMAAAPo/killua-godspeed.mp4',
-  'shrek:omni': 'https://media.tenor.com/wy5x4cAScU8AAAPo/puss-in-boots-the-last-wish.mp4',
-  'shrek:omni-farquaad': 'https://media.tenor.com/-xptYENv0NMAAAPo/lord-maximus-farquaad-shrek.mp4',
+  'shrek:omni': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/puss-in-boots.mp4`,
+  'shrek:omni-farquaad': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/lord-farquaad.mp4`,
   'shrek:omni-death': 'https://media.tenor.com/XkFN0dDrPWwAAAPo/death-puss-in-boots-death-whistle.mp4',
   'shrek:mythic': 'https://media.tenor.com/Y3dIFWLmGv0AAAPo/shrek-gingerbread.mp4',
   'shrek:mythic-2': 'https://media.tenor.com/cxsbEBVwz28AAAPo/shrek-roar.mp4',
@@ -1377,7 +1386,9 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     audio: `${import.meta.env?.BASE_URL ?? './'}clips/hollowknight/nightmare-king-grimm.mp4`,
   },
   // Shrek: two more Omnis beside Puss in Boots (the set's own), the owner's picks. Lord Farquaad, the guardian, with the
-  // Magic Mirror (Shrek, the Shrek Wiki), his line and his clip the same moment (myinstants; Tenor, silent).
+  // Magic Mirror (Shrek, the Shrek Wiki). His clip and first line are the owner's picks, from the film's French dub
+  // (Boxoffice Animation, "C'est Farquaad qui pose les questions"): the Muffin Man questioning (1:15–1:30, heard, cropped
+  // of the subtitles and logo burnt into it) and his taunt to Gingy (0:39–0:45). His English line stays as his second.
   {
     set: 'shrek',
     id: 'shrek:omni-farquaad',
@@ -1387,8 +1398,12 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     image: 'https://static.wikia.nocookie.net/shrek/images/5/5c/Lord_Farquaad_and_mirror.png/revision/latest/scale-to-width-down/1000',
     focus: { x: 30, y: 40, zoom: 1 },
     description: 'The ruler of Duloc, a kingdom so perfect it has a song: he banished every fairy-tale creature, picked a princess off a mirror\'s dating show and sent someone else to rescue her.',
-    voice: 'Some of you may die, but that is a sacrifice I am willing to make.',
-    audio: 'https://www.myinstants.com/media/sounds/some-of-you-may-die.mp3',
+    voice: 'Cours, cours, aussi vite que tu peux ! Tu ne m’attraperas pas, je suis le ’Tit Biscuit !',
+    audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/farquaad-cours-cours.m4a`,
+    voiceClips: [
+      { line: 'Cours, cours, aussi vite que tu peux ! Tu ne m’attraperas pas, je suis le ’Tit Biscuit !', audio: `${import.meta.env?.BASE_URL ?? './'}clips/shrek/farquaad-cours-cours.m4a` },
+      { line: 'Some of you may die, but that is a sacrifice I am willing to make.', audio: 'https://www.myinstants.com/media/sounds/some-of-you-may-die.mp3' },
+    ],
   },
   // Death, the Wolf of The Last Wish (the Shrek Wiki's render, hood down, sickles out). The owner's pick: his whistle, the
   // one Puss hears before every sight of him, and back at the end of the film, when Death lets him go — for now. The

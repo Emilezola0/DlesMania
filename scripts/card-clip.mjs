@@ -7,6 +7,7 @@
 //
 //   node scripts/card-clip.mjs --url=https://youtu.be/BAQvCB3Fnm0 --from=19 --to=41 --out=dbz/goku-ultra-instinct
 //   node scripts/card-clip.mjs --url=... --from=0 --to=5 --out=forts/howitzer --mute     (no sound track)
+//   node scripts/card-clip.mjs --url=... --from=1:15 --to=1:30 --out=shrek/lord-farquaad-2 --crop=1920:730:0:170   (subtitles burnt in: cut by hand)
 //   node scripts/card-clip.mjs --url=... --from=0 --to=3 --out=lotr-mythic --gif         (a GIF: clips/gif/, loops, no sound)
 //
 // --from/--to accept seconds (19, 9.7) or m:ss (12:44). Then point the card at it in src/gacha/cards.ts (the line is
@@ -28,7 +29,7 @@ import { spawnSync } from 'node:child_process';
 import { ROOT, parseArgs } from './lib.mjs';
 
 const { flags } = parseArgs();
-const usage = 'node scripts/card-clip.mjs --url=<video> --from=<s|m:ss> --to=<s|m:ss> --out=<set/name> [--mute] [--gif] [--fps=30]';
+const usage = 'node scripts/card-clip.mjs --url=<video> --from=<s|m:ss> --to=<s|m:ss> --out=<set/name> [--mute] [--gif] [--fps=30] [--crop=w:h:x:y]';
 if (!flags.url || flags.from === undefined || flags.to === undefined || !flags.out) {
   console.error(usage);
   process.exit(1);
@@ -89,9 +90,10 @@ run(ytdlp, [
 ]);
 const raw = join(work, readdirSync(work).find((f) => f.startsWith('raw.')));
 
-// 2. Its black bars (letterboxing), measured over the whole moment.
-const crop = run(ffmpeg, ['-hide_banner', '-i', raw, '-vf', 'cropdetect=limit=0.1:round=2:reset=0', '-f', 'null', '-']).match(/crop=\d+:\d+:\d+:\d+/g)?.pop();
-console.log(`Bars: ${crop ?? 'none found'} (check dark scenes by eye: cropdetect can mistake them for bars)`);
+// 2. Its black bars (letterboxing), measured over the whole moment — or --crop=w:h:x:y, chosen by eye (to cut out
+//    subtitles or a channel's logo burnt into the picture).
+const crop = flags.crop ? `crop=${flags.crop}` : run(ffmpeg, ['-hide_banner', '-i', raw, '-vf', 'cropdetect=limit=0.1:round=2:reset=0', '-f', 'null', '-']).match(/crop=\d+:\d+:\d+:\d+/g)?.pop();
+console.log(flags.crop ? `Crop: ${crop} (given)` : `Bars: ${crop ?? 'none found'} (check dark scenes by eye: cropdetect can mistake them for bars)`);
 
 // 3. The encode.
 const name = gif ? join('gif', flags.out.replace(/\//g, '-')) : flags.out;
