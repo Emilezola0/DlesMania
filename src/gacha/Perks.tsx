@@ -2,7 +2,7 @@
 // one can stand behind every page, its glow growing with its rarity (a legendary's shimmers).
 import { useEffect, useState, type CSSProperties } from 'react';
 import { useProgress } from '../store/progress';
-import { CardClip } from './CardClip';
+import { CardClip, GIF_CLIP } from './CardClip';
 import { CARD_BY_ID, RARITY_LIGHT, type Card, type Rarity } from './cards';
 import { useCardForm } from './CardView';
 import { useBackdropCue, useMomentOn } from './Reactions';
@@ -45,12 +45,16 @@ export function CardAvatar({ card, className = 'size-6' }: { card: Card; classNa
 }
 
 /**
- * The background card behind the whole page: its still picture (its video only plays on a win — the owner's rule),
- * covering the screen, on its subject. A cut-out one too (it used to sit in a corner, its clip looping).
+ * The background card behind the whole page, covering the screen, on its subject: its still picture — its video only
+ * plays on a win (the owner's rule) — or its GIF, looping (a GIF may loop in the background, a video may not). A
+ * cut-out one too (it used to sit in a corner, its clip looping whatever it was).
  */
 function FullBackdrop({ card }: { card: Card }) {
   const form = useCardForm(card);
   const f = !form.awakened ? card.focus : undefined;
+  const [failed, setFailed] = useState<string | null>(null);
+  const gif = form.clip && GIF_CLIP.test(form.clip) && loops(form.clip) && failed !== form.clip ? form.clip : null;
+  if (gif) return <CardClip src={gif} poster={form.image} onFail={() => setFailed(gif)} className="absolute inset-0 size-full object-cover opacity-[0.22]" />;
   return (
     <img
       src={form.image}
