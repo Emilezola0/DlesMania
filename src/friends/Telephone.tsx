@@ -529,7 +529,7 @@ export function Telephone({ people, me, demo }: { people: PhonePerson[]; me: str
       setNote({ text: 'Your chain is out: your friends take it from here.', good: true });
     } catch (e) {
       sfx.wrong();
-      setNote({ text: (e as { code?: string })?.code === 'permission-denied' ? "Telephone isn't switched on in the database yet: its rules need the phones section (firestore.rules) published." : 'No connection: try again once you are online.' });
+      setNote({ text: (e as { code?: string })?.code === 'permission-denied' ? 'The database refused the new chain: check the latest firestore.rules are published, then reload the page (the site may have just updated).' : 'No connection: try again once you are online.' });
     } finally {
       setBusy(false);
     }

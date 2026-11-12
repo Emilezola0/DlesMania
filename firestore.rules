@@ -345,19 +345,25 @@ service cloud.firestore {
         return n % 2 == 1 ? 'd' : 'g';
       }
       allow get: if request.auth != null && (request.auth.uid == starter() || friendOfStarter());
-      allow create: if request.auth != null && request.auth.uid == starter()
-        && id.split('_')[1].matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
-        && request.time > dayStart() - duration.value(14, 'h')
-        && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
-        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'kinds', 'people', 'seen', 'claim'])
-        && request.resource.data.uid == starter() && request.resource.data.day == id.split('_')[1]
-        && request.resource.data.name is string && request.resource.data.name.size() <= 40
-        && request.resource.data.set is string && request.resource.data.set.size() <= 40
-        && request.resource.data.at == request.time
-        && request.resource.data.kinds == ['w']
-        && request.resource.data.people == [starter()]
-        && request.resource.data.seen == [] && request.resource.data.claim == null
-        && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/0);
+      // A new chain, with its first step: created, or written over one of the day's chains in the old shape (its steps
+      // inside it, from before the seals), which can't be played any more.
+      function newChainOk() {
+        return request.auth.uid == starter()
+          && id.split('_')[1].matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+          && request.time > dayStart() - duration.value(14, 'h')
+          && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'kinds', 'people', 'seen', 'claim'])
+          && request.resource.data.uid == starter() && request.resource.data.day == id.split('_')[1]
+          && request.resource.data.name is string && request.resource.data.name.size() <= 40
+          && request.resource.data.set is string && request.resource.data.set.size() <= 40
+          && request.resource.data.at == request.time
+          && request.resource.data.kinds == ['w']
+          && request.resource.data.people == [starter()]
+          && request.resource.data.seen == [] && request.resource.data.claim == null
+          && existsAfter(/databases/$(database)/documents/phones/$(id)/steps/0);
+      }
+      allow create: if request.auth != null && newChainOk();
+      allow update: if request.auth != null && !('kinds' in resource.data) && newChainOk();
       allow update: if request.auth != null && request.auth.uid != starter() && friendOfStarter()
         && !(request.auth.uid in resource.data.people)
         && !done(resource.data)
@@ -392,7 +398,7 @@ service cloud.firestore {
         allow list: if request.auth != null && canSeeAll();
         allow create: if request.auth != null && (
           // The first step, made with its chain.
-          (n == '0' && request.auth.uid == starter() && !exists(chainPath())
+          (n == '0' && request.auth.uid == starter() && (!exists(chainPath()) || !('kinds' in get(chainPath()).data))
             && getAfter(chainPath()).data.kinds == ['w']
             && stepOk(request.resource.data, 'w'))
           // A turn: by whoever holds it, right at the end, made with the chain's update.
