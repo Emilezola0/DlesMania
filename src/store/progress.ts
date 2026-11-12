@@ -317,6 +317,15 @@ interface ProgressState {
   redeemed: string[];
   /** A gift code typed in the Shop: its coins, once per player. */
   redeemCode: (code: string) => { ok: true; coins: number; note: string } | { ok: false; reason: 'used' | 'unknown' | 'expired' };
+  /**
+   * The commune (src/cloud/commune.ts): the day this player last joined, their balance put in the pot (doubled), and
+   * how far their coins have been moved toward the day's average so far.
+   */
+  commune?: { day: string; balance: number; settled: number };
+  /** The commune code redeemed today (its pot joined with `balance`, the coins doubled): the coins set to it. */
+  joinCommune: (code: string, day: string, balance: number) => void;
+  /** The commune's average moved this player's share to `target` (average − their balance): the rest is paid or taken. */
+  settleCommune: (day: string, target: number) => void;
   /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
   /** An Expedition's coins, through its own daily amount: what was really paid. */
   earnExpedition: (amount: number) => number;
@@ -1002,6 +1011,23 @@ export const useProgress = create<ProgressState>()(
         if ((s.redeemed ?? []).includes(mark)) return { ok: false, reason: 'used' };
         set({ coins: (s.coins ?? 0) + gift.coins, redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), mark] });
         return { ok: true, coins: gift.coins, note: gift.note };
+      },
+      joinCommune: (raw, day, balance) => {
+        const code = normalizeCode(raw);
+        const s = get();
+        set({
+          coins: balance,
+          coinPeak: Math.max(s.coinPeak ?? 0, balance),
+          commune: { day, balance, settled: 0 },
+          redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), `${code}@${day}`],
+        });
+      },
+      settleCommune: (day, target) => {
+        const s = get();
+        const c = s.commune;
+        if (!c || c.day !== day || target === c.settled) return;
+        const coins = Math.max(0, (s.coins ?? 0) + target - c.settled);
+        set({ coins, coinPeak: Math.max(s.coinPeak ?? 0, coins), commune: { ...c, settled: target } });
       },
       claimQuest: (tier) => {
         const s = get();

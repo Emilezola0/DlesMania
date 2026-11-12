@@ -564,6 +564,24 @@ service cloud.firestore {
             ? birthdayClaimOk(uid, int(id.split('-')[1]))
             : dateClaimOk(id.split('-')[0], int(id.split('-')[1]))));
     }
+    // The commune (src/cloud/commune.ts): commune/<YYYY-MM-DD>/members/<uid>, a player's balance (doubled) put in the
+    // day's pot by its gift code. Written once, by its player, only on its day (by the server's clock, any time zone),
+    // at most 10,000,000 (COMMUNE_CAP); never changed or taken back. Every signed-in player reads the day's pot: each
+    // one moves their own coins to its average.
+    match /commune/{day}/members/{uid} {
+      function dayStart() {
+        return timestamp.date(int(day.split('-')[0]), int(day.split('-')[1]), int(day.split('-')[2]));
+      }
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid == uid
+        && day.matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && hasBegun(dayStart()) && notOver(dayStart() + duration.value(1, 'd'))
+        && request.resource.data.keys().hasOnly(['uid', 'balance', 'at'])
+        && request.resource.data.uid == uid
+        && request.resource.data.balance is int && request.resource.data.balance >= 0 && request.resource.data.balance <= 10000000
+        && request.resource.data.at == request.time;
+      // No update, no delete: a place in the pot stays as it was put.
+    }
     match /rewards/{uid} {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow create: if request.auth != null && request.auth.uid == uid

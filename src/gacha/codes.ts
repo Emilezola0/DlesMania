@@ -12,6 +12,11 @@ export interface GiftCode {
   daily?: boolean;
   /** Only works on this day (YYYY-MM-DD, the player's own calendar): a one-day event. */
   only?: string;
+  /**
+   * The commune (the owner's call, 12 Nov 2026): once a day, it doubles the player's DleCoins; everyone who
+   * redeems it the same day then ends up with the average of their balances (src/cloud/commune.ts). `coins` unused.
+   */
+  commune?: true;
 }
 
 const CODES: Record<string, GiftCode> = {
@@ -20,6 +25,7 @@ const CODES: Record<string, GiftCode> = {
   'd6d9e5b44ffd5a1d622ea6f28e1d618bcd14fb16a9c5860ec4c22c5592f4e24f': { coins: 500, note: 'Because We Love Gamble s love' },
   '343fc0f23e8b0fd743e39f9b56ff6ce8b98587fee55246fae10f5608d3c661f2': { coins: 5000, note: "Have some Fun" },
   '33a0f97d40c9c4890932d4f8935f651a585950fbdda4cbd36fdeef99e72a3b13': { coins: 500, note: "Today's gift — come back tomorrow for another.", daily: true },
+  '99409f0abe085d863bbed792a884ff0de238d617d40364e27e447530ba6c521d': { coins: 0, note: 'Your DleCoins, doubled — and shared with every comrade who joins today.', daily: true, commune: true },
 };
 
 export const normalizeCode = (code: string) => code.trim().toUpperCase().replace(/\s+/g, '');

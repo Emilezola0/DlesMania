@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
@@ -193,6 +193,17 @@ function RedeemCode() {
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
   const no = (text: string) => (sfx.wrong(), setMsg({ ok: false, text }));
+  // The commune joined today or yesterday: settled again (comrades who joined since move the average), and shown.
+  const [pot, setPot] = useState<{ day: string; members: number; average: number } | null>(null);
+  const communeDay = useProgress((s) => s.commune?.day);
+  useEffect(() => {
+    if (!signedIn || !communeDay) return;
+    let live = true;
+    void import('../cloud/commune').then((m) => m.settleCommune()).then((p) => live && setPot(p));
+    return () => {
+      live = false;
+    };
+  }, [signedIn, communeDay]);
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const c = normalizeCode(code);
@@ -206,6 +217,28 @@ function RedeemCode() {
     if ((useProgress.getState().redeemed ?? []).includes(gift.daily ? `${c}@${day}` : c)) return no(usedMsg);
     setBusy(true);
     try {
+      if (gift.commune) {
+        // Its pot is its claim: one place in it per account and day (src/cloud/commune.ts).
+        const commune = await import('../cloud/commune');
+        const balance = Math.min(commune.COMMUNE_CAP, (useProgress.getState().coins ?? 0) * 2);
+        const joined = await commune.joinCommune(day, balance);
+        if (joined === 'done') return no(usedMsg);
+        if (joined === 'refused') return no("Your device's date doesn't match today's: set it right to redeem this code.");
+        useProgress.getState().joinCommune(c, day, balance);
+        const pot = await commune.settleCommune();
+        sfx.streak();
+        celebrate();
+        setPot(pot);
+        setMsg({
+          ok: true,
+          text:
+            pot && pot.members > 1
+              ? `☭ Doubled to ${balance} DleCoins — then shared: ${pot.members} comrades today, everyone now has ${pot.average}.`
+              : `☭ Doubled: ${balance} DleCoins! You're today's first comrade — whoever joins today shares the average with you.`,
+        });
+        setCode('');
+        return;
+      }
       const claimed = await import('../cloud/rewards').then((m) => m.claimCode(codeId(c), gift.daily ? day : null));
       if (claimed === 'used') return no(usedMsg);
       if (claimed === 'refused') return no("Your device's date doesn't match today's: set it right to redeem this code.");
@@ -238,6 +271,11 @@ function RedeemCode() {
           {busy ? '…' : 'Redeem'}
         </button>
         {msg && <p className={`w-full text-sm font-semibold ${msg.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{msg.text}</p>}
+        {pot && !msg && (
+          <p className="w-full text-sm text-ink-soft">
+            ☭ Commune of {pot.day === todayKey() ? 'today' : 'yesterday'}: {pot.members} {pot.members === 1 ? 'comrade' : 'comrades'}, everyone at {pot.average} DleCoins.
+          </p>
+        )}
       </form>
     </section>
   );

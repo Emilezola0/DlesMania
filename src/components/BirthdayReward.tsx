@@ -65,6 +65,8 @@ export function BirthdayReward() {
   const api = (): Promise<Api> => (DEMO ? Promise.resolve(demoApi) : import('../cloud/rewards'));
   const claim = async (b: Birthday | null) => {
     lastClaim.current = Date.now();
+    // The commune joined today or yesterday: comrades who joined since move the average (src/cloud/commune.ts).
+    if (!DEMO) void import('../cloud/commune').then((m) => m.settleCommune());
     const paid = await (await api()).claimDue(b).catch(() => []);
     if (paid.length) setGifts((g) => [...g, ...paid.filter((p) => !g.some((x) => x.id === p.id))]);
   };

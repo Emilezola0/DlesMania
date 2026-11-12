@@ -77,6 +77,7 @@ export const SYNCED = [
   'doodle',
   'tradeLock',
   'cardVolume',
+  'commune',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -303,5 +304,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     tradeLock: latest.tradeLock ?? { cards: {}, coins: 0 },
     // Each card's own volumes: as last set (with the save changed last).
     cardVolume: latest.cardVolume ?? local.cardVolume ?? {},
+    // The commune: with the coins it moved (the latest save's), so its share isn't paid twice.
+    commune: latest.commune,
   };
 }
