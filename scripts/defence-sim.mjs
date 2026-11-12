@@ -98,7 +98,9 @@ for (let b = 0; b < 2000; b++) {
   orderSpread += w > 0 && w < 10 ? 1 : 0;
 }
 
-// A thinking attacker: from 12 cards of their own, the team and order that beats most orders of the defence they see.
+// A thinking attacker: from 12 cards of their own, the team that beats most defences like the one they scout. They see
+// only its elements (as in the game), so they test against other cards of those elements.
+const scouted = (D) => D.map((c) => card(pick(pool.filter((p) => p.element === c.element))));
 let smart = 0;
 const SMART = 600;
 for (let b = 0; b < SMART; b++) {
@@ -110,7 +112,7 @@ for (let b = 0; b < SMART; b++) {
   for (let t = 0; t < 30; t++) {
     const cand = team(mine);
     let s = 0;
-    for (let k = 0; k < 6; k++) if (fight(cand, shuffle(D), arena, `m${b}${k}`).winner === 'a') s++;
+    for (let k = 0; k < 6; k++) if (fight(cand, scouted(D), arena, `m${b}${k}`).winner === 'a') s++;
     if (s > bestScore) (bestScore = s), (best = cand);
   }
   if (fight(best, shuffle(D), arena, `final${b}`).winner === 'a') smart++;
@@ -119,6 +121,6 @@ for (let b = 0; b < SMART; b++) {
 const pct = (x) => `${(100 * x).toFixed(1)}%`;
 console.log(`${N} battles · attacker wins ${pct(attackerWins / N)} · ${(lengths / N).toFixed(1)} duels a battle · ends: ${Object.entries(how).map(([k, v]) => `${k} ${pct(v / N)}`).join(', ')}`);
 console.log(`order matters (same cards, another order changes the result) in ${pct(orderSpread / 2000)} of match-ups`);
-console.log(`a thinking attacker (12 cards to choose from, sees the defence) wins ${pct(smart / SMART)}`);
+console.log(`a thinking attacker (12 cards to choose from, sees the defence's elements) wins ${pct(smart / SMART)}`);
 const rows = [...stat].sort((p, q) => p[0].localeCompare(q[0], 'en', { numeric: true }));
 for (const [k, s] of rows) if (s.n > 200) console.log(`  ${k.padEnd(20)} wins ${pct(s.w / s.n).padStart(6)}  (${s.n})`);

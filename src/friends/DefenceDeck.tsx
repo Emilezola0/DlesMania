@@ -472,7 +472,7 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
         <div>
           <h2 className="font-display text-lg font-bold">🛡️ Defence Deck</h2>
           <p className="text-sm text-ink-soft">
-            Set a defence of {DEFENCE.size} cards within {DEFENCE.budget} points, in a secret order. Attack your friends&apos; defences with {DEFENCE.size} of yours ({DEFENCE.attacksPerDay} attacks a day, each friend once): you see their cards, not their order. A win pays {DEFENCE.win} {coin}; each attack your defence holds off,{' '}
+            Set a defence of {DEFENCE.size} cards within {DEFENCE.budget} points, in a secret order. Attack your friends&apos; defences with {DEFENCE.size} of yours ({DEFENCE.attacksPerDay} attacks a day, each friend once): you see only their elements, not their cards or order. A win pays {DEFENCE.win} {coin}; each attack your defence holds off,{' '}
             {DEFENCE.held}.
           </p>
         </div>
@@ -545,13 +545,15 @@ export function DefenceDeck({ people, me, demo }: { people: DefencePerson[]; me:
         </div>
       ) : target ? (
         <div className="space-y-3">
-          <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">{byUid.get(target.uid)?.name ?? target.name}&apos;s defence · order hidden</p>
-          <div className="grid gap-1.5 sm:grid-cols-5">
-            {[...target.team]
-              .sort((x, y) => RARITIES.indexOf(cardOf(y)?.rarity ?? 'common') - RARITIES.indexOf(cardOf(x)?.rarity ?? 'common'))
-              .map((t) => (
-                <Tile key={t.id} t={t} hidden={t.anomaly === 'void'} posing={t.anomaly === 'fake'} />
-              ))}
+          {/* Scouting: only the defence's elements, sorted (its cards and their order are the secret, seen in the replay). */}
+          <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">{byUid.get(target.uid)?.name ?? target.name}&apos;s defence · elements only</p>
+          <div className="flex items-center gap-2 rounded-md bg-tile p-2 text-sm">
+            <span className="flex gap-1 text-lg">
+              {[...target.team]
+                .sort((x, y) => (x.anomaly === 'void' ? 1 : 0) - (y.anomaly === 'void' ? 1 : 0) || x.element.localeCompare(y.element))
+                .map((t, i) => (t.anomaly === 'void' ? <span key={i}>❔</span> : <El key={i} e={t.element} />))}
+            </span>
+            <span className="text-ink-soft">Which cards, and in what order, you find out in the fight.</span>
           </div>
           <TeamBuilder team={team} onChange={setTeam} demo={demo} />
           <div className="flex gap-2">

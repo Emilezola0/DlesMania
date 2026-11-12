@@ -19,7 +19,7 @@ export const DEFENCE = {
   /** Power for every two grades above the first (grades go to 8: +3 at most). */
   perGrade: 1,
   /** The defence fights at home: each of its cards gets this. */
-  home: 1,
+  home: 3,
   /** Light shines: Light cards get this. */
   light: 0,
   /** Every two points of the budget left unspent: each card of the team gets this. */
