@@ -271,6 +271,15 @@ function Mp4Series({ srcs, poster, onFail, onPlaying, onOnce, className }: { src
 }
 
 /**
+ * Several MP4s with their sound (Apollyon's): one of them, picked at random, heard once through like a single clip
+ * (the series' silent player loops muted, which would lose the sound).
+ */
+function HeardSeries({ srcs, ...rest }: { srcs: string[]; poster?: string; onFail: () => void; onPlaying?: () => void; onOnce?: () => void; className?: string; sound: ClipSound }) {
+  const [src] = useState(() => srcs[Math.floor(Math.random() * srcs.length)]);
+  return <HeardVideo src={src} {...rest} />;
+}
+
+/**
  * An MP4 heard, once through (its sound is the moment's): its end ends the sound. If the browser won't let it play
  * with sound (no tap on the page yet), it plays on silent and says so.
  */
@@ -320,7 +329,11 @@ export function CardClip({ src, poster, onFail, onPlaying, onOnce, className, so
   if (hold) return src.includes('|') || TT_CLIP.test(src) ? null : <video src={src} preload="auto" muted playsInline aria-hidden className={`${className ?? ''} opacity-0`} />;
   const tt = TT_CLIP.exec(src);
   if (tt) return <TikTokLoop id={tt[1]} start={Number(tt[2])} end={Number(tt[3])} onFail={onFail} onPlaying={onPlaying} className={className} />;
-  if (src.includes('|')) return <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} />;
+  if (src.includes('|')) {
+    return sound
+      ? <HeardSeries srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} sound={sound} />
+      : <Mp4Series srcs={src.split('|')} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} />;
+  }
   if (sound) return <HeardVideo src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} sound={sound} />;
   if (!GIF_CLIP.test(src)) return <LoopVideo key={src} src={src} poster={poster} onFail={onFail} onPlaying={onPlaying} onOnce={onOnce} className={className} />;
   // A GIF told when it has played once through: no loop attribute (which never ends), started again by hand at its end.
