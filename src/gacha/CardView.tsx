@@ -89,14 +89,15 @@ function OmniRings({ half }: { half: 'full' | 'back' | 'front' }) {
 /**
  * Firefox's rings, around a card up close (the big view puts them beside the card, in its turning 3D space): there the
  * card's face is flat (it loses what stands out of a 3D face), so rings inside it would be painted on it and turn
- * with it, not float around it. `under` goes before the card (a flat layer, painted under it), `over` after it (in 3D,
- * over it). Seen from the front, the far half of each ring is its top one (tilted away); seen from behind (`flipped`),
+ * with it, not float around it. `under` goes before the card, `over` after it: Firefox paints them in that order (it
+ * doesn't sort crossing planes). Both in 3D: a flat `under` was painted on the card's plane, and its half no longer met
+ * the other one once the card was turned well round. Seen from the front, the far half of each ring is its top one (tilted away); seen from behind (`flipped`),
  * its bottom one — so the halves swap layers when the card is turned round.
  */
 export function OmniRingsAround({ layer, flipped }: { layer: 'under' | 'over'; flipped?: boolean }) {
   const half = (layer === 'under') !== !!flipped ? 'back' : 'front';
   return (
-    <div className={`omni-rings-around pointer-events-none absolute inset-0 ${layer === 'over' ? '[transform-style:preserve-3d]' : ''}`}>
+    <div className="omni-rings-around pointer-events-none absolute inset-0 [transform-style:preserve-3d]">
       {[1, 2].map((n) => (
         <div key={n} className={`card-omni-ring-tilt card-omni-ring-${n} card-omni-ring-${half}`} aria-hidden>
           <i className="card-omni-ring" />
