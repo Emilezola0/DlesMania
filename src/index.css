@@ -1468,6 +1468,10 @@ h1, h2, h3, .font-serif, .font-display {
   background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
 }
 .moment-on .page { background-color: color-mix(in srgb, var(--color-card) 72%, transparent); transition: background-color 0.5s; }
+/* A page with no panel of its own (a Daily game, Free Play's): its whole content gets that veil, so the video stays
+   behind it there too instead of sitting right under the buttons. */
+main { transition: background-color 0.5s; }
+.moment-on main:not(:has(.page)) { background-color: color-mix(in srgb, var(--color-card) 72%, transparent); border-radius: 0.375rem; }
 
 /* ── The Omni aura (src/gacha/OmniAura.tsx): the whole site, while an Omni card is on show. ── */
 @keyframes omni-aurora {
