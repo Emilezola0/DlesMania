@@ -3,13 +3,13 @@
 // YouTube refuses downloads from cloud machines ("Sign in to confirm you're not a bot"): run this on a computer
 // with yt-dlp, ffmpeg and deno (see card-clip.mjs), from the repository's folder:
 //   node scripts/data/omni-clips-forts-forhonor.mjs
-// It writes public/clips/forts/{core-swing-sound,la-speciale-voice}.mp4 and public/clips/forhonor/apollyon-war-{sound-1..9,voice}.mp4,
+// It writes public/clips/forts/{core-swing,la-speciale-voice}.mp4 and public/clips/forhonor/apollyon-war-{sound-1..9,voice}.mp4,
 // which src/gacha/cards.ts already points to. Then commit them.
 import { spawnSync } from 'node:child_process';
 
 const jobs = [
-  // Forts: Pile Rouillée's Core Swing (FPL Season 5), with its own sound (the owner's call, 12 Nov 2026).
-  ['https://youtu.be/mnmhN-7Q4SA', '8:35', '8:50', 'forts/core-swing-sound', false],
+  // Forts: Pile Rouillée's Core Swing (FPL Season 5), silent — "La Spéciale" plays over it (the owner's call).
+  ['https://youtu.be/mnmhN-7Q4SA', '8:35', '8:50', 'forts/core-swing', true],
   ['https://youtu.be/ZMEoZ07MnZc', '0:50', '1:05', 'forts/la-speciale-voice', false],
   // For Honor: Apollyon, 0:17 to 2:28 cut in 15 s clips, with their own sound (the owner's call, 12 Nov 2026);
   // "War… I am war" stays her voice line for the small moments.

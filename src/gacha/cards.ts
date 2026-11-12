@@ -887,9 +887,9 @@ const CLIPS: Record<string, string> = {
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
   // The howitzer, from the game's own TikTok (@fortsgame, 0:01–0:05).
   'forts:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forts/howitzer.mp4`,
-  // The owner's pick: 8:35–8:50 of mnmhN-7Q4SA (FPL Season 5, Pile Rouillée's Core Swing), with its own sound
-  // (the owner's call, 12 Nov 2026: Omni videos play their sound); "La Spéciale" stays its voice line for the small moments.
-  'forts:omni': `${import.meta.env?.BASE_URL ?? './'}clips/forts/core-swing-sound.mp4`,
+  // The owner's pick: 8:35–8:50 of mnmhN-7Q4SA (FPL Season 5, Pile Rouillée's Core Swing), cut --mute: "La Spéciale"
+  // plays over it (the owner's call, 12 Nov 2026: this one stays silent, unlike the other Omnis' videos).
+  'forts:omni': `${import.meta.env?.BASE_URL ?? './'}clips/forts/core-swing.mp4`,
   // The owner's pick: 0:17–2:28 of zFUymXnQ5z8, cut in 15 s clips played one after another, with their own sound
   // (the owner's call: no voice line over them). Here, not in FIRST_CLIPS: an Omni always shows its awakened form now,
   // and that form only takes its clip from CLIPS.
@@ -961,7 +961,7 @@ const withClip = (c: Card): Card => {
 };
 
 /** The clips hosted with the site that have no sound track (GIFs, the game captures, the ones cut --mute). */
-const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/forts\/howitzer\.mp4/;
+const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
 /**
  * Whether a card's clip is heard (the owner's rule: a video that has sound always plays with it, behind a win too,
  * never under a voice line): every clip hosted with the site that has a sound track, and the ones marked `clipSound`.

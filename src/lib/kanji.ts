@@ -41,9 +41,14 @@ ${awake ? '<circle cx="200" cy="200" r="186" fill="none" stroke="#f5c542" stroke
 
 const SEALS = new Set(['鬼']);
 
-/** A kanji alone on nothing (Who's That?): blacked out, the character itself is the silhouette. */
-export const kanjiGlyph = (k: string) =>
-  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><text x="200" y="208" font-family="${FONT}" font-size="300" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917">${k}</text></svg>`)}`;
+/**
+ * A kanji alone on nothing (Who's That?). `swollen`: its strokes thickened until they run into one another, so
+ * blacked out only its outline shows, the inside one dark mass (the owner's call); plain, it's the answer shown.
+ */
+export const kanjiGlyph = (k: string, swollen = false) =>
+  `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><text x="200" y="208" font-family="${FONT}" font-size="${swollen ? 270 : 300}" font-weight="700" text-anchor="middle" dominant-baseline="central" fill="#1c1917"${swollen ? ' stroke="#1c1917" stroke-width="34" stroke-linejoin="round" stroke-linecap="round"' : ''}>${k}</text></svg>`,
+  )}`;
 
 /** "kanji:山" → the picture's data URL; anything else is returned as it is. */
 export function kanjiPicture(image: string): string;

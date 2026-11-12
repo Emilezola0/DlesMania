@@ -6,9 +6,10 @@ import { kanjiGlyph } from '../lib/kanji';
 import type { SilhouetteEntry, SilhouetteSeries } from './silhouettes';
 
 /** A kanji to name: by its reading (kana or romaji) or its English meaning, as in /jlpt's typed answers. */
-export type KanjiSilhouette = SilhouetteEntry & { kanji: JlptEntry };
+export type KanjiSilhouette = SilhouetteEntry & { kanji: JlptEntry; revealed: string };
 
-const entry = (e: JlptEntry): KanjiSilhouette => ({ name: e.text, aliases: [], image: kanjiGlyph(e.text), kanji: e });
+/** Asked swollen (its outline only), shown plain once it's over. */
+const entry = (e: JlptEntry): KanjiSilhouette => ({ name: e.text, aliases: [], image: kanjiGlyph(e.text, true), revealed: kanjiGlyph(e.text), kanji: e });
 
 /** Each kanji once (a few are listed twice in a level). */
 const once = (es: JlptEntry[]) => [...new Map(es.map((e) => [e.text, e])).values()];

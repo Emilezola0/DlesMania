@@ -425,7 +425,8 @@ function WhosThatGame({ playKey, deck }: { playKey: string; deck: Card[] }) {
                 {picture ? (
                 <img
                   key={`${cardKey}-${source}`}
-                  src={picture}
+                  // A kanji's answer is the plain character, not its swollen outline.
+                  src={reveal && isKanji(card) ? card.revealed : picture}
                   // No name in the alt text: a picture that fails to load would show it.
                   alt=""
                   draggable={false}
