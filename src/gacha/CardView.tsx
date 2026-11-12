@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState, type CSSProperties, type SyntheticEvent } from 'react';
 import { fromKey } from '../lib/date';
 import { shownName } from '../lib/french';
-import { bossKey, useProgress } from '../store/progress';
+import { useProgress } from '../store/progress';
 import { CardClip, type ClipSound } from './CardClip';
 import { COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity } from './cards';
 import { GradeEmblem } from './GradeEmblem';
@@ -35,9 +35,12 @@ export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: s
   },
 };
 
-/** An omni's form: its second (awakened) once its franchise's guardian has been beaten on Hard (or Hell). */
-/** Whether an omni has woken: its guardian beaten on Hard or Hell. */
-export const isAwake = (card: Card, bosses: Record<string, { wins: number }>) => !!card.awaken && ((bosses[bossKey(card.set, 'hard')]?.wins ?? 0) > 0 || (bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
+/**
+ * An omni's form: its awakened one, from the moment it's pulled (the owner's call, 12 November 2026: the awakened
+ * pictures and clips are the ones to show). It used to wait for its guardian beaten on Hard or Hell; `bosses` is kept
+ * so the callers stay as they are.
+ */
+export const isAwake = (card: Card, _bosses?: Record<string, { wins: number }>) => !!card.awaken;
 
 export function useCardForm(card: Card): { image: string; title?: string; description: string; awakened: boolean; clip?: string; clipLight?: boolean; cutout?: boolean; opaque?: boolean } {
   const awake = useProgress((s) => isAwake(card, s.bosses));
