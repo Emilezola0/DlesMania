@@ -2724,11 +2724,14 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 }
 
 /* Firefox: while a card video plays (up close or behind a win), the page's decorative animations pause — it repaints
-   many of them on the CPU every frame and then drops most of the video's frames (see usePausesPage in CardClip). */
+   many of them on the CPU every frame and then drops most of the video's frames (see usePausesPage in CardClip). Not
+   the card up close itself (.card-inspect): it keeps turning, swaying and burning while its video plays — measured in a
+   real Firefox window (firefox-check --headful), its animations cost the video no frames (headless, drawn without the
+   graphics card, they do: don't trust a headless count for this). */
 @supports (-moz-appearance: none) {
-  html.card-video-playing *,
-  html.card-video-playing *::before,
-  html.card-video-playing *::after { animation-play-state: paused !important; }
+  html.card-video-playing :not(.card-inspect, .card-inspect *),
+  html.card-video-playing :not(.card-inspect *)::before,
+  html.card-video-playing :not(.card-inspect *)::after { animation-play-state: paused !important; }
 }
 
 /* Firefox: the face of a card up close stays flat (the card itself still turns in 3D, edge and back included). Firefox

@@ -179,7 +179,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   const facingAway = Math.cos((ry * Math.PI) / 180) * Math.cos((rx * Math.PI) / 180) < 0;
   const foil = dragging ? { x: Math.max(0, Math.min(100, 50 + face * 1.6)), y: Math.max(0, Math.min(100, 50 - rx * 2.2)) } : undefined;
   return (
-    <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
+    <div className="card-inspect fixed inset-0 z-50 flex justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-sm" onClick={onClose}>
       <div className="my-auto w-full space-y-4 py-6" style={{ maxWidth: 'min(24rem, calc((100vh - 9rem) * 5 / 7))' }} onClick={(e) => e.stopPropagation()}>
         <div
           className="cursor-grab touch-none select-none [perspective:1000px] active:cursor-grabbing"
