@@ -2731,18 +2731,22 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   html.card-video-playing *::after { animation-play-state: paused !important; }
 }
 
-/* Firefox: the face of a card up close stays flat (the card itself still turns in 3D, edge and back included). With
-   the face in 3D, Firefox lost what stands out of it — the Omni crown wasn't drawn at all, the rings were cut off at
-   the sides — and doesn't sort crossing planes anyway; the rings keep their halves (OmniRings), behind and in front.
-   Found with scripts/firefox-check.mjs (the crown came back once the face was flat). */
+/* Firefox: the face of a card up close stays flat (the card itself still turns in 3D, edge and back included). Firefox
+   draws nothing lifted (translateZ) inside a size container (the face is one, for its cqw sizes), nor past the edges
+   of a hidden-back layer (the face's holder), and doesn't sort crossing planes anyway: so its crown and embers stand
+   out beside it (CardLifts) and its rings float around it in halves (OmniRingsAround). Found with
+   scripts/firefox-check.mjs, a lifted square placed at each level of the card. */
 @supports (-moz-appearance: none) {
   .card-3d { transform-style: flat !important; }
 }
 /* So in Firefox the big view's rings float beside the card, in its 3D space (OmniRingsAround), instead of the face's
    own, which a flat face would paint on itself. */
-.omni-rings-around { display: none; }
+/* And its crown and embers stand out beside it (CardLifts), in place of the flat face's own. */
+.omni-rings-around, .card-lifts { display: none; }
 @supports (-moz-appearance: none) {
-  .omni-rings-around { display: block; }
+  .omni-rings-around, .card-lifts { display: block; }
+  .card-3d .card-omni-crown,
+  .card-3d .card-omni-ember { display: none !important; }
   .card-3d .card-omni-ring-flat,
   .card-3d .card-omni-ring-front { display: none !important; }
 }

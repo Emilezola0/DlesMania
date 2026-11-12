@@ -106,6 +106,41 @@ export function OmniRingsAround({ layer, flipped }: { layer: 'under' | 'over'; f
   );
 }
 
+/**
+ * Firefox's raised parts of a card up close: the Omni crown and its embers, standing out of the card in 3D. Firefox
+ * doesn't draw what is lifted (translateZ) inside the card face itself — hidden behind its plane (found with
+ * scripts/firefox-check.mjs: a lifted square showed one level up, never inside the face) — so the face stays flat there
+ * and these go beside it, lifted, in the card's turning space. Each hides its back (seen from behind, the card's back
+ * shows alone). Chrome draws the face's own (hidden here by CSS: .card-lifts is Firefox's only).
+ */
+export function CardLifts({ card }: { card: Card }) {
+  // Its sizes follow the card's width, measured: a size container (cqw, as on the face) isn't drawn at all in 3D there.
+  const ref = useRef<HTMLDivElement>(null);
+  const [w, setW] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setW(el.offsetWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  if (card.rarity !== 'omni') return null;
+  const cq = (n: number) => `${(w * n) / 100}px`;
+  return (
+    <div ref={ref} className="card-lifts pointer-events-none absolute inset-0 [transform-style:preserve-3d]" aria-hidden>
+      <span
+        className="card-omni-crown absolute left-1/2 whitespace-nowrap rounded-full font-display font-black tracking-[0.3em] shadow-lg [backface-visibility:hidden]"
+        style={{ top: cq(-4.5), padding: `${cq(1.2)} ${cq(4.5)}`, fontSize: cq(5.2), transform: 'translateX(-50%) translateZ(50px)', visibility: w ? undefined : 'hidden' }}
+      >
+        ✪ OMNI
+      </span>
+      {EMBERS.map((e, i) => (
+        <span key={i} className="card-omni-ember [backface-visibility:hidden]" style={{ left: `${e.x}%`, top: `${e.y}%`, transform: `translateZ(${e.z}px)`, animationDelay: `${i * -0.6}s` }} />
+      ))}
+    </div>
+  );
+}
+
 const EMBERS = [
   { x: 6, y: 18, z: 70 },
   { x: 90, y: 12, z: 110 },

@@ -2,7 +2,7 @@ import { ANOMALIES } from '../gacha/anomalies';
 import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Coins } from '../components/DleCoin';
-import { CardBack, CardFace, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
+import { CardBack, CardFace, CardLifts, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
 import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
@@ -207,6 +207,9 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             <div className="absolute inset-0 [backface-visibility:hidden]" style={{ transform: 'translateZ(-6px) rotateY(180deg)' }}>
               <CardBack rarity={card.rarity} />
             </div>
+            {/* Firefox: the crown and embers, standing out beside the flat face (see CardLifts); out of the face's hidden-back
+                layer, which cuts off in 3D whatever goes past its edges. */}
+            <CardLifts card={card} />
             {card.rarity === 'omni' && <OmniRingsAround layer="over" flipped={facingAway} />}
             </div>
             </div>
