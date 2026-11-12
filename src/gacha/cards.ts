@@ -335,7 +335,7 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     ],
   },
   // Shrek: Puss in Boots riding a firework at his fiesta, The Last Wish's opening (the owner's pick, Variety's still); his
-  // clip is that opening too (the owner's pick, "Fearless Hero", 4:12–4:30, heard with its song). His lines
+  // clip is that opening too (the owner's pick, "Fearless Hero", 4:12.4–4:30, heard with its song). His lines
   // are the film's: "Welcome to my fiesta!" from that same opening (0:07), and "Say hello to my gatito blade!" against
   // Death (Movieclips, 2:27). The set's other Omnis (LATER) are Lord Farquaad and Death.
   shrek: {
@@ -839,7 +839,7 @@ const CLIPS: Record<string, string> = {
   'hxh:mythic': 'https://media.tenor.com/P_8hJLKYGEsAAAPo/adult-gon.mp4',
   'hxh:mythic-2': 'https://media.tenor.com/xD1ikFO7Fx4AAAPo/hisoka-hunter-x-hunter.mp4',
   'hxh:omni': 'https://media.tenor.com/6cu5bNft-XMAAAPo/killua-godspeed.mp4',
-  'shrek:omni': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/puss-in-boots.mp4`,
+  'shrek:omni': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/puss-in-boots-2.mp4`,
   'shrek:omni-farquaad': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/lord-farquaad.mp4`,
   // Death: the owner's pick, Puss in Boots against Death (Rotten Tomatoes Family, 0:07–0:33), heard.
   'shrek:omni-death': `${import.meta.env?.BASE_URL ?? './'}clips/shrek/death.mp4`,
