@@ -22,9 +22,9 @@ export const GIF_CLIP = /media\d*\.tenor\.com|giphy\.com|klipy\.com|\.gif(\?|$)|
 /** How many card videos (not GIFs) are playing: while any is, html gets .card-video-playing. */
 let videosPlaying = 0;
 /**
- * While this video plays, the page's decorative animations pause in Firefox (index.css): it repaints many of them on
- * the CPU every frame (turning gradients, moving backgrounds, big glows) and then drops most of the video's frames —
- * measured with scripts/firefox-check.mjs: 12 frames drawn in 3 s, 75 with the animations stopped.
+ * Marks the page while a card video plays (html.card-video-playing). It used to pause the page's animations in Firefox;
+ * no longer (index.css says why: in a real Firefox window they cost the video nothing, and paused they froze what was
+ * fading in). The mark stays for whatever needs to know.
  */
 function usePausesPage(ref: React.RefObject<HTMLVideoElement | null>) {
   useEffect(() => {
