@@ -227,7 +227,10 @@ interface ProgressState {
   rouletteStreak?: number;
   /** The plush shown next to the player's name for friends (src/casino/plushies.ts); null: the best one. */
   shownPlush?: string | null;
-  /** The Daily Doodle's rewards paid (src/friends/Doodle.tsx): "g:<drawing>" a guess paid (its coins), "a:<drawing>" the friends who guessed one of this player's drawings, paid for. */
+  /**
+   * The Daily Doodle's rewards paid (src/friends/Doodle.tsx): "g:<drawing>" a guess paid (its coins), "a:<drawing>" the
+   * friends who guessed one of this player's drawings, paid for. The other Friends games' rewards too (payFriendGame).
+   */
   doodle?: Record<string, number>;
   /**
    * What this save earned while no account was signed in on this device: those copies and coins stay the player's,
@@ -239,6 +242,11 @@ interface ProgressState {
   rewardDoodleGuess: (id: string, coins: number) => number;
   /** This player's drawing guessed by `solvers` friends: `each` coins for every one not paid for yet. What was paid. */
   rewardDoodleArt: (id: string, solvers: number, each: number) => number;
+  /**
+   * Another Friends game's reward (Read the Room, the Raid Boss, Telephone, the Weekly League), paid once per `key`
+   * (kept with the Doodle's, so it must end with a YYYY-MM-DD day: "raid:2026-11-09"). What was paid (0 if it was already).
+   */
+  payFriendGame: (key: string, coins: number) => number;
   setShownPlush: (id: string | null) => void;
   /** The day's claw box, set the first time the machine is opened that day (the tries start again). */
   clawDay: (day: string, box: ClawItem[]) => void;
@@ -590,6 +598,13 @@ export const useProgress = create<ProgressState>()(
         if (fresh <= 0) return 0;
         set({ coins: s.coins + fresh * each, doodle: pruneDoodle({ ...d, [`a:${id}`]: solvers }) });
         return fresh * each;
+      },
+      payFriendGame: (key, coins) => {
+        const s = get();
+        const d = s.doodle ?? {};
+        if (d[key] !== undefined || coins <= 0) return 0;
+        set({ coins: s.coins + coins, doodle: pruneDoodle({ ...d, [key]: coins }) });
+        return coins;
       },
       setShownPlush: (shownPlush) => set({ shownPlush }),
       clawDay: (day, box) => {

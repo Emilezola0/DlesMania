@@ -1,0 +1,27 @@
+{
+  "league": {
+    "coins": 5000,
+    "minPlayers": 2
+  },
+  "raid": {
+    "hpPerPlayer": 4500,
+    "maxPlayers": 6,
+    "questions": 8,
+    "seconds": 6,
+    "hitBase": 100,
+    "hitSpeed": 100,
+    "ownedBonus": 0.01,
+    "ownedBonusMax": 0.25,
+    "maxHit": 2500,
+    "coinsPerDamage": 0.1,
+    "win": 8000,
+    "mvp": 4000
+  },
+  "telephone": {
+    "steps": 7,
+    "days": 3,
+    "seconds": 20,
+    "perStep": 300,
+    "bonus": 1000
+  }
+}

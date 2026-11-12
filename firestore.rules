@@ -226,8 +226,9 @@ service cloud.firestore {
     }
 
     // The Daily Choice (src/cloud/choices.ts): choices/<uid>_<day>, the card a player picked for each of the day's
-    // questions. Only on that day (by the server's clock, any time zone); a pick is made once and never changed or
-    // taken back (it's what pays). Its player reads it; their friends too, once that day is over everywhere.
+    // questions, and the one they think most of their friends picked ("read the room", guess). Only on that day (by
+    // the server's clock, any time zone); a pick or a guess is made once and never changed or taken back (it's what
+    // pays). Its player reads it; their friends too, once that day is over everywhere.
     match /choices/{id} {
       function voter() {
         return id.split('_')[0];
@@ -252,16 +253,157 @@ service cloud.firestore {
       allow get: if request.auth != null && (request.auth.uid == voter()
         || (request.time > dayStart() + duration.value(1, 'd') - duration.value(14, 'h')
           && request.auth.uid in get(/databases/$(database)/documents/scores/$(voter())).data.friends));
+      // A map of picks (or guesses) that only grew by at most one, nothing in it changed or taken back.
+      function grewByOne(n, o) {
+        return n.diff(o).changedKeys().size() == 0 && n.diff(o).removedKeys().size() == 0 && n.diff(o).addedKeys().size() <= 1;
+      }
       allow create: if request.auth != null && request.auth.uid == voter() && onItsDay()
-        && request.resource.data.keys().hasOnly(['uid', 'day', 'picks'])
+        && request.resource.data.keys().hasOnly(['uid', 'day', 'picks', 'guess'])
         && request.resource.data.uid == voter() && request.resource.data.day == dayOf()
-        && picksOk(request.resource.data.picks) && request.resource.data.picks.size() >= 1;
+        && picksOk(request.resource.data.picks) && request.resource.data.picks.size() <= 1
+        && (!('guess' in request.resource.data) || (picksOk(request.resource.data.guess) && request.resource.data.guess.size() <= 1))
+        && request.resource.data.picks.size() + request.resource.data.get('guess', {}).size() >= 1;
       allow update: if request.auth != null && request.auth.uid == voter() && onItsDay()
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks'])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks', 'guess'])
         && picksOk(request.resource.data.picks)
-        && request.resource.data.picks.diff(resource.data.picks).changedKeys().size() == 0
-        && request.resource.data.picks.diff(resource.data.picks).removedKeys().size() == 0
-        && request.resource.data.picks.diff(resource.data.picks).addedKeys().size() == 1;
+        && grewByOne(request.resource.data.picks, resource.data.picks)
+        && (!('guess' in request.resource.data) || (picksOk(request.resource.data.guess) && grewByOne(request.resource.data.guess, resource.data.get('guess', {}))));
+    }
+
+    // The Raid Boss (src/cloud/raids.ts): raidhits/<uid>_<week's Monday>, a player's attacks on the week's boss, one a
+    // day. Each is added once (never changed or taken back), only on its day by the server's clock, inside its week,
+    // at the server's time, at most 2,500 damage (RAID.maxHit, src/data/tuning/friends.json). Its player and their
+    // friends read it.
+    match /raidhits/{id} {
+      function hitter() {
+        return id.split('_')[0];
+      }
+      function weekOf() {
+        return id.split('_')[1];
+      }
+      function dateOf(key) {
+        return timestamp.date(int(key.split('-')[0]), int(key.split('-')[1]), int(key.split('-')[2]));
+      }
+      function hitOk(d, key) {
+        return key.matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+          && request.time > dateOf(key) - duration.value(14, 'h')
+          && request.time < dateOf(key) + duration.value(1, 'd') + duration.value(12, 'h')
+          && dateOf(key) >= dateOf(weekOf()) && dateOf(key) < dateOf(weekOf()) + duration.value(7, 'd')
+          && d.hits[key] is map && d.hits[key].keys().hasOnly(['d', 'at'])
+          && d.hits[key].d is int && d.hits[key].d >= 0 && d.hits[key].d <= 2500
+          && d.hits[key].at == request.time;
+      }
+      allow get: if request.auth != null && (request.auth.uid == hitter()
+        || request.auth.uid in get(/databases/$(database)/documents/scores/$(hitter())).data.friends);
+      allow create: if request.auth != null && request.auth.uid == hitter()
+        && weekOf().matches('[0-9]{4}-[0-9]{2}-[0-9]{2}') && dateOf(weekOf()).dayOfWeek() == 1
+        && request.resource.data.keys().hasOnly(['uid', 'week', 'last', 'hits'])
+        && request.resource.data.uid == hitter() && request.resource.data.week == weekOf()
+        && request.resource.data.hits is map && request.resource.data.hits.keys().hasOnly([request.resource.data.last])
+        && hitOk(request.resource.data, request.resource.data.last);
+      allow update: if request.auth != null && request.auth.uid == hitter()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['last', 'hits'])
+        && request.resource.data.hits.diff(resource.data.hits).changedKeys().size() == 0
+        && request.resource.data.hits.diff(resource.data.hits).removedKeys().size() == 0
+        && request.resource.data.hits.diff(resource.data.hits).addedKeys().hasOnly([request.resource.data.last])
+        && request.resource.data.hits.diff(resource.data.hits).addedKeys().size() == 1
+        && hitOk(request.resource.data, request.resource.data.last);
+    }
+
+    // Telephone (src/cloud/phones.ts): phones/<uid>_<day>, a drawing chain a player starts on its day with a name (the
+    // server's clock); only they and their friends read it. A friend adds one step, once per chain, at its end, while
+    // it's open (7 steps, 3 days from its start): a drawing after a name, a guess after a drawing. Nothing before it
+    // changes, and it can't be taken back.
+    match /phones/{id} {
+      function starter() {
+        return id.split('_')[0];
+      }
+      function dayStart() {
+        return timestamp.date(int(id.split('_')[1].split('-')[0]), int(id.split('_')[1].split('-')[1]), int(id.split('_')[1].split('-')[2]));
+      }
+      function friendOfStarter() {
+        return request.auth.uid in get(/databases/$(database)/documents/scores/$(starter())).data.friends;
+      }
+      function stepOk(s, kind) {
+        return s is map && s.keys().hasOnly(['u', 'n', 'k', 't', 's'])
+          && s.u == request.auth.uid && s.n is string && s.n.size() <= 40 && s.k == kind
+          && (kind == 'd'
+            ? (s.s is list && s.s.size() <= 400 && !('t' in s))
+            : (s.t is string && s.t.size() > 0 && s.t.size() <= 64 && !('s' in s)));
+      }
+      allow get: if request.auth != null && (request.auth.uid == starter() || friendOfStarter());
+      allow create: if request.auth != null && request.auth.uid == starter()
+        && id.split('_')[1].matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && request.time > dayStart() - duration.value(14, 'h')
+        && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'set', 'at', 'steps', 'people'])
+        && request.resource.data.uid == starter() && request.resource.data.day == id.split('_')[1]
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.set is string && request.resource.data.set.size() <= 40
+        && request.resource.data.at == request.time
+        && request.resource.data.people == [starter()]
+        && request.resource.data.steps is list && request.resource.data.steps.size() == 1
+        && stepOk(request.resource.data.steps[0], 'w');
+      allow update: if request.auth != null && request.auth.uid != starter() && friendOfStarter()
+        && !(request.auth.uid in resource.data.people)
+        && request.time < resource.data.at + duration.value(3, 'd')
+        && resource.data.steps.size() < 7
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['steps', 'people'])
+        && request.resource.data.people == resource.data.people.concat([request.auth.uid])
+        && request.resource.data.steps.size() == resource.data.steps.size() + 1
+        && request.resource.data.steps[0:resource.data.steps.size()] == resource.data.steps
+        && stepOk(request.resource.data.steps[resource.data.steps.size()], resource.data.steps.size() % 2 == 1 ? 'd' : 'g');
+    }
+
+    // The Defence Deck (src/cloud/defences.ts): defences/<uid>, a player's five cards in order, set on its day (the
+    // server's clock) and changed at most once a day; only they and their friends read it. Under it, attacks/<attacker>_<day>:
+    // a friend's attack, made once a day on its day, at the server's time, kept for good; its defender lists them all, its
+    // attacker reads their own.
+    function teamCardOk(t) {
+      return t is map && t.keys().hasOnly(['id', 'grade', 'element', 'anomaly'])
+        && t.id is string && t.id.size() <= 80
+        && t.grade is int && t.grade >= 1 && t.grade <= 8
+        && t.element in ['water', 'air', 'fire', 'earth', 'light', 'darkness']
+        && (t.anomaly == null || t.anomaly in ['corrupted', 'fake', 'inverted', 'mirror', 'timelost', 'void']);
+    }
+    function teamOk(team) {
+      return team is list && team.size() == 5
+        && teamCardOk(team[0]) && teamCardOk(team[1]) && teamCardOk(team[2]) && teamCardOk(team[3]) && teamCardOk(team[4]);
+    }
+    function isToday(day) {
+      return day is string && day.matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && request.time > timestamp.date(int(day.split('-')[0]), int(day.split('-')[1]), int(day.split('-')[2])) - duration.value(14, 'h')
+        && request.time < timestamp.date(int(day.split('-')[0]), int(day.split('-')[1]), int(day.split('-')[2])) + duration.value(1, 'd') + duration.value(12, 'h');
+    }
+    match /defences/{uid} {
+      function friendOf() {
+        return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
+      }
+      function defenceOk(d) {
+        return d.keys().hasOnly(['uid', 'name', 'day', 'team', 'at'])
+          && d.uid == uid && d.name is string && d.name.size() <= 40
+          && isToday(d.day) && teamOk(d.team) && d.at == request.time;
+      }
+      allow get: if request.auth != null && (request.auth.uid == uid || friendOf());
+      allow create: if request.auth != null && request.auth.uid == uid && defenceOk(request.resource.data);
+      allow update: if request.auth != null && request.auth.uid == uid && defenceOk(request.resource.data)
+        && request.resource.data.day != resource.data.day;
+      match /attacks/{id} {
+        function attacker() {
+          return id.split('_')[0];
+        }
+        allow get: if request.auth != null && (request.auth.uid == uid || request.auth.uid == attacker());
+        allow list: if request.auth != null && request.auth.uid == uid;
+        allow create: if request.auth != null && request.auth.uid == attacker() && attacker() != uid && friendOf()
+          && id == attacker() + '_' + request.resource.data.day
+          && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'won', 'team', 'def', 'at'])
+          && request.resource.data.uid == attacker()
+          && request.resource.data.name is string && request.resource.data.name.size() <= 40
+          && isToday(request.resource.data.day)
+          && request.resource.data.won is bool
+          && teamOk(request.resource.data.team) && teamOk(request.resource.data.def)
+          && request.resource.data.at == request.time;
+      }
     }
 
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no

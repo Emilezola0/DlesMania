@@ -1,5 +1,6 @@
 // Friends → Daily Choice: today's three questions (src/friends/choiceQuestions.ts), a card to pick for each — every
-// pick pays — and yesterday's, with who among you and your friends picked what (src/cloud/choices.ts).
+// pick pays — and yesterday's, with who among you and your friends picked what (src/cloud/choices.ts). "Read the
+// room": for each question, also guess which card most of your friends picked; a right guess pays the next day.
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { VoteDoc } from '../cloud/choices';
 import { DleCoin } from '../components/DleCoin';
@@ -22,6 +23,21 @@ export interface ChoicePerson {
 }
 
 const coins = CHOICE.coins.toLocaleString('en');
+const roomCoins = CHOICE.roomCoins.toLocaleString('en');
+
+/** The cards most of the friends picked for a question (several on a tie, none if nobody chose), and how many chose. */
+function topPicks(q: ChoiceQuestion, votes: VoteDoc[], me: string | null): { top: string[]; voters: number } {
+  const count = new Map<string, number>();
+  let voters = 0;
+  for (const v of votes) {
+    const id = v.picks[String(q.index)];
+    if (v.uid === me || !id) continue;
+    voters++;
+    count.set(id, (count.get(id) ?? 0) + 1);
+  }
+  const most = Math.max(0, ...count.values());
+  return { top: most ? [...count].filter(([, n]) => n === most).map(([id]) => id) : [], voters };
+}
 
 function Option({ card, picked, chosen, onPick, busy }: { card: Card; picked: boolean; chosen: boolean; onPick: () => void; busy: boolean }) {
   return (
@@ -44,8 +60,39 @@ function Option({ card, picked, chosen, onPick, busy }: { card: Card; picked: bo
   );
 }
 
-/** One of today's questions. */
-function Today({ q, pick, onPick, busy }: { q: ChoiceQuestion; pick?: string; onPick: (id: string) => void; busy: boolean }) {
+/** "Read the room" under a question: which card most of your friends will pick. */
+function Room({ q, guess, onGuess, busy }: { q: ChoiceQuestion; guess?: string; onGuess: (id: string) => void; busy: boolean }) {
+  return (
+    <div className="space-y-1.5 rounded-md bg-tile/70 p-2.5">
+      <p className="flex flex-wrap items-baseline justify-between gap-2 text-sm font-semibold">
+        <span>👀 Read the room: what will most of your friends pick?</span>
+        <span className={`text-xs font-bold ${guess ? 'text-hit' : 'text-ink-faint'}`}>
+          {guess ? '✓ Guessed · see tomorrow' : <>+{roomCoins} <DleCoin className="inline size-3.5 align-[-2px]" /> if right</>}
+        </span>
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {q.options.map((c) => (
+          <button
+            key={c.id}
+            type="button"
+            disabled={!!guess || busy}
+            onClick={() => onGuess(c.id)}
+            aria-pressed={guess === c.id}
+            className={`flex items-center gap-1.5 rounded-full border py-0.5 pl-0.5 pr-3 text-sm font-semibold transition ${
+              guess === c.id ? 'border-accent bg-accent text-white' : guess ? 'border-rule opacity-45' : 'border-rule-strong hover:bg-paper'
+            }`}
+          >
+            <CardAvatar card={c} className="size-6" />
+            {shownName(c.name, c.set)}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** One of today's questions (and, once chosen, its read of the room). */
+function Today({ q, pick, onPick, guess, onGuess, room, busy }: { q: ChoiceQuestion; pick?: string; onPick: (id: string) => void; guess?: string; onGuess: (id: string) => void; room: boolean; busy: boolean }) {
   return (
     <div className="space-y-3 rounded-lg border border-rule p-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -59,12 +106,16 @@ function Today({ q, pick, onPick, busy }: { q: ChoiceQuestion; pick?: string; on
           <Option key={c.id} card={c} picked={pick === c.id} chosen={!!pick} busy={busy} onPick={() => onPick(c.id)} />
         ))}
       </div>
+      {room && pick && <Room q={q} guess={guess} onGuess={onGuess} busy={busy} />}
     </div>
   );
 }
 
 /** One of yesterday's questions: each card, how many picked it, and who. */
-function Result({ q, votes, people }: { q: ChoiceQuestion; votes: VoteDoc[]; people: Map<string, ChoicePerson> }) {
+function Result({ q, votes, people, me }: { q: ChoiceQuestion; votes: VoteDoc[]; people: Map<string, ChoicePerson>; me: string | null }) {
+  const guess = votes.find((v) => v.uid === me)?.guess?.[String(q.index)];
+  const room = topPicks(q, votes, me);
+  const guessed = q.options.find((c) => c.id === guess);
   const by = q.options.map((c) => ({ card: c, who: votes.filter((v) => v.picks[String(q.index)] === c.id).map((v) => v.uid) }));
   const total = by.reduce((n, o) => n + o.who.length, 0);
   const top = Math.max(0, ...by.map((o) => o.who.length));
@@ -107,6 +158,12 @@ function Result({ q, votes, people }: { q: ChoiceQuestion; votes: VoteDoc[]; peo
         );
       })}
       {!total && <p className="text-xs text-ink-faint">Nobody chose yesterday.</p>}
+      {guessed && (
+        <p className={`rounded-md p-2 text-xs font-semibold ${room.top.includes(guessed.id) ? 'bg-hit/10 text-hit' : 'bg-tile text-ink-soft'}`}>
+          👀 You read the room as {shownName(guessed.name, guessed.set)}:{' '}
+          {!room.voters ? 'none of your friends chose, so nothing to win.' : room.top.includes(guessed.id) ? `right! +${roomCoins} DleCoins.` : 'most of your friends picked otherwise.'}
+        </p>
+      )}
     </div>
   );
 }
@@ -114,15 +171,22 @@ function Result({ q, votes, people }: { q: ChoiceQuestion; votes: VoteDoc[]; peo
 /** Dev only (#/friends?demo): made-up votes for yesterday. */
 function demoVotes(people: ChoicePerson[], day: string): VoteDoc[] {
   const qs = questionsOf(day);
-  return people.map((p, k) => ({ uid: p.uid, day, picks: Object.fromEntries(qs.map((q) => [String(q.index), q.options[(k + q.index) % q.options.length].id])) }));
+  return people.map((p, k) => ({
+    uid: p.uid,
+    day,
+    picks: Object.fromEntries(qs.map((q) => [String(q.index), q.options[(k + q.index) % q.options.length].id])),
+    guess: k ? undefined : Object.fromEntries(qs.map((q) => [String(q.index), q.options[(q.index + 1) % q.options.length].id])),
+  }));
 }
 
-export function DailyChoice({ people, demo }: { people: ChoicePerson[]; demo: boolean }) {
+export function DailyChoice({ people, me, demo }: { people: ChoicePerson[]; me: string | null; demo: boolean }) {
   const today = todayKey();
   const yesterday = addDays(today, -1);
   const questions = useMemo(() => questionsOf(today), [today]);
   const past = useMemo(() => questionsOf(yesterday), [yesterday]);
   const [mine, setMine] = useState<Record<string, string>>({});
+  const [guesses, setGuesses] = useState<Record<string, string>>({});
+  const payRoom = useProgress((s) => s.payFriendGame);
   const [results, setResults] = useState<VoteDoc[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ text: string; good?: boolean } | null>(null);
@@ -139,7 +203,19 @@ export function DailyChoice({ people, demo }: { people: ChoicePerson[]; demo: bo
       const [m, r] = await Promise.all([c.myVotes(today).catch(() => null), c.votesOf(uids ? uids.split(',') : [], yesterday)]);
       if (!live) return;
       setMine(m?.picks ?? {});
+      setGuesses(m?.guess ?? {});
       setResults(r);
+      // Yesterday's right reads of the room, each paid once.
+      let paid = 0;
+      const own = r.find((v) => v.uid === me);
+      for (const q of past) {
+        const g = own?.guess?.[String(q.index)];
+        if (g && topPicks(q, r, me).top.includes(g)) paid += payRoom(`room${q.index}:${yesterday}`, CHOICE.roomCoins);
+      }
+      if (paid) {
+        sfx.correct();
+        setNote({ text: `👀 You read the room right yesterday: +${paid.toLocaleString('en')} DleCoins!`, good: true });
+      }
     });
     return () => {
       live = false;
@@ -173,6 +249,26 @@ export function DailyChoice({ people, demo }: { people: ChoicePerson[]; demo: bo
     }
   };
 
+  const room = async (q: ChoiceQuestion, cardId: string) => {
+    if (guesses[String(q.index)] || busy) return;
+    sfx.select();
+    if (demo) return setGuesses((g) => ({ ...g, [String(q.index)]: cardId }));
+    setBusy(true);
+    setNote(null);
+    try {
+      const { result, doc } = await (await cloud()).guessRoom(today, q.index, cardId);
+      if (doc) setGuesses(doc.guess ?? {});
+      if (result === 'refused') return setNote({ text: "Read the room isn't switched on in the database yet (its rules need publishing), or your device's date is off." });
+      if (result === 'done') return setNote({ text: 'You already read the room on that one (on another device).' });
+      setNote({ text: `Noted! Tomorrow, if most of your friends picked it: +${roomCoins} DleCoins.`, good: true });
+    } catch {
+      setNote({ text: 'No connection: try again once you are online.' });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const hasFriends = people.length > 1;
   const left = questions.filter((q) => !mine[String(q.index)]).length;
   return (
     <section className="page space-y-4 rounded-md p-5">
@@ -180,6 +276,7 @@ export function DailyChoice({ people, demo }: { people: ChoicePerson[]; demo: bo
         <h2 className="font-display text-lg font-bold">🗳️ Daily Choice</h2>
         <p className="text-sm text-ink-soft">
           {CHOICE.perDay} questions a day, the same for everyone. Each choice pays {coins} <DleCoin className="inline size-3.5 align-[-2px]" />; tomorrow, see who your friends picked.
+          {hasFriends && <> Then read the room: guess what most of your friends picked, {roomCoins} more each if you&apos;re right.</>}
         </p>
       </div>
       {note && <p className={`rounded-md border p-3 text-sm font-semibold ${note.good ? 'border-hit/50 bg-hit/10' : 'border-coral/50 bg-coral/10 text-coral'}`}>{note.text}</p>}
@@ -187,13 +284,13 @@ export function DailyChoice({ people, demo }: { people: ChoicePerson[]; demo: bo
       <div className="space-y-3">
         <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Today · {left ? `${left} left to choose` : 'all chosen — come back tomorrow'}</p>
         {questions.map((q) => (
-          <Today key={q.index} q={q} pick={mine[String(q.index)]} busy={busy} onPick={(id) => void pick(q, id)} />
+          <Today key={q.index} q={q} pick={mine[String(q.index)]} busy={busy} onPick={(id) => void pick(q, id)} guess={guesses[String(q.index)]} onGuess={(id) => void room(q, id)} room={hasFriends} />
         ))}
       </div>
 
       <div className="space-y-3 pt-2">
         <p className="text-xs font-bold uppercase tracking-widest text-ink-faint">Yesterday&apos;s results · you and your friends</p>
-        {results === null ? <p className="text-sm text-ink-soft">Loading…</p> : past.map((q) => <Result key={q.index} q={q} votes={results} people={byUid} />)}
+        {results === null ? <p className="text-sm text-ink-soft">Loading…</p> : past.map((q) => <Result key={q.index} q={q} votes={results} people={byUid} me={me} />)}
       </div>
     </section>
   );

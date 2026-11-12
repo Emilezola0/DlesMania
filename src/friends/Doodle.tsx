@@ -25,14 +25,14 @@ export const WIDTHS = [0.012, 0.028, 0.06];
 /** The characters a franchise can be drawn as: its cards that are someone (not places or techniques), by name. */
 const BY_SET = new Map<string, Card[]>();
 for (const c of COLLECTIBLE) if (!c.place && !c.technique) BY_SET.set(c.set, [...(BY_SET.get(c.set) ?? []), c]);
-const namesOf = (set: string) => [...new Set((BY_SET.get(set) ?? []).map((c) => c.name))].sort((a, b) => a.localeCompare(b));
-const cardNamed = (set: string, name: string) => (BY_SET.get(set) ?? []).find((c) => c.name === name);
+export const namesOf = (set: string) => [...new Set((BY_SET.get(set) ?? []).map((c) => c.name))].sort((a, b) => a.localeCompare(b));
+export const cardNamed = (set: string, name: string) => (BY_SET.get(set) ?? []).find((c) => c.name === name);
 /** The franchises to draw from: ones with characters (not the Japanese words). */
-const FRANCHISES = SETS.filter((s) => s.id !== 'jlpt' && namesOf(s.id).length >= 8).sort((a, b) => a.franchise.localeCompare(b.franchise));
-const franchiseOf = (set: string) => SETS.find((s) => s.id === set)?.franchise ?? set;
+export const FRANCHISES = SETS.filter((s) => s.id !== 'jlpt' && namesOf(s.id).length >= 8).sort((a, b) => a.franchise.localeCompare(b.franchise));
+export const franchiseOf = (set: string) => SETS.find((s) => s.id === set)?.franchise ?? set;
 
 /** Paints strokes on a canvas, up to `upTo` points in all (Infinity: the whole drawing). */
-function paint(canvas: HTMLCanvasElement, strokes: { c: number; w: number; pts: [number, number][] }[], upTo = Infinity) {
+export function paint(canvas: HTMLCanvasElement, strokes: { c: number; w: number; pts: [number, number][] }[], upTo = Infinity) {
   const g = canvas.getContext('2d')!;
   const W = canvas.width;
   g.fillStyle = '#fffdf7';
@@ -61,7 +61,7 @@ function paint(canvas: HTMLCanvasElement, strokes: { c: number; w: number; pts: 
 }
 
 /** A drawing played back stroke by stroke, as it was drawn (again on a tap). */
-function Replay({ strokes, className = '' }: { strokes: Stroke[]; className?: string }) {
+export function Replay({ strokes, className = '' }: { strokes: Stroke[]; className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [run, setRun] = useState(0);
   const [unpacked, setUnpacked] = useState<{ c: number; w: number; pts: [number, number][] }[]>([]);
@@ -92,7 +92,7 @@ function Replay({ strokes, className = '' }: { strokes: Stroke[]; className?: st
 }
 
 /** A small picture of a card, to draw from (or to see who it was). */
-function CardPic({ card, className = '' }: { card?: Card; className?: string }) {
+export function CardPic({ card, className = '' }: { card?: Card; className?: string }) {
   if (!card?.image) return null;
   return <img src={card.image} alt={card.name} loading="lazy" className={`rounded-md border border-rule object-cover ${className}`} />;
 }

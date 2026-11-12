@@ -7,7 +7,7 @@ import { COLLECTIBLE, type Card } from '../gacha/cards';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 
-export const CHOICE = DATA as { coins: number; perDay: number; skipSets: string[]; rarities: string[]; launchSets: string[]; since: Record<string, string>; questions: { text: string; options: number }[] };
+export const CHOICE = DATA as { coins: number; roomCoins: number; perDay: number; skipSets: string[]; rarities: string[]; launchSets: string[]; since: Record<string, string>; questions: { text: string; options: number }[] };
 
 export interface ChoiceQuestion {
   /** 0, 1, 2: its place in the day. */

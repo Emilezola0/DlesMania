@@ -1,5 +1,5 @@
 // The Daily Choice's votes (src/friends/DailyChoice.tsx): choices/<uid>_<day>, the card picked for each of the
-// day's questions ({ picks: { "0": cardId, … } }). Each pick is made once and never changed (firestore.rules),
+// day's questions ({ picks: { "0": cardId, … } }), and the one the player thinks most friends picked (guess). Each pick is made once and never changed (firestore.rules),
 // only on its day by the server's clock: so a pick pays once, on whichever device. The player reads their own;
 // their friends read it once the day is over (the results, the next day).
 import { doc, getDoc, runTransaction } from 'firebase/firestore';
@@ -10,6 +10,8 @@ export interface VoteDoc {
   day: string;
   /** The question's index ("0", "1", "2") -> the card picked. */
   picks: Record<string, string>;
+  /** "Read the room": the question's index -> the card this player thinks most of their friends picked (once each). */
+  guess?: Record<string, string>;
 }
 
 export const voteId = (uid: string, day: string) => `${uid}_${day}`;
@@ -41,6 +43,30 @@ export async function vote(day: string, index: number, cardId: string): Promise<
       if (old?.picks[String(index)]) return { result: 'done' as const, doc: old };
       const next: VoteDoc = { uid, day, picks: { ...(old?.picks ?? {}), [String(index)]: cardId } };
       if (old) tx.update(r, { picks: next.picks });
+      else tx.set(r, next);
+      return { result: 'fresh' as const, doc: next };
+    });
+  } catch (e) {
+    if ((e as { code?: string })?.code === 'permission-denied') return { result: 'refused', doc: null };
+    throw e;
+  }
+}
+
+/**
+ * "Read the room": the card this player thinks most of their friends picked, for one of the day's questions (once
+ * each, like a pick). The same answers as vote().
+ */
+export async function guessRoom(day: string, index: number, cardId: string): Promise<{ result: 'fresh' | 'done' | 'refused'; doc: VoteDoc | null }> {
+  const uid = me();
+  const r = ref(voteId(uid, day));
+  try {
+    return await runTransaction(db, async (tx) => {
+      const snap = await tx.get(r);
+      const old = snap.exists() ? (snap.data() as VoteDoc) : null;
+      if (old?.guess?.[String(index)]) return { result: 'done' as const, doc: old };
+      const guess = { ...(old?.guess ?? {}), [String(index)]: cardId };
+      const next: VoteDoc = { uid, day, picks: old?.picks ?? {}, guess };
+      if (old) tx.update(r, { guess });
       else tx.set(r, next);
       return { result: 'fresh' as const, doc: next };
     });

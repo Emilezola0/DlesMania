@@ -9,6 +9,7 @@ import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { bestPlush } from '../casino/plushies';
 import { featsOf, TITLE_BY_ID } from '../casino/unlocks';
+import { dailyPoints } from '../friends/league';
 import { scoreOf } from '../friends/score';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
@@ -19,7 +20,10 @@ export const MAX_FRIENDS = 30;
 /** Days kept in a score log (older ones are dropped). */
 const KEEP_DAYS = 400;
 
-/** One day in a log: [score, cards, common, rare, epic, legendary, mythic, omni, grades]. */
+/**
+ * One day in a log: [score, cards, common, rare, epic, legendary, mythic, omni, grades, dailies points]. The last (the
+ * Weekly League's, src/friends/league.ts) is missing on days logged before it came.
+ */
 export type DayEntry = number[];
 
 export interface ScoreDoc {
@@ -72,8 +76,10 @@ function today(): DayEntry {
   const s = useProgress.getState();
   const altered = new Set([...Object.keys(s.anomalies ?? {}), ...Object.entries(s.anomalyOptions ?? {}).filter(([, o]) => o?.length).map(([id]) => id)]);
   const info = scoreOf(s.cards, s.grades, altered);
-  return [info.score, info.cards, ...info.byRarity, info.grades];
+  return [info.score, info.cards, ...info.byRarity, info.grades, dailyPoints(s.days, todayKey())];
 }
+/** What logToday last wrote on this device: the day and its dailies points (written again when they change). */
+const logMark = (entry: DayEntry) => `${todayKey()}:${entry[entry.length - 1]}`;
 
 /** What friends see: the icon card (if still owned), the frame, the name style (if bought) and the title (if earned). */
 function looks() {
@@ -154,17 +160,20 @@ export async function openMine(): Promise<ScoreDoc> {
 }
 
 /**
- * Today's score, written once a day when the save syncs (src/cloud/engine.ts), only for players who opened
- * Friends: their friends see them move even on days they don't open it.
+ * Today's score, written when the save syncs (src/cloud/engine.ts) once a day, and again whenever the day's dailies
+ * points change (the Weekly League), only for players who opened Friends: their friends see them move even on days
+ * they don't open it.
  */
 export async function logToday(uid: string): Promise<void> {
   const key = `omnidle:score-day:${uid}`;
   const day = todayKey();
   try {
-    if (localStorage.getItem(key) === day || localStorage.getItem(`omnidle:friends:${uid}`) !== '1') return;
+    if (localStorage.getItem(`omnidle:friends:${uid}`) !== '1') return;
+    const entry = today();
+    if (localStorage.getItem(key) === logMark(entry)) return;
     // The looks too, so friends see a new name style or title without this player opening Friends.
-    await withLooks((l) => updateDoc(scoreRef(uid), { [`log.${day}`]: today(), ...l, at: Date.now() }));
-    localStorage.setItem(key, day);
+    await withLooks((l) => updateDoc(scoreRef(uid), { [`log.${day}`]: entry, ...l, at: Date.now() }));
+    localStorage.setItem(key, logMark(entry));
   } catch {
     // No storage, no score document yet, or offline: tomorrow, or when Friends opens.
   }
@@ -174,7 +183,7 @@ export async function logToday(uid: string): Promise<void> {
 export function markFriendsOn(uid: string) {
   try {
     localStorage.setItem(`omnidle:friends:${uid}`, '1');
-    localStorage.setItem(`omnidle:score-day:${uid}`, todayKey());
+    localStorage.setItem(`omnidle:score-day:${uid}`, logMark(today()));
   } catch {
     // No storage: the score is only written when Friends opens.
   }

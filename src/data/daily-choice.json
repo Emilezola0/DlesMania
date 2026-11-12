@@ -1,5 +1,6 @@
 {
   "coins": 1000,
+  "roomCoins": 1500,
   "perDay": 3,
   "skipSets": ["jlpt", "unreal", "balatro", "forts"],
   "rarities": ["legendary", "mythic", "omni"],

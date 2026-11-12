@@ -11,6 +11,10 @@ import { RARITIES, RARITY_INFO } from '../gacha/cards';
 import { DailyChoice } from '../friends/DailyChoice';
 import { DailyDoodle } from '../friends/Doodle';
 import { LuckReport } from '../friends/LuckReport';
+import { DefenceDeck } from '../friends/DefenceDeck';
+import { RaidBoss } from '../friends/RaidBoss';
+import { Telephone } from '../friends/Telephone';
+import { WeeklyLeague } from '../friends/WeeklyLeague';
 import type { Luck } from '../cloud/luck';
 import { ALTERED_FACTOR, GRADE_BONUS, RARITY_POINTS } from '../friends/score';
 import { addDays, fromKey, todayKey } from '../lib/date';
@@ -295,7 +299,7 @@ function demoDocs(): ScoreDoc[] {
       score += Math.round(Math.random() * (30 + k * 12));
       if (k === 3 && d % 3) continue; // Jules skips days
       const cards = Math.round(score / 6);
-      log[addDays(today, -d)] = [score, cards, Math.round(cards * 0.55), Math.round(cards * 0.25), Math.round(cards * 0.12), Math.round(cards * 0.06), k % 2, k === 1 ? 1 : 0, Math.round(d / 9)];
+      log[addDays(today, -d)] = [score, cards, Math.round(cards * 0.55), Math.round(cards * 0.25), Math.round(cards * 0.12), Math.round(cards * 0.06), k % 2, k === 1 ? 1 : 0, Math.round(d / 9), Math.round(Math.random() * (900 + k * 500))];
     }
     return {
       uid: `demo-${k}`,
@@ -316,7 +320,11 @@ function demoDocs(): ScoreDoc[] {
 /** The page's tabs: the friends themselves (scores, codes, luck), then the games played with them. More games go here. */
 const TABS = [
   { id: 'friends', name: 'Friends', icon: '👥' },
+  { id: 'league', name: 'Weekly League', icon: '🏅' },
+  { id: 'raid', name: 'Raid Boss', icon: '⚔️' },
+  { id: 'defence', name: 'Defence Deck', icon: '🛡️' },
   { id: 'doodle', name: 'Daily Doodle', icon: '🎨' },
+  { id: 'phone', name: 'Telephone', icon: '📞' },
   { id: 'choice', name: 'Daily Choice', icon: '🗳️' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
@@ -606,7 +614,15 @@ export default function Friends() {
             </div>
           )}
 
-          {mine && tab === 'choice' && <DailyChoice people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} demo={demo} />}
+          {mine && tab === 'choice' && <DailyChoice people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
+
+          {mine && tab === 'league' && <WeeklyLeague players={players.map((p) => ({ uid: p.doc.uid, log: p.doc.log ?? {}, color: p.color, me: p.me, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo} />}
+
+          {mine && tab === 'raid' && <RaidBoss people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
+
+          {mine && tab === 'defence' && <DefenceDeck people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-6" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
+
+          {mine && tab === 'phone' && <Telephone people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-4" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
 
           {mine && tab === 'friends' && <LuckReport players={players.map((p) => ({ uid: p.doc.uid, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo ? demoLuck(players.map((p) => p.doc)) : undefined} />}
         </>
