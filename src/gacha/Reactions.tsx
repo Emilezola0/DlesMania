@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { onCue, type Cue } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CardClip } from './CardClip';
-import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, type Card } from './cards';
+import { CARD_BY_ID, RARITY_INFO, RARITY_LIGHT, clipHasSound, type Card } from './cards';
 import { CardAvatar } from './Perks';
 import { isAwake } from './CardView';
 import { cardVolumeOf, playVoice, voiceOf } from './voice';
@@ -165,7 +165,7 @@ export function useMomentOn(): boolean {
  * The equipped cards reacting to the play, each to its own part (the owner's call):
  * - the **icon** is the face and the talk: a bubble by the header with a word (its voice line on a win only with no background);
  * - the **background** is the win's moment, every win: the light turning over the page and, behind it, the background
- *   card's video with its voice line (never the icon's), the video played once through (a short loop at least MOMENT_MS, a long video cut at MOMENT_MAX_MS). Never the icon's video.
+ *   card's video with its own sound (a silent one with the card's voice line; never the icon's), the video played once through (a short loop at least MOMENT_MS, a long video cut at MOMENT_MAX_MS). Never the icon's video.
  * The cards are read when a cue comes, not held by the listener: a card changed meanwhile (by hand, or by its rotation:
  * src/gacha/Rotation.tsx) never cuts a moment short. The moment plays on with the card it started with, the page's
  * background picture waits for its end too (CardBackdrop, useMomentOn), and the next win plays the new card's video.
@@ -185,7 +185,7 @@ export function CardReactions() {
     const m = moment;
     setMoment((x) => x && { ...x, heard: false });
     // A clip with a sound of its own doesn't hand over to the voice line: the moment just goes on silent.
-    if (!m || (m.card.clipSound && m.clip === m.card.clip)) return void (voiceUntil.current = 0);
+    if (!m || clipHasSound(m.card, m.clip)) return void (voiceUntil.current = 0);
     playVoice(m.card, false, () => (voiceUntil.current = 0));
   };
   const momentTimer = useRef(0);
@@ -254,9 +254,10 @@ export function CardReactions() {
       const clip = own && !failedClips.current.has(own) ? own : undefined;
       const showMoment = !!card && !/\/(shop|album)/.test(window.location.hash) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const soundOn = st.sound && st.voiceLines !== false;
-      // Heard from the clip itself: a clip with its own sound (Steve's song, Gogeta's), or a clip that is one of the card's
-      // voice recordings (the same MP4): then the voice and the video are one, starting together.
-      const ownSound = !!card && !!clip && clip === card.clip && !!card.clipSound;
+      // Heard from the clip itself (the owner's rule: a video that has sound always plays with it, and no voice line over
+      // it): a clip with its own sound (Steve's song, Gogeta's, every clip hosted with the site), or a clip that is one of
+      // the card's voice recordings (the same MP4). The voice line is left to a silent clip (Tenor's, a GIF) or no clip.
+      const ownSound = !!card && clipHasSound(card, clip);
       const clipIsVoice = !!card && !!clip && (card.audio === clip || !!card.voiceClips?.some((v) => v.audio === clip));
       const heard = showMoment && soundOn && !!clip && (ownSound || clipIsVoice);
       // Who speaks: the background card (the icon only with no background behind the page). While it speaks, the moment stays: they end together.
@@ -295,7 +296,7 @@ export function CardReactions() {
             <div className="moment-clip">
               <CardClip
                 src={moment.clip}
-                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume) * cardVolumeOf(moment.card.id, moment.clip === moment.card.clip && moment.card.clipSound ? 'clip' : 'voice'), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
+                sound={moment.heard ? { volume: Math.min(100, useProgress.getState().sfxVolume) * cardVolumeOf(moment.card.id, clipHasSound(moment.card, moment.clip) ? 'clip' : 'voice'), onEnded: () => (voiceUntil.current = 0), onNoSound: voiceApart } : undefined}
                 onFail={() => {
                   if (moment.heard) voiceApart();
                   failedClips.current.add(moment.clip!);

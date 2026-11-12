@@ -951,6 +951,19 @@ const withClip = (c: Card): Card => {
     : { ...c, clip, clipLight, cutout, opaque };
 };
 
+/** The clips hosted with the site that have no sound track (GIFs, the game captures, the ones cut --mute). */
+const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/forts\/howitzer\.mp4/;
+/**
+ * Whether a card's clip is heard (the owner's rule: a video that has sound always plays with it, behind a win too,
+ * never under a voice line): every clip hosted with the site that has a sound track, and the ones marked `clipSound`.
+ * A silent clip (Tenor's, a GIF) leaves the sound to the card's voice line.
+ */
+export function clipHasSound(card: Card, clip: string | undefined): boolean {
+  if (!clip) return false;
+  if (/\/clips\/[^|]+\.mp4$/.test(clip) && !SILENT_HOSTED.test(clip)) return true;
+  return !!card.clipSound && (clip === card.clip || clip === card.awaken?.clip);
+}
+
 /** Franchises added after the first fourteen (see CARDS). */
 const LATE_SETS = new Set(['forts', 'forhonor', 'avatar', 'unreal', 'destiny', 'balatro', 'jlpt', 'ufouria', 'arcraiders', 'deadlock', 'hsr', 'hollowknight', 'mha', 'bg3', 'hxh', 'shrek']);
 /** Late sets whose names stay out of the global list, so the later roster passes keep every card they had. */

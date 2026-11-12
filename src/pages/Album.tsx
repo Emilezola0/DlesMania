@@ -5,7 +5,7 @@ import { Coins } from '../components/DleCoin';
 import { CardBack, CardFace, CardMissing, OmniRingsAround, useCardForm } from '../gacha/CardView';
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
-import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, type Card, type Rarity } from '../gacha/cards';
+import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
 import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { SellSpares } from '../gacha/SellSpares';
@@ -102,9 +102,9 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
     // Heard: a clip with its own sound, or one that is its voice line too (the same file). Given while it waits too: a
     // YouTube clip gets ready unheard, and is heard from the moment it's let go.
     () =>
-      card.clipSound || (!!form.clip && card.audio === form.clip)
+      clipHasSound(card, form.clip) || (!!form.clip && card.audio === form.clip)
         ? {
-            volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, card.clipSound ? 'clip' : 'voice'),
+            volume: Math.min(100, sfxVolume) * cardVolumeOf(card.id, clipHasSound(card, form.clip) ? 'clip' : 'voice'),
             // Heard once through: back to its picture (not frozen on its last frame), ready to play again.
             onEnded: () => (setStarted(null), setShowing(null)),
             onNoSound: () => {},
@@ -763,7 +763,7 @@ function CardVolume({ card }: { card: Card }) {
   if (card.rarity !== 'mythic' && card.rarity !== 'omni') return null;
   const rows = [
     ...(card.voice ? [{ kind: 'voice' as const, label: '🗣️ Voice line' }] : []),
-    ...(card.clipSound ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
+    ...(clipHasSound(card, card.clip) || clipHasSound(card, card.awaken?.clip) ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
   ];
   if (!rows.length) return null;
   return (
