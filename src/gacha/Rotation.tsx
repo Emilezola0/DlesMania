@@ -4,7 +4,7 @@
 // its own clip or burst. Cards no longer owned (or a Common as a background) are skipped.
 import { useEffect } from 'react';
 import { onCue } from '../lib/sfx';
-import { rotationOf, useProgress, type RotationSlot } from '../store/progress';
+import { rotationOf, rotationSynced, useProgress, type RotationSlot } from '../store/progress';
 import { CARD_BY_ID } from './cards';
 import { canBeBackdrop } from './Perks';
 
@@ -42,11 +42,32 @@ export function nextInRotation(slot: RotationSlot, random = Math.random): string
 }
 
 function advance(slot: RotationSlot) {
+  const s = useProgress.getState();
+  // Synced (both at random): one card drawn among those both can take, for the icon and the background at once.
+  if (rotationSynced(rotationOf(s))) {
+    const backdrops = usable('backdrop');
+    const both = usable('avatar').filter((id) => backdrops.includes(id));
+    // Not the card both already show (when there's another to change to).
+    const fresh = both.filter((id) => id !== s.avatar || id !== s.backdrop);
+    if (fresh.length) {
+      const next = fresh[Math.floor(Math.random() * fresh.length)];
+      s.setAvatar(next);
+      s.setBackdrop(next);
+      return;
+    }
+  }
   const next = nextInRotation(slot);
   if (!next) return;
-  const s = useProgress.getState();
   if (slot === 'avatar') s.setAvatar(next);
   else s.setBackdrop(next);
+}
+
+/** These slots' turns: synced, one draw changes both (two would land the second on any card, the old one too). */
+function advanceAll(slots: Iterable<RotationSlot>) {
+  const list = [...slots];
+  if (!list.length) return;
+  if (rotationSynced(rotationOf(useProgress.getState()))) advance(list[0]);
+  else for (const slot of list) advance(slot);
 }
 
 /** Wins since each slot last changed (kept for the visit only). */
@@ -60,7 +81,7 @@ export function CardRotation() {
   useEffect(() => {
     if (!visited) {
       visited = true;
-      for (const slot of SLOTS) if (rotationOf(useProgress.getState())[slot].when === 'visit') advance(slot);
+      advanceAll(SLOTS.filter((slot) => rotationOf(useProgress.getState())[slot].when === 'visit'));
     }
     /** Slots to change as soon as the page is calm. */
     const pending = new Set<RotationSlot>();
@@ -69,7 +90,7 @@ export function CardRotation() {
     const flush = () => {
       window.clearTimeout(timer);
       if (momentOn()) return; // The observer below flushes when the moment is over.
-      for (const slot of pending) advance(slot);
+      advanceAll(pending);
       pending.clear();
     };
     const off = onCue((kind) => {

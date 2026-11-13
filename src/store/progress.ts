@@ -1335,13 +1335,21 @@ export interface RotationPlan {
 export interface Rotation {
   avatar: RotationPlan;
   backdrop: RotationPlan;
+  /** Both at random: the icon and the background change together, to the same card (a player's ask, Discord ticket "Personalisation"). */
+  sync?: boolean;
 }
 const NO_PLAN: RotationPlan = { cards: [], when: 'off', order: 'order', every: 1 };
-export const rotationOf = (s: { rotation?: Rotation }): Rotation => ({ avatar: { ...NO_PLAN, ...s.rotation?.avatar }, backdrop: { ...NO_PLAN, ...s.rotation?.backdrop } });
+export const rotationOf = (s: { rotation?: Rotation }): Rotation => ({
+  avatar: { ...NO_PLAN, ...s.rotation?.avatar },
+  backdrop: { ...NO_PLAN, ...s.rotation?.backdrop },
+  sync: !!s.rotation?.sync,
+});
+/** The icon and the background turn together: switched on, and both at random. */
+export const rotationSynced = (r: Rotation) => !!r.sync && r.avatar.order === 'random' && r.backdrop.order === 'random';
 /** A card upgraded into another: the new one takes its place in the turns. */
 const renameInRotation = (r: Rotation, id: string, into: string): Rotation => {
   const ren = (p: RotationPlan) => ({ ...p, cards: [...new Set(p.cards.map((c) => (c === id ? into : c)))] });
-  return { avatar: ren({ ...NO_PLAN, ...r.avatar }), backdrop: ren({ ...NO_PLAN, ...r.backdrop }) };
+  return { avatar: ren({ ...NO_PLAN, ...r.avatar }), backdrop: ren({ ...NO_PLAN, ...r.backdrop }), sync: !!r.sync };
 };
 
 export interface TradeLock {
