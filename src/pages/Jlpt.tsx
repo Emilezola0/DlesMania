@@ -118,6 +118,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     setPicked(null);
     setTyped('');
     setState('guess');
+    setDayGift(false);
   };
   const fail = (choice: string | null) => {
     if (!q) return;
@@ -154,8 +155,8 @@ function Game({ deck }: { deck: JlptDeck }) {
     setSeen((s) => [...s, q.entry]);
     if (review) {
       reviewJlpt(q.entry.id, true);
-      // The day's first right answer here pays the review list's daily reward.
-      if (useProgress.getState().payReviewDay('vocab')) setDayGift(true);
+      // Each word's first right answer of the day pays its reward.
+      setDayGift(!!useProgress.getState().payReviewDay('vocab', q.entry.id));
     }
     window.setTimeout(next, REVEAL_MS);
   };
@@ -220,7 +221,7 @@ function Game({ deck }: { deck: JlptDeck }) {
           </p>
         )}
       </div>
-      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — today’s review reward</p>}
+      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — this word’s review reward for today</p>}
       {!review && (
         <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
       )}

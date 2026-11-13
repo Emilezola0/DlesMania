@@ -251,8 +251,8 @@ export function GrammarReview() {
     if (state !== 'guess' || !typed.trim()) return;
     const ok = lastRight(q.entry, 'pattern', typed, q.shown);
     review(q.key, ok);
-    // The day's first right answer here pays the grammar review list's daily reward.
-    if (ok && useProgress.getState().payReviewDay('grammar')) setDayGift(true);
+    // Each grammar point's first right answer of the day pays its reward.
+    setDayGift(ok && !!useProgress.getState().payReviewDay('grammar', q.key));
     if (ok) (sfx.correct(), setRight(right + 1), setState('right'));
     else (sfx.wrong(), shake(arena.current, 10, 420), setWrong(wrong + 1), setState('wrong'));
   };
@@ -260,6 +260,7 @@ export function GrammarReview() {
     setQ(draw());
     setTyped('');
     setState('guess');
+    setDayGift(false);
   };
   const hint = grammarMeaning(q.level, q.entry.text, lang);
   const gap = hiddenKana(q.entry.text, q.shown);
@@ -272,7 +273,7 @@ export function GrammarReview() {
           ✓ <span className="font-serif text-2xl font-bold text-ink">{right}</span> · ✗ {wrong} · {Object.keys(list).length} to learn
         </p>
       </div>
-      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — today’s grammar review reward</p>}
+      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — this point’s review reward for today</p>}
       <div ref={arena} className="page relative flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
         <span className="absolute left-3 top-3 rounded-full border border-rule-strong px-2 py-0.5 font-display text-xs text-ink-faint">{q.level}</span>
         <span className="absolute right-3 top-3 font-display text-xs text-ink-faint" title={`${JLPT_LEARNED} right in a row and it's learned`}>

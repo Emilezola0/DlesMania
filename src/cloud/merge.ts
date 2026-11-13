@@ -99,6 +99,16 @@ function mergeRecall(a: Recall, b: Recall): Recall {
   return out;
 }
 
+type ReviewPaid = SaveData['reviewPaid'];
+/** The review rewards paid from two saves: the later day's; on the same day, what either side paid. */
+function mergeReviewPaid(a: ReviewPaid, b: ReviewPaid): ReviewPaid {
+  const ok = (p: ReviewPaid) => (p && typeof p.day === 'string' && Array.isArray(p.vocab) && Array.isArray(p.grammar) ? p : undefined);
+  const [x, y] = [ok(a), ok(b)];
+  if (!x || !y) return x ?? y;
+  if (x.day !== y.day) return x.day > y.day ? x : y;
+  return { day: x.day, vocab: [...new Set([...x.vocab, ...y.vocab])], grammar: [...new Set([...x.grammar, ...y.grammar])] };
+}
+
 /** Two counts by key: the larger of each. */
 const mergeMax = (a: Record<string, number> | undefined, b: Record<string, number> | undefined) => {
   const out = { ...(a ?? {}) };
@@ -321,10 +331,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     commune: latest.commune,
     // "Do you remember?": an answer paid on either side stays paid, the misses and the reveal too.
     kanjiRecall: mergeRecall(local.kanjiRecall, cloud.kanjiRecall),
-    // The review lists' daily reward: the later day paid on either side, so it isn't paid twice.
-    reviewPaid: {
-      vocab: [local.reviewPaid?.vocab ?? '', cloud.reviewPaid?.vocab ?? ''].sort().pop() || undefined,
-      grammar: [local.reviewPaid?.grammar ?? '', cloud.reviewPaid?.grammar ?? ''].sort().pop() || undefined,
-    },
+    // The review lists' daily rewards: the later day's, what was paid that day on either side (so nothing is paid twice).
+    reviewPaid: mergeReviewPaid(local.reviewPaid, cloud.reviewPaid),
   };
 }
