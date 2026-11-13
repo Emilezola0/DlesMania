@@ -78,6 +78,7 @@ export const SYNCED = [
   'tradeLock',
   'cardVolume',
   'commune',
+  'kanjiRecall',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -85,6 +86,17 @@ export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 export const BY_MONTH = ['days', 'special', 'specs'] as const;
 /** "games:2026-10-18", "rank-lol:2026-10-18" → "2026-10". */
 export const monthOf = (key: string) => key.slice(-10, -3);
+
+type Recall = SaveData['kanjiRecall'];
+/** "Do you remember?" from two saves: each kanji's answers found on either side, the more misses, revealed on either. */
+function mergeRecall(a: Recall, b: Recall): Recall {
+  const out: NonNullable<Recall> = { ...(a ?? {}) };
+  for (const [k, r] of Object.entries(b ?? {})) {
+    const o = out[k];
+    out[k] = o ? { found: [...new Set([...o.found, ...r.found])], miss: Math.max(o.miss, r.miss), over: !!(o.over || r.over) } : r;
+  }
+  return out;
+}
 
 /** Two counts by key: the larger of each. */
 const mergeMax = (a: Record<string, number> | undefined, b: Record<string, number> | undefined) => {
@@ -306,5 +318,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     cardVolume: latest.cardVolume ?? local.cardVolume ?? {},
     // The commune: with the coins it moved (the latest save's), so its share isn't paid twice.
     commune: latest.commune,
+    // "Do you remember?": an answer paid on either side stays paid, the misses and the reveal too.
+    kanjiRecall: mergeRecall(local.kanjiRecall, cloud.kanjiRecall),
   };
 }

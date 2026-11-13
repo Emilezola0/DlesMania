@@ -326,6 +326,15 @@ interface ProgressState {
   joinCommune: (code: string, day: string, balance: number) => void;
   /** The commune's average moved this player's share to `target` (average − their balance): the rest is paid or taken. */
   settleCommune: (day: string, target: number) => void;
+  /**
+   * "Do you remember?" (the kanji of the day typed back, src/pages/Jlpt.tsx): by "<day played>:<kanji's day>", the
+   * answers found (each paid once), the misses, and whether it's over (revealed). Only the last days are kept.
+   */
+  kanjiRecall?: Record<string, { found: string[]; miss: number; over?: boolean }>;
+  /** A right answer found: kept, and `coins` paid (nothing if it was found already). */
+  recallFound: (key: string, id: string, coins: number) => void;
+  /** A wrong answer, or the kanji revealed (`over`). */
+  recallMiss: (key: string, over: boolean) => void;
   /** Coins earned outside the capped games (an Expedition room or boss): paid in full. */
   /** An Expedition's coins, through its own daily amount: what was really paid. */
   earnExpedition: (amount: number) => number;
@@ -495,6 +504,12 @@ export function recentlySeen(seen: string[] | undefined, poolSize: number, neede
 export function seenOrder(seen: string[] | undefined): Map<string, number> {
   const list = seen ?? [];
   return new Map(list.map((id, i) => [id, list.length - i]));
+}
+
+/** "Do you remember?"'s record, its days played more than 10 days ago left out (keys start "YYYY-MM-DD:"). */
+function recallKept(r: ProgressState['kanjiRecall']): NonNullable<ProgressState['kanjiRecall']> {
+  const from = new Date(Date.now() - 10 * 86_400_000).toISOString().slice(0, 10);
+  return Object.fromEntries(Object.entries(r ?? {}).filter(([k]) => k.slice(0, 10) >= from));
 }
 
 export const useProgress = create<ProgressState>()(
@@ -1021,6 +1036,20 @@ export const useProgress = create<ProgressState>()(
           commune: { day, balance, settled: 0 },
           redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), `${code}@${day}`],
         });
+      },
+      recallFound: (key, id, coins) => {
+        const s = get();
+        const all = recallKept(s.kanjiRecall);
+        const r = all[key] ?? { found: [], miss: 0 };
+        if (r.over || r.found.includes(id)) return;
+        const total = (s.coins ?? 0) + Math.max(0, coins);
+        set({ coins: total, coinPeak: Math.max(s.coinPeak ?? 0, total), kanjiRecall: { ...all, [key]: { ...r, found: [...r.found, id] } } });
+      },
+      recallMiss: (key, over) => {
+        const all = recallKept(get().kanjiRecall);
+        const r = all[key] ?? { found: [], miss: 0 };
+        if (r.over) return;
+        set({ kanjiRecall: { ...all, [key]: over ? { ...r, over: true } : { ...r, miss: r.miss + 1 } } });
       },
       settleCommune: (day, target) => {
         const s = get();

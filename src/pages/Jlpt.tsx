@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { TimerBar } from '../boss/TimerBar';
 import { FlameIcon } from '../components/Layout';
-import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, recallQuiz, reviewDeck, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
+import { JLPT_LEVELS, JLPT_SOURCE, JLPT_THEMES, KANA_DECKS, jlptDeck, jlptEntry, kanjiOfWord, nextQuestion, ofTheDay, RECALL, recallAnswers, recallCoins, recallComplete, recallMatch, reviewDeck, type RecallKind, shortMeaning, typedRight, type JlptDeck, type JlptEntry, type JlptQuestion } from '../arcade/jlpt';
 import { addDays, formatLong, todayKey } from '../lib/date';
 import { NAME_LISTS } from '../arcade/lists';
 import { KANA_KINDS, LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '../arcade/toTheLast';
@@ -678,26 +678,34 @@ function OfTheDay() {
 /** Saturday or Sunday (by the day's own date). */
 const isWeekend = (day: string) => [0, 6].includes(new Date(`${day}T12:00:00Z`).getUTCDay());
 
+const coinsText = (n: number) => n.toLocaleString('en');
+const KIND_LABEL: Record<RecallKind, string> = { meaning: 'Meaning', on: 'On’yomi', kun: 'Kun’yomi' };
+
 /**
- * "Do you remember?" (the owner's call): every day, yesterday's kanji of the day, its meaning then its reading; at
- * the weekend, the same for the last seven days' kanji too. Once a question is over, the kanji shows its readings
- * and its meaning (CLAUDE.md, JLPT): it's there to learn them.
+ * "Do you remember?" (the owner's call): every day, yesterday's kanji of the day, typed back — its meanings, its
+ * on'yomi, its kun'yomi; at the weekend, the last seven days' kanji too. Each right answer pays RECALL.each, once a
+ * day; a meaning, an on'yomi and a kun'yomi found (the kinds the kanji has) pay RECALL.bonus on top. RECALL.misses
+ * wrong answers and the kanji is revealed. Once it's over, its readings and meanings all show (CLAUDE.md, JLPT).
  */
 function KanjiRecall() {
   const today = todayKey();
   const yesterday = addDays(today, -1);
   const week = Array.from({ length: 7 }, (_, i) => addDays(today, i - 7));
   const quizzes = [
-    { id: 'day', title: 'Do you remember yesterday’s kanji?', sub: `${formatLong(yesterday)} · its meaning, then its reading`, days: [yesterday] },
-    ...(isWeekend(today) ? [{ id: 'week', title: 'Do you remember this week’s kanji?', sub: `The last 7 kanji of the day · ${week.length * 2} questions`, days: week }] : []),
+    { id: 'day', title: 'Do you remember yesterday’s kanji?', sub: formatLong(yesterday), days: [yesterday] },
+    ...(isWeekend(today) ? [{ id: 'week', title: 'Do you remember this week’s kanji?', sub: 'The last 7 kanji of the day', days: week }] : []),
   ];
   const [open, setOpen] = useState<string | null>(null);
   const quiz = quizzes.find((q) => q.id === open);
   return (
     <section className="space-y-3">
       <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Remember the kanji of the day</h2>
+      <p className="max-w-2xl text-sm text-ink-soft">
+        Type back what you remember: its meanings, its on’yomi, its kun’yomi (kana or romaji). {coinsText(RECALL.each)} DleCoins for each right answer, and{' '}
+        {coinsText(RECALL.bonus)} more once you have a meaning, an on’yomi and a kun’yomi. {RECALL.misses} wrong answers and it’s revealed.
+      </p>
       {quiz ? (
-        <RecallGame key={`${quiz.id}-${today}`} title={quiz.title} questions={recallQuiz(quiz.days, today)} onClose={() => setOpen(null)} />
+        <RecallGame key={`${quiz.id}-${today}`} title={quiz.title} today={today} days={quiz.days} onClose={() => setOpen(null)} />
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
           {quizzes.map((q) => (
@@ -717,27 +725,9 @@ function KanjiRecall() {
   );
 }
 
-function RecallGame({ title, questions, onClose }: { title: string; questions: JlptQuestion[]; onClose: () => void }) {
+function RecallGame({ title, today, days, onClose }: { title: string; today: string; days: string[]; onClose: () => void }) {
   const [at, setAt] = useState(0);
-  const [picked, setPicked] = useState<string | null>(null);
-  const [right, setRight] = useState(0);
-  const q = questions[at];
-  const done = at >= questions.length;
-  const pick = (o: string) => {
-    if (picked) return;
-    setPicked(o);
-    if (o === q.answer) {
-      setRight((n) => n + 1);
-      sfx.correct();
-    } else sfx.wrong();
-  };
-  const next = () => {
-    setPicked(null);
-    setAt((i) => i + 1);
-    if (at + 1 >= questions.length && right === questions.length) celebrateBig();
-  };
-  // The kanji asked, each once, for the summary.
-  const kanji = [...new Map(questions.map((x) => [x.entry.id, x.entry])).values()];
+  const day = days[at];
   return (
     <div className="page animate-round-in space-y-4 rounded-md p-5">
       <div className="flex items-center justify-between gap-2">
@@ -746,68 +736,133 @@ function RecallGame({ title, questions, onClose }: { title: string; questions: J
           ✕ Close
         </button>
       </div>
-      {done ? (
-        <div className="space-y-4 text-center">
-          <p className="boss-phase-title font-display text-4xl font-bold">
-            {right} / {questions.length}
-          </p>
-          <p className="text-ink-soft">{right === questions.length ? 'Remembered every one!' : 'Here they are again, to keep them in mind:'}</p>
-          <ul className="space-y-2 text-left">
-            {kanji.map((k) => (
-              <li key={k.id} className="flex items-baseline gap-3 border-t border-rule pt-2">
-                <span lang="ja" className="font-serif text-3xl font-bold">
-                  {k.text}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="font-semibold">{shortMeaning(k.meaning, 3)}</span>
-                  <span lang="ja" className="block text-xs text-ink-faint">
-                    {k.reading} · {k.level}
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
-          <button type="button" onClick={() => (setAt(0), setRight(0), setPicked(null))} className="btn-paper rounded-md px-5 py-2 font-display font-bold">
-            Again
+      {days.length > 1 && (
+        <div className="flex items-center justify-between gap-2">
+          <button type="button" disabled={at === 0} onClick={() => setAt((i) => i - 1)} className="btn-paper rounded-md px-3 py-1 font-display text-sm font-bold disabled:opacity-40">
+            ←
+          </button>
+          <span className="text-xs text-ink-faint">
+            {at + 1} / {days.length} · {formatLong(day)}
+          </span>
+          <button type="button" disabled={at >= days.length - 1} onClick={() => setAt((i) => i + 1)} className="btn-paper rounded-md px-3 py-1 font-display text-sm font-bold disabled:opacity-40">
+            →
           </button>
         </div>
-      ) : (
-        <div className="space-y-4">
-          <p className="text-center text-xs text-ink-faint">
-            {at + 1} / {questions.length} · {right} right
-          </p>
-          <div className="text-center">
-            <p lang="ja" className="font-serif text-7xl font-bold leading-tight">
-              {q.entry.text}
-            </p>
-            {picked ? (
-              // Over: its readings under it, and its meaning.
-              <div className="animate-pop space-y-0.5">
-                <p lang="ja" className="text-lg text-ink-soft">
-                  {q.entry.reading}
-                </p>
-                <p className="font-display font-semibold">{shortMeaning(q.entry.meaning, 4)}</p>
-              </div>
-            ) : (
-              <p className="font-display text-ink-soft">{q.ask === 'meaning' ? 'What does it mean?' : 'How is it read?'}</p>
-            )}
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {q.options.map((o) => {
-              const tone = !picked ? 'btn-paper' : o === q.answer ? 'bg-hit text-on-strong' : o === picked ? 'bg-coral text-on-strong' : 'btn-paper opacity-50';
-              return (
-                <button key={o} type="button" disabled={!!picked} onClick={() => pick(o)} lang={q.ask === 'reading' ? 'ja' : undefined} className={`${tone} rounded-md px-4 py-3 text-left font-semibold`}>
-                  {o}
-                </button>
-              );
-            })}
-          </div>
-          {picked && (
-            <button type="button" onClick={next} autoFocus className="btn-accent w-full rounded-md py-3 font-display font-bold tracking-widest">
-              {at + 1 >= questions.length ? 'See the score' : 'Next'}
-            </button>
-          )}
+      )}
+      <RecallKanji key={day} recallKey={`${today}:${day}`} kanji={ofTheDay(day).kanji} />
+    </div>
+  );
+}
+
+/** One kanji typed back: what's found (and paid), what's left, and once over everything it reads and means. */
+function RecallKanji({ recallKey, kanji }: { recallKey: string; kanji: JlptEntry }) {
+  const answers = recallAnswers(kanji);
+  const rec = useProgress((s) => s.kanjiRecall?.[recallKey]);
+  const found = rec?.found ?? [];
+  const miss = rec?.miss ?? 0;
+  const over = !!rec?.over || miss >= RECALL.misses || found.length >= answers.length;
+  const [text, setText] = useState('');
+  const [say, setSay] = useState<{ ok: boolean; text: string } | null>(null);
+  const complete = recallComplete(answers, found);
+  const has = (kind: RecallKind) => answers.some((a) => a.kind === kind);
+  const got = (kind: RecallKind) => answers.some((a) => a.kind === kind && found.includes(a.id));
+  const submit = () => {
+    if (over || !text.trim()) return;
+    const hits = recallMatch(answers, text);
+    const fresh = hits.find((a) => !found.includes(a.id));
+    setText('');
+    if (fresh) {
+      const now = [...found, fresh.id];
+      const coins = recallCoins(answers, now) - recallCoins(answers, found);
+      useProgress.getState().recallFound(recallKey, fresh.id, coins);
+      const bonus = !complete && recallComplete(answers, now);
+      if (bonus) celebrateBig();
+      sfx.correct();
+      setSay({ ok: true, text: `✓ ${KIND_LABEL[fresh.kind]}: ${fresh.text} — +${coinsText(coins)} DleCoins${bonus ? ' (with the bonus!)' : ''}` });
+    } else if (hits.length) {
+      setSay({ ok: true, text: 'Already found — try another one.' });
+    } else {
+      useProgress.getState().recallMiss(recallKey, false);
+      sfx.wrong();
+      const left = RECALL.misses - miss - 1;
+      setSay({ ok: false, text: left > 0 ? `✗ Not one of its meanings or readings · ${left} ${left === 1 ? 'try' : 'tries'} left` : '✗ No tries left — here it is.' });
+    }
+  };
+  const earned = recallCoins(answers, found);
+  return (
+    <div className="space-y-4">
+      <div className="text-center">
+        <p lang="ja" className="font-serif text-7xl font-bold leading-tight">
+          {kanji.text}
+        </p>
+        <p className="text-xs text-ink-faint">JLPT {kanji.level}</p>
+      </div>
+      <ul className="flex flex-wrap justify-center gap-2 text-sm">
+        {(['meaning', 'on', 'kun'] as const).map((kind) => (
+          <li key={kind} className={`rounded-full border px-3 py-1 font-semibold ${!has(kind) ? 'border-rule text-ink-faint' : got(kind) ? 'border-hit/60 bg-hit/15' : 'border-rule-strong'}`}>
+            {got(kind) ? '✓' : has(kind) ? '·' : '—'} {KIND_LABEL[kind]}
+            {!has(kind) && ' (none)'}
+          </li>
+        ))}
+        <li className={`rounded-full border px-3 py-1 font-semibold ${complete ? 'border-ochre bg-ochre/20' : 'border-rule text-ink-faint'}`}>
+          {complete ? '★' : '☆'} +{coinsText(RECALL.bonus)}
+        </li>
+      </ul>
+      {!over && (
+        <div className="flex gap-2">
+          <input
+            value={text}
+            onChange={(e) => (setText(e.target.value), setSay(null))}
+            onKeyDown={(e) => e.key === 'Enter' && submit()}
+            placeholder="A meaning, an on’yomi or a kun’yomi…"
+            autoComplete="off"
+            autoCapitalize="off"
+            spellCheck={false}
+            className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2"
+          />
+          <button type="button" onClick={submit} disabled={!text.trim()} className="btn-accent rounded-md px-4 font-display font-bold disabled:opacity-40">
+            Enter
+          </button>
         </div>
+      )}
+      {say && <p className={`text-center text-sm font-semibold ${say.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{say.text}</p>}
+      <p className="text-center text-sm">
+        <span className="font-display font-bold">{coinsText(earned)} DleCoins</span> <span className="text-ink-faint">earned on this kanji today · {found.length} found · {miss} / {RECALL.misses} misses</span>
+      </p>
+      {over ? (
+        // Over: every reading and meaning, the ones found ticked.
+        <div className="animate-pop space-y-2 border-t border-rule pt-3">
+          {(['meaning', 'on', 'kun'] as const).filter(has).map((kind) => (
+            <p key={kind} className="text-sm">
+              <span className="font-display text-xs uppercase tracking-wider text-ink-faint">{KIND_LABEL[kind]} </span>
+              {answers
+                .filter((a) => a.kind === kind)
+                .map((a) => (
+                  <span key={a.id} lang={kind === 'meaning' ? undefined : 'ja'} className={`mr-2 inline-block ${found.includes(a.id) ? 'font-bold text-hit' : ''}`}>
+                    {found.includes(a.id) ? '✓ ' : ''}
+                    {a.text}
+                  </span>
+                ))}
+            </p>
+          ))}
+        </div>
+      ) : (
+        <>
+          {found.length > 0 && (
+            <ul className="flex flex-wrap justify-center gap-1.5 text-sm">
+              {answers
+                .filter((a) => found.includes(a.id))
+                .map((a) => (
+                  <li key={a.id} lang={a.kind === 'meaning' ? undefined : 'ja'} className="rounded-md border border-hit/50 bg-hit/10 px-2 py-0.5">
+                    {a.text}
+                  </li>
+                ))}
+            </ul>
+          )}
+          <button type="button" onClick={() => useProgress.getState().recallMiss(recallKey, true)} className="mx-auto block text-xs font-semibold text-ink-soft underline hover:text-ink">
+            I’m done — show me the rest
+          </button>
+        </>
       )}
     </div>
   );

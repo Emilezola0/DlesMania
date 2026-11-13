@@ -190,18 +190,72 @@ function questionOn(entry: JlptEntry, ask: JlptAsk, deck: JlptDeck, rand: () => 
   return { entry, ask, answer, options: shuffle([answer, ...wrong], rand) };
 }
 
+// ── "Do you remember?" (the kanji of the day, typed back): src/pages/Jlpt.tsx KanjiRecall ──
+
+/** The owner's rewards (12 Nov 2026): each right answer, the bonus for a meaning, an on and a kun reading, and the misses allowed. */
+export const RECALL = { each: 10_000, bonus: 50_000, misses: 3 } as const;
+
+export type RecallKind = 'meaning' | 'on' | 'kun';
+
+/** One thing a kanji can be answered with: a sense of its meaning, an on'yomi or a kun'yomi. */
+export interface RecallAnswer {
+  /** "meaning:0", "on:1", "kun:0": what's kept once found. */
+  id: string;
+  kind: RecallKind;
+  /** As the list writes it. */
+  text: string;
+  /** Every way to type it (typedKey). */
+  keys: Set<string>;
+}
+
 /**
- * "Do you remember?": the kanji of these days, each asked twice — its meaning, then its reading — with four answers
- * drawn once for the day (`date`), the same on every visit. The kanji's wrong answers come from its own level.
+ * Every answer a kanji takes: each sense of its meaning (with or without "to", "a", "the" or brackets), each of
+ * its readings — on'yomi in katakana, kun'yomi in hiragana — in kana or romaji, a kun'yomi with its okurigana
+ * ("おか.す") whole or without it.
  */
-export function recallQuiz(days: string[], date: string): JlptQuestion[] {
-  const rand = mulberry32(hashString(`omnidle:jlpt:recall:${date}:${days.join(',')}`));
-  return days.flatMap((day) => {
-    const kanji = ofTheDay(day).kanji;
-    const deck = homeDeck(kanji);
-    return (['meaning', 'reading'] as const).map((ask) => questionOn(kanji, ask, deck, rand));
+export function recallAnswers(e: JlptEntry): RecallAnswer[] {
+  const out: RecallAnswer[] = [];
+  const seen = new Set<string>();
+  e.meaning
+    .split(/[;,/]\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .forEach((s) => {
+      const bare = s.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
+      const keys = new Set([s, bare, bare.replace(/^(to|a|an|the)\s+/i, '')].map(typedKey).filter(Boolean));
+      // A sense listed twice ("White" and "white") counts once.
+      if ([...keys].some((k) => seen.has(k))) return;
+      keys.forEach((k) => seen.add(k));
+      out.push({ id: `meaning:${out.filter((a) => a.kind === 'meaning').length}`, kind: 'meaning', text: s, keys });
+    });
+  const counts = { on: 0, kun: 0 };
+  for (const r of e.reading.split(/[・、/／,\s]+/).filter(Boolean)) {
+    const kind = /^[゠-ヿ]/.test(r) ? 'on' : 'kun';
+    const kana = [r.replace(/[.\-～~]/g, ''), r.split('.')[0].replace(/[-～~]/g, '')].map((x) => toHiragana(x)).filter(Boolean);
+    const keys = new Set([...kana, ...kana.flatMap(romajiSpellings)].map(typedKey).filter(Boolean));
+    if (!keys.size) continue;
+    out.push({ id: `${kind}:${counts[kind]++}`, kind, text: r, keys });
+  }
+  return out;
+}
+
+/** The answers a typed text is (most often one; a sound both read on and kun is both). */
+export const recallMatch = (answers: RecallAnswer[], typed: string) => {
+  const k = typedKey(typed);
+  return k ? answers.filter((a) => a.keys.has(k)) : [];
+};
+
+/** A meaning, an on'yomi and a kun'yomi found — or the kind the kanji hasn't, left out. */
+export function recallComplete(answers: RecallAnswer[], found: string[]): boolean {
+  return (['meaning', 'on', 'kun'] as const).every((kind) => {
+    const of = answers.filter((a) => a.kind === kind);
+    return !of.length || of.some((a) => found.includes(a.id));
   });
 }
+
+/** What these answers found are worth: each one, and the bonus once complete. */
+export const recallCoins = (answers: RecallAnswer[], found: string[]) =>
+  found.length * RECALL.each + (found.length && recallComplete(answers, found) ? RECALL.bonus : 0);
 
 // ── Typed answers (Review, "Type it"): no list to pick from, the reading or the meaning written out. ──
 
