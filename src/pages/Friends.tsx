@@ -8,6 +8,7 @@ import { TITLE_BY_ID } from '../casino/unlocks';
 import type { DayEntry, ScoreDoc } from '../cloud/friends';
 import { startCloud, useCloud } from '../cloud/state';
 import { RARITIES, RARITY_INFO } from '../gacha/cards';
+import { ClueGrid } from '../friends/ClueGrid';
 import { DailyChoice } from '../friends/DailyChoice';
 import { DailyDoodle } from '../friends/Doodle';
 import { LuckReport } from '../friends/LuckReport';
@@ -326,6 +327,7 @@ const TABS = [
   { id: 'doodle', name: 'Daily Doodle', icon: '🎨', blurb: 'Draw, they guess' },
   { id: 'phone', name: 'Telephone', icon: '📞', blurb: 'Pass it on' },
   { id: 'choice', name: 'Daily Choice', icon: '🗳️', blurb: 'Pick a side' },
+  { id: 'clues', name: 'Clue Grid', icon: '🔎', blurb: 'One word, find them' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
 
@@ -449,7 +451,7 @@ export default function Friends() {
       ) : (
         <>
           {/* Every game at a glance, no scrolling: a grid of tiles that wraps (4 a row on phones, all 7 on wide screens). */}
-          <nav className="grid grid-cols-4 gap-1.5 rounded-md border border-rule bg-tile/60 p-1.5 lg:grid-cols-7" aria-label="Friends">
+          <nav className="grid grid-cols-4 gap-1.5 rounded-md border border-rule bg-tile/60 p-1.5 lg:grid-cols-8" aria-label="Friends">
             {TABS.map((x) => (
               <button
                 key={x.id}
@@ -619,6 +621,7 @@ export default function Friends() {
             </div>
           )}
 
+          {mine && tab === 'clues' && <ClueGrid people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name, color: p.color }))} me={mine.uid} demo={demo} />}
           {mine && tab === 'choice' && <DailyChoice people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
 
           {mine && tab === 'league' && <WeeklyLeague players={players.map((p) => ({ uid: p.doc.uid, log: p.doc.log ?? {}, color: p.color, me: p.me, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo} />}

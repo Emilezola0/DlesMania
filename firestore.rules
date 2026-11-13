@@ -270,6 +270,66 @@ service cloud.firestore {
         && (!('guess' in request.resource.data) || (picksOk(request.resource.data.guess) && grewByOne(request.resource.data.guess, resource.data.get('guess', {}))));
     }
 
+    // Clue Grid (src/cloud/clueGrid.ts). clues/<uid>_<day>: a player's clue of the day, one word and how many of
+    // their characters it points to. Posted once, on its day by the server's clock, never changed; they and their
+    // friends read it at any time (friends answer it during the day).
+    match /clues/{id} {
+      function writer() {
+        return id.split('_')[0];
+      }
+      function dayOf() {
+        return id.split('_')[1];
+      }
+      function dayStart() {
+        return timestamp.date(int(dayOf().split('-')[0]), int(dayOf().split('-')[1]), int(dayOf().split('-')[2]));
+      }
+      allow get: if request.auth != null && (request.auth.uid == writer()
+        || request.auth.uid in get(/databases/$(database)/documents/scores/$(writer())).data.friends);
+      allow create: if request.auth != null && request.auth.uid == writer()
+        && dayOf().matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+        && request.time > dayStart() - duration.value(14, 'h')
+        && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h')
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'day', 'clue', 'count', 'at'])
+        && request.resource.data.uid == writer() && request.resource.data.day == dayOf()
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.clue is string && request.resource.data.clue.matches('[^\\s]{1,24}')
+        && request.resource.data.count in [1, 2, 3];
+    }
+
+    // cluesecrets/<uid>_<day>: the player's secret characters (places in the day's grid, set once, never changed) and
+    // what they picked for each friend's clue (once each, never changed). Only they read it during the day; their
+    // friends too once that day is over everywhere (the results).
+    match /cluesecrets/{id} {
+      function owner() {
+        return id.split('_')[0];
+      }
+      function dayOf() {
+        return id.split('_')[1];
+      }
+      function dayStart() {
+        return timestamp.date(int(dayOf().split('-')[0]), int(dayOf().split('-')[1]), int(dayOf().split('-')[2]));
+      }
+      function onItsDay() {
+        return dayOf().matches('[0-9]{4}-[0-9]{2}-[0-9]{2}')
+          && request.time > dayStart() - duration.value(14, 'h')
+          && request.time < dayStart() + duration.value(1, 'd') + duration.value(12, 'h');
+      }
+      allow get: if request.auth != null && (request.auth.uid == owner()
+        || (request.time > dayStart() + duration.value(1, 'd') - duration.value(14, 'h')
+          && request.auth.uid in get(/databases/$(database)/documents/scores/$(owner())).data.friends));
+      allow create: if request.auth != null && request.auth.uid == owner() && onItsDay()
+        && request.resource.data.keys().hasOnly(['uid', 'day', 'targets', 'picks'])
+        && request.resource.data.uid == owner() && request.resource.data.day == dayOf()
+        && request.resource.data.targets is list && request.resource.data.targets.size() == 3
+        && request.resource.data.picks is map && request.resource.data.picks.size() == 0;
+      allow update: if request.auth != null && request.auth.uid == owner() && onItsDay()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['picks'])
+        && request.resource.data.picks is map && request.resource.data.picks.size() <= 60
+        && request.resource.data.picks.diff(resource.data.picks).changedKeys().size() == 0
+        && request.resource.data.picks.diff(resource.data.picks).removedKeys().size() == 0
+        && request.resource.data.picks.diff(resource.data.picks).addedKeys().size() == 1;
+    }
+
     // The Raid Boss (src/cloud/raids.ts): raidhits/<uid>_<week's Monday>, a player's attacks on the week's boss, one a
     // day. Each is added once (never changed or taken back), only on its day by the server's clock, inside its week,
     // at the server's time, at most 2,500 damage (RAID.maxHit, src/data/tuning/friends.json). Its player and their

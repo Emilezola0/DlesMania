@@ -24,5 +24,13 @@
     "perStep": 300,
     "bonus": 1000,
     "claimMinutes": 10
+  },
+  "clueGrid": {
+    "size": 20,
+    "targets": 3,
+    "clue": 500,
+    "answer": 300,
+    "right": 800,
+    "found": 600
   }
 }
