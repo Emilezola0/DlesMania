@@ -96,7 +96,8 @@ function Game({ deck }: { deck: JlptDeck }) {
   // Every word or kanji of this run, to go over at the end (and put on the review list).
   const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
-  const [dayGift, setDayGift] = useState(false);
+  // What the last right answer paid (its daily reward, and the whole list's bonus with it).
+  const [dayGift, setDayGift] = useState(0);
   const arena = useRef<HTMLDivElement>(null);
   // Review and the kana: type the reading or the meaning instead of picking it (no list, no suggestions).
   const canType = review || deck.kind === 'kana';
@@ -118,7 +119,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     setPicked(null);
     setTyped('');
     setState('guess');
-    setDayGift(false);
+    setDayGift(0);
   };
   const fail = (choice: string | null) => {
     if (!q) return;
@@ -156,7 +157,7 @@ function Game({ deck }: { deck: JlptDeck }) {
     if (review) {
       reviewJlpt(q.entry.id, true);
       // Each word's first right answer of the day pays its reward.
-      setDayGift(!!useProgress.getState().payReviewDay('vocab', q.entry.id));
+      setDayGift(useProgress.getState().payReviewDay('vocab', q.entry.id));
     }
     window.setTimeout(next, REVEAL_MS);
   };
@@ -221,7 +222,13 @@ function Game({ deck }: { deck: JlptDeck }) {
           </p>
         )}
       </div>
-      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — this word’s review reward for today</p>}
+      {dayGift > 0 && (
+        <p className="animate-pop text-center font-display text-sm font-bold text-hit">
+          {dayGift > REVIEW_DAY_COINS
+            ? `+${dayGift.toLocaleString('en')} DleCoins — the whole list revised today! (+${REVIEW_DAY_COINS} for this word, +${(dayGift - REVIEW_DAY_COINS).toLocaleString('en')} bonus)`
+            : `+${REVIEW_DAY_COINS} DleCoins — this word’s review reward for today`}
+        </p>
+      )}
       {!review && (
         <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
       )}

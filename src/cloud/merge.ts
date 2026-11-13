@@ -106,7 +106,12 @@ function mergeReviewPaid(a: ReviewPaid, b: ReviewPaid): ReviewPaid {
   const [x, y] = [ok(a), ok(b)];
   if (!x || !y) return x ?? y;
   if (x.day !== y.day) return x.day > y.day ? x : y;
-  return { day: x.day, vocab: [...new Set([...x.vocab, ...y.vocab])], grammar: [...new Set([...x.grammar, ...y.grammar])] };
+  return {
+    day: x.day,
+    vocab: [...new Set([...x.vocab, ...y.vocab])],
+    grammar: [...new Set([...x.grammar, ...y.grammar])],
+    whole: [...new Set([...(x.whole ?? []), ...(y.whole ?? [])])],
+  };
 }
 
 /** Two counts by key: the larger of each. */

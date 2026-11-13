@@ -332,8 +332,11 @@ interface ProgressState {
    */
   kanjiRecall?: Record<string, { found: string[]; miss: number; over?: boolean }>;
   /** The review lists' daily reward (REVIEW_DAY_COINS for each word or grammar point): the ones paid today, by list. */
-  reviewPaid?: { day: string; vocab: string[]; grammar: string[] };
-  /** A right answer in a review list: this word's (or point's) reward for today if it isn't paid yet. What was paid (0 if it was already). */
+  reviewPaid?: { day: string; vocab: string[]; grammar: string[]; whole?: ('vocab' | 'grammar')[] };
+  /**
+   * A right answer in a review list: this word's (or point's) reward for today if it isn't paid yet, and once every
+   * word on the list is, the whole list's bonus (REVIEW_DAY_COINS × the words revised, once a day). What was paid.
+   */
   payReviewDay: (list: 'vocab' | 'grammar', id: string) => number;
   /** A right answer found: kept, and `coins` paid (nothing if it was found already). */
   recallFound: (key: string, id: string, coins: number) => void;
@@ -1050,9 +1053,18 @@ export const useProgress = create<ProgressState>()(
         // A new day: nothing paid yet. (An older save kept a day per list: started over as well.)
         const paid = s.reviewPaid?.day === day && Array.isArray(s.reviewPaid[list]) ? s.reviewPaid : { day, vocab: [], grammar: [] };
         if (paid[list].includes(id)) return 0;
-        const coins = (s.coins ?? 0) + REVIEW_DAY_COINS;
-        set({ coins, coinPeak: Math.max(s.coinPeak ?? 0, coins), reviewPaid: { ...paid, [list]: [...paid[list], id] } });
-        return REVIEW_DAY_COINS;
+        const done = [...paid[list], id];
+        // The whole list revised today (every word still on it, the learned ones gone): the bonus, once a day.
+        const onList = Object.keys(list === 'vocab' ? s.jlptReview : s.jlptGrammarReview);
+        const whole = !(paid.whole ?? []).includes(list) && onList.every((k) => done.includes(k));
+        const pay = REVIEW_DAY_COINS + (whole ? REVIEW_DAY_COINS * done.length : 0);
+        const coins = (s.coins ?? 0) + pay;
+        set({
+          coins,
+          coinPeak: Math.max(s.coinPeak ?? 0, coins),
+          reviewPaid: { ...paid, [list]: done, ...(whole ? { whole: [...(paid.whole ?? []), list] } : {}) },
+        });
+        return pay;
       },
       recallFound: (key, id, coins) => {
         const s = get();
