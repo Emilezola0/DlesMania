@@ -4,6 +4,7 @@
 // chose what the next day (src/cloud/choices.ts).
 import DATA from '../data/daily-choice.json';
 import { COLLECTIBLE, type Card } from '../gacha/cards';
+import { cardOn, rarityOn } from '../gacha/cardSince';
 import { dayNumber } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 
@@ -18,22 +19,18 @@ export interface ChoiceQuestion {
 
 /**
  * The characters a question can ask about: Legendary or better, one card a name, no places, techniques or objects.
- * A set added after the Daily Choice launched joins only from its "since" day (daily-choice.json): votes are stored by
- * card id, so a past day must keep drawing the very same characters for its results to show.
+ * Votes are stored by card id, so a past day must keep drawing the very same characters for its results to show: a set
+ * added after the Daily Choice launched joins only from its "since" day (daily-choice.json), a card added to a set only
+ * from the day the card ledger gives it, and a card counts with the rarity it had that day (src/gacha/cardSince.ts).
  */
-let pool: Card[] | null = null;
-function allCharacters(): Card[] {
-  if (pool) return pool;
+export function characters(day: string): Card[] {
   const seen = new Set<string>();
-  pool = COLLECTIBLE.filter((c) => {
-    if (c.place || c.technique || CHOICE.skipSets.includes(c.set) || !CHOICE.rarities.includes(c.rarity) || seen.has(c.name)) return false;
+  return COLLECTIBLE.filter((c) => {
+    if (!cardOn(c, day) || c.place || c.technique || CHOICE.skipSets.includes(c.set) || !CHOICE.rarities.includes(rarityOn(c, day)) || seen.has(c.name)) return false;
+    if (!CHOICE.launchSets.includes(c.set) && !(CHOICE.since[c.set] !== undefined && CHOICE.since[c.set] <= day)) return false;
     seen.add(c.name);
     return true;
   });
-  return pool;
-}
-function characters(day: string): Card[] {
-  return allCharacters().filter((c) => CHOICE.launchSets.includes(c.set) || (CHOICE.since[c.set] !== undefined && CHOICE.since[c.set] <= day));
 }
 
 /**

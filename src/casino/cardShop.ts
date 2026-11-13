@@ -3,6 +3,7 @@
 // an epic or two and a rare; on a special occasion, a mythic too. Each card can be bought once a day.
 // The numbers live in src/data/tuning/casino.json (`cardShop`).
 import { COLLECTIBLE, type Card, type Rarity } from '../gacha/cards';
+import { cardOn, rarityOn } from '../gacha/cardSince';
 import { fromKey } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 import { CARD_SHOP } from './casino';
@@ -35,15 +36,26 @@ export interface ShopOffer {
   price: number;
 }
 
-/** What can be sold: no omnis (they stay in packs), no places or techniques, nothing vaulted. */
-const POOL: Partial<Record<Rarity, Card[]>> = {};
-for (const c of COLLECTIBLE) if (!c.place && !c.technique && c.rarity !== 'omni') (POOL[c.rarity] ??= []).push(c);
+/** What can be sold that day: no omnis (they stay in packs), no places or techniques, nothing vaulted, only cards in the game by then (so a card added today can't change today's shelf). */
+const POOLS = new Map<string, Partial<Record<Rarity, Card[]>>>();
+function poolOn(day: string): Partial<Record<Rarity, Card[]>> {
+  const cached = POOLS.get(day);
+  if (cached) return cached;
+  const pool: Partial<Record<Rarity, Card[]>> = {};
+  POOLS.set(day, pool);
+  for (const c of COLLECTIBLE) {
+    const rarity = rarityOn(c, day);
+    if (!c.place && !c.technique && rarity !== 'omni' && cardOn(c, day)) (pool[rarity] ??= []).push(c);
+  }
+  return pool;
+}
 
 /** The day's shelf: the same cards for everyone that day, from different sets where it can. */
 export function shopFor(day: string): { offers: ShopOffer[]; occasion: string | null } {
   const rand = mulberry32(hashString(`card-shop:${day}`));
   const occasion = occasionOf(day);
   const want: [Rarity, number][] = [...(occasion ? ([['mythic', 1]] as [Rarity, number][]) : []), ['legendary', CARD_SHOP.slots.legendary ?? 3], ['epic', CARD_SHOP.slots.epic ?? 2], ['rare', CARD_SHOP.slots.rare ?? 1]];
+  const POOL = poolOn(day);
   const sets = new Set<string>();
   const offers: ShopOffer[] = [];
   for (const [rarity, n] of want) {

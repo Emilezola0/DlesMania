@@ -145,6 +145,20 @@ npm run data:validate
 
 `enrich-media` looks up `cover.wiki` / `item.wiki` / `location.wiki` with the MediaWiki API (50 titles per request). Item and location clues can instead carry `src` (`fandom:<wiki>:<Title>`, `wp:<Title>` or a URL), or inherit the work's `fandom` wiki, which is then searched by the clue's `name`. Images whose file name looks like a logo, box art, cover or poster — or equal to the work's cover — are rejected so a clue never shows the title. It also and rejects images when a title redirects to a different subject (e.g. "Hyrule" → the franchise page, whose image would give the answer away). Works without `cover.wiki` get one by search — check those. `--force` re-resolves everything; `--dry` writes nothing.
 
+### Adding cards without changing a day that has started
+
+Adding or changing cards must **never change another game's day that has already started**. The Daily Choice, the Raid Boss and the Daily Card Shop pick cards by the day, and their votes and purchases are stored by card id. If a new card joins the pool mid-day, everyone's questions are drawn again: people who voted can't vote any more, and yesterday's results no longer show (this happened when Genji's Omni was added). So a new card, a rarity change or a new franchise only counts **from the next day**:
+
+```bash
+# After adding cards, changing a card's rarity or adding a franchise: record them, from tomorrow by default
+npm run cards:ledger
+npm run cards:ledger -- --day 2026-12-01
+```
+
+It writes `src/data/card-since.json` (the day each new card joined, and a re-graded card's rarity before that day), `scripts/data/card-ids.json` (every card the game had, with its rarity) and, for a new franchise, its `since` day in `src/data/daily-choice.json`. Games read it through `cardOn(card, day)` and `rarityOn(card, day)` in `src/gacha/cardSince.ts`. Any new game that picks cards by the day (the same for everyone, or stored by day) must go through them too. `npm run build`, and so the deploy, stops with a message if a card isn't recorded. Packs, boosters and other random draws aren't affected: a new card can be pulled at once.
+
+Don't reorder or remove existing cards or change their ids either. Their order and ids are what fixes each day's draw, and votes, trades and collections refer to them.
+
 ### Card videos
 
 A card's video (a Mythic's or an Omni's: up close with the **▶ Play its video** button, and full screen behind a win) is an MP4 hosted with the site in `public/clips/<set>/`, never a YouTube or TikTok embed: those players show their own buttons (a pause button for ~4 s after any seek, the title, "More videos") and nothing in the page can hide them. GIF-like loops (Tenor, Giphy, Klipy, or ours cropped from one in `public/clips/gif/`) play on their own and need no button; everything else waits for it.

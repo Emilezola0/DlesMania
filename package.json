@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/card-ledger.mjs --check && tsc -b && vite build",
+    "cards:ledger": "node scripts/card-ledger.mjs",
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "data:validate": "node scripts/validate-data.mjs",

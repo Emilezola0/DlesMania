@@ -4,17 +4,18 @@
 // little more. Numbers in src/data/tuning/friends.json.
 import T from '../data/tuning/friends.json';
 import { COLLECTIBLE, RARITIES, SETS, type Card } from '../gacha/cards';
+import { cardOn, rarityOn } from '../gacha/cardSince';
 import { addDays } from '../lib/date';
 import { hashString, mulberry32 } from '../lib/rng';
 import { CHOICE } from './choiceQuestions';
 
 export const RAID = T.raid;
 
-/** A franchise's faces to ask about: someone (not a place or a technique), with a picture, one card a name. */
-function facesOf(set: string): Card[] {
+/** A franchise's faces to ask about on a week: someone (not a place or a technique), with a picture, one card a name, in the game by that Monday (any card, for an attack's questions). */
+function facesOf(set: string, monday?: string): Card[] {
   const seen = new Set<string>();
   return COLLECTIBLE.filter((c) => {
-    if (c.set !== set || c.place || c.technique || !c.image || seen.has(c.name)) return false;
+    if (c.set !== set || c.place || c.technique || !c.image || seen.has(c.name) || (monday !== undefined && !cardOn(c, monday))) return false;
     seen.add(c.name);
     return true;
   });
@@ -27,7 +28,7 @@ function facesOf(set: string): Card[] {
 function franchisesFor(monday: string): string[] {
   return SETS.map((s) => s.id)
     .filter((id) => !CHOICE.skipSets.includes(id) && (CHOICE.launchSets.includes(id) || (CHOICE.since[id] !== undefined && CHOICE.since[id] <= monday)))
-    .filter((id) => facesOf(id).length >= 12)
+    .filter((id) => facesOf(id, monday).length >= 12)
     .sort();
 }
 
@@ -50,8 +51,8 @@ export function bossOf(monday: string): RaidBoss {
     const list = franchisesFor(monday);
     set = list[(list.indexOf(set) + 1) % list.length];
   }
-  const faces = COLLECTIBLE.filter((c) => c.set === set && !c.place && !c.technique && c.image);
-  const rank = (c: Card) => RARITIES.indexOf(c.rarity);
+  const faces = COLLECTIBLE.filter((c) => c.set === set && !c.place && !c.technique && c.image && cardOn(c, monday));
+  const rank = (c: Card) => RARITIES.indexOf(rarityOn(c, monday));
   const best = Math.max(...faces.map(rank));
   const top = faces.filter((c) => rank(c) === best).sort((a, b) => a.id.localeCompare(b.id));
   const card = top[Math.floor(mulberry32(hashString(`raid-face:${monday}`))() * top.length)];
