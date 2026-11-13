@@ -7,7 +7,7 @@ import { GrammarNote } from '../components/JlptGrammarNote';
 import { celebrateBig, shake } from '../lib/fx';
 import { romajiSpellings, toHiragana } from '../lib/romaji';
 import { sfx } from '../lib/sfx';
-import { JLPT_LEARNED, useProgress } from '../store/progress';
+import { JLPT_LEARNED, REVIEW_DAY_COINS, useProgress } from '../store/progress';
 
 /** Seconds per formula: 30 at first, half a second less each right answer, down to 15. */
 const secondsFor = (streak: number) => Math.max(15, 30 - streak * 0.5);
@@ -227,6 +227,7 @@ export function GrammarReview() {
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
   const [right, setRight] = useState(0);
   const [wrong, setWrong] = useState(0);
+  const [dayGift, setDayGift] = useState(false);
   const lang = useProgress((s) => s.nameLang);
   const field = useRef<HTMLInputElement>(null);
   const arena = useRef<HTMLDivElement>(null);
@@ -250,6 +251,8 @@ export function GrammarReview() {
     if (state !== 'guess' || !typed.trim()) return;
     const ok = lastRight(q.entry, 'pattern', typed, q.shown);
     review(q.key, ok);
+    // The day's first right answer here pays the grammar review list's daily reward.
+    if (ok && useProgress.getState().payReviewDay('grammar')) setDayGift(true);
     if (ok) (sfx.correct(), setRight(right + 1), setState('right'));
     else (sfx.wrong(), shake(arena.current, 10, 420), setWrong(wrong + 1), setState('wrong'));
   };
@@ -269,6 +272,7 @@ export function GrammarReview() {
           ✓ <span className="font-serif text-2xl font-bold text-ink">{right}</span> · ✗ {wrong} · {Object.keys(list).length} to learn
         </p>
       </div>
+      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — today’s grammar review reward</p>}
       <div ref={arena} className="page relative flex flex-col items-center gap-2 rounded-md p-6 text-center sm:p-8">
         <span className="absolute left-3 top-3 rounded-full border border-rule-strong px-2 py-0.5 font-display text-xs text-ink-faint">{q.level}</span>
         <span className="absolute right-3 top-3 font-display text-xs text-ink-faint" title={`${JLPT_LEARNED} right in a row and it's learned`}>

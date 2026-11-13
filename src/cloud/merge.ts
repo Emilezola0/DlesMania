@@ -79,6 +79,7 @@ export const SYNCED = [
   'cardVolume',
   'commune',
   'kanjiRecall',
+  'reviewPaid',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -320,5 +321,10 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     commune: latest.commune,
     // "Do you remember?": an answer paid on either side stays paid, the misses and the reveal too.
     kanjiRecall: mergeRecall(local.kanjiRecall, cloud.kanjiRecall),
+    // The review lists' daily reward: the later day paid on either side, so it isn't paid twice.
+    reviewPaid: {
+      vocab: [local.reviewPaid?.vocab ?? '', cloud.reviewPaid?.vocab ?? ''].sort().pop() || undefined,
+      grammar: [local.reviewPaid?.grammar ?? '', cloud.reviewPaid?.grammar ?? ''].sort().pop() || undefined,
+    },
   };
 }

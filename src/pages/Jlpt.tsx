@@ -9,7 +9,7 @@ import { KANA_KINDS, LAST_KINDS, LAST_KIND_LABEL, lastItems, loadLast } from '..
 import { Customise, useCustomPicks } from '../components/Customise';
 import { celebrateBig, shake } from '../lib/fx';
 import { sfx } from '../lib/sfx';
-import { JLPT_LEARNED, useProgress } from '../store/progress';
+import { JLPT_LEARNED, REVIEW_DAY_COINS, useProgress } from '../store/progress';
 import { KeepButton } from '../components/JlptKeep';
 import { CUSTOM_LEVEL } from '../arcade/jlptCustom';
 import { kanaFromRomaji, toHiragana } from '../lib/romaji';
@@ -96,6 +96,7 @@ function Game({ deck }: { deck: JlptDeck }) {
   // Every word or kanji of this run, to go over at the end (and put on the review list).
   const [seen, setSeen] = useState<JlptEntry[]>([]);
   const [state, setState] = useState<'guess' | 'right' | 'wrong'>('guess');
+  const [dayGift, setDayGift] = useState(false);
   const arena = useRef<HTMLDivElement>(null);
   // Review and the kana: type the reading or the meaning instead of picking it (no list, no suggestions).
   const canType = review || deck.kind === 'kana';
@@ -151,7 +152,11 @@ function Game({ deck }: { deck: JlptDeck }) {
     setState('right');
     setScore(score + 1);
     setSeen((s) => [...s, q.entry]);
-    if (review) reviewJlpt(q.entry.id, true);
+    if (review) {
+      reviewJlpt(q.entry.id, true);
+      // The day's first right answer here pays the review list's daily reward.
+      if (useProgress.getState().payReviewDay('vocab')) setDayGift(true);
+    }
     window.setTimeout(next, REVEAL_MS);
   };
   const restart = () => {
@@ -215,6 +220,7 @@ function Game({ deck }: { deck: JlptDeck }) {
           </p>
         )}
       </div>
+      {dayGift && <p className="animate-pop text-center font-display text-sm font-bold text-hit">+{REVIEW_DAY_COINS} DleCoins — today’s review reward</p>}
       {!review && (
         <TimerBar total={secondsFor(score) * 1000} running={state === 'guess'} resetKey={`${score}:${q.entry.id}:${state === 'wrong'}`} onExpire={() => state === 'guess' && fail(null)} />
       )}

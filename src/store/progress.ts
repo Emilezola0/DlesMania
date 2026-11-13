@@ -331,6 +331,10 @@ interface ProgressState {
    * answers found (each paid once), the misses, and whether it's over (revealed). Only the last days are kept.
    */
   kanjiRecall?: Record<string, { found: string[]; miss: number; over?: boolean }>;
+  /** The review lists' daily reward (REVIEW_DAY_COINS): the last day each was paid ("YYYY-MM-DD"). */
+  reviewPaid?: { vocab?: string; grammar?: string };
+  /** A right answer in a review list: today's reward if it isn't paid yet. What was paid (0 if it was already). */
+  payReviewDay: (list: 'vocab' | 'grammar') => number;
   /** A right answer found: kept, and `coins` paid (nothing if it was found already). */
   recallFound: (key: string, id: string, coins: number) => void;
   /** A wrong answer, or the kanji revealed (`over`). */
@@ -505,6 +509,9 @@ export function seenOrder(seen: string[] | undefined): Map<string, number> {
   const list = seen ?? [];
   return new Map(list.map((id, i) => [id, list.length - i]));
 }
+
+/** The Review list's and the Grammar Review list's reward, each once a day, at its first right answer (the owner's call). */
+export const REVIEW_DAY_COINS = 100;
 
 /** "Do you remember?"'s record, its days played more than 10 days ago left out (keys start "YYYY-MM-DD:"). */
 function recallKept(r: ProgressState['kanjiRecall']): NonNullable<ProgressState['kanjiRecall']> {
@@ -1036,6 +1043,14 @@ export const useProgress = create<ProgressState>()(
           commune: { day, balance, settled: 0 },
           redeemed: [...(s.redeemed ?? []).filter((r) => !r.startsWith(`${code}@`)), `${code}@${day}`],
         });
+      },
+      payReviewDay: (list) => {
+        const s = get();
+        const day = todayKey();
+        if (s.reviewPaid?.[list] === day) return 0;
+        const coins = (s.coins ?? 0) + REVIEW_DAY_COINS;
+        set({ coins, coinPeak: Math.max(s.coinPeak ?? 0, coins), reviewPaid: { ...s.reviewPaid, [list]: day } });
+        return REVIEW_DAY_COINS;
       },
       recallFound: (key, id, coins) => {
         const s = get();
