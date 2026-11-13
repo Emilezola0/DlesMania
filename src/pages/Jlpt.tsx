@@ -679,7 +679,10 @@ function OfTheDay() {
 const isWeekend = (day: string) => [0, 6].includes(new Date(`${day}T12:00:00Z`).getUTCDay());
 
 const coinsText = (n: number) => n.toLocaleString('en');
-const KIND_LABEL: Record<RecallKind, string> = { meaning: 'Meaning', on: 'On’yomi', kun: 'Kun’yomi' };
+const KIND_LABEL: Record<RecallKind, string> = { meaning: 'Meaning', on: 'On’yomi', kun: 'Kun’yomi', reading: 'Reading' };
+/** What's asked of a kanji, and of a word. */
+const RECALL_OF = { kanji: ['meaning', 'on', 'kun'], word: ['meaning', 'reading'] } as const satisfies Record<string, readonly RecallKind[]>;
+type RecallOf = keyof typeof RECALL_OF;
 
 /**
  * "Do you remember?" (the owner's call): every day, yesterday's kanji of the day, typed back — its meanings, its
@@ -691,9 +694,16 @@ function KanjiRecall() {
   const today = todayKey();
   const yesterday = addDays(today, -1);
   const week = Array.from({ length: 7 }, (_, i) => addDays(today, i - 7));
-  const quizzes = [
-    { id: 'day', title: 'Do you remember yesterday’s kanji?', sub: formatLong(yesterday), days: [yesterday] },
-    ...(isWeekend(today) ? [{ id: 'week', title: 'Do you remember this week’s kanji?', sub: 'The last 7 kanji of the day', days: week }] : []),
+  // The word of the day the same way (the owner's call): its meanings and its readings.
+  const quizzes: { id: string; of: RecallOf; title: string; sub: string; days: string[] }[] = [
+    { id: 'day', of: 'kanji', title: 'Do you remember yesterday’s kanji?', sub: formatLong(yesterday), days: [yesterday] },
+    { id: 'word-day', of: 'word', title: 'Do you remember yesterday’s word?', sub: formatLong(yesterday), days: [yesterday] },
+    ...(isWeekend(today)
+      ? [
+          { id: 'week', of: 'kanji' as const, title: 'Do you remember this week’s kanji?', sub: 'The last 7 kanji of the day', days: week },
+          { id: 'word-week', of: 'word' as const, title: 'Do you remember this week’s words?', sub: 'The last 7 words of the day', days: week },
+        ]
+      : []),
   ];
   const [open, setOpen] = useState<string | null>(null);
   const quiz = quizzes.find((q) => q.id === open);
@@ -701,11 +711,11 @@ function KanjiRecall() {
     <section className="space-y-3">
       <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Remember the kanji of the day</h2>
       <p className="max-w-2xl text-sm text-ink-soft">
-        Type back what you remember: its meanings, its on’yomi, its kun’yomi (kana or romaji). {coinsText(RECALL.each)} DleCoins for each right answer, and{' '}
-        {coinsText(RECALL.bonus)} more once you have a meaning, an on’yomi and a kun’yomi. {RECALL.misses} wrong answers and it’s revealed.
+        Type back what you remember: a kanji’s meanings, on’yomi and kun’yomi, a word’s meanings and readings (kana or romaji). {coinsText(RECALL.each)} DleCoins
+        for each right answer, and {coinsText(RECALL.bonus)} more once you have one of each. {RECALL.misses} wrong answers and it’s revealed.
       </p>
       {quiz ? (
-        <RecallGame key={`${quiz.id}-${today}`} title={quiz.title} today={today} days={quiz.days} onClose={() => setOpen(null)} />
+        <RecallGame key={`${quiz.id}-${today}`} of={quiz.of} title={quiz.title} today={today} days={quiz.days} onClose={() => setOpen(null)} />
       ) : (
         <ul className="grid gap-4 sm:grid-cols-2">
           {quizzes.map((q) => (
@@ -725,7 +735,7 @@ function KanjiRecall() {
   );
 }
 
-function RecallGame({ title, today, days, onClose }: { title: string; today: string; days: string[]; onClose: () => void }) {
+function RecallGame({ of, title, today, days, onClose }: { of: RecallOf; title: string; today: string; days: string[]; onClose: () => void }) {
   const [at, setAt] = useState(0);
   const day = days[at];
   return (
@@ -749,13 +759,15 @@ function RecallGame({ title, today, days, onClose }: { title: string; today: str
           </button>
         </div>
       )}
-      <RecallKanji key={day} recallKey={`${today}:${day}`} kanji={ofTheDay(day).kanji} />
+      {/* Kept by "<today>:<day>" for a kanji, "<today>:w:<day>" for a word. */}
+      <RecallKanji key={`${of}-${day}`} of={of} recallKey={of === 'word' ? `${today}:w:${day}` : `${today}:${day}`} kanji={of === 'word' ? ofTheDay(day).word : ofTheDay(day).kanji} />
     </div>
   );
 }
 
-/** One kanji typed back: what's found (and paid), what's left, and once over everything it reads and means. */
-function RecallKanji({ recallKey, kanji }: { recallKey: string; kanji: JlptEntry }) {
+/** One kanji (or word) typed back: what's found (and paid), what's left, and once over everything it reads and means. */
+function RecallKanji({ of, recallKey, kanji }: { of: RecallOf; recallKey: string; kanji: JlptEntry }) {
+  const kinds = RECALL_OF[of];
   const answers = recallAnswers(kanji);
   const rec = useProgress((s) => s.kanjiRecall?.[recallKey]);
   const found = rec?.found ?? [];
@@ -798,7 +810,7 @@ function RecallKanji({ recallKey, kanji }: { recallKey: string; kanji: JlptEntry
         <p className="text-xs text-ink-faint">JLPT {kanji.level}</p>
       </div>
       <ul className="flex flex-wrap justify-center gap-2 text-sm">
-        {(['meaning', 'on', 'kun'] as const).map((kind) => (
+        {kinds.map((kind) => (
           <li key={kind} className={`rounded-full border px-3 py-1 font-semibold ${!has(kind) ? 'border-rule text-ink-faint' : got(kind) ? 'border-hit/60 bg-hit/15' : 'border-rule-strong'}`}>
             {got(kind) ? '✓' : has(kind) ? '·' : '—'} {KIND_LABEL[kind]}
             {!has(kind) && ' (none)'}
@@ -814,7 +826,7 @@ function RecallKanji({ recallKey, kanji }: { recallKey: string; kanji: JlptEntry
             value={text}
             onChange={(e) => (setText(e.target.value), setSay(null))}
             onKeyDown={(e) => e.key === 'Enter' && submit()}
-            placeholder="A meaning, an on’yomi or a kun’yomi…"
+            placeholder={of === 'word' ? 'A meaning or a reading…' : 'A meaning, an on’yomi or a kun’yomi…'}
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
@@ -827,12 +839,12 @@ function RecallKanji({ recallKey, kanji }: { recallKey: string; kanji: JlptEntry
       )}
       {say && <p className={`text-center text-sm font-semibold ${say.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{say.text}</p>}
       <p className="text-center text-sm">
-        <span className="font-display font-bold">{coinsText(earned)} DleCoins</span> <span className="text-ink-faint">earned on this kanji today · {found.length} found · {miss} / {RECALL.misses} misses</span>
+        <span className="font-display font-bold">{coinsText(earned)} DleCoins</span> <span className="text-ink-faint">earned on this {of} today · {found.length} found · {miss} / {RECALL.misses} misses</span>
       </p>
       {over ? (
         // Over: every reading and meaning, the ones found ticked.
         <div className="animate-pop space-y-2 border-t border-rule pt-3">
-          {(['meaning', 'on', 'kun'] as const).filter(has).map((kind) => (
+          {kinds.filter(has).map((kind) => (
             <p key={kind} className="text-sm">
               <span className="font-display text-xs uppercase tracking-wider text-ink-faint">{KIND_LABEL[kind]} </span>
               {answers

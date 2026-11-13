@@ -195,9 +195,11 @@ function questionOn(entry: JlptEntry, ask: JlptAsk, deck: JlptDeck, rand: () => 
 /** The owner's rewards (12 Nov 2026): each right answer, the bonus for a meaning, an on and a kun reading, and the misses allowed. */
 export const RECALL = { each: 10_000, bonus: 50_000, misses: 3 } as const;
 
-export type RecallKind = 'meaning' | 'on' | 'kun';
+/** A kanji's: meaning, on'yomi, kun'yomi. A word's (the word of the day): meaning, reading. */
+export type RecallKind = 'meaning' | 'on' | 'kun' | 'reading';
+export const RECALL_KINDS: RecallKind[] = ['meaning', 'on', 'kun', 'reading'];
 
-/** One thing a kanji can be answered with: a sense of its meaning, an on'yomi or a kun'yomi. */
+/** One thing a kanji (or a word) can be answered with: a sense of its meaning, an on'yomi or a kun'yomi (a word: a reading). */
 export interface RecallAnswer {
   /** "meaning:0", "on:1", "kun:0": what's kept once found. */
   id: string;
@@ -211,9 +213,11 @@ export interface RecallAnswer {
 /**
  * Every answer a kanji takes: each sense of its meaning (with or without "to", "a", "the" or brackets), each of
  * its readings — on'yomi in katakana, kun'yomi in hiragana — in kana or romaji, a kun'yomi with its okurigana
- * ("おか.す") whole or without it.
+ * ("おか.す") whole or without it. A word's readings are just readings ("まいげつ/まいつき"); a word written in kana
+ * alone has none to find (it's read as it's shown).
  */
 export function recallAnswers(e: JlptEntry): RecallAnswer[] {
+  const word = e.id.includes(':vocab:');
   const out: RecallAnswer[] = [];
   const seen = new Set<string>();
   e.meaning
@@ -228,9 +232,11 @@ export function recallAnswers(e: JlptEntry): RecallAnswer[] {
       keys.forEach((k) => seen.add(k));
       out.push({ id: `meaning:${out.filter((a) => a.kind === 'meaning').length}`, kind: 'meaning', text: s, keys });
     });
-  const counts = { on: 0, kun: 0 };
+  const counts = { on: 0, kun: 0, reading: 0 };
+  // A word in kana alone: its reading is what's shown.
+  if (word && toHiragana(e.text) === toHiragana(e.reading.replace(/[\s/／]/g, ''))) return out;
   for (const r of e.reading.split(/[・、/／,\s]+/).filter(Boolean)) {
-    const kind = /^[゠-ヿ]/.test(r) ? 'on' : 'kun';
+    const kind = word ? 'reading' : /^[゠-ヿ]/.test(r) ? 'on' : 'kun';
     const kana = [r.replace(/[.\-～~]/g, ''), r.split('.')[0].replace(/[-～~]/g, '')].map((x) => toHiragana(x)).filter(Boolean);
     const keys = new Set([...kana, ...kana.flatMap(romajiSpellings)].map(typedKey).filter(Boolean));
     if (!keys.size) continue;
@@ -245,9 +251,9 @@ export const recallMatch = (answers: RecallAnswer[], typed: string) => {
   return k ? answers.filter((a) => a.keys.has(k)) : [];
 };
 
-/** A meaning, an on'yomi and a kun'yomi found — or the kind the kanji hasn't, left out. */
+/** A meaning, an on'yomi and a kun'yomi found (a word: a meaning and a reading) — the kinds it hasn't left out. */
 export function recallComplete(answers: RecallAnswer[], found: string[]): boolean {
-  return (['meaning', 'on', 'kun'] as const).every((kind) => {
+  return RECALL_KINDS.every((kind) => {
     const of = answers.filter((a) => a.kind === kind);
     return !of.length || of.some((a) => found.includes(a.id));
   });
