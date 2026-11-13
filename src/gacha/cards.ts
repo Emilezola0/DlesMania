@@ -895,6 +895,9 @@ const CLIPS: Record<string, string> = {
   // and that form only takes its clip from CLIPS.
   'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-sound-${n}.mp4`).join('|'),
   'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/forhonor-mythic.mp4`,
+  // Genji's Omni (awakened, the form an Omni shows): the climax of Blizzard's "Dragons" short (4:57–5:22 of oJ09xdxzIJQ, made with scripts/card-clip.mjs), "Ryū ga waga
+  // teki wo kurau!" / "Ryūjin no ken wo kurae!", the three dragons, Hanzo on his knees; heard with its own sound.
+  'overwatch:omni-genji': `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/genji-dragons.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
   // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
   'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
@@ -1474,6 +1477,28 @@ const LATER: (Omit<Card, 'no' | 'franchise' | 'domain'>)[] = [
     description: 'One drink of a potion and the talking donkey became a white stallion, mane in the wind — and he still would not stop talking.',
     voice: 'You definitely need some Tic Tacs or something.',
     audio: 'https://www.myinstants.com/media/sounds/you-definitely-need-some-tic-tacs-or-something.mp3',
+  },
+  // Overwatch: Genji as a second Omni beside Mercy (the set's own). A fan favourite from launch on (one of the most
+  // played heroes in every season, the hero of the "Dragons" short), and his Mythic and Omni slots were free (Tracer and
+  // Doomfist are the Mythics). His pictures are the game's own drawn sprays (Overwatch Wiki): "Kaze no Gotoku" (like the
+  // wind) and, awakened, "Green Dragon". His clip is the climax of the "Dragons" animated short (Blizzard): Hanzo's two
+  // blue dragons turned back on him by Genji's green one, heard with its own sound (CLIPS). His line is the one he shouts
+  // in that moment, "Ryūjin no ken wo kurae!" (the dragon god's blade), in his own voice from the game (Overwatch Wiki).
+  {
+    set: 'overwatch',
+    id: 'overwatch:omni-genji',
+    name: 'Genji',
+    rarity: 'omni',
+    title: 'Like the Wind',
+    image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/b/b5/Spray_Genji_Kaze_no_Gotoku.png/revision/latest?cb=20160906002716',
+    description: 'The younger Shimada heir, cut down by his own brother and rebuilt as a cyborg: a dash, a deflect, three shuriken, and he is already behind you.',
+    voice: 'Ryūjin no ken wo kurae!',
+    audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/01/Genji_-_%28Japanese%29_Take_the_blade_of_the_dragon_god.ogg/revision/latest?cb=20230913160556',
+    awaken: {
+      title: 'The Green Dragon',
+      image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/d/d4/Spray_Genji_Green_Dragon.png/revision/latest?cb=20170125022205',
+      line: 'Hanzo looses his two blue dragons; Genji draws his blade and a green one answers, coils around him and sends them back. Only a Shimada can command the dragons, and he is still one.',
+    },
   },
 ];
 
