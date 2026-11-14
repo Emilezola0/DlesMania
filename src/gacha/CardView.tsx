@@ -11,6 +11,8 @@ import { RANKS, type RankId } from './ranks';
 
 /** A Relic's runes, down each side of its frame (lit one after another). */
 const RUNES = 'ᚠᚢᚦᚨᚱᚲᚷᚹ';
+/** A Relic's seal: runes all round it. */
+const SEAL = [...'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗ'];
 /** An Apex's embers and a Relic's dust: where each starts (% across) and its delay (s). */
 const RISING = [8, 22, 37, 51, 64, 78, 91].map((x, i) => ({ x, delay: (i * 1.37) % 4 }));
 
@@ -522,6 +524,18 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </>
       )}
 
+      {/* A Relic's seal: a ring of runes turning slowly behind the card. */}
+      {fxOn('seal') && live && (
+        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>
+          <div className="card-rank-seal">
+            {SEAL.map((g, i) => (
+              <i key={i} style={{ ['--a' as string]: `${(i * 360) / SEAL.length}deg`, animationDelay: `${i * 0.35}s` }}>
+                {g}
+              </i>
+            ))}
+          </div>
+        </div>
+      )}
       {/* An Eclipse's corona, burning behind the card. */}
       {fxOn('corona') && live && (
         <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>

@@ -24,6 +24,7 @@ const Casino = lazy(() => import('./pages/Casino'));
 const Album = lazy(() => import('./pages/Album'));
 const Account = lazy(() => import('./pages/Account'));
 const Trades = lazy(() => import('./pages/Trades'));
+const Rarities = lazy(() => import('./pages/Rarities'));
 const Friends = lazy(() => import('./pages/Friends'));
 const WhoAmI = lazy(() => import('./pages/WhoAmI'));
 const CurveClash = lazy(() => import('./pages/CurveClash'));
@@ -91,6 +92,7 @@ export default function App() {
         <Route path="album" element={<Album />} />
         <Route path="account" element={<Account />} />
         <Route path="trades" element={<Trades />} />
+        <Route path="rarities" element={<Rarities />} />
         <Route path="voice-line" element={<Navigate to="/specialist/overwatch" replace />} />
         <Route path="who-am-i" element={<WhoAmI />} />
         <Route path="curve-clash" element={<CurveClash />} />

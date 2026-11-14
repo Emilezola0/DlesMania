@@ -27,13 +27,15 @@
       "#4a3b2e",
       "#7dd3fc"
     ],
-    "blurb": "A franchise's relic: a frame of carved stone and gold, runes lighting up one after another, dust drifting in the light.",
+    "blurb": "A franchise's relic: a frame of carved stone and gold with a light running round it, a seal of runes turning behind it, runes lighting up one after another, dust drifting in the light.",
     "how": "Complete a set and beat its boss on Hell: then pick one card of that set to become its Relic (one per set).",
     "speed": 8,
     "effects": {
       "frame": true,
       "runes": true,
       "dust": true,
+      "sheen": true,
+      "seal": true,
       "ribbon": true
     },
     "reward": 2500

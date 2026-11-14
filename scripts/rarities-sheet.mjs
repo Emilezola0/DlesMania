@@ -18,7 +18,7 @@ const write = (f, d) => writeFileSync(f, JSON.stringify(d, null, 2) + '\n');
 /** What each effect of a special rarity is (the Effects sheet's last column). */
 const EFFECTS = {
   apex: { frame: 'Its frame: crimson, gold and white turning round the card', embers: 'Embers rising through the card', sheen: 'A light sweeping over the card now and then', ribbon: 'The "▲ APEX" ribbon on top (in place of OMNI)' },
-  relic: { frame: 'Its frame: carved stone with a gold edge', runes: 'Runes down both sides, lighting up one after another', dust: 'Dust drifting up in the light', ribbon: 'The "⚱ RELIC" plaque on top' },
+  relic: { frame: 'Its frame: carved stone with a gold edge, a gold light running round it', runes: 'Runes down both sides, lighting up one after another', dust: 'Dust drifting up in the light', sheen: 'A golden light sweeping over the card now and then', seal: 'A seal of runes turning slowly behind the card', ribbon: 'The "⚱ RELIC" plaque on top' },
   eclipse: { frame: 'Its frame: dark, an arc of light running round it', corona: 'A corona of light burning behind the card', veil: 'The dark over the card, breathing in and out', ribbon: 'The "◐ ECLIPSE" ribbon on top' },
   bond: { frame: 'Its frame: pink and teal light chasing round the card', twin: 'Two lights circling each other over the picture', names: 'The friend’s name on the card ("∞ with …")', ribbon: 'The "∞ BOND" ribbon on top' },
 };

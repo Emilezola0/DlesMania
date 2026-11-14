@@ -1497,7 +1497,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     const { eclipseCard, addStarShards } = useProgress.getState();
     const shards = new Set<number>();
     // One already wearing a special rarity can't be eclipsed: a shard instead.
-    for (const p of pending.keys()) if (!(eclipsed.has(p) && eclipseCard(deck[p].id, false))) shards.add(p);
+    for (const p of pending.keys()) if (!(eclipsed.has(p) && eclipseCard(deck[p].id, deck[p].rarity, false))) shards.add(p);
     if (shards.size) addStarShards(shards.size);
     setShardAt(shards);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -309,7 +309,7 @@ function SpecialRanks({ card, onRank }: { card: Card; onRank: () => void }) {
 
   const go = (id: RankId) => {
     if (sure !== id) return void (sfx.select(), setSure(id));
-    const ok = id === 'apex' ? riseApex(card.id, card.rarity, signedIn) : id === 'relic' ? makeRelic(card.id, complete, signedIn) : eclipseCard(card.id, true);
+    const ok = id === 'apex' ? riseApex(card.id, card.rarity, signedIn) : id === 'relic' ? makeRelic(card.id, complete, signedIn) : eclipseCard(card.id, card.rarity, true);
     setSure(null);
     if (!ok) return void sfx.wrong();
     onRank();
@@ -685,12 +685,16 @@ export default function Album() {
           <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={`${RENEW_COST} spare copies of a rarity for a new card of it`}>
             ♻ Renew
           </button>
-          <span
-            className={`btn-paper cursor-help rounded-md px-4 py-2.5 font-display font-bold ${shards >= ECLIPSE_SHARDS ? 'ring-2 ring-[#a78bfa]' : ''}`}
+          <Link to="/rarities" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title="Every rarity, grade and special rarity, explained">
+            ⓘ Rarities
+          </Link>
+          <Link
+            to="/rarities?tab=special"
+            className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${shards >= ECLIPSE_SHARDS ? 'ring-2 ring-[#a78bfa]' : ''}`}
             title={`Star shards: one for each star a pack's black hole swallows. ${ECLIPSE_SHARDS} eclipse a Mythic or Omni: open one up close.`}
           >
             <span className="text-[#8b5cf6]">✧</span> {shards}/{ECLIPSE_SHARDS} star shards
-          </span>
+          </Link>
           <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
             ⇄ Trades
           </Link>

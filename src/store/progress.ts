@@ -4,7 +4,7 @@ import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, g
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
-import { APEX_COPIES, APEX_REWARD, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
+import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -198,8 +198,8 @@ interface ProgressState {
   riseApex: (id: string, rarity: Rarity, by?: string) => boolean;
   /** A card of a complete set, its boss beaten on Hell, made the set's Relic (one per set). False if it can't. */
   makeRelic: (id: string, setComplete: boolean, by?: string) => boolean;
-  /** A Mythic or Omni eclipsed: `shards` true pays ECLIPSE_SHARDS star shards (else the black hole's gift). */
-  eclipseCard: (id: string, shards: boolean) => boolean;
+  /** A Mythic or Omni eclipsed (never a lower rarity): `shards` true pays ECLIPSE_SHARDS star shards (else the black hole's gift). */
+  eclipseCard: (id: string, rarity: string, shards: boolean) => boolean;
   addStarShards: (n: number) => void;
   /** Cards from a Bond pack, linked to the friend it was opened with (src/cloud/bonds.ts), by card id. */
   bondCards?: Record<string, BondLink>;
@@ -947,9 +947,9 @@ export const useProgress = create<ProgressState>()(
         set({ cardRanks: { ...s.cardRanks, [id]: { kind: 'relic', date: todayKey(), by } }, ...earn(s, RELIC_REWARD) });
         return true;
       },
-      eclipseCard: (id, shards) => {
+      eclipseCard: (id, rarity, shards) => {
         const s = get();
-        if (s.cardRanks?.[id] || (shards && (s.starShards ?? 0) < ECLIPSE_SHARDS)) return false;
+        if (!(ECLIPSE_RARITIES as string[]).includes(rarity) || s.cardRanks?.[id] || (shards && (s.starShards ?? 0) < ECLIPSE_SHARDS)) return false;
         set({ cardRanks: { ...s.cardRanks, [id]: { kind: 'eclipse', date: todayKey() } }, ...(shards ? { starShards: (s.starShards ?? 0) - ECLIPSE_SHARDS } : {}) });
         return true;
       },
