@@ -70,6 +70,10 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
   window.setTimeout(() => scale.classList.remove('wa-flip'), 1500);
 }
 
+/** A dragon's wing, from its shoulder at (0, 0) out to the right: the membrane between the fingers, scalloped. */
+const WING = 'M0 8L40-50L70-95Q80-60 112-66Q106-36 132-18Q108-6 112 22Q80 12 60 30Q40 14 0 22Z';
+const WING_BONES = ['M0 8L40-50L70-95', 'M40-50L112-66', 'M40-50L132-18', 'M40-50L112 22', 'M40-50L60 30'];
+
 /**
  * How the dragon slithers: its body lies along a long, soft S and glides down it, its scales going by like a snake's.
  * It moves as a snake does: it stops, sets off again, slow or fast, for a moment or for long, easing from one pace
@@ -85,11 +89,14 @@ function useSlither(svg: React.RefObject<SVGGElement | null>) {
     const root = svg.current;
     if (!root) return;
     const rows = [...root.querySelectorAll<SVGGElement>('[data-y]')].map((el) => ({ el, y: Number(el.dataset.y) }));
+    // What stays at its height while the scales go by (the fire showing through, the wings): only swung with the S.
+    const fixed = [...root.querySelectorAll<SVGGElement>('[data-fy]')].map((el) => ({ el, y: Number(el.dataset.fy) }));
     let went = Math.random() * 2000; // how far it has gone (px): each pack's dragon somewhere else along its way
     const draw = () => {
       const s = went % DRAGON.loop;
       const phase = went * DRAGON.swayPerPx;
       for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y + s, phase).toFixed(1)} ${s.toFixed(1)})`);
+      for (const { el, y } of fixed) el.setAttribute('transform', `translate(${dragonX(y, phase).toFixed(1)} 0)`);
     };
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw();
     // Its pace: a new one every so often (a stop now and then), for a moment or for a while.
@@ -132,6 +139,17 @@ export function DragonWrap() {
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
   }, []);
+  // The fire inside it, showing between the scales now and then: a glow, a flame licking out, sparks, a wisp of smoke.
+  const fires = useMemo(() => {
+    const rnd = seeded(41);
+    return Array.from({ length: 11 }, (_, i) => ({
+      y: 20 + (i / 11) * 370 + rnd() * 24,
+      x: W / 2 + (rnd() - 0.5) * 150,
+      dur: 5 + rnd() * 8,
+      delay: -rnd() * 13,
+      sparks: Array.from({ length: 4 }, () => ({ dx: (rnd() - 0.5) * 26, dy: -(24 + rnd() * 40), d: rnd() * 0.5 })),
+    }));
+  }, []);
   return (
     <Svg onPointerOver={flipScale}>
       <defs>
@@ -158,6 +176,22 @@ export function DragonWrap() {
           <stop offset="0.7" stopColor="#000" stopOpacity="0.1" />
           <stop offset="1" stopColor="#000" stopOpacity="0.75" />
         </linearGradient>
+        <radialGradient id={`${id}fg`}>
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.95" />
+          <stop offset="0.4" stopColor="#f97316" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#b91c1c" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id={`${id}ff`} x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stopColor="#fff7ed" />
+          <stop offset="0.35" stopColor="#fde047" />
+          <stop offset="0.75" stopColor="#f97316" />
+          <stop offset="1" stopColor="#dc2626" />
+        </linearGradient>
+        <linearGradient id={`${id}m`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#7f1d1d" stopOpacity="0.95" />
+          <stop offset="0.6" stopColor="#450a0a" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#1c0303" stopOpacity="0.85" />
+        </linearGradient>
         <radialGradient id={`${id}h`} cx="0.5" cy="1" r="0.9">
           <stop offset="0" stopColor="#f97316" stopOpacity="0.9" />
           <stop offset="0.5" stopColor="#7c2d12" stopOpacity="0.5" />
@@ -171,6 +205,19 @@ export function DragonWrap() {
       </defs>
       {/* Each row sits on the S (useSlither): the body's round shading (dark flanks, a lit spine) goes with it, so the S shows. */}
       <g ref={body}>
+      {/* Its wings, now and then half spread from under its flanks as it moves, then folded away again. */}
+      {[0, 1].map((side) => (
+        <g key={`w${side}`} data-fy={150}>
+          <g transform={`translate(${side ? W / 2 + 92 : W / 2 - 92} 150) scale(${side ? 1 : -1} 1)`}>
+            <g className="wa-dragon-wing">
+              <path d={WING} fill={`url(#${id}m)`} stroke="#7f1d1d" strokeWidth={1} strokeLinejoin="round" />
+              {WING_BONES.map((d, i) => (
+                <path key={i} d={d} fill="none" stroke={`url(#${id}g)`} strokeWidth={i ? 2 : 3.2} strokeLinecap="round" />
+              ))}
+            </g>
+          </g>
+        </g>
+      ))}
       {rows.map(({ r, y, xs, half }) => (
         <g key={r} data-y={y}>
           {/* The body under the scales, its edge round. */}
@@ -198,6 +245,20 @@ export function DragonWrap() {
           </g>
         ),
       )}
+      {fires.map((f, i) => (
+        <g key={`f${i}`} data-fy={f.y}>
+          <g transform={`translate(${f.x.toFixed(1)} ${f.y.toFixed(1)})`} style={{ ['--fire-dur' as string]: `${f.dur.toFixed(1)}s`, ['--fire-delay' as string]: `${f.delay.toFixed(1)}s` }}>
+            <ellipse className="wa-fire-glow" rx={36} ry={22} fill={`url(#${id}fg)`} style={{ mixBlendMode: 'screen' }} />
+            <circle className="wa-fire-smoke" r={9} fill="#57534e" />
+            <g transform="scale(2.4)">
+              <path className="wa-fire-flame" d="M0 4C-6 2-6-6-2-10C-2-6 0-6 0-9C3-6 6-2 5 1C4 4 2 5 0 4Z" fill={`url(#${id}ff)`} />
+            </g>
+            {f.sparks.map((s, j) => (
+              <circle key={j} className="wa-fire-spark" r={1.2} fill="#fde68a" style={{ ['--sx' as string]: `${s.dx.toFixed(1)}px`, ['--sy' as string]: `${s.dy.toFixed(1)}px`, ['--sd' as string]: `${s.d.toFixed(2)}s` }} />
+            ))}
+          </g>
+        </g>
+      ))}
       </g>
     </Svg>
   );
