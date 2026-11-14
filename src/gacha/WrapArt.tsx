@@ -73,10 +73,10 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
-    // The dragon's body, winding down the pack over the pack's own colours: a little over half the pack wide, narrowing to the tail at the bottom.
+    // The dragon's body, winding down the pack over the pack's own colours: a little over half the pack wide, the same all the way down. Nothing else: no background, the pack is see-through around it (index.css).
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 22; r++) {
-      const half = r < 14 ? 84 : Math.max(12, 84 - (r - 13) * 9);
+      const half = 84;
       const xs: number[] = [];
       for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
       out.push({ r, y: -14 + r * 19, xs, half });
@@ -150,8 +150,6 @@ export function DragonWrap() {
           </g>
         ),
       )}
-      {/* The light rolling down the body, as it moves. */}
-      <rect className="wa-dragon-roll" x={0} y={-140} width={W} height={140} fill={`url(#${id}l)`} />
     </Svg>
   );
 }
