@@ -3686,3 +3686,158 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .rarity-flash { background: radial-gradient(circle, color-mix(in srgb, var(--rk3) 80%, transparent), color-mix(in srgb, var(--rk1) 45%, transparent) 40%, transparent 70%); mix-blend-mode: screen; animation: rarity-flash 0.9s ease-out both; }
 @keyframes rarity-flash { from { opacity: 1; transform: scale(0.6); } to { opacity: 0; transform: scale(1.3); } }
 @media (prefers-reduced-motion: reduce) { .rarity-entry, .rarity-entry-card, .rarity-swap, .rarity-rise, .rarity-flash { animation: none; } .rarity-flash { display: none; } }
+
+/* ---- Special rarities, their bigger effects (src/gacha/RankLayers.tsx). */
+/* Apex: a crown of flames round the card, a pillar of light rising behind it, shockwaves pulsing out. */
+.card-rank.card-rank-apex {
+  box-shadow: 0 0 0 1.5px var(--rk2), 0 0 18px var(--rk1), 0 0 52px color-mix(in srgb, var(--rk1) 55%, transparent) !important;
+}
+.card-rank-flames { position: absolute; inset: 0; }
+.card-rank-flames > i {
+  position: absolute;
+  width: 17cqw;
+  height: calc(34cqw * var(--h, 1));
+  translate: -50% -100%;
+  transform-origin: 50% 100%;
+  border-radius: 50% 50% 45% 45% / 75% 75% 25% 25%;
+  background: radial-gradient(ellipse 50% 62% at 50% 86%, #fff 0%, var(--rk2) 24%, var(--rk1) 55%, transparent 76%);
+  filter: blur(1.1cqw);
+  mix-blend-mode: screen;
+  animation: card-rank-flame 1.4s ease-in-out infinite;
+}
+@keyframes card-rank-flame {
+  0%, 100% { transform: scale(1, 1); opacity: 0.85; }
+  30% { transform: scale(0.82, 1.18) skewX(5deg); opacity: 1; }
+  62% { transform: scale(1.1, 0.88) skewX(-4deg); opacity: 0.7; }
+}
+.card-rank-pillar {
+  position: absolute;
+  left: 50%;
+  top: -75cqw;
+  width: 50cqw;
+  height: 150cqw;
+  translate: -50% 0;
+  background: linear-gradient(to top, transparent, color-mix(in srgb, var(--rk1) 60%, transparent) 40%, color-mix(in srgb, var(--rk2) 80%, transparent) 62%, rgba(255, 255, 255, 0.8) 78%, transparent);
+  -webkit-mask: linear-gradient(90deg, transparent, #000 38%, #000 62%, transparent);
+  mask: linear-gradient(90deg, transparent, #000 38%, #000 62%, transparent);
+  filter: blur(1.6cqw);
+  animation: card-rank-pillar 3s ease-in-out infinite;
+}
+@keyframes card-rank-pillar { 50% { opacity: 0.55; scale: 0.8 1; } }
+.card-rank-wave {
+  position: absolute;
+  inset: 0;
+  border-radius: 7%;
+  border: 1.1cqw solid var(--rk2);
+  box-shadow: 0 0 3cqw var(--rk1), inset 0 0 3cqw var(--rk1);
+  animation: card-rank-wave 2.8s ease-out infinite;
+}
+@keyframes card-rank-wave { from { scale: 1; opacity: 0.95; } to { scale: 1.3 1.22; opacity: 0; } }
+.card-rank-apex .card-rank-embers > i { width: 3cqw; box-shadow: 0 0 2.5cqw var(--rk1), 0 0 1cqw var(--rk2); }
+
+/* Eclipse: the card is the moon. A thin bright rim, a pearly corona with streamers turning behind it, Baily's beads
+   then the diamond ring flaring on its edge, and stars coming out in the dark. */
+.card-rank.card-rank-eclipse {
+  box-shadow: 0 0 0 1px var(--rk3), 0 0 5px #fff, 0 0 24px var(--rk3), 0 0 60px color-mix(in srgb, var(--rk1) 55%, transparent) !important;
+}
+.card-rank-corona {
+  background: radial-gradient(circle closest-side, transparent 52%, #fff 59%, var(--rk3) 63%, color-mix(in srgb, var(--rk1) 55%, transparent) 69%, color-mix(in srgb, var(--rk1) 20%, transparent) 80%, transparent 94%);
+  filter: blur(1.4cqw);
+}
+.card-rank-streamers {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 215cqw;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  -webkit-mask: radial-gradient(circle closest-side, transparent 30%, #000 38%, rgba(0, 0, 0, 0.45) 62%, transparent 100%);
+  mask: radial-gradient(circle closest-side, transparent 30%, #000 38%, rgba(0, 0, 0, 0.45) 62%, transparent 100%);
+  filter: blur(0.7cqw);
+  animation: card-rank-streamers 70s linear infinite;
+}
+.card-rank-streamers-b { width: 178cqw; opacity: 0.85; animation-duration: 100s; animation-direction: reverse; }
+@keyframes card-rank-streamers { to { rotate: 1turn; } }
+.card-rank-diamond { right: 16%; top: 0; width: 0; height: 0; }
+.card-rank-diamond > i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50cqw;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background:
+    linear-gradient(90deg, transparent 4%, rgba(255, 255, 255, 0.95) 50%, transparent 96%) center / 100% 0.55cqw no-repeat,
+    linear-gradient(transparent 16%, rgba(255, 255, 255, 0.85) 50%, transparent 84%) center / 0.45cqw 70% no-repeat,
+    radial-gradient(circle, #fff 0 3%, color-mix(in srgb, var(--rk3) 90%, transparent) 6%, color-mix(in srgb, var(--rk1) 45%, transparent) 14%, transparent 32%);
+  mix-blend-mode: screen;
+  animation: card-rank-diamond var(--rk-speed, 7s) ease-in-out infinite;
+}
+@keyframes card-rank-diamond {
+  0%, 28% { opacity: 0.3; scale: 0.3; rotate: 0deg; }
+  45% { opacity: 1; scale: 1.15; rotate: 14deg; }
+  60% { opacity: 0.9; scale: 0.85; }
+  82%, 100% { opacity: 0.3; scale: 0.3; rotate: 0deg; }
+}
+.card-rank-diamond > b {
+  position: absolute;
+  top: 0;
+  width: 1.5cqw;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 0 1.2cqw var(--rk3), 0 0 2.6cqw var(--rk1);
+  opacity: 0;
+  animation: card-rank-bead var(--rk-speed, 7s) ease-in-out infinite;
+}
+.card-rank-diamond > b:nth-child(1) { left: -11cqw; }
+.card-rank-diamond > b:nth-child(2) { left: -7.5cqw; animation-delay: 0.2s; }
+.card-rank-diamond > b:nth-child(3) { left: -4cqw; animation-delay: 0.4s; }
+@keyframes card-rank-bead { 0%, 8% { opacity: 0; } 16%, 32% { opacity: 1; } 40%, 100% { opacity: 0; } }
+.card-rank-stars > i {
+  position: absolute;
+  width: 3cqw;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: #fff8e7;
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  animation: card-rank-star 4s ease-in-out infinite;
+}
+@keyframes card-rank-star { 0%, 100% { opacity: 0.15; rotate: 0deg; } 50% { opacity: 1; rotate: 45deg; } }
+
+/* Bond: the two colours each on their side, an infinity of light behind with both friends' lights chasing round it,
+   and a thread across the card where the two lights meet, in a heart. */
+.card-rank.card-rank-bond {
+  box-shadow: 0 0 0 1.5px #fff, -8px 0 26px color-mix(in srgb, var(--rk1) 80%, transparent), 8px 0 26px color-mix(in srgb, var(--rk3) 80%, transparent) !important;
+}
+.card-rank-infinity {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 205cqw;
+  aspect-ratio: 2;
+  translate: -50% -50%;
+  overflow: visible;
+  filter: drop-shadow(0 0 1.4cqw var(--rk1)) drop-shadow(0 0 1.4cqw var(--rk3));
+}
+.card-rank-infinity-flow { animation: card-rank-flow 1.5s linear infinite; }
+@keyframes card-rank-flow { to { stroke-dashoffset: -24; } }
+.card-rank-infinity-light, .card-rank-thread-light { filter: drop-shadow(0 0 2px #fff); }
+.card-rank-thread { filter: drop-shadow(0 0 0.6cqw var(--rk1)) drop-shadow(0 0 0.6cqw var(--rk3)); }
+.card-rank-heart {
+  left: 50%;
+  top: 52.9%;
+  translate: -50% -50%;
+  font-size: 7cqw;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 1.5cqw var(--rk1), 0 0 3cqw var(--rk3);
+  animation: card-rank-heart 3s ease-in-out infinite;
+}
+@keyframes card-rank-heart { 0%, 55%, 100% { scale: 0.7; opacity: 0.55; } 62% { scale: 1.4; opacity: 1; } 75% { scale: 1; opacity: 0.9; } }
+@media (prefers-reduced-motion: reduce) {
+  .card-rank-flames > i, .card-rank-pillar, .card-rank-wave, .card-rank-streamers, .card-rank-diamond > i, .card-rank-diamond > b, .card-rank-stars > i, .card-rank-infinity-flow, .card-rank-heart { animation: none; }
+  .card-rank-wave { opacity: 0; }
+}

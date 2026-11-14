@@ -7,13 +7,16 @@
       "#ffd166",
       "#ffffff"
     ],
-    "blurb": "An Omni taken to its peak: a frame of crimson and gold turning round it, embers rising through it, light sweeping over it.",
+    "blurb": "An Omni taken to its peak: a crown of flames round it, a pillar of light rising behind it, shockwaves pulsing out, a frame of crimson and gold turning, embers rising through it.",
     "how": "10 copies of the same Omni card: the card and 9 spares.",
     "speed": 6,
     "effects": {
       "frame": true,
       "embers": true,
       "sheen": true,
+      "flames": true,
+      "pillar": true,
+      "shockwave": true,
       "ribbon": true
     },
     "copies": 10,
@@ -48,13 +51,15 @@
       "#07040d",
       "#fff3d6"
     ],
-    "blurb": "A card the black hole gave back eclipsed: dark, but for a corona of light burning round its edge.",
+    "blurb": "A card the black hole gave back eclipsed: the card is the moon. A pearly corona streams out behind it, beads of light then a diamond ring flare on its edge, and stars come out in the dark.",
     "how": "A Mythic or Omni swallowed by a pack's black hole may come back Eclipsed. Every other star it swallows leaves a star shard: 7 shards eclipse a Mythic or Omni of your choice.",
     "speed": 7,
     "effects": {
       "frame": true,
       "corona": true,
       "veil": true,
+      "diamond": true,
+      "stars": true,
       "ribbon": true
     },
     "chance": 0.15,
@@ -72,13 +77,15 @@
       "#1a1033",
       "#5eead4"
     ],
-    "blurb": "A card two friends got together: a frame of their two colours turning, two lights answering each other, and both names on it.",
+    "blurb": "A card two friends got together: an infinity of light behind it with both friends' lights chasing round it, a thread across it where the two meet in a heart, their two colours, and the friend's name on it.",
     "how": "Only in Bond packs, opened by two friends together (both must be there). Each day you both play the daily gives your Bond a point; 3 points open a pack. You both get the same 5 cards, and maybe the Bond card, linked to both of you.",
     "speed": 6,
     "effects": {
       "frame": true,
       "twin": true,
       "names": true,
+      "infinity": true,
+      "thread": true,
       "ribbon": true
     },
     "pointsPerDay": 1,

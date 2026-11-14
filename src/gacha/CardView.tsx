@@ -8,6 +8,7 @@ import { GradeEmblem } from './GradeEmblem';
 import { elementOf, gradeOf, type ElementId } from './grades';
 import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
 import { RANKS, type RankId } from './ranks';
+import { RankBehind, RankOver, RankRim } from './RankLayers';
 
 /** A Relic's runes, down each side of its frame (lit one after another). */
 const RUNES = 'ᚠᚢᚦᚨᚱᚲᚷᚹ';
@@ -440,6 +441,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           </p>
         )}
         {fxOn('veil') && <div className={`card-rank-veil ${live ? '' : 'card-rank-still'} pointer-events-none absolute inset-0 z-[4]`} aria-hidden />}
+        {/* An Eclipse's stars in the dark, a Bond's thread and heart. */}
+        {rank && live && <RankOver fx={fxOn} />}
         {fxOn('sheen') && live && <div className="card-rank-sheen pointer-events-none absolute inset-0 z-[6]" aria-hidden />}
         {(fxOn('embers') || fxOn('dust')) && live && (
           <div className={`pointer-events-none absolute inset-0 z-[6] ${fxOn('embers') ? 'card-rank-embers' : 'card-rank-dust'}`} aria-hidden>
@@ -536,12 +539,10 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           </div>
         </div>
       )}
-      {/* An Eclipse's corona, burning behind the card. */}
-      {fxOn('corona') && live && (
-        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>
-          <div className="card-rank-corona" />
-        </div>
-      )}
+      {/* Behind the card: an Eclipse's corona and streamers, an Apex's flames, pillar and shockwaves, a Bond's infinity. */}
+      {rank && live && ['corona', 'flames', 'pillar', 'shockwave', 'infinity'].some(fxOn) && <RankBehind fx={fxOn} lift={lift(-12)} />}
+      {/* On the rim: an Eclipse's diamond ring. */}
+      {rank && live && <RankRim fx={fxOn} lift={lift(30)} />}
       {rank && fxOn('ribbon') && (
         <span className="card-rank-ribbon absolute left-1/2 top-[-4.5cqw] z-[16] -translate-x-1/2 whitespace-nowrap rounded-full px-[4.5cqw] py-[1.2cqw] font-display text-[5.2cqw] font-black tracking-[0.3em] shadow-lg" style={lift(50)}>
           {rank.gem} {rank.name.toUpperCase()}
