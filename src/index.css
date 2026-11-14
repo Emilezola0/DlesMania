@@ -2760,100 +2760,107 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .storm-draw { stroke-dashoffset: 0; }
   .pack-storm-flash { opacity: 0; }
 }
-/* Dragon Scale: crimson scales edged in gold, a shimmer rippling over them. */
+/* Dragon Scale, Crystal, Phoenix, Black Hole, Gilded Deco: their base colours; the rest is drawn (src/gacha/WrapArt.tsx, .wa-*). */
 .pack-wrap-dragon { background: linear-gradient(160deg, #450a0a, #b91c1c 50%, #450a0a) !important; box-shadow: inset 0 0 0 3px rgba(251, 191, 36, 0.7); }
-.pack-wrap-dragon .pack-wrap-layer {
-  background: radial-gradient(circle at 50% 100%, transparent 0 46%, rgba(252, 211, 77, 0.8) 50% 55%, rgba(69, 10, 10, 0.35) 58%, transparent 64%) 0 0 / 16px 12px, radial-gradient(circle at 50% 100%, transparent 0 46%, rgba(252, 211, 77, 0.8) 50% 55%, rgba(69, 10, 10, 0.35) 58%, transparent 64%) 8px 6px / 16px 12px;
-}
-.pack-wrap-dragon .pack-wrap-layer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 35%, rgba(253, 224, 71, 0.55) 48%, rgba(255, 255, 255, 0.5) 50%, rgba(253, 224, 71, 0.55) 52%, transparent 65%) 0 0 / 300% 100%;
-  mix-blend-mode: overlay;
-  animation: pack-wrap-sweep 3.2s ease-in-out infinite;
-}
 @keyframes pack-wrap-sweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
-/* Crystal: cut glass in every colour, a rainbow turning under its facets, sparkles. */
 .pack-wrap-crystal { background: conic-gradient(from 30deg at 40% 45%, #a5f3fc, #f0abfc, #c4b5fd, #fef08a, #86efac, #a5f3fc) !important; }
-.pack-wrap-crystal .pack-wrap-layer {
-  background: linear-gradient(60deg, rgba(255, 255, 255, 0.4) 0 18%, transparent 18% 38%, rgba(255, 255, 255, 0.22) 38% 52%, transparent 52% 74%, rgba(255, 255, 255, 0.3) 74% 82%, transparent 82%), linear-gradient(-55deg, rgba(255, 255, 255, 0.25) 0 22%, transparent 22% 46%, rgba(30, 27, 75, 0.12) 46% 62%, transparent 62%);
-}
-.pack-wrap-crystal .pack-wrap-layer::before {
-  content: '';
-  position: absolute;
-  inset: -50%;
-  background: conic-gradient(#f472b6, #60a5fa, #34d399, #facc15, #f472b6);
-  mix-blend-mode: overlay;
-  opacity: 0.7;
-  animation: pack-wrap-spin 8s linear infinite;
-}
-.pack-wrap-crystal .pack-wrap-layer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 22% 20%, #fff 0 1.5px, transparent 3px), radial-gradient(circle at 78% 34%, #fff 0 2px, transparent 4px), radial-gradient(circle at 35% 76%, #fff 0 1.5px, transparent 3px), radial-gradient(circle at 70% 85%, #fff 0 1px, transparent 2.5px);
-  animation: pack-wrap-twinkle 1.6s ease-in-out infinite;
-}
 @keyframes pack-wrap-spin { to { transform: rotate(360deg); } }
-/* Phoenix: gold and fire, a bird of flame spreading its wings, embers rising, a heat haze breathing. */
-.pack-wrap-phoenix { background: linear-gradient(0deg, #7c2d12, #ea580c 35%, #f59e0b 68%, #fde68a) !important; }
-.pack-wrap-phoenix .pack-wrap-layer {
-  background-image: radial-gradient(circle, #fef08a 0 1px, transparent 2px), radial-gradient(circle, #fb923c 0 1.5px, transparent 2.5px), radial-gradient(circle, #fff7ed 0 0.8px, transparent 1.6px);
-  background-size: 23px 31px, 37px 43px, 17px 29px;
-  animation: pack-wrap-embers 4s linear infinite;
-}
-@keyframes pack-wrap-embers { from { background-position: 0 0, 10px 0, 4px 0; } to { background-position: 0 -62px, 10px -86px, 4px -58px; } }
-.pack-wrap-phoenix .pack-wrap-layer::before {
-  content: '';
-  position: absolute;
-  inset: 8% 6% 30%;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath d='M50 58 C40 38 22 30 2 14 C14 36 26 48 38 56 C25 56 12 60 4 70 C20 66 34 64 45 64 L50 88 L55 64 C66 64 80 66 96 70 C88 60 75 56 62 56 C74 48 86 36 98 14 C78 30 60 38 50 58Z' fill='%23fff7ed'/%3E%3C/svg%3E") center / contain no-repeat;
-  opacity: 0.4;
-  filter: drop-shadow(0 0 6px #fde047);
-  animation: pack-wrap-wings 2.8s ease-in-out infinite;
-}
-@keyframes pack-wrap-wings { 0%, 100% { transform: scale(1, 1); opacity: 0.35; } 50% { transform: scale(1.08, 0.94); opacity: 0.6; } }
-.pack-wrap-phoenix .pack-wrap-layer::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(255, 237, 213, 0.35), transparent 45%); animation: pack-wrap-glow 2.2s ease-in-out infinite; }
-/* Black Hole: a burning disc of light, seen at an angle, turning around a hole of pure black; stars far behind. */
+.pack-wrap-phoenix { background: radial-gradient(ellipse 90% 60% at 50% 38%, #7c2d12, #3b0d06 55%, #140403) !important; }
 .pack-wrap-blackhole { background: radial-gradient(circle at 50% 42%, #1e1b4b, #020617 60%) !important; }
-.pack-wrap-blackhole .pack-wrap-layer {
-  background-image: radial-gradient(circle at 12% 18%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 82% 12%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 88% 78%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 18% 86%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 60% 92%, #c7d2fe 0 1px, transparent 1.5px);
-}
-.pack-wrap-blackhole .pack-wrap-layer::before {
-  content: '';
-  position: absolute;
-  left: -25%;
-  right: -25%;
-  top: 14%;
-  aspect-ratio: 1;
-  background: conic-gradient(rgba(253, 224, 71, 0.95), rgba(249, 115, 22, 0.9), rgba(244, 63, 94, 0.5), transparent 35%, rgba(251, 146, 60, 0.85) 55%, rgba(254, 240, 138, 0.95) 70%, rgba(249, 115, 22, 0.7) 85%, rgba(253, 224, 71, 0.95));
-  -webkit-mask-image: radial-gradient(circle, transparent 0 21%, #000 24% 38%, transparent 50%);
-  mask-image: radial-gradient(circle, transparent 0 21%, #000 24% 38%, transparent 50%);
-  filter: blur(1px) drop-shadow(0 0 6px rgba(251, 146, 60, 0.9));
-  animation: pack-wrap-disc 3.5s linear infinite;
-}
-@keyframes pack-wrap-disc { from { transform: scaleY(0.38) rotate(0deg); } to { transform: scaleY(0.38) rotate(360deg); } }
-.pack-wrap-blackhole .pack-wrap-layer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 42%, #000 0 15%, rgba(254, 215, 170, 0.95) 16.5%, rgba(249, 115, 22, 0.5) 19%, transparent 25%);
-  animation: pack-wrap-glow 2.6s ease-in-out infinite;
-}
-/* Gilded Deco: black lacquer, gold Art Deco fans, a double gold frame and a gleam of gold sweeping across. */
 .pack-wrap-deco { background: linear-gradient(160deg, #18181b, #09090b 60%, #1c1917) !important; box-shadow: inset 0 0 0 3px #d4a017, inset 0 0 0 6px #09090b, inset 0 0 0 7px rgba(253, 230, 138, 0.8); }
-.pack-wrap-deco .pack-wrap-layer {
-  background: repeating-radial-gradient(circle at 50% 100%, rgba(212, 160, 23, 0.75) 0 1px, transparent 1.5px 5px) 0 0 / 26px 13px, repeating-radial-gradient(circle at 50% 100%, rgba(212, 160, 23, 0.75) 0 1px, transparent 1.5px 5px) 13px 6.5px / 26px 13px;
-  -webkit-mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.35) 55%, #000);
-  mask-image: linear-gradient(180deg, #000, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.35) 55%, #000);
+
+/* ---- The drawn wrappers (src/gacha/WrapArt.tsx): what moves in them. */
+.pack-wrap-eventhorizon { background: radial-gradient(circle at 50% 37%, #1e1b4b, #020014 65%) !important; }
+.pack-wrap-bigbang { background: radial-gradient(circle at 50% 37%, #1e1b2e, #000 70%) !important; }
+.pack-wrap-eventhorizon, .pack-wrap-bigbang { isolation: isolate; }
+.wa-drift { animation: wa-drift 16s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.wa-drift-b { animation-duration: 21s; }
+@keyframes wa-drift { from { transform: translate(-12px, 6px) scale(1); } to { transform: translate(14px, -8px) scale(1.15); } }
+.wa-twinkle { animation: wa-twinkle 2.6s ease-in-out infinite; }
+@keyframes wa-twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+.wa-pulse { animation: wa-pulse 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes wa-pulse { 0%, 100% { opacity: 0.75; transform: scale(0.97); } 50% { opacity: 1; transform: scale(1.03); } }
+.wa-spark { animation: wa-spark 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes wa-spark { 0%, 70%, 100% { opacity: 0; scale: 0.2; rotate: 0deg; } 82% { opacity: 1; scale: 1.2; rotate: 45deg; } }
+
+/* Dragon Scale: the rows sway one after the other (a body on the move), light rolls down them, the scale under the
+   pointer flips over, gold side up, and back. */
+.wa-scale { pointer-events: visiblePainted; transform-box: fill-box; transform-origin: 50% 40%; }
+.wa-scale-under { opacity: 0; }
+.wa-flip { animation: wa-flip 1.4s cubic-bezier(0.4, 0, 0.3, 1); }
+.wa-flip .wa-scale-under { animation: wa-flip-under 1.4s steps(1, end); }
+@keyframes wa-flip {
+  0% { transform: scale(1, 1); filter: none; }
+  22% { transform: scale(0.05, 1.18) translateY(-3px); filter: brightness(1.6); }
+  40% { transform: scale(1.12, 1.12) translateY(-3px); filter: drop-shadow(0 0 4px #fde047); }
+  70% { transform: scale(1.12, 1.12) translateY(-3px); filter: drop-shadow(0 0 4px #fde047); }
+  86% { transform: scale(0.05, 1.12); filter: brightness(1.4); }
+  100% { transform: scale(1, 1); filter: none; }
 }
-.pack-wrap-deco .pack-wrap-layer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 38%, rgba(253, 230, 138, 0.7) 49%, rgba(255, 255, 255, 0.8) 50%, rgba(253, 230, 138, 0.7) 51%, transparent 62%) 0 0 / 300% 100%;
-  animation: pack-wrap-sweep 3.6s ease-in-out infinite;
+@keyframes wa-flip-under { 0% { opacity: 0; } 22% { opacity: 1; } 86% { opacity: 0; } }
+.wa-dragon-row { animation: wa-slither 2.8s ease-in-out infinite alternate; }
+@keyframes wa-slither { from { transform: translateX(-5px); } to { transform: translateX(5px); } }
+.wa-dragon-roll { animation: wa-roll 3.6s ease-in-out infinite; mix-blend-mode: overlay; }
+@keyframes wa-roll { from { transform: translateY(0); } to { transform: translateY(540px); } }
+.wa-dragon-heat { animation: wa-heat 2.2s ease-in-out infinite alternate; }
+@keyframes wa-heat { from { opacity: 0.15; } to { opacity: 0.55; } }
+
+/* Black Hole and Event Horizon: the disc turning (inner rings faster), light streaming round the shadow, stars
+   falling in, the sky turning slowly, jets flickering, space rippling inward (Event Horizon). */
+.wa-bh-spin { transform-origin: 0 0; animation: wa-spin 9s linear infinite; }
+.wa-bh-spin-1 { animation-duration: 2.6s; }
+.wa-bh-spin-2 { animation-duration: 4.8s; }
+@keyframes wa-spin { to { transform: rotate(360deg); } }
+.wa-bh-flow { animation: wa-flow 3s linear infinite; }
+@keyframes wa-flow { to { stroke-dashoffset: -142; } }
+/* (the two dash patterns: 142 and 52 long.) */
+.wa-bh-flow-fast { animation: wa-flow-fast 1.1s linear infinite; }
+@keyframes wa-flow-fast { to { stroke-dashoffset: -52; } }
+.wa-bh-sky { transform-box: view-box; transform-origin: 150px 106px; animation: wa-spin 240s linear infinite; }
+.wa-bh-infall { animation: wa-infall 4s cubic-bezier(0.55, 0, 1, 0.6) infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes wa-infall {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  12% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(0.15, 0.15); opacity: 0; }
+}
+.wa-bh-jet { animation: wa-jet 1.8s ease-in-out infinite alternate; }
+@keyframes wa-jet { from { opacity: 0.35; } to { opacity: 0.85; } }
+.wa-bh-ripple { transform-box: fill-box; transform-origin: center; animation: wa-ripple 3.6s cubic-bezier(0.5, 0, 0.9, 0.6) infinite; }
+@keyframes wa-ripple { 0% { transform: scale(1); opacity: 0; } 20% { opacity: 0.55; } 100% { transform: scale(0.3); opacity: 0; } }
+
+/* Big Bang: the plasma turning round the point of light, rings rushing out, sparks streaming away, the point pulsing. */
+.wa-bb-orbit { transform-box: view-box; transform-origin: 150px 150px; animation: wa-spin 16s linear infinite; }
+.wa-bb-ring { transform-box: fill-box; transform-origin: center; animation: wa-bb-ring 4.2s cubic-bezier(0.1, 0.6, 0.4, 1) infinite; }
+@keyframes wa-bb-ring { 0% { transform: scale(0.4); opacity: 0.9; } 100% { transform: scale(12); opacity: 0; } }
+.wa-bb-spark { animation: wa-bb-spark 3s cubic-bezier(0.1, 0.7, 0.4, 1) infinite; }
+@keyframes wa-bb-spark { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+.wa-bb-core { transform-box: view-box; transform-origin: 150px 150px; animation: wa-bb-core 1.6s ease-in-out infinite; }
+@keyframes wa-bb-core { 0%, 100% { transform: scale(0.9); opacity: 0.85; } 50% { transform: scale(1.15); opacity: 1; } }
+
+/* Crystal: light running across the facets in a wave, rainbows sliding through, sparkles. */
+.wa-glint { opacity: 0; animation: wa-glint 3.4s ease-in-out infinite; }
+@keyframes wa-glint { 0%, 34%, 100% { opacity: 0; } 14% { opacity: 0.6; } }
+.wa-crystal-beams { animation: wa-beams 6s ease-in-out infinite alternate; }
+@keyframes wa-beams { from { transform: translateY(-40px); opacity: 0.25; } to { transform: translateY(60px); opacity: 0.7; } }
+
+/* Phoenix: wings beating (each from its shoulder), the tail and crest flickering, embers rising. */
+.wa-wing { transform-box: view-box; transform-origin: 156px 150px; animation: wa-wing 1.9s ease-in-out infinite; }
+@keyframes wa-wing { 0%, 100% { transform: rotate(-14deg) scale(1, 1); } 50% { transform: rotate(12deg) scale(1.04, 0.86); } }
+.wa-tail { transform-box: fill-box; transform-origin: 50% 0; animation: wa-tail 1.2s ease-in-out infinite alternate; }
+@keyframes wa-tail { from { transform: rotate(-4deg) scale(1, 0.96); opacity: 0.8; } to { transform: rotate(4deg) scale(1, 1.05); opacity: 1; } }
+.wa-ember { animation: wa-ember 4s linear infinite; }
+@keyframes wa-ember { 0% { transform: translate(0, 0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx), -420px); opacity: 0; } }
+
+/* Gilded Deco: light running up the fan's rays, a gleam of gold sweeping across. */
+.wa-deco-run { stroke-dasharray: 12 100; stroke-dashoffset: 12; animation: wa-deco-run 2.4s ease-in infinite; }
+@keyframes wa-deco-run { 0% { stroke-dashoffset: 12; opacity: 0; } 10% { opacity: 1; } 75% { opacity: 1; } 100% { stroke-dashoffset: -100; opacity: 0; } }
+.wa-deco-sweep { animation: wa-deco-sweep 4.2s ease-in-out infinite; }
+@keyframes wa-deco-sweep { 0% { transform: translateX(0); } 60%, 100% { transform: translateX(600px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  [class*='wa-'] { animation: none !important; }
+  .wa-glint, .wa-bh-infall, .wa-bb-spark, .wa-ember, .wa-deco-run, .wa-bh-ripple, .wa-bb-ring { opacity: 0; }
 }
 
 /* Titles from the Boutique (src/casino/cosmetics.ts titleStyle): their own colours; the Prestige ones, effects. */
@@ -3105,6 +3112,84 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot, 0deg)) scale(0.3); }
 }
 
+/* Event Horizon: a hole opens over the pack; the pack is stretched, twisted and sucked in; stars streak into it; it closes. */
+.pack-open-singularity { transform-origin: 50% 50%; animation: pack-suck 1.15s cubic-bezier(0.6, 0, 0.9, 0.5) forwards; }
+@keyframes pack-suck {
+  0% { transform: none; filter: none; opacity: 1; }
+  25% { transform: scale(0.94, 1.06) rotate(6deg); filter: brightness(1.2) hue-rotate(-20deg); }
+  55% { transform: scale(0.5, 1.45) rotate(120deg) skewX(18deg); filter: brightness(1.6) hue-rotate(-50deg) blur(0.5px); }
+  85% { transform: scale(0.08, 1.1) rotate(420deg) skewX(40deg); filter: brightness(2.4) blur(1px); opacity: 0.9; }
+  100% { transform: scale(0, 0.2) rotate(560deg); opacity: 0; }
+}
+.pack-fx-hole {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #000 0 40%, #000 44%, #f0f9ff 46.5%, #a5f3fc 49%, rgba(139, 92, 246, 0.85) 54%, rgba(46, 16, 101, 0.4) 62%, transparent 72%);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.7), 0 0 90px rgba(34, 211, 238, 0.35);
+  transform: translate(-50%, -50%) scale(0);
+  animation: pack-hole 1.25s cubic-bezier(0.3, 0.7, 0.4, 1) forwards;
+}
+@keyframes pack-hole {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+  25% { transform: translate(-50%, -50%) scale(1) rotate(60deg); }
+  75% { transform: translate(-50%, -50%) scale(1.08) rotate(220deg); opacity: 1; filter: brightness(1.2); }
+  90% { transform: translate(-50%, -50%) scale(0.15) rotate(300deg); filter: brightness(3); }
+  100% { transform: translate(-50%, -50%) scale(0) rotate(320deg); opacity: 0; }
+}
+.pack-fx-streak {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26px;
+  height: 2px;
+  border-radius: 9999px;
+  opacity: 0;
+  transform-origin: 0 50%;
+  animation: pack-streak var(--t, 0.6s) cubic-bezier(0.6, 0, 1, 0.6) var(--d, 0s) forwards;
+}
+@keyframes pack-streak {
+  0% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)) scaleX(0.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(0, 0) rotate(var(--rot)) scaleX(2.4); }
+}
+/* Big Bang: the pack falls into a point, glowing whiter; a flash fills everything; a ring of light rushes out; then nothing. */
+.pack-open-bigbang { transform-origin: 50% 50%; animation: pack-bang 1.7s ease-in forwards; }
+@keyframes pack-bang {
+  0% { transform: none; filter: none; opacity: 1; }
+  30% { transform: scale(0.55) rotate(-8deg); filter: brightness(1.8) saturate(0.6); }
+  37% { transform: scale(0.02); filter: brightness(6); opacity: 1; }
+  38%, 100% { transform: scale(0); opacity: 0; }
+}
+.pack-fx-bang-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, #fff 0 30%, #fff7d6 55%, #fde68a 80%, #f0abfc);
+  opacity: 0;
+  animation: pack-bang-flash 1.7s ease-out forwards;
+}
+.pack-fx-bang-flash-near { position: absolute; inset: -60%; z-index: 5; border-radius: 9999px; background: radial-gradient(circle, #fff 0 25%, rgba(255, 247, 214, 0.9) 45%, transparent 70%); }
+@keyframes pack-bang-flash { 0%, 36% { opacity: 0; } 39% { opacity: 1; } 55% { opacity: 1; } 100% { opacity: 0; } }
+.pack-fx-bang-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 24px #fde68a, inset 0 0 24px #f0abfc;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  animation: pack-bang-ring 1.1s cubic-bezier(0.1, 0.7, 0.3, 1) 0.64s forwards;
+}
+@keyframes pack-bang-ring { 0% { opacity: 1; transform: translate(-50%, -50%) scale(0); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(7); } }
+
 /* ---- The Boutique's Ascended row: its pieces in a turning iridescent frame. */
 .boutique-ascended {
   border: 1.5px solid transparent !important;
@@ -3152,8 +3237,8 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @media (prefers-reduced-motion: reduce) {
   .name-style-ascendant, .title-style-eternal, .name-style-ascendant::before, .name-style-ascendant::after, .title-style-eternal::before, .title-style-eternal::after,
   .boutique-ascended, .boutique-ascended-badge, .boutique-ascended-title { animation: none; }
-  .pack-open-portal, .pack-open-inferno, .pack-open-peel { animation-duration: 0.01s; }
-  .pack-fx-portal, .pack-fx-burn, .pack-fx-prism, .pack-fx-bit { display: none; }
+  .pack-open-portal, .pack-open-inferno, .pack-open-peel, .pack-open-singularity, .pack-open-bigbang { animation-duration: 0.01s; }
+  .pack-fx-portal, .pack-fx-burn, .pack-fx-prism, .pack-fx-bit, .pack-fx-hole, .pack-fx-streak, .pack-fx-bang-flash, .pack-fx-bang-ring { display: none; }
 }
 
 /* Inverted: the picture as a photo negative. */

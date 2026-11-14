@@ -28,7 +28,7 @@ export interface Cosmetic {
    */
   evolve?: number[];
   /** A wrapper that opens its own way (src/gacha/PackOpening.tsx): the pack's last moment, torn. */
-  opening?: 'holofoil' | 'inferno' | 'portal';
+  opening?: 'holofoil' | 'inferno' | 'portal' | 'singularity' | 'bigbang';
 }
 
 /** What a lock looks at (worked out by the Boutique). */
@@ -125,6 +125,28 @@ export const WRAPPERS: Cosmetic[] = [
     opening: 'portal',
     lock: { text: 'Own the Black Hole wrapper and an Omni card', need: (f) => [ownedOf(f, ['wrap:blackhole']) + (f.omni ? 1 : 0), 2] },
     blurb: 'A vortex turning inside the pack. Torn, the pack is spun into it and swallowed, and a ring of light bursts open where it was.',
+  },
+  {
+    id: 'wrap:eventhorizon',
+    name: 'Event Horizon',
+    price: 0,
+    tokens: 55000,
+    className: 'pack-wrap-eventhorizon',
+    ascended: true,
+    opening: 'singularity',
+    lock: { text: 'Own the Black Hole and Portal wrappers', need: (f) => [ownedOf(f, ['wrap:blackhole', 'wrap:portal']), 2] },
+    blurb: 'A black hole in violet and cyan, space rippling into it, stars streaking in. Torn, the pack is stretched, twisted and sucked in, and the hole closes on it.',
+  },
+  {
+    id: 'wrap:bigbang',
+    name: 'Big Bang',
+    price: 0,
+    tokens: 80000,
+    className: 'pack-wrap-bigbang',
+    ascended: true,
+    opening: 'bigbang',
+    lock: { text: 'Own every other Ascended wrapper', need: (f) => [ownedOf(f, ['wrap:holofoil', 'wrap:inferno', 'wrap:portal', 'wrap:eventhorizon']), 4] },
+    blurb: 'A point of light holding a whole universe, its plasma turning, rings rushing out. Torn, it all falls into the point, then a blinding flash, and nothing is left.',
   },
 ];
 

@@ -163,7 +163,7 @@ function OpeningPreview({ c, sample }: { c: Cosmetic; sample: Pack }) {
   const playing = run > 0;
   useEffect(() => {
     if (!run) return;
-    const t = window.setTimeout(() => setRun(0), 1900);
+    const t = window.setTimeout(() => setRun(0), c.opening === 'bigbang' ? 2600 : 1900);
     return () => window.clearTimeout(t);
   }, [run]);
   const o = c.opening!;
@@ -176,7 +176,7 @@ function OpeningPreview({ c, sample }: { c: Cosmetic; sample: Pack }) {
           </div>
           {playing && <OpeningInside kind={o} />}
         </div>
-        {playing && <OpeningAround key={`fx${run}`} kind={o} />}
+        {playing && <OpeningAround key={`fx${run}`} kind={o} contained />}
       </div>
       <button
         type="button"

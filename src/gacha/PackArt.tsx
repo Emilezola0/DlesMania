@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { useProgress } from '../store/progress';
 import { SETS } from './cards';
 import type { Pack } from './packs';
 import { StormWrap } from './StormWrap';
+import { DRAWN, WrapArt } from './WrapArt';
 
 /**
  * A pack's wrapper: its colours, a torn top edge, a shine — and for a franchise pack, its guardian. A golden
@@ -16,6 +17,10 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
   const wrap = golden ? undefined : COSMETIC_BY_ID.get(wrapper ?? mine ?? '');
   const box = useRef<HTMLDivElement>(null);
   useHoloTilt(box, wrap?.opening === 'holofoil');
+  // A drawn wrapper (the Thunderstorm, src/gacha/WrapArt.tsx) only while the pack is on screen: a page full of packs
+  // (the Shop) doesn't keep dozens of them moving out of sight.
+  const drawn = !!wrap && (wrap.id === 'wrap:storm' || DRAWN.has(wrap.id));
+  const seen = useOnScreen(box, drawn);
   return (
     <div
       ref={box}
@@ -24,7 +29,8 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
     >
       {wrap && <div className="pack-wrap-layer pointer-events-none absolute inset-0" aria-hidden />}
       {set?.guardian.image ? <img src={set.guardian.image} alt="" draggable={false} className="absolute inset-0 size-full object-cover opacity-40 mix-blend-luminosity" /> : null}
-      {wrap?.id === 'wrap:storm' && <StormWrap />}
+      {seen && wrap?.id === 'wrap:storm' && <StormWrap />}
+      {seen && wrap && <WrapArt id={wrap.id} />}
       <div className="relative text-center">
         <p className="text-[26cqw] leading-none drop-shadow">{pack.icon}</p>
         <p className="mt-[4cqw] px-[6cqw] font-display text-[10cqw] font-bold leading-tight drop-shadow">{pack.name.replace(' pack', '')}</p>
@@ -72,4 +78,18 @@ function useHoloTilt(box: React.RefObject<HTMLDivElement | null>, on: boolean) {
       el.style.transform = '';
     };
   }, [box, on]);
+}
+
+/** Whether the element is on screen (or near it), once the observer has looked; always true where IntersectionObserver is missing, and when not `on`. */
+function useOnScreen(box: React.RefObject<HTMLElement | null>, on: boolean) {
+  const [seen, setSeen] = useState(!on);
+  useEffect(() => {
+    const el = box.current;
+    if (!on || !el) return;
+    if (typeof IntersectionObserver === 'undefined') return setSeen(true);
+    const io = new IntersectionObserver(([e]) => setSeen(e.isIntersecting), { rootMargin: '150px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [box, on]);
+  return seen;
 }

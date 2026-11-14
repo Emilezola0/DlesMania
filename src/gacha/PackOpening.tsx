@@ -7,7 +7,7 @@ import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
-import { flapClass, OpeningAround, OpeningInside, openingOf, wholeClass } from './WrapOpening';
+import { flapClass, OpeningAround, OpeningInside, openingOf, OPENING_MS, wholeClass } from './WrapOpening';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
 import { clampGolden, clampPity, COSMIC, GOLDEN, goldenNext, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
@@ -1654,10 +1654,13 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
       setFlash({ color: glow, key: Date.now(), rainbow: special === 'mythic' });
     }
     setPhase('torn');
+    // An Ascended wrapper's own sound: the pack sucked in, or falling into a point and bursting.
+    if (opening === 'singularity') (sfx.blackHole(), later(() => sfx.swallow(), 500));
+    if (opening === 'bigbang') (sfx.collapse(0.6), later(() => (sfx.bigBang(), jolt(18, 700)), 620));
     later(() => {
       if (reducedMotion()) return toReveal();
       fly(0);
-    }, 950);
+    }, (opening && OPENING_MS[opening]) ?? 950);
   };
   /**
    * The shooting stars, from `from` ms into their show: 0 is all of it; a skip to a rare scene (a cosmic event)
@@ -2197,7 +2200,7 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               <Painted className="pack-halo pointer-events-none absolute left-1/2 top-1/2 -z-10" style={{ opacity: phase === 'torn' ? 1 : 0.3 + tear * 0.7 }} size={256} paint={paintHalo(HALO_COLORS[special])} />
             )}
             {/* The light inside, pouring out of the tear. */}
-            {phase === 'torn' && (
+            {phase === 'torn' && opening !== 'singularity' && opening !== 'bigbang' && (
               <Painted
                 className="pack-beam pointer-events-none absolute left-1/2 w-[260%]"
                 style={{ bottom: `${100 - TEAR_AT}%`, height: '70vh' }}
