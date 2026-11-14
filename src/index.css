@@ -2877,37 +2877,27 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   100% { transform: scale(1, 1); filter: none; }
 }
 @keyframes wa-flip-under { 0% { opacity: 0; } 22% { opacity: 1; } 86% { opacity: 0; } }
-/* The dragon's fire, showing between its scales now and then (each spot at its own pace): a glow, a flame licking
-   out, sparks flying, a wisp of smoke. Its wings, half spread from under its flanks now and then, then folded. */
-.wa-fire-glow, .wa-fire-flame, .wa-fire-smoke, .wa-fire-spark { animation-duration: var(--fire-dur); animation-delay: var(--fire-delay); animation-iteration-count: infinite; opacity: 0; }
-.wa-fire-glow { animation-name: wa-fire-glow; animation-timing-function: ease-in-out; }
-@keyframes wa-fire-glow { 0%, 60%, 100% { opacity: 0; } 67% { opacity: 0.95; } 73% { opacity: 0.5; } 80% { opacity: 0.85; } 90% { opacity: 0; } }
-.wa-fire-flame { transform-box: fill-box; transform-origin: 50% 100%; animation-name: wa-fire-flame; animation-timing-function: ease-out; }
-@keyframes wa-fire-flame {
-  0%, 62% { opacity: 0; transform: scale(0.2, 0); }
-  67% { opacity: 1; transform: scale(1, 1.3); }
-  71% { transform: scale(0.8, 0.9) skewX(-8deg); }
-  76% { opacity: 1; transform: scale(1.1, 1.2) skewX(6deg); }
-  84% { opacity: 0.8; transform: scale(0.7, 0.8); }
-  88%, 100% { opacity: 0; transform: scale(0.2, 0); }
+/* The dragon's fire (src/gacha/WrapArt.tsx), here and there now and then, each at its own pace: flames licking out
+   from under a scale, flickering, their light through the scales around (red, as through a hand on a lamp),
+   sparks flying out. */
+.wa-fire-lick, .wa-fire-light, .wa-fire-spark { animation-duration: var(--fire-dur); animation-delay: var(--fire-delay); animation-iteration-count: infinite; opacity: 0; }
+.wa-fire-lick { transform-box: fill-box; transform-origin: 50% 45%; animation-name: wa-fire-lick; animation-timing-function: ease-in-out; }
+@keyframes wa-fire-lick {
+  0%, 52%, 100% { opacity: 0; transform: scale(0.5, 0.4); }
+  58% { opacity: 1; transform: scale(1.05, 1.1); }
+  62% { transform: scale(0.88, 0.95) skewX(-6deg); }
+  67% { transform: scale(1.12, 1.18) skewX(5deg); }
+  72% { transform: scale(0.9, 1) skewX(-3deg); }
+  78% { opacity: 1; transform: scale(1.05, 1.12); }
+  86% { opacity: 0.6; transform: scale(0.75, 0.7); }
+  92% { opacity: 0; transform: scale(0.5, 0.4); }
 }
+.wa-fire-light { animation-name: wa-fire-light; animation-timing-function: ease-in-out; }
+@keyframes wa-fire-light { 0%, 50%, 100% { opacity: 0; } 58% { opacity: 0.9; } 63% { opacity: 0.65; } 68% { opacity: 1; } 74% { opacity: 0.7; } 80% { opacity: 0.9; } 94% { opacity: 0; } }
 .wa-fire-spark { animation-name: wa-fire-spark; animation-timing-function: ease-out; animation-delay: calc(var(--fire-delay) + var(--sd)); }
-@keyframes wa-fire-spark { 0%, 66% { opacity: 0; transform: translate(0, 0); } 69% { opacity: 1; } 86% { opacity: 0.8; } 92%, 100% { opacity: 0; transform: translate(var(--sx), var(--sy)); } }
-.wa-fire-smoke { filter: blur(3px); transform-box: fill-box; transform-origin: center; animation-name: wa-fire-smoke; animation-timing-function: ease-out; }
-@keyframes wa-fire-smoke { 0%, 72% { opacity: 0; transform: translate(0, 0) scale(0.5); } 78% { opacity: 0.55; } 100% { opacity: 0; transform: translate(5px, -46px) scale(2.6); } }
-.wa-dragon-wing { animation: wa-dragon-wing 13s ease-in-out infinite; }
-@keyframes wa-dragon-wing {
-  0%, 48%, 100% { transform: rotate(70deg) scale(0.15); opacity: 0; }
-  52% { opacity: 1; }
-  60% { transform: rotate(-6deg) scale(0.95); }
-  66% { transform: rotate(8deg) scale(0.85, 0.75); }
-  72% { transform: rotate(-10deg) scale(1); }
-  78% { transform: rotate(6deg) scale(0.9, 0.8); }
-  86% { transform: rotate(40deg) scale(0.45); opacity: 1; }
-  92% { transform: rotate(70deg) scale(0.15); opacity: 0; }
-}
+@keyframes wa-fire-spark { 0%, 60% { opacity: 0; transform: translate(0, 0); } 63% { opacity: 1; } 80% { opacity: 0.8; } 86%, 100% { opacity: 0; transform: translate(var(--sx), var(--sy)); } }
 @media (prefers-reduced-motion: reduce) {
-  .wa-fire-glow, .wa-fire-flame, .wa-fire-smoke, .wa-fire-spark, .wa-dragon-wing { animation: none; }
+  .wa-fire-lick, .wa-fire-light, .wa-fire-spark { animation: none; }
 }
 .wa-dragon-row { animation: wa-slither 2.6s ease-in-out infinite alternate; }
 @keyframes wa-slither { from { transform: translateX(-52px); } to { transform: translateX(52px); } }
