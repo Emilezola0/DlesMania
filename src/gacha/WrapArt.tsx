@@ -100,28 +100,6 @@ const WING_PANELS = [...WING_TIPS, [0, 30] as [number, number]].slice(0, -1).map
     edge: `M${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}`,
   };
 });
-/**
- * A tongue of flame, from its base at (0, 0) up to its tip (0, -len) bent by `bend`, drawn like a scale: its lit
- * face, its face in shade (split along its middle), and its rim.
- */
-function tongue(len: number, w: number, bend: number) {
-  const f = (n: number) => n.toFixed(1);
-  const mid = `Q${f(bend * 0.5)} ${f(-len * 0.5)} 0 0`;
-  return {
-    lit: `M${f(-w)} 0Q${f(-w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}${mid}Z`,
-    shade: `M${f(w)} 0Q${f(w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}${mid}Z`,
-    rim: `M${f(-w)} 0Q${f(-w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}Q${f(w * 1.15)} ${f(-len * 0.55)} ${f(w)} 0`,
-  };
-}
-/** The tongues licking out from under a scale (its point at (0, 33)): below its point, and out from its sides. */
-const FIRE_TONGUES = [
-  { x: 0, y: 26, a: 180, len: 34, w: 8, bend: 4 },
-  { x: -7, y: 24, a: 148, len: 27, w: 7, bend: -4 },
-  { x: 7, y: 24, a: 212, len: 27, w: 7, bend: 4 },
-  { x: -11, y: 14, a: 116, len: 20, w: 5.5, bend: -3 },
-  { x: 11, y: 14, a: 244, len: 20, w: 5.5, bend: 3 },
-];
-
 /** The wing's root, joining the body: from the shoulder to the elbow and back along the last finger. */
 const WING_ROOT = 'M0 10L52-62L80 38Q40 22 0 30Z';
 const WING_ARM = Array.from({ length: 9 }, (_, i) => {
@@ -219,8 +197,8 @@ export function DragonWrap() {
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
   }, []);
-  // The fire inside it, now and then, here and there: flames licking out from under a scale (the scale itself hides
-  // their heart), and their light through the scales around, red, as through a hand held up to a lamp. Each fire
+  // The fire inside it, now and then, here and there: no flames drawn (the owner's call), only its light through the
+  // scales, red, as through a hand held up to a lamp, and a few sparks. Each fire
   // travels with its scale, all the way down.
   const fires = useMemo(() => {
     const rnd = seeded(41);
@@ -338,7 +316,7 @@ export function DragonWrap() {
           </g>
         ))}
       </g>
-      {/* The rows of scales (the fires slip in under the scale they peek out from, useSlither). */}
+      {/* The rows of scales. */}
       <g ref={scaleLayer}>
       {rows.map(({ r, y, xs, half }) => (
         <g key={r} data-y={y}>
@@ -357,25 +335,6 @@ export function DragonWrap() {
             </g>
           ))}
           <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
-        </g>
-      ))}
-      {fires.map((f, i) => (
-        <g key={`f${i}`} data-fire={f.y} data-off={f.off} data-under="1">
-          <g transform={`translate(${f.x} 0)`} style={fireStyle(f)}>
-            {/* Its heart sits under the scale (at 0..33, point down): only the tongues around it show. */}
-            <g className="wa-fire-lick">
-              {FIRE_TONGUES.map((t, k) => (
-                <g key={k} transform={`translate(${t.x} ${t.y}) rotate(${t.a})`}>
-                  {/* Drawn like the scales: two faces along its middle (lit, in shade), a gold rim, a hotter heart. */}
-                  <path d={tongue(t.len, t.w, t.bend).lit} fill="#fbbf24" />
-                  <path d={tongue(t.len, t.w, t.bend).shade} fill="#ea580c" />
-                  <path d={tongue(t.len * 0.55, t.w * 0.45, t.bend * 0.5).lit} fill="#fef9c3" />
-                  <path d={tongue(t.len * 0.55, t.w * 0.45, t.bend * 0.5).shade} fill="#fde047" />
-                  <path d={tongue(t.len, t.w, t.bend).rim} fill="none" stroke={`url(#${id}g)`} strokeWidth={0.9} strokeLinejoin="round" />
-                </g>
-              ))}
-            </g>
-          </g>
         </g>
       ))}
       </g>
