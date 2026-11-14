@@ -73,13 +73,12 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
-    // The dragon's body, up close, winding down the pack: wider than the pack, so its scales fill it to the edges
-    // even as it swings (±52); its spine and its round shading show the S.
+    // The dragon's body, winding down the pack over the pack's own colours: a little over half the pack wide, narrowing to the tail at the bottom.
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 22; r++) {
-      const half = 200;
+      const half = r < 14 ? 84 : Math.max(12, 84 - (r - 13) * 9);
       const xs: number[] = [];
-      for (let x = W / 2 - 224 + (r % 2 ? 14 : 0); x <= W / 2 + 224; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
+      for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
       out.push({ r, y: -14 + r * 19, xs, half });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
@@ -122,9 +121,6 @@ export function DragonWrap() {
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {/* A lair: dark, a fire glowing somewhere below. */}
-      <rect width={W} height={H} fill="#0c0101" />
-      <rect className="wa-dragon-heat" width={W} height={H} fill={`url(#${id}h)`} />
       {/* Each row swings with the one above it a beat later: the whole body bends in an S that runs down it, like a
           snake slithering. The body's round shading (dark flanks, a lit spine) swings with each row, so the S shows. */}
       {rows.map(({ r, y, xs, half }) => (
@@ -143,9 +139,7 @@ export function DragonWrap() {
               </g>
             </g>
           ))}
-          <rect x={W / 2 - 150} y={y - 2} width={300} height={21} fill={`url(#${id}b)`} />
-          <rect x={W / 2 - 260} y={y - 2} width={112} height={21} fill="#000" opacity={0.75} />
-          <rect x={W / 2 + 148} y={y - 2} width={112} height={21} fill="#000" opacity={0.75} />
+          <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
         </g>
       ))}
       {/* The spines down its back, gold, swinging with the body. */}

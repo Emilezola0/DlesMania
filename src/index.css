@@ -2841,7 +2841,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .pack-storm-flash { opacity: 0; }
 }
 /* Dragon Scale, Crystal, Phoenix, Black Hole, Gilded Deco: their base colours; the rest is drawn (src/gacha/WrapArt.tsx, .wa-*). */
-.pack-wrap-dragon { background: linear-gradient(160deg, #450a0a, #b91c1c 50%, #450a0a) !important; box-shadow: inset 0 0 0 3px rgba(251, 191, 36, 0.7); }
+.pack-wrap-dragon { box-shadow: inset 0 0 0 3px rgba(251, 191, 36, 0.7); }
 @keyframes pack-wrap-sweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
 .pack-wrap-crystal { background: conic-gradient(from 30deg at 40% 45%, #a5f3fc, #f0abfc, #c4b5fd, #fef08a, #86efac, #a5f3fc) !important; }
 @keyframes pack-wrap-spin { to { transform: rotate(360deg); } }
