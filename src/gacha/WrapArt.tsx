@@ -7,7 +7,8 @@ import { useEffect, useId, useMemo, useRef, type PointerEvent } from 'react';
  * Ascended cousin, violet and cyan, space rippling into it), Big Bang (a point of light about to become everything),
  * Crystal (cut facets, light running across them), Phoenix (a bird of flame beating its wings, embers rising) and
  * Gilded Deco (gold Art Deco fans, light running up the rays). Their animations are in src/index.css (.wa-*);
- * still under reduced motion. The Thunderstorm has its own (src/gacha/StormWrap.tsx).
+ * still under reduced motion. Dragon Scale alone is a canvas, its animation drawn there (a dozen of them as SVGs made
+ * the Boutique lag). The Thunderstorm has its own (src/gacha/StormWrap.tsx).
  */
 const W = 300;
 const H = 400;
@@ -66,16 +67,121 @@ const DRAGON_LOOP = 38;
 const ROW_Y0 = -52;
 const ROW_STEP = 19;
 
-/** Flips the scale under the pointer (gold side up), then back: a trail of flipping scales where the pointer goes. */
-function flipScale(e: PointerEvent<SVGSVGElement>) {
-  const scale = (e.target as Element).closest?.('.wa-scale');
-  if (!scale || scale.classList.contains('wa-flip')) return;
-  scale.classList.add('wa-flip');
-  window.setTimeout(() => scale.classList.remove('wa-flip'), 1500);
+/** The dragon's body: a little over half the pack wide, the same all the way down. */
+const BODY_HALF = 98;
+/** Where the scales of a row hang (even rows, odd rows set half a scale over). */
+const rowXs = (odd: number) => {
+  const xs: number[] = [];
+  for (let x = W / 2 - 168 + (odd ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= BODY_HALF - 4) xs.push(x);
+  return xs;
+};
+const ROW_XS = [rowXs(0), rowXs(1)];
+const ROWS = 25;
+/** A row's picture, around its scales' top (0): from 6 above to 40 below (their shadow on the row under). */
+const ROW_TOP = -6;
+const ROW_H = 46;
+/** One scale as SVG markup: the plate, its lit and shaded faces, its keel. */
+const scaleMarkup = `<path d="${SCALE}" fill="url(#dr)" stroke="url(#dg)" stroke-width="1.1"/>` +
+  `<path d="${SCALE_LIT}" fill="#fff" opacity="0.13"/><path d="${SCALE_SHADE}" opacity="0.28"/>` +
+  `<path d="M0 2L0 30" stroke="#fecaca" stroke-opacity="0.55" stroke-linecap="round"/>`;
+const DRAGON_DEFS =
+  `<radialGradient id="dr" cx="0.5" cy="0.75" r="0.8"><stop offset="0" stop-color="#f87171"/><stop offset="0.3" stop-color="#b91c1c"/><stop offset="0.7" stop-color="#5f0a0a"/><stop offset="1" stop-color="#1c0303"/></radialGradient>` +
+  `<radialGradient id="du" cx="0.4" cy="0.25" r="0.9"><stop offset="0" stop-color="#fffbeb"/><stop offset="0.35" stop-color="#fbbf24"/><stop offset="1" stop-color="#78350f"/></radialGradient>` +
+  `<linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="0.5" stop-color="#d97706"/><stop offset="1" stop-color="#713f12"/></linearGradient>` +
+  `<linearGradient id="db" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-opacity="0.75"/><stop offset="0.3" stop-opacity="0.1"/><stop offset="0.5" stop-color="#fde68a" stop-opacity="0.12"/><stop offset="0.7" stop-opacity="0.1"/><stop offset="1" stop-opacity="0.75"/></linearGradient>` +
+  `<radialGradient id="dl"><stop offset="0" stop-color="#fb923c" stop-opacity="0.85"/><stop offset="0.35" stop-color="#ef4444" stop-opacity="0.55"/><stop offset="1" stop-color="#7f1d1d" stop-opacity="0"/></radialGradient>`;
+
+/** A sprite: SVG markup (in a box x, y, w, h) drawn once onto a canvas, at 3× for sharp screens. */
+type Sprite = { img: HTMLCanvasElement; x: number; y: number; w: number; h: number };
+async function sprite(x: number, y: number, w: number, h: number, markup: string): Promise<Sprite> {
+  const k = 3;
+  const img = new Image();
+  img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w * k}" height="${h * k}" viewBox="${x} ${y} ${w} ${h}"><defs>${DRAGON_DEFS}</defs>${markup}</svg>`,
+  )}`;
+  await img.decode();
+  const canvas = document.createElement('canvas');
+  canvas.width = w * k;
+  canvas.height = h * k;
+  canvas.getContext('2d')?.drawImage(img, 0, 0);
+  return { img: canvas, x, y, w, h };
+}
+
+/**
+ * Everything the dragon is made of, each drawn once for every Dragon Scale on the page: the two kinds of row (even,
+ * odd), a spine, a scale and its gold underside (for the flip), the fire's light. The dragon itself is a canvas that
+ * lays these down, 30 times a second: as an SVG, its thousand shapes redrawn at every move, a dozen dragons made the
+ * Boutique lag.
+ */
+type DragonSprites = { rows: Sprite[]; spine: Sprite; scale: Sprite; gold: Sprite; light: Sprite };
+let dragonSprites: Promise<DragonSprites> | null = null;
+function drawDragonSprites() {
+  dragonSprites ??= (async () => ({
+    rows: await Promise.all(
+      [0, 1].map((odd) =>
+        sprite(
+          0,
+          ROW_TOP,
+          W,
+          ROW_H,
+          `<rect x="${W / 2 - BODY_HALF - 3}" y="-4" width="${2 * BODY_HALF + 6}" height="30" rx="14" fill="#2a0404"/>` +
+            ROW_XS[odd].map((x) => `<path d="${SCALE}" transform="translate(${x} 4)" opacity="0.55"/><g transform="translate(${x} 0)">${scaleMarkup}</g>`).join('') +
+            `<rect x="${W / 2 - BODY_HALF - 4}" y="-2" width="${2 * BODY_HALF + 8}" height="21" fill="url(#db)"/>`,
+        ),
+      ),
+    ),
+    spine: await sprite(-8, -9, 16, 32, `<path d="M-7 22L0-8L7 22Z" fill="url(#dg)" stroke="#451a03" stroke-width="0.8"/>`),
+    scale: await sprite(-15, -1, 30, 35, scaleMarkup),
+    gold: await sprite(-15, -1, 30, 35, `<path d="${SCALE}" fill="url(#du)" stroke="#fef3c7" stroke-width="1.3"/>`),
+    light: await sprite(-50, -18, 100, 80, `<ellipse cx="0" cy="22" rx="50" ry="40" fill="url(#dl)"/>`),
+  }))();
+  return dragonSprites;
 }
 
 /** How far the fire travels with the body before coming round again (a whole number of loops of rows). */
 const FIRE_TRAVEL = DRAGON_LOOP * 15;
+/**
+ * The fire inside it, now and then, here and there: no flames drawn (the owner's call), only its light through the
+ * scales, red, as through a hand held up to a lamp, and a few sparks. Each fire travels with its scale, all the way down.
+ */
+const DRAGON_FIRES = (() => {
+  const rnd = seeded(41);
+  return Array.from({ length: 9 }, (_, i) => {
+    const odd = rnd() < 0.5 ? 1 : 0;
+    const cols = Array.from({ length: 13 }, (_, j) => W / 2 - 168 + odd * 14 + 28 * j).filter((x) => Math.abs(x - W / 2) <= 70);
+    return {
+      y: ROW_Y0 - 38 + odd * ROW_STEP,
+      x: cols[Math.floor(rnd() * cols.length)],
+      off: DRAGON_LOOP * Math.floor((i / 9) * 15 + rnd() * 1.4),
+      dur: 4 + rnd() * 6,
+      delay: -rnd() * 10,
+      sparks: Array.from({ length: 3 }, () => ({ dx: (rnd() - 0.5) * 30, dy: 10 + rnd() * 30, d: rnd() * 0.6 })),
+    };
+  });
+})();
+
+/** A value along keyframes ([at, value], at from 0 to 1), eased in and out between them. */
+function along(keys: [number, number][], t: number) {
+  for (let i = 1; i < keys.length; i++) {
+    const [a, va] = keys[i - 1];
+    const [b, vb] = keys[i];
+    if (t <= b) {
+      const u = b > a ? (t - a) / (b - a) : 1;
+      return va + (vb - va) * (u * u * (3 - 2 * u));
+    }
+  }
+  return keys[keys.length - 1][1];
+}
+/** The fire's light flickering up, and its sparks flying out, along its own beat. */
+const LIGHT_KEYS: [number, number][] = [[0, 0], [0.5, 0], [0.58, 0.9], [0.63, 0.65], [0.68, 1], [0.74, 0.7], [0.8, 0.9], [0.94, 0], [1, 0]];
+const SPARK_ALPHA: [number, number][] = [[0, 0], [0.6, 0], [0.63, 1], [0.8, 0.8], [0.86, 0], [1, 0]];
+const SPARK_GO: [number, number][] = [[0, 0], [0.6, 0], [0.86, 1], [1, 1]];
+/** A scale flipping over (1.4 s): squeezed edge-on, its gold side up and glowing a while, then back. */
+const FLIP_TIME = 1400;
+const FLIP_SX: [number, number][] = [[0, 1], [0.22, 0.05], [0.4, 1.12], [0.7, 1.12], [0.86, 0.05], [1, 1]];
+const FLIP_SY: [number, number][] = [[0, 1], [0.22, 1.18], [0.4, 1.12], [0.7, 1.12], [0.86, 1.12], [1, 1]];
+const FLIP_UP: [number, number][] = [[0, 0], [0.22, -3], [0.7, -3], [0.86, 0], [1, 0]];
+const FLIP_GLOW: [number, number][] = [[0, 0], [0.22, 0], [0.4, 1], [0.7, 1], [0.86, 0], [1, 0]];
 
 /**
  * How the dragon slithers: its body lies along a long, soft S and glides down it, its scales going by like a snake's.
@@ -87,32 +193,129 @@ const DRAGON = { amp: 40, wave: 560, loop: DRAGON_LOOP, swayPerPx: 1 / 90 };
 const dragonX = (y: number, phase: number) =>
   DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + phase) + DRAGON.amp * 0.18 * Math.sin((4 * Math.PI * y) / DRAGON.wave - phase * 0.7);
 
-function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefObject<SVGGElement | null>) {
+/** At most 30 frames a second: a snake's glide looks just as smooth, for half the work. */
+const DRAGON_STEP = 1000 / 30;
+
+export function DragonWrap() {
+  const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
-    const root = svg.current;
-    const layer = scales.current;
-    if (!root || !layer) return;
-    const rows = [...root.querySelectorAll<SVGGElement>('[data-y]')].map((el) => ({ el, y: Number(el.dataset.y) }));
-    // The rows of scales by their place (their row number), to slip each fire under the right one.
-    const byRow = new Map(rows.filter(({ el }) => el.parentNode === layer).map(({ el, y }) => [Math.round((y - ROW_Y0) / ROW_STEP), el]));
-    // What travels with the body but doesn't loop with its rows: the fire under its scales (and its light through
-    // them). Each goes all the way down, out of sight, and comes round again from the top.
-    const fires = [...root.querySelectorAll<SVGGElement>('[data-fire]')].map((el) => ({ el, y: Number(el.dataset.fire), off: Number(el.dataset.off), under: el.dataset.under === '1' }));
+    const canvas = ref.current;
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+    let art: DragonSprites | null = null;
+    const still = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     let went = Math.random() * 2000; // how far it has gone (px): each pack's dragon somewhere else along its way
-    const draw = () => {
+    // The pack's size, and how the 300 × 400 drawing covers it (as an SVG's "slice" would).
+    let k = 1;
+    let ox = 0;
+    let oy = 0;
+    const fit = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const cw = canvas.clientWidth;
+      const ch = canvas.clientHeight;
+      canvas.width = Math.max(1, Math.round(cw * dpr));
+      canvas.height = Math.max(1, Math.round(ch * dpr));
+      const s = Math.max(cw / W, ch / H);
+      k = s * dpr;
+      ox = ((cw - W * s) / 2) * dpr;
+      oy = ((ch - H * s) / 2) * dpr;
+    };
+    fit();
+    const sized = new ResizeObserver(() => {
+      fit();
+      draw(performance.now());
+    });
+    sized.observe(canvas);
+    // The scales flipping under the pointer: row and column, and when they started.
+    const flips = new Map<string, { r: number; x: number; at: number }>();
+    const put = (s: Sprite, x: number, y: number) => ctx.drawImage(s.img, x + s.x, y + s.y, s.w, s.h);
+    const draw = (now: number) => {
+      if (!art) return;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.setTransform(k, 0, 0, k, ox, oy);
       const s = went % DRAGON.loop;
       const phase = went * DRAGON.swayPerPx;
-      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y + s, phase).toFixed(1)} ${s.toFixed(1)})`);
-      for (const f of fires) {
+      // The rows, the lower ones first: each row hangs over the one below, like tiles. Then the flipping scales of
+      // that row, over it.
+      for (let r = ROWS - 1; r >= 0; r--) {
+        const y = ROW_Y0 + r * ROW_STEP;
+        const tx = dragonX(y + s, phase);
+        put(art.rows[r % 2], tx, y + s);
+        for (const [key, f] of flips) {
+          if (f.r !== r) continue;
+          const t = (now - f.at) / FLIP_TIME;
+          if (t >= 1) {
+            flips.delete(key);
+            continue;
+          }
+          ctx.save();
+          ctx.translate(f.x + tx, y + s + 13.2 + along(FLIP_UP, t));
+          ctx.scale(along(FLIP_SX, t), along(FLIP_SY, t));
+          const glow = along(FLIP_GLOW, t);
+          if (glow > 0) {
+            ctx.shadowColor = `rgba(253, 224, 71, ${glow})`;
+            ctx.shadowBlur = 4 * k;
+          }
+          put(t >= 0.22 && t < 0.86 ? art.gold : art.scale, 0, -13.2);
+          ctx.restore();
+        }
+      }
+      // The spines down its back, gold, swinging with the body.
+      for (let r = 0; r < ROWS; r += 2) {
+        const y = ROW_Y0 + r * ROW_STEP;
+        put(art.spine, W / 2 + dragonX(y + s, phase), y + s);
+      }
+      // The fire's light through the scales, and its sparks.
+      const sec = now / 1000;
+      for (const f of still ? [] : DRAGON_FIRES) {
         const y = f.y + ((went + f.off) % FIRE_TRAVEL);
-        f.el.setAttribute('transform', `translate(${dragonX(y, phase).toFixed(1)} ${y.toFixed(1)})`);
-        if (!f.under) continue;
-        // Under the scale it peeks out from: just below that scale's row, over the row under it.
-        const over = byRow.get(Math.round((y - s - ROW_Y0) / ROW_STEP));
-        if (over && f.el.nextSibling !== over) layer.insertBefore(f.el, over);
+        const x = f.x + dragonX(y, phase);
+        const beat = (((sec - f.delay) / f.dur) % 1 + 1) % 1;
+        const a = along(LIGHT_KEYS, beat);
+        if (a > 0.01) {
+          ctx.globalAlpha = a;
+          ctx.globalCompositeOperation = 'screen';
+          put(art.light, x, y);
+          ctx.globalCompositeOperation = 'source-over';
+        }
+        for (const p of f.sparks) {
+          const b = (((sec - f.delay - p.d) / f.dur) % 1 + 1) % 1;
+          const pa = along(SPARK_ALPHA, b);
+          if (pa <= 0.01) continue;
+          const go = 1 - (1 - along(SPARK_GO, b)) ** 2;
+          ctx.globalAlpha = pa;
+          ctx.fillStyle = '#fde68a';
+          ctx.beginPath();
+          ctx.arc(x + p.dx * go, y + 34 + p.dy * go, 1.3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
       }
     };
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw();
+    // Flips the scale under the pointer (gold side up), then back: a trail of flipping scales where the pointer goes.
+    // The top row first: each row hangs over the one below.
+    const point = (e: globalThis.PointerEvent) => {
+      const box = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      const px = ((e.clientX - box.left) * dpr - ox) / k;
+      const py = ((e.clientY - box.top) * dpr - oy) / k;
+      const s = went % DRAGON.loop;
+      const phase = went * DRAGON.swayPerPx;
+      for (let r = 0; r < ROWS; r++) {
+        const y = ROW_Y0 + r * ROW_STEP;
+        const dy = py - (y + s);
+        if (dy < 0 || dy > 32) continue;
+        const reach = dy < 11 ? 14 : (14 * (33 - dy)) / 22;
+        const lx = px - dragonX(y + s, phase);
+        const x = ROW_XS[r % 2].find((sx) => Math.abs(lx - sx) <= reach);
+        if (x === undefined) continue;
+        const key = `${r}:${x}`;
+        if (!flips.has(key)) flips.set(key, { r, x, at: performance.now() });
+        return;
+      }
+    };
+    canvas.addEventListener('pointermove', point);
     // Its pace: a new one every so often (a stop now and then), for a moment or for a while.
     let speed = 0;
     let target = 0;
@@ -120,162 +323,41 @@ function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefO
     let frame = 0;
     let last = performance.now();
     const tick = (now: number) => {
+      frame = requestAnimationFrame(tick);
+      if (now - last < DRAGON_STEP - 2) return;
       const dt = Math.min(0.1, (now - last) / 1000);
       last = now;
-      if (now >= until) {
-        // A stop only now and then, and short (the owner found it stopped too often).
-        target = Math.random() < 0.1 ? 0 : 10 + Math.random() ** 1.6 * 66;
-        until = now + (target === 0 ? 300 + Math.random() * 900 : 1200 + Math.random() * 4800);
+      if (!still) {
+        if (now >= until) {
+          // A stop only now and then, and short (the owner found it stopped too often).
+          target = Math.random() < 0.1 ? 0 : 10 + Math.random() ** 1.6 * 66;
+          until = now + (target === 0 ? 300 + Math.random() * 900 : 1200 + Math.random() * 4800);
+        }
+        speed += (target - speed) * (1 - Math.exp(-dt * 1.8));
+        went += speed * dt;
       }
-      speed += (target - speed) * (1 - Math.exp(-dt * 1.8));
-      went += speed * dt;
-      draw();
-      frame = requestAnimationFrame(tick);
+      draw(now);
     };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [svg, scales]);
-}
-
-export function DragonWrap() {
-  const id = useUid();
-  const body = useRef<SVGGElement>(null);
-  const scaleLayer = useRef<SVGGElement>(null);
-  useSlither(body, scaleLayer);
-  const rows = useMemo(() => {
-    // The dragon's body, winding down the pack: a little over half the pack wide, the same all the way down, and two
-    // rows more above it to glide down into view. Nothing else: no background, the pack is see-through around it (index.css).
-    const out: { r: number; y: number; xs: number[]; half: number }[] = [];
-    for (let r = 0; r < 25; r++) {
-      const half = 98;
-      const xs: number[] = [];
-      for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
-      out.push({ r, y: -52 + r * 19, xs, half });
-    }
-    // The lower rows first: each row hangs over the one below, like tiles.
-    return out.reverse();
+    let on = true;
+    drawDragonSprites().then(
+      (a) => {
+        if (!on) return;
+        art = a;
+        draw(performance.now());
+        // Under reduced motion it lies still (only a scale flipping under the pointer moves).
+        frame = requestAnimationFrame(tick);
+      },
+      () => undefined,
+    );
+    return () => {
+      on = false;
+      cancelAnimationFrame(frame);
+      sized.disconnect();
+      canvas.removeEventListener('pointermove', point);
+    };
   }, []);
-  // The fire inside it, now and then, here and there: no flames drawn (the owner's call), only its light through the
-  // scales, red, as through a hand held up to a lamp, and a few sparks. Each fire
-  // travels with its scale, all the way down.
-  const fires = useMemo(() => {
-    const rnd = seeded(41);
-    return Array.from({ length: 9 }, (_, i) => {
-      const odd = rnd() < 0.5 ? 1 : 0;
-      const cols = Array.from({ length: 13 }, (_, j) => W / 2 - 168 + odd * 14 + 28 * j).filter((x) => Math.abs(x - W / 2) <= 70);
-      return {
-        y: ROW_Y0 - 38 + odd * ROW_STEP,
-        x: cols[Math.floor(rnd() * cols.length)],
-        off: DRAGON_LOOP * Math.floor((i / 9) * 15 + rnd() * 1.4),
-        dur: 4 + rnd() * 6,
-        delay: -rnd() * 10,
-        sparks: Array.from({ length: 3 }, () => ({ dx: (rnd() - 0.5) * 30, dy: 10 + rnd() * 30, d: rnd() * 0.6 })),
-      };
-    });
-  }, []);
-  const fireStyle = (f: (typeof fires)[number]) => ({ ['--fire-dur' as string]: `${f.dur.toFixed(1)}s`, ['--fire-delay' as string]: `${f.delay.toFixed(1)}s` });
-  return (
-    <Svg onPointerOver={flipScale}>
-      <defs>
-        <radialGradient id={`${id}r`} cx="0.5" cy="0.75" r="0.8">
-          <stop offset="0" stopColor="#f87171" />
-          <stop offset="0.3" stopColor="#b91c1c" />
-          <stop offset="0.7" stopColor="#5f0a0a" />
-          <stop offset="1" stopColor="#1c0303" />
-        </radialGradient>
-        <radialGradient id={`${id}u`} cx="0.4" cy="0.25" r="0.9">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.35" stopColor="#fbbf24" />
-          <stop offset="1" stopColor="#78350f" />
-        </radialGradient>
-        <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#fef3c7" />
-          <stop offset="0.5" stopColor="#d97706" />
-          <stop offset="1" stopColor="#713f12" />
-        </linearGradient>
-        <linearGradient id={`${id}b`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#000" stopOpacity="0.75" />
-          <stop offset="0.3" stopColor="#000" stopOpacity="0.1" />
-          <stop offset="0.5" stopColor="#fde68a" stopOpacity="0.12" />
-          <stop offset="0.7" stopColor="#000" stopOpacity="0.1" />
-          <stop offset="1" stopColor="#000" stopOpacity="0.75" />
-        </linearGradient>
-        <radialGradient id={`${id}fg`}>
-          <stop offset="0" stopColor="#fde047" stopOpacity="0.95" />
-          <stop offset="0.4" stopColor="#f97316" stopOpacity="0.6" />
-          <stop offset="1" stopColor="#b91c1c" stopOpacity="0" />
-        </radialGradient>
-        {/* A flame's colours from its heart (under the scale) out to its tongues: what shows is orange going red. */}
-        <radialGradient id={`${id}ff`} cx="0.5" cy="0.45" r="0.55">
-          <stop offset="0" stopColor="#fef9c3" />
-          <stop offset="0.5" stopColor="#fde047" />
-          <stop offset="0.72" stopColor="#fb923c" />
-          <stop offset="0.9" stopColor="#ef4444" />
-          <stop offset="1" stopColor="#991b1b" stopOpacity="0.6" />
-        </radialGradient>
-        {/* The fire's light through the scales: red and orange, fading out. */}
-        <radialGradient id={`${id}fl`}>
-          <stop offset="0" stopColor="#fb923c" stopOpacity="0.85" />
-          <stop offset="0.35" stopColor="#ef4444" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#7f1d1d" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id={`${id}h`} cx="0.5" cy="1" r="0.9">
-          <stop offset="0" stopColor="#f97316" stopOpacity="0.9" />
-          <stop offset="0.5" stopColor="#7c2d12" stopOpacity="0.5" />
-          <stop offset="1" stopColor="#000" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id={`${id}l`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fff" stopOpacity="0" />
-          <stop offset="0.5" stopColor="#fde68a" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#fff" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      {/* Each row sits on the S (useSlither): the body's round shading (dark flanks, a lit spine) goes with it, so the S shows. */}
-      <g ref={body}>
-      {/* The rows of scales. */}
-      <g ref={scaleLayer}>
-      {rows.map(({ r, y, xs, half }) => (
-        <g key={r} data-y={y}>
-          {/* The body under the scales, its edge round. */}
-          <rect x={W / 2 - half - 3} y={y - 4} width={2 * half + 6} height={30} rx={14} fill="#2a0404" />
-          {xs.map((x) => (
-            <g key={x} transform={`translate(${x} ${y})`}>
-              <path d={SCALE} transform="translate(0 4)" fill="#000" opacity={0.55} />
-              <g className="wa-scale">
-                <path d={SCALE} fill={`url(#${id}r)`} stroke={`url(#${id}g)`} strokeWidth={1.1} />
-                <path d={SCALE_LIT} fill="#fff" opacity={0.13} />
-                <path d={SCALE_SHADE} fill="#000" opacity={0.28} />
-                <path d="M0 2L0 30" stroke="#fecaca" strokeOpacity={0.55} strokeWidth={1} strokeLinecap="round" />
-                <path className="wa-scale-under" d={SCALE} fill={`url(#${id}u)`} stroke="#fef3c7" strokeWidth={1.3} />
-              </g>
-            </g>
-          ))}
-          <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
-        </g>
-      ))}
-      </g>
-      {/* The spines down its back, gold, swinging with the body. */}
-      {rows.map(({ r, y, half }) =>
-        r % 2 || half < 20 ? null : (
-          <g key={`s${r}`} data-y={y}>
-            <path d={`M${W / 2 - 7} ${y + 22}L${W / 2} ${y - 8}L${W / 2 + 7} ${y + 22}Z`} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
-          </g>
-        ),
-      )}
-      {/* The fire's light through the scales around it: red, soft, as through a hand held up to a lamp. */}
-      {fires.map((f, i) => (
-        <g key={`l${i}`} data-fire={f.y} data-off={f.off}>
-          <g transform={`translate(${f.x} 0)`} style={fireStyle(f)}>
-            <ellipse className="wa-fire-light" cx={0} cy={22} rx={50} ry={40} fill={`url(#${id}fl)`} style={{ mixBlendMode: 'screen' }} />
-            {f.sparks.map((s, j) => (
-              <circle key={j} className="wa-fire-spark" cx={0} cy={34} r={1.3} fill="#fde68a" style={{ ['--sx' as string]: `${s.dx.toFixed(1)}px`, ['--sy' as string]: `${s.dy.toFixed(1)}px`, ['--sd' as string]: `${s.d.toFixed(2)}s` }} />
-            ))}
-          </g>
-        </g>
-      ))}
-      </g>
-    </Svg>
-  );
+  // The dragon's body, winding down the pack. Nothing else: no background, the pack is see-through around it (index.css).
+  return <canvas ref={ref} className="absolute inset-0 size-full" aria-hidden />;
 }
 
 // ---------------------------------------------------------------------------------------------- Black Hole

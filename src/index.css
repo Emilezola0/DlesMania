@@ -2865,49 +2865,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .wa-spark { animation: wa-spark 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes wa-spark { 0%, 70%, 100% { opacity: 0; scale: 0.2; rotate: 0deg; } 82% { opacity: 1; scale: 1.2; rotate: 45deg; } }
 
-/* Dragon Scale: the rows sway one after the other (a body on the move), light rolls down them, the scale under the
-   pointer flips over, gold side up, and back. */
-.wa-scale { pointer-events: visiblePainted; transform-box: fill-box; transform-origin: 50% 40%; }
-.wa-scale-under { opacity: 0; }
-.wa-flip { animation: wa-flip 1.4s cubic-bezier(0.4, 0, 0.3, 1); }
-.wa-flip .wa-scale-under { animation: wa-flip-under 1.4s steps(1, end); }
-@keyframes wa-flip {
-  0% { transform: scale(1, 1); filter: none; }
-  22% { transform: scale(0.05, 1.18) translateY(-3px); filter: brightness(1.6); }
-  40% { transform: scale(1.12, 1.12) translateY(-3px); filter: drop-shadow(0 0 4px #fde047); }
-  70% { transform: scale(1.12, 1.12) translateY(-3px); filter: drop-shadow(0 0 4px #fde047); }
-  86% { transform: scale(0.05, 1.12); filter: brightness(1.4); }
-  100% { transform: scale(1, 1); filter: none; }
-}
-@keyframes wa-flip-under { 0% { opacity: 0; } 22% { opacity: 1; } 86% { opacity: 0; } }
-/* The dragon's fire (src/gacha/WrapArt.tsx), here and there now and then, each at its own pace: flames licking out
-   from under a scale, flickering, their light through the scales around (red, as through a hand on a lamp),
-   sparks flying out. */
-.wa-fire-lick, .wa-fire-light, .wa-fire-spark { animation-duration: var(--fire-dur); animation-delay: var(--fire-delay); animation-iteration-count: infinite; opacity: 0; }
-.wa-fire-lick { transform-box: fill-box; transform-origin: 50% 45%; animation-name: wa-fire-lick; animation-timing-function: ease-in-out; }
-@keyframes wa-fire-lick {
-  0%, 52%, 100% { opacity: 0; transform: scale(0.5, 0.4); }
-  58% { opacity: 1; transform: scale(1.05, 1.1); }
-  62% { transform: scale(0.88, 0.95) skewX(-6deg); }
-  67% { transform: scale(1.12, 1.18) skewX(5deg); }
-  72% { transform: scale(0.9, 1) skewX(-3deg); }
-  78% { opacity: 1; transform: scale(1.05, 1.12); }
-  86% { opacity: 0.6; transform: scale(0.75, 0.7); }
-  92% { opacity: 0; transform: scale(0.5, 0.4); }
-}
-.wa-fire-light { animation-name: wa-fire-light; animation-timing-function: ease-in-out; }
-@keyframes wa-fire-light { 0%, 50%, 100% { opacity: 0; } 58% { opacity: 0.9; } 63% { opacity: 0.65; } 68% { opacity: 1; } 74% { opacity: 0.7; } 80% { opacity: 0.9; } 94% { opacity: 0; } }
-.wa-fire-spark { animation-name: wa-fire-spark; animation-timing-function: ease-out; animation-delay: calc(var(--fire-delay) + var(--sd)); }
-@keyframes wa-fire-spark { 0%, 60% { opacity: 0; transform: translate(0, 0); } 63% { opacity: 1; } 80% { opacity: 0.8; } 86%, 100% { opacity: 0; transform: translate(var(--sx), var(--sy)); } }
-@media (prefers-reduced-motion: reduce) {
-  .wa-fire-lick, .wa-fire-light, .wa-fire-spark { animation: none; }
-}
-.wa-dragon-row { animation: wa-slither 2.6s ease-in-out infinite alternate; }
-@keyframes wa-slither { from { transform: translateX(-52px); } to { transform: translateX(52px); } }
-.wa-dragon-roll { animation: wa-roll 3.6s ease-in-out infinite; mix-blend-mode: overlay; }
-@keyframes wa-roll { from { transform: translateY(0); } to { transform: translateY(540px); } }
-.wa-dragon-heat { animation: wa-heat 2.2s ease-in-out infinite alternate; }
-@keyframes wa-heat { from { opacity: 0.15; } to { opacity: 0.55; } }
+/* Dragon Scale is a canvas (src/gacha/WrapArt.tsx): its animation is all drawn there. */
 
 /* Black Hole and Event Horizon: the disc turning (inner rings faster), light streaming round the shadow, stars
    falling in, the sky turning slowly, jets flickering, space rippling inward (Event Horizon). */
