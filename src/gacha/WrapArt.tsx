@@ -61,6 +61,10 @@ function leaf(from: [number, number], to: [number, number], w: number, curl = 0)
 const SCALE = 'M-14 0L14 0C14 11 9 22 0 33C-9 22-14 11-14 0Z';
 const SCALE_LIT = 'M0 1L-13 1C-13 11-8 21 0 31Z';
 const SCALE_SHADE = 'M0 1L13 1C13 11 8 21 0 31Z';
+/** Two rows of scales: what the body slides by before the rows start again (DRAGON.loop). */
+const DRAGON_LOOP = 38;
+const ROW_Y0 = -52;
+const ROW_STEP = 19;
 
 /** Flips the scale under the pointer (gold side up), then back: a trail of flipping scales where the pointer goes. */
 function flipScale(e: PointerEvent<SVGSVGElement>) {
@@ -71,51 +75,147 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 }
 
 /**
- * How the dragon slithers: its body lies along an S that sways slowly from side to side, and the body glides
- * forward (up, towards its head) along it, its scales going by like a snake's. Each row sits where the S passes its
- * height; the rows move up two rows' height, then start again two rows lower, where the same scales were.
+ * A dragon's wing, spread, from its shoulder at (0, 0) out to the right and swept back (up, towards the tail): the
+ * membrane between the fingers, scalloped; the arm along its leading edge, armoured with small scales (WING_ARM).
  */
-const DRAGON = { amp: 52, wave: 420, swayS: 9, speed: 22, loop: 38 };
-const dragonX = (y: number, t: number) => DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + (2 * Math.PI * t) / DRAGON.swayS);
+const WING_ELBOW: [number, number] = [52, -62];
+const WING_TIPS: [number, number][] = [[92, -128], [146, -90], [176, -28], [148, 24], [80, 38]];
+const WING_BONES = ['M0 10L52-62L92-128', ...WING_TIPS.slice(1).map(([x, y]) => `M52-62L${x} ${y}`)];
+/**
+ * The wing's membrane, panel by panel between its fingers, drawn like the scales: each panel two faces along its
+ * fold (one catching the light, one in shade), its trailing edge scalloped, rimmed in gold.
+ */
+const WING_PANELS = [...WING_TIPS, [0, 30] as [number, number]].slice(0, -1).map((a, i, all) => {
+  const b = i + 1 < all.length ? all[i + 1] : ([0, 30] as [number, number]);
+  const [ex, ey] = WING_ELBOW;
+  // The scallop: the trailing edge bowing in towards the elbow, and its deepest point (where the panel folds).
+  const mx = (a[0] + b[0]) / 2;
+  const my = (a[1] + b[1]) / 2;
+  const fx = mx + (ex - mx) * 0.28;
+  const fy = my + (ey - my) * 0.28;
+  const p = (n: number) => n.toFixed(1);
+  return {
+    whole: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}Z`,
+    lit: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p((a[0] + fx) / 2)} ${p((a[1] + fy) / 2)} ${p(fx + (mx - fx) * 0.15)} ${p(fy + (my - fy) * 0.15)}Z`,
+    edge: `M${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}`,
+  };
+});
+/** The wing's root, joining the body: from the shoulder to the elbow and back along the last finger. */
+const WING_ROOT = 'M0 10L52-62L80 38Q40 22 0 30Z';
+const WING_ARM = Array.from({ length: 9 }, (_, i) => {
+  const t = i / 8;
+  // Along the arm: shoulder (0, 10) to elbow (52, -62) to wrist tip (92, -128).
+  const [x, y] = t < 0.55 ? [52 * (t / 0.55), 10 - 72 * (t / 0.55)] : [52 + 40 * ((t - 0.55) / 0.45), -62 - 66 * ((t - 0.55) / 0.45)];
+  return { x, y, s: 0.5 - t * 0.22 };
+});
 
-function useSlither(svg: React.RefObject<SVGGElement | null>) {
+/** How far the fire and the wings travel with the body before coming round again (a whole number of loops of rows). */
+const FIRE_TRAVEL = DRAGON_LOOP * 15;
+const WING_TRAVEL = DRAGON_LOOP * 36;
+
+/**
+ * How the dragon slithers: its body lies along a long, soft S and glides down it, its scales going by like a snake's.
+ * It moves as a snake does: it stops, sets off again, slow or fast, for a moment or for long, easing from one pace
+ * to the next; the S sways only as it moves. Each row sits where the S passes its height; the rows move down two
+ * rows' height, then start again two rows higher, where the same scales were.
+ */
+const DRAGON = { amp: 40, wave: 560, loop: DRAGON_LOOP, swayPerPx: 1 / 90 };
+const dragonX = (y: number, phase: number) =>
+  DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + phase) + DRAGON.amp * 0.18 * Math.sin((4 * Math.PI * y) / DRAGON.wave - phase * 0.7);
+
+function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefObject<SVGGElement | null>) {
   useEffect(() => {
     const root = svg.current;
-    if (!root) return;
+    const layer = scales.current;
+    if (!root || !layer) return;
     const rows = [...root.querySelectorAll<SVGGElement>('[data-y]')].map((el) => ({ el, y: Number(el.dataset.y) }));
-    const draw = (t: number) => {
-      const s = (t * DRAGON.speed) % DRAGON.loop;
-      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y - s, t).toFixed(1)} ${(-s).toFixed(1)})`);
+    // The rows of scales by their place (their row number), to slip each fire under the right one.
+    const byRow = new Map(rows.filter(({ el }) => el.parentNode === layer).map(({ el, y }) => [Math.round((y - ROW_Y0) / ROW_STEP), el]));
+    // What travels with the body but doesn't loop with its rows: the fire under its scales (and its light through
+    // them), the wings. Each goes all the way down, out of sight, and comes round again from the top.
+    const fires = [...root.querySelectorAll<SVGGElement>('[data-fire]')].map((el) => ({ el, y: Number(el.dataset.fire), off: Number(el.dataset.off), under: el.dataset.under === '1' }));
+    const wings = [...root.querySelectorAll<SVGGElement>('[data-wing]')].map((el) => ({ el, off: Number(el.dataset.wing) }));
+    let went = Math.random() * 2000; // how far it has gone (px): each pack's dragon somewhere else along its way
+    const draw = () => {
+      const s = went % DRAGON.loop;
+      const phase = went * DRAGON.swayPerPx;
+      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y + s, phase).toFixed(1)} ${s.toFixed(1)})`);
+      for (const f of fires) {
+        const y = f.y + ((went + f.off) % FIRE_TRAVEL);
+        f.el.setAttribute('transform', `translate(${dragonX(y, phase).toFixed(1)} ${y.toFixed(1)})`);
+        if (!f.under) continue;
+        // Under the scale it peeks out from: just below that scale's row, over the row under it.
+        const over = byRow.get(Math.round((y - s - ROW_Y0) / ROW_STEP));
+        if (over && f.el.nextSibling !== over) layer.insertBefore(f.el, over);
+      }
+      for (const w of wings) {
+        const y = ((went + w.off) % WING_TRAVEL) - 260;
+        const lean = Math.atan2(dragonX(y + 1, phase) - dragonX(y - 1, phase), 2) * (180 / Math.PI);
+        w.el.setAttribute('transform', `translate(${(W / 2 + dragonX(y, phase)).toFixed(1)} ${y.toFixed(1)}) rotate(${(-lean).toFixed(1)})`);
+      }
     };
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw(0);
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw();
+    // Its pace: a new one every so often (a stop now and then), for a moment or for a while.
+    let speed = 0;
+    let target = 0;
+    let until = 0;
     let frame = 0;
-    const t0 = performance.now();
+    let last = performance.now();
     const tick = (now: number) => {
-      draw((now - t0) / 1000);
+      const dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      if (now >= until) {
+        // A stop only now and then, and short (the owner found it stopped too often).
+        target = Math.random() < 0.1 ? 0 : 10 + Math.random() ** 1.6 * 66;
+        until = now + (target === 0 ? 300 + Math.random() * 900 : 1200 + Math.random() * 4800);
+      }
+      speed += (target - speed) * (1 - Math.exp(-dt * 1.8));
+      went += speed * dt;
+      draw();
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [svg]);
+  }, [svg, scales]);
 }
 
 export function DragonWrap() {
   const id = useUid();
   const body = useRef<SVGGElement>(null);
-  useSlither(body);
+  const scaleLayer = useRef<SVGGElement>(null);
+  useSlither(body, scaleLayer);
   const rows = useMemo(() => {
     // The dragon's body, winding down the pack: a little over half the pack wide, the same all the way down, and two
-    // rows more below it to glide up into view. Nothing else: no background, the pack is see-through around it (index.css).
+    // rows more above it to glide down into view. Nothing else: no background, the pack is see-through around it (index.css).
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 25; r++) {
       const half = 98;
       const xs: number[] = [];
       for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
-      out.push({ r, y: -14 + r * 19, xs, half });
+      out.push({ r, y: -52 + r * 19, xs, half });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
   }, []);
+  // The fire inside it, now and then, here and there: no flames drawn (the owner's call), only its light through the
+  // scales, red, as through a hand held up to a lamp, and a few sparks. Each fire
+  // travels with its scale, all the way down.
+  const fires = useMemo(() => {
+    const rnd = seeded(41);
+    return Array.from({ length: 9 }, (_, i) => {
+      const odd = rnd() < 0.5 ? 1 : 0;
+      const cols = Array.from({ length: 13 }, (_, j) => W / 2 - 168 + odd * 14 + 28 * j).filter((x) => Math.abs(x - W / 2) <= 70);
+      return {
+        y: ROW_Y0 - 38 + odd * ROW_STEP,
+        x: cols[Math.floor(rnd() * cols.length)],
+        off: DRAGON_LOOP * Math.floor((i / 9) * 15 + rnd() * 1.4),
+        dur: 4 + rnd() * 6,
+        delay: -rnd() * 10,
+        sparks: Array.from({ length: 3 }, () => ({ dx: (rnd() - 0.5) * 30, dy: 10 + rnd() * 30, d: rnd() * 0.6 })),
+      };
+    });
+  }, []);
+  const fireStyle = (f: (typeof fires)[number]) => ({ ['--fire-dur' as string]: `${f.dur.toFixed(1)}s`, ['--fire-delay' as string]: `${f.delay.toFixed(1)}s` });
   return (
     <Svg onPointerOver={flipScale}>
       <defs>
@@ -142,6 +242,31 @@ export function DragonWrap() {
           <stop offset="0.7" stopColor="#000" stopOpacity="0.1" />
           <stop offset="1" stopColor="#000" stopOpacity="0.75" />
         </linearGradient>
+        <radialGradient id={`${id}fg`}>
+          <stop offset="0" stopColor="#fde047" stopOpacity="0.95" />
+          <stop offset="0.4" stopColor="#f97316" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#b91c1c" stopOpacity="0" />
+        </radialGradient>
+        {/* A flame's colours from its heart (under the scale) out to its tongues: what shows is orange going red. */}
+        <radialGradient id={`${id}ff`} cx="0.5" cy="0.45" r="0.55">
+          <stop offset="0" stopColor="#fef9c3" />
+          <stop offset="0.5" stopColor="#fde047" />
+          <stop offset="0.72" stopColor="#fb923c" />
+          <stop offset="0.9" stopColor="#ef4444" />
+          <stop offset="1" stopColor="#991b1b" stopOpacity="0.6" />
+        </radialGradient>
+        {/* The wings' membrane: the scales' crimson, thinner, lit through near the arm. */}
+        <radialGradient id={`${id}m`} cx="0.3" cy="0.35" r="0.85">
+          <stop offset="0" stopColor="#dc2626" stopOpacity="0.95" />
+          <stop offset="0.45" stopColor="#991b1b" stopOpacity="0.92" />
+          <stop offset="1" stopColor="#450a0a" stopOpacity="0.9" />
+        </radialGradient>
+        {/* The fire's light through the scales: red and orange, fading out. */}
+        <radialGradient id={`${id}fl`}>
+          <stop offset="0" stopColor="#fb923c" stopOpacity="0.85" />
+          <stop offset="0.35" stopColor="#ef4444" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#7f1d1d" stopOpacity="0" />
+        </radialGradient>
         <radialGradient id={`${id}h`} cx="0.5" cy="1" r="0.9">
           <stop offset="0" stopColor="#f97316" stopOpacity="0.9" />
           <stop offset="0.5" stopColor="#7c2d12" stopOpacity="0.5" />
@@ -155,6 +280,44 @@ export function DragonWrap() {
       </defs>
       {/* Each row sits on the S (useSlither): the body's round shading (dark flanks, a lit spine) goes with it, so the S shows. */}
       <g ref={body}>
+      {/* Its wings, spread, coming down with the body from the top now and then, under it (never over it). */}
+      <g data-wing={DRAGON_LOOP * 7}>
+        {[-1, 1].map((side) => (
+          <g key={side} transform={`translate(${side * 88} 0) scale(${side} 1)`}>
+            <path d={WING_ROOT} fill={`url(#${id}r)`} />
+            <path d={WING_ROOT} fill="#000" opacity={0.3} />
+            {WING_PANELS.map((p, i) => (
+              <g key={`p${i}`}>
+                <path d={p.whole} fill={`url(#${id}m)`} />
+                <path d={p.lit} fill="#fff" opacity={0.13} />
+                <path d={p.whole} fill="#000" opacity={0.08 + i * 0.05} />
+                <path d={p.edge} fill="none" stroke={`url(#${id}g)`} strokeWidth={1.1} />
+              </g>
+            ))}
+            {/* The bones: gold, outlined dark, like the spines; a knob at each joint, a claw at the tip. */}
+            {WING_BONES.map((d, i) => (
+              <path key={`o${i}`} d={d} fill="none" stroke="#451a03" strokeWidth={i ? 4 : 6} strokeLinecap="round" strokeLinejoin="round" />
+            ))}
+            {WING_BONES.map((d, i) => (
+              <path key={i} d={d} fill="none" stroke={`url(#${id}g)`} strokeWidth={i ? 2.4 : 4} strokeLinecap="round" strokeLinejoin="round" />
+            ))}
+            <circle cx={WING_ELBOW[0]} cy={WING_ELBOW[1]} r={4.5} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
+            {WING_TIPS.slice(1).map(([x, y], i) => (
+              <circle key={`k${i}`} cx={x} cy={y} r={2.2} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.6} />
+            ))}
+            <path d="M88-124L92-146L98-124Z" fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
+            {/* The arm, armoured with small scales like the body's. */}
+            {WING_ARM.map((a, i) => (
+              <g key={`a${i}`} transform={`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(-35) scale(${a.s.toFixed(2)})`}>
+                <path d={SCALE} fill={`url(#${id}r)`} stroke={`url(#${id}g)`} strokeWidth={2} />
+                <path d={SCALE_SHADE} fill="#000" opacity={0.28} />
+              </g>
+            ))}
+          </g>
+        ))}
+      </g>
+      {/* The rows of scales. */}
+      <g ref={scaleLayer}>
       {rows.map(({ r, y, xs, half }) => (
         <g key={r} data-y={y}>
           {/* The body under the scales, its edge round. */}
@@ -174,6 +337,7 @@ export function DragonWrap() {
           <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
         </g>
       ))}
+      </g>
       {/* The spines down its back, gold, swinging with the body. */}
       {rows.map(({ r, y, half }) =>
         r % 2 || half < 20 ? null : (
@@ -182,6 +346,17 @@ export function DragonWrap() {
           </g>
         ),
       )}
+      {/* The fire's light through the scales around it: red, soft, as through a hand held up to a lamp. */}
+      {fires.map((f, i) => (
+        <g key={`l${i}`} data-fire={f.y} data-off={f.off}>
+          <g transform={`translate(${f.x} 0)`} style={fireStyle(f)}>
+            <ellipse className="wa-fire-light" cx={0} cy={22} rx={50} ry={40} fill={`url(#${id}fl)`} style={{ mixBlendMode: 'screen' }} />
+            {f.sparks.map((s, j) => (
+              <circle key={j} className="wa-fire-spark" cx={0} cy={34} r={1.3} fill="#fde68a" style={{ ['--sx' as string]: `${s.dx.toFixed(1)}px`, ['--sy' as string]: `${s.dy.toFixed(1)}px`, ['--sd' as string]: `${s.d.toFixed(2)}s` }} />
+            ))}
+          </g>
+        </g>
+      ))}
       </g>
     </Svg>
   );
@@ -434,7 +609,22 @@ export function BigBangWrap() {
 
 // ---------------------------------------------------------------------------------------------- Crystal
 
-/** Crystal: cut glass in every colour, light running across the facets, sparkles at their corners, rainbows breaking through. */
+/**
+ * How a crystal's facets catch the light, each turned its own way: [angle of the light across it, how bright its lit
+ * side, how deep its shadow]. Laid over each facet's own colour, so the colours stay and the glass looks cut.
+ */
+const CRYSTAL_FACES: [number, number, number][] = [
+  [20, 0.7, 0.15],
+  [200, 0.5, 0.3],
+  [70, 0.35, 0.55],
+  [140, 0.25, 0.65],
+  [300, 0.75, 0.1],
+  [100, 0.2, 0.7],
+  [250, 0.6, 0.2],
+  [330, 0.4, 0.5],
+];
+
+/** Crystal: cut glass in every colour, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through. */
 export function CrystalWrap() {
   const id = useUid();
   const art = useMemo(() => {
@@ -449,8 +639,12 @@ export function CrystalWrap() {
         p[r].push([(c * W) / cols + (edge ? 0 : (rnd() - 0.5) * 34), (r * H) / rows + (edge ? 0 : (rnd() - 0.5) * 34)]);
       }
     }
+    // Each facet of cut glass turned its own way to the light: clear and pale, bright white, or deep in shadow, its
+    // light falling across it (CRYSTAL_FACES), some edges splitting the light into a rainbow.
+    // (Their own random, so each facet keeps the colour it had.)
+    const light = seeded(97);
     const hues = [190, 300, 260, 50, 140, 330, 210];
-    const tris: { pts: string; fill: string; delay: number }[] = [];
+    const tris: { pts: string; fill: string; face: number; delay: number; rainbow: string | null }[] = [];
     for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++) {
         const a = p[r][c];
@@ -462,7 +656,9 @@ export function CrystalWrap() {
           const cx = (t[0][0] + t[1][0] + t[2][0]) / 3;
           const cy = (t[0][1] + t[1][1] + t[2][1]) / 3;
           const h = hues[Math.floor(rnd() * hues.length)];
-          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), fill: `hsl(${h} 80% ${50 + rnd() * 36}%)`, delay: (cx / W) * 1.1 + (cy / H) * 0.9 });
+          const fill = `hsl(${h} 80% ${50 + rnd() * 36}%)`;
+          const edge = light() < 0.3 ? `M${t[0][0].toFixed(1)} ${t[0][1].toFixed(1)}L${t[1][0].toFixed(1)} ${t[1][1].toFixed(1)}` : null;
+          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), fill, face: Math.floor(light() * CRYSTAL_FACES.length), delay: (cx / W) * 1.1 + (cy / H) * 0.9, rainbow: edge });
         }
       }
     const sparks = Array.from({ length: 10 }, () => {
@@ -480,10 +676,24 @@ export function CrystalWrap() {
             <stop key={c} offset={i / 4} stopColor={c} />
           ))}
         </linearGradient>
+        {CRYSTAL_FACES.map(([a, lit, shade], i) => (
+          <linearGradient key={i} id={`${id}f${i}`} gradientTransform={`rotate(${a} 0.5 0.5)`}>
+            <stop offset="0" stopColor="#fff" stopOpacity={lit} />
+            <stop offset="0.45" stopColor="#fff" stopOpacity={0} />
+            <stop offset="1" stopColor="#0f172a" stopOpacity={shade} />
+          </linearGradient>
+        ))}
       </defs>
       {art.tris.map((t, i) => (
-        <polygon key={i} points={t.pts} fill={t.fill} fillOpacity={0.62} stroke="#fff" strokeOpacity={0.6} strokeWidth={0.8} strokeLinejoin="round" />
+        <g key={i}>
+          <polygon points={t.pts} fill={t.fill} fillOpacity={0.62} />
+          <polygon points={t.pts} fill={`url(#${id}f${t.face})`} stroke="#fff" strokeOpacity={0.8} strokeWidth={0.7} strokeLinejoin="round" />
+        </g>
       ))}
+      {/* The light split into colours along some edges, as a cut crystal does. */}
+      <g style={{ mixBlendMode: 'screen' }} opacity={0.75}>
+        {art.tris.map((t, i) => (t.rainbow ? <path key={`r${i}`} d={t.rainbow} stroke={`url(#${id}rb)`} strokeWidth={1.6} strokeLinecap="round" /> : null))}
+      </g>
       {art.tris.map((t, i) => (
         <polygon key={`g${i}`} className="wa-glint" points={t.pts} fill="#fff" style={{ animationDelay: `${t.delay}s` }} />
       ))}
@@ -527,7 +737,19 @@ export function PhoenixWrap() {
       return leaf([150, 102], [150 + Math.cos(a) * 34, 102 + Math.sin(a) * 34], 5, 6);
     });
     const embers = Array.from({ length: 28 }, () => ({ x: rnd() * W, d: -rnd() * 5, t: 3 + rnd() * 3, r: 0.8 + rnd() * 1.8, dx: (rnd() - 0.5) * 50, c: rnd() < 0.5 ? '#fde047' : '#fb923c' }));
-    return { wing, tail, crest, embers };
+    // Its tail's trailing flames: thin wisps behind each tail feather, flickering on their own.
+    const wisps = [72, 84, 96, 108, 120].map((deg, k) => {
+      const a = deg * (Math.PI / 180);
+      const len = 120 + rnd() * 60;
+      return leaf([150, 205], [150 + Math.cos(a) * len, 205 + Math.sin(a) * len], 5, (k - 2) * 14);
+    });
+    // Its rebirth: every so often it flares, and a burst of sparks flies out all round.
+    const burst = Array.from({ length: 22 }, (_, i) => {
+      const a = (i / 22) * Math.PI * 2 + rnd() * 0.2;
+      const r = 90 + rnd() * 90;
+      return { dx: Math.cos(a) * r, dy: Math.sin(a) * r, s: 1 + rnd() * 1.6, d: rnd() * 0.15 };
+    });
+    return { wing, tail, crest, embers, wisps, burst };
   }, []);
   return (
     <Svg>
@@ -553,28 +775,53 @@ export function PhoenixWrap() {
         </filter>
       </defs>
       <circle className="wa-pulse" cx={150} cy={150} r={110} fill={`url(#${id}sun)`} />
-      <g filter={`url(#${id}g)`} opacity={0.88}>
+      {/* Its rebirth, now and then: a flash, a ring of fire spreading out (behind it). */}
+      <circle className="wa-rebirth-ring" cx={150} cy={150} r={60} fill="none" stroke="#fde047" strokeWidth={6} />
+      <circle className="wa-rebirth-flash" cx={150} cy={150} r={120} fill={`url(#${id}sun)`} />
+      {/* The bird: rising a little at each downstroke of its wings, sinking back as they rise. */}
+      <g className="wa-phoenix-bob">
+      <g filter={`url(#${id}g)`} opacity={0.9}>
+        {art.wisps.map((d, k) => (
+          <path key={`w${k}`} className="wa-wisp" d={d} fill="#f97316" opacity={0.55} style={{ animationDelay: `${-k * 0.37}s` }} />
+        ))}
         {art.tail.map((d, k) => (
           <path key={k} className="wa-tail" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.45}s` }} />
         ))}
-        <g className="wa-wing">
-          {art.wing.map((d, k) => (
-            <path key={k} d={d} fill={`url(#${id}f)`} />
-          ))}
-        </g>
-        <g transform={`translate(${W} 0) scale(-1 1)`}>
-          <g className="wa-wing">
-            {art.wing.map((d, k) => (
-              <path key={k} d={d} fill={`url(#${id}f)`} />
-            ))}
+        {[false, true].map((mirror) => (
+          <g key={String(mirror)} transform={mirror ? `translate(${W} 0) scale(-1 1)` : undefined}>
+            <g className="wa-wing">
+              {/* The inner feathers beat with the arm; the outer ones a beat later, a whip to the tip. Each
+                  feather's fire flickers on its own. */}
+              {art.wing.slice(0, 5).map((d, k) => (
+                <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.23}s` }} />
+              ))}
+              <g className="wa-wing-tip">
+                {art.wing.slice(5).map((d, k) => (
+                  <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-(k + 5) * 0.23}s` }} />
+                ))}
+              </g>
+            </g>
           </g>
-        </g>
+        ))}
         <path d="M150 96C163 108 165 150 157 196L150 214L143 196C135 150 137 108 150 96Z" fill={`url(#${id}f)`} />
         {art.crest.map((d, k) => (
           <path key={k} className="wa-tail" d={d} fill="#fde047" style={{ animationDelay: `${-k * 0.3}s` }} />
         ))}
         <path d="M150 99L144 108L150 106Z" fill="#fff7ed" />
+        <circle className="wa-phoenix-eye" cx={147} cy={106} r={1.4} fill="#fff" />
       </g>
+      </g>
+      {art.burst.map((b, i) => (
+        <circle
+          key={`b${i}`}
+          className="wa-rebirth-spark"
+          cx={150}
+          cy={150}
+          r={b.s}
+          fill={i % 2 ? '#fde047' : '#fb923c'}
+          style={{ ['--dx' as string]: `${b.dx.toFixed(0)}px`, ['--dy' as string]: `${b.dy.toFixed(0)}px`, animationDelay: `${b.d.toFixed(2)}s` }}
+        />
+      ))}
       {art.embers.map((e, i) => (
         <circle
           key={i}
