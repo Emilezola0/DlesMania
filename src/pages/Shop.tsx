@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { codeId, giftFor, normalizeCode } from '../gacha/codes';
+import { codeExpired, codeId, giftFor, normalizeCode } from '../gacha/codes';
 import { Link } from 'react-router-dom';
 import { Coins, DleCoin } from '../components/DleCoin';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from '../gacha/cards';
@@ -211,7 +211,7 @@ function RedeemCode() {
     const gift = giftFor(c);
     if (!gift) return no("That code doesn't exist (yet).");
     const day = todayKey();
-    if (gift.only && gift.only !== day) return no('That code was for one day only — it has expired.');
+    if (codeExpired(gift, day)) return no(gift.until ? 'That code has expired.' : 'That code was for one day only — it has expired.');
     if (!signedIn) return no('Gift codes need an account, so each one is redeemed once: sign in first (Account).');
     const usedMsg = gift.daily ? 'Already redeemed today — it works again tomorrow.' : 'You already redeemed this code.';
     if ((useProgress.getState().redeemed ?? []).includes(gift.daily ? `${c}@${day}` : c)) return no(usedMsg);

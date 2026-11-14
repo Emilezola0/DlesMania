@@ -63,7 +63,7 @@ import {
   rouletteWins,
   type RoulettePrize,
 } from '../gacha/economy';
-import { giftFor, normalizeCode } from '../gacha/codes';
+import { codeExpired, giftFor, normalizeCode } from '../gacha/codes';
 import { rollScratch, SCRATCH_BY_ID, type ScratchTicket } from '../casino/scratchCards';
 import type { ClawItem } from '../casino/clawMachine';
 import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
@@ -1045,7 +1045,7 @@ export const useProgress = create<ProgressState>()(
         const gift = giftFor(code);
         if (!gift) return { ok: false, reason: 'unknown' };
         // A one-day code works on its day only.
-        if (gift.only && gift.only !== todayKey()) return { ok: false, reason: 'expired' };
+        if (codeExpired(gift, todayKey())) return { ok: false, reason: 'expired' };
         const s = get();
         // A daily code is kept with the day it was redeemed: it works again tomorrow.
         const mark = gift.daily ? `${code}@${todayKey()}` : code;
