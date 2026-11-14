@@ -73,12 +73,13 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
-    // The dragon's body, winding down the pack: as wide as half the pack, narrowing to the tail at the bottom.
+    // The dragon's body, up close, winding down the pack: wider than the pack, so its scales fill it to the edges
+    // even as it swings (±52); its spine and its round shading show the S.
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 22; r++) {
-      const half = r < 14 ? 70 : Math.max(12, 70 - (r - 13) * 7.5);
+      const half = 200;
       const xs: number[] = [];
-      for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
+      for (let x = W / 2 - 224 + (r % 2 ? 14 : 0); x <= W / 2 + 224; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
       out.push({ r, y: -14 + r * 19, xs, half });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
@@ -142,7 +143,9 @@ export function DragonWrap() {
               </g>
             </g>
           ))}
-          <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
+          <rect x={W / 2 - 150} y={y - 2} width={300} height={21} fill={`url(#${id}b)`} />
+          <rect x={W / 2 - 260} y={y - 2} width={112} height={21} fill="#000" opacity={0.75} />
+          <rect x={W / 2 + 148} y={y - 2} width={112} height={21} fill="#000" opacity={0.75} />
         </g>
       ))}
       {/* The spines down its back, gold, swinging with the body. */}
