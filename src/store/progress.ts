@@ -274,6 +274,8 @@ interface ProgressState {
   buyShopCard: (id: string, price: number) => boolean;
   /** A capsule from the machine (a free one first, if any): the frame inside, or null if it can't. */
   openCapsule: () => { frame: Frame; duplicate: boolean; coins: number; free: boolean } | null;
+  /** Up to 10 capsules at once (free ones first, then DleCoins): as many as it could, each with what came out. */
+  openCapsules: (n: number) => { frame: Frame; duplicate: boolean; coins: number; free: boolean }[];
   /** Icon frames won (src/casino/frames.ts), and the one worn around the icon. */
   frames: string[];
   frame: string | null;
@@ -781,19 +783,27 @@ export const useProgress = create<ProgressState>()(
         });
         return true;
       },
-      openCapsule: () => {
+      openCapsule: () => get().openCapsules(1)[0] ?? null,
+      openCapsules: (n) => {
         const s = get();
-        const free = (s.capsuleTokens ?? 0) > 0;
-        if (!free && s.coins < CAPSULES.cost) return null;
-        const owned = s.frames ?? [];
-        const r = rollCapsule(owned);
-        set({
-          coins: s.coins - (free ? 0 : CAPSULES.cost) + r.coins,
-          capsuleTokens: free ? s.capsuleTokens - 1 : (s.capsuleTokens ?? 0),
-          frames: r.duplicate ? owned : [...owned, r.frame.id],
-          ...paidIn(s, free ? 0 : CAPSULES.cost),
-        });
-        return { ...r, free };
+        let tokens = s.capsuleTokens ?? 0;
+        let coins = s.coins;
+        let paid = 0;
+        const owned = [...(s.frames ?? [])];
+        const got: { frame: Frame; duplicate: boolean; coins: number; free: boolean }[] = [];
+        // One after another, so a frame won in the first counts as owned for the next.
+        for (let k = 0; k < Math.min(10, Math.max(1, Math.floor(n))); k++) {
+          const free = tokens > 0;
+          if (!free && coins < CAPSULES.cost) break;
+          if (free) tokens--;
+          else (coins -= CAPSULES.cost), (paid += CAPSULES.cost);
+          const r = rollCapsule(owned);
+          coins += r.coins;
+          if (!r.duplicate) owned.push(r.frame.id);
+          got.push({ ...r, free });
+        }
+        if (got.length) set({ coins, capsuleTokens: tokens, frames: owned, ...paidIn(s, paid) });
+        return got;
       },
       spinRoulette: (times = 1) => {
         const s = get();

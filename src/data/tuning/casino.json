@@ -29,8 +29,8 @@
   },
   "capsules": {
     "cost": 250,
-    "odds": { "common": 59.5, "rare": 28, "epic": 10, "legendary": 2, "mythic": 0.5 },
-    "duplicate": { "common": 40, "rare": 75, "epic": 125, "legendary": 250, "mythic": 600 }
+    "odds": { "common": 59.3, "rare": 28, "epic": 10, "legendary": 2, "mythic": 0.5, "celestial": 0.15, "transcendent": 0.05 },
+    "duplicate": { "common": 40, "rare": 75, "epic": 125, "legendary": 250, "mythic": 600, "celestial": 1500, "transcendent": 4000 }
   },
   "cardShop": {
     "coinsPerToken": 20,

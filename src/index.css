@@ -2565,6 +2565,84 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @keyframes avatar-frame-supernova { 0%, 100% { filter: brightness(1) saturate(1); scale: 1; } 70% { filter: brightness(1.25) saturate(1.3) hue-rotate(40deg); scale: 1.04; } 78% { filter: brightness(2.2) saturate(1.6) hue-rotate(120deg); scale: 1.1; } }
 .avatar-frame-shock { border: 2px solid rgba(255, 255, 255, 0.9); opacity: 0; animation: avatar-frame-shock 3.2s ease-out infinite; }
 @keyframes avatar-frame-shock { 0%, 76% { opacity: 0; transform: scale(1); } 78% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
+
+/* Above Mythic (Celestial, Transcendent): the icon itself comes alive (src/casino/Frame.tsx BeyondLife). */
+.avatar-frame-slow { animation-duration: 14s; }
+.avatar-frame-hue { animation: avatar-frame-spin 9s linear infinite, avatar-frame-hue 6s linear infinite; }
+@keyframes avatar-frame-hue { to { filter: hue-rotate(360deg); } }
+.avatar-icon-float { animation: avatar-icon-float 3.4s ease-in-out infinite; }
+@keyframes avatar-icon-float { 50% { transform: translateY(-6%); } }
+.avatar-icon-breathe { animation: avatar-icon-breathe 3s ease-in-out infinite; }
+@keyframes avatar-icon-breathe { 50% { transform: scale(1.05); filter: brightness(1.12); } }
+.avatar-icon-shine {
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.7) 48%, rgba(255, 255, 255, 0.15) 54%, transparent 62%) no-repeat;
+  background-size: 300% 100%;
+  mix-blend-mode: overlay;
+  animation: avatar-icon-shine 3.2s ease-in-out infinite;
+}
+.avatar-icon-prism .avatar-icon-shine {
+  background: linear-gradient(115deg, transparent 40%, #ff4fd8 44%, #ffcd3c 47%, #4ade80 50%, #3cc7ff 53%, #a855f7 56%, transparent 60%) no-repeat;
+  background-size: 300% 100%;
+  mix-blend-mode: color-dodge;
+  opacity: 0.7;
+  animation-duration: 4s;
+}
+@keyframes avatar-icon-shine { 0% { background-position: 120% 0; } 60%, 100% { background-position: -20% 0; } }
+/* Aurora: curtains of light wavering behind it. */
+.avatar-fx-aurora {
+  background: conic-gradient(from 0deg, transparent, rgba(52, 211, 153, 0.95) 12%, transparent 26%, rgba(34, 211, 238, 0.9) 40%, transparent 52%, rgba(167, 139, 250, 0.95) 66%, transparent 80%, rgba(244, 114, 182, 0.8) 90%, transparent);
+  -webkit-mask: radial-gradient(circle closest-side, transparent 58%, #000 74%, transparent 100%);
+  mask: radial-gradient(circle closest-side, transparent 58%, #000 74%, transparent 100%);
+  filter: blur(2px) saturate(1.3);
+  animation: avatar-fx-aurora 7s linear infinite;
+}
+@keyframes avatar-fx-aurora { 0% { rotate: 0deg; scale: 1; } 50% { scale: 1.12 0.94; } 100% { rotate: 360deg; scale: 1; } }
+/* Orbit: three moons on a tilted orbit, in front of the icon then behind it. */
+.avatar-fx-orbit { transform: translateX(-50%); animation: avatar-fx-orbit-x 2.4s ease-in-out var(--d, 0s) infinite alternate, avatar-fx-orbit-z 4.8s steps(1) var(--d, 0s) infinite; }
+.avatar-fx-orbit-y { animation: avatar-fx-orbit-y 2.4s ease-in-out calc(var(--d, 0s) - 1.2s) infinite alternate; }
+@keyframes avatar-fx-orbit-x { from { transform: translateX(-50%); } to { transform: translateX(50%); } }
+@keyframes avatar-fx-orbit-y { from { transform: translateY(-14%); } to { transform: translateY(14%); } }
+@keyframes avatar-fx-orbit-z { 0% { z-index: 2; } 50% { z-index: -1; } }
+.avatar-fx-moon { width: 13%; height: 13%; translate: -50% -50%; background: radial-gradient(circle at 35% 30%, #fff, #cbd5e1 45%, #475569); box-shadow: 0 0 6px rgba(186, 230, 253, 0.9); }
+.avatar-fx-moon-1 { width: 9%; height: 9%; background: radial-gradient(circle at 35% 30%, #fff, #7dd3fc 45%, #1e40af); }
+.avatar-fx-moon-2 { width: 7%; height: 7%; background: radial-gradient(circle at 35% 30%, #fff, #fcd34d 45%, #b45309); box-shadow: 0 0 6px rgba(253, 230, 138, 0.9); }
+/* Starfall: shooting stars behind it. */
+.avatar-fx-fall { rotate: 150deg; }
+.avatar-fx-fall-star {
+  left: 0;
+  width: 34%;
+  height: 3%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, rgba(191, 219, 254, 0.6), #fff);
+  filter: drop-shadow(0 0 2px #93c5fd);
+  opacity: 0;
+  animation: avatar-fx-fall 3.4s ease-in infinite;
+}
+@keyframes avatar-fx-fall { 0% { transform: translateX(-110%); opacity: 0; } 8% { opacity: 1; } 40%, 100% { transform: translateX(330%); opacity: 0; } }
+/* Seraph: wings beating behind it, a halo over it, motes of light rising. */
+.avatar-fx-seraph-light { background: radial-gradient(circle, rgba(255, 247, 214, 0.9) 30%, rgba(253, 230, 138, 0.35) 55%, transparent 72%); animation: avatar-frame-pulse 3.4s ease-in-out infinite; }
+.avatar-fx-wing { width: 74%; height: 86%; top: -4%; right: 86%; transform-origin: 100% 55%; animation: avatar-fx-wing 1.7s ease-in-out infinite; filter: drop-shadow(0 0 4px rgba(253, 230, 138, 0.8)); }
+.avatar-fx-wing-r { right: auto; left: 86%; transform-origin: 0% 55%; animation-name: avatar-fx-wing-r; }
+.avatar-fx-wing-r svg { scale: -1 1; }
+@keyframes avatar-fx-wing-r { 0%, 100% { rotate: -8deg; } 45% { rotate: 16deg; } }
+@keyframes avatar-fx-wing { 0%, 100% { rotate: 8deg; } 45% { rotate: -16deg; } }
+.avatar-fx-halo { left: 50%; top: -30%; width: 56%; height: 15%; translate: -50% 0; border-radius: 50%; border: 2px solid #fde68a; box-shadow: 0 0 8px #fde68a, inset 0 0 5px #fff7d6; animation: avatar-fx-halo 3.4s ease-in-out infinite; }
+@keyframes avatar-fx-halo { 50% { transform: translateY(-14%); box-shadow: 0 0 14px #fde68a, inset 0 0 7px #fff; } }
+.avatar-fx-mote { bottom: 6%; width: 6%; height: 6%; background: #fff7d6; box-shadow: 0 0 5px #fde68a; opacity: 0; animation: avatar-fx-mote 2.8s ease-out infinite; }
+@keyframes avatar-fx-mote { 0% { opacity: 0; transform: translateY(0) scale(0.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-900%) scale(1); } }
+/* Cosmos: a starfield turning behind it, two rings spinning round it like a gyroscope. */
+.avatar-fx-stars {
+  background:
+    radial-gradient(circle at 20% 30%, #fff 0 1.2%, transparent 2%), radial-gradient(circle at 78% 22%, #fde68a 0 1%, transparent 1.8%),
+    radial-gradient(circle at 70% 76%, #fff 0 1.4%, transparent 2.2%), radial-gradient(circle at 28% 80%, #a5f3fc 0 1%, transparent 1.8%),
+    radial-gradient(circle at 50% 8%, #f0abfc 0 1%, transparent 1.8%), radial-gradient(circle at 92% 52%, #fff 0 1%, transparent 1.8%),
+    radial-gradient(circle at 8% 56%, #fff 0 1%, transparent 1.8%),
+    radial-gradient(circle, rgba(168, 85, 247, 0.55) 30%, rgba(59, 130, 246, 0.35) 50%, rgba(236, 72, 153, 0.2) 62%, transparent 72%);
+  animation: avatar-frame-spin 20s linear infinite, avatar-frame-pulse 4s ease-in-out infinite;
+}
+.avatar-fx-gyro { z-index: 1; transform: perspective(400px) rotateX(var(--tilt, 68deg)); border: 2px solid; border-color: #fff transparent #a5f3fc transparent; filter: drop-shadow(0 0 3px #fff); animation: avatar-fx-gyro 3.6s linear infinite; }
+.avatar-fx-gyro-2 { border-color: transparent #f0abfc transparent #fde68a; animation-duration: 5s; animation-direction: reverse; --tilt: -62deg; }
+@keyframes avatar-fx-gyro { from { transform: perspective(400px) rotateX(var(--tilt, 68deg)) rotateZ(0deg); } to { transform: perspective(400px) rotateX(var(--tilt, 68deg)) rotateZ(360deg); } }
 /* Name styles (the Casino's Boutique, src/casino/cosmetics.ts). */
 .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni { -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: card-name-shimmer 4s linear infinite; }
 .name-style-gold { background-image: linear-gradient(90deg, #a16207, #fde68a, #f59e0b, #fff7c2, #a16207); }
@@ -2650,7 +2728,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .avatar-frame-orn-br { right: -22%; bottom: -20%; }
 .avatar-frame-orn-bl { left: -22%; bottom: -20%; }
 @media (prefers-reduced-motion: reduce) {
-  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .claw-marquee, .claw-button-live, .claw-meter-full, .name-style-candy, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock { animation: none; }
+  .slot-bulbs, .slot-win-cell, .slot-line, .slot-jackpot, .capsule-jostle, .capsule-drop, .capsule-drop:hover, .capsule-idle, .capsule-strain, .capsule-zoom, .capsule-frame-in, .capsule-stage-rays, .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni, .name-style-ember, .name-style-toxic, .name-style-royal, .name-style-jackpot, .name-style-neon, .name-style-glitch, .scratch-shine, .scratch-hit, .scratch-big, .claw-marquee, .claw-button-live, .claw-meter-full, .name-style-candy, .pack-wrap-layer, .avatar-frame-spin, .avatar-frame-pulse, .avatar-frame-twinkle, .avatar-frame-flicker, .avatar-frame-spark, .avatar-frame-drift, .avatar-frame-halo, .avatar-frame-supernova, .avatar-frame-shock, .avatar-frame-hue, .avatar-icon-float, .avatar-icon-breathe, .avatar-icon-shine, .avatar-fx-aurora, .avatar-fx-orbit, .avatar-fx-orbit-y, .avatar-fx-fall-star, .avatar-fx-seraph-light, .avatar-fx-wing, .avatar-fx-halo, .avatar-fx-mote, .avatar-fx-stars, .avatar-fx-gyro { animation: none; }
 }
 
 /* The Boutique's Prestige collection (src/casino/cosmetics.ts, `prestige`): name styles, pack wrappers and titles for

@@ -7,10 +7,11 @@ import REWARDS from '../data/rewards.json';
 import { addDays, toKey } from '../lib/date';
 import { hashString } from '../lib/rng';
 
-export type FrameRarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic';
-export const FRAME_RARITIES: FrameRarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic'];
-export const FRAME_RARITY_NAME: Record<FrameRarity, string> = { common: 'Common', rare: 'Rare', epic: 'Epic', legendary: 'Legendary', mythic: 'Mythic' };
-export const FRAME_RARITY_COLOR: Record<FrameRarity, string> = { common: '#94a3b8', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#ff4fd8' };
+/** Above Mythic: Celestial and Transcendent, whose frames do something to the icon itself (it floats, shines, has company). */
+export type FrameRarity = 'common' | 'rare' | 'epic' | 'legendary' | 'mythic' | 'celestial' | 'transcendent';
+export const FRAME_RARITIES: FrameRarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic', 'celestial', 'transcendent'];
+export const FRAME_RARITY_NAME: Record<FrameRarity, string> = { common: 'Common', rare: 'Rare', epic: 'Epic', legendary: 'Legendary', mythic: 'Mythic', celestial: 'Celestial', transcendent: 'Transcendent' };
+export const FRAME_RARITY_COLOR: Record<FrameRarity, string> = { common: '#94a3b8', rare: '#38bdf8', epic: '#c084fc', legendary: '#fbbf24', mythic: '#ff4fd8', celestial: '#14d8c4', transcendent: '#ff3d6e' };
 
 export interface Frame {
   id: string;
@@ -27,7 +28,9 @@ export interface Frame {
    * flicker: the ring crackles (thunder); blackhole and supernova: the Mythics' own (a ring of light bending
    * round a dark heart, a star swelling and bursting in every colour).
    */
-  life?: 'spin' | 'pulse' | 'twinkle' | 'drift' | 'flicker' | 'blackhole' | 'supernova';
+  life?: 'spin' | 'pulse' | 'twinkle' | 'drift' | 'flicker' | 'blackhole' | 'supernova' | Beyond;
+  /** What it does to the icon itself (Celestial and Transcendent): it floats, breathes, a light sweeps over it, or a rainbow. */
+  icon?: 'float' | 'breathe' | 'sheen' | 'prism';
   /** What twinkles or drifts on it (✦ by default). */
   sparkle?: string;
   /** Seasonal: in the machine only around this reward date (an id of src/data/rewards.json). */
@@ -35,6 +38,13 @@ export interface Frame {
   /** Earned, never in the machine: how (shown in the collection). */
   earn?: string;
 }
+
+/**
+ * The lives above Mythic, all round the icon: an aurora wavering behind it; moons orbiting it, in front then
+ * behind; stars falling behind it; a seraph's wings beating and a halo over it; a turning starfield and two
+ * rings spinning round it like a gyroscope.
+ */
+export type Beyond = 'aurora' | 'orbit' | 'starfall' | 'seraph' | 'cosmos';
 
 const metal = (light: string, mid: string, dark: string) => `conic-gradient(from 210deg, ${light}, ${mid} 25%, ${dark} 50%, ${mid} 75%, ${light})`;
 
@@ -63,6 +73,12 @@ export const FRAMES: Frame[] = [
   // The Mythics, rarest of the machine, after the packs' own wonders.
   { id: 'blackhole', name: 'Black Hole', rarity: 'mythic', ring: 'conic-gradient(#fff7ed, #fb923c 12%, #1c0a00 30%, #000 50%, #1c0a00 70%, #fb923c 88%, #fff7ed)', glow: '#fb923c', life: 'blackhole' },
   { id: 'supernova', name: 'Supernova', rarity: 'mythic', ring: 'conic-gradient(#ffffff, #ff4fd8, #ffcd3c, #ffffff, #3cc7ff, #a855f7, #ffffff)', glow: '#ffffff', life: 'supernova', sparkle: '✦' },
+  // Above Mythic: the icon itself comes alive.
+  { id: 'aurora', name: 'Aurora', rarity: 'celestial', ring: 'linear-gradient(160deg, #a7f3d0, #14d8c4 35%, #6366f1 70%, #c084fc)', glow: '#5eead4', life: 'aurora', icon: 'float' },
+  { id: 'orbit', name: 'Orbit', rarity: 'celestial', ring: metal('#f1f5f9', '#94a3b8', '#1e293b'), glow: '#bae6fd', life: 'orbit', icon: 'breathe' },
+  { id: 'starfall', name: 'Starfall', rarity: 'celestial', ring: 'conic-gradient(from 200deg, #0c1445, #3b82f6, #e0f2fe, #3b82f6, #0c1445, #1e3a8a, #0c1445)', glow: '#93c5fd', life: 'starfall', icon: 'sheen' },
+  { id: 'seraph', name: 'Seraph', rarity: 'transcendent', ring: metal('#ffffff', '#fde68a', '#b45309'), glow: '#fff7d6', life: 'seraph', icon: 'float' },
+  { id: 'cosmos', name: 'Cosmos', rarity: 'transcendent', ring: 'conic-gradient(#ff4fd8, #ffcd3c, #4ade80, #3cc7ff, #a855f7, #ff4fd8)', glow: '#ffffff', life: 'cosmos', icon: 'prism' },
   // Seasonal: in the machine only around their day (the reward dates), then back a year later.
   { id: 'pumpkin', name: 'Pumpkin', rarity: 'rare', season: 'halloween', ring: 'linear-gradient(135deg, #fed7aa, #f97316 50%, #431407)', glow: '#f97316', ornament: { glyph: '🎃', at: 'br' } },
   { id: 'snowflake', name: 'Snowflake', rarity: 'rare', season: 'christmas', ring: 'linear-gradient(135deg, #ffffff, #93c5fd 50%, #1e3a8a)', glow: '#dbeafe', life: 'twinkle', sparkle: '❄', ornament: { glyph: '🎄', at: 'br' } },
