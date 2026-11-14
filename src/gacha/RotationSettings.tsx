@@ -3,21 +3,17 @@
 import { useState } from 'react';
 import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
-import { rotationOf, useProgress, type RotationPlan, type RotationSlot } from '../store/progress';
+import { rotationOf, useProgress, whensOf, type RotationPlan, type RotationSlot, type RotationWhen } from '../store/progress';
 import { CARD_BY_ID, CARDS, RARITY_INFO, type Rarity } from './cards';
 import { canBeBackdrop, CardAvatar } from './Perks';
 
-/** "When" and "every" as one choice. */
-const WHEN: { value: string; label: string; plan: Pick<RotationPlan, 'when'> & Partial<Pick<RotationPlan, 'every'>> }[] = [
-  { value: 'off', label: 'Never: stays as it is', plan: { when: 'off' } },
-  { value: 'clip', label: "After a win's clip has played", plan: { when: 'clip' } },
-  { value: 'win:1', label: 'After every win', plan: { when: 'win', every: 1 } },
-  { value: 'win:3', label: 'Every 3 wins', plan: { when: 'win', every: 3 } },
-  { value: 'win:5', label: 'Every 5 wins', plan: { when: 'win', every: 5 } },
-  { value: 'win:10', label: 'Every 10 wins', plan: { when: 'win', every: 10 } },
-  { value: 'visit', label: 'Each time I open Omnidle', plan: { when: 'visit' } },
+/** The moments the next card can come, ticked together (a player's ask, Discord ticket "Personnalisation"). */
+const WHENS: { value: Exclude<RotationWhen, 'off'>; label: string }[] = [
+  { value: 'win', label: 'After wins' },
+  { value: 'clip', label: "After a win's clip has played" },
+  { value: 'visit', label: 'Each time I open Omnidle' },
 ];
-const whenValue = (p: RotationPlan) => (p.when === 'win' ? `win:${[1, 3, 5, 10].includes(p.every) ? p.every : 1}` : p.when);
+const EVERY = [1, 3, 5, 10];
 
 const QUICK: { rarity: Rarity; label: string }[] = [
   { rarity: 'omni', label: 'Omnis' },
@@ -43,6 +39,7 @@ function SlotTurns({ slot }: { slot: RotationSlot }) {
   };
   const ready = plan.cards.filter((id) => (owned[id] ?? 0) > 0 && fits(id)).length;
   const label = slot === 'avatar' ? 'Icon' : 'Background';
+  const whens = whensOf(plan);
   // A card found by its name or its franchise (a player's ask, Discord ticket "Personalisation"): the owned ones that fit, not in yet.
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
@@ -61,22 +58,42 @@ function SlotTurns({ slot }: { slot: RotationSlot }) {
         <p className="font-semibold">🔄 {label} takes turns</p>
         <p className="text-xs text-ink-faint">
           {ready} card{ready === 1 ? '' : 's'}
-          {ready < 2 && plan.when !== 'off' ? ' — add at least 2' : ''}
+          {ready < 2 && whens.length ? ' — add at least 2' : ''}
         </p>
       </div>
+      <fieldset className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm" aria-label={`When the ${label.toLowerCase()} changes`}>
+        {WHENS.map((w) => (
+          <label key={w.value} className="flex cursor-pointer items-center gap-1.5">
+            <input
+              type="checkbox"
+              checked={whens.includes(w.value)}
+              onChange={(e) => {
+                sfx.select();
+                const next = e.target.checked ? [...whens, w.value] : whens.filter((x) => x !== w.value);
+                setRotation(slot, { whens: next, when: next[0] ?? 'off' });
+              }}
+              className="size-4 accent-current"
+            />
+            <span className="font-semibold">{w.label}</span>
+            {w.value === 'win' && whens.includes('win') && (
+              <select
+                aria-label="How many wins between two changes"
+                value={EVERY.includes(plan.every) ? plan.every : 1}
+                onChange={(e) => setRotation(slot, { every: Number(e.target.value) })}
+                className="rounded-md border border-rule-strong bg-card px-1.5 py-0.5 text-xs font-semibold"
+              >
+                {EVERY.map((n) => (
+                  <option key={n} value={n}>
+                    {n === 1 ? 'every win' : `every ${n} wins`}
+                  </option>
+                ))}
+              </select>
+            )}
+          </label>
+        ))}
+        {!whens.length && <span className="text-xs text-ink-faint">None ticked: it stays as it is.</span>}
+      </fieldset>
       <div className="grid gap-2 sm:grid-cols-2">
-        <select
-          aria-label={`When the ${label.toLowerCase()} changes`}
-          value={whenValue(plan)}
-          onChange={(e) => setRotation(slot, WHEN.find((w) => w.value === e.target.value)!.plan)}
-          className="w-full rounded-md border border-rule-strong bg-card px-3 py-2 text-sm font-semibold"
-        >
-          {WHEN.map((w) => (
-            <option key={w.value} value={w.value}>
-              {w.label}
-            </option>
-          ))}
-        </select>
         <select
           aria-label={`The ${label.toLowerCase()}'s order`}
           value={plan.order}

@@ -200,7 +200,8 @@ const MYTHICS_2: Record<string, { name: string; title: string; line: string; voi
   balatro: { name: 'Jimbo', title: 'Your Friend at the Table', line: 'He knows every seed, every shop and every hand you should have played, and he will tell you all about it.', voice: 'Hey there, friend!' },
   destiny: { name: 'Zavala', title: 'Commander of the Vanguard', line: 'The last wall between the City and the dark: a Titan who gets back up every single time.', voice: 'Guardians, make your stand.' },
   forhonor: { name: 'Commander Ravier', title: 'Sworn to the Cross', line: 'A kite shield, a heavy blade and a vow he never broke: the Blackstone’s fallen knight still stands between you and everyone he guards.', voice: 'Ad profundis!', audio: 'https://www.myinstants.com/media/sounds/ad-profundis.mp3', image: `${import.meta.env?.BASE_URL ?? './'}art/forhonor/black-prior-mythic.jpg` },
-  forts: { name: 'Phantom', title: 'Now You See Me', line: 'No one ever finds his fort until its guns open up, and by then it has already moved on.', voice: 'You never saw me.', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
+  // A player's picks (Discord ticket "Phantom"): the name, the title and the line said; the line below to go with them.
+  forts: { name: 'Particle Accelerator', title: 'Canon X Portal', line: 'A cannon shell sent through a portal and back again, faster every pass, until the whole game can’t keep up.', voice: 'Infinite Loop', image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/Commander-Phantom.png' },
   jlpt: { name: 'Oni-Sensei', title: 'Final Exam', line: 'Red pen in hand, he has marked two thousand kanji wrong, one stroke at a time. Pass his exam and he finally smiles — once.', voice: 'Hajime!' },
   arcraiders: { name: 'Bastion', title: 'The Walking Fortress', line: 'Armour plates all round and guns that never seem to cool: the only way in is the glowing back plate, and it knows you know.', voice: 'Target acquired.', image: 'https://arcraiders.wiki/w/images/thumb/c/c5/Bastion_Codex.png/400px-Bastion_Codex.png.webp' },
   // Acheron in her splash art, a line picked each time she speaks (her own recordings from the wiki).
@@ -778,8 +779,10 @@ const CLIPS: Record<string, string> = {
   'lol:omni': 'https://media.tenor.com/OaenBPLYCCYAAAPo/ahri-league-of-legends.mp4',
   'lol:mythic-2': 'https://media.tenor.com/aON12Kv1-8UAAAPo/jinx-star-guardian.mp4',
   'overwatch:mythic': 'https://media.tenor.com/G_EVend5kNYAAAP1/tracer-overwatch.mp4',
-  'overwatch:omni': 'https://media.tenor.com/Q_tSybqTqr0AAAP1/pink-rose-gold.mp4',
-  'overwatch:mythic-2': 'https://media.tenor.com/eW-0Jv-XG28AAAP1/overwatch-overwatch-league.mp4',
+  // A player's picks (Discord tickets "Omni mercy", "Doomfist"): 0:32–0:36 of IBIwGKDwnWY, silent (--mute); five
+  // moments of 0DspNR5rC_0 with their sound, its PEGI mark smoothed away (delogo), one heard at random each time.
+  'overwatch:omni': `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/mercy-omni.mp4`,
+  'overwatch:mythic-2': [1, 2, 3, 4, 5].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/doomfist-mythic-${n}.mp4`).join('|'),
   'minecraft:mythic': 'https://media.tenor.com/G7ryB6dOXCsAAAPo/creeper-creeper-explosion.mp4',
   'minecraft:omni': 'https://media.tenor.com/FjMXvOoCwrcAAAP1/charged-creeper-lightning.mp4',
   'minecraft:mythic-2': 'https://media.tenor.com/xggcQgDU3mkAAAP1/minecraft-warden.mp4',
@@ -802,7 +805,8 @@ const CLIPS: Record<string, string> = {
   'jlpt:mythic': 'https://media.tenor.com/6y_x59L0fNEAAAPo/pixel-art.mp4',
   'jlpt:mythic-2': 'https://media.tenor.com/LVV2rkspHvYAAAPo/oni-mask.mp4',
   'unreal:mythic-2': 'https://media.tenor.com/kxZgL7zPf0EAAAPo/hello-world.mp4',
-  'forts:mythic-2': 'https://media.tenor.com/Z5O1lUnK9e0AAAPo/forts-forts-game.mp4',
+  // A player's pick (Discord ticket "Phantom"): 6:40–6:45 then 6:59–7:15 of m8aV8HyUELY, joined, with its sound.
+  'forts:mythic-2': `${import.meta.env?.BASE_URL ?? './'}clips/forts/particle-accelerator.mp4`,
   'hsr:mythic': 'https://media.tenor.com/v-XMz_8voHIAAAPo/kafka-honkai-star-rail.mp4',
   'hsr:mythic-2': 'https://media.tenor.com/kEOuplrdMIAAAAPo/acheron-honkai-star-rail.mp4',
   'hollowknight:mythic': 'https://media.tenor.com/bm0FsIEEUjsAAAPo/silksong-lace.mp4',
@@ -897,13 +901,17 @@ const CLIPS: Record<string, string> = {
   // (the owner's call: no voice line over them). Here, not in FIRST_CLIPS: an Omni always shows its awakened form now,
   // and that form only takes its clip from CLIPS.
   'forhonor:omni': [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/apollyon-war-sound-${n}.mp4`).join('|'),
-  'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/gif/forhonor-mythic.mp4`,
+  // A player's pick (Discord ticket "Centurion"): 0:35–0:42 of 1IfVv8Xk11M, silent, its burnt-in subtitles cropped off.
+  'forhonor:mythic': `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/centurion-mythic.mp4`,
   // Genji's Omni (awakened, the form an Omni shows): the climax of Blizzard's "Dragons" short (4:57–5:22 of oJ09xdxzIJQ, made with scripts/card-clip.mjs), "Ryū ga waga
   // teki wo kurau!" / "Ryūjin no ken wo kurae!", the three dragons, Hanzo on his knees; heard with its own sound.
   'overwatch:omni-genji': `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/genji-dragons.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
-  // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
+  // Hebe and O-Chan: the owner's game captures, one after the other, looping like a GIF (LIGHT_CLIPS). O-Chan's
+  // used to be her first form's (FIRST_CLIPS), which an Omni no longer shows: here, on the one it shows (a player's
+  // ask, Discord ticket "O-chan": "constantly, like Hebe").
   'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
+  'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'forhonor:mythic-2': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   // Aang awakened (Avatar State): the owner's pick, Aang Goes Super Saiyan from the 2026 film (Movieclips, 0:00–0:26), heard.
@@ -933,8 +941,6 @@ const FIRST_CLIPS: Record<string, string> = {
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
   'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness-30fps.mp4`,
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
-  // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
-  'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
   'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
@@ -947,7 +953,7 @@ const FIRST_CLIPS: Record<string, string> = {
   'balatro:omni': `${import.meta.env?.BASE_URL ?? './'}clips/balatro/the-soul.mp4`,
 };
 /** The clips under 150 KB. */
-const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'shrek:mythic-2', 'shrek:mythic-dragon', 'shrek:mythic-humpty-dumpty', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'overwatch:omni', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'forhonor:mythic', 'overwatch:mythic-2', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
+const LIGHT_CLIPS = new Set(['bg3:mythic', 'bg3:mythic-2', 'shrek:mythic-2', 'shrek:mythic-dragon', 'shrek:mythic-humpty-dumpty', 'ufouria:mythic', 'ufouria:omni', 'deadlock:omni', 'overwatch:mythic', 'harrypotter:mythic', 'lotr:mythic', 'harrypotter:mythic-2', 'dbz:omni', 'minecraft:omni', 'wow:mythic', 'mcu:mythic-2', 'harrypotter:omni', 'smash:omni', 'inazuma:mythic', 'minecraft:mythic', 'minecraft:mythic-2', 'dbz:mythic-2', 'naruto:mythic-2', 'mcu:omni', 'inazuma:omni', 'wow:omni', 'destiny:mythic-2', 'destiny:mythic', 'forhonor:mythic-2']);
 /** The pictures measured as cut out (transparent edges), first form and awakened. */
 const CUTOUTS = new Set(['overwatch:omni', 'overwatch:mythic-2', 'minecraft:mythic', 'minecraft:omni', 'minecraft:mythic-2', 'naruto:omni', 'mcu:omni', 'smash:mythic', 'smash:omni', 'smash:mythic-2', 'genshin:mythic', 'genshin:omni', 'genshin:mythic-2', 'ufouria:mythic', 'ufouria:omni']);
 /** Light first forms whose awakened clip is a full video, not a light one. */
@@ -967,7 +973,7 @@ const withClip = (c: Card): Card => {
 };
 
 /** The clips hosted with the site that have no sound track (GIFs, the game captures, the ones cut --mute). */
-const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/black-prior-ad-profundis|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
+const SILENT_HOSTED = /\/clips\/(gif|ufouria)\/|\/clips\/forhonor\/(black-prior-ad-profundis|centurion-mythic)|\/clips\/overwatch\/mercy-omni|\/clips\/forts\/(howitzer|core-swing)\.mp4/;
 /**
  * Whether a card's clip is heard (the owner's rule: a video that has sound always plays with it, behind a win too,
  * never under a voice line): every clip hosted with the site that has a sound track, and the ones marked `clipSound`.
