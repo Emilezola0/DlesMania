@@ -106,6 +106,8 @@ export const SILHOUETTE_OF: Map<string, string> = (() => {
 export const POOLS = {
   classic: ONE_PIECE.characters.slice(0, 160).map((c) => c.id),
   fruit: ONE_PIECE.fruits.filter((f) => f.image || f.users.some((u) => ONE_PIECE.characters.slice(0, 160).some((c) => c.name === u))).map((f) => f.id),
+  // The fruits with a picture: the only ones drawn from FRUIT_PICTURES_FROM on (the owner's call: no round without one).
+  fruitPictured: ONE_PIECE.fruits.filter((f) => f.image).map((f) => f.id),
   // Laughs with a voice clip; the written laugh alone only if none have one.
   laugh: (ONE_PIECE.laughs.some((l) => l.youtubeId) ? ONE_PIECE.laughs.filter((l) => l.youtubeId) : ONE_PIECE.laughs).map((l) => l.character),
   flag: ONE_PIECE.crews.map((c) => c.id),

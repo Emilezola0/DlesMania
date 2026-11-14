@@ -292,15 +292,24 @@ const POOLS_OF: Record<UniverseId, Partial<Record<SpType, string[]>>> = {
   unreal: BLUEPRINT_POOLS,
 };
 
+/**
+ * From this day on, a One Piece Devil Fruit round only draws a fruit that has a picture (the owner's call). The days
+ * before keep the pool they were drawn from: their saved answers stay on the same fruit.
+ */
+export const FRUIT_PICTURES_FROM = '2026-11-15';
+/** The answers a round type draws from (a daily's Sat Nov 14 13:03:53     2026; none for practice, which follows today's rules). */
+const poolOf = (id: UniverseId, type: SpType, date?: string) =>
+  id === 'onepiece' && type === 'fruit' && (!date || date >= FRUIT_PICTURES_FROM) ? POOLS.fruitPictured : (POOLS_OF[id][type] ?? []);
+
 /** How many answers a round type can draw from. */
-export const poolSize = (id: UniverseId, type: SpType) => (POOLS_OF[id][type] ?? []).length;
+export const poolSize = (id: UniverseId, type: SpType) => poolOf(id, type).length;
 
 /**
  * A random round of one type; `avoid` keeps one answer from coming up twice in a day or a session,
  * and `lastUsed` (dailies) prefers the answers that haven't come up for the longest time.
  */
-export function randomRound(id: UniverseId, type: SpType, rand: () => number, avoid: Set<string> = new Set(), lastUsed?: Map<string, number>): SpRound {
-  const all = POOLS_OF[id][type] ?? [];
+export function randomRound(id: UniverseId, type: SpType, rand: () => number, avoid: Set<string> = new Set(), lastUsed?: Map<string, number>, date?: string): SpRound {
+  const all = poolOf(id, type, date);
   const pool = all.filter((x) => !avoid.has(x));
   return { type, targetId: pick(leastRecent(pool.length ? pool : all, (x) => x, lastUsed), rand), seed: Math.floor(rand() * 2 ** 31) };
 }
@@ -319,7 +328,7 @@ export function buildSpecialistDaily(id: UniverseId, date: string): SpRound[] {
     for (const r of buildSpecialistDaily(id, day)) if (r.type !== 'timeline') lastUsed.set(r.targetId, n);
   }
   const rounds = universe(id)!.types.map((type) => {
-    const round = randomRound(id, type, rand, used, lastUsed);
+    const round = randomRound(id, type, rand, used, lastUsed, date);
     used.add(round.targetId);
     return round;
   });
