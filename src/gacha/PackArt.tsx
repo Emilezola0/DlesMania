@@ -3,6 +3,7 @@ import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { useProgress } from '../store/progress';
 import { SETS } from './cards';
 import type { Pack } from './packs';
+import { StormWrap } from './StormWrap';
 
 /**
  * A pack's wrapper: its colours, a torn top edge, a shine — and for a franchise pack, its guardian. A golden
@@ -23,6 +24,7 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
     >
       {wrap && <div className="pack-wrap-layer pointer-events-none absolute inset-0" aria-hidden />}
       {set?.guardian.image ? <img src={set.guardian.image} alt="" draggable={false} className="absolute inset-0 size-full object-cover opacity-40 mix-blend-luminosity" /> : null}
+      {wrap?.id === 'wrap:storm' && <StormWrap />}
       <div className="relative text-center">
         <p className="text-[26cqw] leading-none drop-shadow">{pack.icon}</p>
         <p className="mt-[4cqw] px-[6cqw] font-display text-[10cqw] font-bold leading-tight drop-shadow">{pack.name.replace(' pack', '')}</p>

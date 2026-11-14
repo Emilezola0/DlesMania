@@ -2723,29 +2723,43 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 /* Prestige pack wrappers: the wrapper's layer and its two pseudo-elements carry what moves. */
 .pack-wrap-storm, .pack-wrap-dragon, .pack-wrap-crystal, .pack-wrap-phoenix, .pack-wrap-blackhole, .pack-wrap-deco { isolation: isolate; }
 .pack-wrap-layer::before, .pack-wrap-layer::after { pointer-events: none; }
-/* Thunderstorm: clouds rolling by; now and then a bolt and a flash light everything up. */
-.pack-wrap-storm { background: linear-gradient(180deg, #0f172a, #334155 45%, #1e293b 75%, #0f172a) !important; }
-.pack-wrap-storm .pack-wrap-layer {
-  background: radial-gradient(ellipse 40% 18% at 20% 18%, rgba(148, 163, 184, 0.55), transparent 70%), radial-gradient(ellipse 45% 16% at 70% 10%, rgba(100, 116, 139, 0.6), transparent 70%), radial-gradient(ellipse 50% 20% at 45% 30%, rgba(71, 85, 105, 0.6), transparent 70%);
-  background-size: 200% 100%;
-  animation: pack-wrap-clouds 9s linear infinite;
+/* Thunderstorm (src/gacha/StormWrap.tsx): two decks of cloud drifting, slanting rain, sparks along the edges, and
+   lightning drawn new every strike, lighting the clouds from inside and flashing the whole pack. */
+.pack-wrap-storm { background: radial-gradient(ellipse 120% 60% at 50% 0%, #1e1b4b, transparent 70%), linear-gradient(180deg, #020617, #0f172a 40%, #1e293b 80%, #0b1220) !important; }
+.pack-storm-drift, .storm-drift { animation: storm-drift 14s linear infinite; }
+.storm-drift-slow { animation: storm-drift 26s linear infinite; }
+@keyframes storm-drift { from { transform: translateX(0); } to { transform: translateX(-300px); } }
+.pack-storm-rain {
+  background-image: repeating-linear-gradient(105deg, transparent 0 11px, rgba(191, 219, 254, 0.22) 11px 12px, transparent 12px 23px);
+  background-size: 23px 60px;
+  -webkit-mask-image: linear-gradient(transparent, #000 25%, #000 85%, transparent);
+  mask-image: linear-gradient(transparent, #000 25%, #000 85%, transparent);
+  animation: storm-rain 0.5s linear infinite;
 }
-@keyframes pack-wrap-clouds { from { background-position: 0 0; } to { background-position: 200% 0; } }
-.pack-wrap-storm .pack-wrap-layer::before {
-  content: '';
-  position: absolute;
-  right: 12%;
-  top: 14%;
-  width: 34%;
-  height: 62%;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100'%3E%3Cpath d='M26 0 L8 48 H20 L10 100 L35 38 H22 L32 0Z' fill='%23fef9c3'/%3E%3C/svg%3E") center / contain no-repeat;
-  filter: drop-shadow(0 0 6px #fde047) drop-shadow(0 0 14px #60a5fa);
-  opacity: 0;
-  animation: pack-wrap-bolt 4.5s linear infinite;
+.pack-storm-rain-near { background-image: repeating-linear-gradient(105deg, transparent 0 17px, rgba(224, 242, 254, 0.35) 17px 18.5px, transparent 18.5px 37px); background-size: 37px 90px; animation-duration: 0.32s; }
+@keyframes storm-rain { from { background-position: 0 0; } to { background-position: -16px 60px; } }
+.pack-storm-rain-near { animation-name: storm-rain-near; }
+@keyframes storm-rain-near { from { background-position: 0 0; } to { background-position: -24px 90px; } }
+.storm-edge { animation: storm-edge 2.4s linear infinite, storm-edge-flicker 1.3s steps(1, end) infinite; }
+@keyframes storm-edge { to { stroke-dashoffset: -132; } }
+@keyframes storm-edge-flicker { 0%, 100% { opacity: 0.9; } 30% { opacity: 0.35; } 45% { opacity: 1; } 70% { opacity: 0.55; } }
+/* A strike: the bolt comes down (drawn), flickers, fades; the forks a beat later. */
+.storm-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: storm-draw 0.12s ease-in forwards; }
+.storm-draw-late { animation-delay: 0.06s; }
+@keyframes storm-draw { to { stroke-dashoffset: 0; } }
+.storm-bolt { animation: storm-bolt 0.75s linear forwards; }
+@keyframes storm-bolt { 0% { opacity: 1; } 22% { opacity: 1; } 28% { opacity: 0.25; } 36% { opacity: 1; } 55% { opacity: 0.8; } 100% { opacity: 0; } }
+.storm-cloudlit, .storm-land { opacity: 0; animation: storm-lit 0.9s ease-out forwards; }
+@keyframes storm-lit { 0% { opacity: 0; } 8% { opacity: 1; } 28% { opacity: 0.4; } 36% { opacity: 0.9; } 100% { opacity: 0; } }
+.storm-underlit { opacity: 0; mix-blend-mode: screen; animation: storm-underlit 0.8s ease-out forwards; }
+@keyframes storm-underlit { 0% { opacity: 0; } 8% { opacity: 0.9; } 28% { opacity: 0.15; } 36% { opacity: 0.7; } 100% { opacity: 0; } }
+.pack-storm-flash { background: radial-gradient(ellipse at 50% 20%, #fff, #c7d2fe 60%, #818cf8); opacity: 0; mix-blend-mode: screen; animation: storm-flash 0.7s ease-out forwards; }
+@keyframes storm-flash { 0% { opacity: 0; } 5% { opacity: 0.8; } 14% { opacity: 0.08; } 24% { opacity: 0.55; } 45% { opacity: 0.1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .storm-drift, .storm-drift-slow, .pack-storm-rain, .storm-edge, .storm-draw, .storm-bolt, .storm-cloudlit, .storm-land, .storm-underlit, .pack-storm-flash { animation: none; }
+  .storm-draw { stroke-dashoffset: 0; }
+  .pack-storm-flash { opacity: 0; }
 }
-.pack-wrap-storm .pack-wrap-layer::after { content: ''; position: absolute; inset: 0; background: #e0f2fe; opacity: 0; animation: pack-wrap-flash 4.5s linear infinite; }
-@keyframes pack-wrap-bolt { 0%, 78%, 100% { opacity: 0; } 79% { opacity: 1; } 81% { opacity: 0.2; } 83% { opacity: 1; } 88% { opacity: 0; } }
-@keyframes pack-wrap-flash { 0%, 78%, 100% { opacity: 0; } 79% { opacity: 0.55; } 81% { opacity: 0; } 83% { opacity: 0.4; } 87% { opacity: 0; } }
 /* Dragon Scale: crimson scales edged in gold, a shimmer rippling over them. */
 .pack-wrap-dragon { background: linear-gradient(160deg, #450a0a, #b91c1c 50%, #450a0a) !important; box-shadow: inset 0 0 0 3px rgba(251, 191, 36, 0.7); }
 .pack-wrap-dragon .pack-wrap-layer {
