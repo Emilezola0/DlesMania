@@ -531,6 +531,7 @@ export default function Album() {
   const pulledAt = useProgress((s) => s.pulledAt ?? NONE);
   const bosses = useProgress((s) => s.bosses);
   const coins = useProgress((s) => s.coins);
+  const shards = useProgress((s) => s.starShards ?? 0);
   const [set, setSet] = useKept('omnidle:album:set', 'all', (v) => v === 'all' || SETS.some((s) => s.id === v));
   const [rarities, setRarities] = useKept<Rarity[]>('omnidle:album:rarities', RARITIES, (v) => Array.isArray(v) && v.length > 0 && v.every((r) => RARITIES.includes(r as Rarity)));
   const [show, setShow] = useKept<Show>('omnidle:album:show', 'all', (v) => SHOWS.some((s) => s.id === v));
@@ -684,6 +685,12 @@ export default function Album() {
           <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={`${RENEW_COST} spare copies of a rarity for a new card of it`}>
             ♻ Renew
           </button>
+          <span
+            className={`btn-paper cursor-help rounded-md px-4 py-2.5 font-display font-bold ${shards >= ECLIPSE_SHARDS ? 'ring-2 ring-[#a78bfa]' : ''}`}
+            title={`Star shards: one for each star a pack's black hole swallows. ${ECLIPSE_SHARDS} eclipse a Mythic or Omni: open one up close.`}
+          >
+            <span className="text-[#8b5cf6]">✧</span> {shards}/{ECLIPSE_SHARDS} star shards
+          </span>
           <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
             ⇄ Trades
           </Link>
