@@ -2802,6 +2802,8 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 
 /* Prestige pack wrappers: the wrapper's layer and its two pseudo-elements carry what moves. */
 .pack-wrap-storm, .pack-wrap-dragon, .pack-wrap-crystal, .pack-wrap-phoenix, .pack-wrap-blackhole, .pack-wrap-deco { isolation: isolate; }
+/* Their animations are their own: no ordinary pack's white sheen passing over them (the owner's call). */
+.pack-wrap-storm > .card-sheen, .pack-wrap-dragon > .card-sheen, .pack-wrap-crystal > .card-sheen, .pack-wrap-phoenix > .card-sheen, .pack-wrap-blackhole > .card-sheen, .pack-wrap-deco > .card-sheen { display: none; }
 .pack-wrap-layer::before, .pack-wrap-layer::after { pointer-events: none; }
 /* Thunderstorm (src/gacha/StormWrap.tsx): two decks of cloud drifting, slanting rain, sparks along the edges, and
    lightning drawn new every strike, lighting the clouds from inside and flashing the whole pack. */
