@@ -118,6 +118,21 @@ export function WriteGame({ deck }: { deck: JlptDeck }) {
   };
   const [entry, setEntry] = useState(draw);
   const [strokes, setStrokes] = useState<Stroke[]>([]);
+  /** Strokes taken back (Ctrl + Z), the last one on top: Ctrl + Y puts them back; a new stroke or a new character forgets them. */
+  const [undone, setUndone] = useState<Stroke[]>([]);
+  const drawn = (all: Stroke[]) => (setStrokes(all), setUndone([]));
+  const undo = () => {
+    if (!strokes.length) return;
+    sfx.click();
+    setUndone([...undone, strokes[strokes.length - 1]]);
+    setStrokes(strokes.slice(0, -1));
+  };
+  const redo = () => {
+    if (!undone.length) return;
+    sfx.click();
+    setStrokes([...strokes, undone[undone.length - 1]]);
+    setUndone(undone.slice(0, -1));
+  };
   const [shown, setShown] = useState(false);
   const [streak, setStreak] = useState(0);
   const [had, setHad] = useState(0);
@@ -143,13 +158,23 @@ export function WriteGame({ deck }: { deck: JlptDeck }) {
       setStreak(0);
     }
     setEntry(draw());
-    setStrokes([]);
+    drawn([]);
     setShown(false);
   };
-  // Enter shows it; once shown, 1 (or Enter) says you had it, 2 that you didn't.
+  // Enter shows it; once shown, 1 (or Enter) says you had it, 2 that you didn't. While writing, Ctrl + Z takes the last
+  // stroke back and Ctrl + Y (or Ctrl + Shift + Z) puts it back; Cmd on a Mac.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement) return;
+      if ((e.ctrlKey || e.metaKey) && !e.altKey) {
+        const k = e.key.toLowerCase();
+        if (k !== 'z' && k !== 'y') return;
+        e.preventDefault();
+        if (shown) return;
+        if (k === 'y' || e.shiftKey) redo();
+        else undo();
+        return;
+      }
       if (!shown && e.key === 'Enter') reveal();
       else if (shown && (e.key === '1' || e.key === 'Enter')) judge(true);
       else if (shown && e.key === '2') judge(false);
@@ -191,13 +216,16 @@ export function WriteGame({ deck }: { deck: JlptDeck }) {
           </>
         )}
       </div>
-      <DrawPad strokes={strokes} onStrokes={setStrokes} ghost={shown ? entry.text : undefined} locked={shown} />
+      <DrawPad strokes={strokes} onStrokes={drawn} ghost={shown ? entry.text : undefined} locked={shown} />
       {!shown ? (
         <div className="flex flex-wrap justify-center gap-2">
-          <button type="button" onClick={() => setStrokes(strokes.slice(0, -1))} disabled={!strokes.length} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold disabled:opacity-40">
+          <button type="button" onClick={undo} disabled={!strokes.length} title="Ctrl + Z" className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold disabled:opacity-40">
             ↶ Undo a stroke
           </button>
-          <button type="button" onClick={() => setStrokes([])} disabled={!strokes.length} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold disabled:opacity-40">
+          <button type="button" onClick={redo} disabled={!undone.length} title="Ctrl + Y" className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold disabled:opacity-40">
+            ↷ Redo
+          </button>
+          <button type="button" onClick={() => drawn([])} disabled={!strokes.length} className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold disabled:opacity-40">
             Clear
           </button>
           <button type="button" onClick={reveal} className="btn-ink rounded-md px-6 py-2 font-display font-bold tracking-wider">

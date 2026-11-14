@@ -183,6 +183,11 @@ export function usePad(limit = 380) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const strokes = useRef<Raw[]>([]);
   const drawing = useRef(false);
+  /** Strokes taken back (Ctrl + Z), the last one on top: Ctrl + Y puts them back, a new stroke forgets them. */
+  const undone = useRef<Raw[]>([]);
+  /** Bumped when the strokes change, so the undo and redo buttons know. */
+  const [, setVersion] = useState(0);
+  const changed = () => setVersion((v) => v + 1);
   const [ink, setInk] = useState(0);
   const [width, setWidth] = useState(1);
   const [bucket, setBucket] = useState(false);
@@ -196,9 +201,11 @@ export function usePad(limit = 380) {
     onPointerDown: (e: React.PointerEvent<HTMLCanvasElement>) => {
       if (!active || strokes.current.length >= limit) return;
       const n = total();
+      undone.current = [];
       if (bucket) {
         strokes.current.push({ c: ink, w: FILL, pts: [at(e)] });
         paintRange(e.currentTarget, strokes.current, n, n + 1);
+        changed();
         return;
       }
       e.currentTarget.setPointerCapture(e.pointerId);
@@ -216,17 +223,43 @@ export function usePad(limit = 380) {
       const n = total();
       paintRange(e.currentTarget, strokes.current, n - 1, n);
     },
-    onPointerUp: () => void (drawing.current = false),
-    onPointerCancel: () => void (drawing.current = false),
+    onPointerUp: () => {
+      if (drawing.current) changed();
+      drawing.current = false;
+    },
+    onPointerCancel: () => {
+      if (drawing.current) changed();
+      drawing.current = false;
+    },
   });
   /** A blank page. */
   const reset = () => {
     strokes.current = [];
+    undone.current = [];
     drawing.current = false;
     if (canvas.current) paint(canvas.current, []);
+    changed();
   };
   const stop = () => void (drawing.current = false);
-  return { canvas, strokes, handlers, reset, stop, ink, setInk, width, setWidth, bucket, setBucket };
+  /** Takes the last stroke (or fill) back, or puts the last one taken back again; not in the middle of a stroke. */
+  const undo = () => {
+    const s = strokes.current;
+    if (drawing.current || !s.length) return false;
+    undone.current.push(s.pop()!);
+    if (canvas.current) paint(canvas.current, s);
+    changed();
+    return true;
+  };
+  const redo = () => {
+    if (drawing.current || !undone.current.length || strokes.current.length >= limit) return false;
+    strokes.current.push(undone.current.pop()!);
+    if (canvas.current) paint(canvas.current, strokes.current);
+    changed();
+    return true;
+  };
+  const canUndo = strokes.current.length > 0;
+  const canRedo = undone.current.length > 0;
+  return { canvas, strokes, handlers, reset, stop, undo, redo, canUndo, canRedo, ink, setInk, width, setWidth, bucket, setBucket };
 }
 
 /**
@@ -252,7 +285,7 @@ function useKeyLabels() {
 const typing = (t: EventTarget | null) => t instanceof HTMLElement && (t.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName));
 
 /** The pad's tools: colours, the pen's widths, and the bucket, with their keys and the wheel on a computer. */
-export function PenBar({ pad }: { pad: ReturnType<typeof usePad> }) {
+export function PenBar({ pad, history = true }: { pad: ReturnType<typeof usePad>; history?: boolean }) {
   const labels = useKeyLabels();
   const bar = useRef<HTMLDivElement>(null);
   // The latest pens, for the listeners added once.
@@ -267,7 +300,19 @@ export function PenBar({ pad }: { pad: ReturnType<typeof usePad> }) {
   };
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || typing(e.target)) return;
+      if (typing(e.target)) return;
+      // Ctrl + Z takes the last stroke back, Ctrl + Y (or Ctrl + Shift + Z) puts it back; Cmd on a Mac. By the letter
+      // printed on the key, as everywhere else.
+      if ((e.ctrlKey || e.metaKey) && !e.altKey) {
+        const k = e.key.toLowerCase();
+        const redo = k === 'y' || (k === 'z' && e.shiftKey);
+        if (k !== 'z' && k !== 'y') return;
+        e.preventDefault();
+        if (!history) return;
+        if (redo ? now.current.redo() : now.current.undo()) sfx.click();
+        return;
+      }
+      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
       const ink = COLOUR_KEYS.indexOf(e.code);
       const tool = TOOL_KEYS.indexOf(e.code.replace('Numpad', 'Digit'));
       if (ink >= 0) pickInk(ink);
@@ -317,9 +362,20 @@ export function PenBar({ pad }: { pad: ReturnType<typeof usePad> }) {
           🪣
           {key(String(WIDTHS.length + 1))}
         </button>
+        {history && (
+          <>
+            <span className="mx-1 h-6 w-px bg-rule" />
+            <button type="button" onClick={() => pad.undo() && sfx.click()} disabled={!pad.canUndo} aria-label="Undo the last stroke (Ctrl + Z)" title="Undo (Ctrl + Z)" className="grid size-8 place-items-center rounded-md border border-rule-strong text-base font-bold disabled:opacity-30">
+              ↶
+            </button>
+            <button type="button" onClick={() => pad.redo() && sfx.click()} disabled={!pad.canRedo} aria-label="Redo (Ctrl + Y)" title="Redo (Ctrl + Y)" className="grid size-8 place-items-center rounded-md border border-rule-strong text-base font-bold disabled:opacity-30">
+              ↷
+            </button>
+          </>
+        )}
       </div>
       <p className="hidden text-[11px] text-ink-faint pointer-fine:block">
-        Keys: {labels.join(' ')} for the colours, 1 2 3 for the pen, 4 for the bucket. Wheel: colour (Shift + wheel: pen).
+        Keys: {labels.join(' ')} for the colours, 1 2 3 for the pen, 4 for the bucket{history ? ', Ctrl + Z to undo, Ctrl + Y to redo' : ''}. Wheel: colour (Shift + wheel: pen).
       </p>
     </div>
   );
@@ -489,7 +545,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
         </div>
         <div className="space-y-1.5 text-sm">
           <span className="block text-xs uppercase tracking-widest text-ink-faint">4 · Your pen to start with (you can change it while drawing)</span>
-          <PenBar pad={pad} />
+          <PenBar pad={pad} history={false} />
           <PenPreview pad={pad} />
         </div>
         <button
