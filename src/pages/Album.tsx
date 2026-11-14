@@ -19,6 +19,7 @@ import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
 import { bossKey, useProgress } from '../store/progress';
+import { APEX_COPIES, APEX_REWARD, canEclipse, ECLIPSE_SHARDS, RANKS, RELIC_REWARD, relicOfSet, type RankId } from '../gacha/ranks';
 
 /** Which cards: all, owned, missing, starred, with spare copies, ready to grade up, or Altered (back from a black hole with an anomaly). */
 type Show = 'all' | 'owned' | 'missing' | 'favorites' | 'spares' | 'upgradable' | 'altered';
@@ -116,6 +117,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
   );
   const grade = useProgress((s) => gradeOf(s.grades, card.id));
   const element = useProgress((s) => s.elements?.[card.id]);
+  const rank = useProgress((s) => s.cardRanks?.[card.id]?.kind ?? (s.bondCards?.[card.id] ? 'bond' : undefined));
   // Bumped on a grade-up (or a new element): the card flares.
   const [flare, setFlare] = useState(0);
   const [rot, setRot] = useState({ x: 0, y: 0 });
@@ -234,12 +236,14 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           <FavoriteButton cardId={card.id} />
           <CardVolume card={card} />
           <p className="text-sm opacity-80">
-            {RARITY_INFO[card.rarity].name} · {gradeName(grade, element)} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
+            {rank ? `${RANKS[rank].name} (${RARITY_INFO[card.rarity].name})` : RARITY_INFO[card.rarity].name}
+            {card.rarity === 'omni' && grade <= 1 ? '' : ` · ${gradeName(grade, element)}`} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
           <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
         </div>
         <UpgradeOffer card={card} onUpgraded={onUpgraded} />
+        <SpecialRanks card={card} onRank={() => setFlare((n) => n + 1)} />
         <Perks card={card} onGradeUp={() => setFlare((n) => n + 1)} />
       </div>
     </div>
@@ -284,6 +288,88 @@ function UpgradeOffer({ card, onUpgraded }: { card: Card; onUpgraded: (into: Car
   );
 }
 
+/**
+ * The special rarities this card can reach (src/gacha/ranks.ts), each asked twice: an Omni's Apex (its copies), the
+ * set's Relic (complete set, boss beaten on Hell, one card per set), an Eclipse for a Mythic or Omni (star shards).
+ */
+function SpecialRanks({ card, onRank }: { card: Card; onRank: () => void }) {
+  const rank = useProgress((s) => s.cardRanks?.[card.id]);
+  const count = useProgress((s) => s.cards[card.id] ?? 0);
+  const shards = useProgress((s) => s.starShards ?? 0);
+  const relicId = useProgress((s) => relicOfSet(s.cardRanks, card.set));
+  const hellBeaten = useProgress((s) => (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
+  const complete = useProgress((s) => COLLECTIBLE.every((c) => c.set !== card.set || (s.cards[c.id] ?? 0) > 0));
+  const riseApex = useProgress((s) => s.riseApex);
+  const makeRelic = useProgress((s) => s.makeRelic);
+  const eclipseCard = useProgress((s) => s.eclipseCard);
+  const signedIn = useCloud((s) => s.name ?? s.email?.split('@')[0] ?? undefined);
+  const [sure, setSure] = useState<RankId | null>(null);
+  const relicCard = relicId ? CARD_BY_ID.get(relicId) : undefined;
+  const bondLink = useProgress((s) => s.bondCards?.[card.id]);
+
+  const go = (id: RankId) => {
+    if (sure !== id) return void (sfx.select(), setSure(id));
+    const ok = id === 'apex' ? riseApex(card.id, card.rarity, signedIn) : id === 'relic' ? makeRelic(card.id, complete, signedIn) : eclipseCard(card.id, true);
+    setSure(null);
+    if (!ok) return void sfx.wrong();
+    onRank();
+    sfx.victory();
+    celebrateBig();
+  };
+  const chip = (id: RankId, text: string) => (
+    <span key={id} title={RANKS[id].blurb} className="flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold" style={{ borderColor: RANKS[id].colors[0], color: RANKS[id].colors[2] === '#ffffff' ? RANKS[id].colors[1] : RANKS[id].colors[2] }}>
+      {RANKS[id].gem} {text}
+    </span>
+  );
+  const button = (id: RankId, ready: boolean, label: string, waiting: string, reward?: number) => (
+    <button
+      key={id}
+      type="button"
+      onClick={() => go(id)}
+      disabled={!ready}
+      title={`${RANKS[id].blurb} ${RANKS[id].how}`}
+      className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${ready ? (sure === id ? 'border-white bg-white text-black' : 'text-white hover:brightness-125') : 'border-dashed border-white/25 text-white/50'}`}
+      style={ready && sure !== id ? { borderColor: RANKS[id].colors[0], background: `color-mix(in srgb, ${RANKS[id].colors[0]} 22%, transparent)` } : undefined}
+    >
+      <span aria-hidden>{RANKS[id].gem}</span>
+      {ready ? (sure === id ? `Confirm: ${label}` : label) : waiting}
+      {ready && !!reward && <span className="ml-1 rounded-full bg-[#fde68a]/20 px-1.5 text-xs text-[#fde68a]">+{reward.toLocaleString('en')} 🪙</span>}
+    </button>
+  );
+
+  const out: ReactNode[] = [];
+  // Bond: linked to the friend the Bond pack was opened with (nothing to do: it came that way).
+  if (bondLink) out.push(chip('bond', `Bond with ${bondLink.with}`));
+  // Apex: an Omni's one rank.
+  if (card.rarity === 'omni') {
+    if (rank?.kind === 'apex') out.push(chip('apex', 'Apex: its top rank'));
+    else out.push(button('apex', count >= APEX_COPIES, `Rise to Apex (${APEX_COPIES} copies)`, `Apex: ${Math.max(0, count - 1)}/${APEX_COPIES - 1} spares`, APEX_REWARD));
+  }
+  // Eclipse: a Mythic or Omni without a special rarity yet.
+  if (rank?.kind === 'eclipse') out.push(chip('eclipse', 'Eclipsed'));
+  else if (canEclipse(card, rank?.kind)) out.push(button('eclipse', shards >= ECLIPSE_SHARDS, `Eclipse it: ${ECLIPSE_SHARDS} star shards`, `Eclipse: ${shards}/${ECLIPSE_SHARDS} star shards`));
+  // Relic: one card per set.
+  if (rank?.kind === 'relic') out.push(chip('relic', `The ${card.franchise} Relic`));
+  else if (!rank && !relicId)
+    out.push(
+      button(
+        'relic',
+        complete && hellBeaten,
+        `Make it the ${card.franchise} Relic`,
+        `Relic: ${[!complete && 'complete the set', !hellBeaten && 'beat its boss on Hell'].filter(Boolean).join(' and ')}`,
+        RELIC_REWARD,
+      ),
+    );
+  else if (relicCard && relicId !== card.id && !rank) out.push(<span key="relic-taken" className="text-xs text-white/60">⚱ This set's Relic is {shownName(relicCard.name, relicCard.set)}.</span>);
+  if (!out.length) return null;
+  return (
+    <div className="flex flex-col items-center gap-1.5">
+      <div className="flex flex-wrap justify-center gap-2">{out}</div>
+      {sure && <p className="max-w-sm text-center text-xs text-white/70">{RANKS[sure].how} It's for good.</p>}
+    </div>
+  );
+}
+
 /** What the card can be: the player's icon (any card), the pages' background (Rare or better). */
 function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const count = useProgress((s) => s.cards[card.id] ?? 0);
@@ -293,7 +379,7 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const reward = useProgress((s) => (grade + 1 > (s.gradesPaid?.[card.id] ?? 1) ? gradeReward(card.rarity, grade + 1) : 0));
   const signedIn = useCloud((s) => s.name ?? s.email?.split('@')[0] ?? undefined);
   const hellBeaten = useProgress((s) => (s.bosses[bossKey(card.set, 'hell')]?.wins ?? 0) > 0);
-  const ready = canGradeUp(count, grade, hellBeaten);
+  const ready = canGradeUp(count, grade, hellBeaten, card.rarity);
   const element = useProgress((s) => s.elements?.[card.id]);
   const coins = useProgress((s) => s.coins);
   const switchElement = useProgress((s) => s.switchElement);
@@ -330,8 +416,8 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
   const btn = (on: boolean) => `rounded-full border-2 px-3 py-1.5 text-sm font-bold transition ${on ? 'border-white bg-white text-black' : 'border-white/40 text-white hover:border-white'}`;
   return (
     <div className="flex flex-wrap justify-center gap-2">
-      {/* Five copies into one a grade higher: the card and four spares. */}
-      {grade < MAX_GRADE ? (
+      {/* Five copies into one a grade higher: the card and four spares. Not an Omni: its one rank is Apex (above). */}
+      {card.rarity === 'omni' ? null : grade < MAX_GRADE ? (
         <button
           type="button"
           onClick={() => (nextIsElement ? setChoosing((c) => !c) : up())}
@@ -468,7 +554,7 @@ export default function Album() {
     return { byId, copies, coins };
   }, [owned, grades]);
   // Cards ready for their next grade now (the element grade counts: it opens in the dialog).
-  const upgradable = useMemo(() => CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && canGradeUp(owned[c.id], gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0)).length, [owned, grades, bosses]);
+  const upgradable = useMemo(() => CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && canGradeUp(owned[c.id], gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0, c.rarity)).length, [owned, grades, bosses]);
   // Every count the page shows, in one pass over the cards (not one per rarity and per set at each render).
   const counts = useMemo(() => {
     const bySet: Record<string, number> = {};
@@ -500,7 +586,7 @@ export default function Album() {
         case 'spares':
           return n > 1;
         case 'upgradable':
-          return n > 1 && canGradeUp(n, gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0);
+          return n > 1 && canGradeUp(n, gradeOf(grades, c.id), (bosses[bossKey(c.set, 'hell')]?.wins ?? 0) > 0, c.rarity);
         case 'altered':
           return n > 0 && (!!anomalies[c.id] || !!anomalyOptions[c.id]?.length);
         default:

@@ -5,6 +5,7 @@
 // coins, cards and everything bought or won with them stay as they are: the device's aren't added (they
 // could have been farmed without an account, or copied in from another account). A brand-new account
 // takes the device's save whole.
+import { mergeRanks } from '../gacha/ranks';
 import { clampGolden, clampPity } from '../gacha/economy';
 import type { Economy, PeriodBook } from '../gacha/economy';
 import type { useProgress } from '../store/progress';
@@ -48,6 +49,10 @@ export const SYNCED = [
   'gradesPaid',
   'engraved',
   'elements',
+  'cardRanks',
+  'starShards',
+  'bondCards',
+  'bondClaimed',
   'missionBooks',
   'redeemed',
   'favorites',
@@ -233,7 +238,7 @@ function laterQuests(a: SaveData['quests'], b: SaveData['quests']): SaveData['qu
 }
 
 /** The balances that go up and down: merged by what each side gained or spent since they last agreed. */
-export const COUNTED = ['coins', 'chips', 'freePacks', 'capsuleTokens', 'freeBalls'] as const;
+export const COUNTED = ['coins', 'chips', 'freePacks', 'capsuleTokens', 'freeBalls', 'starShards'] as const;
 type Counted = (typeof COUNTED)[number];
 
 /**
@@ -295,6 +300,12 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     engraved: { ...cloud.engraved, ...local.engraved },
     // Elements go with the grades (and can be changed): the latest save's.
     elements: latest.elements ?? {},
+    // Special rarities (src/gacha/ranks.ts): earned on either side stays earned, the higher one per card.
+    cardRanks: firstLink ? (cloud.cardRanks ?? {}) : mergeRanks(local.cardRanks, cloud.cardRanks),
+    starShards: latest.starShards ?? 0,
+    // Bond packs taken on either side stay taken; a card linked on either side stays linked (the first link).
+    bondCards: { ...(local.bondCards ?? {}), ...(cloud.bondCards ?? {}) },
+    bondClaimed: [...new Set([...(cloud.bondClaimed ?? []), ...(local.bondClaimed ?? [])])].slice(-200),
     econ: mergeEcon(local.econ, cloud.econ)!,
     missionBooks: {
       week: mergeBook(local.missionBooks?.week, cloud.missionBooks?.week)!,

@@ -174,6 +174,19 @@ The settings were chosen side by side on Luffy's Gear 5 (540p at CRF 31 was visi
 
 Then, in `src/gacha/cards.ts`: `CLIPS` (the card, or an Omni's awakened form), `FIRST_CLIPS` (an Omni's first form); `clipSound: true` in `STRONG` when the clip's own sound should be heard; a clip that is also the voice line uses the same path as `audio` (heard together). `LIGHT_CLIPS` is for small GIF loops only (they also play in the album grid); a full video there would autoplay. Up close, a video heard once through goes back to the card's picture. The script needs `yt-dlp`, `ffmpeg` and `deno` (`winget install yt-dlp.yt-dlp` brings ffmpeg; `winget install DenoLand.Deno` — without a JavaScript runtime yt-dlp only gets 360p from YouTube).
 
+### Card rarities sheet
+
+Every card rarity in one sheet, `sheets/rarities.xlsx`, to change on Google Drive: the pack rarities (name, gem, order, light) and the special ones never found in packs (`src/gacha/ranks.ts`: **Apex**, an Omni's one rank, 10 copies of it; **Relic**, one card per complete set whose boss was beaten on Hell; **Eclipse**, a Mythic or Omni the black hole gives back eclipsed, or 7 star shards; **Bond**, a card from a Bond pack two friends opened together, linked to both): their name, gem, colours, speed, words, each effect on or off, and their numbers (copies, rewards, chances).
+
+```bash
+npm run rarities:sheet    # makes the sheet from the game's data (replaces sheets/rarities.xlsx)
+npm run rarities:import   # puts the sheet back into src/data/tuning/rarities.json and special-rarities.json
+```
+
+Edited on Drive? File › Download › Microsoft Excel (.xlsx), over `sheets/rarities.xlsx`, then import: it checks every value (a colour is `#rrggbb`, a number a number, On is Yes or No), changes nothing if one is wrong, and says what changed. The Test lab has **Star shards +7** and a button that takes every special rarity off, to try them.
+
+Bond's points a day and pack cost are also in `firestore.rules` (`bondPackCost()`, and a point a day): change them there too, then publish the rules in the Firebase console. Bonds live in `bonds/<uid>_<uid>` (`src/cloud/bonds.ts`); the Friends page's **Bond** tab shows them, and `#/friends?tab=bond&demo` (dev) opens a pack with a pretend friend.
+
 ### Checking in Firefox
 
 Some things only go wrong in Firefox (it paints 3D and animations differently from Chrome). `node scripts/firefox-check.mjs` drives the Firefox installed on the machine (through its WebDriver BiDi remote control, with `puppeteer-core`), headless and in a throwaway profile, against the dev server (`npm run dev`): it can fill the save, open a card up close, play its video and report the frames actually drawn, run any steps you give it, and save screenshots (in the temp folder's `omnidle-firefox/`).

@@ -20,6 +20,7 @@ import {
 } from 'firebase/auth';
 import { collection, doc, getDoc, getDocs, writeBatch } from 'firebase/firestore';
 import { coinWatch, useProgress } from '../store/progress';
+import { todayKey } from '../lib/date';
 import { auth, db } from './firebase';
 import { BY_MONTH, SYNCED, baseOf, mergeSaves, monthOf, pickSave, type SaveData } from './merge';
 import { SIGNED_IN_FLAG, useCloud } from './state';
@@ -150,6 +151,9 @@ async function push(uid: string, all = false) {
   // Today's collection score for friends to see (once a day, for players who opened Friends).
   // (The flag is checked first: the card catalogue the score needs is only fetched for them.)
   if (friendsOn(uid)) void import('./friends').then((m) => m.logToday(uid)).catch(() => undefined);
+  // Today counted on every Bond, once the daily is played (once a day; src/cloud/bonds.ts).
+  const today = todayKey();
+  if (Object.keys(data.days ?? {}).some((k) => k.endsWith(`:${today}`))) void import('./bonds').then((m) => m.markAll(uid, true)).catch(() => undefined);
 }
 
 let applying = false;

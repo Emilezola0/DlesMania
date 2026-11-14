@@ -10,6 +10,7 @@ import { PackArt } from './PackArt';
 import { flapClass, OpeningAround, OpeningInside, openingOf, OPENING_MS, wholeClass } from './WrapOpening';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
+import { ECLIPSE_CHANCE, ECLIPSE_RARITIES } from './ranks';
 import { clampGolden, clampPity, COSMIC, GOLDEN, goldenNext, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
 
 /** Where the pack tears: this far down its height. */
@@ -1472,6 +1473,35 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
     order.forEach((k, p) => cosmos.swallowed.has(k) && m.set(p, cosmos.swallowed.get(k)!));
     return m;
   }, [cosmos, order]);
+  /**
+   * Eclipse (src/gacha/ranks.ts): a swallowed Mythic or Omni may come back eclipsed (ECLIPSE_CHANCE); every other
+   * swallowed star leaves a star shard. Given at once (the card is still face down). For testing, in dev only,
+   * localStorage "omnidle-force-eclipse" = "1" eclipses every swallowed Mythic or Omni.
+   */
+  const eclipsed = useMemo(() => {
+    let force = false;
+    try {
+      if (import.meta.env.DEV) force = localStorage.getItem('omnidle-force-eclipse') === '1';
+    } catch {
+      // No storage here.
+    }
+    const out = new Set<number>();
+    for (const p of pending.keys()) if (deck[p] && ECLIPSE_RARITIES.includes(deck[p].rarity) && (force || Math.random() < ECLIPSE_CHANCE)) out.add(p);
+    return out;
+  }, [pending, deck]);
+  const [shardAt, setShardAt] = useState<Set<number>>(() => new Set());
+  const gaveEclipse = useRef(false);
+  useEffect(() => {
+    if (gaveEclipse.current || !pending.size) return;
+    gaveEclipse.current = true;
+    const { eclipseCard, addStarShards } = useProgress.getState();
+    const shards = new Set<number>();
+    // One already wearing a special rarity can't be eclipsed: a shard instead.
+    for (const p of pending.keys()) if (!(eclipsed.has(p) && eclipseCard(deck[p].id, false))) shards.add(p);
+    if (shards.size) addStarShards(shards.size);
+    setShardAt(shards);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   /** The cosmic event each card of the deck went through (by its place in the deck). */
   const cosmicAt = useMemo(() => {
     const m = new Map<number, CosmicEvent>();
@@ -2373,6 +2403,11 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
             )}
           </div>
           {/* Back from the black hole: keep its anomaly, or let the card be. */}
+          {flipped && pending.has(i) && (
+            <p className={`pack-eclipse-note font-display text-sm font-black tracking-[0.25em] ${shardAt.has(i) ? 'text-[#c4b5fd]' : 'text-[#ffb347]'}`}>
+              {shardAt.has(i) ? '✧ +1 STAR SHARD' : '◐ IT CAME BACK ECLIPSED'}
+            </p>
+          )}
           {flipped && pending.has(i) && <AnomalyChoice anomaly={pending.get(i)!} kept={kept[i]} onDecide={(keep) => decide(i, keep)} />}
           {/* The tray: the cards already turned. */}
           {/* Only the last ones (all a screen holds): fifty packs would line up two hundred cards, all redrawn at each turn. */}

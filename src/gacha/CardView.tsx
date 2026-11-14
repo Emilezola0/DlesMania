@@ -7,6 +7,12 @@ import { COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, setSize, type Card, type Rarity
 import { GradeEmblem } from './GradeEmblem';
 import { elementOf, gradeOf, type ElementId } from './grades';
 import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
+import { RANKS, type RankId } from './ranks';
+
+/** A Relic's runes, down each side of its frame (lit one after another). */
+const RUNES = 'ᚠᚢᚦᚨᚱᚲᚷᚹ';
+/** An Apex's embers and a Relic's dust: where each starts (% across) and its delay (s). */
+const RISING = [8, 22, 37, 51, 64, 78, 91].map((x, i) => ({ x, delay: (i * 1.37) % 4 }));
 
 /** Each rarity's frame, glow, the tint behind the picture, and its text colour. */
 export const RARITY_STYLE: Record<Rarity, { frame: string; glow: string; tint: string; text: string }> = {
@@ -219,7 +225,7 @@ function useScramble(name: string, on: boolean) {
   return shown;
 }
 
-export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, cssLight, depth, grade: given, animate, clipHeld, clipSound, onClipPlaying, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; /** No foil given: its light (--mx/--my) comes from around it, animated in CSS (the big view's sway). */ cssLight?: boolean; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap; a YouTube one gets ready unseen meanwhile). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** Its clip has started (up close). */ onClipPlaying?: () => void; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId }) {
+export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, isNew, foil, cssLight, depth, grade: given, animate, clipHeld, clipSound, onClipPlaying, still, calm, hoverHero, hero, anomaly: anomalyGiven, element: elementGiven, rank: rankGiven }: { card: Card; count?: number; tilt?: boolean; isNew?: boolean; foil?: { x: number; y: number }; /** No foil given: its light (--mx/--my) comes from around it, animated in CSS (the big view's sway). */ cssLight?: boolean; depth?: boolean; grade?: number; animate?: boolean; /** Up close, its clip waits (a video, started by a tap; a YouTube one gets ready unseen meanwhile). */ clipHeld?: boolean; /** Its clip heard, once through. */ clipSound?: ClipSound; /** Its clip has started (up close). */ onClipPlaying?: () => void; /** No light clip of its own (many cards at once): only up close or under the mouse. */ still?: boolean; /** Hundreds at once (a big opening's summary): no scrambling name either. */ calm?: boolean; hoverHero?: boolean; hero?: boolean; anomaly?: AnomalyId | null; element?: ElementId; /** A special rarity to show (null: none); else the player's own. */ rank?: RankId | null }) {
   // A card back from a black hole: the player's own anomaly on it, unless one is given (null: none).
   const ownAnomaly = useProgress((s) => s.anomalies?.[card.id]);
   const anomalyId = anomalyGiven === undefined ? ownAnomaly : anomalyGiven;
@@ -236,6 +242,14 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   /** A clip that wouldn't play: back to the picture. */
   const [clipFailed, setClipFailed] = useState<string | null>(null);
   const owned = useProgress((s) => gradeOf(s.grades, card.id));
+  // A special rarity (src/gacha/ranks.ts): Apex, Relic, Eclipse, on top of the card's own.
+  const ownRank = useProgress((s) => s.cardRanks?.[card.id]?.kind);
+  // A card from a Bond pack: linked to a friend, Bond's look when it has no other special rarity.
+  const bondLink = useProgress((s) => s.bondCards?.[card.id]);
+  const rankId = rankGiven === undefined ? (ownRank ?? (bondLink ? 'bond' : undefined)) : rankGiven;
+  const rank = rankId ? RANKS[rankId] : undefined;
+  /** One of its effects, when it has it and it's on (the sheet's Effects). */
+  const fxOn = (k: string) => rank?.effects[k] === true;
   const engraving = useProgress((s) => s.engraved?.[card.id]);
   // The voice line in the names' language (a French dub's when the card has one).
   const voiceLine = useProgress((s) => (s.nameLang === 'fr' && card.voiceFr) || card.voice);
@@ -288,7 +302,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
       onPointerMove={move}
       onPointerEnter={(e) => (hoverHero || calm) && e.pointerType === 'mouse' && setHovered(true)}
       onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''}`}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 || rank ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''} ${rank ? `card-rank card-rank-${rank.id}` : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -296,6 +310,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         zIndex: heroOn ? 20 : undefined,
         ...(cssLight && !foil ? {} : { ['--mx' as string]: `${mx}%`, ['--my' as string]: `${my}%` }),
         ...(el ? { ['--e1' as string]: el.colors[0], ['--e2' as string]: el.colors[1], ['--e3' as string]: el.colors[2] } : {}),
+        ...(rank ? { ['--rk1' as string]: rank.colors[0], ['--rk2' as string]: rank.colors[1], ['--rk3' as string]: rank.colors[2], ['--rk-speed' as string]: `${rank.speed}s` } : {}),
       }}
     >
       {/* Up close, an omni's rings of fire: their far halves first, behind the card (see the near halves below). */}
@@ -306,6 +321,12 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           <i className={omni ? 'card-frame-turn-omni' : 'card-frame-turn-mythic'} />
         </div>
       )}
+      {/* A special rarity's frame over the card's own: Apex's crimson and gold turning, Relic's carved stone, Eclipse's corona. */}
+      {fxOn('frame') && (
+        <div className={`card-rank-frame ${live ? '' : 'card-rank-still'} pointer-events-none absolute inset-0 overflow-hidden rounded-[7%]`} aria-hidden>
+          <i />
+        </div>
+      )}
       {/* An omni's glow, pulsing (under everything, as the card's own shadow was). */}
       {omni && <div className="card-omni-pulse pointer-events-none absolute inset-0 -z-20 rounded-[7%]" aria-hidden />}
       <div className={`relative flex size-full flex-col overflow-hidden rounded-[5%] ${omni ? 'card-omni-sky' : mythic ? 'card-mythic-sky' : 'bg-[#0f0d16]'}`} style={{ color: st.text }}>
@@ -314,8 +335,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           <div className="flex items-center justify-between gap-[2cqw]">
             <p className={`truncate font-display text-[7.5cqw] font-bold leading-tight ${omni ? 'card-omni-name' : mythic ? 'card-mythic-name' : card.rarity === 'legendary' ? 'card-gold-name' : ''}`}>{name}</p>
             {/* A Fake Rarity shows a Mythic's gem: it passes for one. */}
-            <span className="shrink-0 text-[5.5cqw]" title={anomaly?.posesAsMythic ? undefined : RARITY_INFO[card.rarity].name}>
-              {RARITY_INFO[look].gem}
+            <span className={`shrink-0 text-[5.5cqw] ${rank ? 'card-rank-gem' : ''}`} title={rank ? `${rank.name} (${RARITY_INFO[card.rarity].name})` : anomaly?.posesAsMythic ? undefined : RARITY_INFO[card.rarity].name}>
+              {rank ? rank.gem : RARITY_INFO[look].gem}
             </span>
           </div>
           {form.title && <p className="truncate text-[4.6cqw] font-semibold italic opacity-90">{form.title}</p>}
@@ -389,6 +410,41 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
             )}
           </div>
         )}
+        {/* The special rarities' layers: an Eclipse's veil, an Apex's embers and sweeping light, a Relic's runes and dust. */}
+        {/* A Bond: two lights answering each other, and the friend's name. */}
+        {fxOn('twin') && live && (
+          <div className="card-rank-twin pointer-events-none absolute inset-0 z-[5]" aria-hidden>
+            <i />
+            <i />
+          </div>
+        )}
+        {fxOn('names') && bondLink && (
+          <p className="card-rank-names absolute inset-x-[3cqw] bottom-[1.2cqw] z-[7] truncate text-center text-[3.6cqw] font-bold">
+            {rank?.gem} with {bondLink.with}
+          </p>
+        )}
+        {fxOn('veil') && <div className={`card-rank-veil ${live ? '' : 'card-rank-still'} pointer-events-none absolute inset-0 z-[4]`} aria-hidden />}
+        {fxOn('sheen') && live && <div className="card-rank-sheen pointer-events-none absolute inset-0 z-[6]" aria-hidden />}
+        {(fxOn('embers') || fxOn('dust')) && live && (
+          <div className={`pointer-events-none absolute inset-0 z-[6] ${fxOn('embers') ? 'card-rank-embers' : 'card-rank-dust'}`} aria-hidden>
+            {RISING.map((m) => (
+              <i key={m.x} style={{ left: `${m.x}%`, animationDelay: `${m.delay}s` }} />
+            ))}
+          </div>
+        )}
+        {fxOn('runes') && (
+          <div className={`card-rank-runes ${live ? '' : 'card-rank-still'} pointer-events-none absolute inset-0 z-[7]`} aria-hidden>
+            {['left', 'right'].map((side) => (
+              <span key={side} className={`card-rank-runes-${side}`}>
+                {[...RUNES].map((g, i) => (
+                  <i key={i} style={{ animationDelay: `${(side === 'left' ? i : RUNES.length - 1 - i) * 0.45}s` }}>
+                    {g}
+                  </i>
+                ))}
+              </span>
+            ))}
+          </div>
+        )}
         {/* Singularity: motes of light spiralling into the middle, and who took it there. */}
         {singularity && live && (
           <div className="card-singularity-motes pointer-events-none absolute inset-0 z-[6]" aria-hidden>
@@ -452,7 +508,18 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </>
       )}
 
-      {mythic && (
+      {/* An Eclipse's corona, burning behind the card. */}
+      {fxOn('corona') && live && (
+        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>
+          <div className="card-rank-corona" />
+        </div>
+      )}
+      {rank && fxOn('ribbon') && (
+        <span className="card-rank-ribbon absolute left-1/2 top-[-4.5cqw] z-[16] -translate-x-1/2 whitespace-nowrap rounded-full px-[4.5cqw] py-[1.2cqw] font-display text-[5.2cqw] font-black tracking-[0.3em] shadow-lg" style={lift(50)}>
+          {rank.gem} {rank.name.toUpperCase()}
+        </span>
+      )}
+      {mythic && !(rank && fxOn('ribbon')) && (
         <span className="card-mythic-ribbon absolute left-1/2 top-[-3.5cqw] -translate-x-1/2 rounded-full px-[4cqw] py-[1cqw] font-display text-[5cqw] font-black tracking-[0.3em] text-white shadow-lg" style={lift(40)}>
           <i aria-hidden />✦ MYTHIC
         </span>
@@ -482,7 +549,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           ))}
         </>
       )}
-      {omni && (
+      {omni && !(rank && fxOn('ribbon')) && (
         <span className="card-omni-crown absolute left-1/2 top-[-4.5cqw] -translate-x-1/2 whitespace-nowrap rounded-full px-[4.5cqw] py-[1.2cqw] font-display text-[5.2cqw] font-black tracking-[0.3em] shadow-lg" style={lift(50)}>
           ✪ OMNI
         </span>

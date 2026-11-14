@@ -4,6 +4,7 @@ import { canGradeUp, ELEMENT_GRADE, ELEMENT_SWITCH_COST, gradeOf, gradeReward, g
 import type { Rarity } from '../gacha/cards';
 import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
+import { APEX_COPIES, APEX_REWARD, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -189,6 +190,23 @@ interface ProgressState {
   elements: Record<string, ElementId>;
   /** A card's element changed, for ELEMENT_SWITCH_COST coins: false if it can't (not at the element grade, too few coins). */
   switchElement: (id: string, element: ElementId) => boolean;
+  /** Special rarities (src/gacha/ranks.ts: Apex, Relic, Eclipse), by card id: which, when, who by. */
+  cardRanks?: Record<string, CardRank>;
+  /** Star shards: one for each star a black hole swallowed that didn't come back eclipsed. */
+  starShards?: number;
+  /** An Omni to Apex: APEX_COPIES copies (the card and the rest as spares); pays APEX_REWARD once. False if it can't. */
+  riseApex: (id: string, rarity: Rarity, by?: string) => boolean;
+  /** A card of a complete set, its boss beaten on Hell, made the set's Relic (one per set). False if it can't. */
+  makeRelic: (id: string, setComplete: boolean, by?: string) => boolean;
+  /** A Mythic or Omni eclipsed: `shards` true pays ECLIPSE_SHARDS star shards (else the black hole's gift). */
+  eclipseCard: (id: string, shards: boolean) => boolean;
+  addStarShards: (n: number) => void;
+  /** Cards from a Bond pack, linked to the friend it was opened with (src/cloud/bonds.ts), by card id. */
+  bondCards?: Record<string, BondLink>;
+  /** The Bond packs already taken into this save (their seeds), so a pack is never added twice. */
+  bondClaimed?: string[];
+  /** A Bond pack's cards added (once per seed), its Bond card linked to the friend: false if it was taken already. */
+  claimBondPack: (seed: string, cardIds: string[], bond: { id: string; with: string; uid: string } | null) => boolean;
   /** Cards that came back from a black hole with an anomaly (src/gacha/anomalies.ts), by card id. */
   anomalies: Record<string, AnomalyId>;
   /** Set (null: removed for good). One it replaces is kept among the card's other anomalies, to switch back to in the Album. */
@@ -850,7 +868,7 @@ export const useProgress = create<ProgressState>()(
         if (grade + 1 === ELEMENT_GRADE && !isElement(element)) return false;
         // A card's id starts with its franchise.
         const hellBeaten = (s.bosses[bossKey(id.split(':')[0], 'hell')]?.wins ?? 0) > 0;
-        if (!canGradeUp(s.cards[id] ?? 0, grade, hellBeaten)) return false;
+        if (!canGradeUp(s.cards[id] ?? 0, grade, hellBeaten, rarity)) return false;
         // A grade pays once, even if the card was traded away and graded again.
         const paid = s.gradesPaid?.[id] ?? 1;
         const coins = grade + 1 > paid ? gradeReward(rarity, grade + 1) : 0;
@@ -881,7 +899,7 @@ export const useProgress = create<ProgressState>()(
           let any = false;
           for (let grade = gradeOf(grades, id); grade < to; grade++) {
             if (grade + 1 === ELEMENT_GRADE && !isElement(element)) break;
-            if (!canGradeUp(cards[id] ?? 0, grade, hellBeaten)) break;
+            if (!canGradeUp(cards[id] ?? 0, grade, hellBeaten, rarity)) break;
             const paid = gradesPaid[id] ?? 1;
             if (grade + 1 > paid) coins += gradeReward(rarity, grade + 1);
             cards[id] -= GRADE_COST;
@@ -898,6 +916,48 @@ export const useProgress = create<ProgressState>()(
         set({ cards, grades, gradesPaid, ...(tagged ? { engraved } : {}), ...(elemental ? { elements } : {}), ...(coins ? earn(s, coins) : {}) });
         return { cards: touched, grades: ups, coins };
       },
+      riseApex: (id, rarity, by) => {
+        const s = get();
+        const rank = s.cardRanks?.[id];
+        if (rarity !== 'omni' || rank?.kind === 'apex' || (s.cards[id] ?? 0) < APEX_COPIES) return false;
+        // Apex is for good (an Eclipse it wore gives way), so it pays once.
+        set({
+          cards: { ...s.cards, [id]: s.cards[id] - (APEX_COPIES - 1) },
+          cardRanks: { ...s.cardRanks, [id]: { kind: 'apex', date: todayKey(), by } },
+          ...earn(s, APEX_REWARD),
+        });
+        return true;
+      },
+      makeRelic: (id, setComplete, by) => {
+        const s = get();
+        const set_ = id.split(':')[0];
+        const hell = (s.bosses[bossKey(set_, 'hell')]?.wins ?? 0) > 0;
+        if (!setComplete || !hell || !s.cards[id] || s.cardRanks?.[id] || relicOfSet(s.cardRanks, set_)) return false;
+        set({ cardRanks: { ...s.cardRanks, [id]: { kind: 'relic', date: todayKey(), by } }, ...earn(s, RELIC_REWARD) });
+        return true;
+      },
+      eclipseCard: (id, shards) => {
+        const s = get();
+        if (s.cardRanks?.[id] || (shards && (s.starShards ?? 0) < ECLIPSE_SHARDS)) return false;
+        set({ cardRanks: { ...s.cardRanks, [id]: { kind: 'eclipse', date: todayKey() } }, ...(shards ? { starShards: (s.starShards ?? 0) - ECLIPSE_SHARDS } : {}) });
+        return true;
+      },
+      claimBondPack: (seed, cardIds, bond) => {
+        const s = get();
+        if (s.bondClaimed?.includes(seed)) return false;
+        const cards = { ...s.cards };
+        for (const id of cardIds) cards[id] = (cards[id] ?? 0) + 1;
+        set({
+          cards,
+          pulledAt: stamp(s.pulledAt, cardIds),
+          packsOpened: (s.packsOpened ?? 0) + 1,
+          bondClaimed: [...(s.bondClaimed ?? []), seed].slice(-200),
+          // A card linked once stays linked to that friend.
+          ...(bond && !s.bondCards?.[bond.id] ? { bondCards: { ...s.bondCards, [bond.id]: { with: bond.with, uid: bond.uid, date: todayKey() } } } : {}),
+        });
+        return true;
+      },
+      addStarShards: (n) => set((s) => ({ starShards: Math.max(0, (s.starShards ?? 0) + n) })),
       switchElement: (id, element) => {
         const s = get();
         if (gradeOf(s.grades, id) < ELEMENT_GRADE || !isElement(element) || s.elements?.[id] === element || s.coins < ELEMENT_SWITCH_COST) return false;

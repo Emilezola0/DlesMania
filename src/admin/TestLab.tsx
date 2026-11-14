@@ -388,6 +388,12 @@ export default function TestLab() {
           >
             Evolving cosmetics: last stage / first
           </button>
+          <button type="button" className={btn} onClick={() => (useProgress.getState().addStarShards(7), say('+7 star shards: enough to eclipse a Mythic or Omni (Album).'))}>
+            Star shards +7
+          </button>
+          <button type="button" className={btn} onClick={() => (useProgress.setState({ cardRanks: {}, starShards: 0 }), say('Apex, Relic and Eclipse taken off every card; star shards at 0.'))}>
+            Special rarities: take them all off
+          </button>
           <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: [], frame: null, cosmetics: [], ascendFrom: {}, nameStyle: null, wrapper: null, title: null }), say('Frames and cosmetics taken back.'))}>
             Take them all back
           </button>

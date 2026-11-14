@@ -557,6 +557,82 @@ service cloud.firestore {
       }
     }
 
+    // Bonds (src/cloud/bonds.ts): bonds/<a>_<b>, two friends (the smaller uid first), read and changed only by them.
+    // One asks (a friend of theirs), the other says yes; either ends it. Each day both play the daily, each marks it
+    // (m: "<day>_<uid>", today only); the second mark adds the day to `together`: a point for the pair. A Bond pack
+    // costs bondPackCost() points (BOND_PACK_COST in src/data/tuning/special-rarities.json; a point a day both
+    // played, pointsPerDay, is 1 here too): one starts it (a seed, the points paid), only the other joins it, and an
+    // unjoined one can be called off, its points given back.
+    function bondPackCost() {
+      return 3;
+    }
+    match /bonds/{id} {
+      function member() {
+        return request.auth != null && (request.auth.uid == id.split('_')[0] || request.auth.uid == id.split('_')[1]);
+      }
+      function other() {
+        return request.auth.uid == id.split('_')[0] ? id.split('_')[1] : id.split('_')[0];
+      }
+      function only(keys) {
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+      }
+      function accepting() {
+        return resource.data.status == 'invited' && resource.data.by != request.auth.uid
+          && request.resource.data.status == 'active' && only(['status', 'names'])
+          && request.resource.data.names.diff(resource.data.names).affectedKeys().hasOnly([request.auth.uid])
+          && request.resource.data.names[request.auth.uid] is string && request.resource.data.names[request.auth.uid].size() <= 40;
+      }
+      function marking() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let day = n.lastMark.split('_')[0];
+        return o.status == 'active' && only(['m', 'lastMark', 'together'])
+          && n.lastMark == day + '_' + request.auth.uid && isToday(day)
+          && n.m.diff(o.m).addedKeys().hasOnly([n.lastMark]) && n.m.diff(o.m).addedKeys().size() == 1
+          && n.m.diff(o.m).changedKeys().size() == 0 && n.m.diff(o.m).removedKeys().size() == 0
+          && n.m[n.lastMark] == true
+          && n.together.diff(o.together).changedKeys().size() == 0 && n.together.diff(o.together).removedKeys().size() == 0
+          && (n.together.diff(o.together).addedKeys().size() == 0
+            || (n.together.diff(o.together).addedKeys().hasOnly([day]) && n.together[day] == true
+              && (day + '_' + other()) in o.m));
+      }
+      function starting() {
+        let n = request.resource.data;
+        let o = resource.data;
+        return o.status == 'active' && only(['pack', 'prev', 'spent', 'opened'])
+          && (o.pack == null || o.pack.joined != null)
+          && o.together.size() - o.spent >= bondPackCost()
+          && n.spent == o.spent + bondPackCost() && n.opened == o.opened + 1 && n.prev == (o.pack == null ? o.prev : o.pack)
+          && n.pack.keys().hasOnly(['by', 'seed', 'at', 'joined'])
+          && n.pack.by == request.auth.uid && n.pack.seed is string && n.pack.seed.size() == 24
+          && n.pack.at == request.time && n.pack.joined == null;
+      }
+      function joining() {
+        let n = request.resource.data;
+        let o = resource.data;
+        return only(['pack']) && o.pack != null && o.pack.joined == null && o.pack.by != request.auth.uid
+          && n.pack.diff(o.pack).affectedKeys().hasOnly(['joined']) && n.pack.joined == request.auth.uid;
+      }
+      function cancelling() {
+        let n = request.resource.data;
+        let o = resource.data;
+        return only(['pack', 'spent', 'opened']) && o.pack != null && o.pack.joined == null
+          && n.pack == null && n.spent == o.spent - bondPackCost() && n.opened == o.opened - 1;
+      }
+      allow get: if member();
+      allow create: if member() && id.split('_')[0] < id.split('_')[1]
+        && request.auth.uid in get(/databases/$(database)/documents/scores/$(other())).data.friends
+        && request.resource.data.keys().hasOnly(['a', 'b', 'names', 'status', 'by', 'm', 'together', 'spent', 'opened', 'pack', 'prev'])
+        && request.resource.data.a == id.split('_')[0] && request.resource.data.b == id.split('_')[1]
+        && request.resource.data.status == 'invited' && request.resource.data.by == request.auth.uid
+        && request.resource.data.names.keys().hasOnly([request.resource.data.a, request.resource.data.b])
+        && request.resource.data.m.size() == 0 && request.resource.data.together.size() == 0
+        && request.resource.data.spent == 0 && request.resource.data.opened == 0
+        && request.resource.data.pack == null && request.resource.data.prev == null;
+      allow update: if member() && (accepting() || marking() || starting() || joining() || cancelling());
+      allow delete: if member();
+    }
+
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
     match /groups/{code} {

@@ -16,7 +16,9 @@
     "cards:freeze": "node scripts/freeze-card-rarities.mjs",
     "cards:measure": "node scripts/measure-card-pictures.mjs",
     "code:hash": "node scripts/hash-code.mjs",
-    "media:sheet": "node scripts/media-sheet.mjs"
+    "media:sheet": "node scripts/media-sheet.mjs",
+    "rarities:sheet": "node scripts/rarities-sheet.mjs",
+    "rarities:import": "node scripts/rarities-sheet.mjs import"
   },
   "dependencies": {
     "canvas-confetti": "^1.9.3",

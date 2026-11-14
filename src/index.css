@@ -3421,3 +3421,163 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @keyframes dd-flow { to { stroke-dashoffset: -20; } }
 .dd-flow { animation: dd-flow 0.8s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .dd-flow { animation: none; } }
+
+/* ---- Special rarities (src/gacha/ranks.ts): Apex, Relic, Eclipse, on a card's own look. Their colours are
+   --rk1 (light), --rk2 (body), --rk3 (highlight) and --rk-speed, from src/data/tuning/special-rarities.json. */
+.card-rank { box-shadow: 0 0 0 1px color-mix(in srgb, var(--rk1) 70%, transparent), 0 0 22px color-mix(in srgb, var(--rk1) 65%, transparent) !important; }
+/* Only round the edge (the card's padding): an Omni's body lets its frame show through, and must keep its own. */
+.card-rank-frame {
+  padding: 3%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.card-rank-frame > i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 176%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  animation: card-turn var(--rk-speed, 6s) linear infinite;
+}
+.card-rank-still > i, .card-rank-still, .card-rank-still i { animation-play-state: paused; }
+.card-rank-gem { color: var(--rk1); filter: drop-shadow(0 0 3px var(--rk1)); }
+.card-rank-ribbon { color: #fff; z-index: 10; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+
+/* Apex: crimson and gold turning round it, embers rising, a light sweeping over it. */
+.card-rank-apex .card-rank-frame > i { background: conic-gradient(var(--rk1), var(--rk2), var(--rk3), var(--rk1), #120408, var(--rk1), var(--rk2), var(--rk3), var(--rk1)); }
+.card-rank-apex .card-rank-ribbon {
+  background: linear-gradient(90deg, #120408, color-mix(in srgb, var(--rk1) 85%, #000), var(--rk2), color-mix(in srgb, var(--rk1) 85%, #000), #120408);
+  box-shadow: 0 0 0 2px var(--rk2), 0 0 20px var(--rk1);
+}
+.card-rank-embers > i, .card-rank-dust > i {
+  position: absolute;
+  bottom: -4%;
+  width: 2.4cqw;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--rk3), var(--rk2) 45%, transparent 70%);
+  box-shadow: 0 0 2cqw var(--rk1);
+  opacity: 0;
+  animation: card-rank-rise 4s ease-in infinite;
+}
+@keyframes card-rank-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(6cqw, -120cqw) scale(1.1); }
+}
+.card-rank-sheen {
+  background: linear-gradient(115deg, transparent 38%, color-mix(in srgb, var(--rk2) 45%, transparent) 46%, rgba(255, 255, 255, 0.5) 50%, color-mix(in srgb, var(--rk1) 40%, transparent) 54%, transparent 62%) no-repeat;
+  background-size: 300% 100%;
+  mix-blend-mode: overlay;
+  animation: card-rank-sheen var(--rk-speed, 6s) ease-in-out infinite;
+}
+@keyframes card-rank-sheen { 0%, 20% { background-position: 120% 0; } 65%, 100% { background-position: -20% 0; } }
+
+/* Relic: carved stone, gold edged, runes lighting up one after another, dust drifting in the light. */
+.card-rank-relic .card-rank-frame > i { animation: none; }
+.card-rank-relic .card-rank-frame {
+  background:
+    repeating-linear-gradient(32deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(-58deg, rgba(0, 0, 0, 0.18) 0 3px, transparent 3px 11px),
+    linear-gradient(160deg, color-mix(in srgb, var(--rk2) 70%, #fff), var(--rk2) 45%, color-mix(in srgb, var(--rk2) 60%, #000));
+  box-shadow: inset 0 0 0 1.2cqw var(--rk2), inset 0 0 0 1.6cqw var(--rk1), inset 0 0 3cqw rgba(0, 0, 0, 0.6);
+}
+.card-rank-relic .card-rank-ribbon {
+  color: #2b2118;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--rk1) 60%, #fff), var(--rk1) 55%, color-mix(in srgb, var(--rk1) 70%, #000));
+  box-shadow: 0 0 0 2px var(--rk2), 0 0 14px color-mix(in srgb, var(--rk1) 70%, transparent);
+}
+.card-rank-runes > span {
+  position: absolute;
+  /* In the gutters beside the picture, clear of the words. */
+  top: 17%;
+  bottom: 47%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 2.6cqw;
+  line-height: 1;
+}
+.card-rank-runes-left { left: 0.6cqw; }
+.card-rank-runes-right { right: 0.6cqw; }
+.card-rank-runes i {
+  font-style: normal;
+  color: color-mix(in srgb, var(--rk1) 55%, #000);
+  animation: card-rank-rune calc(var(--rk-speed, 8s) / 2) ease-in-out infinite;
+}
+@keyframes card-rank-rune {
+  0%, 30%, 100% { color: color-mix(in srgb, var(--rk1) 55%, #000); text-shadow: none; }
+  12% { color: var(--rk3); text-shadow: 0 0 2cqw var(--rk3), 0 0 4cqw var(--rk3); }
+}
+.card-rank-dust > i {
+  width: 1.4cqw;
+  background: color-mix(in srgb, var(--rk1) 80%, #fff);
+  box-shadow: 0 0 1.4cqw var(--rk1);
+  animation-duration: 7s;
+  animation-name: card-rank-drift;
+}
+@keyframes card-rank-drift {
+  0% { opacity: 0; transform: translate(0, 0); }
+  20% { opacity: 0.8; }
+  50% { transform: translate(-5cqw, -60cqw); }
+  100% { opacity: 0; transform: translate(4cqw, -120cqw); }
+}
+
+/* Eclipse: dark, but for a corona burning round its edge and behind it; the dark breathes in and out. */
+.card-rank-eclipse .card-rank-frame > i { background: conic-gradient(from 0deg, var(--rk2) 0deg, var(--rk2) 200deg, color-mix(in srgb, var(--rk1) 60%, var(--rk2)) 250deg, var(--rk3) 300deg, var(--rk1) 320deg, var(--rk2) 360deg); }
+.card-rank-eclipse .card-rank-ribbon {
+  color: var(--rk3);
+  background: var(--rk2);
+  box-shadow: 0 0 0 2px var(--rk1), 0 0 22px var(--rk1);
+}
+.card-rank-veil {
+  background: radial-gradient(ellipse 70% 55% at 50% 40%, transparent 40%, color-mix(in srgb, var(--rk2) 75%, transparent) 78%, var(--rk2) 100%);
+  animation: card-rank-veil var(--rk-speed, 7s) ease-in-out infinite;
+}
+@keyframes card-rank-veil { 50% { opacity: 0.6; } }
+.card-rank-corona {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150cqw;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle closest-side, transparent 55%, color-mix(in srgb, var(--rk1) 85%, transparent) 64%, color-mix(in srgb, var(--rk3) 50%, transparent) 68%, transparent 92%);
+  filter: blur(2cqw);
+  animation: card-rank-corona var(--rk-speed, 7s) ease-in-out infinite;
+}
+@keyframes card-rank-corona {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.75; }
+  50% { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-rank-frame > i, .card-rank-embers > i, .card-rank-dust > i, .card-rank-sheen, .card-rank-runes i, .card-rank-veil, .card-rank-corona { animation: none; }
+  .card-rank-corona { transform: translate(-50%, -50%); }
+}
+
+/* Bond: the two friends' colours turning round it, two lights answering each other, the friend's name at the foot. */
+.card-rank-bond .card-rank-frame > i { background: conic-gradient(var(--rk1), var(--rk3), var(--rk1), var(--rk3), var(--rk1)); }
+.card-rank-bond .card-rank-ribbon {
+  background: linear-gradient(90deg, var(--rk1), var(--rk2) 50%, var(--rk3));
+  box-shadow: 0 0 0 2px #fff, 0 0 18px var(--rk1), 0 0 18px var(--rk3);
+}
+.card-rank-twin > i {
+  position: absolute;
+  top: 30%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  mix-blend-mode: screen;
+  animation: card-rank-twin var(--rk-speed, 6s) ease-in-out infinite;
+}
+.card-rank-twin > i:first-child { left: -18%; background: radial-gradient(circle, color-mix(in srgb, var(--rk1) 55%, transparent), transparent 65%); }
+.card-rank-twin > i:last-child { right: -18%; background: radial-gradient(circle, color-mix(in srgb, var(--rk3) 55%, transparent), transparent 65%); animation-delay: calc(var(--rk-speed, 6s) / -2); }
+@keyframes card-rank-twin { 0%, 100% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.1); } }
+.card-rank-names {
+  color: #fff;
+  text-shadow: 0 0 1.5cqw var(--rk1), 0 0 1.5cqw var(--rk3), 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+@media (prefers-reduced-motion: reduce) { .card-rank-twin > i { animation: none; opacity: 0.6; } }

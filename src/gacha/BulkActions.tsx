@@ -113,7 +113,7 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
       CARDS.flatMap((c) => {
         const n = owned[c.id] ?? 0;
         const from = gradeOf(grades, c.id);
-        const to = n > 1 ? planFor(n, from, hell(c), element) : from;
+        const to = n > 1 && c.rarity !== 'omni' ? planFor(n, from, hell(c), element) : from;
         if (to <= from) return [];
         let coins = 0;
         for (let g = from + 1; g <= to; g++) if (g > (paid?.[c.id] ?? 1)) coins += gradeReward(c.rarity, g);
@@ -123,7 +123,7 @@ export function GradeAllDialog({ onClose }: { onClose: () => void }) {
     [owned, grades, paid, bosses, element],
   );
   // Cards that stop before the element grade only because no element is picked.
-  const waiting = useMemo(() => (element ? 0 : CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && planFor(owned[c.id], gradeOf(grades, c.id), hell(c), 'fire') >= ELEMENT_GRADE).length),
+  const waiting = useMemo(() => (element ? 0 : CARDS.filter((c) => (owned[c.id] ?? 0) > 1 && c.rarity !== 'omni' && planFor(owned[c.id], gradeOf(grades, c.id), hell(c), 'fire') >= ELEMENT_GRADE).length),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [owned, grades, bosses, element]);
   const readyCards = useMemo(() => ready.map((r) => r.card), [ready]);

@@ -14,6 +14,7 @@ import { DailyDoodle } from '../friends/Doodle';
 import { LuckReport } from '../friends/LuckReport';
 import { DefenceDeck } from '../friends/DefenceDeck';
 import { RaidBoss } from '../friends/RaidBoss';
+import { Bond } from '../friends/Bond';
 import { Telephone } from '../friends/Telephone';
 import { WeeklyLeague } from '../friends/WeeklyLeague';
 import type { Luck } from '../cloud/luck';
@@ -328,6 +329,7 @@ const TABS = [
   { id: 'phone', name: 'Telephone', icon: '📞', blurb: 'Pass it on' },
   { id: 'choice', name: 'Daily Choice', icon: '🗳️', blurb: 'Pick a side' },
   { id: 'clues', name: 'Clue Grid', icon: '🔎', blurb: 'One word, find them' },
+  { id: 'bond', name: 'Bond', icon: '∞', blurb: 'Packs for two' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
 
@@ -626,6 +628,7 @@ export default function Friends() {
 
           {mine && tab === 'league' && <WeeklyLeague players={players.map((p) => ({ uid: p.doc.uid, log: p.doc.log ?? {}, color: p.color, me: p.me, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo} />}
 
+          {mine && tab === 'bond' && <Bond people={players.filter((p) => !p.me).map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-8" />, name: p.doc.name }))} me={mine.uid} myName={mine.name} demo={demo} />}
           {mine && tab === 'raid' && <RaidBoss people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
 
           {mine && tab === 'defence' && <DefenceDeck people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-6" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
