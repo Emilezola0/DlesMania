@@ -2842,7 +2842,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-wrap-dragon { background: transparent !important; box-shadow: none !important; }
 .pack-wrap-dragon > .card-sheen, .pack-wrap-dragon > img { display: none; }
 @keyframes pack-wrap-sweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
-.pack-wrap-crystal { background: linear-gradient(160deg, #f0f9ff, #a5b4fc 35%, #1e293b 70%, #c7d2fe) !important; }
+.pack-wrap-crystal { background: conic-gradient(from 30deg at 40% 45%, #a5f3fc, #f0abfc, #c4b5fd, #fef08a, #86efac, #a5f3fc) !important; }
 @keyframes pack-wrap-spin { to { transform: rotate(360deg); } }
 .pack-wrap-phoenix { background: radial-gradient(ellipse 90% 60% at 50% 38%, #7c2d12, #3b0d06 55%, #140403) !important; }
 .pack-wrap-blackhole { background: radial-gradient(circle at 50% 42%, #1e1b4b, #020617 60%) !important; }

@@ -511,19 +511,22 @@ export function BigBangWrap() {
 
 // ---------------------------------------------------------------------------------------------- Crystal
 
-/** A crystal's facets, each turned its own way to the light: [angle of the light across it, lit side, far side]. */
-const CRYSTAL_FACES: [number, string, string][] = [
-  [20, '#ffffff', '#c7d2fe'],
-  [200, '#f0f9ff', '#93c5fd'],
-  [70, '#e0e7ff', '#475569'],
-  [140, '#bae6fd', '#1e293b'],
-  [300, '#ffffff', '#a5b4fc'],
-  [100, '#cbd5e1', '#0f172a'],
-  [250, '#f5f3ff', '#c4b5fd'],
-  [330, '#e0f2fe', '#334155'],
+/**
+ * How a crystal's facets catch the light, each turned its own way: [angle of the light across it, how bright its lit
+ * side, how deep its shadow]. Laid over each facet's own colour, so the colours stay and the glass looks cut.
+ */
+const CRYSTAL_FACES: [number, number, number][] = [
+  [20, 0.7, 0.15],
+  [200, 0.5, 0.3],
+  [70, 0.35, 0.55],
+  [140, 0.25, 0.65],
+  [300, 0.75, 0.1],
+  [100, 0.2, 0.7],
+  [250, 0.6, 0.2],
+  [330, 0.4, 0.5],
 ];
 
-/** Crystal: cut glass, clear and icy, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through. */
+/** Crystal: cut glass in every colour, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through. */
 export function CrystalWrap() {
   const id = useUid();
   const art = useMemo(() => {
@@ -540,7 +543,10 @@ export function CrystalWrap() {
     }
     // Each facet of cut glass turned its own way to the light: clear and pale, bright white, or deep in shadow, its
     // light falling across it (CRYSTAL_FACES), some edges splitting the light into a rainbow.
-    const tris: { pts: string; face: number; delay: number; rainbow: string | null }[] = [];
+    // (Their own random, so each facet keeps the colour it had.)
+    const light = seeded(97);
+    const hues = [190, 300, 260, 50, 140, 330, 210];
+    const tris: { pts: string; fill: string; face: number; delay: number; rainbow: string | null }[] = [];
     for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++) {
         const a = p[r][c];
@@ -551,8 +557,10 @@ export function CrystalWrap() {
         for (const t of halves) {
           const cx = (t[0][0] + t[1][0] + t[2][0]) / 3;
           const cy = (t[0][1] + t[1][1] + t[2][1]) / 3;
-          const edge = rnd() < 0.3 ? `M${t[0][0].toFixed(1)} ${t[0][1].toFixed(1)}L${t[1][0].toFixed(1)} ${t[1][1].toFixed(1)}` : null;
-          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), face: Math.floor(rnd() * CRYSTAL_FACES.length), delay: (cx / W) * 1.1 + (cy / H) * 0.9, rainbow: edge });
+          const h = hues[Math.floor(rnd() * hues.length)];
+          const fill = `hsl(${h} 80% ${50 + rnd() * 36}%)`;
+          const edge = light() < 0.3 ? `M${t[0][0].toFixed(1)} ${t[0][1].toFixed(1)}L${t[1][0].toFixed(1)} ${t[1][1].toFixed(1)}` : null;
+          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), fill, face: Math.floor(light() * CRYSTAL_FACES.length), delay: (cx / W) * 1.1 + (cy / H) * 0.9, rainbow: edge });
         }
       }
     const sparks = Array.from({ length: 10 }, () => {
@@ -570,15 +578,19 @@ export function CrystalWrap() {
             <stop key={c} offset={i / 4} stopColor={c} />
           ))}
         </linearGradient>
-        {CRYSTAL_FACES.map(([a, from, to], i) => (
+        {CRYSTAL_FACES.map(([a, lit, shade], i) => (
           <linearGradient key={i} id={`${id}f${i}`} gradientTransform={`rotate(${a} 0.5 0.5)`}>
-            <stop offset="0" stopColor={from} />
-            <stop offset="1" stopColor={to} />
+            <stop offset="0" stopColor="#fff" stopOpacity={lit} />
+            <stop offset="0.45" stopColor="#fff" stopOpacity={0} />
+            <stop offset="1" stopColor="#0f172a" stopOpacity={shade} />
           </linearGradient>
         ))}
       </defs>
       {art.tris.map((t, i) => (
-        <polygon key={i} points={t.pts} fill={`url(#${id}f${t.face})`} fillOpacity={0.9} stroke="#fff" strokeOpacity={0.8} strokeWidth={0.7} strokeLinejoin="round" />
+        <g key={i}>
+          <polygon points={t.pts} fill={t.fill} fillOpacity={0.62} />
+          <polygon points={t.pts} fill={`url(#${id}f${t.face})`} stroke="#fff" strokeOpacity={0.8} strokeWidth={0.7} strokeLinejoin="round" />
+        </g>
       ))}
       {/* The light split into colours along some edges, as a cut crystal does. */}
       <g style={{ mixBlendMode: 'screen' }} opacity={0.75}>
