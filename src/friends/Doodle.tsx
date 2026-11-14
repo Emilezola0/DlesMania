@@ -229,23 +229,113 @@ export function usePad(limit = 380) {
   return { canvas, strokes, handlers, reset, stop, ink, setInk, width, setWidth, bucket, setBucket };
 }
 
-/** The pad's tools: colours, the pen's widths, and the bucket. */
+/**
+ * The keyboard's shortcuts for the pens (on a computer): the top row of letters picks a colour (by where the key is,
+ * so A Z E R T Y… on a French keyboard, Q W E R T Y… on an English one), 1 2 3 the pen's width, 4 the bucket. The
+ * wheel over the drawing (or the pens) turns through the colours; with Shift held, through the widths.
+ */
+const COLOUR_KEYS = ['KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP'];
+const TOOL_KEYS = ['Digit1', 'Digit2', 'Digit3', 'Digit4'];
+/** What's printed on those keys: the keyboard's own letters where the browser tells them (Chrome), else a guess from the language (Firefox). */
+function useKeyLabels() {
+  const guess = (typeof navigator !== 'undefined' && /^fr|^be/i.test(navigator.language) ? 'AZERTYUIOP' : 'QWERTYUIOP').split('');
+  const [labels, setLabels] = useState(guess);
+  useEffect(() => {
+    const kb = (navigator as Navigator & { keyboard?: { getLayoutMap?: () => Promise<Map<string, string>> } }).keyboard;
+    kb?.getLayoutMap?.()
+      .then((m) => setLabels(COLOUR_KEYS.map((code, k) => (m.get(code) ?? guess[k]).toUpperCase())))
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return labels;
+}
+const typing = (t: EventTarget | null) => t instanceof HTMLElement && (t.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName));
+
+/** The pad's tools: colours, the pen's widths, and the bucket, with their keys and the wheel on a computer. */
 export function PenBar({ pad }: { pad: ReturnType<typeof usePad> }) {
+  const labels = useKeyLabels();
+  const bar = useRef<HTMLDivElement>(null);
+  // The latest pens, for the listeners added once.
+  const now = useRef(pad);
+  now.current = pad;
+  const pickInk = (k: number) => (now.current.ink !== k && sfx.select(), now.current.setInk(k));
+  const pickTool = (k: number) => {
+    sfx.select();
+    if (k === WIDTHS.length) return now.current.setBucket(true);
+    now.current.setWidth(k);
+    now.current.setBucket(false);
+  };
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat || typing(e.target)) return;
+      const ink = COLOUR_KEYS.indexOf(e.code);
+      const tool = TOOL_KEYS.indexOf(e.code.replace('Numpad', 'Digit'));
+      if (ink >= 0) pickInk(ink);
+      else if (tool >= 0) pickTool(tool);
+      else return;
+      e.preventDefault();
+    };
+    // Over the drawing or the pens, the wheel turns the pens instead of the page.
+    const onWheel = (e: WheelEvent) => {
+      if (!e.deltaY) return;
+      e.preventDefault();
+      const dir = e.deltaY > 0 ? 1 : -1;
+      const p = now.current;
+      if (e.shiftKey) {
+        const at = p.bucket ? WIDTHS.length : p.width;
+        pickTool((at + dir + WIDTHS.length + 1) % (WIDTHS.length + 1));
+      } else pickInk((p.ink + dir + INKS.length) % INKS.length);
+    };
+    const places: HTMLElement[] = [];
+    if (bar.current) places.push(bar.current);
+    if (pad.canvas.current) places.push(pad.canvas.current);
+    window.addEventListener('keydown', onKey);
+    for (const el of places) el.addEventListener('wheel', onWheel, { passive: false });
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      for (const el of places) el.removeEventListener('wheel', onWheel);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const key = (k: string) => <kbd className="pointer-events-none absolute -bottom-1.5 -right-1.5 hidden min-w-4 rounded border border-rule-strong bg-card px-0.5 text-center font-mono text-[9px] font-bold leading-[14px] text-ink-soft pointer-fine:block">{k}</kbd>;
   return (
-    <div className="flex flex-wrap items-center gap-1.5">
-      {INKS.map((c, k) => (
-        <button key={c} type="button" onClick={() => pad.setInk(k)} aria-label={`Colour ${k + 1}`} aria-pressed={pad.ink === k} className={`size-7 rounded-full border-2 ${pad.ink === k ? 'scale-110 border-accent' : 'border-rule-strong'}`} style={{ background: c }} />
-      ))}
-      <span className="mx-1 h-6 w-px bg-rule" />
-      {WIDTHS.map((w, k) => (
-        <button key={w} type="button" onClick={() => (pad.setWidth(k), pad.setBucket(false))} aria-label={['Thin pen', 'Medium pen', 'Thick pen'][k]} aria-pressed={!pad.bucket && pad.width === k} className={`grid size-8 place-items-center rounded-md border ${!pad.bucket && pad.width === k ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
-          <span className="rounded-full bg-ink" style={{ width: 4 + k * 5, height: 4 + k * 5 }} />
+    <div ref={bar} className="space-y-1">
+      <div className="flex flex-wrap items-center gap-1.5">
+        {INKS.map((c, k) => (
+          <button key={c} type="button" onClick={() => pickInk(k)} aria-label={`Colour ${k + 1} (key ${labels[k]})`} aria-pressed={pad.ink === k} className={`relative size-7 rounded-full border-2 ${pad.ink === k ? 'scale-110 border-accent' : 'border-rule-strong'}`} style={{ background: c }}>
+            {key(labels[k])}
+          </button>
+        ))}
+        <span className="mx-1 h-6 w-px bg-rule" />
+        {WIDTHS.map((w, k) => (
+          <button key={w} type="button" onClick={() => pickTool(k)} aria-label={`${['Thin pen', 'Medium pen', 'Thick pen'][k]} (key ${k + 1})`} aria-pressed={!pad.bucket && pad.width === k} className={`relative grid size-8 place-items-center rounded-md border ${!pad.bucket && pad.width === k ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
+            <span className="rounded-full bg-ink" style={{ width: 4 + k * 5, height: 4 + k * 5 }} />
+            {key(String(k + 1))}
+          </button>
+        ))}
+        <button type="button" onClick={() => pickTool(WIDTHS.length)} aria-label={`Bucket: fill an area (key ${WIDTHS.length + 1})`} title="Bucket: tap inside a shape to fill it" aria-pressed={pad.bucket} className={`relative grid size-8 place-items-center rounded-md border text-base ${pad.bucket ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
+          🪣
+          {key(String(WIDTHS.length + 1))}
         </button>
-      ))}
-      <button type="button" onClick={() => pad.setBucket(true)} aria-label="Bucket: fill an area" title="Bucket: tap inside a shape to fill it" aria-pressed={pad.bucket} className={`grid size-8 place-items-center rounded-md border text-base ${pad.bucket ? 'border-accent bg-tile' : 'border-rule-strong'}`}>
-        🪣
-      </button>
+      </div>
+      <p className="hidden text-[11px] text-ink-faint pointer-fine:block">
+        Keys: {labels.join(' ')} for the colours, 1 2 3 for the pen, 4 for the bucket. Wheel: colour (Shift + wheel: pen).
+      </p>
     </div>
+  );
+}
+
+/** The pen chosen, as a stroke on paper: what the first line will look like. */
+function PenPreview({ pad }: { pad: ReturnType<typeof usePad> }) {
+  const ink = INKS[pad.ink] ?? INKS[0];
+  return (
+    <svg viewBox="0 0 240 60" className="h-14 w-full rounded-md border border-rule-strong bg-[#fffdf7]" aria-hidden>
+      {pad.bucket ? (
+        <path d="M30 10 h180 v40 h-180 z" fill={ink} stroke="#111827" strokeWidth={2} />
+      ) : (
+        <path d="M20 40 C 60 5, 90 55, 130 30 S 200 15, 220 35" fill="none" stroke={ink} strokeWidth={WIDTHS[pad.width] * 240} strokeLinecap="round" />
+      )}
+    </svg>
   );
 }
 
@@ -397,6 +487,11 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
             ))}
           </div>
         </div>
+        <div className="space-y-1.5 text-sm">
+          <span className="block text-xs uppercase tracking-widest text-ink-faint">4 · Your pen to start with (you can change it while drawing)</span>
+          <PenBar pad={pad} />
+          <PenPreview pad={pad} />
+        </div>
         <button
           type="button"
           disabled={!names.includes(who)}
@@ -427,7 +522,7 @@ function DrawPanel({ demo, posted, onPosted }: { demo: boolean; posted: DoodleDo
         <canvas ref={canvas} width={480} height={480} {...pad.handlers(step === 'drawing')} className="block aspect-square w-full touch-none rounded-md border-2 border-rule-strong bg-[#fffdf7]" />
         {step === 'count' && <div className="absolute inset-0 grid place-items-center rounded-md bg-black/40 font-display text-7xl font-black text-white">{count}</div>}
       </div>
-      {step === 'drawing' && <PenBar pad={pad} />}
+      {(step === 'count' || step === 'drawing') && <PenBar pad={pad} />}
       {step === 'done' && (
         <div className="space-y-2">
           <p className="text-center font-display text-lg font-bold">⏰ Time&apos;s up!</p>
