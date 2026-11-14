@@ -73,10 +73,10 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
-    // The dragon's body, winding down the pack: as wide as half the pack, narrowing to the tail at the bottom.
+    // The dragon's body, winding down the pack over the pack's own colours: a little over half the pack wide, the same all the way down. Nothing else: no background, the pack is see-through around it (index.css).
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 22; r++) {
-      const half = r < 14 ? 70 : Math.max(12, 70 - (r - 13) * 7.5);
+      const half = 84;
       const xs: number[] = [];
       for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
       out.push({ r, y: -14 + r * 19, xs, half });
@@ -121,9 +121,6 @@ export function DragonWrap() {
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {/* A lair: dark, a fire glowing somewhere below. */}
-      <rect width={W} height={H} fill="#0c0101" />
-      <rect className="wa-dragon-heat" width={W} height={H} fill={`url(#${id}h)`} />
       {/* Each row swings with the one above it a beat later: the whole body bends in an S that runs down it, like a
           snake slithering. The body's round shading (dark flanks, a lit spine) swings with each row, so the S shows. */}
       {rows.map(({ r, y, xs, half }) => (
@@ -153,8 +150,6 @@ export function DragonWrap() {
           </g>
         ),
       )}
-      {/* The light rolling down the body, as it moves. */}
-      <rect className="wa-dragon-roll" x={0} y={-140} width={W} height={140} fill={`url(#${id}l)`} />
     </Svg>
   );
 }
