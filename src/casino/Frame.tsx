@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react';
-import { FRAME_BY_ID, type Beyond, type Frame } from './frames';
+import { useProgress } from '../store/progress';
+import { FRAME_RARITY_COLOR, ROMAN, parseWorn, wornFrameId, type Beyond, type Frame } from './frames';
 
 /** A glyph filling its box, whatever the frame's size (an SVG scales; a font size wouldn't). */
 const Glyph = ({ g }: { g: string }) => (
@@ -110,12 +111,58 @@ function BeyondLife({ life }: { life: Beyond }) {
 
 const BEYOND = new Set<Frame['life']>(['aurora', 'orbit', 'starfall', 'seraph', 'cosmos']);
 
+/** Gems round an Ascendant ring (IV and up): north, east, south, west. */
+const PIPS = [
+  [50, -19],
+  [119, 50],
+  [50, 119],
+  [-19, 50],
+];
+
+/**
+ * Ascendant (src/casino/frames.ts): a frame won again, evolution by evolution. I a bright rim on the ring;
+ * II a stronger light; III a gleam sweeping round it; IV four gems; V a second, golden ring; VI marks turning on
+ * it; VII lights orbiting; VIII rays turning behind; IX a crown and stars for gems; X every colour, breathing.
+ */
+function Ascendant({ level, frame }: { level: number; frame: Frame }) {
+  const crown = level >= 9 && frame.ornament?.at !== 'top';
+  return (
+    <>
+      {level >= 8 && <span className="asc-rays pointer-events-none absolute -inset-[62%] -z-10 rounded-full" aria-hidden />}
+      {level >= 10 && <span className="asc-aura pointer-events-none absolute -inset-[38%] -z-10 rounded-full" aria-hidden />}
+      {level >= 5 && <span className={`asc-outer pointer-events-none absolute -inset-[27%] rounded-full ${level >= 10 ? 'asc-outer-prism' : ''}`} aria-hidden />}
+      {level >= 6 && <span className="asc-ticks pointer-events-none absolute -inset-[33%] rounded-full" aria-hidden />}
+      {level >= 7 &&
+        [0, 1, 2].map((k) => (
+          <span key={k} className="asc-orbit pointer-events-none absolute -inset-[27%]" style={{ animationDelay: `${-k * 2}s` }} aria-hidden>
+            <i />
+          </span>
+        ))}
+      {level >= 4 &&
+        PIPS.map(([x, y], i) => (
+          <span key={i} className={`asc-pip pointer-events-none absolute ${level >= 9 ? 'asc-pip-star' : ''}`} style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * 0.4}s` }} aria-hidden>
+            <Glyph g={level >= 9 ? '✦' : '◆'} />
+          </span>
+        ))}
+      {crown && (
+        <span className="asc-crown pointer-events-none absolute" aria-hidden>
+          <Glyph g="♛" />
+        </span>
+      )}
+    </>
+  );
+}
+
 /** A frame's ring, glow, ornament and life, around whatever it holds (sized by the child). */
-export function FrameRing({ frame, children, className = '' }: { frame: Frame | undefined; children: ReactNode; className?: string }) {
+export function FrameRing({ frame, children, className = '', level = 0, badge = false }: { frame: Frame | undefined; children: ReactNode; className?: string; level?: number; badge?: boolean }) {
   if (!frame) return <span className={`relative inline-block ${className}`}>{children}</span>;
   const beyond = BEYOND.has(frame.life);
+  const asc = frame.earn ? 0 : level;
+  const light = frame.glow ?? FRAME_RARITY_COLOR[frame.rarity];
+  const glow = asc >= 2 ? `drop-shadow(0 0 3px ${light}) drop-shadow(0 0 ${asc >= 6 ? 9 : 6}px ${light})` : frame.glow ? `drop-shadow(0 0 3px ${frame.glow})` : undefined;
   return (
-    <span className={`avatar-frame relative inline-block ${beyond ? 'isolate' : ''} ${className}`}>
+    <span className={`avatar-frame relative inline-block ${beyond || asc >= 8 ? 'isolate' : ''} ${asc ? `asc asc-${asc}` : ''} ${className}`} style={asc ? { ['--asc' as string]: light } : undefined}>
+      {asc > 0 && <Ascendant level={asc} frame={frame} />}
       {beyond && <BeyondLife life={frame.life as Beyond} />}
       {frame.icon ? (
         <span className={`avatar-icon-${frame.icon} relative block rounded-full`}>
@@ -125,11 +172,14 @@ export function FrameRing({ frame, children, className = '' }: { frame: Frame | 
       ) : (
         children
       )}
-      <span className="pointer-events-none absolute -inset-[16%]" style={frame.glow ? { filter: `drop-shadow(0 0 3px ${frame.glow})` } : undefined} aria-hidden>
+      <span className="pointer-events-none absolute -inset-[16%]" style={glow ? { filter: glow } : undefined} aria-hidden>
         <span className={`avatar-frame-ring absolute inset-0 rounded-full ${(frame.life && RING_LIFE[frame.life]) ?? ''}`} style={{ background: frame.ring }} />
         {/* A black hole's light bending round it; a supernova's shock ring racing out. */}
         {frame.life === 'blackhole' && <span className="avatar-frame-halo absolute -inset-[10%] rounded-full" />}
         {frame.life === 'supernova' && <span className="avatar-frame-shock absolute inset-0 rounded-full" />}
+        {/* Ascendant I: a bright rim; III: a gleam going round. */}
+        {asc >= 1 && <span className="avatar-frame-ring asc-rim absolute inset-0 rounded-full" />}
+        {asc >= 3 && <span className="avatar-frame-ring asc-gleam absolute inset-0 rounded-full" />}
       </span>
       {(frame.life === 'twinkle' || frame.life === 'flicker' || frame.life === 'supernova') &&
         TWINKLES.map(([x, y], i) => (
@@ -148,14 +198,23 @@ export function FrameRing({ frame, children, className = '' }: { frame: Frame | 
           <Glyph g={frame.ornament.glyph} />
         </span>
       )}
+      {badge && asc > 0 && (
+        <span className="asc-badge pointer-events-none absolute" aria-label={`Ascendant ${ROMAN[asc]}`}>
+          {ROMAN[asc]}
+        </span>
+      )}
     </span>
   );
 }
 
-/** The frame the player wears (by id), around their icon. */
+/** The frame the player wears, with its evolution ("<id>@<evolution>", src/casino/frames.ts wornFrameId), as friends see it. */
+export const useWornFrame = () => useProgress((s) => wornFrameId(s.frame, s.frameCopies));
+
+/** A frame worn (by id, maybe with its evolution: "<id>@<n>"), around an icon. */
 export function AvatarFrame({ frame, children, className }: { frame: string | null | undefined; children: ReactNode; className?: string }) {
+  const { frame: f, level } = parseWorn(frame);
   return (
-    <FrameRing frame={frame ? FRAME_BY_ID.get(frame) : undefined} className={className}>
+    <FrameRing frame={f} level={level} className={className}>
       {children}
     </FrameRing>
   );

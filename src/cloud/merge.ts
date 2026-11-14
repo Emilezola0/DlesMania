@@ -63,6 +63,7 @@ export const SYNCED = [
   'jlptGrammarReview',
   'frames',
   'frame',
+  'frameCopies',
   'cosmetics',
   'ascendFrom',
   'nameStyle',
@@ -363,6 +364,8 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     // (On a first link, the account's: they're bought or won with coins.)
     frames: firstLink ? (cloud.frames ?? []) : [...new Set([...(local.frames ?? []), ...(cloud.frames ?? [])])],
     frame: latest.frame ?? null,
+    // A frame's copies won again (its Ascendant evolution): the most either side has.
+    frameCopies: firstLink ? (cloud.frameCopies ?? {}) : maxBy(local.frameCopies, cloud.frameCopies),
     // Cosmetics bought on either side stay bought; the ones in use, and the title: the latest save's.
     cosmetics: firstLink ? (cloud.cosmetics ?? []) : [...new Set([...(local.cosmetics ?? []), ...(cloud.cosmetics ?? [])])],
     // An evolving cosmetic counts from the first time it was bought, on either side.

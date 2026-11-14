@@ -8,6 +8,7 @@
 import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
 import { withStage } from '../casino/ascended';
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
+import { wornFrameId } from '../casino/frames';
 import { bestPlush } from '../casino/plushies';
 import { featsOf, TITLE_BY_ID } from '../casino/unlocks';
 import { dailyPoints } from '../friends/league';
@@ -88,7 +89,8 @@ function looks() {
   const title = TITLE_BY_ID.get(s.title ?? '');
   return {
     avatar: s.avatar && s.cards[s.avatar] ? s.avatar : null,
-    frame: s.frame ?? null,
+    // With its Ascendant evolution: "<id>@<n>" (src/casino/frames.ts).
+    frame: wornFrameId(s.frame, s.frameCopies),
     // An evolving piece goes with its stage ("name:ascendant#3").
     nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? withStage(s, s.nameStyle) : null,
     title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? withStage(s, title.id, 'title:') : null,

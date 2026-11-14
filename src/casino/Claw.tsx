@@ -10,7 +10,7 @@ import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { boxFor, capsuleCard, CHUTE, CLAW, grab, prizeLook, restock, type ClawItem, type GrabOutcome } from './clawMachine';
-import { PLUSH_BY_ID, PLUSH_RARITY, PLUSHIES } from './plushies';
+import { PLUSH_BY_ID, PLUSH_RARITY, PLUSHIES, plushLevel, plushToNext, type Plush } from './plushies';
 
 /** The box seen from the front, a little from above (all in cqw: the box is 100 wide, 75 high). */
 const floorY = (z: number) => 75 * (0.36 + 0.56 * z);
@@ -30,7 +30,7 @@ export function PrizeArt({ prize, className = '', style }: { prize: string; clas
     const p = PLUSH_BY_ID.get(prize.slice('plush:'.length));
     const [light, dark] = p?.colors ?? ['#eee', '#999'];
     return (
-      <div className={`claw-plush ${pos} ${p?.rarity === 'golden' ? 'claw-plush-golden' : ''} ${className}`} style={style} title={look.name}>
+      <div className={`claw-plush ${pos} ${p && PLUSH_RARITY[p.rarity].rank >= 3 ? `claw-plush-golden claw-plush-${p.rarity}` : ''} ${className}`} style={style} title={look.name}>
         <span className="absolute left-[8%] top-[-4%] size-[30%] rounded-full" style={{ background: dark }} />
         <span className="absolute right-[8%] top-[-4%] size-[30%] rounded-full" style={{ background: dark }} />
         <span
@@ -290,7 +290,7 @@ export function Claw() {
     setResult({ outcome, prize, cardId, duplicate });
     setPhase('idle');
     if (prize) {
-      const rare = prize === 'capsule' || prize.startsWith('cosmetic:') || /plush:(dlecoin|cardback|yume|omni-star)/.test(prize) || prize === 'coins:2000';
+      const rare = prize === 'capsule' || prize.startsWith('cosmetic:') || /plush:(dlecoin|cardback|yume|omni-star|sky-whale|star-dragon|sun|firebird)/.test(prize) || prize === 'coins:2000';
       if (rare) (sfx.victory(), celebrateBig());
       else (sfx.coins(6), celebrate());
     } else if (outcome.kind === 'miss') sfx.wrong();
@@ -466,8 +466,23 @@ function prizeRank(prize: string) {
   return 2;
 }
 
+/** A plush won again: its level (★1 to ★5), and whether this one took it up. */
+function PlushLevelNote({ plush, copies }: { plush: Plush; copies: number }) {
+  const lv = plushLevel(plush, copies);
+  const up = lv > plushLevel(plush, copies - 1);
+  const next = plushToNext(plush, copies);
+  return (
+    <p className={up ? 'font-display font-bold text-amber-500' : 'text-xs text-ink-faint'}>
+      {'★'.repeat(lv)}
+      {up ? ` ${plush.name} grew to ★${lv}!` : next ? ` ${next} more for ★${lv + 1}` : ' Fully grown'}
+    </p>
+  );
+}
+
 function ResultText({ r }: { r: Result }) {
   const o = r.outcome;
+  const plush = r.prize?.startsWith('plush:') ? PLUSH_BY_ID.get(r.prize.slice('plush:'.length)) : undefined;
+  const copies = useProgress((s) => (plush ? s.claw?.plush?.[plush.id] : undefined));
   if (o.kind === 'win' && r.prize) {
     const look = prizeLook(r.prize);
     const card = r.cardId ? CARD_BY_ID.get(r.cardId) : undefined;
@@ -488,6 +503,7 @@ function ResultText({ r }: { r: Result }) {
         )}
         {r.prize === 'scratch' && <p className="text-sm text-ink-soft">It waits in the Scratch tab.</p>}
         {!!r.duplicate && <p className="text-sm text-ink-soft">You had it already: +{r.duplicate} DleCoins.</p>}
+        {plush && !!r.duplicate && <PlushLevelNote plush={plush} copies={copies ?? 0} />}
       </div>
     );
   }

@@ -3,6 +3,7 @@
 // frames are in the machine only around their date (Halloween, Christmas, New Year, Omnidle's birthday). Each is drawn in CSS (src/casino/Frame.tsx, .avatar-frame in src/index.css): a ring, maybe a
 // glow, maybe an ornament on its edge, maybe a little life (it turns, it pulses, it twinkles).
 
+import CASINO from '../data/tuning/casino.json';
 import REWARDS from '../data/rewards.json';
 import { addDays, toKey } from '../lib/date';
 import { hashString } from '../lib/rng';
@@ -102,6 +103,36 @@ export const albumFrame = (setId: string, name = 'Album'): Frame => {
 
 const BY_ID = new Map([...FRAMES, ...EARNED_FRAMES].map((f) => [f.id, f]));
 export const FRAME_BY_ID = { get: (id: string): Frame | undefined => BY_ID.get(id) ?? (id.startsWith('album-') ? albumFrame(id.slice(6)) : undefined) };
+
+/**
+ * Ascendant: a machine frame won again climbs, ten evolutions, each a little grander (src/casino/Frame.tsx
+ * `Ascendant`). Each copy won again is worth points by its rarity (a Transcendent's one copy as much as fifty
+ * Commons'), and each evolution asks for so many (src/data/tuning/casino.json capsules.ascendant).
+ */
+export const ASCEND_MAX = 10;
+const ASC = CASINO.capsules.ascendant as { points: Record<FrameRarity, number>; levels: number[] };
+export const ascendPoints = (f: Pick<Frame, 'rarity'>, copies: number) => copies * (ASC.points[f.rarity] ?? 1);
+/** A frame's evolution (0 to 10) from its copies won again. */
+export const ascendLevel = (f: Pick<Frame, 'rarity'>, copies: number | undefined) => ASC.levels.filter((t) => ascendPoints(f, copies ?? 0) >= t).length;
+/** Copies still to win for the next evolution (0 at the last). */
+export function ascendToNext(f: Pick<Frame, 'rarity'>, copies: number | undefined): number {
+  const next = ASC.levels[ascendLevel(f, copies)];
+  return next === undefined ? 0 : Math.ceil((next - ascendPoints(f, copies ?? 0)) / (ASC.points[f.rarity] ?? 1));
+}
+export const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+/** The frame worn as friends see it: "<id>@<evolution>" (just the id at none). */
+export const wornFrameId = (id: string | null | undefined, copies: Record<string, number> | undefined): string | null => {
+  if (!id) return null;
+  const f = FRAME_BY_ID.get(id);
+  const lv = f && !f.earn ? ascendLevel(f, copies?.[id]) : 0;
+  return lv ? `${id}@${lv}` : id;
+};
+/** A worn frame read back: the frame and its evolution. */
+export const parseWorn = (s: string | null | undefined): { frame: Frame | undefined; level: number } => {
+  if (!s) return { frame: undefined, level: 0 };
+  const [id, lv] = s.split('@');
+  return { frame: FRAME_BY_ID.get(id), level: Math.max(0, Math.min(ASCEND_MAX, Math.floor(Number(lv) || 0))) };
+};
 
 /** A seasonal frame's window, as its reward date's: from the day for windowDays days (Christmas runs into January). */
 const seasonStart = (season: string, year: number) => {

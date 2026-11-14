@@ -8,14 +8,14 @@ import { CARD_BY_ID, SETS, RARITY_INFO } from '../gacha/cards';
 import { THEMES, unlockedThemes } from '../gacha/Theme';
 import { CardAvatar } from '../gacha/Perks';
 import { RotationSettings } from '../gacha/RotationSettings';
-import { AvatarFrame } from '../casino/Frame';
+import { AvatarFrame, useWornFrame } from '../casino/Frame';
 import { FRAME_BY_ID } from '../casino/frames';
 import { useMyNameStyle, useMyTitle } from '../casino/ascended';
 import { NAME_STYLES, nameStyleClass, titleStyle } from '../casino/cosmetics';
 import { TITLES, TITLE_BY_ID, useFeats } from '../casino/unlocks';
 import { useShownName } from '../casino/Boutique';
 import { PrizeArt } from '../casino/Claw';
-import { bestPlush, PLUSH_BY_ID, PLUSH_RARITY, PLUSHIES } from '../casino/plushies';
+import { bestPlush, PLUSH_BY_ID, PLUSH_MAX_LEVEL, PLUSH_RARITY, PLUSHIES, plushLevel, plushToNext } from '../casino/plushies';
 import { startCloud, useCloud } from '../cloud/state';
 import { birthdayLabel } from '../components/BirthdayReward';
 import { BIRTHDAY_COINS } from '../lib/rewards';
@@ -108,12 +108,19 @@ function PlushShelf() {
               onClick={() => (sfx.select(), setShown(shown?.id === p.id && picked ? null : p.id))}
               aria-pressed={shown?.id === p.id}
               className={`flex flex-col items-center gap-0.5 rounded-md p-0.5 text-center transition hover:bg-tile ${shown?.id === p.id ? 'bg-tile ring-2 ring-accent' : ''}`}
-              title={`${p.name} (${PLUSH_RARITY[p.rarity].name}): ${shown?.id === p.id ? 'shown to your friends' : 'show this one to your friends'}`}
+              title={`${p.name} (${PLUSH_RARITY[p.rarity].name}), ★${plushLevel(p, owned[p.id])}${plushToNext(p, owned[p.id]) ? ` (${plushToNext(p, owned[p.id])} more for ★${plushLevel(p, owned[p.id]) + 1})` : ', fully grown'}: ${shown?.id === p.id ? 'shown to your friends' : 'show this one to your friends'}`}
             >
-              <span className="relative">
+              <span className={`relative isolate plush-lv-${plushLevel(p, owned[p.id])}`} style={{ ['--plush' as string]: p.colors[1] }}>
                 <PrizeArt prize={`plush:${p.id}`} className="size-11" style={{ fontSize: '2.75rem' }} />
                 {owned[p.id] > 1 && <span className="absolute -right-1 -top-1 rounded-full bg-ink px-1 text-[10px] font-bold text-paper">×{owned[p.id]}</span>}
                 {shown?.id === p.id && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-accent px-1 text-[9px] font-bold text-white">★</span>}
+              </span>
+              <span className="plush-stars" aria-label={`Level ${plushLevel(p, owned[p.id])} of ${PLUSH_MAX_LEVEL}`}>
+                {Array.from({ length: PLUSH_MAX_LEVEL }, (_, k) => (
+                  <span key={k} className={k < plushLevel(p, owned[p.id]) ? '' : 'off'}>
+                    ★
+                  </span>
+                ))}
               </span>
               <span className="w-full truncate text-[10px] font-semibold" style={{ color: PLUSH_RARITY[p.rarity].color }}>
                 {p.name}
@@ -152,7 +159,7 @@ function PlushShelf() {
  */
 function ProfileCard() {
   const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? CARD_BY_ID.get(s.avatar) : undefined));
-  const frame = useProgress((s) => s.frame);
+  const frame = useWornFrame();
   const name = useShownName();
   const nameStyle = useProgress((s) => s.nameStyle);
   const setNameStyle = useProgress((s) => s.setNameStyle);
@@ -220,6 +227,7 @@ function Profile() {
   const setAvatar = useProgress((s) => s.setAvatar);
   const setBackdrop = useProgress((s) => s.setBackdrop);
   const frame = useProgress((s) => (s.frame ? FRAME_BY_ID.get(s.frame) : undefined));
+  const worn = useWornFrame();
   const setFrame = useProgress((s) => s.setFrame);
   const reactions = useProgress((s) => s.cardReactions ?? true);
   const setReactions = useProgress((s) => s.setCardReactions);
@@ -266,7 +274,7 @@ function Profile() {
       {row('Background', backdrop, () => setBackdrop(null))}
       <RotationSettings />
       <div className="flex items-center gap-3">
-        <AvatarFrame frame={frame?.id}>
+        <AvatarFrame frame={worn}>
           {avatar ? <CardAvatar card={avatar} className="size-10" /> : <span className="block size-10 rounded-full bg-tile" />}
         </AvatarFrame>
         <div className="min-w-0 flex-1">

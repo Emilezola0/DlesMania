@@ -3581,3 +3581,41 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   text-shadow: 0 0 1.5cqw var(--rk1), 0 0 1.5cqw var(--rk3), 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 @media (prefers-reduced-motion: reduce) { .card-rank-twin > i { animation: none; opacity: 0.6; } }
+
+/* Ascendant: a capsule frame won again, ten evolutions (src/casino/Frame.tsx `Ascendant`). --asc is its light. */
+.asc-rim { background: conic-gradient(from 30deg, #fff, transparent 14%, transparent 36%, rgba(255, 255, 255, 0.8) 50%, transparent 64%, transparent 86%, #fff); mix-blend-mode: screen; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9); }
+.asc-gleam { background: conic-gradient(from 0deg, transparent 0 78%, rgba(255, 255, 255, 0.95) 88%, transparent 96%); mix-blend-mode: screen; animation: avatar-frame-spin 3.2s linear infinite; }
+.asc-pip { width: 28%; height: 28%; translate: -50% -50%; color: #fde68a; filter: drop-shadow(0 0 1px #000) drop-shadow(0 0 3px var(--asc)); animation: asc-pip 2.4s ease-in-out infinite; }
+.asc-pip-star { width: 34%; height: 34%; color: #fff; }
+@keyframes asc-pip { 50% { scale: 1.25; filter: drop-shadow(0 0 5px var(--asc)) brightness(1.4); } }
+.asc-outer { padding: 4%; background: conic-gradient(from 210deg, #fff7c2, #f5c542 25%, #8a5a0b 50%, #f5c542 75%, #fff7c2); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; filter: drop-shadow(0 0 3px var(--asc)); }
+.asc-outer-prism { background: conic-gradient(#ff4fd8, #ffcd3c, #4ade80, #3cc7ff, #a855f7, #ff4fd8); animation: avatar-frame-spin 5s linear infinite; }
+.asc-ticks { background: repeating-conic-gradient(var(--asc) 0 3deg, transparent 3deg 22.5deg); padding: 5%; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.85; animation: avatar-frame-spin 14s linear infinite reverse; }
+.asc-orbit { animation: avatar-frame-spin 6s linear infinite; }
+.asc-orbit > i { position: absolute; left: 50%; top: 0; width: 11%; height: 11%; translate: -50% -50%; border-radius: 9999px; background: radial-gradient(circle, #fff 0 30%, var(--asc) 60%, transparent 72%); filter: drop-shadow(0 0 3px var(--asc)); }
+.asc-rays { background: repeating-conic-gradient(from 0deg, var(--asc) 0 5deg, transparent 5deg 22.5deg); -webkit-mask: radial-gradient(closest-side, #000 50%, transparent); mask: radial-gradient(closest-side, #000 50%, transparent); filter: brightness(1.3); animation: avatar-frame-spin 18s linear infinite; }
+.asc-aura { background: conic-gradient(#ff4fd8, #ffcd3c, #4ade80, #3cc7ff, #a855f7, #ff4fd8); -webkit-mask: radial-gradient(closest-side, #000 45%, transparent); mask: radial-gradient(closest-side, #000 45%, transparent); filter: blur(3px) saturate(1.3); opacity: 0.95; animation: avatar-frame-spin 8s linear infinite, asc-breathe 3s ease-in-out infinite; }
+@keyframes asc-breathe { 50% { opacity: 0.55; scale: 1.1; } }
+.asc-crown { width: 48%; height: 48%; left: 50%; top: -48%; translate: -50% 0; color: #fde68a; filter: drop-shadow(0 0 4px var(--asc)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.6)); animation: asc-crown 3s ease-in-out infinite; }
+@keyframes asc-crown { 50% { translate: -50% -8%; } }
+.asc-badge { right: -18%; bottom: -16%; min-width: 1.6em; padding: 0 0.3em; border-radius: 9999px; background: linear-gradient(135deg, #fff7c2, #f5c542 50%, #a16207); color: #3b2504; font: 900 9px/1.45 ui-serif, Georgia, serif; text-align: center; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 0 6px var(--asc); }
+.asc-10 .asc-badge { border: 1.5px solid transparent; background: linear-gradient(#1b1530, #1b1530) padding-box, conic-gradient(#ff4fd8, #ffcd3c, #4ade80, #3cc7ff, #a855f7, #ff4fd8) border-box; color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .asc-gleam, .asc-pip, .asc-outer-prism, .asc-ticks, .asc-orbit, .asc-rays, .asc-aura, .asc-crown { animation: none; }
+}
+
+/* Plush levels, ★1 to ★5 (src/casino/plushies.ts plushLevel): a little more shine each star. */
+.plush-lv-3 > .claw-plush > span:last-child { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8), 0 0 10px var(--plush) !important; }
+.plush-lv-4 > .claw-plush > span:last-child { box-shadow: 0 0 0 2px #fde68a, 0 0 14px var(--plush) !important; }
+.plush-lv-5 > .claw-plush { animation: plush-bob 2.6s ease-in-out infinite; }
+.plush-lv-5 > .claw-plush > span:last-child { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f5c542, 0 0 18px var(--plush) !important; }
+.plush-lv-4::before, .plush-lv-5::before { content: ''; position: absolute; inset: -18%; z-index: -1; border-radius: 9999px; background: radial-gradient(closest-side, color-mix(in srgb, var(--plush) 55%, transparent), transparent); }
+.plush-lv-5::after { content: '✦'; position: absolute; right: -12%; top: 18%; color: #fde68a; font-size: 0.8rem; filter: drop-shadow(0 0 3px #f5c542); animation: avatar-frame-twinkle 1.9s ease-in-out infinite; }
+@keyframes plush-bob { 50% { translate: 0 -6%; } }
+.plush-stars { color: #f5c542; font-size: 9px; letter-spacing: -0.5px; line-height: 1; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35); }
+.plush-stars .off { color: rgba(127, 127, 127, 0.35); text-shadow: none; }
+/* The plushies above Golden: Celestial's teal, Transcendent's shifting colours. */
+.claw-plush-celestial > span:last-child { box-shadow: 0 0 0 2px #99f6e4, 0 0 16px rgba(20, 216, 196, 0.95) !important; }
+.claw-plush-transcendent > span:last-child { box-shadow: 0 0 0 2px #fff, 0 0 18px rgba(255, 61, 110, 0.95) !important; animation: avatar-frame-hue-turn 6s linear infinite; }
+@keyframes avatar-frame-hue-turn { to { filter: hue-rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .plush-lv-5 > .claw-plush, .plush-lv-5::after, .claw-plush-transcendent > span:last-child { animation: none; } }

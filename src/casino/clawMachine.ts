@@ -60,7 +60,7 @@ export function prizeLook(prize: string): PrizeLook {
   switch (kind) {
     case 'plush': {
       const p = PLUSH_BY_ID.get(arg);
-      return { name: p ? `${p.name} plush` : 'A plush', icon: p?.face ?? '🧸', kind: 'plush', grip: g[p?.rarity ?? 'common'] ?? 0.7, size: p?.rarity === 'golden' ? 1.15 : 1 };
+      return { name: p ? `${p.name} plush` : 'A plush', icon: p?.face ?? '🧸', kind: 'plush', grip: g[p?.rarity ?? 'common'] ?? 0.7, size: p?.rarity === 'transcendent' ? 1.25 : p?.rarity === 'celestial' ? 1.2 : p?.rarity === 'golden' ? 1.15 : 1 };
     }
     case 'coins': {
       const n = Number(arg);

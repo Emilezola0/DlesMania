@@ -70,19 +70,29 @@
         "odds": {
           "type": "object",
           "description": "How often each rarity comes out (weights)",
-          "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "legendary": { "type": "number", "minimum": 0 }, "mythic": { "type": "number", "minimum": 0 } },
+          "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "legendary": { "type": "number", "minimum": 0 }, "mythic": { "type": "number", "minimum": 0 }, "celestial": { "type": "number", "minimum": 0 }, "transcendent": { "type": "number", "minimum": 0 } },
           "required": ["common", "rare", "epic", "legendary"],
           "additionalProperties": false
         },
         "duplicate": {
           "type": "object",
           "description": "DleCoins back for a frame already owned, by rarity",
-          "properties": { "common": { "type": "integer", "minimum": 0 }, "rare": { "type": "integer", "minimum": 0 }, "epic": { "type": "integer", "minimum": 0 }, "legendary": { "type": "integer", "minimum": 0 }, "mythic": { "type": "integer", "minimum": 0 } },
+          "properties": { "common": { "type": "integer", "minimum": 0 }, "rare": { "type": "integer", "minimum": 0 }, "epic": { "type": "integer", "minimum": 0 }, "legendary": { "type": "integer", "minimum": 0 }, "mythic": { "type": "integer", "minimum": 0 }, "celestial": { "type": "integer", "minimum": 0 }, "transcendent": { "type": "integer", "minimum": 0 } },
           "required": ["common", "rare", "epic", "legendary"],
+          "additionalProperties": false
+        },
+        "ascendant": {
+          "type": "object",
+          "description": "Ascendant: a frame won again evolves (10 evolutions). Each copy won again is worth points by its rarity; each evolution needs so many points in all",
+          "properties": {
+            "points": { "type": "object", "description": "Points a copy won again is worth, by rarity", "additionalProperties": { "type": "integer", "minimum": 1 } },
+            "levels": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 10, "maxItems": 10, "description": "Points in all for evolutions I to X, growing" }
+          },
+          "required": ["points", "levels"],
           "additionalProperties": false
         }
       },
-      "required": ["cost", "odds", "duplicate"],
+      "required": ["cost", "odds", "duplicate", "ascendant"],
       "additionalProperties": false
     },
     "cardShop": {
@@ -172,7 +182,7 @@
         "restockBelow": { "type": "integer", "minimum": 1, "description": "The box is filled up again when it holds fewer prizes than this" },
         "reach": { "type": "number", "minimum": 0.05, "maximum": 0.3, "description": "How far from a prize's centre the claw can still catch it (the box is 1 wide)" },
         "slip": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance a badly-aimed prize slips on the way to the chute (less the better the aim)" },
-        "plushOdds": { "type": "object", "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "golden": { "type": "number", "minimum": 0 } }, "required": ["common", "rare", "epic", "golden"], "additionalProperties": false },
+        "plushOdds": { "type": "object", "properties": { "common": { "type": "number", "minimum": 0 }, "rare": { "type": "number", "minimum": 0 }, "epic": { "type": "number", "minimum": 0 }, "golden": { "type": "number", "minimum": 0 }, "celestial": { "type": "number", "minimum": 0 }, "transcendent": { "type": "number", "minimum": 0 } }, "required": ["common", "rare", "epic", "golden"], "additionalProperties": false },
         "grip": { "type": "object", "description": "How well each kind of prize holds in the claw (1: always, if well aimed)", "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 } },
         "coinBags": { "type": "array", "items": { "type": "array", "minItems": 2, "maxItems": 2 }, "description": "[DleCoins, weight]" },
         "ticketRolls": { "type": "array", "items": { "type": "array", "minItems": 2, "maxItems": 2 }, "description": "[tokens, weight]" },

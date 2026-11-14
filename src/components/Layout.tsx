@@ -15,7 +15,7 @@ import { RetiredCards } from './RetiredCards';
 import { AlbumNews } from './AlbumNews';
 import { BirthdayReward } from './BirthdayReward';
 import { todayKey } from '../lib/date';
-import { AvatarFrame } from '../casino/Frame';
+import { AvatarFrame, useWornFrame } from '../casino/Frame';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
 export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
@@ -218,7 +218,7 @@ function PageLoading() {
 function AccountButton() {
   const { status, email, name } = useCloud();
   const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? s.avatar : null));
-  const frame = useProgress((s) => s.frame);
+  const frame = useWornFrame();
   const signedIn = !!email && status !== 'signedOut';
   const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
   return (

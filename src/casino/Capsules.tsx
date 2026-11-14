@@ -8,7 +8,7 @@ import { sfx } from '../lib/sfx';
 import { useProgress } from '../store/progress';
 import { CAPSULES } from './casino';
 import { FrameRing } from './Frame';
-import { EARNED_FRAMES, FRAMES, FRAME_RARITIES, FRAME_RARITY_COLOR, FRAME_RARITY_NAME, albumFrame, inSeason, nextSeason, type Frame } from './frames';
+import { ASCEND_MAX, EARNED_FRAMES, FRAMES, FRAME_RARITIES, FRAME_RARITY_COLOR, FRAME_RARITY_NAME, ROMAN, albumFrame, ascendLevel, ascendToNext, inSeason, nextSeason, type Frame } from './frames';
 import { earnedFrames, useFeats } from './unlocks';
 import { SETS } from '../gacha/cards';
 import { fromKey, todayKey } from '../lib/date';
@@ -40,7 +40,15 @@ function Capsule({ color, size, className = '', style, children }: { color: stri
   );
 }
 
-type Got = { frame: Frame; duplicate: boolean; coins: number; free: boolean };
+type Got = { frame: Frame; duplicate: boolean; coins: number; free: boolean; level?: number; up?: boolean };
+
+/** What a frame won again did for its Ascendant evolution. */
+function ascendNote(g: Got, copies: number | undefined): string {
+  const lv = g.level ?? 0;
+  if (g.up) return lv >= ASCEND_MAX ? `Ascendant ${ROMAN[lv]}: fully evolved!` : `Ascendant ${ROMAN[lv]}!`;
+  const n = ascendToNext(g.frame, copies);
+  return n ? `${n} more cop${n === 1 ? 'y' : 'ies'} to Ascendant ${ROMAN[lv + 1]}` : `Ascendant ${ROMAN[lv]}, fully evolved`;
+}
 type Stage = 'idle' | 'turning' | 'dropped' | 'zoom' | 'open';
 
 export function Capsules() {
@@ -275,26 +283,37 @@ function Revealed({ got, again }: { got: Got; again?: () => void }) {
   const worn = useProgress((s) => s.frame);
   const setFrame = useProgress((s) => s.setFrame);
   const [close, setClose] = useState(false);
+  const copies = useProgress((s) => s.frameCopies?.[got.frame.id]);
   const color = FRAME_RARITY_COLOR[got.frame.rarity];
+  // An evolution reached: the fanfare.
+  useEffect(() => {
+    if (!got.up) return;
+    const t = window.setTimeout(() => (sfx.shimmer(3 + Math.min(4, got.level ?? 0)), celebrateBig()), 500);
+    return () => window.clearTimeout(t);
+  }, [got]);
   if (close) return null;
   return createPortal(
     <div className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: color }}>
       <div className="capsule-stage-rays pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.7 }} aria-hidden />
       <div className="relative flex flex-col items-center text-center text-white">
         <div className="capsule-frame-in relative grid size-44 place-items-center">
-          <FrameRing frame={got.frame}>
+          <FrameRing frame={got.frame} level={got.level}>
             <YourIcon className="size-36" />
           </FrameRing>
           {!got.duplicate && <span className="pack-stamp absolute -right-6 -top-2 rounded-md border-2 border-coral bg-[#1b1530] px-2 py-0.5 font-display text-lg font-black text-coral">NEW!</span>}
+          {got.up && <span className="pack-stamp absolute -right-8 -top-2 rounded-md border-2 border-amber-300 bg-[#1b1530] px-2 py-0.5 font-display text-lg font-black text-amber-300">▲ {ROMAN[got.level ?? 0]}</span>}
         </div>
         <p className="mt-6 text-xs font-bold uppercase tracking-[0.35em]" style={{ color }}>
           {FRAME_RARITY_NAME[got.frame.rarity]} frame{got.free && ' · free capsule'}
         </p>
         <p className="capsule-name font-display text-3xl font-black">{got.frame.name}</p>
         {got.duplicate && (
-          <p className="mt-1 text-sm text-white/75">
-            Already yours — <Coins n={got.coins} /> back.
-          </p>
+          <>
+            <p className="mt-1 text-sm text-white/75">
+              Already yours — <Coins n={got.coins} /> back.
+            </p>
+            <p className={`mt-1 font-display font-bold ${got.up ? 'text-lg text-amber-300' : 'text-xs text-white/60'}`}>{ascendNote(got, copies)}</p>
+          </>
         )}
         <div className="mt-5 flex flex-wrap justify-center gap-2">
           {worn !== got.frame.id && (
@@ -366,6 +385,7 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
   }, [auto, opened]);
 
   const fresh = got.filter((g) => !g.duplicate).length;
+  const ups = got.filter((g) => g.up).length;
   const back = got.reduce((t, g) => t + g.coins, 0);
   return createPortal(
     <div ref={stage} className="fixed inset-0 z-50 grid place-items-center overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
@@ -389,14 +409,14 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
                 style={{ ['--glow' as string]: color }}
               >
                 <span className="capsule-frame-in grid size-14 place-items-center">
-                  <FrameRing frame={g.frame}>
+                  <FrameRing frame={g.frame} level={g.level} badge>
                     <YourIcon className="size-11" />
                   </FrameRing>
                 </span>
                 <span className="max-w-full truncate text-[10px] font-bold" style={{ color }}>
                   {g.frame.name}
                 </span>
-                <span className="text-[9px] text-white/60">{g.duplicate ? `+${g.coins}` : worn === g.frame.id ? 'worn' : FRAME_RARITY_NAME[g.frame.rarity]}</span>
+                <span className={`text-[9px] ${g.up ? 'font-bold text-amber-300' : 'text-white/60'}`}>{g.up ? `▲ Ascendant ${ROMAN[g.level ?? 0]}` : g.duplicate ? `+${g.coins}` : worn === g.frame.id ? 'worn' : FRAME_RARITY_NAME[g.frame.rarity]}</span>
                 {!g.duplicate && <span className="pack-stamp absolute -right-1 -top-3 rounded border border-coral bg-[#1b1530] px-1 font-display text-[9px] font-black text-coral">NEW</span>}
               </button>
             ) : (
@@ -411,7 +431,8 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
         {done ? (
           <>
             <p className="mt-6 text-sm text-white/80">
-              {fresh ? `${fresh} new frame${fresh > 1 ? 's' : ''}` : 'Nothing new this time'}
+              {fresh ? `${fresh} new frame${fresh > 1 ? 's' : ''}` : ups ? '' : 'Nothing new this time'}
+              {ups > 0 && <span className="font-bold text-amber-300">{fresh ? ' · ' : ''}▲ {ups} evolution{ups > 1 ? 's' : ''}</span>}
               {back > 0 && (
                 <>
                   {' · '}
@@ -453,7 +474,7 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
 }
 
 /** One frame of the collection: worn on a tap when it's yours; otherwise a mystery, or how to get it. */
-function FrameTile({ f, mine, worn, onWear, label, hint }: { f: Frame; mine: boolean; worn: boolean; onWear: () => void; label?: string; hint: string }) {
+function FrameTile({ f, mine, worn, onWear, label, hint, level = 0 }: { f: Frame; mine: boolean; worn: boolean; onWear: () => void; label?: string; hint: string; level?: number }) {
   return (
     <button
       type="button"
@@ -463,7 +484,7 @@ function FrameTile({ f, mine, worn, onWear, label, hint }: { f: Frame; mine: boo
       className={`flex flex-col items-center gap-1 rounded-md p-1 ${worn ? 'bg-tile ring-2 ring-accent' : mine ? 'hover:bg-tile' : 'cursor-default'}`}
     >
       <span className={`grid size-12 place-items-center ${mine ? '' : 'opacity-30 grayscale'}`}>
-        <FrameRing frame={f}>
+        <FrameRing frame={f} level={mine ? level : 0} badge>
           {mine ? <YourIcon className="size-10" /> : <span className="grid size-10 place-items-center rounded-full bg-tile font-display font-bold text-ink-faint">?</span>}
         </FrameRing>
       </span>
@@ -479,6 +500,7 @@ const dayMonth = (key: string) => fromKey(key).toLocaleDateString(undefined, { d
 /** Every frame: the machine's (won to wear, the others a mystery; seasonal ones say when they're back), then the trophies, earned by playing. */
 function FrameCollection({ hide }: { hide: string[] }) {
   const owned = useProgress((s) => s.frames ?? []).filter((id) => !hide.includes(id));
+  const copies = useProgress((s) => s.frameCopies);
   const worn = useProgress((s) => s.frame);
   const setFrame = useProgress((s) => s.setFrame);
   const feats = useFeats();
@@ -496,7 +518,9 @@ function FrameCollection({ hide }: { hide: string[] }) {
           {FRAMES.filter((f) => owned.includes(f.id)).length} / {FRAMES.length}
         </span>
       </div>
-      <p className="text-xs text-ink-soft">Worn around your icon (the card you picked in the Album). Tap one to wear it. Seasonal frames are in the machine only around their day.</p>
+      <p className="text-xs text-ink-soft">
+        Worn around your icon (the card you picked in the Album). Tap one to wear it. Seasonal frames are in the machine only around their day. <b>Ascendant:</b> a frame won again evolves, up to {ROMAN[ASCEND_MAX]}, a little grander each time (the rarer the frame, the fewer copies it takes); friends see it too.
+      </p>
       <div className="grid grid-cols-4 gap-x-2 gap-y-3 pt-2">
         <button type="button" onClick={() => wear(null)} className={`flex flex-col items-center gap-1 rounded-md p-1 ${!worn ? 'bg-tile ring-2 ring-accent' : 'hover:bg-tile'}`}>
           <span className="grid size-12 place-items-center">
@@ -515,8 +539,9 @@ function FrameCollection({ hide }: { hide: string[] }) {
               mine={mine}
               worn={worn === f.id}
               onWear={() => wear(f.id)}
+              level={ascendLevel(f, copies?.[f.id])}
               label={f.season ? (now ? 'In now!' : back ? `Back ${dayMonth(back)}` : '???') : undefined}
-              hint={mine ? `${f.name} (${FRAME_RARITY_NAME[f.rarity]})` : f.season ? `A seasonal ${FRAME_RARITY_NAME[f.rarity]} frame — ${now ? 'in the machine now, for a few days only' : back ? `back in the machine on ${dayMonth(back)}` : 'back next year'}` : `A ${FRAME_RARITY_NAME[f.rarity]} frame — still in the machine`}
+              hint={mine ? `${f.name} (${FRAME_RARITY_NAME[f.rarity]})${ascendLevel(f, copies?.[f.id]) ? ` · Ascendant ${ROMAN[ascendLevel(f, copies?.[f.id])]}` : ''}${ascendToNext(f, copies?.[f.id]) ? ` · ${ascendToNext(f, copies?.[f.id])} more to ${ROMAN[ascendLevel(f, copies?.[f.id]) + 1]}` : ''}` : f.season ? `A seasonal ${FRAME_RARITY_NAME[f.rarity]} frame — ${now ? 'in the machine now, for a few days only' : back ? `back in the machine on ${dayMonth(back)}` : 'back next year'}` : `A ${FRAME_RARITY_NAME[f.rarity]} frame — still in the machine`}
             />
           );
         })}

@@ -70,7 +70,7 @@ import type { ClawItem } from '../casino/clawMachine';
 import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import CASINO_T from '../data/tuning/casino.json';
 import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, slotCost, tokensFor, type Ball, type SlotResult } from '../casino/casino';
-import type { Frame } from '../casino/frames';
+import { ascendLevel, type Frame } from '../casino/frames';
 import type { SyncBase } from '../cloud/merge';
 
 type DayRounds = Record<number, RoundRecord>;
@@ -291,9 +291,11 @@ interface ProgressState {
   /** A card from today's Daily Card Shop for `price` tokens: false if it can't (too few tokens, bought already today). */
   buyShopCard: (id: string, price: number) => boolean;
   /** A capsule from the machine (a free one first, if any): the frame inside, or null if it can't. */
-  openCapsule: () => { frame: Frame; duplicate: boolean; coins: number; free: boolean } | null;
+  openCapsule: () => { frame: Frame; duplicate: boolean; coins: number; free: boolean; level?: number; up?: boolean } | null;
   /** Up to 10 capsules at once (free ones first, then DleCoins): as many as it could, each with what came out. */
-  openCapsules: (n: number) => { frame: Frame; duplicate: boolean; coins: number; free: boolean }[];
+  openCapsules: (n: number) => { frame: Frame; duplicate: boolean; coins: number; free: boolean; level?: number; up?: boolean }[];
+  /** Copies of each machine frame won again: its Ascendant evolution (src/casino/frames.ts ascendLevel). */
+  frameCopies?: Record<string, number>;
   /** Icon frames won (src/casino/frames.ts), and the one worn around the icon. */
   frames: string[];
   frame: string | null;
@@ -808,7 +810,8 @@ export const useProgress = create<ProgressState>()(
         let coins = s.coins;
         let paid = 0;
         const owned = [...(s.frames ?? [])];
-        const got: { frame: Frame; duplicate: boolean; coins: number; free: boolean }[] = [];
+        const copies = { ...(s.frameCopies ?? {}) };
+        const got: { frame: Frame; duplicate: boolean; coins: number; free: boolean; level?: number; up?: boolean }[] = [];
         // One after another, so a frame won in the first counts as owned for the next.
         for (let k = 0; k < Math.min(10, Math.max(1, Math.floor(n))); k++) {
           const free = tokens > 0;
@@ -817,10 +820,18 @@ export const useProgress = create<ProgressState>()(
           else (coins -= CAPSULES.cost), (paid += CAPSULES.cost);
           const r = rollCapsule(owned);
           coins += r.coins;
-          if (!r.duplicate) owned.push(r.frame.id);
-          got.push({ ...r, free });
+          if (!r.duplicate) {
+            owned.push(r.frame.id);
+            got.push({ ...r, free });
+            continue;
+          }
+          // Won again: a step towards its next evolution (Ascendant).
+          const before = ascendLevel(r.frame, copies[r.frame.id]);
+          copies[r.frame.id] = (copies[r.frame.id] ?? 0) + 1;
+          const level = ascendLevel(r.frame, copies[r.frame.id]);
+          got.push({ ...r, free, level, up: level > before });
         }
-        if (got.length) set({ coins, capsuleTokens: tokens, frames: owned, ...paidIn(s, paid) });
+        if (got.length) set({ coins, capsuleTokens: tokens, frames: owned, frameCopies: copies, ...paidIn(s, paid) });
         return got;
       },
       spinRoulette: (times = 1) => {
