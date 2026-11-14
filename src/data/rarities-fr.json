@@ -15,7 +15,7 @@
     },
     "relic": {
       "name": "Relique",
-      "blurb": "La relique d'une franchise : un cadre de pierre sculptée et d'or parcouru d'une lumière, un sceau de runes qui tourne derrière, des runes qui s'allument l'une après l'autre, de la poussière qui flotte dans la lumière, le tout en or et en couleurs arcaniques. Sous la souris, son sceau s'éveille : il bascule en un cercle sur lequel la carte se tient, et ses runes se dressent en 3D, toutes allumées.",
+      "blurb": "La relique d'une franchise : un cadre de pierre sculptée et d'or parcouru d'une lumière, un sceau de runes qui tourne derrière, des runes qui s'allument l'une après l'autre, de la poussière qui flotte dans la lumière, le tout en or et en couleurs arcaniques. Sous la souris, son sceau s'éveille : il brille derrière la carte, et ses runes s'allument toutes et pivotent en 3D face à vous.",
       "how": "Complète une série et bats son boss en Enfer : choisis alors une carte de cette série pour en faire sa Relique (une par série)."
     },
     "eclipse": {
