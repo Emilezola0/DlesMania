@@ -73,12 +73,13 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
-    const out: { r: number; y: number; xs: number[] }[] = [];
-    // Wider than the pack: the rows swing ±16 as the body bends.
+    // The dragon's body, winding down the pack: as wide as half the pack, narrowing to the tail at the bottom.
+    const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 22; r++) {
+      const half = r < 14 ? 70 : Math.max(12, 70 - (r - 13) * 7.5);
       const xs: number[] = [];
-      for (let x = r % 2 ? -28 : -14; x < W + 42; x += 28) xs.push(x);
-      out.push({ r, y: -14 + r * 19, xs });
+      for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
+      out.push({ r, y: -14 + r * 19, xs, half });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
@@ -109,19 +110,26 @@ export function DragonWrap() {
           <stop offset="0.7" stopColor="#000" stopOpacity="0.1" />
           <stop offset="1" stopColor="#000" stopOpacity="0.75" />
         </linearGradient>
+        <radialGradient id={`${id}h`} cx="0.5" cy="1" r="0.9">
+          <stop offset="0" stopColor="#f97316" stopOpacity="0.9" />
+          <stop offset="0.5" stopColor="#7c2d12" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#000" stopOpacity="0" />
+        </radialGradient>
         <linearGradient id={`${id}l`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="0" />
           <stop offset="0.5" stopColor="#fde68a" stopOpacity="0.55" />
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {/* Embers glowing between the scales. */}
-      <rect width={W} height={H} fill="#1a0202" />
-      <rect className="wa-dragon-heat" width={W} height={H} fill="#f97316" />
+      {/* A lair: dark, a fire glowing somewhere below. */}
+      <rect width={W} height={H} fill="#0c0101" />
+      <rect className="wa-dragon-heat" width={W} height={H} fill={`url(#${id}h)`} />
       {/* Each row swings with the one above it a beat later: the whole body bends in an S that runs down it, like a
           snake slithering. The body's round shading (dark flanks, a lit spine) swings with each row, so the S shows. */}
-      {rows.map(({ r, y, xs }) => (
+      {rows.map(({ r, y, xs, half }) => (
         <g key={r} className="wa-dragon-row" style={{ animationDelay: `${(-r * 0.22).toFixed(2)}s` }}>
+          {/* The body under the scales, its edge round. */}
+          <rect x={W / 2 - half - 3} y={y - 4} width={2 * half + 6} height={30} rx={14} fill="#2a0404" />
           {xs.map((x) => (
             <g key={x} transform={`translate(${x} ${y})`}>
               <path d={SCALE} transform="translate(0 4)" fill="#000" opacity={0.55} />
@@ -134,9 +142,17 @@ export function DragonWrap() {
               </g>
             </g>
           ))}
-          <rect x={-20} y={y - 2} width={W + 40} height={21} fill={`url(#${id}b)`} />
+          <rect x={W / 2 - half - 4} y={y - 2} width={2 * half + 8} height={21} fill={`url(#${id}b)`} />
         </g>
       ))}
+      {/* The spines down its back, gold, swinging with the body. */}
+      {rows.map(({ r, y, half }) =>
+        r % 2 || half < 20 ? null : (
+          <g key={`s${r}`} className="wa-dragon-row" style={{ animationDelay: `${(-r * 0.22).toFixed(2)}s` }}>
+            <path d={`M${W / 2 - 7} ${y + 22}L${W / 2} ${y - 8}L${W / 2 + 7} ${y + 22}Z`} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
+          </g>
+        ),
+      )}
       {/* The light rolling down the body, as it moves. */}
       <rect className="wa-dragon-roll" x={0} y={-140} width={W} height={140} fill={`url(#${id}l)`} />
     </Svg>
