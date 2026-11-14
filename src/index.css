@@ -2696,7 +2696,8 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-wrap-felt { background: radial-gradient(ellipse at 50% 40%, #15803d, #14532d 70%, #052e16) !important; box-shadow: inset 0 0 0 3px #b45309, inset 0 0 0 5px rgba(253, 230, 138, 0.6); }
 .pack-wrap-felt .pack-wrap-layer { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='%23fbbf24' fill-opacity='0.28' font-size='14' font-family='serif'%3E%3Ctext x='3' y='16'%3E%E2%99%A0%3C/text%3E%3Ctext x='25' y='16'%3E%E2%99%A5%3C/text%3E%3Ctext x='3' y='38'%3E%E2%99%A6%3C/text%3E%3Ctext x='25' y='38'%3E%E2%99%A3%3C/text%3E%3C/g%3E%3C/svg%3E"); }
 .pack-wrap-marquee { background: radial-gradient(ellipse at 50% 35%, #e11d48, #881337 65%, #4c0519) !important; }
-.pack-wrap-marquee .pack-wrap-layer { inset: 4px; border-radius: 6px; background: radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 100% / 12px 12px repeat-x, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px repeat-y, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 100% 0 / 12px 12px repeat-y; animation: pack-wrap-bulbs 0.9s steps(2, end) infinite; }
+/* The bulbs spaced to fit whole along each side (space), one in each corner: none cut in half sticking out. */
+.pack-wrap-marquee .pack-wrap-layer { inset: 4px; border-radius: 6px; background: radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px space no-repeat, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 100% / 12px 12px space no-repeat, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 0 0 / 12px 12px no-repeat space, radial-gradient(circle, #fef3c7 0 2px, #f59e0b 2.5px, transparent 4px) 100% 0 / 12px 12px no-repeat space; animation: pack-wrap-bulbs 0.9s steps(2, end) infinite; }
 @keyframes pack-wrap-bulbs { 50% { filter: brightness(0.55); } }
 
 /* Scratch cards (src/casino/Scratch.tsx): a light sweeping across the ticket, the winning cells glowing. */
@@ -2947,11 +2948,33 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .wa-crystal-beams { animation: wa-beams 6s ease-in-out infinite alternate; }
 @keyframes wa-beams { from { transform: translateY(-40px); opacity: 0.25; } to { transform: translateY(60px); opacity: 0.7; } }
 
-/* Phoenix: wings beating (each from its shoulder), the tail and crest flickering, embers rising. */
-.wa-wing { transform-box: view-box; transform-origin: 156px 150px; animation: wa-wing 1.9s ease-in-out infinite; }
-@keyframes wa-wing { 0%, 100% { transform: rotate(-14deg) scale(1, 1); } 50% { transform: rotate(12deg) scale(1.04, 0.86); } }
-.wa-tail { transform-box: fill-box; transform-origin: 50% 0; animation: wa-tail 1.2s ease-in-out infinite alternate; }
-@keyframes wa-tail { from { transform: rotate(-4deg) scale(1, 0.96); opacity: 0.8; } to { transform: rotate(4deg) scale(1, 1.05); opacity: 1; } }
+/* Phoenix: a strong downstroke and a slower lift (each wing from its shoulder), the tips whipping a beat behind, the
+   bird rising at each downstroke; every feather's fire flickering on its own, the tail swaying in an S with flames
+   trailing; and now and then its rebirth: a flash, a ring of fire, a burst of sparks. */
+.wa-wing { transform-box: view-box; transform-origin: 156px 150px; animation: wa-wing 1.9s infinite; }
+@keyframes wa-wing {
+  0% { transform: rotate(-17deg) scale(1, 1); animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.6); }
+  38% { transform: rotate(15deg) scale(1.04, 0.82); animation-timing-function: cubic-bezier(0.2, 0.4, 0.4, 1); }
+  100% { transform: rotate(-17deg) scale(1, 1); }
+}
+.wa-wing-tip { transform-box: view-box; transform-origin: 210px 110px; animation: wa-wing-tip 1.9s ease-in-out infinite; animation-delay: -1.72s; }
+@keyframes wa-wing-tip { 0%, 100% { transform: rotate(-8deg); } 42% { transform: rotate(9deg); } }
+.wa-phoenix-bob { animation: wa-phoenix-bob 1.9s ease-in-out infinite; }
+@keyframes wa-phoenix-bob { 0%, 100% { transform: translateY(5px); } 42% { transform: translateY(-8px); } }
+.wa-feather { animation: wa-feather 0.9s ease-in-out infinite alternate; }
+@keyframes wa-feather { from { opacity: 0.74; } to { opacity: 1; } }
+.wa-tail { transform-box: fill-box; transform-origin: 50% 0; animation: wa-tail 1.4s ease-in-out infinite alternate; }
+@keyframes wa-tail { from { transform: rotate(-7deg) scale(1, 0.95); opacity: 0.8; } to { transform: rotate(7deg) scale(1, 1.06); opacity: 1; } }
+.wa-wisp { transform-box: fill-box; transform-origin: 50% 0; animation: wa-wisp 0.7s ease-in-out infinite alternate; }
+@keyframes wa-wisp { from { transform: rotate(-5deg) scale(0.9, 0.8); opacity: 0.25; } to { transform: rotate(5deg) scale(1, 1.1); opacity: 0.7; } }
+.wa-phoenix-eye { animation: wa-feather 0.6s ease-in-out infinite alternate; }
+.wa-rebirth-flash, .wa-rebirth-ring { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.wa-rebirth-flash { mix-blend-mode: screen; animation: wa-rebirth-flash 9s ease-out infinite; }
+@keyframes wa-rebirth-flash { 0% { opacity: 0; transform: scale(0.3); } 3% { opacity: 1; transform: scale(1); } 15%, 100% { opacity: 0; transform: scale(1.5); } }
+.wa-rebirth-ring { animation: wa-rebirth-ring 9s ease-out infinite; }
+@keyframes wa-rebirth-ring { 0% { opacity: 0; transform: scale(0.3); } 2% { opacity: 1; } 18%, 100% { opacity: 0; transform: scale(3.4); } }
+.wa-rebirth-spark { opacity: 0; animation: wa-rebirth-spark 9s ease-out infinite; }
+@keyframes wa-rebirth-spark { 0%, 1% { opacity: 0; transform: translate(0, 0); } 3% { opacity: 1; } 22%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
 .wa-ember { animation: wa-ember 4s linear infinite; }
 @keyframes wa-ember { 0% { transform: translate(0, 0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx), -420px); opacity: 0; } }
 

@@ -78,8 +78,52 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
  * A dragon's wing, spread, from its shoulder at (0, 0) out to the right and swept back (up, towards the tail): the
  * membrane between the fingers, scalloped; the arm along its leading edge, armoured with small scales (WING_ARM).
  */
-const WING = 'M0 10L52-62L92-128Q102-84 146-90Q138-50 176-28Q142-14 148 24Q104 10 80 38Q52 18 0 30Z';
-const WING_BONES = ['M0 10L52-62L92-128', 'M52-62L146-90', 'M52-62L176-28', 'M52-62L148 24', 'M52-62L80 38'];
+const WING_ELBOW: [number, number] = [52, -62];
+const WING_TIPS: [number, number][] = [[92, -128], [146, -90], [176, -28], [148, 24], [80, 38]];
+const WING_BONES = ['M0 10L52-62L92-128', ...WING_TIPS.slice(1).map(([x, y]) => `M52-62L${x} ${y}`)];
+/**
+ * The wing's membrane, panel by panel between its fingers, drawn like the scales: each panel two faces along its
+ * fold (one catching the light, one in shade), its trailing edge scalloped, rimmed in gold.
+ */
+const WING_PANELS = [...WING_TIPS, [0, 30] as [number, number]].slice(0, -1).map((a, i, all) => {
+  const b = i + 1 < all.length ? all[i + 1] : ([0, 30] as [number, number]);
+  const [ex, ey] = WING_ELBOW;
+  // The scallop: the trailing edge bowing in towards the elbow, and its deepest point (where the panel folds).
+  const mx = (a[0] + b[0]) / 2;
+  const my = (a[1] + b[1]) / 2;
+  const fx = mx + (ex - mx) * 0.28;
+  const fy = my + (ey - my) * 0.28;
+  const p = (n: number) => n.toFixed(1);
+  return {
+    whole: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}Z`,
+    lit: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p((a[0] + fx) / 2)} ${p((a[1] + fy) / 2)} ${p(fx + (mx - fx) * 0.15)} ${p(fy + (my - fy) * 0.15)}Z`,
+    edge: `M${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}`,
+  };
+});
+/**
+ * A tongue of flame, from its base at (0, 0) up to its tip (0, -len) bent by `bend`, drawn like a scale: its lit
+ * face, its face in shade (split along its middle), and its rim.
+ */
+function tongue(len: number, w: number, bend: number) {
+  const f = (n: number) => n.toFixed(1);
+  const mid = `Q${f(bend * 0.5)} ${f(-len * 0.5)} 0 0`;
+  return {
+    lit: `M${f(-w)} 0Q${f(-w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}${mid}Z`,
+    shade: `M${f(w)} 0Q${f(w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}${mid}Z`,
+    rim: `M${f(-w)} 0Q${f(-w * 1.15)} ${f(-len * 0.55)} ${f(bend)} ${f(-len)}Q${f(w * 1.15)} ${f(-len * 0.55)} ${f(w)} 0`,
+  };
+}
+/** The tongues licking out from under a scale (its point at (0, 33)): below its point, and out from its sides. */
+const FIRE_TONGUES = [
+  { x: 0, y: 26, a: 180, len: 34, w: 8, bend: 4 },
+  { x: -7, y: 24, a: 148, len: 27, w: 7, bend: -4 },
+  { x: 7, y: 24, a: 212, len: 27, w: 7, bend: 4 },
+  { x: -11, y: 14, a: 116, len: 20, w: 5.5, bend: -3 },
+  { x: 11, y: 14, a: 244, len: 20, w: 5.5, bend: 3 },
+];
+
+/** The wing's root, joining the body: from the shoulder to the elbow and back along the last finger. */
+const WING_ROOT = 'M0 10L52-62L80 38Q40 22 0 30Z';
 const WING_ARM = Array.from({ length: 9 }, (_, i) => {
   const t = i / 8;
   // Along the arm: shoulder (0, 10) to elbow (52, -62) to wrist tip (92, -128).
@@ -143,8 +187,9 @@ function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefO
       const dt = Math.min(0.1, (now - last) / 1000);
       last = now;
       if (now >= until) {
-        target = Math.random() < 0.28 ? 0 : 6 + Math.random() ** 1.6 * 70;
-        until = now + (target === 0 ? 400 + Math.random() * 1800 : 600 + Math.random() * 4200);
+        // A stop only now and then, and short (the owner found it stopped too often).
+        target = Math.random() < 0.1 ? 0 : 10 + Math.random() ** 1.6 * 66;
+        until = now + (target === 0 ? 300 + Math.random() * 900 : 1200 + Math.random() * 4800);
       }
       speed += (target - speed) * (1 - Math.exp(-dt * 1.8));
       went += speed * dt;
@@ -261,14 +306,28 @@ export function DragonWrap() {
       <g data-wing={DRAGON_LOOP * 7}>
         {[-1, 1].map((side) => (
           <g key={side} transform={`translate(${side * 88} 0) scale(${side} 1)`}>
-            <path d={WING} fill={`url(#${id}m)`} stroke={`url(#${id}g)`} strokeWidth={1.2} strokeLinejoin="round" />
-            {/* The membrane's veins, and the light through it near the bones. */}
-            {WING_BONES.slice(1).map((d, i) => (
-              <path key={`v${i}`} d={d} fill="none" stroke="#f87171" strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />
+            <path d={WING_ROOT} fill={`url(#${id}r)`} />
+            <path d={WING_ROOT} fill="#000" opacity={0.3} />
+            {WING_PANELS.map((p, i) => (
+              <g key={`p${i}`}>
+                <path d={p.whole} fill={`url(#${id}m)`} />
+                <path d={p.lit} fill="#fff" opacity={0.13} />
+                <path d={p.whole} fill="#000" opacity={0.08 + i * 0.05} />
+                <path d={p.edge} fill="none" stroke={`url(#${id}g)`} strokeWidth={1.1} />
+              </g>
+            ))}
+            {/* The bones: gold, outlined dark, like the spines; a knob at each joint, a claw at the tip. */}
+            {WING_BONES.map((d, i) => (
+              <path key={`o${i}`} d={d} fill="none" stroke="#451a03" strokeWidth={i ? 4 : 6} strokeLinecap="round" strokeLinejoin="round" />
             ))}
             {WING_BONES.map((d, i) => (
-              <path key={i} d={d} fill="none" stroke={`url(#${id}g)`} strokeWidth={i ? 2.2 : 4} strokeLinecap="round" />
+              <path key={i} d={d} fill="none" stroke={`url(#${id}g)`} strokeWidth={i ? 2.4 : 4} strokeLinecap="round" strokeLinejoin="round" />
             ))}
+            <circle cx={WING_ELBOW[0]} cy={WING_ELBOW[1]} r={4.5} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
+            {WING_TIPS.slice(1).map(([x, y], i) => (
+              <circle key={`k${i}`} cx={x} cy={y} r={2.2} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.6} />
+            ))}
+            <path d="M88-124L92-146L98-124Z" fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
             {/* The arm, armoured with small scales like the body's. */}
             {WING_ARM.map((a, i) => (
               <g key={`a${i}`} transform={`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(-35) scale(${a.s.toFixed(2)})`}>
@@ -276,7 +335,6 @@ export function DragonWrap() {
                 <path d={SCALE_SHADE} fill="#000" opacity={0.28} />
               </g>
             ))}
-            <circle cx={92} cy={-128} r={3} fill={`url(#${id}g)`} />
           </g>
         ))}
       </g>
@@ -306,7 +364,16 @@ export function DragonWrap() {
           <g transform={`translate(${f.x} 0)`} style={fireStyle(f)}>
             {/* Its heart sits under the scale (at 0..33, point down): only the tongues around it show. */}
             <g className="wa-fire-lick">
-              <path d="M2 56C-2 50-8 52-10 46C-16 48-22 40-20 34C-26 32-28 22-22 16C-26 8-20 0-15-2C-14 6-12 10-9 12C-11 2-8-6-2-12C-2-2 2 4 6 8C7 0 12-4 16-6C14 2 18 8 22 14C28 20 26 30 21 34C24 42 16 46 12 46C10 54 6 50 2 56Z" fill={`url(#${id}ff)`} />
+              {FIRE_TONGUES.map((t, k) => (
+                <g key={k} transform={`translate(${t.x} ${t.y}) rotate(${t.a})`}>
+                  {/* Drawn like the scales: two faces along its middle (lit, in shade), a gold rim, a hotter heart. */}
+                  <path d={tongue(t.len, t.w, t.bend).lit} fill="#fbbf24" />
+                  <path d={tongue(t.len, t.w, t.bend).shade} fill="#ea580c" />
+                  <path d={tongue(t.len * 0.55, t.w * 0.45, t.bend * 0.5).lit} fill="#fef9c3" />
+                  <path d={tongue(t.len * 0.55, t.w * 0.45, t.bend * 0.5).shade} fill="#fde047" />
+                  <path d={tongue(t.len, t.w, t.bend).rim} fill="none" stroke={`url(#${id}g)`} strokeWidth={0.9} strokeLinejoin="round" />
+                </g>
+              ))}
             </g>
           </g>
         </g>
@@ -711,7 +778,19 @@ export function PhoenixWrap() {
       return leaf([150, 102], [150 + Math.cos(a) * 34, 102 + Math.sin(a) * 34], 5, 6);
     });
     const embers = Array.from({ length: 28 }, () => ({ x: rnd() * W, d: -rnd() * 5, t: 3 + rnd() * 3, r: 0.8 + rnd() * 1.8, dx: (rnd() - 0.5) * 50, c: rnd() < 0.5 ? '#fde047' : '#fb923c' }));
-    return { wing, tail, crest, embers };
+    // Its tail's trailing flames: thin wisps behind each tail feather, flickering on their own.
+    const wisps = [72, 84, 96, 108, 120].map((deg, k) => {
+      const a = deg * (Math.PI / 180);
+      const len = 120 + rnd() * 60;
+      return leaf([150, 205], [150 + Math.cos(a) * len, 205 + Math.sin(a) * len], 5, (k - 2) * 14);
+    });
+    // Its rebirth: every so often it flares, and a burst of sparks flies out all round.
+    const burst = Array.from({ length: 22 }, (_, i) => {
+      const a = (i / 22) * Math.PI * 2 + rnd() * 0.2;
+      const r = 90 + rnd() * 90;
+      return { dx: Math.cos(a) * r, dy: Math.sin(a) * r, s: 1 + rnd() * 1.6, d: rnd() * 0.15 };
+    });
+    return { wing, tail, crest, embers, wisps, burst };
   }, []);
   return (
     <Svg>
@@ -737,28 +816,53 @@ export function PhoenixWrap() {
         </filter>
       </defs>
       <circle className="wa-pulse" cx={150} cy={150} r={110} fill={`url(#${id}sun)`} />
-      <g filter={`url(#${id}g)`} opacity={0.88}>
+      {/* Its rebirth, now and then: a flash, a ring of fire spreading out (behind it). */}
+      <circle className="wa-rebirth-ring" cx={150} cy={150} r={60} fill="none" stroke="#fde047" strokeWidth={6} />
+      <circle className="wa-rebirth-flash" cx={150} cy={150} r={120} fill={`url(#${id}sun)`} />
+      {/* The bird: rising a little at each downstroke of its wings, sinking back as they rise. */}
+      <g className="wa-phoenix-bob">
+      <g filter={`url(#${id}g)`} opacity={0.9}>
+        {art.wisps.map((d, k) => (
+          <path key={`w${k}`} className="wa-wisp" d={d} fill="#f97316" opacity={0.55} style={{ animationDelay: `${-k * 0.37}s` }} />
+        ))}
         {art.tail.map((d, k) => (
           <path key={k} className="wa-tail" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.45}s` }} />
         ))}
-        <g className="wa-wing">
-          {art.wing.map((d, k) => (
-            <path key={k} d={d} fill={`url(#${id}f)`} />
-          ))}
-        </g>
-        <g transform={`translate(${W} 0) scale(-1 1)`}>
-          <g className="wa-wing">
-            {art.wing.map((d, k) => (
-              <path key={k} d={d} fill={`url(#${id}f)`} />
-            ))}
+        {[false, true].map((mirror) => (
+          <g key={String(mirror)} transform={mirror ? `translate(${W} 0) scale(-1 1)` : undefined}>
+            <g className="wa-wing">
+              {/* The inner feathers beat with the arm; the outer ones a beat later, a whip to the tip. Each
+                  feather's fire flickers on its own. */}
+              {art.wing.slice(0, 5).map((d, k) => (
+                <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.23}s` }} />
+              ))}
+              <g className="wa-wing-tip">
+                {art.wing.slice(5).map((d, k) => (
+                  <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-(k + 5) * 0.23}s` }} />
+                ))}
+              </g>
+            </g>
           </g>
-        </g>
+        ))}
         <path d="M150 96C163 108 165 150 157 196L150 214L143 196C135 150 137 108 150 96Z" fill={`url(#${id}f)`} />
         {art.crest.map((d, k) => (
           <path key={k} className="wa-tail" d={d} fill="#fde047" style={{ animationDelay: `${-k * 0.3}s` }} />
         ))}
         <path d="M150 99L144 108L150 106Z" fill="#fff7ed" />
+        <circle className="wa-phoenix-eye" cx={147} cy={106} r={1.4} fill="#fff" />
       </g>
+      </g>
+      {art.burst.map((b, i) => (
+        <circle
+          key={`b${i}`}
+          className="wa-rebirth-spark"
+          cx={150}
+          cy={150}
+          r={b.s}
+          fill={i % 2 ? '#fde047' : '#fb923c'}
+          style={{ ['--dx' as string]: `${b.dx.toFixed(0)}px`, ['--dy' as string]: `${b.dy.toFixed(0)}px`, animationDelay: `${b.d.toFixed(2)}s` }}
+        />
+      ))}
       {art.embers.map((e, i) => (
         <circle
           key={i}
