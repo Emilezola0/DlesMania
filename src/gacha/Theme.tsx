@@ -135,9 +135,15 @@ export function Companions() {
   const avatarId = useProgress((s) => s.avatar);
   const icon = avatarId && cards[avatarId] ? CARD_BY_ID.get(avatarId) : undefined;
   const top = !!icon && RARITY_INFO[icon.rarity].rank >= 4;
-  // A top icon brings its franchise along, whichever theme is on.
-  const set = top ? icon.set : themeSet;
-  const cast = useMemo(() => (set ? CARDS.filter((c) => c.set === set && cards[c.id] && c.id !== avatarId && !c.place && !c.technique && c.rarity !== 'mythic' && c.rarity !== 'omni') : []), [set, cards, avatarId]);
+  // The franchises picked in the Account (several, mixed together: a player's ask, Discord ticket "Personnalisation");
+  // none picked: a top icon brings its franchise along, whichever theme is on, else the theme's.
+  const picked = useProgress((s) => s.companionSets);
+  const sets = useMemo(() => (picked?.length ? picked : top ? [icon.set] : themeSet ? [themeSet] : []), [picked, top, icon, themeSet]);
+  const set = sets.length ? sets[0] : null;
+  const cast = useMemo(
+    () => CARDS.filter((c) => sets.includes(c.set) && cards[c.id] && c.id !== avatarId && !c.place && !c.technique && c.rarity !== 'mythic' && c.rarity !== 'omni'),
+    [sets, cards, avatarId],
+  );
   const [talk, setTalk] = useState<{ card: Card; text: string; key: number; side: number } | null>(null);
   const last = useRef(0);
   const timers = useRef<number[]>([]);
@@ -156,11 +162,16 @@ export function Companions() {
       const others = cast.filter((c) => c.name !== first.name);
       const second = top && icon && icon.name !== first.name && (Math.random() < 0.5 || !others.length) ? icon : others.length ? pick(others) : null;
       const say = (card: Card, text: string, i: number) => timers.current.push(window.setTimeout(() => setTalk({ card, text, key: now + i, side: i % 2 }), CHAT_DELAY_MS + LINE_MS * i));
-      if (second) {
+      if (second && second.set === first.set) {
         const speaker = (i: number) => (i % 2 ? second : first);
-        const lines = pickExchange(set, kind, (i) => shownName(speaker(i + 1).name, set));
+        const lines = pickExchange(first.set, kind, (i) => shownName(speaker(i + 1).name, first.set));
         lines.forEach((text, i) => say(speaker(i), text, i));
         timers.current.push(window.setTimeout(() => setTalk(null), CHAT_DELAY_MS + LINE_MS * lines.length));
+      } else if (second) {
+        // Two franchises meeting: the written exchanges belong to one franchise each, so each says one of its own lines.
+        say(first, lineOf(first, kind), 0);
+        say(second, lineOf(second, kind), 1);
+        timers.current.push(window.setTimeout(() => setTalk(null), CHAT_DELAY_MS + LINE_MS * 2));
       } else {
         say(first, lineOf(first, kind), 0);
         timers.current.push(window.setTimeout(() => setTalk(null), CHAT_DELAY_MS + LINE_MS));

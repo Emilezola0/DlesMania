@@ -80,6 +80,7 @@ export const SYNCED = [
   'commune',
   'kanjiRecall',
   'reviewPaid',
+  'companionSets',
 ] as const;
 export type SaveData = Pick<Progress, (typeof SYNCED)[number]>;
 
@@ -338,5 +339,7 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     kanjiRecall: mergeRecall(local.kanjiRecall, cloud.kanjiRecall),
     // The review lists' daily rewards: the later day's, what was paid that day on either side (so nothing is paid twice).
     reviewPaid: mergeReviewPaid(local.reviewPaid, cloud.reviewPaid),
+    // The companions' franchises: as last set.
+    companionSets: latest.companionSets ?? local.companionSets,
   };
 }

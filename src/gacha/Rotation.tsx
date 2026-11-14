@@ -4,7 +4,7 @@
 // its own clip or burst. Cards no longer owned (or a Common as a background) are skipped.
 import { useEffect } from 'react';
 import { onCue } from '../lib/sfx';
-import { rotationOf, rotationSynced, useProgress, type RotationSlot } from '../store/progress';
+import { rotationOf, rotationSynced, useProgress, whensOf, type RotationSlot } from '../store/progress';
 import { CARD_BY_ID } from './cards';
 import { canBeBackdrop } from './Perks';
 
@@ -81,7 +81,7 @@ export function CardRotation() {
   useEffect(() => {
     if (!visited) {
       visited = true;
-      advanceAll(SLOTS.filter((slot) => rotationOf(useProgress.getState())[slot].when === 'visit'));
+      advanceAll(SLOTS.filter((slot) => whensOf(rotationOf(useProgress.getState())[slot]).includes('visit')));
     }
     /** Slots to change as soon as the page is calm. */
     const pending = new Set<RotationSlot>();
@@ -99,7 +99,7 @@ export function CardRotation() {
       lastWin = now;
       const plans = rotationOf(useProgress.getState());
       for (const slot of SLOTS) {
-        if (plans[slot].when !== 'win') continue;
+        if (!whensOf(plans[slot]).includes('win')) continue;
         if (++wins[slot] < Math.max(1, plans[slot].every)) continue;
         wins[slot] = 0;
         pending.add(slot);
@@ -115,7 +115,7 @@ export function CardRotation() {
       const on = momentOn();
       if (wasOn && !on) {
         const plans = rotationOf(useProgress.getState());
-        for (const slot of SLOTS) if (plans[slot].when === 'clip') pending.add(slot);
+        for (const slot of SLOTS) if (whensOf(plans[slot]).includes('clip')) pending.add(slot);
         flush();
       }
       wasOn = on;

@@ -232,6 +232,14 @@ function Profile() {
   const setCompanions = useProgress((s) => s.setCompanions);
   const owned = useProgress((s) => s.cards);
   const unlocked = unlockedThemes(owned);
+  // The companions' franchises (several at once): the ones with a card owned to talk.
+  const companionSets = useProgress((s) => s.companionSets ?? []);
+  const ownedSets = new Set(Object.keys(owned).filter((id) => owned[id]).map((id) => id.split(':')[0]));
+  const toggleCompanionSet = (id: string) =>
+    useProgress.setState((s) => {
+      const now = s.companionSets ?? [];
+      return { companionSets: now.includes(id) ? now.filter((x) => x !== id) : [...now, id] };
+    });
   const row = (label: string, card: typeof avatar, clear: () => void) => (
     <div className="flex items-center gap-3">
       {card ? <CardAvatar card={card} className="size-10" /> : <span className="grid size-10 place-items-center rounded-full border-2 border-dashed border-rule-strong text-ink-faint">?</span>}
@@ -321,6 +329,31 @@ function Profile() {
           <span className="block text-sm text-ink-soft">With a theme on, the other characters you own from that franchise pop up now and then to talk among themselves. The more of them you own, the more voices.</span>
         </span>
       </label>
+      {companions && (
+        <div className="space-y-2 rounded-md border border-rule p-3">
+          <p className="text-sm">
+            <span className="font-semibold">Companions from several franchises</span>{' '}
+            <span className="text-ink-soft">— pick any you own cards from: their characters come together and talk to each other. None picked: the theme’s franchise.</span>
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {SETS.filter((s) => ownedSets.has(s.id)).map((s) => {
+              const on = companionSets.includes(s.id);
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => toggleCompanionSet(s.id)}
+                  className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${on ? 'border-accent bg-accent/15' : 'border-rule-strong'}`}
+                >
+                  {on ? '✓ ' : ''}
+                  {s.franchise}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
       <p className="text-xs text-ink-faint">
         Pick them in the{' '}
         <Link to="/album" className="font-semibold text-accent">

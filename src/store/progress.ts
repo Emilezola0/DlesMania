@@ -165,6 +165,11 @@ interface ProgressState {
   setUiTheme: (theme: string) => void;
   /** The franchise's other owned characters pop up to talk. */
   companions: boolean;
+  /**
+   * The franchises the companions come from, together (a player's ask, Discord ticket "Personnalisation"). Empty or
+   * missing: the theme's franchise, as before.
+   */
+  companionSets?: string[];
   setCompanions: (on: boolean) => void;
   setCardMotion: (on: boolean) => void;
   /** A Mythic's or Omni's own volumes, by card id, in percent (100: as it comes; up to 200): its voice line, and its video's sound behind a win. */
@@ -1331,7 +1336,13 @@ export type RotationWhen = 'off' | 'win' | 'clip' | 'visit';
 export interface RotationPlan {
   /** The cards taking turns (the ones no longer owned are skipped). */
   cards: string[];
+  /** The first of `whens` ('off' when none): what older saves and code read. */
   when: RotationWhen;
+  /**
+   * Every moment the next card comes, together (a player's ask, Discord ticket "Personnalisation": after every win
+   * and each time Omnidle opens, say). Missing in older saves: `when` alone.
+   */
+  whens?: Exclude<RotationWhen, 'off'>[];
   /** In the list's order, or at random. */
   order: 'order' | 'random';
   /** With `when: 'win'`: how many wins between two changes. */
@@ -1349,6 +1360,8 @@ export const rotationOf = (s: { rotation?: Rotation }): Rotation => ({
   backdrop: { ...NO_PLAN, ...s.rotation?.backdrop },
   sync: !!s.rotation?.sync,
 });
+/** Every moment a slot's next card comes (none: it stays as it is). */
+export const whensOf = (p: RotationPlan): Exclude<RotationWhen, 'off'>[] => p.whens ?? (p.when === 'off' ? [] : [p.when]);
 /** The icon and the background turn together: switched on, and both at random. */
 export const rotationSynced = (r: Rotation) => !!r.sync && r.avatar.order === 'random' && r.backdrop.order === 'random';
 /** A card upgraded into another: the new one takes its place in the turns. */
