@@ -3,17 +3,8 @@
 import { createContext, useContext } from 'react';
 import { useProgress } from '../store/progress';
 import type { Boss } from '../types';
-
-/** Whether the game is in French (read when called: for text built in handlers too). */
-export const isFr = () => useProgress.getState().nameLang === 'fr';
-
-/** The interface's words: English, or French when the game is in French. */
-export function useT(): (en: string, fr: string) => string {
-  const fr = useProgress((s) => s.nameLang) === 'fr';
-  return (en, frText) => (fr ? frText : en);
-}
-/** The same, read when called (handlers, lib code). */
-export const tr = (en: string, fr: string) => (isFr() ? fr : en);
+import { tr } from '../lib/i18n';
+export { isFr, tr, useT } from '../lib/i18n';
 
 /** "1 heart" / "2 hearts", "1 cœur" / "2 cœurs". */
 export const plural = (n: number, en: string, fr: string) => `${n} ${tr(en, fr)}${n === 1 ? '' : 's'}`;

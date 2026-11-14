@@ -5,6 +5,7 @@ import { mulberry32, shuffle } from '../lib/rng';
 import { scoreFor } from '../lib/scoring';
 import { sfx } from '../lib/sfx';
 import type { ConnectionsLevel, GameProps } from '../types';
+import { tr } from '../lib/i18n';
 
 /** NYT-style difficulty ranks (yellow → green → blue → purple), as soft pastel plates. */
 export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string; name: string }> = {
@@ -13,6 +14,7 @@ export const LEVEL_STYLE: Record<ConnectionsLevel, { tile: string; emoji: string
   2: { tile: 'bg-lv2 text-on-pastel', emoji: '🟦', name: 'Hard' },
   3: { tile: 'bg-lv3 text-on-pastel', emoji: '🟪', name: 'Tricky' },
 };
+const LEVEL_FR: Record<ConnectionsLevel, string> = { 0: 'Facile', 1: 'Moyen', 2: 'Difficile', 3: 'Retors' };
 
 const COUNT_WORD: Record<number, string> = { 2: 'two', 3: 'three', 4: 'four', 5: 'five' };
 
@@ -60,7 +62,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
 
   const submit = () => {
     const key = [...selected].sort().join('|');
-    if (record.guesses.includes(key)) return flash('Already guessed!');
+    if (record.guesses.includes(key)) return flash(tr('Already guessed!', 'Déjà proposé !'));
     // Selected tiles hop one after another before the verdict lands.
     setHopping(true);
     window.setTimeout(() => {
@@ -79,7 +81,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
       } else {
         const counts = groups.reduce<Record<number, number>>((m, x) => ({ ...m, [x]: (m[x] ?? 0) + 1 }), {});
         const oneAway = Object.values(counts).includes(3);
-        flash(oneAway ? 'One away…' : 'Not quite');
+        flash(oneAway ? tr('One away…', 'À un près…') : tr('Not quite', 'Pas tout à fait'));
         if (!lost) (oneAway ? sfx.near : sfx.wrong)();
         setShakeKey((k) => k + 1);
       }
@@ -198,7 +200,7 @@ export default function ConnectionsGame({ spec, record, onChange }: GameProps) {
           <div className="flex flex-wrap justify-center gap-3 text-[11px] text-ink-faint">
             {([0, 1, 2, 3] as const).map((lv) => (
               <span key={lv} className="flex items-center gap-1">
-                <i className={`size-2.5 rounded-sm ${LEVEL_STYLE[lv].tile}`} /> {LEVEL_STYLE[lv].name}
+                <i className={`size-2.5 rounded-sm ${LEVEL_STYLE[lv].tile}`} /> {tr(LEVEL_STYLE[lv].name, LEVEL_FR[lv])}
               </span>
             ))}
           </div>

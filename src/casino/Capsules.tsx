@@ -11,7 +11,7 @@ import { FrameRing } from './Frame';
 import { ASCEND_MAX, EARNED_FRAMES, FRAMES, FRAME_RARITIES, FRAME_RARITY_COLOR, FRAME_RARITY_NAME, ROMAN, albumFrame, ascendLevel, ascendToNext, inSeason, nextSeason, type Frame } from './frames';
 import { earnedFrames, useFeats } from './unlocks';
 import { SETS } from '../gacha/cards';
-import { fromKey, todayKey } from '../lib/date';
+import { dateLocale, fromKey, todayKey } from '../lib/date';
 
 const SHELLS = ['#f87171', '#60a5fa', '#34d399', '#fbbf24', '#c084fc', '#f472b6', '#22d3ee'];
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -495,7 +495,7 @@ function FrameTile({ f, mine, worn, onWear, label, hint, level = 0 }: { f: Frame
   );
 }
 
-const dayMonth = (key: string) => fromKey(key).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+const dayMonth = (key: string) => fromKey(key).toLocaleDateString(dateLocale(), { day: 'numeric', month: 'short' });
 
 /** Every frame: the machine's (won to wear, the others a mystery; seasonal ones say when they're back), then the trophies, earned by playing. */
 function FrameCollection({ hide }: { hide: string[] }) {

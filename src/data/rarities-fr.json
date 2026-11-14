@@ -1,0 +1,68 @@
+{
+  "rarities": {
+    "common": "Commune",
+    "rare": "Rare",
+    "epic": "Épique",
+    "legendary": "Légendaire",
+    "mythic": "Mythique",
+    "omni": "Omni"
+  },
+  "special": {
+    "apex": {
+      "name": "Apex",
+      "blurb": "Un Omni porté à son sommet : une couronne de flammes autour de lui, un pilier de lumière qui s'élève derrière, des ondes de choc qui pulsent, un cadre cramoisi et or qui tourne, des braises qui montent à travers.",
+      "how": "10 exemplaires de la même carte Omni : la carte et 9 doubles."
+    },
+    "relic": {
+      "name": "Relique",
+      "blurb": "La relique d'une franchise : un cadre de pierre sculptée et d'or parcouru d'une lumière, un sceau de runes qui tourne derrière, des runes qui s'allument l'une après l'autre, de la poussière qui flotte dans la lumière, le tout en or et en couleurs arcaniques. Sous la souris, ses arcanes s'éveillent : un cercle magique se dessine sur l'image, ses anneaux tournant.",
+      "how": "Complète une série et bats son boss en Enfer : choisis alors une carte de cette série pour en faire sa Relique (une par série)."
+    },
+    "eclipse": {
+      "name": "Éclipse",
+      "blurb": "Une carte que le trou noir a rendue éclipsée : la carte est la lune, qui passe devant le soleil derrière elle. À la totalité le ciel s'assombrit, la couronne nacrée s'épanouit, des perles de lumière puis un anneau de diamant flamboient sur son bord, et les étoiles apparaissent. Sous la souris, c'est toi qui déplaces la lune : le milieu de la carte, c'est la totalité.",
+      "how": "Une Mythique ou un Omni avalé par le trou noir d'un paquet peut revenir Éclipsé. Chaque autre étoile qu'il avale laisse un éclat d'étoile : 7 éclats éclipsent une Mythique ou un Omni de ton choix."
+    },
+    "bond": {
+      "name": "Lien",
+      "blurb": "Une carte obtenue ensemble par deux amis : deux cartes, une à la couleur de chaque ami, s'en détachent et fusionnent à nouveau en un éclair. La couture où elles se sont jointes brille au milieu, les deux lumières d'un fil se rejoignent en un cœur, et le nom de l'ami y est inscrit. Sous la souris, les deux cartes fusionnent d'un coup.",
+      "how": "Seulement dans les paquets Lien, ouverts par deux amis ensemble (les deux doivent être là). Chaque jour où vous jouez tous les deux le défi du jour donne un point à votre Lien ; 3 points ouvrent un paquet. Vous recevez tous les deux les mêmes 5 cartes, et peut-être la carte Lien, liée à vous deux."
+    }
+  },
+  "grades": {
+    "1": "Grade I",
+    "2": "Bronze",
+    "3": "Argent",
+    "4": "Or",
+    "5": "Radiant",
+    "6": "Céleste",
+    "7": "Singularité",
+    "8": "Élémentaire"
+  },
+  "elements": {
+    "water": {
+      "name": "Eau",
+      "blurb": "Des bulles qui montent dans une marée d'un bleu profond."
+    },
+    "air": {
+      "name": "Air",
+      "blurb": "Des rafales de vent qui balaient un ciel pâle."
+    },
+    "fire": {
+      "name": "Feu",
+      "blurb": "Des braises qui s'envolent d'un brasier vacillant."
+    },
+    "earth": {
+      "name": "Terre",
+      "blurb": "Des veines d'or qui brillent à travers la pierre, la poussière qui retombe."
+    },
+    "light": {
+      "name": "Lumière",
+      "blurb": "La couronne de rayons de Céleste, plus blanche et plus éclatante encore."
+    },
+    "darkness": {
+      "name": "Ténèbres",
+      "blurb": "Le trou noir de Singularité, qui déverse les ténèbres au lieu d'aspirer la lumière."
+    }
+  }
+}

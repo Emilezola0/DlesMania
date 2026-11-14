@@ -1,3 +1,4 @@
+import { frNow } from './langNow';
 /** First playable daily challenge. */
 export const EPOCH = '2026-10-01';
 /** The day Omnidle went online (its first deploy): its birthday, marked every year in the Archive. */
@@ -113,8 +114,11 @@ export function isPlayableDay(key: string): boolean {
   return /^\d{4}-\d{2}-\d{2}$/.test(key) && key >= EPOCH && key <= todayKey();
 }
 
+/** Dates in the player's language (the EN/FR setting), not the browser's. */
+export const dateLocale = () => (frNow() ? 'fr-FR' : 'en-GB');
+
 export function formatLong(key: string): string {
-  return fromKey(key).toLocaleDateString(undefined, {
+  return fromKey(key).toLocaleDateString(dateLocale(), {
     weekday: 'long',
     month: 'long',
     day: 'numeric',

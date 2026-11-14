@@ -4,6 +4,7 @@ import { frenchOf } from '../lib/french';
 import { workNames, type Named } from '../lib/text';
 import { useProgress } from '../store/progress';
 import { rankBySearch, searchScore } from '../utils/textMatcher';
+import { tr } from '../lib/i18n';
 
 interface Props {
   pool: Named[];
@@ -24,7 +25,7 @@ function otherName(w: Named, query: string): string | undefined {
   return typed ?? aliases[0];
 }
 
-export function GuessInput({ pool, exclude, onGuess, placeholder = 'Type a title…', disabled, showImages = true }: Props) {
+export function GuessInput({ pool, exclude, onGuess, placeholder = tr('Type a title…', 'Tape un titre…'), disabled, showImages = true }: Props) {
   const lang = useProgress((s) => s.nameLang);
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);

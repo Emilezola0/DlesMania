@@ -19,18 +19,19 @@ import { frenchOf, shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
 import { useCloud } from '../cloud/state';
 import { bossKey, useProgress } from '../store/progress';
+import { tr, useT, withFrench } from '../lib/i18n';
 import { APEX_COPIES, APEX_REWARD, canEclipse, ECLIPSE_SHARDS, RANKS, RELIC_REWARD, relicOfSet, type RankId } from '../gacha/ranks';
 
 /** Which cards: all, owned, missing, starred, with spare copies, ready to grade up, or Altered (back from a black hole with an anomaly). */
 type Show = 'all' | 'owned' | 'missing' | 'favorites' | 'spares' | 'upgradable' | 'altered';
 const SHOWS: { id: Show; label: string; title?: string }[] = [
-  { id: 'all', label: 'All' },
-  { id: 'owned', label: 'Owned' },
-  { id: 'missing', label: 'Missing' },
-  { id: 'favorites', label: '★ Favourites', title: 'Cards you starred (open a card to star it)' },
-  { id: 'spares', label: 'Spares', title: 'Cards you have more than one copy of' },
-  { id: 'upgradable', label: '⬆ Can grade up', title: 'Cards with enough spare copies for their next grade' },
-  { id: 'altered', label: '🕳️ Altered', title: 'Cards back from a black hole, with an anomaly' },
+  withFrench({ id: 'all' as Show, label: 'All' }, { label: 'Toutes' }),
+  withFrench({ id: 'owned' as Show, label: 'Owned' }, { label: 'Possédées' }),
+  withFrench({ id: 'missing' as Show, label: 'Missing' }, { label: 'Manquantes' }),
+  withFrench({ id: 'favorites' as Show, label: '★ Favourites', title: 'Cards you starred (open a card to star it)' }, { label: '★ Favorites', title: 'Les cartes que tu as étoilées (ouvre une carte pour l’étoiler)' }),
+  withFrench({ id: 'spares' as Show, label: 'Spares', title: 'Cards you have more than one copy of' }, { label: 'Doubles', title: 'Les cartes que tu as en plus d’un exemplaire' }),
+  withFrench({ id: 'upgradable' as Show, label: '⬆ Can grade up', title: 'Cards with enough spare copies for their next grade' }, { label: '⬆ Peut monter', title: 'Les cartes avec assez de doubles pour leur grade suivant' }),
+  withFrench({ id: 'altered' as Show, label: '🕳️ Altered', title: 'Cards back from a black hole, with an anomaly' }, { label: '🕳️ Altérées', title: 'Les cartes revenues d’un trou noir, avec une anomalie' }),
 ];
 
 /** Lower case, no accents or punctuation: for the search box. */
@@ -65,12 +66,12 @@ function useKept<T>(key: string, initial: T, valid: (v: unknown) => boolean): [T
 type Sort = 'set' | 'recent' | 'rarity' | 'grade' | 'name' | 'count';
 
 const SORTS: { id: Sort; label: string }[] = [
-  { id: 'set', label: 'Set' },
-  { id: 'recent', label: 'Newest' },
-  { id: 'rarity', label: 'Rarity' },
-  { id: 'grade', label: 'Grade' },
-  { id: 'name', label: 'Name' },
-  { id: 'count', label: 'Most pulled' },
+  withFrench({ id: 'set' as Sort, label: 'Set' }, { label: 'Série' }),
+  withFrench({ id: 'recent' as Sort, label: 'Newest' }, { label: 'Plus récentes' }),
+  withFrench({ id: 'rarity' as Sort, label: 'Rarity' }, { label: 'Rareté' }),
+  withFrench({ id: 'grade' as Sort, label: 'Grade' }, { label: 'Grade' }),
+  withFrench({ id: 'name' as Sort, label: 'Name' }, { label: 'Nom' }),
+  withFrench({ id: 'count' as Sort, label: 'Most pulled' }, { label: 'Plus tirées' }),
 ];
 /** One shared empty record: a selector must not hand back a new object at each call. */
 const NONE: Record<string, never> = {};
@@ -221,7 +222,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
           <p className={`font-display text-xl font-bold ${card.rarity === 'mythic' ? 'card-mythic-name' : ''}`}>{shownName(card.name, card.set)}</p>
           {form.title && <p className="text-sm italic opacity-80">{form.title}</p>}
           {card.awaken && !form.awakened && <p className="mt-1 text-xs text-[#fff1a8]">✪ Beat its guardian on Hard or Hell to awaken it: {card.awaken.title}.</p>}
-          {clipComing && <p className="mt-2 animate-pulse text-sm font-bold opacity-80">▶ Its video is on its way…</p>}
+          {clipComing && <p className="mt-2 animate-pulse text-sm font-bold opacity-80">{tr('▶ Its video is on its way…', '▶ Sa vidéo arrive…')}</p>}
           {isVideo && (
             <button type="button" onClick={playVideo} className="mr-2 mt-2 rounded-full border-2 border-white/40 px-3 py-1 text-sm font-bold hover:border-white">
               {clipHeld ? '▶ Play its video' : '↺ Play it again'}
@@ -240,7 +241,7 @@ function Inspect({ card, count, onClose, onUpgraded }: { card: Card; count: numb
             {card.rarity === 'omni' && grade <= 1 ? '' : ` · ${gradeName(grade, element)}`} · {card.franchise} · pulled {count} time{count === 1 ? '' : 's'}
           </p>
           <AnomalyNote cardId={card.id} />
-          <p className="mt-1 text-xs opacity-60">Drag to turn it · tap to spin it · Esc to close</p>
+          <p className="mt-1 text-xs opacity-60">{tr('Drag to turn it · tap to spin it · Esc to close', 'Fais-la glisser pour la tourner · touche pour la faire pivoter · Échap pour fermer')}</p>
         </div>
         <UpgradeOffer card={card} onUpgraded={onUpgraded} />
         <SpecialRanks card={card} onRank={() => setFlare((n) => n + 1)} />
@@ -280,7 +281,7 @@ function UpgradeOffer({ card, onUpgraded }: { card: Card; onUpgraded: (into: Car
         disabled={!enough}
         className={`rounded-full border-2 px-4 py-1.5 text-sm font-bold transition ${enough ? (sure ? 'border-white bg-white text-black' : 'border-[#fde68a] bg-[#fde68a]/20 text-[#fef3c7] hover:bg-[#fde68a]/35') : 'border-dashed border-white/30 text-white/50'}`}
       >
-        {sure ? `Confirm: pay ${up.coins.toLocaleString('en')} 🪙` : `✪ Upgrade to ${RARITY_INFO[into.rarity].name} — ${up.coins.toLocaleString('en')} 🪙`}
+        {sure ? tr(`Confirm: pay ${up.coins.toLocaleString('en')} 🪙`, `Confirmer : payer ${up.coins.toLocaleString('fr')} 🪙`) : tr(`✪ Upgrade to ${RARITY_INFO[into.rarity].name} — ${up.coins.toLocaleString('en')} 🪙`, `✪ Passer en ${RARITY_INFO[into.rarity].name} — ${up.coins.toLocaleString('fr')} 🪙`)}
       </button>
       {!enough && <p className="text-xs text-white/60">Not enough DleCoins ({coins.toLocaleString('en')}/{up.coins.toLocaleString('en')}).</p>}
       {sure && <p className="text-xs text-white/70">Every copy, its grade and element go over to the {RARITY_INFO[into.rarity].name} card.</p>}
@@ -332,31 +333,34 @@ function SpecialRanks({ card, onRank }: { card: Card; onRank: () => void }) {
       style={ready && sure !== id ? { borderColor: RANKS[id].colors[0], background: `color-mix(in srgb, ${RANKS[id].colors[0]} 22%, transparent)` } : undefined}
     >
       <span aria-hidden>{RANKS[id].gem}</span>
-      {ready ? (sure === id ? `Confirm: ${label}` : label) : waiting}
+      {ready ? (sure === id ? tr(`Confirm: ${label}`, `Confirmer : ${label}`) : label) : waiting}
       {ready && !!reward && <span className="ml-1 rounded-full bg-[#fde68a]/20 px-1.5 text-xs text-[#fde68a]">+{reward.toLocaleString('en')} 🪙</span>}
     </button>
   );
 
   const out: ReactNode[] = [];
   // Bond: linked to the friend the Bond pack was opened with (nothing to do: it came that way).
-  if (bondLink) out.push(chip('bond', `Bond with ${bondLink.with}`));
+  if (bondLink) out.push(chip('bond', tr(`Bond with ${bondLink.with}`, `Lien avec ${bondLink.with}`)));
   // Apex: an Omni's one rank.
   if (card.rarity === 'omni') {
-    if (rank?.kind === 'apex') out.push(chip('apex', 'Apex: its top rank'));
-    else out.push(button('apex', count >= APEX_COPIES, `Rise to Apex (${APEX_COPIES} copies)`, `Apex: ${Math.max(0, count - 1)}/${APEX_COPIES - 1} spares`, APEX_REWARD));
+    if (rank?.kind === 'apex') out.push(chip('apex', tr('Apex: its top rank', 'Apex : son rang suprême')));
+    else out.push(button('apex', count >= APEX_COPIES, tr(`Rise to Apex (${APEX_COPIES} copies)`, `Monter en Apex (${APEX_COPIES} exemplaires)`), tr(`Apex: ${Math.max(0, count - 1)}/${APEX_COPIES - 1} spares`, `Apex : ${Math.max(0, count - 1)}/${APEX_COPIES - 1} doubles`), APEX_REWARD));
   }
   // Eclipse: a Mythic or Omni without a special rarity yet.
-  if (rank?.kind === 'eclipse') out.push(chip('eclipse', 'Eclipsed'));
-  else if (canEclipse(card, rank?.kind)) out.push(button('eclipse', shards >= ECLIPSE_SHARDS, `Eclipse it: ${ECLIPSE_SHARDS} star shards`, `Eclipse: ${shards}/${ECLIPSE_SHARDS} star shards`));
+  if (rank?.kind === 'eclipse') out.push(chip('eclipse', tr('Eclipsed', 'Éclipsée')));
+  else if (canEclipse(card, rank?.kind)) out.push(button('eclipse', shards >= ECLIPSE_SHARDS, tr(`Eclipse it: ${ECLIPSE_SHARDS} star shards`, `L’éclipser : ${ECLIPSE_SHARDS} éclats d’étoile`), tr(`Eclipse: ${shards}/${ECLIPSE_SHARDS} star shards`, `Éclipse : ${shards}/${ECLIPSE_SHARDS} éclats d’étoile`)));
   // Relic: one card per set.
-  if (rank?.kind === 'relic') out.push(chip('relic', `The ${card.franchise} Relic`));
+  if (rank?.kind === 'relic') out.push(chip('relic', tr(`The ${card.franchise} Relic`, `La Relique de ${card.franchise}`)));
   else if (!rank && !relicId)
     out.push(
       button(
         'relic',
         complete && hellBeaten,
-        `Make it the ${card.franchise} Relic`,
-        `Relic: ${[!complete && 'complete the set', !hellBeaten && 'beat its boss on Hell'].filter(Boolean).join(' and ')}`,
+        tr(`Make it the ${card.franchise} Relic`, `En faire la Relique de ${card.franchise}`),
+        tr(
+          `Relic: ${[!complete && 'complete the set', !hellBeaten && 'beat its boss on Hell'].filter(Boolean).join(' and ')}`,
+          `Relique : ${[!complete && 'complète la série', !hellBeaten && 'bats son boss en Enfer'].filter(Boolean).join(' et ')}`,
+        ),
         RELIC_REWARD,
       ),
     );
@@ -423,13 +427,13 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
           onClick={() => (nextIsElement ? setChoosing((c) => !c) : up())}
           disabled={!ready}
           className={`flex items-center gap-1.5 rounded-full border-2 px-3 py-1 text-sm font-bold transition ${ready ? 'border-[#fde68a] bg-[#fde68a]/15 text-[#fef3c7] hover:bg-[#fde68a]/30' : 'border-dashed border-white/25 text-white/50'}`}
-          title={`Merge ${GRADE_COST + 1} copies of this card into one: the card and ${GRADE_COST} spares`}
+          title={tr(`Merge ${GRADE_COST + 1} copies of this card into one: the card and ${GRADE_COST} spares`, `Fusionne ${GRADE_COST + 1} exemplaires de cette carte en un : la carte et ${GRADE_COST} doubles`)}
         >
           <GradeEmblem grade={grade + 1} info={nextIsElement ? GRADES[grade + 1] : undefined} className="size-7" />
           {ready
             ? nextIsElement
-              ? `Ascend to ${GRADES[grade + 1].name}: choose an element`
-              : `Upgrade to ${GRADES[grade + 1].name}`
+              ? tr(`Ascend to ${GRADES[grade + 1].name}: choose an element`, `Monter en ${GRADES[grade + 1].name} : choisis un élément`)
+              : tr(`Upgrade to ${GRADES[grade + 1].name}`, `Monter en ${GRADES[grade + 1].name}`)
             : grade + 1 === HELL_GRADE && !hellBeaten
               ? `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares, and beat its boss on Hell`
               : `${GRADES[grade + 1].name}: ${Math.max(0, count - 1)}/${GRADE_COST} spares`}
@@ -437,33 +441,33 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
         </button>
       ) : (
         <span className="flex items-center gap-1.5 rounded-full border-2 border-[#fde68a] px-3 py-1 text-sm font-bold text-[#fef3c7]">
-          <GradeEmblem grade={MAX_GRADE} element={element} className="size-7" /> {gradeName(MAX_GRADE, element)} — top grade
+          <GradeEmblem grade={MAX_GRADE} element={element} className="size-7" /> {gradeName(MAX_GRADE, element)} — {tr('top grade', 'grade suprême')}
         </span>
       )}
       {grade >= ELEMENT_GRADE && (
-        <button type="button" onClick={() => setChoosing((c) => !c)} className={btn(choosing)} title="Pick another element for this card">
-          🔄 Change element ({ELEMENT_SWITCH_COST} 🪙)
+        <button type="button" onClick={() => setChoosing((c) => !c)} className={btn(choosing)} title={tr('Pick another element for this card', 'Choisis un autre élément pour cette carte')}>
+          {tr('🔄 Change element', '🔄 Changer d’élément')} ({ELEMENT_SWITCH_COST} 🪙)
         </button>
       )}
       {choosing && <ElementChoice current={grade >= ELEMENT_GRADE ? element : undefined} cost={grade >= ELEMENT_GRADE ? ELEMENT_SWITCH_COST : 0} coins={coins} onPick={pick} />}
       <button type="button" onClick={() => (sfx.select(), setAvatar(isAvatar ? null : card.id))} className={btn(isAvatar)}>
-        {isAvatar ? '✓ Your icon' : '👤 Use as my icon'}
+        {isAvatar ? tr('✓ Your icon', '✓ Ton icône') : tr('👤 Use as my icon', '👤 En faire mon icône')}
       </button>
       {canBeBackdrop(card) ? (
         <button type="button" onClick={() => (sfx.select(), setBackdrop(isBackdrop ? null : card.id))} className={btn(isBackdrop)}>
-          {isBackdrop ? '✓ Your background' : '🖼 Use as background'}
+          {isBackdrop ? tr('✓ Your background', '✓ Ton fond') : tr('🖼 Use as background', '🖼 En faire mon fond')}
         </button>
       ) : (
-        <span className="rounded-full border-2 border-dashed border-white/25 px-3 py-1.5 text-sm font-semibold text-white/50" title="Only Rare cards and better can be a background">
-          🖼 Background: Rare or better
+        <span className="rounded-full border-2 border-dashed border-white/25 px-3 py-1.5 text-sm font-semibold text-white/50" title={tr('Only Rare cards and better can be a background', 'Seules les cartes Rares et mieux peuvent servir de fond')}>
+          {tr('🖼 Background: Rare or better', '🖼 Fond : Rare ou mieux')}
         </span>
       )}
-      <button type="button" onClick={() => (sfx.select(), toggleTurn('avatar', card.id))} className={btn(inIconTurns)} title="Your icon takes turns between the cards in this list (Account page)">
-        {inIconTurns ? '✓ In icon turns' : '🔄 Icon turns'}
+      <button type="button" onClick={() => (sfx.select(), toggleTurn('avatar', card.id))} className={btn(inIconTurns)} title={tr('Your icon takes turns between the cards in this list (Account page)', 'Ton icône alterne entre les cartes de cette liste (page Compte)')}>
+        {inIconTurns ? tr('✓ In icon turns', '✓ Dans la rotation d’icônes') : tr('🔄 Icon turns', '🔄 Rotation d’icônes')}
       </button>
       {canBeBackdrop(card) && (
-        <button type="button" onClick={() => (sfx.select(), toggleTurn('backdrop', card.id))} className={btn(inBackdropTurns)} title="Your background takes turns between the cards in this list (Account page)">
-          {inBackdropTurns ? '✓ In background turns' : '🔄 Background turns'}
+        <button type="button" onClick={() => (sfx.select(), toggleTurn('backdrop', card.id))} className={btn(inBackdropTurns)} title={tr('Your background takes turns between the cards in this list (Account page)', 'Ton fond alterne entre les cartes de cette liste (page Compte)')}>
+          {inBackdropTurns ? tr('✓ In background turns', '✓ Dans la rotation de fonds') : tr('🔄 Background turns', '🔄 Rotation de fonds')}
         </button>
       )}
       {count > 1 && (
@@ -471,9 +475,9 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
           type="button"
           onClick={() => (sfx.correct(), exchange({ [card.id]: 1 }, spare))}
           className={btn(false)}
-          title={grade >= ELEMENT_GRADE ? `One copy always stays in your album. At ${GRADES[ELEMENT_GRADE].name}, spares fetch ×${RESALE_BONUS}` : 'One copy always stays in your album'}
+          title={grade >= ELEMENT_GRADE ? tr(`One copy always stays in your album. At ${GRADES[ELEMENT_GRADE].name}, spares fetch ×${RESALE_BONUS}`, `Un exemplaire reste toujours dans ton album. En ${GRADES[ELEMENT_GRADE].name}, les doubles valent ×${RESALE_BONUS}`) : tr('One copy always stays in your album', 'Un exemplaire reste toujours dans ton album')}
         >
-          ♻ Exchange a spare copy (+{spare} coins{grade >= ELEMENT_GRADE ? ` · ×${RESALE_BONUS}` : ''})
+          {tr('♻ Exchange a spare copy', '♻ Échanger un double')} (+{spare} {tr('coins', 'pièces')}{grade >= ELEMENT_GRADE ? ` · ×${RESALE_BONUS}` : ''})
         </button>
       )}
       {/* Every spare at once (asked twice). */}
@@ -489,7 +493,7 @@ function Perks({ card, onGradeUp }: { card: Card; onGradeUp: () => void }) {
 function ElementChoice({ current, cost, coins, onPick }: { current?: ElementId; cost: number; coins: number; onPick: (id: ElementId) => void }) {
   return (
     <div className="w-full space-y-2 rounded-xl border-2 border-white/20 bg-black/40 p-3 text-white">
-      <p className="text-center text-sm font-bold">{cost ? `Change its element for ${cost} 🪙` : 'Choose its element: it can be changed later'}</p>
+      <p className="text-center text-sm font-bold">{cost ? tr(`Change its element for ${cost} 🪙`, `Changer son élément pour ${cost} 🪙`) : tr('Choose its element: it can be changed later', 'Choisis son élément : il pourra être changé plus tard')}</p>
       <div className="grid grid-cols-2 gap-2 min-[420px]:grid-cols-3">
         {ELEMENT_IDS.map((id) => {
           const e = ELEMENTS[id];
@@ -508,12 +512,12 @@ function ElementChoice({ current, cost, coins, onPick }: { current?: ElementId; 
               <span className="text-sm font-bold">
                 {e.icon} {e.name}
               </span>
-              <span className="text-[11px] leading-tight opacity-75">{id === current ? 'Its element now' : e.blurb}</span>
+              <span className="text-[11px] leading-tight opacity-75">{id === current ? tr('Its element now', 'Son élément actuel') : e.blurb}</span>
             </button>
           );
         })}
       </div>
-      {cost > 0 && coins < cost && <p className="text-center text-xs text-white/60">Not enough DleCoins ({coins}/{cost}).</p>}
+      {cost > 0 && coins < cost && <p className="text-center text-xs text-white/60">{tr('Not enough DleCoins', 'Pas assez de DleCoins')} ({coins}/{cost}).</p>}
     </div>
   );
 }
@@ -523,6 +527,7 @@ export default function Album() {
   /** On a phone: the mythic or omni brought to life by a first tap. */
   const [armed, setArmed] = useState<string | null>(null);
   const lastPointer = useRef('mouse');
+  const t = useT();
   const owned = useProgress((s) => s.cards);
   const grades = useProgress((s) => s.grades);
   const anomalies = useProgress((s) => s.anomalies ?? NONE);
@@ -645,8 +650,8 @@ export default function Album() {
         aria-label={`${c.name}, ${RARITY_INFO[c.rarity].name}`}
       >
         <CardFace card={c} count={owned[c.id]} hoverHero hero={armed === c.id} />
-        {favorites[c.id] && <span className="pointer-events-none absolute -left-1.5 -top-1.5 z-20 grid size-6 place-items-center rounded-full bg-[#fbbf24] text-sm text-[#3b2a00] shadow" aria-label="Favourite">★</span>}
-        {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">TAP AGAIN TO OPEN</span>}
+        {favorites[c.id] && <span className="pointer-events-none absolute -left-1.5 -top-1.5 z-20 grid size-6 place-items-center rounded-full bg-[#fbbf24] text-sm text-[#3b2a00] shadow" aria-label={tr('Favourite', 'Favorite')}>★</span>}
+        {armed === c.id && <span className="pointer-events-none absolute inset-x-0 -bottom-2 z-30 text-center font-display text-[10px] font-bold tracking-wider text-white drop-shadow">{tr('TAP AGAIN TO OPEN', 'TOUCHE ENCORE POUR OUVRIR')}</span>}
       </button>
     ) : (
       <CardMissing key={c.id} card={c} />
@@ -663,43 +668,46 @@ export default function Album() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <Link to="/games" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-            ← Games
+            {t('← Games', '← Jeux')}
           </Link>
           <h1 className="text-5xl font-bold">Album</h1>
           <p className="text-ink-soft">
-            {unique} of {COLLECTIBLE.length} cards collected · {pulls} pulled in all ·{' '}
+            {t(`${unique} of ${COLLECTIBLE.length} cards collected · ${pulls} pulled in all`, `${unique} cartes sur ${COLLECTIBLE.length} collectionnées · ${pulls} tirées en tout`)} ·{' '}
             {RARITIES.map((r) => `${counts.byRarity[r] ?? 0}/${RARITY_TOTAL[r]} ${RARITY_INFO[r].name.toLowerCase()}`).join(' · ')}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {upgradable > 0 && (
-            <button type="button" onClick={() => (sfx.click(), setBulk('grade'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold ring-2 ring-accent" title="Grade up every card that has enough spares, at once">
-              ⬆ Grade up all ({upgradable})
+            <button type="button" onClick={() => (sfx.click(), setBulk('grade'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold ring-2 ring-accent" title={t('Grade up every card that has enough spares, at once', 'Monte d’un coup chaque carte qui a assez de doubles')}>
+              {t('⬆ Grade up all', '⬆ Tout monter')} ({upgradable})
             </button>
           )}
           {spare.copies > 0 && (
-            <button type="button" onClick={() => (sfx.click(), setBulk('sell'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title="Choose which spare copies to sell, and how many">
-              ♻ Sell spares ({spare.copies}) · <Coins n={spare.coins} />
+            <button type="button" onClick={() => (sfx.click(), setBulk('sell'))} className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title={t('Choose which spare copies to sell, and how many', 'Choisis quels doubles vendre, et combien')}>
+              {t('♻ Sell spares', '♻ Vendre les doubles')} ({spare.copies}) · <Coins n={spare.coins} />
             </button>
           )}
-          <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={`${RENEW_COST} spare copies of a rarity for a new card of it`}>
-            ♻ Renew
+          <button type="button" onClick={() => (sfx.click(), setRenewing(true))} className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${canRenew ? 'ring-2 ring-accent' : ''}`} title={t(`${RENEW_COST} spare copies of a rarity for a new card of it`, `${RENEW_COST} doubles d’une rareté contre une nouvelle carte de cette rareté`)}>
+            {t('♻ Renew', '♻ Renouveler')}
           </button>
-          <Link to="/rarities" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title="Every rarity, grade and special rarity, explained">
-            ⓘ Rarities
+          <Link to="/rarities" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold" title={t('Every rarity, grade and special rarity, explained', 'Chaque rareté, grade et rareté spéciale, expliqués')}>
+            {t('ⓘ Rarities', 'ⓘ Raretés')}
           </Link>
           <Link
             to="/rarities?tab=special"
             className={`btn-paper rounded-md px-4 py-2.5 font-display font-bold ${shards >= ECLIPSE_SHARDS ? 'ring-2 ring-[#a78bfa]' : ''}`}
-            title={`Star shards: one for each star a pack's black hole swallows. ${ECLIPSE_SHARDS} eclipse a Mythic or Omni: open one up close.`}
+            title={t(
+              `Star shards: one for each star a pack's black hole swallows. ${ECLIPSE_SHARDS} eclipse a Mythic or Omni: open one up close.`,
+              `Éclats d’étoile : un pour chaque étoile avalée par le trou noir d’un paquet. ${ECLIPSE_SHARDS} éclipsent une Mythique ou un Omni : ouvre-le de près.`,
+            )}
           >
-            <span className="text-[#8b5cf6]">✧</span> {shards}/{ECLIPSE_SHARDS} star shards
+            <span className="text-[#8b5cf6]">✧</span> {shards}/{ECLIPSE_SHARDS} {t('star shards', 'éclats d’étoile')}
           </Link>
           <Link to="/trades" className="btn-paper rounded-md px-4 py-2.5 font-display font-bold">
-            ⇄ Trades
+            {t('⇄ Trades', '⇄ Échanges')}
           </Link>
           <Link to="/shop" className="btn-accent rounded-md px-5 py-2.5 font-display font-bold">
-            Card Shop · <Coins n={coins} />
+            {t('Card Shop', 'Boutique')} · <Coins n={coins} />
           </Link>
         </div>
       </div>
@@ -709,12 +717,12 @@ export default function Album() {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search a card or franchise…"
-          aria-label="Search"
+          placeholder={t('Search a card or franchise…', 'Cherche une carte ou une franchise…')}
+          aria-label={t('Search', 'Recherche')}
           className="min-w-0 flex-1 basis-48 rounded-md border border-rule-strong bg-card px-3 py-1.5 text-sm"
         />
-        <select value={set} onChange={(e) => setSet(e.target.value)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label="Set">
-          <option value="all">Every set</option>
+        <select value={set} onChange={(e) => setSet(e.target.value)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5 text-sm font-semibold" aria-label={t('Set', 'Série')}>
+          <option value="all">{t('Every set', 'Toutes les séries')}</option>
           {SETS_BY_DOMAIN.map((g) => (
             <optgroup key={g.domain.id} label={`${g.domain.icon} ${g.domain.label}`}>
               {g.sets.map((s) => (
@@ -742,7 +750,7 @@ export default function Album() {
           ))}
         </div>
         <label className="ml-auto flex items-center gap-2 text-sm font-semibold">
-          Sort
+          {t('Sort', 'Trier')}
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-md border border-rule-strong bg-card px-2 py-1.5">
             {SORTS.map((s) => (
               <option key={s.id} value={s.id}>
@@ -750,7 +758,7 @@ export default function Album() {
               </option>
             ))}
           </select>
-          <button type="button" onClick={() => (sfx.click(), setReverse((r) => !r))} aria-pressed={reverse} title="Reverse the order" className={pill(reverse)}>
+          <button type="button" onClick={() => (sfx.click(), setReverse((r) => !r))} aria-pressed={reverse} title={t('Reverse the order', 'Inverser l’ordre')} className={pill(reverse)}>
             ⇅
           </button>
         </label>
@@ -758,7 +766,7 @@ export default function Album() {
 
       <div className="flex flex-wrap items-center gap-3 text-sm text-ink-soft">
         <span>
-          {list.length} card{list.length === 1 ? '' : 's'} shown
+          {t(`${list.length} card${list.length === 1 ? '' : 's'} shown`, `${list.length} carte${list.length === 1 ? '' : 's'} affichée${list.length === 1 ? '' : 's'}`)}
         </span>
         {setInfo && (
           <span className="flex items-center gap-2">
@@ -770,16 +778,16 @@ export default function Album() {
         )}
         {filtered && (
           <button type="button" onClick={clearFilters} className="font-semibold text-accent hover:underline">
-            Clear filters
+            {t('Clear filters', 'Effacer les filtres')}
           </button>
         )}
       </div>
 
       {!unique && (
         <p className="page rounded-md p-4 text-center text-ink-soft">
-          No cards yet. Play the dailies and the games to earn DleCoins, then open a pack in the{' '}
+          {t('No cards yet. Play the dailies and the games to earn DleCoins, then open a pack in the', 'Pas encore de cartes. Joue aux défis du jour et aux jeux pour gagner des DleCoins, puis ouvre un paquet à la')}{' '}
           <Link to="/shop" className="font-semibold text-accent">
-            Card Shop
+            {t('Card Shop', 'Boutique')}
           </Link>
           .
         </p>
@@ -790,7 +798,7 @@ export default function Album() {
           <AlbumBlock key={i} cards={cards} render={cell} />
         ))}
       </div>
-      {!list.length && <p className="text-center text-ink-soft">No card fits these filters.</p>}
+      {!list.length && <p className="text-center text-ink-soft">{t('No card fits these filters.', 'Aucune carte ne correspond à ces filtres.')}</p>}
 
       {open && <Inspect card={open} count={owned[open.id] ?? 0} onClose={() => setOpen(null)} onUpgraded={setOpen} />}
       {renewing && <RenewDialog onClose={() => setRenewing(false)} />}
@@ -862,13 +870,13 @@ function CardVolume({ card }: { card: Card }) {
   const setCardVolume = useProgress((s) => s.setCardVolume);
   if (card.rarity !== 'mythic' && card.rarity !== 'omni') return null;
   const rows = [
-    ...(card.voice ? [{ kind: 'voice' as const, label: '🗣️ Voice line' }] : []),
-    ...(clipHasSound(card, card.clip) || clipHasSound(card, card.awaken?.clip) ? [{ kind: 'clip' as const, label: '🎬 Video behind a win' }] : []),
+    ...(card.voice ? [{ kind: 'voice' as const, label: tr('🗣️ Voice line', '🗣️ Réplique') }] : []),
+    ...(clipHasSound(card, card.clip) || clipHasSound(card, card.awaken?.clip) ? [{ kind: 'clip' as const, label: tr('🎬 Video behind a win', '🎬 Vidéo derrière une victoire') }] : []),
   ];
   if (!rows.length) return null;
   return (
     <div className="mx-auto mt-2 max-w-xs space-y-1.5 rounded-md border border-white/20 bg-white/5 px-3 py-2 text-left text-xs">
-      <p className="font-display font-bold tracking-widest text-white/70">VOLUME</p>
+      <p className="font-display font-bold tracking-widest text-white/70">{tr('VOLUME', 'VOLUME')}</p>
       {rows.map(({ kind, label }) => {
         const v = volume?.[kind] ?? 100;
         return (
@@ -928,11 +936,11 @@ function AnomalyNote({ cardId }: { cardId: string }) {
           </button>
         </>
       ) : (
-        <>🕳️ Back from a black hole, wearing nothing yet.</>
+        <>{tr('🕳️ Back from a black hole, wearing nothing yet.', '🕳️ Revenue d’un trou noir, sans rien porter pour l’instant.')}</>
       )}
       {(others ?? []).map((o) => (
         <button key={o} type="button" onClick={() => setAnomaly(cardId, o)} className="ml-2 rounded-full border border-[#c4b5fd]/60 px-2 py-0.5 font-semibold hover:bg-[#c4b5fd]/15" title={ANOMALIES[o].name}>
-          {a ? 'Switch to' : 'Wear'} {ANOMALIES[o].icon} {ANOMALIES[o].name}
+          {a ? tr('Switch to', 'Passer à') : tr('Wear', 'Porter')} {ANOMALIES[o].icon} {ANOMALIES[o].name}
         </button>
       ))}
     </p>

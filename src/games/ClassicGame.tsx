@@ -8,6 +8,14 @@ import { workNames } from '../lib/text';
 import type { Domain, GameProps, Work } from '../types';
 import { compactText, normalizeText } from '../utils/textMatcher';
 import { GAME_META } from './meta';
+import { tr } from '../lib/i18n';
+
+/** The columns' and clues' names in French. */
+const LABEL_FR: Record<string, string> = {
+  Genre: 'Genre', Platforms: 'Plateformes', Studio: 'Studio', Origin: 'Origine', Year: 'Année', Format: 'Format', Source: 'Source', Creator: 'Créateur',
+  Type: 'Type', Director: 'Réalisateur', Artist: 'Artiste', Themes: 'Thèmes', Credit: 'Crédit', Clue: 'Indice', 'A character': 'Un personnage', Title: 'Titre',
+};
+const label = (s: string) => tr(s, LABEL_FR[s] ?? s);
 
 type Verdict = 'hit' | 'near' | 'miss';
 
@@ -147,7 +155,7 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
       </p>
 
       {!done && (
-        <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(domain).label}…`} />
+        <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={tr(`Search ${domainInfo(domain).label}…`, `Cherche un titre — ${domainInfo(domain).label}…`)} />
       )}
       <p className="text-center text-xs text-ink-faint">
         {record.guesses.length} / {max} guesses
@@ -162,8 +170,8 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
                 key={c.after}
                 className={`rounded-lg border px-3 py-2 text-sm ${open ? 'animate-pop border-accent/50 bg-accent-soft' : 'border-dashed border-rule-strong text-ink-faint'}`}
               >
-                <span className="block font-display text-[11px] uppercase tracking-widest text-ink-faint">{open ? c.label : 'Clue'}</span>
-                {open ? <span className="font-semibold">{c.value}</span> : <span>Unlocks after {c.after} misses</span>}
+                <span className="block font-display text-[11px] uppercase tracking-widest text-ink-faint">{open ? label(c.label) : label('Clue')}</span>
+                {open ? <span className="font-semibold">{c.value}</span> : <span>{tr(`Unlocks after ${c.after} misses`, `Débloqué après ${c.after} erreurs`)}</span>}
               </li>
             );
           })}
@@ -174,10 +182,10 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
         <div className="overflow-x-auto pb-2">
           <div className="space-y-2" style={{ minWidth: 140 + columns.length * 100 }}>
             <div className="grid gap-2 px-1 text-xs uppercase tracking-wider text-ink-faint" style={grid}>
-              <span>Title</span>
+              <span>{label('Title')}</span>
               {columns.map((c) => (
                 <span key={c.label} className="text-center">
-                  {c.label}
+                  {label(c.label)}
                 </span>
               ))}
             </div>
@@ -213,10 +221,10 @@ export default function ClassicGame({ spec, record, onChange }: GameProps) {
       )}
 
       <div className="flex flex-wrap justify-center gap-4 text-xs text-ink-soft">
-        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit" /> Exact</span>
-        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near" /> Partial</span>
-        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-miss" /> Wrong</span>
-        <span>▲▼ Later / earlier (yellow: within {NEAR_YEARS} years)</span>
+        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-hit" /> {tr('Exact', 'Exact')}</span>
+        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-near" /> {tr('Partial', 'Partiel')}</span>
+        <span className="flex items-center gap-1.5"><i className="size-3 rounded bg-miss" /> {tr('Wrong', 'Faux')}</span>
+        <span>{tr(`▲▼ Later / earlier (yellow: within ${NEAR_YEARS} years)`, `▲▼ Plus tard / plus tôt (jaune : à ${NEAR_YEARS} ans près)`)}</span>
       </div>
 
       <Outcome record={record} answer={target} />

@@ -72,6 +72,7 @@ import CASINO_T from '../data/tuning/casino.json';
 import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, slotCost, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import { ascendLevel, type Frame } from '../casino/frames';
 import type { SyncBase } from '../cloud/merge';
+import { setFrNow } from '../lib/langNow';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -1412,6 +1413,9 @@ export const useProgress = create<ProgressState>()(
     },
   ),
 );
+// The language flag the data modules read (src/lib/langNow.ts), kept in step with the setting.
+setFrNow(useProgress.getState().nameLang === 'fr');
+useProgress.subscribe((s) => setFrNow(s.nameLang === 'fr'));
 
 // The player's own JLPT words, known to the JLPT data as they are now and whenever they change.
 setCustomWords(useProgress.getState().jlptCustom);

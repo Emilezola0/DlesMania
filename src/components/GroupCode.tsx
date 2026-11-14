@@ -7,6 +7,7 @@ import { celebrateBig } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { dayKey, useProgress } from '../store/progress';
 import type { Domain } from '../types';
+import { tr } from '../lib/i18n';
 
 const groups = () => import('../cloud/groups');
 const MAX_JOINS = 12;
@@ -36,7 +37,7 @@ export function GroupHost({ domain, date }: { domain: Domain; date: string }) {
   }, [code]);
 
   if (mine?.role === 'joined') {
-    return <p className="text-sm font-semibold text-ink-soft">🤝 Played together with {mine.host ?? 'a friend'} (group code {mine.code})</p>;
+    return <p className="text-sm font-semibold text-ink-soft">{tr(`🤝 Played together with ${mine.host ?? 'a friend'} (group code ${mine.code})`, `🤝 Joué ensemble avec ${mine.host ?? 'un ami'} (code de groupe ${mine.code})`)}</p>;
   }
 
   const make = async () => {
@@ -65,7 +66,7 @@ export function GroupHost({ domain, date }: { domain: Domain; date: string }) {
 
   return (
     <div className="page mx-auto max-w-md space-y-2 rounded-md p-4 text-center">
-      <p className="font-display font-bold">🤝 Played this with friends?</p>
+      <p className="font-display font-bold">{tr('🤝 Played this with friends?', '🤝 Joué avec des amis ?')}</p>
       {code ? (
         <>
           <p className="text-sm text-ink-soft">Give them this code: they enter it in their {domain} daily and get your rounds, score, coins and streak — today only.</p>
@@ -73,23 +74,23 @@ export function GroupHost({ domain, date }: { domain: Domain; date: string }) {
             {code}
           </button>
           <p className="text-xs text-ink-faint">
-            {copied ? '✓ Copied · ' : 'Tap to copy · '}
+            {copied ? tr('✓ Copied · ', '✓ Copié · ') : tr('Tap to copy · ', 'Touche pour copier · ')}
             {joins === null ? '…' : `${joins}/${MAX_JOINS}`} friends joined
           </p>
         </>
       ) : signedIn ? (
         <>
-          <p className="text-sm text-ink-soft">Make a group code: everyone who played along gets this daily too, as if they&apos;d played it.</p>
+          <p className="text-sm text-ink-soft">{tr('Make a group code: everyone who played along gets this daily too, as if they’d played it.', 'Crée un code de groupe : tous ceux qui ont joué avec toi reçoivent aussi ce défi, comme s’ils l’avaient joué.')}</p>
           <button type="button" onClick={make} disabled={busy} className="btn-accent rounded-md px-5 py-2 font-display font-bold disabled:opacity-50">
-            {busy ? 'Making…' : 'Make a group code'}
+            {busy ? tr('Making…', 'Création…') : tr('Make a group code', 'Créer un code de groupe')}
           </button>
         </>
       ) : (
         <p className="text-sm text-ink-soft">
           <Link to="/account" className="font-semibold text-accent hover:underline">
-            Sign in
+            {tr('Sign in', 'Connecte-toi')}
           </Link>{' '}
-          to make a group code: everyone who played along gets this daily too.
+          {tr('to make a group code: everyone who played along gets this daily too.', 'pour créer un code de groupe : tous ceux qui ont joué avec toi reçoivent aussi ce défi.')}
         </p>
       )}
       {error && <p className="text-sm font-semibold text-coral">{error}</p>}
@@ -127,27 +128,30 @@ export function GroupJoin({ domain, date, onJoined }: { domain: Domain; date: st
   if (!open) {
     return (
       <button type="button" onClick={() => (sfx.click(), setOpen(true))} className="text-sm font-semibold text-ink-soft underline-offset-2 hover:text-ink hover:underline">
-        🤝 Played this with friends? Enter their group code
+        {tr('🤝 Played this with friends? Enter their group code', '🤝 Joué avec des amis ? Entre leur code de groupe')}
       </button>
     );
   }
   return (
     <form onSubmit={join} className="page flex flex-wrap items-center gap-2 rounded-md p-3">
       <p className="w-full text-sm text-ink-soft">
-        The friend who played makes a code after the last round. With it, the rounds you haven&apos;t finished become theirs — their answers, score, coins and streak.
+        {tr(
+          'The friend who played makes a code after the last round. With it, the rounds you haven’t finished become theirs — their answers, score, coins and streak.',
+          'L’ami qui a joué crée un code après la dernière manche. Avec lui, les manches que tu n’as pas finies deviennent les siennes — ses réponses, son score, ses pièces et sa série.',
+        )}
       </p>
       <input
         value={code}
         onChange={(e) => (setCode(e.target.value.toUpperCase()), setError(null))}
         placeholder="ABC234"
-        aria-label="Group code"
+        aria-label={tr('Group code', 'Code de groupe')}
         maxLength={8}
         autoComplete="off"
         spellCheck={false}
         className="w-40 rounded-md border border-rule-strong bg-card px-3 py-2 font-mono text-lg font-bold uppercase tracking-[0.25em]"
       />
       <button type="submit" disabled={busy || code.replace(/[^A-Za-z0-9]/g, '').length !== 6} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
-        {busy ? 'Joining…' : 'Join'}
+        {busy ? tr('Joining…', 'Connexion…') : tr('Join', 'Rejoindre')}
       </button>
       <button type="button" onClick={() => setOpen(false)} className="text-sm text-ink-faint hover:text-ink">
         Cancel

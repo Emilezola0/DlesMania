@@ -6,6 +6,7 @@ import { mulberry32, shuffle } from '../lib/rng';
 import { scoreFor } from '../lib/scoring';
 import type { GameProps } from '../types';
 import { GAME_META } from './meta';
+import { tr } from '../lib/i18n';
 
 export default function TimelineGame({ spec, record, onChange }: GameProps) {
   const ids = spec.workIds!;
@@ -45,8 +46,8 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
   return (
     <div className="space-y-5">
       <p className="text-center text-ink-soft">
-        Sort these {domainLabel} from <span className="font-semibold text-ink">oldest</span> to{' '}
-        <span className="font-semibold text-ink">newest</span>. Drag or use the arrows.
+        {tr(`Sort these ${domainLabel} from`, 'Range ces œuvres de la plus')} <span className="font-semibold text-ink">{tr('oldest', 'ancienne')}</span> {tr('to', 'à la plus')}{' '}
+        <span className="font-semibold text-ink">{tr('newest', 'récente')}</span>. {tr('Drag or use the arrows.', 'Fais-les glisser ou utilise les flèches.')}
       </p>
 
       <ol className="space-y-2">
@@ -80,10 +81,10 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
                 <span className="font-mono text-lg font-bold text-ink">{w.year}</span>
               ) : (
                 <div className="flex flex-col">
-                  <button type="button" aria-label="Move up" onClick={() => move(i, i - 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === 0}>
+                  <button type="button" aria-label={tr('Move up', 'Monter')} onClick={() => move(i, i - 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === 0}>
                     ▲
                   </button>
-                  <button type="button" aria-label="Move down" onClick={() => move(i, i + 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === shown.length - 1}>
+                  <button type="button" aria-label={tr('Move down', 'Descendre')} onClick={() => move(i, i + 1)} className="px-2 text-ink-soft hover:text-ink disabled:opacity-20" disabled={i === shown.length - 1}>
                     ▼
                   </button>
                 </div>
@@ -96,7 +97,7 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
       {!done && (
         <div className="flex items-center justify-between">
           <span className="text-sm text-ink-soft">
-            Attempt {record.guesses.length + 1} / {max}
+            {tr('Attempt', 'Essai')} {record.guesses.length + 1} / {max}
           </span>
           <button
             type="button"
@@ -104,12 +105,12 @@ export default function TimelineGame({ spec, record, onChange }: GameProps) {
             disabled={last?.join() === order.join()}
             className="btn-accent rounded-md px-5 py-2.5 font-display font-semibold tracking-wider"
           >
-            Lock in order
+            {tr('Lock in order', 'Valider l’ordre')}
           </button>
         </div>
       )}
 
-      <Outcome record={record} answerLabel={done ? 'Correct order revealed above' : undefined} />
+      <Outcome record={record} answerLabel={done ? tr('Correct order revealed above', 'Le bon ordre est révélé au-dessus') : undefined} />
     </div>
   );
 }

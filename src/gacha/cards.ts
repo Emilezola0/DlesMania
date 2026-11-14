@@ -20,6 +20,8 @@ import INAZUMA_GO from '../data/inazuma-go.json';
 import CARD_ART from '../data/card-art.json';
 import CARD_OPAQUE from '../data/card-opaque.json';
 import RARITY_TUNING from '../data/tuning/rarities.json';
+import RARITIES_FR from '../data/rarities-fr.json';
+import { withFrench } from '../lib/langNow';
 import { kanjiPicture } from '../lib/kanji';
 import type { Domain } from '../types';
 import { VAULTED } from './upgrades';
@@ -35,6 +37,8 @@ export const RARITIES: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythi
 
 /** Names, gems and order: src/data/tuning/rarities.json (edited from the dev-only #/admin page). */
 export const RARITY_INFO: Record<Rarity, { name: string; gem: string; rank: number }> = RARITY_TUNING.info;
+// Their names in French too (src/data/rarities-fr.json), shown when the game is in French.
+for (const r of RARITIES) withFrench(RARITY_INFO[r], { name: RARITIES_FR.rarities[r] });
 
 /** Each rarity's light: the glow from a torn pack, the shooting star, the bursts, an icon's ring. */
 export const RARITY_LIGHT: Record<Rarity, string> = RARITY_TUNING.light;
@@ -94,7 +98,9 @@ export interface Card {
  */
 const MYTHICS: Record<string, { name: string; title: string; line: string; voice: string; audio?: string; voiceClips?: { line: string; audio: string }[]; voiceFr?: string; audioFr?: string; image?: string }> = {
   lol: { name: 'Ahri', title: 'The Nine-Tailed Fox', line: 'Nine tails, nine stolen memories — and a smile that makes you forget the rest.', voice: "A clever fox is never caught.", audio: "https://static.wikia.nocookie.net/leagueoflegends/images/5/5e/Ahri_Select.ogg/revision/latest?cb=20230110210107" },
-  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000" },
+  overwatch: { name: 'Tracer', title: 'The Cavalry', line: 'Blink, blink, recall: she was here a second ago, and she will be a second from now.', voice: "Cheers, love! The cavalry's here!", audio: "https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/cb/Tracer_-_Cheers%2C_love%21_The_cavalry%27s_here.ogg/revision/latest?cb=20230915013000",
+    // In French, the same hero-select line in Dorothée Pousséo's voice (the Overwatch wiki's French Dubbing page; its words from the French wiki).
+    voiceFr: 'Hello, mon chou ! La cavalerie est arrivée !', audioFr: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/e/e5/FrenchTracerSELECT.wav/revision/latest?cb=20241202035834' },
   minecraft: { name: 'Creeper', title: 'The Silent Hiss', line: 'No arms, no warning — only a hiss behind you, and a crater where your house used to be.', voice: "Sssssss…", audio: "https://minecraft.wiki/images/Creeper_fuse.ogg?2ff0e" },
   onepiece: { name: 'Monkey D. Luffy', title: 'Sun God Nika', line: 'The drums of liberation beat again: one laugh, and the whole sea becomes his playground.', voice: "Kaizoku ō ni ore wa naru!", audio: "https://www.myinstants.com/media/sounds/zzz.mp3", image: 'https://static.wikia.nocookie.net/onepiece/images/6/66/Gear_5_Infobox.png/revision/latest/scale-to-width-down/500?cb=20251221160520' },
   dbz: { name: 'Goku', title: 'Ultra Instinct', line: 'His body moves before his mind decides — calm as still water, fast as light.', voice: "HAAAAAAAAH!", audio: "https://www.myinstants.com/media/sounds/goku-ui-roar-japanese.mp3", image: 'https://static.wikia.nocookie.net/dragonball/images/b/b9/Ultra_Instinct_Goku.png/revision/latest/scale-to-width-down/500?cb=20180930060236' },
@@ -635,7 +641,7 @@ const JLPT_LINE = new Map([...(JLPT_CARDS.described as JlptRow[]), ...JLPT_ROSTE
  * and Inazuma in Japanese), from the wikis' voice files and myinstants. A card left out keeps its
  * own picture, and its line is read by the browser's voice.
  */
-const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'focus' | 'clipSound'>>> = {
+const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'audio' | 'voiceFr' | 'audioFr' | 'focus' | 'clipSound'>>> = {
   // ── First mythics ──
   'lol:mythic': { title: 'Prestige K/DA', image: 'https://static.wikia.nocookie.net/leagueoflegends/images/f/fc/Ahri_PrestigeKDALoading.jpg/revision/latest?cb=20230110233703' },
   'overwatch:mythic': { title: 'Graffiti', image: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/1/19/Tracer_Skin_Graffiti.png/revision/latest/scale-to-width-down/500?cb=20170526223356' },
@@ -658,7 +664,13 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   'inazuma:mythic-2': { audio: 'https://static.wikia.nocookie.net/inazuma-eleven/images/4/48/%28IE_%28007%29%29_Fire_Tornado.mp4/revision/latest?cb=20240602210604', image: 'https://static.wikia.nocookie.net/inazuma-eleven/images/d/d0/Gouenji_Shuuya_%28Orion%29.png/revision/latest/scale-to-width-down/500?cb=20190912000534' },
   // ── Omnis: their voices ──
   'lol:omni': { voice: 'A chase, then!', audio: 'https://static.wikia.nocookie.net/leagueoflegends/images/e/ef/Ahri_SpiritBlossom_R_1.ogg/revision/latest?cb=20200726232639' },
-  'overwatch:omni': { voice: 'Heroes never die!', audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913' },
+  // Mercy's Valkyrie line; in French in Sybille Tureau's voice (the Overwatch wiki's French Dubbing page).
+  'overwatch:omni': {
+    voice: 'Heroes never die!',
+    audio: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/a/ac/Mercy_-_Heroes_never_die.ogg/revision/latest?cb=20230914114913',
+    voiceFr: 'Les héros ne meurent jamais !',
+    audioFr: 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/c/c9/FrenchMercyULT.wav/revision/latest?cb=20241202035833',
+  },
   'minecraft:omni': { voice: '*BOOM*', audio: 'https://minecraft.wiki/images/Explosion1.ogg?6ed29' },
   // Luffy: his clip (Gear 5's Gum Gum lightning) is heard with its own sound behind a win (the owner's call); his voice
   // line stays for the card's 🔊 button.

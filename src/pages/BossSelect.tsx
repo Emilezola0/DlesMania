@@ -6,8 +6,9 @@ import { domainInfo } from '../data';
 import { BOSS_TABS, BOSSES, inTab, type BossTab } from '../data/bosses';
 import { formatTime } from '../lib/boss';
 import { bestSearchScore } from '../utils/textMatcher';
-import { DIFFICULTIES, DIFFICULTY_IDS } from '../lib/boss';
+import { DIFFICULTIES, DIFFICULTY_FR, DIFFICULTY_IDS } from '../lib/boss';
 import { EMPTY_BOSS_RECORD, bossKey, useProgress } from '../store/progress';
+import { useT } from '../lib/i18n';
 
 function chip(active: boolean) {
   return `inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-sm font-semibold transition ${
@@ -21,6 +22,7 @@ export default function BossSelect() {
   const domain = (BOSS_TABS as string[]).includes(params.get('domain') ?? '') ? (params.get('domain') as BossTab) : 'games';
   const [query, setQuery] = useState('');
   const records = useProgress((s) => s.bosses);
+  const t = useT();
 
   // A search looks across every domain, so a franchise is found even from the wrong tab.
   const list = useMemo(() => {
@@ -36,26 +38,26 @@ export default function BossSelect() {
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">A trial in three phases</p>
-          <h1 className="text-5xl font-bold">Boss Battle</h1>
+          <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{t('A trial in three phases', 'Une épreuve en trois phases')}</p>
+          <h1 className="text-5xl font-bold">{t('Boss Battle', 'Combat de boss')}</h1>
           <p className="max-w-xl text-ink-soft">
-            Choose a franchise and face its guardian. Each phase you win breaks a third of its life — each one you lose costs you a heart.
+            {t('Choose a franchise and face its guardian. Each phase you win breaks a third of its life — each one you lose costs you a heart.', 'Choisis une franchise et affronte son gardien. Chaque phase gagnée brise un tiers de sa vie — chaque phase perdue te coûte un cœur.')}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <RulesButton tab="boss" label="Rules" />
+          <RulesButton tab="boss" label={t('Rules', 'Règles')} />
           <span className="rounded-full border border-rule-strong px-3 py-1 font-display text-sm font-semibold tracking-wider text-ink-soft">
-            {totalWins}/{BOSSES.length} bosses defeated
+            {totalWins}/{BOSSES.length} {t('bosses defeated', 'boss vaincus')}
           </span>
         </div>
       </div>
 
       <div className="page space-y-4 rounded-md p-5">
         <div>
-          <p className="mb-2 font-display text-xs uppercase tracking-widest text-ink-faint">I · Domain</p>
+          <p className="mb-2 font-display text-xs uppercase tracking-widest text-ink-faint">{t('I · Domain', 'I · Domaine')}</p>
           <div className="flex flex-wrap gap-2">
             {BOSS_TABS.map((id) => {
-              const d = id === 'other' ? { label: 'Other', tone: 'text-ink-soft' } : id === 'language' ? { label: 'Language', tone: 'text-coral' } : domainInfo(id);
+              const d = id === 'other' ? { label: t('Other', 'Autres'), tone: 'text-ink-soft' } : id === 'language' ? { label: t('Language', 'Langue'), tone: 'text-coral' } : domainInfo(id);
               const active = domain === id && !query;
               return (
                 <button
@@ -78,14 +80,14 @@ export default function BossSelect() {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search a franchise or boss…"
+            placeholder={t('Search a franchise or boss…', 'Cherche une franchise ou un boss…')}
             className="w-full rounded-xl border border-rule-strong bg-card/90 px-4 py-3 text-base outline-none ring-accent/30 transition placeholder:text-ink-faint focus:border-accent focus:ring-4"
           />
         </div>
       </div>
 
       {list.length === 0 ? (
-        <p className="text-center font-serif text-lg italic text-ink-soft">No guardian answers to that name… yet.</p>
+        <p className="text-center font-serif text-lg italic text-ink-soft">{t('No guardian answers to that name… yet.', 'Aucun gardien ne répond à ce nom… pour l’instant.')}</p>
       ) : (
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((b) => {
@@ -105,7 +107,7 @@ export default function BossSelect() {
                     {b.boss.image && <img src={b.boss.image} alt="" loading="lazy" className="size-full object-cover object-top" />}
                     {beaten(b.id) && (
                       <span className="absolute inset-0 grid place-items-center bg-black/45 font-display text-xs font-bold tracking-widest text-white">
-                        SLAIN
+                        {t('SLAIN', 'VAINCU')}
                       </span>
                     )}
                   </span>
@@ -120,15 +122,15 @@ export default function BossSelect() {
                       {per.map(({ d, r }) => (
                         <span
                           key={d}
-                          title={`${DIFFICULTIES[d].label}: ${r.plays ? `${r.wins}/${r.plays} won${r.bestTime != null ? `, best ${formatTime(r.bestTime)}` : ''}` : 'not played'}`}
+                          title={`${t(DIFFICULTIES[d].label, DIFFICULTY_FR[d].label)}: ${r.plays ? t(`${r.wins}/${r.plays} won`, `${r.wins}/${r.plays} gagnés`) + (r.bestTime != null ? t(`, best ${formatTime(r.bestTime)}`, `, record ${formatTime(r.bestTime)}`) : '') : t('not played', 'pas joué')}`}
                           className={`grid size-5 place-items-center rounded-sm border font-display text-[10px] font-bold ${
                             r.wins ? 'border-hit bg-hit text-on-strong' : 'border-rule-strong text-ink-faint'
                           }`}
                         >
-                          {DIFFICULTIES[d].label[0]}
+                          {t(DIFFICULTIES[d].label, DIFFICULTY_FR[d].label)[0]}
                         </span>
                       ))}
-                      <span className="ml-1">{plays === 0 ? 'Unchallenged' : `best ${bestScore} pts`}</span>
+                      <span className="ml-1">{plays === 0 ? t('Unchallenged', 'Jamais défié') : t(`best ${bestScore} pts`, `record ${bestScore} pts`)}</span>
                     </span>
                   </span>
                 </Link>

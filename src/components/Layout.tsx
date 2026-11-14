@@ -16,22 +16,26 @@ import { AlbumNews } from './AlbumNews';
 import { BirthdayReward } from './BirthdayReward';
 import { todayKey } from '../lib/date';
 import { AvatarFrame, useWornFrame } from '../casino/Frame';
+import { useFr, useT } from '../lib/i18n';
 
 /** Every game outside the daily and the bosses lives under "Games" (see src/pages/GamesHub.tsx). */
 export const GAME_PATHS = ['/games', '/whos-that', '/specialist', '/rank', '/higher-lower', '/jlpt', '/name-them-all', '/guess-the-year', '/rail-rush', '/memory', '/odd-one-out', '/who-am-i', '/wordle', '/quick-sort', '/six-degrees', '/expedition', '/map-quiz', '/crossroads', '/summit', '/shop'];
 
 const NAV = [
-  { to: '/daily', label: 'Daily' },
-  { to: '/play', label: 'Free Play', short: 'Play' },
-  { to: '/boss', label: 'Boss Battle', short: 'Boss' },
-  { to: '/games', label: 'Games', also: GAME_PATHS },
+  { to: '/daily', label: 'Daily', fr: 'Du jour' },
+  { to: '/play', label: 'Free Play', short: 'Play', fr: 'Jeu libre', shortFr: 'Libre' },
+  { to: '/boss', label: 'Boss Battle', short: 'Boss', fr: 'Combat de boss', shortFr: 'Boss' },
+  { to: '/games', label: 'Games', also: GAME_PATHS, fr: 'Jeux' },
   { to: '/album', label: 'Album', also: ['/trades'] },
   { to: '/casino', label: 'Casino' },
   // Two small figures, as the Archive is a calendar: the bars have no room for one more word.
-  { to: '/friends', label: 'Friends', phoneIcon: true },
+  { to: '/friends', label: 'Friends', phoneIcon: true, fr: 'Amis' },
   // The archive: a small calendar, today's date on it.
-  { to: '/archive', label: 'Archive', icon: true },
-] as { to: string; label: string; short?: string; also?: string[]; icon?: boolean; phoneIcon?: boolean }[];
+  { to: '/archive', label: 'Archive', icon: true, fr: 'Archives' },
+] as { to: string; label: string; short?: string; fr?: string; shortFr?: string; also?: string[]; icon?: boolean; phoneIcon?: boolean }[];
+/** A menu entry's name in the player's language. */
+const navLabel = (n: (typeof NAV)[number], fr: boolean) => (fr && n.fr) || n.label;
+const navShort = (n: (typeof NAV)[number], fr: boolean) => (fr ? n.shortFr ?? n.fr : n.short) ?? n.label;
 
 /** Two small figures, side by side: Friends, in the phones' bottom bar. */
 function FriendsIcon({ className = 'size-5' }: { className?: string }) {
@@ -89,7 +93,11 @@ export function ThemeIcon({ theme }: { theme: ThemeChoice }) {
   );
 }
 
-const THEME_LABEL: Record<ThemeChoice, string> = { system: 'Theme: follows your system', light: 'Theme: light', dark: 'Theme: dark' };
+const THEME_LABEL: Record<ThemeChoice, [string, string]> = {
+  system: ['Theme: follows your system', 'Thème : celui du système'],
+  light: ['Theme: light', 'Thème : clair'],
+  dark: ['Theme: dark', 'Thème : sombre'],
+};
 const THEME_COLOR = { light: '#efe6d2', dark: '#1b1924' };
 
 /** Mirrors the stored choice onto <html data-theme> (the inline script in index.html does it before first paint). */
@@ -125,6 +133,7 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
   const clipVolume = useProgress((s) => s.clipVolume);
   const setVolume = useProgress((s) => s.setVolume);
   const box = useRef<HTMLDivElement>(null);
+  const t = useT();
   // Close on a click elsewhere or Escape.
   useEffect(() => {
     if (!open) return;
@@ -162,8 +171,8 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        title="Sound and volume"
-        aria-label="Sound and volume"
+        title={t('Sound and volume', 'Son et volume')}
+        aria-label={t('Sound and volume', 'Son et volume')}
         aria-expanded={open}
         className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
       >
@@ -172,13 +181,16 @@ function SoundMenu({ sound, toggleSound }: { sound: boolean; toggleSound: () => 
       {open && (
         <div className="animate-pop absolute right-0 top-full z-40 mt-2 w-60 space-y-3 rounded-md border border-rule-strong bg-card p-4 shadow-2xl">
           <label className="flex items-center justify-between gap-3 text-sm font-semibold">
-            Sound effects
+            {t('Sound effects', 'Effets sonores')}
             <input type="checkbox" checked={sound} onChange={toggleSound} className="size-4 accent-[var(--color-accent,currentColor)]" />
           </label>
-          {slider('Effects volume', 'sfxVolume', sfxVolume, 200, !sound)}
-          {slider('Clips & voices', 'clipVolume', clipVolume, 100)}
+          {slider(t('Effects volume', 'Volume des effets'), 'sfxVolume', sfxVolume, 200, !sound)}
+          {slider(t('Clips & voices', 'Clips et voix'), 'clipVolume', clipVolume, 100)}
           <p className="text-[11px] leading-snug text-ink-faint">
-            Effects can be boosted up to 200%. Clips & voices (soundtracks, voice lines, laughs) play through YouTube, which stops at 100%.
+            {t(
+              'Effects can be boosted up to 200%. Clips & voices (soundtracks, voice lines, laughs) play through YouTube, which stops at 100%.',
+              "Les effets peuvent monter jusqu'à 200 %. Clips et voix (bandes-son, répliques, rires) passent par YouTube, qui s'arrête à 100 %.",
+            )}
           </p>
         </div>
       )}
@@ -220,12 +232,13 @@ function AccountButton() {
   const avatar = useProgress((s) => (s.avatar && s.cards[s.avatar] ? s.avatar : null));
   const frame = useWornFrame();
   const signedIn = !!email && status !== 'signedOut';
+  const t = useT();
   const dot = status === 'synced' ? 'bg-hit' : status === 'syncing' ? 'bg-ochre animate-pulse' : status === 'error' ? 'bg-coral' : status === 'offline' ? 'bg-ink-faint' : '';
   return (
     <Link
       to="/account"
-      title={signedIn ? `Signed in as ${email}` : 'Sign in to play on all your devices'}
-      aria-label="Account"
+      title={signedIn ? t(`Signed in as ${email}`, `Connecté : ${email}`) : t('Sign in to play on all your devices', 'Connecte-toi pour jouer sur tous tes appareils')}
+      aria-label={t('Account', 'Compte')}
       className="relative grid size-7 shrink-0 place-items-center rounded-full text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:size-8"
     >
       {avatar ? (
@@ -257,6 +270,7 @@ function AccountButton() {
 /** The DleCoin balance, to the Card Shop; coins just earned float up from it. */
 function CoinChip() {
   const coins = useProgress((s) => s.coins);
+  const t = useT();
   const last = useRef(coins);
   const [gain, setGain] = useState<{ n: number; key: number } | null>(null);
   useEffect(() => {
@@ -270,7 +284,7 @@ function CoinChip() {
   return (
     <Link
       to="/shop"
-      title="DleCoins — the Card Shop"
+      title={t('DleCoins — the Card Shop', 'DleCoins — la boutique de cartes')}
       className="relative flex shrink-0 items-center gap-1 rounded-full border border-ochre/60 bg-ochre/10 px-2 py-0.5 text-sm font-bold tabular-nums text-ink transition hover:bg-ochre/20 min-[420px]:px-2.5 min-[420px]:py-1"
     >
       <DleCoin className="size-4" />
@@ -395,6 +409,8 @@ export function Layout() {
   // A win's video still playing keeps the card layers there, though the last card was just taken off: only a refresh
   // stops one (html.moment-on, set by CardReactions while it lasts).
   const momentOn = useMomentOn();
+  const fr = useFr();
+  const t = useT();
 
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip max-sm:pb-14">
@@ -420,8 +436,8 @@ export function Layout() {
                     isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft hover:text-ink'
                   } ${n.to === '/daily' && dailyLeft ? 'nav-daily-left' : ''}`;
                 }}
-                title={n.icon || n.phoneIcon ? n.label : undefined}
-                aria-label={n.icon || n.phoneIcon ? n.label : undefined}
+                title={n.icon || n.phoneIcon ? navLabel(n, fr) : undefined}
+                aria-label={n.icon || n.phoneIcon ? navLabel(n, fr) : undefined}
               >
                 {n.icon ? (
                   <CalendarIcon className="-my-1 size-[22px]" />
@@ -429,11 +445,11 @@ export function Layout() {
                   <FriendsIcon className="-my-1 size-[22px]" />
                 ) : n.short ? (
                   <>
-                    <span className="xl:hidden">{n.short}</span>
-                    <span className="hidden xl:inline">{n.label}</span>
+                    <span className="xl:hidden">{navShort(n, fr)}</span>
+                    <span className="hidden xl:inline">{navLabel(n, fr)}</span>
                   </>
                 ) : (
-                  n.label
+                  navLabel(n, fr)
                 )}
               </NavLink>
             ))}
@@ -441,8 +457,8 @@ export function Layout() {
           <button
             type="button"
             onClick={() => openRules(onBoss ? 'boss' : 'daily')}
-            title="How to play"
-            aria-label="How to play"
+            title={t('How to play', 'Comment jouer')}
+            aria-label={t('How to play', 'Comment jouer')}
             className="grid size-7 shrink-0 place-items-center rounded-md text-ink-soft transition hover:bg-tile hover:text-ink max-sm:ml-auto min-[420px]:size-8"
           >
             <span className="grid size-[18px] place-items-center rounded-full border-[1.6px] border-current font-display text-[11px] font-bold">?</span>
@@ -452,14 +468,14 @@ export function Layout() {
           <button
             type="button"
             onClick={cycleTheme}
-            title={`${THEME_LABEL[theme]} (click to change)`}
-            aria-label={THEME_LABEL[theme]}
+            title={`${t(...THEME_LABEL[theme])} ${t('(click to change)', '(clique pour changer)')}`}
+            aria-label={t(...THEME_LABEL[theme])}
             className="rounded-md p-1 text-ink-soft transition hover:bg-tile hover:text-ink min-[420px]:p-1.5"
           >
             <ThemeIcon theme={theme} />
           </button>
           <span
-            title="Days in a row with at least one category completed"
+            title={t('Days in a row with at least one category completed', "Jours d'affilée avec au moins une catégorie terminée")}
             className={`hidden items-center gap-1 rounded-full border px-2.5 py-1 text-sm font-bold lg:flex ${
               current > 0 ? 'border-coral/60 bg-coral/10 text-coral' : 'border-rule-strong text-ink-faint'
             }`}
@@ -480,7 +496,7 @@ export function Layout() {
         </Suspense>
       </main>
       {/* Phones: the menu along the bottom, within reach of a thumb. */}
-      <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden" aria-label="Main menu">
+      <nav className="phone-tabs fixed inset-x-0 bottom-0 z-30 flex border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur sm:hidden" aria-label={t('Main menu', 'Menu principal')}>
         {NAV.map((n) => (
           <NavLink
             key={n.to}
@@ -489,9 +505,9 @@ export function Layout() {
               const isActive = exact || !!n.also?.some((p) => pathname === p || pathname.startsWith(`${p}/`));
               return `${n.icon || n.phoneIcon ? 'grid flex-none place-items-center px-3' : 'flex-1'} border-t-2 py-3 text-center font-display text-xs font-semibold ${isActive ? 'border-ink text-ink' : 'border-transparent text-ink-soft'} ${n.to === '/daily' && dailyLeft ? 'nav-daily-left' : ''}`;
             }}
-            aria-label={n.icon || n.phoneIcon ? n.label : undefined}
+            aria-label={n.icon || n.phoneIcon ? navLabel(n, fr) : undefined}
           >
-            {n.icon ? <CalendarIcon className="size-5" /> : n.phoneIcon ? <FriendsIcon /> : (n.short ?? n.label)}
+            {n.icon ? <CalendarIcon className="size-5" /> : n.phoneIcon ? <FriendsIcon /> : navShort(n, fr)}
           </NavLink>
         ))}
       </nav>
@@ -505,15 +521,23 @@ export function Layout() {
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />
         <p className="font-serif text-sm italic">
-          Omnidle — a daily pop-culture challenge across games, anime, cinema &amp; music. Progress is saved in your browser.
+          {t(
+            'Omnidle — a daily pop-culture challenge across games, anime, cinema & music. Progress is saved in your browser.',
+            'Omnidle — un défi quotidien de culture pop : jeux vidéo, anime, cinéma et musique. La progression est sauvegardée dans ton navigateur.',
+          )}
         </p>
-        <p className="mt-1">A free fan project, not affiliated with any of these companies; all works, images and clips belong to their respective owners.</p>
         <p className="mt-1">
-          Own something shown here and want it removed?{' '}
+          {t(
+            'A free fan project, not affiliated with any of these companies; all works, images and clips belong to their respective owners.',
+            'Un projet de fan gratuit, sans lien avec aucune de ces sociétés ; les œuvres, images et clips appartiennent à leurs propriétaires respectifs.',
+          )}
+        </p>
+        <p className="mt-1">
+          {t('Own something shown here and want it removed?', "Quelque chose qui t'appartient est montré ici et tu veux qu'il soit retiré ?")}{' '}
           <a href="https://github.com/Emilezola0/DlesMania/issues" target="_blank" rel="noreferrer" className="underline hover:text-ink">
-            Tell us
+            {t('Tell us', 'Dis-le-nous')}
           </a>{' '}
-          and it will be taken down.
+          {t('and it will be taken down.', 'et ce sera retiré.')}
         </p>
         <p className="mt-2 font-display tracking-wider opacity-70">v{__APP_RELEASE__}</p>
       </footer>

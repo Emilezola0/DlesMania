@@ -19,6 +19,7 @@ import { DleCoin } from '../components/DleCoin';
 import { EMPTY_RECORD, type Domain, type RoundRecord, type RoundSpec } from '../types';
 import { RulesButton } from '../components/RulesModal';
 import { GroupHost, GroupJoin } from '../components/GroupCode';
+import { useT } from '../lib/i18n';
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
@@ -41,6 +42,7 @@ function Countdown() {
 export function DailyCards() {
   const days = useProgress((s) => s.days);
   const today = todayKey();
+  const t = useT();
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {DOMAINS.map((d) => {
@@ -58,7 +60,7 @@ export function DailyCards() {
                 <div>
                   <p className="font-serif text-2xl font-bold leading-tight">{d.label}</p>
                   <p className="font-display text-[11px] tracking-[0.2em] text-ink-faint">
-                    {sum.complete ? 'COMPLETED' : sum.finished ? `${sum.finished} OF 10 PLAYED` : 'NOT STARTED'}
+                    {sum.complete ? t('COMPLETED', 'TERMINÉ') : sum.finished ? t(`${sum.finished} OF 10 PLAYED`, `${sum.finished} SUR 10 JOUÉS`) : t('NOT STARTED', 'PAS COMMENCÉ')}
                   </p>
                 </div>
               </div>
@@ -87,15 +89,16 @@ export function DailyCards() {
 /** /daily */
 export function DailyHub() {
   const today = todayKey();
+  const t = useT();
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="font-display text-xs tracking-[0.25em] text-ink-faint">{formatLong(today).toUpperCase()}</p>
-          <h1 className="text-5xl font-bold">Daily №{dayNumber(today)}</h1>
-          <p className="font-serif text-lg italic text-ink-soft">Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.</p>
+          <h1 className="text-5xl font-bold">{t('Daily', 'Défi du jour')} №{dayNumber(today)}</h1>
+          <p className="font-serif text-lg italic text-ink-soft">{t('Four independent challenges, ten mini-games each. Same puzzles for everyone, reset at midnight.', 'Quatre défis indépendants, dix mini-jeux chacun. Les mêmes énigmes pour tout le monde, remises à zéro à minuit.')}</p>
         </div>
-        <RulesButton tab="daily" label="How to play" />
+        <RulesButton tab="daily" label={t('How to play', 'Règles du jeu')} />
       </div>
       <DailyCards />
       <SpecialistCard />
@@ -111,16 +114,17 @@ export function SpecialistCard() {
   const special = useProgress((s) => s.special);
   const today = todayKey();
   const featured = UNIVERSES.filter((u) => isFeatured(u.id));
+  const t = useT();
   return (
     <section className="page space-y-4 rounded-md p-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="font-display text-[11px] tracking-[0.25em] text-ink-faint">ONE UNIVERSE, EVERY ANGLE</p>
-          <h2 className="font-serif text-3xl font-bold leading-tight">Specialist</h2>
-          <p className="text-sm text-ink-soft">A daily of its own in each of {UNIVERSES.length} universes: rounds made only from it.</p>
+          <p className="font-display text-[11px] tracking-[0.25em] text-ink-faint">{t('ONE UNIVERSE, EVERY ANGLE', 'UN UNIVERS, SOUS TOUS LES ANGLES')}</p>
+          <h2 className="font-serif text-3xl font-bold leading-tight">{t('Specialist', 'Spécialiste')}</h2>
+          <p className="text-sm text-ink-soft">{t(`A daily of its own in each of ${UNIVERSES.length} universes: rounds made only from it.`, `Un défi du jour à part dans chacun des ${UNIVERSES.length} univers : des manches faites uniquement de lui.`)}</p>
         </div>
         <Link to="/specialist" className="btn-paper rounded-md px-4 py-2 font-display text-sm font-bold">
-          Every universe →
+          {t('Every universe →', 'Tous les univers →')}
         </Link>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
@@ -131,7 +135,7 @@ export function SpecialistCard() {
             <Link key={u.id} to={`/specialist/${u.id}`} className="golden-ready flex flex-col gap-1 rounded-md bg-gradient-to-br from-[#fde68a]/15 to-transparent p-4 transition hover:-translate-y-0.5">
               <span className="golden-text font-display text-lg font-bold">★ {u.label}</span>
               <span className="flex items-center justify-between text-xs text-ink-faint">
-                {done >= u.types.length ? 'Today: done' : done ? `Today: ${done}/${u.types.length}` : 'Today: not started'}
+                {done >= u.types.length ? t('Today: done', 'Aujourd’hui : fait') : done ? t(`Today: ${done}/${u.types.length}`, `Aujourd’hui : ${done}/${u.types.length}`) : t('Today: not started', 'Aujourd’hui : pas commencé')}
                 {streak > 0 && (
                   <span className="inline-flex items-center gap-1 font-bold text-coral">
                     <FlameIcon /> {streak}
@@ -148,10 +152,15 @@ export function SpecialistCard() {
 
 /** What finishing this category paid: today's by its score, and how far along the all-four bonus is. */
 function DailyReward({ date, score, days }: { date: string; score: number; days: ReturnType<typeof useProgress.getState>['days'] }) {
+  const t = useT();
   if (date !== todayKey())
     return (
       <p className="text-sm text-ink-soft">
-        +{CATEGORY_BONUS} <DleCoin className="inline size-4 align-[-3px]" /> for a past day · today&apos;s dailies pay {DAILY_COMPLETE.min.toLocaleString('en')} to {DAILY_COMPLETE.max.toLocaleString('en')}
+        +{CATEGORY_BONUS} <DleCoin className="inline size-4 align-[-3px]" />{' '}
+        {t(
+          `for a past day · today's dailies pay ${DAILY_COMPLETE.min.toLocaleString('en')} to ${DAILY_COMPLETE.max.toLocaleString('en')}`,
+          `pour un jour passé · les défis du jour rapportent de ${DAILY_COMPLETE.min.toLocaleString('fr')} à ${DAILY_COMPLETE.max.toLocaleString('fr')}`,
+        )}
       </p>
     );
   const done = DAILY_DOMAINS.filter((d) => summarizeDay(days[dayKey(d, date)]).complete).length;
@@ -161,14 +170,20 @@ function DailyReward({ date, score, days }: { date: string; score: number; days:
         +{dailyCompleteCoins(score).toLocaleString('en')} <DleCoin className="inline size-6 align-[-4px]" />
       </p>
       <p className="text-xs text-ink-soft">
-        for finishing it ({DAILY_COMPLETE.min.toLocaleString('en')} to {DAILY_COMPLETE.max.toLocaleString('en')}, by your score)
+        {t(
+          `for finishing it (${DAILY_COMPLETE.min.toLocaleString('en')} to ${DAILY_COMPLETE.max.toLocaleString('en')}, by your score)`,
+          `pour l’avoir fini (de ${DAILY_COMPLETE.min.toLocaleString('fr')} à ${DAILY_COMPLETE.max.toLocaleString('fr')}, selon ton score)`,
+        )}
       </p>
       <p className={`text-sm font-semibold ${done >= DAILY_DOMAINS.length ? 'text-hit' : ''}`}>
         {done >= DAILY_DOMAINS.length ? (
-          <>🏆 All four done today: +{DAILY_COMPLETE.allFour.toLocaleString('en')} bonus</>
+          <>{t(`🏆 All four done today: +${DAILY_COMPLETE.allFour.toLocaleString('en')} bonus`, `🏆 Les quatre faits aujourd’hui : +${DAILY_COMPLETE.allFour.toLocaleString('fr')} de bonus`)}</>
         ) : (
           <>
-            {done}/{DAILY_DOMAINS.length} today · finish all four for +{DAILY_COMPLETE.allFour.toLocaleString('en')}
+            {t(
+              `${done}/${DAILY_DOMAINS.length} today · finish all four for +${DAILY_COMPLETE.allFour.toLocaleString('en')}`,
+              `${done}/${DAILY_DOMAINS.length} aujourd’hui · finis les quatre pour +${DAILY_COMPLETE.allFour.toLocaleString('fr')}`,
+            )}
           </>
         )}
       </p>
@@ -181,6 +196,7 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
   const sum = summarizeDay(rounds);
   const streak = computeStreak(days, domain).current;
   const [copied, setCopied] = useState(false);
+  const t = useT();
   const text = shareText(domain, date, specs, rounds, streak);
   const others = DOMAINS.filter((d) => d.id !== domain && !summarizeDay(days[dayKey(d.id, date)]).complete);
 
@@ -197,14 +213,14 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
 
   return (
     <div className="animate-round-in mx-auto max-w-xl space-y-6 text-center">
-      <p className="text-sm font-display uppercase tracking-[0.3em] text-ink-faint">{domainInfo(domain).label} complete</p>
+      <p className="text-sm font-display uppercase tracking-[0.3em] text-ink-faint">{t(`${domainInfo(domain).label} complete`, `${domainInfo(domain).label} : terminé`)}</p>
       <GlyphSeal seed={domain} size={64} tone={domainInfo(domain).tone} className="mx-auto" />
       <p className="font-serif text-8xl font-bold leading-none">{sum.score}</p>
       <p className="text-ink-soft">
-        out of {MAX_DAILY_SCORE} · {sum.won}/10 rounds won
+        {t(`out of ${MAX_DAILY_SCORE} · ${sum.won}/10 rounds won`, `sur ${MAX_DAILY_SCORE} · ${sum.won}/10 manches gagnées`)}
         {streak > 0 && (
           <span className="ml-2 inline-flex items-center gap-1 font-bold text-coral">
-            <FlameIcon /> {streak}-day streak
+            <FlameIcon /> {t(`${streak}-day streak`, `série de ${streak} jours`)}
           </span>
         )}
       </p>
@@ -227,21 +243,21 @@ function Summary({ domain, date, specs, rounds, onPick }: { domain: Domain; date
       </pre>
       <div className="flex flex-wrap justify-center gap-3">
         <button type="button" onClick={share} className="btn-accent rounded-md px-5 py-2.5 font-semibold">
-          {copied ? '✓ Copied!' : 'Share result'}
+          {copied ? t('✓ Copied!', '✓ Copié !') : t('Share result', 'Partager le résultat')}
         </button>
         {others[0] && (
           <Link to={`/daily/${others[0].id}${date === todayKey() ? '' : `/${date}`}`} className="btn-paper inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-semibold">
-            Next: <Glyph seed={others[0].id} size={18} className={others[0].tone} /> {others[0].label}
+            {t('Next:', 'Suivant :')} <Glyph seed={others[0].id} size={18} className={others[0].tone} /> {others[0].label}
           </Link>
         )}
         <Link to={`/archive?domain=${domain}`} className="btn-paper rounded-md px-5 py-2.5 font-semibold">
-          Past days
+          {t('Past days', 'Jours passés')}
         </Link>
       </div>
       {date === todayKey() && <GroupHost domain={domain} date={date} />}
       {date === todayKey() && (
         <p className="text-sm text-ink-faint">
-          Next challenge in <Countdown />
+          {t('Next challenge in', 'Prochain défi dans')} <Countdown />
         </p>
       )}
     </div>
@@ -274,6 +290,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
   const rounds = useProgress((s) => s.days[key]) ?? {};
   const setRound = useProgress((s) => s.setRound);
   const info = domainInfo(domain);
+  const t = useT();
 
   const isOpen = (i: number) => (rounds[i]?.status ?? 'playing') === 'playing';
   const firstOpen = specs.findIndex((_, i) => isOpen(i));
@@ -316,13 +333,13 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
           <h1 className="flex flex-wrap items-center gap-3 text-4xl font-bold">
             <GlyphSeal seed={domain} size={44} tone={info.tone} />
             {info.label} <span className="text-ink-faint">№{dayNumber(date)}</span>
-            {date !== todayKey() && <span className="rounded-sm border border-coral/60 px-1.5 font-display text-[11px] tracking-widest text-coral">ARCHIVE</span>}
+            {date !== todayKey() && <span className="rounded-sm border border-coral/60 px-1.5 font-display text-[11px] tracking-widest text-coral">{t('ARCHIVE', 'ARCHIVES')}</span>}
           </h1>
         </div>
         <div className="flex items-end gap-4">
           <RulesButton tab="daily" />
           <select
-            aria-label="Category"
+            aria-label={t('Category', 'Catégorie')}
             value={domain}
             onChange={(e) => navigate(`/daily/${e.target.value}${date === todayKey() ? '' : `/${date}`}`)}
             className="rounded-md border border-rule-strong bg-card px-3 py-2 font-display text-sm tracking-wider"
@@ -334,7 +351,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
             ))}
           </select>
           <div className="text-right">
-            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">Score</p>
+            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">{t('Score', 'Score')}</p>
             <p className="font-serif text-3xl font-bold tabular-nums">
               {sum.score}
               <span className="text-base text-ink-faint"> / {MAX_DAILY_SCORE}</span>
@@ -375,7 +392,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
       {spec && record ? (
         <section key={`${key}-${index}`} className="mx-auto max-w-3xl space-y-6">
           <div>
-            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">Round {index + 1} of 10</p>
+            <p className="text-xs font-display uppercase tracking-widest text-ink-faint">{t(`Round ${index + 1} of 10`, `Manche ${index + 1} sur 10`)}</p>
             <h2 className="flex items-center gap-2 text-3xl font-bold">
               <Glyph seed={spec.type} size={28} className={info.tone} /> {GAME_META[spec.type].name}
             </h2>
@@ -391,7 +408,7 @@ function DailyChallenge({ domain, date }: { domain: Domain; date: string }) {
                 onClick={() => goTo(nextOpen)}
                 className="btn-ink animate-pop rounded-md px-6 py-3 font-display font-bold tracking-wider"
               >
-                {nextOpen >= 0 ? 'Next round →' : 'See results →'}
+                {nextOpen >= 0 ? t('Next round →', 'Manche suivante →') : t('See results →', 'Voir les résultats →')}
               </button>
             </div>
           )}

@@ -7,6 +7,8 @@
 // Bond is apart: a card from a Bond pack two friends opened together (src/cloud/bonds.ts), linked to both; it's kept
 // in the save's bondCards (with whom), and shows only on a card that has no other special rarity.
 import T from '../data/tuning/special-rarities.json';
+import FR from '../data/rarities-fr.json';
+import { withFrench } from '../lib/langNow';
 import type { Card, Rarity } from './cards';
 
 export type RankId = 'apex' | 'relic' | 'eclipse' | 'bond';
@@ -26,7 +28,10 @@ export interface RankInfo {
   effects: Record<string, boolean>;
 }
 
-export const RANKS = Object.fromEntries(Object.entries(T).map(([id, r]) => [id, { ...r, id }])) as unknown as Record<RankId, RankInfo>;
+// Their name, look and how to get one in French too (src/data/rarities-fr.json), shown when the game is in French.
+export const RANKS = Object.fromEntries(
+  Object.entries(T).map(([id, r]) => [id, withFrench({ ...r, id }, FR.special[id as RankId] ?? {})]),
+) as unknown as Record<RankId, RankInfo>;
 export const isRank = (x: unknown): x is RankId => typeof x === 'string' && x in RANKS;
 
 /** Apex: copies of the Omni it takes (the card and the rest as spares), and the DleCoins it pays. */

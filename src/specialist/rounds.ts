@@ -14,8 +14,9 @@ import { JLPT_POOLS } from './jlpt';
 import { ARC_POOLS } from './arcraiders';
 import { DL_POOLS } from './deadlock';
 import { HSR_POOLS } from './hsr';
+import { withFrench } from '../lib/langNow';
 
-export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote';
+export type SpType = 'classic' | 'fruit' | 'laugh' | 'flag' | 'silhouette' | 'wanted' | 'ability' | 'splash' | 'film' | 'emoji' | 'voice' | 'wish' | 'constellation' | 'art' | 'titles' | 'timeline' | 'picture' | 'clue' | 'pins' | 'windows' | 'spotlight' | 'exotic' | 'execution' | 'kanji' | 'reading' | 'word' | 'ultcost' | 'dance' | 'mob' | 'gear' | 'place' | 'furniture' | 'material' | 'recipe' | 'sound' | 'item' | 'lightcone' | 'quote' | 'skin';
 
 /** The Specialist universes, each with its own rounds (one of each per daily). */
 export const UNIVERSES = [
@@ -34,9 +35,9 @@ export const UNIVERSES = [
     featured: true,
     label: 'League of Legends',
     ready: true,
-    blurb: 'Classic, abilities, splash arts, silhouettes, their champion select quotes and champions told in emojis — every champion, from Data Dragon and the League wiki.',
-    // Quote and Emoji came later: added last, so the days already played keep their rounds.
-    types: ['classic', 'ability', 'splash', 'silhouette', 'timeline', 'quote', 'emoji'] as SpType[],
+    blurb: 'Classic, abilities, splash arts, skins, silhouettes, their champion select quotes and champions told in emojis — every champion, from Data Dragon and the League wiki.',
+    // Quote, Emoji and Skins came later: added last, so the days already played keep their rounds.
+    types: ['classic', 'ability', 'splash', 'silhouette', 'timeline', 'quote', 'emoji', 'skin'] as SpType[],
   },
   {
     id: 'marvel',
@@ -222,10 +223,11 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   wanted: { name: 'Wanted', icon: '📜', tagline: 'Who is on the wanted poster?', maxAttempts: 6 },
   ability: { name: 'Ability', icon: '✨', tagline: 'Whose ability is this?', maxAttempts: 6 },
   splash: { name: 'Splash Art', icon: '🖼️', tagline: 'Whose splash art is this?', maxAttempts: 6 },
+  skin: { name: 'Skins', icon: '🎭', tagline: 'Who wears this skin?', maxAttempts: 6 },
   film: { name: 'Film', icon: '🎬', tagline: 'Which film is this poster from?', maxAttempts: 6 },
   emoji: { name: 'Emoji', icon: '😎', tagline: 'Told in emojis', maxAttempts: 6 },
   quote: { name: 'Quote', icon: '💬', tagline: 'Who says this in game?', maxAttempts: 6 },
-  voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (original English voice)', maxAttempts: 6 },
+  voice: { name: 'Voice Line', icon: '🎙️', tagline: 'Who is speaking? (their English voice)', maxAttempts: 6 },
   wish: { name: 'Wish Art', icon: '🌠', tagline: 'Whose wish art is this?', maxAttempts: 6 },
   art: { name: 'Art', icon: '🖼️', tagline: 'Who is in this picture?', maxAttempts: 6 },
   timeline: { name: 'Timeline', icon: '⏳', tagline: 'Who came first?', maxAttempts: 4 },
@@ -253,6 +255,236 @@ export const SP_META: Record<SpType, { name: string; icon: string; tagline: stri
   item: { name: 'Items', icon: '🛒', tagline: 'Which item of the shop is this?', maxAttempts: 6 },
   pins: { name: 'Pins', icon: '🔌', tagline: 'Which node has these pins?', maxAttempts: 6 },
 };
+
+/** The universes' blurbs, and the rounds' names and taglines, in French (they switch with the EN/FR setting). */
+const UNIVERSE_FR: Partial<Record<UniverseId, { blurb: string; label?: string }>> = {
+  "onepiece": {
+    "blurb": "Classique, fruits du démon, rires, Jolly Rogers et avis de recherche — 220 personnages de l’anime."
+  },
+  "lol": {
+    "blurb": "Classique, compétences, splash arts, skins, silhouettes, leurs répliques de sélection et des champions racontés en emojis — tous les champions, depuis Data Dragon et le wiki de League."
+  },
+  "marvel": {
+    "blurb": "Classique sur 180 personnages, plus des affiches, des films en emojis et des répliques — tous les films sortis.",
+    "label": "Marvel (MCU)"
+  },
+  "genshin": {
+    "blurb": "Classique, arts de vœu, silhouettes et constellations — tous les personnages jouables."
+  },
+  "wow": {
+    "blurb": "Classique, art, silhouettes et titres — 120 des personnages les plus connus des jeux."
+  },
+  "forhonor": {
+    "blurb": "Classique par faction, classe, genre et santé, images, fenêtres, projecteur, armes et exécutions en silhouette — les 39 héros des cinq factions."
+  },
+  "overwatch": {
+    "blurb": "Classique par rôle, sous-rôle, nationalité, santé et âge, répliques tirées des enregistrements du wiki, ultimes et leur coût de charge, images et fenêtres — tous les héros."
+  },
+  "forts": {
+    "blurb": "Images et fenêtres des commandants, armes et dispositifs, commandants en silhouette et par leurs pouvoirs."
+  },
+  "ufouria": {
+    "blurb": "Les héros qui dansent en silhouette, Classique par type, créature et lieu de rencontre, images, fenêtres et projecteur sur héros, ennemis et objets, et des indices tirés du bestiaire."
+  },
+  "hollowknight": {
+    "blurb": "Les insectes d’Hallownest et de Pharloom : Classique par jeu, rôle et genre, leurs dessins en gros plan et derrière des fenêtres, des indices, et leurs propres cris et chants."
+  },
+  "mha": {
+    "blurb": "Les héros, élèves et vilains de Yuei et d’ailleurs : Classique par rôle, Alter, genre, statut et chapitre de première apparition, leurs images de l’anime en gros plan et derrière des fenêtres, et des indices."
+  },
+  "bg3": {
+    "blurb": "Les compagnons, méchants et alliés de la Côte des Épées : Classique par race, rôle et genre, les portraits peints de Larian en gros plan et derrière des fenêtres, et des indices."
+  },
+  "hxh": {
+    "blurb": "Les Hunters, la Brigade fantôme, les Zoldik et les Fourmis-Chimères : Classique par groupe, type de Nen, genre, statut et chapitre de première apparition, leurs images de l’anime en gros plan et derrière des fenêtres, et des indices."
+  },
+  "shrek": {
+    "blurb": "Les ogres, les créatures de contes et les têtes couronnées de Fort Fort Lointain, et les visages du Chat Potté : Classique par espèce, genre, statut et année de leur premier film, les rendus des films en gros plan et derrière des fenêtres, et des indices."
+  },
+  "arcraiders": {
+    "blurb": "Classique sur les machines ARC, puis les machines, armes et équipements, lieux, mobilier, matériaux, recettes de fabrication et sons de robots — depuis le wiki d’ARC Raiders."
+  },
+  "avatar": {
+    "blurb": "Classique par nation et maîtrise, images de la série, fenêtres, répliques, et les personnages par leur histoire.",
+    "label": "Avatar, le dernier maître de l’air"
+  },
+  "deadlock": {
+    "blurb": "Classique par type, genre, santé, chargeur et vitesse, les héros par leur carte et derrière des fenêtres, leurs capacités, leurs propres répliques, et chaque objet de la boutique par son icône — depuis le wiki de Deadlock."
+  },
+  "destiny": {
+    "blurb": "Classique sur les personnages les plus connus des deux jeux, images, fenêtres, indices — et chaque arme exotique par son icône."
+  },
+  "hsr": {
+    "blurb": "Classique par Voie, type de combat, rareté, faction et version, les personnages par leur splash art et derrière des fenêtres, leurs propres cônes de lumière et leurs propres voix — depuis le wiki de Honkai: Star Rail."
+  },
+  "jlpt": {
+    "blurb": "Le japonais de la liste JLPT de Coto Academy, du N5 au N1 : le sens d’un kanji, la lecture d’un mot, un sens à retraduire en japonais.",
+    "label": "Japonais"
+  },
+  "unreal": {
+    "blurb": "Classique, pins et indices — devine le nœud Blueprint, de Branch à Spawn Actor from Class."
+  }
+};
+for (const u of UNIVERSES) if (UNIVERSE_FR[u.id]) withFrench(u as { blurb: string; label: string }, UNIVERSE_FR[u.id]!);
+const SP_FR: Record<SpType, [string, string]> = {
+  "classic": [
+    "Classique",
+    "Trouve-les grâce à leurs traits"
+  ],
+  "fruit": [
+    "Fruit du démon",
+    "Nomme le fruit du démon"
+  ],
+  "laugh": [
+    "Rire",
+    "À qui est ce rire ?"
+  ],
+  "flag": [
+    "Jolly Roger",
+    "Quel équipage arbore ce pavillon ?"
+  ],
+  "silhouette": [
+    "Silhouette",
+    "Qui se cache dans l'ombre ?"
+  ],
+  "wanted": [
+    "Avis de recherche",
+    "Qui est sur l'avis de recherche ?"
+  ],
+  "ability": [
+    "Compétence",
+    "À qui est cette compétence ?"
+  ],
+  "splash": [
+    "Splash art",
+    "À qui est ce splash art ?"
+  ],
+  "skin": [
+    "Skins",
+    "Qui porte ce skin ?"
+  ],
+  "film": [
+    "Film",
+    "De quel film vient cette affiche ?"
+  ],
+  "emoji": [
+    "Emoji",
+    "Raconté en emojis"
+  ],
+  "quote": [
+    "Citation",
+    "Qui dit ça en jeu ?"
+  ],
+  "voice": [
+    "Réplique",
+    "Qui parle ? (voix anglaise)"
+  ],
+  "wish": [
+    "Art de vœu",
+    "À qui est cet art de vœu ?"
+  ],
+  "art": [
+    "Art",
+    "Qui est sur cette image ?"
+  ],
+  "timeline": [
+    "Chronologie",
+    "Qui est arrivé en premier ?"
+  ],
+  "titles": [
+    "Titres",
+    "Qui porte ces titres ?"
+  ],
+  "constellation": [
+    "Constellation",
+    "À qui est cette constellation ?"
+  ],
+  "picture": [
+    "Image",
+    "Qui ou quoi est sur l'image ?"
+  ],
+  "windows": [
+    "Fenêtres",
+    "Des fenêtres s'ouvrent à chaque erreur"
+  ],
+  "spotlight": [
+    "Projecteur",
+    "La lumière s'élargit à chaque erreur"
+  ],
+  "dance": [
+    "Danse",
+    "Qui danse dans l'ombre ?"
+  ],
+  "ultcost": [
+    "Coût d'ultime",
+    "Quelle ultime coûte autant de points ?"
+  ],
+  "kanji": [
+    "Kanji",
+    "Que veut dire ce kanji ?"
+  ],
+  "reading": [
+    "Lecture",
+    "Comment se lit ce mot ?"
+  ],
+  "word": [
+    "Mot",
+    "Quel mot japonais veut dire ceci ?"
+  ],
+  "execution": [
+    "Exécution",
+    "À qui est cette exécution ?"
+  ],
+  "exotic": [
+    "Exotique",
+    "Quelle est cette arme exotique ?"
+  ],
+  "clue": [
+    "Indice",
+    "Nomme-les à partir d’un indice"
+  ],
+  "mob": [
+    "Machines",
+    "Quelle machine ARC est-ce ?"
+  ],
+  "gear": [
+    "Armes et équipement",
+    "Nomme l'arme ou l'équipement"
+  ],
+  "place": [
+    "Lieux",
+    "Où est-ce ?"
+  ],
+  "furniture": [
+    "Mobilier",
+    "Que fouillerais-tu ici ?"
+  ],
+  "material": [
+    "Matériaux",
+    "Quel matériau est-ce ?"
+  ],
+  "recipe": [
+    "Fabrication",
+    "Que fabrique cette recette ?"
+  ],
+  "sound": [
+    "Sons de robots",
+    "Quel ARC fait ce bruit ?"
+  ],
+  "lightcone": [
+    "Cône de lumière",
+    "À qui est ce cône de lumière ?"
+  ],
+  "item": [
+    "Objets",
+    "Quel objet de la boutique est-ce ?"
+  ],
+  "pins": [
+    "Pins",
+    "Quel nœud a ces pins ?"
+  ]
+};
+for (const [type, [name, tagline]] of Object.entries(SP_FR)) withFrench(SP_META[type as SpType], { name, tagline });
 
 /** One round: what to guess, and a seed for anything random about how it's shown. */
 export interface SpRound {
@@ -324,8 +556,8 @@ export function buildSpecialistDaily(id: UniverseId, date: string): SpRound[] {
   // No repeats across days: each round prefers what hasn't been an answer for the longest time.
   const lastUsed = new Map<string, number>();
   for (let day = EPOCH, n = 0; day < date; day = addDays(day, 1), n++) {
-    // Timeline rounds came later: leaving them out keeps the days already played as they were.
-    for (const r of buildSpecialistDaily(id, day)) if (r.type !== 'timeline') lastUsed.set(r.targetId, n);
+    // Timeline and Skins rounds came later: leaving them out keeps the days already played as they were.
+    for (const r of buildSpecialistDaily(id, day)) if (r.type !== 'timeline' && r.type !== 'skin') lastUsed.set(r.targetId, n);
   }
   const rounds = universe(id)!.types.map((type) => {
     const round = randomRound(id, type, rand, used, lastUsed, date);

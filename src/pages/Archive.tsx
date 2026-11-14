@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { FlameIcon } from '../components/Layout';
 import { Glyph } from '../components/Glyph';
 import { DOMAINS } from '../data';
-import { EPOCH, LAUNCH, dayNumber, fromKey, isBirthday, toKey, todayKey } from '../lib/date';
+import { EPOCH, LAUNCH, dateLocale, dayNumber, fromKey, isBirthday, toKey, todayKey } from '../lib/date';
 import { isDomain } from '../lib/rounds';
 import { BIRTHDAY_COINS, REWARD_DATES, REWARD_WINDOW_DAYS, rewardsOn } from '../lib/rewards';
 import { useCloud } from '../cloud/state';
@@ -44,7 +44,7 @@ export default function Archive() {
       </div>
       {isBirthday(today) && (
         <p className="page animate-pop rounded-md p-4 text-center font-display text-lg font-bold ring-2 ring-ochre/60">
-          🎂 Happy birthday, Omnidle! Online since {fromKey(LAUNCH).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })} —{' '}
+          🎂 Happy birthday, Omnidle! Online since {fromKey(LAUNCH).toLocaleDateString(dateLocale(), { day: 'numeric', month: 'long', year: 'numeric' })} —{' '}
           {Number(today.slice(0, 4)) - Number(LAUNCH.slice(0, 4)) || 'opening day'}
           {Number(today.slice(0, 4)) - Number(LAUNCH.slice(0, 4)) === 1 ? ' year' : Number(today.slice(0, 4)) > Number(LAUNCH.slice(0, 4)) ? ' years' : ''}.
         </p>
@@ -73,7 +73,7 @@ export default function Archive() {
           <button type="button" disabled={!canPrev} onClick={() => shift(-1)} className="rounded-lg px-3 py-1.5 hover:bg-tile disabled:opacity-30">
             ←
           </button>
-          <p className="font-bold">{month.toLocaleDateString(undefined, { month: 'long', year: 'numeric' })}</p>
+          <p className="font-bold">{month.toLocaleDateString(dateLocale(), { month: 'long', year: 'numeric' })}</p>
           <button type="button" disabled={!canNext} onClick={() => shift(1)} className="rounded-lg px-3 py-1.5 hover:bg-tile disabled:opacity-30">
             →
           </button>

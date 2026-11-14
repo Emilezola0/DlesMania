@@ -6,6 +6,7 @@ import { candidates, domainInfo, getWork } from '../data';
 import { scoreFor } from '../lib/scoring';
 import type { GameProps } from '../types';
 import { GAME_META } from './meta';
+import { tr } from '../lib/i18n';
 
 /**
  * Cover Puzzle: a scrambled, disguised cover. Swapping and turning the pieces helps read it, but
@@ -35,8 +36,8 @@ export default function TilesGame({ spec, record, onChange }: GameProps) {
       <div className="page rounded-md p-5 sm:p-8">
         <TilePuzzle src={work.cover!.image!} seed={spec.seed} misses={misses} revealed={done} />
       </div>
-      {!done && <GuessInput pool={pool} exclude={named} onGuess={guess} placeholder={`Search ${domainInfo(work.domain).label}…`} />}
-      <div className="flex justify-center gap-1.5" aria-label="Attempts">
+      {!done && <GuessInput pool={pool} exclude={named} onGuess={guess} placeholder={tr(`Search ${domainInfo(work.domain).label}…`, `Cherche un titre — ${domainInfo(work.domain).label}…`)} />}
+      <div className="flex justify-center gap-1.5" aria-label={tr('Attempts', 'Essais')}>
         {Array.from({ length: max }, (_, i) => {
           const g = named[i];
           const cls = !g ? 'bg-tile' : g === work.id ? 'bg-hit' : 'bg-miss';

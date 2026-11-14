@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { GuessInput } from '../../components/GuessInput';
 import { shownName } from '../../lib/french';
+import { useT } from '../../lib/i18n';
 import type { RoundRecord } from '../../types';
 import type { Guessable } from '../data';
 import { SP_META, spScore, type SpType } from '../rounds';
@@ -28,6 +29,7 @@ export function SpGuessRound({ type, clue, question, pool, targetId, hints, reco
   const wrong = record.guesses.filter((g) => g !== targetId);
   const shown = done ? hints.length : Math.min(wrong.length, hints.length);
   const byId = new Map(pool.map((p) => [p.id, p]));
+  const t = useT();
 
   const guess = (id: string) => {
     const guesses = [...record.guesses, id];
@@ -41,9 +43,9 @@ export function SpGuessRound({ type, clue, question, pool, targetId, hints, reco
       <p className="text-center text-ink-soft">{question}</p>
       <div className="page rounded-md p-5 sm:p-8">{clue(wrong.length, done)}</div>
 
-      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder="Type a name…" showImages={!noPictures} />}
+      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={t('Type a name…', 'Tape un nom…')} showImages={!noPictures} />}
 
-      <div className="flex justify-center gap-1.5" aria-label="Attempts">
+      <div className="flex justify-center gap-1.5" aria-label={t('Attempts', 'Essais')}>
         {Array.from({ length: max }, (_, i) => {
           const g = record.guesses[i];
           return <span key={i} className={`h-2 w-8 rounded-full transition-colors duration-500 ${!g ? 'bg-tile' : g === targetId ? 'bg-hit' : 'bg-miss'}`} />;
@@ -54,7 +56,7 @@ export function SpGuessRound({ type, clue, question, pool, targetId, hints, reco
         <ul className="flex flex-wrap justify-center gap-1.5">
           {wrong.map((id) => (
             <li key={id} className="rounded-md border border-miss/50 bg-miss/10 px-2 py-1 text-xs font-semibold line-through decoration-miss/70">
-              {byId.get(id)?.name ?? id}
+              {shownName(byId.get(id)?.name ?? id)}
             </li>
           ))}
         </ul>
@@ -77,11 +79,12 @@ export function SpGuessRound({ type, clue, question, pool, targetId, hints, reco
 
 /** The banner at the end of a round: the answer, with its picture. */
 export function SpOutcome({ won, name, image, detail }: { won: boolean; name: string; image?: string; detail?: string }) {
+  const t = useT();
   return (
     <div className={`animate-pop flex items-center gap-5 rounded-lg border p-5 ${won ? 'border-hit/50 bg-hit/10' : 'border-miss/50 bg-miss/10'}`}>
       {image && <img src={image} alt="" className="h-24 w-24 shrink-0 rounded-lg bg-tile object-contain" />}
       <div>
-        <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{won ? 'Nailed it' : 'Out of tries'}</p>
+        <p className="font-display text-sm uppercase tracking-widest text-ink-soft">{won ? t('Nailed it', 'Bien joué') : t('Out of tries', 'Plus d’essais')}</p>
         <p className="mt-1 text-2xl font-bold">{shownName(name)}</p>
         {detail && <p className="text-sm text-ink-soft">{detail}</p>}
       </div>

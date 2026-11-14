@@ -10,9 +10,15 @@ import { scoreFor } from '../lib/scoring';
 import type { GameProps, GameType, Work } from '../types';
 import { GAME_META } from './meta';
 import { PixelCanvas, withThumbs } from './PixelCanvas';
+import { tr } from '../lib/i18n';
+
+const LABEL_FR: Record<string, string> = {
+  Clues: 'Indices', Tracklist: 'Liste des pistes', 'Zoomed-in detail': 'Détail zoomé', 'Voice clip unavailable — emoji clue instead': 'Extrait vocal indisponible — indice en emojis à la place',
+  'Which work is this?': 'Quelle est cette œuvre ?', 'Which work is this from?': 'De quelle œuvre est-ce tiré ?', 'Where is this?': 'Où est-ce ?', Setting: 'Cadre',
+};
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-center text-xs font-display uppercase tracking-widest text-ink-faint">{children}</p>;
+  return <p className="text-center text-xs font-display uppercase tracking-widest text-ink-faint">{typeof children === 'string' ? tr(children, LABEL_FR[children] ?? children) : children}</p>;
 }
 
 function TextClue({ children }: { children: ReactNode }) {
@@ -237,7 +243,7 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
   return (
     <div className="space-y-6">
       <p className="text-center text-ink-soft">
-        Which <span className="font-semibold text-ink">{domainInfo(target.domain).noun}</span> is this?
+        {tr('Which', target.domain === 'music' ? 'Quelle' : 'Quel')} <span className="font-semibold text-ink">{domainInfo(target.domain).noun}</span> {tr('is this?', 'est-ce ?')}
       </p>
 
       <div className="page rounded-md p-5 sm:p-8">
@@ -252,9 +258,9 @@ export default function ClueGame({ spec, record, onChange }: GameProps) {
         />
       </div>
 
-      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={`Search ${domainInfo(target.domain).label}…`} />}
+      {!done && <GuessInput pool={pool} exclude={record.guesses} onGuess={guess} placeholder={tr(`Search ${domainInfo(target.domain).label}…`, `Cherche un titre — ${domainInfo(target.domain).label}…`)} />}
 
-      <div className="flex justify-center gap-1.5" aria-label="Attempts">
+      <div className="flex justify-center gap-1.5" aria-label={tr('Attempts', 'Essais')}>
         {Array.from({ length: meta.maxAttempts }, (_, i) => {
           const g = record.guesses[i];
           const cls = !g ? 'bg-tile' : g === target.id ? 'bg-hit' : 'bg-miss';

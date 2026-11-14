@@ -14,6 +14,7 @@ import { sfx } from '../lib/sfx';
 import { SIGNED_IN_FLAG, useCloud } from '../cloud/state';
 import { booksNow, bossWeekNow, econToday, useProgress } from '../store/progress';
 import { Quests } from '../gacha/Quests';
+import { tr, useT } from '../lib/i18n';
 
 const PACKS = packsFor(SETS);
 const DIFF_NAME = { easy: 'Easy', medium: 'Medium', hard: 'Hard', hell: 'Hell' } as const;
@@ -59,7 +60,7 @@ function GoldenMeter({ golden, compact }: { golden: number; compact?: boolean })
   // Packs opened since the last golden one, out of the packs it takes: the next one after them is golden.
   const need = GOLDEN.packs - 1;
   const left = need - golden + 1;
-  const text = ready ? 'Your next pack is GOLDEN!' : `Golden pack in ${left} pack${left === 1 ? '' : 's'}`;
+  const text = ready ? tr('Your next pack is GOLDEN!', 'Ton prochain paquet est DORÉ !') : tr(`Golden pack in ${left} pack${left === 1 ? '' : 's'}`, `Paquet doré dans ${left} paquet${left === 1 ? '' : 's'}`);
   if (compact)
     return (
       <p className={`text-xs font-semibold ${ready ? 'golden-text' : 'text-ink-faint'}`} title={`Every ${GOLDEN.packs}th pack is golden: ${GOLDEN.slots} cards Legendary or better, the last one sometimes Mythic.`}>
@@ -98,7 +99,7 @@ function DropRates({ pity, golden }: { pity: number; golden: number }) {
   ].map((c) => ({ ...c, odds: oddsWith(c.boost, luck) }));
   return (
     <section className="space-y-3">
-      <h2 className="font-display text-lg font-bold">Drop rates</h2>
+      <h2 className="font-display text-lg font-bold">{tr('Drop rates', 'Taux d’obtention')}</h2>
       <p className="text-sm text-ink-soft">
         Each pack has {PACK_SIZE} different cards; the last is always Rare or better. Once a card&apos;s rarity is drawn, every franchise of the pack has the same chance, however many cards it has. A franchise pack&apos;s odds go up once you&apos;ve beaten its guardian on Medium (×
         {BOOST.medium} Epic), Hard (×{BOOST.hard}) or Hell (×{BOOST.hell} Epic; Rare and Legendary up by half as much, Mythic and Omni by a quarter). And every pack opened without a Legendary or better raises the odds of a Legendary by {Math.round(PITY_STEP * 100)}% (up to ×{PITY_MAX}) until one drops — then they go back to normal. And every pack without an Omni raises the Omni odds by {Math.round(OMNI_PITY.step * 100)}% (up to ×{OMNI_PITY.max}): only an Omni sets them back. Whatever stacks up, a card is never more than {TOP_CAP.legendary}% Legendary, {TOP_CAP.mythic}% Mythic or {TOP_CAP.omni}% Omni.
@@ -173,7 +174,7 @@ function Mission({ m, n, done, onClaim }: { m: { icon: string; text: string; nee
           {got}/{m.need}
         </span>
         {done ? (
-          <span className="font-semibold text-hit">✓ Claimed</span>
+          <span className="font-semibold text-hit">{tr('✓ Claimed', '✓ Récupérée')}</span>
         ) : (
           <button type="button" disabled={!ready} onClick={onClaim} className="btn-accent rounded-md px-3 py-1 text-sm font-bold disabled:opacity-40">
             Claim <Coins n={m.reward} />
@@ -256,19 +257,19 @@ function RedeemCode() {
   };
   return (
     <section className="space-y-3">
-      <h2 className="font-display text-lg font-bold">🎁 Gift codes</h2>
+      <h2 className="font-display text-lg font-bold">{tr('🎁 Gift codes', '🎁 Codes cadeaux')}</h2>
       <form onSubmit={submit} className="page flex flex-wrap items-center gap-2 rounded-md p-3">
         <input
           value={code}
           onChange={(e) => (setCode(e.target.value), setMsg(null))}
-          placeholder="Enter a code"
-          aria-label="Gift code"
+          placeholder={tr('Enter a code', 'Entre un code')}
+          aria-label={tr('Gift code', 'Code cadeau')}
           autoComplete="off"
           spellCheck={false}
           className="min-w-0 flex-1 rounded-md border border-rule-strong bg-card px-3 py-2 font-display font-bold uppercase tracking-widest placeholder:font-sans placeholder:font-normal placeholder:normal-case placeholder:tracking-normal"
         />
         <button type="submit" disabled={!code.trim() || busy} className="btn-accent rounded-md px-4 py-2 font-display font-bold disabled:opacity-40">
-          {busy ? '…' : 'Redeem'}
+          {busy ? '…' : tr('Redeem', 'Utiliser')}
         </button>
         {msg && <p className={`w-full text-sm font-semibold ${msg.ok ? 'animate-pop text-hit' : 'text-coral'}`}>{msg.text}</p>}
         {pot && !msg && (
@@ -283,6 +284,7 @@ function RedeemCode() {
 
 /** /shop */
 export default function Shop() {
+  const t = useT();
   const coins = useProgress((s) => s.coins);
   const hotGame = useProgress((s) => s.hotGame);
   const owned = useProgress((s) => s.cards);
@@ -420,27 +422,30 @@ export default function Shop() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <Link to="/games" className="font-display text-sm font-semibold tracking-wider text-ink-soft hover:text-ink">
-            ← Games
+            {t('← Games', '← Jeux')}
           </Link>
-          <h1 className="text-5xl font-bold">Card Shop</h1>
+          <h1 className="text-5xl font-bold">{t('Card Shop', 'Boutique de cartes')}</h1>
           <p className="max-w-xl text-ink-soft">
-            Play to earn DleCoins, then open packs of cards from every franchise. {collected} of {COLLECTIBLE.length} collected —{' '}
+            {t(
+              `Play to earn DleCoins, then open packs of cards from every franchise. ${collected} of ${COLLECTIBLE.length} collected —`,
+              `Joue pour gagner des DleCoins, puis ouvre des paquets de cartes de chaque franchise. ${collected} sur ${COLLECTIBLE.length} collectionnées —`,
+            )}{' '}
             <Link to="/album" className="font-semibold text-accent underline-offset-2 hover:underline">
-              see your album
+              {t('see your album', 'vois ton album')}
             </Link>
             .
           </p>
         </div>
         <div className="page rounded-md px-5 py-3 text-right">
-          <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">Your DleCoins</p>
+          <p className="font-display text-xs uppercase tracking-[0.3em] text-ink-faint">{t('Your DleCoins', 'Tes DleCoins')}</p>
           <Coins n={coins} className="text-4xl" />
-          <p className="text-xs text-ink-soft">+{econ.earned} today</p>
+          <p className="text-xs text-ink-soft">+{econ.earned} {t('today', 'aujourd’hui')}</p>
           {/* Luck: the packs since the last Legendary or better raise their odds. */}
           <p
             className={`mt-1 text-xs font-semibold ${pity > 0 ? 'text-ochre' : 'text-ink-faint'}`}
             title={`Every pack without a Legendary or better: +${Math.round(PITY_STEP * 100)}% to Legendary odds, up to ×${PITY_MAX}. Back to ×1 when one drops.`}
           >
-            ✨ Luck ×{pityLuck(pity).toFixed(2)}{pity > 0 ? ` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary` : ''}
+            ✨ {t('Luck', 'Chance')} ×{pityLuck(pity).toFixed(2)}{pity > 0 ? t(` · ${pity} pack${pity === 1 ? '' : 's'} without a Legendary`, ` · ${pity} paquet${pity === 1 ? '' : 's'} sans Légendaire`) : ''}
           </p>
           <GoldenMeter golden={golden} compact />
         </div>
@@ -449,7 +454,7 @@ export default function Shop() {
       <Quests />
 
       <section className="space-y-3">
-        <h2 className="font-display text-lg font-bold">Today&apos;s missions</h2>
+        <h2 className="font-display text-lg font-bold">{t('Today’s missions', 'Missions du jour')}</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           {missions.map((k) => (
             <Mission key={k} m={MISSIONS[k]} n={econ.counters[k] ?? 0} done={econ.claimed.includes(k)} onClaim={() => (sfx.streak(), claim(k))} />
@@ -463,9 +468,9 @@ export default function Shop() {
         return (
           <section key={p} className="space-y-3">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="font-display text-lg font-bold">{p === 'week' ? 'This week' : 'This month'}&apos;s missions</h2>
+              <h2 className="font-display text-lg font-bold">{p === 'week' ? t('This week’s missions', 'Missions de la semaine') : t('This month’s missions', 'Missions du mois')}</h2>
               <span className="text-sm text-ink-soft">
-                New ones in {left} day{left === 1 ? '' : 's'}
+                {t(`New ones in ${left} day${left === 1 ? '' : 's'}`, `De nouvelles dans ${left} jour${left === 1 ? '' : 's'}`)}
               </span>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
@@ -486,15 +491,15 @@ export default function Shop() {
       <RedeemCode />
 
       <section className="space-y-3">
-        <h2 className="font-display text-lg font-bold">Packs</h2>
+        <h2 className="font-display text-lg font-bold">{t('Packs', 'Paquets')}</h2>
         <GoldenMeter golden={golden} />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {general.map((p) => (
             packTile(p)
           ))}
         </div>
-        <h3 className="pt-2 font-display font-bold">Franchise packs</h3>
-        <p className="text-sm text-ink-soft">Beat a franchise&apos;s Boss Battle to unlock its pack. Win it on Medium or Hard and its rare cards come more often.</p>
+        <h3 className="pt-2 font-display font-bold">{t('Franchise packs', 'Paquets de franchise')}</h3>
+        <p className="text-sm text-ink-soft">{t('Beat a franchise’s Boss Battle to unlock its pack. Win it on Medium or Hard and its rare cards come more often.', 'Bats le boss d’une franchise pour débloquer son paquet. Gagne en Moyen ou en Difficile et ses cartes rares tombent plus souvent.')}</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5">
           {franchise.map((p) => (
             packTile(p)
@@ -509,7 +514,7 @@ export default function Shop() {
         </span>
         <span className="flex-1">
           <span className="block font-display text-xl font-black tracking-wider">CASINO</span>
-          <span className="block text-sm text-white/75">Slots, pachinko, the roulette, and a capsule machine full of icon frames.</span>
+          <span className="block text-sm text-white/75">{t('Slots, pachinko, the roulette, and a capsule machine full of icon frames.', 'Machines à sous, pachinko, la roulette et une machine à capsules pleine de cadres d’icône.')}</span>
         </span>
         <span className="font-display text-2xl" aria-hidden>
           →
@@ -520,7 +525,7 @@ export default function Shop() {
 
       <section className="page space-y-2 rounded-md p-4 text-sm text-ink-soft">
         <h2 className="flex items-center gap-2 font-display text-base font-bold text-ink">
-          <DleCoin /> Earning DleCoins
+          <DleCoin /> {t('Earning DleCoins', 'Gagner des DleCoins')}
         </h2>
         <ul className="list-inside list-disc space-y-1">
           <li>

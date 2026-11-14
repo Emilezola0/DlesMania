@@ -9,6 +9,7 @@ import { elementOf, gradeOf, type ElementId } from './grades';
 import { ANOMALIES, scrambled, shownRarity, type AnomalyId } from './anomalies';
 import { RANKS, type RankId } from './ranks';
 import { RankBehind, RankOver, RankRim } from './RankLayers';
+import { tr } from '../lib/i18n';
 
 /** A Relic's runes, down each side of its frame (lit one after another). */
 const RUNES = 'ᚠᚢᚦᚨᚱᚲᚷᚹ';
@@ -72,7 +73,9 @@ function useFill(focus: Card['focus'] | undefined) {
     setCover(Math.max(a / b, b / a));
   };
   const x = focus?.x ?? 50;
-  const y = focus?.y ?? 20;
+  // From the top: a tall picture (a whole-body render, a poster) keeps its head. 20% down cut the heads off
+  // hundreds of them (Raditz, Bonney, Citlali…), and a close-up portrait loses nothing that matters at 0.
+  const y = focus?.y ?? 0;
   const extra = focus ? focus.zoom / cover : 1;
   const style: CSSProperties = { objectPosition: `${x}% ${y}%`, ...(extra > 1.02 ? { transform: `scale(${extra})`, transformOrigin: `${x}% ${y}%` } : {}) };
   return { style, onLoad };
@@ -639,7 +642,7 @@ export function CardMissing({ card }: { card: Card }) {
       <div>
         <p className="font-display text-[16cqw] font-bold">{omni ? '✪' : mythic ? '✦' : '?'}</p>
         <p className="text-[6cqw] font-semibold">
-          {card.franchise} · {omni ? 'Omni' : mythic ? 'Mythic' : `${card.no}/${setSize(card.set)}`}
+          {card.franchise} · {omni ? 'Omni' : mythic ? tr('Mythic', 'Mythique') : `${card.no}/${setSize(card.set)}`}
         </p>
       </div>
     </div>

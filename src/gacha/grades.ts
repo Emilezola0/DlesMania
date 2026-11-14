@@ -8,6 +8,8 @@ import { DUPLICATE_VALUE } from './economy';
 import type { Rarity } from './cards';
 // The numbers and the emblems' metals live in src/data/tuning/grades.json (edited from the dev-only #/admin page).
 import T from '../data/tuning/grades.json';
+import FR from '../data/rarities-fr.json';
+import { withFrench } from '../lib/langNow';
 
 export const MAX_GRADE = T.maxGrade;
 /** The grade that also asks for the franchise's boss beaten on Hell. */
@@ -23,6 +25,8 @@ export interface GradeInfo {
 }
 
 export const GRADES = T.grades as unknown as Record<number, GradeInfo>;
+// Their names in French too (src/data/rarities-fr.json).
+for (const [g, name] of Object.entries(FR.grades)) if (GRADES[+g]) withFrench(GRADES[+g], { name });
 
 export const gradeOf = (grades: Record<string, number> | undefined, id: string) => Math.min(MAX_GRADE, Math.max(1, grades?.[id] ?? 1));
 
@@ -68,7 +72,9 @@ export interface ElementInfo {
   colors: [string, string, string];
 }
 
-export const ELEMENTS = Object.fromEntries(Object.entries(T.elements).map(([id, e]) => [id, { ...e, id }])) as unknown as Record<ElementId, ElementInfo>;
+export const ELEMENTS = Object.fromEntries(
+  Object.entries(T.elements).map(([id, e]) => [id, withFrench({ ...e, id }, FR.elements[id as keyof typeof FR.elements] ?? {})]),
+) as unknown as Record<ElementId, ElementInfo>;
 export const ELEMENT_IDS = Object.keys(ELEMENTS) as ElementId[];
 export const isElement = (x: unknown): x is ElementId => typeof x === 'string' && x in ELEMENTS;
 

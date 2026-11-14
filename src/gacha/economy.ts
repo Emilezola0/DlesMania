@@ -105,20 +105,20 @@ export const HOT_BONUS = T.hot.bonus;
 export const HOT_PLAYS = T.hot.plays;
 /** The games it visits: `id` is what their best keys start with ("memory:pokemon"). */
 export const HOT_GAMES = [
-  { id: 'rail', to: '/rail-rush', title: 'Rail Rush', icon: '🚂' },
-  { id: 'whos', to: '/whos-that', title: "Who's That?", icon: '👤' },
-  { id: 'hl', to: '/higher-lower', title: 'Higher or Lower', icon: '↕️' },
-  { id: 'ntl', to: '/name-them-all', title: 'Name Them All', icon: '📝' },
-  { id: 'wordle', to: '/wordle', title: 'Franchise Wordle', icon: '🟩' },
-  { id: 'sort', to: '/quick-sort', title: 'Quick Sort', icon: '↔️' },
-  { id: 'six', to: '/six-degrees', title: 'Six Degrees', icon: '🕸️' },
-  { id: 'who', to: '/who-am-i', title: 'Who Am I?', icon: '🕵️' },
-  { id: 'climb', to: '/summit', title: 'Summit', icon: '🧗' },
-  { id: 'cross', to: '/crossroads', title: 'Crossroads', icon: '🌉' },
-  { id: 'odd', to: '/odd-one-out', title: 'Odd One Out', icon: '🧩' },
-  { id: 'memory', to: '/memory', title: 'Memory Pairs', icon: '🃏' },
-  { id: 'map', to: '/map-quiz', title: 'Map Quiz', icon: '📍' },
-  { id: 'year', to: '/guess-the-year', title: 'Guess the Year', icon: '📅' },
+  { id: 'rail', to: '/rail-rush', title: 'Rail Rush', titleFr: 'Rail Rush', icon: '🚂' },
+  { id: 'whos', to: '/whos-that', title: "Who's That?", titleFr: 'Qui est-ce ?', icon: '👤' },
+  { id: 'hl', to: '/higher-lower', title: 'Higher or Lower', titleFr: 'Plus ou moins', icon: '↕️' },
+  { id: 'ntl', to: '/name-them-all', title: 'Name Them All', titleFr: 'Nomme-les tous', icon: '📝' },
+  { id: 'wordle', to: '/wordle', title: 'Franchise Wordle', titleFr: 'Wordle des franchises', icon: '🟩' },
+  { id: 'sort', to: '/quick-sort', title: 'Quick Sort', titleFr: 'Tri express', icon: '↔️' },
+  { id: 'six', to: '/six-degrees', title: 'Six Degrees', titleFr: 'Six degrés', icon: '🕸️' },
+  { id: 'who', to: '/who-am-i', title: 'Who Am I?', titleFr: 'Qui suis-je ?', icon: '🕵️' },
+  { id: 'climb', to: '/summit', title: 'Summit', titleFr: 'Sommet', icon: '🧗' },
+  { id: 'cross', to: '/crossroads', title: 'Crossroads', titleFr: 'Carrefours', icon: '🌉' },
+  { id: 'odd', to: '/odd-one-out', title: 'Odd One Out', titleFr: 'L’intrus', icon: '🧩' },
+  { id: 'memory', to: '/memory', title: 'Memory Pairs', titleFr: 'Paires de mémoire', icon: '🃏' },
+  { id: 'map', to: '/map-quiz', title: 'Map Quiz', titleFr: 'Quiz de cartes', icon: '📍' },
+  { id: 'year', to: '/guess-the-year', title: 'Guess the Year', titleFr: 'Devine l’année', icon: '📅' },
 ] as const;
 
 /**

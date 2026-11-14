@@ -1,4 +1,5 @@
 import { shownName } from '../lib/french';
+import { tr } from '../lib/i18n';
 import type { RoundRecord, Work } from '../types';
 
 interface Props {
@@ -21,7 +22,7 @@ export function Outcome({ record, answer, answerLabel }: Props) {
         <img src={answer.cover.image} alt={`${answer.name} cover`} className="h-28 w-auto max-w-32 rounded-lg object-cover shadow-xl shadow-ink/25" />
       )}
       <div className="flex-1">
-        <p className="text-sm font-display uppercase tracking-widest text-ink-soft">{won ? 'Nailed it' : 'Out of tries'}</p>
+        <p className="text-sm font-display uppercase tracking-widest text-ink-soft">{won ? tr('Nailed it', 'Bien joué') : tr('Out of tries', 'Plus d’essais')}</p>
         {answer && (
           <p className="mt-1 text-2xl font-bold">
             {shownName(answer.name)}

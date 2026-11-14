@@ -6,11 +6,12 @@ import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
 import { econToday, useProgress } from '../store/progress';
 import { QUEST_TIERS, QUESTS, questAt, questReward, questsNow, type QuestTier } from './economy';
+import { tr, withFrench } from '../lib/i18n';
 
 const TIER: Record<QuestTier, { name: string; color: string }> = {
-  easy: { name: 'Easy', color: '#22c55e' },
-  medium: { name: 'Medium', color: '#f59e0b' },
-  hard: { name: 'Hard', color: '#ef4444' },
+  easy: withFrench({ name: 'Easy', color: '#22c55e' }, { name: 'Facile' }),
+  medium: withFrench({ name: 'Medium', color: '#f59e0b' }, { name: 'Moyenne' }),
+  hard: withFrench({ name: 'Hard', color: '#ef4444' }, { name: 'Difficile' }),
 };
 
 export function Quests({ compact = false }: { compact?: boolean }) {
@@ -32,9 +33,12 @@ export function Quests({ compact = false }: { compact?: boolean }) {
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 className={compact ? 'font-display text-sm uppercase tracking-[0.25em] text-ink-faint' : 'font-display text-lg font-bold'}>📜 Quests</h2>
+        <h2 className={compact ? 'font-display text-sm uppercase tracking-[0.25em] text-ink-faint' : 'font-display text-lg font-bold'}>{tr('📜 Quests', '📜 Quêtes')}</h2>
         <span className="text-xs text-ink-soft">
-          Claim one and a new one comes up · all change at midnight · the first {QUESTS.fullPerDay} of each tier a day pay in full, then half
+          {tr(
+            `Claim one and a new one comes up · all change at midnight · the first ${QUESTS.fullPerDay} of each tier a day pay in full, then half`,
+            `Récupères-en une et une nouvelle apparaît · tout change à minuit · les ${QUESTS.fullPerDay} premières de chaque niveau paient en entier chaque jour, puis moitié`,
+          )}
         </span>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
@@ -52,7 +56,7 @@ export function Quests({ compact = false }: { compact?: boolean }) {
             >
               <p className="flex items-center justify-between font-display text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: TIER[tier].color }}>
                 <span>{TIER[tier].name}</span>
-                <span className="text-ink-faint">{book.done[tier] ? `${book.done[tier]} done today` : 'Quest 1'}</span>
+                <span className="text-ink-faint">{book.done[tier] ? tr(`${book.done[tier]} done today`, `${book.done[tier]} faite(s) aujourd’hui`) : tr('Quest 1', 'Quête 1')}</span>
               </p>
               <p className="font-semibold">
                 {q.icon} {q.text}
@@ -66,7 +70,7 @@ export function Quests({ compact = false }: { compact?: boolean }) {
                   {paid?.tier === tier && <span className="animate-pop ml-2 font-semibold text-hit">+{paid.coins}!</span>}
                 </span>
                 <button type="button" disabled={!ready} onClick={() => take(tier)} className="btn-accent rounded-md px-3 py-1 text-sm font-bold disabled:opacity-40">
-                  Claim <Coins n={reward} />
+                  {tr('Claim', 'Récupérer')} <Coins n={reward} />
                 </button>
               </div>
             </div>

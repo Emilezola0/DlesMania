@@ -1,4 +1,5 @@
 import type { ConnectionsPuzzle, Domain, GameType, Work } from '../types';
+import { withFrench } from '../lib/langNow';
 import rawThemes from './connection-themes.json';
 import rawPuzzles from './connections.json';
 import anime from './works/anime.json';
@@ -72,10 +73,10 @@ export function getWork(id: string): Work {
  * one flat pastel colour, used for its glyph, rules and progress bars.
  */
 export const DOMAINS: { id: Domain; label: string; noun: string; icon: string; tone: string; fill: string }[] = [
-  { id: 'games', label: 'Video Games', noun: 'video game', icon: '🎮', tone: 'text-accent', fill: 'bg-accent' },
-  { id: 'anime', label: 'Anime', noun: 'anime', icon: '🌸', tone: 'text-rose', fill: 'bg-rose' },
-  { id: 'cinema', label: 'Cinema', noun: 'movie', icon: '🎬', tone: 'text-ochre', fill: 'bg-ochre' },
-  { id: 'music', label: 'Music', noun: 'song', icon: '🎵', tone: 'text-plum', fill: 'bg-plum' },
+  withFrench({ id: 'games' as Domain, label: 'Video Games', noun: 'video game', icon: '🎮', tone: 'text-accent', fill: 'bg-accent' }, { label: 'Jeux vidéo', noun: 'jeu vidéo' }),
+  withFrench({ id: 'anime' as Domain, label: 'Anime', noun: 'anime', icon: '🌸', tone: 'text-rose', fill: 'bg-rose' }, { label: 'Anime', noun: 'anime' }),
+  withFrench({ id: 'cinema' as Domain, label: 'Cinema', noun: 'movie', icon: '🎬', tone: 'text-ochre', fill: 'bg-ochre' }, { label: 'Cinéma', noun: 'film' }),
+  withFrench({ id: 'music' as Domain, label: 'Music', noun: 'song', icon: '🎵', tone: 'text-plum', fill: 'bg-plum' }, { label: 'Musique', noun: 'chanson' }),
 ];
 
 export function domainInfo(id: Domain) {
