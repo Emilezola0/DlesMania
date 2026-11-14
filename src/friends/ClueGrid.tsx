@@ -152,7 +152,11 @@ export function ClueGrid({ people, me, demo }: { people: CluePerson[]; me: strin
       setClues(todays.filter((x) => x.uid !== me));
       setResults({ clues: yClues, secrets: ySecrets });
       if (!s) setNote({ text: "Clue Grid isn't switched on in the database yet (its rules need publishing), or your device's date is off." });
-      // Yesterday's rewards, each paid once: your right picks, and your friends' right picks on your clue.
+      // Yesterday's rewards, each paid once: your right picks, and your friends' right picks on your clue. The key ends
+      // with the day (the store forgets keys by their last 10 characters); one recorded the old way (the friend last,
+      // so it could be forgotten at once and paid again) still counts as paid.
+      const paidBefore = useProgress.getState().doodle ?? {};
+      const once = (kind: string, uid: string, coins: number) => (paidBefore[`${kind}:${yesterday}:${uid}`] !== undefined ? 0 : pay(`${kind}:${uid}_${yesterday}`, coins));
       let paid = 0;
       const mine = ySecrets.find((x) => x.uid === me);
       for (const cl of yClues) {
@@ -160,14 +164,14 @@ export function ClueGrid({ people, me, demo }: { people: CluePerson[]; me: strin
         const theirs = ySecrets.find((x) => x.uid === cl.uid);
         if (!theirs) continue;
         const right = rightOf(cells(mine.picks?.[cl.uid], cl.count), cells(theirs.targets, CLUE.targets));
-        if (right) paid += pay(`clue-right:${yesterday}:${cl.uid}`, right * CLUE.right);
+        if (right) paid += once('clue-right', cl.uid, right * CLUE.right);
       }
       const myYClue = yClues.find((x) => x.uid === me);
       if (mine && myYClue)
         for (const f of ySecrets) {
           if (f.uid === me) continue;
           const found = rightOf(cells(f.picks?.[me ?? ''], myYClue.count), cells(mine.targets, CLUE.targets));
-          if (found) paid += pay(`clue-found:${yesterday}:${f.uid}`, found * CLUE.found);
+          if (found) paid += once('clue-found', f.uid, found * CLUE.found);
         }
       if (paid) {
         sfx.correct();
