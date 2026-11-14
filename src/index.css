@@ -3415,6 +3415,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @supports (-moz-appearance: none) {
   .omni-rings-around, .card-lifts { display: block; }
   .card-3d .card-omni-crown,
+  .card-3d .card-rank-ribbon,
   .card-3d .card-omni-ember { display: none !important; }
   .card-3d .card-omni-ring-flat,
   .card-3d .card-omni-ring-front { display: none !important; }

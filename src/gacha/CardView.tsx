@@ -131,17 +131,31 @@ export function CardLifts({ card }: { card: Card }) {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  if (card.rarity !== 'omni') return null;
+  // Its badge on top, as the face would show it: a special rarity's ribbon (Relic, Apex…) in place of the Omni crown.
+  const ownRank = useProgress((s) => s.cardRanks?.[card.id]?.kind);
+  const bond = useProgress((s) => !!s.bondCards?.[card.id]);
+  const rankId = ownRank ?? (bond ? 'bond' : undefined);
+  const rank = rankId ? RANKS[rankId] : undefined;
+  const ribbon = rank?.effects.ribbon === true ? rank : undefined;
+  const omni = card.rarity === 'omni';
+  if (!omni && !ribbon) return null;
   const cq = (n: number) => `${(w * n) / 100}px`;
+  const badge = { top: cq(-4.5), padding: `${cq(1.2)} ${cq(4.5)}`, fontSize: cq(5.2), transform: 'translateX(-50%) translateZ(50px)', visibility: w ? undefined : 'hidden' } as CSSProperties;
   return (
     <div ref={ref} className="card-lifts pointer-events-none absolute inset-0 [transform-style:preserve-3d]" aria-hidden>
-      <span
-        className="card-omni-crown absolute left-1/2 whitespace-nowrap rounded-full font-display font-black tracking-[0.3em] shadow-lg [backface-visibility:hidden]"
-        style={{ top: cq(-4.5), padding: `${cq(1.2)} ${cq(4.5)}`, fontSize: cq(5.2), transform: 'translateX(-50%) translateZ(50px)', visibility: w ? undefined : 'hidden' }}
-      >
-        ✪ OMNI
-      </span>
-      {EMBERS.map((e, i) => (
+      {ribbon ? (
+        // Its colours, as on the card (the ribbon's look is .card-rank-<id> .card-rank-ribbon).
+        <div className={`card-rank-${ribbon.id} absolute inset-0 [transform-style:preserve-3d]`} style={{ ['--rk1' as string]: ribbon.colors[0], ['--rk2' as string]: ribbon.colors[1], ['--rk3' as string]: ribbon.colors[2] }}>
+          <span className="card-rank-ribbon absolute left-1/2 whitespace-nowrap rounded-full font-display font-black tracking-[0.3em] shadow-lg [backface-visibility:hidden]" style={badge}>
+            {ribbon.gem} {ribbon.name.toUpperCase()}
+          </span>
+        </div>
+      ) : (
+        <span className="card-omni-crown absolute left-1/2 whitespace-nowrap rounded-full font-display font-black tracking-[0.3em] shadow-lg [backface-visibility:hidden]" style={badge}>
+          ✪ OMNI
+        </span>
+      )}
+      {omni && EMBERS.map((e, i) => (
         <span key={i} className="card-omni-ember [backface-visibility:hidden]" style={{ left: `${e.x}%`, top: `${e.y}%`, transform: `translateZ(${e.z}px)`, animationDelay: `${i * -0.6}s` }} />
       ))}
     </div>
