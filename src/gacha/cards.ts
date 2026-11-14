@@ -902,8 +902,11 @@ const CLIPS: Record<string, string> = {
   // teki wo kurau!" / "Ryūjin no ken wo kurae!", the three dragons, Hanzo on his knees; heard with its own sound.
   'overwatch:omni-genji': `${import.meta.env?.BASE_URL ?? './'}clips/overwatch/genji-dragons.mp4`,
   // Black Prior's "Ad profundis!", three times over (clips served with the site, cut from the owner's compilation).
-  // Hebe: the owner's game captures, one after the other (O-Chan's are her first form's: FIRST_CLIPS).
+  // Hebe and O-Chan: the owner's game captures, one after the other, looping like a GIF (LIGHT_CLIPS). O-Chan's
+  // used to be her first form's (FIRST_CLIPS), which an Omni no longer shows: here, on the one it shows (a player's
+  // ask, Discord ticket "O-chan": "constantly, like Hebe").
   'ufouria:mythic': UFOURIA_CLIP(['hebe-idle', 'hebe-dancing']),
+  'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'forhonor:mythic-2': [1, 2, 3].map((n) => `${import.meta.env?.BASE_URL ?? './'}clips/forhonor/black-prior-ad-profundis-${n}.mp4`).join('|'),
   'avatar:mythic': 'https://media.tenor.com/C8qZIVmxzNEAAAPo/firebend-atla.mp4',
   // Aang awakened (Avatar State): the owner's pick, Aang Goes Super Saiyan from the 2026 film (Movieclips, 0:00–0:26), heard.
@@ -933,8 +936,6 @@ const FIRST_CLIPS: Record<string, string> = {
   'avatar:omni': 'https://media.tenor.com/-WoF75PbEjkAAAPo/yip-yip-aang.mp4',
   'destiny:omni': `${import.meta.env?.BASE_URL ?? './'}clips/destiny/the-witness-30fps.mp4`,
   'inazuma:omni-arion': 'https://media.tenor.com/MfYrbE0etqAAAAP1/inazuma-eleven-ie11.mp4',
-  // O-Chan's first form: the owner's game captures, one after the other (her awakened form keeps its picture).
-  'ufouria:omni': UFOURIA_CLIP(['o-chan-idle', 'o-chan-singing', 'o-chan-ramping', 'o-chan-ramping-2', 'o-chan-throwing-popun']),
   'deadlock:omni': 'https://media.tenor.com/fU-AUOPjl1AAAAPo/deadlock-deadlock-doorman.mp4',
   'onepiece:omni': `${import.meta.env?.BASE_URL ?? './'}clips/onepiece/luffy-gear-5.mp4`,
   // Omnis that had no clip at all: their first form's (awakened, they play it too until they have one of their own).
