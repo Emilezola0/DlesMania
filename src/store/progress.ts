@@ -70,6 +70,7 @@ import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import CASINO_T from '../data/tuning/casino.json';
 import { CAPSULES, PACHINKO, SLOTS, dropBall, rollCapsule, rollSlots, slotCost, tokensFor, type Ball, type SlotResult } from '../casino/casino';
 import type { Frame } from '../casino/frames';
+import type { SyncBase } from '../cloud/merge';
 
 type DayRounds = Record<number, RoundRecord>;
 
@@ -243,6 +244,8 @@ interface ProgressState {
    * linked to a throwaway account and handed over. Kept up to date below the store; undefined until first set.
    */
   tradeLock?: TradeLock;
+  /** What this save and the account's last agreed on (src/cloud/merge.ts): kept with the save, never synced. */
+  syncBase?: SyncBase | null;
   /** A right guess at a friend's drawing: `coins` once per drawing. What was paid (0 if it was already). */
   rewardDoodleGuess: (id: string, coins: number) => number;
   /** This player's drawing guessed by `solvers` friends: `each` coins for every one not paid for yet. What was paid. */
