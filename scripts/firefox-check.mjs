@@ -15,6 +15,7 @@
 // --seconds=N    how long to follow it (4)      --shot   a screenshot at the end (always taken with --play)
 // --size=WxH     the window (1280x900)          --headful   a visible window, to watch
 // --reduced-motion   Firefox set to reduce motion (the card's sway and the CSS animations stop)
+// --chrome       the same in the installed Chrome instead, to compare (a Firefox-only fault shows only without it)
 // --base=URL     the dev server (http://localhost:5173)
 //
 // Firefox comes from FIREFOX_PATH, or C:\Program Files\Mozilla Firefox\firefox.exe. Its videos are decoded as on any
@@ -42,9 +43,12 @@ mkdirSync(outDir, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const log = (label, value) => console.log(`${label.padEnd(10)} ${typeof value === 'string' ? value : JSON.stringify(value)}`);
 
+// --chrome: the same steps in the Chrome installed here, to compare what Firefox does with what Chrome does.
+const chrome = flags.chrome && ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe', '/usr/bin/google-chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'].find(existsSync);
+if (flags.chrome && !chrome) throw new Error('Chrome not found');
 const browser = await puppeteer.launch({
-  browser: 'firefox',
-  executablePath: firefox,
+  browser: chrome ? 'chrome' : 'firefox',
+  executablePath: chrome || firefox,
   headless: !flags.headful,
   defaultViewport: { width, height },
   // Firefox's own "reduce motion" setting (prefers-reduced-motion: reduce), to tell whether an animation is the cause.
