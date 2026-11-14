@@ -7,6 +7,7 @@ import { useProgress } from '../store/progress';
 import { CardBack, CardFace, RARITY_STYLE } from './CardView';
 import { COLLECTIBLE, RARITIES, RARITY_INFO, RARITY_LIGHT, SETS, type Card, type Rarity } from './cards';
 import { PackArt } from './PackArt';
+import { flapClass, OpeningAround, OpeningInside, openingOf, wholeClass } from './WrapOpening';
 import { playVoice } from './voice';
 import { ABSORB_CHANCE, ANOMALIES, ANOMALY_IDS, BLACK_HOLE_CHANCE, rollAnomaly, type AnomalyId } from './anomalies';
 import { clampGolden, clampPity, COSMIC, GOLDEN, goldenNext, PITY_MAX, pityLuck, type CosmicEvent, type CosmicKind, type Pack } from './packs';
@@ -1409,6 +1410,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   // A golden pack's own light, gold where an ordinary pack's is lilac.
   const packLight = golden ? GOLDEN_LIGHT : PACK_LIGHT;
   const counts = useProgress((s) => s.cards);
+  // An Ascended wrapper opens its own way (a golden pack keeps its gold, and the usual opening).
+  const opening = useProgress((s) => (golden ? undefined : openingOf(s.wrapper)));
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).
@@ -2205,14 +2208,16 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
               />
             )}
             {/* The pack below the cut, and the strip above it: they part along the same jagged line. */}
-            <div className="relative" style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}>
+            <div className={`relative ${phase === 'torn' ? wholeClass(opening) : ''}`} style={phase === 'pack' && tear > 0 ? { filter: auraFilter(8 + tear * 30) } : phase === 'torn' && special ? { filter: auraFilter(26) } : undefined}>
             <div style={{ clipPath: `polygon(${pts(line)}, 100% 100%, 0 100%)` }} className={phase === 'torn' ? 'pack-glow' : ''}>
               <PackArt pack={pack} shine golden={golden} />
             </div>
-            <div className={`absolute inset-0 ${phase === 'torn' ? 'pack-flap-fly' : ''}`} style={{ clipPath: `polygon(0 0, 100% 0, ${pts([...line].reverse())})`, transform: phase === 'pack' ? `rotate(${-tear * 7}deg) translateY(${-tear * 7}px)` : undefined, transformOrigin: '100% 100%' }}>
+            <div className={`absolute inset-0 ${phase === 'torn' ? (opening ? flapClass(opening) : 'pack-flap-fly') : ''}`} style={{ clipPath: `polygon(0 0, 100% 0, ${pts([...line].reverse())})`, transform: phase === 'pack' ? `rotate(${-tear * 7}deg) translateY(${-tear * 7}px)` : undefined, transformOrigin: '100% 100%' }}>
               <PackArt pack={pack} shine golden={golden} />
             </div>
+            {phase === 'torn' && opening && <OpeningInside kind={opening} />}
             </div>
+            {phase === 'torn' && opening && <OpeningAround kind={opening} />}
             {/* The light inside, shining through the cut as it opens. */}
             {phase === 'pack' && tear > 0 && (
               <div

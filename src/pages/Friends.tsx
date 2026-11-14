@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Spinner } from '../components/Spinner';
-import { COSMETIC_BY_ID, titleStyle } from '../casino/cosmetics';
+import { nameStyleClass, staged, titleStyle } from '../casino/cosmetics';
 import { AvatarFrame } from '../casino/Frame';
 import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import { TITLE_BY_ID } from '../casino/unlocks';
@@ -46,8 +46,8 @@ interface Player {
 
 /** A player's name in the style they bought, their title under it (when they wear one other than Newcomer). */
 function PlayerName({ p, you = false, className = '' }: { p: Player; you?: boolean; className?: string }) {
-  const style = COSMETIC_BY_ID.get(p.doc.nameStyle ?? '')?.className;
-  const title = TITLE_BY_ID.get(p.doc.title ?? '');
+  const style = nameStyleClass(p.doc.nameStyle) || undefined;
+  const title = TITLE_BY_ID.get(staged(p.doc.title)[0]);
   const plush = PLUSH_BY_ID.get(p.doc.plush ?? '');
   return (
     <span className={`flex min-w-0 flex-col leading-tight ${className}`}>
@@ -62,7 +62,7 @@ function PlayerName({ p, you = false, className = '' }: { p: Player; you?: boole
         )}
         {you && <span className="shrink-0 text-xs text-ink-faint">(you)</span>}
       </span>
-      {title && title.id !== 'newcomer' && <span className={`truncate text-[10px] font-semibold uppercase tracking-wider ${titleStyle(title.id) || 'text-ink-faint'}`}>« {title.name} »</span>}
+      {title && title.id !== 'newcomer' && <span className={`truncate text-[10px] font-semibold uppercase tracking-wider ${titleStyle(p.doc.title) || 'text-ink-faint'}`}>« {title.name} »</span>}
     </span>
   );
 }
@@ -291,7 +291,7 @@ function demoLuck(docs: ScoreDoc[]): Record<string, Luck> {
 /** Dev only (#/friends?demo): made-up friends with a few weeks of scores, to try the chart without an account. */
 function demoDocs(): ScoreDoc[] {
   const names = ['You', 'Sora', 'Mika', 'Jules', 'Noa'];
-  const looks: [string | null, string | null, string | null][] = [[null, null, 'kuma'], ['name:neon', 'high-roller', 'omni-star'], ['name:gold', 'collector', null], [null, 'lucky-star', 'kitsune'], ['name:glitch', null, 'yume']];
+  const looks: [string | null, string | null, string | null][] = [[null, null, 'kuma'], ['name:neon', 'high-roller', 'omni-star'], ['name:gold', 'collector', null], [null, 'lucky-star', 'kitsune'], ['name:ascendant#4', 'eternal#4', 'yume']];
   const today = todayKey();
   return names.map((name, k) => {
     const log: Record<string, DayEntry> = {};

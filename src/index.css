@@ -2873,6 +2873,275 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .pack-wrap-storm .pack-wrap-layer::before { opacity: 0.8; }
 }
 
+/* ---- The Ascended collection (src/casino/cosmetics.ts `ascended`): above Prestige, locked until earned. Name
+   style and title evolve in stages (.ascend-2, -3, -4); the wrappers open their own way (src/gacha/WrapOpening.tsx). */
+@property --asc-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@property --burn { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+
+/* Ascendant: pale gold at dawn; a sweep of light (Radiant); stars and violet (Celestial); white-gold, blazing (Ascended). */
+.name-style-ascendant, .title-style-eternal { -webkit-background-clip: text; background-clip: text; color: transparent; }
+.name-style-ascendant {
+  background-image: linear-gradient(90deg, #a16207, #fcd34d 25%, #fffbeb 50%, #fcd34d 75%, #a16207);
+  background-size: 200% 100%;
+  animation: card-name-shimmer 5s linear infinite, asc-breathe 3.2s ease-in-out infinite;
+}
+@keyframes asc-breathe { 0%, 100% { filter: drop-shadow(0 0 2px rgba(252, 211, 77, 0.5)); } 50% { filter: drop-shadow(0 0 5px rgba(252, 211, 77, 0.9)); } }
+.name-style-ascendant.ascend-2 {
+  background-image: linear-gradient(100deg, transparent 42%, #fff 50%, transparent 58%), linear-gradient(90deg, #a16207, #fcd34d 25%, #fffbeb 50%, #fcd34d 75%, #a16207);
+  background-size: 250% 100%, 200% 100%;
+  animation: name-prism 2.6s linear infinite, asc-breathe 2.6s ease-in-out infinite;
+}
+.name-style-ascendant.ascend-3 {
+  background-image: radial-gradient(circle, #fff 0 0.8px, transparent 1.4px), linear-gradient(100deg, transparent 42%, #fff 50%, transparent 58%), linear-gradient(90deg, #6d28d9, #fcd34d 20%, #fffbeb 40%, #a5b4fc 60%, #fcd34d 80%, #6d28d9);
+  background-size: 9px 8px, 250% 100%, 200% 100%;
+  animation: asc-celestial 3s linear infinite, asc-celestial-glow 3s ease-in-out infinite;
+}
+@keyframes asc-celestial { from { background-position: 0 0, 150% 0, 0 0; } to { background-position: 27px -16px, -150% 0, 200% 0; } }
+@keyframes asc-celestial-glow {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(252, 211, 77, 0.8)) drop-shadow(0 0 7px rgba(139, 92, 246, 0.45)); }
+  50% { filter: drop-shadow(0 0 4px rgba(165, 180, 252, 0.95)) drop-shadow(0 0 10px rgba(252, 211, 77, 0.6)); }
+}
+.name-style-ascendant.ascend-4 {
+  background-image: radial-gradient(circle, #fff 0 1px, transparent 1.6px), linear-gradient(100deg, transparent 40%, #fff 50%, transparent 60%), linear-gradient(90deg, #f59e0b, #fff7d6 15%, #fff 30%, #fde68a 45%, #f0abfc 60%, #fff 75%, #a5f3fc 88%, #f59e0b);
+  background-size: 8px 7px, 220% 100%, 200% 100%;
+  animation: asc-celestial 1.8s linear infinite, asc-blaze 2s ease-in-out infinite;
+}
+@keyframes asc-blaze {
+  0%, 100% { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 6px rgba(253, 230, 138, 0.9)) drop-shadow(0 0 12px rgba(240, 171, 252, 0.5)) brightness(1); }
+  50% { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 10px rgba(255, 247, 214, 1)) drop-shadow(0 0 20px rgba(165, 243, 252, 0.7)) brightness(1.2); }
+}
+/* Celestial and Ascended: a star on each side, twinkling (spinning, at the last stage). */
+:is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::before,
+:is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::after {
+  content: '✦';
+  display: inline-block;
+  font-size: 0.62em;
+  vertical-align: 0.22em;
+  color: #fde68a;
+  -webkit-text-fill-color: #fde68a;
+  animation: asc-twinkle 1.6s ease-in-out infinite;
+}
+:is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::before { margin-right: 0.25em; }
+:is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::after { margin-left: 0.25em; animation-delay: -0.8s; }
+:is(.name-style-ascendant, .title-style-eternal).ascend-4::before, :is(.name-style-ascendant, .title-style-eternal).ascend-4::after {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  animation: asc-spin 2.4s linear infinite;
+}
+@keyframes asc-twinkle { 0%, 100% { opacity: 0.35; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.15); } }
+@keyframes asc-spin { 0% { transform: rotate(0deg) scale(0.8); } 50% { transform: rotate(180deg) scale(1.25); } 100% { transform: rotate(360deg) scale(0.8); } }
+
+/* Eternal: silver; gold, a sweep of light; a dawn of every colour; a living flame with stars around it. */
+.title-style-eternal { background-image: linear-gradient(90deg, #64748b, #e2e8f0, #fff, #cbd5e1, #64748b); animation: card-name-shimmer 3.5s linear infinite; filter: drop-shadow(0 0 2px rgba(226, 232, 240, 0.7)); }
+.title-style-eternal.ascend-2 {
+  background-image: linear-gradient(100deg, transparent 42%, #fff 50%, transparent 58%), linear-gradient(90deg, #a16207, #fde68a, #f59e0b, #fff7c2, #a16207);
+  background-size: 250% 100%, 200% 100%;
+  animation: name-prism 2.2s linear infinite, asc-breathe 2.4s ease-in-out infinite;
+}
+.title-style-eternal.ascend-3 {
+  background-image: linear-gradient(90deg, #fb7185, #fdba74, #fde68a, #a5f3fc, #c4b5fd, #f0abfc, #fb7185);
+  animation: card-name-shimmer 2s linear infinite, title-legend-glow 3s ease-in-out infinite;
+}
+.title-style-eternal.ascend-4 {
+  background-image: repeating-linear-gradient(0deg, #7c3aed 0, #f0abfc 0.25em, #fff 0.45em, #fde68a 0.65em, #f59e0b 0.85em, #7c3aed 1.1em);
+  background-size: 100% 1.1em;
+  animation: name-hellfire-rise 0.9s linear infinite, asc-blaze 1.6s ease-in-out infinite;
+}
+
+/* ---- Ascended pack wrappers: their look on the shelf and on every pack. */
+.pack-wrap-holofoil, .pack-wrap-inferno, .pack-wrap-portal { isolation: isolate; }
+/* Holo Foil: a dark foil under a rainbow that follows the light (--hx / --hy, set by PackArt from the pointer). */
+.pack-wrap-holofoil { background: linear-gradient(160deg, #1e293b, #475569 45%, #334155 60%, #0f172a) !important; transition: transform 0.15s ease-out; }
+.pack-wrap-holofoil .pack-wrap-layer {
+  background: repeating-linear-gradient(115deg, #ff4fd8 0%, #ffcd3c 5%, #4ade80 10%, #3cc7ff 15%, #a855f7 20%, #ff4fd8 25%);
+  background-size: 400% 400%;
+  background-position: var(--hx, 50%) var(--hy, 50%);
+  mix-blend-mode: color-dodge;
+  opacity: 0.45;
+}
+.pack-wrap-holofoil .pack-wrap-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 0.8px, transparent 1.4px), radial-gradient(circle, rgba(255, 255, 255, 0.7) 0 0.6px, transparent 1.2px);
+  background-size: 13px 11px, 7px 9px;
+  mix-blend-mode: overlay;
+  animation: holo-glitter 2.2s steps(6) infinite;
+}
+@keyframes holo-glitter { 0% { background-position: 0 0, 3px 2px; opacity: 0.9; } 50% { opacity: 0.4; } 100% { background-position: 6px 4px, -3px 5px; opacity: 0.9; } }
+.pack-wrap-holofoil .pack-wrap-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--hx, 50%) var(--hy, 30%), rgba(255, 255, 255, 0.65), transparent 45%), linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%) 0 0 / 300% 100%;
+  mix-blend-mode: overlay;
+  animation: pack-wrap-sweep 5s ease-in-out infinite;
+}
+/* Inferno: charred black, cracks of fire breathing, sparks rising, a glow from below. */
+.pack-wrap-inferno { background: radial-gradient(ellipse at 50% 115%, #9a3412, #2a0d04 55%, #0c0503) !important; }
+.pack-wrap-inferno .pack-wrap-layer {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 80' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%23fb923c' stroke-width='0.9' stroke-linecap='round'%3E%3Cpath d='M4 10 L14 18 L11 27 L22 33 L19 44 L30 50'/%3E%3Cpath d='M56 6 L47 17 L50 26 L40 31 L43 40'/%3E%3Cpath d='M8 70 L18 62 L27 66 L34 58 L45 63 L52 55'/%3E%3Cpath d='M30 50 L36 58 M22 33 L13 38 M43 40 L51 46'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 0 2px #fdba74) drop-shadow(0 0 5px #ea580c);
+  animation: inferno-cracks 2.8s ease-in-out infinite;
+}
+@keyframes inferno-cracks { 0%, 100% { opacity: 0.55; } 40% { opacity: 1; } 55% { opacity: 0.7; } 70% { opacity: 0.95; } }
+.pack-wrap-inferno .pack-wrap-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #fde047 0 1px, transparent 1.6px), radial-gradient(circle, #fb923c 0 0.8px, transparent 1.4px);
+  background-size: 23px 31px, 17px 23px;
+  animation: inferno-sparks 3s linear infinite;
+  -webkit-mask-image: linear-gradient(to top, #000 30%, transparent 90%);
+  mask-image: linear-gradient(to top, #000 30%, transparent 90%);
+}
+@keyframes inferno-sparks { from { background-position: 0 0, 7px 0; } to { background-position: 8px -93px, -4px -69px; } }
+.pack-wrap-inferno .pack-wrap-layer::after { content: ''; position: absolute; inset: 0; transform-origin: bottom; background: radial-gradient(ellipse 80% 40% at 50% 105%, rgba(251, 146, 60, 0.75), transparent 70%); animation: inferno-heat 1.4s ease-in-out infinite alternate; }
+@keyframes inferno-heat { from { opacity: 0.55; transform: scaleY(0.92); } to { opacity: 1; transform: scaleY(1.08); } }
+/* Portal: a vortex of violet and cyan turning in the dark, its heart breathing light. */
+.pack-wrap-portal { background: radial-gradient(circle at 50% 50%, #1e0b3a, #05010f 70%) !important; }
+.pack-wrap-portal .pack-wrap-layer {
+  background-image: radial-gradient(circle at 15% 20%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 80% 15%, #a5f3fc 0 1px, transparent 1.5px), radial-gradient(circle at 85% 85%, #fff 0 1px, transparent 1.5px), radial-gradient(circle at 10% 80%, #ddd6fe 0 1px, transparent 1.5px);
+}
+.pack-wrap-portal .pack-wrap-layer::before {
+  content: '';
+  position: absolute;
+  left: -30%;
+  right: -30%;
+  top: 50%;
+  margin-top: -80%;
+  aspect-ratio: 1;
+  background: repeating-conic-gradient(from 0deg, rgba(167, 139, 250, 0.95) 0deg 14deg, rgba(34, 211, 238, 0.85) 20deg 28deg, transparent 34deg 60deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 9%, #000 14% 30%, transparent 46%);
+  mask-image: radial-gradient(circle, transparent 0 9%, #000 14% 30%, transparent 46%);
+  filter: blur(1.5px) drop-shadow(0 0 6px rgba(139, 92, 246, 0.9));
+  animation: portal-swirl 2.6s linear infinite;
+}
+@keyframes portal-swirl { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+.pack-wrap-portal .pack-wrap-layer::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, #fff 0 3%, rgba(196, 181, 253, 0.9) 6%, rgba(34, 211, 238, 0.35) 13%, transparent 22%); animation: portal-heart 1.8s ease-in-out infinite; }
+@keyframes portal-heart { 0%, 100% { opacity: 0.6; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1.15); } }
+
+/* ---- Their openings: the pack's last moment, torn (src/gacha/PackOpening.tsx, and the Boutique's preview). */
+/* Portal: spun into the vortex and swallowed; a ring of light bursts open where it was. */
+.pack-open-portal { animation: pack-vortex 0.9s cubic-bezier(0.55, 0, 0.85, 0.35) forwards; }
+@keyframes pack-vortex {
+  0% { transform: none; filter: none; }
+  25% { transform: rotate(-20deg) scale(1.06); filter: brightness(1.3); }
+  100% { transform: rotate(900deg) scale(0); filter: brightness(2.6) hue-rotate(80deg) blur(2px); opacity: 0.3; }
+}
+.pack-fx-portal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 190%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: repeating-conic-gradient(from var(--asc-angle), #a78bfa 0deg 12deg, #22d3ee 18deg 26deg, #fff 29deg 31deg, transparent 34deg 45deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 0 34%, #000 40% 46%, transparent 52%);
+  mask-image: radial-gradient(circle, transparent 0 34%, #000 40% 46%, transparent 52%);
+  filter: drop-shadow(0 0 10px #a78bfa) drop-shadow(0 0 22px #22d3ee);
+  transform: translate(-50%, -50%) scale(0.05);
+  opacity: 0;
+  animation: portal-ring 1.25s cubic-bezier(0.2, 0.7, 0.3, 1) 0.45s forwards, portal-ring-turn 1.25s linear 0.45s forwards;
+}
+@keyframes portal-ring { 0% { transform: translate(-50%, -50%) scale(0.05); opacity: 0; } 25% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1.35); opacity: 0; } }
+@keyframes portal-ring-turn { to { --asc-angle: -540deg; } }
+/* Inferno: the pack burns away from the tear, its edge white-hot, embers flying. */
+.pack-open-inferno {
+  -webkit-mask-image: radial-gradient(circle at 50% 18%, transparent var(--burn), #000 calc(var(--burn) + 1.5%));
+  mask-image: radial-gradient(circle at 50% 18%, transparent var(--burn), #000 calc(var(--burn) + 1.5%));
+  animation: pack-burn 0.95s ease-in forwards;
+}
+@keyframes pack-burn { 0% { --burn: 0%; filter: none; } 25% { filter: brightness(1.3) drop-shadow(0 0 6px #f97316); } 100% { --burn: 130%; filter: brightness(1.7) drop-shadow(0 0 10px #fb923c); } }
+.pack-fx-burn {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 18%, #fff7d6 calc(var(--burn) + 1%), #fde047 calc(var(--burn) + 3%), #f97316 calc(var(--burn) + 6%), #7f1d1d calc(var(--burn) + 9%), rgba(28, 10, 4, 0.6) calc(var(--burn) + 12%), rgba(28, 10, 4, 0) calc(var(--burn) + 17%));
+  animation: pack-burn-edge 0.95s ease-in forwards;
+}
+@keyframes pack-burn-edge { from { --burn: 0%; } to { --burn: 130%; } }
+/* Holo Foil: its top peels off in 3D, a prismatic flash sweeping across what's left. */
+.pack-open-peel { animation: pack-peel 0.85s cubic-bezier(0.3, 0.1, 0.5, 1) forwards; transform-origin: 50% 18%; }
+@keyframes pack-peel {
+  0% { transform: perspective(500px) rotateX(0deg); filter: none; }
+  40% { filter: brightness(1.6) saturate(1.6); }
+  100% { transform: perspective(500px) rotateX(-170deg) translateY(-30%) translateZ(80px) rotateZ(14deg); filter: brightness(2) hue-rotate(120deg); opacity: 0; }
+}
+.pack-fx-prism {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 79, 216, 0.75) 40%, rgba(255, 205, 60, 0.85) 45%, #fff 50%, rgba(60, 199, 255, 0.85) 55%, rgba(168, 85, 247, 0.75) 60%, transparent 70%) 0 0 / 300% 100%;
+  mix-blend-mode: screen;
+  animation: pack-wrap-sweep 0.8s ease-out forwards, prism-fade 0.95s ease-out forwards;
+}
+@keyframes prism-fade { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+/* Embers (Inferno) and shards (Holo Foil, Portal): flying out from the tear (--x, --dx, --dy, --rot, --d, --t per bit). */
+.pack-fx-bit {
+  position: absolute;
+  top: 18%;
+  left: var(--x);
+  border-radius: 9999px;
+  opacity: 0;
+  animation: pack-fx-fly var(--t, 1.1s) cubic-bezier(0.15, 0.6, 0.4, 1) var(--d, 0s) forwards;
+}
+.pack-fx-bit.shard { border-radius: 1px; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+@keyframes pack-fx-fly {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot, 0deg)) scale(0.3); }
+}
+
+/* ---- The Boutique's Ascended row: its pieces in a turning iridescent frame. */
+.boutique-ascended {
+  border: 1.5px solid transparent !important;
+  background: linear-gradient(var(--color-card), var(--color-card)) padding-box, conic-gradient(from var(--asc-angle), #f0abfc, #fde68a, #a5f3fc, #c4b5fd, #f0abfc) border-box;
+  box-shadow: 0 0 18px rgba(196, 181, 253, 0.35), 0 0 4px rgba(253, 230, 138, 0.4);
+  animation: asc-frame 4s linear infinite;
+}
+@keyframes asc-frame { to { --asc-angle: 360deg; } }
+.boutique-ascended-badge { background: linear-gradient(90deg, #a855f7, #f0abfc, #fde68a, #a5f3fc, #a855f7) 0 0 / 200% 100%; color: #1e1b4b; animation: card-name-shimmer 3s linear infinite; }
+.boutique-ascended-title {
+  background: linear-gradient(90deg, #a855f7, #f0abfc, #fde68a, #a5f3fc, #a855f7) 0 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: card-name-shimmer 4s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(196, 181, 253, 0.6));
+}
+:root[data-theme='light'] :is(.name-style-ascendant, .boutique-ascended-title) { -webkit-text-stroke: 0.35px rgba(30, 41, 59, 0.55); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) :is(.name-style-ascendant, .boutique-ascended-title) { -webkit-text-stroke: 0.35px rgba(30, 41, 59, 0.55); }
+}
+/* On light pages, the Ascended looks in deeper colours (their white and pale gold would vanish on the paper). */
+:root[data-theme='light'] .name-style-ascendant { background-image: linear-gradient(90deg, #92400e, #d97706 25%, #b45309 50%, #ca8a04 75%, #92400e); }
+:root[data-theme='light'] .name-style-ascendant.ascend-2 { background-image: linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #92400e, #d97706 25%, #b45309 50%, #ca8a04 75%, #92400e); }
+:root[data-theme='light'] .name-style-ascendant.ascend-3 { background-image: radial-gradient(circle, #fde68a 0 0.8px, transparent 1.4px), linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #5b21b6, #b45309 20%, #d97706 40%, #6d28d9 60%, #b45309 80%, #5b21b6); }
+:root[data-theme='light'] .name-style-ascendant.ascend-4 { background-image: radial-gradient(circle, #fff 0 1px, transparent 1.6px), linear-gradient(100deg, transparent 40%, #fff7d6 50%, transparent 60%), linear-gradient(90deg, #b45309, #d97706 15%, #a21caf 35%, #7c3aed 50%, #0e7490 65%, #d97706 85%, #b45309); }
+:root[data-theme='light'] :is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::before, :root[data-theme='light'] :is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::after { color: #b45309; -webkit-text-fill-color: #b45309; }
+:root[data-theme='light'] .title-style-eternal { background-image: linear-gradient(90deg, #334155, #64748b, #94a3b8, #475569, #334155); }
+:root[data-theme='light'] .title-style-eternal.ascend-2 { background-image: linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #92400e, #ca8a04, #b45309, #d97706, #92400e); }
+:root[data-theme='light'] .title-style-eternal.ascend-3 { background-image: linear-gradient(90deg, #be123c, #c2410c, #a16207, #0e7490, #6d28d9, #a21caf, #be123c); }
+:root[data-theme='light'] .title-style-eternal.ascend-4 { background-image: repeating-linear-gradient(0deg, #5b21b6 0, #a21caf 0.25em, #db2777 0.45em, #d97706 0.65em, #b45309 0.85em, #5b21b6 1.1em); }
+:root[data-theme='light'] .boutique-ascended-title { background-image: linear-gradient(90deg, #7e22ce, #c026d3, #b45309, #0e7490, #7e22ce); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .name-style-ascendant { background-image: linear-gradient(90deg, #92400e, #d97706 25%, #b45309 50%, #ca8a04 75%, #92400e); }
+  :root:not([data-theme='dark']) .name-style-ascendant.ascend-2 { background-image: linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #92400e, #d97706 25%, #b45309 50%, #ca8a04 75%, #92400e); }
+  :root:not([data-theme='dark']) .name-style-ascendant.ascend-3 { background-image: radial-gradient(circle, #fde68a 0 0.8px, transparent 1.4px), linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #5b21b6, #b45309 20%, #d97706 40%, #6d28d9 60%, #b45309 80%, #5b21b6); }
+  :root:not([data-theme='dark']) .name-style-ascendant.ascend-4 { background-image: radial-gradient(circle, #fff 0 1px, transparent 1.6px), linear-gradient(100deg, transparent 40%, #fff7d6 50%, transparent 60%), linear-gradient(90deg, #b45309, #d97706 15%, #a21caf 35%, #7c3aed 50%, #0e7490 65%, #d97706 85%, #b45309); }
+  :root:not([data-theme='dark']) :is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::before, :root:not([data-theme='dark']) :is(.name-style-ascendant, .title-style-eternal):is(.ascend-3, .ascend-4)::after { color: #b45309; -webkit-text-fill-color: #b45309; }
+  :root:not([data-theme='dark']) .title-style-eternal { background-image: linear-gradient(90deg, #334155, #64748b, #94a3b8, #475569, #334155); }
+  :root:not([data-theme='dark']) .title-style-eternal.ascend-2 { background-image: linear-gradient(100deg, transparent 42%, #fde68a 50%, transparent 58%), linear-gradient(90deg, #92400e, #ca8a04, #b45309, #d97706, #92400e); }
+  :root:not([data-theme='dark']) .title-style-eternal.ascend-3 { background-image: linear-gradient(90deg, #be123c, #c2410c, #a16207, #0e7490, #6d28d9, #a21caf, #be123c); }
+  :root:not([data-theme='dark']) .title-style-eternal.ascend-4 { background-image: repeating-linear-gradient(0deg, #5b21b6 0, #a21caf 0.25em, #db2777 0.45em, #d97706 0.65em, #b45309 0.85em, #5b21b6 1.1em); }
+  :root:not([data-theme='dark']) .boutique-ascended-title { background-image: linear-gradient(90deg, #7e22ce, #c026d3, #b45309, #0e7490, #7e22ce); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .name-style-ascendant, .title-style-eternal, .name-style-ascendant::before, .name-style-ascendant::after, .title-style-eternal::before, .title-style-eternal::after,
+  .boutique-ascended, .boutique-ascended-badge, .boutique-ascended-title { animation: none; }
+  .pack-open-portal, .pack-open-inferno, .pack-open-peel { animation-duration: 0.01s; }
+  .pack-fx-portal, .pack-fx-burn, .pack-fx-prism, .pack-fx-bit { display: none; }
+}
+
 /* Inverted: the picture as a photo negative. */
 .card-anomaly-inverted .card-picture img,
 .card-anomaly-inverted .card-picture video,

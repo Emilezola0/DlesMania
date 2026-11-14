@@ -6,6 +6,7 @@
 // the other's list. A score can only be read by its player and the players on their list
 // (firestore.rules): only friends see each other. A new code stops the old one working.
 import { arrayRemove, arrayUnion, deleteDoc, doc, getDoc, runTransaction, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
+import { withStage } from '../casino/ascended';
 import { COSMETIC_BY_ID } from '../casino/cosmetics';
 import { bestPlush } from '../casino/plushies';
 import { featsOf, TITLE_BY_ID } from '../casino/unlocks';
@@ -88,8 +89,9 @@ function looks() {
   return {
     avatar: s.avatar && s.cards[s.avatar] ? s.avatar : null,
     frame: s.frame ?? null,
-    nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? s.nameStyle : null,
-    title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? title.id : null,
+    // An evolving piece goes with its stage ("name:ascendant#3").
+    nameStyle: s.nameStyle && COSMETIC_BY_ID.has(s.nameStyle) && (s.cosmetics ?? []).includes(s.nameStyle) ? withStage(s, s.nameStyle) : null,
+    title: title && title.id !== 'newcomer' && title.has(featsOf(s)) ? withStage(s, title.id, 'title:') : null,
     // The plush picked on the Account page (if still owned), else the best one.
     plush: s.shownPlush && s.claw?.plush?.[s.shownPlush] ? s.shownPlush : (bestPlush(s.claw?.plush)?.id ?? null),
   };

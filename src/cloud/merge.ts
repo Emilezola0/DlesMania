@@ -59,6 +59,7 @@ export const SYNCED = [
   'frames',
   'frame',
   'cosmetics',
+  'ascendFrom',
   'nameStyle',
   'wrapper',
   'title',
@@ -160,6 +161,12 @@ function mergeSpecs(local: SaveData, cloud: SaveData): Record<string, RoundSpec[
 const maxBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) => {
   const out = { ...a };
   for (const [k, v] of Object.entries(b)) out[k] = Math.max(out[k] ?? 0, v);
+  return out;
+};
+/** Each key at its lowest (a start: the earliest wins). */
+const minBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) => {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) out[k] = Math.min(out[k] ?? v, v);
   return out;
 };
 
@@ -309,6 +316,8 @@ export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink,
     frame: latest.frame ?? null,
     // Cosmetics bought on either side stay bought; the ones in use, and the title: the latest save's.
     cosmetics: firstLink ? (cloud.cosmetics ?? []) : [...new Set([...(local.cosmetics ?? []), ...(cloud.cosmetics ?? [])])],
+    // An evolving cosmetic counts from the first time it was bought, on either side.
+    ascendFrom: firstLink ? (cloud.ascendFrom ?? {}) : minBy(local.ascendFrom, cloud.ascendFrom),
     nameStyle: latest.nameStyle ?? null,
     wrapper: latest.wrapper ?? null,
     title: latest.title ?? null,

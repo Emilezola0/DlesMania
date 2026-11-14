@@ -284,8 +284,10 @@ interface ProgressState {
   setNameStyle: (id: string | null) => void;
   setWrapper: (id: string | null) => void;
   setTitle: (id: string | null) => void;
-  /** Buys a cosmetic for `price` DleCoins, or `price` casino tokens with `inTokens` (and puts it on): false if it can't (too few, owned already). */
-  buyCosmetic: (id: string, price: number, inTokens?: boolean) => boolean;
+  /** An evolving cosmetic's start (src/casino/cosmetics.ts `evolve`): the dailies played when it was bought. */
+  ascendFrom?: Record<string, number>;
+  /** Buys a cosmetic for `price` DleCoins, or `price` casino tokens with `inTokens` (and puts it on): false if it can't (too few, owned already). An evolving one starts counting. */
+  buyCosmetic: (id: string, price: number, inTokens?: boolean, evolves?: boolean) => boolean;
   /** Five copies of a card into one a grade higher (the card and four spares); pays the grade's reward. The element grade needs its element. */
   gradeUp: (id: string, rarity: Rarity, by?: string, element?: ElementId) => boolean;
   /**
@@ -762,7 +764,7 @@ export const useProgress = create<ProgressState>()(
       setNameStyle: (nameStyle) => set({ nameStyle }),
       setWrapper: (wrapper) => set({ wrapper }),
       setTitle: (title) => set({ title }),
-      buyCosmetic: (id, price, inTokens = false) => {
+      buyCosmetic: (id, price, inTokens = false, evolves = false) => {
         const s = get();
         const owned = s.cosmetics ?? [];
         const have = inTokens ? (s.chips ?? 0) : s.coins;
@@ -771,6 +773,7 @@ export const useProgress = create<ProgressState>()(
         set({
           ...(inTokens ? { chips: have - price } : { coins: s.coins - price }),
           cosmetics: [...owned, id],
+          ...(evolves ? { ascendFrom: { ...(s.ascendFrom ?? {}), [id]: Object.keys(s.days ?? {}).length } } : {}),
           ...(kind === 'name' ? { nameStyle: id } : kind === 'wrap' ? { wrapper: id } : kind === 'title' ? { title: id.slice('title:'.length) } : {}),
         });
         return true;

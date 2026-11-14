@@ -373,7 +373,22 @@ export default function TestLab() {
           <button type="button" className={btn} onClick={() => (useProgress.setState({ cosmetics: [...NAME_STYLES, ...WRAPPERS, ...TITLE_ITEMS].map((c) => c.id) }), say('Every name style, wrapper and Boutique title is yours.'))}>
             Give every cosmetic
           </button>
-          <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null }), say('Frames and cosmetics taken back.'))}>
+          <button
+            type="button"
+            className={btn}
+            onClick={() => {
+              // Every evolving piece as if bought one stage further on (the last stage, then back to the first).
+              const s = useProgress.getState();
+              const all = Object.keys(s.days ?? {}).length;
+              const evolving = [...NAME_STYLES, ...TITLE_ITEMS].filter((c) => c.evolve);
+              const top = evolving.every((c) => (s.ascendFrom?.[c.id] ?? all) <= all - 1000);
+              useProgress.setState({ ascendFrom: Object.fromEntries(evolving.map((c) => [c.id, top ? all : all - 1000])) });
+              say(top ? 'Evolving cosmetics back to their first stage.' : 'Evolving cosmetics at their last stage.');
+            }}
+          >
+            Evolving cosmetics: last stage / first
+          </button>
+          <button type="button" className={btn} onClick={() => (useProgress.setState({ frames: [], frame: null, cosmetics: [], ascendFrom: {}, nameStyle: null, wrapper: null, title: null }), say('Frames and cosmetics taken back.'))}>
             Take them all back
           </button>
         </div>
