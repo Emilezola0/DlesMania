@@ -525,11 +525,12 @@ const OMNIS: Record<string, { name: string; title: string; line: string; image?:
     title: 'Core Swing',
     // The owner's text: FPL Season 5, Pile Rouillée's "La Spéciale" (on both forms: an Omni shows its awakened one).
     line: 'FPL Season 5. As the battle rages on, Pile Rouillée launches his ultimate offensive: "La Spéciale". At the cost of his own base, he catapults his Core straight into Nils. A devastating impact. An instant elimination. A legendary sacrifice.',
-    image: 'https://www.earthworkgames.com/wp-content/uploads/2022/02/forts-landing-page.png',
+    // The Core (a player's pick, Discord ticket "Replace image"), on both forms: an Omni shows its awakened one.
+    image: 'https://static.wikia.nocookie.net/forts-rts/images/2/2b/Core.png/revision/latest?cb=20190330223719',
     awaken: {
       title: 'Pile Rouillée',
       line: 'FPL Season 5. As the battle rages on, Pile Rouillée launches his ultimate offensive: "La Spéciale". At the cost of his own base, he catapults his Core straight into Nils. A devastating impact. An instant elimination. A legendary sacrifice.',
-      image: 'https://www.earthworkgames.com/wp-content/uploads/2025/09/PressKit-Howitzer.png',
+      image: 'https://static.wikia.nocookie.net/forts-rts/images/2/2b/Core.png/revision/latest?cb=20190330223719',
     },
   },
   forhonor: {
@@ -702,6 +703,8 @@ const STRONG: Record<string, Partial<Pick<Card, 'image' | 'title' | 'voice' | 'a
   // ── Forts: the Armoured Door's only picture is a screenshot — framed on the door. (The rest have the
   // Forts RTS Wiki's own art, in src/data/bosses.json.) ──
   'forts:armoured-door': { focus: { x: 50, y: 55, zoom: 1.5 } },
+  // Ademar's picture is a tall portrait, his face near its top: framed on it (a player's ask, Discord ticket "Ademar").
+  'forhonor:ademar': { focus: { x: 50, y: 4, zoom: 1 } },
 };
 
 /**
