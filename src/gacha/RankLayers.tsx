@@ -1,7 +1,9 @@
 // The special rarities' bigger effects (src/gacha/ranks.ts), drawn by CardFace when the card's rank has them on
 // (src/data/tuning/special-rarities.json `effects`). Their looks are .card-rank-* in src/index.css.
-//   Behind the card: Apex's flames, pillar of light and shockwaves; Eclipse's corona streamers; Bond's infinity.
-//   Over the picture: Eclipse's stars in the dark; Bond's thread, where the two friends' lights meet in a heart.
+// Under the mouse the card is `card-rank-hot`: Eclipse's sun follows the pointer (--sx, --sy, --tot set by CardFace;
+// on their own they pass in a loop), Relic's arcana circle draws itself, Bond's two cards merge into one.
+//   Behind the card: Eclipse's night, sun, corona and streamers; Apex's flames, pillar and shockwaves; Bond's two cards.
+//   Over the picture: Eclipse's stars and lit limb; Relic's arcana circle; Bond's seam, flash, thread and heart.
 //   On the rim: Eclipse's diamond ring and Baily's beads.
 import { useId, type CSSProperties } from 'react';
 
@@ -35,11 +37,23 @@ const STARS = [
   [8, 84, 0.8], [27, 93, 0.6], [62, 95, 0.9], [86, 88, 0.7], [94, 66, 0.5], [4, 60, 0.6],
 ].map(([x, y, s], i) => ({ x, y, s, delay: -((i * 0.83) % 4) }));
 
-/** Behind the card. `lift` sets it back in a 3D view, as the corona's always was. */
-export function RankBehind({ fx, lift }: { fx: Fx; lift?: CSSProperties }) {
+/** Relic's arcana: the runes written round its circle. */
+const ARCANA = 'ᚠᚢᚦᚨᚱᚲᚷᚹ·ᚺᚾᛁᛃᛇᛈᛉᛊ·ᛏᛒᛖᛗᛚᛜᛞᛟ·';
+/** A hexagram's six points on a circle of radius r (the circle's centre at 0, 0). */
+const hexPoints = (r: number, turn: number) =>
+  [0, 1, 2, 3, 4, 5].map((i) => {
+    const a = ((i * 60 + turn) * Math.PI) / 180;
+    return [Math.sin(a) * r, -Math.cos(a) * r];
+  });
+const HEX = hexPoints(31, 0);
+const triangle = (start: number) => [0, 2, 4].map((k) => HEX[(start + k) % 6].map((v) => v.toFixed(2)).join(',')).join(' ');
+
+/** Behind the card. `lift` sets it back in a 3D view, as the corona's always was. `image`: the card's picture, for Bond's two cards. */
+export function RankBehind({ fx, lift, image }: { fx: Fx; lift?: CSSProperties; image?: string }) {
   const id = useId().replace(/:/g, '');
   return (
     <div className="pointer-events-none absolute inset-0 -z-10" style={lift} aria-hidden>
+      {fx('sun') && <div className="card-rank-night" />}
       {fx('pillar') && <div className="card-rank-pillar" />}
       {fx('flames') && (
         <div className="card-rank-flames">
@@ -61,6 +75,13 @@ export function RankBehind({ fx, lift }: { fx: Fx; lift?: CSSProperties }) {
           <div className="card-rank-corona" />
         </>
       )}
+      {fx('sun') && <div className="card-rank-sun" />}
+      {fx('fusion') &&
+        [-1, 1].map((side) => (
+          <div key={side} className={`card-rank-ghost card-rank-ghost-${side < 0 ? 'left' : 'right'}`} style={{ ['--side' as string]: side }}>
+            {image && <img src={image} alt="" draggable={false} />}
+          </div>
+        ))}
       {fx('infinity') && (
         <svg className="card-rank-infinity" viewBox="0 0 200 100">
           <defs>
@@ -88,16 +109,63 @@ export function RankBehind({ fx, lift }: { fx: Fx; lift?: CSSProperties }) {
   );
 }
 
+/** Relic's arcana: a magic circle that draws itself under the mouse, its rings turning, runes written round it. */
+function Arcana() {
+  const id = useId().replace(/:/g, '');
+  return (
+    <svg className="card-rank-arcana pointer-events-none absolute z-[5]" viewBox="-50 -50 100 100" aria-hidden>
+      <defs>
+        <path id={`${id}c`} d="M0,-43 a43,43 0 1,1 0,86 a43,43 0 1,1 0,-86" />
+      </defs>
+      <g className="card-rank-arcana-outer">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite" />
+        <circle r="47" pathLength={1} className="card-rank-arcana-line" />
+        <circle r="39.5" pathLength={1} className="card-rank-arcana-line card-rank-arcana-violet" />
+        <text className="card-rank-arcana-runes">
+          <textPath href={`#${id}c`} textLength="268">
+            {ARCANA}
+          </textPath>
+        </text>
+      </g>
+      <g className="card-rank-arcana-inner">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="20s" repeatCount="indefinite" />
+        <circle r="31" pathLength={1} className="card-rank-arcana-line card-rank-arcana-gold" />
+        <polygon points={triangle(0)} pathLength={1} className="card-rank-arcana-line" />
+        <polygon points={triangle(1)} pathLength={1} className="card-rank-arcana-line card-rank-arcana-violet" />
+        <circle r="15.5" pathLength={1} className="card-rank-arcana-line card-rank-arcana-gold" />
+        {HEX.map(([x, y], i) => (
+          <circle key={i} cx={x} cy={y} r="2.6" pathLength={1} className={`card-rank-arcana-line ${i % 2 ? 'card-rank-arcana-violet' : ''}`} />
+        ))}
+      </g>
+      <path className="card-rank-arcana-core" d="M0,-9 L2,-2 L9,0 L2,2 L0,9 L-2,2 L-9,0 L-2,-2 Z" />
+    </svg>
+  );
+}
+
 /** Over the picture, under the words. */
 export function RankOver({ fx }: { fx: Fx }) {
   const id = useId().replace(/:/g, '');
   return (
     <>
+      {fx('sun') && <div className="card-rank-limb pointer-events-none absolute inset-0 z-[5]" aria-hidden />}
       {fx('stars') && (
         <div className="card-rank-stars pointer-events-none absolute inset-0 z-[5]" aria-hidden>
           {STARS.map((s) => (
             <i key={`${s.x}-${s.y}`} style={{ left: `${s.x}%`, top: `${s.y}%`, scale: String(s.s), animationDelay: `${s.delay}s` }} />
           ))}
+        </div>
+      )}
+      {fx('arcana') && (
+        <>
+          <div className="card-rank-arcana-dim pointer-events-none absolute inset-0 z-[5]" aria-hidden />
+          <div className="card-rank-arcana-light pointer-events-none absolute inset-0 z-[5]" aria-hidden />
+          <Arcana />
+        </>
+      )}
+      {fx('fusion') && (
+        <div className="card-rank-fusion pointer-events-none absolute inset-0 z-[5]" aria-hidden>
+          <i className="card-rank-seam" />
+          <i className="card-rank-fuse" />
         </div>
       )}
       {fx('thread') && (
@@ -115,8 +183,9 @@ export function RankOver({ fx }: { fx: Fx }) {
             [`#${id}l`, 'var(--rk1)'],
             [`#${id}r`, 'var(--rk3)'],
           ].map(([path, c]) => (
+            // The two lights meet in the heart as the two cards merge (the same 6 s as .card-rank-ghost).
             <circle key={path} r="1.6" fill={c} className="card-rank-thread-light">
-              <animateMotion dur="3s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="linear">
+              <animateMotion dur="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.4;0.8;1" calcMode="linear">
                 <mpath href={path} />
               </animateMotion>
             </circle>

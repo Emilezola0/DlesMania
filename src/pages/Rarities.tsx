@@ -248,18 +248,21 @@ function rankFacts(id: RankId): [string, React.ReactNode][] {
         ['Takes', 'The whole set, and its boss beaten on Hell'],
         ['Limit', 'One Relic per set'],
         ['Pays', `${RELIC_REWARD.toLocaleString('en')} DleCoins`],
+        ['Under the mouse', 'Its arcana wakes: a magic circle draws itself over the picture'],
       ];
     case 'eclipse':
       return [
         ['Cards', ECLIPSE_RARITIES.map((r) => RARITY_INFO[r].name).join(' or ')],
         ['By luck', `${Math.round(ECLIPSE_CHANCE * 100)}% for one swallowed by a pack’s black hole`],
         ['By shards', `${ECLIPSE_SHARDS} star shards (one per other star swallowed)`],
+        ['Under the mouse', 'You move the moon: the middle of the card is totality'],
       ];
     case 'bond':
       return [
         ['Cards', 'Only from a Bond pack'],
         ['Takes', `${BOND_PACK_COST} Bond points (a day you both play the daily is 1)`],
         ['Chance', `${Math.round(BOND_CHANCE * 100)}% a pack holds the Bond card`],
+        ['Under the mouse', 'The two cards merge into one'],
       ];
   }
 }
@@ -270,14 +273,16 @@ const RANK_ORDER: RankId[] = ['apex', 'eclipse', 'relic', 'bond'];
 function RankShow({ id, card }: { id: RankId; card: Card }) {
   const [on, setOn] = useState(true);
   const [held, setHeld] = useState(false);
+  // Under the mouse it stays special, to try its hover effect.
+  const [over, setOver] = useState(false);
   useEffect(() => {
-    if (held) return;
-    const t = setInterval(() => setOn((o) => !o), on ? 5200 : 1800);
+    if (held || (over && on)) return;
+    const t = setInterval(() => setOn((o) => !o), on ? 9000 : 1800);
     return () => clearInterval(t);
-  }, [held, on]);
+  }, [held, on, over]);
   const rank = RANKS[id];
   return (
-    <div className="relative" style={{ ['--rk1' as string]: rank.colors[0], ['--rk3' as string]: rank.colors[2] }}>
+    <div className="relative" style={{ ['--rk1' as string]: rank.colors[0], ['--rk3' as string]: rank.colors[2] }} onPointerEnter={() => setOver(true)} onPointerLeave={() => setOver(false)}>
       <div key={String(on)} className={on ? 'rarity-rise' : 'rarity-swap'}>
         <CardFace card={card} grade={1} rank={on ? id : null} anomaly={null} tilt={false} />
       </div>

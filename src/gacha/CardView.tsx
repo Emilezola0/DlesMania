@@ -282,17 +282,31 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
   const live = !calm || hovered;
   const ref = useRef<HTMLDivElement>(null);
   const [t, setT] = useState({ x: 0, y: 0, mx: 50, my: 50 });
+  const [over, setOver] = useState(false);
   const move = (e: React.PointerEvent) => {
-    if (!tilt || !ref.current || e.pointerType !== 'mouse') return;
+    // A card shown under a still pointer (just swapped in) gets no pointerenter: its special rarity wakes on the first move.
+    if (rank && !over && e.pointerType === 'mouse') setOver(true);
+    // A card that doesn't tilt still follows the pointer when it has a special rarity (Eclipse's moon, Relic's light).
+    if ((!tilt && !rank) || !ref.current || e.pointerType !== 'mouse') return;
     const r = ref.current.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
     // An omni tilts further: more depth to it.
-    const k = look === 'omni' ? 1.7 : 1;
+    const k = !tilt ? 0 : look === 'omni' ? 1.7 : 1;
     setT({ x: (0.5 - py) * 16 * k, y: (px - 0.5) * 18 * k, mx: px * 100, my: py * 100 });
   };
   const mx = foil?.x ?? t.mx;
   const my = foil?.y ?? t.my;
+  // A special rarity wakes under the mouse (or up close, turned by hand): Eclipse's sun follows it, Relic's arcana lights, Bond's two cards merge.
+  const hot = !!rank && (over || !!foil);
+  /** Eclipse: where the sun is behind the card (the pointer moves the moon), and how total the eclipse is (0 to 1). */
+  const sun = (() => {
+    if (!hot || rankId !== 'eclipse') return undefined;
+    const sx = (0.5 - mx / 100) * 2;
+    const sy = (0.5 - my / 100) * 2;
+    const tot = Math.min(1, Math.max(0, (0.6 - Math.hypot(sx, sy)) / 0.42));
+    return { ['--sx' as string]: sx.toFixed(3), ['--sy' as string]: sy.toFixed(3), ['--tot' as string]: tot.toFixed(3) };
+  })();
   const mythic = look === 'mythic';
   const omni = look === 'omni';
   // Mythics and omnis share the prism; omnis add a cosmos, a crown, and a second form.
@@ -317,9 +331,13 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
     <div
       ref={ref}
       onPointerMove={move}
-      onPointerEnter={(e) => (hoverHero || calm) && e.pointerType === 'mouse' && setHovered(true)}
-      onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false))}
-      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 || rank ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''} ${rank ? `card-rank card-rank-${rank.id}` : ''}`}
+      onPointerEnter={(e) => {
+        if (e.pointerType !== 'mouse') return;
+        if (hoverHero || calm) setHovered(true);
+        if (rank) setOver(true);
+      }}
+      onPointerLeave={() => (setT({ x: 0, y: 0, mx: 50, my: 50 }), setHovered(false), setOver(false))}
+      className={`relative aspect-[5/7] w-full rounded-[7%] p-[3%] transition-transform duration-150 ease-out [container-type:inline-size] ${anomaly?.className ?? ''} ${live ? '' : 'card-calm'} ${omni ? `card-omni-frame ${form.awakened ? 'card-omni-awake' : ''}` : mythic ? 'card-mythic-frame' : ''} ${depth ? 'card-3d [transform-style:preserve-3d]' : fx >= 6 || rank ? 'isolate' : ''} ${el ? `card-element card-element-${el.id}` : ''} ${rank ? `card-rank card-rank-${rank.id}` : ''} ${hot ? 'card-rank-hot' : ''}`}
       style={{
         background: singularity ? '#05030a' : prism ? undefined : st.frame,
         boxShadow: st.glow,
@@ -328,6 +346,7 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         ...(cssLight && !foil ? {} : { ['--mx' as string]: `${mx}%`, ['--my' as string]: `${my}%` }),
         ...(el ? { ['--e1' as string]: el.colors[0], ['--e2' as string]: el.colors[1], ['--e3' as string]: el.colors[2] } : {}),
         ...(rank ? { ['--rk1' as string]: rank.colors[0], ['--rk2' as string]: rank.colors[1], ['--rk3' as string]: rank.colors[2], ['--rk-speed' as string]: `${rank.speed}s` } : {}),
+        ...sun,
       }}
     >
       {/* Up close, an omni's rings of fire: their far halves first, behind the card (see the near halves below). */}
@@ -539,8 +558,8 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
           </div>
         </div>
       )}
-      {/* Behind the card: an Eclipse's corona and streamers, an Apex's flames, pillar and shockwaves, a Bond's infinity. */}
-      {rank && live && ['corona', 'flames', 'pillar', 'shockwave', 'infinity'].some(fxOn) && <RankBehind fx={fxOn} lift={lift(-12)} />}
+      {/* Behind the card: an Eclipse's sun, corona and streamers, an Apex's flames, pillar and shockwaves, a Bond's two cards merging. */}
+      {rank && live && ['corona', 'sun', 'flames', 'pillar', 'shockwave', 'infinity', 'fusion'].some(fxOn) && <RankBehind fx={fxOn} lift={lift(-12)} image={form.image} />}
       {/* On the rim: an Eclipse's diamond ring. */}
       {rank && live && <RankRim fx={fxOn} lift={lift(30)} />}
       {rank && fxOn('ribbon') && (

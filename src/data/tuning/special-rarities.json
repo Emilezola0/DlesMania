@@ -30,7 +30,7 @@
       "#4a3b2e",
       "#7dd3fc"
     ],
-    "blurb": "A franchise's relic: a frame of carved stone and gold with a light running round it, a seal of runes turning behind it, runes lighting up one after another, dust drifting in the light.",
+    "blurb": "A franchise's relic: a frame of carved stone and gold with a light running round it, a seal of runes turning behind it, runes lighting up one after another, dust drifting in the light, all in gold and arcane colours. Under the mouse its arcana wakes: a magic circle draws itself over the picture, its rings turning.",
     "how": "Complete a set and beat its boss on Hell: then pick one card of that set to become its Relic (one per set).",
     "speed": 8,
     "effects": {
@@ -39,6 +39,7 @@
       "dust": true,
       "sheen": true,
       "seal": true,
+      "arcana": true,
       "ribbon": true
     },
     "reward": 2500
@@ -51,12 +52,13 @@
       "#07040d",
       "#fff3d6"
     ],
-    "blurb": "A card the black hole gave back eclipsed: the card is the moon. A pearly corona streams out behind it, beads of light then a diamond ring flare on its edge, and stars come out in the dark.",
+    "blurb": "A card the black hole gave back eclipsed: the card is the moon, passing over the sun behind it. At totality the sky goes dark, the pearly corona blooms, beads of light then a diamond ring flare on its edge, and stars come out. Under the mouse you move the moon: the middle of the card is totality.",
     "how": "A Mythic or Omni swallowed by a pack's black hole may come back Eclipsed. Every other star it swallows leaves a star shard: 7 shards eclipse a Mythic or Omni of your choice.",
     "speed": 7,
     "effects": {
       "frame": true,
       "corona": true,
+      "sun": true,
       "veil": true,
       "diamond": true,
       "stars": true,
@@ -77,14 +79,14 @@
       "#1a1033",
       "#5eead4"
     ],
-    "blurb": "A card two friends got together: an infinity of light behind it with both friends' lights chasing round it, a thread across it where the two meet in a heart, their two colours, and the friend's name on it.",
+    "blurb": "A card two friends got together: two cards, one in each friend's colour, part from it and merge back into one in a flash. The seam where they joined glows down the middle, a thread's two lights meet in a heart, and the friend's name is on it. Under the mouse the two cards merge at once.",
     "how": "Only in Bond packs, opened by two friends together (both must be there). Each day you both play the daily gives your Bond a point; 3 points open a pack. You both get the same 5 cards, and maybe the Bond card, linked to both of you.",
     "speed": 6,
     "effects": {
       "frame": true,
       "twin": true,
       "names": true,
-      "infinity": true,
+      "fusion": true,
       "thread": true,
       "ribbon": true
     },
