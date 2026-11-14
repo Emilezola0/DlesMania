@@ -1,7 +1,7 @@
 // What a cloud save holds, and how two saves (this device's and the account's) become one.
 // Nothing played is ever lost: days and rounds, bosses and bests are combined, keeping the better of
-// each. What can go down as well as up — the coin balance, the cards, the Expedition run — follows
-// the save changed last. The first time a device joins an account that already has a save, the account's
+// each. The balances and the cards add up what each side gained or spent since they last agreed (SyncBase);
+// the rest that can go down as well as up — the Expedition run, what's equipped — follows the save changed last. The first time a device joins an account that already has a save, the account's
 // coins, cards and everything bought or won with them stay as they are: the device's aren't added (they
 // could have been farmed without an account, or copied in from another account). A brand-new account
 // takes the device's save whole.
@@ -225,10 +225,48 @@ function laterQuests(a: SaveData['quests'], b: SaveData['quests']): SaveData['qu
   return sum(a) >= sum(b) ? a : b;
 }
 
-export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer }: { firstLink: boolean; cloudNewer: boolean }): SaveData {
+/** The balances that go up and down: merged by what each side gained or spent since they last agreed. */
+export const COUNTED = ['coins', 'chips', 'freePacks', 'capsuleTokens', 'freeBalls'] as const;
+type Counted = (typeof COUNTED)[number];
+
+/**
+ * What this save and the account's last agreed on (written with the save, after every pull and push): the
+ * balances and the cards. Two sessions open at once (two tabs, a phone and a computer) each earn and spend
+ * from it; on the next merge, the account's balance gets this side's gains and spendings on top, instead of
+ * the save changed last replacing the other's (which lost a session's coins while its paid rewards stayed paid).
+ */
+export interface SyncBase {
+  uid: string;
+  n: Partial<Record<Counted, number>>;
+  cards: Record<string, number>;
+}
+
+export const baseOf = (uid: string, d: SaveData): SyncBase => ({
+  uid,
+  n: Object.fromEntries(COUNTED.map((k) => [k, Number(d[k] ?? 0)])),
+  cards: { ...(d.cards ?? {}) },
+});
+
+/** The account's counts, with what this side gained or spent since `base`. */
+function withGains(local: SaveData, cloud: SaveData, base: SyncBase) {
+  const n = Object.fromEntries(COUNTED.map((k) => [k, Math.max(0, Number(cloud[k] ?? 0) + Number(local[k] ?? 0) - (base.n[k] ?? 0))])) as Record<Counted, number>;
+  const cards: Record<string, number> = {};
+  for (const id of new Set([...Object.keys(cloud.cards ?? {}), ...Object.keys(local.cards ?? {}), ...Object.keys(base.cards)])) {
+    const c = (cloud.cards?.[id] ?? 0) + (local.cards?.[id] ?? 0) - (base.cards[id] ?? 0);
+    if (c > 0) cards[id] = c;
+  }
+  return { ...n, cards };
+}
+
+export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer, base }: { firstLink: boolean; cloudNewer: boolean; base?: SyncBase | null }): SaveData {
   if (!cloud) return local;
   // Joining an account (firstLink): the account's save is the one that counts for all that can be spent.
   const latest = firstLink || cloudNewer ? cloud : local;
+  const merged = mergeLatest(local, cloud, firstLink, latest);
+  return !firstLink && base ? { ...merged, ...withGains(local, cloud, base) } : merged;
+}
+
+function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, latest: SaveData): SaveData {
   return {
     days: mergeDays(local.days, cloud.days),
     special: mergeDays(local.special, cloud.special),

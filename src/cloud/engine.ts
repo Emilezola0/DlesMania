@@ -21,7 +21,7 @@ import {
 import { collection, doc, getDoc, getDocs, writeBatch } from 'firebase/firestore';
 import { coinWatch, useProgress } from '../store/progress';
 import { auth, db } from './firebase';
-import { BY_MONTH, SYNCED, mergeSaves, monthOf, pickSave, type SaveData } from './merge';
+import { BY_MONTH, SYNCED, baseOf, mergeSaves, monthOf, pickSave, type SaveData } from './merge';
 import { SIGNED_IN_FLAG, useCloud } from './state';
 
 const EMAIL_KEY = 'omnidle:cloud:email';
@@ -75,7 +75,7 @@ const fail = (e: unknown) => {
 };
 
 // ── The save in the cloud ─────────────────────────────────────────────
-type Cloud = { data: SaveData; updatedAt: number } | null;
+type Cloud = { data: SaveData; updatedAt: number; rev: string } | null;
 
 const monthDocs = (uid: string) => collection(db, 'saves', uid, 'months');
 
@@ -89,8 +89,19 @@ async function readCloud(uid: string): Promise<Cloud> {
     const part = d.data();
     for (const k of BY_MONTH) if (part[k]) Object.assign((data as unknown as Record<string, Record<string, unknown>>)[k], JSON.parse(part[k]));
   });
-  return { data, updatedAt: Number(m.updatedAt ?? 0) };
+  return { data, updatedAt: Number(m.updatedAt ?? 0), rev: String(m.rev ?? '') };
 }
+
+/**
+ * The version of the account's save this page last read or wrote (null: none yet). Another session that
+ * wrote since (another tab, another device) makes this page merge before writing, instead of writing over
+ * what that session earned.
+ */
+let seenRev: string | null = null;
+const newRev = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+
+/** Remembers, with the save, what it and the account now agree on (see SyncBase). */
+const agree = (uid: string, d: SaveData) => useProgress.setState({ syncBase: baseOf(uid, d) });
 
 /** The small part of the save, as written to the main document. */
 const mainJson = (d: SaveData) => JSON.stringify(Object.fromEntries(SYNCED.filter((k) => !(BY_MONTH as readonly string[]).includes(k)).map((k) => [k, d[k]])));
@@ -119,14 +130,20 @@ async function push(uid: string, all = false) {
   }
   if (!all && json === lastMain && !months.size) return;
   useCloud.setState({ status: 'syncing' });
+  // Written by another session since this page last read it: merge first (pull writes the result).
+  const now = await getDoc(doc(db, 'saves', uid));
+  if (seenRev === null || (now.exists() && String(now.data()?.rev ?? '') !== seenRev)) return pull(uid);
+  const rev = newRev();
   const batch = writeBatch(db);
-  batch.set(doc(db, 'saves', uid), { v: 1, updatedAt: Number(store.get(CHANGED_KEY) ?? Date.now()), data: json });
+  batch.set(doc(db, 'saves', uid), { v: 1, updatedAt: Number(store.get(CHANGED_KEY) ?? Date.now()), rev, data: json });
   for (const month of months) {
     const part: Record<string, string> = {};
     for (const k of BY_MONTH) part[k] = JSON.stringify(Object.fromEntries(Object.entries(data[k] as Record<string, unknown>).filter(([key]) => monthOf(key) === month)));
     batch.set(doc(monthDocs(uid), month), part);
   }
   await batch.commit();
+  seenRev = rev;
+  agree(uid, data);
   lastPushed = data;
   lastMain = json;
   useCloud.setState({ status: 'synced', lastSync: Date.now(), error: null });
@@ -143,12 +160,17 @@ async function pull(uid: string) {
   const cloud = await readCloud(uid);
   const firstLink = store.get(LINKED_KEY) !== uid;
   const cloudNewer = !!cloud && cloud.updatedAt > Number(store.get(CHANGED_KEY) ?? 0);
-  const merged = mergeSaves(pickSave(useProgress.getState()), cloud?.data ?? null, { firstLink, cloudNewer });
+  const s = useProgress.getState();
+  const base = s.syncBase?.uid === uid ? s.syncBase : null;
+  const merged = mergeSaves(pickSave(s), cloud?.data ?? null, { firstLink, cloudNewer, base });
   applying = true;
   coinWatch.paused = true;
   useProgress.setState(merged);
   coinWatch.paused = false;
   applying = false;
+  // Agreed with the account's save as read (until the write below succeeds and agrees on the merge).
+  seenRev = cloud?.rev ?? '';
+  if (cloud) agree(uid, cloud.data);
   store.set(LINKED_KEY, uid);
   if (firstLink || !cloudNewer) store.set(CHANGED_KEY, String(Date.now()));
   else store.set(CHANGED_KEY, String(cloud!.updatedAt));
@@ -214,7 +236,8 @@ function leaveAccount() {
   const fresh = useProgress.getInitialState();
   applying = true;
   coinWatch.paused = true;
-  useProgress.setState({ ...Object.fromEntries(SYNCED.map((k) => [k, fresh[k]])), tradeLock: { cards: {}, coins: 0 } });
+  useProgress.setState({ ...Object.fromEntries(SYNCED.map((k) => [k, fresh[k]])), tradeLock: { cards: {}, coins: 0 }, syncBase: null });
+  seenRev = null;
   coinWatch.paused = false;
   applying = false;
   store.set(LINKED_KEY, null);
