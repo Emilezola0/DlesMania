@@ -415,9 +415,14 @@ interface ProgressState {
 const CLAW_T = CASINO_T.claw;
 
 /** The Daily Doodle's paid rewards, keeping only the last two weeks' (a key ends with its drawing's day). */
+/**
+ * The Friends games' rewards paid, the last two weeks' only: by the day in each key, wherever it sits ("phone:<uid>_<day>",
+ * "clue-right:<day>:<uid>"). It used to read the key's last 10 characters: a Clue Grid key ends with a friend's uid, which
+ * then sorted below the cut-off and was dropped at once — and the reward paid again on every visit.
+ */
 function pruneDoodle(d: Record<string, number>): Record<string, number> {
   const keep = addDays(todayKey(), -14);
-  return Object.fromEntries(Object.entries(d).filter(([k]) => k.slice(-10) >= keep));
+  return Object.fromEntries(Object.entries(d).filter(([k]) => (k.match(/\d{4}-\d{2}-\d{2}/)?.[0] ?? k.slice(-10)) >= keep));
 }
 
 export const econToday = (e: Economy | undefined) => (e && e.date === todayKey() ? e : freshEconomy(todayKey()));
