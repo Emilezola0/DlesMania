@@ -23,9 +23,10 @@ function Item({ c, children, worn, onWear }: { c: Cosmetic; children: React.Reac
   const tokensOnly = !c.price && c.tokens > 0;
   const claw = isClawOnly(c);
   return (
-    <div className={`relative flex flex-col items-center gap-2 rounded-md border p-3 text-center ${worn ? 'border-accent bg-tile' : tokensOnly ? 'border-coral/60 bg-coral/5' : 'border-rule'}`}>
+    <div className={`relative flex flex-col items-center gap-2 rounded-md border p-3 text-center ${worn ? 'border-accent bg-tile' : c.prestige ? 'boutique-prestige' : tokensOnly ? 'border-coral/60 bg-coral/5' : 'border-rule'}`}>
       {claw && !owned && <span className="absolute -top-2 right-2 rounded-full bg-fuchsia-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">🕹️ Claw prize</span>}
-      {tokensOnly && !owned && <span className="absolute -top-2 right-2 rounded-full bg-coral px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">🎟️ Tokens only</span>}
+      {c.prestige && !owned && <span className="boutique-prestige-badge absolute -top-2 right-2 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow">💎 Prestige</span>}
+      {tokensOnly && !c.prestige && !owned && <span className="absolute -top-2 right-2 rounded-full bg-coral px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow">🎟️ Tokens only</span>}
       <div className="grid min-h-16 w-full place-items-center">{children}</div>
       <p className="font-display font-bold">{c.name}</p>
       <p className="text-xs text-ink-soft">{c.blurb}</p>
@@ -65,14 +66,27 @@ function Item({ c, children, worn, onWear }: { c: Cosmetic; children: React.Reac
   );
 }
 
-function Shelf({ title, text, children }: { title: string; text: string; children: React.ReactNode }) {
+/** A shelf of the Boutique: its pieces, then its Prestige row (tokens only, the finest effects). */
+function Shelf<T extends Cosmetic>({ title, text, items, show }: { title: string; text: string; items: T[]; show: (c: T) => React.ReactNode }) {
+  const grid = 'grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-5';
+  const prestige = items.filter((c) => c.prestige);
   return (
     <section className="page space-y-3 rounded-md p-4">
       <div>
         <h3 className="font-display text-lg font-bold">{title}</h3>
         <p className="text-sm text-ink-soft">{text}</p>
       </div>
-      <div className="grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-5">{children}</div>
+      <div className={grid}>{items.filter((c) => !c.prestige).map(show)}</div>
+      {prestige.length > 0 && (
+        <>
+          <div className="flex items-center gap-2 pt-1">
+            <span className="h-px flex-1 bg-[#d4a017]/50" />
+            <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-[#d4a017]">💎 Prestige · tokens only</span>
+            <span className="h-px flex-1 bg-[#d4a017]/50" />
+          </div>
+          <div className={grid}>{prestige.map(show)}</div>
+        </>
+      )}
     </section>
   );
 }
@@ -100,33 +114,42 @@ export function Boutique() {
         </b>
         .
       </p>
-      <Shelf title="Name styles" text="Your name on your profile and in the top bar, in a style of your own.">
-        {NAME_STYLES.map((c) => (
+      <Shelf
+        title="Name styles"
+        text="Your name on your profile, in the top bar and in your friends' lists, in a style of your own."
+        items={NAME_STYLES}
+        show={(c) => (
           <Item key={c.id} c={c} worn={nameStyle === c.id} onWear={(on) => setNameStyle(on ? c.id : null)}>
-            <span className={`max-w-full truncate font-display text-xl font-bold ${c.className}`}>{name}</span>
+            <span className={`max-w-full truncate px-1 py-0.5 font-display text-xl font-bold ${c.className}`}>{name}</span>
           </Item>
-        ))}
-      </Shelf>
-      <Shelf title="Pack wrappers" text="Every pack you open, wrapped your way. Looks only: the cards inside are the same, and a golden pack stays gold.">
-        {WRAPPERS.map((c) => (
+        )}
+      />
+      <Shelf
+        title="Pack wrappers"
+        text="Every pack you open, wrapped your way. Looks only: the cards inside are the same, and a golden pack stays gold."
+        items={WRAPPERS}
+        show={(c) => (
           <Item key={c.id} c={c} worn={wrapper === c.id} onWear={(on) => setWrapper(on ? c.id : null)}>
             {sample && <PackArt pack={sample} wrapper={c.id} className="w-20" />}
           </Item>
-        ))}
-      </Shelf>
-      <Shelf title="Titles" text="Worn under your name. The other titles are earned by playing (pick any of them on your Account page).">
-        {TITLE_ITEMS.map((c) => {
+        )}
+      />
+      <Shelf
+        title="Titles"
+        text="Worn under your name, in their own colours, and your friends see them too. The other titles are earned by playing (pick any of them on your Account page)."
+        items={TITLE_ITEMS}
+        show={(c) => {
           const id = c.id.slice('title:'.length);
           return (
             <Item key={c.id} c={c} worn={title === id} onWear={(on) => setTitle(on ? id : null)}>
-              <span className="flex flex-col leading-tight">
+              <span className="flex max-w-full flex-col leading-tight">
                 <span className="max-w-full truncate font-display text-sm font-bold">{name}</span>
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-soft">« {c.name} »</span>
+                <span className={`px-1 text-[11px] font-bold uppercase tracking-wider ${c.className || 'text-ink-soft'}`}>« {c.name} »</span>
               </span>
             </Item>
           );
-        })}
-      </Shelf>
+        }}
+      />
     </div>
   );
 }

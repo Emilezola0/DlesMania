@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useCloud } from '../cloud/state';
 import { useProgress } from '../store/progress';
-import { COSMETIC_BY_ID } from './cosmetics';
+import { COSMETIC_BY_ID, titleStyle } from './cosmetics';
 import { TITLE_BY_ID, TITLES, useFeats } from './unlocks';
 
 /** The name shown on the profile: the account's, else "You". */
@@ -30,7 +30,7 @@ export function ProfileTag({ className = '' }: { className?: string }) {
   return (
     <Link to="/account" title="Your profile" className={`shrink-0 flex-col justify-center leading-tight ${className}`}>
       <span className={`truncate font-display text-[13px] font-bold ${style || 'text-ink'}`}>{name}</span>
-      <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-ink-faint">{title.name}</span>
+      <span className={`truncate text-[10px] font-semibold uppercase tracking-wider ${titleStyle(title.id) || 'text-ink-faint'}`}>{title.name}</span>
     </Link>
   );
 }

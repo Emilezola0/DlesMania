@@ -10,7 +10,7 @@ import { CardAvatar } from '../gacha/Perks';
 import { RotationSettings } from '../gacha/RotationSettings';
 import { AvatarFrame } from '../casino/Frame';
 import { FRAME_BY_ID } from '../casino/frames';
-import { COSMETIC_BY_ID, NAME_STYLES } from '../casino/cosmetics';
+import { COSMETIC_BY_ID, NAME_STYLES, titleStyle } from '../casino/cosmetics';
 import { TITLES, TITLE_BY_ID, useFeats } from '../casino/unlocks';
 import { useShownName } from '../casino/Boutique';
 import { PrizeArt } from '../casino/Claw';
@@ -171,7 +171,7 @@ function ProfileCard() {
         </AvatarFrame>
         <div className="min-w-0">
           <p className={`truncate font-display text-2xl font-bold ${COSMETIC_BY_ID.get(nameStyle ?? '')?.className ?? ''}`}>{name}</p>
-          <p className="text-sm font-semibold tracking-wider text-ink-soft">« {shownTitle.name} »</p>
+          <p className={`text-sm font-semibold tracking-wider ${titleStyle(shownTitle.id) || 'text-ink-soft'}`}>« {shownTitle.name} »</p>
         </div>
       </div>
       <div className="grid gap-2 sm:grid-cols-2">

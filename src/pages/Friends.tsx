@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Spinner } from '../components/Spinner';
-import { COSMETIC_BY_ID } from '../casino/cosmetics';
+import { COSMETIC_BY_ID, titleStyle } from '../casino/cosmetics';
 import { AvatarFrame } from '../casino/Frame';
 import { PLUSH_BY_ID, PLUSH_RARITY } from '../casino/plushies';
 import { TITLE_BY_ID } from '../casino/unlocks';
@@ -62,7 +62,7 @@ function PlayerName({ p, you = false, className = '' }: { p: Player; you?: boole
         )}
         {you && <span className="shrink-0 text-xs text-ink-faint">(you)</span>}
       </span>
-      {title && title.id !== 'newcomer' && <span className="truncate text-[10px] font-semibold uppercase tracking-wider text-ink-faint">« {title.name} »</span>}
+      {title && title.id !== 'newcomer' && <span className={`truncate text-[10px] font-semibold uppercase tracking-wider ${titleStyle(title.id) || 'text-ink-faint'}`}>« {title.name} »</span>}
     </span>
   );
 }
