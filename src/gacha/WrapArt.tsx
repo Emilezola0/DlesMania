@@ -54,8 +54,13 @@ function leaf(from: [number, number], to: [number, number], w: number, curl = 0)
 
 // ---------------------------------------------------------------------------------------------- Dragon Scale
 
-/** One scale, hanging point down from (0, 0). */
-const SCALE = 'M-13 0C-13 13-7 23 0 30C7 23 13 13 13 0C8 3-8 3-13 0Z';
+/**
+ * One scale, hanging point down from (0, 0): an armour plate, its sides bowing out to a sharp point, a raised keel
+ * down its middle (one face catching the light, the other in shade), its shadow on the row below.
+ */
+const SCALE = 'M-14 0L14 0C14 11 9 22 0 33C-9 22-14 11-14 0Z';
+const SCALE_LIT = 'M0 1L-13 1C-13 11-8 21 0 31Z';
+const SCALE_SHADE = 'M0 1L13 1C13 11 8 21 0 31Z';
 
 /** Flips the scale under the pointer (gold side up), then back: a trail of flipping scales where the pointer goes. */
 function flipScale(e: PointerEvent<SVGSVGElement>) {
@@ -69,10 +74,11 @@ export function DragonWrap() {
   const id = useUid();
   const rows = useMemo(() => {
     const out: { r: number; y: number; xs: number[] }[] = [];
-    for (let r = 0; r < 21; r++) {
+    // Wider than the pack: the rows swing ±16 as the body bends.
+    for (let r = 0; r < 22; r++) {
       const xs: number[] = [];
-      for (let x = r % 2 ? 0 : 13; x < W + 26; x += 26) xs.push(x);
-      out.push({ r, y: -12 + r * 20, xs });
+      for (let x = r % 2 ? -28 : -14; x < W + 42; x += 28) xs.push(x);
+      out.push({ r, y: -14 + r * 19, xs });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
@@ -80,11 +86,11 @@ export function DragonWrap() {
   return (
     <Svg onPointerOver={flipScale}>
       <defs>
-        <radialGradient id={`${id}r`} cx="0.38" cy="0.2" r="0.95">
-          <stop offset="0" stopColor="#fecaca" />
-          <stop offset="0.22" stopColor="#ef4444" />
-          <stop offset="0.6" stopColor="#991b1b" />
-          <stop offset="1" stopColor="#2a0505" />
+        <radialGradient id={`${id}r`} cx="0.5" cy="0.75" r="0.8">
+          <stop offset="0" stopColor="#f87171" />
+          <stop offset="0.3" stopColor="#b91c1c" />
+          <stop offset="0.7" stopColor="#5f0a0a" />
+          <stop offset="1" stopColor="#1c0303" />
         </radialGradient>
         <radialGradient id={`${id}u`} cx="0.4" cy="0.25" r="0.9">
           <stop offset="0" stopColor="#fffbeb" />
@@ -96,6 +102,13 @@ export function DragonWrap() {
           <stop offset="0.5" stopColor="#d97706" />
           <stop offset="1" stopColor="#713f12" />
         </linearGradient>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#000" stopOpacity="0.75" />
+          <stop offset="0.3" stopColor="#000" stopOpacity="0.1" />
+          <stop offset="0.5" stopColor="#fde68a" stopOpacity="0.12" />
+          <stop offset="0.7" stopColor="#000" stopOpacity="0.1" />
+          <stop offset="1" stopColor="#000" stopOpacity="0.75" />
+        </linearGradient>
         <linearGradient id={`${id}l`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="0" />
           <stop offset="0.5" stopColor="#fde68a" stopOpacity="0.55" />
@@ -103,19 +116,25 @@ export function DragonWrap() {
         </linearGradient>
       </defs>
       {/* Embers glowing between the scales. */}
-      <rect width={W} height={H} fill="#450a0a" />
+      <rect width={W} height={H} fill="#1a0202" />
       <rect className="wa-dragon-heat" width={W} height={H} fill="#f97316" />
+      {/* Each row swings with the one above it a beat later: the whole body bends in an S that runs down it, like a
+          snake slithering. The body's round shading (dark flanks, a lit spine) swings with each row, so the S shows. */}
       {rows.map(({ r, y, xs }) => (
-        <g key={r} className="wa-dragon-row" style={{ animationDelay: `${-r * 0.16}s` }}>
+        <g key={r} className="wa-dragon-row" style={{ animationDelay: `${(-r * 0.22).toFixed(2)}s` }}>
           {xs.map((x) => (
             <g key={x} transform={`translate(${x} ${y})`}>
+              <path d={SCALE} transform="translate(0 4)" fill="#000" opacity={0.55} />
               <g className="wa-scale">
-                <path d={SCALE} fill={`url(#${id}r)`} stroke={`url(#${id}g)`} strokeWidth={1.3} />
-                <path d="M0 5Q1.6 15 0 24" fill="none" stroke="#fca5a5" strokeOpacity={0.35} strokeWidth={0.9} />
+                <path d={SCALE} fill={`url(#${id}r)`} stroke={`url(#${id}g)`} strokeWidth={1.1} />
+                <path d={SCALE_LIT} fill="#fff" opacity={0.13} />
+                <path d={SCALE_SHADE} fill="#000" opacity={0.28} />
+                <path d="M0 2L0 30" stroke="#fecaca" strokeOpacity={0.55} strokeWidth={1} strokeLinecap="round" />
                 <path className="wa-scale-under" d={SCALE} fill={`url(#${id}u)`} stroke="#fef3c7" strokeWidth={1.3} />
               </g>
             </g>
           ))}
+          <rect x={-20} y={y - 2} width={W + 40} height={21} fill={`url(#${id}b)`} />
         </g>
       ))}
       {/* The light rolling down the body, as it moves. */}

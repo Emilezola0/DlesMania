@@ -2878,8 +2878,8 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   100% { transform: scale(1, 1); filter: none; }
 }
 @keyframes wa-flip-under { 0% { opacity: 0; } 22% { opacity: 1; } 86% { opacity: 0; } }
-.wa-dragon-row { animation: wa-slither 2.8s ease-in-out infinite alternate; }
-@keyframes wa-slither { from { transform: translateX(-5px); } to { transform: translateX(5px); } }
+.wa-dragon-row { animation: wa-slither 2.6s ease-in-out infinite alternate; }
+@keyframes wa-slither { from { transform: translateX(-16px); } to { transform: translateX(16px); } }
 .wa-dragon-roll { animation: wa-roll 3.6s ease-in-out infinite; mix-blend-mode: overlay; }
 @keyframes wa-roll { from { transform: translateY(0); } to { transform: translateY(540px); } }
 .wa-dragon-heat { animation: wa-heat 2.2s ease-in-out infinite alternate; }
