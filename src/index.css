@@ -2809,17 +2809,14 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-storm-drift, .storm-drift { animation: storm-drift 14s linear infinite; }
 .storm-drift-slow { animation: storm-drift 26s linear infinite; }
 @keyframes storm-drift { from { transform: translateX(0); } to { transform: translateX(-300px); } }
+/* The rain (StormWrap's Rain): drops drawn twice, one fall apart, the layer sliding exactly one fall: a loop with no seam. */
 .pack-storm-rain {
-  background-image: repeating-linear-gradient(105deg, transparent 0 11px, rgba(191, 219, 254, 0.22) 11px 12px, transparent 12px 23px);
-  background-size: 23px 60px;
   -webkit-mask-image: linear-gradient(transparent, #000 25%, #000 85%, transparent);
   mask-image: linear-gradient(transparent, #000 25%, #000 85%, transparent);
-  animation: storm-rain 0.5s linear infinite;
 }
-.pack-storm-rain-near { background-image: repeating-linear-gradient(105deg, transparent 0 17px, rgba(224, 242, 254, 0.35) 17px 18.5px, transparent 18.5px 37px); background-size: 37px 90px; animation-duration: 0.32s; }
-@keyframes storm-rain { from { background-position: 0 0; } to { background-position: -16px 60px; } }
-.pack-storm-rain-near { animation-name: storm-rain-near; }
-@keyframes storm-rain-near { from { background-position: 0 0; } to { background-position: -24px 90px; } }
+.storm-rain-far, .storm-rain-near { animation: storm-rain 1s linear infinite; will-change: transform; }
+.storm-rain-near { animation-duration: 0.62s; }
+@keyframes storm-rain { from { transform: translate(0, 0); } to { transform: translate(var(--rain-dx), var(--rain-dy)); } }
 .storm-edge { animation: storm-edge 2.4s linear infinite, storm-edge-flicker 1.3s steps(1, end) infinite; }
 @keyframes storm-edge { to { stroke-dashoffset: -132; } }
 @keyframes storm-edge-flicker { 0%, 100% { opacity: 0.9; } 30% { opacity: 0.35; } 45% { opacity: 1; } 70% { opacity: 0.55; } }
@@ -2836,7 +2833,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-storm-flash { background: radial-gradient(ellipse at 50% 20%, #fff, #c7d2fe 60%, #818cf8); opacity: 0; mix-blend-mode: screen; animation: storm-flash 0.7s ease-out forwards; }
 @keyframes storm-flash { 0% { opacity: 0; } 5% { opacity: 0.8; } 14% { opacity: 0.08; } 24% { opacity: 0.55; } 45% { opacity: 0.1; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .storm-drift, .storm-drift-slow, .pack-storm-rain, .storm-edge, .storm-draw, .storm-bolt, .storm-cloudlit, .storm-land, .storm-underlit, .pack-storm-flash { animation: none; }
+  .storm-drift, .storm-drift-slow, .storm-rain-far, .storm-rain-near, .storm-edge, .storm-draw, .storm-bolt, .storm-cloudlit, .storm-land, .storm-underlit, .pack-storm-flash { animation: none; }
   .storm-draw { stroke-dashoffset: 0; }
   .pack-storm-flash { opacity: 0; }
 }
@@ -2845,7 +2842,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .pack-wrap-dragon { background: transparent !important; box-shadow: none !important; }
 .pack-wrap-dragon > .card-sheen, .pack-wrap-dragon > img { display: none; }
 @keyframes pack-wrap-sweep { from { background-position: 100% 0; } to { background-position: -100% 0; } }
-.pack-wrap-crystal { background: conic-gradient(from 30deg at 40% 45%, #a5f3fc, #f0abfc, #c4b5fd, #fef08a, #86efac, #a5f3fc) !important; }
+.pack-wrap-crystal { background: linear-gradient(160deg, #f0f9ff, #a5b4fc 35%, #1e293b 70%, #c7d2fe) !important; }
 @keyframes pack-wrap-spin { to { transform: rotate(360deg); } }
 .pack-wrap-phoenix { background: radial-gradient(ellipse 90% 60% at 50% 38%, #7c2d12, #3b0d06 55%, #140403) !important; }
 .pack-wrap-blackhole { background: radial-gradient(circle at 50% 42%, #1e1b4b, #020617 60%) !important; }

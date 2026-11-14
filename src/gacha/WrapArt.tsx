@@ -450,7 +450,19 @@ export function BigBangWrap() {
 
 // ---------------------------------------------------------------------------------------------- Crystal
 
-/** Crystal: cut glass in every colour, light running across the facets, sparkles at their corners, rainbows breaking through. */
+/** A crystal's facets, each turned its own way to the light: [angle of the light across it, lit side, far side]. */
+const CRYSTAL_FACES: [number, string, string][] = [
+  [20, '#ffffff', '#c7d2fe'],
+  [200, '#f0f9ff', '#93c5fd'],
+  [70, '#e0e7ff', '#475569'],
+  [140, '#bae6fd', '#1e293b'],
+  [300, '#ffffff', '#a5b4fc'],
+  [100, '#cbd5e1', '#0f172a'],
+  [250, '#f5f3ff', '#c4b5fd'],
+  [330, '#e0f2fe', '#334155'],
+];
+
+/** Crystal: cut glass, clear and icy, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through. */
 export function CrystalWrap() {
   const id = useUid();
   const art = useMemo(() => {
@@ -465,8 +477,9 @@ export function CrystalWrap() {
         p[r].push([(c * W) / cols + (edge ? 0 : (rnd() - 0.5) * 34), (r * H) / rows + (edge ? 0 : (rnd() - 0.5) * 34)]);
       }
     }
-    const hues = [190, 300, 260, 50, 140, 330, 210];
-    const tris: { pts: string; fill: string; delay: number }[] = [];
+    // Each facet of cut glass turned its own way to the light: clear and pale, bright white, or deep in shadow, its
+    // light falling across it (CRYSTAL_FACES), some edges splitting the light into a rainbow.
+    const tris: { pts: string; face: number; delay: number; rainbow: string | null }[] = [];
     for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++) {
         const a = p[r][c];
@@ -477,8 +490,8 @@ export function CrystalWrap() {
         for (const t of halves) {
           const cx = (t[0][0] + t[1][0] + t[2][0]) / 3;
           const cy = (t[0][1] + t[1][1] + t[2][1]) / 3;
-          const h = hues[Math.floor(rnd() * hues.length)];
-          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), fill: `hsl(${h} 80% ${50 + rnd() * 36}%)`, delay: (cx / W) * 1.1 + (cy / H) * 0.9 });
+          const edge = rnd() < 0.3 ? `M${t[0][0].toFixed(1)} ${t[0][1].toFixed(1)}L${t[1][0].toFixed(1)} ${t[1][1].toFixed(1)}` : null;
+          tris.push({ pts: t.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' '), face: Math.floor(rnd() * CRYSTAL_FACES.length), delay: (cx / W) * 1.1 + (cy / H) * 0.9, rainbow: edge });
         }
       }
     const sparks = Array.from({ length: 10 }, () => {
@@ -496,10 +509,20 @@ export function CrystalWrap() {
             <stop key={c} offset={i / 4} stopColor={c} />
           ))}
         </linearGradient>
+        {CRYSTAL_FACES.map(([a, from, to], i) => (
+          <linearGradient key={i} id={`${id}f${i}`} gradientTransform={`rotate(${a} 0.5 0.5)`}>
+            <stop offset="0" stopColor={from} />
+            <stop offset="1" stopColor={to} />
+          </linearGradient>
+        ))}
       </defs>
       {art.tris.map((t, i) => (
-        <polygon key={i} points={t.pts} fill={t.fill} fillOpacity={0.62} stroke="#fff" strokeOpacity={0.6} strokeWidth={0.8} strokeLinejoin="round" />
+        <polygon key={i} points={t.pts} fill={`url(#${id}f${t.face})`} fillOpacity={0.9} stroke="#fff" strokeOpacity={0.8} strokeWidth={0.7} strokeLinejoin="round" />
       ))}
+      {/* The light split into colours along some edges, as a cut crystal does. */}
+      <g style={{ mixBlendMode: 'screen' }} opacity={0.75}>
+        {art.tris.map((t, i) => (t.rainbow ? <path key={`r${i}`} d={t.rainbow} stroke={`url(#${id}rb)`} strokeWidth={1.6} strokeLinecap="round" /> : null))}
+      </g>
       {art.tris.map((t, i) => (
         <polygon key={`g${i}`} className="wa-glint" points={t.pts} fill="#fff" style={{ animationDelay: `${t.delay}s` }} />
       ))}

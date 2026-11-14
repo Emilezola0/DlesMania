@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 
 /**
  * The Thunderstorm wrapper (the Boutique's Prestige collection): two decks of cloud drifting at their own pace,
@@ -73,6 +73,34 @@ function Clouds({ y, scale, fill, opacity, className, seed }: { y: number; scale
           ))}
         </g>
       ))}
+    </g>
+  );
+}
+
+/** How far the rain leans: it falls H down and RAIN_DX across in one loop. */
+const RAIN_DX = -H * Math.tan((15 * Math.PI) / 180);
+
+/**
+ * A layer of rain: drops drawn twice, the second copy one fall (H down, RAIN_DX across) behind the first; the layer
+ * slides by exactly that much and starts over, so the loop never shows (no seam, no jump, no flicker).
+ */
+function Rain({ count, len, width, opacity, className, seed }: { count: number; len: [number, number]; width: number; opacity: number; className: string; seed: number }) {
+  const drops = useMemo(() => {
+    let s = seed;
+    const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+    const k = RAIN_DX / H;
+    let d = '';
+    for (let i = 0; i < count; i++) {
+      const x = -20 + rnd() * (W + 120);
+      const y = rnd() * H;
+      const l = len[0] + rnd() * (len[1] - len[0]);
+      for (const [ox, oy] of [[0, 0], [-RAIN_DX, -H]]) d += `M${(x + ox).toFixed(1)} ${(y + oy).toFixed(1)}l${(k * l).toFixed(1)} ${l.toFixed(1)}`;
+    }
+    return d;
+  }, [count, len, seed]);
+  return (
+    <g className={className} style={{ ['--rain-dx' as string]: `${RAIN_DX.toFixed(1)}px`, ['--rain-dy' as string]: `${H}px` }}>
+      <path d={drops} stroke="#dbeafe" strokeOpacity={opacity} strokeWidth={width} strokeLinecap="round" />
     </g>
   );
 }
@@ -173,8 +201,10 @@ export function StormWrap() {
         <rect x="5" y="20" width={W - 10} height={H - 25} rx="10" fill="none" stroke="#93c5fd" strokeWidth="2.2" strokeDasharray="3 22 1 40" filter={`url(#${glow})`} className="storm-edge" />
         <rect x="5" y="20" width={W - 10} height={H - 25} rx="10" fill="none" stroke="#eff6ff" strokeWidth="1.1" strokeDasharray="3 22 1 40" className="storm-edge" />
       </svg>
-      <div className="pack-storm-rain absolute inset-0" />
-      <div className="pack-storm-rain pack-storm-rain-near absolute inset-0" />
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" className="pack-storm-rain absolute inset-0 size-full">
+        <Rain count={70} len={[9, 16]} width={0.9} opacity={0.32} className="storm-rain-far" seed={11} />
+        <Rain count={34} len={[16, 28]} width={1.4} opacity={0.45} className="storm-rain-near" seed={5} />
+      </svg>
       {strike && <div key={`f${strike.id}`} className="pack-storm-flash absolute inset-0" />}
     </div>
   );
