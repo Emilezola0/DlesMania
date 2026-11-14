@@ -71,27 +71,43 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
 }
 
 /**
- * How the dragon slithers: its body lies along an S that sways slowly from side to side, and the body glides
- * forward (up, towards its head) along it, its scales going by like a snake's. Each row sits where the S passes its
- * height; the rows move up two rows' height, then start again two rows lower, where the same scales were.
+ * How the dragon slithers: its body lies along a long, soft S and glides down it, its scales going by like a snake's.
+ * It moves as a snake does: it stops, sets off again, slow or fast, for a moment or for long, easing from one pace
+ * to the next; the S sways only as it moves. Each row sits where the S passes its height; the rows move down two
+ * rows' height, then start again two rows higher, where the same scales were.
  */
-const DRAGON = { amp: 52, wave: 420, swayS: 9, speed: 22, loop: 38 };
-const dragonX = (y: number, t: number) => DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + (2 * Math.PI * t) / DRAGON.swayS);
+const DRAGON = { amp: 40, wave: 560, loop: 38, swayPerPx: 1 / 90 };
+const dragonX = (y: number, phase: number) =>
+  DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + phase) + DRAGON.amp * 0.18 * Math.sin((4 * Math.PI * y) / DRAGON.wave - phase * 0.7);
 
 function useSlither(svg: React.RefObject<SVGGElement | null>) {
   useEffect(() => {
     const root = svg.current;
     if (!root) return;
     const rows = [...root.querySelectorAll<SVGGElement>('[data-y]')].map((el) => ({ el, y: Number(el.dataset.y) }));
-    const draw = (t: number) => {
-      const s = (t * DRAGON.speed) % DRAGON.loop;
-      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y - s, t).toFixed(1)} ${(-s).toFixed(1)})`);
+    let went = Math.random() * 2000; // how far it has gone (px): each pack's dragon somewhere else along its way
+    const draw = () => {
+      const s = went % DRAGON.loop;
+      const phase = went * DRAGON.swayPerPx;
+      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y + s, phase).toFixed(1)} ${s.toFixed(1)})`);
     };
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw(0);
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw();
+    // Its pace: a new one every so often (a stop now and then), for a moment or for a while.
+    let speed = 0;
+    let target = 0;
+    let until = 0;
     let frame = 0;
-    const t0 = performance.now();
+    let last = performance.now();
     const tick = (now: number) => {
-      draw((now - t0) / 1000);
+      const dt = Math.min(0.1, (now - last) / 1000);
+      last = now;
+      if (now >= until) {
+        target = Math.random() < 0.28 ? 0 : 6 + Math.random() ** 1.6 * 70;
+        until = now + (target === 0 ? 400 + Math.random() * 1800 : 600 + Math.random() * 4200);
+      }
+      speed += (target - speed) * (1 - Math.exp(-dt * 1.8));
+      went += speed * dt;
+      draw();
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
@@ -105,13 +121,13 @@ export function DragonWrap() {
   useSlither(body);
   const rows = useMemo(() => {
     // The dragon's body, winding down the pack: a little over half the pack wide, the same all the way down, and two
-    // rows more below it to glide up into view. Nothing else: no background, the pack is see-through around it (index.css).
+    // rows more above it to glide down into view. Nothing else: no background, the pack is see-through around it (index.css).
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
     for (let r = 0; r < 25; r++) {
       const half = 98;
       const xs: number[] = [];
       for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
-      out.push({ r, y: -14 + r * 19, xs, half });
+      out.push({ r, y: -52 + r * 19, xs, half });
     }
     // The lower rows first: each row hangs over the one below, like tiles.
     return out.reverse();
