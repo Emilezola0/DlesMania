@@ -549,15 +549,20 @@ export const CardFace = memo(function CardFace({ card, count = 0, tilt = true, i
         </>
       )}
 
-      {/* A Relic's seal: a ring of runes turning slowly behind the card. */}
+      {/* A Relic's seal: a ring of runes turning slowly behind the card. Under the mouse it tilts back into a circle the
+          card stands on, its runes standing up in 3D, all lit (.card-rank-seal-tilt; each rune's <b> turns to face us). */}
       {fxOn('seal') && live && (
-        <div className="pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>
-          <div className="card-rank-seal">
-            {SEAL.map((g, i) => (
-              <i key={i} style={{ ['--a' as string]: `${(i * 360) / SEAL.length}deg`, animationDelay: `${i * 0.35}s` }}>
-                {g}
-              </i>
-            ))}
+        <div className="card-rank-seal-stage pointer-events-none absolute inset-0 -z-10" style={lift(-12)} aria-hidden>
+          <div className="card-rank-seal-tilt">
+            <div className="card-rank-seal">
+              {SEAL.map((g, i) => (
+                <i key={i} style={{ ['--a' as string]: `${(i * 360) / SEAL.length}deg`, animationDelay: `${i * 0.35}s`, transitionDelay: `${i * 0.04}s` }}>
+                  <b>
+                    <span style={{ transitionDelay: `${i * 0.04}s` }}>{g}</span>
+                  </b>
+                </i>
+              ))}
+            </div>
           </div>
         </div>
       )}

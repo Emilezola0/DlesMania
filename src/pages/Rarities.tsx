@@ -256,7 +256,7 @@ function rankFacts(id: RankId): [string, React.ReactNode][] {
         [tr('Takes', 'Demande'), tr('The whole set, and its boss beaten on Hell', 'Toute la série, et son boss battu en Enfer')],
         [tr('Limit', 'Limite'), tr('One Relic per set', 'Une Relique par série')],
         [tr('Pays', 'Rapporte'), `${RELIC_REWARD.toLocaleString(tr('en', 'fr'))} DleCoins`],
-        [tr('Under the mouse', 'Sous la souris'), tr('Its arcana wakes: a magic circle draws itself over the picture', 'Ses arcanes s’éveillent : un cercle magique se dessine sur l’image')],
+        [tr('Under the mouse', 'Sous la souris'), tr('Its seal tilts into a circle under the card, its runes rising in 3D', 'Son sceau bascule en un cercle sous la carte, ses runes se dressent en 3D')],
       ];
     case 'eclipse':
       return [
