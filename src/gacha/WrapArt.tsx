@@ -74,44 +74,8 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
   window.setTimeout(() => scale.classList.remove('wa-flip'), 1500);
 }
 
-/**
- * A dragon's wing, spread, from its shoulder at (0, 0) out to the right and swept back (up, towards the tail): the
- * membrane between the fingers, scalloped; the arm along its leading edge, armoured with small scales (WING_ARM).
- */
-const WING_ELBOW: [number, number] = [52, -62];
-const WING_TIPS: [number, number][] = [[92, -128], [146, -90], [176, -28], [148, 24], [80, 38]];
-const WING_BONES = ['M0 10L52-62L92-128', ...WING_TIPS.slice(1).map(([x, y]) => `M52-62L${x} ${y}`)];
-/**
- * The wing's membrane, panel by panel between its fingers, drawn like the scales: each panel two faces along its
- * fold (one catching the light, one in shade), its trailing edge scalloped, rimmed in gold.
- */
-const WING_PANELS = [...WING_TIPS, [0, 30] as [number, number]].slice(0, -1).map((a, i, all) => {
-  const b = i + 1 < all.length ? all[i + 1] : ([0, 30] as [number, number]);
-  const [ex, ey] = WING_ELBOW;
-  // The scallop: the trailing edge bowing in towards the elbow, and its deepest point (where the panel folds).
-  const mx = (a[0] + b[0]) / 2;
-  const my = (a[1] + b[1]) / 2;
-  const fx = mx + (ex - mx) * 0.28;
-  const fy = my + (ey - my) * 0.28;
-  const p = (n: number) => n.toFixed(1);
-  return {
-    whole: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}Z`,
-    lit: `M${ex} ${ey}L${a[0]} ${a[1]}Q${p((a[0] + fx) / 2)} ${p((a[1] + fy) / 2)} ${p(fx + (mx - fx) * 0.15)} ${p(fy + (my - fy) * 0.15)}Z`,
-    edge: `M${a[0]} ${a[1]}Q${p(fx)} ${p(fy)} ${b[0]} ${b[1]}`,
-  };
-});
-/** The wing's root, joining the body: from the shoulder to the elbow and back along the last finger. */
-const WING_ROOT = 'M0 10L52-62L80 38Q40 22 0 30Z';
-const WING_ARM = Array.from({ length: 9 }, (_, i) => {
-  const t = i / 8;
-  // Along the arm: shoulder (0, 10) to elbow (52, -62) to wrist tip (92, -128).
-  const [x, y] = t < 0.55 ? [52 * (t / 0.55), 10 - 72 * (t / 0.55)] : [52 + 40 * ((t - 0.55) / 0.45), -62 - 66 * ((t - 0.55) / 0.45)];
-  return { x, y, s: 0.5 - t * 0.22 };
-});
-
-/** How far the fire and the wings travel with the body before coming round again (a whole number of loops of rows). */
+/** How far the fire travels with the body before coming round again (a whole number of loops of rows). */
 const FIRE_TRAVEL = DRAGON_LOOP * 15;
-const WING_TRAVEL = DRAGON_LOOP * 36;
 
 /**
  * How the dragon slithers: its body lies along a long, soft S and glides down it, its scales going by like a snake's.
@@ -132,9 +96,8 @@ function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefO
     // The rows of scales by their place (their row number), to slip each fire under the right one.
     const byRow = new Map(rows.filter(({ el }) => el.parentNode === layer).map(({ el, y }) => [Math.round((y - ROW_Y0) / ROW_STEP), el]));
     // What travels with the body but doesn't loop with its rows: the fire under its scales (and its light through
-    // them), the wings. Each goes all the way down, out of sight, and comes round again from the top.
+    // them). Each goes all the way down, out of sight, and comes round again from the top.
     const fires = [...root.querySelectorAll<SVGGElement>('[data-fire]')].map((el) => ({ el, y: Number(el.dataset.fire), off: Number(el.dataset.off), under: el.dataset.under === '1' }));
-    const wings = [...root.querySelectorAll<SVGGElement>('[data-wing]')].map((el) => ({ el, off: Number(el.dataset.wing) }));
     let went = Math.random() * 2000; // how far it has gone (px): each pack's dragon somewhere else along its way
     const draw = () => {
       const s = went % DRAGON.loop;
@@ -147,11 +110,6 @@ function useSlither(svg: React.RefObject<SVGGElement | null>, scales: React.RefO
         // Under the scale it peeks out from: just below that scale's row, over the row under it.
         const over = byRow.get(Math.round((y - s - ROW_Y0) / ROW_STEP));
         if (over && f.el.nextSibling !== over) layer.insertBefore(f.el, over);
-      }
-      for (const w of wings) {
-        const y = ((went + w.off) % WING_TRAVEL) - 260;
-        const lean = Math.atan2(dragonX(y + 1, phase) - dragonX(y - 1, phase), 2) * (180 / Math.PI);
-        w.el.setAttribute('transform', `translate(${(W / 2 + dragonX(y, phase)).toFixed(1)} ${y.toFixed(1)}) rotate(${(-lean).toFixed(1)})`);
       }
     };
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw();
@@ -255,12 +213,6 @@ export function DragonWrap() {
           <stop offset="0.9" stopColor="#ef4444" />
           <stop offset="1" stopColor="#991b1b" stopOpacity="0.6" />
         </radialGradient>
-        {/* The wings' membrane: the scales' crimson, thinner, lit through near the arm. */}
-        <radialGradient id={`${id}m`} cx="0.3" cy="0.35" r="0.85">
-          <stop offset="0" stopColor="#dc2626" stopOpacity="0.95" />
-          <stop offset="0.45" stopColor="#991b1b" stopOpacity="0.92" />
-          <stop offset="1" stopColor="#450a0a" stopOpacity="0.9" />
-        </radialGradient>
         {/* The fire's light through the scales: red and orange, fading out. */}
         <radialGradient id={`${id}fl`}>
           <stop offset="0" stopColor="#fb923c" stopOpacity="0.85" />
@@ -280,42 +232,6 @@ export function DragonWrap() {
       </defs>
       {/* Each row sits on the S (useSlither): the body's round shading (dark flanks, a lit spine) goes with it, so the S shows. */}
       <g ref={body}>
-      {/* Its wings, spread, coming down with the body from the top now and then, under it (never over it). */}
-      <g data-wing={DRAGON_LOOP * 7}>
-        {[-1, 1].map((side) => (
-          <g key={side} transform={`translate(${side * 88} 0) scale(${side} 1)`}>
-            <path d={WING_ROOT} fill={`url(#${id}r)`} />
-            <path d={WING_ROOT} fill="#000" opacity={0.3} />
-            {WING_PANELS.map((p, i) => (
-              <g key={`p${i}`}>
-                <path d={p.whole} fill={`url(#${id}m)`} />
-                <path d={p.lit} fill="#fff" opacity={0.13} />
-                <path d={p.whole} fill="#000" opacity={0.08 + i * 0.05} />
-                <path d={p.edge} fill="none" stroke={`url(#${id}g)`} strokeWidth={1.1} />
-              </g>
-            ))}
-            {/* The bones: gold, outlined dark, like the spines; a knob at each joint, a claw at the tip. */}
-            {WING_BONES.map((d, i) => (
-              <path key={`o${i}`} d={d} fill="none" stroke="#451a03" strokeWidth={i ? 4 : 6} strokeLinecap="round" strokeLinejoin="round" />
-            ))}
-            {WING_BONES.map((d, i) => (
-              <path key={i} d={d} fill="none" stroke={`url(#${id}g)`} strokeWidth={i ? 2.4 : 4} strokeLinecap="round" strokeLinejoin="round" />
-            ))}
-            <circle cx={WING_ELBOW[0]} cy={WING_ELBOW[1]} r={4.5} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
-            {WING_TIPS.slice(1).map(([x, y], i) => (
-              <circle key={`k${i}`} cx={x} cy={y} r={2.2} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.6} />
-            ))}
-            <path d="M88-124L92-146L98-124Z" fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
-            {/* The arm, armoured with small scales like the body's. */}
-            {WING_ARM.map((a, i) => (
-              <g key={`a${i}`} transform={`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(-35) scale(${a.s.toFixed(2)})`}>
-                <path d={SCALE} fill={`url(#${id}r)`} stroke={`url(#${id}g)`} strokeWidth={2} />
-                <path d={SCALE_SHADE} fill="#000" opacity={0.28} />
-              </g>
-            ))}
-          </g>
-        ))}
-      </g>
       {/* The rows of scales. */}
       <g ref={scaleLayer}>
       {rows.map(({ r, y, xs, half }) => (
