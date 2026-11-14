@@ -1,4 +1,4 @@
-import { useId, useMemo, type PointerEvent } from 'react';
+import { useEffect, useId, useMemo, useRef, type PointerEvent } from 'react';
 
 /**
  * The drawn pack wrappers (the Boutique's Prestige and Ascended collections), each an SVG over the pack, the size
@@ -70,13 +70,45 @@ function flipScale(e: PointerEvent<SVGSVGElement>) {
   window.setTimeout(() => scale.classList.remove('wa-flip'), 1500);
 }
 
+/**
+ * How the dragon slithers: its body lies along an S that sways slowly from side to side, and the body glides
+ * forward (up, towards its head) along it, its scales going by like a snake's. Each row sits where the S passes its
+ * height; the rows move up two rows' height, then start again two rows lower, where the same scales were.
+ */
+const DRAGON = { amp: 52, wave: 420, swayS: 9, speed: 22, loop: 38 };
+const dragonX = (y: number, t: number) => DRAGON.amp * Math.sin((2 * Math.PI * y) / DRAGON.wave + (2 * Math.PI * t) / DRAGON.swayS);
+
+function useSlither(svg: React.RefObject<SVGGElement | null>) {
+  useEffect(() => {
+    const root = svg.current;
+    if (!root) return;
+    const rows = [...root.querySelectorAll<SVGGElement>('[data-y]')].map((el) => ({ el, y: Number(el.dataset.y) }));
+    const draw = (t: number) => {
+      const s = (t * DRAGON.speed) % DRAGON.loop;
+      for (const { el, y } of rows) el.setAttribute('transform', `translate(${dragonX(y - s, t).toFixed(1)} ${(-s).toFixed(1)})`);
+    };
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return draw(0);
+    let frame = 0;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      draw((now - t0) / 1000);
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [svg]);
+}
+
 export function DragonWrap() {
   const id = useUid();
+  const body = useRef<SVGGElement>(null);
+  useSlither(body);
   const rows = useMemo(() => {
-    // The dragon's body, winding down the pack over the pack's own colours: a little over half the pack wide, the same all the way down. Nothing else: no background, the pack is see-through around it (index.css).
+    // The dragon's body, winding down the pack: a little over half the pack wide, the same all the way down, and two
+    // rows more below it to glide up into view. Nothing else: no background, the pack is see-through around it (index.css).
     const out: { r: number; y: number; xs: number[]; half: number }[] = [];
-    for (let r = 0; r < 22; r++) {
-      const half = 84;
+    for (let r = 0; r < 25; r++) {
+      const half = 98;
       const xs: number[] = [];
       for (let x = W / 2 - 168 + (r % 2 ? 14 : 0); x <= W / 2 + 168; x += 28) if (Math.abs(x - W / 2) <= half - 4) xs.push(x);
       out.push({ r, y: -14 + r * 19, xs, half });
@@ -121,10 +153,10 @@ export function DragonWrap() {
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
       </defs>
-      {/* Each row swings with the one above it a beat later: the whole body bends in an S that runs down it, like a
-          snake slithering. The body's round shading (dark flanks, a lit spine) swings with each row, so the S shows. */}
+      {/* Each row sits on the S (useSlither): the body's round shading (dark flanks, a lit spine) goes with it, so the S shows. */}
+      <g ref={body}>
       {rows.map(({ r, y, xs, half }) => (
-        <g key={r} className="wa-dragon-row" style={{ animationDelay: `${(-r * 0.22).toFixed(2)}s` }}>
+        <g key={r} data-y={y}>
           {/* The body under the scales, its edge round. */}
           <rect x={W / 2 - half - 3} y={y - 4} width={2 * half + 6} height={30} rx={14} fill="#2a0404" />
           {xs.map((x) => (
@@ -145,11 +177,12 @@ export function DragonWrap() {
       {/* The spines down its back, gold, swinging with the body. */}
       {rows.map(({ r, y, half }) =>
         r % 2 || half < 20 ? null : (
-          <g key={`s${r}`} className="wa-dragon-row" style={{ animationDelay: `${(-r * 0.22).toFixed(2)}s` }}>
+          <g key={`s${r}`} data-y={y}>
             <path d={`M${W / 2 - 7} ${y + 22}L${W / 2} ${y - 8}L${W / 2 + 7} ${y + 22}Z`} fill={`url(#${id}g)`} stroke="#451a03" strokeWidth={0.8} />
           </g>
         ),
       )}
+      </g>
     </Svg>
   );
 }
