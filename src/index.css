@@ -3036,6 +3036,9 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .wa-crystal-beams { animation: wa-beams 6s ease-in-out infinite alternate; }
 /* Touching the crystal (tapCrystal): it shivers, its light flaring; a star of light flashes and turns where it was
    touched, a ring of light spreading from it, glints of colour flying off. */
+/* The pack's name and icon let the touch through to the crystal under them (the owner's call: the middle of the
+   pack is where you touch it). */
+.pack-wrap-crystal > .pack-label, .pack-wrap-diamond > .pack-label { pointer-events: none; }
 .wa-tingle { animation: wa-tingle 0.5s ease-out; }
 @keyframes wa-tingle {
   0% { filter: brightness(1.45) saturate(1.3); translate: 0 0; }

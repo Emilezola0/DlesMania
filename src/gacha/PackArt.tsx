@@ -32,7 +32,7 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
       {set?.guardian.image ? <img src={set.guardian.image} alt="" draggable={false} className="absolute inset-0 size-full object-cover opacity-40 mix-blend-luminosity" /> : null}
       {seen && wrap?.id === 'wrap:storm' && <StormWrap />}
       {seen && wrap && <WrapArt id={wrap.id} />}
-      <div className="relative text-center">
+      <div className="pack-label relative text-center">
         <p className="text-[26cqw] leading-none drop-shadow">{pack.icon}</p>
         <p className="mt-[4cqw] px-[6cqw] font-display text-[10cqw] font-bold leading-tight drop-shadow">{pack.name.replace(' pack', '')}</p>
         <p className="mt-[2cqw] font-display text-[6cqw] font-semibold tracking-[0.3em] opacity-80">{golden ? '★ GOLDEN ★' : '5 CARDS'}</p>
