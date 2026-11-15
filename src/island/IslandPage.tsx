@@ -163,7 +163,7 @@ function MyIslandOnline({ me, friends }: { me: { uid: string; name: string }; fr
     );
   return (
     <Frame title={`🏝️ ${d.name || tr('My island', 'Mon île')}`} blurb={ownBlurb(true)}>
-      <IslandView shared={d.island} mode="own" act={act} who={who} names={names} />
+      <IslandView shared={d.island} mode="own" act={act} who={who} names={names} live={{ owner: me.uid, uid: me.uid, name: me.name }} />
       <div className="grid gap-3 md:grid-cols-2">
         <Builders d={d} friends={friends} />
         <Book d={d} />
@@ -281,7 +281,7 @@ function FriendIsland({ me, friend, friends }: { me: { uid: string; name: string
         🏝️ {d.name || friend.name}{' '}
         <span className="text-xs font-semibold text-ink-soft">{mode === 'build' ? tr('· you’re one of its builders', '· tu es l’un de ses bâtisseurs') : tr('· visiting', '· en visite')}</span>
       </p>
-      <IslandView key={friend.uid} shared={d.island} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={names} />
+      <IslandView key={friend.uid} shared={d.island} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={names} live={{ owner: friend.uid, uid: me.uid, name: me.name }} />
     </div>
   );
 }
@@ -307,7 +307,7 @@ function DemoFriendIsland({ me, friend, index }: { me: { uid: string; name: stri
         🏝️ {friend.name}{' '}
         <span className="text-xs font-semibold text-ink-soft">{mode === 'build' ? tr('· you’re one of its builders (demo)', '· tu es l’un de ses bâtisseurs (démo)') : tr('· visiting (demo)', '· en visite (démo)')}</span>
       </p>
-      <IslandView shared={isl} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={{ [`friend${index}`]: friend.name, [me.uid]: tr('You', 'Toi') }} />
+      <IslandView shared={isl} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={{ [`friend${index}`]: friend.name, [me.uid]: tr('You', 'Toi') }} live={{ demo: friend.name }} />
     </div>
   );
 }

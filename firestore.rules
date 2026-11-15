@@ -790,7 +790,7 @@ service cloud.firestore {
         return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
       }
       function islandOk(d) {
-        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by'])
+        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by', 'front', 'tune'])
           && d.log is list && d.log.size() <= 30 && d.name is string && d.name.size() <= 40;
       }
       function onlyIsland() {
@@ -815,6 +815,22 @@ service cloud.firestore {
         || (request.auth.uid in resource.data.builders && onlyIsland())
         || (friendOf() && onlyIsland() && watering())
       );
+    }
+
+    // Who is on an island right now (src/island/live.ts): each player writes only their own spot; everyone who may
+    // see the island sees them; the player or the owner removes it.
+    match /islands/{uid}/here/{who} {
+      function seesIsland() {
+        return request.auth.uid == uid
+          || request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends
+          || request.auth.uid in get(/databases/$(database)/documents/islands/$(uid)).data.builders;
+      }
+      allow read: if request.auth != null && seesIsland();
+      allow create, update: if request.auth != null && request.auth.uid == who && seesIsland()
+        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40
+        && request.resource.data.x is number && request.resource.data.y is number && request.resource.data.left is bool;
+      allow delete: if request.auth != null && (request.auth.uid == who || request.auth.uid == uid);
     }
 
     match /groups/{code} {

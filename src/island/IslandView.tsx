@@ -10,8 +10,10 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { dig, harvest, harvestChoices, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
-import { islandBand, type Source } from './music';
+import { canLayer, dig, harvest, harvestChoices, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Layer, type Who } from './island';
+import { useLive, type LiveCfg, type Peer } from './live';
+import { discFits, DISC_PLAYERS, islandBand, type Source } from './music';
+import { canHear, playVoice } from '../gacha/voice';
 import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
 import { SeedArt } from './SeedBook';
 import { ItemArt } from './sprites';
@@ -30,7 +32,14 @@ const TOOLS: { id: Tool; icon: string; name: string; fr: string }[] = [
   { id: 'pick', icon: '✋', name: 'Pick up', fr: 'Ramasser' },
   { id: 'dig', icon: '⛏️', name: 'Dig', fr: 'Creuser' },
 ];
+const LAYERS: { id: Layer; icon: string; name: string; fr: string }[] = [
+  { id: 'back', icon: '⬅️', name: 'Behind', fr: 'Derrière' },
+  { id: 'mid', icon: '⏺️', name: 'Middle', fr: 'Milieu' },
+  { id: 'front', icon: '➡️', name: 'In front', fr: 'Devant' },
+];
 const nameOf = (x: { name: string; fr: string }) => tr(x.name, x.fr);
+/** A Mythic or an Omni card with a line to say: what a card reader takes. */
+const readable = (c: Card | undefined) => !!c && (c.rarity === 'mythic' || c.rarity === 'omni') && canHear(c);
 const itemName = (id: string) => (NATURAL[id] ? nameOf(NATURAL[id]) : nameOf(ITEM_BY_ID.get(id)!));
 /** A card's clip a screen can play: one of ours (an MP4 in public/clips) or a GIF. */
 export const screenClips = (c: Card | undefined) => (c?.clip ?? '').split('|').filter((u) => /\/clips\/.+\.mp4$/.test(u) || GIF_CLIP.test(u));
@@ -73,6 +82,7 @@ const STAND: Record<string, React.CSSProperties> = {
   pedestal: { left: '31%', top: '-12%', width: '38%', height: '50%' },
   'crown-cushion': { left: '31%', top: '-20%', width: '38%', height: '50%' },
   'display-case': { left: '32%', top: '24%', width: '36%', height: '46%' },
+  'card-reader': { left: '33%', top: '-14%', width: '34%', height: '46%' },
   podium: { left: '34%', top: '-14%', width: '32%', height: '52%' },
 };
 
@@ -82,8 +92,10 @@ const PH = 0.92;
 const SPEED = 6;
 const GRAVITY = 32;
 const JUMP = 11.5;
+/** Climbing speed on a ladder. */
+const CLIMB = 4.5;
 
-export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {} }: { shared?: Island; mode?: IslandMode; act?: Act; who?: Who; names?: Record<string, string> }) {
+export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {}, live }: { shared?: Island; mode?: IslandMode; act?: Act; who?: Who; names?: Record<string, string>; live?: LiveCfg }) {
   const local = useProgress((s) => s.island) ?? null;
   const island = shared ?? local;
   const isl = useMemo(() => island ?? newIsland(), [island]);
@@ -105,6 +117,25 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const [reaping, setReaping] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
   const [tv, setTv] = useState<{ cell: number; card: string } | null>(null);
+  /** The layer Build puts things in. */
+  const [layer, setLayer] = useState<Layer>('mid');
+  /** A record or CD player whose disc the player is choosing (its layer key and item). */
+  const [discing, setDiscing] = useState<{ key: string; player: string } | null>(null);
+  /** On a friend's island you only visit: the music you switch, heard by you only. */
+  const [localTune, setLocalTune] = useState<Record<string, string | null>>({});
+  /** Full screen: the island as big as the screen. */
+  const root = useRef<HTMLDivElement>(null);
+  const [big, setBig] = useState(false);
+  useEffect(() => {
+    const on = () => setBig(document.fullscreenElement === root.current && !!root.current);
+    document.addEventListener('fullscreenchange', on);
+    return () => document.removeEventListener('fullscreenchange', on);
+  }, []);
+  const toggleBig = () => {
+    if (document.fullscreenElement) void document.exitFullscreen();
+    else void root.current?.requestFullscreen?.().catch(() => say(tr('Full screen isn’t available here.', 'Le plein écran n’est pas disponible ici.')));
+    box.current?.focus();
+  };
   const backdrop = useProgress((s) => s.backdrop);
   // Day and night, by the clock (checked every minute), or forced to see it.
   const [sky, setSky] = useState<'auto' | 'day' | 'night'>('auto');
@@ -121,12 +152,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   useEffect(() => {
     const el = box.current;
     if (!el) return;
-    const fit = () => setT(Math.max(24, Math.min(36, Math.floor(el.clientWidth / 22))));
+    const fit = () =>
+      setT(
+        document.fullscreenElement && document.fullscreenElement === root.current
+          ? Math.max(24, Math.floor(Math.min((window.innerHeight * 0.7) / ISLAND.h, el.clientWidth / 14)))
+          : Math.max(24, Math.min(36, Math.floor(el.clientWidth / 22))),
+      );
     fit();
     const ro = new ResizeObserver(fit);
     ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+    window.addEventListener('resize', fit);
+    return () => (ro.disconnect(), window.removeEventListener('resize', fit));
+  }, [big]);
 
   // The player: position and speed in refs, moved every frame without re-rendering the world.
   const spawn = () => ({ x: Math.floor(ISLAND.w / 2) + (1 - PW) / 2, y: surfaceAt(Math.floor(ISLAND.w / 2)) - PH - 0.01 });
@@ -142,6 +179,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const cam = useRef(0);
   const TRef = useRef(T);
   TRef.current = T;
+  const facing = useRef(false);
+  // Other players on this island, seen live (their latest spot; drawn gliding towards it).
+  const peers = useLive(live, () => ({ x: pos.current.x, y: pos.current.y, left: facing.current }));
+  const peersRef = useRef<Peer[]>(peers);
+  peersRef.current = peers;
+  const peerEls = useRef(new Map<string, { el: HTMLDivElement; x: number; y: number }>());
 
   useEffect(() => {
     // Start on top of whatever is at the spawn column now.
@@ -160,18 +203,51 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         for (let cx = Math.floor(x); cx <= Math.floor(x + PW - 1e-6); cx++) if (cx < 0 || cx >= ISLAND.w || solidAt(s, cx, cy)) return true;
       return false;
     };
+    // What's in the cells the player's box covers.
+    const touching = (x: number, y: number, kind: string, below = 0) => {
+      const s = islRef.current;
+      for (let cy = Math.floor(y); cy <= Math.floor(y + PH + below - 1e-6); cy++)
+        for (let cx = Math.floor(x); cx <= Math.floor(x + PW - 1e-6); cx++) if (kindOf(s.fg[idx(cx, cy)]) === kind) return idx(cx, cy);
+      return -1;
+    };
+    let downWas = false;
     const step = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const k = keys.current;
       const p = pos.current;
       const v = vel.current;
+      const isl = islRef.current;
       v.x = (k.has('right') ? SPEED : 0) - (k.has('left') ? SPEED : 0);
-      if (k.has('jump') && ground.current) {
+      // On a ladder (or standing right on top of one, so you can stop there and step off sideways).
+      const ladder = touching(p.x, p.y, 'ladder', 0.15) >= 0;
+      const down = k.has('down');
+      if ((k.has('jump') || (k.has('up') && !ladder)) && (ground.current || ladder) && !(ladder && k.has('up'))) {
         v.y = -JUMP;
         ground.current = false;
       }
-      v.y = Math.min(20, v.y + GRAVITY * dt);
+      // On a ladder: up and down climb, and you hang on (no falling).
+      if (ladder && (k.has('up') || down || !ground.current) && !k.has('jump')) v.y = k.has('up') ? -CLIMB : down ? CLIMB : 0;
+      else v.y = Math.min(20, v.y + GRAVITY * dt);
+      // A warp pad underfoot, and Down pressed: off to the next pad.
+      if (down && !downWas && !ladder) {
+        const pad = touching(p.x, p.y, 'warp');
+        if (pad >= 0) {
+          const pads = Object.keys(isl.fg)
+            .map(Number)
+            .filter((c) => kindOf(isl.fg[c]) === 'warp')
+            .sort((a, b) => a - b);
+          const to = pads[(pads.indexOf(pad) + 1) % pads.length];
+          if (to !== undefined && to !== pad) {
+            const t = xy(to);
+            p.x = t.x + (1 - PW) / 2;
+            p.y = t.y + 1 - PH - 0.01;
+            v.y = 0;
+            sfx.select();
+          }
+        }
+      }
+      downWas = down;
       // Across: blocked by a one-cell step on the ground → climb it.
       const nx = p.x + v.x * dt;
       if (!hits(nx, p.y)) p.x = nx;
@@ -179,17 +255,28 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         p.x = nx;
         p.y = Math.floor(p.y) - 1 + (1 - PH) - 0.01;
       } else p.x = v.x > 0 ? Math.floor(nx + PW) - PW - 0.001 : Math.ceil(nx) + 0.001;
-      // Down (or up).
+      // Down (or up). A platform holds you from above (Down drops through it); a trampoline throws you up.
       const ny = p.y + v.y * dt;
-      if (!hits(p.x, ny)) {
+      const feet = Math.floor(ny + PH);
+      let platform = false;
+      if (v.y > 0 && !down && p.y + PH <= feet + 0.02)
+        for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(isl.fg[idx(cx, feet)]) === 'platform') platform = true;
+      if (!hits(p.x, ny) && !platform) {
         p.y = ny;
         ground.current = false;
       } else {
+        let bounce = false;
         if (v.y > 0) {
-          p.y = Math.floor(ny + PH) - PH - 0.001;
+          p.y = feet - PH - 0.001;
           ground.current = true;
+          for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(isl.fg[idx(cx, feet)]) === 'bounce') bounce = true;
         } else p.y = Math.ceil(ny) + 0.001;
         v.y = 0;
+        if (bounce) {
+          v.y = -JUMP * 1.45;
+          ground.current = false;
+          sfx.select();
+        }
       }
       // In the sea: back to the middle.
       if (p.y > ISLAND.sea + 0.6 && (p.x < 4 || p.x > ISLAND.w - 5)) {
@@ -206,11 +293,31 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       cam.current = Math.max(0, Math.min(ISLAND.w * t - view, (p.x + PW / 2) * t - view / 2));
       if (world.current) world.current.style.transform = `translateX(${-cam.current}px)`;
       if (far.current) far.current.style.transform = `translateX(${-cam.current * 0.3}px)`;
+      if (v.x) facing.current = v.x < 0;
       if (me.current) {
         me.current.style.transform = `translate(${p.x * t}px, ${p.y * t}px)`;
         me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
         if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
       }
+      // The others glide to where they last said they were.
+      const all: { x: number; y: number }[] = [p];
+      for (const peer of peersRef.current) {
+        const e = peerEls.current.get(peer.uid);
+        if (!e) continue;
+        const f = Math.min(1, dt * 8);
+        if (Math.abs(peer.x - e.x) > 6 || Math.abs(peer.y - e.y) > 6) (e.x = peer.x), (e.y = peer.y);
+        e.x += (peer.x - e.x) * f;
+        e.y += (peer.y - e.y) * f;
+        e.el.style.transform = `translate(${e.x * t}px, ${e.y * t}px)`;
+        e.el.dataset.walking = Math.abs(peer.x - e.x) > 0.05 ? '1' : '';
+        all.push(e);
+      }
+      // Doors open when someone stands by them.
+      world.current?.querySelectorAll<HTMLElement>('[data-door]').forEach((d) => {
+        const c = xy(Number(d.dataset.door));
+        const open = all.some((q) => Math.abs(q.x + PW / 2 - (c.x + 0.5)) < 1.3 && Math.abs(q.y + PH / 2 - (c.y + 0.5)) < 1);
+        if ((d.dataset.open === '1') !== open) d.dataset.open = open ? '1' : '';
+      });
       raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
@@ -218,13 +325,26 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   }, []);
 
   // The music makers near the player, heard every 100 ms (the band schedules a little ahead).
-  const sources = useMemo<Source[]>(
-    () =>
-      Object.entries(isl.fg)
-        .filter(([, id]) => kindOf(id) === 'music')
-        .map(([k, id]) => ({ cell: Number(k), id, x: xy(Number(k)).x + 0.5, y: xy(Number(k)).y + 0.5 })),
-    [isl],
-  );
+  const tunes = useMemo(() => {
+    const t: Record<string, string> = { ...(isl.tune ?? {}) };
+    for (const [k, v] of Object.entries(localTune)) {
+      if (v) t[k] = v;
+      else delete t[k];
+    }
+    return t;
+  }, [isl, localTune]);
+  const sources = useMemo<Source[]>(() => {
+    const out: Source[] = [];
+    for (const [layerName, map] of [['mid', isl.fg], ['back', isl.bg], ['front', isl.front ?? {}]] as [Layer, Record<string, string>][])
+      for (const [k, id] of Object.entries(map)) {
+        if (kindOf(id) !== 'music') continue;
+        const key = layerKey(layerName, Number(k));
+        const t = tunes[key];
+        if (t === 'off') continue;
+        out.push({ key, id: t ?? id, x: xy(Number(k)).x + 0.5, y: xy(Number(k)).y + 0.5 });
+      }
+    return out;
+  }, [isl, tunes]);
   const srcRef = useRef(sources);
   srcRef.current = sources;
   useEffect(() => {
@@ -238,9 +358,17 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   }, []);
 
   // The keys: arrows or WASD, Space to jump (while the island has the focus).
-  const keyOf = (k: string) => (k === 'ArrowLeft' || k === 'a' || k === 'q' ? 'left' : k === 'ArrowRight' || k === 'd' ? 'right' : k === 'ArrowUp' || k === 'w' || k === 'z' || k === ' ' ? 'jump' : null);
+  const keyOf = (k: string) =>
+    k === 'ArrowLeft' || k === 'a' || k === 'q' ? 'left' : k === 'ArrowRight' || k === 'd' ? 'right' : k === 'ArrowUp' || k === 'w' || k === 'z' ? 'up' : k === 'ArrowDown' || k === 's' ? 'down' : k === ' ' ? 'jump' : null;
   const onKey = (down: boolean) => (e: React.KeyboardEvent) => {
-    const k = keyOf(e.key.length === 1 ? e.key.toLowerCase() : e.key);
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    // E: the next tool; 1–5: a tool; F: the layer Build uses.
+    if (down && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (key === 'e') return e.preventDefault(), chooseTool(tools[(tools.findIndex((t) => t.id === tool) + 1) % tools.length].id);
+      if (/^[1-5]$/.test(key) && tools[Number(key) - 1]) return e.preventDefault(), chooseTool(tools[Number(key) - 1].id);
+      if (key === 'f' && tool === 'build') return e.preventDefault(), setLayer((l) => LAYERS[(LAYERS.findIndex((x) => x.id === l) + 1) % LAYERS.length].id);
+    }
+    const k = keyOf(key);
     if (!k) return;
     e.preventDefault();
     if (down) keys.current.add(k);
@@ -260,6 +388,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     return Math.hypot(x + 0.5 - (p.x + PW / 2), y + 0.5 - (p.y + PH / 2)) <= ISLAND.reach;
   };
   const say = (msg: ReactNode) => setNote(msg);
+  const chooseTool = (t: Tool) => (setTool(t), say(null), box.current?.focus());
   const run = (move: Move, ok: string, what?: string, then?: () => void) =>
     void Promise.resolve(act(move, what)).then((err) => {
       if (err) return say(`⚠️ ${err}`);
@@ -296,6 +425,33 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       );
     if (tool === 'walk') {
       const card = isl.shown[cell];
+      // Music: a record or CD player takes a disc; anything else switches on and off. Front first, then middle, then behind.
+      const music = (['front', 'mid', 'back'] as Layer[])
+        .map((l) => ({ l, id: l === 'front' ? isl.front?.[cell] : l === 'mid' ? front : isl.bg[cell] }))
+        .find((m) => m.id && kindOf(m.id) === 'music');
+      if (music?.id) {
+        const key = layerKey(music.l, cell);
+        if (DISC_PLAYERS[music.id]) return setDiscing({ key, player: music.id });
+        const off = tunes[key] === 'off';
+        tuneTo(key, off ? null : 'off');
+        return say(`${off ? '🔊' : '🔇'} ${itemName(music.id)}: ${off ? tr('on', 'allumé') : tr('off', 'éteint')}${mode === 'visit' ? ` ${tr('(for you)', '(pour toi)')}` : ''}`);
+      }
+      if (front && kindOf(front) === 'reader') {
+        const c = card ? CARD_BY_ID.get(card) : undefined;
+        if (!c) return mode === 'visit' ? say(tr('No card in this reader.', 'Pas de carte dans ce lecteur.')) : setFraming(cell);
+        playVoice(c, true);
+        return say(
+          <>
+            📇 {shownName(c.name, c.set)}
+            {c.voice ? <> : « {c.voice} »</> : null}{' '}
+            {mode !== 'visit' && (
+              <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
+                {tr('Change the card', 'Changer de carte')}
+              </button>
+            )}
+          </>,
+        );
+      }
       if (front && kindOf(front) === 'frame') {
         if (mode === 'visit') return card && CARD_BY_ID.get(card) ? say(`🖼️ ${shownName(CARD_BY_ID.get(card)!.name, CARD_BY_ID.get(card)!.set)}`) : undefined;
         return setFraming(cell);
@@ -319,8 +475,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     if (tool === 'build') {
       if (!pick) return say(tr('Pick something to build from your bag below.', 'Choisis quoi construire dans ton sac ci-dessous.'));
       const id = pick;
-      run((i, it) => place(i, it, cell, id, who), `${itemIcon(id)} ${itemName(id)}`, 'build', () => {
-        if (kindOf(id) === 'frame' || kindOf(id) === 'screen') setFraming(cell);
+      const where = kindOf(id) === 'wall' ? 'back' : layer;
+      if (!canLayer(id, where) && kindOf(id) !== 'wall')
+        return say(`⚠️ ${where === 'back' ? tr('That can’t go behind: pick Middle.', 'Ça ne va pas derrière : choisis Milieu.') : tr('That can’t go in front: pick Middle.', 'Ça ne va pas devant : choisis Milieu.')}`);
+      run((i, it) => place(i, it, cell, id, who, kindOf(id) === 'wall' ? 'mid' : layer), `${itemIcon(id)} ${itemName(id)}`, 'build', () => {
+        if (where === 'mid' && (kindOf(id) === 'frame' || kindOf(id) === 'screen' || kindOf(id) === 'reader')) setFraming(cell);
       });
       if ((items[pick] ?? 0) <= 1) setPick(null);
       return;
@@ -332,6 +491,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       const [a, b] = pair;
       run((i, _it, sd) => plant(i, sd, cell, a, b, todayKey(), who), tr('Planted! Come back tomorrow.', 'Planté ! Reviens demain.'), 'plant', () => setPair([]));
     }
+  };
+
+  /** A music maker's setting: saved on the island (yours, or one you build on); just for you when visiting. */
+  const tuneTo = (key: string, t: string | null) => {
+    if (mode === 'visit') return setLocalTune((m) => ({ ...m, [key]: t }));
+    run((i) => setTune(i, key, t), '', 'build');
   };
 
   /** Harvests a ripe plot, taking the thing the player picked. */
@@ -360,13 +525,34 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   };
 
   const avatarCard = avatar ? CARD_BY_ID.get(avatar) : undefined;
-  const bagItems = Object.entries(items).filter(([, n]) => n > 0);
+  const allBag = Object.entries(items).filter(([, n]) => n > 0);
+  const bagItems = allBag.filter(([id]) => kindOf(id) !== 'disc');
+  const discs = allBag.filter(([id]) => kindOf(id) === 'disc');
   const bagSeeds = SEEDS.filter((s) => (seeds[s.id] ?? 0) > 0);
   const left = (id: string) => (seeds[id] ?? 0) - pair.filter((x) => x === id).length;
   const hoverOk = hover !== null && inReach(hover);
+  // The scroll wheel over the island, while building: the next (or previous) thing in the bag.
+  const wheel = useRef({ tool, pick, ids: bagItems.map(([id]) => id) });
+  wheel.current = { tool, pick, ids: bagItems.map(([id]) => id) };
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const on = (e: WheelEvent) => {
+      const w = wheel.current;
+      if (w.tool !== 'build' || !w.ids.length || !e.deltaY) return;
+      e.preventDefault();
+      const i = w.pick ? w.ids.indexOf(w.pick) : -1;
+      const n = w.ids.length;
+      const next = w.ids[(((i + (e.deltaY > 0 ? 1 : -1)) % n) + n) % n];
+      setPick(next);
+      document.getElementById(`bag-${next}`)?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    };
+    el.addEventListener('wheel', on, { passive: false });
+    return () => el.removeEventListener('wheel', on);
+  }, []);
 
   return (
-    <div className="space-y-3">
+    <div ref={root} className={`island-root space-y-3 ${big ? 'island-big' : ''}`}>
       {/* The island. */}
       <div
         ref={box}
@@ -390,20 +576,43 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         </div>
         <div className="island-night pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
         <div ref={world} className="absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
-          <World isl={isl} T={T} />
+          <World isl={isl} T={T} tunes={tunes} />
           {hover !== null && tool !== 'walk' && (
             <div
               className={`pointer-events-none absolute rounded-sm border-2 ${hoverOk ? 'border-white/80 bg-white/10' : 'border-coral/70'}`}
               style={{ left: xy(hover).x * T, top: xy(hover).y * T, width: T, height: T }}
-            />
+            >
+              {tool === 'build' && pick && hoverOk && <ItemArt id={pick} className={`size-full ${layer === 'back' ? 'opacity-40' : 'opacity-60'}`} style={{ fontSize: T * 0.8 }} />}
+            </div>
           )}
           {/* Night: everything darker, the lights glowing through (you stay lit). */}
           {dark > 0 && <div key="night" className="pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ background: '#0b1030', opacity: dark }} />}
           {dark > 0 && <Glows isl={isl} T={T} dark={dark} />}
+          {peers.map((p) => {
+            const face = p.face ? CARD_BY_ID.get(p.face) : undefined;
+            return (
+              <div
+                key={p.uid}
+                ref={(el) => {
+                  // Keep where it's drawn between updates (it glides from there).
+                  const had = peerEls.current.get(p.uid);
+                  if (el) peerEls.current.set(p.uid, had ? { ...had, el } : { el, x: p.x, y: p.y });
+                }}
+                data-left={p.left ? '1' : ''}
+                className="island-me island-peer pointer-events-none absolute left-0 top-0"
+                style={{ width: PW * T, height: PH * T }}
+              >
+                <span className="island-me-shadow" />
+                {face ? <CardAvatar card={face} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-sky-300 text-lg">🙂</span>}
+                <span className="island-peer-name">{p.name}</span>
+              </div>
+            );
+          })}
           <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
           </div>
+          <FrontLayer isl={isl} T={T} />
           {tv && <TvShow tv={tv} T={T} onEnd={() => setTv(null)} />}
         </div>
         {dark > 0 && <div className="island-stars pointer-events-none absolute inset-x-0 top-0 h-[40%] transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />}
@@ -411,7 +620,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
 
       {/* Touch: walk and jump. */}
       <div className="flex justify-center gap-2 sm:hidden">
-        {(['left', 'jump', 'right'] as const).map((k) => (
+        {(['left', 'up', 'down', 'right'] as const).map((k) => (
           <button
             key={k}
             type="button"
@@ -420,23 +629,27 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             onPointerUp={() => keys.current.delete(k)}
             onPointerLeave={() => keys.current.delete(k)}
           >
-            {k === 'left' ? '◀' : k === 'right' ? '▶' : '⤒'}
+            {k === 'left' ? '◀' : k === 'right' ? '▶' : k === 'up' ? '⤒' : '⤓'}
           </button>
         ))}
       </div>
 
       {/* The tools. */}
       <div className="flex flex-wrap items-center gap-1.5">
-        {tools.map((t) => (
+        {tools.map((t, i) => (
           <button
             key={t.id}
             type="button"
-            onClick={() => (setTool(t.id), say(null), box.current?.focus())}
+            onClick={() => chooseTool(t.id)}
+            title={`${nameOf(t)} (${i + 1})`}
             className={`rounded-md border px-3 py-1 text-sm font-semibold transition ${tool === t.id ? 'border-accent bg-accent/15' : 'border-rule hover:bg-tile'}`}
           >
-            {t.icon} {nameOf(t)}
+            {t.icon} {nameOf(t)} <span className="hidden text-[10px] font-normal text-ink-faint sm:inline">{i + 1}</span>
           </button>
         ))}
+        <button type="button" onClick={toggleBig} className="rounded-md border border-rule px-2.5 py-1 text-sm hover:bg-tile" title={tr('Full screen (Esc to leave)', 'Plein écran (Échap pour quitter)')}>
+          {big ? '🗗' : '⛶'} {big ? tr('Smaller', 'Réduire') : tr('Full screen', 'Plein écran')}
+        </button>
         <button
           type="button"
           onClick={() => setSky((s) => (s === 'auto' ? (clockDark > 0.35 ? 'day' : 'night') : 'auto'))}
@@ -445,13 +658,30 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         >
           {sky === 'auto' ? (clockDark > 0.35 ? '🌙' : '☀️') : sky === 'night' ? '🌙' : '☀️'} {sky === 'auto' ? tr('Clock', 'Horloge') : tr('Preview', 'Aperçu')}
         </button>
-        <span className="ml-auto text-xs text-ink-faint">{tr('Arrows/WASD walk · Space jumps · reach: 5 cells', 'Flèches/ZQSD marcher · Espace sauter · portée : 5 cases')}</span>
+        <span className="ml-auto text-xs text-ink-faint">
+          {tr('Arrows/WASD walk · Space jumps · Up/Down: ladders, warp pads · E or 1–5: tool · wheel: next thing to build · F: layer', 'Flèches/ZQSD marcher · Espace sauter · Haut/Bas : échelles, téléporteurs · E ou 1–5 : outil · molette : objet suivant · F : couche')}
+        </span>
       </div>
       {note && <p className="rounded-md bg-tile px-3 py-1.5 text-sm">{note}</p>}
 
       {/* What the tool needs: things to build, or two seeds to plant. */}
       {tool === 'build' && (
-        <Panel title={tr('Your bag: pick something, then click a spot', 'Ton sac : choisis, puis clique un endroit')}>
+        <Panel title={tr('Your bag: pick something (or scroll the wheel over the island), then click a spot', 'Ton sac : choisis (ou tourne la molette sur l’île), puis clique un endroit')}>
+          <div className="mb-2 flex flex-wrap items-center gap-1.5 text-sm">
+            <span className="text-xs font-semibold text-ink-faint">{tr('Layer (F):', 'Couche (F) :')}</span>
+            {LAYERS.map((l) => (
+              <button key={l.id} type="button" onClick={() => (setLayer(l.id), box.current?.focus())} className={`rounded-md border px-2 py-0.5 ${layer === l.id ? 'border-accent bg-accent/15 font-semibold' : 'border-rule hover:bg-tile'}`}>
+                {l.icon} {nameOf(l)}
+              </button>
+            ))}
+            <span className="text-xs text-ink-faint">
+              {layer === 'back'
+                ? tr('Behind you, with the wallpapers: lamps, music, decorations.', 'Derrière toi, avec les papiers peints : lampes, musique, déco.')
+                : layer === 'front'
+                  ? tr('In front of you: you walk behind it.', 'Devant toi : tu passes derrière.')
+                  : tr('Where you walk: blocks, tools, furniture.', 'Là où tu marches : blocs, outils, meubles.')}
+            </span>
+          </div>
           {bagItems.length === 0 ? (
             <p className="text-sm text-ink-soft">{tr('Nothing yet: plant two seeds, harvest them tomorrow, and what grows lands here. Dig dirt to move the ground.', 'Rien pour l’instant : plante deux graines, récolte-les demain, et ce qui pousse arrive ici. Creuse la terre pour la déplacer.')}</p>
           ) : (
@@ -459,6 +689,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               {bagItems.map(([id, n]) => (
                 <button
                   key={id}
+                  id={`bag-${id}`}
                   type="button"
                   onClick={() => (setPick(id), box.current?.focus())}
                   className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm ${pick === id ? 'border-accent bg-accent/15' : 'border-rule hover:bg-tile'}`}
@@ -467,6 +698,16 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                 </button>
               ))}
             </div>
+          )}
+          {discs.length > 0 && (
+            <p className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-ink-soft">
+              {tr('Records & CDs (click a turntable, a CD player or a jukebox to play them):', 'Vinyles et CD (clique une platine, un lecteur CD ou un juke-box pour les jouer) :')}
+              {discs.map(([id]) => (
+                <span key={id} className="inline-flex items-center gap-0.5 rounded bg-tile px-1">
+                  <ItemArt id={id} className="size-4" /> {itemName(id)}
+                </span>
+              ))}
+            </p>
           )}
         </Panel>
       )}
@@ -531,15 +772,35 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           onClose={() => (setReaping(null), box.current?.focus())}
         />
       )}
+      {discing && (
+        <DiscPicker
+          player={discing.player}
+          discs={discs.map(([id]) => id)}
+          current={tunes[discing.key] ?? null}
+          onPick={(t) => {
+            tuneTo(discing.key, t);
+            say(t === 'off' ? `🔇 ${itemName(discing.player)}: ${tr('off', 'éteint')}` : t ? `🎶 ${itemName(t)}` : `🎶 ${itemName(discing.player)}`);
+            setDiscing(null);
+            box.current?.focus();
+          }}
+          onClose={() => (setDiscing(null), box.current?.focus())}
+        />
+      )}
       {framing !== null && (
         <CardPicker
           owned={owned}
+          reader={kindOf(isl.fg[framing]) === 'reader'}
           screen={kindOf(isl.fg[framing]) === 'screen'}
           backdrop={backdrop}
           current={isl.shown[framing] ?? null}
           onPick={(id) => {
             const screen = kindOf(isl.fg[framing]) === 'screen';
-            run((i) => showCard(i, framing, id, who), id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'), 'build');
+            const reader = kindOf(isl.fg[framing]) === 'reader';
+            run(
+              (i) => showCard(i, framing, id, who),
+              id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : reader ? tr('In the reader! Click it to hear the card.', 'Dans le lecteur ! Clique-le pour entendre la carte.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'),
+              'build',
+            );
             setFraming(null);
             box.current?.focus();
           }}
@@ -560,15 +821,20 @@ function Panel({ title, children }: { title: string; children: ReactNode }) {
 }
 
 /** The island itself: drawn again only when it changes (the player moves on top of it). */
-const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
+const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; tunes: Record<string, string> }) {
   const today = todayKey();
   const out: ReactNode[] = [];
   // The sea at both ends.
   for (const x0 of [0, ISLAND.w - 4]) out.push(<div key={`sea${x0}`} className="island-sea absolute" style={{ left: x0 * T, top: ISLAND.sea * T, width: 4 * T, height: (ISLAND.h - ISLAND.sea) * T }} />);
-  // Walls behind, a little shaded.
+  // Behind: wallpapers, and the things put behind (a little shaded, so they read as further away).
   for (const [k, id] of Object.entries(isl.bg)) {
     const { x, y } = xy(Number(k));
-    out.push(<ItemArt key={`b${k}`} id={id} className="island-wall absolute" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.6 }} />);
+    const wall = kindOf(id) === 'wall';
+    out.push(
+      <div key={`b${k}`} className={`absolute ${wall ? 'island-wall' : 'island-behind'} ${kindOf(id) === 'music' && tunes[`b${k}`] !== 'off' ? 'island-music' : ''}`} style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.6 }}>
+        <ItemArt id={id} className="size-full" />
+      </div>,
+    );
   }
   const ground = (x: number, y: number) => isSolid(isl.fg[idx(x, y)]) || (x >= 0 && x < ISLAND.w && y >= ISLAND.h);
   for (const [k, id] of Object.entries(isl.fg)) {
@@ -612,6 +878,33 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
           </span>
         </div>,
       );
+    } else if (kind === 'door') {
+      out.push(
+        <div key={k} data-door={k} className="island-door absolute" style={style} title={ITEM_BY_ID.get(id)?.name}>
+          <ItemArt id={id} className="island-door-shut absolute inset-0 size-full" />
+          <ItemArt id={`${id}-open`} className="island-door-open absolute inset-0 size-full" />
+        </div>,
+      );
+    } else if (kind === 'stairs') {
+      // Steps rise towards the higher side.
+      const flip = ground(x - 1, y - 1) && !ground(x + 1, y - 1);
+      out.push(
+        <div key={k} className="absolute" style={style} title={ITEM_BY_ID.get(id)?.name}>
+          <ItemArt id={id} className="size-full" style={flip ? { transform: 'scaleX(-1)' } : undefined} />
+        </div>,
+      );
+    } else if (kind === 'reader') {
+      const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
+      out.push(
+        <div key={k} className="absolute" style={style} title={card ? shownName(card.name, card.set) : ITEM_BY_ID.get(id)?.name}>
+          <ItemArt id={id} className="absolute inset-0 size-full" />
+          {card && (
+            <span className="island-stand-card absolute block overflow-hidden" style={STAND['card-reader']}>
+              <ShownPicture card={card} still className="size-full object-cover object-top" />
+            </span>
+          )}
+        </div>,
+      );
     } else if (kind === 'frame') {
       const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
       out.push(
@@ -634,7 +927,7 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
       );
     } else {
       out.push(
-        <div key={k} className={`absolute ${kind === 'light' ? 'island-light' : ''} ${kind === 'music' ? 'island-music' : ''}`} style={{ ...style, fontSize: T * 0.8, lineHeight: 1 }} title={ITEM_BY_ID.get(id)?.name}>
+        <div key={k} className={`absolute ${kind === 'light' ? 'island-light' : ''} ${kind === 'music' && tunes[k] !== 'off' ? 'island-music' : ''} ${kind === 'warp' ? 'island-warp' : ''}`} style={{ ...style, fontSize: T * 0.8, lineHeight: 1 }} title={ITEM_BY_ID.get(id)?.name}>
           <ItemArt id={id} className="size-full" />
         </div>,
       );
@@ -655,6 +948,57 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
   for (const fx of [4 - 0.45, ISLAND.w - 4 - 0.15]) out.push(<div key={`f${fx}`} className="island-foam absolute" style={{ left: fx * T, top: ISLAND.sea * T - T * 0.14, width: T * 0.6, height: T * 0.32 }} />);
   return <>{out}</>;
 });
+
+/** The front layer: things drawn over the player (you walk behind them). */
+const FrontLayer = memo(function FrontLayer({ isl, T }: { isl: Island; T: number }) {
+  return (
+    <>
+      {Object.entries(isl.front ?? {}).map(([k, id]) => {
+        const { x, y } = xy(Number(k));
+        return (
+          <div key={`t${k}`} className={`island-front pointer-events-none absolute ${kindOf(id) === 'light' ? 'island-light' : ''}`} style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.8 }}>
+            <ItemArt id={id} className="size-full" />
+          </div>
+        );
+      })}
+    </>
+  );
+});
+
+/** A record or CD player: its own tune, off, or one of your discs that fits it. */
+function DiscPicker({ player, discs, current, onPick, onClose }: { player: string; discs: string[]; current: string | null; onPick: (t: string | null) => void; onClose: () => void }) {
+  const fits = discs.filter((d) => discFits(player, d));
+  const tile = (key: string, art: ReactNode, label: string, value: string | null, on: boolean) => (
+    <button key={key} type="button" onClick={() => onPick(value)} className={`flex flex-col items-center gap-1 rounded-md border p-2 text-xs hover:bg-tile ${on ? 'border-accent bg-accent/10' : 'border-rule'}`}>
+      {art}
+      <span className="text-center font-semibold leading-tight">{label}</span>
+    </button>
+  );
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
+      <div className="page max-h-[80vh] w-full max-w-lg space-y-3 overflow-y-auto rounded-md p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-2">
+          <p className="font-display text-lg font-bold">🎶 {itemName(player)}</p>
+          <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
+            ✕
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {tile('own', <ItemArt id={player} className="size-12 text-3xl" />, tr('Its own tune', 'Son propre air'), null, current === null)}
+          {tile('off', <span className="grid size-12 place-items-center text-3xl">🔇</span>, tr('Off', 'Éteint'), 'off', current === 'off')}
+          {fits.map((d) => tile(d, <ItemArt id={d} className="size-12 text-3xl" />, itemName(d), d, current === d))}
+        </div>
+        {fits.length === 0 && (
+          <p className="text-xs text-ink-soft">
+            {DISC_PLAYERS[player] === 'cd'
+              ? tr('No CD yet: some seeds grow CDs (Echo, Spark, Concert, Dream, Champion).', 'Pas encore de CD : certaines graines en font pousser (Écho, Étincelle, Concert, Rêve, Champion).')
+              : tr('No record yet: some seeds grow them (Melody, Symphony, Gramophone).', 'Pas encore de vinyle : certaines graines en font pousser (Mélodie, Symphonie, Gramophone).')}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
 
 /** A ripe plant: choose which of the things its seeds grow you take. */
 function HarvestPicker({ choices, have, onPick, onClose }: { choices: string[]; have: Record<string, number>; onPick: (id: string) => void; onClose: () => void }) {
@@ -683,7 +1027,7 @@ function HarvestPicker({ choices, have, onPick, onClose }: { choices: string[]; 
 }
 
 /** Picks one of your cards to show in a frame. */
-function CardPicker({ owned, screen = false, backdrop, current, onPick, onClose }: { owned: Record<string, number>; screen?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {
+function CardPicker({ owned, screen = false, reader = false, backdrop, current, onPick, onClose }: { owned: Record<string, number>; screen?: boolean; reader?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {
   const [q, setQ] = useState('');
   const bg = screen && backdrop ? CARD_BY_ID.get(backdrop) : undefined;
   const cards = useMemo(
@@ -693,15 +1037,19 @@ function CardPicker({ owned, screen = false, backdrop, current, onPick, onClose 
         .filter((c): c is Card => !!c)
         // A screen plays clips: only the cards that have one.
         .filter((c) => !screen || !!screenClip(c))
+        // A reader: the Mythic and Omni cards with a line to say.
+        .filter((c) => !reader || readable(c))
         .filter((c) => !q || shownName(c.name, c.set).toLowerCase().includes(q.toLowerCase()))
         .slice(0, 120),
-    [owned, q, screen],
+    [owned, q, screen, reader],
   );
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
       <div className="page max-h-[80vh] w-full max-w-lg space-y-2 overflow-hidden rounded-md p-4" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-2">
-          <p className="font-display text-lg font-bold">{screen ? `📺 ${tr('Put a card’s clip on the screen', 'Mettre le clip d’une carte à l’écran')}` : `🖼️ ${tr('Show a card', 'Exposer une carte')}`}</p>
+          <p className="font-display text-lg font-bold">
+            {screen ? `📺 ${tr('Put a card’s clip on the screen', 'Mettre le clip d’une carte à l’écran')}` : reader ? `📇 ${tr('Put a Mythic or Omni card in the reader', 'Mettre une carte Mythique ou Omni dans le lecteur')}` : `🖼️ ${tr('Show a card', 'Exposer une carte')}`}
+          </p>
           <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
             ✕
           </button>
@@ -725,7 +1073,11 @@ function CardPicker({ owned, screen = false, backdrop, current, onPick, onClose 
               <span className="w-full truncate text-center">{shownName(c.name, c.set)}</span>
             </button>
           ))}
-          {cards.length === 0 && <p className="col-span-full text-sm text-ink-soft">{screen ? tr('None of your cards has a clip yet.', 'Aucune de tes cartes n’a encore de clip.') : tr('No card found.', 'Aucune carte trouvée.')}</p>}
+          {cards.length === 0 && (
+            <p className="col-span-full text-sm text-ink-soft">
+              {screen ? tr('None of your cards has a clip yet.', 'Aucune de tes cartes n’a encore de clip.') : reader ? tr('No Mythic or Omni card with a voice line yet.', 'Pas encore de carte Mythique ou Omni avec une réplique.') : tr('No card found.', 'Aucune carte trouvée.')}
+            </p>
+          )}
         </div>
       </div>
     </div>

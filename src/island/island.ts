@@ -45,9 +45,25 @@ export interface Island {
   shown: Record<string, string>;
   /** Family pairs already crossed ("a+b", sorted): their hybrid came. */
   crossed: string[];
-  /** On a shared island: who placed what's in a cell (front, or "b<cell>" behind). A builder picks up only their own. */
+  /** On a shared island: who placed what's in a cell ("<cell>" middle, "b<cell>" behind, "t<cell>" in front). A builder picks up only their own. */
   by?: Record<string, string>;
+  /** The front layer: things drawn in front of the player (a garland, a lantern, a plant pot…). */
+  front?: Record<string, string>;
+  /** A music maker's setting, by its key ("<cell>", "b<cell>", "t<cell>"): "off", or the disc it plays. */
+  tune?: Record<string, string>;
 }
+
+/** The three layers a thing can go in: behind (with the walls), the middle (where you walk), in front of you. */
+export type Layer = 'back' | 'mid' | 'front';
+export const layerKey = (layer: Layer, cell: number) => (layer === 'back' ? `b${cell}` : layer === 'front' ? `t${cell}` : String(cell));
+/** What may go behind or in front: things that are only looked at (never the ground, blocks, tools or frames). */
+const LAYERED = new Set(['wall', 'decor', 'furniture', 'light', 'music', 'plant']);
+export const canLayer = (id: string, layer: Layer) => {
+  const k = kindOf(id);
+  if (layer === 'mid') return k !== 'wall' && k !== 'disc';
+  if (layer === 'back') return !!k && LAYERED.has(k);
+  return !!k && k !== 'wall' && LAYERED.has(k);
+};
 
 /** Who is moving, on whose island: offline, nobody (all allowed). */
 export interface Who {
@@ -91,10 +107,10 @@ export function kindOf(id: string | undefined): IslandItem['kind'] | 'natural' |
   if (NATURAL[id]) return 'natural';
   return ITEM_BY_ID.get(id)?.kind;
 }
-/** What you can stand on: the ground, blocks and floors. */
+/** What you can stand on: the ground, blocks, floors, stairs and trampolines (a platform only from above). */
 export const isSolid = (id: string | undefined) => {
   const k = kindOf(id);
-  return k === 'natural' || k === 'block' || k === 'floor';
+  return k === 'natural' || k === 'block' || k === 'floor' || k === 'stairs' || k === 'bounce';
 };
 export const solidAt = (isl: Island, x: number, y: number) => (!inside(x, y) ? y >= ISLAND.h : isSolid(isl.fg[idx(x, y)]));
 
@@ -115,8 +131,11 @@ export interface Change {
   seeds?: Bag;
 }
 
-/** Puts an item from the bag into a cell: a wallpaper behind, anything else in front (an empty cell). */
-export function place(isl: Island, items: Bag, cell: number, id: string, who?: Who): Change {
+/**
+ * Puts an item from the bag into a cell, in a layer: a wallpaper always goes behind; the middle is where you walk
+ * (blocks, tools, furniture…); a lamp, a plant or a decoration may also go behind it, or in front of you.
+ */
+export function place(isl: Island, items: Bag, cell: number, id: string, who?: Who, layer: Layer = 'mid'): Change {
   const item = ITEM_BY_ID.get(id);
   const { x, y } = xy(cell);
   if (!inside(x, y)) throw new Error('Off the island.');
@@ -125,6 +144,17 @@ export function place(isl: Island, items: Bag, cell: number, id: string, who?: W
     return { island: { ...isl, fg: { ...isl.fg, [cell]: 'dirt' } }, items: take(items, id) };
   }
   if (!item) throw new Error('Unknown item.');
+  if (item.kind === 'disc') throw new Error('Records and CDs go in a player: click a turntable, a CD player or a jukebox.');
+  if (item.kind !== 'wall' && layer !== 'mid') {
+    if (!canLayer(id, layer)) throw new Error(layer === 'back' ? 'That can’t go behind.' : 'That can’t go in front.');
+    const key = layerKey(layer, cell);
+    if (layer === 'back') {
+      if (isl.bg[cell]) throw new Error('Something is already behind there.');
+      return { island: { ...isl, bg: { ...isl.bg, [cell]: id }, by: withBy(isl, key, who) }, items: take(items, id) };
+    }
+    if (isl.front?.[cell]) throw new Error('Something is already in front there.');
+    return { island: { ...isl, front: { ...(isl.front ?? {}), [cell]: id }, by: withBy(isl, key, who) }, items: take(items, id) };
+  }
   if (item.kind === 'wall') {
     if (isl.bg[cell]) throw new Error('There’s already a wall there.');
     return { island: { ...isl, bg: { ...isl.bg, [cell]: id }, by: withBy(isl, `b${cell}`, who) }, items: take(items, id) };
@@ -136,18 +166,24 @@ export function place(isl: Island, items: Bag, cell: number, id: string, who?: W
 
 /** Picks a cell's front item back up (or its wallpaper, when it has nothing in front). The ground: dig instead. */
 export function pickUp(isl: Island, items: Bag, cell: number, who?: Who): Change {
+  const top = isl.front?.[cell];
+  if (top) {
+    if (!mayTake(isl, `t${cell}`, who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
+    const { [cell]: _, ...front } = isl.front!;
+    return { island: { ...isl, front, tune: without(isl.tune, `t${cell}`), by: withoutBy(isl, `t${cell}`) }, items: give(items, top) };
+  }
   const id = isl.fg[cell];
   if (id && !NATURAL[id]) {
     if (!mayTake(isl, String(cell), who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...fg } = isl.fg;
     const { [cell]: __, ...shown } = isl.shown;
-    return { island: { ...isl, fg, shown, by: withoutBy(isl, String(cell)) }, items: give(items, id) };
+    return { island: { ...isl, fg, shown, tune: without(isl.tune, String(cell)), by: withoutBy(isl, String(cell)) }, items: give(items, id) };
   }
   const wall = isl.bg[cell];
   if (wall) {
     if (!mayTake(isl, `b${cell}`, who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...bg } = isl.bg;
-    return { island: { ...isl, bg, by: withoutBy(isl, `b${cell}`) }, items: give(items, wall) };
+    return { island: { ...isl, bg, tune: without(isl.tune, `b${cell}`), by: withoutBy(isl, `b${cell}`) }, items: give(items, wall) };
   }
   throw new Error('Nothing to pick up there.');
 }
@@ -246,10 +282,21 @@ export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand 
   return { island: { ...isl, plots, crossed }, items: give(items, got.item), seeds: bag, got };
 }
 
-/** Shows one of your cards in a frame, or puts its clip on a screen. */
+const without = (m: Record<string, string> | undefined, key: string) => {
+  if (!m?.[key]) return m;
+  const { [key]: _, ...rest } = m;
+  return rest;
+};
+
+/** A music maker's setting (by its layer key): null plays its own tune, "off" silences it, a disc id plays that disc. */
+export function setTune(isl: Island, key: string, tune: string | null): Change {
+  return { island: { ...isl, tune: tune ? { ...(isl.tune ?? {}), [key]: tune } : without(isl.tune, key) } };
+}
+
+/** Shows one of your cards in a frame, or puts its clip on a screen, or a card in a reader. */
 export function showCard(isl: Island, cell: number, card: string | null, who?: Who): Change {
   const k = kindOf(isl.fg[cell]);
-  if (k !== 'frame' && k !== 'screen') throw new Error('That’s not a frame or a screen.');
+  if (k !== 'frame' && k !== 'screen' && k !== 'reader') throw new Error('That’s not a frame or a screen.');
   if (!mayTake(isl, String(cell), who)) throw new Error('Someone else put it there: only they (or the owner) can change it.');
   const { [cell]: _, ...shown } = isl.shown;
   return { island: { ...isl, shown: card ? { ...shown, [cell]: card } : shown } };

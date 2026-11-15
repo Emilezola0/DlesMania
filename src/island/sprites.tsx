@@ -21,6 +21,13 @@ const lantern = (body: string, rib: string, y = 6) =>
   `<ellipse cx="13.5" cy="${y + 4.5}" rx="1.6" ry="2.6" ${hi(0.45)}/><rect x="12" y="${y + 13.5}" width="8" height="2" rx=".5" ${o('#3f3f46', 1)}/>` +
   `<path d="M16 ${y + 15.5}v3" ${l(1.4, '#facc15')}/>`;
 
+const vinyl = (label: string) =>
+  `<circle cx="16" cy="16" r="13" ${o('#111827')}/><circle cx="16" cy="16" r="10" ${l(0.6, '#374151')}/><circle cx="16" cy="16" r="7.5" ${l(0.6, '#374151')}/><circle cx="16" cy="16" r="5" fill="${label}" stroke="${K}" stroke-width=".8"/><circle cx="16" cy="16" r="1" fill="${K}"/><path d="M8 9a11 11 0 0 1 6-4" ${l(1.4, '#fff')} opacity=".45"/>`;
+const cd = (tint: string) =>
+  `<circle cx="16" cy="16" r="13" ${o('#e5e7eb')}/><path d="M16 3a13 13 0 0 1 11 6L16 16z" fill="${tint}" opacity=".55"/><path d="M5 23a13 13 0 0 0 7 5.5L16 16z" fill="#a5f3fc" opacity=".6"/><path d="M27 9a13 13 0 0 1 1.5 9L16 16z" fill="#fde68a" opacity=".6"/><circle cx="16" cy="16" r="4" ${o('#f8fafc', 1)}/><circle cx="16" cy="16" r="1.6" fill="#94a3b8"/>`;
+const stairs = (body: string, line: string, top: string) =>
+  `<path d="M1 31V24h8v-8h8V9h7V2h7v29z" ${o(body)}/><path d="M1 24h8M9 16h8M17 9h7M24 2h7" ${l(1.6, top)}/><path d="M9 24v7M17 16v15M24 9v22" ${l(0.9, line)}/>`;
+
 const ART: Record<string, string> = {
   // ── Blocks ─────────────────────────────────────────────────────────────────────────────────────────────────────
   dirt: `<rect x="1" y="1" width="30" height="30" rx="2" ${o('#9a6233')}/><path d="M6 9h3M20 7h4M11 17h3M23 19h3M6 25h4M17 26h3" ${l(2, '#7a4a24')}/><path d="M3 3h26" ${l(1.4, '#b77a45')}/>`,
@@ -143,6 +150,27 @@ const ART: Record<string, string> = {
   'grand-card-frame': `<rect x="3" y="1" width="26" height="30" rx="1.5" ${o('#a16207', 1.4)}/><rect x="5" y="3" width="22" height="26" ${o('#eab308', 1)}/><rect x="8" y="6" width="16" height="20" ${o('#fffbeb', 1)}/><path d="M11 22l4-5 2.5 2.5L20 16l3 6z" fill="#86efac"/><path d="M16 1l2 2h-4z" fill="#fde047"/>`,
   'display-case': `${shadow(10)}<rect x="6" y="24" width="20" height="7" ${o('#7c4a1e')}/><path d="M7 24V6h18v18" ${o('#e0f2fe')}/><path d="M7 6h18" ${l(2, '#7c4a1e')}/><path d="M10 9l3-2M10 14l6-5" ${l(1.3, '#fff')}/><rect x="13" y="15" width="6" height="9" rx=".8" ${o('#fde68a', 0.8)}/>`,
   podium: `${shadow(14)}<rect x="11" y="13" width="10" height="18" ${o('#facc15')}/><rect x="2" y="19" width="9" height="12" ${o('#cbd5e1')}/><rect x="21" y="23" width="9" height="8" ${o('#d97706')}/><text x="16" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="8" fill="${K}">1</text><text x="6.5" y="28.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="6" fill="${K}">2</text><text x="25.5" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="5" fill="${K}">3</text>`,
+
+  // ── Getting around ─────────────────────────────────────────────────────────────────────────────────────────────
+  'wood-door': `<rect x="5" y="1" width="22" height="31" rx="1" ${o('#6b4423')}/><rect x="8" y="3" width="16" height="28" ${o('#b8722f', 1)}/><path d="M10 6h12v9H10zM10 18h12v10H10z" ${l(1, '#8a5428')}/><circle cx="21" cy="17" r="1.3" fill="#facc15" stroke="${K}" stroke-width=".7"/>`,
+  'wood-door-open': `<rect x="5" y="1" width="22" height="31" rx="1" ${o('#6b4423')}/><rect x="8" y="3" width="16" height="28" fill="#2a1a12"/><path d="M8 3l5 2v26l-5 1z" ${o('#b8722f', 1)}/><path d="M10 6v22" ${l(0.8, '#8a5428')}/>`,
+  'wood-stairs': stairs('#c27c3e', '#8a5428', '#e0a364'),
+  'stone-stairs': stairs('#a8a29e', '#78716c', '#d6d3d1'),
+  'rope-ladder': `<path d="M8 0v32M24 0v32" ${l(2.2, '#c8a46a')}/><path d="M8 0v32M24 0v32" ${l(0.6)}/><g ${o('#a86a33', 1)}><rect x="7" y="4" width="18" height="3" rx="1"/><rect x="7" y="12" width="18" height="3" rx="1"/><rect x="7" y="20" width="18" height="3" rx="1"/><rect x="7" y="28" width="18" height="3" rx="1"/></g>`,
+  'wood-platform': `<rect x="0.5" y="1" width="31" height="6" rx="1" ${o('#c27c3e')}/><path d="M2 3.5h28" ${l(1, '#e0a364')}/><path d="M11 1v6M21 1v6" ${l(0.8)}/><path d="M4 7l4 6M28 7l-4 6" ${l(1.6, '#8a5428')}/>`,
+  trampoline: `${shadow(13)}<path d="M5 31l3-12M27 31l-3-12M12 31l1-12M20 31l-1-12" ${l(1.8, '#475569')}/><ellipse cx="16" cy="18" rx="14" ry="4" ${o('#2563eb')}/><ellipse cx="16" cy="17.6" rx="11" ry="2.6" ${o('#111827', 1)}/><path d="M9 17q7-2 14 0" ${l(1, '#475569')}/><path d="M13 9l3-4 3 4M14 12l2-2.5 2 2.5" ${l(1.2, '#60a5fa')}/>`,
+  'warp-pad': `<ellipse cx="16" cy="28" rx="13" ry="3.6" ${o('#4c1d95')}/><ellipse cx="16" cy="27" rx="10" ry="2.6" fill="#a78bfa"/><path d="M10 27q6-3 12 0" ${l(1.2, '#ede9fe')}/><path d="M9 25V12M23 25V12M16 24V8" ${l(1.4, '#c4b5fd')} opacity=".7"/><circle cx="12" cy="14" r="1" fill="#ede9fe"/><circle cx="20" cy="10" r="1.2" fill="#ede9fe"/><circle cx="17" cy="18" r=".8" fill="#ede9fe"/>`,
+  turntable: `${shadow(12)}<rect x="3" y="18" width="26" height="12" rx="1.5" ${o('#a16207')}/><rect x="3" y="15" width="26" height="4" rx="1" ${o('#fef3c7')}/><ellipse cx="13" cy="16.5" rx="8" ry="2" ${o('#111827', 1)}/><ellipse cx="13" cy="16.5" rx="2.4" ry=".7" fill="#ef4444"/><path d="M25 15V11l-5 4" ${l(1.2, '#94a3b8')}/><circle cx="25" cy="11" r="1.3" fill="#94a3b8"/><circle cx="8" cy="25" r="1.6" ${o('#facc15', 0.8)}/><circle cx="13" cy="25" r="1.6" ${o('#facc15', 0.8)}/><path d="M7 30v1M25 30v1" ${l(1.6)}/>`,
+  'cd-player': `${shadow(12)}<path d="M10 11V7h12v4" ${l(1.6, '#475569')}/><rect x="2" y="11" width="28" height="18" rx="3" ${o('#cbd5e1')}/><circle cx="8.5" cy="21" r="5" ${o('#334155', 1)}/><circle cx="8.5" cy="21" r="2" fill="#64748b"/><circle cx="23.5" cy="21" r="5" ${o('#334155', 1)}/><circle cx="23.5" cy="21" r="2" fill="#64748b"/><rect x="12" y="14" width="8" height="5" rx="1" ${o('#0f172a', 0.8)}/><circle cx="16" cy="16.5" r="1.8" fill="#e5e7eb"/><path d="M13 23h6M13 25.5h6" ${l(1, '#64748b')}/>`,
+  'card-reader': `${shadow(10)}<rect x="6" y="14" width="20" height="17" rx="2" ${o('#4338ca')}/><rect x="9" y="17" width="14" height="5" rx="1" ${o('#0f172a', 1)}/><path d="M11 19.5h10" ${l(1, '#a5f3fc')}/><rect x="10" y="11" width="12" height="4" rx="1" ${o('#1e1b4b', 1)}/><path d="M12 13h8" ${l(1.2, '#facc15')}/><circle cx="11" cy="26.5" r="1.6" fill="#f472b6" stroke="${K}" stroke-width=".7"/><circle cx="16" cy="26.5" r="1.6" fill="#facc15" stroke="${K}" stroke-width=".7"/><circle cx="21" cy="26.5" r="1.6" fill="#4ade80" stroke="${K}" stroke-width=".7"/>`,
+  'vinyl-sunset': vinyl('#fb923c'),
+  'vinyl-waltz': vinyl('#a78bfa'),
+  'vinyl-jazz': vinyl('#38bdf8'),
+  'cd-rain': cd('#60a5fa'),
+  'cd-chip': cd('#4ade80'),
+  'cd-festival': cd('#f87171'),
+  'cd-lullaby': cd('#c4b5fd'),
+  'cd-boss': cd('#ef4444'),
 
   // ── Screens (off) ──────────────────────────────────────────────────────────────────────────────────────────────
   'crt-tv': `${shadow(11)}<path d="M12 7L8 1M20 7l4-6" ${l(1.2, '#52525b')}/><rect x="4" y="7" width="24" height="20" rx="3" ${o('#a16207')}/><rect x="6.5" y="9.5" width="15" height="15" rx="3" ${o('#334155', 1)}/><path d="M9 12q2-1 4-1" ${l(1.4, '#94a3b8')}/><circle cx="25" cy="13" r="1.4" ${o('#fde68a', 0.8)}/><circle cx="25" cy="18" r="1.4" ${o('#fde68a', 0.8)}/><path d="M8 27v3M24 27v3" ${l(1.8)}/>`,

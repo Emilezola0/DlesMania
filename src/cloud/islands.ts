@@ -2,7 +2,7 @@
 // invite (up to ISLAND_BUILDERS, among their friends) build on it; any friend may visit, and water a plot (it grows a
 // day sooner; the helper gets a seed). The moves are the same pure functions as offline (src/island/island.ts), run in
 // a transaction; what's taken from or added to a bag goes to the player who moved, in their own save.
-import { doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, updateDoc, type Timestamp } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, updateDoc, type Timestamp } from 'firebase/firestore';
 import { newIsland, type Island } from '../island/island';
 import { auth, db } from './firebase';
 
@@ -57,7 +57,8 @@ export async function islandMove(owner: string, move: (island: Island) => Island
     const s = await tx.get(ref(owner));
     if (!s.exists()) throw new Error('That island isn’t online.');
     const d = s.data() as IslandDoc;
-    const island = move(d.island);
+    // Firestore refuses undefined fields (a layer or a book of names a move left empty): drop them.
+    const island = JSON.parse(JSON.stringify(move(d.island))) as Island;
     tx.update(ref(owner), {
       island,
       ...(line ? { log: [...(d.log ?? []), { ...line, uid }].slice(-LOG) } : {}),
@@ -74,4 +75,36 @@ export async function setBuilders(builders: string[]): Promise<void> {
 /** The owner's island name. */
 export async function renameIsland(name: string): Promise<void> {
   await updateDoc(ref(me()), { name: name.slice(0, 40), at: serverTimestamp() });
+}
+
+/**
+ * Who is on an island right now (islands/<owner>/here/<uid>): where they stand, written a few times a second while
+ * they move (and now and then while they stand still), removed when they leave. Seen by everyone on the island.
+ */
+export interface HereDoc {
+  name: string;
+  /** Their icon (a card id), if they picked one. */
+  face: string | null;
+  x: number;
+  y: number;
+  left: boolean;
+  at?: Timestamp | null;
+}
+const here = (owner: string, uid: string) => doc(db, 'islands', owner, 'here', uid);
+
+export function watchHere(owner: string, on: (list: (HereDoc & { uid: string })[]) => void): () => void {
+  return onSnapshot(
+    collection(db, 'islands', owner, 'here'),
+    (s) => on(s.docs.map((d) => ({ uid: d.id, ...(d.data() as HereDoc) }))),
+    () => on([]),
+  );
+}
+
+export async function sayHere(owner: string, h: Omit<HereDoc, 'at'>): Promise<void> {
+  await setDoc(here(owner, me()), { name: h.name.slice(0, 40), face: h.face ?? null, x: h.x, y: h.y, left: h.left, at: serverTimestamp() });
+}
+
+export async function leaveHere(owner: string): Promise<void> {
+  const u = auth.currentUser;
+  if (u) await deleteDoc(here(owner, u.uid)).catch(() => {});
 }
