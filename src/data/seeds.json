@@ -1,5 +1,5 @@
 {
-  "_about": "The Island's seeds (src/island/seeds.ts). Each game has its family: finishing today's round gives its common seed, a good score may add its rare seed. Two seeds planted together grow what the seeds list (stage 2); two families' seeds crossed make the hybrids. Items are what grows: kind says where it goes (block, floor, wall, decor, furniture, light, music, plant, frame). Names in English and French.",
+  "_about": "The Island's seeds (src/island/seeds.ts). Each game has its family: finishing today's round gives its common seed, a good score may add its rare seed. Two seeds planted together grow what the seeds list (stage 2); two families' seeds crossed make the hybrids. Items are what grows: kind says where it goes (block, floor, wall, decor, furniture, light, music, plant, frame, screen: a TV playing a card’s clip). Names in English and French.",
   "families": [
     { "id": "classic", "source": "classic", "name": "Puzzle", "fr": "Puzzle", "icon": "🧩", "color": "#b45309" },
     { "id": "quote", "source": "quote", "name": "Ink", "fr": "Encre", "icon": "💬", "color": "#475569" },
@@ -28,7 +28,7 @@
     { "id": "pop", "family": "emoji", "tier": "common", "name": "Pop Seed", "fr": "Graine pop", "grows": ["beanbag", "plush", "smile-cushion"] },
     { "id": "neon-smile", "family": "emoji", "tier": "rare", "name": "Neon Smile Seed", "fr": "Graine de sourire néon", "grows": ["neon-sign", "bubble-lamp"] },
     { "id": "pixel", "family": "visual", "tier": "common", "name": "Pixel Seed", "fr": "Graine de pixel", "grows": ["pixel-block", "crt-tv", "card-frame"] },
-    { "id": "cartridge", "family": "visual", "tier": "rare", "name": "Cartridge Seed", "fr": "Graine de cartouche", "grows": ["arcade-cabinet", "gold-card-frame"] },
+    { "id": "cartridge", "family": "visual", "tier": "rare", "name": "Cartridge Seed", "fr": "Graine de cartouche", "grows": ["arcade-cabinet", "gold-card-frame", "big-screen"] },
     { "id": "tick", "family": "timeline", "tier": "common", "name": "Tick Seed", "fr": "Graine de tic-tac", "grows": ["wall-clock", "calendar", "hourglass"] },
     { "id": "grandfather", "family": "timeline", "tier": "rare", "name": "Grandfather Seed", "fr": "Graine de comtoise", "grows": ["grandfather-clock", "sundial"] },
     { "id": "relic", "family": "item", "tier": "common", "name": "Relic Seed", "fr": "Graine de relique", "grows": ["chest", "weapon-rack", "armour-stand"] },
@@ -90,8 +90,9 @@
     { "id": "neon-sign", "kind": "light", "icon": "💡", "name": "Neon smiley sign", "fr": "Enseigne néon smiley" },
     { "id": "bubble-lamp", "kind": "light", "icon": "🫧", "name": "Bubble lamp", "fr": "Lampe à bulles" },
     { "id": "pixel-block", "kind": "block", "icon": "🟩", "name": "Pixel block", "fr": "Bloc pixel" },
-    { "id": "crt-tv", "kind": "furniture", "icon": "📺", "name": "Old CRT TV", "fr": "Vieille télé cathodique" },
+    { "id": "crt-tv", "kind": "screen", "icon": "📺", "name": "Old CRT TV (plays a card’s clip)", "fr": "Vieille télé cathodique (passe le clip d’une carte)" },
     { "id": "card-frame", "kind": "frame", "icon": "🖼️", "name": "Card frame", "fr": "Cadre à carte" },
+    { "id": "big-screen", "kind": "screen", "icon": "🎞️", "name": "Big screen (plays a card’s clip)", "fr": "Grand écran (passe le clip d’une carte)" },
     { "id": "arcade-cabinet", "kind": "furniture", "icon": "🕹️", "name": "Arcade cabinet", "fr": "Borne d’arcade" },
     { "id": "gold-card-frame", "kind": "frame", "icon": "🖼️", "name": "Golden card frame", "fr": "Cadre à carte doré" },
     { "id": "wall-clock", "kind": "decor", "icon": "🕰️", "name": "Wall clock", "fr": "Horloge murale" },

@@ -4475,3 +4475,64 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
     animation: none;
   }
 }
+
+/* Island at night (stage 2b): a starry sky over the day one, glows, and the screens. */
+.island-night {
+  background: linear-gradient(#0b1030, #1e2a5a 70%, #2d3a6e);
+}
+/* The stars and the moon, over the night's darkness (only in the sky, at the top). */
+.island-stars {
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 44% 26%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 58% 12%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 71% 22%, #fef9c3 50%, transparent 51%),
+    radial-gradient(1px 1px at 83% 6%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 92% 30%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 5% 34%, #fff 50%, transparent 51%),
+    radial-gradient(circle at 80% 14%, #fefce8 0 14px, #fef9c355 15px, transparent 34px);
+}
+.island-glow {
+  mix-blend-mode: screen;
+  animation: island-flicker 3s ease-in-out infinite alternate;
+}
+@keyframes island-flicker {
+  to {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+  }
+}
+.island-tv {
+  background: #111;
+  border: 3px solid #3f3f46;
+  border-radius: 5px;
+  box-shadow: 0 2px 0 #27272a;
+}
+.island-tv-big {
+  border-color: #18181b;
+  border-radius: 2px;
+}
+.island-tv-static {
+  background: repeating-linear-gradient(0deg, #52525b 0 1px, #27272a 1px 3px);
+  animation: island-static 0.25s steps(3) infinite;
+}
+@keyframes island-static {
+  to {
+    background-position: 0 3px;
+  }
+}
+.island-tv-show {
+  border: 4px solid #18181b;
+  box-shadow: 0 6px 24px #000a, 0 0 30px #93c5fd66;
+  background: #000;
+  cursor: pointer;
+  animation: seed-drop 0.35s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .island-glow,
+  .island-tv-static {
+    animation: none;
+  }
+}

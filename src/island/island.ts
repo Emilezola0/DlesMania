@@ -206,9 +206,10 @@ export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand 
   return { island: { ...isl, plots, crossed }, items: give(items, got.item), seeds: bag, got };
 }
 
-/** Shows one of your cards in a frame. */
+/** Shows one of your cards in a frame, or puts its clip on a screen. */
 export function showCard(isl: Island, cell: number, card: string | null): Change {
-  if (kindOf(isl.fg[cell]) !== 'frame') throw new Error('That’s not a frame.');
+  const k = kindOf(isl.fg[cell]);
+  if (k !== 'frame' && k !== 'screen') throw new Error('That’s not a frame or a screen.');
   const { [cell]: _, ...shown } = isl.shown;
   return { island: { ...isl, shown: card ? { ...shown, [cell]: card } : shown } };
 }

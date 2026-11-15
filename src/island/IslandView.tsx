@@ -2,6 +2,7 @@
 // harvest what grows a day or two later, and build with it: blocks, wallpapers, lights, music, furniture, and frames
 // that show your cards. The rules of each move are in src/island/island.ts; the save is the progress store's.
 import { memo, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { GIF_CLIP } from '../gacha/CardClip';
 import { CARD_BY_ID, type Card } from '../gacha/cards';
 import { CardAvatar, ShownPicture } from '../gacha/Perks';
 import { shownName } from '../lib/french';
@@ -10,6 +11,7 @@ import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
 import { dig, grassy, harvest, idx, isReady, ISLAND, isSea, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, xy, type Island } from './island';
+import { islandBand, type Source } from './music';
 import { SeedArt } from './SeedBook';
 import { ITEM_BY_ID, SEED_BY_ID, SEEDS } from './seeds';
 
@@ -23,6 +25,39 @@ const TOOLS: { id: Tool; icon: string; name: string; fr: string }[] = [
 ];
 const nameOf = (x: { name: string; fr: string }) => tr(x.name, x.fr);
 const itemName = (id: string) => (NATURAL[id] ? nameOf(NATURAL[id]) : nameOf(ITEM_BY_ID.get(id)!));
+/** A card's clip a screen can play: one of ours (an MP4 in public/clips) or a GIF. */
+export const screenClips = (c: Card | undefined) => (c?.clip ?? '').split('|').filter((u) => /\/clips\/.+\.mp4$/.test(u) || GIF_CLIP.test(u));
+export const screenClip = (c: Card | undefined): string | undefined => screenClips(c)[0];
+
+/** A GIF clip, looping silent: a real .gif as a picture, a GIF site's MP4 as a muted video. */
+function GifLoop({ src, className }: { src: string; className: string }) {
+  return /\.mp4(\?|$)/.test(src) ? <video src={src} autoPlay muted loop playsInline className={className} /> : <img src={src} alt="" className={className} />;
+}
+
+/** How dark it is on the island (0 day … 0.7 night), from the player's own clock: dusk from 18:00, night 21:00–5:00, dawn until 7:00. */
+function darknessAt(d = new Date()): number {
+  const h = d.getHours() + d.getMinutes() / 60;
+  const night = 0.7;
+  if (h >= 21 || h < 5) return night;
+  if (h >= 18) return ((h - 18) / 3) * night;
+  if (h < 7) return (1 - (h - 5) / 2) * night;
+  return 0;
+}
+/** A light's glow colour. */
+const GLOW: Record<string, string> = {
+  'neon-sign': '#f472b6',
+  'neon-tube': '#38bdf8',
+  'disco-ball': '#e879f9',
+  'aurora-lamp': '#5eead4',
+  'bubble-lamp': '#a5f3fc',
+  'star-lamp': '#fef08a',
+  'moon-nightlight': '#c7d2fe',
+  'firefly-jar': '#bef264',
+  'stained-window': '#fca5a5',
+  spotlight: '#fffbeb',
+  fireplace: '#fb923c',
+};
+
 const itemIcon = (id: string) => (id === 'dirt' ? '🟫' : (ITEM_BY_ID.get(id)?.icon ?? '❔'));
 
 // The player's box, in cells, and how it moves.
@@ -44,9 +79,19 @@ export function IslandView() {
   const [tool, setTool] = useState<Tool>('walk');
   const [pick, setPick] = useState<string | null>(null);
   const [pair, setPair] = useState<string[]>([]);
-  const [note, setNote] = useState<string | null>(null);
+  const [note, setNote] = useState<ReactNode>(null);
   const [framing, setFraming] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
+  const [tv, setTv] = useState<{ cell: number; card: string } | null>(null);
+  const backdrop = useProgress((s) => s.backdrop);
+  // Day and night, by the clock (checked every minute), or forced to see it.
+  const [sky, setSky] = useState<'auto' | 'day' | 'night'>('auto');
+  const [clockDark, setClockDark] = useState(() => darknessAt());
+  useEffect(() => {
+    const t = window.setInterval(() => setClockDark(darknessAt()), 60_000);
+    return () => window.clearInterval(t);
+  }, []);
+  const dark = sky === 'auto' ? clockDark : sky === 'night' ? 0.7 : 0;
 
   // The tile size: about 22 cells across the viewport.
   const box = useRef<HTMLDivElement>(null);
@@ -148,6 +193,26 @@ export function IslandView() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  // The music makers near the player, heard every 100 ms (the band schedules a little ahead).
+  const sources = useMemo<Source[]>(
+    () =>
+      Object.entries(isl.fg)
+        .filter(([, id]) => kindOf(id) === 'music')
+        .map(([k, id]) => ({ cell: Number(k), id, x: xy(Number(k)).x + 0.5, y: xy(Number(k)).y + 0.5 })),
+    [isl],
+  );
+  const srcRef = useRef(sources);
+  srcRef.current = sources;
+  useEffect(() => {
+    const band = islandBand();
+    const t = window.setInterval(() => {
+      if (document.hidden) return;
+      const p = pos.current;
+      band.tick(srcRef.current, p.x + PW / 2, p.y + PH / 2);
+    }, 100);
+    return () => (window.clearInterval(t), band.stop());
+  }, []);
+
   // The keys: arrows or WASD, Space to jump (while the island has the focus).
   const keyOf = (k: string) => (k === 'ArrowLeft' || k === 'a' || k === 'q' ? 'left' : k === 'ArrowRight' || k === 'd' ? 'right' : k === 'ArrowUp' || k === 'w' || k === 'z' || k === ' ' ? 'jump' : null);
   const onKey = (down: boolean) => (e: React.KeyboardEvent) => {
@@ -170,7 +235,7 @@ export function IslandView() {
     const p = pos.current;
     return Math.hypot(x + 0.5 - (p.x + PW / 2), y + 0.5 - (p.y + PH / 2)) <= ISLAND.reach;
   };
-  const say = (msg: string | null) => setNote(msg);
+  const say = (msg: ReactNode) => setNote(msg);
   const run = (move: Parameters<typeof act>[0], ok: string, sound: 'select' | 'victory' = 'select') => {
     const err = act(move);
     if (err) say(`⚠️ ${err}`);
@@ -209,11 +274,24 @@ export function IslandView() {
     if (plot) return say(`🌱 ${tr('Growing: ready on', 'Pousse : prêt le')} ${readyOn(plot)}.`);
     if (tool === 'walk') {
       if (front && kindOf(front) === 'frame') return setFraming(cell);
+      if (front && kindOf(front) === 'screen') {
+        const card = isl.shown[cell];
+        if (!card) return setFraming(cell);
+        setTv({ cell, card });
+        return say(
+          <>
+            📺 {tr('On air.', 'À l’antenne.')}{' '}
+            <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
+              {tr('Change the card', 'Changer de carte')}
+            </button>
+          </>,
+        );
+      }
       return;
     }
     if (tool === 'build') {
       if (!pick) return say(tr('Pick something to build from your bag below.', 'Choisis quoi construire dans ton sac ci-dessous.'));
-      if (run((i, it) => place(i, it, cell, pick), `${itemIcon(pick)} ${itemName(pick)}`) && kindOf(pick) === 'frame') setFraming(cell);
+      if (run((i, it) => place(i, it, cell, pick), `${itemIcon(pick)} ${itemName(pick)}`) && (kindOf(pick) === 'frame' || kindOf(pick) === 'screen')) setFraming(cell);
       if ((items[pick] ?? 0) <= 1) setPick(null);
       return;
     }
@@ -250,6 +328,7 @@ export function IslandView() {
         style={{ height: ISLAND.h * T }}
         aria-label={tr('Your island. Arrows or WASD to walk, Space to jump; click a spot to use the tool.', 'Ton île. Flèches ou ZQSD pour marcher, Espace pour sauter ; clique un endroit pour utiliser l’outil.')}
       >
+        <div className="island-night pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
         <div ref={world} className="absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
           <World isl={isl} T={T} />
           {hover !== null && tool !== 'walk' && (
@@ -258,10 +337,15 @@ export function IslandView() {
               style={{ left: xy(hover).x * T, top: xy(hover).y * T, width: T, height: T }}
             />
           )}
-          <div ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
+          {/* Night: everything darker, the lights glowing through (you stay lit). */}
+          {dark > 0 && <div key="night" className="pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ background: '#0b1030', opacity: dark }} />}
+          {dark > 0 && <Glows isl={isl} T={T} dark={dark} />}
+          <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
             {avatarCard ? <CardAvatar card={avatarCard} className="size-full" /> : <span className="grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
           </div>
+          {tv && <TvShow tv={tv} T={T} onEnd={() => setTv(null)} />}
         </div>
+        {dark > 0 && <div className="island-stars pointer-events-none absolute inset-x-0 top-0 h-[40%] transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />}
       </div>
 
       {/* Touch: walk and jump. */}
@@ -292,6 +376,14 @@ export function IslandView() {
             {t.icon} {nameOf(t)}
           </button>
         ))}
+        <button
+          type="button"
+          onClick={() => setSky((s) => (s === 'auto' ? (clockDark > 0.35 ? 'day' : 'night') : 'auto'))}
+          className="rounded-md border border-rule px-2.5 py-1 text-sm hover:bg-tile"
+          title={tr('Day and night follow your clock; this shows the other one for a while.', 'Le jour et la nuit suivent ton horloge ; ceci montre l’autre un moment.')}
+        >
+          {sky === 'auto' ? (clockDark > 0.35 ? '🌙' : '☀️') : sky === 'night' ? '🌙' : '☀️'} {sky === 'auto' ? tr('Clock', 'Horloge') : tr('Preview', 'Aperçu')}
+        </button>
         <span className="ml-auto text-xs text-ink-faint">{tr('Arrows/WASD walk · Space jumps · reach: 5 cells', 'Flèches/ZQSD marcher · Espace sauter · portée : 5 cases')}</span>
       </div>
       {note && <p className="rounded-md bg-tile px-3 py-1.5 text-sm">{note}</p>}
@@ -369,9 +461,12 @@ export function IslandView() {
       {framing !== null && (
         <CardPicker
           owned={owned}
+          screen={kindOf(isl.fg[framing]) === 'screen'}
+          backdrop={backdrop}
           current={isl.shown[framing] ?? null}
           onPick={(id) => {
-            run((i) => showCard(i, framing, id), id ? tr('On display!', 'Exposée !') : tr('Frame emptied.', 'Cadre vidé.'));
+            const screen = kindOf(isl.fg[framing]) === 'screen';
+            run((i) => showCard(i, framing, id), id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'));
             setFraming(null);
             box.current?.focus();
           }}
@@ -412,6 +507,22 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
     const kind = kindOf(id);
     if (kind === 'natural') {
       out.push(<div key={k} className={`absolute ${id === 'stone' ? 'island-stone' : 'island-dirt'} ${grassy(isl, x, y) ? 'island-grass' : ''}`} style={style} />);
+    } else if (kind === 'screen') {
+      const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
+      const clip = screenClip(card);
+      out.push(
+        <div key={k} className="absolute grid place-items-center" style={style} title={card ? shownName(card.name, card.set) : ITEM_BY_ID.get(id)?.name}>
+          <span className={`island-tv ${id === 'big-screen' ? 'island-tv-big' : ''} relative block overflow-hidden`} style={{ width: T * 0.92, height: T * 0.74 }}>
+            {card && clip && GIF_CLIP.test(clip) ? (
+              <GifLoop src={clip} className="size-full object-cover" />
+            ) : card ? (
+              <ShownPicture card={card} still className="size-full object-cover object-top" />
+            ) : (
+              <span className="island-tv-static block size-full" />
+            )}
+          </span>
+        </div>,
+      );
     } else if (kind === 'frame') {
       const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
       out.push(
@@ -455,28 +566,37 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
 });
 
 /** Picks one of your cards to show in a frame. */
-function CardPicker({ owned, current, onPick, onClose }: { owned: Record<string, number>; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {
+function CardPicker({ owned, screen = false, backdrop, current, onPick, onClose }: { owned: Record<string, number>; screen?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {
   const [q, setQ] = useState('');
+  const bg = screen && backdrop ? CARD_BY_ID.get(backdrop) : undefined;
   const cards = useMemo(
     () =>
       Object.keys(owned)
         .map((id) => CARD_BY_ID.get(id))
         .filter((c): c is Card => !!c)
+        // A screen plays clips: only the cards that have one.
+        .filter((c) => !screen || !!screenClip(c))
         .filter((c) => !q || shownName(c.name, c.set).toLowerCase().includes(q.toLowerCase()))
         .slice(0, 120),
-    [owned, q],
+    [owned, q, screen],
   );
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
       <div className="page max-h-[80vh] w-full max-w-lg space-y-2 overflow-hidden rounded-md p-4" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center gap-2">
-          <p className="font-display text-lg font-bold">🖼️ {tr('Show a card', 'Exposer une carte')}</p>
+          <p className="font-display text-lg font-bold">{screen ? `📺 ${tr('Put a card’s clip on the screen', 'Mettre le clip d’une carte à l’écran')}` : `🖼️ ${tr('Show a card', 'Exposer une carte')}`}</p>
           <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
             ✕
           </button>
         </div>
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={tr('Search your cards', 'Cherche dans tes cartes')} className="w-full rounded-md border border-rule bg-card px-3 py-1.5 text-sm" autoFocus />
         <div className="grid max-h-[50vh] grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4">
+          {bg && screenClip(bg) && (
+            <button type="button" onClick={() => onPick(bg.id)} className={`flex flex-col items-center gap-1 rounded-md border p-2 text-xs hover:bg-tile ${current === bg.id ? 'border-accent' : 'border-accent/50'}`}>
+              <CardAvatar card={bg} className="size-12" />
+              <span className="w-full truncate text-center font-semibold">{tr('Your background', 'Ton fond')}</span>
+            </button>
+          )}
           {current && (
             <button type="button" onClick={() => onPick(null)} className="rounded-md border border-dashed border-rule p-2 text-xs text-ink-soft hover:bg-tile">
               {tr('Empty the frame', 'Vider le cadre')}
@@ -488,9 +608,68 @@ function CardPicker({ owned, current, onPick, onClose }: { owned: Record<string,
               <span className="w-full truncate text-center">{shownName(c.name, c.set)}</span>
             </button>
           ))}
-          {cards.length === 0 && <p className="col-span-full text-sm text-ink-soft">{tr('No card found.', 'Aucune carte trouvée.')}</p>}
+          {cards.length === 0 && <p className="col-span-full text-sm text-ink-soft">{screen ? tr('None of your cards has a clip yet.', 'Aucune de tes cartes n’a encore de clip.') : tr('No card found.', 'Aucune carte trouvée.')}</p>}
         </div>
       </div>
+    </div>
+  );
+}
+
+/** At night, each light's glow, and the light itself drawn bright over the dark. */
+const Glows = memo(function Glows({ isl, T, dark }: { isl: Island; T: number; dark: number }) {
+  return (
+    <>
+      {Object.entries(isl.fg)
+        .filter(([, id]) => kindOf(id) === 'light' || kindOf(id) === 'screen')
+        .map(([k, id]) => {
+          const { x, y } = xy(Number(k));
+          const c = kindOf(id) === 'screen' ? '#93c5fd' : (GLOW[id] ?? '#fcd34d');
+          const r = (kindOf(id) === 'screen' ? 1.6 : 2.8) * T;
+          return (
+            <div key={k} className="pointer-events-none absolute">
+              <div className="island-glow absolute rounded-full" style={{ left: (x + 0.5) * T - r, top: (y + 0.5) * T - r, width: r * 2, height: r * 2, background: `radial-gradient(circle, ${c}cc 0%, ${c}55 35%, transparent 70%)`, opacity: Math.min(1, dark * 1.6) }} />
+              {kindOf(id) === 'light' && (
+                <div className="absolute grid place-items-end justify-center" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.82, lineHeight: 1 }}>
+                  {ITEM_BY_ID.get(id)?.icon}
+                </div>
+              )}
+            </div>
+          );
+        })}
+    </>
+  );
+});
+
+/**
+ * A screen switched on: the card's clip, big, above the TV. A video plays once with its sound (the owner's rule: card
+ * videos play on a moment, with their own audio, never on a loop); a GIF loops until it's clicked off.
+ */
+function TvShow({ tv, T, onEnd }: { tv: { cell: number; card: string }; T: number; onEnd: () => void }) {
+  const card = CARD_BY_ID.get(tv.card);
+  // One of its clips, picked when switched on.
+  const [clip] = useState(() => {
+    const all = screenClips(card);
+    return all[Math.floor(Math.random() * all.length)];
+  });
+  const volume = useProgress((s) => (s.sound ? s.clipVolume / 100 : 0));
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (ref.current) ref.current.volume = Math.min(1, volume);
+  }, [volume]);
+  if (!card || !clip) return null;
+  const { x, y } = xy(tv.cell);
+  const w = 7 * T;
+  const h = (w * 9) / 16;
+  const left = Math.max(0, Math.min(ISLAND.w * T - w, (x + 0.5) * T - w / 2));
+  const top = Math.max(2, y * T - h - 6);
+  return (
+    <div className="island-tv-show absolute overflow-hidden rounded-md" style={{ left, top, width: w, height: h }} onPointerDown={(e) => (e.stopPropagation(), onEnd())} title={tr('Click to switch off', 'Clique pour éteindre')}>
+      {GIF_CLIP.test(clip) ? (
+        <GifLoop src={clip} className="size-full object-cover" />
+      ) : (
+        <video ref={ref} src={clip} autoPlay playsInline muted={volume === 0} onEnded={onEnd} onError={onEnd} className="size-full object-cover" />
+      )}
+      <span className="absolute bottom-1 left-2 rounded bg-black/60 px-1.5 text-[11px] font-semibold text-white">{shownName(card.name, card.set)}</span>
     </div>
   );
 }
