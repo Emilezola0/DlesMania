@@ -31,13 +31,14 @@ export function normWord(s: string): string {
     .slice(0, 24);
 }
 
-/** Two cards to link, from two different franchises (a new game). */
+/** Two characters to link, from the same franchise (a new game; never the JLPT's kanji, never the same character twice). */
 export function meldCards(rand: () => number = Math.random): [string, string] {
-  const sets = new Set(SETS.map((s) => s.id));
-  const pool = CARDS.filter((c) => sets.has(c.set));
+  const sets = SETS.filter((s) => s.id !== 'jlpt' && CARDS.filter((c) => c.set === s.id).length >= 2);
+  const set = sets[Math.floor(rand() * sets.length)].id;
+  const pool = CARDS.filter((c) => c.set === set);
   const a = pool[Math.floor(rand() * pool.length)];
-  const others = pool.filter((c) => c.set !== a.set);
-  const b = others[Math.floor(rand() * others.length)];
+  const others = pool.filter((c) => c.id !== a.id && c.name !== a.name);
+  const b = others[Math.floor(rand() * others.length)] ?? pool.find((c) => c.id !== a.id)!;
   return [a.id, b.id];
 }
 
