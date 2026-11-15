@@ -4646,6 +4646,60 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
     rotate: -55deg;
   }
 }
+/* The bigger world (stage B): ore in the stone, bedrock at the bottom, the back wall of caves and dug holes. */
+.island-ore {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 26% 30%, var(--ore) 0 9%, transparent 10%),
+    radial-gradient(circle at 72% 24%, var(--ore) 0 7%, transparent 8%),
+    radial-gradient(circle at 58% 70%, var(--ore) 0 10%, transparent 11%),
+    radial-gradient(circle at 20% 78%, var(--ore) 0 6%, transparent 7%);
+  filter: drop-shadow(0 0 1px #0008);
+}
+/* The dungeon (stage C): its walls (the stone, purple and dark), the back wall of its rooms, the dark around it. */
+.island-dungeon {
+  filter: hue-rotate(230deg) saturate(0.55) brightness(0.62);
+}
+.island-dungeon.island-cave {
+  filter: hue-rotate(230deg) saturate(0.45) brightness(0.3);
+}
+.island-deep {
+  background: #120f18;
+}
+.island-bedrock {
+  filter: brightness(0.38) saturate(0.5);
+}
+.island-cave {
+  filter: brightness(0.42) saturate(0.7);
+}
+/* Riding (data-pose cart or zip): the minecart under the player, the trolley above; no tool in hand. */
+.island-cart,
+.island-trolley {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+}
+.island-me[data-pose='cart'] > .island-cart {
+  display: block;
+  left: -30%;
+  width: 160%;
+  bottom: -22%;
+  height: 72%;
+}
+.island-me[data-pose='zip'] > .island-trolley {
+  display: block;
+  left: 5%;
+  width: 90%;
+  top: -48%;
+  height: 56%;
+}
+.island-me[data-pose='zip'] > .island-me-face {
+  transform: rotate(-10deg);
+}
+.island-me:is([data-pose='cart'], [data-pose='zip'], [data-pose='sit'], [data-pose='sleep']) > .island-me-tool {
+  display: none;
+}
 /* Sitting and asleep (src/island/IslandView.tsx): lower and squashed, or lying down with a zZz. */
 .island-me[data-pose='sit'] > .island-me-face {
   transform: scaleY(0.88);

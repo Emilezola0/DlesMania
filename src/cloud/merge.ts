@@ -33,6 +33,8 @@ export const SYNCED = [
   'seedLog',
   'island',
   'islandItems',
+  'dungeon',
+  'crafted',
   'econ',
   'bossWeek',
   'packsOpened',
@@ -323,6 +325,9 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     // The Island and what's grown for it: the save changed last (it's built, moved, taken apart).
     island: latest.island ?? local.island,
     islandItems: latest.islandItems ?? local.islandItems ?? {},
+    // The week's dungeon (chests opened, ore mined): the latest save's; a recipe made on either side stays known.
+    dungeon: latest.dungeon ?? local.dungeon,
+    crafted: [...new Set([...(local.crafted ?? []), ...(cloud.crafted ?? [])])],
     grades: latest.grades ?? {},
     // A grade paid on either side stays paid (never twice).
     gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),

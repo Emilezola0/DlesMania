@@ -3,7 +3,7 @@
 // day sooner; the helper gets a seed). The moves are the same pure functions as offline (src/island/island.ts), run in
 // a transaction; what's taken from or added to a bag goes to the player who moved, in their own save.
 import { collection, deleteDoc, doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, updateDoc, type Timestamp } from 'firebase/firestore';
-import { newIsland, type Island } from '../island/island';
+import { ISLAND_V, newIsland, upgradeIsland, type Island } from '../island/island';
 import type { EmoteEvent, Pose, TvEvent, TuneEvent } from '../island/live';
 import { auth, db } from './firebase';
 
@@ -38,7 +38,14 @@ function me(): string {
 export function watchIsland(owner: string, on: (d: IslandDoc | null) => void): () => void {
   return onSnapshot(
     ref(owner),
-    (s) => on(s.exists() ? (s.data() as IslandDoc) : null),
+    (s) => {
+      if (!s.exists()) return on(null);
+      const d = s.data() as IslandDoc;
+      // Saved before the world grew: shown moved into the new world; the owner's own page saves it moved (friends
+      // may only water, which can't move an island).
+      if (d.island?.v !== ISLAND_V && auth.currentUser?.uid === owner) void islandMove(owner, (i) => i).catch(() => {});
+      on({ ...d, island: upgradeIsland(d.island) });
+    },
     () => on(null),
   );
 }
@@ -48,7 +55,7 @@ export async function publishIsland(island: Island | undefined, name: string): P
   const uid = me();
   const s = await getDoc(ref(uid));
   if (s.exists()) return;
-  await setDoc(ref(uid), { owner: uid, name: name.slice(0, 40), island: island ?? newIsland(), builders: [], log: [], at: serverTimestamp() });
+  await setDoc(ref(uid), { owner: uid, name: name.slice(0, 40), island: upgradeIsland(island ?? newIsland()), builders: [], log: [], at: serverTimestamp() });
 }
 
 /** Applies a move to an island in a transaction; `line` (who did what) goes into its book. */
@@ -59,7 +66,7 @@ export async function islandMove(owner: string, move: (island: Island) => Island
     if (!s.exists()) throw new Error('That island isn’t online.');
     const d = s.data() as IslandDoc;
     // Firestore refuses undefined fields (a layer or a book of names a move left empty): drop them.
-    const island = JSON.parse(JSON.stringify(move(d.island))) as Island;
+    const island = JSON.parse(JSON.stringify(move(upgradeIsland(d.island)))) as Island;
     tx.update(ref(owner), {
       island,
       ...(line ? { log: [...(d.log ?? []), { ...line, uid }].slice(-LOG) } : {}),

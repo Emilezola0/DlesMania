@@ -6,8 +6,10 @@ import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
 import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
-import { newIsland, type Bag, type Change, type Island } from '../island/island';
+import { fgAt, newIsland, upgradeIsland, type Bag, type Change, type Island } from '../island/island';
 import type { Catch } from '../island/fishing';
+import { canCraft, RECIPE_BY_OUT } from '../island/crafting';
+import { dungeonIsland, rollLoot, type Loot } from '../island/dungeon';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -152,6 +154,16 @@ interface ProgressState {
   helpReward: (seed: string) => boolean;
   /** A catch from fishing on the Island (src/island/fishing.ts): what you actually got (a sardine when the seed or coins are capped today). */
   fishReward: (c: Catch) => Catch;
+  /** This week's dungeon (src/island/dungeon.ts): what this player changed in it (mined, chests opened). A new week, a new dungeon. */
+  dungeon?: { week: string; fg: Record<string, string> };
+  /** A move in the dungeon (mining): like islandAct. */
+  dungeonAct: (move: (island: Island, items: Bag, seeds: Bag) => Change) => string | null;
+  /** Opens a dungeon chest: what was in it, or null (already open, not a chest). */
+  openChest: (cell: number) => Loot | null;
+  /** Makes a recipe (src/island/crafting.ts) from the bag: false if something's missing. */
+  craft: (out: string) => boolean;
+  /** Recipes made at least once (the Seed Book shows the others hidden). */
+  crafted?: string[];
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
   /** This week's boss bonuses already paid. */
@@ -549,7 +561,7 @@ function earn(
 
 /** A round that just finished (it was still being played, or not there yet). */
 /** Seeds from a source capped a day (SEED.perDay): boss fights, the arcade, the JLPT games. */
-function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help' | 'fish', ids?: string[]) {
+function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help' | 'fish' | 'dungeon', ids?: string[]) {
   const log = seedLogNow(s.seedLog);
   if ((log.n[source] ?? 0) >= SEED.perDay) return {};
   return { ...withSeeds(s, ids ?? arcadeSeeds(source as 'arcade' | 'jlpt')), seedLog: { ...log, n: { ...log.n, [source]: (log.n[source] ?? 0) + 1 } } };
@@ -606,7 +618,7 @@ export const useProgress = create<ProgressState>()(
       islandAct: (move) => {
         const s = get();
         try {
-          const c = move(s.island ?? newIsland(), s.islandItems ?? {}, s.seeds ?? {});
+          const c = move(upgradeIsland(s.island ?? newIsland()), s.islandItems ?? {}, s.seeds ?? {});
           // A seed new to the Seed Book (a hybrid from a harvest): found today.
           const fresh = Object.keys(c.seeds ?? {}).filter((id) => !s.seedsFound?.[id]);
           set({
@@ -629,6 +641,42 @@ export const useProgress = create<ProgressState>()(
             ...(fresh.length ? { seedsFound: { ...s.seedsFound, ...Object.fromEntries(fresh.map((id) => [id, todayKey()])) } } : {}),
           };
         }),
+      dungeonAct: (move) => {
+        const s = get();
+        const week = weekOf(todayKey());
+        try {
+          const c = move(dungeonIsland(week, s.dungeon?.week === week ? s.dungeon.fg : {}), s.islandItems ?? {}, s.seeds ?? {});
+          set({ dungeon: { week, fg: c.island.fg }, ...(c.items ? { islandItems: c.items } : {}), ...(c.seeds ? { seeds: c.seeds } : {}) });
+          return null;
+        } catch (e) {
+          return e instanceof Error ? e.message : 'That didn’t work.';
+        }
+      },
+      openChest: (cell) => {
+        const s = get();
+        const week = weekOf(todayKey());
+        const fg = s.dungeon?.week === week ? s.dungeon.fg : {};
+        if (fgAt(dungeonIsland(week, fg), cell) !== 'dungeon-chest') return null;
+        const loot = rollLoot();
+        const bag = { ...(s.islandItems ?? {}) };
+        for (const id of loot.items) bag[id] = (bag[id] ?? 0) + 1;
+        const seed = loot.seed ? cappedSeeds(s, 'dungeon', [loot.seed]) : {};
+        set({ ...earn(s, loot.coins), ...seed, islandItems: bag, dungeon: { week, fg: { ...fg, [cell]: 'dungeon-chest-open' } } } as Partial<ProgressState>);
+        return { ...loot, seed: 'seedLog' in seed ? loot.seed : null };
+      },
+      craft: (out) => {
+        const s = get();
+        const r = RECIPE_BY_OUT.get(out);
+        const bag = { ...(s.islandItems ?? {}) };
+        if (!r || !canCraft(r, bag)) return false;
+        for (const [id, n] of Object.entries(r.needs)) {
+          bag[id] -= n;
+          if (!bag[id]) delete bag[id];
+        }
+        bag[out] = (bag[out] ?? 0) + (r.n ?? 1);
+        set({ islandItems: bag, crafted: [...new Set([...(s.crafted ?? []), out])] });
+        return true;
+      },
       fishReward: (c) => {
         const s = get();
         const fish = (item: string): Catch => {

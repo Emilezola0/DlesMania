@@ -8,6 +8,8 @@ import { useProgress } from '../store/progress';
 import type { GameType } from '../types';
 import { FAMILIES, FAMILY_BY_ID, HYBRIDS, ITEM_BY_ID, SEED, SEEDS, seedColors, seedLogNow, seedOfTheDay, useSeedDrops, type Seed } from './seeds';
 import { ItemArt } from './sprites';
+import { RECIPES } from './crafting';
+import { NATURAL } from './island';
 
 const nameOf = (x: { name: string; fr: string }) => tr(x.name, x.fr);
 const sourceOf = (source: string) =>
@@ -161,7 +163,52 @@ export function SeedBook() {
           ))}
         </div>
       </section>
+
+      <Recipes />
     </div>
+  );
+}
+
+/** The recipes (src/island/crafting.ts): the ones made at least once shown, the others hidden. */
+function Recipes() {
+  const made = new Set(useProgress((s) => s.crafted ?? []));
+  const itemName = (id: string) => nameOf(NATURAL[id] ?? ITEM_BY_ID.get(id) ?? { name: id, fr: id });
+  return (
+    <section className="space-y-2">
+      <h3 className="font-display text-lg font-bold">
+        🔥 {tr('Recipes', 'Recettes')} <span className="text-xs font-semibold text-ink-soft">· {made.size} / {RECIPES.length}</span>
+      </h3>
+      <p className="text-xs text-ink-soft">
+        {tr(
+          'Grow a furnace (Keystone Seed, rare) and a workbench (Timber Seed), mine stone, dirt and ore with the pickaxe (the dungeon, through the gate in the valley, has the most), then click them. A recipe stays hidden until you make it once.',
+          'Fais pousser un four (graines de clé de voûte) et un établi (graines de bois), mine pierre, terre et minerai à la pioche (le donjon, par la porte dans la vallée, en a le plus), puis clique-les. Une recette reste cachée tant que tu ne l’as pas faite une fois.',
+        )}
+      </p>
+      {(['furnace', 'workbench'] as const).map((at) => (
+        <div key={at} className="space-y-1">
+          <p className="flex items-center gap-1.5 text-sm font-semibold">
+            <ItemArt id={at} className="size-5" /> {itemName(at)}
+          </p>
+          <div className="grid gap-1.5 sm:grid-cols-2">
+            {RECIPES.filter((r) => r.at === at).map((r) => {
+              const known = made.has(r.out);
+              return (
+                <div key={r.out} className={`flex items-center gap-2 rounded-md border p-1.5 ${known ? 'border-rule bg-card' : 'border-dashed border-rule/70 bg-tile/40'}`}>
+                  {known ? <ItemArt id={r.out} className="size-8 shrink-0 text-xl" /> : <span className="grid size-8 shrink-0 place-items-center rounded bg-tile font-bold text-ink-faint">?</span>}
+                  <span className="min-w-0 text-xs">
+                    <span className="block truncate text-sm font-semibold">
+                      {known ? itemName(r.out) : '???'}
+                      {known && (r.n ?? 1) > 1 && <span className="text-ink-soft"> ×{r.n}</span>}
+                    </span>
+                    <span className="text-ink-soft">{known ? Object.entries(r.needs).map(([id, n]) => `${itemName(id)} ×${n}`).join(' + ') : tr('Not made yet', 'Jamais faite')}</span>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }
 

@@ -10,9 +10,12 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { canLayer, dig, harvest, harvestChoices, helpSeed, idx, isReady, isSea, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Layer, type Who } from './island';
-import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type Pose, type TuneEvent, type TvEvent } from './live';
+import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, ISLAND_GATE, itemsIn, isReady, isSea, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, upgradeIsland, water, xy, zipLines, type Bag, type Change, type Island, type Layer, type Who } from './island';
+import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEvent, type TvEvent } from './live';
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
+import { canCraft, RECIPES, type Station } from './crafting';
+import { dungeonIsland, dungeonOf } from './dungeon';
+import { weekOf } from '../gacha/economy';
 import { discFits, DISC_PLAYERS, islandBand, type Source } from './music';
 import { canHear, playVoice } from '../gacha/voice';
 import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
@@ -69,13 +72,18 @@ const GLOW: Record<string, string> = {
   'bubble-lamp': '#a5f3fc',
   'star-lamp': '#fef08a',
   'moon-nightlight': '#c7d2fe',
+  'wall-torch': '#fb923c',
+  'iron-lantern': '#fcd34d',
+  'crystal-lamp': '#67e8f9',
+  'crystal-chandelier': '#a5f3fc',
   'firefly-jar': '#bef264',
   'stained-window': '#fca5a5',
   spotlight: '#fffbeb',
   fireplace: '#fb923c',
 };
 
-const itemIcon = (id: string) => (id === 'dirt' ? '🟫' : (ITEM_BY_ID.get(id)?.icon ?? '❔'));
+const NATURAL_ICON: Record<string, string> = { dirt: '🟫', stone: '🪨', 'coal-ore': '⚫', 'iron-ore': '🔩', 'gold-ore': '🟡', 'crystal-ore': '💎' };
+const itemIcon = (id: string) => NATURAL_ICON[id] ?? ITEM_BY_ID.get(id)?.icon ?? '❔';
 /** Frames hung on the wall (the card fills them); the others are stands that hold a card up. */
 const HUNG = new Set(['card-frame', 'gold-card-frame', 'grand-card-frame']);
 /** Where a stand holds its card, in the cell. */
@@ -89,9 +97,9 @@ const STAND: Record<string, React.CSSProperties> = {
 
 // The player's box, in cells, and how it moves.
 /** Where you can sit (Down by it, or click it) and where you lie down to sleep (at night: morning comes, for you). */
-const SEATS = new Set(['beanbag', 'reading-armchair', 'sofa']);
+const SEATS = new Set(['beanbag', 'reading-armchair', 'sofa', 'gold-throne']);
 const BEDS = new Set(['cloud-bed']);
-const restOf = (id: string | undefined): Pose | null => (id && SEATS.has(id) ? 'sit' : id && BEDS.has(id) ? 'sleep' : null);
+const restOf = (id: string | undefined): 'sit' | 'sleep' | null => (id && SEATS.has(id) ? 'sit' : id && BEDS.has(id) ? 'sleep' : null);
 /** The next 7:00 on the player's clock (when the night ends). */
 function nextMorning(d = new Date()): number {
   const m = new Date(d);
@@ -101,6 +109,13 @@ function nextMorning(d = new Date()): number {
 }
 /** Fishing: waiting for a bite, the float down (click now), then the reel bar (stop the marker in the green). */
 type Fishing = { cell: number; phase: 'wait' | 'bite' | 'reel'; got: Catch; start: number; zone: number; at: number; fx: number; fy: number };
+
+/** How many rows of the world the view shows (the camera follows the player up and down). */
+const VIEW_ROWS = 15;
+/** Riding: a minecart along rails (cells a second), and down (or up) a zipline. */
+const CART = 9;
+const ZIP_SPEED = 10;
+type Ride = { kind: 'cart'; dir: number; x: number; row: number; y: number } | { kind: 'zip'; ax: number; ay: number; bx: number; by: number; t: number; len: number; to: number };
 
 const PW = 0.78;
 const PH = 0.92;
@@ -113,7 +128,18 @@ const CLIMB = 4.5;
 export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {}, live }: { shared?: Island; mode?: IslandMode; act?: Act; who?: Who; names?: Record<string, string>; live?: LiveCfg }) {
   const local = useProgress((s) => s.island) ?? null;
   const island = shared ?? local;
-  const isl = useMemo(() => island ?? newIsland(), [island]);
+  const home = useMemo(() => upgradeIsland(island ?? newIsland()), [island]);
+  /** Down in the week's dungeon (through the gate in the valley): its own world, mined but never built on. */
+  const [inDungeon, setInDungeon] = useState(false);
+  const week = weekOf(todayKey());
+  const dungeonSave = useProgress((s) => s.dungeon);
+  const dungeonFg = dungeonSave?.week === week ? dungeonSave.fg : undefined;
+  const isl = useMemo(() => (inDungeon ? dungeonIsland(week, dungeonFg) : home), [inDungeon, week, dungeonFg, home]);
+  const dungeonAct = useProgress((s) => s.dungeonAct);
+  const openChest = useProgress((s) => s.openChest);
+  const craft = useProgress((s) => s.craft);
+  /** A furnace or a workbench whose recipes are open. */
+  const [crafting, setCrafting] = useState<Station | null>(null);
   const helpReward = useProgress((s) => s.helpReward);
   const fishReward = useProgress((s) => s.fishReward);
   const items = useProgress((s) => s.islandItems ?? {});
@@ -121,8 +147,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const avatar = useProgress((s) => s.avatar);
   const owned = useProgress((s) => s.cards);
   const localAct = useProgress((s) => s.islandAct);
-  const act: Act = shareAct ?? ((move) => localAct(move));
-  const tools = TOOLS.filter((t) => mode !== 'visit' || t.id === 'walk');
+  const act: Act = inDungeon ? (move) => dungeonAct(move) : (shareAct ?? ((move) => localAct(move)));
+  // In the dungeon: walk and the pickaxe only (nothing is built down there).
+  const tools = TOOLS.filter((t) => (inDungeon ? t.id === 'walk' || t.id === 'dig' : mode !== 'visit' || t.id === 'walk'));
 
   const [tool, setTool] = useState<Tool>('walk');
   const [pick, setPick] = useState<string | null>(null);
@@ -139,8 +166,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const myTune = useRef<TuneEvent | null>(null);
   const toolRef = useRef<Tool | 'fish'>('walk');
   /** Sitting or asleep: where the player is held (any move gets them up). */
-  const pose = useRef<{ kind: Pose; x: number; y: number } | null>(null);
-  const [poseNow, setPoseNow] = useState<Pose | null>(null);
+  const pose = useRef<{ kind: 'sit' | 'sleep'; x: number; y: number } | null>(null);
+  const [poseNow, setPoseNow] = useState<'sit' | 'sleep' | null>(null);
   /** Slept through the night: day for this player until then. */
   const [restUntil, setRestUntil] = useState(0);
   /** The emote wheel, this player's last emote (told to the others), and the bubbles over everyone's heads. */
@@ -177,7 +204,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const t = window.setInterval(() => setClockDark(darknessAt()), 60_000);
     return () => window.clearInterval(t);
   }, []);
-  const dark = sky === 'auto' ? (Date.now() < restUntil ? 0 : clockDark) : sky === 'night' ? 0.7 : 0;
+  const dark = inDungeon ? 0.62 : sky === 'auto' ? (Date.now() < restUntil ? 0 : clockDark) : sky === 'night' ? 0.7 : 0;
 
   // The tile size: about 22 cells across the viewport.
   const box = useRef<HTMLDivElement>(null);
@@ -188,7 +215,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const fit = () =>
       setT(
         document.fullscreenElement && document.fullscreenElement === root.current
-          ? Math.max(24, Math.floor(Math.min((window.innerHeight * 0.7) / ISLAND.h, el.clientWidth / 14)))
+          ? Math.max(24, Math.floor(Math.min((window.innerHeight * 0.7) / VIEW_ROWS, el.clientWidth / 14)))
           : Math.max(24, Math.min(36, Math.floor(el.clientWidth / 22))),
       );
     fit();
@@ -210,19 +237,25 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const far = useRef<HTMLDivElement>(null);
   const me = useRef<HTMLDivElement>(null);
   const cam = useRef(0);
+  const camY = useRef(-1);
+  const skyEl = useRef<HTMLDivElement>(null);
+  const ride = useRef<Ride | null>(null);
   const TRef = useRef(T);
   TRef.current = T;
   const facing = useRef(false);
   // Other players on this island, seen live (their latest spot; drawn gliding towards it).
   toolRef.current = fishing ? 'fish' : tool;
+  const deepRef = useRef(false);
+  deepRef.current = inDungeon;
+  const gateSpot = { x: xy(ISLAND_GATE).x + (1 - PW) / 2, y: xy(ISLAND_GATE).y + 1 - PH - 0.01 };
   const peers = useLive(live, () => ({
-    x: pos.current.x,
-    y: pos.current.y,
+    x: deepRef.current ? gateSpot.x : pos.current.x,
+    y: deepRef.current ? gateSpot.y : pos.current.y,
     left: facing.current,
     tool: toolRef.current,
     tv: myTv.current,
     tune: myTune.current,
-    pose: pose.current?.kind ?? null,
+    pose: pose.current?.kind ?? ride.current?.kind ?? null,
     emote: myEmote.current,
   }));
   const peersRef = useRef<Peer[]>(peers);
@@ -269,9 +302,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   // Dev only, for the browser checks: stand the player on top of column x.
   useEffect(() => {
     if (!import.meta.env.DEV) return;
-    const w = window as unknown as { __islandPut?: (x: number) => void };
-    w.__islandPut = (x) => {
-      let y = 0;
+    const w = window as unknown as { __islandPut?: (x: number, from?: number) => void };
+    w.__islandPut = (x, from = 0) => {
+      let y = from;
       while (y < ISLAND.h && !solidAt(islRef.current, x, y)) y++;
       pos.current = { x: x + (1 - PW) / 2, y: y - PH - 0.01 };
       vel.current = { x: 0, y: 0 };
@@ -292,10 +325,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const touching = (x: number, y: number, kind: string, below = 0) => {
       const s = islRef.current;
       for (let cy = Math.floor(y); cy <= Math.floor(y + PH + below - 1e-6); cy++)
-        for (let cx = Math.floor(x); cx <= Math.floor(x + PW - 1e-6); cx++) if (kindOf(s.fg[idx(cx, cy)]) === kind) return idx(cx, cy);
+        for (let cx = Math.floor(x); cx <= Math.floor(x + PW - 1e-6); cx++) if (kindOf(fgAt(s, idx(cx, cy))) === kind) return idx(cx, cy);
       return -1;
     };
     let downWas = false;
+    let upWas = false;
     const step = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
@@ -332,14 +366,41 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           }
         }
       }
-      // Down by a seat or a bed: sit, or lie down.
-      if (down && !downWas && !ladder && !pose.current) {
-        let rest = -1;
-        for (let cy = Math.floor(p.y); cy <= Math.floor(p.y + PH - 1e-6); cy++)
-          for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (rest < 0 && restOf(isl.fg[idx(cx, cy)])) rest = idx(cx, cy);
-        if (rest >= 0) sitRef.current(rest);
+      // Down on a rail: into a minecart. Down by a seat or a bed: sit, or lie down.
+      if (down && !downWas && !ladder && !pose.current && !ride.current) {
+        const rail = touching(p.x, p.y, 'rail');
+        if (touching(p.x, p.y, 'gate') >= 0) goRef.current(!isl.world);
+        else if (rail >= 0) {
+          const r = xy(rail);
+          ride.current = { kind: 'cart', dir: facing.current ? -1 : 1, x: p.x + PW / 2, row: r.y, y: r.y };
+          sfx.select();
+        } else {
+          let rest = -1;
+          for (let cy = Math.floor(p.y); cy <= Math.floor(p.y + PH - 1e-6); cy++)
+            for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (rest < 0 && restOf(fgAt(isl, idx(cx, cy)))) rest = idx(cx, cy);
+          if (rest >= 0) sitRef.current(rest);
+        }
       }
       downWas = down;
+      // Up at a zipline post: slide along its rope (the way you face, or the other way if there's none that way).
+      const up = k.has('up');
+      if (up && !upWas && !pose.current && !ride.current) {
+        // (A post right below the feet counts: standing on the step beside it.)
+        const post = touching(p.x, p.y, 'zip', 1);
+        if (post >= 0) {
+          const lines = zipLines(isl);
+          const right = lines.find(([a]) => a === post)?.[1];
+          const left = lines.find(([, b]) => b === post)?.[0];
+          const to = facing.current ? (left ?? right) : (right ?? left);
+          if (to !== undefined) {
+            const a = xy(post);
+            const b = xy(to);
+            ride.current = { kind: 'zip', ax: a.x + 0.5, ay: a.y + 0.12, bx: b.x + 0.5, by: b.y + 0.12, t: 0, len: Math.hypot(b.x - a.x, b.y - a.y), to };
+            sfx.whoosh();
+          }
+        }
+      }
+      upWas = up;
       // Across: blocked by a one-cell step on the ground → climb it.
       const nx = p.x + v.x * dt;
       if (!hits(nx, p.y)) p.x = nx;
@@ -352,7 +413,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       const feet = Math.floor(ny + PH);
       let platform = false;
       if (v.y > 0 && !down && p.y + PH <= feet + 0.02)
-        for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(isl.fg[idx(cx, feet)]) === 'platform') platform = true;
+        for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(fgAt(isl, idx(cx, feet))) === 'platform') platform = true;
       if (!hits(p.x, ny) && !platform) {
         p.y = ny;
         ground.current = false;
@@ -361,7 +422,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (v.y > 0) {
           p.y = feet - PH - 0.001;
           ground.current = true;
-          for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(isl.fg[idx(cx, feet)]) === 'bounce') bounce = true;
+          for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (kindOf(fgAt(isl, idx(cx, feet))) === 'bounce') bounce = true;
         } else p.y = Math.ceil(ny) + 0.001;
         v.y = 0;
         if (bounce) {
@@ -371,7 +432,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         }
       }
       // In the sea: back to the middle.
-      if (p.y > ISLAND.sea + 0.6 && (p.x < 4 || p.x > ISLAND.w - 5)) {
+      if (!isl.world && p.y > ISLAND.sea + 0.6 && (p.x < 4 || p.x > ISLAND.w - 5)) {
         const s = spawn();
         let y = 0;
         while (y < ISLAND.h && !solidAt(islRef.current, Math.floor(s.x), y)) y++;
@@ -379,6 +440,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         p.y = y - PH - 0.01;
         v.y = 0;
       }
+      // Spikes (in the dungeon): back to the gate.
+      if (isl.world && touching(p.x, p.y, 'spikes') >= 0) goRef.current(true, true);
       // Sitting or asleep: held there, until a move gets them up.
       const seat = pose.current;
       if (seat) {
@@ -391,17 +454,64 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           ground.current = true;
         }
       }
-      // The camera follows across; the player is drawn where it is.
+      // Riding: the cart runs along the rails (one cell up or down a step too) until they end; the zipline carries you
+      // to the next post. Space jumps off.
+      const r = ride.current;
+      if (r) {
+        if (k.has('jump')) {
+          ride.current = null;
+          v.y = r.kind === 'cart' ? -JUMP : 0;
+          ground.current = false;
+        } else if (r.kind === 'cart') {
+          if (k.has('left')) r.dir = -1;
+          else if (k.has('right')) r.dir = 1;
+          const nx = r.x + r.dir * CART * dt;
+          const col = Math.floor(nx);
+          if (col !== Math.floor(r.x)) {
+            const row = [r.row, r.row - 1, r.row + 1].find((yy) => yy >= 0 && yy < ISLAND.h && col >= 0 && col < ISLAND.w && kindOf(fgAt(isl, idx(col, yy))) === 'rail');
+            if (row === undefined) ride.current = null;
+            else (r.row = row), (r.x = nx);
+          } else r.x = nx;
+          r.y += (r.row - r.y) * Math.min(1, dt * 14);
+          p.x = r.x - PW / 2;
+          p.y = r.y + 1 - PH - 0.06;
+          v.x = 0;
+          v.y = 0;
+          ground.current = true;
+          facing.current = r.dir < 0;
+          if (me.current) me.current.dataset.left = r.dir < 0 ? '1' : '';
+        } else {
+          r.t = Math.min(1, r.t + (ZIP_SPEED * dt) / Math.max(1, r.len));
+          p.x = r.ax + (r.bx - r.ax) * r.t - PW / 2;
+          p.y = r.ay + (r.by - r.ay) * r.t + 0.32;
+          v.x = 0;
+          v.y = 0;
+          facing.current = r.bx < r.ax;
+          if (me.current) me.current.dataset.left = r.bx < r.ax ? '1' : '';
+          if (r.t >= 1) {
+            const b = xy(r.to);
+            p.x = b.x + (1 - PW) / 2;
+            p.y = b.y + 1 - PH - 0.01;
+            ride.current = null;
+          }
+        }
+      }
+      // The camera follows the player, across and (gently) up and down; the player is drawn where it is.
       const t = TRef.current;
       const view = box.current?.clientWidth ?? 600;
+      const viewH = box.current?.clientHeight ?? VIEW_ROWS * t;
       cam.current = Math.max(0, Math.min(ISLAND.w * t - view, (p.x + PW / 2) * t - view / 2));
-      if (world.current) world.current.style.transform = `translateX(${-cam.current}px)`;
-      if (far.current) far.current.style.transform = `translateX(${-cam.current * 0.3}px)`;
+      const wantY = Math.max(0, Math.min(ISLAND.h * t - viewH, (p.y + PH / 2) * t - viewH * 0.55));
+      camY.current = camY.current < 0 ? wantY : camY.current + (wantY - camY.current) * Math.min(1, dt * 8);
+      if (world.current) world.current.style.transform = `translate(${-cam.current}px, ${-camY.current}px)`;
+      if (far.current) far.current.style.transform = `translate(${-cam.current * 0.3}px, ${-camY.current}px)`;
+      // Underground, no sky: the stars and the moon fade out over a few rows below the surface.
+      if (skyEl.current) skyEl.current.style.opacity = String(Math.max(0, Math.min(1, 1 - (camY.current / t - (ISLAND.sea - 10)) / 6)));
       if (v.x) facing.current = v.x < 0;
       if (me.current) {
         me.current.style.transform = `translate(${p.x * t}px, ${p.y * t}px)`;
         me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
-        me.current.dataset.pose = pose.current?.kind ?? '';
+        me.current.dataset.pose = pose.current?.kind ?? ride.current?.kind ?? '';
         if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
       }
       // The others glide to where they last said they were.
@@ -498,7 +608,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const cellAt = (e: React.PointerEvent) => {
     const r = box.current!.getBoundingClientRect();
     const x = Math.floor((e.clientX - r.left + cam.current) / T);
-    const y = Math.floor((e.clientY - r.top) / T);
+    const y = Math.floor((e.clientY - r.top + Math.max(0, camY.current)) / T);
     return x >= 0 && y >= 0 && x < ISLAND.w && y < ISLAND.h ? idx(x, y) : null;
   };
   const inReach = (cell: number) => {
@@ -528,7 +638,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       m.dataset.swing = '1';
     }
     const plot = isl.plots[cell];
-    const front = isl.fg[cell];
+    const front = fgAt(isl, cell);
     const mine = !!plot && (who ? (plot.by ? plot.by === who.uid : who.uid === who.owner) : true);
     if (plot && isReady(plot) && mine) return setReaping(cell);
     // A friend's plant still growing: water it (a day sooner), and get a seed for helping.
@@ -552,7 +662,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       );
     if (tool === 'walk') {
       const card = isl.shown[cell];
-      if (isSea(xy(cell).x, xy(cell).y)) return cast(cell);
+      if (!isl.world && isSea(xy(cell).x, xy(cell).y)) return cast(cell);
+      if (front && kindOf(front) === 'gate') return go(!inDungeon);
+      if (front && kindOf(front) === 'craft') return setCrafting(front as Station);
+      if (front === 'dungeon-chest-open') return say(tr('🧰 Empty: you opened it already.', '🧰 Vide : tu l’as déjà ouvert.'));
+      if (front === 'dungeon-chest') {
+        const loot = openChest(cell);
+        if (!loot) return;
+        sfx.victory();
+        return say(
+          `🧰 +${loot.coins} Dle Coins${loot.seed ? ` · ${nameOf(SEED_BY_ID.get(loot.seed)!)}` : ''} · ${loot.items.map((id) => `${itemIcon(id)} ${itemName(id)}`).join(', ')}`,
+        );
+      }
       if (restOf(front)) return sitOn(cell);
       // Music: a record or CD player takes a disc; anything else switches on and off. Front first, then middle, then behind.
       const music = (['front', 'mid', 'back'] as Layer[])
@@ -586,6 +707,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         return setFraming(cell);
       }
       if (front && kindOf(front) === 'screen') {
+        // On already: off (for everyone there, like switching it on).
+        if (tv && tv.cell === cell) {
+          myTv.current = { ...tv, at: Date.now(), on: false };
+          setTv(null);
+          return say(tr('📺 Off.', '📺 Éteinte.'));
+        }
         if (!card) return mode === 'visit' ? say(tr('Nothing on this screen.', 'Rien sur cet écran.')) : setFraming(cell);
         const clips = screenClips(CARD_BY_ID.get(card));
         if (!clips.length) return say(tr('This card has no clip to show.', 'Cette carte n’a pas de clip à passer.'));
@@ -594,7 +721,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         setTv(show);
         return say(
           <>
-            📺 {tr('On air.', 'À l’antenne.')}{' '}
+            📺 {tr('On air (click the TV again to switch it off).', 'À l’antenne (reclique la télé pour l’éteindre).')}{' '}
             {mode !== 'visit' && (
               <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
                 {tr('Change the card', 'Changer de carte')}
@@ -618,7 +745,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       return;
     }
     if (tool === 'pick') return run((i, it) => pickUp(i, it, cell, who), tr('Back in your bag.', 'De retour dans ton sac.'), 'pick');
-    if (tool === 'dig') return run((i, it) => dig(i, it, cell), tr('+1 dirt (build it elsewhere).', '+1 terre (à reposer ailleurs).'), 'dig');
+    if (tool === 'dig') {
+      const got = fgAt(isl, cell);
+      return run((i, it) => dig(i, it, cell), got ? `⛏️ +1 ${itemName(got)} ${tr('(in your bag)', '(dans ton sac)')}` : '', 'dig');
+    }
     if (tool === 'plant') {
       if (pair.length < 2) return say(tr('Pick two seeds below first (the same one twice is fine).', 'Choisis d’abord deux graines ci-dessous (deux fois la même, ça marche).'));
       const [a, b] = pair;
@@ -626,9 +756,42 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     }
   };
 
+  /** Through the gate: down to the week's dungeon, or back up to the island (or hurt by spikes: back to the dungeon's gate). */
+  const go = (down: boolean, hurt = false) => {
+    const cell = down ? dungeonOf(week).entry : ISLAND_GATE;
+    const { x, y } = xy(cell);
+    // The new place at once (the next frame mustn't run into the old one's walls).
+    islRef.current = down ? dungeonIsland(week, dungeonFg) : home;
+    pos.current = { x: x + (1 - PW) / 2, y: y + 1 - PH - 0.01 };
+    vel.current = { x: 0, y: 0 };
+    ride.current = null;
+    pose.current = null;
+    camY.current = -1;
+    setPoseNow(null);
+    setFishing(null);
+    setTv(null);
+    setInDungeon(down);
+    if (!TOOLS.some((t) => t.id === tool && (!down || t.id === 'walk' || t.id === 'dig'))) setTool('walk');
+    if (hurt) {
+      sfx.wrong();
+      return say(tr('🔺 Ouch, spikes! Back to the gate.', '🔺 Aïe, des pics ! Retour à la porte.'));
+    }
+    sfx.whoosh();
+    say(
+      down
+        ? tr(
+            '🕯️ This week’s dungeon. Open the chests (Dle Coins, a seed, ore), mine the ore in the walls, mind the spikes. The gate takes you back up; next week, a new dungeon.',
+            '🕯️ Le donjon de la semaine. Ouvre les coffres (Dle Coins, une graine, du minerai), mine le minerai des murs, attention aux pics. La porte te ramène en haut ; la semaine prochaine, un nouveau donjon.',
+          )
+        : tr('🏝️ Back on the island.', '🏝️ De retour sur l’île.'),
+    );
+  };
+  const goRef = useRef(go);
+  goRef.current = go;
+
   /** Sits on a seat, or lies down on a bed. */
   const sitOn = (cell: number) => {
-    const kind = restOf(islRef.current.fg[cell]);
+    const kind = restOf(fgAt(islRef.current, cell));
     if (!kind) return;
     const { x, y } = xy(cell);
     pose.current = { kind, x: x + (1 - PW) / 2, y: y + 1 - PH - 0.01 + (kind === 'sit' ? 0.12 : 0.3) };
@@ -824,15 +987,15 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           const c = cellAt(e);
           if (c !== null) click(c);
         }}
-        className="island-sky relative touch-none select-none overflow-hidden rounded-md border border-rule outline-none focus-visible:ring-2 focus-visible:ring-accent"
-        style={{ height: ISLAND.h * T }}
+        className={`${inDungeon ? 'island-deep' : 'island-sky'} relative touch-none select-none overflow-hidden rounded-md border border-rule outline-none focus-visible:ring-2 focus-visible:ring-accent`}
+        style={{ height: VIEW_ROWS * T }}
         aria-label={tr('Your island. Arrows or WASD to walk, Space to jump; click a spot to use the tool.', 'Ton île. Flèches ou ZQSD pour marcher, Espace pour sauter ; clique un endroit pour utiliser l’outil.')}
       >
         <div ref={far} className="pointer-events-none absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
-          <Backdrop T={T} />
-          <Clouds T={T} />
+          {!inDungeon && <Backdrop T={T} />}
+          {!inDungeon && <Clouds T={T} />}
         </div>
-        <div className="island-night pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
+        <div className="island-night pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ opacity: inDungeon ? 0 : dark / 0.7 }} />
         <div ref={world} className="absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
           <World isl={isl} T={T} tunes={tunes} />
           {hover !== null && tool !== 'walk' && (
@@ -846,7 +1009,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           {/* Night: everything darker, the lights glowing through (you stay lit). */}
           {dark > 0 && <div key="night" className="pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ background: '#0b1030', opacity: dark }} />}
           {dark > 0 && <Glows isl={isl} T={T} dark={dark} />}
-          {peers.map((p) => {
+          {!inDungeon && peers.map((p) => {
             const face = p.face ? CARD_BY_ID.get(p.face) : undefined;
             return (
               <div
@@ -864,6 +1027,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                 <span className="island-me-shadow" />
                 {face ? <CardAvatar card={face} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-sky-300 text-lg">🙂</span>}
                 <ToolInHand tool={p.pose ? undefined : p.tool} />
+                <RideArt />
                 <span className="island-peer-name">{p.name}</span>
                 {bubbles[p.uid] && (
                   <span key={bubbles[p.uid].until} className="island-emote" style={{ fontSize: T * 0.62 }}>
@@ -877,6 +1041,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
             <ToolInHand tool={poseNow ? undefined : fishing ? 'fish' : tool} />
+            <RideArt />
             {bubbles.me && (
               <span key={bubbles.me.until} className="island-emote" style={{ fontSize: T * 0.62 }}>
                 {bubbles.me.e}
@@ -898,7 +1063,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             />
           )}
         </div>
-        {dark > 0 && <div className="island-stars pointer-events-none absolute inset-x-0 top-0 h-[40%] transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />}
+        {/* The stars and the moon (faded out as the camera goes underground: see the frame loop). */}
+        {dark > 0 && !inDungeon && (
+          <div ref={skyEl} className="pointer-events-none absolute inset-x-0 top-0 h-[40%]">
+            <div className="island-stars absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
+          </div>
+        )}
         {/* Asleep at night: the screen goes dark, then morning. */}
         <div className="pointer-events-none absolute inset-0 bg-black transition-opacity duration-[2000ms]" style={{ opacity: poseNow === 'sleep' && sky === 'auto' && clockDark >= 0.3 && Date.now() >= restUntil ? 0.85 : 0 }} />
         {fishing?.phase === 'reel' && (
@@ -984,7 +1154,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           {sky === 'auto' ? (clockDark > 0.35 ? '🌙' : '☀️') : sky === 'night' ? '🌙' : '☀️'} {sky === 'auto' ? tr('Clock', 'Horloge') : tr('Preview', 'Aperçu')}
         </button>
         <span className="ml-auto text-xs text-ink-faint">
-          {tr('Arrows/WASD walk · Space jumps · Up/Down: ladders, warp pads · Down on a seat or bed: sit, sleep · click the sea from the shore: fish · R: emotes · E or 1–5: tool · wheel: next thing to build · F: layer', 'Flèches/ZQSD marcher · Espace sauter · Haut/Bas : échelles, téléporteurs · Bas sur un siège ou un lit : s’asseoir, dormir · clique la mer depuis le rivage : pêcher · R : émotes · E ou 1–5 : outil · molette : objet suivant · F : couche')}
+          {tr('Arrows/WASD walk · Space jumps · Up/Down: ladders, warp pads · Down on a rail: minecart · Up at a zipline post: slide · Down at the gate in the valley: the dungeon · click a furnace or a workbench: craft · Down on a seat or bed: sit, sleep · click the sea from the shore: fish · R: emotes · E or 1–5: tool · wheel: next thing to build · F: layer', 'Flèches/ZQSD marcher · Espace sauter · Haut/Bas : échelles, téléporteurs · Bas sur un rail : wagonnet · Haut à un poteau de tyrolienne : glisser · Bas à la porte dans la vallée : le donjon · clique un four ou un établi : fabriquer · Bas sur un siège ou un lit : s’asseoir, dormir · clique la mer depuis le rivage : pêcher · R : émotes · E ou 1–5 : outil · molette : objet suivant · F : couche')}
         </span>
       </div>
       {note && <p className="rounded-md bg-tile px-3 py-1.5 text-sm">{note}</p>}
@@ -1099,6 +1269,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           onClose={() => (setReaping(null), box.current?.focus())}
         />
       )}
+      {crafting && (
+        <CraftPicker
+          station={crafting}
+          bag={items}
+          onCraft={(out) => {
+            if (!craft(out)) return;
+            sfx.correct();
+            say(`${crafting === 'furnace' ? '🔥' : '🪚'} ${itemIcon(out)} ${itemName(out)}! ${tr('(In your bag.)', '(Dans ton sac.)')}`);
+          }}
+          onClose={() => (setCrafting(null), box.current?.focus())}
+        />
+      )}
       {discing && (
         <DiscPicker
           player={discing.player}
@@ -1116,13 +1298,13 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       {framing !== null && (
         <CardPicker
           owned={owned}
-          reader={kindOf(isl.fg[framing]) === 'reader'}
-          screen={kindOf(isl.fg[framing]) === 'screen'}
+          reader={kindOf(fgAt(isl, framing)) === 'reader'}
+          screen={kindOf(fgAt(isl, framing)) === 'screen'}
           backdrop={backdrop}
           current={isl.shown[framing] ?? null}
           onPick={(id) => {
-            const screen = kindOf(isl.fg[framing]) === 'screen';
-            const reader = kindOf(isl.fg[framing]) === 'reader';
+            const screen = kindOf(fgAt(isl, framing)) === 'screen';
+            const reader = kindOf(fgAt(isl, framing)) === 'reader';
             run(
               (i) => showCard(i, framing, id, who),
               id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : reader ? tr('In the reader! Click it to hear the card.', 'Dans le lecteur ! Clique-le pour entendre la carte.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'),
@@ -1152,7 +1334,17 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
   const today = todayKey();
   const out: ReactNode[] = [];
   // The sea at both ends.
-  for (const x0 of [0, ISLAND.w - 4]) out.push(<div key={`sea${x0}`} className="island-sea absolute" style={{ left: x0 * T, top: ISLAND.sea * T, width: 4 * T, height: (ISLAND.h - ISLAND.sea) * T }} />);
+  if (!isl.world) for (const x0 of [0, ISLAND.w - 4]) out.push(<div key={`sea${x0}`} className="island-sea absolute" style={{ left: x0 * T, top: ISLAND.sea * T, width: 4 * T, height: (ISLAND.h - ISLAND.sea) * T }} />);
+  // Underground, where the ground is open (a cave, or dug): its back wall, darker.
+  for (let cell = 0; cell < ISLAND.w * ISLAND.h; cell++) {
+    const { x, y } = xy(cell);
+    if (isl.world ? fgAt(isl, cell) && kindOf(fgAt(isl, cell)) === 'natural' : x < 4 || x >= ISLAND.w - 4 || y <= surfaceAt(x) || fgAt(isl, cell)) continue;
+    if (isl.world) {
+      out.push(<div key={`c${cell}`} className="island-cave island-stone island-dungeon absolute" style={{ left: x * T, top: y * T, width: T, height: T }} />);
+      continue;
+    }
+    out.push(<div key={`c${cell}`} className={`island-cave absolute ${y < surfaceAt(x) + 3 ? 'island-dirt' : 'island-stone'}`} style={{ left: x * T, top: y * T, width: T, height: T, backgroundColor: y < surfaceAt(x) + 3 ? dirtColor(y) : undefined }} />);
+  }
   // Behind: wallpapers, and the things put behind (a little shaded, so they read as further away).
   for (const [k, id] of Object.entries(isl.bg)) {
     const { x, y } = xy(Number(k));
@@ -1163,9 +1355,11 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
       </div>,
     );
   }
-  const ground = (x: number, y: number) => isSolid(isl.fg[idx(x, y)]) || (x >= 0 && x < ISLAND.w && y >= ISLAND.h);
-  for (const [k, id] of Object.entries(isl.fg)) {
-    const cell = Number(k);
+  const ground = (x: number, y: number) => x >= 0 && x < ISLAND.w && (y >= ISLAND.h || (y >= 0 && isSolid(fgAt(isl, idx(x, y)))));
+  for (let cell = 0; cell < ISLAND.w * ISLAND.h; cell++) {
+    const id = fgAt(isl, cell);
+    if (!id) continue;
+    const k = String(cell);
     const { x, y } = xy(cell);
     const style = { left: x * T, top: y * T, width: T, height: T };
     const kind = kindOf(id);
@@ -1180,9 +1374,10 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
       out.push(
         <div
           key={k}
-          className={`absolute ${id === 'stone' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'}`}
+          className={`absolute ${id !== 'dirt' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'} ${id === 'bedrock' ? 'island-bedrock' : id === 'dungeon-brick' ? 'island-dungeon' : ''}`}
           style={{ ...style, ...(!ground(x, y - 1) ? { borderTopLeftRadius: ground(x - 1, y) ? 0 : T * 0.3, borderTopRightRadius: ground(x + 1, y) ? 0 : T * 0.3 } : {}), backgroundColor: id === 'dirt' && !sand ? dirtColor(y) : undefined, backgroundPosition: `${(h % 4) * 8}px ${((h >> 3) % 4) * 8}px`, boxShadow: edges || undefined }}
         >
+          {NATURAL[id] && id.endsWith('-ore') && <span className="island-ore" style={{ '--ore': NATURAL[id].color } as React.CSSProperties} />}
           {top && !sand && <span className={`island-tuft ${h % 5 === 0 ? 'island-tuft-flower' : h % 7 === 1 ? 'island-tuft-flower2' : ''}`} />}
           {top && sand && h % 6 === 0 && <span className="island-shell" />}
         </div>,
@@ -1270,9 +1465,22 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
     );
   }
   // Waves over the sea's surface, foam where it meets the beach.
-  for (const x0 of [0, ISLAND.w - 4])
-    out.push(<div key={`w${x0}`} className="island-wave absolute" style={{ left: x0 * T, top: ISLAND.sea * T - T * 0.22, width: 4 * T, height: T * 0.4, backgroundSize: `${T}px 100%` }} />);
-  for (const fx of [4 - 0.45, ISLAND.w - 4 - 0.15]) out.push(<div key={`f${fx}`} className="island-foam absolute" style={{ left: fx * T, top: ISLAND.sea * T - T * 0.14, width: T * 0.6, height: T * 0.32 }} />);
+  if (!isl.world)
+    for (const x0 of [0, ISLAND.w - 4])
+      out.push(<div key={`w${x0}`} className="island-wave absolute" style={{ left: x0 * T, top: ISLAND.sea * T - T * 0.22, width: 4 * T, height: T * 0.4, backgroundSize: `${T}px 100%` }} />);
+  if (!isl.world) for (const fx of [4 - 0.45, ISLAND.w - 4 - 0.15]) out.push(<div key={`f${fx}`} className="island-foam absolute" style={{ left: fx * T, top: ISLAND.sea * T - T * 0.14, width: T * 0.6, height: T * 0.32 }} />);
+  // Ziplines: a rope from each post to the next one.
+  const ropes = zipLines(isl);
+  if (ropes.length)
+    out.push(
+      <svg key="ropes" className="pointer-events-none absolute left-0 top-0" width={ISLAND.w * T} height={ISLAND.h * T} aria-hidden="true">
+        {ropes.map(([a, b]) => {
+          const A = xy(a);
+          const B = xy(b);
+          return <line key={`${a}-${b}`} x1={(A.x + 0.5) * T} y1={(A.y + 0.12) * T} x2={(B.x + 0.5) * T} y2={(B.y + 0.12) * T} stroke="#3a2a32" strokeWidth={Math.max(1.5, T * 0.06)} strokeLinecap="round" />;
+        })}
+      </svg>,
+    );
   return <>{out}</>;
 });
 
@@ -1322,6 +1530,54 @@ function DiscPicker({ player, discs, current, onPick, onClose }: { player: strin
               : tr('No record yet: some seeds grow them (Melody, Symphony, Gramophone).', 'Pas encore de vinyle : certaines graines en font pousser (Mélodie, Symphonie, Gramophone).')}
           </p>
         )}
+      </div>
+    </div>
+  );
+}
+
+/** A furnace or a workbench: its recipes, what each needs (what you have of it), and Make. */
+function CraftPicker({ station, bag, onCraft, onClose }: { station: Station; bag: Record<string, number>; onCraft: (out: string) => void; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
+      <div className="page max-h-[80vh] w-full max-w-lg space-y-3 overflow-y-auto rounded-md p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-2">
+          <ItemArt id={station} className="size-8" />
+          <p className="font-display text-lg font-bold">{itemName(station)}</p>
+          <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
+            ✕
+          </button>
+        </div>
+        <p className="text-xs text-ink-soft">
+          {station === 'furnace'
+            ? tr('Mine stone, dirt and ore with the pickaxe (on the island, and richer in the dungeon); the furnace refines them into blocks.', 'Mine de la pierre, de la terre et du minerai à la pioche (sur l’île, et plus riche dans le donjon) ; le four les raffine en blocs.')
+            : tr('The workbench turns the furnace’s blocks into decorations you can’t grow.', 'L’établi transforme les blocs du four en décorations qu’on ne peut pas faire pousser.')}
+        </p>
+        <ul className="space-y-1.5">
+          {RECIPES.filter((r) => r.at === station).map((r) => {
+            const ok = canCraft(r, bag);
+            return (
+              <li key={r.out} className="flex items-center gap-2 rounded-md border border-rule p-1.5">
+                <ItemArt id={r.out} className="size-9 shrink-0 text-2xl" />
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold">
+                    {itemName(r.out)}
+                    {(r.n ?? 1) > 1 && <span className="text-ink-soft"> ×{r.n}</span>}
+                  </span>
+                  <span className="flex flex-wrap gap-x-2 text-[11px]">
+                    {Object.entries(r.needs).map(([id, n]) => (
+                      <span key={id} className={(bag[id] ?? 0) >= n ? 'text-ink-soft' : 'text-coral'}>
+                        <ItemArt id={id} className="inline-block size-3.5 align-[-2px]" /> {itemName(id)} {bag[id] ?? 0}/{n}
+                      </span>
+                    ))}
+                  </span>
+                </span>
+                <button type="button" disabled={!ok} onClick={() => onCraft(r.out)} className={`rounded-md border px-2.5 py-1 text-sm font-semibold ${ok ? 'border-accent bg-accent/15 hover:bg-accent/25' : 'cursor-not-allowed border-rule opacity-50'}`}>
+                  {tr('Make', 'Fabriquer')}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
@@ -1415,7 +1671,7 @@ function CardPicker({ owned, screen = false, reader = false, backdrop, current, 
 const Glows = memo(function Glows({ isl, T, dark }: { isl: Island; T: number; dark: number }) {
   return (
     <>
-      {Object.entries(isl.fg)
+      {itemsIn(isl)
         .filter(([, id]) => kindOf(id) === 'light' || kindOf(id) === 'screen')
         .map(([k, id]) => {
           const { x, y } = xy(Number(k));
@@ -1442,6 +1698,29 @@ const TOOL_ART: Record<string, string> = {
   plant: '<path d="M9 12c-3 4-4 10-1 15h16c3-5 2-11-1-15z" fill="#d9b07a" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h14l-2-4H11z" fill="#c4945c" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 8c2-5 8-5 10 0" stroke="#3a2a32" stroke-width="1.5" fill="none"/><path d="M16 22c-3-1-4-4-2-6 2 1 3 3 2 6zm0 0c2-2 5-2 6 0-2 2-4 2-6 0z" fill="#5cb85c" stroke="#2d6a2d" stroke-width=".8"/>',
   pick: '<path d="M8 28V15c0-2 3-2 3 0v-6c0-2 3-2 3 0V7c0-2 3-2 3 0v2c0-2 3-2 3 0v7l2-3c1-2 4-1 3 1l-4 8c-1 3-3 6-6 6z" fill="#f2c94c" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 24h12" stroke="#d99a2b" stroke-width="2"/>',
 };
+/** A minecart and a zipline trolley, shown while riding (by the player's data-pose, see index.css). */
+function RideArt() {
+  return (
+    <>
+      <svg className="island-cart" viewBox="0 0 48 26" aria-hidden="true">
+        <path d="M3 3h42l-4 15H7z" fill="#64748b" stroke="#3a2a32" strokeWidth="2" strokeLinejoin="round" />
+        <path d="M6 8h36M8 13h32" stroke="#94a3b8" strokeWidth="1.6" />
+        <path d="M2 3h44" stroke="#3a2a32" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="14" cy="20" r="4.5" fill="#27272a" stroke="#3a2a32" strokeWidth="1.5" />
+        <circle cx="34" cy="20" r="4.5" fill="#27272a" stroke="#3a2a32" strokeWidth="1.5" />
+        <circle cx="14" cy="20" r="1.5" fill="#9aa4b4" />
+        <circle cx="34" cy="20" r="1.5" fill="#9aa4b4" />
+      </svg>
+      <svg className="island-trolley" viewBox="0 0 32 22" aria-hidden="true">
+        <circle cx="16" cy="6" r="4.5" fill="#9aa4b4" stroke="#3a2a32" strokeWidth="1.5" />
+        <circle cx="16" cy="6" r="1.4" fill="#3a2a32" />
+        <path d="M16 10v7M6 18h20" stroke="#3a2a32" strokeWidth="3" strokeLinecap="round" />
+        <path d="M6 18h20" stroke="#ef4444" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+    </>
+  );
+}
+
 function ToolInHand({ tool }: { tool?: string }) {
   const art = tool ? TOOL_ART[tool] : undefined;
   if (!art) return null;

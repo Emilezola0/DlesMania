@@ -27,7 +27,8 @@ export interface Peer {
   /** Their last emote. */
   emote?: EmoteEvent | null;
 }
-export type Pose = 'sit' | 'sleep';
+/** Sitting, asleep, in a minecart, on a zipline. */
+export type Pose = 'sit' | 'sleep' | 'cart' | 'zip';
 /** An emote popped over a player's head (one of EMOTES). */
 export interface EmoteEvent {
   e: string;

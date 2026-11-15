@@ -6,7 +6,7 @@ import { tr } from '../lib/i18n';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
 import type { IslandDoc } from '../cloud/islands';
-import { idx, newIsland, surfaceAt, type Island, type Who } from './island';
+import { idx, newIsland, OLD, surfaceAt, type Island, type Who } from './island';
 import { IslandView, type Act, type IslandMode, type Move } from './IslandView';
 import { SeedBook } from './SeedBook';
 
@@ -57,7 +57,7 @@ function demoIsland(seed: number): Island {
   const isl = newIsland();
   const S = (x: number) => surfaceAt(x) - 1;
   const at = (x: number) => idx(x, S(x));
-  const base = 14 + (seed % 3) * 4;
+  const base = OLD.x + 14 + (seed % 3) * 4;
   for (let x = base; x < base + 5; x++) for (let y = S(base) - 2; y <= S(base); y++) isl.bg[idx(x, y)] = seed % 2 ? 'pattern-wallpaper' : 'starry-wallpaper';
   isl.fg[at(base)] = 'sofa';
   isl.fg[at(base + 1)] = 'fireplace';

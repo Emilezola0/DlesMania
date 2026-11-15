@@ -790,7 +790,7 @@ service cloud.firestore {
         return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
       }
       function islandOk(d) {
-        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by', 'front', 'tune'])
+        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by', 'front', 'tune', 'v'])
           && d.log is list && d.log.size() <= 30 && d.name is string && d.name.size() <= 40;
       }
       function onlyIsland() {
@@ -836,7 +836,7 @@ service cloud.firestore {
             && request.resource.data.tv.clip is string && request.resource.data.tv.clip.size() <= 200))
         && (!('tune' in request.resource.data) || request.resource.data.tune == null
           || (request.resource.data.tune is map && request.resource.data.tune.keys().hasOnly(['key', 'value', 'at'])))
-        && (!('pose' in request.resource.data) || request.resource.data.pose == null || request.resource.data.pose in ['sit', 'sleep'])
+        && (!('pose' in request.resource.data) || request.resource.data.pose == null || request.resource.data.pose in ['sit', 'sleep', 'cart', 'zip'])
         && (!('emote' in request.resource.data) || request.resource.data.emote == null
           || (request.resource.data.emote is map && request.resource.data.emote.keys().hasOnly(['e', 'at'])
             && request.resource.data.emote.e is string && request.resource.data.emote.e.size() <= 8));
