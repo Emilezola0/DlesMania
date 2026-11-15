@@ -2,7 +2,8 @@
 // guardian's ("kanji:鬼") is a red seal, and the omni's ("kanji-omni:漢字") gold on a red sun. They're
 // SVGs written here, so they need no file and no network: the kanji come from the device's Japanese font.
 
-const FONT = "'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','MS Mincho',serif";
+// Then Chinese ones, for the JLPT boss's impostors (simplified Chinese characters a Japanese font may not have).
+const FONT = "'Noto Serif JP','Hiragino Mincho ProN','Yu Mincho','MS Mincho','Noto Serif SC','Songti SC','SimSun',serif";
 
 /** A kanji (or a word: the size shrinks with its length) on squared paper, its practice grid in faint lines. */
 function paper(k: string): string {

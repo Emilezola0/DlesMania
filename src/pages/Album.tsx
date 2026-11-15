@@ -6,7 +6,6 @@ import { CardBack, CardFace, CardLifts, CardMissing, OmniRingsAround, useCardFor
 import { GIF_CLIP } from '../gacha/CardClip';
 import { isVaulted, UPGRADES } from '../gacha/upgrades';
 import { CARD_BY_ID, CARDS, COLLECTIBLE, RARITIES, RARITY_INFO, SETS, clipHasSound, type Card, type Rarity } from '../gacha/cards';
-import { DOMAINS } from '../data';
 import { GradeEmblem } from '../gacha/GradeEmblem';
 import { SellSpares } from '../gacha/SellSpares';
 import { canGradeUp, ELEMENT_GRADE, ELEMENT_IDS, ELEMENT_SWITCH_COST, ELEMENTS, GRADE_COST, gradeName, gradeOf, gradeReward, GRADES, HELL_GRADE, MAX_GRADE, RESALE_BONUS, spareValue, type ElementId } from '../gacha/grades';
@@ -15,8 +14,9 @@ import { canBeBackdrop } from '../gacha/Perks';
 import { RENEW_COST, RenewDialog, spareByRarity } from '../gacha/Renew';
 import { GradeAllDialog, SellDialog } from '../gacha/BulkActions';
 import { cardVolumeOf, playVoice } from '../gacha/voice';
-import { frenchOf, shownName } from '../lib/french';
+import { shownName } from '../lib/french';
 import { sfx } from '../lib/sfx';
+import { fold, SEARCH_TEXT, SETS_BY_DOMAIN } from '../gacha/search';
 import { useCloud } from '../cloud/state';
 import { bossKey, useProgress } from '../store/progress';
 import { tr, useT, withFrench } from '../lib/i18n';
@@ -34,14 +34,8 @@ const SHOWS: { id: Show; label: string; title?: string }[] = [
   withFrench({ id: 'altered' as Show, label: '🕳️ Altered', title: 'Cards back from a black hole, with an anomaly' }, { label: '🕳️ Altérées', title: 'Les cartes revenues d’un trou noir, avec une anomalie' }),
 ];
 
-/** Lower case, no accents or punctuation: for the search box. */
-const fold = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-/** What a card can be found by: its name (in English and French), its title and its franchise. */
 /** How many cards of each rarity exist. */
 const RARITY_TOTAL = COLLECTIBLE.reduce((t, c) => ((t[c.rarity] = (t[c.rarity] ?? 0) + 1), t), {} as Record<Rarity, number>);
-const SEARCH_TEXT = new Map(CARDS.map((c) => [c.id, fold([c.name, frenchOf(c.name, c.set), c.title, c.franchise].filter(Boolean).join(' '))]));
-/** The sets, by domain (Games, Anime…), for the set picker. */
-const SETS_BY_DOMAIN = DOMAINS.map((d) => ({ domain: d, sets: SETS.filter((s) => s.domain === d.id) })).filter((g) => g.sets.length);
 
 /** A choice kept on this device between visits (the Album's filters). */
 function useKept<T>(key: string, initial: T, valid: (v: unknown) => boolean): [T, (v: T | ((old: T) => T)) => void] {

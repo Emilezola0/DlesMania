@@ -3,7 +3,8 @@ import { useTypeToFocus } from '../lib/focus';
 import { frenchOf } from '../lib/french';
 import { workNames, type Named } from '../lib/text';
 import { useProgress } from '../store/progress';
-import { rankBySearch, searchScore } from '../utils/textMatcher';
+import { bestSearchScore, rankBySearch, searchScore } from '../utils/textMatcher';
+import type { Work } from '../types';
 import { tr } from '../lib/i18n';
 
 interface Props {
@@ -25,6 +26,19 @@ function otherName(w: Named, query: string): string | undefined {
   return typed ?? aliases[0];
 }
 
+/**
+ * Where a song is from, if it's a game's or an anime's (Music): the game or anime (its `studio`). A plain song's
+ * studio is its label, not where it's from: none.
+ */
+const songSource = (w: Named) => {
+  const x = w as Partial<Work>;
+  return x.domain === 'music' && x.format && x.format !== 'Song' ? x.studio : undefined;
+};
+/** A name and its French one (if any), to search by. */
+const withFrenchOf = (name: string) => [name, frenchOf(name)];
+/** How many songs the box lists at most in Music (a game's or an anime's songs, all of them). */
+const FROM_LIMIT = 15;
+
 export function GuessInput({ pool, exclude, onGuess, placeholder = tr('Type a title…', 'Tape un titre…'), disabled, showImages = true }: Props) {
   const lang = useProgress((s) => s.nameLang);
   const [query, setQuery] = useState('');
@@ -35,10 +49,29 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = tr('Type a ti
   useEffect(() => inputRef.current?.focus({ preventScroll: true }), []);
   useTypeToFocus(inputRef, !disabled);
 
-  const results = useMemo(
-    () => rankBySearch(query, pool.filter((w) => !exclude.includes(w.id)), workNames),
-    [pool, exclude, query],
-  );
+  const results = useMemo(() => {
+    const open = pool.filter((w) => !exclude.includes(w.id));
+    if (!open.some((w) => songSource(w))) return rankBySearch(query, open, workNames);
+    // Music: few know a game's or an anime's songs by their names (the owner's call), so typing the game or the
+    // anime lists its songs too, grouped by where they're from. A song's own name matching as well comes first.
+    const scored = open
+      .map((w, i) => {
+        const byName = bestSearchScore(query, workNames(w));
+        const from = songSource(w);
+        const byFrom = from ? bestSearchScore(query, withFrenchOf(from)) : null;
+        const score = byName === null ? (byFrom === null ? null : byFrom + 0.5) : byFrom === null ? byName : Math.min(byName, byFrom + 0.5);
+        return { w, i, from: from ?? '', score };
+      })
+      .filter((r): r is { w: Named; i: number; from: string; score: number } => r.score !== null);
+    if (!scored.length) return [];
+    // Near-misses (typos) only when nothing matches better.
+    const top = Math.min(...scored.map((r) => r.score));
+    return scored
+      .filter((r) => r.score < 3 || top >= 3)
+      .sort((a, b) => a.score - b.score || a.from.localeCompare(b.from) || a.i - b.i)
+      .slice(0, FROM_LIMIT)
+      .map((r) => r.w);
+  }, [pool, exclude, query]);
 
   // Years are a clue in most rounds (hints, Classic's Year column), so they're only shown
   // to tell apart two entries with the same name.
@@ -114,8 +147,8 @@ export function GuessInput({ pool, exclude, onGuess, placeholder = tr('Type a ti
                     );
                   })()}
                 </span>
-                <span className="shrink-0 text-xs text-ink-soft">
-                  {[w.subtitle, sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}
+                <span className="min-w-0 max-w-[45%] shrink-0 truncate text-right text-xs text-ink-soft">
+                  {[w.subtitle, songSource(w), sharedNames.has(w.name) ? w.year : null].filter(Boolean).join(' · ')}
                 </span>
               </button>
             </li>

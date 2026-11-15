@@ -1737,10 +1737,10 @@
     "title": "Gardien des kanji",
     "lines": {
       "intro": "Bienvenue, élève. Cinq niveaux, deux mille kanji, et aucun ne pardonnera un trait bâclé. Montre-moi ce que tu as étudié.",
-      "phase2": "La moitié de ceux-ci sont des kanji du N1 pour lesquels tu n'es pas prêt. Garde ceux que tu dois connaître, jette le reste !",
+      "phase2": "Certains ne sont pas japonais du tout : du chinois, qui s'est glissé parmi eux. Garde les kanji, jette les imposteurs !",
       "phase3": "Examen final ! Lis chaque kanji avant que la cloche ne sonne.",
       "hit": ["Correct. Hmph.", "Sugoi.", "Ton ordre des traits est acceptable."],
-      "hurt": ["Chigau !", "Mauvaise lecture !", "Retourne à ton manuel !", "Celui-là était du N1, élève."],
+      "hurt": ["Chigau !", "Mauvaise lecture !", "Retourne à ton manuel !", "Celui-là était chinois, élève."],
       "win": "Gōkaku — tu es reçu. Emporte mes kanji ; ils sont à toi maintenant.",
       "lose": "Recalé. Révise la liste du N5 et reviens demain.",
       "secret": "Encore une leçon, sans manuel. Je dis un mot ; tu réponds par un autre du même genre. Pas de répétition !",

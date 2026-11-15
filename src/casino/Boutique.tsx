@@ -5,6 +5,7 @@ import { SETS } from '../gacha/cards';
 import { packsFor, type Pack } from '../gacha/packs';
 import { celebrate } from '../lib/fx';
 import { sfx } from '../lib/sfx';
+import { useT } from '../lib/i18n';
 import { useProgress } from '../store/progress';
 import { CARD_SHOP } from './casino';
 import { OpeningAround, OpeningInside, flapClass, wholeClass } from '../gacha/WrapOpening';
@@ -190,18 +191,21 @@ function OpeningPreview({ c, sample }: { c: Cosmetic; sample: Pack }) {
   );
 }
 
-/** A shelf of the Boutique: its pieces, its Prestige row (tokens only, the finest effects), its Ascended row (a lock, then tokens). */
-function Shelf<T extends Cosmetic>({ title, text, items, show }: { title: string; text: string; items: T[]; show: (c: T) => React.ReactNode }) {
+/** A collection of the Boutique's shelves: the ordinary pieces, Prestige (tokens only), Ascended (a lock, then tokens). */
+type Part = 'all' | 'standard' | 'prestige' | 'ascended';
+const partOf = (c: Cosmetic): Exclude<Part, 'all'> => (c.ascended ? 'ascended' : c.prestige ? 'prestige' : 'standard');
+
+/** A shelf of the Boutique: its pieces, its Prestige row (tokens only, the finest effects), its Ascended row (a lock, then tokens); only `part` of them, or all. */
+function Shelf<T extends Cosmetic>({ text, items, show, part }: { text: string; items: T[]; show: (c: T) => React.ReactNode; part: Part }) {
   const grid = 'grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-5';
-  const prestige = items.filter((c) => c.prestige);
-  const ascended = items.filter((c) => c.ascended);
+  const shows = (p: Exclude<Part, 'all'>) => part === 'all' || part === p;
+  const standard = shows('standard') ? items.filter((c) => partOf(c) === 'standard') : [];
+  const prestige = shows('prestige') ? items.filter((c) => c.prestige) : [];
+  const ascended = shows('ascended') ? items.filter((c) => c.ascended) : [];
   return (
     <section className="page space-y-3 rounded-md p-4">
-      <div>
-        <h3 className="font-display text-lg font-bold">{title}</h3>
-        <p className="text-sm text-ink-soft">{text}</p>
-      </div>
-      <div className={grid}>{items.filter((c) => !c.prestige && !c.ascended).map(show)}</div>
+      <p className="text-sm text-ink-soft">{text}</p>
+      {standard.length > 0 && <div className={grid}>{standard.map(show)}</div>}
       {prestige.length > 0 && (
         <>
           <div className="flex items-center gap-2 pt-1">
@@ -240,6 +244,21 @@ export function Boutique() {
   const mine = [...NAME_STYLES, ...WRAPPERS, ...TITLE_ITEMS].filter((c) => owned.includes(c.id)).length;
   // A pack to show the wrappers on.
   const sample = useMemo(() => packsFor(SETS)[0], []);
+  // Its shelves in tabs (the owner's call: it had grown long to scroll through), the one open kept between visits.
+  const t = useT();
+  const [cat, setCatState] = useState<Cat>(() => kept(CAT_KEY, CATS, 'wraps'));
+  const [part, setPartState] = useState<Part>(() => kept(PART_KEY, PARTS, 'all'));
+  const setCat = (c: Cat) => (sfx.select(), setCatState(c), keep(CAT_KEY, c));
+  const setPart = (p: Part) => (sfx.select(), setPartState(p), keep(PART_KEY, p));
+  const shelves: Record<Cat, Cosmetic[]> = { names: NAME_STYLES, wraps: WRAPPERS, titles: TITLE_ITEMS };
+  const items = shelves[cat];
+  const parts = PARTS.filter((p) => p === 'all' || items.some((c) => partOf(c) === p));
+  const shownPart = parts.includes(part) ? part : 'all';
+  const tab = (on: boolean) => `flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-md px-2 py-2 font-display text-sm font-bold transition ${on ? 'bg-paper text-ink shadow' : 'text-ink-soft hover:text-ink'}`;
+  const chip = (on: boolean) => `rounded-full border px-3 py-1 text-xs font-bold transition ${on ? 'border-accent bg-accent/15 text-ink' : 'border-rule text-ink-soft hover:text-ink'}`;
+  const count = (xs: Cosmetic[]) => `${xs.filter((c) => owned.includes(c.id)).length}/${xs.length}`;
+  const CAT_LABEL: Record<Cat, string> = { names: t('🎨 Name styles', '🎨 Styles de nom'), wraps: t('🎁 Pack wrappers', '🎁 Emballages'), titles: t('🏷️ Titles', '🏷️ Titres') };
+  const PART_LABEL: Record<Part, string> = { all: t('All', 'Tout'), standard: t('Standard', 'Classiques'), prestige: '💎 Prestige', ascended: '✴ Ascended' };
   return (
     <div className="space-y-4">
       <p className="rounded-md border border-coral/40 bg-coral/5 px-4 py-2.5 text-sm text-ink-soft">
@@ -249,8 +268,28 @@ export function Boutique() {
         </b>
         .
       </p>
-      <Shelf
-        title="Name styles"
+      {/* The shelves, one tab each; and in each, its collections. */}
+      <div className="space-y-2 rounded-md bg-tile p-1.5 shadow" role="tablist" aria-label={t('Boutique sections', 'Rayons de la boutique')}>
+        <div className="flex gap-1">
+          {CATS.map((c) => (
+            <button key={c} type="button" role="tab" aria-selected={cat === c} onClick={() => setCat(c)} className={tab(cat === c)}>
+              <span className="truncate">{CAT_LABEL[c]}</span>
+              <span className="shrink-0 text-[11px] font-semibold tabular-nums opacity-60">{count(shelves[c])}</span>
+            </button>
+          ))}
+        </div>
+        {parts.length > 2 && (
+          <div className="flex flex-wrap justify-center gap-1.5 pb-0.5">
+            {parts.map((p) => (
+              <button key={p} type="button" aria-pressed={shownPart === p} onClick={() => setPart(p)} className={chip(shownPart === p)}>
+                {PART_LABEL[p]} <span className="tabular-nums opacity-60">{p === 'all' ? count(items) : count(items.filter((c) => partOf(c) === p))}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {cat === 'names' && <Shelf
+        part={shownPart}
         text="Your name on your profile, in the top bar and in your friends' lists, in a style of your own."
         items={NAME_STYLES}
         show={(c) => (
@@ -262,9 +301,9 @@ export function Boutique() {
             )}
           </Item>
         )}
-      />
-      <Shelf
-        title="Pack wrappers"
+      />}
+      {cat === 'wraps' && <Shelf
+        part={shownPart}
         text="Every pack you open, wrapped your way. Looks only: the cards inside are the same. A golden pack is wrapped too, with a gold rim and its gold shine."
         items={WRAPPERS}
         show={(c) => (
@@ -272,9 +311,9 @@ export function Boutique() {
             {sample && (c.opening ? <OpeningPreview c={c} sample={sample} /> : <PackArt pack={sample} wrapper={c.id} className="w-20" />)}
           </Item>
         )}
-      />
-      <Shelf
-        title="Titles"
+      />}
+      {cat === 'titles' && <Shelf
+        part={shownPart}
         text="Worn under your name, in their own colours, and your friends see them too. The other titles are earned by playing (pick any of them on your Account page)."
         items={TITLE_ITEMS}
         show={(c) => {
@@ -299,7 +338,29 @@ export function Boutique() {
             </Item>
           );
         }}
-      />
+      />}
     </div>
   );
+}
+
+type Cat = 'names' | 'wraps' | 'titles';
+const CATS: Cat[] = ['names', 'wraps', 'titles'];
+const PARTS: Part[] = ['all', 'standard', 'prestige', 'ascended'];
+const CAT_KEY = 'omnidle:boutique:tab';
+const PART_KEY = 'omnidle:boutique:part';
+/** A tab kept on this device between visits (any storage trouble: the default). */
+function kept<T extends string>(key: string, valid: T[], fallback: T): T {
+  try {
+    const v = localStorage.getItem(key) as T | null;
+    return v && valid.includes(v) ? v : fallback;
+  } catch {
+    return fallback;
+  }
+}
+function keep(key: string, v: string) {
+  try {
+    localStorage.setItem(key, v);
+  } catch {
+    // Not kept: no matter.
+  }
 }
