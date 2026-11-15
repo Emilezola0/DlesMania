@@ -14,6 +14,7 @@ import { KeepButton } from '../components/JlptKeep';
 import { CUSTOM_LEVEL } from '../arcade/jlptCustom';
 import { kanaFromRomaji, toHiragana } from '../lib/romaji';
 import { GrammarPage, GrammarReview } from './JlptGrammarGame';
+import { FillPage } from './JlptFillGame';
 import { WriteCard, WriteGame } from './JlptWrite';
 import { grammarMeaning } from '../arcade/jlptGrammar';
 
@@ -575,6 +576,30 @@ function GrammarCard({ level, points, open, onToggle }: { level: string; points:
       <button type="button" onClick={onToggle} className="px-5 pb-4 text-left text-xs text-ink-faint hover:text-ink hover:underline">
         {open ? 'Hide the list' : 'Show the list'}
       </button>
+    </li>
+  );
+}
+
+/** A level's Fill the Gap: sentences with a gap where a grammar point goes, to write in. */
+function FillCard({ level }: { level: string }) {
+  const best = useProgress((s) => s.bests[`jlpt:${level.toLowerCase()}-fill`] ?? 0);
+  const fr = useProgress((s) => s.nameLang) === 'fr';
+  return (
+    <li>
+      <Link to={`/jlpt/${level.toLowerCase()}-fill`} className="page flex h-full flex-col gap-1 rounded-md p-5 ring-2 ring-accent/40 transition hover:-translate-y-0.5">
+        <span lang="ja" className="font-serif text-3xl font-bold">
+          ＿
+        </span>
+        <span className="font-display text-xl font-bold">{fr ? 'Texte à trous' : 'Fill the Gap'}</span>
+        <span className="mt-auto flex items-center justify-between pt-3 text-xs text-ink-faint">
+          {fr ? 'la règle qui manque à la phrase' : 'the grammar a sentence is missing'}
+          {best > 0 && (
+            <span className="inline-flex items-center gap-1 font-bold text-coral">
+              <FlameIcon /> best {best}
+            </span>
+          )}
+        </span>
+      </Link>
     </li>
   );
 }
@@ -1150,6 +1175,8 @@ export default function Jlpt() {
   }
   if (id) {
     // A level's grammar: its patterns with gaps to fill (the old sentence game's address leads there too).
+    const fill = /^(n[1-5])-fill$/.exec(id);
+    if (fill) return <FillPage key={id} level={fill[1].toUpperCase()} />;
     const grammar = /^(n[1-5])-(grammar|sentences)$/.exec(id);
     if (grammar) return grammar[2] === 'grammar' ? <GrammarPage key={id} level={grammar[1].toUpperCase()} /> : <Navigate to={`/jlpt/${grammar[1]}-grammar`} replace />;
     const deck = id === 'review' ? reviewDeck([]) : id === 'custom' ? customDeck(picks) : jlptDeck(id);
@@ -1234,12 +1261,13 @@ export default function Jlpt() {
       {JLPT_LEVELS.map((l) => (
         <section key={l.level} className="space-y-3">
           <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">{l.level}</h2>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {l.decks.map((d) => (
               <DeckCard key={d.id} deck={d} glyph={d.kind === 'vocab' ? '語' : '字'} title={d.kind === 'vocab' ? 'Vocabulary' : 'Kanji'} />
             ))}
             <WriteCard deck={l.decks.find((d) => d.kind === 'kanji')!} title="Write the kanji" />
             <GrammarCard level={l.level} points={l.grammar.length} open={grammar === l.level} onToggle={() => setGrammar(grammar === l.level ? null : l.level)} />
+            <FillCard level={l.level} />
           </ul>
           {grammar === l.level && (
             <ul lang="ja" className="page animate-pop flex flex-wrap gap-2 rounded-md p-4">

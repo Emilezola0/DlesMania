@@ -89,6 +89,19 @@ const particleForms = (kana: string): string[] => {
 const latin = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
 
 /**
+ * Whether what was typed is one of `wants` (Japanese, as written or in kana), the way grammar is checked here:
+ * in kana or romaji, the particles either way, punctuation and spaces aside. Used by Fill the Gap too.
+ */
+export function typedOneOf(wants: string[], typed: string): boolean {
+  const key = (s: string) => patternKey(s).replace(/[。、．，.,!?！？「」『』・…]/g, '');
+  const keys = wants.map(key).filter(Boolean);
+  const got = key(kanaFromRomaji(typed, true));
+  if (got && keys.some((w) => particleForms(w).includes(got))) return true;
+  const roman = latin(typed);
+  return !!roman && keys.some((w) => particleForms(w).some((form) => /^[ぁ-ゖー]+$/.test(form) && romajiSpellings(form).some((r) => latin(r) === roman)));
+}
+
+/**
  * Right or not. A word or kanji asked its meaning can be answered with its reading too, in kana or romaji
  * (午前: "morning" or "gozen"); asked its reading, only the reading. A grammar point (`shown` with gaps):
  * its gaps filled — the hidden kana alone ("desu" for ～ん＿＿) — or the whole pattern, in kana or romaji
