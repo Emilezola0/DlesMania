@@ -818,7 +818,8 @@ service cloud.firestore {
     }
 
     // Who is on an island right now (src/island/live.ts): each player writes only their own spot; everyone who may
-    // see the island sees them; the player or the owner removes it.
+    // see the island sees them; the player or the owner removes it. `world`: on the island, or down in the week's
+    // dungeon under it ("island", "dungeon:<week>"), so only those in the same place are seen.
     match /islands/{uid}/here/{who} {
       function seesIsland() {
         return request.auth.uid == uid
@@ -827,7 +828,8 @@ service cloud.firestore {
       }
       allow read: if request.auth != null && seesIsland();
       allow create, update: if request.auth != null && request.auth.uid == who && seesIsland()
-        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at', 'tool', 'tv', 'tune', 'pose', 'emote'])
+        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at', 'tool', 'tv', 'tune', 'pose', 'emote', 'world'])
+        && (!('world' in request.resource.data) || (request.resource.data.world is string && request.resource.data.world.size() <= 24))
         && request.resource.data.name is string && request.resource.data.name.size() <= 40
         && request.resource.data.x is number && request.resource.data.y is number && request.resource.data.left is bool
         && (!('tool' in request.resource.data) || (request.resource.data.tool is string && request.resource.data.tool.size() <= 10))

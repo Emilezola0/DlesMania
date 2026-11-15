@@ -248,9 +248,16 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const deepRef = useRef(false);
   deepRef.current = inDungeon;
   const gateSpot = { x: xy(ISLAND_GATE).x + (1 - PW) / 2, y: xy(ISLAND_GATE).y + 1 - PH - 0.01 };
-  const peers = useLive(live, () => ({
-    x: deepRef.current ? gateSpot.x : pos.current.x,
-    y: deepRef.current ? gateSpot.y : pos.current.y,
+  // Where you are: the island, or this week's dungeon (each player's own, from the same plan). Only those in the same
+  // world are seen: down in the dungeon, the others down there.
+  const myWorld = inDungeon ? `dungeon:${week}` : 'island';
+  const myWorldRef = useRef(myWorld);
+  myWorldRef.current = myWorld;
+  const everyone = useLive(live, () => ({
+    x: pos.current.x,
+    y: pos.current.y,
+    world: myWorldRef.current,
+    away: gateSpot,
     left: facing.current,
     tool: toolRef.current,
     tv: myTv.current,
@@ -258,6 +265,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     pose: pose.current?.kind ?? ride.current?.kind ?? null,
     emote: myEmote.current,
   }));
+  const peers = useMemo(() => everyone.filter((p) => (p.world ?? 'island') === myWorld), [everyone, myWorld]);
   const peersRef = useRef<Peer[]>(peers);
   peersRef.current = peers;
   // Someone else switched a TV on or off, or a visitor changed the music: the same here (each switch once).
@@ -266,7 +274,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const tvs: TvEvent[] = [];
     const tunes: TuneEvent[] = [];
     const pops: Record<string, { e: string; until: number }> = {};
-    for (const p of peers) {
+    for (const p of everyone) {
       if (p.emote && EMOTES.includes(p.emote.e) && !seen.current.has(`emote:${p.uid}:${p.emote.at}`)) {
         seen.current.add(`emote:${p.uid}:${p.emote.at}`);
         if (Math.abs(Date.now() - p.emote.at) < 15_000) pops[p.uid] = { e: p.emote.e, until: Date.now() + 3500 };
@@ -1009,7 +1017,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           {/* Night: everything darker, the lights glowing through (you stay lit). */}
           {dark > 0 && <div key="night" className="pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ background: '#0b1030', opacity: dark }} />}
           {dark > 0 && <Glows isl={isl} T={T} dark={dark} />}
-          {!inDungeon && peers.map((p) => {
+          {peers.map((p) => {
             const face = p.face ? CARD_BY_ID.get(p.face) : undefined;
             return (
               <div

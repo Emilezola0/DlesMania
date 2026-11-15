@@ -102,6 +102,8 @@ export interface HereDoc {
   tune?: TuneEvent | null;
   pose?: Pose | null;
   emote?: EmoteEvent | null;
+  /** The world they are in: "island", or "dungeon:<week>" (src/island/live.ts); none: the island. */
+  world?: string;
   at?: Timestamp | null;
 }
 const here = (owner: string, uid: string) => doc(db, 'islands', owner, 'here', uid);
@@ -126,6 +128,7 @@ export async function sayHere(owner: string, h: Omit<HereDoc, 'at'>): Promise<vo
     tune: h.tune ?? null,
     pose: h.pose ?? null,
     emote: h.emote ?? null,
+    ...(h.world ? { world: h.world.slice(0, 24) } : {}),
     at: serverTimestamp(),
   });
 }

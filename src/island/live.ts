@@ -4,7 +4,10 @@
 // STALE ms without news (a closed tab), and removed when they leave. The demo makes up a friend walking about.
 // They also say which tool they hold (drawn in their hand), and their last switch of a TV or a music maker, so a TV
 // switched on (or a disc changed by a visitor) does the same for everyone there; and whether they sit or sleep, and
-// their last emote (a bubble over their head for a few seconds).
+// their last emote (a bubble over their head for a few seconds). And which world they are in: the island, or the week's
+// dungeon under it (`world`); only those in the same world are seen (the owner's call: in the dungeon too, as on the
+// island). Until the database's rules take `world` (firestore.rules, published by the owner), a write with it is
+// refused: then it's written without, as before, those in the dungeon standing at the island's gate (`away`).
 import { useEffect, useRef, useState } from 'react';
 import { useProgress } from '../store/progress';
 import { ISLAND, surfaceAt } from './island';
@@ -26,6 +29,8 @@ export interface Peer {
   pose?: Pose | null;
   /** Their last emote. */
   emote?: EmoteEvent | null;
+  /** Where they are: "island", or "dungeon:<week>" (none: on the island). */
+  world?: string;
 }
 /** Sitting, asleep, in a minecart, on a zipline. */
 export type Pose = 'sit' | 'sleep' | 'cart' | 'zip';
@@ -60,6 +65,9 @@ export interface Here {
   tune: TuneEvent | null;
   pose: Pose | null;
   emote: EmoteEvent | null;
+  /** The world they are in ("island", "dungeon:<week>"), and where to say they stand if it can't be told. */
+  world: string;
+  away: { x: number; y: number };
 }
 /** Where to go live: someone's island online (as you), or the demo. */
 export type LiveCfg = { owner: string; uid: string; name: string } | { demo: string };
@@ -67,6 +75,8 @@ export type LiveCfg = { owner: string; uid: string; name: string } | { demo: str
 const SEND = 400;
 const BEAT = 10_000;
 const STALE = 30_000;
+/** The database's rules don't take `world` yet (refused once): written without it from then on. */
+let worldRefused = false;
 
 export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
   const [peers, setPeers] = useState<Peer[]>([]);
@@ -91,7 +101,7 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
         setPeers(
           list
             .filter((h) => h.uid !== uid && (!h.at || now - h.at.toMillis() < STALE))
-            .map((h) => ({ uid: h.uid, name: h.name, face: h.face, x: h.x, y: h.y, left: h.left, tool: h.tool, tv: h.tv ?? null, tune: h.tune ?? null, pose: h.pose ?? null, emote: h.emote ?? null })),
+            .map((h) => ({ uid: h.uid, name: h.name, face: h.face, x: h.x, y: h.y, left: h.left, tool: h.tool, tv: h.tv ?? null, tune: h.tune ?? null, pose: h.pose ?? null, emote: h.emote ?? null, world: h.world ?? 'island' })),
         );
       });
       let last = { x: -99, y: -99, left: false, t: 0, rest: '' };
@@ -99,22 +109,32 @@ export function useLive(cfg: LiveCfg | undefined, where: () => Here): Peer[] {
         if (document.hidden) return;
         const p = whereRef.current();
         const now = Date.now();
-        const rest = JSON.stringify([p.tool, p.tv, p.tune, p.pose, p.emote]);
+        const rest = JSON.stringify([p.tool, p.tv, p.tune, p.pose, p.emote, p.world]);
         const moved = Math.abs(p.x - last.x) > 0.02 || Math.abs(p.y - last.y) > 0.02 || p.left !== last.left || rest !== last.rest;
         if (!moved && now - last.t < BEAT) return;
         last = { ...p, t: now, rest };
-        c.sayHere(owner, {
-          name,
-          face: useProgress.getState().avatar ?? null,
-          x: Math.round(p.x * 100) / 100,
-          y: Math.round(p.y * 100) / 100,
-          left: p.left,
-          tool: p.tool,
-          tv: p.tv,
-          tune: p.tune,
-          pose: p.pose,
-          emote: p.emote,
-        }).catch(() => {});
+        const say = (withWorld: boolean) => {
+          // Away from the island and the world can't be told: standing at its gate, as before.
+          const at = withWorld || p.world === 'island' ? p : p.away;
+          return c.sayHere(owner, {
+            name,
+            face: useProgress.getState().avatar ?? null,
+            x: Math.round(at.x * 100) / 100,
+            y: Math.round(at.y * 100) / 100,
+            left: p.left,
+            tool: p.tool,
+            tv: p.tv,
+            tune: p.tune,
+            pose: p.pose,
+            emote: p.emote,
+            ...(withWorld ? { world: p.world } : {}),
+          });
+        };
+        say(!worldRefused).catch((e: { code?: string }) => {
+          if (worldRefused || e?.code !== 'permission-denied') return;
+          worldRefused = true;
+          say(false).catch(() => {});
+        });
       }, SEND);
     });
     window.addEventListener('pagehide', leave);
