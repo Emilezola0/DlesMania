@@ -1,4 +1,5 @@
-// The Bond tab (Friends): a Bond with a friend, its shared points (a point each day you both play the daily) and its
+// The Bond tab (Friends): a Bond with a friend, its shared points (a point each day you both play the daily, and
+// more from its two games, Mind Meld and Bond Egg: src/friends/bondGames.ts) and its
 // packs, opened by the two of you together: both get the same five cards, and maybe the Bond card, linked to both
 // (src/cloud/bonds.ts, src/gacha/bond.ts). In the demo (?demo, dev only) nothing is written: the friend "joins" by
 // themselves, so the opening can be seen.
@@ -13,6 +14,9 @@ import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
 import type { BondDoc, BondPack } from '../cloud/bonds';
+import { BondEgg } from './BondEgg';
+import { eggLay, eggTend, EGG_ACTIONS, meldSay, meldStart, newEgg, type Egg } from './bondGames';
+import { MindMeld } from './MindMeld';
 
 export interface BondPerson {
   uid: string;
@@ -37,7 +41,13 @@ const demoBond = (me: string, f: BondPerson, i: number): BondDoc => ({
   opened: 1,
   pack: null,
   prev: null,
+  extra: 4,
+  egg: { ...newEgg('2026-11-01'), days: 7, stats: { str: 9, joy: 14, wit: 6, calm: 8 } } as Egg,
+  pets: [{ ...newEgg('2026-10-10'), days: 10, hatched: true, stats: { str: 20, joy: 8, wit: 9, calm: 7 } }],
 });
+
+/** The demo friend's word in a Mind Meld round: now and then the same as yours (a Meld), else another. */
+const DEMO_WORDS = ['hero', 'power', 'fire', 'blue', 'magic', 'speed', 'friends', 'legend', 'sword', 'dream'];
 
 type Opening = { cards: Card[]; fresh: Set<string>; bond: Card | null; friend: string };
 
@@ -127,6 +137,35 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
     window.setTimeout(() => setDocs((x) => ({ ...x, [f]: { ...x[f]!, pack: { by: me, seed, at: null, joined: f } } })), 1500);
   };
 
+  // The two games: in the cloud, or played here in the demo (the friend answers a moment later).
+  type Game = 'startMeld' | 'sayWord' | 'layEgg' | 'tendEgg';
+  const play = (f: string, game: Game, arg = '') => {
+    if (!demo)
+      return act(`${f}:${game}`, async () => {
+        const m = await bonds();
+        if (game === 'startMeld') await m.startMeld(f);
+        else if (game === 'sayWord') await m.sayWord(f, arg);
+        else if (game === 'layEgg') await m.layEgg(f);
+        else await m.tendEgg(f, arg);
+      });
+    const day = todayKey();
+    const apply = (fn: (d: BondDoc) => Partial<BondDoc>) => setDocs((x) => (x[f] ? { ...x, [f]: { ...x[f]!, ...fn(x[f]!) } } : x));
+    try {
+      const d = docs[f]!;
+      if (game === 'startMeld') apply(() => meldStart({ ...d, meld: null }, day));
+      else if (game === 'layEgg') apply(() => eggLay(d, day));
+      else if (game === 'sayWord') {
+        apply((x) => meldSay(x, me, f, arg));
+        window.setTimeout(() => apply((x) => (x.meld && !x.meld.done && !x.meld.words[`${x.meld.round}_${f}`] ? meldSay(x, f, me, Math.random() < 0.4 ? arg : DEMO_WORDS[Math.floor(Math.random() * DEMO_WORDS.length)]) : {})), 1200);
+      } else {
+        apply((x) => eggTend(x, me, f, arg, day));
+        window.setTimeout(() => apply((x) => (x.egg && !x.egg.hatched && !x.egg.acts[`${day}_${f}`] ? eggTend(x, f, me, EGG_ACTIONS[Math.floor(Math.random() * 4)].id, day) : {})), 1000);
+      }
+    } catch (e) {
+      setNote(e instanceof Error ? e.message : 'That didn’t work.');
+    }
+  };
+
   if (!people.length) return <p className="page rounded-md p-5 text-ink-soft">Add a friend first (the Friends tab): a Bond is between two friends.</p>;
   return (
     <section className="page space-y-4 rounded-md p-5">
@@ -135,7 +174,7 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
           <span style={{ color: B.colors[0] }}>{B.gem}</span> Bond
         </h2>
         <p className="text-sm text-ink-soft">
-          A Bond is between two friends. Each day you both play the daily, your Bond gets {BOND_POINTS_PER_DAY === 1 ? 'a point' : `${BOND_POINTS_PER_DAY} points`}; {BOND_PACK_COST} points open a <b>Bond pack</b>, the only pack with Bond cards. One of you starts it, the other joins: you both get the same five cards, and maybe the <b>Bond card</b>, with both your names on it.
+          A Bond is between two friends. Each day you both play the daily, your Bond gets {BOND_POINTS_PER_DAY === 1 ? 'a point' : `${BOND_POINTS_PER_DAY} points`}, and its two games, <b>Mind Meld</b> and <b>Bond Egg</b>, give more; {BOND_PACK_COST} points open a <b>Bond pack</b>, the only pack with Bond cards. One of you starts it, the other joins: you both get the same five cards, and maybe the <b>Bond card</b>, with both your names on it.
         </p>
         <p className="text-xs text-ink-faint">{played ? '✓ You played today: it counts for every Bond.' : 'Play today’s daily to count today for your Bonds.'}</p>
       </div>
@@ -177,7 +216,7 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
                   </div>
                 );
             else {
-              const pts = Object.keys(d.together ?? {}).length * BOND_POINTS_PER_DAY - (d.spent ?? 0);
+              const pts = Object.keys(d.together ?? {}).length * BOND_POINTS_PER_DAY + (d.extra ?? 0) - (d.spent ?? 0);
               const meToday = !!d.m?.[`${today}_${me}`] || (demo && played);
               const themToday = !!d.m?.[`${today}_${p.uid}`];
               const waiting = d.pack && !d.pack.joined ? d.pack : null;
@@ -233,6 +272,11 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
                           End the Bond
                         </button>
                       ))}
+                  </div>
+                  {/* The Bond's two games, for more points. */}
+                  <div className="grid gap-2 pt-1 lg:grid-cols-2">
+                    <MindMeld d={d} me={me} friend={{ uid: p.uid, name: p.name }} busy={!!busy} onStart={() => play(p.uid, 'startMeld')} onSay={(w) => play(p.uid, 'sayWord', w)} />
+                    <BondEgg d={d} me={me} friend={{ uid: p.uid, name: p.name }} busy={!!busy} onLay={() => play(p.uid, 'layEgg')} onTend={(a) => play(p.uid, 'tendEgg', a)} />
                   </div>
                 </div>
               );

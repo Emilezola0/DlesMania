@@ -981,6 +981,8 @@ h1, h2, h3, .font-serif, .font-display {
 .golden-text { background: linear-gradient(90deg, #b45309, #f59e0b, #fde68a, #f59e0b, #b45309); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: golden-sweep 2.4s linear infinite; }
 .golden-ready { box-shadow: 0 0 0 2px #f59e0b, 0 0 18px #fbbf2466; }
 @keyframes golden-sweep { to { background-position: -200% 0; } }
+/* A golden pack in the player's wrapper: the wrapper's look, a gold rim round it, its gold shine on top (PackArt). */
+.pack-golden-rim { box-shadow: inset 0 0 0 3px #fbbf24, inset 0 0 0 5px rgba(253, 230, 138, 0.55), inset 0 0 18px rgba(251, 191, 36, 0.7); background: linear-gradient(160deg, rgba(253, 230, 138, 0.18), transparent 35%, transparent 65%, rgba(245, 158, 11, 0.22)); }
 .golden-foil { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, #fff8 45%, #fff3 50%, transparent 62%); background-size: 250% 100%; mix-blend-mode: overlay; animation: golden-foil 2.8s ease-in-out infinite; }
 @keyframes golden-foil { from { background-position: 150% 0; } to { background-position: -100% 0; } }
 .golden-backdrop { background: radial-gradient(circle at 50% 42%, #fbbf2433, transparent 55%), repeating-conic-gradient(from 0deg at 50% 42%, #fbbf2414 0deg 6deg, transparent 6deg 18deg); animation: golden-turn 40s linear infinite; }
@@ -4265,3 +4267,17 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   .card-rank-ghost, .card-rank-hot .card-rank-ghost, .card-rank-seam, .card-rank-fuse, .card-rank-hot .card-rank-fuse, .card-rank-arcana-core, .card-rank-bond .card-rank-heart { animation: none; }
   .card-rank-ghost { opacity: 0; }
 }
+
+/* ---- Bond games (src/friends/MindMeld.tsx, BondEgg.tsx). */
+.meld-hit { background: linear-gradient(90deg, rgba(255, 126, 182, 0.25), rgba(167, 139, 250, 0.25)); box-shadow: inset 0 0 0 1px rgba(255, 126, 182, 0.6); }
+.meld-win { background: linear-gradient(90deg, rgba(255, 126, 182, 0.2), rgba(253, 230, 138, 0.25), rgba(167, 139, 250, 0.2)); box-shadow: 0 0 18px rgba(255, 126, 182, 0.35); animation: meld-win 0.6s cubic-bezier(0.3, 1.5, 0.5, 1) both; }
+@keyframes meld-win { from { transform: scale(0.85); opacity: 0; } }
+.bond-egg { transform-origin: 50% 95%; animation: bond-egg 3.2s ease-in-out infinite; }
+.bond-egg-near { animation-duration: 1.3s; }
+@keyframes bond-egg { 0%, 70%, 100% { rotate: 0deg; } 76% { rotate: -6deg; } 82% { rotate: 5deg; } 88% { rotate: -3deg; } 94% { rotate: 2deg; } }
+.bond-egg-aura { animation: bond-egg-aura 1.3s ease-in-out infinite; filter: blur(6px); }
+@keyframes bond-egg-aura { 50% { opacity: 0.6; } }
+.bond-pet-glow { background: radial-gradient(circle, color-mix(in srgb, var(--pet) 60%, transparent), transparent 70%); animation: bond-egg-aura 2.4s ease-in-out infinite; }
+.bond-pet-pop { animation: bond-pet-pop 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both, avatar-icon-float 3.4s ease-in-out 0.7s infinite; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35)); }
+@keyframes bond-pet-pop { from { transform: scale(0.2) translateY(30%); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .meld-win, .bond-egg, .bond-egg-aura, .bond-pet-glow, .bond-pet-pop { animation: none; } }

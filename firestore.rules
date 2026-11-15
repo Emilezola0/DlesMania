@@ -561,10 +561,31 @@ service cloud.firestore {
     // One asks (a friend of theirs), the other says yes; either ends it. Each day both play the daily, each marks it
     // (m: "<day>_<uid>", today only); the second mark adds the day to `together`: a point for the pair. A Bond pack
     // costs bondPackCost() points (BOND_PACK_COST in src/data/tuning/special-rarities.json; a point a day both
-    // played, pointsPerDay, is 1 here too): one starts it (a seed, the points paid), only the other joins it, and an
-    // unjoined one can be called off, its points given back.
+    // played, pointsPerDay, is 1 here too, plus the Bond games' points, `extra`): one starts it (a seed, the points
+    // paid), only the other joins it, and an unjoined one can be called off, its points given back.
     function bondPackCost() {
       return 3;
+    }
+    // The Bond games (src/friends/bondGames.ts, MELD and EGG: change both). `extra` holds the points they gave.
+    // Mind Meld: one game a day; a round's words are "<round>_<uid>", one each; the second word of a round settles it.
+    function meldRounds() {
+      return 8;
+    }
+    function meldPoints(round) {
+      return round == 1 ? 3 : (round == 2 ? 2 : 1);
+    }
+    // Bond Egg: one act a day each; days both acted; teamwork (two different acts) and hatching give points.
+    function eggDays() {
+      return 10;
+    }
+    function eggPair() {
+      return 1;
+    }
+    function eggHatch() {
+      return 5;
+    }
+    function eggActs() {
+      return ['train', 'play', 'teach', 'cuddle'];
     }
     match /bonds/{id} {
       function member() {
@@ -601,7 +622,7 @@ service cloud.firestore {
         let o = resource.data;
         return o.status == 'active' && only(['pack', 'prev', 'spent', 'opened'])
           && (o.pack == null || o.pack.joined != null)
-          && o.together.size() - o.spent >= bondPackCost()
+          && o.together.size() + o.get('extra', 0) - o.spent >= bondPackCost()
           && n.spent == o.spent + bondPackCost() && n.opened == o.opened + 1 && n.prev == (o.pack == null ? o.prev : o.pack)
           && n.pack.keys().hasOnly(['by', 'seed', 'at', 'joined'])
           && n.pack.by == request.auth.uid && n.pack.seed is string && n.pack.seed.size() == 24
@@ -619,6 +640,84 @@ service cloud.firestore {
         return only(['pack', 'spent', 'opened']) && o.pack != null && o.pack.joined == null
           && n.pack == null && n.spent == o.spent - bondPackCost() && n.opened == o.opened - 1;
       }
+      // Mind Meld: a new game (today's; one a day), and a word.
+      function meldStarting() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let om = o.get('meld', null);
+        let nm = n.meld;
+        return o.status == 'active' && only(['meld'])
+          && nm.keys().hasOnly(['id', 'day', 'cards', 'round', 'words', 'done', 'won'])
+          && isToday(nm.day) && (om == null || om.day != nm.day)
+          && nm.id == (om == null ? 1 : om.id + 1)
+          && nm.cards is list && nm.cards.size() == 2 && nm.cards[0] is string && nm.cards[1] is string
+          && nm.cards[0].size() <= 80 && nm.cards[1].size() <= 80
+          && nm.round == 1 && nm.words.size() == 0 && nm.done == false && nm.won == 0;
+      }
+      function melding() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let om = o.meld;
+        let nm = n.meld;
+        let mine = string(om.round) + '_' + request.auth.uid;
+        let theirs = string(om.round) + '_' + other();
+        let added = nm.words.diff(om.words);
+        let both = theirs in om.words;
+        let met = both && nm.words[mine] == om.words[theirs];
+        return o.status == 'active' && om != null && om.done == false && only(['meld', 'extra'])
+          && nm.keys().hasOnly(['id', 'day', 'cards', 'round', 'words', 'done', 'won'])
+          && nm.id == om.id && nm.day == om.day && nm.cards == om.cards
+          && added.addedKeys().hasOnly([mine]) && added.addedKeys().size() == 1
+          && added.changedKeys().size() == 0 && added.removedKeys().size() == 0
+          && nm.words[mine] is string && nm.words[mine].size() >= 1 && nm.words[mine].size() <= 24
+          && (!both
+            ? (nm.round == om.round && nm.done == false && nm.won == 0 && n.get('extra', 0) == o.get('extra', 0))
+            : (met
+              ? (nm.round == om.round && nm.done == true && nm.won == meldPoints(om.round)
+                && n.get('extra', 0) == o.get('extra', 0) + meldPoints(om.round))
+              : (nm.won == 0 && n.get('extra', 0) == o.get('extra', 0)
+                && (om.round < meldRounds()
+                  ? (nm.round == om.round + 1 && nm.done == false)
+                  : (nm.round == om.round && nm.done == true)))));
+      }
+      // Bond Egg: a new egg (the hatched one joins the pets), and a day's act.
+      function eggLaying() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let oe = o.get('egg', null);
+        let ne = n.egg;
+        return o.status == 'active' && only(['egg', 'pets']) && (oe == null || oe.hatched == true)
+          && n.pets == (oe == null ? o.get('pets', []) : o.get('pets', []).concat([oe])) && n.pets.size() <= 50
+          && ne.keys().hasOnly(['born', 'acts', 'last', 'days', 'stats', 'hatched'])
+          && isToday(ne.born) && ne.acts.size() == 0 && ne.last == '' && ne.days == 0 && ne.hatched == false
+          && ne.stats == { 'str': 0, 'joy': 0, 'wit': 0, 'calm': 0 };
+      }
+      function statUp(ne, oe, k) {
+        return ne.stats[k] is int && ne.stats[k] >= oe.stats[k] && ne.stats[k] <= oe.stats[k] + 3;
+      }
+      function tending() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let oe = o.egg;
+        let ne = n.egg;
+        let day = ne.last.split('_')[0];
+        let theirs = day + '_' + other();
+        let both = theirs in oe.acts;
+        let added = ne.acts.diff(oe.acts);
+        let hatching = ne.days >= eggDays();
+        return o.status == 'active' && oe != null && oe.hatched == false && only(['egg', 'extra'])
+          && ne.keys().hasOnly(['born', 'acts', 'last', 'days', 'stats', 'hatched'])
+          && ne.born == oe.born && ne.last == day + '_' + request.auth.uid && isToday(day)
+          && added.addedKeys().hasOnly([ne.last]) && added.addedKeys().size() == 1
+          && added.changedKeys().size() == 0 && added.removedKeys().size() == 0
+          && ne.acts[ne.last] in eggActs()
+          && ne.days == oe.days + (both ? 1 : 0) && ne.hatched == hatching
+          && ne.stats.keys().hasOnly(['str', 'joy', 'wit', 'calm'])
+          && statUp(ne, oe, 'str') && statUp(ne, oe, 'joy') && statUp(ne, oe, 'wit') && statUp(ne, oe, 'calm')
+          && n.get('extra', 0) == o.get('extra', 0)
+            + (both && oe.acts[theirs] != ne.acts[ne.last] ? eggPair() : 0)
+            + (hatching ? eggHatch() : 0);
+      }
       allow get: if member();
       allow create: if member() && id.split('_')[0] < id.split('_')[1]
         && request.auth.uid in get(/databases/$(database)/documents/scores/$(other())).data.friends
@@ -629,7 +728,8 @@ service cloud.firestore {
         && request.resource.data.m.size() == 0 && request.resource.data.together.size() == 0
         && request.resource.data.spent == 0 && request.resource.data.opened == 0
         && request.resource.data.pack == null && request.resource.data.prev == null;
-      allow update: if member() && (accepting() || marking() || starting() || joining() || cancelling());
+      allow update: if member() && (accepting() || marking() || starting() || joining() || cancelling()
+        || meldStarting() || melding() || eggLaying() || tending());
       allow delete: if member();
     }
 

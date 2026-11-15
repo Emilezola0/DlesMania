@@ -9,12 +9,13 @@ import { DRAWN, WrapArt } from './WrapArt';
 /**
  * A pack's wrapper: its colours, a torn top edge, a shine — and for a franchise pack, its guardian. A golden
  * pack (every so many packs, see GOLDEN) is wrapped in gold foil, a light sweeping across it. The player's wrapper
- * (the Casino's Boutique) dresses the others: `wrapper` shows a given one instead (its preview).
+ * (the Casino's Boutique) dresses every pack, a golden one too (it keeps a gold rim, its gold shine and its ★ GOLDEN ★):
+ * `wrapper` shows a given one instead (its preview).
  */
 export function PackArt({ pack, className = '', shine = false, golden = false, wrapper }: { pack: Pack; className?: string; shine?: boolean; golden?: boolean; wrapper?: string }) {
   const set = pack.boss ? SETS.find((s) => s.id === pack.boss) : undefined;
   const mine = useProgress((s) => s.wrapper);
-  const wrap = golden ? undefined : COSMETIC_BY_ID.get(wrapper ?? mine ?? '');
+  const wrap = COSMETIC_BY_ID.get(wrapper ?? mine ?? '');
   const box = useRef<HTMLDivElement>(null);
   useHoloTilt(box, wrap?.opening === 'holofoil');
   // A drawn wrapper (the Thunderstorm, src/gacha/WrapArt.tsx) only while the pack is on screen: a page full of packs
@@ -24,7 +25,7 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
   return (
     <div
       ref={box}
-      className={`relative grid aspect-[3/4] w-full place-items-center overflow-hidden rounded-lg text-white shadow-xl [container-type:inline-size] ${wrap?.className ?? ''} ${className}`}
+      className={`relative grid aspect-[3/4] w-full place-items-center overflow-hidden rounded-lg text-white shadow-xl [container-type:inline-size] ${wrap?.className ?? ''} ${golden && wrap ? 'pack-golden-wrapped' : ''} ${className}`}
       style={{ background: golden ? 'linear-gradient(160deg, #7c4a03, #f59e0b 30%, #fde68a 50%, #d97706 70%, #78350f)' : `linear-gradient(160deg, ${pack.colors[0]}, ${pack.colors[1]})`, clipPath: 'polygon(0 4%, 5% 0, 10% 4%, 15% 0, 20% 4%, 25% 0, 30% 4%, 35% 0, 40% 4%, 45% 0, 50% 4%, 55% 0, 60% 4%, 65% 0, 70% 4%, 75% 0, 80% 4%, 85% 0, 90% 4%, 95% 0, 100% 4%, 100% 100%, 0 100%)' }}
     >
       {wrap && <div className="pack-wrap-layer pointer-events-none absolute inset-0" aria-hidden />}
@@ -38,6 +39,7 @@ export function PackArt({ pack, className = '', shine = false, golden = false, w
       </div>
       <div className="card-sheen pointer-events-none absolute inset-0" />
       {golden && <div className="golden-foil pointer-events-none" aria-hidden />}
+      {golden && wrap && <div className="pack-golden-rim pointer-events-none absolute inset-0" aria-hidden />}
       {/* A foil's shine, following the pointer (the pack being torn sets --sx / --sy). */}
       {shine && <div className="pack-shine pointer-events-none absolute inset-0" aria-hidden />}
     </div>

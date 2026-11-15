@@ -1,6 +1,6 @@
 // The Boutique (Casino → Boutique): cosmetics bought outright, never won by chance. Name styles colour the
 // player's name on their profile; pack wrappers dress every pack before it's torn (looks only: the cards inside
-// are drawn the same; a golden pack keeps its gold whatever the wrapper); titles go under the player's name.
+// are drawn the same; a golden pack is wrapped too, with a gold rim and its gold shine on top); titles go under the player's name.
 // Each is paid in DleCoins or in casino tokens (the tokens the machines give, one per 20 coins played): most take
 // either, a few only tokens, and a few are never sold: they're won at the claw machine. The Prestige pieces, at the end of
 // each list, are the showiest: tokens only, and a lot of them.

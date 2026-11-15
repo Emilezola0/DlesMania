@@ -7,6 +7,7 @@
 import { deleteDoc, doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, type Timestamp } from 'firebase/firestore';
 import { todayKey } from '../lib/date';
 import { BOND_PACK_COST, BOND_POINTS_PER_DAY } from '../gacha/ranks';
+import { eggLay, eggTend, meldSay, meldStart, type Egg, type MeldGame } from '../friends/bondGames';
 import { auth, db } from './firebase';
 
 export interface BondPack {
@@ -35,12 +36,19 @@ export interface BondDoc {
   /** The pack being opened (joined: by both), and the one before it. */
   pack: BondPack | null;
   prev: BondPack | null;
+  /** Points won at the Bond games (src/friends/bondGames.ts), on top of the days together. */
+  extra?: number;
+  /** Today's (or the last) Mind Meld game. */
+  meld?: MeldGame | null;
+  /** The egg being raised, and the pets hatched before it. */
+  egg?: Egg | null;
+  pets?: Egg[];
 }
 
 export const pairId = (x: string, y: string) => (x < y ? `${x}_${y}` : `${y}_${x}`);
 export const otherOf = (d: Pick<BondDoc, 'a' | 'b'>, me: string) => (d.a === me ? d.b : d.a);
 /** Points the pair has to spend. */
-export const pointsOf = (d: Pick<BondDoc, 'together' | 'spent'>) => Object.keys(d.together ?? {}).length * BOND_POINTS_PER_DAY - (d.spent ?? 0);
+export const pointsOf = (d: Pick<BondDoc, 'together' | 'spent' | 'extra'>) => Object.keys(d.together ?? {}).length * BOND_POINTS_PER_DAY + (d.extra ?? 0) - (d.spent ?? 0);
 
 const ref = (id: string) => doc(db, 'bonds', id);
 function me(): string {
@@ -160,6 +168,28 @@ export async function cancelPack(friend: string): Promise<void> {
     tx.update(r, { pack: null, spent: d.spent - BOND_PACK_COST, opened: d.opened - 1 });
   });
 }
+
+/** A move on an active Bond, in a transaction: `change` gets the Bond as it is and returns the fields to write. */
+async function move(friend: string, change: (d: BondDoc, uid: string) => Partial<BondDoc>): Promise<void> {
+  const uid = me();
+  await runTransaction(db, async (tx) => {
+    const r = ref(pairId(uid, friend));
+    const snap = await tx.get(r);
+    if (!snap.exists()) throw new Error('No Bond with this friend.');
+    const d = snap.data() as BondDoc;
+    if (d.status !== 'active') throw new Error('This Bond isn’t active yet.');
+    tx.update(r, change(d, uid) as Record<string, never>);
+  });
+}
+
+/** Starts today's Mind Meld (one a day; an unfinished one from another day is dropped). */
+export const startMeld = (friend: string) => move(friend, (d) => meldStart(d, todayKey()));
+/** Writes this round's word. The second word of a round settles it: a Meld (points), the next round, or the end. */
+export const sayWord = (friend: string, word: string) => move(friend, (d, uid) => meldSay(d, uid, friend, word));
+/** Lays a new egg (the hatched one joins the pets). */
+export const layEgg = (friend: string) => move(friend, (d) => eggLay(d, todayKey()));
+/** Today's act for the egg (one a day each): its stats, teamwork's point, and hatching. */
+export const tendEgg = (friend: string, action: string) => move(friend, (d, uid) => eggTend(d, uid, friend, action, todayKey()));
 
 // The active bonds, kept on this device so today can be marked when the save syncs (src/cloud/engine.ts).
 const listKey = (uid: string) => `omnidle:bonds:${uid}`;

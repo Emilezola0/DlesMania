@@ -1411,8 +1411,8 @@ export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClos
   // A golden pack's own light, gold where an ordinary pack's is lilac.
   const packLight = golden ? GOLDEN_LIGHT : PACK_LIGHT;
   const counts = useProgress((s) => s.cards);
-  // An Ascended wrapper opens its own way (a golden pack keeps its gold, and the usual opening).
-  const opening = useProgress((s) => (golden ? undefined : openingOf(s.wrapper)));
+  // An Ascended wrapper opens its own way, a golden pack too.
+  const opening = useProgress((s) => openingOf(s.wrapper));
   const best = cards.reduce<Rarity>((b, c) => (RARITIES.indexOf(c.rarity) > RARITIES.indexOf(b) ? c.rarity : b), 'common');
   const light = RARITY_LIGHT[best];
   // The shooting stars, drawn once per pack (the cards come sorted, the rarest last).

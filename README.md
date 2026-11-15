@@ -185,7 +185,7 @@ npm run rarities:import   # puts the sheet back into src/data/tuning/rarities.js
 
 Edited on Drive? File › Download › Microsoft Excel (.xlsx), over `sheets/rarities.xlsx`, then import: it checks every value (a colour is `#rrggbb`, a number a number, On is Yes or No), changes nothing if one is wrong, and says what changed. The Test lab has **Star shards +7** and a button that takes every special rarity off, to try them.
 
-Bond's points a day and pack cost are also in `firestore.rules` (`bondPackCost()`, and a point a day): change them there too, then publish the rules in the Firebase console. Bonds live in `bonds/<uid>_<uid>` (`src/cloud/bonds.ts`); the Friends page's **Bond** tab shows them, and `#/friends?tab=bond&demo` (dev) opens a pack with a pretend friend.
+Bond's points a day and pack cost are also in `firestore.rules` (`bondPackCost()`, and a point a day): change them there too, then publish the rules in the Firebase console. Bonds live in `bonds/<uid>_<uid>` (`src/cloud/bonds.ts`); the Friends page's **Bond** tab shows them, and `#/friends?tab=bond&demo` (dev) opens a pack with a pretend friend. Its two games, **Mind Meld** and **Bond Egg** (`src/friends/bondGames.ts`), add points to a Bond (`extra`); their numbers (`MELD`, `EGG`) are in `firestore.rules` too (`meldRounds()`, `meldPoints()`, `eggDays()`, `eggPair()`, `eggHatch()`): change both, then publish the rules. The demo plays them too, the pretend friend answering.
 
 ### Checking in Firefox
 

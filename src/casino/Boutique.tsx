@@ -265,7 +265,7 @@ export function Boutique() {
       />
       <Shelf
         title="Pack wrappers"
-        text="Every pack you open, wrapped your way. Looks only: the cards inside are the same, and a golden pack stays gold."
+        text="Every pack you open, wrapped your way. Looks only: the cards inside are the same. A golden pack is wrapped too, with a gold rim and its gold shine."
         items={WRAPPERS}
         show={(c) => (
           <Item key={c.id} c={c} worn={wrapper === c.id} onWear={(on) => setWrapper(on ? c.id : null)}>
