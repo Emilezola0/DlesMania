@@ -1,7 +1,7 @@
 // The Black Market (Casino → Black Market): two Mythic (or Omni) cards of a franchise handed over for one other card
 // of that franchise and rarity, picked by the player. The cards handed over go on the player's stall, where their
 // friends can buy them for DleCoins (dear) for a week (src/cloud/blackmarket.ts). The numbers: casino.json blackMarket.
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { DleCoin } from '../components/DleCoin';
 import { CardFace } from '../gacha/CardView';
 import { CARD_BY_ID, COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from '../gacha/cards';
@@ -10,6 +10,8 @@ import { startCloud, useCloud } from '../cloud/state';
 import type { Stall } from '../cloud/blackmarket';
 import { celebrate, celebrateBig } from '../lib/fx';
 import { shownName } from '../lib/french';
+import { useT } from '../lib/i18n';
+import { cardMatches, searchWords, SETS_BY_DOMAIN } from '../gacha/search';
 import { sfx } from '../lib/sfx';
 import { tradableCopies, useProgress } from '../store/progress';
 
@@ -66,6 +68,17 @@ export function BlackMarket() {
     // Enough to hand over, and something else to get for them.
     return [...by.values()].filter((g) => g.copies >= BM.give && g.all.length >= 2).sort((a, b) => b.copies - a.copies || a.franchise.localeCompare(b.franchise));
   }, [free]);
+
+  // Finding a card, as in the Album: by its name (English or French), title or franchise; by set; by rarity.
+  const t = useT();
+  const [query, setQuery] = useState('');
+  const [set, setSet] = useState('all');
+  const [rarityOn, setRarityOn] = useState<Rarity[]>(BM.rarities);
+  const search = useDeferredValue(query);
+  const words = useMemo(() => searchWords(search), [search]);
+  const fits = useCallback((c: Card) => (set === 'all' || c.set === set) && rarityOn.includes(c.rarity) && cardMatches(c, words), [set, rarityOn, words]);
+  const filtering = !!query.trim() || set !== 'all' || rarityOn.length < BM.rarities.length;
+  const shownGroups = useMemo(() => groups.map((g) => ({ g, cards: g.mine.filter(fits) })).filter((x) => x.cards.length), [groups, fits]);
 
   const [picked, setPicked] = useState<string[]>([]);
   const [target, setTarget] = useState<string | null>(null);
@@ -166,7 +179,9 @@ export function BlackMarket() {
   const rarities = BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ');
   const targetCard = target ? CARD_BY_ID.get(target)! : null;
   const step = !group || picked.length < BM.give ? 1 : !target ? 2 : 3;
-  const onSale = theirs ? theirs.filter((s) => !s.buyer && CARD_BY_ID.has(s.card)) : [];
+  const onSale = theirs ? theirs.filter((s) => !s.buyer && CARD_BY_ID.has(s.card) && fits(CARD_BY_ID.get(s.card)!)) : [];
+  const forSaleAtAll = theirs ? theirs.some((s) => !s.buyer && CARD_BY_ID.has(s.card)) : false;
+  const pill = (on: boolean) => `rounded-full border px-2.5 py-1 text-xs font-bold transition ${on ? 'border-fuchsia-400/70 bg-fuchsia-500/20 text-white' : 'border-white/15 text-white/45 hover:text-white/80'}`;
 
   return (
     <div className="bm-den space-y-6 rounded-2xl p-4 sm:p-6">
@@ -233,6 +248,42 @@ export function BlackMarket() {
         </section>
       )}
 
+      {/* Finding a card (your cards to hand over, and your friends' stalls), as in the Album. */}
+      <section className="bm-panel flex flex-wrap items-center gap-2 rounded-xl p-3" aria-label={t('Search', 'Recherche')}>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={t('Search a card or franchise…', 'Cherche une carte ou une franchise…')}
+          aria-label={t('Search', 'Recherche')}
+          className="min-w-0 flex-1 basis-48 rounded-md border border-white/15 bg-black/30 px-3 py-1.5 text-sm text-white placeholder:text-white/40"
+        />
+        <select value={set} onChange={(e) => setSet(e.target.value)} className="rounded-md border border-white/15 bg-black/30 px-2 py-1.5 text-sm font-semibold text-white" aria-label={t('Set', 'Série')}>
+          <option value="all">{t('Every set', 'Toutes les séries')}</option>
+          {SETS_BY_DOMAIN.map((d) => (
+            <optgroup key={d.domain.id} label={`${d.domain.icon} ${d.domain.label}`}>
+              {d.sets.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.franchise}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+        <div className="flex gap-1.5">
+          {BM.rarities.map((r) => (
+            <button key={r} type="button" aria-pressed={rarityOn.includes(r)} onClick={() => (sfx.click(), setRarityOn(rarityOn.includes(r) ? (rarityOn.length > 1 ? rarityOn.filter((x) => x !== r) : rarityOn) : [...rarityOn, r]))} className={pill(rarityOn.includes(r))}>
+              {RARITY_INFO[r].gem} {RARITY_INFO[r].name}
+            </button>
+          ))}
+        </div>
+        {filtering && (
+          <button type="button" onClick={() => (sfx.click(), setQuery(''), setSet('all'), setRarityOn(BM.rarities))} className="text-xs font-bold text-fuchsia-300 hover:underline">
+            {t('Clear', 'Effacer')}
+          </button>
+        )}
+      </section>
+
       {/* 1. What to hand over. */}
       <section className="space-y-3">
         <StepTitle n={1} done={step > 1}>Pick {BM.give} cards to hand over</StepTitle>
@@ -240,8 +291,10 @@ export function BlackMarket() {
           <p className="bm-panel rounded-xl p-4 text-sm text-white/60">
             You need {BM.give} {rarities} cards (copies count) of the same franchise. Keep opening packs: duplicates of a franchise&apos;s Mythics will do. Only cards earned with your account signed in count: they go to your friends&apos; stalls.
           </p>
+        ) : shownGroups.length === 0 ? (
+          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">{t('None of your cards to hand over match this search.', 'Aucune de tes cartes à donner ne correspond à cette recherche.')}</p>
         ) : (
-          groups.map((g) => (
+          shownGroups.map(({ g, cards }) => (
             <div key={g.key} className={`bm-panel space-y-1 rounded-xl p-3 transition ${group && group.key !== g.key ? 'opacity-50' : ''} ${group?.key === g.key ? 'border-fuchsia-400/50' : ''}`}>
               <p className="flex items-baseline justify-between gap-2 text-sm">
                 <b className="truncate">{g.franchise}</b>
@@ -250,7 +303,7 @@ export function BlackMarket() {
                 </span>
               </p>
               <div className="-mx-1 flex gap-3 overflow-x-auto px-2 pb-2 pt-4">
-                {g.mine.map((c) => (
+                {cards.map((c) => (
                   <Mini key={c.id} card={c} count={free(c.id)} picked={group?.key === g.key ? times(c.id) : 0} onClick={() => pick(c, g)} />
                 ))}
               </div>
@@ -291,7 +344,7 @@ export function BlackMarket() {
         ) : theirs === null ? (
           <p className="text-sm text-white/50">Looking round the stalls…</p>
         ) : onSale.length === 0 ? (
-          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">Nothing on your friends&apos; stalls this week.</p>
+          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">{forSaleAtAll ? t('Nothing on your friends’ stalls matches this search.', 'Rien sur les stands de tes amis ne correspond à cette recherche.') : "Nothing on your friends' stalls this week."}</p>
         ) : (
           <div className="flex flex-wrap gap-4 pt-2">
             {onSale.map((s) => {
