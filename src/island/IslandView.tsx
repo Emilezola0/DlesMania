@@ -193,6 +193,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     while (y < ISLAND.h && !solidAt(islRef.current, cx, y)) y++;
     pos.current = { x: cx + (1 - PW) / 2, y: y - PH - 0.01 };
   }, []);
+  // Dev only, for the browser checks: stand the player on top of column x.
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    const w = window as unknown as { __islandPut?: (x: number) => void };
+    w.__islandPut = (x) => {
+      let y = 0;
+      while (y < ISLAND.h && !solidAt(islRef.current, x, y)) y++;
+      pos.current = { x: x + (1 - PW) / 2, y: y - PH - 0.01 };
+      vel.current = { x: 0, y: 0 };
+    };
+    return () => void delete w.__islandPut;
+  }, []);
 
   useEffect(() => {
     let raf = 0;
@@ -528,12 +540,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const allBag = Object.entries(items).filter(([, n]) => n > 0);
   const bagItems = allBag.filter(([id]) => kindOf(id) !== 'disc');
   const discs = allBag.filter(([id]) => kindOf(id) === 'disc');
+  /** Whether a thing from the bag can go in the chosen layer (a wallpaper always goes behind). */
+  const fitsLayer = (id: string) => kindOf(id) === 'wall' || canLayer(id, layer);
+  // Changing the layer drops a pick that doesn't fit it.
+  useEffect(() => {
+    if (pick && kindOf(pick) !== 'wall' && !canLayer(pick, layer)) setPick(null);
+  }, [layer, pick]);
   const bagSeeds = SEEDS.filter((s) => (seeds[s.id] ?? 0) > 0);
   const left = (id: string) => (seeds[id] ?? 0) - pair.filter((x) => x === id).length;
   const hoverOk = hover !== null && inReach(hover);
   // The scroll wheel over the island, while building: the next (or previous) thing in the bag.
   const wheel = useRef({ tool, pick, ids: bagItems.map(([id]) => id) });
-  wheel.current = { tool, pick, ids: bagItems.map(([id]) => id) };
+  wheel.current = { tool, pick, ids: bagItems.map(([id]) => id).filter(fitsLayer) };
   useEffect(() => {
     const el = box.current;
     if (!el) return;
@@ -676,9 +694,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             ))}
             <span className="text-xs text-ink-faint">
               {layer === 'back'
-                ? tr('Behind you, with the wallpapers: lamps, music, decorations.', 'Derrière toi, avec les papiers peints : lampes, musique, déco.')
+                ? tr('Behind you, with the wallpapers: decoration only (a block or a fence there isn’t solid).', 'Derrière toi, avec les papiers peints : de la déco seulement (un bloc ou une barrière n’y est pas solide).')
                 : layer === 'front'
-                  ? tr('In front of you: you walk behind it.', 'Devant toi : tu passes derrière.')
+                  ? tr('In front of you, decoration only: you walk behind it.', 'Devant toi, de la déco seulement : tu passes derrière.')
                   : tr('Where you walk: blocks, tools, furniture.', 'Là où tu marches : blocs, outils, meubles.')}
             </span>
           </div>
@@ -691,8 +709,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                   key={id}
                   id={`bag-${id}`}
                   type="button"
+                  disabled={!fitsLayer(id)}
+                  title={fitsLayer(id) ? undefined : layer === 'back' ? tr('This one only goes in the middle.', 'Celui-ci va seulement au milieu.') : tr('This one can’t go in front.', 'Celui-ci ne va pas devant.')}
                   onClick={() => (setPick(id), box.current?.focus())}
-                  className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm ${pick === id ? 'border-accent bg-accent/15' : 'border-rule hover:bg-tile'}`}
+                  className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-35 ${pick === id ? 'border-accent bg-accent/15' : 'border-rule hover:bg-tile'}`}
                 >
                   <ItemArt id={id} className="size-7 text-lg" /> {itemName(id)} <span className="text-xs text-ink-faint">×{n}</span>
                 </button>

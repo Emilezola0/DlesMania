@@ -57,12 +57,18 @@ export interface Island {
 export type Layer = 'back' | 'mid' | 'front';
 export const layerKey = (layer: Layer, cell: number) => (layer === 'back' ? `b${cell}` : layer === 'front' ? `t${cell}` : String(cell));
 /** What may go behind or in front: things that are only looked at (never the ground, blocks, tools or frames). */
-const LAYERED = new Set(['wall', 'decor', 'furniture', 'light', 'music', 'plant']);
+/**
+ * What stays in the middle only: tools you use where you walk (doors, ladders, platforms, trampolines, warp pads), and
+ * what shows a card (frames, screens, readers). Anything else may also go behind or in front, as decoration only: a
+ * block or a fence there is never solid, you walk past it.
+ */
+const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc']);
 export const canLayer = (id: string, layer: Layer) => {
   const k = kindOf(id);
-  if (layer === 'mid') return k !== 'wall' && k !== 'disc';
-  if (layer === 'back') return !!k && LAYERED.has(k);
-  return !!k && k !== 'wall' && LAYERED.has(k);
+  if (!k || k === 'natural' || k === 'disc') return layer === 'mid' && k === 'natural';
+  if (layer === 'mid') return k !== 'wall';
+  if (layer === 'back') return !MIDDLE_ONLY.has(k);
+  return k !== 'wall' && !MIDDLE_ONLY.has(k);
 };
 
 /** Who is moving, on whose island: offline, nobody (all allowed). */
@@ -160,7 +166,7 @@ export function place(isl: Island, items: Bag, cell: number, id: string, who?: W
     return { island: { ...isl, bg: { ...isl.bg, [cell]: id }, by: withBy(isl, `b${cell}`, who) }, items: take(items, id) };
   }
   if (isl.fg[cell] || isl.plots[cell]) throw new Error('Something is already there.');
-  if (item.kind === 'plant' && isl.fg[idx(x, y + 1)] !== 'dirt') throw new Error('Plants need dirt below.');
+  if (item.kind === 'plant' && isl.fg[idx(x, y + 1)] !== 'dirt') throw new Error('Plants need dirt below (or put it behind or in front).');
   return { island: { ...isl, fg: { ...isl.fg, [cell]: id }, by: withBy(isl, String(cell), who) }, items: take(items, id) };
 }
 
