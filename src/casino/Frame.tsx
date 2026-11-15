@@ -40,7 +40,8 @@ const RING_LIFE: Partial<Record<NonNullable<Frame['life']>, string>> = {
   cosmos: 'avatar-frame-spin avatar-frame-hue',
 };
 
-/** A seraph's wing (the left one; the right is its mirror): long feathers fanning out from the root, on the right. */
+/** A seraph's wing (the left one; the right is its mirror): long flight feathers fanning out from the root, on the
+ *  right, gold-edged, with a row of shorter coverts over them and a shine along the top. */
 function Wing() {
   const id = 'wing' + useId().replace(/:/g, '');
   return (
@@ -48,14 +49,70 @@ function Wing() {
       <defs>
         <linearGradient id={id} x1="1" y1="0" x2="0" y2="0">
           <stop offset="0" stopColor="#fff7d6" />
-          <stop offset="0.6" stopColor="#ffffff" />
-          <stop offset="1" stopColor="#fde68a" stopOpacity="0.7" />
+          <stop offset="0.55" stopColor="#ffffff" />
+          <stop offset="0.85" stopColor="#fef3c7" />
+          <stop offset="1" stopColor="#fbbf24" stopOpacity="0.75" />
+        </linearGradient>
+        <linearGradient id={`${id}c`} x1="1" y1="0" x2="0" y2="0">
+          <stop offset="0" stopColor="#fde68a" />
+          <stop offset="1" stopColor="#ffffff" />
         </linearGradient>
       </defs>
-      {[-58, -40, -22, -6, 10, 24].map((a, i) => (
-        <ellipse key={a} cx={58 - i * 2} cy={50} rx={40 - i * 3} ry={7.5} fill={`url(#${id})`} stroke="#f5c542" strokeOpacity={0.55} strokeWidth={1} transform={`rotate(${a} 96 50)`} />
+      {[-64, -50, -36, -22, -8, 6, 20, 32].map((a, i) => (
+        <ellipse key={a} className="avatar-fx-feather" cx={56 - i * 2} cy={50} rx={42 - i * 2.6} ry={6.8} fill={`url(#${id})`} stroke="#f5c542" strokeOpacity={0.7} strokeWidth={1} transform={`rotate(${a} 96 50)`} />
       ))}
+      {[-52, -34, -16, 2, 18].map((a, i) => (
+        <ellipse key={`c${a}`} cx={78 - i} cy={50} rx={20 - i * 1.5} ry={5.5} fill={`url(#${id}c)`} stroke="#fbbf24" strokeOpacity={0.5} strokeWidth={0.8} transform={`rotate(${a} 96 50)`} />
+      ))}
+      <path d="M96,50 Q70,10 22,-6" fill="none" stroke="#ffffff" strokeWidth={2.2} strokeLinecap="round" opacity={0.85} transform="rotate(-6 96 50)" />
     </svg>
+  );
+}
+
+/** Seraph's sacred ring: a gold circle of marks and glyphs turning slowly round the icon. */
+const SACRED = '✦ ☩ ✧ ✝ ✦ ☩ ✧ ✝ '.split(' ').filter(Boolean);
+
+/** Seraph (Transcendent): a burning one. Behind it: rays of light turning, a pillar of light from above, holy fire
+ *  flickering round it, a sacred ring of glyphs turning; six wings (three pairs: up, out, down) beating out of step; a
+ *  double halo over it; feathers falling, motes of light rising; glints flaring on its edge (TWINKLES). */
+function Seraph() {
+  return (
+    <>
+      <span className="avatar-fx-seraph-rays pointer-events-none absolute -inset-[70%] -z-10 rounded-full" aria-hidden />
+      <span className="avatar-fx-seraph-pillar pointer-events-none absolute -z-10" aria-hidden />
+      <span className="pointer-events-none absolute -inset-[20%] -z-10 rounded-full avatar-fx-seraph-light" aria-hidden />
+      <span className="avatar-fx-seraph-fire pointer-events-none absolute -inset-[30%] -z-10 rounded-full" aria-hidden />
+      <span className="avatar-fx-sacred pointer-events-none absolute -inset-[40%] -z-10 rounded-full" aria-hidden>
+        {SACRED.map((g, i) => (
+          <i key={i} style={{ rotate: `${(i * 360) / SACRED.length}deg` }}>
+            <b>{g}</b>
+          </i>
+        ))}
+      </span>
+      {(['up', 'mid', 'down'] as const).map((pair) => (
+        <span key={pair} className={`avatar-fx-wings avatar-fx-wings-${pair}`} aria-hidden>
+          <span className="avatar-fx-wing pointer-events-none absolute -z-10">
+            <Wing />
+          </span>
+          <span className="avatar-fx-wing avatar-fx-wing-r pointer-events-none absolute -z-10">
+            <Wing />
+          </span>
+        </span>
+      ))}
+      <span className="avatar-fx-halo pointer-events-none absolute" aria-hidden />
+      <span className="avatar-fx-halo avatar-fx-halo-2 pointer-events-none absolute" aria-hidden />
+      {[18, 62, 84].map((x, k) => (
+        <span key={`f${k}`} className="avatar-fx-plume pointer-events-none absolute" style={{ left: `${x}%`, animationDelay: `${k * 1.9}s` }} aria-hidden>
+          <svg viewBox="0 0 20 40" className="block size-full overflow-visible">
+            <path d="M10,0 C17,9 17,26 10,40 C3,26 3,9 10,0 Z" fill="#fffbeb" stroke="#fbbf24" strokeWidth={1} />
+            <path d="M10,3 L10,38" stroke="#f59e0b" strokeWidth={0.8} />
+          </svg>
+        </span>
+      ))}
+      {[22, 50, 78, 36, 64, 12, 88, 44].map((x, k) => (
+        <span key={k} className="avatar-fx-mote pointer-events-none absolute rounded-full" style={{ left: `${x}%`, animationDelay: `${k * 0.37}s` }} aria-hidden />
+      ))}
+    </>
   );
 }
 
@@ -127,22 +184,7 @@ function BeyondLife({ life }: { life: Beyond }) {
         ))}
       </span>
     );
-  if (life === 'seraph')
-    return (
-      <>
-        <span className="pointer-events-none absolute -inset-[20%] -z-10 rounded-full avatar-fx-seraph-light" aria-hidden />
-        <span className="avatar-fx-wing pointer-events-none absolute -z-10" aria-hidden>
-          <Wing />
-        </span>
-        <span className="avatar-fx-wing avatar-fx-wing-r pointer-events-none absolute -z-10" aria-hidden>
-          <Wing />
-        </span>
-        <span className="avatar-fx-halo pointer-events-none absolute" aria-hidden />
-        {[22, 50, 78, 36, 64].map((x, k) => (
-          <span key={k} className="avatar-fx-mote pointer-events-none absolute rounded-full" style={{ left: `${x}%`, animationDelay: `${k * 0.55}s` }} aria-hidden />
-        ))}
-      </>
-    );
+  if (life === 'seraph') return <Seraph />;
   return <Cosmos />;
 }
 
@@ -218,7 +260,7 @@ export function FrameRing({ frame, children, className = '', level = 0, badge = 
         {asc >= 1 && <span className="avatar-frame-ring asc-rim absolute inset-0 rounded-full" />}
         {asc >= 3 && <span className="avatar-frame-ring asc-gleam absolute inset-0 rounded-full" />}
       </span>
-      {(frame.life === 'twinkle' || frame.life === 'flicker' || frame.life === 'supernova' || frame.life === 'cosmos') &&
+      {(frame.life === 'twinkle' || frame.life === 'flicker' || frame.life === 'supernova' || frame.life === 'cosmos' || frame.life === 'seraph') &&
         TWINKLES.map(([x, y], i) => (
           <span key={i} className={`${frame.life === 'flicker' ? 'avatar-frame-spark' : 'avatar-frame-twinkle'} pointer-events-none absolute`} style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * (frame.life === 'flicker' ? 0.23 : 0.37)}s` }} aria-hidden>
             <Glyph g={frame.sparkle ?? '✦'} />
