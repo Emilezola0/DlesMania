@@ -59,6 +59,49 @@ function Wing() {
   );
 }
 
+/** Cosmos's sky: stars scattered round the icon (x, y in a 100 box, radius, twinkle delay, colour), the brightest
+ *  also flaring as four-pointed glints, and a constellation joining some of them, drawing itself then fading. */
+const SKY = Array.from({ length: 46 }, (_, i) => {
+  const a = i * 2.39996; // the golden angle: evenly spread, never in rows
+  const d = 30 + ((i * 37) % 19);
+  return { x: 50 + Math.cos(a) * d, y: 50 + Math.sin(a) * d, r: 0.35 + ((i * 7) % 5) * 0.16, delay: -((i * 0.61) % 4), c: ['#ffffff', '#fde68a', '#a5f3fc', '#f0abfc', '#ffffff'][i % 5] };
+});
+const GLINTS = SKY.filter((_, i) => i % 9 === 4);
+const CONSTELLATION = [3, 11, 24, 16, 29, 42].map((i) => `${SKY[i].x.toFixed(1)},${SKY[i].y.toFixed(1)}`).join(' ');
+const glint = (x: number, y: number) => `M${x},${y - 3.2} L${x + 0.6},${y - 0.6} L${x + 3.2},${y} L${x + 0.6},${y + 0.6} L${x},${y + 3.2} L${x - 0.6},${y + 0.6} L${x - 3.2},${y} L${x - 0.6},${y - 0.6} Z`;
+
+/** Cosmos (Transcendent): a whole little universe round the icon. Behind it: two nebulae drifting, a spiral galaxy
+ *  turning, a sky of twinkling stars with glints and a constellation drawing itself, a comet now and then, a pulse of
+ *  light going out. Round it: three gyroscope rings, each carrying a planet; glints flaring on its edge (TWINKLES). */
+function Cosmos() {
+  return (
+    <>
+      <span className="avatar-fx-nebula pointer-events-none absolute -inset-[58%] -z-10 rounded-full" aria-hidden />
+      <span className="avatar-fx-nebula avatar-fx-nebula-2 pointer-events-none absolute -inset-[50%] -z-10 rounded-full" aria-hidden />
+      <span className="avatar-fx-galaxy pointer-events-none absolute -inset-[44%] -z-10 rounded-full" aria-hidden />
+      <span className="avatar-fx-stars pointer-events-none absolute -inset-[34%] -z-10 rounded-full" aria-hidden />
+      <svg className="avatar-fx-sky pointer-events-none absolute -inset-[46%] -z-10 overflow-visible" viewBox="0 0 100 100" aria-hidden>
+        <polyline className="avatar-fx-constellation" points={CONSTELLATION} pathLength={1} />
+        {SKY.map((s, i) => (
+          <circle key={i} className="avatar-fx-skystar" cx={s.x} cy={s.y} r={s.r} fill={s.c} style={{ animationDelay: `${s.delay}s` }} />
+        ))}
+        {GLINTS.map((s, i) => (
+          <path key={i} className="avatar-fx-glint" d={glint(s.x, s.y)} fill={s.c} style={{ animationDelay: `${i * 0.9}s`, transformOrigin: `${s.x}px ${s.y}px` }} />
+        ))}
+      </svg>
+      <span className="avatar-fx-comet-path pointer-events-none absolute -inset-[44%] -z-10 overflow-hidden rounded-full" aria-hidden>
+        <i className="avatar-fx-comet absolute" />
+      </span>
+      <span className="avatar-fx-cosmic-pulse pointer-events-none absolute inset-0 -z-10 rounded-full" aria-hidden />
+      {[0, 1, 2].map((k) => (
+        <span key={k} className={`avatar-fx-gyro avatar-fx-gyro-${k} pointer-events-none absolute rounded-full`} aria-hidden>
+          <i className="avatar-fx-planet" />
+        </span>
+      ))}
+    </>
+  );
+}
+
 /** Behind the icon and round it, the lives above Mythic (src/casino/frames.ts `Beyond`). */
 function BeyondLife({ life }: { life: Beyond }) {
   if (life === 'aurora') return <span className="avatar-fx-aurora pointer-events-none absolute -inset-[50%] -z-10 rounded-full" aria-hidden />;
@@ -100,13 +143,7 @@ function BeyondLife({ life }: { life: Beyond }) {
         ))}
       </>
     );
-  return (
-    <>
-      <span className="avatar-fx-stars pointer-events-none absolute -inset-[34%] -z-10 rounded-full" aria-hidden />
-      <span className="avatar-fx-gyro pointer-events-none absolute -inset-[26%] rounded-full" aria-hidden />
-      <span className="avatar-fx-gyro avatar-fx-gyro-2 pointer-events-none absolute -inset-[26%] rounded-full" aria-hidden />
-    </>
-  );
+  return <Cosmos />;
 }
 
 const BEYOND = new Set<Frame['life']>(['aurora', 'orbit', 'starfall', 'seraph', 'cosmos']);
@@ -181,7 +218,7 @@ export function FrameRing({ frame, children, className = '', level = 0, badge = 
         {asc >= 1 && <span className="avatar-frame-ring asc-rim absolute inset-0 rounded-full" />}
         {asc >= 3 && <span className="avatar-frame-ring asc-gleam absolute inset-0 rounded-full" />}
       </span>
-      {(frame.life === 'twinkle' || frame.life === 'flicker' || frame.life === 'supernova') &&
+      {(frame.life === 'twinkle' || frame.life === 'flicker' || frame.life === 'supernova' || frame.life === 'cosmos') &&
         TWINKLES.map(([x, y], i) => (
           <span key={i} className={`${frame.life === 'flicker' ? 'avatar-frame-spark' : 'avatar-frame-twinkle'} pointer-events-none absolute`} style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${i * (frame.life === 'flicker' ? 0.23 : 0.37)}s` }} aria-hidden>
             <Glyph g={frame.sparkle ?? '✦'} />

@@ -2632,7 +2632,36 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @keyframes avatar-fx-halo { 50% { transform: translateY(-14%); box-shadow: 0 0 14px #fde68a, inset 0 0 7px #fff; } }
 .avatar-fx-mote { bottom: 6%; width: 6%; height: 6%; background: #fff7d6; box-shadow: 0 0 5px #fde68a; opacity: 0; animation: avatar-fx-mote 2.8s ease-out infinite; }
 @keyframes avatar-fx-mote { 0% { opacity: 0; transform: translateY(0) scale(0.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(-900%) scale(1); } }
-/* Cosmos: a starfield turning behind it, two rings spinning round it like a gyroscope. */
+/* Cosmos: a little universe round the icon (src/casino/Frame.tsx Cosmos). Behind: two nebulae drifting and changing
+   colour, a spiral galaxy turning, a starfield and a sky of twinkling stars with glints and a constellation drawing
+   itself, a comet, a pulse of light going out. Round it: three gyroscope rings in 3D, each carrying a planet. */
+.avatar-fx-nebula {
+  background:
+    radial-gradient(ellipse 30% 22% at 22% 28%, rgba(236, 72, 153, 0.9), transparent 70%),
+    radial-gradient(ellipse 22% 32% at 82% 38%, rgba(59, 130, 246, 0.9), transparent 70%),
+    radial-gradient(ellipse 34% 22% at 46% 84%, rgba(168, 85, 247, 0.95), transparent 70%),
+    radial-gradient(ellipse 18% 16% at 80% 76%, rgba(251, 191, 36, 0.7), transparent 70%),
+    radial-gradient(ellipse 16% 20% at 14% 66%, rgba(45, 212, 191, 0.7), transparent 70%);
+  -webkit-mask: radial-gradient(circle closest-side, transparent 34%, #000 52%, #000 68%, transparent 100%);
+  mask: radial-gradient(circle closest-side, transparent 34%, #000 52%, #000 68%, transparent 100%);
+  filter: blur(3px) saturate(1.5);
+  mix-blend-mode: screen;
+  animation: avatar-fx-nebula 26s linear infinite, avatar-frame-hue 14s linear infinite;
+}
+@keyframes avatar-fx-nebula { 0% { rotate: 0deg; scale: 1; } 50% { scale: 1.08 0.96; } 100% { rotate: 360deg; scale: 1; } }
+.avatar-fx-nebula-2 { opacity: 0.8; animation: avatar-fx-nebula-2 34s linear infinite reverse, avatar-frame-hue 18s linear infinite; }
+@keyframes avatar-fx-nebula-2 { 0% { rotate: 0deg; scale: -1 1; } 50% { scale: -0.94 1.06; } 100% { rotate: 360deg; scale: -1 1; } }
+/* A spiral galaxy, seen at a slant: two arms of light curling out of a bright core. */
+.avatar-fx-galaxy {
+  background:
+    repeating-conic-gradient(from 0deg, rgba(196, 181, 253, 0) 0deg, rgba(224, 231, 255, 0.85) 30deg, rgba(240, 171, 252, 0.35) 75deg, rgba(196, 181, 253, 0) 180deg);
+  -webkit-mask: radial-gradient(circle closest-side, transparent 36%, #000 54%, rgba(0, 0, 0, 0.55) 76%, transparent 100%);
+  mask: radial-gradient(circle closest-side, transparent 36%, #000 54%, rgba(0, 0, 0, 0.55) 76%, transparent 100%);
+  filter: blur(1.5px);
+  transform: perspective(300px) rotateX(38deg);
+  animation: avatar-fx-galaxy 16s linear infinite;
+}
+@keyframes avatar-fx-galaxy { to { transform: perspective(300px) rotateX(38deg) rotate(360deg); } }
 .avatar-fx-stars {
   background:
     radial-gradient(circle at 20% 30%, #fff 0 1.2%, transparent 2%), radial-gradient(circle at 78% 22%, #fde68a 0 1%, transparent 1.8%),
@@ -2642,9 +2671,43 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
     radial-gradient(circle, rgba(168, 85, 247, 0.55) 30%, rgba(59, 130, 246, 0.35) 50%, rgba(236, 72, 153, 0.2) 62%, transparent 72%);
   animation: avatar-frame-spin 20s linear infinite, avatar-frame-pulse 4s ease-in-out infinite;
 }
-.avatar-fx-gyro { z-index: 1; transform: perspective(400px) rotateX(var(--tilt, 68deg)); border: 2px solid; border-color: #fff transparent #a5f3fc transparent; filter: drop-shadow(0 0 3px #fff); animation: avatar-fx-gyro 3.6s linear infinite; }
-.avatar-fx-gyro-2 { border-color: transparent #f0abfc transparent #fde68a; animation-duration: 5s; animation-direction: reverse; --tilt: -62deg; }
-@keyframes avatar-fx-gyro { from { transform: perspective(400px) rotateX(var(--tilt, 68deg)) rotateZ(0deg); } to { transform: perspective(400px) rotateX(var(--tilt, 68deg)) rotateZ(360deg); } }
+.avatar-fx-sky { animation: avatar-frame-spin 60s linear infinite reverse; }
+.avatar-fx-skystar { animation: avatar-fx-skystar 4s ease-in-out infinite; }
+@keyframes avatar-fx-skystar { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+.avatar-fx-glint { opacity: 0; filter: drop-shadow(0 0 1px #fff); animation: avatar-fx-glint 4.5s ease-in-out infinite; }
+@keyframes avatar-fx-glint { 0%, 30%, 100% { opacity: 0; transform: scale(0.2) rotate(0deg); } 15% { opacity: 1; transform: scale(1) rotate(45deg); } }
+.avatar-fx-constellation { fill: none; stroke: rgba(191, 219, 254, 0.75); stroke-width: 0.35; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 0.8px #93c5fd); animation: avatar-fx-constellation 9s ease-in-out infinite; }
+@keyframes avatar-fx-constellation { 0% { stroke-dashoffset: 1; opacity: 1; } 40%, 70% { stroke-dashoffset: 0; opacity: 1; } 90%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+/* A comet crossing behind it now and then. */
+.avatar-fx-comet-path { rotate: 32deg; }
+.avatar-fx-comet {
+  top: 36%;
+  left: 0;
+  width: 40%;
+  height: 2.4%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, transparent, rgba(165, 243, 252, 0.5), rgba(240, 171, 252, 0.8), #fff);
+  filter: drop-shadow(0 0 2px #a5f3fc);
+  opacity: 0;
+  animation: avatar-fx-fall 5.5s ease-in 1.3s infinite;
+}
+/* A pulse of light going out from it. */
+.avatar-fx-cosmic-pulse { border: 2px solid rgba(255, 255, 255, 0.85); box-shadow: 0 0 8px #f0abfc, inset 0 0 8px #a5f3fc; opacity: 0; animation: avatar-fx-cosmic-pulse 4.4s ease-out infinite; }
+@keyframes avatar-fx-cosmic-pulse { 0% { opacity: 0.9; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.9); } }
+/* The gyroscope: three rings at different tilts, each with a planet riding it. */
+.avatar-fx-gyro { inset: -26%; z-index: 1; border: 2px solid; border-color: #fff transparent #a5f3fc transparent; filter: drop-shadow(0 0 3px #fff); transform: perspective(400px) rotateY(var(--yaw, 0deg)) rotateX(var(--tilt, 68deg)); animation: avatar-fx-gyro 3.6s linear infinite; }
+.avatar-fx-gyro-1 { inset: -31%; border-color: transparent #f0abfc transparent #fde68a; animation-duration: 5s; animation-direction: reverse; --tilt: -62deg; --yaw: 24deg; }
+.avatar-fx-gyro-2 { inset: -36%; border-width: 1px; border-color: #fde68a rgba(165, 243, 252, 0.5) #f0abfc rgba(165, 243, 252, 0.5); animation-duration: 7.5s; --tilt: 76deg; --yaw: -38deg; opacity: 0.85; }
+@keyframes avatar-fx-gyro { from { transform: perspective(400px) rotateY(var(--yaw, 0deg)) rotateX(var(--tilt, 68deg)) rotateZ(0deg); } to { transform: perspective(400px) rotateY(var(--yaw, 0deg)) rotateX(var(--tilt, 68deg)) rotateZ(360deg); } }
+.avatar-fx-planet { position: absolute; left: 50%; top: 0; width: 13%; height: 13%; translate: -50% -50%; border-radius: 9999px; background: radial-gradient(circle at 35% 30%, #fff, #a5f3fc 40%, #1d4ed8 85%); box-shadow: 0 0 6px #a5f3fc; }
+.avatar-fx-gyro-1 .avatar-fx-planet { width: 10%; height: 10%; background: radial-gradient(circle at 35% 30%, #fff, #f0abfc 40%, #86198f 85%); box-shadow: 0 0 6px #f0abfc; }
+.avatar-fx-gyro-2 .avatar-fx-planet { width: 9%; height: 9%; top: 100%; background: radial-gradient(circle at 35% 30%, #fff, #fde68a 40%, #b45309 85%); box-shadow: 0 0 6px #fde68a, 0 0 0 1.5px rgba(253, 230, 138, 0.35); }
+/* The glints round its edge (Frame.tsx TWINKLES) take the cosmos's colours. */
+.avatar-frame:has(> .avatar-fx-gyro) .avatar-frame-twinkle { color: #fff; filter: drop-shadow(0 0 2px #f0abfc) drop-shadow(0 0 4px #a5f3fc); }
+@media (prefers-reduced-motion: reduce) {
+  .avatar-fx-nebula, .avatar-fx-nebula-2, .avatar-fx-galaxy, .avatar-fx-sky, .avatar-fx-skystar, .avatar-fx-glint, .avatar-fx-constellation, .avatar-fx-comet, .avatar-fx-cosmic-pulse { animation: none; }
+  .avatar-fx-constellation { stroke-dashoffset: 0; }
+}
 /* Name styles (the Casino's Boutique, src/casino/cosmetics.ts). */
 .name-style-gold, .name-style-frost, .name-style-rainbow, .name-style-omni { -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: card-name-shimmer 4s linear infinite; }
 .name-style-gold { background-image: linear-gradient(90deg, #a16207, #fde68a, #f59e0b, #fff7c2, #a16207); }
