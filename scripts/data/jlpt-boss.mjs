@@ -1,7 +1,7 @@
 // The JLPT boss: Oni-Sensei, keeper of the kanji. Its cards are kanji drawn by the app ("kanji:山", see
 // src/lib/kanji.ts), named by their meaning; their readings, in romaji and in kana, are accepted too.
 // Every Japanese word, kanji and reading comes from src/data/jlpt.json (Coto Academy's list) — no other
-// source. Radar: everyday kanji against N1 ones. Final Blow: N5 and N4 kanji to name by their meaning.
+// source. Radar: everyday kanji against Chinese characters Japanese doesn't use. Final Blow: N5 and N4 kanji to name by their meaning.
 // Blitz and Name Chain: the list's words by topic. Signature (Hard): N3 kanji. Re-run after changing the list.
 // node scripts/data/jlpt-boss.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -56,8 +56,8 @@ function card(k, label) {
   return { label: name, image: `kanji:${k}`, aliases, ...(info ? { reading: info.reading } : {}) };
 }
 
-// Everyday kanji to keep on the Radar (every one from the list, N5 to N2), against N1 kanji: the ones a
-// learner isn't ready for yet. Everything Japanese here comes from src/data/jlpt.json.
+// Everyday kanji to keep on the Radar (every one from the list, N5 to N2), against impostors: Chinese characters
+// Japanese doesn't use. Everything Japanese here comes from src/data/jlpt.json.
 const TWINS = [
   ['気', 'Spirit'], ['語', 'Language'], ['書', 'Write'], ['東', 'East'], ['門', 'Gate'], ['車', 'Car'], ['馬', 'Horse'],
   ['鳥', 'Bird'], ['見', 'See'], ['長', 'Long'], ['話', 'Talk'], ['読', 'Read'], ['時', 'Time'], ['電', 'Electricity'],
@@ -65,10 +65,26 @@ const TWINS = [
   ['飯', 'Meal'], ['駅', 'Station'], ['銀', 'Silver'],
 ];
 const members = TWINS.map(([k, label]) => card(k, label));
-const N1 = JLPT.levels.find((l) => l.level === 'N1').kanji;
-const impostors = N1.filter(([, , m]) => !/[;,]/.test(m) && /^[a-z ]+$/i.test(m))
-  .slice(0, 16)
-  .map(([k, r, m]) => ({ label: `${title(m)} (N1)`, image: `kanji:${k}`, reading: r }));
+// The impostors: Chinese characters, never Japanese ones (the owner's rule: a kanji Japanese uses is never an
+// impostor; N1 kanji were, and they are Japanese). Most are the simplified Chinese forms of the Radar's own kanji
+// (东 for 東): the same sign, not as Japan writes it. Once answered, each shows the Japanese kanji and its readings
+// (from the list). A few more are everyday Chinese words with no Japanese use at all. Left out: simplified forms
+// Japanese writes too (来, 开, 气...).
+const SIMPLIFIED = {
+  語: '语', 書: '书', 東: '东', 門: '门', 車: '车', 馬: '马', 鳥: '鸟', 見: '见', 長: '长', 話: '话', 読: '读', 時: '时',
+  電: '电', 間: '间', 聞: '闻', 買: '买', 風: '风', 魚: '鱼', 飲: '饮', 飯: '饭', 駅: '驿', 銀: '银',
+};
+const CHINESE_ONLY = [['这', 'This'], ['说', 'Say'], ['们', 'Plural'], ['吗', 'Question mark']];
+// Every character Japanese uses, as far as the list goes: its kanji and every one written in its words.
+const JAPANESE = new Set([...KANJI.keys(), ...JLPT.levels.flatMap((l) => l.vocab.flatMap(([w]) => [...w]))]);
+const impostors = [
+  ...TWINS.filter(([k]) => SIMPLIFIED[k]).map(([k, label]) => ({ label: `${label} (Chinese)`, image: `kanji:${SIMPLIFIED[k]}`, reading: `中文 · 日本語: ${k} ${KANJI.get(k).reading}` })),
+  ...CHINESE_ONLY.map(([k, label]) => ({ label: `${label} (Chinese)`, image: `kanji:${k}`, reading: '中文' })),
+];
+for (const c of impostors) {
+  const k = c.image.slice('kanji:'.length);
+  if (JAPANESE.has(k)) throw new Error(`${k} is a Japanese kanji: never an impostor`);
+}
 
 const twinsUsed = new Set(TWINS.map(([k]) => k));
 const FINALE = ['山', '川', '火', '水', '木', '金', '土', '雨', '花', '犬', '牛', '肉', '茶', '海', '夜', '朝', '春', '夏', '秋', '冬', '赤', '黒', '白', '手', '口', '目', '足', '店', '紙', '歌'];
@@ -134,10 +150,10 @@ const boss = {
   // Japanese in the lines only from the list too: 違う (N5), すごい (N4), 合格 (N3), 始め (N5).
   lines: {
     intro: 'Welcome, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.',
-    phase2: 'Half of these are N1 kanji you are not ready for. Keep the ones you should know, throw out the rest!',
+    phase2: 'Some of these are not Japanese at all: Chinese, sneaking in. Keep the kanji, throw out the impostors!',
     phase3: 'Final exam! Read each kanji before the bell rings.',
     hit: ['Correct. Hmph.', 'Sugoi.', 'Your stroke order is acceptable.'],
-    hurt: ['Chigau!', 'Wrong reading!', 'Back to the textbook!', 'That one was N1, student.'],
+    hurt: ['Chigau!', 'Wrong reading!', 'Back to the textbook!', 'That one was Chinese, student.'],
     win: 'Gōkaku — you pass. Take my kanji with you; they are yours now.',
     lose: 'Fail. Study the N5 list again and come back tomorrow.',
     secret: 'One more lesson, no textbook. I say a word; you answer with another of the same kind. No repeats!',

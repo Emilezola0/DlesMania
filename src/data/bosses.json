@@ -18938,7 +18938,7 @@
     },
     "lines": {
       "intro": "Welcome, student. Five levels, two thousand kanji, and not one of them will forgive a careless stroke. Show me what you have studied.",
-      "phase2": "Half of these are N1 kanji you are not ready for. Keep the ones you should know, throw out the rest!",
+      "phase2": "Some of these are not Japanese at all: Chinese, sneaking in. Keep the kanji, throw out the impostors!",
       "phase3": "Final exam! Read each kanji before the bell rings.",
       "hit": [
         "Correct. Hmph.",
@@ -18949,7 +18949,7 @@
         "Chigau!",
         "Wrong reading!",
         "Back to the textbook!",
-        "That one was N1, student."
+        "That one was Chinese, student."
       ],
       "win": "Gōkaku — you pass. Take my kanji with you; they are yours now.",
       "lose": "Fail. Study the N5 list again and come back tomorrow.",
@@ -19506,84 +19506,134 @@
       ],
       "impostors": [
         {
-          "label": "Paulownia (N1)",
-          "image": "kanji:桐",
-          "reading": "トウ・ドウ・きり"
+          "label": "Language (Chinese)",
+          "image": "kanji:语",
+          "reading": "中文 · 日本語: 語 ゴ・かた.る・かた.らう"
         },
         {
-          "label": "Chestnut (N1)",
-          "image": "kanji:栗",
-          "reading": "リツ・リ・くり・おののく"
+          "label": "Write (Chinese)",
+          "image": "kanji:书",
+          "reading": "中文 · 日本語: 書 ショ・か.く・~が.き・~がき"
         },
         {
-          "label": "Wise (N1)",
-          "image": "kanji:慧",
-          "reading": "ケイ・エ・さとい"
+          "label": "East (Chinese)",
+          "image": "kanji:东",
+          "reading": "中文 · 日本語: 東 トウ・ひがし"
         },
         {
-          "label": "Lagoon (N1)",
-          "image": "kanji:潟",
-          "reading": "セキ・かた・~がた"
+          "label": "Gate (Chinese)",
+          "image": "kanji:门",
+          "reading": "中文 · 日本語: 門 モン・かど・と"
         },
         {
-          "label": "Eulogy (N1)",
-          "image": "kanji:頌",
-          "reading": "ショウ・ジュ・ヨウ・かたち・たた.える・ほめ.る"
+          "label": "Car (Chinese)",
+          "image": "kanji:车",
+          "reading": "中文 · 日本語: 車 シャ・くるま"
         },
         {
-          "label": "Lungs (N1)",
-          "image": "kanji:肺",
-          "reading": "ハイ"
+          "label": "Horse (Chinese)",
+          "image": "kanji:马",
+          "reading": "中文 · 日本語: 馬 バ・うま・うま~・ま"
         },
         {
-          "label": "Deep and broad (N1)",
-          "image": "kanji:滉",
-          "reading": "コウ・ひろ.い"
+          "label": "Bird (Chinese)",
+          "image": "kanji:鸟",
+          "reading": "中文 · 日本語: 鳥 チョウ・とり"
         },
         {
-          "label": "Warmth (N1)",
-          "image": "kanji:暖",
-          "reading": "ダン・ノン・あたた.か・あたた.かい・あたた.まる・あたた.める"
+          "label": "See (Chinese)",
+          "image": "kanji:见",
+          "reading": "中文 · 日本語: 見 ケン・み.る・み.える・み.せる"
         },
         {
-          "label": "Pregnancy (N1)",
-          "image": "kanji:妊",
-          "reading": "ニン・ジン・はら.む・みごも.る"
+          "label": "Long (Chinese)",
+          "image": "kanji:长",
+          "reading": "中文 · 日本語: 長 チョウ・なが.い・おさ"
         },
         {
-          "label": "Chrysanthemum (N1)",
-          "image": "kanji:菊",
-          "reading": "キク"
+          "label": "Talk (Chinese)",
+          "image": "kanji:话",
+          "reading": "中文 · 日本語: 話 ワ・はな.す・はなし"
         },
         {
-          "label": "Counter for articles (N1)",
-          "image": "kanji:箇",
-          "reading": "カ・コ"
+          "label": "Read (Chinese)",
+          "image": "kanji:读",
+          "reading": "中文 · 日本語: 読 ドク・トク・トウ・よ.む・~よ.み"
         },
         {
-          "label": "Pine tree (N1)",
-          "image": "kanji:松",
-          "reading": "ショウ・まつ"
+          "label": "Time (Chinese)",
+          "image": "kanji:时",
+          "reading": "中文 · 日本語: 時 ジ・とき・~どき"
         },
         {
-          "label": "Silkworm (N1)",
-          "image": "kanji:蚕",
-          "reading": "サン・テン・かいこ・こ"
+          "label": "Electricity (Chinese)",
+          "image": "kanji:电",
+          "reading": "中文 · 日本語: 電 デン"
         },
         {
-          "label": "Neighboring (N1)",
-          "image": "kanji:隣",
-          "reading": "リン・とな.る・となり"
+          "label": "Interval (Chinese)",
+          "image": "kanji:间",
+          "reading": "中文 · 日本語: 間 カン・ケン・あいだ・ま・あい"
         },
         {
-          "label": "Camphor tree (N1)",
-          "image": "kanji:楠",
-          "reading": "ナン・ダン・ゼン・ネン・くす・くすのき"
+          "label": "Hear (Chinese)",
+          "image": "kanji:闻",
+          "reading": "中文 · 日本語: 聞 ブン・モン・き.く・き.こえる"
         },
         {
-          "label": "Clear (N1)",
-          "image": "kanji:瞭",
-          "reading": "リョウ・あきらか"
+          "label": "Buy (Chinese)",
+          "image": "kanji:买",
+          "reading": "中文 · 日本語: 買 バイ・か.う"
+        },
+        {
+          "label": "Wind (Chinese)",
+          "image": "kanji:风",
+          "reading": "中文 · 日本語: 風 フウ・フ・かぜ・かざ~・~かぜ"
+        },
+        {
+          "label": "Fish (Chinese)",
+          "image": "kanji:鱼",
+          "reading": "中文 · 日本語: 魚 ギョ・うお・さかな・~ざかな"
+        },
+        {
+          "label": "Drink (Chinese)",
+          "image": "kanji:饮",
+          "reading": "中文 · 日本語: 飲 イン・オン・の.む・~の.み"
+        },
+        {
+          "label": "Meal (Chinese)",
+          "image": "kanji:饭",
+          "reading": "中文 · 日本語: 飯 ハン・めし"
+        },
+        {
+          "label": "Station (Chinese)",
+          "image": "kanji:驿",
+          "reading": "中文 · 日本語: 駅 エキ"
+        },
+        {
+          "label": "Silver (Chinese)",
+          "image": "kanji:银",
+          "reading": "中文 · 日本語: 銀 ギン・しろがね"
+        },
+        {
+          "label": "This (Chinese)",
+          "image": "kanji:这",
+          "reading": "中文"
+        },
+        {
+          "label": "Say (Chinese)",
+          "image": "kanji:说",
+          "reading": "中文"
+        },
+        {
+          "label": "Plural (Chinese)",
+          "image": "kanji:们",
+          "reading": "中文"
+        },
+        {
+          "label": "Question mark (Chinese)",
+          "image": "kanji:吗",
+          "reading": "中文"
         }
       ]
     },
