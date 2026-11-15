@@ -16,7 +16,7 @@ const GLOW: Record<Rarity, number> = { common: 0, rare: 0.1, epic: 0.16, legenda
 const loops = (clip?: string): clip is string => !!clip && !/^(youtube|tiktok):/.test(clip) && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** The card as the player has it (its awakened form once awake), its clip playing if it has one, else its picture. */
-function ShownPicture({ card, className, style, still }: { card: Card; className: string | ((awake: boolean) => string); style?: (awake: boolean) => CSSProperties | undefined; still?: boolean }) {
+export function ShownPicture({ card, className, style, still }: { card: Card; className: string | ((awake: boolean) => string); style?: (awake: boolean) => CSSProperties | undefined; still?: boolean }) {
   const form = useCardForm(card);
   const cls = typeof className === 'string' ? className : className(form.awakened);
   const [failed, setFailed] = useState<string | null>(null);

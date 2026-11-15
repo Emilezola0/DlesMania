@@ -4317,3 +4317,89 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
     animation: none;
   }
 }
+
+/* Island (src/island/IslandView.tsx): sky, sea, ground, and what's built on it. */
+.island-sky {
+  background: linear-gradient(#7cc4f0, #bfe6fb 70%, #e6f6ff);
+}
+.island-sea {
+  background: linear-gradient(#3aa0d8, #1d5f9b);
+}
+.island-wave {
+  background: radial-gradient(ellipse at 50% 100%, #e0f2fe 0 35%, transparent 40%);
+  animation: island-wave 2.4s ease-in-out infinite alternate;
+}
+@keyframes island-wave {
+  to {
+    transform: translateX(6px);
+  }
+}
+.island-dirt {
+  background: #8b5a2b;
+  background-image: radial-gradient(#6d4520 1.2px, transparent 1.6px), radial-gradient(#a06a36 1px, transparent 1.4px);
+  background-size: 9px 9px, 13px 13px;
+  background-position: 0 0, 5px 6px;
+}
+.island-grass {
+  box-shadow: inset 0 5px 0 #4caf50, inset 0 7px 0 #2e7d32;
+}
+.island-stone {
+  background: #6b7280;
+  background-image: radial-gradient(#4b5563 1.4px, transparent 1.8px);
+  background-size: 11px 11px;
+}
+.island-block {
+  background: #ffffff26;
+  outline: 1px solid #00000022;
+}
+.island-wall {
+  background: #fef3c74d;
+  opacity: 0.55;
+}
+.island-light {
+  filter: drop-shadow(0 0 6px #fde68a);
+}
+.island-frame {
+  border: 3px solid #7c4a1e;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px #0006;
+}
+.island-frame-gold {
+  border-color: #d4a017;
+}
+.island-mound {
+  background: #6d4520;
+}
+.island-ready span:last-child {
+  animation: island-ready 1.2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 4px #fef08a);
+}
+@keyframes island-ready {
+  to {
+    transform: translateY(-3px) scale(1.08);
+  }
+}
+.island-me {
+  will-change: transform;
+}
+.island-me > * {
+  transition: transform 0.15s;
+}
+.island-me[data-left='1'] > * {
+  transform: scaleX(-1);
+}
+.island-me[data-walking='1'] > * {
+  animation: island-bob 0.3s ease-in-out infinite alternate;
+}
+@keyframes island-bob {
+  to {
+    translate: 0 -2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .island-wave,
+  .island-ready span:last-child,
+  .island-me[data-walking='1'] > * {
+    animation: none;
+  }
+}

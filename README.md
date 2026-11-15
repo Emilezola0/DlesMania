@@ -189,7 +189,9 @@ Bond's points a day and pack cost are also in `firestore.rules` (`bondPackCost()
 
 ### Island (stage 1: seeds)
 
-Every game has its seed family (`src/data/seeds.json`, logic in `src/island/seeds.ts`): finishing one of **today's** rounds gives its common seed, a win may add its rare seed (score / `SEED.rareDivisor`); boss fights, the arcade and the JLPT games give theirs `SEED.perDay` times a day each; the Archive gives none. Finishing all ten of a category today gives the Seed of the Day, a hybrid. Seeds sync like the cards (`seeds`, `seedsFound`, `seedLog` in `src/cloud/merge.ts`). Friends → **Island** shows the Seed Book. Each seed lists what it grows (`items`): planting comes with stage 2.
+Every game has its seed family (`src/data/seeds.json`, logic in `src/island/seeds.ts`): finishing one of **today's** rounds gives its common seed, a win may add its rare seed (score / `SEED.rareDivisor`); boss fights, the arcade and the JLPT games give theirs `SEED.perDay` times a day each; the Archive gives none. Finishing all ten of a category today gives the Seed of the Day, a hybrid. Seeds sync like the cards (`seeds`, `seedsFound`, `seedLog` in `src/cloud/merge.ts`). Friends → **Island** shows the Seed Book. Each seed lists what it grows (`items`).
+
+**Stage 2a, the island** (`src/island/island.ts` for the moves, `IslandView.tsx` to play it): a 48×14 side view, your avatar walks on it (arrows/WASD, Space; buttons on phones). Tools: Plant (two seeds on dirt; ready in `ISLAND.growCommon` day, `growRare` with a rare or a hybrid), Build (from the bag of things grown), Pick up, Dig (dirt only, to move the ground). A harvest gives one thing either seed grows, maybe a seed back, and the first time two families are crossed their hybrid. Frames show one of your cards. Saved as `island` and `islandItems` (the latest save wins). Friends can't visit yet (stage 3).
 
 
 ### Checking in Firefox

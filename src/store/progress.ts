@@ -6,6 +6,7 @@ import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
 import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
+import { newIsland, type Bag, type Change, type Island } from '../island/island';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -139,6 +140,11 @@ interface ProgressState {
   seedsFound?: Record<string, string>;
   /** Today's capped seeds (boss, arcade, JLPT) and the Seed of the Day. */
   seedLog?: SeedLog;
+  /** The player's Island (src/island/island.ts), and the things grown for it, not placed yet. */
+  island?: Island;
+  islandItems?: Bag;
+  /** Applies an Island move (place, pick up, dig, plant, harvest, show a card): null, or why it can't be done. */
+  islandAct: (move: (island: Island, items: Bag, seeds: Bag) => Change) => string | null;
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
   /** This week's boss bonuses already paid. */
@@ -590,6 +596,23 @@ export const useProgress = create<ProgressState>()(
       cards: {},
       seeds: {},
       seedsFound: {},
+      islandAct: (move) => {
+        const s = get();
+        try {
+          const c = move(s.island ?? newIsland(), s.islandItems ?? {}, s.seeds ?? {});
+          // A seed new to the Seed Book (a hybrid from a harvest): found today.
+          const fresh = Object.keys(c.seeds ?? {}).filter((id) => !s.seedsFound?.[id]);
+          set({
+            island: c.island,
+            ...(c.items ? { islandItems: c.items } : {}),
+            ...(c.seeds ? { seeds: c.seeds } : {}),
+            ...(fresh.length ? { seedsFound: { ...s.seedsFound, ...Object.fromEntries(fresh.map((id) => [id, todayKey()])) } } : {}),
+          });
+          return null;
+        } catch (e) {
+          return e instanceof Error ? e.message : 'That didn’t work.';
+        }
+      },
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
@@ -1414,7 +1437,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, seeds: {}, seedsFound: {}, seedLog: undefined, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, doodle: {}, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, seeds: {}, seedsFound: {}, seedLog: undefined, island: undefined, islandItems: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, doodle: {}, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

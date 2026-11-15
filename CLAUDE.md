@@ -31,3 +31,6 @@ Rules the owner set; keep to them in every change.
 
 ## Dates
 - Omnidle went online on **18 October 2026** (first deploy): its birthday, `LAUNCH` in `src/lib/date.ts`, marked 🎂 in the Archive every year. Puzzle №1 is earlier (`EPOCH`, 1 October 2026): the archive was filled back from there.
+
+## Firebase
+- **Every time `firestore.rules` changes, send the owner the whole file** (as a file in the chat, not just a summary), so they can copy and paste it into the Firebase console (Firestore → Rules) and publish it. Say what changed in it, and that it must be published.
