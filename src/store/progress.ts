@@ -7,6 +7,7 @@ import { UPGRADES } from '../gacha/upgrades';
 import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
 import { newIsland, type Bag, type Change, type Island } from '../island/island';
+import type { Catch } from '../island/fishing';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -149,6 +150,8 @@ interface ProgressState {
   islandBags: (c: Change) => void;
   /** A seed for watering a friend's plot (SEED.perDay a day): whether it came. */
   helpReward: (seed: string) => boolean;
+  /** A catch from fishing on the Island (src/island/fishing.ts): what you actually got (a sardine when the seed or coins are capped today). */
+  fishReward: (c: Catch) => Catch;
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
   /** This week's boss bonuses already paid. */
@@ -546,7 +549,7 @@ function earn(
 
 /** A round that just finished (it was still being played, or not there yet). */
 /** Seeds from a source capped a day (SEED.perDay): boss fights, the arcade, the JLPT games. */
-function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help', ids?: string[]) {
+function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help' | 'fish', ids?: string[]) {
   const log = seedLogNow(s.seedLog);
   if ((log.n[source] ?? 0) >= SEED.perDay) return {};
   return { ...withSeeds(s, ids ?? arcadeSeeds(source as 'arcade' | 'jlpt')), seedLog: { ...log, n: { ...log.n, [source]: (log.n[source] ?? 0) + 1 } } };
@@ -626,6 +629,24 @@ export const useProgress = create<ProgressState>()(
             ...(fresh.length ? { seedsFound: { ...s.seedsFound, ...Object.fromEntries(fresh.map((id) => [id, todayKey()])) } } : {}),
           };
         }),
+      fishReward: (c) => {
+        const s = get();
+        const fish = (item: string): Catch => {
+          set({ islandItems: { ...(get().islandItems ?? {}), [item]: (get().islandItems?.[item] ?? 0) + 1 } });
+          return { kind: 'fish', item };
+        };
+        if (c.kind === 'fish') return fish(c.item);
+        if (c.kind === 'seed') {
+          const got = cappedSeeds(s, 'fish', [c.seed]);
+          if (!('seedLog' in got)) return fish('fish-sardine');
+          set(got as Partial<ProgressState>);
+          return c;
+        }
+        const paid = earn(s, c.coins, { arcade: 'island-fish' });
+        if (paid.coins === undefined) return fish('fish-sardine');
+        set(paid);
+        return { kind: 'coins', coins: paid.coins - (s.coins ?? 0) };
+      },
       helpReward: (seed) => {
         const s = get();
         const got = cappedSeeds(s, 'help', [seed]);

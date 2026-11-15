@@ -10,8 +10,9 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { canLayer, dig, harvest, harvestChoices, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Layer, type Who } from './island';
-import { useLive, type LiveCfg, type Peer } from './live';
+import { canLayer, dig, harvest, harvestChoices, helpSeed, idx, isReady, isSea, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Layer, type Who } from './island';
+import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type Pose, type TuneEvent, type TvEvent } from './live';
+import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { discFits, DISC_PLAYERS, islandBand, type Source } from './music';
 import { canHear, playVoice } from '../gacha/voice';
 import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
@@ -87,6 +88,20 @@ const STAND: Record<string, React.CSSProperties> = {
 };
 
 // The player's box, in cells, and how it moves.
+/** Where you can sit (Down by it, or click it) and where you lie down to sleep (at night: morning comes, for you). */
+const SEATS = new Set(['beanbag', 'reading-armchair', 'sofa']);
+const BEDS = new Set(['cloud-bed']);
+const restOf = (id: string | undefined): Pose | null => (id && SEATS.has(id) ? 'sit' : id && BEDS.has(id) ? 'sleep' : null);
+/** The next 7:00 on the player's clock (when the night ends). */
+function nextMorning(d = new Date()): number {
+  const m = new Date(d);
+  m.setHours(7, 0, 0, 0);
+  if (m.getTime() <= d.getTime()) m.setDate(m.getDate() + 1);
+  return m.getTime();
+}
+/** Fishing: waiting for a bite, the float down (click now), then the reel bar (stop the marker in the green). */
+type Fishing = { cell: number; phase: 'wait' | 'bite' | 'reel'; got: Catch; start: number; zone: number; at: number; fx: number; fy: number };
+
 const PW = 0.78;
 const PH = 0.92;
 const SPEED = 6;
@@ -100,6 +115,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const island = shared ?? local;
   const isl = useMemo(() => island ?? newIsland(), [island]);
   const helpReward = useProgress((s) => s.helpReward);
+  const fishReward = useProgress((s) => s.fishReward);
   const items = useProgress((s) => s.islandItems ?? {});
   const seeds = useProgress((s) => s.seeds ?? {});
   const avatar = useProgress((s) => s.avatar);
@@ -116,7 +132,24 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   /** A ripe plot whose harvest the player is choosing. */
   const [reaping, setReaping] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
-  const [tv, setTv] = useState<{ cell: number; card: string } | null>(null);
+  /** The TV show on now (switched on here, or by someone else on the island: everyone there sees it). */
+  const [tv, setTv] = useState<TvEvent | null>(null);
+  /** This player's last TV and music switches, told to the others there (src/island/live.ts). */
+  const myTv = useRef<TvEvent | null>(null);
+  const myTune = useRef<TuneEvent | null>(null);
+  const toolRef = useRef<Tool | 'fish'>('walk');
+  /** Sitting or asleep: where the player is held (any move gets them up). */
+  const pose = useRef<{ kind: Pose; x: number; y: number } | null>(null);
+  const [poseNow, setPoseNow] = useState<Pose | null>(null);
+  /** Slept through the night: day for this player until then. */
+  const [restUntil, setRestUntil] = useState(0);
+  /** The emote wheel, this player's last emote (told to the others), and the bubbles over everyone's heads. */
+  const [wheelOpen, setWheelOpen] = useState(false);
+  const myEmote = useRef<EmoteEvent | null>(null);
+  const [bubbles, setBubbles] = useState<Record<string, { e: string; until: number }>>({});
+  const [fishing, setFishing] = useState<Fishing | null>(null);
+  const fishRef = useRef(fishing);
+  fishRef.current = fishing;
   /** The layer Build puts things in. */
   const [layer, setLayer] = useState<Layer>('mid');
   /** A record or CD player whose disc the player is choosing (its layer key and item). */
@@ -144,7 +177,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const t = window.setInterval(() => setClockDark(darknessAt()), 60_000);
     return () => window.clearInterval(t);
   }, []);
-  const dark = sky === 'auto' ? clockDark : sky === 'night' ? 0.7 : 0;
+  const dark = sky === 'auto' ? (Date.now() < restUntil ? 0 : clockDark) : sky === 'night' ? 0.7 : 0;
 
   // The tile size: about 22 cells across the viewport.
   const box = useRef<HTMLDivElement>(null);
@@ -181,9 +214,49 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   TRef.current = T;
   const facing = useRef(false);
   // Other players on this island, seen live (their latest spot; drawn gliding towards it).
-  const peers = useLive(live, () => ({ x: pos.current.x, y: pos.current.y, left: facing.current }));
+  toolRef.current = fishing ? 'fish' : tool;
+  const peers = useLive(live, () => ({
+    x: pos.current.x,
+    y: pos.current.y,
+    left: facing.current,
+    tool: toolRef.current,
+    tv: myTv.current,
+    tune: myTune.current,
+    pose: pose.current?.kind ?? null,
+    emote: myEmote.current,
+  }));
   const peersRef = useRef<Peer[]>(peers);
   peersRef.current = peers;
+  // Someone else switched a TV on or off, or a visitor changed the music: the same here (each switch once).
+  const seen = useRef(new Set<string>());
+  useEffect(() => {
+    const tvs: TvEvent[] = [];
+    const tunes: TuneEvent[] = [];
+    const pops: Record<string, { e: string; until: number }> = {};
+    for (const p of peers) {
+      if (p.emote && EMOTES.includes(p.emote.e) && !seen.current.has(`emote:${p.uid}:${p.emote.at}`)) {
+        seen.current.add(`emote:${p.uid}:${p.emote.at}`);
+        if (Math.abs(Date.now() - p.emote.at) < 15_000) pops[p.uid] = { e: p.emote.e, until: Date.now() + 3500 };
+      }
+      if (p.tv && !seen.current.has(`tv:${p.uid}:${p.tv.at}`)) seen.current.add(`tv:${p.uid}:${p.tv.at}`), tvs.push(p.tv);
+      if (p.tune && !seen.current.has(`tune:${p.uid}:${p.tune.at}`)) seen.current.add(`tune:${p.uid}:${p.tune.at}`), tunes.push(p.tune);
+    }
+    const last = tvs.sort((a, b) => a.at - b.at).at(-1);
+    if (last) {
+      // Only a clip of the card on that screen (a show can't put anything else on).
+      const fits = screenClips(CARD_BY_ID.get(last.card)).includes(last.clip);
+      if (last.on && fits && Date.now() - last.at < 10 * 60_000) setTv(last);
+      if (!last.on) setTv((cur) => (cur && cur.cell === last.cell ? null : cur));
+    }
+    if (Object.keys(pops).length) setBubbles((b) => ({ ...b, ...pops }));
+    if (tunes.length) {
+      setLocalTune((m) => {
+        const n = { ...m };
+        for (const t of tunes.sort((a, b) => a.at - b.at)) n[t.key] = t.value;
+        return n;
+      });
+    }
+  }, [peers]);
   const peerEls = useRef(new Map<string, { el: HTMLDivElement; x: number; y: number }>());
 
   useEffect(() => {
@@ -259,6 +332,13 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           }
         }
       }
+      // Down by a seat or a bed: sit, or lie down.
+      if (down && !downWas && !ladder && !pose.current) {
+        let rest = -1;
+        for (let cy = Math.floor(p.y); cy <= Math.floor(p.y + PH - 1e-6); cy++)
+          for (let cx = Math.floor(p.x); cx <= Math.floor(p.x + PW - 1e-6); cx++) if (rest < 0 && restOf(isl.fg[idx(cx, cy)])) rest = idx(cx, cy);
+        if (rest >= 0) sitRef.current(rest);
+      }
       downWas = down;
       // Across: blocked by a one-cell step on the ground → climb it.
       const nx = p.x + v.x * dt;
@@ -299,6 +379,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         p.y = y - PH - 0.01;
         v.y = 0;
       }
+      // Sitting or asleep: held there, until a move gets them up.
+      const seat = pose.current;
+      if (seat) {
+        if (k.has('left') || k.has('right') || k.has('jump') || k.has('up')) standRef.current();
+        else {
+          p.x = seat.x;
+          p.y = seat.y;
+          v.x = 0;
+          v.y = 0;
+          ground.current = true;
+        }
+      }
       // The camera follows across; the player is drawn where it is.
       const t = TRef.current;
       const view = box.current?.clientWidth ?? 600;
@@ -309,6 +401,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (me.current) {
         me.current.style.transform = `translate(${p.x * t}px, ${p.y * t}px)`;
         me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
+        me.current.dataset.pose = pose.current?.kind ?? '';
         if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
       }
       // The others glide to where they last said they were.
@@ -376,8 +469,22 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
     // E: the next tool; 1–5: a tool; F: the layer Build uses.
     if (down && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      // R: the emote wheel; while it's open, 1–8 pick one and Escape closes it.
+      if (e.code === 'KeyR' && !e.repeat) return e.preventDefault(), setWheelOpen((o) => !o);
+      if (wheelOpen) {
+        const w = /^(?:Digit|Numpad)([1-8])$/.exec(e.code)?.[1];
+        if (w) return e.preventDefault(), emote(EMOTES[Number(w) - 1]);
+        if (key === 'Escape') return e.preventDefault(), setWheelOpen(false);
+      }
+      // Fishing: Space hooks and reels; walking off reels the line in.
+      if (fishRef.current) {
+        if (key === ' ') return e.preventDefault(), e.repeat ? undefined : fishAct();
+        if (keyOf(key) === 'left' || keyOf(key) === 'right') setFishing(null), say(tr('🎣 Line reeled in.', '🎣 Ligne remontée.'));
+      }
       if (key === 'e') return e.preventDefault(), chooseTool(tools[(tools.findIndex((t) => t.id === tool) + 1) % tools.length].id);
-      if (/^[1-5]$/.test(key) && tools[Number(key) - 1]) return e.preventDefault(), chooseTool(tools[Number(key) - 1].id);
+      // The digit keys by where they are (AZERTY types & é " ' ( there without Shift), or the number pad.
+      const n = /^(?:Digit|Numpad)([1-5])$/.exec(e.code)?.[1];
+      if (n && tools[Number(n) - 1]) return e.preventDefault(), chooseTool(tools[Number(n) - 1].id);
       if (key === 'f' && tool === 'build') return e.preventDefault(), setLayer((l) => LAYERS[(LAYERS.findIndex((x) => x.id === l) + 1) % LAYERS.length].id);
     }
     const k = keyOf(key);
@@ -411,7 +518,15 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
 
   const click = (cell: number) => {
     box.current?.focus();
+    if (fishRef.current) return fishAct();
     if (!inReach(cell)) return say(tr('Too far: walk closer.', 'Trop loin : approche-toi.'));
+    // The tool in hand swings.
+    const m = me.current;
+    if (m && tool !== 'walk') {
+      m.dataset.swing = '';
+      void m.offsetWidth;
+      m.dataset.swing = '1';
+    }
     const plot = isl.plots[cell];
     const front = isl.fg[cell];
     const mine = !!plot && (who ? (plot.by ? plot.by === who.uid : who.uid === who.owner) : true);
@@ -437,6 +552,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       );
     if (tool === 'walk') {
       const card = isl.shown[cell];
+      if (isSea(xy(cell).x, xy(cell).y)) return cast(cell);
+      if (restOf(front)) return sitOn(cell);
       // Music: a record or CD player takes a disc; anything else switches on and off. Front first, then middle, then behind.
       const music = (['front', 'mid', 'back'] as Layer[])
         .map((l) => ({ l, id: l === 'front' ? isl.front?.[cell] : l === 'mid' ? front : isl.bg[cell] }))
@@ -446,7 +563,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (DISC_PLAYERS[music.id]) return setDiscing({ key, player: music.id });
         const off = tunes[key] === 'off';
         tuneTo(key, off ? null : 'off');
-        return say(`${off ? '🔊' : '🔇'} ${itemName(music.id)}: ${off ? tr('on', 'allumé') : tr('off', 'éteint')}${mode === 'visit' ? ` ${tr('(for you)', '(pour toi)')}` : ''}`);
+        return say(`${off ? '🔊' : '🔇'} ${itemName(music.id)}: ${off ? tr('on', 'allumé') : tr('off', 'éteint')}${mode === 'visit' ? ` ${tr('(while you’re here)', '(tant que tu es là)')}` : ''}`);
       }
       if (front && kindOf(front) === 'reader') {
         const c = card ? CARD_BY_ID.get(card) : undefined;
@@ -470,7 +587,11 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       }
       if (front && kindOf(front) === 'screen') {
         if (!card) return mode === 'visit' ? say(tr('Nothing on this screen.', 'Rien sur cet écran.')) : setFraming(cell);
-        setTv({ cell, card });
+        const clips = screenClips(CARD_BY_ID.get(card));
+        if (!clips.length) return say(tr('This card has no clip to show.', 'Cette carte n’a pas de clip à passer.'));
+        const show: TvEvent = { cell, card, clip: clips[Math.floor(Math.random() * clips.length)], at: Date.now(), on: true };
+        myTv.current = show;
+        setTv(show);
         return say(
           <>
             📺 {tr('On air.', 'À l’antenne.')}{' '}
@@ -505,9 +626,128 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     }
   };
 
+  /** Sits on a seat, or lies down on a bed. */
+  const sitOn = (cell: number) => {
+    const kind = restOf(islRef.current.fg[cell]);
+    if (!kind) return;
+    const { x, y } = xy(cell);
+    pose.current = { kind, x: x + (1 - PW) / 2, y: y + 1 - PH - 0.01 + (kind === 'sit' ? 0.12 : 0.3) };
+    setFishing(null);
+    setPoseNow(kind);
+    say(kind === 'sit' ? tr('🪑 Sitting. Move to get up.', '🪑 Assis. Bouge pour te lever.') : tr('💤 Lying down. Sleep at night and morning comes (for you). Move to get up.', '💤 Allongé. Dors la nuit et le matin arrive (pour toi). Bouge pour te lever.'));
+  };
+  const sitRef = useRef(sitOn);
+  sitRef.current = sitOn;
+  const standRef = useRef(() => {});
+  standRef.current = () => {
+    pose.current = null;
+    setPoseNow(null);
+  };
+  // Asleep a moment at night: the night ends, for this player.
+  useEffect(() => {
+    if (poseNow !== 'sleep' || sky !== 'auto' || clockDark < 0.3 || Date.now() < restUntil) return;
+    const t = window.setTimeout(() => {
+      if (pose.current?.kind !== 'sleep') return;
+      setRestUntil(nextMorning());
+      say(tr('☀️ Good morning! The night is over (for you).', '☀️ Bonjour ! La nuit est finie (pour toi).'));
+      sfx.correct();
+    }, 2600);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [poseNow]);
+
+  /** Pops an emote over the player's head (everyone there sees it). */
+  const emote = (e: string) => {
+    const at = Date.now();
+    myEmote.current = { e, at };
+    setBubbles((b) => ({ ...b, me: { e, until: at + 3500 } }));
+    setWheelOpen(false);
+    box.current?.focus();
+  };
+  // Bubbles go after a few seconds.
+  useEffect(() => {
+    const all = Object.values(bubbles);
+    if (!all.length) return;
+    const next = Math.min(...all.map((b) => b.until));
+    const t = window.setTimeout(() => setBubbles((b) => Object.fromEntries(Object.entries(b).filter(([, v]) => v.until > Date.now()))), Math.max(50, next - Date.now()));
+    return () => window.clearTimeout(t);
+  }, [bubbles]);
+
+  /** Casts the line into the sea (from the shore: the cell must be in reach). */
+  const cast = (cell: number) => {
+    if (pose.current) return;
+    if (!ground.current) return say(tr('Stand still on the shore to fish.', 'Reste sur le rivage pour pêcher.'));
+    const p = pos.current;
+    const left = xy(cell).x + 0.5 < p.x + PW / 2;
+    facing.current = left;
+    if (me.current) me.current.dataset.left = left ? '1' : '';
+    // From the rod's tip (drawn in the hand, on the side the player faces).
+    const fx = left ? p.x - 0.44 * PW : p.x + 1.44 * PW;
+    setFishing({ cell, phase: 'wait', got: rollCatch(), start: Date.now(), zone: 0, at: 0, fx, fy: p.y + 0.23 * PH });
+    sfx.whoosh();
+    say(tr('🎣 Cast! When the float dips, click (or Space).', '🎣 Lancé ! Quand le bouchon plonge, clique (ou Espace).'));
+  };
+  /** A click (or Space) while fishing: too soon, hooked, or the reel stopped. */
+  const fishAct = () => {
+    const f = fishRef.current;
+    if (!f) return;
+    if (f.phase === 'wait') {
+      setFishing(null);
+      return say(tr('💨 Too soon: it swam off.', '💨 Trop tôt : il s’est sauvé.'));
+    }
+    if (f.phase === 'bite') {
+      const zone = zoneOf(f.got);
+      setFishing({ ...f, phase: 'reel', start: Date.now(), zone, at: 0.08 + Math.random() * (0.84 - zone) });
+      return say(tr('🎣 Hooked! Stop the marker in the green.', '🎣 Ferré ! Arrête le curseur dans le vert.'));
+    }
+    const m = markerAt(Date.now() - f.start);
+    setFishing(null);
+    if (m < f.at || m > f.at + f.zone) {
+      sfx.wrong();
+      return say(tr('💨 It slipped off the hook.', '💨 Il s’est décroché.'));
+    }
+    const got = fishReward(f.got);
+    sfx.correct();
+    say(
+      got.kind === 'fish'
+        ? `🎣 ${itemIcon(got.item)} ${itemName(got.item)}! ${tr('(In your bag.)', '(Dans ton sac.)')}`
+        : got.kind === 'seed'
+          ? `🍾 ${tr('A bottle with a seed inside:', 'Une bouteille avec une graine dedans :')} ${nameOf(SEED_BY_ID.get(got.seed)!)}`
+          : `🪙 +${got.coins} ${tr('Dle Coins, fished up!', 'Dle Coins repêchés !')}`,
+    );
+  };
+  // The fish bites after a while; the float stays down a moment; the reel doesn't wait forever.
+  useEffect(() => {
+    if (!fishing) return;
+    const start = fishing.start;
+    const later = (ms: number, then: () => void) => {
+      const t = window.setTimeout(() => fishRef.current?.start === start && then(), ms);
+      return () => window.clearTimeout(t);
+    };
+    if (fishing.phase === 'wait')
+      return later(FISHING.waitMin + Math.random() * (FISHING.waitMax - FISHING.waitMin), () => {
+        sfx.near();
+        setFishing((f) => f && { ...f, phase: 'bite', start: Date.now() });
+      });
+    if (fishing.phase === 'bite') return later(FISHING.bite, () => (setFishing(null), say(tr('💨 It got away…', '💨 Il s’est échappé…'))));
+    return later(6000, () => (setFishing(null), say(tr('💨 It slipped off the hook.', '💨 Il s’est décroché.'))));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fishing?.phase, fishing?.start]);
+
   /** A music maker's setting: saved on the island (yours, or one you build on); just for you when visiting. */
   const tuneTo = (key: string, t: string | null) => {
-    if (mode === 'visit') return setLocalTune((m) => ({ ...m, [key]: t }));
+    if (mode === 'visit') {
+      // Heard by everyone there now (not saved on the island).
+      myTune.current = { key, value: t, at: Date.now() };
+      return setLocalTune((m) => ({ ...m, [key]: t }));
+    }
+    // Saved on the island; a visitor's switch heard before gives way.
+    setLocalTune((m) => {
+      if (!(key in m)) return m;
+      const n = { ...m };
+      delete n[key];
+      return n;
+    });
     run((i) => setTune(i, key, t), '', 'build');
   };
 
@@ -617,23 +857,87 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                   if (el) peerEls.current.set(p.uid, had ? { ...had, el } : { el, x: p.x, y: p.y });
                 }}
                 data-left={p.left ? '1' : ''}
+                data-pose={p.pose ?? ''}
                 className="island-me island-peer pointer-events-none absolute left-0 top-0"
                 style={{ width: PW * T, height: PH * T }}
               >
                 <span className="island-me-shadow" />
                 {face ? <CardAvatar card={face} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-sky-300 text-lg">🙂</span>}
+                <ToolInHand tool={p.pose ? undefined : p.tool} />
                 <span className="island-peer-name">{p.name}</span>
+                {bubbles[p.uid] && (
+                  <span key={bubbles[p.uid].until} className="island-emote" style={{ fontSize: T * 0.62 }}>
+                    {bubbles[p.uid].e}
+                  </span>
+                )}
               </div>
             );
           })}
           <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
+            <ToolInHand tool={poseNow ? undefined : fishing ? 'fish' : tool} />
+            {bubbles.me && (
+              <span key={bubbles.me.until} className="island-emote" style={{ fontSize: T * 0.62 }}>
+                {bubbles.me.e}
+              </span>
+            )}
           </div>
+          {fishing && <FishLine f={fishing} T={T} />}
           <FrontLayer isl={isl} T={T} />
-          {tv && <TvShow tv={tv} T={T} onEnd={() => setTv(null)} />}
+          {tv && (
+            <TvShow
+              key={tv.at}
+              tv={tv}
+              T={T}
+              onEnd={() => setTv(null)}
+              onOff={() => {
+                myTv.current = { ...tv, at: Date.now(), on: false };
+                setTv(null);
+              }}
+            />
+          )}
         </div>
         {dark > 0 && <div className="island-stars pointer-events-none absolute inset-x-0 top-0 h-[40%] transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />}
+        {/* Asleep at night: the screen goes dark, then morning. */}
+        <div className="pointer-events-none absolute inset-0 bg-black transition-opacity duration-[2000ms]" style={{ opacity: poseNow === 'sleep' && sky === 'auto' && clockDark >= 0.3 && Date.now() >= restUntil ? 0.85 : 0 }} />
+        {fishing?.phase === 'reel' && (
+          <div className="pointer-events-none absolute inset-x-0 bottom-3 flex flex-col items-center gap-1">
+            <span className="rounded bg-black/60 px-2 text-xs font-semibold text-white">{tr('Click or Space in the green!', 'Clique ou Espace dans le vert !')}</span>
+            <div className="relative h-5 w-64 max-w-[80%] rounded-full border-2 border-white/80 bg-black/50">
+              <div className="absolute inset-y-0 rounded-full bg-emerald-400/85" style={{ left: `${fishing.at * 100}%`, width: `${fishing.zone * 100}%` }} />
+              <div key={fishing.start} className="island-reel-mark" style={{ animationDuration: `${FISHING.sweep}ms` }} />
+            </div>
+          </div>
+        )}
+        {wheelOpen && (
+          <div
+            className="absolute inset-0 z-10 grid place-items-center bg-black/25"
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              if (e.target === e.currentTarget) setWheelOpen(false);
+            }}
+          >
+            <div className="relative size-48 rounded-full border-2 border-white/60 bg-black/45">
+              {EMOTES.map((em, i) => {
+                const a = (i / EMOTES.length) * Math.PI * 2 - Math.PI / 2;
+                return (
+                  <button
+                    key={em}
+                    type="button"
+                    onClick={() => emote(em)}
+                    title={String(i + 1)}
+                    className="absolute grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-2xl shadow transition hover:scale-110"
+                    style={{ left: `${50 + Math.cos(a) * 37}%`, top: `${50 + Math.sin(a) * 37}%` }}
+                  >
+                    {em}
+                  </button>
+                );
+              })}
+              <span className="pointer-events-none absolute inset-0 grid place-items-center text-xs font-semibold text-white">{tr('Emotes · R', 'Émotes · R')}</span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Touch: walk and jump. */}
@@ -665,6 +969,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             {t.icon} {nameOf(t)} <span className="hidden text-[10px] font-normal text-ink-faint sm:inline">{i + 1}</span>
           </button>
         ))}
+        <button type="button" onClick={() => setWheelOpen((o) => !o)} className={`rounded-md border px-2.5 py-1 text-sm hover:bg-tile ${wheelOpen ? 'border-accent bg-accent/15' : 'border-rule'}`} title={tr('Emotes (R)', 'Émotes (R)')}>
+          😊 {tr('Emotes', 'Émotes')} <span className="hidden text-[10px] text-ink-faint sm:inline">R</span>
+        </button>
         <button type="button" onClick={toggleBig} className="rounded-md border border-rule px-2.5 py-1 text-sm hover:bg-tile" title={tr('Full screen (Esc to leave)', 'Plein écran (Échap pour quitter)')}>
           {big ? '🗗' : '⛶'} {big ? tr('Smaller', 'Réduire') : tr('Full screen', 'Plein écran')}
         </button>
@@ -677,7 +984,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           {sky === 'auto' ? (clockDark > 0.35 ? '🌙' : '☀️') : sky === 'night' ? '🌙' : '☀️'} {sky === 'auto' ? tr('Clock', 'Horloge') : tr('Preview', 'Aperçu')}
         </button>
         <span className="ml-auto text-xs text-ink-faint">
-          {tr('Arrows/WASD walk · Space jumps · Up/Down: ladders, warp pads · E or 1–5: tool · wheel: next thing to build · F: layer', 'Flèches/ZQSD marcher · Espace sauter · Haut/Bas : échelles, téléporteurs · E ou 1–5 : outil · molette : objet suivant · F : couche')}
+          {tr('Arrows/WASD walk · Space jumps · Up/Down: ladders, warp pads · Down on a seat or bed: sit, sleep · click the sea from the shore: fish · R: emotes · E or 1–5: tool · wheel: next thing to build · F: layer', 'Flèches/ZQSD marcher · Espace sauter · Haut/Bas : échelles, téléporteurs · Bas sur un siège ou un lit : s’asseoir, dormir · clique la mer depuis le rivage : pêcher · R : émotes · E ou 1–5 : outil · molette : objet suivant · F : couche')}
         </span>
       </div>
       {note && <p className="rounded-md bg-tile px-3 py-1.5 text-sm">{note}</p>}
@@ -1127,17 +1434,47 @@ const Glows = memo(function Glows({ isl, T, dark }: { isl: Island; T: number; da
   );
 });
 
+/** The tool a player holds, drawn in their hand (32×32, like the items). */
+const TOOL_ART: Record<string, string> = {
+  fish: '<path d="M4 29 29 3" stroke="#3a2a32" stroke-width="4" stroke-linecap="round"/><path d="M4 29 29 3" stroke="#a16207" stroke-width="2.2" stroke-linecap="round"/><path d="M4 29 9 24" stroke="#1f2937" stroke-width="3.4" stroke-linecap="round"/><circle cx="10" cy="22" r="2.6" fill="#9aa4b4" stroke="#3a2a32" stroke-width="1.2"/><circle cx="10" cy="22" r=".8" fill="#3a2a32"/>',
+  dig: '<path d="M16 9 30 27" stroke="#3a2a32" stroke-width="5" stroke-linecap="round"/><path d="M16 9 30 27" stroke="#b07a46" stroke-width="3" stroke-linecap="round"/><path d="M3 12C9 4 19 2 27 5c-7 0-14 3-19 9z" fill="#9aa4b4" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10c5-4 11-6 17-5" stroke="#e6ecf4" stroke-width="1.2" fill="none"/>',
+  build: '<path d="M14 12 29 28" stroke="#3a2a32" stroke-width="5" stroke-linecap="round"/><path d="M14 12 29 28" stroke="#c98b4f" stroke-width="3" stroke-linecap="round"/><rect x="3" y="5" width="17" height="9" rx="2" transform="rotate(42 11.5 9.5)" fill="#8d96a6" stroke="#3a2a32" stroke-width="1.5"/>',
+  plant: '<path d="M9 12c-3 4-4 10-1 15h16c3-5 2-11-1-15z" fill="#d9b07a" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h14l-2-4H11z" fill="#c4945c" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 8c2-5 8-5 10 0" stroke="#3a2a32" stroke-width="1.5" fill="none"/><path d="M16 22c-3-1-4-4-2-6 2 1 3 3 2 6zm0 0c2-2 5-2 6 0-2 2-4 2-6 0z" fill="#5cb85c" stroke="#2d6a2d" stroke-width=".8"/>',
+  pick: '<path d="M8 28V15c0-2 3-2 3 0v-6c0-2 3-2 3 0V7c0-2 3-2 3 0v2c0-2 3-2 3 0v7l2-3c1-2 4-1 3 1l-4 8c-1 3-3 6-6 6z" fill="#f2c94c" stroke="#3a2a32" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 24h12" stroke="#d99a2b" stroke-width="2"/>',
+};
+function ToolInHand({ tool }: { tool?: string }) {
+  const art = tool ? TOOL_ART[tool] : undefined;
+  if (!art) return null;
+  return <svg className="island-me-tool" viewBox="0 0 32 32" aria-hidden="true" dangerouslySetInnerHTML={{ __html: art }} />;
+}
+
+/** The fishing line from the rod's tip to the float on the sea (it dips when something bites). */
+function FishLine({ f, T }: { f: Fishing; T: number }) {
+  const x = xy(f.cell).x + 0.5;
+  const y = ISLAND.sea - 0.08;
+  const sag = Math.max(f.fy, y) + 0.5;
+  return (
+    <>
+      <svg className="pointer-events-none absolute left-0 top-0" width={ISLAND.w * T} height={ISLAND.h * T} aria-hidden="true">
+        <path d={`M${f.fx * T} ${f.fy * T} Q${((f.fx + x) / 2) * T} ${sag * T} ${x * T} ${y * T}`} stroke="#f8fafc" strokeWidth={1.2} fill="none" opacity={0.85} />
+      </svg>
+      <span className={`island-float ${f.phase === 'bite' ? 'island-float-bite' : ''}`} style={{ left: x * T - T * 0.17, top: y * T - T * 0.24, width: T * 0.34, height: T * 0.34 }} />
+      {f.phase === 'bite' && (
+        <span className="island-bite pointer-events-none absolute font-black text-coral" style={{ left: x * T - T * 0.2, top: y * T - T * 1.4, fontSize: T * 0.8 }}>
+          !
+        </span>
+      )}
+    </>
+  );
+}
+
 /**
  * A screen switched on: the card's clip, big, above the TV. A video plays once with its sound (the owner's rule: card
  * videos play on a moment, with their own audio, never on a loop); a GIF loops until it's clicked off.
  */
-function TvShow({ tv, T, onEnd }: { tv: { cell: number; card: string }; T: number; onEnd: () => void }) {
+function TvShow({ tv, T, onEnd, onOff }: { tv: TvEvent; T: number; onEnd: () => void; onOff: () => void }) {
   const card = CARD_BY_ID.get(tv.card);
-  // One of its clips, picked when switched on.
-  const [clip] = useState(() => {
-    const all = screenClips(card);
-    return all[Math.floor(Math.random() * all.length)];
-  });
+  const clip = tv.clip;
   const volume = useProgress((s) => (s.sound ? s.clipVolume / 100 : 0));
   const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
@@ -1150,11 +1487,27 @@ function TvShow({ tv, T, onEnd }: { tv: { cell: number; card: string }; T: numbe
   const left = Math.max(0, Math.min(ISLAND.w * T - w, (x + 0.5) * T - w / 2));
   const top = Math.max(2, y * T - h - 6);
   return (
-    <div className="island-tv-show absolute overflow-hidden rounded-md" style={{ left, top, width: w, height: h }} onPointerDown={(e) => (e.stopPropagation(), onEnd())} title={tr('Click to switch off', 'Clique pour éteindre')}>
+    <div className="island-tv-show absolute overflow-hidden rounded-md" style={{ left, top, width: w, height: h }} onPointerDown={(e) => (e.stopPropagation(), onOff())} title={tr('Click to switch off', 'Clique pour éteindre')}>
       {GIF_CLIP.test(clip) ? (
         <GifLoop src={clip} className="size-full object-cover" />
       ) : (
-        <video ref={ref} src={clip} autoPlay playsInline muted={volume === 0} onEnded={onEnd} onError={onEnd} className="size-full object-cover" />
+        <video
+          ref={ref}
+          src={clip}
+          autoPlay
+          playsInline
+          muted={volume === 0}
+          onLoadedMetadata={(e) => {
+            // Switched on by someone a moment ago: in step with them (or already over).
+            const v = e.currentTarget;
+            const late = (Date.now() - tv.at) / 1000;
+            if (late >= v.duration - 0.3) return onEnd();
+            if (late > 0.5) v.currentTime = late;
+          }}
+          onEnded={onEnd}
+          onError={onEnd}
+          className="size-full object-cover"
+        />
       )}
       <span className="absolute bottom-1 left-2 rounded bg-black/60 px-1.5 text-[11px] font-semibold text-white">{shownName(card.name, card.set)}</span>
     </div>

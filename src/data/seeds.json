@@ -1,5 +1,5 @@
 {
-  "_about": "The Island's seeds (src/island/seeds.ts). Each game has its family: finishing today's round gives its common seed, a good score may add its rare seed. Two seeds planted together grow what the seeds list (stage 2); two families' seeds crossed make the hybrids. Items are what grows: kind says where it goes (block, floor, wall, decor, furniture, light, music, plant, frame, screen: a TV playing a card’s clip; door, stairs, ladder, platform, bounce, warp: things to move around; reader: holds a Mythic or Omni card and plays its line; disc: a vinyl or a CD, played in a record or CD player, never placed). Names in English and French.",
+  "_about": "The Island's seeds (src/island/seeds.ts). Each game has its family: finishing today's round gives its common seed, a good score may add its rare seed. Two seeds planted together grow what the seeds list (stage 2); two families' seeds crossed make the hybrids. Items are what grows: kind says where it goes (block, floor, wall, decor, furniture, light, music, plant, frame, screen: a TV playing a card’s clip; door, stairs, ladder, platform, bounce, warp: things to move around; reader: holds a Mythic or Omni card and plays its line; disc: a vinyl or a CD, played in a record or CD player, never placed). The fish-* items are caught fishing (src/island/fishing.ts), not grown. Names in English and French.",
   "families": [
     { "id": "classic", "source": "classic", "name": "Puzzle", "fr": "Puzzle", "icon": "🧩", "color": "#b45309" },
     { "id": "quote", "source": "quote", "name": "Ink", "fr": "Encre", "icon": "💬", "color": "#475569" },
@@ -185,6 +185,11 @@
     { "id": "cd-chip", "kind": "disc", "icon": "📀", "name": "CD: Chiptune Rush", "fr": "CD : Course chiptune" },
     { "id": "cd-festival", "kind": "disc", "icon": "📀", "name": "CD: Summer Festival", "fr": "CD : Festival d’été" },
     { "id": "cd-lullaby", "kind": "disc", "icon": "📀", "name": "CD: Starlight Lullaby", "fr": "CD : Berceuse des étoiles" },
-    { "id": "cd-boss", "kind": "disc", "icon": "📀", "name": "CD: Final Boss", "fr": "CD : Boss final" }
+    { "id": "cd-boss", "kind": "disc", "icon": "📀", "name": "CD: Final Boss", "fr": "CD : Boss final" },
+    { "id": "fish-sardine", "kind": "decor", "icon": "🐟", "name": "Sardine in a bowl (caught fishing)", "fr": "Sardine en bocal (pêchée)" },
+    { "id": "fish-clownfish", "kind": "decor", "icon": "🐠", "name": "Clownfish in a bowl (caught fishing)", "fr": "Poisson-clown en bocal (pêché)" },
+    { "id": "fish-pufferfish", "kind": "decor", "icon": "🐡", "name": "Pufferfish in a bowl (caught fishing)", "fr": "Poisson-globe en bocal (pêché)" },
+    { "id": "fish-swordfish", "kind": "decor", "icon": "🗡️", "name": "Mounted swordfish (caught fishing)", "fr": "Espadon empaillé (pêché)" },
+    { "id": "fish-golden", "kind": "decor", "icon": "✨", "name": "Golden fish trophy (caught fishing)", "fr": "Trophée du poisson doré (pêché)" }
   ]
 }

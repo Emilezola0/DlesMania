@@ -4,6 +4,7 @@
 // a transaction; what's taken from or added to a bag goes to the player who moved, in their own save.
 import { collection, deleteDoc, doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, updateDoc, type Timestamp } from 'firebase/firestore';
 import { newIsland, type Island } from '../island/island';
+import type { EmoteEvent, Pose, TvEvent, TuneEvent } from '../island/live';
 import { auth, db } from './firebase';
 
 export const ISLAND_BUILDERS = 10;
@@ -88,6 +89,12 @@ export interface HereDoc {
   x: number;
   y: number;
   left: boolean;
+  /** The tool in their hand, and their last TV and music switches (src/island/live.ts). */
+  tool?: string;
+  tv?: TvEvent | null;
+  tune?: TuneEvent | null;
+  pose?: Pose | null;
+  emote?: EmoteEvent | null;
   at?: Timestamp | null;
 }
 const here = (owner: string, uid: string) => doc(db, 'islands', owner, 'here', uid);
@@ -101,7 +108,19 @@ export function watchHere(owner: string, on: (list: (HereDoc & { uid: string })[
 }
 
 export async function sayHere(owner: string, h: Omit<HereDoc, 'at'>): Promise<void> {
-  await setDoc(here(owner, me()), { name: h.name.slice(0, 40), face: h.face ?? null, x: h.x, y: h.y, left: h.left, at: serverTimestamp() });
+  await setDoc(here(owner, me()), {
+    name: h.name.slice(0, 40),
+    face: h.face ?? null,
+    x: h.x,
+    y: h.y,
+    left: h.left,
+    tool: h.tool ?? 'walk',
+    tv: h.tv ?? null,
+    tune: h.tune ?? null,
+    pose: h.pose ?? null,
+    emote: h.emote ?? null,
+    at: serverTimestamp(),
+  });
 }
 
 export async function leaveHere(owner: string): Promise<void> {

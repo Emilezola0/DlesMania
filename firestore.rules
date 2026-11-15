@@ -827,9 +827,19 @@ service cloud.firestore {
       }
       allow read: if request.auth != null && seesIsland();
       allow create, update: if request.auth != null && request.auth.uid == who && seesIsland()
-        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at'])
+        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at', 'tool', 'tv', 'tune', 'pose', 'emote'])
         && request.resource.data.name is string && request.resource.data.name.size() <= 40
-        && request.resource.data.x is number && request.resource.data.y is number && request.resource.data.left is bool;
+        && request.resource.data.x is number && request.resource.data.y is number && request.resource.data.left is bool
+        && (!('tool' in request.resource.data) || (request.resource.data.tool is string && request.resource.data.tool.size() <= 10))
+        && (!('tv' in request.resource.data) || request.resource.data.tv == null
+          || (request.resource.data.tv is map && request.resource.data.tv.keys().hasOnly(['cell', 'card', 'clip', 'at', 'on'])
+            && request.resource.data.tv.clip is string && request.resource.data.tv.clip.size() <= 200))
+        && (!('tune' in request.resource.data) || request.resource.data.tune == null
+          || (request.resource.data.tune is map && request.resource.data.tune.keys().hasOnly(['key', 'value', 'at'])))
+        && (!('pose' in request.resource.data) || request.resource.data.pose == null || request.resource.data.pose in ['sit', 'sleep'])
+        && (!('emote' in request.resource.data) || request.resource.data.emote == null
+          || (request.resource.data.emote is map && request.resource.data.emote.keys().hasOnly(['e', 'at'])
+            && request.resource.data.emote.e is string && request.resource.data.emote.e.size() <= 8));
       allow delete: if request.auth != null && (request.auth.uid == who || request.auth.uid == uid);
     }
 
