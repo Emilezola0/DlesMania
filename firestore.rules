@@ -781,6 +781,42 @@ service cloud.firestore {
 
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
+    // Islands (src/cloud/islands.ts, src/island/): islands/<uid>, a player's island. Its owner's friends (and its
+    // builders) may look at it. The owner changes anything but who owns it; the builders the owner picked (up to 10)
+    // change the island and its book; any other friend only waters a plot (one plot, nothing else on the island).
+    // What a move takes from or adds to a bag stays in each player's own save.
+    match /islands/{uid} {
+      function friendOf() {
+        return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
+      }
+      function islandOk(d) {
+        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by'])
+          && d.log is list && d.log.size() <= 30 && d.name is string && d.name.size() <= 40;
+      }
+      function onlyIsland() {
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['island', 'log', 'at']);
+      }
+      function watering() {
+        let ni = request.resource.data.island;
+        let oi = resource.data.island;
+        let pd = ni.plots.diff(oi.plots);
+        return ni.diff(oi).affectedKeys().hasOnly(['plots'])
+          && pd.addedKeys().size() == 0 && pd.removedKeys().size() == 0 && pd.changedKeys().size() == 1;
+      }
+      allow get: if request.auth != null && (request.auth.uid == uid || friendOf() || request.auth.uid in resource.data.builders);
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['owner', 'name', 'island', 'builders', 'log', 'at'])
+        && request.resource.data.owner == uid && islandOk(request.resource.data)
+        && request.resource.data.builders.size() == 0 && request.resource.data.log.size() == 0;
+      allow update: if request.auth != null && request.resource.data.owner == uid && islandOk(request.resource.data) && (
+        (request.auth.uid == uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'island', 'builders', 'log', 'at'])
+          && request.resource.data.builders is list && request.resource.data.builders.size() <= 10)
+        || (request.auth.uid in resource.data.builders && onlyIsland())
+        || (friendOf() && onlyIsland() && watering())
+      );
+    }
+
     match /groups/{code} {
       allow get: if true;
       allow create: if request.auth != null

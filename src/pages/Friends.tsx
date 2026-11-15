@@ -630,7 +630,7 @@ export default function Friends() {
 
           {mine && tab === 'league' && <WeeklyLeague players={players.map((p) => ({ uid: p.doc.uid, log: p.doc.log ?? {}, color: p.color, me: p.me, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo} />}
 
-          {tab === 'island' && <IslandPage />}
+          {tab === 'island' && <IslandPage me={mine ? { uid: mine.uid, name: mine.name } : null} friends={mine ? players.filter((p) => !p.me).map((p) => ({ uid: p.doc.uid, name: p.doc.name, face: <Face p={p} size="size-5" /> })) : []} demo={demo} />}
           {mine && tab === 'bond' && <Bond people={players.filter((p) => !p.me).map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-8" />, name: p.doc.name }))} me={mine.uid} myName={mine.name} demo={demo} />}
           {mine && tab === 'raid' && <RaidBoss people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
 

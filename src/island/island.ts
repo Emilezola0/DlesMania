@@ -31,6 +31,11 @@ export interface Plot {
   b: string;
   /** The day it was planted. */
   day: string;
+  /** Who planted it (on a shared island: theirs to harvest). */
+  by?: string;
+  /** The day a friend watered it (a day sooner), and who. */
+  water?: string;
+  waterBy?: string;
 }
 export interface Island {
   fg: Record<string, string>;
@@ -40,7 +45,22 @@ export interface Island {
   shown: Record<string, string>;
   /** Family pairs already crossed ("a+b", sorted): their hybrid came. */
   crossed: string[];
+  /** On a shared island: who placed what's in a cell (front, or "b<cell>" behind). A builder picks up only their own. */
+  by?: Record<string, string>;
 }
+
+/** Who is moving, on whose island: offline, nobody (all allowed). */
+export interface Who {
+  uid: string;
+  owner: string;
+}
+const mayTake = (isl: Island, key: string, who?: Who) => !who || who.uid === who.owner || isl.by?.[key] === who.uid;
+const withBy = (isl: Island, key: string, who?: Who) => (who ? { ...(isl.by ?? {}), [key]: who.uid } : isl.by);
+const withoutBy = (isl: Island, key: string) => {
+  if (!isl.by?.[key]) return isl.by;
+  const { [key]: _, ...rest } = isl.by;
+  return rest;
+};
 
 export const idx = (x: number, y: number) => y * ISLAND.w + x;
 export const xy = (i: number) => ({ x: i % ISLAND.w, y: Math.floor(i / ISLAND.w) });
@@ -96,7 +116,7 @@ export interface Change {
 }
 
 /** Puts an item from the bag into a cell: a wallpaper behind, anything else in front (an empty cell). */
-export function place(isl: Island, items: Bag, cell: number, id: string): Change {
+export function place(isl: Island, items: Bag, cell: number, id: string, who?: Who): Change {
   const item = ITEM_BY_ID.get(id);
   const { x, y } = xy(cell);
   if (!inside(x, y)) throw new Error('Off the island.');
@@ -107,25 +127,27 @@ export function place(isl: Island, items: Bag, cell: number, id: string): Change
   if (!item) throw new Error('Unknown item.');
   if (item.kind === 'wall') {
     if (isl.bg[cell]) throw new Error('There’s already a wall there.');
-    return { island: { ...isl, bg: { ...isl.bg, [cell]: id } }, items: take(items, id) };
+    return { island: { ...isl, bg: { ...isl.bg, [cell]: id }, by: withBy(isl, `b${cell}`, who) }, items: take(items, id) };
   }
   if (isl.fg[cell] || isl.plots[cell]) throw new Error('Something is already there.');
   if (item.kind === 'plant' && isl.fg[idx(x, y + 1)] !== 'dirt') throw new Error('Plants need dirt below.');
-  return { island: { ...isl, fg: { ...isl.fg, [cell]: id } }, items: take(items, id) };
+  return { island: { ...isl, fg: { ...isl.fg, [cell]: id }, by: withBy(isl, String(cell), who) }, items: take(items, id) };
 }
 
 /** Picks a cell's front item back up (or its wallpaper, when it has nothing in front). The ground: dig instead. */
-export function pickUp(isl: Island, items: Bag, cell: number): Change {
+export function pickUp(isl: Island, items: Bag, cell: number, who?: Who): Change {
   const id = isl.fg[cell];
   if (id && !NATURAL[id]) {
+    if (!mayTake(isl, String(cell), who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...fg } = isl.fg;
     const { [cell]: __, ...shown } = isl.shown;
-    return { island: { ...isl, fg, shown }, items: give(items, id) };
+    return { island: { ...isl, fg, shown, by: withoutBy(isl, String(cell)) }, items: give(items, id) };
   }
   const wall = isl.bg[cell];
   if (wall) {
+    if (!mayTake(isl, `b${cell}`, who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...bg } = isl.bg;
-    return { island: { ...isl, bg }, items: give(items, wall) };
+    return { island: { ...isl, bg, by: withoutBy(isl, `b${cell}`) }, items: give(items, wall) };
   }
   throw new Error('Nothing to pick up there.');
 }
@@ -146,18 +168,28 @@ const addDays = (day: string, n: number) => {
   return d.toISOString().slice(0, 10);
 };
 /** The day a plot is ready. */
-export const readyOn = (p: Plot) => addDays(p.day, growDays(p));
+export const readyOn = (p: Plot) => addDays(p.day, growDays(p) - (p.water ? 1 : 0));
 export const isReady = (p: Plot, today = todayKey()) => today >= readyOn(p);
 
 /** Plants two seeds (the same or not) on the dirt right below an empty cell. */
-export function plant(isl: Island, seeds: Bag, cell: number, a: string, b: string, today = todayKey()): Change {
+export function plant(isl: Island, seeds: Bag, cell: number, a: string, b: string, today = todayKey(), who?: Who): Change {
   const { x, y } = xy(cell);
   if (!inside(x, y) || isl.fg[cell] || isl.plots[cell]) throw new Error('Plant on an empty spot.');
   if (isl.fg[idx(x, y + 1)] !== 'dirt') throw new Error('Seeds need dirt below.');
   if (!SEED_BY_ID.has(a) || !SEED_BY_ID.has(b)) throw new Error('Pick two seeds.');
   let bag = take(seeds, a);
   bag = take(bag, b);
-  return { island: { ...isl, plots: { ...isl.plots, [cell]: { a, b, day: today } } }, seeds: bag };
+  return { island: { ...isl, plots: { ...isl.plots, [cell]: { a, b, day: today, ...(who ? { by: who.uid } : {}) } } }, seeds: bag };
+}
+
+/** A friend waters a plot that's still growing (once): it's ready a day sooner. */
+export function water(isl: Island, cell: number, who: Who, today = todayKey()): Change {
+  const p = isl.plots[cell];
+  if (!p) throw new Error('Nothing planted there.');
+  if (p.by ? p.by === who.uid : who.uid === who.owner) throw new Error('Your own plant: a friend can water it for you.');
+  if (p.water) throw new Error('Already watered.');
+  if (isReady(p, today)) throw new Error('It’s ready: the one who planted it can harvest it.');
+  return { island: { ...isl, plots: { ...isl.plots, [cell]: { ...p, water: today, waterBy: who.uid } } } };
 }
 
 /** The families a seed belongs to (a hybrid: both of its). */
@@ -182,9 +214,10 @@ export interface Harvest {
  * Harvests a ready plot: one thing either seed grows (a rare's or a hybrid's twice as likely), sometimes one of the
  * two seeds back, and a hybrid seed: always the first time its families are crossed, then one time in four.
  */
-export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand = Math.random, today = todayKey()): Change & { got: Harvest } {
+export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand = Math.random, today = todayKey(), who?: Who): Change & { got: Harvest } {
   const p = isl.plots[cell];
   if (!p) throw new Error('Nothing planted there.');
+  if (who && (p.by ? p.by !== who.uid : who.uid !== who.owner)) throw new Error('Someone else planted it: theirs to harvest.');
   if (!isReady(p, today)) throw new Error('Not ready yet.');
   const pool: string[] = [];
   for (const id of [p.a, p.b]) {
@@ -207,11 +240,19 @@ export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand 
 }
 
 /** Shows one of your cards in a frame, or puts its clip on a screen. */
-export function showCard(isl: Island, cell: number, card: string | null): Change {
+export function showCard(isl: Island, cell: number, card: string | null, who?: Who): Change {
   const k = kindOf(isl.fg[cell]);
   if (k !== 'frame' && k !== 'screen') throw new Error('That’s not a frame or a screen.');
+  if (!mayTake(isl, String(cell), who)) throw new Error('Someone else put it there: only they (or the owner) can change it.');
   const { [cell]: _, ...shown } = isl.shown;
   return { island: { ...isl, shown: card ? { ...shown, [cell]: card } : shown } };
+}
+
+/** The common seed a helper gets for watering a plot: from one of its seeds' families. */
+export function helpSeed(p: Plot, rand = Math.random): string {
+  const fams = [p.a, p.b].flatMap((id) => familiesOf(SEED_BY_ID.get(id)!));
+  const f = fams[Math.floor(rand() * fams.length)];
+  return [...SEED_BY_ID.values()].find((s) => s.family === f && s.tier === 'common')!.id;
 }
 
 /** A family's colour for a seed (its first family's for a hybrid). */

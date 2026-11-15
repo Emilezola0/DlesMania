@@ -195,6 +195,8 @@ Every game has its seed family (`src/data/seeds.json`, logic in `src/island/seed
 
 **Stage 2b, ambiance:** day and night follow the player's clock (`darknessAt` in `IslandView.tsx`: dusk from 18:00, night 21:00–5:00), with a button to preview the other; lights and screens glow at night. Music makers (`src/island/music.ts`) are synthesized live, each its own loop, heard within `HEAR` cells, louder and panned by where you stand (the effects volume; off with the sound). Screens (`crt-tv`, `big-screen`) take a card with a clip (or your background card): a GIF loops on the screen; a video shows its still and plays once, with its sound, when the screen is clicked (the card-video rule in CLAUDE.md).
 
+**Stage 3, friends:** signed in, your island lives in `islands/<uid>` (`src/cloud/islands.ts`; the first time, it's published from your save, which keeps a copy). Friends → Island → **Visit friends** shows your friends' islands: walk, listen, watch the screens, and water a growing plot (it's ready a day sooner; the helper gets a common seed of its families, `SEED.perDay` a day). The owner picks up to 10 **builders** (`builders`), who build, plant and dig there; a builder picks up only what they placed (`island.by`) and harvests only what they planted (`plot.by`). The visitors' book (`log`) keeps the last 30 moves. The rules in `firestore.rules` (`match /islands/{uid}`): friends read, the owner writes anything, builders the island and its book, other friends only water one plot. The demo (`?demo`) makes up friends' islands.
+
 
 ### Checking in Firefox
 

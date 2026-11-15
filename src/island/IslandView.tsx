@@ -10,12 +10,17 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { dig, grassy, harvest, idx, isReady, ISLAND, isSea, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, xy, type Island } from './island';
+import { dig, grassy, harvest, helpSeed, idx, isReady, ISLAND, isSea, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
 import { islandBand, type Source } from './music';
 import { SeedArt } from './SeedBook';
 import { ITEM_BY_ID, SEED_BY_ID, SEEDS } from './seeds';
 
 type Tool = 'walk' | 'build' | 'plant' | 'pick' | 'dig';
+/** A move on the island; `what` names it for the island's book ("build", "plant"…). */
+export type Move = (island: Island, items: Bag, seeds: Bag) => Change;
+export type Act = (move: Move, what?: string) => Promise<string | null> | string | null;
+/** Whose island and what you may do: your own (everything), a friend's as a builder, or a visit (walk, look, water). */
+export type IslandMode = 'own' | 'build' | 'visit';
 const TOOLS: { id: Tool; icon: string; name: string; fr: string }[] = [
   { id: 'walk', icon: '🚶', name: 'Walk', fr: 'Marcher' },
   { id: 'build', icon: '🧱', name: 'Build', fr: 'Construire' },
@@ -67,14 +72,18 @@ const SPEED = 6;
 const GRAVITY = 32;
 const JUMP = 11.5;
 
-export function IslandView() {
-  const island = useProgress((s) => s.island) ?? null;
+export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {} }: { shared?: Island; mode?: IslandMode; act?: Act; who?: Who; names?: Record<string, string> }) {
+  const local = useProgress((s) => s.island) ?? null;
+  const island = shared ?? local;
   const isl = useMemo(() => island ?? newIsland(), [island]);
+  const helpReward = useProgress((s) => s.helpReward);
   const items = useProgress((s) => s.islandItems ?? {});
   const seeds = useProgress((s) => s.seeds ?? {});
   const avatar = useProgress((s) => s.avatar);
   const owned = useProgress((s) => s.cards);
-  const act = useProgress((s) => s.islandAct);
+  const localAct = useProgress((s) => s.islandAct);
+  const act: Act = shareAct ?? ((move) => localAct(move));
+  const tools = TOOLS.filter((t) => mode !== 'visit' || t.id === 'walk');
 
   const [tool, setTool] = useState<Tool>('walk');
   const [pick, setPick] = useState<string | null>(null);
@@ -236,32 +245,33 @@ export function IslandView() {
     return Math.hypot(x + 0.5 - (p.x + PW / 2), y + 0.5 - (p.y + PH / 2)) <= ISLAND.reach;
   };
   const say = (msg: ReactNode) => setNote(msg);
-  const run = (move: Parameters<typeof act>[0], ok: string, sound: 'select' | 'victory' = 'select') => {
-    const err = act(move);
-    if (err) say(`⚠️ ${err}`);
-    else {
+  const run = (move: Move, ok: string, what?: string, then?: () => void) =>
+    void Promise.resolve(act(move, what)).then((err) => {
+      if (err) return say(`⚠️ ${err}`);
       say(ok);
-      sfx[sound]();
-    }
-    return !err;
-  };
+      sfx.select();
+      then?.();
+    });
 
   const click = (cell: number) => {
     box.current?.focus();
     if (!inReach(cell)) return say(tr('Too far: walk closer.', 'Trop loin : approche-toi.'));
     const plot = isl.plots[cell];
     const front = isl.fg[cell];
-    if (plot && isReady(plot)) {
+    const mine = !!plot && (who ? (plot.by ? plot.by === who.uid : who.uid === who.owner) : true);
+    if (plot && isReady(plot) && mine) {
       let got: ReturnType<typeof harvest>['got'] | null = null;
-      const err = act((i, it, sd) => {
-        const h = harvest(i, it, sd, cell);
-        got = h.got;
-        return h;
-      });
-      if (err || !got) return say(`⚠️ ${err}`);
-      const g = got as ReturnType<typeof harvest>['got'];
-      sfx.victory();
-      return say(
+      void Promise.resolve(
+        act((i, it, sd) => {
+          const h = harvest(i, it, sd, cell, Math.random, todayKey(), who);
+          got = h.got;
+          return h;
+        }, 'harvest'),
+      ).then((err) => {
+        if (err || !got) return say(`⚠️ ${err}`);
+        const g = got as ReturnType<typeof harvest>['got'];
+        sfx.victory();
+        say(
         [
           `🌿 ${tr('Harvested', 'Récolté')}: ${itemIcon(g.item)} ${itemName(g.item)}`,
           g.seed ? `+ ${nameOf(SEED_BY_ID.get(g.seed)!)}` : '',
@@ -269,21 +279,46 @@ export function IslandView() {
         ]
           .filter(Boolean)
           .join(' · '),
+        );
+      });
+      return;
+    }
+    // A friend's plant still growing: water it (a day sooner), and get a seed for helping.
+    if (plot && who && !mine && !plot.water && !isReady(plot)) {
+      return run(
+        (i) => water(i, cell, who),
+        '',
+        'water',
+        () => {
+          const seed = helpSeed(plot);
+          const got = helpReward(seed);
+          say(
+            `💧 ${tr('Watered: it’ll be ready a day sooner.', 'Arrosé : prêt un jour plus tôt.')} ${got ? `+ ${nameOf(SEED_BY_ID.get(seed)!)} ${tr('for helping!', 'pour ton aide !')}` : tr('(No more helper seeds today.)', '(Plus de graines d’entraide aujourd’hui.)')}`,
+          );
+        },
       );
     }
-    if (plot) return say(`🌱 ${tr('Growing: ready on', 'Pousse : prêt le')} ${readyOn(plot)}.`);
+    if (plot)
+      return say(
+        `🌱 ${plot.by && names[plot.by] ? `${names[plot.by]} · ` : ''}${isReady(plot) ? tr('Ready: theirs to harvest.', 'Prêt : à eux de récolter.') : `${tr('Growing: ready on', 'Pousse : prêt le')} ${readyOn(plot)}`}${plot.water ? ` · 💧 ${plot.waterBy && names[plot.waterBy] ? names[plot.waterBy] : ''}` : ''}`,
+      );
     if (tool === 'walk') {
-      if (front && kindOf(front) === 'frame') return setFraming(cell);
+      const card = isl.shown[cell];
+      if (front && kindOf(front) === 'frame') {
+        if (mode === 'visit') return card && CARD_BY_ID.get(card) ? say(`🖼️ ${shownName(CARD_BY_ID.get(card)!.name, CARD_BY_ID.get(card)!.set)}`) : undefined;
+        return setFraming(cell);
+      }
       if (front && kindOf(front) === 'screen') {
-        const card = isl.shown[cell];
-        if (!card) return setFraming(cell);
+        if (!card) return mode === 'visit' ? say(tr('Nothing on this screen.', 'Rien sur cet écran.')) : setFraming(cell);
         setTv({ cell, card });
         return say(
           <>
             📺 {tr('On air.', 'À l’antenne.')}{' '}
-            <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
-              {tr('Change the card', 'Changer de carte')}
-            </button>
+            {mode !== 'visit' && (
+              <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
+                {tr('Change the card', 'Changer de carte')}
+              </button>
+            )}
           </>,
         );
       }
@@ -291,15 +326,19 @@ export function IslandView() {
     }
     if (tool === 'build') {
       if (!pick) return say(tr('Pick something to build from your bag below.', 'Choisis quoi construire dans ton sac ci-dessous.'));
-      if (run((i, it) => place(i, it, cell, pick), `${itemIcon(pick)} ${itemName(pick)}`) && (kindOf(pick) === 'frame' || kindOf(pick) === 'screen')) setFraming(cell);
+      const id = pick;
+      run((i, it) => place(i, it, cell, id, who), `${itemIcon(id)} ${itemName(id)}`, 'build', () => {
+        if (kindOf(id) === 'frame' || kindOf(id) === 'screen') setFraming(cell);
+      });
       if ((items[pick] ?? 0) <= 1) setPick(null);
       return;
     }
-    if (tool === 'pick') return run((i, it) => pickUp(i, it, cell), tr('Back in your bag.', 'De retour dans ton sac.'));
-    if (tool === 'dig') return run((i, it) => dig(i, it, cell), tr('+1 dirt (build it elsewhere).', '+1 terre (à reposer ailleurs).'));
+    if (tool === 'pick') return run((i, it) => pickUp(i, it, cell, who), tr('Back in your bag.', 'De retour dans ton sac.'), 'pick');
+    if (tool === 'dig') return run((i, it) => dig(i, it, cell), tr('+1 dirt (build it elsewhere).', '+1 terre (à reposer ailleurs).'), 'dig');
     if (tool === 'plant') {
       if (pair.length < 2) return say(tr('Pick two seeds below first (the same one twice is fine).', 'Choisis d’abord deux graines ci-dessous (deux fois la même, ça marche).'));
-      if (run((i, _it, sd) => plant(i, sd, cell, pair[0], pair[1]), tr('Planted! Come back tomorrow.', 'Planté ! Reviens demain.'))) setPair([]);
+      const [a, b] = pair;
+      run((i, _it, sd) => plant(i, sd, cell, a, b, todayKey(), who), tr('Planted! Come back tomorrow.', 'Planté ! Reviens demain.'), 'plant', () => setPair([]));
     }
   };
 
@@ -366,7 +405,7 @@ export function IslandView() {
 
       {/* The tools. */}
       <div className="flex flex-wrap items-center gap-1.5">
-        {TOOLS.map((t) => (
+        {tools.map((t) => (
           <button
             key={t.id}
             type="button"
@@ -466,7 +505,7 @@ export function IslandView() {
           current={isl.shown[framing] ?? null}
           onPick={(id) => {
             const screen = kindOf(isl.fg[framing]) === 'screen';
-            run((i) => showCard(i, framing, id), id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'));
+            run((i) => showCard(i, framing, id, who), id ? (screen ? tr('Tuned in! Click the screen to play it.', 'Réglé ! Clique l’écran pour le lancer.') : tr('On display!', 'Exposée !')) : tr('Emptied.', 'Vidé.'), 'build');
             setFraming(null);
             box.current?.focus();
           }}

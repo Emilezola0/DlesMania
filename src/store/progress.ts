@@ -145,6 +145,10 @@ interface ProgressState {
   islandItems?: Bag;
   /** Applies an Island move (place, pick up, dig, plant, harvest, show a card): null, or why it can't be done. */
   islandAct: (move: (island: Island, items: Bag, seeds: Bag) => Change) => string | null;
+  /** A move made on an island online (src/cloud/islands.ts): what it took from or added to your bags. */
+  islandBags: (c: Change) => void;
+  /** A seed for watering a friend's plot (SEED.perDay a day): whether it came. */
+  helpReward: (seed: string) => boolean;
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
   /** This week's boss bonuses already paid. */
@@ -542,7 +546,7 @@ function earn(
 
 /** A round that just finished (it was still being played, or not there yet). */
 /** Seeds from a source capped a day (SEED.perDay): boss fights, the arcade, the JLPT games. */
-function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt', ids?: string[]) {
+function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help', ids?: string[]) {
   const log = seedLogNow(s.seedLog);
   if ((log.n[source] ?? 0) >= SEED.perDay) return {};
   return { ...withSeeds(s, ids ?? arcadeSeeds(source as 'arcade' | 'jlpt')), seedLog: { ...log, n: { ...log.n, [source]: (log.n[source] ?? 0) + 1 } } };
@@ -612,6 +616,22 @@ export const useProgress = create<ProgressState>()(
         } catch (e) {
           return e instanceof Error ? e.message : 'That didn’t work.';
         }
+      },
+      islandBags: (c) =>
+        set((s) => {
+          const fresh = Object.keys(c.seeds ?? {}).filter((id) => !s.seedsFound?.[id]);
+          return {
+            ...(c.items ? { islandItems: c.items } : {}),
+            ...(c.seeds ? { seeds: c.seeds } : {}),
+            ...(fresh.length ? { seedsFound: { ...s.seedsFound, ...Object.fromEntries(fresh.map((id) => [id, todayKey()])) } } : {}),
+          };
+        }),
+      helpReward: (seed) => {
+        const s = get();
+        const got = cappedSeeds(s, 'help', [seed]);
+        if (!('seedLog' in got)) return false;
+        set(got as Partial<ProgressState>);
+        return true;
       },
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
