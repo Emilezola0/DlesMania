@@ -3034,37 +3034,49 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .wa-glint { opacity: 0; animation: wa-glint 3.4s ease-in-out infinite; }
 @keyframes wa-glint { 0%, 34%, 100% { opacity: 0; } 14% { opacity: 0.6; } }
 .wa-crystal-beams { animation: wa-beams 6s ease-in-out infinite alternate; }
+/* Touching the crystal (tapCrystal): it shivers, its light flaring; a star of light flashes and turns where it was
+   touched, a ring of light spreading from it, glints of colour flying off. */
+.wa-tingle { animation: wa-tingle 0.5s ease-out; }
+@keyframes wa-tingle {
+  0% { filter: brightness(1.45) saturate(1.3); translate: 0 0; }
+  12% { translate: -1.2px 0.4px; }
+  24% { translate: 1.2px -0.4px; }
+  36% { translate: -0.8px 0.3px; }
+  48% { translate: 0.6px 0; }
+  100% { filter: none; translate: 0 0; }
+}
+.wa-cry-star { transform-box: fill-box; transform-origin: center; animation: wa-cry-star 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) forwards; filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 4px #22d3ee) drop-shadow(0 0 10px #a855f7); }
+@keyframes wa-cry-star { 0% { scale: 0; rotate: -30deg; opacity: 1; } 25% { scale: 1.15; opacity: 1; } 100% { scale: 0.2; rotate: 60deg; opacity: 0; } }
+.wa-cry-ring { transform-box: fill-box; transform-origin: center; animation: wa-cry-ring 0.8s ease-out forwards; }
+@keyframes wa-cry-ring { from { scale: 0.3; opacity: 0.9; } to { scale: 4; opacity: 0; } }
+.wa-cry-glint { animation: wa-cry-glint 0.9s ease-out forwards; }
+@keyframes wa-cry-glint { from { translate: 0 0; opacity: 1; } to { translate: var(--gx) var(--gy); opacity: 0; } }
 @keyframes wa-beams { from { transform: translateY(-40px); opacity: 0.25; } to { transform: translateY(60px); opacity: 0.7; } }
 
-/* Phoenix: a strong downstroke and a slower lift (each wing from its shoulder), the tips whipping a beat behind, the
-   bird rising at each downstroke; every feather's fire flickering on its own, the tail swaying in an S with flames
-   trailing; and now and then its rebirth: a flash, a ring of fire, a burst of sparks. */
-.wa-wing { transform-box: view-box; transform-origin: 156px 150px; animation: wa-wing 1.9s infinite; }
-@keyframes wa-wing {
-  0% { transform: rotate(-17deg) scale(1, 1); animation-timing-function: cubic-bezier(0.5, 0, 0.8, 0.6); }
-  38% { transform: rotate(15deg) scale(1.04, 0.82); animation-timing-function: cubic-bezier(0.2, 0.4, 0.4, 1); }
-  100% { transform: rotate(-17deg) scale(1, 1); }
+/* Phoenix is a canvas (src/gacha/WrapArt.tsx): its fire is all drawn there. */
+
+/* Diamond Heart (Ascended, a canvas: src/gacha/WrapArt.tsx): a deep violet night around its diamond. */
+.pack-wrap-diamond { background: radial-gradient(circle at 50% 42%, #3b2f8f, #1e1b4b 50%, #0a0820) !important; isolation: isolate; }
+.pack-wrap-diamond > .card-sheen { display: none; }
+/* Its opening: cracks of light run down from the tear, the pack turns to crystal (frosted, flashing every colour),
+   swells, and shatters; a ring of rainbow light bursts out, the shards fly. */
+.pack-open-shatter { transform-origin: 50% 50%; animation: pack-shatter 1.1s ease-in forwards; }
+@keyframes pack-shatter {
+  0% { transform: none; filter: none; opacity: 1; }
+  30% { transform: scale(1.01); filter: brightness(1.25) saturate(1.3); }
+  58% { transform: scale(1.03) rotate(-0.6deg); filter: brightness(1.6) saturate(1.6) hue-rotate(40deg); }
+  66% { transform: scale(1.05) rotate(0.6deg); filter: brightness(2.4) saturate(1.2) hue-rotate(90deg); opacity: 1; }
+  70%, 100% { transform: scale(1.12); filter: brightness(3); opacity: 0; }
 }
-.wa-wing-tip { transform-box: view-box; transform-origin: 210px 110px; animation: wa-wing-tip 1.9s ease-in-out infinite; animation-delay: -1.72s; }
-@keyframes wa-wing-tip { 0%, 100% { transform: rotate(-8deg); } 42% { transform: rotate(9deg); } }
-.wa-phoenix-bob { animation: wa-phoenix-bob 1.9s ease-in-out infinite; }
-@keyframes wa-phoenix-bob { 0%, 100% { transform: translateY(5px); } 42% { transform: translateY(-8px); } }
-.wa-feather { animation: wa-feather 0.9s ease-in-out infinite alternate; }
-@keyframes wa-feather { from { opacity: 0.74; } to { opacity: 1; } }
-.wa-tail { transform-box: fill-box; transform-origin: 50% 0; animation: wa-tail 1.4s ease-in-out infinite alternate; }
-@keyframes wa-tail { from { transform: rotate(-7deg) scale(1, 0.95); opacity: 0.8; } to { transform: rotate(7deg) scale(1, 1.06); opacity: 1; } }
-.wa-wisp { transform-box: fill-box; transform-origin: 50% 0; animation: wa-wisp 0.7s ease-in-out infinite alternate; }
-@keyframes wa-wisp { from { transform: rotate(-5deg) scale(0.9, 0.8); opacity: 0.25; } to { transform: rotate(5deg) scale(1, 1.1); opacity: 0.7; } }
-.wa-phoenix-eye { animation: wa-feather 0.6s ease-in-out infinite alternate; }
-.wa-rebirth-flash, .wa-rebirth-ring { transform-box: fill-box; transform-origin: center; opacity: 0; }
-.wa-rebirth-flash { mix-blend-mode: screen; animation: wa-rebirth-flash 9s ease-out infinite; }
-@keyframes wa-rebirth-flash { 0% { opacity: 0; transform: scale(0.3); } 3% { opacity: 1; transform: scale(1); } 15%, 100% { opacity: 0; transform: scale(1.5); } }
-.wa-rebirth-ring { animation: wa-rebirth-ring 9s ease-out infinite; }
-@keyframes wa-rebirth-ring { 0% { opacity: 0; transform: scale(0.3); } 2% { opacity: 1; } 18%, 100% { opacity: 0; transform: scale(3.4); } }
-.wa-rebirth-spark { opacity: 0; animation: wa-rebirth-spark 9s ease-out infinite; }
-@keyframes wa-rebirth-spark { 0%, 1% { opacity: 0; transform: translate(0, 0); } 3% { opacity: 1; } 22%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
-.wa-ember { animation: wa-ember 4s linear infinite; }
-@keyframes wa-ember { 0% { transform: translate(0, 0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(var(--dx), -420px); opacity: 0; } }
+.pack-fx-crack { stroke-dasharray: 100; stroke-dashoffset: 100; filter: drop-shadow(0 0 1.5px #a5f3fc) drop-shadow(0 0 3px #f0abfc); animation: pack-fx-crack 0.55s ease-out 0.05s forwards; }
+@keyframes pack-fx-crack { to { stroke-dashoffset: 0; } }
+.pack-fx-frost { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(224, 242, 254, 0.7), rgba(240, 171, 252, 0.45) 45%, rgba(165, 243, 252, 0.6)); mix-blend-mode: screen; opacity: 0; animation: pack-fx-frost 0.8s ease-in 0.2s forwards; }
+@keyframes pack-fx-frost { to { opacity: 1; } }
+.pack-fx-prism-ring { position: absolute; left: 50%; top: 50%; width: 50%; aspect-ratio: 1; border-radius: 9999px; border: 3px solid #fff; box-shadow: 0 0 14px #a5f3fc, 0 0 26px #f0abfc, inset 0 0 14px #c4b5fd; opacity: 0; animation: pack-fx-time-ring 0.8s ease-out 0.76s forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .pack-open-shatter { animation-duration: 0.01s; }
+  .pack-fx-crack, .pack-fx-frost, .pack-fx-prism-ring { display: none; }
+}
 
 /* Gilded Deco: light running up the fan's rays, a gleam of gold sweeping across. */
 .wa-deco-run { stroke-dasharray: 12 100; stroke-dashoffset: 12; animation: wa-deco-run 2.4s ease-in infinite; }
@@ -3074,7 +3086,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 
 @media (prefers-reduced-motion: reduce) {
   [class*='wa-'] { animation: none !important; }
-  .wa-glint, .wa-bh-infall, .wa-bb-spark, .wa-ember, .wa-deco-run, .wa-bh-ripple, .wa-bb-ring { opacity: 0; }
+  .wa-glint, .wa-bh-infall, .wa-bb-spark, .wa-deco-run, .wa-bh-ripple, .wa-bb-ring { opacity: 0; }
 }
 
 /* Titles from the Boutique (src/casino/cosmetics.ts titleStyle): their own colours; the Prestige ones, effects. */
@@ -3410,6 +3422,14 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .wa-gear { transform-box: view-box; transform-origin: 0 0; animation: wa-gear 20s linear infinite; }
 @keyframes wa-gear { to { rotate: 360deg; } }
 .wa-clk-tick { animation: wa-gear 60s steps(60, end) infinite; transform-origin: 0 0; }
+.wa-clk-min { animation: wa-gear 3600s linear infinite; transform-origin: 0 0; animation-delay: -1300s; }
+/* The balance wheel swinging one way and back (a tick each swing), its hairspring coiling and uncoiling with it. */
+.wa-balance { transform-box: view-box; transform-origin: 0 0; animation: wa-balance 1s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
+@keyframes wa-balance { from { rotate: -160deg; } to { rotate: 160deg; } }
+.wa-hairspring { transform-box: view-box; transform-origin: 0 0; animation: wa-hairspring 1s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
+@keyframes wa-hairspring { from { scale: 0.86; rotate: 40deg; } to { scale: 1.06; rotate: -40deg; } }
+.wa-clk-glow { animation: wa-clk-glow 5s ease-in-out infinite alternate; }
+@keyframes wa-clk-glow { from { opacity: 0.6; } to { opacity: 1; } }
 .wa-chr-hand { transform-origin: 0 0; animation: wa-gear 6s linear infinite; filter: drop-shadow(0 0 2px #fde68a); }
 .wa-chr-minute { animation-duration: 1.5s; }
 .wa-chr-orbit { transform-origin: 0 0; animation: wa-chr-orbit 9s linear infinite; }
@@ -3425,7 +3445,7 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 @keyframes wa-chr-fall { to { stroke-dashoffset: -5; } }
 @keyframes wa-chr-stream { 0%, 84% { opacity: 1; } 86%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .wa-gear, .wa-clk-tick, .wa-chr-hand, .wa-chr-orbit, .wa-chr-glass, .wa-chr-sand-top, .wa-chr-sand-bottom, .wa-chr-sand-fall { animation: none; }
+  .wa-gear, .wa-clk-tick, .wa-clk-min, .wa-balance, .wa-hairspring, .wa-clk-glow, .wa-chr-hand, .wa-chr-orbit, .wa-chr-glass, .wa-chr-sand-top, .wa-chr-sand-bottom, .wa-chr-sand-fall { animation: none; }
 }
 /* Chronos's opening: time runs backwards. The pack spins back the wrong way, fading to sepia, a clock face spinning
    round it, and it shrinks into the middle of the clock; then the clock breaks into gold. */

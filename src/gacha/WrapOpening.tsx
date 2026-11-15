@@ -7,7 +7,8 @@ import { COSMETIC_BY_ID, type Cosmetic } from '../casino/cosmetics';
  * peels its top off in 3D in a prismatic flash and shards; Inferno burns away from the tear, embers flying; Portal
  * is spun into its vortex and swallowed, a ring of light bursting open; Event Horizon stretches, twists and sucks
  * the pack into a hole that then closes; Big Bang crushes it into a point, a flash fills the screen, and nothing is
- * left; Chronos runs time backwards, the pack spinning back into a clock that then breaks into gold. The styles are in src/index.css
+ * left; Chronos runs time backwards, the pack spinning back into a clock that then breaks into gold; Diamond Heart cracks
+ * from the tear, turns to crystal and shatters into shards of every colour. The styles are in src/index.css
  * (.pack-open-*, .pack-fx-*). Used by the pack opening (src/gacha/PackOpening.tsx) and the Boutique's preview.
  */
 export type Opening = NonNullable<Cosmetic['opening']>;
@@ -19,7 +20,7 @@ export const openingOf = (wrapperId: string | null | undefined): Opening | undef
 export const wholeClass = (o: Opening | undefined) => (o && o !== 'holofoil' ? `pack-open-${o}` : '');
 
 /** How long the torn pack's moment lasts with each opening (ms; the others 950), before the stars fly. */
-export const OPENING_MS: Partial<Record<Opening, number>> = { singularity: 1250, bigbang: 1700, timewarp: 1500 };
+export const OPENING_MS: Partial<Record<Opening, number>> = { singularity: 1250, bigbang: 1700, timewarp: 1500, shatter: 1300 };
 /** What the strip above the tear does: Holo Foil peels it; the others take it with the pack (no flying off). */
 export const flapClass = (o: Opening | undefined) => (o === 'holofoil' ? 'pack-open-peel' : '');
 
@@ -27,7 +28,38 @@ export const flapClass = (o: Opening | undefined) => (o === 'holofoil' ? 'pack-o
 export function OpeningInside({ kind }: { kind: Opening }) {
   if (kind === 'inferno') return <div className="pack-fx-burn pointer-events-none" aria-hidden />;
   if (kind === 'holofoil') return <div className="pack-fx-prism pointer-events-none" aria-hidden />;
+  if (kind === 'shatter') return <Cracks />;
   return null;
+}
+
+/** Diamond Heart: cracks of light running down from the tear, branching, as the pack turns to crystal. */
+function Cracks() {
+  const lines = useMemo(() => {
+    const out: string[] = [];
+    const grow = (x: number, y: number, a: number, len: number, depth: number) => {
+      let d = `M${x.toFixed(1)} ${y.toFixed(1)}`;
+      for (let k = 0; k < 4; k++) {
+        a += (Math.random() - 0.5) * 0.9;
+        x += Math.cos(a) * len;
+        y += Math.sin(a) * len;
+        d += `L${x.toFixed(1)} ${y.toFixed(1)}`;
+        if (depth < 2 && Math.random() < 0.45) grow(x, y, a + (Math.random() < 0.5 ? -0.9 : 0.9), len * 0.7, depth + 1);
+      }
+      out.push(d);
+    };
+    for (let k = 0; k < 5; k++) grow(15 + k * 17.5, 18, Math.PI / 2 + (Math.random() - 0.5) * 1.2, 9 + Math.random() * 5, 0);
+    return out;
+  }, []);
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      <div className="pack-fx-frost" />
+      <svg className="absolute inset-0 size-full" viewBox="0 0 100 133" preserveAspectRatio="none">
+        {lines.map((d, k) => (
+          <path key={k} className="pack-fx-crack" d={d} pathLength={100} fill="none" stroke="#fff" strokeWidth={0.7} strokeLinecap="round" strokeLinejoin="round" style={{ animationDelay: `${(k % 5) * 0.04}s` }} />
+        ))}
+      </svg>
+    </div>
+  );
 }
 
 const RAINBOW = ['#ff4fd8', '#ffcd3c', '#4ade80', '#3cc7ff', '#a855f7', '#fff'];
@@ -42,6 +74,13 @@ export function OpeningAround({ kind, contained = false }: { kind: Opening; cont
   if (kind === 'singularity') return <Singularity />;
   if (kind === 'bigbang') return <BigBang contained={contained} />;
   if (kind === 'timewarp') return <TimeWarp />;
+  if (kind === 'shatter')
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-visible" aria-hidden>
+        <div className="pack-fx-prism-ring" />
+        <Bits kind="shatter" />
+      </div>
+    );
   return <Bits kind={kind} />;
 }
 
@@ -85,6 +124,7 @@ function BigBang({ contained }: { contained: boolean }) {
 
 const BANG = ['#fff', '#fde68a', '#f0abfc', '#a5f3fc', '#fca5a5', '#bbf7d0'];
 const GOLD = ['#fde68a', '#fbbf24', '#fff7d6', '#f59e0b', '#fff'];
+const ICE = ['#fff', '#a5f3fc', '#f0abfc', '#c4b5fd', '#fde68a', '#bbf7d0', '#e0f2fe', '#f9a8d4'];
 const HOURS = ['XII', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'];
 
 /** Chronos: a clock face spinning backwards round the pack as it spins back into it, then a ring of gold and the clock in pieces. */
@@ -114,7 +154,7 @@ function TimeWarp() {
 
 function Bits({ kind }: { kind: Opening }) {
   const bits = useMemo(() => {
-    const n = kind === 'inferno' ? 28 : kind === 'holofoil' ? 20 : kind === 'bigbang' ? 44 : 22;
+    const n = kind === 'inferno' ? 28 : kind === 'holofoil' ? 20 : kind === 'bigbang' ? 44 : kind === 'shatter' ? 40 : 22;
     return Array.from({ length: n }, (_, k) => {
       const r = Math.random;
       if (kind === 'inferno')
@@ -122,6 +162,14 @@ function Bits({ kind }: { kind: Opening }) {
       if (kind === 'holofoil')
         return { k, x: 10 + r() * 80, top: 18, dx: (r() - 0.5) * 320, dy: -(40 + r() * 200), size: 4 + r() * 7, color: RAINBOW[k % RAINBOW.length], d: 0.05 + r() * 0.25, t: 0.8 + r() * 0.5, rot: (r() - 0.5) * 720, shard: true };
       const a = r() * Math.PI * 2;
+      if (kind === 'shatter') {
+        // The pack in pieces: each shard from where it was, flying out from the middle, turning.
+        const x = 8 + r() * 84;
+        const top = 8 + r() * 84;
+        const far = 90 + r() * 170;
+        const out = Math.atan2(top - 50, x - 50) + (r() - 0.5) * 0.6;
+        return { k, x, top, dx: Math.cos(out) * far, dy: Math.sin(out) * far + 40, size: 6 + r() * 11, color: ICE[k % ICE.length], d: 0.74 + r() * 0.08, t: 0.8 + r() * 0.5, rot: (r() - 0.5) * 900, shard: true };
+      }
       if (kind === 'timewarp') {
         const far = 130 + r() * 200;
         return { k, x: 50, top: 50, dx: Math.cos(a) * far, dy: Math.sin(a) * far, size: 3 + r() * 5, color: GOLD[k % GOLD.length], d: 1.05 + r() * 0.15, t: 0.7 + r() * 0.5, rot: (r() - 0.5) * 540, shard: k % 2 === 0 };

@@ -28,7 +28,7 @@ export interface Cosmetic {
    */
   evolve?: number[];
   /** A wrapper that opens its own way (src/gacha/PackOpening.tsx): the pack's last moment, torn. */
-  opening?: 'holofoil' | 'inferno' | 'portal' | 'singularity' | 'bigbang' | 'timewarp';
+  opening?: 'holofoil' | 'inferno' | 'portal' | 'singularity' | 'bigbang' | 'timewarp' | 'shatter';
 }
 
 /** What a lock looks at (worked out by the Boutique). */
@@ -115,6 +115,17 @@ export const WRAPPERS: Cosmetic[] = [
     opening: 'inferno',
     lock: { text: 'Own the Phoenix wrapper', need: (f) => [ownedOf(f, ['wrap:phoenix']), 1] },
     blurb: 'Charred black, cracks of fire glowing through, sparks rising. Torn, the whole pack burns away from the tear, in a burst of embers.',
+  },
+  {
+    id: 'wrap:diamond',
+    name: 'Diamond Heart',
+    price: 0,
+    tokens: 40000,
+    className: 'pack-wrap-diamond',
+    ascended: true,
+    opening: 'shatter',
+    lock: { text: 'Own the Crystal wrapper and open 200 packs', need: (f) => [ownedOf(f, ['wrap:crystal']) + (f.packs >= 200 ? 1 : 0), 2] },
+    blurb: "A great diamond turning in the pack, its facets flashing white and every colour, light breaking into rainbows around it. Touch it and it rings. Torn, the pack cracks, turns to crystal and shatters.",
   },
   {
     id: 'wrap:portal',
