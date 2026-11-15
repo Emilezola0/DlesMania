@@ -16,6 +16,12 @@ export function grammarMeaning(level: string, pattern: string, lang: 'en' | 'fr'
   return m ? { text: (lang === 'fr' && FRENCH[m.en]) || m.en, src: m.src } : null;
 }
 
+/** The pages that explain a grammar point (its sources' lessons: Bunpro, JLPT Sensei), to read it in full. */
+export function grammarPages(level: string, pattern: string): { src: string; title: string; url: string }[] {
+  const m = LEVELS[level]?.[pattern] as (Meaning & { pages?: { src: string; title: string; url: string }[] }) | undefined;
+  return m?.pages ?? [];
+}
+
 /** Up to `n` real sentences using a grammar point of a level, the one already shown (`not`) left out. */
 export const grammarExamples = (level: string, pattern: string, not?: number, n = 2): JlptSentence[] =>
   sentencesOf(level)

@@ -16,7 +16,8 @@ import { kanaFromRomaji, toHiragana } from '../lib/romaji';
 import { GrammarPage, GrammarReview } from './JlptGrammarGame';
 import { FillPage } from './JlptFillGame';
 import { WriteCard, WriteGame } from './JlptWrite';
-import { grammarMeaning } from '../arcade/jlptGrammar';
+import { grammarMeaning, grammarPages } from '../arcade/jlptGrammar';
+import { GrammarNote } from '../components/JlptGrammarNote';
 
 /** How long a right answer stays shown before the next question. */
 const REVEAL_MS = 900;
@@ -921,6 +922,44 @@ function RecallKanji({ of, recallKey, kanji }: { of: RecallOf; recallKey: string
 
 const PAGE = 120;
 
+/**
+ * A grammar point in a level's list: its pattern, what it means (in the player's language) and where that's from,
+ * the pages that explain it in full, and its examples a tap away (the grammar note: sentences that use it).
+ */
+function GrammarRow({ level, pattern }: { level: string; pattern: string }) {
+  const lang = useProgress((s) => s.nameLang);
+  const fr = lang === 'fr';
+  const meaning = grammarMeaning(level, pattern, lang);
+  const pages = grammarPages(level, pattern);
+  const [open, setOpen] = useState(false);
+  return (
+    <li className="page space-y-1 rounded-md px-4 py-3">
+      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span lang="ja" className="font-serif text-xl font-bold">
+          {pattern}
+        </span>
+        <span className="min-w-0 flex-1 text-sm">{meaning ? meaning.text : <span className="text-ink-faint">{fr ? 'Pas encore de sens trouvé pour cette règle.' : 'No meaning found for this one yet.'}</span>}</span>
+      </div>
+      <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-ink-faint">
+        {meaning && <span>{fr ? 'Sens' : 'Meaning'}: {meaning.src}</span>}
+        {pages.map((p) => (
+          <a key={p.url} href={p.url} target="_blank" rel="noreferrer" className="underline hover:text-ink">
+            {fr ? `L’explication sur ${p.src}` : `Explained on ${p.src}`} ↗
+          </a>
+        ))}
+        <button type="button" onClick={() => setOpen(!open)} className="font-semibold text-accent hover:underline">
+          {open ? (fr ? 'Masquer les exemples' : 'Hide the examples') : fr ? 'Exemples' : 'Examples'}
+        </button>
+      </p>
+      {open && (
+        <div className="border-t border-rule pt-2">
+          <GrammarNote level={level} pattern={pattern} />
+        </div>
+      )}
+    </li>
+  );
+}
+
 /** /jlpt/list/:level — everything the list has for one level: its kanji, its words and its grammar. */
 function LevelList({ level }: { level: string }) {
   const l = JLPT_LEVELS.find((x) => x.level === level)!;
@@ -929,7 +968,9 @@ function LevelList({ level }: { level: string }) {
   const [shown, setShown] = useState(PAGE);
   const q = query.trim().toLowerCase();
   const entries = tab === 'grammar' ? [] : l.decks.find((d) => d.kind === tab)!.entries.filter((e) => !q || e.text.includes(q) || e.reading.includes(q) || e.meaning.toLowerCase().includes(q));
-  const grammar = tab === 'grammar' ? l.grammar.filter((g) => !q || g.includes(q)) : [];
+  const lang = useProgress((s) => s.nameLang);
+  // A grammar point is found by its pattern or by what it means.
+  const grammar = tab === 'grammar' ? l.grammar.filter((g) => !q || g.includes(q) || (grammarMeaning(level, g, lang)?.text.toLowerCase().includes(q) ?? false)) : [];
   const count = tab === 'grammar' ? grammar.length : entries.length;
   return (
     <div className="mx-auto max-w-3xl space-y-5">
@@ -969,11 +1010,9 @@ function LevelList({ level }: { level: string }) {
       </div>
       <p className="text-xs text-ink-faint">{count.toLocaleString('en')} shown</p>
       {tab === 'grammar' ? (
-        <ul lang="ja" className="grid gap-2 sm:grid-cols-2">
+        <ul className="space-y-2">
           {grammar.map((g) => (
-            <li key={g} className="page rounded-md px-4 py-2 text-lg">
-              {g}
-            </li>
+            <GrammarRow key={g} level={level} pattern={g} />
           ))}
         </ul>
       ) : (
@@ -1133,7 +1172,8 @@ export default function Jlpt() {
   const { deck: id, level } = useParams();
   const { picks, setPicks } = useCustomPicks('omnidle-custom-jlpt', JLPT_OPTIONS);
   const [grammar, setGrammar] = useState<string | null>(null);
-  const japaneseTitle = useProgress((s) => s.nameLang) === 'fr' ? 'Japonais' : 'Japanese';
+  const nameLang = useProgress((s) => s.nameLang);
+  const japaneseTitle = nameLang === 'fr' ? 'Japonais' : 'Japanese';
   if (level) {
     const l = JLPT_LEVELS.find((x) => x.level.toLowerCase() === level.toLowerCase());
     return l ? <LevelList key={l.level} level={l.level} /> : <Navigate to="/jlpt" replace />;
@@ -1272,7 +1312,7 @@ export default function Jlpt() {
           {grammar === l.level && (
             <ul lang="ja" className="page animate-pop flex flex-wrap gap-2 rounded-md p-4">
               {l.grammar.map((g) => (
-                <li key={g} className="rounded-full border border-rule-strong px-3 py-1 text-sm">
+                <li key={g} className="rounded-full border border-rule-strong px-3 py-1 text-sm" title={grammarMeaning(l.level, g, nameLang)?.text}>
                   {g}
                 </li>
               ))}
