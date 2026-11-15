@@ -2414,6 +2414,75 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   color: transparent;
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.25));
 }
+/* The machine bar (src/pages/Casino.tsx): felt-dark, a gold rim; the open tab lit like a cabinet. */
+.casino-tabs {
+  background: linear-gradient(180deg, #2a1830, #1a1220);
+  border: 1px solid #fbbf2455;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+.casino-tab {
+  color: #e9dcc4b3;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+.casino-tab:hover { color: #fff3d6; background: rgba(255, 255, 255, 0.06); }
+.casino-tab:hover .casino-tab-icon { transform: translateY(-2px) scale(1.08); }
+.casino-tab:active { transform: scale(0.97); }
+.casino-tab-icon { transition: transform 0.2s; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35)); }
+.casino-tab.is-on {
+  color: #fff7dc;
+  background: radial-gradient(circle at 50% 0%, #fbbf2440, transparent 70%), linear-gradient(160deg, #9f1239, #4c1d95);
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 1px #7f1d1d, 0 4px 14px rgba(159, 18, 57, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.casino-tab.is-on .casino-tab-icon { transform: scale(1.12); }
+.casino-tab-black.is-on {
+  background: radial-gradient(circle at 50% 0%, #d946ef40, transparent 70%), linear-gradient(160deg, #1e1030, #0b0812);
+  border-color: #c084fc;
+  box-shadow: 0 0 0 1px #3b0764, 0 0 16px rgba(192, 132, 252, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* The Black Market (src/casino/BlackMarket.tsx): a back room — always dark, neon violet, a flickering sign. */
+.bm-den {
+  color: #f1e9ff;
+  background:
+    radial-gradient(ellipse at 15% -10%, #a21caf33, transparent 55%),
+    radial-gradient(ellipse at 100% 110%, #4c1d9555, transparent 60%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.018) 0 2px, transparent 2px 10px),
+    #0e0a15;
+  border: 1px solid #c084fc40;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.bm-panel { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.09); }
+.bm-sign {
+  color: #f5d0fe;
+  text-shadow: 0 0 4px #e879f9, 0 0 14px #c026d3, 0 0 28px #7e22ce;
+  animation: bm-flicker 6s infinite;
+}
+@keyframes bm-flicker {
+  0%, 91%, 94%, 100% { opacity: 1; }
+  92% { opacity: 0.45; }
+  93% { opacity: 0.9; }
+  95% { opacity: 0.6; }
+}
+.bm-step {
+  background: #a21caf;
+  box-shadow: 0 0 10px #d946ef99;
+}
+.bm-step.is-done { background: #16a34a; box-shadow: 0 0 10px #4ade8099; }
+.bm-slot {
+  border: 2px dashed rgba(216, 180, 254, 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  aspect-ratio: 5 / 7;
+}
+.bm-tag {
+  background: linear-gradient(180deg, #fde68a, #f59e0b);
+  color: #3b1d00;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 8px 100%, 0 50%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bm-sign { animation: none; }
+}
 .casino-tile {
   background: radial-gradient(circle at 15% 50%, #fbbf2433, transparent 40%), linear-gradient(120deg, #7f1d1d, #4c1d95);
   border: 2px solid #fbbf24aa;

@@ -1,7 +1,7 @@
 // The Black Market (Casino → Black Market): two Mythic (or Omni) cards of a franchise handed over for one other card
 // of that franchise and rarity, picked by the player. The cards handed over go on the player's stall, where their
 // friends can buy them for DleCoins (dear) for a week (src/cloud/blackmarket.ts). The numbers: casino.json blackMarket.
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { DleCoin } from '../components/DleCoin';
 import { CardFace } from '../gacha/CardView';
 import { CARD_BY_ID, COLLECTIBLE, RARITY_INFO, RARITY_LIGHT, type Card, type Rarity } from '../gacha/cards';
@@ -34,8 +34,8 @@ function Mini({ card, count, onClick, picked, dim, note }: { card: Card; count?:
         <CardFace card={card} count={count} tilt={false} still />
       </div>
       {!!picked && <span className="absolute -right-1 -top-1 grid size-6 place-items-center rounded-full bg-coral font-display text-xs font-black text-white shadow">×{picked}</span>}
-      <p className="mt-1 truncate text-center text-[11px] font-semibold">{shownName(card.name, card.set)}</p>
-      {note && <p className="truncate text-center text-[10px] text-ink-faint">{note}</p>}
+      <p className="mt-1 truncate text-center text-[11px] font-semibold" title={shownName(card.name, card.set)}>{shownName(card.name, card.set)}</p>
+      {note && <p className="truncate text-center text-[10px] text-white/50" title={note}>{note}</p>}
     </button>
   );
 }
@@ -163,25 +163,86 @@ export function BlackMarket() {
   };
   const left = (s: Stall) => Math.max(0, Math.ceil((s.at + 7 * DAY - Date.now()) / DAY));
 
+  const rarities = BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ');
+  const targetCard = target ? CARD_BY_ID.get(target)! : null;
+  const step = !group || picked.length < BM.give ? 1 : !target ? 2 : 3;
+  const onSale = theirs ? theirs.filter((s) => !s.buyer && CARD_BY_ID.has(s.card)) : [];
+
   return (
-    <div className="space-y-6">
-      <section className="space-y-1 rounded-xl border border-black/40 bg-gradient-to-br from-[#14111c] to-[#2a1f33] p-4 text-white shadow-lg">
-        <h2 className="font-display text-xl font-black tracking-wider">🕶️ The Black Market</h2>
-        <p className="text-sm text-white/75">
-          Hand over {BM.give} {BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ')} cards of the same franchise for another card of that franchise and rarity, your pick. What you hand over goes on your stall: your friends can buy it for a week.
+    <div className="bm-den space-y-6 rounded-2xl p-4 sm:p-6">
+      {/* The sign and the house rules. */}
+      <header className="space-y-3 text-center">
+        <h2 className="bm-sign font-display text-3xl font-black uppercase tracking-[0.2em] sm:text-4xl">
+          <span aria-hidden>🕶️ </span>Black Market
+        </h2>
+        <p className="mx-auto max-w-xl text-sm text-white/65">
+          Hand over {BM.give} {rarities} cards of one franchise, take another card of that franchise and rarity — your pick. No questions asked.
         </p>
+        <ul className="flex flex-wrap justify-center gap-2 text-xs font-bold">
+          <li className="bm-panel rounded-full px-3 py-1">🃏 Give {BM.give}</li>
+          <li className="bm-panel rounded-full px-3 py-1">🎯 Take 1, your pick</li>
+          <li className="bm-panel rounded-full px-3 py-1">🏷️ Yours go on your stall · 7 days</li>
+        </ul>
+      </header>
+
+      {/* The deal on the table: what goes, what comes. */}
+      <section className="bm-panel rounded-xl p-3 sm:p-4" aria-label="The deal">
+        <div className="flex items-center justify-center gap-2 sm:gap-4">
+          {Array.from({ length: BM.give }, (_, i) => {
+            const c = picked[i] ? CARD_BY_ID.get(picked[i]) : undefined;
+            return (
+              <div key={i} className="w-16 shrink-0 sm:w-20">
+                {c ? <CardFace card={c} tilt={false} still /> : <div className="bm-slot grid place-items-center rounded-lg text-xl text-white/30">?</div>}
+              </div>
+            );
+          })}
+          <span aria-hidden className={`font-display text-2xl font-black sm:text-3xl ${step === 3 ? 'text-fuchsia-300' : 'text-white/30'}`}>
+            ⇄
+          </span>
+          <div className="w-16 shrink-0 sm:w-20">
+            {targetCard ? <CardFace card={targetCard} tilt={false} still /> : <div className="bm-slot grid place-items-center rounded-lg text-xl text-white/30">★</div>}
+          </div>
+        </div>
+        <ol className="mt-3 flex justify-center gap-4 text-[11px] font-bold uppercase tracking-wider text-white/60">
+          {['Give', 'Take', 'Deal'].map((label, i) => (
+            <li key={label} className={`flex items-center gap-1.5 ${step === i + 1 ? 'text-white' : ''}`}>
+              <span className={`bm-step grid size-5 place-items-center rounded-full text-[10px] text-white ${step > i + 1 ? 'is-done' : step < i + 1 ? 'opacity-30' : ''}`}>{step > i + 1 ? '✓' : i + 1}</span>
+              {label}
+            </li>
+          ))}
+        </ol>
+        {step === 3 && targetCard && (
+          <button type="button" onClick={() => void trade()} className="btn-accent mx-auto mt-3 block w-full rounded-md px-4 py-2.5 font-display font-bold sm:w-auto">
+            🤝 Hand over {picked.length} for {shownName(targetCard.name, targetCard.set)}
+          </button>
+        )}
       </section>
+
+      {done && (
+        <section className="bm-panel flex items-center gap-4 rounded-xl border-fuchsia-400/40 p-4">
+          <div className="w-20 shrink-0">
+            <CardFace card={done.got} tilt={false} still />
+          </div>
+          <div className="min-w-0 space-y-1 text-sm">
+            <p className="font-display text-lg font-bold">🤝 Deal: {shownName(done.got.name, done.got.set)} is yours.</p>
+            <p className="text-white/65">
+              You handed over {done.gave.map((c) => shownName(c.name, c.set)).join(' and ')}.{' '}
+              {done.posted === null ? 'Putting them on your stall…' : done.posted ? 'They are on your stall: your friends can buy them for a week.' : 'Sign in (and add friends) to put the cards you hand over on a stall for your friends.'}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 1. What to hand over. */}
       <section className="space-y-3">
-        <h3 className="font-display text-lg font-bold">1 · Pick {BM.give} cards to hand over</h3>
+        <StepTitle n={1} done={step > 1}>Pick {BM.give} cards to hand over</StepTitle>
         {groups.length === 0 ? (
-          <p className="page rounded-md p-4 text-sm text-ink-soft">
-            You need {BM.give} {BM.rarities.map((r) => RARITY_INFO[r].name).join(' or ')} cards (copies count) of the same franchise. Keep opening packs: duplicates of a franchise&apos;s Mythics will do. Only cards earned with your account signed in count: they go to your friends' stalls.
+          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">
+            You need {BM.give} {rarities} cards (copies count) of the same franchise. Keep opening packs: duplicates of a franchise&apos;s Mythics will do. Only cards earned with your account signed in count: they go to your friends&apos; stalls.
           </p>
         ) : (
           groups.map((g) => (
-            <div key={g.key} className={`page space-y-2 rounded-md p-3 ${group && group.key !== g.key ? 'opacity-60' : ''}`}>
+            <div key={g.key} className={`bm-panel space-y-1 rounded-xl p-3 transition ${group && group.key !== g.key ? 'opacity-50' : ''} ${group?.key === g.key ? 'border-fuchsia-400/50' : ''}`}>
               <p className="flex items-baseline justify-between gap-2 text-sm">
                 <b className="truncate">{g.franchise}</b>
                 <span className="shrink-0 text-xs font-bold uppercase tracking-widest" style={{ color: RARITY_LIGHT[g.rarity] }}>
@@ -196,73 +257,55 @@ export function BlackMarket() {
             </div>
           ))
         )}
-        {lastCopies.length > 0 && <p className="rounded-md border border-coral/50 bg-coral/10 p-2 text-sm font-semibold text-coral">⚠️ Your last {lastCopies.map((c) => shownName(c.name, c.set)).join(' and ')}: it leaves your album, its grade with it.</p>}
+        {lastCopies.length > 0 && <p className="rounded-md border border-coral/50 bg-coral/15 p-2 text-sm font-semibold text-coral">⚠️ Your last {lastCopies.map((c) => shownName(c.name, c.set)).join(' and ')}: it leaves your album, its grade with it.</p>}
       </section>
 
       {/* 2. What to get. */}
       {group && picked.length === BM.give && (
         <section className="space-y-3">
-          <h3 className="font-display text-lg font-bold">2 · Pick the {RARITY_INFO[group.rarity].name} you get</h3>
+          <StepTitle n={2} done={!!target}>Pick the {RARITY_INFO[group.rarity].name} you take</StepTitle>
           {offers.length === 0 ? (
-            <p className="page rounded-md p-4 text-sm text-ink-soft">{group.franchise} has no other {RARITY_INFO[group.rarity].name} card to give you for these.</p>
+            <p className="bm-panel rounded-xl p-4 text-sm text-white/60">{group.franchise} has no other {RARITY_INFO[group.rarity].name} card to give you for these.</p>
           ) : (
-            <div className="-mx-1 flex gap-3 overflow-x-auto px-2 pb-2 pt-4">
+            <div className="bm-panel -mx-1 flex gap-3 overflow-x-auto rounded-xl px-3 pb-2 pt-4">
               {offers.map((c) => (
-                <Mini key={c.id} card={c} picked={target === c.id ? 1 : 0} note={(owned[c.id] ?? 0) > 0 ? `you have ${owned[c.id]}` : 'new for you'} onClick={() => (sfx.select(), setTarget(c.id))} />
+                <Mini key={c.id} card={c} picked={target === c.id ? 1 : 0} note={(owned[c.id] ?? 0) > 0 ? `you have ${owned[c.id]}` : '✨ new for you'} onClick={() => (sfx.select(), setTarget(c.id))} />
               ))}
             </div>
           )}
-          <button type="button" disabled={!target} onClick={() => void trade()} className="btn-accent w-full rounded-md px-4 py-2.5 font-display font-bold disabled:opacity-40 sm:w-auto">
-            🤝 Hand over {picked.length} for {target ? shownName(CARD_BY_ID.get(target)!.name, CARD_BY_ID.get(target)!.set) : '…'}
-          </button>
-        </section>
-      )}
-
-      {done && (
-        <section className="page flex items-center gap-4 rounded-md p-4">
-          <div className="w-24 shrink-0">
-            <CardFace card={done.got} tilt={false} still />
-          </div>
-          <div className="min-w-0 space-y-1 text-sm">
-            <p className="font-display text-lg font-bold">🤝 Deal: {shownName(done.got.name, done.got.set)} is yours.</p>
-            <p className="text-ink-soft">
-              You handed over {done.gave.map((c) => shownName(c.name, c.set)).join(' and ')}.{' '}
-              {done.posted === null ? 'Putting them on your stall…' : done.posted ? 'They are on your stall: your friends can buy them for a week.' : 'Sign in (and add friends) to put the cards you hand over on a stall for your friends.'}
-            </p>
-          </div>
         </section>
       )}
 
       {/* 3. The friends' stalls, and the player's own. */}
-      <section className="space-y-3">
-        <h3 className="font-display text-lg font-bold">Your friends&apos; stalls</h3>
-        <p className="text-sm text-ink-soft">
-          The cards your friends handed over this week. Dear: <DleCoin className="inline size-4 align-[-3px]" /> {BM.price.mythic.toLocaleString('en')} a Mythic, {BM.price.omni.toLocaleString('en')} an Omni. The first to buy one gets it.
-        </p>
+      <section className="space-y-3 border-t border-white/10 pt-5">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h3 className="font-display text-lg font-bold">🏮 Your friends&apos; stalls</h3>
+          <p className="flex items-center gap-1.5 text-xs text-white/60">
+            <DleCoin className="size-3.5" /> {BM.price.mythic.toLocaleString('en')} a Mythic · {BM.price.omni.toLocaleString('en')} an Omni · first come, first served
+          </p>
+        </div>
         {!signedIn ? (
-          <p className="page rounded-md p-4 text-sm text-ink-soft">Sign in (Account) and add friends (Friends) to see their stalls.</p>
+          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">Sign in (Account) and add friends (Friends) to see their stalls.</p>
         ) : stallError ? (
-          <p className="rounded-md border border-coral/50 bg-coral/10 p-3 text-sm font-semibold text-coral">{stallError}</p>
+          <p className="rounded-md border border-coral/50 bg-coral/15 p-3 text-sm font-semibold text-coral">{stallError}</p>
         ) : theirs === null ? (
-          <p className="text-sm text-ink-faint">Looking round the stalls…</p>
-        ) : theirs.filter((s) => !s.buyer).length === 0 ? (
-          <p className="page rounded-md p-4 text-sm text-ink-soft">Nothing on your friends&apos; stalls this week.</p>
+          <p className="text-sm text-white/50">Looking round the stalls…</p>
+        ) : onSale.length === 0 ? (
+          <p className="bm-panel rounded-xl p-4 text-sm text-white/60">Nothing on your friends&apos; stalls this week.</p>
         ) : (
-          <div className="flex flex-wrap gap-3 pt-3">
-            {theirs
-              .filter((s) => !s.buyer && CARD_BY_ID.has(s.card))
-              .map((s) => {
-                const card = CARD_BY_ID.get(s.card)!;
-                const price = BM.price[s.rarity];
-                return (
-                  <div key={`${s.uid}/${s.id}`} className="w-28 space-y-1 sm:w-32">
-                    <Mini card={card} count={owned[card.id]} note={`${s.seller} · ${left(s)} day${left(s) === 1 ? '' : 's'} left`} />
-                    <button type="button" disabled={coins < price || buying !== null} onClick={() => void buy(s)} className="btn-accent flex w-full items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs font-bold disabled:opacity-40">
-                      {buying === s.id ? '…' : <>Buy · <DleCoin className="size-3.5" /> {price.toLocaleString('en')}</>}
-                    </button>
-                  </div>
-                );
-              })}
+          <div className="flex flex-wrap gap-4 pt-2">
+            {onSale.map((s) => {
+              const card = CARD_BY_ID.get(s.card)!;
+              const price = BM.price[s.rarity];
+              return (
+                <div key={`${s.uid}/${s.id}`} className="bm-panel w-32 space-y-1.5 rounded-xl p-2 sm:w-36">
+                  <Mini card={card} count={owned[card.id]} note={`${s.seller} · ${left(s)} day${left(s) === 1 ? '' : 's'} left`} />
+                  <button type="button" disabled={coins < price || buying !== null} onClick={() => void buy(s)} className="bm-tag flex w-full items-center justify-center gap-1 py-1.5 pl-2 text-xs font-black disabled:opacity-40">
+                    {buying === s.id ? '…' : <><DleCoin className="size-3.5" /> {price.toLocaleString('en')}</>}
+                  </button>
+                </div>
+              );
+            })}
           </div>
         )}
         {note && <p className="text-sm font-semibold">{note}</p>}
@@ -280,5 +323,14 @@ export function BlackMarket() {
         )}
       </section>
     </div>
+  );
+}
+
+function StepTitle({ n, done, children }: { n: number; done: boolean; children: ReactNode }) {
+  return (
+    <h3 className="flex items-center gap-2 font-display text-lg font-bold">
+      <span className={`bm-step grid size-7 shrink-0 place-items-center rounded-full text-sm text-white ${done ? 'is-done' : ''}`}>{done ? '✓' : n}</span>
+      {children}
+    </h3>
   );
 }

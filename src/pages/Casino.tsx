@@ -70,19 +70,20 @@ export default function Casino() {
           </Link>
         </div>
       </header>
-      {/* A grid on a phone (three across), two rows on a tablet, one row on a wide screen: every tab in reach. */}
-      <nav className="grid grid-cols-3 gap-1 rounded-lg border border-rule bg-tile p-1 sm:grid-cols-5 lg:flex" aria-label="Casino machines">
+      {/* Icon over its name, so every name fits whole: three across on a phone, five on a tablet, all nine in a row on a wide screen. */}
+      <nav className="casino-tabs grid grid-cols-3 gap-1.5 rounded-xl p-1.5 sm:grid-cols-5 lg:grid-cols-9" aria-label="Casino machines">
         {TABS.map((t) => (
           <button
             key={t.id}
             type="button"
             onClick={() => pick(t.id)}
             aria-pressed={tab === t.id}
-            className={`relative flex min-w-0 flex-1 items-center justify-center gap-1 rounded-md px-1 py-2 font-display text-xs font-bold transition sm:gap-1.5 sm:text-sm ${tab === t.id ? 'bg-paper text-ink shadow' : 'text-ink-soft hover:text-ink'}`}
+            title={t.label}
+            className={`casino-tab group relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-2 font-display text-[11px] font-bold leading-tight sm:text-xs ${t.id === 'black' ? 'casino-tab-black' : ''} ${tab === t.id ? 'is-on' : ''}`}
           >
-            <span aria-hidden>{t.icon}</span>
-            <span className="truncate">{'short' in t ? <><span className="sm:hidden">{t.short}</span><span className="max-sm:hidden">{t.label}</span></> : t.label}</span>
-            {t.id === 'capsules' && tokens > 0 && <span className="absolute right-1 top-1 size-2 rounded-full bg-coral" title="A free capsule is waiting" />}
+            <span aria-hidden className="casino-tab-icon text-xl leading-none sm:text-2xl">{t.icon}</span>
+            <span className="max-w-full truncate whitespace-nowrap">{t.label}</span>
+            {t.id === 'capsules' && tokens > 0 && <span className="absolute right-1.5 top-1.5 size-2 animate-pulse rounded-full bg-coral" title="A free capsule is waiting" />}
           </button>
         ))}
       </nav>
