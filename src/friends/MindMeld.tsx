@@ -61,7 +61,7 @@ export function MindMeld({ d, me, friend, busy, onStart, onSay }: { d: BondDoc; 
             {k === 1 && <span className="font-display text-xl font-black text-ink-faint">+</span>}
             <span className="flex flex-col items-center gap-1">
               <CardAvatar card={c} className="size-14" />
-              <span className="max-w-24 truncate text-xs font-semibold">{shownName(c.name, c.set)}</span>
+              <span className="max-w-24 truncate text-xs font-semibold" title={shownName(c.name, c.set)}>{shownName(c.name, c.set)}</span>
             </span>
           </span>
         ))}
@@ -76,12 +76,18 @@ export function MindMeld({ d, me, friend, busy, onStart, onSay }: { d: BondDoc; 
             return (
               <li key={r.round} className={`flex items-center gap-2 rounded-md px-2 py-1 ${melded ? 'meld-hit font-bold' : 'bg-tile/60'}`}>
                 <span className="w-16 shrink-0 text-xs font-bold uppercase tracking-wider text-ink-faint">Round {r.round}</span>
-                <span className="min-w-0 flex-1 truncate">
+                <span className="min-w-0 flex-1 truncate" title={`You: ${r.a ?? '…'}`}>
                   You: <b>{r.a ?? '…'}</b>
                 </span>
-                <span className="min-w-0 flex-1 truncate text-right">
-                  {friend.name}: <b>{both || r.round < g.round ? (r.b ?? '—') : r.b ? '🔒 written' : '…'}</b>
-                </span>
+                {(() => {
+                  const theirs = both || r.round < g.round ? (r.b ?? '—') : r.b ? '🔒 written' : '…';
+                  return (
+                    <span className="flex min-w-0 flex-1 justify-end gap-1" title={`${friend.name}: ${theirs}`}>
+                      <span className="min-w-0 truncate">{friend.name}:</span>
+                      <b className="min-w-0 shrink-0 truncate" style={{ maxWidth: '70%' }}>{theirs}</b>
+                    </span>
+                  );
+                })()}
               </li>
             );
           })}
