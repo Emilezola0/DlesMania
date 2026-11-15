@@ -1392,7 +1392,13 @@ function Rays({ color, strong, rainbow }: { color: string; strong: boolean; rain
  * — each builds up as far as its rarity before it turns, light fusing into it, then bursts — and the five are
  * laid out together. The cards are drawn before any of it; the show only dresses them (see EVOLVE_CHANCE, Step).
  */
-export function PackOpening({ pack, times = 1, cards, events = [], fresh, onClose, onAgain, canAgain, golden = false }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean; golden?: boolean }) {
+/**
+ * No cosmic events (a Bond pack's). One list for all: a new [] at each render would roll the opening's stars again
+ * every time the page under it re-renders (the Bond tab does, as the Bond changes), and the opening would flicker.
+ */
+const NO_EVENTS: CosmicEvent[] = [];
+
+export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh, onClose, onAgain, canAgain, golden = false }: { pack: Pack; times?: number; cards: Card[]; events?: CosmicEvent[]; fresh: Set<string>; onClose: () => void; onAgain: () => void; canAgain: boolean; golden?: boolean }) {
   // While it's open, the page underneath stops drawing what can't be seen (see html.pack-open in index.css).
   useEffect(() => {
     document.documentElement.classList.add('pack-open');
