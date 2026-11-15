@@ -10,7 +10,7 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { dig, harvest, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
+import { dig, harvest, harvestChoices, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
 import { islandBand, type Source } from './music';
 import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
 import { SeedArt } from './SeedBook';
@@ -101,6 +101,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const [pair, setPair] = useState<string[]>([]);
   const [note, setNote] = useState<ReactNode>(null);
   const [framing, setFraming] = useState<number | null>(null);
+  /** A ripe plot whose harvest the player is choosing. */
+  const [reaping, setReaping] = useState<number | null>(null);
   const [hover, setHover] = useState<number | null>(null);
   const [tv, setTv] = useState<{ cell: number; card: string } | null>(null);
   const backdrop = useProgress((s) => s.backdrop);
@@ -272,30 +274,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const plot = isl.plots[cell];
     const front = isl.fg[cell];
     const mine = !!plot && (who ? (plot.by ? plot.by === who.uid : who.uid === who.owner) : true);
-    if (plot && isReady(plot) && mine) {
-      let got: ReturnType<typeof harvest>['got'] | null = null;
-      void Promise.resolve(
-        act((i, it, sd) => {
-          const h = harvest(i, it, sd, cell, Math.random, todayKey(), who);
-          got = h.got;
-          return h;
-        }, 'harvest'),
-      ).then((err) => {
-        if (err || !got) return say(`⚠️ ${err}`);
-        const g = got as ReturnType<typeof harvest>['got'];
-        sfx.victory();
-        say(
-        [
-          `🌿 ${tr('Harvested', 'Récolté')}: ${itemIcon(g.item)} ${itemName(g.item)}`,
-          g.seed ? `+ ${nameOf(SEED_BY_ID.get(g.seed)!)}` : '',
-          g.hybrid ? `🧬 ${tr('Hybrid', 'Hybride')}: ${nameOf(SEED_BY_ID.get(g.hybrid)!)}!` : '',
-        ]
-          .filter(Boolean)
-          .join(' · '),
-        );
-      });
-      return;
-    }
+    if (plot && isReady(plot) && mine) return setReaping(cell);
     // A friend's plant still growing: water it (a day sooner), and get a seed for helping.
     if (plot && who && !mine && !plot.water && !isReady(plot)) {
       return run(
@@ -353,6 +332,31 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       const [a, b] = pair;
       run((i, _it, sd) => plant(i, sd, cell, a, b, todayKey(), who), tr('Planted! Come back tomorrow.', 'Planté ! Reviens demain.'), 'plant', () => setPair([]));
     }
+  };
+
+  /** Harvests a ripe plot, taking the thing the player picked. */
+  const reap = (cell: number, pick: string) => {
+    let got: ReturnType<typeof harvest>['got'] | null = null;
+    void Promise.resolve(
+      act((i, it, sd) => {
+        const h = harvest(i, it, sd, cell, Math.random, todayKey(), who, pick);
+        got = h.got;
+        return h;
+      }, 'harvest'),
+    ).then((err) => {
+      if (err || !got) return say(`⚠️ ${err}`);
+      const g = got as ReturnType<typeof harvest>['got'];
+      sfx.victory();
+      say(
+        [
+          `🌿 ${tr('Harvested', 'Récolté')}: ${itemIcon(g.item)} ${itemName(g.item)}`,
+          g.seed ? `+ ${nameOf(SEED_BY_ID.get(g.seed)!)}` : '',
+          g.hybrid ? `🧬 ${tr('Hybrid', 'Hybride')}: ${nameOf(SEED_BY_ID.get(g.hybrid)!)}!` : '',
+        ]
+          .filter(Boolean)
+          .join(' · '),
+      );
+    });
   };
 
   const avatarCard = avatar ? CARD_BY_ID.get(avatar) : undefined;
@@ -515,6 +519,18 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         </Panel>
       )}
 
+      {reaping !== null && isl.plots[reaping] && (
+        <HarvestPicker
+          choices={harvestChoices(isl.plots[reaping])}
+          have={items}
+          onPick={(id) => {
+            reap(reaping, id);
+            setReaping(null);
+            box.current?.focus();
+          }}
+          onClose={() => (setReaping(null), box.current?.focus())}
+        />
+      )}
       {framing !== null && (
         <CardPicker
           owned={owned}
@@ -639,6 +655,32 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
   for (const fx of [4 - 0.45, ISLAND.w - 4 - 0.15]) out.push(<div key={`f${fx}`} className="island-foam absolute" style={{ left: fx * T, top: ISLAND.sea * T - T * 0.14, width: T * 0.6, height: T * 0.32 }} />);
   return <>{out}</>;
 });
+
+/** A ripe plant: choose which of the things its seeds grow you take. */
+function HarvestPicker({ choices, have, onPick, onClose }: { choices: string[]; have: Record<string, number>; onPick: (id: string) => void; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
+      <div className="page max-h-[80vh] w-full max-w-lg space-y-3 overflow-y-auto rounded-md p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-2">
+          <p className="font-display text-lg font-bold">🌿 {tr('It’s ripe! What do you harvest?', 'C’est mûr ! Que récoltes-tu ?')}</p>
+          <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
+            ✕
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {choices.map((id) => (
+            <button key={id} type="button" onClick={() => onPick(id)} className="relative flex flex-col items-center gap-1 rounded-md border border-rule p-2 text-xs hover:border-accent hover:bg-tile">
+              <ItemArt id={id} className="size-14 text-4xl" />
+              <span className="text-center font-semibold leading-tight">{itemName(id)}</span>
+              {!have[id] && <span className="absolute right-1 top-1 rounded bg-accent px-1 text-[10px] font-bold text-white">{tr('New', 'Nouveau')}</span>}
+            </button>
+          ))}
+        </div>
+        <p className="text-xs text-ink-faint">{tr('The other things stay in the seeds: plant them again to get them.', 'Les autres restent dans les graines : replante-les pour les avoir.')}</p>
+      </div>
+    </div>
+  );
+}
 
 /** Picks one of your cards to show in a frame. */
 function CardPicker({ owned, screen = false, backdrop, current, onPick, onClose }: { owned: Record<string, number>; screen?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {

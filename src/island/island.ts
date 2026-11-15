@@ -214,7 +214,13 @@ export interface Harvest {
  * Harvests a ready plot: one thing either seed grows (a rare's or a hybrid's twice as likely), sometimes one of the
  * two seeds back, and a hybrid seed: always the first time its families are crossed, then one time in four.
  */
-export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand = Math.random, today = todayKey(), who?: Who): Change & { got: Harvest } {
+/** What a ripe plot offers: everything its two seeds grow (the player picks one). */
+export function harvestChoices(p: Plot): string[] {
+  return [...new Set([p.a, p.b].flatMap((id) => SEED_BY_ID.get(id)?.grows ?? []))];
+}
+
+/** Harvests a ripe plot: the thing picked among `harvestChoices` (by chance when none is given), maybe a seed back, maybe the hybrid. */
+export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand = Math.random, today = todayKey(), who?: Who, pick?: string): Change & { got: Harvest } {
   const p = isl.plots[cell];
   if (!p) throw new Error('Nothing planted there.');
   if (who && (p.by ? p.by !== who.uid : who.uid !== who.owner)) throw new Error('Someone else planted it: theirs to harvest.');
@@ -224,7 +230,8 @@ export function harvest(isl: Island, items: Bag, seeds: Bag, cell: number, rand 
     const s = SEED_BY_ID.get(id)!;
     for (const g of s.grows) pool.push(...(s.tier === 'common' ? [g] : [g, g]));
   }
-  const got: Harvest = { item: pool[Math.floor(rand() * pool.length)] };
+  if (pick && !pool.includes(pick)) throw new Error('That doesn’t grow from these seeds.');
+  const got: Harvest = { item: pick ?? pool[Math.floor(rand() * pool.length)] };
   if (rand() < ISLAND.seedBack) got.seed = rand() < 0.5 ? p.a : p.b;
   const h = hybridOf(p.a, p.b);
   let crossed = isl.crossed;
