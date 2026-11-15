@@ -187,6 +187,11 @@ Edited on Drive? File › Download › Microsoft Excel (.xlsx), over `sheets/rar
 
 Bond's points a day and pack cost are also in `firestore.rules` (`bondPackCost()`, and a point a day): change them there too, then publish the rules in the Firebase console. Bonds live in `bonds/<uid>_<uid>` (`src/cloud/bonds.ts`); the Friends page's **Bond** tab shows them, and `#/friends?tab=bond&demo` (dev) opens a pack with a pretend friend. Its two games, **Mind Meld** and **Bond Egg** (`src/friends/bondGames.ts`), add points to a Bond (`extra`); their numbers (`MELD`, `EGG`) are in `firestore.rules` too (`meldRounds()`, `meldPoints()`, `eggDays()`, `eggPair()`, `eggHatch()`, and for the pet `petActs()`, `petPoints()`): change both, then publish the rules. A hatched egg is a pet to keep alive (`PET`, `petLife`): each day it needs one thing from each friend, and each sees only what it needs from the other (the 📣 tell); its hearts are worked out from the care acts, and the rules can only cap a pet day's points (0 or `petPoints()`), not check them. The demo plays them too, the pretend friend answering.
 
+### Island (stage 1: seeds)
+
+Every game has its seed family (`src/data/seeds.json`, logic in `src/island/seeds.ts`): finishing one of **today's** rounds gives its common seed, a win may add its rare seed (score / `SEED.rareDivisor`); boss fights, the arcade and the JLPT games give theirs `SEED.perDay` times a day each; the Archive gives none. Finishing all ten of a category today gives the Seed of the Day, a hybrid. Seeds sync like the cards (`seeds`, `seedsFound`, `seedLog` in `src/cloud/merge.ts`). Friends → **Island** shows the Seed Book. Each seed lists what it grows (`items`): planting comes with stage 2.
+
+
 ### Checking in Firefox
 
 Some things only go wrong in Firefox (it paints 3D and animations differently from Chrome). `node scripts/firefox-check.mjs` drives the Firefox installed on the machine (through its WebDriver BiDi remote control, with `puppeteer-core`), headless and in a throwaway profile, against the dev server (`npm run dev`): it can fill the save, open a card up close, play its video and report the frames actually drawn, run any steps you give it, and save screenshots (in the temp folder's `omnidle-firefox/`).

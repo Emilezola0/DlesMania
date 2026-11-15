@@ -4301,3 +4301,19 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .bond-pet-pop { animation: bond-pet-pop 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both, avatar-icon-float 3.4s ease-in-out 0.7s infinite; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35)); }
 @keyframes bond-pet-pop { from { transform: scale(0.2) translateY(30%); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .meld-win, .bond-egg, .bond-egg-aura, .bond-pet-glow, .bond-pet-pop { animation: none; } }
+
+/* Island: a seed just dropped pops up from below. */
+.seed-drop {
+  animation: seed-drop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+@keyframes seed-drop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .seed-drop {
+    animation: none;
+  }
+}

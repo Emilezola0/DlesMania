@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { SeedBook } from '../island/SeedBook';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Spinner } from '../components/Spinner';
 import { nameStyleClass, staged, titleStyle } from '../casino/cosmetics';
@@ -330,6 +331,7 @@ const TABS = [
   { id: 'choice', name: 'Daily Choice', icon: '🗳️', blurb: 'Pick a side' },
   { id: 'clues', name: 'Clue Grid', icon: '🔎', blurb: 'One word, find them' },
   { id: 'bond', name: 'Bond', icon: '∞', blurb: 'Packs for two' },
+  { id: 'island', name: 'Island', icon: '🌱', blurb: 'Your seeds' },
 ] as const;
 type FriendsTab = (typeof TABS)[number]['id'];
 
@@ -453,7 +455,7 @@ export default function Friends() {
       ) : (
         <>
           {/* Every game at a glance, no scrolling: a grid of tiles that wraps (4 a row on phones, all 7 on wide screens). */}
-          <nav className="grid grid-cols-4 gap-1.5 rounded-md border border-rule bg-tile/60 p-1.5 lg:grid-cols-8" aria-label="Friends">
+          <nav className="grid grid-cols-4 gap-1.5 rounded-md border border-rule bg-tile/60 p-1.5 sm:grid-cols-5" aria-label="Friends">
             {TABS.map((x) => (
               <button
                 key={x.id}
@@ -628,6 +630,7 @@ export default function Friends() {
 
           {mine && tab === 'league' && <WeeklyLeague players={players.map((p) => ({ uid: p.doc.uid, log: p.doc.log ?? {}, color: p.color, me: p.me, who: <><Face p={p} /><PlayerName p={p} you={p.me} className="flex-1" /></> }))} demo={demo} />}
 
+          {tab === 'island' && <SeedBook />}
           {mine && tab === 'bond' && <Bond people={players.filter((p) => !p.me).map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-8" />, name: p.doc.name }))} me={mine.uid} myName={mine.name} demo={demo} />}
           {mine && tab === 'raid' && <RaidBoss people={players.map((p) => ({ uid: p.doc.uid, face: <Face p={p} size="size-5" />, name: p.me ? 'You' : p.doc.name }))} me={mine.uid} demo={demo} />}
 

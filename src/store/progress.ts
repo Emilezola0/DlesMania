@@ -6,6 +6,7 @@ import { RETIRED } from '../gacha/retired';
 import { UPGRADES } from '../gacha/upgrades';
 import { APEX_COPIES, APEX_REWARD, ECLIPSE_RARITIES, ECLIPSE_SHARDS, RELIC_REWARD, relicOfSet, type BondLink, type CardRank } from '../gacha/ranks';
 import { persist } from 'zustand/middleware';
+import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
 import { addDays, now as realNow, todayKey } from '../lib/date';
@@ -132,6 +133,12 @@ interface ProgressState {
   coinsSpent?: number;
   /** Cards collected: card id -> how many times it was pulled. */
   cards: Record<string, number>;
+  /** The Island's seeds (src/island/seeds.ts): seed id -> how many in the bag. */
+  seeds?: Record<string, number>;
+  /** Each seed ever found, and the day it first was (the Seed Book). */
+  seedsFound?: Record<string, string>;
+  /** Today's capped seeds (boss, arcade, JLPT) and the Seed of the Day. */
+  seedLog?: SeedLog;
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
   econ: Economy;
   /** This week's boss bonuses already paid. */
@@ -528,6 +535,13 @@ function earn(
 }
 
 /** A round that just finished (it was still being played, or not there yet). */
+/** Seeds from a source capped a day (SEED.perDay): boss fights, the arcade, the JLPT games. */
+function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt', ids?: string[]) {
+  const log = seedLogNow(s.seedLog);
+  if ((log.n[source] ?? 0) >= SEED.perDay) return {};
+  return { ...withSeeds(s, ids ?? arcadeSeeds(source as 'arcade' | 'jlpt')), seedLog: { ...log, n: { ...log.n, [source]: (log.n[source] ?? 0) + 1 } } };
+}
+
 const justFinished = (before: RoundRecord | undefined, after: RoundRecord) => after.status !== 'playing' && (!before || before.status === 'playing');
 
 /** How much history each "seen" scope keeps. */
@@ -574,6 +588,8 @@ export const useProgress = create<ProgressState>()(
       coinPeak: 0,
       coinsSpent: 0,
       cards: {},
+      seeds: {},
+      seedsFound: {},
       econ: freshEconomy(todayKey()),
       bossWeek: { week: weekOf(todayKey()), keys: [] },
       packsOpened: 0,
@@ -1279,7 +1295,15 @@ export const useProgress = create<ProgressState>()(
             const days = update.days;
             if (DAILY_DOMAINS.every((d) => summarizeDay(days[dayKey(d, date)]).complete)) bonus += DAILY_COMPLETE.allFour;
           } else if (complete) bonus = CATEGORY_BONUS;
-          return { ...update, ...earn(s, roundCoins(won, record.score) + bonus, { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
+          // Seeds (src/island/seeds.ts): today's rounds only; all ten of a category today, the Seed of the Day.
+          let seeded = {};
+          if (date === todayKey()) {
+            const log = seedLogNow(s.seedLog);
+            const sotd = complete && !log.sotd;
+            const ids = [...roundSeeds(s.specs[key]?.[index]?.type ?? '', won, record.score), ...(sotd ? [seedOfTheDay().id] : [])];
+            seeded = { ...withSeeds(s, ids), ...(sotd ? { seedLog: { ...log, sotd: true } } : {}) };
+          }
+          return { ...update, ...seeded, ...earn(s, roundCoins(won, record.score) + bonus, { count: { rounds: won ? 1 : 0, category: complete ? 1 : 0 } }) };
         }),
       saveSpecs: (domain, date, specs) => set((s) => ({ specs: { ...s.specs, [dayKey(domain, date)]: specs } })),
       recordFreePlay: (record) =>
@@ -1302,7 +1326,7 @@ export const useProgress = create<ProgressState>()(
           // The games to learn with pay, but don't count for the missions or the quests.
           const paid = earn(s, hot.amount, { arcade: key, ...(isLearnKey(key) || !countsAsPlayed(result) ? {} : { count: { arcade: 1 } }) });
           // A game too soon after the last pays nothing, and doesn't count for the Hot Game either.
-          return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}) };
+          return { bests, ...paid, ...(paid.coins !== undefined ? { hotGame: hot.book } : {}), ...(countsAsPlayed(result) ? cappedSeeds(s, isLearnKey(key) ? 'jlpt' : 'arcade') : {}) };
         }),
       payCleared: (key, answers, seconds) => {
         const s = get();
@@ -1323,6 +1347,7 @@ export const useProgress = create<ProgressState>()(
           // A run lost at once pays its token but counts for no quest or mission.
           const paid = earn(s, hot.amount, { arcade: `whos:${key}`, ...(countsAsPlayed(result) ? { count: { whos: 1 } } : {}) });
           return {
+            ...(countsAsPlayed(result) ? cappedSeeds(s, 'arcade') : {}),
             whosThat: { ...s.whosThat, [key]: Math.max(s.whosThat[key] ?? 0, score) },
             ...paid,
             ...(paid.coins !== undefined ? { hotGame: hot.book } : {}),
@@ -1359,6 +1384,7 @@ export const useProgress = create<ProgressState>()(
           const total = lines.reduce((n, l) => n + l.win + l.weekly, 0);
           pay = { total, lines };
           const coins = earn(s, total, { count: { boss: won ? 1 : 0 } });
+          const seeded = cappedSeeds(s, 'boss', bossSeeds(won, difficulty));
           const lower = Object.fromEntries(
             fresh.map((d) => {
               const k = bossKey(id, d);
@@ -1368,6 +1394,7 @@ export const useProgress = create<ProgressState>()(
           );
           return {
             ...coins,
+            ...seeded,
             bossWeek: weeklyKeys.length ? { ...week, keys: [...week.keys, ...weeklyKeys] } : week,
             bosses: {
               ...s.bosses,
@@ -1387,7 +1414,7 @@ export const useProgress = create<ProgressState>()(
       setVolume: (kind, value) => set({ [kind]: Math.max(0, Math.min(kind === 'sfxVolume' ? 200 : 100, Math.round(value))) }),
       cycleTheme: () => set((s) => ({ theme: s.theme === 'system' ? 'light' : s.theme === 'light' ? 'dark' : 'system' })),
       resetAll: () =>
-        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, doodle: {}, quests: undefined }),
+        set({ days: {}, specs: {}, freePlay: { played: 0, won: 0, points: 0 }, bosses: {}, whosThat: {}, bests: {}, rogueRun: null, special: {}, seen: {}, coins: 0, cards: {}, seeds: {}, seedsFound: {}, seedLog: undefined, econ: freshEconomy(todayKey()), bossWeek: { week: weekOf(todayKey()), keys: [] }, packsOpened: 0, missionBooks: booksNow(undefined), avatar: null, backdrop: null, pulledAt: {}, frames: [], frame: null, cosmetics: [], nameStyle: null, wrapper: null, title: null, casinoMeter: 0, capsuleTokens: 0, freeBalls: 0, chips: 0, chipCoins: 0, cardShop: { day: '', bought: [] }, scratch: { day: '', bought: {}, pending: null, best: 0 }, claw: undefined, freePacks: 0, shownPlush: null, doodle: {}, quests: undefined }),
     }),
     {
       name: 'omnidle-progress',

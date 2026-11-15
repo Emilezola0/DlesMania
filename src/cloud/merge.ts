@@ -28,6 +28,9 @@ export const SYNCED = [
   'coinPeak',
   'coinsSpent',
   'cards',
+  'seeds',
+  'seedsFound',
+  'seedLog',
   'econ',
   'bossWeek',
   'packsOpened',
@@ -169,6 +172,12 @@ const maxBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) =
   for (const [k, v] of Object.entries(b)) out[k] = Math.max(out[k] ?? 0, v);
   return out;
 };
+/** Found on either side: the earlier day. */
+const mergeFound = (a: Record<string, string> = {}, b: Record<string, string> = {}) => {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) if (!out[k] || v < out[k]) out[k] = v;
+  return out;
+};
 /** Each key at its lowest (a start: the earliest wins). */
 const minBy = (a: Record<string, number> = {}, b: Record<string, number> = {}) => {
   const out = { ...a };
@@ -252,12 +261,15 @@ export interface SyncBase {
   uid: string;
   n: Partial<Record<Counted, number>>;
   cards: Record<string, number>;
+  /** The Island's seeds, counted like the cards (older bases have none). */
+  seeds?: Record<string, number>;
 }
 
 export const baseOf = (uid: string, d: SaveData): SyncBase => ({
   uid,
   n: Object.fromEntries(COUNTED.map((k) => [k, Number(d[k] ?? 0)])),
   cards: { ...(d.cards ?? {}) },
+  seeds: { ...(d.seeds ?? {}) },
 });
 
 /** The account's counts, with what this side gained or spent since `base`. */
@@ -268,7 +280,13 @@ function withGains(local: SaveData, cloud: SaveData, base: SyncBase) {
     const c = (cloud.cards?.[id] ?? 0) + (local.cards?.[id] ?? 0) - (base.cards[id] ?? 0);
     if (c > 0) cards[id] = c;
   }
-  return { ...n, cards };
+  const seeds: Record<string, number> = {};
+  const was = base.seeds ?? {};
+  for (const id of new Set([...Object.keys(cloud.seeds ?? {}), ...Object.keys(local.seeds ?? {}), ...Object.keys(was)])) {
+    const c = (cloud.seeds?.[id] ?? 0) + (local.seeds?.[id] ?? 0) - (was[id] ?? 0);
+    if (c > 0) seeds[id] = c;
+  }
+  return { ...n, cards, ...(base.seeds ? { seeds } : {}) };
 }
 
 export function mergeSaves(local: SaveData, cloud: SaveData | null, { firstLink, cloudNewer, base }: { firstLink: boolean; cloudNewer: boolean; base?: SyncBase | null }): SaveData {
@@ -295,6 +313,11 @@ function mergeLatest(local: SaveData, cloud: SaveData, firstLink: boolean, lates
     // The latest save's cards (the account's on a first link: cards also go — traded, exchanged for coins —
     // so the higher count isn't the true one), and their grades with them.
     cards: latest.cards ?? {},
+    // The Island's seeds: the latest save's (like the cards); a seed found on either side stays found (the
+    // earlier day); today's seed book, the latest's.
+    seeds: latest.seeds ?? {},
+    seedsFound: mergeFound(local.seedsFound, cloud.seedsFound),
+    seedLog: latest.seedLog ?? local.seedLog,
     grades: latest.grades ?? {},
     // A grade paid on either side stays paid (never twice).
     gradesPaid: maxBy(local.gradesPaid, cloud.gradesPaid),

@@ -13,6 +13,7 @@ import { UpdateBanner } from './UpdateBanner';
 import { GradeBackPay } from './GradeBackPay';
 import { RetiredCards } from './RetiredCards';
 import { AlbumNews } from './AlbumNews';
+import { SeedDrops } from '../island/SeedBook';
 import { BirthdayReward } from './BirthdayReward';
 import { todayKey } from '../lib/date';
 import { AvatarFrame, useWornFrame } from '../casino/Frame';
@@ -517,6 +518,7 @@ export function Layout() {
       <RetiredCards />
       <AlbumNews />
       <BirthdayReward />
+      <SeedDrops />
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-8 pt-4 text-center text-xs text-ink-faint">
         <Ornament className="mb-4" />
