@@ -7,6 +7,7 @@ import { tr } from '../lib/i18n';
 import { useProgress } from '../store/progress';
 import type { GameType } from '../types';
 import { FAMILIES, FAMILY_BY_ID, HYBRIDS, ITEM_BY_ID, SEED, SEEDS, seedColors, seedLogNow, seedOfTheDay, useSeedDrops, type Seed } from './seeds';
+import { ItemArt } from './sprites';
 
 const nameOf = (x: { name: string; fr: string }) => tr(x.name, x.fr);
 const sourceOf = (source: string) =>
@@ -62,8 +63,14 @@ function SeedTile({ seed, n, found }: { seed: Seed; n: number; found: boolean })
           {seed.grows.map((g) => {
             const item = ITEM_BY_ID.get(g)!;
             return (
-              <span key={g} title={found ? nameOf(item) : undefined} className="rounded bg-tile px-1 text-[11px]">
-                {found ? `${item.icon} ${nameOf(item)}` : '?'}
+              <span key={g} title={found ? nameOf(item) : undefined} className="inline-flex items-center gap-0.5 rounded bg-tile px-1 text-[11px]">
+                {found ? (
+                  <>
+                    <ItemArt id={g} className="size-4 text-[11px]" /> {nameOf(item)}
+                  </>
+                ) : (
+                  '?'
+                )}
               </span>
             );
           })}

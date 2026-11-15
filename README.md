@@ -197,6 +197,8 @@ Every game has its seed family (`src/data/seeds.json`, logic in `src/island/seed
 
 **Stage 3, friends:** signed in, your island lives in `islands/<uid>` (`src/cloud/islands.ts`; the first time, it's published from your save, which keeps a copy). Friends → Island → **Visit friends** shows your friends' islands: walk, listen, watch the screens, and water a growing plot (it's ready a day sooner; the helper gets a common seed of its families, `SEED.perDay` a day). The owner picks up to 10 **builders** (`builders`), who build, plant and dig there; a builder picks up only what they placed (`island.by`) and harvests only what they planted (`plot.by`). The visitors' book (`log`) keeps the last 30 moves. The rules in `firestore.rules` (`match /islands/{uid}`): friends read, the owner writes anything, builders the island and its book, other friends only water one plot. The demo (`?demo`) makes up friends' islands.
 
+**Art:** every island thing is drawn as a small SVG in `src/island/sprites.tsx` (`ItemArt`, 32×32, ground at the bottom; blocks, floors and walls fill the cell; an item without a drawing falls back to its emoji, so a new item in `seeds.json` needs a drawing there). The scenery is in `src/island/scenery.tsx`: the far sea, islands and clouds behind (they move slower than the island), dirt darker with depth, grass on top, beach sand by the sea, and a plot's plant growing in its seeds' colours (a sprout, leaves, then a flower). The textures (grass, stone, sand, waves) are SVGs in `src/index.css` (`.island-*`).
+
 
 ### Checking in Firefox
 

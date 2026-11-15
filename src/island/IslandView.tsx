@@ -10,9 +10,11 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { dig, grassy, harvest, helpSeed, idx, isReady, ISLAND, isSea, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
+import { dig, harvest, helpSeed, idx, isReady, isSolid, ISLAND, kindOf, NATURAL, newIsland, pickUp, place, plant, readyOn, showCard, solidAt, surfaceAt, water, xy, type Bag, type Change, type Island, type Who } from './island';
 import { islandBand, type Source } from './music';
+import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
 import { SeedArt } from './SeedBook';
+import { ItemArt } from './sprites';
 import { ITEM_BY_ID, SEED_BY_ID, SEEDS } from './seeds';
 
 type Tool = 'walk' | 'build' | 'plant' | 'pick' | 'dig';
@@ -64,6 +66,15 @@ const GLOW: Record<string, string> = {
 };
 
 const itemIcon = (id: string) => (id === 'dirt' ? '🟫' : (ITEM_BY_ID.get(id)?.icon ?? '❔'));
+/** Frames hung on the wall (the card fills them); the others are stands that hold a card up. */
+const HUNG = new Set(['card-frame', 'gold-card-frame', 'grand-card-frame']);
+/** Where a stand holds its card, in the cell. */
+const STAND: Record<string, React.CSSProperties> = {
+  pedestal: { left: '31%', top: '-12%', width: '38%', height: '50%' },
+  'crown-cushion': { left: '31%', top: '-20%', width: '38%', height: '50%' },
+  'display-case': { left: '32%', top: '24%', width: '36%', height: '46%' },
+  podium: { left: '34%', top: '-14%', width: '32%', height: '52%' },
+};
 
 // The player's box, in cells, and how it moves.
 const PW = 0.78;
@@ -124,6 +135,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const islRef = useRef(isl);
   islRef.current = isl;
   const world = useRef<HTMLDivElement>(null);
+  const far = useRef<HTMLDivElement>(null);
   const me = useRef<HTMLDivElement>(null);
   const cam = useRef(0);
   const TRef = useRef(T);
@@ -191,6 +203,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       const view = box.current?.clientWidth ?? 600;
       cam.current = Math.max(0, Math.min(ISLAND.w * t - view, (p.x + PW / 2) * t - view / 2));
       if (world.current) world.current.style.transform = `translateX(${-cam.current}px)`;
+      if (far.current) far.current.style.transform = `translateX(${-cam.current * 0.3}px)`;
       if (me.current) {
         me.current.style.transform = `translate(${p.x * t}px, ${p.y * t}px)`;
         me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
@@ -367,6 +380,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         style={{ height: ISLAND.h * T }}
         aria-label={tr('Your island. Arrows or WASD to walk, Space to jump; click a spot to use the tool.', 'Ton île. Flèches ou ZQSD pour marcher, Espace pour sauter ; clique un endroit pour utiliser l’outil.')}
       >
+        <div ref={far} className="pointer-events-none absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
+          <Backdrop T={T} />
+          <Clouds T={T} />
+        </div>
         <div className="island-night pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ opacity: dark / 0.7 }} />
         <div ref={world} className="absolute left-0 top-0" style={{ width: ISLAND.w * T, height: ISLAND.h * T }}>
           <World isl={isl} T={T} />
@@ -380,7 +397,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           {dark > 0 && <div key="night" className="pointer-events-none absolute inset-0 transition-opacity duration-1000" style={{ background: '#0b1030', opacity: dark }} />}
           {dark > 0 && <Glows isl={isl} T={T} dark={dark} />}
           <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
-            {avatarCard ? <CardAvatar card={avatarCard} className="size-full" /> : <span className="grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
+            <span className="island-me-shadow" />
+            {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
           </div>
           {tv && <TvShow tv={tv} T={T} onEnd={() => setTv(null)} />}
         </div>
@@ -441,7 +459,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                   onClick={() => (setPick(id), box.current?.focus())}
                   className={`flex items-center gap-1 rounded-md border px-2 py-1 text-sm ${pick === id ? 'border-accent bg-accent/15' : 'border-rule hover:bg-tile'}`}
                 >
-                  <span className="text-lg leading-none">{itemIcon(id)}</span> {itemName(id)} <span className="text-xs text-ink-faint">×{n}</span>
+                  <ItemArt id={id} className="size-7 text-lg" /> {itemName(id)} <span className="text-xs text-ink-faint">×{n}</span>
                 </button>
               ))}
             </div>
@@ -531,27 +549,43 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
   const out: ReactNode[] = [];
   // The sea at both ends.
   for (const x0 of [0, ISLAND.w - 4]) out.push(<div key={`sea${x0}`} className="island-sea absolute" style={{ left: x0 * T, top: ISLAND.sea * T, width: 4 * T, height: (ISLAND.h - ISLAND.sea) * T }} />);
+  // Walls behind, a little shaded.
   for (const [k, id] of Object.entries(isl.bg)) {
     const { x, y } = xy(Number(k));
-    out.push(
-      <div key={`b${k}`} className="island-wall absolute grid place-items-center" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.6 }}>
-        {ITEM_BY_ID.get(id)?.icon}
-      </div>,
-    );
+    out.push(<ItemArt key={`b${k}`} id={id} className="island-wall absolute" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.6 }} />);
   }
+  const ground = (x: number, y: number) => isSolid(isl.fg[idx(x, y)]) || (x >= 0 && x < ISLAND.w && y >= ISLAND.h);
   for (const [k, id] of Object.entries(isl.fg)) {
     const cell = Number(k);
     const { x, y } = xy(cell);
     const style = { left: x * T, top: y * T, width: T, height: T };
     const kind = kindOf(id);
     if (kind === 'natural') {
-      out.push(<div key={k} className={`absolute ${id === 'stone' ? 'island-stone' : 'island-dirt'} ${grassy(isl, x, y) ? 'island-grass' : ''}`} style={style} />);
+      // Ground: stone, beach sand by the sea, or dirt (darker deeper down) with grass on top; its open sides shaded.
+      const sand = id === 'dirt' && isBeach(x);
+      const top = id === 'dirt' && !ground(x, y - 1) && !isl.plots[idx(x, y - 1)];
+      const h = cellHash(x, y);
+      const edges = [!ground(x - 1, y) && `inset ${T * 0.12}px 0 0 #0002`, !ground(x + 1, y) && `inset -${T * 0.12}px 0 0 #0003`, !ground(x, y + 1) && `inset 0 -${T * 0.1}px 0 #0003`]
+        .filter(Boolean)
+        .join(',');
+      out.push(
+        <div
+          key={k}
+          className={`absolute ${id === 'stone' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'}`}
+          style={{ ...style, ...(!ground(x, y - 1) ? { borderTopLeftRadius: ground(x - 1, y) ? 0 : T * 0.3, borderTopRightRadius: ground(x + 1, y) ? 0 : T * 0.3 } : {}), backgroundColor: id === 'dirt' && !sand ? dirtColor(y) : undefined, backgroundPosition: `${(h % 4) * 8}px ${((h >> 3) % 4) * 8}px`, boxShadow: edges || undefined }}
+        >
+          {top && !sand && <span className={`island-tuft ${h % 5 === 0 ? 'island-tuft-flower' : h % 7 === 1 ? 'island-tuft-flower2' : ''}`} />}
+          {top && sand && h % 6 === 0 && <span className="island-shell" />}
+        </div>,
+      );
     } else if (kind === 'screen') {
       const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
       const clip = screenClip(card);
+      const big = id === 'big-screen';
       out.push(
-        <div key={k} className="absolute grid place-items-center" style={style} title={card ? shownName(card.name, card.set) : ITEM_BY_ID.get(id)?.name}>
-          <span className={`island-tv ${id === 'big-screen' ? 'island-tv-big' : ''} relative block overflow-hidden`} style={{ width: T * 0.92, height: T * 0.74 }}>
+        <div key={k} className="absolute" style={style} title={card ? shownName(card.name, card.set) : ITEM_BY_ID.get(id)?.name}>
+          <ItemArt id={id} className="absolute inset-0 size-full" />
+          <span className="island-tv-glass absolute overflow-hidden" style={big ? { left: '9.4%', top: '21.9%', width: '81.2%', height: '46.9%' } : { left: '20.3%', top: '29.7%', width: '46.9%', height: '46.9%', borderRadius: T * 0.08 }}>
             {card && clip && GIF_CLIP.test(clip) ? (
               <GifLoop src={clip} className="size-full object-cover" />
             ) : card ? (
@@ -566,25 +600,26 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
       const card = isl.shown[k] ? CARD_BY_ID.get(isl.shown[k]) : undefined;
       out.push(
         <div key={k} className="absolute grid place-items-center" style={style} title={card ? shownName(card.name, card.set) : ITEM_BY_ID.get(id)?.name}>
-          {card ? (
-            <span className={`island-frame ${id.includes('gold') || id === 'grand-card-frame' ? 'island-frame-gold' : ''} block overflow-hidden`} style={{ width: T * 0.86, height: T * 0.96 }}>
+          {card && HUNG.has(id) ? (
+            <span className={`island-frame ${id === 'gold-card-frame' || id === 'grand-card-frame' ? 'island-frame-gold' : ''} ${id === 'grand-card-frame' ? 'island-frame-grand' : ''} block overflow-hidden`} style={{ width: T * 0.7, height: T * 0.94 }}>
               <ShownPicture card={card} still className="size-full object-cover object-top" />
             </span>
           ) : (
-            <span style={{ fontSize: T * 0.8 }}>{ITEM_BY_ID.get(id)?.icon}</span>
+            <>
+              <ItemArt id={id} className="absolute inset-0 size-full" />
+              {card && (
+                <span className="island-stand-card absolute block overflow-hidden" style={STAND[id] ?? STAND.pedestal}>
+                  <ShownPicture card={card} still className="size-full object-cover object-top" />
+                </span>
+              )}
+            </>
           )}
         </div>,
       );
     } else {
-      const block = kind === 'block' || kind === 'floor';
       out.push(
-        <div
-          key={k}
-          className={`absolute grid ${block ? 'island-block place-items-center' : 'place-items-end justify-center'} ${kind === 'light' ? 'island-light' : ''}`}
-          style={{ ...style, fontSize: T * (block ? 0.72 : 0.82), lineHeight: 1 }}
-          title={ITEM_BY_ID.get(id)?.name}
-        >
-          {ITEM_BY_ID.get(id)?.icon}
+        <div key={k} className={`absolute ${kind === 'light' ? 'island-light' : ''} ${kind === 'music' ? 'island-music' : ''}`} style={{ ...style, fontSize: T * 0.8, lineHeight: 1 }} title={ITEM_BY_ID.get(id)?.name}>
+          <ItemArt id={id} className="size-full" />
         </div>,
       );
     }
@@ -593,14 +628,15 @@ const World = memo(function World({ isl, T }: { isl: Island; T: number }) {
     const { x, y } = xy(Number(k));
     const ready = isReady(p, today);
     out.push(
-      <div key={`p${k}`} className={`absolute grid place-items-end justify-center ${ready ? 'island-ready' : ''}`} style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.7, lineHeight: 1 }} title={ready ? 'Ready!' : `Ready on ${readyOn(p)}`}>
-        <span className="island-mound absolute bottom-0 left-[10%] h-[22%] w-[80%] rounded-t-full" />
-        <span className="relative">{ready ? '🌿' : '🌱'}</span>
+      <div key={`p${k}`} className="absolute" style={{ left: x * T, top: y * T, width: T, height: T }} title={ready ? tr('Ready!', 'Prêt !') : `${tr('Ready on', 'Prêt le')} ${readyOn(p)}`}>
+        <PlotArt p={p} today={today} ready={ready} />
       </div>,
     );
   }
-  // Waves over the sea's surface.
-  for (let x = 0; x < ISLAND.w; x++) if (isSea(x, ISLAND.sea)) out.push(<div key={`w${x}`} className="island-wave absolute" style={{ left: x * T, top: ISLAND.sea * T - 3, width: T, height: 6 }} />);
+  // Waves over the sea's surface, foam where it meets the beach.
+  for (const x0 of [0, ISLAND.w - 4])
+    out.push(<div key={`w${x0}`} className="island-wave absolute" style={{ left: x0 * T, top: ISLAND.sea * T - T * 0.22, width: 4 * T, height: T * 0.4, backgroundSize: `${T}px 100%` }} />);
+  for (const fx of [4 - 0.45, ISLAND.w - 4 - 0.15]) out.push(<div key={`f${fx}`} className="island-foam absolute" style={{ left: fx * T, top: ISLAND.sea * T - T * 0.14, width: T * 0.6, height: T * 0.32 }} />);
   return <>{out}</>;
 });
 
@@ -668,9 +704,7 @@ const Glows = memo(function Glows({ isl, T, dark }: { isl: Island; T: number; da
             <div key={k} className="pointer-events-none absolute">
               <div className="island-glow absolute rounded-full" style={{ left: (x + 0.5) * T - r, top: (y + 0.5) * T - r, width: r * 2, height: r * 2, background: `radial-gradient(circle, ${c}cc 0%, ${c}55 35%, transparent 70%)`, opacity: Math.min(1, dark * 1.6) }} />
               {kindOf(id) === 'light' && (
-                <div className="absolute grid place-items-end justify-center" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.82, lineHeight: 1 }}>
-                  {ITEM_BY_ID.get(id)?.icon}
-                </div>
+                <ItemArt id={id} className="island-lit absolute" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.8 }} />
               )}
             </div>
           );
