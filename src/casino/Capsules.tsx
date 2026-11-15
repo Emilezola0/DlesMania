@@ -59,10 +59,10 @@ export function Capsules() {
   const [turn, setTurn] = useState(0);
   const [got, setGot] = useState<Got[]>([]);
   const [shells, setShells] = useState<string[]>([SHELLS[0]]);
-  // How many at once (1 to 10): free capsules first, then DleCoins.
+  // How many at once (1 to 100): free capsules first, then DleCoins.
   const [count, setCount] = useState(1);
   const busy = stage === 'turning' || stage === 'dropped' || stage === 'zoom';
-  const most = Math.min(10, tokens + Math.floor(coins / CAPSULES.cost));
+  const most = Math.min(100, tokens + Math.floor(coins / CAPSULES.cost));
   const n = Math.max(1, Math.min(count, most));
   const freeHere = Math.min(tokens, n);
   const price = (n - freeHere) * CAPSULES.cost;
@@ -131,11 +131,11 @@ export function Capsules() {
             {stage === 'turning' ? '…' : stage === 'dropped' ? (one ? 'TAKE THE CAPSULE' : 'TAKE THE CAPSULES') : stage === 'zoom' ? (one ? 'OPEN IT!' : 'OPEN THEM!') : can ? 'TURN THE KNOB' : 'NOT ENOUGH COINS'}
           </p>
           {/* How many at once. */}
-          <div className="mt-2 flex items-center justify-center gap-1.5" role="group" aria-label="How many capsules at once">
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-1.5" role="group" aria-label="How many capsules at once">
             <button type="button" disabled={busy || n <= 1} onClick={() => (sfx.select(), setCount(n - 1))} aria-label="One fewer" className="grid size-7 place-items-center rounded-full bg-[#1b1033] font-display font-bold disabled:opacity-40">
               −
             </button>
-            {[1, 5, 10].map((k) => (
+            {[1, 5, 10, 50, 100].map((k) => (
               <button
                 key={k}
                 type="button"
@@ -146,7 +146,7 @@ export function Capsules() {
                 ×{k}
               </button>
             ))}
-            <span className="w-8 text-center font-display text-sm font-black" aria-live="polite">
+            <span className="w-10 text-center font-display text-sm font-black" aria-live="polite">
               ×{n}
             </span>
             <button type="button" disabled={busy || n >= most} onClick={() => (sfx.select(), setCount(n + 1))} aria-label="One more" className="grid size-7 place-items-center rounded-full bg-[#1b1033] font-display font-bold disabled:opacity-40">
@@ -349,6 +349,8 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
   const stage = useRef<HTMLDivElement>(null);
   const done = opened.every(Boolean);
   const rankOf = (i: number) => FRAME_RARITIES.indexOf(got[i].frame.rarity);
+  // A big haul (50, 100): ten to a row, smaller, and Open all goes faster.
+  const big = got.length > 10;
   const best = got.reduce((b, g) => Math.max(b, FRAME_RARITIES.indexOf(g.frame.rarity)), 0);
 
   const crack = (i: number) => {
@@ -379,7 +381,7 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
       setCharging(i);
       sfx.suspense(0.8);
     }
-    const t = window.setTimeout(() => crack(i), reducedMotion() ? 0 : rare ? 900 : 260);
+    const t = window.setTimeout(() => crack(i), reducedMotion() ? 0 : rare ? (big ? 600 : 900) : big ? 70 : 260);
     return () => window.clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auto, opened]);
@@ -388,11 +390,11 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
   const ups = got.filter((g) => g.up).length;
   const back = got.reduce((t, g) => t + g.coins, 0);
   return createPortal(
-    <div ref={stage} className="fixed inset-0 z-50 grid place-items-center overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
+    <div ref={stage} className="fixed inset-0 z-50 flex overflow-y-auto overflow-x-hidden bg-[#07060c]/90 p-4 backdrop-blur-sm" style={{ ['--glow' as string]: done ? FRAME_RARITY_COLOR[FRAME_RARITIES[best]] : '#ffffff' }}>
       {done && <div className="capsule-stage-rays pointer-events-none fixed left-1/2 top-1/2 aspect-square w-[160vmax]" style={{ opacity: 0.45 }} aria-hidden />}
-      <div className="relative flex w-full max-w-md flex-col items-center text-center text-white">
+      <div className={`relative m-auto flex w-full flex-col items-center text-center text-white ${big ? 'max-w-3xl' : 'max-w-md'}`}>
         <p className="font-display text-sm font-bold tracking-[0.3em] text-white/90">{done ? 'YOUR HAUL' : `${opened.filter(Boolean).length} / ${got.length} OPEN`}</p>
-        <div className="mt-6 grid w-full grid-cols-5 gap-x-2 gap-y-7">
+        <div className={`mt-6 grid w-full ${big ? 'grid-cols-5 gap-x-1 gap-y-4 sm:grid-cols-10' : 'grid-cols-5 gap-x-2 gap-y-7'}`}>
           {got.map((g, i) => {
             const color = FRAME_RARITY_COLOR[g.frame.rarity];
             return opened[i] ? (
@@ -408,9 +410,9 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
                 className="relative flex min-w-0 flex-col items-center gap-1"
                 style={{ ['--glow' as string]: color }}
               >
-                <span className="capsule-frame-in grid size-14 place-items-center">
+                <span className={`capsule-frame-in grid place-items-center ${big ? 'size-11' : 'size-14'}`}>
                   <FrameRing frame={g.frame} level={g.level} badge>
-                    <YourIcon className="size-11" />
+                    <YourIcon className={big ? 'size-8' : 'size-11'} />
                   </FrameRing>
                 </span>
                 <span className="max-w-full truncate text-[10px] font-bold" style={{ color }}>
@@ -420,9 +422,9 @@ function ManyOpening({ got, shells, again, onClose }: { got: Got[]; shells: stri
                 {!g.duplicate && <span className="pack-stamp absolute -right-1 -top-3 rounded border border-coral bg-[#1b1530] px-1 font-display text-[9px] font-black text-coral">NEW</span>}
               </button>
             ) : (
-              <button key={i} type="button" onClick={() => crack(i)} disabled={auto} aria-label={`Open capsule ${i + 1}`} className="grid h-[84px] place-items-center">
-                <span className={charging === i ? 'capsule-strain' : 'capsule-idle'} style={{ ['--strain' as string]: '6deg', animationDelay: `${i * 90}ms` }}>
-                  <Capsule color={shells[i]} size={52} style={charging === i ? { filter: 'drop-shadow(0 0 14px #fff)' } : undefined} />
+              <button key={i} type="button" onClick={() => crack(i)} disabled={auto} aria-label={`Open capsule ${i + 1}`} className={`grid place-items-center ${big ? 'h-[62px]' : 'h-[84px]'}`}>
+                <span className={charging === i ? 'capsule-strain' : 'capsule-idle'} style={{ ['--strain' as string]: '6deg', animationDelay: `${(i % 10) * 90}ms` }}>
+                  <Capsule color={shells[i]} size={big ? 38 : 52} style={charging === i ? { filter: 'drop-shadow(0 0 14px #fff)' } : undefined} />
                 </span>
               </button>
             );
