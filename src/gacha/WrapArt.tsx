@@ -1,15 +1,17 @@
 import { useEffect, useId, useMemo, useRef, type PointerEvent } from 'react';
+import { sfx } from '../lib/sfx';
 
 /**
  * The drawn pack wrappers (the Boutique's Prestige and Ascended collections), each an SVG over the pack, the size
  * of the pack (300 × 400): Dragon Scale (scales rippling like a dragon on the move; one flips, gold side up, under
  * the pointer), Black Hole (a disc of fire turning, lensed over its shadow, stars falling in), Event Horizon (its
  * Ascended cousin, violet and cyan, space rippling into it), Big Bang (a point of light about to become everything),
- * Crystal (cut facets, light running across them), Phoenix (a bird of flame beating its wings, embers rising) and
+ * Crystal (cut facets, light running across them; touched, it rings and a star flashes), Phoenix (a bird of living
+ * fire, reborn every so often) and
  * Gilded Deco (gold Art Deco fans, light running up the rays), Clockwork (brass gears meshing, a clock ticking) and
  * Chronos (its Ascended cousin: an astrolabe turning, hands racing, an hourglass turning over). Their animations are in src/index.css (.wa-*);
- * still under reduced motion. Dragon Scale alone is a canvas, its animation drawn there (a dozen of them as SVGs made
- * the Boutique lag). The Thunderstorm has its own (src/gacha/StormWrap.tsx).
+ * still under reduced motion. Dragon Scale and Phoenix are canvases, their animations drawn there (a dozen of them
+ * as SVGs made the Boutique lag). The Thunderstorm has its own (src/gacha/StormWrap.tsx).
  */
 const W = 300;
 const H = 400;
@@ -23,9 +25,10 @@ function seeded(seed: number) {
 /** A unique, CSS-safe prefix for the ids inside one drawing (several packs on a page). */
 const useUid = () => useId().replace(/[^a-zA-Z0-9]/g, '');
 
-function Svg({ children, onPointerOver }: { children: React.ReactNode; onPointerOver?: (e: PointerEvent<SVGSVGElement>) => void }) {
+/** A wrapper's drawing over the pack. With `onPointerDown`, it answers the pointer (the click still goes on to the pack). */
+function Svg({ children, onPointerDown }: { children: React.ReactNode; onPointerDown?: (e: PointerEvent<SVGSVGElement>) => void }) {
   return (
-    <svg className="pointer-events-none absolute inset-0 size-full" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" aria-hidden onPointerOver={onPointerOver}>
+    <svg className={`${onPointerDown ? '' : 'pointer-events-none '}absolute inset-0 size-full`} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" aria-hidden onPointerDown={onPointerDown}>
       {children}
     </svg>
   );
@@ -623,7 +626,38 @@ const CRYSTAL_FACES: [number, number, number][] = [
   [330, 0.4, 0.5],
 ];
 
-/** Crystal: cut glass in every colour, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through. */
+/**
+ * Touching the crystal: it rings (a glass ting), shivers, and a star of light flashes where it was touched, a ring
+ * of light spreading from it, glints of every colour flying off.
+ */
+function tapCrystal(e: PointerEvent<SVGSVGElement>) {
+  const svg = e.currentTarget;
+  const m = svg.getScreenCTM();
+  if (!m) return;
+  const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute('transform', `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
+  g.setAttribute('pointer-events', 'none');
+  const star = 'M0 -30L3.2 -3.2L30 0L3.2 3.2L0 30L-3.2 3.2L-30 0L-3.2 -3.2Z';
+  const glints = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2 + Math.random() * 0.5;
+    const r = 26 + Math.random() * 22;
+    return `<circle class="wa-cry-glint" r="${(1.2 + Math.random() * 1.2).toFixed(1)}" fill="hsl(${[190, 300, 260, 50, 140, 330, 210][i % 7]} 90% 80%)" style="--gx:${(Math.cos(a) * r).toFixed(1)}px;--gy:${(Math.sin(a) * r).toFixed(1)}px"/>`;
+  }).join('');
+  g.innerHTML =
+    `<circle class="wa-cry-ring" r="12" fill="none" stroke="#a5f3fc" stroke-width="1.6"/>` +
+    `<g class="wa-cry-star"><path d="${star}" fill="#fff" stroke="#a78bfa" stroke-width="0.8"/><path d="${star}" fill="#cffafe" stroke="#67e8f9" stroke-width="0.8" transform="rotate(45) scale(0.5)"/><circle r="3.5" fill="#fff"/></g>` +
+    glints;
+  svg.appendChild(g);
+  window.setTimeout(() => g.remove(), 1100);
+  // The whole crystal shivers, its light flaring.
+  svg.classList.remove('wa-tingle');
+  void svg.getBoundingClientRect();
+  svg.classList.add('wa-tingle');
+  sfx.crystal();
+}
+
+/** Crystal: cut glass in every colour, each facet catching the light its own way, light running across them, sparkles at their corners, rainbows breaking through; touched, it rings and a star flashes (tapCrystal). */
 export function CrystalWrap() {
   const id = useUid();
   const art = useMemo(() => {
@@ -668,7 +702,7 @@ export function CrystalWrap() {
     return { tris, sparks };
   }, []);
   return (
-    <Svg>
+    <Svg onPointerDown={tapCrystal}>
       <defs>
         <linearGradient id={`${id}rb`} x1="0" y1="0" x2="1" y2="0">
           {['#f472b6', '#facc15', '#4ade80', '#38bdf8', '#a78bfa'].map((c, i) => (
@@ -709,131 +743,448 @@ export function CrystalWrap() {
 
 // ---------------------------------------------------------------------------------------------- Phoenix
 
-/** Phoenix: a bird of flame beating its wings, its tail flickering, a sun behind it, embers rising all around. */
-export function PhoenixWrap() {
-  const id = useUid();
-  const art = useMemo(() => {
-    const rnd = seeded(31);
-    // A wing raised high: its leading edge from the shoulder up to the tip, and the feathers hanging from it,
-    // short near the body, long and sweeping at the tip.
-    const shoulder: [number, number] = [156, 150];
-    const tip: [number, number] = [276, 62];
-    const wing = [leaf(shoulder, tip, 11, -8)];
-    for (let k = 0; k < 9; k++) {
-      const t = 0.12 + (k / 8) * 0.88;
-      const base: [number, number] = [shoulder[0] + (tip[0] - shoulder[0]) * t, shoulder[1] + (tip[1] - shoulder[1]) * t];
-      const a = (95 - t * 75) * (Math.PI / 180);
-      const len = 34 + t * 78;
-      wing.push(leaf(base, [base[0] + Math.cos(a) * len, base[1] + Math.sin(a) * len], 7 + t * 5, 7));
+/** A frame of a canvas wrapper: drawn in the pack's 300 × 400, `dt` the seconds since the last one (0 at the first). */
+type WrapFrame = (ctx: CanvasRenderingContext2D, now: number, dt: number) => void;
+
+/**
+ * A wrapper drawn on canvases, the same few drawings for every pack showing it: `variants` of it are drawn (each its
+ * own, at its own moment), 30 times a second, and each pack's canvas copies one, covering the pack (as an SVG's
+ * "slice" would). However many packs are on screen, the work is the same (a dozen phoenixes, each its own fire, made
+ * the Boutique lag). Drawn as sharp as the sharpest pack needs. Under reduced motion, still.
+ * Gives the hook a wrapper's component calls with its canvas.
+ */
+function sharedCanvasWrap(make: () => WrapFrame, variants = 3) {
+  type Pack = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; k: number; ox: number; oy: number; v: number };
+  type Stage = { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D; frame: WrapFrame; k: number };
+  const packs = new Set<Pack>();
+  const stages: Stage[] = [];
+  let count = 0;
+  let raf = 0;
+  let last = 0;
+  const still = () => !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const render = (now: number, dt: number) => {
+    const sharp = Math.min(3, Math.max(1, ...[...packs].map((p) => p.k)));
+    const used = new Set([...packs].map((p) => p.v));
+    for (const v of used) {
+      let st = stages[v];
+      if (!st) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) continue;
+        st = stages[v] = { canvas, ctx, frame: make(), k: 0 };
+      }
+      if (st.k !== sharp) {
+        st.k = sharp;
+        st.canvas.width = Math.round(W * sharp);
+        st.canvas.height = Math.round(H * sharp);
+      }
+      const { ctx } = st;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, st.canvas.width, st.canvas.height);
+      ctx.setTransform(sharp, 0, 0, sharp, 0, 0);
+      st.frame(ctx, now, dt);
     }
-    const tail = [80, 93, 106].map((deg, k) => {
-      const a = deg * (Math.PI / 180);
-      const len = 150 + (k === 1 ? 30 : 0);
-      return leaf([150, 200], [150 + Math.cos(a) * len, 200 + Math.sin(a) * len], 15, k === 1 ? 0 : (k - 1) * 22);
+    for (const p of packs) {
+      const st = stages[p.v];
+      if (!st) continue;
+      p.ctx.setTransform(1, 0, 0, 1, 0, 0);
+      p.ctx.clearRect(0, 0, p.canvas.width, p.canvas.height);
+      p.ctx.drawImage(st.canvas, p.ox, p.oy, W * p.k, H * p.k);
+    }
+  };
+  const tick = (now: number) => {
+    raf = requestAnimationFrame(tick);
+    if (now - last < 1000 / 30 - 2) return;
+    const dt = Math.min(0.1, (now - last) / 1000);
+    last = now;
+    render(now, dt);
+  };
+  return function useSharedCanvas(ref: React.RefObject<HTMLCanvasElement | null>) {
+    useEffect(() => {
+      const canvas = ref.current;
+      const ctx = canvas?.getContext('2d');
+      if (!canvas || !ctx) return;
+      const pack: Pack = { canvas, ctx, k: 1, ox: 0, oy: 0, v: count++ % variants };
+      const fit = () => {
+        const dpr = window.devicePixelRatio || 1;
+        const cw = canvas.clientWidth;
+        const ch = canvas.clientHeight;
+        canvas.width = Math.max(1, Math.round(cw * dpr));
+        canvas.height = Math.max(1, Math.round(ch * dpr));
+        const s = Math.max(cw / W, ch / H);
+        pack.k = s * dpr;
+        pack.ox = ((cw - W * s) / 2) * dpr;
+        pack.oy = ((ch - H * s) / 2) * dpr;
+      };
+      fit();
+      packs.add(pack);
+      const sized = new ResizeObserver(() => {
+        fit();
+        if (still() || !raf) render(performance.now(), 0);
+      });
+      sized.observe(canvas);
+      if (still()) render(performance.now(), 0);
+      else if (!raf) {
+        last = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
+      return () => {
+        sized.disconnect();
+        packs.delete(pack);
+        if (!packs.size && raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      };
+    }, [ref]);
+  };
+}
+
+/** A soft round glow of one colour, drawn once: the grain of the canvas fires. */
+function glowSprite(rgb: string, size = 64) {
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const g = c.getContext('2d');
+  if (g) {
+    const r = size / 2;
+    const gr = g.createRadialGradient(r, r, 0, r, r, r);
+    gr.addColorStop(0, `rgba(${rgb},1)`);
+    gr.addColorStop(0.3, `rgba(${rgb},0.6)`);
+    gr.addColorStop(1, `rgba(${rgb},0)`);
+    g.fillStyle = gr;
+    g.fillRect(0, 0, size, size);
+  }
+  return c;
+}
+
+/**
+ * A feather of flame, drawn once, lying along x (its quill at 0, its tip at 128): a wide red-orange glow, a narrow
+ * white-hot heart. `bright` for the short feathers over the long ones. Each feather is this, turned and stretched.
+ */
+function featherSprite(bright: boolean) {
+  const c = document.createElement('canvas');
+  c.width = 256;
+  c.height = 64;
+  const g = c.getContext('2d');
+  if (g) {
+    g.scale(2, 2);
+    const shape = (w: number) => {
+      g.beginPath();
+      g.moveTo(0, 16);
+      g.quadraticCurveTo(52, 16 - w, 128, 16 - w * 0.15);
+      g.quadraticCurveTo(52, 16 + w * 0.7, 0, 16);
+      g.closePath();
+    };
+    const glow = g.createLinearGradient(0, 0, 128, 0);
+    glow.addColorStop(0, 'rgba(251,146,60,0.85)');
+    glow.addColorStop(0.55, 'rgba(234,88,12,0.6)');
+    glow.addColorStop(1, 'rgba(185,28,28,0)');
+    g.fillStyle = glow;
+    shape(15);
+    g.fill();
+    const core = g.createLinearGradient(0, 0, 128, 0);
+    core.addColorStop(0, 'rgba(255,251,235,0.95)');
+    core.addColorStop(0.4, bright ? 'rgba(254,240,138,0.85)' : 'rgba(253,224,71,0.7)');
+    core.addColorStop(0.85, 'rgba(249,115,22,0)');
+    g.fillStyle = core;
+    shape(5.5);
+    g.fill();
+  }
+  return c;
+}
+
+type Pt = [number, number];
+/** A fire's colours as it burns out: white-hot, yellow, orange, red, ember. */
+const FIRE_RGB = ['255,250,230', '253,224,71', '251,146,60', '234,88,12', '185,28,28'];
+/** One wingbeat (s): a quick, strong downstroke, a slower stroke back up. */
+const PHOENIX_BEAT = 1.7;
+/** Every so often it burns down to a ball of fire and is reborn from it (s). */
+const PHOENIX_LIFE = 12;
+const PHOENIX_C: Pt = [150, 150];
+/** How high its wings are (1 raised, -1 lowered) at a moment of the beat. */
+const wingLift = (u: number) => (u < 0.38 ? Math.cos((Math.PI * u) / 0.38) : -Math.cos((Math.PI * (u - 0.38)) / 0.62));
+const deg = (d: number) => (d * Math.PI) / 180;
+
+/** The bird at a moment: its wings' feathers (right wing; the left is its mirror), its tail's flames, its body's rise. */
+function phoenixPose(t: number) {
+  const u = (t / PHOENIX_BEAT) % 1;
+  const lift = wingLift(u);
+  // The tip of the wing a beat behind the arm: it whips.
+  const lag = wingLift((u + 0.91) % 1) - lift;
+  const bob = 7 * lift;
+  const s: Pt = [157, 146 + bob];
+  const armA = deg(-20 - 38 * lift);
+  const e: Pt = [s[0] + Math.cos(armA) * 46, s[1] + Math.sin(armA) * 46];
+  const handA = armA - deg(10) - deg(26 * lag);
+  const tip: Pt = [e[0] + Math.cos(handA) * 62, e[1] + Math.sin(handA) * 62];
+  const feathers: { base: Pt; end: Pt; w: number; s: number }[] = [];
+  const N = 13;
+  for (let i = 0; i < N; i++) {
+    const f = 0.05 + (i / (N - 1)) * 0.95;
+    const onArm = f < 0.42;
+    const g = onArm ? f / 0.42 : (f - 0.42) / 0.58;
+    const base: Pt = onArm ? [s[0] + (e[0] - s[0]) * g, s[1] + (e[1] - s[1]) * g] : [e[0] + (tip[0] - e[0]) * g, e[1] + (tip[1] - e[1]) * g];
+    const edge = onArm ? armA : handA;
+    // Fanned out: hanging down near the body, sweeping out towards the tip; each flickering.
+    const a = edge + deg(104 - f * 66 - 24 * lag * f + Math.sin(t * 7 + i) * 3);
+    const len = (26 + 78 * f ** 1.1) * (1 + Math.sin(t * 13 + i * 1.7) * 0.06);
+    feathers.push({ base, end: [base[0] + Math.cos(a) * len, base[1] + Math.sin(a) * len], w: 4 + f * 5, s: f });
+  }
+  // Its tail: long ribbons of flame trailing down, waving, the waves running down them.
+  const tail: Pt[][] = [0, 1, 2, 3, 4].map((k) => {
+    const a = deg(90 + (k - 2) * 15);
+    const len = 120 + (k === 2 ? 48 : k % 2 ? 24 : 0);
+    const dir: Pt = [Math.cos(a), Math.sin(a)];
+    const nrm: Pt = [-dir[1], dir[0]];
+    return Array.from({ length: 15 }, (_, j) => {
+      const q = j / 14;
+      const wave = Math.sin(2 * Math.PI * (q * 0.9 - t * 0.7) + k * 1.4) * 9 * q + (k - 2) * q * q * 22;
+      return [150 + dir[0] * len * q + nrm[0] * wave, 192 + bob + dir[1] * len * q + nrm[1] * wave] as Pt;
     });
-    const crest = [-120, -95, -70].map((deg) => {
-      const a = deg * (Math.PI / 180);
-      return leaf([150, 102], [150 + Math.cos(a) * 34, 102 + Math.sin(a) * 34], 5, 6);
+  });
+  return { feathers, tail, bob, lift };
+}
+
+/** A ribbon along a line of points, `w` wide at its start, to a point at its end. */
+function ribbon(ctx: CanvasRenderingContext2D, pts: Pt[], w: number) {
+  const left: Pt[] = [];
+  const right: Pt[] = [];
+  pts.forEach((p, j) => {
+    const a = pts[Math.max(0, j - 1)];
+    const b = pts[Math.min(pts.length - 1, j + 1)];
+    const len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+    const nx = -(b[1] - a[1]) / len;
+    const ny = (b[0] - a[0]) / len;
+    const half = (w * (1 - j / (pts.length - 1)) ** 0.75 + 0.6) / 2;
+    left.push([p[0] + nx * half, p[1] + ny * half]);
+    right.push([p[0] - nx * half, p[1] - ny * half]);
+  });
+  ctx.beginPath();
+  ctx.moveTo(left[0][0], left[0][1]);
+  for (let j = 1; j < left.length; j++) ctx.quadraticCurveTo(left[j - 1][0], left[j - 1][1], (left[j - 1][0] + left[j][0]) / 2, (left[j - 1][1] + left[j][1]) / 2);
+  ctx.lineTo(left[left.length - 1][0], left[left.length - 1][1]);
+  for (let j = right.length - 1; j >= 0; j--) ctx.lineTo(right[j][0], right[j][1]);
+  ctx.closePath();
+}
+
+const PHOENIX_BODY = new Path2D('M150 94C164 108 166 150 157 196L150 216L143 196C134 150 136 108 150 94Z');
+
+/**
+ * Phoenix: a bird of living fire. Its wings beat (a strong stroke down, the tips whipping after), every feather a
+ * flame; its tail streams long ribbons of fire, waving; fire rises off it all the time, white-hot to red; embers
+ * drift up around it. Every twelve seconds it burns down into a ball of fire, and is reborn from it in a flash, a
+ * ring of fire and a burst of sparks.
+ */
+function makePhoenix(): WrapFrame {
+  const fire = FIRE_RGB.map((c) => glowSprite(c));
+  const plume = [featherSprite(false), featherSprite(true)];
+  const white = glowSprite('255,255,255');
+  type Flame = { x: number; y: number; vx: number; vy: number; age: number; life: number; size: number; drag: number };
+  const flames: Flame[] = [];
+  const rnd = seeded(31);
+  const embers = Array.from({ length: 26 }, () => ({ x: rnd() * W, phase: rnd(), period: 3 + rnd() * 3.5, r: 0.8 + rnd() * 1.2, dx: (rnd() - 0.5) * 50, hot: rnd() < 0.5 }));
+  let clock = Math.random() * PHOENIX_LIFE; // each drawing's bird somewhere else in its life
+  let spawn = 0;
+  let lastLife = -1;
+  const draw = (ctx: CanvasRenderingContext2D, t: number, dt: number) => {
+    const life = t % PHOENIX_LIFE;
+    // Its size: burning down at the end of its life, reborn (overshooting a little) at the start.
+    const dying = Math.max(0, (life - (PHOENIX_LIFE - 1.3)) / 1.3);
+    const born = Math.min(1, life / 0.9);
+    const back = 1 + 2.2 * (born - 1) ** 3 + 1.2 * (born - 1) ** 2;
+    // (A little smaller than the pack, so its wings stay in it as they beat.)
+    const scale = 0.86 * (dying > 0 ? 1 - 0.85 * dying ** 1.6 : 0.15 + 0.85 * back);
+    const pose = phoenixPose(t);
+    const at = (p: Pt): Pt => [PHOENIX_C[0] + (p[0] - PHOENIX_C[0]) * scale, PHOENIX_C[1] + (p[1] - PHOENIX_C[1]) * scale];
+    // Reborn: a burst of sparks all round.
+    if (life < lastLife)
+      for (let i = 0; i < 70; i++) {
+        const a = Math.random() * Math.PI * 2;
+        const v = 110 + Math.random() * 190;
+        flames.push({ x: 150, y: 150, vx: Math.cos(a) * v, vy: Math.sin(a) * v, age: 0, life: 0.6 + Math.random() * 0.6, size: 2 + Math.random() * 3.5, drag: 2.2 });
+      }
+    lastLife = life;
+    // Fire rising off it: from its wings (most at their tips), its tail, its body, its crest.
+    spawn += dt * 170 * (0.4 + 0.6 * scale);
+    while (spawn >= 1) {
+      spawn -= 1;
+      const r = Math.random();
+      let p: Pt;
+      if (r < 0.5) {
+        const f = pose.feathers[Math.floor(pose.feathers.length * Math.sqrt(Math.random()))];
+        const q = 0.35 + Math.random() * 0.65;
+        p = [f.base[0] + (f.end[0] - f.base[0]) * q, f.base[1] + (f.end[1] - f.base[1]) * q];
+        if (Math.random() < 0.5) p = [W - p[0], p[1]];
+      } else if (r < 0.78) {
+        const line = pose.tail[Math.floor(Math.random() * 5)];
+        p = line[2 + Math.floor(Math.random() * 12)];
+      } else if (r < 0.94) p = [150 + (Math.random() - 0.5) * 16, 110 + pose.bob + Math.random() * 100];
+      else p = [150 + (Math.random() - 0.5) * 14, 84 + pose.bob + Math.random() * 14];
+      const [x, y] = at(p);
+      flames.push({ x, y, vx: (Math.random() - 0.5) * 20, vy: -(30 + Math.random() * 50), age: 0, life: 0.3 + Math.random() * 0.45, size: (4 + Math.random() * 8) * (0.5 + 0.5 * scale), drag: 0 });
+    }
+    if (flames.length > 190) flames.splice(0, flames.length - 190);
+
+    ctx.globalCompositeOperation = 'lighter';
+    // The sun behind it, breathing, and the white heat of its rebirth.
+    const flash = Math.max(dying * 0.9, 1 - life / 0.5);
+    if (flash > 0) {
+      ctx.globalAlpha = Math.min(1, flash);
+      ctx.drawImage(white, 150 - 90 * (1.3 - dying * 0.6), 150 - 90 * (1.3 - dying * 0.6), 180 * (1.3 - dying * 0.6), 180 * (1.3 - dying * 0.6));
+    }
+    // A ring of fire spreading out as it's reborn.
+    if (life < 1.1) {
+      const q = life / 1.1;
+      for (const [w, c, a] of [[16, '234,88,12', 0.35], [6, '251,146,60', 0.6], [2, '254,240,138', 1]] as const) {
+        ctx.globalAlpha = a * (1 - q) ** 1.5;
+        ctx.strokeStyle = `rgb(${c})`;
+        ctx.lineWidth = w * (1 - q * 0.7);
+        ctx.beginPath();
+        ctx.arc(150, 150, 20 + q * 250, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    // The bird.
+    ctx.save();
+    ctx.translate(PHOENIX_C[0], PHOENIX_C[1]);
+    ctx.scale(scale, scale);
+    ctx.translate(-PHOENIX_C[0], -PHOENIX_C[1]);
+    ctx.globalAlpha = 0.9;
+    // Its tail, behind it.
+    pose.tail.forEach((line, k) => {
+      const end = line[line.length - 1];
+      const g = ctx.createLinearGradient(line[0][0], line[0][1], end[0], end[1]);
+      g.addColorStop(0, 'rgba(254,240,138,0)');
+      g.addColorStop(0.08, 'rgba(254,240,138,0.85)');
+      g.addColorStop(0.28, 'rgba(249,115,22,0.8)');
+      g.addColorStop(0.6, 'rgba(220,38,38,0.4)');
+      g.addColorStop(0.9, 'rgba(127,29,29,0)');
+      ctx.fillStyle = g;
+      ribbon(ctx, line, k === 2 ? 22 : 17);
+      ctx.fill();
+      // Its bright heart, a flame inside the flame.
+      const h = ctx.createLinearGradient(line[0][0], line[0][1], end[0], end[1]);
+      h.addColorStop(0, 'rgba(255,251,235,0)');
+      h.addColorStop(0.12, 'rgba(255,251,235,0.75)');
+      h.addColorStop(0.4, 'rgba(253,224,71,0.45)');
+      h.addColorStop(0.6, 'rgba(253,224,71,0)');
+      ctx.fillStyle = h;
+      ribbon(ctx, line, k === 2 ? 8 : 6);
+      ctx.fill();
     });
-    const embers = Array.from({ length: 28 }, () => ({ x: rnd() * W, d: -rnd() * 5, t: 3 + rnd() * 3, r: 0.8 + rnd() * 1.8, dx: (rnd() - 0.5) * 50, c: rnd() < 0.5 ? '#fde047' : '#fb923c' }));
-    // Its tail's trailing flames: thin wisps behind each tail feather, flickering on their own.
-    const wisps = [72, 84, 96, 108, 120].map((deg, k) => {
-      const a = deg * (Math.PI / 180);
-      const len = 120 + rnd() * 60;
-      return leaf([150, 205], [150 + Math.cos(a) * len, 205 + Math.sin(a) * len], 5, (k - 2) * 14);
+    // Its wings: the long flight feathers, then the shorter ones over them, then the bright arm.
+    for (const side of [1, -1]) {
+      ctx.save();
+      if (side < 0) {
+        ctx.translate(W, 0);
+        ctx.scale(-1, 1);
+      }
+      // Each feather a flame: its glow, wide and red-orange, and its heart, narrow and white-hot. The long flight
+      // feathers first, the short ones over them.
+      for (const row of [1, 0.55]) {
+        for (const f of pose.feathers) {
+          const dx = f.end[0] - f.base[0];
+          const dy = f.end[1] - f.base[1];
+          ctx.save();
+          ctx.translate(f.base[0], f.base[1]);
+          ctx.rotate(Math.atan2(dy, dx));
+          ctx.scale((Math.hypot(dx, dy) * row) / 128, f.w / 10);
+          ctx.drawImage(plume[row < 1 ? 1 : 0], 0, -16, 128, 32);
+          ctx.restore();
+        }
+      }
+      ctx.restore();
+    }
+    // Its body, its crest, its eye.
+    ctx.translate(0, pose.bob);
+    const body = ctx.createRadialGradient(150, 135, 2, 150, 150, 70);
+    body.addColorStop(0, '#fffbeb');
+    body.addColorStop(0.35, '#fde047');
+    body.addColorStop(0.8, '#f97316');
+    body.addColorStop(1, 'rgba(220,38,38,0)');
+    ctx.fillStyle = body;
+    ctx.fill(PHOENIX_BODY);
+    ctx.fillStyle = 'rgba(254,240,138,0.9)';
+    [-118, -94, -70].forEach((a, i) => {
+      const len = 30 + Math.sin(t * 9 + i * 2) * 5;
+      ctx.fill(new Path2D(leaf([150, 100], [150 + Math.cos(deg(a)) * len, 100 + Math.sin(deg(a)) * len], 5, 6)));
     });
-    // Its rebirth: every so often it flares, and a burst of sparks flies out all round.
-    const burst = Array.from({ length: 22 }, (_, i) => {
-      const a = (i / 22) * Math.PI * 2 + rnd() * 0.2;
-      const r = 90 + rnd() * 90;
-      return { dx: Math.cos(a) * r, dy: Math.sin(a) * r, s: 1 + rnd() * 1.6, d: rnd() * 0.15 };
-    });
-    return { wing, tail, crest, embers, wisps, burst };
-  }, []);
-  return (
-    <Svg>
-      <defs>
-        <radialGradient id={`${id}f`} gradientUnits="userSpaceOnUse" cx="152" cy="150" r="190">
-          <stop offset="0" stopColor="#fffbeb" />
-          <stop offset="0.2" stopColor="#fde047" />
-          <stop offset="0.5" stopColor="#f97316" />
-          <stop offset="0.85" stopColor="#dc2626" stopOpacity="0.7" />
-          <stop offset="1" stopColor="#7f1d1d" stopOpacity="0" />
-        </radialGradient>
-        <radialGradient id={`${id}sun`} gradientUnits="userSpaceOnUse" cx="150" cy="150" r="110">
-          <stop offset="0" stopColor="#fff7ed" stopOpacity="0.9" />
-          <stop offset="0.4" stopColor="#fdba74" stopOpacity="0.45" />
-          <stop offset="1" stopColor="#ea580c" stopOpacity="0" />
-        </radialGradient>
-        <filter id={`${id}g`} x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="3" result="b" />
-          <feMerge>
-            <feMergeNode in="b" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <circle className="wa-pulse" cx={150} cy={150} r={110} fill={`url(#${id}sun)`} />
-      {/* Its rebirth, now and then: a flash, a ring of fire spreading out (behind it). */}
-      <circle className="wa-rebirth-ring" cx={150} cy={150} r={60} fill="none" stroke="#fde047" strokeWidth={6} />
-      <circle className="wa-rebirth-flash" cx={150} cy={150} r={120} fill={`url(#${id}sun)`} />
-      {/* The bird: rising a little at each downstroke of its wings, sinking back as they rise. */}
-      <g className="wa-phoenix-bob">
-      <g filter={`url(#${id}g)`} opacity={0.9}>
-        {art.wisps.map((d, k) => (
-          <path key={`w${k}`} className="wa-wisp" d={d} fill="#f97316" opacity={0.55} style={{ animationDelay: `${-k * 0.37}s` }} />
-        ))}
-        {art.tail.map((d, k) => (
-          <path key={k} className="wa-tail" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.45}s` }} />
-        ))}
-        {[false, true].map((mirror) => (
-          <g key={String(mirror)} transform={mirror ? `translate(${W} 0) scale(-1 1)` : undefined}>
-            <g className="wa-wing">
-              {/* The inner feathers beat with the arm; the outer ones a beat later, a whip to the tip. Each
-                  feather's fire flickers on its own. */}
-              {art.wing.slice(0, 5).map((d, k) => (
-                <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-k * 0.23}s` }} />
-              ))}
-              <g className="wa-wing-tip">
-                {art.wing.slice(5).map((d, k) => (
-                  <path key={k} className="wa-feather" d={d} fill={`url(#${id}f)`} style={{ animationDelay: `${-(k + 5) * 0.23}s` }} />
-                ))}
-              </g>
-            </g>
-          </g>
-        ))}
-        <path d="M150 96C163 108 165 150 157 196L150 214L143 196C135 150 137 108 150 96Z" fill={`url(#${id}f)`} />
-        {art.crest.map((d, k) => (
-          <path key={k} className="wa-tail" d={d} fill="#fde047" style={{ animationDelay: `${-k * 0.3}s` }} />
-        ))}
-        <path d="M150 99L144 108L150 106Z" fill="#fff7ed" />
-        <circle className="wa-phoenix-eye" cx={147} cy={106} r={1.4} fill="#fff" />
-      </g>
-      </g>
-      {art.burst.map((b, i) => (
-        <circle
-          key={`b${i}`}
-          className="wa-rebirth-spark"
-          cx={150}
-          cy={150}
-          r={b.s}
-          fill={i % 2 ? '#fde047' : '#fb923c'}
-          style={{ ['--dx' as string]: `${b.dx.toFixed(0)}px`, ['--dy' as string]: `${b.dy.toFixed(0)}px`, animationDelay: `${b.d.toFixed(2)}s` }}
-        />
-      ))}
-      {art.embers.map((e, i) => (
-        <circle
-          key={i}
-          className="wa-ember"
-          cx={e.x}
-          cy={H + 5}
-          r={e.r}
-          fill={e.c}
-          style={{ ['--dx' as string]: `${e.dx}px`, animationDelay: `${e.d}s`, animationDuration: `${e.t}s`, filter: `drop-shadow(0 0 3px ${e.c})` }}
-        />
-      ))}
-    </Svg>
-  );
+    // Its head, turned up, its beak, its burning eye.
+    const head = ctx.createRadialGradient(149, 102, 1, 150, 104, 10);
+    head.addColorStop(0, '#fffbeb');
+    head.addColorStop(0.6, '#fde047');
+    head.addColorStop(1, 'rgba(249,115,22,0.6)');
+    ctx.fillStyle = head;
+    ctx.beginPath();
+    ctx.ellipse(150, 104, 7.5, 9, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#fff7ed';
+    ctx.fill(new Path2D('M146 98L150 84L154 98Z'));
+    ctx.globalAlpha = 0.85 + 0.15 * Math.sin(t * 11);
+    ctx.drawImage(white, 146 - 5, 104 - 5, 10, 10);
+    ctx.drawImage(white, 154 - 5, 104 - 5, 10, 10);
+    ctx.restore();
+
+    // The fire rising off it, white-hot going red.
+    for (let i = flames.length - 1; i >= 0; i--) {
+      const f = flames[i];
+      f.age += dt;
+      if (f.age >= f.life) {
+        flames.splice(i, 1);
+        continue;
+      }
+      if (f.drag) {
+        const d = Math.exp(-f.drag * dt);
+        f.vx *= d;
+        f.vy = f.vy * d - 30 * dt;
+      } else f.vy -= 40 * dt;
+      f.x += f.vx * dt;
+      f.y += f.vy * dt;
+      const a = f.age / f.life;
+      const size = f.size * (1 - 0.55 * a);
+      ctx.globalAlpha = 0.6 * (1 - a) ** 1.1;
+      ctx.drawImage(fire[Math.min(4, 1 + Math.floor(a * 4))], f.x - size, f.y - size, size * 2, size * 2);
+    }
+    // Embers drifting up all round.
+    for (const e of embers) {
+      const q = (t / e.period + e.phase) % 1;
+      ctx.globalAlpha = Math.min(1, q * 6) * (1 - q);
+      const x = e.x + e.dx * q + Math.sin(q * 9 + e.phase * 6) * 5;
+      const y = H + 6 - q * 430;
+      ctx.drawImage(fire[e.hot ? 1 : 2], x - e.r * 3, y - e.r * 3, e.r * 6, e.r * 6);
+      ctx.drawImage(fire[0], x - e.r, y - e.r, e.r * 2, e.r * 2);
+    }
+  };
+  // It starts already burning (a second of fire run ahead).
+  let started = false;
+  return (ctx, now, dt) => {
+    if (!started) {
+      started = true;
+      for (let i = 0; i < 30; i++) {
+        clock += 1 / 30;
+        ctx.save();
+        draw(ctx, clock, 1 / 30);
+        ctx.restore();
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.restore();
+      }
+    }
+    clock += dt;
+    void now;
+    draw(ctx, clock, dt);
+  };
+}
+const usePhoenix = sharedCanvasWrap(makePhoenix);
+
+export function PhoenixWrap() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  usePhoenix(ref);
+  return <canvas ref={ref} className="pointer-events-none absolute inset-0 size-full" aria-hidden />;
 }
 
 // ---------------------------------------------------------------------------------------------- Gilded Deco
@@ -940,18 +1291,47 @@ function gear(n: number, r: number, t: number) {
   return `M${pts.join('L')}Z${holes}${hole(0, 0, r * 0.14)}`;
 }
 
-/** A brass gear turning (`dir` 1 clockwise, -1 the other way), drawn at (x, y). */
-function Gear({ x, y, n, r, dur, dir, fill, delay = 0 }: { x: number; y: number; n: number; r: number; dur: number; dir: 1 | -1; fill: string; delay?: number }) {
+/**
+ * A brass gear turning (`dir` 1 clockwise, -1 the other way), drawn at (x, y). `shadow`: only its shadow (cast down
+ * and right, turning with it). `jewel`: its hub, a cap set with a ruby, as in a watch movement.
+ */
+function Gear({ x, y, n, r, dur, dir, fill, delay = 0, shadow = false, jewel }: { x: number; y: number; n: number; r: number; dur: number; dir: 1 | -1; fill: string; delay?: number; shadow?: boolean; jewel?: { cap: string; ruby: string } }) {
   const d = useMemo(() => gear(n, r, r * 0.16), [n, r]);
   return (
-    <g transform={`translate(${x} ${y})`}>
+    <g transform={`translate(${x + (shadow ? 3 : 0)} ${y + (shadow ? 5 : 0)})`}>
       <g className="wa-gear" style={{ animationDuration: `${dur}s`, animationDirection: dir > 0 ? 'normal' : 'reverse', animationDelay: `${delay}s` }}>
-        <path d={d} fill={fill} fillRule="evenodd" stroke="#3b2208" strokeWidth={1} strokeOpacity={0.6} />
-        <circle r={r * 0.36} fill="none" stroke="#fff7d6" strokeOpacity={0.35} strokeWidth={1} />
+        {shadow ? (
+          <path d={d} fill="#000" fillRule="evenodd" opacity={0.45} />
+        ) : (
+          <>
+            <path d={d} fill={fill} fillRule="evenodd" stroke="#3b2208" strokeWidth={1} strokeOpacity={0.6} />
+            <circle r={r * 0.36} fill="none" stroke="#fff7d6" strokeOpacity={0.35} strokeWidth={1} />
+            {/* The rim's inner edge, cut into the metal. */}
+            <circle r={r * 0.8} fill="none" stroke="#3b2208" strokeOpacity={0.35} strokeWidth={1.2} />
+            {jewel && (
+              <>
+                <circle r={r * 0.2} fill={jewel.cap} stroke="#3b2208" strokeWidth={0.8} />
+                <circle r={r * 0.09} fill={jewel.ruby} />
+                <circle cx={-r * 0.03} cy={-r * 0.03} r={r * 0.03} fill="#fff" opacity={0.85} />
+              </>
+            )}
+          </>
+        )}
       </g>
     </g>
   );
 }
+
+/** A hairspring: a fine steel spiral, four turns, from the balance's staff out. */
+const HAIRSPRING = (() => {
+  const pts: string[] = [];
+  for (let i = 0; i <= 96; i++) {
+    const a = (i / 96) * Math.PI * 8;
+    const r = 2.5 + (i / 96) * 13;
+    pts.push(`${(Math.cos(a) * r).toFixed(2)} ${(Math.sin(a) * r).toFixed(2)}`);
+  }
+  return `M${pts.join('L')}`;
+})();
 
 /**
  * Clockwork's gear train: each gear set beside the one that drives it (at an angle, as far as their two radii and
@@ -984,7 +1364,11 @@ const TRAIN = (() => {
 
 const ROMAN_HOURS = ['XII', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'];
 
-/** Clockwork (Prestige): brass gears meshing and turning, a clock face ticking its seconds, a gleam of brass sweeping by. */
+/**
+ * Clockwork (Prestige): brass gears meshing and turning, each casting its shadow, their hubs set with rubies; a clock
+ * face ticking its seconds, its minute hand creeping on; the balance wheel swinging back and forth on its hairspring,
+ * the heart of the movement; a warm light breathing; a gleam of brass sweeping by.
+ */
 export function ClockworkWrap() {
   const id = useUid();
   const brass = `url(#${id}b)`;
@@ -1008,12 +1392,47 @@ export function ClockworkWrap() {
           <stop offset="0.5" stopColor="#fff7d6" stopOpacity="0.45" />
           <stop offset="1" stopColor="#fde68a" stopOpacity="0" />
         </linearGradient>
+        <radialGradient id={`${id}r`} cx="0.35" cy="0.35" r="0.75">
+          <stop offset="0" stopColor="#fda4af" />
+          <stop offset="0.45" stopColor="#e11d48" />
+          <stop offset="1" stopColor="#4c0519" />
+        </radialGradient>
+        <radialGradient id={`${id}l`} cx="0.5" cy="0.45" r="0.6">
+          <stop offset="0" stopColor="#fde68a" stopOpacity="0.22" />
+          <stop offset="1" stopColor="#fde68a" stopOpacity="0" />
+        </radialGradient>
       </defs>
+      {/* A warm light on the movement, breathing. */}
+      <rect className="wa-clk-glow" width={W} height={H} fill={`url(#${id}l)`} />
       {/* The train of gears, meshing: each turns the other way from the one it drives, the small ones faster (a turn
-          takes as long as its teeth count). */}
+          takes as long as its teeth count). Their shadows first, under all of them. */}
       {TRAIN.map((g, k) => (
-        <Gear key={k} x={g.x} y={g.y} n={g.n} r={g.r} dur={g.n * 1.15} dir={g.dir} fill={g.copper ? copper : brass} />
+        <Gear key={`s${k}`} x={g.x} y={g.y} n={g.n} r={g.r} dur={g.n * 1.15} dir={g.dir} fill="#000" shadow />
       ))}
+      {TRAIN.map((g, k) => (
+        <Gear key={k} x={g.x} y={g.y} n={g.n} r={g.r} dur={g.n * 1.15} dir={g.dir} fill={g.copper ? copper : brass} jewel={{ cap: g.copper ? brass : copper, ruby: `url(#${id}r)` }} />
+      ))}
+      {/* The balance wheel: swinging one way and back on its hairspring (coiling and uncoiling), each swing a tick. */}
+      <g transform="translate(150 348)">
+        <circle cx={3} cy={5} r={30} fill="none" stroke="#000" strokeOpacity={0.4} strokeWidth={5} />
+        <g className="wa-balance">
+          <circle r={28} fill="none" stroke={brass} strokeWidth={4.5} />
+          <circle r={28} fill="none" stroke="#3b2208" strokeOpacity={0.5} strokeWidth={0.8} />
+          {[0, 120, 240].map((a) => {
+            const [x, y] = pt(0, 0, 26, (a * Math.PI) / 180 - Math.PI / 2);
+            return <path key={a} d={`M0 0L${x.toFixed(1)} ${y.toFixed(1)}`} stroke={brass} strokeWidth={2.6} strokeLinecap="round" />;
+          })}
+          {Array.from({ length: 10 }, (_, k) => {
+            const [x, y] = pt(0, 0, 30.5, (k / 10) * Math.PI * 2);
+            return <circle key={k} cx={x} cy={y} r={1.9} fill={copper} stroke="#3b2208" strokeWidth={0.5} />;
+          })}
+          <g className="wa-hairspring">
+            <path d={HAIRSPRING} fill="none" stroke="#e2e8f0" strokeOpacity={0.85} strokeWidth={0.7} />
+          </g>
+        </g>
+        <circle r={4} fill={brass} stroke="#3b2208" strokeWidth={0.6} />
+        <circle r={1.8} fill={`url(#${id}r)`} />
+      </g>
       {/* A clock face, its second hand ticking. */}
       <g transform={`translate(${TRAIN[1].x} ${TRAIN[1].y})`}>
         <circle r={24} fill="#fff7e6" stroke={brass} strokeWidth={3} />
@@ -1023,6 +1442,7 @@ export function ClockworkWrap() {
           return <path key={k} d={`M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}`} stroke="#3b2208" strokeWidth={k % 3 ? 0.8 : 1.6} />;
         })}
         <path d="M0 2V-12" stroke="#3b2208" strokeWidth={2} strokeLinecap="round" transform="rotate(-50)" />
+        <path className="wa-clk-min" d="M0 3V-17" stroke="#3b2208" strokeWidth={1.3} strokeLinecap="round" />
         <path className="wa-clk-tick" d="M0 4V-19" stroke="#b91c1c" strokeWidth={0.9} strokeLinecap="round" />
         <circle r={1.8} fill="#3b2208" />
       </g>

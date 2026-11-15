@@ -337,6 +337,16 @@ export const sfx = {
   /** Something building up: a rising shimmer, longer and higher for rarer things. */
   shimmer: (steps = 4) =>
     play(Array.from({ length: steps }, (_, i) => ({ freq: 660 * 2 ** (i / 4), at: i * 0.09, dur: 0.14, type: 'triangle' as const, gain: 0.035 }))),
+  /** A crystal tapped: a high, clear glass ting, its overtones ringing out (a little higher or lower each time). */
+  crystal: () => {
+    const f = 1760 * 2 ** ((Math.random() * 7 - 3) / 12);
+    play([
+      { freq: f, dur: 1.1, type: 'sine', gain: 0.05 },
+      { freq: f * 2.76, dur: 0.55, type: 'sine', gain: 0.022 },
+      { freq: f * 5.4, dur: 0.25, type: 'sine', gain: 0.01 },
+      { freq: f * 1.5, at: 0.07, dur: 0.8, type: 'sine', gain: 0.025 },
+    ]);
+  },
   /** A small pop: a card turned. */
   pop: () => play([{ freq: 520, dur: 0.07, type: 'triangle', gain: 0.08, slide: 880 }]),
   victory: () =>
