@@ -28,7 +28,7 @@ export interface Cosmetic {
    */
   evolve?: number[];
   /** A wrapper that opens its own way (src/gacha/PackOpening.tsx): the pack's last moment, torn. */
-  opening?: 'holofoil' | 'inferno' | 'portal' | 'singularity' | 'bigbang';
+  opening?: 'holofoil' | 'inferno' | 'portal' | 'singularity' | 'bigbang' | 'timewarp';
 }
 
 /** What a lock looks at (worked out by the Boutique). */
@@ -92,6 +92,7 @@ export const WRAPPERS: Cosmetic[] = [
   { id: 'wrap:crystal', name: 'Crystal', price: 0, tokens: 5000, className: 'pack-wrap-crystal', prestige: true, blurb: 'Cut glass in every colour, light breaking through its facets, sparkling.' },
   { id: 'wrap:phoenix', name: 'Phoenix', price: 0, tokens: 6500, className: 'pack-wrap-phoenix', prestige: true, blurb: 'Gold and fire, embers rising from the bottom, a heat haze breathing over it.' },
   { id: 'wrap:blackhole', name: 'Black Hole', price: 0, tokens: 8000, className: 'pack-wrap-blackhole', prestige: true, blurb: 'A burning disc of light turning around a hole of pure black.' },
+  { id: 'wrap:clockwork', name: 'Clockwork', price: 0, tokens: 10000, className: 'pack-wrap-clockwork', prestige: true, blurb: 'Brass and copper gears meshing and turning, a clock ticking its seconds at their heart. The key to Chronos.' },
   { id: 'wrap:deco', name: 'Gilded Deco', price: 0, tokens: 12000, className: 'pack-wrap-deco', prestige: true, blurb: 'Black lacquer and gold leaf, Art Deco fans, a gleam of gold sweeping across.' },
   {
     id: 'wrap:holofoil',
@@ -138,6 +139,17 @@ export const WRAPPERS: Cosmetic[] = [
     blurb: 'A black hole in violet and cyan, space rippling into it, stars streaking in. Torn, the pack is stretched, twisted and sucked in, and the hole closes on it.',
   },
   {
+    id: 'wrap:chronos',
+    name: 'Chronos',
+    price: 0,
+    tokens: 65000,
+    className: 'pack-wrap-chronos',
+    ascended: true,
+    opening: 'timewarp',
+    lock: { text: 'Own the Clockwork wrapper and open 300 packs', need: (f) => [ownedOf(f, ['wrap:clockwork']) + (f.packs >= 300 ? 1 : 0), 2] },
+    blurb: 'Time itself: an astrolabe of gold rings turning against each other, its hands racing, an hourglass emptying and turning over. Torn, time runs backwards: the pack spins back into the clock and the clock breaks into gold.',
+  },
+  {
     id: 'wrap:bigbang',
     name: 'Big Bang',
     price: 0,
@@ -145,7 +157,7 @@ export const WRAPPERS: Cosmetic[] = [
     className: 'pack-wrap-bigbang',
     ascended: true,
     opening: 'bigbang',
-    lock: { text: 'Own every other Ascended wrapper', need: (f) => [ownedOf(f, ['wrap:holofoil', 'wrap:inferno', 'wrap:portal', 'wrap:eventhorizon']), 4] },
+    lock: { text: 'Own Holo Foil, Inferno, Portal and Event Horizon', need: (f) => [ownedOf(f, ['wrap:holofoil', 'wrap:inferno', 'wrap:portal', 'wrap:eventhorizon']), 4] },
     blurb: 'A point of light holding a whole universe, its plasma turning, rings rushing out. Torn, it all falls into the point, then a blinding flash, and nothing is left.',
   },
 ];

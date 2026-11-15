@@ -6,7 +6,8 @@ import { useEffect, useId, useMemo, useRef, type PointerEvent } from 'react';
  * the pointer), Black Hole (a disc of fire turning, lensed over its shadow, stars falling in), Event Horizon (its
  * Ascended cousin, violet and cyan, space rippling into it), Big Bang (a point of light about to become everything),
  * Crystal (cut facets, light running across them), Phoenix (a bird of flame beating its wings, embers rising) and
- * Gilded Deco (gold Art Deco fans, light running up the rays). Their animations are in src/index.css (.wa-*);
+ * Gilded Deco (gold Art Deco fans, light running up the rays), Clockwork (brass gears meshing, a clock ticking) and
+ * Chronos (its Ascended cousin: an astrolabe turning, hands racing, an hourglass turning over). Their animations are in src/index.css (.wa-*);
  * still under reduced motion. Dragon Scale alone is a canvas, its animation drawn there (a dozen of them as SVGs made
  * the Boutique lag). The Thunderstorm has its own (src/gacha/StormWrap.tsx).
  */
@@ -913,8 +914,214 @@ export function DecoWrap() {
   );
 }
 
+/** A gear around (0, 0): `n` teeth on a wheel of radius `r`, teeth `t` deep, a hub and round holes cut out (even-odd). */
+function gear(n: number, r: number, t: number) {
+  const pts: string[] = [];
+  for (let k = 0; k < n; k++) {
+    const a = (k / n) * Math.PI * 2;
+    const s = (Math.PI * 2) / n;
+    for (const [da, rr] of [
+      [0, r],
+      [s * 0.12, r + t],
+      [s * 0.38, r + t],
+      [s * 0.5, r],
+    ] as const) {
+      const [x, y] = pt(0, 0, rr, a + da);
+      pts.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
+    }
+  }
+  const hole = (cx: number, cy: number, rr: number) => `M${(cx + rr).toFixed(1)} ${cy.toFixed(1)}a${rr} ${rr} 0 1 0 ${(-2 * rr).toFixed(1)} 0a${rr} ${rr} 0 1 0 ${(2 * rr).toFixed(1)} 0Z`;
+  const holes = [0, 1, 2, 3, 4]
+    .map((k) => {
+      const [x, y] = pt(0, 0, r * 0.58, (k / 5) * Math.PI * 2);
+      return hole(x, y, r * 0.2);
+    })
+    .join('');
+  return `M${pts.join('L')}Z${holes}${hole(0, 0, r * 0.14)}`;
+}
+
+/** A brass gear turning (`dir` 1 clockwise, -1 the other way), drawn at (x, y). */
+function Gear({ x, y, n, r, dur, dir, fill, delay = 0 }: { x: number; y: number; n: number; r: number; dur: number; dir: 1 | -1; fill: string; delay?: number }) {
+  const d = useMemo(() => gear(n, r, r * 0.16), [n, r]);
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g className="wa-gear" style={{ animationDuration: `${dur}s`, animationDirection: dir > 0 ? 'normal' : 'reverse', animationDelay: `${delay}s` }}>
+        <path d={d} fill={fill} fillRule="evenodd" stroke="#3b2208" strokeWidth={1} strokeOpacity={0.6} />
+        <circle r={r * 0.36} fill="none" stroke="#fff7d6" strokeOpacity={0.35} strokeWidth={1} />
+      </g>
+    </g>
+  );
+}
+
+/**
+ * Clockwork's gear train: each gear set beside the one that drives it (at an angle, as far as their two radii and
+ * half their teeth), turning the other way. [driver index, angle in degrees, teeth, radius, copper?]
+ */
+const TRAIN = (() => {
+  const plan: [number, number, number, number, boolean][] = [
+    [-1, 0, 14, 52, false],
+    [0, 35, 9, 30, true],
+    [1, -30, 12, 44, false],
+    [1, 60, 16, 60, false],
+    [3, 160, 8, 26, true],
+    [4, 115, 13, 48, false],
+    [3, 75, 7, 22, true],
+    [6, 70, 11, 40, false],
+  ];
+  const out: { x: number; y: number; n: number; r: number; dir: 1 | -1; copper: boolean }[] = [];
+  for (const [from, deg, n, r, copper] of plan) {
+    if (from < 0) {
+      out.push({ x: 66, y: 86, n, r, dir: 1, copper });
+      continue;
+    }
+    const d = out[from];
+    const dist = d.r + r + (d.r * 0.16 + r * 0.16) / 2;
+    const [x, y] = pt(d.x, d.y, dist, (deg * Math.PI) / 180);
+    out.push({ x, y, n, r, dir: (d.dir * -1) as 1 | -1, copper });
+  }
+  return out;
+})();
+
+const ROMAN_HOURS = ['XII', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'];
+
+/** Clockwork (Prestige): brass gears meshing and turning, a clock face ticking its seconds, a gleam of brass sweeping by. */
+export function ClockworkWrap() {
+  const id = useUid();
+  const brass = `url(#${id}b)`;
+  const copper = `url(#${id}c)`;
+  return (
+    <Svg>
+      <defs>
+        <linearGradient id={`${id}b`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fef3c7" />
+          <stop offset="0.3" stopColor="#d4a017" />
+          <stop offset="0.6" stopColor="#a16207" />
+          <stop offset="1" stopColor="#fde68a" />
+        </linearGradient>
+        <linearGradient id={`${id}c`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fed7aa" />
+          <stop offset="0.45" stopColor="#c2410c" />
+          <stop offset="1" stopColor="#7c2d12" />
+        </linearGradient>
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#fde68a" stopOpacity="0" />
+          <stop offset="0.5" stopColor="#fff7d6" stopOpacity="0.45" />
+          <stop offset="1" stopColor="#fde68a" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {/* The train of gears, meshing: each turns the other way from the one it drives, the small ones faster (a turn
+          takes as long as its teeth count). */}
+      {TRAIN.map((g, k) => (
+        <Gear key={k} x={g.x} y={g.y} n={g.n} r={g.r} dur={g.n * 1.15} dir={g.dir} fill={g.copper ? copper : brass} />
+      ))}
+      {/* A clock face, its second hand ticking. */}
+      <g transform={`translate(${TRAIN[1].x} ${TRAIN[1].y})`}>
+        <circle r={24} fill="#fff7e6" stroke={brass} strokeWidth={3} />
+        {ROMAN_HOURS.map((_, k) => {
+          const [x0, y0] = pt(0, 0, 19, (k / 12) * Math.PI * 2);
+          const [x1, y1] = pt(0, 0, 22, (k / 12) * Math.PI * 2);
+          return <path key={k} d={`M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}`} stroke="#3b2208" strokeWidth={k % 3 ? 0.8 : 1.6} />;
+        })}
+        <path d="M0 2V-12" stroke="#3b2208" strokeWidth={2} strokeLinecap="round" transform="rotate(-50)" />
+        <path className="wa-clk-tick" d="M0 4V-19" stroke="#b91c1c" strokeWidth={0.9} strokeLinecap="round" />
+        <circle r={1.8} fill="#3b2208" />
+      </g>
+      <rect className="wa-deco-sweep" x={-W} y={0} width={W} height={H} fill={`url(#${id}s)`} />
+    </Svg>
+  );
+}
+
+/** Chronos (Ascended): time itself. An astrolabe of gold rings turning against each other, Roman hours round it, its
+ *  hands racing; an hourglass that empties and turns over; gears at the corners; motes of time spiralling in. */
+export function ChronosWrap() {
+  const id = useUid();
+  const gold = `url(#${id}g)`;
+  const motes = useMemo(() => {
+    const r = seeded(7);
+    return Array.from({ length: 22 }, (_, k) => ({ k, rad: 40 + r() * 120, a: r() * 360, dur: 6 + r() * 8, size: 0.8 + r() * 1.8, delay: -r() * 10 }));
+  }, []);
+  const ticks = useMemo(
+    () =>
+      Array.from({ length: 60 }, (_, k) => {
+        const a = (k / 60) * Math.PI * 2;
+        const [x0, y0] = pt(0, 0, k % 5 ? 104 : 98, a);
+        const [x1, y1] = pt(0, 0, 110, a);
+        return `M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}`;
+      }).join(''),
+    [],
+  );
+  return (
+    <Svg>
+      <defs>
+        <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#fff7d6" />
+          <stop offset="0.4" stopColor="#fbbf24" />
+          <stop offset="0.7" stopColor="#b45309" />
+          <stop offset="1" stopColor="#fde68a" />
+        </linearGradient>
+        <radialGradient id={`${id}h`}>
+          <stop offset="0" stopColor="#fde68a" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#fde68a" stopOpacity="0" />
+        </radialGradient>
+        <path id={`${id}r`} d={arc(84, -Math.PI / 2, Math.PI * 1.5 - 0.001)} />
+      </defs>
+      {/* Gears at the corners, quietly turning. */}
+      <g opacity={0.55}>
+        <Gear x={0} y={0} n={16} r={58} dur={30} dir={1} fill={gold} />
+        <Gear x={300} y={0} n={12} r={42} dur={24} dir={-1} fill={gold} />
+        <Gear x={0} y={400} n={12} r={44} dur={24} dir={-1} fill={gold} />
+        <Gear x={300} y={400} n={16} r={58} dur={30} dir={1} fill={gold} />
+      </g>
+      {/* Motes of time, spiralling round the face. */}
+      <g transform="translate(150 178)">
+        {motes.map((m) => (
+          <g key={m.k} transform={`rotate(${m.a.toFixed(0)})`}>
+            <g className="wa-chr-orbit" style={{ animationDuration: `${m.dur.toFixed(1)}s`, animationDelay: `${m.delay.toFixed(1)}s` }}>
+              <circle cx={m.rad.toFixed(1)} r={m.size.toFixed(1)} fill="#fde68a" className="wa-spark" style={{ animationDelay: `${m.delay.toFixed(1)}s` }} />
+            </g>
+          </g>
+        ))}
+      </g>
+      {/* The astrolabe: a glow, rings turning against each other, the hours, and the hands racing. */}
+      <g transform="translate(150 178)">
+        <circle r={128} fill={`url(#${id}h)`} />
+        <g className="wa-gear" style={{ animationDuration: '60s' }}>
+          <circle r={110} fill="none" stroke={gold} strokeWidth={2} />
+          <path d={ticks} stroke={gold} strokeWidth={1.2} />
+        </g>
+        <g className="wa-gear" style={{ animationDuration: '40s', animationDirection: 'reverse' }}>
+          <circle r={92} fill="none" stroke={gold} strokeWidth={1} strokeDasharray="2 5" />
+          <text fill="#fde68a" fontSize={12} fontFamily="serif" fontWeight={700} letterSpacing={1}>
+            <textPath href={`#${id}r`} textLength={520}>
+              {ROMAN_HOURS.join(' · ')} ·
+            </textPath>
+          </text>
+          <circle r={74} fill="none" stroke={gold} strokeWidth={1.6} />
+        </g>
+        <g className="wa-gear" style={{ animationDuration: '24s' }}>
+          <ellipse rx={66} ry={22} fill="none" stroke="#fde68a" strokeOpacity={0.6} strokeWidth={1} transform="rotate(30)" />
+          <ellipse rx={66} ry={22} fill="none" stroke="#fde68a" strokeOpacity={0.6} strokeWidth={1} transform="rotate(-30)" />
+        </g>
+        <path className="wa-chr-hand wa-chr-hour" d="M0 6L-3 0L0 -42L3 0Z" fill={gold} />
+        <path className="wa-chr-hand wa-chr-minute" d="M0 8L-2 0L0 -64L2 0Z" fill="#fff7d6" />
+        <circle r={5} fill={gold} stroke="#fff7d6" strokeWidth={1} />
+      </g>
+      {/* The hourglass: sand running down, then it turns over. */}
+      <g transform="translate(150 344)">
+        <g className="wa-chr-glass">
+          <path d="M-20 -34H20M-20 34H20" stroke={gold} strokeWidth={3} strokeLinecap="round" />
+          <path d="M-16 -32C-16 -8 -3 -6 -3 0C-3 6 -16 8 -16 32H16C16 8 3 6 3 0C3 -6 16 -8 16 -32Z" fill="rgba(255,247,214,0.12)" stroke="#fde68a" strokeWidth={1.2} />
+          <path className="wa-chr-sand-top" d="M-12 -26H12C10 -12 2 -8 0 -2C-2 -8 -10 -12 -12 -26Z" fill="#fbbf24" />
+          <path className="wa-chr-sand-fall" d="M0 -2V30" stroke="#fde68a" strokeWidth={1.2} strokeDasharray="2 3" />
+          <path className="wa-chr-sand-bottom" d="M-14 31H14C12 22 4 18 0 16C-4 18 -12 22 -14 31Z" fill="#fbbf24" />
+        </g>
+      </g>
+    </Svg>
+  );
+}
+
 /** The wrappers drawn here. */
-export const DRAWN = new Set(['wrap:dragon', 'wrap:blackhole', 'wrap:eventhorizon', 'wrap:bigbang', 'wrap:crystal', 'wrap:phoenix', 'wrap:deco']);
+export const DRAWN = new Set(['wrap:dragon', 'wrap:blackhole', 'wrap:eventhorizon', 'wrap:bigbang', 'wrap:crystal', 'wrap:phoenix', 'wrap:deco', 'wrap:clockwork', 'wrap:chronos']);
 
 /** The drawn wrapper for a wrapper id, if it has one. */
 export function WrapArt({ id }: { id: string }) {
@@ -933,6 +1140,10 @@ export function WrapArt({ id }: { id: string }) {
       return <PhoenixWrap />;
     case 'wrap:deco':
       return <DecoWrap />;
+    case 'wrap:clockwork':
+      return <ClockworkWrap />;
+    case 'wrap:chronos':
+      return <ChronosWrap />;
     default:
       return null;
   }
