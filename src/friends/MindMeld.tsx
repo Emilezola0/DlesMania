@@ -39,7 +39,9 @@ export function MindMeld({ d, me, friend, busy, onStart, onSay }: { d: BondDoc; 
   const theirsIn = g.words[`${g.round}_${friend.uid}`] !== undefined;
   const prev = g.round > 1 ? rounds[g.round - 2] : null;
   const prompt = g.round === 1 || !prev ? null : ([prev.a, prev.b] as string[]);
-  const taken = new Set([...(prompt ?? []), ...Object.values(g.words)].map(normWord));
+  // Words already said in the rounds before (the friend's word for this round, still hidden, never counts: the same
+  // word is a Meld).
+  const taken = new Set([...(prompt ?? []), ...Object.entries(g.words).filter(([k]) => Number(k.split('_')[0]) < g.round).map(([, w]) => w)].map(normWord));
   const send = () => {
     const w = normWord(word);
     if (!w) return;
