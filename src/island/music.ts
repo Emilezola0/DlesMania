@@ -123,6 +123,8 @@ export interface Source {
   id: string;
   x: number;
   y: number;
+  /** Its volume (its own setting, 0–1; none: full). */
+  gain?: number;
 }
 
 /**
@@ -150,7 +152,11 @@ export function islandBand() {
           // Each starts on the next whole step of a shared clock, so two of a kind stay in time.
           let st = next.get(s.cell);
           if (!st || st.at < now) st = { at: Math.ceil(now / v.step) * v.step, i: Math.round(Math.ceil(now / v.step)) };
-          const gain = v.gain * level * (1 - d / HEAR) ** 2;
+          const gain = v.gain * level * (src.gain ?? 1) * (1 - d / HEAR) ** 2;
+          if (gain <= 0.0002) {
+            next.delete(s.cell);
+            return;
+          }
           const pan = Math.max(-1, Math.min(1, dx / HEAR));
           while (st.at < now + 0.2) {
             if (v.random) {

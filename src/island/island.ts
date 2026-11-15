@@ -59,7 +59,11 @@ export interface Island {
   by?: Record<string, string>;
   /** The front layer: things drawn in front of the player (a garland, a lantern, a plant pot…). */
   front?: Record<string, string>;
-  /** A music maker's setting, by its key ("<cell>", "b<cell>", "t<cell>"): "off", or the disc it plays. */
+  /**
+   * A music maker's setting, by its key ("<cell>", "b<cell>", "t<cell>"): "off", the disc it plays, or a YouTube video
+   * ("yt:<id>", a radio's, or a TV's by its cell). And each device's volume ("vol:<key>": "0"–"100"), and the device a
+   * speaker plays ("to:<key>": that radio's or TV's key).
+   */
   tune?: Record<string, string>;
   /** The world's version: 2 since it grew (ISLAND_V); older islands are moved into it by upgradeIsland. */
   v?: number;
@@ -351,7 +355,7 @@ export function pickUp(isl: Island, items: Bag, cell: number, who?: Who): Change
   if (top) {
     if (!mayTake(isl, `t${cell}`, who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...front } = isl.front!;
-    return { island: { ...isl, front, tune: without(isl.tune, `t${cell}`), by: withoutBy(isl, `t${cell}`) }, items: give(items, top) };
+    return { island: { ...isl, front, tune: tuneWithout(isl.tune, `t${cell}`), by: withoutBy(isl, `t${cell}`) }, items: give(items, top) };
   }
   const id = fgAt(isl, cell);
   if (id && FIXED.has(kindOf(id) ?? '')) throw new Error('That stays where it is.');
@@ -359,13 +363,13 @@ export function pickUp(isl: Island, items: Bag, cell: number, who?: Who): Change
     if (!mayTake(isl, String(cell), who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const fg = setFg(isl, cell, undefined);
     const { [cell]: __, ...shown } = isl.shown;
-    return { island: { ...isl, fg, shown, tune: without(isl.tune, String(cell)), by: withoutBy(isl, String(cell)) }, items: give(items, id) };
+    return { island: { ...isl, fg, shown, tune: tuneWithout(isl.tune, String(cell)), by: withoutBy(isl, String(cell)) }, items: give(items, id) };
   }
   const wall = isl.bg[cell];
   if (wall) {
     if (!mayTake(isl, `b${cell}`, who)) throw new Error('Someone else put that there: only they (or the owner) can pick it up.');
     const { [cell]: _, ...bg } = isl.bg;
-    return { island: { ...isl, bg, tune: without(isl.tune, `b${cell}`), by: withoutBy(isl, `b${cell}`) }, items: give(items, wall) };
+    return { island: { ...isl, bg, tune: tuneWithout(isl.tune, `b${cell}`), by: withoutBy(isl, `b${cell}`) }, items: give(items, wall) };
   }
   throw new Error('Nothing to pick up there.');
 }
@@ -470,6 +474,8 @@ const without = (m: Record<string, string> | undefined, key: string) => {
   const { [key]: _, ...rest } = m;
   return rest;
 };
+/** A device's settings gone with it: its tune, its volume ("vol:<key>"), the link a speaker had ("to:<key>"). */
+const tuneWithout = (m: Record<string, string> | undefined, key: string) => without(without(without(m, key), `vol:${key}`), `to:${key}`);
 
 /** A music maker's setting (by its layer key): null plays its own tune, "off" silences it, a disc id plays that disc. */
 export function setTune(isl: Island, key: string, tune: string | null): Change {

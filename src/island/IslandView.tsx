@@ -16,7 +16,8 @@ import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
 import { dungeonIsland, dungeonOf } from './dungeon';
 import { weekOf } from '../gacha/economy';
-import { discFits, DISC_PLAYERS, islandBand, type Source } from './music';
+import { discFits, DISC_PLAYERS, HEAR, islandBand, type Source } from './music';
+import { ShowBar, VolumeSlider, YouTubeShow, YT, ytId, ytOf } from './YouTube';
 import { canHear, playVoice } from '../gacha/voice';
 import { Backdrop, cellHash, Clouds, dirtColor, isBeach, PlotArt } from './scenery';
 import { SeedArt } from './SeedBook';
@@ -121,7 +122,10 @@ const PW = 0.78;
 const PH = 0.92;
 const SPEED = 6;
 const GRAVITY = 32;
-const JUMP = 11.5;
+/** A jump's push: up 2.5 blocks (the owner's call), whatever the gravity. */
+const JUMP = Math.sqrt(2 * GRAVITY * 2.5);
+/** How far (cells) a TV is heard (or a speaker linked to it). */
+const TV_HEAR = 12;
 /** Climbing speed on a ladder. */
 const CLIMB = 4.5;
 
@@ -181,6 +185,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const [layer, setLayer] = useState<Layer>('mid');
   /** A record or CD player whose disc the player is choosing (its layer key and item). */
   const [discing, setDiscing] = useState<{ key: string; player: string } | null>(null);
+  /** A speaker whose link the player is choosing (its layer key). */
+  const [speaking, setSpeaking] = useState<string | null>(null);
   /** On a friend's island you only visit: the music you switch, heard by you only. */
   const [localTune, setLocalTune] = useState<Record<string, string | null>>({});
   /** Full screen: the island as big as the screen. */
@@ -285,7 +291,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const last = tvs.sort((a, b) => a.at - b.at).at(-1);
     if (last) {
       // Only a clip of the card on that screen (a show can't put anything else on).
-      const fits = screenClips(CARD_BY_ID.get(last.card)).includes(last.clip);
+      const fits = last.clip.startsWith(YT) ? tunesRef.current[String(last.cell)] === last.clip : screenClips(CARD_BY_ID.get(last.card)).includes(last.clip);
       if (last.on && fits && Date.now() - last.at < 10 * 60_000) setTv(last);
       if (!last.on) setTv((cur) => (cur && cur.cell === last.cell ? null : cur));
     }
@@ -556,6 +562,30 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     }
     return t;
   }, [isl, localTune]);
+  const tunesRef = useRef(tunes);
+  tunesRef.current = tunes;
+  /** A device's volume (its setting: "vol:<key>", 0–100), 0–1. */
+  const volOf = (key: string) => {
+    const v = tunes[`vol:${key}`];
+    return v === undefined ? 1 : Math.max(0, Math.min(1, Number(v) / 100 || 0));
+  };
+  /** What's at a device's key ("<cell>", "b<cell>", "t<cell>"), and where. */
+  const itemAt = (key: string) => {
+    const m = /^([bt]?)(\d+)$/.exec(key);
+    if (!m) return undefined;
+    const c = Number(m[2]);
+    return m[1] === 'b' ? isl.bg[c] : m[1] === 't' ? isl.front?.[c] : fgAt(isl, c);
+  };
+  const spotOf = (key: string) => {
+    const c = Number(/\d+$/.exec(key)?.[0] ?? -1);
+    return { x: xy(c).x + 0.5, y: xy(c).y + 0.5 };
+  };
+  /** The speakers linked to each device (by the device's key): their keys. */
+  const speakersOf = useMemo(() => {
+    const by: Record<string, string[]> = {};
+    for (const [k, v] of Object.entries(tunes)) if (k.startsWith('to:')) (by[v] ??= []).push(k.slice(3));
+    return by;
+  }, [tunes]);
   const sources = useMemo<Source[]>(() => {
     const out: Source[] = [];
     for (const [layerName, map] of [['mid', isl.fg], ['back', isl.bg], ['front', isl.front ?? {}]] as [Layer, Record<string, string>][])
@@ -563,11 +593,20 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (kindOf(id) !== 'music') continue;
         const key = layerKey(layerName, Number(k));
         const t = tunes[key];
-        if (t === 'off') continue;
-        out.push({ key, id: t ?? id, x: xy(Number(k)).x + 0.5, y: xy(Number(k)).y + 0.5 });
+        // Off; a YouTube video (its own player plays it); a speaker linked to a radio or TV (it plays that).
+        if (t === 'off' || ytOf(t) || tunes[`to:${key}`]) continue;
+        out.push({ key, id: t ?? id, x: xy(Number(k)).x + 0.5, y: xy(Number(k)).y + 0.5, gain: volOf(key) });
       }
+    // A speaker linked to a radio playing its tune or a disc: that, from the speaker too.
+    for (const [target, speakers] of Object.entries(speakersOf)) {
+      const id = itemAt(target);
+      const t = tunes[target];
+      if (!id || kindOf(id) !== 'music' || t === 'off' || ytOf(t)) continue;
+      for (const sp of speakers) if (itemAt(sp)) out.push({ key: `spk:${sp}`, id: t ?? id, ...spotOf(sp), gain: volOf(target) * volOf(sp) });
+    }
     return out;
-  }, [isl, tunes]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isl, tunes, speakersOf]);
   const srcRef = useRef(sources);
   srcRef.current = sources;
   useEffect(() => {
@@ -579,6 +618,47 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     }, 100);
     return () => (window.clearInterval(t), band.stop());
   }, []);
+
+  // What plays its own sound (a radio's YouTube video, the TV that's on): how near the player is to it, or to a speaker
+  // linked to it (0–1), every quarter second.
+  const loud = useMemo(() => {
+    const out: { key: string; spots: { x: number; y: number }[]; reach: number }[] = [];
+    for (const [k, v] of Object.entries(tunes)) {
+      if (!ytOf(v) || !/^[bt]?\d+$/.test(k)) continue;
+      const id = itemAt(k);
+      if (id && kindOf(id) === 'music') out.push({ key: k, spots: [spotOf(k), ...(speakersOf[k] ?? []).filter((sp) => itemAt(sp)).map(spotOf)], reach: HEAR + 2 });
+    }
+    if (tv) {
+      const k = String(tv.cell);
+      out.push({ key: k, spots: [spotOf(k), ...(speakersOf[k] ?? []).filter((sp) => itemAt(sp)).map(spotOf)], reach: TV_HEAR });
+    }
+    return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isl, tunes, speakersOf, tv]);
+  const loudRef = useRef(loud);
+  loudRef.current = loud;
+  const [near, setNear] = useState<Record<string, number>>({});
+  useEffect(() => {
+    const t = window.setInterval(() => {
+      if (document.hidden) return;
+      const p = pos.current;
+      const lx = p.x + PW / 2;
+      const ly = p.y + PH / 2;
+      const next: Record<string, number> = {};
+      for (const d of loudRef.current)
+        next[d.key] = Math.max(0, ...d.spots.map((s) => {
+          const dist = Math.hypot(s.x - lx, s.y - ly);
+          return dist >= d.reach ? 0 : (1 - dist / d.reach) ** 1.5;
+        }));
+      setNear((cur) => {
+        const keys = new Set([...Object.keys(cur), ...Object.keys(next)]);
+        for (const k of keys) if (Math.abs((cur[k] ?? 0) - (next[k] ?? 0)) > 0.03) return next;
+        return cur;
+      });
+    }, 250);
+    return () => window.clearInterval(t);
+  }, []);
+  const clipLevel = useProgress((s) => (s.sound ? s.clipVolume / 100 : 0));
 
   // The keys: arrows or WASD, Space to jump (while the island has the focus).
   const keyOf = (k: string) =>
@@ -690,6 +770,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (music?.id) {
         const key = layerKey(music.l, cell);
         if (DISC_PLAYERS[music.id]) return setDiscing({ key, player: music.id });
+        if (music.id === 'speaker') return setSpeaking(key);
         const off = tunes[key] === 'off';
         tuneTo(key, off ? null : 'off');
         return say(`${off ? '🔊' : '🔇'} ${itemName(music.id)}: ${off ? tr('on', 'allumé') : tr('off', 'éteint')}${mode === 'visit' ? ` ${tr('(while you’re here)', '(tant que tu es là)')}` : ''}`);
@@ -720,6 +801,23 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           myTv.current = { ...tv, at: Date.now(), on: false };
           setTv(null);
           return say(tr('📺 Off.', '📺 Éteinte.'));
+        }
+        // A YouTube video set on it: that.
+        const yt = ytOf(tunes[String(cell)]);
+        if (yt) {
+          const show: TvEvent = { cell, card: '', clip: `${YT}${yt}`, at: Date.now(), on: true };
+          myTv.current = show;
+          setTv(show);
+          return say(
+            <>
+              📺 {tr('On air (click the TV again to switch it off; ⛶ for full screen).', 'À l’antenne (reclique la télé pour l’éteindre ; ⛶ pour le plein écran).')}{' '}
+              {mode !== 'visit' && (
+                <button type="button" className="font-semibold text-accent underline" onClick={() => setFraming(cell)}>
+                  {tr('Change', 'Changer')}
+                </button>
+              )}
+            </>,
+          );
         }
         if (!card) return mode === 'visit' ? say(tr('Nothing on this screen.', 'Rien sur cet écran.')) : setFraming(cell);
         const clips = screenClips(CARD_BY_ID.get(card));
@@ -922,6 +1020,23 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     run((i) => setTune(i, key, t), '', 'build');
   };
 
+  /** Several settings at once (one change on the island, not one each). */
+  const tuneMany = (pairs: [string, string | null][]) => {
+    if (mode === 'visit') {
+      for (const [key, t] of pairs) myTune.current = { key, value: t, at: Date.now() };
+      return setLocalTune((m) => ({ ...m, ...Object.fromEntries(pairs) }));
+    }
+    setLocalTune((m) => {
+      if (!pairs.some(([k]) => k in m)) return m;
+      const n = { ...m };
+      for (const [k] of pairs) delete n[k];
+      return n;
+    });
+    run((i) => pairs.reduce<Change>((ch, [k, t]) => setTune(ch.island, k, t), { island: i } as Change), '', 'build');
+  };
+  /** A device's volume (0–100): saved on the island, or just for you when visiting. */
+  const setVolume = (key: string, v: number) => tuneTo(`vol:${key}`, v >= 100 ? null : String(Math.round(v)));
+
   /** Harvests a ripe plot, taking the thing the player picked. */
   const reap = (cell: number, pick: string) => {
     let got: ReturnType<typeof harvest>['got'] | null = null;
@@ -1063,6 +1178,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               key={tv.at}
               tv={tv}
               T={T}
+              level={clipLevel * volOf(String(tv.cell)) * (near[String(tv.cell)] ?? 1)}
+              vol={volOf(String(tv.cell))}
+              onVol={(v) => setVolume(String(tv.cell), v)}
               onEnd={() => setTv(null)}
               onOff={() => {
                 myTv.current = { ...tv, at: Date.now(), on: false };
@@ -1070,6 +1188,28 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               }}
             />
           )}
+          {/* The radios playing a YouTube video, heard from near them (or a speaker linked to them): its video small over it. */}
+          {Object.entries(tunes).map(([k, v]) => {
+            const id = ytOf(v);
+            const n = near[k] ?? 0;
+            if (!id || n <= 0 || !/^[bt]?\d+$/.test(k) || kindOf(itemAt(k)) !== 'music') return null;
+            const { x, y } = spotOf(k);
+            const w = 3.6 * T;
+            const h = (w * 9) / 16;
+            return (
+              <YouTubeShow
+                key={`${k}:${id}`}
+                id={id}
+                loop
+                volume={clipLevel * volOf(k) * n}
+                vol={volOf(k)}
+                onVol={(vv) => setVolume(k, vv)}
+                label={itemName(itemAt(k) ?? 'radio')}
+                className="absolute"
+                style={{ left: Math.max(0, Math.min(ISLAND.w * T - w, x * T - w / 2)), top: Math.max(2, (y - 0.5) * T - h - 6), width: w, height: h }}
+              />
+            );
+          })}
         </div>
         {/* The stars and the moon (faded out as the camera goes underground: see the frame loop). */}
         {dark > 0 && !inDungeon && (
@@ -1294,17 +1434,44 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           player={discing.player}
           discs={discs.map(([id]) => id)}
           current={tunes[discing.key] ?? null}
+          vol={volOf(discing.key) * 100}
+          onVol={(v) => setVolume(discing.key, v)}
           onPick={(t) => {
             tuneTo(discing.key, t);
-            say(t === 'off' ? `🔇 ${itemName(discing.player)}: ${tr('off', 'éteint')}` : t ? `🎶 ${itemName(t)}` : `🎶 ${itemName(discing.player)}`);
+            say(t === 'off' ? `🔇 ${itemName(discing.player)}: ${tr('off', 'éteint')}` : ytOf(t) ? tr('▶️ YouTube: walk near it to hear it.', '▶️ YouTube : approche-toi pour l’entendre.') : t ? `🎶 ${itemName(t)}` : `🎶 ${itemName(discing.player)}`);
             setDiscing(null);
             box.current?.focus();
           }}
           onClose={() => (setDiscing(null), box.current?.focus())}
         />
       )}
+      {speaking && (
+        <SpeakerPicker
+          isl={isl}
+          speaker={speaking}
+          current={tunes[`to:${speaking}`] ?? (tunes[speaking] === 'off' ? 'off' : null)}
+          vol={volOf(speaking) * 100}
+          onVol={(v) => setVolume(speaking, v)}
+          onPick={(t) => {
+            tuneMany(t === 'off' ? [[speaking, 'off'], [`to:${speaking}`, null]] : t ? [[speaking, null], [`to:${speaking}`, t]] : [[speaking, null], [`to:${speaking}`, null]]);
+            say(t === 'off' ? `🔇 ${itemName('speaker')}: ${tr('off', 'éteinte')}` : t ? `🔊 ${tr('Linked to', 'Reliée à')} ${itemName(itemAt(t) ?? '')}` : `🔊 ${itemName('speaker')}`);
+            setSpeaking(null);
+            box.current?.focus();
+          }}
+          onClose={() => (setSpeaking(null), box.current?.focus())}
+        />
+      )}
       {framing !== null && (
         <CardPicker
+          yt={kindOf(fgAt(isl, framing)) === 'screen' ? ytOf(tunes[String(framing)]) : undefined}
+          onYt={(id) => {
+            tuneTo(String(framing), id ? `${YT}${id}` : null);
+            say(id ? tr('📺 YouTube set: click the screen to play it.', '📺 YouTube réglé : clique l’écran pour le lancer.') : tr('📺 Back to the card’s clip.', '📺 Retour au clip de la carte.'));
+            setFraming(null);
+            box.current?.focus();
+          }}
+          vol={volOf(String(framing)) * 100}
+          onVol={(v) => setVolume(String(framing), v)}
           owned={owned}
           reader={kindOf(fgAt(isl, framing)) === 'reader'}
           screen={kindOf(fgAt(isl, framing)) === 'screen'}
@@ -1509,7 +1676,7 @@ const FrontLayer = memo(function FrontLayer({ isl, T }: { isl: Island; T: number
 });
 
 /** A record or CD player: its own tune, off, or one of your discs that fits it. */
-function DiscPicker({ player, discs, current, onPick, onClose }: { player: string; discs: string[]; current: string | null; onPick: (t: string | null) => void; onClose: () => void }) {
+function DiscPicker({ player, discs, current, vol, onVol, onPick, onClose }: { player: string; discs: string[]; current: string | null; vol: number; onVol: (v: number) => void; onPick: (t: string | null) => void; onClose: () => void }) {
   const fits = discs.filter((d) => discFits(player, d));
   const tile = (key: string, art: ReactNode, label: string, value: string | null, on: boolean) => (
     <button key={key} type="button" onClick={() => onPick(value)} className={`flex flex-col items-center gap-1 rounded-md border p-2 text-xs hover:bg-tile ${on ? 'border-accent bg-accent/10' : 'border-rule'}`}>
@@ -1531,6 +1698,8 @@ function DiscPicker({ player, discs, current, onPick, onClose }: { player: strin
           {tile('off', <span className="grid size-12 place-items-center text-3xl">🔇</span>, tr('Off', 'Éteint'), 'off', current === 'off')}
           {fits.map((d) => tile(d, <ItemArt id={d} className="size-12 text-3xl" />, itemName(d), d, current === d))}
         </div>
+        {player === 'radio' && <YouTubeField current={ytOf(current)} onSet={(id) => onPick(id ? `${YT}${id}` : null)} />}
+        <VolumeSlider value={vol} onChange={onVol} />
         {fits.length === 0 && (
           <p className="text-xs text-ink-soft">
             {DISC_PLAYERS[player] === 'cd'
@@ -1618,7 +1787,7 @@ function HarvestPicker({ choices, have, onPick, onClose }: { choices: string[]; 
 }
 
 /** Picks one of your cards to show in a frame. */
-function CardPicker({ owned, screen = false, reader = false, backdrop, current, onPick, onClose }: { owned: Record<string, number>; screen?: boolean; reader?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void }) {
+function CardPicker({ owned, screen = false, reader = false, backdrop, current, onPick, onClose, yt, onYt, vol, onVol }: { owned: Record<string, number>; screen?: boolean; reader?: boolean; backdrop?: string | null; current: string | null; onPick: (id: string | null) => void; onClose: () => void; yt?: string | null; onYt?: (id: string | null) => void; vol?: number; onVol?: (v: number) => void }) {
   const [q, setQ] = useState('');
   const bg = screen && backdrop ? CARD_BY_ID.get(backdrop) : undefined;
   const cards = useMemo(
@@ -1645,6 +1814,8 @@ function CardPicker({ owned, screen = false, reader = false, backdrop, current, 
             ✕
           </button>
         </div>
+        {screen && onYt && <YouTubeField current={yt ?? null} onSet={onYt} />}
+        {screen && onVol && vol !== undefined && <VolumeSlider value={vol} onChange={onVol} />}
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={tr('Search your cards', 'Cherche dans tes cartes')} className="w-full rounded-md border border-rule bg-card px-3 py-1.5 text-sm" autoFocus />
         <div className="grid max-h-[50vh] grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4">
           {bg && screenClip(bg) && (
@@ -1759,22 +1930,33 @@ function FishLine({ f, T }: { f: Fishing; T: number }) {
  * A screen switched on: the card's clip, big, above the TV. A video plays once with its sound (the owner's rule: card
  * videos play on a moment, with their own audio, never on a loop); a GIF loops until it's clicked off.
  */
-function TvShow({ tv, T, onEnd, onOff }: { tv: TvEvent; T: number; onEnd: () => void; onOff: () => void }) {
+function TvShow({ tv, T, level, vol, onVol, onEnd, onOff }: { tv: TvEvent; T: number; level: number; vol: number; onVol: (v: number) => void; onEnd: () => void; onOff: () => void }) {
   const card = CARD_BY_ID.get(tv.card);
   const clip = tv.clip;
-  const volume = useProgress((s) => (s.sound ? s.clipVolume / 100 : 0));
+  // Its sound: the clips' volume, the TV's own, and how near you stand to it or a speaker linked to it.
+  const volume = level;
   const ref = useRef<HTMLVideoElement>(null);
+  const box = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (ref.current) ref.current.volume = Math.min(1, volume);
+    if (ref.current) {
+      ref.current.volume = Math.max(0, Math.min(1, volume));
+      ref.current.muted = volume <= 0;
+    }
   }, [volume]);
-  if (!card || !clip) return null;
   const { x, y } = xy(tv.cell);
   const w = 7 * T;
   const h = (w * 9) / 16;
   const left = Math.max(0, Math.min(ISLAND.w * T - w, (x + 0.5) * T - w / 2));
   const top = Math.max(2, y * T - h - 6);
+  const yt = ytOf(clip);
+  if (yt) return <YouTubeShow id={yt} volume={volume} start={(Date.now() - tv.at) / 1000} vol={vol} onVol={onVol} label="YouTube" onOff={onOff} className="island-tv-show absolute" style={{ left, top, width: w, height: h }} />;
+  if (!card || !clip) return null;
+  const full = () => {
+    if (document.fullscreenElement) void document.exitFullscreen();
+    else void box.current?.requestFullscreen?.().catch(() => {});
+  };
   return (
-    <div className="island-tv-show absolute overflow-hidden rounded-md" style={{ left, top, width: w, height: h }} onPointerDown={(e) => (e.stopPropagation(), onOff())} title={tr('Click to switch off', 'Clique pour éteindre')}>
+    <div ref={box} className="island-tv-show absolute overflow-hidden rounded-md bg-black" style={{ left, top, width: w, height: h }} onPointerDown={(e) => (e.stopPropagation(), onOff())} title={tr('Click to switch off', 'Clique pour éteindre')}>
       {GIF_CLIP.test(clip) ? (
         <GifLoop src={clip} className="size-full object-cover" />
       ) : (
@@ -1797,6 +1979,82 @@ function TvShow({ tv, T, onEnd, onOff }: { tv: TvEvent; T: number; onEnd: () => 
         />
       )}
       <span className="absolute bottom-1 left-2 rounded bg-black/60 px-1.5 text-[11px] font-semibold text-white">{shownName(card.name, card.set)}</span>
+      {!GIF_CLIP.test(clip) && <ShowBar onFull={full} vol={vol} onVol={onVol} />}
+      {GIF_CLIP.test(clip) && <ShowBar onFull={full} />}
+    </div>
+  );
+}
+
+/** A speaker: its own tune, off, or linked to a radio or a TV on the island (it plays what that plays). */
+function SpeakerPicker({ isl, speaker, current, vol, onVol, onPick, onClose }: { isl: Island; speaker: string; current: string | null; vol: number; onVol: (v: number) => void; onPick: (t: string | null) => void; onClose: () => void }) {
+  const at = (k: string) => xy(Number(/\d+$/.exec(k)?.[0] ?? 0));
+  const here = at(speaker);
+  // The radios and screens, nearest first.
+  const devices = useMemo(() => {
+    const out: { key: string; id: string; d: number }[] = [];
+    for (const [layerName, map] of [['mid', isl.fg], ['back', isl.bg], ['front', isl.front ?? {}]] as [Layer, Record<string, string>][])
+      for (const [k, id] of Object.entries(map)) {
+        if (id !== 'radio' && kindOf(id) !== 'screen') continue;
+        const key = layerKey(layerName, Number(k));
+        const p = at(key);
+        out.push({ key, id, d: Math.round(Math.hypot(p.x - here.x, p.y - here.y)) });
+      }
+    return out.sort((a, b) => a.d - b.d);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isl, speaker]);
+  const tile = (key: string, art: ReactNode, label: string, value: string | null, on: boolean) => (
+    <button key={key} type="button" onClick={() => onPick(value)} className={`flex flex-col items-center gap-1 rounded-md border p-2 text-xs hover:bg-tile ${on ? 'border-accent bg-accent/10' : 'border-rule'}`}>
+      {art}
+      <span className="text-center font-semibold leading-tight">{label}</span>
+    </button>
+  );
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4" onClick={onClose}>
+      <div className="page max-h-[80vh] w-full max-w-lg space-y-3 overflow-y-auto rounded-md p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-2">
+          <p className="font-display text-lg font-bold">🔊 {itemName('speaker')}</p>
+          <button type="button" onClick={onClose} className="ml-auto text-ink-soft" aria-label={tr('Close', 'Fermer')}>
+            ✕
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          {tile('own', <ItemArt id="speaker" className="size-12 text-3xl" />, tr('Its own tune', 'Son propre air'), null, current === null)}
+          {tile('off', <span className="grid size-12 place-items-center text-3xl">🔇</span>, tr('Off', 'Éteinte'), 'off', current === 'off')}
+        </div>
+        <p className="font-display text-sm font-bold">{tr('Connect it to', 'La relier à')}</p>
+        {devices.length ? (
+          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+            {devices.map((dv) => tile(dv.key, <ItemArt id={dv.id} className="size-12 text-3xl" />, `${itemName(dv.id)} · ${dv.d} ${tr('away', 'cases')}`, dv.key, current === dv.key))}
+          </div>
+        ) : (
+          <p className="text-xs text-ink-soft">{tr('No radio or TV on the island yet.', 'Pas encore de radio ni de télé sur l’île.')}</p>
+        )}
+        <p className="text-xs text-ink-soft">{tr('Linked, it plays what the radio or TV plays: heard near the speaker too.', 'Reliée, elle joue ce que joue la radio ou la télé : on l’entend aussi près de l’enceinte.')}</p>
+        <VolumeSlider value={vol} onChange={onVol} />
+      </div>
+    </div>
+  );
+}
+
+/** A YouTube link for a radio or a TV: pasted, checked, set (or taken off). */
+function YouTubeField({ current, onSet }: { current: string | null; onSet: (id: string | null) => void }) {
+  const [text, setText] = useState(current ? `https://youtu.be/${current}` : '');
+  const id = ytId(text);
+  return (
+    <div className="space-y-1 rounded-md border border-rule p-2">
+      <p className="font-display text-sm font-bold">▶️ YouTube</p>
+      <div className="flex gap-2">
+        <input value={text} onChange={(e) => setText(e.target.value)} placeholder={tr('Paste a YouTube link', 'Colle un lien YouTube')} className="min-w-0 flex-1 rounded-md border border-rule bg-card px-2 py-1 text-sm" />
+        <button type="button" disabled={!id} onClick={() => onSet(id)} className="btn-accent rounded-md px-3 text-sm font-semibold disabled:opacity-40">
+          {tr('Play it', 'Le passer')}
+        </button>
+        {current && (
+          <button type="button" onClick={() => onSet(null)} className="btn-paper rounded-md px-2 text-sm" title={tr('No more YouTube', 'Plus de YouTube')}>
+            ✕
+          </button>
+        )}
+      </div>
+      {text.trim() && !id && <p className="text-xs text-coral">{tr('That’s not a YouTube link.', 'Ce n’est pas un lien YouTube.')}</p>}
     </div>
   );
 }

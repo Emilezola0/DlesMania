@@ -4866,6 +4866,33 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   cursor: pointer;
   animation: seed-drop 0.35s ease-out both;
 }
+/* A radio's YouTube video, small over it (src/island/YouTube.tsx). */
+.island-yt {
+  border: 3px solid #27272a;
+  box-shadow: 0 4px 16px #0009;
+  animation: seed-drop 0.35s ease-out both;
+}
+/* Full screen (⛶): the whole picture, no frame. */
+.island-tv-show:fullscreen,
+.island-yt:fullscreen {
+  border: 0;
+  border-radius: 0;
+}
+.island-tv-show:fullscreen video,
+.island-tv-show:fullscreen img {
+  object-fit: contain;
+}
+/* A show's bar (full screen, volume, off): faint until the pointer is over the show. */
+.island-show-bar {
+  opacity: 0.55;
+  transition: opacity 0.2s;
+  z-index: 2;
+}
+.island-tv-show:hover .island-show-bar,
+.island-yt:hover .island-show-bar,
+.island-show-bar:focus-within {
+  opacity: 1;
+}
 @media (prefers-reduced-motion: reduce) {
   .island-glow,
   .island-tv-static {
