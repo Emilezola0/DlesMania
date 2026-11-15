@@ -3055,6 +3055,29 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 
 /* Phoenix is a canvas (src/gacha/WrapArt.tsx): its fire is all drawn there. */
 
+/* Diamond Heart (Ascended, a canvas: src/gacha/WrapArt.tsx): a deep violet night around its diamond. */
+.pack-wrap-diamond { background: radial-gradient(circle at 50% 42%, #3b2f8f, #1e1b4b 50%, #0a0820) !important; isolation: isolate; }
+.pack-wrap-diamond > .card-sheen { display: none; }
+/* Its opening: cracks of light run down from the tear, the pack turns to crystal (frosted, flashing every colour),
+   swells, and shatters; a ring of rainbow light bursts out, the shards fly. */
+.pack-open-shatter { transform-origin: 50% 50%; animation: pack-shatter 1.1s ease-in forwards; }
+@keyframes pack-shatter {
+  0% { transform: none; filter: none; opacity: 1; }
+  30% { transform: scale(1.01); filter: brightness(1.25) saturate(1.3); }
+  58% { transform: scale(1.03) rotate(-0.6deg); filter: brightness(1.6) saturate(1.6) hue-rotate(40deg); }
+  66% { transform: scale(1.05) rotate(0.6deg); filter: brightness(2.4) saturate(1.2) hue-rotate(90deg); opacity: 1; }
+  70%, 100% { transform: scale(1.12); filter: brightness(3); opacity: 0; }
+}
+.pack-fx-crack { stroke-dasharray: 100; stroke-dashoffset: 100; filter: drop-shadow(0 0 1.5px #a5f3fc) drop-shadow(0 0 3px #f0abfc); animation: pack-fx-crack 0.55s ease-out 0.05s forwards; }
+@keyframes pack-fx-crack { to { stroke-dashoffset: 0; } }
+.pack-fx-frost { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(224, 242, 254, 0.7), rgba(240, 171, 252, 0.45) 45%, rgba(165, 243, 252, 0.6)); mix-blend-mode: screen; opacity: 0; animation: pack-fx-frost 0.8s ease-in 0.2s forwards; }
+@keyframes pack-fx-frost { to { opacity: 1; } }
+.pack-fx-prism-ring { position: absolute; left: 50%; top: 50%; width: 50%; aspect-ratio: 1; border-radius: 9999px; border: 3px solid #fff; box-shadow: 0 0 14px #a5f3fc, 0 0 26px #f0abfc, inset 0 0 14px #c4b5fd; opacity: 0; animation: pack-fx-time-ring 0.8s ease-out 0.76s forwards; }
+@media (prefers-reduced-motion: reduce) {
+  .pack-open-shatter { animation-duration: 0.01s; }
+  .pack-fx-crack, .pack-fx-frost, .pack-fx-prism-ring { display: none; }
+}
+
 /* Gilded Deco: light running up the fan's rays, a gleam of gold sweeping across. */
 .wa-deco-run { stroke-dasharray: 12 100; stroke-dashoffset: 12; animation: wa-deco-run 2.4s ease-in infinite; }
 @keyframes wa-deco-run { 0% { stroke-dashoffset: 12; opacity: 0; } 10% { opacity: 1; } 75% { opacity: 1; } 100% { stroke-dashoffset: -100; opacity: 0; } }

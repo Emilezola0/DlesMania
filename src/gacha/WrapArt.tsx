@@ -650,10 +650,11 @@ function tapCrystal(e: PointerEvent<SVGSVGElement>) {
     glints;
   svg.appendChild(g);
   window.setTimeout(() => g.remove(), 1100);
-  // The whole crystal shivers, its light flaring.
-  svg.classList.remove('wa-tingle');
-  void svg.getBoundingClientRect();
-  svg.classList.add('wa-tingle');
+  // The whole crystal shivers, its light flaring (all of it: the drawing under this one too, where there is one).
+  const all = svg.parentElement?.hasAttribute('data-tingle') ? svg.parentElement : svg;
+  all.classList.remove('wa-tingle');
+  void all.getBoundingClientRect();
+  all.classList.add('wa-tingle');
   sfx.crystal();
 }
 
@@ -1187,6 +1188,237 @@ export function PhoenixWrap() {
   return <canvas ref={ref} className="pointer-events-none absolute inset-0 size-full" aria-hidden />;
 }
 
+// ---------------------------------------------------------------------------------------------- Diamond Heart
+
+type V3 = [number, number, number];
+/**
+ * A brilliant-cut diamond, its girdle a circle of radius 1 at height 0: the table (an octagon) on top, the crown's
+ * facets from the table down to the girdle, the pavilion's from the girdle down to the culet, a point. Each facet a
+ * list of its corners (which way it faces is worked out when drawn: away from the middle).
+ */
+const DIAMOND_FACETS: V3[][] = (() => {
+  const ring = (n: number, r: number, y: number, off: number) =>
+    Array.from({ length: n }, (_, k) => {
+      const a = ((k + off) / n) * Math.PI * 2;
+      return [Math.cos(a) * r, y, Math.sin(a) * r] as V3;
+    });
+  const g = ring(16, 1, 0, 0);
+  const t = ring(8, 0.56, 0.36, 0.5);
+  const p = ring(8, 0.5, -0.42, 0);
+  const culet: V3 = [0, -0.92, 0];
+  const out: V3[][] = [[...t].reverse()];
+  for (let j = 0; j < 8; j++) {
+    const g0 = g[2 * j];
+    const g1 = g[2 * j + 1];
+    const g2 = g[(2 * j + 2) % 16];
+    // The crown: two facets under each table corner, a star facet between two corners.
+    out.push([g0, t[j], g1], [g1, t[j], g2], [t[j], t[(j + 1) % 8], g2]);
+    // The pavilion: two facets from the girdle down to a ring, a long one from the ring to the point.
+    const gm = g[(2 * j + 15) % 16];
+    out.push([gm, g0, p[j]], [g0, g1, p[j]], [p[j], g1, p[(j + 1) % 8]], [p[j], p[(j + 1) % 8], culet]);
+  }
+  return out;
+})();
+
+/**
+ * Diamond Heart (Ascended, Crystal's): a great brilliant-cut diamond turning slowly in the middle of the pack, each
+ * facet catching the light as it turns, white, ice or a flash of colour (a diamond's fire); light broken into a
+ * rainbow streaming out from it; shards of crystal drifting round it; stars twinkling. Touched, it rings like the
+ * Crystal (tapCrystal), the whole pack shivering.
+ */
+function makeDiamond(): WrapFrame {
+  const glow = [glowSprite('165,243,252'), glowSprite('216,180,254'), glowSprite('255,255,255')];
+  const rnd = seeded(53);
+  const shards = Array.from({ length: 13 }, (_, i) => {
+    const a = (i / 13) * Math.PI * 2 + rnd() * 0.4;
+    const d = 110 + rnd() * 70;
+    return { a, d, size: 5 + rnd() * 8, spin: (rnd() - 0.5) * 1.2, bob: rnd() * 6, phase: rnd() * 6, hue: [190, 260, 300, 210, 170][i % 5] };
+  });
+  const twinkles = Array.from({ length: 22 }, () => ({ x: rnd() * W, y: rnd() * H, s: 2 + rnd() * 4, period: 1.8 + rnd() * 2.6, phase: rnd() }));
+  const RAYS = ['#ff4fd8', '#facc15', '#4ade80', '#38bdf8', '#a855f7', '#f472b6', '#22d3ee'];
+  const CX = 150;
+  const CY = 150;
+  const S = 98;
+  const L = (() => {
+    const v = [-0.45, 0.65, 0.62];
+    const n = Math.hypot(v[0], v[1], v[2]);
+    return v.map((c) => c / n);
+  })();
+  let clock = Math.random() * 100;
+  const star = (ctx: CanvasRenderingContext2D, x: number, y: number, r: number) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y - r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.quadraticCurveTo(x, y, x, y + r);
+    ctx.quadraticCurveTo(x, y, x - r, y);
+    ctx.quadraticCurveTo(x, y, x, y - r);
+    ctx.fill();
+  };
+  return (ctx, _now, dt) => {
+    clock += dt;
+    const t = clock;
+    ctx.globalCompositeOperation = 'lighter';
+    // The light it breaks into colours, streaming out from it, the beams turning slowly and flickering.
+    RAYS.forEach((c, i) => {
+      const a = t * 0.12 + (i / RAYS.length) * Math.PI * 2 + Math.sin(t * 0.7 + i) * 0.15;
+      const len = 260;
+      const w = 0.05 + 0.03 * Math.sin(t * 1.3 + i * 2);
+      const g = ctx.createLinearGradient(CX, CY, CX + Math.cos(a) * len, CY + Math.sin(a) * len);
+      g.addColorStop(0, `${c}00`);
+      g.addColorStop(0.18, `${c}aa`);
+      g.addColorStop(1, `${c}00`);
+      ctx.globalAlpha = 0.28 + 0.14 * Math.sin(t * 2.1 + i * 1.7);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.moveTo(CX, CY);
+      ctx.lineTo(CX + Math.cos(a - w) * len, CY + Math.sin(a - w) * len);
+      ctx.lineTo(CX + Math.cos(a + w) * len, CY + Math.sin(a + w) * len);
+      ctx.closePath();
+      ctx.fill();
+    });
+    // Its glow.
+    ctx.globalAlpha = 0.55 + 0.15 * Math.sin(t * 1.6);
+    ctx.drawImage(glow[0], CX - 120, CY - 120, 240, 240);
+    ctx.globalAlpha = 0.35;
+    ctx.drawImage(glow[1], CX - 90, CY - 70, 180, 180);
+    // The stars round it, twinkling.
+    ctx.fillStyle = '#fff';
+    for (const s of twinkles) {
+      const q = (t / s.period + s.phase) % 1;
+      const a = Math.max(0, Math.sin(q * Math.PI * 2)) ** 3;
+      if (a < 0.02) continue;
+      ctx.globalAlpha = a;
+      star(ctx, s.x, s.y, s.s * (0.6 + 0.4 * a));
+    }
+    ctx.globalCompositeOperation = 'source-over';
+    // The shards drifting round it, each turning.
+    for (const s of shards) {
+      const a = s.a + t * 0.08;
+      const x = CX + Math.cos(a) * s.d * 0.85;
+      const y = CY + Math.sin(a) * s.d + Math.sin(t * 1.2 + s.phase) * s.bob;
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(t * s.spin + s.phase);
+      const g = ctx.createLinearGradient(-s.size, -s.size * 1.6, s.size, s.size * 1.6);
+      g.addColorStop(0, '#f0f9ff');
+      g.addColorStop(0.5, `hsl(${s.hue} 80% 75%)`);
+      g.addColorStop(1, `hsl(${s.hue} 70% 40%)`);
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.moveTo(0, -s.size * 1.7);
+      ctx.lineTo(s.size * 0.7, -s.size * 0.4);
+      ctx.lineTo(s.size * 0.5, s.size * 1.2);
+      ctx.lineTo(-s.size * 0.5, s.size * 1.2);
+      ctx.lineTo(-s.size * 0.7, -s.size * 0.4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255,255,255,0.75)';
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+      ctx.restore();
+    }
+    // The diamond, turning: its facets facing us, each lit by how it meets the light, and its fire.
+    const turn = t * 0.45;
+    const tilt = -0.3 + Math.sin(t * 0.5) * 0.06;
+    const ct = Math.cos(turn);
+    const st = Math.sin(turn);
+    const cx = Math.cos(tilt);
+    const sx = Math.sin(tilt);
+    const view = ([x, y, z]: V3): V3 => {
+      const x1 = x * ct + z * st;
+      const z1 = -x * st + z * ct;
+      return [x1, y * cx - z1 * sx, y * sx + z1 * cx];
+    };
+    const sparks: [number, number, number][] = [];
+    ctx.globalAlpha = 1;
+    DIAMOND_FACETS.forEach((f, i) => {
+      const v = f.map(view);
+      const ax = v[1][0] - v[0][0];
+      const ay = v[1][1] - v[0][1];
+      const az = v[1][2] - v[0][2];
+      const bx = v[2][0] - v[0][0];
+      const by = v[2][1] - v[0][1];
+      const bz = v[2][2] - v[0][2];
+      let nx = ay * bz - az * by;
+      let ny = az * bx - ax * bz;
+      let nz = ax * by - ay * bx;
+      const nl = Math.hypot(nx, ny, nz) || 1;
+      nx /= nl;
+      ny /= nl;
+      nz /= nl;
+      // Facing out, away from the middle.
+      const mx0 = v.reduce((a, q) => a + q[0], 0);
+      const my0 = v.reduce((a, q) => a + q[1], 0);
+      const mz0 = v.reduce((a, q) => a + q[2], 0);
+      if (nx * mx0 + ny * my0 + nz * mz0 < 0) {
+        nx = -nx;
+        ny = -ny;
+        nz = -nz;
+      }
+      if (nz <= 0.01) return;
+      const diff = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
+      // How near it sends the light straight at us: a flash.
+      const rz = 2 * (nx * L[0] + ny * L[1] + nz * L[2]) * nz - L[2];
+      const spec = Math.max(0, rz) ** 10;
+      const fire = (Math.sin(i * 2.3 + turn * 3 + nx * 4) + 1) / 2;
+      // Ice-white and pale blue, bright against dark as a diamond is (the light thrown back from inside it, which
+      // changes as it turns), darker down the pavilion; here and there a tint of its fire, every colour. Each facet
+      // shaded across, like glass.
+      const hue = (i * 53 + turn * 140) % 360;
+      const inner = 0.45 + 0.75 * ((Math.sin(i * 1.7 + turn * 2.2) + 1) / 2);
+      const below = ny < -0.2 ? 0.8 : 1;
+      const tinted = fire > 0.8;
+      const light = tinted ? 62 + 22 * diff : Math.min(97, (30 + diff * 55 + spec * 30) * inner * below);
+      const h = tinted ? hue : 205 + nx * 25;
+      const sat = tinted ? 80 : 45;
+      const shade = ctx.createLinearGradient(CX + v[0][0] * S, CY - v[0][1] * S, CX + v[2][0] * S, CY - v[2][1] * S);
+      shade.addColorStop(0, `hsl(${h} ${sat}% ${Math.min(98, light + 18)}%)`);
+      shade.addColorStop(1, `hsl(${h} ${sat}% ${Math.max(8, light - 14)}%)`);
+      ctx.fillStyle = shade;
+      ctx.beginPath();
+      v.forEach(([x, y], k) => (k ? ctx.lineTo(CX + x * S, CY - y * S) : ctx.moveTo(CX + x * S, CY - y * S)));
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = `rgba(255,255,255,${0.35 + diff * 0.4})`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      if (spec > 0.25) {
+        const mx = v.reduce((a, p) => a + p[0], 0) / v.length;
+        const my = v.reduce((a, p) => a + p[1], 0) / v.length;
+        sparks.push([CX + mx * S, CY - my * S, spec]);
+      }
+    });
+    // Its glints, where a facet throws the light right at us.
+    ctx.globalCompositeOperation = 'lighter';
+    for (const [x, y, s] of sparks) {
+      ctx.globalAlpha = Math.min(1, s);
+      ctx.drawImage(glow[2], x - 16, y - 16, 32, 32);
+      ctx.fillStyle = '#fff';
+      star(ctx, x, y, 10 + s * 10);
+    }
+    // A slow glint crossing its girdle now and then.
+    const sweep = (t % 5) / 5;
+    if (sweep < 0.3) {
+      ctx.globalAlpha = Math.sin((sweep / 0.3) * Math.PI);
+      ctx.fillStyle = '#fff';
+      star(ctx, CX - S + (sweep / 0.3) * 2 * S, CY, 14);
+    }
+  };
+}
+const useDiamond = sharedCanvasWrap(makeDiamond);
+
+export function DiamondWrap() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useDiamond(ref);
+  return (
+    <div className="absolute inset-0" data-tingle>
+      <canvas ref={ref} className="pointer-events-none absolute inset-0 size-full" aria-hidden />
+      <Svg onPointerDown={tapCrystal}>{null}</Svg>
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------------------------- Gilded Deco
 
 /** Gilded Deco: gold Art Deco fans rising from the bottom and hanging from the top, light running up the rays like a marquee, stepped corners, a gleam sweeping across. */
@@ -1541,7 +1773,7 @@ export function ChronosWrap() {
 }
 
 /** The wrappers drawn here. */
-export const DRAWN = new Set(['wrap:dragon', 'wrap:blackhole', 'wrap:eventhorizon', 'wrap:bigbang', 'wrap:crystal', 'wrap:phoenix', 'wrap:deco', 'wrap:clockwork', 'wrap:chronos']);
+export const DRAWN = new Set(['wrap:dragon', 'wrap:blackhole', 'wrap:eventhorizon', 'wrap:bigbang', 'wrap:crystal', 'wrap:diamond', 'wrap:phoenix', 'wrap:deco', 'wrap:clockwork', 'wrap:chronos']);
 
 /** The drawn wrapper for a wrapper id, if it has one. */
 export function WrapArt({ id }: { id: string }) {
@@ -1556,6 +1788,8 @@ export function WrapArt({ id }: { id: string }) {
       return <BigBangWrap />;
     case 'wrap:crystal':
       return <CrystalWrap />;
+    case 'wrap:diamond':
+      return <DiamondWrap />;
     case 'wrap:phoenix':
       return <PhoenixWrap />;
     case 'wrap:deco':

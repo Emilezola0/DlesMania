@@ -1694,6 +1694,12 @@ export function PackOpening({ pack, times = 1, cards, events = NO_EVENTS, fresh,
     if (opening === 'singularity') (sfx.blackHole(), later(() => sfx.swallow(), 500));
     if (opening === 'bigbang') (sfx.collapse(0.6), later(() => (sfx.bigBang(), jolt(18, 700)), 620));
     // Chronos: a clock ticking backwards, faster and faster, then a chime as it breaks.
+    // Diamond Heart: a ting as it cracks, the cracks running, then the crystal shattering.
+    if (opening === 'shatter') {
+      sfx.crystal();
+      for (let k = 0; k < 5; k++) later(() => sfx.wheelTick(2.2 + k * 0.15), 120 + k * 90);
+      later(() => (sfx.shatter(), jolt(12, 450)), 760);
+    }
     if (opening === 'timewarp') {
       for (let k = 0, at = 0; k < 14; k++, at += Math.max(30, 150 - k * 12)) later(() => sfx.wheelTick(1.6 - k * 0.05), at);
       later(() => (sfx.shimmer(3), jolt(10, 400)), 1050);

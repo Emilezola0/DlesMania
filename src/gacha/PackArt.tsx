@@ -89,6 +89,10 @@ function useOnScreen(box: React.RefObject<HTMLElement | null>, on: boolean) {
     const el = box.current;
     if (!on || !el) return;
     if (typeof IntersectionObserver === 'undefined') return setSeen(true);
+    // On screen already: drawn now, without waiting for the observer's first word (in the Boutique it never came,
+    // and its Prestige and Ascended wrappers showed undrawn).
+    const r = el.getBoundingClientRect();
+    if (r.bottom > -150 && r.top < window.innerHeight + 150 && r.right > -150 && r.left < window.innerWidth + 150) setSeen(true);
     const io = new IntersectionObserver(([e]) => setSeen(e.isIntersecting), { rootMargin: '150px' });
     io.observe(el);
     return () => io.disconnect();
