@@ -15,7 +15,7 @@ import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
 import type { BondDoc, BondPack } from '../cloud/bonds';
 import { BondEgg } from './BondEgg';
-import { eggLay, eggTend, EGG_ACTIONS, meldSay, meldStart, newEgg, type Egg } from './bondGames';
+import { eggLay, eggTend, EGG_ACTIONS, meldSay, meldStart, newEgg, PET_ACTIONS, petCare, petNeed, petTell, type Egg } from './bondGames';
 import { MindMeld } from './MindMeld';
 
 export interface BondPerson {
@@ -42,9 +42,35 @@ const demoBond = (me: string, f: BondPerson, i: number): BondDoc => ({
   pack: null,
   prev: null,
   extra: 4,
-  egg: { ...newEgg('2026-11-01'), days: 7, stats: { str: 9, joy: 14, wit: 6, calm: 8 } } as Egg,
+  egg: i === 0 ? demoPet(me < f.uid ? `${me}_${f.uid}` : `${f.uid}_${me}`, me, f.uid) : ({ ...newEgg('2026-11-01'), days: 7, stats: { str: 9, joy: 14, wit: 6, calm: 8 } } as Egg),
   pets: [{ ...newEgg('2026-10-10'), days: 10, hatched: true, stats: { str: 20, joy: 8, wit: 9, calm: 7 } }],
 });
+
+/** A demo pet, hatched four days ago: cared for since (one slip by the friend), and the friend has already told you
+ *  what it needs from you today. */
+function demoPet(bond: string, me: string, f: string): Egg {
+  const day = (k: number) => {
+    const d = new Date(`${todayKey()}T12:00:00Z`);
+    d.setUTCDate(d.getUTCDate() - k);
+    return d.toISOString().slice(0, 10);
+  };
+  const born = '2026-11-01';
+  const care: Record<string, string> = {};
+  for (const k of [3, 2, 1]) {
+    care[`${day(k)}_${me}`] = petNeed(bond, born, day(k), me);
+    care[`${day(k)}_${f}`] = k === 2 ? 'wash' : petNeed(bond, born, day(k), f);
+  }
+  if (care[`${day(2)}_${f}`] === petNeed(bond, born, day(2), f)) care[`${day(2)}_${f}`] = 'rest';
+  return {
+    ...newEgg(born),
+    days: 10,
+    hatched: true,
+    hatchedOn: day(4),
+    stats: { str: 9, joy: 16, wit: 15, calm: 8 },
+    care,
+    told: { [`${todayKey()}_${f}`]: petNeed(bond, born, todayKey(), me) },
+  } as Egg;
+}
 
 /** The demo friend's word in a Mind Meld round: now and then the same as yours (a Meld), else another. */
 const DEMO_WORDS = ['hero', 'power', 'fire', 'blue', 'magic', 'speed', 'friends', 'legend', 'sword', 'dream'];
@@ -138,7 +164,7 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
   };
 
   // The two games: in the cloud, or played here in the demo (the friend answers a moment later).
-  type Game = 'startMeld' | 'sayWord' | 'layEgg' | 'tendEgg';
+  type Game = 'startMeld' | 'sayWord' | 'layEgg' | 'tendEgg' | 'carePet' | 'tellPet';
   const play = (f: string, game: Game, arg = '') => {
     if (!demo)
       return act(`${f}:${game}`, async () => {
@@ -146,6 +172,8 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
         if (game === 'startMeld') await m.startMeld(f);
         else if (game === 'sayWord') await m.sayWord(f, arg);
         else if (game === 'layEgg') await m.layEgg(f);
+        else if (game === 'carePet') await m.carePet(f, arg);
+        else if (game === 'tellPet') await m.tellPet(f);
         else await m.tendEgg(f, arg);
       });
     const day = todayKey();
@@ -157,6 +185,22 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
       else if (game === 'sayWord') {
         apply((x) => meldSay(x, me, f, arg));
         window.setTimeout(() => apply((x) => (x.meld && !x.meld.done && !x.meld.words[`${x.meld.round}_${f}`] ? meldSay(x, f, me, Math.random() < 0.4 ? arg : DEMO_WORDS[Math.floor(Math.random() * DEMO_WORDS.length)]) : {})), 1200);
+      } else if (game === 'carePet' || game === 'tellPet') {
+        apply((x) => (game === 'carePet' ? petCare(x, me, f, arg, day) : petTell(x, me, f, day)));
+        // The demo friend: does what it needs from them if you told them (mostly right), else guesses.
+        window.setTimeout(
+          () =>
+            apply((x) => {
+              const e = x.egg;
+              if (!e?.hatched || e.care?.[`${day}_${f}`]) return {};
+              if (game === 'tellPet' && e.care?.[`${day}_${me}`] === undefined) return {};
+              const need = petNeed(`${x.a}_${x.b}`, e.born, day, f);
+              const told = !!e.told?.[`${day}_${me}`];
+              const pick = Math.random() < (told ? 0.9 : 0.2) ? need : PET_ACTIONS[Math.floor(Math.random() * PET_ACTIONS.length)].id;
+              return petCare(x, f, me, pick, day);
+            }),
+          1000,
+        );
       } else {
         apply((x) => eggTend(x, me, f, arg, day));
         window.setTimeout(() => apply((x) => (x.egg && !x.egg.hatched && !x.egg.acts[`${day}_${f}`] ? eggTend(x, f, me, EGG_ACTIONS[Math.floor(Math.random() * 4)].id, day) : {})), 1000);
@@ -276,7 +320,7 @@ export function Bond({ people, me, myName, demo }: { people: BondPerson[]; me: s
                   {/* The Bond's two games, for more points. */}
                   <div className="grid gap-2 pt-1 lg:grid-cols-2">
                     <MindMeld d={d} me={me} friend={{ uid: p.uid, name: p.name }} busy={!!busy} onStart={() => play(p.uid, 'startMeld')} onSay={(w) => play(p.uid, 'sayWord', w)} />
-                    <BondEgg d={d} me={me} friend={{ uid: p.uid, name: p.name }} busy={!!busy} onLay={() => play(p.uid, 'layEgg')} onTend={(a) => play(p.uid, 'tendEgg', a)} />
+                    <BondEgg d={d} me={me} friend={{ uid: p.uid, name: p.name }} busy={!!busy} onLay={() => play(p.uid, 'layEgg')} onTend={(a) => play(p.uid, 'tendEgg', a)} onCare={(a) => play(p.uid, 'carePet', a)} onTell={() => play(p.uid, 'tellPet')} />
                   </div>
                 </div>
               );

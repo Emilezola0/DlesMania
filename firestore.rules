@@ -587,6 +587,15 @@ service cloud.firestore {
     function eggActs() {
       return ['train', 'play', 'teach', 'cuddle'];
     }
+    // The hatched pet (PET in bondGames.ts): one care act a day each; a happy day (both did what it needed) gives
+    // petPoints(). What it needs comes from a hash on the devices, so the rules only cap it: 0 or petPoints(), and only
+    // on the day's second act.
+    function petActs() {
+      return ['feed', 'play', 'wash', 'cuddle', 'rest'];
+    }
+    function petPoints() {
+      return 3;
+    }
     match /bonds/{id} {
       function member() {
         return request.auth != null && (request.auth.uid == id.split('_')[0] || request.auth.uid == id.split('_')[1]);
@@ -706,7 +715,10 @@ service cloud.firestore {
         let added = ne.acts.diff(oe.acts);
         let hatching = ne.days >= eggDays();
         return o.status == 'active' && oe != null && oe.hatched == false && only(['egg', 'extra'])
-          && ne.keys().hasOnly(['born', 'acts', 'last', 'days', 'stats', 'hatched'])
+          && ne.keys().hasOnly(['born', 'acts', 'last', 'days', 'stats', 'hatched', 'hatchedOn', 'care', 'told'])
+          && (hatching
+            ? (ne.hatchedOn == day && ne.care == {} && ne.told == {})
+            : !('hatchedOn' in ne) && !('care' in ne) && !('told' in ne))
           && ne.born == oe.born && ne.last == day + '_' + request.auth.uid && isToday(day)
           && added.addedKeys().hasOnly([ne.last]) && added.addedKeys().size() == 1
           && added.changedKeys().size() == 0 && added.removedKeys().size() == 0
@@ -717,6 +729,40 @@ service cloud.firestore {
           && n.get('extra', 0) == o.get('extra', 0)
             + (both && oe.acts[theirs] != ne.acts[ne.last] ? eggPair() : 0)
             + (hatching ? eggHatch() : 0);
+      }
+      // The pet: a day's care (only `care` and `last` change), and telling the friend what it needs from them (only
+      // `told` and `said`).
+      function caring() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let oe = o.get('egg', null);
+        let ne = n.egg;
+        let day = ne.last.split('_')[0];
+        let oc = oe.get('care', {});
+        let added = ne.care.diff(oc);
+        let both = (day + '_' + other()) in oc;
+        return o.status == 'active' && oe != null && oe.hatched == true && only(['egg', 'extra'])
+          && ne.diff(oe).affectedKeys().hasOnly(['care', 'last'])
+          && ne.last == day + '_' + request.auth.uid && isToday(day)
+          && added.addedKeys().hasOnly([ne.last]) && added.addedKeys().size() == 1
+          && added.changedKeys().size() == 0 && added.removedKeys().size() == 0
+          && ne.care[ne.last] in petActs()
+          && (n.get('extra', 0) == o.get('extra', 0)
+            || (both && n.get('extra', 0) == o.get('extra', 0) + petPoints()));
+      }
+      function telling() {
+        let n = request.resource.data;
+        let o = resource.data;
+        let oe = o.get('egg', null);
+        let ne = n.egg;
+        let day = ne.said.split('_')[0];
+        let added = ne.told.diff(oe.get('told', {}));
+        return o.status == 'active' && oe != null && oe.hatched == true && only(['egg'])
+          && ne.diff(oe).affectedKeys().hasOnly(['told', 'said'])
+          && ne.said == day + '_' + request.auth.uid && isToday(day)
+          && added.addedKeys().hasOnly([ne.said]) && added.addedKeys().size() == 1
+          && added.changedKeys().size() == 0 && added.removedKeys().size() == 0
+          && ne.told[ne.said] in petActs();
       }
       allow get: if member();
       allow create: if member() && id.split('_')[0] < id.split('_')[1]
@@ -729,7 +775,7 @@ service cloud.firestore {
         && request.resource.data.spent == 0 && request.resource.data.opened == 0
         && request.resource.data.pack == null && request.resource.data.prev == null;
       allow update: if member() && (accepting() || marking() || starting() || joining() || cancelling()
-        || meldStarting() || melding() || eggLaying() || tending());
+        || meldStarting() || melding() || eggLaying() || tending() || caring() || telling());
       allow delete: if member();
     }
 

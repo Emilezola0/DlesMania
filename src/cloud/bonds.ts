@@ -7,7 +7,7 @@
 import { deleteDoc, doc, getDoc, onSnapshot, runTransaction, serverTimestamp, setDoc, type Timestamp } from 'firebase/firestore';
 import { todayKey } from '../lib/date';
 import { BOND_PACK_COST, BOND_POINTS_PER_DAY } from '../gacha/ranks';
-import { eggLay, eggTend, meldSay, meldStart, type Egg, type MeldGame } from '../friends/bondGames';
+import { eggLay, eggTend, meldSay, meldStart, petCare, petTell, type Egg, type MeldGame } from '../friends/bondGames';
 import { auth, db } from './firebase';
 
 export interface BondPack {
@@ -190,6 +190,10 @@ export const sayWord = (friend: string, word: string) => move(friend, (d, uid) =
 export const layEgg = (friend: string) => move(friend, (d) => eggLay(d, todayKey()));
 /** Today's act for the egg (one a day each): its stats, teamwork's point, and hatching. */
 export const tendEgg = (friend: string, action: string) => move(friend, (d, uid) => eggTend(d, uid, friend, action, todayKey()));
+/** Today's care for the hatched pet. */
+export const carePet = (friend: string, action: string) => move(friend, (d, uid) => petCare(d, uid, friend, action, todayKey()));
+/** Tells the friend what the pet needs from them today. */
+export const tellPet = (friend: string) => move(friend, (d, uid) => petTell(d, uid, friend, todayKey()));
 
 // The active bonds, kept on this device so today can be marked when the save syncs (src/cloud/engine.ts).
 const listKey = (uid: string) => `omnidle:bonds:${uid}`;
