@@ -2,8 +2,9 @@
 // Realtime Database, never Firestore (each hit would be a write, each player there a read of it, against its free
 // daily quota; here only bytes count). Where the mobs are is never sent: they follow their patterns on the server's
 // clock (.info/serverTimeOffset), so everyone sees them alike. A hit is a transaction: two players striking at once both
-// count. Rules: database.rules.json, "dmobs".
-import { getDatabase, onValue, ref, runTransaction, type Database } from 'firebase/database';
+// count. The puzzle doors opened are there too (doors/c<cell>): one player answers, the door opens for everyone.
+// Rules: database.rules.json, "dmobs".
+import { getDatabase, onValue, ref, runTransaction, update, type Database } from 'firebase/database';
 import { applyAnswer, applyHit, type HitResult, type Mob, type MobBoard, type MobState } from '../island/mobs';
 import { DATABASE_URL } from './config';
 import { app } from './firebase';
@@ -17,6 +18,7 @@ const clean = (s: MobState | undefined) => (s ? (JSON.parse(JSON.stringify(s)) a
 export function rtBoard(owner: string, week: string, back: number, fail: () => void, wait = 6000): MobBoard {
   const path = `dmobs/${owner}/${week}`;
   let lives: Record<string, MobState> = {};
+  let doors: number[] = [];
   let offset = 0;
   const fans = new Set<() => void>();
   const tell = () => fans.forEach((f) => f());
@@ -37,7 +39,9 @@ export function rtBoard(owner: string, week: string, back: number, fail: () => v
     (s) => {
       answered = true;
       window.clearTimeout(timer);
-      lives = (s.val() ?? {}) as Record<string, MobState>;
+      const { doors: open, ...rest } = (s.val() ?? {}) as Record<string, MobState> & { doors?: Record<string, boolean> };
+      lives = rest;
+      doors = Object.keys(open ?? {}).map((k) => Number(k.slice(1)));
       tell();
     },
     () => give(),
@@ -71,6 +75,12 @@ export function rtBoard(owner: string, week: string, back: number, fail: () => v
     },
     answer: async (m: Mob, right: boolean) => {
       await runTransaction(ref(dbOf(), `${path}/${m.id}`), (cur: MobState | null) => clean(applyAnswer(m, cur ?? undefined, right, now(), back))).catch(() => {});
+    },
+    doors: () => doors,
+    openDoor: async (cells: number[]) => {
+      doors = [...new Set([...doors, ...cells])];
+      tell();
+      await update(ref(dbOf(), `${path}/doors`), Object.fromEntries(cells.map((c) => [`c${c}`, true]))).catch(() => {});
     },
     listen: (on) => (fans.add(on), () => void fans.delete(on)),
     stop: () => {

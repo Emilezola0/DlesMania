@@ -573,10 +573,10 @@ function earn(
 }
 
 /** A round that just finished (it was still being played, or not there yet). */
-/** Seeds from a source capped a day (SEED.perDay): boss fights, the arcade, the JLPT games. */
+/** Seeds from a source capped a day: boss fights, the arcade, the JLPT games (SEED.gamesPerDay); the others (SEED.perDay). */
 function cappedSeeds(s: Pick<ProgressState, 'seeds' | 'seedsFound' | 'seedLog'>, source: 'boss' | 'arcade' | 'jlpt' | 'help' | 'fish' | 'dungeon', ids?: string[]) {
   const log = seedLogNow(s.seedLog);
-  if ((log.n[source] ?? 0) >= SEED.perDay) return {};
+  if ((log.n[source] ?? 0) >= (source === 'boss' || source === 'arcade' || source === 'jlpt' ? SEED.gamesPerDay : SEED.perDay)) return {};
   return { ...withSeeds(s, ids ?? arcadeSeeds(source as 'arcade' | 'jlpt')), seedLog: { ...log, n: { ...log.n, [source]: (log.n[source] ?? 0) + 1 } } };
 }
 

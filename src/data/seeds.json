@@ -197,6 +197,8 @@
     { "id": "iron-block", "kind": "block", "icon": "⬛", "name": "Iron block", "fr": "Bloc de fer" },
     { "id": "gold-block", "kind": "block", "icon": "🟨", "name": "Gold block", "fr": "Bloc d’or" },
     { "id": "crystal-block", "kind": "block", "icon": "💎", "name": "Crystal block", "fr": "Bloc de cristal" },
+    { "id": "brick-stairs", "kind": "stairs", "icon": "🧱", "name": "Stone brick stairs", "fr": "Escalier en briques de pierre" },
+    { "id": "red-brick-stairs", "kind": "stairs", "icon": "🧱", "name": "Red brick stairs", "fr": "Escalier en briques rouges" },
     { "id": "brick-wallpaper", "kind": "wall", "icon": "🧱", "name": "Brick wall", "fr": "Mur de briques" },
     { "id": "stone-pillar", "kind": "decor", "icon": "🏛️", "name": "Stone pillar", "fr": "Pilier de pierre" },
     { "id": "iron-fence", "kind": "decor", "icon": "⛓️", "name": "Iron fence", "fr": "Grille en fer" },

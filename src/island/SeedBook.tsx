@@ -131,7 +131,7 @@ export function SeedBook() {
                 {FAMILY_BY_ID.get(k)!.icon} {k === 'boss' ? tr('Boss Battle', 'Combat de boss') : k === 'arcade' ? tr('Arcade', 'Arcade') : tr('JLPT games', 'Jeux JLPT')}
               </span>
               <span className="tabular-nums text-ink-soft">
-                {log.n[k] ?? 0} / {SEED.perDay}
+                {log.n[k] ?? 0} / {SEED.gamesPerDay}
               </span>
             </p>
           ))}

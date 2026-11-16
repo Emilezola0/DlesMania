@@ -77,6 +77,10 @@ const ART: Record<string, string> = {
   'wood-block': `<rect x="1" y="1" width="30" height="30" rx="1.5" ${o('#c27c3e')}/><path d="M1.5 11h29M1.5 21h29" ${l(1.2)}/><path d="M5 6h9M18 16h8M6 26h10" ${l(1, '#9a5a28')}/><path d="M3 3h26" ${l(1.4, '#e0a364')}/><circle cx="4" cy="16" r=".9" fill="${K}"/><circle cx="28" cy="16" r=".9" fill="${K}"/><circle cx="4" cy="6" r=".9" fill="${K}"/><circle cx="28" cy="26" r=".9" fill="${K}"/>`,
   'pixel-block': `<rect x="1" y="1" width="30" height="30" ${o('#4fbf48')}/><path d="M2 2h8v8H2zM18 10h8v8h-8zM10 18h8v8h-8z" fill="#7be06a"/><path d="M10 2h8v8h-8zM2 18h8v8H2zM22 22h8v8h-8z" fill="#3a9a36"/><path d="M26 2h4v4h-4zM18 26h4v4h-4z" fill="#a6f19a"/>`,
   'grass-block': `<rect x="1" y="1" width="30" height="30" rx="1.5" ${o('#9a6233')}/><path d="M1.5 2h29v8q-2 3-4 0-2 4-4 0-2 3-4 0-2 4-4 0-2 3-4 0-2 4-4 0-2 3-4 0z" ${o('#5fbf47', 1)}/><path d="M3 4h25" ${l(1.4, '#8fe06f')}/><path d="M7 19h3M19 23h4M12 27h3" ${l(2, '#7a4a24')}/>`,
+  // Polished stone joined to its own kind: smooth, without the frame each block has alone.
+  'polished-stone-joined': `<rect x="1" y="1" width="30" height="30" rx="2" ${o('#a8a29e')}/><path d="M3 3h26" ${l(1.4, '#e7e5e4')}/><path d="M7 9l4-2M20 22l4-2" stroke="#e7e5e4" stroke-width="1.2" stroke-linecap="round"/>`,
+  // A grass block with another on top: its dirt only (src/island/IslandView.tsx joins blocks of a kind).
+  'grass-block-under': `<rect x="1" y="1" width="30" height="30" rx="1.5" ${o('#9a6233')}/><path d="M7 9h3M19 13h4M12 19h3M6 25h4M22 26h3" ${l(2, '#7a4a24')}/>`,
   'sand-block': `<rect x="1" y="1" width="30" height="30" rx="1.5" ${o('#f0d189')}/><path d="M4 10q4-2 8 0t8 0 8 0M4 21q4-2 8 0t8 0 8 0" ${l(1, '#d7b061')}/><circle cx="8" cy="15" r=".8" fill="#c99a48"/><circle cx="22" cy="6" r=".8" fill="#c99a48"/><circle cx="17" cy="27" r=".8" fill="#c99a48"/><path d="M3 3h26" ${l(1.4, '#fff1c4')}/>`,
   'stone-arch': `<path d="M1 31V1h30v30h-8v-9a7 7 0 0 0-14 0v9z" ${o('#a8a29e')}/><path d="M1 9h8M23 9h8M1 17h5M26 17h5M16 1v6M8 1v4M24 1v4" ${l(1.1)}/><path d="M9 22a7 7 0 0 1 14 0" ${l(2.2, '#78716c')}/><path d="M3 3h26" ${l(1.3, '#d6d3d1')}/>`,
   'rope-fence': `<rect x="3" y="8" width="4" height="23" rx="1" ${o('#a86a33')}/><rect x="25" y="8" width="4" height="23" rx="1" ${o('#a86a33')}/><path d="M5 13q11 7 22 0M5 21q11 7 22 0" ${l(2.2, '#d9b46a')}/><path d="M5 13q11 7 22 0M5 21q11 7 22 0" ${l(0.6)}/><path d="M3 8h4M25 8h4" ${l(1.5, '#c98a4c')}/>`,
@@ -200,10 +204,14 @@ const ART: Record<string, string> = {
   podium: `${shadow(14)}<rect x="11" y="13" width="10" height="18" ${o('#facc15')}/><rect x="2" y="19" width="9" height="12" ${o('#cbd5e1')}/><rect x="21" y="23" width="9" height="8" ${o('#d97706')}/><text x="16" y="25" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="8" fill="${K}">1</text><text x="6.5" y="28.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="6" fill="${K}">2</text><text x="25.5" y="30" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="5" fill="${K}">3</text>`,
 
   // ── Getting around ─────────────────────────────────────────────────────────────────────────────────────────────
-  'wood-door': `<rect x="5" y="1" width="22" height="31" rx="1" ${o('#6b4423')}/><rect x="8" y="3" width="16" height="28" ${o('#b8722f', 1)}/><path d="M10 6h12v9H10zM10 18h12v10H10z" ${l(1, '#8a5428')}/><circle cx="21" cy="17" r="1.3" fill="#facc15" stroke="${K}" stroke-width=".7"/>`,
-  'wood-door-open': `<rect x="5" y="1" width="22" height="31" rx="1" ${o('#6b4423')}/><rect x="8" y="3" width="16" height="28" fill="#2a1a12"/><path d="M8 3l5 2v26l-5 1z" ${o('#b8722f', 1)}/><path d="M10 6v22" ${l(0.8, '#8a5428')}/>`,
+  // Seen side on, as in a 2D game: shut, the door's edge (a plank in its frame); open, swung flat to the right of the
+  // doorway, its face showing (IslandView mirrors it when it swings left).
+  'wood-door': `<path d="M12 1h8M12 31h8" ${l(1.6, '#6b4423')}/><rect x="13" y="1.5" width="6" height="29.5" rx="1" ${o('#b8722f', 1.2)}/><path d="M16 4v24" ${l(0.8, '#8a5428')}/><path d="M13 7h6M13 25h6" ${l(1.4, '#57534e')}/><rect x="18.6" y="15" width="2.2" height="3" rx=".6" fill="#facc15" stroke="${K}" stroke-width=".6"/>`,
+  'wood-door-open': `<path d="M12 1h8M12 31h8" ${l(1.6, '#6b4423')}/><path d="M12 2v29" ${l(1.6, '#6b4423')}/><path d="M13 2l17 2v24l-17 3z" ${o('#b8722f', 1.2)}/><path d="M16 6.5l11 1.2v8.8l-11 .6zM16 19.5l11-.4v7l-11 1.6z" ${l(0.9, '#8a5428')}/><path d="M13 7.5h3M13 25h3" ${l(1.4, '#57534e')}/><circle cx="27.6" cy="17" r="1.2" fill="#facc15" stroke="${K}" stroke-width=".6"/>`,
   'wood-stairs': stairs('#c27c3e', '#8a5428', '#e0a364'),
   'stone-stairs': stairs('#a8a29e', '#78716c', '#d6d3d1'),
+  'brick-stairs': stairs('#8b8d96', '#5f6270', '#b4b6be'),
+  'red-brick-stairs': stairs('#b4533c', '#7f2d1d', '#e08a6c'),
   rail: `<rect x="2" y="27" width="5" height="4" rx=".6" ${o('#8b5a2b', 1)}/><rect x="10" y="27" width="5" height="4" rx=".6" ${o('#8b5a2b', 1)}/><rect x="18" y="27" width="5" height="4" rx=".6" ${o('#8b5a2b', 1)}/><rect x="26" y="27" width="5" height="4" rx=".6" ${o('#8b5a2b', 1)}/><rect x="0" y="24.5" width="32" height="2.6" rx=".6" ${o('#a1a8b8', 1)}/><path d="M1 25.3h30" ${l(0.6, '#e5e7eb')}/>`,
   'zipline-post': `${shadow(6)}<path d="M14.5 31V5h3v26z" ${o('#a0612b', 1.2)}/><path d="M12 31h8" ${l(2.4, '#7c3f1a')}/><path d="M10 5h12" ${l(2.6)}/><circle cx="16" cy="4" r="3" ${o('#9aa4b4', 1)}/><circle cx="16" cy="4" r=".9" fill="${K}"/><path d="M15 12h2M15 20h2" ${l(0.8, '#7c3f1a')}/><path d="M17.5 9l5-2v6l-5-1z" ${o('#ef4444', 0.9)}/>`,
   // The dungeon's traps, by biome (src/island/dungeon.ts): icicles under a frozen ceiling, thorns, lava sunk into the
@@ -256,7 +264,7 @@ const ART: Record<string, string> = {
 };
 
 /** An island thing's drawing (its emoji when it has none). */
-export const ItemArt = memo(function ItemArt({ id, className = '', style }: { id: string; className?: string; style?: React.CSSProperties }) {
+export const ItemArt = memo(function ItemArt({ id, className = '', style, stretch }: { id: string; className?: string; style?: React.CSSProperties; stretch?: boolean }) {
   const svg = ART[id];
   if (!svg) {
     const icon = ITEM_BY_ID.get(id)?.icon ?? '❔';
@@ -267,5 +275,5 @@ export const ItemArt = memo(function ItemArt({ id, className = '', style }: { id
     );
   }
   // The drawings are written here, in the code (no outside text goes in).
-  return <svg viewBox="0 0 32 32" className={className} style={style} aria-hidden dangerouslySetInnerHTML={{ __html: svg }} />;
+  return <svg viewBox="0 0 32 32" className={className} style={style} preserveAspectRatio={stretch ? 'none' : undefined} aria-hidden dangerouslySetInnerHTML={{ __html: svg }} />;
 });

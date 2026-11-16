@@ -254,7 +254,11 @@ export interface MobBoard {
   hit: (m: Mob, damage: number, uid: string) => Promise<HitResult | null>;
   /** The fallen boss's question answered. */
   answer: (m: Mob, right: boolean) => Promise<void>;
-  /** Told whenever a life changes. */
+  /** The puzzle doors someone opened this week (their cells): open for everyone there. */
+  doors: () => number[];
+  /** A puzzle door opened (its cells). */
+  openDoor: (cells: number[]) => Promise<void>;
+  /** Told whenever a life (or a door) changes. */
   listen: (on: () => void) => () => void;
   stop: () => void;
 }
@@ -298,6 +302,9 @@ export function localBoard(back: number): MobBoard {
       if (s) lives[m.id] = s;
       tell();
     },
+    // (Alone, a door opened is kept in the player's own save.)
+    doors: () => [],
+    openDoor: async () => {},
     listen: (on) => (fans.add(on), () => void fans.delete(on)),
     stop: () => fans.clear(),
   };

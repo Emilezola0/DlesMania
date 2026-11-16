@@ -10,7 +10,7 @@ import { tr } from '../lib/i18n';
 import { sfx } from '../lib/sfx';
 import { todayKey } from '../lib/date';
 import { useProgress } from '../store/progress';
-import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, ISLAND_GATE, itemsIn, isReady, isSea, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, upgradeIsland, water, xy, zipLines, type Bag, type Change, type Island, type Layer, type Who } from './island';
+import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, inside, ISLAND_GATE, itemsIn, isReady, isSea, isSolid, ISLAND, kindOf, layerKey, NATURAL, newIsland, pickUp, place, plant, readyOn, setTune, showCard, solidAt, surfaceAt, upgradeIsland, water, xy, zipLines, type Bag, type Change, type Island, type Layer, type Who } from './island';
 import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEvent, type TvEvent } from './live';
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
@@ -194,7 +194,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const week = weekOf(todayKey());
   const dungeonSave = useProgress((s) => s.dungeon);
   const dungeonFg = dungeonSave?.week === week ? dungeonFgOf(dungeonSave, week) : undefined;
-  const isl = useMemo(() => (inDungeon ? dungeonIsland(week, dungeonFg) : home), [inDungeon, week, dungeonFg, home]);
+  // The puzzle doors others opened this week (shared on the island's board): open here too. (Their cells, joined.)
+  const [sharedDoors, setSharedDoors] = useState('');
+  const dungeonNow = () => {
+    if (!sharedDoors) return dungeonIsland(week, dungeonFg);
+    return dungeonIsland(week, { ...dungeonFg, ...Object.fromEntries(sharedDoors.split(',').map((c) => [c, 'puzzle-door-open'])) });
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const isl = useMemo(() => (inDungeon ? dungeonNow() : home), [inDungeon, week, dungeonFg, home, sharedDoors]);
   const dungeonAct = useProgress((s) => s.dungeonAct);
   const liveOwner = live && 'owner' in live ? live.owner : null;
   const myUid = (live && 'owner' in live ? live.uid : who?.uid) ?? 'me';
@@ -711,11 +718,12 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         put(e.el, 'walking', Math.abs(peer.x - e.x) > 0.05 ? '1' : '');
         all.push(e);
       }
-      // Doors open when someone stands by them.
+      // Doors open when someone stands by them, swinging away from them (seen side on: "r" opens to the right).
       doorsOf().forEach((d) => {
         const c = xy(Number(d.dataset.door));
-        const open = all.some((q) => Math.abs(q.x + PW / 2 - (c.x + 0.5)) < 1.3 && Math.abs(q.y + PH / 2 - (c.y + 0.5)) < 1);
-        if ((d.dataset.open === '1') !== open) put(d, 'open', open ? '1' : '');
+        const q = all.find((q) => Math.abs(q.x + PW / 2 - (c.x + 0.5)) < 1.3 && Math.abs(q.y + PH / 2 - (c.y + 0.5)) < 1);
+        const open = q ? (q.x + PW / 2 < c.x + 0.5 ? 'r' : 'l') : '';
+        if ((d.dataset.open ?? '') !== open) put(d, 'open', open);
       });
       raf = requestAnimationFrame(step);
     };
@@ -920,6 +928,19 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       return say(
         `🌱 ${plot.by && names[plot.by] ? `${names[plot.by]} · ` : ''}${isReady(plot) ? tr('Ready: theirs to harvest.', 'Prêt : à eux de récolter.') : `${tr('Growing: ready on', 'Pousse : prêt le')} ${readyOn(plot)}`}${plot.water ? ` · 💧 ${plot.waterBy && names[plot.waterBy] ? names[plot.waterBy] : ''}` : ''}`,
       );
+    // The sword in the stone (the dungeon's, or one grown on an island): drawn with whatever is in hand.
+    if (front === 'sword-stone' || (tool !== 'dig' && [front, isl.front?.[cell], isl.bg[cell]].includes('sword-in-stone'))) {
+      const got = drawSword();
+      if (!got) return say(tr('🗡️ The sword won’t budge today. Come back tomorrow.', '🗡️ L’épée ne bouge pas aujourd’hui. Reviens demain.'));
+      sfx.victory();
+      const w = WEAPONS[got];
+      return say(
+        <>
+          🗡️ {tr('You draw', 'Tu tires')}{' '}
+          <b style={{ color: w.rarity ? RARITY_COLOR[w.rarity] : undefined }}>{itemName(got)}</b> · {w.damage} {tr('damage', 'dégâts')} · {w.durability} {tr('hits', 'coups')} · {tr('in your hand in the dungeon: X or a click on a mob to strike.', 'en main dans le donjon : X ou un clic sur un mob pour frapper.')}
+        </>,
+      );
+    }
     if (tool === 'walk') {
       const card = isl.shown[cell];
       if (!isl.world && isSea(xy(cell).x, xy(cell).y)) return cast(cell);
@@ -932,18 +953,6 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         const cells = [cell];
         for (const d of [-1, 1]) for (let yy = y + d; fgAt(isl, idx(x, yy)) === 'puzzle-door'; yy += d) cells.push(idx(x, yy));
         return setQuiz({ q: dleQuestion(), door: cells });
-      }
-      if (front === 'sword-stone') {
-        const got = drawSword();
-        if (!got) return say(tr('🗡️ The sword won’t budge today. Come back tomorrow.', '🗡️ L’épée ne bouge pas aujourd’hui. Reviens demain.'));
-        sfx.victory();
-        const w = WEAPONS[got];
-        return say(
-          <>
-            🗡️ {tr('You draw', 'Tu tires')}{' '}
-            <b style={{ color: w.rarity ? RARITY_COLOR[w.rarity] : undefined }}>{itemName(got)}</b> · {w.damage} {tr('damage', 'dégâts')} · {w.durability} {tr('hits', 'coups')}
-          </>,
-        );
       }
       if (front === 'dungeon-chest-open') return say(tr('🧰 Empty: you opened it already.', '🧰 Vide : tu l’as déjà ouvert.'));
       if (front === 'dungeon-chest') {
@@ -1059,7 +1068,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const cell = down ? dungeonOf(week).entry : ISLAND_GATE;
     const { x, y } = xy(cell);
     // The new place at once (the next frame mustn't run into the old one's walls).
-    islRef.current = down ? dungeonIsland(week, dungeonFg) : home;
+    islRef.current = down ? dungeonNow() : home;
     pos.current = { x: x + (1 - PW) / 2, y: y + 1 - PH - 0.01 };
     vel.current = { x: 0, y: 0 };
     ride.current = null;
@@ -1313,6 +1322,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (board.current !== nb) return;
       const lives = nb.states();
       const now = nb.now();
+      const open = [...nb.doors()].sort((a, b) => a - b).join(',');
+      setSharedDoors((o) => (o === open ? o : open));
       const was = seen;
       seen = {};
       for (const m of mobs.current) {
@@ -1861,6 +1872,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               sfx.correct();
               const cells = q.door;
               dungeonAct((i) => ({ island: { ...i, fg: { ...i.fg, ...Object.fromEntries(cells.map((c) => [c, 'puzzle-door-open'])) } } }));
+              // Open for everyone down there.
+              void board.current?.openDoor(cells);
               return say(tr('✅ Right! The door opens.', '✅ Juste ! La porte s’ouvre.'));
             }
             const boss = mobs.current.find((m) => m.kind === 'boss');
@@ -1978,6 +1991,9 @@ function shake(el: HTMLElement | null) {
   void el.offsetWidth;
   el.dataset.shake = '1';
 }
+
+/** Decoration blocks that join up with their own kind (no outline between two side by side). */
+const JOINED = new Set(['wood-block', 'pixel-block', 'grass-block', 'sand-block', 'polished-stone', 'stone-bricks', 'red-bricks', 'glass-block', 'iron-block', 'gold-block', 'crystal-block']);
 
 /** The island itself: drawn again only when it changes (the player moves on top of it). */
 const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; tunes: Record<string, string> }) {
@@ -2098,6 +2114,35 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
               )}
             </>
           )}
+        </div>,
+      );
+    } else if (JOINED.has(id)) {
+      // Blocks of a kind side by side join up, like the ground: the art reaches past the cell on every side (its own
+      // outline cut off), and the outline is drawn here on the open sides only, rounded where two open sides meet. A
+      // grass block under another loses its grass.
+      const same = (dx: number, dy: number) => inside(x + dx, y + dy) && fgAt(isl, idx(x + dx, y + dy)) === id;
+      const [L, R, U, D] = [same(-1, 0), same(1, 0), same(0, -1), same(0, 1)];
+      const d = T * (2.5 / 32);
+      const bw = Math.max(1, T * (1.3 / 32));
+      const r = T * (2.5 / 32);
+      const art = id === 'grass-block' && U ? 'grass-block-under' : id === 'polished-stone' && (L || R || U || D) ? 'polished-stone-joined' : id;
+      out.push(
+        <div
+          key={k}
+          className="absolute overflow-hidden"
+          style={{
+            ...style,
+            // (A pixel over the next block of its kind: no hairline between them.)
+            width: T + (R ? 1 : 0),
+            height: T + (D ? 1 : 0),
+            borderStyle: 'solid',
+            borderColor: '#3a2a32',
+            borderWidth: `${U ? 0 : bw}px ${R ? 0 : bw}px ${D ? 0 : bw}px ${L ? 0 : bw}px`,
+            borderRadius: `${U || L ? 0 : r}px ${U || R ? 0 : r}px ${D || R ? 0 : r}px ${D || L ? 0 : r}px`,
+          }}
+          title={ITEM_BY_ID.get(id)?.name}
+        >
+          <ItemArt id={art} stretch className="absolute" style={{ left: -d, top: U ? -2 * d : -d, width: `calc(100% + ${2 * d}px)`, height: `calc(100% + ${(U ? 3 : 2) * d}px)` }} />
         </div>,
       );
     } else {

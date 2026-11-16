@@ -27,6 +27,11 @@ export const RECIPES: Recipe[] = [
   { out: 'crystal-lamp', at: 'workbench', needs: { 'crystal-block': 1, 'iron-block': 1 } },
   { out: 'crystal-chandelier', at: 'workbench', needs: { 'crystal-block': 2, 'gold-block': 1 } },
   { out: 'gold-throne', at: 'workbench', needs: { 'gold-block': 3 } },
+  // Stairs: from a block (stone cooked in the furnace first, then cut here).
+  { out: 'wood-stairs', n: 2, at: 'workbench', needs: { 'wood-block': 3 } },
+  { out: 'stone-stairs', n: 2, at: 'workbench', needs: { 'polished-stone': 3 } },
+  { out: 'brick-stairs', n: 2, at: 'workbench', needs: { 'stone-bricks': 3 } },
+  { out: 'red-brick-stairs', n: 2, at: 'workbench', needs: { 'red-bricks': 3 } },
   // Weapons for the dungeon (src/island/combat.ts), each wearing out as it hits.
   { out: 'stone-sword', at: 'workbench', needs: { 'polished-stone': 2, 'coal-ore': 1 } },
   { out: 'iron-sword', at: 'workbench', needs: { 'iron-block': 2, 'coal-ore': 1 } },

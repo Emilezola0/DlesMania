@@ -121,7 +121,7 @@ const withoutBy = (isl: Island, key: string) => {
 
 export const idx = (x: number, y: number) => y * ISLAND.w + x;
 export const xy = (i: number) => ({ x: i % ISLAND.w, y: Math.floor(i / ISLAND.w) });
-const inside = (x: number, y: number) => x >= 0 && y >= 0 && x < ISLAND.w && y < ISLAND.h;
+export const inside = (x: number, y: number) => x >= 0 && y >= 0 && x < ISLAND.w && y < ISLAND.h;
 
 /**
  * Stage B, the world grew: twice as wide and much taller. Islands from before were 48 × 14; they sit in the middle of

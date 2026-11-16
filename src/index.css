@@ -4485,13 +4485,18 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 .island-behind {
   filter: brightness(0.85) saturate(0.9);
 }
-/* A door: shut, or open while someone stands by it. */
+/* A door, seen side on: shut (its edge), or swung open, flat to the wall, away from whoever stands by it. */
 .island-door-open,
-.island-door[data-open='1'] .island-door-shut {
+.island-door[data-open='l'] .island-door-shut,
+.island-door[data-open='r'] .island-door-shut {
   opacity: 0;
 }
-.island-door[data-open='1'] .island-door-open {
+.island-door[data-open='l'] .island-door-open,
+.island-door[data-open='r'] .island-door-open {
   opacity: 1;
+}
+.island-door[data-open='l'] .island-door-open {
+  transform: scaleX(-1);
 }
 .island-warp {
   filter: drop-shadow(0 0 5px #a78bfa);

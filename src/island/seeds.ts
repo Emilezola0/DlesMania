@@ -1,6 +1,6 @@
 // The Island's seeds (src/data/seeds.json). Each game has its seed family: finishing one of TODAY's rounds gives its
 // common seed (a win or not), and a win may add its rare seed, likelier the better the score. Boss fights and the
-// arcade give theirs a few times a day (SEED.perDay). The Archive gives none: seeds follow the daily. Finishing all ten
+// arcade give theirs a few times a day (SEED.gamesPerDay). The Archive gives none: seeds follow the daily. Finishing all ten
 // of a category today gives the Seed of the Day, a hybrid that otherwise only comes from crossing two families'
 // seeds on the Island (stage 2).
 import { create } from 'zustand';
@@ -58,6 +58,8 @@ export const SEED = {
   /** An arcade or JLPT game's chance of the rare seed. */
   arcadeRare: 0.1,
   /** Seeds a day from boss fights, from the arcade, and from the JLPT games (each). */
+  gamesPerDay: 5,
+  /** Seeds a day from the other capped sources (watering a friend's plot, fishing, the dungeon's chests: each). */
   perDay: 3,
 };
 
