@@ -14,6 +14,7 @@ import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, ISLAND_GAT
 import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEvent, type TvEvent } from './live';
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
+import { DungeonRock } from './dungeonRock';
 import { biomeAt, dungeonFgOf, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
 import { bestWeapon, BOSS, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
 import { dleQuestion, type Question } from './quiz';
@@ -375,6 +376,20 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     };
     let downWas = false;
     let upWas = false;
+    // Written only when it changes: an attribute set again each frame makes the browser work out the styles again.
+    const put = (el: HTMLElement | null | undefined, k: string, v: string) => {
+      if (el && el.dataset[k] !== v) el.dataset[k] = v;
+    };
+    // The doors, looked up again only when the island is drawn again.
+    let doors: HTMLElement[] = [];
+    let doorsFor: Island | null = null;
+    const doorsOf = () => {
+      if (doorsFor !== islRef.current || doors.some((d) => !d.isConnected)) {
+        doorsFor = islRef.current;
+        doors = [...(world.current?.querySelectorAll<HTMLElement>('[data-door]') ?? [])];
+      }
+      return doors;
+    };
     const step = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
@@ -548,7 +563,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           v.y = 0;
           ground.current = true;
           facing.current = r.dir < 0;
-          if (me.current) me.current.dataset.left = r.dir < 0 ? '1' : '';
+          if (me.current) put(me.current, 'left', r.dir < 0 ? '1' : '');
         } else {
           r.t = Math.min(1, r.t + (ZIP_SPEED * dt) / Math.max(1, r.len));
           p.x = r.ax + (r.bx - r.ax) * r.t - PW / 2;
@@ -556,7 +571,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           v.x = 0;
           v.y = 0;
           facing.current = r.bx < r.ax;
-          if (me.current) me.current.dataset.left = r.bx < r.ax ? '1' : '';
+          if (me.current) put(me.current, 'left', r.bx < r.ax ? '1' : '');
           if (r.t >= 1) {
             const b = xy(r.to);
             p.x = b.x + (1 - PW) / 2;
@@ -579,9 +594,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (v.x) facing.current = v.x < 0;
       if (me.current) {
         me.current.style.transform = `translate(${(p.x - OX) * t}px, ${(p.y - OY) * t}px)`;
-        me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
-        me.current.dataset.pose = pose.current?.kind ?? ride.current?.kind ?? '';
-        if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
+        put(me.current, 'walking', v.x !== 0 && ground.current ? '1' : '');
+        put(me.current, 'pose', pose.current?.kind ?? ride.current?.kind ?? '');
+        if (v.x) put(me.current, 'left', v.x < 0 ? '1' : '');
       }
       // The dungeon's mobs: patrolling their room's floor, coming at you when you're near, hurting on touch.
       if (deepRef.current)
@@ -596,7 +611,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               setQuiz({ q: dleQuestion() });
             }
             const el = mobEls.current.get(m.id);
-            if (el) el.dataset.fallen = '1';
+            if (el) put(el, 'fallen', '1');
             continue;
           }
           const px = p.x + PW / 2;
@@ -618,14 +633,17 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             if (heartsRef.current <= 0) goRef.current(true, 'mob');
           }
           const el = mobEls.current.get(m.id);
-          if (el) {
+          // Out of sight: not drawn at all (each mob on screen is a layer the browser puts together every frame).
+          const off = m.x < cam.current / t - 3 || m.x > (cam.current + view) / t + 3 || m.y < camY.current / t - 4 || m.y > (camY.current + viewH) / t + 4;
+          if (el) put(el, 'far', off ? '1' : '');
+          if (el && !off) {
             el.style.transform = `translate(${(m.x + 0.5 - size / 2) * t}px, ${(m.y + 1 - size - lift + 0.08) * t}px)`;
-            el.dataset.fallen = '';
-            el.dataset.left = m.dir < 0 ? '1' : '';
-            el.dataset.hit = now - m.hitAt < 200 ? '1' : '';
+            put(el, 'fallen', '');
+            put(el, 'left', m.dir < 0 ? '1' : '');
+            put(el, 'hit', now - m.hitAt < 200 ? '1' : '');
           }
         }
-      if (me.current) me.current.dataset.safe = now < safeUntil.current ? '1' : '';
+      if (me.current) put(me.current, 'safe', now < safeUntil.current ? '1' : '');
       // The others glide to where they last said they were.
       const all: { x: number; y: number }[] = [p];
       for (const peer of peersRef.current) {
@@ -636,14 +654,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         e.x += (peer.x - e.x) * f;
         e.y += (peer.y - e.y) * f;
         e.el.style.transform = `translate(${(e.x - OX) * t}px, ${(e.y - OY) * t}px)`;
-        e.el.dataset.walking = Math.abs(peer.x - e.x) > 0.05 ? '1' : '';
+        put(e.el, 'walking', Math.abs(peer.x - e.x) > 0.05 ? '1' : '');
         all.push(e);
       }
       // Doors open when someone stands by them.
-      world.current?.querySelectorAll<HTMLElement>('[data-door]').forEach((d) => {
+      doorsOf().forEach((d) => {
         const c = xy(Number(d.dataset.door));
         const open = all.some((q) => Math.abs(q.x + PW / 2 - (c.x + 0.5)) < 1.3 && Math.abs(q.y + PH / 2 - (c.y + 0.5)) < 1);
-        if ((d.dataset.open === '1') !== open) d.dataset.open = open ? '1' : '';
+        if ((d.dataset.open === '1') !== open) put(d, 'open', open ? '1' : '');
       });
       raf = requestAnimationFrame(step);
     };
@@ -1786,8 +1804,10 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
   const out: ReactNode[] = [];
   // The sea at both ends.
   if (!isl.world) for (const x0 of [0, ISLAND.w - 4]) out.push(<div key={`sea${x0}`} className="island-sea absolute" style={{ left: x0 * T, top: ISLAND.sea * T, width: 4 * T, height: (ISLAND.h - ISLAND.sea) * T }} />);
+  // The dungeon's rock and back walls: drawn once on canvases (src/island/dungeonRock.tsx), not as thousands of tiles.
+  if (isl.world) out.push(<DungeonRock key="rock" isl={isl} T={T} />);
   // Underground, where the ground is open (a cave, or dug): its back wall, darker.
-  for (let cell = 0; cell < ISLAND.w * ISLAND.h; cell++) {
+  if (!isl.world) for (let cell = 0; cell < ISLAND.w * ISLAND.h; cell++) {
     const { x, y } = xy(cell);
     if (isl.world ? fgAt(isl, cell) && kindOf(fgAt(isl, cell)) === 'natural' : x < 4 || x >= ISLAND.w - 4 || y <= surfaceAt(x) || fgAt(isl, cell)) continue;
     if (isl.world) {
@@ -1814,6 +1834,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
     const { x, y } = xy(cell);
     const style = { left: x * T, top: y * T, width: T, height: T };
     const kind = kindOf(id);
+    if (kind === 'natural' && id.startsWith('dungeon-')) continue; // drawn by DungeonRock
     if (kind === 'natural') {
       // Ground: stone, beach sand by the sea, or dirt (darker deeper down) with grass on top; its open sides shaded.
       const sand = (id === 'dirt' && isBeach(x)) || id === 'sand';
@@ -2134,7 +2155,9 @@ const Glows = memo(function Glows({ isl, T, dark }: { isl: Island; T: number; da
           const r = (kindOf(id) === 'screen' ? 1.6 : 2.8) * T;
           return (
             <div key={k} className="pointer-events-none absolute">
-              <div className="island-glow absolute rounded-full" style={{ left: (x + 0.5) * T - r, top: (y + 0.5) * T - r, width: r * 2, height: r * 2, background: `radial-gradient(circle, ${c}cc 0%, ${c}55 35%, transparent 70%)`, opacity: Math.min(1, dark * 1.6) }} />
+              {dark > 0.01 && (
+                <div className="island-glow absolute rounded-full" style={{ left: (x + 0.5) * T - r, top: (y + 0.5) * T - r, width: r * 2, height: r * 2, background: `radial-gradient(circle, ${c}cc 0%, ${c}55 35%, transparent 70%)`, opacity: Math.min(1, dark * 1.6) }} />
+              )}
               {kindOf(id) === 'light' && (
                 <ItemArt id={id} className="island-lit absolute" style={{ left: x * T, top: y * T, width: T, height: T, fontSize: T * 0.8 }} />
               )}

@@ -4693,6 +4693,9 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   z-index: 3;
   will-change: transform;
 }
+.island-mob[data-far='1'] {
+  display: none;
+}
 .island-mob > svg,
 .island-mob > span:first-child {
   transition: transform 0.12s;
@@ -4739,17 +4742,10 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 }
 /* Lava glowing; a fire jet's flame flaring a second in three (FIRE_JET: in step with when it burns). */
 .island-lava {
-  filter: drop-shadow(0 0 6px #f97316);
-  animation: island-lava 1.6s ease-in-out infinite alternate;
-}
-@keyframes island-lava {
-  to {
-    filter: drop-shadow(0 0 12px #fb923c) brightness(1.15);
-  }
+  filter: drop-shadow(0 0 8px #f97316);
 }
 .island-fire-jet {
   position: absolute;
-  animation: island-fire-jet 3s linear infinite;
 }
 .island-fire-jet::after {
   content: '';
@@ -4762,29 +4758,22 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   background: radial-gradient(ellipse at 50% 90%, #fef08a, #fb923c 40%, #dc2626 70%, transparent 72%);
   filter: drop-shadow(0 0 8px #f97316);
   transform-origin: 50% 100%;
-  opacity: var(--jet, 0);
-  transform: scaleY(var(--jet, 0));
-}
-@property --jet {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
+  opacity: 0;
+  transform: scaleY(0);
+  /* Opacity and transform only: run by the graphics card, nothing worked out again each frame. */
+  animation: island-fire-jet 3s linear infinite;
+  animation-delay: inherit;
 }
 @keyframes island-fire-jet {
-  0% {
-    --jet: 1;
-  }
+  0%,
   33.2% {
-    --jet: 1;
+    opacity: 1;
+    transform: scaleY(1);
   }
   33.4%,
   100% {
-    --jet: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .island-lava {
-    animation: none;
+    opacity: 0;
+    transform: scaleY(0);
   }
 }
 .island-deep {
@@ -4963,15 +4952,10 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
     radial-gradient(1px 1px at 5% 34%, #fff 50%, transparent 51%),
     radial-gradient(circle at 80% 14%, #fefce8 0 14px, #fef9c355 15px, transparent 34px);
 }
+/* A light's glow: still, and with no blending. (A blend mode and a flicker on each of a dungeon's sixty torches made
+   as many layers for the browser to put together each frame: it lagged.) */
 .island-glow {
-  mix-blend-mode: screen;
-  animation: island-flicker 3s ease-in-out infinite alternate;
-}
-@keyframes island-flicker {
-  to {
-    transform: scale(1.06);
-    filter: brightness(1.1);
-  }
+  pointer-events: none;
 }
 .island-tv-static {
   background: repeating-linear-gradient(0deg, #52525b 0 1px, #27272a 1px 3px);
