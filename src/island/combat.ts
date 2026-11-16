@@ -77,4 +77,11 @@ export const MOBS: Record<string, MobKind> = {
   ice: { name: 'Frost slime', fr: 'Slime de givre', icon: '🧊', hp: 2, speed: 1.3, drops: ['crystal-ore', 'iron-ore'] },
   jungle: { name: 'Cave spider', fr: 'Araignée des grottes', icon: '🕷️', hp: 3, speed: 2.4, drops: ['iron-ore', 'gold-ore'] },
   magma: { name: 'Fire imp', fr: 'Diablotin de feu', icon: '😈', hp: 5, speed: 1.9, flies: true, drops: ['gold-ore', 'crystal-ore'] },
+  /**
+   * The boss, in the magma depths: each time it falls, a Dle question (src/island/quiz.ts). Right, it's beaten; wrong,
+   * it gets back up with some of its life (BOSS.back), and the next fall asks another, until it's beaten.
+   */
+  boss: { name: 'The Magma Lord', fr: 'Le Seigneur du magma', icon: '👹', hp: 16, speed: 2.2, drops: [] },
 };
+/** The boss: its size (cells), the life it gets back on a wrong answer, what beating it pays (once a week). */
+export const BOSS = { size: 1.9, back: 0.4, coins: 250, items: ['crystal-ore', 'crystal-ore', 'gold-ore', 'gold-ore'] };

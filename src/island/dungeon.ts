@@ -53,7 +53,11 @@ interface Built {
   entry: number;
   /** The mobs, two a room (the gate's room left alone). */
   mobs: MobSpawn[];
+  /** The boss, in the magma depths' room farthest from the gate. */
+  boss: MobSpawn;
 }
+/** How many corridors a puzzle door closes (each three cells high: a Dle question opens it). */
+export const PUZZLE_DOORS = 6;
 const built = new Map<string, Built>();
 
 /** The week's dungeon, made once. */
@@ -82,6 +86,8 @@ export function dungeonOf(week: string): Built {
   const startX = 3 + pick(2);
   const seen = new Set([`${startX},0`]);
   const ladders: number[] = [];
+  // The corridors along a row (where a puzzle door may close the way): their middle cell, their floor.
+  const corridors: { x: number; floor: number; gx: number; gy: number }[] = [];
   const join = (ax: number, ay: number, bx: number, by: number) => {
     const a = rooms[ax][ay];
     const b = rooms[bx][by];
@@ -89,6 +95,7 @@ export function dungeonOf(week: string): Built {
       // A corridor along the floor, three high.
       const [l, r] = ax < bx ? [a, b] : [b, a];
       for (let x = l.x1; x <= r.x0; x++) for (let y = a.floor - 3; y < a.floor; y++) set(x, y, undefined);
+      if (r.x0 - l.x1 >= 2) corridors.push({ x: Math.floor((l.x1 + r.x0) / 2), floor: a.floor, gx: Math.min(ax, bx), gy: ay });
     } else {
       // A shaft down through the floor, with a ladder.
       const [up, down] = ay < by ? [a, b] : [b, a];
@@ -210,9 +217,21 @@ export function dungeonOf(week: string): Built {
       const x = r.x0 + 1 + pick(Math.max(1, r.x1 - r.x0 - 1));
       mobs.push({ id: `${gx}-${gy}-${k}`, kind: BIOMES[gy].id, x, y: r.floor - 1, x0: r.x0, x1: r.x1 });
     }
+  // The puzzle doors: some corridors closed, top to floor (never by the gate's room). Each door's three cells open
+  // together.
+  const doorable = corridors.filter((c) => !(c.gy === 0 && (c.gx === startX || c.gx + 1 === startX)) && [1, 2, 3].every((k) => !g[idx(c.x, c.floor - k)]));
+  doorable.sort(() => rnd() - 0.5);
+  for (const c of doorable.slice(0, PUZZLE_DOORS)) for (const k of [1, 2, 3]) set(c.x, c.floor - k, 'puzzle-door');
+  // The boss: in the room of the magma depths farthest from the gate (its two mobs give way to it).
+  const deepest = DUNGEON.rows - 1;
+  let bx = 0;
+  for (let gx = 0; gx < DUNGEON.cols; gx++) if (Math.abs(gx - startX) > Math.abs(bx - startX)) bx = gx;
+  const lair = rooms[bx][deepest];
+  const boss: MobSpawn = { id: 'boss', kind: 'magma', x: Math.floor((lair.x0 + lair.x1) / 2), y: lair.floor - 1, x0: lair.x0, x1: lair.x1 };
+  const fighters = mobs.filter((m) => m.id !== `${bx}-${deepest}-0` && m.id !== `${bx}-${deepest}-1`);
   // Each biome's own walls.
   for (let c = 0; c < w * h; c++) if (g[c] === 'dungeon-brick') g[c] = biomeAt(Math.floor(c / w)).wall;
-  const out = { ground: g, entry, mobs };
+  const out = { ground: g, entry, mobs: fighters, boss };
   built.set(week, out);
   return out;
 }

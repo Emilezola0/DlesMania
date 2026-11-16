@@ -8,7 +8,7 @@ import data from '../data/seeds.json';
 import { todayKey } from '../lib/date';
 
 export type SeedTier = 'common' | 'rare' | 'hybrid';
-export type ItemKind = 'block' | 'floor' | 'wall' | 'decor' | 'furniture' | 'light' | 'music' | 'plant' | 'frame' | 'screen' | 'door' | 'rail' | 'zip' | 'craft' | 'chest' | 'spikes' | 'gate' | 'stairs' | 'ladder' | 'platform' | 'bounce' | 'warp' | 'reader' | 'disc' | 'stone' | 'weapon';
+export type ItemKind = 'block' | 'floor' | 'wall' | 'decor' | 'furniture' | 'light' | 'music' | 'plant' | 'frame' | 'screen' | 'door' | 'rail' | 'zip' | 'craft' | 'chest' | 'spikes' | 'gate' | 'stairs' | 'ladder' | 'platform' | 'bounce' | 'warp' | 'reader' | 'disc' | 'stone' | 'weapon' | 'qdoor' | 'arch';
 export interface SeedFamily {
   id: string;
   source: string;

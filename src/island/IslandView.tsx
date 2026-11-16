@@ -15,7 +15,8 @@ import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEve
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
 import { biomeAt, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
-import { bestWeapon, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
+import { bestWeapon, BOSS, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
+import { dleQuestion, type Question } from './quiz';
 import { weekOf } from '../gacha/economy';
 import { discFits, DISC_PLAYERS, HEAR, islandBand, type Source } from './music';
 import { ShowBar, VolumeSlider, YouTubeShow, YT, ytId, ytOf } from './YouTube';
@@ -137,7 +138,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   /** Down in the week's dungeon (through the gate in the valley): its own world, mined but never built on. */
   const [inDungeon, setInDungeon] = useState(false);
   // The dungeon's fights (src/island/combat.ts): its mobs (each player fights their own), your hearts, a hurt's push.
-  const mobs = useRef<{ id: string; kind: string; x: number; y: number; x0: number; x1: number; hp: number; max: number; dir: 1 | -1; dead: boolean; hitAt: number; lift: number }[]>([]);
+  const mobs = useRef<{ id: string; kind: string; x: number; y: number; x0: number; x1: number; hp: number; max: number; dir: 1 | -1; dead: boolean; hitAt: number; lift: number; asked?: boolean }[]>([]);
+  /** A Dle question on screen: a puzzle door's (its cells) or the fallen boss's. */
+  const [quiz, setQuiz] = useState<{ q: Question; door?: number[] } | null>(null);
+  const quizRef = useRef(false);
+  quizRef.current = !!quiz;
+  /** A wrong answer at a door: it stays shut a moment. */
+  const doorWait = useRef(0);
+  const beatBoss = useProgress((s) => s.beatBoss);
   const mobEls = useRef(new Map<string, HTMLDivElement>());
   const [mobList, setMobList] = useState<{ id: string; kind: string }[]>([]);
   const [hearts, setHearts] = useState(HEARTS);
@@ -560,6 +568,17 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         for (const m of mobs.current) {
           if (m.dead) continue;
           const kind = MOBS[m.kind];
+          const size = m.kind === 'boss' ? BOSS.size : 0.92;
+          // The boss fallen: it lies there, and asks its question (once a fall).
+          if (m.kind === 'boss' && m.hp <= 0) {
+            if (!m.asked) {
+              m.asked = true;
+              setQuiz({ q: dleQuestion() });
+            }
+            const el = mobEls.current.get(m.id);
+            if (el) el.dataset.fallen = '1';
+            continue;
+          }
           const px = p.x + PW / 2;
           const py = p.y + PH / 2;
           const near = Math.abs(px - (m.x + 0.5)) < 5 && Math.abs(py - (m.y + 0.5)) < 1.8;
@@ -569,7 +588,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           if (now - m.hitAt > 350) m.x = Math.max(m.x0, Math.min(m.x1, m.x + m.dir * kind.speed * (near ? 1 : 0.5) * dt));
           // A flyer bobs in the air.
           const lift = kind.flies ? 0.35 + Math.sin(now / 320 + m.lift) * 0.25 : 0;
-          if (Math.abs(px - (m.x + 0.5)) < PW / 2 + 0.38 && Math.abs(py - (m.y + 0.5 - lift)) < PH / 2 + 0.38 && now > safeUntil.current) {
+          if (!quizRef.current && Math.abs(px - (m.x + 0.5)) < PW / 2 + size * 0.42 && Math.abs(py - (m.y + 1 - size / 2 - lift)) < PH / 2 + size * 0.42 && now > safeUntil.current) {
             safeUntil.current = now + SAFE_AFTER_HURT;
             heartsRef.current -= 1;
             setHearts(heartsRef.current);
@@ -580,7 +599,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
           }
           const el = mobEls.current.get(m.id);
           if (el) {
-            el.style.transform = `translate(${m.x * t}px, ${(m.y - lift + 0.08) * t}px)`;
+            el.style.transform = `translate(${(m.x + 0.5 - size / 2) * t}px, ${(m.y + 1 - size - lift + 0.08) * t}px)`;
+            el.dataset.fallen = '';
             el.dataset.left = m.dir < 0 ? '1' : '';
             el.dataset.hit = now - m.hitAt < 200 ? '1' : '';
           }
@@ -812,6 +832,14 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (!isl.world && isSea(xy(cell).x, xy(cell).y)) return cast(cell);
       if (front && kindOf(front) === 'gate') return go(!inDungeon);
       if (front && kindOf(front) === 'craft') return setCrafting(front as Station);
+      if (front === 'puzzle-door') {
+        if (Date.now() < doorWait.current) return say(tr('🚪 Still shut: try again in a moment.', '🚪 Toujours fermée : réessaie dans un instant.'));
+        // The door's cells: this one and those above and below it.
+        const { x, y } = xy(cell);
+        const cells = [cell];
+        for (const d of [-1, 1]) for (let yy = y + d; fgAt(isl, idx(x, yy)) === 'puzzle-door'; yy += d) cells.push(idx(x, yy));
+        return setQuiz({ q: dleQuestion(), door: cells });
+      }
       if (front === 'sword-stone') {
         const got = drawSword();
         if (!got) return say(tr('🗡️ The sword won’t budge today. Come back tomorrow.', '🗡️ L’épée ne bouge pas aujourd’hui. Reviens demain.'));
@@ -957,7 +985,10 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       mobs.current = [];
       setMobList([]);
     } else if (!hurt) {
-      mobs.current = dungeonOf(week).mobs.map((m, k) => ({ ...m, hp: MOBS[m.kind].hp, max: MOBS[m.kind].hp, dir: k % 2 ? 1 : -1, dead: false, hitAt: 0, lift: k }));
+      const d = dungeonOf(week);
+      const save = useProgress.getState().dungeon;
+      const bossDone = save?.week === week && !!save.boss;
+      mobs.current = [...d.mobs, ...(bossDone ? [] : [{ ...d.boss, kind: 'boss' }])].map((m, k) => ({ ...m, hp: MOBS[m.kind].hp, max: MOBS[m.kind].hp, dir: (k % 2 ? 1 : -1) as 1 | -1, dead: false, hitAt: 0, lift: k }));
       setMobList(mobs.current.map((m) => ({ id: m.id, kind: m.kind })));
     }
     if (!TOOLS.some((t) => t.id === tool && (!down || t.id === 'walk' || t.id === 'dig'))) setTool('walk');
@@ -1127,7 +1158,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     const px = p.x + PW / 2;
     const py = p.y + PH / 2;
     const target = mobs.current
-      .filter((m) => !m.dead)
+      .filter((m) => !m.dead && m.hp > 0)
       .map((m) => ({ m, d: (m.x + 0.5 - px) * dir }))
       .filter((o) => o.d > -0.4 && o.d < SWING.reach + 0.5 && Math.abs(o.m.y + 0.5 - py) < 1.4)
       .sort((a, b) => a.d - b.d)[0]?.m;
@@ -1141,6 +1172,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     if (bar) bar.style.width = `${Math.max(0, (target.hp / target.max) * 100)}%`;
     if (weapon && wearWeapon(weapon).broke) say(`💥 ${itemName(weapon)}: ${tr('broken!', 'cassée !')}`);
     if (target.hp > 0) return;
+    // The boss falls: its question comes (the frame loop asks it).
+    if (target.kind === 'boss') return sfx.near();
     target.dead = true;
     const el = mobEls.current.get(target.id);
     if (el) el.style.display = 'none';
@@ -1298,8 +1331,8 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                 if (el) mobEls.current.set(m.id, el);
                 else mobEls.current.delete(m.id);
               }}
-              className="island-mob absolute left-0 top-0"
-              style={{ width: T * 0.92, height: T * 0.92 }}
+              className={`island-mob absolute left-0 top-0 ${m.kind === 'boss' ? 'island-boss' : ''}`}
+              style={{ width: T * (m.kind === 'boss' ? BOSS.size : 0.92), height: T * (m.kind === 'boss' ? BOSS.size : 0.92) }}
               title={tr(MOBS[m.kind].name, MOBS[m.kind].fr)}
               onPointerDown={(e) => {
                 e.stopPropagation();
@@ -1623,6 +1656,48 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
             box.current?.focus();
           }}
           onClose={() => (setDiscing(null), box.current?.focus())}
+        />
+      )}
+      {quiz && (
+        <QuizModal
+          quiz={quiz.q}
+          title={quiz.door ? tr('🚪 A puzzle door', '🚪 Une porte-énigme') : tr('👹 The Magma Lord falls!', '👹 Le Seigneur du magma tombe !')}
+          blurb={quiz.door ? tr('Answer right and it opens.', 'Réponds juste et elle s’ouvre.') : tr('Answer right to beat it; wrong, it gets back up.', 'Réponds juste pour le vaincre ; faux, il se relève.')}
+          onAnswer={(right) => {
+            const q = quiz;
+            setQuiz(null);
+            safeUntil.current = performance.now() + SAFE_AFTER_HURT;
+            box.current?.focus();
+            const was = q.q.choices[q.q.answer];
+            if (q.door) {
+              if (!right) {
+                doorWait.current = Date.now() + 5000;
+                sfx.wrong();
+                return say(`❌ ${tr('Wrong, it was', 'Faux, c’était')} « ${was} ». ${tr('The door stays shut 5 seconds.', 'La porte reste fermée 5 secondes.')}`);
+              }
+              sfx.correct();
+              const cells = q.door;
+              dungeonAct((i) => ({ island: { ...i, fg: { ...i.fg, ...Object.fromEntries(cells.map((c) => [c, 'puzzle-door-open'])) } } }));
+              return say(tr('✅ Right! The door opens.', '✅ Juste ! La porte s’ouvre.'));
+            }
+            const boss = mobs.current.find((m) => m.kind === 'boss' && !m.dead);
+            if (!boss) return;
+            if (!right) {
+              boss.hp = Math.ceil(boss.max * BOSS.back);
+              boss.asked = false;
+              boss.hitAt = performance.now();
+              const bar = mobEls.current.get(boss.id)?.querySelector<HTMLElement>('.island-mob-hp > i');
+              if (bar) bar.style.width = `${BOSS.back * 100}%`;
+              sfx.wrong();
+              return say(`❌ ${tr('Wrong, it was', 'Faux, c’était')} « ${was} ». ${tr('The Magma Lord gets back up!', 'Le Seigneur du magma se relève !')}`);
+            }
+            boss.dead = true;
+            const el = mobEls.current.get(boss.id);
+            if (el) el.style.display = 'none';
+            const paid = beatBoss();
+            sfx.victory();
+            say(paid ? `🏆 ${tr('The Magma Lord is beaten!', 'Le Seigneur du magma est vaincu !')} +${paid.coins} Dle Coins · ${paid.items.map((id) => itemIcon(id)).join('')}` : `🏆 ${tr('The Magma Lord is beaten (already this week: no reward).', 'Le Seigneur du magma est vaincu (déjà cette semaine : pas de récompense).')}`);
+          }}
         />
       )}
       {speaking && (
@@ -2161,6 +2236,39 @@ function TvShow({ tv, T, level, vol, onVol, onEnd, onOff }: { tv: TvEvent; T: nu
       <span className="absolute bottom-1 left-2 rounded bg-black/60 px-1.5 text-[11px] font-semibold text-white">{shownName(card.name, card.set)}</span>
       {!GIF_CLIP.test(clip) && <ShowBar onFull={full} vol={vol} onVol={onVol} />}
       {GIF_CLIP.test(clip) && <ShowBar onFull={full} />}
+    </div>
+  );
+}
+
+/** A Dle question (a puzzle door's, the boss's): four choices, one right. */
+function QuizModal({ quiz, title, blurb, onAnswer }: { quiz: Question; title: string; blurb: string; onAnswer: (right: boolean) => void }) {
+  const [picked, setPicked] = useState<number | null>(null);
+  const choose = (i: number) => {
+    if (picked !== null) return;
+    setPicked(i);
+    window.setTimeout(() => onAnswer(i === quiz.answer), 900);
+  };
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 p-4">
+      <div className="page w-full max-w-md space-y-3 rounded-md p-5 text-center">
+        <p className="font-display text-lg font-bold">{title}</p>
+        <p className="text-xs text-ink-soft">{blurb}</p>
+        <p className="text-sm font-semibold">{quiz.prompt}</p>
+        <p className="font-serif text-3xl leading-snug">{quiz.big}</p>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {quiz.choices.map((c, i) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => choose(i)}
+              disabled={picked !== null}
+              className={`rounded-md border px-3 py-2 text-sm font-semibold transition ${picked === null ? 'border-rule hover:bg-tile' : i === quiz.answer ? 'border-hit bg-hit/20' : i === picked ? 'border-miss bg-miss/20' : 'border-rule opacity-50'}`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

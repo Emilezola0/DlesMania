@@ -4716,6 +4716,14 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
   background: linear-gradient(90deg, #ef4444, #f97316);
   transition: width 0.15s;
 }
+/* The boss: glowing, and lying down when it falls (its question on screen). */
+.island-boss > :first-child {
+  filter: drop-shadow(0 0 8px #f97316);
+}
+.island-mob[data-fallen='1'] > :first-child {
+  transform: rotate(90deg) translateX(20%);
+  filter: grayscale(0.6) brightness(0.7);
+}
 /* Hurt: you blink while you're safe. */
 .island-me[data-safe='1'] {
   animation: island-safe 0.18s steps(2) infinite;

@@ -10,7 +10,7 @@ import { fgAt, newIsland, upgradeIsland, type Bag, type Change, type Island } fr
 import type { Catch } from '../island/fishing';
 import { canCraft, RECIPE_BY_OUT } from '../island/crafting';
 import { dungeonIsland, rollLoot, type Loot } from '../island/dungeon';
-import { drawStoneSword, WEAPONS } from '../island/combat';
+import { BOSS, drawStoneSword, WEAPONS } from '../island/combat';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
 import type { RunState } from '../rogue/run';
@@ -156,7 +156,7 @@ interface ProgressState {
   /** A catch from fishing on the Island (src/island/fishing.ts): what you actually got (a sardine when the seed or coins are capped today). */
   fishReward: (c: Catch) => Catch;
   /** This week's dungeon (src/island/dungeon.ts): what this player changed in it (mined, chests opened). A new week, a new dungeon. */
-  dungeon?: { week: string; fg: Record<string, string> };
+  dungeon?: { week: string; fg: Record<string, string>; boss?: boolean };
   /** A move in the dungeon (mining): like islandAct. */
   dungeonAct: (move: (island: Island, items: Bag, seeds: Bag) => Change) => string | null;
   /** Opens a dungeon chest: what was in it, or null (already open, not a chest). */
@@ -173,6 +173,8 @@ interface ProgressState {
   drawSword: () => string | null;
   /** What a mob dropped, into the bag. */
   mobLoot: (items: string[]) => void;
+  /** The week's boss beaten: what it paid (Dle Coins, ore), or null if it was already beaten this week. */
+  beatBoss: () => { coins: number; items: string[] } | null;
   /** Recipes made at least once (the Seed Book shows the others hidden). */
   crafted?: string[];
   /** Today's earnings book: capped coins, missions (see src/gacha/economy.ts). */
@@ -657,7 +659,7 @@ export const useProgress = create<ProgressState>()(
         const week = weekOf(todayKey());
         try {
           const c = move(dungeonIsland(week, s.dungeon?.week === week ? s.dungeon.fg : {}), s.islandItems ?? {}, s.seeds ?? {});
-          set({ dungeon: { week, fg: c.island.fg }, ...(c.items ? { islandItems: c.items } : {}), ...(c.seeds ? { seeds: c.seeds } : {}) });
+          set({ dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: c.island.fg }, ...(c.items ? { islandItems: c.items } : {}), ...(c.seeds ? { seeds: c.seeds } : {}) });
           return null;
         } catch (e) {
           return e instanceof Error ? e.message : 'That didn’t work.';
@@ -672,7 +674,7 @@ export const useProgress = create<ProgressState>()(
         const bag = { ...(s.islandItems ?? {}) };
         for (const id of loot.items) bag[id] = (bag[id] ?? 0) + 1;
         const seed = loot.seed ? cappedSeeds(s, 'dungeon', [loot.seed]) : {};
-        set({ ...earn(s, loot.coins), ...seed, islandItems: bag, dungeon: { week, fg: { ...fg, [cell]: 'dungeon-chest-open' } } } as Partial<ProgressState>);
+        set({ ...earn(s, loot.coins), ...seed, islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: { ...fg, [cell]: 'dungeon-chest-open' } } } as Partial<ProgressState>);
         return { ...loot, seed: 'seedLog' in seed ? loot.seed : null };
       },
       craft: (out) => {
@@ -712,6 +714,15 @@ export const useProgress = create<ProgressState>()(
         const id = drawStoneSword();
         set({ swordStone: todayKey(), islandItems: { ...(s.islandItems ?? {}), [id]: (s.islandItems?.[id] ?? 0) + 1 } });
         return id;
+      },
+      beatBoss: () => {
+        const s = get();
+        const week = weekOf(todayKey());
+        if (s.dungeon?.week === week && s.dungeon.boss) return null;
+        const bag = { ...(s.islandItems ?? {}) };
+        for (const id of BOSS.items) bag[id] = (bag[id] ?? 0) + 1;
+        set({ ...earn(s, BOSS.coins), islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : { fg: {} }), week, boss: true } } as Partial<ProgressState>);
+        return { coins: BOSS.coins, items: BOSS.items };
       },
       mobLoot: (items) => {
         if (!items.length) return;

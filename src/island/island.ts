@@ -84,9 +84,9 @@ export const layerKey = (layer: Layer, cell: number) => (layer === 'back' ? `b${
  * what shows a card (frames, screens, readers). Anything else may also go behind or in front, as decoration only: a
  * block or a fence there is never solid, you walk past it.
  */
-const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate', 'stone', 'weapon']);
+const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate', 'stone', 'weapon', 'qdoor', 'arch']);
 /** Things that belong to the world itself (the dungeon's gate, its chests and spikes): never picked up. */
-const FIXED = new Set(['chest', 'spikes', 'gate', 'stone']);
+const FIXED = new Set(['chest', 'spikes', 'gate', 'stone', 'qdoor', 'arch']);
 export const canLayer = (id: string, layer: Layer) => {
   const k = kindOf(id);
   if (!k || k === 'natural' || k === 'disc') return layer === 'mid' && k === 'natural';
@@ -278,7 +278,7 @@ export function kindOf(id: string | undefined): IslandItem['kind'] | 'natural' |
 /** What you can stand on: the ground, blocks, floors, stairs and trampolines (a platform only from above). */
 export const isSolid = (id: string | undefined) => {
   const k = kindOf(id);
-  return k === 'natural' || k === 'block' || k === 'floor' || k === 'stairs' || k === 'bounce';
+  return k === 'natural' || k === 'block' || k === 'floor' || k === 'stairs' || k === 'bounce' || k === 'qdoor';
 };
 export const solidAt = (isl: Island, x: number, y: number) => (!inside(x, y) ? y >= ISLAND.h : isSolid(fgAt(isl, idx(x, y))));
 
