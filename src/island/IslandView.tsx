@@ -495,10 +495,21 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         v.y = 0;
       }
       // The traps (in the dungeon): spikes, icicles, thorns, lava, a fire jet while it flares: back to the gate.
-      const trap = isl.world ? touching(p.x, p.y, 'spikes') : -1;
-      if (trap >= 0) {
-        const what = fgAt(isl, trap);
-        if (what !== 'fire-jet' || fireJetOn()) goRef.current(true, what ?? 'spikes');
+      if (isl.world) {
+        // A fire jet's base doesn't hurt: only its flame, while it flares (FIRE_JET.flame: the column of fire drawn
+        // over it, in cells from the base's cell).
+        let hurt: string | null = null;
+        for (let cy = Math.floor(p.y) - 1; cy <= Math.floor(p.y + PH + 2) && !hurt; cy++)
+          for (let cx = Math.floor(p.x) - 1; cx <= Math.floor(p.x + PW) + 1 && !hurt; cx++) {
+            if (cx < 0 || cy < 0 || cx >= ISLAND.w || cy >= ISLAND.h) continue;
+            const id = fgAt(isl, idx(cx, cy));
+            if (kindOf(id) !== 'spikes') continue;
+            if (id === 'fire-jet') {
+              const f = FIRE_JET.flame;
+              if (fireJetOn() && p.x < cx + f.x1 && p.x + PW > cx + f.x0 && p.y < cy + f.bottom && p.y + PH > cy + f.top) hurt = id;
+            } else if (p.x < cx + 1 && p.x + PW > cx && p.y < cy + 1 && p.y + PH > cy) hurt = id ?? 'spikes';
+          }
+        if (hurt) goRef.current(true, hurt);
       }
       // Sitting or asleep: held there, until a move gets them up.
       const seat = pose.current;

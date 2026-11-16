@@ -25,7 +25,12 @@ export type BiomeId = (typeof BIOMES)[number]['id'];
 /** The biome at a row of cells. */
 export const biomeAt = (y: number) => BIOMES[Math.max(0, Math.min(BIOMES.length - 1, Math.floor(y / DUNGEON.room)))];
 /** A fire jet flares a second in three (all at once, the same for everyone). */
-export const FIRE_JET = { period: 3000, on: 1000 };
+export const FIRE_JET = {
+  period: 3000,
+  on: 1000,
+  /** The flame (what hurts), in cells from its base's cell: as drawn by .island-fire-jet::after (src/index.css). */
+  flame: { x0: 0.25, x1: 0.75, top: -1.6, bottom: 0.7 },
+};
 export const fireJetOn = (now = Date.now()) => now % FIRE_JET.period < FIRE_JET.on;
 
 /** A little random generator from a word (the week). */
