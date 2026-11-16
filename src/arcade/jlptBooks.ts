@@ -53,7 +53,7 @@ export async function bookPointsFor(level: string, pattern: string): Promise<{ b
 }
 
 /** A book's short name, for the notes. */
-export const bookShort = (b: Book) => (b.id === 'mimi-n2' ? '耳から覚える 文法 N2' : b.id === 'chukyu' ? '中級へ行こう' : b.title);
+export const bookShort = (b: Book) => (b.id === 'mimi-n2' ? '耳から覚える 文法 N2' : b.id === 'mimi-n3' ? '耳から覚える 文法 N3' : b.id === 'chukyu' ? '中級へ行こう' : b.title);
 /** A unit's name: "Unit 01", or "第1課 ファストフード" for a book in lessons. */
 export const unitName = (b: Book, unit: number) => {
   const u = b.units.find((x) => x.unit === unit);

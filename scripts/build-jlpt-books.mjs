@@ -33,6 +33,27 @@ const BOOKS = [
     ],
   },
   {
+    id: 'mimi-n3',
+    files: ['mimi-n3-a', 'mimi-n3-b', 'mimi-n3-c', 'mimi-n3-d', 'mimi-n3-e'],
+    title: '耳から覚える 日本語能力試験 文法トレーニング N3',
+    edition: '改訂版',
+    authors: '安藤栄里子・今川和',
+    publisher: 'ALC (アルク)',
+    level: 'N3',
+    units: [
+      { unit: 1, from: 1, to: 8, page: 12 },
+      { unit: 2, from: 9, to: 15, page: 22 },
+      { unit: 3, from: 16, to: 28, page: 32 },
+      { unit: 4, from: 29, to: 38, page: 40 },
+      { unit: 5, from: 39, to: 50, page: 52 },
+      { unit: 6, from: 51, to: 63, page: 60 },
+      { unit: 7, from: 64, to: 75, page: 70 },
+      { unit: 8, from: 76, to: 85, page: 86 },
+      { unit: 9, from: 86, to: 98, page: 96 },
+      { unit: 10, from: 99, to: 110, page: 106 },
+    ],
+  },
+  {
     id: 'chukyu',
     files: ['chukyu-a', 'chukyu-b'],
     title: '中級へ行こう 日本語の文型と表現55',
@@ -57,7 +78,7 @@ const BOOKS = [
   },
 ];
 /** Coto's levels a book's points aren't matched with (too easy to be the same point). */
-const SKIP = { 'mimi-n2': ['N5', 'N4'], chukyu: ['N5'] };
+const SKIP = { 'mimi-n2': ['N5', 'N4'], 'mimi-n3': ['N5'], chukyu: ['N5'] };
 
 // ── Readings ──────────────────────────────────────────────────────────────────────────────────────────────
 const KANJI = /[㐀-鿿々〆ヶ]/;
@@ -146,6 +167,7 @@ const coto = jlpt.levels.flatMap((l) => l.grammar.map((g) => ({ level: l.level.s
 /** Points matched by hand (the book's number → Coto's level and pattern), where the forms differ; null: not the same point. */
 const SAME = {
   'mimi-n2': { 42: ['N3', 'すぎない（過ぎない）'], 73: ['N3', 'まい'], 75: ['N2', '～は～に限る'], 82: ['N2', 'かねる'], 83: ['N2', 'かねない'], 92: ['N2', 'かけては'], 105: ['N2', '～に越したことはない'], 107: ['N1', '～をふまえて'], 12: ['N2', '～た上で'], 37: ['N1', '～っぱなし'], 60: ['N1', '～たところで'], 59: ['N1', '～ところを'], 95: ['N1', 'ただ～のみ'], 52: null },
+  'mimi-n3': { 4: ['N4', '～のように'], 5: ['N4', '～みたい'], 10: null, 22: ['N3', '～に関する'], 26: ['N3', '～たび～'], 31: ['N3', '～ないうちに'], 32: null, 48: null, 80: ['N4', '～はずです'], 81: ['N2', '～わけです'], 86: ['N3', '～代わり'], 96: null, 104: ['N1', '～割りに（は）'], 107: null },
   chukyu: { 2: ['N4', 'Number+も'], 11: ['N3', 'N+ばかり'], 12: ['N4', '～たがる'], 13: ['N4', '～てしまう'], 15: ['N4', '～のように'], 18: ['N3', '～のような'], 31: ['N3', '～たものだ'], 33: ['N2', '～と言っても～'], 38: ['N4', '～ているあいだに,～'], 42: ['N3', '～によって'], 47: ['N4', '～させられる'], 55: ['N3', '～ず'] },
 };
 

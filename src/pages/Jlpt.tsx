@@ -1287,6 +1287,12 @@ export default function Jlpt() {
             </Link>
           </li>
           <li>
+            <Link to="/jlpt/books/mimi-n3" className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
+              📘 <span lang="ja">耳から覚える 文法トレーニング N3</span>
+              <span className="text-xs font-normal text-ink-faint">110 grammar · AI notes</span>
+            </Link>
+          </li>
+          <li>
             <Link to="/jlpt/books/chukyu" className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
               📗 <span lang="ja">中級へ行こう 文型と表現55</span>
               <span className="text-xs font-normal text-ink-faint">55 grammar · AI notes</span>
