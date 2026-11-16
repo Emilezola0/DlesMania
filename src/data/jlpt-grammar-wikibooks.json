@@ -1,0 +1,1941 @@
+{
+ "source": "Wikibooks, JLPT Guide (en.wikibooks.org/wiki/JLPT_Guide), CC BY-SA 4.0",
+ "pages": {
+  "N5": "https://en.wikibooks.org/wiki/JLPT_Guide/JLPT_N5_Grammar",
+  "N4": "https://en.wikibooks.org/wiki/JLPT_Guide/JLPT_N4_Grammar",
+  "N3": "https://en.wikibooks.org/wiki/JLPT_Guide/JLPT_N3_Grammar"
+ },
+ "levels": {
+  "N5": {
+   "つもりです": {
+    "head": "つもりです",
+    "en": "This means a plan or an intent of doing something.",
+    "examples": [
+     {
+      "ja": "私は映画を見に行くつもりです。",
+      "furigana": "[私|わたし]は[映画|えいが]を[見|み]に[行|い]くつもりです。",
+      "blank": [
+       9,
+       14
+      ],
+      "en": "I'm going to go see a movie."
+     }
+    ]
+   },
+   "～んです": {
+    "head": "～んです",
+    "en": "It accents the sentence's content or softens a request or an order. It may be also said as \"~のです\".\nWith -na adjectives and nouns it becomes \"~なのです\".",
+    "examples": [
+     {
+      "ja": "私は今忙しいんです。",
+      "furigana": "[私|わたし]は[今|いま][忙|いそが]しいんです。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "I'm busy right now."
+     },
+     {
+      "ja": "私は今そうじ中なのです。",
+      "furigana": "[私|わたし]は[今|いま]そうじ[中|ちゅう]なのです。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "I'm cleaning right now."
+     },
+     {
+      "ja": "テニスはするんですか？",
+      "furigana": "テニスはするんですか？",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "Do you play tennis? (at all, not right now)"
+     }
+    ]
+   },
+   "ので": {
+    "head": "ので",
+    "en": "It means \"because\" or \"so\". The cause is more impartial (like because a building is red or tall) than with \"から\" or \"だから\" where it's more subjective (like because you think an apple tastes good).\nWith nouns and -na adjectives it becomes \"なので\"."
+   },
+   "は": {
+    "head": "は",
+    "en": "This denotes a topic.",
+    "examples": [
+     {
+      "ja": "彼女は嬉しいです。",
+      "furigana": "[彼女|かのじょ]は[嬉|うれ]しいです。",
+      "blank": [
+       2,
+       3
+      ],
+      "en": "She is happy."
+     }
+    ]
+   },
+   "～ましょう": {
+    "head": "～ましょう",
+    "en": "This is a polite volitional phrase, meaning \"I'll\" or \"let's\".",
+    "examples": [
+     {
+      "ja": "食べましょう。",
+      "furigana": "[食|た]べましょう。",
+      "blank": [
+       2,
+       6
+      ],
+      "en": "Let's eat!"
+     }
+    ]
+   },
+   "～のがじょうずです": {
+    "head": "～のがじょうずです",
+    "en": "It means to be good at something.",
+    "examples": [
+     {
+      "ja": "彼女は歌うのが上手です。",
+      "furigana": "[彼女|かのじょ]は[歌|うた]うのが[上手|じょうず]です。",
+      "blank": [
+       5,
+       11
+      ],
+      "en": "She's good at singing."
+     }
+    ]
+   },
+   "～まえに": {
+    "head": "～まえに",
+    "en": "It means \"before doing (something)\" or \"ago\" (like 3 days ago)."
+   },
+   "～のほうが～より": {
+    "head": "～のほうが～より",
+    "en": "It means that something is more (interesting/expensive/etc.) than something else."
+   },
+   "～にいく": {
+    "head": "～にいく",
+    "en": "It means to go somewhere or to go do something. If meaning to go do something, the にいく is used after a stem (a verb in its ます form without the ます, for example: the stem of 書き（かき）ます is 書き)."
+   },
+   "～がいます": {
+    "head": "～がいます",
+    "en": "This means 'there is' or 'is' and is used for living things (or things that appear to be alive, such as ghosts or robots).",
+    "examples": [
+     {
+      "ja": "あそこの木の下に、二人子供がいます。",
+      "furigana": "あそこの[木|き]の[下|した]に、[二人|ふたり][子供|こども]がいます。",
+      "blank": [
+       13,
+       17
+      ],
+      "en": "There are two children under the tree over there."
+     },
+     {
+      "ja": "教室に田中先生がいますか。",
+      "furigana": "[教室|きょうしつ]に[田中|たなか][先生|せんせい]がいますか。",
+      "blank": [
+       7,
+       12
+      ],
+      "en": "Is Mr. Tanaka in the classroom?"
+     }
+    ]
+   },
+   "～く/ ～になる": {
+    "head": "～く/ ～になる",
+    "en": "It means to become (smart/tall/etc.). If used with -na adjectives it's adj+になる, for -i adjectives it's adj+くなる."
+   },
+   "～のがへたです": {
+    "head": "～のがへたです",
+    "en": "It means to be bad at something.",
+    "examples": [
+     {
+      "ja": "私は踊るのが下手です。",
+      "furigana": "[私|わたし]は[踊|おど]るのが[下手|へた]です。",
+      "blank": [
+       4,
+       10
+      ],
+      "en": "I'm bad at dancing."
+     },
+     {
+      "ja": "彼は勉強するのが下手です。",
+      "furigana": "[彼|かれ]は[勉強|べんきょう]するのが[下手|へた]です。",
+      "blank": [
+       6,
+       12
+      ],
+      "en": "He's bad at studying."
+     }
+    ]
+   },
+   "～てください": {
+    "head": "～てください",
+    "en": "This is used to link verb copulas, ending in \"て\" or \"で\", to \"ください\", making it into a request.",
+    "examples": [
+     {
+      "ja": "日本語で話して下さい。",
+      "furigana": "[日本語|にほんご]で[話|はな]して[下|くだ]さい。",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "Please speak in Japanese."
+     },
+     {
+      "ja": "彼に言って下さい。",
+      "furigana": "[彼|かれ]に[言|い]って[下|くだ]さい。",
+      "blank": [
+       4,
+       8
+      ],
+      "en": "Please tell it to him."
+     }
+    ]
+   },
+   "～たり …～たりする": {
+    "head": "～たり …～たりする",
+    "en": "It makes a list of activities or attributes. It means something like \"this and that/sometimes this and sometimes that/in some parts this in other parts that\".\nWith nouns or -na adjectives it becomes \"～だったり …～だったりする\"."
+   },
+   "～てもいいです": {
+    "head": "～てもいいです",
+    "en": "This is used to link verb copulas to \"もいいです\" meaning \"it's enough\" or \"it's good\". It can be used as a request for permission.",
+    "examples": [
+     {
+      "ja": "料理してもいいですか。",
+      "furigana": "[料理|りょうり]してもいいですか。",
+      "blank": [
+       3,
+       10
+      ],
+      "en": "May I cook?"
+     },
+     {
+      "ja": "食べてもいいです。",
+      "furigana": "[食|た]べてもいいです。",
+      "blank": [
+       2,
+       8
+      ],
+      "en": "You may eat."
+     }
+    ]
+   },
+   "～があります": {
+    "head": "～があります",
+    "en": "This means \"there is\". It is used for non-living things (use 「がいます」 for living things).",
+    "examples": [
+     {
+      "ja": "つくえの上にボールがあります。",
+      "furigana": "つくえの[上|うえ]にボールがあります。",
+      "blank": [
+       9,
+       14
+      ],
+      "en": "There is a ball on the desk."
+     },
+     {
+      "ja": "はこの中にプレゼントがありますか。",
+      "furigana": "はこの[中|なか]にプレゼントがありますか。",
+      "blank": [
+       10,
+       15
+      ],
+      "en": "Is there a present inside the box?"
+     }
+    ]
+   },
+   "です": {
+    "head": "です",
+    "en": "This means \"is\", \"am\" or \"are\" (depending on the situation), though the meaning in English is a lot broader than in Japanese. Some other words (「いる」 and 「ある」) also mean \"is\", depending on the situation.\nPronounced as 'des-' instead of 'desu'",
+    "examples": [
+     {
+      "ja": "私はマイクです。",
+      "furigana": "[私|わたし]はマイクです。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "I am Mike."
+     },
+     {
+      "ja": "これはペンです。",
+      "furigana": "これはペンです。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "This is a pen."
+     }
+    ]
+   },
+   "～なくちゃいけない": {
+    "head": "～なくちゃいけない",
+    "en": "It means that something has to be done (lit: it's bad not to do it)."
+   },
+   "～のがすきです": {
+    "head": "～のがすきです",
+    "en": "It means to like doing something.",
+    "examples": [
+     {
+      "ja": "私はアニメを見るのが好きです。",
+      "furigana": "[私|わたし]はアニメを[見|み]るのが[好|す]きです。",
+      "blank": [
+       8,
+       14
+      ],
+      "en": "I like watching anime."
+     },
+     {
+      "ja": "彼女は歌うのが好きです。",
+      "furigana": "[彼女|かのじょ]は[歌|うた]うのが[好|す]きです。",
+      "blank": [
+       5,
+       11
+      ],
+      "en": "She likes singing."
+     }
+    ]
+   },
+   "～ている": {
+    "head": "～ている",
+    "en": "いる, when used after the て form of a verb, indicates that an action is ongoing (progressive tense, marked in English by \"ing\",) or in a certain state.",
+    "examples": [
+     {
+      "ja": "私は読んでいます。",
+      "furigana": "[私|わたし]は[読|よ]んでいます。",
+      "blank": [
+       4,
+       8
+      ],
+      "en": "I am reading."
+     },
+     {
+      "ja": "ドアが開いています。",
+      "furigana": "ドアが[開|ひら]いています。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "The door is open."
+     },
+     {
+      "ja": "僕は結婚しています。",
+      "furigana": "[僕|ぼく]は[結婚|けっこん]しています。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "I am married."
+     }
+    ]
+   },
+   "や": {
+    "head": "や",
+    "en": "This is a particle used to link nouns in an incomplete list.",
+    "examples": [
+     {
+      "ja": "猫や犬や猿が動物園にいます。",
+      "furigana": "[猫|ねこ]や[犬|いぬ]や[猿|さる]が[動物園|どうぶつえん]にいます。",
+      "blank": [
+       1,
+       2
+      ],
+      "en": "There are cats and dogs and monkeys (among other things) at the zoo."
+     }
+    ]
+   },
+   "を": {
+    "head": "を",
+    "en": "This denotes the object of an action.",
+    "examples": [
+     {
+      "ja": "あの猫は魚を食べた。",
+      "furigana": "あの[猫|ねこ]は[魚|さかな]を[食|た]べた。",
+      "blank": [
+       5,
+       6
+      ],
+      "en": "That cat ate the fish."
+     }
+    ]
+   },
+   "～てはいけません": {
+    "head": "～てはいけません",
+    "en": "This is used to link copulas to \"はいけません\", meaning \"it's not good\". It is used to scold or otherwise disapprove.\n\"はいけません\", meaning \"No you must not...\" This is formed by using the te-form. て-form + はいけません...",
+    "examples": [
+     {
+      "ja": "ここに車を停めてはいけません。",
+      "furigana": "ここに[車|くるま]を[停|と]めてはいけません。",
+      "blank": [
+       7,
+       14
+      ],
+      "en": "You must not park the car here."
+     }
+    ]
+   },
+   "ないでください": {
+    "head": "ないでください",
+    "en": "This means \"please don't do\", used in place of a ない form of a verb.",
+    "examples": [
+     {
+      "ja": "その本を読まないでください。",
+      "furigana": "その[本|ほん]を[読|よ]まないでください。",
+      "blank": [
+       6,
+       13
+      ],
+      "en": "Please don't read that book."
+     }
+    ]
+   },
+   "でしょう": {
+    "head": "でしょう",
+    "en": "It means something like \"isn't it/aren't you/aren't I/etc.\" or \"right?\". It's used when the speaker isn't sure about something or in rhetorical questions.",
+    "examples": [
+     {
+      "ja": "あのビルは普通じゃないでしょう？",
+      "furigana": "あのビルは[普通|ふつう]じゃないでしょう？",
+      "blank": [
+       11,
+       15
+      ],
+      "en": "That building isn't normal, is it?"
+     },
+     {
+      "ja": "彼は泳げないでしょう？",
+      "furigana": "[彼|かれ]は[泳|およ]げないでしょう？",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "He can't swim, can he?"
+     },
+     {
+      "ja": "ドレスは黒くて青いでしょう？",
+      "furigana": "ドレスは[黒|くろ]くて[青|あお]いでしょう？",
+      "blank": [
+       9,
+       13
+      ],
+      "en": "The dress is black and blue, isn't it?"
+     }
+    ]
+   },
+   "～ませんか": {
+    "head": "～ませんか",
+    "en": "This means \"Won't you ~ ?\" or \"Shall we ~ ?\". It's an invitation.",
+    "examples": [
+     {
+      "ja": "ケーキを食べませんか？",
+      "furigana": "ケーキを[食|た]べませんか？",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "Won't you have some cake?"
+     },
+     {
+      "ja": "映画をみませんか？",
+      "furigana": "[映画|えいが]をみませんか？",
+      "blank": [
+       4,
+       8
+      ],
+      "en": "Won't you (shall we) watch a movie?"
+     }
+    ]
+   },
+   "まだ～ていません": {
+    "head": "まだ～ていません",
+    "en": "It means that someone hasn't done something yet.",
+    "examples": [
+     {
+      "ja": "私はまだ決めていません。",
+      "furigana": "[私|わたし]はまだ[決|き]めていません。",
+      "blank": [
+       2,
+       4
+      ],
+      "en": "I haven't decided yet."
+     },
+     {
+      "ja": "彼はまだ帰っていません。",
+      "furigana": "[彼|かれ]はまだ[帰|かえ]っていません。",
+      "blank": [
+       2,
+       4
+      ],
+      "en": "He hasn't returned yet."
+     }
+    ]
+   },
+   "で": {
+    "head": "で",
+    "en": "This means \"at\" or \"in\", and is used when specifying where something happens.",
+    "examples": [
+     {
+      "ja": "エミは学校で数学を勉強します。",
+      "furigana": "エミは[学校|がっこう]で[数学|すうがく]を[勉強|べんきょう]します。",
+      "blank": [
+       5,
+       6
+      ],
+      "en": "Emi studies math at school."
+     }
+    ]
+   },
+   "～から": {
+    "head": "～から",
+    "en": "Phrase meaning \"from\".",
+    "examples": [
+     {
+      "ja": "この電車はサンホセからサンフランシスコにいきます。",
+      "furigana": "この[電車|でんしゃ]はサンホセからサンフランシスコにいきます。",
+      "blank": [
+       9,
+       11
+      ],
+      "en": "This train goes from San Jose to San Francisco."
+     }
+    ]
+   },
+   "も": {
+    "head": "も",
+    "en": "This means \"too\", \"and\" or \"also\".",
+    "examples": [
+     {
+      "ja": "彼はサッカーが好きです。私もサッカーが好きです。",
+      "furigana": "[彼|かれ]はサッカーが[好|す]きです。[私|わたし]もサッカーが[好|す]きです。",
+      "blank": [
+       13,
+       14
+      ],
+      "en": "He likes soccer. I like soccer, too."
+     },
+     {
+      "ja": "ケンはケーキもクッキーも食べました。",
+      "furigana": "ケンはケーキもクッキーも[食|た]べました。",
+      "blank": [
+       6,
+       7
+      ],
+      "en": "Ken ate both cake and cookies."
+     }
+    ]
+   },
+   "と": {
+    "head": "と",
+    "en": "This is a particle used to link nouns in a complete list.",
+    "examples": [
+     {
+      "ja": "そのサラダはレタスとにんじんとラディッシュから作りました。",
+      "furigana": "そのサラダはレタスとにんじんとラディッシュから[作|つく]りました。",
+      "blank": [
+       9,
+       10
+      ],
+      "en": "The salad was made from lettuce, carrot, and radish."
+     }
+    ]
+   },
+   "～すぎる": {
+    "head": "～すぎる",
+    "en": "It means \"too much\" or \"too (big/small/expensive/etc.)\"."
+   },
+   "～ほうがいい": {
+    "head": "～ほうがいい",
+    "en": "It means \"it's better\" or \"it would be better\", it may be also used to say that something should (or shouldn't) be done."
+   },
+   "に": {
+    "head": "に/へ",
+    "en": "This means \"to\" and indicates such things as location of person or thing, location of short-term action, etc , and is used when describing a destination.",
+    "examples": [
+     {
+      "ja": "明日彼は美術館へ行く予定です。",
+      "furigana": "[明日|あした][彼|かれ]は[美術館|びじゅつかん]へ[行|い]く[予定|よてい]です。",
+      "blank": [
+       7,
+       8
+      ],
+      "en": "He plans to go to the art museum tomorrow."
+     }
+    ]
+   },
+   "～のなかで～がいちばん～": {
+    "head": "～のなかで～がいちばん～",
+    "en": "It means the best from something or the most (new/old/expensive/likeable/etc.)."
+   },
+   "～ましょうか": {
+    "head": "～ましょうか",
+    "en": "This is a polite volitional phrase used for suggestions.",
+    "examples": [
+     {
+      "ja": "食べましょうか。",
+      "furigana": "[食|た]べましょうか。",
+      "blank": [
+       2,
+       7
+      ],
+      "en": "How about we eat?"
+     }
+    ]
+   },
+   "～てから": {
+    "head": "～てから",
+    "en": "It means to do something after doing something else.",
+    "examples": [
+     {
+      "ja": "考えてから言ってください。",
+      "furigana": "[考|かんが]えてから[言|い]ってください。",
+      "blank": [
+       2,
+       5
+      ],
+      "en": "Please speak after thinking. or Think then speak please."
+     }
+    ]
+   },
+   "～たことがある": {
+    "head": "～たことがある",
+    "en": "It indicates that something has (or hasn't ever) happened in the past.",
+    "examples": [
+     {
+      "ja": "私はそれを聞いたことがない。",
+      "furigana": "[私|わたし]はそれを[聞|き]いたことがない。",
+      "blank": [
+       7,
+       13
+      ],
+      "en": "I've never heard of this."
+     }
+    ]
+   },
+   "に/へ": {
+    "head": "に/へ",
+    "en": "This means \"to\" and indicates such things as location of person or thing, location of short-term action, etc , and is used when describing a destination.",
+    "examples": [
+     {
+      "ja": "明日彼は美術館へ行く予定です。",
+      "furigana": "[明日|あした][彼|かれ]は[美術館|びじゅつかん]へ[行|い]く[予定|よてい]です。",
+      "blank": [
+       7,
+       8
+      ],
+      "en": "He plans to go to the art museum tomorrow."
+     }
+    ]
+   }
+  },
+  "N4": {
+   "～おう": {
+    "head": "～おう",
+    "en": "It means \"let's do (something)\". The 「お」 may become any syllable ending with an \"o\" (e.g. こ、ろ、そ). This form is only used for godan verbs, for ichidan verbs see  ～よう.",
+    "examples": [
+     {
+      "ja": "あそこで遊ぼう。",
+      "furigana": "あそこで[遊|あそ]ぼう。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "Let's play over there."
+     },
+     {
+      "ja": "帰ろう。",
+      "furigana": "[帰|かえ]ろう。",
+      "blank": [
+       1,
+       3
+      ],
+      "en": "Let's go home."
+     }
+    ]
+   },
+   "～という～": {
+    "head": "～という～",
+    "en": "Meaning: called, such as, that.",
+    "examples": [
+     {
+      "ja": "クレヨンしんちゃんという漫画は面白いですよ。",
+      "furigana": "クレヨンしんちゃんという[漫画|まんが]は[面白|おもしろ]いですよ。",
+      "blank": [
+       9,
+       12
+      ],
+      "en": "A comic called Crayon Shinchan is really interesting."
+     }
+    ]
+   },
+   "～かどうか": {
+    "head": "～かどうか",
+    "en": "When it's a yes/no question, you can append an optional 「どうか」　to represent the other choice."
+   },
+   "～はずです": {
+    "head": "～はずです",
+    "en": "It means something like \"should be\".",
+    "examples": [
+     {
+      "ja": "あのペンは机の上にあるはずです。",
+      "furigana": "あのペンは[机|つくえ]の[上|うえ]にあるはずです。",
+      "blank": [
+       11,
+       15
+      ],
+      "en": "That pen should be on the desk."
+     }
+    ]
+   },
+   "～てある": {
+    "head": "～てある",
+    "en": "Usually, this expression is used to explain that something is in a state of completion.",
+    "examples": [
+     {
+      "ja": "準備は、もうしてあるよ。",
+      "furigana": "[準備|じゅんび]は、もうしてあるよ。",
+      "blank": [
+       7,
+       10
+      ],
+      "en": "The preparations are already done."
+     },
+     {
+      "ja": "この部屋は冷房してある。",
+      "furigana": "この[部屋|へや]は[冷房|れいぼう]してある。",
+      "blank": [
+       8,
+       11
+      ],
+      "en": "This room is air-conditioned."
+     }
+    ]
+   },
+   "Dictionary form+と": {
+    "head": "Dictionary form+と",
+    "en": "Typically used for an \"if A then B\" situation. Usually used when the situation can not be controlled."
+   },
+   "～がほしい": {
+    "head": "～がほしい",
+    "en": "It means to want something (literally that something is wanted).",
+    "examples": [
+     {
+      "ja": "私はこの本が欲しい。",
+      "furigana": "[私|わたし]はこの[本|ほん]が[欲|ほ]しい。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "I want this book."
+     },
+     {
+      "ja": "私はお菓子が欲しい。",
+      "furigana": "[私|わたし]はお[菓子|かし]が[欲|ほ]しい。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "I want some sweets."
+     }
+    ]
+   },
+   "～なさい": {
+    "head": "～なさい",
+    "en": "It's used for giving orders and commands. It is primarily chosen over the imperative conjugation for politeness.",
+    "examples": [
+     {
+      "ja": "学校へ行きなさい。",
+      "furigana": "[学校|がっこう]へ[行|い]きなさい。",
+      "blank": [
+       5,
+       8
+      ],
+      "en": "Go to school!"
+     },
+     {
+      "ja": "それを止めなさい。",
+      "furigana": "それを[止|や]めなさい。",
+      "blank": [
+       5,
+       8
+      ],
+      "en": "Stop that!"
+     }
+    ]
+   },
+   "～てもらう": {
+    "head": "～てもらう",
+    "en": "It means to get someone to do something.",
+    "examples": [
+     {
+      "ja": "彼に宿題を見せてもらう。",
+      "furigana": "[彼|かれ]に[宿題|しゅくだい]を[見|み]せてもらう。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "I'll make him show his homework."
+     },
+     {
+      "ja": "彼女にこの服を買ってもらう。",
+      "furigana": "[彼女|かのじょ]にこの[服|ふく]を[買|か]ってもらう。",
+      "blank": [
+       9,
+       13
+      ],
+      "en": "I'll make her buy these clothes."
+     }
+    ]
+   },
+   "しか～ない": {
+    "head": "しかない",
+    "en": "only, as few as (takes the verb in the negative form)\nMeaning; there is nothing except \"-----\"",
+    "examples": [
+     {
+      "ja": "彼にはお金しかない。",
+      "furigana": "[彼|かれ]にはお[金|かね]しかない。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "He has nothing but money."
+     },
+     {
+      "ja": "この部屋に美崎しかない。",
+      "furigana": "この[部屋|へや]に[美崎|みさき]しかない。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "There is nobody except Misaki in this room."
+     }
+    ]
+   },
+   "～よう": {
+    "head": "～よう",
+    "en": "It means \"let's do (something)\". This form is only used for ichidan verbs, for godan verbs see ～おう.",
+    "examples": [
+     {
+      "ja": "このケーキを食べよう。",
+      "furigana": "このケーキを[食|た]べよう。",
+      "blank": [
+       8,
+       10
+      ],
+      "en": "Let's eat this cake."
+     },
+     {
+      "ja": "あの映画を見よう。",
+      "furigana": "あの[映画|えいが]を[見|み]よう。",
+      "blank": [
+       6,
+       8
+      ],
+      "en": "Let's watch that movie."
+     }
+    ]
+   },
+   "～てあげる": {
+    "head": "～てあげる",
+    "en": "A は B に verb-て　あげる means \"A does something for B\" (literally A \"gives\" the action specified in the verb to B).",
+    "examples": [
+     {
+      "ja": "私は山田さんに本を買ってあげました。",
+      "furigana": "[私|わたし]は[山田|やまだ]さんに[本|ほん]を[買|か]ってあげました。",
+      "blank": [
+       11,
+       17
+      ],
+      "en": "I bought this book for Yamada-san."
+     }
+    ]
+   },
+   "(period)に(frequency)": {
+    "head": "(period)に(frequency)",
+    "en": "This is a particle used to link period and frequency.",
+    "examples": [
+     {
+      "ja": "一週間に一回日本語を勉強します。",
+      "furigana": "[一週|いっしゅ][間|かん]に[一回|いっかい][日本語|にほんご]を[勉強|べんきょう]します。",
+      "blank": [
+       3,
+       4
+      ],
+      "en": "I study Japanese once a week."
+     },
+     {
+      "ja": "一年間に三回イタリアへ行かなければなりません。",
+      "furigana": "[一年|いちねん][間|かん]に[三回|さんかい]イタリアへ[行|い]かなければなりません。",
+      "blank": [
+       3,
+       4
+      ],
+      "en": "I have to go to Italy 3 times a year."
+     }
+    ]
+   },
+   "そうです": {
+    "head": "そうです",
+    "en": "It means \"it seems like\".",
+    "examples": [
+     {
+      "ja": "明日雪が降りそうです。",
+      "furigana": "[明日|あした][雪|ゆき]が[降|ふ]りそうです。",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "Tomorrow it looks like it will snow."
+     },
+     {
+      "ja": "田中さんは忙しそうです。",
+      "furigana": "[田中|たなか]さんは[忙|いそが]しそうです。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "Mr. Tanaka seems busy."
+     },
+     {
+      "ja": "この本は高そうです。",
+      "furigana": "この[本|ほん]は[高|たか]そうです。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "This book looks expensive."
+     },
+     {
+      "ja": "この椅子は丈夫そうです。",
+      "furigana": "この[椅子|いす]は[丈夫|じょうぶ]そうです。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "This chair looks sturdy."
+     }
+    ]
+   },
+   "～ていただけませんか": {
+    "head": "～ていただけませんか",
+    "en": "This is used when (1) requesting someone to (help) do something or (2) asking permission. This is a more polite way of asking for something than ～てください.",
+    "examples": [
+     {
+      "ja": "窓を開けていただけませんか。",
+      "furigana": "[窓|まど]を[開|あ]けていただけませんか。",
+      "blank": [
+       4,
+       13
+      ],
+      "en": "Could you open the window?"
+     }
+    ]
+   },
+   "～やすい": {
+    "head": "～やすい",
+    "en": "When used after the verb stem, this indicates that an action is easy. As an い adjective, it conjugates as an い adjective.",
+    "examples": [
+     {
+      "ja": "水は飲み易いです。",
+      "furigana": "[水|みず]は[飲|の]み[易|やす]いです。",
+      "blank": [
+       4,
+       6
+      ],
+      "en": "Drinking water is easy."
+     },
+     {
+      "ja": "その料理は食べ易くなかったです。",
+      "furigana": "その[料理|りょうり]は[食|た]べ[易|やす]くなかったです。",
+      "blank": [
+       7,
+       13
+      ],
+      "en": "Eating the food was not easy."
+     }
+    ]
+   },
+   "～かもしれない": {
+    "head": "～かもしれない",
+    "en": "Use of かもしれない or かもしれません indicates possibility (maybe). It can also be shortened to かも informally, although in constructions like かもしれないけど, it cannot be shortened.",
+    "examples": [
+     {
+      "ja": "明日は雨が降るかもしれない。",
+      "furigana": "[明日|あした]は[雨|あめ]が[降|ふ]るかもしれない。",
+      "blank": [
+       7,
+       13
+      ],
+      "en": "It may rain tomorrow (There is a possibility it may rain tomorrow)."
+     },
+     {
+      "ja": "トムさんは子供のとき意地悪だったかもしれない。",
+      "furigana": "トムさんは[子供|こども]のとき[意地悪|いじわる]だったかもしれない。",
+      "blank": [
+       16,
+       22
+      ],
+      "en": "Tom may have been a bully when he was a kid."
+     }
+    ]
+   },
+   "～ば/～れば": {
+    "head": "～ば/～れば",
+    "en": "It means \"if (something happened)\".",
+    "examples": [
+     {
+      "ja": "この果物を食べればすぐに元気になる。",
+      "furigana": "この[果物|くだもの]を[食|た]べればすぐに[元気|げんき]になる。",
+      "blank": [
+       7,
+       9
+      ],
+      "en": "If you eat this fruit, you'll recover soon."
+     },
+     {
+      "ja": "金があればあの車を買う。",
+      "furigana": "[金|かね]があればあの[車|くるま]を[買|か]う。",
+      "blank": [
+       3,
+       5
+      ],
+      "en": "If I had money, I would buy that car."
+     },
+     {
+      "ja": "あそこへ行けば分かる。",
+      "furigana": "あそこへ[行|い]けば[分|わ]かる。",
+      "blank": [
+       6,
+       7
+      ],
+      "en": "If you go there, you'll know."
+     }
+    ]
+   },
+   "～たらどうですか": {
+    "head": "～たらどうですか",
+    "en": "This construction is used for giving advice or suggesting a particular course of action (Advice…how about…? Why don’t you…?)\nIt is made from the past tense short form of the verb. It should only be used when explicitly being consulted about something, as it can be slightly critical. if someone is seeking your advice on a matter, you can use ～たらどうですか.",
+    "examples": [
+     {
+      "ja": "薬を飲んだらどうですか？",
+      "furigana": "[薬|くすり]を[飲|の]んだらどうですか？",
+      "blank": [
+       4,
+       11
+      ],
+      "en": "How about taking some medicine? (Said to someone who is ill)"
+     },
+     {
+      "ja": "もっと勉強したらどうですか？",
+      "furigana": "もっと[勉強|べんきょう]したらどうですか？",
+      "blank": [
+       6,
+       13
+      ],
+      "en": "Why don’t you (how about you) study more? (Said to someone who has an exam coming up and is worried about it)"
+     }
+    ]
+   },
+   "～く/ ～にする": {
+    "head": "～く/ ～にする",
+    "en": "This displays the changing of the state or condition of something. The change is done by the subject.",
+    "examples": [
+     {
+      "ja": "クラスの何人かがいつも私を馬鹿にする。",
+      "furigana": "クラスの[何人|なんにん]かがいつも[私|わたし]を[馬鹿|ばか]にする。",
+      "blank": [
+       15,
+       18
+      ],
+      "en": "Some of my classmate always make a fool of me."
+     }
+    ]
+   },
+   "のに": {
+    "head": "のに",
+    "en": "It means something like \"even though/albeit/despite\".",
+    "examples": [
+     {
+      "ja": "私は宿題を終えたのにまだ寝られない。",
+      "furigana": "[私|わたし]は[宿題|しゅくだい]を[終|お]えたのにまだ[寝|ね]られない。",
+      "blank": [
+       8,
+       10
+      ],
+      "en": "Even though I've finished my homework I can't go to sleep yet."
+     },
+     {
+      "ja": "このケーキはまずいのに高い。",
+      "furigana": "このケーキはまずいのに[高|たか]い。",
+      "blank": [
+       9,
+       11
+      ],
+      "en": "This cake is expensive despite being unappetizing."
+     },
+     {
+      "ja": "彼女はきれいなのにモテない。",
+      "furigana": "[彼女|かのじょ]はきれいなのにモテない。",
+      "blank": [
+       7,
+       9
+      ],
+      "en": "Despite being beautiful she's not popular."
+     }
+    ]
+   },
+   "Number+も": {
+    "head": "Number+も",
+    "en": "It means \"as many as\".",
+    "examples": [
+     {
+      "ja": "昨日、電話三回もしたよ！",
+      "furigana": "[昨日|きのう]、[電話|でんわ][三|さん][回|かい]もしたよ！",
+      "blank": [
+       7,
+       8
+      ],
+      "en": "I called you like three times yesterday!"
+     }
+    ]
+   },
+   "てみる": {
+    "head": "てみる",
+    "en": "It means to try to do something.",
+    "examples": [
+     {
+      "ja": "彼は彼女と話してみる。",
+      "furigana": "[彼|かれ]は[彼女|かのじょ]と[話|はな]してみる。",
+      "blank": [
+       7,
+       10
+      ],
+      "en": "He'll try to talk to her."
+     },
+     {
+      "ja": "私はあの本を読んでみる。",
+      "furigana": "[私|わたし]はあの[本|ほん]を[読|よ]んでみる。",
+      "blank": [
+       8,
+       11
+      ],
+      "en": "I'll try to read that book."
+     }
+    ]
+   },
+   "～ばよかった": {
+    "head": "～ばよかった",
+    "en": "This means wish I’d done or should have done.\nAll verbs can regularly be turned into a ばよかった sentence with no exception or irregularity. You form the ば-form based on the present tense short form.",
+    "examples": [
+     {
+      "ja": "学生のとき、勉強すれば良かったです。",
+      "furigana": "[学生|がくせい]のとき、[勉強|べんきょう]すれば[良|よ]かったです。",
+      "blank": [
+       10,
+       15
+      ],
+      "en": "I should have studied when I was a student."
+     },
+     {
+      "ja": "薬を飲めば良かったです。",
+      "furigana": "[薬|くすり]を[飲|の]めば[良|よ]かったです。",
+      "blank": [
+       4,
+       9
+      ],
+      "en": "I should have taken medicine."
+     }
+    ]
+   },
+   "～てすみません": {
+    "head": "～てすみません",
+    "en": "Use the te-form to describe things you have done that you want to apologize for.\nWhen you want to apologize for something you failed to do, you use ～なくて, the short, negative te-form of a verb. \nTo derive this form, first change the verb to the short, negative ～ない, then replace the last い with くて.",
+    "examples": [
+     {
+      "ja": "汚い言葉を使ってすみませんでした。",
+      "furigana": "[汚|きたな]い[言葉|ことば]を[使|つか]ってすみませんでした。",
+      "blank": [
+       7,
+       13
+      ],
+      "en": "I'm sorry for using bad language (previously)."
+     }
+    ]
+   },
+   "～ないで": {
+    "head": "～ないで",
+    "en": "It means \"don't do (something)\". It might also be connected with \"ください\" to make it more polite.",
+    "examples": [
+     {
+      "ja": "このケーキを食べないで。",
+      "furigana": "このケーキを[食|た]べないで。",
+      "blank": [
+       8,
+       11
+      ],
+      "en": "Don't eat this cake."
+     },
+     {
+      "ja": "この部屋からしばらく出て行かないで。",
+      "furigana": "この[部屋|へや]からしばらく[出|で]て[行|い]かないで。",
+      "blank": [
+       14,
+       17
+      ],
+      "en": "Don't go out of this room for a while."
+     },
+     {
+      "ja": "その本を捨てないでください。",
+      "furigana": "その[本|ほん]を[捨|す]てないでください。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "Please don't throw away that book."
+     }
+    ]
+   },
+   "～ているあいだに,～": {
+    "head": "～ているあいだに,～",
+    "en": "This means \"while\".",
+    "examples": [
+     {
+      "ja": "お風呂に入っている間に、電話がありました。",
+      "furigana": "お[風呂|ふろ]に[入|はい]っている[間|あいだ]に、[電話|でんわ]がありました。",
+      "blank": [
+       6,
+       11
+      ],
+      "en": "There was a phone call while I was taking a bath."
+     },
+     {
+      "ja": "夕べ、寝ている間に、地震がありました。",
+      "furigana": "[夕|ゆう]べ、[寝|ね]ている[間|あいだ]に、[地震|じしん]がありました。",
+      "blank": [
+       4,
+       9
+      ],
+      "en": "There was an earthquake while I was asleep last night."
+     }
+    ]
+   },
+   "～といいです": {
+    "head": "～といいです",
+    "en": "This means \"I hope ~\" or \"It would be nice if ~\"",
+    "examples": [
+     {
+      "ja": "明日いい天気だといいですね。",
+      "furigana": "[明日|あした]いい[天気|てんき]だといいですね。",
+      "blank": [
+       7,
+       12
+      ],
+      "en": "It will be nice if tomorrow's weather is good./I hope the weather tomorrow is good."
+     },
+     {
+      "ja": "美味しいといいですね。",
+      "furigana": "[美味|おい]しいといいですね。",
+      "blank": [
+       4,
+       9
+      ],
+      "en": "I hope it tastes good."
+     }
+    ]
+   },
+   "～てくれる": {
+    "head": "～てくれる"
+   },
+   "～のように": {
+    "head": "～のように",
+    "en": "To be like, or similar to.",
+    "examples": [
+     {
+      "ja": "ピカピカの太陽のように。",
+      "furigana": "ピカピカの[太陽|たいよう]のように。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "Shining like the sun."
+     },
+     {
+      "ja": "ほら！見て見て！あの人は豚のように食べている。",
+      "furigana": "ほら！[見|み]て[見|み]て！あの[人|ひと]は[豚|ぶた]のように[食|た]べている。",
+      "blank": [
+       13,
+       17
+      ],
+      "en": "Hey! Look look! That guy is eating like a pig."
+     }
+    ]
+   },
+   "～させる": {
+    "head": "～させる",
+    "en": "It means to let someone do something, or to make someone do it.",
+    "examples": [
+     {
+      "ja": "この音が私をいらいらさせる。",
+      "furigana": "この[音|おと]が[私|わたし]をいらいらさせる。",
+      "blank": [
+       10,
+       13
+      ],
+      "en": "This sound irritates me. (lit. This sound makes me get irritated.)"
+     },
+     {
+      "ja": "私にこのケーキを食べさせて下さい。",
+      "furigana": "[私|わたし]にこのケーキを[食|た]べさせて[下|くだ]さい。",
+      "blank": [
+       10,
+       13
+      ],
+      "en": "Please let me eat this cake."
+     }
+    ]
+   },
+   "～させられる": {
+    "head": "～させられる",
+    "en": "Before we start: かく \n1. かく -> かか \n2. かか -> かかせられる (is made to write)\nBefore we start: たべる \n1. たべる -> たべ \n2. たべ -> たべさせられる (is made to eat)\nする (to do) is changed to させられる.\nくる (to come) is changed to こさせられる.",
+    "examples": [
+     {
+      "ja": "母に勉強[を]させられる。",
+      "furigana": "[母|はは]に[勉強|べんきょう][を]させられる。",
+      "blank": [
+       7,
+       12
+      ],
+      "en": "I am forced to study by my mother."
+     }
+    ]
+   },
+   "～し": {
+    "head": "～し",
+    "en": "When you want to list reasons for multiple states or actions you can do so by adding 「し」 to the end of each relative clause. It is very similar to the 「や」 particle except that it lists reasons for verbs and state-of-being. \nVerb-casual + し　あそぶ　 し\nい-adj + し　　　　おおきい し\nな-adj + だし　　　きれい　 だし\nNoun + だし　　　 女の子　 だし",
+    "examples": [
+     {
+      "ja": "優しいし、格好いいし、面白いから。",
+      "furigana": "[優|やさ]しいし、[格好|かっこ]いいし、[面白|おもしろ]いから。",
+      "blank": [
+       3,
+       4
+      ],
+      "en": "Because he's kind, attractive and interesting (among other things)."
+     },
+     {
+      "ja": "駅から近いし、車でも来られるし、この店はとても便利です。",
+      "furigana": "[駅|えき]から[近|ちか]いし、[車|くるま]でも[来|こ]られるし、この[店|みせ]はとても[便利|べんり]です。",
+      "blank": [
+       5,
+       6
+      ],
+      "en": "Because it is near to the train station and can be reached by car, this shop is very convenient."
+     },
+     {
+      "ja": "値段も安いし、味もいいし、いつもこの店で食べています。",
+      "furigana": "[値段|ねだん]も[安|やす]いし、[味|あじ]もいいし、いつもこの[店|みせ]で[食|た]べています。",
+      "blank": [
+       5,
+       6
+      ],
+      "en": "Because the price is cheap and the taste is good, (I) always eat at this shop."
+     },
+     {
+      "ja": "すしもあるし、カレーライスもあるし、いつもこの店で食べています。",
+      "furigana": "すしもあるし、カレーライスもあるし、いつもこの[店|みせ]で[食|た]べています。",
+      "blank": [
+       5,
+       6
+      ],
+      "en": "Because there are sushi and curry rice, (I) always eat at this shop."
+     }
+    ]
+   },
+   "なら": {
+    "head": "なら",
+    "en": "Use of なら implies that the verb before なら (nara) succeeds the verb after なら (nara) in time. This is the opposite of the conditional particle たら, which implies that the first verb will precede the second verb.",
+    "examples": [
+     {
+      "ja": "友達が来るなら、私はピザを注文する。",
+      "furigana": "[友達|ともだち]が[来|く]るなら、[私|わたし]はピザを[注文|ちゅうもん]する。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "If our friends come, I will order pizza (first)."
+     }
+    ]
+   },
+   "～ことにする": {
+    "head": "～ことにする",
+    "en": "It means to decide something (similar to 決める).",
+    "examples": [
+     {
+      "ja": "彼は勉強することにする。",
+      "furigana": "[彼|かれ]は[勉強|べんきょう]することにする。",
+      "blank": [
+       6,
+       11
+      ],
+      "en": "He's deciding to study."
+     },
+     {
+      "ja": "私は今コンビニへ行くことにした。",
+      "furigana": "[私|わたし]は[今|いま]コンビニへ[行|い]くことにした。",
+      "blank": [
+       10,
+       15
+      ],
+      "en": "I've decided that I'll now go to the convenience store."
+     }
+    ]
+   },
+   "～てくれてありがとう": {
+    "head": "～てくれてありがとう",
+    "en": "The meaning is 'Thank you for doing'",
+    "examples": [
+     {
+      "ja": "手伝ってくれてありがとう。",
+      "furigana": "[手伝|てつだ]ってくれてありがとう。",
+      "blank": [
+       3,
+       12
+      ],
+      "en": "Thank you for your help. どういたしまして。 It's my pleasure."
+     },
+     {
+      "ja": "手伝ってくれてありがとう。",
+      "furigana": "[手伝|てつだ]ってくれてありがとう。",
+      "blank": [
+       3,
+       12
+      ],
+      "en": "Thank you for helping me. どう致（いた）しまして。 Don't mention it."
+     },
+     {
+      "ja": "いろいろ親切にしてくれてありがとう。",
+      "furigana": "いろいろ[親切|しんせつ]にしてくれてありがとう。",
+      "blank": [
+       8,
+       17
+      ],
+      "en": "Thank you for your many kindness to me."
+     },
+     {
+      "ja": "ご親切に手伝ってくれてありがとう。",
+      "furigana": "ご[親切|しんせつ]に[手伝|てつだ]ってくれてありがとう。",
+      "blank": [
+       7,
+       16
+      ],
+      "en": "It is kind of you to help me."
+     }
+    ]
+   },
+   "～ておく": {
+    "head": "～ておく",
+    "en": "It means to do something in advance.",
+    "examples": [
+     {
+      "ja": "この分を覚えておく。",
+      "furigana": "この[分|ぶん]を[覚|おぼ]えておく。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "I'll memorize this part. (Because it may appear on a test.)"
+     },
+     {
+      "ja": "お茶を冷やしておく。",
+      "furigana": "お[茶|ちゃ]を[冷|ひ]やしておく。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "I'll cool down the tea. (Because I don't want to burn myself.)"
+     }
+    ]
+   },
+   "～てしまう": {
+    "head": "～てしまう",
+    "en": "It means to end up doing something.",
+    "examples": [
+     {
+      "ja": "私はけっきょく学校へ行ってしまう。",
+      "furigana": "[私|わたし]はけっきょく[学校|がっこう]へ[行|い]ってしまう。",
+      "blank": [
+       12,
+       16
+      ],
+      "en": "After all I'll end up going to school."
+     },
+     {
+      "ja": "彼はたぶんあのケーキを食べてしまう。",
+      "furigana": "[彼|かれ]はたぶんあのケーキを[食|た]べてしまう。",
+      "blank": [
+       13,
+       17
+      ],
+      "en": "He'll probably end up eating that cake."
+     }
+    ]
+   },
+   "～のような": {
+    "head": "～のような",
+    "en": "This pattern acts as an adjective for describing nouns."
+   },
+   "～ても": {
+    "head": "～ても",
+    "en": "By simply using the te-form and the 「も」 particle, you are essentially saying, \"even if you do X...\"",
+    "examples": [
+     {
+      "ja": "全部食べてもいいよ。",
+      "furigana": "[全部|ぜんぶ][食|た]べてもいいよ。",
+      "blank": [
+       4,
+       6
+      ],
+      "en": "You can go ahead and eat it all. (lit: Even if you eat it all, it's good, you know.)"
+     },
+     {
+      "ja": "雨が降ってもゴルフに行きます。",
+      "furigana": "[雨|あめ]が[降|ふ]ってもゴルフに[行|い]きます。",
+      "blank": [
+       4,
+       6
+      ],
+      "en": "I'll go to play golf even if it rains."
+     },
+     {
+      "ja": "先生でも、間違えます。",
+      "furigana": "[先生|せんせい]でも、[間違|まちが]えます。",
+      "blank": [
+       2,
+       4
+      ],
+      "en": "Even the teacher makes mistakes."
+     }
+    ]
+   },
+   "～みたい": {
+    "head": "～みたい",
+    "en": "It means that something seems to be (difficult/deep/etc).",
+    "examples": [
+     {
+      "ja": "この本は難しいみたい。",
+      "furigana": "この[本|ほん]は[難|むずか]しいみたい。",
+      "blank": [
+       7,
+       10
+      ],
+      "en": "This book seems to be difficult."
+     },
+     {
+      "ja": "あの湖は深いみたい。",
+      "furigana": "あの[湖|みずうみ]は[深|ふか]いみたい。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "That lake seems to be deep."
+     }
+    ]
+   },
+   "～ながら": {
+    "head": "～ながら",
+    "en": "This form shows that two actions are happening at once, such as \"the boy eats cake while he drinks coffee.\" This form is used with the verb stem of a verb, and simply appended to the end. The emphasis is stronger on the second verb in the series. The second verb in the series is also the verb which determines the tense."
+   },
+   "～なくてもいい": {
+    "head": "～なくてもいい",
+    "en": "It means something doesn't have to be done. (It's fine not to do it.)",
+    "examples": [
+     {
+      "ja": "君は今日学校へ行かなくてもいい。",
+      "furigana": "[君|きみ]は[今日|きょう][学校|がっこう]へ[行|い]かなくてもいい。",
+      "blank": [
+       9,
+       15
+      ],
+      "en": "You don't have to go to school today."
+     },
+     {
+      "ja": "これを運ばなくてもいい。",
+      "furigana": "これを[運|はこ]ばなくてもいい。",
+      "blank": [
+       5,
+       11
+      ],
+      "en": "This doesn't have to be transported."
+     }
+    ]
+   },
+   "～てよかった": {
+    "head": "～てよかった",
+    "en": "This is used to express your gratitude for something you were able to do.",
+    "examples": [
+     {
+      "ja": "駅で久しぶりに友達と会えてよかった。",
+      "furigana": "[駅|えき]で[久|ひさ]しぶりに[友達|ともだち]と[会|あ]えてよかった。",
+      "blank": [
+       12,
+       17
+      ],
+      "en": "I'm glad I could meet my friend at the station after a long time."
+     },
+     {
+      "ja": "ジェットコースターに乗れてよかった。",
+      "furigana": "ジェットコースターに[乗|の]れてよかった。",
+      "blank": [
+       12,
+       17
+      ],
+      "en": "It was good to ride the roller coaster."
+     },
+     {
+      "ja": "電車に間に合ってよかった。",
+      "furigana": "[電車|でんしゃ]に[間|ま]に[合|あ]ってよかった。",
+      "blank": [
+       7,
+       12
+      ],
+      "en": "I'm glad I was on time for the train."
+     }
+    ]
+   },
+   "～たら": {
+    "head": "～たら",
+    "en": "Used to refer to conditional (if) dependence. If we say A　～たら　B, that means B is valid, contingent to fulfillment of A.\nThe initial た in ～たら comes from the short form past tense ending of predicates",
+    "examples": [
+     {
+      "ja": "日本に行ったら、着物を買います。",
+      "furigana": "[日本|にほん]に[行|い]ったら、[着物|きもの]を[買|か]います。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "I will buy a kimono if (and when) I go to Japan."
+     },
+     {
+      "ja": "天気が良かったら、散歩に行きます。",
+      "furigana": "[天気|てんき]が[良|よ]かったら、[散歩|さんぽ]に[行|い]きます。",
+      "blank": [
+       6,
+       8
+      ],
+      "en": "If the weather is good, we will go for a walk."
+     },
+     {
+      "ja": "日本人だったら、この言葉を知っているでしょう。",
+      "furigana": "[日本|にほん][人|じん]だったら、この[言葉|ことば]を[知|し]っているでしょう。",
+      "blank": [
+       5,
+       7
+      ],
+      "en": "If the person is Japanese, they will probably know this word."
+     }
+    ]
+   },
+   "～にくい": {
+    "head": "～にくい",
+    "en": "If used with after a verb stem, it means that the verb is hard to do. Basically the opposite of yasui.",
+    "examples": [
+     {
+      "ja": "この字は読みにくい。",
+      "furigana": "この[字|じ]は[読|よ]みにくい。",
+      "blank": [
+       6,
+       9
+      ],
+      "en": "This hand-writing is hard to read."
+     }
+    ]
+   },
+   "～られる": {
+    "head": "～られる"
+   },
+   "～そうです": {
+    "head": "そうです",
+    "en": "It means \"it seems like\".",
+    "examples": [
+     {
+      "ja": "明日雪が降りそうです。",
+      "furigana": "[明日|あした][雪|ゆき]が[降|ふ]りそうです。",
+      "blank": [
+       6,
+       10
+      ],
+      "en": "Tomorrow it looks like it will snow."
+     },
+     {
+      "ja": "田中さんは忙しそうです。",
+      "furigana": "[田中|たなか]さんは[忙|いそが]しそうです。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "Mr. Tanaka seems busy."
+     },
+     {
+      "ja": "この本は高そうです。",
+      "furigana": "この[本|ほん]は[高|たか]そうです。",
+      "blank": [
+       5,
+       9
+      ],
+      "en": "This book looks expensive."
+     },
+     {
+      "ja": "この椅子は丈夫そうです。",
+      "furigana": "この[椅子|いす]は[丈夫|じょうぶ]そうです。",
+      "blank": [
+       7,
+       11
+      ],
+      "en": "This chair looks sturdy."
+     }
+    ]
+   }
+  },
+  "N3": {
+   "～たび～": {
+    "head": "～たび～",
+    "en": "~ whenever ~"
+   },
+   "ようにする": {
+    "head": "ようにする",
+    "en": "Make sure to do ~"
+   },
+   "まさか": {
+    "head": "まさか",
+    "en": "\"Impossible!\""
+   },
+   "～げ": {
+    "head": "～げ",
+    "en": "seems like~"
+   },
+   "～始める": {
+    "head": "～始める",
+    "en": "To start to ~"
+   },
+   "～らしい": {
+    "head": "～らしい",
+    "en": "Seems like, Hearsay"
+   },
+   "～ぐらい": {
+    "head": "～ぐらい",
+    "en": "about/around ~"
+   },
+   "～には～の～がある": {
+    "head": "～には～の～がある",
+    "en": "There is ~ in ~"
+   },
+   "～ても": {
+    "head": "～ても",
+    "en": "Even if~"
+   },
+   "～によると": {
+    "head": "～によると",
+    "en": "According to, Due to, By means of"
+   },
+   "むしろ": {
+    "head": "むしろ",
+    "en": "rather; better; instead"
+   },
+   "～として": {
+    "head": "～として",
+    "en": "As ~, In the role of ~"
+   },
+   "N+ばかり": {
+    "head": "N+ばかり",
+    "en": "Nothing but ~"
+   },
+   "すぎない（過ぎない）": {
+    "head": "すぎない（過ぎない）",
+    "en": "merely ~ ; no more than ~"
+   },
+   "～っぽい": {
+    "head": "～っぽい",
+    "en": "Characteristic of ~"
+   },
+   "すでに（既に）": {
+    "head": "すでに（既に）",
+    "en": "already ~"
+   },
+   "おいて（於いて）": {
+    "head": "おいて（於いて）",
+    "en": "as for ~ ; regarding ~"
+   },
+   "ほど": {
+    "head": "ほど",
+    "en": "To the extent"
+   },
+   "～ないで": {
+    "head": "～ないで",
+    "en": "Without doing ~"
+   },
+   "つい": {
+    "head": "つい",
+    "en": "Without thinking"
+   },
+   "ふり": {
+    "head": "ふり",
+    "en": "Pretend to ~"
+   },
+   "まま": {
+    "head": "まま",
+    "en": "In its current state"
+   },
+   "～ために": {
+    "head": "～ために",
+    "en": "In order to~"
+   },
+   "～ないうちに": {
+    "head": "～ないうちに",
+    "en": "Before ~ happens (before it rains, ~)"
+   },
+   "～としたら": {
+    "head": "～としたら",
+    "en": "If we assume ~"
+   },
+   "つもりで": {
+    "head": "つもりで",
+    "en": "having the intention of~"
+   },
+   "～に関する": {
+    "head": "～に関する",
+    "en": "in relation to ~"
+   },
+   "～とても～ない": {
+    "head": "～とても～ない",
+    "en": "Can't possibly"
+   },
+   "どうしても": {
+    "head": "どうしても",
+    "en": "By all means, At any rate"
+   },
+   "～とともに～": {
+    "head": "～とともに～",
+    "en": "as well as; with; along with; at the same time"
+   },
+   "きり": {
+    "head": "きり",
+    "en": "just, for good"
+   },
+   "～によって": {
+    "head": "～によって",
+    "en": "Depending on ~"
+   },
+   "ように": {
+    "head": "ように",
+    "en": "In order that ~"
+   },
+   "～て初めて": {
+    "head": "～て初めて",
+    "en": "Only when ~, that ~; It is not until ~, that ~"
+   },
+   "～がち": {
+    "head": "～がち",
+    "en": "Tends to be ~"
+   },
+   "～ず": {
+    "head": "～ず",
+    "en": "Without doing ~ (shortened form of ~ないで)"
+   },
+   "～ようになる": {
+    "head": "～ようになる",
+    "en": "A change which has taken place or will take place."
+   },
+   "せいぜい": {
+    "head": "せいぜい",
+    "en": "As far as possible, At the most"
+   },
+   "N+を始め": {
+    "head": "N+を始め",
+    "en": "for example; starting with"
+   },
+   "～ば～ほど": {
+    "head": "～ば～ほど",
+    "en": "The more ~ the ~er something gets (the more you study the smarter you get)"
+   },
+   "～たて": {
+    "head": "～たて",
+    "en": "newly/ freshly/ just did something"
+   },
+   "～は～くらいです": {
+    "head": "～は～くらいです",
+    "en": "(How much) ~ (adj) is ~"
+   },
+   "どうやら": {
+    "head": "どうやら",
+    "en": "I think that ~"
+   },
+   "～かえって": {
+    "head": "～かえって",
+    "en": "on the contrary"
+   },
+   "～さえ～ば": {
+    "head": "～さえ～ば",
+    "en": "~if only~then..."
+   },
+   "こそ": {
+    "head": "こそ",
+    "en": "(Emphasis)"
+   },
+   "～になれる": {
+    "head": "～になれる",
+    "en": "get used to ~ ; come to be ~"
+   },
+   "さらに（更に）": {
+    "head": "さらに（更に）",
+    "en": "Furthermore"
+   },
+   "～代わり": {
+    "head": "～代わり",
+    "en": "In place of ~"
+   },
+   "まい": {
+    "head": "まい",
+    "en": "probably won't"
+   },
+   "わざわざ": {
+    "head": "わざわざ",
+    "en": "To bother oneself to do something"
+   },
+   "おかげで": {
+    "head": "おかげで",
+    "en": "Thanks to ~"
+   },
+   "さえ": {
+    "head": "さえ",
+    "en": "even; if only; if just; as long as; the only thing needed"
+   },
+   "～たものだ": {
+    "head": "～たものだ",
+    "en": "This used to ~ / This was what ~"
+   },
+   "～のような": {
+    "head": "～のような",
+    "en": "like ~"
+   },
+   "的": {
+    "head": "的",
+    "en": "Turns nouns into adjectives. Like English '-al'"
+   },
+   "いったい（一体）": {
+    "head": "いったい（一体）",
+    "en": "\"What in the world?\""
+   },
+   "～ことになる": {
+    "head": "～ことになる",
+    "en": "To be decided, to be arranged."
+   },
+   "～に違いない": {
+    "head": "～に違いない",
+    "en": "There is no doubt that ~, I am sure that ~"
+   },
+   "なかなか": {
+    "head": "なかなか",
+    "en": "Considerably"
+   }
+  }
+ }
+}
