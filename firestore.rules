@@ -781,98 +781,18 @@ service cloud.firestore {
 
     // Group codes for the dailies (src/cloud/groups.ts). Anyone can look a code up (friends need no
     // account to join); a signed-in player makes their own; joining only counts one more friend, up to 12.
-    // Islands (src/cloud/islands.ts, src/island/): islands/<uid>, a player's island. Its owner's friends (and its
-    // builders) may look at it. The owner changes anything but who owns it; the builders the owner picked (up to 10)
-    // change the island and its book; any other friend only waters a plot (one plot, nothing else on the island).
-    // What a move takes from or adds to a bag stays in each player's own save.
+    // Islands and Teams moved to the Realtime Database (src/cloud/islands.ts, src/cloud/teams.ts; its rules in
+    // database.rules.json). What was here is only read now, once, to bring it over: an island by its owner (or seen
+    // as it was by its friends and builders until then), a team by its members. Nothing is written here any more
+    // (a tab still on the old version can't use up the quota).
     match /islands/{uid} {
-      function friendOf() {
-        return request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends;
-      }
-      function islandOk(d) {
-        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by', 'front', 'tune', 'v'])
-          && d.log is list && d.log.size() <= 30 && d.name is string && d.name.size() <= 40;
-      }
-      function onlyIsland() {
-        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['island', 'log', 'at']);
-      }
-      function watering() {
-        let ni = request.resource.data.island;
-        let oi = resource.data.island;
-        let pd = ni.plots.diff(oi.plots);
-        return ni.diff(oi).affectedKeys().hasOnly(['plots'])
-          && pd.addedKeys().size() == 0 && pd.removedKeys().size() == 0 && pd.changedKeys().size() == 1;
-      }
-      allow get: if request.auth != null && (request.auth.uid == uid || friendOf() || request.auth.uid in resource.data.builders);
-      allow create: if request.auth != null && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['owner', 'name', 'island', 'builders', 'log', 'at'])
-        && request.resource.data.owner == uid && islandOk(request.resource.data)
-        && request.resource.data.builders.size() == 0 && request.resource.data.log.size() == 0;
-      allow update: if request.auth != null && request.resource.data.owner == uid && islandOk(request.resource.data) && (
-        (request.auth.uid == uid
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'island', 'builders', 'log', 'at'])
-          && request.resource.data.builders is list && request.resource.data.builders.size() <= 10)
-        || (request.auth.uid in resource.data.builders && onlyIsland())
-        || (friendOf() && onlyIsland() && watering())
-      );
+      allow get: if request.auth != null && (request.auth.uid == uid
+        || request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends
+        || request.auth.uid in resource.data.builders);
     }
-
-    // Who is on an island right now (src/island/live.ts): each player writes only their own spot; everyone who may
-    // see the island sees them; the player or the owner removes it. `world`: on the island, or down in the week's
-    // dungeon under it ("island", "dungeon:<week>"), so only those in the same place are seen.
-    match /islands/{uid}/here/{who} {
-      function seesIsland() {
-        return request.auth.uid == uid
-          || request.auth.uid in get(/databases/$(database)/documents/scores/$(uid)).data.friends
-          || request.auth.uid in get(/databases/$(database)/documents/islands/$(uid)).data.builders;
-      }
-      allow read: if request.auth != null && seesIsland();
-      allow create, update: if request.auth != null && request.auth.uid == who && seesIsland()
-        && request.resource.data.keys().hasOnly(['name', 'face', 'x', 'y', 'left', 'at', 'tool', 'tv', 'tune', 'pose', 'emote', 'world'])
-        && (!('world' in request.resource.data) || (request.resource.data.world is string && request.resource.data.world.size() <= 24))
-        && request.resource.data.name is string && request.resource.data.name.size() <= 40
-        && request.resource.data.x is number && request.resource.data.y is number && request.resource.data.left is bool
-        && (!('tool' in request.resource.data) || (request.resource.data.tool is string && request.resource.data.tool.size() <= 10))
-        && (!('tv' in request.resource.data) || request.resource.data.tv == null
-          || (request.resource.data.tv is map && request.resource.data.tv.keys().hasOnly(['cell', 'card', 'clip', 'at', 'on'])
-            && request.resource.data.tv.clip is string && request.resource.data.tv.clip.size() <= 200))
-        && (!('tune' in request.resource.data) || request.resource.data.tune == null
-          || (request.resource.data.tune is map && request.resource.data.tune.keys().hasOnly(['key', 'value', 'at'])))
-        && (!('pose' in request.resource.data) || request.resource.data.pose == null || request.resource.data.pose in ['sit', 'sleep', 'cart', 'zip'])
-        && (!('emote' in request.resource.data) || request.resource.data.emote == null
-          || (request.resource.data.emote is map && request.resource.data.emote.keys().hasOnly(['e', 'at'])
-            && request.resource.data.emote.e is string && request.resource.data.emote.e.size() <= 8));
-      allow delete: if request.auth != null && (request.auth.uid == who || request.auth.uid == uid);
-    }
-
-    // Teams (src/cloud/teams.ts): an island shared by its members, all of the same rank, like a guild's. Anyone
-    // signed in may read a team by its code (the doc's id), to join it; its members follow it and change its island,
-    // its book and its name (never the members); a player joins by adding only themself (20 at most) and leaves by
-    // taking only themself out; the last one out deletes it.
     match /teams/{code} {
-      function member() {
-        return request.auth.uid in resource.data.members;
-      }
-      function teamOk(d) {
-        return d.island is map && d.island.keys().hasOnly(['fg', 'bg', 'plots', 'shown', 'crossed', 'by', 'front', 'tune', 'v'])
-          && d.members is list && d.members.size() >= 1 && d.members.size() <= 20
-          && d.names is map && d.name is string && d.name.size() <= 40 && d.log is list && d.log.size() <= 30;
-      }
       allow get: if request.auth != null;
       allow list: if request.auth != null && request.auth.uid in resource.data.members;
-      allow create: if request.auth != null && code.size() == 8
-        && request.resource.data.keys().hasOnly(['name', 'members', 'names', 'island', 'log', 'createdBy', 'at'])
-        && request.resource.data.members == [request.auth.uid] && request.resource.data.createdBy == request.auth.uid
-        && teamOk(request.resource.data);
-      allow update: if request.auth != null && teamOk(request.resource.data) && (
-        (member() && request.resource.data.members == resource.data.members
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'island', 'log', 'at']))
-        || (!member() && request.resource.data.members == resource.data.members.concat([request.auth.uid])
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'names', 'at']))
-        || (member() && request.resource.data.members == resource.data.members.removeAll([request.auth.uid])
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['members', 'names', 'at']))
-      );
-      allow delete: if request.auth != null && member() && resource.data.members.size() == 1;
     }
 
     match /groups/{code} {

@@ -48,8 +48,7 @@ function onlineAct(owner: string, myName: string): Act {
       if (change) useProgress.getState().islandBags(change);
       return null;
     } catch (e) {
-      const code = (e as { code?: string })?.code;
-      return code === 'permission-denied' ? tr('Not allowed on this island.', 'Pas permis sur cette île.') : e instanceof Error ? e.message : tr('That didn’t work.', 'Ça n’a pas marché.');
+      return /permission/i.test(String((e as { code?: string })?.code ?? (e as Error)?.message)) ? tr('Not allowed on this island.', 'Pas permis sur cette île.') : e instanceof Error ? e.message : tr('That didn’t work.', 'Ça n’a pas marché.');
     }
   };
 }
@@ -152,6 +151,14 @@ function MyIslandOnline({ me, friends }: { me: { uid: string; name: string }; fr
   }, [me.uid, me.name]);
   const names = useMemo(() => Object.fromEntries([[me.uid, me.name], ...friends.map((f) => [f.uid, f.name])]), [me, friends]);
   const act = useMemo(() => onlineAct(me.uid, me.name), [me.uid, me.name]);
+  // Your friends, copied onto your island (the database lets them in by that list).
+  const friendIds = friends.map((f) => f.uid).sort().join(',');
+  const online = !!d;
+  useEffect(() => {
+    if (!online) return;
+    const t = window.setTimeout(() => void cloud().then((c) => c.syncFriends(friendIds ? friendIds.split(',') : [])).catch(() => {}), 1500);
+    return () => window.clearTimeout(t);
+  }, [online, friendIds]);
   const who: Who = { uid: me.uid, owner: me.uid };
   if (d === undefined)
     return (
@@ -286,6 +293,11 @@ function FriendIsland({ me, friend, friends }: { me: { uid: string; name: string
         🏝️ {d.name || friend.name}{' '}
         <span className="text-xs font-semibold text-ink-soft">{mode === 'build' ? tr('· you’re one of its builders', '· tu es l’un de ses bâtisseurs') : tr('· visiting', '· en visite')}</span>
       </p>
+      {d.old && (
+        <p className="text-xs text-ink-soft">
+          {tr(`As it was: ${friend.name} has to open their island once for you to water or build here.`, `Telle qu’elle était : ${friend.name} doit ouvrir son île une fois pour que tu puisses arroser ou construire ici.`)}
+        </p>
+      )}
       <IslandView key={friend.uid} shared={d.island} mode={mode} act={act} who={{ uid: me.uid, owner: friend.uid }} names={names} live={{ owner: friend.uid, uid: me.uid, name: me.name }} />
     </div>
   );
@@ -309,8 +321,7 @@ function teamAct(code: string, myName: string): Act {
       if (change) useProgress.getState().islandBags(change);
       return null;
     } catch (e) {
-      const why = (e as { code?: string })?.code;
-      return why === 'permission-denied' ? tr('Not allowed on this island.', 'Pas permis sur cette île.') : e instanceof Error ? e.message : tr('That didn’t work.', 'Ça n’a pas marché.');
+      return /permission/i.test(String((e as { code?: string })?.code ?? (e as Error)?.message)) ? tr('Not allowed on this island.', 'Pas permis sur cette île.') : e instanceof Error ? e.message : tr('That didn’t work.', 'Ça n’a pas marché.');
     }
   };
 }
