@@ -9,6 +9,7 @@ Rules the owner set; keep to them in every change.
 - **The point of the JLPT games is to learn Japanese.** Once a question is over (right, wrong or timed out), always show the **reading under the character** (kana for a word, on/kun readings for a kanji), with its meaning. Any new JLPT game or round must do the same.
 - **Every Japanese word, kanji, reading and grammar point comes from `src/data/jlpt.json`** (Coto Academy's *JLPT Grammar and Vocab Mega List*, the document the owner gave). Pictures aside, no other source — **ask the owner for permission before using any other source**, even for a single word or a flavour line.
 - Sources the owner allowed for the grammar points' explanations and example sentences (16 November 2026): **Tatoeba** (tatoeba.org, CC BY 2.0 FR) and **Wikibooks' *JLPT Guide*** (CC BY-SA). Credit each one where it's shown. Any other source still needs the owner's permission.
+- The owner's own grammar books (`src/data/jlpt-books.json`, `scripts/data/books/`): only each book's **table of contents** (the list of points, units, pages) comes from the book. Every meaning, explanation and example is **written by the AI**, never copied or paraphrased from the book's pages, and shown as "written by AI, check it". Never transcribe a book's content, and never look for or download copies of the books.
 - Coming later: **English and French** for the JLPT content (meanings shown in the player's language). Keep meanings in data (not hard-coded in components) so a French version can be added next to the English one.
 
 ## Pictures

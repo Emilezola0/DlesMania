@@ -1,0 +1,4003 @@
+{
+ "about": "The owner’s grammar books: their list of points only; meanings, explanations and examples written by an AI (Claude). scripts/build-jlpt-books.mjs",
+ "books": [
+  {
+   "id": "mimi-n2",
+   "title": "耳から覚える 日本語能力試験 文法トレーニング N2",
+   "edition": "改訂版",
+   "authors": "安藤栄里子・今川和",
+   "publisher": "ALC (アルク)",
+   "level": "N2",
+   "units": [
+    {
+     "unit": 1,
+     "from": 1,
+     "to": 12,
+     "page": 12
+    },
+    {
+     "unit": 2,
+     "from": 13,
+     "to": 23,
+     "page": 22
+    },
+    {
+     "unit": 3,
+     "from": 24,
+     "to": 36,
+     "page": 32
+    },
+    {
+     "unit": 4,
+     "from": 37,
+     "to": 48,
+     "page": 44
+    },
+    {
+     "unit": 5,
+     "from": 49,
+     "to": 60,
+     "page": 53
+    },
+    {
+     "unit": 6,
+     "from": 61,
+     "to": 72,
+     "page": 61
+    },
+    {
+     "unit": 7,
+     "from": 73,
+     "to": 86,
+     "page": 76
+    },
+    {
+     "unit": 8,
+     "from": 87,
+     "to": 98,
+     "page": 87
+    },
+    {
+     "unit": 9,
+     "from": 99,
+     "to": 110,
+     "page": 98
+    }
+   ],
+   "points": [
+    {
+     "n": 1,
+     "p": "～ことだ",
+     "unit": 1,
+     "page": 12,
+     "en": "You should…, the best thing is to… (advice)",
+     "fr": "Il faut…, le mieux est de… (conseil)",
+     "form": "V-dict / V-ない + ことだ",
+     "note": {
+      "en": "Advice given to one person about what they should do, often by someone older or more experienced. Not used for rules or for oneself.",
+      "fr": "Un conseil donné à quelqu’un sur ce qu’il devrait faire, souvent par une personne plus âgée ou plus expérimentée. Pas pour une règle, ni pour soi-même."
+     },
+     "ex": [
+      {
+       "ja": "試験に合格したいなら、毎日勉強することだ。",
+       "furigana": "[試験|しけん]に[合格|ごうかく]したいなら、[毎日|まいにち][勉強|べんきょう]することだ。",
+       "blank": [
+        17,
+        20
+       ],
+       "en": "If you want to pass the exam, you should study every day.",
+       "fr": "Si tu veux réussir l’examen, le mieux est d’étudier tous les jours."
+      },
+      {
+       "ja": "風邪のときは、無理をしないことだ。",
+       "furigana": "[風邪|かぜ]のときは、[無理|むり]をしないことだ。",
+       "blank": [
+        13,
+        16
+       ],
+       "en": "When you have a cold, the best thing is not to overdo it.",
+       "fr": "Quand on a un rhume, le mieux est de ne pas forcer."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "p": "～ことだから",
+     "unit": 1,
+     "page": 12,
+     "en": "Knowing (someone) as I do…, since it’s…",
+     "fr": "Connaissant (quelqu’un)…, vu que c’est…",
+     "form": "N の + ことだから",
+     "note": {
+      "en": "Draws a guess from what everyone knows about a person: “it’s him, so surely…”. The noun is almost always a person.",
+      "fr": "Tire une supposition de ce qu’on sait d’une personne : « c’est lui, donc sûrement… ». Le nom est presque toujours une personne."
+     },
+     "ex": [
+      {
+       "ja": "真面目な田中さんのことだから、約束を忘れるはずがない。",
+       "furigana": "[真面目|まじめ]な[田中|たなか]さんのことだから、[約束|やくそく]を[忘|わす]れるはずがない。",
+       "blank": [
+        9,
+        14
+       ],
+       "en": "Tanaka is so serious, he can’t have forgotten the appointment.",
+       "fr": "Tanaka est si sérieux qu’il n’a pas pu oublier le rendez-vous."
+      },
+      {
+       "ja": "姉のことだから、また遅れて来るだろう。",
+       "furigana": "[姉|あね]のことだから、また[遅|おく]れて[来|く]るだろう。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "Knowing my sister, she’ll be late again.",
+       "fr": "Connaissant ma sœur, elle va encore arriver en retard."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "p": "～ことに",
+     "unit": 1,
+     "page": 12,
+     "en": "What is (surprising, sad…) is that…",
+     "fr": "Ce qui est (étonnant, triste…), c’est que…",
+     "form": "V-た / い-adj / な-adj な + ことに",
+     "note": {
+      "en": "Puts the speaker’s feeling first, then the fact that causes it. Used with words of emotion: 驚いた, 残念な, うれしい, 不思議な…",
+      "fr": "Donne d’abord le sentiment, puis le fait qui le cause. S’emploie avec des mots d’émotion : 驚いた, 残念な, うれしい, 不思議な…"
+     },
+     "ex": [
+      {
+       "ja": "驚いたことに、彼は一人で山に登った。",
+       "furigana": "[驚|おどろ]いたことに、[彼|かれ]は[一人|ひとり]で[山|やま]に[登|のぼ]った。",
+       "blank": [
+        3,
+        6
+       ],
+       "en": "Surprisingly, he climbed the mountain alone.",
+       "fr": "Chose étonnante, il a gravi la montagne tout seul."
+      },
+      {
+       "ja": "残念なことに、旅行は中止になった。",
+       "furigana": "[残念|ざんねん]なことに、[旅行|りょこう]は[中止|ちゅうし]になった。",
+       "blank": [
+        3,
+        6
+       ],
+       "en": "Sadly, the trip was cancelled.",
+       "fr": "Malheureusement, le voyage a été annulé."
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "p": "～ことなく",
+     "unit": 1,
+     "page": 12,
+     "en": "Without (doing)",
+     "fr": "Sans (faire)",
+     "form": "V-dict + ことなく",
+     "note": {
+      "en": "A written, more formal ～ないで: something that could have happened did not, often to praise effort or constancy.",
+      "fr": "Un ～ないで plus écrit et plus soutenu : ce qui aurait pu arriver n’est pas arrivé, souvent pour saluer un effort ou une constance."
+     },
+     "ex": [
+      {
+       "ja": "彼女は一日も休むことなく働いた。",
+       "furigana": "[彼女|かのじょ]は[一日|いちにち]も[休|やす]むことなく[働|はたら]いた。",
+       "blank": [
+        8,
+        12
+       ],
+       "en": "She worked without taking a single day off.",
+       "fr": "Elle a travaillé sans prendre un seul jour de repos."
+      },
+      {
+       "ja": "迷うことなく、この道を選んだ。",
+       "furigana": "[迷|まよ]うことなく、この[道|みち]を[選|えら]んだ。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "I chose this path without hesitating.",
+       "fr": "J’ai choisi cette voie sans hésiter."
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "p": "～ものの",
+     "unit": 1,
+     "page": 12,
+     "coto": {
+      "level": "N2",
+      "pattern": "ものの"
+     },
+     "en": "Although…, even though… (but it didn’t go on as expected)",
+     "fr": "Bien que…, même si… (mais la suite n’est pas celle attendue)",
+     "form": "V / い-adj (plain) / な-adj な / N である + ものの",
+     "note": {
+      "en": "Admits the first fact, then says what follows is not what you would expect. Rather written; the second part is often a disappointment.",
+      "fr": "Reconnaît le premier fait, puis dit que la suite n’est pas celle qu’on attendrait. Plutôt écrit ; la seconde partie est souvent une déception."
+     },
+     "ex": [
+      {
+       "ja": "車を買ったものの、忙しくてほとんど乗っていない。",
+       "furigana": "[車|くるま]を[買|か]ったものの、[忙|いそが]しくてほとんど[乗|の]っていない。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "Although I bought a car, I’m so busy I hardly drive it.",
+       "fr": "J’ai beau avoir acheté une voiture, je suis si occupé que je ne la conduis presque pas."
+      },
+      {
+       "ja": "約束はしたものの、行けるかどうか分からない。",
+       "furigana": "[約束|やくそく]はしたものの、[行|い]けるかどうか[分|わ]からない。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "I did promise, but I don’t know if I can go.",
+       "fr": "J’ai bien promis, mais je ne sais pas si je pourrai y aller."
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "p": "～ものだ／ではない",
+     "unit": 1,
+     "page": 12,
+     "en": "One should… / one shouldn’t… (what is right, in general)",
+     "fr": "On doit… / on ne doit pas… (ce qui se fait, en général)",
+     "form": "V-dict / V-ない + ものだ; V-dict + ものではない",
+     "note": {
+      "en": "States a general rule of good manners or common sense, not a personal opinion. ものだ can also express a strong feeling (“how time flies!”) or a memory (V-た + ものだ).",
+      "fr": "Énonce une règle générale de politesse ou de bon sens, pas un avis personnel. ものだ peut aussi dire une émotion forte (« comme le temps passe ! ») ou un souvenir (V-た + ものだ)."
+     },
+     "ex": [
+      {
+       "ja": "人の話は最後まで聞くものだ。",
+       "furigana": "[人|ひと]の[話|はなし]は[最後|さいご]まで[聞|き]くものだ。",
+       "blank": [
+        10,
+        13
+       ],
+       "en": "You should listen to people until they finish.",
+       "fr": "On doit écouter les gens jusqu’au bout."
+      },
+      {
+       "ja": "人の悪口を言うものではない。",
+       "furigana": "[人|ひと]の[悪口|わるぐち]を[言|い]うものではない。",
+       "blank": [
+        7,
+        13
+       ],
+       "en": "You shouldn’t speak ill of others.",
+       "fr": "On ne doit pas dire du mal des autres."
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "p": "～ないものか／だろうか",
+     "unit": 1,
+     "page": 12,
+     "en": "Isn’t there some way to…? I wish I could…",
+     "fr": "N’y aurait-il pas moyen de… ? Si seulement on pouvait…",
+     "form": "V-ない + ものか / ものだろうか",
+     "note": {
+      "en": "A strong wish for something hard to make happen, said as a question to oneself. Often with 何とか or どうにか.",
+      "fr": "Un fort souhait pour une chose difficile à obtenir, dit comme une question à soi-même. Souvent avec 何とか ou どうにか."
+     },
+     "ex": [
+      {
+       "ja": "何とかして彼を助けられないものか。",
+       "furigana": "[何|なん]とかして[彼|かれ]を[助|たす]けられないものか。",
+       "blank": [
+        11,
+        16
+       ],
+       "en": "Isn’t there some way we could help him?",
+       "fr": "N’y aurait-il pas un moyen de l’aider ?"
+      },
+      {
+       "ja": "もっと安く旅行できないものだろうか。",
+       "furigana": "もっと[安|やす]く[旅行|りょこう]できないものだろうか。",
+       "blank": [
+        9,
+        17
+       ],
+       "en": "I wonder if there’s no way to travel more cheaply.",
+       "fr": "N’y aurait-il pas moyen de voyager moins cher ?"
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "p": "～ばかりか",
+     "unit": 1,
+     "page": 12,
+     "en": "Not only… but also",
+     "fr": "Non seulement… mais aussi",
+     "form": "V / い-adj (plain) / な-adj な / N + ばかりか",
+     "note": {
+      "en": "Adds a second, often more surprising, thing to the first. The second part often has も or まで.",
+      "fr": "Ajoute à la première chose une seconde, souvent plus surprenante. La seconde partie a souvent も ou まで."
+     },
+     "ex": [
+      {
+       "ja": "彼は英語ばかりか、中国語も話せる。",
+       "furigana": "[彼|かれ]は[英語|えいご]ばかりか、[中国語|ちゅうごくご]も[話|はな]せる。",
+       "blank": [
+        4,
+        8
+       ],
+       "en": "He speaks not only English but Chinese as well.",
+       "fr": "Il parle non seulement anglais, mais aussi chinois."
+      },
+      {
+       "ja": "雨が降ったばかりか、風まで強くなった。",
+       "furigana": "[雨|あめ]が[降|ふ]ったばかりか、[風|かぜ]まで[強|つよ]くなった。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "Not only did it rain, the wind got strong too.",
+       "fr": "Non seulement il a plu, mais en plus le vent s’est levé."
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "p": "～ばかりだ",
+     "unit": 1,
+     "page": 12,
+     "en": "Keeps on (getting worse…), only goes one way",
+     "fr": "Ne fait que (empirer…), va toujours dans le même sens",
+     "form": "V-dict + ばかりだ",
+     "note": {
+      "en": "A change that keeps going in one direction, usually a bad one. Often with verbs of change: 増える, 減る, 悪くなる.",
+      "fr": "Un changement qui continue dans un seul sens, le plus souvent mauvais. Souvent avec des verbes de changement : 増える, 減る, 悪くなる."
+     },
+     "ex": [
+      {
+       "ja": "物価は上がるばかりだ。",
+       "furigana": "[物価|ぶっか]は[上|あ]がるばかりだ。",
+       "blank": [
+        6,
+        10
+       ],
+       "en": "Prices just keep going up.",
+       "fr": "Les prix ne font qu’augmenter."
+      },
+      {
+       "ja": "祖父の病気は悪くなるばかりだ。",
+       "furigana": "[祖父|そふ]の[病気|びょうき]は[悪|わる]くなるばかりだ。",
+       "blank": [
+        10,
+        14
+       ],
+       "en": "My grandfather’s illness only gets worse.",
+       "fr": "La maladie de mon grand-père ne fait qu’empirer."
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "p": "～上（に）",
+     "unit": 1,
+     "page": 12,
+     "en": "On top of…, besides…",
+     "fr": "En plus de…, non content de…",
+     "form": "V / い-adj (plain) / な-adj な / N の + 上（に）",
+     "note": {
+      "en": "Adds a second point of the same kind (good + good, bad + bad). Close to ～ばかりか but more neutral.",
+      "fr": "Ajoute un second point de même nature (bien + bien, mal + mal). Proche de ～ばかりか, mais plus neutre."
+     },
+     "ex": [
+      {
+       "ja": "この店は安い上に、おいしい。",
+       "furigana": "この[店|みせ]は[安|やす]い[上|うえ]に、おいしい。",
+       "blank": [
+        6,
+        8
+       ],
+       "en": "This restaurant is cheap, and on top of that it’s good.",
+       "fr": "Ce restaurant est bon marché, et en plus il est bon."
+      },
+      {
+       "ja": "道に迷った上に、雨にも降られた。",
+       "furigana": "[道|みち]に[迷|まよ]った[上|うえ]に、[雨|あめ]にも[降|ふ]られた。",
+       "blank": [
+        5,
+        7
+       ],
+       "en": "I got lost, and on top of that I got caught in the rain.",
+       "fr": "Je me suis perdu, et en plus j’ai pris la pluie."
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "p": "～以上（は）／上は",
+     "unit": 1,
+     "page": 12,
+     "en": "Since…, now that… (you must)",
+     "fr": "Puisque…, du moment que… (il faut)",
+     "form": "V (plain) / N である + 以上（は）; V + 上は",
+     "note": {
+      "en": "Once a situation is set, the speaker draws what must follow: a duty, a resolve, or a strong guess. 上は is more formal.",
+      "fr": "Une fois une situation établie, on en tire ce qui doit suivre : un devoir, une résolution ou une forte supposition. 上は est plus soutenu."
+     },
+     "ex": [
+      {
+       "ja": "約束した以上、守らなければならない。",
+       "furigana": "[約束|やくそく]した[以上|いじょう]、[守|まも]らなければならない。",
+       "blank": [
+        4,
+        6
+       ],
+       "en": "Since I promised, I have to keep my word.",
+       "fr": "Puisque j’ai promis, je dois tenir parole."
+      },
+      {
+       "ja": "学生である以上は、勉強が一番大切だ。",
+       "furigana": "[学生|がくせい]である[以上|いじょう]は、[勉強|べんきょう]が[一番|いちばん][大切|たいせつ]だ。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "As long as you are a student, studying comes first.",
+       "fr": "Du moment qu’on est étudiant, les études passent avant tout."
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "p": "～上で",
+     "unit": 1,
+     "page": 12,
+     "coto": {
+      "level": "N2",
+      "pattern": "～た上で"
+     },
+     "en": "After (doing), once… / in (doing), for…",
+     "fr": "Après (avoir fait), une fois… / pour (faire), en matière de…",
+     "form": "V-た / N の + 上で (after); V-dict / N の + 上で (in doing)",
+     "note": {
+      "en": "With V-た: do one thing first, then the next on that basis (“after thinking it over”). With V-dict: “when it comes to doing…”.",
+      "fr": "Avec V-た : faire d’abord une chose, puis la suivante sur cette base (« après réflexion »). Avec V-dict : « quand il s’agit de… »."
+     },
+     "ex": [
+      {
+       "ja": "よく考えた上で、返事をします。",
+       "furigana": "よく[考|かんが]えた[上|うえ]で、[返事|へんじ]をします。",
+       "blank": [
+        5,
+        7
+       ],
+       "en": "I’ll answer after thinking it over carefully.",
+       "fr": "Je répondrai après y avoir bien réfléchi."
+      },
+      {
+       "ja": "外国語を学ぶ上で、辞書は欠かせない。",
+       "furigana": "[外国語|がいこくご]を[学|まな]ぶ[上|うえ]で、[辞書|じしょ]は[欠|か]かせない。",
+       "blank": [
+        6,
+        8
+       ],
+       "en": "When learning a foreign language, a dictionary is a must.",
+       "fr": "Pour apprendre une langue étrangère, un dictionnaire est indispensable."
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "p": "～まで",
+     "unit": 2,
+     "page": 22,
+     "en": "Even (as far as)…",
+     "fr": "Même, jusqu’à…",
+     "form": "N + まで",
+     "note": {
+      "en": "Shows that something goes further than expected: “even my parents came”. Not the まで of time or place (“until”).",
+      "fr": "Montre qu’une chose va plus loin que prévu : « même mes parents sont venus ». Ce n’est pas le まで du temps ou du lieu (« jusqu’à »)."
+     },
+     "ex": [
+      {
+       "ja": "子供までその歌を知っている。",
+       "furigana": "[子供|こども]までその[歌|うた]を[知|し]っている。",
+       "blank": [
+        2,
+        4
+       ],
+       "en": "Even children know that song.",
+       "fr": "Même les enfants connaissent cette chanson."
+      },
+      {
+       "ja": "親友にまで嘘をつかれた。",
+       "furigana": "[親友|しんゆう]にまで[嘘|うそ]をつかれた。",
+       "blank": [
+        3,
+        5
+       ],
+       "en": "Even my best friend lied to me.",
+       "fr": "Même mon meilleur ami m’a menti."
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "p": "～でも",
+     "unit": 2,
+     "page": 22,
+     "en": "…or something (a light suggestion); even…",
+     "fr": "…ou quelque chose comme ça (suggestion légère) ; même…",
+     "form": "N + でも",
+     "note": {
+      "en": "Softens a suggestion by giving one example among others (“how about tea or something?”). Can also mean “even” for an extreme case.",
+      "fr": "Adoucit une proposition en donnant un exemple parmi d’autres (« un thé, ou autre chose ? »). Peut aussi vouloir dire « même », pour un cas extrême."
+     },
+     "ex": [
+      {
+       "ja": "お茶でも飲みませんか。",
+       "furigana": "お[茶|ちゃ]でも[飲|の]みませんか。",
+       "blank": [
+        2,
+        4
+       ],
+       "en": "Shall we have some tea or something?",
+       "fr": "On prend un thé, ou autre chose ?"
+      },
+      {
+       "ja": "この問題は子供でも分かる。",
+       "furigana": "この[問題|もんだい]は[子供|こども]でも[分|わ]かる。",
+       "blank": [
+        7,
+        9
+       ],
+       "en": "Even a child can understand this problem.",
+       "fr": "Même un enfant peut comprendre ce problème."
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "p": "～ながら（も）",
+     "unit": 2,
+     "page": 22,
+     "coto": {
+      "level": "N1",
+      "pattern": "～ながらも"
+     },
+     "en": "Although…, while (being)…",
+     "fr": "Bien que…, tout en (étant)…",
+     "form": "V-ます stem / い-adj / な-adj / N + ながら（も）",
+     "note": {
+      "en": "Not “while doing”, but a contrast: two things that don’t go together are both true. Common set phrases: 残念ながら, 狭いながらも.",
+      "fr": "Pas « pendant que », mais une opposition : deux choses qui ne vont pas ensemble sont vraies toutes les deux. Tournures courantes : 残念ながら, 狭いながらも."
+     },
+     "ex": [
+      {
+       "ja": "狭いながらも、楽しい我が家だ。",
+       "furigana": "[狭|せま]いながらも、[楽|たの]しい[我|わ]が[家|や]だ。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "Though small, it’s our happy home.",
+       "fr": "Elle a beau être petite, c’est notre maison et on y est heureux."
+      },
+      {
+       "ja": "悪いと知りながら、嘘をついてしまった。",
+       "furigana": "[悪|わる]いと[知|し]りながら、[嘘|うそ]をついてしまった。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "I lied, even though I knew it was wrong.",
+       "fr": "J’ai menti, tout en sachant que c’était mal."
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "p": "～さえ…ば／たら",
+     "unit": 2,
+     "page": 22,
+     "coto": {
+      "level": "N3",
+      "pattern": "～さえ～ば"
+     },
+     "en": "If only…, as long as… (then that’s enough)",
+     "fr": "Il suffit que…, du moment que… (alors ça suffit)",
+     "form": "N さえ + V-ば; V-ます stem + さえすれば",
+     "note": {
+      "en": "One condition is all that’s needed for the result. さえ marks that single condition.",
+      "fr": "Une seule condition suffit pour le résultat. さえ marque cette condition unique."
+     },
+     "ex": [
+      {
+       "ja": "時間さえあれば、旅行に行きたい。",
+       "furigana": "[時間|じかん]さえあれば、[旅行|りょこう]に[行|い]きたい。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "If only I had the time, I’d like to travel.",
+       "fr": "Si seulement j’avais le temps, j’aimerais voyager."
+      },
+      {
+       "ja": "この薬を飲みさえすれば、すぐ治りますよ。",
+       "furigana": "この[薬|くすり]を[飲|の]みさえすれば、すぐ[治|なお]りますよ。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "Just take this medicine and you’ll get better soon.",
+       "fr": "Il suffit de prendre ce médicament, et ça ira vite mieux."
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "p": "～を…として",
+     "unit": 2,
+     "page": 22,
+     "en": "As…, taking (A) as (B)",
+     "fr": "En tant que…, en prenant (A) comme (B)",
+     "form": "N1 を N2 として",
+     "note": {
+      "en": "Gives something a role or a status: “with X as the goal / as the leader”.",
+      "fr": "Donne un rôle ou un statut à quelque chose : « avec X pour but / comme chef »."
+     },
+     "ex": [
+      {
+       "ja": "留学を目標として、毎日勉強している。",
+       "furigana": "[留学|りゅうがく]を[目標|もくひょう]として、[毎日|まいにち][勉強|べんきょう]している。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "I study every day with studying abroad as my goal.",
+       "fr": "J’étudie tous les jours avec pour objectif d’aller étudier à l’étranger."
+      },
+      {
+       "ja": "田中さんをリーダーとして、チームを作った。",
+       "furigana": "[田中|たなか]さんをリーダーとして、チームを[作|つく]った。",
+       "blank": [
+        4,
+        12
+       ],
+       "en": "We formed a team with Tanaka as leader.",
+       "fr": "Nous avons formé une équipe avec Tanaka comme chef."
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "p": "～に応じ（て）／応じ",
+     "unit": 2,
+     "page": 22,
+     "en": "According to…, depending on…",
+     "fr": "Selon…, en fonction de…",
+     "form": "N + に応じて / に応じた N",
+     "note": {
+      "en": "Something changes to fit something else that varies: age, budget, season, demand.",
+      "fr": "Une chose s’adapte à une autre qui varie : l’âge, le budget, la saison, la demande."
+     },
+     "ex": [
+      {
+       "ja": "年齢に応じて、料金が変わる。",
+       "furigana": "[年齢|ねんれい]に[応|おう]じて、[料金|りょうきん]が[変|か]わる。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "The price changes depending on age.",
+       "fr": "Le tarif change selon l’âge."
+      },
+      {
+       "ja": "予算に応じたプランを選んでください。",
+       "furigana": "[予算|よさん]に[応|おう]じたプランを[選|えら]んでください。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "Please choose a plan that fits your budget.",
+       "fr": "Choisissez une formule adaptée à votre budget."
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "p": "～に沿って／沿い",
+     "unit": 2,
+     "page": 22,
+     "en": "Along…, in line with…",
+     "fr": "Le long de…, conformément à…",
+     "form": "N + に沿って / に沿った N",
+     "note": {
+      "en": "Literally “along” a river or road; figuratively, following a plan, a wish or a rule.",
+      "fr": "Au sens propre, « le long de » une rivière ou d’une route ; au figuré, en suivant un plan, un souhait ou une règle."
+     },
+     "ex": [
+      {
+       "ja": "川に沿って桜が咲いている。",
+       "furigana": "[川|かわ]に[沿|そ]って[桜|さくら]が[咲|さ]いている。",
+       "blank": [
+        1,
+        5
+       ],
+       "en": "Cherry trees are blooming along the river.",
+       "fr": "Les cerisiers fleurissent le long de la rivière."
+      },
+      {
+       "ja": "計画に沿って工事を進める。",
+       "furigana": "[計画|けいかく]に[沿|そ]って[工事|こうじ]を[進|すす]める。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "The work goes ahead according to the plan.",
+       "fr": "Les travaux avancent conformément au plan."
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "p": "～をめぐって／めぐり",
+     "unit": 2,
+     "page": 22,
+     "en": "Over…, concerning… (a dispute)",
+     "fr": "Au sujet de…, autour de… (un débat)",
+     "form": "N + をめぐって / をめぐる N",
+     "note": {
+      "en": "A topic around which people argue or compete: debates, conflicts, rival opinions.",
+      "fr": "Un sujet autour duquel les gens débattent ou s’affrontent : discussions, conflits, avis opposés."
+     },
+     "ex": [
+      {
+       "ja": "新しい法律をめぐって、議論が続いている。",
+       "furigana": "[新|あたら]しい[法律|ほうりつ]をめぐって、[議論|ぎろん]が[続|つづ]いている。",
+       "blank": [
+        5,
+        10
+       ],
+       "en": "The debate over the new law goes on.",
+       "fr": "Le débat sur la nouvelle loi se poursuit."
+      },
+      {
+       "ja": "遺産をめぐる争いが起きた。",
+       "furigana": "[遺産|いさん]をめぐる[争|あらそ]いが[起|お]きた。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "A dispute broke out over the inheritance.",
+       "fr": "Une querelle a éclaté autour de l’héritage."
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "p": "～といった",
+     "unit": 2,
+     "page": 22,
+     "en": "Such as…, like… (examples)",
+     "fr": "Tels que…, comme… (exemples)",
+     "form": "N1 や N2 といった N3",
+     "note": {
+      "en": "Lists a few examples of a larger group, then names the group.",
+      "fr": "Donne quelques exemples d’un groupe plus grand, puis nomme ce groupe."
+     },
+     "ex": [
+      {
+       "ja": "京都や奈良といった古い町が好きだ。",
+       "furigana": "[京都|きょうと]や[奈良|なら]といった[古|ふる]い[町|まち]が[好|す]きだ。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "I like old towns such as Kyoto and Nara.",
+       "fr": "J’aime les vieilles villes comme Kyoto ou Nara."
+      },
+      {
+       "ja": "テニスやサッカーといったスポーツをよくする。",
+       "furigana": "テニスやサッカーといったスポーツをよくする。",
+       "blank": [
+        8,
+        12
+       ],
+       "en": "I often play sports like tennis and soccer.",
+       "fr": "Je fais souvent des sports comme le tennis ou le football."
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "p": "～てしようがない／しかたがない",
+     "unit": 2,
+     "page": 22,
+     "en": "Terribly, can’t help (feeling)…",
+     "fr": "Terriblement, ne pas pouvoir s’empêcher (de ressentir)…",
+     "form": "V-て / い-adj くて / な-adj で + しょうがない / しかたがない",
+     "note": {
+      "en": "A feeling or sensation so strong you can’t hold it back: sleepy, worried, want to… しようがない is the spoken form of しょうがない.",
+      "fr": "Un sentiment ou une sensation si fort qu’on ne peut pas le retenir : sommeil, inquiétude, envie… しようがない est la forme orale de しょうがない."
+     },
+     "ex": [
+      {
+       "ja": "昨日寝なかったので、眠くてしょうがない。",
+       "furigana": "[昨日|きのう][寝|ね]なかったので、[眠|ねむ]くてしょうがない。",
+       "blank": [
+        12,
+        19
+       ],
+       "en": "I didn’t sleep last night, so I’m terribly sleepy.",
+       "fr": "Je n’ai pas dormi hier, je tombe de sommeil."
+      },
+      {
+       "ja": "結果が気になってしかたがない。",
+       "furigana": "[結果|けっか]が[気|き]になってしかたがない。",
+       "blank": [
+        7,
+        14
+       ],
+       "en": "I can’t stop worrying about the result.",
+       "fr": "Je ne peux pas m’empêcher de penser au résultat."
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "p": "～ぬき（で／に）／（を）ぬきにして",
+     "unit": 2,
+     "page": 22,
+     "en": "Without…, leaving out…",
+     "fr": "Sans…, en laissant de côté…",
+     "form": "N + ぬきで / ぬきの N / をぬきにして",
+     "note": {
+      "en": "Something usually there is left out: no breakfast, no formalities. をぬきにしては…ない: “without X, Y is impossible”.",
+      "fr": "Une chose habituellement présente est laissée de côté : pas de petit-déjeuner, pas de formalités. をぬきにしては…ない : « sans X, Y est impossible »."
+     },
+     "ex": [
+      {
+       "ja": "今日は朝ご飯ぬきで出かけた。",
+       "furigana": "[今日|きょう]は[朝|あさ]ご[飯|はん]ぬきで[出|で]かけた。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "Today I left without breakfast.",
+       "fr": "Aujourd’hui, je suis parti sans petit-déjeuner."
+      },
+      {
+       "ja": "冗談はぬきにして、本当の話をしよう。",
+       "furigana": "[冗談|じょうだん]はぬきにして、[本当|ほんとう]の[話|はなし]をしよう。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "Joking aside, let’s talk seriously.",
+       "fr": "Trêve de plaisanteries, parlons sérieusement."
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "p": "～に相違ない",
+     "unit": 3,
+     "page": 32,
+     "en": "There’s no doubt that…, must be…",
+     "fr": "Il ne fait aucun doute que…, ce doit être…",
+     "form": "V / い-adj (plain) / な-adj / N + に相違ない",
+     "note": {
+      "en": "A written, more formal ～に違いない: the speaker is sure of their guess.",
+      "fr": "Un ～に違いない plus écrit et plus soutenu : on est sûr de sa supposition."
+     },
+     "ex": [
+      {
+       "ja": "犯人はこの男に相違ない。",
+       "furigana": "[犯人|はんにん]はこの[男|おとこ]に[相違|そうい]ない。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "This man must be the culprit.",
+       "fr": "Le coupable est forcément cet homme."
+      },
+      {
+       "ja": "彼女の話は事実に相違ない。",
+       "furigana": "[彼女|かのじょ]の[話|はなし]は[事実|じじつ]に[相違|そうい]ない。",
+       "blank": [
+        7,
+        12
+       ],
+       "en": "There’s no doubt her story is true.",
+       "fr": "Il ne fait aucun doute que son récit est vrai."
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "p": "～得る",
+     "unit": 3,
+     "page": 32,
+     "en": "Can, it’s possible that…",
+     "fr": "Pouvoir, il est possible que…",
+     "form": "V-ます stem + 得る (うる／える); 得ない (えない)",
+     "note": {
+      "en": "Says whether something is possible, not whether someone is able to do it. The positive is read うる or える, the negative is always えない. Common: あり得る, あり得ない.",
+      "fr": "Dit si une chose est possible, pas si quelqu’un sait la faire. Le positif se lit うる ou える, le négatif toujours えない. Courant : あり得る, あり得ない."
+     },
+     "ex": [
+      {
+       "ja": "そんなことは誰にでも起こり得る。",
+       "furigana": "そんなことは[誰|だれ]にでも[起|お]こり[得|う]る。",
+       "blank": [
+        13,
+        15
+       ],
+       "en": "That can happen to anyone.",
+       "fr": "Ça peut arriver à tout le monde."
+      },
+      {
+       "ja": "彼が負けるなんて、あり得ない。",
+       "furigana": "[彼|かれ]が[負|ま]けるなんて、あり[得|え]ない。",
+       "blank": [
+        11,
+        14
+       ],
+       "en": "Him losing? That’s impossible.",
+       "fr": "Lui, perdre ? C’est impossible."
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "p": "～がたい",
+     "unit": 3,
+     "page": 32,
+     "en": "Hard to (bring oneself to)…",
+     "fr": "Difficile à…, qu’on a du mal à…",
+     "form": "V-ます stem + がたい",
+     "note": {
+      "en": "Hard not because of skill but because of feelings: hard to believe, to forgive, to forget. With ability, use にくい.",
+      "fr": "Difficile non par manque de capacité, mais à cause des sentiments : difficile à croire, à pardonner, à oublier. Pour une capacité, on dit にくい."
+     },
+     "ex": [
+      {
+       "ja": "あの人がそんなことをしたとは信じがたい。",
+       "furigana": "あの[人|ひと]がそんなことをしたとは[信|しん]じがたい。",
+       "blank": [
+        16,
+        19
+       ],
+       "en": "It’s hard to believe that person did such a thing.",
+       "fr": "J’ai du mal à croire que cette personne ait fait ça."
+      },
+      {
+       "ja": "この旅は忘れがたい思い出になった。",
+       "furigana": "この[旅|たび]は[忘|わす]れがたい[思|おも]い[出|で]になった。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "This trip became an unforgettable memory.",
+       "fr": "Ce voyage est devenu un souvenir inoubliable."
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "p": "～一方（で）",
+     "unit": 3,
+     "page": 32,
+     "en": "While…, on the other hand…",
+     "fr": "Tandis que…, d’un autre côté…",
+     "form": "V / い-adj (plain) / な-adj な / N である + 一方（で）",
+     "note": {
+      "en": "Sets two sides of one thing side by side, often in contrast. V-dict + 一方だ (another use) means “keeps getting more and more”.",
+      "fr": "Met côte à côte deux aspects d’une même chose, souvent opposés. V-dict + 一方だ (autre emploi) veut dire « ne cesse de… »."
+     },
+     "ex": [
+      {
+       "ja": "都会は便利な一方で、家賃が高い。",
+       "furigana": "[都会|とかい]は[便利|べんり]な[一方|いっぽう]で、[家賃|やちん]が[高|たか]い。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "The city is convenient, but on the other hand rent is high.",
+       "fr": "La ville est pratique, mais d’un autre côté les loyers sont chers."
+      },
+      {
+       "ja": "彼は仕事をする一方、夜は大学に通っている。",
+       "furigana": "[彼|かれ]は[仕事|しごと]をする[一方|いっぽう]、[夜|よる]は[大学|だいがく]に[通|かよ]っている。",
+       "blank": [
+        7,
+        9
+       ],
+       "en": "While working, he also goes to university at night.",
+       "fr": "Tout en travaillant, il suit des cours à l’université le soir."
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "p": "～につき",
+     "unit": 3,
+     "page": 32,
+     "en": "Due to…, because of… (notices); per…",
+     "fr": "En raison de…, pour cause de… (avis) ; par…",
+     "form": "N + につき",
+     "note": {
+      "en": "The formal “because” of signs and notices (工事中につき). Also “per”: 一人につき千円.",
+      "fr": "Le « parce que » soutenu des panneaux et des avis (工事中につき). Veut aussi dire « par » : 一人につき千円."
+     },
+     "ex": [
+      {
+       "ja": "工事中につき、この道は通れません。",
+       "furigana": "[工事中|こうじちゅう]につき、この[道|みち]は[通|とお]れません。",
+       "blank": [
+        3,
+        6
+       ],
+       "en": "Due to construction, this road is closed.",
+       "fr": "Pour cause de travaux, cette route est fermée."
+      },
+      {
+       "ja": "参加費は一人につき千円です。",
+       "furigana": "[参加費|さんかひ]は[一人|ひとり]につき[千円|せんえん]です。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "The fee is 1,000 yen per person.",
+       "fr": "La participation est de 1 000 yens par personne."
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "p": "～やら…やら",
+     "unit": 3,
+     "page": 32,
+     "en": "…and…, what with… and… (and more)",
+     "fr": "…et…, entre… et… (et j’en passe)",
+     "form": "N / V-dict / い-adj + やら",
+     "note": {
+      "en": "Lists a few of many things, often with a feeling of being overwhelmed or busy.",
+      "fr": "Énumère quelques choses parmi beaucoup, souvent avec un sentiment d’être débordé."
+     },
+     "ex": [
+      {
+       "ja": "引っ越しの準備で、掃除やら荷造りやらで忙しい。",
+       "furigana": "[引|ひ]っ[越|こ]しの[準備|じゅんび]で、[掃除|そうじ]やら[荷造|にづく]りやらで[忙|いそが]しい。",
+       "blank": [
+        11,
+        18
+       ],
+       "en": "Getting ready to move, I’m busy with cleaning, packing and all.",
+       "fr": "Avec le déménagement, je suis débordé entre le ménage, les cartons et le reste."
+      },
+      {
+       "ja": "合格して、うれしいやら恥ずかしいやらだった。",
+       "furigana": "[合格|ごうかく]して、うれしいやら[恥|は]ずかしいやらだった。",
+       "blank": [
+        9,
+        18
+       ],
+       "en": "When I passed, I felt happy and embarrassed at once.",
+       "fr": "Quand j’ai réussi, j’étais à la fois content et gêné."
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "p": "～の／ものやら",
+     "unit": 3,
+     "page": 32,
+     "en": "I wonder… (with no idea)",
+     "fr": "Je me demande… (sans en avoir la moindre idée)",
+     "form": "question word … V (plain) + のやら / ものやら",
+     "note": {
+      "en": "An open question the speaker can’t answer, with a nuance of worry or helplessness. Comes with a question word: いつ, どこ, 何.",
+      "fr": "Une question ouverte à laquelle on ne peut pas répondre, avec une nuance d’inquiétude. Va avec un mot interrogatif : いつ, どこ, 何."
+     },
+     "ex": [
+      {
+       "ja": "息子は今どこにいるのやら。",
+       "furigana": "[息子|むすこ]は[今|いま]どこにいるのやら。",
+       "blank": [
+        9,
+        12
+       ],
+       "en": "I wonder where my son is right now.",
+       "fr": "Je me demande bien où est mon fils en ce moment."
+      },
+      {
+       "ja": "この雨はいつやむものやら。",
+       "furigana": "この[雨|あめ]はいつやむものやら。",
+       "blank": [
+        8,
+        12
+       ],
+       "en": "Who knows when this rain will stop.",
+       "fr": "Allez savoir quand cette pluie va cesser."
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "p": "～だの…だの",
+     "unit": 3,
+     "page": 32,
+     "en": "…and…, saying this and that (complaining)",
+     "fr": "…et…, à dire ceci et cela (en se plaignant)",
+     "form": "N / な-adj / V / い-adj (plain) + だの",
+     "note": {
+      "en": "Like ～やら…やら, but with a critical or annoyed tone, often about what someone keeps saying.",
+      "fr": "Comme ～やら…やら, mais sur un ton critique ou agacé, souvent à propos de ce que quelqu’un ne cesse de dire."
+     },
+     "ex": [
+      {
+       "ja": "弟は暑いだの疲れただの、文句ばかり言う。",
+       "furigana": "[弟|おとうと]は[暑|あつ]いだの[疲|つか]れただの、[文句|もんく]ばかり[言|い]う。",
+       "blank": [
+        4,
+        11
+       ],
+       "en": "My little brother keeps complaining: it’s hot, he’s tired…",
+       "fr": "Mon petit frère ne fait que se plaindre : il fait chaud, il est fatigué…"
+      },
+      {
+       "ja": "肉は嫌だの魚は苦手だの、わがままな子だ。",
+       "furigana": "[肉|にく]は[嫌|いや]だの[魚|さかな]は[苦手|にがて]だの、わがままな[子|こ]だ。",
+       "blank": [
+        3,
+        11
+       ],
+       "en": "He won’t eat meat, doesn’t like fish… what a fussy child.",
+       "fr": "Pas de viande, pas de poisson… quel enfant capricieux."
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "p": "～に応え（て）",
+     "unit": 3,
+     "page": 32,
+     "en": "In response to…, to meet (expectations)",
+     "fr": "En réponse à…, pour répondre à (des attentes)",
+     "form": "N + に応えて / に応える N",
+     "note": {
+      "en": "Answering what others expect or ask for: 期待, 要望, 声援. Not the same kanji as に応じて (according to).",
+      "fr": "Répondre à ce que les autres attendent ou demandent : 期待, 要望, 声援. Pas le même kanji que に応じて (selon)."
+     },
+     "ex": [
+      {
+       "ja": "親の期待に応えて、医者になった。",
+       "furigana": "[親|おや]の[期待|きたい]に[応|こた]えて、[医者|いしゃ]になった。",
+       "blank": [
+        4,
+        8
+       ],
+       "en": "Living up to his parents’ expectations, he became a doctor.",
+       "fr": "Pour répondre aux attentes de ses parents, il est devenu médecin."
+      },
+      {
+       "ja": "ファンの声に応えて、もう一曲歌った。",
+       "furigana": "ファンの[声|こえ]に[応|こた]えて、もう[一曲|いっきょく][歌|うた]った。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "Answering the fans’ calls, she sang one more song.",
+       "fr": "À la demande des fans, elle a chanté une chanson de plus."
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "p": "～のもとで／に",
+     "unit": 3,
+     "page": 32,
+     "en": "Under (the guidance of)…",
+     "fr": "Sous (la direction de)…",
+     "form": "N + のもとで / のもとに",
+     "note": {
+      "en": "Under someone’s influence or care (a teacher, a parent), or under a condition or rule.",
+      "fr": "Sous l’influence ou la protection de quelqu’un (un professeur, un parent), ou sous une condition ou une règle."
+     },
+     "ex": [
+      {
+       "ja": "有名な先生のもとでピアノを学んだ。",
+       "furigana": "[有名|ゆうめい]な[先生|せんせい]のもとでピアノを[学|まな]んだ。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "I studied piano under a famous teacher.",
+       "fr": "J’ai appris le piano auprès d’un professeur célèbre."
+      },
+      {
+       "ja": "青い空のもとで、運動会が開かれた。",
+       "furigana": "[青|あお]い[空|そら]のもとで、[運動会|うんどうかい]が[開|ひら]かれた。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "The sports day was held under a blue sky.",
+       "fr": "La fête du sport a eu lieu sous un ciel bleu."
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "p": "～にしては",
+     "unit": 3,
+     "page": 32,
+     "en": "For (a)…, considering…",
+     "fr": "Pour un(e)…, compte tenu de…",
+     "form": "V (plain) / N + にしては",
+     "note": {
+      "en": "The result is not what you’d expect from that starting point: “good, for a beginner”.",
+      "fr": "Le résultat n’est pas celui qu’on attendrait vu le point de départ : « bien, pour un débutant »."
+     },
+     "ex": [
+      {
+       "ja": "初めてにしては、よくできました。",
+       "furigana": "[初|はじ]めてにしては、よくできました。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "For a first time, you did well.",
+       "fr": "Pour une première fois, c’est très bien."
+      },
+      {
+       "ja": "十二月にしては暖かい日だ。",
+       "furigana": "[十二月|じゅうにがつ]にしては[暖|あたた]かい[日|ひ]だ。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "It’s a warm day for December.",
+       "fr": "Il fait doux pour un mois de décembre."
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "p": "～は／ならともかく（として）",
+     "unit": 3,
+     "page": 32,
+     "en": "Leaving… aside, … may be one thing, but…",
+     "fr": "… passe encore, mais… ; laissons… de côté",
+     "form": "N + は / ならともかく",
+     "note": {
+      "en": "Sets the first thing aside as not the point, to focus on the second, which matters more.",
+      "fr": "Écarte la première chose comme secondaire, pour insister sur la seconde, plus importante."
+     },
+     "ex": [
+      {
+       "ja": "味はともかく、この店は値段が安い。",
+       "furigana": "[味|あじ]はともかく、この[店|みせ]は[値段|ねだん]が[安|やす]い。",
+       "blank": [
+        1,
+        6
+       ],
+       "en": "Taste aside, this place is cheap.",
+       "fr": "Le goût, passe encore ; en tout cas, ce restaurant n’est pas cher."
+      },
+      {
+       "ja": "子供ならともかく、大人がそんなことをするなんて。",
+       "furigana": "[子供|こども]ならともかく、[大人|おとな]がそんなことをするなんて。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "A child, maybe, but for an adult to do that…",
+       "fr": "Un enfant, passe encore, mais un adulte qui fait ça…"
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "p": "～も…ば／なら～も",
+     "unit": 3,
+     "page": 32,
+     "en": "Both… and…, … as well as…",
+     "fr": "Et… et…, aussi bien… que…",
+     "form": "N1 も V-ば N2 も; N1 も な-adj なら N2 も",
+     "note": {
+      "en": "Lists two facts of the same kind about something, often to stress that it has everything (or every flaw).",
+      "fr": "Énumère deux faits de même nature, souvent pour dire qu’une chose a tout (ou tous les défauts)."
+     },
+     "ex": [
+      {
+       "ja": "彼は歌も歌えば、ダンスもできる。",
+       "furigana": "[彼|かれ]は[歌|うた]も[歌|うた]えば、ダンスもできる。",
+       "blank": [
+        3,
+        12
+       ],
+       "en": "He can both sing and dance.",
+       "fr": "Il sait aussi bien chanter que danser."
+      },
+      {
+       "ja": "この部屋は駅も近ければ、家賃も安い。",
+       "furigana": "この[部屋|へや]は[駅|えき]も[近|ちか]ければ、[家賃|やちん]も[安|やす]い。",
+       "blank": [
+        6,
+        15
+       ],
+       "en": "This flat is close to the station and cheap as well.",
+       "fr": "Cet appartement est près de la gare, et en plus le loyer est bas."
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "p": "～っぱなし",
+     "unit": 4,
+     "page": 44,
+     "coto": {
+      "level": "N1",
+      "pattern": "～っぱなし"
+     },
+     "en": "Left (on, open…), keeps on…",
+     "fr": "Laissé (allumé, ouvert…), ne pas arrêter de…",
+     "form": "V-ます stem + っぱなし",
+     "note": {
+      "en": "Something done and then left in that state when it shouldn’t be (lights left on), or a state that goes on and on (standing all day). Usually a complaint.",
+      "fr": "Une chose faite puis laissée dans cet état alors qu’elle ne devrait pas (lumière laissée allumée), ou un état qui dure (debout toute la journée). Souvent un reproche."
+     },
+     "ex": [
+      {
+       "ja": "電気をつけっぱなしで寝てしまった。",
+       "furigana": "[電気|でんき]をつけっぱなしで[寝|ね]てしまった。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "I fell asleep with the light left on.",
+       "fr": "Je me suis endormi en laissant la lumière allumée."
+      },
+      {
+       "ja": "今日は一日中立ちっぱなしだった。",
+       "furigana": "[今日|きょう]は[一日中|いちにちじゅう][立|た]ちっぱなしだった。",
+       "blank": [
+        8,
+        12
+       ],
+       "en": "I was on my feet all day today.",
+       "fr": "Aujourd’hui, je suis resté debout toute la journée."
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "p": "～っこない",
+     "unit": 4,
+     "page": 44,
+     "en": "No way…, can’t possibly…",
+     "fr": "Pas moyen que…, impossible que…",
+     "form": "V-ます stem + っこない",
+     "note": {
+      "en": "Spoken and strong: the speaker is sure something can’t happen. Often with a potential verb (できっこない, 分かりっこない).",
+      "fr": "Familier et catégorique : on est sûr qu’une chose ne peut pas arriver. Souvent avec un verbe potentiel (できっこない, 分かりっこない)."
+     },
+     "ex": [
+      {
+       "ja": "こんな難しい問題、解けっこないよ。",
+       "furigana": "こんな[難|むずか]しい[問題|もんだい]、[解|と]けっこないよ。",
+       "blank": [
+        11,
+        15
+       ],
+       "en": "There’s no way I can solve such a hard problem.",
+       "fr": "Un problème aussi dur, pas moyen que je le résolve."
+      },
+      {
+       "ja": "一日で全部なんて、できっこない。",
+       "furigana": "[一日|いちにち]で[全部|ぜんぶ]なんて、できっこない。",
+       "blank": [
+        11,
+        15
+       ],
+       "en": "All of it in one day? Impossible.",
+       "fr": "Tout en une journée ? Impossible."
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "p": "～きり",
+     "unit": 4,
+     "page": 44,
+     "coto": {
+      "level": "N3",
+      "pattern": "きり"
+     },
+     "en": "Only…, since… (and not again)",
+     "fr": "Seulement…, depuis… (et plus jamais)",
+     "form": "N + きり; V-た + きり",
+     "note": {
+      "en": "With a noun: “only” (二人きり). With V-た + きり…ない: something happened once and the expected next step never came (“left and never came back”). Spoken: っきり.",
+      "fr": "Avec un nom : « seulement » (二人きり). Avec V-た + きり…ない : une chose est arrivée une fois et la suite attendue n’est jamais venue (« parti, jamais revenu »). À l’oral : っきり."
+     },
+     "ex": [
+      {
+       "ja": "彼とは去年会ったきり、連絡がない。",
+       "furigana": "[彼|かれ]とは[去年|きょねん][会|あ]ったきり、[連絡|れんらく]がない。",
+       "blank": [
+        8,
+        10
+       ],
+       "en": "I saw him once last year and haven’t heard from him since.",
+       "fr": "Je l’ai vu une fois l’an dernier, et depuis, plus de nouvelles."
+      },
+      {
+       "ja": "週末は二人きりで過ごした。",
+       "furigana": "[週末|しゅうまつ]は[二人|ふたり]きりで[過|す]ごした。",
+       "blank": [
+        5,
+        7
+       ],
+       "en": "We spent the weekend just the two of us.",
+       "fr": "Nous avons passé le week-end rien que tous les deux."
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "p": "～げ",
+     "unit": 4,
+     "page": 44,
+     "en": "…-looking, seeming…",
+     "fr": "L’air…, qui semble…",
+     "form": "い-adj (−い) / な-adj + げ",
+     "note": {
+      "en": "Describes how someone looks from outside: 楽しげ, 寂しげ, 不安げ. A bit literary; works like a な-adjective.",
+      "fr": "Décrit l’air qu’a quelqu’un, vu de l’extérieur : 楽しげ, 寂しげ, 不安げ. Un peu littéraire ; se comporte comme un adjectif en な."
+     },
+     "ex": [
+      {
+       "ja": "子供たちが楽しげに遊んでいる。",
+       "furigana": "[子供|こども]たちが[楽|たの]しげに[遊|あそ]んでいる。",
+       "blank": [
+        7,
+        8
+       ],
+       "en": "The children are playing happily.",
+       "fr": "Les enfants jouent d’un air joyeux."
+      },
+      {
+       "ja": "彼女は寂しげな顔をしていた。",
+       "furigana": "[彼女|かのじょ]は[寂|さび]しげな[顔|かお]をしていた。",
+       "blank": [
+        5,
+        6
+       ],
+       "en": "She looked lonely.",
+       "fr": "Elle avait l’air triste et seule."
+      }
+     ]
+    },
+    {
+     "n": 41,
+     "p": "～なんて／とは",
+     "unit": 4,
+     "page": 44,
+     "en": "(Surprise:) to think that…!",
+     "fr": "(Surprise :) dire que… ! Quand on pense que… !",
+     "form": "V / い-adj / な-adj / N (plain) + なんて / とは",
+     "note": {
+      "en": "Shows surprise, shock or disbelief at a fact. なんて is spoken, とは more written.",
+      "fr": "Exprime la surprise, le choc ou l’incrédulité devant un fait. なんて est oral, とは plus écrit."
+     },
+     "ex": [
+      {
+       "ja": "あの二人が結婚するなんて、信じられない。",
+       "furigana": "あの[二人|ふたり]が[結婚|けっこん]するなんて、[信|しん]じられない。",
+       "blank": [
+        9,
+        12
+       ],
+       "en": "Those two getting married? I can’t believe it.",
+       "fr": "Ces deux-là, se marier ? Je n’en reviens pas."
+      },
+      {
+       "ja": "こんな所で会うとは思わなかった。",
+       "furigana": "こんな[所|ところ]で[会|あ]うとは[思|おも]わなかった。",
+       "blank": [
+        7,
+        9
+       ],
+       "en": "I never thought I’d meet you here.",
+       "fr": "Je ne pensais pas te croiser ici."
+      }
+     ]
+    },
+    {
+     "n": 42,
+     "p": "～にすぎない",
+     "unit": 4,
+     "page": 44,
+     "coto": {
+      "level": "N3",
+      "pattern": "すぎない（過ぎない）"
+     },
+     "en": "Merely…, no more than…",
+     "fr": "Ne… que, n’être qu’un simple…",
+     "form": "V / N + にすぎない",
+     "note": {
+      "en": "Plays something down: it is only that, nothing more important.",
+      "fr": "Minimise une chose : ce n’est que cela, rien de plus important."
+     },
+     "ex": [
+      {
+       "ja": "それは噂にすぎない。",
+       "furigana": "それは[噂|うわさ]にすぎない。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "That’s nothing more than a rumour.",
+       "fr": "Ce n’est qu’une rumeur."
+      },
+      {
+       "ja": "私は言われたことをしたにすぎない。",
+       "furigana": "[私|わたし]は[言|い]われたことをしたにすぎない。",
+       "blank": [
+        11,
+        16
+       ],
+       "en": "I only did what I was told.",
+       "fr": "Je n’ai fait que ce qu’on m’a dit."
+      }
+     ]
+    },
+    {
+     "n": 43,
+     "p": "～あげく",
+     "unit": 4,
+     "page": 44,
+     "en": "After (a long…), in the end…",
+     "fr": "Après (bien des…), au bout du compte…",
+     "form": "V-た / N の + あげく（に）",
+     "note": {
+      "en": "After a long, often painful process, the outcome is usually bad or disappointing.",
+      "fr": "Après un long processus, souvent pénible, le résultat est en général mauvais ou décevant."
+     },
+     "ex": [
+      {
+       "ja": "さんざん迷ったあげく、何も買わなかった。",
+       "furigana": "さんざん[迷|まよ]ったあげく、[何|なに]も[買|か]わなかった。",
+       "blank": [
+        7,
+        10
+       ],
+       "en": "After dithering for ages, I didn’t buy anything.",
+       "fr": "Après avoir longuement hésité, je n’ai rien acheté."
+      },
+      {
+       "ja": "長い話し合いのあげく、計画は中止になった。",
+       "furigana": "[長|なが]い[話|はな]し[合|あ]いのあげく、[計画|けいかく]は[中止|ちゅうし]になった。",
+       "blank": [
+        7,
+        10
+       ],
+       "en": "After long discussions, the plan was dropped.",
+       "fr": "Au bout de longues discussions, le projet a été abandonné."
+      }
+     ]
+    },
+    {
+     "n": 44,
+     "p": "～べき",
+     "unit": 4,
+     "page": 44,
+     "en": "Should, ought to",
+     "fr": "Devoir, il faudrait",
+     "form": "V-dict + べきだ (する → するべき / すべき)",
+     "note": {
+      "en": "What is right or necessary, often a moral judgment. べきではない: shouldn’t. Stronger than ほうがいい.",
+      "fr": "Ce qui est juste ou nécessaire, souvent un jugement moral. べきではない : il ne faut pas. Plus fort que ほうがいい."
+     },
+     "ex": [
+      {
+       "ja": "約束は守るべきだ。",
+       "furigana": "[約束|やくそく]は[守|まも]るべきだ。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "Promises should be kept.",
+       "fr": "On doit tenir ses promesses."
+      },
+      {
+       "ja": "若いうちに色々な経験をすべきだ。",
+       "furigana": "[若|わか]いうちに[色々|いろいろ]な[経験|けいけん]をすべきだ。",
+       "blank": [
+        12,
+        15
+       ],
+       "en": "You should try lots of things while you’re young.",
+       "fr": "Il faut vivre toutes sortes d’expériences tant qu’on est jeune."
+      }
+     ]
+    },
+    {
+     "n": 45,
+     "p": "～というより",
+     "unit": 4,
+     "page": 44,
+     "en": "Rather than…, more… than…",
+     "fr": "Plutôt que…, plus… que…",
+     "form": "V / い-adj / な-adj / N (plain) + というより",
+     "note": {
+      "en": "Corrects a description with a better one: “not so much A as B”.",
+      "fr": "Remplace une description par une plus juste : « moins A que B »."
+     },
+     "ex": [
+      {
+       "ja": "今日は暖かいというより暑い。",
+       "furigana": "[今日|きょう]は[暖|あたた]かいというより[暑|あつ]い。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "Today is hot rather than warm.",
+       "fr": "Aujourd’hui, il fait plus chaud que doux."
+      },
+      {
+       "ja": "彼は友達というより家族のような存在だ。",
+       "furigana": "[彼|かれ]は[友達|ともだち]というより[家族|かぞく]のような[存在|そんざい]だ。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "He’s more like family than a friend.",
+       "fr": "C’est moins un ami qu’un membre de la famille."
+      }
+     ]
+    },
+    {
+     "n": 46,
+     "p": "～にかかわらず／かかわりなく",
+     "unit": 4,
+     "page": 44,
+     "en": "Regardless of…, whether… or not",
+     "fr": "Indépendamment de…, que… ou non",
+     "form": "N + にかかわらず; V-dict V-ない + にかかわらず",
+     "note": {
+      "en": "The thing that could vary (age, weather, yes or no) makes no difference. Often with pairs: 有無, 晴雨, 行く行かない.",
+      "fr": "Ce qui pourrait varier (âge, météo, oui ou non) ne change rien. Souvent avec des paires : 有無, 晴雨, 行く行かない."
+     },
+     "ex": [
+      {
+       "ja": "年齢にかかわらず、誰でも参加できます。",
+       "furigana": "[年齢|ねんれい]にかかわらず、[誰|だれ]でも[参加|さんか]できます。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "Anyone can take part, regardless of age.",
+       "fr": "Tout le monde peut participer, quel que soit l’âge."
+      },
+      {
+       "ja": "天気にかかわらず、試合は行われる。",
+       "furigana": "[天気|てんき]にかかわらず、[試合|しあい]は[行|おこな]われる。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "The match will be held whatever the weather.",
+       "fr": "Le match aura lieu quel que soit le temps."
+      }
+     ]
+    },
+    {
+     "n": 47,
+     "p": "～にもかかわらず",
+     "unit": 4,
+     "page": 44,
+     "en": "Despite…, even though…",
+     "fr": "Malgré…, bien que…",
+     "form": "V / い-adj (plain) / な-adj / N (である) + にもかかわらず",
+     "note": {
+      "en": "Something happens against what you’d expect from the first fact. Formal; the speaker is often surprised or critical.",
+      "fr": "Une chose arrive contrairement à ce qu’on attendrait du premier fait. Soutenu ; on est souvent surpris ou critique."
+     },
+     "ex": [
+      {
+       "ja": "雨にもかかわらず、たくさんの人が来た。",
+       "furigana": "[雨|あめ]にもかかわらず、たくさんの[人|ひと]が[来|き]た。",
+       "blank": [
+        1,
+        8
+       ],
+       "en": "Despite the rain, lots of people came.",
+       "fr": "Malgré la pluie, beaucoup de gens sont venus."
+      },
+      {
+       "ja": "一生懸命練習したにもかかわらず、負けてしまった。",
+       "furigana": "[一生懸命|いっしょうけんめい][練習|れんしゅう]したにもかかわらず、[負|ま]けてしまった。",
+       "blank": [
+        8,
+        15
+       ],
+       "en": "Even though we trained hard, we lost.",
+       "fr": "Bien que nous nous soyons entraînés dur, nous avons perdu."
+      }
+     ]
+    },
+    {
+     "n": 48,
+     "p": "～あまり（に）",
+     "unit": 4,
+     "page": 44,
+     "en": "So (much)… that…, out of too much…",
+     "fr": "Tellement… que…, par excès de…",
+     "form": "V-dict / V-た / な-adj な / N の + あまり（に）",
+     "note": {
+      "en": "A feeling or state so strong that it leads to an unusual, often bad, result.",
+      "fr": "Un sentiment ou un état si fort qu’il mène à un résultat inhabituel, souvent mauvais."
+     },
+     "ex": [
+      {
+       "ja": "緊張のあまり、声が出なかった。",
+       "furigana": "[緊張|きんちょう]のあまり、[声|こえ]が[出|で]なかった。",
+       "blank": [
+        3,
+        6
+       ],
+       "en": "I was so nervous my voice wouldn’t come out.",
+       "fr": "J’étais tellement stressé que je n’arrivais plus à parler."
+      },
+      {
+       "ja": "心配するあまり、眠れなかった。",
+       "furigana": "[心配|しんぱい]するあまり、[眠|ねむ]れなかった。",
+       "blank": [
+        4,
+        7
+       ],
+       "en": "I was so worried I couldn’t sleep.",
+       "fr": "J’étais si inquiet que je n’ai pas pu dormir."
+      }
+     ]
+    },
+    {
+     "n": 49,
+     "p": "～にあたって／あたり",
+     "unit": 5,
+     "page": 53,
+     "en": "On the occasion of…, when (starting)…",
+     "fr": "À l’occasion de…, au moment de (commencer)…",
+     "form": "V-dict / N + にあたって / にあたり",
+     "note": {
+      "en": "A formal way to mark an important moment or a new start (a speech, an opening, a departure). あたり is even more formal.",
+      "fr": "Une façon soutenue de marquer un moment important ou un nouveau départ (discours, ouverture, départ). あたり est encore plus soutenu."
+     },
+     "ex": [
+      {
+       "ja": "留学するにあたって、色々準備をした。",
+       "furigana": "[留学|りゅうがく]するにあたって、[色々|いろいろ][準備|じゅんび]をした。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "Before going abroad to study, I made all sorts of preparations.",
+       "fr": "Avant de partir étudier à l’étranger, j’ai fait toutes sortes de préparatifs."
+      },
+      {
+       "ja": "開会にあたり、ひとことご挨拶申し上げます。",
+       "furigana": "[開会|かいかい]にあたり、ひとことご[挨拶|あいさつ][申|もう]し[上|あ]げます。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "As we open this meeting, allow me to say a few words.",
+       "fr": "À l’ouverture de cette réunion, permettez-moi de dire quelques mots."
+      }
+     ]
+    },
+    {
+     "n": 50,
+     "p": "～に際して／際し",
+     "unit": 5,
+     "page": 53,
+     "en": "At the time of…, when…",
+     "fr": "Lors de…, au moment de…",
+     "form": "V-dict / N + に際して / に際し",
+     "note": {
+      "en": "Close to にあたって, but more about the moment itself than about getting ready for it. Formal: notices, speeches.",
+      "fr": "Proche de にあたって, mais insiste plus sur le moment lui-même que sur la préparation. Soutenu : avis, discours."
+     },
+     "ex": [
+      {
+       "ja": "入場に際して、チケットをお見せください。",
+       "furigana": "[入場|にゅうじょう]に[際|さい]して、チケットをお[見|み]せください。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "Please show your ticket when entering.",
+       "fr": "Veuillez montrer votre billet à l’entrée."
+      },
+      {
+       "ja": "帰国に際し、皆さんにお礼を言いたい。",
+       "furigana": "[帰国|きこく]に[際|さい]し、[皆|みな]さんにお[礼|れい]を[言|い]いたい。",
+       "blank": [
+        2,
+        5
+       ],
+       "en": "As I return home, I’d like to thank you all.",
+       "fr": "Au moment de rentrer dans mon pays, je voudrais tous vous remercier."
+      }
+     ]
+    },
+    {
+     "n": 51,
+     "p": "～末（に）",
+     "unit": 5,
+     "page": 53,
+     "en": "After (a long…), finally…",
+     "fr": "Après (bien des…), finalement…",
+     "form": "V-た / N の + 末（に）",
+     "note": {
+      "en": "After a long effort or much thought, a result is reached. Unlike あげく, the result can be good.",
+      "fr": "Après un long effort ou une longue réflexion, on arrive à un résultat. Contrairement à あげく, il peut être bon."
+     },
+     "ex": [
+      {
+       "ja": "よく考えた末に、会社を辞めることにした。",
+       "furigana": "よく[考|かんが]えた[末|すえ]に、[会社|かいしゃ]を[辞|や]めることにした。",
+       "blank": [
+        5,
+        7
+       ],
+       "en": "After thinking it over carefully, I decided to quit the company.",
+       "fr": "Après mûre réflexion, j’ai décidé de quitter l’entreprise."
+      },
+      {
+       "ja": "長い交渉の末、やっと契約がまとまった。",
+       "furigana": "[長|なが]い[交渉|こうしょう]の[末|すえ]、やっと[契約|けいやく]がまとまった。",
+       "blank": [
+        5,
+        6
+       ],
+       "en": "After long negotiations, the contract was finally agreed.",
+       "fr": "Au terme de longues négociations, le contrat a enfin été conclu."
+      }
+     ]
+    },
+    {
+     "n": 52,
+     "p": "～を契機に（して）／として",
+     "unit": 5,
+     "page": 53,
+     "en": "Taking… as a turning point, with… as the trigger",
+     "fr": "À la faveur de…, à partir de… (comme déclencheur)",
+     "form": "N + を契機に（して）/ を契機として",
+     "note": {
+      "en": "An event that became the starting point of a change. More formal than をきっかけに.",
+      "fr": "Un événement qui a déclenché un changement. Plus soutenu que をきっかけに."
+     },
+     "ex": [
+      {
+       "ja": "病気を契機に、たばこをやめた。",
+       "furigana": "[病気|びょうき]を[契機|けいき]に、たばこをやめた。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "My illness was what made me quit smoking.",
+       "fr": "C’est ma maladie qui m’a poussé à arrêter de fumer."
+      },
+      {
+       "ja": "オリンピックを契機として、町が大きく変わった。",
+       "furigana": "オリンピックを[契機|けいき]として、[町|まち]が[大|おお]きく[変|か]わった。",
+       "blank": [
+        6,
+        12
+       ],
+       "en": "The Olympics were a turning point that changed the town greatly.",
+       "fr": "Les Jeux olympiques ont profondément transformé la ville."
+      }
+     ]
+    },
+    {
+     "n": 53,
+     "p": "～を問わず",
+     "unit": 5,
+     "page": 53,
+     "en": "Regardless of…, no matter…",
+     "fr": "Sans distinction de…, quel que soit…",
+     "form": "N + を問わず",
+     "note": {
+      "en": "The thing named (age, gender, experience, day or night) is not a condition. Often with pairs: 男女, 昼夜, 経験の有無.",
+      "fr": "Ce qui est nommé (âge, sexe, expérience, jour ou nuit) n’est pas une condition. Souvent avec des paires : 男女, 昼夜, 経験の有無."
+     },
+     "ex": [
+      {
+       "ja": "この仕事は経験を問わず、誰でも応募できる。",
+       "furigana": "この[仕事|しごと]は[経験|けいけん]を[問|と]わず、[誰|だれ]でも[応募|おうぼ]できる。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "Anyone can apply for this job, whatever their experience.",
+       "fr": "Tout le monde peut postuler à ce poste, avec ou sans expérience."
+      },
+      {
+       "ja": "この公園は季節を問わず人が多い。",
+       "furigana": "この[公園|こうえん]は[季節|きせつ]を[問|と]わず[人|ひと]が[多|おお]い。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "This park is busy whatever the season.",
+       "fr": "Ce parc est fréquenté en toute saison."
+      }
+     ]
+    },
+    {
+     "n": 54,
+     "p": "～かのようだ",
+     "unit": 5,
+     "page": 53,
+     "en": "As if…, as though…",
+     "fr": "Comme si…",
+     "form": "V / い-adj (plain) / な-adj / N である + かのようだ / かのように",
+     "note": {
+      "en": "Compares with something that is not actually true: “he acts as if he knew”.",
+      "fr": "Compare à une chose qui n’est pas vraie : « il fait comme s’il savait »."
+     },
+     "ex": [
+      {
+       "ja": "彼は何も知らないかのように笑っていた。",
+       "furigana": "[彼|かれ]は[何|なに]も[知|し]らないかのように[笑|わら]っていた。",
+       "blank": [
+        8,
+        13
+       ],
+       "en": "He was laughing as if he knew nothing.",
+       "fr": "Il riait comme s’il ne savait rien."
+      },
+      {
+       "ja": "今日は春が来たかのような暖かさだ。",
+       "furigana": "[今日|きょう]は[春|はる]が[来|き]たかのような[暖|あたた]かさだ。",
+       "blank": [
+        7,
+        12
+       ],
+       "en": "It’s so warm today, it’s as if spring had come.",
+       "fr": "Il fait si doux aujourd’hui qu’on croirait le printemps arrivé."
+      }
+     ]
+    },
+    {
+     "n": 55,
+     "p": "～からいうと／からすると／から見ると",
+     "unit": 5,
+     "page": 53,
+     "en": "From the point of view of…, judging by…",
+     "fr": "Du point de vue de…, à en juger par…",
+     "form": "N + からいうと / からすると / から見ると (and いえば, いって, すれば, して, 見れば, 見て)",
+     "note": {
+      "en": "Gives the standpoint or the clue a judgment is made from. からいうと: a standpoint (not a person); からすると: also a clue; から見ると: also a person’s view.",
+      "fr": "Indique le point de vue ou l’indice d’où l’on juge. からいうと : un point de vue (pas une personne) ; からすると : aussi un indice ; から見ると : aussi le regard d’une personne."
+     },
+     "ex": [
+      {
+       "ja": "値段からいうと、こちらのほうがいい。",
+       "furigana": "[値段|ねだん]からいうと、こちらのほうがいい。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "In terms of price, this one is better.",
+       "fr": "Du point de vue du prix, celui-ci est mieux."
+      },
+      {
+       "ja": "あの話し方からすると、彼は関西の人だろう。",
+       "furigana": "あの[話|はな]し[方|かた]からすると、[彼|かれ]は[関西|かんさい]の[人|ひと]だろう。",
+       "blank": [
+        5,
+        10
+       ],
+       "en": "Judging by the way he talks, he must be from Kansai.",
+       "fr": "À en juger par sa façon de parler, il doit venir du Kansai."
+      },
+      {
+       "ja": "子供から見ると、大人の世界は不思議だ。",
+       "furigana": "[子供|こども]から[見|み]ると、[大人|おとな]の[世界|せかい]は[不思議|ふしぎ]だ。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "Seen through a child’s eyes, the adult world is strange.",
+       "fr": "Vu par un enfant, le monde des adultes est étrange."
+      }
+     ]
+    },
+    {
+     "n": 56,
+     "p": "～もかまわず",
+     "unit": 5,
+     "page": 53,
+     "en": "Without caring about…, regardless of…",
+     "fr": "Sans se soucier de…, sans faire attention à…",
+     "form": "N / V (plain) の + もかまわず",
+     "note": {
+      "en": "Someone does something without paying attention to what they normally should (people around, clothes, the time). Often critical.",
+      "fr": "Quelqu’un agit sans faire attention à ce qui devrait compter (les gens autour, ses vêtements, l’heure). Souvent critique."
+     },
+     "ex": [
+      {
+       "ja": "彼は人目もかまわず泣いた。",
+       "furigana": "[彼|かれ]は[人目|ひとめ]もかまわず[泣|な]いた。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "He cried without caring who was watching.",
+       "fr": "Il a pleuré sans se soucier des regards."
+      },
+      {
+       "ja": "服が汚れるのもかまわず、子供は遊び続けた。",
+       "furigana": "[服|ふく]が[汚|よご]れるのもかまわず、[子供|こども]は[遊|あそ]び[続|つづ]けた。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "The child kept playing, not caring that his clothes got dirty.",
+       "fr": "L’enfant a continué de jouer sans se soucier de salir ses vêtements."
+      }
+     ]
+    },
+    {
+     "n": 57,
+     "p": "～ぬく",
+     "unit": 5,
+     "page": 53,
+     "en": "To (do) all the way, to the very end",
+     "fr": "(Faire) jusqu’au bout, entièrement",
+     "form": "V-ます stem + ぬく",
+     "note": {
+      "en": "Doing something completely despite difficulty: 走りぬく, 考えぬく, 守りぬく.",
+      "fr": "Faire une chose entièrement malgré la difficulté : 走りぬく, 考えぬく, 守りぬく."
+     },
+     "ex": [
+      {
+       "ja": "彼は最後まで走りぬいた。",
+       "furigana": "[彼|かれ]は[最後|さいご]まで[走|はし]りぬいた。",
+       "blank": [
+        8,
+        11
+       ],
+       "en": "He ran all the way to the end.",
+       "fr": "Il a couru jusqu’au bout."
+      },
+      {
+       "ja": "考えぬいて出した答えだ。",
+       "furigana": "[考|かんが]えぬいて[出|だ]した[答|こた]えだ。",
+       "blank": [
+        2,
+        5
+       ],
+       "en": "It’s an answer I reached after thinking it through completely.",
+       "fr": "C’est une réponse mûrement réfléchie."
+      }
+     ]
+    },
+    {
+     "n": 58,
+     "p": "～ばかりに",
+     "unit": 5,
+     "page": 53,
+     "en": "Just because…, only because… (bad result)",
+     "fr": "Rien que parce que…, à cause de… (mauvais résultat)",
+     "form": "V / い-adj (plain) / な-adj な / N である + ばかりに; V-たい + ばかりに",
+     "note": {
+      "en": "A single cause leads to a bad result the speaker regrets. With ～たいばかりに: “wanting so much to… that (one went to great lengths)”.",
+      "fr": "Une seule cause mène à un mauvais résultat qu’on regrette. Avec ～たいばかりに : « tant on voulait… qu’on a fait de grands efforts »."
+     },
+     "ex": [
+      {
+       "ja": "一度嘘をついたばかりに、信用をなくした。",
+       "furigana": "[一度|いちど][嘘|うそ]をついたばかりに、[信用|しんよう]をなくした。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "Just because I lied once, I lost their trust.",
+       "fr": "Pour un seul mensonge, j’ai perdu leur confiance."
+      },
+      {
+       "ja": "彼女に会いたいばかりに、雨の中を走った。",
+       "furigana": "[彼女|かのじょ]に[会|あ]いたいばかりに、[雨|あめ]の[中|なか]を[走|はし]った。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "I ran through the rain, so badly did I want to see her.",
+       "fr": "J’ai couru sous la pluie, tant je voulais la voir."
+      }
+     ]
+    },
+    {
+     "n": 59,
+     "p": "～ところ（を）",
+     "unit": 5,
+     "page": 53,
+     "coto": {
+      "level": "N1",
+      "pattern": "～ところを"
+     },
+     "en": "When (you are…), even though (it’s a bad moment)",
+     "fr": "Alors que (vous êtes…), au moment où",
+     "form": "V / い-adj (plain) / N の + ところ（を）",
+     "note": {
+      "en": "Polite set phrases that acknowledge the other person’s situation: お忙しいところ, お休みのところ. Also “when (caught) in the act”.",
+      "fr": "Formules polies qui reconnaissent la situation de l’autre : お忙しいところ, お休みのところ. Aussi « au moment où (pris sur le fait) »."
+     },
+     "ex": [
+      {
+       "ja": "お忙しいところを、ありがとうございます。",
+       "furigana": "お[忙|いそが]しいところを、ありがとうございます。",
+       "blank": [
+        4,
+        8
+       ],
+       "en": "Thank you for taking the time when you’re so busy.",
+       "fr": "Merci d’avoir pris le temps alors que vous êtes si occupé."
+      },
+      {
+       "ja": "遊んでいるところを先生に見られた。",
+       "furigana": "[遊|あそ]んでいるところを[先生|せんせい]に[見|み]られた。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "The teacher caught me playing.",
+       "fr": "Le professeur m’a vu en train de m’amuser."
+      }
+     ]
+    },
+    {
+     "n": 60,
+     "p": "～たところで",
+     "unit": 5,
+     "page": 53,
+     "coto": {
+      "level": "N1",
+      "pattern": "～たところで"
+     },
+     "en": "Even if…, it’s no use…",
+     "fr": "Même si…, il ne sert à rien de…",
+     "form": "V-た + ところで",
+     "note": {
+      "en": "Even if you do it, the result won’t change or will be small. The second part is negative or belittling.",
+      "fr": "Même si on le fait, le résultat ne changera pas ou sera faible. La seconde partie est négative ou minimisante."
+     },
+     "ex": [
+      {
+       "ja": "今から急いだところで、間に合わないだろう。",
+       "furigana": "[今|いま]から[急|いそ]いだところで、[間|ま]に[合|あ]わないだろう。",
+       "blank": [
+        5,
+        10
+       ],
+       "en": "Even if we hurry now, we won’t make it.",
+       "fr": "Même si on se dépêche maintenant, on n’arrivera pas à temps."
+      },
+      {
+       "ja": "謝ったところで、許してはもらえない。",
+       "furigana": "[謝|あやま]ったところで、[許|ゆる]してはもらえない。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "Even if I apologise, they won’t forgive me.",
+       "fr": "J’aurai beau m’excuser, on ne me pardonnera pas."
+      }
+     ]
+    },
+    {
+     "n": 61,
+     "p": "～ことから",
+     "unit": 6,
+     "page": 61,
+     "en": "Because…, from the fact that…",
+     "fr": "Du fait que…, comme…",
+     "form": "V / い-adj (plain) / な-adj な / N である + ことから",
+     "note": {
+      "en": "Gives the reason or the origin of a name, a judgment or a decision, often in explanations and articles.",
+      "fr": "Donne la raison ou l’origine d’un nom, d’un jugement ou d’une décision, souvent dans des explications ou des articles."
+     },
+     "ex": [
+      {
+       "ja": "富士山が見えることから、この坂は「富士見坂」と呼ばれている。",
+       "furigana": "[富士山|ふじさん]が[見|み]えることから、この[坂|さか]は「[富士見坂|ふじみざか]」と[呼|よ]ばれている。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "Because you can see Mount Fuji from it, this slope is called “Fujimi-zaka”.",
+       "fr": "Comme on y voit le mont Fuji, cette pente s’appelle « Fujimi-zaka »."
+      },
+      {
+       "ja": "窓が割れていたことから、泥棒が入ったと分かった。",
+       "furigana": "[窓|まど]が[割|わ]れていたことから、[泥棒|どろぼう]が[入|はい]ったと[分|わ]かった。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "From the broken window, we knew a burglar had got in.",
+       "fr": "À la fenêtre brisée, on a compris qu’un cambrioleur était entré."
+      }
+     ]
+    },
+    {
+     "n": 62,
+     "p": "～ことにする",
+     "unit": 6,
+     "page": 61,
+     "coto": {
+      "level": "N2",
+      "pattern": "～ことにする"
+     },
+     "en": "To decide to…; to act as if…",
+     "fr": "Décider de… ; faire comme si…",
+     "form": "V-dict / V-ない + ことにする; V-た + ことにする",
+     "note": {
+      "en": "The speaker’s own decision. With V-た: to treat something as true when it isn’t (“let’s say it never happened”). ことにしている: a habit one has set.",
+      "fr": "Une décision qu’on prend soi-même. Avec V-た : faire comme si une chose était vraie (« disons que ça ne s’est jamais passé »). ことにしている : une habitude qu’on s’est fixée."
+     },
+     "ex": [
+      {
+       "ja": "来年、日本へ留学することにした。",
+       "furigana": "[来年|らいねん]、[日本|にほん]へ[留学|りゅうがく]することにした。",
+       "blank": [
+        10,
+        15
+       ],
+       "en": "I’ve decided to go and study in Japan next year.",
+       "fr": "J’ai décidé d’aller étudier au Japon l’an prochain."
+      },
+      {
+       "ja": "今の話は聞かなかったことにする。",
+       "furigana": "[今|いま]の[話|はなし]は[聞|き]かなかったことにする。",
+       "blank": [
+        10,
+        15
+       ],
+       "en": "I’ll pretend I didn’t hear that.",
+       "fr": "Je vais faire comme si je n’avais rien entendu."
+      }
+     ]
+    },
+    {
+     "n": 63,
+     "p": "～ことか／だろう",
+     "unit": 6,
+     "page": 61,
+     "en": "How (very)…!, so…!",
+     "fr": "Comme… !, combien… !",
+     "form": "question word … V / い-adj (plain) / な-adj な + ことか",
+     "note": {
+      "en": "An exclamation of strong feeling, with どんなに, 何度, どれほど: “how many times I’ve…!”",
+      "fr": "Une exclamation forte, avec どんなに, 何度, どれほど : « combien de fois j’ai… ! »"
+     },
+     "ex": [
+      {
+       "ja": "合格の知らせを、どんなに待ったことか。",
+       "furigana": "[合格|ごうかく]の[知|し]らせを、どんなに[待|ま]ったことか。",
+       "blank": [
+        15,
+        18
+       ],
+       "en": "Oh, how I waited for the news that I’d passed!",
+       "fr": "Comme j’ai attendu la nouvelle de ma réussite !"
+      },
+      {
+       "ja": "この日を何度夢見たことだろう。",
+       "furigana": "この[日|ひ]を[何度|なんど][夢見|ゆめみ]たことだろう。",
+       "blank": [
+        9,
+        14
+       ],
+       "en": "How many times I dreamed of this day!",
+       "fr": "Combien de fois ai-je rêvé de ce jour !"
+      }
+     ]
+    },
+    {
+     "n": 64,
+     "p": "～ないことには",
+     "unit": 6,
+     "page": 61,
+     "en": "Unless…, without… (nothing can happen)",
+     "fr": "Tant qu’on n’a pas…, à moins de… (rien n’est possible)",
+     "form": "V-ない + ことには…ない",
+     "note": {
+      "en": "Without the first thing, the second can’t happen. The end of the sentence is negative.",
+      "fr": "Sans la première chose, la seconde ne peut pas se faire. La fin de la phrase est négative."
+     },
+     "ex": [
+      {
+       "ja": "実際に食べてみないことには、おいしいかどうか分からない。",
+       "furigana": "[実際|じっさい]に[食|た]べてみないことには、おいしいかどうか[分|わ]からない。",
+       "blank": [
+        7,
+        13
+       ],
+       "en": "You can’t know if it’s good unless you actually try it.",
+       "fr": "Tant qu’on ne l’a pas goûté, on ne peut pas savoir si c’est bon."
+      },
+      {
+       "ja": "社長が来ないことには、会議が始められない。",
+       "furigana": "[社長|しゃちょう]が[来|こ]ないことには、[会議|かいぎ]が[始|はじ]められない。",
+       "blank": [
+        4,
+        10
+       ],
+       "en": "We can’t start the meeting until the boss comes.",
+       "fr": "Tant que le patron n’est pas là, on ne peut pas commencer la réunion."
+      }
+     ]
+    },
+    {
+     "n": 65,
+     "p": "～というものだ／というものでは（も）ない",
+     "unit": 6,
+     "page": 61,
+     "en": "That’s what… is / … isn’t necessarily so",
+     "fr": "C’est ça, … / ce n’est pas forcément…",
+     "form": "V / い-adj / な-adj / N (plain) + というものだ; + というものではない",
+     "note": {
+      "en": "というものだ: the speaker’s firm judgment about what something really is. というものではない: rejects an overly simple idea (“it isn’t true that…”).",
+      "fr": "というものだ : un jugement ferme sur ce qu’est vraiment une chose. というものではない : rejette une idée trop simple (« il n’est pas vrai que… »)."
+     },
+     "ex": [
+      {
+       "ja": "困っている人を助けるのが友達というものだ。",
+       "furigana": "[困|こま]っている[人|ひと]を[助|たす]けるのが[友達|ともだち]というものだ。",
+       "blank": [
+        14,
+        20
+       ],
+       "en": "Helping someone in trouble: that’s what a friend is.",
+       "fr": "Aider quelqu’un en difficulté, c’est ça, un ami."
+      },
+      {
+       "ja": "お金があれば幸せになれるというものではない。",
+       "furigana": "お[金|かね]があれば[幸|しあわ]せになれるというものではない。",
+       "blank": [
+        12,
+        21
+       ],
+       "en": "Having money doesn’t necessarily make you happy.",
+       "fr": "Avoir de l’argent ne rend pas forcément heureux."
+      }
+     ]
+    },
+    {
+     "n": 66,
+     "p": "～ものなら",
+     "unit": 6,
+     "page": 61,
+     "en": "If (one) could…; if you dare…",
+     "fr": "Si seulement on pouvait… ; si jamais tu oses…",
+     "form": "V-potential + ものなら; V-よう + ものなら",
+     "note": {
+      "en": "With a potential verb: a wish that is hard to make true. With the volitional: if you do it, something bad will follow (a warning).",
+      "fr": "Avec un verbe potentiel : un souhait difficile à réaliser. Avec la forme volitive : si on le fait, il arrivera quelque chose de mauvais (avertissement)."
+     },
+     "ex": [
+      {
+       "ja": "戻れるものなら、子供の頃に戻りたい。",
+       "furigana": "[戻|もど]れるものなら、[子供|こども]の[頃|ころ]に[戻|もど]りたい。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "If I could go back, I’d go back to my childhood.",
+       "fr": "Si seulement je pouvais, je retournerais en enfance."
+      },
+      {
+       "ja": "遅刻しようものなら、先生にひどく怒られる。",
+       "furigana": "[遅刻|ちこく]しようものなら、[先生|せんせい]にひどく[怒|おこ]られる。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "If you dare to be late, the teacher gets really angry.",
+       "fr": "Si jamais tu arrives en retard, le professeur se met dans une colère noire."
+      }
+     ]
+    },
+    {
+     "n": 67,
+     "p": "～どころか",
+     "unit": 6,
+     "page": 61,
+     "en": "Far from…, on the contrary…",
+     "fr": "Loin de…, bien au contraire…",
+     "form": "V / い-adj (plain) / な-adj / N + どころか",
+     "note": {
+      "en": "Rejects the first idea and says the reality is very different, often the opposite.",
+      "fr": "Rejette la première idée et dit que la réalité est très différente, souvent l’inverse."
+     },
+     "ex": [
+      {
+       "ja": "薬を飲んだが、よくなるどころか悪くなった。",
+       "furigana": "[薬|くすり]を[飲|の]んだが、よくなるどころか[悪|わる]くなった。",
+       "blank": [
+        11,
+        15
+       ],
+       "en": "I took the medicine, but far from getting better, I got worse.",
+       "fr": "J’ai pris le médicament, mais loin d’aller mieux, je suis allé plus mal."
+      },
+      {
+       "ja": "彼は漢字どころか、ひらがなも書けない。",
+       "furigana": "[彼|かれ]は[漢字|かんじ]どころか、ひらがなも[書|か]けない。",
+       "blank": [
+        4,
+        8
+       ],
+       "en": "Forget kanji, he can’t even write hiragana.",
+       "fr": "Les kanji, n’en parlons pas : il ne sait même pas écrire les hiragana."
+      }
+     ]
+    },
+    {
+     "n": 68,
+     "p": "～どころではない",
+     "unit": 6,
+     "page": 61,
+     "en": "This is no time for…, (it’s) out of the question",
+     "fr": "Ce n’est pas le moment de…, pas question de…",
+     "form": "V-dict / N + どころではない",
+     "note": {
+      "en": "Because of the situation, you can’t possibly do or enjoy something.",
+      "fr": "À cause de la situation, on ne peut absolument pas faire ou profiter d’une chose."
+     },
+     "ex": [
+      {
+       "ja": "試験の前で、遊ぶどころではない。",
+       "furigana": "[試験|しけん]の[前|まえ]で、[遊|あそ]ぶどころではない。",
+       "blank": [
+        8,
+        15
+       ],
+       "en": "With the exam coming, this is no time to play.",
+       "fr": "Avec l’examen qui approche, ce n’est pas le moment de s’amuser."
+      },
+      {
+       "ja": "雨がひどくて、花見どころではなかった。",
+       "furigana": "[雨|あめ]がひどくて、[花見|はなみ]どころではなかった。",
+       "blank": [
+        9,
+        18
+       ],
+       "en": "It rained so hard that cherry-blossom viewing was out of the question.",
+       "fr": "Il pleuvait tellement que pas question d’aller voir les cerisiers."
+      }
+     ]
+    },
+    {
+     "n": 69,
+     "p": "～だけに",
+     "unit": 6,
+     "page": 61,
+     "en": "As might be expected from…, precisely because…",
+     "fr": "Justement parce que…, comme on pouvait s’y attendre de…",
+     "form": "V / い-adj (plain) / な-adj な / N + だけに",
+     "note": {
+      "en": "Because of that fact, the result is all the more (good or bad): “because I expected a lot, I was all the more disappointed”.",
+      "fr": "Justement à cause de ce fait, le résultat est d’autant plus fort (en bien ou en mal) : « comme j’en attendais beaucoup, j’ai été d’autant plus déçu »."
+     },
+     "ex": [
+      {
+       "ja": "期待していただけに、負けたのは残念だ。",
+       "furigana": "[期待|きたい]していただけに、[負|ま]けたのは[残念|ざんねん]だ。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "Precisely because I had high hopes, losing is all the more disappointing.",
+       "fr": "Comme j’y croyais, la défaite est d’autant plus décevante."
+      },
+      {
+       "ja": "彼は元選手だけに、今でも足が速い。",
+       "furigana": "[彼|かれ]は[元|もと][選手|せんしゅ]だけに、[今|いま]でも[足|あし]が[速|はや]い。",
+       "blank": [
+        5,
+        8
+       ],
+       "en": "As you’d expect of a former athlete, he’s still fast.",
+       "fr": "Ancien sportif oblige, il court encore vite."
+      }
+     ]
+    },
+    {
+     "n": 70,
+     "p": "～だけあって／だけのことはある",
+     "unit": 6,
+     "page": 61,
+     "en": "As expected of…, no wonder…",
+     "fr": "Pas étonnant, vu que…, c’est bien digne de…",
+     "form": "V / い-adj (plain) / な-adj な / N + だけあって / だけのことはある",
+     "note": {
+      "en": "Praise: the result matches what the fact led you to expect (“the price is high, but no wonder, it’s delicious”).",
+      "fr": "Un éloge : le résultat est à la hauteur de ce qu’on attendait (« c’est cher, mais pas étonnant, c’est délicieux »)."
+     },
+     "ex": [
+      {
+       "ja": "有名な店だけあって、とてもおいしい。",
+       "furigana": "[有名|ゆうめい]な[店|みせ]だけあって、とてもおいしい。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "As you’d expect from a famous restaurant, it’s delicious.",
+       "fr": "Pas étonnant, pour un restaurant célèbre : c’est délicieux."
+      },
+      {
+       "ja": "十年日本に住んでいただけのことはある。日本語が上手だ。",
+       "furigana": "[十年|じゅうねん][日本|にほん]に[住|す]んでいただけのことはある。[日本語|にほんご]が[上手|じょうず]だ。",
+       "blank": [
+        10,
+        18
+       ],
+       "en": "No wonder he lived in Japan for ten years: his Japanese is excellent.",
+       "fr": "On voit qu’il a vécu dix ans au Japon : son japonais est excellent."
+      }
+     ]
+    },
+    {
+     "n": 71,
+     "p": "～上",
+     "unit": 6,
+     "page": 61,
+     "en": "From the point of view of…, in terms of…",
+     "fr": "Du point de vue de…, sur le plan de…",
+     "form": "N + 上 (じょう)",
+     "note": {
+      "en": "Read じょう: a formal suffix giving the field or angle of something: 健康上, 教育上, 法律上, 経験上.",
+      "fr": "Se lit じょう : un suffixe soutenu qui donne le domaine ou l’angle : 健康上, 教育上, 法律上, 経験上."
+     },
+     "ex": [
+      {
+       "ja": "健康上の理由で、会社を休んだ。",
+       "furigana": "[健康|けんこう][上|じょう]の[理由|りゆう]で、[会社|かいしゃ]を[休|やす]んだ。",
+       "blank": [
+        2,
+        3
+       ],
+       "en": "I took time off work for health reasons.",
+       "fr": "J’ai pris un congé pour raisons de santé."
+      },
+      {
+       "ja": "経験上、この方法がいちばんいい。",
+       "furigana": "[経験|けいけん][上|じょう]、この[方法|ほうほう]がいちばんいい。",
+       "blank": [
+        2,
+        3
+       ],
+       "en": "From experience, this method works best.",
+       "fr": "Par expérience, c’est cette méthode qui marche le mieux."
+      }
+     ]
+    },
+    {
+     "n": 72,
+     "p": "～上（で）",
+     "unit": 6,
+     "page": 61,
+     "en": "In…, on (paper, the internet…)",
+     "fr": "Dans…, sur (le papier, internet…)",
+     "form": "N + 上（で）(じょう)",
+     "note": {
+      "en": "Where something happens, abstractly: インターネット上, 計算上, 地図上. Like ～上 (71), read じょう.",
+      "fr": "Le lieu, au sens abstrait, où une chose se passe : インターネット上, 計算上, 地図上. Comme ～上 (71), se lit じょう."
+     },
+     "ex": [
+      {
+       "ja": "インターネット上で、その話が広まった。",
+       "furigana": "インターネット[上|じょう]で、その[話|はなし]が[広|ひろ]まった。",
+       "blank": [
+        7,
+        9
+       ],
+       "en": "The story spread on the internet.",
+       "fr": "L’histoire s’est répandue sur internet."
+      },
+      {
+       "ja": "計算上は、明日届くはずだ。",
+       "furigana": "[計算|けいさん][上|じょう]は、[明日|あした][届|とど]くはずだ。",
+       "blank": [
+        2,
+        4
+       ],
+       "en": "According to the calculations, it should arrive tomorrow.",
+       "fr": "D’après les calculs, ça devrait arriver demain."
+      }
+     ]
+    },
+    {
+     "n": 73,
+     "p": "～まい",
+     "unit": 7,
+     "page": 76,
+     "coto": {
+      "level": "N3",
+      "pattern": "まい"
+     },
+     "en": "Will not…, I won’t…; probably not…",
+     "fr": "Ne… pas (résolution) ; ne… sans doute pas",
+     "form": "V-dict + まい (る-verbs: also V-stem + まい; する → するまい / すまい)",
+     "note": {
+      "en": "A written negative of will (“I’ll never do it again”) or of guess (“it probably won’t…”, like ないだろう).",
+      "fr": "Un négatif écrit de volonté (« je ne le referai jamais ») ou de supposition (« ça ne… sans doute pas », comme ないだろう)."
+     },
+     "ex": [
+      {
+       "ja": "もう二度とあの店には行くまい。",
+       "furigana": "もう[二度|にど]とあの[店|みせ]には[行|い]くまい。",
+       "blank": [
+        12,
+        14
+       ],
+       "en": "I’ll never go to that shop again.",
+       "fr": "Je ne remettrai plus jamais les pieds dans ce magasin."
+      },
+      {
+       "ja": "この雨では、試合は行われるまい。",
+       "furigana": "この[雨|あめ]では、[試合|しあい]は[行|おこな]われるまい。",
+       "blank": [
+        13,
+        15
+       ],
+       "en": "With this rain, the match probably won’t be held.",
+       "fr": "Avec cette pluie, le match n’aura sans doute pas lieu."
+      }
+     ]
+    },
+    {
+     "n": 74,
+     "p": "～ないではいられない／ずにはいられない",
+     "unit": 7,
+     "page": 76,
+     "en": "Can’t help (doing)…",
+     "fr": "Ne pas pouvoir s’empêcher de…",
+     "form": "V-ない + ではいられない; V-ない (−ない) + ずにはいられない (する → せずには)",
+     "note": {
+      "en": "A feeling so strong that you do something without being able to stop yourself.",
+      "fr": "Un sentiment si fort qu’on fait quelque chose sans pouvoir se retenir."
+     },
+     "ex": [
+      {
+       "ja": "あの映画を見ると、泣かずにはいられない。",
+       "furigana": "あの[映画|えいが]を[見|み]ると、[泣|な]かずにはいられない。",
+       "blank": [
+        11,
+        19
+       ],
+       "en": "Whenever I watch that film, I can’t help crying.",
+       "fr": "Quand je regarde ce film, je ne peux pas m’empêcher de pleurer."
+      },
+      {
+       "ja": "困っている人を見ると、助けないではいられない。",
+       "furigana": "[困|こま]っている[人|ひと]を[見|み]ると、[助|たす]けないではいられない。",
+       "blank": [
+        13,
+        22
+       ],
+       "en": "When I see someone in trouble, I can’t help helping.",
+       "fr": "Quand je vois quelqu’un en difficulté, je ne peux pas m’empêcher de l’aider."
+      }
+     ]
+    },
+    {
+     "n": 75,
+     "p": "～に限る",
+     "unit": 7,
+     "page": 76,
+     "coto": {
+      "level": "N2",
+      "pattern": "～は～に限る"
+     },
+     "en": "Nothing beats…, the best is…",
+     "fr": "Rien de tel que…, le mieux, c’est…",
+     "form": "V-dict / V-ない / N + に限る",
+     "note": {
+      "en": "The speaker’s view of what is best in a situation: “on a hot day, nothing beats a cold beer”.",
+      "fr": "L’avis de quelqu’un sur ce qui est le mieux dans une situation : « quand il fait chaud, rien de tel qu’une bière fraîche »."
+     },
+     "ex": [
+      {
+       "ja": "疲れたときは、寝るに限る。",
+       "furigana": "[疲|つか]れたときは、[寝|ね]るに[限|かぎ]る。",
+       "blank": [
+        9,
+        12
+       ],
+       "en": "When you’re tired, nothing beats sleep.",
+       "fr": "Quand on est fatigué, rien de tel que de dormir."
+      },
+      {
+       "ja": "夏はやっぱり冷たいビールに限る。",
+       "furigana": "[夏|なつ]はやっぱり[冷|つめ]たいビールに[限|かぎ]る。",
+       "blank": [
+        12,
+        15
+       ],
+       "en": "In summer, nothing beats a cold beer.",
+       "fr": "En été, rien ne vaut une bière bien fraîche."
+      }
+     ]
+    },
+    {
+     "n": 76,
+     "p": "～に限らず",
+     "unit": 7,
+     "page": 76,
+     "en": "Not only…, not just…",
+     "fr": "Pas seulement…, non seulement…",
+     "form": "N + に限らず",
+     "note": {
+      "en": "Widens the scope: not just this one, but others too. Often followed by も or 誰でも, どこでも.",
+      "fr": "Élargit la portée : pas seulement celui-ci, d’autres aussi. Souvent suivi de も ou de 誰でも, どこでも."
+     },
+     "ex": [
+      {
+       "ja": "この歌は子供に限らず、大人にも人気がある。",
+       "furigana": "この[歌|うた]は[子供|こども]に[限|かぎ]らず、[大人|おとな]にも[人気|にんき]がある。",
+       "blank": [
+        6,
+        10
+       ],
+       "en": "This song is popular not just with children but with adults too.",
+       "fr": "Cette chanson plaît non seulement aux enfants, mais aussi aux adultes."
+      },
+      {
+       "ja": "日曜日に限らず、毎日店は混んでいる。",
+       "furigana": "[日曜日|にちようび]に[限|かぎ]らず、[毎日|まいにち][店|みせ]は[混|こ]んでいる。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "The shop is crowded every day, not only on Sundays.",
+       "fr": "Le magasin est bondé tous les jours, pas seulement le dimanche."
+      }
+     ]
+    },
+    {
+     "n": 77,
+     "p": "～か～ないかのうちに",
+     "unit": 7,
+     "page": 76,
+     "en": "Hardly had… when…, the moment…",
+     "fr": "À peine… que…",
+     "form": "V-dict / V-た + か + V-ない + かのうちに",
+     "note": {
+      "en": "The second thing happens almost at the same time as the first, before it’s even finished.",
+      "fr": "La seconde chose arrive presque en même temps que la première, avant même qu’elle soit finie."
+     },
+     "ex": [
+      {
+       "ja": "ベルが鳴るか鳴らないかのうちに、学生たちは教室を出た。",
+       "furigana": "ベルが[鳴|な]るか[鳴|な]らないかのうちに、[学生|がくせい]たちは[教室|きょうしつ]を[出|で]た。",
+       "blank": [
+        5,
+        15
+       ],
+       "en": "The bell had hardly rung when the students left the classroom.",
+       "fr": "À peine la sonnerie avait-elle retenti que les élèves sont sortis de la classe."
+      },
+      {
+       "ja": "横になるかならないかのうちに、寝てしまった。",
+       "furigana": "[横|よこ]になるかならないかのうちに、[寝|ね]てしまった。",
+       "blank": [
+        4,
+        14
+       ],
+       "en": "I fell asleep the moment I lay down.",
+       "fr": "À peine allongé, je me suis endormi."
+      }
+     ]
+    },
+    {
+     "n": 78,
+     "p": "～（か）と思ったら／思うと",
+     "unit": 7,
+     "page": 76,
+     "en": "No sooner… than…, just when I thought…",
+     "fr": "À peine… que…, alors que je pensais…",
+     "form": "V-た + （か）と思ったら / と思うと",
+     "note": {
+      "en": "Something happens right after, often surprisingly. The subject is someone else, never the speaker.",
+      "fr": "Une chose arrive juste après, souvent de façon surprenante. Le sujet est quelqu’un d’autre, jamais soi-même."
+     },
+     "ex": [
+      {
+       "ja": "空が暗くなったかと思ったら、雨が降り出した。",
+       "furigana": "[空|そら]が[暗|くら]くなったかと[思|おも]ったら、[雨|あめ]が[降|ふ]り[出|だ]した。",
+       "blank": [
+        7,
+        13
+       ],
+       "en": "No sooner had the sky gone dark than it started to rain.",
+       "fr": "À peine le ciel s’était-il assombri qu’il s’est mis à pleuvoir."
+      },
+      {
+       "ja": "弟は帰ってきたと思うと、また出かけた。",
+       "furigana": "[弟|おとうと]は[帰|かえ]ってきたと[思|おも]うと、また[出|で]かけた。",
+       "blank": [
+        7,
+        11
+       ],
+       "en": "My brother had only just come home when he went out again.",
+       "fr": "Mon frère venait à peine de rentrer qu’il est ressorti."
+      }
+     ]
+    },
+    {
+     "n": 79,
+     "p": "～に先立って／先立ち",
+     "unit": 7,
+     "page": 76,
+     "en": "Before…, prior to…",
+     "fr": "Avant…, préalablement à…",
+     "form": "V-dict / N + に先立って / に先立ち / に先立つ N",
+     "note": {
+      "en": "Something done in preparation before an important event. Formal.",
+      "fr": "Ce qu’on fait en préparation avant un événement important. Soutenu."
+     },
+     "ex": [
+      {
+       "ja": "試合に先立って、開会式が行われた。",
+       "furigana": "[試合|しあい]に[先立|さきだ]って、[開会式|かいかいしき]が[行|おこな]われた。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "An opening ceremony was held before the match.",
+       "fr": "Une cérémonie d’ouverture a eu lieu avant le match."
+      },
+      {
+       "ja": "工事を始めるに先立ち、住民に説明した。",
+       "furigana": "[工事|こうじ]を[始|はじ]めるに[先立|さきだ]ち、[住民|じゅうみん]に[説明|せつめい]した。",
+       "blank": [
+        6,
+        10
+       ],
+       "en": "Before starting the work, we explained it to the residents.",
+       "fr": "Avant de commencer les travaux, nous les avons expliqués aux habitants."
+      }
+     ]
+    },
+    {
+     "n": 80,
+     "p": "～にしたら／すれば／しても",
+     "unit": 7,
+     "page": 76,
+     "en": "For (someone), from (someone’s) point of view",
+     "fr": "Pour (quelqu’un), du point de vue de (quelqu’un)",
+     "form": "N (a person) + にしたら / にすれば / にしても",
+     "note": {
+      "en": "Imagines how things look to someone else, usually a person: “for the parents, it must be hard”.",
+      "fr": "Imagine comment les choses apparaissent à quelqu’un d’autre, en général une personne : « pour les parents, ça doit être dur »."
+     },
+     "ex": [
+      {
+       "ja": "親にしたら、子供が遠くに住むのは寂しいだろう。",
+       "furigana": "[親|おや]にしたら、[子供|こども]が[遠|とお]くに[住|す]むのは[寂|さび]しいだろう。",
+       "blank": [
+        1,
+        5
+       ],
+       "en": "For the parents, their child living far away must be lonely.",
+       "fr": "Pour les parents, avoir un enfant qui vit loin doit être triste."
+      },
+      {
+       "ja": "学生にすれば、宿題は少ないほうがいい。",
+       "furigana": "[学生|がくせい]にすれば、[宿題|しゅくだい]は[少|すく]ないほうがいい。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "From a student’s point of view, the less homework the better.",
+       "fr": "Du point de vue des élèves, moins il y a de devoirs, mieux c’est."
+      }
+     ]
+    },
+    {
+     "n": 81,
+     "p": "～ずにすむ",
+     "unit": 7,
+     "page": 76,
+     "en": "To get away without (having to)…",
+     "fr": "Ne pas avoir besoin de…, s’en tirer sans…",
+     "form": "V-ない (−ない) + ずにすむ (する → せずにすむ)",
+     "note": {
+      "en": "Something unwanted didn’t have to be done after all. Same meaning as ～ないですむ, more written.",
+      "fr": "Une chose désagréable n’a finalement pas eu besoin d’être faite. Même sens que ～ないですむ, plus écrit."
+     },
+     "ex": [
+      {
+       "ja": "友達が貸してくれたので、買わずにすんだ。",
+       "furigana": "[友達|ともだち]が[貸|か]してくれたので、[買|か]わずにすんだ。",
+       "blank": [
+        14,
+        19
+       ],
+       "en": "A friend lent me one, so I didn’t have to buy it.",
+       "fr": "Un ami m’en a prêté un, je n’ai pas eu besoin d’en acheter."
+      },
+      {
+       "ja": "早く治れば、手術をせずにすむ。",
+       "furigana": "[早|はや]く[治|なお]れば、[手術|しゅじゅつ]をせずにすむ。",
+       "blank": [
+        10,
+        14
+       ],
+       "en": "If it heals quickly, you won’t need an operation.",
+       "fr": "Si ça guérit vite, on pourra éviter l’opération."
+      }
+     ]
+    },
+    {
+     "n": 82,
+     "p": "～かねる",
+     "unit": 7,
+     "page": 76,
+     "coto": {
+      "level": "N2",
+      "pattern": "かねる"
+     },
+     "en": "Cannot (bring oneself to)…, unable to…",
+     "fr": "Ne pas pouvoir…, avoir du mal à…",
+     "form": "V-ます stem + かねる",
+     "note": {
+      "en": "A polite refusal, or something one can’t do for reasons of feeling or position (not skill). Common in shops: 分かりかねます.",
+      "fr": "Un refus poli, ou une chose qu’on ne peut pas faire pour des raisons de sentiment ou de position (pas de capacité). Courant en magasin : 分かりかねます."
+     },
+     "ex": [
+      {
+       "ja": "そのご質問にはお答えしかねます。",
+       "furigana": "そのご[質問|しつもん]にはお[答|こた]えしかねます。",
+       "blank": [
+        11,
+        15
+       ],
+       "en": "I’m afraid I can’t answer that question.",
+       "fr": "Je crains de ne pas pouvoir répondre à cette question."
+      },
+      {
+       "ja": "彼の意見には賛成しかねる。",
+       "furigana": "[彼|かれ]の[意見|いけん]には[賛成|さんせい]しかねる。",
+       "blank": [
+        9,
+        12
+       ],
+       "en": "I can’t agree with his opinion.",
+       "fr": "Je ne peux pas me ranger à son avis."
+      }
+     ]
+    },
+    {
+     "n": 83,
+     "p": "～かねない",
+     "unit": 7,
+     "page": 76,
+     "coto": {
+      "level": "N2",
+      "pattern": "かねない"
+     },
+     "en": "Could well…, might (something bad)",
+     "fr": "Risquer de…, pourrait bien…",
+     "form": "V-ます stem + かねない",
+     "note": {
+      "en": "Despite the negative form, it means a bad outcome is possible. Only for bad results.",
+      "fr": "Malgré la forme négative, cela veut dire qu’un mauvais résultat est possible. Seulement pour du négatif."
+     },
+     "ex": [
+      {
+       "ja": "そんなにスピードを出したら、事故を起こしかねない。",
+       "furigana": "そんなにスピードを[出|だ]したら、[事故|じこ]を[起|お]こしかねない。",
+       "blank": [
+        20,
+        24
+       ],
+       "en": "Driving that fast, you could well cause an accident.",
+       "fr": "À cette vitesse, tu risques de provoquer un accident."
+      },
+      {
+       "ja": "無理をすると、病気になりかねない。",
+       "furigana": "[無理|むり]をすると、[病気|びょうき]になりかねない。",
+       "blank": [
+        12,
+        16
+       ],
+       "en": "If you overdo it, you might get ill.",
+       "fr": "Si tu forces trop, tu risques de tomber malade."
+      }
+     ]
+    },
+    {
+     "n": 84,
+     "p": "～しだい",
+     "unit": 7,
+     "page": 76,
+     "en": "As soon as…",
+     "fr": "Dès que…",
+     "form": "V-ます stem + しだい",
+     "note": {
+      "en": "Do the next thing right after the first is done. Polite and businesslike; not for past events.",
+      "fr": "Faire la suite dès que la première chose est faite. Poli, ton professionnel ; pas pour un fait passé."
+     },
+     "ex": [
+      {
+       "ja": "結果が分かりしだい、ご連絡します。",
+       "furigana": "[結果|けっか]が[分|わ]かりしだい、ご[連絡|れんらく]します。",
+       "blank": [
+        6,
+        9
+       ],
+       "en": "I’ll contact you as soon as we know the result.",
+       "fr": "Je vous contacterai dès que nous aurons le résultat."
+      },
+      {
+       "ja": "雨がやみしだい、出発しましょう。",
+       "furigana": "[雨|あめ]がやみしだい、[出発|しゅっぱつ]しましょう。",
+       "blank": [
+        4,
+        7
+       ],
+       "en": "Let’s leave as soon as the rain stops.",
+       "fr": "Partons dès que la pluie s’arrêtera."
+      }
+     ]
+    },
+    {
+     "n": 85,
+     "p": "～しだいで／だ",
+     "unit": 7,
+     "page": 76,
+     "en": "Depending on…, it’s up to…",
+     "fr": "Selon…, ça dépend de…",
+     "form": "N + しだいで / しだいだ / しだいでは",
+     "note": {
+      "en": "The result depends entirely on that thing. しだいでは: “depending on…, it may even…”.",
+      "fr": "Le résultat dépend entièrement de cette chose. しだいでは : « selon…, il se peut même que… »."
+     },
+     "ex": [
+      {
+       "ja": "成功するかどうかは、あなたの努力しだいだ。",
+       "furigana": "[成功|せいこう]するかどうかは、あなたの[努力|どりょく]しだいだ。",
+       "blank": [
+        16,
+        20
+       ],
+       "en": "Whether you succeed is up to your own effort.",
+       "fr": "Réussir ou non dépend de tes efforts."
+      },
+      {
+       "ja": "天気しだいでは、旅行を延期するかもしれない。",
+       "furigana": "[天気|てんき]しだいでは、[旅行|りょこう]を[延期|えんき]するかもしれない。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "Depending on the weather, we may postpone the trip.",
+       "fr": "Selon le temps, il se peut qu’on reporte le voyage."
+      }
+     ]
+    },
+    {
+     "n": 86,
+     "p": "～次第だ",
+     "unit": 7,
+     "page": 76,
+     "en": "That is how (it happened)…, hence…",
+     "fr": "C’est ainsi que…, voilà pourquoi…",
+     "form": "V / い-adj (plain) / な-adj な + 次第だ",
+     "note": {
+      "en": "Formal: explains the circumstances that led to the present situation, often in letters or apologies.",
+      "fr": "Soutenu : explique les circonstances qui ont mené à la situation actuelle, souvent dans une lettre ou une excuse."
+     },
+     "ex": [
+      {
+       "ja": "担当者が不在のため、私がご説明する次第です。",
+       "furigana": "[担当者|たんとうしゃ]が[不在|ふざい]のため、[私|わたし]がご[説明|せつめい]する[次第|しだい]です。",
+       "blank": [
+        17,
+        21
+       ],
+       "en": "The person in charge is out, which is why I am explaining in their place.",
+       "fr": "La personne responsable étant absente, c’est moi qui vous donne les explications."
+      },
+      {
+       "ja": "皆様のご協力をお願いする次第です。",
+       "furigana": "[皆様|みなさま]のご[協力|きょうりょく]をお[願|ねが]いする[次第|しだい]です。",
+       "blank": [
+        12,
+        16
+       ],
+       "en": "And so we ask for your kind cooperation.",
+       "fr": "C’est pourquoi nous sollicitons votre aimable collaboration."
+      }
+     ]
+    },
+    {
+     "n": 87,
+     "p": "～限り",
+     "unit": 8,
+     "page": 87,
+     "en": "As long as…, as far as…",
+     "fr": "Tant que…, autant que…",
+     "form": "V-dict / V-ている / V-ない / N である + 限り",
+     "note": {
+      "en": "Within a limit: as long as a state lasts (生きている限り), or as far as one knows or can (私の知る限り, できる限り).",
+      "fr": "Dans une limite : tant qu’un état dure (生きている限り), ou autant qu’on sache ou puisse (私の知る限り, できる限り)."
+     },
+     "ex": [
+      {
+       "ja": "私の知る限り、彼は信頼できる人だ。",
+       "furigana": "[私|わたし]の[知|し]る[限|かぎ]り、[彼|かれ]は[信頼|しんらい]できる[人|ひと]だ。",
+       "blank": [
+        4,
+        6
+       ],
+       "en": "As far as I know, he’s someone you can trust.",
+       "fr": "À ma connaissance, c’est quelqu’un de fiable."
+      },
+      {
+       "ja": "雨が降らない限り、試合は行われる。",
+       "furigana": "[雨|あめ]が[降|ふ]らない[限|かぎ]り、[試合|しあい]は[行|おこな]われる。",
+       "blank": [
+        6,
+        8
+       ],
+       "en": "As long as it doesn’t rain, the match will go ahead.",
+       "fr": "Tant qu’il ne pleut pas, le match aura lieu."
+      }
+     ]
+    },
+    {
+     "n": 88,
+     "p": "～に限って",
+     "unit": 8,
+     "page": 87,
+     "en": "Of all (times/people)…, just when…",
+     "fr": "Justement (ce jour-là, cette personne-là)…",
+     "form": "N + に限って",
+     "note": {
+      "en": "Something bad happens precisely at that time, or with that person (often with an unhappy surprise). うちの子に限って: “not my child, surely”.",
+      "fr": "Une chose fâcheuse arrive justement à ce moment-là, ou avec cette personne-là. うちの子に限って : « pas mon enfant, voyons »."
+     },
+     "ex": [
+      {
+       "ja": "急いでいる日に限って、電車が遅れる。",
+       "furigana": "[急|いそ]いでいる[日|ひ]に[限|かぎ]って、[電車|でんしゃ]が[遅|おく]れる。",
+       "blank": [
+        6,
+        10
+       ],
+       "en": "Of course the train is late on the very day I’m in a hurry.",
+       "fr": "C’est toujours le jour où je suis pressé que le train a du retard."
+      },
+      {
+       "ja": "傘を持っていない日に限って、雨が降る。",
+       "furigana": "[傘|かさ]を[持|も]っていない[日|ひ]に[限|かぎ]って、[雨|あめ]が[降|ふ]る。",
+       "blank": [
+        9,
+        13
+       ],
+       "en": "It always rains on the one day I don’t have an umbrella.",
+       "fr": "Il pleut toujours justement le jour où je n’ai pas de parapluie."
+      }
+     ]
+    },
+    {
+     "n": 89,
+     "p": "～見えて",
+     "unit": 8,
+     "page": 87,
+     "en": "It seems (that)…, apparently… (judging from signs)",
+     "fr": "Il semble que…, apparemment… (à voir les signes)",
+     "form": "V / い-adj (plain) / な-adj / N + (と)見えて",
+     "note": {
+      "en": "Usually とみえて: a guess drawn from what one sees, followed by the visible sign. “He must be tired: he’s yawning.”",
+      "fr": "Le plus souvent とみえて : une supposition tirée de ce qu’on voit, suivie du signe visible. « Il doit être fatigué : il bâille. »"
+     },
+     "ex": [
+      {
+       "ja": "彼は疲れていると見えて、何度もあくびをしている。",
+       "furigana": "[彼|かれ]は[疲|つか]れていると[見|み]えて、[何度|なんど]もあくびをしている。",
+       "blank": [
+        8,
+        11
+       ],
+       "en": "He seems to be tired: he keeps yawning.",
+       "fr": "Il a l’air fatigué : il n’arrête pas de bâiller."
+      },
+      {
+       "ja": "よほどおなかがすいていたと見えて、子供はすぐに全部食べた。",
+       "furigana": "よほどおなかがすいていたと[見|み]えて、[子供|こども]はすぐに[全部|ぜんぶ][食|た]べた。",
+       "blank": [
+        13,
+        16
+       ],
+       "en": "The child must have been really hungry: he ate it all at once.",
+       "fr": "L’enfant devait avoir très faim : il a tout mangé d’un coup."
+      }
+     ]
+    },
+    {
+     "n": 90,
+     "p": "～というと／いえば／いったら",
+     "unit": 8,
+     "page": 87,
+     "en": "Speaking of…, when it comes to…",
+     "fr": "En parlant de…, quand on dit…",
+     "form": "N + というと / といえば / といったら",
+     "note": {
+      "en": "Brings up the first thing that comes to mind about a topic. といったら can also stress a feeling: 寒いといったら…（so cold!）.",
+      "fr": "Évoque la première chose qui vient à l’esprit pour un sujet. といったら peut aussi souligner une émotion : 寒いといったら… (qu’est-ce qu’il fait froid !)."
+     },
+     "ex": [
+      {
+       "ja": "日本の山といえば、やはり富士山だ。",
+       "furigana": "[日本|にほん]の[山|やま]といえば、やはり[富士山|ふじさん]だ。",
+       "blank": [
+        4,
+        8
+       ],
+       "en": "When it comes to mountains in Japan, it has to be Mount Fuji.",
+       "fr": "Quand on parle des montagnes du Japon, c’est forcément le mont Fuji."
+      },
+      {
+       "ja": "京都というと、お寺を思い出す。",
+       "furigana": "[京都|きょうと]というと、お[寺|てら]を[思|おも]い[出|だ]す。",
+       "blank": [
+        2,
+        6
+       ],
+       "en": "Kyoto makes me think of temples.",
+       "fr": "Kyoto, ça m’évoque les temples."
+      }
+     ]
+    },
+    {
+     "n": 91,
+     "p": "～といっても",
+     "unit": 8,
+     "page": 87,
+     "en": "Although (I say)…, even so…",
+     "fr": "Même si on dit…, enfin, …",
+     "form": "V / い-adj / な-adj / N (plain) + といっても",
+     "note": {
+      "en": "Corrects what the listener might imagine: the reality is smaller or less than the word suggests.",
+      "fr": "Corrige ce que l’autre pourrait imaginer : la réalité est moindre que ce que le mot laisse croire."
+     },
+     "ex": [
+      {
+       "ja": "料理ができるといっても、簡単なものだけです。",
+       "furigana": "[料理|りょうり]ができるといっても、[簡単|かんたん]なものだけです。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "I can cook, but only simple things.",
+       "fr": "Je sais cuisiner, enfin, seulement des plats simples."
+      },
+      {
+       "ja": "休みといっても、一日だけだ。",
+       "furigana": "[休|やす]みといっても、[一日|いちにち]だけだ。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "It’s a holiday, but only one day.",
+       "fr": "C’est un congé, mais d’une seule journée."
+      }
+     ]
+    },
+    {
+     "n": 92,
+     "p": "～にかけては",
+     "unit": 8,
+     "page": 87,
+     "coto": {
+      "level": "N2",
+      "pattern": "かけては"
+     },
+     "en": "When it comes to…, in (a field)…",
+     "fr": "Pour ce qui est de…, en matière de…",
+     "form": "N + にかけては",
+     "note": {
+      "en": "Praises someone’s skill in one area: “when it comes to X, nobody beats him”.",
+      "fr": "Vante le talent de quelqu’un dans un domaine : « pour X, personne ne le bat »."
+     },
+     "ex": [
+      {
+       "ja": "料理にかけては、母に勝てる人はいない。",
+       "furigana": "[料理|りょうり]にかけては、[母|はは]に[勝|か]てる[人|ひと]はいない。",
+       "blank": [
+        2,
+        7
+       ],
+       "en": "When it comes to cooking, nobody beats my mother.",
+       "fr": "Pour ce qui est de la cuisine, personne ne bat ma mère."
+      },
+      {
+       "ja": "足の速さにかけては、彼がクラスで一番だ。",
+       "furigana": "[足|あし]の[速|はや]さにかけては、[彼|かれ]がクラスで[一番|いちばん]だ。",
+       "blank": [
+        4,
+        9
+       ],
+       "en": "When it comes to speed, he’s the fastest in the class.",
+       "fr": "En matière de vitesse, c’est le meilleur de la classe."
+      }
+     ]
+    },
+    {
+     "n": 93,
+     "p": "～か",
+     "unit": 8,
+     "page": 87,
+     "en": "Perhaps because…, whether because…",
+     "fr": "Peut-être parce que…",
+     "form": "V / い-adj (plain) / な-adj な / N の + せいか, ためか…",
+     "note": {
+      "en": "Here か adds doubt to a reason: the speaker isn’t sure that is the cause (せいか, ためか, からか).",
+      "fr": "Ici, か ajoute un doute à une cause : on n’est pas sûr que ce soit la raison (せいか, ためか, からか)."
+     },
+     "ex": [
+      {
+       "ja": "疲れたせいか、頭が痛い。",
+       "furigana": "[疲|つか]れたせいか、[頭|あたま]が[痛|いた]い。",
+       "blank": [
+        5,
+        6
+       ],
+       "en": "Maybe because I’m tired, I have a headache.",
+       "fr": "Peut-être à cause de la fatigue, j’ai mal à la tête."
+      },
+      {
+       "ja": "年のためか、最近よく忘れる。",
+       "furigana": "[年|とし]のためか、[最近|さいきん]よく[忘|わす]れる。",
+       "blank": [
+        4,
+        5
+       ],
+       "en": "Perhaps it’s my age, but I forget things a lot lately.",
+       "fr": "C’est peut-être l’âge, mais j’oublie souvent ces temps-ci."
+      }
+     ]
+    },
+    {
+     "n": 94,
+     "p": "～にしろ／せよ／しても",
+     "unit": 8,
+     "page": 87,
+     "en": "Even if…, whether… or…",
+     "fr": "Même si…, que ce soit… ou…",
+     "form": "V / い-adj (plain) / な-adj / N + にしろ / にせよ / にしても",
+     "note": {
+      "en": "Grants something, yet the conclusion stays. Repeated (AにしろBにしろ): “whether A or B, either way…”. せよ is the most formal.",
+      "fr": "Concède une chose, sans changer la conclusion. Répété (AにしろBにしろ) : « que ce soit A ou B, de toute façon… ». せよ est le plus soutenu."
+     },
+     "ex": [
+      {
+       "ja": "忙しいにしても、電話ぐらいできるだろう。",
+       "furigana": "[忙|いそが]しいにしても、[電話|でんわ]ぐらいできるだろう。",
+       "blank": [
+        3,
+        7
+       ],
+       "en": "Even if you’re busy, you can at least call.",
+       "fr": "Même si tu es occupé, tu peux bien passer un coup de fil."
+      },
+      {
+       "ja": "行くにせよ行かないにせよ、早く返事をください。",
+       "furigana": "[行|い]くにせよ[行|い]かないにせよ、[早|はや]く[返事|へんじ]をください。",
+       "blank": [
+        2,
+        12
+       ],
+       "en": "Whether you go or not, please answer soon.",
+       "fr": "Que tu y ailles ou non, réponds vite, s’il te plaît."
+      }
+     ]
+    },
+    {
+     "n": 95,
+     "p": "（ただ）～のみ",
+     "unit": 8,
+     "page": 87,
+     "coto": {
+      "level": "N1",
+      "pattern": "ただ～のみ"
+     },
+     "en": "Only…, nothing but…",
+     "fr": "Seulement…, rien que…",
+     "form": "（ただ）N / V-dict + のみ",
+     "note": {
+      "en": "A written だけ. With ただ it becomes stronger: “all that’s left is to…”.",
+      "fr": "Un だけ écrit. Avec ただ, c’est plus fort : « il ne reste plus qu’à… »."
+     },
+     "ex": [
+      {
+       "ja": "準備はできた。あとはただ待つのみだ。",
+       "furigana": "[準備|じゅんび]はできた。あとはただ[待|ま]つのみだ。",
+       "blank": [
+        14,
+        16
+       ],
+       "en": "Everything is ready. All that’s left is to wait.",
+       "fr": "Tout est prêt. Il ne reste plus qu’à attendre."
+      },
+      {
+       "ja": "この道は歩行者のみ通行できる。",
+       "furigana": "この[道|みち]は[歩行者|ほこうしゃ]のみ[通行|つうこう]できる。",
+       "blank": [
+        7,
+        9
+       ],
+       "en": "This road is open to pedestrians only.",
+       "fr": "Cette voie est réservée aux piétons."
+      }
+     ]
+    },
+    {
+     "n": 96,
+     "p": "（ただ）～のみならず",
+     "unit": 8,
+     "page": 87,
+     "en": "Not only…, but also",
+     "fr": "Non seulement…, mais aussi",
+     "form": "（ただ）V / い-adj (plain) / N (である) + のみならず",
+     "note": {
+      "en": "A written ばかりでなく: adds that the thing goes beyond the first scope.",
+      "fr": "Un ばかりでなく écrit : ajoute que la chose dépasse le premier cadre."
+     },
+     "ex": [
+      {
+       "ja": "この問題は日本のみならず、世界中で議論されている。",
+       "furigana": "この[問題|もんだい]は[日本|にほん]のみならず、[世界中|せかいじゅう]で[議論|ぎろん]されている。",
+       "blank": [
+        7,
+        12
+       ],
+       "en": "This issue is debated not only in Japan but around the world.",
+       "fr": "Ce problème est débattu non seulement au Japon, mais dans le monde entier."
+      },
+      {
+       "ja": "彼は歌手であるのみならず、作家でもある。",
+       "furigana": "[彼|かれ]は[歌手|かしゅ]であるのみならず、[作家|さっか]でもある。",
+       "blank": [
+        7,
+        12
+       ],
+       "en": "He’s not only a singer but also a writer.",
+       "fr": "Il n’est pas seulement chanteur, il est aussi écrivain."
+      }
+     ]
+    },
+    {
+     "n": 97,
+     "p": "～にほかならない",
+     "unit": 8,
+     "page": 87,
+     "en": "Is nothing other than…, is precisely…",
+     "fr": "N’est autre que…, c’est précisément…",
+     "form": "N / reason (から, ため) + にほかならない",
+     "note": {
+      "en": "Firmly states that something is exactly this and nothing else, often the true reason.",
+      "fr": "Affirme fermement qu’une chose est exactement cela et rien d’autre, souvent la vraie raison."
+     },
+     "ex": [
+      {
+       "ja": "今回の成功は、皆さんの努力の結果にほかならない。",
+       "furigana": "[今回|こんかい]の[成功|せいこう]は、[皆|みな]さんの[努力|どりょく]の[結果|けっか]にほかならない。",
+       "blank": [
+        16,
+        23
+       ],
+       "en": "This success is nothing other than the result of everyone’s efforts.",
+       "fr": "Ce succès n’est autre que le fruit des efforts de tous."
+      },
+      {
+       "ja": "親が厳しいのは、子供を愛しているからにほかならない。",
+       "furigana": "[親|おや]が[厳|きび]しいのは、[子供|こども]を[愛|あい]しているからにほかならない。",
+       "blank": [
+        18,
+        25
+       ],
+       "en": "Parents are strict precisely because they love their children.",
+       "fr": "Si les parents sont sévères, c’est précisément parce qu’ils aiment leurs enfants."
+      }
+     ]
+    },
+    {
+     "n": 98,
+     "p": "～ざるを得ない",
+     "unit": 8,
+     "page": 87,
+     "en": "Have no choice but to…",
+     "fr": "Ne pas avoir d’autre choix que de…",
+     "form": "V-ない (−ない) + ざるを得ない (する → せざるを得ない)",
+     "note": {
+      "en": "The situation forces you to do something you don’t really want to. Formal.",
+      "fr": "La situation oblige à faire une chose qu’on ne veut pas vraiment faire. Soutenu."
+     },
+     "ex": [
+      {
+       "ja": "台風が来るので、旅行を中止せざるを得ない。",
+       "furigana": "[台風|たいふう]が[来|く]るので、[旅行|りょこう]を[中止|ちゅうし]せざるを[得|え]ない。",
+       "blank": [
+        14,
+        20
+       ],
+       "en": "With the typhoon coming, we have no choice but to cancel the trip.",
+       "fr": "Avec le typhon qui arrive, nous sommes obligés d’annuler le voyage."
+      },
+      {
+       "ja": "上司の命令なら、やらざるを得ない。",
+       "furigana": "[上司|じょうし]の[命令|めいれい]なら、やらざるを[得|え]ない。",
+       "blank": [
+        10,
+        16
+       ],
+       "en": "If it’s my boss’s order, I have to do it.",
+       "fr": "Si c’est un ordre de mon chef, je n’ai pas le choix."
+      }
+     ]
+    },
+    {
+     "n": 99,
+     "p": "～ては…～ては…",
+     "unit": 9,
+     "page": 98,
+     "en": "Over and over: (do A) then (B), (A) then (B)…",
+     "fr": "Encore et encore : (faire A) puis (B), (A) puis (B)…",
+     "form": "V1-て + は + V2, V1-て + は + V2",
+     "note": {
+      "en": "Two actions that keep repeating one after the other, often in vain (“writing and erasing”).",
+      "fr": "Deux actions qui se répètent l’une après l’autre, souvent en vain (« écrire puis effacer »)."
+     },
+     "ex": [
+      {
+       "ja": "手紙を書いては消し、書いては消した。",
+       "furigana": "[手紙|てがみ]を[書|か]いては[消|け]し、[書|か]いては[消|け]した。",
+       "blank": [
+        5,
+        14
+       ],
+       "en": "I wrote the letter and erased it, wrote and erased it, over and over.",
+       "fr": "J’ai écrit la lettre et je l’ai effacée, encore et encore."
+      },
+      {
+       "ja": "雨が降ってはやみ、降ってはやみしている。",
+       "furigana": "[雨|あめ]が[降|ふ]ってはやみ、[降|ふ]ってはやみしている。",
+       "blank": [
+        4,
+        13
+       ],
+       "en": "It keeps raining and stopping, raining and stopping.",
+       "fr": "Il pleut, ça s’arrête, il repleut, ça s’arrête…"
+      }
+     ]
+    },
+    {
+     "n": 100,
+     "p": "～矢先に／の",
+     "unit": 9,
+     "page": 98,
+     "en": "Just as (I was about to)…",
+     "fr": "Juste au moment où (j’allais)…",
+     "form": "V-dict / V-ようとした / V-た + 矢先に",
+     "note": {
+      "en": "Right when something was about to happen (or had just happened), something unexpected, often bad, came up.",
+      "fr": "Juste au moment où une chose allait se faire (ou venait de se faire), un imprévu, souvent fâcheux, est arrivé."
+     },
+     "ex": [
+      {
+       "ja": "出かけようとした矢先に、電話が鳴った。",
+       "furigana": "[出|で]かけようとした[矢先|やさき]に、[電話|でんわ]が[鳴|な]った。",
+       "blank": [
+        8,
+        11
+       ],
+       "en": "Just as I was about to go out, the phone rang.",
+       "fr": "Juste au moment où j’allais sortir, le téléphone a sonné."
+      },
+      {
+       "ja": "新しい仕事に慣れてきた矢先に、転勤が決まった。",
+       "furigana": "[新|あたら]しい[仕事|しごと]に[慣|な]れてきた[矢先|やさき]に、[転勤|てんきん]が[決|き]まった。",
+       "blank": [
+        11,
+        14
+       ],
+       "en": "Just as I was getting used to my new job, I was told I’d be transferred.",
+       "fr": "Juste au moment où je m’habituais à mon nouveau travail, on m’a annoncé une mutation."
+      }
+     ]
+    },
+    {
+     "n": 101,
+     "p": "～にとどまらず",
+     "unit": 9,
+     "page": 98,
+     "en": "Not limited to…, going beyond…",
+     "fr": "Ne pas se limiter à…, aller au-delà de…",
+     "form": "N / V-dict + にとどまらず",
+     "note": {
+      "en": "Something spreads beyond a limit: a region, a group, a field.",
+      "fr": "Une chose s’étend au-delà d’une limite : une région, un groupe, un domaine."
+     },
+     "ex": [
+      {
+       "ja": "その病気は一つの国にとどまらず、世界中に広がった。",
+       "furigana": "その[病気|びょうき]は[一|ひと]つの[国|くに]にとどまらず、[世界中|せかいじゅう]に[広|ひろ]がった。",
+       "blank": [
+        9,
+        15
+       ],
+       "en": "The disease didn’t stay in one country but spread around the world.",
+       "fr": "La maladie ne s’est pas limitée à un seul pays : elle s’est répandue dans le monde entier."
+      },
+      {
+       "ja": "彼の活動は音楽にとどまらず、映画にも及んでいる。",
+       "furigana": "[彼|かれ]の[活動|かつどう]は[音楽|おんがく]にとどまらず、[映画|えいが]にも[及|およ]んでいる。",
+       "blank": [
+        7,
+        13
+       ],
+       "en": "His work goes beyond music and extends to film.",
+       "fr": "Son activité dépasse la musique et touche aussi le cinéma."
+      }
+     ]
+    },
+    {
+     "n": 102,
+     "p": "～（に）は…が／けど、～ことは…が／けど",
+     "unit": 9,
+     "page": 98,
+     "en": "I do… (but), it’s true that… (but)",
+     "fr": "Pour… (ça)…, mais ; c’est vrai que…, mais",
+     "form": "V-ます stem + に + は + V…が; V + ことは + V…が",
+     "note": {
+      "en": "Repeats the verb to admit something only partly: “I did go, but…”, “it is cheap, but…”. The second part limits the first.",
+      "fr": "Répète le verbe pour n’admettre une chose qu’en partie : « pour y aller, j’y suis allé, mais… », « c’est pas cher, mais… ». La seconde partie limite la première."
+     },
+     "ex": [
+      {
+       "ja": "行きには行ったが、誰にも会えなかった。",
+       "furigana": "[行|い]きには[行|い]ったが、[誰|だれ]にも[会|あ]えなかった。",
+       "blank": [
+        2,
+        8
+       ],
+       "en": "I did go, but I couldn’t see anyone.",
+       "fr": "Pour y aller, j’y suis allé, mais je n’ai vu personne."
+      },
+      {
+       "ja": "この服は安いことは安いけど、すぐ破れる。",
+       "furigana": "この[服|ふく]は[安|やす]いことは[安|やす]いけど、すぐ[破|やぶ]れる。",
+       "blank": [
+        6,
+        13
+       ],
+       "en": "These clothes are cheap, sure, but they tear easily.",
+       "fr": "Ces vêtements, c’est vrai qu’ils ne sont pas chers, mais ils se déchirent vite."
+      }
+     ]
+    },
+    {
+     "n": 103,
+     "p": "～からして",
+     "unit": 9,
+     "page": 98,
+     "en": "Starting with…, to begin with…; judging from…",
+     "fr": "À commencer par…, déjà… ; à en juger par…",
+     "form": "N + からして",
+     "note": {
+      "en": "Takes one example, often the most basic, to say everything else is the same (“even the name is strange”). Also “judging from”.",
+      "fr": "Prend un exemple, souvent le plus élémentaire, pour dire que tout le reste est pareil (« rien que le nom est bizarre »). Aussi « à en juger par »."
+     },
+     "ex": [
+      {
+       "ja": "あの店は名前からして変だ。",
+       "furigana": "あの[店|みせ]は[名前|なまえ]からして[変|へん]だ。",
+       "blank": [
+        6,
+        10
+       ],
+       "en": "That shop is odd, starting with its name.",
+       "fr": "Ce magasin est bizarre, à commencer par son nom."
+      },
+      {
+       "ja": "彼の話し方からして、怒っているようだ。",
+       "furigana": "[彼|かれ]の[話|はな]し[方|かた]からして、[怒|おこ]っているようだ。",
+       "blank": [
+        5,
+        9
+       ],
+       "en": "Judging from the way he speaks, he seems angry.",
+       "fr": "À sa façon de parler, il a l’air fâché."
+      }
+     ]
+    },
+    {
+     "n": 104,
+     "p": "～というか…というか",
+     "unit": 9,
+     "page": 98,
+     "en": "Whether you call it… or…, … or rather…",
+     "fr": "Comment dire… ou plutôt…",
+     "form": "N / な-adj / い-adj / V + というか + … + というか",
+     "note": {
+      "en": "Searches out loud for the right word, giving two descriptions that both fit a little.",
+      "fr": "Cherche à voix haute le mot juste, en donnant deux descriptions qui conviennent toutes les deux un peu."
+     },
+     "ex": [
+      {
+       "ja": "彼は真面目というか、頑固というか、人の意見を聞かない。",
+       "furigana": "[彼|かれ]は[真面目|まじめ]というか、[頑固|がんこ]というか、[人|ひと]の[意見|いけん]を[聞|き]かない。",
+       "blank": [
+        5,
+        16
+       ],
+       "en": "He’s serious, or rather stubborn: he doesn’t listen to others.",
+       "fr": "Il est sérieux, ou plutôt têtu, comment dire : il n’écoute pas les autres."
+      },
+      {
+       "ja": "その知らせを聞いて、うれしいというか、驚いたというか、言葉が出なかった。",
+       "furigana": "その[知|し]らせを[聞|き]いて、うれしいというか、[驚|おどろ]いたというか、[言葉|ことば]が[出|で]なかった。",
+       "blank": [
+        14,
+        26
+       ],
+       "en": "Hearing the news, I was happy, or surprised… I was speechless.",
+       "fr": "En apprenant la nouvelle, j’étais content, ou surpris… je n’ai rien pu dire."
+      }
+     ]
+    },
+    {
+     "n": 105,
+     "p": "～にこしたことはない",
+     "unit": 9,
+     "page": 98,
+     "coto": {
+      "level": "N2",
+      "pattern": "～に越したことはない"
+     },
+     "en": "It’s best to…, nothing is better than…",
+     "fr": "Il vaut mieux…, rien de mieux que…",
+     "form": "V-dict / い-adj / な-adj / N + にこしたことはない",
+     "note": {
+      "en": "Common sense advice: of course it’s better that way (but it isn’t always possible).",
+      "fr": "Un conseil de bon sens : bien sûr, c’est mieux ainsi (même si ce n’est pas toujours possible)."
+     },
+     "ex": [
+      {
+       "ja": "お金はあるにこしたことはない。",
+       "furigana": "お[金|かね]はあるにこしたことはない。",
+       "blank": [
+        5,
+        14
+       ],
+       "en": "Of course, it’s better to have money.",
+       "fr": "Bien sûr, mieux vaut avoir de l’argent."
+      },
+      {
+       "ja": "早く準備するにこしたことはない。",
+       "furigana": "[早|はや]く[準備|じゅんび]するにこしたことはない。",
+       "blank": [
+        6,
+        15
+       ],
+       "en": "It’s best to get ready early.",
+       "fr": "Le mieux, c’est de se préparer tôt."
+      }
+     ]
+    },
+    {
+     "n": 106,
+     "p": "～（よ）うにも～ない",
+     "unit": 9,
+     "page": 98,
+     "en": "Even if I want to…, I can’t",
+     "fr": "J’ai beau vouloir…, je ne peux pas",
+     "form": "V-よう + にも + V-potential-ない",
+     "note": {
+      "en": "The speaker wants to do something but circumstances make it impossible. The same verb comes twice.",
+      "fr": "On veut faire une chose, mais les circonstances l’empêchent. Le même verbe revient deux fois."
+     },
+     "ex": [
+      {
+       "ja": "鍵がなくて、家に入ろうにも入れない。",
+       "furigana": "[鍵|かぎ]がなくて、[家|いえ]に[入|はい]ろうにも[入|はい]れない。",
+       "blank": [
+        10,
+        17
+       ],
+       "en": "I have no key, so I can’t get into the house even if I want to.",
+       "fr": "Je n’ai pas la clé : j’ai beau vouloir rentrer chez moi, je ne peux pas."
+      },
+      {
+       "ja": "熱があって、起きようにも起きられない。",
+       "furigana": "[熱|ねつ]があって、[起|お]きようにも[起|お]きられない。",
+       "blank": [
+        9,
+        18
+       ],
+       "en": "I have a fever: I want to get up, but I can’t.",
+       "fr": "J’ai de la fièvre : j’ai beau vouloir me lever, je n’y arrive pas."
+      }
+     ]
+    },
+    {
+     "n": 107,
+     "p": "～を踏まえ（て）",
+     "unit": 9,
+     "page": 98,
+     "coto": {
+      "level": "N1",
+      "pattern": "～をふまえて"
+     },
+     "en": "Based on…, taking into account…",
+     "fr": "En se fondant sur…, en tenant compte de…",
+     "form": "N + を踏まえて / を踏まえた N",
+     "note": {
+      "en": "Using results, facts or opinions as the basis for the next step. Formal, common in reports and meetings.",
+      "fr": "S’appuyer sur des résultats, des faits ou des avis pour l’étape suivante. Soutenu, courant dans les rapports et les réunions."
+     },
+     "ex": [
+      {
+       "ja": "調査の結果を踏まえて、計画を見直した。",
+       "furigana": "[調査|ちょうさ]の[結果|けっか]を[踏|ふ]まえて、[計画|けいかく]を[見直|みなお]した。",
+       "blank": [
+        5,
+        10
+       ],
+       "en": "We revised the plan based on the survey results.",
+       "fr": "Nous avons revu le projet en nous fondant sur les résultats de l’enquête."
+      },
+      {
+       "ja": "皆さんの意見を踏まえた上で、決めたいと思います。",
+       "furigana": "[皆|みな]さんの[意見|いけん]を[踏|ふ]まえた[上|うえ]で、[決|き]めたいと[思|おも]います。",
+       "blank": [
+        6,
+        11
+       ],
+       "en": "I’d like to decide after taking everyone’s opinions into account.",
+       "fr": "Je voudrais décider après avoir tenu compte de l’avis de chacun."
+      }
+     ]
+    },
+    {
+     "n": 108,
+     "p": "～は…にかかっている",
+     "unit": 9,
+     "page": 98,
+     "en": "… depends on…",
+     "fr": "… dépend de…",
+     "form": "N1 は N2 にかかっている",
+     "note": {
+      "en": "The outcome (success, the future) rests on one thing.",
+      "fr": "L’issue (la réussite, l’avenir) repose sur une seule chose."
+     },
+     "ex": [
+      {
+       "ja": "試合の勝ち負けは、最後の一点にかかっている。",
+       "furigana": "[試合|しあい]の[勝|か]ち[負|ま]けは、[最後|さいご]の[一点|いってん]にかかっている。",
+       "blank": [
+        7,
+        21
+       ],
+       "en": "Winning or losing the match comes down to the last point.",
+       "fr": "La victoire dépend du dernier point."
+      },
+      {
+       "ja": "この会社の将来は若い社員にかかっている。",
+       "furigana": "この[会社|かいしゃ]の[将来|しょうらい]は[若|わか]い[社員|しゃいん]にかかっている。",
+       "blank": [
+        7,
+        19
+       ],
+       "en": "This company’s future depends on its young employees.",
+       "fr": "L’avenir de cette entreprise repose sur ses jeunes employés."
+      }
+     ]
+    },
+    {
+     "n": 109,
+     "p": "～（よ）うとする／している",
+     "unit": 9,
+     "page": 98,
+     "en": "To try to…; to be about to…",
+     "fr": "Essayer de… ; être sur le point de…",
+     "form": "V-よう + とする / としている",
+     "note": {
+      "en": "With a person: an attempt (often failed). With things or nature: something is about to happen (日が沈もうとしている).",
+      "fr": "Avec une personne : une tentative (souvent ratée). Avec une chose ou la nature : une chose est sur le point d’arriver (日が沈もうとしている)."
+     },
+     "ex": [
+      {
+       "ja": "寝ようとしたとき、電話がかかってきた。",
+       "furigana": "[寝|ね]ようとしたとき、[電話|でんわ]がかかってきた。",
+       "blank": [
+        1,
+        6
+       ],
+       "en": "Just as I was trying to sleep, the phone rang.",
+       "fr": "Au moment où j’essayais de m’endormir, le téléphone a sonné."
+      },
+      {
+       "ja": "日が沈もうとしている。",
+       "furigana": "[日|ひ]が[沈|しず]もうとしている。",
+       "blank": [
+        4,
+        10
+       ],
+       "en": "The sun is about to set.",
+       "fr": "Le soleil est sur le point de se coucher."
+      }
+     ]
+    },
+    {
+     "n": 110,
+     "p": "～（よ）うではないか",
+     "unit": 9,
+     "page": 98,
+     "en": "Let’s…! (a call to others)",
+     "fr": "Faisons… ! (appel aux autres)",
+     "form": "V-よう + ではないか (spoken: じゃないか)",
+     "note": {
+      "en": "A strong, often public, call for everyone to act together, as in a speech.",
+      "fr": "Un appel fort, souvent public, à agir tous ensemble, comme dans un discours."
+     },
+     "ex": [
+      {
+       "ja": "みんなで力を合わせて頑張ろうではないか。",
+       "furigana": "みんなで[力|ちから]を[合|あ]わせて[頑張|がんば]ろうではないか。",
+       "blank": [
+        13,
+        19
+       ],
+       "en": "Let’s all join forces and do our best!",
+       "fr": "Unissons nos forces et donnons le meilleur de nous-mêmes !"
+      },
+      {
+       "ja": "町をきれいにするために、ごみを拾おうではないか。",
+       "furigana": "[町|まち]をきれいにするために、ごみを[拾|ひろ]おうではないか。",
+       "blank": [
+        17,
+        23
+       ],
+       "en": "Let’s pick up litter to keep our town clean!",
+       "fr": "Ramassons les déchets pour garder notre ville propre !"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

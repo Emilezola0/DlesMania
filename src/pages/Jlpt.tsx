@@ -1278,6 +1278,17 @@ export default function Jlpt() {
         </ul>
       </section>
       <section className="space-y-3">
+        <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Your books</h2>
+        <ul className="flex flex-wrap gap-2">
+          <li>
+            <Link to="/jlpt/books/mimi-n2" className="btn-paper inline-flex items-center gap-2 rounded-full px-4 py-2 font-display text-sm font-bold">
+              📕 <span lang="ja">耳から覚える 文法トレーニング N2</span>
+              <span className="text-xs font-normal text-ink-faint">110 grammar · AI notes</span>
+            </Link>
+          </li>
+        </ul>
+      </section>
+      <section className="space-y-3">
         <h2 className="font-display text-sm uppercase tracking-[0.25em] text-ink-faint">Your deck</h2>
         <Customise options={JLPT_OPTIONS} picks={picks} onChange={setPicks} noun="filter" problem={(customDeck(picks)?.entries.length ?? 0) < 8 ? 'Pick at least one level and one kind (words or kanji).' : null} />
         {(customDeck(picks)?.entries.length ?? 0) >= 8 && (
