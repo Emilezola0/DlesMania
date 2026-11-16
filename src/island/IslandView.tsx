@@ -120,8 +120,17 @@ const CART = 9;
 const ZIP_SPEED = 10;
 type Ride = { kind: 'cart'; dir: number; x: number; row: number; y: number } | { kind: 'zip'; ax: number; ay: number; bx: number; by: number; t: number; len: number; to: number };
 
-const PW = 0.78;
-const PH = 0.92;
+/**
+ * The player as drawn (VW × VH cells), and the box that touches things (PW × PH): a little smaller, centred, on the same
+ * feet, so a corner of the drawing brushing a wall, a spike or a mob doesn't count.
+ */
+const VW = 0.78;
+const VH = 0.92;
+const PW = 0.62;
+const PH = 0.84;
+/** Where the drawing sits around the box. */
+const OX = (VW - PW) / 2;
+const OY = VH - PH;
 const SPEED = 6;
 const GRAVITY = 32;
 /** A jump's push: up 2.5 blocks (the owner's call), whatever the gravity. */
@@ -558,7 +567,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
       if (skyEl.current) skyEl.current.style.opacity = String(Math.max(0, Math.min(1, 1 - (camY.current / t - (ISLAND.sea - 10)) / 6)));
       if (v.x) facing.current = v.x < 0;
       if (me.current) {
-        me.current.style.transform = `translate(${p.x * t}px, ${p.y * t}px)`;
+        me.current.style.transform = `translate(${(p.x - OX) * t}px, ${(p.y - OY) * t}px)`;
         me.current.dataset.walking = v.x !== 0 && ground.current ? '1' : '';
         me.current.dataset.pose = pose.current?.kind ?? ride.current?.kind ?? '';
         if (v.x) me.current.dataset.left = v.x < 0 ? '1' : '';
@@ -615,7 +624,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
         if (Math.abs(peer.x - e.x) > 6 || Math.abs(peer.y - e.y) > 6) (e.x = peer.x), (e.y = peer.y);
         e.x += (peer.x - e.x) * f;
         e.y += (peer.y - e.y) * f;
-        e.el.style.transform = `translate(${e.x * t}px, ${e.y * t}px)`;
+        e.el.style.transform = `translate(${(e.x - OX) * t}px, ${(e.y - OY) * t}px)`;
         e.el.dataset.walking = Math.abs(peer.x - e.x) > 0.05 ? '1' : '';
         all.push(e);
       }
@@ -1073,8 +1082,9 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
     facing.current = left;
     if (me.current) me.current.dataset.left = left ? '1' : '';
     // From the rod's tip (drawn in the hand, on the side the player faces).
-    const fx = left ? p.x - 0.44 * PW : p.x + 1.44 * PW;
-    setFishing({ cell, phase: 'wait', got: rollCatch(), start: Date.now(), zone: 0, at: 0, fx, fy: p.y + 0.23 * PH });
+    const vx = p.x - OX;
+    const fx = left ? vx - 0.18 * VW : vx + 1.18 * VW;
+    setFishing({ cell, phase: 'wait', got: rollCatch(), start: Date.now(), zone: 0, at: 0, fx, fy: p.y - OY + 0.3 * VH });
     sfx.whoosh();
     say(tr('🎣 Cast! When the float dips, click (or Space).', '🎣 Lancé ! Quand le bouchon plonge, clique (ou Espace).'));
   };
@@ -1309,7 +1319,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
                 data-left={p.left ? '1' : ''}
                 data-pose={p.pose ?? ''}
                 className="island-me island-peer pointer-events-none absolute left-0 top-0"
-                style={{ width: PW * T, height: PH * T }}
+                style={{ width: VW * T, height: VH * T }}
               >
                 <span className="island-me-shadow" />
                 {face ? <CardAvatar card={face} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-sky-300 text-lg">🙂</span>}
@@ -1347,7 +1357,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
               </span>
             </div>
           ))}
-          <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: PW * T, height: PH * T }}>
+          <div key="me" ref={me} className="island-me pointer-events-none absolute left-0 top-0" style={{ width: VW * T, height: VH * T }}>
             <span className="island-me-shadow" />
             {avatarCard ? <CardAvatar card={avatarCard} className="island-me-face size-full" /> : <span className="island-me-face grid size-full place-items-center rounded-full bg-ochre text-lg">🙂</span>}
             <ToolInHand tool={poseNow ? undefined : fishing ? 'fish' : tool} />

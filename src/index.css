@@ -4621,17 +4621,17 @@ html.pack-open body::before, html.pack-open body::after { animation-play-state: 
 /* The tool in a player's hand (src/island/IslandView.tsx, ToolInHand): held on the side they face, swung on use. */
 .island-me-tool {
   position: absolute;
-  right: -52%;
-  bottom: 0;
-  width: 85%;
-  height: 85%;
+  right: -30%;
+  bottom: 4%;
+  width: 72%;
+  height: 72%;
   transform-origin: 20% 85%;
   filter: drop-shadow(0 1px 1px #0006);
   pointer-events: none;
 }
 .island-me[data-left='1'] > .island-me-tool {
   right: auto;
-  left: -52%;
+  left: -30%;
   transform: scaleX(-1);
 }
 .island-me[data-swing='1'] > .island-me-tool {
