@@ -214,6 +214,8 @@
     { "id": "lava", "kind": "spikes", "icon": "🌋", "name": "Lava", "fr": "Lave" },
     { "id": "fire-jet", "kind": "spikes", "icon": "🔥", "name": "Fire jet", "fr": "Jet de feu" },
     { "id": "jungle-vine", "kind": "ladder", "icon": "🌿", "name": "Vine (climb it)", "fr": "Liane (grimpe)" },
+    { "id": "pine-tree", "kind": "scenery", "icon": "🌲", "name": "Pine tree (the snowy peaks)", "fr": "Sapin (les pics enneigés)" },
+    { "id": "cactus", "kind": "scenery", "icon": "🌵", "name": "Cactus (the desert)", "fr": "Cactus (le désert)" },
     { "id": "puzzle-door", "kind": "qdoor", "icon": "🚪", "name": "Puzzle door (a Dle question opens it)", "fr": "Porte-énigme (une question Dle l’ouvre)" },
     { "id": "puzzle-door-open", "kind": "arch", "icon": "🚪", "name": "Puzzle door (open)", "fr": "Porte-énigme (ouverte)" },
     { "id": "sword-stone", "kind": "stone", "icon": "🗡️", "name": "Sword in the stone (draw it: once a day)", "fr": "Épée dans le rocher (tire-la : une fois par jour)" },

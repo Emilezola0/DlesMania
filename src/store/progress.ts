@@ -9,7 +9,7 @@ import { persist } from 'zustand/middleware';
 import { fgAt, newIsland, upgradeIsland, type Bag, type Change, type Island } from '../island/island';
 import type { Catch } from '../island/fishing';
 import { canCraft, RECIPE_BY_OUT } from '../island/crafting';
-import { dungeonIsland, rollLoot, type Loot } from '../island/dungeon';
+import { dungeonFgOf, dungeonIsland, rollLoot, type Loot } from '../island/dungeon';
 import { BOSS, drawStoneSword, WEAPONS } from '../island/combat';
 import { arcadeSeeds, bossSeeds, roundSeeds, SEED, seedLogNow, seedOfTheDay, withSeeds, type SeedLog } from '../island/seeds';
 import { isCustomId, newCustomId, setCustomWords, type CustomWord } from '../arcade/jlptCustom';
@@ -156,7 +156,7 @@ interface ProgressState {
   /** A catch from fishing on the Island (src/island/fishing.ts): what you actually got (a sardine when the seed or coins are capped today). */
   fishReward: (c: Catch) => Catch;
   /** This week's dungeon (src/island/dungeon.ts): what this player changed in it (mined, chests opened). A new week, a new dungeon. */
-  dungeon?: { week: string; fg: Record<string, string>; boss?: boolean };
+  dungeon?: { week: string; fg: Record<string, string>; boss?: boolean; v?: number };
   /** A move in the dungeon (mining): like islandAct. */
   dungeonAct: (move: (island: Island, items: Bag, seeds: Bag) => Change) => string | null;
   /** Opens a dungeon chest: what was in it, or null (already open, not a chest). */
@@ -658,8 +658,8 @@ export const useProgress = create<ProgressState>()(
         const s = get();
         const week = weekOf(todayKey());
         try {
-          const c = move(dungeonIsland(week, s.dungeon?.week === week ? s.dungeon.fg : {}), s.islandItems ?? {}, s.seeds ?? {});
-          set({ dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: c.island.fg }, ...(c.items ? { islandItems: c.items } : {}), ...(c.seeds ? { seeds: c.seeds } : {}) });
+          const c = move(dungeonIsland(week, dungeonFgOf(s.dungeon, week)), s.islandItems ?? {}, s.seeds ?? {});
+          set({ dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: c.island.fg, v: 3 }, ...(c.items ? { islandItems: c.items } : {}), ...(c.seeds ? { seeds: c.seeds } : {}) });
           return null;
         } catch (e) {
           return e instanceof Error ? e.message : 'That didn’t work.';
@@ -668,13 +668,13 @@ export const useProgress = create<ProgressState>()(
       openChest: (cell) => {
         const s = get();
         const week = weekOf(todayKey());
-        const fg = s.dungeon?.week === week ? s.dungeon.fg : {};
+        const fg = dungeonFgOf(s.dungeon, week);
         if (fgAt(dungeonIsland(week, fg), cell) !== 'dungeon-chest') return null;
         const loot = rollLoot();
         const bag = { ...(s.islandItems ?? {}) };
         for (const id of loot.items) bag[id] = (bag[id] ?? 0) + 1;
         const seed = loot.seed ? cappedSeeds(s, 'dungeon', [loot.seed]) : {};
-        set({ ...earn(s, loot.coins), ...seed, islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: { ...fg, [cell]: 'dungeon-chest-open' } } } as Partial<ProgressState>);
+        set({ ...earn(s, loot.coins), ...seed, islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: { ...fg, [cell]: 'dungeon-chest-open' }, v: 3 } } as Partial<ProgressState>);
         return { ...loot, seed: 'seedLog' in seed ? loot.seed : null };
       },
       craft: (out) => {
@@ -721,7 +721,7 @@ export const useProgress = create<ProgressState>()(
         if (s.dungeon?.week === week && s.dungeon.boss) return null;
         const bag = { ...(s.islandItems ?? {}) };
         for (const id of BOSS.items) bag[id] = (bag[id] ?? 0) + 1;
-        set({ ...earn(s, BOSS.coins), islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : { fg: {} }), week, boss: true } } as Partial<ProgressState>);
+        set({ ...earn(s, BOSS.coins), islandItems: bag, dungeon: { ...(s.dungeon?.week === week ? s.dungeon : {}), week, fg: dungeonFgOf(s.dungeon, week), v: 3, boss: true } } as Partial<ProgressState>);
         return { coins: BOSS.coins, items: BOSS.items };
       },
       mobLoot: (items) => {

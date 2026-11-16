@@ -7,7 +7,7 @@ import { todayKey } from '../lib/date';
 import { FAMILY_BY_ID, HYBRIDS, ITEM_BY_ID, SEED_BY_ID, type IslandItem, type Seed } from './seeds';
 
 export const ISLAND = {
-  w: 96,
+  w: 160,
   h: 48,
   /** The sea's surface (cells from the top); the shore columns are sea below it. */
   sea: 22,
@@ -20,6 +20,14 @@ export const ISLAND = {
   seedBack: 0.3,
 };
 
+/**
+ * The world grew (version 3): 96 columns wide before, 160 now. The world before sits in the middle, DX columns in, as
+ * it was cell for cell (its ground, ores and caves the same); new lands at both ends where its sea was: the snowy
+ * peaks on the left (snow on their tops, pine trees), the desert on the right (dunes of sand, cacti).
+ */
+export const DX = 32;
+const V2W = 96;
+
 /** The ground, which isn't an item: dirt (grass on top when nothing is above it) and stone deeper down. */
 export const NATURAL: Record<string, { name: string; fr: string; color: string }> = {
   dirt: { name: 'Dirt', fr: 'Terre', color: '#8b5a2b' },
@@ -28,6 +36,9 @@ export const NATURAL: Record<string, { name: string; fr: string; color: string }
   'iron-ore': { name: 'Iron ore', fr: 'Minerai de fer', color: '#d6a47c' },
   'gold-ore': { name: 'Gold ore', fr: 'Minerai d’or', color: '#facc15' },
   'crystal-ore': { name: 'Crystal ore', fr: 'Minerai de cristal', color: '#67e8f9' },
+  /** The new lands' ground: the snowy peaks' tops, the desert's dunes. */
+  snow: { name: 'Snow', fr: 'Neige', color: '#f1f5f9' },
+  sand: { name: 'Sand', fr: 'Sable', color: '#e9c46a' },
   /** The bottom of the world: can't be dug. */
   bedrock: { name: 'Bedrock', fr: 'Roche mère', color: '#1f1d24' },
   /** The dungeon's walls (src/island/dungeon.ts): can't be dug either. */
@@ -84,9 +95,9 @@ export const layerKey = (layer: Layer, cell: number) => (layer === 'back' ? `b${
  * what shows a card (frames, screens, readers). Anything else may also go behind or in front, as decoration only: a
  * block or a fence there is never solid, you walk past it.
  */
-const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate', 'stone', 'weapon', 'qdoor', 'arch']);
+const MIDDLE_ONLY = new Set(['door', 'ladder', 'platform', 'bounce', 'warp', 'frame', 'screen', 'reader', 'disc', 'rail', 'zip', 'craft', 'chest', 'spikes', 'gate', 'stone', 'weapon', 'qdoor', 'arch', 'scenery']);
 /** Things that belong to the world itself (the dungeon's gate, its chests and spikes): never picked up. */
-const FIXED = new Set(['chest', 'spikes', 'gate', 'stone', 'qdoor', 'arch']);
+const FIXED = new Set(['chest', 'spikes', 'gate', 'stone', 'qdoor', 'arch', 'scenery']);
 export const canLayer = (id: string, layer: Layer) => {
   const k = kindOf(id);
   if (!k || k === 'natural' || k === 'disc') return layer === 'mid' && k === 'natural';
@@ -119,12 +130,12 @@ const inside = (x: number, y: number) => x >= 0 && y >= 0 && x < ISLAND.w && y <
  * ores (deeper is rarer), caves, and bedrock at the bottom. Up in the sky: little floating islands.
  */
 export const OLD = { w: 48, h: 14, x: 24, y: 12 };
-export const ISLAND_V = 2;
+export const ISLAND_V = 3;
 
-/** The island's ground height at each column (the top cell of the ground; the sea columns have none). */
-export function surfaceAt(x: number): number {
-  const { w, sea } = ISLAND;
-  if (x < 4 || x >= w - 4) return ISLAND.h; // the sea: no ground
+/** The world before (96 wide, v2): its ground height at a column of its own. */
+function surfaceV2(x: number): number {
+  const w = V2W;
+  const { sea } = ISLAND;
   const lx = x - OLD.x;
   if (lx >= 4 && lx < OLD.w - 4) {
     // The old island's gentle hill, as it was.
@@ -142,6 +153,34 @@ export function surfaceAt(x: number): number {
   return sea - 1 - Math.round(up);
 }
 
+/** Which land a column is in: the world before, the snowy peaks (left), the desert (right), or the sea. */
+export function landAt(x: number): 'sea' | 'peaks' | 'desert' | 'core' {
+  if (x < 4 || x >= ISLAND.w - 4) return 'sea';
+  const x2 = x - DX;
+  return x2 < 4 ? 'peaks' : x2 >= V2W - 4 ? 'desert' : 'core';
+}
+
+/** The island's ground height at each column (the top cell of the ground; the sea columns have none). */
+export function surfaceAt(x: number): number {
+  const { w, sea } = ISLAND;
+  const land = landAt(x);
+  if (land === 'sea') return ISLAND.h;
+  const x2 = x - DX;
+  if (land === 'core') return surfaceV2(x2);
+  if (land === 'peaks') {
+    // Two peaks, the higher inland, down to the shore and to the world before.
+    const d = 4 - x2;
+    const shore = x - 4;
+    const up = (11 * Math.sin((Math.PI * d) / (DX + 1)) + 3 * Math.sin((Math.PI * d) / 8) ** 2) * Math.min(1, d / 4, shore / 4);
+    return sea - 1 - Math.max(0, Math.round(up));
+  }
+  // The desert: dunes rolling down to the sea.
+  const d = x2 - (V2W - 5);
+  const shore = w - 5 - x;
+  const up = (2.4 + 1.6 * Math.sin(d * 0.45) + 1.1 * Math.sin(d * 0.17)) * Math.min(1, d / 4, shore / 5);
+  return sea - 1 - Math.max(0, Math.round(up));
+}
+
 /** A cell's hash in 0..1 (the same everywhere: every world is drawn the same). */
 const hash = (x: number, y: number, k: number) => {
   let n = (Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(k, 1442695041)) | 0;
@@ -155,18 +194,23 @@ const ORES: [string, number, number][] = [
   ['iron-ore', 26, 0.05],
   ['coal-ore', 20, 0.07],
 ];
-/** The floating islands: centre column, top row, half-width. */
+/** The floating islands: centre column, top row, half-width (the world before's, moved; and the new lands'). */
 export const SKY_ISLANDS = [
-  { x: 14, y: 8, r: 3 },
-  { x: 41, y: 5, r: 2 },
-  { x: 57, y: 8, r: 3 },
-  { x: 83, y: 6, r: 3 },
+  { x: 14 + DX, y: 8, r: 3 },
+  { x: 41 + DX, y: 5, r: 2 },
+  { x: 57 + DX, y: 8, r: 3 },
+  { x: 83 + DX, y: 6, r: 3 },
+  { x: 16, y: 3, r: 2 },
+  { x: 143, y: 7, r: 3 },
 ];
 /** Caves: open pockets in the stone (made once, the same in every world). */
 const CAVES = (() => {
   let s = 7;
   const rnd = () => ((s = (Math.imul(s, 1103515245) + 12345) >>> 0), s / 4294967296);
-  return Array.from({ length: 10 }, () => ({ x: 6 + rnd() * (ISLAND.w - 12), y: ISLAND.sea + 5 + rnd() * (ISLAND.h - ISLAND.sea - 10), rx: 2 + rnd() * 3.5, ry: 1 + rnd() * 1.4 }));
+  // The world before's, as they were (moved DX in), then the new lands'.
+  const before = Array.from({ length: 10 }, () => ({ x: DX + 6 + rnd() * (V2W - 12), y: ISLAND.sea + 5 + rnd() * (ISLAND.h - ISLAND.sea - 10), rx: 2 + rnd() * 3.5, ry: 1 + rnd() * 1.4 }));
+  const more = [8, 22, 136, 150].map((x) => ({ x, y: ISLAND.sea + 6 + rnd() * (ISLAND.h - ISLAND.sea - 12), rx: 2 + rnd() * 3, ry: 1 + rnd() * 1.3 }));
+  return [...before, ...more];
 })();
 
 /** The ground every world starts with, cell by cell (undefined: air). */
@@ -180,13 +224,24 @@ const GROUND: (string | undefined)[] = (() => {
       continue;
     }
     const top = surfaceAt(x);
+    const land = landAt(x);
+    // The ores by the world before's columns (the same there as before).
+    const ox = x - DX;
     for (let y = top; y < h; y++) {
       const i = y * w + x;
       if (y >= h - 2) g[i] = 'bedrock';
-      else if (y < top + 3) g[i] = 'dirt';
+      else if (y < top + 3) g[i] = land === 'desert' ? 'sand' : land === 'peaks' && y === top ? 'snow' : 'dirt';
       else if (CAVES.some((c) => ((x + 0.5 - c.x) / c.rx) ** 2 + ((y + 0.5 - c.y) / c.ry) ** 2 < 1)) g[i] = undefined;
-      else g[i] = ORES.find(([, from, p], k) => y >= from && hash(x >> 1, y >> 1, k) < p * 2.2 && hash(x, y, k + 9) < 0.55)?.[0] ?? 'stone';
+      else g[i] = ORES.find(([, from, p], k) => y >= from && hash(ox >> 1, y >> 1, k) < p * 2.2 && hash(ox, y, k + 9) < 0.55)?.[0] ?? 'stone';
     }
+  }
+  // The new lands' trees: pines on the peaks, cacti in the desert (fixed: part of the world).
+  for (let x = 6; x < w - 6; x++) {
+    const land = landAt(x);
+    if (land !== 'peaks' && land !== 'desert') continue;
+    if (hash(x, 1, 31) > (land === 'peaks' ? 0.28 : 0.2)) continue;
+    const y = surfaceAt(x) - 1;
+    if (y > 0 && !g[y * w + x]) g[y * w + x] = land === 'peaks' ? 'pine-tree' : 'cactus';
   }
   for (const s of SKY_ISLANDS)
     for (let row = 0; row < 3; row++)
@@ -195,14 +250,16 @@ const GROUND: (string | undefined)[] = (() => {
 })();
 /** The dungeon's gate: on the floor of the valley, on the right of the old island. */
 export const ISLAND_GATE = (() => {
-  let best = OLD.x + OLD.w;
-  for (let x = OLD.x + OLD.w; x < OLD.x + OLD.w + 12; x++) if (surfaceAt(x) > surfaceAt(best)) best = x;
+  let best = DX + OLD.x + OLD.w;
+  for (let x = DX + OLD.x + OLD.w; x < DX + OLD.x + OLD.w + 12; x++) if (surfaceAt(x) > surfaceAt(best)) best = x;
   const cell = idx(best, surfaceAt(best) - 1);
   GROUND[cell] = 'dungeon-gate';
   return cell;
 })();
 /** What a cell held when the world was made. */
 export const groundAt = (cell: number) => GROUND[cell];
+/** The things the world itself puts on the island (the dungeon's gate, the new lands' trees), by cell. */
+const WORLD_THINGS: [number, string][] = GROUND.flatMap((id, c) => (id && !NATURAL[id] ? [[c, id] as [number, string]] : []));
 
 /** The other worlds' ground (the dungeons), by name. */
 const WORLDS = new Map<string, (string | undefined)[]>();
@@ -211,7 +268,10 @@ const baseOf = (isl: Island) => (isl.world ? (WORLDS.get(isl.world) ?? GROUND) :
 
 /** The things in the middle layer (not the ground), with their cells: what was put there, and the world's own. */
 export function itemsIn(isl: Island): [number, string][] {
-  if (!isl.world) return Object.entries(isl.fg).flatMap(([k, id]) => (id && !NATURAL[id] ? [[Number(k), id] as [number, string]] : [])).concat(isl.fg[ISLAND_GATE] === undefined ? [[ISLAND_GATE, 'dungeon-gate']] : []);
+  if (!isl.world)
+    return Object.entries(isl.fg)
+      .flatMap(([k, id]) => (id && !NATURAL[id] ? [[Number(k), id] as [number, string]] : []))
+      .concat(WORLD_THINGS.filter(([c]) => isl.fg[c] === undefined));
   const out: [number, string][] = [];
   for (let c = 0; c < ISLAND.w * ISLAND.h; c++) {
     const id = fgAt(isl, c);
@@ -246,7 +306,8 @@ export function newIsland(): Island {
  */
 export function upgradeIsland(isl: Island): Island {
   if (isl.v === ISLAND_V) return isl;
-  const move = (c: number) => idx((c % OLD.w) + OLD.x, Math.floor(c / OLD.w) + OLD.y);
+  if (isl.v === 2) return widen(isl);
+  const move = (c: number) => idx((c % OLD.w) + OLD.x + DX, Math.floor(c / OLD.w) + OLD.y);
   const key = (k: string) => {
     const m = /^([bt]?)(\d+)$/.exec(k);
     return m ? `${m[1]}${move(Number(m[2]))}` : k;
@@ -265,6 +326,28 @@ export function upgradeIsland(isl: Island): Island {
   if (isl.front) out.front = keys(isl.front);
   if (isl.by) out.by = keyed(isl.by);
   if (isl.tune) out.tune = keyed(isl.tune);
+  return out;
+}
+
+/**
+ * An island of the world before (v2, 96 wide) in the wider one: each cell DX columns on, the same row; every key that
+ * names a cell (the layers, the plots, the cards shown, who put what, the music's settings and the speakers' links)
+ * follows.
+ */
+function widen(isl: Island): Island {
+  const move = (c: number) => idx((c % V2W) + DX, Math.floor(c / V2W));
+  const key = (k: string): string => {
+    const t = /^(vol:|to:)(.*)$/.exec(k);
+    if (t) return t[1] + key(t[2]);
+    const m = /^([bt]?)(\d+)$/.exec(k);
+    return m ? `${m[1]}${move(Number(m[2]))}` : k;
+  };
+  const keys = <T,>(r: Record<string, T> | undefined) => (r ? Object.fromEntries(Object.entries(r).map(([k, v]) => [String(move(Number(k))), v])) : r);
+  const out: Island = { ...isl, fg: keys(isl.fg)!, bg: keys(isl.bg)!, plots: keys(isl.plots)!, shown: keys(isl.shown)!, v: ISLAND_V };
+  if (isl.front) out.front = keys(isl.front);
+  if (isl.by) out.by = Object.fromEntries(Object.entries(isl.by).map(([k, v]) => [key(k), v]));
+  // A speaker's link names the device it plays: that moves too.
+  if (isl.tune) out.tune = Object.fromEntries(Object.entries(isl.tune).map(([k, v]) => [key(k), k.startsWith('to:') ? key(v) : v]));
   return out;
 }
 

@@ -14,7 +14,7 @@ import { canLayer, dig, fgAt, harvest, harvestChoices, helpSeed, idx, ISLAND_GAT
 import { EMOTES, useLive, type EmoteEvent, type LiveCfg, type Peer, type TuneEvent, type TvEvent } from './live';
 import { FISHING, markerAt, rollCatch, zoneOf, type Catch } from './fishing';
 import { canCraft, RECIPES, type Station } from './crafting';
-import { biomeAt, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
+import { biomeAt, dungeonFgOf, dungeonIsland, dungeonOf, FIRE_JET, fireJetOn } from './dungeon';
 import { bestWeapon, BOSS, FISTS, HEARTS, MOBS, RARITY_COLOR, SAFE_AFTER_HURT, SWING, WEAPONS } from './combat';
 import { dleQuestion, type Question } from './quiz';
 import { weekOf } from '../gacha/economy';
@@ -159,7 +159,7 @@ export function IslandView({ shared, mode = 'own', act: shareAct, who, names = {
   const mobLoot = useProgress((s) => s.mobLoot);
   const week = weekOf(todayKey());
   const dungeonSave = useProgress((s) => s.dungeon);
-  const dungeonFg = dungeonSave?.week === week ? dungeonSave.fg : undefined;
+  const dungeonFg = dungeonSave?.week === week ? dungeonFgOf(dungeonSave, week) : undefined;
   const isl = useMemo(() => (inDungeon ? dungeonIsland(week, dungeonFg) : home), [inDungeon, week, dungeonFg, home]);
   const dungeonAct = useProgress((s) => s.dungeonAct);
   const openChest = useProgress((s) => s.openChest);
@@ -1795,7 +1795,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
     const kind = kindOf(id);
     if (kind === 'natural') {
       // Ground: stone, beach sand by the sea, or dirt (darker deeper down) with grass on top; its open sides shaded.
-      const sand = id === 'dirt' && isBeach(x);
+      const sand = (id === 'dirt' && isBeach(x)) || id === 'sand';
       const top = id === 'dirt' && !ground(x, y - 1) && !isl.plots[idx(x, y - 1)];
       const h = cellHash(x, y);
       const edges = [!ground(x - 1, y) && `inset ${T * 0.12}px 0 0 #0002`, !ground(x + 1, y) && `inset -${T * 0.12}px 0 0 #0003`, !ground(x, y + 1) && `inset 0 -${T * 0.1}px 0 #0003`]
@@ -1804,7 +1804,7 @@ const World = memo(function World({ isl, T, tunes }: { isl: Island; T: number; t
       out.push(
         <div
           key={k}
-          className={`absolute ${id !== 'dirt' ? 'island-stone' : sand ? 'island-sand' : 'island-dirt'} ${id === 'bedrock' ? 'island-bedrock' : id.startsWith('dungeon-') ? `island-dungeon ${id}` : ''}`}
+          className={`absolute ${sand ? 'island-sand' : id === 'snow' ? 'island-snow' : id !== 'dirt' ? 'island-stone' : 'island-dirt'} ${id === 'bedrock' ? 'island-bedrock' : id.startsWith('dungeon-') ? `island-dungeon ${id}` : ''}`}
           style={{ ...style, ...(!ground(x, y - 1) ? { borderTopLeftRadius: ground(x - 1, y) ? 0 : T * 0.3, borderTopRightRadius: ground(x + 1, y) ? 0 : T * 0.3 } : {}), backgroundColor: id === 'dirt' && !sand ? dirtColor(y) : undefined, backgroundPosition: `${(h % 4) * 8}px ${((h >> 3) % 4) * 8}px`, boxShadow: edges || undefined }}
         >
           {NATURAL[id] && id.endsWith('-ore') && <span className="island-ore" style={{ '--ore': NATURAL[id].color } as React.CSSProperties} />}

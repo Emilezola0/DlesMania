@@ -236,6 +236,16 @@ export function dungeonOf(week: string): Built {
   return out;
 }
 
+/**
+ * What this player changed in the week's dungeon, from their save: a save from before the world grew (96 wide, no
+ * `v`) has its cells moved to the new width (the dungeon's rooms stay where they were).
+ */
+export function dungeonFgOf(save: { week: string; fg: Record<string, string>; v?: number } | undefined, week: string): Record<string, string> {
+  if (!save || save.week !== week) return {};
+  if (save.v === 3) return save.fg;
+  return Object.fromEntries(Object.entries(save.fg).map(([k, v]) => [String(Math.floor(Number(k) / 96) * ISLAND.w + (Number(k) % 96)), v]));
+}
+
 /** The week's dungeon as an Island (with what this player already changed in it). */
 export function dungeonIsland(week: string, fg: Record<string, string> = {}): Island {
   const world = `dungeon:${week}`;
